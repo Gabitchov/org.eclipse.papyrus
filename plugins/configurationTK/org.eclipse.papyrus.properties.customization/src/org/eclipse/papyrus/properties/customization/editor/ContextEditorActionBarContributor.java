@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -203,7 +203,7 @@ public class ContextEditorActionBarContributor extends EcoreActionBarContributor
 	protected Collection<IAction> createSiblingActionsForSection(ISelection selection, Section section) {
 		Collection<IAction> actions = new LinkedList<IAction>();
 
-		//TODO : We need to retrieve the view owning the section. It is only possible with an access to the 
+		//TODO : We need to retrieve the view owning the section. It is only possible with an access to the
 		//ITreeElements, which we don't have here. Find a way to retrieve it.
 
 		//		String sectionName = getSectionName(view.getContext());
@@ -226,6 +226,9 @@ public class ContextEditorActionBarContributor extends EcoreActionBarContributor
 	 */
 	protected Collection<IAction> createChildForView(ISelection selection, View view) {
 		Collection<IAction> actions = new LinkedList<IAction>();
+		if(view.getContext() == null) {
+			return actions;
+		}
 
 		String sectionName = getSectionName(view.getContext());
 		String sectionFile = getSectionFile(sectionName);
@@ -267,8 +270,9 @@ public class ContextEditorActionBarContributor extends EcoreActionBarContributor
 	protected boolean isValidName(String sectionName, Context context) {
 		for(Tab tab : context.getTabs()) {
 			for(Section section : tab.getSections()) {
-				if(section.getName().equals(sectionName))
+				if(section.getName().equals(sectionName)) {
 					return false;
+				}
 			}
 		}
 		return true;
@@ -318,7 +322,7 @@ public class ContextEditorActionBarContributor extends EcoreActionBarContributor
 
 	@Override
 	protected boolean removeAllReferencesOnDelete() {
-		return false; //When true, the whole model is loaded on "delete" actions, including *.xwt files 
+		return false; //When true, the whole model is loaded on "delete" actions, including *.xwt files
 		//(Which cannot contain references to the deleted element, and are really slow to load)
 	}
 

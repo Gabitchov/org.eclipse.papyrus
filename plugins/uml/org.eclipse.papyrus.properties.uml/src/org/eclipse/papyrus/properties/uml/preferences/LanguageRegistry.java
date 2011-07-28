@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -31,9 +31,17 @@ import org.eclipse.papyrus.properties.uml.languagepreferences.languagepreference
 import org.eclipse.papyrus.properties.uml.widgets.BodyEditor;
 import org.eclipse.papyrus.properties.util.EMFHelper;
 
-
+/**
+ * A Registry to manage associations between a language and a language
+ * editor for UML Expressions
+ * 
+ * @author Camille Letavernier
+ */
 public class LanguageRegistry {
 
+	/**
+	 * The singleton instance for the LanguageRegistry
+	 */
 	public static LanguageRegistry instance = new LanguageRegistry();
 
 	private LanguageRegistry() {
@@ -76,6 +84,13 @@ public class LanguageRegistry {
 		}
 	}
 
+	/**
+	 * Gets the editor associated to the given language
+	 * 
+	 * @param language
+	 *        The language for which we want to edit an expression
+	 * @return The BodyEditor for the given language
+	 */
 	public BodyEditor getEditorFor(String language) {
 		if(languageMapping.containsKey(language)) {
 			List<Editor> editors = languageMapping.get(language);
@@ -87,6 +102,14 @@ public class LanguageRegistry {
 		return getEditorFor(""); //$NON-NLS-1$
 	}
 
+	/**
+	 * Sets the default editor for a language
+	 * 
+	 * @param languageName
+	 *        The name of the language
+	 * @param editor
+	 *        The editor to associate to the language
+	 */
 	public void setDefaultEditorFor(String languageName, Editor editor) {
 		if(!languageMapping.containsKey(languageName)) {
 			languageMapping.put(languageName, new LinkedList<Editor>());
@@ -100,13 +123,26 @@ public class LanguageRegistry {
 		language.setPreferedEditor(editor);
 	}
 
+	/**
+	 * @return the preferences associated to the registry
+	 */
 	public Preferences getPreferences() {
 		return preferences;
 	}
 
+	/**
+	 * Registers a new editor for a given language
+	 * 
+	 * @param language
+	 *        The language name
+	 * @param editor
+	 *        The editor to associate to the language
+	 */
 	public void registerEditor(String language, Editor editor) {
 		if(language == null)
+		{
 			language = ""; //$NON-NLS-1$
+		}
 
 		if(!languageMapping.containsKey(language)) {
 			languageMapping.put(language, new LinkedList<Editor>());
@@ -163,6 +199,10 @@ public class LanguageRegistry {
 
 	private Preferences preferences;
 
+	/**
+	 * 
+	 * @return the list of all known languages
+	 */
 	public List<String> getLanguages() {
 		List<String> result = new LinkedList<String>(languageMapping.keySet());
 		result.remove(""); //$NON-NLS-1$

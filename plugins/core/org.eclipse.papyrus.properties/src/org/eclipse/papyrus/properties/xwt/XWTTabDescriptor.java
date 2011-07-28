@@ -71,7 +71,7 @@ public class XWTTabDescriptor extends AbstractTabDescriptor {
 	public Image getImage() {
 		String imagePath = tab.getImage();
 
-		if(imagePath == null || imagePath.trim().equals("")) {
+		if(imagePath == null || imagePath.trim().equals("")) { //$NON-NLS-1$
 			return null;
 		}
 
@@ -96,6 +96,11 @@ public class XWTTabDescriptor extends AbstractTabDescriptor {
 		return "Tab " + getLabel() + " => " + getSectionDescriptors(); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
+	/**
+	 * @return this tab's priority. The tabs should be ordered by ascending
+	 *         priority (i.e. the lower the priority int value, the higher
+	 *         the actual priority)
+	 */
 	public int getPriority() {
 		return tab.getPriority();
 	}

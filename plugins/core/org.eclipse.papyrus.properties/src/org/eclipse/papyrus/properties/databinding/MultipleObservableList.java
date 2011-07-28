@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -34,6 +34,7 @@ import org.eclipse.papyrus.widgets.editors.ICommitListener;
  * 
  * @author Camille Letavernier
  */
+//TODO : Add listeners on sub-observables, and remove them on dispose
 public class MultipleObservableList extends ObservableList implements ICommitListener, MultipleObservable {
 
 	List<IObservableList> observableLists = new LinkedList<IObservableList>();
@@ -45,6 +46,7 @@ public class MultipleObservableList extends ObservableList implements ICommitLis
 	 */
 	public MultipleObservableList() {
 		super(new LinkedList<Object>(), Object.class);
+		throw new UnsupportedOperationException("This class is not supported yet"); //$NON-NLS-1$
 	}
 
 	@Override
@@ -172,6 +174,14 @@ public class MultipleObservableList extends ObservableList implements ICommitLis
 		}
 
 		return false;
+	}
+
+	@Override
+	public void dispose() {
+		super.dispose();
+		for(IObservableList observable : observableLists) {
+			observable.dispose();
+		}
 	}
 
 }

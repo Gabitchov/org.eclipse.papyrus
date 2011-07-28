@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -21,13 +21,28 @@ import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Signal;
 
-
+/**
+ * An IObservableValue for editing a message's signature, with
+ * either an Operation or a Signal.
+ * Relies on the {@link MessageUtil} implementation
+ * 
+ * @author Camille Letavernier
+ */
 public class SignatureObservableValue extends AbstractObservableValue {
 
 	private Message source;
 
 	private TransactionalEditingDomain domain;
 
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 * @param source
+	 *        The EObject being observed. Should be a Message
+	 * @param domain
+	 *        The editing domain on which the commands will be executed
+	 */
 	public SignatureObservableValue(EObject source, EditingDomain domain) {
 		if(!(source instanceof Message)) {
 			throw new IllegalArgumentException("The source EObject must be a Message"); //$NON-NLS-1$

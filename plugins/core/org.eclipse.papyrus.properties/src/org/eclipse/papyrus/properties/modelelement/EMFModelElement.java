@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -32,6 +32,7 @@ import org.eclipse.papyrus.properties.databinding.EMFObservableValue;
 import org.eclipse.papyrus.properties.providers.EMFObjectLabelProvider;
 import org.eclipse.papyrus.properties.providers.EcoreEnumeratorContentProvider;
 import org.eclipse.papyrus.properties.providers.EcoreReferenceContentProvider;
+import org.eclipse.papyrus.properties.util.EMFHelper;
 import org.eclipse.papyrus.widgets.creation.ReferenceValueFactory;
 import org.eclipse.papyrus.widgets.providers.EmptyContentProvider;
 import org.eclipse.papyrus.widgets.providers.IStaticContentProvider;
@@ -63,7 +64,7 @@ public class EMFModelElement extends AbstractModelElement {
 	 * @param source
 	 */
 	public EMFModelElement(EObject source) {
-		this.source = source;
+		this(source, null);
 	}
 
 	/**
@@ -92,7 +93,8 @@ public class EMFModelElement extends AbstractModelElement {
 		return source;
 	}
 
-	public IObservable getObservable(String propertyPath) {
+	@Override
+	protected IObservable doGetObservable(String propertyPath) {
 		FeaturePath featurePath = getFeaturePath(propertyPath);
 		EStructuralFeature feature = getFeature(propertyPath);
 		if(feature == null) {
@@ -188,6 +190,9 @@ public class EMFModelElement extends AbstractModelElement {
 	public IStaticContentProvider getContentProvider(String propertyPath) {
 		FeaturePath featurePath = getFeaturePath(propertyPath);
 		EStructuralFeature feature = getFeature(featurePath);
+		if(feature == null) {
+			return EmptyContentProvider.instance;
+		}
 		EClassifier type = feature.getEType();
 		if(type instanceof EEnum) {
 			return new EcoreEnumeratorContentProvider(feature);
@@ -236,7 +241,7 @@ public class EMFModelElement extends AbstractModelElement {
 		if(feature == null) {
 			return false;
 		}
-		return feature.isChangeable();
+		return feature.isChangeable() && !EMFHelper.isReadOnly(source);
 	}
 
 	@Override

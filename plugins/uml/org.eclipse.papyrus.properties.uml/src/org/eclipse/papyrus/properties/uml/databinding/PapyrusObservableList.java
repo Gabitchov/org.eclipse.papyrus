@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -55,16 +55,30 @@ public class PapyrusObservableList extends EMFObservableList implements ICommitL
 		super(wrappedList, domain, source, feature);
 	}
 
+	/**
+	 * @return the IElementEditService used to retrieve the command
+	 */
 	protected IElementEditService getProvider() {
 		return ElementEditServiceUtils.getCommandProvider(source);
 	}
 
+	/**
+	 * Creates an EMF command from a GMF request, with the given IElementEditService
+	 * 
+	 * @param provider
+	 * @param request
+	 * @return
+	 *         The EMF command corresponding to the given request
+	 */
 	protected Command getCommandFromRequest(IElementEditService provider, SetRequest request) {
 		ICommand createGMFCommand = provider.getEditCommand(request);
 
 		return new GMFtoEMFCommandWrapper(createGMFCommand);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected Command getAddCommand(int index, Object value) {
 		IElementEditService provider = getProvider();
@@ -78,6 +92,9 @@ public class PapyrusObservableList extends EMFObservableList implements ICommitL
 		return super.getAddCommand(index, value);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected Command getAddCommand(Object value) {
 		IElementEditService provider = getProvider();
@@ -91,6 +108,9 @@ public class PapyrusObservableList extends EMFObservableList implements ICommitL
 		return super.getAddCommand(value);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected Command getAddAllCommand(Collection<?> values) {
 		IElementEditService provider = getProvider();
@@ -105,6 +125,9 @@ public class PapyrusObservableList extends EMFObservableList implements ICommitL
 		return super.getAddAllCommand(values);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected Command getAddAllCommand(int index, Collection<?> values) {
 		IElementEditService provider = getProvider();
@@ -117,6 +140,9 @@ public class PapyrusObservableList extends EMFObservableList implements ICommitL
 		return super.getAddAllCommand(index, values);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected Command getClearCommand() {
 		IElementEditService provider = getProvider();
@@ -127,6 +153,9 @@ public class PapyrusObservableList extends EMFObservableList implements ICommitL
 		return super.getClearCommand();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected Command getRemoveCommand(int index) {
 		IElementEditService provider = getProvider();
@@ -140,6 +169,9 @@ public class PapyrusObservableList extends EMFObservableList implements ICommitL
 		return null;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected Command getRemoveCommand(Object value) {
 		IElementEditService provider = getProvider();
@@ -153,6 +185,9 @@ public class PapyrusObservableList extends EMFObservableList implements ICommitL
 		return super.getRemoveCommand(value);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected Command getRemoveAllCommand(Collection<?> values) {
 		IElementEditService provider = getProvider();
@@ -165,6 +200,9 @@ public class PapyrusObservableList extends EMFObservableList implements ICommitL
 		return super.getRemoveAllCommand(values);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected List<Command> getMoveCommands(int oldIndex, int newIndex) {
 		IElementEditService provider = getProvider();
@@ -179,6 +217,9 @@ public class PapyrusObservableList extends EMFObservableList implements ICommitL
 		return super.getMoveCommands(oldIndex, newIndex);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected Command getSetCommand(int index, Object value) {
 		IElementEditService provider = getProvider();

@@ -70,7 +70,8 @@ public class MemberEndModelElement extends AbstractModelElement {
 		this.domain = domain;
 	}
 
-	public IObservable getObservable(String propertyPath) {
+	@Override
+	public IObservable doGetObservable(String propertyPath) {
 		if(propertyPath.equals(MULTIPLICITY)) {
 			return new MultiplicityObservableValue(source, domain);
 		} else if(propertyPath.equals(OWNER)) {

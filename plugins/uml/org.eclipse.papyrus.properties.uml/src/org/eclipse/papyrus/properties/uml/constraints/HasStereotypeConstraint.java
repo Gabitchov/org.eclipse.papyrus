@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -26,14 +26,21 @@ import org.eclipse.uml2.uml.Stereotype;
  */
 public class HasStereotypeConstraint extends AbstractConstraint {
 
+	/**
+	 * The name of the stereotype to look for
+	 */
 	protected String stereotypeName;
 
+	/**
+	 * The UML element on which the stereotype may be applied
+	 */
 	protected Element umlElement;
 
 	public boolean match(Object selection) {
 		umlElement = UMLUtil.resolveUMLElement(selection);
-		if(umlElement == null)
+		if(umlElement == null) {
 			return false;
+		}
 
 		Stereotype stereotype = UMLUtil.getAppliedStereotype(umlElement, stereotypeName, false);
 		return stereotype != null;
@@ -69,18 +76,23 @@ public class HasStereotypeConstraint extends AbstractConstraint {
 
 	@Override
 	protected boolean equivalent(Constraint constraint) {
-		if(this == constraint)
+		if(this == constraint) {
 			return true;
-		if(constraint == null)
+		}
+		if(constraint == null) {
 			return false;
-		if(!(constraint instanceof HasStereotypeConstraint))
+		}
+		if(!(constraint instanceof HasStereotypeConstraint)) {
 			return false;
+		}
 		HasStereotypeConstraint other = (HasStereotypeConstraint)constraint;
 		if(stereotypeName == null) {
-			if(other.stereotypeName != null)
+			if(other.stereotypeName != null) {
 				return false;
-		} else if(!stereotypeName.equals(other.stereotypeName))
+			}
+		} else if(!stereotypeName.equals(other.stereotypeName)) {
 			return false;
+		}
 		return true;
 	}
 }

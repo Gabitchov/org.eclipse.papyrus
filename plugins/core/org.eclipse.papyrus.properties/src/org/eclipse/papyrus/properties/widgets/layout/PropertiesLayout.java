@@ -158,6 +158,22 @@ public class PropertiesLayout extends Layout {
 	 * Constructs a new instance of this class.
 	 */
 	public PropertiesLayout() {
+		this(false);
+	}
+
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 * @param useMargins
+	 *        If false, there won't be any margin. If true, default margins
+	 *        will be used
+	 */
+	public PropertiesLayout(boolean useMargins) {
+		if(!useMargins) {
+			marginHeight = 0;
+			marginWidth = 0;
+		}
 	}
 
 	/**
@@ -175,6 +191,23 @@ public class PropertiesLayout extends Layout {
 	 * @since 2.0
 	 */
 	public PropertiesLayout(int numColumns, boolean makeColumnsEqualWidth) {
+		this(numColumns, makeColumnsEqualWidth, false);
+	}
+
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 * @param numColumns
+	 *        the number of columns in the grid
+	 * @param makeColumnsEqualWidth
+	 *        whether or not the columns will have equal width
+	 * @param useMargins
+	 *        If false, there won't be any margin. If true, default margins
+	 *        will be used
+	 */
+	public PropertiesLayout(int numColumns, boolean makeColumnsEqualWidth, boolean useMargins) {
+		this(useMargins);
 		this.numColumns = numColumns;
 		this.makeColumnsEqualWidth = makeColumnsEqualWidth;
 	}

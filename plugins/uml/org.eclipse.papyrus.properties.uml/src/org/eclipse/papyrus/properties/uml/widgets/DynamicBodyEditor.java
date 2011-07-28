@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -27,6 +27,14 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 
 
+/**
+ * An editor to edit an expression body.
+ * Depending on the matching language, a different widget will be used to edit
+ * the expression body.
+ * 
+ * @author Camille Letavernier
+ * 
+ */
 public class DynamicBodyEditor extends AbstractValueEditor implements Listener {
 
 	private BodyEditor currentEditor;
@@ -39,6 +47,15 @@ public class DynamicBodyEditor extends AbstractValueEditor implements Listener {
 
 	private ModelElement context = null;
 
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 * @param parent
+	 *        The composite in which the widget will be displayed
+	 * @param style
+	 *        The widget's composite style
+	 */
 	public DynamicBodyEditor(Composite parent, int style) {
 		super(parent, style);
 
@@ -47,6 +64,13 @@ public class DynamicBodyEditor extends AbstractValueEditor implements Listener {
 		bodyEditorContainer.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 	}
 
+	/**
+	 * Sets the {@link Expression} to edit.
+	 * This will refresh the widget used to edit the expression body.
+	 * 
+	 * @param expression
+	 *        the expression to edit
+	 */
 	public void display(Expression expression) {
 		String language = expression.getLanguage();
 		String initialText = expression.getBody();
@@ -71,10 +95,22 @@ public class DynamicBodyEditor extends AbstractValueEditor implements Listener {
 		currentEditor = editor;
 	}
 
+	/**
+	 * Adds a listener to this object
+	 * Events will be fired when the body has changed
+	 * 
+	 * @param listener
+	 */
+	//TODO : isn't it simply a commit listener ?
 	public void addChangeListener(Listener listener) {
 		changeListeners.add(listener);
 	}
 
+	/**
+	 * Removes a listener from this object
+	 * 
+	 * @param listener
+	 */
 	public void removeChangeListener(Listener listener) {
 		changeListeners.remove(listener);
 	}
@@ -136,6 +172,11 @@ public class DynamicBodyEditor extends AbstractValueEditor implements Listener {
 		return result;
 	}
 
+	/**
+	 * Sets the ModelElement used by this editor
+	 * 
+	 * @param modelElement
+	 */
 	public void setContext(ModelElement modelElement) {
 		this.context = modelElement;
 		if(currentEditor != null) {

@@ -72,9 +72,6 @@ public class ContextItemProvider
 
 			addNamePropertyDescriptor(object);
 			addDependenciesPropertyDescriptor(object);
-			addAuthorPropertyDescriptor(object);
-			addDescriptionPropertyDescriptor(object);
-			addVersionPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -119,72 +116,6 @@ public class ContextItemProvider
 				 false,
 				 true,
 				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Author feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addAuthorPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Context_author_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Context_author_feature", "_UI_Context_type"),
-				 ContextsPackage.Literals.CONTEXT__AUTHOR,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Description feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addDescriptionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Context_description_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Context_description_feature", "_UI_Context_type"),
-				 ContextsPackage.Literals.CONTEXT__DESCRIPTION,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Version feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addVersionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Context_version_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Context_version_feature", "_UI_Context_type"),
-				 ContextsPackage.Literals.CONTEXT__VERSION,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -259,9 +190,6 @@ public class ContextItemProvider
 
 		switch (notification.getFeatureID(Context.class)) {
 			case ContextsPackage.CONTEXT__NAME:
-			case ContextsPackage.CONTEXT__AUTHOR:
-			case ContextsPackage.CONTEXT__DESCRIPTION:
-			case ContextsPackage.CONTEXT__VERSION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case ContextsPackage.CONTEXT__TABS:

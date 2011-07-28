@@ -11,11 +11,13 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.uml.databinding;
 
+import org.eclipse.core.databinding.observable.ChangeEvent;
+import org.eclipse.core.databinding.observable.IChangeListener;
 import org.eclipse.core.databinding.observable.value.AbstractObservableValue;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
+import org.eclipse.core.databinding.observable.value.ValueDiff;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
-import org.eclipse.emf.databinding.EMFProperties;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
@@ -24,8 +26,10 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.papyrus.diagram.common.command.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.properties.Activator;
 import org.eclipse.papyrus.properties.uml.messages.Messages;
+import org.eclipse.papyrus.properties.uml.util.UMLUtil;
 import org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.service.edit.service.IElementEditService;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * An ObservableValue for manipulating the UML Multiplicity property.
@@ -37,7 +41,7 @@ import org.eclipse.papyrus.service.edit.service.IElementEditService;
  * 
  * @author Camille Letavernier
  */
-public class MultiplicityObservableValue extends AbstractObservableValue {
+public class MultiplicityObservableValue extends AbstractObservableValue implements IChangeListener {
 
 	/**
 	 * The 0..* multiplicity (Any)
@@ -70,7 +74,7 @@ public class MultiplicityObservableValue extends AbstractObservableValue {
 	 */
 	public static String SEPARATOR = ".."; //$NON-NLS-1$
 
-	private IObservableValue lowerBound, upperBound;
+	private IObservableValue lowerBound, upperBound, lowerValue, upperValue, lowerValueSpecification, upperValueSpecification;
 
 	private EStructuralFeature lowerFeature, upperFeature;
 
@@ -90,13 +94,97 @@ public class MultiplicityObservableValue extends AbstractObservableValue {
 		this.eObject = eObject;
 		this.domain = domain;
 
-		//Several eClasses have the lower/upper features, we can't access them statically
+		lowerFeature = UMLPackage.eINSTANCE.getMultiplicityElement_Lower();
+		upperFeature = UMLPackage.eINSTANCE.getMultiplicityElement_Upper();
 
-		lowerFeature = eObject.eClass().getEStructuralFeature("lower"); //$NON-NLS-1$
-		upperFeature = eObject.eClass().getEStructuralFeature("upper"); //$NON-NLS-1$
+		EStructuralFeature lowerValueFeature, upperValueFeature, lowerValueSpecificationFeature, upperValueSpecificationFeature;
 
-		lowerBound = domain == null ? EMFProperties.value(lowerFeature).observe(eObject) : new PapyrusObservableValue(eObject, lowerFeature, domain);
-		upperBound = domain == null ? EMFProperties.value(upperFeature).observe(eObject) : new PapyrusObservableValue(eObject, upperFeature, domain);;
+		lowerValueFeature = UMLPackage.eINSTANCE.getMultiplicityElement_LowerValue();
+		upperValueFeature = UMLPackage.eINSTANCE.getMultiplicityElement_UpperValue();
+		lowerValueSpecificationFeature = UMLPackage.eINSTANCE.getLiteralInteger_Value();
+		upperValueSpecificationFeature = UMLPackage.eINSTANCE.getLiteralUnlimitedNatural_Value();
+
+		lowerBound = UMLUtil.getObservableValue(eObject, lowerFeature, domain);
+		upperBound = UMLUtil.getObservableValue(eObject, upperFeature, domain);
+
+		lowerValue = UMLUtil.getObservableValue(eObject, lowerValueFeature, domain);
+		upperValue = UMLUtil.getObservableValue(eObject, upperValueFeature, domain);
+
+		lowerValueSpecification = getValueSpecification(lowerValue, lowerValueSpecificationFeature, domain);
+		upperValueSpecification = getValueSpecification(upperValue, upperValueSpecificationFeature, domain);
+
+		lowerValue.addChangeListener(this);
+		upperValue.addChangeListener(this);
+
+		if(lowerValueSpecification != null) {
+			lowerValueSpecification.addChangeListener(this);
+		}
+		if(upperValueSpecification != null) {
+			upperValueSpecification.addChangeListener(this);
+		}
+	}
+
+	private IObservableValue getValueSpecification(IObservableValue source, EStructuralFeature specificationFeature, EditingDomain domain) {
+		if(source.getValue() == null) {
+			return null;
+		}
+		return UMLUtil.getObservableValue((EObject)source.getValue(), specificationFeature, domain);
+
+	}
+
+	/**
+	 * @see org.eclipse.core.databinding.observable.IChangeListener#handleChange(org.eclipse.core.databinding.observable.ChangeEvent)
+	 * 
+	 * @param event
+	 */
+	public void handleChange(ChangeEvent event) {
+		boolean fireChange = false;
+		if(event.getSource() == lowerValue || event.getSource() == upperValue) {
+			fireChange = true;
+			lowerValueSpecification = getValueSpecification(lowerValue, UMLPackage.eINSTANCE.getLiteralInteger_Value(), domain);
+			upperValueSpecification = getValueSpecification(upperValue, UMLPackage.eINSTANCE.getLiteralUnlimitedNatural_Value(), domain);
+		}
+
+		if(event.getSource() == lowerValueSpecification || event.getSource() == upperValueSpecification) {
+			fireChange = true;
+		}
+
+		if(fireChange) {
+			final Object value = getValue();
+			fireValueChange(new ValueDiff() {
+
+				@Override
+				public Object getOldValue() {
+					return null; //Unknown
+				}
+
+				@Override
+				public Object getNewValue() {
+					return value;
+				}
+
+			});
+		}
+	}
+
+	@Override
+	public void dispose() {
+		lowerBound.removeChangeListener(this);
+		upperBound.removeChangeListener(this);
+		if(lowerValueSpecification != null) {
+			lowerValueSpecification.removeChangeListener(this);
+			lowerValueSpecification.dispose();
+		}
+		if(upperValueSpecification != null) {
+			upperValueSpecification.removeChangeListener(this);
+			upperValueSpecification.dispose();
+		}
+
+		lowerBound.dispose();
+		upperBound.dispose();
+
+
+		super.dispose();
 	}
 
 	public Object getValueType() {

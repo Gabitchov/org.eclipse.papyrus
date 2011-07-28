@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -22,7 +22,20 @@ import org.eclipse.core.databinding.observable.list.WritableList;
 import org.eclipse.papyrus.widgets.editors.AbstractEditor;
 import org.eclipse.papyrus.widgets.editors.ICommitListener;
 
-
+/**
+ * An IObservableList for handling Expressions
+ * 
+ * An Expression has a Language and a Body
+ * 
+ * The UML low-level implementation maintains two lists of Strings (One for the
+ * languages, and another one for the bodies), which should be synchronized
+ * (1-1 mapping, with a few specific cases when the mapping is not strict)
+ * 
+ * This class simplifies this mapping by maintaining a single list of
+ * Expressions, each of which containing a Body and a Language.
+ * 
+ * @author Camille Letavernier
+ */
 public class ExpressionList extends WritableList implements IChangeListener, ICommitListener {
 
 	private List<Expression> expressions;
@@ -33,6 +46,15 @@ public class ExpressionList extends WritableList implements IChangeListener, ICo
 
 	private boolean ignoreChanges = false;
 
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 * @param languages
+	 *        The IObservableList containing Languages
+	 * @param bodies
+	 *        The IObservableList containing Bodies
+	 */
 	public ExpressionList(IObservableList languages, IObservableList bodies) {
 		super(new LinkedList<Expression>(), Expression.class);
 		expressions = wrappedList;
@@ -54,7 +76,7 @@ public class ExpressionList extends WritableList implements IChangeListener, ICo
 		Iterator<?> bodyIterator = bodies.iterator();
 
 		for(int i = 0; i < maxSize; i++) {
-			Expression expression = new Expression(this);
+			Expression expression = new Expression();
 
 			if(languageIterator.hasNext()) {
 				expression.language = (String)languageIterator.next();
@@ -70,8 +92,9 @@ public class ExpressionList extends WritableList implements IChangeListener, ICo
 
 	public void handleChange(ChangeEvent event) {
 		//A change occurs on languages or bodies
-		if(!ignoreChanges)
+		if(!ignoreChanges) {
 			UMLToExpression();
+		}
 	}
 
 	public void commit(AbstractEditor editor) {
@@ -143,38 +166,46 @@ public class ExpressionList extends WritableList implements IChangeListener, ICo
 		languages.add(language);
 	}
 
+	/**
+	 * A helper class to aggregate the expression body and language in a single
+	 * object
+	 * 
+	 * @author Camille Letavernier
+	 */
 	public static class Expression {
 
 		String language;
 
 		String body;
 
-		private ExpressionList owner;
-
-		public Expression() {
-
-		}
-
-		public Expression(ExpressionList owner) {
-			this.owner = owner;
-		}
-
-		public void setOwner(ExpressionList owner) {
-			this.owner = owner;
-		}
-
+		/**
+		 * @return this Expression's language
+		 */
 		public String getLanguage() {
 			return language;
 		}
 
+		/**
+		 * @return this Expression's body
+		 */
 		public String getBody() {
 			return body;
 		}
 
+		/**
+		 * Sets this Expression's language
+		 * 
+		 * @param language
+		 */
 		public void setLanguage(String language) {
 			this.language = language;
 		}
 
+		/**
+		 * Sets this Expression's body
+		 * 
+		 * @param body
+		 */
 		public void setBody(String body) {
 			this.body = body;
 		}

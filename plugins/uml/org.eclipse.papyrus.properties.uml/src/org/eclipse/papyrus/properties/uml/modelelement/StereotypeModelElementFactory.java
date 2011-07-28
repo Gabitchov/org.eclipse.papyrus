@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -65,7 +65,16 @@ public class StereotypeModelElementFactory implements ModelElementFactory {
 		return null;
 	}
 
-	private String getQualifiedName(DataContextElement context) {
+	/**
+	 * Returns the DataContextElement's qualified name (Which should correspond
+	 * to the stereotype's qualified name)
+	 * 
+	 * @param context
+	 *        The DataContextElement representing the Stereotype
+	 * @return
+	 *         The DataContextElement's name, which is also the Stereotype's qualified name
+	 */
+	protected String getQualifiedName(DataContextElement context) {
 		if(context.getPackage() == null) {
 			return context.getName();
 		} else {

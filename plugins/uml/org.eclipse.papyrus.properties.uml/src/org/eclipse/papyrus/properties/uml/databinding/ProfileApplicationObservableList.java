@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -15,9 +15,12 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.eclipse.core.databinding.observable.list.ListDiff;
+import org.eclipse.core.databinding.observable.list.ListDiffEntry;
 import org.eclipse.core.databinding.observable.list.WritableList;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.papyrus.properties.uml.databinding.command.ApplyProfileCommand;
 import org.eclipse.papyrus.properties.uml.databinding.command.UnapplyProfileCommand;
@@ -26,6 +29,12 @@ import org.eclipse.papyrus.widgets.editors.ICommitListener;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Profile;
 
+/**
+ * 
+ * An IObservableList for Profile application
+ * 
+ * @author Camille Letavernier
+ */
 @SuppressWarnings({ "unchecked", "rawtypes" })
 public class ProfileApplicationObservableList extends WritableList implements ICommitListener {
 
@@ -35,11 +44,89 @@ public class ProfileApplicationObservableList extends WritableList implements IC
 
 	private final List<Command> commands;
 
+	private AbstractStereotypeListener listener;
+
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 * @param umlSource
+	 *        The Package on which the profiles are applied or unapplied
+	 * @param domain
+	 *        The editing domain on which the commands are executed
+	 */
 	public ProfileApplicationObservableList(Package umlSource, EditingDomain domain) {
 		super(new LinkedList<Object>(umlSource.getAllAppliedProfiles()), Profile.class);
 		this.umlSource = umlSource;
 		this.domain = domain;
 		commands = new LinkedList<Command>();
+
+		listener = new AbstractStereotypeListener(umlSource) {
+
+			@Override
+			protected void handleUnappliedStereotype(final EObject newValue) {
+				ProfileApplicationObservableList.this.fireListChange(new ListDiff() {
+
+					@Override
+					public ListDiffEntry[] getDifferences() {
+						return new ListDiffEntry[]{ new ListDiffEntry() {
+
+							@Override
+							public int getPosition() {
+								return 0;
+							}
+
+							@Override
+							public boolean isAddition() {
+								return false;
+							}
+
+							@Override
+							public Object getElement() {
+								return newValue;
+							}
+
+						} };
+					}
+
+				});
+			}
+
+			@Override
+			protected void handleAppliedStereotype(final EObject newValue) {
+				ProfileApplicationObservableList.this.fireListChange(new ListDiff() {
+
+					@Override
+					public ListDiffEntry[] getDifferences() {
+						return new ListDiffEntry[]{ new ListDiffEntry() {
+
+							@Override
+							public int getPosition() {
+								return 0;
+							}
+
+							@Override
+							public boolean isAddition() {
+								return true;
+							}
+
+							@Override
+							public Object getElement() {
+								return newValue;
+							}
+
+						} };
+					}
+
+				});
+			}
+		};
+	}
+
+	@Override
+	public void dispose() {
+		super.dispose();
+		listener.dispose();
 	}
 
 	public void commit(AbstractEditor editor) {
@@ -101,11 +188,17 @@ public class ProfileApplicationObservableList extends WritableList implements IC
 		fireListChange(null);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void clear() {
 		removeAll(new LinkedList<Object>(wrappedList));
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public boolean add(Object o) {
 		if(!(o instanceof Profile)) {
@@ -120,6 +213,9 @@ public class ProfileApplicationObservableList extends WritableList implements IC
 		return wrappedList.add(o);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public boolean remove(Object o) {
 
@@ -135,6 +231,9 @@ public class ProfileApplicationObservableList extends WritableList implements IC
 		return wrappedList.remove(o);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public boolean addAll(Collection c) {
 		//We only apply the profiles that are not applied yet (To avoid removing them when undo is called)
@@ -147,6 +246,9 @@ public class ProfileApplicationObservableList extends WritableList implements IC
 		return wrappedList.addAll(c);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public boolean removeAll(Collection c) {
 		Command command = new UnapplyProfileCommand(umlSource, c);
@@ -156,6 +258,9 @@ public class ProfileApplicationObservableList extends WritableList implements IC
 		return wrappedList.removeAll(c);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public boolean retainAll(Collection c) {
 		List<Object> objectsToRemove = new LinkedList<Object>();
@@ -167,28 +272,43 @@ public class ProfileApplicationObservableList extends WritableList implements IC
 		return removeAll(objectsToRemove);
 	}
 
-
 	//Unsupported operations. Some of them have a "proxy" implementation
+
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void add(int index, Object value) {
 		add(value); //The list is not ordered
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public boolean addAll(int index, Collection c) {
 		return addAll(c); //The list is not ordered
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public Object set(int index, Object element) {
 		throw new UnsupportedOperationException();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public Object move(int oldIndex, int newIndex) {
 		throw new UnsupportedOperationException();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public Object remove(int index) {
 		throw new UnsupportedOperationException();

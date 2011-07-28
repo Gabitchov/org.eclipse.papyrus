@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -17,6 +17,7 @@ import org.eclipse.emf.databinding.EObjectObservableValue;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.papyrus.core.utils.GMFtoEMFCommandWrapper;
@@ -34,6 +35,9 @@ import org.eclipse.papyrus.service.edit.service.IElementEditService;
  */
 public class PapyrusObservableValue extends EObjectObservableValue {
 
+	/**
+	 * The editing domain on which the commands will be executed
+	 */
 	protected EditingDomain domain;
 
 	/**
@@ -79,7 +83,7 @@ public class PapyrusObservableValue extends EObjectObservableValue {
 			IElementEditService provider = ElementEditServiceUtils.getCommandProvider(getObserved());
 
 			if(provider != null) {
-				SetRequest request = new SetRequest(eObject, eStructuralFeature, value);
+				SetRequest request = new SetRequest((TransactionalEditingDomain)domain, eObject, eStructuralFeature, value);
 				ICommand createGMFCommand = provider.getEditCommand(request);
 
 				Command emfCommand = new GMFtoEMFCommandWrapper(createGMFCommand);

@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -19,13 +19,24 @@ import org.eclipse.papyrus.properties.uml.messages.Messages;
 import org.eclipse.papyrus.widgets.creation.StringEditionFactory;
 import org.eclipse.swt.widgets.Control;
 
-
+/**
+ * A Factory for setting languages in a UML Expression editor.
+ * The value is the name of the language
+ * 
+ * @author Camille Letavernier
+ */
 public class ExpressionLanguageFactory extends StringEditionFactory {
 
 	private UniqueElementValidator validator;
 
 	private List<?> expressionList;
 
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 * @param currentExpressionList
+	 */
 	public ExpressionLanguageFactory(List<?> currentExpressionList) {
 		super(Messages.ExpressionLanguageFactory_EditLanguage, Messages.ExpressionLanguageFactory_SetNewLanguage);
 

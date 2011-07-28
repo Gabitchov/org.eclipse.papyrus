@@ -287,33 +287,6 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getContext_Author() {
-		return (EAttribute)contextEClass.getEStructuralFeatures().get(5);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getContext_Description() {
-		return (EAttribute)contextEClass.getEStructuralFeatures().get(6);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getContext_Version() {
-		return (EAttribute)contextEClass.getEStructuralFeatures().get(7);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getContext_Dependencies() {
 		return (EReference)contextEClass.getEStructuralFeatures().get(1);
 	}
@@ -865,9 +838,6 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 		createEReference(contextEClass, CONTEXT__TABS);
 		createEReference(contextEClass, CONTEXT__VIEWS);
 		createEReference(contextEClass, CONTEXT__DATA_CONTEXTS);
-		createEAttribute(contextEClass, CONTEXT__AUTHOR);
-		createEAttribute(contextEClass, CONTEXT__DESCRIPTION);
-		createEAttribute(contextEClass, CONTEXT__VERSION);
 
 		displayUnitEClass = createEClass(DISPLAY_UNIT);
 		createEReference(displayUnitEClass, DISPLAY_UNIT__CONSTRAINTS);
@@ -993,9 +963,6 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 		initEReference(getContext_Tabs(), this.getTab(), null, "tabs", null, 0, -1, Context.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getContext_Views(), this.getView(), this.getView_Context(), "views", null, 0, -1, Context.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getContext_DataContexts(), this.getDataContextRoot(), null, "dataContexts", null, 0, -1, Context.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getContext_Author(), ecorePackage.getEString(), "author", null, 0, 1, Context.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getContext_Description(), ecorePackage.getEString(), "description", null, 0, 1, Context.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getContext_Version(), ecorePackage.getEString(), "version", null, 0, 1, Context.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(displayUnitEClass, DisplayUnit.class, "DisplayUnit", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getDisplayUnit_Constraints(), this.getConstraintDescriptor(), this.getConstraintDescriptor_Display(), "constraints", null, 0, -1, DisplayUnit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -34,7 +34,8 @@ import org.eclipse.papyrus.widgets.providers.IStaticContentProvider;
  */
 public class CompositeModelElement extends AbstractModelElement {
 
-	public IObservable getObservable(String propertyPath) {
+	@Override
+	public IObservable doGetObservable(String propertyPath) {
 
 		MultipleObservable observableComposite = null;
 
@@ -45,8 +46,8 @@ public class CompositeModelElement extends AbstractModelElement {
 				if(observable instanceof IObservableValue) {
 					observableComposite = new MultipleObservableValue(getDefaultValue(propertyPath));
 				} else {
-					return null; //The support for CompositeObservableList is too complicated. 
-					//There are too many non-trivial choices (Union or Intersection display, 
+					return null; //The support for CompositeObservableList is too complicated.
+					//There are too many non-trivial choices (Union or Intersection display,
 					//unadapted behavior of MultipleValueEditors, ...)
 					//observableComposite = new MultipleObservableList();
 				}

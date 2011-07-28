@@ -60,17 +60,17 @@ public abstract class AbstractTreeFilter extends ViewerFilter {
 	/**
 	 * Cache
 	 */
-	private final Map<Object, Boolean> visibleElement = new HashMap<Object, Boolean>();
+	protected final Map<Object, Boolean> visibleElement = new HashMap<Object, Boolean>();
 
 	/**
 	 * Cache
 	 */
-	private final Map<Object, Boolean> visibleParent = new HashMap<Object, Boolean>();
+	protected final Map<Object, Boolean> visibleParent = new HashMap<Object, Boolean>();
 
 	/**
 	 * Cache
 	 */
-	private final Map<Object, Boolean> visibleChild = new HashMap<Object, Boolean>();
+	protected final Map<Object, Boolean> visibleChild = new HashMap<Object, Boolean>();
 
 	@Override
 	public boolean select(Viewer viewer, Object parentElement, Object element) {
@@ -111,6 +111,8 @@ public abstract class AbstractTreeFilter extends ViewerFilter {
 	}
 
 	protected boolean hasOneVisibleChild(Viewer viewer, Object element, ITreeContentProvider contentProvider, Set<Object> visitedElements) {
+		//TODO : separate this method in -hasOneVisibleChild() and #doHasOneVisibleChild(), to handle the cache management in a private method,
+		//while letting the opportunity to override the method
 		if(useCache && visibleChild.containsKey(element)) {
 			return visibleChild.get(element);
 		}
@@ -144,10 +146,11 @@ public abstract class AbstractTreeFilter extends ViewerFilter {
 			visitedElements.add(element);
 
 			Object parentElement = contentProvider.getParent(element);
-			if(parentElement == element) {
+			if(parentElement == element || parentElement == null) {
 				result = isVisible(viewer, parentElement, element);
+			} else {
+				result = isVisible(viewer, null, parentElement) || hasOneVisibleParent(viewer, parentElement, contentProvider, visitedElements);
 			}
-			result = isVisible(viewer, null, parentElement) || hasOneVisibleParent(viewer, parentElement, contentProvider, visitedElements);
 		}
 
 		if(useCache) {

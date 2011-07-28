@@ -52,58 +52,76 @@ public class HierarchicViewerFilter extends AbstractTreeFilter {
 
 	@Override
 	public boolean hasOneVisibleChild(Viewer viewer, Object element, ITreeContentProvider contentProvider, Set<Object> visitedElements) {
-		if(!visitedElements.add(element)) {
-			return false;
+		//TODO : divide this method
+		if(useCache && visibleChild.containsKey(element)) {
+			return visibleChild.get(element);
 		}
 
-		SemanticFromModelExplorer bridge = new SemanticFromModelExplorer();
+		boolean result = false;
 
-		EObject semanticObject = null;
-		if(element instanceof IAdaptable) {
-			semanticObject = (EObject)bridge.getSemanticElement(element);
-		}
-		if(element instanceof EObject) {
-			semanticObject = (EObject)element;
-		}
+		if(visitedElements.add(element)) {
+			SemanticFromModelExplorer bridge = new SemanticFromModelExplorer();
 
-		if(semanticObject != null) {//it contains nothing
-			if(semanticObject instanceof EReference) {
-				//Do not display references that are not containment kind
-				EReference eReference = (EReference)semanticObject;
-				if(isValidReference(eReference)) {
-					//this an ereference maybe it references something that is interesting
-					Object[] children = contentProvider.getChildren(element);
-					for(Object child : children) {
-						if(isVisible(viewer, element, child) || hasOneVisibleChild(viewer, child, contentProvider, visitedElements)) {
-							return true;
+			EObject semanticObject = null;
+			if(element instanceof IAdaptable) {
+				semanticObject = (EObject)bridge.getSemanticElement(element);
+			}
+			if(element instanceof EObject) {
+				semanticObject = (EObject)element;
+			}
+
+			if(semanticObject != null) {//it contains nothing
+				if(semanticObject instanceof EReference) {
+					//Do not display references that are not containment kind
+					EReference eReference = (EReference)semanticObject;
+					if(isValidReference(eReference)) {
+						//this an ereference maybe it references something that is interesting
+						Object[] children = contentProvider.getChildren(element);
+						for(Object child : children) {
+							if(isVisible(viewer, element, child) || hasOneVisibleChild(viewer, child, contentProvider, visitedElements)) {
+								result = true;
+							}
 						}
 					}
 				}
-				return false;
-			}
 
-			//it contains something so we have to test children before
-			Iterator<EObject> iter = semanticObject.eAllContents();
-			while(iter.hasNext()) {
-				EObject subEObject = iter.next();
-				if(isVisible(viewer, semanticObject, subEObject) || hasOneVisibleChild(viewer, subEObject, contentProvider, visitedElements)) {
-					return true;
-				}
-			}
-			for(EReference eReference : getReferencesToBrowse(semanticObject)) {
-				Object values = semanticObject.eGet(eReference);
-				if(values instanceof EList) {
-					for(Object value : (EList<?>)values) {
-						if(isVisible(viewer, semanticObject, value) || hasOneVisibleChild(viewer, value, contentProvider, visitedElements)) {
-							return true;
+				if(!result) {
+
+					//it contains something so we have to test children before
+					Iterator<EObject> iter = semanticObject.eAllContents();
+					while(iter.hasNext()) {
+						EObject subEObject = iter.next();
+						if(isVisible(viewer, semanticObject, subEObject) || hasOneVisibleChild(viewer, subEObject, contentProvider, visitedElements)) {
+							result = true;
+							break;
 						}
 					}
-				} else if(isVisible(viewer, semanticObject, values) || hasOneVisibleChild(viewer, values, contentProvider, visitedElements)) {
-					return true;
+
+					if(!result) {
+						for(EReference eReference : getReferencesToBrowse(semanticObject)) {
+							Object values = semanticObject.eGet(eReference);
+							if(values instanceof EList) {
+								for(Object value : (EList<?>)values) {
+									if(isVisible(viewer, semanticObject, value) || hasOneVisibleChild(viewer, value, contentProvider, visitedElements)) {
+										result = true;
+										break;
+									}
+								}
+							} else if(isVisible(viewer, semanticObject, values) || hasOneVisibleChild(viewer, values, contentProvider, visitedElements)) {
+								result = true;
+							}
+						}
+					}
 				}
 			}
+
 		}
-		return false;
+
+		if(useCache) {
+			visibleChild.put(element, result);
+		}
+
+		return result;
 	}
 
 	protected Set<EReference> getReferencesToBrowse(EObject element) {

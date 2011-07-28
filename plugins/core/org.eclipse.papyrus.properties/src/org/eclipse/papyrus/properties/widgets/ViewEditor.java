@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -184,7 +184,7 @@ public class ViewEditor extends AbstractPropertyEditor {
 	 *        The Display engine used to display the view. It should allow duplication,
 	 *        as for list properties, the same section will be displayed for each element
 	 *        in the list.
-	 * @param data
+	 * @param selectedElements
 	 *        The list of objects for which we are displaying the view
 	 * @param view
 	 *        The view to display

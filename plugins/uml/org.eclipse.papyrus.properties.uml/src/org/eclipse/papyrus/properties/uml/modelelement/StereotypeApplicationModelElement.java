@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -27,7 +27,8 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Package;
 
 /**
- * A ModelElement for handling stereotypes applied on a UML Element
+ * A ModelElement for handling stereotypes applied on a UML Element,
+ * and profiles on a UML Package
  * 
  * @author Camille Letavernier
  */
@@ -39,17 +40,39 @@ public class StereotypeApplicationModelElement extends AbstractModelElement {
 
 	private EditPart sourceElement;
 
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 * @param editPart
+	 *        The selected GMF Edit Part, associated to a UML Element
+	 * @param domain
+	 *        The EditingDomain on which the commands will be executed
+	 */
 	public StereotypeApplicationModelElement(EditPart editPart, EditingDomain domain) {
 		this(UMLUtil.resolveUMLElement(editPart), domain);
 		this.sourceElement = editPart;
 	}
 
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 * @param umlSource
+	 *        The UML Element on which the stereotypes or profiles will be applied on unapplied
+	 * @param domain
+	 *        The EditingDomain on which the commands will be executed
+	 */
 	public StereotypeApplicationModelElement(Element umlSource, EditingDomain domain) {
 		this.umlSource = umlSource;
 		this.domain = domain;
 	}
 
-	public IObservable getObservable(String propertyPath) {
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public IObservable doGetObservable(String propertyPath) {
 		if(propertyPath.equals("stereotypeApplication")) { //$NON-NLS-1$
 			return new StereotypeApplicationObservableList(umlSource, domain);
 		} else if(propertyPath.equals("profileApplication")) { //$NON-NLS-1$
@@ -59,26 +82,42 @@ public class StereotypeApplicationModelElement extends AbstractModelElement {
 		return null;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public ILabelProvider getLabelProvider(String propertyPath) {
 		return new EditorLabelProvider();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public IStaticContentProvider getContentProvider(String propertyPath) {
 		return new ApplicableStereotypeContentProvider(umlSource);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public boolean isUnique(String propertyPath) {
 		return true;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public boolean isOrdered(String propertyPath) {
 		return false;
 	}
 
+	/**
+	 * @return the GMF Notation element associated to this UML Element, or
+	 *         null if the element hasn't been selected with an EditPart
+	 */
 	public EModelElement getGraphicalElement() {
 		if(sourceElement == null) {
 			return null;
@@ -87,10 +126,16 @@ public class StereotypeApplicationModelElement extends AbstractModelElement {
 		return (EModelElement)sourceElement.getModel();
 	}
 
+	/**
+	 * @return the Edit Part associated to this UML Element
+	 */
 	public EditPart getEditPart() {
 		return sourceElement;
 	}
 
+	/**
+	 * @return the UML Element represented by this ModelElement
+	 */
 	public Element getUMLElement() {
 		return umlSource;
 	}

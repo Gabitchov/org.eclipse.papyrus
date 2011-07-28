@@ -23,7 +23,6 @@ import org.eclipse.papyrus.properties.constraints.Constraint;
 import org.eclipse.papyrus.properties.contexts.ConstraintDescriptor;
 import org.eclipse.papyrus.properties.contexts.Context;
 import org.eclipse.papyrus.properties.contexts.View;
-import org.eclipse.papyrus.properties.util.ClassLoader;
 
 /**
  * The default implementation for ConstraintEngine
@@ -43,8 +42,6 @@ public class DefaultConstraintEngine implements ConstraintEngine {
 	}
 
 	public void addContext(final Context context) {
-		ClassLoader loader = new ClassLoader();
-
 		for(View view : context.getViews()) {
 			for(ConstraintDescriptor descriptor : view.getConstraints()) {
 				Constraint constraint = ConstraintFactory.getInstance().createFromModel(descriptor);
@@ -73,6 +70,10 @@ public class DefaultConstraintEngine implements ConstraintEngine {
 	private Set<Constraint> match(final IStructuredSelection selection) {
 		Set<Constraint> matchedConstraints = new LinkedHashSet<Constraint>();
 
+		if(selection.isEmpty()) {
+			return matchedConstraints;
+		}
+
 		for(Constraint c : constraints) {
 			int elementMultiplicity = c.getView().getElementMultiplicity();
 			int selectionSize = selection.size();
@@ -98,6 +99,8 @@ public class DefaultConstraintEngine implements ConstraintEngine {
 			}
 		}
 
+		//		System.out.println(selection);
+
 		//		String logValue;
 		//
 		//		logValue = "Filtered Constraints : "; //$NON-NLS-1$
@@ -115,6 +118,8 @@ public class DefaultConstraintEngine implements ConstraintEngine {
 		//			logValue += context.getName() + "::" + constraint.getDescriptor().getName() + ", ";
 		//		}
 		//		Activator.log.warn(logValue);
+
+
 
 		return matchedConstraints;
 	}

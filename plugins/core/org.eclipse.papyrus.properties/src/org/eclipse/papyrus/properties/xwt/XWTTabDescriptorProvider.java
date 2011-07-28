@@ -16,8 +16,10 @@ import java.lang.reflect.Method;
 import java.text.Collator;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.jface.viewers.ISelection;
@@ -25,6 +27,9 @@ import org.eclipse.papyrus.properties.Activator;
 import org.eclipse.papyrus.properties.contexts.View;
 import org.eclipse.papyrus.properties.runtime.ConfigurationManager;
 import org.eclipse.papyrus.properties.runtime.ConstraintEngine;
+import org.eclipse.papyrus.properties.runtime.DefaultDisplayEngine;
+import org.eclipse.papyrus.properties.runtime.DisplayEngine;
+import org.eclipse.ui.IPartListener;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.internal.views.properties.tabbed.view.TabbedPropertyRegistry;
 import org.eclipse.ui.internal.views.properties.tabbed.view.TabbedPropertyRegistryFactory;
@@ -44,9 +49,45 @@ public class XWTTabDescriptorProvider implements ITabDescriptorProvider {
 
 	private ISelection previousSelection;
 
+	private IWorkbenchPart previousPart;
+
+	private final Map<IWorkbenchPart, DisplayEngine> displays = new HashMap<IWorkbenchPart, DisplayEngine>();
+
+	private DisplayEngine getDisplay(final IWorkbenchPart part) {
+		if(!displays.containsKey(part)) {
+			displays.put(part, new DefaultDisplayEngine());
+			part.getSite().getPage().addPartListener(new IPartListener() {
+
+				public void partClosed(IWorkbenchPart part) {
+					displays.remove(part);
+				}
+
+				public void partActivated(IWorkbenchPart part) {
+					//Nothing
+				}
+
+				public void partBroughtToTop(IWorkbenchPart part) {
+					//Nothing
+				}
+
+				public void partDeactivated(IWorkbenchPart part) {
+					//Nothing
+				}
+
+				public void partOpened(IWorkbenchPart part) {
+					//Nothing
+				}
+
+			});
+		}
+
+		return displays.get(part);
+	}
+
 	public ITabDescriptor[] getTabDescriptors(final IWorkbenchPart part, final ISelection selection) {
-		if(selection != this.previousSelection) {
+		if(selection != this.previousSelection || part != previousPart) {
 			this.previousSelection = selection;
+			this.previousPart = part;
 
 			ConstraintEngine constraintEngine = ConfigurationManager.instance.constraintEngine;
 
@@ -54,7 +95,7 @@ public class XWTTabDescriptorProvider implements ITabDescriptorProvider {
 
 			Set<View> views = constraintEngine.getViews(selection);
 			if(!views.isEmpty()) {
-				descriptors.addAll(ConfigurationManager.instance.display.getTabDescriptors(views));
+				descriptors.addAll(getDisplay(part).getTabDescriptors(views));
 			}
 
 

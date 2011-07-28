@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -21,61 +21,106 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.URIHandler;
 import org.eclipse.papyrus.properties.Activator;
 
-
+/**
+ * A URI Handler for URIs with the ppe:/ scheme
+ * 
+ * @author Camille Letavernier
+ */
 public class PropertiesURIHandler implements URIHandler {
 
+	/**
+	 * The segment for environment models
+	 */
 	public static final String ENVIRONMENT_SEGMENT = "environment"; //$NON-NLS-1$
 
+	/**
+	 * The segment for context models
+	 */
 	public static final String CONTEXT_SEGMENT = "context"; //$NON-NLS-1$
 
+	/**
+	 * The handled URI scheme (ppe)
+	 */
 	public static final String PROPERTIES_SCHEME = "ppe"; //$NON-NLS-1$
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public boolean canHandle(URI uri) {
 		return uri != null && PROPERTIES_SCHEME.equals(uri.scheme());
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public InputStream createInputStream(URI uri, Map<?, ?> options) throws IOException {
 		URI convertedURI = getConvertedURI(uri);
 		URIHandler handler = getDelegateHandler(convertedURI);
 		return handler.createInputStream(convertedURI, options);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public OutputStream createOutputStream(URI uri, Map<?, ?> options) throws IOException {
 		URI convertedURI = getConvertedURI(uri);
 		URIHandler handler = getDelegateHandler(convertedURI);
 		return handler.createOutputStream(convertedURI, options);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public void delete(URI uri, Map<?, ?> options) throws IOException {
 		URI convertedURI = getConvertedURI(uri);
 		URIHandler handler = getDelegateHandler(convertedURI);
 		handler.delete(convertedURI, options);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public Map<String, ?> contentDescription(URI uri, Map<?, ?> options) throws IOException {
 		URI convertedURI = getConvertedURI(uri);
 		URIHandler handler = getDelegateHandler(convertedURI);
 		return handler.contentDescription(convertedURI, options);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public boolean exists(URI uri, Map<?, ?> options) {
 		URI convertedURI = getConvertedURI(uri);
 		URIHandler handler = getDelegateHandler(convertedURI);
 		return handler.exists(convertedURI, options);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public Map<String, ?> getAttributes(URI uri, Map<?, ?> options) {
 		URI convertedURI = getConvertedURI(uri);
 		URIHandler handler = getDelegateHandler(convertedURI);
 		return handler.getAttributes(convertedURI, options);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public void setAttributes(URI uri, Map<String, ?> attributes, Map<?, ?> options) throws IOException {
 		URI convertedURI = getConvertedURI(uri);
 		URIHandler handler = getDelegateHandler(convertedURI);
 		handler.setAttributes(convertedURI, attributes, options);
 	}
 
+	/**
+	 * Returns the URIHandler that can handle the given URI
+	 * 
+	 * @param convertedURI
+	 *        The URI obtained after converting the ppe:/ URI to a standard URI
+	 * @return
+	 *         The URIHandler corresponding to the converted URI
+	 */
 	protected URIHandler getDelegateHandler(URI convertedURI) {
 		for(URIHandler handler : URIHandler.DEFAULT_HANDLERS) {
 			if(handler.canHandle(convertedURI)) {
@@ -85,6 +130,14 @@ public class PropertiesURIHandler implements URIHandler {
 		return null;
 	}
 
+	/**
+	 * Converts the ppe:/ URI to a standard URI
+	 * 
+	 * @param sourceURI
+	 *        The ppe:/ URI to convert
+	 * @return
+	 *         The standard URI
+	 */
 	public URI getConvertedURI(URI sourceURI) {
 		if(sourceURI == null) {
 			throw new IllegalArgumentException("sourceURI shall not be null"); //$NON-NLS-1$

@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -27,6 +27,14 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.widgets.Text;
 
+/**
+ * An IElementSelector for UML Expressions' languages.
+ * This selectors allows the user to select a language from a list of
+ * registered languages, or to type directly the name of a language
+ * (Which may have been registered or not).
+ * 
+ * @author Camille Letavernier
+ */
 public class LanguageSelector extends StringSelector {
 
 	private Text text;
@@ -102,7 +110,7 @@ public class LanguageSelector extends StringSelector {
 	/**
 	 * Returns all the known languages
 	 * 
-	 * @see org.eclipse.papyrus.widgets.selectors.IElementSelector#getAllElements()
+	 * @see org.eclipse.papyrus.widgets.editors.IElementSelector#getAllElements()
 	 */
 	@Override
 	public Object[] getAllElements() {

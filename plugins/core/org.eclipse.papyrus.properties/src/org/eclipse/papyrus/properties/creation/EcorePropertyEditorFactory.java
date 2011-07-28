@@ -36,16 +36,31 @@ import org.eclipse.swt.widgets.MenuItem;
  * applied {@link org.eclipse.papyrus.properties.contexts.Context}s are used to
  * display the right form to edit the EObject.
  * 
+ * If no EClass is specified, a list of all concrete subclasses of {@link #type} will be displayed before the instantiation.
+ * 
  * @author Camille Letavernier
  */
 public class EcorePropertyEditorFactory extends PropertyEditorFactory {
 
+	/**
+	 * The (abstract) EClass to instantiate
+	 */
 	protected EClass type;
 
+	/**
+	 * The (concrete) EClass to instantiate
+	 * Should be a subclass of {@link #type}
+	 */
 	protected EClass eClass;
 
+	/**
+	 * The Namespace URI of the (concrete) EClass to instantiate
+	 */
 	protected String nsUri;
 
+	/**
+	 * The name of the (concrete) EClass to instantiate
+	 */
 	protected String className;
 
 	/**
@@ -67,7 +82,6 @@ public class EcorePropertyEditorFactory extends PropertyEditorFactory {
 	 * 
 	 */
 	public EcorePropertyEditorFactory() {
-
 	}
 
 	/*
@@ -135,11 +149,17 @@ public class EcorePropertyEditorFactory extends PropertyEditorFactory {
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public boolean canCreateObject() {
 		return true;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public Object createObject(Control widget) {
 		EClass eClass = chooseEClass(widget);
@@ -151,6 +171,19 @@ public class EcorePropertyEditorFactory extends PropertyEditorFactory {
 		return super.createObject(widget, instance);
 	}
 
+	/**
+	 * Gets the EClass to instantiate
+	 * If the {@link #eClass} has been specified, then it is returned.
+	 * Otherwise, displays a list of all valid concrete EClasses that
+	 * are subtypes of {@link #type}, from which the user can choose
+	 * the one to instantiate.
+	 * 
+	 * @param widget
+	 *        The control used to open a selection list (if more than one EClass
+	 *        can be instantiated)
+	 * @return
+	 *         The EClass to instantiate
+	 */
 	protected EClass chooseEClass(Control widget) {
 		if(eClass != null) {
 			return eClass;
@@ -206,20 +239,35 @@ public class EcorePropertyEditorFactory extends PropertyEditorFactory {
 		return eClass;
 	}
 
+	/**
+	 * @return
+	 *         The list of {@link EClass} that can be instantiated.
+	 *         This is the list of all concrete subclasses of {@link #type}
+	 */
 	protected List<EClass> getAvailableEClasses() {
 		return EMFHelper.getSubclassesOf(type, true);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public Collection<Object> validateObjects(Collection<Object> objectsToValidate) {
 		return objectsToValidate;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public String getCreationDialogTitle() {
 		return Messages.EcorePropertyEditorFactory_CreateANew + className;
 	}
 
+	/**
+	 * @return
+	 *         The EClass that will be instantiated, or null if this hasn't been forced
+	 */
 	public EClass getEClass() {
 		return eClass;
 	}

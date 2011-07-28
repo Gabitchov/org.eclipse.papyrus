@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -18,13 +18,26 @@ import org.eclipse.papyrus.umlutils.ImageUtil;
 import org.eclipse.uml2.common.edit.command.ChangeCommand;
 import org.eclipse.uml2.uml.Image;
 
-
+/**
+ * An IObservableValue for editing Images
+ * 
+ * @author Camille Letavernier
+ */
 public class ImageExpressionObservableValue extends AbstractObservableValue {
 
 	private Image image;
 
 	private EditingDomain domain;
 
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 * @param image
+	 *        The UML Image element to edit
+	 * @param domain
+	 *        The editing domain on which the commands will be executed
+	 */
 	public ImageExpressionObservableValue(Image image, EditingDomain domain) {
 		this.image = image;
 		this.domain = domain;

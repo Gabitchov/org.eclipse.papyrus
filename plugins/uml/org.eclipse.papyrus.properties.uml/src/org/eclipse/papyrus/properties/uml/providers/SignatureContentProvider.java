@@ -33,12 +33,27 @@ import org.eclipse.uml2.uml.ReceiveOperationEvent;
 import org.eclipse.uml2.uml.SendOperationEvent;
 import org.eclipse.uml2.uml.Signal;
 
+/**
+ * A ContentProvider for retrieving the valid values for a Message's signature
+ * The Message's signature is a derived property, which is not natively
+ * editable, and doesn't have a standard content provider.
+ * 
+ * @author Camille Letavernier
+ */
 public class SignatureContentProvider extends AbstractStaticContentProvider {
 
 	private Message message;
 
 	private MessageEvent sourceEvent;
 
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 * @param source
+	 *        The source EObject. May be a {@link Message}, a {@link ReceiveOperationEvent} or
+	 *        a {@link SendOperationEvent}
+	 */
 	public SignatureContentProvider(EObject source) {
 		if(source instanceof Message) {
 			this.message = (Message)source;
@@ -62,12 +77,12 @@ public class SignatureContentProvider extends AbstractStaticContentProvider {
 		return new Object[0]; //Should never happen, as either message or sourceEvent should be set
 	}
 
-	protected Object[] getElementsFromMessage() {
+	private Object[] getElementsFromMessage() {
 		org.eclipse.uml2.uml.Class clazz = UMLUtil.getContextClassForMessage(message);
 		return getElementsFromContext(clazz);
 	}
 
-	protected Object[] getElementsFromEvent() {
+	private Object[] getElementsFromEvent() {
 		org.eclipse.uml2.uml.Class clazz = UMLUtil.getContextClassForMessageEvent(sourceEvent);
 		if(clazz == null) {
 			return new Object[0];
@@ -75,7 +90,7 @@ public class SignatureContentProvider extends AbstractStaticContentProvider {
 		return getElementsFromContext(clazz);
 	}
 
-	protected Object[] getElementsFromContext(org.eclipse.uml2.uml.Class clazz) {
+	private Object[] getElementsFromContext(org.eclipse.uml2.uml.Class clazz) {
 		if(clazz == null) {
 			return new Object[0];
 		}
@@ -87,7 +102,7 @@ public class SignatureContentProvider extends AbstractStaticContentProvider {
 		return result.toArray();
 	}
 
-	protected List<Signal> getAllSignals(Element element) {
+	private List<Signal> getAllSignals(Element element) {
 		List<Signal> result = new LinkedList<Signal>();
 		Set<Package> browsedPackages = new HashSet<Package>();
 		org.eclipse.uml2.uml.Package rootPackage = PackageUtil.getRootPackage(element);
@@ -102,7 +117,7 @@ public class SignatureContentProvider extends AbstractStaticContentProvider {
 	 * @param rootPackage
 	 * @param browsedPackages
 	 */
-	protected void fillSignals(Collection<Signal> result, Package rootPackage, Set<Package> browsedPackages) {
+	private void fillSignals(Collection<Signal> result, Package rootPackage, Set<Package> browsedPackages) {
 		if(browsedPackages.contains(rootPackage)) {
 			return;
 		}

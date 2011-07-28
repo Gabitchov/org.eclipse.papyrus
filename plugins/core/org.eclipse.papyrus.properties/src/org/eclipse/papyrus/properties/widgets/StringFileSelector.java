@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -21,11 +21,32 @@ import org.eclipse.swt.widgets.Composite;
  */
 public class StringFileSelector extends AbstractPropertyEditor {
 
+	/**
+	 * The StringFileSelector widget used by this property editor
+	 */
 	protected org.eclipse.papyrus.widgets.editors.StringFileSelector selector;
 
-	protected String[] filterExtensions, filterNames;
+	/**
+	 * The filtered extensions
+	 * This should be a 1-1 mapping with {@link #filterNames}
+	 */
+	protected String[] filterExtensions;
 
-	protected boolean allowWorkspace = true, allowFileSystem = true;
+	/**
+	 * The name of the filters.
+	 * This should be a 1-1 mapping with {@link #filterExtensions}
+	 */
+	protected String[] filterNames;
+
+	/**
+	 * Enables the "browse workspace" feature
+	 */
+	protected boolean allowWorkspace = true;
+
+	/**
+	 * Enables the "browse file system" feature
+	 */
+	protected boolean allowFileSystem = true;
 
 	/**
 	 * 
@@ -57,6 +78,9 @@ public class StringFileSelector extends AbstractPropertyEditor {
 		checkFilters();
 	}
 
+	/**
+	 * Checks if the filters are valid
+	 */
 	protected void checkFilters() {
 		if(filterExtensions != null && filterNames != null) {
 			//TODO

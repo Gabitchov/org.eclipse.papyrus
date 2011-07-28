@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,6 +11,10 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.modelelement;
 
+import java.util.LinkedList;
+import java.util.List;
+
+import org.eclipse.core.databinding.observable.IObservable;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.properties.contexts.Property;
 import org.eclipse.papyrus.properties.creation.PropertyEditorFactory;
@@ -27,7 +31,18 @@ import org.eclipse.papyrus.widgets.providers.IStaticContentProvider;
  */
 public abstract class AbstractModelElement implements ModelElement {
 
+	/**
+	 * The DataSource owning this ModelElement
+	 */
 	protected DataSource dataSource;
+
+	private final List<IObservable> observables = new LinkedList<IObservable>();
+
+	/**
+	 * Constructor.
+	 */
+	protected AbstractModelElement() {
+	}
 
 	public IStaticContentProvider getContentProvider(String propertyPath) {
 		return EmptyContentProvider.instance;
@@ -61,6 +76,13 @@ public abstract class AbstractModelElement implements ModelElement {
 		this.dataSource = source;
 	}
 
+	/**
+	 * Finds the property associated to the given propertyPath
+	 * 
+	 * @param propertyPath
+	 *        The name of the property to retrieve
+	 * @return the property associated to the given propertyPath
+	 */
 	protected Property getProperty(String propertyPath) {
 		return ConfigurationManager.instance.getProperty(propertyPath, dataSource.getView().getContext());
 	}
@@ -82,6 +104,30 @@ public abstract class AbstractModelElement implements ModelElement {
 
 	public boolean getDirectCreation(String propertyPath) {
 		return false;
+	}
+
+	public final IObservable getObservable(String propertyPath) {
+		IObservable observable = doGetObservable(propertyPath);
+		if(observable != null) {
+			observables.add(observable);
+		}
+		return observable;
+	}
+
+	/**
+	 * Creates the IObservable for the given propertyPath
+	 * 
+	 * @param propertyPath
+	 *        The path of the property we want to observe
+	 * @return
+	 *         The new IObservable
+	 */
+	protected abstract IObservable doGetObservable(String propertyPath);
+
+	public void dispose() {
+		for(IObservable observable : observables) {
+			observable.dispose();
+		}
 	}
 
 }

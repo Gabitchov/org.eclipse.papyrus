@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -40,7 +40,7 @@ public interface BodyEditor {
 	/**
 	 * Sets the current value for this expression
 	 * 
-	 * @param input
+	 * @param value
 	 *        The initial value for the String being edited
 	 */
 	public void setInput(String value);
@@ -52,11 +52,15 @@ public interface BodyEditor {
 
 	/**
 	 * Adds a change listener for this editor
+	 * 
+	 * @param listener
 	 */
 	public void addChangeListener(Listener listener);
 
 	/**
 	 * Removes a registered change listener from this editor
+	 * 
+	 * @param listener
 	 */
 	public void removeChangeListener(Listener listener);
 
@@ -75,7 +79,7 @@ public interface BodyEditor {
 	/**
 	 * Sets the context for this editor
 	 * 
-	 * @param element
+	 * @param context
 	 *        The ModelElement being edited
 	 */
 	public void setContext(ModelElement context);

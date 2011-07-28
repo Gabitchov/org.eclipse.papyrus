@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -24,15 +24,34 @@ import org.eclipse.papyrus.properties.contexts.Context;
  */
 public class ConfigurationConflict {
 
+	/**
+	 * The ID of the section being in conflict
+	 */
 	public String sectionID;
 
+	/**
+	 * The list of contexts being in conflict
+	 */
 	public List<Context> conflictingContexts;
 
+	/**
+	 * Constructor.
+	 * 
+	 * Creates a conflict descriptor for the given section ID
+	 * 
+	 * @param sectionID
+	 *        The ID of the section being in conflict
+	 */
 	public ConfigurationConflict(String sectionID) {
 		conflictingContexts = new LinkedList<Context>();
 		this.sectionID = sectionID;
 	}
 
+	/**
+	 * Adds a conflicting context
+	 * 
+	 * @param context
+	 */
 	public void addContext(Context context) {
 		conflictingContexts.add(context);
 	}

@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -15,9 +15,20 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.properties.constraints.EMFInstanceOfConstraint;
 
-
+/**
+ * A constraint for the GMF Notation metamodel
+ * Retrieves the notation model from the selection,
+ * then applies an EMFInstanceOfConstraint on the resulting
+ * EObject
+ * 
+ * @author Camille Letavernier
+ * 
+ */
 public class GMFNotationConstraint extends EMFInstanceOfConstraint {
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public boolean match(Object selection) {
 		if(selection instanceof EditPart) {

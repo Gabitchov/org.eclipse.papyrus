@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -34,17 +34,47 @@ import org.eclipse.papyrus.umlutils.ui.helper.AppliedStereotypeHelper;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Stereotype;
 
-
+/**
+ * An IObservableValue for editing the Stereotype appearance properties
+ * 
+ * @author Camille Letavernier
+ */
 public class StereotypeAppearanceObservableValue extends AbstractObservableValue {
 
+	/**
+	 * The name of the property being observed
+	 */
 	protected String propertyPath;
 
+	/**
+	 * The UML Element being observed
+	 */
 	protected Element element;
 
+	/**
+	 * The Diagram Element associated to the UML Element
+	 */
 	protected EModelElement diagramElement;
 
+	/**
+	 * The EditingDomain on which the commands will be executed
+	 */
 	protected TransactionalEditingDomain domain;
 
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 * @param diagramElement
+	 *        The Diagram Element associated to the UML Element
+	 * @param element
+	 *        The UML Element being observed
+	 * @param propertyPath
+	 *        The name of the property being observed
+	 * @param domain
+	 *        The EditingDomain on which the commands will be executed.
+	 *        This should be a {@link TransactionalEditingDomain}
+	 */
 	public StereotypeAppearanceObservableValue(EModelElement diagramElement, Element element, String propertyPath, EditingDomain domain) {
 		this.propertyPath = propertyPath;
 		this.diagramElement = diagramElement;

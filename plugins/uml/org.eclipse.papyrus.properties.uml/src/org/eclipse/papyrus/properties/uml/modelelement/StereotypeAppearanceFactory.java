@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -22,7 +22,12 @@ import org.eclipse.papyrus.properties.modelelement.ModelElementFactory;
 import org.eclipse.papyrus.properties.uml.util.UMLUtil;
 import org.eclipse.uml2.uml.Element;
 
-
+/**
+ * A ModelElementFactory for handling Stereotype appearance
+ * 
+ * @author Camille Letavernier
+ * 
+ */
 public class StereotypeAppearanceFactory implements ModelElementFactory {
 
 	public ModelElement createFromSource(Object sourceElement, DataContextElement context) {
@@ -39,7 +44,7 @@ public class StereotypeAppearanceFactory implements ModelElementFactory {
 			return new StereotypeAppearanceModelElement(umlSource, domain, modelElement);
 		}
 
-		Activator.log.warn("The selected element is not an edit part");
+		Activator.log.warn("The selected element is not an edit part"); //$NON-NLS-1$
 		return null;
 	}
 
