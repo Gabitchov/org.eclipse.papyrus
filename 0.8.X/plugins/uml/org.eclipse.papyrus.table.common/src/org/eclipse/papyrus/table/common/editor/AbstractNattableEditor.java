@@ -18,30 +18,33 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
+import org.eclipse.core.runtime.Assert;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
-import org.eclipse.emf.common.notify.impl.AdapterImpl;
-import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.facet.infra.query.ModelQuery;
 import org.eclipse.emf.facet.infra.query.core.AbstractModelQuery;
 import org.eclipse.emf.facet.infra.query.core.ModelQuerySetCatalog;
 import org.eclipse.emf.facet.infra.query.core.exception.ModelQueryException;
 import org.eclipse.emf.facet.infra.query.runtime.ModelQueryResult;
+import org.eclipse.emf.facet.widgets.nattable.INatTableWidgetProvider;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.Column;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.DefaultLabelColumn;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.EContainerColumn;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.MetaClassColumn;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableInstance;
 import org.eclipse.emf.facet.widgets.nattable.internal.NatTableWidgetInternalUtils;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.transaction.TriggerListener;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.core.utils.ServiceUtils;
 import org.eclipse.papyrus.table.common.internal.IPapyrusNatTableWidget;
 import org.eclipse.papyrus.table.common.internal.TableEditorInput;
+import org.eclipse.papyrus.table.common.listener.ModelTriggerListener;
+import org.eclipse.papyrus.table.common.listener.TableTriggerListener;
 import org.eclipse.papyrus.table.instance.papyrustableinstance.PapyrusTableInstance;
 import org.eclipse.papyrus.table.instance.papyrustableinstance.PapyrustableinstancePackage;
 import org.eclipse.ui.IEditorInput;
@@ -62,80 +65,11 @@ public abstract class AbstractNattableEditor extends org.eclipse.papyrus.table.c
 	/** the table instance */
 	protected PapyrusTableInstance rawModel;
 
-	/**
-	 * we listen the table to know when the following properties changes :
-	 * 	<ul> 
-	 *  <li> isSynchronized</li>
-	 *  <li> fillingQueries</li>
-	 * </ul>
-	 */
-	protected AdapterImpl tableListener = new AdapterImpl() {
+	/** listener on the model for synchronized table */
+	private TriggerListener modelTriggerListener;
 
-		@Override
-		public void notifyChanged(final Notification msg) {
-			if(msg.getNotifier()==AbstractNattableEditor.this.rawModel){
-				Object feature = msg.getFeature();
-				if(feature instanceof EAttribute){
-					if(((EAttribute)feature).getName().equals("isSynchronized")){ //$NON-NLS-1$
-						if(msg.getNewBooleanValue()){
-							executeQueries();
-							return;
-						}
-					}
-				}else if(feature instanceof EReference){
-					if(((EReference)feature).getName().equals("fillingQueries")){ //$NON-NLS-1$
-						if(AbstractNattableEditor.this.rawModel.isIsSynchronized()){
-							executeQueries();
-						}
-					}
-				}
-			}
-		}
-	};
-
-	/**
-	 * We listen the context to know if new elements are created in the context of the table
-	 */
-	protected AdapterImpl contextListener = new AdapterImpl(){
-
-		@Override
-		public void notifyChanged(final Notification msg) {
-			if(msg.getNotifier()==AbstractNattableEditor.this.rawModel.getTable().getContext()){
-				int eventType = msg.getEventType();
-				switch(eventType){
-				case Notification.ADD : 
-				case Notification.ADD_MANY:
-					//we execute the queries
-					executeQueries();
-					break;
-				case Notification.MOVE:
-					//TODO something to do?
-					break;
-				case Notification.REMOVE:
-				case Notification.REMOVE_MANY:
-					List<EObject> elementsToDelete = new ArrayList<EObject>();
-					Object objectToRemove = msg.getOldValue();
-					if(objectToRemove instanceof EObject){
-						elementsToDelete.add((EObject)objectToRemove);
-					}else if(objectToRemove instanceof Collection<?>){
-						for(Object current : (Collection<?>)objectToRemove){
-							if(current instanceof EObject){
-								elementsToDelete.add((EObject)current);
-							}
-						}
-					}
-					if(!elementsToDelete.isEmpty()){
-						//TODO : currently the Nattable API doesn't allow to delete lines programmatically
-						//						((INatTableWidget2)AbstractNattableEditor.this.natTableWidget).removeRows(elementsToDelete);
-						if(AbstractNattableEditor.this.natTableWidget instanceof IPapyrusNatTableWidget){
-							((IPapyrusNatTableWidget)AbstractNattableEditor.this.natTableWidget).removeRowsOutOfCommandStack(elementsToDelete);
-						}
-					}
-				}
-			}
-		}	
-	};
-
+	/** listener on the table for synchronized table : listen the properties "isSynchronized" and "fillingQueries" */
+	private TriggerListener tableTriggerListener;
 
 	/**
 	 * the part name synchronizer
@@ -177,8 +111,12 @@ public abstract class AbstractNattableEditor extends org.eclipse.papyrus.table.c
 	 * add listeners on the context of the table and on the table itself
 	 */
 	protected void addListeners() {
-		this.rawModel.eAdapters().add(this.tableListener);
-		this.rawModel.getTable().getContext().eAdapters().add(this.contextListener);
+		EditingDomain editingDomain = getEditingDomain();
+		Assert.isTrue(editingDomain instanceof TransactionalEditingDomain);
+		this.modelTriggerListener = new ModelTriggerListener(this.rawModel, (INatTableWidgetProvider)getAdapter(INatTableWidgetProvider.class));
+		((TransactionalEditingDomain)editingDomain).addResourceSetListener(this.modelTriggerListener);
+		this.tableTriggerListener = new TableTriggerListener(this.rawModel, (INatTableWidgetProvider)getAdapter(INatTableWidgetProvider.class));
+		((TransactionalEditingDomain)editingDomain).addResourceSetListener(this.tableTriggerListener);
 	}
 
 	/**
@@ -189,8 +127,8 @@ public abstract class AbstractNattableEditor extends org.eclipse.papyrus.table.c
 	 */
 	@Override
 	public void dispose() {
-		this.rawModel.eAdapters().remove(this.tableListener);
-		this.rawModel.getTable().getContext().eAdapters().remove(this.contextListener);
+		((TransactionalEditingDomain)getEditingDomain()).removeResourceSetListener(this.modelTriggerListener);
+		((TransactionalEditingDomain)getEditingDomain()).removeResourceSetListener(this.tableTriggerListener);
 		super.dispose();
 	}
 
@@ -238,43 +176,45 @@ public abstract class AbstractNattableEditor extends org.eclipse.papyrus.table.c
 	/**
 	 * This method execute the filling queries
 	 */
-	protected void executeQueries(){
-		if(this.rawModel.isIsSynchronized()){
+	@Deprecated
+	protected void executeQueries() {
+		if(this.rawModel.isIsSynchronized()) {
 			TableInstance table = this.rawModel.getTable();
 			EObject context = table.getContext();
 			List<EObject> elementsToAdd = new ArrayList<EObject>();
-			for(ModelQuery query : this.rawModel.getFillingQueries()){
+			for(ModelQuery query : this.rawModel.getFillingQueries()) {
 				ModelQuerySetCatalog catalog = ModelQuerySetCatalog.getSingleton();
-				AbstractModelQuery impl=null;
+				AbstractModelQuery impl = null;
 				try {
 					impl = catalog.getModelQueryImpl(query);
 				} catch (ModelQueryException e) {
 					e.printStackTrace();
 				}
-				if(impl!=null){
+				if(impl != null) {
 					ModelQueryResult result = impl.evaluate(context);
 					Object value = result.getValue();
-					if(value instanceof Collection<?>){
-						for(Object currentObject : (Collection<?>)value){
-							if(currentObject instanceof EObject && !table.getElements().contains(currentObject)){
+					if(value instanceof Collection<?>) {
+						for(Object currentObject : (Collection<?>)value) {
+							if(currentObject instanceof EObject && !table.getElements().contains(currentObject)) {
 								elementsToAdd.add((EObject)currentObject);
 							}
 						}
 
-					}else{
+					} else {
 						//nothing to do for the moment
 					}
 				}
 			}
-			if(!elementsToAdd.isEmpty()){
+			if(!elementsToAdd.isEmpty()) {
 				//				this.natTableWidget.addRows(elementsToAdd);
-				if(this.natTableWidget instanceof IPapyrusNatTableWidget){
+				if(this.natTableWidget instanceof IPapyrusNatTableWidget) {
 					((IPapyrusNatTableWidget)this.natTableWidget).addRowsOutOfCommandStack(elementsToAdd);
 				}
 			}
 		}
 
 	}
+
 	/**
 	 * A class taking in charge the synchronization of the partName and the diagram name.
 	 * When diagram name change, the other is automatically updated.

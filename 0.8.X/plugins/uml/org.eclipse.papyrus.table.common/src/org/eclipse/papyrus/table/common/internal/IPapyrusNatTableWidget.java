@@ -24,6 +24,13 @@ import org.eclipse.emf.facet.widgets.nattable.INatTableWidget;
  * 
  *
  */
+@Deprecated
+/**
+ * I think this interface is deprecated, because the 2 methods provided by this interfaces are obsolete. 
+ * Now we use TriggerListener in the table, so the command for the synchronization are executed in a best way
+ * @author VL222926
+ *
+ */
 public interface IPapyrusNatTableWidget extends INatTableWidget {
 
 	/**
@@ -31,6 +38,7 @@ public interface IPapyrusNatTableWidget extends INatTableWidget {
 	 * @param elementsToAdd
 	 * the list of the elements to add
 	 */
+	@Deprecated
 	public void addRowsOutOfCommandStack(List<EObject> elementsToAdd);
 
 	/**
@@ -38,5 +46,6 @@ public interface IPapyrusNatTableWidget extends INatTableWidget {
 	 * @param elementsToDelete
 	 * the list of the element to delete
 	 */
+	@Deprecated
 	public void removeRowsOutOfCommandStack(List<EObject> elementsToDelete);
 }
