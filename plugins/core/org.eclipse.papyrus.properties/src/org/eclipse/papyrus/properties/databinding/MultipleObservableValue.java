@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -28,6 +28,7 @@ import org.eclipse.core.databinding.observable.value.IObservableValue;
  * 
  * All sub-elements will be edited at the same time, with the same value.
  */
+//TODO : Add listeners on sub-observables, and remove them on dispose
 public class MultipleObservableValue extends AbstractObservableValue implements MultipleObservable {
 
 	/**
@@ -117,16 +118,30 @@ public class MultipleObservableValue extends AbstractObservableValue implements 
 		return false;
 	}
 
+	/**
+	 * @return the list of sub-observable values
+	 */
 	public List<IObservableValue> getObservableValues() {
 		return observableValues;
 	}
 
+	/**
+	 * @return the list of observed values
+	 */
 	public List<Object> getObservedValues() {
 		List<Object> result = new LinkedList<Object>();
 		for(IObservableValue value : getObservableValues()) {
 			result.add(value.getValue());
 		}
 		return result;
+	}
+
+	@Override
+	public void dispose() {
+		super.dispose();
+		for(IObservableValue observable : observableValues) {
+			observable.dispose();
+		}
 	}
 
 	private List<IObservableValue> observableValues = new LinkedList<IObservableValue>();

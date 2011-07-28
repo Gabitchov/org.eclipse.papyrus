@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,9 +11,13 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.uml.modelelement;
 
+import java.util.Collections;
+
 import org.eclipse.core.databinding.observable.IObservable;
 import org.eclipse.emf.databinding.EMFProperties;
 import org.eclipse.emf.databinding.FeaturePath;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -23,6 +27,16 @@ import org.eclipse.papyrus.diagram.common.providers.EditorLabelProvider;
 import org.eclipse.papyrus.properties.modelelement.EMFModelElement;
 import org.eclipse.papyrus.properties.uml.databinding.PapyrusObservableList;
 import org.eclipse.papyrus.properties.uml.databinding.PapyrusObservableValue;
+import org.eclipse.papyrus.properties.util.EMFHelper;
+import org.eclipse.papyrus.uml.modelexplorer.widgets.ServiceEditFilteredUMLContentProvider;
+import org.eclipse.papyrus.umlutils.PackageUtil;
+import org.eclipse.papyrus.widgets.providers.EmptyContentProvider;
+import org.eclipse.papyrus.widgets.providers.IStaticContentProvider;
+import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.Stereotype;
+import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * A Model Element for manipulating Stereotype properties
@@ -44,8 +58,11 @@ public class StereotypeModelElement extends EMFModelElement {
 		super(source, domain);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
-	public IObservable getObservable(String propertyPath) {
+	public IObservable doGetObservable(String propertyPath) {
 		FeaturePath featurePath = getFeaturePath(propertyPath);
 		EStructuralFeature feature = getFeature(featurePath);
 		if(feature.getUpperBound() != 1) {
@@ -55,6 +72,9 @@ public class StereotypeModelElement extends EMFModelElement {
 		return new PapyrusObservableValue(getSource(featurePath), feature, domain);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public ILabelProvider getLabelProvider(String propertyPath) {
 		EStructuralFeature feature = getFeature(propertyPath);
@@ -62,5 +82,65 @@ public class StereotypeModelElement extends EMFModelElement {
 			return super.getLabelProvider(propertyPath);
 		}
 		return new EditorLabelProvider();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public IStaticContentProvider getContentProvider(String propertyPath) {
+		FeaturePath featurePath = getFeaturePath(propertyPath);
+		EStructuralFeature feature = getFeature(featurePath);
+		EClassifier type = feature.getEType();
+
+		if(isStereotype(type)) {
+			return getStereotypedReferenceContentProvider(propertyPath);
+		} else if(type instanceof EEnum || type instanceof EClass) {
+			return super.getContentProvider(propertyPath);
+		}
+
+		return EmptyContentProvider.instance;
+	}
+
+	protected boolean isStereotype(EClassifier type) {
+		if(type instanceof Stereotype) {
+			return true;
+		}
+
+		if(type instanceof EClass) {
+			EClass eClass = (EClass)type;
+			return !EMFHelper.isSubclass(eClass, UMLPackage.eINSTANCE.getElement());
+		}
+
+		return false;
+	}
+
+	/**
+	 * Returns the content provider for reference properties typed
+	 * by a stereotype
+	 * 
+	 * @param propertyPath
+	 *        The name of the property being edited
+	 * @return
+	 *         The Content Provider for properties typed by a stereotype
+	 */
+	protected IStaticContentProvider getStereotypedReferenceContentProvider(String propertyPath) {
+		EStructuralFeature feature = getFeature(propertyPath);
+
+		Package root = null;
+		if(source != null) {
+			Element umlElement = UMLUtil.getBaseElement(source);
+			if(umlElement != null) {
+				if(umlElement.getNearestPackage() != null) {
+					root = PackageUtil.getRootPackage(umlElement);
+				}
+			}
+		}
+
+		ServiceEditFilteredUMLContentProvider contentProvider = new ServiceEditFilteredUMLContentProvider(source, feature, root);
+		contentProvider.setMetaClassWanted(feature.getEType());
+		contentProvider.setMetaClassNotWanted(Collections.EMPTY_LIST);
+
+		return contentProvider;
 	}
 }

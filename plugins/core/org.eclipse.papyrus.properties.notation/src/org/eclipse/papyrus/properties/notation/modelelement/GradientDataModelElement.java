@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -23,16 +23,32 @@ import org.eclipse.papyrus.properties.notation.messages.Messages;
 import org.eclipse.papyrus.widgets.providers.AbstractStaticContentProvider;
 import org.eclipse.papyrus.widgets.providers.IStaticContentProvider;
 
-
+/**
+ * A ModelElement for manipulating GradientData
+ * 
+ * @author Camille Letavernier
+ * 
+ */
 public class GradientDataModelElement extends AbstractModelElement {
 
+	/**
+	 * The source GradientData
+	 */
 	protected GradientData sourceElement;
 
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 * @param sourceElement
+	 *        the soruce GradientData
+	 */
 	public GradientDataModelElement(GradientData sourceElement) {
 		this.sourceElement = sourceElement;
 	}
 
-	public IObservable getObservable(String propertyPath) {
+	@Override
+	public IObservable doGetObservable(String propertyPath) {
 		return new GradientDataObservableValue(sourceElement, propertyPath);
 	}
 
@@ -80,6 +96,7 @@ public class GradientDataModelElement extends AbstractModelElement {
 		return null;
 	}
 
+	@Override
 	public Object getDefaultValue(String propertyPath) {
 		GradientProperty property = GradientProperty.valueOf(propertyPath);
 		switch(property) {

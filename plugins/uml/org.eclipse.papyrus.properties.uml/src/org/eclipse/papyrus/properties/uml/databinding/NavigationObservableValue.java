@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -41,11 +41,13 @@ import org.eclipse.uml2.uml.UMLPackage;
  * 
  * @author Camille Letavernier
  */
-public class NavigationObservableValue extends AbstractObservableValue {
+public class NavigationObservableValue extends AbstractObservableValue implements IChangeListener {
 
 	private Property memberEnd;
 
 	private EditingDomain domain;
+
+	private final IObservableList ownerObservableList;
 
 	private boolean currentValue;
 
@@ -60,14 +62,13 @@ public class NavigationObservableValue extends AbstractObservableValue {
 	public NavigationObservableValue(EObject source, EditingDomain domain) {
 		memberEnd = (Property)source;
 		this.domain = domain;
-		IObservableList ownerObservableList = EMFProperties.list(UMLPackage.eINSTANCE.getAssociation_OwnedEnd()).observe(memberEnd.getAssociation());
-		ownerObservableList.addChangeListener(new IChangeListener() {
 
-			public void handleChange(ChangeEvent event) {
-				fireValueChange(Diffs.createValueDiff(currentValue, doGetValue()));
-			}
+		ownerObservableList = EMFProperties.list(UMLPackage.eINSTANCE.getAssociation_OwnedEnd()).observe(memberEnd.getAssociation());
+		ownerObservableList.addChangeListener(this);
+	}
 
-		});
+	public void handleChange(ChangeEvent event) {
+		fireValueChange(Diffs.createValueDiff(currentValue, doGetValue()));
 	}
 
 	public Object getValueType() {
@@ -127,5 +128,12 @@ public class NavigationObservableValue extends AbstractObservableValue {
 			currentValue = isNavigable;
 			domain.getCommandStack().execute(command);
 		}
+	}
+
+	@Override
+	public void dispose() {
+		super.dispose();
+		ownerObservableList.removeChangeListener(this);
+		ownerObservableList.dispose();
 	}
 }

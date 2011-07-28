@@ -48,9 +48,6 @@ import org.eclipse.papyrus.properties.contexts.View;
  *   <li>{@link org.eclipse.papyrus.properties.contexts.impl.ContextImpl#getTabs <em>Tabs</em>}</li>
  *   <li>{@link org.eclipse.papyrus.properties.contexts.impl.ContextImpl#getViews <em>Views</em>}</li>
  *   <li>{@link org.eclipse.papyrus.properties.contexts.impl.ContextImpl#getDataContexts <em>Data Contexts</em>}</li>
- *   <li>{@link org.eclipse.papyrus.properties.contexts.impl.ContextImpl#getAuthor <em>Author</em>}</li>
- *   <li>{@link org.eclipse.papyrus.properties.contexts.impl.ContextImpl#getDescription <em>Description</em>}</li>
- *   <li>{@link org.eclipse.papyrus.properties.contexts.impl.ContextImpl#getVersion <em>Version</em>}</li>
  * </ul>
  * </p>
  *
@@ -116,66 +113,6 @@ public class ContextImpl extends EModelElementImpl implements Context {
 	 * @ordered
 	 */
 	protected EList<DataContextRoot> dataContexts;
-
-	/**
-	 * The default value of the '{@link #getAuthor() <em>Author</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getAuthor()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String AUTHOR_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getAuthor() <em>Author</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getAuthor()
-	 * @generated
-	 * @ordered
-	 */
-	protected String author = AUTHOR_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDescription()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String DESCRIPTION_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getDescription() <em>Description</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDescription()
-	 * @generated
-	 * @ordered
-	 */
-	protected String description = DESCRIPTION_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getVersion() <em>Version</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getVersion()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String VERSION_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getVersion() <em>Version</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getVersion()
-	 * @generated
-	 * @ordered
-	 */
-	protected String version = VERSION_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -258,69 +195,6 @@ public class ContextImpl extends EModelElementImpl implements Context {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getAuthor() {
-		return author;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setAuthor(String newAuthor) {
-		String oldAuthor = author;
-		author = newAuthor;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ContextsPackage.CONTEXT__AUTHOR, oldAuthor, author));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getDescription() {
-		return description;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setDescription(String newDescription) {
-		String oldDescription = description;
-		description = newDescription;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ContextsPackage.CONTEXT__DESCRIPTION, oldDescription, description));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getVersion() {
-		return version;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setVersion(String newVersion) {
-		String oldVersion = version;
-		version = newVersion;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ContextsPackage.CONTEXT__VERSION, oldVersion, version));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EList<Context> getDependencies() {
 		if (dependencies == null) {
 			dependencies = new EObjectResolvingEList<Context>(Context.class, this, ContextsPackage.CONTEXT__DEPENDENCIES);
@@ -379,12 +253,6 @@ public class ContextImpl extends EModelElementImpl implements Context {
 				return getViews();
 			case ContextsPackage.CONTEXT__DATA_CONTEXTS:
 				return getDataContexts();
-			case ContextsPackage.CONTEXT__AUTHOR:
-				return getAuthor();
-			case ContextsPackage.CONTEXT__DESCRIPTION:
-				return getDescription();
-			case ContextsPackage.CONTEXT__VERSION:
-				return getVersion();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -417,15 +285,6 @@ public class ContextImpl extends EModelElementImpl implements Context {
 				getDataContexts().clear();
 				getDataContexts().addAll((Collection<? extends DataContextRoot>)newValue);
 				return;
-			case ContextsPackage.CONTEXT__AUTHOR:
-				setAuthor((String)newValue);
-				return;
-			case ContextsPackage.CONTEXT__DESCRIPTION:
-				setDescription((String)newValue);
-				return;
-			case ContextsPackage.CONTEXT__VERSION:
-				setVersion((String)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -453,15 +312,6 @@ public class ContextImpl extends EModelElementImpl implements Context {
 			case ContextsPackage.CONTEXT__DATA_CONTEXTS:
 				getDataContexts().clear();
 				return;
-			case ContextsPackage.CONTEXT__AUTHOR:
-				setAuthor(AUTHOR_EDEFAULT);
-				return;
-			case ContextsPackage.CONTEXT__DESCRIPTION:
-				setDescription(DESCRIPTION_EDEFAULT);
-				return;
-			case ContextsPackage.CONTEXT__VERSION:
-				setVersion(VERSION_EDEFAULT);
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -484,12 +334,6 @@ public class ContextImpl extends EModelElementImpl implements Context {
 				return views != null && !views.isEmpty();
 			case ContextsPackage.CONTEXT__DATA_CONTEXTS:
 				return dataContexts != null && !dataContexts.isEmpty();
-			case ContextsPackage.CONTEXT__AUTHOR:
-				return AUTHOR_EDEFAULT == null ? author != null : !AUTHOR_EDEFAULT.equals(author);
-			case ContextsPackage.CONTEXT__DESCRIPTION:
-				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-			case ContextsPackage.CONTEXT__VERSION:
-				return VERSION_EDEFAULT == null ? version != null : !VERSION_EDEFAULT.equals(version);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -506,12 +350,6 @@ public class ContextImpl extends EModelElementImpl implements Context {
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (name: ");
 		result.append(name);
-		result.append(", author: ");
-		result.append(author);
-		result.append(", description: ");
-		result.append(description);
-		result.append(", version: ");
-		result.append(version);
 		result.append(')');
 		return result.toString();
 	}

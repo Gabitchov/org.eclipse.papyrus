@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -37,23 +37,34 @@ import org.eclipse.ui.model.WorkbenchLabelProvider;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Profile;
 
-
+/**
+ * An editor for Profile application
+ * 
+ * @author Camille Letavernier
+ */
 public class ProfileApplicationEditor extends MultipleReferenceEditor {
 
+	/**
+	 * The button to add profiles from the list of registered ones
+	 */
 	protected Button addRegisteredProfile;
 
+	/**
+	 * The umlPackage being edited
+	 */
 	protected Package umlPackage;
 
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 * @param parent
+	 * @param style
+	 */
 	public ProfileApplicationEditor(Composite parent, int style) {
 		super(parent, style);
 	}
 
-	/**
-	 * Creates the Add/Remove controls,
-	 * and the Up/Down controls if the collection is ordered
-	 * 
-	 * @param ordered
-	 */
 	@Override
 	protected void createListControls() {
 		super.createListControls();
@@ -158,6 +169,11 @@ public class ProfileApplicationEditor extends MultipleReferenceEditor {
 		}
 	}
 
+	/**
+	 * Sets the package on which the profiles will be applied
+	 * 
+	 * @param umlPackage
+	 */
 	public void setPackage(Package umlPackage) {
 		this.umlPackage = umlPackage;
 		updateControls();

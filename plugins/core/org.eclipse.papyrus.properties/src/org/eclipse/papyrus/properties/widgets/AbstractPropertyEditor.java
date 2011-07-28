@@ -307,6 +307,11 @@ public abstract class AbstractPropertyEditor implements IChangeListener {
 		}
 	}
 
+	/**
+	 * Finds the property associated to the Editor's {@link #propertyPath}
+	 * 
+	 * @return The property associated to the Editor's {@link #propertyPath}
+	 */
 	protected Property getModelProperty() {
 		if(propertyPath == null) {
 			return null;

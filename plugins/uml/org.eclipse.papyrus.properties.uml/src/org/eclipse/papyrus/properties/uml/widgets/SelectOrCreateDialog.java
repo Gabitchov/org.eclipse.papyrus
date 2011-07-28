@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA
  *
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -54,6 +54,7 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.eclipse.ui.forms.FormDialog;
 import org.eclipse.ui.forms.IManagedForm;
+import org.eclipse.ui.forms.widgets.ExpandableComposite;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.ScrolledForm;
 import org.eclipse.ui.forms.widgets.Section;
@@ -187,7 +188,7 @@ public class SelectOrCreateDialog extends FormDialog implements ITreeSelectorDia
 
 	private void createNothingSection(Composite pParent, FormToolkit pToolkit) {
 		// create the section
-		Section lSection = pToolkit.createSection(pParent, Section.EXPANDED | Section.TITLE_BAR);
+		Section lSection = pToolkit.createSection(pParent, ExpandableComposite.EXPANDED | ExpandableComposite.TITLE_BAR);
 		lSection.setLayoutData(new GridData(GridData.FILL_HORIZONTAL | GridData.GRAB_HORIZONTAL));
 
 		ScrolledForm lInsideScrolledForm = pToolkit.createScrolledForm(lSection);
@@ -216,7 +217,7 @@ public class SelectOrCreateDialog extends FormDialog implements ITreeSelectorDia
 	 */
 	private void createSelectionSection(Composite pParent, FormToolkit pToolkit) {
 		// create the section
-		Section lSection = pToolkit.createSection(pParent, Section.EXPANDED | Section.TITLE_BAR);
+		Section lSection = pToolkit.createSection(pParent, ExpandableComposite.EXPANDED | ExpandableComposite.TITLE_BAR);
 		lSection.setLayoutData(new GridData(GridData.FILL_HORIZONTAL | GridData.GRAB_HORIZONTAL));
 
 		ScrolledForm lInsideScrolledForm = pToolkit.createScrolledForm(lSection);
@@ -267,7 +268,7 @@ public class SelectOrCreateDialog extends FormDialog implements ITreeSelectorDia
 	 */
 	private void createCreationSection(Composite pParent, FormToolkit pToolkit) {
 		// create the section
-		Section lSection = pToolkit.createSection(pParent, Section.EXPANDED | Section.TITLE_BAR);
+		Section lSection = pToolkit.createSection(pParent, ExpandableComposite.EXPANDED | ExpandableComposite.TITLE_BAR);
 		lSection.setLayoutData(new GridData(GridData.FILL_HORIZONTAL | GridData.GRAB_HORIZONTAL));
 
 		ScrolledForm lInsideScrolledForm = pToolkit.createScrolledForm(lSection);
@@ -422,6 +423,11 @@ public class SelectOrCreateDialog extends FormDialog implements ITreeSelectorDia
 
 	/**
 	 * Add the created element to its selected parent
+	 * 
+	 * @param selectedParent
+	 *        The parent in which the element should be added
+	 * @param createdElement
+	 *        The created element to add to its parent
 	 */
 	protected void addElementInParent(EObject selectedParent, EObject createdElement) {
 		// Let the command find the relation on its own.
@@ -636,6 +642,16 @@ public class SelectOrCreateDialog extends FormDialog implements ITreeSelectorDia
 		}
 	}
 
+	/**
+	 * Indicates how and where the element should be created
+	 * 
+	 * @param type
+	 *        The type of element to instantiate
+	 * @param parentObject
+	 *        The object in which the element should be created
+	 * @param feature
+	 *        The feature in which the element will be set
+	 */
 	public void setCreateAs(EClass type, EObject parentObject, EStructuralFeature feature) {
 		if(parentObject != null) {
 			this.mapTypesPossibleParents.put(type, Collections.singletonList(parentObject));
@@ -643,6 +659,12 @@ public class SelectOrCreateDialog extends FormDialog implements ITreeSelectorDia
 		this.createInFeature = feature;
 	}
 
+	/**
+	 * Sets the Editing Domain on which the commands will be executed
+	 * 
+	 * @param domain
+	 *        the Editing Domain on which the commands will be executed
+	 */
 	public void setEditingDomain(EditingDomain domain) {
 		if(domain instanceof TransactionalEditingDomain) {
 			this.transactionalEditingDomain = (TransactionalEditingDomain)domain;

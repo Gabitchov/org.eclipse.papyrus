@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -59,7 +59,7 @@ public class DataSourceFactory {
 	}
 
 	/**
-	 * Returns the ModelElement corresponding the the given propertyPath and DataSource
+	 * Returns the ModelElement corresponding to the given propertyPath and DataSource
 	 * 
 	 * @param source
 	 *        The DataSource used to retrieved informations such as the View and the Selection
@@ -93,8 +93,9 @@ public class DataSourceFactory {
 			Iterator<?> it = selection.iterator();
 			while(it.hasNext()) {
 				ModelElement element = createFromSource(it.next(), contextElement);
-				if(element != null)
+				if(element != null) {
 					composite.addModelElement(element);
+				}
 			}
 
 			return composite;
@@ -130,21 +131,24 @@ public class DataSourceFactory {
 	private ModelElement createFromSource(Object source, DataContextElement context) {
 		ModelElementFactory factory = getFactory(context);
 
-		if(factory == null)
+		if(factory == null) {
 			return null;
+		}
 
 		return factory.createFromSource(source, context);
 	}
 
 	private DataContextRoot getRootPackage(DataContextElement context) {
-		if(context.getPackage() == null)
+		if(context.getPackage() == null) {
 			return (DataContextRoot)context;
+		}
 		return getRootPackage(context.getPackage());
 	}
 
 	private String getQualifiedName(DataContextElement context) {
-		if(context.getPackage() == null)
+		if(context.getPackage() == null) {
 			return context.getName();
+		}
 		return getQualifiedName(context.getPackage()) + ":" + context.getName(); //$NON-NLS-1$
 	}
 
@@ -187,8 +191,9 @@ public class DataSourceFactory {
 
 		@Override
 		public boolean equals(Object obj) {
-			if(!(obj instanceof SelectionEntry))
+			if(!(obj instanceof SelectionEntry)) {
 				return false;
+			}
 
 			SelectionEntry other = (SelectionEntry)obj;
 			return other.view.equals(view) && selection.equals(other.selection);

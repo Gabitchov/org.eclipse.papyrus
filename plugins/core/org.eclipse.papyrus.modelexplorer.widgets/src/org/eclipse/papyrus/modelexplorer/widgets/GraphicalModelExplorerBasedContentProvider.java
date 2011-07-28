@@ -69,7 +69,7 @@ import org.eclipse.swt.widgets.Table;
 public class GraphicalModelExplorerBasedContentProvider extends ModelContentProvider implements IMetaclassFilteredContentProvider, IHierarchicContentProvider, IGraphicalContentProvider, ISelectionChangedListener, ICommitListener {
 
 
-	private static final String DIALOG_SETTINGS = Activator.PLUGIN_ID + "EclassModelExplorerBasedContentProvider"; //$NON-NLS-1$
+	private static final String DIALOG_SETTINGS = Activator.PLUGIN_ID + "." + GraphicalModelExplorerBasedContentProvider.class.getName(); //$NON-NLS-1$
 
 	/** The not wanted. */
 	protected ArrayList<Object> metaClassNotWantedList = new ArrayList<Object>();
@@ -95,7 +95,7 @@ public class GraphicalModelExplorerBasedContentProvider extends ModelContentProv
 
 	private static final String PREVIOUS_SELECTION = "PreviousSelection";
 
-	protected List<EObject> selectionHistory = new ArrayList<EObject>();
+	protected List<EObject> selectionHistory;
 
 	protected CLabel detailLabel;
 
@@ -281,6 +281,7 @@ public class GraphicalModelExplorerBasedContentProvider extends ModelContentProv
 		// read the history in the preferences
 		ServicesRegistry servicesRegistry = EditorUtils.getServiceRegistry();
 		ModelSet modelSet = null;
+		selectionHistory = new ArrayList<EObject>(HISTORY_MAX_SIZE + 1);
 		try {
 			modelSet = ModelUtils.getModelSetChecked(servicesRegistry);
 		} catch (ServiceException e) {
@@ -295,7 +296,7 @@ public class GraphicalModelExplorerBasedContentProvider extends ModelContentProv
 			if(uriHistory != null) {
 				for(String uri : uriHistory) {
 					EObject object = modelSet.getEObject(URI.createURI(uri), true);
-					if(object != null) {
+					if(object != null && !selectionHistory.contains(object)) {
 						selectionHistory.add(object);
 					}
 				}
@@ -427,7 +428,8 @@ public class GraphicalModelExplorerBasedContentProvider extends ModelContentProv
 
 		selectionHistory.add(0, currentValue);
 
-		if(selectionHistory.size() > HISTORY_MAX_SIZE) {
+		//This should loop only once, unless the history was already oversized
+		while(selectionHistory.size() > HISTORY_MAX_SIZE) {
 			selectionHistory.remove(HISTORY_MAX_SIZE);
 		}
 

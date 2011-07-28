@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -37,7 +37,7 @@ public class ContextExtensionPoint {
 
 		for(IConfigurationElement e : config) {
 			final String contextResource = e.getAttribute("contextModel"); //$NON-NLS-1$
-			URI uri = URI.createURI("ppe:/context/" + e.getContributor().getName() + "/" + contextResource);
+			URI uri = URI.createURI("ppe:/context/" + e.getContributor().getName() + "/" + contextResource); //$NON-NLS-1$ //$NON-NLS-2$
 			//URI uri = URI.createPlatformPluginURI(e.getContributor().getName() + "/" + contextResource, true); //$NON-NLS-1$
 			try {
 				ConfigurationManager.instance.addContext(uri);

@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -14,7 +14,19 @@ package org.eclipse.papyrus.properties.notation.databinding;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.gmf.runtime.notation.datatype.GradientData;
 
-
+/**
+ * This class encapsulates a gradient data, which may be null (If the
+ * gradient is not activated).
+ * 
+ * If the gradient data is null, it will be created just-in-time when
+ * setters are called.
+ * 
+ * This class has an additional property, {@link #activate}.
+ * activate = false implies that the gradient data has not been set
+ * (gradient data = null)
+ * 
+ * @author Camille Letavernier
+ */
 public class ObservableGradientData extends GradientData {
 
 	private IObservableValue source;
@@ -23,6 +35,16 @@ public class ObservableGradientData extends GradientData {
 
 	private boolean activate;
 
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 * @param source
+	 *        The IObservableValue containing the gradient data. It will be
+	 *        notified when the gradient data is changed
+	 * @param encapsulated
+	 *        The encapsulated gradient data. May be null
+	 */
 	public ObservableGradientData(IObservableValue source, GradientData encapsulated) {
 		this.encapsulated = new GradientData(encapsulated);
 		this.source = source;
@@ -44,6 +66,10 @@ public class ObservableGradientData extends GradientData {
 		return encapsulated.getGradientStyle();
 	}
 
+	/**
+	 * Notifies the object owned the gradient data that a change
+	 * occurred
+	 */
 	protected void notifySource() {
 		if(activate) {
 			source.setValue(new GradientData(encapsulated));
@@ -80,10 +106,20 @@ public class ObservableGradientData extends GradientData {
 		return encapsulated.equals(other);
 	}
 
+	/**
+	 * 
+	 * @return true if this gradient data is activated
+	 */
 	public boolean getActivate() {
 		return activate;
 	}
 
+	/**
+	 * Activates or de-activates this gradient data
+	 * 
+	 * @param value
+	 *        Whether the gradient data should be activated or de-activated
+	 */
 	public void setActivate(boolean value) {
 		this.activate = value;
 		notifySource();

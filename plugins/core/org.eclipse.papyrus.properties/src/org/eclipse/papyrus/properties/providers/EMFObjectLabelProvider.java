@@ -8,6 +8,7 @@
  * Contributors:
  *     Obeo - initial API and implementation
  *     Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Added support for enum literals
+ *     Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Implementation of IDetailLabelProvider
  *******************************************************************************/
 package org.eclipse.papyrus.properties.providers;
 
@@ -98,7 +99,7 @@ public class EMFObjectLabelProvider extends AdapterFactoryLabelProvider implemen
 	 *        the element to adapt
 	 * @return the EObject from the given element
 	 */
-	private EObject getModel(Object element) {
+	protected EObject getModel(Object element) {
 		if(element instanceof EObject) {
 			return (EObject)element;
 		}
@@ -182,16 +183,24 @@ public class EMFObjectLabelProvider extends AdapterFactoryLabelProvider implemen
 
 	public String getDetail(Object object) {
 		object = getModel(object);
-		return getText(object) + " - " + getQualifiedClassName(object);
+		return getText(object) + " - " + getQualifiedClassName(object); //$NON-NLS-1$
 	}
 
+	/**
+	 * Returns the qualified Class name of the given EObject, or an
+	 * empty String if the object is not an EObject
+	 * 
+	 * @param object
+	 * @return The qualified name of this object's class, or an empty
+	 *         String if the object is not an EObject
+	 */
 	protected String getQualifiedClassName(Object object) {
 		if(object instanceof EObject) {
 			EObject eObject = (EObject)object;
 			EClass eClass = eObject.eClass();
-			return EMFHelper.getQualifiedName(eClass, "::");
+			return EMFHelper.getQualifiedName(eClass, "::"); //$NON-NLS-1$
 		}
-		return "";
+		return ""; //$NON-NLS-1$
 	}
 
 }

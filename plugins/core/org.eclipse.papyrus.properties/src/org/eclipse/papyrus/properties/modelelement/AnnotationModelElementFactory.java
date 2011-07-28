@@ -8,7 +8,11 @@ import org.eclipse.papyrus.properties.Activator;
 import org.eclipse.papyrus.properties.contexts.DataContextElement;
 import org.eclipse.papyrus.properties.util.EMFHelper;
 
-
+/**
+ * A ModelElementFactory for AnnotationModelElements
+ * 
+ * @author Camille Letavernier
+ */
 public class AnnotationModelElementFactory implements ModelElementFactory {
 
 	public ModelElement createFromSource(Object sourceElement, DataContextElement context) {
@@ -17,9 +21,9 @@ public class AnnotationModelElementFactory implements ModelElementFactory {
 			Activator.log.warn("Unable to resolve the selected element to an EObject"); //$NON-NLS-1$
 			return null;
 		}
-		
+
 		if (! (source instanceof EModelElement)){
-			Activator.log.warn("The selected element must be an EModelElement");
+			Activator.log.warn("The selected element must be an EModelElement"); //$NON-NLS-1$
 		}
 
 		EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(source);

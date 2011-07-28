@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.papyrus.properties.contexts.Context;
 import org.eclipse.papyrus.properties.contexts.ContextsPackage;
 import org.eclipse.papyrus.properties.contexts.DataContextElement;
 import org.eclipse.papyrus.properties.contexts.Section;
@@ -77,10 +78,10 @@ public class CustomizationModelElement extends AbstractModelElement {
 		providers.put(EnvironmentPackage.eINSTANCE.getConstraintType(), new EnvironmentContentProvider(EnvironmentPackage.eINSTANCE.getEnvironment_ConstraintTypes()));
 		providers.put(EnvironmentPackage.eINSTANCE.getLayoutType(), new EnvironmentContentProvider(EnvironmentPackage.eINSTANCE.getEnvironment_LayoutTypes()));
 		providers.put(EnvironmentPackage.eINSTANCE.getModelElementFactoryDescriptor(), new EnvironmentContentProvider(EnvironmentPackage.eINSTANCE.getEnvironment_ModelElementFactories()));
-		providers.put(ContextsPackage.eINSTANCE.getContext(), new DependencyContentProvider());
 	}
 
-	public IObservable getObservable(String propertyPath) {
+	@Override
+	public IObservable doGetObservable(String propertyPath) {
 		EStructuralFeature feature = delegate.getFeature(propertyPath);
 		if(ContextsPackage.eINSTANCE.getSection_Name() == feature) {
 			return new SectionNameObservableValue(delegate.getSource(), feature, delegate.getDomain());
@@ -108,6 +109,8 @@ public class CustomizationModelElement extends AbstractModelElement {
 			return new ConstraintDescriptorContentProvider(delegate.getSource(), (EClass)classifier);
 		} else if(isDataContextElement(classifier)) {
 			return new DataContextElementContentProvider((DataContextElement)delegate.getSource());
+		} else if(classifier == ContextsPackage.eINSTANCE.getContext()) {
+			return new DependencyContentProvider((Context)delegate.getSource());
 		} else {
 			return delegate.getContentProvider(propertyPath);
 		}

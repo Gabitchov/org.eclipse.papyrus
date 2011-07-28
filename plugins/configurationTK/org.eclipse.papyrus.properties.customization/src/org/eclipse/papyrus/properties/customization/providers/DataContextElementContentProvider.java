@@ -45,8 +45,12 @@ public class DataContextElementContentProvider extends AbstractFilteredContentPr
 	 */
 	public DataContextElementContentProvider(DataContextElement element) {
 		Context context = findContext(element);
+
 		Set<Context> allContexts = new HashSet<Context>();
-		getAllContexts(context, allContexts);
+
+		if(context != null) {
+			getAllContexts(context, allContexts);
+		}
 
 		Set<DataContextElement> allElements = new HashSet<DataContextElement>();
 		for(Context ctx : allContexts) {

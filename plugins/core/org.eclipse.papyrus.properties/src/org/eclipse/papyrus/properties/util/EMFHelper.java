@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -14,6 +14,7 @@ package org.eclipse.papyrus.properties.util;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.util.URI;
@@ -21,9 +22,13 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.papyrus.properties.Activator;
 
 /**
@@ -109,15 +114,13 @@ public class EMFHelper {
 	 *         true if eClass is a subclass of fromClass
 	 */
 	public static boolean isSubclass(EClass eClass, EClass fromClass) {
-		List<EClass> superTypes = eClass.getESuperTypes();
+		if(eClass != null && fromClass == EcorePackage.eINSTANCE.getEObject()) {
+			return true;
+		}
+
+		List<EClass> superTypes = eClass.getEAllSuperTypes();
 		if(superTypes.contains(fromClass)) {
 			return true;
-		} else {
-			for(EClass superClass : superTypes) {
-				if(isSubclass(superClass, fromClass)) {
-					return true;
-				}
-			}
 		}
 		return false;
 	}
@@ -262,6 +265,62 @@ public class EMFHelper {
 		for(EPackage subPackage : fromPackage.getESubpackages()) {
 			getSubclassesOf(type, subPackage, result, concreteClassesOnly);
 		}
+	}
+
+	/**
+	 * Tests if an EObject is read only
+	 * Delegates to the EObject's editing domain if it can be found
+	 * 
+	 * @param eObject
+	 * @return
+	 *         True if the EObject is read only
+	 */
+	public static boolean isReadOnly(EObject eObject) {
+		EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(eObject);
+		return isReadOnly(eObject, domain);
+	}
+
+	/**
+	 * Tests if an EObject is read only
+	 * Delegates to the given editing domain if it isn't null
+	 * 
+	 * @param eObject
+	 * @param domain
+	 * @return
+	 *         True if the EObject is read only
+	 */
+	public static boolean isReadOnly(EObject eObject, EditingDomain domain) {
+		return isReadOnly(eObject.eResource(), domain);
+	}
+
+	/**
+	 * Tests if the Resource is read only
+	 * Delegates to the given editing domain if it isn't null
+	 * 
+	 * @param resource
+	 * @param domain
+	 * @return
+	 *         True if the Resource is read only
+	 */
+	public static boolean isReadOnly(Resource resource, EditingDomain domain) {
+		if(domain instanceof AdapterFactoryEditingDomain) {
+			return ((AdapterFactoryEditingDomain)domain).isReadOnly(resource);
+		}
+
+		if(resource == null) {
+			return false;
+		}
+
+		ResourceSet resourceSet = resource.getResourceSet();
+
+		if(resourceSet == null) {
+			return false;
+		}
+
+		Map<String, ?> attributes = resourceSet.getURIConverter().getAttributes(resource.getURI(), null);
+		Boolean readOnly = (Boolean)attributes.get(URIConverter.ATTRIBUTE_READ_ONLY);
+
+		return readOnly == null ? false : readOnly;
 	}
 
 

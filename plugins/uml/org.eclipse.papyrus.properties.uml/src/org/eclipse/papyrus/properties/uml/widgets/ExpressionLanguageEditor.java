@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -16,7 +16,16 @@ import org.eclipse.papyrus.properties.uml.creation.ExpressionLanguageFactory;
 import org.eclipse.papyrus.widgets.editors.MultipleValueEditor;
 import org.eclipse.swt.widgets.Composite;
 
-
+/**
+ * A widget for editing UML Expressions.
+ * UML Expressions maintain two lists ; one for the languages, and another one
+ * for the expression bodies. These lists should be coherent. This widget
+ * ensures that operations on the language list will not break the coherence
+ * with the bodies list. For example, when a language is deleted, the
+ * associated body is deleted as well.
+ * 
+ * @author Camille Letavernier
+ */
 public class ExpressionLanguageEditor extends MultipleValueEditor {
 
 	/**
@@ -27,12 +36,6 @@ public class ExpressionLanguageEditor extends MultipleValueEditor {
 	 *        The composite in which this editor is created
 	 * @param style
 	 *        The style for this editor's list
-	 * @param ordered
-	 *        True if the list should be ordered
-	 * @param unique
-	 *        True if the list values should be unique
-	 * @param label
-	 *        The label for this editor
 	 */
 	public ExpressionLanguageEditor(Composite parent, int style) {
 		super(parent, style, new LanguageSelector(), true, true, null);

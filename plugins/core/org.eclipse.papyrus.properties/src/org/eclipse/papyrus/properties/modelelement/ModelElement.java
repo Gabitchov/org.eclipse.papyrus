@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -41,7 +41,7 @@ public interface ModelElement {
 	/**
 	 * Returns an IStaticContentProvider for the given propertyPath. The
 	 * returned value should not be null. If there is no content provider,
-	 * used {@link EmptyContentProvider#instance}
+	 * use {@link EmptyContentProvider#instance}
 	 * 
 	 * @param propertyPath
 	 *        The name of the property for which we want a Content provider
@@ -98,9 +98,9 @@ public interface ModelElement {
 	public boolean isEditable(String propertyPath);
 
 	/**
-	 * Returns true if the given property should be refresh each time a change
-	 * occurs in the property view. May help when the IObservable doesn't
-	 * catch some change events (For example, for some Ecore derived
+	 * Returns true if the given property should be refreshed each time a
+	 * change occurs in the property view. This may help when the IObservable
+	 * doesn't catch some change events (For example, for some Ecore derived
 	 * properties).
 	 * 
 	 * @param propertyPath
@@ -127,8 +127,8 @@ public interface ModelElement {
 	public ReferenceValueFactory getValueFactory(String propertyPath);
 
 	/**
-	 * 
-	 * @return The default value for this element
+	 * @param propertyPath
+	 * @return The default value for the property
 	 */
 	public Object getDefaultValue(String propertyPath);
 
@@ -142,8 +142,14 @@ public interface ModelElement {
 	 * elements.
 	 * 
 	 * @param propertyPath
-	 * @return
+	 * @return True if the widget should use the direct edition option for the given property
 	 * 
 	 */
-	public boolean getDirectCreation(String localPropertyPath);
+	public boolean getDirectCreation(String propertyPath);
+
+	/**
+	 * Disposes this ModelElement
+	 * All created IObservable will be disposed
+	 */
+	public void dispose();
 }

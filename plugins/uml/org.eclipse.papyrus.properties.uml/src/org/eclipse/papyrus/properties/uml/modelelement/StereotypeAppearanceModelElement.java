@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -31,6 +31,7 @@ import org.eclipse.papyrus.properties.modelelement.AbstractModelElement;
 import org.eclipse.papyrus.properties.modelelement.ModelElement;
 import org.eclipse.papyrus.properties.uml.Activator;
 import org.eclipse.papyrus.properties.uml.databinding.StereotypeAppearanceObservableValue;
+import org.eclipse.papyrus.widgets.providers.EmptyContentProvider;
 import org.eclipse.papyrus.widgets.providers.IStaticContentProvider;
 import org.eclipse.papyrus.widgets.providers.StaticContentProvider;
 import org.eclipse.uml2.uml.Element;
@@ -61,18 +62,30 @@ public class StereotypeAppearanceModelElement extends AbstractModelElement imple
 	 */
 	protected EModelElement diagramElement;
 
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 * @param umlSource
+	 *        The UML Element on which the stereotypes are applied
+	 * @param domain
+	 *        The Editing Domain on which the commands will be executed
+	 * @param diagramElement
+	 *        The GMF EModelElement
+	 */
 	public StereotypeAppearanceModelElement(Element umlSource, EditingDomain domain, EModelElement diagramElement) {
 		this.umlSource = umlSource;
 		this.domain = domain;
 		this.diagramElement = diagramElement;
 	}
 
-	public IObservable getObservable(String propertyPath) {
+	@Override
+	public IObservable doGetObservable(String propertyPath) {
 		if(propertyPath.equals(STEREOTYPE_DISPLAY) || propertyPath.equals(TEXT_ALIGNMENT) || propertyPath.equals(DISPLAY_PLACE)) {
 			return new StereotypeAppearanceObservableValue(diagramElement, umlSource, propertyPath, domain);
 		}
 
-		Activator.log.warn("Unknown property : " + propertyPath);
+		Activator.log.warn("Unknown property : " + propertyPath); //$NON-NLS-1$
 		return null;
 	}
 
@@ -86,7 +99,7 @@ public class StereotypeAppearanceModelElement extends AbstractModelElement imple
 			return new StaticContentProvider(new String[]{ STEREOTYPE_COMPARTMENT_LOCATION, STEREOTYPE_COMMENT_LOCATION, STEREOTYPE_BRACE_LOCATION });
 		}
 
-		return null;
+		return EmptyContentProvider.instance;
 	}
 
 }

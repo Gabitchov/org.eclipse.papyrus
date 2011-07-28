@@ -93,17 +93,11 @@ public class ConfigurationManager {
 	public ConstraintEngine constraintEngine;
 
 	/**
-	 * The DisplayEngine for the PropertyView
-	 */
-	public DisplayEngine display;
-
-	/**
 	 * The singleton instance
 	 */
 	public final static ConfigurationManager instance = new ConfigurationManager();
 
 	private ConfigurationManager() {
-		display = new DefaultDisplayEngine();
 		constraintEngine = new DefaultConstraintEngine();
 		enabledContexts = new HashSet<Context>();
 
@@ -304,8 +298,13 @@ public class ConfigurationManager {
 	 * 
 	 * @param context
 	 *        The Context to disable
+	 * @param update
+	 *        If true, the constraint engine will be updated to handle the
+	 *        modification
+	 *        If false, you should call manually {@link #update()} to refresh
+	 *        the constraint engine
 	 * @see Preferences
-	 * @see #enableContext(Context)
+	 * @see #enableContext(Context, boolean)
 	 */
 	public void disableContext(Context context, boolean update) {
 		update = enabledContexts.remove(context) && update;
@@ -328,8 +327,13 @@ public class ConfigurationManager {
 	 * 
 	 * @param context
 	 *        The Context to enable
+	 * @param update
+	 *        If true, the constraint engine will be updated to handle the
+	 *        modification
+	 *        If false, you should call manually {@link #update()} to refresh
+	 *        the constraint engine
 	 * 
-	 * @see #disableContext(Context)
+	 * @see #disableContext(Context, boolean)
 	 */
 	public void enableContext(Context context, boolean update) {
 

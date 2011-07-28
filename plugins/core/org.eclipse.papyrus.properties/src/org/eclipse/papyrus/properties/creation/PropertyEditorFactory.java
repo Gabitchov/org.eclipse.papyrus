@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -64,7 +64,18 @@ public class PropertyEditorFactory implements ReferenceValueFactory {
 	}
 
 	/**
-	 * Facility
+	 * This class cannot instantiate objects. However, this method provides
+	 * a base implementation to be used by subclasses.
+	 * 
+	 * Subclasses should instantiate the base object, which will then be
+	 * editable via a property dialog.
+	 * 
+	 * @param widget
+	 *        The widget used to open the dialog
+	 * @param source
+	 *        The created EObject. If null, nothing will happen
+	 * @return
+	 *         The source EObject, which potential in-place modifications
 	 */
 	protected Object createObject(Control widget, Object source) {
 		if(source == null) {

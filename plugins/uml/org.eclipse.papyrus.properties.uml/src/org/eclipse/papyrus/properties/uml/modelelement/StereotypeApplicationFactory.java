@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -21,7 +21,13 @@ import org.eclipse.papyrus.properties.modelelement.ModelElementFactory;
 import org.eclipse.papyrus.properties.uml.util.UMLUtil;
 import org.eclipse.uml2.uml.Element;
 
-
+/**
+ * A ModelElementFactory for manipulating Stereotype and Profile
+ * applications
+ * 
+ * @author Camille Letavernier
+ * 
+ */
 public class StereotypeApplicationFactory implements ModelElementFactory {
 
 	public ModelElement createFromSource(Object sourceElement, DataContextElement context) {

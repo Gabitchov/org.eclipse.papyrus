@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -60,7 +60,7 @@ public abstract class AbstractConstraint implements Constraint {
 		if(display instanceof View) {
 			return (View)display;
 		} else {
-			Activator.log.warn("The constraint " + descriptor.getName() + " isn't owned by a View"); //$NON-NLS-1$
+			Activator.log.warn("The constraint " + descriptor.getName() + " isn't owned by a View"); //$NON-NLS-1$ //$NON-NLS-2$
 			return null;
 		}
 	}
@@ -97,6 +97,14 @@ public abstract class AbstractConstraint implements Constraint {
 		return descriptor;
 	}
 
+	/**
+	 * Returns the ConfigProperty corresponding to the given propertyName
+	 * 
+	 * @param propertyName
+	 *        The name of the property to retrieve
+	 * @return
+	 *         The ConfigProperty corresponding to the given propertyName
+	 */
 	protected ConfigProperty getProperty(String propertyName) {
 		if(descriptor == null || !(descriptor instanceof SimpleConstraint)) {
 			Activator.log.warn("The constraint descriptor has not been set for this constraint : " + this); //$NON-NLS-1$
@@ -113,6 +121,17 @@ public abstract class AbstractConstraint implements Constraint {
 		return null;
 	}
 
+	/**
+	 * Returns the value associated to the given property
+	 * 
+	 * @param propertyName
+	 *        The name of the property for which we want to retrieve the value
+	 *        The name must correspond to a valid ValueProperty
+	 * @return
+	 *         The value associated to the given property
+	 * 
+	 * @see #getReferenceValue(String)
+	 */
 	protected String getValue(String propertyName) {
 		ConfigProperty property = getProperty(propertyName);
 
@@ -125,6 +144,17 @@ public abstract class AbstractConstraint implements Constraint {
 		return null;
 	}
 
+	/**
+	 * Returns the value associated to the given property
+	 * 
+	 * @param propertyName
+	 *        The name of the property for which we want to retrieve the value
+	 *        The name must correspond to a valid ReferenceProperty
+	 * @return
+	 *         The value associated to the given property
+	 * 
+	 * @see #getValue(String)
+	 */
 	protected Object getReferenceValue(String propertyName) {
 		ConfigProperty property = getProperty(propertyName);
 		if(property instanceof ReferenceProperty) {
@@ -145,7 +175,7 @@ public abstract class AbstractConstraint implements Constraint {
 	 * @param descriptor
 	 *        The constraint descriptor to be associated to this constraint
 	 * 
-	 * @see #setConstraintDescriptor(SimpleConstraint)
+	 * @see #setConstraintDescriptor(ConstraintDescriptor)
 	 */
 	protected void setDescriptor(SimpleConstraint descriptor) {
 		//Implementors may override

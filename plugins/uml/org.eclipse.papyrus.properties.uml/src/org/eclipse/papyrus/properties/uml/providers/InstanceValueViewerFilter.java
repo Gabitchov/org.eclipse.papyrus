@@ -10,11 +10,26 @@ import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.InstanceValue;
 import org.eclipse.uml2.uml.Type;
 
-
+/**
+ * A viewer filter for {@link InstanceValue#getInstance()} values
+ * The values are accepted only if they match the {@link InstanceValue#getType()}.
+ * If the {@link InstanceValue#getType()} is not set, all values are accepted
+ * 
+ * @author Camille Letavernier
+ */
 public class InstanceValueViewerFilter extends UMLHierarchicViewerFilter {
 
 	private InstanceValue source;
 
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 * @param contentProvider
+	 *        The ContentProvider which provides the available values
+	 * @param source
+	 *        The InstanceValue being edited
+	 */
 	public InstanceValueViewerFilter(IHierarchicContentProvider contentProvider, InstanceValue source) {
 		super(contentProvider);
 		this.source = source;

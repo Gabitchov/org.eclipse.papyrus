@@ -11,6 +11,12 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.customization.providers;
 
+import java.util.LinkedList;
+import java.util.List;
+
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.papyrus.properties.contexts.Context;
 import org.eclipse.papyrus.properties.runtime.ConfigurationManager;
 import org.eclipse.papyrus.widgets.providers.AbstractStaticContentProvider;
 
@@ -21,8 +27,26 @@ import org.eclipse.papyrus.widgets.providers.AbstractStaticContentProvider;
  */
 public class DependencyContentProvider extends AbstractStaticContentProvider {
 
+	private Context source;
+
+	public DependencyContentProvider(Context source) {
+		this.source = source;
+	}
+
 	public Object[] getElements() {
-		return ConfigurationManager.instance.getContexts().toArray();
+		List<Context> registeredContexts = new LinkedList<Context>(ConfigurationManager.instance.getContexts());
+		List<Context> localContexts = new LinkedList<Context>();
+		for(Resource resource : source.eResource().getResourceSet().getResources()) {
+			for(EObject element : resource.getContents()) {
+				if(element instanceof Context && !registeredContexts.contains(element)) {
+					localContexts.add((Context)element);
+				}
+			}
+		}
+
+		registeredContexts.addAll(localContexts);
+
+		return registeredContexts.toArray();
 	}
 
 }

@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -16,7 +16,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.emf.databinding.EMFProperties;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -25,6 +27,7 @@ import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.papyrus.core.utils.PapyrusEcoreUtils;
+import org.eclipse.papyrus.properties.uml.databinding.PapyrusObservableValue;
 import org.eclipse.papyrus.properties.util.EMFHelper;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
@@ -36,6 +39,7 @@ import org.eclipse.uml2.uml.MessageEvent;
 import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.Type;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * A Helper class for UML
@@ -158,6 +162,14 @@ public class UMLUtil {
 		return null;
 	}
 
+	/**
+	 * Returns a collection of all super stereotypes of the given stereotype
+	 * (Including itself)
+	 * 
+	 * @param stereotype
+	 * @return
+	 *         A collection of all super stereotypes
+	 */
 	public static Collection<Stereotype> getAllSuperStereotypes(Stereotype stereotype) {
 		Set<Stereotype> result = new HashSet<Stereotype>();
 		if(stereotype != null) {
@@ -175,6 +187,12 @@ public class UMLUtil {
 		}
 	}
 
+	/**
+	 * Retrieves the UML Class associated to the given Message
+	 * 
+	 * @param message
+	 * @return the UML Class associated to the given Message
+	 */
 	public static org.eclipse.uml2.uml.Class getContextClassForMessage(Message message) {
 		MessageOccurrenceSpecification receiveEvent = (MessageOccurrenceSpecification)message.getReceiveEvent();
 
@@ -185,6 +203,12 @@ public class UMLUtil {
 		return getContextClassForMessageOccurrence(receiveEvent);
 	}
 
+	/**
+	 * Retrieves the UML Class associated to the given MessageOccurrenceSpecification
+	 * 
+	 * @param messageOccurrence
+	 * @return the UML Class associated to the given MessageOccurrenceSpecification
+	 */
 	public static org.eclipse.uml2.uml.Class getContextClassForMessageOccurrence(MessageOccurrenceSpecification messageOccurrence) {
 		List<Lifeline> lifelines = messageOccurrence.getCovereds();
 		if(lifelines.isEmpty()) {
@@ -207,6 +231,12 @@ public class UMLUtil {
 		}
 	}
 
+	/**
+	 * Finds the UML Class associated to the given MessageEvent
+	 * 
+	 * @param event
+	 * @return the Class associated to the given MessageEvent
+	 */
 	public static Class getContextClassForMessageEvent(MessageEvent event) {
 		Collection<EStructuralFeature.Setting> settings = PapyrusEcoreUtils.getUsages(event);
 		if(settings.isEmpty()) {
@@ -246,5 +276,25 @@ public class UMLUtil {
 		return UMLUtil.getContextClassForMessageOccurrence(referer);
 	}
 
-	private static EPackage umlMetamodel = EPackage.Registry.INSTANCE.getEPackage("http://www.eclipse.org/uml2/3.0.0/UML"); //$NON-NLS-1$
+	/**
+	 * Returns an IObservableValue for the given feature and EObject
+	 * 
+	 * If the EditingDomain is set, the IObservableValue will use the Papyrus ServiceEdit ;
+	 * otherwise, a standard EMFObservableValue will be used
+	 * 
+	 * @param source
+	 *        The EObject to observe
+	 * @param feature
+	 *        The feature to observe
+	 * @param domain
+	 *        The editing domain on which the commands will be executed. If null, direct
+	 *        object modifications will be used.
+	 * @return
+	 *         The IObservableValue
+	 */
+	public static IObservableValue getObservableValue(EObject source, EStructuralFeature feature, EditingDomain domain) {
+		return domain == null ? EMFProperties.value(feature).observe(source) : new PapyrusObservableValue(source, feature, domain);
+	}
+
+	private static EPackage umlMetamodel = UMLPackage.eINSTANCE;
 }
