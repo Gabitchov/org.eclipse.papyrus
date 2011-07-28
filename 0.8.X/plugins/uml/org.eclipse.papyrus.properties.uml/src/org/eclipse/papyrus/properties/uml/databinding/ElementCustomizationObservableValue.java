@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -26,7 +26,12 @@ import org.eclipse.papyrus.umlutils.ui.helper.QualifiedNameHelper;
 import org.eclipse.papyrus.umlutils.ui.helper.ShadowFigureHelper;
 import org.eclipse.uml2.uml.Element;
 
-
+/**
+ * An IObservableValue for custom Papyrus properties.
+ * This enables to edit a few preferences-based values.
+ * 
+ * @author Camille Letavernier
+ */
 public class ElementCustomizationObservableValue extends AbstractObservableValue {
 
 	private EditPart sourceElement;
@@ -39,6 +44,15 @@ public class ElementCustomizationObservableValue extends AbstractObservableValue
 
 	private Element semanticElement;
 
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 * @param sourceElement
+	 *        The selected EditPart
+	 * @param property
+	 *        The Property to edit
+	 */
 	public ElementCustomizationObservableValue(EditPart sourceElement, Property property) {
 		this.sourceElement = sourceElement;
 		this.property = property;
@@ -62,6 +76,9 @@ public class ElementCustomizationObservableValue extends AbstractObservableValue
 		return Object.class;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected Object doGetValue() {
 		switch(property) {
@@ -78,10 +95,17 @@ public class ElementCustomizationObservableValue extends AbstractObservableValue
 		return null;
 	}
 
+	/**
+	 * 
+	 * @return the {@link IMaskManagedLabelEditPolicy#MASK_MANAGED_LABEL_EDIT_POLICY} edit policy
+	 */
 	protected IMaskManagedLabelEditPolicy getEditPolicy() {
 		return (IMaskManagedLabelEditPolicy)sourceElement.getEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected void doSetValue(Object value) {
 		switch(property) {
@@ -116,8 +140,32 @@ public class ElementCustomizationObservableValue extends AbstractObservableValue
 		}
 	}
 
+	/**
+	 * The list of valid properties for {@link ElementCustomizationObservableValue}
+	 * 
+	 * @author Camille Letavernier
+	 * 
+	 */
 	public enum Property {
-		LABEL_CUSTOMIZATION, ELEMENT_ICON, SHADOW, QUALIFIED_NAME
+		/**
+		 * A UML Property or Operation label customization
+		 */
+		LABEL_CUSTOMIZATION,
+
+		/**
+		 * Whether and how the element icon should be displayed
+		 */
+		ELEMENT_ICON,
+
+		/**
+		 * Whether the shadow should be displayed or not
+		 */
+		SHADOW,
+
+		/**
+		 * Whether and how the qualified name should be displayed
+		 */
+		QUALIFIED_NAME
 	}
 
 }

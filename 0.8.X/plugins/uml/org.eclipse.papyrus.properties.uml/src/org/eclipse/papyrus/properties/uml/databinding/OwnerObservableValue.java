@@ -48,7 +48,7 @@ import org.eclipse.uml2.uml.UMLPackage;
  * 
  * @author Camille Letavernier
  */
-public class OwnerObservableValue extends AbstractObservableValue {
+public class OwnerObservableValue extends AbstractObservableValue implements IChangeListener {
 
 	private Property memberEnd;
 
@@ -56,8 +56,16 @@ public class OwnerObservableValue extends AbstractObservableValue {
 
 	private String currentValue;
 
+	private final IObservableList navigableEndsObservableList;
+
+	/**
+	 * Owned by classifier
+	 */
 	public static String CLASSIFIER = "Classifier"; //$NON-NLS-1$
 
+	/**
+	 * Owned by association
+	 */
 	public static String ASSOCIATION = "Association"; //$NON-NLS-1$
 
 	/**
@@ -71,14 +79,12 @@ public class OwnerObservableValue extends AbstractObservableValue {
 	public OwnerObservableValue(EObject source, EditingDomain domain) {
 		this.memberEnd = (Property)source;
 		this.domain = domain;
-		IObservableList navigableEndsObservableList = EMFProperties.list(UMLPackage.eINSTANCE.getAssociation_NavigableOwnedEnd()).observe(memberEnd.getAssociation());
-		navigableEndsObservableList.addChangeListener(new IChangeListener() {
+		navigableEndsObservableList = EMFProperties.list(UMLPackage.eINSTANCE.getAssociation_NavigableOwnedEnd()).observe(memberEnd.getAssociation());
+		navigableEndsObservableList.addChangeListener(this);
+	}
 
-			public void handleChange(ChangeEvent event) {
-				fireValueChange(Diffs.createValueDiff(currentValue, doGetValue()));
-			}
-
-		});
+	public void handleChange(ChangeEvent event) {
+		fireValueChange(Diffs.createValueDiff(currentValue, doGetValue()));
 	}
 
 	public Object getValueType() {
@@ -154,5 +160,12 @@ public class OwnerObservableValue extends AbstractObservableValue {
 			this.currentValue = owner;
 			domain.getCommandStack().execute(command);
 		}
+	}
+
+	@Override
+	public void dispose(){
+		super.dispose();
+		navigableEndsObservableList.removeChangeListener(this);
+		navigableEndsObservableList.dispose();
 	}
 }

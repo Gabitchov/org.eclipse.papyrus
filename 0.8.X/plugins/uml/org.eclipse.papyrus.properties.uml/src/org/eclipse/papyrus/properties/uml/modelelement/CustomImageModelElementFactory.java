@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -21,7 +21,12 @@ import org.eclipse.papyrus.properties.uml.util.UMLUtil;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Image;
 
-
+/**
+ * A ModelElementFactory for handling UML Images
+ * 
+ * @author Camille Letavernier
+ * 
+ */
 public class CustomImageModelElementFactory implements ModelElementFactory {
 
 	public ModelElement createFromSource(Object sourceElement, DataContextElement context) {
@@ -36,7 +41,7 @@ public class CustomImageModelElementFactory implements ModelElementFactory {
 			return new CustomImageModelElement((Image)umlSource, domain);
 		}
 
-		Activator.log.warn("The selected element is not a UML Image");
+		Activator.log.warn("The selected element is not a UML Image"); //$NON-NLS-1$
 		return null;
 	}
 

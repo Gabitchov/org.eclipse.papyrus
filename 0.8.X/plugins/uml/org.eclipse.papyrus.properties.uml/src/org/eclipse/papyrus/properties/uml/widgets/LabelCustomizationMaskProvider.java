@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -17,6 +17,11 @@ import org.eclipse.papyrus.diagram.common.helper.PropertyLabelHelper;
 import org.eclipse.papyrus.properties.widgets.MaskProvider;
 
 
+/**
+ * A MaskProvider for the labelCustomization property
+ * 
+ * @author Camille Letavernier
+ */
 public class LabelCustomizationMaskProvider implements MaskProvider {
 
 	public Map<Integer, String> getMasks() {

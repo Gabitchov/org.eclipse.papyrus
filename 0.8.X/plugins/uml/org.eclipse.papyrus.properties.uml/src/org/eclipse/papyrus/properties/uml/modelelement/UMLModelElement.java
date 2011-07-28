@@ -50,19 +50,40 @@ import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.ParameterDirectionKind;
 import org.eclipse.uml2.uml.UMLPackage;
 
-
+/**
+ * A ModelElement representing a UML Element
+ * 
+ * @author Camille Letavernier
+ * 
+ */
 public class UMLModelElement extends EMFModelElement {
 
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 * @param source
+	 *        The EObject represented by this ModelElement
+	 */
 	public UMLModelElement(EObject source) {
 		super(source);
 	}
 
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 * @param source
+	 *        The EObject represented by this ModelElement
+	 * @param domain
+	 *        The EditingDomain on which the commands will be executed
+	 */
 	public UMLModelElement(EObject source, EditingDomain domain) {
 		super(source, domain);
 	}
 
 	@Override
-	public IObservable getObservable(String propertyPath) {
+	public IObservable doGetObservable(String propertyPath) {
 		FeaturePath featurePath = getFeaturePath(propertyPath);
 		EStructuralFeature feature = getFeature(propertyPath);
 

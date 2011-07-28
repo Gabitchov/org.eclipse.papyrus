@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -223,20 +223,35 @@ public class ConstraintTypeImpl extends EObjectImpl implements ConstraintType {
 
 	@Override
 	public boolean equals(Object object) {
-		if(object == null)
+		if(object == null) {
 			return false;
+		}
 
-		if(this == object)
+		if(this == object) {
 			return true;
+		}
 
 		if(object.getClass() == getClass()) {
 			ConstraintType constraint = (ConstraintType)object;
-			if(!getConstraintClass().equals(constraint.getConstraintClass())) {
-				return false;
+
+			if(getConstraintClass() == null) {
+				if(constraint.getConstraintClass() != null) {
+					return false;
+				}
+			} else {
+				if(!getConstraintClass().equals(constraint.getConstraintClass())) {
+					return false;
+				}
 			}
 
-			if(!getLabel().equals(constraint.getLabel())) {
-				return false;
+			if(getLabel() == null) {
+				if(constraint.getLabel() != null) {
+					return false;
+				}
+			} else {
+				if(!getLabel().equals(constraint.getLabel())) {
+					return false;
+				}
 			}
 
 			return true;

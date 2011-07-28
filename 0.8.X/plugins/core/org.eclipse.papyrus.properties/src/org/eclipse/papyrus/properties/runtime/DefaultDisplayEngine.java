@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -112,7 +112,11 @@ public class DefaultDisplayEngine implements DisplayEngine {
 		return new LinkedList<ITabDescriptor>(result.values());
 	}
 
-	private void dispose() {
+	/**
+	 * Disposes the controls created by this DisplayEngine
+	 * This should not dispose the engine itself, which can be reused.
+	 */
+	protected void dispose() {
 		for(Control control : controls) {
 			control.dispose();
 		}

@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -28,7 +28,18 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 
-
+/**
+ * A Property Editor for editing UML Expressions.
+ * UML Expressions maintain two lists ; one for the languages, and another one
+ * for the expression bodies. These lists should be coherent. This editor
+ * ensures that operations on the language list will not break the coherence
+ * with the bodies list. For example, when a language is deleted, the
+ * associated body is deleted as well.
+ * 
+ * @author Camille Letavernier
+ * 
+ * @see ExpressionLanguageEditor
+ */
 public class ExpressionEditor extends AbstractPropertyEditor implements Listener, ISelectionChangedListener {
 
 	private final ExpressionLanguageEditor languageEditor;
@@ -41,6 +52,14 @@ public class ExpressionEditor extends AbstractPropertyEditor implements Listener
 
 	private DynamicBodyEditor bodyEditor;
 
+	/**
+	 * Constructor.
+	 * 
+	 * @param parent
+	 *        The composite in which the widget is created
+	 * @param style
+	 *        The style for the {@link DynamicBodyEditor}
+	 */
 	public ExpressionEditor(Composite parent, int style) {
 
 		languageEditor = new ExpressionLanguageEditor(parent, SWT.NONE);

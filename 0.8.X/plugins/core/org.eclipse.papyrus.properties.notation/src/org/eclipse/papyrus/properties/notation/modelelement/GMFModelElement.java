@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -25,19 +25,41 @@ import org.eclipse.papyrus.properties.notation.databinding.GradientObservableVal
 import org.eclipse.papyrus.properties.uml.databinding.PapyrusObservableList;
 import org.eclipse.papyrus.properties.uml.databinding.PapyrusObservableValue;
 
-
+/**
+ * A ModelElement to represent an element of the GMF Notation metamodel
+ * 
+ * @author Camille Letavernier
+ * 
+ */
 public class GMFModelElement extends EMFModelElement {
 
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 * @param source
+	 *        The source element (from the Notation metamodel)
+	 */
 	public GMFModelElement(EObject source) {
 		super(source);
 	}
 
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 * @param source
+	 *        The source element (from the Notation metamodel)
+	 * @param domain
+	 *        The editing domain on which the commands will be executed.
+	 *        May be null
+	 */
 	public GMFModelElement(EObject source, EditingDomain domain) {
 		super(source, domain);
 	}
 
 	@Override
-	public IObservable getObservable(String propertyPath) {
+	public IObservable doGetObservable(String propertyPath) {
 		FeaturePath featurePath = getFeaturePath(propertyPath);
 		EStructuralFeature feature = getFeature(propertyPath);
 

@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -91,8 +91,9 @@ public class XWTSection extends AbstractPropertySection implements IChangeListen
 
 	@Override
 	public void setInput(IWorkbenchPart part, ISelection selection) {
-		if(selection == getSelection())
+		if(selection == getSelection()) {
 			return;
+		}
 
 		super.setInput(part, selection);
 
@@ -104,8 +105,10 @@ public class XWTSection extends AbstractPropertySection implements IChangeListen
 	}
 
 	private void setSource(DataSource source) {
-		if(this.source != null)
+		if(this.source != null) {
 			this.source.removeChangeListener(this);
+			this.source.dispose();
+		}
 
 		this.source = source;
 
@@ -182,8 +185,13 @@ public class XWTSection extends AbstractPropertySection implements IChangeListen
 
 	@Override
 	public void dispose() {
-		if(source != null)
+		if(source != null) {
 			source.removeChangeListener(this);
+			source.dispose();
+		}
+		if(self != null) {
+			self.dispose();
+		}
 		super.dispose();
 	}
 

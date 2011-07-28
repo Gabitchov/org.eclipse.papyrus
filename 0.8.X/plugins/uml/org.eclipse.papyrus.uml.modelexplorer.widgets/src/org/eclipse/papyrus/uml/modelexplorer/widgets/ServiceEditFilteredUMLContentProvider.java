@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -20,13 +20,13 @@ public class ServiceEditFilteredUMLContentProvider extends UMLElementMEBContentP
 	private EditServiceValidator validator;
 
 	public ServiceEditFilteredUMLContentProvider(EObject editedObject, EStructuralFeature feature, EObject semanticRoot) {
-		super(semanticRoot, "history_" + feature.getEType().getEPackage().getName() + ":" + feature.getEType().getName() + ":" + feature.getName());
+		super(semanticRoot, "history_" + feature.getEType().getEPackage().getName() + ":" + feature.getEType().getName() + ":" + feature.getName()); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		validator = new EditServiceValidator(editedObject, feature);
 	}
 
 	@Override
 	public boolean isValidValue(Object element) {
-		return super.isValidValue(element) && validator.isValidValue(element);
+		return super.isValidValue(element) && validator.isValidValue(getAdaptedValue(element));
 	}
 
 }

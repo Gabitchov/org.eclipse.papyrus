@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -91,6 +91,7 @@ public class DataSource implements IChangeListener {
 				Activator.log.warn("Unable to find a ModelElement for " + propertyPath + ". Elements : " + elements); //$NON-NLS-1$ //$NON-NLS-2$
 				return null;
 			}
+			elements.put(key, element);
 		}
 		return element;
 	}
@@ -312,7 +313,7 @@ public class DataSource implements IChangeListener {
 	}
 
 	/**
-	 * Indicates if the widget should be use the direct creation.
+	 * Indicates if the widget should use the direct creation.
 	 * The direct edition will disable the possibility to browse
 	 * existing elements when the "add" button is pressed.
 	 * 
@@ -322,7 +323,7 @@ public class DataSource implements IChangeListener {
 	 * 
 	 * @param propertyPath
 	 * @return
-	 * 
+	 *         True if the widget should use the direct edition option for the given property
 	 */
 	public boolean getDirectCreation(String propertyPath) {
 		ModelElement element = getModelElement(propertyPath);
@@ -330,5 +331,15 @@ public class DataSource implements IChangeListener {
 			return true;
 		}
 		return element.getDirectCreation(getLocalPropertyPath(propertyPath));
+	}
+
+	/**
+	 * Disposes this data source.
+	 * This will dispose all ModelElements and IObservable created by this DataSource
+	 */
+	public void dispose() {
+		for(ModelElement element : elements.values()) {
+			element.dispose();
+		}
 	}
 }

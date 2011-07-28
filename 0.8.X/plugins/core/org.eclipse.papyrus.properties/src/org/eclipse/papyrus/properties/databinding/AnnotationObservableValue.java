@@ -13,18 +13,54 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 
+/**
+ * An IObservableValue for editing EMF EAnnotations
+ * 
+ * @author Camille Letavernier
+ */
 public class AnnotationObservableValue extends AbstractObservableValue {
 
+	/**
+	 * The EModelElement to edit.
+	 */
 	protected EModelElement source;
 
+	/**
+	 * The editing domain on which the commands will be executed
+	 */
 	protected EditingDomain domain;
 
+	/**
+	 * The name of the annotation to use
+	 */
 	protected String annotationName;
 
+	/**
+	 * The annotation key to edit
+	 */
 	protected String key;
 
+	/**
+	 * The EAnnotation being edited
+	 * May be null
+	 */
 	protected EAnnotation annotation;
 
+	/**
+	 * Constructor.
+	 * 
+	 * Creates an IObservableValue for the annotation. The annotation doesn't
+	 * need to be created beforehand
+	 * 
+	 * @param source
+	 *        The EObject owning the annotation
+	 * @param domain
+	 *        The editing domain on which the commands will be executed
+	 * @param annotationName
+	 *        The name of the annotation
+	 * @param key
+	 *        The name of annotation's property to edit
+	 */
 	public AnnotationObservableValue(EModelElement source, EditingDomain domain, String annotationName, String key) {
 		this.source = source;
 		this.domain = domain;
@@ -33,10 +69,16 @@ public class AnnotationObservableValue extends AbstractObservableValue {
 		annotation = source.getEAnnotation(annotationName);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public Object getValueType() {
 		return String.class;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected Object doGetValue() {
 		if(annotation == null) {
@@ -46,6 +88,10 @@ public class AnnotationObservableValue extends AbstractObservableValue {
 		return annotation.getDetails().get(key);
 	}
 
+
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected void doSetValue(Object value) {
 		if(!(value instanceof String)) {

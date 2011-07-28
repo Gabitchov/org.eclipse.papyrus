@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -27,26 +27,57 @@ import org.eclipse.papyrus.widgets.providers.AbstractStaticContentProvider;
 import org.eclipse.papyrus.widgets.providers.IStaticContentProvider;
 import org.eclipse.uml2.uml.NamedElement;
 
-
+/**
+ * A ModelElement for handling UML-Specific appearance elements and properties
+ * 
+ * @author Camille Letavernier
+ * 
+ */
 public class UMLNotationModelElement extends AbstractModelElement {
 
+	/**
+	 * The labelCustomization property
+	 */
 	public static final String LabelCustomization = "labelCustomization"; //$NON-NLS-1$
 
+	/**
+	 * The stereotypeDisplay property
+	 */
 	public static final String StereotypeDisplay = "stereotypeDisplay"; //$NON-NLS-1$
 
+	/**
+	 * The elementIcon property
+	 */
 	public static final String ElementIcon = "elementIcon"; //$NON-NLS-1$
 
+	/**
+	 * The shadow property
+	 */
 	public static final String Shadow = "shadow"; //$NON-NLS-1$
 
+	/**
+	 * The qualifiedName property
+	 */
 	public static final String QualifiedName = "qualifiedName"; //$NON-NLS-1$
 
+	/**
+	 * The GMF EditPart represented by this ModelElement
+	 */
 	private EditPart sourceElement;
 
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 * @param sourceElement
+	 *        The GMF EditPart represented by this ModelElement
+	 */
 	public UMLNotationModelElement(EditPart sourceElement) {
 		this.sourceElement = sourceElement;
 	}
 
-	public IObservable getObservable(String propertyPath) {
+	@Override
+	public IObservable doGetObservable(String propertyPath) {
 		if(propertyPath.equals(LabelCustomization)) {
 			return new ElementCustomizationObservableValue(sourceElement, Property.LABEL_CUSTOMIZATION);
 		} else if(propertyPath.equals(StereotypeDisplay)) {
@@ -119,10 +150,16 @@ public class UMLNotationModelElement extends AbstractModelElement {
 		};
 	}
 
+	/**
+	 * @return the GMF Notation model element associated to this edit part
+	 */
 	public EModelElement getEModelElement() {
 		return (EModelElement)sourceElement.getModel();
 	}
 
+	/**
+	 * @return the GMF Edit Part represented by this ModelElement
+	 */
 	public EditPart getEditPart() {
 		return sourceElement;
 	}

@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.uml.modelexplorer.widgets;
 
 import java.util.Iterator;
+import java.util.List;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EClass;
@@ -25,6 +26,8 @@ import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.papyrus.modelexplorer.widgets.GraphicalModelExplorerBasedContentProvider;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Stereotype;
+import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 
 /**
@@ -32,6 +35,8 @@ import org.eclipse.uml2.uml.Stereotype;
  * 
  */
 public class UMLElementMEBContentProvider extends GraphicalModelExplorerBasedContentProvider {
+
+	public static final String UML_URI = "http://www.eclipse.org/uml2/3.0.0/UML";
 
 	public UMLElementMEBContentProvider(EObject semanticRoot, String historyId) {
 		super(semanticRoot, historyId);
@@ -76,11 +81,22 @@ public class UMLElementMEBContentProvider extends GraphicalModelExplorerBasedCon
 						return true;
 					}
 				}
-				//this is a stereotype
+				//this is a stereotype (Dynamic profile)
 				if(metaClassWanted instanceof Stereotype) {
 					if(semanticObject instanceof Element) {
 						Element selectedUMLelement = (Element)semanticObject;
 						return selectedUMLelement.getAppliedStereotypes().contains(metaClassWanted);
+					}
+				}
+				//This is a Stereotype (Static profile)
+				if(metaClassWanted instanceof EClass && !(metaClassWanted instanceof Element)) {
+					if(semanticObject instanceof Element) {
+						Element selectedUMLElement = (Element)semanticObject;
+						for(EObject stereotypeApplication : selectedUMLElement.getStereotypeApplications()) {
+							if(((EClass)metaClassWanted).isInstance(stereotypeApplication)) {
+								return true;
+							}
+						}
 					}
 				}
 			}
@@ -88,6 +104,60 @@ public class UMLElementMEBContentProvider extends GraphicalModelExplorerBasedCon
 		}
 
 		return super.isValidValue(element);
+	}
+
+	@Override
+	public Object getAdaptedValue(Object selection) {
+		selection = super.getAdaptedValue(selection);
+		if(isStereotype() && selection instanceof Element) {
+			Element element = (Element)selection;
+			EObject stereotypeApplication = null;
+			if(metaClassWanted instanceof Stereotype) { //Dynamic profile
+				stereotypeApplication = element.getStereotypeApplication((Stereotype)metaClassWanted);
+				if(stereotypeApplication == null) {
+					List<Stereotype> subStereotypes = element.getAppliedSubstereotypes((Stereotype)metaClassWanted);
+					for(Stereotype subSteretoype : subStereotypes) {
+						stereotypeApplication = element.getStereotypeApplication(subSteretoype);
+						if(stereotypeApplication != null) {
+							break;
+						}
+					}
+				}
+			} else { //Static profile
+				for(EObject appliedStereotype : element.getStereotypeApplications()) {
+					if(((EClass)metaClassWanted).isInstance(appliedStereotype)) {
+						stereotypeApplication = appliedStereotype;
+					}
+				}
+			}
+
+			if(stereotypeApplication != null) {
+				return stereotypeApplication;
+			}
+		}
+		return selection;
+	}
+
+	@Override
+	public Object getContainerValue(Object selection) {
+		Object semanticElement = selection;;
+		if(isStereotype() && selection instanceof EObject) {
+			if(selection instanceof EObject) {
+				semanticElement = UMLUtil.getBaseElement((EObject)selection);
+			}
+		}
+		return super.getContainerValue(semanticElement);
+	}
+
+	protected boolean isStereotype() {
+		boolean isStereotype = metaClassWanted instanceof Stereotype;
+		boolean isUMLElement = false;
+		if(metaClassWanted instanceof EClass) {
+			EClass eClass = (EClass)metaClassWanted;
+			isUMLElement = eClass.getEAllSuperTypes().contains(UMLPackage.eINSTANCE.getElement()) || eClass == UMLPackage.eINSTANCE.getElement();
+		}
+
+		return isStereotype || !isUMLElement;
 	}
 
 	@Override

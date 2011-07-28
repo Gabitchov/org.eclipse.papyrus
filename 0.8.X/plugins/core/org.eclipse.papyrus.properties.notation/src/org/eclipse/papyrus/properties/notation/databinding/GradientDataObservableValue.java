@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -14,13 +14,27 @@ package org.eclipse.papyrus.properties.notation.databinding;
 import org.eclipse.core.databinding.observable.value.AbstractObservableValue;
 import org.eclipse.gmf.runtime.notation.datatype.GradientData;
 
-
+/**
+ * An ObservableValue for GradientData
+ * The GradientData is not a pure EMF object
+ * 
+ * @author Camille Letavernier
+ */
 public class GradientDataObservableValue extends AbstractObservableValue {
 
 	private GradientData data;
 
 	private GradientProperty property;
 
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 * @param data
+	 *        The GradientData to observe
+	 * @param property
+	 *        The name of the property to observe
+	 */
 	public GradientDataObservableValue(GradientData data, String property) {
 		this.data = data;
 		this.property = GradientProperty.valueOf(property);
@@ -77,8 +91,33 @@ public class GradientDataObservableValue extends AbstractObservableValue {
 		}
 	}
 
+	/**
+	 * The list of properties that can be used by the GradientDataObservableValue
+	 * 
+	 * @author Camille Letavernier
+	 */
 	public static enum GradientProperty {
-		gradientColor2, gradientColor1, gradientStyle, activate
+		/**
+		 * The gradientColor2 property
+		 * (In Papyrus diagrams, it is actually the fillColor that is used
+		 * instead of the gradientColor2)
+		 */
+		gradientColor2,
+
+		/**
+		 * The gradientColor1 property
+		 */
+		gradientColor1,
+
+		/**
+		 * The gradientStyle property (Vertical or Horizontal)
+		 */
+		gradientStyle,
+
+		/**
+		 * Whether the gradient is activated or not
+		 */
+		activate
 	}
 
 }
