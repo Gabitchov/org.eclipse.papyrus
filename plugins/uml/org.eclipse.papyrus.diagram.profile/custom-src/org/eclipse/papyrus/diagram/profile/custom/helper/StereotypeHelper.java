@@ -20,7 +20,9 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
+import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyReferenceCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest;
 import org.eclipse.papyrus.diagram.common.helper.ElementHelper;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Extension;
@@ -28,6 +30,7 @@ import org.eclipse.uml2.uml.ExtensionEnd;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.Type;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * Helper for the stereotypes
@@ -70,6 +73,11 @@ public class StereotypeHelper extends ElementHelper {
 			for(int iterProperty = 0; iterProperty < propertyList.size(); iterProperty++) {
 				Association propAssoc = propertyList.get(iterProperty).getAssociation();
 				if(extension == propAssoc) {
+					DestroyReferenceRequest requust = new DestroyReferenceRequest(extEnd, UMLPackage.eINSTANCE.getTypedElement_Type(), ste, false);
+					DestroyReferenceCommand cmd = new DestroyReferenceCommand(requust);
+					if(cmd.canExecute()) {
+						cc.add(new ICommandProxy(cmd));
+					}
 					//it's the good property, we need to destroy it!
 					DestroyElementRequest destroyElementRequest = new DestroyElementRequest(propertyList.get(iterProperty), false);
 					DestroyElementCommand destroyElementCommand = new DestroyElementCommand(destroyElementRequest);
