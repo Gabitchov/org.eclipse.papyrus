@@ -13,15 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.clazz.custom.policies;
 
-import java.util.Iterator;
-
 import org.eclipse.gef.DragTracker;
-import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
-import org.eclipse.gef.commands.Command;
-import org.eclipse.gef.commands.CompoundCommand;
-import org.eclipse.gef.commands.UnexecutableCommand;
-import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gef.tools.DragEditPartsTracker;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeCompartmentEditPart;
 import org.eclipse.gmf.runtime.notation.View;
@@ -44,6 +37,11 @@ public abstract class AbstractPackageableElementCompartmentEditPart extends Shap
 		if (!supportsDragSelection()){
 			return super.getDragTracker(req);
 		}
+		/*
+		 * the drag tracker has changed in order to allow double click 
+		 * on the compartment
+		 * hence it allow the navigation by double click
+		 */
 		return new DragEditPartsTracker(this.getParent());
 	}
 }
