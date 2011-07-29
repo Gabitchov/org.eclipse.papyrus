@@ -42,7 +42,10 @@ public class CustomExtensionItemSemanticEditPolicy extends ExtensionItemSemantic
 			if(steCmd.canExecute()) {
 				cc.add(steCmd);
 			}
-			cc.add(super.getDestroyElementCommand(req));
+			Command superCmd = super.getDestroyElementCommand(req);
+			if(superCmd.canExecute()) {
+				cc.add(superCmd);
+			}
 		}
 		return cc;
 	}
