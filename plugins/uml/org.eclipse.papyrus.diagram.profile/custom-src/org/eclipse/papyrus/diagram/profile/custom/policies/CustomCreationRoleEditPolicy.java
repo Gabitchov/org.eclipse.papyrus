@@ -22,6 +22,7 @@ import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
@@ -99,8 +100,8 @@ public class CustomCreationRoleEditPolicy extends org.eclipse.gmf.runtime.diagra
 	 */
 	public CustomCreationRoleEditPolicy() {
 		super();
-		init(metaclassesEP_ID);
-		requestAdapterList = new ArrayList<CreateElementRequestAdapter>();
+		init(this.metaclassesEP_ID);
+		this.requestAdapterList = new ArrayList<CreateElementRequestAdapter>();
 	}
 
 	/**
@@ -109,7 +110,7 @@ public class CustomCreationRoleEditPolicy extends org.eclipse.gmf.runtime.diagra
 	 */
 	private void init(int[] metaclassesID) {
 		for(int i = 0; i < metaclassesID.length; i++) {
-			metaclassesEP_ID_List.add(new String(new Integer(metaclassesID[i]).toString()));
+			this.metaclassesEP_ID_List.add(new String(new Integer(metaclassesID[i]).toString()));
 		}
 	}
 
@@ -181,7 +182,8 @@ public class CustomCreationRoleEditPolicy extends org.eclipse.gmf.runtime.diagra
 		/**
 		 * We use our custom command
 		 */
-		CustomSemanticCreateCommand semanticCommand = new CustomSemanticCreateCommand(customRequestAdapter, createElementCommand, profile);
+		TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(profile);
+		CustomSemanticCreateCommand semanticCommand = new CustomSemanticCreateCommand(domain, customRequestAdapter,  profile);
 
 		Command viewCommand = getCreateCommand(requestNEW);
 		//Command refreshConnectionCommand = getHost().getCommand(new RefreshConnectionsRequest(((List)request.getNewObject())));
@@ -212,7 +214,7 @@ public class CustomCreationRoleEditPolicy extends org.eclipse.gmf.runtime.diagra
 	public Command getCommand(Request request) {
 		if(understandsRequest(request)) {
 			if(request instanceof CreateViewAndElementRequest) {
-				if(metaclassesEP_ID_List.contains(((CreateViewAndElementRequest)request).getViewDescriptors().get(0).getSemanticHint())) {
+				if(this.metaclassesEP_ID_List.contains(((CreateViewAndElementRequest)request).getViewDescriptors().get(0).getSemanticHint())) {
 
 					//get the correct location for the new metaclass
 					Point location = ((CreateViewAndElementRequest)request).getLocation().getCopy();
