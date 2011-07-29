@@ -15,14 +15,18 @@ package org.eclipse.papyrus.diagram.clazz.custom.policies;
 
 import org.eclipse.gef.DragTracker;
 import org.eclipse.gef.Request;
-import org.eclipse.gef.tools.DragEditPartsTracker;
+import org.eclipse.gef.RequestConstants;
+import org.eclipse.gef.requests.SelectionRequest;
+import org.eclipse.gef.tools.DeselectAllTracker;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeCompartmentEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.internal.tools.RubberbandDragTracker;
 import org.eclipse.gmf.runtime.notation.View;
 
 /**
  * this is an abstract editpart used to allow double click on XY layout compartment
  *
  */
+@SuppressWarnings("restriction")
 public abstract class AbstractPackageableElementCompartmentEditPart extends ShapeCompartmentEditPart {
 
 	public AbstractPackageableElementCompartmentEditPart(View view) {
@@ -34,14 +38,36 @@ public abstract class AbstractPackageableElementCompartmentEditPart extends Shap
 	 *
 	 */
 	public DragTracker getDragTracker(Request req) {
-		if (!supportsDragSelection()){
+		if (!supportsDragSelection())
 			return super.getDragTracker(req);
-		}
-		/*
-		 * the drag tracker has changed in order to allow double click 
-		 * on the compartment
-		 * hence it allow the navigation by double click
-		 */
-		return new DragEditPartsTracker(this.getParent());
+
+		if (req instanceof SelectionRequest
+			&& ((SelectionRequest) req).getLastButtonPressed() == 3)
+			return new DeselectAllTracker(this) {
+
+				protected boolean handleButtonDown(int button) {
+					getCurrentViewer().select(AbstractPackageableElementCompartmentEditPart.this);
+					return true;
+				}
+			};
+		
+		return new RubberbandDragTracker() {
+			
+			/* this method has been respecified in order to allow double click 
+			 * on the compartment.
+			 * hence it allows the navigation by double click
+			 */
+			protected boolean handleDoubleClick(int button) {
+		        	SelectionRequest request = new SelectionRequest();
+		    		request.setLocation(getLocation());
+		    		request.setType(RequestConstants.REQ_OPEN);
+		    		AbstractPackageableElementCompartmentEditPart.this.performRequest(request);
+		            return true;
+		    }
+			protected void handleFinished() {
+				if (getViewer().getSelectedEditParts().isEmpty())
+					getViewer().select(AbstractPackageableElementCompartmentEditPart.this);
+			}
+		};
 	}
 }
