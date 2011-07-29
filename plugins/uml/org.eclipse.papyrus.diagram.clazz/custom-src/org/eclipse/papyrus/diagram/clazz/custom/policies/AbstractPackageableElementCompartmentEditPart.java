@@ -34,9 +34,14 @@ public abstract class AbstractPackageableElementCompartmentEditPart extends Shap
 	 *
 	 */
 	public DragTracker getDragTracker(Request req) {
-		if (!supportsDragSelection())
+		if (!supportsDragSelection()){
 			return super.getDragTracker(req);
-		
-		return new DragEditPartsTracker(this);
+		}
+		/*
+		 * the drag tracker has changed in order to allow double click 
+		 * on the compartment
+		 * hence it allow the navigation by double click
+		 */
+		return new DragEditPartsTracker(this.getParent());
 	}
 }
