@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -41,6 +41,7 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.StructuredViewer;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.ViewerFilter;
+import org.eclipse.papyrus.properties.catalog.PropertiesURIHandler;
 import org.eclipse.papyrus.properties.contexts.Context;
 import org.eclipse.papyrus.properties.customization.Activator;
 import org.eclipse.papyrus.properties.customization.editor.preview.Preview;
@@ -179,6 +180,10 @@ public class UIEditor extends EcoreEditor implements ITabbedPropertySheetPageCon
 		updateProblemIndication();
 
 		changePerspective();
+
+		//FIXME ppe:/ conversion
+		//This is a hack. The ppe:/ URIs are not correctly converted when the model is saved.
+		getEditingDomain().getResourceSet().getURIConverter().getURIHandlers().add(0, new PropertiesURIHandler());
 	}
 
 	protected void changePerspective() {

@@ -218,7 +218,7 @@ public class GraphicalModelExplorerBasedContentProvider extends ModelContentProv
 	 */
 	public void createAfter(Composite parent) {
 		parent.setLayout(new GridLayout(1, false));
-		createMetaclassFilter(parent);
+		//		createMetaclassFilter(parent); //Disabled
 		createHistory(parent);
 		createDetailArea(parent);
 	}
