@@ -110,6 +110,9 @@ public class CustomViewProvider extends CustomAbstractViewProvider {
 		nodeMap.put(SysMLGraphicalTypes.COMPARTMENT_SYSML_PROPERTY_AS_LIST_ID, CompartmentListViewFactory.class);
 		// Custom affixed labels
 		nodeMap.put(UMLGraphicalTypes.AFFIXEDLABEL_UML_NAMEDELEMENT_NAME_ID, AffixedLabelViewFactory.class);
+		nodeMap.put(UMLGraphicalTypes.AFFIXEDLABEL_UML_APPLIEDSTEREOTYPE_ID, AffixedLabelViewFactory.class);
+		nodeMap.put(UMLGraphicalTypes.AFFIXEDLABEL_UML_PORT_LABEL_ID, AffixedLabelViewFactory.class);
+		nodeMap.put(SysMLGraphicalTypes.AFFIXEDLABEL_SYSML_FLOWPORT_LABEL_ID, AffixedLabelViewFactory.class);
 
 		// Custom edges
 		edgeMap.put(UMLGraphicalTypes.LINK_UML_USAGE_ID, UsageLinkViewFactory.class);
