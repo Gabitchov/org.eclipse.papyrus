@@ -281,7 +281,7 @@ public class AbstractElementChildLabelEditPart extends GraphicalEditPart impleme
 
 		if(display == null) {
 			IPreferenceStore store = org.eclipse.papyrus.preferences.Activator.getDefault().getPreferenceStore();
-			int displayOptions = store.getInt(LabelPreferenceHelper.getPreferenceConstant(getNotationView().getDiagram().getType(), getNotationView().getType(), ILabelPreferenceConstants.LABEL_DISPLAY_PREFERENCE));
+			int displayOptions = store.getInt(LabelPreferenceHelper.getPreferenceConstant(getLabelPreferenceKey(), ILabelPreferenceConstants.LABEL_DISPLAY_PREFERENCE));
 			if(displayOptions == 0) {
 				return ParserOptions.NONE;
 			}
@@ -632,5 +632,11 @@ public class AbstractElementChildLabelEditPart extends GraphicalEditPart impleme
 			this.setText("");
 			this.setFont(THIS_FONT);
 		}
+	}
+
+	private String getLabelPreferenceKey() {
+		String diagramType = getNotationView().getDiagram().getType();
+		String labelType = getNotationView().getType();
+		return diagramType + "_" + labelType;
 	}
 }

@@ -59,7 +59,7 @@ public class UnitPreferencePage extends BlockDefinitionDiagramNodePreferencePage
 	/** buttons to select the display mask of the label */
 	protected Button bttnName, bttnDimension;
 
-	public static String prefLabelKey = ElementTypes.DIAGRAM_ID + "_" + SysMLGraphicalTypes.LABEL_SYSML_UNIT_NAME_ID; //$NON-NLS-1$	
+	public static String prefLabelKey = prefKey + "-" + SysMLGraphicalTypes.LABEL_SYSML_UNIT_NAME_ID; //$NON-NLS-1$	
 
 	private String labelDisplayPreferenceKey = LabelPreferenceHelper.getPreferenceConstant(prefLabelKey, ILabelPreferenceConstants.LABEL_DISPLAY_PREFERENCE);
 
