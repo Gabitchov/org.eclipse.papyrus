@@ -112,6 +112,10 @@
             description="%command.description.1"
             id="org.eclipse.papyrus.properties.customization.ToggleDataContext"
             name="%command.name.1">
+            <state
+               class="org.eclipse.papyrus.properties.customization.editor.actions.ToggleDataContextState"
+               id="org.eclipse.papyrus.properties.customization.displayContextState">
+         </state>
       </command>
    </extension>
    <extension

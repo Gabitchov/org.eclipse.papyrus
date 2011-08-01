@@ -128,6 +128,7 @@ public abstract class AbstractModelElement implements ModelElement {
 		for(IObservable observable : observables) {
 			observable.dispose();
 		}
+		observables.clear();
 	}
 
 }
