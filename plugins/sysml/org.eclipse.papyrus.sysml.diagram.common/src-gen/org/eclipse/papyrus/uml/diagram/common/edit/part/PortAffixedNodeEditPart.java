@@ -43,7 +43,6 @@ public class PortAffixedNodeEditPart extends AbstractElementBorderEditPart {
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(ShowHideLabelEditPolicy.SHOW_HIDE_LABEL_ROLE, new ShowHideLabelEditPolicy());
-
 		// Start of user code custom policies	
 		// End of user code		
 	}
@@ -53,10 +52,7 @@ public class PortAffixedNodeEditPart extends AbstractElementBorderEditPart {
 		org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy lep = new org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy() {
 
 			protected EditPolicy createChildEditPolicy(EditPart child) {
-				View childView = (View)child.getModel();
-				String childGraphicalType = childView.getType();
-
-				if(UMLGraphicalTypes.AFFIXEDLABEL_UML_NAMEDELEMENT_NAME_ID.equals(childGraphicalType)) {
+				if(child instanceof IBorderItemEditPart) { // External labels
 					return new ExternalLabelPrimaryDragRoleEditPolicy() {
 
 						protected List createSelectionHandles() {
@@ -66,6 +62,7 @@ public class PortAffixedNodeEditPart extends AbstractElementBorderEditPart {
 						}
 					};
 				}
+
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 				if(result == null) {
 					result = new NonResizableEditPolicy();
@@ -86,11 +83,9 @@ public class PortAffixedNodeEditPart extends AbstractElementBorderEditPart {
 
 	@Override
 	protected void addBorderItem(IFigure borderItemContainer, IBorderItemEditPart borderItemEditPart) {
-		if(borderItemEditPart instanceof NamedElementAffixedLabelNameEditPart) {
-			IBorderItemLocator locator = new ExternalLabelPositionLocator(getMainFigure());
-			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
-			return;
-		}
+		IBorderItemLocator locator = new ExternalLabelPositionLocator(getMainFigure());
+		borderItemContainer.add(borderItemEditPart.getFigure(), locator);
+		return;
 	}
 
 	@Override

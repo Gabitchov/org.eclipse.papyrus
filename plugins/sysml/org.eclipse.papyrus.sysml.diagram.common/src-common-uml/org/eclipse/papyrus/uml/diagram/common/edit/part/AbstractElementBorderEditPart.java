@@ -16,11 +16,15 @@ package org.eclipse.papyrus.uml.diagram.common.edit.part;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
+import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
+import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
@@ -70,6 +74,45 @@ public abstract class AbstractElementBorderEditPart extends AbstractBorderEditPa
 
 	public AffixedNamedElementFigure getPrimaryShape() {
 		return (AffixedNamedElementFigure)primaryShape;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public IBorderItemLocator getBorderItemLocator() {
+		IFigure parentFigure = getFigure().getParent();
+		if(parentFigure != null && parentFigure.getLayoutManager() != null) {
+			Object constraint = parentFigure.getLayoutManager().getConstraint(getFigure());
+			return (IBorderItemLocator)constraint;
+		}
+		return null;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected void refreshBounds() {
+		if(getBorderItemLocator() != null) {
+			int x = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_X())).intValue();
+			int y = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_Y())).intValue();
+			Point loc = new Point(x, y);
+
+			int width = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getSize_Width())).intValue();
+			int height = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getSize_Height())).intValue();
+			Dimension size = new Dimension(width, height);
+
+			// Update locator constraint
+			IBorderItemLocator locator = getBorderItemLocator();
+			locator.setConstraint(new Rectangle(loc, size));
+
+			// Set new constraint on parent figure
+			getFigure().getParent().setConstraint(getFigure(), locator);
+
+		} else {
+			super.refreshBounds();
+		}
 	}
 
 	protected NodeFigure createNodePlate() {

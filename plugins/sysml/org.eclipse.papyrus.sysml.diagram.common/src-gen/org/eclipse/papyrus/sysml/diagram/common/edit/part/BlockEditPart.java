@@ -45,7 +45,6 @@ import org.eclipse.papyrus.uml.diagram.common.edit.part.OperationCompartmentEdit
 import org.eclipse.papyrus.uml.diagram.common.edit.part.PortAffixedNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.PortCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.policy.StructuredClassifierCreationEditPolicy;
-import org.eclipse.papyrus.uml.diagram.common.utils.UMLGraphicalTypes;
 
 public class BlockEditPart extends AbstractElementEditPart {
 
@@ -73,15 +72,10 @@ public class BlockEditPart extends AbstractElementEditPart {
 		org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy lep = new org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy() {
 
 			protected EditPolicy createChildEditPolicy(EditPart child) {
-				View childView = (View)child.getModel();
-				String childGraphicalType = childView.getType();
+				if(child instanceof IBorderItemEditPart) {
+					return new BorderItemResizableEditPolicy();
+				}
 
-				if(SysMLGraphicalTypes.SHAPE_SYSML_FLOWPORT_AS_AFFIXED_ID.equals(childGraphicalType)) {
-					return new BorderItemResizableEditPolicy();
-				}
-				if(UMLGraphicalTypes.SHAPE_UML_PORT_AS_AFFIXED_ID.equals(childGraphicalType)) {
-					return new BorderItemResizableEditPolicy();
-				}
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 				if(result == null) {
 					result = new NonResizableEditPolicy();
