@@ -1007,12 +1007,6 @@
 	</page>
 		
 	<page  	category="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences"
-		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.ConstraintPreferencePage"
-		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.ConstraintPreferencePage"
-		name="Constraint">
-	</page>
-		
-	<page  	category="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences"
 		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.ConstraintBlockPreferencePage"
 		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.ConstraintBlockPreferencePage"
 		name="ConstraintBlock">
