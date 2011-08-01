@@ -33,7 +33,6 @@ import org.eclipse.papyrus.diagram.common.editpolicies.ShowHideLabelEditPolicy;
 import org.eclipse.papyrus.diagram.common.locator.ExternalLabelPositionLocator;
 import org.eclipse.papyrus.gmf.diagram.common.edit.policy.ExternalLabelPrimaryDragRoleEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.AbstractElementBorderEditPart;
-import org.eclipse.papyrus.uml.diagram.common.edit.part.NamedElementAffixedLabelNameEditPart;
 import org.eclipse.papyrus.uml.diagram.common.utils.UMLGraphicalTypes;
 
 public class FlowPortAffixedNodeEditPart extends AbstractElementBorderEditPart {
@@ -55,10 +54,7 @@ public class FlowPortAffixedNodeEditPart extends AbstractElementBorderEditPart {
 		org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy lep = new org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy() {
 
 			protected EditPolicy createChildEditPolicy(EditPart child) {
-				View childView = (View)child.getModel();
-				String childGraphicalType = childView.getType();
-
-				if(UMLGraphicalTypes.AFFIXEDLABEL_UML_NAMEDELEMENT_NAME_ID.equals(childGraphicalType)) {
+				if(child instanceof IBorderItemEditPart) { // External labels
 					return new ExternalLabelPrimaryDragRoleEditPolicy() {
 
 						protected List createSelectionHandles() {
@@ -68,6 +64,7 @@ public class FlowPortAffixedNodeEditPart extends AbstractElementBorderEditPart {
 						}
 					};
 				}
+
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 				if(result == null) {
 					result = new NonResizableEditPolicy();
@@ -88,11 +85,9 @@ public class FlowPortAffixedNodeEditPart extends AbstractElementBorderEditPart {
 
 	@Override
 	protected void addBorderItem(IFigure borderItemContainer, IBorderItemEditPart borderItemEditPart) {
-		if(borderItemEditPart instanceof NamedElementAffixedLabelNameEditPart) {
-			IBorderItemLocator locator = new ExternalLabelPositionLocator(getMainFigure());
-			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
-			return;
-		}
+		IBorderItemLocator locator = new ExternalLabelPositionLocator(getMainFigure());
+		borderItemContainer.add(borderItemEditPart.getFigure(), locator);
+		return;
 	}
 
 	@Override

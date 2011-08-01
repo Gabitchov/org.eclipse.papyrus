@@ -63,7 +63,13 @@ public class NamedElementAffixedLabelNameEditPart extends AbstractElementLabelEd
 		int y = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_Y())).intValue();
 		int width = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getSize_Width())).intValue();
 		int height = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getSize_Height())).intValue();
-		getBorderItemLocator().setConstraint(new Rectangle(x, y, width, height));
+
+		// Update locator constraint
+		IBorderItemLocator locator = getBorderItemLocator();
+		locator.setConstraint(new Rectangle(x, y, width, height));
+		
+		// Set new constraint on parent figure
+		getFigure().getParent().setConstraint(getFigure(), locator);	
 	}
 
 	/**
