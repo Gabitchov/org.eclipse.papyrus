@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.gmf.diagram.common.factory;
 
+import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.notation.LayoutConstraint;
 import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.gmf.runtime.notation.View;
@@ -45,7 +46,7 @@ public class AffixedLabelViewFactory extends AbstractLabelViewFactory {
 			return;
 		}
 
-		String preferenceKey = view.getType();
+		String preferenceKey = ViewUtil.getViewContainer(view).getType() + "-" + view.getType();
 		PreferenceInitializerForElementHelper.initLabelLocationFromPrefs(view, store, preferenceKey);
 	}
 }

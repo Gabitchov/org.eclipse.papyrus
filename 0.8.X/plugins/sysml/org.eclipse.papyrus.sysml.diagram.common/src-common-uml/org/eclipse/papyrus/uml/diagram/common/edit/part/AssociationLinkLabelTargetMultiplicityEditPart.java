@@ -13,19 +13,12 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.edit.part;
 
-import static org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants.DISP_MULTIPLICITY;
-
 import org.eclipse.draw2d.ConnectionLocator;
-import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPolicy;
-import org.eclipse.gmf.runtime.common.ui.services.parser.ParserOptions;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.gmf.diagram.common.edit.policy.LinkLabelDragEditPolicy;
-import org.eclipse.papyrus.preferences.Activator;
-import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.papyrus.uml.diagram.common.utils.AssociationViewUtils;
 import org.eclipse.uml2.uml.Association;
 
@@ -37,16 +30,7 @@ public class AssociationLinkLabelTargetMultiplicityEditPart extends AbstractElem
 	/** Constructor */
 	public AssociationLinkLabelTargetMultiplicityEditPart(View view) {
 		super(view);
-
-		// Use default view position as snap back position
-		IPreferenceStore store = Activator.getDefault().getPreferenceStore();
-
-		String xKey = PreferenceConstantHelper.getElementConstant(view.getDiagram().getType() + "_" + view.getType(), PreferenceConstantHelper.LOCATION_X);
-		String yKey = PreferenceConstantHelper.getElementConstant(view.getDiagram().getType() + "_" + view.getType(), PreferenceConstantHelper.LOCATION_Y);
-
-		Point snapBackPosition = new Point(store.getInt(xKey), store.getInt(yKey));
-
-		registerSnapBackPosition(view.getType(), snapBackPosition);
+		addSnapBackLocation();
 	}
 
 	/**
@@ -81,14 +65,6 @@ public class AssociationLinkLabelTargetMultiplicityEditPart extends AbstractElem
 		}
 
 		return null;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public ParserOptions getParserOptions() {
-		return new ParserOptions(DISP_MULTIPLICITY);
 	}
 
 	/**

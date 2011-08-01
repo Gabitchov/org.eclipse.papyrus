@@ -38,6 +38,7 @@ public class NamedElementAffixedLabelNameEditPart extends AbstractElementLabelEd
 	/** Constructor */
 	public NamedElementAffixedLabelNameEditPart(View view) {
 		super(view);
+		addSnapBackLocation();
 	}
 
 	/**
