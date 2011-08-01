@@ -29,11 +29,16 @@ import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeIconlDisplayEditPolicy;
+import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.ShowHideLabelEditPolicy;
 import org.eclipse.papyrus.diagram.common.locator.ExternalLabelPositionLocator;
 import org.eclipse.papyrus.gmf.diagram.common.edit.policy.ExternalLabelPrimaryDragRoleEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.utils.UMLGraphicalTypes;
 
+/**
+ * This class implements an edit part for FlowPort represented as border items.
+ */
 public class PortAffixedNodeEditPart extends AbstractElementBorderEditPart {
 
 	public PortAffixedNodeEditPart(View view) {
@@ -42,6 +47,7 @@ public class PortAffixedNodeEditPart extends AbstractElementBorderEditPart {
 
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeIconlDisplayEditPolicy());
 		installEditPolicy(ShowHideLabelEditPolicy.SHOW_HIDE_LABEL_ROLE, new ShowHideLabelEditPolicy());
 		// Start of user code custom policies	
 		// End of user code		
@@ -90,6 +96,6 @@ public class PortAffixedNodeEditPart extends AbstractElementBorderEditPart {
 
 	@Override
 	public EditPart getPrimaryChildEditPart() {
-		return getChildBySemanticHint(UMLGraphicalTypes.AFFIXEDLABEL_UML_NAMEDELEMENT_NAME_ID);
+		return getChildBySemanticHint(UMLGraphicalTypes.AFFIXEDLABEL_UML_PORT_LABEL_ID);
 	}
 }

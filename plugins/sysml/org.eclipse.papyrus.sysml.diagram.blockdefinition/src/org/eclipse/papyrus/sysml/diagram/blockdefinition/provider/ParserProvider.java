@@ -75,6 +75,9 @@ public class ParserProvider extends AbstractProvider implements IParserProvider 
 		graphicalHintToParser.put(UMLGraphicalTypes.LINKLABEL_UML_ASSOCIATION_TARGET_MULTIPLICITY_ID, new AssociationEndLabelParser());
 
 		graphicalHintToParser.put(ElementTypes.INSTANCE_SPECIFICATION_SLOT_CLN.getSemanticHint(), new SlotLabelParser());
+
+		graphicalHintToParser.put(UMLGraphicalTypes.AFFIXEDLABEL_UML_PORT_LABEL_ID, new PropertyLabelParser());
+		graphicalHintToParser.put(SysMLGraphicalTypes.AFFIXEDLABEL_SYSML_FLOWPORT_LABEL_ID, new FlowPortLabelParser());
 	}
 
 	/**

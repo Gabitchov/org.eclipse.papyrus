@@ -17,6 +17,7 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.gmf.diagram.common.factory.ShapeViewFactory;
+import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLGraphicalTypes;
 import org.eclipse.papyrus.uml.diagram.common.utils.UMLGraphicalTypes;
 
 public class FlowPortAffixedNodeViewFactory extends ShapeViewFactory {
@@ -27,7 +28,10 @@ public class FlowPortAffixedNodeViewFactory extends ShapeViewFactory {
 	@Override
 	protected void decorateView(View containerView, View view, IAdaptable element, String semanticHint, int index, boolean persisted) {
 
-		getViewService().createNode(element, view, UMLGraphicalTypes.AFFIXEDLABEL_UML_NAMEDELEMENT_NAME_ID, ViewUtil.APPEND, persisted, getPreferencesHint());
+		//getViewService().createNode(element, view, UMLGraphicalTypes.AFFIXEDLABEL_UML_NAMEDELEMENT_NAME_ID, ViewUtil.APPEND, persisted, getPreferencesHint());
+
+		getViewService().createNode(element, view, UMLGraphicalTypes.AFFIXEDLABEL_UML_APPLIEDSTEREOTYPE_ID, ViewUtil.APPEND, persisted, getPreferencesHint());
+		getViewService().createNode(element, view, SysMLGraphicalTypes.AFFIXEDLABEL_SYSML_FLOWPORT_LABEL_ID, ViewUtil.APPEND, persisted, getPreferencesHint());
 
 		// this action needs to be done after the compartments creation
 		super.decorateView(containerView, view, element, semanticHint, index, persisted);

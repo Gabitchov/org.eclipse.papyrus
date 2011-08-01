@@ -51,6 +51,12 @@ public class CustomPreferenceInitializer extends BlockDefinitionDiagramPreferenc
 		initDefaultPosition(SysMLGraphicalTypes.LINK_SYSML_ASSOCIATION_ID, UMLGraphicalTypes.LINKLABEL_UML_ASSOCIATION_SOURCE_MULTIPLICITY_ID, 0, 10);
 		initDefaultPosition(SysMLGraphicalTypes.LINK_SYSML_ASSOCIATION_ID, UMLGraphicalTypes.LINKLABEL_UML_ASSOCIATION_TARGET_ROLE_ID, 0, -10);
 		initDefaultPosition(SysMLGraphicalTypes.LINK_SYSML_ASSOCIATION_ID, UMLGraphicalTypes.LINKLABEL_UML_ASSOCIATION_TARGET_MULTIPLICITY_ID, 0, 10);
+
+		initDefaultPosition(UMLGraphicalTypes.SHAPE_UML_PORT_AS_AFFIXED_ID, UMLGraphicalTypes.AFFIXEDLABEL_UML_PORT_LABEL_ID, 30, 0);
+		initDefaultPosition(UMLGraphicalTypes.SHAPE_UML_PORT_AS_AFFIXED_ID, UMLGraphicalTypes.AFFIXEDLABEL_UML_APPLIEDSTEREOTYPE_ID, 30, -20);
+
+		initDefaultPosition(SysMLGraphicalTypes.SHAPE_SYSML_FLOWPORT_AS_AFFIXED_ID, SysMLGraphicalTypes.AFFIXEDLABEL_SYSML_FLOWPORT_LABEL_ID, 30, 0);
+		initDefaultPosition(SysMLGraphicalTypes.SHAPE_SYSML_FLOWPORT_AS_AFFIXED_ID, UMLGraphicalTypes.AFFIXEDLABEL_UML_APPLIEDSTEREOTYPE_ID, 30, -20);
 	}
 
 	/**

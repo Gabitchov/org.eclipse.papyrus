@@ -68,6 +68,9 @@ public class CustomGraphicalTypeRegistry extends GraphicalTypeRegistry {
 		knownNodes.add(SysMLGraphicalTypes.COMPARTMENT_SYSML_FLOWPROPERTY_AS_LIST_ID);
 		knownNodes.add(SysMLGraphicalTypes.LABEL_SYSML_FLOWSPECIFICATION_NAME_ID);
 		knownNodes.add(UMLGraphicalTypes.AFFIXEDLABEL_UML_NAMEDELEMENT_NAME_ID);
+		knownNodes.add(UMLGraphicalTypes.AFFIXEDLABEL_UML_APPLIEDSTEREOTYPE_ID);
+		knownNodes.add(UMLGraphicalTypes.AFFIXEDLABEL_UML_PORT_LABEL_ID);
+		knownNodes.add(SysMLGraphicalTypes.AFFIXEDLABEL_SYSML_FLOWPORT_LABEL_ID);
 		knownNodes.add(UMLGraphicalTypes.LABEL_UML_NAMEDELEMENT_NAME_ID);
 		knownNodes.add(UMLGraphicalTypes.LINKLABEL_UML_NAMEDELEMENT_NAME_ID);
 		knownNodes.add(UMLGraphicalTypes.COMPARTMENT_UML_OPERATION_AS_LIST_ID);
