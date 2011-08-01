@@ -1047,7 +1047,19 @@
 		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.FlowPortPreferencePage"
 		name="FlowPort">
 	</page>
-		
+			
+	<page  	category="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.FlowPortPreferencePage"
+		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.FlowPortAsCompartmentItemPreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.FlowPortAsCompartmentItemPreferencePage"
+		name="As compartment item">
+	</page>
+
+	<page  	category="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.FlowPortPreferencePage"
+		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.FlowPortAsBorderItemPreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.FlowPortAsBorderItemPreferencePage"
+		name="As border item">
+	</page>
+			
 	<page  	category="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences"
 		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.FlowPropertyPreferencePage"
 		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.FlowPropertyPreferencePage"
@@ -1084,6 +1096,18 @@
 		name="Port">
 	</page>
 		
+	<page  	category="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.PortPreferencePage"
+		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.PortAsCompartmentItemPreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.PortAsCompartmentItemPreferencePage"
+		name="As compartment item">
+	</page>
+
+	<page  	category="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.PortPreferencePage"
+		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.PortAsBorderItemPreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.PortAsBorderItemPreferencePage"
+		name="As border item">
+	</page>
+			
 	<page  	category="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences"
 		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.PrimitiveTypePreferencePage"
 		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.PrimitiveTypePreferencePage"

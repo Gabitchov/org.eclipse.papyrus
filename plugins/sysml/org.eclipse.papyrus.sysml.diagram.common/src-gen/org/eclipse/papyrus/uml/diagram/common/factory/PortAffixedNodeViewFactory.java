@@ -27,7 +27,10 @@ public class PortAffixedNodeViewFactory extends ShapeViewFactory {
 	@Override
 	protected void decorateView(View containerView, View view, IAdaptable element, String semanticHint, int index, boolean persisted) {
 
-		getViewService().createNode(element, view, UMLGraphicalTypes.AFFIXEDLABEL_UML_NAMEDELEMENT_NAME_ID, ViewUtil.APPEND, persisted, getPreferencesHint());
+		//getViewService().createNode(element, view, UMLGraphicalTypes.AFFIXEDLABEL_UML_NAMEDELEMENT_NAME_ID, ViewUtil.APPEND, persisted, getPreferencesHint());
+
+		getViewService().createNode(element, view, UMLGraphicalTypes.AFFIXEDLABEL_UML_APPLIEDSTEREOTYPE_ID, ViewUtil.APPEND, persisted, getPreferencesHint());
+		getViewService().createNode(element, view, UMLGraphicalTypes.AFFIXEDLABEL_UML_PORT_LABEL_ID, ViewUtil.APPEND, persisted, getPreferencesHint());
 
 		// this action needs to be done after the compartments creation
 		super.decorateView(containerView, view, element, semanticHint, index, persisted);

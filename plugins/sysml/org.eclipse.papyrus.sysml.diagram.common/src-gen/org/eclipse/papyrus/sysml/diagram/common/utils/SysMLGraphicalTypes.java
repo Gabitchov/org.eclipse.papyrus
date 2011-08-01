@@ -60,6 +60,8 @@ public class SysMLGraphicalTypes {
 
 	public static final String LABEL_SYSML_VALUETYPE_NAME_ID = "label_sysml_valuetype_name"; //$NON-NLS-1$
 
+	/** Custom affixed labels */
+	public static final String AFFIXEDLABEL_SYSML_FLOWPORT_LABEL_ID = "affixedlabel_sysml_flowport_label"; //$NON-NLS-1$
 
 	/** Custom compartments */
 	public static final String COMPARTMENT_SYSML_CONSTRAINT_AS_LIST_ID = "compartment_sysml_constraint_as_list"; //$NON-NLS-1$

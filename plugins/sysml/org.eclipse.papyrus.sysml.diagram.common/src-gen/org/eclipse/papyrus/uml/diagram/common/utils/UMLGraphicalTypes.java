@@ -53,6 +53,10 @@ public class UMLGraphicalTypes {
 	/** Custom affixed labels */
 	public static final String AFFIXEDLABEL_UML_NAMEDELEMENT_NAME_ID = "affixedlabel_uml_namedelement_name"; //$NON-NLS-1$
 
+	public static final String AFFIXEDLABEL_UML_APPLIEDSTEREOTYPE_ID = "affixedlabel_uml_appliedstereotype"; //$NON-NLS-1$
+
+	public static final String AFFIXEDLABEL_UML_PORT_LABEL_ID = "affixedlabel_uml_port_label"; //$NON-NLS-1$
+
 	/** Custom compartments */
 	public static final String COMPARTMENT_UML_CONSTRAINT_AS_LIST_ID = "compartment_uml_constraint_as_list"; //$NON-NLS-1$
 

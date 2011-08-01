@@ -2,6 +2,7 @@ package org.eclipse.papyrus.sysml.diagram.common;
 
 import java.util.ArrayList;
 
+import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -21,6 +22,8 @@ import org.eclipse.papyrus.sysml.allocations.provider.AllocationsItemProviderAda
 import org.eclipse.papyrus.sysml.blocks.provider.BlocksItemProviderAdapterFactory;
 import org.eclipse.papyrus.sysml.constraints.provider.ConstraintsItemProviderAdapterFactory;
 import org.eclipse.papyrus.sysml.modelelements.provider.ModelelementsItemProviderAdapterFactory;
+import org.eclipse.papyrus.sysml.portandflows.FlowDirection;
+import org.eclipse.papyrus.sysml.portandflows.FlowPort;
 import org.eclipse.papyrus.sysml.portandflows.provider.PortandflowsItemProviderAdapterFactory;
 import org.eclipse.papyrus.sysml.requirements.provider.RequirementsItemProviderAdapterFactory;
 import org.eclipse.swt.graphics.Image;
@@ -157,6 +160,78 @@ public class Activator extends AbstractUIPlugin {
 		return image;
 	}
 
+	/**
+	 * <pre>
+	 * Provide a FlowPort image for border edit part that take the border item position
+	 * into account.
+	 * 
+	 * The image is not rotated, but predefined.
+	 * 
+	 * The side of the image (relatively to the parent figure) can be:
+	 *         <ul>
+	 *         <li>{@linkplain PositionConstants#NORTH}</li>
+	 *         <li> {@linkplain PositionConstants#SOUTH}</li>
+	 *         <li> {@linkplain PositionConstants#EAST}</li>
+	 *         <li> {@linkplain PositionConstants#WEST}</li>
+	 *         <li> {@linkplain PositionConstants#NORTH_EAST}</li>
+	 *         <li> {@linkplain PositionConstants#NORTH_WEST}</li>
+	 *         <li> {@linkplain PositionConstants#SOUTH_EAST}</li>
+	 *         <li> {@linkplain PositionConstants#SOUTH_WEST}</li>
+	 *         </ul>
+	 * 
+	 * </pre>
+	 */
+	public Image getFlowPortImage(FlowPort flowport, int side) {
+
+		// Prepare the image key
+		String imageKey = "FlowPort_";
+		if(flowport.isIsAtomic()) {
+			if(flowport.getDirection() == FlowDirection.IN) {
+				imageKey = imageKey + "IN_";
+			} else if(flowport.getDirection() == FlowDirection.OUT) {
+				imageKey = imageKey + "OUT_";
+			} else if(flowport.getDirection() == FlowDirection.INOUT) {
+				imageKey = imageKey + "INOUT_";
+			}
+
+			imageKey = imageKey + "A_";
+		} else {
+			imageKey = imageKey + "NA_";
+		}
+
+		if(side == PositionConstants.WEST) {
+			imageKey = imageKey + "WEST";
+		} else if(side == PositionConstants.NORTH) {
+			imageKey = imageKey + "NORTH";
+		} else if(side == PositionConstants.SOUTH) {
+			imageKey = imageKey + "SOUTH";
+		} else if(side == PositionConstants.EAST) {
+			imageKey = imageKey + "EAST";
+		} else if(side == PositionConstants.NORTH_WEST) {
+			imageKey = imageKey + "NORTH_WEST";
+		} else if(side == PositionConstants.NORTH_EAST) {
+			imageKey = imageKey + "NORTH_EAST";
+		} else if(side == PositionConstants.SOUTH_EAST) {
+			imageKey = imageKey + "SOUTH_EAST";
+		} else if(side == PositionConstants.SOUTH_WEST) {
+			imageKey = imageKey + "SOUTH_WEST";
+		}
+
+		// Retrieve image from registry or add it in the registry
+		Image image = getImageRegistry().get(imageKey);
+		if(image == null) {
+
+			ImageDescriptor imageDescriptor = imageDescriptorFromPlugin(PLUGIN_ID, "/icons/flowports/" + imageKey + ".gif");
+
+			if(imageDescriptor == null) {
+				imageDescriptor = ImageDescriptor.getMissingImageDescriptor();
+			}
+			getImageRegistry().put(imageKey, imageDescriptor);
+			image = getImageRegistry().get(imageKey);
+		}
+
+		return image;
+	}
 
 	/**
 	 * Create a new Composed adapter factory for this plug-in.
