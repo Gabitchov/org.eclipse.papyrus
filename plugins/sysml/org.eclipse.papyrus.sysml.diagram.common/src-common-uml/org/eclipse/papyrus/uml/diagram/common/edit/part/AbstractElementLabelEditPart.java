@@ -36,8 +36,10 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserOptions;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserService;
+import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.LabelEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramColorRegistry;
 import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 import org.eclipse.gmf.runtime.diagram.ui.tools.TextDirectEditManager;
@@ -68,9 +70,11 @@ import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
 import org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil;
 import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
 import org.eclipse.papyrus.gmf.diagram.common.edit.part.ITextAwareEditPart;
+import org.eclipse.papyrus.gmf.diagram.common.edit.policy.DefaultSnapBackEditPolicy;
 import org.eclipse.papyrus.gmf.diagram.common.edit.policy.LabelDirectEditPolicy;
 import org.eclipse.papyrus.gmf.diagram.common.edit.policy.TextSelectionEditPolicy;
 import org.eclipse.papyrus.gmf.diagram.common.locator.TextCellEditorLocator;
+import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants;
 import org.eclipse.papyrus.sysml.diagram.common.preferences.LabelPreferenceHelper;
 import org.eclipse.papyrus.umlutils.ui.VisualInformationPapyrusConstant;
@@ -118,6 +122,7 @@ public abstract class AbstractElementLabelEditPart extends LabelEditPart impleme
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new LabelDirectEditPolicy());
 		installEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE, new TextSelectionEditPolicy());
+		installEditPolicy(EditPolicyRoles.SNAP_FEEDBACK_ROLE, new DefaultSnapBackEditPolicy());
 	}
 
 	/**
@@ -269,7 +274,7 @@ public abstract class AbstractElementLabelEditPart extends LabelEditPart impleme
 
 		if(display == null) {
 			IPreferenceStore store = org.eclipse.papyrus.preferences.Activator.getDefault().getPreferenceStore();
-			int displayOptions = store.getInt(LabelPreferenceHelper.getPreferenceConstant(getNotationView().getDiagram().getType(), getNotationView().getType(), ILabelPreferenceConstants.LABEL_DISPLAY_PREFERENCE));
+			int displayOptions = store.getInt(LabelPreferenceHelper.getPreferenceConstant(getLabelPreferenceKey(), ILabelPreferenceConstants.LABEL_DISPLAY_PREFERENCE));
 			if(displayOptions == 0) {
 				return ParserOptions.NONE;
 			}
@@ -608,6 +613,25 @@ public abstract class AbstractElementLabelEditPart extends LabelEditPart impleme
 	protected IFigure createFigure() {
 		// Parent should assign one using setLabel() method
 		return null;
+	}
+
+	protected void addSnapBackLocation() {
+		// Use default view position as snap back position
+		IPreferenceStore store = org.eclipse.papyrus.preferences.Activator.getDefault().getPreferenceStore();
+
+		String xKey = PreferenceConstantHelper.getElementConstant(getLabelPreferenceKey(), PreferenceConstantHelper.LOCATION_X);
+		String yKey = PreferenceConstantHelper.getElementConstant(getLabelPreferenceKey(), PreferenceConstantHelper.LOCATION_Y);
+
+		Point snapBackPosition = new Point(store.getInt(xKey), store.getInt(yKey));
+
+		registerSnapBackPosition(getLabelPreferenceKey(), snapBackPosition);
+	}
+
+	private String getLabelPreferenceKey() {
+		String diagramType = getNotationView().getDiagram().getType();
+		String parentType = ViewUtil.getViewContainer(getNotationView()).getType();
+		String labelType = getNotationView().getType();
+		return diagramType + "_" + parentType + "-" + labelType;
 	}
 
 	/**

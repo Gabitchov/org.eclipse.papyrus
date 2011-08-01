@@ -39,6 +39,7 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserOptions;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserService;
+import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
@@ -326,7 +327,7 @@ public abstract class AbstractElementNodeLabelEditPart extends GraphicalEditPart
 
 		if(display == null) {
 			IPreferenceStore store = org.eclipse.papyrus.preferences.Activator.getDefault().getPreferenceStore();
-			int displayOptions = store.getInt(LabelPreferenceHelper.getPreferenceConstant(getNotationView().getDiagram().getType(), getNotationView().getType(), ILabelPreferenceConstants.LABEL_DISPLAY_PREFERENCE));
+			int displayOptions = store.getInt(LabelPreferenceHelper.getPreferenceConstant(getLabelPreferenceKey(), ILabelPreferenceConstants.LABEL_DISPLAY_PREFERENCE));
 			if(displayOptions == 0) {
 				return ParserOptions.NONE;
 			}
@@ -679,6 +680,13 @@ public abstract class AbstractElementNodeLabelEditPart extends GraphicalEditPart
 	protected IFigure createFigure() {
 		// Parent should assign one using setLabel() method
 		return null;
+	}
+
+	private String getLabelPreferenceKey() {
+		String diagramType = getNotationView().getDiagram().getType();
+		String parentType = ViewUtil.getViewContainer(getNotationView()).getType();
+		String labelType = getNotationView().getType();
+		return diagramType + "_" + parentType + "-" + labelType;
 	}
 
 	/**

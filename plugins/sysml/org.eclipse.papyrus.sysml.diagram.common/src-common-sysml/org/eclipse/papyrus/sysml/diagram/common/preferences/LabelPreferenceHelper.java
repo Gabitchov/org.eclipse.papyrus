@@ -28,7 +28,9 @@ public class LabelPreferenceHelper {
 	 * @param constantPreferenceKey
 	 *        the constant key of the preference to retrieve
 	 * @return the complete preference key
+	 * @deprecated see https://bugs.eclipse.org/bugs/show_bug.cgi?id=353193 
 	 */
+	@Deprecated
 	public static String getPreferenceConstant(String diagramType, String viewType, String constantPreferenceKey) {
 		return diagramType + '_' + viewType + '.' + constantPreferenceKey;
 	}

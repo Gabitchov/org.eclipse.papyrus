@@ -13,15 +13,11 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.edit.part;
 
-import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserOptions;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition;
 import org.eclipse.papyrus.gmf.diagram.common.edit.policy.LinkLabelDragEditPolicy;
-import org.eclipse.papyrus.preferences.Activator;
-import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 
 /**
  * Abstract non-diagram specific edit part for link label representing applied stereotypes.
@@ -32,16 +28,7 @@ public class AppliedStereotypeLinkLabelEditPart extends AbstractElementLabelEdit
 	/** Constructor */
 	public AppliedStereotypeLinkLabelEditPart(View view) {
 		super(view);
-
-		// Use default view position as snap back position
-		IPreferenceStore store = Activator.getDefault().getPreferenceStore();
-
-		String xKey = PreferenceConstantHelper.getElementConstant(view.getDiagram().getType() + "_" + view.getType(), PreferenceConstantHelper.LOCATION_X);
-		String yKey = PreferenceConstantHelper.getElementConstant(view.getDiagram().getType() + "_" + view.getType(), PreferenceConstantHelper.LOCATION_Y);
-
-		Point snapBackPosition = new Point(store.getInt(xKey), store.getInt(yKey));
-
-		registerSnapBackPosition(view.getType(), snapBackPosition);
+		addSnapBackLocation();
 	}
 
 	/**
