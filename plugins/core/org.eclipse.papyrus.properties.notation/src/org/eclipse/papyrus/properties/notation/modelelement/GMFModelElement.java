@@ -20,8 +20,10 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
+import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.properties.modelelement.EMFModelElement;
 import org.eclipse.papyrus.properties.notation.databinding.GradientObservableValue;
+import org.eclipse.papyrus.properties.notation.providers.GMFLabelProvider;
 import org.eclipse.papyrus.properties.uml.databinding.PapyrusObservableList;
 import org.eclipse.papyrus.properties.uml.databinding.PapyrusObservableValue;
 
@@ -78,6 +80,11 @@ public class GMFModelElement extends EMFModelElement {
 
 		IObservableValue value = domain == null ? EMFProperties.value(featurePath).observe(source) : new PapyrusObservableValue(getSource(featurePath), feature, domain);
 		return value;
+	}
+
+	@Override
+	public ILabelProvider getLabelProvider(String propertyPath) {
+		return new GMFLabelProvider();
 	}
 
 }

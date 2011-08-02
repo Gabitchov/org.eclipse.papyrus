@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -95,8 +95,18 @@ public class StringLabel extends AbstractValueEditor implements IChangeListener 
 		}
 
 		if(this.modelProperty != null) {
-			String text = this.labelProvider.getText(this.modelProperty.getValue());
-			Image image = this.labelProvider.getImage(this.modelProperty.getValue());
+			Object value = this.modelProperty.getValue();
+
+			String text;
+			Image image = null;
+
+			if(value instanceof String) {
+				text = (String)value;
+			} else {
+				text = this.labelProvider.getText(this.modelProperty.getValue());
+				image = this.labelProvider.getImage(this.modelProperty.getValue());
+			}
+
 			this.valueLabel.setText(text);
 			this.valueLabel.setImage(image);
 		}

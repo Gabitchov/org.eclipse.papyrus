@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -60,6 +60,7 @@ public class ColorPickerEditor extends AbstractValueEditor implements IChangeLis
 
 			public void widgetSelected(SelectionEvent e) {
 				ColorPalettePopup colorPickerPopup = new ColorPalettePopup(getShell(), IDialogConstants.BUTTON_BAR_HEIGHT);
+				colorPickerPopup.setPreviousColor(getValue());
 				Rectangle r = colorPicker.getBounds();
 				Point location = colorPicker.getParent().toDisplay(r.x, r.y);
 				colorPickerPopup.open(new Point(location.x, location.y + r.height));
@@ -167,9 +168,9 @@ public class ColorPickerEditor extends AbstractValueEditor implements IChangeLis
 	}
 
 	@Override
-	public Object getValue() {
+	public Integer getValue() {
 		if(color == null) {
-			return 0;
+			return defaultColor;
 		}
 
 		return FigureUtilities.RGBToInteger(color);
