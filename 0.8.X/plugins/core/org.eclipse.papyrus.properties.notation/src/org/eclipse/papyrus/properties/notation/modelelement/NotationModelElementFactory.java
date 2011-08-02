@@ -11,6 +11,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.notation.modelelement;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.gef.EditPart;
@@ -19,6 +20,7 @@ import org.eclipse.gmf.runtime.notation.datatype.GradientData;
 import org.eclipse.papyrus.properties.contexts.DataContextElement;
 import org.eclipse.papyrus.properties.modelelement.ModelElement;
 import org.eclipse.papyrus.properties.modelelement.ModelElementFactory;
+import org.eclipse.papyrus.properties.util.EMFHelper;
 
 /**
  * A factory for handling the GMF Notation elements
@@ -28,17 +30,28 @@ import org.eclipse.papyrus.properties.modelelement.ModelElementFactory;
 public class NotationModelElementFactory implements ModelElementFactory {
 
 	public ModelElement createFromSource(Object sourceElement, DataContextElement context) {
+
+		View view = null;
+
 		if(sourceElement instanceof EditPart) {
 			EditPart part = (EditPart)sourceElement;
 			Object model = part.getModel();
 
 			if(model instanceof View) {
-				View view = (View)model;
-				EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(view);
-				return new GMFModelElement(view, domain);
+				view = (View)model;
 			}
 		} else if(sourceElement instanceof GradientData) {
 			return new GradientDataModelElement((GradientData)sourceElement);
+		} else {
+			EObject eObject = EMFHelper.getEObject(sourceElement);
+			if(eObject instanceof View) {
+				view = (View)eObject;
+			}
+		}
+
+		if(view != null) {
+			EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(view);
+			return new GMFModelElement(view, domain);
 		}
 
 		return null;

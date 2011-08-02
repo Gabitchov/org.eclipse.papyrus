@@ -18,9 +18,12 @@ import java.util.List;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.papyrus.diagram.common.command.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.properties.databinding.EMFObservableList;
@@ -70,7 +73,7 @@ public class PapyrusObservableList extends EMFObservableList implements ICommitL
 	 * @return
 	 *         The EMF command corresponding to the given request
 	 */
-	protected Command getCommandFromRequest(IElementEditService provider, SetRequest request) {
+	protected Command getCommandFromRequest(IElementEditService provider, IEditCommandRequest request) {
 		ICommand createGMFCommand = provider.getEditCommand(request);
 
 		return new GMFtoEMFCommandWrapper(createGMFCommand);
@@ -173,12 +176,20 @@ public class PapyrusObservableList extends EMFObservableList implements ICommitL
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected Command getRemoveCommand(Object value) {
+	protected Command getRemoveCommand(final Object value) {
 		IElementEditService provider = getProvider();
+
 		if(provider != null) {
-			List<Object> values = new LinkedList<Object>(this);
-			values.remove(value);
-			SetRequest request = new SetRequest(source, feature, values);
+			IEditCommandRequest request;
+
+			if(feature instanceof EReference && ((EReference)feature).isContainment()) {
+				request = new DestroyElementRequest((EObject)value, false);
+			} else {
+				List<Object> values = new LinkedList<Object>(this);
+				values.remove(value);
+				request = new SetRequest(source, feature, values);
+			}
+
 			return getCommandFromRequest(provider, request);
 		}
 
