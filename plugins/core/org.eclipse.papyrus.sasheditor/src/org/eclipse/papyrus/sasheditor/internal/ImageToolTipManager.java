@@ -15,7 +15,6 @@ package org.eclipse.papyrus.sasheditor.internal;
 
 import java.util.logging.Logger;
 
-import org.eclipse.papyrus.sasheditor.controlimage.SimpleDynamicImageCache;
 import org.eclipse.papyrus.sasheditor.editor.IPageImageUtils;
 import org.eclipse.papyrus.sasheditor.internal.preferences.ITabTooltipPreferences;
 import org.eclipse.papyrus.sasheditor.internal.preferences.TabTooltipPreferences;
