@@ -150,9 +150,37 @@ public abstract class BorderNodeEditPart extends BorderedBorderItemEditPart impl
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
 
+		// Update the figure when the line width changes
+		Object feature = event.getFeature();
+		if ((getModel() != null) && (getModel() == event.getNotifier())) {
+			if(NotationPackage.eINSTANCE.getLineStyle_LineWidth().equals(feature)) {
+				refreshLineWidth();
+			} else if (NotationPackage.eINSTANCE.getLineTypeStyle_LineType().equals(feature)) {
+				refreshLineType();
+			}
+		}
+		
 		if(resolveSemanticElement() != null) {
 			refreshShadow();
 		}
+	}
+	
+	@Override
+	protected void refreshVisuals() {
+		super.refreshVisuals();
+		refreshShadow();
+		refreshLineType();
+		refreshLineWidth();
+	}
+	
+	protected void setLineWidth(int width) {
+		if (width < 0) {
+			width = 1;
+		}
+		getPrimaryShape().setLineWidth(width);
+	}
 
+	protected void setLineType(int style) {
+		getPrimaryShape().setLineStyle(style);
 	}
 }
