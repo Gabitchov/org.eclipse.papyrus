@@ -17,6 +17,7 @@ import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
+import org.eclipse.draw2d.LineBorder;
 import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Rectangle;
@@ -196,6 +197,13 @@ public class PackageFigure extends NodeNamedElementFigure {
 	}
 
 	@Override
+	public void setLineWidth(int w) {
+		getHeader().setWidth(w);
+		getPackageableElementFigure().setLineWidth(w);
+		super.setLineWidth(w);
+	}
+	
+	@Override
 	protected void paintBorder(Graphics graphics) {
 		graphics.drawRectangle(getHeader());
 		super.paintBorder(graphics);
@@ -223,7 +231,7 @@ public class PackageFigure extends NodeNamedElementFigure {
 			graphics.fillRectangle(getPackageableElementFigure().getBounds());
 		}
 		graphics.setForegroundColor(getBorderColor());
-		graphics.setLineWidth(1);
+		graphics.setLineWidth(getLineWidth());
 		graphics.drawRectangle(getHeader());
 	}
 }
