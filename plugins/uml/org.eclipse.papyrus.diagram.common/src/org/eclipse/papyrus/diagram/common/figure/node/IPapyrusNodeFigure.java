@@ -88,7 +88,7 @@ public interface IPapyrusNodeFigure extends IFigure {
 	 * Comes from GMF {@link NodeFigure#setLineStyle}
 	 * 
 	 * @param s
-	 *        new line style
+	 *        the new line style
 	 * @since 1.2
 	 */
 	public void setLineStyle(int s);
@@ -99,4 +99,20 @@ public interface IPapyrusNodeFigure extends IFigure {
 	 * @since 1.2
 	 */
 	public int getLineStyle();
+	
+	/**
+	 * Comes from GMF {@link NodeFigure#setLineWidth}
+	 * 
+	 * @param w
+	 *        the new width
+	 * @since 1.2
+	 */
+	public void setLineWidth(int w);
+
+	/**
+	 * Comes from GMF {@link NodeFigure#getLineWidth}
+	 * 
+	 * @since 1.2
+	 */
+	public int getLineWidth();
 }

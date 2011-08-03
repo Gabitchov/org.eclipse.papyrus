@@ -151,8 +151,9 @@ public class PapyrusNodeFigure extends NodeFigure implements IPapyrusNodeFigure 
 			lineBorder = new LineBorder();
 		}
 
-		// Set border style
+		// Set border style and width
 		lineBorder.setStyle(getLineStyle());
+		lineBorder.setWidth(getLineWidth());
 
 		return lineBorder;
 	}
@@ -240,4 +241,22 @@ public class PapyrusNodeFigure extends NodeFigure implements IPapyrusNodeFigure 
 		super.setLineStyle(s);
 	}
 
+	/**
+	 * <pre>
+	 * This method propagates the new line width to the border
+	 * 
+	 * @see org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure#setLineWidth(int)
+	 * </pre>
+	 * 
+	 * @param w
+	 *        the new line width value
+	 */
+	@Override
+	public void setLineWidth(int w) {
+		if((getBorder() != null) && (getBorder() instanceof LineBorder)) {
+			((LineBorder)getBorder()).setWidth(w);
+		}
+
+		super.setLineWidth(w);
+	}
 }
