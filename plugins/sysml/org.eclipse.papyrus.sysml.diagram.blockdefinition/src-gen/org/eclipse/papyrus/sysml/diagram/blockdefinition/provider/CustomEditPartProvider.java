@@ -35,6 +35,7 @@ import org.eclipse.papyrus.sysml.diagram.common.edit.part.DimensionEditPart;
 import org.eclipse.papyrus.sysml.diagram.common.edit.part.DimensionLabelNameEditPart;
 import org.eclipse.papyrus.sysml.diagram.common.edit.part.FlowPortAffixedLabelNameEditPart;
 import org.eclipse.papyrus.sysml.diagram.common.edit.part.FlowPortAffixedNodeEditPart;
+import org.eclipse.papyrus.sysml.diagram.common.edit.part.FlowPortChildLabelEditPart;
 import org.eclipse.papyrus.sysml.diagram.common.edit.part.FlowPortCompartmentEditPart;
 import org.eclipse.papyrus.sysml.diagram.common.edit.part.FlowPropertyChildLabelEditPart;
 import org.eclipse.papyrus.sysml.diagram.common.edit.part.FlowPropertyCompartmentEditPart;
@@ -108,7 +109,7 @@ public class CustomEditPartProvider extends CustomAbstractEditPartProvider {
 		nodeMap.put(UMLGraphicalTypes.SHAPE_UML_CONSTRAINT_AS_LABEL_ID, DefaultChildLabelEditPart.class);
 		nodeMap.put(UMLGraphicalTypes.SHAPE_UML_ENUMERATIONLITERAL_AS_LABEL_ID, DefaultChildLabelEditPart.class);
 		nodeMap.put(UMLGraphicalTypes.SHAPE_UML_OPERATION_AS_LABEL_ID, DefaultChildLabelEditPart.class);
-		nodeMap.put(SysMLGraphicalTypes.SHAPE_SYSML_FLOWPORT_AS_LABEL_ID, FlowPropertyChildLabelEditPart.class);
+		nodeMap.put(SysMLGraphicalTypes.SHAPE_SYSML_FLOWPORT_AS_LABEL_ID, FlowPortChildLabelEditPart.class);
 		nodeMap.put(UMLGraphicalTypes.SHAPE_UML_PORT_AS_LABEL_ID, DefaultChildLabelEditPart.class);
 		nodeMap.put(SysMLGraphicalTypes.SHAPE_SYSML_CONSTRAINTPROPERTY_AS_LABEL_ID, ConstraintPropertyChildLabelEditPart.class);
 		nodeMap.put(SysMLGraphicalTypes.SHAPE_SYSML_FLOWPROPERTY_AS_LABEL_ID, FlowPropertyChildLabelEditPart.class);
