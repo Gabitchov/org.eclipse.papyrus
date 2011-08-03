@@ -14,11 +14,13 @@
 package org.eclipse.papyrus.uml.diagram.common.edit.part;
 
 import org.eclipse.draw2d.Connection;
+import org.eclipse.draw2d.Graphics;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.common.figure.edge.DashedEdgeFigure;
 import org.eclipse.papyrus.gmf.diagram.common.edit.policy.DefaultSemanticEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.figure.EdgeDecorationType;
+import org.eclipse.papyrus.uml.diagram.common.figure.NamedElementEdgeFigure;
 
 public class DependencyEditPart extends AbstractElementLinkEditPart {
 
@@ -67,13 +69,37 @@ public class DependencyEditPart extends AbstractElementLinkEditPart {
 	 * Creates figure for this edit part.
 	 */
 	protected Connection createConnectionFigure() {
-		return new DashedEdgeFigure();
+		return new NamedElementEdgeFigure();
 	}
 
 	/**
 	 * Creates primary shape for this edit part.
 	 */
-	public DashedEdgeFigure getPrimaryShape() {
-		return (DashedEdgeFigure)getFigure();
+	public NamedElementEdgeFigure getPrimaryShape() {
+		return (NamedElementEdgeFigure)getFigure();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected void refreshLineType() {
+		setLineType(Graphics.LINE_CUSTOM);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected void refreshArrowSource() {
+		setArrowSource(getArrowDecoration(EdgeDecorationType.NONE));
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected void refreshArrowTarget() {
+		setArrowTarget(getArrowDecoration(EdgeDecorationType.OPEN_ARROW));
 	}
 }
