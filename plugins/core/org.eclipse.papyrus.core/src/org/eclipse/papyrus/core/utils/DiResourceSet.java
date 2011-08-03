@@ -56,7 +56,7 @@ public class DiResourceSet extends ModelSet {
 		ModelsReader reader = new ModelsReader();
 		reader.readModel(this);
 	}
-
+	
 	/**
 	 * Just loads the model into the current resource set.
 	 * 
