@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.sysml.diagram.common.edit.part;
 
 import org.eclipse.draw2d.Connection;
+import org.eclipse.draw2d.Graphics;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
@@ -28,6 +29,7 @@ import org.eclipse.papyrus.uml.diagram.common.edit.part.AssociationLinkLabelSour
 import org.eclipse.papyrus.uml.diagram.common.edit.part.AssociationLinkLabelTargetMultiplicityEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.AssociationLinkLabelTargetRoleEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.NamedElementLinkLabelNameEditPart;
+import org.eclipse.papyrus.uml.diagram.common.figure.EdgeDecorationType;
 import org.eclipse.papyrus.uml.diagram.common.utils.AssociationViewUtils;
 import org.eclipse.uml2.uml.AggregationKind;
 import org.eclipse.uml2.uml.Association;
@@ -100,6 +102,8 @@ public class AssociationEditPart extends AbstractElementLinkEditPart {
 	 */
 	@Override
 	protected void refreshVisuals() {
+		super.refreshVisuals();
+
 		if(resolveSemanticElement() != null) {
 			if(getSource() == null || getTarget() == null) {
 				return;
@@ -116,9 +120,6 @@ public class AssociationEditPart extends AbstractElementLinkEditPart {
 			if(umlElement instanceof Association) {
 				Association association = (Association)getUMLElement();
 
-				int sourceType = 0;
-				int targetType = 0;
-
 				// Show navigable arrow if either source or target is navigable
 				// not when both are navigable.
 				if(isNavigable(association, source) && isNavigable(association, target)) {
@@ -128,38 +129,33 @@ public class AssociationEditPart extends AbstractElementLinkEditPart {
 				} else {
 
 					if(isNavigable(association, source)) {
-						targetType += AssociationFigure.navigable;
+						setArrowTarget(getArrowDecoration(EdgeDecorationType.OPEN_ARROW));
 					}
 
 					if(isNavigable(association, target)) {
-						sourceType += AssociationFigure.navigable;
+						setArrowSource(getArrowDecoration(EdgeDecorationType.OPEN_ARROW));
 					}
 
 				}
 
 				// aggregation? for it the opposite is changed
 				if(source.getAggregation() == AggregationKind.SHARED_LITERAL) {
-					sourceType += AssociationFigure.aggregation;
+					setArrowSource(getArrowDecoration(EdgeDecorationType.SOLID_DIAMOND_EMPTY));
 				}
 				if(target.getAggregation() == AggregationKind.SHARED_LITERAL) {
-					targetType += AssociationFigure.aggregation;
+					setArrowTarget(getArrowDecoration(EdgeDecorationType.SOLID_DIAMOND_EMPTY));
 				}
 
 				// composite? for it the opposite is changed
 				if(source.getAggregation() == AggregationKind.COMPOSITE_LITERAL) {
-					sourceType += AssociationFigure.composition;
+					setArrowSource(getArrowDecoration(EdgeDecorationType.SOLID_DIAMOND_FILLED));
 				}
 				if(target.getAggregation() == AggregationKind.COMPOSITE_LITERAL) {
-					targetType += AssociationFigure.composition;
+					setArrowTarget(getArrowDecoration(EdgeDecorationType.SOLID_DIAMOND_FILLED));
 				}
 
-				if(getPrimaryShape() instanceof AssociationFigure) {
-					((AssociationFigure)getPrimaryShape()).setEnd(sourceType, targetType);
-				}
 			}
-
 		}
-		super.refreshVisuals();
 	}
 
 	/**
@@ -269,5 +265,29 @@ public class AssociationEditPart extends AbstractElementLinkEditPart {
 	 */
 	public AssociationFigure getPrimaryShape() {
 		return (AssociationFigure)getFigure();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected void refreshLineType() {
+		setLineType(Graphics.LINE_SOLID);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected void refreshArrowSource() {
+		// Not implemented, refreshVisuals currently implements this.
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected void refreshArrowTarget() {
+		// Not implemented, refreshVisuals currently implements this.
 	}
 }

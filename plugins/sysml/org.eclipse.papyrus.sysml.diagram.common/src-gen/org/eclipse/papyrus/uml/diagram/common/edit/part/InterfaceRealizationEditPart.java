@@ -14,11 +14,13 @@
 package org.eclipse.papyrus.uml.diagram.common.edit.part;
 
 import org.eclipse.draw2d.Connection;
+import org.eclipse.draw2d.Graphics;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.common.figure.edge.InterfaceRealizationFigure;
 import org.eclipse.papyrus.gmf.diagram.common.edit.policy.DefaultSemanticEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.figure.EdgeDecorationType;
+import org.eclipse.papyrus.uml.diagram.common.figure.InterfaceRealizationFigure;
 
 public class InterfaceRealizationEditPart extends AbstractElementLinkEditPart {
 
@@ -75,5 +77,29 @@ public class InterfaceRealizationEditPart extends AbstractElementLinkEditPart {
 	 */
 	public InterfaceRealizationFigure getPrimaryShape() {
 		return (InterfaceRealizationFigure)getFigure();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected void refreshLineType() {
+		setLineType(Graphics.LINE_CUSTOM);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected void refreshArrowSource() {
+		setArrowSource(getArrowDecoration(EdgeDecorationType.NONE));
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected void refreshArrowTarget() {
+		setArrowTarget(getArrowDecoration(EdgeDecorationType.SOLID_ARROW_EMPTY));
 	}
 }
