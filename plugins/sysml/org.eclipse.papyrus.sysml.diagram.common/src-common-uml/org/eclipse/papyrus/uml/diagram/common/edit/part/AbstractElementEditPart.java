@@ -14,9 +14,7 @@
 package org.eclipse.papyrus.uml.diagram.common.edit.part;
 
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
@@ -34,6 +32,7 @@ import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.diagram.common.editparts.NamedElementEditPart;
 import org.eclipse.papyrus.diagram.common.figure.node.ClassifierFigure;
+import org.eclipse.papyrus.diagram.common.figure.node.NodeNamedElementFigure;
 import org.eclipse.papyrus.diagram.common.helper.BasicClassifierCompartmentLayoutHelper;
 import org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.gmf.diagram.common.edit.policy.DefaultCreationEditPolicy;
@@ -64,18 +63,14 @@ public abstract class AbstractElementEditPart extends NamedElementEditPart {
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
 	}
 
-	protected void handleNotificationEvent(Notification event) {
-		super.handleNotificationEvent(event);
-	}
-
 	protected abstract LayoutEditPolicy createLayoutEditPolicy();
 
 	protected IFigure createNodeShape() {
 		return primaryShape = new ClassifierFigure();
 	}
 
-	public ClassifierFigure getPrimaryShape() {
-		return (ClassifierFigure)primaryShape;
+	public NodeNamedElementFigure getPrimaryShape() {
+		return (NodeNamedElementFigure)primaryShape;
 	}
 
 	protected abstract boolean addFixedChild(EditPart childEditPart);
@@ -136,18 +131,6 @@ public abstract class AbstractElementEditPart extends NamedElementEditPart {
 	protected void setForegroundColor(Color color) {
 		if(primaryShape != null) {
 			primaryShape.setForegroundColor(color);
-		}
-	}
-
-	protected void setLineWidth(int width) {
-		if(primaryShape instanceof Shape) {
-			((Shape)primaryShape).setLineWidth(width);
-		}
-	}
-
-	protected void setLineType(int style) {
-		if(primaryShape instanceof Shape) {
-			((Shape)primaryShape).setLineStyle(style);
 		}
 	}
 
