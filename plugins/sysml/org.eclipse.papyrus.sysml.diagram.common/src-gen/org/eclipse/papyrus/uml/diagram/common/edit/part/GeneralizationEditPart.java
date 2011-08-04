@@ -77,7 +77,9 @@ public class GeneralizationEditPart extends AbstractElementLinkEditPart {
 	 */
 	@Override
 	protected void refreshLineType() {
+		// Start of user code custom line type
 		setLineType(Graphics.LINE_SOLID);
+		// End of user code
 	}
 
 	/**
@@ -85,7 +87,9 @@ public class GeneralizationEditPart extends AbstractElementLinkEditPart {
 	 */
 	@Override
 	protected void refreshArrowSource() {
+		// Start of user code custom source decoration
 		setArrowSource(getArrowDecoration(EdgeDecorationType.NONE));
+		// End of user code
 	}
 
 	/**
@@ -93,6 +97,8 @@ public class GeneralizationEditPart extends AbstractElementLinkEditPart {
 	 */
 	@Override
 	protected void refreshArrowTarget() {
+		// Start of user code custom target decoration
 		setArrowTarget(getArrowDecoration(EdgeDecorationType.SOLID_ARROW_EMPTY));
+		// End of user code
 	}
 }
