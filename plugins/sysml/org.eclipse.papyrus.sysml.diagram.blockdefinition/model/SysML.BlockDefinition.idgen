@@ -88,6 +88,9 @@
   <usedCustomDecorations href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#compartment_sysml_value_as_list"/>
   <usedCustomDecorations href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#compartment_sysml_property_as_list"/>
   <usedCustomDecorations href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#affixedlabel_uml_namedelement_name"/>
+  <usedCustomDecorations href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#affixedlabel_uml_appliedstereotype"/>
+  <usedCustomDecorations href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#affixedlabel_uml_port_label"/>
+  <usedCustomDecorations href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#affixedlabel_sysml_flowport_label"/>
   <usedCustomDecorations href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#label_uml_namedelement_name"/>
   <usedCustomDecorations href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#label_sysml_block_name"/>
   <usedCustomDecorations href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#label_sysml_constraintblock_name"/>

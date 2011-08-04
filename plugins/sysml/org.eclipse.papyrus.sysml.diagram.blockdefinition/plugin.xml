@@ -784,7 +784,7 @@
 		<object
 			class="org.eclipse.gmf.runtime.notation.Node(org.eclipse.gmf.runtime.notation)"
 			id="org.eclipse.papyrus.sysml.diagram.blockdefinition.CustomGraphicalTypes_Decorations">
-			<method name="getType()" value="linklabel_uml_association_target_role, compartment_sysml_value_as_list, label_sysml_block_name, compartment_sysml_flowproperty_as_list, linklabel_uml_association_source_multiplicity, label_sysml_dimension_name, linklabel_uml_appliedstereotype, linklabel_uml_association_source_role, linklabel_uml_association_target_multiplicity, compartment_sysml_constraint_as_list, label_sysml_valuetype_name, compartment_sysml_flowport_as_list, linklabel_uml_namedelement_name, compartment_sysml_reference_as_list, label_sysml_flowspecification_name, compartment_uml_property_as_list, label_sysml_unit_name, affixedlabel_uml_namedelement_name, compartment_uml_port_as_list, label_sysml_constraintblock_name, compartment_sysml_parameter_as_list, compartment_sysml_property_as_list, compartment_uml_enumerationliteral_as_list, compartment_uml_operation_as_list, compartment_sysml_part_as_list, label_uml_namedelement_name"/>
+			<method name="getType()" value="linklabel_uml_association_target_role, compartment_sysml_value_as_list, label_sysml_block_name, compartment_sysml_flowproperty_as_list, affixedlabel_uml_port_label, affixedlabel_sysml_flowport_label, linklabel_uml_association_source_multiplicity, label_sysml_dimension_name, linklabel_uml_appliedstereotype, linklabel_uml_association_source_role, linklabel_uml_association_target_multiplicity, compartment_sysml_constraint_as_list, label_sysml_valuetype_name, compartment_sysml_flowport_as_list, linklabel_uml_namedelement_name, compartment_sysml_reference_as_list, label_sysml_flowspecification_name, compartment_uml_property_as_list, label_sysml_unit_name, affixedlabel_uml_namedelement_name, compartment_uml_port_as_list, label_sysml_constraintblock_name, compartment_sysml_parameter_as_list, compartment_sysml_property_as_list, compartment_uml_enumerationliteral_as_list, affixedlabel_uml_appliedstereotype, compartment_uml_operation_as_list, compartment_sysml_part_as_list, label_uml_namedelement_name"/>
 		</object>
 		
 		<context views="org.eclipse.papyrus.sysml.diagram.blockdefinition.CustomNodeGraphicalTypes"/>
@@ -953,7 +953,8 @@
 		name="Package">
 	</page>
 	
-
+	
+	
 	
 	<page  	category="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences"
 		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.InstanceSpecificationPreferencePage"
