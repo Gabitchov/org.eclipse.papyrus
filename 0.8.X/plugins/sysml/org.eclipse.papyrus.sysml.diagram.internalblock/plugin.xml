@@ -9,8 +9,8 @@
        creationCondition="org.eclipse.papyrus.sysml.diagram.internalblock.InternalBlockDiagramCondition"
        icon="icons/obj16/Diagram_InternalBlock.gif"
        id="org.eclipse.papyrus.sysml.diagram.internalblock.CreateCommand"
-       label="SysML Internal Block Diagram"
-       language="sysml"/>
+		language="sysml"
+		label="SysML Internal Block Diagram"/>
 	<editorDiagram
 		actionBarContributorId="org.eclipse.papyrus.diagram.common.part.UMLDiagramActionBarContributor"
 		factoryClass="org.eclipse.papyrus.sysml.diagram.internalblock.InternalBlockDiagramEditorFactory"
@@ -64,8 +64,7 @@
 	</toolbar>
 	</menuContribution>
 	
-	<menuContribution
-		locationURI="popup:org.eclipse.papyrus.modelexplorer.popupmenu.creatediagram">
+	<menuContribution locationURI="popup:org.eclipse.papyrus.modelexplorer.popupmenu.creatediagram">
 	    <command commandId="org.eclipse.papyrus.sysml.diagram.internalblock.CreateCommand"
 			icon="icons/obj16/Diagram_InternalBlock.gif"
 			label="Create a new Internal Block Diagram"
@@ -81,11 +80,11 @@
 
 <!-- Palette tool declaration (declares the real palette containment) -->
 <extension point="org.eclipse.papyrus.diagram.common.paletteDefinition"
-	name="SysML_IBD">
+	name="SYSML_InternalBlock">
 	
-	<paletteDefinition ID="SysML_IBD"
+	<paletteDefinition ID="SYSML_InternalBlock"
 		class="org.eclipse.papyrus.diagram.common.service.PluginPaletteProvider"
-		name="IBD" icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif" 
+		name="SYSML_InternalBlock" icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif" 
 		path="palettes/internalblock.palette.xml"
 		provider="CEA LIST">
 		<Priority name="Low"/>
@@ -104,17 +103,20 @@
 		<context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="InternalBlock"/>
 	</viewProvider>
 
-	<!-- ViewProvider for inherited elements (from CompositeStructureDiagramm UMLViewProvider) -->
-	<viewProvider class="org.eclipse.papyrus.sysml.diagram.internalblock.provider.InheritedElementViewProvider">
+	<!-- ViewProvider for inherited elements (from CompositeDiagram ViewProvider) -->
+	<viewProvider class="org.eclipse.papyrus.sysml.diagram.internalblock.provider.InheritedCompositeDiagramViewProvider">
 		<Priority name="Low"/>
 		<!-- 
 			"2073" = CLASS
 			"3069" = PORT_CN
 			"3070" = PROPERTY_CN
 			"2109" = COMMENT
+			"3097" = COMMENT_CN
 			"2114" = CONSTRAINT								
+			"3120" = CONSTRAINT_CN
 		  -->			
-		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2073, 3069, 3070, 2109, 2114"/>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2073, 3069, 3070, 2109, 3097, 2114, 3120"/>
+		
 		<!-- 
 			"4013" = CONNECTOR	
 			"4002" = COMMENT_ANNOTATED_ELEMENT
@@ -122,7 +124,8 @@
 		  -->
 		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4013, 4002, 4003"/>
         
-        <!-- Additionnal descriptors provided in case the semantic hint is is not provided -->
+		<!-- Additional descriptors provided in case the semantic hint is is not provided -->	
+		
         <!-- "uml.Class" -->
 		<object id="uml.Class" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
 			<method name="getProxyClassID()" value="uml.Class"/>
@@ -153,11 +156,11 @@
 			<method name="getProxyClassID()" value="uml.Connector"/>
 		</object>
 								
-		<!-- Additionnal activation contexts for nodes semantic objects -->
+		<!-- Additional activation contexts for nodes semantic objects -->
 		<context viewClass="org.eclipse.gmf.runtime.notation.Node"
 			elements="uml.Class, uml.Port, uml.Property, uml.Comment, uml.Constraint"/>
 
-		<!-- Additionnal activation contexts for edges semantic objects -->
+		<!-- Additional activation contexts for edges semantic objects -->
 		<context viewClass="org.eclipse.gmf.runtime.notation.Edge"
 			elements="uml.Connector"/>
 			
@@ -176,10 +179,11 @@
 			class="org.eclipse.gmf.runtime.notation.Diagram">
 			<method name="getType()" value="InternalBlock"/>
 		</object>
+		<context views="org.eclipse.papyrus.sysml.diagram.internalblock.Diagram"/>	
 	</editpartProvider>
 	
-	<!-- EditPartProvider for inherited elements (from CompositeStructureDiagram) -->
-	<editpartProvider class="org.eclipse.papyrus.sysml.diagram.internalblock.provider.InheritedElementEditPartProvider">
+	<!-- EditPartProvider for inherited elements (from CompositeDiagram) -->
+	<editpartProvider class="org.eclipse.papyrus.sysml.diagram.internalblock.provider.InheritedCompositeDiagramEditPartProvider">
 		<Priority name="Low"/>
 		
 		<!-- 
@@ -187,18 +191,23 @@
 			As soon as the provider is loaded its provides method is used.
 			"2073" = CLASS
 			"5156" = CLASS_LABEL_COMPOSITE_NAME_HINT
-			"7073" = CLASS_COMPARTMENT_CLASS_COMPOSITE_HINT
+			"7073" = CLASS_COMPARTMENT_STRUCTURE_HINT
 			"3069" = PORT_CN
 			"5125" = PORT_CN_LABEL_NAME_HINT
 			"6029" = PORT_CN_LABEL_APPLIED_STEREOTYPE_HINT
 			"3070" = PROPERTY_CN
 			"5126" = PROPERTY_CN_LABEL_PART_NAME_HINT
-			"7077" = PROPERTY_CN_COMPARTMENT_PROPERTY_PART_HINT
+			"7077" = PROPERTY_CN_COMPARTMENT_STRUCTURE_HINT
 			"2109" = COMMENT
 			"5192" = COMMENT_LABEL_BODY_HINT
+			"3097" = COMMENT_CN
+			"5150" = COMMENT_CN_LABEL_BODY_HINT
 			"2114" = CONSTRAINT
 			"5197" = CONSTRAINT_LABEL_NAME_HINT
 			"6039" = CONSTRAINT_LABEL_SPECIFICATION_HINT
+			"3120" = CONSTRAINT_CN
+			"6048" = CONSTRAINT_CN_LABEL_NAME_HINT
+			"6049" = CONSTRAINT_CN_LABEL_SPECIFICATION_HINT
 		 -->			
 		<object
 			id="CLASS"
@@ -221,21 +230,34 @@
 			<method name="getType()" value="2109, 5192"/>
 		</object>
 		<object
+			id="COMMENT_CN"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="3097, 5150"/>
+		</object>
+		<object
 			id="CONSTRAINT"
 			class="org.eclipse.gmf.runtime.notation.Node">
 			<method name="getType()" value="2114, 5197, 6039"/>
+		</object>
+		<object
+			id="CONSTRAINT_CN"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="3120, 6048, 6049"/>
 		</object>
 
 		<!-- 	
 			"4013" = CONNECTOR
 			"6025" = CONNECTOR_LABEL_APPLIED_STEREOTYPE_HINT
+			"6050" = CONNECTOR_LABEL_NAME_HINT
+			"6051" = CONNECTOR_LABEL_MULTIPLICITY_SOURCE_HINT
+			"6052" = CONNECTOR_LABEL_MULTIPLICITY_TARGET_HINT
 			"4002" = COMMENT_ANNOTATED_ELEMENT
 			"4003" = CONSTRAINT_CONSTRAINED_ELEMENT
 		  -->
 		<object
 			id="CONNECTOR"
 			class="org.eclipse.gmf.runtime.notation.Edge">
-			<method name="getType()" value="4013, 6025"/>
+			<method name="getType()" value="4013, 6025, 6050, 6051, 6052"/>
 		</object>	
 		<object
 			id="COMMENT_ANNOTATED_ELEMENT"
@@ -248,7 +270,7 @@
 			<method name="getType()" value="4003"/>
 		</object>
 
-		<context views="CLASS, PORT_CN, PROPERTY_CN, COMMENT, CONSTRAINT"/>
+		<context views="CLASS, PORT_CN, PROPERTY_CN, COMMENT, COMMENT_CN, CONSTRAINT, CONSTRAINT_CN"/>
 		<context views="CONNECTOR, COMMENT_ANNOTATED_ELEMENT, CONSTRAINT_CONSTRAINED_ELEMENT"/>
 		
 	</editpartProvider>
@@ -259,7 +281,7 @@
 <extension
 	point="org.eclipse.gmf.runtime.diagram.ui.editpolicyProviders">
 	<editpolicyProvider
-		class="org.eclipse.papyrus.sysml.diagram.internalblock.provider.InheritedElementEditPolicyProvider">
+		class="org.eclipse.papyrus.sysml.diagram.internalblock.provider.CustomEditPolicyProvider">
 		<Priority name="Low"/>
 	</editpolicyProvider>
 </extension>
@@ -272,24 +294,8 @@
 		id="org.eclipse.papyrus.sysml.diagram.internalblock.preferences"
 		name="Internal Block Diagram"
 		category="org.eclipse.papyrus.preferences.diagrams"
-		class="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.DiagramGeneralPreferencePage">
+		class="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.InternalBlockDiagramGeneralPreferencePage">
 	</page>
-
-	<!-- Not yet supported individually by diagrams (see https://bugs.eclipse.org/bugs/show_bug.cgi?id=318865)
-	<page
-		id="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.DiagramPrintingPreferencePage"
-		name="Printing"
-		category="org.eclipse.papyrus.sysml.diagram.internalblock.preferences"
-		class="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.DiagramPrintingPreferencePage">
-	</page>
-
-	<page
-		id="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.DiagramRulersAndGridPreferencePage"
-		name="Rulers and Grid"
-		category="org.eclipse.papyrus.sysml.diagram.internalblock.preferences"
-		class="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.DiagramRulersAndGridPreferencePage">
-	</page>
-	  -->
 
 	<!-- Element Preference pages declaration -->
 	<page  	category="org.eclipse.papyrus.sysml.diagram.internalblock.preferences"
@@ -298,11 +304,6 @@
 		name="Block">
 	</page>
 
-	<page  	category="org.eclipse.papyrus.sysml.diagram.internalblock.preferences"
-		class="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.PropertyPreferencePage"
-		id="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.PropertyPreferencePage"
-		name="Property">
-	</page>
 	
 	<page  	category="org.eclipse.papyrus.sysml.diagram.internalblock.preferences"
 		class="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.PortPreferencePage"
@@ -310,6 +311,13 @@
 		name="Port">
 	</page>	
 
+	<page  	category="org.eclipse.papyrus.sysml.diagram.internalblock.preferences"
+		class="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.PropertyPreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.PropertyPreferencePage"
+		name="Property">
+	</page>
+	
+	
 	<page  	category="org.eclipse.papyrus.sysml.diagram.internalblock.preferences"
 		class="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.CommentPreferencePage"
 		id="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.CommentPreferencePage"
@@ -339,57 +347,57 @@
 		id="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.ConstraintConstrainedElementPreferencePage"
 		name="ConstraintConstrainedElement">
 	</page>
-		
+	
+	
+
 </extension>
-<extension
-      point="org.eclipse.ui.handlers">
-   <!-- we declare a handler for the Manger Interface Command. The handler is enabled only if the selected elements
-   is a Port, is on an InternalBlockDiagram and is not stereotyped with sysml flow port
-   -->
-   <handler
-   
-         class="org.eclipse.papyrus.diagram.composite.custom.actions.ManageProvidedInterfacesHandler"
-         commandId="org.eclipse.papyrus.diagram.composite.command.manage.interfaces">
-      <activeWhen>
-         <and>
-            <with
-                  variable="selection">
-               <iterate>
-                  <instanceof
-                        value="org.eclipse.papyrus.diagram.composite.edit.parts.PortEditPart">
-                  </instanceof>
-               </iterate>
-            </with>
-            <with
-                  variable="activeEditor">
-               <test
-                     forcePluginActivation="true"
-                     property="org.eclipse.papyrus.diagram.common.diagram.tester.diagramType"
-                     value="InternalBlock">
-               </test>
-            </with>
-            <with
-                  variable="selection">
-               <test
-                     forcePluginActivation="true"
-                     property="org.eclipse.papyrus.diagram.internalblock.tester.selection.isFlowPort"
-                     value="false">
-               </test>
-            </with>
-         </and>
-      </activeWhen>
-   </handler>
+
+
+<!-- // Start of user code custom extensions 
+  -->
+
+<!-- Insert custom extensions here. -->
+
+<!-- 
+	Handler declaration for the Interface Manager Command. 
+	The handler is enabled only if the selected element is a Port (excluding FlowPort) in an InternalBlockDiagram.
+  -->
+<extension point="org.eclipse.ui.handlers">
+
+	<handler commandId="org.eclipse.papyrus.diagram.composite.command.manage.interfaces"
+		class="org.eclipse.papyrus.diagram.composite.custom.actions.ManageProvidedInterfacesHandler">
+		<activeWhen>
+		<and>
+			<with variable="selection">
+			<iterate>
+				<instanceof value="org.eclipse.papyrus.diagram.composite.edit.parts.PortEditPart"/>
+			</iterate>
+			</with>
+			
+			<with variable="activeEditor">
+			<test property="org.eclipse.papyrus.diagram.common.diagram.tester.diagramType" value="InternalBlock" forcePluginActivation="true"/>
+			</with>
+			
+			<with variable="selection">
+			<test property="org.eclipse.papyrus.diagram.internalblock.tester.selection.isFlowPort" value="false" forcePluginActivation="true"/>              
+			</with>
+		</and>
+		</activeWhen>
+	</handler>
 </extension>
-<!-- add a property tester for this diagram. The tested properties allow to enable/disable handlers for commands -->
-<extension
-      point="org.eclipse.core.expressions.propertyTesters">
-   <propertyTester
-         class="org.eclipse.papyrus.sysml.diagram.internalblock.utils.InternalBlockDiagramTester"
-         id="org.eclipse.papyrus.diagram.internalblock.tester.selection"
-         namespace="org.eclipse.papyrus.diagram.internalblock.tester.selection"
-         properties="isFlowPort"
-         type="org.eclipse.jface.viewers.ISelection">
-   </propertyTester>
+
+<!-- 
+	Add a property tester for this diagram. 
+	The tested properties allow to enable/disable handlers for commands .
+  -->
+<extension point="org.eclipse.core.expressions.propertyTesters">
+	<propertyTester id="org.eclipse.papyrus.diagram.internalblock.tester.selection" type="org.eclipse.jface.viewers.ISelection"
+		namespace="org.eclipse.papyrus.diagram.internalblock.tester.selection" properties="isFlowPort"
+		class="org.eclipse.papyrus.sysml.diagram.internalblock.utils.InternalBlockDiagramTester">
+	</propertyTester>
 </extension>
-   
+
+<!-- // End of user code 
+  -->
+
 </plugin>

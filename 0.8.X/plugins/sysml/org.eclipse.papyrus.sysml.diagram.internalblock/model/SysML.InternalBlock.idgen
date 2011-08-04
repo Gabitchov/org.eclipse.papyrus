@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<idgen:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gmfgen="http://www.eclipse.org/gmf/2009/GenModel" xmlns:idgen="http://www.eclipse.org/papyrus/0.7.0/idgen" name="InternalBlock" type="InternalBlock" icon="icons/obj16/Diagram_InternalBlock.gif" label="SysML Internal Block Diagram" language="sysml" javaPackagePrefix="org.eclipse.papyrus.sysml.diagram.internalblock" javaClassPrefix="InternalBlockDiagram" createCommandLabel="Create a new Internal Block Diagram">
+  <diagramEditPart name="InternalBlockDiagramEditPart">
+    <behaviors javaClassQualifiedName="org.eclipse.papyrus.diagram.common.editpolicies.DuplicatePasteEditPolicy" key="DuplicatePasteEditPolicy.PASTE_ROLE"/>
+    <behaviors javaClassQualifiedName="org.eclipse.papyrus.diagram.composite.edit.policies.CompositeStructureDiagramItemSemanticEditPolicy" key="EditPolicyRoles.SEMANTIC_ROLE"/>
+    <behaviors javaClassQualifiedName="org.eclipse.papyrus.sysml.diagram.internalblock.edit.policy.InternalBlockDiagramDragDropEditPolicy" key="EditPolicyRoles.DRAG_DROP_ROLE"/>
+  </diagramEditPart>
+  <inheritedDiagrams name="CompositeDiagram" viewProviderClassQualifiedName="" editPartProviderClassQualifiedName="" dndEditPolicyClassQualifiedName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.CustomDiagramDragDropEditPolicy">
+    <genInheritedEditor href="../../org.eclipse.papyrus.diagram.composite/model/compositediagram.gmfgen#CompositeStructure"/>
+    <genNodes name="Block">
+      <genNode xsi:type="gmfgen:GenTopLevelNode" href="../../org.eclipse.papyrus.diagram.composite/model/compositediagram.gmfgen#/0/@diagram/@topLevelNodes.10"/>
+    </genNodes>
+    <genNodes name="" customPreferencePage="">
+      <genNode xsi:type="gmfgen:GenChildSideAffixedNode" href="../../org.eclipse.papyrus.diagram.composite/model/compositediagram.gmfgen#/0/@diagram/@childNodes.0"/>
+    </genNodes>
+    <genNodes>
+      <genNode xsi:type="gmfgen:GenChildNode" href="../../org.eclipse.papyrus.diagram.composite/model/compositediagram.gmfgen#/0/@diagram/@childNodes.2"/>
+    </genNodes>
+    <genNodes>
+      <genNode xsi:type="gmfgen:GenTopLevelNode" href="../../org.eclipse.papyrus.diagram.composite/model/compositediagram.gmfgen#/0/@diagram/@topLevelNodes.48"/>
+    </genNodes>
+    <genNodes generatePreferencePage="false" generateTool="false">
+      <genNode xsi:type="gmfgen:GenChildNode" href="../../org.eclipse.papyrus.diagram.composite/model/compositediagram.gmfgen#/0/@diagram/@childNodes.27"/>
+    </genNodes>
+    <genNodes>
+      <genNode xsi:type="gmfgen:GenTopLevelNode" href="../../org.eclipse.papyrus.diagram.composite/model/compositediagram.gmfgen#/0/@diagram/@topLevelNodes.53"/>
+    </genNodes>
+    <genNodes generatePreferencePage="false" generateTool="false">
+      <genNode xsi:type="gmfgen:GenChildNode" href="../../org.eclipse.papyrus.diagram.composite/model/compositediagram.gmfgen#/0/@diagram/@childNodes.32"/>
+    </genNodes>
+    <genLinks>
+      <genLink href="../../org.eclipse.papyrus.diagram.composite/model/compositediagram.gmfgen#/0/@diagram/@links.13"/>
+    </genLinks>
+    <genLinks>
+      <genLink href="../../org.eclipse.papyrus.diagram.composite/model/compositediagram.gmfgen#/0/@diagram/@links.1"/>
+    </genLinks>
+    <genLinks>
+      <genLink href="../../org.eclipse.papyrus.diagram.composite/model/compositediagram.gmfgen#/0/@diagram/@links.2"/>
+    </genLinks>
+  </inheritedDiagrams>
+  <customJavaClasses name="" customEditPolicyProvider="org.eclipse.papyrus.sysml.diagram.internalblock.provider.CustomEditPolicyProvider" customPreferenceInitializer="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.CustomPreferenceInitializer"/>
+</idgen:Diagram>
