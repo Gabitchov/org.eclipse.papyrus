@@ -36,9 +36,6 @@ import org.eclipse.papyrus.diagram.common.locator.ExternalLabelPositionLocator;
 import org.eclipse.papyrus.gmf.diagram.common.edit.policy.ExternalLabelPrimaryDragRoleEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.utils.UMLGraphicalTypes;
 
-/**
- * This class implements an edit part for FlowPort represented as border items.
- */
 public class PortAffixedNodeEditPart extends AbstractElementBorderEditPart {
 
 	public PortAffixedNodeEditPart(View view) {
@@ -49,6 +46,7 @@ public class PortAffixedNodeEditPart extends AbstractElementBorderEditPart {
 		super.createDefaultEditPolicies();
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeIconlDisplayEditPolicy());
 		installEditPolicy(ShowHideLabelEditPolicy.SHOW_HIDE_LABEL_ROLE, new ShowHideLabelEditPolicy());
+
 		// Start of user code custom policies	
 		// End of user code		
 	}

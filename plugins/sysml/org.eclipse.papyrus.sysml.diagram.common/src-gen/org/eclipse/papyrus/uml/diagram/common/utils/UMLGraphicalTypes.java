@@ -51,9 +51,9 @@ public class UMLGraphicalTypes {
 	public static final String LABEL_UML_NAMEDELEMENT_NAME_ID = "label_uml_namedelement_name"; //$NON-NLS-1$
 
 	/** Custom affixed labels */
-	public static final String AFFIXEDLABEL_UML_NAMEDELEMENT_NAME_ID = "affixedlabel_uml_namedelement_name"; //$NON-NLS-1$
-
 	public static final String AFFIXEDLABEL_UML_APPLIEDSTEREOTYPE_ID = "affixedlabel_uml_appliedstereotype"; //$NON-NLS-1$
+
+	public static final String AFFIXEDLABEL_UML_NAMEDELEMENT_NAME_ID = "affixedlabel_uml_namedelement_name"; //$NON-NLS-1$
 
 	public static final String AFFIXEDLABEL_UML_PORT_LABEL_ID = "affixedlabel_uml_port_label"; //$NON-NLS-1$
 
