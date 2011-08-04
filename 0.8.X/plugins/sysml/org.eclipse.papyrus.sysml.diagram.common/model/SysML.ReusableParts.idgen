@@ -37,8 +37,9 @@
     <visibleCompartments href="UML.ReusableParts.idgen#compartment_uml_property_as_list"/>
     <visibleCompartments href="UML.ReusableParts.idgen#compartment_uml_operation_as_list"/>
   </customNodes>
-  <customNodes xsi:type="idgen:CustomAffixedNode" id="shape_sysml_flowport_as_affixed" label="FlowPort" semanticType="org.eclipse.papyrus.sysml.FlowPort">
-    <affixedLabels href="UML.ReusableParts.idgen#affixedlabel_uml_namedelement_name"/>
+  <customNodes xsi:type="idgen:CustomAffixedNode" id="shape_sysml_flowport_as_affixed" label="FlowPort" editPart="org.eclipse.papyrus.sysml.diagram.common.edit.part.FlowPortAffixedNodeEditPart" semanticType="org.eclipse.papyrus.sysml.FlowPort">
+    <affixedLabels href="#affixedlabel_sysml_flowport_label"/>
+    <affixedLabels href="UML.ReusableParts.idgen#affixedlabel_uml_appliedstereotype"/>
     <locator href="UML.ReusableParts.idgen#org.eclipse.papyrus.diagram.common.locator.PortPositionLocator"/>
   </customNodes>
   <customEdges xsi:type="idgen:CustomLink" id="link_sysml_association" label="Association" editPart="org.eclipse.papyrus.sysml.diagram.common.edit.part.AssociationEditPart" semanticType="org.eclipse.papyrus.sysml.Association" altSemanticTypes="org.eclipse.papyrus.sysml.AssociationComposite org.eclipse.papyrus.sysml.AssociationCompositeDirected org.eclipse.papyrus.sysml.AssociationNone org.eclipse.papyrus.sysml.AssociationNoneDirected org.eclipse.papyrus.sysml.AssociationShared org.eclipse.papyrus.sysml.AssociationSharedDirected" figure="org.eclipse.papyrus.sysml.diagram.common.figure.AssociationFigure">
@@ -57,6 +58,9 @@
   <customDecorations xsi:type="idgen:CustomCompartment" id="compartment_sysml_property_as_list" label="BlockProperty" semanticPolicy="org.eclipse.papyrus.sysml.diagram.common.edit.policy.PropertyCompartmentSemanticEditPolicy" title="properties"/>
   <customDecorations xsi:type="idgen:CustomCompartment" id="compartment_sysml_reference_as_list" label="ReferenceProperty" semanticPolicy="org.eclipse.papyrus.sysml.diagram.common.edit.policy.ReferenceCompartmentSemanticEditPolicy" title="references"/>
   <customDecorations xsi:type="idgen:CustomCompartment" id="compartment_sysml_value_as_list" label="ValueProperty" semanticPolicy="org.eclipse.papyrus.sysml.diagram.common.edit.policy.ValueCompartmentSemanticEditPolicy" title="values"/>
+  <customDecorations xsi:type="idgen:CustomAffixedLabel" id="affixedlabel_sysml_flowport_label" editPart="org.eclipse.papyrus.sysml.diagram.common.edit.part.FlowPortAffixedLabelNameEditPart" role="Label">
+    <locator href="UML.ReusableParts.idgen#org.eclipse.papyrus.diagram.common.locator.ExternalLabelPositionLocator"/>
+  </customDecorations>
   <customDecorations xsi:type="idgen:CustomClassifierInnerLabel" id="label_sysml_block_name" label="BlockLabelName" specificIconKey="org.eclipse.papyrus.sysml.blocks.BlocksPackage.eINSTANCE.getBlock()"/>
   <customDecorations xsi:type="idgen:CustomClassifierInnerLabel" id="label_sysml_constraintblock_name" label="ConstraintBlockLabelName" specificIconKey="org.eclipse.papyrus.sysml.constraints.ConstraintsPackage.eINSTANCE.getConstraintBlock()"/>
   <customDecorations xsi:type="idgen:CustomClassifierInnerLabel" id="label_sysml_dimension_name" label="DimensionLabelName" specificIconKey="org.eclipse.papyrus.sysml.blocks.BlocksPackage.eINSTANCE.getDimension()"/>
@@ -83,6 +87,8 @@
   <semanticTypes id="org.eclipse.papyrus.sysml.AssociationShared" name="AssociationShared" constantTypePackage="org.eclipse.papyrus.sysml.service.types.element" constantTypeClass="SysMLElementTypes" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association_shared.gif"/>
   <semanticTypes id="org.eclipse.papyrus.sysml.AssociationSharedDirected" name="AssociationSharedDirected" constantTypePackage="org.eclipse.papyrus.sysml.service.types.element" constantTypeClass="SysMLElementTypes" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association_shared_directed.gif"/>
   <javaClasses qualifiedName="org.eclipse.papyrus.sysml.diagram.common.edit.part.ConstraintPropertyChildLabelEditPart"/>
+  <javaClasses qualifiedName="org.eclipse.papyrus.sysml.diagram.common.edit.part.FlowPortAffixedLabelNameEditPart"/>
+  <javaClasses qualifiedName="org.eclipse.papyrus.sysml.diagram.common.edit.part.FlowPortAffixedNodeEditPart"/>
   <javaClasses qualifiedName="org.eclipse.papyrus.sysml.diagram.common.edit.part.FlowPropertyChildLabelEditPart"/>
   <javaClasses qualifiedName="org.eclipse.papyrus.sysml.diagram.common.edit.part.FlowPortChildLabelEditPart"/>
   <javaClasses qualifiedName="org.eclipse.papyrus.sysml.diagram.common.edit.part.AssociationEditPart"/>

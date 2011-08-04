@@ -89,8 +89,6 @@ public class FlowPortAffixedNodeEditPart extends AbstractElementBorderEditPart {
 		});
 
 		installEditPolicy(ShowHideLabelEditPolicy.SHOW_HIDE_LABEL_ROLE, new ShowHideLabelEditPolicy());
-		// Start of user code custom policies	
-		// End of user code		
 	}
 
 	@Override
@@ -101,6 +99,7 @@ public class FlowPortAffixedNodeEditPart extends AbstractElementBorderEditPart {
 				if(child instanceof IBorderItemEditPart) { // External labels
 					return new ExternalLabelPrimaryDragRoleEditPolicy() {
 
+						@SuppressWarnings("rawtypes")
 						protected List createSelectionHandles() {
 							MoveHandle mh = new MoveHandle((GraphicalEditPart)getHost());
 							mh.setBorder(null);

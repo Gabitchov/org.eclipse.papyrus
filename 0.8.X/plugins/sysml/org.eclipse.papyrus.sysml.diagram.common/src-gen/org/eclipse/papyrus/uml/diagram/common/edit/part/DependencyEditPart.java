@@ -84,7 +84,9 @@ public class DependencyEditPart extends AbstractElementLinkEditPart {
 	 */
 	@Override
 	protected void refreshLineType() {
+		// Start of user code custom line type
 		setLineType(Graphics.LINE_CUSTOM);
+		// End of user code
 	}
 
 	/**
@@ -92,7 +94,9 @@ public class DependencyEditPart extends AbstractElementLinkEditPart {
 	 */
 	@Override
 	protected void refreshArrowSource() {
+		// Start of user code custom source decoration
 		setArrowSource(getArrowDecoration(EdgeDecorationType.NONE));
+		// End of user code
 	}
 
 	/**
@@ -100,6 +104,8 @@ public class DependencyEditPart extends AbstractElementLinkEditPart {
 	 */
 	@Override
 	protected void refreshArrowTarget() {
+		// Start of user code custom target decoration
 		setArrowTarget(getArrowDecoration(EdgeDecorationType.OPEN_ARROW));
+		// End of user code
 	}
 }
