@@ -3,7 +3,6 @@
   <diagramEditPart name="PackageDiagramEditPart">
     <behaviors javaClassQualifiedName="org.eclipse.papyrus.diagram.common.editpolicies.DuplicatePasteEditPolicy" key="DuplicatePasteEditPolicy.PASTE_ROLE"/>
     <behaviors javaClassQualifiedName="org.eclipse.papyrus.diagram.clazz.edit.policies.ModelItemSemanticEditPolicy" key="EditPolicyRoles.SEMANTIC_ROLE"/>
-    <behaviors javaClassQualifiedName="org.eclipse.papyrus.diagram.clazz.custom.policies.RemoveOrphanViewPolicy" key="&quot;RemoveOrphanView&quot;"/>
     <behaviors javaClassQualifiedName="org.eclipse.papyrus.uml.diagram.pkg.edit.policy.CustomDragDropEditPolicy" key="EditPolicyRoles.DRAG_DROP_ROLE"/>
   </diagramEditPart>
   <inheritedDiagrams name="ClassDiagram" viewProviderClassQualifiedName="" editPartProviderClassQualifiedName="" dndEditPolicyClassQualifiedName="org.eclipse.papyrus.diagram.clazz.custom.policies.ClassDiagramDragDropEditPolicy">
@@ -30,4 +29,5 @@
       <genLink href="../../org.eclipse.papyrus.diagram.clazz/model/classdiagram.gmfgen#/0/@diagram/@links.16"/>
     </genLinks>
   </inheritedDiagrams>
+  <customJavaClasses customEditPolicyProvider="org.eclipse.papyrus.uml.diagram.pkg.provider.CustomEditPolicyProvider"/>
 </idgen:Diagram>
