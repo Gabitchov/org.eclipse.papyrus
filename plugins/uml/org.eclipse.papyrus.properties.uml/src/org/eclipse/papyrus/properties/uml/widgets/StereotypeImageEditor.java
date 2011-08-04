@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -65,7 +65,7 @@ public class StereotypeImageEditor extends AbstractPropertyEditor implements Sel
 	/**
 	 * Papyrus custom format for Image serialization
 	 */
-	public final String PAPYRUS_FORMAT = "Papyrus";
+	public final String PAPYRUS_FORMAT = "Papyrus"; //$NON-NLS-1$
 
 	public StereotypeImageEditor(Composite parent, int style) {
 
