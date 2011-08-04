@@ -76,14 +76,6 @@ public class EcorePropertyEditorFactory extends PropertyEditorFactory {
 		this.type = type;
 	}
 
-	/**
-	 * 
-	 * Constructor.
-	 * 
-	 */
-	public EcorePropertyEditorFactory() {
-	}
-
 	/*
 	 * Creates a new EcorePropertyEditorFactory. The given EClass is used to instantiate
 	 * a new EObject when the {@link #createObject} method is called.

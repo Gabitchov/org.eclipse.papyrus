@@ -25,6 +25,7 @@ import org.eclipse.core.databinding.observable.list.IObservableList;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.emf.databinding.EMFProperties;
 import org.eclipse.emf.databinding.FeaturePath;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
@@ -33,6 +34,7 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.properties.modelelement.EMFModelElement;
 import org.eclipse.papyrus.properties.uml.creation.MessageValueSpecificationFactory;
+import org.eclipse.papyrus.properties.uml.creation.OwnedRuleCreationFactory;
 import org.eclipse.papyrus.properties.uml.databinding.PapyrusObservableList;
 import org.eclipse.papyrus.properties.uml.databinding.PapyrusObservableValue;
 import org.eclipse.papyrus.properties.uml.databinding.SignatureObservableValue;
@@ -183,7 +185,35 @@ public class UMLModelElement extends EMFModelElement {
 			}
 		}
 
+		boolean isOwnedRuleSubset = ownedRuleSubsets.contains(feature);
+
+		if(isOwnedRuleSubset) {
+			return new OwnedRuleCreationFactory((EClass)feature.getEType());
+		}
+
 		return super.getValueFactory(propertyPath);
+	}
+
+	/**
+	 * The set of all EStructuralFeature representing subsets of {@link Namespace#getOwnedRules()}
+	 */
+	public final static Set<EStructuralFeature> ownedRuleSubsets = new HashSet<EStructuralFeature>();
+	static {
+		//Behavior
+		ownedRuleSubsets.add(UMLPackage.eINSTANCE.getBehavior_Precondition());
+		ownedRuleSubsets.add(UMLPackage.eINSTANCE.getBehavior_Postcondition());
+
+		//Operation
+		ownedRuleSubsets.add(UMLPackage.eINSTANCE.getOperation_BodyCondition());
+		ownedRuleSubsets.add(UMLPackage.eINSTANCE.getOperation_Precondition());
+		ownedRuleSubsets.add(UMLPackage.eINSTANCE.getOperation_Postcondition());
+
+		//ProtocolTransition
+		ownedRuleSubsets.add(UMLPackage.eINSTANCE.getProtocolTransition_PreCondition());
+		ownedRuleSubsets.add(UMLPackage.eINSTANCE.getProtocolTransition_PostCondition());
+
+		//Transition
+		ownedRuleSubsets.add(UMLPackage.eINSTANCE.getTransition_Guard());
 	}
 
 }
