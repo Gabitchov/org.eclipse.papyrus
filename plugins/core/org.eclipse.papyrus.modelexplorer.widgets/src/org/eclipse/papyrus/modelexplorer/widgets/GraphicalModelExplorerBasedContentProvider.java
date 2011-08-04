@@ -295,9 +295,13 @@ public class GraphicalModelExplorerBasedContentProvider extends ModelContentProv
 			// for each element in the list, try to get the EObject by its URI
 			if(uriHistory != null) {
 				for(String uri : uriHistory) {
-					EObject object = modelSet.getEObject(URI.createURI(uri), true);
-					if(object != null && !selectionHistory.contains(object)) {
-						selectionHistory.add(object);
+					try {
+						EObject object = modelSet.getEObject(URI.createURI(uri), true);
+						if(object != null && !selectionHistory.contains(object)) {
+							selectionHistory.add(object);
+						}
+					} catch (Exception ex) {
+						//Ignore : if the resource doesn't exist anymore, we just skip it
 					}
 				}
 			}
