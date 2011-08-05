@@ -38,6 +38,7 @@ import org.eclipse.swt.custom.CTabFolder;
 import org.eclipse.swt.custom.CTabItem;
 import org.eclipse.swt.events.DisposeEvent;
 import org.eclipse.swt.events.DisposeListener;
+import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
@@ -51,6 +52,7 @@ import org.eclipse.ui.dialogs.SelectionDialog;
  * 
  * @author Camille Letavernier
  */
+//TODO : This dialog should use the Embedded Display Engine
 public class EditionDialog extends SelectionDialog {
 
 	private Set<View> views;
@@ -202,9 +204,9 @@ public class EditionDialog extends SelectionDialog {
 		});
 
 		Map<Tab, Composite> tabs = new LinkedHashMap<Tab, Composite>();
-
 		if(allTabs.size() > 1) {
 			CTabFolder tabFolder = new CTabFolder(parent, SWT.BOTTOM);
+			tabFolder.setSelectionBackground(new Color[]{ tabFolder.getDisplay().getSystemColor(SWT.COLOR_WHITE), tabFolder.getBackground() }, new int[]{ 100 }, true);
 			tabFolder.setLayout(new FillLayout());
 			for(Tab tab : allTabs) {
 				CTabItem item = new CTabItem(tabFolder, SWT.NONE);

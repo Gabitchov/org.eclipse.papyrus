@@ -81,8 +81,6 @@ public class ReferenceCombo extends AbstractValueEditor implements SelectionList
 	public ReferenceCombo(Composite parent, int style, String label) {
 		super(parent, label);
 
-		((GridLayout)getLayout()).numColumns = 3;
-
 		combo = factory.createCCombo(this, style | SWT.BORDER);
 		combo.setBackground(new Color(combo.getDisplay(), 255, 255, 255));
 		combo.setLayoutData(getDefaultLayoutData());
@@ -94,6 +92,8 @@ public class ReferenceCombo extends AbstractValueEditor implements SelectionList
 		unset.setImage(Activator.getDefault().getImage("/icons/Delete_12x12.gif")); //$NON-NLS-1$
 		unset.setToolTipText("Unset the current value");
 		unset.addSelectionListener(this);
+
+		((GridLayout)getLayout()).numColumns++;
 
 		setCommitOnFocusLost(combo);
 	}
@@ -185,10 +185,18 @@ public class ReferenceCombo extends AbstractValueEditor implements SelectionList
 
 	public void setUnsettable(boolean unsettable) {
 		this.unsettable = unsettable;
+		updateControls();
 	}
 
+	/**
+	 * Updates the controls display
+	 */
 	protected void updateControls() {
-		unset.setEnabled(unsettable && !isReadOnly());
+		setExclusion(unset, !unsettable);
+
+		if(isReadOnly() && unsettable) {
+			unset.setEnabled(false);
+		}
 	}
 
 	protected void unsetAction() {

@@ -38,7 +38,6 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Widget;
 
@@ -116,9 +115,7 @@ public class ReferenceDialog extends AbstractValueEditor implements IChangeListe
 	public ReferenceDialog(Composite parent, int style) {
 		super(parent, style);
 
-		((GridLayout)getLayout()).numColumns = 6;
-
-		currentValueLabel = factory.createCLabel(this, null, SWT.BORDER | style);
+		currentValueLabel = factory.createCLabel(this, null, factory.getBorderStyle() | style);
 		currentValueLabel.setLayoutData(getDefaultLayoutData());
 		currentValueLabel.addMouseListener(new MouseListener() {
 
@@ -151,6 +148,8 @@ public class ReferenceDialog extends AbstractValueEditor implements IChangeListe
 	}
 
 	protected void createButtons() {
+		((GridLayout)getLayout()).numColumns += 4;
+
 		browseValuesButton = factory.createButton(this, null, SWT.PUSH);
 		browseValuesButton.setImage(Activator.getDefault().getImage("/icons/browse_12x12.gif")); //$NON-NLS-1$
 		browseValuesButton.setToolTipText(Messages.ReferenceDialog_EditValue);
@@ -431,17 +430,6 @@ public class ReferenceDialog extends AbstractValueEditor implements IChangeListe
 		if(!exclude) {
 			editInstanceButton.setEnabled(valueFactory != null && valueFactory.canEdit() && modelProperty != null && modelProperty.getValue() != null);
 			createInstanceButton.setEnabled(valueFactory != null && valueFactory.canCreateObject());
-		}
-	}
-
-	private void setExclusion(Control control, boolean exclude) {
-		if(control.getLayoutData() == null) {
-			GridData data = new GridData();
-			data.exclude = exclude;
-			control.setLayoutData(data);
-		} else {
-			GridData data = (GridData)control.getLayoutData();
-			data.exclude = exclude;
 		}
 	}
 
