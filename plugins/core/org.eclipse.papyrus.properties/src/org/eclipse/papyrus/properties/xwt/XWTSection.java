@@ -74,12 +74,14 @@ public class XWTSection extends AbstractPropertySection implements IChangeListen
 		self = new Composite(parent, SWT.NONE);
 
 		GridLayout layout = new GridLayout(1, false);
-		layout.marginHeight = 1;
+		layout.marginHeight = 0;
+		layout.marginWidth = 0;
 		self.setLayout(layout);
 
 		layout = new GridLayout(1, false);
 		layout.verticalSpacing = 0;
 		layout.marginHeight = 0;
+		layout.marginWidth = 5;
 		parent.setLayout(layout);
 
 		GridData data = new GridData(SWT.FILL, SWT.FILL, true, false);

@@ -212,9 +212,9 @@ public class DefaultDisplayEngine implements DisplayEngine {
 	}
 
 	private void layout(Composite parent) {
-		parent.getParent().getParent().layout(true);
-		parent.getParent().layout(true);
-		parent.layout(true);
+		parent.getParent().getParent().layout();
+		parent.getParent().layout();
+		parent.layout();
 	}
 
 	public void removeSection(Composite parent) {

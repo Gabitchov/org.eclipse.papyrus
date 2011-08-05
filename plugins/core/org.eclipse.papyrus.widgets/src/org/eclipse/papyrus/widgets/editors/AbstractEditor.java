@@ -306,6 +306,25 @@ public abstract class AbstractEditor extends Composite {
 		}
 	}
 
+	protected void setExclusion(Control control, boolean exclude) {
+		if(control.getLayoutData() == null) {
+			GridData data = new GridData();
+			control.setLayoutData(data);
+		}
+
+		GridData data = (GridData)control.getLayoutData();
+
+		if(data.exclude != exclude) {
+			data.exclude = exclude;
+			GridLayout layout = (GridLayout)control.getParent().getLayout();
+			if(exclude) {
+				layout.numColumns--;
+			} else {
+				layout.numColumns++;
+			}
+		}
+	}
+
 	@Override
 	public abstract void setToolTipText(String text);
 }
