@@ -255,7 +255,6 @@ public class PropertiesLayout extends Layout {
 	@Override
 	protected void layout(Composite composite, boolean flushCache) {
 		Rectangle rect = composite.getClientArea();
-		adjustColumns(composite);
 		layout(composite, true, rect.x, rect.y, rect.width, rect.height, flushCache);
 	}
 
@@ -281,15 +280,18 @@ public class PropertiesLayout extends Layout {
 				adjustedNumColumns = totalColumns;
 			}
 		}
+
+		if(adjustedNumColumns < 1) {
+			adjustedNumColumns = 1;
+		}
 	}
 
 	protected Point layout(Composite composite, boolean move, int x, int y, int width, int height, boolean flushCache) {
-		if(adjustedNumColumns < 1) {
-			adjustedNumColumns = 1;
-			//return new Point(marginLeft + marginWidth * 2 + marginRight, marginTop + marginHeight * 2 + marginBottom);
-		}
+		adjustColumns(composite);
+
 		Control[] children = composite.getChildren();
 		int count = 0;
+
 		for(int i = 0; i < children.length; i++) {
 			Control control = children[i];
 			GridData data = getLayoutData(control);
@@ -297,6 +299,7 @@ public class PropertiesLayout extends Layout {
 				children[count++] = children[i];
 			}
 		}
+
 		if(count == 0) {
 			return new Point(marginLeft + marginWidth * 2 + marginRight, marginTop + marginHeight * 2 + marginBottom);
 		}
@@ -378,10 +381,8 @@ public class PropertiesLayout extends Layout {
 			column += hSpan;
 		}
 
-		int columnsUsed = composite.getChildren().length;
-
 		/* Column widths */
-		int availableWidth = width - horizontalSpacing * (columnsUsed - 1) - (marginLeft + marginWidth * 2 + marginRight);
+		int availableWidth = width - horizontalSpacing * (columnCount - 1) - (marginLeft + marginWidth * 2 + marginRight);
 		int expandCount = 0;
 		int[] widths = new int[columnCount];
 		int[] minWidths = new int[columnCount];
@@ -922,7 +923,7 @@ public class PropertiesLayout extends Layout {
 	}
 
 	protected GridData createDefaultLayoutData() {
-		return new GridData(SWT.FILL, SWT.FILL, true, false);
+		return new GridData(SWT.FILL, SWT.BEGINNING, true, false);
 	}
 
 	/**
