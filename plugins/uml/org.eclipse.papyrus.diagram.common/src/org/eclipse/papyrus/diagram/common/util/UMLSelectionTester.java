@@ -10,7 +10,7 @@ import org.eclipse.papyrus.resource.NotFoundException;
 import org.eclipse.papyrus.resource.uml.UmlModel;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.uml2.uml.Model;
+import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Profile;
 
 /**
@@ -54,7 +54,12 @@ public class UMLSelectionTester extends PropertyTester {
 
 	/** True if root object is a UML Model */
 	protected boolean testUMLModelNature(Object receiver) {
-		return (getRoot() instanceof Model);
+        EObject root = getRoot();
+        /*
+         * For controlled resources, it is very important to consider root of UML model can be a Package. Of course, we
+         * can still exclude Profile, which should be dedicated to profile diagrams.
+         */
+        return root instanceof Package && !(root instanceof Profile);
 	}
 
 	/** True if root object is a UML Profile */
