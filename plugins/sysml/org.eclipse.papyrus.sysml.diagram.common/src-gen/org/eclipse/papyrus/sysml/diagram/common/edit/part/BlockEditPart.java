@@ -26,6 +26,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
+import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.editpolicies.AffixedNodeAlignmentEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
@@ -37,6 +38,7 @@ import org.eclipse.papyrus.diagram.common.editpolicies.QualifiedNameDisplayEditP
 import org.eclipse.papyrus.diagram.common.editpolicies.ShowHideClassifierContentsEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.ShowHideCompartmentEditPolicy;
 import org.eclipse.papyrus.diagram.common.locator.PortPositionLocator;
+import org.eclipse.papyrus.gmf.diagram.common.commands.figure.SelectableBorderedNodeFigure;
 import org.eclipse.papyrus.gmf.diagram.common.edit.policy.DefaultSemanticEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.common.figure.BlockFigure;
 import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLGraphicalTypes;
@@ -274,6 +276,12 @@ public class BlockEditPart extends AbstractElementEditPart {
 	//		return super.getTargetEditPart(request);
 	//	}
 
+	@Override
+	protected NodeFigure createNodeFigure() {
+		return new SelectableBorderedNodeFigure(createMainFigure());
+	}
+
+	@Override
 	protected IFigure createNodeShape() {
 		return primaryShape = new BlockFigure();
 	}
