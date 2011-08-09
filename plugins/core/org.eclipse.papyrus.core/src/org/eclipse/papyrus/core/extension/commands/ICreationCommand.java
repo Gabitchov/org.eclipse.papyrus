@@ -45,5 +45,19 @@ public interface ICreationCommand {
 	 *        the name of the new diagram or null to use a dialog to choose the name
 	 */
 	public ICommand getCreateDiagramCommand(final DiResourceSet diResourceSet, final EObject container, final String diagramName);
+	
+	/**
+	 * Get the type of the diagram to create.
+	 * 
+	 * @return diagram type
+	 */
+	public String getCreatedDiagramType();
+
+	/**
+	 * Check if the creation of this diagram is strongly attached to its parent or if it can be reassigned after creation.
+	 * 
+	 * @return true if parent can be reassigned
+	 */
+	public boolean isParentReassignable();
 
 }

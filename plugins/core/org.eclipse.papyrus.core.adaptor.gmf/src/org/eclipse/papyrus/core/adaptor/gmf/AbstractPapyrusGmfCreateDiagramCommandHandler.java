@@ -146,6 +146,15 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 	}
 
 	/**
+	 * Get the type of the diagram to create.
+	 * 
+	 * @return diagram type
+	 */
+	public String getCreatedDiagramType() {
+		return getDiagramNotationID();
+	}
+
+	/**
 	 * @return
 	 */
 	abstract protected String getDiagramNotationID();
@@ -328,6 +337,16 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 	protected ISashWindowsContentProvider getISashWindowsContentProvider() {
 		return EditorUtils.getISashWindowsContentProvider();
 
+	}
+
+	/**
+	 * Check if the creation of this diagram is strongly attached to its parent or if it can be reassigned after creation.
+	 * 
+	 * @return true if parent can be reassigned
+	 */
+	public boolean isParentReassignable() {
+		// yes by default
+		return true;
 	}
 
 }
