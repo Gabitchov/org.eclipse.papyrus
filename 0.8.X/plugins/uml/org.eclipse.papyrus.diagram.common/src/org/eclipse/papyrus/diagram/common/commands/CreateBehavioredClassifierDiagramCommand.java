@@ -152,4 +152,15 @@ public abstract class CreateBehavioredClassifierDiagramCommand extends AbstractP
 	//		}
 	//		super.runAsTransaction(diResourceSet, container, getDefaultDiagramName());
 	//	}
+	
+	/**
+	 * Check if the creation of this diagram is strongly attached to its parent or if it can be reassigned after creation.
+	 * 
+	 * @return true if parent can be reassigned
+	 */
+	public boolean isParentReassignable() {
+		// Behavioral diagrams describe their parent behavior and only this one.
+		// They can not be moved to another parent.
+		return false;
+	}
 }

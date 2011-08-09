@@ -24,6 +24,7 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -38,12 +39,19 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.MoveRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.jface.util.LocalSelectionTransfer;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.ViewerDropAdapter;
+import org.eclipse.papyrus.core.editor.BackboneException;
 import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
+import org.eclipse.papyrus.core.extension.commands.CreationCommandDescriptor;
+import org.eclipse.papyrus.core.extension.commands.CreationCommandRegistry;
+import org.eclipse.papyrus.core.extension.commands.ICreationCommand;
+import org.eclipse.papyrus.core.extension.commands.ICreationCommandRegistry;
 import org.eclipse.papyrus.core.utils.EditorUtils;
+import org.eclipse.papyrus.modelexplorer.Activator;
 import org.eclipse.papyrus.modelexplorer.handler.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.service.edit.service.IElementEditService;
@@ -96,6 +104,14 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 	}
 
 	/**
+	 * Get the creation command registry to test when diagrams can be created
+	 * @return instance
+	 */
+    private static ICreationCommandRegistry getCreationCommandRegistry() {
+        return CreationCommandRegistry.getInstance(org.eclipse.papyrus.core.Activator.PLUGIN_ID);
+    }
+
+	/**
 	 * get a list that contains command to move a diagram into a new element
 	 * @param domain the transactionnal edit domain, cannot be null
 	 * @param targetOwner the target of the drop, cannot be null
@@ -103,26 +119,48 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 	 * @return a list that contains one command to move the diagram
 	 */
 	protected List<Command> getDropDiagramIntoCommand(TransactionalEditingDomain domain,EObject targetOwner, Diagram childElement){
-		// Diagram drag and drop is not supported.
-		throw new UnsupportedOperationException();
-				
-//		ArrayList<Command> commandList= new ArrayList<Command>();
-//		EReference eref= NotationPackage.eINSTANCE.getView_Element();
-//		if(eref!=null){
-//			SetRequest setRequest= new SetRequest(childElement, eref, targetOwner);
-//			IElementEditService provider = ElementEditServiceUtils.getCommandProvider(childElement);
-//			if(provider != null) {
-//				// Retrieve delete command from the Element Edit service
-//				ICommand command = provider.getEditCommand(setRequest);
-//
-//				if(command != null) {
-//					commandList.add( new GMFtoEMFCommandWrapper(command));
-//				}
-//			}
-//		}
-//
-//
-//		return commandList;
+		List<Command> commandList = new ArrayList<Command>();
+		EReference eref = NotationPackage.eINSTANCE.getView_Element();
+		if(eref != null) {
+			String diagType = childElement.getType();
+			ICreationCommand correctCommandDescription = null;
+			// check if diagram can exist in new location
+			for(CreationCommandDescriptor desc : getCreationCommandRegistry().getCommandDescriptors()) {
+				if(desc.getCondition() == null || desc.getCondition().create(targetOwner)) {
+					try {
+						ICreationCommand cmd = desc.getCommand();
+						String type = cmd.getCreatedDiagramType();
+						if(diagType == null || diagType.equals(type)) {
+							// the descriptor correspond to existing diagram's type
+							correctCommandDescription = cmd;
+							break;
+						}
+					} catch (BackboneException e) {
+						Activator.log.error(e);
+						// stop here with unexecutable command
+						commandList.add(UnexecutableCommand.INSTANCE);
+						return commandList;
+					}
+				}
+			}
+			// check if diagram can be moved
+			if(correctCommandDescription != null && correctCommandDescription.isParentReassignable()) {
+				SetRequest setRequest = new SetRequest(childElement, eref, targetOwner);
+				IElementEditService provider = ElementEditServiceUtils.getCommandProvider(childElement);
+				if(provider != null) {
+					// Retrieve reassignment command from the Element Edit service
+					ICommand command = provider.getEditCommand(setRequest);
+
+					if(command != null) {
+						commandList.add(new GMFtoEMFCommandWrapper(command));
+						return commandList;
+					}
+				}
+			}
+		}
+		// Failed : stop here with unexecutable command
+		commandList.add(UnexecutableCommand.INSTANCE);
+		return commandList;
 	}
 	/**
 	 * get the list of command to put an eobject before or after another EObject
@@ -336,8 +374,7 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 				}
 
 				if(eObjectchild instanceof Diagram){
-					// Do not allow diagram drag and drop, it is not supported yet.
-					// result.addAll(getDropDiagramIntoCommand(getEditingDomain(), targetEObject,(Diagram) eObjectchild));
+					result.addAll(getDropDiagramIntoCommand(getEditingDomain(), targetEObject,(Diagram) eObjectchild));
 				}
 				//test if object is an eobject
 				else if(eObjectchild!=null){
