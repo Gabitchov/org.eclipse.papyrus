@@ -70,21 +70,24 @@ public class CollaborationHelperAdvice extends AbstractEditHelperAdvice {
 		return null;
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	protected ICommand getBeforeSetCommand(SetRequest request) {
 
 		EObject elementToEdit = request.getElementToEdit();
 		Set<View> viewsToDelete = new HashSet<View>();
 
-		if((elementToEdit instanceof Collaboration) && (request.getFeature() == UMLPackage.eINSTANCE.getCollaboration_CollaborationRole()) && (request.getValue() instanceof ConnectableElement)) {
+		if((elementToEdit instanceof Collaboration) && (request.getFeature() == UMLPackage.eINSTANCE.getCollaboration_CollaborationRole())) {
 
 			Collaboration collaborationToEdit = (Collaboration)elementToEdit;
 
 			// Get the list of roles currently removed
 			Set<ConnectableElement> removedRoles = new HashSet<ConnectableElement>();
 			removedRoles.addAll(collaborationToEdit.getRoles());
-			removedRoles.removeAll((List<ConnectableElement>)request.getValue());
+			if(request.getValue() instanceof ConnectableElement) {
+				removedRoles.remove((ConnectableElement)request.getValue());
+			} else if(request.getValue() instanceof List<?>) {
+				removedRoles.removeAll((List<?>)request.getValue());
+			}
 
 			// Parse removed roles and find views to delete
 			Iterator<ConnectableElement> it = removedRoles.iterator();
@@ -131,43 +134,6 @@ public class CollaborationHelperAdvice extends AbstractEditHelperAdvice {
 					View currentChildView = (View)currentChildObject;
 
 					if((COLLABORATION_ROLE_HINT.equals(currentChildView.getType())) && (currentChildView.getElement() == role)) {
-						viewsToDelete.add(currentChildView);
-					}
-				}
-			}
-		}
-
-		return viewsToDelete;
-	}
-
-	/**
-	 * <pre>
-	 * This method retrieves all views (only in Composite Structure Diagrams) that are representing the role.
-	 * </pre>
-	 * 
-	 * @param role
-	 *        the {@link ConnectableElement} currently removed from role list
-	 * @param modifiedCollaboration
-	 *        the {@link Collaboration} currently modified
-	 * @return the views that should be deleted
-	 */
-	private Set<View> getRoleBinding(ConnectableElement role, Collaboration modifiedCollaboration) {
-
-		Set<View> viewsToDelete = new HashSet<View>();
-
-		// Get all view for the role in Composite Structure Diagrams
-		Set<View> collaborationToEditViews = CrossReferencerUtil.getCrossReferencingViews(modifiedCollaboration, CompositeStructureDiagramEditPart.MODEL_ID);
-
-		// Parse views of the edited Collaboration
-		for(View currentCollaborationView : collaborationToEditViews) {
-
-			Iterator<EObject> it = currentCollaborationView.eAllContents();
-			while(it.hasNext()) {
-				EObject currentChildObject = it.next();
-				if(currentChildObject instanceof View) {
-					View currentChildView = (View)currentChildObject;
-
-					if((ROLE_BINDING_HINT.equals(currentChildView.getType())) && (currentChildView.getElement() == role)) {
 						viewsToDelete.add(currentChildView);
 					}
 				}
