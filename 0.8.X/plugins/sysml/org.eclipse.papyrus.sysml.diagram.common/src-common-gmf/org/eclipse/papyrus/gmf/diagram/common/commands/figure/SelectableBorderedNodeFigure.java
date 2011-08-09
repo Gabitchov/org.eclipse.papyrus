@@ -50,21 +50,28 @@ public class SelectableBorderedNodeFigure extends BorderedNodeFigure {
 			return result;
 		}
 
+		// Then search over main figure borders with the specified MARGIN on each side of the border
+		Rectangle unselectableArea = new Rectangle(getBounds().getCopy());
+		unselectableArea.x = unselectableArea.x + MARGIN_SIZE / 2;
+		unselectableArea.y = unselectableArea.y + MARGIN_SIZE / 2;
+		unselectableArea.width = unselectableArea.width - MARGIN_SIZE;
+		unselectableArea.height = unselectableArea.height - MARGIN_SIZE;
+
+		Rectangle selectableArea = new Rectangle(getBounds().getCopy());
+		selectableArea.x = selectableArea.x - MARGIN_SIZE / 2;
+		selectableArea.y = selectableArea.y - MARGIN_SIZE / 2;
+		selectableArea.width = selectableArea.width + MARGIN_SIZE;
+		selectableArea.height = selectableArea.height + MARGIN_SIZE;
+
+
+		if((selectableArea.contains(x, y)) && !(unselectableArea.contains(x, y))) {
+			return this;
+		}
+
 		// Then search in the main figure
 		result = getMainFigure().findFigureAt(x, y, search);
 		if(result != null) {
 			return result;
-		}
-
-		// Then before giving up test if (x, y) is in the selectable area
-		Rectangle selectableArea = new Rectangle(getBounds().getCopy());
-		selectableArea.x = selectableArea.x - MARGIN_SIZE;
-		selectableArea.y = selectableArea.y - MARGIN_SIZE;
-		selectableArea.width = selectableArea.width + (2 * MARGIN_SIZE);
-		selectableArea.height = selectableArea.height + (2 * MARGIN_SIZE);
-
-		if(selectableArea.contains(x, y)) {
-			return this;
 		}
 
 		return null;
