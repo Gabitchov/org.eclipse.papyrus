@@ -103,7 +103,6 @@ public class CollaborationHelperAdvice extends AbstractEditHelperAdvice {
 	/**
 	 * {@inheritDoc}
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	protected ICommand getBeforeSetCommand(SetRequest request) {
 		ICommand gmfCommand = null;
@@ -111,14 +110,18 @@ public class CollaborationHelperAdvice extends AbstractEditHelperAdvice {
 		EObject elementToEdit = request.getElementToEdit();
 
 		// Test if current destroy reference is removing a Role from Collaboration role, and destroy related role bindings
-		if((elementToEdit instanceof Collaboration) && (request.getFeature() == UMLPackage.eINSTANCE.getCollaboration_CollaborationRole()) && (request.getValue() instanceof ConnectableElement)) {
+		if((elementToEdit instanceof Collaboration) && (request.getFeature() == UMLPackage.eINSTANCE.getCollaboration_CollaborationRole())) {
 
 			Collaboration collaboration = (Collaboration)elementToEdit;
 
 			// Parse removed roles and find related RoleBindings that need to be deleted
 			Set<ConnectableElement> deletedRoles = new HashSet<ConnectableElement>();
 			deletedRoles.addAll(collaboration.getRoles());
-			deletedRoles.removeAll((List<ConnectableElement>)request.getValue());
+			if(request.getValue() instanceof ConnectableElement) {
+				deletedRoles.remove((ConnectableElement)request.getValue());
+			} else if(request.getValue() instanceof List<?>) {
+				deletedRoles.removeAll((List<?>)request.getValue());
+			}
 
 			// Parse roles and create deletion command for related bindings
 			Iterator<ConnectableElement> it = deletedRoles.iterator();

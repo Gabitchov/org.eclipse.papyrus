@@ -19,6 +19,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
@@ -60,7 +61,7 @@ public class PropertyHelperAdvice extends AbstractEditHelperAdvice {
 
 		EObject elementToEdit = request.getElementToEdit();
 		Set<View> viewsToDelete = new HashSet<View>();
-		if((elementToEdit instanceof Property) && (request.getFeature() == UMLPackage.eINSTANCE.getTypedElement_Type()) && (request.getValue() instanceof Type)) {
+		if((elementToEdit instanceof Property) && (request.getFeature() == UMLPackage.eINSTANCE.getTypedElement_Type()) && ((request.getValue() == null) || (request.getValue() instanceof Type))) {
 
 			Property propertyToEdit = (Property)elementToEdit;
 			Set<View> propertyToEditViews = CrossReferencerUtil.getCrossReferencingViews(propertyToEdit, CompositeStructureDiagramEditPart.MODEL_ID);
@@ -68,9 +69,9 @@ public class PropertyHelperAdvice extends AbstractEditHelperAdvice {
 			oldType = propertyToEdit.getType();
 			newType = (Type)request.getValue();
 
-			if((oldType != null) && (oldType instanceof Classifier) && (newType instanceof Classifier)) {
+			if((oldType != null) && (oldType instanceof Classifier) && ((request.getValue() == null) || (newType instanceof Classifier))) {
 
-				EList<NamedElement> newTypeMembers = ((Classifier)newType).getMembers();
+				EList<NamedElement> newTypeMembers = (newType != null) ? ((Classifier)newType).getMembers() : new BasicEList<NamedElement>();
 				EList<NamedElement> oldTypeMembers = ((Classifier)oldType).getMembers();
 
 				// Remove members of the new type from the list.
