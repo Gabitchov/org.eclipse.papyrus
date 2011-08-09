@@ -74,7 +74,6 @@ public class CollaborationUseHelperAdvice extends AbstractEditHelperAdvice {
 	/**
 	 * {@inheritDoc}
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	protected ICommand getBeforeSetCommand(SetRequest request) {
 		ICommand gmfCommand = null;
@@ -89,12 +88,12 @@ public class CollaborationUseHelperAdvice extends AbstractEditHelperAdvice {
 			// Removing referenced Dependency from roleBinding should delete the dependency
 			Set<Dependency> roleBindingsToDelete = new HashSet<Dependency>();
 			roleBindingsToDelete.addAll(cUse.getRoleBindings());
-			
+
 			if(request.getValue() instanceof List<?>) {
 				// request.getValue() is expected to be EList<Dependency> here. 
 				roleBindingsToDelete.removeAll((List<?>)request.getValue());
 			}
-			
+
 
 			IElementEditService provider = ElementEditServiceUtils.getCommandProvider(cUse);
 			if(provider != null) {
@@ -114,7 +113,7 @@ public class CollaborationUseHelperAdvice extends AbstractEditHelperAdvice {
 		}
 
 		// Test if current set command is modifying the type of the CollaborationUse
-		if((elementToEdit instanceof CollaborationUse) && (request.getFeature() == UMLPackage.eINSTANCE.getCollaborationUse_Type()) && (request.getValue() instanceof Collaboration)) {
+		if((elementToEdit instanceof CollaborationUse) && (request.getFeature() == UMLPackage.eINSTANCE.getCollaborationUse_Type()) && ((request.getValue() == null) || (request.getValue() instanceof Collaboration))) {
 
 			CollaborationUse cUse = (CollaborationUse)elementToEdit;
 
