@@ -22,6 +22,7 @@ import org.eclipse.gmf.runtime.common.core.service.IOperation;
 import org.eclipse.gmf.runtime.common.ui.services.parser.GetParserOperation;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParserProvider;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.sysml.diagram.common.parser.FlowPortLabelParser;
 import org.eclipse.papyrus.sysml.diagram.common.parser.FlowPropertyLabelParser;
@@ -86,6 +87,11 @@ public class ParserProvider extends AbstractProvider implements IParserProvider 
 	public boolean provides(IOperation operation) {
 		if(operation instanceof GetParserOperation) {
 			IAdaptable hint = ((GetParserOperation)operation).getHint();
+
+			if(!ElementTypes.DIAGRAM_ID.equals(getDiagramType(hint))) {
+				return false;
+			}
+
 			return getParser(hint) != null;
 		}
 		return false;
@@ -112,6 +118,15 @@ public class ParserProvider extends AbstractProvider implements IParserProvider 
 		}
 
 		return null;
+	}
+
+	private String getDiagramType(IAdaptable hint) {
+		Diagram diagram = (Diagram)hint.getAdapter(Diagram.class);
+		if(diagram != null) {
+			return diagram.getType();
+		}
+
+		return "undefined";
 	}
 
 }

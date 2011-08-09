@@ -46,7 +46,6 @@ import org.eclipse.gmf.runtime.diagram.ui.tools.TextDirectEditManager;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
-import org.eclipse.gmf.runtime.emf.ui.services.parser.ParserHintAdapter;
 import org.eclipse.gmf.runtime.notation.FontStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
@@ -77,6 +76,7 @@ import org.eclipse.papyrus.gmf.diagram.common.locator.TextCellEditorLocator;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants;
 import org.eclipse.papyrus.sysml.diagram.common.preferences.LabelPreferenceHelper;
+import org.eclipse.papyrus.uml.diagram.common.parser.DefaultParserHintAdapter;
 import org.eclipse.papyrus.umlutils.ui.VisualInformationPapyrusConstant;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.accessibility.AccessibleEvent;
@@ -288,7 +288,7 @@ public abstract class AbstractElementLabelEditPart extends LabelEditPart impleme
 
 	public IParser getParser() {
 		if(parser == null) {
-			parser = ParserService.getInstance().getParser(new ParserHintAdapter(getParserElement(), getNotationView().getType()));
+			parser = ParserService.getInstance().getParser(new DefaultParserHintAdapter(getNotationView().getDiagram(), getParserElement(), getNotationView().getType()));
 		}
 		return parser;
 	}
