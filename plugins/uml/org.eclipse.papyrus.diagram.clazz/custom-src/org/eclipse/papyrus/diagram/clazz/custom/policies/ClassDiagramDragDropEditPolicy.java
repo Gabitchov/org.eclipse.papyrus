@@ -21,13 +21,20 @@ import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
+import org.eclipse.gef.Request;
+import org.eclipse.gef.RequestConstants;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
+import org.eclipse.gef.requests.GroupRequest;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.notation.Diagram;
@@ -311,7 +318,7 @@ public class ClassDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdit
 
 	protected Command dropTopLevelNodeWithContainmentLink(DropObjectsRequest dropRequest, Element semanticObject, int nodeVISUALID) {
 		ContainmentHelper containmentHelper = new ContainmentHelper(getEditingDomain());
-		
+
 		Element owner = (Element)semanticObject.getOwner();
 		if( owner==null){
 			return new ICommandProxy(getDefaultDropNodeCommand(nodeVISUALID, dropRequest.getLocation(), semanticObject));
@@ -401,19 +408,36 @@ public class ClassDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdit
 				return UnexecutableCommand.INSTANCE;
 			}
 		}
-		//normal case
-		ChangeBoundsRequest req = new ChangeBoundsRequest(REQ_ADD);
-		req.setEditParts(request.getEditParts());
-		req.setMoveDelta(request.getMoveDelta());
-		req.setSizeDelta(request.getSizeDelta());
-		req.setLocation(request.getLocation());
-		req.setResizeDirection(request.getResizeDirection());
-		Command cmd = getHost().getCommand(req);
-		if(cmd == null || !cmd.canExecute()) {
-			return getDropObjectsCommand(castToDropObjectsRequest(request));
+
+		// in the case of labelEditPart the command add can launch null pointer exception
+		editPartsIter = request.getEditParts().iterator();
+		boolean containsLabelEditpart=false;
+		while(editPartsIter.hasNext()&& !containsLabelEditpart) {
+			EditPart currentEditPart=(EditPart) editPartsIter.next();
+			if(currentEditPart instanceof ITextAwareEditPart&& currentEditPart instanceof IPrimaryEditPart) {
+				containsLabelEditpart=true;
+			}
 		}
 
-		return cmd;
+		//the addCommand of a label edit part into the diagram raises an null pointer exception.
+		//it is due to the label has not constraint, used during the AddCommand
+		if(containsLabelEditpart&& getHost() instanceof DiagramEditPart){
+			return UnexecutableCommand.INSTANCE;
+		}
+		else{
+			//normal case
+			ChangeBoundsRequest req = new ChangeBoundsRequest(REQ_ADD);
+			req.setEditParts(request.getEditParts());
+			req.setMoveDelta(request.getMoveDelta());
+			req.setSizeDelta(request.getSizeDelta());
+			req.setLocation(request.getLocation());
+			req.setResizeDirection(request.getResizeDirection());
+			Command cmd = getHost().getCommand(req);
+			if(cmd == null || !cmd.canExecute()) {
+				return getDropObjectsCommand(castToDropObjectsRequest(request));
+			}
+			return cmd;
+		}
 	}
 
 }
