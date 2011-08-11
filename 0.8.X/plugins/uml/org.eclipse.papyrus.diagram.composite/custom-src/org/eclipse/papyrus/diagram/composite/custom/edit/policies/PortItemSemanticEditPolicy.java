@@ -17,7 +17,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
-import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
@@ -48,10 +47,9 @@ public class PortItemSemanticEditPolicy extends org.eclipse.papyrus.diagram.comp
 				return UnexecutableCommand.INSTANCE;
 			}
 
-			// Add graphical parent in request parameters
-			View targetParentView = (View)getHost().getParent().getModel();
-			EObject targetParent = ViewUtil.resolveSemanticElement(targetParentView);
-			req.setParameter(RequestParameterConstants.CONNECTOR_REORIENT_REQUEST_TARGET_PARENT, targetParent);
+			// Add graphical new end View in request parameters
+			View targetView = (View)getHost().getModel();
+			req.setParameter(RequestParameterConstants.EDGE_REORIENT_REQUEST_END_VIEW, targetView);
 
 			// Retrieve re-orient command from the Element Edit service
 			ICommand reorientCommand = provider.getEditCommand(req);
