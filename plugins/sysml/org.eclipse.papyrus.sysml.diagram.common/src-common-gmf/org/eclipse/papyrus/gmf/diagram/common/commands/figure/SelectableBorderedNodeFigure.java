@@ -29,7 +29,7 @@ import org.eclipse.gmf.runtime.diagram.ui.figures.BorderedNodeFigure;
 public class SelectableBorderedNodeFigure extends BorderedNodeFigure {
 
 	/** The size of the active margin around the figure */
-	protected int MARGIN_SIZE = 20;
+	protected int MARGIN_SIZE = 10;
 
 	/** Constructor */
 	public SelectableBorderedNodeFigure(IFigure mainFigure) {
@@ -50,19 +50,14 @@ public class SelectableBorderedNodeFigure extends BorderedNodeFigure {
 			return result;
 		}
 
-		// Then search over main figure borders with the specified MARGIN on each side of the border
+		// Then search over main figure borders with the specified MARGIN inside figure borders
 		Rectangle unselectableArea = new Rectangle(getBounds().getCopy());
-		unselectableArea.x = unselectableArea.x + MARGIN_SIZE / 2;
-		unselectableArea.y = unselectableArea.y + MARGIN_SIZE / 2;
-		unselectableArea.width = unselectableArea.width - MARGIN_SIZE;
-		unselectableArea.height = unselectableArea.height - MARGIN_SIZE;
+		unselectableArea.x = unselectableArea.x + MARGIN_SIZE;
+		unselectableArea.y = unselectableArea.y + MARGIN_SIZE;
+		unselectableArea.width = unselectableArea.width - 2*MARGIN_SIZE;
+		unselectableArea.height = unselectableArea.height - 2*MARGIN_SIZE;
 
 		Rectangle selectableArea = new Rectangle(getBounds().getCopy());
-		selectableArea.x = selectableArea.x - MARGIN_SIZE / 2;
-		selectableArea.y = selectableArea.y - MARGIN_SIZE / 2;
-		selectableArea.width = selectableArea.width + MARGIN_SIZE;
-		selectableArea.height = selectableArea.height + MARGIN_SIZE;
-
 
 		if((selectableArea.contains(x, y)) && !(unselectableArea.contains(x, y))) {
 			return this;
