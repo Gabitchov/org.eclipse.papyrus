@@ -51,13 +51,13 @@ public class AssociationBaseEditHelper extends ElementEditHelper {
 	private Classifier getSourceOwnerType(ConfigureRequest req) {
 		Classifier result = null;
 		Object paramObject = req.getParameter(CreateRelationshipRequest.SOURCE);
-		if (paramObject instanceof Classifier) {
-			result = (Classifier) paramObject;
+		if(paramObject instanceof Classifier) {
+			result = (Classifier)paramObject;
 		}
 
 		return result;
 	}
-	
+
 	/**
 	 * This method provides the target type provided as {@link ConfigureRequest} parameter.
 	 * 
@@ -66,37 +66,35 @@ public class AssociationBaseEditHelper extends ElementEditHelper {
 	private Classifier getTargetOwnerType(ConfigureRequest req) {
 		Classifier result = null;
 		Object paramObject = req.getParameter(CreateRelationshipRequest.TARGET);
-		if (paramObject instanceof Classifier) {
-			result = (Classifier) paramObject;
+		if(paramObject instanceof Classifier) {
+			result = (Classifier)paramObject;
 		}
 
 		return result;
 	}
-	
+
 	/**
 	 * Test if the relationship creation is allowed.
 	 * 
-	 * @param source the relationship source can be null
-	 * @param target the relationship target can be null
+	 * @param source
+	 *        the relationship source can be null
+	 * @param target
+	 *        the relationship target can be null
 	 * @return true if the creation is allowed
 	 */
 	protected boolean canCreate(EObject source, EObject target) {
 
-		if ((source != null) && !(source instanceof Classifier)) {
+		if((source != null) && !(source instanceof Classifier)) {
 			return false;
 		}
-		
-		if ((target != null) && !(target instanceof Classifier)) {
+
+		if((target != null) && !(target instanceof Classifier)) {
 			return false;
 		}
-		
-		if ((source != null) && (target != null) && (source == target)) {
-			return false;
-		}
-		
+
 		return true;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -109,11 +107,11 @@ public class AssociationBaseEditHelper extends ElementEditHelper {
 		boolean noSourceOrTarget = (source == null || target == null);
 		boolean noSourceAndTarget = (source == null && target == null);
 
-		if (!noSourceAndTarget && !canCreate(source, target)) {
+		if(!noSourceAndTarget && !canCreate(source, target)) {
 			// Abort creation.
 			return UnexecutableCommand.INSTANCE;
 		}
-		
+
 		if(noSourceOrTarget && !noSourceAndTarget) {
 			// The request isn't complete yet. Return the identity command so
 			// that the create relationship gesture is enabled.
@@ -121,12 +119,12 @@ public class AssociationBaseEditHelper extends ElementEditHelper {
 		}
 
 		// Propose a container if none is set in request.
-		EObject proposedContainer = EMFCoreUtil.getLeastCommonContainer(Arrays.asList(new EObject[]{source, target}), UMLPackage.eINSTANCE.getPackage());
+		EObject proposedContainer = EMFCoreUtil.getLeastCommonContainer(Arrays.asList(new EObject[]{ source, target }), UMLPackage.eINSTANCE.getPackage());
 		req.setContainer(proposedContainer);
-		
+
 		return new CreateRelationshipCommand(req);
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -134,10 +132,10 @@ public class AssociationBaseEditHelper extends ElementEditHelper {
 	protected ICommand getConfigureCommand(final ConfigureRequest req) {
 
 		// All Association configure are managed by HelperAdvice(s).
-		if ((getSourceOwnerType(req) == null) || (getTargetOwnerType(req) == null)) {
+		if((getSourceOwnerType(req) == null) || (getTargetOwnerType(req) == null)) {
 			return UnexecutableCommand.INSTANCE;
 		}
-		
+
 		return super.getConfigureCommand(req);
 	}
 }
