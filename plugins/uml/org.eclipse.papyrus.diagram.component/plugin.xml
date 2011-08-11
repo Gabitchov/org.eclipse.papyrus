@@ -674,7 +674,6 @@
       </decoratorProvider>
    </extension>
 
-=======
 
    <extension point="org.eclipse.gmf.runtime.diagram.core.viewProviders" id="view-provider">
       <?gmfgen generated="true"?>
@@ -1046,40 +1045,6 @@
       <?gmfgen generated="true"?>
    </extension>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
->>>>>>> .r4908
 <extension
 		id="Papyrus Component Diagram (Incubation).palettedefinition"
 		name="Papyrus Component Diagram (Incubation) Predefined Entries"
@@ -1514,23 +1479,4 @@
    </editpolicyProvider>
 </extension>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   <!-- optionally, specify keybindings -->
->>>>>>> .r4908
 </plugin>

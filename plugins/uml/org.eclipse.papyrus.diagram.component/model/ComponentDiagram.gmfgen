@@ -17,7 +17,7 @@
         itemSemanticEditPolicyClassName="ComponentDiagramItemSemanticEditPolicy"
         canonicalEditPolicyClassName="ModelCanonicalEditPolicy"
         iconProviderPriority="Low"
-        creationWizardIconPath="icons/obj16/ComponentStructure.gif"
+        creationWizardIconPath="icons/obj16/ComponentDiagram.gif"
         editingDomainID="org.eclipse.papyrus.diagram.component.EditingDomain"
         validationProviderPriority="Low">
       <diagramRunTimeClass
