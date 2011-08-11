@@ -18,6 +18,7 @@
         itemSemanticEditPolicyClassName="DeploymentDiagramItemSemanticEditPolicy"
         canonicalEditPolicyClassName="ModelCanonicalEditPolicy"
         iconProviderPriority="Low"
+        creationWizardIconPath="icons/obj16/DeploymentDiagram.gif"
         validationProviderPriority="Low">
       <diagramRunTimeClass
           href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Diagram"/>
