@@ -135,13 +135,13 @@
    </extension>
 
    <extension point="org.eclipse.ui.contexts" id="ui-context">
-      <context
-            description="%context.description"
-            id="org.eclipse.papyrus.diagram.deployment.ui.diagramContext"
-            name="%context.name"
-            parentId="org.eclipse.gmf.runtime.diagram.ui.diagramContext">
-      </context>
       <?gmfgen generated="true"?>
+      <context
+         description="%context.description"
+         id="org.eclipse.papyrus.diagram.deployment.ui.diagramContext"
+         name="%context.name"
+         parentId="org.eclipse.gmf.runtime.diagram.ui.diagramContext">
+      </context>
    </extension>
    
    <extension point="org.eclipse.ui.commands" id="update-cmd">
@@ -607,7 +607,7 @@
          </propertySection>
       </propertySections>
    </extension>
-
+
 <extension point="org.eclipse.core.runtime.preferences">
 		<?gmfgen generated="true"?>
 		<initializer class="org.eclipse.papyrus.diagram.deployment.preferences.DiagramPreferenceInitializer"/>
@@ -751,7 +751,8 @@
          <specializationType
                id="org.eclipse.papyrus.diagram.deployment.Device_16"
                name="%metatype.name.Device_16"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               edithelperadvice="org.eclipse.papyrus.diagram.deployment.edit.helpers.">
             <specializes id="org.eclipse.papyrus.diagram.deployment.Device_2003"/>
             <param name="semanticHint" value="16"/>
          </specializationType>
@@ -889,6 +890,32 @@
       </Priority>
    </editpolicyProvider>
 </extension>
+<extension point="org.eclipse.gmf.runtime.common.ui.services.markerNavigationProviders" id="markers-navigation">
+      <?gmfgen generated="true"?>
+      <MarkerNavigationProvider class="org.eclipse.papyrus.diagram.deployment.providers.UMLMarkerNavigationProvider">
+         <MarkerType name="org.eclipse.papyrus.diagram.deployment.diagnostic"/>
+         <Priority name="Lowest"/>
+      </MarkerNavigationProvider>
+   </extension>
+
+<extension id="diagnostic" name="Papyrus Deployment Diagram (Incubation) problems" point="org.eclipse.core.resources.markers">
+      <?gmfgen generated="true"?>
+      <super type="org.eclipse.core.resources.problemmarker"/>
+      <super type="org.eclipse.gmf.runtime.common.ui.services.marker"/>
+      <persistent value="true"/>
+   </extension><extension id="validationDecoratorProvider" name="ValidationDecorations" point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders">
+      <?gmfgen generated="true"?>
+      <decoratorProvider class="org.eclipse.papyrus.diagram.deployment.providers.UMLValidationDecoratorProvider">
+         <Priority name="Lowest"/>
+         <object class="org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart(org.eclipse.gmf.runtime.diagram.ui)" id="PRIMARY_VIEW"/>
+         <context decoratorTargets="PRIMARY_VIEW"/>
+      </decoratorProvider>
+   </extension>
+
+<extension point="org.eclipse.ui.handlers" id="menu-handlers">
+      <?gmfgen generated="true"?>
+   </extension>
+
 
 
 

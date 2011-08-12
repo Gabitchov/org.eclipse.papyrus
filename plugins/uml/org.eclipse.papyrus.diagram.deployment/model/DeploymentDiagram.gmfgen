@@ -19,7 +19,10 @@
         canonicalEditPolicyClassName="ModelCanonicalEditPolicy"
         iconProviderPriority="Low"
         creationWizardIconPath="icons/obj16/DeploymentDiagram.gif"
-        validationProviderPriority="Low">
+        validationProviderPriority="Low"
+        validationEnabled="true"
+        validationDecorators="true"
+        liveValidationUIFeedback="true">
       <diagramRunTimeClass
           href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Diagram"/>
       <elementType
@@ -1659,8 +1662,8 @@
               xsi:type="gmfgen:ToolEntry"
               title="Node"
               description="Create new Node"
-              largeIconPath="icons/obj16/Node.gif"
-              smallIconPath="icons/obj16/Node.gif"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Node.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Node.gif"
               createMethodName="createNodeCreationTool"
               id="&quot;deployment.tool.node&quot;"
               genNodes="/0/@diagram/@topLevelNodes.5 /0/@diagram/@childNodes.0"/>
@@ -1668,8 +1671,8 @@
               xsi:type="gmfgen:ToolEntry"
               title="Device"
               description="Create new Device"
-              largeIconPath="icons/obj16/Device.gif"
-              smallIconPath="icons/obj16/Device.gif"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Device.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Device.gif"
               createMethodName="createDeviceCreationTool"
               id="&quot;deployment.tool.device&quot;"
               genNodes="/0/@diagram/@topLevelNodes.3 /0/@diagram/@childNodes.1"/>
@@ -1677,8 +1680,8 @@
               xsi:type="gmfgen:ToolEntry"
               title="Execution Environment"
               description="Create new ExecutionEnvironment"
-              largeIconPath="icons/obj16/ExecutionEnvironment.gif"
-              smallIconPath="icons/obj16/ExecutionEnvironment.gif"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExecutionEnvironment.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExecutionEnvironment.gif"
               createMethodName="createExecutionEnvironmentCreationTool"
               id="&quot;deployment.tool.executionEnvironment&quot;"
               genNodes="/0/@diagram/@topLevelNodes.2 /0/@diagram/@childNodes.2"/>
@@ -1686,8 +1689,8 @@
               xsi:type="gmfgen:ToolEntry"
               title="Artifact"
               description="Create new Artifact"
-              largeIconPath="icons/obj16/Artifact.gif"
-              smallIconPath="icons/obj16/Artifact.gif"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Artifact.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Artifact.gif"
               createMethodName="createArtifactCreationTool"
               id="&quot;deployment.tool.artifact&quot;"
               genNodes="/0/@diagram/@topLevelNodes.4 /0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4"/>
@@ -1695,8 +1698,8 @@
               xsi:type="gmfgen:ToolEntry"
               title="Comment"
               description="Create new Comment"
-              largeIconPath="icons/obj16/Comment.gif"
-              smallIconPath="icons/obj16/Comment.gif"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"
               createMethodName="createCommentCreationTool"
               id="&quot;deployment.tool.comment&quot;"
               genNodes="/0/@diagram/@topLevelNodes.0"/>
@@ -1704,8 +1707,8 @@
               xsi:type="gmfgen:ToolEntry"
               title="Constraint"
               description="Create new Constraint"
-              largeIconPath="icons/obj16/Constraint.gif"
-              smallIconPath="icons/obj16/Constraint.gif"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
               createMethodName="createConstraintCreationTool"
               id="&quot;deployment.tool.constraint&quot;"
               genNodes="/0/@diagram/@topLevelNodes.1"/>
@@ -1732,8 +1735,8 @@
               xsi:type="gmfgen:ToolEntry"
               title="Dependency"
               description="Create new Dependency"
-              largeIconPath="icons/obj16/Dependency.gif"
-              smallIconPath="icons/obj16/Dependency.gif"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif"
               createMethodName="createDependencyCreationTool"
               id="&quot;deployment.tool.dependency&quot;"
               genLinks="/0/@diagram/@links.6"/>
@@ -1741,8 +1744,8 @@
               xsi:type="gmfgen:ToolEntry"
               title="Generalization"
               description="Create new Generalization"
-              largeIconPath="icons/obj16/Generalization.gif"
-              smallIconPath="icons/obj16/Generalization.gif"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Generalization.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Generalization.gif"
               createMethodName="createGeneralizationCreationTool"
               id="&quot;deployment.tool.generalization&quot;"
               genLinks="/0/@diagram/@links.5"/>
@@ -1750,8 +1753,8 @@
               xsi:type="gmfgen:ToolEntry"
               title="Deployment"
               description="Create new Deployment"
-              largeIconPath="icons/obj16/Deployment.gif"
-              smallIconPath="icons/obj16/Deployment.gif"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Deployment.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Deployment.gif"
               createMethodName="createDeploymentCreationTool"
               id="&quot;deployment.tool.deployment&quot;"
               genLinks="/0/@diagram/@links.3"/>
@@ -1759,8 +1762,8 @@
               xsi:type="gmfgen:ToolEntry"
               title="Manifestation"
               description="Create new Manifestation"
-              largeIconPath="icons/obj16/Manifestation.gif"
-              smallIconPath="icons/obj16/Manifestation.gif"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Manifestation.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Manifestation.gif"
               createMethodName="createManifestationCreationTool"
               id="&quot;deployment.tool.manifestation&quot;"
               genLinks="/0/@diagram/@links.4"/>

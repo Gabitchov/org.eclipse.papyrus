@@ -129,7 +129,34 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		 if (op.getViewKind() == Edge.class)
 		 return getEdgeViewClass(op.getSemanticAdapter(), op.getContainerView(), op.getSemanticHint()) != null;
 		 */
+
+		// check Diagram Type should be the class diagram
+		String modelID = UMLVisualIDRegistry.getModelID(op.getContainerView());
+		if(!getDiagramProvidedId().equals(modelID)) {
+			return false;
+		}
+
+		int visualID = UMLVisualIDRegistry.getVisualID(op.getSemanticHint());
+		if(Node.class.isAssignableFrom(op.getViewKind())) {
+			return UMLVisualIDRegistry.canCreateNode(op.getContainerView(), visualID);
+		}
+
 		return true;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected String getDiagramProvidedId() {
+		/*
+		 * Indicates for which diagram this provider works for.
+		 * <p>
+		 * This method can be overloaded when diagram editor inherits from another one, but should never be <code>null</code>
+		 * </p>
+		 * 
+		 * @return the unique identifier of the diagram for which views are provided.
+		 */
+		return DeploymentDiagramEditPart.MODEL_ID;
 	}
 
 	/**
@@ -606,6 +633,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		PreferenceInitializerForElementHelper.initRountingFromPrefs(edge, prefStore, "Undefined");
 
+
+
 		return edge;
 	}
 
@@ -641,6 +670,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		PreferenceInitializerForElementHelper.initRountingFromPrefs(edge, prefStore, "CommentAnnotatedElement");
 
+
+
 		return edge;
 	}
 
@@ -675,6 +706,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 
 		PreferenceInitializerForElementHelper.initRountingFromPrefs(edge, prefStore, "ConstraintConstrainedElement");
+
+
 
 		return edge;
 	}
@@ -721,6 +754,10 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location14 = (Location)label14.getLayoutConstraint();
 		location14.setX(0);
 		location14.setY(60);
+
+
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(edge, prefStore, "Deployment");
+
 		return edge;
 	}
 
@@ -766,6 +803,10 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location11 = (Location)label11.getLayoutConstraint();
 		location11.setX(0);
 		location11.setY(30);
+
+
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(edge, prefStore, "Manifestation");
+
 		return edge;
 	}
 
@@ -806,6 +847,10 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location4 = (Location)label4.getLayoutConstraint();
 		location4.setX(0);
 		location4.setY(60);
+
+
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(edge, prefStore, "Generalization");
+
 		return edge;
 	}
 
@@ -851,6 +896,10 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location15 = (Location)label15.getLayoutConstraint();
 		location15.setX(0);
 		location15.setY(60);
+
+
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(edge, prefStore, "Dependency");
+
 		return edge;
 	}
 
