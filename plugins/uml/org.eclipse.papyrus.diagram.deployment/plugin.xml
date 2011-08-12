@@ -135,13 +135,13 @@
    </extension>
 
    <extension point="org.eclipse.ui.contexts" id="ui-context">
-      <?gmfgen generated="true"?>
       <context
-         description="%context.description"
-         id="org.eclipse.papyrus.diagram.deployment.ui.diagramContext"
-         name="%context.name"
-         parentId="org.eclipse.gmf.runtime.diagram.ui.diagramContext">
+            description="%context.description"
+            id="org.eclipse.papyrus.diagram.deployment.ui.diagramContext"
+            name="%context.name"
+            parentId="org.eclipse.gmf.runtime.diagram.ui.diagramContext">
       </context>
+      <?gmfgen generated="true"?>
    </extension>
    
    <extension point="org.eclipse.ui.commands" id="update-cmd">
@@ -607,7 +607,7 @@
          </propertySection>
       </propertySections>
    </extension>
-
+
 <extension point="org.eclipse.core.runtime.preferences">
 		<?gmfgen generated="true"?>
 		<initializer class="org.eclipse.papyrus.diagram.deployment.preferences.DiagramPreferenceInitializer"/>
@@ -751,8 +751,7 @@
          <specializationType
                id="org.eclipse.papyrus.diagram.deployment.Device_16"
                name="%metatype.name.Device_16"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               edithelperadvice="org.eclipse.papyrus.diagram.deployment.edit.helpers.">
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
             <specializes id="org.eclipse.papyrus.diagram.deployment.Device_2003"/>
             <param name="semanticHint" value="16"/>
          </specializationType>
@@ -890,6 +889,8 @@
       </Priority>
    </editpolicyProvider>
 </extension>
+
+
 <extension point="org.eclipse.gmf.runtime.common.ui.services.markerNavigationProviders" id="markers-navigation">
       <?gmfgen generated="true"?>
       <MarkerNavigationProvider class="org.eclipse.papyrus.diagram.deployment.providers.UMLMarkerNavigationProvider">
@@ -911,27 +912,6 @@
          <context decoratorTargets="PRIMARY_VIEW"/>
       </decoratorProvider>
    </extension>
-
-<extension point="org.eclipse.ui.handlers" id="menu-handlers">
-      <?gmfgen generated="true"?>
-   </extension>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
