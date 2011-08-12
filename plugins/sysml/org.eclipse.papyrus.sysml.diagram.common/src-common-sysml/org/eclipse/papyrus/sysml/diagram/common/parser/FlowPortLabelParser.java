@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants;
 import org.eclipse.papyrus.sysml.portandflows.FlowDirection;
 import org.eclipse.papyrus.sysml.portandflows.FlowPort;
+import org.eclipse.papyrus.sysml.portandflows.FlowSpecification;
 import org.eclipse.papyrus.sysml.portandflows.PortandflowsPackage;
 import org.eclipse.papyrus.uml.diagram.common.parser.PropertyLabelParser;
 import org.eclipse.papyrus.umlutils.ElementUtil;
@@ -59,7 +60,7 @@ public class FlowPortLabelParser extends PropertyLabelParser {
 			FlowPort flowPort = ElementUtil.getStereotypeApplication(property, FlowPort.class);
 			if(flowPort != null) {
 
-				// manage direction
+				// manage direction only if the FlowPort is type and type is not a FlowSpecification
 				if((flags & ILabelPreferenceConstants.DISP_DIRECTION) == ILabelPreferenceConstants.DISP_DIRECTION) {
 					String direction;
 					switch(flowPort.getDirection().getValue()) {
@@ -76,7 +77,11 @@ public class FlowPortLabelParser extends PropertyLabelParser {
 						direction = "inout";
 						break;
 					}
-					result = String.format(DIRECTION_FORMAT, direction, result);
+					
+					// manage direction only if the FlowPort is type and type is not a FlowSpecification
+					if ((property.getType() != null) && (ElementUtil.getStereotypeApplication(property.getType(), FlowSpecification.class) == null)) {
+						result = String.format(DIRECTION_FORMAT, direction, result);
+					}
 				}
 			}
 
