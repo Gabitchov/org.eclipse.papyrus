@@ -48,52 +48,6 @@ public class ComponentDiagramEditPart extends DiagramEditPart {
 	 */
 	public ComponentDiagramEditPart(View view) {
 		super(view);
-
-
-		getFigure().setClippingStrategy(new IClippingStrategy() {
-
-			public Rectangle[] getClip(IFigure childFigure) {
-				// very inefficient, since it implies several tree traversals. Bit handles modifications of the tree structure
-				// It's a workaround instead of the better solution to fix BorderedNodeFigure (overload and let it return
-				// getExtendedBounds)
-				// See bug 313985 (https://bugs.eclipse.org/bugs/show_bug.cgi?id=313985) for more details
-				applyClippingStrategy(childFigure);
-				if(childFigure instanceof BorderedNodeFigure) {
-					return new Rectangle[]{ ((BorderedNodeFigure)childFigure).getExtendedBounds() };
-
-				} else {
-					return new Rectangle[]{ childFigure.getBounds() };
-				}
-			}
-		});
-	}
-
-	/**
-	 * @generated
-	 */
-	public void applyClippingStrategy(IFigure fig) {
-		boolean hasBorderedNodeChild = false;
-		for(Object child : fig.getChildren()) {
-			if(child instanceof IFigure) {
-				applyClippingStrategy((IFigure)child);
-				if(child instanceof BorderedNodeFigure) {
-					hasBorderedNodeChild = true;
-				}
-			}
-		}
-		if(hasBorderedNodeChild && (fig.getClippingStrategy() == null)) {
-			fig.setClippingStrategy(new IClippingStrategy() {
-
-				public Rectangle[] getClip(IFigure childFigure) {
-					if(childFigure instanceof BorderedNodeFigure) {
-						return new Rectangle[]{ ((BorderedNodeFigure)childFigure).getExtendedBounds() };
-					} else {
-						return new Rectangle[]{ childFigure.getBounds() };
-					}
-				}
-			});
-		}
-
 	}
 
 	/**

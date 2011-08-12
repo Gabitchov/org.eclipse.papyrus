@@ -19,7 +19,10 @@
         iconProviderPriority="Low"
         creationWizardIconPath="icons/obj16/ComponentDiagram.gif"
         editingDomainID="org.eclipse.papyrus.diagram.component.EditingDomain"
-        validationProviderPriority="Low">
+        validationProviderPriority="Low"
+        validationEnabled="true"
+        validationDecorators="true"
+        liveValidationUIFeedback="true">
       <diagramRunTimeClass
           href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Diagram"/>
       <elementType
