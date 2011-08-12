@@ -15,6 +15,7 @@
 package org.eclipse.papyrus.diagram.composite.custom.edit.policies;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.diagram.core.edithelpers.CreateElementRequestAdapter;
@@ -104,8 +105,8 @@ public class GraphicalNodeEditPolicy extends org.eclipse.gmf.runtime.diagram.ui.
 		}
 
 		// resolve the source parent (meaning graphical parent here)
-		View sourceParentView = (View)request.getSourceEditPart().getParent().getModel();
-		EObject sourceParent = ViewUtil.resolveSemanticElement(sourceParentView);
+		View sourceParentView = (request.getSourceEditPart() instanceof ConnectionEditPart) ? null : (View)request.getSourceEditPart().getParent().getModel();
+		EObject sourceParent = (sourceParentView != null) ? ViewUtil.resolveSemanticElement(sourceParentView) : null;
 		if(sourceParent == null) {
 			sourceParent = sourceParentView;
 		}
@@ -121,8 +122,8 @@ public class GraphicalNodeEditPolicy extends org.eclipse.gmf.runtime.diagram.ui.
 		}
 
 		// resolve the source parent (meaning graphical parent here)
-		View targetParentView = (View)request.getTargetEditPart().getParent().getModel();
-		EObject targetParent = ViewUtil.resolveSemanticElement(targetParentView);
+		View targetParentView = (request.getTargetEditPart() instanceof ConnectionEditPart) ? null : (View)request.getTargetEditPart().getParent().getModel();
+		EObject targetParent = (targetParentView != null) ? ViewUtil.resolveSemanticElement(targetParentView) : null;
 		if(targetParent == null) {
 			targetParent = targetParentView;
 		}
