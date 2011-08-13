@@ -18,7 +18,11 @@
         itemSemanticEditPolicyClassName="DeploymentDiagramItemSemanticEditPolicy"
         canonicalEditPolicyClassName="ModelCanonicalEditPolicy"
         iconProviderPriority="Low"
-        validationProviderPriority="Low">
+        creationWizardIconPath="icons/obj16/DeploymentDiagram.gif"
+        validationProviderPriority="Low"
+        validationEnabled="true"
+        validationDecorators="true"
+        liveValidationUIFeedback="true">
       <diagramRunTimeClass
           href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Diagram"/>
       <elementType
@@ -32,6 +36,10 @@
           xsi:type="gmfgen:CustomBehaviour"
           key="&quot;REMOVE_ORPHAN_VIEW&quot;"
           editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.deployment.custom.edit.policies.RemoveOrphanViewPolicy"/>
+      <behaviour
+          xsi:type="gmfgen:CustomBehaviour"
+          key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
+          editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.deployment.custom.edit.policies.CustomDiagramDragDropEditPolicy"/>
       <domainDiagramElement
           href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Model"/>
       <childNodes
@@ -42,7 +50,7 @@
           compartments="/0/@diagram/@compartments.6"
           graphicalNodeEditPolicyClassName="NodeGraphicalNodeEditPolicyCN"
           createCommandClassName="NodeCreateCommandCN"
-          containers="/0/@diagram/@compartments.2 /0/@diagram/@compartments.6">
+          containers="/0/@diagram/@compartments.2 /0/@diagram/@compartments.6 /0/@diagram/@compartments.0 /0/@diagram/@compartments.4">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -88,6 +96,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;RESIZE_BORDER_ITEMS&quot;"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.ConstrainedItemBorderLayoutEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.deployment.custom.edit.policies.CustomDiagramDragDropEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Node"/>
@@ -136,7 +148,7 @@
           compartments="/0/@diagram/@compartments.4"
           graphicalNodeEditPolicyClassName="DeviceGraphicalNodeEditPolicyCN"
           createCommandClassName="DeviceCreateCommandCN"
-          containers="/0/@diagram/@compartments.2 /0/@diagram/@compartments.6">
+          containers="/0/@diagram/@compartments.2 /0/@diagram/@compartments.6 /0/@diagram/@compartments.0 /0/@diagram/@compartments.4">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -185,6 +197,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;RESIZE_BORDER_ITEMS&quot;"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.ConstrainedItemBorderLayoutEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.deployment.custom.edit.policies.CustomDiagramDragDropEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Device"/>
@@ -280,6 +296,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;RESIZE_BORDER_ITEMS&quot;"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.ConstrainedItemBorderLayoutEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.deployment.custom.edit.policies.CustomDiagramDragDropEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ExecutionEnvironment"/>
@@ -372,6 +392,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideClassifierContentsEditPolicy.SHOW_HIDE_CLASSIFIER_CONTENTS_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideClassifierContentsEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.deployment.custom.edit.policies.CustomDiagramDragDropEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Artifact"/>
@@ -469,6 +493,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideClassifierContentsEditPolicy.SHOW_HIDE_CLASSIFIER_CONTENTS_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideClassifierContentsEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.deployment.custom.edit.policies.CustomDiagramDragDropEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Artifact"/>
@@ -532,6 +560,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.deployment.custom.edit.policies.CustomDiagramDragDropEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Comment"/>
@@ -590,6 +622,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.deployment.custom.edit.policies.CustomDiagramDragDropEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Constraint"/>
@@ -707,6 +743,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;RESIZE_BORDER_ITEMS&quot;"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.ConstrainedItemBorderLayoutEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.deployment.custom.edit.policies.CustomDiagramDragDropEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ExecutionEnvironment"/>
@@ -800,6 +840,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;RESIZE_BORDER_ITEMS&quot;"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.ConstrainedItemBorderLayoutEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.deployment.custom.edit.policies.CustomDiagramDragDropEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Device"/>
@@ -889,6 +933,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideClassifierContentsEditPolicy.SHOW_HIDE_CLASSIFIER_CONTENTS_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideClassifierContentsEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.deployment.custom.edit.policies.CustomDiagramDragDropEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Artifact"/>
@@ -983,6 +1031,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;RESIZE_BORDER_ITEMS&quot;"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.ConstrainedItemBorderLayoutEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.deployment.custom.edit.policies.CustomDiagramDragDropEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Node"/>
@@ -1420,7 +1472,7 @@
           editPartClassName="DeviceCompositeCompartmentEditPart"
           itemSemanticEditPolicyClassName="DeviceCompositeCompartmentItemSemanticEditPolicy"
           canonicalEditPolicyClassName="DeviceCompositeCompartmentCanonicalEditPolicy"
-          childNodes="/0/@diagram/@childNodes.2"
+          childNodes="/0/@diagram/@childNodes.2 /0/@diagram/@childNodes.1 /0/@diagram/@childNodes.0"
           title="DeviceCompositeCompartment"
           canCollapse="false"
           node="/0/@diagram/@topLevelNodes.3"
@@ -1503,7 +1555,7 @@
           editPartClassName="DeviceCompositeCompartmentEditPartCN"
           itemSemanticEditPolicyClassName="DeviceCompositeCompartmentItemSemanticEditPolicyCN"
           canonicalEditPolicyClassName="DeviceCompositeCompartmentCanonicalEditPolicyCN"
-          childNodes="/0/@diagram/@childNodes.2"
+          childNodes="/0/@diagram/@childNodes.2 /0/@diagram/@childNodes.1 /0/@diagram/@childNodes.0"
           title="DeviceCompositeCompartment"
           node="/0/@diagram/@childNodes.1"
           listLayout="false">
@@ -1610,8 +1662,8 @@
               xsi:type="gmfgen:ToolEntry"
               title="Node"
               description="Create new Node"
-              largeIconPath="icons/obj16/Node.gif"
-              smallIconPath="icons/obj16/Node.gif"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Node.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Node.gif"
               createMethodName="createNodeCreationTool"
               id="&quot;deployment.tool.node&quot;"
               genNodes="/0/@diagram/@topLevelNodes.5 /0/@diagram/@childNodes.0"/>
@@ -1619,8 +1671,8 @@
               xsi:type="gmfgen:ToolEntry"
               title="Device"
               description="Create new Device"
-              largeIconPath="icons/obj16/Device.gif"
-              smallIconPath="icons/obj16/Device.gif"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Device.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Device.gif"
               createMethodName="createDeviceCreationTool"
               id="&quot;deployment.tool.device&quot;"
               genNodes="/0/@diagram/@topLevelNodes.3 /0/@diagram/@childNodes.1"/>
@@ -1628,8 +1680,8 @@
               xsi:type="gmfgen:ToolEntry"
               title="Execution Environment"
               description="Create new ExecutionEnvironment"
-              largeIconPath="icons/obj16/ExecutionEnvironment.gif"
-              smallIconPath="icons/obj16/ExecutionEnvironment.gif"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExecutionEnvironment.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExecutionEnvironment.gif"
               createMethodName="createExecutionEnvironmentCreationTool"
               id="&quot;deployment.tool.executionEnvironment&quot;"
               genNodes="/0/@diagram/@topLevelNodes.2 /0/@diagram/@childNodes.2"/>
@@ -1637,8 +1689,8 @@
               xsi:type="gmfgen:ToolEntry"
               title="Artifact"
               description="Create new Artifact"
-              largeIconPath="icons/obj16/Artifact.gif"
-              smallIconPath="icons/obj16/Artifact.gif"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Artifact.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Artifact.gif"
               createMethodName="createArtifactCreationTool"
               id="&quot;deployment.tool.artifact&quot;"
               genNodes="/0/@diagram/@topLevelNodes.4 /0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4"/>
@@ -1646,8 +1698,8 @@
               xsi:type="gmfgen:ToolEntry"
               title="Comment"
               description="Create new Comment"
-              largeIconPath="icons/obj16/Comment.gif"
-              smallIconPath="icons/obj16/Comment.gif"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"
               createMethodName="createCommentCreationTool"
               id="&quot;deployment.tool.comment&quot;"
               genNodes="/0/@diagram/@topLevelNodes.0"/>
@@ -1655,8 +1707,8 @@
               xsi:type="gmfgen:ToolEntry"
               title="Constraint"
               description="Create new Constraint"
-              largeIconPath="icons/obj16/Constraint.gif"
-              smallIconPath="icons/obj16/Constraint.gif"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
               createMethodName="createConstraintCreationTool"
               id="&quot;deployment.tool.constraint&quot;"
               genNodes="/0/@diagram/@topLevelNodes.1"/>
@@ -1683,8 +1735,8 @@
               xsi:type="gmfgen:ToolEntry"
               title="Dependency"
               description="Create new Dependency"
-              largeIconPath="icons/obj16/Dependency.gif"
-              smallIconPath="icons/obj16/Dependency.gif"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif"
               createMethodName="createDependencyCreationTool"
               id="&quot;deployment.tool.dependency&quot;"
               genLinks="/0/@diagram/@links.6"/>
@@ -1692,8 +1744,8 @@
               xsi:type="gmfgen:ToolEntry"
               title="Generalization"
               description="Create new Generalization"
-              largeIconPath="icons/obj16/Generalization.gif"
-              smallIconPath="icons/obj16/Generalization.gif"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Generalization.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Generalization.gif"
               createMethodName="createGeneralizationCreationTool"
               id="&quot;deployment.tool.generalization&quot;"
               genLinks="/0/@diagram/@links.5"/>
@@ -1701,8 +1753,8 @@
               xsi:type="gmfgen:ToolEntry"
               title="Deployment"
               description="Create new Deployment"
-              largeIconPath="icons/obj16/Deployment.gif"
-              smallIconPath="icons/obj16/Deployment.gif"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Deployment.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Deployment.gif"
               createMethodName="createDeploymentCreationTool"
               id="&quot;deployment.tool.deployment&quot;"
               genLinks="/0/@diagram/@links.3"/>
@@ -1710,8 +1762,8 @@
               xsi:type="gmfgen:ToolEntry"
               title="Manifestation"
               description="Create new Manifestation"
-              largeIconPath="icons/obj16/Manifestation.gif"
-              smallIconPath="icons/obj16/Manifestation.gif"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Manifestation.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Manifestation.gif"
               createMethodName="createManifestationCreationTool"
               id="&quot;deployment.tool.manifestation&quot;"
               genLinks="/0/@diagram/@links.4"/>
@@ -1747,7 +1799,7 @@
         iD="org.eclipse.papyrus.diagram.deployment"
         name="Papyrus Deployment Diagram (Incubation)"
         provider="Eclipse Modeling Project"
-        version="0.8.0.qualifier">
+        version="0.9.0.qualifier">
       <requiredPlugins>org.eclipse.draw2d</requiredPlugins>
       <requiredPlugins>org.eclipse.gmf.runtime.draw2d.ui</requiredPlugins>
     </plugin>
