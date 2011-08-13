@@ -84,6 +84,18 @@ public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 
 
 	/**
+	 * @generated
+	 */
+	protected void refreshOnActivate() {
+		// Need to activate editpart children before invoking the canonical refresh for EditParts to add event listeners
+		List<?> c = getHost().getChildren();
+		for(int i = 0; i < c.size(); i++) {
+			((EditPart)c.get(i)).activate();
+		}
+		super.refreshOnActivate();
+	}
+
+	/**
 	 * Gets the features to synchronize.
 	 *
 	 * @return the features to synchronize
