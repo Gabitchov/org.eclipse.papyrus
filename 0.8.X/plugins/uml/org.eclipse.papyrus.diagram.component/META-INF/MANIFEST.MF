@@ -39,7 +39,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.extensionpoints.editors,
  org.eclipse.papyrus.editor,
  org.eclipse.papyrus.service.edit,
- org.eclipse.papyrus.widgets
+ org.eclipse.papyrus.widgets,
+ org.eclipse.emf.validation;visibility:=reexport
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
