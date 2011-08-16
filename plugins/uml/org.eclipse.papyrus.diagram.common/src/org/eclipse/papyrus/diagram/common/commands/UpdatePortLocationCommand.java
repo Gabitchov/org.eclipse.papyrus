@@ -38,13 +38,13 @@ import org.eclipse.papyrus.diagram.common.locator.PortPositionLocator;
 public class UpdatePortLocationCommand extends AbstractTransactionalCommand {
 
 	/** The border item edit part (assumed to be a Port) */
-	public IBorderItemEditPart borderItemEditPart;
+	private IBorderItemEditPart borderItemEditPart;
 	
 	/** The parent edit part */
-	public GraphicalEditPart parentEditPart;
+	private GraphicalEditPart parentEditPart;
 	
 	/** The Port side before parent resize */
-	public final int borderItemSide;
+	private final int borderItemSide;
 	
 	/**
 	 * Constructor.
@@ -75,7 +75,7 @@ public class UpdatePortLocationCommand extends AbstractTransactionalCommand {
 		// Retrieve borderItemBounds
 		int borderItemOffset = 10; // see PortPositionLocator.
 		Shape borderItemShape = (Shape) borderItemEditPart.getNotationView();
-		Bounds borderItemBounds = (Bounds )borderItemShape.getLayoutConstraint();
+		Bounds borderItemBounds = (Bounds) borderItemShape.getLayoutConstraint();
 			
 		switch (borderItemSide) { // The borderItemSide is not supposed to change during a parent resize.
 		case PositionConstants.NORTH:
@@ -111,7 +111,7 @@ public class UpdatePortLocationCommand extends AbstractTransactionalCommand {
 			// TODO : Add log here, this case should not be possible anymore.
 			break;
 		}
-		
+
 		return CommandResult.newOKCommandResult();		
 	}
 

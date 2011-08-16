@@ -49,6 +49,7 @@ import org.eclipse.papyrus.diagram.common.part.PapyrusPaletteViewer;
 import org.eclipse.papyrus.diagram.common.part.UmlGmfDiagramEditor;
 import org.eclipse.papyrus.diagram.common.service.PapyrusPaletteService;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.Activator;
+import org.eclipse.papyrus.sysml.diagram.blockdefinition.utils.FixPortsLocationOnOpening;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.dnd.TransferData;
 import org.eclipse.swt.events.KeyEvent;
@@ -102,6 +103,9 @@ public class BlockDefinitionDiagramEditor extends UmlGmfDiagramEditor implements
 	public BlockDefinitionDiagramEditor(ServicesRegistry servicesRegistry, Diagram diagram) throws ServiceException {
 		super(servicesRegistry, diagram);
 
+		// Fix Port locations (implementations before 0.8.1 were erroneous see https://bugs.eclipse.org/bugs/show_bug.cgi?id=354815)
+		(new FixPortsLocationOnOpening()).fix(diagram);		
+		
 		// adds a listener to the palette service, which reacts to palette customizations
 		PapyrusPaletteService.getInstance().addProviderChangeListener(this);
 
