@@ -38,8 +38,11 @@ import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
  * 
  * <pre>
  * TODO  : The port is not re-sizable
+ * 
+ * @deprecated prefer {@link org.eclipse.papyrus.diagram.common.locator.PortPositionLocator}.
  * </pre>
  */
+@Deprecated
 public class PortPositionLocator implements IBorderItemLocator {
 
 	/** the figure around which this border item appears */
