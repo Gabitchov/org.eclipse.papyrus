@@ -36,38 +36,32 @@ import org.eclipse.papyrus.diagram.common.locator.PortPositionLocatorUtils;
 public class FixPortLocationCommand extends AbstractTransactionalCommand {
 
 	/** The proposed (or current) location */
-	public final Rectangle proposedLocation;
+	private final Rectangle proposedLocation;
 	
 	/** The most adapted valid location */
-	public final Rectangle validLocation;
+	private final Rectangle validLocation;
 	
 	/** The shape of the borderItem */
-	public Shape borderItemShape;
+	private Shape borderItemShape;
 	
 	/** The border item bounds */
-	public Bounds borderItemBounds;
-	
-	/** The graphical parent bounds */
-	public Bounds parentBounds; 
-	
+	private Bounds borderItemBounds;
+		
 	/**
 	 * Constructor for the command.
 	 * @param domain the editing domain.
 	 * @param borderItemEP assumed to be a Port due to the use of {@link PortPositionLocatorUtils} to calculate the correct location.
 	 * @param parentEP the edit part of the graphical parent of borderItemEP.
 	 */
-	public FixPortLocationCommand(TransactionalEditingDomain domain, IBorderItemEditPart borderItemEP, GraphicalEditPart parentEP) {
+	public FixPortLocationCommand(TransactionalEditingDomain domain, IBorderItemEditPart borderItemEditPart, GraphicalEditPart parentEditPart) {
 		super(domain, "Fix port location command", null);
 			
-		borderItemShape = (Shape) borderItemEP.getNotationView();
+		borderItemShape = (Shape) borderItemEditPart.getNotationView();
 		borderItemBounds = (Bounds)borderItemShape.getLayoutConstraint();
-		
-		Shape parentShape = (Shape) parentEP.getNotationView();
-		parentBounds = (Bounds)parentShape.getLayoutConstraint();
-		
+			
 		proposedLocation = new Rectangle(borderItemBounds.getX(), borderItemBounds.getY(), borderItemBounds.getWidth(), borderItemBounds.getHeight());
 		
-		validLocation = PortPositionLocatorUtils.getBorderLocation(parentEP.getFigure().getBounds().getCopy(), proposedLocation, 10);
+		validLocation = PortPositionLocatorUtils.getBorderLocation(parentEditPart.getFigure().getBounds().getCopy(), proposedLocation, 10);
 	}
 
 	/**
