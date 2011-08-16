@@ -164,13 +164,4 @@ public abstract class AbstractCommandHandler extends AbstractModelExplorerHandle
 		return getCommand().canExecute();
 	}
 
-	/**
-	 * 
-	 * @return true (visible) when the command can be executed.
-	 */
-	public boolean isVisible() {
-		return getCommand().canExecute();
-	}
-
-
 }
