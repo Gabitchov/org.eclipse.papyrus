@@ -109,25 +109,12 @@ public class DeleteCommandHandler extends AbstractCommandHandler implements IHan
 	}
 
 	/**
-	 * <pre>
-	 * 
-	 * Calculates whether the handler is enabled or not. The command is re-built on the
-	 * basis of current selection before any attempt to test if current command can be executed.
-	 * 
-	 * @see org.eclipse.papyrus.modelexplorer.handler.AbstractCommandHandler#isEnabled()
-	 * 
-	 * @return true if the command can be executed
-	 * 
-	 * </pre>
+	 * {@inheritDoc}
 	 */
+	@Override
 	public boolean isEnabled() {
-
-		// Prepare and store the delete command only when trying to find out 
-		// whether the command is enabled or not.
-		// This assumes the isEnabled() method is called each time the contextual menu
-		// opens. 
-		deleteCommand = buildCommand();
-
-		return super.isEnabled();
+		// Don't compute the delete command to know if it is enabled,
+		// it can be WAY too slow...
+		return true;
 	}
 }
