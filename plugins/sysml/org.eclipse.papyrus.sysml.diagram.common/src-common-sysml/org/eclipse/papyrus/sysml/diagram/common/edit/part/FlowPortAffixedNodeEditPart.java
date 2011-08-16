@@ -170,7 +170,7 @@ public class FlowPortAffixedNodeEditPart extends AbstractElementBorderEditPart {
 		// When the flow port position changes, its position on parent side may change and requires a visual refresh.
 		Object feature = event.getFeature();
 		if(NotationPackage.eINSTANCE.getSize_Width().equals(feature) || NotationPackage.eINSTANCE.getSize_Height().equals(feature) || NotationPackage.eINSTANCE.getLocation_X().equals(feature) || NotationPackage.eINSTANCE.getLocation_Y().equals(feature)) {
-			refreshVisuals();
+			//refreshVisuals(); // Should not be required as the postLayoutListener already calls refreshVisuals.
 		}
 
 		// A visual refresh may also be needed when the following properties are changing : isAtomic (depend on the type), direction, isConjugated.
@@ -252,13 +252,18 @@ public class FlowPortAffixedNodeEditPart extends AbstractElementBorderEditPart {
 			@Override
 			public void postLayout(IFigure container) {
 				refreshVisuals();
-				getBorderedFigure().getBorderItemContainer().removeLayoutListener(layoutInitializationListener);
-				layoutInitializationListener = null;
 			}
 		};
 		getBorderedFigure().getBorderItemContainer().addLayoutListener(layoutInitializationListener);
 
 		super.activate();
+	}
+	
+	@Override
+	public void deactivate() {
+		getBorderedFigure().getBorderItemContainer().removeLayoutListener(layoutInitializationListener);
+		layoutInitializationListener = null;
+		super.deactivate();
 	}
 
 }

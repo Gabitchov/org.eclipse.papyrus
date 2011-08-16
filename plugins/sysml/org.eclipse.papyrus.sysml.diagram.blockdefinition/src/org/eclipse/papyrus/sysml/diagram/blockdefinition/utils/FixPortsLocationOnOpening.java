@@ -1,0 +1,110 @@
+/*****************************************************************************
+ * Copyright (c) 2011 CEA LIST.
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *		
+ *		CEA LIST - Initial API and implementation
+ *
+ *****************************************************************************/
+package org.eclipse.papyrus.sysml.diagram.blockdefinition.utils;
+
+import java.util.Iterator;
+
+import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.transaction.util.TransactionUtil;
+import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
+import org.eclipse.gmf.runtime.notation.Bounds;
+import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.gmf.runtime.notation.Shape;
+import org.eclipse.papyrus.diagram.common.locator.PortPositionLocatorUtils;
+import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLGraphicalTypes;
+import org.eclipse.papyrus.uml.diagram.common.utils.UMLGraphicalTypes;
+
+/**
+ * This class fix Port and FlowPort location during diagram opening (no edit part exists yet).
+ */
+public class FixPortsLocationOnOpening {
+
+	/**
+	 * This method fix the diagram Port and FlowPort locations.
+	 * @param diagram the diagram
+	 */
+	public void fix(Diagram diagram) {
+		
+		// Parse diagram content
+		Iterator<EObject> it = diagram.eAllContents();
+		while(it.hasNext()) {
+			EObject current = it.next();
+			
+			// Select Port and FlowPorts
+			if (! (current instanceof Shape)) {
+				continue;
+			}
+			
+			String currentType = ((Shape)current).getType();
+			if (SysMLGraphicalTypes.SHAPE_SYSML_FLOWPORT_AS_AFFIXED_ID.equals(currentType) || UMLGraphicalTypes.SHAPE_UML_PORT_AS_AFFIXED_ID.equals(currentType)) {
+				
+				int borderItemOffset = 10;
+				Shape portView = (Shape) current;
+				Shape parentView = (Shape) ViewUtil.getViewContainer(portView);
+				Bounds portViewBounds = (Bounds) portView.getLayoutConstraint();
+				Bounds parentViewBounds = (Bounds) parentView.getLayoutConstraint();
+				
+				final Rectangle portBounds = new Rectangle(portViewBounds.getX(), portViewBounds.getY(), portViewBounds.getWidth(), portViewBounds.getHeight());
+				final Rectangle parentBounds = new Rectangle(parentViewBounds.getX(), parentViewBounds.getY(), parentViewBounds.getWidth(), parentViewBounds.getHeight());
+				
+				// Calculate the valid location based on currently stored location and parent bounds
+				final Rectangle validLocation = PortPositionLocatorUtils.getBorderLocation(parentBounds, portBounds, borderItemOffset);
+				
+				// Fix when current location is not the valid location
+				if (! portBounds.equals(validLocation)) {
+					
+					TransactionalEditingDomain editingDomain = TransactionUtil.getEditingDomain(diagram);
+					Command fixCommand = new FixLocationCommand(editingDomain, "Fix Port location on opening", portViewBounds, validLocation);
+					editingDomain.getCommandStack().execute(fixCommand);
+				}
+
+			}
+		}
+	}
+	
+	/**
+	 * This command set the Port view with valid locations.
+	 */
+	public class FixLocationCommand extends RecordingCommand {
+		
+		/** Port view bounds. */
+		private Bounds portViewBounds;
+		
+		/** Port valid bounds (only the location is used here). */
+		private Rectangle portValidBounds;
+		
+		/** Constructor. */
+		public FixLocationCommand(TransactionalEditingDomain domain,String label, Bounds portViewBounds, Rectangle portValidBounds) {
+			super(domain, label);
+			this.portViewBounds = portViewBounds;
+			this.portValidBounds = portValidBounds;
+		}
+
+		@Override
+		protected void doExecute() {
+			portViewBounds.setX(portValidBounds.x());
+			portViewBounds.setY(portValidBounds.y());
+		}
+
+		@Override
+		public boolean canUndo() {
+			return false;
+		}
+		
+	}
+}
