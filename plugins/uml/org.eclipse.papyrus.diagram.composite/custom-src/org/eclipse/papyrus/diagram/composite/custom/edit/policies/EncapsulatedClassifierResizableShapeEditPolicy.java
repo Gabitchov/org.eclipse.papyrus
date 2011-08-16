@@ -69,9 +69,9 @@ public class EncapsulatedClassifierResizableShapeEditPolicy extends ResizableSha
 			TransactionalEditingDomain editingDomain = TransactionUtil.getEditingDomain(borderItemView);
 
 			// Fix possible location issue in BorderItem bounds in notation model
-			ICommand fixPortLocationLocation = new FixPortLocationCommand(editingDomain, borderItem, (GraphicalEditPart)getHost());
-			if (fixPortLocationLocation.canExecute()) {
-				fixPortLocationsCommand.add(new ICommandProxy(fixPortLocationLocation));
+			ICommand fixPortLocationCommand = new FixPortLocationCommand(editingDomain, borderItem, (GraphicalEditPart)getHost());
+			if (fixPortLocationCommand.canExecute()) {
+				fixPortLocationsCommand.add(new ICommandProxy(fixPortLocationCommand));
 			}
 					
 			ICommand updatePortLocationCommand = new UpdatePortLocationCommand(editingDomain, (GraphicalEditPart) getHost(), borderItem, borderItem.getBorderItemLocator().getCurrentSideOfParent());
