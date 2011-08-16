@@ -68,10 +68,6 @@ public class FixPortLocationCommand extends AbstractTransactionalCommand {
 		proposedLocation = new Rectangle(borderItemBounds.getX(), borderItemBounds.getY(), borderItemBounds.getWidth(), borderItemBounds.getHeight());
 		
 		validLocation = PortPositionLocatorUtils.getBorderLocation(parentEP.getFigure().getBounds().getCopy(), proposedLocation, 10);
-		
-		System.err.println("ParentLocation : "+parentEP.getFigure().getBounds().getCopy());
-		System.err.println("ProposedLocation : "+proposedLocation);
-		System.err.println("ValidLocation : "+validLocation);
 	}
 
 	/**
