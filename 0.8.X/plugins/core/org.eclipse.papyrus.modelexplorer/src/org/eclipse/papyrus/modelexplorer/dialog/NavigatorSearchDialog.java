@@ -330,16 +330,15 @@ public class NavigatorSearchDialog extends TrayDialog {
 
 				// Find childs
 
+				EObject parentEObj = (EObject)((IAdaptable)o).getAdapter(EObject.class);
+
 				for(int i = 0; i < contentProvider.getChildren(o).length; i++) {
-					if(contentProvider.getChildren(o)[i] instanceof IAdaptable) {
+					Object child = contentProvider.getChildren(o)[i];
+					if(child instanceof IAdaptable) {
+						EObject eObject = (EObject)((IAdaptable)child).getAdapter(EObject.class);
 
-						EObject eObject = (EObject)((IAdaptable)contentProvider
-								.getChildren(o)[i]).getAdapter(EObject.class);
-
-						if(eObject.eContainer().equals(
-								(EObject)((IAdaptable)o)
-										.getAdapter(EObject.class))) {
-							childs.add(contentProvider.getChildren(o)[i]);
+						if(eObject != null && eObject.eContainer() != null && eObject.eContainer().equals(parentEObj)) {
+							childs.add(child);
 						}
 					}
 				}
