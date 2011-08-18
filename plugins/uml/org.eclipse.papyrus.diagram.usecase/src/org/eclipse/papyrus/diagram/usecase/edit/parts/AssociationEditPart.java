@@ -215,7 +215,7 @@ public class AssociationEditPart extends ConnectionNodeEditPart implements ITree
 	 * @generated NOT
 	 */
 	protected Property getRelatedProperty(EObject obj) {
-		if (obj != null) {
+		if (obj != null && resolveSemanticElement() instanceof Association) {
 			EList<Property> ends = ((Association)resolveSemanticElement()).getMemberEnds();
 
 			for (Property end : ends) {
