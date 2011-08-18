@@ -126,54 +126,53 @@ public class ProxyManager implements IProxyManager {
 	public EObject getEObjectFromStrategy(URI uri) throws MissingResourceException {
 		// ask the strategy if the resource of the uri must be loaded
 		boolean loadOnDemand = loadResource(uri);
-		if(loadOnDemand) {
-			URI trimFragment = uri.trimFragment();
-			Resource resource = modelSet.getResource(trimFragment, loadOnDemand);
-			if(resource != null) {
-				String fragment = uri.fragment();
-				EObject object = resource.getEObject(fragment);
-				if(object != null) {
-					// object find in the resource
-					return object;
+		URI trimFragment = uri.trimFragment();
+		// accept to recover object, either if strategy provides it, or if it has already been loaded anyway
+		Resource resource = modelSet.getResource(trimFragment, loadOnDemand);
+		if(resource != null) {
+			String fragment = uri.fragment();
+			EObject object = resource.getEObject(fragment);
+			if(object != null) {
+				// object find in the resource
+				return object;
+			}
+			// use HistoryRoutingManager to explore routes in di resource historic
+			else {
+				String fileExtension = uri.fileExtension();
+				Resource diResource = null;
+				String resourceName = "";
+				if(SashModel.MODEL_FILE_EXTENSION.equals(fileExtension)) {
+					// proxy is in DI resource
+					diResource = modelSet.getResource(trimFragment, loadOnDemand);
+					resourceName = trimFragment.toString();
+				} else {
+					// retrieve the DI resource from the uri to get the historic
+					URI newURI = trimFragment.trimFileExtension().appendFileExtension(SashModel.MODEL_FILE_EXTENSION);
+					diResource = modelSet.getResource(newURI.trimFragment(), loadOnDemand);
+					resourceName = newURI.trimFragment().toString();
 				}
-				// use HistoryRoutingManager to explore routes in di resource historic
-				else {
-					String fileExtension = uri.fileExtension();
-					Resource diResource = null;
-					String resourceName = "";
-					if(SashModel.MODEL_FILE_EXTENSION.equals(fileExtension)) {
-						// proxy is in DI resource
-						diResource = modelSet.getResource(trimFragment, loadOnDemand);
-						resourceName = trimFragment.toString();
-					} else {
-						// retrieve the DI resource from the uri to get the historic
-						URI newURI = trimFragment.trimFileExtension().appendFileExtension(SashModel.MODEL_FILE_EXTENSION);
-						diResource = modelSet.getResource(newURI.trimFragment(), loadOnDemand);
-						resourceName = newURI.trimFragment().toString();
-					}
-					if(diResource != null) {
-						// call the HistoryRoutingManager to get the EObject
-						// we assume di/notation are at the same level in folder hierarchy
-						EObject eobject = routeManager.getEObject(modelSet, uri.lastSegment().toString(), fragment);
-						if(eobject == null) {
-							throw new MissingResourceException(CommonPlugin.INSTANCE.getString("_UI_StringResourceNotFound_exception", new Object[]{ resourceName }), getClass().getName(), resourceName);
-						}
-						return eobject;
-
-					} else {
-						// resource di not found
-						// warn the user, ask him to select the resource
+				if(diResource != null) {
+					// call the HistoryRoutingManager to get the EObject
+					// we assume di/notation are at the same level in folder hierarchy
+					EObject eobject = routeManager.getEObject(modelSet, uri.lastSegment().toString(), fragment);
+					if(eobject == null) {
 						throw new MissingResourceException(CommonPlugin.INSTANCE.getString("_UI_StringResourceNotFound_exception", new Object[]{ resourceName }), getClass().getName(), resourceName);
 					}
+					return eobject;
+
+				} else {
+					// resource di not found
+					// warn the user, ask him to select the resource
+					throw new MissingResourceException(CommonPlugin.INSTANCE.getString("_UI_StringResourceNotFound_exception", new Object[]{ resourceName }), getClass().getName(), resourceName);
 				}
-			} else {
-				// resource not found
-				// warn the user, ask him to select a resource to search in
-				// or ask to search in the entire resource set
-				// or use a proxy
-				// strategy used for the specified resource only
-				throw new MissingResourceException(CommonPlugin.INSTANCE.getString("_UI_StringResourceNotFound_exception", new Object[]{ trimFragment.toString() }), getClass().getName(), trimFragment.toString());
 			}
+		} else if(loadOnDemand) {
+			// resource not found
+			// warn the user, ask him to select a resource to search in
+			// or ask to search in the entire resource set
+			// or use a proxy
+			// strategy used for the specified resource only
+			throw new MissingResourceException(CommonPlugin.INSTANCE.getString("_UI_StringResourceNotFound_exception", new Object[]{ trimFragment.toString() }), getClass().getName(), trimFragment.toString());
 		} else {
 			// we just want to manage a proxy for this object
 			return null;
