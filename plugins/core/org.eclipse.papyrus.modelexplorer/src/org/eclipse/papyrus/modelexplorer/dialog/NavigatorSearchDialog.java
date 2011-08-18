@@ -10,16 +10,20 @@
  ******************************************************************************/
 package org.eclipse.papyrus.modelexplorer.dialog;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.dialogs.IDialogConstants;
+import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.dialogs.TrayDialog;
+import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.viewers.IContentProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelection;
@@ -52,25 +56,27 @@ import org.eclipse.ui.navigator.CommonNavigator;
  */
 public class NavigatorSearchDialog extends TrayDialog {
 
-	private ITreeContentProvider contentProvider = null;
+	protected ITreeContentProvider contentProvider = null;
 
-	private ILabelProvider labelProvider = null;
+	protected ILabelProvider labelProvider = null;
 
-	private Object root = null;
+	protected Object root = null;
 
-	private ISelectionProvider viewer = null;
+	protected ISelectionProvider viewer = null;
 
-	private List<Object> matchedObjects = Collections.emptyList();
+	protected List<Object> matchedObjects = Collections.emptyList();
 
-	private Label matchesLabel;
+	protected Label matchesLabel;
 
-	private Text searchText;
+	protected Text searchText;
 
-	private Button backButton;
+	protected Button backButton;
 
-	private Button nextButton;
+	protected Button nextButton;
 
-	private Button caseButton;
+	protected Button caseButton;
+
+	protected Button launchButton;
 
 	/**
 	 * 
@@ -82,6 +88,7 @@ public class NavigatorSearchDialog extends TrayDialog {
 	 */
 	public NavigatorSearchDialog(Shell shell, CommonNavigator modelNavigator) {
 		super(shell);
+		setShellStyle(SWT.DIALOG_TRIM | SWT.MODELESS);
 		IContentProvider cprovider = modelNavigator.getCommonViewer()
 				.getContentProvider();
 		if(cprovider instanceof ITreeContentProvider) {
@@ -105,6 +112,7 @@ public class NavigatorSearchDialog extends TrayDialog {
 	 */
 	public NavigatorSearchDialog(Shell shell, TreeViewer viewer) {
 		super(shell);
+		setShellStyle(SWT.DIALOG_TRIM | SWT.MODELESS);
 		this.viewer = viewer;
 		try {
 			this.labelProvider = (ILabelProvider)viewer.getLabelProvider();
@@ -116,7 +124,6 @@ public class NavigatorSearchDialog extends TrayDialog {
 		this.root = viewer.getInput();
 	}
 
-	
 	/**
 	 * Constructor.
 	 *
@@ -128,23 +135,24 @@ public class NavigatorSearchDialog extends TrayDialog {
 	 */
 	public NavigatorSearchDialog(Shell shell, Viewer viewer, ITreeContentProvider contentProvider, ILabelProvider labelProvider, Object root) {
 		super(shell);
+		setShellStyle(SWT.DIALOG_TRIM | SWT.MODELESS);
 		this.viewer = viewer;
 		this.contentProvider = contentProvider;
 		this.labelProvider = labelProvider;
 		this.root = root;
 	}
 
-   /**
-    * Sets a new selection for the associated {@link ISelectionProvider} and optionally makes it visible.
-    * <p>
-    * Subclasses must implement this method.
-    * </p>
-    *
-    * @param selection the new selection
-    * @param reveal <code>true</code> if the selection is to be made
-    *   visible, and <code>false</code> otherwise
-    */
-	private void fireSetSelection( ISelection selection, boolean reveal) {
+	/**
+	 * Sets a new selection for the associated {@link ISelectionProvider} and optionally makes it visible.
+	 * <p>
+	 * Subclasses must implement this method.
+	 * </p>
+	 *
+	 * @param selection the new selection
+	 * @param reveal <code>true</code> if the selection is to be made
+	 *   visible, and <code>false</code> otherwise
+	 */
+	protected void fireSetSelection( ISelection selection, boolean reveal) {
 		// Note : if we want to force reveal, it is possible to check if 
 		// selectionProvider instanceof Viewer, and then call selectionProvider.setSelection(selection, true).
 		// By default a TreeViewer reveal the selection.
@@ -181,15 +189,26 @@ public class NavigatorSearchDialog extends TrayDialog {
 	@Override
 	protected void createButtonsForButtonBar(Composite parent) {
 
+		launchButton = createButton(parent, IDialogConstants.PROCEED_ID, "Launch search",
+				true);
 		backButton = createButton(parent, IDialogConstants.BACK_ID,
 				IDialogConstants.BACK_LABEL, false);
 		nextButton = createButton(parent, IDialogConstants.NEXT_ID,
 				IDialogConstants.NEXT_LABEL, false);
-		createButton(parent, IDialogConstants.OK_ID, IDialogConstants.OK_LABEL,
-				true);
+
 
 		backButton.setEnabled(false);
 		nextButton.setEnabled(false);
+
+		launchButton.addSelectionListener(new SelectionListener() {
+
+			public void widgetSelected(SelectionEvent e) {
+				updateMatches();
+			}
+
+			public void widgetDefaultSelected(SelectionEvent e) {
+			}
+		});
 
 		nextButton.addSelectionListener(new SelectionListener() {
 
@@ -236,7 +255,7 @@ public class NavigatorSearchDialog extends TrayDialog {
 		});
 	}
 
-	private void createSearchTextComposite(Composite background) {
+	protected void createSearchTextComposite(Composite background) {
 		Label searchLabel = new Label(background, SWT.None);
 		searchLabel.setText("Search:");
 		searchLabel.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_END));
@@ -244,7 +263,15 @@ public class NavigatorSearchDialog extends TrayDialog {
 		searchText = new Text(background, SWT.SEARCH);
 		searchText.setFocus();
 		searchText.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-		searchText.addKeyListener(getKeyListener());
+		searchText.addKeyListener(new KeyListener() {
+
+			public void keyReleased(KeyEvent e) {
+				clearMatches();
+			}
+
+			public void keyPressed(KeyEvent e) {
+			}
+		});
 
 		caseButton = new Button(background, SWT.CHECK);
 		caseButton.setText("Case sensitive?");
@@ -259,7 +286,7 @@ public class NavigatorSearchDialog extends TrayDialog {
 			}
 
 			public void widgetSelected(SelectionEvent e) {
-				updateMatches();
+				clearMatches();
 			}
 
 		});
@@ -269,24 +296,28 @@ public class NavigatorSearchDialog extends TrayDialog {
 		resultsLabel.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_END));
 
 		matchesLabel = new Label(background, SWT.None);
-		matchesLabel.setText("No matchings.");
+		matchesLabel.setText("");
 		matchesLabel
-				.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_BEGINNING
-						| GridData.FILL_HORIZONTAL));
+		.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_BEGINNING
+				| GridData.FILL_HORIZONTAL));
 
 	}
 
-	private void updateMatches() {
+	protected void clearMatches() {
+		matchedObjects = Collections.emptyList();
+		backButton.setEnabled(false);
+		nextButton.setEnabled(false);
+		matchesLabel.setText("");
+	}
+
+	protected void updateMatches() {
 		if(contentProvider == null && labelProvider == null) {
 			return;
 		}
 
 		String pattern = searchText.getText();
 		if(pattern.length() == 0) {
-			matchedObjects = Collections.emptyList();
-			backButton.setEnabled(false);
-			nextButton.setEnabled(false);
-			matchesLabel.setText("No matchings.");
+			clearMatches();
 			return;
 		}
 
@@ -294,8 +325,7 @@ public class NavigatorSearchDialog extends TrayDialog {
 			pattern = pattern.toUpperCase();
 		}
 
-		matchedObjects = searchPattern(pattern, Arrays.asList(contentProvider
-				.getElements(root)));
+		launchSearch(pattern, contentProvider.getElements(root));
 
 		// Update matches label
 		matchesLabel.setText(matchedObjects.size() + " matches found");
@@ -312,12 +342,34 @@ public class NavigatorSearchDialog extends TrayDialog {
 
 	}
 
-	private List<Object> searchPattern(String pattern, List<Object> objects) {
+	protected void launchSearch(final String pattern, final Object[] root) {
+		final boolean caseSensitive = caseButton.getSelection();
+
+		ProgressMonitorDialog dialog = new ProgressMonitorDialog(null);
+		try {
+			dialog.run(true, true, new IRunnableWithProgress() {
+
+				public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
+					matchedObjects = searchPattern(pattern, caseSensitive, Arrays.asList(root), monitor);
+				}
+			});
+		} catch (InvocationTargetException e) {
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+
+	protected List<Object> searchPattern(String pattern, boolean caseSensitive, List<Object> objects, IProgressMonitor monitor) {
+		if (monitor.isCanceled()) {
+			return Collections.emptyList();
+		}
+
 		List<Object> matches = new ArrayList<Object>();
 
 		List<Object> childs = new ArrayList<Object>();
 		String objectLabel;
-		boolean caseSensitive = caseButton.getSelection();
+
 		for(Object o : objects) {
 			// Search matches in this level
 			if(!(o instanceof Diagram)) {
@@ -345,26 +397,10 @@ public class NavigatorSearchDialog extends TrayDialog {
 			}
 		}
 		if(!childs.isEmpty()) {
-			matches.addAll(searchPattern(pattern, childs));
+			matches.addAll(searchPattern(pattern, caseSensitive, childs, monitor));
 		}
 
 		return matches;
-	}
-
-	protected KeyListener getKeyListener() {
-		return new KeyListener() {
-
-			public void keyPressed(KeyEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-			public void keyReleased(KeyEvent e) {
-				updateMatches();
-
-			}
-
-		};
 	}
 
 }
