@@ -66,6 +66,8 @@ public class NavigatorSearchDialog extends TrayDialog {
 
 	protected List<Object> matchedObjects = Collections.emptyList();
 
+	protected int currentIndex = 0;
+
 	protected Label matchesLabel;
 
 	protected Text searchText;
@@ -216,18 +218,12 @@ public class NavigatorSearchDialog extends TrayDialog {
 			}
 
 			public void widgetSelected(SelectionEvent e) {
-				ISelection sel = viewer.getSelection();
-				if(!(sel instanceof StructuredSelection)) {
-					return;
+				if(currentIndex >= matchedObjects.size() - 1) {
+					currentIndex = 0;
+				} else {
+					currentIndex++;
 				}
-				StructuredSelection ssel = (StructuredSelection)sel;
-
-				int index = matchedObjects.lastIndexOf(ssel.getFirstElement());
-				if(index == matchedObjects.size() - 1) {
-					index = -1;
-				}
-				index++;
-				fireSetSelection(new StructuredSelection(matchedObjects.get(index)), true);
+				fireSetSelection(new StructuredSelection(matchedObjects.get(currentIndex)), true);
 			}
 
 		});
@@ -238,18 +234,12 @@ public class NavigatorSearchDialog extends TrayDialog {
 			}
 
 			public void widgetSelected(SelectionEvent e) {
-				ISelection sel = viewer.getSelection();
-				if(!(sel instanceof StructuredSelection)) {
-					return;
+				if(currentIndex <= 0) {
+					currentIndex = matchedObjects.size() - 1;
+				} else {
+					currentIndex--;
 				}
-				StructuredSelection ssel = (StructuredSelection)sel;
-
-				int index = matchedObjects.lastIndexOf(ssel.getFirstElement());
-				if(index == 0) {
-					index = matchedObjects.size() - 1;
-				}
-				index--;
-				fireSetSelection(new StructuredSelection(matchedObjects.get(index)), true);
+				fireSetSelection(new StructuredSelection(matchedObjects.get(currentIndex)), true);
 			}
 
 		});
@@ -305,6 +295,7 @@ public class NavigatorSearchDialog extends TrayDialog {
 
 	protected void clearMatches() {
 		matchedObjects = Collections.emptyList();
+		currentIndex = 0;
 		backButton.setEnabled(false);
 		nextButton.setEnabled(false);
 		matchesLabel.setText("");
@@ -351,6 +342,7 @@ public class NavigatorSearchDialog extends TrayDialog {
 
 				public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
 					matchedObjects = searchPattern(pattern, caseSensitive, Arrays.asList(root), monitor);
+					currentIndex = 0;
 				}
 			});
 		} catch (InvocationTargetException e) {
