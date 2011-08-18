@@ -193,14 +193,22 @@ public class AssociationEditPart extends ConnectionNodeEditPart implements ITree
 	 * @generated NOT
 	 */
 	protected Property getSourceProperty() {
-		return getRelatedProperty(((IGraphicalEditPart)getSource()).resolveSemanticElement());
+		IGraphicalEditPart graphicalSource = (IGraphicalEditPart)getSource();
+		if (graphicalSource != null) {
+			return getRelatedProperty(graphicalSource.resolveSemanticElement());
+		}
+		return null;
 	}
 
 	/**
 	 * @generated NOT
 	 */
 	protected Property getTargetProperty() {
-		return getRelatedProperty(((IGraphicalEditPart)getTarget()).resolveSemanticElement());
+		IGraphicalEditPart graphicalTarget = (IGraphicalEditPart)getTarget();
+		if (graphicalTarget != null) {
+			return getRelatedProperty(graphicalTarget.resolveSemanticElement());
+		}
+		return null;
 	}
 
 	/**
