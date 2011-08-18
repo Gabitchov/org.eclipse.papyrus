@@ -65,8 +65,11 @@ public class GmfEditorFactory extends AbstractEditorFactory {
 
 		if(pageIdentifier instanceof Diagram) {
 			Diagram diagram = (Diagram)pageIdentifier;
-			final String type = diagram.getType();
-			return getExpectedType().equals(type);
+			// disable it when diagram is a proxy (dedicated factory will handle it)
+			if(!diagram.eIsProxy()) {
+				final String type = diagram.getType();
+				return getExpectedType().equals(type);
+			}
 		}
 		// no
 		return false;
