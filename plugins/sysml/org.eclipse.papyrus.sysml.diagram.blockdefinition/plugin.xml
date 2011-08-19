@@ -1276,18 +1276,19 @@
 		<Priority name="Low"/>
 	</ParserProvider>
 </extension>
-  
+
+<!-- Validation markers declaration -->
 <extension point="org.eclipse.gmf.runtime.common.ui.services.markerNavigationProviders" id="markers-navigation">
-      <MarkerNavigationProvider class="org.eclipse.papyrus.gmf.diagram.common.provider.MarkerNavigationProvider">
-         <MarkerType name="org.eclipse.papyrus.sysml.diagram.blockdefinition.diagnostic"/>
-         <Priority name="Lowest"/>
-      </MarkerNavigationProvider>
-   </extension>
+	<MarkerNavigationProvider class="org.eclipse.papyrus.gmf.diagram.common.provider.MarkerNavigationProvider">
+		<MarkerType name="org.eclipse.papyrus.sysml.diagram.blockdefinition.diagnostic"/>
+		<Priority name="Lowest"/>
+	</MarkerNavigationProvider>
+</extension>
 
 <extension id="diagnostic" name="Block Definition Diagram (Incubation) problems" point="org.eclipse.core.resources.markers">
-      <super type="org.eclipse.core.resources.problemmarker"/>
-      <super type="org.eclipse.gmf.runtime.common.ui.services.marker"/>
-      <persistent value="true"/>
+	<super type="org.eclipse.core.resources.problemmarker"/>
+	<super type="org.eclipse.gmf.runtime.common.ui.services.marker"/>
+	<persistent value="true"/>
 </extension>
 
 <extension id="validationDecoratorProvider" name="ValidationDecorations" point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders">
@@ -1311,30 +1312,29 @@
 <!-- The Handler to manages the Provided and Required Interfaces for a Port-->
 <extension
       point="org.eclipse.ui.handlers">
-   <handler
+	<handler
          class="org.eclipse.papyrus.sysml.diagram.blockdefinition.handler.ManageProvidedInterfacesHandler"
          commandId="org.eclipse.papyrus.sysml.diagram.blockdefinition.command.manage.interfaces">
-      <activeWhen>
+	<activeWhen>
          <and>
-            <with
-                  variable="selection">
-               <iterate>
-                  <instanceof
-                        value="org.eclipse.papyrus.uml.diagram.common.edit.part.DefaultChildLabelEditPart">
-                  </instanceof>
-               </iterate>
+         <or>
+			<with variable="selection">
+				<iterate>
+				<instanceof value="org.eclipse.papyrus.uml.diagram.common.edit.part.DefaultChildLabelEditPart"/>
+				</iterate>
+			</with>
+			<with variable="selection">
+				<iterate>
+				<instanceof value="org.eclipse.papyrus.uml.diagram.common.edit.part.PortAffixedNodeEditPart"/>
+				</iterate>
             </with>
-            <with
-                  variable="activeEditor">
-               <test
-                     forcePluginActivation="true"
-                     property="org.eclipse.papyrus.diagram.common.diagram.tester.diagramType"
-                     value="BlockDefinition">
-               </test>
-            </with>
-         </and>
-      </activeWhen>
-   </handler>
+		</or>
+		<with variable="activeEditor">
+			<test property="org.eclipse.papyrus.diagram.common.diagram.tester.diagramType" value="BlockDefinition" forcePluginActivation="true"/>
+		</with>
+		</and>
+	</activeWhen>
+	</handler>
 </extension>
 
 <!-- Add the Menu to manages the Provided and Required Interfaces for a Port-->
