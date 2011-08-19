@@ -26,6 +26,9 @@ import org.eclipse.gmf.runtime.notation.Bounds;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.papyrus.diagram.common.locator.PortPositionLocatorUtils;
+import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
+import org.eclipse.papyrus.sysml.diagram.blockdefinition.Activator;
+import org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.ElementTypes;
 import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLGraphicalTypes;
 import org.eclipse.papyrus.uml.diagram.common.utils.UMLGraphicalTypes;
 
@@ -60,12 +63,21 @@ public class FixPortsLocationOnOpening {
 				Bounds parentViewBounds = (Bounds) parentView.getLayoutConstraint();
 				
 				final Rectangle portBounds = new Rectangle(portViewBounds.getX(), portViewBounds.getY(), portViewBounds.getWidth(), portViewBounds.getHeight());
-				final Rectangle parentBounds = new Rectangle(parentViewBounds.getX(), parentViewBounds.getY(), parentViewBounds.getWidth(), parentViewBounds.getHeight());
+				
+				int parentWidth = parentViewBounds.getWidth();
+				int parentHeight = parentViewBounds.getHeight();
+				if ((parentWidth == -1) && (parentHeight == -1)) {
+					// warning the size may not be set in notation (default size), in such a case get default size from preferences.
+					String parentPrefKey = ElementTypes.DIAGRAM_ID + "_" + parentView.getType();
+					parentWidth = Activator.getInstance().getPreferenceStore().getInt(PreferenceConstantHelper.getElementConstant(parentPrefKey, PreferenceConstantHelper.WIDTH));
+					parentHeight = Activator.getInstance().getPreferenceStore().getInt(PreferenceConstantHelper.getElementConstant(parentPrefKey, PreferenceConstantHelper.HEIGHT));
+				}
+				final Rectangle parentBounds = new Rectangle(parentViewBounds.getX(), parentViewBounds.getY(), parentWidth, parentHeight);
 				
 				// Calculate the valid location based on currently stored location and parent bounds
 				final Rectangle validLocation = PortPositionLocatorUtils.getBorderLocation(parentBounds, portBounds, borderItemOffset);
 				
-				// Fix when current location is not the valid location
+				// Fix when current location is not the valid location (only possible if parent size is set)
 				if (! portBounds.equals(validLocation)) {
 					
 					TransactionalEditingDomain editingDomain = TransactionUtil.getEditingDomain(diagram);

@@ -222,7 +222,7 @@ public class ShowHideContentsAction extends AbstractShowHideAction implements IA
 
 		//the command to show element
 		Point propertyLocation = new Point();
-		Point portLocation = new Point(0, -2 * increment + 1);
+		Point portLocation = new Point(-10, -2 * increment + 1);
 		for(Object current : this.viewsToCreate) {
 			EditPartRepresentation rep = findEditPartRepresentation(current);
 			if(rep == null) {
