@@ -46,7 +46,6 @@ import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.utils.ServiceUtils;
-import org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.diagram.common.providers.EditorLabelProvider;
 import org.eclipse.papyrus.diagram.common.util.Util;
@@ -690,13 +689,13 @@ public class InterfaceManagerDialog extends SelectionDialog {
 		 */
 		public IStatus validate(Object[] selection) {
 
-			IStatus status = new Status(IStatus.ERROR, UMLDiagramEditorPlugin.ID, Messages.NoSelectionFound);
+			IStatus status = new Status(IStatus.ERROR, org.eclipse.papyrus.sysml.diagram.blockdefinition.Activator.PLUGIN_ID, Messages.NoSelectionFound);
 			if(selection.length >= 1) {
 				for(int i = 0; i < selection.length; i++) {
 					if(selection[i] instanceof Package || selection[i] instanceof Classifier || selection[i] instanceof NewElementRepresentation)
-						status = new Status(IStatus.OK, UMLDiagramEditorPlugin.ID, Messages.SelectionValidated);
+						status = new Status(IStatus.OK, org.eclipse.papyrus.sysml.diagram.blockdefinition.Activator.PLUGIN_ID, Messages.SelectionValidated);
 					else {
-						status = new Status(IStatus.ERROR, UMLDiagramEditorPlugin.ID, Messages.InterfaceManagerDialog_SelectionHasToBeAPackageOrAClassifier);
+						status = new Status(IStatus.ERROR, org.eclipse.papyrus.sysml.diagram.blockdefinition.Activator.PLUGIN_ID, Messages.InterfaceManagerDialog_SelectionHasToBeAPackageOrAClassifier);
 						break;
 					}
 				}
