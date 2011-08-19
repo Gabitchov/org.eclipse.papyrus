@@ -19,7 +19,11 @@ import org.eclipse.papyrus.diagram.clazz.custom.policies.ClassDiagramDragDropEdi
 import org.eclipse.papyrus.gmf.diagram.common.provider.IGraphicalTypeRegistry;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.GraphicalTypeRegistry;
 
-/** Customization of the DND edit policy for the BlockDefinition Diagram */
+/** 
+ * Customization of the DND edit policy for the BlockDefinition Diagram
+ * @deprecated prefer using {@link CustomDiagramDragDropEditPolicy}.
+ */
+@Deprecated
 public class BlockDefinitionDiagramDragDropEditPolicy extends ClassDiagramDragDropEditPolicy {
 
 	/** Local graphical type registry */
