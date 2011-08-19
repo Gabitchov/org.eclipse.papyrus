@@ -4,31 +4,38 @@
 		<drawer
 			iconpath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
 			id="org.eclipse.papyrus.sysml.diagram.internalblock.SYSML_InternalBlock__Tools" name="Tools">
-			<aspectTool description="Create a new Block" id="internalblock.tool.block"
-				name="Block" refToolId="composite.tool.class">
+			<aspectTool description="Create a new BlockComposite" id="internalblock.tool.blockcomposite"
+				name="BlockComposite" refToolId="internalblock.tool.blockcomposite">
 			</aspectTool>
+			<aspectTool description="Create a new BlockPropertyComposite" id="internalblock.tool.blockpropertycomposite"
+				name="BlockPropertyComposite" refToolId="internalblock.tool.blockpropertycomposite">
+			</aspectTool>
+			<aspectTool description="Create a new FlowPort" id="internalblock.tool.flowport"
+				name="FlowPort" refToolId="internalblock.tool.flowport">
+			</aspectTool>
+			<aspectTool description="Create a new Port" id="internalblock.tool.port"
+				name="Port" refToolId="internalblock.tool.port">
+			</aspectTool>
+			<aspectTool description="Create a new Connector" id="internalblock.tool.connector"
+				name="Connector" refToolId="internalblock.tool.connector">
+			</aspectTool>
+			<aspectTool description="Create a new Dependency" id="internalblock.tool.dependency"
+				name="Dependency" refToolId="internalblock.tool.dependency">
+			</aspectTool>
+			
 			<aspectTool description="Create a new Comment" id="internalblock.tool.comment"
 				name="Comment" refToolId="composite.tool.comment">
 			</aspectTool>
 			<aspectTool description="Create a new Constraint" id="internalblock.tool.constraint"
 				name="Constraint" refToolId="composite.tool.constraint">
 			</aspectTool>
-			<aspectTool description="Create a new Port" id="internalblock.tool.port"
-				name="Port" refToolId="composite.tool.port">
-			</aspectTool>
-			<aspectTool description="Create a new Property" id="internalblock.tool.property"
-				name="Property" refToolId="composite.tool.property">
-			</aspectTool>
 			<aspectTool description="Create a new CommentAnnotatedElement" id="internalblock.tool.commentannotatedelement"
 				name="CommentAnnotatedElement" refToolId="composite.tool.link">
-			</aspectTool>
-			<aspectTool description="Create a new Connector" id="internalblock.tool.connector"
-				name="Connector" refToolId="composite.tool.connector">
 			</aspectTool>
 			<aspectTool description="Create a new ConstraintConstrainedElement" id="internalblock.tool.constraintconstrainedelement"
 				name="ConstraintConstrainedElement" refToolId="composite.tool.link">
 			</aspectTool>
-						
+			
 		</drawer>
 	</content>
 </paletteDefinition>

@@ -22,6 +22,10 @@ public class SysMLGraphicalTypes {
 	/** Custom nodes */
 	public static final String SHAPE_SYSML_BLOCK_AS_CLASSIFIER_ID = "shape_sysml_block_as_classifier"; //$NON-NLS-1$
 
+	public static final String SHAPE_SYSML_BLOCK_AS_COMPOSITE_ID = "shape_sysml_block_as_composite"; //$NON-NLS-1$
+
+	public static final String SHAPE_SYSML_BLOCKPROPERTY_AS_COMPOSITE_ID = "shape_sysml_blockproperty_as_composite"; //$NON-NLS-1$
+
 	public static final String SHAPE_SYSML_DIMENSION_AS_CLASSIFIER_ID = "shape_sysml_dimension_as_classifier"; //$NON-NLS-1$
 
 	public static final String SHAPE_SYSML_CONSTRAINTBLOCK_AS_CLASSIFIER_ID = "shape_sysml_constraintblock_as_classifier"; //$NON-NLS-1$
@@ -77,6 +81,10 @@ public class SysMLGraphicalTypes {
 	public static final String COMPARTMENT_SYSML_PROPERTY_AS_LIST_ID = "compartment_sysml_property_as_list"; //$NON-NLS-1$
 
 	public static final String COMPARTMENT_SYSML_REFERENCE_AS_LIST_ID = "compartment_sysml_reference_as_list"; //$NON-NLS-1$
+
+	public static final String COMPARTMENT_SYSML_STRUCTURE_ID = "compartment_sysml_structure"; //$NON-NLS-1$
+
+	public static final String COMPARTMENT_SYSML_BLOCKPROPERTY_STRUCTURE_ID = "compartment_sysml_blockproperty_structure"; //$NON-NLS-1$
 
 	public static final String COMPARTMENT_SYSML_VALUE_AS_LIST_ID = "compartment_sysml_value_as_list"; //$NON-NLS-1$
 

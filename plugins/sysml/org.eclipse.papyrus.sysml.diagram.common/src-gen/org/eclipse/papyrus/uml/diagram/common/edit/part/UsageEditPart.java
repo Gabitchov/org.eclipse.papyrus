@@ -40,7 +40,7 @@ public class UsageEditPart extends AbstractElementLinkEditPart {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
 		installEditPolicy(AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeLinkLabelDisplayEditPolicy("use"));
-		// Start of user code custom policies	
+		// Start of user code custom policies
 		// End of user code
 	}
 

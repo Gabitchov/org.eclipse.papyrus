@@ -27,8 +27,11 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.common.commands.SemanticAdapter;
 import org.eclipse.papyrus.diagram.composite.providers.UMLViewProvider;
 import org.eclipse.papyrus.gmf.diagram.common.provider.IGraphicalTypeRegistry;
+import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLGraphicalTypes;
+import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
 
 public class InheritedCompositeDiagramViewProvider extends UMLViewProvider {
 
@@ -55,9 +58,6 @@ public class InheritedCompositeDiagramViewProvider extends UMLViewProvider {
 				// Cannot use createEdge from super class as it never take the graphical type (semanticHint) into account.
 				// createdEdge = super.createEdge(semanticAdapter, containerView, domainElementGraphicalType, index, persisted, preferencesHint);
 
-				if(ElementTypes.CONNECTOR.getSemanticHint().equals(domainElementGraphicalType)) {
-					createdEdge = createConnector_4013(domainElement, containerView, index, persisted, preferencesHint);
-				}
 				if(ElementTypes.COMMENT_ANNOTATED_ELEMENT.getSemanticHint().equals(domainElementGraphicalType)) {
 					createdEdge = createCommentAnnotatedElement_4002(containerView, index, persisted, preferencesHint);
 				}
@@ -76,14 +76,13 @@ public class InheritedCompositeDiagramViewProvider extends UMLViewProvider {
 
 	@Override
 	protected boolean provides(CreateViewForKindOperation op) {
-
-		// This provider is registered for InternalBlock Diagram only
+		// Never use this method (often incorrectly implemented due to GMF Tooling choices).
 		String diagramType = op.getContainerView().getDiagram().getType();
 		if(!ElementTypes.DIAGRAM_ID.equals(diagramType)) {
 			return false;
 		}
 
-		return true;
+		throw new UnsupportedOperationException("Should never be called by the " + diagramType + " diagram.");
 	}
 
 	@Override
@@ -101,9 +100,6 @@ public class InheritedCompositeDiagramViewProvider extends UMLViewProvider {
 		}
 
 		IElementType elementType = getSemanticElementType(op.getSemanticAdapter());
-		if(elementType == ElementTypes.CONNECTOR) {
-			return true;
-		}
 		if(elementType == ElementTypes.COMMENT_ANNOTATED_ELEMENT) {
 			return true;
 		}
@@ -152,53 +148,23 @@ public class InheritedCompositeDiagramViewProvider extends UMLViewProvider {
 		// /////////////////////////////////////////////////////////////////////
 
 		IElementType elementType = (IElementType)op.getSemanticAdapter().getAdapter(IElementType.class);
-		if(elementType == ElementTypes.CLASS) {
+		if(elementType == UMLElementTypes.COMMENT) {
 			if(ElementTypes.DIAGRAM_ID.equals(containerGraphicalType)) {
 				return true;
 			}
-		}
-		if(elementType == ElementTypes.PORT_CN) {
-			if(ElementTypes.CLASS.getSemanticHint().equals(containerGraphicalType)) {
+			if(SysMLGraphicalTypes.COMPARTMENT_SYSML_STRUCTURE_ID.equals(containerGraphicalType)) {
 				return true;
 			}
-			if(ElementTypes.PROPERTY_CN.getSemanticHint().equals(containerGraphicalType)) {
-				return true;
-			}
-			if(ElementTypes.CLASS_COMPARTMENT_STRUCTURE_HINT.equals(containerGraphicalType)) {
-				return true;
-			}
-			if(ElementTypes.PROPERTY_CN_COMPARTMENT_STRUCTURE_HINT.equals(containerGraphicalType)) {
+			if(SysMLGraphicalTypes.COMPARTMENT_SYSML_BLOCKPROPERTY_STRUCTURE_ID.equals(containerGraphicalType)) {
 				return true;
 			}
 		}
-		if(elementType == ElementTypes.PROPERTY_CN) {
-			if(ElementTypes.CLASS_COMPARTMENT_STRUCTURE_HINT.equals(containerGraphicalType)) {
-				return true;
-			}
-			if(ElementTypes.PROPERTY_CN_COMPARTMENT_STRUCTURE_HINT.equals(containerGraphicalType)) {
-				return true;
-			}
-		}
-		if(elementType == ElementTypes.COMMENT) {
+
+		if(elementType == UMLElementTypes.CONSTRAINT) {
 			if(ElementTypes.DIAGRAM_ID.equals(containerGraphicalType)) {
 				return true;
 			}
-		}
-		if(elementType == ElementTypes.COMMENT_CN) {
-			if(ElementTypes.CLASS_COMPARTMENT_STRUCTURE_HINT.equals(containerGraphicalType)) {
-				return true;
-			}
-			if(ElementTypes.PROPERTY_CN_COMPARTMENT_STRUCTURE_HINT.equals(containerGraphicalType)) {
-				return true;
-			}
-		}
-		if(elementType == ElementTypes.CONSTRAINT) {
-			if(ElementTypes.DIAGRAM_ID.equals(containerGraphicalType)) {
-				return true;
-			}
-		}
-		if(elementType == ElementTypes.CONSTRAINT_CN) {
-			if(ElementTypes.CLASS_COMPARTMENT_STRUCTURE_HINT.equals(containerGraphicalType)) {
+			if(SysMLGraphicalTypes.COMPARTMENT_SYSML_STRUCTURE_ID.equals(containerGraphicalType)) {
 				return true;
 			}
 		}
@@ -214,6 +180,8 @@ public class InheritedCompositeDiagramViewProvider extends UMLViewProvider {
 			String domainElementGraphicalType = op.getSemanticHint();
 			if(domainElementGraphicalType == null) {
 				domainElementGraphicalType = registry.getNodeGraphicalType(domainElement, containerGraphicalType);
+			} else {
+				domainElementGraphicalType = registry.getNodeGraphicalType(domainElementGraphicalType, containerGraphicalType);
 			}
 
 			if((!IGraphicalTypeRegistry.UNDEFINED_TYPE.equals(domainElementGraphicalType)) && (registry.isKnownNodeType(domainElementGraphicalType))) {
@@ -226,15 +194,19 @@ public class InheritedCompositeDiagramViewProvider extends UMLViewProvider {
 	@Override
 	public Node createNode(IAdaptable semanticAdapter, View containerView, String semanticHint, int index, boolean persisted, PreferencesHint preferencesHint) {
 
-		if(semanticHint != null) {
-			return super.createNode(semanticAdapter, containerView, semanticHint, index, persisted, preferencesHint);
-		}
-
 		// Use the GraphicalTypeRegistry to find the expected type for a domain element
 		// Get the type of the container
 		String containerGraphicalType = containerView.getType();
+
 		// Get the type of the domain element
 		EObject domainElement = (EObject)semanticAdapter.getAdapter(EObject.class);
+
+		if(semanticHint != null) {
+			// Look for a possible graphicalType replacement
+			String graphicalType = registry.getNodeGraphicalType(semanticHint, containerGraphicalType);
+			return super.createNode(new SemanticAdapter(domainElement, null), containerView, graphicalType, index, persisted, preferencesHint);
+		}
+
 		String domainElementGraphicalType = registry.getNodeGraphicalType(domainElement, containerGraphicalType);
 
 		// Create the expected node

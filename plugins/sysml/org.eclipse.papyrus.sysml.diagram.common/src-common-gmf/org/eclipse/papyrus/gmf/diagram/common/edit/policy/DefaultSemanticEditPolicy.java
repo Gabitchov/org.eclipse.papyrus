@@ -13,12 +13,14 @@
  *****************************************************************************/
 package org.eclipse.papyrus.gmf.diagram.common.edit.policy;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.SemanticEditPolicy;
@@ -38,6 +40,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.service.edit.service.IElementEditService;
+import org.eclipse.papyrus.uml.service.types.utils.RequestParameterConstants;
 
 /**
  * Non diagram-specific class replacing UMLBaseItemSemanticEditPolicy generated
@@ -188,6 +191,10 @@ public class DefaultSemanticEditPolicy extends SemanticEditPolicy {
 		if(commandService == null) {
 			return UnexecutableCommand.INSTANCE;
 		}
+
+		// Add new graphical end in request parameters
+		View newView = (View)getHost().getModel();
+		req.setParameter(RequestParameterConstants.EDGE_REORIENT_REQUEST_END_VIEW, newView);
 
 		ICommand semanticCommand = commandService.getEditCommand(req);
 

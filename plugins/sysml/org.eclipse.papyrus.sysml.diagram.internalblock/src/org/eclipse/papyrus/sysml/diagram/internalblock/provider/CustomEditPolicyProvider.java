@@ -14,24 +14,130 @@
 package org.eclipse.papyrus.sysml.diagram.internalblock.provider;
 
 import org.eclipse.gef.EditPart;
+import org.eclipse.gef.EditPolicy;
+import org.eclipse.gmf.runtime.common.core.service.IOperation;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.ResizableCompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
-import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
+import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.CreateEditPoliciesOperation;
 import org.eclipse.papyrus.diagram.common.editpolicies.NavigationEditPolicy;
-import org.eclipse.papyrus.diagram.composite.edit.parts.ClassCompositeCompartmentEditPart;
-import org.eclipse.papyrus.sysml.diagram.internalblock.edit.policy.BlockCompositeCompartmentItemSemanticEditPolicy;
+import org.eclipse.papyrus.diagram.composite.edit.parts.CommentEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.CommentEditPartCN;
+import org.eclipse.papyrus.diagram.composite.edit.parts.ConstraintEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.ConstraintEditPartCN;
+import org.eclipse.papyrus.gmf.diagram.common.edit.policy.DefaultCreationEditPolicy;
+import org.eclipse.papyrus.gmf.diagram.common.edit.policy.DefaultGraphicalNodeEditPolicy;
+import org.eclipse.papyrus.sysml.diagram.common.edit.part.BlockCompositeEditPart;
+import org.eclipse.papyrus.sysml.diagram.common.edit.part.BlockPropertyCompositeEditPart;
+import org.eclipse.papyrus.sysml.diagram.common.edit.part.BlockPropertyStructureCompartmentEditPart;
+import org.eclipse.papyrus.sysml.diagram.common.edit.part.FlowPortAffixedNodeEditPart;
+import org.eclipse.papyrus.sysml.diagram.common.edit.part.StructureCompartmentEditPart;
+import org.eclipse.papyrus.sysml.diagram.internalblock.edit.policy.CustomBlockPropertyCompositeDropEditPolicy;
+import org.eclipse.papyrus.sysml.diagram.internalblock.edit.policy.CustomBlockPropertyCompositeSemanticEditPolicy;
+import org.eclipse.papyrus.sysml.diagram.internalblock.edit.policy.CustomBlockPropertyStructureCompartmentEditPartDropEditPolicy;
+import org.eclipse.papyrus.sysml.diagram.internalblock.edit.policy.CustomDefaultSemanticEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.internalblock.edit.policy.CustomDragDropEditPolicy;
-import org.eclipse.papyrus.sysml.diagram.internalblock.edit.policy.StereotypeNodeLabelDisplayEditPolicy;
+import org.eclipse.papyrus.sysml.diagram.internalblock.edit.policy.EncapsulatedClassifierDropEditPolicy;
+import org.eclipse.papyrus.sysml.diagram.internalblock.edit.policy.StructureClassifierDropEditPolicy;
+import org.eclipse.papyrus.sysml.diagram.internalblock.edit.policy.TypedElementDropEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.edit.part.AbstractElementBorderEditPart;
+import org.eclipse.papyrus.uml.diagram.common.edit.part.AbstractElementEditPart;
+import org.eclipse.papyrus.uml.diagram.common.edit.part.AbstractElementLinkEditPart;
+import org.eclipse.papyrus.uml.diagram.common.edit.part.ConnectorEditPart;
+import org.eclipse.papyrus.uml.diagram.common.edit.part.DependencyEditPart;
+import org.eclipse.papyrus.uml.diagram.common.edit.part.PortAffixedNodeEditPart;
 
+/**
+ * Custom edit policy provider.
+ */
 public class CustomEditPolicyProvider extends InternalBlockDiagramEditPolicyProvider {
 
+	public boolean provides(IOperation operation) {
+
+		CreateEditPoliciesOperation epOperation = (CreateEditPoliciesOperation)operation;
+		if(!(epOperation.getEditPart() instanceof IGraphicalEditPart)) {
+			return false;
+		}
+
+		// Make sure this concern Internal Block Diagram only
+		IGraphicalEditPart gep = (IGraphicalEditPart)epOperation.getEditPart();
+		String diagramType = gep.getNotationView().getDiagram().getType();
+		if(!ElementTypes.DIAGRAM_ID.equals(diagramType)) {
+			return false;
+		}
+
+		// Provides for edit parts that represent nodes in Internal Block diagram
+		if(gep instanceof AbstractElementEditPart) {
+			return true;
+		}
+		if(gep instanceof AbstractElementBorderEditPart) {
+			return true;
+		}
+		
+		// Provides for edit parts that represent edges in Internal Block diagram
+		if(gep instanceof AbstractElementLinkEditPart) {
+			return true;
+		}
+
+		if(gep instanceof ResizableCompartmentEditPart) {
+			return true;
+		}
+		
+		return super.provides(operation);
+	}
+	
 	public void createEditPolicies(EditPart editPart) {
 		super.createEditPolicies(editPart);
-		editPart.installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new StereotypeNodeLabelDisplayEditPolicy());
+
 		editPart.installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDragDropEditPolicy());
 		editPart.installEditPolicy(NavigationEditPolicy.NAVIGATION_POLICY, new NavigationEditPolicy());
 
-		if(editPart instanceof ClassCompositeCompartmentEditPart) {
-			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new BlockCompositeCompartmentItemSemanticEditPolicy());
+		if((editPart instanceof ConstraintEditPart) || (editPart instanceof ConstraintEditPartCN)) {
+			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomDefaultSemanticEditPolicy());
+			editPart.installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
+			editPart.installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
+		}
+		
+		if((editPart instanceof CommentEditPart) || (editPart instanceof CommentEditPartCN)) {
+			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomDefaultSemanticEditPolicy());
+			editPart.installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
+			editPart.installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
+		}
+		
+		if(editPart instanceof FlowPortAffixedNodeEditPart) {
+			editPart.installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new TypedElementDropEditPolicy());
+			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomDefaultSemanticEditPolicy());
+		}
+		
+		if(editPart instanceof PortAffixedNodeEditPart) {
+			editPart.installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new TypedElementDropEditPolicy());
+			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomDefaultSemanticEditPolicy());
+		}
+		
+		if(editPart instanceof BlockPropertyCompositeEditPart) {
+			editPart.installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomBlockPropertyCompositeDropEditPolicy());
+			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomBlockPropertyCompositeSemanticEditPolicy());
+		}
+		
+		if(editPart instanceof BlockPropertyStructureCompartmentEditPart) {
+			editPart.installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomBlockPropertyStructureCompartmentEditPartDropEditPolicy());
+		}
+		
+		if(editPart instanceof BlockCompositeEditPart) {
+			editPart.installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new EncapsulatedClassifierDropEditPolicy());
+			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomDefaultSemanticEditPolicy());
+		}
+		
+		if(editPart instanceof StructureCompartmentEditPart) {
+			editPart.installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new StructureClassifierDropEditPolicy());
+		}
+		
+		if(editPart instanceof DependencyEditPart) {
+			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomDefaultSemanticEditPolicy());
+		}
+		
+		if(editPart instanceof ConnectorEditPart) {
+			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomDefaultSemanticEditPolicy());
 		}
 	}
 

@@ -26,6 +26,7 @@ Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Vendor: %providerName
 Export-Package: org.eclipse.papyrus.gmf.diagram.common.commands,
+ org.eclipse.papyrus.gmf.diagram.common.compatibility,
  org.eclipse.papyrus.gmf.diagram.common.edit.part,
  org.eclipse.papyrus.gmf.diagram.common.edit.policy,
  org.eclipse.papyrus.gmf.diagram.common.factory,
