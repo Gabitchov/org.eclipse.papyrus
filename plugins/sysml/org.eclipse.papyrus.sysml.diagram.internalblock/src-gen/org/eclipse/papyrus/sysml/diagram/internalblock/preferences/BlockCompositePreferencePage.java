@@ -19,12 +19,13 @@ import java.util.Map;
 
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
+import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLGraphicalTypes;
 import org.eclipse.papyrus.sysml.diagram.internalblock.provider.ElementTypes;
 
-public class PropertyPreferencePage extends InternalBlockDiagramNodePreferencePage {
+public class BlockCompositePreferencePage extends InternalBlockDiagramNodePreferencePage {
 
 	/** Constant key to access preferences */
-	protected static String prefKey = ElementTypes.DIAGRAM_ID + "_Property"; //$NON-NLS-1$
+	public static String prefKey = ElementTypes.DIAGRAM_ID + "_" + SysMLGraphicalTypes.SHAPE_SYSML_BLOCK_AS_COMPOSITE_ID; //$NON-NLS-1$
 
 	/** The compartments default visibility for preferences */
 	public static final Map<String, Boolean> compartmentDefaultVisibilityMap;
@@ -48,18 +49,13 @@ public class PropertyPreferencePage extends InternalBlockDiagramNodePreferencePa
 		Collections.unmodifiableMap(compartmentTitleDefaultVisibilityMap);
 	}
 
-	/** Default constructor */
-	public PropertyPreferencePage() {
+	/** Constructor */
+	public BlockCompositePreferencePage() {
 		super();
-		setPreferenceKey(ElementTypes.DIAGRAM_ID + "_Property"); //$NON-NLS-1$
+		setPreferenceKey(ElementTypes.DIAGRAM_ID + "_" + SysMLGraphicalTypes.SHAPE_SYSML_BLOCK_AS_COMPOSITE_ID); //$NON-NLS-1$
 	}
 
-	/**
-	 * Initialize defaults using a specified {@link IPreferenceStore}
-	 * 
-	 * @param store
-	 *        the preference store.
-	 */
+	/** Default preferences initializer */
 	public static void initDefaults(IPreferenceStore store) {
 		// Start of user code custom default initializations
 		// End of user code

@@ -36,15 +36,6 @@ public class InheritedCompositeDiagramEditPartProvider extends UMLEditPartProvid
 			EObject eobject = view.getElement();
 
 			/** Nodes (and ChildLabelNodes) *********** */
-			if(eobject instanceof org.eclipse.uml2.uml.Class) {
-				return true;
-			}
-			if(eobject instanceof org.eclipse.uml2.uml.Port) {
-				return true;
-			}
-			if(eobject instanceof org.eclipse.uml2.uml.Property) {
-				return true;
-			}
 			if(eobject instanceof org.eclipse.uml2.uml.Comment) {
 				return true;
 			}
@@ -52,10 +43,6 @@ public class InheritedCompositeDiagramEditPartProvider extends UMLEditPartProvid
 				return true;
 			}
 
-			/** Edges *********** */
-			if(eobject instanceof org.eclipse.uml2.uml.Connector) {
-				return true;
-			}
 
 			// Additional test needed here to decide whether to support Feature type links.
 			// As feature type link are not related to a MetaClass from the domain model

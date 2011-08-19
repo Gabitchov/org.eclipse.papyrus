@@ -19,7 +19,11 @@ import org.eclipse.papyrus.diagram.composite.custom.edit.policies.CustomDiagramD
 import org.eclipse.papyrus.gmf.diagram.common.provider.IGraphicalTypeRegistry;
 import org.eclipse.papyrus.sysml.diagram.internalblock.provider.GraphicalTypeRegistry;
 
-/** Customization of the DND edit policy for the InternalBlock Diagram */
+/** 
+ * Customization of the DND edit policy for the Internal Block Diagram
+ * @deprecated prefer using {@link CustomDiagramDragDropEditPolicy}.
+ */
+@Deprecated
 public class InternalBlockDiagramDragDropEditPolicy extends CustomDiagramDragDropEditPolicy {
 
 	/** Local graphical type registry */

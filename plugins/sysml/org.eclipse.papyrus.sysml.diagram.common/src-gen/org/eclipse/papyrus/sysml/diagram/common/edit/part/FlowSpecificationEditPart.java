@@ -52,7 +52,7 @@ public class FlowSpecificationEditPart extends AbstractElementEditPart {
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
 		installEditPolicy(EditPolicyRoles.POPUPBAR_ROLE, new HyperLinkPopupBarEditPolicy());
 		installEditPolicy(NavigationEditPolicy.NAVIGATION_POLICY, new NavigationEditPolicy());
-		// Start of user code custom policies	
+		// Start of user code custom policies
 		// End of user code
 	}
 
@@ -133,6 +133,7 @@ public class FlowSpecificationEditPart extends AbstractElementEditPart {
 	//		return super.getTargetEditPart(request);
 	//	}
 
+	@Override
 	protected IFigure createNodeShape() {
 		return primaryShape = new FlowSpecificationFigure();
 	}

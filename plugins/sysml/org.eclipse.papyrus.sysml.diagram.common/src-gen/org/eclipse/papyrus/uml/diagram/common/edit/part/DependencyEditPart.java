@@ -38,7 +38,7 @@ public class DependencyEditPart extends AbstractElementLinkEditPart {
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-		// Start of user code custom policies	
+		// Start of user code custom policies
 		// End of user code
 	}
 

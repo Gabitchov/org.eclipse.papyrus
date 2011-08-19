@@ -23,7 +23,7 @@ import org.eclipse.papyrus.uml.diagram.common.utils.AssociationViewUtils;
 import org.eclipse.uml2.uml.Association;
 
 /**
- * Edit Part for link label showing {@link Association} target multiplicity.
+ * Edit Part for link label showing {@link Association} source multiplicity.
  */
 public class AssociationLinkLabelSourceMultiplicityEditPart extends AbstractElementLabelEditPart {
 

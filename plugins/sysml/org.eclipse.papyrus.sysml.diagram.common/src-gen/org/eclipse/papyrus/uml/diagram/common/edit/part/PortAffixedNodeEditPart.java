@@ -47,7 +47,7 @@ public class PortAffixedNodeEditPart extends AbstractElementBorderEditPart {
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeIconlDisplayEditPolicy());
 		installEditPolicy(ShowHideLabelEditPolicy.SHOW_HIDE_LABEL_ROLE, new ShowHideLabelEditPolicy());
 
-		// Start of user code custom policies	
+		// Start of user code custom policies
 		// End of user code		
 	}
 

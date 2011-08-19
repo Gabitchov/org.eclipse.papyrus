@@ -14,6 +14,7 @@
   <customNodes xsi:type="idgen:CustomClassifierNode" id="shape_uml_signal_as_classifier" label="Signal" viewFactory="org.eclipse.papyrus.uml.diagram.common.factory.ClassifierViewFactory" semanticType="org.eclipse.papyrus.uml.Signal" tag="" labels="label_uml_namedelement_name" compartments="compartment_uml_property_as_list compartment_uml_operation_as_list"/>
   <customNodes xsi:type="idgen:CustomAffixedNode" id="shape_uml_port_as_affixed" label="Port" semanticType="org.eclipse.papyrus.uml.Port" affixedLabels="affixedlabel_uml_port_label affixedlabel_uml_appliedstereotype" locator="org.eclipse.papyrus.diagram.common.locator.PortPositionLocator"/>
   <customEdges xsi:type="idgen:CustomLink" id="link_uml_dependency" label="Dependency" semanticType="org.eclipse.papyrus.uml.Dependency" labels="linklabel_uml_namedelement_name" figure="org.eclipse.papyrus.uml.diagram.common.figure.NamedElementEdgeFigure"/>
+  <customEdges xsi:type="idgen:CustomLink" id="link_uml_connector" label="Connector" semanticType="org.eclipse.papyrus.uml.Connector" labels="linklabel_uml_connector_label linklabel_uml_connector_source_multiplicity linklabel_uml_connector_target_multiplicity" figure="org.eclipse.papyrus.uml.diagram.common.figure.ConnectorEdgeFigure"/>
   <customEdges xsi:type="idgen:CustomLink" id="link_uml_generalization" label="Generalization" semanticType="org.eclipse.papyrus.uml.Generalization" figure="org.eclipse.papyrus.uml.diagram.common.figure.GeneralizationFigure"/>
   <customEdges xsi:type="idgen:CustomLink" id="link_uml_interfacerealization" label="InterfaceRealization" semanticType="org.eclipse.papyrus.uml.InterfaceRealization" labels="linklabel_uml_namedelement_name" figure="org.eclipse.papyrus.uml.diagram.common.figure.InterfaceRealizationFigure"/>
   <customEdges xsi:type="idgen:CustomLink" id="link_uml_usage" label="Usage" semanticType="org.eclipse.papyrus.uml.Usage" tag="use" labels="linklabel_uml_namedelement_name" figure="org.eclipse.papyrus.uml.diagram.common.figure.NamedElementEdgeFigure"/>
@@ -26,14 +27,19 @@
   <customDecorations xsi:type="idgen:CustomAffixedLabel" id="affixedlabel_uml_namedelement_name" label="NamedElementAffixedLabelName" editPart="org.eclipse.papyrus.uml.diagram.common.edit.part.NamedElementAffixedLabelNameEditPart" locator="org.eclipse.papyrus.diagram.common.locator.ExternalLabelPositionLocator" role="Name"/>
   <customDecorations xsi:type="idgen:CustomAffixedLabel" id="affixedlabel_uml_port_label" label="PortAffixedLabel" editPart="org.eclipse.papyrus.uml.diagram.common.edit.part.PortAffixedLabelNameEditPart" locator="org.eclipse.papyrus.diagram.common.locator.ExternalLabelPositionLocator" role="Label"/>
   <customDecorations xsi:type="idgen:CustomInnerLabel" id="label_uml_namedelement_name" label="NamedElementNodeLabel" editPart="org.eclipse.papyrus.uml.diagram.common.edit.part.NamedElementNodeLabelNameEditPart"/>
+  <customDecorations xsi:type="idgen:CustomInnerLabel" id="label_uml_property_label" label="PropertyNodeLabel" editPart="org.eclipse.papyrus.uml.diagram.common.edit.part.PropertyNodeLabelEditPart"/>
+  <customDecorations xsi:type="idgen:CustomLinkLabel" id="linklabel_uml_connector_label" label="ConnectorLinkLabel" editPart="org.eclipse.papyrus.uml.diagram.common.edit.part.ConnectorLinkLabelEditPart" role="Label"/>
   <customDecorations xsi:type="idgen:CustomLinkLabel" id="linklabel_uml_namedelement_name" label="NamedElementLinkLabelName" editPart="org.eclipse.papyrus.uml.diagram.common.edit.part.NamedElementLinkLabelNameEditPart" role="Name"/>
   <customDecorations xsi:type="idgen:CustomLinkLabel" id="linklabel_uml_appliedstereotype" label="AppliedStereotypeLinkLabel" editPart="org.eclipse.papyrus.uml.diagram.common.edit.part.AppliedStereotypeLinkLabelEditPart" role="Stereotype"/>
   <customDecorations xsi:type="idgen:CustomLinkLabel" id="linklabel_uml_association_source_role" label="AssociationLinkLabelSourceRole" editPart="org.eclipse.papyrus.uml.diagram.common.edit.part.AssociationLinkLabelSourceRoleEditPart" role="SourceRole"/>
   <customDecorations xsi:type="idgen:CustomLinkLabel" id="linklabel_uml_association_source_multiplicity" label="AssociationLinkLabelSourceMultiplicity" editPart="org.eclipse.papyrus.uml.diagram.common.edit.part.AssociationLinkLabelSourceMultiplicityEditPart" role="SourceMultiplicity"/>
   <customDecorations xsi:type="idgen:CustomLinkLabel" id="linklabel_uml_association_target_role" label="AssociationLinkLabelTargetRole" editPart="org.eclipse.papyrus.uml.diagram.common.edit.part.AssociationLinkLabelTargetRoleEditPart" role="TargetRole"/>
   <customDecorations xsi:type="idgen:CustomLinkLabel" id="linklabel_uml_association_target_multiplicity" label="AssociationLinkLabelTargetMultiplicity" editPart="org.eclipse.papyrus.uml.diagram.common.edit.part.AssociationLinkLabelTargetMultiplicityEditPart" role="TargetMultiplicity"/>
+  <customDecorations xsi:type="idgen:CustomLinkLabel" id="linklabel_uml_connector_source_multiplicity" label="ConnectorLinkLabelSourceMultiplicity" editPart="org.eclipse.papyrus.uml.diagram.common.edit.part.ConnectorLinkLabelSourceMultiplicityEditPart" role="SourceMultiplicity"/>
+  <customDecorations xsi:type="idgen:CustomLinkLabel" id="linklabel_uml_connector_target_multiplicity" label="ConnectorLinkLabelTargetMultiplicity" editPart="org.eclipse.papyrus.uml.diagram.common.edit.part.ConnectorLinkLabelTargetMultiplicityEditPart" role="TargetMultiplicity"/>
   <semanticTypes id="org.eclipse.papyrus.uml.Actor" name="Actor" constantTypePackage="org.eclipse.papyrus.uml.service.types.element" constantTypeClass="UMLElementTypes" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Actor.gif"/>
   <semanticTypes id="org.eclipse.papyrus.uml.Comment" name="Comment" constantTypePackage="org.eclipse.papyrus.uml.service.types.element" constantTypeClass="UMLElementTypes" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"/>
+  <semanticTypes id="org.eclipse.papyrus.uml.Connector" name="Connector" constantTypePackage="org.eclipse.papyrus.uml.service.types.element" constantTypeClass="UMLElementTypes" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Connector.gif"/>
   <semanticTypes id="org.eclipse.papyrus.uml.Constraint" name="Constraint" constantTypePackage="org.eclipse.papyrus.uml.service.types.element" constantTypeClass="UMLElementTypes" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"/>
   <semanticTypes id="org.eclipse.papyrus.uml.DataType" name="DataType" constantTypePackage="org.eclipse.papyrus.uml.service.types.element" constantTypeClass="UMLElementTypes" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DataType.gif"/>
   <semanticTypes id="org.eclipse.papyrus.uml.Dependency" name="Dependency" constantTypePackage="org.eclipse.papyrus.uml.service.types.element" constantTypeClass="UMLElementTypes" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif"/>
@@ -59,11 +65,15 @@
   <javaClasses qualifiedName="org.eclipse.papyrus.uml.diagram.common.edit.part.NamedElementAffixedLabelNameEditPart"/>
   <javaClasses qualifiedName="org.eclipse.papyrus.uml.diagram.common.edit.part.NamedElementLinkLabelNameEditPart"/>
   <javaClasses qualifiedName="org.eclipse.papyrus.uml.diagram.common.edit.part.NamedElementNodeLabelNameEditPart"/>
+  <javaClasses qualifiedName="org.eclipse.papyrus.uml.diagram.common.edit.part.PropertyNodeLabelEditPart"/>
   <javaClasses qualifiedName="org.eclipse.papyrus.uml.diagram.common.edit.part.PortAffixedLabelNameEditPart"/>
   <javaClasses qualifiedName="org.eclipse.papyrus.uml.diagram.common.edit.part.AssociationLinkLabelSourceRoleEditPart"/>
   <javaClasses qualifiedName="org.eclipse.papyrus.uml.diagram.common.edit.part.AssociationLinkLabelSourceMultiplicityEditPart"/>
   <javaClasses qualifiedName="org.eclipse.papyrus.uml.diagram.common.edit.part.AssociationLinkLabelTargetRoleEditPart"/>
   <javaClasses qualifiedName="org.eclipse.papyrus.uml.diagram.common.edit.part.AssociationLinkLabelTargetMultiplicityEditPart"/>
+  <javaClasses qualifiedName="org.eclipse.papyrus.uml.diagram.common.edit.part.ConnectorLinkLabelEditPart"/>
+  <javaClasses qualifiedName="org.eclipse.papyrus.uml.diagram.common.edit.part.ConnectorLinkLabelSourceMultiplicityEditPart"/>
+  <javaClasses qualifiedName="org.eclipse.papyrus.uml.diagram.common.edit.part.ConnectorLinkLabelTargetMultiplicityEditPart"/>
   <javaClasses qualifiedName="org.eclipse.papyrus.diagram.common.locator.PortPositionLocator"/>
   <javaClasses qualifiedName="org.eclipse.papyrus.diagram.common.locator.ExternalLabelPositionLocator"/>
   <javaClasses qualifiedName="org.eclipse.papyrus.uml.diagram.common.factory.ClassifierViewFactory"/>
@@ -71,4 +81,6 @@
   <javaClasses qualifiedName="org.eclipse.papyrus.uml.diagram.common.figure.GeneralizationFigure"/>
   <javaClasses qualifiedName="org.eclipse.papyrus.uml.diagram.common.figure.InterfaceRealizationFigure"/>
   <javaClasses qualifiedName="org.eclipse.papyrus.uml.diagram.common.figure.NamedElementEdgeFigure"/>
+  <javaClasses qualifiedName="org.eclipse.papyrus.uml.diagram.common.figure.ConnectorEdgeFigure"/>
+  <javaClasses qualifiedName="org.eclipse.papyrus.gmf.diagram.common.figure.SelectableBorderedNodeFigure"/>
 </idgen:Diagram>
