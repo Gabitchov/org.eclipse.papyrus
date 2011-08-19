@@ -18,7 +18,7 @@ import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationFactory;
 
 /**
- * Default compartment view Factory for Papyrus custom list compartments.
+ * Default compartment view Factory for custom list compartments.
  */
 public class CompartmentListViewFactory extends ListCompartmentViewFactory {
 

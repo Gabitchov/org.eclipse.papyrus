@@ -20,7 +20,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.CreateEditPoliciesOperation;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.IEditPolicyProvider;
-import org.eclipse.papyrus.sysml.diagram.internalblock.edit.policy.InternalBlockDiagramDragDropEditPolicy;
+import org.eclipse.papyrus.sysml.diagram.internalblock.edit.policy.CustomDragDropEditPolicy;
 
 public class InternalBlockDiagramEditPolicyProvider extends AbstractProvider implements IEditPolicyProvider {
 
@@ -36,21 +36,6 @@ public class InternalBlockDiagramEditPolicyProvider extends AbstractProvider imp
 			return false;
 		}
 
-		if(gep instanceof org.eclipse.papyrus.diagram.composite.edit.parts.ClassCompositeEditPart) {
-			return true;
-		}
-		if(gep instanceof org.eclipse.papyrus.diagram.composite.edit.parts.ClassCompositeCompartmentEditPart) {
-			return true;
-		}
-		if(gep instanceof org.eclipse.papyrus.diagram.composite.edit.parts.PortEditPart) {
-			return true;
-		}
-		if(gep instanceof org.eclipse.papyrus.diagram.composite.edit.parts.PropertyPartEditPartCN) {
-			return true;
-		}
-		if(gep instanceof org.eclipse.papyrus.diagram.composite.edit.parts.PropertyPartCompartmentEditPartCN) {
-			return true;
-		}
 		if(gep instanceof org.eclipse.papyrus.diagram.composite.edit.parts.CommentEditPart) {
 			return true;
 		}
@@ -68,7 +53,7 @@ public class InternalBlockDiagramEditPolicyProvider extends AbstractProvider imp
 	}
 
 	public void createEditPolicies(EditPart editPart) {
-		editPart.installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new InternalBlockDiagramDragDropEditPolicy());
+		editPart.installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDragDropEditPolicy());
 	}
 
 }

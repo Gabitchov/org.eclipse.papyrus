@@ -22,17 +22,21 @@ import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.util.StringStatics;
 import org.eclipse.gmf.runtime.diagram.core.commands.SetConnectionAnchorsCommand;
 import org.eclipse.gmf.runtime.diagram.core.commands.SetConnectionEndsCommand;
+import org.eclipse.gmf.runtime.diagram.core.edithelpers.CreateElementRequestAdapter;
 import org.eclipse.gmf.runtime.diagram.ui.commands.CreateCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.GraphicalNodeEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.internal.commands.SetConnectionBendpointsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
+import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.gmf.diagram.common.commands.CreateViewCommand;
+import org.eclipse.papyrus.uml.service.types.utils.RequestParameterConstants;
 
 /**
  * Default graphical node edit policy replacement used to replace {@link CreateCommand} by {@link CreateViewCommand},
@@ -40,6 +44,25 @@ import org.eclipse.papyrus.gmf.diagram.common.commands.CreateViewCommand;
  * See https://bugs.eclipse.org/bugs/show_bug.cgi?id=346739.
  */
 public class DefaultGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected Command getConnectionAndRelationshipCompleteCommand(CreateConnectionViewAndElementRequest request) {
+		
+		// Add parameter (source and target view to the CreateRelationshipRequest
+		CreateElementRequestAdapter requestAdapter = request.getConnectionViewAndElementDescriptor().getCreateElementRequestAdapter();
+		CreateRelationshipRequest createElementRequest = (CreateRelationshipRequest)requestAdapter.getAdapter(CreateRelationshipRequest.class);
+		
+		View sourceView = (View) request.getSourceEditPart().getModel();
+		createElementRequest.setParameter(RequestParameterConstants.EDGE_CREATE_REQUEST_SOURCE_VIEW, sourceView);
+		
+		View targetView = (View) request.getTargetEditPart().getModel();
+		createElementRequest.setParameter(RequestParameterConstants.EDGE_CREATE_REQUEST_TARGET_VIEW, targetView);
+		
+		return super.getConnectionAndRelationshipCompleteCommand(request);
+	}
 
 	/**
 	 * {@inheritDoc}

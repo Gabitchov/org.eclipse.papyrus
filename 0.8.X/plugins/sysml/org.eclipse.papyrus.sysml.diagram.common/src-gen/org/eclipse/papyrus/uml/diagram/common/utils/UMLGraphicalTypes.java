@@ -50,6 +50,8 @@ public class UMLGraphicalTypes {
 	/** Custom inner labels */
 	public static final String LABEL_UML_NAMEDELEMENT_NAME_ID = "label_uml_namedelement_name"; //$NON-NLS-1$
 
+	public static final String LABEL_UML_PROPERTY_LABEL_ID = "label_uml_property_label"; //$NON-NLS-1$
+
 	/** Custom affixed labels */
 	public static final String AFFIXEDLABEL_UML_APPLIEDSTEREOTYPE_ID = "affixedlabel_uml_appliedstereotype"; //$NON-NLS-1$
 
@@ -71,6 +73,8 @@ public class UMLGraphicalTypes {
 	/** Custom links */
 	public static final String LINK_UML_DEPENDENCY_ID = "link_uml_dependency"; //$NON-NLS-1$
 
+	public static final String LINK_UML_CONNECTOR_ID = "link_uml_connector"; //$NON-NLS-1$
+
 	public static final String LINK_UML_GENERALIZATION_ID = "link_uml_generalization"; //$NON-NLS-1$
 
 	public static final String LINK_UML_INTERFACEREALIZATION_ID = "link_uml_interfacerealization"; //$NON-NLS-1$
@@ -78,6 +82,8 @@ public class UMLGraphicalTypes {
 	public static final String LINK_UML_USAGE_ID = "link_uml_usage"; //$NON-NLS-1$
 
 	/** Custom link labels */
+	public static final String LINKLABEL_UML_CONNECTOR_LABEL_ID = "linklabel_uml_connector_label"; //$NON-NLS-1$
+
 	public static final String LINKLABEL_UML_NAMEDELEMENT_NAME_ID = "linklabel_uml_namedelement_name"; //$NON-NLS-1$
 
 	public static final String LINKLABEL_UML_APPLIEDSTEREOTYPE_ID = "linklabel_uml_appliedstereotype"; //$NON-NLS-1$
@@ -89,4 +95,8 @@ public class UMLGraphicalTypes {
 	public static final String LINKLABEL_UML_ASSOCIATION_TARGET_ROLE_ID = "linklabel_uml_association_target_role"; //$NON-NLS-1$
 
 	public static final String LINKLABEL_UML_ASSOCIATION_TARGET_MULTIPLICITY_ID = "linklabel_uml_association_target_multiplicity"; //$NON-NLS-1$
+
+	public static final String LINKLABEL_UML_CONNECTOR_SOURCE_MULTIPLICITY_ID = "linklabel_uml_connector_source_multiplicity"; //$NON-NLS-1$
+
+	public static final String LINKLABEL_UML_CONNECTOR_TARGET_MULTIPLICITY_ID = "linklabel_uml_connector_target_multiplicity"; //$NON-NLS-1$
 }

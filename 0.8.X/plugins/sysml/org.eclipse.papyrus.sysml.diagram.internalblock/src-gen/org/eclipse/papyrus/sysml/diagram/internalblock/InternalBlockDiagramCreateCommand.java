@@ -13,20 +13,30 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.internalblock;
 
+import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.core.services.ViewService;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
-import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
+import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.gmf.runtime.notation.Bounds;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.core.adaptor.gmf.AbstractPapyrusGmfCreateDiagramCommandHandler;
+import org.eclipse.papyrus.diagram.common.commands.SemanticAdapter;
 import org.eclipse.papyrus.diagram.composite.part.UMLDiagramEditorPlugin;
+import org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils;
+import org.eclipse.papyrus.service.edit.service.IElementEditService;
+import org.eclipse.papyrus.service.edit.utils.GMFCommandUtils;
 import org.eclipse.papyrus.sysml.blocks.Block;
+import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLGraphicalTypes;
 import org.eclipse.papyrus.sysml.diagram.internalblock.provider.ElementTypes;
+import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
 import org.eclipse.papyrus.sysml.util.ElementUtil;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Package;
@@ -88,11 +98,31 @@ public class InternalBlockDiagramCreateCommand extends AbstractPapyrusGmfCreateD
 			}
 
 		} else if(owner instanceof Package) {
-			canvasDomainElement = null;
-			diagram = super.createDiagram(diagramResource, owner, name);
+			
+			try {
+				canvasDomainElement = null;
+
+				IEditCommandRequest request = new CreateElementRequest((Package)owner, SysMLElementTypes.BLOCK);
+				IElementEditService commandService = ElementEditServiceUtils.getCommandProvider(owner);
+				if(commandService == null) {
+					return null;
+				}
+
+				ICommand createElementCommand = commandService.getEditCommand(request);
+				if((createElementCommand != null) && (createElementCommand.canExecute())) {
+					createElementCommand.execute(new NullProgressMonitor(), null);
+					EObject block = GMFCommandUtils.getCommandEObjectResult(createElementCommand);
+					canvasDomainElement = block;
+					diagram = super.createDiagram(diagramResource, (Package)owner, name);
+				}
+				
+			} catch (ExecutionException e) {
+				e.printStackTrace();
+			}
+			
 		}
+		
 		return diagram;
-		// End of user code
 	}
 
 	/**
@@ -119,7 +149,7 @@ public class InternalBlockDiagramCreateCommand extends AbstractPapyrusGmfCreateD
 	protected void initializeDiagramContent(Diagram diagram) {
 
 		// Create a view for the canvasDomainElement in the new diagram
-		View view = ViewService.getInstance().createView(Node.class, new EObjectAdapter(canvasDomainElement), diagram, null, ViewUtil.APPEND, true, UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
+		View view = ViewService.getInstance().createNode(new SemanticAdapter(canvasDomainElement, null), diagram, SysMLGraphicalTypes.SHAPE_SYSML_BLOCK_AS_COMPOSITE_ID, ViewUtil.APPEND, UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
 
 		// Update the view position and size (should adapt to canvas current size)
 		Bounds viewBounds = (Bounds)((Node)view).getLayoutConstraint();
