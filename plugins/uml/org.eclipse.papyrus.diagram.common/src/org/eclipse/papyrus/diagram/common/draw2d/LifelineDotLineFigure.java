@@ -98,13 +98,38 @@ public class LifelineDotLineFigure extends Shape {
 			pAux.y = pAux.y + DASHED_SIZE;
 		}
 
-		int pixels = 10;
+		//int pixels = 10;
 
 
 		// Update the size and the location of the rectangle representing the dash line
 		dashLineRectangle.setSize(1, pEnd.y - pStart.y);
 		dashLineRectangle.setLocation(pStart);
 
+	}
+	
+	/**
+	 * Set the bounds on the figure and fix bounds for child dash line
+	 * 
+	 * @param rect
+	 *        the new bounds
+	 */
+	@Override
+	public void setBounds(Rectangle rect) {
+		super.setBounds(rect);
+		// set bounds for child dash line to avoid problems during connected edges drawing
+		Point pStart = new Point();
+		Point pEnd = new Point();
+
+		pStart.x = rect.x + rect.width / 2;
+		pStart.y = rect.y + 1;
+
+		pEnd.x = pStart.x;
+		pEnd.y = pStart.y + rect.height - 1;
+
+
+		// Update the size and the location of the rectangle representing the dash line
+		dashLineRectangle.setSize(1, pEnd.y - pStart.y);
+		dashLineRectangle.setLocation(pStart);
 	}
 
 	/**
