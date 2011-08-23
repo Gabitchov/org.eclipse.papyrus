@@ -99,13 +99,8 @@ public class DeleteCommandHandler extends AbstractCommandHandler implements IHan
 	 * @return current command (only built here when the stored command is null)
 	 */
 	protected Command getCommand() {
-
-		// Build the delete command in case it is not initialized.
-		if(deleteCommand == null) {
-			deleteCommand = buildCommand();
-		}
-
-		return deleteCommand;
+		// Don't cache the command, as it is no more refreshed by isEnabled().
+		return buildCommand();
 	}
 
 	/**
