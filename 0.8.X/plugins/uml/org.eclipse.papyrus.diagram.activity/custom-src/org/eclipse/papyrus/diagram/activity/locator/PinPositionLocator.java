@@ -32,19 +32,31 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.ActionInputPinInSendObjAc
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActionInputPinInSendObjActAsTargetEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActionInputPinInSendSigActAsTargetEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActionInputPinInSendSigActEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInAddStructuralFeatureValueActionAsObjectEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInAddStructuralFeatureValueActionAsValueEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInAddVariableValueActionAsInsertAtEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInAddVariableValueActionAsValueEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInBroadcastSignalActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInCallBeActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInCallOpActAsTargetEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInCallOpActEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInDestroyObjectActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInOpaqueActEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInReadStructuralFeatureAsObjectEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInSendObjActAsReqEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInSendObjActAsTargetEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInSendSigActAsTargetEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInSendSigActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInAcceptEventActionEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInAddStructuralFeatureValueActionAsResultEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInCallBeActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInCallOpActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInCreateObjectActionAsResultEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInOpaqueActEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInReadStructuralFeatureAsResultEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInReadVariableActionAsResultEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInValSpecActEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ReadSelfActionOutputPinEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInCallBeActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInCallOpActAsTargetEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInCallOpActEditPart;
@@ -443,6 +455,42 @@ public class PinPositionLocator extends AdvancedBorderItemLocator {
 		} else if(child instanceof OutputPinInCreateObjectActionAsResultEditPart.PinDescriptor) {
 			arrowIn = false;
 			arrow = ((OutputPinInCreateObjectActionAsResultEditPart.PinDescriptor)child).getOptionalArrowFigure();
+		} else if(child instanceof ReadSelfActionOutputPinEditPart.PinDescriptor) {
+			arrowIn = false;
+			arrow = ((ReadSelfActionOutputPinEditPart.PinDescriptor)child).getOptionalArrowFigure();
+		} else if(child instanceof OutputPinInValSpecActEditPart.PinDescriptor) {
+			arrowIn = false;
+			arrow = ((OutputPinInValSpecActEditPart.PinDescriptor)child).getOptionalArrowFigure();
+		} else if(child instanceof OutputPinInReadStructuralFeatureAsResultEditPart.PinDescriptor) {
+			arrowIn = false;
+			arrow = ((OutputPinInReadStructuralFeatureAsResultEditPart.PinDescriptor)child).getOptionalArrowFigure();
+		} else if(child instanceof InputPinInReadStructuralFeatureAsObjectEditPart.PinDescriptor) {
+			arrowIn = true;
+			arrow = ((InputPinInReadStructuralFeatureAsObjectEditPart.PinDescriptor)child).getOptionalArrowFigure();
+		} else if(child instanceof InputPinInAddStructuralFeatureValueActionAsObjectEditPart.PinDescriptor) {
+			arrowIn = true;
+			arrow = ((InputPinInAddStructuralFeatureValueActionAsObjectEditPart.PinDescriptor)child).getOptionalArrowFigure();
+		} else if(child instanceof InputPinInAddStructuralFeatureValueActionAsValueEditPart.PinDescriptor) {
+			arrowIn = true;
+			arrow = ((InputPinInAddStructuralFeatureValueActionAsValueEditPart.PinDescriptor)child).getOptionalArrowFigure();
+		} else if(child instanceof OutputPinInAddStructuralFeatureValueActionAsResultEditPart.PinDescriptor) {
+			arrowIn = false;
+			arrow = ((OutputPinInAddStructuralFeatureValueActionAsResultEditPart.PinDescriptor)child).getOptionalArrowFigure();
+		} else if(child instanceof InputPinInDestroyObjectActionEditPart.PinDescriptor) {
+			arrowIn = true;
+			arrow = ((InputPinInDestroyObjectActionEditPart.PinDescriptor)child).getOptionalArrowFigure();
+		} else if(child instanceof InputPinInAddVariableValueActionAsValueEditPart.PinDescriptor) {
+			arrowIn = true;
+			arrow = ((InputPinInAddVariableValueActionAsValueEditPart.PinDescriptor)child).getOptionalArrowFigure();
+		} else if(child instanceof InputPinInAddVariableValueActionAsInsertAtEditPart.PinDescriptor) {
+			arrowIn = true;
+			arrow = ((InputPinInAddVariableValueActionAsInsertAtEditPart.PinDescriptor)child).getOptionalArrowFigure();
+		} else if(child instanceof OutputPinInReadVariableActionAsResultEditPart.PinDescriptor) {
+			arrowIn = false;
+			arrow = ((OutputPinInReadVariableActionAsResultEditPart.PinDescriptor)child).getOptionalArrowFigure();
+		} else if(child instanceof InputPinInBroadcastSignalActionEditPart.PinDescriptor) {
+			arrowIn = true;
+			arrow = ((InputPinInBroadcastSignalActionEditPart.PinDescriptor)child).getOptionalArrowFigure();
 		}
 		if(arrow != null && arrow.getPoints().size() > 0) {
 			int arrowDirection;

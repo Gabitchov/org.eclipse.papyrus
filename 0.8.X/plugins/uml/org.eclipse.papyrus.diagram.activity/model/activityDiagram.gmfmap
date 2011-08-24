@@ -2864,15 +2864,9 @@
         <childrenFeature
             href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//BehavioredClassifier/ownedBehavior"/>
       </children>
-      <children>
-        <ownedChild>
-          <diagramNode
-              href="activityDiagram.gmfgraph#StereotypedCustomizedNode"/>
-        </ownedChild>
-      </children>
       <children
           compartment="//@nodes.0/@ownedChild/@compartments.3"
-          referencedChild="//@nodes.0/@ownedChild/@children.38/@ownedChild">
+          referencedChild="//@nodes.0/@ownedChild/@children.37/@ownedChild">
         <containmentFeature
             href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Activity/node"/>
         <childrenFeature
@@ -2906,7 +2900,7 @@
           <diagramNode
               href="../../org.eclipse.papyrus.diagram.common/model/Action.gmfgraph#ActionFigureNode"/>
           <children
-              referencedChild="//@nodes.0/@ownedChild/@children.38/@ownedChild/@children.0/@ownedChild">
+              referencedChild="//@nodes.0/@ownedChild/@children.37/@ownedChild/@children.0/@ownedChild">
             <containmentFeature
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//CreateObjectAction/result"/>
             <childrenFeature
@@ -2942,6 +2936,588 @@
           </children>
         </ownedChild>
       </children>
+      <children>
+        <ownedChild>
+          <diagramNode
+              href="activityDiagram.gmfgraph#StereotypedCustomizedNode"/>
+        </ownedChild>
+      </children>
+      <children
+          compartment="//@nodes.0/@ownedChild/@compartments.3"
+          referencedChild="//@nodes.0/@ownedChild/@children.39/@ownedChild">
+        <containmentFeature
+            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Activity/node"/>
+        <childrenFeature
+            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Activity/node"/>
+        <ownedChild
+            relatedDiagrams="//@diagram">
+          <domainMetaElement
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ReadStructuralFeatureAction"/>
+          <domainInitializer
+              xsi:type="gmfmap:FeatureSeqInitializer">
+            <initializers
+                xsi:type="gmfmap:FeatureValueSpec">
+              <feature
+                  xsi:type="ecore:EAttribute"
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+              <value
+                  body="return org.eclipse.papyrus.diagram.common.actions.LabelHelper.INSTANCE.findName(self.eContainer(), self);"
+                  language="java"/>
+            </initializers>
+          </domainInitializer>
+          <labelMappings
+              xsi:type="gmfmap:FeatureLabelMapping">
+            <diagramLabel
+                href="../../org.eclipse.papyrus.diagram.common/model/Action.gmfgraph#ActionFigureNameDiagramLabel"/>
+            <features
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+          </labelMappings>
+          <tool
+              xsi:type="gmftool:CreationTool"
+              href="activityDiagram.gmftool#//@palette/@tools.0/@tools.43"/>
+          <diagramNode
+              href="../../org.eclipse.papyrus.diagram.common/model/Action.gmfgraph#ActionFigureNode"/>
+          <children>
+            <containmentFeature
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//StructuralFeatureAction/object"/>
+            <childrenFeature
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//StructuralFeatureAction/object"/>
+            <ownedChild
+                relatedDiagrams="//@diagram">
+              <domainMetaElement
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//InputPin"/>
+              <domainInitializer
+                  xsi:type="gmfmap:FeatureSeqInitializer">
+                <initializers
+                    xsi:type="gmfmap:FeatureValueSpec">
+                  <feature
+                      xsi:type="ecore:EAttribute"
+                      href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+                  <value
+                      body="return org.eclipse.papyrus.diagram.common.actions.LabelHelper.INSTANCE.findName(self.eContainer(), self);"
+                      language="java"/>
+                </initializers>
+              </domainInitializer>
+              <labelMappings>
+                <diagramLabel
+                    href="activityDiagram.gmfgraph#PinName"/>
+              </labelMappings>
+              <labelMappings
+                  readOnly="true">
+                <diagramLabel
+                    href="activityDiagram.gmfgraph#AppliedStereotypeExternalLabel"/>
+              </labelMappings>
+              <diagramNode
+                  href="activityDiagram.gmfgraph#PinNode"/>
+            </ownedChild>
+          </children>
+          <children>
+            <containmentFeature
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ReadStructuralFeatureAction/result"/>
+            <childrenFeature
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ReadStructuralFeatureAction/result"/>
+            <ownedChild
+                relatedDiagrams="//@diagram">
+              <domainMetaElement
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//OutputPin"/>
+              <domainInitializer
+                  xsi:type="gmfmap:FeatureSeqInitializer">
+                <initializers
+                    xsi:type="gmfmap:FeatureValueSpec">
+                  <feature
+                      xsi:type="ecore:EAttribute"
+                      href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+                  <value
+                      body="return org.eclipse.papyrus.diagram.common.actions.LabelHelper.INSTANCE.findName(self.eContainer(), self);"
+                      language="java"/>
+                </initializers>
+              </domainInitializer>
+              <labelMappings>
+                <diagramLabel
+                    href="activityDiagram.gmfgraph#PinName"/>
+              </labelMappings>
+              <labelMappings
+                  readOnly="true">
+                <diagramLabel
+                    href="activityDiagram.gmfgraph#AppliedStereotypeExternalLabel"/>
+              </labelMappings>
+              <diagramNode
+                  href="activityDiagram.gmfgraph#PinNode"/>
+            </ownedChild>
+          </children>
+        </ownedChild>
+      </children>
+      <children
+          compartment="//@nodes.0/@ownedChild/@compartments.3"
+          referencedChild="//@nodes.0/@ownedChild/@children.40/@ownedChild">
+        <containmentFeature
+            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Activity/node"/>
+        <childrenFeature
+            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Activity/node"/>
+        <ownedChild
+            relatedDiagrams="//@diagram">
+          <domainMetaElement
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//AddStructuralFeatureValueAction"/>
+          <domainInitializer
+              xsi:type="gmfmap:FeatureSeqInitializer">
+            <initializers
+                xsi:type="gmfmap:FeatureValueSpec">
+              <feature
+                  xsi:type="ecore:EAttribute"
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+              <value
+                  body="return org.eclipse.papyrus.diagram.common.actions.LabelHelper.INSTANCE.findName(self.eContainer(), self);"
+                  language="java"/>
+            </initializers>
+          </domainInitializer>
+          <labelMappings
+              xsi:type="gmfmap:FeatureLabelMapping">
+            <diagramLabel
+                href="../../org.eclipse.papyrus.diagram.common/model/Action.gmfgraph#ActionFigureNameDiagramLabel"/>
+            <features
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+          </labelMappings>
+          <tool
+              xsi:type="gmftool:CreationTool"
+              href="activityDiagram.gmftool#//@palette/@tools.0/@tools.44"/>
+          <diagramNode
+              href="../../org.eclipse.papyrus.diagram.common/model/Action.gmfgraph#ActionFigureNode"/>
+          <children>
+            <containmentFeature
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//StructuralFeatureAction/object"/>
+            <childrenFeature
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//StructuralFeatureAction/object"/>
+            <ownedChild
+                relatedDiagrams="//@diagram">
+              <domainMetaElement
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//InputPin"/>
+              <domainSpecialization
+                  body="if self.owner.oclIsKindOf(AddStructuralFeatureValueAction)&#xD;&#xA;then self.owner.oclAsType(AddStructuralFeatureValueAction).object->includes(self)&#xD;&#xA;else false endif"/>
+              <domainInitializer
+                  xsi:type="gmfmap:FeatureSeqInitializer">
+                <initializers
+                    xsi:type="gmfmap:FeatureValueSpec">
+                  <feature
+                      xsi:type="ecore:EAttribute"
+                      href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+                  <value
+                      body="return org.eclipse.papyrus.diagram.common.actions.LabelHelper.INSTANCE.findName(self.eContainer(), self);"
+                      language="java"/>
+                </initializers>
+              </domainInitializer>
+              <labelMappings>
+                <diagramLabel
+                    href="activityDiagram.gmfgraph#PinName"/>
+              </labelMappings>
+              <labelMappings
+                  readOnly="true">
+                <diagramLabel
+                    href="activityDiagram.gmfgraph#AppliedStereotypeExternalLabel"/>
+              </labelMappings>
+              <diagramNode
+                  href="activityDiagram.gmfgraph#PinNode"/>
+            </ownedChild>
+          </children>
+          <children>
+            <containmentFeature
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//WriteStructuralFeatureAction/value"/>
+            <childrenFeature
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//WriteStructuralFeatureAction/value"/>
+            <ownedChild
+                relatedDiagrams="//@diagram">
+              <domainMetaElement
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//InputPin"/>
+              <domainSpecialization
+                  body="if self.owner.oclIsKindOf(AddStructuralFeatureValueAction)&#xD;&#xA;then self.owner.oclAsType(AddStructuralFeatureValueAction).value->includes(self)&#xD;&#xA;else false endif"/>
+              <domainInitializer
+                  xsi:type="gmfmap:FeatureSeqInitializer">
+                <initializers
+                    xsi:type="gmfmap:FeatureValueSpec">
+                  <feature
+                      xsi:type="ecore:EAttribute"
+                      href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+                  <value
+                      body="return org.eclipse.papyrus.diagram.common.actions.LabelHelper.INSTANCE.findName(self.eContainer(), self);"
+                      language="java"/>
+                </initializers>
+              </domainInitializer>
+              <labelMappings>
+                <diagramLabel
+                    href="activityDiagram.gmfgraph#PinName"/>
+              </labelMappings>
+              <labelMappings
+                  readOnly="true">
+                <diagramLabel
+                    href="activityDiagram.gmfgraph#AppliedStereotypeExternalLabel"/>
+              </labelMappings>
+              <diagramNode
+                  href="activityDiagram.gmfgraph#PinNode"/>
+            </ownedChild>
+          </children>
+          <children>
+            <containmentFeature
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//WriteStructuralFeatureAction/result"/>
+            <childrenFeature
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//WriteStructuralFeatureAction/result"/>
+            <ownedChild
+                relatedDiagrams="//@diagram">
+              <domainMetaElement
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//OutputPin"/>
+              <domainInitializer
+                  xsi:type="gmfmap:FeatureSeqInitializer">
+                <initializers
+                    xsi:type="gmfmap:FeatureValueSpec">
+                  <feature
+                      xsi:type="ecore:EAttribute"
+                      href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+                  <value
+                      body="return org.eclipse.papyrus.diagram.common.actions.LabelHelper.INSTANCE.findName(self.eContainer(), self);"
+                      language="java"/>
+                </initializers>
+              </domainInitializer>
+              <labelMappings>
+                <diagramLabel
+                    href="activityDiagram.gmfgraph#PinName"/>
+              </labelMappings>
+              <labelMappings
+                  readOnly="true">
+                <diagramLabel
+                    href="activityDiagram.gmfgraph#AppliedStereotypeExternalLabel"/>
+              </labelMappings>
+              <diagramNode
+                  href="activityDiagram.gmfgraph#PinNode"/>
+            </ownedChild>
+          </children>
+        </ownedChild>
+      </children>
+      <children
+          compartment="//@nodes.0/@ownedChild/@compartments.3"
+          referencedChild="//@nodes.0/@ownedChild/@children.41/@ownedChild">
+        <containmentFeature
+            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Activity/node"/>
+        <childrenFeature
+            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Activity/node"/>
+        <ownedChild
+            relatedDiagrams="//@diagram">
+          <domainMetaElement
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//DestroyObjectAction"/>
+          <domainInitializer
+              xsi:type="gmfmap:FeatureSeqInitializer">
+            <initializers
+                xsi:type="gmfmap:FeatureValueSpec">
+              <feature
+                  xsi:type="ecore:EAttribute"
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+              <value
+                  body="return org.eclipse.papyrus.diagram.common.actions.LabelHelper.INSTANCE.findName(self.eContainer(), self);"
+                  language="java"/>
+            </initializers>
+          </domainInitializer>
+          <labelMappings
+              xsi:type="gmfmap:FeatureLabelMapping">
+            <diagramLabel
+                href="../../org.eclipse.papyrus.diagram.common/model/Action.gmfgraph#ActionFigureNameDiagramLabel"/>
+            <features
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+          </labelMappings>
+          <tool
+              xsi:type="gmftool:CreationTool"
+              href="activityDiagram.gmftool#//@palette/@tools.0/@tools.45"/>
+          <diagramNode
+              href="../../org.eclipse.papyrus.diagram.common/model/Action.gmfgraph#ActionFigureNode"/>
+          <children>
+            <containmentFeature
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//DestroyObjectAction/target"/>
+            <childrenFeature
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//DestroyObjectAction/target"/>
+            <ownedChild>
+              <domainMetaElement
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//InputPin"/>
+              <domainSpecialization
+                  body="if self.owner.oclIsKindOf(DestroyObjectAction)&#xD;&#xA;then self.owner.oclAsType(DestroyObjectAction).target->includes(self)&#xD;&#xA;else false endif"/>
+              <domainInitializer
+                  xsi:type="gmfmap:FeatureSeqInitializer">
+                <initializers
+                    xsi:type="gmfmap:FeatureValueSpec">
+                  <feature
+                      xsi:type="ecore:EAttribute"
+                      href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+                  <value
+                      body="return org.eclipse.papyrus.diagram.common.actions.LabelHelper.INSTANCE.findName(self.eContainer(), self);"
+                      language="java"/>
+                </initializers>
+              </domainInitializer>
+              <labelMappings>
+                <diagramLabel
+                    href="activityDiagram.gmfgraph#PinName"/>
+              </labelMappings>
+              <labelMappings
+                  readOnly="true">
+                <diagramLabel
+                    href="activityDiagram.gmfgraph#AppliedStereotypeExternalLabel"/>
+              </labelMappings>
+              <diagramNode
+                  href="activityDiagram.gmfgraph#PinNode"/>
+            </ownedChild>
+          </children>
+        </ownedChild>
+      </children>
+      <children
+          compartment="//@nodes.0/@ownedChild/@compartments.3">
+        <containmentFeature
+            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Activity/node"/>
+        <childrenFeature
+            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Activity/node"/>
+        <ownedChild
+            relatedDiagrams="//@diagram">
+          <domainMetaElement
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ReadVariableAction"/>
+          <domainInitializer
+              xsi:type="gmfmap:FeatureSeqInitializer">
+            <initializers
+                xsi:type="gmfmap:FeatureValueSpec">
+              <feature
+                  xsi:type="ecore:EAttribute"
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+              <value
+                  body="return org.eclipse.papyrus.diagram.common.actions.LabelHelper.INSTANCE.findName(self.eContainer(), self);"
+                  language="java"/>
+            </initializers>
+          </domainInitializer>
+          <labelMappings
+              xsi:type="gmfmap:FeatureLabelMapping">
+            <diagramLabel
+                href="../../org.eclipse.papyrus.diagram.common/model/Action.gmfgraph#ActionFigureNameDiagramLabel"/>
+            <features
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+          </labelMappings>
+          <tool
+              xsi:type="gmftool:CreationTool"
+              href="activityDiagram.gmftool#//@palette/@tools.0/@tools.46"/>
+          <diagramNode
+              href="../../org.eclipse.papyrus.diagram.common/model/Action.gmfgraph#ActionFigureNode"/>
+          <children>
+            <containmentFeature
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ReadVariableAction/result"/>
+            <childrenFeature
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ReadVariableAction/result"/>
+            <ownedChild
+                relatedDiagrams="//@diagram">
+              <domainMetaElement
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//OutputPin"/>
+              <domainSpecialization
+                  body="if self.owner.oclIsKindOf(ReadVariableAction)&#xD;&#xA;then self.owner.oclAsType(ReadVariableAction).result->includes(self)&#xD;&#xA;else false endif"/>
+              <domainInitializer
+                  xsi:type="gmfmap:FeatureSeqInitializer">
+                <initializers
+                    xsi:type="gmfmap:FeatureValueSpec">
+                  <feature
+                      xsi:type="ecore:EAttribute"
+                      href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+                  <value
+                      body="return org.eclipse.papyrus.diagram.common.actions.LabelHelper.INSTANCE.findName(self.eContainer(), self);"
+                      language="java"/>
+                </initializers>
+              </domainInitializer>
+              <labelMappings>
+                <diagramLabel
+                    href="activityDiagram.gmfgraph#PinName"/>
+              </labelMappings>
+              <labelMappings
+                  readOnly="true">
+                <diagramLabel
+                    href="activityDiagram.gmfgraph#AppliedStereotypeExternalLabel"/>
+              </labelMappings>
+              <diagramNode
+                  href="activityDiagram.gmfgraph#PinNode"/>
+            </ownedChild>
+          </children>
+        </ownedChild>
+      </children>
+      <children
+          compartment="//@nodes.0/@ownedChild/@compartments.3">
+        <containmentFeature
+            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Activity/node"/>
+        <childrenFeature
+            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Activity/node"/>
+        <ownedChild
+            relatedDiagrams="//@diagram">
+          <domainMetaElement
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//AddVariableValueAction"/>
+          <domainInitializer
+              xsi:type="gmfmap:FeatureSeqInitializer">
+            <initializers
+                xsi:type="gmfmap:FeatureValueSpec">
+              <feature
+                  xsi:type="ecore:EAttribute"
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+              <value
+                  body="return org.eclipse.papyrus.diagram.common.actions.LabelHelper.INSTANCE.findName(self.eContainer(), self);"
+                  language="java"/>
+            </initializers>
+          </domainInitializer>
+          <labelMappings
+              xsi:type="gmfmap:FeatureLabelMapping">
+            <diagramLabel
+                href="../../org.eclipse.papyrus.diagram.common/model/Action.gmfgraph#ActionFigureNameDiagramLabel"/>
+            <features
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+          </labelMappings>
+          <tool
+              xsi:type="gmftool:CreationTool"
+              href="activityDiagram.gmftool#//@palette/@tools.0/@tools.47"/>
+          <diagramNode
+              href="../../org.eclipse.papyrus.diagram.common/model/Action.gmfgraph#ActionFigureNode"/>
+          <children>
+            <containmentFeature
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//AddVariableValueAction/insertAt"/>
+            <childrenFeature
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//AddVariableValueAction/insertAt"/>
+            <ownedChild
+                relatedDiagrams="//@diagram">
+              <domainMetaElement
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//InputPin"/>
+              <domainSpecialization
+                  body="if self.owner.oclIsKindOf(AddVariableValueAction)&#xD;&#xA;then self.owner.oclAsType(AddVariableValueAction).insertAt->includes(self)&#xD;&#xA;else false endif"/>
+              <domainInitializer
+                  xsi:type="gmfmap:FeatureSeqInitializer">
+                <initializers
+                    xsi:type="gmfmap:FeatureValueSpec">
+                  <feature
+                      xsi:type="ecore:EAttribute"
+                      href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+                  <value
+                      body="return org.eclipse.papyrus.diagram.common.actions.LabelHelper.INSTANCE.findName(self.eContainer(), self);"
+                      language="java"/>
+                </initializers>
+              </domainInitializer>
+              <labelMappings>
+                <diagramLabel
+                    href="activityDiagram.gmfgraph#PinName"/>
+              </labelMappings>
+              <labelMappings
+                  readOnly="true">
+                <diagramLabel
+                    href="activityDiagram.gmfgraph#AppliedStereotypeExternalLabel"/>
+              </labelMappings>
+              <diagramNode
+                  href="activityDiagram.gmfgraph#PinNode"/>
+            </ownedChild>
+          </children>
+          <children>
+            <containmentFeature
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//WriteVariableAction/value"/>
+            <childrenFeature
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//WriteVariableAction/value"/>
+            <ownedChild
+                relatedDiagrams="//@diagram">
+              <domainMetaElement
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//InputPin"/>
+              <domainSpecialization
+                  body="if self.owner.oclIsKindOf(AddVariableValueAction)&#xD;&#xA;then self.owner.oclAsType(AddVariableValueAction).value->includes(self)&#xD;&#xA;else false endif"/>
+              <domainInitializer
+                  xsi:type="gmfmap:FeatureSeqInitializer">
+                <initializers
+                    xsi:type="gmfmap:FeatureValueSpec">
+                  <feature
+                      xsi:type="ecore:EAttribute"
+                      href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+                  <value
+                      body="return org.eclipse.papyrus.diagram.common.actions.LabelHelper.INSTANCE.findName(self.eContainer(), self);"
+                      language="java"/>
+                </initializers>
+              </domainInitializer>
+              <labelMappings>
+                <diagramLabel
+                    href="activityDiagram.gmfgraph#PinName"/>
+              </labelMappings>
+              <labelMappings
+                  readOnly="true">
+                <diagramLabel
+                    href="activityDiagram.gmfgraph#AppliedStereotypeExternalLabel"/>
+              </labelMappings>
+              <diagramNode
+                  href="activityDiagram.gmfgraph#PinNode"/>
+            </ownedChild>
+          </children>
+        </ownedChild>
+      </children>
+      <children
+          compartment="//@nodes.0/@ownedChild/@compartments.3">
+        <containmentFeature
+            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Activity/node"/>
+        <childrenFeature
+            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Activity/node"/>
+        <ownedChild
+            relatedDiagrams="//@diagram">
+          <domainMetaElement
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//BroadcastSignalAction"/>
+          <domainInitializer
+              xsi:type="gmfmap:FeatureSeqInitializer">
+            <initializers
+                xsi:type="gmfmap:FeatureValueSpec">
+              <feature
+                  xsi:type="ecore:EAttribute"
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+              <value
+                  body="return org.eclipse.papyrus.diagram.common.actions.LabelHelper.INSTANCE.findName(self.eContainer(), self);"
+                  language="java"/>
+            </initializers>
+          </domainInitializer>
+          <labelMappings
+              xsi:type="gmfmap:FeatureLabelMapping">
+            <diagramLabel
+                href="../../org.eclipse.papyrus.diagram.common/model/SendNodeFigure.gmfgraph#SendNodeFigureNameDiagramLabel"/>
+            <features
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+          </labelMappings>
+          <tool
+              xsi:type="gmftool:CreationTool"
+              href="activityDiagram.gmftool#//@palette/@tools.0/@tools.48"/>
+          <diagramNode
+              href="../../org.eclipse.papyrus.diagram.common/model/Action.gmfgraph#ActionFigureNode"/>
+          <children>
+            <containmentFeature
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//InvocationAction/argument"/>
+            <childrenFeature
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//InvocationAction/argument"/>
+            <ownedChild
+                relatedDiagrams="//@diagram">
+              <domainMetaElement
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//InputPin"/>
+              <domainSpecialization
+                  body="if self.owner.oclIsKindOf(BroadcastSignalAction)&#xD;&#xA;then self.owner.oclAsType(BroadcastSignalAction).argument->includes(self)&#xD;&#xA;else false endif"/>
+              <domainInitializer
+                  xsi:type="gmfmap:FeatureSeqInitializer">
+                <initializers
+                    xsi:type="gmfmap:FeatureValueSpec">
+                  <feature
+                      xsi:type="ecore:EAttribute"
+                      href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+                  <value
+                      body="return org.eclipse.papyrus.diagram.common.actions.LabelHelper.INSTANCE.findName(self.eContainer(), self);"
+                      language="java"/>
+                </initializers>
+              </domainInitializer>
+              <labelMappings>
+                <diagramLabel
+                    href="activityDiagram.gmfgraph#PinName"/>
+              </labelMappings>
+              <labelMappings>
+                <diagramLabel
+                    href="activityDiagram.gmfgraph#PinValue"/>
+              </labelMappings>
+              <labelMappings
+                  readOnly="true">
+                <diagramLabel
+                    href="activityDiagram.gmfgraph#AppliedStereotypeExternalLabel"/>
+              </labelMappings>
+              <diagramNode
+                  href="activityDiagram.gmfgraph#PinNode"/>
+            </ownedChild>
+          </children>
+        </ownedChild>
+      </children>
       <compartments
           children="//@nodes.0/@ownedChild/@children.0">
         <compartment
@@ -2958,7 +3534,7 @@
             href="ActivityFigure.gmfgraph#ActivityFigurePostCondtionCompartment"/>
       </compartments>
       <compartments
-          children="//@nodes.0/@ownedChild/@children.5 //@nodes.0/@ownedChild/@children.3 //@nodes.0/@ownedChild/@children.4 //@nodes.0/@ownedChild/@children.6 //@nodes.0/@ownedChild/@children.15 //@nodes.0/@ownedChild/@children.7 //@nodes.0/@ownedChild/@children.8 //@nodes.0/@ownedChild/@children.16 //@nodes.0/@ownedChild/@children.13 //@nodes.0/@ownedChild/@children.14 //@nodes.0/@ownedChild/@children.9 //@nodes.0/@ownedChild/@children.10 //@nodes.0/@ownedChild/@children.11 //@nodes.0/@ownedChild/@children.12 //@nodes.0/@ownedChild/@children.17 //@nodes.0/@ownedChild/@children.18 //@nodes.0/@ownedChild/@children.19 //@nodes.0/@ownedChild/@children.20 //@nodes.0/@ownedChild/@children.22 //@nodes.0/@ownedChild/@children.23 //@nodes.0/@ownedChild/@children.25 //@nodes.0/@ownedChild/@children.31 //@nodes.0/@ownedChild/@children.32 //@nodes.0/@ownedChild/@children.33 //@nodes.0/@ownedChild/@children.27 //@nodes.0/@ownedChild/@children.28 //@nodes.0/@ownedChild/@children.29 //@nodes.0/@ownedChild/@children.30 //@nodes.0/@ownedChild/@children.21 //@nodes.0/@ownedChild/@children.26 //@nodes.0/@ownedChild/@children.34 //@nodes.0/@ownedChild/@children.35 //@nodes.0/@ownedChild/@children.36 //@nodes.0/@ownedChild/@children.38">
+          children="//@nodes.0/@ownedChild/@children.5 //@nodes.0/@ownedChild/@children.3 //@nodes.0/@ownedChild/@children.4 //@nodes.0/@ownedChild/@children.6 //@nodes.0/@ownedChild/@children.15 //@nodes.0/@ownedChild/@children.7 //@nodes.0/@ownedChild/@children.8 //@nodes.0/@ownedChild/@children.16 //@nodes.0/@ownedChild/@children.13 //@nodes.0/@ownedChild/@children.14 //@nodes.0/@ownedChild/@children.9 //@nodes.0/@ownedChild/@children.10 //@nodes.0/@ownedChild/@children.11 //@nodes.0/@ownedChild/@children.12 //@nodes.0/@ownedChild/@children.17 //@nodes.0/@ownedChild/@children.18 //@nodes.0/@ownedChild/@children.19 //@nodes.0/@ownedChild/@children.20 //@nodes.0/@ownedChild/@children.22 //@nodes.0/@ownedChild/@children.23 //@nodes.0/@ownedChild/@children.25 //@nodes.0/@ownedChild/@children.31 //@nodes.0/@ownedChild/@children.32 //@nodes.0/@ownedChild/@children.33 //@nodes.0/@ownedChild/@children.27 //@nodes.0/@ownedChild/@children.28 //@nodes.0/@ownedChild/@children.29 //@nodes.0/@ownedChild/@children.30 //@nodes.0/@ownedChild/@children.21 //@nodes.0/@ownedChild/@children.26 //@nodes.0/@ownedChild/@children.34 //@nodes.0/@ownedChild/@children.35 //@nodes.0/@ownedChild/@children.36 //@nodes.0/@ownedChild/@children.37 //@nodes.0/@ownedChild/@children.39 //@nodes.0/@ownedChild/@children.40 //@nodes.0/@ownedChild/@children.41 //@nodes.0/@ownedChild/@children.42 //@nodes.0/@ownedChild/@children.43 //@nodes.0/@ownedChild/@children.44">
         <compartment
             href="ActivityFigure.gmfgraph#ActivityFigureContentCompartment"/>
       </compartments>
@@ -3901,5 +4477,259 @@
         </target>
       </audits>
     </childContainers>
+    <childContainers
+        id="org.eclipse.uml2.uml.util.UMLValidator.validaterReadStructuralFeatureAction"
+        name="validateReadStructuralfeatureAction"
+        description="Constraints for Structural Feature Action">
+      <audits
+          name="validateOnlyOneClassifier"
+          description="Check that a structural feature has exactly one featuringClassifier."
+          id="org.eclipse.uml2.uml.util.UMLValidator.validateReadStructuralFeatureAction_onlyOneClassifier"
+          message="A structural feature has exactly one featuringClassifier.">
+        <rule
+            body="self.structuralFeature.featuringClassifier->size() = 1"/>
+        <target
+            xsi:type="gmfmap:DomainElementTarget">
+          <element
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ReadStructuralFeatureAction"/>
+        </target>
+      </audits>
+    </childContainers>
+    <childContainers
+        id="org.eclipse.uml2.uml.util.UMLValidator.validateAddStructuralFeatureValueAction"
+        name="validateAddStructuralFeatureValueAction"
+        description="Constraint for AddStructuralFeatureValueAction">
+      <audits
+          name="validateInputPinType"
+          description="Check valide that the type of the input pin is the same than the one from the structural feature"
+          id="org.eclipse.uml2.uml.util.UMLValidator.validateAddStructuralFeatureValueAction_ValidInputPinType"
+          message="The type of the value input pin is the same as the type of the structural feature.">
+        <rule
+            body="self.value->notEmpty() implies self.value.type = self.structuralFeature.type"/>
+        <target
+            xsi:type="gmfmap:DomainElementTarget">
+          <element
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//AddStructuralFeatureValueAction"/>
+        </target>
+      </audits>
+      <audits
+          name="validateOutputPinType"
+          description="Check that the type of the result output pin is the same as the type of the inherited object input pin."
+          id="org.eclipse.uml2.uml.util.UMLValidator.validateAddStructuralFeatureValueAction_validateOutputPinType"
+          message="The type of the result output pin is the same as the type of the inherited object input pin.">
+        <rule
+            body="result->notEmpty() implies self.result.type = self.object.type"/>
+        <target
+            xsi:type="gmfmap:DomainElementTarget">
+          <element
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//AddStructuralFeatureValueAction"/>
+        </target>
+      </audits>
+      <audits
+          name="A value input pin is required"
+          description="Check that a value input pin is required"
+          id="org.eclipse.uml2.uml.util.UMLValidator.validateAddStructuralFeatureValueAction_valideTheRequiredValuePin"
+          message="org.eclipse.uml2.uml.util.UMLValidator.validateAddStructuralFeatureValueAction">
+        <rule
+            body="self.value -> notEmpty()"/>
+        <target
+            xsi:type="gmfmap:DomainElementTarget">
+          <element
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//AddStructuralFeatureValueAction"/>
+        </target>
+      </audits>
+      <audits
+          name="validateOnlyOneClassifier"
+          description="Check that a structural feature has exactly one featuringClassifier."
+          id="org.eclipse.uml2.uml.util.UMLValidator.validateAddStructuralFeatureValueAction_onlyOneClassifier"
+          message="A structural feature has exactly one featuringClassifier.">
+        <rule
+            body="self.structuralFeature.featuringClassifier->size() = 1"/>
+        <target
+            xsi:type="gmfmap:DomainElementTarget">
+          <element
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//AddStructuralFeatureValueAction"/>
+        </target>
+      </audits>
+    </childContainers>
+    <childContainers
+        id="org.eclipse.uml2.uml.util.UMLValidator.validateDestroyObjectAction"
+        name="validateDestroyObjectAction"
+        description="Constraint for DestroyObjectAction">
+      <audits
+          name="validateInputPinHasNoType"
+          description="Check that the input pin has no type"
+          id="org.eclipse.uml2.uml.util.UMLValidator.validateDestroyObjectAction_InputPinHasNotType"
+          useInLiveMode="true"
+          message="The input pin has no type">
+        <rule
+            body="self.target.type->size() = 0"/>
+        <target
+            xsi:type="gmfmap:DomainElementTarget">
+          <element
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//DestroyObjectAction"/>
+        </target>
+      </audits>
+    </childContainers>
+    <childContainers
+        id="org.eclipse.uml2.uml.util.UMLValidator.validateStructuralFeatureAction"
+        name="validateStructuralfeatureAction"
+        description="Constraint for StructuralFeatureAction">
+      <audits
+          name="validateFeatureNotStatic"
+          description="Check that the structural feature must not be static."
+          id="org.eclipse.uml2.uml.util.UMLValidator.validateStructuralFeatureAction_FeatureNotStatic"
+          useInLiveMode="true"
+          message="The structural feature must not be static.">
+        <rule
+            body="(not self.structuralFeature.oclIsUndefined()) implies (self.structuralFeature.isStatic = false)"/>
+        <target
+            xsi:type="gmfmap:DomainElementTarget">
+          <element
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//StructuralFeatureAction"/>
+        </target>
+      </audits>
+      <audits
+          name="validateValideTypeOwningFeature"
+          description="Check that the structural feature must either be owned by the type of the object input pin, or it must be an owned end of a binary"
+          id="org.eclipse.uml2.uml.util.UMLValidator.validateStructuralFeatureAction_validateOwningFeteatringType"
+          message="The structural feature must either be owned by the type of the object input pin, or it must be an owned end of a binary">
+        <rule
+            body="self.structuralFeature.featuringClassifier.oclAsType(Type)->includes(self.object.type) or&#xD;&#xA;self.structuralFeature.oclAsType(Property).opposite.type = self.object.type"/>
+        <target
+            xsi:type="gmfmap:DomainElementTarget">
+          <element
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//StructuralFeatureAction"/>
+        </target>
+      </audits>
+      <audits
+          name="validateInputPinMultiplicity"
+          description="Check that the multiplicity of the object input pin must be 1..1."
+          id="org.eclipse.uml2.uml.util.UMLValidator.validateStructuralFeatureAction_InputPinMulitplicity"
+          message="The multiplicity of the object input pin must be 1..1.">
+        <rule
+            body="self.object.lowerBound()=1 and self.object.upperBound()=1"/>
+        <target
+            xsi:type="gmfmap:DomainElementTarget">
+          <element
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//StructuralFeatureAction"/>
+        </target>
+      </audits>
+      <audits
+          name="validateOnlyOneFeaturingClassifier"
+          description="Check that a structural feature has exactly one featuringClassifier."
+          id="org.eclipse.uml2.uml.util.UMLValidator.validateStructuralFeatureAction_OnlyOneFeaturingClassifier"
+          message="A structural feature has exactly one featuringClassifier.">
+        <rule
+            body="self.structuralFeature.featuringClassifier->size() = 1"/>
+        <target
+            xsi:type="gmfmap:DomainElementTarget">
+          <element
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//StructuralFeatureAction"/>
+        </target>
+      </audits>
+    </childContainers>
+    <childContainers
+        id="org.eclipse.uml2.uml.util.UMLValidator.validateAddVariableValueAction"
+        name="validateAddvariablevalueAction"
+        description="Constraint for AddVariableValueAction">
+      <audits
+          name="validateInputPinAsValueAsAtLeastOneInputPin"
+          description="Check that a value input pin is required."
+          id="org.eclipse.uml2.uml.util.UMLValidator.validateAddVariableValueAction_AsAtLeastOneInputPin"
+          message="A value input pin is required.">
+        <rule
+            body="self.value -> notEmpty()"/>
+        <target
+            xsi:type="gmfmap:DomainElementTarget">
+          <element
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//AddVariableValueAction"/>
+        </target>
+      </audits>
+    </childContainers>
+    <childContainers
+        id="org.eclipse.uml2.uml.util.UMLValidator.validateWriteVariableAction"
+        name="validateWriteVariableAction"
+        description="Constraint for WriteVariableAction">
+      <audits
+          name="valideInputPinType"
+          description="Check that the type input pin is the same as the type of the variable."
+          id="org.eclipse.uml2.uml.util.UMLValidator.validateWriteVariableAction_InputPinValidePin"
+          message="The type input pin is the same as the type of the variable.">
+        <rule
+            body="self.value -> notEmpty() implies self.value.type = self.variable.type"/>
+        <target
+            xsi:type="gmfmap:DomainElementTarget">
+          <element
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//WriteVariableAction"/>
+        </target>
+      </audits>
+      <audits
+          name="validateInputPinMultiplicity"
+          description="Check that the multiplicity of the input pin is 1..1."
+          id="org.eclipse.uml2.uml.util.UMLValidator.validateWriteVariableAction_valideInputPinMultiplicity"
+          message="The multiplicity of the input pin is 1..1.">
+        <rule
+            body="self.value.lowerBound()=1 and self.value.upperBound()=1"/>
+        <target
+            xsi:type="gmfmap:DomainElementTarget">
+          <element
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//WriteVariableAction"/>
+        </target>
+      </audits>
+    </childContainers>
+    <childContainers
+        id="org.eclipse.uml2.uml.util.UMLValidator.validateVariableAction"
+        name="validateVariableAction"
+        description="Constraint for VariableAction">
+      <audits
+          name="validateVariableScope"
+          description="Check that the action must be in the scope of the variable."
+          id="org.eclipse.uml2.uml.util.UMLValidator.validateVariableAction_VariableScope"
+          message="The action must be in the scope of the variable.">
+        <rule
+            body="self.variable.isAccessibleBy(self)"/>
+        <target
+            xsi:type="gmfmap:DomainElementTarget">
+          <element
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//VariableAction"/>
+        </target>
+      </audits>
+    </childContainers>
+    <childContainers
+        id="org.eclipse.uml2.uml.util.UMLValidator.validateReadVariableAction"
+        name="validateReadVariableAction"
+        description="Constraint for ReadVariableAction">
+      <audits
+          name="validateOutputPinType"
+          description="Check that the type and ordering of the result output pin of a read-variable action are the same as the type and ordering of the"
+          id="org.eclipse.uml2.uml.util.UMLValidator.validateReadVariableAction_OutputPinType"
+          message="The type and ordering of the result output pin of a read-variable action are the same as the type and ordering of the">
+        <rule
+            body="self.result.type =self.variable.type and self.result.isOrdered = self.variable.isOrdered"/>
+        <target
+            xsi:type="gmfmap:DomainElementTarget">
+          <element
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ReadVariableAction"/>
+        </target>
+      </audits>
+      <audits
+          name="validateOutputPinMultiplicity"
+          description="Check that the multiplicity of the variable must be compatible with the multiplicity of the output pin"
+          id="org.eclipse.uml2.uml.util.UMLValidator.validateReadVariableAction_OutputPinMultiplicity"
+          message="The multiplicity of the variable must be compatible with the multiplicity of the output pin">
+        <rule
+            body="(self.result.lowerBound() &lt;= self.variable.lowerBound())  and (self.result.upperBound() >= self.variable.lowerBound())"/>
+        <target
+            xsi:type="gmfmap:DomainElementTarget">
+          <element
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ReadVariableAction"/>
+        </target>
+      </audits>
+    </childContainers>
+    <childContainers
+        id="org.eclipse.uml2.uml.util.UMLValidator.validateBroacastSignalAction"
+        name="validateBroadcastSignalActionTODO"
+        description="Constraint for BraodcastSignalAction"/>
   </audits>
 </gmfmap:Mapping>

@@ -434,6 +434,54 @@ BorderedBorderItemEditPart {
 		if(targetEditPart instanceof org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInCreateObjectActionAsResultEditPart) {
 			types.add(UMLElementTypes.ObjectFlow_4003);
 		}
+		if(targetEditPart instanceof ReadStructuralFeatureActionEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof InputPinInReadStructuralFeatureAsObjectEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof OutputPinInReadStructuralFeatureAsResultEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof AddStructuralFeatureValueActionEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof InputPinInAddStructuralFeatureValueActionAsObjectEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof InputPinInAddStructuralFeatureValueActionAsValueEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof OutputPinInAddStructuralFeatureValueActionAsResultEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof DestroyObjectActionEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof InputPinInDestroyObjectActionEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof ReadVariableActionEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof OutputPinInReadVariableActionAsResultEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof AddVariableValueActionEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof InputPinInAddVariableValueActionAsInsertAtEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof InputPinInAddVariableValueActionAsValueEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof BroadcastSignalActionEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof InputPinInBroadcastSignalActionEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
 		if(targetEditPart instanceof InitialNodeEditPart) {
 			types.add(UMLElementTypes.ControlFlow_4004);
 		}
@@ -602,6 +650,54 @@ BorderedBorderItemEditPart {
 		if(targetEditPart instanceof org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInCreateObjectActionAsResultEditPart) {
 			types.add(UMLElementTypes.ControlFlow_4004);
 		}
+		if(targetEditPart instanceof ReadStructuralFeatureActionEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof InputPinInReadStructuralFeatureAsObjectEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof OutputPinInReadStructuralFeatureAsResultEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof AddStructuralFeatureValueActionEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof InputPinInAddStructuralFeatureValueActionAsObjectEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof InputPinInAddStructuralFeatureValueActionAsValueEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof OutputPinInAddStructuralFeatureValueActionAsResultEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof DestroyObjectActionEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof InputPinInDestroyObjectActionEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof ReadVariableActionEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof OutputPinInReadVariableActionAsResultEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof AddVariableValueActionEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof InputPinInAddVariableValueActionAsInsertAtEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof InputPinInAddVariableValueActionAsValueEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof BroadcastSignalActionEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof InputPinInBroadcastSignalActionEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
 		return types;
 	}
 
@@ -667,6 +763,22 @@ BorderedBorderItemEditPart {
 			types.add(UMLElementTypes.OutputPin_3084);
 			types.add(UMLElementTypes.CreateObjectAction_3086);
 			types.add(UMLElementTypes.OutputPin_3087);
+			types.add(UMLElementTypes.ReadStructuralFeatureAction_3088);
+			types.add(UMLElementTypes.InputPin_3089);
+			types.add(UMLElementTypes.OutputPin_3090);
+			types.add(UMLElementTypes.AddStructuralFeatureValueAction_3091);
+			types.add(UMLElementTypes.InputPin_3092);
+			types.add(UMLElementTypes.InputPin_3093);
+			types.add(UMLElementTypes.OutputPin_3094);
+			types.add(UMLElementTypes.DestroyObjectAction_3095);
+			types.add(UMLElementTypes.InputPin_3096);
+			types.add(UMLElementTypes.ReadVariableAction_3097);
+			types.add(UMLElementTypes.OutputPin_3098);
+			types.add(UMLElementTypes.AddVariableValueAction_3099);
+			types.add(UMLElementTypes.InputPin_3100);
+			types.add(UMLElementTypes.InputPin_3101);
+			types.add(UMLElementTypes.BroadcastSignalAction_3102);
+			types.add(UMLElementTypes.InputPin_3103);
 		} else if(relationshipType == UMLElementTypes.ControlFlow_4004) {
 			types.add(UMLElementTypes.InitialNode_3004);
 			types.add(UMLElementTypes.ActivityFinalNode_3005);
@@ -724,6 +836,22 @@ BorderedBorderItemEditPart {
 			types.add(UMLElementTypes.OutputPin_3084);
 			types.add(UMLElementTypes.CreateObjectAction_3086);
 			types.add(UMLElementTypes.OutputPin_3087);
+			types.add(UMLElementTypes.ReadStructuralFeatureAction_3088);
+			types.add(UMLElementTypes.InputPin_3089);
+			types.add(UMLElementTypes.OutputPin_3090);
+			types.add(UMLElementTypes.AddStructuralFeatureValueAction_3091);
+			types.add(UMLElementTypes.InputPin_3092);
+			types.add(UMLElementTypes.InputPin_3093);
+			types.add(UMLElementTypes.OutputPin_3094);
+			types.add(UMLElementTypes.DestroyObjectAction_3095);
+			types.add(UMLElementTypes.InputPin_3096);
+			types.add(UMLElementTypes.ReadVariableAction_3097);
+			types.add(UMLElementTypes.OutputPin_3098);
+			types.add(UMLElementTypes.AddVariableValueAction_3099);
+			types.add(UMLElementTypes.InputPin_3100);
+			types.add(UMLElementTypes.InputPin_3101);
+			types.add(UMLElementTypes.BroadcastSignalAction_3102);
+			types.add(UMLElementTypes.InputPin_3103);
 		}
 		return types;
 	}
@@ -802,6 +930,22 @@ BorderedBorderItemEditPart {
 			types.add(UMLElementTypes.OutputPin_3084);
 			types.add(UMLElementTypes.CreateObjectAction_3086);
 			types.add(UMLElementTypes.OutputPin_3087);
+			types.add(UMLElementTypes.ReadStructuralFeatureAction_3088);
+			types.add(UMLElementTypes.InputPin_3089);
+			types.add(UMLElementTypes.OutputPin_3090);
+			types.add(UMLElementTypes.AddStructuralFeatureValueAction_3091);
+			types.add(UMLElementTypes.InputPin_3092);
+			types.add(UMLElementTypes.InputPin_3093);
+			types.add(UMLElementTypes.OutputPin_3094);
+			types.add(UMLElementTypes.DestroyObjectAction_3095);
+			types.add(UMLElementTypes.InputPin_3096);
+			types.add(UMLElementTypes.ReadVariableAction_3097);
+			types.add(UMLElementTypes.OutputPin_3098);
+			types.add(UMLElementTypes.AddVariableValueAction_3099);
+			types.add(UMLElementTypes.InputPin_3100);
+			types.add(UMLElementTypes.InputPin_3101);
+			types.add(UMLElementTypes.BroadcastSignalAction_3102);
+			types.add(UMLElementTypes.InputPin_3103);
 		} else if(relationshipType == UMLElementTypes.ControlFlow_4004) {
 			types.add(UMLElementTypes.InitialNode_3004);
 			types.add(UMLElementTypes.ActivityFinalNode_3005);
@@ -859,6 +1003,22 @@ BorderedBorderItemEditPart {
 			types.add(UMLElementTypes.OutputPin_3084);
 			types.add(UMLElementTypes.CreateObjectAction_3086);
 			types.add(UMLElementTypes.OutputPin_3087);
+			types.add(UMLElementTypes.ReadStructuralFeatureAction_3088);
+			types.add(UMLElementTypes.InputPin_3089);
+			types.add(UMLElementTypes.OutputPin_3090);
+			types.add(UMLElementTypes.AddStructuralFeatureValueAction_3091);
+			types.add(UMLElementTypes.InputPin_3092);
+			types.add(UMLElementTypes.InputPin_3093);
+			types.add(UMLElementTypes.OutputPin_3094);
+			types.add(UMLElementTypes.DestroyObjectAction_3095);
+			types.add(UMLElementTypes.InputPin_3096);
+			types.add(UMLElementTypes.ReadVariableAction_3097);
+			types.add(UMLElementTypes.OutputPin_3098);
+			types.add(UMLElementTypes.AddVariableValueAction_3099);
+			types.add(UMLElementTypes.InputPin_3100);
+			types.add(UMLElementTypes.InputPin_3101);
+			types.add(UMLElementTypes.BroadcastSignalAction_3102);
+			types.add(UMLElementTypes.InputPin_3103);
 		} else if(relationshipType == UMLElementTypes.ExceptionHandler_4005) {
 			types.add(UMLElementTypes.OpaqueAction_3007);
 			types.add(UMLElementTypes.CallBehaviorAction_3008);
@@ -874,6 +1034,12 @@ BorderedBorderItemEditPart {
 			types.add(UMLElementTypes.StructuredActivityNode_3065);
 			types.add(UMLElementTypes.ReadSelfAction_3081);
 			types.add(UMLElementTypes.CreateObjectAction_3086);
+			types.add(UMLElementTypes.ReadStructuralFeatureAction_3088);
+			types.add(UMLElementTypes.AddStructuralFeatureValueAction_3091);
+			types.add(UMLElementTypes.DestroyObjectAction_3095);
+			types.add(UMLElementTypes.ReadVariableAction_3097);
+			types.add(UMLElementTypes.AddVariableValueAction_3099);
+			types.add(UMLElementTypes.BroadcastSignalAction_3102);
 		} else if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4006) {
 			types.add(UMLElementTypes.Comment_3080);
 		}

@@ -44,7 +44,7 @@ public class UMLOCLFactory {
 	 * @generated
 	 */
 	protected UMLOCLFactory() {
-		this.expressions = new UMLAbstractExpression[63];
+		this.expressions = new UMLAbstractExpression[86];
 	}
 
 	/**
@@ -88,6 +88,13 @@ public class UMLOCLFactory {
 			"if self.owner.oclIsKindOf(ExpansionRegion)\r\nthen self.owner.oclAsType(ExpansionRegion).inputElement->includes(self)\r\nelse false endif", //$NON-NLS-1$
 			"if self.owner.oclIsKindOf(ExpansionRegion)\r\nthen self.owner.oclAsType(ExpansionRegion).outputElement->includes(self)\r\nelse false endif", //$NON-NLS-1$
 			"\' \'", //$NON-NLS-1$
+			"if self.owner.oclIsKindOf(AddStructuralFeatureValueAction)\r\nthen self.owner.oclAsType(AddStructuralFeatureValueAction).object->includes(self)\r\nelse false endif", //$NON-NLS-1$
+			"if self.owner.oclIsKindOf(AddStructuralFeatureValueAction)\r\nthen self.owner.oclAsType(AddStructuralFeatureValueAction).value->includes(self)\r\nelse false endif", //$NON-NLS-1$
+			"if self.owner.oclIsKindOf(DestroyObjectAction)\r\nthen self.owner.oclAsType(DestroyObjectAction).target->includes(self)\r\nelse false endif", //$NON-NLS-1$
+			"if self.owner.oclIsKindOf(ReadVariableAction)\r\nthen self.owner.oclAsType(ReadVariableAction).result->includes(self)\r\nelse false endif", //$NON-NLS-1$
+			"if self.owner.oclIsKindOf(AddVariableValueAction)\r\nthen self.owner.oclAsType(AddVariableValueAction).insertAt->includes(self)\r\nelse false endif", //$NON-NLS-1$
+			"if self.owner.oclIsKindOf(AddVariableValueAction)\r\nthen self.owner.oclAsType(AddVariableValueAction).value->includes(self)\r\nelse false endif", //$NON-NLS-1$
+			"if self.owner.oclIsKindOf(BroadcastSignalAction)\r\nthen self.owner.oclAsType(BroadcastSignalAction).argument->includes(self)\r\nelse false endif", //$NON-NLS-1$
 			"self.incoming->isEmpty()", //$NON-NLS-1$
 			"not self.source.oclIsKindOf(InitialNode)", //$NON-NLS-1$
 			"self.outgoing->isEmpty()", //$NON-NLS-1$
@@ -120,8 +127,24 @@ public class UMLOCLFactory {
 			"self.outgoing->size() = 1", //$NON-NLS-1$
 			"(self.incoming->select(e | e.oclIsKindOf(ObjectFlow))->notEmpty() implies\r\n self.outgoing->exists(e | e.oclIsKindOf(ObjectFlow))) and\r\n(self.incoming->select(e | e.oclIsKindOf(ObjectFlow))->isEmpty() implies\r\n self.outgoing->exists(e | e.oclIsKindOf(ControlFlow)))", //$NON-NLS-1$
 			"(self.incoming->notEmpty() implies self.outgoing->isEmpty()) and\r\n(self.outgoing->notEmpty() implies self.incoming->isEmpty())", //$NON-NLS-1$
-			"(not self.classifier.oclIsUndefined()) implies (\r\n self.classifier.isAbstract = false)", //$NON-NLS-1$
-			"(not self.classifier.oclIsUndefined()) implies (\r\n not self.classifier.oclIsKindOf(uml::AssociationClass))", //$NON-NLS-1$
+			"(not self.classifier.oclIsUndefined()) implies (self.classifier.isAbstract = false)", //$NON-NLS-1$
+			"(not self.classifier.oclIsUndefined()) implies (not self.classifier.oclIsKindOf(uml::AssociationClass))", //$NON-NLS-1$
+			"self.structuralFeature.featuringClassifier->size() = 1", //$NON-NLS-1$
+			"self.value->notEmpty() implies self.value.type = self.structuralFeature.type", //$NON-NLS-1$
+			"result->notEmpty() implies self.result.type = self.object.type", //$NON-NLS-1$
+			"self.value -> notEmpty()", //$NON-NLS-1$
+			"self.structuralFeature.featuringClassifier->size() = 1", //$NON-NLS-1$
+			"self.target.type->size() = 0", //$NON-NLS-1$
+			"(not self.structuralFeature.oclIsUndefined()) implies (self.structuralFeature.isStatic = false)", //$NON-NLS-1$
+			"self.structuralFeature.featuringClassifier.oclAsType(Type)->includes(self.object.type) or\r\nself.structuralFeature.oclAsType(Property).opposite.type = self.object.type", //$NON-NLS-1$
+			"self.object.lowerBound()=1 and self.object.upperBound()=1", //$NON-NLS-1$
+			"self.structuralFeature.featuringClassifier->size() = 1", //$NON-NLS-1$
+			"self.value -> notEmpty()", //$NON-NLS-1$
+			"self.value -> notEmpty() implies self.value.type = self.variable.type", //$NON-NLS-1$
+			"self.value.lowerBound()=1 and self.value.upperBound()=1", //$NON-NLS-1$
+			"self.variable.isAccessibleBy(self)", //$NON-NLS-1$
+			"self.result.type =self.variable.type and self.result.isOrdered = self.variable.isOrdered", //$NON-NLS-1$
+			"(self.result.lowerBound() <= self.variable.lowerBound())  and (self.result.upperBound() >= self.variable.lowerBound())", //$NON-NLS-1$
 			};
 			cached.expressions[index] = getExpression(exprBodies[index], context, environment == null ? Collections.<String, EClassifier> emptyMap() : environment);
 		}
