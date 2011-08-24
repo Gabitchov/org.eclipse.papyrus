@@ -15,22 +15,25 @@ package org.eclipse.papyrus.core.resourceloading.preferences;
 
 import java.util.Map;
 
+import org.eclipse.draw2d.GridData;
 import org.eclipse.jface.dialogs.DialogPage;
-import org.eclipse.jface.preference.ComboFieldEditor;
+import org.eclipse.jface.preference.RadioGroupFieldEditor;
 import org.eclipse.papyrus.core.resourceloading.impl.ProxyManager;
 import org.eclipse.papyrus.preferences.ui.AbstractGroup;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Group;
 
 public class LoadinStrategyGroup extends AbstractGroup {
 
-	private static final String LABEL_LOADING_STRATEGY = "Loading strategy: ";
+	private static final String LABEL_LOADING_STRATEGY = "Loading strategy :";
 
 	private static final String SELECT_LOADING_STRATEGY = "Select the loading strategy when model is opened";
 
-	private ComboFieldEditor fComboSize;
+	private RadioGroupFieldEditor fStrategyRadio;
 
 	public LoadinStrategyGroup(Composite parent, String title, DialogPage dialogPage) {
 		super(parent, title, dialogPage);
@@ -41,14 +44,14 @@ public class LoadinStrategyGroup extends AbstractGroup {
 		Group group = new Group(parent, SWT.SCROLL_PAGE);
 		group.setLayout(new GridLayout());
 		group.setText(SELECT_LOADING_STRATEGY);
-		fComboSize = createComboSize(group);
-		addFieldEditor(fComboSize);
+		fStrategyRadio = createStrategyRadio(group);
+		addFieldEditor(fStrategyRadio);
 	}
 
-	private static ComboFieldEditor createComboSize(Group group) {
-		String[][] values = getValuesFromExtensionPoint();
-		ComboFieldEditor combo = new ComboFieldEditor(ICorePreferenceConstants.PREF_CORE_DEFINE_LOADING_STRATEGY, LABEL_LOADING_STRATEGY, values, group);
-		return combo;
+	private static RadioGroupFieldEditor createStrategyRadio(Group group) {
+        String[][] values = getValuesFromExtensionPoint();
+        RadioGroupFieldEditor radio = new RadioGroupFieldEditor(ICorePreferenceConstants.PREF_CORE_DEFINE_LOADING_STRATEGY, LABEL_LOADING_STRATEGY, 1, values, group);
+        return radio;
 	}
 
 	/**
