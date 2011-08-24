@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
+import org.eclipse.gef.RequestConstants;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
@@ -46,7 +47,11 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.diagram.activity.edit.policies.ActivityDiagramChangeStereotypedShapeEditpolicy;
+import org.eclipse.papyrus.diagram.activity.edit.policies.CreateActionLocalConditionEditPolicy;
+import org.eclipse.papyrus.diagram.activity.edit.policies.DeleteActionViewEditPolicy;
+import org.eclipse.papyrus.diagram.activity.edit.policies.ObjectFlowWithPinsCreationEditPolicy;
 import org.eclipse.papyrus.diagram.activity.edit.policies.OpenDiagramEditPolicy;
+import org.eclipse.papyrus.diagram.activity.edit.policies.ValueSpecificationActionCanonicalEditPolicy;
 import org.eclipse.papyrus.diagram.activity.edit.policies.ValueSpecificationActionItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.activity.locator.PinPositionLocator;
 import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin;
@@ -109,6 +114,10 @@ NamedElementEditPart {
 		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
 		installEditPolicy(ChangeStereotypedShapeEditPolicy.CHANGE_SHAPE_POLICY, new ActivityDiagramChangeStereotypedShapeEditpolicy());
+		installEditPolicy(RequestConstants.REQ_CREATE, new CreateActionLocalConditionEditPolicy());
+		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new ObjectFlowWithPinsCreationEditPolicy());
+		installEditPolicy(RequestConstants.REQ_DELETE, new DeleteActionViewEditPolicy());
+		installEditPolicy(EditPolicyRoles.CANONICAL_ROLE, new ValueSpecificationActionCanonicalEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -564,6 +573,54 @@ NamedElementEditPart {
 		if(targetEditPart instanceof OutputPinInCreateObjectActionAsResultEditPart) {
 			types.add(UMLElementTypes.ObjectFlow_4003);
 		}
+		if(targetEditPart instanceof ReadStructuralFeatureActionEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof InputPinInReadStructuralFeatureAsObjectEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof OutputPinInReadStructuralFeatureAsResultEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof AddStructuralFeatureValueActionEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof InputPinInAddStructuralFeatureValueActionAsObjectEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof InputPinInAddStructuralFeatureValueActionAsValueEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof OutputPinInAddStructuralFeatureValueActionAsResultEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof DestroyObjectActionEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof InputPinInDestroyObjectActionEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof ReadVariableActionEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof OutputPinInReadVariableActionAsResultEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof AddVariableValueActionEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof InputPinInAddVariableValueActionAsInsertAtEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof InputPinInAddVariableValueActionAsValueEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof BroadcastSignalActionEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof InputPinInBroadcastSignalActionEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
 		if(targetEditPart instanceof InitialNodeEditPart) {
 			types.add(UMLElementTypes.ControlFlow_4004);
 		}
@@ -732,6 +789,54 @@ NamedElementEditPart {
 		if(targetEditPart instanceof OutputPinInCreateObjectActionAsResultEditPart) {
 			types.add(UMLElementTypes.ControlFlow_4004);
 		}
+		if(targetEditPart instanceof ReadStructuralFeatureActionEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof InputPinInReadStructuralFeatureAsObjectEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof OutputPinInReadStructuralFeatureAsResultEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof AddStructuralFeatureValueActionEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof InputPinInAddStructuralFeatureValueActionAsObjectEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof InputPinInAddStructuralFeatureValueActionAsValueEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof OutputPinInAddStructuralFeatureValueActionAsResultEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof DestroyObjectActionEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof InputPinInDestroyObjectActionEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof ReadVariableActionEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof OutputPinInReadVariableActionAsResultEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof AddVariableValueActionEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof InputPinInAddVariableValueActionAsInsertAtEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof InputPinInAddVariableValueActionAsValueEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof BroadcastSignalActionEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof InputPinInBroadcastSignalActionEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
 		if(targetEditPart instanceof ValuePinInOpaqueActEditPart) {
 			types.add(UMLElementTypes.ExceptionHandler_4005);
 		}
@@ -837,6 +942,36 @@ NamedElementEditPart {
 		if(targetEditPart instanceof OutputPinInCreateObjectActionAsResultEditPart) {
 			types.add(UMLElementTypes.ExceptionHandler_4005);
 		}
+		if(targetEditPart instanceof InputPinInReadStructuralFeatureAsObjectEditPart) {
+			types.add(UMLElementTypes.ExceptionHandler_4005);
+		}
+		if(targetEditPart instanceof OutputPinInReadStructuralFeatureAsResultEditPart) {
+			types.add(UMLElementTypes.ExceptionHandler_4005);
+		}
+		if(targetEditPart instanceof InputPinInAddStructuralFeatureValueActionAsObjectEditPart) {
+			types.add(UMLElementTypes.ExceptionHandler_4005);
+		}
+		if(targetEditPart instanceof InputPinInAddStructuralFeatureValueActionAsValueEditPart) {
+			types.add(UMLElementTypes.ExceptionHandler_4005);
+		}
+		if(targetEditPart instanceof OutputPinInAddStructuralFeatureValueActionAsResultEditPart) {
+			types.add(UMLElementTypes.ExceptionHandler_4005);
+		}
+		if(targetEditPart instanceof InputPinInDestroyObjectActionEditPart) {
+			types.add(UMLElementTypes.ExceptionHandler_4005);
+		}
+		if(targetEditPart instanceof OutputPinInReadVariableActionAsResultEditPart) {
+			types.add(UMLElementTypes.ExceptionHandler_4005);
+		}
+		if(targetEditPart instanceof InputPinInAddVariableValueActionAsInsertAtEditPart) {
+			types.add(UMLElementTypes.ExceptionHandler_4005);
+		}
+		if(targetEditPart instanceof InputPinInAddVariableValueActionAsValueEditPart) {
+			types.add(UMLElementTypes.ExceptionHandler_4005);
+		}
+		if(targetEditPart instanceof InputPinInBroadcastSignalActionEditPart) {
+			types.add(UMLElementTypes.ExceptionHandler_4005);
+		}
 		return types;
 	}
 
@@ -920,6 +1055,22 @@ NamedElementEditPart {
 			types.add(UMLElementTypes.OutputPin_3084);
 			types.add(UMLElementTypes.CreateObjectAction_3086);
 			types.add(UMLElementTypes.OutputPin_3087);
+			types.add(UMLElementTypes.ReadStructuralFeatureAction_3088);
+			types.add(UMLElementTypes.InputPin_3089);
+			types.add(UMLElementTypes.OutputPin_3090);
+			types.add(UMLElementTypes.AddStructuralFeatureValueAction_3091);
+			types.add(UMLElementTypes.InputPin_3092);
+			types.add(UMLElementTypes.InputPin_3093);
+			types.add(UMLElementTypes.OutputPin_3094);
+			types.add(UMLElementTypes.DestroyObjectAction_3095);
+			types.add(UMLElementTypes.InputPin_3096);
+			types.add(UMLElementTypes.ReadVariableAction_3097);
+			types.add(UMLElementTypes.OutputPin_3098);
+			types.add(UMLElementTypes.AddVariableValueAction_3099);
+			types.add(UMLElementTypes.InputPin_3100);
+			types.add(UMLElementTypes.InputPin_3101);
+			types.add(UMLElementTypes.BroadcastSignalAction_3102);
+			types.add(UMLElementTypes.InputPin_3103);
 		} else if(relationshipType == UMLElementTypes.ControlFlow_4004) {
 			types.add(UMLElementTypes.InitialNode_3004);
 			types.add(UMLElementTypes.ActivityFinalNode_3005);
@@ -977,6 +1128,22 @@ NamedElementEditPart {
 			types.add(UMLElementTypes.OutputPin_3084);
 			types.add(UMLElementTypes.CreateObjectAction_3086);
 			types.add(UMLElementTypes.OutputPin_3087);
+			types.add(UMLElementTypes.ReadStructuralFeatureAction_3088);
+			types.add(UMLElementTypes.InputPin_3089);
+			types.add(UMLElementTypes.OutputPin_3090);
+			types.add(UMLElementTypes.AddStructuralFeatureValueAction_3091);
+			types.add(UMLElementTypes.InputPin_3092);
+			types.add(UMLElementTypes.InputPin_3093);
+			types.add(UMLElementTypes.OutputPin_3094);
+			types.add(UMLElementTypes.DestroyObjectAction_3095);
+			types.add(UMLElementTypes.InputPin_3096);
+			types.add(UMLElementTypes.ReadVariableAction_3097);
+			types.add(UMLElementTypes.OutputPin_3098);
+			types.add(UMLElementTypes.AddVariableValueAction_3099);
+			types.add(UMLElementTypes.InputPin_3100);
+			types.add(UMLElementTypes.InputPin_3101);
+			types.add(UMLElementTypes.BroadcastSignalAction_3102);
+			types.add(UMLElementTypes.InputPin_3103);
 		} else if(relationshipType == UMLElementTypes.ExceptionHandler_4005) {
 			types.add(UMLElementTypes.ValuePin_3015);
 			types.add(UMLElementTypes.ActionInputPin_3016);
@@ -1013,6 +1180,16 @@ NamedElementEditPart {
 			types.add(UMLElementTypes.ExpansionNode_3075);
 			types.add(UMLElementTypes.OutputPin_3084);
 			types.add(UMLElementTypes.OutputPin_3087);
+			types.add(UMLElementTypes.InputPin_3089);
+			types.add(UMLElementTypes.OutputPin_3090);
+			types.add(UMLElementTypes.InputPin_3092);
+			types.add(UMLElementTypes.InputPin_3093);
+			types.add(UMLElementTypes.OutputPin_3094);
+			types.add(UMLElementTypes.InputPin_3096);
+			types.add(UMLElementTypes.OutputPin_3098);
+			types.add(UMLElementTypes.InputPin_3100);
+			types.add(UMLElementTypes.InputPin_3101);
+			types.add(UMLElementTypes.InputPin_3103);
 		}
 		return types;
 	}
@@ -1090,6 +1267,22 @@ NamedElementEditPart {
 			types.add(UMLElementTypes.OutputPin_3084);
 			types.add(UMLElementTypes.CreateObjectAction_3086);
 			types.add(UMLElementTypes.OutputPin_3087);
+			types.add(UMLElementTypes.ReadStructuralFeatureAction_3088);
+			types.add(UMLElementTypes.InputPin_3089);
+			types.add(UMLElementTypes.OutputPin_3090);
+			types.add(UMLElementTypes.AddStructuralFeatureValueAction_3091);
+			types.add(UMLElementTypes.InputPin_3092);
+			types.add(UMLElementTypes.InputPin_3093);
+			types.add(UMLElementTypes.OutputPin_3094);
+			types.add(UMLElementTypes.DestroyObjectAction_3095);
+			types.add(UMLElementTypes.InputPin_3096);
+			types.add(UMLElementTypes.ReadVariableAction_3097);
+			types.add(UMLElementTypes.OutputPin_3098);
+			types.add(UMLElementTypes.AddVariableValueAction_3099);
+			types.add(UMLElementTypes.InputPin_3100);
+			types.add(UMLElementTypes.InputPin_3101);
+			types.add(UMLElementTypes.BroadcastSignalAction_3102);
+			types.add(UMLElementTypes.InputPin_3103);
 		} else if(relationshipType == UMLElementTypes.ControlFlow_4004) {
 			types.add(UMLElementTypes.InitialNode_3004);
 			types.add(UMLElementTypes.ActivityFinalNode_3005);
@@ -1147,6 +1340,22 @@ NamedElementEditPart {
 			types.add(UMLElementTypes.OutputPin_3084);
 			types.add(UMLElementTypes.CreateObjectAction_3086);
 			types.add(UMLElementTypes.OutputPin_3087);
+			types.add(UMLElementTypes.ReadStructuralFeatureAction_3088);
+			types.add(UMLElementTypes.InputPin_3089);
+			types.add(UMLElementTypes.OutputPin_3090);
+			types.add(UMLElementTypes.AddStructuralFeatureValueAction_3091);
+			types.add(UMLElementTypes.InputPin_3092);
+			types.add(UMLElementTypes.InputPin_3093);
+			types.add(UMLElementTypes.OutputPin_3094);
+			types.add(UMLElementTypes.DestroyObjectAction_3095);
+			types.add(UMLElementTypes.InputPin_3096);
+			types.add(UMLElementTypes.ReadVariableAction_3097);
+			types.add(UMLElementTypes.OutputPin_3098);
+			types.add(UMLElementTypes.AddVariableValueAction_3099);
+			types.add(UMLElementTypes.InputPin_3100);
+			types.add(UMLElementTypes.InputPin_3101);
+			types.add(UMLElementTypes.BroadcastSignalAction_3102);
+			types.add(UMLElementTypes.InputPin_3103);
 		} else if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4006) {
 			types.add(UMLElementTypes.Comment_3080);
 		}

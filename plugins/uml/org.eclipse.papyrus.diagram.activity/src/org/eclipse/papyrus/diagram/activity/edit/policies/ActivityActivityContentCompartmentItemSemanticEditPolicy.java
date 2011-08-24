@@ -19,6 +19,9 @@ import org.eclipse.papyrus.diagram.activity.edit.commands.AcceptEventActionCreat
 import org.eclipse.papyrus.diagram.activity.edit.commands.ActivityCreateCommandCN;
 import org.eclipse.papyrus.diagram.activity.edit.commands.ActivityFinalNodeCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.ActivityPartitionCreateCommand;
+import org.eclipse.papyrus.diagram.activity.edit.commands.AddStructuralFeatureValueActionCreateCommand;
+import org.eclipse.papyrus.diagram.activity.edit.commands.AddVariableValueActionCreateCommand;
+import org.eclipse.papyrus.diagram.activity.edit.commands.BroadcastSignalActionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.CallBehaviorActionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.CallOperationActionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.CommentCreateCommand;
@@ -26,6 +29,7 @@ import org.eclipse.papyrus.diagram.activity.edit.commands.ConditionalNodeCreateC
 import org.eclipse.papyrus.diagram.activity.edit.commands.CreateObjectActionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.DataStoreNodeCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.DecisionNodeCreateCommand;
+import org.eclipse.papyrus.diagram.activity.edit.commands.DestroyObjectActionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.ExpansionRegionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.FlowFinalNodeCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.ForkNodeCreateCommand;
@@ -36,6 +40,8 @@ import org.eclipse.papyrus.diagram.activity.edit.commands.LoopNodeCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.MergeNodeCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.OpaqueActionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.ReadSelfActionCreateCommand;
+import org.eclipse.papyrus.diagram.activity.edit.commands.ReadStructuralFeatureActionCreateCommand;
+import org.eclipse.papyrus.diagram.activity.edit.commands.ReadVariableActionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.SendObjectActionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.SendSignalActionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.SequenceNodeCreateCommand;
@@ -166,6 +172,24 @@ public class ActivityActivityContentCompartmentItemSemanticEditPolicy extends UM
 		}
 		if(UMLElementTypes.CreateObjectAction_3086 == req.getElementType()) {
 			return getGEFWrapper(new CreateObjectActionCreateCommand(req));
+		}
+		if(UMLElementTypes.ReadStructuralFeatureAction_3088 == req.getElementType()) {
+			return getGEFWrapper(new ReadStructuralFeatureActionCreateCommand(req));
+		}
+		if(UMLElementTypes.AddStructuralFeatureValueAction_3091 == req.getElementType()) {
+			return getGEFWrapper(new AddStructuralFeatureValueActionCreateCommand(req));
+		}
+		if(UMLElementTypes.DestroyObjectAction_3095 == req.getElementType()) {
+			return getGEFWrapper(new DestroyObjectActionCreateCommand(req));
+		}
+		if(UMLElementTypes.AddVariableValueAction_3099 == req.getElementType()) {
+			return getGEFWrapper(new AddVariableValueActionCreateCommand(req));
+		}
+		if(UMLElementTypes.ReadVariableAction_3097 == req.getElementType()) {
+			return getGEFWrapper(new ReadVariableActionCreateCommand(req));
+		}
+		if(UMLElementTypes.BroadcastSignalAction_3102 == req.getElementType()) {
+			return getGEFWrapper(new BroadcastSignalActionCreateCommand(req));
 		}
 		return super.getCreateCommand(req);
 	}

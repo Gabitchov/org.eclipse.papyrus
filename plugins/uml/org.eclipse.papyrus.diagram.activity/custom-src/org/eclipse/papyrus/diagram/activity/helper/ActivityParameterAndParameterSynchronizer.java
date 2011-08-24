@@ -51,7 +51,7 @@ import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
- * ActivityParameterAndParameterSynchronizer is a validator to synchronize ActivityParameterNode
+ * ActivityParameterAndParameterSynchronizer is a validator (see corresponding extensions) to synchronize ActivityParameterNode
  * with its Parameter
  * 
  */

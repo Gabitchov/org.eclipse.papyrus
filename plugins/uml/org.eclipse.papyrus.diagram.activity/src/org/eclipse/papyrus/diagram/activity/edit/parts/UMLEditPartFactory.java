@@ -630,12 +630,6 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case ActivityIsSingleExecutionCNEditPart.VISUAL_ID:
 				return new ActivityIsSingleExecutionCNEditPart(view);
 
-			case ShapeNamedElementEditPart.VISUAL_ID:
-				return new ShapeNamedElementEditPart(view);
-
-			case ShapeNamedElementNameEditPart.VISUAL_ID:
-				return new ShapeNamedElementNameEditPart(view);
-
 			case CreateObjectActionEditPart.VISUAL_ID:
 				return new CreateObjectActionEditPart(view);
 
@@ -650,6 +644,141 @@ public class UMLEditPartFactory implements EditPartFactory {
 
 			case OutputPinInCreateObjectActionAsResultAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
 				return new OutputPinInCreateObjectActionAsResultAppliedStereotypeWrappingLabelEditPart(view);
+
+			case ShapeNamedElementEditPart.VISUAL_ID:
+				return new ShapeNamedElementEditPart(view);
+
+			case ShapeNamedElementNameEditPart.VISUAL_ID:
+				return new ShapeNamedElementNameEditPart(view);
+
+			case ReadStructuralFeatureActionEditPart.VISUAL_ID:
+				return new ReadStructuralFeatureActionEditPart(view);
+
+			case ReadStructuralFeatureActionNameEditPart.VISUAL_ID:
+				return new ReadStructuralFeatureActionNameEditPart(view);
+
+			case InputPinInReadStructuralFeatureAsObjectEditPart.VISUAL_ID:
+				return new InputPinInReadStructuralFeatureAsObjectEditPart(view);
+
+			case InputPinInReadStructuralFeatureAsObjectLabelEditPart.VISUAL_ID:
+				return new InputPinInReadStructuralFeatureAsObjectLabelEditPart(view);
+
+			case InputPinInReadStructuralFeatureAsObjectAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
+				return new InputPinInReadStructuralFeatureAsObjectAppliedStereotypeWrappingLabelEditPart(view);
+
+			case OutputPinInReadStructuralFeatureAsResultEditPart.VISUAL_ID:
+				return new OutputPinInReadStructuralFeatureAsResultEditPart(view);
+
+			case OutputPinInReadStructuralFeatureAsResultLabelEditPart.VISUAL_ID:
+				return new OutputPinInReadStructuralFeatureAsResultLabelEditPart(view);
+
+			case InputPinInReadStructuralFeatureAsResultWrappingLabelEditPart.VISUAL_ID:
+				return new InputPinInReadStructuralFeatureAsResultWrappingLabelEditPart(view);
+
+			case AddStructuralFeatureValueActionEditPart.VISUAL_ID:
+				return new AddStructuralFeatureValueActionEditPart(view);
+
+			case AddStructuralFeatureValueActionNameEditPart.VISUAL_ID:
+				return new AddStructuralFeatureValueActionNameEditPart(view);
+
+			case InputPinInAddStructuralFeatureValueActionAsObjectEditPart.VISUAL_ID:
+				return new InputPinInAddStructuralFeatureValueActionAsObjectEditPart(view);
+
+			case InputPinInAddStructuralFeatureValueActionAsObjectLabelEditPart.VISUAL_ID:
+				return new InputPinInAddStructuralFeatureValueActionAsObjectLabelEditPart(view);
+
+			case InputPinInAddStructuralFeatureValueActionAsObjectAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
+				return new InputPinInAddStructuralFeatureValueActionAsObjectAppliedStereotypeWrappingLabelEditPart(view);
+
+			case InputPinInAddStructuralFeatureValueActionAsValueEditPart.VISUAL_ID:
+				return new InputPinInAddStructuralFeatureValueActionAsValueEditPart(view);
+
+			case InputPinInAddStructuralFeatureValueActionAsValueLabel2EditPart.VISUAL_ID:
+				return new InputPinInAddStructuralFeatureValueActionAsValueLabel2EditPart(view);
+
+			case InputPinInAddStructuralFeatureValueActionAsValueAppliedStereotypeWrappingLabel2EditPart.VISUAL_ID:
+				return new InputPinInAddStructuralFeatureValueActionAsValueAppliedStereotypeWrappingLabel2EditPart(view);
+
+			case OutputPinInAddStructuralFeatureValueActionAsResultEditPart.VISUAL_ID:
+				return new OutputPinInAddStructuralFeatureValueActionAsResultEditPart(view);
+
+			case OutputPinInAddStructuralFeatureValueActionAsResultLabel3EditPart.VISUAL_ID:
+				return new OutputPinInAddStructuralFeatureValueActionAsResultLabel3EditPart(view);
+
+			case OutputPinInAddStructuralFeatureValueActionAsResultAppliedStereotypeWrappingLabel3EditPart.VISUAL_ID:
+				return new OutputPinInAddStructuralFeatureValueActionAsResultAppliedStereotypeWrappingLabel3EditPart(view);
+
+			case DestroyObjectActionEditPart.VISUAL_ID:
+				return new DestroyObjectActionEditPart(view);
+
+			case DestroyObjectActionNameEditPart.VISUAL_ID:
+				return new DestroyObjectActionNameEditPart(view);
+
+			case InputPinInDestroyObjectActionEditPart.VISUAL_ID:
+				return new InputPinInDestroyObjectActionEditPart(view);
+
+			case InputPinInDestroyObjectActionLabelEditPart.VISUAL_ID:
+				return new InputPinInDestroyObjectActionLabelEditPart(view);
+
+			case InputPinInDestroyObjectActionAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
+				return new InputPinInDestroyObjectActionAppliedStereotypeWrappingLabelEditPart(view);
+
+			case ReadVariableActionEditPart.VISUAL_ID:
+				return new ReadVariableActionEditPart(view);
+
+			case ReadVariableActionNameEditPart.VISUAL_ID:
+				return new ReadVariableActionNameEditPart(view);
+
+			case OutputPinInReadVariableActionAsResultEditPart.VISUAL_ID:
+				return new OutputPinInReadVariableActionAsResultEditPart(view);
+
+			case OutputPinInReadVariableActionAsResultLabelEditPart.VISUAL_ID:
+				return new OutputPinInReadVariableActionAsResultLabelEditPart(view);
+
+			case OutputPinInReadVariableActionAsResultAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
+				return new OutputPinInReadVariableActionAsResultAppliedStereotypeWrappingLabelEditPart(view);
+
+			case AddVariableValueActionEditPart.VISUAL_ID:
+				return new AddVariableValueActionEditPart(view);
+
+			case AddVariableValueActionNameEditPart.VISUAL_ID:
+				return new AddVariableValueActionNameEditPart(view);
+
+			case InputPinInAddVariableValueActionAsInsertAtEditPart.VISUAL_ID:
+				return new InputPinInAddVariableValueActionAsInsertAtEditPart(view);
+
+			case InputPinInAddVariableValueActionAsInsertAtLabelEditPart.VISUAL_ID:
+				return new InputPinInAddVariableValueActionAsInsertAtLabelEditPart(view);
+
+			case InputPinInAddVariableValueActionAsInsertAtAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
+				return new InputPinInAddVariableValueActionAsInsertAtAppliedStereotypeWrappingLabelEditPart(view);
+
+			case InputPinInAddVariableValueActionAsValueEditPart.VISUAL_ID:
+				return new InputPinInAddVariableValueActionAsValueEditPart(view);
+
+			case InputPinInAddVariableValueActionAsValueLabelEditPart.VISUAL_ID:
+				return new InputPinInAddVariableValueActionAsValueLabelEditPart(view);
+
+			case InputPinInAddVariableValueActionAsValueAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
+				return new InputPinInAddVariableValueActionAsValueAppliedStereotypeWrappingLabelEditPart(view);
+
+			case BroadcastSignalActionEditPart.VISUAL_ID:
+				return new BroadcastSignalActionEditPart(view);
+
+			case BroadcastSignalActionNameEditPart.VISUAL_ID:
+				return new BroadcastSignalActionNameEditPart(view);
+
+			case InputPinInBroadcastSignalActionEditPart.VISUAL_ID:
+				return new InputPinInBroadcastSignalActionEditPart(view);
+
+			case InputPinInBroadcastSignalActionLabelEditPart.VISUAL_ID:
+				return new InputPinInBroadcastSignalActionLabelEditPart(view);
+
+			case InputPinInBroadcastSignalActionValueLabelEditPart.VISUAL_ID:
+				return new InputPinInBroadcastSignalActionValueLabelEditPart(view);
+
+			case InputPinInBroadcastSignalActionAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
+				return new InputPinInBroadcastSignalActionAppliedStereotypeWrappingLabelEditPart(view);
 
 			case ActivityActivityParametersCompartmentEditPart.VISUAL_ID:
 				return new ActivityActivityParametersCompartmentEditPart(view);

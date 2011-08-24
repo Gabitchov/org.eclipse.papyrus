@@ -40,6 +40,9 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 		ValuePinPreferencePage.initDefaults(store);
 
 
+		ReadStructuralFeatureActionPreferencePage.initDefaults(store);
+
+
 		LoopNodePreferencePage.initDefaults(store);
 
 
@@ -58,6 +61,9 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 		CallBehaviorActionPreferencePage.initDefaults(store);
 
 
+		BroadcastSignalActionPreferencePage.initDefaults(store);
+
+
 		ActivityPartitionPreferencePage.initDefaults(store);
 
 
@@ -71,6 +77,9 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 
 
 		OutputPinPreferencePage.initDefaults(store);
+
+
+		AddVariableValueActionPreferencePage.initDefaults(store);
 
 
 		CommentPreferencePage.initDefaults(store);
@@ -127,6 +136,9 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 		ActivityFinalNodePreferencePage.initDefaults(store);
 
 
+		ReadVariableActionPreferencePage.initDefaults(store);
+
+
 		ParameterPreferencePage.initDefaults(store);
 
 
@@ -134,6 +146,12 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 
 
 		AcceptEventActionPreferencePage.initDefaults(store);
+
+
+		DestroyObjectActionPreferencePage.initDefaults(store);
+
+
+		AddStructuralFeatureValueActionPreferencePage.initDefaults(store);
 
 
 		ForkNodePreferencePage.initDefaults(store);
