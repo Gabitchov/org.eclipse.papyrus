@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+<extension point="org.eclipse.ui.menus">
+	<!-- ModelExplorer Contextual menu -->  
+  <menuContribution
+       allPopups="false"
+       locationURI="popup:org.eclipse.papyrus.modelexplorer.modelexplorer.popup?after=org.eclipse.papyrus.modelexplorer.modelexplorer.popup.paste">
+    <separator
+          name="popup:org.eclipse.papyrus.modelexplorer.modelexplorer.popup.loadSeparator"
+          visible="true">
+       <!--visibleWhen
+             checkEnabled="true">
+         <with
+               variable="selection">
+          <or>
+            <test
+               forcePluginActivation="true"
+               property="org.eclipse.papyrus.modelexplorer.resourceloading.tester.isAllLoaded"
+               value="true" />
+            <test
+               forcePluginActivation="true"
+               property="org.eclipse.papyrus.modelexplorer.resourceloading.tester.isAllNotLoaded"
+               value="true" />
+          </or>
+         </with>
+       </visibleWhen-->
+    </separator>
+    <command
+          commandId="org.eclipse.papyrus.modelexplorer.resourceloading.LoadResource"
+          icon="icons/LoadResource.gif"
+          label="Load Resource"
+          style="push"
+          tooltip="Load Resource containing this object">
+       <visibleWhen
+             checkEnabled="true">
+         <with
+               variable="selection">
+          <test
+               forcePluginActivation="true"
+               property="org.eclipse.papyrus.modelexplorer.resourceloading.tester.isAllNotLoaded"
+               value="true" />
+         </with>
+       </visibleWhen>
+    </command>
+    <command
+          commandId="org.eclipse.papyrus.modelexplorer.resourceloading.UnloadResource"
+          icon="icons/UnloadResource.gif"
+          label="Unload Resource"
+          style="push"
+          tooltip="Unload Resource containing this object">
+       <visibleWhen
+             checkEnabled="true">
+         <with
+               variable="selection">
+          <test
+               forcePluginActivation="true"
+               property="org.eclipse.papyrus.modelexplorer.resourceloading.tester.isAllLoaded"
+               value="true" />
+         </with>
+       </visibleWhen>
+    </command>
+  </menuContribution>     
+</extension>
+
+<!-- Command declarations (for model explorer toolbar and contextual menu -->
+<extension point="org.eclipse.ui.commands">
+	<!-- Command declaration : Load resource command -->
+	<command id="org.eclipse.papyrus.modelexplorer.resourceloading.LoadResource"
+		name="Load Resource" description="Load Resource containing this object"	
+		categoryId="org.eclipse.papyrus.editor.category"
+		defaultHandler="org.eclipse.papyrus.modelexplorer.resourceloading.handler.LoadResourceHandler">
+	</command>
+	<command id="org.eclipse.papyrus.modelexplorer.resourceloading.UnloadResource"
+		name="Unload Resource" description="Unload Resource containing this object"	
+		categoryId="org.eclipse.papyrus.editor.category"
+		defaultHandler="org.eclipse.papyrus.modelexplorer.resourceloading.handler.UnloadResourceHandler">
+	</command>
+</extension>
+
+<!-- This handler is activated when deleteInModelExplorer variable is valid.
+  -->
+<extension point="org.eclipse.ui.handlers">
+	<handler commandId="org.eclipse.papyrus.modelexplorer.resourceloading.LoadResource" class="org.eclipse.papyrus.modelexplorer.resourceloading.handler.LoadResourceHandler">
+		<activeWhen>
+         <with
+               variable="selection">
+          <test
+               forcePluginActivation="true"
+               property="org.eclipse.papyrus.modelexplorer.resourceloading.tester.isAllNotLoaded"
+               value="true" />
+         </with>
+		</activeWhen>
+	</handler>
+	<handler commandId="org.eclipse.papyrus.modelexplorer.resourceloading.UnloadResource" class="org.eclipse.papyrus.modelexplorer.resourceloading.handler.UnloadResourceHandler">
+		<activeWhen>
+         <with
+               variable="selection">
+          <test
+               forcePluginActivation="true"
+               property="org.eclipse.papyrus.modelexplorer.resourceloading.tester.isAllLoaded"
+               value="true" />
+         </with>
+		</activeWhen>
+	</handler>
+</extension>
+<extension
+      point="org.eclipse.core.expressions.propertyTesters">
+      <!-- the property tester is used to enabled/disabled handler -->
+   <propertyTester
+         class="org.eclipse.papyrus.modelexplorer.resourceloading.provider.LoadingTester"
+         id="org.eclipse.papyrus.modelexplorer.resourceloading.tester"
+         namespace="org.eclipse.papyrus.modelexplorer.resourceloading.tester"
+         properties="isAllLoaded, isAllNotLoaded"
+         type="org.eclipse.jface.viewers.IStructuredSelection">
+   </propertyTester>
+</extension>
+
+</plugin>
