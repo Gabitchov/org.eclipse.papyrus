@@ -14,18 +14,13 @@
 package org.eclipse.papyrus.MARTE.MARTE_DesignModel.HLAM.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HLAM.HLAMPackage;
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HLAM.RtSpecification;
-
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.Time.TimedInstantObservation;
-
 import org.eclipse.uml2.uml.BehavioralFeature;
 import org.eclipse.uml2.uml.Comment;
 
@@ -515,9 +510,10 @@ public class RtSpecificationImpl extends EObjectImpl implements RtSpecification 
 		// TODO: implement this method to return the 'Context' reference
 		// -> do not perform proxy resolution
 		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		// throw new UnsupportedOperationException();
+		// workaround for bug 352760
+		return null;
 	}
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -526,7 +522,8 @@ public class RtSpecificationImpl extends EObjectImpl implements RtSpecification 
 	public void setContext(BehavioralFeature newContext) {
 		// TODO: implement this method to set the 'Context' reference
 		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		// workaround for bug 352760
+		// throw new UnsupportedOperationException();
 	}
 
 	/**
