@@ -13,18 +13,21 @@ package org.eclipse.papyrus.properties.uml.modelelement;
 
 import org.eclipse.core.databinding.observable.IObservable;
 import org.eclipse.emf.ecore.EModelElement;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.diagram.common.providers.EditorLabelProvider;
-import org.eclipse.papyrus.properties.modelelement.AbstractModelElement;
+import org.eclipse.papyrus.properties.modelelement.EMFModelElement;
 import org.eclipse.papyrus.properties.uml.databinding.ProfileApplicationObservableList;
 import org.eclipse.papyrus.properties.uml.databinding.StereotypeApplicationObservableList;
 import org.eclipse.papyrus.properties.uml.providers.ApplicableStereotypeContentProvider;
+import org.eclipse.papyrus.properties.uml.providers.ProfileLabelProvider;
 import org.eclipse.papyrus.properties.uml.util.UMLUtil;
 import org.eclipse.papyrus.widgets.providers.IStaticContentProvider;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * A ModelElement for handling stereotypes applied on a UML Element,
@@ -32,13 +35,18 @@ import org.eclipse.uml2.uml.Package;
  * 
  * @author Camille Letavernier
  */
-public class StereotypeApplicationModelElement extends AbstractModelElement {
+public class StereotypeApplicationModelElement extends EMFModelElement {
 
 	private Element umlSource;
 
 	private EditingDomain domain;
 
 	private EditPart sourceElement;
+
+	/**
+	 * The "stereotypeApplication" pseudo-property for a UML Element
+	 */
+	public static final String STEREOTYPE_APPLICATION = "stereotypeApplication"; //$NON-NLS-1$
 
 	/**
 	 * 
@@ -64,6 +72,7 @@ public class StereotypeApplicationModelElement extends AbstractModelElement {
 	 *        The EditingDomain on which the commands will be executed
 	 */
 	public StereotypeApplicationModelElement(Element umlSource, EditingDomain domain) {
+		super(umlSource, domain);
 		this.umlSource = umlSource;
 		this.domain = domain;
 	}
@@ -73,9 +82,10 @@ public class StereotypeApplicationModelElement extends AbstractModelElement {
 	 */
 	@Override
 	public IObservable doGetObservable(String propertyPath) {
-		if(propertyPath.equals("stereotypeApplication")) { //$NON-NLS-1$
+		EStructuralFeature feature = getFeature(propertyPath);
+		if(propertyPath.equals(STEREOTYPE_APPLICATION)) {
 			return new StereotypeApplicationObservableList(umlSource, domain);
-		} else if(propertyPath.equals("profileApplication")) { //$NON-NLS-1$
+		} else if(feature == UMLPackage.eINSTANCE.getPackage_ProfileApplication()) {
 			return new ProfileApplicationObservableList((Package)umlSource, domain);
 		}
 
@@ -87,6 +97,10 @@ public class StereotypeApplicationModelElement extends AbstractModelElement {
 	 */
 	@Override
 	public ILabelProvider getLabelProvider(String propertyPath) {
+		EStructuralFeature feature = getFeature(propertyPath);
+		if(feature == UMLPackage.eINSTANCE.getPackage_ProfileApplication()) {
+			return new ProfileLabelProvider((Package)source);
+		}
 		return new EditorLabelProvider();
 	}
 
@@ -139,4 +153,5 @@ public class StereotypeApplicationModelElement extends AbstractModelElement {
 	public Element getUMLElement() {
 		return umlSource;
 	}
+
 }
