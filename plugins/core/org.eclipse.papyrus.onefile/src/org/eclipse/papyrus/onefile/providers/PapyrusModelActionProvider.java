@@ -267,16 +267,27 @@ public class PapyrusModelActionProvider extends CommonActionProvider {
 		public List getOneSelectedResources(ActionContext context) {
 			List selectedResources = getSelectedResources(context);
 			if (selectedResources.size() > 0) {
-				return Collections.singletonList(selectedResources.get(0));
+				for (Iterator<?> i = selectedResources.iterator() ; i.hasNext() ; )
+				{
+					Object o = i.next();
+					if (o instanceof IFile) {
+						IFile file = (IFile) o;
+						if (!Utils.isDi(file))
+						{
+							i.remove();
+						}
+					}
+				}
+				return selectedResources;
 			}
 			return Collections.EMPTY_LIST;
 		}
 
 		public IStructuredSelection getOneStructuredSelection(
 				ActionContext context) {
-			List selectedResources = getSelectedResources(context);
+			List selectedResources = getOneSelectedResources(context);
 			if (selectedResources.size() > 0) {
-				return new StructuredSelection(selectedResources.get(0));
+				return new StructuredSelection(selectedResources);
 			}
 			return null;
 		}
