@@ -22,12 +22,12 @@
             strategy="org.eclipse.papyrus.core.resourceloading.strategies.LoadAllResources">
       </loadingStrategy>
       <loadingStrategy
-            description="Load the additional resources (profile and pathmap). Submodels' resources can be loaded manually by right-clicking in Model Explorer view."
+            description="Load the additional resources (profile and pathmap). Submodels can be loaded manually by right-clicking in Model Explorer view."
             id="1"
             strategy="org.eclipse.papyrus.core.resourceloading.strategies.LoadCurrentResource">
       </loadingStrategy>
       <loadingStrategy
-            description="Load the additional resources (profile and pathmap) and the needed submodels' resources"
+            description="Load the additional resources (profile and pathmap) and the needed submodels"
             id="2"
             strategy="org.eclipse.papyrus.core.resourceloading.strategies.LoadControlledResources">
       </loadingStrategy>
