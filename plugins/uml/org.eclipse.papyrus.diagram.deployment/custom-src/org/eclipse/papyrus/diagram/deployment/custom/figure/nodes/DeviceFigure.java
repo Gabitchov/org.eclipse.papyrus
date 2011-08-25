@@ -22,7 +22,6 @@ public class DeviceFigure extends NodeFigure {
 
 	/**
 	 * Constructor.
-	 * 
 	 */
 	public DeviceFigure() {
 		super("device");
@@ -39,7 +38,5 @@ public class DeviceFigure extends NodeFigure {
 	public IFigure getCompositeCompartmentFigure() {
 		return super.getCompositeCompartmentFigure();
 	}
-
-
 
 }

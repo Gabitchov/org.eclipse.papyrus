@@ -31,14 +31,12 @@ import org.eclipse.papyrus.diagram.common.editpolicies.OrphanViewPolicy;
 public class RemoveOrphanViewPolicy extends OrphanViewPolicy {
 
 	/**
-	 * 
 	 * @see org.eclipse.papyrus.diagram.common.editpolicies.OrphanViewPolicy#isOrphaned(org.eclipse.gmf.runtime.notation.View)
-	 * 
 	 * @param view
 	 * @return true is the view is Orphaned
 	 */
 	protected boolean isOrphaned(View view) {
-		// Always treat Compartment and Decoration as not orphaned nodes 
+		// Always treat Compartment and Decoration as not orphaned nodes
 		if((view instanceof BasicCompartment) || (view instanceof DecorationNode)) {
 			return false;
 		}

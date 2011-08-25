@@ -57,7 +57,6 @@ public class DeploymentPreferencePage extends AbstractPapyrusLinkPreferencePage 
 
 	}
 
-
 	/**
 	 * @generated
 	 */

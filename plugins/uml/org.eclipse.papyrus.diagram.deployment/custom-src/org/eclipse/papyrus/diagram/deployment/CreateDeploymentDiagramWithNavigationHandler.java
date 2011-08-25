@@ -15,7 +15,6 @@ package org.eclipse.papyrus.diagram.deployment;
 
 import org.eclipse.papyrus.navigation.CreateDiagramWithNavigationHandler;
 
-
 public class CreateDeploymentDiagramWithNavigationHandler extends CreateDiagramWithNavigationHandler {
 
 	public CreateDeploymentDiagramWithNavigationHandler() {

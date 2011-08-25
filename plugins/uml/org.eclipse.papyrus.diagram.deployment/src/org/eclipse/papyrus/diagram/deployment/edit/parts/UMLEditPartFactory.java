@@ -143,14 +143,11 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case LinkDescriptorEditPart.VISUAL_ID:
 				return new LinkDescriptorEditPart(view);
 
-
 			case CommentAnnotatedElementEditPart.VISUAL_ID:
 				return new CommentAnnotatedElementEditPart(view);
 
-
 			case ConstraintConstrainedElementEditPart.VISUAL_ID:
 				return new ConstraintConstrainedElementEditPart(view);
-
 
 			case DeploymentEditPart.VISUAL_ID:
 				return new DeploymentEditPart(view);
@@ -161,7 +158,6 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case DeploymentAppliedStereotypeEditPart.VISUAL_ID:
 				return new DeploymentAppliedStereotypeEditPart(view);
 
-
 			case ManifestationEditPart.VISUAL_ID:
 				return new ManifestationEditPart(view);
 
@@ -171,13 +167,11 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case ManifestationAppliedStereotypeEditPart.VISUAL_ID:
 				return new ManifestationAppliedStereotypeEditPart(view);
 
-
 			case GeneralizationEditPart.VISUAL_ID:
 				return new GeneralizationEditPart(view);
 
 			case GeneralizationAppliedStereotypeEditPart.VISUAL_ID:
 				return new GeneralizationAppliedStereotypeEditPart(view);
-
 
 			case DependencyEditPart.VISUAL_ID:
 				return new DependencyEditPart(view);
@@ -213,7 +207,6 @@ public class UMLEditPartFactory implements EditPartFactory {
 			return new LabelCellEditorLocator((Label)source.getFigure());
 		}
 	}
-
 
 	/**
 	 * @generated
@@ -256,7 +249,6 @@ public class UMLEditPartFactory implements EditPartFactory {
 			}
 		}
 	}
-
 
 	/**
 	 * @generated

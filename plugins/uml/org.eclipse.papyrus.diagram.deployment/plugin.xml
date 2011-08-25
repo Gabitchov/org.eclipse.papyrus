@@ -54,6 +54,7 @@
 <extension
          point="org.eclipse.ui.commands">
       <command
+            categoryId="org.eclipse.papyrus.editor.category"
             defaultHandler="org.eclipse.papyrus.diagram.deployment.CreateDeploymentDiagramCommand"
             description="Create a new Deployment Diagramt Diagram"
             id="org.eclipse.papyrus.diagram.deployment.CreateDeploymentDiagramCommand"
@@ -116,6 +117,22 @@
             </command>
          </toolbar>
       </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.papyrus.modelexplorer.popupmenu.creatediagram">
+         <command
+               commandId="org.eclipse.papyrus.diagram.deployment.CreateDeploymentDiagramCommand"
+               icon="icons/obj16/DeploymentDiagram.gif"
+               label="Create a new Deployment Diagram"
+               style="push"
+               tooltip="Create a new Deployment Diagram">
+            <visibleWhen>
+               <reference
+                     definitionId="org.eclipse.papyrus.diagram.common.IsPapyrusActiveWithUMLModel">
+               </reference>
+            </visibleWhen>
+         </command>
+      </menuContribution>
    </extension>
    <extension
          point="org.eclipse.papyrus.core.papyrusDiagram">
@@ -135,13 +152,13 @@
    </extension>
 
    <extension point="org.eclipse.ui.contexts" id="ui-context">
-      <context
-            description="%context.description"
-            id="org.eclipse.papyrus.diagram.deployment.ui.diagramContext"
-            name="%context.name"
-            parentId="org.eclipse.gmf.runtime.diagram.ui.diagramContext">
-      </context>
       <?gmfgen generated="true"?>
+      <context
+         description="%context.description"
+         id="org.eclipse.papyrus.diagram.deployment.ui.diagramContext"
+         name="%context.name"
+         parentId="org.eclipse.gmf.runtime.diagram.ui.diagramContext">
+      </context>
    </extension>
    
    <extension point="org.eclipse.ui.commands" id="update-cmd">
@@ -650,14 +667,14 @@
       <?gmfgen generated="true"?>
       <modelingAssistantProvider class="org.eclipse.papyrus.diagram.deployment.providers.UMLModelingAssistantProvider">
          <Priority name="Lowest"/>
-         <object class="org.eclipse.papyrus.diagram.deployment.edit.parts.DeploymentDiagramEditPart" id="Model_1000"/>
+         <object class="org.eclipse.papyrus.diagram.deployment.edit.parts.DeploymentDiagramEditPart" id="Package_1000"/>
          <object class="org.eclipse.papyrus.diagram.deployment.edit.parts.CommentEditPart" id="Comment_2001"/>
          <object class="org.eclipse.papyrus.diagram.deployment.edit.parts.ConstraintEditPart" id="Constraint_2005"/>
          <object class="org.eclipse.papyrus.diagram.deployment.edit.parts.ExecutionEnvironmentEditPart" id="ExecutionEnvironment_2002"/>
          <object class="org.eclipse.papyrus.diagram.deployment.edit.parts.DeviceEditPart" id="Device_2003"/>
          <object class="org.eclipse.papyrus.diagram.deployment.edit.parts.ArtifactEditPart" id="Artifact_2006"/>
          <object class="org.eclipse.papyrus.diagram.deployment.edit.parts.NodeEditPart" id="Node_2008"/>
-         <context elements="Model_1000,Comment_2001,Constraint_2005,ExecutionEnvironment_2002,Device_2003,Artifact_2006,Node_2008"/>
+         <context elements="Package_1000,Comment_2001,Constraint_2005,ExecutionEnvironment_2002,Device_2003,Artifact_2006,Node_2008"/>
       </modelingAssistantProvider>
    </extension>
 
@@ -672,10 +689,10 @@
       <?gmfgen generated="true"?>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <metamodelType
-               id="org.eclipse.papyrus.diagram.deployment.Model_1000"
-               name="%metatype.name.Model_1000"
+               id="org.eclipse.papyrus.diagram.deployment.Package_1000"
+               name="%metatype.name.Package_1000"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="Model"
+               eclass="Package"
                edithelper="org.eclipse.papyrus.diagram.deployment.edit.helpers.ModelEditHelper">
             <param name="semanticHint" value="1000"/>
          </metamodelType>
@@ -751,7 +768,8 @@
          <specializationType
                id="org.eclipse.papyrus.diagram.deployment.Device_16"
                name="%metatype.name.Device_16"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               edithelperadvice="org.eclipse.papyrus.diagram.deployment.edit.helpers.">
             <specializes id="org.eclipse.papyrus.diagram.deployment.Device_2003"/>
             <param name="semanticHint" value="16"/>
          </specializationType>
@@ -760,7 +778,7 @@
                id="org.eclipse.papyrus.diagram.deployment.ExecutionEnvironment_21"
                name="%metatype.name.ExecutionEnvironment_21"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.diagram.deployment.ExecutionEnvironment_2002"/>
+            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
             <param name="semanticHint" value="21"/>
          </specializationType>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
@@ -858,7 +876,7 @@
          </enablement>
       </clientContext> 
       <binding context="org.eclipse.papyrus.diagram.deployment.TypeContext">
-         <elementType ref="org.eclipse.papyrus.diagram.deployment.Model_1000"/>
+         <elementType ref="org.eclipse.papyrus.diagram.deployment.Package_1000"/>
          <elementType ref="org.eclipse.papyrus.diagram.deployment.Comment_2001"/>
          <elementType ref="org.eclipse.papyrus.diagram.deployment.Constraint_2005"/>
          <elementType ref="org.eclipse.papyrus.diagram.deployment.ExecutionEnvironment_2002"/>
@@ -912,6 +930,10 @@
          <context decoratorTargets="PRIMARY_VIEW"/>
       </decoratorProvider>
    </extension>
+<extension point="org.eclipse.ui.handlers" id="menu-handlers">
+      <?gmfgen generated="true"?>
+   </extension>
+
 
 
 

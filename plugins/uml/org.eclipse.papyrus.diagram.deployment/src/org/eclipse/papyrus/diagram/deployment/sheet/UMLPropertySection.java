@@ -47,8 +47,6 @@ public class UMLPropertySection extends AdvancedPropertySection implements IProp
 		return null;
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -56,9 +54,9 @@ public class UMLPropertySection extends AdvancedPropertySection implements IProp
 		return this;
 	}
 
-
 	/**
 	 * Modify/unwrap selection.
+	 * 
 	 * @generated
 	 */
 	protected Object transformSelection(Object selected) {
@@ -79,7 +77,6 @@ public class UMLPropertySection extends AdvancedPropertySection implements IProp
 		return selected;
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -99,7 +96,6 @@ public class UMLPropertySection extends AdvancedPropertySection implements IProp
 		super.setInput(part, new StructuredSelection(transformedSelection));
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -113,7 +109,5 @@ public class UMLPropertySection extends AdvancedPropertySection implements IProp
 		}
 		return null;
 	}
-
-
 
 }

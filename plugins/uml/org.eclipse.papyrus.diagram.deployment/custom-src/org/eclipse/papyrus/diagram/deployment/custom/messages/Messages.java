@@ -23,7 +23,6 @@ public class Messages extends NLS {
 	/** The Constant BUNDLE_NAME. */
 	private static final String BUNDLE_NAME = "org.eclipse.papyrus.diagram.deployment.custom.messages.messages"; //$NON-NLS-1$
 
-
 	/** The Create uml element dialog_ new_ element_ name. */
 	public static String CreateUmlElementDialog_New_Element_Name;
 

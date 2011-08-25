@@ -35,8 +35,6 @@ import org.eclipse.papyrus.diagram.deployment.part.Messages;
  */
 public class DeviceCompositeCompartmentEditPart
 
-
-
 extends ShapeCompartmentEditPart
 
 {
@@ -53,14 +51,12 @@ extends ShapeCompartmentEditPart
 		super(view);
 	}
 
-
 	/**
 	 * @generated
 	 */
 	public String getCompartmentName() {
 		return Messages.DeviceCompositeCompartmentEditPart_title;
 	}
-
 
 	/**
 	 * @generated
@@ -72,15 +68,13 @@ extends ShapeCompartmentEditPart
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 		installEditPolicy(DuplicatePasteEditPolicy.PASTE_ROLE, new DuplicatePasteEditPolicy());
 
-
-		//in Papyrus diagrams are not strongly synchronised
-		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.diagram.deployment.edit.policies.DeviceCompositeCompartmentCanonicalEditPolicy());
+		// in Papyrus diagrams are not strongly synchronised
+		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE,
+		// new
+		// org.eclipse.papyrus.diagram.deployment.edit.policies.DeviceCompositeCompartmentCanonicalEditPolicy());
 
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomContainerEditPolicy());
 	}
-
-
-
 
 	/**
 	 * @generated
@@ -90,8 +84,6 @@ extends ShapeCompartmentEditPart
 			super.setRatio(ratio);
 		}
 	}
-
-
 
 	/**
 	 * @generated

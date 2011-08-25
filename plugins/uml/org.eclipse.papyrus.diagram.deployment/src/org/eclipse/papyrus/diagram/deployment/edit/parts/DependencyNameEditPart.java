@@ -105,21 +105,19 @@ public class DependencyNameEditPart extends LabelEditPart implements ITextAwareE
 	 */
 	private String defaultText;
 
-
-
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
+	 * 
 	 * @generated
 	 */
 	protected int directEditionMode = IDirectEdition.UNDEFINED_DIRECT_EDITOR;
 
 	/**
 	 * configuration from a registered edit dialog
+	 * 
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
-
-
 
 	/**
 	 * @generated
@@ -586,12 +584,11 @@ public class DependencyNameEditPart extends LabelEditPart implements ITextAwareE
 		return getPrimaryView();
 	}
 
-
-
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
-	 * @return an <code>int</code> corresponding to the kind of direct editor, @see org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition
+	 * @return an <code>int</code> corresponding to the kind of direct editor, @see
+	 *         org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition
 	 * @generated
 	 */
 	public int getDirectEditionType() {
@@ -632,6 +629,7 @@ public class DependencyNameEditPart extends LabelEditPart implements ITextAwareE
 
 	/**
 	 * Initializes the extended editor configuration
+	 * 
 	 * @generated
 	 */
 	protected void initExtendedEditorConfiguration() {
@@ -647,6 +645,7 @@ public class DependencyNameEditPart extends LabelEditPart implements ITextAwareE
 
 	/**
 	 * Updates the preference configuration
+	 * 
 	 * @generated
 	 */
 	protected void updateExtendedEditorConfiguration() {
@@ -660,7 +659,9 @@ public class DependencyNameEditPart extends LabelEditPart implements ITextAwareE
 
 	/**
 	 * Performs the direct edit usually used by GMF editors.
-	 * @param theRequest the direct edit request that starts the direct edit system
+	 * 
+	 * @param theRequest
+	 *        the direct edit request that starts the direct edit system
 	 * @generated
 	 */
 	protected void performDefaultDirectEditorEdit(final Request theRequest) {
@@ -686,8 +687,6 @@ public class DependencyNameEditPart extends LabelEditPart implements ITextAwareE
 			e.printStackTrace();
 		}
 	}
-
-
 
 	/**
 	 * @generated
@@ -718,9 +717,6 @@ public class DependencyNameEditPart extends LabelEditPart implements ITextAwareE
 				}
 			}
 		}
-
-
-
 
 		super.handleNotificationEvent(event);
 	}

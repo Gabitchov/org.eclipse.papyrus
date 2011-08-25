@@ -20,8 +20,6 @@ import org.eclipse.draw2d.LineBorder;
 import org.eclipse.papyrus.diagram.common.figure.node.CompartmentFigure;
 import org.eclipse.papyrus.diagram.common.figure.node.Rectangular3DBorder;
 
-
-
 // TODO: Auto-generated Javadoc
 /**
  * The Class NodeFigure.

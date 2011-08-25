@@ -27,9 +27,8 @@ public class DeploymentDiagramItemSemanticEditPolicy extends UMLBaseItemSemantic
 	 * @generated
 	 */
 	public DeploymentDiagramItemSemanticEditPolicy() {
-		super(UMLElementTypes.Model_1000);
+		super(UMLElementTypes.Package_1000);
 	}
-
 
 	/**
 	 * @generated

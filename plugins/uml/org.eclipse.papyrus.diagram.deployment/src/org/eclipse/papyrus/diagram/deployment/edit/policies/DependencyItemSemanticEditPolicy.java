@@ -40,10 +40,6 @@ public class DependencyItemSemanticEditPolicy extends UMLBaseItemSemanticEditPol
 		super(UMLElementTypes.Dependency_4004);
 	}
 
-
-
-
-
 	/**
 	 * @generated
 	 */
@@ -114,8 +110,8 @@ public class DependencyItemSemanticEditPolicy extends UMLBaseItemSemanticEditPol
 	}
 
 	/**
-	 * Returns command to reorient EClass based link. New link target or source
-	 * should be the domain model element associated with this node.
+	 * Returns command to reorient EClass based link. New link target or source should be the domain model
+	 * element associated with this node.
 	 * 
 	 * @generated
 	 */
@@ -139,8 +135,8 @@ public class DependencyItemSemanticEditPolicy extends UMLBaseItemSemanticEditPol
 	}
 
 	/**
-	 * Returns command to reorient EReference based link. New link target or source
-	 * should be the domain model element associated with this node.
+	 * Returns command to reorient EReference based link. New link target or source should be the domain model
+	 * element associated with this node.
 	 * 
 	 * @generated
 	 */

@@ -29,7 +29,6 @@ import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;
 import org.osgi.framework.ServiceException;
 
-
 // TODO: Auto-generated Javadoc
 /**
  * The Class UmlDeploymentDiagramForMultiEditor.
@@ -46,8 +45,7 @@ public class UmlDeploymentDiagramForMultiEditor extends UMLDiagramEditor {
 	private Composite splitter;
 
 	/**
-	 * Constructor for SashSystem v2. Context and required objects are retrieved from the
-	 * ServiceRegistry.
+	 * Constructor for SashSystem v2. Context and required objects are retrieved from the ServiceRegistry.
 	 * 
 	 * @param servicesRegistry
 	 *        the services registry
@@ -63,7 +61,6 @@ public class UmlDeploymentDiagramForMultiEditor extends UMLDiagramEditor {
 	public UmlDeploymentDiagramForMultiEditor(ServicesRegistry servicesRegistry, Diagram diagram) throws BackboneException, ServiceException, org.eclipse.papyrus.core.services.ServiceException {
 		super(servicesRegistry, diagram);
 	}
-
 
 	/**
 	 * Inits the.
@@ -84,7 +81,6 @@ public class UmlDeploymentDiagramForMultiEditor extends UMLDiagramEditor {
 		setPartName(getDiagram().getName());
 		setTitleImage(DIAG_IMG_DESC.createImage());
 	}
-
 
 	/**
 	 * Sets the input.
@@ -109,7 +105,6 @@ public class UmlDeploymentDiagramForMultiEditor extends UMLDiagramEditor {
 		}
 	}
 
-
 	/**
 	 * Creates the graphical viewer.
 	 * 
@@ -123,7 +118,6 @@ public class UmlDeploymentDiagramForMultiEditor extends UMLDiagramEditor {
 		splitter = parent;
 		super.createGraphicalViewer(parent);
 	}
-
 
 	/**
 	 * Sets the focus.

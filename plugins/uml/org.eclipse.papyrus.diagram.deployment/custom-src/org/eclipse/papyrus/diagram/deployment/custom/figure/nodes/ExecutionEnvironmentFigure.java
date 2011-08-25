@@ -14,7 +14,6 @@ package org.eclipse.papyrus.diagram.deployment.custom.figure.nodes;
 
 import org.eclipse.draw2d.IFigure;
 
-
 // TODO: Auto-generated Javadoc
 /**
  * The Class ExecutionEnvironmentFigure.
@@ -23,7 +22,6 @@ public class ExecutionEnvironmentFigure extends NodeFigure {
 
 	/**
 	 * Constructor.
-	 * 
 	 */
 	public ExecutionEnvironmentFigure() {
 		super("executionEnvironment");

@@ -52,7 +52,7 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.FileEditorInput;
-import org.eclipse.uml2.uml.Model;
+import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.UMLFactory;
 
 /**
@@ -124,8 +124,6 @@ public class UMLDiagramEditorUtil {
 		return filePath.lastSegment();
 	}
 
-
-
 	/**
 	 * Runs the wizard in a dialog.
 	 * 
@@ -146,6 +144,7 @@ public class UMLDiagramEditorUtil {
 
 	/**
 	 * This method should be called within a workspace modify operation since it creates resources.
+	 * 
 	 * @generated
 	 */
 	public static Resource createDiagram(URI diagramURI, URI modelURI, IProgressMonitor progressMonitor) {
@@ -157,7 +156,7 @@ public class UMLDiagramEditorUtil {
 		AbstractTransactionalCommand command = new AbstractTransactionalCommand(editingDomain, Messages.UMLDiagramEditorUtil_CreateDiagramCommandLabel, Collections.EMPTY_LIST) {
 
 			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-				Model model = createInitialModel();
+				Package model = createInitialModel();
 				attachModelToResource(model, modelResource);
 
 				Diagram diagram = ViewService.createDiagram(model, DeploymentDiagramEditPart.MODEL_ID, UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
@@ -187,31 +186,24 @@ public class UMLDiagramEditorUtil {
 		return diagramResource;
 	}
 
-
 	/**
-	 * Create a new instance of domain element associated with canvas.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Create a new instance of domain element associated with canvas. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	private static Model createInitialModel() {
-		return UMLFactory.eINSTANCE.createModel();
+	private static Package createInitialModel() {
+		return UMLFactory.eINSTANCE.createPackage();
 	}
 
-
 	/**
-	 * Store model element in the resource.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Store model element in the resource. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	private static void attachModelToResource(Model model, Resource resource) {
+	private static void attachModelToResource(Package model, Resource resource) {
 		resource.getContents().add(model);
 	}
-
-
-
-
 
 	/**
 	 * @generated
@@ -232,7 +224,6 @@ public class UMLDiagramEditorUtil {
 		}
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -251,7 +242,8 @@ public class UMLDiagramEditorUtil {
 		String elementID = EMFCoreUtil.getProxyID(element);
 		@SuppressWarnings("unchecked")
 		List<EditPart> associatedParts = viewer.findEditPartsForElement(elementID, IGraphicalEditPart.class);
-		// perform the possible hierarchy disjoint -> take the top-most parts only
+		// perform the possible hierarchy disjoint -> take the top-most parts
+		// only
 		for(EditPart nextPart : associatedParts) {
 			EditPart parentPart = nextPart.getParent();
 			while(parentPart != null && !associatedParts.contains(parentPart)) {
@@ -273,7 +265,6 @@ public class UMLDiagramEditorUtil {
 		}
 		return editPartCollector.size() - intialNumOfEditParts;
 	}
-
 
 	/**
 	 * @generated
@@ -298,6 +289,7 @@ public class UMLDiagramEditorUtil {
 
 	/**
 	 * XXX This is quite suspicious code (especially editPartTmpHolder) and likely to be removed soon
+	 * 
 	 * @generated
 	 */
 	public static class LazyElement2ViewMap {
@@ -331,12 +323,16 @@ public class UMLDiagramEditorUtil {
 		public final Map<EObject, View> getElement2ViewMap() {
 			if(element2ViewMap == null) {
 				element2ViewMap = new HashMap<EObject, View>();
-				// map possible notation elements to itself as these can't be found by view.getElement()
+				// map possible notation elements to itself as these can't be
+				// found by view.getElement()
 				for(EObject element : elementSet) {
 					if(element instanceof View) {
 						View view = (View)element;
 						if(view.getDiagram() == scope.getDiagram()) {
-							element2ViewMap.put(element, view); // take only those that part of our diagram
+							element2ViewMap.put(element, view); // take only
+																// those that
+																// part of our
+																// diagram
 						}
 					}
 				}
@@ -372,8 +368,6 @@ public class UMLDiagramEditorUtil {
 			}
 			return complete;
 		}
-	} //LazyElement2ViewMap	
-
-
+	} // LazyElement2ViewMap
 
 }

@@ -22,7 +22,6 @@ public class DeviceCompositeCompartmentItemSemanticEditPolicyCN extends UMLBaseI
 		super(UMLElementTypes.Device_16);
 	}
 
-
 	/**
 	 * @generated
 	 */

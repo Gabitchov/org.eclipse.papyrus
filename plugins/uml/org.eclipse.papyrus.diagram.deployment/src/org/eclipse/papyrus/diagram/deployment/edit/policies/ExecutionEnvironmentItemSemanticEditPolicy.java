@@ -42,9 +42,6 @@ public class ExecutionEnvironmentItemSemanticEditPolicy extends UMLBaseItemSeman
 		super(UMLElementTypes.ExecutionEnvironment_2002);
 	}
 
-
-
-
 	/**
 	 * @generated
 	 */
@@ -61,7 +58,6 @@ public class ExecutionEnvironmentItemSemanticEditPolicy extends UMLBaseItemSeman
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
-
 
 	/**
 	 * @generated
@@ -122,8 +118,8 @@ public class ExecutionEnvironmentItemSemanticEditPolicy extends UMLBaseItemSeman
 	}
 
 	/**
-	 * Returns command to reorient EClass based link. New link target or source
-	 * should be the domain model element associated with this node.
+	 * Returns command to reorient EClass based link. New link target or source should be the domain model
+	 * element associated with this node.
 	 * 
 	 * @generated
 	 */
@@ -148,8 +144,8 @@ public class ExecutionEnvironmentItemSemanticEditPolicy extends UMLBaseItemSeman
 	}
 
 	/**
-	 * Returns command to reorient EReference based link. New link target or source
-	 * should be the domain model element associated with this node.
+	 * Returns command to reorient EReference based link. New link target or source should be the domain model
+	 * element associated with this node.
 	 * 
 	 * @generated
 	 */

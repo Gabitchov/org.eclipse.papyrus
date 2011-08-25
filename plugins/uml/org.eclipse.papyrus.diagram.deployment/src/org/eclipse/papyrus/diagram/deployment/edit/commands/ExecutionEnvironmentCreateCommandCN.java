@@ -60,10 +60,10 @@ public class ExecutionEnvironmentCreateCommandCN extends EditElementCommand {
 
 	/**
 	 * FIXME: replace with setElementToEdit()
+	 * 
 	 * @generated
 	 */
 	protected EObject getElementToEdit() {
-
 
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
@@ -80,10 +80,7 @@ public class ExecutionEnvironmentCreateCommandCN extends EditElementCommand {
 	 */
 	public boolean canExecute() {
 
-
 		return true;
-
-
 
 	}
 
@@ -92,13 +89,10 @@ public class ExecutionEnvironmentCreateCommandCN extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-
-
 		ExecutionEnvironment newElement = UMLFactory.eINSTANCE.createExecutionEnvironment();
 
 		Node owner = (Node)getElementToEdit();
 		owner.getNestedNodes().add(newElement);
-
 
 		ElementInitializers.getInstance().init_ExecutionEnvironment_21(newElement);
 
@@ -107,9 +101,6 @@ public class ExecutionEnvironmentCreateCommandCN extends EditElementCommand {
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
-
-
-
 
 	/**
 	 * @generated

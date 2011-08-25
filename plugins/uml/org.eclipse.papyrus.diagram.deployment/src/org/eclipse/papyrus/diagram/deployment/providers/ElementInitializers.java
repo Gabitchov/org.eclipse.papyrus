@@ -314,7 +314,6 @@ public class ElementInitializers {
 		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
 	}
 
-
 	/**
 	 * @generated
 	 */

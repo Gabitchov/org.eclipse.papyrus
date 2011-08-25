@@ -59,10 +59,10 @@ public class NodeCreateCommandCN extends EditElementCommand {
 
 	/**
 	 * FIXME: replace with setElementToEdit()
+	 * 
 	 * @generated
 	 */
 	protected EObject getElementToEdit() {
-
 
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
@@ -79,10 +79,7 @@ public class NodeCreateCommandCN extends EditElementCommand {
 	 */
 	public boolean canExecute() {
 
-
 		return true;
-
-
 
 	}
 
@@ -91,13 +88,10 @@ public class NodeCreateCommandCN extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-
-
 		Node newElement = UMLFactory.eINSTANCE.createNode();
 
 		Node owner = (Node)getElementToEdit();
 		owner.getNestedNodes().add(newElement);
-
 
 		ElementInitializers.getInstance().init_Node_23(newElement);
 
@@ -106,9 +100,6 @@ public class NodeCreateCommandCN extends EditElementCommand {
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
-
-
-
 
 	/**
 	 * @generated

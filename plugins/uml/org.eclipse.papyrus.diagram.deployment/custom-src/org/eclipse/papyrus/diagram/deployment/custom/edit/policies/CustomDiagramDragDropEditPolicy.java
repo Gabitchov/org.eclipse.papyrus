@@ -68,8 +68,7 @@ import org.eclipse.uml2.uml.TypedElement;
 
 // TODO: Auto-generated Javadoc
 /**
- * This class provides an implementation for specific behavior of Drag and Drop
- * in the Composite Diagram.
+ * This class provides an implementation for specific behavior of Drag and Drop in the Composite Diagram.
  */
 public class CustomDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEditPolicy {
 
@@ -183,7 +182,6 @@ public class CustomDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdi
 		}
 	}
 
-
 	/**
 	 * Returns the drop command for Dependency links.
 	 * 
@@ -210,7 +208,6 @@ public class CustomDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdi
 			return UnexecutableCommand.INSTANCE;
 		}
 	}
-
 
 	/**
 	 * Returns the drop command for Property nodes.
@@ -255,7 +252,6 @@ public class CustomDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdi
 
 		return UnexecutableCommand.INSTANCE;
 	}
-
 
 	/**
 	 * <pre>
@@ -315,10 +311,8 @@ public class CustomDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdi
 		return cc;
 	}
 
-
 	/**
-	 * Avoid dropped element to get orphaned for DND action resulting in a
-	 * specific action (not a move).
+	 * Avoid dropped element to get orphaned for DND action resulting in a specific action (not a move).
 	 * 
 	 * @param request
 	 *        the request
@@ -351,7 +345,6 @@ public class CustomDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdi
 
 	/**
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editpolicies.DiagramDragDropEditPolicy#getDropCommand(org.eclipse.gef.requests.ChangeBoundsRequest)
-	 * 
 	 * @param request
 	 * @return
 	 */

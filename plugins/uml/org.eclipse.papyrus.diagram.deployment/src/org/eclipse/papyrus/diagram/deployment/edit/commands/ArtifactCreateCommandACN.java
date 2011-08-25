@@ -59,10 +59,10 @@ public class ArtifactCreateCommandACN extends EditElementCommand {
 
 	/**
 	 * FIXME: replace with setElementToEdit()
+	 * 
 	 * @generated
 	 */
 	protected EObject getElementToEdit() {
-
 
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
@@ -79,10 +79,7 @@ public class ArtifactCreateCommandACN extends EditElementCommand {
 	 */
 	public boolean canExecute() {
 
-
 		return true;
-
-
 
 	}
 
@@ -91,13 +88,10 @@ public class ArtifactCreateCommandACN extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-
-
 		Artifact newElement = UMLFactory.eINSTANCE.createArtifact();
 
 		Artifact owner = (Artifact)getElementToEdit();
 		owner.getNestedArtifacts().add(newElement);
-
 
 		ElementInitializers.getInstance().init_Artifact_28(newElement);
 
@@ -106,9 +100,6 @@ public class ArtifactCreateCommandACN extends EditElementCommand {
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
-
-
-
 
 	/**
 	 * @generated

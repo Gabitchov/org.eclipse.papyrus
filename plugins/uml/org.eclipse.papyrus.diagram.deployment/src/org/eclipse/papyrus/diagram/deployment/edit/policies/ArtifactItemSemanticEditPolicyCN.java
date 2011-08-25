@@ -59,9 +59,6 @@ public class ArtifactItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPol
 		super(UMLElementTypes.Artifact_25);
 	}
 
-
-
-
 	/**
 	 * @generated
 	 */
@@ -72,13 +69,15 @@ public class ArtifactItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPol
 
 		EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
 		if(annotation == null) {
-			// there are indirectly referenced children, need extra commands: false
+			// there are indirectly referenced children, need extra commands:
+			// false
 			addDestroyChildNodesCommand(cmd);
 			addDestroyShortcutsCommand(cmd, view);
 			// delete host element
 			List<EObject> todestroy = new ArrayList<EObject>();
 			todestroy.add(req.getElementToDestroy());
-			//cmd.add(new org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand(req));
+			// cmd.add(new
+			// org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand(req));
 			cmd.add(new EMFtoGMFCommandWrapper(new DeleteCommand(getEditingDomain(), todestroy)));
 		} else {
 			cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), view));
@@ -99,7 +98,6 @@ public class ArtifactItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPol
 					Node cnode = (Node)cit.next();
 					switch(UMLVisualIDRegistry.getVisualID(cnode)) {
 					case ArtifactEditPartACN.VISUAL_ID:
-
 
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
@@ -134,9 +132,13 @@ public class ArtifactItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPol
 								break;
 							}
 						}
-						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode.getElement(), false))); // directlyOwned: true
-						// don't need explicit deletion of cnode as parent's view deletion would clean child views as well 
-						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
+						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode.getElement(), false))); // directlyOwned:
+																																		// true
+						// don't need explicit deletion of cnode as parent's
+						// view deletion would clean child views as well
+						// cmd.add(new
+						// org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(),
+						// cnode));
 						break;
 					}
 				}
@@ -144,7 +146,6 @@ public class ArtifactItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPol
 			}
 		}
 	}
-
 
 	/**
 	 * @generated
@@ -205,8 +206,8 @@ public class ArtifactItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPol
 	}
 
 	/**
-	 * Returns command to reorient EClass based link. New link target or source
-	 * should be the domain model element associated with this node.
+	 * Returns command to reorient EClass based link. New link target or source should be the domain model
+	 * element associated with this node.
 	 * 
 	 * @generated
 	 */
@@ -231,8 +232,8 @@ public class ArtifactItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPol
 	}
 
 	/**
-	 * Returns command to reorient EReference based link. New link target or source
-	 * should be the domain model element associated with this node.
+	 * Returns command to reorient EReference based link. New link target or source should be the domain model
+	 * element associated with this node.
 	 * 
 	 * @generated
 	 */

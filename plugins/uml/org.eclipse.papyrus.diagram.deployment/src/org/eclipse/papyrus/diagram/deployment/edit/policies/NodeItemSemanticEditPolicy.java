@@ -42,9 +42,6 @@ public class NodeItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 		super(UMLElementTypes.Node_2008);
 	}
 
-
-
-
 	/**
 	 * @generated
 	 */
@@ -61,7 +58,6 @@ public class NodeItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
-
 
 	/**
 	 * @generated
@@ -122,8 +118,8 @@ public class NodeItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 	}
 
 	/**
-	 * Returns command to reorient EClass based link. New link target or source
-	 * should be the domain model element associated with this node.
+	 * Returns command to reorient EClass based link. New link target or source should be the domain model
+	 * element associated with this node.
 	 * 
 	 * @generated
 	 */
@@ -148,8 +144,8 @@ public class NodeItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 	}
 
 	/**
-	 * Returns command to reorient EReference based link. New link target or source
-	 * should be the domain model element associated with this node.
+	 * Returns command to reorient EReference based link. New link target or source should be the domain model
+	 * element associated with this node.
 	 * 
 	 * @generated
 	 */

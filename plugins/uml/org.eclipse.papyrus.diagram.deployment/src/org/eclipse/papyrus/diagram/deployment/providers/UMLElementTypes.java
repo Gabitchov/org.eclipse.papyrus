@@ -69,7 +69,7 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
-	public static final IElementType Model_1000 = getElementType("org.eclipse.papyrus.diagram.deployment.Model_1000"); //$NON-NLS-1$
+	public static final IElementType Package_1000 = getElementType("org.eclipse.papyrus.diagram.deployment.Package_1000"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -267,38 +267,27 @@ public class UMLElementTypes {
 		if(elements == null) {
 			elements = new IdentityHashMap<IElementType, ENamedElement>();
 
-			elements.put(Model_1000, UMLPackage.eINSTANCE.getModel());
-
+			elements.put(Package_1000, UMLPackage.eINSTANCE.getPackage());
 
 			elements.put(Comment_2001, UMLPackage.eINSTANCE.getComment());
 
-
 			elements.put(Constraint_2005, UMLPackage.eINSTANCE.getConstraint());
-
 
 			elements.put(ExecutionEnvironment_2002, UMLPackage.eINSTANCE.getExecutionEnvironment());
 
-
 			elements.put(Device_2003, UMLPackage.eINSTANCE.getDevice());
-
 
 			elements.put(Artifact_2006, UMLPackage.eINSTANCE.getArtifact());
 
-
 			elements.put(Node_2008, UMLPackage.eINSTANCE.getNode());
-
 
 			elements.put(Node_23, UMLPackage.eINSTANCE.getNode());
 
-
 			elements.put(Device_16, UMLPackage.eINSTANCE.getDevice());
-
 
 			elements.put(ExecutionEnvironment_21, UMLPackage.eINSTANCE.getExecutionEnvironment());
 
-
 			elements.put(Artifact_25, UMLPackage.eINSTANCE.getArtifact());
-
 
 			elements.put(Artifact_28, UMLPackage.eINSTANCE.getArtifact());
 
@@ -306,15 +295,11 @@ public class UMLElementTypes {
 
 			elements.put(ConstraintConstrainedElement_4009, UMLPackage.eINSTANCE.getConstraint_ConstrainedElement());
 
-
 			elements.put(Deployment_4001, UMLPackage.eINSTANCE.getDeployment());
-
 
 			elements.put(Manifestation_4002, UMLPackage.eINSTANCE.getManifestation());
 
-
 			elements.put(Generalization_4003, UMLPackage.eINSTANCE.getGeneralization());
-
 
 			elements.put(Dependency_4004, UMLPackage.eINSTANCE.getDependency());
 		}
@@ -334,7 +319,7 @@ public class UMLElementTypes {
 	public static boolean isKnownElementType(IElementType elementType) {
 		if(KNOWN_ELEMENT_TYPES == null) {
 			KNOWN_ELEMENT_TYPES = new HashSet<IElementType>();
-			KNOWN_ELEMENT_TYPES.add(Model_1000);
+			KNOWN_ELEMENT_TYPES.add(Package_1000);
 			KNOWN_ELEMENT_TYPES.add(Comment_2001);
 			KNOWN_ELEMENT_TYPES.add(Constraint_2005);
 			KNOWN_ELEMENT_TYPES.add(ExecutionEnvironment_2002);
@@ -363,7 +348,7 @@ public class UMLElementTypes {
 	public static IElementType getElementType(int visualID) {
 		switch(visualID) {
 		case DeploymentDiagramEditPart.VISUAL_ID:
-			return Model_1000;
+			return Package_1000;
 		case CommentEditPart.VISUAL_ID:
 			return Comment_2001;
 		case ConstraintEditPart.VISUAL_ID:

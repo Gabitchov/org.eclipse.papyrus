@@ -27,12 +27,10 @@ import org.eclipse.papyrus.diagram.deployment.edit.parts.DeploymentDiagramEditPa
 
 /**
  * this is an editpolicy provider in charge to install a policy to navigate between diagrams and elements
- * 
  */
 public class CustomEditPolicyProvider implements IEditPolicyProvider {
 
 	/**
-	 * 
 	 * {@inheritDoc}
 	 */
 	public void addProviderChangeListener(IProviderChangeListener listener) {
@@ -40,18 +38,16 @@ public class CustomEditPolicyProvider implements IEditPolicyProvider {
 	}
 
 	/**
-	 * 
 	 * {@inheritDoc}
 	 */
 	public void createEditPolicies(EditPart editPart) {
 		editPart.installEditPolicy(NavigationEditPolicy.NAVIGATION_POLICY, new NavigationEditPolicy());
-		if( editPart instanceof IPrimaryEditPart){
+		if(editPart instanceof IPrimaryEditPart) {
 			editPart.installEditPolicy(EditPolicyRoles.POPUPBAR_ROLE, new HyperLinkPopupBarEditPolicy());
 		}
 	}
 
 	/**
-	 * 
 	 * {@inheritDoc}
 	 */
 	public boolean provides(IOperation operation) {
@@ -65,12 +61,10 @@ public class CustomEditPolicyProvider implements IEditPolicyProvider {
 			return true;
 		}
 
-
 		return false;
 	}
 
 	/**
-	 * 
 	 * {@inheritDoc}
 	 */
 	public void removeProviderChangeListener(IProviderChangeListener listener) {

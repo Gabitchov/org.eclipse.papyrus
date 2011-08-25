@@ -60,10 +60,10 @@ public class DeviceCreateCommandCN extends EditElementCommand {
 
 	/**
 	 * FIXME: replace with setElementToEdit()
+	 * 
 	 * @generated
 	 */
 	protected EObject getElementToEdit() {
-
 
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
@@ -80,10 +80,7 @@ public class DeviceCreateCommandCN extends EditElementCommand {
 	 */
 	public boolean canExecute() {
 
-
 		return true;
-
-
 
 	}
 
@@ -92,13 +89,10 @@ public class DeviceCreateCommandCN extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-
-
 		Device newElement = UMLFactory.eINSTANCE.createDevice();
 
 		Node owner = (Node)getElementToEdit();
 		owner.getNestedNodes().add(newElement);
-
 
 		ElementInitializers.getInstance().init_Device_16(newElement);
 
@@ -107,9 +101,6 @@ public class DeviceCreateCommandCN extends EditElementCommand {
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
-
-
-
 
 	/**
 	 * @generated

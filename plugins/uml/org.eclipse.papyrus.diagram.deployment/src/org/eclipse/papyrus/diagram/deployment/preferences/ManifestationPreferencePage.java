@@ -57,7 +57,6 @@ public class ManifestationPreferencePage extends AbstractPapyrusLinkPreferencePa
 
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -87,6 +86,5 @@ public class ManifestationPreferencePage extends AbstractPapyrusLinkPreferencePa
 	protected TreeMap<String, String> getLabelRole() {
 		return getStaticLabelRole();
 	}
-
 
 }

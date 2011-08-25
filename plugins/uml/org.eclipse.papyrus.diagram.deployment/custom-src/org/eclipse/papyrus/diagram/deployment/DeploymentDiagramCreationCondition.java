@@ -29,5 +29,4 @@ public class DeploymentDiagramCreationCondition extends PerspectiveContextDepend
 		return false;
 	}
 
-
 }

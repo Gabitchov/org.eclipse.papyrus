@@ -16,16 +16,11 @@ import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.papyrus.core.adaptor.gmf.AbstractPapyrusGmfCreateDiagramCommandHandler;
 import org.eclipse.papyrus.diagram.deployment.edit.parts.DeploymentDiagramEditPart;
 
-
-
 // TODO: Auto-generated Javadoc
 /**
  * The Class CreateDeploymentDiagramCommand.
  */
 public class CreateDeploymentDiagramCommand extends AbstractPapyrusGmfCreateDiagramCommandHandler {
-
-
-
 
 	/**
 	 * Gets the default diagram name.
@@ -39,10 +34,6 @@ public class CreateDeploymentDiagramCommand extends AbstractPapyrusGmfCreateDiag
 		return "NewDeploymentDiagram";
 	}
 
-
-
-
-
 	/**
 	 * Gets the diagram notation id.
 	 * 
@@ -54,8 +45,6 @@ public class CreateDeploymentDiagramCommand extends AbstractPapyrusGmfCreateDiag
 	protected String getDiagramNotationID() {
 		return DeploymentDiagramEditPart.MODEL_ID;
 	}
-
-
 
 	/**
 	 * Gets the preference hint.

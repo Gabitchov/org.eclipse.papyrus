@@ -50,14 +50,8 @@ implements ITreeBranchEditPart {
 		removeEditPolicy(EditPolicyRoles.SEMANTIC_ROLE);
 	}
 
-
-
-
-
 	/**
-	 * Creates figure for this edit part.
-	 * 
-	 * Body of this method does not depend on settings in generation model
+	 * Creates figure for this edit part. Body of this method does not depend on settings in generation model
 	 * so you may safely remove <i>generated</i> tag and modify it.
 	 * 
 	 * @generated
@@ -74,14 +68,10 @@ implements ITreeBranchEditPart {
 		return (LinkDescriptor)getFigure();
 	}
 
-
 	/**
 	 * @generated
 	 */
 	public class LinkDescriptor extends PolylineConnectionEx {
-
-
-
 
 		/**
 		 * @generated
@@ -92,11 +82,6 @@ implements ITreeBranchEditPart {
 
 		}
 
-
-
-
 	}
-
-
 
 }

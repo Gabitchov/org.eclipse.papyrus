@@ -60,9 +60,6 @@ public class ExecutionEnvironmentItemSemanticEditPolicyCN extends UMLBaseItemSem
 		super(UMLElementTypes.ExecutionEnvironment_21);
 	}
 
-
-
-
 	/**
 	 * @generated
 	 */
@@ -73,13 +70,15 @@ public class ExecutionEnvironmentItemSemanticEditPolicyCN extends UMLBaseItemSem
 
 		EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
 		if(annotation == null) {
-			// there are indirectly referenced children, need extra commands: false
+			// there are indirectly referenced children, need extra commands:
+			// false
 			addDestroyChildNodesCommand(cmd);
 			addDestroyShortcutsCommand(cmd, view);
 			// delete host element
 			List<EObject> todestroy = new ArrayList<EObject>();
 			todestroy.add(req.getElementToDestroy());
-			//cmd.add(new org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand(req));
+			// cmd.add(new
+			// org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand(req));
 			cmd.add(new EMFtoGMFCommandWrapper(new DeleteCommand(getEditingDomain(), todestroy)));
 		} else {
 			cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), view));
@@ -101,7 +100,6 @@ public class ExecutionEnvironmentItemSemanticEditPolicyCN extends UMLBaseItemSem
 					switch(UMLVisualIDRegistry.getVisualID(cnode)) {
 					case ArtifactEditPartCN.VISUAL_ID:
 
-
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
 							switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -135,13 +133,16 @@ public class ExecutionEnvironmentItemSemanticEditPolicyCN extends UMLBaseItemSem
 								break;
 							}
 						}
-						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode.getElement(), false))); // directlyOwned: true
-						// don't need explicit deletion of cnode as parent's view deletion would clean child views as well 
-						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
+						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode.getElement(), false))); // directlyOwned:
+																																		// true
+						// don't need explicit deletion of cnode as parent's
+						// view deletion would clean child views as well
+						// cmd.add(new
+						// org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(),
+						// cnode));
 						break;
 					case ExecutionEnvironmentEditPartCN.VISUAL_ID:
 
-
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
 							switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -175,9 +176,13 @@ public class ExecutionEnvironmentItemSemanticEditPolicyCN extends UMLBaseItemSem
 								break;
 							}
 						}
-						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode.getElement(), false))); // directlyOwned: true
-						// don't need explicit deletion of cnode as parent's view deletion would clean child views as well 
-						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
+						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode.getElement(), false))); // directlyOwned:
+																																		// true
+						// don't need explicit deletion of cnode as parent's
+						// view deletion would clean child views as well
+						// cmd.add(new
+						// org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(),
+						// cnode));
 						break;
 					}
 				}
@@ -185,7 +190,6 @@ public class ExecutionEnvironmentItemSemanticEditPolicyCN extends UMLBaseItemSem
 			}
 		}
 	}
-
 
 	/**
 	 * @generated
@@ -246,8 +250,8 @@ public class ExecutionEnvironmentItemSemanticEditPolicyCN extends UMLBaseItemSem
 	}
 
 	/**
-	 * Returns command to reorient EClass based link. New link target or source
-	 * should be the domain model element associated with this node.
+	 * Returns command to reorient EClass based link. New link target or source should be the domain model
+	 * element associated with this node.
 	 * 
 	 * @generated
 	 */
@@ -272,8 +276,8 @@ public class ExecutionEnvironmentItemSemanticEditPolicyCN extends UMLBaseItemSem
 	}
 
 	/**
-	 * Returns command to reorient EReference based link. New link target or source
-	 * should be the domain model element associated with this node.
+	 * Returns command to reorient EReference based link. New link target or source should be the domain model
+	 * element associated with this node.
 	 * 
 	 * @generated
 	 */

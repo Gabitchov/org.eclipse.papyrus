@@ -20,7 +20,6 @@ public class ArtifactCompositeCompartmentItemSemanticEditPolicyACN extends UMLBa
 		super(UMLElementTypes.Artifact_28);
 	}
 
-
 	/**
 	 * @generated
 	 */

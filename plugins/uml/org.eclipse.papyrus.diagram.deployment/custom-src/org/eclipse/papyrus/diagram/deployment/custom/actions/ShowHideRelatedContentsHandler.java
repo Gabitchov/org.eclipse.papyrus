@@ -16,18 +16,13 @@ package org.eclipse.papyrus.diagram.deployment.custom.actions;
 import org.eclipse.papyrus.diagram.common.actions.handlers.AbstractShowHideHandler;
 import org.eclipse.papyrus.diagram.common.editpolicies.ShowHideRelatedContentsEditPolicy;
 
-
 /**
- * 
  * Handler for the {@link ShowHideRelatedContentsAction}
- * 
  */
 public class ShowHideRelatedContentsHandler extends AbstractShowHideHandler {
 
 	/**
-	 * 
 	 * Constructor.
-	 * 
 	 */
 	public ShowHideRelatedContentsHandler() {
 		super(new ShowHideRelatedContentsAction(), ShowHideRelatedContentsEditPolicy.SHOW_HIDE_RELATED_CONTENTS_POLICY);

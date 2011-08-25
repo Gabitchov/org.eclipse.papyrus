@@ -15,13 +15,11 @@ package org.eclipse.papyrus.diagram.deployment;
 import org.eclipse.papyrus.core.adaptor.gmf.GmfEditorFactory;
 import org.eclipse.papyrus.diagram.deployment.edit.parts.DeploymentDiagramEditPart;
 
-
 // TODO: Auto-generated Javadoc
 /**
  * A factory for creating DeploymentDiagramEditor objects.
  */
 public class DeploymentDiagramEditorFactory extends GmfEditorFactory {
-
 
 	/**
 	 * Instantiates a new deployment diagram editor factory.
@@ -30,6 +28,5 @@ public class DeploymentDiagramEditorFactory extends GmfEditorFactory {
 		super(UmlDeploymentDiagramForMultiEditor.class, DeploymentDiagramEditPart.MODEL_ID);
 
 	}
-
 
 }
