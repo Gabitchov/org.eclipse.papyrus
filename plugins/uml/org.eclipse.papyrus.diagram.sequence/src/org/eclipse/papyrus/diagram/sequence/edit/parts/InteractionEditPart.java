@@ -1165,8 +1165,10 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 	public void activate() {
 		super.activate();
 		Interaction interaction = (Interaction)resolveSemanticElement();
-		for(Gate formalGate : interaction.getFormalGates()) {
-			notifier.listenObject(formalGate);
+		if(interaction != null) {
+			for(Gate formalGate : interaction.getFormalGates()) {
+				notifier.listenObject(formalGate);
+			}
 		}
 	}
 
