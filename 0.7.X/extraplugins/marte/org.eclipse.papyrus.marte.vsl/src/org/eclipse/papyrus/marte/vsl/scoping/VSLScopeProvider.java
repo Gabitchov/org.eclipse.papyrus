@@ -354,7 +354,7 @@ public class VSLScopeProvider extends AbstractDeclarativeScopeProvider {
 					}
 				}
 				else {
-					// code below seems do be harmfull (cause of error 354620): expected type is
+					// code below seems do be harmful (cause of error 354620): expected type is
 					// type of whole expression
 					/*
 					if (VSLContextUtil.isATupleType(expectedType)) {
