@@ -48,7 +48,6 @@ import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Parameter;
 import org.eclipse.uml2.uml.ParameterDirectionKind;
-import org.eclipse.uml2.uml.PrimitiveType;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -892,16 +891,6 @@ public class VSLScopeProvider extends AbstractDeclarativeScopeProvider {
 				iterableIEobjectDescriptions = Scopes.scopedElementsFor(l) ;
 				resultScope = resultScope != null ? new SimpleScope(resultScope, iterableIEobjectDescriptions) : new SimpleScope(iterableIEobjectDescriptions) ;
 			}
-		}
-		else if (expectedTypeForScoping instanceof PrimitiveType) {
-			System.err.println("Na sowas" + VSLJavaValidator._integer);
-			List<List<Element>> visibleProperties = new ArrayList<List<Element>>() ;
-			visibleProperties.addAll(ScopingVisitors.ownedOrInheritedAttributes.visit(expectedTypeForScoping));
-			for (List<Element> l : visibleProperties) {
-				iterableIEobjectDescriptions = Scopes.scopedElementsFor(l) ;
-				resultScope = resultScope != null ? new SimpleScope(resultScope, iterableIEobjectDescriptions) : new SimpleScope(iterableIEobjectDescriptions) ;
-			}
-			resultScope = null;
 		}
 		else { // A tuple has been specified, and the expected type is not a tuple or choice type
 			// We put in the scope all the properties of NFP_Duration, since it is the only tuple type involved in operators in this implementation of VSL
