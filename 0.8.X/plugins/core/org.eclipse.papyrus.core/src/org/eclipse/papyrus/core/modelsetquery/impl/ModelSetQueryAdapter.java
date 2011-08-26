@@ -94,7 +94,9 @@ public class ModelSetQueryAdapter implements IModelSetQueryAdapter, Adapter.Inte
 			Resource resource = (Resource)notifier;
 			IModelSetQueryAdapter typeCacheAdapter = getExistingTypeCacheAdapter(resource.getResourceSet());
 			if(typeCacheAdapter != null) {
-				resource.eAdapters().add((Adapter)typeCacheAdapter);
+				if(typeCacheAdapter instanceof Adapter) {
+					resource.eAdapters().add((Adapter)typeCacheAdapter);
+				}
 				return typeCacheAdapter;
 			}
 		}
