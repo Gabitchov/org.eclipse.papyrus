@@ -35,6 +35,7 @@ import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.command.RemoveCommand;
@@ -84,17 +85,17 @@ public class ControlCommand extends AbstractTransactionalCommand {
 	/** element ID for the custom command class. */
 	private static final String CONTROL_CMD_ELEMENT_EXTENSION_POINT = "customControlCommand";
 
-	private EObject eObject;
+	protected EObject eObject;
 
-	private ModelSet diResourceSet;
+	protected ModelSet modelSet;
 
-	private Resource controlledModel;
+	protected Resource controlledModel;
 
-	private Resource controlledNotation;
+	protected Resource controlledNotation;
 
-	private Resource controlledDI;
+	protected Resource controlledDI;
 
-	private List<IControlCommand> commands;
+	protected List<IControlCommand> commands;
 
 	/**
 	 * Instantiates a new control command.
@@ -109,6 +110,11 @@ public class ControlCommand extends AbstractTransactionalCommand {
 		this.controlledModel = model;
 		// Add an undo context to allow the editor to react to that change
 		addContext(new EditingDomainUndoContext(domain));
+
+		ResourceSet set = domain.getResourceSet();
+		if (set instanceof ModelSet) {
+			modelSet = (ModelSet) set;
+		}
 	}
 
 	/**
@@ -117,8 +123,18 @@ public class ControlCommand extends AbstractTransactionalCommand {
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		commands = getCommandExtensions();
-		doRedo(monitor, info);
-		return CommandResult.newOKCommandResult();
+		IStatus status = doRedo(monitor, info);
+		CommandResult result;
+		if (status.equals(Status.OK_STATUS)) {
+			result = CommandResult.newOKCommandResult();			
+		}
+		else if (status.equals(Status.CANCEL_STATUS)) {
+			result = CommandResult.newErrorCommandResult("Unable to execute control command");
+		}
+		else {
+			result = CommandResult.newCancelledCommandResult();
+		}
+		return result;
 	}
 
 	/**
@@ -128,7 +144,7 @@ public class ControlCommand extends AbstractTransactionalCommand {
 	protected IStatus doUndo(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		// execute uncontrol command
 		try {
-			UncontrolCommand transactionalCommand = new UncontrolCommand(diResourceSet.getTransactionalEditingDomain(), eObject, "Uncontrol", null);
+			UncontrolCommand transactionalCommand = new UncontrolCommand(getEditingDomain(), eObject, "Uncontrol", null, true);
 			OperationHistoryFactory.getOperationHistory().execute(transactionalCommand, new NullProgressMonitor(), null);
 			return Status.OK_STATUS;
 		} catch (ExecutionException e) {
@@ -142,7 +158,9 @@ public class ControlCommand extends AbstractTransactionalCommand {
 	 */
 	@Override
 	protected IStatus doRedo(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		this.diResourceSet = EditorUtils.getDiResourceSet();
+		if (modelSet == null) {
+			modelSet = EditorUtils.getDiResourceSet();
+		}
 
 		// Create the URI from models that will be created
 		final URI newNotationURI = URI.createURI(controlledModel.getURI().trimFileExtension().appendFileExtension(NotationModel.NOTATION_FILE_EXTENSION).toString());
@@ -169,10 +187,8 @@ public class ControlCommand extends AbstractTransactionalCommand {
 
 		if(compoundCommand.canExecute()) {
 			compoundCommand.execute();
-			notifySave();
 			return Status.OK_STATUS;
 		} else {
-			NotificationBuilder.createErrorPopup("Unable to execute control command").setTitle("Unable to control").run();
 			return Status.CANCEL_STATUS;
 		}
 	}
@@ -183,12 +199,12 @@ public class ControlCommand extends AbstractTransactionalCommand {
 	 * @param eObject
 	 * @return
 	 */
-	private List<Diagram> getDiagrams(EObject eObject) {
+	protected List<Diagram> getDiagrams(EObject eObject) {
 		List<Diagram> diagrams = new LinkedList<Diagram>();
 		// search for diagrams only in the notation resource corresponding to the model resource where eObject is.
 		// Some "sub diagrams" in the model can be in controlled resource, we must not move them.
 		Resource resource = eObject.eResource();
-		Resource notationResource = diResourceSet.getResource(resource.getURI().trimFileExtension().appendFileExtension(NotationModel.NOTATION_FILE_EXTENSION), false);
+		Resource notationResource = modelSet.getResource(resource.getURI().trimFileExtension().appendFileExtension(NotationModel.NOTATION_FILE_EXTENSION), false);
 		diagrams.addAll(NotationUtils.getDiagrams(notationResource, eObject));
 		return diagrams;
 	}
@@ -214,9 +230,9 @@ public class ControlCommand extends AbstractTransactionalCommand {
 	 * 
 	 * @param compoundCommand
 	 */
-	private void controlModel(CompoundCommand compoundCommand) {
+	protected void controlModel(CompoundCommand compoundCommand) {
 		// PRE control operation
-		control(getEditingDomain(), eObject, UmlUtils.getUmlModel(diResourceSet).getResource(), controlledModel, compoundCommand, STATE_CONTROL.PRE_MODEL);
+		control(getEditingDomain(), eObject, UmlUtils.getUmlModel(modelSet).getResource(), controlledModel, compoundCommand, STATE_CONTROL.PRE_MODEL);
 
 		// Control the Model
 		compoundCommand.append(new AddCommand(getEditingDomain(), controlledModel.getContents(), eObject));
@@ -225,7 +241,7 @@ public class ControlCommand extends AbstractTransactionalCommand {
 		assignControlledResourceOfCurrentElement(getEditingDomain(), compoundCommand, getHistoryResource(eObject), eObject.eResource().getURI().toString(), controlledModel.getURI().toString());
 
 		// POST control operation
-		control(getEditingDomain(), eObject, UmlUtils.getUmlModel(diResourceSet).getResource(), controlledModel, compoundCommand, STATE_CONTROL.POST_MODEL);
+		control(getEditingDomain(), eObject, UmlUtils.getUmlModel(modelSet).getResource(), controlledModel, compoundCommand, STATE_CONTROL.POST_MODEL);
 	}
 
 	/**
@@ -235,7 +251,7 @@ public class ControlCommand extends AbstractTransactionalCommand {
 	 * @param diagrams
 	 *        list
 	 */
-	private void controlNotation(CompoundCommand compoundCommand, List<Diagram> diagrams) {
+	protected void controlNotation(CompoundCommand compoundCommand, List<Diagram> diagrams) {
 		// PRE control operation
 		for(Diagram diag : diagrams) {
 			control(getEditingDomain(), diag, getNotationResourceForCurrent(eObject), controlledNotation, compoundCommand, STATE_CONTROL.PRE_NOTATION);
@@ -267,10 +283,10 @@ public class ControlCommand extends AbstractTransactionalCommand {
 	 * @param diagrams
 	 * @throws SashEditorException
 	 */
-	private void controlDi(CompoundCommand compoundCommand, final List<Diagram> diagrams) throws SashEditorException {
+	protected void controlDi(CompoundCommand compoundCommand, final List<Diagram> diagrams) throws SashEditorException {
 		// Create a new SashWindowManager
 		SashWindowsMngr windowsMngr = DiUtils.createDefaultSashWindowsMngr();
-		Resource diResource = SashModelUtils.getSashModel(diResourceSet).getResource();
+		Resource diResource = SashModelUtils.getSashModel(modelSet).getResource();
 		// add pages to the page list
 		for(Diagram diagram : diagrams) {
 			PageRef pageRef = DiUtils.getPageRef(diResource, diagram);
@@ -324,7 +340,7 @@ public class ControlCommand extends AbstractTransactionalCommand {
 	 * @param currentURL
 	 * @param newURL
 	 */
-	private void assignControlledResourceOfCurrentElement(EditingDomain domain, CompoundCommand compoundCommand, Resource model, String currentURL, String newURL) {
+	protected void assignControlledResourceOfCurrentElement(EditingDomain domain, CompoundCommand compoundCommand, Resource model, String currentURL, String newURL) {
 		if(model == null) {
 			return;
 		}
@@ -413,11 +429,11 @@ public class ControlCommand extends AbstractTransactionalCommand {
 	 * @param controledURIFullPath
 	 * @param parentURIFullPath
 	 */
-	private void assignToChildExistingControledResources(EditingDomain domain, CompoundCommand compoundCommand, ControledResource child, String controledResourceURL, List<ControledResource> controledFromParent, String parentURL, URI controledURIFullPath, URI parentURIFullPath) {
-		for(ControledResource r : controledFromParent) {
+	protected void assignToChildExistingControledResources(EditingDomain domain, CompoundCommand compoundCommand, ControledResource child, String controledResourceURL, List<ControledResource> controledFromParent, String parentURL, URI controledURIFullPath, URI parentURIFullPath) {
+		for(ControledResource r : controledFromParent) {	
 			if(r.getResourceURL() != null) {
 				URI fullPathParent = URI.createURI(r.getResourceURL()).resolve(parentURIFullPath);
-				Resource resourceLoaded = diResourceSet.getResource(fullPathParent, false);
+				Resource resourceLoaded = modelSet.getResource(fullPathParent, false);
 				if(resourceLoaded != null && !resourceLoaded.getContents().isEmpty()) {
 					EObject top = resourceLoaded.getContents().get(0);
 					if(isInRootHierarchy(top, eObject)) {
@@ -455,7 +471,7 @@ public class ControlCommand extends AbstractTransactionalCommand {
 	/**
 	 * Get the controlled resource in a specified resource
 	 */
-	private ControledResource getControledResource(Resource resource) {
+	protected ControledResource getControledResource(Resource resource) {
 		for(EObject e : resource.getContents()) {
 			if(e instanceof ControledResource) {
 				return (ControledResource)e;
@@ -474,7 +490,7 @@ public class ControlCommand extends AbstractTransactionalCommand {
 	 * @param domain
 	 * @return
 	 */
-	private ControledResource getControledResource(Resource resource, String controledResourceURL, CompoundCommand command, EditingDomain domain) {
+	protected ControledResource getControledResource(Resource resource, String controledResourceURL, CompoundCommand command, EditingDomain domain) {
 		ControledResource result = null;
 		for(EObject e : resource.getContents()) {
 			if(e instanceof ControledResource) {
@@ -523,8 +539,8 @@ public class ControlCommand extends AbstractTransactionalCommand {
 	 * @param eObject
 	 * @return
 	 */
-	private Resource getNotationResourceForCurrent(EObject eObject) {
-		return diResourceSet.getResource(eObject.eResource().getURI().trimFileExtension().appendFileExtension(NotationModel.NOTATION_FILE_EXTENSION), true);
+	protected Resource getNotationResourceForCurrent(EObject eObject) {
+		return modelSet.getResource(eObject.eResource().getURI().trimFileExtension().appendFileExtension(NotationModel.NOTATION_FILE_EXTENSION), true);
 	}
 
 	/**
@@ -533,9 +549,9 @@ public class ControlCommand extends AbstractTransactionalCommand {
 	 * @param eObject
 	 * @return
 	 */
-	private Resource getHistoryResource(EObject eObject) {
-		if(eObject.eResource() != null) {
-			return diResourceSet.getResource(eObject.eResource().getURI().trimFileExtension().appendFileExtension(HistoryModel.MODEL_FILE_EXTENSION), true);
+	protected Resource getHistoryResource(EObject eObject) {
+		if (eObject.eResource() != null) {
+			return modelSet.getResource(eObject.eResource().getURI().trimFileExtension().appendFileExtension(HistoryModel.MODEL_FILE_EXTENSION), true);			
 		}
 		return null;
 	}
@@ -587,7 +603,7 @@ public class ControlCommand extends AbstractTransactionalCommand {
 	 * 
 	 * @return the resource
 	 */
-	private Resource getResource(URI uri) {
+	protected Resource getResource(URI uri) {
 		Resource res = getEditingDomain().getResourceSet().getResource(uri, false);
 		if(res == null) {
 			res = getEditingDomain().getResourceSet().createResource(uri);
