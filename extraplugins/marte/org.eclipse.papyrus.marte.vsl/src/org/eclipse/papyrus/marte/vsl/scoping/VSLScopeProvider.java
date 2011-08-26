@@ -20,7 +20,6 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.papyrus.marte.vsl.extensions.VSLContextUtil;
-import org.eclipse.papyrus.marte.vsl.extensions.VSLTypeInferenceUtil;
 import org.eclipse.papyrus.marte.vsl.scoping.visitors.ScopingVisitors;
 import org.eclipse.papyrus.marte.vsl.scoping.visitors.Visitor;
 import org.eclipse.papyrus.marte.vsl.vSL.CollectionOrTuple;
@@ -49,6 +48,7 @@ import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Parameter;
 import org.eclipse.uml2.uml.ParameterDirectionKind;
+import org.eclipse.uml2.uml.PrimitiveType;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -346,7 +346,7 @@ public class VSLScopeProvider extends AbstractDeclarativeScopeProvider {
 						}
 					}
 					else if (optionalContextElement instanceof Property) {// This is a chosen alternative
-						System.out.println(((Property) optionalContextElement).getType().getName()) ;
+						// System.out.println(((Property) optionalContextElement).getType().getName()) ;
 						return (Classifier)((Property) optionalContextElement).getType() ;
 					}
 					else {
@@ -354,14 +354,18 @@ public class VSLScopeProvider extends AbstractDeclarativeScopeProvider {
 					}
 				}
 				else {
+					// code below seems do be harmfull (cause of error 354620): expected type is
+					// type of whole expression
+					/*
 					if (VSLContextUtil.isATupleType(expectedType)) {
 						List<NamedElement> tupleProperties = 
 							new ArrayList<NamedElement>(VSLContextUtil.getTupleAttribs(expectedType)) ;
 						if (tupleProperties.size() > indexOfExp) {
-							System.out.println(((Property)tupleProperties.get(indexOfExp)).getType().getName()) ;
-							System.out.println(((Property)tupleProperties.get(indexOfExp)).getName() + "") ;
+							System.out.println("((Property)tupleProperties.get(indexOfExp)).getType().getName()) ;
+							System.out.println("((Property)tupleProperties.get(indexOfExp)).getName()) ;
 							return (Classifier)((Property)tupleProperties.get(indexOfExp)).getType() ;
 						}
+						return expectedType;
 					}
 					else if (VSLContextUtil.isACollectionType(expectedType)) {
 						if (VSLContextUtil.getCollectionAttrib(expectedType) != null)
@@ -371,6 +375,7 @@ public class VSLScopeProvider extends AbstractDeclarativeScopeProvider {
 						if (VSLContextUtil.getIntervalAttrib(expectedType) != null)
 							return (Classifier)((Property)VSLContextUtil.getIntervalAttrib(expectedType)).getType() ;
 					}
+					*/
 				}
 			}
 			return expectedType ;
@@ -887,6 +892,16 @@ public class VSLScopeProvider extends AbstractDeclarativeScopeProvider {
 				iterableIEobjectDescriptions = Scopes.scopedElementsFor(l) ;
 				resultScope = resultScope != null ? new SimpleScope(resultScope, iterableIEobjectDescriptions) : new SimpleScope(iterableIEobjectDescriptions) ;
 			}
+		}
+		else if (expectedTypeForScoping instanceof PrimitiveType) {
+			System.err.println("Na sowas" + VSLJavaValidator._integer);
+			List<List<Element>> visibleProperties = new ArrayList<List<Element>>() ;
+			visibleProperties.addAll(ScopingVisitors.ownedOrInheritedAttributes.visit(expectedTypeForScoping));
+			for (List<Element> l : visibleProperties) {
+				iterableIEobjectDescriptions = Scopes.scopedElementsFor(l) ;
+				resultScope = resultScope != null ? new SimpleScope(resultScope, iterableIEobjectDescriptions) : new SimpleScope(iterableIEobjectDescriptions) ;
+			}
+			resultScope = null;
 		}
 		else { // A tuple has been specified, and the expected type is not a tuple or choice type
 			// We put in the scope all the properties of NFP_Duration, since it is the only tuple type involved in operators in this implementation of VSL
