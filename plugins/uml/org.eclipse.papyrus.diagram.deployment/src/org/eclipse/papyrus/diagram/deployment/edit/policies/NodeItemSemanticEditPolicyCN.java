@@ -62,9 +62,6 @@ public class NodeItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPolicy 
 		super(UMLElementTypes.Node_23);
 	}
 
-
-
-
 	/**
 	 * @generated
 	 */
@@ -267,7 +264,6 @@ public class NodeItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPolicy 
 			}
 		}
 	}
-
 
 	/**
 	 * @generated

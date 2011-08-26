@@ -54,7 +54,7 @@ import org.eclipse.papyrus.diagram.deployment.edit.parts.NodeEditPart;
 import org.eclipse.papyrus.diagram.deployment.edit.parts.NodeEditPartCN;
 import org.eclipse.papyrus.diagram.deployment.edit.parts.NodeNameEditPart;
 import org.eclipse.papyrus.diagram.deployment.edit.parts.NodeNameEditPartCN;
-import org.eclipse.uml2.uml.Model;
+import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
@@ -128,7 +128,7 @@ public class UMLVisualIDRegistry {
 		if(domainElement == null) {
 			return -1;
 		}
-		if(UMLPackage.eINSTANCE.getModel().isSuperTypeOf(domainElement.eClass()) && isDiagram((Model)domainElement)) {
+		if(UMLPackage.eINSTANCE.getPackage().isSuperTypeOf(domainElement.eClass()) && isDiagram((Package)domainElement)) {
 			return DeploymentDiagramEditPart.VISUAL_ID;
 		}
 
@@ -593,39 +593,34 @@ public class UMLVisualIDRegistry {
 	}
 
 	/**
-	 * "User can change implementation of this method to handle some specific\n""situations not covered by default logic.\n"
+	 * User can change implementation of this method to handle some specific
+	 * situations not covered by default logic.
+	 * 
 	 * @generated
 	 */
-	private static boolean isDiagram(Model element) {
+	private static boolean isDiagram(Package element) {
 		return true;
 	}
-
-
-
-
 
 	/**
 	 * @generated
 	 */
 	private static ViewInfo diagramViewInfo = null;
 
-
 	/**
 	 * @generated
 	 */
 	public static ViewInfo getDiagramViewInfo() {
 		if(diagramViewInfo == null) {
-			diagramViewInfo = getModel_1000ViewInfo();
+			diagramViewInfo = getPackage_1000ViewInfo();
 		}
 		return diagramViewInfo;
 	}
 
-
-
 	/**
 	 * @generated
 	 */
-	protected static ViewInfo getModel_1000ViewInfo() {
+	protected static ViewInfo getPackage_1000ViewInfo() {
 		ViewInfo root = new BaseViewInfo(1000, ViewInfo.Head, "", null, null);
 		ViewInfo viewInfo = null;
 		ViewInfo labelInfo = null;

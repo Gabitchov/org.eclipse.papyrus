@@ -41,7 +41,7 @@
           key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
           editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.deployment.custom.edit.policies.CustomDiagramDragDropEditPolicy"/>
       <domainDiagramElement
-          href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Model"/>
+          href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package"/>
       <childNodes
           visualID="23"
           editPartClassName="NodeEditPartCN"

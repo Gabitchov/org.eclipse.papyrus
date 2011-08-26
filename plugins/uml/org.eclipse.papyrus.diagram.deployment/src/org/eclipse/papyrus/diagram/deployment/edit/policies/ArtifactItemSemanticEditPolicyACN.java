@@ -59,9 +59,6 @@ public class ArtifactItemSemanticEditPolicyACN extends UMLBaseItemSemanticEditPo
 		super(UMLElementTypes.Artifact_28);
 	}
 
-
-
-
 	/**
 	 * @generated
 	 */
@@ -144,7 +141,6 @@ public class ArtifactItemSemanticEditPolicyACN extends UMLBaseItemSemanticEditPo
 			}
 		}
 	}
-
 
 	/**
 	 * @generated

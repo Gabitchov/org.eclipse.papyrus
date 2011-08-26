@@ -210,7 +210,4 @@ public class MessageFormatParser extends AbstractParser {
 		return getViewProcessor().format(getValues(element), new StringBuffer(), new FieldPosition(0)).toString();
 	}
 
-
-
-
 }

@@ -42,9 +42,6 @@ public class DeviceItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy 
 		super(UMLElementTypes.Device_2003);
 	}
 
-
-
-
 	/**
 	 * @generated
 	 */
@@ -61,7 +58,6 @@ public class DeviceItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy 
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
-
 
 	/**
 	 * @generated

@@ -103,21 +103,19 @@ public class ExecutionEnvironmentNameEditPartCN extends CompartmentEditPart impl
 	 */
 	private String defaultText;
 
-
-
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
+	 * 
 	 * @generated
 	 */
 	protected int directEditionMode = IDirectEdition.UNDEFINED_DIRECT_EDITOR;
 
 	/**
 	 * configuration from a registered edit dialog
+	 * 
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
-
-
 
 	/**
 	 * @generated
@@ -202,6 +200,7 @@ public class ExecutionEnvironmentNameEditPartCN extends CompartmentEditPart impl
 	/**
 	 * @generated
 	 */
+	@SuppressWarnings("rawtypes")
 	protected List getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}
@@ -570,8 +569,6 @@ public class ExecutionEnvironmentNameEditPartCN extends CompartmentEditPart impl
 		return (View)getModel();
 	}
 
-
-
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
@@ -616,6 +613,7 @@ public class ExecutionEnvironmentNameEditPartCN extends CompartmentEditPart impl
 
 	/**
 	 * Initializes the extended editor configuration
+	 * 
 	 * @generated
 	 */
 	protected void initExtendedEditorConfiguration() {
@@ -631,6 +629,7 @@ public class ExecutionEnvironmentNameEditPartCN extends CompartmentEditPart impl
 
 	/**
 	 * Updates the preference configuration
+	 * 
 	 * @generated
 	 */
 	protected void updateExtendedEditorConfiguration() {
@@ -644,7 +643,9 @@ public class ExecutionEnvironmentNameEditPartCN extends CompartmentEditPart impl
 
 	/**
 	 * Performs the direct edit usually used by GMF editors.
-	 * @param theRequest the direct edit request that starts the direct edit system
+	 * 
+	 * @param theRequest
+	 *        the direct edit request that starts the direct edit system
 	 * @generated
 	 */
 	protected void performDefaultDirectEditorEdit(final Request theRequest) {
@@ -671,8 +672,6 @@ public class ExecutionEnvironmentNameEditPartCN extends CompartmentEditPart impl
 		}
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -688,7 +687,6 @@ public class ExecutionEnvironmentNameEditPartCN extends CompartmentEditPart impl
 		super.removeNotationalListeners();
 		removeListenerFilter("PrimaryView"); //$NON-NLS-1$
 	}
-
 
 	/**
 	 * @generated
@@ -733,13 +731,10 @@ public class ExecutionEnvironmentNameEditPartCN extends CompartmentEditPart impl
 		return null;
 	}
 
-
-
 	/**
 	 * @generated
 	 */
 	private static final String ADD_PARENT_MODEL = "AddParentModel";
-
 
 	/**
 	 * @generated
@@ -766,7 +761,6 @@ public class ExecutionEnvironmentNameEditPartCN extends CompartmentEditPart impl
 
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -774,6 +768,5 @@ public class ExecutionEnvironmentNameEditPartCN extends CompartmentEditPart impl
 		removeListenerFilter(ADD_PARENT_MODEL);
 
 	}
-
 
 }

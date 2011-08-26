@@ -21,7 +21,6 @@ public class ExecutionEnvironmentCompositeCompartmentItemSemanticEditPolicy exte
 		super(UMLElementTypes.ExecutionEnvironment_2002);
 	}
 
-
 	/**
 	 * @generated
 	 */

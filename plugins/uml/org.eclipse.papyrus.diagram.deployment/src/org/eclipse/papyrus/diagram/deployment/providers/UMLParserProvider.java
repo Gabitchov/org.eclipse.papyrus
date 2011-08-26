@@ -161,7 +161,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 		return nodeName_9Parser;
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -246,7 +245,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 		}
 		return artifactName_29Parser;
 	}
-
 
 	/**
 	 * @generated
@@ -359,7 +357,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 		return dependencyName_15Parser;
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -409,6 +406,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 
 	/**
 	 * Utility method that consults ParserService
+	 * 
 	 * @generated
 	 */
 	public static IParser getParser(IElementType type, EObject object, String parserHint) {

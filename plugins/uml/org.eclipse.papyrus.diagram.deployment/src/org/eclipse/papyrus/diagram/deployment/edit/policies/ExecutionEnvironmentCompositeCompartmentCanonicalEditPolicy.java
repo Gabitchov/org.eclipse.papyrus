@@ -42,7 +42,6 @@ public class ExecutionEnvironmentCompositeCompartmentCanonicalEditPolicy extends
 	 */
 	private Set<EStructuralFeature> myFeaturesToSynchronize;
 
-
 	/**
 	 * @generated
 	 */

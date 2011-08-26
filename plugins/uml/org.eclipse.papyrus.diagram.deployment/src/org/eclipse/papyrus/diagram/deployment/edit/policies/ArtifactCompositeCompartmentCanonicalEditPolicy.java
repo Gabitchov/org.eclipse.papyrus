@@ -34,7 +34,6 @@ import org.eclipse.uml2.uml.UMLPackage;
  */
 public class ArtifactCompositeCompartmentCanonicalEditPolicy extends CanonicalEditPolicy {
 
-
 	/**
 	 * @generated
 	 */

@@ -54,7 +54,6 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.ExecutionEnvironment;
 import org.eclipse.uml2.uml.Generalization;
 import org.eclipse.uml2.uml.Manifestation;
-import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Node;
 import org.eclipse.uml2.uml.Package;
@@ -72,7 +71,7 @@ public class UMLDiagramUpdater {
 	public static List<UMLNodeDescriptor> getSemanticChildren(View view) {
 		switch(UMLVisualIDRegistry.getVisualID(view)) {
 		case DeploymentDiagramEditPart.VISUAL_ID:
-			return getModel_1000SemanticChildren(view);
+			return getPackage_1000SemanticChildren(view);
 		case DeviceCompositeCompartmentEditPart.VISUAL_ID:
 			return getDeviceDeviceCompositeCompartment_17SemanticChildren(view);
 		case ExecutionEnvironmentCompositeCompartmentEditPart.VISUAL_ID:
@@ -95,16 +94,14 @@ public class UMLDiagramUpdater {
 		return Collections.emptyList();
 	}
 
-
-
 	/**
 	 * @generated
 	 */
-	public static List<UMLNodeDescriptor> getModel_1000SemanticChildren(View view) {
+	public static List<UMLNodeDescriptor> getPackage_1000SemanticChildren(View view) {
 		if(!view.isSetElement()) {
 			return Collections.EMPTY_LIST;
 		}
-		Model modelElement = (Model)view.getElement();
+		Package modelElement = (Package)view.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
 		for(Iterator<?> it = modelElement.getOwnedComments().iterator(); it.hasNext();) {
 			Comment childElement = (Comment)it.next();
@@ -145,9 +142,6 @@ public class UMLDiagramUpdater {
 		return result;
 	}
 
-
-
-
 	/**
 	 * @generated
 	 */
@@ -180,9 +174,6 @@ public class UMLDiagramUpdater {
 		return result;
 	}
 
-
-
-
 	/**
 	 * @generated
 	 */
@@ -214,9 +205,6 @@ public class UMLDiagramUpdater {
 		}
 		return result;
 	}
-
-
-
 
 	/**
 	 * @generated
@@ -258,9 +246,6 @@ public class UMLDiagramUpdater {
 		return result;
 	}
 
-
-
-
 	/**
 	 * @generated
 	 */
@@ -284,9 +269,6 @@ public class UMLDiagramUpdater {
 		}
 		return result;
 	}
-
-
-
 
 	/**
 	 * @generated
@@ -320,9 +302,6 @@ public class UMLDiagramUpdater {
 		return result;
 	}
 
-
-
-
 	/**
 	 * @generated
 	 */
@@ -354,9 +333,6 @@ public class UMLDiagramUpdater {
 		}
 		return result;
 	}
-
-
-
 
 	/**
 	 * @generated
@@ -398,9 +374,6 @@ public class UMLDiagramUpdater {
 		return result;
 	}
 
-
-
-
 	/**
 	 * @generated
 	 */
@@ -424,9 +397,6 @@ public class UMLDiagramUpdater {
 		}
 		return result;
 	}
-
-
-
 
 	/**
 	 * @generated
@@ -452,14 +422,13 @@ public class UMLDiagramUpdater {
 		return result;
 	}
 
-
 	/**
 	 * @generated
 	 */
 	public static List<UMLLinkDescriptor> getContainedLinks(View view) {
 		switch(UMLVisualIDRegistry.getVisualID(view)) {
 		case DeploymentDiagramEditPart.VISUAL_ID:
-			return getModel_1000ContainedLinks(view);
+			return getPackage_1000ContainedLinks(view);
 		case CommentEditPart.VISUAL_ID:
 			return getComment_2001ContainedLinks(view);
 		case ConstraintEditPart.VISUAL_ID:
@@ -575,8 +544,8 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<UMLLinkDescriptor> getModel_1000ContainedLinks(View view) {
-		Model modelElement = (Model)view.getElement();
+	public static List<UMLLinkDescriptor> getPackage_1000ContainedLinks(View view) {
+		Package modelElement = (Package)view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getContainedTypeModelFacetLinks_Dependency_4004(modelElement));
 		return result;

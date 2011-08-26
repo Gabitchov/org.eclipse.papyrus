@@ -61,9 +61,6 @@ public class DeviceItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPolic
 		super(UMLElementTypes.Device_16);
 	}
 
-
-
-
 	/**
 	 * @generated
 	 */
@@ -226,7 +223,6 @@ public class DeviceItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPolic
 			}
 		}
 	}
-
 
 	/**
 	 * @generated

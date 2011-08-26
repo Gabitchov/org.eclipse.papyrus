@@ -58,7 +58,6 @@ import org.eclipse.swt.graphics.Color;
  */
 public class ConstraintEditPart extends
 
-
 AbstractConstraintEditPart {
 
 	/**
@@ -96,21 +95,15 @@ AbstractConstraintEditPart {
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
-
-
-
 	/**
-	 *Papyrus codeGen
-	 *@generated
+	 * Papyrus codeGen
+	 * 
+	 * @generated
 	 **/
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
 
 	}
-
-
-
-
 
 	/**
 	 * @generated
@@ -168,7 +161,6 @@ AbstractConstraintEditPart {
 		return false;
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -209,7 +201,6 @@ AbstractConstraintEditPart {
 		return getContentPane();
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -222,7 +213,6 @@ AbstractConstraintEditPart {
 
 		return result;
 	}
-
 
 	/**
 	 * Creates figure for this edit part.
@@ -244,7 +234,9 @@ AbstractConstraintEditPart {
 	/**
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
-	 * @param nodeShape instance of generated figure class
+	 * 
+	 * @param nodeShape
+	 *        instance of generated figure class
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
@@ -555,10 +547,6 @@ AbstractConstraintEditPart {
 		}
 		return types;
 	}
-
-
-
-
 
 	/**
 	 * @generated

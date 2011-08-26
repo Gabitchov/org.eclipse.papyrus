@@ -58,7 +58,6 @@ public class CommentAnnotatedElementCreateCommand extends EditElementCommand {
 		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateCommentAnnotatedElement_4008(getSource(), getTarget());
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -73,8 +72,6 @@ public class CommentAnnotatedElementCreateCommand extends EditElementCommand {
 		return CommandResult.newOKCommandResult();
 
 	}
-
-
 
 	/**
 	 * @generated

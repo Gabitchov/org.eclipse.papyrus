@@ -124,10 +124,10 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	 */
 	protected boolean provides(CreateViewForKindOperation op) {
 		/*
-		 if (op.getViewKind() == Node.class)
-		 return getNodeViewClass(op.getSemanticAdapter(), op.getContainerView(), op.getSemanticHint()) != null;
-		 if (op.getViewKind() == Edge.class)
-		 return getEdgeViewClass(op.getSemanticAdapter(), op.getContainerView(), op.getSemanticHint()) != null;
+		 * if (op.getViewKind() == Node.class)
+		 * return getNodeViewClass(op.getSemanticAdapter(), op.getContainerView(), op.getSemanticHint()) != null;
+		 * if (op.getViewKind() == Edge.class)
+		 * return getEdgeViewClass(op.getSemanticAdapter(), op.getContainerView(), op.getSemanticHint()) != null;
 		 */
 
 		// check Diagram Type should be the class diagram
@@ -903,8 +903,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		return edge;
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -917,7 +915,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		}
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -927,7 +924,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		ViewUtil.insertChildView(owner, rv, ViewUtil.APPEND, true);
 		return rv;
 	}
-
 
 	/**
 	 * @generated
@@ -974,7 +970,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		return null;
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -984,7 +979,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		}
 		return (IElementType)semanticAdapter.getAdapter(IElementType.class);
 	}
-
 
 	/**
 	 * @generated
@@ -1038,6 +1032,5 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 			fillStyle.setTransparency(gradientPreferenceConverter.getTransparency());
 		}
 	}
-
 
 }
