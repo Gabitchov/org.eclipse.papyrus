@@ -214,7 +214,6 @@ public class UMLEditPartFactory implements EditPartFactory {
 		}
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -256,7 +255,6 @@ public class UMLEditPartFactory implements EditPartFactory {
 			}
 		}
 	}
-
 
 	/**
 	 * @generated

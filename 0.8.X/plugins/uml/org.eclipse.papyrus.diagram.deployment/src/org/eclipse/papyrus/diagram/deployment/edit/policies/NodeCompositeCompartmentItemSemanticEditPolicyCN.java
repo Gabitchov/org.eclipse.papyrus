@@ -23,7 +23,6 @@ public class NodeCompositeCompartmentItemSemanticEditPolicyCN extends UMLBaseIte
 		super(UMLElementTypes.Node_23);
 	}
 
-
 	/**
 	 * @generated
 	 */

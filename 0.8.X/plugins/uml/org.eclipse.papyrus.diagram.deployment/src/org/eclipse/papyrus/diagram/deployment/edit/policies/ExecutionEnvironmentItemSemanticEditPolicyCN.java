@@ -60,9 +60,6 @@ public class ExecutionEnvironmentItemSemanticEditPolicyCN extends UMLBaseItemSem
 		super(UMLElementTypes.ExecutionEnvironment_21);
 	}
 
-
-
-
 	/**
 	 * @generated
 	 */
@@ -185,7 +182,6 @@ public class ExecutionEnvironmentItemSemanticEditPolicyCN extends UMLBaseItemSem
 			}
 		}
 	}
-
 
 	/**
 	 * @generated

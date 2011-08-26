@@ -42,9 +42,6 @@ public class ExecutionEnvironmentItemSemanticEditPolicy extends UMLBaseItemSeman
 		super(UMLElementTypes.ExecutionEnvironment_2002);
 	}
 
-
-
-
 	/**
 	 * @generated
 	 */
@@ -61,7 +58,6 @@ public class ExecutionEnvironmentItemSemanticEditPolicy extends UMLBaseItemSeman
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
-
 
 	/**
 	 * @generated

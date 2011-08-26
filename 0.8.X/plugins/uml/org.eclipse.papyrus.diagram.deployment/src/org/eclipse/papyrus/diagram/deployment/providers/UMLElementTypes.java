@@ -69,7 +69,7 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
-	public static final IElementType Model_1000 = getElementType("org.eclipse.papyrus.diagram.deployment.Model_1000"); //$NON-NLS-1$
+	public static final IElementType Package_1000 = getElementType("org.eclipse.papyrus.diagram.deployment.Package_1000"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -267,7 +267,7 @@ public class UMLElementTypes {
 		if(elements == null) {
 			elements = new IdentityHashMap<IElementType, ENamedElement>();
 
-			elements.put(Model_1000, UMLPackage.eINSTANCE.getModel());
+			elements.put(Package_1000, UMLPackage.eINSTANCE.getPackage());
 
 
 			elements.put(Comment_2001, UMLPackage.eINSTANCE.getComment());
@@ -334,7 +334,7 @@ public class UMLElementTypes {
 	public static boolean isKnownElementType(IElementType elementType) {
 		if(KNOWN_ELEMENT_TYPES == null) {
 			KNOWN_ELEMENT_TYPES = new HashSet<IElementType>();
-			KNOWN_ELEMENT_TYPES.add(Model_1000);
+			KNOWN_ELEMENT_TYPES.add(Package_1000);
 			KNOWN_ELEMENT_TYPES.add(Comment_2001);
 			KNOWN_ELEMENT_TYPES.add(Constraint_2005);
 			KNOWN_ELEMENT_TYPES.add(ExecutionEnvironment_2002);
@@ -363,7 +363,7 @@ public class UMLElementTypes {
 	public static IElementType getElementType(int visualID) {
 		switch(visualID) {
 		case DeploymentDiagramEditPart.VISUAL_ID:
-			return Model_1000;
+			return Package_1000;
 		case CommentEditPart.VISUAL_ID:
 			return Comment_2001;
 		case ConstraintEditPart.VISUAL_ID:

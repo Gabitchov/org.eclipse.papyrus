@@ -15,9 +15,6 @@ package org.eclipse.papyrus.diagram.deployment.edit.parts;
 import java.util.Collections;
 import java.util.List;
 
-import org.eclipse.draw2d.IClippingStrategy;
-import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.gef.GraphicalEditPart;
@@ -28,7 +25,6 @@ import org.eclipse.gef.handles.MoveHandle;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.NonResizableLabelEditPolicy;
-import org.eclipse.gmf.runtime.diagram.ui.figures.BorderedNodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.editpolicies.DuplicatePasteEditPolicy;
 import org.eclipse.papyrus.diagram.common.providers.ViewInfo;
@@ -52,8 +48,6 @@ public class DeploymentDiagramEditPart extends DiagramEditPart {
 	 * @generated
 	 */
 	public static final int VISUAL_ID = 1000;
-
-
 
 	/**
 	 * @generated
@@ -81,11 +75,10 @@ public class DeploymentDiagramEditPart extends DiagramEditPart {
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE);
 	}
 
-
 	/**
 	 * @generated
 	 */
-	/*package-local*/static class NodeLabelDragPolicy extends NonResizableEditPolicy {
+	/* package-local */static class NodeLabelDragPolicy extends NonResizableEditPolicy {
 
 		/**
 		 * @generated
@@ -112,11 +105,10 @@ public class DeploymentDiagramEditPart extends DiagramEditPart {
 		}
 	}
 
-
 	/**
 	 * @generated
 	 */
-	/*package-local*/static class LinkLabelDragPolicy extends NonResizableLabelEditPolicy {
+	/* package-local */static class LinkLabelDragPolicy extends NonResizableLabelEditPolicy {
 
 		/**
 		 * @generated
@@ -128,10 +120,6 @@ public class DeploymentDiagramEditPart extends DiagramEditPart {
 			return Collections.singletonList(mh);
 		}
 	}
-
-
-
-
 
 	/**
 	 * @generated
@@ -148,7 +136,6 @@ public class DeploymentDiagramEditPart extends DiagramEditPart {
 		}
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -159,7 +146,5 @@ public class DeploymentDiagramEditPart extends DiagramEditPart {
 		}
 		return super.getAdapter(adapter);
 	}
-
-
 
 }

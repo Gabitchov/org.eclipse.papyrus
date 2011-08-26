@@ -44,7 +44,6 @@ public class NodeCompositeCompartmentCanonicalEditPolicy extends CanonicalEditPo
 	 */
 	private Set<EStructuralFeature> myFeaturesToSynchronize;
 
-
 	/**
 	 * @generated
 	 */

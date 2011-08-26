@@ -36,8 +36,6 @@ import org.eclipse.papyrus.diagram.deployment.part.Messages;
  */
 public class NodeCompositeCompartmentEditPartCN
 
-
-
 extends ShapeCompartmentEditPart
 
 {
@@ -54,14 +52,12 @@ extends ShapeCompartmentEditPart
 		super(view);
 	}
 
-
 	/**
 	 * @generated
 	 */
 	public String getCompartmentName() {
 		return Messages.NodeCompositeCompartmentEditPartCN_title;
 	}
-
 
 	/**
 	 * @generated
@@ -81,9 +77,6 @@ extends ShapeCompartmentEditPart
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomContainerEditPolicy());
 	}
 
-
-
-
 	/**
 	 * @generated
 	 */
@@ -92,8 +85,6 @@ extends ShapeCompartmentEditPart
 			super.setRatio(ratio);
 		}
 	}
-
-
 
 	/**
 	 * @generated

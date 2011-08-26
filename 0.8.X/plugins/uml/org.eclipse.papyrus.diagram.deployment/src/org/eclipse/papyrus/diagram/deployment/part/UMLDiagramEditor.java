@@ -63,8 +63,6 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 	 */
 	public static final String CONTEXT_ID = "org.eclipse.papyrus.diagram.deployment.ui.diagramContext"; //$NON-NLS-1$
 
-
-
 	/**
 	 * @generated
 	 */
@@ -74,7 +72,6 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 	 * @generated
 	 */
 	private MouseListener paletteMouseListener = null;
-
 
 	/**
 	 * @generated
@@ -90,9 +87,6 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 	 * @generated
 	 */
 	private IDocumentProvider documentProvider;
-
-
-
 
 	/**
 	 * @generated
@@ -217,8 +211,6 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 		getSite().registerContextMenu(ActionIds.DIAGRAM_EDITOR_CONTEXT_MENU, provider, getDiagramGraphicalViewer());
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -256,7 +248,6 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 		return savedOperation != op;
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -284,8 +275,6 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 	protected PaletteViewer getPaletteViewer() {
 		return getEditDomain().getPaletteViewer();
 	}
-
-
 
 	/**
 	 * @generated
@@ -349,7 +338,7 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 						 * (between two selected shapes)
 						 * 
 						 * @param event
-						 *            the KeyEvent
+						 *        the KeyEvent
 						 * @return <code>true</code> if KeyEvent was handled in some way
 						 */
 						public boolean keyReleased(KeyEvent event) {

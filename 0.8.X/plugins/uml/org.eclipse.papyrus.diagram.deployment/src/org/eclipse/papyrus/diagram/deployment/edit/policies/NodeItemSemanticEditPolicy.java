@@ -42,9 +42,6 @@ public class NodeItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 		super(UMLElementTypes.Node_2008);
 	}
 
-
-
-
 	/**
 	 * @generated
 	 */
@@ -61,7 +58,6 @@ public class NodeItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
-
 
 	/**
 	 * @generated
