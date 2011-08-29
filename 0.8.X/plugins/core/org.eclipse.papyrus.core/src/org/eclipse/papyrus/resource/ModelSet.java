@@ -26,8 +26,11 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.workspace.WorkspaceEditingDomainFactory;
 import org.eclipse.papyrus.resource.additional.AdditionalResourcesModel;
@@ -82,6 +85,8 @@ public class ModelSet extends ResourceSetImpl {
 	 */
 	public ModelSet() {
 		registerModel(additional);
+		this.setURIResourceMap(new HashMap<URI, Resource>());
+		getLoadOptions().put(XMLResource.OPTION_DEFER_IDREF_RESOLUTION, true);
 	}
 	
 
@@ -126,6 +131,20 @@ public class ModelSet extends ResourceSetImpl {
 			throw new NotFoundException("Can't find model for identifier '" + key + "'.");
 
 		return model;
+	}
+	
+	@Override
+	public Resource getResource(URI uri, boolean loadOnDemand) {
+		Resource r = super.getResource(uri, loadOnDemand);
+		if (r instanceof ResourceImpl)
+		{
+			ResourceImpl impl = (ResourceImpl) r ;
+			if (impl.getIntrinsicIDToEObjectMap() == null)
+			{
+				impl.setIntrinsicIDToEObjectMap(new HashMap<String, EObject>());
+			}
+		}
+		return r ;
 	}
 
 	/**
