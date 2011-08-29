@@ -14,16 +14,13 @@
 package org.eclipse.papyrus.marte.vsl.ui.contentassist;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.marte.vsl.extensions.VSLContextUtil;
-import org.eclipse.papyrus.marte.vsl.scoping.VSLScopeProvider;
 import org.eclipse.papyrus.marte.vsl.scoping.visitors.ScopingVisitors;
 import org.eclipse.papyrus.marte.vsl.validation.VSLJavaValidator;
 import org.eclipse.uml2.uml.Behavior;
@@ -43,7 +40,6 @@ import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
-import org.eclipse.xtext.scoping.IScope;
 
 public class VSLProposalUtils {
 
@@ -62,7 +58,7 @@ public class VSLProposalUtils {
 				displayString = splitted[0] ;
 			}
 			
-			String newProposal = "{" + displayString + "/* , " + displayString + " */ }" ;
+			String newProposal = "{ " + displayString + " }" ;
 			allProposalsWithAccountForMultiplicity.put(newProposal, allProposals.get(s)) ;
 		}
 		return allProposalsWithAccountForMultiplicity ;
