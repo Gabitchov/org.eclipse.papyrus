@@ -32,6 +32,7 @@ import org.eclipse.papyrus.marte.vsl.vSL.DurationObsName;
 import org.eclipse.papyrus.marte.vsl.vSL.EqualityExpression;
 import org.eclipse.papyrus.marte.vsl.vSL.InstantObsName;
 import org.eclipse.papyrus.marte.vsl.vSL.ListOfValueNamePairs;
+import org.eclipse.papyrus.marte.vsl.vSL.ListOfValues;
 import org.eclipse.papyrus.marte.vsl.vSL.MultiplicativeExpression;
 import org.eclipse.papyrus.marte.vsl.vSL.NameOrChoiceOrBehaviorCall;
 import org.eclipse.papyrus.marte.vsl.vSL.OperationCallExpression;
@@ -353,8 +354,39 @@ public class VSLProposalProvider extends AbstractVSLProposalProvider {
 				}
 			}
 		}
-		else
+		else if (model instanceof ListOfValues) {
+			// added this case to fix one aspect of bug 330945: support completion within a list  
+			ListOfValues list = (ListOfValues) model;
+			Type type = list.getExpectedType();
+			Map<String,Element> allProposals = VSLProposalUtils.buildProposalForType((Classifier)type) ;
+			for (String s : allProposals.keySet()) {
+				if (s.startsWith(context.getPrefix())) {
+					String completionString ;
+					String displayString ;
+					ICompletionProposal completionProposal = null ;
+					if (allProposals.get(s) == null) {
+						completionString = s.substring(context.getPrefix().length()) ;
+						displayString = s ;
+						completionProposal = CompletionProposalUtils.createCompletionProposal(completionString, displayString, context) ;
+					}
+					else {
+						if (! s.contains("|")) {
+							completionString = s ;
+							displayString = s ;
+						}
+						else {
+							completionString = s.substring(0, s.indexOf("|")) ;
+							displayString = s.substring(s.indexOf("|") + 1) ;
+						}
+						completionProposal = CompletionProposalUtils.createCompletionProposalWithReplacementOfPrefix(((allProposals.get(s) != null) && (allProposals.get(s) instanceof NamedElement)) ? (NamedElement)allProposals.get(s) : null, completionString, displayString, context) ;
+					}
+					acceptor.accept(completionProposal) ;
+				}
+			}
+		}
+		else {
 			super.completeMultiplicativeExpression_Exp(model, assignment, context, acceptor);
+		}
 	}
 
 	@Override
