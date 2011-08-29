@@ -14,6 +14,7 @@ package org.eclipse.papyrus.onefile.model;
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
+import org.eclipse.core.runtime.IAdaptable;
 
 /**
  * Contract for Papyrus Files representation
@@ -21,7 +22,7 @@ import org.eclipse.core.resources.IResource;
  * @author tristan.faure@atosorigin.com
  * 
  */
-public interface IPapyrusFile extends IPapyrusElement {
+public interface IPapyrusFile extends IPapyrusElement, IAdaptable {
 
 	/**
 	 * Return the resources associated to the DI, the di must be included in the

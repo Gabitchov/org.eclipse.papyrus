@@ -20,6 +20,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.papyrus.core.utils.PapyrusImageUtils;
 import org.eclipse.papyrus.onefile.model.IPapyrusFile;
 import org.eclipse.papyrus.onefile.utils.Utils;
@@ -93,6 +94,10 @@ public class PapyrusFile implements IPapyrusFile {
 
 	public Image getImage() {
 		return PapyrusImageUtils.getDefaultIcon();
+	}
+
+	public Object getAdapter(Class adapter) {
+		return Platform.getAdapterManager().getAdapter(this, adapter);
 	}
 
 }

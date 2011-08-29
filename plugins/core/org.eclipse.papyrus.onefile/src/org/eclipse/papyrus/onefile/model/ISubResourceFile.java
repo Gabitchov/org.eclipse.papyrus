@@ -12,6 +12,7 @@
 package org.eclipse.papyrus.onefile.model;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.runtime.IAdaptable;
 
 /**
  * Contract for elements bellow an {@link IPapyrusFile}
@@ -19,7 +20,7 @@ import org.eclipse.core.resources.IFile;
  * @author tfaure
  * 
  */
-public interface ISubResourceFile extends IPapyrusElement {
+public interface ISubResourceFile extends IPapyrusElement, IAdaptable  {
 	/**
 	 * Returns the IFile associted to the {@link ISubResourceFile}
 	 * 
