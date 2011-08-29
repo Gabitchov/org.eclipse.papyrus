@@ -71,6 +71,8 @@ public class CustomBlockPropertyCompositePreferencePage extends InternalBlockDia
 
 
 		// Start of user code custom static initializations
+		compartmentTitleDefaultVisibilityMap.remove("structure"); //$NON-NLS-1$
+		compartmentTitleDefaultVisibilityMap.put("structure", Boolean.FALSE); //$NON-NLS-1$
 		// End of user code
 
 		Collections.unmodifiableMap(compartmentDefaultVisibilityMap);
