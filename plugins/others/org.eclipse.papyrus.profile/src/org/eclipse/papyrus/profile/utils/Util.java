@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2008 CEA LIST.
  *
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -20,15 +20,18 @@ import java.util.List;
 
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.papyrus.profile.Activator;
 import org.eclipse.papyrus.profile.Message;
 import org.eclipse.papyrus.profile.definition.IPapyrusVersionConstants;
 import org.eclipse.papyrus.profile.definition.PapyrusDefinitionAnnotation;
 import org.eclipse.papyrus.profile.definition.Version;
+import org.eclipse.papyrus.umlutils.PackageUtil;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.DataType;
 import org.eclipse.uml2.uml.Element;
@@ -111,10 +114,11 @@ public class Util {
 				Comment cCom = (Comment)object;
 				suffix = " (Comment)";
 				String cComBody = cCom.getBody();
-				if(cComBody.length() >= 10)
+				if(cComBody.length() >= 10) {
 					cComLabel = cComBody.substring(0, 9) + "...";
-				else
+				} else {
 					cComLabel = cComBody;
+				}
 			}
 			else if (object instanceof TemplateSignature) {
 				TemplateableElement te = ((TemplateSignature) object).getTemplate();
@@ -169,10 +173,10 @@ public class Util {
 		boolean isMetaclass = false;
 
 		if((type instanceof org.eclipse.uml2.uml.Class)
-				&& (type.getAppliedStereotypes() != null)
-				&& (type.getAppliedStereotypes().size() > 0)) {
+			&& (type.getAppliedStereotypes() != null)
+			&& (type.getAppliedStereotypes().size() > 0)) {
 
-			Stereotype firstStereotype = (Stereotype)type.getAppliedStereotypes().get(0);
+			Stereotype firstStereotype = type.getAppliedStereotypes().get(0);
 
 			if(firstStereotype.getName().equals("Metaclass")) {
 				isMetaclass = true;
@@ -295,7 +299,7 @@ public class Util {
 				if (piCurrentElt.getAppliedSubstereotype(appliedStereotype, null) != null) {
 					filteredElements.add(piCurrentElt);
 				}
-				Iterator<Stereotype> appStIter = ((Element)piCurrentElt).getAppliedStereotypes().iterator();
+				Iterator<Stereotype> appStIter = piCurrentElt.getAppliedStereotypes().iterator();
 				while(appStIter.hasNext()) {
 					Stereotype currentSt = appStIter.next();
 
@@ -314,14 +318,15 @@ public class Util {
 					Iterator<EObject> eIter = ((ElementImport)piCurrentElt).getImportedElement().eAllContents();
 					while(eIter.hasNext()) {
 						EObject currentEIelt = eIter.next();
-						if ((currentEIelt instanceof Element) && (metaType.isInstance(currentEIelt)))
+						if ((currentEIelt instanceof Element) && (metaType.isInstance(currentEIelt))) {
 							filteredElements.add((Element) currentEIelt);
+						}
 					}
 				}
 			}
 		}
 	}
-	
+
 	/**
 	 * Retrieve an ArrayList of all instances in the model that
 	 * are instances of the java.lang.Class metaType or with a
@@ -345,7 +350,7 @@ public class Util {
 		while(iter.hasNext()) {
 			EObject currentEObj = iter.next();
 
-			// If currentElt is an ElementImport, it is replaced by the imported 
+			// If currentElt is an ElementImport, it is replaced by the imported
 			// Element.
 			if(currentEObj instanceof ElementImport) {
 				ElementImport elementImport = (ElementImport) currentEObj;
@@ -381,7 +386,7 @@ public class Util {
 	 */
 	public static void reorderStereotypeApplications(Element element, EList<Stereotype> stereotypes) {
 		for(Iterator<Stereotype> s = stereotypes.iterator(); s.hasNext();) {
-			EObject stereotypeApplication = element.getStereotypeApplication((Stereotype)s.next());
+			EObject stereotypeApplication = element.getStereotypeApplication(s.next());
 			if(stereotypeApplication != null) {
 				UMLUtil.setBaseElement(stereotypeApplication, null);
 				UMLUtil.setBaseElement(stereotypeApplication, element);
@@ -617,7 +622,7 @@ public class Util {
 			return (value != null) ? value : "";
 		}
 	}
-	
+
 	/**
 	 * We look for the nearest profile application from the Element, owning the stereotype;
 	 * 
@@ -636,5 +641,61 @@ public class Util {
 			container = container.eContainer();
 		}
 		return profileApplication;
+	}
+
+	/**
+	 * Checks if the profile applied has been changed since last application (definition does not match.
+	 * 
+	 * @param _package
+	 *        on which the profile is applied
+	 * @param _profile
+	 *        the applied profile
+	 * @return true if the profile has changed
+	 */
+	public static boolean isDirty(Package _package, Profile _profile) {
+		boolean isDirty = false;
+
+		// Retrieve model resourceSet
+		ResourceSet pkge_resourceSet = _package.eResource().getResourceSet();
+
+		// Retrieve profile resource
+		URI prof_URI = _profile.eResource().getURI();
+		Resource modelResource = pkge_resourceSet.getResource(prof_URI, true);
+
+		if(modelResource.getContents().get(0) instanceof Profile) {
+
+			// ckeck applied profile application definition vs profile definition referenced in file
+			Profile profileInFile = (Profile)(modelResource.getContents().get(0));
+
+			if(_package.getProfileApplication(_profile) != null) {
+				EPackage appliedProfileDefinition = _package.getProfileApplication(_profile).getAppliedDefinition();
+				EPackage fileProfileDefinition = null;
+
+				// Check profiles qualified names to ensure the correct profiles are compared
+				String appliedProfileName = _profile.getQualifiedName();
+				String fileProfileName = profileInFile.getQualifiedName();
+				if(!appliedProfileName.equals(fileProfileName)) {
+
+					// The profile must be a subprofile
+					Iterator<Profile> it = PackageUtil.getSubProfiles(profileInFile).iterator();
+					while(it.hasNext()) {
+						Profile current = it.next();
+						fileProfileName = current.getQualifiedName();
+						if(fileProfileName.equals(appliedProfileName)) {
+							profileInFile = current;
+						}
+					}
+				}
+
+				fileProfileDefinition = profileInFile.getDefinition();
+
+				if(appliedProfileDefinition != fileProfileDefinition) {
+					isDirty = true;
+				}
+			}
+
+		}
+
+		return isDirty;
 	}
 }
