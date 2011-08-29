@@ -20,7 +20,6 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.papyrus.marte.vsl.extensions.VSLContextUtil;
-import org.eclipse.papyrus.marte.vsl.extensions.VSLTypeInferenceUtil;
 import org.eclipse.papyrus.marte.vsl.scoping.visitors.ScopingVisitors;
 import org.eclipse.papyrus.marte.vsl.scoping.visitors.Visitor;
 import org.eclipse.papyrus.marte.vsl.vSL.CollectionOrTuple;
@@ -354,6 +353,9 @@ public class VSLScopeProvider extends AbstractDeclarativeScopeProvider {
 					}
 				}
 				else {
+					// code below seems do be harmful (cause of error 354620): expected type is
+					// type of whole expression
+					/*
 					if (VSLContextUtil.isATupleType(expectedType)) {
 						List<NamedElement> tupleProperties = 
 							new ArrayList<NamedElement>(VSLContextUtil.getTupleAttribs(expectedType)) ;
@@ -371,6 +373,7 @@ public class VSLScopeProvider extends AbstractDeclarativeScopeProvider {
 						if (VSLContextUtil.getIntervalAttrib(expectedType) != null)
 							return (Classifier)((Property)VSLContextUtil.getIntervalAttrib(expectedType)).getType() ;
 					}
+					*/
 				}
 			}
 			return expectedType ;
