@@ -123,25 +123,23 @@ public class ManageProvidedInterfacesHandler extends GraphicalCommandHandler {
 	 */
 	@Override
 	public boolean isEnabled() {
-		boolean validSelection = true;
-
 		List<IGraphicalEditPart> selection = getSelectedElements();
 		if(selection.size() != 1) {
-			validSelection = false;
+			return false;
 		}
 		EObject semanticElement = selection.get(0).resolveSemanticElement();
 
-		// Selection should be a Port
-		if(!(semanticElement instanceof Port)) {
-			validSelection = false;
+		// Selection should be a Port but should not be a FlowPort
+		if (!(semanticElement instanceof Port)) {
+			return false;
 		}
 
 		// Selection should not be a FlowPort
 		FlowPort flowPort = ElementUtil.getStereotypeApplication((Port)semanticElement, FlowPort.class);
 		if(flowPort != null) {
-			validSelection = false;
+			return false;
 		}
 
-		return validSelection;
+		return true;
 	}
 }
