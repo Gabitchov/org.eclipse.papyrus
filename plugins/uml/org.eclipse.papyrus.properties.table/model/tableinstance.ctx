@@ -94,210 +94,210 @@
   </tabs>
   <views name="Single TableInstance" sections="//@tabs.0/@sections.0" automaticContext="true" datacontexts="//@dataContexts.0/@elements.0">
     <constraints xsi:type="contexts:SimpleConstraint" name="isSingleTableInstance">
-      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/EMF_Facet/ModelCellEditor/0.1.0/tableinstance"/>
       <properties xsi:type="contexts:ValueProperty" name="className" value="TableInstance"/>
     </constraints>
   </views>
   <views name="Single QueryTableInstance" sections="//@tabs.0/@sections.1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.1">
     <constraints xsi:type="contexts:SimpleConstraint" name="isSingleQueryTableInstance">
-      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="contexts:ValueProperty" name="className" value="QueryTableInstance"/>
       <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/EMF_Facet/ModelCellEditor/0.1.0/tableinstance"/>
     </constraints>
   </views>
   <views name="Single Column" sections="//@tabs.0/@sections.2" automaticContext="true" datacontexts="//@dataContexts.0/@elements.2">
     <constraints xsi:type="contexts:SimpleConstraint" name="isSingleColumn">
-      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="contexts:ValueProperty" name="className" value="Column"/>
       <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/EMF_Facet/ModelCellEditor/0.1.0/tableinstance"/>
     </constraints>
   </views>
   <views name="Single QueryColumn" sections="//@tabs.0/@sections.3" automaticContext="true" datacontexts="//@dataContexts.0/@elements.3">
     <constraints xsi:type="contexts:SimpleConstraint" name="isSingleQueryColumn">
-      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/EMF_Facet/ModelCellEditor/0.1.0/tableinstance"/>
       <properties xsi:type="contexts:ValueProperty" name="className" value="QueryColumn"/>
     </constraints>
   </views>
   <views name="Single ReferenceColumn" sections="//@tabs.0/@sections.4" automaticContext="true" datacontexts="//@dataContexts.0/@elements.4">
     <constraints xsi:type="contexts:SimpleConstraint" name="isSingleReferenceColumn">
-      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/EMF_Facet/ModelCellEditor/0.1.0/tableinstance"/>
       <properties xsi:type="contexts:ValueProperty" name="className" value="ReferenceColumn"/>
     </constraints>
   </views>
   <views name="Single ContextColumn" sections="//@tabs.0/@sections.5" automaticContext="true" datacontexts="//@dataContexts.0/@elements.5">
     <constraints xsi:type="contexts:SimpleConstraint" name="isSingleContextColumn">
-      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="contexts:ValueProperty" name="className" value="ContextColumn"/>
       <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/EMF_Facet/ModelCellEditor/0.1.0/tableinstance"/>
     </constraints>
   </views>
   <views name="Single MetaClassColumn" sections="//@tabs.0/@sections.6" automaticContext="true" datacontexts="//@dataContexts.0/@elements.6">
     <constraints xsi:type="contexts:SimpleConstraint" name="isSingleMetaClassColumn">
-      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="contexts:ValueProperty" name="className" value="MetaClassColumn"/>
       <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/EMF_Facet/ModelCellEditor/0.1.0/tableinstance"/>
     </constraints>
   </views>
   <views name="Single AttributeColumn" sections="//@tabs.0/@sections.7" automaticContext="true" datacontexts="//@dataContexts.0/@elements.7">
     <constraints xsi:type="contexts:SimpleConstraint" name="isSingleAttributeColumn">
-      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/EMF_Facet/ModelCellEditor/0.1.0/tableinstance"/>
       <properties xsi:type="contexts:ValueProperty" name="className" value="AttributeColumn"/>
     </constraints>
   </views>
   <views name="Single EContainerColumn" sections="//@tabs.0/@sections.8" automaticContext="true" datacontexts="//@dataContexts.0/@elements.8">
     <constraints xsi:type="contexts:SimpleConstraint" name="isSingleEContainerColumn">
-      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="contexts:ValueProperty" name="className" value="EContainerColumn"/>
       <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/EMF_Facet/ModelCellEditor/0.1.0/tableinstance"/>
     </constraints>
   </views>
   <views name="Single DefaultLabelColumn" sections="//@tabs.0/@sections.9" automaticContext="true" datacontexts="//@dataContexts.0/@elements.9">
     <constraints xsi:type="contexts:SimpleConstraint" name="isSingleDefaultLabelColumn">
-      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="contexts:ValueProperty" name="className" value="DefaultLabelColumn"/>
       <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/EMF_Facet/ModelCellEditor/0.1.0/tableinstance"/>
     </constraints>
   </views>
   <views name="Single FeatureColumn" sections="//@tabs.0/@sections.10" automaticContext="true" datacontexts="//@dataContexts.0/@elements.10">
     <constraints xsi:type="contexts:SimpleConstraint" name="isSingleFeatureColumn">
-      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="contexts:ValueProperty" name="className" value="FeatureColumn"/>
       <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/EMF_Facet/ModelCellEditor/0.1.0/tableinstance"/>
     </constraints>
   </views>
   <views name="Single Row" sections="//@tabs.0/@sections.11" automaticContext="true" datacontexts="//@dataContexts.0/@elements.11">
     <constraints xsi:type="contexts:SimpleConstraint" name="isSingleRow">
-      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/EMF_Facet/ModelCellEditor/0.1.0/tableinstance"/>
       <properties xsi:type="contexts:ValueProperty" name="className" value="Row"/>
     </constraints>
   </views>
   <views name="Single FacetAttributeColumn" sections="//@tabs.0/@sections.12" automaticContext="true" datacontexts="//@dataContexts.0/@elements.12">
     <constraints xsi:type="contexts:SimpleConstraint" name="isSingleFacetAttributeColumn">
-      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/EMF_Facet/ModelCellEditor/0.1.0/tableinstance"/>
       <properties xsi:type="contexts:ValueProperty" name="className" value="FacetAttributeColumn"/>
     </constraints>
   </views>
   <views name="Single FacetReferenceColumn" sections="//@tabs.0/@sections.13" automaticContext="true" datacontexts="//@dataContexts.0/@elements.13">
     <constraints xsi:type="contexts:SimpleConstraint" name="isSingleFacetReferenceColumn">
-      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="contexts:ValueProperty" name="className" value="FacetReferenceColumn"/>
       <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/EMF_Facet/ModelCellEditor/0.1.0/tableinstance"/>
     </constraints>
   </views>
   <views name="Single FacetFeatureColumn" sections="//@tabs.0/@sections.14" automaticContext="true" datacontexts="//@dataContexts.0/@elements.14">
     <constraints xsi:type="contexts:SimpleConstraint" name="isSingleFacetFeatureColumn">
-      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="contexts:ValueProperty" name="className" value="FacetFeatureColumn"/>
       <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/EMF_Facet/ModelCellEditor/0.1.0/tableinstance"/>
     </constraints>
   </views>
   <views name="Multiple TableInstance" sections="//@tabs.0/@sections.15" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.0">
     <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleTableInstance">
-      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/EMF_Facet/ModelCellEditor/0.1.0/tableinstance"/>
       <properties xsi:type="contexts:ValueProperty" name="className" value="TableInstance"/>
     </constraints>
   </views>
   <views name="Multiple QueryTableInstance" sections="//@tabs.0/@sections.16" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.1">
     <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleQueryTableInstance">
-      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/EMF_Facet/ModelCellEditor/0.1.0/tableinstance"/>
       <properties xsi:type="contexts:ValueProperty" name="className" value="QueryTableInstance"/>
     </constraints>
   </views>
   <views name="Multiple Column" sections="//@tabs.0/@sections.17" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.2">
     <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleColumn">
-      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="contexts:ValueProperty" name="className" value="Column"/>
       <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/EMF_Facet/ModelCellEditor/0.1.0/tableinstance"/>
     </constraints>
   </views>
   <views name="Multiple QueryColumn" sections="//@tabs.0/@sections.18" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.3">
     <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleQueryColumn">
-      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="contexts:ValueProperty" name="className" value="QueryColumn"/>
       <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/EMF_Facet/ModelCellEditor/0.1.0/tableinstance"/>
     </constraints>
   </views>
   <views name="Multiple ReferenceColumn" sections="//@tabs.0/@sections.19" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.4">
     <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleReferenceColumn">
-      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/EMF_Facet/ModelCellEditor/0.1.0/tableinstance"/>
       <properties xsi:type="contexts:ValueProperty" name="className" value="ReferenceColumn"/>
     </constraints>
   </views>
   <views name="Multiple ContextColumn" sections="//@tabs.0/@sections.20" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.5">
     <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleContextColumn">
-      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/EMF_Facet/ModelCellEditor/0.1.0/tableinstance"/>
       <properties xsi:type="contexts:ValueProperty" name="className" value="ContextColumn"/>
     </constraints>
   </views>
   <views name="Multiple MetaClassColumn" sections="//@tabs.0/@sections.21" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.6">
     <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleMetaClassColumn">
-      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/EMF_Facet/ModelCellEditor/0.1.0/tableinstance"/>
       <properties xsi:type="contexts:ValueProperty" name="className" value="MetaClassColumn"/>
     </constraints>
   </views>
   <views name="Multiple AttributeColumn" sections="//@tabs.0/@sections.22" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.7">
     <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleAttributeColumn">
-      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="contexts:ValueProperty" name="className" value="AttributeColumn"/>
       <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/EMF_Facet/ModelCellEditor/0.1.0/tableinstance"/>
     </constraints>
   </views>
   <views name="Multiple EContainerColumn" sections="//@tabs.0/@sections.23" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.8">
     <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleEContainerColumn">
-      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="contexts:ValueProperty" name="className" value="EContainerColumn"/>
       <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/EMF_Facet/ModelCellEditor/0.1.0/tableinstance"/>
     </constraints>
   </views>
   <views name="Multiple DefaultLabelColumn" sections="//@tabs.0/@sections.24" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.9">
     <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleDefaultLabelColumn">
-      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="contexts:ValueProperty" name="className" value="DefaultLabelColumn"/>
       <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/EMF_Facet/ModelCellEditor/0.1.0/tableinstance"/>
     </constraints>
   </views>
   <views name="Multiple FeatureColumn" sections="//@tabs.0/@sections.25" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.10">
     <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleFeatureColumn">
-      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/EMF_Facet/ModelCellEditor/0.1.0/tableinstance"/>
       <properties xsi:type="contexts:ValueProperty" name="className" value="FeatureColumn"/>
     </constraints>
   </views>
   <views name="Multiple Row" sections="//@tabs.0/@sections.26" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.11">
     <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleRow">
-      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/EMF_Facet/ModelCellEditor/0.1.0/tableinstance"/>
       <properties xsi:type="contexts:ValueProperty" name="className" value="Row"/>
     </constraints>
   </views>
   <views name="Multiple FacetAttributeColumn" sections="//@tabs.0/@sections.27" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.12">
     <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleFacetAttributeColumn">
-      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/EMF_Facet/ModelCellEditor/0.1.0/tableinstance"/>
       <properties xsi:type="contexts:ValueProperty" name="className" value="FacetAttributeColumn"/>
     </constraints>
   </views>
   <views name="Multiple FacetReferenceColumn" sections="//@tabs.0/@sections.28" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.13">
     <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleFacetReferenceColumn">
-      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="contexts:ValueProperty" name="className" value="FacetReferenceColumn"/>
       <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/EMF_Facet/ModelCellEditor/0.1.0/tableinstance"/>
     </constraints>
   </views>
   <views name="Multiple FacetFeatureColumn" sections="//@tabs.0/@sections.29" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.14">
     <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleFacetFeatureColumn">
-      <constraintType href="pathmap://PPEResources/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/EMF_Facet/ModelCellEditor/0.1.0/tableinstance"/>
       <properties xsi:type="contexts:ValueProperty" name="className" value="FacetFeatureColumn"/>
     </constraints>
@@ -354,6 +354,6 @@
     <elements name="FacetFeatureColumn">
       <properties name="facetFeature" type="Reference"/>
     </elements>
-    <modelElementFactory href="pathmap://PPEResources/Environment.xmi#//@modelElementFactories.0"/>
+    <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@modelElementFactories.0"/>
   </dataContexts>
 </contexts:Context>
