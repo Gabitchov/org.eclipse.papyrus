@@ -15,6 +15,7 @@
 package org.eclipse.papyrus.table.common.handlers;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
@@ -33,7 +34,10 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.facet.infra.query.ModelQuery;
 import org.eclipse.emf.facet.infra.query.ModelQuerySet;
+import org.eclipse.emf.facet.infra.query.core.AbstractModelQuery;
 import org.eclipse.emf.facet.infra.query.core.ModelQuerySetCatalog;
+import org.eclipse.emf.facet.infra.query.core.exception.ModelQueryException;
+import org.eclipse.emf.facet.infra.query.runtime.ModelQueryResult;
 import org.eclipse.emf.facet.widgets.nattable.NatTableWidgetUtils;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.Column;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance2.TableInstance2;
@@ -51,12 +55,12 @@ import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.core.utils.ServiceUtils;
 import org.eclipse.papyrus.core.utils.ServiceUtilsForActionHandlers;
-import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.resource.AbstractBaseModel;
 import org.eclipse.papyrus.resource.IModel;
 import org.eclipse.papyrus.resource.ModelSet;
 import org.eclipse.papyrus.resource.NotFoundException;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
+import org.eclipse.papyrus.table.common.Activator;
 import org.eclipse.papyrus.table.common.dialog.TwoInputDialog;
 import org.eclipse.papyrus.table.common.messages.Messages;
 import org.eclipse.papyrus.table.common.modelresource.EMFFacetNattableModel;
@@ -176,8 +180,7 @@ public abstract class AbstractCreateNattableEditorCommand extends AbstractHandle
 			try {
 				OperationHistoryFactory.getOperationHistory().execute(command, new NullProgressMonitor(), null);
 			} catch (ExecutionException e) {
-				e.printStackTrace();
-				Activator.getDefault().logError("Can't create Table Editor", e); //$NON-NLS-1$
+				Activator.getDefault().helper.error("Can't create Table Editor", e); //$NON-NLS-1$
 			}
 
 		}
@@ -215,8 +218,13 @@ public abstract class AbstractCreateNattableEditorCommand extends AbstractHandle
 		PapyrusNattableModel papyrusModel = (PapyrusNattableModel)ServiceUtils.getInstance().getModelSet(serviceRegistry).getModelChecked(PapyrusNattableModel.MODEL_ID);
 		papyrusModel.addPapyrusTableInstance(papyrusTable);
 
-		//TableInstance tableInstance = TableinstanceFactory.eINSTANCE.createTableInstance();
-		TableInstance2 tableInstance = NatTableWidgetUtils.createTableInstance(Collections.EMPTY_LIST, defaultDescription, getTableConfiguration(), getTableContext(), null);
+		setFillingQueries(papyrusTable); //should be done before the TableInstance creation
+		setSynchronization(papyrusTable); //should be done before the TableInstance creation
+		EObject context = getTableContext();
+		Assert.isNotNull(context);
+		List<EObject> elements = getInitialElement(papyrusTable, context);
+
+		TableInstance2 tableInstance = NatTableWidgetUtils.createTableInstance(elements, defaultDescription, getTableConfiguration(), getTableContext(), null);
 		tableInstance.setDescription(description);
 
 		// Save the model in the associated resource
@@ -224,14 +232,49 @@ public abstract class AbstractCreateNattableEditorCommand extends AbstractHandle
 		model.addTableInstance(tableInstance);
 		papyrusTable.setTable(tableInstance);
 
-		EObject context = getTableContext();
-		Assert.isNotNull(context);
 		tableInstance.setContext(context);
 
 		setHiddenColumns(papyrusTable);
-		setFillingQueries(papyrusTable);
-		setSynchronization(papyrusTable);
 		return papyrusTable;
+	}
+
+	/**
+	 * 
+	 * @param papyrusTable
+	 *        the papyrus table
+	 * @param context
+	 * @return the list of the initial element for the table
+	 */
+	private List<EObject> getInitialElement(PapyrusTableInstance papyrusTable, EObject context) {
+		if(papyrusTable.isIsSynchronized() && !papyrusTable.getFillingQueries().isEmpty()) {
+			List<EObject> elements = new ArrayList<EObject>();
+
+			for(ModelQuery query : papyrusTable.getFillingQueries()) {
+				ModelQuerySetCatalog catalog = ModelQuerySetCatalog.getSingleton();
+				AbstractModelQuery impl = null;
+				try {
+					impl = catalog.getModelQueryImpl(query);
+				} catch (ModelQueryException e) {
+					Activator.getDefault().helper.error(e);
+				}
+				if(impl != null) {
+					ModelQueryResult result = impl.evaluate(context);
+					Object value = result.getValue();
+					if(value instanceof Collection<?>) {
+						// the build the list of the elements to add in the
+						// table
+						for(Object currentObject : (Collection<?>)value) {
+							if(currentObject instanceof EObject) {
+								elements.add((EObject)currentObject);
+							}
+						}
+
+					}
+				}
+			}
+			return elements;
+		}
+		return Collections.emptyList();
 	}
 
 	/**
