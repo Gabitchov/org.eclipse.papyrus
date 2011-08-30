@@ -13,6 +13,7 @@ package org.eclipse.papyrus.onefile.model.impl;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.JFaceResources;
 import org.eclipse.papyrus.onefile.model.IPapyrusFile;
@@ -64,6 +65,10 @@ public class SubResourceFile implements ISubResourceFile {
 
 	public String getText() {
 		return toString();
+	}
+
+	public Object getAdapter(Class adapter) {
+		return Platform.getAdapterManager().getAdapter(this, adapter);
 	}
 
 }
