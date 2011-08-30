@@ -122,7 +122,7 @@ public class MoDiscoLabelProvider extends CustomizableModelLabelProvider {
 	 * @return the singleton eINSTANCE of editor registry
 	 * @throws ServiceException
 	 */
-	protected IPageIconsRegistry getEditorRegistry() {
+	public IPageIconsRegistry getEditorRegistry() {
 		if(editorRegistry == null) {
 			editorRegistry = createEditorRegistry();
 		}
