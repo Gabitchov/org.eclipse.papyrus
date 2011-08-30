@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.table.modelexplorer.providers;
 
-import org.eclipse.papyrus.modelexplorer.MoDiscoLabelProvider;
+import org.eclipse.papyrus.modelexplorer.MoDiscoLabelProviderWTooltips;
 import org.eclipse.papyrus.table.instance.papyrustableinstance.PapyrusTableInstance;
 import org.eclipse.swt.graphics.Image;
 
@@ -23,7 +23,7 @@ import org.eclipse.swt.graphics.Image;
  * 
  * 
  */
-public class NavigatorTableLabelProvider extends MoDiscoLabelProvider {
+public class NavigatorTableLabelProvider extends MoDiscoLabelProviderWTooltips {
 
 
 	/**
@@ -33,7 +33,7 @@ public class NavigatorTableLabelProvider extends MoDiscoLabelProvider {
 	@Override
 	public Image getImage(final Object element) {
 		if(element instanceof PapyrusTableInstance) {
-			return getEditorRegistry().getEditorIcon(element);
+			return moDiscoLP.getEditorRegistry().getEditorIcon(element);
 		}
 		return super.getImage(element);
 	}
