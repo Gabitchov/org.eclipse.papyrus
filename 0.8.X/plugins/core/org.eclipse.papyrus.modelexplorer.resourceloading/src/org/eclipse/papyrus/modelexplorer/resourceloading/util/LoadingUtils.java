@@ -21,12 +21,13 @@ import java.util.Set;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.papyrus.core.editor.CoreMultiDiagramEditor;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.modelexplorer.resourceloading.Activator;
@@ -39,6 +40,7 @@ import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
 import org.eclipse.papyrus.sasheditor.contentprovider.di.DiSashModelMngr;
 import org.eclipse.papyrus.ui.toolbox.notification.Type;
 import org.eclipse.papyrus.ui.toolbox.notification.builders.NotificationBuilder;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
@@ -61,6 +63,11 @@ public class LoadingUtils {
 	 *        path of resources to load without file extension
 	 */
 	public static void loadResourcesInModelSet(ModelSet modelSet, URI uriWithoutFileExtension) {
+		// initiate progress dialog
+		ProgressMonitorDialog dialog = new ProgressMonitorDialog(Display.getCurrent().getActiveShell());
+		dialog.open();
+		IProgressMonitor monitor = dialog.getProgressMonitor();
+
 		IEditorPart editor = getEditor();
 		if(editor instanceof CoreMultiDiagramEditor) {
 			CoreMultiDiagramEditor core = (CoreMultiDiagramEditor)editor;
@@ -68,6 +75,8 @@ public class LoadingUtils {
 				DiSashModelMngr sashModelMngr = core.getServicesRegistry().getService(DiSashModelMngr.class);
 				IPageMngr pageMngr = sashModelMngr.getIPageMngr();
 				List<Object> allPages = pageMngr.allPages();
+				// mark progress
+				monitor.beginTask("Refresh Pages", allPages.size());
 				// the uri is added after getting all the pages. If it is done before, the eobjects are resolved
 				NotificationBuilder error = NotificationBuilder.createAsyncPopup(Messages.LoadingUtils_ErrorTitle, String.format(Messages.LoadingUtils_ErrorMessage, uriWithoutFileExtension.toString())).setType(Type.ERROR).setDelay(2000);
 				for(Object o : allPages) {
@@ -97,8 +106,12 @@ public class LoadingUtils {
 							}
 						}
 					}
+					// mark progress
+					monitor.worked(1);
 				}
 				Set<String> extensions = getExtensions(modelSet);
+				// mark progress
+				monitor.beginTask("Load models", extensions.size());
 				for(String s : extensions) {
 					try {
 						URI uriToLoad = uriWithoutFileExtension.appendFileExtension(s);
@@ -110,11 +123,16 @@ public class LoadingUtils {
 						error.run();
 						Activator.log.error(re);
 					}
+					// mark progress
+					monitor.worked(1);
 				}
 			} catch (ServiceException e) {
 				Activator.log.error(e);
 			}
 		}
+		// mark progress
+		monitor.done();
+		dialog.close();
 	}
 
 	/**
@@ -126,6 +144,11 @@ public class LoadingUtils {
 	 *        path of resources to unload without file extension
 	 */
 	public static void unloadResourcesFromModelSet(ModelSet modelSet, URI uriWithoutFileExtension) {
+		// initiate progress dialog
+		ProgressMonitorDialog dialog = new ProgressMonitorDialog(Display.getCurrent().getActiveShell());
+		dialog.open();
+		IProgressMonitor monitor = dialog.getProgressMonitor();
+
 		IEditorPart editor = getEditor();
 		if(editor instanceof CoreMultiDiagramEditor) {
 			CoreMultiDiagramEditor core = (CoreMultiDiagramEditor)editor;
@@ -133,6 +156,8 @@ public class LoadingUtils {
 				DiSashModelMngr sashModelMngr = core.getServicesRegistry().getService(DiSashModelMngr.class);
 				IPageMngr pageMngr = sashModelMngr.getIPageMngr();
 				List<Object> allPages = pageMngr.allPages();
+				// mark progress
+				monitor.beginTask("Refresh Pages", allPages.size());
 				List<URI> pagesURIToOpen = new ArrayList<URI>(allPages.size());
 				for(Object o : allPages) {
 					// refresh pages to cancel display of proxified elements
@@ -150,7 +175,11 @@ public class LoadingUtils {
 							}
 						}
 					}
+					// mark progress
+					monitor.worked(1);
 				}
+				// mark progress
+				monitor.beginTask("Unload models", modelSet.getResources().size());
 				// unload resource
 				for(Resource res : new ArrayList<Resource>(modelSet.getResources())) {
 					if(res.getURI().trimFileExtension().equals(uriWithoutFileExtension)) {
@@ -159,9 +188,16 @@ public class LoadingUtils {
 						res.unload();
 						res.eAdapters().clear();
 					}
+					// mark progress
+					monitor.worked(1);
 				}
-				EcoreUtil.resolveAll(modelSet);
-				
+				//				// mark progress
+				//				monitor.beginTask("Resolve", 1);
+				//				EcoreUtil.resolveAll(modelSet);
+				//				monitor.worked(1);
+
+				// mark progress
+				monitor.beginTask("Refresh Pages", allPages.size());
 				// reopen pages from proxies
 				for(Object page : allPages) {
 					if(page instanceof EObject) {
@@ -174,11 +210,16 @@ public class LoadingUtils {
 							}
 						}
 					}
+					// mark progress
+					monitor.worked(1);
 				}
 			} catch (ServiceException e) {
 				Activator.log.error(e);
 			}
 		}
+		// mark progress
+		monitor.done();
+		dialog.close();
 	}
 
 	/**
