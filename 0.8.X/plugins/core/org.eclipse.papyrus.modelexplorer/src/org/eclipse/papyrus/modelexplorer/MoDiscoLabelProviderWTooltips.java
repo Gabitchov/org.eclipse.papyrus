@@ -25,7 +25,7 @@ import org.eclipse.swt.graphics.Point;
  */
 public class MoDiscoLabelProviderWTooltips extends ColumnLabelProvider {
 	
-	private MoDiscoLabelProvider moDiscoLP;
+	protected MoDiscoLabelProvider moDiscoLP;
 	
 	public MoDiscoLabelProviderWTooltips() {
 		moDiscoLP = new MoDiscoLabelProvider ();
