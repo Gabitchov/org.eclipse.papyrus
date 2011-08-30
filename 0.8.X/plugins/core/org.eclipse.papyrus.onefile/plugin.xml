@@ -8,8 +8,7 @@
             adaptableType="org.eclipse.papyrus.onefile.model.IPapyrusFile"
            	 class="org.eclipse.papyrus.onefile.model.adapters.ModelAdapterFactory">
 	        <adapter type="org.eclipse.core.resources.mapping.ResourceMapping" />
-	        <adapter type="org.eclipse.core.resources.IFile" />
-	        <adapter type="org.eclipse.core.resources.IResource" />
+	        <adapter type="java.util.Collection" />
       </factory>
       <factory
             adaptableType="org.eclipse.papyrus.onefile.model.ISubResourceFile"
