@@ -21,17 +21,22 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
+import org.eclipse.gmf.runtime.emf.type.core.ISpecializationType;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyDependentsRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.MoveRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.util.CrossReferencerUtil;
 import org.eclipse.papyrus.sysml.diagram.internalblock.provider.ElementTypes;
+import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
 
 /**
  * <pre>
  * Edit helper advice that delete views from diagram when an element is
  * moved in a new container (in the model explorer).
+ * 
+ * Block is an exception as the IBD is attached to the Block itself, removing it 
+ * would result in an unusable IBD.
  * </pre>
  */
 public class DeleteViewDuringMoveHelperAdvice extends AbstractEditHelperAdvice {
@@ -47,6 +52,12 @@ public class DeleteViewDuringMoveHelperAdvice extends AbstractEditHelperAdvice {
 		Iterator<EObject> it = request.getElementsToMove().keySet().iterator();
 		while(it.hasNext()) {
 			EObject eObject = it.next();
+			
+			// If current eObject is a Block do nothing.
+			if (((ISpecializationType)SysMLElementTypes.BLOCK).getMatcher().matches(eObject)) {
+				continue;
+			}
+			
 			viewsToDestroy.addAll(getViewsToDestroy(eObject));
 		}
 
