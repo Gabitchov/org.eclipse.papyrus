@@ -30,6 +30,7 @@ import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.emf.transaction.ResourceSetChangeEvent;
 import org.eclipse.emf.transaction.ResourceSetListener;
 import org.eclipse.emf.transaction.ResourceSetListenerImpl;
+import org.eclipse.emf.transaction.Transaction;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.viewers.ColumnViewerToolTipSupport;
@@ -352,11 +353,20 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 		}
 	};
 
+	/** cache variable with last transaction which triggered a refresh */
+	private Transaction lastTrans = null;
+
 	/**
 	 * Run in a UI thread to avoid non UI thread exception.
 	 * @param event
 	 */
 	private void handleResourceSetChanged(ResourceSetChangeEvent event) {
+		// avoid refreshing N times for the same transaction (called for each object in resource)
+		Transaction curTrans = event.getTransaction();
+		if(lastTrans != null && lastTrans.equals(curTrans)){
+			return;
+		}
+		lastTrans  = curTrans;
 		PlatformUI.getWorkbench().getDisplay().syncExec(new Runnable() {
 
 			/**
