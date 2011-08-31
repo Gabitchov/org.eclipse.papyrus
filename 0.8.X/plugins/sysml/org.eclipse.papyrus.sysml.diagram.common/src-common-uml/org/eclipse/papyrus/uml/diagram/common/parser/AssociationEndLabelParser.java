@@ -13,6 +13,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.parser;
 
+import java.util.Collections;
+import java.util.Map;
+
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -37,6 +40,11 @@ public class AssociationEndLabelParser extends PropertyLabelParser {
 	 */
 	@Override
 	public String getPrintString(IAdaptable element, int flags) {
+		
+		if (flags == 0) {
+			return MaskedLabel;
+		}
+		
 		String result = "";
 		EObject eObject = (EObject)element.getAdapter(EObject.class);
 
@@ -152,5 +160,13 @@ public class AssociationEndLabelParser extends PropertyLabelParser {
 			}
 		}
 		return result;
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Map<Integer, String> getMasks() {
+		return Collections.emptyMap();
 	}
 }

@@ -14,7 +14,9 @@
 package org.eclipse.papyrus.uml.diagram.common.parser;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.notify.Notification;
@@ -49,6 +51,11 @@ public class ConstraintLabelParser extends NamedElementLabelParser {
 	 */
 	@Override
 	public String getEditString(IAdaptable element, int flags) {
+		
+		if (flags == 0) {
+			return MaskedLabel;
+		}
+		
 		String editString = "";
 
 		EObject eObject = (EObject)element.getAdapter(EObject.class);
@@ -162,7 +169,7 @@ public class ConstraintLabelParser extends NamedElementLabelParser {
 		if(event instanceof Notification) {
 			Object feature = ((Notification)event).getFeature();
 			if(feature instanceof EStructuralFeature) {
-				return UMLPackage.eINSTANCE.getNamedElement_Name().equals(feature) || UMLPackage.eINSTANCE.getValueSpecification__BooleanValue().equals(feature) || UMLPackage.eINSTANCE.getValueSpecification__IntegerValue().equals(feature) || UMLPackage.eINSTANCE.getValueSpecification__StringValue().equals(feature) || UMLPackage.eINSTANCE.getValueSpecification__UnlimitedValue().equals(feature) || UMLPackage.eINSTANCE.getOpaqueExpression_Body().equals(feature) || UMLPackage.eINSTANCE.getOpaqueExpression_Language().equals(feature);
+				return UMLPackage.eINSTANCE.getValueSpecification__BooleanValue().equals(feature) || UMLPackage.eINSTANCE.getValueSpecification__IntegerValue().equals(feature) || UMLPackage.eINSTANCE.getValueSpecification__StringValue().equals(feature) || UMLPackage.eINSTANCE.getValueSpecification__UnlimitedValue().equals(feature) || UMLPackage.eINSTANCE.getOpaqueExpression_Body().equals(feature) || UMLPackage.eINSTANCE.getOpaqueExpression_Language().equals(feature) || super.isAffectingEvent(event, flags);
 			}
 		}
 
@@ -185,5 +192,16 @@ public class ConstraintLabelParser extends NamedElementLabelParser {
 			}
 		}
 		return semanticElementsBeingParsed;
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Map<Integer, String> getMasks() {
+		Map<Integer, String> masks = new HashMap<Integer, String>(2);
+		masks.put(ILabelPreferenceConstants.DISP_NAME, "Name");
+		masks.put(ILabelPreferenceConstants.DISP_SPECIFICATION, "Specification");
+		return masks;
 	}
 }
