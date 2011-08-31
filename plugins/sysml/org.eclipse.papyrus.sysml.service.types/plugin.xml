@@ -190,7 +190,17 @@
 		<specializes id="org.eclipse.papyrus.sysml.FlowPort" />
 		<matcher class ="org.eclipse.papyrus.sysml.service.types.matcher.FlowPortOutMatcher" />
 	</specializationType>
-	
+
+	<!-- ISpecializationType FlowPort_NA of SysML::FlowPort -->
+	<specializationType id="org.eclipse.papyrus.sysml.FlowPort_NA" name="SysML::FlowPort_NA"
+		edithelperadvice="org.eclipse.papyrus.sysml.service.types.helper.FlowPortNAEditHelperAdvice"
+		icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort_NA.gif"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="SysML::FlowPort_NA"/>
+		<specializes id="org.eclipse.papyrus.sysml.FlowPort" />
+		<matcher class ="org.eclipse.papyrus.sysml.service.types.matcher.FlowPortNAMatcher" />
+	</specializationType>
+		
 	<!-- ISpecializationType FlowProperty of UML::Property -->
 	<specializationType id="org.eclipse.papyrus.sysml.FlowProperty" name="SysML::FlowProperty"
 		edithelperadvice="org.eclipse.papyrus.sysml.service.types.helper.FlowPropertyEditHelperAdvice"
@@ -403,6 +413,7 @@
 		<elementType ref="org.eclipse.papyrus.sysml.FlowPort_InOut" />
 		<elementType ref="org.eclipse.papyrus.sysml.FlowPort_In" />
 		<elementType ref="org.eclipse.papyrus.sysml.FlowPort_Out" />
+		<elementType ref="org.eclipse.papyrus.sysml.FlowPort_NA" />
 		<elementType ref="org.eclipse.papyrus.sysml.FlowProperty" />
 		<elementType ref="org.eclipse.papyrus.sysml.FlowSpecification" />
 		<elementType ref="org.eclipse.papyrus.sysml.ItemFlow" />

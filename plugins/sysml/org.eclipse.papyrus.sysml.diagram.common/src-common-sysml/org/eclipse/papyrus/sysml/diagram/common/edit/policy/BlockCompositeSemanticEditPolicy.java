@@ -21,13 +21,12 @@ import org.eclipse.papyrus.sysml.blocks.Block;
 import org.eclipse.papyrus.sysml.diagram.common.commands.CreateFlowPortWithFlowSpecificationConfigureCommandFactory;
 import org.eclipse.papyrus.sysml.diagram.common.commands.CreatePartWithTypeConfigureCommandFactory;
 import org.eclipse.papyrus.sysml.diagram.common.commands.CreateReferenceWithTypeConfigureCommandFactory;
-import org.eclipse.papyrus.sysml.diagram.common.commands.CreateValueWithTypeConfigureCommandFactory;
 import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
 
 /**
- * Semantic edit policy for {@link Block} property compartment.
+ * Semantic edit policy for {@link Block} structure compartment.
  */
-public class PropertyCompartmentSemanticEditPolicy extends CompartmentSemanticEditPolicy {
+public class BlockCompositeSemanticEditPolicy extends CompartmentSemanticEditPolicy {
 
 	/**
 	 * {@inheritDoc}
@@ -35,15 +34,6 @@ public class PropertyCompartmentSemanticEditPolicy extends CompartmentSemanticEd
 	@Override
 	protected Command getCreateCommand(CreateElementRequest req) {
 
-		if(SysMLElementTypes.PART_PROPERTY == req.getElementType()) {
-			req.setParameter(IConfigureCommandFactory.CONFIGURE_COMMAND_FACTORY_ID, new CreatePartWithTypeConfigureCommandFactory());
-		}
-		if(SysMLElementTypes.REFERENCE_PROPERTY == req.getElementType()) {
-			req.setParameter(IConfigureCommandFactory.CONFIGURE_COMMAND_FACTORY_ID, new CreateReferenceWithTypeConfigureCommandFactory());
-		}
-		if(SysMLElementTypes.VALUE_PROPERTY == req.getElementType()) {
-			req.setParameter(IConfigureCommandFactory.CONFIGURE_COMMAND_FACTORY_ID, new CreateValueWithTypeConfigureCommandFactory());
-		}
 		if(SysMLElementTypes.FLOW_PORT_NA == req.getElementType()) {
 			req.setParameter(IConfigureCommandFactory.CONFIGURE_COMMAND_FACTORY_ID, new CreateFlowPortWithFlowSpecificationConfigureCommandFactory());
 		}

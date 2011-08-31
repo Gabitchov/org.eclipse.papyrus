@@ -45,6 +45,7 @@ public class BlockPropertyCompositeSemanticEditPolicy extends DefaultSemanticEdi
 					|| (SysMLElementTypes.FLOW_PORT_IN == req.getElementType())
 					|| (SysMLElementTypes.FLOW_PORT_OUT == req.getElementType())
 					|| (SysMLElementTypes.FLOW_PORT_IN_OUT == req.getElementType())
+					|| (SysMLElementTypes.FLOW_PORT_NA == req.getElementType())
 					|| (UMLElementTypes.PORT == req.getElementType())) {
 					
 					req.setContainer(type);

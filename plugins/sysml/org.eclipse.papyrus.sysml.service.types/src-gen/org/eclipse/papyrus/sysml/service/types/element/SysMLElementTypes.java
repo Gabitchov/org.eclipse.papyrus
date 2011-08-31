@@ -65,6 +65,9 @@ public class SysMLElementTypes extends AbstractElementTypeEnumerator {
 	
 	/** IElementType for SysML FlowPort_Out */
 	public static final IHintedType FLOW_PORT_OUT = (IHintedType)getElementType("org.eclipse.papyrus.sysml.FlowPort_Out"); //$NON-NLS-1$
+
+	/** IElementType for SysML FlowPort_NA */
+	public static final IHintedType FLOW_PORT_NA = (IHintedType)getElementType("org.eclipse.papyrus.sysml.FlowPort_NA"); //$NON-NLS-1$
 	
 	/** IElementType for SysML FlowProperty */
 	public static final IHintedType FLOW_PROPERTY = (IHintedType)getElementType("org.eclipse.papyrus.sysml.FlowProperty"); //$NON-NLS-1$
