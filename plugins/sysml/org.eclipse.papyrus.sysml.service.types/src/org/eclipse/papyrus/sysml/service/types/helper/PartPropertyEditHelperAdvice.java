@@ -116,8 +116,8 @@ public class PartPropertyEditHelperAdvice extends AbstractEditHelperAdvice {
 					targetProperty.setName("");
 					
 					Association association = UMLFactory.eINSTANCE.createAssociation();
-					association.getOwnedEnds().add(targetProperty);
 					association.getMemberEnds().add(sourcePart);
+					association.getOwnedEnds().add(targetProperty);
 					association.getMemberEnds().add(targetProperty);
 					
 					String associationName = NamedElementHelper.EINSTANCE.getNewUMLElementName(associationContainer, "Association"); //$NON-NLS-1$
