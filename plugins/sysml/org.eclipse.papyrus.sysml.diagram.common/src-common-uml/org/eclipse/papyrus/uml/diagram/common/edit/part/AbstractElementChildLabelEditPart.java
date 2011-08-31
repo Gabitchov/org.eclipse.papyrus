@@ -77,6 +77,7 @@ import org.eclipse.papyrus.gmf.diagram.common.locator.CellEditorLocatorUtil;
 import org.eclipse.papyrus.sysml.diagram.common.Activator;
 import org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants;
 import org.eclipse.papyrus.sysml.diagram.common.preferences.LabelPreferenceHelper;
+import org.eclipse.papyrus.uml.diagram.common.edit.policy.MaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.parser.DefaultParserHintAdapter;
 import org.eclipse.papyrus.umlutils.ui.VisualInformationPapyrusConstant;
 import org.eclipse.papyrus.umlutils.ui.helper.NameLabelIconHelper;
@@ -123,6 +124,7 @@ public class AbstractElementChildLabelEditPart extends GraphicalEditPart impleme
 
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
+		installEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY, new MaskManagedLabelEditPolicy());
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new TextNonResizableEditPolicy());
 		installEditPolicy(EditPolicy.COMPONENT_ROLE, new ListItemComponentEditPolicy());
 		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new LabelDirectEditPolicy());
@@ -273,23 +275,33 @@ public class AbstractElementChildLabelEditPart extends GraphicalEditPart impleme
 	}
 
 	public ParserOptions getParserOptions() {
+		
+		if(getNotationView() == null || getNotationView().getDiagram() == null) {
+			return ParserOptions.NONE;
+		}
+
 		EAnnotation display = getNotationView().getEAnnotation(VisualInformationPapyrusConstant.CUSTOM_APPEARENCE_ANNOTATION);
+		if(display == null) {
+			return getDefaultParserOptions();
+		}
+
+		// display != null
+		int displayOptions = Integer.parseInt(display.getDetails().get(VisualInformationPapyrusConstant.CUSTOM_APPEARANCE_MASK_VALUE));
+		return new ParserOptions(displayOptions);
+	}
+
+	public ParserOptions getDefaultParserOptions() {
 
 		if(getNotationView() == null || getNotationView().getDiagram() == null) {
 			return ParserOptions.NONE;
 		}
 
-		if(display == null) {
-			IPreferenceStore store = org.eclipse.papyrus.preferences.Activator.getDefault().getPreferenceStore();
-			int displayOptions = store.getInt(LabelPreferenceHelper.getPreferenceConstant(getLabelPreferenceKey(), ILabelPreferenceConstants.LABEL_DISPLAY_PREFERENCE));
-			if(displayOptions == 0) {
-				return ParserOptions.NONE;
-			}
-
-			return new ParserOptions(displayOptions);
+		IPreferenceStore store = org.eclipse.papyrus.preferences.Activator.getDefault().getPreferenceStore();
+		int displayOptions = store.getInt(LabelPreferenceHelper.getPreferenceConstant(getLabelPreferenceKey(), ILabelPreferenceConstants.LABEL_DISPLAY_PREFERENCE));
+		if(displayOptions == 0) {
+			return ParserOptions.NONE;
 		}
 
-		int displayOptions = Integer.parseInt(display.getDetails().get(VisualInformationPapyrusConstant.CUSTOM_APPEARANCE_MASK_VALUE));
 		return new ParserOptions(displayOptions);
 	}
 
@@ -428,11 +440,10 @@ public class AbstractElementChildLabelEditPart extends GraphicalEditPart impleme
 	}
 
 	protected void refreshLabel() {
-		EditPolicy maskLabelPolicy = getEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY);
-		if(maskLabelPolicy == null) {
-			setLabelTextHelper(getFigure(), getLabelText());
-			setLabelIconHelper(getFigure(), getLabelIcon());
-		}
+
+		setLabelTextHelper(getFigure(), getLabelText());
+		setLabelIconHelper(getFigure(), getLabelIcon());
+
 		Object pdEditPolicy = getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 		if(pdEditPolicy instanceof TextSelectionEditPolicy) {
 			((TextSelectionEditPolicy)pdEditPolicy).refreshFeedback();

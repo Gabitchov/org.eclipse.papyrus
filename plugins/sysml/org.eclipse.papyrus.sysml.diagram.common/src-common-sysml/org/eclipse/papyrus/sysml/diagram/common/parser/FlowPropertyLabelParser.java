@@ -13,7 +13,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.common.parser;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.notify.Notification;
@@ -41,6 +43,10 @@ public class FlowPropertyLabelParser extends PropertyLabelParser {
 	@Override
 	public String getPrintString(IAdaptable element, int flags) {
 
+		if (flags == 0) {
+			return MaskedLabel;
+		}
+		
 		String result = super.getPrintString(element, flags);
 
 		EObject eObject = (EObject)element.getAdapter(EObject.class);
@@ -107,5 +113,20 @@ public class FlowPropertyLabelParser extends PropertyLabelParser {
 			}
 		}
 		return semanticElementsBeingParsed;
+	}
+	
+	public Map<Integer, String> getMasks() {
+		Map<Integer, String> masks = new HashMap<Integer, String>(10);
+		masks.put(ILabelPreferenceConstants.DISP_DIRECTION, "Direction");
+		masks.put(ILabelPreferenceConstants.DISP_VISIBILITY, "Visibility");
+		masks.put(ILabelPreferenceConstants.DISP_DERIVE, "Is Derived");
+		masks.put(ILabelPreferenceConstants.DISP_NAME, "Name");
+		masks.put(ILabelPreferenceConstants.DISP_TYPE, "Type");
+		masks.put(ILabelPreferenceConstants.DISP_UNDEFINED_TYPE, "Show <Undefined> type");
+		masks.put(ILabelPreferenceConstants.DISP_MULTIPLICITY, "Multiplicity");
+		masks.put(ILabelPreferenceConstants.DISP_DEFAULT_MULTIPLICITY, "Show default multiplicity");
+		masks.put(ILabelPreferenceConstants.DISP_DEFAULTVALUE, "Default Value");
+		masks.put(ILabelPreferenceConstants.DISP_MODIFIERS, "Modifiers");
+		return masks;
 	}
 }

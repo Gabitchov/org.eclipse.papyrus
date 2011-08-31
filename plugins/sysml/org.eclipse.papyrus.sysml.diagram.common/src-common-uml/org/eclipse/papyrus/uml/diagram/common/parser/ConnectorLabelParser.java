@@ -14,7 +14,9 @@
 package org.eclipse.papyrus.uml.diagram.common.parser;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.notify.Notification;
@@ -40,6 +42,11 @@ public class ConnectorLabelParser extends NamedElementLabelParser {
 	 */
 	@Override
 	public String getPrintString(IAdaptable element, int flags) {
+		
+		if (flags == 0) {
+			return MaskedLabel;
+		}
+		
 		String result = "";
 		EObject eObject = (EObject)element.getAdapter(EObject.class);
 
@@ -61,9 +68,7 @@ public class ConnectorLabelParser extends NamedElementLabelParser {
 				}
 
 				// If type is undefined only show "<Undefined>" when explicitly asked.
-
 				if(((flags & ILabelPreferenceConstants.DISP_UNDEFINED_TYPE) == ILabelPreferenceConstants.DISP_UNDEFINED_TYPE) || (!"<Undefined>".equals(type))) {
-
 					result = String.format(TYPE_FORMAT, result, type);
 				}
 			}
@@ -80,9 +85,8 @@ public class ConnectorLabelParser extends NamedElementLabelParser {
 
 		if(event instanceof Notification) {
 			Object feature = ((Notification)event).getFeature();
-			if(feature instanceof EStructuralFeature) {
-				return UMLPackage.eINSTANCE.getNamedElement_Name().equals(feature) 
-					|| UMLPackage.eINSTANCE.getTypedElement_Type().equals(feature);
+			if(feature instanceof EStructuralFeature) {	
+				return UMLPackage.eINSTANCE.getTypedElement_Type().equals(feature) || super.isAffectingEvent(event, flags);
 			}
 		}
 
@@ -105,5 +109,13 @@ public class ConnectorLabelParser extends NamedElementLabelParser {
 			}
 		}
 		return semanticElementsBeingParsed;
+	}
+	
+	public Map<Integer, String> getMasks() {
+		Map<Integer, String> masks = new HashMap<Integer, String>(2);
+		masks.put(ILabelPreferenceConstants.DISP_NAME, "Name");
+		masks.put(ILabelPreferenceConstants.DISP_TYPE, "Type");
+		masks.put(ILabelPreferenceConstants.DISP_UNDEFINED_TYPE, "Show <Undefined> type");
+		return masks;
 	}
 }
