@@ -163,9 +163,9 @@ public class FlowPropertyTest extends TestCase {
 		Property p = fp0.getBase_Property();
 		Stereotype s = p.getAppliedStereotype(SysmlResource.FLOW_PROPERTY_ID);
 
-		Image i0 = s.getIcons().get(0); // IN
-		Image i1 = s.getIcons().get(1); // OUT
-		Image i2 = s.getIcons().get(2); // INOUT
+		Image i0 = s.getIcons().get(1); // IN
+		Image i1 = s.getIcons().get(2); // OUT
+		Image i2 = s.getIcons().get(3); // INOUT
 
 		if(!fp0.getIcon().equals(i0)) {
 			fail();
