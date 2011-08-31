@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,6 +11,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.widgets;
 
+import org.eclipse.papyrus.properties.providers.XWTCompliantMaskProvider;
+import org.eclipse.papyrus.properties.providers.XWTCompliantMaskProviderListener;
 import org.eclipse.swt.widgets.Composite;
 
 /**
@@ -20,11 +22,13 @@ import org.eclipse.swt.widgets.Composite;
  * 
  * @author Camille Letavernier
  */
-public class IntegerMask extends AbstractPropertyEditor {
+public class IntegerMask extends AbstractPropertyEditor implements XWTCompliantMaskProviderListener {
 
 	private org.eclipse.papyrus.widgets.editors.IntegerMask editor;
 
-	private MaskProvider maskProvider;
+	private XWTCompliantMaskProvider maskProvider;
+
+	private boolean maskProviderReady = false;
 
 	/**
 	 * 
@@ -41,14 +45,9 @@ public class IntegerMask extends AbstractPropertyEditor {
 
 	@Override
 	protected void checkInput() {
-		if(propertyPath != null && input != null && maskProvider != null) {
+		if(maskProvider != null && maskProviderReady) {
 			super.checkInput();
 		}
-	}
-
-	@Override
-	protected void doBinding() {
-		super.doBinding();
 	}
 
 	/**
@@ -74,9 +73,14 @@ public class IntegerMask extends AbstractPropertyEditor {
 	 * 
 	 * @param provider
 	 */
-	public void setMaskProvider(MaskProvider provider) {
+	public void setMaskProvider(XWTCompliantMaskProvider provider) {
+		if(this.maskProvider != null) {
+			maskProvider.removeMaskProviderListener(this);
+		}
+
+		maskProviderReady = false;
 		this.maskProvider = provider;
-		editor.setMasks(maskProvider.getMasks());
+		provider.addMaskProviderListener(this);
 		checkInput();
 	}
 
@@ -84,7 +88,14 @@ public class IntegerMask extends AbstractPropertyEditor {
 	 * 
 	 * @return the MaskProvider associated to this editor
 	 */
-	public MaskProvider getMaskProvider() {
+	public XWTCompliantMaskProvider getMaskProvider() {
 		return maskProvider;
+	}
+
+	public void notifyReady(XWTCompliantMaskProvider provider) {
+		this.maskProviderReady = true;
+		editor.setMasks(maskProvider.getMasks());
+		provider.removeMaskProviderListener(this);
+		checkInput();
 	}
 }
