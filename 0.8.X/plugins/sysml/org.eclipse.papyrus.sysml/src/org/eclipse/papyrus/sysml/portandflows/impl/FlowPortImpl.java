@@ -246,7 +246,14 @@ public class FlowPortImpl extends EObjectImpl implements FlowPort {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * Images registered in Profile are :
+	 * 		0 - FlowPort (default, similar to INOUT)
+	 * 		1 - FlowPort IN
+	 * 		2 - FlowPort OUT
+	 * 		3 - FlowPort INOUT
+	 * 		4 - FlowPort NA (Non Atomic)
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
 	 */
@@ -257,41 +264,19 @@ public class FlowPortImpl extends EObjectImpl implements FlowPort {
 		if(getBase_Port() != null) {
 			Stereotype st = getBase_Port().getAppliedStereotype(SysmlResource.FLOW_PORT_ID);
 
-			Image defaultImage = st.getIcons().get(0);
-			Image image = null;
+			Image image = st.getIcons().get(0);
 
 			if(isIsAtomic()) {
-				if(getDirection() == FlowDirection.OUT) {
+				if(getDirection() == FlowDirection.IN) {
 					image = st.getIcons().get(1);
-				} else if(getDirection() == FlowDirection.INOUT) {
+				} else if(getDirection() == FlowDirection.OUT) {
 					image = st.getIcons().get(2);
-				} else {
-					// Default : IN
-					image = defaultImage;
+				} else if(getDirection() == FlowDirection.INOUT) {
+					image = st.getIcons().get(3);
 				}
 
 			} else {
-				if(isConjugated) {
-
-					if(getDirection() == FlowDirection.IN) {
-						image = st.getIcons().get(3);
-					} else if(getDirection() == FlowDirection.OUT) {
-						image = st.getIcons().get(4);
-					} else {
-						// INOUT
-						image = st.getIcons().get(5);
-					}
-				} else {
-
-					if(getDirection() == FlowDirection.IN) {
-						image = st.getIcons().get(6);
-					} else if(getDirection() == FlowDirection.OUT) {
-						image = st.getIcons().get(7);
-					} else {
-						// INOUT
-						image = st.getIcons().get(8);
-					}
-				}
+				image = st.getIcons().get(4);
 			}
 
 			return image;
@@ -315,7 +300,7 @@ public class FlowPortImpl extends EObjectImpl implements FlowPort {
 			// Find FlowPort type
 			Type type = getBase_Port().getType();
 			if((type != null) && (type instanceof Interface)) {
-				flowSpec = (FlowSpecification)ElementUtil.hasStereotype(type, PortandflowsPackage.eINSTANCE.getFlowSpecification());
+				flowSpec = ElementUtil.getStereotypeApplication(type, FlowSpecification.class);
 			}
 
 			if(flowSpec != null) {
