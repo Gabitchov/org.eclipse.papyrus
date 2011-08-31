@@ -14,7 +14,9 @@
 package org.eclipse.papyrus.uml.diagram.common.parser;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.notify.Notification;
@@ -56,6 +58,11 @@ public class ParameterLabelParser extends NamedElementLabelParser {
 	 */
 	@Override
 	public String getPrintString(IAdaptable element, int flags) {
+		
+		if (flags == 0) {
+			return MaskedLabel;
+		}
+		
 		String result = "";
 		EObject eObject = (EObject)element.getAdapter(EObject.class);
 
@@ -97,7 +104,11 @@ public class ParameterLabelParser extends NamedElementLabelParser {
 					if(parameter.getType() != null) {
 						type = parameter.getType().getName();
 					}
-					result = String.format(TYPE_FORMAT, result, type);
+
+					// If type is undefined only show "<Undefined>" when explicitly asked.
+					if(((flags & ILabelPreferenceConstants.DISP_UNDEFINED_TYPE) == ILabelPreferenceConstants.DISP_UNDEFINED_TYPE) || (!"<Undefined>".equals(type))) {
+						result = String.format(TYPE_FORMAT, result, type);
+					}
 				}
 
 				// manage multiplicity
@@ -148,7 +159,7 @@ public class ParameterLabelParser extends NamedElementLabelParser {
 		if(event instanceof Notification) {
 			Object feature = ((Notification)event).getFeature();
 			if(feature instanceof EStructuralFeature) {
-				return UMLPackage.eINSTANCE.getNamedElement_Name().equals(feature) || UMLPackage.eINSTANCE.getTypedElement_Type().equals(feature) || UMLPackage.eINSTANCE.getParameter_Direction().equals(feature) || UMLPackage.eINSTANCE.getParameter_DefaultValue().equals(feature) || UMLPackage.eINSTANCE.getParameter_IsStream().equals(feature) || UMLPackage.eINSTANCE.getParameter_IsException().equals(feature) || UMLPackage.eINSTANCE.getMultiplicityElement_IsOrdered().equals(feature) || UMLPackage.eINSTANCE.getMultiplicityElement_IsUnique().equals(feature) || UMLPackage.eINSTANCE.getMultiplicityElement_LowerValue().equals(feature) || UMLPackage.eINSTANCE.getMultiplicityElement_UpperValue().equals(feature);
+				return UMLPackage.eINSTANCE.getTypedElement_Type().equals(feature) || UMLPackage.eINSTANCE.getParameter_Direction().equals(feature) || UMLPackage.eINSTANCE.getParameter_DefaultValue().equals(feature) || UMLPackage.eINSTANCE.getParameter_IsStream().equals(feature) || UMLPackage.eINSTANCE.getParameter_IsException().equals(feature) || UMLPackage.eINSTANCE.getMultiplicityElement_IsOrdered().equals(feature) || UMLPackage.eINSTANCE.getMultiplicityElement_IsUnique().equals(feature) || UMLPackage.eINSTANCE.getMultiplicityElement_LowerValue().equals(feature) || UMLPackage.eINSTANCE.getMultiplicityElement_UpperValue().equals(feature) || super.isAffectingEvent(event, flags);
 			}
 		}
 
@@ -180,5 +191,20 @@ public class ParameterLabelParser extends NamedElementLabelParser {
 			}
 		}
 		return semanticElementsBeingParsed;
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Map<Integer, String> getMasks() {
+		Map<Integer, String> masks = new HashMap<Integer, String>(6);
+		masks.put(ILabelPreferenceConstants.DISP_PARAM_DIRECTION, "Parameter direction");
+		masks.put(ILabelPreferenceConstants.DISP_PARAM_NAME, "Parameter name");
+		masks.put(ILabelPreferenceConstants.DISP_PARAM_TYPE, "Parameter type");
+		masks.put(ILabelPreferenceConstants.DISP_PARAM_MULTIPLICITY, "Parameter multiplicity");
+		masks.put(ILabelPreferenceConstants.DISP_PARAM_DEFAULTVALUE, "Parameter default value");
+		masks.put(ILabelPreferenceConstants.DISP_PARAM_MODIFIERS, "Parameter modifiers");
+		return masks;
 	}
 }

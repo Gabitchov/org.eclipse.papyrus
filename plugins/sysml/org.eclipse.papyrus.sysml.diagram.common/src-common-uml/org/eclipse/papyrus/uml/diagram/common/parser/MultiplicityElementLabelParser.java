@@ -14,18 +14,21 @@
 package org.eclipse.papyrus.uml.diagram.common.parser;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
-import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
+import org.eclipse.papyrus.gmf.diagram.common.parser.IMaskManagedSemanticParser;
 import org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants;
 import org.eclipse.papyrus.umlutils.ValueSpecificationUtil;
 import org.eclipse.uml2.uml.MultiplicityElement;
@@ -35,7 +38,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 /**
  * Semantic Parser for {@link MultiplicityElement}
  */
-public class MultiplicityElementLabelParser implements ISemanticParser {
+public class MultiplicityElementLabelParser implements IMaskManagedSemanticParser {
 
 	/** The String format for displaying a {@link Property} label with multiplicity */
 	protected static final String MULTIPLICITY_FORMAT = "[%s..%s]";
@@ -68,7 +71,11 @@ public class MultiplicityElementLabelParser implements ISemanticParser {
 	 * {@inheritDoc}
 	 */
 	public String getPrintString(IAdaptable element, int flags) {
-				
+		
+		if (flags == 0) {
+			return MaskedLabel;
+		}
+		
 		String result = "";
 		EObject eObject = (EObject)element.getAdapter(EObject.class);
 
@@ -105,7 +112,7 @@ public class MultiplicityElementLabelParser implements ISemanticParser {
 		if(event instanceof Notification) {
 			Object feature = ((Notification)event).getFeature();
 			if(feature instanceof EStructuralFeature) {
-				return UMLPackage.eINSTANCE.getMultiplicityElement_LowerValue().equals(feature) || UMLPackage.eINSTANCE.getMultiplicityElement_UpperValue().equals(feature);
+				return EcorePackage.eINSTANCE.getEAnnotation_Details().equals(feature) || UMLPackage.eINSTANCE.getMultiplicityElement_LowerValue().equals(feature) || UMLPackage.eINSTANCE.getMultiplicityElement_UpperValue().equals(feature);
 			}
 		}
 
@@ -144,5 +151,12 @@ public class MultiplicityElementLabelParser implements ISemanticParser {
 	 */
 	public boolean areSemanticElementsAffected(EObject listener, Object notification) {
 		return true;
+	}
+	
+	public Map<Integer, String> getMasks() {
+		Map<Integer, String> masks = new HashMap<Integer, String>(2);
+		masks.put(ILabelPreferenceConstants.DISP_MULTIPLICITY, "Multiplicity");
+		masks.put(ILabelPreferenceConstants.DISP_DEFAULT_MULTIPLICITY, "Show default multiplicity");
+		return masks;
 	}
 }

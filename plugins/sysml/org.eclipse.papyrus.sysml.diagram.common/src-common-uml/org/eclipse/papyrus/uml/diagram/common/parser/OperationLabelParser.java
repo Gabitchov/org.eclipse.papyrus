@@ -14,14 +14,16 @@
 package org.eclipse.papyrus.uml.diagram.common.parser;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
 import org.eclipse.papyrus.diagram.common.commands.SemanticAdapter;
+import org.eclipse.papyrus.gmf.diagram.common.parser.IMaskManagedSemanticParser;
 import org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Parameter;
@@ -34,7 +36,7 @@ import org.eclipse.uml2.uml.VisibilityKind;
 public class OperationLabelParser extends NamedElementLabelParser {
 
 	/** Parameter parser */
-	protected ISemanticParser parameterParser = new ParameterLabelParser();
+	protected IMaskManagedSemanticParser parameterParser = new ParameterLabelParser();
 
 	/** The String format for displaying {@link Operation} label with visibility */
 	protected static final String VISIBILITY_FORMAT = "%s ";
@@ -53,6 +55,11 @@ public class OperationLabelParser extends NamedElementLabelParser {
 	 */
 	@Override
 	public String getPrintString(IAdaptable element, int flags) {
+		
+		if (flags == 0) {
+			return MaskedLabel;
+		}
+		
 		String result = "";
 		EObject eObject = (EObject)element.getAdapter(EObject.class);
 
@@ -102,7 +109,11 @@ public class OperationLabelParser extends NamedElementLabelParser {
 				if(operation.getType() != null) {
 					type = operation.getType().getName();
 				}
-				result = String.format(TYPE_FORMAT, result, type);
+				
+				// If type is undefined only show "<Undefined>" when explicitly asked.
+				if(((flags & ILabelPreferenceConstants.DISP_UNDEFINED_TYPE) == ILabelPreferenceConstants.DISP_UNDEFINED_TYPE) || (!"<Undefined>".equals(type))) {
+					result = String.format(TYPE_FORMAT, result, type);
+				}
 			}
 
 			// manage modifier
@@ -141,7 +152,7 @@ public class OperationLabelParser extends NamedElementLabelParser {
 		if(event instanceof Notification) {
 			Object feature = ((Notification)event).getFeature();
 			if(feature instanceof EStructuralFeature) {
-				return UMLPackage.eINSTANCE.getNamedElement_Name().equals(feature) || UMLPackage.eINSTANCE.getNamedElement_Visibility().equals(feature) || UMLPackage.eINSTANCE.getTypedElement_Type().equals(feature) || UMLPackage.eINSTANCE.getBehavioralFeature_IsAbstract().equals(feature) || UMLPackage.eINSTANCE.getFeature_IsStatic().equals(feature) || UMLPackage.eINSTANCE.getOperation_IsUnique().equals(feature) || UMLPackage.eINSTANCE.getOperation_IsQuery().equals(feature) || UMLPackage.eINSTANCE.getRedefinableElement_IsLeaf().equals(feature) || parameterParser.isAffectingEvent(event, flags);
+				return UMLPackage.eINSTANCE.getNamedElement_Visibility().equals(feature) || UMLPackage.eINSTANCE.getTypedElement_Type().equals(feature) || UMLPackage.eINSTANCE.getBehavioralFeature_IsAbstract().equals(feature) || UMLPackage.eINSTANCE.getFeature_IsStatic().equals(feature) || UMLPackage.eINSTANCE.getOperation_IsUnique().equals(feature) || UMLPackage.eINSTANCE.getOperation_IsQuery().equals(feature) || UMLPackage.eINSTANCE.getRedefinableElement_IsLeaf().equals(feature) || parameterParser.isAffectingEvent(event, flags) || super.isAffectingEvent(event, flags);
 			}
 		}
 
@@ -166,8 +177,22 @@ public class OperationLabelParser extends NamedElementLabelParser {
 			for(Parameter parameter : semElement.getOwnedParameters()) {
 				semanticElementsBeingParsed.addAll(parameterParser.getSemanticElementsBeingParsed(parameter));
 			}
-
 		}
 		return semanticElementsBeingParsed;
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Map<Integer, String> getMasks() {
+		Map<Integer, String> masks = new HashMap<Integer, String>(5);
+		masks.put(ILabelPreferenceConstants.DISP_VISIBILITY, "Visibility");
+		masks.put(ILabelPreferenceConstants.DISP_NAME, "Name");
+		masks.put(ILabelPreferenceConstants.DISP_TYPE, "Type");
+		masks.put(ILabelPreferenceConstants.DISP_UNDEFINED_TYPE, "Show <Undefined> type");
+		masks.put(ILabelPreferenceConstants.DISP_MODIFIERS, "Modifiers");
+		masks.putAll(parameterParser.getMasks());
+		return masks;
 	}
 }

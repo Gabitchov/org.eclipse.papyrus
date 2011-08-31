@@ -13,7 +13,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.common.parser;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.notify.Notification;
@@ -50,6 +52,11 @@ public class FlowPortLabelParser extends PropertyLabelParser {
 	 */
 	@Override
 	public String getPrintString(IAdaptable element, int flags) {
+		
+		if (flags == 0) {
+			return MaskedLabel;
+		}
+		
 		String result = "";
 		EObject eObject = (EObject)element.getAdapter(EObject.class);
 
@@ -78,8 +85,8 @@ public class FlowPortLabelParser extends PropertyLabelParser {
 						break;
 					}
 					
-					// manage direction only if the FlowPort is type and type is not a FlowSpecification
-					if ((property.getType() != null) && (ElementUtil.getStereotypeApplication(property.getType(), FlowSpecification.class) == null)) {
+					// manage direction only if the FlowPort is not a FlowSpecification
+					if ((property.getType() == null) || ((property.getType() != null) && (ElementUtil.getStereotypeApplication(property.getType(), FlowSpecification.class) == null))) {
 						result = String.format(DIRECTION_FORMAT, direction, result);
 					}
 				}
@@ -127,20 +134,31 @@ public class FlowPortLabelParser extends PropertyLabelParser {
 					type = property.getType().getName();
 				}
 
-				if(((flags & ILabelPreferenceConstants.DISP_TYPE) == ILabelPreferenceConstants.DISP_TYPE)) {
+				// If type is undefined only show "<Undefined>" when explicitly asked.
+				if(((flags & ILabelPreferenceConstants.DISP_UNDEFINED_TYPE) == ILabelPreferenceConstants.DISP_UNDEFINED_TYPE) || (!"<Undefined>".equals(type))) {
 					if((flowPort != null) && (flowPort.isIsConjugated())) {
 						type = String.format(CONJUGATED_FORMAT, type);
 					}
+					result = String.format(TYPE_FORMAT, result, type);
 				}
-
-				result = String.format(TYPE_FORMAT, result, type);
 			}
 
 			// manage multiplicity
-			if(((flags & ILabelPreferenceConstants.DISP_MULTIPLICITY) == ILabelPreferenceConstants.DISP_MULTIPLICITY) && (property.getLower() != 1 || property.getUpper() != 1)) {
-				String lower = ValueSpecificationUtil.getSpecificationValue(property.getLowerValue());
-				String upper = ValueSpecificationUtil.getSpecificationValue(property.getUpperValue());
-				result = String.format(MULTIPLICITY_FORMAT, result, lower, upper);
+			if(((flags & ILabelPreferenceConstants.DISP_MULTIPLICITY) == ILabelPreferenceConstants.DISP_MULTIPLICITY)) {
+
+				// If multiplicity is [1] (SysML default), only show when explicitly asked.
+				// TODO : add a case for default with multiplicity not set.
+				if(((flags & ILabelPreferenceConstants.DISP_DEFAULT_MULTIPLICITY) == ILabelPreferenceConstants.DISP_DEFAULT_MULTIPLICITY) || (property.getLower() != 1 || property.getUpper() != 1)) {
+
+					String lower = ValueSpecificationUtil.getSpecificationValue(property.getLowerValue());
+					String upper = ValueSpecificationUtil.getSpecificationValue(property.getUpperValue());
+
+					if(lower.equals(upper)) {
+						result = String.format(MULTIPLICITY_FORMAT_ALT, result, lower, upper);
+					} else {
+						result = String.format(MULTIPLICITY_FORMAT, result, lower, upper);
+					}
+				}
 			}
 
 			// manage default value
@@ -213,5 +231,20 @@ public class FlowPortLabelParser extends PropertyLabelParser {
 			}
 		}
 		return semanticElementsBeingParsed;
+	}
+	
+	public Map<Integer, String> getMasks() {
+		Map<Integer, String> masks = new HashMap<Integer, String>(10);
+		masks.put(ILabelPreferenceConstants.DISP_DIRECTION, "Direction");
+		masks.put(ILabelPreferenceConstants.DISP_VISIBILITY, "Visibility");
+		masks.put(ILabelPreferenceConstants.DISP_DERIVE, "Is Derived");
+		masks.put(ILabelPreferenceConstants.DISP_NAME, "Name");
+		masks.put(ILabelPreferenceConstants.DISP_TYPE, "Type");
+		masks.put(ILabelPreferenceConstants.DISP_UNDEFINED_TYPE, "Show <Undefined> type");
+		masks.put(ILabelPreferenceConstants.DISP_MULTIPLICITY, "Multiplicity");
+		masks.put(ILabelPreferenceConstants.DISP_DEFAULT_MULTIPLICITY, "Show default multiplicity");
+		masks.put(ILabelPreferenceConstants.DISP_DEFAULTVALUE, "Default Value");
+		masks.put(ILabelPreferenceConstants.DISP_MODIFIERS, "Modifiers");
+		return masks;
 	}
 }

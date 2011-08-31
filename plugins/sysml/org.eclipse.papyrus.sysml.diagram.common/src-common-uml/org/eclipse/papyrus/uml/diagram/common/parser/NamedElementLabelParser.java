@@ -14,21 +14,24 @@
 package org.eclipse.papyrus.uml.diagram.common.parser;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
-import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.diagram.common.Activator;
+import org.eclipse.papyrus.gmf.diagram.common.parser.IMaskManagedSemanticParser;
 import org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -36,7 +39,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 /**
  * Semantic Parser for {@link NamedElement} name.
  */
-public class NamedElementLabelParser implements ISemanticParser {
+public class NamedElementLabelParser implements IMaskManagedSemanticParser {
 
 	/**
 	 * {@inheritDoc}
@@ -104,7 +107,7 @@ public class NamedElementLabelParser implements ISemanticParser {
 		if(event instanceof Notification) {
 			Object feature = ((Notification)event).getFeature();
 			if(feature instanceof EStructuralFeature) {
-				return UMLPackage.eINSTANCE.getNamedElement_Name().equals(feature);
+				return EcorePackage.eINSTANCE.getEAnnotation_Details().equals(feature) || UMLPackage.eINSTANCE.getNamedElement_Name().equals(feature);
 			}
 		}
 
@@ -135,4 +138,10 @@ public class NamedElementLabelParser implements ISemanticParser {
 		return true;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	public Map<Integer, String> getMasks() {
+		return Collections.emptyMap();
+	}
 }

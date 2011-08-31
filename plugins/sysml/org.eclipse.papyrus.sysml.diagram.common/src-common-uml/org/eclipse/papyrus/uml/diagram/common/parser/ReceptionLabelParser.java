@@ -14,12 +14,15 @@
 package org.eclipse.papyrus.uml.diagram.common.parser;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.papyrus.gmf.diagram.common.parser.IMaskManagedSemanticParser;
 import org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants;
 import org.eclipse.uml2.uml.Reception;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -27,7 +30,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 /**
  * Semantic Parser for {@link Reception}
  */
-public class ReceptionLabelParser extends NamedElementLabelParser {
+public class ReceptionLabelParser extends NamedElementLabelParser implements IMaskManagedSemanticParser {
 
 	/** The String format for displaying a Property with visibility */
 	protected static final String PREFIX = "\u00ABsignal\u00BB ";
@@ -43,6 +46,11 @@ public class ReceptionLabelParser extends NamedElementLabelParser {
 	 */
 	@Override
 	public String getPrintString(IAdaptable element, int flags) {
+		
+		if (flags == 0) {
+			return MaskedLabel;
+		}
+		
 		String result = PREFIX;
 		EObject eObject = (EObject)element.getAdapter(EObject.class);
 
@@ -78,7 +86,7 @@ public class ReceptionLabelParser extends NamedElementLabelParser {
 		if(event instanceof Notification) {
 			Object feature = ((Notification)event).getFeature();
 			if(feature instanceof EStructuralFeature) {
-				return UMLPackage.eINSTANCE.getNamedElement_Name().equals(feature) || UMLPackage.eINSTANCE.getReception_Signal().equals(feature);
+				return UMLPackage.eINSTANCE.getReception_Signal().equals(feature) || super.isAffectingEvent(event, flags);
 			}
 		}
 
@@ -101,5 +109,16 @@ public class ReceptionLabelParser extends NamedElementLabelParser {
 			}
 		}
 		return semanticElementsBeingParsed;
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Map<Integer, String> getMasks() {
+		Map<Integer, String> masks = new HashMap<Integer, String>(2);
+		masks.put(ILabelPreferenceConstants.DISP_NAME, "Name");
+		masks.put(ILabelPreferenceConstants.DISP_SIGNAL, "Signel");
+		return masks;
 	}
 }
