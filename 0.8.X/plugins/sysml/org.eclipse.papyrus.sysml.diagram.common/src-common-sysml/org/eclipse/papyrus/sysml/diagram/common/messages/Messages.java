@@ -85,6 +85,28 @@ public class Messages extends NLS {
 
 	public static String CreateOrSelectValuePropertyTypeDialog_NewTypeKindLabel;
 
+	public static String CreateOrSelectNonAtomicFlowPortTypeDialog_DialogTitle;
+
+	public static String CreateOrSelectNonAtomicFlowPortTypeDialog_SelectionSectionTitle;
+
+	public static String CreateOrSelectNonAtomicFlowPortTypeDialog_SelectionSectionRadioLabel;
+
+	public static String CreateOrSelectNonAtomicFlowPortTypeDialog_CreationSectionTitle;
+
+	public static String CreateOrSelectNonAtomicFlowPortTypeDialog_CreationSectionRadioLabel;
+
+	public static String CreateOrSelectNonAtomicFlowPortTypeDialog_NewTypeNameLabel;
+
+	public static String CreateOrSelectNonAtomicFlowPortTypeDialog_NewTypeContainerNameLabel;
+
+	public static String CreateOrSelectNonAtomicFlowPortTypeDialog_SelectTypeDialogTitle;
+
+	public static String CreateOrSelectNonAtomicFlowPortTypeDialog_SelectTypeDialogMessage;
+
+	public static String CreateOrSelectNonAtomicFlowPortTypeDialog_SelectNewTypeContainerDialogTitle;
+
+	public static String CreateOrSelectNonAtomicFlowPortTypeDialog_SelectNewTypeContainerDialogMessage;
+	
 	static {
 		NLS.initializeMessages("org.eclipse.papyrus.sysml.diagram.common.messages.messages", Messages.class); //$NON-NLS-1$
 	}

@@ -73,7 +73,8 @@ public class CustomGraphicalTypeRegistry extends GraphicalTypeRegistry {
 		if(((ISpecializationType)SysMLElementTypes.FLOW_PORT).getMatcher().matches(domainElement)
 			|| ((ISpecializationType)SysMLElementTypes.FLOW_PORT_IN).getMatcher().matches(domainElement)
 			|| ((ISpecializationType)SysMLElementTypes.FLOW_PORT_OUT).getMatcher().matches(domainElement)
-			|| ((ISpecializationType)SysMLElementTypes.FLOW_PORT_IN_OUT).getMatcher().matches(domainElement)) {
+			|| ((ISpecializationType)SysMLElementTypes.FLOW_PORT_IN_OUT).getMatcher().matches(domainElement)
+			|| ((ISpecializationType)SysMLElementTypes.FLOW_PORT_NA).getMatcher().matches(domainElement)) {
 			
 			if(SysMLGraphicalTypes.SHAPE_SYSML_BLOCK_AS_COMPOSITE_ID.equals(containerType)) {
 				return SysMLGraphicalTypes.SHAPE_SYSML_FLOWPORT_AS_AFFIXED_ID;
@@ -145,7 +146,8 @@ public class CustomGraphicalTypeRegistry extends GraphicalTypeRegistry {
 		if(SysMLElementTypes.FLOW_PORT.getSemanticHint().equals(proposedType)
 			|| SysMLElementTypes.FLOW_PORT_IN.getSemanticHint().equals(proposedType)
 			|| SysMLElementTypes.FLOW_PORT_OUT.getSemanticHint().equals(proposedType)
-			|| SysMLElementTypes.FLOW_PORT_IN_OUT.getSemanticHint().equals(proposedType)) {
+			|| SysMLElementTypes.FLOW_PORT_IN_OUT.getSemanticHint().matches(proposedType)
+			|| SysMLElementTypes.FLOW_PORT_NA.getSemanticHint().matches(proposedType)) {
 			
 			if(SysMLGraphicalTypes.SHAPE_SYSML_BLOCK_AS_COMPOSITE_ID.equals(containerType)) {
 				return SysMLGraphicalTypes.SHAPE_SYSML_FLOWPORT_AS_AFFIXED_ID;

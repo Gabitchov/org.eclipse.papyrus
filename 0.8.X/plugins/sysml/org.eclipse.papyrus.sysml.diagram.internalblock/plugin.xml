@@ -189,7 +189,18 @@
 			large_icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort_INOUT.gif"
 			small_icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort_INOUT.gif">
 		</entry>
-		
+
+		<!-- internalblock.tool.flowport -->
+		<entry
+			defineOnly="true"
+			description="Create a FlowPort (non atomic)"
+			id="internalblock.tool.flowport_na"
+			kind="tool"
+			label="FlowPort (non atomic)"
+			large_icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort_NA.gif"
+			small_icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort_NA.gif">
+		</entry>
+				
 		<!-- internalblock.tool.comment -->
 		<entry
 			defineOnly="true"
@@ -287,7 +298,7 @@
 	<!-- Custom graphical types view provider -->
 	<viewProvider class="org.eclipse.papyrus.sysml.diagram.internalblock.provider.CustomViewProvider">
 		<Priority name="Medium"/>
-		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="SysML::ReferenceProperty, SysML::FlowPort_In, UML::Port, SysML::FlowPort_Out, SysML::PartProperty, SysML::FlowPort_InOut, SysML::FlowPort, SysML::Block"/>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="SysML::ReferenceProperty, SysML::FlowPort_In, UML::Port, SysML::FlowPort_Out, SysML::PartProperty, SysML::FlowPort_InOut, SysML::FlowPort, SysML::Block, SysML::FlowPort_NA"/>
 		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="shape_sysml_flowport_as_affixed, shape_sysml_block_as_composite, shape_uml_port_as_affixed, shape_sysml_blockproperty_as_composite"/>
 		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="UML::Dependency, UML::Connector"/>
 		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="link_uml_connector, link_uml_dependency"/>

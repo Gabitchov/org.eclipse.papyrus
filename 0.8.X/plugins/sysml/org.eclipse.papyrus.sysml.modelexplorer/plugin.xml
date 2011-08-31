@@ -133,13 +133,14 @@
 		defaultHandler="org.eclipse.papyrus.sysml.modelexplorer.handler.DimensionHandler">
 	</command>
 	
-	<!-- Creation command for FlowPort -->
+	<!-- Creation command for FlowPort
 	<command categoryId="org.eclipse.papyrus.editor.category"
 		id="org.eclipse.papyrus.sysml.modelexplorer.FlowPortCreateCommand"
 		name="Create a new FlowPort" description="Create a new FlowPort"
 		defaultHandler="org.eclipse.papyrus.sysml.modelexplorer.handler.FlowPortHandler">
 	</command>
-	
+	  -->
+	  
 	<!-- Creation command for FlowPort_InOut -->
 	<command categoryId="org.eclipse.papyrus.editor.category"
 		id="org.eclipse.papyrus.sysml.modelexplorer.FlowPort_InOutCreateCommand"
@@ -160,7 +161,14 @@
 		name="Create a new FlowPort_Out" description="Create a new FlowPort_Out"
 		defaultHandler="org.eclipse.papyrus.sysml.modelexplorer.handler.FlowPort_OutHandler">
 	</command>
-	
+
+	<!-- Creation command for FlowPort_NA -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.sysml.modelexplorer.FlowPort_NACreateCommand"
+		name="Create a new FlowPort (non atomic)" description="Create a new FlowPort (non atomic)"
+		defaultHandler="org.eclipse.papyrus.sysml.modelexplorer.handler.FlowPort_NAHandler">
+	</command>
+		
 	<!-- Creation command for FlowProperty -->
 	<command categoryId="org.eclipse.papyrus.editor.category"
 		id="org.eclipse.papyrus.sysml.modelexplorer.FlowPropertyCreateCommand"
@@ -408,13 +416,14 @@
 			<visibleWhen checkEnabled="true"/>
 		</command>
 		
-		<!-- Creation menu action for FlowPort -->
+		<!-- Creation menu action for FlowPort 
 		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.FlowPortCreateCommand"
 			label="Create a new FlowPort" tooltip="Create a new FlowPort" style="push"		
 			icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort.gif" >
 			<visibleWhen checkEnabled="true"/>
 		</command>
-		
+		  -->
+		  
 		<!-- Creation menu action for FlowPort_InOut -->
 		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.FlowPort_InOutCreateCommand"
 			label="Create a new FlowPort_InOut" tooltip="Create a new FlowPort_InOut" style="push"		
@@ -435,7 +444,14 @@
 			icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort_OUT.gif" >
 			<visibleWhen checkEnabled="true"/>
 		</command>
-		
+
+		<!-- Creation menu action for FlowPort_NA -->
+		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.FlowPort_NACreateCommand"
+			label="Create a new FlowPort (non atomic)" tooltip="Create a new FlowPort (non atomic)" style="push"		
+			icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort_NA.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+			
 		<!-- Creation menu action for FlowProperty -->
 		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.FlowPropertyCreateCommand"
 			label="Create a new FlowProperty" tooltip="Create a new FlowProperty" style="push"		
