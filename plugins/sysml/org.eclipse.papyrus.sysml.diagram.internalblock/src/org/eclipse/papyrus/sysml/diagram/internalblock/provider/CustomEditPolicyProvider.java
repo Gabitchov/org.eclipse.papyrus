@@ -32,6 +32,7 @@ import org.eclipse.papyrus.sysml.diagram.common.edit.part.BlockPropertyComposite
 import org.eclipse.papyrus.sysml.diagram.common.edit.part.BlockPropertyStructureCompartmentEditPart;
 import org.eclipse.papyrus.sysml.diagram.common.edit.part.FlowPortAffixedNodeEditPart;
 import org.eclipse.papyrus.sysml.diagram.common.edit.part.StructureCompartmentEditPart;
+import org.eclipse.papyrus.sysml.diagram.internalblock.edit.policy.CustomBlockCompositeSemanticEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.internalblock.edit.policy.CustomBlockPropertyCompositeDropEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.internalblock.edit.policy.CustomBlockPropertyCompositeSemanticEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.internalblock.edit.policy.CustomBlockPropertyStructureCompartmentEditPartDropEditPolicy;
@@ -125,7 +126,7 @@ public class CustomEditPolicyProvider extends InternalBlockDiagramEditPolicyProv
 		
 		if(editPart instanceof BlockCompositeEditPart) {
 			editPart.installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new EncapsulatedClassifierDropEditPolicy());
-			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomDefaultSemanticEditPolicy());
+			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomBlockCompositeSemanticEditPolicy());
 		}
 		
 		if(editPart instanceof StructureCompartmentEditPart) {
