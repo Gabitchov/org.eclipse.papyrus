@@ -180,26 +180,20 @@ public class FlowPortTest extends TestCase {
 		Port p = fp0.getBase_Port();
 		Stereotype s = p.getAppliedStereotype(SysmlResource.FLOW_PORT_ID);
 
-		// A = Atomic - NA = Not Atomic - NC = Not conjugated - C = Conjugated
-		// Image i0 = s.getIcons().get(0); // A_IN
-		Image i1 = s.getIcons().get(1); // A_OUT
-		Image i2 = s.getIcons().get(2); // A_INOUT
-		Image i3 = s.getIcons().get(3); // NA_C_IN
-		// Image i4 = s.getIcons().get(4); // NA_C_OUT
-		// Image i5 = s.getIcons().get(5); // NA_C_INOUT
-		// Image i6 = s.getIcons().get(6); // NA_NC_IN
-		// Image i7 = s.getIcons().get(7); // NA_NC_OUT
-		// Image i8 = s.getIcons().get(8); // NA_NC_INOUT
+		//Image i0 = s.getIcons().get(1); // IN
+		Image i1 = s.getIcons().get(2); // OUT
+		Image i2 = s.getIcons().get(3); // INOUT
+		Image i3 = s.getIcons().get(4); // NA
 
-		if(!fp0.getIcon().equals(i2)) {
+		if(!fp0.getIcon().equals(i2)) { // fp0 is INOUT
 			fail();
 		}
 
-		if(!fp1.getIcon().equals(i1)) {
+		if(!fp1.getIcon().equals(i1)) { // fp1 is OUT
 			fail();
 		}
 
-		if(!fp2.getIcon().equals(i3)) {
+		if(!fp2.getIcon().equals(i3)) { // fp2 is atomic
 			fail();
 		}
 	}

@@ -164,8 +164,8 @@
 			id="internalblock.tool.flowport_in"
 			kind="tool"
 			label="FlowPort"
-			large_icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort.gif"
-			small_icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort.gif">
+			large_icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort_IN.gif"
+			small_icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort_IN.gif">
 		</entry>
 
 		<!-- internalblock.tool.flowport (OUT) -->
@@ -175,8 +175,8 @@
 			id="internalblock.tool.flowport_out"
 			kind="tool"
 			label="FlowPort"
-			large_icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort.gif"
-			small_icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort.gif">
+			large_icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort_OUT.gif"
+			small_icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort_OUT.gif">
 		</entry>
 		
 		<!-- internalblock.tool.flowport (INOUT) -->
@@ -186,8 +186,8 @@
 			id="internalblock.tool.flowport_inout"
 			kind="tool"
 			label="FlowPort"
-			large_icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort.gif"
-			small_icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort.gif">
+			large_icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort_INOUT.gif"
+			small_icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort_INOUT.gif">
 		</entry>
 		
 		<!-- internalblock.tool.comment -->

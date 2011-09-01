@@ -411,28 +411,28 @@
 		<!-- Creation menu action for FlowPort -->
 		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.FlowPortCreateCommand"
 			label="Create a new FlowPort" tooltip="Create a new FlowPort" style="push"		
-			icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort_INOUT_A.gif" >
+			icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort.gif" >
 			<visibleWhen checkEnabled="true"/>
 		</command>
 		
 		<!-- Creation menu action for FlowPort_InOut -->
 		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.FlowPort_InOutCreateCommand"
 			label="Create a new FlowPort_InOut" tooltip="Create a new FlowPort_InOut" style="push"		
-			icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort_INOUT_A.gif" >
+			icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort_INOUT.gif" >
 			<visibleWhen checkEnabled="true"/>
 		</command>
 		
 		<!-- Creation menu action for FlowPort_In -->
 		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.FlowPort_InCreateCommand"
 			label="Create a new FlowPort_In" tooltip="Create a new FlowPort_In" style="push"		
-			icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort_IN_A.gif" >
+			icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort_IN.gif" >
 			<visibleWhen checkEnabled="true"/>
 		</command>
 		
 		<!-- Creation menu action for FlowPort_Out -->
 		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.FlowPort_OutCreateCommand"
 			label="Create a new FlowPort_Out" tooltip="Create a new FlowPort_Out" style="push"		
-			icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort_OUT_A.gif" >
+			icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort_OUT.gif" >
 			<visibleWhen checkEnabled="true"/>
 		</command>
 		
