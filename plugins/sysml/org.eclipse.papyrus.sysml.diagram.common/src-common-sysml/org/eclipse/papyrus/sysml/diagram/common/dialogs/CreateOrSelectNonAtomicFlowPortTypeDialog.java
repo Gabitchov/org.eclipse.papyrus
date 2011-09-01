@@ -19,6 +19,7 @@ import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
 import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * Dialog for initialization of non atomic FlowPort type (the type is a FlowSpecification either selected or created).
@@ -27,7 +28,7 @@ public class CreateOrSelectNonAtomicFlowPortTypeDialog extends CreateOrSelectTyp
 
 	/** Constructor */
 	public CreateOrSelectNonAtomicFlowPortTypeDialog(Shell shell, NamedElement owner) {
-		super(shell, owner, SysMLElementTypes.FLOW_SPECIFICATION, PortandflowsPackage.eINSTANCE.getFlowSpecification(), UMLElementTypes.PACKAGE, null);
+		super(shell, owner, SysMLElementTypes.FLOW_SPECIFICATION, UMLPackage.eINSTANCE.getTypedElement_Type(), PortandflowsPackage.eINSTANCE.getFlowSpecification(), UMLElementTypes.PACKAGE, UMLPackage.eINSTANCE.getPackage_PackagedElement(), null);
 	}
 
 	/**
