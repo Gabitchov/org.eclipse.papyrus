@@ -19,6 +19,7 @@ import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
 import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * Dialog for initialization of Part (Property) type (the type is either selected or created).
@@ -27,7 +28,7 @@ public class CreateOrSelectBlockPropertyTypeDialog extends CreateOrSelectTypeDia
 
 	/** Constructor */
 	public CreateOrSelectBlockPropertyTypeDialog(Shell shell, NamedElement owner) {
-		super(shell, owner, SysMLElementTypes.BLOCK, BlocksPackage.eINSTANCE.getBlock(), UMLElementTypes.PACKAGE, null);
+		super(shell, owner, SysMLElementTypes.BLOCK, UMLPackage.eINSTANCE.getTypedElement_Type(), BlocksPackage.eINSTANCE.getBlock(), UMLElementTypes.PACKAGE, UMLPackage.eINSTANCE.getPackage_PackagedElement(), null);
 	}
 
 	/**
