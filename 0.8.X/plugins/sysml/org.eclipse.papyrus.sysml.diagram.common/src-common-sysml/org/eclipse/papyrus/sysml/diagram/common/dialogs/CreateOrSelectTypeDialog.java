@@ -10,30 +10,32 @@
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *  
- *  CEA LIST - Class Adaptation in SysML context.
+ *  CEA LIST - Class Adaptation in SysML context, Content and Label provider replacement.
  *
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.common.dialogs;
 
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
-import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.ISpecializationType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.jface.dialogs.IDialogConstants;
+import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.diagram.common.helper.NamedElementHelper;
 import org.eclipse.papyrus.service.edit.commands.ConfigureFeatureCommandFactory;
 import org.eclipse.papyrus.service.edit.commands.IConfigureCommandFactory;
 import org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.service.edit.service.IElementEditService;
-import org.eclipse.papyrus.service.edit.utils.ElementTypeValidator;
 import org.eclipse.papyrus.sysml.diagram.common.Activator;
 import org.eclipse.papyrus.sysml.diagram.common.messages.Messages;
+import org.eclipse.papyrus.widgets.editors.TreeSelectorDialog;
+import org.eclipse.papyrus.widgets.providers.EncapsulatedContentProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
@@ -48,7 +50,6 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
-import org.eclipse.ui.dialogs.ElementTreeSelectionDialog;
 import org.eclipse.ui.forms.FormDialog;
 import org.eclipse.ui.forms.IManagedForm;
 import org.eclipse.ui.forms.widgets.FormToolkit;
@@ -87,16 +88,18 @@ public class CreateOrSelectTypeDialog extends FormDialog {
 
 	protected EObject defaultContainer;
 
-	protected AdapterFactoryLabelProvider labelProvider;
-
-	protected AdapterFactoryContentProvider contentProvider;
-
+	protected LabelProvider labelProvider;
+	
 	protected IElementType elementType;
 
+	protected EStructuralFeature editedFeature;
+	
 	protected EClass elementEClass;
 
 	protected IElementType containerType;
 
+	protected EStructuralFeature containerFeature;
+	
 	protected EClass containerEClass;
 
 	/**
@@ -107,15 +110,16 @@ public class CreateOrSelectTypeDialog extends FormDialog {
 	 * @param owner
 	 *        the activity that owns the action
 	 */
-	public CreateOrSelectTypeDialog(Shell shell, EObject defaultContainer, IElementType elementType, EClass elementEClass, IElementType containerType, EClass containerEClass) {
+	public CreateOrSelectTypeDialog(Shell shell, EObject defaultContainer, IElementType elementType, EStructuralFeature editedFeature, EClass elementEClass, IElementType containerType, EStructuralFeature containerFeature, EClass containerEClass) {
 		super(shell);
 		this.defaultContainer = defaultContainer;
 		this.elementType = elementType;
+		this.editedFeature = editedFeature;
 		this.elementEClass = elementEClass;
 		this.containerType = containerType;
+		this.containerFeature = containerFeature;
 		this.containerEClass = containerEClass;
-		this.labelProvider = new AdapterFactoryLabelProvider(Activator.getInstance().getItemProvidersAdapterFactory());
-		this.contentProvider = new AdapterFactoryContentProvider(Activator.getInstance().getItemProvidersAdapterFactory());
+		this.labelProvider = new UMLLabelProvider();
 	}
 
 	protected String getDialogTitle() {
@@ -471,15 +475,27 @@ public class CreateOrSelectTypeDialog extends FormDialog {
 	/** Open the dialog to choose an existing type */
 	protected void handleChooseType() {
 
-		ElementTreeSelectionDialog dialog = new ElementTreeSelectionDialog(getShell(), labelProvider, contentProvider);
-		dialog.setValidator(new ElementTypeValidator(elementType));
+		TreeSelectorDialog dialog = new TreeSelectorDialog(getShell());
+				
 		dialog.setMessage(getTypeDialogMessage());
 		dialog.setTitle(getTypeDialogTitle());
 		dialog.setInput(EcoreUtil.getRootContainer(defaultContainer));
-		dialog.setValidator(new ElementTypeValidator(elementType));
 
+		ServiceEditContentProvider provider = new ServiceEditContentProvider(elementType, editedFeature, EcoreUtil.getRootContainer(defaultContainer));			
+		dialog.setContentProvider(new EncapsulatedContentProvider(provider));
+		dialog.setLabelProvider(labelProvider);
+		
 		if(dialog.open() == Window.OK) {
-			setExistingTypeSelection((EObject)dialog.getFirstResult());
+			Object result = dialog.getResult()[0];
+			if (result instanceof IAdaptable) {
+				result = ((IAdaptable)result).getAdapter(EObject.class);
+			}
+			
+			if (result instanceof EObject) {
+				setExistingTypeSelection((EObject)result);
+			} else {
+				setExistingTypeSelection(null);
+			}
 		}
 	}
 
@@ -501,14 +517,27 @@ public class CreateOrSelectTypeDialog extends FormDialog {
 	/** Open the dialog to choose new type container */
 	protected void handleChooseNewTypeContainer() {
 
-		ElementTreeSelectionDialog dialog = new ElementTreeSelectionDialog(getShell(), labelProvider, contentProvider);
-		dialog.setValidator(new ElementTypeValidator(containerType));
+		TreeSelectorDialog dialog = new TreeSelectorDialog(getShell());
+		
 		dialog.setMessage(getNewTypeContainerDialogMessage());
 		dialog.setTitle(getNewTypeContainerDialogTitle());
 		dialog.setInput(EcoreUtil.getRootContainer(defaultContainer));
 
+		ServiceEditContentProvider provider = new ServiceEditContentProvider(containerType, containerFeature, EcoreUtil.getRootContainer(defaultContainer));			
+		dialog.setContentProvider(new EncapsulatedContentProvider(provider));
+		dialog.setLabelProvider(labelProvider);
+		
 		if(dialog.open() == Window.OK) {
-			setNewTypeContainer((EObject)dialog.getFirstResult());
+			Object result = dialog.getResult()[0];
+			if (result instanceof IAdaptable) {
+				result = ((IAdaptable)result).getAdapter(EObject.class);
+			}
+			
+			if (result instanceof EObject) {
+				setNewTypeContainer((EObject)result);
+			} else {
+				setNewTypeContainer(null);
+			}
 		}
 	}
 

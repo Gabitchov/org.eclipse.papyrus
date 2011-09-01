@@ -60,7 +60,7 @@ public class CreateOrSelectValuePropertyTypeDialog extends CreateOrSelectTypeDia
 
 	/** Constructor */
 	public CreateOrSelectValuePropertyTypeDialog(Shell shell, NamedElement owner) {
-		super(shell, owner, UMLElementTypes.DATA_TYPE, null, UMLElementTypes.PACKAGE, null);
+		super(shell, owner, UMLElementTypes.DATA_TYPE, UMLPackage.eINSTANCE.getTypedElement_Type(), null, UMLElementTypes.PACKAGE, UMLPackage.eINSTANCE.getPackage_PackagedElement(), null);
 	}
 
 	/**
