@@ -14,10 +14,14 @@
 package org.eclipse.papyrus.diagram.common.service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartViewer;
@@ -46,6 +50,7 @@ import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.diagram.common.service.palette.AspectToolService;
 import org.eclipse.papyrus.diagram.common.service.palette.IAspectAction;
 import org.eclipse.papyrus.diagram.common.service.palette.IAspectActionProvider;
+import org.eclipse.papyrus.diagram.common.service.palette.IFeatureSetterAspectAction;
 import org.w3c.dom.NodeList;
 
 /**
@@ -59,6 +64,8 @@ public class AspectUnspecifiedTypeCreationTool extends UnspecifiedTypeCreationTo
 	/** post action list */
 	protected List<IAspectAction> postActions = new ArrayList<IAspectAction>();
 
+	private static String ID_ASPECT_ACTION = "palette_aspect_actions" ;
+	
 	/**
 	 * Creates an AspectUnspecifiedTypeCreationTool
 	 * 
@@ -190,9 +197,48 @@ public class AspectUnspecifiedTypeCreationTool extends UnspecifiedTypeCreationTo
 	 */
 	@Override
 	protected Request createTargetRequest() {
-		return new CreateAspectUnspecifiedTypeRequest(getElementTypes(), getPreferencesHint());
+		CreateAspectUnspecifiedTypeRequest request = new CreateAspectUnspecifiedTypeRequest(getElementTypes(), getPreferencesHint());
+		request.getExtendedData().put(ID_ASPECT_ACTION, postActions);
+		return request ;
 	}
 
+	@SuppressWarnings("unchecked")
+	public static List<IAspectAction> getAspectActions(Request request)
+	{
+		return (List<IAspectAction>) (request == null ? Collections.emptyList() :  getAspectActions(request.getExtendedData()));
+	}
+	
+	@SuppressWarnings("unchecked")
+	public static List<IAspectAction> getAspectActions(Map map)
+	{
+		return (List<IAspectAction>) (map == null ? Collections.emptyList() : map.get(ID_ASPECT_ACTION));
+	}
+	
+	public String createPrePostActionRepresentation ()
+	{
+		StringBuffer buffer = new StringBuffer();
+		boolean flag = false ;
+		for (IAspectAction post : postActions)
+		{
+			if (post instanceof IFeatureSetterAspectAction) {
+				IFeatureSetterAspectAction featureSetter = (IFeatureSetterAspectAction) post;
+				if (flag)
+				{
+					buffer.append("|");
+					for (EStructuralFeature f : featureSetter.getAllImpactedFeatures()) {
+						EClass eClass = f.eClass();
+						buffer.append(eClass.getEPackage().getNsURI());
+						buffer.append(",");
+						buffer.append(eClass.getName());
+						buffer.append(",");
+						buffer.append(f.getName());
+					}
+				}
+				flag = true ;
+			}
+		}
+		return buffer.toString();
+	}
 
 
 	public class CreateAspectUnspecifiedTypeRequest extends CreateUnspecifiedTypeRequest {
