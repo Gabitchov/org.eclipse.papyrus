@@ -40,43 +40,7 @@ public class DiagramLabelProvider extends MoDiscoLabelProvider  {
 	
 	protected static final String SEPARATOR = ": ";
 	protected static final String PAPYRUS_UML = "PapyrusUML";
-	/** icon registry */
-	private IPageIconsRegistry editorRegistry=null;
-	
-	/**
-	
-	/**
-	 * Get the EditorRegistry used to create editor instances. This default
-	 * implementation return the singleton eINSTANCE. This method can be
-	 * subclassed to return another registry.
-	 * 
-	 * @return the singleton eINSTANCE of editor registry
-	 * @throws ServiceException
-	 */
-	protected IPageIconsRegistry getEditorRegistry() {
-		if(editorRegistry == null) {
-			editorRegistry = createEditorRegistry();
-		}
-		return editorRegistry;
-	}
 
-	/**
-	 * Return the EditorRegistry for nested editor descriptors. Subclass should
-	 * implements this method in order to return the registry associated to the
-	 * extension point namespace.
-	 * 
-	 * @return the EditorRegistry for nested editor descriptors
-	 * @throws ServiceException
-	 */
-	protected IPageIconsRegistry createEditorRegistry() {
-		try {
-			return EditorUtils.getServiceRegistry().getService(IPageIconsRegistry.class);
-		} catch (ServiceException e) {
-			// Not found, return an empty one which return null for each
-			// request.
-			return new PageIconsRegistry();
-		}
-	}
 	/**
 	 * {@inheritDoc}
 	 */
