@@ -11,22 +11,21 @@
  *****************************************************************************/
 package org.eclipse.papyrus.widgets.editors;
 
+import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.core.runtime.Assert;
-import org.eclipse.jface.databinding.viewers.ViewerProperties;
 import org.eclipse.jface.viewers.ComboViewer;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.viewers.StructuredSelection;
-import org.eclipse.papyrus.widgets.Activator;
+import org.eclipse.papyrus.widgets.databinding.AggregatedObservable;
+import org.eclipse.papyrus.widgets.databinding.ComboObservableValue;
 import org.eclipse.papyrus.widgets.providers.EncapsulatedContentProvider;
 import org.eclipse.papyrus.widgets.providers.IStaticContentProvider;
+import org.eclipse.papyrus.widgets.providers.UnchangedObject;
+import org.eclipse.papyrus.widgets.providers.UnsetObject;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CCombo;
-import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 
 
@@ -38,7 +37,7 @@ import org.eclipse.swt.widgets.Composite;
  * @author Camille Letavernier
  * 
  */
-public class ReferenceCombo extends AbstractValueEditor implements SelectionListener {
+public class ReferenceCombo extends AbstractValueEditor { //implements SelectionListener {
 
 	/**
 	 * The viewer displaying the available values from the model
@@ -52,7 +51,9 @@ public class ReferenceCombo extends AbstractValueEditor implements SelectionList
 
 	protected boolean unsettable;
 
-	protected Button unset;
+	//	protected Button unset;
+
+	protected EncapsulatedContentProvider contentProvider;
 
 	/**
 	 * 
@@ -88,10 +89,10 @@ public class ReferenceCombo extends AbstractValueEditor implements SelectionList
 
 		viewer = new ComboViewer(combo);
 
-		unset = new Button(this, SWT.PUSH);
-		unset.setImage(Activator.getDefault().getImage("/icons/Delete_12x12.gif")); //$NON-NLS-1$
-		unset.setToolTipText("Unset the current value");
-		unset.addSelectionListener(this);
+		//		unset = new Button(this, SWT.PUSH);
+		//		unset.setImage(Activator.getDefault().getImage("/icons/Delete_12x12.gif")); //$NON-NLS-1$
+		//		unset.setToolTipText("Unset the current value");
+		//		unset.addSelectionListener(this);
 
 		((GridLayout)getLayout()).numColumns++;
 
@@ -121,9 +122,31 @@ public class ReferenceCombo extends AbstractValueEditor implements SelectionList
 	 * @param provider
 	 */
 	public void setContentProvider(IStaticContentProvider provider) {
-		viewer.setContentProvider(new EncapsulatedContentProvider(provider));
+		this.contentProvider = new EncapsulatedContentProvider(provider);
+		viewer.setContentProvider(contentProvider);
 		viewer.setInput(""); //$NON-NLS-1$
-		setWidgetObservable(ViewerProperties.singleSelection().observe(viewer), true);
+		updateControls();
+		doBinding();
+	}
+
+	@Override
+	protected void doBinding() {
+		if(contentProvider == null || modelProperty == null) {
+			return;
+		}
+
+		setWidgetObservable(getObservableValue(), true);
+		if(modelProperty instanceof AggregatedObservable) {
+			if(((AggregatedObservable)modelProperty).hasDifferentValues()) {
+				contentProvider.addTemporaryElement(UnchangedObject.instance);
+				viewer.refresh();
+			}
+		}
+		super.doBinding();
+	}
+
+	protected IObservableValue getObservableValue() {
+		return new ComboObservableValue(viewer, modelProperty);
 	}
 
 	/**
@@ -192,27 +215,47 @@ public class ReferenceCombo extends AbstractValueEditor implements SelectionList
 	 * Updates the controls display
 	 */
 	protected void updateControls() {
-		setExclusion(unset, !unsettable);
+		//		setExclusion(unset, !unsettable);
 
-		if(isReadOnly() && unsettable) {
-			unset.setEnabled(false);
+		//		if(isReadOnly() && unsettable) {
+		//			unset.setEnabled(false);
+		//		}
+
+		if(contentProvider != null) {
+			if(unsettable) {
+				contentProvider.addTemporaryElement(UnsetObject.instance);
+			} else {
+				contentProvider.removeTemporaryElement(UnsetObject.instance);
+			}
+			viewer.refresh();
 		}
 	}
 
-	protected void unsetAction() {
-		viewer.setSelection(StructuredSelection.EMPTY);
-		if(modelProperty != null) {
-			modelProperty.setValue(null);
-		}
+	/**
+	 * Changes the viewer for this editor.
+	 * The viewer should use a CCombo
+	 * 
+	 * @param comboViewer
+	 */
+	public void setViewer(ComboViewer comboViewer) {
+		this.viewer = comboViewer;
+		this.combo = viewer.getCCombo();
 	}
 
-	public void widgetSelected(SelectionEvent e) {
-		if(e.widget == unset) {
-			unsetAction();
-		}
-	}
+	//	protected void unsetAction() {
+	//		viewer.setSelection(StructuredSelection.EMPTY);
+	//		if(modelProperty != null) {
+	//			modelProperty.setValue(null);
+	//		}
+	//	}
 
-	public void widgetDefaultSelected(SelectionEvent e) {
-		//Nothing
-	}
+	//	public void widgetSelected(SelectionEvent e) {
+	//		if(e.widget == unset) {
+	//			unsetAction();
+	//		}
+	//	}
+
+	//	public void widgetDefaultSelected(SelectionEvent e) {
+	//		//Nothing
+	//	}
 }

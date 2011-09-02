@@ -14,13 +14,13 @@ package org.eclipse.papyrus.widgets.editors;
 import java.util.Collections;
 import java.util.List;
 
-import org.eclipse.core.databinding.observable.ChangeEvent;
-import org.eclipse.core.databinding.observable.IChangeListener;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.widgets.Activator;
 import org.eclipse.papyrus.widgets.creation.ReferenceValueFactory;
+import org.eclipse.papyrus.widgets.databinding.CLabelObservableValue;
+import org.eclipse.papyrus.widgets.databinding.ReferenceDialogObservableValue;
 import org.eclipse.papyrus.widgets.messages.Messages;
 import org.eclipse.papyrus.widgets.providers.EncapsulatedContentProvider;
 import org.eclipse.papyrus.widgets.providers.IAdaptableContentProvider;
@@ -28,13 +28,10 @@ import org.eclipse.papyrus.widgets.providers.IStaticContentProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.events.DisposeEvent;
-import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
-import org.eclipse.swt.graphics.Image;
-import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
@@ -50,7 +47,7 @@ import org.eclipse.swt.widgets.Widget;
  * @author Camille Letavernier
  * 
  */
-public class ReferenceDialog extends AbstractValueEditor implements IChangeListener, DisposeListener, SelectionListener {
+public class ReferenceDialog extends AbstractValueEditor implements SelectionListener {
 
 	/**
 	 * The CLabel displaying the current value
@@ -105,6 +102,13 @@ public class ReferenceDialog extends AbstractValueEditor implements IChangeListe
 	protected ReferenceValueFactory valueFactory;
 
 	/**
+	 * Indicates whether the widget is read-only or not
+	 */
+	protected boolean readOnly;
+
+	private boolean directCreation;
+
+	/**
 	 * 
 	 * Constructs a new ReferenceDialog in the given parent Composite. The style
 	 * will be applied to the CLabel displaying the current value.
@@ -155,11 +159,6 @@ public class ReferenceDialog extends AbstractValueEditor implements IChangeListe
 		browseValuesButton.setToolTipText(Messages.ReferenceDialog_EditValue);
 		browseValuesButton.addSelectionListener(this);
 
-		unsetButton = factory.createButton(this, null, SWT.PUSH);
-		unsetButton.setImage(Activator.getDefault().getImage("/icons/Delete_12x12.gif")); //$NON-NLS-1$
-		unsetButton.setToolTipText(Messages.ReferenceDialog_UnsetValue);
-		unsetButton.addSelectionListener(this);
-
 		createInstanceButton = factory.createButton(this, null, SWT.PUSH);
 		createInstanceButton.setImage(Activator.getDefault().getImage("/icons/Add_12x12.gif")); //$NON-NLS-1$
 		createInstanceButton.setToolTipText(Messages.ReferenceDialog_CreateANewObject);
@@ -169,6 +168,11 @@ public class ReferenceDialog extends AbstractValueEditor implements IChangeListe
 		editInstanceButton.setImage(Activator.getDefault().getImage("/icons/Edit_12x12.gif")); //$NON-NLS-1$
 		editInstanceButton.setToolTipText(Messages.ReferenceDialog_EditTheCurrentValue);
 		editInstanceButton.addSelectionListener(this);
+
+		unsetButton = factory.createButton(this, null, SWT.PUSH);
+		unsetButton.setImage(Activator.getDefault().getImage("/icons/Delete_12x12.gif")); //$NON-NLS-1$
+		unsetButton.setToolTipText(Messages.ReferenceDialog_UnsetValue);
+		unsetButton.addSelectionListener(this);
 	}
 
 	/**
@@ -230,8 +234,6 @@ public class ReferenceDialog extends AbstractValueEditor implements IChangeListe
 	protected void unsetAction() {
 		if(modelProperty != null) {
 			modelProperty.setValue(null);
-		} else {
-			handleChange(null);
 		}
 	}
 
@@ -239,24 +241,7 @@ public class ReferenceDialog extends AbstractValueEditor implements IChangeListe
 	 * Updates the displayed label for the current value
 	 */
 	protected void updateLabel() {
-		if(currentValueLabel.isDisposed()) {
-			Activator.log.warn("Widget is disposed"); //$NON-NLS-1$
-			return;
-		}
-
-		String valueLabel;
-		Image image = null;
-		if(getValue() == null) {
-			valueLabel = Messages.ReferenceDialog_Unset;
-		} else if(labelProvider == null) {
-			valueLabel = getValue().toString();
-		} else {
-			valueLabel = labelProvider.getText(getValue());
-			image = labelProvider.getImage(getValue());
-		}
-
-		currentValueLabel.setText(valueLabel);
-		currentValueLabel.setImage(image);
+		binding.updateModelToTarget();
 	}
 
 	/**
@@ -286,7 +271,9 @@ public class ReferenceDialog extends AbstractValueEditor implements IChangeListe
 	public void setLabelProvider(ILabelProvider provider) {
 		dialog.setLabelProvider(provider);
 		this.labelProvider = provider;
-		updateLabel();
+		if(widgetObservable != null) {
+			((CLabelObservableValue)widgetObservable).setLabelProvider(labelProvider);
+		}
 	}
 
 	/**
@@ -322,9 +309,8 @@ public class ReferenceDialog extends AbstractValueEditor implements IChangeListe
 	 */
 	@Override
 	public void setReadOnly(boolean readOnly) {
-		currentValueLabel.setEnabled(!readOnly);
-		browseValuesButton.setEnabled(!readOnly);
-		unsetButton.setEnabled(!readOnly);
+		this.readOnly = readOnly;
+		updateControls();
 	}
 
 	/**
@@ -340,38 +326,7 @@ public class ReferenceDialog extends AbstractValueEditor implements IChangeListe
 	 */
 	@Override
 	protected void doBinding() {
-		// we don't do a real databinding here
-		getParent().addDisposeListener(this);
-		modelProperty.addChangeListener(this);
-		handleChange(null);
-	}
-
-	@Override
-	public void refreshValue() {
-		handleChange(null);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void dispose() {
-		if(modelProperty != null) {
-			modelProperty.removeChangeListener(this);
-		}
-		getParent().removeDisposeListener(this);
-		super.dispose();
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public void handleChange(ChangeEvent event) {
-		if(modelProperty != null) {
-			this.value = modelProperty.getValue();
-			setInitialSelection(Collections.singletonList(getValue()));
-			updateLabel();
-		}
+		super.doBinding();
 	}
 
 	protected void setInitialSelection(List<?> initialValues) {
@@ -384,6 +339,7 @@ public class ReferenceDialog extends AbstractValueEditor implements IChangeListe
 
 	@Override
 	public void setModelObservable(IObservableValue modelProperty) {
+		setWidgetObservable(new ReferenceDialogObservableValue(this, this.currentValueLabel, modelProperty, labelProvider));
 		super.setModelObservable(modelProperty);
 		updateControls();
 	}
@@ -426,11 +382,31 @@ public class ReferenceDialog extends AbstractValueEditor implements IChangeListe
 		setExclusion(editInstanceButton, exclude);
 		setExclusion(createInstanceButton, exclude);
 
+		setExclusion(browseValuesButton, directCreation);
+
+		browseValuesButton.setEnabled(!readOnly);
+
 		// If they are displayed, check if they should be enabled
 		if(!exclude) {
 			editInstanceButton.setEnabled(valueFactory != null && valueFactory.canEdit() && modelProperty != null && modelProperty.getValue() != null);
 			createInstanceButton.setEnabled(valueFactory != null && valueFactory.canCreateObject());
 		}
+
+		boolean enabled = !readOnly;
+		if(modelProperty != null) {
+			enabled = enabled && modelProperty.getValue() != null;
+		}
+		unsetButton.setEnabled(enabled);
 	}
 
+	@Override
+	public void update() {
+		super.update();
+		updateControls();
+	}
+
+	public void setDirectCreation(boolean directCreation) {
+		this.directCreation = directCreation;
+		updateControls();
+	}
 }

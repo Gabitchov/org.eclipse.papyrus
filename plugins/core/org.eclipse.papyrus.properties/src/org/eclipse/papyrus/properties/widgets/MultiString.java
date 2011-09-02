@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.widgets;
 
-import org.eclipse.jface.viewers.ListViewer;
+import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.papyrus.widgets.editors.ICommitListener;
 import org.eclipse.papyrus.widgets.editors.MultipleStringEditor;
 import org.eclipse.swt.widgets.Composite;
@@ -59,7 +59,7 @@ public class MultiString extends AbstractPropertyEditor {
 	 * 
 	 * @return the ListViewer associated to this editor
 	 */
-	public ListViewer getViewer() {
+	public TreeViewer getViewer() {
 		return editor.getViewer();
 	}
 }

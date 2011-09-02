@@ -232,7 +232,8 @@ public class EMFModelElement extends AbstractModelElement {
 		if(feature == null) {
 			return false;
 		}
-		return feature.isRequired();
+
+		return EMFHelper.isRequired(feature);
 	}
 
 	@Override

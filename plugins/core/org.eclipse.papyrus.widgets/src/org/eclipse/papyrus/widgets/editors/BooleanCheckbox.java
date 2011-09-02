@@ -11,7 +11,10 @@
  *****************************************************************************/
 package org.eclipse.papyrus.widgets.editors;
 
+import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.jface.databinding.swt.WidgetProperties;
+import org.eclipse.papyrus.widgets.databinding.AggregatedObservable;
+import org.eclipse.papyrus.widgets.databinding.GrayedCheckboxObservableValue;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
@@ -21,11 +24,12 @@ import org.eclipse.swt.widgets.Composite;
  * as a Checkbox.
  * 
  * @author Camille Letavernier
- * 
  */
 public class BooleanCheckbox extends AbstractValueEditor {
 
 	private Button checkbox;
+
+	private AggregatedObservable aggregated;
 
 	/**
 	 * 
@@ -57,9 +61,20 @@ public class BooleanCheckbox extends AbstractValueEditor {
 		super(parent);
 		checkbox = factory.createButton(this, label, SWT.CHECK | style);
 
-		setWidgetObservable(WidgetProperties.selection().observe(checkbox), true);
-
 		setCommitOnFocusLost(checkbox);
+	}
+
+	@Override
+	public void setModelObservable(IObservableValue modelProperty) {
+		IObservableValue widgetObservable;
+		if(modelProperty instanceof AggregatedObservable) {
+			this.aggregated = (AggregatedObservable)modelProperty;
+			widgetObservable = new GrayedCheckboxObservableValue(checkbox, aggregated);
+		} else {
+			widgetObservable = WidgetProperties.selection().observe(checkbox);
+		}
+		setWidgetObservable(widgetObservable, true);
+		super.setModelObservable(modelProperty);
 	}
 
 	/**
@@ -74,7 +89,7 @@ public class BooleanCheckbox extends AbstractValueEditor {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Boolean getValue() {
+	public Object getValue() {
 		return checkbox.getSelection();
 	}
 

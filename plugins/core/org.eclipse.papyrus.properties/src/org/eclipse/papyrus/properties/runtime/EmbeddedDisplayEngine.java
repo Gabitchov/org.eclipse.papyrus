@@ -41,6 +41,8 @@ public class EmbeddedDisplayEngine extends DefaultDisplayEngine implements Selec
 	 */
 	protected CTabFolder currentFolder;
 
+	protected Composite self;
+
 	/**
 	 * The currently displayed sections
 	 */
@@ -55,8 +57,11 @@ public class EmbeddedDisplayEngine extends DefaultDisplayEngine implements Selec
 	 *        SWT.BOTTOM or SWT.TOP (Tabs' position)
 	 */
 	public void display(Set<View> views, Composite parent, ISelection selection, int style) {
-
 		dispose();
+
+		self = new Composite(parent, SWT.NONE);
+
+		self.setLayout(new FillLayout());
 
 		final Set<Tab> tabsList = new LinkedHashSet<Tab>();
 
@@ -142,7 +147,7 @@ public class EmbeddedDisplayEngine extends DefaultDisplayEngine implements Selec
 		if(allTabs.size() > 1) {
 			CTabItem selectedTab = null;
 
-			currentFolder = new CTabFolder(parent, style);
+			currentFolder = new CTabFolder(self, style);
 			currentFolder.setSelectionBackground(new Color[]{ currentFolder.getDisplay().getSystemColor(SWT.COLOR_WHITE), currentFolder.getBackground() }, new int[]{ 100 }, true);
 			currentFolder.setLayout(new FillLayout());
 			for(Tab tab : allTabs) {
@@ -166,7 +171,7 @@ public class EmbeddedDisplayEngine extends DefaultDisplayEngine implements Selec
 			currentFolder.setSelection(selectedTab);
 		} else if(!allTabs.isEmpty()) {
 			Tab tab = allTabs.get(0);
-			tabs.put(tab, parent);
+			tabs.put(tab, self);
 		} else {
 			return;
 		}
@@ -187,10 +192,17 @@ public class EmbeddedDisplayEngine extends DefaultDisplayEngine implements Selec
 	@Override
 	protected void dispose() {
 		super.dispose();
-		if(currentFolder != null) {
-			currentFolder.dispose();
+		if(self != null) {
+			self.dispose();
+			self = null;
 			currentFolder = null;
 		}
+
+		//		if(currentFolder != null) {
+		//			currentFolder.dispose();
+		//			currentFolder = null;
+		//		}
+
 		for(ISection section : displayedSections) {
 			section.dispose();
 		}

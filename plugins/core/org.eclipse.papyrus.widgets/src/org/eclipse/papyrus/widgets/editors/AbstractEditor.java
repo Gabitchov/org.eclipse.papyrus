@@ -125,7 +125,7 @@ public abstract class AbstractEditor extends Composite {
 	 */
 	protected AbstractEditor(Composite parent, int style, String label) {
 		super(parent, style);
-		GridLayout layout = new GridLayout(2, false);
+		GridLayout layout = new GridLayout(1, false);
 		setLayout(layout);
 		if(label != null) {
 			createLabel(label);
@@ -144,6 +144,7 @@ public abstract class AbstractEditor extends Composite {
 		if(toolTipText != null) {
 			label.setToolTipText(toolTipText);
 		}
+		((GridLayout)getLayout()).numColumns++;
 	}
 
 	/**
@@ -196,6 +197,7 @@ public abstract class AbstractEditor extends Composite {
 		} else {
 			if(this.label != null) {
 				this.label.dispose();
+				((GridLayout)getLayout()).numColumns--;
 			}
 		}
 	}
