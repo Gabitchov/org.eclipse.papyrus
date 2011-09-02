@@ -44,19 +44,6 @@
             <and>
                <with
                      variable="selection">
-                  <and>
-                     <count
-                           value="1">
-                     </count>
-                     <iterate>
-                        <instanceof
-                              value="org.eclipse.papyrus.nattable.instance.papyrustableinstance.PapyrusTableInstance">
-                        </instanceof>
-                     </iterate>
-                  </and>
-               </with>
-               <with
-                     variable="selection">
                      <!-- We add these tests for : 
                      	- force the refresh of the action in the menu edit  
                      	- avoid have 2 handlers enabled in the same time 
