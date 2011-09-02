@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -66,6 +66,9 @@ public class Messages extends NLS {
 
 	/** The Reference dialog_ edit unset value */
 	public static String ReferenceDialog_UnsetValue;
+
+	/** Indicates that a list of elements have different values for the given property (Multi-selection) */
+	public static String ReferenceDialogObservable_Unchanged;
 
 	/** the Enum radio_ no value */
 	public static String EnumRadio_NoValue;

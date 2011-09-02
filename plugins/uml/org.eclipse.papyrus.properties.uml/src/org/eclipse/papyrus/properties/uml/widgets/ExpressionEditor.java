@@ -88,8 +88,8 @@ public class ExpressionEditor extends AbstractPropertyEditor implements Listener
 		languageEditor.addCommitListener((ExpressionList)observableList);
 		bodyEditor.setContext(input.getModelElement(propertyPath));
 
-		if(languageEditor.getViewer().getList().getItemCount() > 0) {
-			Object firstItem = languageEditor.getViewer().getElementAt(0);
+		if(languageEditor.getViewer().getTree().getItemCount() > 0) {
+			Object firstItem = languageEditor.getViewer().getVisibleExpandedElements()[0];
 			StructuredSelection selection = new StructuredSelection(firstItem);
 			languageEditor.getViewer().setSelection(selection);
 		}

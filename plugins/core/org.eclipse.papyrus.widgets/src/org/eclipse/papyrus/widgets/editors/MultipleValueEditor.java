@@ -13,21 +13,23 @@ package org.eclipse.papyrus.widgets.editors;
 
 import java.util.Collection;
 import java.util.LinkedList;
+import java.util.List;
 
 import org.eclipse.core.databinding.observable.ChangeEvent;
 import org.eclipse.core.databinding.observable.IChangeListener;
 import org.eclipse.core.databinding.observable.list.IObservableList;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.LabelProvider;
-import org.eclipse.jface.viewers.ListViewer;
 import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.widgets.Activator;
 import org.eclipse.papyrus.widgets.creation.ReferenceValueFactory;
 import org.eclipse.papyrus.widgets.messages.Messages;
-import org.eclipse.papyrus.widgets.providers.CollectionContentProvider;
+import org.eclipse.papyrus.widgets.providers.TreeCollectionContentProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.swt.events.SelectionEvent;
@@ -38,7 +40,8 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.List;
+import org.eclipse.swt.widgets.Tree;
+import org.eclipse.swt.widgets.TreeItem;
 
 /**
  * An editor for multivalued fields.
@@ -52,12 +55,12 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 	 * The viewer displaying the current values from
 	 * the model
 	 */
-	protected ListViewer listViewer;
+	protected TreeViewer treeViewer;
 
 	/**
-	 * The list associated to the viewer
+	 * The tree associated to the viewer
 	 */
-	protected List list;
+	protected Tree tree;
 
 	/**
 	 * A Composite containing the different control buttons
@@ -130,7 +133,7 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 	 * @param parent
 	 *        The Composite in which this Editor should be displayed
 	 * @param style
-	 *        This editor's list style
+	 *        This editor's tree style
 	 * @param selector
 	 *        The element selector for this editor's dialog
 	 * @param ordered
@@ -150,16 +153,16 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 		controlsSection.setLayout(new FillLayout());
 		controlsSection.setLayoutData(new GridData(SWT.END, SWT.CENTER, false, false));
 
-		list = new List(this, style | SWT.MULTI | SWT.V_SCROLL | SWT.H_SCROLL | SWT.BORDER);
-		GridData listData = new GridData(SWT.FILL, SWT.FILL, true, true);
-		listData.horizontalSpan = 2;
-		listData.minimumHeight = 80;
-		list.setLayoutData(listData);
+		tree = new Tree(this, style | SWT.MULTI | SWT.V_SCROLL | SWT.H_SCROLL | SWT.BORDER);
+		GridData treeData = new GridData(SWT.FILL, SWT.FILL, true, true);
+		treeData.horizontalSpan = 2;
+		treeData.minimumHeight = 80;
+		tree.setLayoutData(treeData);
 
-		list.addSelectionListener(this);
+		tree.addSelectionListener(this);
 
-		listViewer = new ListViewer(list);
-		listViewer.setContentProvider(CollectionContentProvider.instance);
+		treeViewer = new TreeViewer(tree);
+		treeViewer.setContentProvider(TreeCollectionContentProvider.instance);
 
 		createListControls();
 
@@ -199,7 +202,7 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 	 * @param parent
 	 *        The Composite in which this Editor should be displayed
 	 * @param style
-	 *        This editor's list style
+	 *        This editor's tree style
 	 * @param selector
 	 *        The element selector for this editor's dialog
 	 * @param ordered
@@ -216,7 +219,7 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 	 * @param parent
 	 *        The Composite in which this Editor should be displayed
 	 * @param style
-	 *        This editor's list style
+	 *        This editor's tree style
 	 * @param selector
 	 *        The element selector for this editor's dialog
 	 */
@@ -231,7 +234,7 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 	 * @param parent
 	 *        The Composite in which this Editor should be displayed
 	 * @param style
-	 *        This editor's list style
+	 *        This editor's tree style
 	 * @param selector
 	 *        The element selector for this editor's dialog
 	 * @param label
@@ -249,7 +252,7 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 	 */
 	public void setLabelProvider(ILabelProvider labelProvider) {
 		dialog.setLabelProvider(labelProvider);
-		listViewer.setLabelProvider(labelProvider);
+		treeViewer.setLabelProvider(labelProvider);
 	}
 
 	/**
@@ -258,7 +261,7 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 	@Override
 	protected void doBinding() {
 		//We don't do a real Databinding in this case
-		listViewer.setInput(modelProperty);
+		treeViewer.setInput(modelProperty);
 		modelProperty.addChangeListener(this);
 		getParent().addDisposeListener(this);
 	}
@@ -369,7 +372,7 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 			return;
 		}
 
-		java.util.List<Object> resultElements = new LinkedList<Object>();
+		List<Object> resultElements = new LinkedList<Object>();
 		for(Object r : result) {
 			resultElements.add(adaptResult(r));
 		}
@@ -393,18 +396,18 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 	@Override
 	protected void commit() {
 		super.commit();
-		listViewer.refresh();
+		treeViewer.refresh();
 	}
 
 	/**
 	 * Handle remove Action
 	 */
 	protected void removeAction() {
-		IStructuredSelection selection = (IStructuredSelection)listViewer.getSelection();
+		IStructuredSelection selection = (IStructuredSelection)treeViewer.getSelection();
 		for(Object value : selection.toArray()) {
 			modelProperty.remove(value);
 		}
-		listViewer.setSelection(null);
+		treeViewer.setSelection(null);
 
 		commit();
 	}
@@ -413,7 +416,7 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 	 * Handle up Action
 	 */
 	protected void upAction() {
-		IStructuredSelection selection = (IStructuredSelection)listViewer.getSelection();
+		IStructuredSelection selection = (IStructuredSelection)treeViewer.getSelection();
 		for(Object o : selection.toArray()) {
 			int oldIndex = modelProperty.indexOf(o);
 			if(oldIndex > 0) {
@@ -422,7 +425,7 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 		}
 
 		IStructuredSelection selectionCopy = new StructuredSelection(selection.toArray());
-		listViewer.setSelection(selectionCopy);
+		treeViewer.setSelection(selectionCopy);
 
 		commit();
 	}
@@ -431,7 +434,7 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 	 * Handle down Action
 	 */
 	protected void downAction() {
-		IStructuredSelection selection = (IStructuredSelection)listViewer.getSelection();
+		IStructuredSelection selection = (IStructuredSelection)treeViewer.getSelection();
 
 		int maxIndex = modelProperty.size() - 1;
 
@@ -445,7 +448,7 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 		}
 
 		IStructuredSelection selectionCopy = new StructuredSelection(selection.toArray());
-		listViewer.setSelection(selectionCopy);
+		treeViewer.setSelection(selectionCopy);
 
 		commit();
 	}
@@ -454,13 +457,16 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 	 * Handle edit Action
 	 */
 	protected void editAction() {
-		IStructuredSelection selection = (IStructuredSelection)listViewer.getSelection();
+		IStructuredSelection selection = (IStructuredSelection)treeViewer.getSelection();
 
 		if(selection.size() != 1) {
 			return;
 		}
 
-		int index = listViewer.getList().getSelectionIndex();
+		TreeItem selectedItem = treeViewer.getTree().getSelection()[0];
+		Tree parentTree = selectedItem.getParent();
+
+		int index = parentTree.indexOf(selectedItem);
 
 		Object currentValue = selection.getFirstElement();
 		Object newValue = referenceFactory.edit(this.edit, selection.getFirstElement());
@@ -492,18 +498,18 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 	 * {@inheritDoc}
 	 */
 	public void widgetDefaultSelected(SelectionEvent e) {
-		if(e.widget == list && edit.isEnabled()) {
+		if(e.widget == tree && edit.isEnabled()) {
 			editAction();
 		}
 	}
 
 	/**
-	 * Gets the list viewer associated to this editor
+	 * Gets the tree viewer associated to this editor
 	 * 
-	 * @return the list viewer associated to this editor
+	 * @return the tree viewer associated to this editor
 	 */
-	public ListViewer getViewer() {
-		return listViewer;
+	public TreeViewer getViewer() {
+		return treeViewer;
 	}
 
 	/**
@@ -516,7 +522,7 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 	 * @param event
 	 */
 	public void handleChange(ChangeEvent event) {
-		listViewer.refresh();
+		treeViewer.refresh();
 	}
 
 	/**
@@ -534,7 +540,7 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 	public void setReadOnly(boolean readOnly) {
 		this.readOnly = readOnly;
 		updateControls();
-		list.setEnabled(!readOnly);
+		tree.setEnabled(!readOnly);
 	}
 
 	/**
@@ -542,7 +548,7 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 	 */
 	@Override
 	public boolean isReadOnly() {
-		return !list.isEnabled();
+		return !tree.isEnabled();
 	}
 
 	/**
@@ -559,7 +565,7 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 
 	@Override
 	public void setToolTipText(String text) {
-		list.setToolTipText(text);
+		tree.setToolTipText(text);
 		super.setLabelToolTipText(text);
 	}
 
@@ -571,7 +577,7 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 
 	@Override
 	public void refreshValue() {
-		listViewer.refresh();
+		treeViewer.refresh();
 	}
 
 	/**
@@ -585,5 +591,23 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 	public void setDirectCreation(boolean directCreation) {
 		this.directCreation = directCreation;
 		updateControls();
+	}
+
+	/**
+	 * Adds a ISelectionChangedListener to this widget
+	 * 
+	 * @param listener
+	 */
+	public void addSelectionChangedListener(ISelectionChangedListener listener) {
+		treeViewer.addSelectionChangedListener(listener);
+	}
+
+	/**
+	 * Removes a ISelectionChangedListener from this widget
+	 * 
+	 * @param listener
+	 */
+	public void removeSelectionChangedListener(ISelectionChangedListener listener) {
+		treeViewer.removeSelectionChangedListener(listener);
 	}
 }

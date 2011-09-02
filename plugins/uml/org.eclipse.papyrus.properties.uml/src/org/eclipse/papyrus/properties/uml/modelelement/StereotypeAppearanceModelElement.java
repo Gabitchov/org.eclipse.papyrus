@@ -102,4 +102,9 @@ public class StereotypeAppearanceModelElement extends AbstractModelElement imple
 		return EmptyContentProvider.instance;
 	}
 
+	@Override
+	public boolean isMandatory(String propertyPath) {
+		return true;
+	}
+
 }

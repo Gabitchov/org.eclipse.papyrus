@@ -26,6 +26,7 @@
   <propertyEditorTypes label="ViewEditor" widgetClass="ViewEditor" namespace="//@namespaces.3" type="Reference" multiplicity="-1"/>
   <propertyEditorTypes label="ReferenceLabel (Read-only)" widgetClass="ReferenceLabel" namespace="//@namespaces.3"/>
   <propertyEditorTypes label="MultiReference" widgetClass="MultiReference" namespace="//@namespaces.3" type="Reference" multiplicity="-1"/>
+  <propertyEditorTypes label="MultiReferenceWithPropertyView" widgetClass="MultiReferencePropertyEditorWithPropertyView" namespace="//@namespaces.3"/>
   <propertyEditorTypes label="MultiString" widgetClass="MultiString" namespace="//@namespaces.3" multiplicity="-1"/>
   <propertyEditorTypes label="MultiInteger" widgetClass="MultiInteger" namespace="//@namespaces.3" type="Integer" multiplicity="-1"/>
   <propertyEditorTypes label="InvalidWidget" widgetClass="InvalidWidget" namespace="//@namespaces.3"/>

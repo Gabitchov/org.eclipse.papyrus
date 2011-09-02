@@ -15,9 +15,13 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.eclipse.core.databinding.observable.ChangeEvent;
+import org.eclipse.core.databinding.observable.IChangeListener;
 import org.eclipse.core.databinding.observable.IObservable;
 import org.eclipse.core.databinding.observable.value.AbstractObservableValue;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
+import org.eclipse.core.databinding.observable.value.ValueDiff;
+import org.eclipse.papyrus.widgets.databinding.AggregatedObservable;
 
 /**
  * MultipleObservableValue is used to map a single element
@@ -29,17 +33,7 @@ import org.eclipse.core.databinding.observable.value.IObservableValue;
  * All sub-elements will be edited at the same time, with the same value.
  */
 //TODO : Add listeners on sub-observables, and remove them on dispose
-public class MultipleObservableValue extends AbstractObservableValue implements MultipleObservable {
-
-	/**
-	 * Constructor.
-	 * 
-	 * @param defaultGetValue
-	 *        When the different sub-elements don't have the same value, the defaultGetValue is returned
-	 */
-	public MultipleObservableValue(Object defaultGetValue) {
-		this(null, defaultGetValue);
-	}
+public class MultipleObservableValue extends AbstractObservableValue implements AggregatedObservable, IChangeListener {
 
 	/**
 	 * 
@@ -47,23 +41,29 @@ public class MultipleObservableValue extends AbstractObservableValue implements 
 	 * 
 	 * @param values
 	 *        The collection of sub-elements for this MultipleObservableValue
-	 * @param defaultGetValue
-	 *        When the different sub-elements don't have the same value, the defaultGetValue is returned
 	 * 
 	 */
-	public MultipleObservableValue(Collection<IObservableValue> values, Object defaultGetValue) {
+	public MultipleObservableValue(Collection<IObservableValue> values) {
 		if(values != null) {
 			observableValues.addAll(values);
 		}
+	}
 
-		this.defaultGetValue = defaultGetValue;
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 */
+	public MultipleObservableValue() {
+
 	}
 
 	public Object getValueType() {
 		if(observableValues.isEmpty()) {
 			return null;
 		}
-		return observableValues.get(0);
+
+		return observableValues.get(0).getValueType();
 	}
 
 	/**
@@ -73,24 +73,11 @@ public class MultipleObservableValue extends AbstractObservableValue implements 
 	 */
 	@Override
 	protected Object doGetValue() {
-		if(observableValues.isEmpty()) {
+		if(hasDifferentValues() || observableValues.isEmpty()) {
 			return null;
 		}
-		Object currentValue = defaultGetValue;
-		boolean firstValue = true;
-		for(IObservableValue observable : observableValues) {
-			if(firstValue) {
-				firstValue = false;
-				currentValue = observable.getValue();
-			} else {
-				Object value = observable.getValue();
-				if(equals(value, currentValue)) {
-					continue;
-				}
-				return defaultGetValue;
-			}
-		}
-		return currentValue;
+
+		return observableValues.get(0).getValue();
 	}
 
 	private boolean equals(Object value, Object currentValue) {
@@ -110,12 +97,13 @@ public class MultipleObservableValue extends AbstractObservableValue implements 
 		}
 	}
 
-	public boolean add(IObservable observable) {
+	public AggregatedObservable aggregate(IObservable observable) {
 		if(observable instanceof IObservableValue) {
 			observableValues.add((IObservableValue)observable);
-			return true;
+			observable.addChangeListener(this);
+			return this;
 		}
-		return false;
+		return null;
 	}
 
 	/**
@@ -140,12 +128,51 @@ public class MultipleObservableValue extends AbstractObservableValue implements 
 	public void dispose() {
 		super.dispose();
 		for(IObservableValue observable : observableValues) {
+			observable.removeChangeListener(this);
 			observable.dispose();
 		}
 	}
 
-	private List<IObservableValue> observableValues = new LinkedList<IObservableValue>();
+	protected List<IObservableValue> observableValues = new LinkedList<IObservableValue>();
 
-	private Object defaultGetValue;
+	public boolean hasDifferentValues() {
+		if(observableValues.isEmpty()) {
+			return false;
+		}
+
+		Object currentValue = null;
+		boolean firstValue = true;
+		for(IObservableValue observable : observableValues) {
+			if(firstValue) {
+				firstValue = false;
+				currentValue = observable.getValue();
+			} else {
+				Object value = observable.getValue();
+				if(equals(value, currentValue)) {
+					continue;
+				}
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	public void handleChange(ChangeEvent event) {
+		//We're not interested in the old and new values
+		//We just return two different values so that a change event is fired
+		super.fireValueChange(new ValueDiff() {
+
+			@Override
+			public Object getOldValue() {
+				return true;
+			}
+
+			@Override
+			public Object getNewValue() {
+				return false;
+			}
+		});
+	}
 
 }
