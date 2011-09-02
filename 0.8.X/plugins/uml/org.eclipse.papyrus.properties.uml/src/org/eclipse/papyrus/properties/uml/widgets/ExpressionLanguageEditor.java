@@ -45,7 +45,7 @@ public class ExpressionLanguageEditor extends MultipleValueEditor {
 	@Override
 	public void setReadOnly(boolean readOnly) {
 		super.setReadOnly(readOnly);
-		list.setEnabled(true); //The list is always enabled, to keep the selection-change event
+		tree.setEnabled(true); //The list is always enabled, to keep the selection-change event
 	}
 
 	@Override

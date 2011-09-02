@@ -1,0 +1,91 @@
+package org.eclipse.papyrus.widgets.databinding;
+
+import org.eclipse.core.databinding.observable.value.AbstractObservableValue;
+import org.eclipse.core.databinding.observable.value.ValueDiff;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.widgets.Button;
+
+/**
+ * An ObservableValue for {@link Button}s with the {@link SWT.CHECK} style
+ * Allows the checkbox to take four states ; one for each possible combination
+ * of {@link Button#getSelection()} and {@link Button#getGrayed()}
+ * 
+ * @author Camille Letavernier
+ * @see {@link BooleanWithDefaultState}
+ */
+public class GrayedCheckboxObservableValue extends AbstractObservableValue implements SelectionListener {
+
+	private Button checkbox;
+
+	private Boolean currentValue;
+
+	private AggregatedObservable aggregated;
+
+	public GrayedCheckboxObservableValue(Button checkbox, AggregatedObservable aggregated) {
+		this.checkbox = checkbox;
+		this.checkbox.addSelectionListener(this);
+		this.aggregated = aggregated;
+	}
+
+	public Object getValueType() {
+		return Object.class; //Can be either Boolean or BooleanWithDefaultState
+	}
+
+	@Override
+	protected Boolean doGetValue() {
+		return checkbox.getSelection();
+	}
+
+	@Override
+	protected void doSetValue(Object value) {
+		if(aggregated.hasDifferentValues()) {
+			checkbox.setSelection(true);
+			checkbox.setGrayed(true);
+			return;
+		} else {
+			checkbox.setGrayed(false);
+		}
+
+		if(value instanceof Boolean) {
+			Boolean booleanValue = (Boolean)value;
+			checkbox.setSelection(booleanValue);
+
+			this.currentValue = booleanValue;
+		} else if(value == null) {
+			checkbox.setSelection(false);
+		}
+	}
+
+	@Override
+	public void dispose() {
+		checkbox.removeSelectionListener(this);
+		super.dispose();
+	}
+
+	public void widgetSelected(SelectionEvent e) {
+		final Boolean oldValue = currentValue;
+		final Boolean newValue = checkbox.getSelection();
+
+		currentValue = newValue;
+		checkbox.setGrayed(false);
+
+		fireValueChange(new ValueDiff() {
+
+			@Override
+			public Object getOldValue() {
+				return oldValue;
+			}
+
+			@Override
+			public Object getNewValue() {
+				return newValue;
+			}
+		});
+	}
+
+	public void widgetDefaultSelected(SelectionEvent e) {
+		//Nothing
+	}
+
+}

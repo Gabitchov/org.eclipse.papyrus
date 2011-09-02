@@ -44,6 +44,7 @@ public class StringCombo extends AbstractPropertyEditor {
 	public void doBinding() {
 		IStaticContentProvider contentProvider = input.getContentProvider(propertyPath);
 		editor.setContentProvider(contentProvider);
+		editor.setUnsettable(!input.isMandatory(propertyPath));
 
 		ILabelProvider labelProvider = input.getLabelProvider(propertyPath);
 		if(labelProvider != null) {

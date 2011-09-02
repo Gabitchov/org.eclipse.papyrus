@@ -13,7 +13,7 @@ package org.eclipse.papyrus.properties.uml.databinding;
 
 import org.eclipse.core.databinding.observable.Realm;
 import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.databinding.EObjectObservableValue;
+import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
@@ -22,6 +22,7 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.papyrus.core.utils.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.properties.Activator;
+import org.eclipse.papyrus.properties.databinding.EMFObservableValue;
 import org.eclipse.papyrus.properties.util.EMFHelper;
 import org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.service.edit.service.IElementEditService;
@@ -33,12 +34,9 @@ import org.eclipse.papyrus.service.edit.service.IElementEditService;
  * @author Camille Letavernier
  * 
  */
-public class PapyrusObservableValue extends EObjectObservableValue {
+public class PapyrusObservableValue extends EMFObservableValue {
 
-	/**
-	 * The editing domain on which the commands will be executed
-	 */
-	protected EditingDomain domain;
+	public static final String UML_BOOLEAN_DATATYPE = "Boolean"; //$NON-NLS-1$
 
 	/**
 	 * 
@@ -68,12 +66,22 @@ public class PapyrusObservableValue extends EObjectObservableValue {
 	 *        The editing domain on which the commands will be executed
 	 */
 	public PapyrusObservableValue(Realm realm, EObject eObject, EStructuralFeature eStructuralFeature, EditingDomain domain) {
-		super(realm, eObject, eStructuralFeature);
-		this.domain = domain;
+		super(eObject, eStructuralFeature, domain);
 	}
 
 	@Override
 	protected void doSetValue(Object value) {
+		Command emfCommand = getCommand(value);
+		domain.getCommandStack().execute(emfCommand);
+	}
+
+	/**
+	 * Returns the EMF Command for modifying this Observable's value
+	 * 
+	 * @param value
+	 * @return
+	 */
+	public Command getCommand(Object value) {
 		EObject eObjectValue = EMFHelper.getEObject(value);
 		if(eObjectValue != null) {
 			value = eObjectValue;
@@ -88,11 +96,13 @@ public class PapyrusObservableValue extends EObjectObservableValue {
 
 				Command emfCommand = new GMFtoEMFCommandWrapper(createGMFCommand);
 
-				domain.getCommandStack().execute(emfCommand);
+				return emfCommand;
 			}
 		} catch (Exception ex) {
 			Activator.log.error(ex);
 		}
+
+		return UnexecutableCommand.INSTANCE;
 	}
 
 	/**

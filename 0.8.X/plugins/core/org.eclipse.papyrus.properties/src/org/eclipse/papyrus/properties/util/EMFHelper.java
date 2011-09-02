@@ -20,8 +20,10 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -321,6 +323,48 @@ public class EMFHelper {
 		Boolean readOnly = (Boolean)attributes.get(URIConverter.ATTRIBUTE_READ_ONLY);
 
 		return readOnly == null ? false : readOnly;
+	}
+
+	/**
+	 * Tests if the given EStructuralFeature is required (ie. should always
+	 * have a value)
+	 * 
+	 * A feature is required if at least of one the following conditions if
+	 * true :
+	 * 
+	 * - It has a defaultValue
+	 * - Its lowerBound is at least 1
+	 * - It is an enumeration (Enumerations always have a default value)
+	 * - It is a Java primitive type, and is not marked as Unsettable
+	 * 
+	 * @param feature
+	 *        the feature to test
+	 * @return
+	 *         true if the feature is required, false otherwise
+	 */
+	public static boolean isRequired(EStructuralFeature feature) {
+		//EEnums are always required, as an EEnum always has a default value
+		if(feature.getEType() instanceof EEnum) {
+			return true;
+		}
+
+		//At least one value means it is required
+		if(feature.getLowerBound() >= 1) {
+			return true;
+		}
+
+		//Java primitive types cannot have a null value
+		//if the feature is not specifically marked as unsettable, then it is required
+		if(feature.getEType().getInstanceClass().isPrimitive() && !feature.isUnsettable()) {
+			return true;
+		}
+
+		//If there is a default value, there is always a value
+		if(feature.getDefaultValueLiteral() != null) {
+			return true;
+		}
+
+		return false; //The property if not required
 	}
 
 

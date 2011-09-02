@@ -12,9 +12,12 @@
 package org.eclipse.papyrus.widgets.editors;
 
 import org.eclipse.core.databinding.observable.value.AbstractObservableValue;
+import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.core.databinding.observable.value.ValueDiff;
+import org.eclipse.papyrus.widgets.databinding.AggregatedObservable;
 import org.eclipse.papyrus.widgets.providers.EncapsulatedContentProvider;
 import org.eclipse.papyrus.widgets.providers.IStaticContentProvider;
+import org.eclipse.papyrus.widgets.providers.UnchangedObject;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.FocusListener;
@@ -55,11 +58,15 @@ public class StringCombo extends ReferenceCombo {
 	@Override
 	public void setContentProvider(IStaticContentProvider provider) {
 		if(provider != null) {
-			viewer.setContentProvider(new EncapsulatedContentProvider(provider));
+			contentProvider = new EncapsulatedContentProvider(provider);
+			viewer.setContentProvider(contentProvider);
 			viewer.setInput(""); //$NON-NLS-1$
 		}
+	}
 
-		setWidgetObservable(new CComboObservableValue());
+	@Override
+	protected IObservableValue getObservableValue() {
+		return new CComboObservableValue();
 	}
 
 	class CComboObservableValue extends AbstractObservableValue implements SelectionListener, KeyListener, FocusListener {
@@ -84,7 +91,9 @@ public class StringCombo extends ReferenceCombo {
 
 		@Override
 		protected void doSetValue(Object value) {
-			if(value instanceof String) {
+			if(modelProperty instanceof AggregatedObservable && ((AggregatedObservable)modelProperty).hasDifferentValues()) {
+				combo.setText(UnchangedObject.instance.toString());
+			} else if(value instanceof String) {
 				previousValue = combo.getText();
 				combo.setText((String)value);
 			}

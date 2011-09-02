@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -64,6 +64,11 @@ public class ConstraintFactory {
 	private Constraint loadConstraint(SimpleConstraint model) {
 		String className = model.getConstraintType().getConstraintClass();
 		Constraint constraint = null;
+
+		if(model.getConstraintType().eIsProxy()) {
+			Activator.log.error("The constraint URI cannot be resolved. Constraint : " + model.getName() + ". " + model.getConstraintType(), null);
+			return null;
+		}
 
 		try {
 			constraint = (Constraint)Class.forName(className).newInstance();

@@ -122,6 +122,16 @@ public class EncapsulatedContentProvider implements IHierarchicContentProvider, 
 	}
 
 	/**
+	 * Removes a Temporary element from this ContentProvider
+	 * 
+	 * @param removeObject
+	 *        The temporary element to remove
+	 */
+	public void removeTemporaryElement(Object removeObject) {
+		temporaryElements.remove(removeObject);
+	}
+
+	/**
 	 * Clears all temporary elements from this content provider
 	 */
 	public void clearTemporaryElements() {
@@ -209,5 +219,4 @@ public class EncapsulatedContentProvider implements IHierarchicContentProvider, 
 		}
 		return selection;
 	}
-
 }

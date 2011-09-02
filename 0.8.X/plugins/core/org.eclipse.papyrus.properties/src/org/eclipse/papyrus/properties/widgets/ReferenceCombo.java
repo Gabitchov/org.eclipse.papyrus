@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,12 @@
 package org.eclipse.papyrus.properties.widgets;
 
 import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.jface.viewers.ITreeContentProvider;
+import org.eclipse.papyrus.properties.providers.EncapsulatedComboViewer;
+import org.eclipse.papyrus.widgets.providers.HierarchicToFlatContentProvider;
+import org.eclipse.papyrus.widgets.providers.IHierarchicContentProvider;
 import org.eclipse.papyrus.widgets.providers.IStaticContentProvider;
+import org.eclipse.papyrus.widgets.providers.TreeToFlatContentProvider;
 import org.eclipse.swt.widgets.Composite;
 
 /**
@@ -45,6 +50,14 @@ public class ReferenceCombo extends AbstractPropertyEditor {
 	@Override
 	protected void doBinding() {
 		IStaticContentProvider contentProvider = input.getContentProvider(propertyPath);
+		if(contentProvider instanceof IHierarchicContentProvider) {
+			contentProvider = new HierarchicToFlatContentProvider((IHierarchicContentProvider)contentProvider);
+			combo.setViewer(new EncapsulatedComboViewer(combo.getViewer()));
+		} else if(contentProvider instanceof ITreeContentProvider) {
+			contentProvider = new TreeToFlatContentProvider((ITreeContentProvider)contentProvider);
+			combo.setViewer(new EncapsulatedComboViewer(combo.getViewer()));
+		}
+
 		ILabelProvider labelProvider = input.getLabelProvider(propertyPath);
 
 		combo.setProviders(contentProvider, labelProvider);

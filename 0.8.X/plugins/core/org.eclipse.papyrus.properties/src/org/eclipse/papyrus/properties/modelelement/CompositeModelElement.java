@@ -17,8 +17,8 @@ import java.util.List;
 import org.eclipse.core.databinding.observable.IObservable;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.jface.viewers.ILabelProvider;
-import org.eclipse.papyrus.properties.databinding.MultipleObservable;
 import org.eclipse.papyrus.properties.databinding.MultipleObservableValue;
+import org.eclipse.papyrus.widgets.databinding.AggregatedObservable;
 import org.eclipse.papyrus.widgets.providers.EmptyContentProvider;
 import org.eclipse.papyrus.widgets.providers.IStaticContentProvider;
 
@@ -37,24 +37,32 @@ public class CompositeModelElement extends AbstractModelElement {
 	@Override
 	public IObservable doGetObservable(String propertyPath) {
 
-		MultipleObservable observableComposite = null;
+		AggregatedObservable observableComposite = null;
 
 		for(ModelElement element : elements) {
 			IObservable observable = element.getObservable(propertyPath);
 
+			//Otherwise, we use a standard AggregatedComposite
 			if(observableComposite == null) {
-				if(observable instanceof IObservableValue) {
-					observableComposite = new MultipleObservableValue(getDefaultValue(propertyPath));
+				if(observable instanceof AggregatedObservable) {
+					observableComposite = (AggregatedObservable)observable;
 				} else {
-					return null; //The support for CompositeObservableList is too complicated.
-					//There are too many non-trivial choices (Union or Intersection display,
-					//unadapted behavior of MultipleValueEditors, ...)
-					//observableComposite = new MultipleObservableList();
+					if(observable instanceof IObservableValue) {
+						observableComposite = new MultipleObservableValue().aggregate(observable);
+						if(observableComposite == null) {
+							return null;
+						}
+					} else {
+						return null; //The support for CompositeObservableList is too complicated.
+						//There are too many non-trivial choices (Union or Intersection display,
+						//unadapted behavior of MultipleValueEditors, ...)
+						//observableComposite = new MultipleObservableList();
+					}
 				}
-			}
-
-			if(!observableComposite.add(observable)) {
-				return null;
+			} else {
+				if((observableComposite = observableComposite.aggregate(observable)) == null) {
+					return null;
+				}
 			}
 		}
 

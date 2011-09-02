@@ -164,4 +164,12 @@ public class UMLNotationModelElement extends AbstractModelElement {
 		return sourceElement;
 	}
 
+	@Override
+	public boolean isMandatory(String propertyPath) {
+		if(QualifiedName.equals(propertyPath)) {
+			return true;
+		}
+		return super.isMandatory(propertyPath);
+	}
+
 }
