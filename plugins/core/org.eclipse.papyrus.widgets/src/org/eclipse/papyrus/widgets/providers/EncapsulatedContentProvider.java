@@ -49,6 +49,14 @@ public class EncapsulatedContentProvider implements IHierarchicContentProvider, 
 	public EncapsulatedContentProvider(IStaticContentProvider encapsulated) {
 		this.encapsulated = encapsulated;
 	}
+	
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 */
+	protected EncapsulatedContentProvider() {
+	}
 
 	/**
 	 * Returns all elements known by this ContentProvider. This is the union of
