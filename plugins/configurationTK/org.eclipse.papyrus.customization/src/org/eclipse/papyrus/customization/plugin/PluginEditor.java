@@ -12,116 +12,112 @@
 package org.eclipse.papyrus.customization.plugin;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.StringReader;
-import java.io.StringWriter;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.OutputKeys;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
 
-import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.papyrus.customization.Activator;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
+import org.eclipse.papyrus.eclipse.project.editors.file.BuildEditor;
+import org.eclipse.papyrus.eclipse.project.editors.file.ManifestEditor;
+import org.eclipse.papyrus.eclipse.project.editors.interfaces.IBuildEditor;
+import org.eclipse.papyrus.eclipse.project.editors.interfaces.IManifestEditor;
+import org.eclipse.papyrus.eclipse.project.editors.interfaces.IPluginProjectEditor;
+import org.eclipse.papyrus.eclipse.project.editors.project.PluginProjectEditor;
 import org.xml.sax.SAXException;
 
 
-public class PluginEditor {
 
-	private IProject project;
+public class PluginEditor extends PluginProjectEditor implements IPluginProjectEditor, IManifestEditor, IBuildEditor {
 
-	private Document pluginXML;
+	protected IManifestEditor manifest;
 
-	private IFile pluginFile;
+	protected IBuildEditor build;
 
-	private Element pluginRoot;
+	public PluginEditor(IProject project) throws CoreException, IOException, SAXException, ParserConfigurationException {
+		super(project);
+		manifest = new ManifestEditor(project);
+		build = new BuildEditor(project);
 
-	public PluginEditor(IProject project) throws ParserConfigurationException, SAXException, IOException {
-		this.project = project;
-		pluginFile = getPlugin();
-
-		DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
-		DocumentBuilder documentBuilder = documentFactory.newDocumentBuilder();
-
-		pluginXML = documentBuilder.parse(pluginFile.getLocation().toOSString());
-
-		pluginRoot = pluginXML.getDocumentElement();
-	}
-
-	public Element addExtension(String extensionPoint) {
-		Element extension = pluginXML.createElement("extension"); //$NON-NLS-1$
-		extension.setAttribute("point", extensionPoint); //$NON-NLS-1$
-		pluginRoot.appendChild(extension);
-
-		return extension;
-	}
-
-	public void setAttribute(Element element, String attributeName, String attributeValue) {
-		element.setAttribute(attributeName, attributeValue);
-	}
-
-	public Element addChild(Element element, String childName) {
-		Element child = pluginXML.createElement(childName);
-		element.appendChild(child);
-
-		return child;
-	}
-
-	public void save() throws CoreException, Exception {
-
-		TransformerFactory transformerFactory = TransformerFactory.newInstance();
-		Transformer transformer = transformerFactory.newTransformer();
-		transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8"); //$NON-NLS-1$
-		StreamResult result = new StreamResult(new StringWriter());
-		DOMSource source = new DOMSource(pluginXML);
-		transformer.transform(source, result);
-
-		InputStream inputStream = getInputStream(result.getWriter().toString());
-		if(inputStream == null) {
-			throw new Exception("An error occured when modifying plugin.xml ; modifications aborted"); //$NON-NLS-1$
+		manifest.init();
+		build.init();
+		if(!exists()) {
+			create();
 		}
-
-		pluginFile.setContents(inputStream, true, true, null);
+		init();
 	}
 
-	private InputStream getInputStream(String text) {
-		if(text == null) {
-			Activator.log.warn("Cannot open an input stream for a null text"); //$NON-NLS-1$
-			return null;
-		}
-
-		final StringReader sr = new StringReader(text);
-		InputStream is = new InputStream() {
-
-			@Override
-			public int read() throws IOException {
-				return sr.read();
-			}
-
-		};
-
-		return is;
+	public PluginProjectEditor getPluginEditor() {
+		return this;
 	}
 
-	private IFile getPlugin() {
-		IFile plugin = project.getFile("plugin.xml"); //$NON-NLS-1$
-		if(!plugin.exists()) {
-			InputStream is = getInputStream("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" + "<?eclipse version=\"3.4\"?>\n" + "<plugin>\n" + "</plugin>\n"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+	public IManifestEditor getManifestEditor() {
+		return this.manifest;
+	}
 
-			try {
-				plugin.create(is, true, null);
-			} catch (CoreException ex) {
-				Activator.log.error(ex);
-			}
-		}
-		return plugin;
+	public IBuildEditor getBuildEditor() {
+		return this.build;
+	}
+
+	public void registerSourceFolder(String source) {
+		build.registerSourceFolder(source);
+	}
+
+	public void addToBuild(String path) {
+		build.addToBuild(path);
+	}
+
+	public boolean isRegistred(String path) {
+		return build.isRegistred(path);
+	}
+
+	public String[] getSourceFolders() {
+		return build.getSourceFolders();
+	}
+
+	public void addDependency(String dependency) {
+		manifest.addDependency(dependency);
+	}
+
+	public void addDependency(String dependency, String version) {
+		manifest.addDependency(dependency, version);
+	}
+
+	public void setValue(String key, String value) {
+		manifest.setValue(key, value);
+	}
+
+	public void setValue(String key, String name, String value) {
+		manifest.setValue(key, name, value);
+	}
+
+	public void removeValue(String key, String value) {
+		manifest.removeValue(key, value);
+	}
+
+	public void removeValue(String key) {
+		manifest.removeValue(key);
+	}
+
+	public void setBundleName(String name) {
+		manifest.setBundleName(name);
+	}
+
+	public String getSymbolicBundleName() {
+		return manifest.getSymbolicBundleName();
+	}
+
+	public String getBundleVersion() {
+		return manifest.getBundleVersion();
+	}
+
+	public void setBundleVersion(String version) {
+		manifest.setBundleVersion(version);
+	}
+
+	@Override
+	public void save() throws Throwable {
+		super.save();
+		manifest.save();
+		build.save();
 	}
 }

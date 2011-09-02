@@ -15,7 +15,7 @@ import org.eclipse.papyrus.customization.messages.Messages;
 import org.eclipse.papyrus.customization.model.customization.CustomizableElement;
 import org.eclipse.papyrus.customization.model.customization.FileBasedCustomizableElement;
 import org.eclipse.papyrus.customization.model.customization.UICustom;
-import org.eclipse.papyrus.customization.plugin.ProjectEditor;
+import org.eclipse.papyrus.customization.plugin.PluginEditor;
 import org.w3c.dom.Element;
 
 
@@ -27,14 +27,14 @@ public class UICustomExtensionFactory extends FileBasedExtensionFactory {
 	}
 
 	@Override
-	public void addElement(CustomizableElement element, ProjectEditor editor) {
+	public void addElement(CustomizableElement element, PluginEditor editor) {
 		super.addElement(element, editor);
 
 		editor.getManifestEditor().addDependency("org.eclipse.emf.facet.infra.browser.custom"); //$NON-NLS-1$
 	}
 
 	@Override
-	protected Element createExtension(FileBasedCustomizableElement element, ProjectEditor editor) {
+	protected Element createExtension(FileBasedCustomizableElement element, PluginEditor editor) {
 		Element extension = super.createExtension(element, editor);
 		extension.setAttribute("loadByDefault", ((UICustom)element).isLoadByDefault() ? "true" : "false"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		return extension;

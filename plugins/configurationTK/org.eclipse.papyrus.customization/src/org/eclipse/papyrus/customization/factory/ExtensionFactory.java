@@ -18,7 +18,7 @@ import java.util.Map;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.papyrus.customization.model.customization.CustomizableElement;
 import org.eclipse.papyrus.customization.model.customization.CustomizationPackage;
-import org.eclipse.papyrus.customization.plugin.ProjectEditor;
+import org.eclipse.papyrus.customization.plugin.PluginEditor;
 
 
 public interface ExtensionFactory {
@@ -55,7 +55,7 @@ public interface ExtensionFactory {
 		}
 	}
 
-	public void addElement(CustomizableElement element, ProjectEditor editor);
+	public void addElement(CustomizableElement element, PluginEditor editor);
 
 	public String getName();
 }

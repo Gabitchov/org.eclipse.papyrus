@@ -31,7 +31,7 @@ import org.eclipse.papyrus.customization.Activator;
 import org.eclipse.papyrus.customization.messages.Messages;
 import org.eclipse.papyrus.customization.model.customization.CustomizableElement;
 import org.eclipse.papyrus.customization.model.customization.FileBasedCustomizableElement;
-import org.eclipse.papyrus.customization.plugin.ProjectEditor;
+import org.eclipse.papyrus.customization.plugin.PluginEditor;
 import org.eclipse.papyrus.properties.contexts.Context;
 import org.eclipse.papyrus.properties.util.EMFHelper;
 import org.eclipse.papyrus.widgets.util.FileUtil;
@@ -48,21 +48,21 @@ public class PropertyViewExtensionFactory extends FileBasedExtensionFactory {
 	}
 
 	@Override
-	public void addElement(CustomizableElement element, ProjectEditor editor) {
+	public void addElement(CustomizableElement element, PluginEditor editor) {
 		super.addElement(element, editor);
 
 		editor.getManifestEditor().addDependency("org.eclipse.papyrus.properties"); //$NON-NLS-1$
 	}
 
 	@Override
-	protected Element createExtension(FileBasedCustomizableElement element, ProjectEditor editor) {
+	protected Element createExtension(FileBasedCustomizableElement element, PluginEditor editor) {
 		Element extension = super.createExtension(element, editor);
 		//extension.setAttribute("loadDefault", ((PropertyView)element).isLoadDefault() ? "true" : "false");
 		return extension;
 	}
 
 	@Override
-	protected void copyFile(FileBasedCustomizableElement element, ProjectEditor editor) {
+	protected void copyFile(FileBasedCustomizableElement element, PluginEditor editor) {
 		String path = element.getFile();
 		File sourceFile = FileUtil.getFile(path);
 		URI uri = URI.createFileURI(sourceFile.getAbsolutePath());

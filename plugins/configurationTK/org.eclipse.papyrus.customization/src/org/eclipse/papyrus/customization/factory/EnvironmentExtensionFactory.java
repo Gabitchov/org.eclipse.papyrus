@@ -14,7 +14,7 @@ package org.eclipse.papyrus.customization.factory;
 import org.eclipse.papyrus.customization.messages.Messages;
 import org.eclipse.papyrus.customization.model.customization.CustomizableElement;
 import org.eclipse.papyrus.customization.model.customization.FileBasedCustomizableElement;
-import org.eclipse.papyrus.customization.plugin.ProjectEditor;
+import org.eclipse.papyrus.customization.plugin.PluginEditor;
 
 
 public class EnvironmentExtensionFactory extends FileBasedExtensionFactory {
@@ -24,7 +24,7 @@ public class EnvironmentExtensionFactory extends FileBasedExtensionFactory {
 	}
 
 	@Override
-	public void addElement(CustomizableElement element, ProjectEditor editor) {
+	public void addElement(CustomizableElement element, PluginEditor editor) {
 		super.addElement(element, editor);
 
 		editor.getManifestEditor().addDependency("org.eclipse.papyrus.properties"); //$NON-NLS-1$

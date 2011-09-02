@@ -20,7 +20,7 @@ import java.io.InputStream;
 import org.eclipse.papyrus.customization.Activator;
 import org.eclipse.papyrus.customization.model.customization.CustomizableElement;
 import org.eclipse.papyrus.customization.model.customization.FileBasedCustomizableElement;
-import org.eclipse.papyrus.customization.plugin.ProjectEditor;
+import org.eclipse.papyrus.customization.plugin.PluginEditor;
 import org.eclipse.papyrus.widgets.util.FileUtil;
 import org.w3c.dom.Element;
 
@@ -45,12 +45,12 @@ public class FileBasedExtensionFactory implements ExtensionFactory {
 		this.name = name;
 	}
 
-	public void addElement(CustomizableElement element, ProjectEditor editor) {
+	public void addElement(CustomizableElement element, PluginEditor editor) {
 		createExtension((FileBasedCustomizableElement)element, editor);
 		copyFile((FileBasedCustomizableElement)element, editor);
 	}
 
-	protected Element createExtension(FileBasedCustomizableElement element, ProjectEditor editor) {
+	protected Element createExtension(FileBasedCustomizableElement element, PluginEditor editor) {
 		Element extensionElement = null;
 		if(element instanceof FileBasedCustomizableElement) {
 			Element extension = editor.getPluginEditor().addExtension(extensionPoint);
@@ -60,7 +60,7 @@ public class FileBasedExtensionFactory implements ExtensionFactory {
 		return extensionElement;
 	}
 
-	protected void copyFile(FileBasedCustomizableElement element, ProjectEditor editor) {
+	protected void copyFile(FileBasedCustomizableElement element, PluginEditor editor) {
 		String path = element.getFile();
 		File sourceFile = FileUtil.getFile(path);
 		File targetFile = FileUtil.getWorkspaceFile("/" + editor.getProject().getName() + "/" + getTargetPath(element)); //$NON-NLS-1$ //$NON-NLS-2$

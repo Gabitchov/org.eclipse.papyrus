@@ -13,8 +13,13 @@ package org.eclipse.papyrus.customization.generator;
 
 import java.io.IOException;
 import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.xml.parsers.ParserConfigurationException;
 
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -24,7 +29,8 @@ import org.eclipse.papyrus.customization.factory.ExtensionFactory;
 import org.eclipse.papyrus.customization.messages.Messages;
 import org.eclipse.papyrus.customization.model.customization.CustomizableElement;
 import org.eclipse.papyrus.customization.model.customization.CustomizationConfiguration;
-import org.eclipse.papyrus.customization.plugin.ProjectEditor;
+import org.eclipse.papyrus.customization.plugin.PluginEditor;
+import org.xml.sax.SAXException;
 
 public class PluginGenerator {
 
@@ -32,12 +38,16 @@ public class PluginGenerator {
 
 	private final static String PLUGIN_NATURE_ID = "org.eclipse.pde.PluginNature"; //$NON-NLS-1$
 
-	public void generate(IProject project, CustomizationConfiguration configuration) {
-		ProjectEditor editor;
+	public void generate(IProject project, CustomizationConfiguration configuration) throws CoreException, IOException, SAXException, ParserConfigurationException {
+		PluginEditor editor;
 
-		editor = new ProjectEditor(project);
+		editor = new PluginEditor(project);
 
-		editor.addNature(PLUGIN_NATURE_ID);
+		//editor.addNature("org.eclipse.jdt.core.javanature");
+
+		Set<String> natures = new HashSet<String>();
+		natures.add(PLUGIN_NATURE_ID);
+		editor.addNatures(natures);
 
 		for(CustomizableElement element : configuration.getElements()) {
 			ExtensionFactory factory = getFactory(element);
@@ -50,7 +60,7 @@ public class PluginGenerator {
 
 		try {
 			editor.save();
-		} catch (Exception ex) {
+		} catch (Throwable ex) {
 			Activator.log.error(ex);
 			return;
 		}
@@ -66,11 +76,9 @@ public class PluginGenerator {
 			configuration.eResource().setURI(uri);
 		}
 
-		try {
-			configuration.eResource().save(Collections.EMPTY_MAP);
-		} catch (IOException ex) {
-			Activator.log.error(ex);
-		}
+		configuration.eResource().save(Collections.EMPTY_MAP);
+
+		editor.getProject().refreshLocal(0, null);
 	}
 
 	private ExtensionFactory getFactory(CustomizableElement element) {

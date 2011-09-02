@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -16,18 +16,16 @@ import java.util.Set;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.wizard.WizardPage;
+import org.eclipse.papyrus.customization.display.DisplayManager;
 import org.eclipse.papyrus.customization.messages.Messages;
 import org.eclipse.papyrus.customization.model.customization.CustomizationConfiguration;
 import org.eclipse.papyrus.customization.model.customization.CustomizationPackage;
-import org.eclipse.papyrus.properties.contexts.Section;
 import org.eclipse.papyrus.properties.contexts.View;
-import org.eclipse.papyrus.properties.runtime.ConfigurationManager;
 import org.eclipse.papyrus.properties.runtime.ConstraintEngine;
-import org.eclipse.papyrus.properties.runtime.DefaultDisplayEngine;
-import org.eclipse.papyrus.properties.runtime.DisplayEngine;
+import org.eclipse.papyrus.properties.runtime.EmbeddedDisplayEngine;
 import org.eclipse.papyrus.properties.widgets.layout.PropertiesLayout;
-import org.eclipse.papyrus.properties.xwt.XWTSection;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 
@@ -57,24 +55,17 @@ public class CustomizationPage extends WizardPage {
 			this.configuration = CustomizationPackage.eINSTANCE.getCustomizationFactory().createCustomizationConfiguration();
 		}
 
-		DisplayEngine displayEngine = new DefaultDisplayEngine(true);
 		IStructuredSelection selection = new StructuredSelection(configuration);
 
-		ConstraintEngine constraintEngine = ConfigurationManager.instance.constraintEngine;
+		ConstraintEngine constraintEngine = DisplayManager.instance.constraintEngine;
 		Set<View> views = constraintEngine.getViews(selection);
 
 		Composite self = new Composite(container, SWT.BORDER);
 		self.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false));
+		self.setLayout(new FillLayout());
 
-		for(View view : views) {
-			for(Section section : view.getSections()) {
-				XWTSection xwtSection = new XWTSection(section, view, displayEngine);
-
-				xwtSection.createControls(self, null);
-				xwtSection.setInput(null, selection);
-				xwtSection.refresh();
-			}
-		}
+		EmbeddedDisplayEngine display = new EmbeddedDisplayEngine();
+		display.display(views, self, selection, SWT.NONE);
 
 		setControl(container);
 	}
