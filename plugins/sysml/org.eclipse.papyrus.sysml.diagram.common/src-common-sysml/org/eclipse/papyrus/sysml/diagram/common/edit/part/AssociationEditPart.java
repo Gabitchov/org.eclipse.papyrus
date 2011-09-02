@@ -125,6 +125,12 @@ public class AssociationEditPart extends AbstractElementLinkEditPart {
 				if(isNavigable(association, source) && isNavigable(association, target)) {
 
 					// No navigable mark shown on figure.
+					if(source.getAggregation() == AggregationKind.NONE_LITERAL) {
+						setArrowSource(getArrowDecoration(EdgeDecorationType.NONE));
+					}
+					if(target.getAggregation() == AggregationKind.NONE_LITERAL) {
+						setArrowTarget(getArrowDecoration(EdgeDecorationType.NONE));
+					}
 
 				} else {
 
@@ -137,8 +143,7 @@ public class AssociationEditPart extends AbstractElementLinkEditPart {
 					}
 
 				}
-
-				// aggregation? for it the opposite is changed
+				
 				if(source.getAggregation() == AggregationKind.SHARED_LITERAL) {
 					setArrowSource(getArrowDecoration(EdgeDecorationType.SOLID_DIAMOND_EMPTY));
 				}
@@ -146,7 +151,6 @@ public class AssociationEditPart extends AbstractElementLinkEditPart {
 					setArrowTarget(getArrowDecoration(EdgeDecorationType.SOLID_DIAMOND_EMPTY));
 				}
 
-				// composite? for it the opposite is changed
 				if(source.getAggregation() == AggregationKind.COMPOSITE_LITERAL) {
 					setArrowSource(getArrowDecoration(EdgeDecorationType.SOLID_DIAMOND_FILLED));
 				}
