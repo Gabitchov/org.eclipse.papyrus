@@ -15,4 +15,7 @@
   <modelCellEditors xsi:type="modelCellEditor:BasicCellEditor" cellId="uml_unlimited_natural_cell_papyrus" basicCellEditorImpl="org.eclipse.papyrus.widget.celleditors.uml.editors.LiteralUnlimitedNaturalCellEditor">
     <cellType xsi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/3.0.0/UML#//UnlimitedNatural"/>
   </modelCellEditors>
+  <modelCellEditors xsi:type="modelCellEditor:UnaryReferenceCellEditor" cellId="uml_unary_reference_cell_papyrus" unaryReferenceCellEditorImpl="org.eclipse.papyrus.widget.celleditors.uml.editors.UnaryReferencePapyrusCellEditor">
+    <cellType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Element"/>
+  </modelCellEditors>
 </modelCellEditor:ModelCellEditorDeclarations>
