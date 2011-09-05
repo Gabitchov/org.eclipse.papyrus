@@ -147,8 +147,7 @@ public abstract class AbstractCommandHandler extends AbstractModelExplorerHandle
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		try {
-			ServiceUtilsForActionHandlers util = new ServiceUtilsForActionHandlers();
-			util.getTransactionalEditingDomain().getCommandStack().execute(getCommand());
+			ServiceUtilsForActionHandlers.getInstance().getTransactionalEditingDomain().getCommandStack().execute(getCommand());
 		} catch (ServiceException e) {
 			Activator.log.error("Unexpected error while executing command.", e); //$NON-NLS-1$
 		}
@@ -161,7 +160,8 @@ public abstract class AbstractCommandHandler extends AbstractModelExplorerHandle
 	 */
 	@Override
 	public boolean isEnabled() {
-		return getCommand().canExecute();
+		Command command = getCommand();
+		return command != null && getCommand().canExecute();
 	}
 
 }

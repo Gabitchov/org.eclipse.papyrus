@@ -126,15 +126,12 @@ public abstract class AbstractGraphicalCommandHandler extends AbstractParametric
 	 * @return the editing domain (can be null)
 	 */
 	protected TransactionalEditingDomain getEditingDomain() {
-		ServiceUtilsForActionHandlers serviceUtils = new ServiceUtilsForActionHandlers();
 		TransactionalEditingDomain editingDomain = null;
 		try {
-			editingDomain = serviceUtils.getTransactionalEditingDomain();
-
+			editingDomain = ServiceUtilsForActionHandlers.getInstance().getTransactionalEditingDomain();
 		} catch (ServiceException e) {
 			Activator.log.error(e);
 		}
-
 		return editingDomain;
 	}
 
