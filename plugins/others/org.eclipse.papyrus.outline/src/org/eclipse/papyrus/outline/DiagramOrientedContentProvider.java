@@ -69,7 +69,10 @@ public class DiagramOrientedContentProvider implements ITreeContentProvider {
 				if(object instanceof View) {
 					View view = (View)object;
 					EObject modelElement = ViewUtil.resolveSemanticElement(view);
-					children.add(modelElement);
+					if (modelElement != null)
+					{
+						children.add(modelElement);
+					}
 				}
 			}
 			return children.toArray();
