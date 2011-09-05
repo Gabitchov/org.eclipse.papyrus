@@ -25,6 +25,7 @@ import org.eclipse.swt.widgets.Text;
  * as a Text.
  * This editor's content is validated when the focus is lost,
  * or, if the editor is single-line, when the Carriage Return is pressed.
+ * For a multi-line editor, ctrl+enter will also validate the editor's content.
  * 
  * @see SWT#MULTI
  * 
@@ -78,10 +79,7 @@ public class StringEditor extends AbstractValueEditor implements KeyListener {
 			super.label.setLayoutData(getLabelLayoutData());
 		}
 
-		//We listen on Carriage Return only if the editor isn't multiline
-		if((style & SWT.MULTI) == 0) {
-			text.addKeyListener(this);
-		}
+		text.addKeyListener(this);
 
 		setWidgetObservable(WidgetProperties.text(SWT.FocusOut).observe(text), true);
 
@@ -110,14 +108,25 @@ public class StringEditor extends AbstractValueEditor implements KeyListener {
 	 * Validates this editor when one of the following events occur :
 	 * - CR released
 	 * - Keypad CR released
+	 * - Ctrl + [CR | Keypad CR] released
 	 * 
 	 * @see org.eclipse.swt.events.KeyListener#keyReleased(org.eclipse.swt.events.KeyEvent)
 	 * 
 	 * @param e
 	 */
 	public void keyReleased(KeyEvent e) {
-		if((e.keyCode == SWT.CR || e.keyCode == SWT.KEYPAD_CR) && e.stateMask == SWT.NONE) {
-			notifyChange();
+		//We listen on Carriage Return or Ctrl+ Carriage return, depending on
+		//whether the editor is single- or multi-line
+		if(e.keyCode == SWT.CR || e.keyCode == SWT.KEYPAD_CR) {
+			if((text.getStyle() & SWT.MULTI) == 0) { //Single-line : Enter
+				if(e.stateMask == SWT.NONE) {
+					notifyChange();
+				}
+			} else { //Multi-line : Ctrl+Enter
+				if(e.stateMask == SWT.CTRL) {
+					notifyChange();
+				}
+			}
 		}
 	}
 
