@@ -15,14 +15,13 @@ package org.eclipse.papyrus.diagram.menu.actions;
 
 import java.util.List;
 
-import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.IWorkbenchPage;
-import org.eclipse.ui.PlatformUI;
+import org.eclipse.papyrus.core.services.ServiceException;
+import org.eclipse.papyrus.core.utils.ServiceUtilsForActionHandlers;
+import org.eclipse.papyrus.diagram.common.Activator;
 
 
 public abstract class AbstractGraphicalParametricAction extends AbstractParametricAction {
@@ -69,10 +68,12 @@ public abstract class AbstractGraphicalParametricAction extends AbstractParametr
 	 * @return the {@link TransactionalEditingDomain} or <code>null</code> if it can not be found
 	 */
 	protected TransactionalEditingDomain getEditingDomain() {
-		EditingDomain domain = null;
-		IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-		IEditorPart activeEditor = activePage.getActiveEditor();
-		domain = (EditingDomain)activeEditor.getAdapter(EditingDomain.class);
-		return (domain instanceof TransactionalEditingDomain) ? (TransactionalEditingDomain)domain : null;
+		TransactionalEditingDomain editingDomain = null;
+		try {
+			editingDomain = ServiceUtilsForActionHandlers.getInstance().getTransactionalEditingDomain();
+		} catch (ServiceException e) {
+			Activator.log.error(e);
+		}
+		return editingDomain;
 	}
 }

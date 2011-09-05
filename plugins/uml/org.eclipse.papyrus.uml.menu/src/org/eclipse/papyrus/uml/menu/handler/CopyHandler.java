@@ -18,9 +18,10 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.command.CopyToClipboardCommand;
-import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.uml2.uml.Element;
 
 /**
@@ -39,28 +40,32 @@ public class CopyHandler extends AbstractEMFCommandHandler {
 	 */
 	@Override
 	protected Command getCommand() {
+		TransactionalEditingDomain editingDomain = getEditingDomain();
 		List<EObject> selection = getSelectedElements();
-		ArrayList<EObject> stereotypedSelection = new ArrayList<EObject>();
-		stereotypedSelection.addAll(getSelectedElements());
-		Iterator<EObject> selecIterator= selection.iterator();
-		while (selecIterator.hasNext()) {
-			EObject eObject = (EObject) selecIterator.next();
-			
-			if( eObject instanceof Element){
-				stereotypedSelection.addAll(((Element)eObject).getStereotypeApplications());
-			}
-			//copy stereotype contained into
-			Iterator<EObject> iter=eObject.eAllContents();
-			while (iter.hasNext()) {
-				EObject subeObject = (EObject) iter.next();
-				if( subeObject instanceof Element){
-					stereotypedSelection.addAll(((Element)subeObject).getStereotypeApplications());
+		if(editingDomain != null && !selection.isEmpty()) {
+			ArrayList<EObject> stereotypedSelection = new ArrayList<EObject>();
+			stereotypedSelection.addAll(getSelectedElements());
+			Iterator<EObject> selecIterator = selection.iterator();
+			while(selecIterator.hasNext()) {
+				EObject eObject = (EObject)selecIterator.next();
+
+				if(eObject instanceof Element) {
+					stereotypedSelection.addAll(((Element)eObject).getStereotypeApplications());
 				}
-				
+				//copy stereotype contained into
+				Iterator<EObject> iter = eObject.eAllContents();
+				while(iter.hasNext()) {
+					EObject subeObject = (EObject)iter.next();
+					if(subeObject instanceof Element) {
+						stereotypedSelection.addAll(((Element)subeObject).getStereotypeApplications());
+					}
+
+				}
+
 			}
-			
+			return CopyToClipboardCommand.create(getEditingDomain(), stereotypedSelection);
 		}
-		return  CopyToClipboardCommand.create(getEditingDomain(), stereotypedSelection);
+		return UnexecutableCommand.INSTANCE;
 	}
 
 }

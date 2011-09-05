@@ -24,14 +24,12 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.utils.BusinessModelResolver;
 import org.eclipse.papyrus.core.utils.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.uml.menu.Activator;
-import org.eclipse.papyrus.uml.menu.command.GMFtoEMFCommandWrapper;
 import org.eclipse.ui.PlatformUI;
 
 /**
@@ -48,7 +46,7 @@ import org.eclipse.ui.PlatformUI;
 public abstract class AbstractEMFCommandHandler extends AbstractHandler {
 
 	/**
-	 * Returns the  current editing domain
+	 * Returns the current editing domain
 	 * 
 	 * @return
 	 *         the current editing domain
@@ -63,6 +61,7 @@ public abstract class AbstractEMFCommandHandler extends AbstractHandler {
 		}
 		return editingDomain;
 	}
+
 	/**
 	 * <pre>
 	 * 
@@ -135,14 +134,21 @@ public abstract class AbstractEMFCommandHandler extends AbstractHandler {
 			for(Object current : structuredSelection.toArray()) {
 				// Adapt current selection to EObject
 				if(current instanceof IAdaptable) {
-					selectedEObjects.add((EObject)((IAdaptable)current).getAdapter(EObject.class));
+					EObject eobject = (EObject)((IAdaptable)current).getAdapter(EObject.class);
+					if(eobject != null) {
+						selectedEObjects.add(eobject);
+					}
 				}
+
 			}
 		} else { // Not a IStructuredSelection
 			if(selection != null) {
 				// Adapt current selection to EObject
 				if(selection instanceof IAdaptable) {
-					selectedEObjects.add((EObject)((IAdaptable)selection).getAdapter(EObject.class));
+					EObject eobject = (EObject)((IAdaptable)selection).getAdapter(EObject.class);
+					if(eobject != null) {
+						selectedEObjects.add(eobject);
+					}
 				}
 			}
 		}
@@ -159,14 +165,14 @@ public abstract class AbstractEMFCommandHandler extends AbstractHandler {
 	 * @throws ExecutionException
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		
+
 		try {
 
 			ServiceUtilsForActionHandlers util = ServiceUtilsForActionHandlers.getInstance();
 			Command emfCommand = getCommand();
-			
+
 			util.getTransactionalEditingDomain().getCommandStack().execute(emfCommand);
-			
+
 			return emfCommand.getResult();
 
 		} catch (ServiceException e) {
@@ -174,7 +180,7 @@ public abstract class AbstractEMFCommandHandler extends AbstractHandler {
 			Activator.log.error("Unexpected error while executing command.", e);
 
 		}
-		
+
 		return null;
 	}
 
