@@ -18,6 +18,7 @@ import java.util.List;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.uml.menu.command.PasteElementCommand;
 
 /**
@@ -34,11 +35,12 @@ public class PasteHandler extends AbstractEMFCommandHandler {
 	 */
 	@Override
 	protected Command getCommand() {
+		TransactionalEditingDomain editingDomain = getEditingDomain();
 		List<EObject> selection = getSelectedElements();
-		if(selection.size() == 1) {
+		if(editingDomain != null && selection.size() == 1) {
 			//return PasteFromClipboardCommand.create(getEditingDomain(), selection.get(0), null);
 			//select UML Element and copy
-			return new PasteElementCommand(getEditingDomain(),selection.get(0));
+			return new PasteElementCommand(editingDomain, selection.get(0));
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
