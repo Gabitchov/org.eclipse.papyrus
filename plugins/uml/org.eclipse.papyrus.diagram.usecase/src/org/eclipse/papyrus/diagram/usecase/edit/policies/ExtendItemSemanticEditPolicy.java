@@ -19,6 +19,8 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.command.DeleteCommand;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.commands.UnexecutableCommand;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
@@ -26,17 +28,13 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelations
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.papyrus.diagram.common.command.wrappers.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.diagram.usecase.edit.commands.AbstractionCreateCommand;
-import org.eclipse.papyrus.diagram.usecase.edit.commands.AbstractionReorientCommand;
 import org.eclipse.papyrus.diagram.usecase.edit.commands.CommentAnnotatedElementCreateCommand;
 import org.eclipse.papyrus.diagram.usecase.edit.commands.CommentAnnotatedElementReorientCommand;
 import org.eclipse.papyrus.diagram.usecase.edit.commands.ConstraintConstrainedElementCreateCommand;
 import org.eclipse.papyrus.diagram.usecase.edit.commands.ConstraintConstrainedElementReorientCommand;
 import org.eclipse.papyrus.diagram.usecase.edit.commands.DependencyCreateCommand;
-import org.eclipse.papyrus.diagram.usecase.edit.commands.DependencyReorientCommand;
 import org.eclipse.papyrus.diagram.usecase.edit.commands.RealizationCreateCommand;
-import org.eclipse.papyrus.diagram.usecase.edit.commands.RealizationReorientCommand;
 import org.eclipse.papyrus.diagram.usecase.edit.commands.UsageCreateCommand;
-import org.eclipse.papyrus.diagram.usecase.edit.commands.UsageReorientCommand;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.AbstractionEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.CommentAnnotatedElementEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ConstraintConstrainedElementEditPart;
@@ -44,6 +42,8 @@ import org.eclipse.papyrus.diagram.usecase.edit.parts.DependencyEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.RealizationEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UsageEditPart;
 import org.eclipse.papyrus.diagram.usecase.providers.UMLElementTypes;
+import org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils;
+import org.eclipse.papyrus.service.edit.service.IElementEditService;
 
 /**
  * @generated
@@ -138,13 +138,19 @@ public class ExtendItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy 
 	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
 		switch(getVisualID(req)) {
 		case DependencyEditPart.VISUAL_ID:
-			return getGEFWrapper(new DependencyReorientCommand(req));
 		case AbstractionEditPart.VISUAL_ID:
-			return getGEFWrapper(new AbstractionReorientCommand(req));
 		case UsageEditPart.VISUAL_ID:
-			return getGEFWrapper(new UsageReorientCommand(req));
 		case RealizationEditPart.VISUAL_ID:
-			return getGEFWrapper(new RealizationReorientCommand(req));
+			IElementEditService provider = ElementEditServiceUtils.getCommandProvider(req.getRelationship());
+			if(provider == null) {
+				return UnexecutableCommand.INSTANCE;
+			}
+			// Retrieve re-orient command from the Element Edit service
+			ICommand reorientCommand = provider.getEditCommand(req);
+			if(reorientCommand == null) {
+				return UnexecutableCommand.INSTANCE;
+			}
+			return getGEFWrapper(reorientCommand.reduce());
 		}
 		return super.getReorientRelationshipCommand(req);
 	}

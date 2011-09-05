@@ -245,11 +245,13 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			if(provider == null) {
 				return UnexecutableCommand.INSTANCE;
 			}
+
 			// Retrieve create command from the Element Edit service
 			ICommand createGMFCommand = provider.getEditCommand(req);
 
 			return getGEFWrapper(createGMFCommand);
 		}
+
 		return null;
 	}
 

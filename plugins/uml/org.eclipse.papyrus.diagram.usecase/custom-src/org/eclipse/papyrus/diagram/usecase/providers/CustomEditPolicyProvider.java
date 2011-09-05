@@ -21,8 +21,10 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.CreateEditPoliciesOperation;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.IEditPolicyProvider;
+import org.eclipse.papyrus.diagram.common.editpolicies.ApplyStereotypeEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.HyperLinkPopupBarEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.NavigationEditPolicy;
+import org.eclipse.papyrus.diagram.common.service.ApplyStereotypeRequest;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseDiagramEditPart;
 
 /**
@@ -45,7 +47,8 @@ public class CustomEditPolicyProvider implements IEditPolicyProvider {
 	 */
 	public void createEditPolicies(EditPart editPart) {
 		editPart.installEditPolicy(NavigationEditPolicy.NAVIGATION_POLICY, new NavigationEditPolicy());
-		if( editPart instanceof IPrimaryEditPart){
+		editPart.installEditPolicy(ApplyStereotypeRequest.APPLY_STEREOTYPE_REQUEST, new ApplyStereotypeEditPolicy());
+		if(editPart instanceof IPrimaryEditPart) {
 			editPart.installEditPolicy(EditPolicyRoles.POPUPBAR_ROLE, new HyperLinkPopupBarEditPolicy());
 		}
 	}

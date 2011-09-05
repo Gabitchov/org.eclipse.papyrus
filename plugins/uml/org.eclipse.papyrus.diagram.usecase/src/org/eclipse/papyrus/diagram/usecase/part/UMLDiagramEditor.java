@@ -255,6 +255,9 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 			return StructuredSelection.EMPTY;
 		}
 		Diagram diagram = document.getDiagram();
+		if(diagram == null || diagram.eResource() == null) {
+			return StructuredSelection.EMPTY;
+		}
 		IFile file = WorkspaceSynchronizer.getFile(diagram.eResource());
 		if(file != null) {
 			UMLNavigatorItem item = new UMLNavigatorItem(diagram, file, false);

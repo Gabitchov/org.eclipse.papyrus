@@ -2767,7 +2767,7 @@
         iD="org.eclipse.papyrus.diagram.usecase"
         name="Papyrus useCase editor Plugin"
         provider="Papyrus"
-        version="0.7.1.qualifier">
+        version="0.9.0.qualifier">
       <requiredPlugins>org.eclipse.draw2d</requiredPlugins>
       <requiredPlugins>org.eclipse.gmf.runtime.draw2d.ui</requiredPlugins>
     </plugin>
@@ -6377,5 +6377,72 @@
         genView="/0/@diagram/@childNodes.11 /0/@diagram/@topLevelNodes.5"
         name="NamedElementEditPart"
         superOwnedEditPart="org.eclipse.papyrus.diagram.common.editparts.NamedElementEditPart"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:ExtendedGenView"
+        comment="Label in charge to display applied stereotypes on links"
+        genView="/0/@diagram/@links.0 /0/@diagram/@links.1 /0/@diagram/@links.2 /0/@diagram/@links.3 /0/@diagram/@links.5 /0/@diagram/@links.7 /0/@diagram/@links.8 /0/@diagram/@links.9 /0/@diagram/@links.10 /0/@diagram/@links.11"
+        name="ExtendedUMLLinks"
+        superOwnedEditPart="org.eclipse.papyrus.diagram.common.editparts.UMLConnectionNodeEditPart"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:ExtendedGenView"
+        comment="add superclass for short cut"
+        genView="/0/@diagram/@topLevelNodes.8"
+        name="AbstractShortCutDiagramEditPart"
+        superOwnedEditPart="org.eclipse.papyrus.diagram.common.editparts.AbstractShortCutDiagramEditPart"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:ExtendedGenView"
+        comment="Name of the shorcut diagram"
+        genView="/0/@diagram/@topLevelNodes.8/@labels.0"
+        name="AbstractShortcutDiagramNameEditPart"
+        superOwnedEditPart="org.eclipse.papyrus.diagram.common.editparts.AbstractShortcutDiagramNameEditPart"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:ExtendedGenView"
+        comment="add superclass for compartment"
+        genView="/0/@diagram/@compartments.0 /0/@diagram/@compartments.1 /0/@diagram/@compartments.3 /0/@diagram/@compartments.5"
+        name="ResizeableListCompartmentEditPart"
+        superOwnedEditPart="org.eclipse.papyrus.diagram.common.editparts.ResizeableListCompartmentEditPart"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:ExtendedGenView"
+        comment="this is an extension to manage the comment"
+        genView="/0/@diagram/@childNodes.4 /0/@diagram/@topLevelNodes.7"
+        name="comment extended node"
+        superOwnedEditPart="org.eclipse.papyrus.diagram.common.editparts.AbstractCommentEditPart"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:LabelVisibilityPreference"
+        comment="HiddenName"
+        role="Name"
+        iconPathRole="platform:/plugin/org.eclipse.papyrus.diagram.common/icons/label_role/name.png"
+        linkLabels="/0/@diagram/@links.3/@labels.0"
+        visibleByDefault="false"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:LabelVisibilityPreference"
+        comment="Name"
+        role="Name"
+        iconPathRole="platform:/plugin/org.eclipse.papyrus.diagram.common/icons/label_role/name.png"
+        linkLabels="/0/@diagram/@links.5/@labels.0 /0/@diagram/@links.7/@labels.0 /0/@diagram/@links.8/@labels.0 /0/@diagram/@links.9/@labels.0"
+        externalNodeLabels="/0/@diagram/@topLevelNodes.8/@labels.0 /0/@diagram/@childNodes.6/@labels.0 /0/@diagram/@childNodes.8/@labels.0 /0/@diagram/@topLevelNodes.0/@labels.0"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:LabelVisibilityPreference"
+        comment="Stereotype"
+        role="Stereotype"
+        iconPathRole="platform:/plugin/org.eclipse.papyrus.diagram.common/icons/stereotype.gif"
+        linkLabels="/0/@diagram/@links.0/@labels.1 /0/@diagram/@links.1/@labels.1 /0/@diagram/@links.2/@labels.0 /0/@diagram/@links.3/@labels.1 /0/@diagram/@links.5/@labels.1 /0/@diagram/@links.7/@labels.1 /0/@diagram/@links.8/@labels.1 /0/@diagram/@links.9/@labels.1 /0/@diagram/@links.10/@labels.0 /0/@diagram/@links.11/@labels.1"
+        externalNodeLabels="/0/@diagram/@childNodes.6/@labels.1 /0/@diagram/@childNodes.8/@labels.1 /0/@diagram/@topLevelNodes.0/@labels.1"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:ExtendedGenView"
+        comment="Extended Gen View For UML compartments child label nodes, like properties in classifier representation of class diagram"
+        name="UMLCompartmentEditPart"
+        superOwnedEditPart="org.eclipse.papyrus.diagram.common.editparts.UMLCompartmentEditPart"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:ExtendedGenView"
+        comment="Manages stereotype shown with External Label"
+        genView="/0/@diagram/@links.0/@labels.1 /0/@diagram/@links.1/@labels.1 /0/@diagram/@links.2/@labels.0 /0/@diagram/@links.3/@labels.1 /0/@diagram/@links.5/@labels.1 /0/@diagram/@links.7/@labels.1 /0/@diagram/@links.8/@labels.1 /0/@diagram/@links.9/@labels.1 /0/@diagram/@links.10/@labels.0 /0/@diagram/@links.11/@labels.1 /0/@diagram/@childNodes.6/@labels.1 /0/@diagram/@childNodes.8/@labels.1 /0/@diagram/@topLevelNodes.0/@labels.1"
+        name="EP_Stereotypes_EXT_NODE"
+        superOwnedEditPart="org.eclipse.papyrus.diagram.common.editparts.AbstractLabelEditPart"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:EditPartUsingReorientService"
+        comment="Use the edit service for reorient command (All DirectedRelationship)"
+        name="DirectedRelationship"
+        genView="/0/@diagram/@links.0 /0/@diagram/@links.1 /0/@diagram/@links.2 /0/@diagram/@links.5 /0/@diagram/@links.7 /0/@diagram/@links.8 /0/@diagram/@links.9 /0/@diagram/@links.10 /0/@diagram/@links.11"/>
   </papyrusgmfgenextension:PapyrusExtensionRootNode>
 </xmi:XMI>
