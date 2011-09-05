@@ -13,11 +13,13 @@ package org.eclipse.papyrus.properties.uml.databinding;
 
 import org.eclipse.core.databinding.observable.ChangeEvent;
 import org.eclipse.core.databinding.observable.IChangeListener;
+import org.eclipse.core.databinding.observable.IObservable;
 import org.eclipse.core.databinding.observable.value.AbstractObservableValue;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.core.databinding.observable.value.ValueDiff;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
+import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
@@ -29,6 +31,7 @@ import org.eclipse.papyrus.properties.uml.messages.Messages;
 import org.eclipse.papyrus.properties.uml.util.UMLUtil;
 import org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.service.edit.service.IElementEditService;
+import org.eclipse.papyrus.widgets.databinding.AggregatedObservable;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
@@ -41,7 +44,7 @@ import org.eclipse.uml2.uml.UMLPackage;
  * 
  * @author Camille Letavernier
  */
-public class MultiplicityObservableValue extends AbstractObservableValue implements IChangeListener {
+public class MultiplicityObservableValue extends AbstractObservableValue implements IChangeListener, CommandBasedObservableValue, AggregatedObservable {
 
 	/**
 	 * The 0..* multiplicity (Any)
@@ -216,6 +219,24 @@ public class MultiplicityObservableValue extends AbstractObservableValue impleme
 
 	@Override
 	protected void doSetValue(Object value) {
+		Command command = getCommand(value);
+		domain.getCommandStack().execute(command);
+	}
+
+	private Command getSetCommand(EStructuralFeature feature, int value) {
+		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(eObject);
+		if(provider != null) {
+			SetRequest request = new SetRequest(eObject, feature, value);
+			ICommand createGMFCommand = provider.getEditCommand(request);
+
+			Command emfCommand = new GMFtoEMFCommandWrapper(createGMFCommand);
+
+			return emfCommand;
+		}
+		return null;
+	}
+
+	public Command getCommand(Object value) {
 		int lower, upper;
 		String val = (String)value;
 		if(val.equals(ANY) || val.equals(STAR)) {
@@ -233,10 +254,10 @@ public class MultiplicityObservableValue extends AbstractObservableValue impleme
 		} else {
 			if(val.matches("^[0-9]+(..[0-9*]+)?$")) { //$NON-NLS-1$
 				try {
-					if (val.contains(SEPARATOR)){
+					if(val.contains(SEPARATOR)) {
 						lower = Integer.parseInt(val.substring(0, val.indexOf(SEPARATOR)));
 						String upperString = val.substring(val.indexOf(SEPARATOR) + SEPARATOR.length(), val.length());
-						if (STAR.equals(upperString)){
+						if(STAR.equals(upperString)) {
 							upper = -1;
 						} else {
 							upper = Integer.parseInt(upperString);
@@ -246,15 +267,15 @@ public class MultiplicityObservableValue extends AbstractObservableValue impleme
 						upper = Integer.parseInt(val);
 					}
 				} catch (NumberFormatException ex) {
-					return; //Invalid multiplicity
+					return UnexecutableCommand.INSTANCE; //Invalid multiplicity
 				}
 			} else {
-				return; //Invalid multiplicity
+				return UnexecutableCommand.INSTANCE; //Invalid multiplicity
 			}
 		}
 
 		if((upper > 0 && upper < lower) || upper == 0) {
-			return;
+			return UnexecutableCommand.INSTANCE;
 		}
 
 		try {
@@ -263,23 +284,24 @@ public class MultiplicityObservableValue extends AbstractObservableValue impleme
 			CompoundCommand command = new CompoundCommand(Messages.MultiplicityObservableValue_setMultiplicityCommand);
 			command.append(lowerSetCommand);
 			command.append(upperSetCommand);
-			domain.getCommandStack().execute(command);
+			return command;
 		} catch (Exception ex) {
 			Activator.log.error(ex);
 		}
+
+		return UnexecutableCommand.INSTANCE;
 	}
 
-	private Command getSetCommand(EStructuralFeature feature, int value) {
-		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(eObject);
-		if(provider != null) {
-			SetRequest request = new SetRequest(eObject, feature, value);
-			ICommand createGMFCommand = provider.getEditCommand(request);
-
-			Command emfCommand = new GMFtoEMFCommandWrapper(createGMFCommand);
-
-			return emfCommand;
+	public AggregatedObservable aggregate(IObservable observable) {
+		try {
+			return new AggregatedPapyrusObservableValue(domain, this, observable);
+		} catch (IllegalArgumentException ex) {
+			return null; //The observable cannot be aggregated
 		}
-		return null;
+	}
+
+	public boolean hasDifferentValues() {
+		return false;
 	}
 
 }

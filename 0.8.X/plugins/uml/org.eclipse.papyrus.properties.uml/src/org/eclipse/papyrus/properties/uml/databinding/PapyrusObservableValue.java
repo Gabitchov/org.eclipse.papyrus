@@ -11,6 +11,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.uml.databinding;
 
+import org.eclipse.core.databinding.observable.IObservable;
 import org.eclipse.core.databinding.observable.Realm;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.UnexecutableCommand;
@@ -26,6 +27,7 @@ import org.eclipse.papyrus.properties.databinding.EMFObservableValue;
 import org.eclipse.papyrus.properties.util.EMFHelper;
 import org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.service.edit.service.IElementEditService;
+import org.eclipse.papyrus.widgets.databinding.AggregatedObservable;
 
 /**
  * An ObservableValue used to edit EObject properties through
@@ -34,7 +36,7 @@ import org.eclipse.papyrus.service.edit.service.IElementEditService;
  * @author Camille Letavernier
  * 
  */
-public class PapyrusObservableValue extends EMFObservableValue {
+public class PapyrusObservableValue extends EMFObservableValue implements AggregatedObservable, CommandBasedObservableValue {
 
 	public static final String UML_BOOLEAN_DATATYPE = "Boolean"; //$NON-NLS-1$
 
@@ -71,16 +73,10 @@ public class PapyrusObservableValue extends EMFObservableValue {
 
 	@Override
 	protected void doSetValue(Object value) {
-		Command emfCommand = getCommand(value);
+		Command emfCommand = getSetCommand(value);
 		domain.getCommandStack().execute(emfCommand);
 	}
 
-	/**
-	 * Returns the EMF Command for modifying this Observable's value
-	 * 
-	 * @param value
-	 * @return
-	 */
 	public Command getCommand(Object value) {
 		EObject eObjectValue = EMFHelper.getEObject(value);
 		if(eObjectValue != null) {
@@ -119,5 +115,17 @@ public class PapyrusObservableValue extends EMFObservableValue {
 	 */
 	public EObject getEObject() {
 		return eObject;
+	}
+
+	public AggregatedObservable aggregate(IObservable observable) {
+		try {
+			return new AggregatedPapyrusObservableValue(domain, this, observable);
+		} catch (IllegalArgumentException ex) {
+			return null; //The observable cannot be aggregated
+		}
+	}
+
+	public boolean hasDifferentValues() {
+		return false; //The value is not aggregated yet
 	}
 }

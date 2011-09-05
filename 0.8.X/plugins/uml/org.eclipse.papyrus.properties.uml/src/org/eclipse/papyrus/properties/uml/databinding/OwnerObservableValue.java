@@ -17,9 +17,11 @@ import java.util.List;
 import org.eclipse.core.databinding.observable.ChangeEvent;
 import org.eclipse.core.databinding.observable.Diffs;
 import org.eclipse.core.databinding.observable.IChangeListener;
+import org.eclipse.core.databinding.observable.IObservable;
 import org.eclipse.core.databinding.observable.list.IObservableList;
 import org.eclipse.core.databinding.observable.value.AbstractObservableValue;
 import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.databinding.EMFProperties;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -30,6 +32,7 @@ import org.eclipse.papyrus.diagram.common.command.wrappers.GMFtoEMFCommandWrappe
 import org.eclipse.papyrus.properties.uml.Activator;
 import org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.service.edit.service.IElementEditService;
+import org.eclipse.papyrus.widgets.databinding.AggregatedObservable;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Type;
@@ -48,7 +51,7 @@ import org.eclipse.uml2.uml.UMLPackage;
  * 
  * @author Camille Letavernier
  */
-public class OwnerObservableValue extends AbstractObservableValue implements IChangeListener {
+public class OwnerObservableValue extends AbstractObservableValue implements IChangeListener, AggregatedObservable, CommandBasedObservableValue {
 
 	private Property memberEnd;
 
@@ -98,6 +101,18 @@ public class OwnerObservableValue extends AbstractObservableValue implements ICh
 
 	@Override
 	protected void doSetValue(Object value) {
+		Command command = getCommand(value);
+		domain.getCommandStack().execute(command);
+	}
+
+	@Override
+	public void dispose() {
+		super.dispose();
+		navigableEndsObservableList.removeChangeListener(this);
+		navigableEndsObservableList.dispose();
+	}
+
+	public Command getCommand(Object value) {
 		if(value instanceof String) {
 			String owner = (String)value;
 			boolean isOwnedByAssociation = ASSOCIATION.equals(owner);
@@ -106,7 +121,7 @@ public class OwnerObservableValue extends AbstractObservableValue implements ICh
 
 			if(association.getMemberEnds().size() > 2) {
 				Activator.log.warn("Cannot change End owner for n-ary associations"); //$NON-NLS-1$
-				return;
+				return UnexecutableCommand.INSTANCE;
 			}
 
 			//Classifier classifier = memberEnd.getClass_();
@@ -158,14 +173,21 @@ public class OwnerObservableValue extends AbstractObservableValue implements ICh
 			}
 
 			this.currentValue = owner;
-			domain.getCommandStack().execute(command);
+			return command;
+		}
+
+		return UnexecutableCommand.INSTANCE;
+	}
+
+	public AggregatedObservable aggregate(IObservable observable) {
+		try {
+			return new AggregatedPapyrusObservableValue(domain, this, observable);
+		} catch (IllegalArgumentException ex) {
+			return null; //The observable cannot be aggregated
 		}
 	}
 
-	@Override
-	public void dispose(){
-		super.dispose();
-		navigableEndsObservableList.removeChangeListener(this);
-		navigableEndsObservableList.dispose();
+	public boolean hasDifferentValues() {
+		return false;
 	}
 }

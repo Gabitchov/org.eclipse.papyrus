@@ -28,6 +28,8 @@ import org.eclipse.uml2.uml.Signal;
  * 
  * @author Camille Letavernier
  */
+//TODO : Change the implementation to be able to retrieve the right Command
+//Implement AggregatedObservable and CommandBasedObservableValue
 public class SignatureObservableValue extends AbstractObservableValue {
 
 	private Message source;
