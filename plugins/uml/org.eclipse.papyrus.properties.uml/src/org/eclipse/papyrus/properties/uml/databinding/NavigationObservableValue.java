@@ -18,9 +18,12 @@ import java.util.List;
 import org.eclipse.core.databinding.observable.ChangeEvent;
 import org.eclipse.core.databinding.observable.Diffs;
 import org.eclipse.core.databinding.observable.IChangeListener;
+import org.eclipse.core.databinding.observable.IObservable;
 import org.eclipse.core.databinding.observable.list.IObservableList;
 import org.eclipse.core.databinding.observable.value.AbstractObservableValue;
+import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
+import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.databinding.EMFProperties;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -30,6 +33,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.papyrus.diagram.common.command.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.service.edit.service.IElementEditService;
+import org.eclipse.papyrus.widgets.databinding.AggregatedObservable;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Property;
@@ -41,7 +45,7 @@ import org.eclipse.uml2.uml.UMLPackage;
  * 
  * @author Camille Letavernier
  */
-public class NavigationObservableValue extends AbstractObservableValue implements IChangeListener {
+public class NavigationObservableValue extends AbstractObservableValue implements IChangeListener, CommandBasedObservableValue, AggregatedObservable {
 
 	private Property memberEnd;
 
@@ -82,10 +86,22 @@ public class NavigationObservableValue extends AbstractObservableValue implement
 
 	@Override
 	protected void doSetValue(Object value) {
+		Command command = getCommand(value);
+		domain.getCommandStack().execute(command);
+	}
+
+	@Override
+	public void dispose() {
+		super.dispose();
+		ownerObservableList.removeChangeListener(this);
+		ownerObservableList.dispose();
+	}
+
+	public Command getCommand(Object value) {
 		if(value instanceof Boolean) {
 			boolean isNavigable = (Boolean)value;
 			if(memberEnd.isNavigable() == isNavigable) {
-				return;
+				return UnexecutableCommand.INSTANCE;
 			}
 
 			Association association = memberEnd.getAssociation();
@@ -126,14 +142,21 @@ public class NavigationObservableValue extends AbstractObservableValue implement
 			}
 
 			currentValue = isNavigable;
-			domain.getCommandStack().execute(command);
+			return command;
+		}
+
+		return UnexecutableCommand.INSTANCE;
+	}
+
+	public AggregatedObservable aggregate(IObservable observable) {
+		try {
+			return new AggregatedPapyrusObservableValue(domain, this, observable);
+		} catch (IllegalArgumentException ex) {
+			return null; //The observable cannot be aggregated
 		}
 	}
 
-	@Override
-	public void dispose() {
-		super.dispose();
-		ownerObservableList.removeChangeListener(this);
-		ownerObservableList.dispose();
+	public boolean hasDifferentValues() {
+		return false;
 	}
 }
