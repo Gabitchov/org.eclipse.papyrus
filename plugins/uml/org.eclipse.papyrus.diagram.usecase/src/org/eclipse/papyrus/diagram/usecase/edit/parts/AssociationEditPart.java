@@ -18,11 +18,11 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.common.editparts.UMLConnectionNodeEditPart;
 import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.usecase.edit.policies.AssociationItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.usecase.figure.AssociationFigure;
@@ -32,7 +32,7 @@ import org.eclipse.uml2.uml.Property;
 /**
  * @generated
  */
-public class AssociationEditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
+public class AssociationEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -194,7 +194,7 @@ public class AssociationEditPart extends ConnectionNodeEditPart implements ITree
 	 */
 	protected Property getSourceProperty() {
 		IGraphicalEditPart graphicalSource = (IGraphicalEditPart)getSource();
-		if (graphicalSource != null) {
+		if(graphicalSource != null) {
 			return getRelatedProperty(graphicalSource.resolveSemanticElement());
 		}
 		return null;
@@ -205,7 +205,7 @@ public class AssociationEditPart extends ConnectionNodeEditPart implements ITree
 	 */
 	protected Property getTargetProperty() {
 		IGraphicalEditPart graphicalTarget = (IGraphicalEditPart)getTarget();
-		if (graphicalTarget != null) {
+		if(graphicalTarget != null) {
 			return getRelatedProperty(graphicalTarget.resolveSemanticElement());
 		}
 		return null;
@@ -215,11 +215,11 @@ public class AssociationEditPart extends ConnectionNodeEditPart implements ITree
 	 * @generated NOT
 	 */
 	protected Property getRelatedProperty(EObject obj) {
-		if (obj != null && resolveSemanticElement() instanceof Association) {
+		if(obj != null && resolveSemanticElement() instanceof Association) {
 			EList<Property> ends = ((Association)resolveSemanticElement()).getMemberEnds();
 
-			for (Property end : ends) {
-				if (obj.equals(end.getType())) {
+			for(Property end : ends) {
+				if(obj.equals(end.getType())) {
 					return end;
 				}
 			}

@@ -625,15 +625,7 @@ implements ITextAwareEditPart, IBorderItemEditPart, IPapyrusEditPart {
 	 * @generated
 	 */
 	public int getDirectEditionType() {
-		if(checkExtendedEditor()) {
-			initExtendedEditorConfiguration();
-			return IDirectEdition.EXTENDED_DIRECT_EDITOR;
-		}
-		if(checkDefaultEdition()) {
-			return IDirectEdition.DEFAULT_DIRECT_EDITOR;
-		}
-
-		// not a named element. no specific editor => do nothing
+		// The label is read-only (defined in GMFGen model)
 		return IDirectEdition.NO_DIRECT_EDITION;
 	}
 
@@ -769,6 +761,20 @@ implements ITextAwareEditPart, IBorderItemEditPart, IPapyrusEditPart {
 	 */
 	protected IFigure createFigurePrim() {
 		return new AppliedStereotypeWrappingLabelFigure();
+	}
+
+	/**
+	 * @generated
+	 */
+	public String getLabelRole() {
+		return "Stereotype";//$NON-NLS-1$
+	}
+
+	/**
+	 * @generated
+	 */
+	public String getIconPathRole() {
+		return "platform:/plugin/org.eclipse.papyrus.diagram.common/icons/stereotype.gif";//$NON-NLS-1$
 	}
 
 	public IFigure getPrimaryShape() {
