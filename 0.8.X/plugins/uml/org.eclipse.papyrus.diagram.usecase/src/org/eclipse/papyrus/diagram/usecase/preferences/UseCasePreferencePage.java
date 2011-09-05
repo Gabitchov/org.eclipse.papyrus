@@ -13,6 +13,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.usecase.preferences;
 
+import java.util.Map;
+import java.util.TreeMap;
+
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseDiagramEditPart;
 import org.eclipse.papyrus.diagram.usecase.part.UMLDiagramEditorPlugin;
@@ -54,10 +57,20 @@ public class UseCasePreferencePage extends AbstractPapyrusNodePreferencePage {
 		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.WIDTH), 100);
 		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.HEIGHT), 60);
 
-		for(String name : compartments) {
-			String preferenceName = PreferenceConstantHelper.getCompartmentElementConstant(key, name, PreferenceConstantHelper.COMPARTMENT_VISIBILITY);
-			store.setDefault(preferenceName, true);
+		Map<String, Boolean> map = getStaticCompartmentVisibilityPreferences();
+		for(String name : map.keySet()) {
+			String preferenceName = PreferenceConstantHelper.getLabelElementConstant(key, name, PreferenceConstantHelper.COMPARTMENT_VISIBILITY);
+			store.setDefault(preferenceName, map.get(name));
 		}
+
+		map = getStaticCompartmentTitleVisibilityPreferences();
+		for(String name : map.keySet()) {
+			String preferenceName = PreferenceConstantHelper.getLabelElementConstant(key, name, PreferenceConstantHelper.COMPARTMENT_NAME_VISIBILITY);
+			store.setDefault(preferenceName, map.get(name));
+		}
+
+
+
 
 		//org.eclipse.jface.preference.PreferenceConverter.setDefault(store, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_FILL), new org.eclipse.swt.graphics.RGB(255, 255, 255));
 		//org.eclipse.jface.preference.PreferenceConverter.setDefault(store, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_LINE), new org.eclipse.swt.graphics.RGB(0, 0, 0));
@@ -79,6 +92,32 @@ public class UseCasePreferencePage extends AbstractPapyrusNodePreferencePage {
 		for(String name : compartments) {
 			this.compartmentsList.add(name);
 		}
+	}
+
+	/**
+	 * @generated
+	 */
+	private static TreeMap<String, Boolean> getStaticCompartmentVisibilityPreferences() {
+		TreeMap<String, Boolean> map = new TreeMap<String, Boolean>();
+		map.put("points", Boolean.TRUE);
+		return map;
+	}
+
+	/**
+	 * @generated
+	 */
+	private static TreeMap<String, Boolean> getStaticCompartmentTitleVisibilityPreferences() {
+		TreeMap<String, Boolean> map = new TreeMap<String, Boolean>();
+
+		map.put("points", Boolean.TRUE);
+		return map;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected TreeMap<String, Boolean> getCompartmentTitleVisibilityPreferences() {
+		return getStaticCompartmentTitleVisibilityPreferences();
 	}
 
 }

@@ -15,10 +15,10 @@ package org.eclipse.papyrus.diagram.usecase.edit.parts;
 
 import org.eclipse.draw2d.Connection;
 import org.eclipse.gef.EditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.common.editparts.UMLConnectionNodeEditPart;
 import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypePackageImportLabelDisplayEditPolicy;
@@ -28,7 +28,7 @@ import org.eclipse.papyrus.diagram.usecase.edit.policies.PackageImportItemSemant
 /**
  * @generated
  */
-public class PackageImportEditPart extends ConnectionNodeEditPart
+public class PackageImportEditPart extends UMLConnectionNodeEditPart
 
 implements ITreeBranchEditPart {
 

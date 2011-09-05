@@ -37,7 +37,6 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.ParserOptions;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.LabelEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.LabelDirectEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramColorRegistry;
@@ -54,6 +53,8 @@ import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.jface.viewers.ICellEditorValidator;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.diagram.common.directedit.MultilineLabelDirectEditManager;
+import org.eclipse.papyrus.diagram.common.editparts.AbstractShortcutDiagramNameEditPart;
+import org.eclipse.papyrus.diagram.common.editparts.ILabelRoleProvider;
 import org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition;
 import org.eclipse.papyrus.diagram.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.diagram.common.figure.node.ILabelFigure;
@@ -80,7 +81,7 @@ import org.eclipse.ui.PlatformUI;
 /**
  * @generated
  */
-public class DiagramNameEditPart extends LabelEditPart implements ITextAwareEditPart, IBorderItemEditPart {
+public class DiagramNameEditPart extends AbstractShortcutDiagramNameEditPart implements ITextAwareEditPart, IBorderItemEditPart, ILabelRoleProvider {
 
 	/**
 	 * @generated
@@ -740,6 +741,20 @@ public class DiagramNameEditPart extends LabelEditPart implements ITextAwareEdit
 	 */
 	protected IFigure createFigurePrim() {
 		return new WrappingLabel();
+	}
+
+	/**
+	 * @generated
+	 */
+	public String getLabelRole() {
+		return "Name";//$NON-NLS-1$
+	}
+
+	/**
+	 * @generated
+	 */
+	public String getIconPathRole() {
+		return "platform:/plugin/org.eclipse.papyrus.diagram.common/icons/label_role/name.png";//$NON-NLS-1$
 	}
 
 }
