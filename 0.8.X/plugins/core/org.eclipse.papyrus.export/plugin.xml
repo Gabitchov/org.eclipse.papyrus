@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="true"
+            locationURI="popup:org.eclipse.ui.popup.any?after=additions">
+         <command
+               commandId="org.eclipse.papyrus.export.exportAllDiagrams"
+               icon="icons/exportAll.png"
+               id="org.eclipse.papyrus.export.exportAllDiagrams"
+               label="Export All Diagrams..."
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <iterate
+                     ifEmpty="false"
+                     operator="and">
+                     <or>
+                     <adapt
+                           type="org.eclipse.core.resources.IFile">
+		                  <test
+		                        forcePluginActivation="true"
+		                        property="org.eclipse.papyrus.export.isFileExportable">
+		                  </test>
+                     </adapt>
+		                 <adapt
+                           type="java.util.Collection">
+		                  <test
+		                        forcePluginActivation="true"
+		                        property="org.eclipse.papyrus.export.isCollectionExportable">
+		                  </test>
+                     </adapt>
+                  </or>
+               </iterate>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            id="org.eclipse.papyrus.export.exportAllDiagrams"
+            name="ExportAllDiagrams">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="org.eclipse.papyrus.export.actions.ExportAllDiagramsAction"
+            commandId="org.eclipse.papyrus.export.exportAllDiagrams">
+      </handler>
+   </extension>
+   <extension
+         point="org.eclipse.core.expressions.propertyTesters">
+      <propertyTester
+            class="org.eclipse.papyrus.export.PropertyTester"
+            id="org.eclipse.papyrus.export.propertyTester"
+            namespace="org.eclipse.papyrus.export"
+            properties="isFileExportable"
+            type="org.eclipse.core.resources.IFile">
+      </propertyTester>
+      <propertyTester
+            class="org.eclipse.papyrus.export.PropertyTester"
+            id="org.eclipse.papyrus.export.propertyTester"
+            namespace="org.eclipse.papyrus.export"
+            properties="isCollectionExportable"
+            type="java.util.Collection">
+      </propertyTester>
+   </extension>
+
+</plugin>
