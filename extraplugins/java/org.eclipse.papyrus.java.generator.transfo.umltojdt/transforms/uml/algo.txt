@@ -1,0 +1,167 @@
+
+
+class Data {
+  
+  projectName
+  srcName
+  packageName
+}
+
+/**
+ *
+ */
+Type::markType( Type type, defSrc, defPrj ) {
+	if( type.data == null )
+		type.data = getTypeData();
+		
+}
+
+// Get or create the Data for this Type
+Type::getTypeData(defSrc, defPrj) : Data {
+
+  // Check if it exist
+	if( type.data != null )
+		return type.data ;
+		
+  // Create it
+  Data data = new Data();
+  // srcName = si stereotype ==> stereotype; sinon si parent ==> parent.srcName; sinon defSrc
+  if( parent != null ) {
+    parentData = parent.getData(defSrc, defPrj);
+    data.srcName = getStereotype( , "src", parentData.srcName );
+    projectName = getStereotype( , "project", parentData.projectName );
+    packageName = parentData.packageName;
+  }
+  else {
+    data.srcName = getStereotype( , "src", defSrc );
+    projectName = getStereotype( , "project", defPrj );
+    packageName = DFLT_PACKAGE_NAME;
+  }
+  
+  return type.data;
+}
+
+// Get or create the Data for this Package
+// Check if the package is a src or project
+Package::getTypeData(defSrc, defPrj) : Data {
+
+  // Check if it exist
+	if( type.data != null )
+		return type.data ;
+		
+  // Create it
+ // Data data = new Data();
+  
+  // Are we a "src" ?
+  if( isStereotyped("src") ) {
+    return createTypeDataFromSrcFolder(defSrc, defPrj);
+  } 
+  else if( isStereotyped("project") ) {
+    return createTypeDataFromProject(defSrc, defPrj);    
+  } 
+  else if( self.isTypeOf(uml::Model) ) {
+    // This is a simple package
+    return createTypeDataFromUmlModel(defSrc, defPrj);
+  }
+  else {
+    // This is a simple package
+    return createTypeDataFromSimplePackage(defSrc, defPrj);
+  }
+}
+
+// Get or create the Data for this simple Package
+// 
+// Don't check if the package is a src or project
+Package::createTypeDataFromSimplePackage(defSrc, defPrj) : Data {
+
+  Data data = new Data();
+  // srcName = si stereotype ==> stereotype; sinon si parent ==> parent.srcName; sinon defSrc
+  if( parent != null ) {
+    parentData = parent.getData(defSrc, defPrj);
+    data.srcName = getStereotype( "JavaPackage", "src", parentData.srcName );
+    projectName = getStereotype( , "project", parentData.projectName );
+    // packageName = parentData.packageName + "." + (stereotype ? stereotype: self.name)
+    packageName = computePackageName( parentData.packageName, getStereotype( , "name", self.name ) );
+  }
+  else {
+    data.srcName = getStereotype( "JavaPackage", "src", defSrc );
+    projectName = getStereotype( , "project", defPrj );
+    packageName = getStereotype( , "name", self.name );
+  }
+  
+  return type.data;
+
+}
+
+// Compute the package name from the prefix and suffix.
+// check if prefix is null or size=0
+computePackageName( prefix, suffix ) {
+  if( prefix != null && prefix != "")
+    return prefix + "." + suffix;
+   else
+    return suffix;
+}
+
+// Get or create the Data for a Package Stereotypes "SrcFolder"
+// 
+// Don't Check if the package is a src or project
+Package::createTypeDataFromSourceFolder(defSrc, defPrj) : Data {
+
+  Data data = new Data();
+  // srcName = si stereotype ==> stereotype; sinon si parent ==> parent.srcName; sinon defSrc
+  if( parent != null ) {
+    // Lookup for Project
+    parentData = parent.getData(defSrc, defPrj);
+    data.srcName = getStereotype( "JavaSrcFolder", "src", parentData.srcName );
+    projectName = getStereotype( , "project", parentData.projectName );
+    // packageName = "" or null, as we are in a srcFolder (root of packages)
+    packageName = null;
+  }
+  else {
+    data.srcName = getStereotype( "JavaPackage", "src", defSrc );
+    projectName = getStereotype( , "project", defPrj );
+    packageName = null;
+  }
+  
+  return type.data;
+}
+
+// Get or create the Data for a Package Stereotypes "Project"
+// 
+// Don't Check if the package is a src or project
+Package::createTypeDataFromProjectFolder(defSrc, defPrj) : Data {
+
+  Data data = new Data();
+
+    data.srcName = getStereotype( "JavaProject", "src", defSrc );
+    projectName = getStereotype( , "project", defPrj );
+    packageName = null;
+  
+  return type.data;
+}
+
+// Get or create the Data for a uml::Model
+// This is the root, so stop recursivity
+// Don't Check if the package is a src or project
+Package::createTypeDataFromUmlModel(defSrc, defPrj) : Data {
+
+  Data data = new Data();
+
+    data.srcName = gdefSrc;
+    projectName = defPrj ;
+    packageName = null;
+  
+  return type.data;
+}
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.eclipse.papyrus.java.generator.feature"
+      label="Java classes Generator for Papyrus"
+      version="0.8.0.qualifier">
+
+   <description url="http://www.example.com/description">
+      This feature allows to generate Java classes and packages from
+a UML model.
+It also allows to generate projects, with the help of the Java
+profile.
+   </description>
+
+   <copyright>
+      #################################################################################
+# Copyright (c) 2011 Nicolas Deblock &amp; Manuel Giles.
+#
+# All rights reserved. This program and the accompanying materials
+# are made available under the terms of the Eclipse Public License
+v1.0
+# which accompanies this distribution, and is available at
+# http://www.eclipse.org/legal/epl-v10.html
+#
+# Contributors:
+#	Nicolas Deblock  nico.deblock@gmail.com  - Initial API and
+implementation
+# 	Manuel Giles	 giles.manu@live.fr		 - Initial API and implementation
+# 	Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Idea of the java
+generator project &amp; help for the conception 
+#
+#################################################################################
+   </copyright>
+
+   <license url="http://www.example.com/license">
+      [Enter License Description here.]
+   </license>
+
+   <requires>
+      <import plugin="org.eclipse.emf.common"/>
+      <import plugin="org.eclipse.uml2.uml"/>
+      <import plugin="org.eclipse.m2m.qvt.oml"/>
+      <import plugin="org.eclipse.core.runtime"/>
+      <import plugin="org.eclipse.papyrus.java.generator.transfo.umltojdt" version="0.8.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.jdt.core"/>
+      <import plugin="org.eclipse.jface.text"/>
+      <import plugin="org.eclipse.core.resources"/>
+      <import plugin="org.eclipse.jdt.launching"/>
+      <import plugin="org.eclipse.emf.ecore"/>
+      <import plugin="org.eclipse.uml2.common" version="1.5.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.jdt.core" version="3.6.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.emf.common" version="2.6.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.emf.query"/>
+      <import plugin="org.eclipse.emf.edit"/>
+      <import plugin="org.eclipse.uml2.common.edit"/>
+      <import plugin="org.eclipse.emf.ecore.xmi"/>
+      <import plugin="org.eclipse.emf.edit.ui"/>
+      <import plugin="org.eclipse.ui.ide"/>
+      <import plugin="org.eclipse.ui"/>
+      <import plugin="org.eclipse.core.resources" version="3.6.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.papyrus.java.generator.metamodel.jdt" version="0.8.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.jdt.ui"/>
+      <import plugin="org.eclipse.papyrus.java.generator.jdtsynchronizer" version="0.8.0" match="greaterOrEqual"/>
+      <import feature="org.eclipse.papyrus.java.profile.feature" version="0.8.0.qualifier"/>
+   </requires>
+
+   <plugin
+         id="org.eclipse.papyrus.java.generator.jdtsynchronizer"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.papyrus.java.generator.metamodel.jdt"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.papyrus.java.generator.metamodel.jdt.edit"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.papyrus.java.generator.metamodel.jdt.editor"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.papyrus.java.generator.transfo.umltojdt"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.papyrus.java.generator.ui"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>

@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/uml2/2.2.0/GenModel" modelDirectory="/org.eclipse.papyrus.java.generator.metamodel.jdt/src"
+    modelPluginID="org.eclipse.papyrus.java.generator.metamodel.jdt" modelName="Jdtmm"
+    importerID="org.eclipse.uml2.uml.ecore.importer" complianceLevel="6.0" copyrightFields="false">
+  <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel/importer/org.eclipse.uml2.uml.ecore.importer">
+    <details key="ECORE_TAGGED_VALUES" value="PROCESS"/>
+    <details key="UNION_PROPERTIES" value="PROCESS"/>
+    <details key="DUPLICATE_FEATURES" value="DISCARD"/>
+    <details key="SUBSETTING_PROPERTIES" value="PROCESS"/>
+    <details key="COMMENTS" value="PROCESS"/>
+    <details key="DUPLICATE_FEATURE_INHERITANCE" value="DISCARD"/>
+    <details key="DUPLICATE_OPERATIONS" value="DISCARD"/>
+    <details key="INVARIANT_CONSTRAINTS" value="PROCESS"/>
+    <details key="REDEFINING_PROPERTIES" value="PROCESS"/>
+    <details key="ANNOTATION_DETAILS" value="PROCESS"/>
+    <details key="DUPLICATE_OPERATION_INHERITANCE" value="DISCARD"/>
+    <details key="REDEFINING_OPERATIONS" value="REPORT"/>
+    <details key="DERIVED_FEATURES" value="PROCESS"/>
+    <details key="OPERATION_BODIES" value="IGNORE"/>
+    <details key="CAMEL_CASE_NAMES" value="IGNORE"/>
+    <details key="SUPER_CLASS_ORDER" value="PROCESS"/>
+  </genAnnotations>
+  <foreignModel>jdtmm.uml</foreignModel>
+  <genPackages xsi:type="genmodel:GenPackage" prefix="Jdtmm" basePackage="org.eclipse.papyrus.java.generator.metamodel.jdt"
+      disposableProviderFactory="true" ecorePackage="jdtmm.ecore#/">
+    <genEnums xsi:type="genmodel:GenEnum" typeSafeEnumCompatible="false" ecoreEnum="jdtmm.ecore#//VisibilityKind">
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="jdtmm.ecore#//VisibilityKind/public"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="jdtmm.ecore#//VisibilityKind/protected"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="jdtmm.ecore#//VisibilityKind/private"/>
+    </genEnums>
+    <genEnums xsi:type="genmodel:GenEnum" typeSafeEnumCompatible="false" ecoreEnum="jdtmm.ecore#//TrueFalseDefault">
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="jdtmm.ecore#//TrueFalseDefault/true"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="jdtmm.ecore#//TrueFalseDefault/false"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="jdtmm.ecore#//TrueFalseDefault/default"/>
+    </genEnums>
+    <genDataTypes xsi:type="genmodel:GenDataType" ecoreDataType="jdtmm.ecore#//int"/>
+    <genDataTypes xsi:type="genmodel:GenDataType" ecoreDataType="jdtmm.ecore#//boolean"/>
+    <genDataTypes xsi:type="genmodel:GenDataType" ecoreDataType="jdtmm.ecore#//String"/>
+    <genDataTypes xsi:type="genmodel:GenDataType" ecoreDataType="jdtmm.ecore#//JDTVisitorException"/>
+    <genDataTypes xsi:type="genmodel:GenDataType" ecoreDataType="jdtmm.ecore#//Visitor"/>
+    <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="jdtmm.ecore#//JDTJavaElement">
+      <genFeatures xsi:type="genmodel:GenFeature" property="Readonly" notify="false"
+          createChild="false" ecoreFeature="ecore:EReference jdtmm.ecore#//JDTJavaElement/parent"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute jdtmm.ecore#//JDTJavaElement/elementName"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute jdtmm.ecore#//JDTJavaElement/elementType"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute jdtmm.ecore#//JDTJavaElement/comment"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute jdtmm.ecore#//JDTJavaElement/generated"/>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="jdtmm.ecore#//JDTJavaElement/getQualifiedName"/>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="jdtmm.ecore#//JDTJavaElement/accept">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="jdtmm.ecore#//JDTJavaElement/accept/visitor"/>
+      </genOperations>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="jdtmm.ecore#//JDTJavaElement/getJDTSignature"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="jdtmm.ecore#//JDTParent">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute jdtmm.ecore#//JDTParent/flags"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="Readonly" notify="false"
+          createChild="false" ecoreFeature="ecore:EReference jdtmm.ecore#//JDTParent/children"/>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="jdtmm.ecore#//JDTParent/setFlag">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="jdtmm.ecore#//JDTParent/setFlag/flag"/>
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="jdtmm.ecore#//JDTParent/setFlag/value"/>
+      </genOperations>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="jdtmm.ecore#//JDTParent/isFlagSet">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="jdtmm.ecore#//JDTParent/isFlagSet/flag"/>
+      </genOperations>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="jdtmm.ecore#//JDTMember">
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference jdtmm.ecore#//JDTMember/typeParameters"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute jdtmm.ecore#//JDTMember/visibility"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="jdtmm.ecore#//JDTParentJavaElement"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="jdtmm.ecore#//JDTTypeParameter">
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" notify="false" createChild="false"
+          ecoreFeature="ecore:EReference jdtmm.ecore#//JDTTypeParameter/declaringMember"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="jdtmm.ecore#//JDTField">
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" notify="false" createChild="false"
+          ecoreFeature="ecore:EReference jdtmm.ecore#//JDTField/owner"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute jdtmm.ecore#//JDTField/abstract"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute jdtmm.ecore#//JDTField/final"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute jdtmm.ecore#//JDTField/static"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute jdtmm.ecore#//JDTField/isMultiValued"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference jdtmm.ecore#//JDTField/type"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute jdtmm.ecore#//JDTField/value"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute jdtmm.ecore#//JDTField/generateGetter"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute jdtmm.ecore#//JDTField/generateSetter"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="jdtmm.ecore#//JDTType">
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference jdtmm.ecore#//JDTType/methods"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" notify="false" createChild="false"
+          ecoreFeature="ecore:EReference jdtmm.ecore#//JDTType/compilationUnit"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute jdtmm.ecore#//JDTType/class"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute jdtmm.ecore#//JDTType/interface"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute jdtmm.ecore#//JDTType/enum"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute jdtmm.ecore#//JDTType/abstract"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute jdtmm.ecore#//JDTType/final"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute jdtmm.ecore#//JDTType/static"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference jdtmm.ecore#//JDTType/types"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" notify="false" createChild="false"
+          ecoreFeature="ecore:EReference jdtmm.ecore#//JDTType/owner"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference jdtmm.ecore#//JDTType/superInterfaces"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference jdtmm.ecore#//JDTType/superClass"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="Readonly" createChild="false"
+          ecoreFeature="ecore:EAttribute jdtmm.ecore#//JDTType/superInterfaceNames"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="Readonly" createChild="false"
+          ecoreFeature="ecore:EAttribute jdtmm.ecore#//JDTType/superClassName"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference jdtmm.ecore#//JDTType/fields"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="jdtmm.ecore#//JDTMethod">
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference jdtmm.ecore#//JDTMethod/returnType"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference jdtmm.ecore#//JDTMethod/parameters"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute jdtmm.ecore#//JDTMethod/abstract"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute jdtmm.ecore#//JDTMethod/final"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute jdtmm.ecore#//JDTMethod/static"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference jdtmm.ecore#//JDTMethod/exceptions"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute jdtmm.ecore#//JDTMethod/synchronized"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute jdtmm.ecore#//JDTMethod/constructor"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" notify="false" createChild="false"
+          ecoreFeature="ecore:EReference jdtmm.ecore#//JDTMethod/owner"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="jdtmm.ecore#//JDTParameter">
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" notify="false" createChild="false"
+          ecoreFeature="ecore:EReference jdtmm.ecore#//JDTParameter/parameterOwner"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute jdtmm.ecore#//JDTParameter/final"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute jdtmm.ecore#//JDTParameter/isMultiValued"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference jdtmm.ecore#//JDTParameter/type"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" notify="false" createChild="false"
+          ecoreFeature="ecore:EReference jdtmm.ecore#//JDTParameter/returnOwner"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="jdtmm.ecore#//JDTCompilationUnit">
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" notify="false" createChild="false"
+          ecoreFeature="ecore:EReference jdtmm.ecore#//JDTCompilationUnit/packageFragment"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference jdtmm.ecore#//JDTCompilationUnit/types"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="jdtmm.ecore#//JDTTypeRoot"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="jdtmm.ecore#//JDTPackageFragment">
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" notify="false" createChild="false"
+          ecoreFeature="ecore:EReference jdtmm.ecore#//JDTPackageFragment/packageFragmentRoot"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference jdtmm.ecore#//JDTPackageFragment/compilationUnits"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="jdtmm.ecore#//JDTPackageFragmentRoot">
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" notify="false" createChild="false"
+          ecoreFeature="ecore:EReference jdtmm.ecore#//JDTPackageFragmentRoot/javaProject"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference jdtmm.ecore#//JDTPackageFragmentRoot/packageFragments"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="jdtmm.ecore#//JDTJavaProject">
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" notify="false" createChild="false"
+          ecoreFeature="ecore:EReference jdtmm.ecore#//JDTJavaProject/javaModel"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference jdtmm.ecore#//JDTJavaProject/packageFragmentRoots"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="jdtmm.ecore#//JDTJavaModel">
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference jdtmm.ecore#//JDTJavaModel/javaProject"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="jdtmm.ecore#//JDTClass"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="jdtmm.ecore#//JDTInterface"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="jdtmm.ecore#//JDTEnum"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="jdtmm.ecore#//JDTImportDeclaration"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="jdtmm.ecore#//JDTImportContainer"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="jdtmm.ecore#//JDTException"/>
+  </genPackages>
+</genmodel:GenModel>

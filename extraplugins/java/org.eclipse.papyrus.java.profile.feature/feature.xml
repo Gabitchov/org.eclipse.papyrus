@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.eclipse.papyrus.java.profile.feature"
+      label="Java Profile for UML"
+      version="0.8.0.qualifier">
+
+   <description url="http://www.example.com/description">
+      Profile for the Java language.
+This profile allows to add properties regarding Java classes,
+packages and project to a UML model.
+   </description>
+
+   <copyright>
+      #################################################################################
+# Copyright (c) 2011 Nicolas Deblock &amp; Manuel Giles.
+#
+# All rights reserved. This program and the accompanying materials
+# are made available under the terms of the Eclipse Public License
+v1.0
+# which accompanies this distribution, and is available at
+# http://www.eclipse.org/legal/epl-v10.html
+#
+# Contributors:
+#	Nicolas Deblock  nico.deblock@gmail.com  - Initial API and
+implementation
+# 	Manuel Giles	 giles.manu@live.fr		 - Initial API and implementation
+# 	Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Idea of the java
+generator project &amp; help for the conception 
+#
+#################################################################################
+   </copyright>
+
+   <license url="http://www.example.com/license">
+      [Enter License Description here.]
+   </license>
+
+   <requires>
+      <import plugin="org.eclipse.core.runtime"/>
+      <import plugin="org.eclipse.emf.ecore"/>
+      <import plugin="org.eclipse.emf.ecore.xmi"/>
+      <import plugin="org.eclipse.uml2.uml"/>
+      <import plugin="org.eclipse.emf.edit"/>
+      <import plugin="org.eclipse.emf.ecore.edit"/>
+      <import plugin="org.eclipse.uml2.uml.edit"/>
+      <import plugin="org.eclipse.uml2.common.edit"/>
+      <import plugin="org.eclipse.core.resources"/>
+      <import plugin="org.eclipse.emf.edit.ui"/>
+      <import plugin="org.eclipse.ui.ide"/>
+   </requires>
+
+   <plugin
+         id="org.eclipse.papyrus.java.profile"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.papyrus.java.profile.edit"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.papyrus.java.profile.editor"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>

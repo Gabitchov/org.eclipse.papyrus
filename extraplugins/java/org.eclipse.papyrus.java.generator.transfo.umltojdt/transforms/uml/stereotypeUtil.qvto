@@ -1,0 +1,80 @@
+/*****************************************************************************
+ * Copyright (c) 2011 Cedric Dumoulin
+ *
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors: 
+ * 	Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial implementation  
+ *
+ *****************************************************************************/ 
+ 
+ library stereotypeUtil;
+
+/* Model type declarations
+*/
+modeltype mmUML uses "http://www.eclipse.org/uml2/3.0.0/UML";
+
+/*
+ * Get the specified taggedValue. Return the found property value, or the provided default value if not
+ * taggedValue can be found.
+ */
+query mmUML::NamedElement::getTaggedValue(stereotypeName : String, taggedValueName : String, defaultValue : OclAny) : OclAny {
+	
+	var value : OclAny := defaultValue;
+	var stereotype := self.getAppliedStereotype(stereotypeName);
+	if (stereotype.oclIsUndefined())
+	then
+	  return value
+	endif;
+	
+	var taggedValue := self.getValue(stereotype, taggedValueName);
+	if taggedValue.oclIsUndefined()
+	then
+	   return defaultValue
+	endif;
+	
+	return taggedValue;
+}
+
+/*
+ * Get a tagged value by its name and the sterotype name.
+ * Return null if no stereotype of taggedValue is defined.
+ */
+query uml::NamedElement::getBooleanTaggedValue( stereotypeName : String, taggedValueName : String ) : Boolean {
+	
+	return self.getTaggedValue(stereotypeName, taggedValueName, null).oclAsType(Boolean);
+}
+
+/*
+ * Get the specified taggedValue. Return the found property value, or the provided default value if not
+ * taggedValue can be found.
+ */
+query mmUML::NamedElement::getBooleanTaggedValue(stereotypeName : String, valueName : String, defaultValue : Boolean) : Boolean {
+	
+	return self.getTaggedValue(stereotypeName, valueName, defaultValue).oclAsType(Boolean);
+}
+
+
+/*
+ * Get the specified taggedValue. Return the found property value, or the provided default value if not
+ * taggedValue can be found.
+ */
+query mmUML::NamedElement::getStringTaggedValue(stereotypeName : String, valueName : String, defaultValue : String) : String {
+	
+	return self.getTaggedValue(stereotypeName, valueName, defaultValue).oclAsType(String);
+}
+
+/*
+ * Get the specified taggedValue. Return the found property value, or the provided default value if not
+ * taggedValue can be found.
+ */
+query mmUML::NamedElement::getEnumTaggedValue(stereotypeName : String, valueName : String, defaultValue : String) : String {
+	var ret = self.getTaggedValue(stereotypeName, valueName,defaultValue);
+	if (not ret.oclIsTypeOf(EnumerationLiteral)) then return defaultValue endif;	
+	return self.getTaggedValue(stereotypeName, valueName,defaultValue).oclAsType(EnumerationLiteral).name;
+}
+

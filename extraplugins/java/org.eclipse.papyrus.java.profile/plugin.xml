@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id$
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://www.eclipse.org/papyrus/JAVA/1"
+            class="org.eclipse.papyrus.java.profile.java.JavaPackage"
+            genModel="models/java.profile.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <parser
+            type="java"
+            class="org.eclipse.papyrus.java.profile.java.util.JavaResourceFactoryImpl"/>
+   </extension>
+   <extension
+         point="org.eclipse.emf.ecore.uri_mapping">
+      <mapping
+            source="pathmap://Papyrus_JAVA_PROFILES/"
+            target="platform:/plugin/org.eclipse.papyrus.java.profile/models/">
+      </mapping>
+   </extension>
+   <extension
+         point="org.eclipse.uml2.uml.generated_package">
+      <profile
+            location="pathmap://Papyrus_JAVA_PROFILES/java.profile.uml#_6TYLMN0yEd6P1qtlpBOZyg"
+            uri="http://www.eclipse.org/papyrus/JAVA/1">
+      </profile>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.extensionpoints.uml2.UMLProfile">
+      <profile
+            description="Java profile for code generation and reverse (v1.0)"
+            iconpath="icons/javaprofile.gif"
+            name="Java"
+            path="pathmap://Papyrus_JAVA_PROFILES/java.profile.uml"
+            provider="Cedric Dumoulin">
+      </profile>
+   </extension>
+
+</plugin>

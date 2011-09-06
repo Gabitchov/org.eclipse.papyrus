@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id$
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.presentation.JdtmmModelWizardID"
+            name="%_UI_JdtmmModelWizard_label"
+            class="org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.presentation.JdtmmModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/JdtmmModelFile.gif">
+         <description>%_UI_JdtmmModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <editor
+            id="org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.presentation.JdtmmEditorID"
+            name="%_UI_JdtmmEditor_label"
+            icon="icons/full/obj16/JdtmmModelFile.gif"
+            extensions="jdtmm"
+            class="org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.presentation.JdtmmEditor"
+            contributorClass="org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.presentation.JdtmmActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>

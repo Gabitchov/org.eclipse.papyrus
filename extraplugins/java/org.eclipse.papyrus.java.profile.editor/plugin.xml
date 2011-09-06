@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id$
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="org.eclipse.papyrus.java.profile.java.presentation.JavaModelWizardID"
+            name="%_UI_JavaModelWizard_label"
+            class="org.eclipse.papyrus.java.profile.java.presentation.JavaModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/JavaModelFile.gif">
+         <description>%_UI_JavaModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <editor
+            id="org.eclipse.papyrus.java.profile.java.presentation.JavaEditorID"
+            name="%_UI_JavaEditor_label"
+            icon="icons/full/obj16/JavaModelFile.gif"
+            extensions="java"
+            class="org.eclipse.papyrus.java.profile.java.presentation.JavaEditor"
+            contributorClass="org.eclipse.papyrus.java.profile.java.presentation.JavaActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>

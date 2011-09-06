@@ -1,0 +1,1057 @@
+/*****************************************************************************
+ * Copyright (c) 2011 Nicolas Deblock & Cedric Dumoulin & Manuel Giles.
+ *
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ * 	Nicolas Deblock  nico.deblock@gmail.com  - Initial transformation and implementation 
+ * 	Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial transformation and implementation 
+ * 	Manuel Giles	 giles.manu@live.fr		 - Initial transformation and implementation 
+ *
+ *****************************************************************************/ 
+
+import stereotypeUtil;
+import Strings;
+
+/* Model type declarations
+*/
+modeltype UMLmm uses "http://www.eclipse.org/uml2/3.0.0/UML";
+modeltype JDTmm uses 'http:///jdtmm.ecore';
+
+/**
+ *
+ */
+transformation uml2jdt2( in uml: UMLmm, out jdt: JDTmm)
+  extends stereotypeUtil;
+
+/** Root of java stereotypes */
+intermediate property UMLmm::STEREOTYPE_JAVA_NAMED_ELEMENT : String;
+intermediate property UMLmm::STEREOTYPE_JAVA_GEN : String;
+/** Apply to any Types */
+intermediate property UMLmm::STEREOTYPE_JAVA_CLASS : String;
+intermediate property UMLmm::STEREOTYPE_JAVA_PROJECT : String;
+intermediate property UMLmm::STEREOTYPE_JAVA_SRC_FOLDER : String;
+intermediate property UMLmm::STEREOTYPE_JAVA_PACKAGE : String;
+intermediate property UMLmm::STEREOTYPE_PRIMITIVETYPE : String;
+
+intermediate property UMLmm::TAGVALUE_SRC : String;
+intermediate property UMLmm::TAGVALUE_PROJECT : String;
+intermediate property UMLmm::TAGVALUE_NAME : String;
+intermediate property UMLmm::TAGVALUE_GENERATED : String;
+intermediate property UMLmm::TAGVALUE_IMPLEMENTATION_CLASS : String;
+intermediate property UMLmm::NO_PACKAGE : String;
+
+/**
+ *  The main operation. This is the entry point of the transformation.
+ */
+main() {
+
+  // Initialize global variables
+  uml.STEREOTYPE_JAVA_NAMED_ELEMENT := "java::JavaNamedElement";
+  uml.STEREOTYPE_JAVA_GEN := "java::JavaGen";
+  uml.STEREOTYPE_JAVA_CLASS := "java::JavaClass";
+  uml.STEREOTYPE_JAVA_PROJECT := "java::JavaProject";
+  uml.STEREOTYPE_JAVA_SRC_FOLDER := "java::JavaSrcFolder";
+  uml.STEREOTYPE_JAVA_PACKAGE := "java::JavaPackage";
+  uml.STEREOTYPE_PRIMITIVETYPE := "java::PrimitiveType";
+  
+  uml.TAGVALUE_SRC := "srcName";
+  uml.TAGVALUE_NAME := "name";
+  uml.TAGVALUE_GENERATED := "isGenerated";
+  uml.TAGVALUE_PROJECT := "projectName";
+  uml.TAGVALUE_IMPLEMENTATION_CLASS := "implementationClass";
+  uml.NO_PACKAGE := null;
+  
+  log('------------------------ Start marking input elements');
+  // First pass: mark uml::Type objects
+  uml.objects()[uml::Type] -> map markUmlType("generated", "defaultProject");
+  // show result
+  log('------------------------  Show results');
+  uml.objects()[uml::Type] -> map showMarkedType();
+  log('------------------------  Show packages results');
+  uml.objects()[uml::Package] -> map showMarkedType();
+  // Second pass: transform marked objects
+  log('------------------------  Start transformation');
+  uml.objects()[uml::Type] -> map transformTypeToType();
+
+  log('------------------------  Done');
+
+}
+
+/**
+ * A query used to check if a stereotype is applied to an UML element
+ */
+query uml::Element::isStereotyped( stereotypeName : String ) : Boolean {
+	var stereotype = self.getAppliedStereotype(stereotypeName);
+    return not stereotype.oclIsUndefined();
+}
+
+/**
+ * Is the specified type a Compilation Unit ?
+ */
+query uml::Type::isCompilationUnit( ) : Boolean {
+
+    // A compilation unit is a type whose owner is a Package
+    return self.owner.oclIsKindOf(Package);
+}
+
+/**
+ * Get the interfaces associated to the Classifier
+ */
+query uml::Classifier::generalInterfaces() : Set(uml::Interface) {
+	// Get interface linked by a generalization
+//    var res : Set(uml::Interface) :=  self.generalization -> select( p | p.general.oclIsTypeOf(uml::Interface)) 
+//                                    -> collect(p | p.general.oclAsType(uml::Interface)) -> asSet();
+    var res : Set(uml::Interface) := self.generalization.general[uml::Interface] -> asSet();
+      	
+  return res;
+}
+
+/**
+ * Get the interfaces associated to the Classifier
+ */
+query uml::BehavioredClassifier::generalInterfacesForClass() : Set(uml::Interface) 
+{
+	// Get interface linked by a generalization
+	//    var res : Set(uml::Interface) :=  self.generalization -> select( p | p.general.oclIsTypeOf(uml::Interface)) 
+	//                                    -> collect(p | p.general.oclAsType(uml::Interface)) -> asSet();
+    var res : Set(uml::Interface) := self.generalization.general[uml::Interface] -> asSet();
+        
+    // manage the interfaceRealisation
+  	res += self.oclAsType(uml::BehavioredClassifier).interfaceRealization.supplier[uml::Interface];    
+  	
+  return res;
+}
+
+/**
+ * Get the general Class associated to the Enumeration
+ */
+query uml::Enumeration::general() : uml::Class {
+	// Get interface linked by a generalization
+    var res : uml::Class :=  self.generalization.general[uml::Class] -> asOrderedSet() -> first();
+                                    
+  return res;
+}
+
+/**
+ * return true if the element is marked has "toGenerate". Return false otherwise.
+ */
+query uml::NamedElement::isGenerated() : Boolean {
+	// by default, generated are true
+	var generated := true;
+	
+	self.getApplicableStereotypes()->forEach(st) {				
+			generated := self->getBooleanTaggedValue("java::"+st.name, "isGenerated",generated)->asOrderedSet()->first();
+	};
+
+	return generated;
+}
+
+
+/**
+ * Common ancestor. Dispatch to correct method according to the element's type.
+ */
+helper NamedElement::getData(defaultSrcName : String, defaultProjectName : String) : TypeMarker {
+	
+	log("NamedElement::getData() " + self.name);
+
+	// overloading doesn't work, so we do it manually
+	if( self.oclIsKindOf(uml::PrimitiveType)) then {
+		return self.oclAsType(uml::PrimitiveType).getDataFromPrimitiveType( defaultSrcName, defaultProjectName);
+	} endif;
+	
+	if( self.oclIsKindOf(uml::Type)) then {
+		return self.oclAsType(uml::Type).getDataFromType( defaultSrcName, defaultProjectName);
+	}
+	else {
+	  if( self.oclIsKindOf(uml::Package)) then {
+		  return self.oclAsType(uml::Package).getDataFromPackage( defaultSrcName, defaultProjectName);
+	  } endif;
+	} endif;
+	// not defined
+	return null;
+}
+
+/**
+ *
+ */
+helper Type::getDataFromType( defaultSrcName : String, defaultProjectName : String) : TypeMarker {
+	
+	log("Type::getDataFromType()");
+	// Check if data already exist
+	if not self.data.oclIsUndefined()
+	then 
+	  return self.data 
+	endif;
+	
+	// Create it
+	log("Type::getData() - start creation");
+	var data : TypeMarker := object TypeMarker {};
+	
+	var parent :uml::Namespace  := self.namespace; 
+	if parent != null 
+	  then {
+	  //
+	  var parentData : TypeMarker := parent.getData(defaultSrcName, defaultProjectName);
+	  data.srcName := self.getStringTaggedValue(uml.STEREOTYPE_JAVA_CLASS, uml.TAGVALUE_SRC, parentData.srcName);
+	  	data.projectName := self.getStringTaggedValue( uml.STEREOTYPE_JAVA_CLASS, uml.TAGVALUE_PROJECT, parentData.projectName );
+	  	data.packageName := parentData.packageName;
+	  	data.generated := self.getBooleanTaggedValue( uml.STEREOTYPE_JAVA_CLASS, uml.TAGVALUE_GENERATED, true );
+	  }
+	  else {
+	  	data.srcName := self.getStringTaggedValue( uml.STEREOTYPE_JAVA_CLASS, uml.TAGVALUE_SRC, defaultSrcName );
+	  	data.projectName := self.getStringTaggedValue( uml.STEREOTYPE_JAVA_CLASS, uml.TAGVALUE_PROJECT, defaultProjectName );
+	  	data.packageName := uml.NO_PACKAGE;
+	  	data.generated := self.getBooleanTaggedValue( uml.STEREOTYPE_JAVA_CLASS, uml.TAGVALUE_GENERATED, true );
+	  }
+	endif;
+	
+	
+	self.data := data;
+	return data;
+}
+
+/**
+ * Primitive types are stored in the package declared in uml.TAGVALUE_IMPLEMENTATION_CLASS.
+ * If no implementation class is declared, use the same scheme as Classes.
+ */
+helper PrimitiveType::getDataFromPrimitiveType( defaultSrcName : String, defaultProjectName : String) : TypeMarker {
+	
+	log("Type::getDataFromPrimitiveType()");
+	// Check if data already exist
+	if not self.data.oclIsUndefined()
+	then 
+	  return self.data 
+	endif;
+	
+	// Create it
+	log("Type::getData() - start creation");
+	var data : TypeMarker := object TypeMarker {};
+	
+	var parent :uml::Namespace  := self.namespace; 
+	if parent != null 
+	  then {
+	    //
+	    var parentData : TypeMarker := parent.getData(defaultSrcName, defaultProjectName);
+	    data.srcName := self.getStringTaggedValue(uml.STEREOTYPE_PRIMITIVETYPE, uml.TAGVALUE_SRC, parentData.srcName);
+	  	data.projectName := self.getStringTaggedValue( uml.STEREOTYPE_PRIMITIVETYPE, uml.TAGVALUE_PROJECT, parentData.projectName );
+	  	data.packageName := parentData.packageName;
+	  	data.generated := self.getBooleanTaggedValue( uml.STEREOTYPE_PRIMITIVETYPE, uml.TAGVALUE_GENERATED, parentData.generated );
+	  }
+	  else {
+	  	data.srcName := self.getStringTaggedValue( uml.STEREOTYPE_PRIMITIVETYPE, uml.TAGVALUE_SRC, defaultSrcName );
+	  	data.projectName := self.getStringTaggedValue( uml.STEREOTYPE_PRIMITIVETYPE, uml.TAGVALUE_PROJECT, defaultProjectName );
+	  	data.packageName := uml.NO_PACKAGE;
+	  	data.generated := self.getBooleanTaggedValue( uml.STEREOTYPE_PRIMITIVETYPE, uml.TAGVALUE_GENERATED, true );
+	  }
+	endif;
+	
+	// Check if an instance name is set
+	var instanceClassName := self.getStringTaggedValue(uml.STEREOTYPE_PRIMITIVETYPE, uml.TAGVALUE_IMPLEMENTATION_CLASS, null);
+	if( not instanceClassName.oclIsUndefined()) then {
+		// Try to get the package name from the provided qualified name.
+		// If none is specified, use the regular package name.
+		var packageName : String := instanceClassName.findPackageFromQualifiedName(data.packageName);
+		data.packageName := packageName;
+	} endif;
+	
+	self.data := data;
+	return data;
+}
+
+/**
+ * Get the package name of the specified qualifiedname. Return the package name if there is one.
+ * Return the nameIfNotFound value if no package is set in qualifiedName.
+ * @param nameIfNotFound Default name returned if no package specified in provided String
+ */
+query String::findPackageFromQualifiedName( nameIfNotFound : String) : String {
+	
+	// Get the index of the last segment
+	var cur : int := self.lastIndexOf('.');
+	// return empty string if not found
+	var res : String;
+	// Do strange comparison because of trouble with
+	// QVTo
+	if 0>(cur) then {
+	  res := nameIfNotFound;
+	  } 
+	  else {
+	  	res := self.substring( 1, cur);
+	  } endif;
+	
+	return res;
+}
+
+/**
+ * Get the last name from the specified qualifiedname. 
+ */
+query String::lastNameFromQualifiedName( ) : String {
+	
+	// Get the index of the last segment
+	var cur : Integer := self.lastIndexOf('.');
+	// return empty string if not found
+	var res : String;
+	// Do strange comparison because of trouble with
+	// QVTo
+	if 0>(cur) then {
+	  // Only one name ==> return it
+	  res := self;
+	  } 
+	  else {
+	  	cur := cur+2;
+	  	res := self.substring( cur, self.size());
+	  } endif;
+	
+	return res;
+}
+
+
+/**
+ * Get generation data associated to a Package.
+ * Associated stereotype are taken into account to compute the GenData
+ */
+helper Package::getDataFromPackage(defaultSrcName : String, defaultProjectName : String) : TypeMarker {
+	
+	log("Type::getDataFromPackage() " + self.name);
+	// Check if data already exist
+	if not self.data.oclIsUndefined()
+	then 
+	  return self.data 
+	endif;
+	
+	var data : TypeMarker;
+	// Switch to correct helper, according to stereotype
+	if( self.isStereotyped( uml.STEREOTYPE_JAVA_SRC_FOLDER) ) then {
+	  // SrcFolder
+	  data :=  self.createDataFromSrcFolder(defaultSrcName, defaultProjectName);
+	}
+ 	else {
+      if ( self.isStereotyped( uml.STEREOTYPE_JAVA_PROJECT) ) then {
+        // JavaProject
+	    data :=  self.createDataFromJavaProject(defaultSrcName, defaultProjectName);
+	  }
+	  else {
+	    if( self.oclIsTypeOf(uml::Model) ) then {
+	      // uml::Model
+	      data :=  self.createDataFromUmlModel(defaultSrcName, defaultProjectName);
+	    }
+	    else {
+	      // Default Package
+	      data :=  self.createDataFromSimplePackage(defaultSrcName, defaultProjectName);
+	    } endif;
+	      
+	  } endif;
+	  	
+	} endif;
+
+	self.data := data;
+	return data;
+}
+
+/**
+ * Get or create the Data for a Package Stereotypes "SrcFolder"
+ */
+helper Package::createDataFromSrcFolder(defaultSrcName : String, defaultProjectName : String) : TypeMarker {
+
+  var data := object TypeMarker {};
+  var parent : Namespace := self.namespace;
+  
+	if parent != null 
+	  then {
+	    //
+	    var parentData : TypeMarker := parent.getData(defaultSrcName, defaultProjectName);
+	    // We are in an SrcFolder, so srcName is either the stereotype.srcName or self.name
+	    data.srcName := self.getStringTaggedValue(uml.STEREOTYPE_JAVA_SRC_FOLDER, uml.TAGVALUE_SRC, self.name);
+	  	data.projectName := self.getStringTaggedValue( uml.STEREOTYPE_JAVA_SRC_FOLDER, uml.TAGVALUE_PROJECT, parentData.projectName );
+	  	// packageName = "" or null, as we are in a srcFolder (root of packages)
+	  	data.packageName := uml.NO_PACKAGE;
+	  	// Compute generated: (parent.generated == false ? false : taggedValue || true )
+	  	data.generated := if parentData.generated = false then false else self.getBooleanTaggedValue( uml.STEREOTYPE_JAVA_SRC_FOLDER, uml.TAGVALUE_GENERATED, true ) endif;
+	  }
+	  else {
+	  	data.srcName := self.getStringTaggedValue( uml.STEREOTYPE_JAVA_SRC_FOLDER, uml.TAGVALUE_SRC, self.name );
+	  	data.projectName := self.getStringTaggedValue( uml.STEREOTYPE_JAVA_SRC_FOLDER, uml.TAGVALUE_PROJECT, defaultProjectName );
+	  	// packageName = "" or null, as we are in a srcFolder (root of packages)
+	  	data.packageName := uml.NO_PACKAGE;
+	  	data.generated := self.getBooleanTaggedValue( uml.STEREOTYPE_JAVA_SRC_FOLDER, uml.TAGVALUE_GENERATED, true );
+	  }
+	endif;
+	
+	
+//	self.data := data;
+	return data;
+}
+
+/**
+ * Get or create the Data for this simple Package
+ * Don't check if the package is a src or project
+ */
+helper Package::createDataFromSimplePackage(defaultSrcName : String, defaultProjectName : String) : TypeMarker {
+
+  var data := object TypeMarker {};
+  var parent : Namespace := self.namespace;
+  
+	if parent != null 
+	  then {
+	    //
+	    var parentData : TypeMarker := parent.getData(defaultSrcName, defaultProjectName);
+	    data.srcName := self.getStringTaggedValue(uml.STEREOTYPE_JAVA_PACKAGE, uml.TAGVALUE_SRC, parentData.srcName);
+	  	data.projectName := self.getStringTaggedValue( uml.STEREOTYPE_JAVA_PACKAGE, uml.TAGVALUE_PROJECT, parentData.projectName );
+	  	data.packageName := self.computePackageName( parentData.packageName, self.getStringTaggedValue(uml.STEREOTYPE_JAVA_PACKAGE, uml.TAGVALUE_NAME, self.name) );
+	  	data.generated := if parentData.generated = false then false else self.getBooleanTaggedValue( uml.STEREOTYPE_JAVA_PACKAGE, uml.TAGVALUE_GENERATED, true ) endif;
+	  }
+	  else {
+	  	data.srcName := self.getStringTaggedValue( uml.STEREOTYPE_JAVA_PACKAGE, uml.TAGVALUE_SRC, defaultSrcName );
+	  	data.projectName := self.getStringTaggedValue( uml.STEREOTYPE_JAVA_PACKAGE, uml.TAGVALUE_PROJECT, defaultProjectName );
+	  	data.packageName := self.getStringTaggedValue(uml.STEREOTYPE_JAVA_PACKAGE, uml.TAGVALUE_NAME, self.name);
+	  	data.generated := self.getBooleanTaggedValue( uml.STEREOTYPE_JAVA_PACKAGE, uml.TAGVALUE_GENERATED, true );
+	  }
+	endif;
+	
+	
+//	self.data := data;
+	return data;
+}
+
+/**
+ *
+ */
+helper Package::computePackageName( parentName : String, selfName : String) : String {
+	if( parentName.oclIsUndefined() or parentName.length() = 0) then {
+		return selfName;
+	} endif;
+	
+	return parentName + "." + selfName;
+}
+
+/**
+ * Get or create the Data for a Package Stereotypes "Project"
+ */
+helper Package::createDataFromJavaProject(defaultSrcName : String, defaultProjectName : String) : TypeMarker {
+
+  var data := object TypeMarker {};
+
+  data.srcName := self.getStringTaggedValue( uml.STEREOTYPE_JAVA_PROJECT, uml.TAGVALUE_SRC, defaultSrcName );
+  // We are in a JavaProject, so the name is either the setereotype.projectName, or the folder name
+  data.projectName := self.getStringTaggedValue( uml.STEREOTYPE_JAVA_PROJECT, uml.TAGVALUE_PROJECT, self.name );
+  // packageName = "" or null, as we are in a srcFolder (root of packages)
+  data.packageName := uml.NO_PACKAGE;
+  data.generated := self.getBooleanTaggedValue( uml.STEREOTYPE_JAVA_PROJECT, uml.TAGVALUE_GENERATED, true );
+  return data;
+}
+
+/**
+ * Get or create the Data for a uml::Model with no stereotype
+ * This is the root, so stop recursivity
+ */
+helper Package::createDataFromUmlModel(defaultSrcName : String, defaultProjectName : String) : TypeMarker {
+
+  var data := object TypeMarker {};
+
+  data.srcName := defaultSrcName;
+  // Use the name of the Model as project name.
+  data.projectName :=  self.name;
+  // packageName = "" or null, as we are in a srcFolder (root of packages)
+  data.packageName := uml.NO_PACKAGE;
+  data.generated := true;
+  return data;
+}
+
+/**
+ * A class used to hold data on a type
+ */
+intermediate class TypeMarker { 
+   isCompilationUnit : Boolean;
+   projectName : String;
+   srcName : String;
+   packageName : String;
+   generated : Boolean = true;
+  
+   }
+   
+    // log this object
+query  TypeMarker::show() : String {
+   	 return self.projectName + "-" + self.srcName + "-" + self.packageName; 
+/*
+   	       + "(isCu=" + self.isCompilationUnit.repr()
+   	       + ", isGenerated=" + self.generated.repr()
+   	       + ")";
+*/
+   };
+   
+/**
+ * Add a property to the uml::Type. This property is filled during the first pass.
+ * The first pass collect the data that are used during the second pass.
+ */
+intermediate property uml::NamedElement::data : TypeMarker;
+	
+
+
+/**
+ * Show the content of marked type
+ */
+mapping uml::NamedElement::showMarkedType() 
+{
+  log( '--------- ' + self.name + " ---------");
+  log( 'uml=' + self.repr());
+  log( 'data=' + self.data.repr());
+  
+  log( 'projectName=' + self.data.projectName);
+  log( 'srcName    =' + self.data.srcName.repr());
+  log( 'packageName=' + self.data.packageName);
+  log( 'generated  =' + self.data.generated.repr());
+}
+
+/**
+ * Map a model to a JavaModel
+ */
+mapping uml::Type::markUmlType(defaultSrcName : String, defaultProjectName : String) 
+//  when { self.isCompilationUnit() }
+{
+  log("------ try to get data for " + self.name);
+  if( self.data.oclIsUndefined() ) then {
+    log("try to get data for " + self.name);
+  	self.data := self.getData( defaultSrcName, defaultProjectName);
+  }	endif;
+}
+
+/**
+ *
+ */
+mapping uml::Namespace::getNamespaceMarker() : TypeMarker  {
+	
+	init {
+//		if not self.namespaceMarker.oclIsUndefined() then return self.namespaceMarker endif;
+	}
+	
+	
+}
+
+/* ******************************************************************** */
+/*                                                                      */
+/* ******************************************************************** */
+abstract mapping uml::NamedElement::transformNamedElementToJavaElement() : JDTmm::JDTJavaElement
+{
+	// by default, isGenerated are true
+	generated := self.isGenerated();	
+	//generated := self.data.generated;	
+	
+	comment := self.ownedComment.body->asOrderedSet()->first();
+	log("************************************" + self.name,comment);
+} 
+
+
+mapping uml::Type::transformTypeToType() : JDTmm::JDTType  	
+	disjuncts Class::generateCuClass, Class::generateNestedClass, 
+	     Interface::generateCuInterface, Interface::generateNestedInterface, 
+	     Enumeration::generateCuEnumeration, Enumeration::generateNestedEnumeration,
+	     PrimitiveType::generateCuPrimitiveType
+{
+
+}
+
+helper createOrRetrieveJavaModel2() : JDTJavaModel {
+	// get the model unique instance, or create it.
+	var model : JDTJavaModel  := resolveoneIn(createOrRetrieveJavaModel).oclAsType(JDTJavaModel);
+	if( model.oclIsUndefined()) then {
+	  model := map createOrRetrieveJavaModel();
+	} endif;
+	return model;
+}
+
+/**
+ * Generate a Class that should be a CompilationUnit and set its CompilationUnit
+ */
+mapping uml::Class::generateCuClass() : JDTmm::JDTClass 
+  inherits Class::generateClass, NamedElement::transformNamedElementToJavaElement
+  when { self.isCompilationUnit() }
+{	
+  log("------- transform", self.qualifiedName);	
+	compilationUnit := self.map type2CompilationUnit();
+}
+
+/**
+ * Generate a Class that is nested in another Type
+ */
+mapping uml::Class::generateNestedClass() : JDTmm::JDTClass 
+  inherits Class::generateClass
+when { not self.isCompilationUnit() }
+{
+  log("------- transform", self.qualifiedName);
+    // We are NOT a compilation unit, so our parent is a Type
+	owner := self.namespace.oclAsType(uml::Type).map transformTypeToType();	
+}
+
+/**
+ * Generate a Class.
+ * set all except its compilationUnit and its owner
+ */
+mapping uml::Class::generateClass() : JDTmm::JDTClass 
+  inherits Classifier::mapTypeToType
+{    
+//	log( "Interfaces:");
+//	self.generalInterfaces()->forEach(c) {
+//		log( "  interface=", c.name);
+//	};
+	log("------- transform", self.qualifiedName);
+	interface := false;
+	_class := true;
+	_enum := false;
+	
+    // map inheritance
+    superClass := self.superClass[uml::Class] -> asOrderedSet() -> first().map transformTypeToType();
+    // map interfaces
+    superInterfaces := self.generalInterfacesForClass() -> map transformTypeToType();
+   	// Properties
+	fields := self.ownedAttribute.map propertyToField();
+	fields += self.ownedAttribute.map propertyToAssociationField();
+	fields += self[uml::AssociationClass].memberEnd.map propertyToFieldOfAssociationClass();	
+	
+	//fields.type := self->generateClass() -> asOrderedSet() -> first();
+	// Methods
+	methods := self.ownedOperation -> map operationToMethod();
+}
+
+
+/**
+ * Createa Compilation Unit, and set its packageFragment 
+ */
+mapping uml::Type::type2CompilationUnit() : JDTCompilationUnit 
+	inherits NamedElement::transformNamedElementToJavaElement
+{
+	
+	elementName := self.name;
+	// Compute the package fragment from the GenData associated to the type
+	var res : JDTPackageFragment := self.data.map typeMarkerToPackageFragment();
+	
+//	log( "try to set package fragment found packageFragment=", res);
+//	log( "     type(.packageFragment)=", self);
+	
+	// Set the packageFragment of this CU
+	// next call has a bug, so we do the opposite affectation:
+	// add this CU to its packageFragment
+//	packageFragment := res; 
+    res.compilationUnits += result;
+}
+
+/**
+ * Generate a Interface that should be a CompilationUnit and set its CompilationUnit
+ */
+mapping uml::Interface::generateCuInterface() : JDTmm::JDTInterface 
+  inherits Interface::generateInterface, NamedElement::transformNamedElementToJavaElement
+  when { self.isCompilationUnit() }
+{	
+  log("------- transform", self.qualifiedName);	
+	compilationUnit := self.map type2CompilationUnit();
+	
+}
+
+/**
+ * Generate a Interface that is nested in another Type
+ */
+mapping uml::Interface::generateNestedInterface() : JDTmm::JDTInterface 
+  inherits Interface::generateInterface
+when { not self.isCompilationUnit() }
+{
+  log("------- transform", self.qualifiedName);	
+    // We are NOT a compilation unit, so our parent is a Type
+	owner := self.namespace.oclAsType(uml::Type).map transformTypeToType();
+}
+
+/**
+ * Generate a Interface.
+ * set all except its compilationUnit and its owner
+ */
+mapping uml::Interface::generateInterface() : JDTmm::JDTInterface 
+  inherits Classifier::mapTypeToType
+{
+	interface := true;
+	_class := false;
+	_enum := false;
+	
+	    // map interfaces
+    superInterfaces := self.generalInterfaces() -> map transformTypeToType();
+    	// Properties
+	fields := self.ownedAttribute -> map propertyToField();
+	// Methods
+	methods := self.ownedOperation -> map operationToMethod();
+    
+	
+}
+
+/**
+ * Generate a Enumeration that should be a CompilationUnit and set its CompilationUnit
+ */
+mapping uml::Enumeration::generateCuEnumeration() : JDTmm::JDTEnum 
+  inherits Enumeration::generateEnumeration, NamedElement::transformNamedElementToJavaElement
+  when { self.isCompilationUnit() }
+{	
+  log("------- transform", self.qualifiedName);	
+	compilationUnit := self.map type2CompilationUnit();
+	
+}
+
+/**
+ * Generate a Enumeration that is nested in another Type
+ */
+mapping uml::Enumeration::generateNestedEnumeration() : JDTmm::JDTEnum 
+  inherits Enumeration::generateEnumeration
+when { not self.isCompilationUnit() }
+{
+  log("------- transform", self.qualifiedName);	
+    // We are NOT a compilation unit, so our parent is a Type
+	owner := self.namespace.oclAsType(uml::Type).map transformTypeToType();
+}
+
+/**
+ * Generate a Enumeration.
+ * set all except its compilationUnit and its owner
+ */
+mapping uml::Enumeration::generateEnumeration() : JDTmm::JDTEnum 
+  inherits Classifier::mapTypeToType
+{
+    interface := false;
+	_class := false;
+	_enum := true;
+    
+    // map inheritance
+    superClass := self.general().map transformTypeToType();
+    // map interfaces
+    superInterfaces := self.generalInterfaces() -> map transformTypeToType();
+    
+    // Properties
+	fields := self.ownedAttribute -> map propertyToField();
+
+    // Litterals ??
+	fields += self.ownedLiteral -> map enumerationLiteral2Field();
+
+
+	// Methods
+	methods := self.ownedOperation -> map operationToMethod();
+    
+}
+
+mapping uml::EnumerationLiteral::enumerationLiteral2Field() : JDTmm::JDTField
+{
+	elementName := self.name;
+	// visibility
+	visibility := self.visibility.visibilityToVisibility();
+	// modifiers
+	final := false;
+	_static := false;
+	// multiplicity
+	isMultiValued := false;
+	// type
+	type := null;	
+}
+
+/**
+ * Generate a primitive type
+ */
+mapping uml::PrimitiveType::generateCuPrimitiveType() : JDTmm::JDTClass
+	inherits Classifier::mapTypeToType
+{
+  log("------- transform", self.qualifiedName);	
+  compilationUnit := self.map type2CompilationUnit();
+  
+  // Compute elementName
+  // Check if another name is set in instanceClassname
+  var instanceName : String := self.getStringTaggedValue(uml.STEREOTYPE_PRIMITIVETYPE, uml.TAGVALUE_IMPLEMENTATION_CLASS, null);
+  elementName := if( instanceName.oclIsUndefined()) 
+                   then self.name
+                   else instanceName.lastNameFromQualifiedName()
+                 endif;
+                 
+  // Adjust compilation unit name
+  compilationUnit.elementName := elementName;
+  
+  generated := self.data.generated;
+}
+
+/**
+ * Generate a Enumeration.
+ * set all except its compilationUnit and its owner
+ */
+abstract mapping uml::Classifier::mapTypeToType() : JDTmm::JDTType 
+	inherits NamedElement::transformNamedElementToJavaElement
+{
+	elementName := self.name;
+	// visibility
+	visibility := self.visibility.visibilityToVisibility();
+	// modifiers
+	_abstract := self.getBooleanTaggedValue("java::JavaClass", "isAbstract",self.isAbstract);
+	final := self.getBooleanTaggedValue("java::JavaClass", "isFinal",self.isLeaf);
+	_static := self.getBooleanTaggedValue("java::JavaClass", "isStatic", false);
+	generated := self.data.generated;
+}
+
+/**
+ * Transform the visibility.
+ */
+query uml::VisibilityKind::visibilityToVisibility() : jdtmm::VisibilityKind {
+	
+	if( self = uml::VisibilityKind::public ) then return jdtmm::VisibilityKind::public endif;
+	if( self = uml::VisibilityKind::protected ) then return jdtmm::VisibilityKind::protected endif;
+	if( self = uml::VisibilityKind::private ) then return jdtmm::VisibilityKind::private endif;
+	
+	// Can't happen'
+	return jdtmm::VisibilityKind::public;
+}
+
+/**
+ * Map a Property to a field
+ */
+mapping uml::Property::propertyToField() : JDTField 
+	inherits NamedElement::transformNamedElementToJavaElement
+{
+	//
+	elementName := self.name;
+	// visibility
+	visibility := self.visibility.visibilityToVisibility();
+	// modifiers
+	final := self.getBooleanTaggedValue("java::JavaProperty", "isFinal",self.isLeaf);
+	_static := self.getBooleanTaggedValue("java::JavaProperty", "isStatic", self.isStatic);
+	// getter setter
+	generateGetter := self.getEnumTaggedValue("java::JavaProperty", "generateGetter", "default").getTrueFalseDefaultValue();
+	generateSetter := self.getEnumTaggedValue("java::JavaProperty", "generateSetter", "default").getTrueFalseDefaultValue();
+	
+	// multiplicity
+	isMultiValued := self.upper < 1;
+	// type
+	type := self.type.map transformTypeToType();
+	
+	if(not self.defaultValue.isNull() ) then
+		value := self.defaultValue.stringValue()
+	endif;		
+}
+
+/**
+ * Return the value of the enumeration literal for Enum 'TrueFalseDefault'
+ */
+query  String::getTrueFalseDefaultValue(): TrueFalseDefault {	
+	if(self = "true") then
+		return TrueFalseDefault::_true
+	else 
+		if(self = "false") then
+			return TrueFalseDefault::_false
+		endif
+	endif;
+	
+	return TrueFalseDefault::_default;
+}
+/**
+ * Map a Property to a field of a association class 
+ */
+mapping uml::Property::propertyToFieldOfAssociationClass() : JDTField
+	inherits Property::propertyToField
+{
+	
+}
+
+/**
+ * Map a Property to a association field assoc+nameOfProperty
+ */
+mapping uml::Property::propertyToAssociationField() : JDTField 
+	inherits Property::propertyToField 
+when {
+	not self.association.oclIsUndefined()
+}
+{
+	// handle the class association
+    elementName := "assoc"+ self.name.firstToUpper();    
+	type := self.association.map transformTypeToType()->asOrderedSet()->first();
+}
+
+/**
+ * Map a Operation to a Method
+ */
+mapping uml::Operation::operationToMethod() : JDTMethod 
+	inherits NamedElement::transformNamedElementToJavaElement	
+{
+	//
+	elementName := self.name;
+	// visibility
+	visibility := self.visibility.visibilityToVisibility();
+	// modifiers
+	final := self.getBooleanTaggedValue("java::JavaMethod", "isFinal",self.isLeaf);
+	_static := self.getBooleanTaggedValue("java::JavaMethod", "isStatic", self.isStatic);
+	_abstract := self.getBooleanTaggedValue("java::JavaMethod", "isAbstract", self.isAbstract);
+	synchronized := self.getBooleanTaggedValue("java::JavaMethod", "isSynchronized", false);
+	
+	// constructor 
+	_constructor :=  self.getBooleanTaggedValue("java::JavaMethod", "isConstructor", false);
+	
+	// arguments
+	returnType := self.ownedParameter->select(m| m.direction.repr()="return")->first().map parameterToParameter();
+	parameters := self.ownedParameter->select(m| m.direction.repr()!="return")-> map parameterToParameter();
+
+	// exception
+	exceptions := self.raisedException -> map transformTypeToType();
+}
+
+mapping uml::Parameter::parameterToParameter() : jdtmm::JDTParameter 
+	inherits NamedElement::transformNamedElementToJavaElement
+{
+	//
+	elementName := self.name;
+	// modifiers
+	final := self.getBooleanTaggedValue("java::JavaClass", "isFinal",false);
+	// multiplicity
+	isMultiValued := self.upper < 1;
+	// type
+	type := self.type.map transformTypeToType();
+}
+/**
+ * Get or create the PackageFragment corresponding to the TypeMarker
+ */
+mapping TypeMarker::typeMarkerToPackageFragment() : JDTPackageFragment {
+	
+	init {
+		// Check if the fragment already exist
+		
+		// First, lookup fragment root
+		var srcRoot:JDTPackageFragmentRoot := self.map typeMarkerToPackageFragmentRoot();
+		
+		// Second, lookup in srcRoot for an fragment with the same name
+		result := srcRoot.packageFragments -> select( fragment  | self.packageName=fragment.elementName)-> asSequence()-> first();
+   	
+        if( result.oclIsUndefined()) then {
+        	log("create fragment " + self.packageName );
+        } 
+        else {
+        	log("reuse fragment '" + result.elementName + "'' for gendata " + self.show() );
+        } endif;
+        
+        // Ideally, we should return here. But this is not allowed in this qvt version
+        // return;
+	}
+	
+	// Initialize our object if it is not already done
+	if( packageFragmentRoot.oclIsUndefined() ) then {
+		
+	    // Try one of the end of the relation. Some QVT implementation fail on the first end,
+	    // So use the second. (In any cases, we should only affect one end, EMF will do the second end)
+		// packageFragmentRoot := srcRoot; // self.map typeMarkerToPackageFragmentRoot();
+		srcRoot.packageFragments += result;
+		elementName := self.packageName;
+		
+		// Get the isGenerated Flag
+		// Need to know the flag that has been set in the corresponding package.
+		// But here, we only got the genData associated to the CompilationUnit, so we
+		// can't know the flag value.
+		// TODO: improve the algorithm to be able to get the package's flag value
+		// actually, always set it to true
+		generated := true;
+		
+/*
+		// if package is generated=false, put generated=false for the children's package  	
+		if(generated = false) then {
+			log("c'est false");
+			srcRoot.packageFragments->forEach(pack) {
+				log("**********************"+pack.elementName, pack.elementName.indexOf(elementName));			
+				if (pack.elementName.indexOf(elementName) != -1) then {
+					pack.generated := false;
+					log("************************ elementName passé à ", generated);	
+				} endif;
+			};
+		} endif;
+*/		
+	} endif;
+	
+}
+
+/**
+ * Get or create the PackageFragmentRoot corresponding to the TypeMarker
+ */
+mapping TypeMarker::typeMarkerToPackageFragmentRoot() : JDTPackageFragmentRoot {
+	
+	init {
+		// Check if the fragment already exist
+		
+		// First, lookup corresponding project
+		var project:JDTJavaProject := self.map typeMarkerToJavaProject();
+		
+		// Second, lookup in project for an srcRoot with the same name
+		result := project.packageFragmentRoots -> select( srcRoot  | self.srcName=srcRoot.elementName)-> asSequence()-> first();
+
+        if( result.oclIsUndefined()) then {
+        	log("create PackageFragmentRoot " + self.srcName );
+        } 
+        else {
+        	log("reuse PackageFragmentRoot '" + result.elementName + "' for gendata " + self.show() );
+        } endif;
+        
+        
+        // Ideally, we should return here. But this is not allowed in this qvt version
+        // return;
+	}
+	
+	// Initialize our object if it is not already done
+	if( javaProject.oclIsUndefined() ) then {
+	  javaProject := project; // self.map typeMarkerToJavaProject();
+	  elementName := self.srcName;	
+		// Get the isGenerated Flag
+		// Need to know the flag that has been set in the corresponding package.
+		// But here, we only got the genData associated to the CompilationUnit, so we
+		// can't know the flag value.
+		// TODO: improve the algorithm to be able to get the package's flag value
+		// actually, always set it to true
+		generated := true;
+	} endif;
+}
+
+/**
+ * Get or create the PackageJavaProject corresponding to the TypeMarker
+ */
+mapping TypeMarker::typeMarkerToJavaProject() : JDTJavaProject {
+	
+	init {
+		// Lookup if there is a Project already created for this projectName
+		// resolveIn return a list of object created with the specified mapping rule
+		// Then, we lloup in the list for an element with the requested name.
+		result := resolveIn(TypeMarker::typeMarkerToJavaProject)
+		    ->select( project  | self.projectName=project.oclAsType(JDTJavaProject).elementName)->first().oclAsType(JDTJavaProject);
+
+	
+        if( result.oclIsUndefined()) then {
+        	log("create project " + self.projectName );
+        } 
+        else {
+        	log("reuse project '" + result.elementName + "'' for gendata " + self.show() );
+        } endif;
+        
+
+        // Ideally, we should return here. But this is not allowed in this qvt version
+        // return;
+	}
+	
+	// Initialize our object if it is not already done
+ 	if( javaModel.oclIsUndefined() ) then {
+	  javaModel := map createOrRetrieveJavaModel();
+	  elementName := self.projectName;	
+		// Get the isGenerated Flag
+		// Need to know the flag that has been set in the corresponding package.
+		// But here, we only got the genData associated to the CompilationUnit, so we
+		// can't know the flag value.
+		// TODO: improve the algorithm to be able to get the package's flag value
+		// actually, always set it to true
+		generated := true;
+	} endif;
+}
+
+/**
+ *
+ */
+mapping createOrRetrieveJavaModel () : JDTJavaModel {
+init {
+ // result := resolveoneIn(createOrRetrieveJavaModel).oclAsType(JDTJavaModel);
+//  if not result.oclIsUndefined() then{ return c; }endif;
+}
+ 	generated := true;
+  	elementName := "JavaModel";
+}
+

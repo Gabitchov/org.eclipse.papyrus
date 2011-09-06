@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/org.eclipse.papyrus.java.generator.feature_0.8.0.201109060101.jar" id="org.eclipse.papyrus.java.generator.feature" version="0.8.0.201109060101">
+      <category name="org.eclipse.papyrus.java.generator"/>
+      <category name="org.eclipse.papyrus.java"/>
+   </feature>
+   <feature url="features/org.eclipse.papyrus.java.profile.feature_0.8.0.201109060101.jar" id="org.eclipse.papyrus.java.profile.feature" version="0.8.0.201109060101">
+      <category name="org.eclipse.papyrus.java.profile"/>
+      <category name="org.eclipse.papyrus.java"/>
+   </feature>
+   <category-def name="org.eclipse.papyrus.java.generator" label="Java Generator">
+      <description>
+         Java Classes generator. This feature allows to generate Java classes from Papyrus classes and packages. It also allows to generate projects.
+      </description>
+   </category-def>
+   <category-def name="org.eclipse.papyrus.java.profile" label="Java Profile for classes and project generation">
+      <description>
+         This profile is used by the Java generator and the Java reverse to add additional properties to the UML model. These properties allows to change the names, specify  project target, source targets, ...
+      </description>
+   </category-def>
+   <category-def name="org.eclipse.papyrus.java" label="Java Tools For Ppyrus">
+      <description>
+         Tools related to the Java language.
+      </description>
+   </category-def>
+</site>
