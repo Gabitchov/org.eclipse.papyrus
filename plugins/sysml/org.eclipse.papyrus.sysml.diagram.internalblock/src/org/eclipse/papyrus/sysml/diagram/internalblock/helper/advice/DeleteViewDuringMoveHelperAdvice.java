@@ -86,7 +86,10 @@ public class DeleteViewDuringMoveHelperAdvice extends AbstractEditHelperAdvice {
 
 			String containerType = ViewUtil.getViewContainer(view) != null ? ViewUtil.getViewContainer(view).getType() : null;
 
-			if(!ElementTypes.DIAGRAM_ID.equals(containerType)) {
+			// Views are to be destroyed if they are not the diagram itself (containerType == null)
+			// and not a view directly owned by the diagram (the current policy in Papyrus allows 
+			// to drop nearly anything in the diagram whatever the semantic container).
+			if((containerType != null) && !ElementTypes.DIAGRAM_ID.equals(containerType)) {
 				viewsToDestroy.add(view);
 			}
 		}
