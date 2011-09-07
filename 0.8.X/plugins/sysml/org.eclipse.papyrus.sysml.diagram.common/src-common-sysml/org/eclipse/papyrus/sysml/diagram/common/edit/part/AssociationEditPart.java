@@ -136,11 +136,15 @@ public class AssociationEditPart extends AbstractElementLinkEditPart {
 
 					if(isNavigable(association, source)) {
 						setArrowTarget(getArrowDecoration(EdgeDecorationType.OPEN_ARROW));
-					}
+						if(source.getAggregation() == AggregationKind.NONE_LITERAL) {
+							setArrowSource(getArrowDecoration(EdgeDecorationType.NONE));
+						}					}
 
 					if(isNavigable(association, target)) {
 						setArrowSource(getArrowDecoration(EdgeDecorationType.OPEN_ARROW));
-					}
+						if(target.getAggregation() == AggregationKind.NONE_LITERAL) {
+							setArrowTarget(getArrowDecoration(EdgeDecorationType.NONE));
+						}					}
 
 				}
 				
