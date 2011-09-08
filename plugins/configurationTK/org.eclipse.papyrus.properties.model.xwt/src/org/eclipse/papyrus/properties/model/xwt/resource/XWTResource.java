@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -22,7 +22,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.BasicEList;
@@ -41,9 +44,9 @@ import org.eclipse.m2m.qvt.oml.TransformationExecutor;
 import org.eclipse.m2m.qvt.oml.util.Log;
 import org.eclipse.papyrus.properties.contexts.Context;
 import org.eclipse.papyrus.properties.model.xwt.Activator;
+import org.eclipse.papyrus.properties.model.xwt.format.XMLFormatter;
 import org.eclipse.papyrus.properties.runtime.ConfigurationManager;
 import org.eclipse.papyrus.properties.ui.CompositeWidget;
-import org.eclipse.papyrus.properties.ui.UiPackage;
 import org.eclipse.papyrus.properties.util.Util;
 
 /**
@@ -62,6 +65,13 @@ import org.eclipse.papyrus.properties.util.Util;
 public class XWTResource extends ResourceImpl {
 
 	private GenericXMLResourceImpl xmlResource;
+
+	/**
+	 * The "format" option.
+	 * 
+	 * This option is a boolean, which default value is true
+	 */
+	public static final String OPTION_FORMAT = "format";
 
 	/**
 	 * 
@@ -95,6 +105,14 @@ public class XWTResource extends ResourceImpl {
 			super.save(optionsMap);
 		} else {
 			super.save(options);
+		}
+
+		Object formatValue = options.get(OPTION_FORMAT);
+		if(formatValue == null || formatValue == Boolean.TRUE) {
+			if(uri.isPlatform()) {
+				IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(uri.toPlatformString(false)));
+				XMLFormatter.format(file);
+			}
 		}
 	}
 
