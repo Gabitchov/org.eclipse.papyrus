@@ -8,11 +8,11 @@
     <scope href="http://www.eclipse.org/uml2/3.0.0/UML#//Port"/>
   </queries>
   <queries xsi:type="query:JavaModelQuery" name="GetFlowPortDirectionQuery" description="Query to qet the attribute &quot;Direction&quot; of the FlowPort" implementationClassName="org.eclipse.papyrus.sysml.facets.portandflows.query.value.getter.GetFlowPortDirectionQuery">
-    <returnType xsi:type="ecore:EEnum" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//portandflows/FlowDirection"/>
+    <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EEnumerator"/>
     <scope href="http://www.eclipse.org/uml2/3.0.0/UML#//Port"/>
   </queries>
   <queries xsi:type="query:JavaModelQuery" name="SetFlowPortDirectionQuery" description="Query to qet the attribute &quot;Direction&quot; of the FlowPort" implementationClassName="org.eclipse.papyrus.sysml.facets.portandflows.query.value.setter.SetFlowPortDirectionQuery">
-    <returnType xsi:type="ecore:EEnum" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//portandflows/FlowDirection"/>
+    <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EEnumerator"/>
     <scope href="http://www.eclipse.org/uml2/3.0.0/UML#//Port"/>
   </queries>
 </query:ModelQuerySet>
