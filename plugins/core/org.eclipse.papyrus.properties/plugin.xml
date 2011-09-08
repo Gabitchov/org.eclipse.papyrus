@@ -11,16 +11,8 @@
 <plugin>
    <extension-point id="context" name="%extension-point.context" schema="schema/context.exsd"/>
    <extension-point id="environment" name="%extension-point.environment" schema="schema/environment.exsd"/>
-
-   <extension
-         point="org.eclipse.ui.views.properties.tabbed.propertyContributor">
-      <propertyContributor
-            contributorId="TreeOutlinePage"
-            tabDescriptorProvider="org.eclipse.papyrus.properties.xwt.XWTTabDescriptorProvider">
-         <propertyCategory
-               category="org.eclipse.papyrus"></propertyCategory>
-      </propertyContributor>
-   </extension>
+   <extension-point id="labelprovider" name="labelprovider" schema="schema/labelprovider.exsd"/>
+   
    <extension
          point="org.eclipse.emf.ecore.generated_package">
       <package
@@ -65,5 +57,12 @@
             class="org.eclipse.papyrus.properties.catalog.PropertiesCatalog"
             protocolName="ppe">
       </parser>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.properties.labelprovider">
+      <labelProvider
+            labelProvider="org.eclipse.papyrus.properties.providers.EMFObjectFilteredLabelProvider"
+            priority="100">
+      </labelProvider>
    </extension>
 </plugin>

@@ -25,8 +25,7 @@
 		<Composite.layout>
 			<ppel:PropertiesLayout numColumns="2"></ppel:PropertiesLayout>
 		</Composite.layout>
-		<ppe:EnumCombo input="{Binding}"
-			property="UML:BehavioralFeature:concurrency"></ppe:EnumCombo>
+		<ppe:EnumCombo input="{Binding}" property="UML:BehavioralFeature:concurrency"></ppe:EnumCombo>
 		<ppe:EnumCombo input="{Binding}" property="UML:NamedElement:visibility"></ppe:EnumCombo>
 	</Composite>
 	<Composite>

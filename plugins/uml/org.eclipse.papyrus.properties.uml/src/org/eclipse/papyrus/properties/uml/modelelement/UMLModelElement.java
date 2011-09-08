@@ -33,8 +33,12 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.properties.modelelement.EMFModelElement;
+import org.eclipse.papyrus.properties.providers.ContainerContentProvider;
+import org.eclipse.papyrus.properties.providers.EMFObjectLabelProvider;
+import org.eclipse.papyrus.properties.providers.FeatureContentProvider;
 import org.eclipse.papyrus.properties.uml.creation.MessageValueSpecificationFactory;
 import org.eclipse.papyrus.properties.uml.creation.OwnedRuleCreationFactory;
+import org.eclipse.papyrus.properties.uml.creation.UMLPropertyEditorFactory;
 import org.eclipse.papyrus.properties.uml.databinding.PapyrusObservableList;
 import org.eclipse.papyrus.properties.uml.databinding.PapyrusObservableValue;
 import org.eclipse.papyrus.properties.uml.databinding.SignatureObservableValue;
@@ -166,7 +170,11 @@ public class UMLModelElement extends EMFModelElement {
 	@Override
 	public ReferenceValueFactory getValueFactory(String propertyPath) {
 		EStructuralFeature feature = getFeature(propertyPath);
-		if(feature == UMLPackage.eINSTANCE.getMessage_Argument()) {
+		if(!(feature instanceof EReference)) {
+			return null;
+		}
+		EReference reference = (EReference)feature;
+		if(reference == UMLPackage.eINSTANCE.getMessage_Argument()) {
 			if(source instanceof Message) {
 				Set<ParameterDirectionKind> directions = new HashSet<ParameterDirectionKind>();
 				switch(((Message)source).getMessageSort()) {
@@ -174,24 +182,33 @@ public class UMLModelElement extends EMFModelElement {
 					directions.add(OUT_LITERAL);
 					directions.add(INOUT_LITERAL);
 					directions.add(RETURN_LITERAL);
-					return new MessageValueSpecificationFactory(((EReference)feature).getEReferenceType(), (Message)source, directions);
+					return new MessageValueSpecificationFactory(reference, (Message)source, directions);
 				case SYNCH_CALL_LITERAL:
 				case ASYNCH_CALL_LITERAL:
 				case ASYNCH_SIGNAL_LITERAL:
 					directions.add(IN_LITERAL);
 					directions.add(INOUT_LITERAL);
-					return new MessageValueSpecificationFactory(((EReference)feature).getEReferenceType(), (Message)source, directions);
+					return new MessageValueSpecificationFactory(reference, (Message)source, directions);
 				}
 			}
 		}
 
-		boolean isOwnedRuleSubset = ownedRuleSubsets.contains(feature);
+		boolean isOwnedRuleSubset = ownedRuleSubsets.contains(reference);
 
 		if(isOwnedRuleSubset) {
-			return new OwnedRuleCreationFactory((EClass)feature.getEType());
+			return new OwnedRuleCreationFactory(reference);
 		}
 
-		return super.getValueFactory(propertyPath);
+		EClass type = reference.getEReferenceType();
+
+		UMLPropertyEditorFactory factory = new UMLPropertyEditorFactory(reference);
+		factory.setContainerLabelProvider(new UMLLabelProvider());
+		factory.setReferenceLabelProvider(new EMFObjectLabelProvider());
+		IStaticContentProvider contentProvider = new ContainerContentProvider(type);
+		factory.setContainerContentProvider(contentProvider);
+		factory.setReferenceContentProvider(new FeatureContentProvider(type));
+
+		return factory;
 	}
 
 	/**

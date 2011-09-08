@@ -49,7 +49,7 @@ public class EncapsulatedContentProvider implements IHierarchicContentProvider, 
 	public EncapsulatedContentProvider(IStaticContentProvider encapsulated) {
 		this.encapsulated = encapsulated;
 	}
-	
+
 	/**
 	 * 
 	 * Constructor.
@@ -67,8 +67,13 @@ public class EncapsulatedContentProvider implements IHierarchicContentProvider, 
 	 *         All elements known by this ContentProvider
 	 */
 	private Object[] getAllElements() {
+		Object[] elements = encapsulated.getElements();
+		if(temporaryElements.isEmpty()) {
+			return elements;
+		}
+
 		List<Object> result = new LinkedList<Object>();
-		for(Object object : encapsulated.getElements()) {
+		for(Object object : elements) {
 			result.add(object);
 		}
 		result.addAll(temporaryElements);

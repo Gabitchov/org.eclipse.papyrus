@@ -65,7 +65,7 @@ public class ModelContentProvider extends MoDiscoContentProvider implements ISta
 
 	@Override
 	public EObject[] getRootElements(Object inputElement) {
-		//if the semantic root is null, we use the defaut behavior
+		//if the semantic root is null, we use the default behavior
 		if(semanticRoot == null) {
 			return super.getRootElements(inputElement);
 		} else {
@@ -80,6 +80,8 @@ public class ModelContentProvider extends MoDiscoContentProvider implements ISta
 	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
 		if(viewer instanceof StructuredViewer) {
 			this.viewer = (StructuredViewer)viewer;
+		} else {
+			this.viewer = null;
 		}
 	}
 
@@ -132,7 +134,10 @@ public class ModelContentProvider extends MoDiscoContentProvider implements ISta
 				continue;
 			}
 
-			visitedElements.add(semanticElement);
+			if (!(semanticElement instanceof EReference)) {
+				// Don't mark references themselves as visited, as they are meta-level singletons that should always be re-visited.
+				visitedElements.add(semanticElement);
+			}
 
 			if(!isVisible(wrapper)) {
 				continue;

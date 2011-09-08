@@ -74,8 +74,10 @@ public class EditionDialog extends SelectionDialog {
 
 	@Override
 	public void create() {
-		setTitle(Messages.EditionDialog_CreateANewElement);
 		super.create();
+		if(getShell().getText() == null || "".equals(getShell().getText())) { //$NON-NLS-1$
+			setTitle(Messages.EditionDialog_CreateANewElement);
+		}
 		getShell().setImage(Activator.getDefault().getImage("org.eclipse.papyrus.widgets", "/icons/papyrus.png")); //$NON-NLS-1$ //$NON-NLS-2$
 		getShell().addDisposeListener(new DisposeListener() {
 

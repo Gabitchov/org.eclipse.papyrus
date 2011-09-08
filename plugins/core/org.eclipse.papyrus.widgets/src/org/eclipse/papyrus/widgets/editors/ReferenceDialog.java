@@ -11,6 +11,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.widgets.editors;
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -185,15 +186,14 @@ public class ReferenceDialog extends AbstractValueEditor implements SelectionLis
 		if(result == Window.OK) {
 			Object[] newValue = dialog.getResult();
 			if(newValue.length == 0) {
-				modelProperty.setValue(null);
+				setValue(null);
 			} else {
 				Object value = newValue[0];
 				if(contentProvider instanceof IAdaptableContentProvider) {
 					value = ((IAdaptableContentProvider)contentProvider).getAdaptedValue(value);
 				}
-				modelProperty.setValue(value);
+				setValue(value);
 			}
-			updateLabel();
 		}
 	}
 
@@ -207,8 +207,10 @@ public class ReferenceDialog extends AbstractValueEditor implements SelectionLis
 			if(value == null) {
 				return;
 			}
-			valueFactory.validateObjects(Collections.singleton(value));
-			modelProperty.setValue(value);
+			Collection<Object> validatedObjects = valueFactory.validateObjects(Collections.singleton(value));
+			if(!validatedObjects.isEmpty()) {
+				setValue(validatedObjects.iterator().next());
+			}
 		}
 	}
 
@@ -217,11 +219,11 @@ public class ReferenceDialog extends AbstractValueEditor implements SelectionLis
 	 * that is currently selected
 	 */
 	protected void editAction() {
-		Object currentValue = modelProperty.getValue();
+		Object currentValue = getValue();
 		if(currentValue != null && valueFactory != null && valueFactory.canEdit()) {
-			Object newValue = valueFactory.edit(editInstanceButton, modelProperty.getValue());
+			Object newValue = valueFactory.edit(editInstanceButton, getValue());
 			if(newValue != currentValue) {
-				modelProperty.setValue(newValue);
+				setValue(newValue);
 			}
 			updateLabel();
 		}
@@ -232,16 +234,19 @@ public class ReferenceDialog extends AbstractValueEditor implements SelectionLis
 	 * reference to null
 	 */
 	protected void unsetAction() {
-		if(modelProperty != null) {
-			modelProperty.setValue(null);
-		}
+		setValue(null);
 	}
 
 	/**
 	 * Updates the displayed label for the current value
 	 */
 	protected void updateLabel() {
-		binding.updateModelToTarget();
+		if(binding != null) {
+			binding.updateModelToTarget();
+		} else {
+			currentValueLabel.setImage(labelProvider.getImage(getValue()));
+			currentValueLabel.setText(labelProvider.getText(getValue()));
+		}
 	}
 
 	/**
@@ -274,6 +279,7 @@ public class ReferenceDialog extends AbstractValueEditor implements SelectionLis
 		if(widgetObservable != null) {
 			((CLabelObservableValue)widgetObservable).setLabelProvider(labelProvider);
 		}
+		updateLabel();
 	}
 
 	/**
@@ -366,7 +372,6 @@ public class ReferenceDialog extends AbstractValueEditor implements SelectionLis
 		} else if(widget == unsetButton) {
 			unsetAction();
 		}
-		updateControls();
 	}
 
 	public void widgetDefaultSelected(SelectionEvent e) {
@@ -388,14 +393,13 @@ public class ReferenceDialog extends AbstractValueEditor implements SelectionLis
 
 		// If they are displayed, check if they should be enabled
 		if(!exclude) {
-			editInstanceButton.setEnabled(valueFactory != null && valueFactory.canEdit() && modelProperty != null && modelProperty.getValue() != null);
+			editInstanceButton.setEnabled(valueFactory != null && valueFactory.canEdit() && getValue() != null);
 			createInstanceButton.setEnabled(valueFactory != null && valueFactory.canCreateObject());
 		}
 
 		boolean enabled = !readOnly;
-		if(modelProperty != null) {
-			enabled = enabled && modelProperty.getValue() != null;
-		}
+		enabled = enabled && getValue() != null;
+
 		unsetButton.setEnabled(enabled);
 	}
 
@@ -408,5 +412,23 @@ public class ReferenceDialog extends AbstractValueEditor implements SelectionLis
 	public void setDirectCreation(boolean directCreation) {
 		this.directCreation = directCreation;
 		updateControls();
+	}
+
+	public void setValue(Object value) {
+		this.value = value;
+		if(modelProperty != null) {
+			modelProperty.setValue(value);
+		}
+		updateControls();
+		updateLabel();
+		commit();
+	}
+
+	/**
+	 * @see org.eclipse.jface.viewers.StructuredViewer#setInput(Object)
+	 * @param input
+	 */
+	public void setInput(Object input) {
+		this.dialog.setInput(input);
 	}
 }

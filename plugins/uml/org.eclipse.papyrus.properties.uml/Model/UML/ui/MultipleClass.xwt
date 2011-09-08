@@ -9,8 +9,7 @@
 		<Composite.layout>
 			<ppel:PropertiesLayout numColumns="2"></ppel:PropertiesLayout>
 		</Composite.layout>
-		<ppe:BooleanRadio input="{Binding}"
-			property="UML:Classifier:isAbstract"></ppe:BooleanRadio>
+		<ppe:BooleanRadio input="{Binding}" property="UML:Classifier:isAbstract"></ppe:BooleanRadio>
 		<ppe:BooleanRadio input="{Binding}" property="UML:Class:isActive"></ppe:BooleanRadio>
 		<ppe:BooleanRadio input="{Binding}"
 			property="UML:RedefinableElement:isLeaf"></ppe:BooleanRadio>
