@@ -79,7 +79,7 @@ public class BlockDropHelper extends ElementHelper {
 		IAdaptable createElementRequestAdapter = new CreateElementRequestAdapter(createElementRequest);
 			
 		// 2. Prepare the drop command
-		ViewDescriptor descriptor = new ViewDescriptor(createElementRequestAdapter, Node.class, SysMLGraphicalTypes.SHAPE_SYSML_BLOCKPROPERTY_AS_COMPOSITE_ID, ViewUtil.APPEND, false, host.getDiagramPreferencesHint());
+		ViewDescriptor descriptor = new ViewDescriptor(createElementRequestAdapter, Node.class, SysMLGraphicalTypes.SHAPE_SYSML_BLOCKPROPERTY_AS_COMPOSITE_ID, ViewUtil.APPEND, true, host.getDiagramPreferencesHint());
 		CreateViewRequest createViewRequest = new CreateViewRequest(descriptor);
 		createViewRequest.setLocation(request.getLocation().getCopy());		
 		Command viewCreateCommand = host.getCommand(createViewRequest);
