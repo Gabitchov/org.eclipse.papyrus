@@ -190,7 +190,7 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 
 		IAdaptable elementAdapter = new EObjectAdapter(droppedObject);
 
-		ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class, droppedObjectGraphicalType, ViewUtil.APPEND, false, getDiagramPreferencesHint());
+		ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class, droppedObjectGraphicalType, ViewUtil.APPEND, true, getDiagramPreferencesHint());
 		CreateViewRequest createViewRequest = new CreateViewRequest(descriptor);
 		createViewRequest.setLocation(absoluteLocation);
 

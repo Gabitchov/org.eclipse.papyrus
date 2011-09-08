@@ -49,7 +49,7 @@ public class PartDropHelper extends ElementHelper {
 		}
 					
 		// Prepare the view creation command
-		ViewDescriptor descriptor = new ViewDescriptor(new SemanticAdapter((EObject)droppedEObject, null), Node.class, SysMLGraphicalTypes.SHAPE_SYSML_BLOCKPROPERTY_AS_COMPOSITE_ID, ViewUtil.APPEND, false, host.getDiagramPreferencesHint());
+		ViewDescriptor descriptor = new ViewDescriptor(new SemanticAdapter((EObject)droppedEObject, null), Node.class, SysMLGraphicalTypes.SHAPE_SYSML_BLOCKPROPERTY_AS_COMPOSITE_ID, ViewUtil.APPEND, true, host.getDiagramPreferencesHint());
 		CreateViewRequest createViewRequest = new CreateViewRequest(descriptor);
 		createViewRequest.setLocation(request.getLocation().getCopy());		
 		Command viewCreateCommand = host.getCommand(createViewRequest);
