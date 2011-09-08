@@ -7,7 +7,7 @@
       <valueQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/portAndFlowsQueries#GetFlowPortIsAtomicQuery"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="facet:FacetAttribute" name="direction" volatile="true" unsettable="true">
-      <eType xsi:type="ecore:EEnum" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//portandflows/FlowDirection"/>
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EEnumerator"/>
       <valueQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/portAndFlowsQueries#GetFlowPortDirectionQuery"/>
       <setQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/portAndFlowsQueries#SetFlowPortDirectionQuery"/>
     </eStructuralFeatures>
