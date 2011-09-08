@@ -1,3 +1,14 @@
+/*****************************************************************************
+ * Copyright (c) 2011 CEA LIST.
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *****************************************************************************/
 package org.eclipse.papyrus.properties.uml.creation;
 
 import java.util.LinkedList;
@@ -6,6 +17,7 @@ import java.util.Set;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.papyrus.properties.creation.EcorePropertyEditorFactory;
 import org.eclipse.papyrus.properties.util.EMFHelper;
 import org.eclipse.swt.widgets.Control;
@@ -22,7 +34,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * A factory to instantiate arguments corresponding to Message signatures
- * The arguments are pre-filled which the right name and type, which
+ * The arguments are pre-filled with the right name and type, which
  * are extracted from the corresponding parameter
  * 
  * @author Camille Letavernier
@@ -58,8 +70,8 @@ public class MessageValueSpecificationFactory extends EcorePropertyEditorFactory
 	 * @param directions
 	 *        The directions of the parameters we want to retain
 	 */
-	public MessageValueSpecificationFactory(EClass type, Message parent, Set<ParameterDirectionKind> directions) {
-		super(type);
+	public MessageValueSpecificationFactory(EReference reference, Message parent, Set<ParameterDirectionKind> directions) {
+		super(reference);
 		this.parent = parent;
 		this.directions = directions;
 	}

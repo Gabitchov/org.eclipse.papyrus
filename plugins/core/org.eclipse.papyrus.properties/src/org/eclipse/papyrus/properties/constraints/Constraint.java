@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -21,6 +21,9 @@ import org.eclipse.papyrus.properties.contexts.View;
  * @author Camille Letavernier
  * 
  */
+//TODO : To be refactored
+//The constraint framework should be accessible by other plug-ins which don't
+//necessarily depend on oep.properties
 public interface Constraint {
 
 	/**

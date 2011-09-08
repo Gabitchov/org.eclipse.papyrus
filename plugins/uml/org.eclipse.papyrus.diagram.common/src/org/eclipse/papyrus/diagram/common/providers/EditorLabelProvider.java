@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
  *
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -39,12 +39,16 @@ import org.eclipse.papyrus.core.editorsfactory.PageIconsRegistry;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.utils.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.diagram.common.Activator;
-import org.eclipse.papyrus.diagram.common.Messages;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.InstanceSpecification;
+import org.eclipse.uml2.uml.InstanceValue;
+import org.eclipse.uml2.uml.LiteralNull;
+import org.eclipse.uml2.uml.LiteralString;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Type;
+import org.eclipse.uml2.uml.ValueSpecification;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
 
@@ -72,11 +76,10 @@ public class EditorLabelProvider implements ILabelProvider {
 	public static final Image imageNotFound = Activator.getPluginIconImage(pluginID, "notFound.gif");
 
 	/** icon for metaclass */
-	public static final String ICON_METACLASS = "/icons/Metaclass.gif";//$NON-NLS-1$ 
+	public static final String ICON_METACLASS = "/icons/Metaclass.gif";//$NON-NLS-1$
 
 	/** icon for a compartment */
 	public static final String ICON_COMPARTMENT = "/icons/none_comp_vis.gif"; //$NON-NLS-1$
-
 
 	/**
 	 * 
@@ -85,16 +88,7 @@ public class EditorLabelProvider implements ILabelProvider {
 	 * @param listener
 	 */
 	public void addListener(ILabelProviderListener listener) {
-		// TODO Auto-generated method stub
-	}
-
-	/**
-	 * 
-	 * @see org.eclipse.jface.viewers.IBaseLabelProvider#dispose()
-	 * 
-	 */
-	public void dispose() {
-		// TODO Auto-generated method stub
+		//TODO
 	}
 
 	/**
@@ -117,8 +111,7 @@ public class EditorLabelProvider implements ILabelProvider {
 	 * @param listener
 	 */
 	public void removeListener(ILabelProviderListener listener) {
-		// TODO Auto-generated method stub
-
+		//TODO
 	}
 
 	/**
@@ -226,6 +219,9 @@ public class EditorLabelProvider implements ILabelProvider {
 	 *         </ul>
 	 */
 	public String getText(Object element) {
+		if(element == null) {
+			return "<Undefined>";
+		}
 
 		if(!(element instanceof EObject) && element instanceof IAdaptable) {
 			EObject eObject = (EObject)((IAdaptable)element).getAdapter(EObject.class);
@@ -239,9 +235,40 @@ public class EditorLabelProvider implements ILabelProvider {
 		//		}
 
 		if(element instanceof EObject && UMLUtil.getBaseElement((EObject)element) != null) { //Stereotype Application
+			//We return the label of the Stereotyped element, not of the Stereotype itself
 			return getText(UMLUtil.getBaseElement((EObject)element));
 		} else if(element instanceof NamedElement) {
-			return ((NamedElement)element).getName();
+			if(element instanceof ValueSpecification) { //Format : [name=]value
+				String value = null;
+				if(element instanceof InstanceValue) {
+					InstanceSpecification specification = ((InstanceValue)element).getInstance();
+					if(specification != null) {
+						value = getText(specification);
+					}
+				} else if(element instanceof LiteralString) {
+					value = "\"" + ((ValueSpecification)element).stringValue() + "\""; //$NON-NLS-1$ //$NON-NLS-2$
+				} else if(element instanceof LiteralNull) {
+					value = "null";
+				} else {
+					value = ((ValueSpecification)element).stringValue();
+				}
+
+				if(value != null) {
+					if(((NamedElement)element).isSetName()) {
+						return ((NamedElement)element).getName() + "=" + value; //$NON-NLS-1$
+					} else {
+						return value;
+					}
+				} else {
+					if(((NamedElement)element).isSetName()) {
+						return ((NamedElement)element).getName();
+					} else {
+						return ""; //$NON-NLS-1$
+					}
+				}
+			} else {
+				return ((NamedElement)element).getName();
+			}
 		} else if(element instanceof Element) {
 			//when the element is not a NamedElement, we return its Type + a index
 			String className = element.getClass().getName();
@@ -266,10 +293,15 @@ public class EditorLabelProvider implements ILabelProvider {
 			return ((EClass)element).getName();
 		}
 
-		if(element != null) {
-			return element.toString();
-		}
+		return element.toString();
+	}
 
-		return Messages.EditorLabelProvider_No_name;
+	/**
+	 * 
+	 * @see org.eclipse.jface.viewers.IBaseLabelProvider#dispose()
+	 * 
+	 */
+	public void dispose() {
+		//TODO
 	}
 }

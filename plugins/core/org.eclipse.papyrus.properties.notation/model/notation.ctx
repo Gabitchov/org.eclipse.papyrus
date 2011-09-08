@@ -410,6 +410,13 @@
       <widget href="ui/SingleGradientData.xwt#/"/>
     </sections>
   </tabs>
+  <views name="Single Diagram" sections="//@tabs.0/@sections.20" automaticContext="true" datacontexts="//@dataContexts.0/@elements.20">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleDiagram">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties.notation/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="Diagram"/>
+    </constraints>
+  </views>
   <views name="Single Edge" sections="//@tabs.0/@sections.0" automaticContext="true" datacontexts="//@dataContexts.0/@elements.0">
     <constraints xsi:type="contexts:SimpleConstraint" name="isSingleEdge">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.properties.notation/model/Environment.xmi#//@constraintTypes.0"/>
@@ -548,13 +555,6 @@
       <constraintType href="ppe:/environment/org.eclipse.papyrus.properties.notation/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
       <properties xsi:type="contexts:ValueProperty" name="className" value="RelativeBendpoints"/>
-    </constraints>
-  </views>
-  <views name="Single Diagram" sections="//@tabs.0/@sections.20" automaticContext="true" datacontexts="//@dataContexts.0/@elements.20">
-    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleDiagram">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties.notation/model/Environment.xmi#//@constraintTypes.0"/>
-      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
-      <properties xsi:type="contexts:ValueProperty" name="className" value="Diagram"/>
     </constraints>
   </views>
   <views name="Single Image" sections="//@tabs.0/@sections.21" automaticContext="true" datacontexts="//@dataContexts.0/@elements.21">

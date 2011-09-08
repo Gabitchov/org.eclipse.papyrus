@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -56,7 +56,7 @@ public class EMFInstanceOfConstraint extends AbstractConstraint {
 		EMFInstanceOfConstraint constraint = (EMFInstanceOfConstraint)otherConstraint;
 		EClass thisClass = EMFHelper.getEClass(nsUri, className);
 		EClass otherClass = EMFHelper.getEClass(constraint.nsUri, constraint.className);
-		boolean result = (!equals(constraint)) && EMFHelper.isSubclass(thisClass, otherClass);
+		boolean result = (!equals(constraint)) && EMFHelper.isSubclass(thisClass, otherClass) && thisClass != otherClass;
 
 		return result || super.overrides(constraint);
 	}
@@ -77,23 +77,30 @@ public class EMFInstanceOfConstraint extends AbstractConstraint {
 
 	@Override
 	protected boolean equivalent(Constraint constraint) {
-		if(this == constraint)
+		if(this == constraint) {
 			return true;
-		if(constraint == null)
+		}
+		if(constraint == null) {
 			return false;
-		if(!(constraint instanceof EMFInstanceOfConstraint))
+		}
+		if(!(constraint instanceof EMFInstanceOfConstraint)) {
 			return false;
+		}
 		EMFInstanceOfConstraint other = (EMFInstanceOfConstraint)constraint;
 		if(className == null) {
-			if(other.className != null)
+			if(other.className != null) {
 				return false;
-		} else if(!className.equals(other.className))
+			}
+		} else if(!className.equals(other.className)) {
 			return false;
+		}
 		if(nsUri == null) {
-			if(other.nsUri != null)
+			if(other.nsUri != null) {
 				return false;
-		} else if(!nsUri.equals(other.nsUri))
+			}
+		} else if(!nsUri.equals(other.nsUri)) {
 			return false;
+		}
 		return true;
 	}
 

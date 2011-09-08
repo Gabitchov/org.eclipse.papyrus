@@ -1,3 +1,14 @@
+/*****************************************************************************
+ * Copyright (c) 2011 CEA LIST.
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *****************************************************************************/
 package org.eclipse.papyrus.properties.runtime;
 
 import java.text.Collator;
@@ -57,7 +68,7 @@ public class EmbeddedDisplayEngine extends DefaultDisplayEngine implements Selec
 	 *        SWT.BOTTOM or SWT.TOP (Tabs' position)
 	 */
 	public void display(Set<View> views, Composite parent, ISelection selection, int style) {
-		dispose();
+		disposeControls();
 
 		self = new Composite(parent, SWT.NONE);
 
@@ -190,8 +201,8 @@ public class EmbeddedDisplayEngine extends DefaultDisplayEngine implements Selec
 	}
 
 	@Override
-	protected void dispose() {
-		super.dispose();
+	protected void disposeControls() {
+		super.disposeControls();
 		if(self != null) {
 			self.dispose();
 			self = null;

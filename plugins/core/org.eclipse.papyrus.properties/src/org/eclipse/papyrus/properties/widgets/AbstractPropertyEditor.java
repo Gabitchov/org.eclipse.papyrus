@@ -294,11 +294,13 @@ public abstract class AbstractPropertyEditor implements IChangeListener {
 			description = property.getDescription();
 		}
 
+		//Append the propertyPath to the description
 		if(description == null || description.trim().equals("")) { //$NON-NLS-1$
-			return;
+			description = getLocalPropertyPath();
+		} else {
+			description = Util.resizeString(description, descriptionMaxCharPerLine);
+			description = getLocalPropertyPath() + ": " + description;
 		}
-
-		description = Util.resizeString(description, descriptionMaxCharPerLine);
 
 		if(valueEditor != null) {
 			valueEditor.setToolTipText(description);

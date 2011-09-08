@@ -12,14 +12,23 @@
 package org.eclipse.papyrus.properties.creation;
 
 import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.properties.Activator;
 import org.eclipse.papyrus.properties.messages.Messages;
+import org.eclipse.papyrus.properties.providers.CreateInFeatureContentProvider;
+import org.eclipse.papyrus.properties.util.EClassNameComparator;
 import org.eclipse.papyrus.properties.util.EMFHelper;
+import org.eclipse.papyrus.widgets.providers.IStaticContentProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
@@ -64,31 +73,54 @@ public class EcorePropertyEditorFactory extends PropertyEditorFactory {
 	protected String className;
 
 	/**
+	 * The reference in which the object will be set.
+	 */
+	protected EReference referenceIn;
+
+	/**
+	 * The ContentProvider for browsing potential container EObjects
+	 */
+	protected IStaticContentProvider containerContentProvider;
+
+	/**
+	 * The ContentProvider for browsing potential containment EReferences.
+	 * The input of this content provider is the object selected through the
+	 * containerContentProvider
+	 */
+	protected CreateInFeatureContentProvider referenceContentProvider;
+
+	/**
+	 * The LabelProvider for displaying potential container EObjects
+	 */
+	protected ILabelProvider containerLabelProvider;
+
+	/**
+	 * The LabelProvider for displaying potential containment EReferences
+	 */
+	protected ILabelProvider referenceLabelProvider;
+
+	/**
+	 * Store information about where each object should be added on validation
+	 */
+	protected Map<EObject, CreateIn> createIn = new HashMap<EObject, CreateIn>();
+
+	/**
 	 * 
 	 * Constructor.
 	 * 
 	 * The factory will be able to instantiate the given EClass
 	 * 
 	 * @param type
-	 *        The EClass to instantiate when creating new EObjects
+	 *        The type of EClass to instantiate when creating new EObjects.
 	 */
-	public EcorePropertyEditorFactory(EClass type) {
-		this.type = type;
-	}
+	public EcorePropertyEditorFactory(EReference referenceIn) {
+		if(referenceIn == null) {
+			throw new IllegalArgumentException("The referenceIn parameter must be set"); //$NON-NLS-1$
+		}
 
-	/*
-	 * Creates a new EcorePropertyEditorFactory. The given EClass is used to instantiate
-	 * a new EObject when the {@link #createObject} method is called.
-	 * Constructor.
-	 * 
-	 * @param eClass
-	 * 
-	 * public EcorePropertyEditorFactory(EClass eClass) {
-	 * this.eClass = eClass;
-	 * this.nsUri = eClass.getEPackage().getNsURI();
-	 * this.className = eClass.getName();
-	 * }
-	 */
+		this.referenceIn = referenceIn;
+		this.type = referenceIn.getEReferenceType();
+	}
 
 	/**
 	 * @return the nsUri of the EClass used by this factory to instantiate new EObjects
@@ -154,13 +186,47 @@ public class EcorePropertyEditorFactory extends PropertyEditorFactory {
 	 */
 	@Override
 	public Object createObject(Control widget) {
+		Object instance;
+		if (referenceIn.isContainment()){
+			instance = simpleCreateObject(widget);
+		} else {
+			instance = createObjectInDifferentContainer(widget);
+		}
+
+		return super.createObject(widget, instance);
+	}
+
+	protected EObject simpleCreateObject(Control widget) {
 		EClass eClass = chooseEClass(widget);
 		if(eClass == null) {
 			return null;
 		}
 
 		EObject instance = eClass.getEPackage().getEFactoryInstance().create(eClass);
-		return super.createObject(widget, instance);
+		return instance;
+	}
+
+	protected EObject createObjectInDifferentContainer(Control widget) {
+		EObject instance = simpleCreateObject(widget);
+		if(instance == null) {
+			return null;
+		}
+
+		containerContentProvider.inputChanged(null, null, instance);
+		referenceContentProvider.setType(instance.eClass());
+		CreateInDialog dialog = new CreateInDialog(widget.getShell(), instance);
+		dialog.setProviders(containerContentProvider, referenceContentProvider, containerLabelProvider, referenceLabelProvider);
+		dialog.setTitle(getCreationDialogTitle());
+		int result = dialog.open();
+		if(result != Window.OK) {
+			return null;
+		}
+		CreateIn createIn = new CreateIn();
+		createIn.createInObject = dialog.getContainer();
+		createIn.createInReference = dialog.getContainmentReference();
+		this.createIn.put(instance, createIn);
+
+		return instance;
 	}
 
 	/**
@@ -187,6 +253,7 @@ public class EcorePropertyEditorFactory extends PropertyEditorFactory {
 		}
 
 		if(availableClasses.size() == 1) {
+			this.className = availableClasses.get(0).getName();
 			return availableClasses.get(0);
 		}
 
@@ -226,6 +293,9 @@ public class EcorePropertyEditorFactory extends PropertyEditorFactory {
 		}
 
 		EClass eClass = this.eClass;
+		if(eClass != null) {
+			className = eClass.getName();
+		}
 		this.eClass = null;
 
 		return eClass;
@@ -237,7 +307,9 @@ public class EcorePropertyEditorFactory extends PropertyEditorFactory {
 	 *         This is the list of all concrete subclasses of {@link #type}
 	 */
 	protected List<EClass> getAvailableEClasses() {
-		return EMFHelper.getSubclassesOf(type, true);
+		List<EClass> availableEClasses = EMFHelper.getSubclassesOf(type, true);
+		Collections.sort(availableEClasses, new EClassNameComparator());
+		return availableEClasses;
 	}
 
 	/**
@@ -245,6 +317,20 @@ public class EcorePropertyEditorFactory extends PropertyEditorFactory {
 	 */
 	@Override
 	public Collection<Object> validateObjects(Collection<Object> objectsToValidate) {
+		if(!referenceIn.isContainment()) {
+			for(Object objectToValidate : objectsToValidate) {
+				//We add the object to the containment reference
+				//They will be automatically added to the edited reference
+				//(referenceIn) after this method returns
+				CreateIn creationInformation = this.createIn.get(objectToValidate);
+				if(creationInformation != null) {
+					creationInformation.createInObject.eSet(creationInformation.createInReference, objectToValidate);
+				} else {
+					Activator.log.warn("Unknown object : " + objectToValidate);
+				}
+			}
+		}
+
 		return objectsToValidate;
 	}
 
@@ -256,11 +342,60 @@ public class EcorePropertyEditorFactory extends PropertyEditorFactory {
 		return Messages.EcorePropertyEditorFactory_CreateANew + className;
 	}
 
+	@Override
+	public String getEditionDialogTitle(Object objectToEdit) {
+		if(objectToEdit instanceof EObject) {
+			return "Edit " + ((EObject)objectToEdit).eClass().getName();
+		}
+		return super.getEditionDialogTitle(objectToEdit);
+	}
+
 	/**
 	 * @return
 	 *         The EClass that will be instantiated, or null if this hasn't been forced
 	 */
 	public EClass getEClass() {
 		return eClass;
+	}
+
+	protected class CreateIn {
+
+		/**
+		 * The (containment) reference in which the object will be created
+		 * May be the same or different from {@link #referenceIn}
+		 */
+		public EReference createInReference;
+
+		/**
+		 * The (container) EObject in which the object will be created
+		 */
+		public EObject createInObject;
+	}
+
+	/**
+	 * Sets the same label provider for both #referenceLabelProvider
+	 * and #containerLabelProvider
+	 * 
+	 * @param labelProvider
+	 */
+	public void setLabelProvider(ILabelProvider labelProvider) {
+		setContainerLabelProvider(labelProvider);
+		setReferenceLabelProvider(labelProvider);
+	}
+
+	public void setReferenceLabelProvider(ILabelProvider labelProvider) {
+		this.referenceLabelProvider = labelProvider;
+	}
+
+	public void setContainerLabelProvider(ILabelProvider labelProvider) {
+		this.containerLabelProvider = labelProvider;
+	}
+
+	public void setContainerContentProvider(IStaticContentProvider contentProvider) {
+		this.containerContentProvider = contentProvider;
+	}
+
+	public void setReferenceContentProvider(CreateInFeatureContentProvider contentProvider) {
+		this.referenceContentProvider = contentProvider;
 	}
 }

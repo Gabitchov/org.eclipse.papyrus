@@ -59,6 +59,8 @@ public class XWTTabDescriptorProvider implements ITabDescriptorProvider {
 			part.getSite().getPage().addPartListener(new IPartListener() {
 
 				public void partClosed(IWorkbenchPart part) {
+					part.getSite().getPage().removePartListener(this);
+					displays.get(part).dispose();
 					displays.remove(part);
 				}
 

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Composite xmlns:ppel="clr-namespace:org.eclipse.papyrus.properties.widgets.layout"
+<Composite xmlns:j="clr-namespace:java.lang"
+	xmlns:ppel="clr-namespace:org.eclipse.papyrus.properties.widgets.layout"
 	xmlns:x="http://www.eclipse.org/xwt" xmlns:ppe="clr-namespace:org.eclipse.papyrus.properties.widgets"
-	xmlns:j="clr-namespace:java.lang" xmlns="http://www.eclipse.org/xwt/presentation">
+	xmlns="http://www.eclipse.org/xwt/presentation">
 	<Composite.layout>
 		<ppel:PropertiesLayout></ppel:PropertiesLayout>
 	</Composite.layout>
@@ -21,8 +22,7 @@
 		<Composite.layout>
 			<ppel:PropertiesLayout numColumns="2"></ppel:PropertiesLayout>
 		</Composite.layout>
-		<ppe:EnumCombo input="{Binding}"
-			property="UML:BehavioralFeature:concurrency"></ppe:EnumCombo>
+		<ppe:EnumCombo input="{Binding}" property="UML:BehavioralFeature:concurrency"></ppe:EnumCombo>
 		<ppe:EnumCombo input="{Binding}" property="UML:NamedElement:visibility"></ppe:EnumCombo>
 	</Composite>
 </Composite>

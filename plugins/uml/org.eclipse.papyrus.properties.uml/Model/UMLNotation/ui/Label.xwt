@@ -8,7 +8,8 @@
 	<ppe:IntegerMask input="{Binding}"
 		property="UMLNotation:Property:labelCustomization">
 		<ppe:IntegerMask.maskProvider>
-			<uml:LabelCustomizationMaskProvider input="{Binding}" property="UMLNotation:Property:labelCustomization"></uml:LabelCustomizationMaskProvider>
+			<uml:LabelCustomizationMaskProvider
+				input="{Binding}" property="UMLNotation:Property:labelCustomization"></uml:LabelCustomizationMaskProvider>
 		</ppe:IntegerMask.maskProvider>
 	</ppe:IntegerMask>
 </Composite>

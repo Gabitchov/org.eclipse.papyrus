@@ -11,8 +11,12 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.uml.creation;
 
-import org.eclipse.emf.ecore.EClass;
+import java.util.Collection;
+
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.papyrus.properties.creation.EcorePropertyEditorFactory;
+import org.eclipse.swt.widgets.Control;
 
 /**
  * A Factory for creating objects in references that are subsets of {@link Namespace#getOwnedRules()}.
@@ -25,9 +29,22 @@ import org.eclipse.papyrus.properties.creation.EcorePropertyEditorFactory;
  */
 public class OwnedRuleCreationFactory extends EcorePropertyEditorFactory {
 
-	//The base implementation is sufficient, as objects added to subsets of ownedRule are
-	//already added to the right ownedRule by the UML framework.
-	public OwnedRuleCreationFactory(EClass type) {
-		super(type);
+	public OwnedRuleCreationFactory(EReference referenceIn) {
+		super(referenceIn);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public EObject createObjectInDifferentContainer(Control widget) {
+		//The base implementation is sufficient, as objects added to subsets of ownedRule are
+		//already added to the right ownedRule by the UML framework.
+		return simpleCreateObject(widget);
+	}
+
+	@Override
+	public Collection<Object> validateObjects(Collection<Object> objectsToValidate) {
+		return objectsToValidate; //Bypass the parent implementation
 	}
 }
