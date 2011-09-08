@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -39,6 +39,7 @@ import org.eclipse.papyrus.properties.contexts.View;
 import org.eclipse.papyrus.properties.customization.Activator;
 import org.eclipse.papyrus.properties.customization.editor.UIEditor;
 import org.eclipse.papyrus.properties.customization.messages.Messages;
+import org.eclipse.papyrus.properties.model.xwt.resource.XWTResource;
 import org.eclipse.papyrus.properties.runtime.DefaultDisplayEngine;
 import org.eclipse.papyrus.properties.runtime.DisplayEngine;
 import org.eclipse.papyrus.properties.widgets.layout.PropertiesLayout;
@@ -253,7 +254,11 @@ public class Preview extends ViewPart implements ISelectionChangedListener, IPar
 			}
 
 			OutputStream os = new FileOutputStream(xwtFile);
-			section.getWidget().eResource().save(os, Collections.EMPTY_MAP);
+			Map<Object, Object> options = new HashMap<Object, Object>();
+			//The outputstream cannot be formatted. If format is true, this is
+			//the real file (and not the preview file) that will be formatted
+			options.put(XWTResource.OPTION_FORMAT, false);
+			section.getWidget().eResource().save(os, options);
 			return xwtFile.toURI().toURL();
 		} catch (IOException ex) {
 			Activator.log.error(ex);
