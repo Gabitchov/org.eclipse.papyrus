@@ -108,7 +108,7 @@ public class DefaultDisplayEngine implements DisplayEngine {
 			}
 		}
 
-		dispose();
+		disposeControls();
 		return new LinkedList<ITabDescriptor>(result.values());
 	}
 
@@ -116,12 +116,19 @@ public class DefaultDisplayEngine implements DisplayEngine {
 	 * Disposes the controls created by this DisplayEngine
 	 * This should not dispose the engine itself, which can be reused.
 	 */
-	protected void dispose() {
+	protected void disposeControls() {
 		for(Control control : controls) {
 			control.dispose();
 		}
 		displayedSections.clear();
 		controls.clear();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void dispose() {
+		disposeControls();
 	}
 
 	public Control createSection(Composite parent, Section section, DataSource source) {
@@ -174,7 +181,7 @@ public class DefaultDisplayEngine implements DisplayEngine {
 			}
 		} catch (Exception ex) {
 			Activator.log.error("Error while loading " + section.getSectionFile(), ex); //$NON-NLS-1$
-			dispose();
+			disposeControls();
 			Label label = new Label(parent, SWT.NONE);
 			label.setText("An error occured in the property view. The file " + section.getSectionFile() + " could not be loaded"); //$NON-NLS-1$ //$NON-NLS-2$
 		}

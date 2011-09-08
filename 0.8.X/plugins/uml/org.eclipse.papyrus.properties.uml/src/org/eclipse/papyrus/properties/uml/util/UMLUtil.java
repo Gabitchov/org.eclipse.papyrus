@@ -37,6 +37,7 @@ import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.MessageEvent;
 import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
+import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -46,6 +47,8 @@ import org.eclipse.uml2.uml.UMLPackage;
  * 
  * @author Camille Letavernier
  */
+//TODO : To be refactored
+//This class should be merged with other oep.umlutils classes.
 public class UMLUtil {
 
 	/**
@@ -148,18 +151,50 @@ public class UMLUtil {
 			return stereotype;
 		}
 
-		stereotype = umlElement.getApplicableStereotype(stereotypeName);
+		//The parent stereotype is not always applicable...
+		//stereotype = umlElement.getApplicableStereotype(stereotypeName);
+
+		org.eclipse.uml2.uml.Package umlPackage = umlElement.getNearestPackage();
+		if(umlPackage == null) {
+			stereotype = umlElement.getApplicableStereotype(stereotypeName);
+		} else {
+			outerLoop: for(Profile profile : umlPackage.getAllAppliedProfiles()) {
+				for(Stereotype ownedStereotype : profile.getOwnedStereotypes()) {
+					if(ownedStereotype.getQualifiedName().equals(stereotypeName)) {
+						stereotype = ownedStereotype;
+						break outerLoop;
+					}
+				}
+			}
+		}
+
+		//stereotype = umlElement.getApplicableStereotype(stereotypeName);
 		if(stereotype == null) {
 			return null;
 		}
 
-		for(Stereotype appliedStereotype : umlElement.getAppliedStereotypes()) {
-			if(getAllSuperStereotypes(appliedStereotype).contains(stereotype)) {
-				return appliedStereotype;
-			}
+		//		System.out.println("Looking for a substereotype of " + stereotype + "\n" + stereotype.eResource().getURI());
+		//		System.out.println("Applied stereotypes : " + umlElement.getAppliedStereotypes());
+		//		System.out.println("Parent stereotypes : ");
+		//		for(Stereotype appliedStereotype : umlElement.getAppliedStereotypes()) {
+		//			for(Classifier parentStereotype : appliedStereotype.allParents()) {
+		//				System.out.println(parentStereotype + "\n" + parentStereotype.eResource().getURI());
+		//			}
+		//		}
+		//		System.out.println();
+		for(Stereotype appliedStereotype : umlElement.getAppliedSubstereotypes(stereotype)) {
+			return appliedStereotype;
 		}
 
 		return null;
+
+		//		for(Stereotype appliedStereotype : umlElement.getAppliedStereotypes()) {
+		//			if(getAllSuperStereotypes(appliedStereotype).contains(stereotype)) {
+		//				return appliedStereotype;
+		//			}
+		//		}
+		//
+		//		return null;
 	}
 
 	/**

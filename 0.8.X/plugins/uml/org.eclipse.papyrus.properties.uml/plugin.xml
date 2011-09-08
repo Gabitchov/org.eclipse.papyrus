@@ -3,10 +3,6 @@
 
 <plugin>
    <extension-point id="org.eclipse.papyrus.properties.uml.languageEditor" name="%extension-point.name" schema="schema/org.eclipse.papyrus.properties.uml.languageEditor.exsd"/>
-   <extension point="org.eclipse.ui.views.properties.tabbed.propertyContributor">
-      <propertyContributor contributorId="TreeOutlinePage" labelProvider="org.eclipse.papyrus.properties.providers.EMFObjectLabelProvider" tabDescriptorProvider="org.eclipse.papyrus.properties.xwt.XWTTabDescriptorProvider">
-      </propertyContributor>
-   </extension>
    <extension point="org.eclipse.papyrus.properties.environment">
       <environment environmentModel="Model/Environment.xmi">
       </environment>
@@ -15,7 +11,17 @@
       <context contextModel="Model/UML/UML.ctx">
       </context>
    </extension>
-      <extension point="org.eclipse.emf.ecore.uri_mapping">
+      <extension
+         point="org.eclipse.ui.views.properties.tabbed.propertyContributor">
+      <propertyContributor
+            contributorId="TreeOutlinePage"
+            labelProvider="org.eclipse.papyrus.properties.providers.SelectionLabelProvider"
+            tabDescriptorProvider="org.eclipse.papyrus.properties.xwt.XWTTabDescriptorProvider">
+         <propertyCategory
+               category="org.eclipse.papyrus"></propertyCategory>
+      </propertyContributor>
+   </extension>
+  <extension point="org.eclipse.emf.ecore.uri_mapping">
       <mapping source="pathmap://UML_CONTEXT/" target="platform:/plugin/org.eclipse.papyrus.properties.uml/Model/UML/">
       </mapping>
    </extension>

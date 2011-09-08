@@ -1,2 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Composite xmlns="http://www.eclipse.org/xwt/presentation" xmlns:x="http://www.eclipse.org/xwt" xmlns:ppe="clr-namespace:org.eclipse.papyrus.properties.widgets" xmlns:ppel="clr-namespace:org.eclipse.papyrus.properties.widgets.layout" xmlns:uml="clr-namespace:org.eclipse.papyrus.properties.uml.widgets"><Composite.layout><ppel:PropertiesLayout></ppel:PropertiesLayout></Composite.layout><ppe:StringEditor input="{Binding}" property="UML:NamedElement:name"></ppe:StringEditor><ppe:ReferenceCombo input="{Binding}" property="UML:Message:messageSort" readOnly="true"></ppe:ReferenceCombo><uml:SelectOrCreateDialogPropertyEditor input="{Binding}" property="UML:Message:signature"></uml:SelectOrCreateDialogPropertyEditor><ppe:MultiReference input="{Binding}" property="UML:Message:argument"></ppe:MultiReference></Composite>
+<Composite xmlns="http://www.eclipse.org/xwt/presentation"
+	xmlns:x="http://www.eclipse.org/xwt" xmlns:ppe="clr-namespace:org.eclipse.papyrus.properties.widgets"
+	xmlns:ppel="clr-namespace:org.eclipse.papyrus.properties.widgets.layout"
+	xmlns:uml="clr-namespace:org.eclipse.papyrus.properties.uml.widgets">
+	<Composite.layout>
+		<ppel:PropertiesLayout></ppel:PropertiesLayout>
+	</Composite.layout>
+	<ppe:StringEditor input="{Binding}" property="UML:NamedElement:name"></ppe:StringEditor>
+	<ppe:ReferenceCombo input="{Binding}" property="UML:Message:messageSort"
+		readOnly="true"></ppe:ReferenceCombo>
+	<uml:SelectOrCreateDialogPropertyEditor
+		input="{Binding}" property="UML:Message:signature"></uml:SelectOrCreateDialogPropertyEditor>
+	<ppe:MultiReference input="{Binding}" property="UML:Message:argument"></ppe:MultiReference>
+</Composite>

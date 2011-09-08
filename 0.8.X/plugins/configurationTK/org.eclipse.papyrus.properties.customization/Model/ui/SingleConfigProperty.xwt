@@ -1,2 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Composite xmlns:ppel="clr-namespace:org.eclipse.papyrus.properties.widgets.layout" xmlns="http://www.eclipse.org/xwt/presentation" xmlns:ppe="clr-namespace:org.eclipse.papyrus.properties.widgets" xmlns:x="http://www.eclipse.org/xwt"><Composite.layout><ppel:PropertiesLayout></ppel:PropertiesLayout></Composite.layout><Composite><Composite.layout><ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout></Composite.layout><ppe:StringEditor input="{Binding}" property="properties:contexts:ConfigProperty:name"></ppe:StringEditor></Composite></Composite>
+<Composite xmlns:ppel="clr-namespace:org.eclipse.papyrus.properties.widgets.layout"
+	xmlns="http://www.eclipse.org/xwt/presentation" xmlns:ppe="clr-namespace:org.eclipse.papyrus.properties.widgets"
+	xmlns:x="http://www.eclipse.org/xwt">
+	<Composite.layout>
+		<ppel:PropertiesLayout></ppel:PropertiesLayout>
+	</Composite.layout>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:StringEditor input="{Binding}"
+			property="properties:contexts:ConfigProperty:name"></ppe:StringEditor>
+	</Composite>
+</Composite>

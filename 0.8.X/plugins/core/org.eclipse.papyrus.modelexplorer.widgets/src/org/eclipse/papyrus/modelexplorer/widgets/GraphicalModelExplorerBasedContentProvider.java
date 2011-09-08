@@ -265,10 +265,10 @@ public class GraphicalModelExplorerBasedContentProvider extends ModelContentProv
 					}
 
 					// update current selection
-					//					ModelElementItem item = (ModelElementItem)((IStructuredSelection)viewer.getSelection()).getFirstElement();
-					//					if(item != null) {
-					//						setCurrentValueItem(item);
-					//					}
+					//	ModelElementItem item = (ModelElementItem)((IStructuredSelection)viewer.getSelection()).getFirstElement();
+					// 	if(item != null) {
+					//		setCurrentValueItem(item);
+					//	}
 				}
 			}
 		});
@@ -455,7 +455,7 @@ public class GraphicalModelExplorerBasedContentProvider extends ModelContentProv
 	@Override
 	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
 		super.inputChanged(viewer, oldInput, newInput);
-		if(this.viewer != null && newInput != null) {
+		if(this.viewer != null && newInput != null && this.viewer.getControl() != null && !this.viewer.getControl().isDisposed()) {
 			this.viewer.setFilters(new ViewerFilter[]{ new HierarchicViewerFilter(this) });
 			this.viewer.addSelectionChangedListener(this);
 		}

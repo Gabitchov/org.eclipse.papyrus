@@ -1,2 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Composite xmlns:x="http://www.eclipse.org/xwt" xmlns:ppe="clr-namespace:org.eclipse.papyrus.properties.widgets" xmlns:j="clr-namespace:java.lang" xmlns:uml="clr-namespace:org.eclipse.papyrus.properties.uml.widgets" xmlns="http://www.eclipse.org/xwt/presentation" xmlns:ppel="clr-namespace:org.eclipse.papyrus.properties.widgets.layout"><Composite.layout><ppel:PropertiesLayout></ppel:PropertiesLayout></Composite.layout><Composite><Composite.layout><ppel:PropertiesLayout></ppel:PropertiesLayout></Composite.layout><ppe:StringEditor input="{Binding}" property="UML:NamedElement:name"></ppe:StringEditor><ppe:EnumCombo input="{Binding}" property="UML:NamedElement:visibility"></ppe:EnumCombo><uml:SelectOrCreateDialogPropertyEditor input="{Binding}" property="UML:ReceiveOperationEvent:operation"></uml:SelectOrCreateDialogPropertyEditor></Composite></Composite>
+<Composite xmlns:x="http://www.eclipse.org/xwt"
+	xmlns:ppe="clr-namespace:org.eclipse.papyrus.properties.widgets"
+	xmlns:j="clr-namespace:java.lang" xmlns:uml="clr-namespace:org.eclipse.papyrus.properties.uml.widgets"
+	xmlns="http://www.eclipse.org/xwt/presentation" xmlns:ppel="clr-namespace:org.eclipse.papyrus.properties.widgets.layout">
+	<Composite.layout>
+		<ppel:PropertiesLayout></ppel:PropertiesLayout>
+	</Composite.layout>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:StringEditor input="{Binding}" property="UML:NamedElement:name"></ppe:StringEditor>
+		<ppe:EnumCombo input="{Binding}" property="UML:NamedElement:visibility"></ppe:EnumCombo>
+		<uml:SelectOrCreateDialogPropertyEditor
+			input="{Binding}" property="UML:ReceiveOperationEvent:operation"></uml:SelectOrCreateDialogPropertyEditor>
+	</Composite>
+</Composite>

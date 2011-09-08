@@ -1,2 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Composite xmlns:x="http://www.eclipse.org/xwt" xmlns="http://www.eclipse.org/xwt/presentation" xmlns:ppel="clr-namespace:org.eclipse.papyrus.properties.widgets.layout" xmlns:j="clr-namespace:java.lang" xmlns:gmf="clr-namespace:org.eclipse.papyrus.widgets.gmf.editors" xmlns:ppe="clr-namespace:org.eclipse.papyrus.properties.widgets" text="Line"><Composite.layout><GridLayout></GridLayout></Composite.layout><Group text="Line"><Group.layout><ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout></Group.layout><gmf:XWTAwareColorPicker input="{Binding}" property="notation:LineStyle:lineColor"></gmf:XWTAwareColorPicker></Group></Composite>
+<Composite xmlns:x="http://www.eclipse.org/xwt" xmlns="http://www.eclipse.org/xwt/presentation"
+	xmlns:ppel="clr-namespace:org.eclipse.papyrus.properties.widgets.layout"
+	xmlns:j="clr-namespace:java.lang" xmlns:gmf="clr-namespace:org.eclipse.papyrus.widgets.gmf.editors"
+	xmlns:ppe="clr-namespace:org.eclipse.papyrus.properties.widgets" text="Line">
+	<Composite.layout>
+		<GridLayout></GridLayout>
+	</Composite.layout>
+	<Group text="Line">
+		<Group.layout>
+			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
+		</Group.layout>
+		<gmf:XWTAwareColorPicker input="{Binding}"
+			property="notation:LineStyle:lineColor"></gmf:XWTAwareColorPicker>
+	</Group>
+</Composite>

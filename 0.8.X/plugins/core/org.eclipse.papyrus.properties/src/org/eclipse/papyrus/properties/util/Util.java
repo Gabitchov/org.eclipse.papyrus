@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -19,6 +19,7 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.eclipse.papyrus.properties.Activator;
 import org.eclipse.papyrus.properties.contexts.Context;
 import org.eclipse.papyrus.properties.contexts.DataContextElement;
 import org.eclipse.papyrus.properties.contexts.DataContextPackage;
@@ -44,12 +45,47 @@ public class Util {
 	}
 
 	/**
+	 * @param source
+	 * @return
+	 *         the given String with the first letter lowered
+	 */
+	public static String firstToLower(String source) {
+		if(source.length() == 0) {
+			return source;
+		}
+		return source.substring(0, 1).toLowerCase() + source.substring(1);
+	}
+
+	/**
 	 * @param variableName
 	 * @return
 	 *         A formatted version of the given variable name
 	 */
 	public static String getLabel(String variableName) {
-		return firstToUpper(variableName);
+		//"CamelCase" to "Natural case"
+		String formattedValue = variableName;
+
+		//replace fooBar by foo Bar
+		formattedValue = formattedValue.replaceAll("([a-z])([A-Z])", "$1 $2"); //$NON-NLS-1$ //$NON-NLS-2$
+
+		//replace FOOAndBar by FOO And Bar
+		formattedValue = formattedValue.replaceAll("([A-Z]+)([A-Z])([a-z])", "$1 $2$3"); //$NON-NLS-1$ //$NON-NLS-2$
+
+		//Capitalize the first word and lower the other ones : foo Bar -> Foo bar
+		//Keep the upper case for acronyms FOO Bar -> FOO bar
+		String[] words = formattedValue.split("\\s+"); //$NON-NLS-1$
+		formattedValue = firstToUpper(words[0]);
+		for(int i = 1; i < words.length; i++) {
+			formattedValue += " "; //$NON-NLS-1$
+			if(words[i].matches("^[A-Z]{2,}")) { //$NON-NLS-1$
+				formattedValue += words[i];
+			} else {
+				formattedValue += firstToLower(words[i]);
+			}
+		}
+
+		Activator.log.debug("\"" + formattedValue + "\""); //$NON-NLS-1$ //$NON-NLS-2$
+		return formattedValue;
 	}
 
 	/**

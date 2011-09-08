@@ -38,6 +38,9 @@ import org.eclipse.papyrus.properties.Activator;
  * 
  * @author Camille Letavernier
  */
+//TODO : To be refactored
+//This class could be useful in other plug-ins, which don't necessarily depend
+//on oep.properties
 public class EMFHelper {
 
 	/**
@@ -116,7 +119,12 @@ public class EMFHelper {
 	 *         true if eClass is a subclass of fromClass
 	 */
 	public static boolean isSubclass(EClass eClass, EClass fromClass) {
+		//Everything is an EObject
 		if(eClass != null && fromClass == EcorePackage.eINSTANCE.getEObject()) {
+			return true;
+		}
+
+		if(eClass == fromClass) {
 			return true;
 		}
 
@@ -124,6 +132,7 @@ public class EMFHelper {
 		if(superTypes.contains(fromClass)) {
 			return true;
 		}
+
 		return false;
 	}
 

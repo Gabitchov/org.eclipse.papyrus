@@ -90,6 +90,7 @@ public class PropertyEditorFactory implements ReferenceValueFactory {
 			EditionDialog dialog = new EditionDialog(widget.getShell());
 			dialog.setViews(views);
 			dialog.setInput(source);
+			dialog.setTitle(getCreationDialogTitle());
 
 			int result = dialog.open();
 			if(result != Window.OK) {
@@ -134,6 +135,7 @@ public class PropertyEditorFactory implements ReferenceValueFactory {
 		Set<View> views = constraintEngine.getViews(selection);
 		if(!views.isEmpty()) {
 			EditionDialog dialog = new EditionDialog(widget.getShell());
+			dialog.setTitle(getEditionDialogTitle(source));
 			dialog.setViews(views);
 			dialog.setInput(source);
 
@@ -166,5 +168,9 @@ public class PropertyEditorFactory implements ReferenceValueFactory {
 	 */
 	public String getCreationDialogTitle() {
 		return Messages.PropertyEditorFactory_CreateANewElement;
+	}
+
+	public String getEditionDialogTitle(Object objectToEdit) {
+		return "Edit an element";
 	}
 }
