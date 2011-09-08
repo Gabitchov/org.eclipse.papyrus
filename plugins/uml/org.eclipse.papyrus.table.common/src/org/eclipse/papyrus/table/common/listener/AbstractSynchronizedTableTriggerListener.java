@@ -15,6 +15,7 @@ package org.eclipse.papyrus.table.common.listener;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -22,11 +23,13 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.facet.infra.query.ModelQuery;
 import org.eclipse.emf.facet.infra.query.core.AbstractModelQuery;
 import org.eclipse.emf.facet.infra.query.core.ModelQuerySetCatalog;
 import org.eclipse.emf.facet.infra.query.core.exception.ModelQueryException;
+import org.eclipse.emf.facet.infra.query.core.java.ParameterValueList;
 import org.eclipse.emf.facet.infra.query.runtime.ModelQueryResult;
 import org.eclipse.emf.facet.widgets.celleditors.ICommandFactoriesRegistry;
 import org.eclipse.emf.facet.widgets.celleditors.ICommandFactory;
@@ -35,6 +38,7 @@ import org.eclipse.emf.facet.widgets.nattable.INatTableWidgetProvider;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableinstancePackage;
 import org.eclipse.emf.facet.widgets.nattable.internal.NatTableWidget;
 import org.eclipse.emf.facet.widgets.nattable.internal.TableInstanceCommandFactory;
+import org.eclipse.emf.facet.widgets.nattable.tableconfiguration.TableConfiguration;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.TriggerListener;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
@@ -53,13 +57,13 @@ public abstract class AbstractSynchronizedTableTriggerListener extends TriggerLi
 	/**
 	 * The Papyrus table
 	 */
-	final protected  PapyrusTableInstance table;
+	final protected PapyrusTableInstance table;
 
 	/**
 	 * the nattable widget provider
 	 */
 	private INatTableWidgetProvider provider;
-	
+
 	/**
 	 * 
 	 * Constructor.
@@ -73,17 +77,17 @@ public abstract class AbstractSynchronizedTableTriggerListener extends TriggerLi
 		this.table = table;
 		this.provider = provider;
 	}
-	
+
 	/**
 	 * 
-	 * @param domain 
-	 * the editing domain
+	 * @param domain
+	 *        the editing domain
 	 * @return
-	 * the command to do the synchronization
+	 *         the command to do the synchronization
 	 */
 	protected CompoundCommand getSynchronizationCommand(final TransactionalEditingDomain domain) {
 		CompoundCommand command = new CompoundCommand("Command to synchronize table with its context"); //$NON-NLS-1$
-		
+
 		//the list of the elements to add in the table
 		final List<EObject> elementsToAdd = new ArrayList<EObject>();
 		//the list of the element to remove in the table
@@ -121,22 +125,49 @@ public abstract class AbstractSynchronizedTableTriggerListener extends TriggerLi
 				}
 			}
 		}
+
 		if(!elementsToAdd.isEmpty()) {
+			final List<EObject> forbiddenElements = getForbiddenElement(elementsToAdd);
 			/*
 			 * The following line is commented because it doesn't work correctly : The same new object is added many times!
 			 */
 			//command.append(TableInstanceCommandFactory.createAddRowsCommand(elementsToAdd, (NatTableWidget)this.provider.getNatTableWidget()));
+			elementsToAdd.removeAll(forbiddenElements);
 			command.append(getAddElementCommand(domain, elementsToAdd, this.provider.getNatTableWidget()));
+
+			//we don't display a message because we will get it each time the synchronized table is refreshed
+			//we display a message 
+			//			if(!forbiddenElements.isEmpty()) {
+			//				command.append(new GMFtoEMFCommandWrapper(new AbstractTransactionalCommand(domain, "Display Notification", null) {
+			//
+			//					@Override
+			//					protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+			//						String list = "";
+			//						//TODO, maybe the label provider can manage a list?
+			//						ILabelProvider labelProvider = new UMLLabelProvider();
+			//						Iterator<EObject> iter = forbiddenElements.iterator();
+			//						while(iter.hasNext()) {
+			//							list += labelProvider.getText(iter.next());
+			//							if(iter.hasNext()) {
+			//								list += ", ";
+			//							}
+			//						}
+			//						//new NotificationBuilder().setBuilderClass(CombinedPopupAndViewBuilder.class).setType(Type.WARNING).setTitle("Synchronized Table Message").setMessage("The following elements should be put in the table by the <<FillingQueries>>, but the query <<CanBePresentedInTheTable>> refuses them. " + "\n" + list).run();
+			//						return CommandResult.newOKCommandResult();
+			//					}
+			//				}));
+			//			}
 		}
 
 		if(!elementToRemove.isEmpty()) {
 			command.append(getRemoveElementCommand(domain, elementToRemove, this.provider.getNatTableWidget()));
 		}
-		if(!command.isEmpty()){
-			return command;	
+		if(!command.isEmpty()) {
+			return command;
 		}
 		return null;
 	}
+
 	/**
 	 * 
 	 * @param domain
@@ -229,4 +260,51 @@ public abstract class AbstractSynchronizedTableTriggerListener extends TriggerLi
 		return null;
 	}
 
+	/**
+	 * This method allows to filter the elements to add which are forbidden in the table, using the query canBePresentedInTheTable
+	 * 
+	 * @param elementsToAdd
+	 *        the list of the elements to add in the table
+	 * @return
+	 *         the list of the elements to add which are forbidden in the table
+	 */
+	private List<EObject> getForbiddenElement(final List<EObject> elementsToAdd) {
+		List<EObject> forbiddenElements = new ArrayList<EObject>();
+
+		//we need to test that each element to add can be put in the table. So we use the query CanBePresentedInTheTable 
+		TableConfiguration tableConfiguration = this.table.getTable().getTableConfiguration();
+		if(tableConfiguration != null) {
+			ModelQuery query = tableConfiguration.getCanBePresentedInTheTable();
+			if(query != null) {
+				AbstractModelQuery queryImpl = null;
+				try {
+					queryImpl = ModelQuerySetCatalog.getSingleton().getModelQueryImpl(query);
+				} catch (ModelQueryException e) {
+					Activator.getDefault().helper.error(e);
+				}
+
+				for(EObject current : elementsToAdd) {
+					boolean matched = (query.getScope().size() == 0);
+					Iterator<EClass> queryScopes = query.getScope().iterator();
+					while(queryScopes.hasNext() && !matched) {
+						EClass eClass = queryScopes.next();
+						if(eClass.isInstance(current)) {
+							matched = true;
+						}
+					}
+
+					if(!matched) {
+						forbiddenElements.add(current);
+					} else {
+						ModelQueryResult result = queryImpl.evaluate(current, new ParameterValueList());
+
+						if(!result.getValue().equals(Boolean.TRUE)) {
+							forbiddenElements.add(current);
+						}
+					}
+				}
+			}
+		}
+		return forbiddenElements;
+	}
 }
