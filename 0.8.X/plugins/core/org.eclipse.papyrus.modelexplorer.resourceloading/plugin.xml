@@ -16,11 +16,11 @@
           <or>
             <test
                forcePluginActivation="true"
-               property="org.eclipse.papyrus.modelexplorer.resourceloading.tester.isAllLoaded"
+               property="org.eclipse.papyrus.core.resourceloading.tester.isAllLoaded"
                value="true" />
             <test
                forcePluginActivation="true"
-               property="org.eclipse.papyrus.modelexplorer.resourceloading.tester.isAllNotLoaded"
+               property="org.eclipse.papyrus.core.resourceloading.tester.isAllNotLoaded"
                value="true" />
           </or>
          </with>
@@ -38,7 +38,7 @@
                variable="selection">
           <test
                forcePluginActivation="true"
-               property="org.eclipse.papyrus.modelexplorer.resourceloading.tester.isAllNotLoaded"
+               property="org.eclipse.papyrus.core.resourceloading.tester.isAllNotLoaded"
                value="true" />
          </with>
        </visibleWhen>
@@ -55,7 +55,7 @@
                variable="selection">
           <test
                forcePluginActivation="true"
-               property="org.eclipse.papyrus.modelexplorer.resourceloading.tester.isAllLoaded"
+               property="org.eclipse.papyrus.core.resourceloading.tester.isAllLoaded"
                value="true" />
          </with>
        </visibleWhen>
@@ -87,7 +87,7 @@
                variable="selection">
           <test
                forcePluginActivation="true"
-               property="org.eclipse.papyrus.modelexplorer.resourceloading.tester.isAllNotLoaded"
+               property="org.eclipse.papyrus.core.resourceloading.tester.isAllNotLoaded"
                value="true" />
          </with>
 		</activeWhen>
@@ -98,22 +98,11 @@
                variable="selection">
           <test
                forcePluginActivation="true"
-               property="org.eclipse.papyrus.modelexplorer.resourceloading.tester.isAllLoaded"
+               property="org.eclipse.papyrus.core.resourceloading.tester.isAllLoaded"
                value="true" />
          </with>
 		</activeWhen>
 	</handler>
-</extension>
-<extension
-      point="org.eclipse.core.expressions.propertyTesters">
-      <!-- the property tester is used to enabled/disabled handler -->
-   <propertyTester
-         class="org.eclipse.papyrus.modelexplorer.resourceloading.provider.LoadingTester"
-         id="org.eclipse.papyrus.modelexplorer.resourceloading.tester"
-         namespace="org.eclipse.papyrus.modelexplorer.resourceloading.tester"
-         properties="isAllLoaded, isAllNotLoaded"
-         type="org.eclipse.jface.viewers.IStructuredSelection">
-   </propertyTester>
 </extension>
 
 </plugin>

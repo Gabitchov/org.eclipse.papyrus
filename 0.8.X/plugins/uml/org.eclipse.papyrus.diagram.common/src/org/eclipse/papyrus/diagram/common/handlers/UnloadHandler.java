@@ -11,20 +11,21 @@
  *  Vincent Hemery (Atos) vincent.hemery@atos.net - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.modelexplorer.resourceloading.handler;
+package org.eclipse.papyrus.diagram.common.handlers;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.emf.common.command.AbstractCommand;
-import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.common.command.CompoundCommand;
-import org.eclipse.emf.common.command.UnexecutableCommand;
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.commands.CompoundCommand;
+import org.eclipse.gef.commands.UnexecutableCommand;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.core.resourceloading.util.LoadingUtils;
-import org.eclipse.papyrus.modelexplorer.handler.AbstractCommandHandler;
 import org.eclipse.papyrus.resource.ModelSet;
 import org.eclipse.papyrus.resource.notation.NotationUtils;
 import org.eclipse.ui.IEditorPart;
@@ -37,7 +38,7 @@ import org.eclipse.ui.PlatformUI;
  * Handler for the load resource action.
  * This actions load a resource in the model set, which is not yet loaded (due to resource loading strategy).
  */
-public class UnloadResourceHandler extends AbstractCommandHandler {
+public class UnloadHandler extends GraphicalCommandHandler {
 
 
 	/**
@@ -47,7 +48,7 @@ public class UnloadResourceHandler extends AbstractCommandHandler {
 	@Override
 	protected Command getCommand() {
 		TransactionalEditingDomain editingDomain = getEditingDomain();
-		List<EObject> selection = getSelectedElements();
+		List<IGraphicalEditPart> selection = getSelectedElements();
 		if(editingDomain != null && editingDomain.getResourceSet() instanceof ModelSet && selection.size() > 0) {
 			final ModelSet set = (ModelSet)editingDomain.getResourceSet();
 			CompoundCommand command = new CompoundCommand();
@@ -55,27 +56,33 @@ public class UnloadResourceHandler extends AbstractCommandHandler {
 			// ensure main URI is never unloaded
 			URI mainURI = NotationUtils.getNotationModel(set).getResourceURI().trimFileExtension();
 			handledURI.add(mainURI);
-			for(EObject sel : selection) {
-				if(!sel.eIsProxy()) {
-					final URI uriTrim = sel.eResource().getURI().trimFileExtension();
-					if(!handledURI.contains(uriTrim)) {
-						handledURI.add(uriTrim);
-						Command cmd = new AbstractCommand() {
+			for(IGraphicalEditPart selPart : selection) {
+				View view = (View)((IAdaptable)selPart).getAdapter(View.class);
+				if(view != null) {
+					EObject sel = view.getElement();
+					if(!sel.eIsProxy()) {
+						final URI uriTrim = sel.eResource().getURI().trimFileExtension();
+						if(!handledURI.contains(uriTrim)) {
+							handledURI.add(uriTrim);
+							Command cmd = new Command() {
 
-							public void redo() {
-								LoadingUtils.unloadResourcesFromModelSet(set, uriTrim);
-							}
+								@Override
+								public void redo() {
+									LoadingUtils.unloadResourcesFromModelSet(set, uriTrim);
+								}
 
-							public void execute() {
-								redo();
-							}
+								@Override
+								public void execute() {
+									redo();
+								}
 
-							@Override
-							public boolean canExecute() {
-								return true;
-							}
-						};
-						command.append(cmd);
+								@Override
+								public boolean canExecute() {
+									return true;
+								}
+							};
+							command.add(cmd);
+						}
 					}
 				}
 			}

@@ -24,8 +24,8 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.papyrus.core.resourceloading.util.LoadingUtils;
 import org.eclipse.papyrus.modelexplorer.handler.AbstractCommandHandler;
-import org.eclipse.papyrus.modelexplorer.resourceloading.util.LoadingUtils;
 import org.eclipse.papyrus.resource.ModelSet;
 
 /**
