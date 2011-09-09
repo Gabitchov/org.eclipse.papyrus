@@ -11,21 +11,28 @@
  *  Vincent Hemery (Atos) vincent.hemery@atos.net - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.modelexplorer.resourceloading.provider;
+package org.eclipse.papyrus.core.resourceloading.util;
 
 import java.util.Iterator;
 
 import org.eclipse.core.expressions.PropertyTester;
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
+import org.eclipse.gmf.runtime.notation.Edge;
+import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.papyrus.resource.ModelSet;
+import org.eclipse.papyrus.resource.notation.NotationUtils;
 
 /**
  * This class provides test to perform on resources to know their loading status.
  */
 public class LoadingTester extends PropertyTester {
 
-	/** property to test if the selected elements are in loaded resources */
+	/** property to test if the selected elements are in loaded resources (at least one other than the opened one) */
 	public static final String IS_ALL_LOADED = "isAllLoaded"; //$NON-NLS-1$
 
 	/** property to test if the selected elements are in not loaded resources */
@@ -63,19 +70,38 @@ public class LoadingTester extends PropertyTester {
 	 */
 	private boolean isInLoadedResource(IStructuredSelection selection) {
 		if(!selection.isEmpty()) {
+			boolean atLeastOneInSubmodel = false;
+			URI mainURI = null;
 			Iterator<?> iter = selection.iterator();
 			while(iter.hasNext()) {
 				Object obj = iter.next();
 				if(obj instanceof IAdaptable) {
-					EObject eObject = (EObject)((IAdaptable)obj).getAdapter(EObject.class);
+					View view = (View)((IAdaptable)obj).getAdapter(View.class);
+					EObject eObject;
+					if(view != null) {
+						eObject = view.getElement();
+					} else {
+						eObject = (EObject)((IAdaptable)obj).getAdapter(EObject.class);
+					}
 					if(eObject != null && !eObject.eIsProxy()) {
+						// test that there is at least one not loaded resource object
+						if(!atLeastOneInSubmodel) {
+							Resource containingResource = eObject.eResource();
+							if(mainURI == null && containingResource.getResourceSet() instanceof ModelSet) {
+								mainURI = NotationUtils.getNotationModel((ModelSet)containingResource.getResourceSet()).getResourceURI().trimFileExtension();
+							}
+							if(mainURI != null) {
+								URI uriTrim = containingResource.getURI().trimFileExtension();
+								atLeastOneInSubmodel = !uriTrim.equals(mainURI);
+							}
+						}
 						continue;
 					}
 				}
 				// a step failed
 				return false;
 			}
-			return true;
+			return atLeastOneInSubmodel;
 		}
 		return false;
 	}
@@ -93,9 +119,21 @@ public class LoadingTester extends PropertyTester {
 			while(iter.hasNext()) {
 				Object obj = iter.next();
 				if(obj instanceof IAdaptable) {
-					EObject eObject = (EObject)((IAdaptable)obj).getAdapter(EObject.class);
+					View view = (View)((IAdaptable)obj).getAdapter(View.class);
+					EObject eObject;
+					if(view != null) {
+						eObject = view.getElement();
+					} else {
+						eObject = (EObject)((IAdaptable)obj).getAdapter(EObject.class);
+					}
 					if(eObject != null && eObject.eIsProxy()) {
 						continue;
+					} else if(view instanceof Edge) {
+						View target = ((Edge)view).getTarget();
+						if(target != null && ViewUtil.resolveSemanticElement(target) == null) {
+							// there is a backslash decorator
+							continue;
+						}
 					}
 				}
 				// a step failed

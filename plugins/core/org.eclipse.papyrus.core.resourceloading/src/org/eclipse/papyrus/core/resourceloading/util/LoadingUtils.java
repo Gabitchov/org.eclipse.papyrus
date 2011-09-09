@@ -11,7 +11,7 @@
  *  Vincent Hemery (Atos) vincent.hemery@atos.net - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.modelexplorer.resourceloading.util;
+package org.eclipse.papyrus.core.resourceloading.util;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -29,9 +29,9 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.papyrus.core.editor.CoreMultiDiagramEditor;
+import org.eclipse.papyrus.core.resourceloading.Activator;
+import org.eclipse.papyrus.core.resourceloading.Messages;
 import org.eclipse.papyrus.core.services.ServiceException;
-import org.eclipse.papyrus.modelexplorer.resourceloading.Activator;
-import org.eclipse.papyrus.modelexplorer.resourceloading.Messages;
 import org.eclipse.papyrus.resource.ModelSet;
 import org.eclipse.papyrus.resource.notation.NotationModel;
 import org.eclipse.papyrus.resource.sasheditor.DiModel;
@@ -76,7 +76,7 @@ public class LoadingUtils {
 				IPageMngr pageMngr = sashModelMngr.getIPageMngr();
 				List<Object> allPages = pageMngr.allPages();
 				// mark progress
-				monitor.beginTask("Refresh Pages", allPages.size());
+				monitor.beginTask(Messages.LoadingUtils_RefreshPagesTask, allPages.size());
 				// the uri is added after getting all the pages. If it is done before, the eobjects are resolved
 				NotificationBuilder error = NotificationBuilder.createAsyncPopup(Messages.LoadingUtils_ErrorTitle, String.format(Messages.LoadingUtils_ErrorMessage, uriWithoutFileExtension.toString())).setType(Type.ERROR).setDelay(2000);
 				for(Object o : allPages) {
@@ -101,7 +101,7 @@ public class LoadingUtils {
 									}
 								} catch (Exception e) {
 									error.run();
-									Activator.log.error(e);
+									Activator.logError(e);
 								}
 							}
 						}
@@ -111,7 +111,7 @@ public class LoadingUtils {
 				}
 				Set<String> extensions = getExtensions(modelSet);
 				// mark progress
-				monitor.beginTask("Load models", extensions.size());
+				monitor.beginTask(Messages.LoadingUtils_LoadModelsTask, extensions.size());
 				for(String s : extensions) {
 					try {
 						URI uriToLoad = uriWithoutFileExtension.appendFileExtension(s);
@@ -121,13 +121,13 @@ public class LoadingUtils {
 						}
 					} catch (Exception re) {
 						error.run();
-						Activator.log.error(re);
+						Activator.logError(re);
 					}
 					// mark progress
 					monitor.worked(1);
 				}
 			} catch (ServiceException e) {
-				Activator.log.error(e);
+				Activator.logError(e);
 			}
 		}
 		// mark progress
@@ -157,7 +157,7 @@ public class LoadingUtils {
 				IPageMngr pageMngr = sashModelMngr.getIPageMngr();
 				List<Object> allPages = pageMngr.allPages();
 				// mark progress
-				monitor.beginTask("Refresh Pages", allPages.size());
+				monitor.beginTask(Messages.LoadingUtils_RefreshPagesTask, allPages.size());
 				List<URI> pagesURIToOpen = new ArrayList<URI>(allPages.size());
 				for(Object o : allPages) {
 					// refresh pages to cancel display of proxified elements
@@ -179,7 +179,7 @@ public class LoadingUtils {
 					monitor.worked(1);
 				}
 				// mark progress
-				monitor.beginTask("Unload models", modelSet.getResources().size());
+				monitor.beginTask(Messages.LoadingUtils_UnloadModelsTask, modelSet.getResources().size());
 				// unload resource
 				for(Resource res : new ArrayList<Resource>(modelSet.getResources())) {
 					if(res.getURI().trimFileExtension().equals(uriWithoutFileExtension)) {
@@ -197,7 +197,7 @@ public class LoadingUtils {
 				//				monitor.worked(1);
 
 				// mark progress
-				monitor.beginTask("Refresh Pages", allPages.size());
+				monitor.beginTask(Messages.LoadingUtils_RefreshPagesTask, allPages.size());
 				// reopen pages from proxies
 				for(Object page : allPages) {
 					if(page instanceof EObject) {
@@ -214,7 +214,7 @@ public class LoadingUtils {
 					monitor.worked(1);
 				}
 			} catch (ServiceException e) {
-				Activator.log.error(e);
+				Activator.logError(e);
 			}
 		}
 		// mark progress

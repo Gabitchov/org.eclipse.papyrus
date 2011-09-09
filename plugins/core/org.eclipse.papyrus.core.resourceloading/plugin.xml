@@ -43,5 +43,17 @@
             factoryClass="org.eclipse.papyrus.core.resourceloading.editor.UnloadResourcesEditorFactory">
       </editorDiagram>
    </extension>
+   
+   <extension
+         point="org.eclipse.core.expressions.propertyTesters">
+         <!-- the property tester is used to enable/disable handlers for loading/unloading a resource -->
+      <propertyTester
+            class="org.eclipse.papyrus.core.resourceloading.util.LoadingTester"
+            id="org.eclipse.papyrus.core.resourceloading.tester"
+            namespace="org.eclipse.papyrus.core.resourceloading.tester"
+            properties="isAllLoaded, isAllNotLoaded"
+            type="org.eclipse.jface.viewers.IStructuredSelection">
+      </propertyTester>
+   </extension>
 
 </plugin>
