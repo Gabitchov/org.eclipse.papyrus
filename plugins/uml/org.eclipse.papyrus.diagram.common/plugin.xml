@@ -85,8 +85,11 @@
 -->
 <extension
       point="org.eclipse.ui.menus">
-   <menuContribution
-         locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContribution">
+
+	<menuContribution locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu?endof=fileMenu"
+		allPopups="false">
+   <!--menuContribution
+         locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContribution"-->
       <command
             commandId="org.eclipse.papyrus.diagram.commands.LoadResourceAction"
             label="Load resource..."
@@ -382,6 +385,71 @@
 				</and>
 			</visibleWhen>			
 		</command>
+		
+  <command
+        commandId="org.eclipse.papyrus.diagram.common.commands.Load"
+        icon="icons/obj16/LoadResource.gif"
+        label="Load"
+        style="push">
+     <visibleWhen>
+        <and>
+           <with
+                 variable="activeEditorId">
+              <equals
+                    value="org.eclipse.papyrus.core.papyrusEditor">
+              </equals>
+           </with>
+           <with
+                 variable="selection">
+              <and>
+                  <iterate
+                        ifEmpty="false"
+                        operator="and">
+                     <instanceof
+                           value="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
+                     </instanceof>
+                  </iterate>
+                  <test
+                        forcePluginActivation="true"
+                        property="org.eclipse.papyrus.core.resourceloading.tester.isAllNotLoaded"
+                        value="true" />
+              </and>
+           </with>
+        </and>
+     </visibleWhen>
+  </command>
+  <command
+        commandId="org.eclipse.papyrus.diagram.common.commands.Unload"
+        icon="icons/obj16/UnloadResource.gif"
+        label="Unload"
+        style="push">
+     <visibleWhen>
+        <and>
+           <with
+                 variable="activeEditorId">
+              <equals
+                    value="org.eclipse.papyrus.core.papyrusEditor">
+              </equals>
+           </with>
+           <with
+                 variable="selection">
+              <and>
+                  <iterate
+                        ifEmpty="false"
+                        operator="and">
+                     <instanceof
+                           value="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
+                     </instanceof>
+                  </iterate>
+                  <test
+                        forcePluginActivation="true"
+                        property="org.eclipse.papyrus.core.resourceloading.tester.isAllLoaded"
+                        value="true" />
+              </and>
+           </with>
+        </and>
+     </visibleWhen>
+  </command>
 
 	</menuContribution>
 </extension>
@@ -402,7 +470,21 @@
 		description="Delete the selection from diagram"
 		id="org.eclipse.papyrus.diagram.common.commands.DeleteFromDiagram"
 		name="Delete From Diagram Command">
-	</command>		
+	</command>
+	<command
+		categoryId="org.eclipse.papyrus.editor.category"
+		defaultHandler="org.eclipse.papyrus.diagram.common.handlers.LoadHandler"
+		description="Load the corresponding submodel"
+		id="org.eclipse.papyrus.diagram.common.commands.Load"
+		name="Load">
+	</command>
+	<command
+		categoryId="org.eclipse.papyrus.editor.category"
+		defaultHandler="org.eclipse.papyrus.diagram.common.handlers.UnloadHandler"
+		description="Unload the corresponding submodel"
+		id="org.eclipse.papyrus.diagram.common.commands.Unload"
+		name="Unload">
+	</command>
 </extension>
 
 <extension

@@ -11,7 +11,7 @@
  *  Vincent Hemery (Atos) vincent.hemery@atos.net - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.modelexplorer.resourceloading;
+package org.eclipse.papyrus.core.resourceloading;
 
 import org.eclipse.osgi.util.NLS;
 
@@ -22,13 +22,22 @@ import org.eclipse.osgi.util.NLS;
  */
 public class Messages extends NLS {
 
-	private static final String BUNDLE_NAME = "org.eclipse.papyrus.modelexplorer.resourceloading.messages"; //$NON-NLS-1$
+	private static final String BUNDLE_NAME = "org.eclipse.papyrus.core.resourceloading.messages"; //$NON-NLS-1$
 
 	/** Error message */
 	public static String LoadingUtils_ErrorMessage;
 
 	/** Error popup title */
 	public static String LoadingUtils_ErrorTitle;
+
+	/** Load models task name */
+	public static String LoadingUtils_LoadModelsTask;
+
+	/** Resfresh pages task name */
+	public static String LoadingUtils_RefreshPagesTask;
+
+	/** Unload models task name */
+	public static String LoadingUtils_UnloadModelsTask;
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);
