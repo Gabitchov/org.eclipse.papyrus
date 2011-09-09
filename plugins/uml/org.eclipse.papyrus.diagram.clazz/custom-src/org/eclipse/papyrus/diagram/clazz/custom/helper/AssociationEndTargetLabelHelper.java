@@ -15,6 +15,7 @@ package org.eclipse.papyrus.diagram.clazz.custom.helper;
 
 import java.util.Iterator;
 
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
@@ -55,7 +56,7 @@ public class AssociationEndTargetLabelHelper extends PropertyLabelHelper {
 				//find the last
 				while(propertiesIterator.hasNext()) {
 					Property currentProperty = (Property)propertiesIterator.next();
-					if(currentProperty.getType().equals(target)) {
+					if(EcoreUtil.equals(currentProperty.getType(), target)) {
 						propertyToDisplay = currentProperty;
 					}
 				}
@@ -76,7 +77,7 @@ public class AssociationEndTargetLabelHelper extends PropertyLabelHelper {
 				//find the last
 				while(propertiesIterator.hasNext()) {
 					Property currentProperty = (Property)propertiesIterator.next();
-					if(!currentProperty.getType().equals(source)) {
+					if(!EcoreUtil.equals(currentProperty.getType(), source)) {
 						propertyToDisplay = currentProperty;
 					}
 				}
