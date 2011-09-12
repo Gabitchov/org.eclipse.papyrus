@@ -13,8 +13,13 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.common.editpolicies;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EAnnotation;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.editpolicies.GraphicalEditPolicy;
 import org.eclipse.gmf.runtime.diagram.core.listener.DiagramEventBroker;
@@ -39,6 +44,11 @@ public class QualifiedNameDisplayEditPolicy extends GraphicalEditPolicy implemen
 
 	/** host semantic element */
 	protected NamedElement hostSemanticNamedElement;
+
+	/**
+	 * The parent listeners list
+	 */
+	protected List<Object> parentListeners;
 
 	/**
 	 * Creates a new QualifiedNameDisplayEditPolicy
@@ -70,6 +80,7 @@ public class QualifiedNameDisplayEditPolicy extends GraphicalEditPolicy implemen
 
 			refreshQualifiedNameDisplay();
 		}
+		addParentListeners();
 	}
 
 	/**
@@ -124,6 +135,7 @@ public class QualifiedNameDisplayEditPolicy extends GraphicalEditPolicy implemen
 
 		// removes the reference to the semantic element
 		hostSemanticNamedElement = null;
+		removeParentListeners();
 	}
 
 	/**
@@ -162,8 +174,45 @@ public class QualifiedNameDisplayEditPolicy extends GraphicalEditPolicy implemen
 	public void notifyChanged(Notification notification) {
 		if(UMLPackage.eINSTANCE.getNamedElement_Name().equals(notification.getFeatureID(NamedElement.class)) || notification.getNotifier() instanceof EAnnotation) {
 			refreshQualifiedNameDisplay();
+		} else if(UMLPackage.eINSTANCE.getNamedElement_Name().equals(notification.getFeature())) {
+			if(parentListeners.contains(notification.getNotifier()) || getNamedElement().equals(notification.getNotifier())) {
+				refreshQualifiedNameDisplay();
+			}
+		} else if(notification.getFeature() instanceof EReference) {
+			EReference ref = (EReference)notification.getFeature();
+			if(ref.isContainment()) {
+				if(parentListeners.contains(notification.getNotifier()))
+					removeParentListeners();
+				addParentListeners();
+				refreshQualifiedNameDisplay();
+			}
 		}
+	}
 
+	/**
+	 * Add listeners for all parents
+	 */
+	private void addParentListeners() {
+		DiagramEventBroker diagramEventBroker = getDiagramEventBroker();
+		if(diagramEventBroker != null) {
+			if(parentListeners == null) {
+				parentListeners = new ArrayList<Object>();
+			}
+			EObject parentEOBject = getNamedElement().eContainer();
+			while(parentEOBject != null) {
+				diagramEventBroker.addNotificationListener(parentEOBject, this);
+				parentListeners.add(parentEOBject);
+				parentEOBject = parentEOBject.eContainer();
+			}
+		}
+	}
 
+	/**
+	 * Remove all parents listeners
+	 */
+	public void removeParentListeners() {
+		for(Object listener : parentListeners) {
+			getDiagramEventBroker().removeNotificationListener((EObject)listener, this);
+		}
 	}
 }
