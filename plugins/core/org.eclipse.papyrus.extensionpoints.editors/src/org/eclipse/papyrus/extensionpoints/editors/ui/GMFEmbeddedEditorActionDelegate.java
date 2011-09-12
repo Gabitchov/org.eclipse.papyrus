@@ -122,4 +122,9 @@ public class GMFEmbeddedEditorActionDelegate extends OpenEmbeddedTextEditorObjec
 		return new Composite(parentComposite, SWT.BORDER);
 	}
 
+	@Override
+	protected org.eclipse.gef.GraphicalEditPart getSelectedElement() {
+		return selectedElement;
+	}
+	
 }
