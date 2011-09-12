@@ -12,11 +12,11 @@
    </extension>
  <extension id="papyrus.table.menuspapyrus.table.menu" name="Papyrus Table Menus" point="org.eclipse.ui.menus">
       <menuContribution allPopups="false" locationURI="popup:org.eclipse.papyrus.modelexplorer.modelexplorer.popup?after=org.eclipse.papyrus.modelexplorer.popupmenu.creatediagram">
-         <menu icon="icons/table.png" id="org.eclipse.papyrus.modelexplorer.popupmenu.createtable" label="New Table" mnemonic="&amp;T" tooltip="The table menu">
+         <menu icon="icons/table.gif" id="org.eclipse.papyrus.modelexplorer.popupmenu.createtable" label="New Table" mnemonic="&amp;T" tooltip="The table menu">
          </menu>
       </menuContribution>
       <menuContribution allPopups="false" locationURI="menu:org.eclipse.papyrus.ui.menu?after=org.eclipse.papyrus.diagram.ui.menu.diagrams">
-         <menu icon="icons/table.png" id="org.eclipse.papyrus.table.ui.menu.tables" label="Tables" mnemonic="&amp;T" tooltip="The table menu">
+         <menu icon="icons/table.gif" id="org.eclipse.papyrus.table.ui.menu.tables" label="Tables" mnemonic="&amp;T" tooltip="The table menu">
          </menu>
       </menuContribution>
       <menuContribution locationURI="toolbar:org.eclipse.ui.main.toolbar?endof=org.eclipse.papyrus.diagram.ui.toolbar">

@@ -5,7 +5,7 @@
          point="org.eclipse.papyrus.core.papyrusDiagram">
       <editorDiagram
             factoryClass="org.eclipse.papyrus.table.defaultt.factory.NattableEditorFactory"
-            icon="icons/table_UML_default.png">
+            icon="icons/table_UML_default.gif">
       </editorDiagram>
    </extension>
    <extension
@@ -43,7 +43,7 @@
             locationURI="popup:org.eclipse.papyrus.modelexplorer.popupmenu.createtable">
          <command
                commandId="org.eclipse.papyrus.default.table.command"
-               icon="icons/table_UML_default.png"
+               icon="icons/table_UML_default.gif"
                label="Default Table"
                mnemonic="&amp;D"
                style="push"
@@ -63,7 +63,7 @@
             locationURI="menu:org.eclipse.papyrus.table.ui.menu.tables">
          <command
                commandId="org.eclipse.papyrus.default.table.command"
-               icon="icons/table_UML_default.png"
+               icon="icons/table_UML_default.gif"
                label="Default Table"
                mnemonic="&amp;D"
                style="push"
@@ -83,7 +83,7 @@
             locationURI="toolbar:org.eclipse.papyrus.table.ui.toolbar">
          <command
                commandId="org.eclipse.papyrus.default.table.command"
-               icon="icons/table_UML_default.png"
+               icon="icons/table_UML_default.gif"
                label="Default Table"
                mnemonic="&amp;D"
                style="push"

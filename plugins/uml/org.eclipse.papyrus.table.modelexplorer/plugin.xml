@@ -8,7 +8,7 @@
       
             activeByDefault="true"
             contentProvider="org.eclipse.papyrus.table.modelexplorer.providers.NavigatorTableContentProvider"
-            icon="platform:/plugin/org.eclipse.papyrus.table.common/icons/table.png"
+            icon="platform:/plugin/org.eclipse.papyrus.table.common/icons/table.gif"
             id="org.eclipse.papyrus.modelexplorer.table.navigatorContent"
             labelProvider="org.eclipse.papyrus.table.modelexplorer.providers.NavigatorTableLabelProvider"
             name="Table Navigator Content"
