@@ -40,28 +40,27 @@
       <handler
             class="org.eclipse.papyrus.table.modelexplorer.handlers.DeleteTableHandler"
             commandId="org.eclipse.ui.edit.delete">
-<activeWhen>
-            <and>
+         <activeWhen>
+            <or>
                <with
                      variable="selection">
-                     <!-- We add these tests for : 
-                     	- force the refresh of the action in the menu edit  
-                     	- avoid have 2 handlers enabled in the same time 
-                     	-->
                   <and>
+                     <count
+                           value="1">
+                     </count>
                      <test
                            forcePluginActivation="true"
-                           property="org.eclipse.papyrus.modelexplorer.tester.isDiagram"
-                           value="false">
+                           property="org.eclipse.papyrus.table.menu.providers.TableTester.isTable"
+                           value="true">
                      </test>
                      <test
                            forcePluginActivation="true"
-                           property="org.eclipse.papyrus.table.modelexplorer.tester.isTable"
+                           property="org.eclipse.papyrus.modelexplorer.tester.view.isModelExplorer"
                            value="true">
                      </test>
                   </and>
                </with>
-            </and>
+            </or>
          </activeWhen>
       </handler>
          <handler
@@ -95,27 +94,25 @@
             class="org.eclipse.papyrus.table.modelexplorer.handlers.RenameTableHandler"
             commandId="org.eclipse.ui.edit.rename">
          <activeWhen>
-            <and>
+            <or>
                <with
                      variable="selection">
-                     <!-- We add these tests for : 
-                     	- force the refresh of the action in the menu edit  
-                     	- avoid have 2 handlers enabled in the same time 
-                     	-->
                   <and>
+                     <count
+                           value="1">
+                     </count>
                      <test
                            forcePluginActivation="true"
-                           property="org.eclipse.papyrus.modelexplorer.tester.isDiagram"
-                           value="false">
+                           property="org.eclipse.papyrus.table.menu.providers.TableTester.isTable"
+                           value="true">
                      </test>
                      <test
                            forcePluginActivation="true"
-                           property="org.eclipse.papyrus.table.modelexplorer.tester.isTable"
+                           property="org.eclipse.papyrus.modelexplorer.tester.view.isModelExplorer"
                            value="true">
                      </test>
                   </and>
-               </with>
-            </and>
+               </with></or>
          </activeWhen>
       </handler>
    </extension>

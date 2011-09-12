@@ -4990,6 +4990,16 @@
                schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
                sequence="CTRL+ALT+A">
          </key>
+      </extension>
+      <extension
+            point="org.eclipse.core.expressions.propertyTesters">
+         <propertyTester
+               class="org.eclipse.papyrus.diagram.menu.providers.DiagramPropertyTester"
+               id="org.eclipse.papyrus.diagram.menu.tester"
+               namespace="org.eclipse.papyrus.diagram.menu.tester"
+               properties="isDiagram"
+               type="org.eclipse.jface.viewers.IStructuredSelection">
+         </propertyTester>
       </extension>        
 <!--                                                            -->
 

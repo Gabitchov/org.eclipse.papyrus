@@ -47,6 +47,8 @@ import org.eclipse.ui.ISources;
  * To get the status, we listen the selection service AND the part service!
  * The part service is used to know if the selection is in the Model Explorer or not!
  * When the selection is not in the model explorer, the handlers listening the variable need to be disabled
+ * FIXME we should replace this class by a PropertyTester which avoid to set Listener.
+ * 
  */
 public class HandlerStateSourceProvider extends AbstractActionStateSourceProvider {
 
