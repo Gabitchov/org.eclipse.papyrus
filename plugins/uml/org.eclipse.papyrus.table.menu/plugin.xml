@@ -32,7 +32,7 @@
             allPopups="false"
             locationURI="menu:org.eclipse.ui.main.menu?before=navigate">
          <menu
-               icon="platform:/plugin/org.eclipse.emf.facet.widgets.nattable.workbench/icons/table.png"
+               icon="icons/table.gif"
                id="org.eclipse.papyrus.table.menu"
                label="&amp;Table"
                tooltip="The table Menu">
@@ -74,7 +74,7 @@
             </command>
             <command
                   commandId="org.eclipse.emf.facet.widgets.nattable.hideColumnCommand"
-                  icon="icons/select_column_to_hide_2.png"
+                  icon="icons/select_column_to_hide_2.gif"
                   id="org.eclipse.papyrus.table.menu.hide.empty.column"
                   style="push"
                   tooltip="%select.column.to.hide">
@@ -148,7 +148,7 @@
             </separator>
             <command
                   commandId="org.eclipse.emf.facet.widget.nattable.empty.columns.command"
-                  icon="icons/empty.png"
+                  icon="icons/empty.gif"
                   id="org.eclipse.papyrus.table.menu.hide.empty.column"
                   label="&amp;Hide the empty columns"
                   style="toggle"
@@ -175,7 +175,7 @@
             </command>
             <command
                   commandId="org.eclipse.emf.facet.widget.nattable.common.columns.command"
-                  icon="icons/not_NA.png"
+                  icon="icons/not_NA.gif"
                   id="org.eclipse.papyrus.table.menu.common.column"
                   label="&amp;Show only the common columns"
                   style="toggle"
@@ -219,7 +219,7 @@
          </separator>
          <command
                   commandId="org.eclipse.emf.facet.widget.nattable.empty.columns.command"
-                  icon="icons/empty.png"
+                  icon="icons/empty.gif"
                   id="org.eclipse.emf.facet.papyrus.table.toolbar.hide.empty.column"
                   label="&amp;Hide the empty columns"
                   style="toggle"
@@ -254,7 +254,7 @@
             </command>
             <command
                   commandId="org.eclipse.emf.facet.widget.nattable.common.columns.command"
-                  icon="icons/not_NA.png"
+                  icon="icons/not_NA.gif"
                   id="org.eclipse.emf.facet.papyrus.table.toolbartab.common.column"
                   label="&amp;Show only the common columns"
                   style="toggle"
