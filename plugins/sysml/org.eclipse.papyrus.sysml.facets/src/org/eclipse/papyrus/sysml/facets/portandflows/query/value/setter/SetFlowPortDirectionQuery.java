@@ -39,7 +39,6 @@ public class SetFlowPortDirectionQuery implements IJavaModelQueryWithEditingDoma
 	}
 
 
-	@Override
 	public Enumerator evaluate(Port context, ParameterValueList parameterValues, EditingDomain editingDomain) throws ModelQueryExecutionException {
 		FlowPort flowPort = ElementUtil.getStereotypeApplication(context, FlowPort.class);
 
