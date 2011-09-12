@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -32,6 +32,17 @@ public class UMLCompartmentEditPart extends CompartmentEditPart {
 	 */
 	public UMLCompartmentEditPart(EObject model) {
 		super(model);
+	}
+
+	@Override
+	public boolean isSelectable() {
+		//See bug 351433 : https://bugs.eclipse.org/bugs/show_bug.cgi?id=351433
+		//This fix changes the behavior of selecting a Class : until now, we had
+		//to select a class before being able to select one of its operations or
+		//attributes. With this fix, we can select directly the operations or
+		//attributes, which means it is now harder to select the class
+		//(For Drag&Drop or resizing)
+		return getFigure().isShowing(); //FIXME : This is a temporary fix
 	}
 
 	/**
