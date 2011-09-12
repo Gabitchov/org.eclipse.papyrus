@@ -158,7 +158,13 @@ public class AbstractPreferenceKeyDialog extends org.eclipse.jface.dialogs.Statu
 			if(columnIndex == 2) {
 				if(initialKey.startsWith(PreferenceConstantHelper.DIAGRAM_ELEMENT)) {
 					out = initialKey.toString().replaceAll(PreferenceConstantHelper.DIAGRAM_ELEMENT, "");
-					out = out.substring(out.lastIndexOf("_") + 1, out.indexOf(".")) + " (" + initialKey.substring(8, initialKey.lastIndexOf("_")) + ")";
+					// Reorganize display
+					if(out.indexOf(".") > 0) {
+						String beforePoint = out.substring(0, out.indexOf("."));
+						if(beforePoint.lastIndexOf("_") > 0) {
+							out = out.substring(beforePoint.lastIndexOf("_") + 1, out.indexOf(".")) + " (" + beforePoint.substring(0, beforePoint.lastIndexOf("_")) + ")";
+						}
+					}
 				}
 				if(initialKey.startsWith(PreferenceConstantHelper.DIAGRAM_PREFERENCE_PREFIX)) {
 					out = initialKey.toString().replaceAll(PreferenceConstantHelper.DIAGRAM_PREFERENCE_PREFIX, "");

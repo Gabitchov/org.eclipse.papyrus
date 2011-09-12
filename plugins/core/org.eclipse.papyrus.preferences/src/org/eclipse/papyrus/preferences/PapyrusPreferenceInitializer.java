@@ -16,7 +16,6 @@ package org.eclipse.papyrus.preferences;
 import org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.preferences.pages.PapyrusAllDiagramsPreferencePage;
-import org.eclipse.papyrus.preferences.pages.internal.PapyrusPathmapsPreferencePage;
 import org.eclipse.papyrus.preferences.pages.internal.PapyrusPrintingPreferencePage;
 import org.eclipse.papyrus.preferences.pages.internal.PapyrusRulersAndGridPreferencePage;
 import org.eclipse.papyrus.preferences.pages.internal.PapyrusUML2PreferencePage;
