@@ -164,7 +164,7 @@ public class PreferenceInitializerForElementHelper {
 	 *        the preference store
 	 * @param elementName
 	 *        the name to the element
-	 *        
+	 * 
 	 * @deprecated call {@link PreferenceInitializerForElementHelper#initRoutingFromPrefs(View, IPreferenceStore, String)} instead.
 	 */
 	public static void initRountingFromPrefs(View view, final IPreferenceStore store, String elementName) {
@@ -208,7 +208,7 @@ public class PreferenceInitializerForElementHelper {
 		boolean routingDistance = store.getBoolean(getpreferenceKey(view, elementName, PreferenceConstantHelper.ROUTING_POLICY_DISTANCE));
 		ViewUtil.setStructuralFeatureValue(view, NotationPackage.eINSTANCE.getRoutingStyle_ClosestDistance(), routingDistance);
 	}
-	
+
 	/**
 	 * initialize the status of the compartment for the node (Showed or hidden)
 	 * 
@@ -243,8 +243,8 @@ public class PreferenceInitializerForElementHelper {
 
 						String compartmentNameVisibilityPreference = PreferenceConstantHelper.getCompartmentElementConstant(diagramKind + "_" + elementName, compartmentName, PreferenceConstantHelper.COMPARTMENT_NAME_VISIBILITY); //$NON-NLS-1$
 						boolean showCompartmentName = store.getBoolean(compartmentNameVisibilityPreference);
-							View childView = (View)object;
-							TitleStyle style = (TitleStyle)childView.getStyle(NotationPackage.eINSTANCE.getTitleStyle());
+						View childView = (View)object;
+						TitleStyle style = (TitleStyle)childView.getStyle(NotationPackage.eINSTANCE.getTitleStyle());
 						if(style != null) {
 							style.setShowTitle(showCompartmentName);
 						}
@@ -300,7 +300,7 @@ public class PreferenceInitializerForElementHelper {
 		dim = new Dimension(store.getInt(width), store.getInt(height));
 		return dim;
 	}
-	
+
 	/**
 	 * initialize label location.
 	 * 
@@ -313,16 +313,16 @@ public class PreferenceInitializerForElementHelper {
 	 */
 	public static void initLabelLocationFromPrefs(View view, final IPreferenceStore store, String elementName) {
 		assert (view instanceof Node);
-		
-		Node label = (Node) view;
-		Location location = (Location) label.getLayoutConstraint();
-		
+
+		Node label = (Node)view;
+		Location location = (Location)label.getLayoutConstraint();
+
 		String xKey = getpreferenceKey(view, elementName, PreferenceConstantHelper.LOCATION_X);
 		String yKey = getpreferenceKey(view, elementName, PreferenceConstantHelper.LOCATION_Y);
-		
+
 		location.setX(store.getInt(xKey));
 		location.setY(store.getInt(yKey));
-		
+
 		label.setLayoutConstraint(location);
 	}
 }

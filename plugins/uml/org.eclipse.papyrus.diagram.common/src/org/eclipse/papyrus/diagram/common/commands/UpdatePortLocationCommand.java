@@ -39,19 +39,24 @@ public class UpdatePortLocationCommand extends AbstractTransactionalCommand {
 
 	/** The border item edit part (assumed to be a Port) */
 	private IBorderItemEditPart borderItemEditPart;
-	
+
 	/** The parent edit part */
 	private GraphicalEditPart parentEditPart;
-	
+
 	/** The Port side before parent resize */
 	private final int borderItemSide;
-	
+
 	/**
 	 * Constructor.
-	 * @param domain the editing domain
-	 * @param parentEditPart the parent edit part
-	 * @param borderItemEditPart the Port edit part
-	 * @param borderItemSide the side of Port on parent before resize
+	 * 
+	 * @param domain
+	 *        the editing domain
+	 * @param parentEditPart
+	 *        the parent edit part
+	 * @param borderItemEditPart
+	 *        the Port edit part
+	 * @param borderItemSide
+	 *        the side of Port on parent before resize
 	 */
 	public UpdatePortLocationCommand(TransactionalEditingDomain domain, GraphicalEditPart parentEditPart, IBorderItemEditPart borderItemEditPart, int borderItemSide) {
 		super(domain, "Update port location command", null);
@@ -64,20 +69,19 @@ public class UpdatePortLocationCommand extends AbstractTransactionalCommand {
 	 * Set the new IBorderItemEditPart view bounds after a resize of its parent.
 	 */
 	@Override
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
-			IAdaptable info) throws ExecutionException {
-		
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+
 		// At this step the resized bounds of the parent should have been set.
 		// Get the parent bounds.
-		Shape parentShape = (Shape) parentEditPart.getNotationView();
-		Bounds parentBounds = (Bounds) parentShape.getLayoutConstraint();
-		
+		Shape parentShape = (Shape)parentEditPart.getNotationView();
+		Bounds parentBounds = (Bounds)parentShape.getLayoutConstraint();
+
 		// Retrieve borderItemBounds
 		int borderItemOffset = 10; // see PortPositionLocator.
-		Shape borderItemShape = (Shape) borderItemEditPart.getNotationView();
-		Bounds borderItemBounds = (Bounds) borderItemShape.getLayoutConstraint();
-			
-		switch (borderItemSide) { // The borderItemSide is not supposed to change during a parent resize.
+		Shape borderItemShape = (Shape)borderItemEditPart.getNotationView();
+		Bounds borderItemBounds = (Bounds)borderItemShape.getLayoutConstraint();
+
+		switch(borderItemSide) { // The borderItemSide is not supposed to change during a parent resize.
 		case PositionConstants.NORTH:
 			borderItemBounds.setY(-borderItemOffset);
 			break;
@@ -93,11 +97,11 @@ public class UpdatePortLocationCommand extends AbstractTransactionalCommand {
 			borderItemBounds.setY(parentBounds.getHeight() - borderItemOffset);
 			break;
 		case PositionConstants.SOUTH:
-			borderItemBounds.setY(parentBounds.getHeight() - borderItemOffset);	
+			borderItemBounds.setY(parentBounds.getHeight() - borderItemOffset);
 			break;
 		case PositionConstants.SOUTH_WEST:
 			borderItemBounds.setX(-borderItemOffset);
-			borderItemBounds.setY(parentBounds.getHeight() - borderItemOffset);			
+			borderItemBounds.setY(parentBounds.getHeight() - borderItemOffset);
 			break;
 		case PositionConstants.WEST:
 			borderItemBounds.setX(-borderItemOffset);
@@ -106,13 +110,13 @@ public class UpdatePortLocationCommand extends AbstractTransactionalCommand {
 			borderItemBounds.setX(-borderItemOffset);
 			borderItemBounds.setY(-borderItemOffset);
 			break;
-			
+
 		default:
 			// TODO : Add log here, this case should not be possible anymore.
 			break;
 		}
 
-		return CommandResult.newOKCommandResult();		
+		return CommandResult.newOKCommandResult();
 	}
 
 }

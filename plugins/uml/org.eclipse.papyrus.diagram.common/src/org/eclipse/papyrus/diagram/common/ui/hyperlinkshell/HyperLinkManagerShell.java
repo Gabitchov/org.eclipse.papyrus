@@ -37,10 +37,11 @@ import org.eclipse.uml2.uml.Package;
 public class HyperLinkManagerShell extends AbstractHyperLinkManagerShell {
 
 
-	protected ArrayList<HyperlinkObject> allhypHyperlinkObjects=new ArrayList<HyperlinkObject>();
+	protected ArrayList<HyperlinkObject> allhypHyperlinkObjects = new ArrayList<HyperlinkObject>();
 
 	/** The view. */
 	protected View view;
+
 	/** The amodel. */
 	protected Package amodel;
 
@@ -54,14 +55,14 @@ public class HyperLinkManagerShell extends AbstractHyperLinkManagerShell {
 	public void setInput(ArrayList<HyperlinkObject> hyperLinkObjectList) {
 		this.allhypHyperlinkObjects.clear();
 		this.allhypHyperlinkObjects.addAll(hyperLinkObjectList);
-		Iterator<HyperLinkTab>iter= tabList.iterator();
+		Iterator<HyperLinkTab> iter = tabList.iterator();
 		while(iter.hasNext()) {
 			HyperLinkTab hyperLinkTab = (HyperLinkTab)iter.next();
 			hyperLinkTab.setInput(allhypHyperlinkObjects);
 		}
 	}
 
-	
+
 
 	/**
 	 * Instantiates a new hyper link manager shell2.
@@ -79,13 +80,13 @@ public class HyperLinkManagerShell extends AbstractHyperLinkManagerShell {
 	 */
 	public HyperLinkManagerShell(IPageIconsRegistry editorFactoryRegistry, TransactionalEditingDomain domain, Element umlElement, View aview, Package model, HyperlinkHelperFactory hyperHelperFactory) {
 		super();
-		this.hyperLinkHelperFactory= hyperHelperFactory;
+		this.hyperLinkHelperFactory = hyperHelperFactory;
 		this.view = aview;
 		this.amodel = model;
 		this.transactionalEditingDomain = domain;
 		createHyperLinkShell();
 		// associate tableViewer for each table
-		Iterator<AbstractHyperLinkHelper> iter= hyperHelperFactory.getHyperLinkHelpers().iterator();
+		Iterator<AbstractHyperLinkHelper> iter = hyperHelperFactory.getHyperLinkHelpers().iterator();
 		while(iter.hasNext()) {
 			AbstractHyperLinkHelper abstractHyperLinkHelper = (AbstractHyperLinkHelper)iter.next();
 			initializeFolder(abstractHyperLinkHelper);
@@ -103,11 +104,11 @@ public class HyperLinkManagerShell extends AbstractHyperLinkManagerShell {
 		});
 
 		// listener for the button OK
-		SelectionListener okListener =new SelectionListener() {
+		SelectionListener okListener = new SelectionListener() {
 
 			public void widgetSelected(SelectionEvent e) {
 				executeOkButton();
-				
+
 			}
 
 			public void widgetDefaultSelected(SelectionEvent e) {
@@ -116,11 +117,11 @@ public class HyperLinkManagerShell extends AbstractHyperLinkManagerShell {
 		getOkButton().addSelectionListener(okListener);
 	}
 
-	protected void executeOkButton(){
+	protected void executeOkButton() {
 		// empty all hyperlinks
 		transactionalEditingDomain.getCommandStack().execute(HyperlinkHelperFactory.getEmptyAllHyperLinkCommand(transactionalEditingDomain, view));
 		allhypHyperlinkObjects.clear();
-		Iterator<HyperLinkTab>iter= tabList.iterator();
+		Iterator<HyperLinkTab> iter = tabList.iterator();
 		while(iter.hasNext()) {
 			HyperLinkTab hyperLinkTab = (HyperLinkTab)iter.next();
 			allhypHyperlinkObjects.addAll(hyperLinkTab.getHyperlinkObjects());
@@ -134,7 +135,7 @@ public class HyperLinkManagerShell extends AbstractHyperLinkManagerShell {
 
 		tabList.clear();
 		getHyperLinkShell().close();
-		
+
 	}
 
 
@@ -143,11 +144,14 @@ public class HyperLinkManagerShell extends AbstractHyperLinkManagerShell {
 	 * Initialize diagram folder.
 	 */
 	public void initializeFolder(final AbstractHyperLinkHelper abstractHyperLinkHelper) {
-		
-		final HyperLinkTab hyperLinkTab=new HyperLinkTab(getcTabFolder(), abstractHyperLinkHelper,allhypHyperlinkObjects);
-		tabList.add( hyperLinkTab);
+
+		final HyperLinkTab hyperLinkTab = new HyperLinkTab(getcTabFolder(), abstractHyperLinkHelper, allhypHyperlinkObjects);
+		tabList.add(hyperLinkTab);
 		hyperLinkTab.getRemoveHyperLinkButton().addMouseListener(new MouseListener() {
-			public void mouseUp(MouseEvent e) {}
+
+			public void mouseUp(MouseEvent e) {
+			}
+
 			public void mouseDown(MouseEvent e) {
 				if(hyperLinkTab.getTableViewer().getTable().getSelection().length != 0) {
 					Iterator iterator = ((IStructuredSelection)hyperLinkTab.getTableViewer().getSelection()).iterator();
@@ -164,7 +168,8 @@ public class HyperLinkManagerShell extends AbstractHyperLinkManagerShell {
 		});
 		hyperLinkTab.getUpHyperLinkButton().addMouseListener(new MouseListener() {
 
-			public void mouseUp(MouseEvent e) {}
+			public void mouseUp(MouseEvent e) {
+			}
 
 			public void mouseDown(MouseEvent e) {
 				if(hyperLinkTab.getTableViewer().getTable().getSelection().length != 0) {
@@ -183,11 +188,13 @@ public class HyperLinkManagerShell extends AbstractHyperLinkManagerShell {
 				}
 			}
 
-			public void mouseDoubleClick(MouseEvent e) {}
+			public void mouseDoubleClick(MouseEvent e) {
+			}
 		});
 		hyperLinkTab.getDownHyperLinkButton().addMouseListener(new MouseListener() {
 
-			public void mouseUp(MouseEvent e) {}
+			public void mouseUp(MouseEvent e) {
+			}
 
 			public void mouseDown(MouseEvent e) {
 				if(hyperLinkTab.getTableViewer().getTable().getSelection().length != 0) {
@@ -205,27 +212,31 @@ public class HyperLinkManagerShell extends AbstractHyperLinkManagerShell {
 				}
 			}
 
-			public void mouseDoubleClick(MouseEvent e) {}
+			public void mouseDoubleClick(MouseEvent e) {
+			}
 		});
 		hyperLinkTab.getNewHyperLinkbutton().addMouseListener(new MouseListener() {
 
-			public void mouseUp(MouseEvent e) {}
+			public void mouseUp(MouseEvent e) {
+			}
 
 			public void mouseDown(MouseEvent e) {
 				abstractHyperLinkHelper.executeNewMousePressed(hyperLinkTab.getHyperlinkObjects(), amodel);
 				hyperLinkTab.setInput(hyperLinkTab.getHyperlinkObjects());
 			}
 
-			public void mouseDoubleClick(MouseEvent e) {}
+			public void mouseDoubleClick(MouseEvent e) {
+			}
 		});
 		hyperLinkTab.getModifyHyperLinkButton().addMouseListener(new MouseListener() {
 
-			public void mouseUp(MouseEvent e) {	}
+			public void mouseUp(MouseEvent e) {
+			}
 
 			public void mouseDown(MouseEvent e) {
 				if(hyperLinkTab.getTableViewer().getTable().getSelection().length != 0) {
 					HyperlinkObject hyperLinkObject = (HyperlinkObject)((IStructuredSelection)hyperLinkTab.getTableViewer().getSelection()).getFirstElement();
-					abstractHyperLinkHelper.executeEditMousePressed(hyperLinkTab.getHyperlinkObjects(), hyperLinkObject,amodel);
+					abstractHyperLinkHelper.executeEditMousePressed(hyperLinkTab.getHyperlinkObjects(), hyperLinkObject, amodel);
 					hyperLinkTab.setInput(hyperLinkTab.getHyperlinkObjects());
 				}
 			}

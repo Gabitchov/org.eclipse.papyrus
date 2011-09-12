@@ -106,7 +106,7 @@ public class LifelineDotLineFigure extends Shape {
 		dashLineRectangle.setLocation(pStart);
 
 	}
-	
+
 	/**
 	 * Set the bounds on the figure and fix bounds for child dash line
 	 * 

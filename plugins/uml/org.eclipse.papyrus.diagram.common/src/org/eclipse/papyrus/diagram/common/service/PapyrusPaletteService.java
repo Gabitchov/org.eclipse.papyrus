@@ -954,7 +954,7 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 			providerChanged(new ProviderChangeEvent(this));
 		} else if(IPapyrusPaletteConstant.PALETTE_REDEFINITIONS.equals(id)) {
 			for(Service.ProviderDescriptor descriptor : getProviders()) {
-				removeProvider(descriptor);	
+				removeProvider(descriptor);
 			}
 			configureProviders();
 			// refresh available palette table viewer

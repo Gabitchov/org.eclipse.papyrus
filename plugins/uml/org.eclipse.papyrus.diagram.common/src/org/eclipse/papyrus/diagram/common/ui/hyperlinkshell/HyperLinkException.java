@@ -14,8 +14,8 @@
 package org.eclipse.papyrus.diagram.common.ui.hyperlinkshell;
 
 /**
- * this is an exception that can be raised when hyperlinks are manipulated 
- *
+ * this is an exception that can be raised when hyperlinks are manipulated
+ * 
  */
 public class HyperLinkException extends Exception {
 
@@ -24,7 +24,7 @@ public class HyperLinkException extends Exception {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	
+
 	/**
 	 * constructor
 	 */

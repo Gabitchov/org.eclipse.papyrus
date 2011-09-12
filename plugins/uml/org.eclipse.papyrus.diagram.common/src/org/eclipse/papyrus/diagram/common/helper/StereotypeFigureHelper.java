@@ -46,13 +46,18 @@ public abstract class StereotypeFigureHelper {
 	private boolean stereotypePrinted;
 
 	private IFigure container;
+
 	/**
 	 * Inset used by then centered wrappe label
 	 */
 	private int topInset = 2;
+
 	private int leftInset = 5;
+
 	private int bottomInset = 5;
+
 	private int rightInset = 5;
+
 	/**
 	 * True if the container of the stereotype has to be filled
 	 */
@@ -67,6 +72,7 @@ public abstract class StereotypeFigureHelper {
 		init();
 		createContents();
 	}
+
 	/**
 	 * Method use to be override by child class to set the options
 	 */
@@ -132,7 +138,7 @@ public abstract class StereotypeFigureHelper {
 	protected void createStereotypeLabel() {
 		ensureStereotypeRectanglePrinted();
 		fActionStereotypeLabel = new CenteredWrappedLabel();
-		fActionStereotypeLabel.setBorder(new MarginBorder(getMapMode().DPtoLP(topInset), getMapMode().DPtoLP(leftInset), getMapMode().DPtoLP(bottomInset ), getMapMode().DPtoLP(rightInset)));
+		fActionStereotypeLabel.setBorder(new MarginBorder(getMapMode().DPtoLP(topInset), getMapMode().DPtoLP(leftInset), getMapMode().DPtoLP(bottomInset), getMapMode().DPtoLP(rightInset)));
 		// Add the stereotype label to the figure
 		stereotypeRectangle.add(fActionStereotypeLabel, GravityConstrainedFlowLayout.ALIGN_CENTER, 0);
 	}
@@ -301,7 +307,7 @@ public abstract class StereotypeFigureHelper {
 	 */
 	public abstract IMapMode getMapMode();
 
-	
+
 	public int getTopInset() {
 		return topInset;
 	}
@@ -314,7 +320,7 @@ public abstract class StereotypeFigureHelper {
 		this.topInset = topInset;
 	}
 
-	
+
 	/**
 	 * 
 	 * @return
@@ -365,6 +371,7 @@ public abstract class StereotypeFigureHelper {
 
 	/**
 	 * Return true if the Rectangle containing the the stereotype has to be filled
+	 * 
 	 * @return
 	 */
 	public boolean isStereotypeContainerFilled() {
@@ -373,12 +380,13 @@ public abstract class StereotypeFigureHelper {
 
 	/**
 	 * If set to true the rectangle containing the stereotype will be filled
+	 * 
 	 * @param isStereotypeContainerFilled
 	 */
 	public void setStereotypeContainerFilled(boolean isStereotypeContainerFilled) {
 		this.isStereotypeContainerFilled = isStereotypeContainerFilled;
 	}
-	
-	
+
+
 
 }

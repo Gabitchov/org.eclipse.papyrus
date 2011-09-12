@@ -83,7 +83,7 @@ public class HyperlinkDocument extends HyperlinkObject {
 		} catch (Exception e) {
 			Activator.log.error(e);
 		}
-		
+
 	}
 
 	@Override
@@ -94,6 +94,6 @@ public class HyperlinkDocument extends HyperlinkObject {
 		int index = list.indexOf(this);
 		list.remove(this);
 		list.add(index, editor.getHyperlinkDocument());
-		
+
 	}
 }

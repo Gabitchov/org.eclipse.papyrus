@@ -37,30 +37,34 @@ public class FixPortLocationCommand extends AbstractTransactionalCommand {
 
 	/** The proposed (or current) location */
 	private final Rectangle proposedLocation;
-	
+
 	/** The most adapted valid location */
 	private final Rectangle validLocation;
-	
+
 	/** The shape of the borderItem */
 	private Shape borderItemShape;
-	
+
 	/** The border item bounds */
 	private Bounds borderItemBounds;
-		
+
 	/**
 	 * Constructor for the command.
-	 * @param domain the editing domain.
-	 * @param borderItemEP assumed to be a Port due to the use of {@link PortPositionLocatorUtils} to calculate the correct location.
-	 * @param parentEP the edit part of the graphical parent of borderItemEP.
+	 * 
+	 * @param domain
+	 *        the editing domain.
+	 * @param borderItemEP
+	 *        assumed to be a Port due to the use of {@link PortPositionLocatorUtils} to calculate the correct location.
+	 * @param parentEP
+	 *        the edit part of the graphical parent of borderItemEP.
 	 */
 	public FixPortLocationCommand(TransactionalEditingDomain domain, IBorderItemEditPart borderItemEditPart, GraphicalEditPart parentEditPart) {
 		super(domain, "Fix port location command", null);
-			
-		borderItemShape = (Shape) borderItemEditPart.getNotationView();
+
+		borderItemShape = (Shape)borderItemEditPart.getNotationView();
 		borderItemBounds = (Bounds)borderItemShape.getLayoutConstraint();
-			
+
 		proposedLocation = new Rectangle(borderItemBounds.getX(), borderItemBounds.getY(), borderItemBounds.getWidth(), borderItemBounds.getHeight());
-		
+
 		validLocation = PortPositionLocatorUtils.getBorderLocation(parentEditPart.getFigure().getBounds().getCopy(), proposedLocation, 10);
 	}
 
@@ -71,17 +75,16 @@ public class FixPortLocationCommand extends AbstractTransactionalCommand {
 	public boolean canExecute() {
 		return (proposedLocation.equals(validLocation)) ? false : true;
 	}
-	
+
 	/**
 	 * Set the IBorderItemEditPart view bounds with a corrected location.
 	 */
 	@Override
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
-			IAdaptable info) throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		borderItemBounds.setX(validLocation.x);
 		borderItemBounds.setY(validLocation.y);
-		
+
 		return CommandResult.newOKCommandResult();
 	}
 

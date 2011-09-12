@@ -16,10 +16,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.draw2d.AbstractLayout;
-import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
-import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure;
@@ -83,7 +81,7 @@ public class AutomaticCompartmentLayoutManager extends AbstractLayout {
 
 	@Override
 	public Dimension getMinimumSize(IFigure container, int wHint, int hHint) {
-		return new Dimension(20,20);
+		return new Dimension(20, 20);
 	}
 
 	/**
@@ -139,10 +137,10 @@ public class AutomaticCompartmentLayoutManager extends AbstractLayout {
 		if(compartmentList.size() != 0) {
 			// visit all compartment
 			for(int i = 0; i < container.getChildren().size(); i++) {
-				IFigure currentCompartment= (IFigure) container.getChildren().get(i);
+				IFigure currentCompartment = (IFigure)container.getChildren().get(i);
 				// this is a visible compartment
-				if( visibleCompartments.contains(currentCompartment)){
-					
+				if(visibleCompartments.contains(currentCompartment)) {
+
 					Rectangle bound = new Rectangle(currentCompartment.getBounds());
 					bound.setSize(getPreferedSize(currentCompartment));
 					if(visibleCompartments.indexOf(currentCompartment) > 0) {
@@ -155,11 +153,10 @@ public class AutomaticCompartmentLayoutManager extends AbstractLayout {
 						bound.width = container.getBounds().width;
 					}
 					currentCompartment.setBounds(bound);
-				}
-				else{
+				} else {
 					//this is a none visible compartment
 					Rectangle bound = new Rectangle(currentCompartment.getBounds());
-					bound.setSize(1,1);
+					bound.setSize(1, 1);
 					currentCompartment.setBounds(bound);
 				}
 			}
@@ -209,6 +206,7 @@ public class AutomaticCompartmentLayoutManager extends AbstractLayout {
 
 	/**
 	 * use to know what kind of element we have in order to apply the good policy for the disposition
+	 * 
 	 * @param container
 	 */
 	public void collectInformationOnChildren(IFigure container) {
@@ -218,7 +216,7 @@ public class AutomaticCompartmentLayoutManager extends AbstractLayout {
 			if(isAGMFContainer(((IFigure)container.getChildren().get(i)))) {
 				compartmentList.add(((IFigure)container.getChildren().get(i)));
 			} else {
-				if((container.getChildren().get(i)) instanceof Label || (container.getChildren().get(i)) instanceof WrappingLabel||((container.getChildren().get(i)) instanceof StereotypePropertiesCompartment)) {
+				if((container.getChildren().get(i)) instanceof Label || (container.getChildren().get(i)) instanceof WrappingLabel || ((container.getChildren().get(i)) instanceof StereotypePropertiesCompartment)) {
 					notCompartmentList.add(((IFigure)container.getChildren().get(i)));
 				}
 			}

@@ -50,9 +50,9 @@ import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
 
 /**
- * this is the tab in charge to display the hyperlink diagram created by using heuristic for the property default 
+ * this is the tab in charge to display the hyperlink diagram created by using heuristic for the property default
  * the code was extract from {@link NavigationCreateDiagramDialog}
- *
+ * 
  */
 public class LocalDefaultLinkDiagramTab {
 
@@ -66,7 +66,7 @@ public class LocalDefaultLinkDiagramTab {
 
 	private static final String[] COLUMN_NAMES = { "Navigation type", "Feature", "Element type", "Diagram type", "Diagram name" };
 
-	private static final int[] COLUMN_WIDTHS   = { 80, 120, 120, 200, 120};
+	private static final int[] COLUMN_WIDTHS = { 80, 120, 120, 200, 120 };
 
 	private Map<NavigableElement, List<CreationCommandDescriptor>> possibleCreations;
 
@@ -96,11 +96,12 @@ public class LocalDefaultLinkDiagramTab {
 			return false;
 		}
 	}
+
 	private Composite defaultHyperlinkComposite;
 
 
-	/** 
-	 * @return the composite that contains the table 
+	/**
+	 * @return the composite that contains the table
 	 * **/
 	public Composite getDefaultHyperlinkComposite() {
 		return defaultHyperlinkComposite;
@@ -109,13 +110,15 @@ public class LocalDefaultLinkDiagramTab {
 	/**
 	 * 
 	 * Constructor.
-	 *
-	 * @param tabFolder the parent tabfolder
-	 * @param semanticElement  the element from which diagram can be created
+	 * 
+	 * @param tabFolder
+	 *        the parent tabfolder
+	 * @param semanticElement
+	 *        the element from which diagram can be created
 	 */
 
-	public  LocalDefaultLinkDiagramTab(CTabFolder tabFolder, EObject semanticElement){
-		this.semanticElement=semanticElement;
+	public LocalDefaultLinkDiagramTab(CTabFolder tabFolder, EObject semanticElement) {
+		this.semanticElement = semanticElement;
 		//init list of descriptor to fill the table
 		initLocalNavigableElement();
 		//associate the composite to the tabfolder
@@ -128,7 +131,9 @@ public class LocalDefaultLinkDiagramTab {
 	}
 
 
-	/** get the command to create diagrams from the selection done into the table
+	/**
+	 * get the command to create diagrams from the selection done into the table
+	 * 
 	 * @return the command in charge of the creation of the diagrams
 	 * **/
 	public ICommand getCommand() {
@@ -168,9 +173,12 @@ public class LocalDefaultLinkDiagramTab {
 		command = compositeCommand;
 
 	}
+
 	/**
 	 * construction the ui
-	 * @param parent the composite that contains table.
+	 * 
+	 * @param parent
+	 *        the composite that contains table.
 	 * @return the table contained in the composite
 	 */
 	protected Control createArea(Composite parent) {
@@ -181,7 +189,7 @@ public class LocalDefaultLinkDiagramTab {
 		table.setLinesVisible(true);
 		table.setBounds(10, 20, 650, 170);
 
-		for(int i = 0 ; i < COLUMN_NAMES.length ; i++) {
+		for(int i = 0; i < COLUMN_NAMES.length; i++) {
 			TableColumn col = new TableColumn(table, SWT.NONE);
 			col.setText(COLUMN_NAMES[i]);
 			col.setWidth(COLUMN_WIDTHS[i]);
@@ -199,7 +207,7 @@ public class LocalDefaultLinkDiagramTab {
 			// ignore containing feature if we are on the root element
 			// because it is a direct diagram creation
 			// => the feature has no meaning in this case
-			if (!semanticElement.equals(navElement.getElement())) {
+			if(!semanticElement.equals(navElement.getElement())) {
 				groupKey.feature = navElement.getFeature();
 			}
 
@@ -280,9 +288,9 @@ public class LocalDefaultLinkDiagramTab {
 
 	/**
 	 * this method is used to construct descriptors of heuristic to construct diagrams.
-	 *  These descriptors will be displayed in the table. 
+	 * These descriptors will be displayed in the table.
 	 */
-	protected void initLocalNavigableElement(){
+	protected void initLocalNavigableElement() {
 		List<NavigableElement> navElements = NavigationHelper.getInstance().getAllNavigableElements(semanticElement);
 		possibleCreations = new HashMap<NavigableElement, List<CreationCommandDescriptor>>();
 

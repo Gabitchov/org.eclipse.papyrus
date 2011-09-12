@@ -64,8 +64,8 @@ public class AspectUnspecifiedTypeCreationTool extends UnspecifiedTypeCreationTo
 	/** post action list */
 	protected List<IAspectAction> postActions = new ArrayList<IAspectAction>();
 
-	private static String ID_ASPECT_ACTION = "palette_aspect_actions" ;
-	
+	private static String ID_ASPECT_ACTION = "palette_aspect_actions";
+
 	/**
 	 * Creates an AspectUnspecifiedTypeCreationTool
 	 * 
@@ -199,33 +199,28 @@ public class AspectUnspecifiedTypeCreationTool extends UnspecifiedTypeCreationTo
 	protected Request createTargetRequest() {
 		CreateAspectUnspecifiedTypeRequest request = new CreateAspectUnspecifiedTypeRequest(getElementTypes(), getPreferencesHint());
 		request.getExtendedData().put(ID_ASPECT_ACTION, postActions);
-		return request ;
+		return request;
 	}
 
 	@SuppressWarnings("unchecked")
-	public static List<IAspectAction> getAspectActions(Request request)
-	{
-		return (List<IAspectAction>) (request == null ? Collections.emptyList() :  getAspectActions(request.getExtendedData()));
+	public static List<IAspectAction> getAspectActions(Request request) {
+		return (List<IAspectAction>)(request == null ? Collections.emptyList() : getAspectActions(request.getExtendedData()));
 	}
-	
+
 	@SuppressWarnings("unchecked")
-	public static List<IAspectAction> getAspectActions(Map map)
-	{
-		return (List<IAspectAction>) (map == null ? Collections.emptyList() : map.get(ID_ASPECT_ACTION));
+	public static List<IAspectAction> getAspectActions(Map map) {
+		return (List<IAspectAction>)(map == null ? Collections.emptyList() : map.get(ID_ASPECT_ACTION));
 	}
-	
-	public String createPrePostActionRepresentation ()
-	{
+
+	public String createPrePostActionRepresentation() {
 		StringBuffer buffer = new StringBuffer();
-		boolean flag = false ;
-		for (IAspectAction post : postActions)
-		{
-			if (post instanceof IFeatureSetterAspectAction) {
-				IFeatureSetterAspectAction featureSetter = (IFeatureSetterAspectAction) post;
-				if (flag)
-				{
+		boolean flag = false;
+		for(IAspectAction post : postActions) {
+			if(post instanceof IFeatureSetterAspectAction) {
+				IFeatureSetterAspectAction featureSetter = (IFeatureSetterAspectAction)post;
+				if(flag) {
 					buffer.append("|");
-					for (EStructuralFeature f : featureSetter.getAllImpactedFeatures()) {
+					for(EStructuralFeature f : featureSetter.getAllImpactedFeatures()) {
 						EClass eClass = f.eClass();
 						buffer.append(eClass.getEPackage().getNsURI());
 						buffer.append(",");
@@ -234,7 +229,7 @@ public class AspectUnspecifiedTypeCreationTool extends UnspecifiedTypeCreationTo
 						buffer.append(f.getName());
 					}
 				}
-				flag = true ;
+				flag = true;
 			}
 		}
 		return buffer.toString();

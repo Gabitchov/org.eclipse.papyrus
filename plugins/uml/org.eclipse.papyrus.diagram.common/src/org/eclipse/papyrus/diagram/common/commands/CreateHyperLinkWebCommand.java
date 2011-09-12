@@ -30,7 +30,7 @@ public class CreateHyperLinkWebCommand extends CreateEAnnotationCommand {
 
 	/** The localization. */
 	public String link;
-	
+
 	/** to set if is a default hyperlink */
 	public boolean isDefault;
 
@@ -45,14 +45,14 @@ public class CreateHyperLinkWebCommand extends CreateEAnnotationCommand {
 	 *        the hyperlink kind see {@link VisualInformationPapyrusConstant}
 	 * @param link
 	 *        the localization
-	 *@param isDefault
-	 * 		  to set this hyperlink as default
+	 * @param isDefault
+	 *        to set this hyperlink as default
 	 */
 	public CreateHyperLinkWebCommand(TransactionalEditingDomain domain, EModelElement object, String tooltiptext, String link, boolean isDefault) {
 		super(domain, object, VisualInformationPapyrusConstant.HYPERLINK_WEB);
 		this.tooltiptext = tooltiptext;
 		this.link = link;
-		this.isDefault= isDefault;
+		this.isDefault = isDefault;
 	}
 
 	/**
@@ -62,7 +62,7 @@ public class CreateHyperLinkWebCommand extends CreateEAnnotationCommand {
 		EAnnotation eAnnotation = createEAnnotation();
 		eAnnotation.getDetails().put(VisualInformationPapyrusConstant.HYPERLINK_TOOLTYPE_TEXT, this.tooltiptext);
 		eAnnotation.getDetails().put(VisualInformationPapyrusConstant.HYPERLINK_WEB_LINK, this.link);
-		eAnnotation.getDetails().put(VisualInformationPapyrusConstant.HYPERLINK_IS_DEFAULT_NAVIGATION, ""+this.isDefault);
+		eAnnotation.getDetails().put(VisualInformationPapyrusConstant.HYPERLINK_IS_DEFAULT_NAVIGATION, "" + this.isDefault);
 		attachEannotation(eAnnotation, getObject());
 	}
 

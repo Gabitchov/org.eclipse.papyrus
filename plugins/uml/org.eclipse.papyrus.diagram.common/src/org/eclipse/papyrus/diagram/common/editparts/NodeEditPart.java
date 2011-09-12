@@ -67,10 +67,10 @@ public abstract class NodeEditPart extends AbstractBorderedShapeEditPart impleme
 
 		// Update the figure when the line width changes
 		Object feature = event.getFeature();
-		if ((getModel() != null) && (getModel() == event.getNotifier())) {
+		if((getModel() != null) && (getModel() == event.getNotifier())) {
 			if(NotationPackage.eINSTANCE.getLineStyle_LineWidth().equals(feature)) {
 				refreshLineWidth();
-			} else if (NotationPackage.eINSTANCE.getLineTypeStyle_LineType().equals(feature)) {
+			} else if(NotationPackage.eINSTANCE.getLineTypeStyle_LineType().equals(feature)) {
 				refreshLineType();
 			}
 		}
@@ -89,7 +89,7 @@ public abstract class NodeEditPart extends AbstractBorderedShapeEditPart impleme
 	}
 
 	protected void setLineWidth(int width) {
-		if (width < 0) {
+		if(width < 0) {
 			width = 1;
 		}
 		getPrimaryShape().setLineWidth(width);
@@ -98,7 +98,7 @@ public abstract class NodeEditPart extends AbstractBorderedShapeEditPart impleme
 	protected void setLineType(int style) {
 		getPrimaryShape().setLineStyle(style);
 	}
-	
+
 	/**
 	 * Override to set the transparency to the correct figure
 	 */

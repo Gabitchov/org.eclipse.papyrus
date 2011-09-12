@@ -33,9 +33,11 @@ public class Rectangular3DBorder extends LineBorder {
 
 	/**
 	 * Instantiates a new rectangular3 d border.
-	 *
-	 * @param borderwidth the borderwidth
-	 * @param color the color
+	 * 
+	 * @param borderwidth
+	 *        the borderwidth
+	 * @param color
+	 *        the color
 	 */
 	public Rectangular3DBorder(int borderwidth, Color color) {
 		super(color);
@@ -62,10 +64,13 @@ public class Rectangular3DBorder extends LineBorder {
 
 	/**
 	 * Paint.
-	 *
-	 * @param figure the figure
-	 * @param graphics the graphics
-	 * @param insets the insets
+	 * 
+	 * @param figure
+	 *        the figure
+	 * @param graphics
+	 *        the graphics
+	 * @param insets
+	 *        the insets
 	 * @see org.eclipse.draw2d.Border#paint(IFigure, Graphics, Insets)
 	 */
 	@Override

@@ -12,7 +12,7 @@
  *    	bug fix and re-factoring (separating common class)
  *      specific version for Papyrus
  */
- package org.eclipse.papyrus.diagram.common.providers;
+package org.eclipse.papyrus.diagram.common.providers;
 
 import static org.eclipse.papyrus.core.Activator.log;
 
@@ -56,8 +56,8 @@ import org.eclipse.ui.PlatformUI;
  */
 public abstract class ValidationDecoratorProvider extends AbstractProvider implements IDecoratorProvider {
 
-	protected static final String KEY = "validationStatus";  //$NON-NLS-1$
-	
+	protected static final String KEY = "validationStatus"; //$NON-NLS-1$
+
 	/**
 	 * generic marker for GMF validation (currently not used)
 	 */
@@ -68,20 +68,22 @@ public abstract class ValidationDecoratorProvider extends AbstractProvider imple
 	 */
 	private static Map<TransactionalEditingDomain, MarkerObserver> fileObservers = new HashMap<TransactionalEditingDomain, MarkerObserver>();
 
-	private static Map<String, IDecorator> allDecorators = new HashMap<String, IDecorator> ();
+	private static Map<String, IDecorator> allDecorators = new HashMap<String, IDecorator>();
 
 	/**
 	 * Refined by generated class
+	 * 
 	 * @see org.eclipse.gmf.runtime.diagram.ui.services.decorator.IDecoratorProvider#createDecorators(org.eclipse.gmf.runtime.diagram.ui.services.decorator.IDecoratorTarget)
-	 *
+	 * 
 	 * @param decoratorTarget
 	 */
-	public abstract void createDecorators (IDecoratorTarget decoratorTarget);
+	public abstract void createDecorators(IDecoratorTarget decoratorTarget);
 
 	/**
 	 * Refined by generated class
+	 * 
 	 * @see org.eclipse.gmf.runtime.common.core.service.IProvider#provides(org.eclipse.gmf.runtime.common.core.service.IOperation)
-	 *
+	 * 
 	 * @param operation
 	 * @return
 	 */
@@ -89,6 +91,7 @@ public abstract class ValidationDecoratorProvider extends AbstractProvider imple
 
 	/**
 	 * Refresh the decorators of a specific view
+	 * 
 	 * @param view
 	 */
 	public static void refreshDecorators(View view) {
@@ -100,7 +103,7 @@ public abstract class ValidationDecoratorProvider extends AbstractProvider imple
 	 */
 	private static void refreshDecorators(String viewId, final TransactionalEditingDomain domain) {
 		final IDecorator decorator = viewId != null ? allDecorators.get(viewId) : null;
-		if (decorator == null || domain == null) {
+		if(decorator == null || domain == null) {
 			return;
 		}
 		PlatformUI.getWorkbench().getDisplay().asyncExec(new Runnable() {
@@ -255,9 +258,10 @@ public abstract class ValidationDecoratorProvider extends AbstractProvider imple
 			}
 		}
 
-		
+
 		/**
 		 * Get the image for a given severity
+		 * 
 		 * @param severity
 		 * @return
 		 */
@@ -287,22 +291,22 @@ public abstract class ValidationDecoratorProvider extends AbstractProvider imple
 
 			// add self to global decorators registry
 			IDecorator decorator = allDecorators.get(viewId);
-			if (decorator == null) {
+			if(decorator == null) {
 				allDecorators.put(viewId, this);
 			}
-		
+
 			// stop listening to changes in resources if there are no more decorators
 			MarkerObserver fileObserver = fileObservers.get(editingDomain);
-			if (fileObserver == null) {
+			if(fileObserver == null) {
 				fileObserver = new MarkerObserver(editingDomain);
 				fileObservers.put(editingDomain, fileObserver);
 				FileChangeManager.getInstance().addFileObserver(fileObserver);
 			}
 			// start listening to changes in resources
-			View view = (View) getDecoratorTarget().getAdapter(View.class);
+			View view = (View)getDecoratorTarget().getAdapter(View.class);
 			if(view != null) {
-				if (!fileObserver.views.contains(view)) {
-					fileObserver.views.add(view); 
+				if(!fileObserver.views.contains(view)) {
+					fileObserver.views.add(view);
 				}
 			}
 		}
@@ -317,9 +321,9 @@ public abstract class ValidationDecoratorProvider extends AbstractProvider imple
 
 			// remove self from global decorators registry
 			allDecorators.remove(viewId);
-			
+
 			View view = (View)getDecoratorTarget().getAdapter(View.class);
-			if ((view == null) || (editingDomain == null)) {
+			if((view == null) || (editingDomain == null)) {
 				// should not happen
 				super.deactivate();
 				return;
@@ -327,9 +331,9 @@ public abstract class ValidationDecoratorProvider extends AbstractProvider imple
 
 			// stop listening to changes in resources if there are no more decorators
 			MarkerObserver fileObserver = fileObservers.get(editingDomain);
-			if (fileObserver != null) {
+			if(fileObserver != null) {
 				fileObserver.views.remove(view);
-				if (fileObserver.views.isEmpty()) {
+				if(fileObserver.views.isEmpty()) {
 					// no more views registered for the listener => remove observer
 					FileChangeManager.getInstance().removeFileObserver(fileObserver);
 					fileObservers.remove(editingDomain);
@@ -354,10 +358,10 @@ public abstract class ValidationDecoratorProvider extends AbstractProvider imple
 		 * store a list of all views for which the observer is responsible
 		 */
 		private EList<View> views = new BasicEList<View>();
-	
+
 		/**
 		 * Constructor.
-		 *
+		 * 
 		 * @param domain
 		 */
 		private MarkerObserver(TransactionalEditingDomain domain) {

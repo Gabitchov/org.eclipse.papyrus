@@ -34,6 +34,7 @@ public class CreateHyperLinkDiagramCommand extends CreateEAnnotationCommand {
 	private EModelElement diagram;
 
 	protected boolean isDefaultNavigation;
+
 	/**
 	 * Instantiates a new creates the hyper link command.
 	 * 
@@ -51,7 +52,7 @@ public class CreateHyperLinkDiagramCommand extends CreateEAnnotationCommand {
 		this.tooltiptext = tooltiptext;
 		this.name = name;
 		this.diagram = diagram;
-		this.isDefaultNavigation=isDefaultNavigation;
+		this.isDefaultNavigation = isDefaultNavigation;
 	}
 
 	/**
@@ -62,7 +63,7 @@ public class CreateHyperLinkDiagramCommand extends CreateEAnnotationCommand {
 		eAnnotation.getReferences().add(diagram);
 		eAnnotation.getDetails().put(VisualInformationPapyrusConstant.HYPERLINK_TOOLTYPE_TEXT, this.tooltiptext);
 		eAnnotation.getDetails().put(VisualInformationPapyrusConstant.HYPERLINK_DIAGRAM_NAME, this.name);
-		eAnnotation.getDetails().put(VisualInformationPapyrusConstant.HYPERLINK_IS_DEFAULT_NAVIGATION, ""+this.isDefaultNavigation);
+		eAnnotation.getDetails().put(VisualInformationPapyrusConstant.HYPERLINK_IS_DEFAULT_NAVIGATION, "" + this.isDefaultNavigation);
 		attachEannotation(eAnnotation, getObject());
 	}
 

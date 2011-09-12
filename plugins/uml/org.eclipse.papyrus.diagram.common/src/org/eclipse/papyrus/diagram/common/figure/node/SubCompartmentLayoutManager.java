@@ -31,7 +31,7 @@ public class SubCompartmentLayoutManager extends AbstractLayout {
 
 	protected int preferedHeight = MINIMUMCOMPARTMENTSIZE;
 
-	
+
 	@Override
 	protected Dimension calculatePreferredSize(IFigure figure, int wHint, int hHint) {
 		Dimension dim = new Dimension(10, preferedHeight);
@@ -48,7 +48,7 @@ public class SubCompartmentLayoutManager extends AbstractLayout {
 		}
 		return dim;
 	}
-	
+
 	@Override
 	public Dimension getMinimumSize(IFigure container, int wHint, int hHint) {
 		return new Dimension(MINIMUM_COMPARTMENT_WIDTH, MINIMUMCOMPARTMENTSIZE);

@@ -426,10 +426,10 @@ public class Util {
 	 */
 	public static Object retrievesEnumerationLiteralFromString(Property property, ArrayList<String> stringValues, org.eclipse.uml2.uml.Element packageContainer) {
 		Enumeration enume = null;
-		
+
 		Type type = property.getType();
 		Assert.isTrue(type instanceof Enumeration);
-		enume = (Enumeration) type;
+		enume = (Enumeration)type;
 
 		ArrayList<Object> returnedValues = new ArrayList<Object>();
 

@@ -33,14 +33,14 @@ import org.eclipse.papyrus.diagram.common.ui.hyperlinkshell.HyperlinkObject;
  */
 public class HyperlinkHelperFactory {
 
-	protected ArrayList<AbstractHyperLinkHelper> hyperLinkHelpers= new ArrayList<AbstractHyperLinkHelper>();
+	protected ArrayList<AbstractHyperLinkHelper> hyperLinkHelpers = new ArrayList<AbstractHyperLinkHelper>();
 
-	
+
 	public ArrayList<AbstractHyperLinkHelper> getHyperLinkHelpers() {
 		return hyperLinkHelpers;
 	}
 
-	public HyperlinkHelperFactory(ArrayList<AbstractHyperLinkHelper> hyperLinkHelpers){
+	public HyperlinkHelperFactory(ArrayList<AbstractHyperLinkHelper> hyperLinkHelpers) {
 		this.hyperLinkHelpers.clear();
 		this.hyperLinkHelpers.addAll(hyperLinkHelpers);
 	}
@@ -57,22 +57,22 @@ public class HyperlinkHelperFactory {
 	 * @param tooltipText
 	 *        the tooltip text
 	 * @param isDefault
-	 * 		  to set this hyperlink as default
+	 *        to set this hyperlink as default
 	 * @return the adds the hyper link command
 	 */
-	public  Command getAddHyperLinkCommand(TransactionalEditingDomain domain, EModelElement object, ArrayList<HyperlinkObject> hyperlinkObjects) throws HyperLinkException{
-		CompoundCommand cmpCommand= new CompoundCommand();
-		Iterator<HyperlinkObject> iterator= hyperlinkObjects.iterator();
+	public Command getAddHyperLinkCommand(TransactionalEditingDomain domain, EModelElement object, ArrayList<HyperlinkObject> hyperlinkObjects) throws HyperLinkException {
+		CompoundCommand cmpCommand = new CompoundCommand();
+		Iterator<HyperlinkObject> iterator = hyperlinkObjects.iterator();
 		while(iterator.hasNext()) {
 			HyperlinkObject hyperlinkObject = (HyperlinkObject)iterator.next();
-			RecordingCommand cmd=null;
-			int i=0;
-			while(cmd==null &&i<hyperLinkHelpers.size()){
-				cmd= hyperLinkHelpers.get(i).getAddHyperLinkCommand(domain, object, hyperlinkObject);
+			RecordingCommand cmd = null;
+			int i = 0;
+			while(cmd == null && i < hyperLinkHelpers.size()) {
+				cmd = hyperLinkHelpers.get(i).getAddHyperLinkCommand(domain, object, hyperlinkObject);
 				i++;
 			}
-			if( cmd==null){
-				throw new HyperLinkException("Impossible to find a command to serialize " +hyperlinkObject);
+			if(cmd == null) {
+				throw new HyperLinkException("Impossible to find a command to serialize " + hyperlinkObject);
 			}
 			cmpCommand.append(cmd);
 		}
@@ -108,19 +108,20 @@ public class HyperlinkHelperFactory {
 	 * 
 	 * @return the allreferenced
 	 */
-	public  ArrayList<?> getAllreferenced(EModelElement object) throws HyperLinkException{
+	public ArrayList<?> getAllreferenced(EModelElement object) throws HyperLinkException {
 		ArrayList<HyperlinkObject> result = new ArrayList<HyperlinkObject>();
 		Iterator<EAnnotation> iter = object.getEAnnotations().iterator();
 		while(iter.hasNext()) {
 			EAnnotation currentAnnotation = iter.next();
-			int i=0;
-			HyperlinkObject hyperlinkObject=null;
-			while(hyperlinkObject==null &&i<hyperLinkHelpers.size()){
-				hyperlinkObject= hyperLinkHelpers.get(i).getHyperLinkObject(currentAnnotation);
+			int i = 0;
+			HyperlinkObject hyperlinkObject = null;
+			while(hyperlinkObject == null && i < hyperLinkHelpers.size()) {
+				hyperlinkObject = hyperLinkHelpers.get(i).getHyperLinkObject(currentAnnotation);
 				i++;
 			}
-			if(hyperlinkObject!=null){
-				result.add(hyperlinkObject);}
+			if(hyperlinkObject != null) {
+				result.add(hyperlinkObject);
+			}
 		}
 
 		return result;

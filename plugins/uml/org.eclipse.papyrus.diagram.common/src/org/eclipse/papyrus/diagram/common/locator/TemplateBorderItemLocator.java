@@ -20,8 +20,9 @@ import org.eclipse.draw2d.geometry.Rectangle;
 /**
  * 
  * This code comes form composite diagram. I was copied to avoid dependencies
- 
- * <pre>          <---------+
+ * 
+ * <pre>
+ * <---------+
  * 	 +------------+------|  |
  * 	 |    [Class]        | 	|
  * 	 +-------------------+  |
@@ -38,12 +39,12 @@ import org.eclipse.draw2d.geometry.Rectangle;
  * TODO  : The port is not re-sizable
  * </pre>
  */
-public class TemplateBorderItemLocator extends PortPositionLocator{
+public class TemplateBorderItemLocator extends PortPositionLocator {
 
-	
+
 	/** the width of the area surrounding the parent figure where border item can be put */
 	protected int borderItemOffset = 10;
-	
+
 	public TemplateBorderItemLocator(IFigure parentFigure, int preferredSide) {
 		super(parentFigure, preferredSide);
 	}
@@ -64,10 +65,10 @@ public class TemplateBorderItemLocator extends PortPositionLocator{
 
 		// Calculate Max position around the graphical parent (1/2 size or the port around
 		// the graphical parent bounds.
-		int xMin = parentRec.x - borderItemOffset+parentRec.width/2;
+		int xMin = parentRec.x - borderItemOffset + parentRec.width / 2;
 		int xMax = parentRec.x - borderItemOffset + parentRec.width;
 		int yMin = parentRec.y - borderItemOffset;
-		int yMax = parentRec.y - borderItemOffset + parentRec.height/2;
+		int yMax = parentRec.y - borderItemOffset + parentRec.height / 2;
 
 		// Modify Port location if MAX X or Y are exceeded
 		if(realLocation.x < xMin) {
@@ -98,12 +99,12 @@ public class TemplateBorderItemLocator extends PortPositionLocator{
 				}
 			}
 		}
-		if(realLocation.x==xMin && (yMin<realLocation.y && realLocation.y<=yMax)){
-			realLocation.x=xMax;
+		if(realLocation.x == xMin && (yMin < realLocation.y && realLocation.y <= yMax)) {
+			realLocation.x = xMax;
 		}
 
-		if((xMin<=realLocation.x && realLocation.x<xMax)&& realLocation.y==yMax){
-			realLocation.y=yMin;
+		if((xMin <= realLocation.x && realLocation.x < xMax) && realLocation.y == yMax) {
+			realLocation.y = yMin;
 		}
 		// Return constrained location
 		return realLocation;

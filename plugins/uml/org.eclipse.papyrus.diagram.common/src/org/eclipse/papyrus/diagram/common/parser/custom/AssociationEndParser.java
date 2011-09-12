@@ -46,7 +46,8 @@ public class AssociationEndParser extends AbstractAssociationEndParser {
 	 * <li>{@link org.eclipse.uml2.uml.UMLPackage#PROPERTY__IS_UNIQUE <em>is Unique</em>}</li>
 	 * <li>{@link org.eclipse.uml2.uml.UMLPackage#NAMED_ELEMENT__VISIBILITY <em>Visibility</em>}</li>
 	 * <li>{@link org.eclipse.uml2.uml.UMLPackage#STRUCTURAL_FEATURE__IS_READ_ONLY <em>is ReadOnly </em>}</li>
-	 * </ul> {@inheritDoc}
+	 * </ul>
+	 * {@inheritDoc}
 	 */
 	public boolean isAffectingEvent(Object event, int flags) {
 		EStructuralFeature feature = getEStructuralFeature(event);
