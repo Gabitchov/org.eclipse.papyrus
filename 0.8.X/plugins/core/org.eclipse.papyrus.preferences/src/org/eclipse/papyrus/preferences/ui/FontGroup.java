@@ -18,7 +18,6 @@ import org.eclipse.papyrus.preferences.Messages;
 import org.eclipse.papyrus.preferences.jface.preference.FontFieldEditor;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;

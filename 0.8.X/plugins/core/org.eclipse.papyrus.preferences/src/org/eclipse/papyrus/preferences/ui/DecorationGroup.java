@@ -15,7 +15,6 @@ package org.eclipse.papyrus.preferences.ui;
 
 import org.eclipse.jface.dialogs.DialogPage;
 import org.eclipse.jface.preference.BooleanFieldEditor;
-import org.eclipse.jface.preference.ComboFieldEditor;
 import org.eclipse.papyrus.preferences.Messages;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.swt.layout.GridLayout;

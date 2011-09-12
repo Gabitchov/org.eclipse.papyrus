@@ -23,10 +23,8 @@ import org.eclipse.core.runtime.preferences.InstanceScope;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferencePage;
 import org.eclipse.papyrus.preferences.Activator;
-import org.eclipse.papyrus.preferences.PapyrusPreferenceStore;
 import org.eclipse.papyrus.preferences.pages.internal.VisiblePageSingleton;
 import org.eclipse.papyrus.preferences.ui.AbstractGroup;
-import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -115,7 +113,8 @@ public abstract class AbstractPapyrusPreferencePage extends PreferencePage imple
 	 * page.
 	 * <p>
 	 * This method shouldn't be overriden by sub-classes
-	 * </p> {@inheritDoc}
+	 * </p>
+	 * {@inheritDoc}
 	 */
 	@Override
 	protected Control createContents(Composite parent) {

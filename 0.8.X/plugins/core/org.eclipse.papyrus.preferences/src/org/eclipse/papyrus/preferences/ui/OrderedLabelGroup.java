@@ -59,7 +59,7 @@ public class OrderedLabelGroup extends AbstractGroup {
 		this.myRoles = roles;
 		createContent(parent);
 	}
-	
+
 	/**
 	 * 
 	 * Constructor.
