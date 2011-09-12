@@ -77,13 +77,13 @@ public class DiagramCoreServiceUtils {
 
 		return ServiceUtilsForGMF.getInstance().getServiceRegistry(domain);
 
-//		if(domain instanceof DiagramEditDomain) {
-//			IWorkbenchPart part = ((DiagramEditDomain)domain).getEditorPart().getEditorSite().getPart();
-//			if(part instanceof UmlGmfDiagramEditor) {
-//				return ((UmlGmfDiagramEditor)part).getServicesRegistry();
-//			}
-//		}
-//		throw new ServiceNotFoundException("Can't get the ServiceRegistry.");
+		//		if(domain instanceof DiagramEditDomain) {
+		//			IWorkbenchPart part = ((DiagramEditDomain)domain).getEditorPart().getEditorSite().getPart();
+		//			if(part instanceof UmlGmfDiagramEditor) {
+		//				return ((UmlGmfDiagramEditor)part).getServicesRegistry();
+		//			}
+		//		}
+		//		throw new ServiceNotFoundException("Can't get the ServiceRegistry.");
 
 	}
 

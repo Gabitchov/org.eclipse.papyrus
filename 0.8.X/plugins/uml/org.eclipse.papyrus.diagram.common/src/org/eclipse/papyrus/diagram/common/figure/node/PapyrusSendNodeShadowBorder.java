@@ -18,8 +18,6 @@ import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Insets;
 import org.eclipse.draw2d.geometry.PointList;
-import org.eclipse.draw2d.geometry.Rectangle;
-import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 
 
@@ -56,11 +54,11 @@ public class PapyrusSendNodeShadowBorder extends RectangularShadowBorder {
 		// draw the normal line border
 		tempRect.setBounds(getPaintRectangle(figure, insets));
 
-		PointList ptList= new PointList();
+		PointList ptList = new PointList();
 		ptList.addPoint(tempRect.getLocation());
-		ptList.addPoint(tempRect.x+tempRect.width-widthArrow, tempRect.y);
-		ptList.addPoint(tempRect.x+tempRect.width, tempRect.y+(tempRect.height/2));
-		ptList.addPoint(tempRect.x+tempRect.width-widthArrow, tempRect.y+(tempRect.height));
+		ptList.addPoint(tempRect.x + tempRect.width - widthArrow, tempRect.y);
+		ptList.addPoint(tempRect.x + tempRect.width, tempRect.y + (tempRect.height / 2));
+		ptList.addPoint(tempRect.x + tempRect.width - widthArrow, tempRect.y + (tempRect.height));
 		ptList.addPoint(tempRect.getBottomLeft());
 		if(getColor() != null) {
 			graphics.setBackgroundColor(getColor());

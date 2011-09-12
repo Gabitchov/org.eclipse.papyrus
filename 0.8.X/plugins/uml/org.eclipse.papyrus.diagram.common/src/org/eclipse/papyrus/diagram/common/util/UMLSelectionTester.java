@@ -54,12 +54,12 @@ public class UMLSelectionTester extends PropertyTester {
 
 	/** True if root object is a UML Model */
 	protected boolean testUMLModelNature(Object receiver) {
-        EObject root = getRoot();
-        /*
-         * For controlled resources, it is very important to consider root of UML model can be a Package. Of course, we
-         * can still exclude Profile, which should be dedicated to profile diagrams.
-         */
-        return root instanceof Package && !(root instanceof Profile);
+		EObject root = getRoot();
+		/*
+		 * For controlled resources, it is very important to consider root of UML model can be a Package. Of course, we
+		 * can still exclude Profile, which should be dedicated to profile diagrams.
+		 */
+		return root instanceof Package && !(root instanceof Profile);
 	}
 
 	/** True if root object is a UML Profile */

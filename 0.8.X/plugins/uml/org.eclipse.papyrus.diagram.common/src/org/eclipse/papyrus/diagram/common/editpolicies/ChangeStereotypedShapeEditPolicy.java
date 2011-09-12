@@ -89,27 +89,29 @@ public abstract class ChangeStereotypedShapeEditPolicy extends GraphicalEditPoli
 	protected View getView() {
 		return (View)getHost().getModel();
 	}
-	
+
 	/**
 	 * get all semantic link that are source or target of the graphical edit part
-	 * @param gmfpart the graphical editpart for each we look for source and target link 
+	 * 
+	 * @param gmfpart
+	 *        the graphical editpart for each we look for source and target link
 	 * @return a list of eobject
 	 */
-	public ArrayList<EObject> getAllSemanticLink(GraphicalEditPart gmfpart){
-		ArrayList<EObject> elementToDrop= new ArrayList<EObject>();
-		Iterator linkIter= gmfpart.getNotationView().getSourceEdges().iterator();
+	public ArrayList<EObject> getAllSemanticLink(GraphicalEditPart gmfpart) {
+		ArrayList<EObject> elementToDrop = new ArrayList<EObject>();
+		Iterator linkIter = gmfpart.getNotationView().getSourceEdges().iterator();
 		while(linkIter.hasNext()) {
 			Edge edge = (Edge)linkIter.next();
-			if(edge.getElement()!=null){
+			if(edge.getElement() != null) {
 				elementToDrop.add(edge.getElement());
 
 			}
 
 		}
-		linkIter= gmfpart.getNotationView().getTargetEdges().iterator();
+		linkIter = gmfpart.getNotationView().getTargetEdges().iterator();
 		while(linkIter.hasNext()) {
 			Edge edge = (Edge)linkIter.next();
-			if(edge.getElement()!=null){
+			if(edge.getElement() != null) {
 				elementToDrop.add(edge.getElement());
 			}
 
@@ -119,23 +121,26 @@ public abstract class ChangeStereotypedShapeEditPolicy extends GraphicalEditPoli
 
 	/**
 	 * drop a set of link into the container
-	 * @param gmfparent the parent which contain the links
-	 * @param elementToDrop contains the list of semantic link to drop
+	 * 
+	 * @param gmfparent
+	 *        the parent which contain the links
+	 * @param elementToDrop
+	 *        contains the list of semantic link to drop
 	 * 
 	 */
-	public void dropLink(GraphicalEditPart gmfparent, ArrayList<EObject> elementToDrop){
+	public void dropLink(GraphicalEditPart gmfparent, ArrayList<EObject> elementToDrop) {
 
-		Iterator<EObject> iterDrop= elementToDrop.iterator();
+		Iterator<EObject> iterDrop = elementToDrop.iterator();
 		while(iterDrop.hasNext()) {
 			EObject currentObject = (EObject)iterDrop.next();
-			DropObjectsRequest dropObjectsRequest= new DropObjectsRequest();
+			DropObjectsRequest dropObjectsRequest = new DropObjectsRequest();
 			ArrayList<EObject> list = new ArrayList<EObject>();
 			list.add((Element)currentObject);
 			dropObjectsRequest.setObjects(list);
-			dropObjectsRequest.setLocation(new Point(0,0));
-			Command cmd= gmfparent.getCommand(dropObjectsRequest);
+			dropObjectsRequest.setLocation(new Point(0, 0));
+			Command cmd = gmfparent.getCommand(dropObjectsRequest);
 			gmfparent.getDiagramEditDomain().getDiagramCommandStack().execute(cmd);
-		} 
+		}
 	}
 
 	/**

@@ -22,8 +22,8 @@ import org.eclipse.ui.browser.IWorkbenchBrowserSupport;
 import org.eclipse.uml2.uml.Package;
 
 /**
- * this is an hyperlink to manage web link (it open a web browser when it is selected) 
- *
+ * this is an hyperlink to manage web link (it open a web browser when it is selected)
+ * 
  */
 public class HyperLinkWeb extends HyperlinkObject {
 
@@ -40,7 +40,7 @@ public class HyperLinkWeb extends HyperlinkObject {
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.diagram.common.ui.hyperlinkshell.HyperlinkObject#executeSelectPressed()
-	 *
+	 * 
 	 */
 	@Override
 	public void executeSelectPressed() {
@@ -50,21 +50,22 @@ public class HyperLinkWeb extends HyperlinkObject {
 		} catch (Exception e) {
 			Activator.log.error(e);
 		}
-		
+
 	}
-/**
- * 
- * @see org.eclipse.papyrus.diagram.common.ui.hyperlinkshell.HyperlinkObject#executeEditMousePressed(java.util.List, org.eclipse.uml2.uml.Package)
- *
- */
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.diagram.common.ui.hyperlinkshell.HyperlinkObject#executeEditMousePressed(java.util.List, org.eclipse.uml2.uml.Package)
+	 * 
+	 */
 	@Override
-	public void executeEditMousePressed(List<HyperlinkObject> list,Package amodel) {
+	public void executeEditMousePressed(List<HyperlinkObject> list, Package amodel) {
 		EditorHyperlinkWebShell editor = new EditorHyperlinkWebShell();
 		editor.setHyperLinkWeb(this);
 		editor.open();
 		int index = list.indexOf(this);
 		list.remove(this);
 		list.add(index, editor.getHyperLinkWeb());
-		
+
 	}
 }

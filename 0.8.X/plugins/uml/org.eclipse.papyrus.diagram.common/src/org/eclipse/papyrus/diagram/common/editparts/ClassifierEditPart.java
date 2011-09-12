@@ -69,17 +69,17 @@ public abstract class ClassifierEditPart extends NamedElementEditPart {
 		}
 	}
 
-	protected  void refreshIsActive() {
-		if(getUMLElement() instanceof org.eclipse.uml2.uml.Class){
-			if( getPrimaryShape() instanceof ClassifierFigure){
+	protected void refreshIsActive() {
+		if(getUMLElement() instanceof org.eclipse.uml2.uml.Class) {
+			if(getPrimaryShape() instanceof ClassifierFigure) {
 				((ClassifierFigure)getPrimaryShape()).setActive(((org.eclipse.uml2.uml.Class)getUMLElement()).isActive());
 			}
 		}
 	}
 
 	protected void refreshAbstract() {
-		if(getUMLElement() instanceof Classifier){
-			isAbstract=((Classifier)getUMLElement()).isAbstract();
+		if(getUMLElement() instanceof Classifier) {
+			isAbstract = ((Classifier)getUMLElement()).isAbstract();
 			refreshFont();
 
 		}

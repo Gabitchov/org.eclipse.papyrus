@@ -35,22 +35,30 @@ import org.eclipse.swt.widgets.Table;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 /**
- * this is the tab in charge to display the hyperlink dor the property defaut 
- *
+ * this is the tab in charge to display the hyperlink dor the property defaut
+ * 
  */
 public class DefaultHyperLinkTab {
 
 	protected TableViewer availableHyperLinkViewer;
+
 	protected Button defaultHRight;
+
 	protected Button defaultHleft;
+
 	protected Button defaultHup;
+
 	protected Button defaultHdown;
+
 	protected TableViewer defaultHyperLinkViewer;
-	protected ArrayList<HyperlinkObject> defaultHyperLinkObject= new ArrayList<HyperlinkObject>();
-	protected ArrayList<HyperlinkObject> availableHyperLinkObject=new ArrayList<HyperlinkObject>();
+
+	protected ArrayList<HyperlinkObject> defaultHyperLinkObject = new ArrayList<HyperlinkObject>();
+
+	protected ArrayList<HyperlinkObject> availableHyperLinkObject = new ArrayList<HyperlinkObject>();
+
 	protected Composite defaultHyperlinkComposite;
-	
-	
+
+
 	/**
 	 * 
 	 * @return get the list of hyperlink that are to be as default hyperlinks
@@ -58,19 +66,22 @@ public class DefaultHyperLinkTab {
 	public ArrayList<HyperlinkObject> getDefaultHyperLinkObject() {
 		return defaultHyperLinkObject;
 	}
+
 	/**
 	 * 
 	 * Constructor.
-	 *
-	 * @param tabFolder the parent tabfolder
-	 * @param hyperLinkObjectList the list of hyperlinks
+	 * 
+	 * @param tabFolder
+	 *        the parent tabfolder
+	 * @param hyperLinkObjectList
+	 *        the list of hyperlinks
 	 */
 
-	public  DefaultHyperLinkTab(CTabFolder tabFolder, ArrayList<HyperlinkObject> hyperLinkObjectList){
+	public DefaultHyperLinkTab(CTabFolder tabFolder, ArrayList<HyperlinkObject> hyperLinkObjectList) {
 		CTabItem tbtmDefaultsHyperlinks = new CTabItem(tabFolder, SWT.NONE);
 		tbtmDefaultsHyperlinks.setText("Defaults HyperLinks");
 		defaultHyperlinkComposite = new Composite(tabFolder, SWT.NONE);
-		
+
 		defaultHyperlinkComposite.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
 		tbtmDefaultsHyperlinks.setControl(defaultHyperlinkComposite);
 
@@ -90,18 +101,19 @@ public class DefaultHyperLinkTab {
 
 
 		defaultHRight = new Button(defaultHyperlinkComposite, SWT.NONE);
-		defaultHRight.setBounds(availableHyperLink.getBounds().x+availableHyperLink.getBounds().width+20, 
-			availableHyperLink.getBounds().y+availableHyperLink.getBounds().height/2-30, 30, 23);
+		defaultHRight.setBounds(availableHyperLink.getBounds().x + availableHyperLink.getBounds().width + 20, availableHyperLink.getBounds().y + availableHyperLink.getBounds().height / 2 - 30, 30, 23);
 		defaultHRight.addMouseListener(new MouseListener() {
+
 			public void mouseUp(MouseEvent e) {
 
 			}
+
 			public void mouseDown(MouseEvent e) {
 				//move element left to right
-				if(availableHyperLinkViewer.getSelection()!=null){
+				if(availableHyperLinkViewer.getSelection() != null) {
 					//normally this viewer contains only hyperlinkObject
-					if(availableHyperLinkViewer.getSelection() instanceof IStructuredSelection ){
-						HyperlinkObject hyperlinkObjectToMove= (HyperlinkObject)((IStructuredSelection)availableHyperLinkViewer.getSelection()).getFirstElement();
+					if(availableHyperLinkViewer.getSelection() instanceof IStructuredSelection) {
+						HyperlinkObject hyperlinkObjectToMove = (HyperlinkObject)((IStructuredSelection)availableHyperLinkViewer.getSelection()).getFirstElement();
 						hyperlinkObjectToMove.setIsDefault(true);
 						availableHyperLinkObject.remove(hyperlinkObjectToMove);
 						defaultHyperLinkObject.add(hyperlinkObjectToMove);
@@ -109,25 +121,27 @@ public class DefaultHyperLinkTab {
 					}
 				}
 			}
+
 			public void mouseDoubleClick(MouseEvent e) {
 
 			}
 		});
 
 		defaultHleft = new Button(defaultHyperlinkComposite, SWT.NONE);
-		defaultHleft.setBounds(availableHyperLink.getBounds().x+availableHyperLink.getBounds().width+20, 
-			availableHyperLink.getBounds().y+availableHyperLink.getBounds().height/2, 30, 23);
+		defaultHleft.setBounds(availableHyperLink.getBounds().x + availableHyperLink.getBounds().width + 20, availableHyperLink.getBounds().y + availableHyperLink.getBounds().height / 2, 30, 23);
 		defaultHleft.addMouseListener(new MouseListener() {
+
 			public void mouseUp(MouseEvent e) {
 
 			}
+
 			public void mouseDown(MouseEvent e) {
 				//move element right to left
-				if(defaultHyperLinkViewer.getSelection()!=null){
+				if(defaultHyperLinkViewer.getSelection() != null) {
 					//normally this viewer contains only hyperlinkObject
-					if(defaultHyperLinkViewer.getSelection() instanceof IStructuredSelection ){
+					if(defaultHyperLinkViewer.getSelection() instanceof IStructuredSelection) {
 
-						HyperlinkObject hyperlinkObjectToMove= (HyperlinkObject)((IStructuredSelection)defaultHyperLinkViewer.getSelection()).getFirstElement();
+						HyperlinkObject hyperlinkObjectToMove = (HyperlinkObject)((IStructuredSelection)defaultHyperLinkViewer.getSelection()).getFirstElement();
 						hyperlinkObjectToMove.setIsDefault(false);
 						defaultHyperLinkObject.remove(hyperlinkObjectToMove);
 						availableHyperLinkObject.add(hyperlinkObjectToMove);
@@ -135,6 +149,7 @@ public class DefaultHyperLinkTab {
 					}
 				}
 			}
+
 			public void mouseDoubleClick(MouseEvent e) {
 
 			}
@@ -142,63 +157,67 @@ public class DefaultHyperLinkTab {
 
 
 		Table defaultHyperLink = new Table(defaultHyperlinkComposite, SWT.BORDER | SWT.FULL_SELECTION);
-		defaultHyperLink.setBounds(defaultHRight.getBounds().x+defaultHRight.getBounds().width+20, 29, 250, 177);
+		defaultHyperLink.setBounds(defaultHRight.getBounds().x + defaultHRight.getBounds().width + 20, 29, 250, 177);
 
 
 		defaultHup = new Button(defaultHyperlinkComposite, SWT.NONE);
-		defaultHup.setBounds(defaultHyperLink.getBounds().x+defaultHyperLink.getBounds().width+20,
-			defaultHyperLink.getBounds().y+(defaultHyperLink.getBounds().height/2)-30, 34, 23);
+		defaultHup.setBounds(defaultHyperLink.getBounds().x + defaultHyperLink.getBounds().width + 20, defaultHyperLink.getBounds().y + (defaultHyperLink.getBounds().height / 2) - 30, 34, 23);
 
 		defaultHup.addMouseListener(new MouseListener() {
+
 			public void mouseUp(MouseEvent e) {
 
 			}
+
 			public void mouseDown(MouseEvent e) {
 				//move element bottom to top
-				if(defaultHyperLinkViewer.getSelection()!=null){
+				if(defaultHyperLinkViewer.getSelection() != null) {
 					//normally this viewer contains only hyperlinkObject
-					if(defaultHyperLinkViewer.getSelection() instanceof IStructuredSelection ){
+					if(defaultHyperLinkViewer.getSelection() instanceof IStructuredSelection) {
 
-						HyperlinkObject hyperlinkObjectToMove= (HyperlinkObject)((IStructuredSelection)defaultHyperLinkViewer.getSelection()).getFirstElement();
-						int index=defaultHyperLinkObject.indexOf(hyperlinkObjectToMove);
-						if (index>0){
+						HyperlinkObject hyperlinkObjectToMove = (HyperlinkObject)((IStructuredSelection)defaultHyperLinkViewer.getSelection()).getFirstElement();
+						int index = defaultHyperLinkObject.indexOf(hyperlinkObjectToMove);
+						if(index > 0) {
 							defaultHyperLinkObject.remove(hyperlinkObjectToMove);
-							defaultHyperLinkObject.add(index-1,hyperlinkObjectToMove);
+							defaultHyperLinkObject.add(index - 1, hyperlinkObjectToMove);
 							refresh();
 						}
 					}
 				}
 			}
+
 			public void mouseDoubleClick(MouseEvent e) {
 
 			}
 		});
 
 		defaultHdown = new Button(defaultHyperlinkComposite, SWT.NONE);
-		defaultHdown.setBounds(defaultHyperLink.getBounds().x+defaultHyperLink.getBounds().width+20, 
-			defaultHyperLink.getBounds().y+defaultHyperLink.getBounds().height/2, 34, 23);
+		defaultHdown.setBounds(defaultHyperLink.getBounds().x + defaultHyperLink.getBounds().width + 20, defaultHyperLink.getBounds().y + defaultHyperLink.getBounds().height / 2, 34, 23);
 
 		defaultHdown.addMouseListener(new MouseListener() {
+
 			public void mouseUp(MouseEvent e) {
 
 			}
+
 			public void mouseDown(MouseEvent e) {
 				//move element top to bottom
-				if(defaultHyperLinkViewer.getSelection()!=null){
+				if(defaultHyperLinkViewer.getSelection() != null) {
 					//normally this viewer contains only hyperlinkObject
-					if(defaultHyperLinkViewer.getSelection() instanceof IStructuredSelection ){
+					if(defaultHyperLinkViewer.getSelection() instanceof IStructuredSelection) {
 
-						HyperlinkObject hyperlinkObjectToMove= (HyperlinkObject)((IStructuredSelection)defaultHyperLinkViewer.getSelection()).getFirstElement();
-						int index=defaultHyperLinkObject.indexOf(hyperlinkObjectToMove);
-						if (index<defaultHyperLinkObject.size()-1){
+						HyperlinkObject hyperlinkObjectToMove = (HyperlinkObject)((IStructuredSelection)defaultHyperLinkViewer.getSelection()).getFirstElement();
+						int index = defaultHyperLinkObject.indexOf(hyperlinkObjectToMove);
+						if(index < defaultHyperLinkObject.size() - 1) {
 
 							defaultHyperLinkObject.remove(hyperlinkObjectToMove);
-							defaultHyperLinkObject.add(index+1,hyperlinkObjectToMove);
+							defaultHyperLinkObject.add(index + 1, hyperlinkObjectToMove);
 							refresh();
 						}
 					}
 				}
 			}
+
 			public void mouseDoubleClick(MouseEvent e) {
 
 			}
@@ -213,10 +232,10 @@ public class DefaultHyperLinkTab {
 
 
 
-		IPageIconsRegistry editorRegistry=null;
-		IMultiDiagramEditor papyrusEditor=EditorUtils.getMultiDiagramEditor();
+		IPageIconsRegistry editorRegistry = null;
+		IMultiDiagramEditor papyrusEditor = EditorUtils.getMultiDiagramEditor();
 		try {
-			editorRegistry= papyrusEditor.getServicesRegistry().getService(IPageIconsRegistry.class);
+			editorRegistry = papyrusEditor.getServicesRegistry().getService(IPageIconsRegistry.class);
 		} catch (ServiceException e) {
 			e.printStackTrace();
 		}
@@ -233,7 +252,7 @@ public class DefaultHyperLinkTab {
 
 	}
 
-	/** 
+	/**
 	 * 
 	 * @return the composite that manage all widgets in the this tab
 	 */
@@ -244,30 +263,31 @@ public class DefaultHyperLinkTab {
 	/**
 	 * ised to refresh table
 	 */
-	protected void refresh(){
+	protected void refresh() {
 		availableHyperLinkViewer.setInput(availableHyperLinkObject);
 		defaultHyperLinkViewer.setInput(defaultHyperLinkObject);
 	}
 
 
 
-/**
- * input of this tab
- * 	--> fill all available hyperlinks
- *  --> fill all default hyperlinks
- * @param hyperLinkObjectList the list of hyperlinks
- */
+	/**
+	 * input of this tab
+	 * --> fill all available hyperlinks
+	 * --> fill all default hyperlinks
+	 * 
+	 * @param hyperLinkObjectList
+	 *        the list of hyperlinks
+	 */
 	public void setInput(ArrayList<HyperlinkObject> hyperLinkObjectList) {
 		defaultHyperLinkObject.clear();
 		availableHyperLinkObject.clear();
 		//filter between default and not default
-		Iterator<HyperlinkObject> iterator= hyperLinkObjectList.iterator();
+		Iterator<HyperlinkObject> iterator = hyperLinkObjectList.iterator();
 		while(iterator.hasNext()) {
 			HyperlinkObject hyperlinkObject = (HyperlinkObject)iterator.next();
-			if( hyperlinkObject.getIsDefault()){
+			if(hyperlinkObject.getIsDefault()) {
 				defaultHyperLinkObject.add(hyperlinkObject);
-			}
-			else{
+			} else {
 				availableHyperLinkObject.add(hyperlinkObject);
 			}
 

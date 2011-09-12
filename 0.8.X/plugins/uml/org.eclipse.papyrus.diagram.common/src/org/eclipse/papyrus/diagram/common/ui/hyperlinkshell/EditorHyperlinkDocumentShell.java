@@ -112,7 +112,7 @@ public class EditorHyperlinkDocumentShell extends AbstractEditHyperlinkDocumentS
 				String[] filterExt = { "*.txt", "*.doc", "*.pdf", "*.*" };
 				fd.setFilterExtensions(filterExt);
 				String selected = fd.open();
-				if(selected!=null){
+				if(selected != null) {
 					getObjectLabeltext().setText(selected);
 					if(usedefaultTooltip) {
 						getTooltipInputText().setText(selected);

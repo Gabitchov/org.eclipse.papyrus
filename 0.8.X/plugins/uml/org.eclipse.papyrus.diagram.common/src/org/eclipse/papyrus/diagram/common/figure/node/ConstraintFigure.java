@@ -29,7 +29,9 @@ import org.eclipse.swt.graphics.Image;
 public class ConstraintFigure extends CornerBentFigure implements IPapyrusNodeNamedElementFigure, ILabelFigure, IMultilineEditableFigure {
 
 	private static final String CHEVRON = String.valueOf("\u00AB") + String.valueOf("\u00BB");
+
 	protected static final String LEFT_BRACE = "{";
+
 	private Label taggedLabel;
 
 	protected static final String RIGHT_BRACE = "}";
@@ -125,12 +127,13 @@ public class ConstraintFigure extends CornerBentFigure implements IPapyrusNodeNa
 		return null;
 	}
 
-	public ConstraintFigure( ) {
+	public ConstraintFigure() {
 		this(null);
 	}
-	public ConstraintFigure( String tagLabel) {
+
+	public ConstraintFigure(String tagLabel) {
 		super();
-		
+
 		nameLabel = new WrappingLabel();
 
 		nameLabel.setOpaque(false);
@@ -174,6 +177,7 @@ public class ConstraintFigure extends CornerBentFigure implements IPapyrusNodeNa
 			this.add(taggedLabel, null, 0);
 		}
 	}
+
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.diagram.common.figure.node.IPapyrusNodeNamedElementFigure#setDepth(int)

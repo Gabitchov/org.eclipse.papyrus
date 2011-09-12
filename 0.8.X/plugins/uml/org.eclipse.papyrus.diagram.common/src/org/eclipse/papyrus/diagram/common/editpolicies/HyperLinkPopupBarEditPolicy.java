@@ -62,7 +62,7 @@ import org.eclipse.uml2.uml.Package;
  * sub-diagrams or to associate hyper-link of files
  */
 public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
-	
+
 
 	public static Package topPackage(Element element) {
 		if(element.getOwner() == null) {
@@ -285,7 +285,7 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 			if(1 == me.button) // context menu, hide the popup bar
 			{
 				if(me.getSource() instanceof PopupBarLabelPlusHandle) {
-					hyperLinkManagerShell = new AdvancedHLManager(getEditorRegistry(), ((GraphicalEditPart)getHost()).getEditingDomain(), (Element)((GraphicalEditPart)getHost()).getNotationView().getElement(), ((GraphicalEditPart)getHost()).getNotationView(), topPackage((Element)((GraphicalEditPart)getHost()).getNotationView().getElement()),hyperlinkHelperFactory);
+					hyperLinkManagerShell = new AdvancedHLManager(getEditorRegistry(), ((GraphicalEditPart)getHost()).getEditingDomain(), (Element)((GraphicalEditPart)getHost()).getNotationView().getElement(), ((GraphicalEditPart)getHost()).getNotationView(), topPackage((Element)((GraphicalEditPart)getHost()).getNotationView().getElement()), hyperlinkHelperFactory);
 					hyperLinkManagerShell.setInput(hyperLinkObjectList);
 					hyperLinkManagerShell.open();
 
@@ -402,6 +402,7 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 	private final PopupBarMouseListener myMouseKeyListener = new PopupBarMouseListener();
 
 	protected ArrayList<HyperlinkObject> hyperLinkObjectList;
+
 	protected HyperlinkHelperFactory hyperlinkHelperFactory;
 
 	/**
@@ -414,11 +415,11 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 
 	public HyperLinkPopupBarEditPolicy() {
 		super();
-		ArrayList<AbstractHyperLinkHelper>  hyperLinkHelpers= new ArrayList<AbstractHyperLinkHelper>();
+		ArrayList<AbstractHyperLinkHelper> hyperLinkHelpers = new ArrayList<AbstractHyperLinkHelper>();
 		hyperLinkHelpers.add(new DiagramHyperLinkHelper());
 		hyperLinkHelpers.add(new DocumentHyperLinkHelper());
 		hyperLinkHelpers.add(new WebHyperLinkHelper());
-		hyperlinkHelperFactory= new HyperlinkHelperFactory(hyperLinkHelpers);
+		hyperlinkHelperFactory = new HyperlinkHelperFactory(hyperLinkHelpers);
 	}
 
 	/**
@@ -435,10 +436,10 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 	 */
 	public int addObjectList(int positonwidth, List<?> objectList) {
 		for(int i = 0; i < objectList.size(); i++) {
-			PopupBarLabelHandle handle=null;
-			HyperLinkLabelProvider hyperLinkLabelProvider= new HyperLinkLabelProvider(getEditorRegistry());
-			handle= new PopupBarLabelHandle(hyperLinkObjectList.get(i), hyperLinkLabelProvider.getImage(objectList.get(i)));
-			
+			PopupBarLabelHandle handle = null;
+			HyperLinkLabelProvider hyperLinkLabelProvider = new HyperLinkLabelProvider(getEditorRegistry());
+			handle = new PopupBarLabelHandle(hyperLinkObjectList.get(i), hyperLinkLabelProvider.getImage(objectList.get(i)));
+
 			Rectangle r1 = new Rectangle();
 			r1.setLocation(positonwidth, 5);
 			positonwidth += 20;

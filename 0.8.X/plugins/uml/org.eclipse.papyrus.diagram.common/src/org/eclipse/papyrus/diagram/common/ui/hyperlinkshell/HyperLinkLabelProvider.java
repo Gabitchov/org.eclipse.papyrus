@@ -30,19 +30,20 @@ public class HyperLinkLabelProvider implements ILabelProvider {
 
 	/** The HYPERLIN k_ documen t_ ico n_ path. */
 	protected final String HYPERLINK_DOCUMENT_ICON_PATH = "/icons/obj16/file.gif";
+
 	/** The SEP. */
 	private final String SEP = " - ";
-	
+
 	/** The editor registry. */
 	private IPageIconsRegistry editorRegistry;
-	
+
 	/**
 	 * Instantiates a new object label provider.
 	 * 
 	 * @param imagePath
 	 *        the image path
 	 */
-	public HyperLinkLabelProvider(IPageIconsRegistry editorFactoryRegistry ) {
+	public HyperLinkLabelProvider(IPageIconsRegistry editorFactoryRegistry) {
 		this.editorRegistry = editorFactoryRegistry;
 	}
 
@@ -57,8 +58,7 @@ public class HyperLinkLabelProvider implements ILabelProvider {
 	public Image getImage(Object element) {
 		if(element instanceof HyperlinkDocument) {
 			return AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.diagram.common", HYPERLINK_DOCUMENT_ICON_PATH).createImage();
-		}
-		else if(element instanceof HyperLinkWeb) {
+		} else if(element instanceof HyperLinkWeb) {
 			return AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.diagram.common", HYPERLINK_WEB_ICON_PATH).createImage();
 		}
 
@@ -92,8 +92,8 @@ public class HyperLinkLabelProvider implements ILabelProvider {
 		out = out + SEP + ((HyperlinkObject)element).getTooltipText();
 		return out;
 	}
-	
-	public String getTooltipText(Object element){
+
+	public String getTooltipText(Object element) {
 		return ((HyperlinkObject)element).getTooltipText();
 	}
 

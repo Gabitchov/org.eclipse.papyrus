@@ -28,9 +28,13 @@ public class PortPositionLocatorUtils {
 
 	/**
 	 * Get the valid border location of the Port with the proposed location on the parent.
-	 * @param parentFigureBounds the parent bounds.
-	 * @param proposedFigureBounds the proposed Port bounds.
-	 * @param borderItemOffset the overlapping size of the Port over its parent figure. 
+	 * 
+	 * @param parentFigureBounds
+	 *        the parent bounds.
+	 * @param proposedFigureBounds
+	 *        the proposed Port bounds.
+	 * @param borderItemOffset
+	 *        the overlapping size of the Port over its parent figure.
 	 * @return the allowed bounds for the Port (location relative to parent TopLeft point).
 	 */
 	public static Rectangle getBorderLocation(Rectangle parentFigureBounds, Rectangle proposedFigureBounds, int borderItemOffset) {
@@ -43,10 +47,10 @@ public class PortPositionLocatorUtils {
 
 		// Calculate Max position around the graphical parent (1/2 size or the port around
 		// the graphical parent bounds.
-		int xMin = - borderItemOffset;
-		int xMax = - borderItemOffset + parentRec.width;
-		int yMin = - borderItemOffset;
-		int yMax = - borderItemOffset + parentRec.height;
+		int xMin = -borderItemOffset;
+		int xMax = -borderItemOffset + parentRec.width;
+		int yMin = -borderItemOffset;
+		int yMax = -borderItemOffset + parentRec.height;
 
 		// Modify Port location if MAX X or Y are exceeded
 		if(realLocation.x < xMin) {
@@ -81,13 +85,17 @@ public class PortPositionLocatorUtils {
 		// Return constrained location
 		return realLocation;
 	}
-	
+
 	/**
 	 * Get the current side (on the parent) where the Port is located.
-	 * @param parentFigureBounds the parent bounds.
-	 * @param proposedFigureBounds the proposed Port bounds.
-	 * @param borderItemOffset the overlapping size of the Port over its parent figure. 
-
+	 * 
+	 * @param parentFigureBounds
+	 *        the parent bounds.
+	 * @param proposedFigureBounds
+	 *        the proposed Port bounds.
+	 * @param borderItemOffset
+	 *        the overlapping size of the Port over its parent figure.
+	 * 
 	 * @return the position of the port around its parent. This position can be
 	 *         <ul>
 	 *         <li>{@linkplain PositionConstants#NORTH}</li>
@@ -138,5 +146,5 @@ public class PortPositionLocatorUtils {
 
 		return position;
 	}
-	
+
 }

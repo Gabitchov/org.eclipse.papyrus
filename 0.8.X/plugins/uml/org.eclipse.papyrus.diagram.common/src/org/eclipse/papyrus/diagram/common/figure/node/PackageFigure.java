@@ -13,11 +13,9 @@ package org.eclipse.papyrus.diagram.common.figure.node;
 import java.util.List;
 
 import org.eclipse.draw2d.AbstractLayout;
-import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
-import org.eclipse.draw2d.LineBorder;
 import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Rectangle;
@@ -202,7 +200,7 @@ public class PackageFigure extends NodeNamedElementFigure {
 		getPackageableElementFigure().setLineWidth(w);
 		super.setLineWidth(w);
 	}
-	
+
 	@Override
 	protected void paintBorder(Graphics graphics) {
 		graphics.drawRectangle(getHeader());

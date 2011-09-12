@@ -26,7 +26,6 @@ import org.eclipse.gef.palette.PaletteEntry;
 import org.eclipse.gef.palette.PaletteRoot;
 import org.eclipse.gef.palette.PaletteSeparator;
 import org.eclipse.gef.palette.PaletteStack;
-import org.eclipse.gmf.runtime.diagram.ui.internal.services.palette.PaletteToolEntry;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.papyrus.diagram.common.Activator;
 import org.w3c.dom.Node;

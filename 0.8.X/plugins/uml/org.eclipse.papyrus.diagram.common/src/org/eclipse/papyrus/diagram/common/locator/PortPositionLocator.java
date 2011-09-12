@@ -50,12 +50,12 @@ public class PortPositionLocator implements IBorderItemLocator {
 	/** the width of the area surrounding the parent figure where border item can be put */
 	protected int borderItemOffset = 10;
 
-	
+
 	public int getBorderItemOffset() {
 		return borderItemOffset;
 	}
 
-	
+
 	public void setBorderItemOffset(int borderItemOffset) {
 		this.borderItemOffset = borderItemOffset;
 	}

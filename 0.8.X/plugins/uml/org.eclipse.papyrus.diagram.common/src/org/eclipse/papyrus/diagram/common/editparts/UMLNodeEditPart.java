@@ -142,21 +142,21 @@ public abstract class UMLNodeEditPart extends NodeEditPart implements IUMLEditPa
 	 * See bug 351084
 	 */
 	public void fixCompartmentTitleVisibility() {
-		for (Object currentEditPart : getChildren()) {
+		for(Object currentEditPart : getChildren()) {
 			if(currentEditPart instanceof ResizableCompartmentEditPart) {
-				ResizableCompartmentEditPart rcep = (ResizableCompartmentEditPart) currentEditPart;
-				View compartmentView = (View) rcep.getModel();
+				ResizableCompartmentEditPart rcep = (ResizableCompartmentEditPart)currentEditPart;
+				View compartmentView = (View)rcep.getModel();
 				Style titleStyle = compartmentView.getStyle(NotationPackage.eINSTANCE.getTitleStyle());
-				if (titleStyle == null) {
-					if  (rcep.getFigure() instanceof ResizableCompartmentFigure) {
-						ResizableCompartmentFigure rcf = (ResizableCompartmentFigure) rcep.getFigure();
+				if(titleStyle == null) {
+					if(rcep.getFigure() instanceof ResizableCompartmentFigure) {
+						ResizableCompartmentFigure rcf = (ResizableCompartmentFigure)rcep.getFigure();
 						rcf.setTitleVisibility(false);
 					}
 				}
 			}
-		}		
+		}
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */

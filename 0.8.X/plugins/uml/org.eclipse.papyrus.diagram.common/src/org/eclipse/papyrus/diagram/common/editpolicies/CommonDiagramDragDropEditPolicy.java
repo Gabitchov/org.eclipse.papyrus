@@ -151,7 +151,7 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 		IAdaptable sourceAdapter = null;
 		IAdaptable targetAdapter = null;
 		if(sourceEditPart == null) {
-			ICommand createCommand = getDefaultDropNodeCommand(getLinkSourceDropLocation(absoluteLocation,source, target), source);
+			ICommand createCommand = getDefaultDropNodeCommand(getLinkSourceDropLocation(absoluteLocation, source, target), source);
 			cc.add(createCommand);
 
 			sourceAdapter = (IAdaptable)createCommand.getCommandResult().getReturnValue();
@@ -159,7 +159,7 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 			sourceAdapter = new SemanticAdapter(null, sourceEditPart.getModel());
 		}
 		if(targetEditPart == null) {
-			ICommand createCommand = getDefaultDropNodeCommand(getLinkTargetDropLocation(absoluteLocation,source, target), target);
+			ICommand createCommand = getDefaultDropNodeCommand(getLinkTargetDropLocation(absoluteLocation, source, target), target);
 			cc.add(createCommand);
 
 			targetAdapter = (IAdaptable)createCommand.getCommandResult().getReturnValue();
@@ -178,9 +178,12 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 	 * This method allows to specify a location for the creation of a node at the source of a dropped link.
 	 * Overriding implementations must not modify the absoluteLocation parameter (use {@link Point#getCopy()})
 	 * 
-	 * @param absoluteLocation the request's drop location
-	 * @param source the source of the dropped link
-	 * @param target the target of the dropped link
+	 * @param absoluteLocation
+	 *        the request's drop location
+	 * @param source
+	 *        the source of the dropped link
+	 * @param target
+	 *        the target of the dropped link
 	 * @return the new location for the node
 	 */
 	protected Point getLinkSourceDropLocation(Point absoluteLocation, Element source, Element target) {
@@ -191,13 +194,16 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 	 * This method allows to specify a location for the creation of a node at the target of a dropped link.
 	 * Overriding implementations must not modify the absoluteLocation parameter (use {@link Point#getCopy()})
 	 * 
-	 * @param absoluteLocation the request's drop location
-	 * @param source the source of the dropped link
-	 * @param target the target of the dropped link
+	 * @param absoluteLocation
+	 *        the request's drop location
+	 * @param source
+	 *        the source of the dropped link
+	 * @param target
+	 *        the target of the dropped link
 	 * @return the new location for the node
 	 */
 	protected Point getLinkTargetDropLocation(Point absoluteLocation, Element source, Element target) {
-		if (lookForEditPart(source) == null && lookForEditPart(target) == null) {
+		if(lookForEditPart(source) == null && lookForEditPart(target) == null) {
 			return absoluteLocation.getTranslated(100, 0);
 		}
 		return absoluteLocation;

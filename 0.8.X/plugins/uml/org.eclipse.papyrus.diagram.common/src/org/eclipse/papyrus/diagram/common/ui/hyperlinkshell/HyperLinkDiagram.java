@@ -52,12 +52,12 @@ public class HyperLinkDiagram extends HyperlinkObject {
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.diagram.common.ui.hyperlinkshell.HyperlinkObject#executeSelectPressed()
-	 *
+	 * 
 	 */
 	@Override
 	public void executeSelectPressed() {
-		IMultiDiagramEditor papyrusEditor=EditorUtils.getMultiDiagramEditor();
-		IPageMngr pageMngr=null;
+		IMultiDiagramEditor papyrusEditor = EditorUtils.getMultiDiagramEditor();
+		IPageMngr pageMngr = null;
 		try {
 			pageMngr = ServiceUtils.getInstance().getIPageMngr(papyrusEditor.getServicesRegistry());
 		} catch (ServiceException e) {
@@ -71,15 +71,15 @@ public class HyperLinkDiagram extends HyperlinkObject {
 		pageMngr.openPage((this.getDiagram()));
 	}
 
-/**
+	/**
  * 
  */
 	@Override
 	public void executeEditMousePressed(List<HyperlinkObject> list, Package amodel) {
-		IPageIconsRegistry editorRegistry=null;
-		IMultiDiagramEditor papyrusEditor=EditorUtils.getMultiDiagramEditor();
+		IPageIconsRegistry editorRegistry = null;
+		IMultiDiagramEditor papyrusEditor = EditorUtils.getMultiDiagramEditor();
 		try {
-			editorRegistry= papyrusEditor.getServicesRegistry().getService(IPageIconsRegistry.class);
+			editorRegistry = papyrusEditor.getServicesRegistry().getService(IPageIconsRegistry.class);
 		} catch (ServiceException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -90,7 +90,7 @@ public class HyperLinkDiagram extends HyperlinkObject {
 		if(editor.getHyperLinkDiagram() != null) {
 			int index = list.indexOf(this);
 			list.remove(this);
-			list.add(index,editor.getHyperLinkDiagram());
+			list.add(index, editor.getHyperLinkDiagram());
 
 		}
 	}

@@ -37,7 +37,7 @@ public class ServiceUtilsForGMF extends AbstractServiceUtils<IDiagramEditDomain>
 	private final static ServiceUtilsForGMF instance = new ServiceUtilsForGMF();
 
 	/**
-	 * Get the singleton instance of the class. 
+	 * Get the singleton instance of the class.
 	 * 
 	 * @return
 	 */

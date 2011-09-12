@@ -78,9 +78,9 @@ public class PapyrusStereotypeListener implements IPapyrusListener {
 			// stereotype itself has changed.
 			Object notifier = notification.getNotifier();
 			// notifier may be the stereotype application
-			if (notifier instanceof EObject) {
-				EObject baseElement = UMLUtil.getBaseElement((EObject) notifier);
-				if (baseElement instanceof Element) {
+			if(notifier instanceof EObject) {
+				EObject baseElement = UMLUtil.getBaseElement((EObject)notifier);
+				if(baseElement instanceof Element) {
 					// notifier listeners for the base element
 					StereotypeCustomNotification newNotification = new StereotypeCustomNotification((ElementImpl)baseElement, MODIFIED_STEREOTYPE, feature.getFeatureID(), null, notification.getNotifier());
 					baseElement.eNotify(newNotification);
@@ -107,10 +107,9 @@ public class PapyrusStereotypeListener implements IPapyrusListener {
 			}
 			// we are sure this is a new stereotype application
 			notificationValue = APPLIED_STEREOTYPE;
-		}
-		else {
+		} else {
 			value = notification.getOldValue();
-			if (!(value instanceof Element)) {
+			if(!(value instanceof Element)) {
 				return;
 			}
 			// check that the notifier (stereotype application) is NOT in the list of stereotypes for the
@@ -122,7 +121,7 @@ public class PapyrusStereotypeListener implements IPapyrusListener {
 			// element is no longer applied.
 			notificationValue = UNAPPLIED_STEREOTYPE;
 		}
-	
+
 		// emit notification, so its edit parts can react
 		StereotypeCustomNotification newNotification = new StereotypeCustomNotification((ElementImpl)value, notificationValue, feature.getFeatureID(), null, notification.getNotifier());
 		((Element)value).eNotify(newNotification);

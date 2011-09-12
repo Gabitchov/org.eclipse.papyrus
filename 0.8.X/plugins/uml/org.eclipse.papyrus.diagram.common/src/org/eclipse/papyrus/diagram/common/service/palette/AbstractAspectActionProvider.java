@@ -31,12 +31,12 @@ public abstract class AbstractAspectActionProvider extends AbstractProvider impl
 
 	/** field for identifier */
 	protected static final String ID = "id";
-	
+
 	/** field for description */
 	protected static final String DESCRIPTION = "description";
 
 	/** field for Activator ID */
-	protected String bundleId ;
+	protected String bundleId;
 
 	/** name for the factory */
 	protected String name;

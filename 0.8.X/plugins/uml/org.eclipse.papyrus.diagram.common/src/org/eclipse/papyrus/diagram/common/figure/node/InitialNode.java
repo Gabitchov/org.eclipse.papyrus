@@ -16,16 +16,14 @@ import org.eclipse.draw2d.Border;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.geometry.Dimension;
-import org.eclipse.draw2d.geometry.Insets;
 import org.eclipse.draw2d.geometry.Rectangle;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
 
 /**
- * this figure is fill circle 
+ * this figure is fill circle
  */
-public class InitialNode extends PapyrusNodeFigure implements IPapyrusNodeUMLElementFigure{
+public class InitialNode extends PapyrusNodeFigure implements IPapyrusNodeUMLElementFigure {
 
 	/**
 	 * {@inheritDoc}
@@ -33,12 +31,13 @@ public class InitialNode extends PapyrusNodeFigure implements IPapyrusNodeUMLEle
 	protected Border getDefaultBorder(Color borderColor) {
 		return null;
 	}
+
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	public Dimension getPreferredSize(int wHint, int hHint) {
-		return new Dimension(20,20);
+		return new Dimension(20, 20);
 	}
 
 	/**
@@ -49,11 +48,13 @@ public class InitialNode extends PapyrusNodeFigure implements IPapyrusNodeUMLEle
 		graphics.setBackgroundColor(getForegroundColor());
 		graphics.fillOval(r);
 	}
+
 	/**
 	 * {@inheritDoc}
 	 */
 	public void setStereotypeDisplay(String stereotypes, Image image) {
 	}
+
 	/**
 	 * {@inheritDoc}
 	 */

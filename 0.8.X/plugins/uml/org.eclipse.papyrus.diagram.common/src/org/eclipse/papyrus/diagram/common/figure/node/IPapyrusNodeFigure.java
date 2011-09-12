@@ -99,7 +99,7 @@ public interface IPapyrusNodeFigure extends IFigure {
 	 * @since 1.2
 	 */
 	public int getLineStyle();
-	
+
 	/**
 	 * Comes from GMF {@link NodeFigure#setLineWidth}
 	 * 

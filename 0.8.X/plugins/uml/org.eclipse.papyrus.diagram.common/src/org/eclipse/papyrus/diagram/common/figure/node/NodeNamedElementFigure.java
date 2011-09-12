@@ -967,7 +967,7 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 		// Set stereotype icon on figure
 		this.iconLabel.setIcon(image);
 	}
-	
+
 	/**
 	 * Sets the applied stereotype icon.
 	 * 

@@ -17,15 +17,12 @@ import java.util.ArrayList;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CTabFolder;
-import org.eclipse.swt.custom.CTabItem;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.swt.widgets.Table;
 import org.eclipse.ui.PlatformUI;
 
 /**
@@ -36,9 +33,9 @@ import org.eclipse.ui.PlatformUI;
 public abstract class AbstractHyperLinkManagerShell {
 
 	/** The hyper link shell. */
-	protected Shell hyperLinkShell = null; 
+	protected Shell hyperLinkShell = null;
 
-	
+
 	public Shell getHyperLinkShell() {
 		return hyperLinkShell;
 	}
@@ -46,12 +43,12 @@ public abstract class AbstractHyperLinkManagerShell {
 	/** The c tab folder. */
 	private CTabFolder cTabFolder = null;
 
-	
+
 	public CTabFolder getcTabFolder() {
 		return cTabFolder;
 	}
 
-	
+
 
 	/** The Ok button. */
 	protected Button OkButton = null;
@@ -59,9 +56,10 @@ public abstract class AbstractHyperLinkManagerShell {
 	/** The cancel button. */
 	protected Button cancelButton = null;
 
-	
 
-	protected ArrayList<HyperLinkTab>tabList=new ArrayList<HyperLinkTab>();
+
+	protected ArrayList<HyperLinkTab> tabList = new ArrayList<HyperLinkTab>();
+
 	/**
 	 * This method initializes cTabFolder.
 	 */
@@ -75,7 +73,7 @@ public abstract class AbstractHyperLinkManagerShell {
 		cTabFolder = new CTabFolder(hyperLinkShell, SWT.NONE);
 		cTabFolder.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
 		cTabFolder.setLayoutData(gridData);
-		
+
 
 	}
 
@@ -87,6 +85,7 @@ public abstract class AbstractHyperLinkManagerShell {
 
 	/**
 	 * This method initializes hyperLinkShell.
+	 * 
 	 * @wbp.parser.entryPoint
 	 */
 	protected void createHyperLinkShell() {

@@ -41,32 +41,42 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
  * 
  */
 public class HyperLinkTab {
+
 	/**
 	 * The Class DiagramContentProvider.
 	 */
 	protected CTabItem hyperlinksTab;
+
 	protected Table hyperLinkListTable;
+
 	protected Button newHyperLinkbutton;
+
 	protected Button modifyHyperLinkButton;
+
 	protected Button removeHyperLinkButton;
+
 	protected Button upHyperLinkButton;
+
 	protected Button downHyperLinkButton;
+
 	protected TableViewer tableViewer;
-	
-	
-	protected ArrayList<HyperlinkObject> hyperlinkObjects= new ArrayList<HyperlinkObject>();
-	
+
+
+	protected ArrayList<HyperlinkObject> hyperlinkObjects = new ArrayList<HyperlinkObject>();
+
 	protected AbstractHyperLinkHelper hyperLinkHelper;
-	
+
 	private HyperLinkContentProvider contentProvider;
+
 	/**
 	 * get TableVeiver
+	 * 
 	 * @return
 	 */
 	public TableViewer getTableViewer() {
 		return tableViewer;
 	}
-	
+
 	/**
 	 * 
 	 * @return the list of hyperlink displayed in the tab
@@ -74,29 +84,33 @@ public class HyperLinkTab {
 	public ArrayList<HyperlinkObject> getHyperlinkObjects() {
 		return hyperlinkObjects;
 	}
-	
+
 	/**
 	 * set list of hyperlinks to display in the tab
+	 * 
 	 * @param hyperlinkObjects
 	 */
 	public void setHyperlinkObjects(ArrayList<HyperlinkObject> hyperlinkObjects) {
 		this.hyperlinkObjects = hyperlinkObjects;
 	}
-	
+
 	/**
 	 * 
 	 * Constructor.
-	 *
-	 * @param cTabFolder the container of the tab
-	 * @param hyperLinkHelper the hyperlinkhelper that will be associated to this tab
-	 * @param hyperlinkObjects the lis of htperlink to display in the tab
+	 * 
+	 * @param cTabFolder
+	 *        the container of the tab
+	 * @param hyperLinkHelper
+	 *        the hyperlinkhelper that will be associated to this tab
+	 * @param hyperlinkObjects
+	 *        the lis of htperlink to display in the tab
 	 */
-	public  HyperLinkTab(CTabFolder cTabFolder,  AbstractHyperLinkHelper hyperLinkHelper,ArrayList<HyperlinkObject> hyperlinkObjects){
-		this.hyperLinkHelper= hyperLinkHelper;
-		
-		this.contentProvider= new HyperLinkContentProvider();
+	public HyperLinkTab(CTabFolder cTabFolder, AbstractHyperLinkHelper hyperLinkHelper, ArrayList<HyperlinkObject> hyperlinkObjects) {
+		this.hyperLinkHelper = hyperLinkHelper;
+
+		this.contentProvider = new HyperLinkContentProvider();
 		CTabItem cTabItem2 = new CTabItem(cTabFolder, SWT.NONE);
-		cTabItem2.setText(hyperLinkHelper.getNameofManagedHyperLink()+" hyperlinks");
+		cTabItem2.setText(hyperLinkHelper.getNameofManagedHyperLink() + " hyperlinks");
 		Composite diagramComposite = new Composite(cTabFolder, SWT.NONE);
 		cTabItem2.setControl(diagramComposite);
 		GridData gridData4 = new GridData();
@@ -117,23 +131,23 @@ public class HyperLinkTab {
 		GridLayout gridLayout = new GridLayout();
 		gridLayout.numColumns = 2;
 		gridLayout.makeColumnsEqualWidth = false;
-		
+
 		diagramComposite.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
 		diagramComposite.setLayout(gridLayout);
 		CLabel listLabel = new CLabel(diagramComposite, SWT.SHADOW_NONE);
-		listLabel.setText("List of "+hyperLinkHelper.getNameofManagedHyperLink()+" hyperlinks:");
+		listLabel.setText("List of " + hyperLinkHelper.getNameofManagedHyperLink() + " hyperlinks:");
 		listLabel.setEnabled(false);
 		listLabel.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
 		Label filler = new Label(diagramComposite, SWT.NONE);
 		hyperLinkListTable = new Table(diagramComposite, SWT.BORDER | SWT.MULTI);
 		tableViewer = new TableViewer(hyperLinkListTable);
-		
+
 		newHyperLinkbutton = new Button(diagramComposite, SWT.NONE);
 		newHyperLinkbutton.setText("");
 		newHyperLinkbutton.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.diagram.common", "/icons/obj16/Add_16x16.gif").createImage());
 		newHyperLinkbutton.setLayoutData(gridData4);
 		hyperLinkListTable.setHeaderVisible(false);
-		hyperLinkListTable.setToolTipText("set of "+hyperLinkHelper.getNameofManagedHyperLink()+"hyperlinks ");
+		hyperLinkListTable.setToolTipText("set of " + hyperLinkHelper.getNameofManagedHyperLink() + "hyperlinks ");
 		hyperLinkListTable.setLayoutData(gridData1);
 		hyperLinkListTable.setLinesVisible(false);
 		modifyHyperLinkButton = new Button(diagramComposite, SWT.NONE);
@@ -151,22 +165,22 @@ public class HyperLinkTab {
 		downHyperLinkButton.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.diagram.common", "/icons/obj16/ArrowDown_16x16.gif").createImage());
 
 		downHyperLinkButton.setLayoutData(gridData3);
-		
+
 		tableViewer.setContentProvider(contentProvider);
-		IPageIconsRegistry editorRegistry=null;
-		IMultiDiagramEditor papyrusEditor=EditorUtils.getMultiDiagramEditor();
+		IPageIconsRegistry editorRegistry = null;
+		IMultiDiagramEditor papyrusEditor = EditorUtils.getMultiDiagramEditor();
 		try {
-			editorRegistry= papyrusEditor.getServicesRegistry().getService(IPageIconsRegistry.class);
+			editorRegistry = papyrusEditor.getServicesRegistry().getService(IPageIconsRegistry.class);
 		} catch (ServiceException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		this.hyperlinkObjects= hyperLinkHelper.getFilteredObject(hyperlinkObjects);
+		this.hyperlinkObjects = hyperLinkHelper.getFilteredObject(hyperlinkObjects);
 		tableViewer.setLabelProvider(new HyperLinkLabelProvider(editorRegistry));
 		getTableViewer().setInput(this.hyperlinkObjects);
 	}
 
-	
+
 	/**
 	 * @return the tabitem form the this tab
 	 */
@@ -188,11 +202,12 @@ public class HyperLinkTab {
 	public Button getNewHyperLinkbutton() {
 		return newHyperLinkbutton;
 	}
-/**
- * 
- * @return the button to edit a hyperlinkObject
- */
-	
+
+	/**
+	 * 
+	 * @return the button to edit a hyperlinkObject
+	 */
+
 	public Button getModifyHyperLinkButton() {
 		return modifyHyperLinkButton;
 	}
@@ -220,13 +235,16 @@ public class HyperLinkTab {
 	public Button getDownHyperLinkButton() {
 		return downHyperLinkButton;
 	}
+
 	/**
 	 * set as input a list of hyperlinkObject to display
-	 * @param hyperlinkObjects the lis of hyperlinkobjects
+	 * 
+	 * @param hyperlinkObjects
+	 *        the lis of hyperlinkobjects
 	 */
-	public void setInput(List<HyperlinkObject>hyperlinkObjects){
-		this.hyperlinkObjects= this.hyperLinkHelper.getFilteredObject(hyperlinkObjects);
+	public void setInput(List<HyperlinkObject> hyperlinkObjects) {
+		this.hyperlinkObjects = this.hyperLinkHelper.getFilteredObject(hyperlinkObjects);
 		getTableViewer().setInput(this.hyperlinkObjects);
-		
+
 	}
 }

@@ -23,8 +23,9 @@ import org.eclipse.gmf.runtime.diagram.ui.commands.CommandProxy;
 /**
  * This command proxy wraps a GEF command into a GMF one,
  * with result stored in the CommandResult.
+ * 
  * @author mvelten
- *
+ * 
  */
 public class CommandProxyWithResult extends CommandProxy {
 

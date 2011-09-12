@@ -63,8 +63,8 @@ import org.eclipse.uml2.uml.Element;
 
 /**
  * @deprecated
- * This class is used to execute the drag and drop from the outline. It can manage the drop of nodes
- * and binary links.
+ *             This class is used to execute the drag and drop from the outline. It can manage the drop of nodes
+ *             and binary links.
  */
 public abstract class OldCommonDiagramDragDropEditPolicy extends DiagramDragDropEditPolicy {
 

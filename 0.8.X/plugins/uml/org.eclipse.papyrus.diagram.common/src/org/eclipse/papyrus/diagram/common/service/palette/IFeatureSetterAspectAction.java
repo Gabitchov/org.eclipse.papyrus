@@ -33,6 +33,7 @@ public interface IFeatureSetterAspectAction {
 	public EStructuralFeature[] getAllImpactedFeatures();
 
 	public static class IFeatureSetterAspectActionUtil {
+
 		/**
 		 * Return all the impacted features for a given request the array of int
 		 * represents the ids
@@ -40,80 +41,73 @@ public interface IFeatureSetterAspectAction {
 		 * @param request
 		 * @return never null
 		 */
-		public static Set<EStructuralFeature> getAllImpactedFeatures(
-				Request request) {
+		public static Set<EStructuralFeature> getAllImpactedFeatures(Request request) {
 			return getAllImpactedFeatures(request.getExtendedData());
 		}
-		
+
 		/**
 		 * Return all the impacted Features from a map given by a request
+		 * 
 		 * @param map
 		 * @return the features impacted by an action
 		 */
-		public static Set<EStructuralFeature> getAllImpactedFeatures(
-				Map map) {
+		public static Set<EStructuralFeature> getAllImpactedFeatures(Map map) {
 			Set<EStructuralFeature> result = new HashSet<EStructuralFeature>();
-			List<IAspectAction> aspectActions = AspectUnspecifiedTypeCreationTool
-					.getAspectActions(map);
-			if (aspectActions != null)
-			{
-				for (IAspectAction a : aspectActions)
-				{
-					if (a instanceof IFeatureSetterAspectAction) {
-						IFeatureSetterAspectAction featureSetter = (IFeatureSetterAspectAction) a;
+			List<IAspectAction> aspectActions = AspectUnspecifiedTypeCreationTool.getAspectActions(map);
+			if(aspectActions != null) {
+				for(IAspectAction a : aspectActions) {
+					if(a instanceof IFeatureSetterAspectAction) {
+						IFeatureSetterAspectAction featureSetter = (IFeatureSetterAspectAction)a;
 						result.addAll(Arrays.asList(featureSetter.getAllImpactedFeatures()));
 					}
 				}
 			}
 			return result;
 		}
-		
+
 		/**
 		 * Return all the impacted features in a {@link IEditCommandRequest} containing Pre and Post actions
+		 * 
 		 * @param request
 		 * @return
 		 */
-		public static Set<EStructuralFeature> getAllImpactedFeatures(
-				IEditCommandRequest request) {
+		public static Set<EStructuralFeature> getAllImpactedFeatures(IEditCommandRequest request) {
 			return getAllImpactedFeatures(request.getParameters());
 		}
 
 
 		/**
 		 * Determine if the features in parameters are managed by Pre/Post Action in the request
+		 * 
 		 * @param request
 		 * @param features
 		 * @return true if they are ALL managed
 		 */
-		public static boolean areFeaturesManaged(Request request, EStructuralFeature... features)
-		{
+		public static boolean areFeaturesManaged(Request request, EStructuralFeature... features) {
 			return request != null && areFeaturesManaged(request.getExtendedData(), features);
 		}
-		
+
 		/**
 		 * Determine if the features in parameters are managed by Pre/Post Action in the request
+		 * 
 		 * @param request
 		 * @param features
 		 * @return true if they are ALL managed
 		 */
-		public static boolean areFeaturesManaged(IEditCommandRequest request, EStructuralFeature features)
-		{
+		public static boolean areFeaturesManaged(IEditCommandRequest request, EStructuralFeature features) {
 			return request != null && areFeaturesManaged(request.getParameters(), features);
 		}
-		
-		private static boolean areFeaturesManaged(Map map, EStructuralFeature... feature)
-		{
+
+		private static boolean areFeaturesManaged(Map map, EStructuralFeature... feature) {
 			Set<EStructuralFeature> impacted = getAllImpactedFeatures(map);
-			for (EStructuralFeature f : feature)
-			{
-				if (!impacted.contains(f))
-				{
-					return false ;
+			for(EStructuralFeature f : feature) {
+				if(!impacted.contains(f)) {
+					return false;
 				}
 			}
-			return true ;
+			return true;
 		}
-		
+
 
 	}
 

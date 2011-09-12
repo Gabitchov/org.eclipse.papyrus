@@ -19,7 +19,6 @@ import java.util.Map;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPartListener;
 import org.eclipse.gef.EditPartViewer;
@@ -28,7 +27,6 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.Edge;
-import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.editparts.IEditpartListenerAccess;
 import org.eclipse.papyrus.diagram.common.editparts.UMLConnectionNodeEditPart;
 
@@ -104,7 +102,7 @@ public class DeleteLinkDuringCreationCommand extends DeleteCommand {
 				}
 			}
 		}
-		if(listenerToRemove!=null){
+		if(listenerToRemove != null) {
 			//Finally we remove the listener
 			editPart.removeEditPartListener(listenerToRemove);
 		}

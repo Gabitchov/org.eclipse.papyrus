@@ -13,7 +13,6 @@
 package org.eclipse.papyrus.diagram.common.figure.node;
 
 import org.eclipse.draw2d.Border;
-import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.geometry.Dimension;
@@ -23,10 +22,10 @@ import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
 
 /**
- * this figure is a final node a circle into a circle 
- *
+ * this figure is a final node a circle into a circle
+ * 
  */
-public class FinalNode extends PapyrusNodeFigure implements IPapyrusNodeUMLElementFigure{
+public class FinalNode extends PapyrusNodeFigure implements IPapyrusNodeUMLElementFigure {
 
 	/**
 	 * {@inheritDoc}
@@ -34,23 +33,25 @@ public class FinalNode extends PapyrusNodeFigure implements IPapyrusNodeUMLEleme
 	protected Border getDefaultBorder(Color borderColor) {
 		return null;
 	}
+
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	public Dimension getPreferredSize(int wHint, int hHint) {
 		// TODO Auto-generated method stub
-		return new Dimension(20,20);
+		return new Dimension(20, 20);
 	}
+
 	/**
 	 * {@inheritDoc}
 	 */
 	public void paintFigure(Graphics graphics) {
-		
+
 		final int space = 5;
 		Rectangle f = Rectangle.SINGLETON;
 		//to be in adequation with the figure node plate
-		Rectangle r = getBounds().getCopy().crop(new Insets(0,0,1,1));
+		Rectangle r = getBounds().getCopy().crop(new Insets(0, 0, 1, 1));
 		graphics.setBackgroundColor(getForegroundColor());
 		graphics.drawOval(r);
 		f.x = r.x + space;
@@ -59,30 +60,34 @@ public class FinalNode extends PapyrusNodeFigure implements IPapyrusNodeUMLEleme
 		f.height = r.height - space * 2;
 		graphics.setBackgroundColor(getForegroundColor());
 		graphics.fillOval(f);
-		
+
 
 	}
+
 	/**
 	 * {@inheritDoc}
 	 */
 	public void setStereotypeDisplay(String stereotypes, Image image) {
 		// TODO Auto-generated method stub
-		
+
 	}
+
 	/**
 	 * {@inheritDoc}
 	 */
 	public void setStereotypePropertiesInBrace(String stereotypeProperties) {
 		// TODO Auto-generated method stub
-		
+
 	}
+
 	/**
 	 * {@inheritDoc}
 	 */
 	public void setStereotypePropertiesInCompartment(String stereotypeProperties) {
 		// TODO Auto-generated method stub
-		
+
 	}
+
 	/**
 	 * {@inheritDoc}
 	 */
