@@ -13,12 +13,14 @@ package org.eclipse.papyrus.extensionpoints.editors.ui;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.IAdvancedEditorConfiguration;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.IDirectEditorConfiguration;
+import org.eclipse.papyrus.extensionpoints.editors.configuration.IPopupEditorConfiguration;
 import org.eclipse.papyrus.extensionpoints.editors.definition.DirectEditorExtensionPoint;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Composite;
@@ -49,6 +51,13 @@ public abstract class OpenEmbeddedTextEditorObjectActionDelegate implements IObj
 	 */
 	protected abstract EObject getEditedObject();
 
+	/**
+	 * Returns the selected graphical edit part
+	 * 
+	 * @return the GraphicalEditPart selected in the editor. It should never be <code>null</code>.
+	 */
+	protected abstract GraphicalEditPart getSelectedElement() ;
+	
 	/**
 	 * Retrieves the position where the editor should be opened.
 	 * 
@@ -90,11 +99,15 @@ public abstract class OpenEmbeddedTextEditorObjectActionDelegate implements IObj
 		configuration.preEditAction(getEditedObject());
 
 		Dialog dialog = null;
+		if (configuration instanceof IPopupEditorConfiguration) {
+			IPopupEditorConfiguration popupEditor = (IPopupEditorConfiguration)configuration ;
+			popupEditor.createPopupEditorHelper(getSelectedElement()).showEditor() ;
+			return ;
+		}
 		if(configuration instanceof IAdvancedEditorConfiguration) {
 			dialog = ((IAdvancedEditorConfiguration)configuration).createDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), getEditedObject(), configuration.getTextToEdit(getEditedObject()));
 		} else if(configuration instanceof IDirectEditorConfiguration) {
 			dialog = new ExtendedDirectEditionDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), getEditedObject(), ((IDirectEditorConfiguration)configuration).getTextToEdit(getEditedObject()), (IDirectEditorConfiguration)configuration);
-
 		} else {
 			return;
 		}
