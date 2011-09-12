@@ -19,6 +19,8 @@ public class Messages extends NLS {
 
 	private static final String BUNDLE_NAME = "org.eclipse.papyrus.table.menu.messages.messages"; //$NON-NLS-1$
 
+	public static String CreateMenuForNewElementInPopupContributionItem_CreateNewElementMenu;
+
 	public static String EditTableHandler_EditDescription_Message;
 
 	public static String EditTableHandler_EditDescription_Title;

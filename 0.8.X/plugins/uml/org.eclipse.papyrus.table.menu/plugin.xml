@@ -73,24 +73,6 @@
                </visibleWhen>
             </command>
             <command
-                  commandId="org.eclipse.emf.facet.widgets.nattable.openSavedTableCommand"
-                  icon="IMG_OBJ_FOLDER"
-                  id="org.eclipse.papyrus.table.menu.open.table"
-                  style="push"
-                  tooltip="%open.table">
-               <visibleWhen
-                     checkEnabled="false">
-                  <with
-                        variable="selection">
-                     <test
-                           forcePluginActivation="true"
-                           property="org.eclipse.papyrus.table.menu.providers.TableTester.isTable"
-                           value="true">
-                     </test>
-                  </with>
-               </visibleWhen>
-            </command>
-            <command
                   commandId="org.eclipse.emf.facet.widgets.nattable.hideColumnCommand"
                   icon="icons/select_column_to_hide_2.png"
                   id="org.eclipse.papyrus.table.menu.hide.empty.column"
@@ -305,6 +287,16 @@
                   </and>
                </visibleWhen>
                 </command>
+      </menuContribution>
+      <menuContribution
+            allPopups="true"
+            class="org.eclipse.papyrus.table.menu.handler.CreateNewElementInPopupContributionItem"
+            locationURI="popup:org.eclipse.ui.popup.any">
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
+            class="org.eclipse.papyrus.table.menu.handler.CreateNewElementInTableMenuContributionItem"
+            locationURI="menu:org.eclipse.papyrus.table.menu?before=org.eclipse.papyrus.table.menu.load.customization">
       </menuContribution>
    </extension>
    <extension
