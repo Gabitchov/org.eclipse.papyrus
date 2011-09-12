@@ -172,6 +172,9 @@ public class PropertyTester extends org.eclipse.core.expressions.PropertyTester 
 	 * @param selection
 	 * @return
 	 *         <code>true</code> if the selection is composed by {@link Diagram}
+	 * 
+	 *         FIXME : we should call the method isDiagram in
+	 *         oep.diagram.common#DiagramPropertyTester
 	 */
 	private boolean isDiagram(IStructuredSelection selection) {
 		if(!selection.isEmpty()) {
