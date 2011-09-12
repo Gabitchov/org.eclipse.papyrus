@@ -39,8 +39,9 @@ import org.eclipse.ui.PlatformUI;
  * To get the status, we listen the selection service AND the part service!
  * The part service is used to know if the selection is in the Model Explorer or not!
  * When the selection is not in the model explorer, the handlers listening the variable need to be disabled
- * 
+ * FIXME : I think it is better to use PropertyTester which doesn't need listener
  */
+
 public class ActionStateSourceProvider extends AbstractSourceProvider {
 
 	/**
