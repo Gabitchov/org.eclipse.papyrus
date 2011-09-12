@@ -224,13 +224,13 @@ public class PreferenceConstantHelper {
 	 * A preference for label default location
 	 */
 	public static final int LOCATION_X = LABEL_VISIBILITY + 1;
-	
+
 	/**
 	 * A preference for label default location
 	 */
 	public static final int LOCATION_Y = LOCATION_X + 1;
-	
-	
+
+
 	/**
 	 * Get the preference constant used to store the preference of an element.
 	 * 
@@ -311,7 +311,7 @@ public class PreferenceConstantHelper {
 		case LOCATION_X:
 			sb.append(LOCATION_X_CONSTANT);
 		case LOCATION_Y:
-			sb.append(LOCATION_Y_CONSTANT);			
+			sb.append(LOCATION_Y_CONSTANT);
 		default:
 			break;
 		}
