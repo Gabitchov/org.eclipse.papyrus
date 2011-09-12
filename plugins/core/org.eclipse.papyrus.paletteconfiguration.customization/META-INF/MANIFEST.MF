@@ -1,21 +1,21 @@
 Manifest-Version: 1.0
-Bundle-Name: Customization
-Bundle-Activator: org.eclipse.papyrus.paletteconfiguration.customizati
- on.Activator
-Bundle-ManifestVersion: 2
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-SymbolicName: org.eclipse.papyrus.paletteconfiguration.customiz
- ation;singleton:=true
-Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.ui;bundle-version="3.7.0",org.eclipse.core
+ .runtime;bundle-version="3.7.0",org.eclipse.papyrus.paletteconfigurat
+ ion;bundle-version="0.8.0",org.eclipse.uml2.uml;bundle-version="3.2.0
+ ",org.eclipse.emf.facet.infra.query.core;bundle-version="0.1.0",org.e
+ clipse.gmf.runtime.emf.type.core;bundle-version="1.4.0",org.eclipse.p
+ apyrus.extendedtypes;bundle-version="0.8.0",org.eclipse.papyrus.palet
+ teconfiguration.edit;bundle-version="0.8.0"
 Export-Package: org.eclipse.papyrus.paletteconfiguration.customization
  ,org.eclipse.papyrus.paletteconfiguration.customization.queries
-Require-Bundle: org.eclipse.ui;bundle-version="3.7.0",
- org.eclipse.core.runtime;bundle-version="3.7.0",
- org.eclipse.papyrus.paletteconfiguration;bundle-version="0.8.0",
- org.eclipse.uml2.uml;bundle-version="3.2.0",
- org.eclipse.emf.facet.infra.query.core;bundle-version="0.1.0",
- org.eclipse.gmf.runtime.emf.type.core;bundle-version="1.4.0",
- org.eclipse.papyrus.extendedtypes;bundle-version="0.8.0",
- org.eclipse.papyrus.paletteconfiguration.edit;bundle-version="0.8.0"
+Bundle-Vendor: %Bundle-Vendor
+Bundle-ActivationPolicy: lazy
 Bundle-Version: 0.9.0.qualifier
+Bundle-Name: %Bundle-Name
+Bundle-ManifestVersion: 2
+Bundle-Activator: org.eclipse.papyrus.paletteconfiguration.customizati
+ on.Activator
+Bundle-SymbolicName: org.eclipse.papyrus.paletteconfiguration.customiz
+ ation;singleton:=true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 
