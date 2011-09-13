@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.facet.widgets.nattable.tableconfiguration.TableConfiguration;
+import org.eclipse.emf.facet.widgets.nattable.tableconfiguration2.TableConfiguration2;
 import org.eclipse.papyrus.sysml.table.allocation.editor.AllocationTableEditor;
 import org.eclipse.papyrus.sysml.util.SysmlResource;
 import org.eclipse.papyrus.table.common.handlers.AbstractCreateNattableEditorCommand;
@@ -51,16 +51,16 @@ public class CreateAllocationTableCommand extends AbstractCreateNattableEditorCo
 	 * @return
 	 */
 	@Override
-	protected TableConfiguration getTableConfiguration() {
+	protected TableConfiguration2 getTableConfiguration2() {
 		ResourceSet resourceSet = new ResourceSetImpl();
 
 		String symbolicName = Activator.getDefault().getBundle().getSymbolicName();
-		URI uri = URI.createPlatformPluginURI(symbolicName + "/resources/allocate.tableconfiguration", true); //$NON-NLS-1$
+		URI uri = URI.createPlatformPluginURI(symbolicName + "/resources/allocate.tableconfiguration2", true); //$NON-NLS-1$
 		Resource resource = resourceSet.getResource(uri, true);
 
-		TableConfiguration tableConfiguration = null;
+		TableConfiguration2 tableConfiguration = null;
 		if(resource.getContents().get(0) instanceof org.eclipse.emf.facet.widgets.nattable.tableconfiguration.TableConfiguration) {
-			tableConfiguration = (TableConfiguration)resource.getContents().get(0);
+			tableConfiguration = (TableConfiguration2)resource.getContents().get(0);
 			return tableConfiguration;
 		}
 		return null;
