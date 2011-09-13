@@ -270,7 +270,7 @@ public class ZoomToolbar extends ContributionItem implements ZoomListener, Liste
 	 * refresh the combo status
 	 */
 	public void refreshCombo() {
-		if(combo != null && combo.isEnabled()) {
+		if(combo != null && !combo.isDisposed() && combo.isEnabled()) {
 			ZoomManager zoomManager = getZoomManager();
 			if(getZoomManager() != null) {
 				combo.setItems(getZoomLevelsAsText(zoomManager));
