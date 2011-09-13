@@ -370,100 +370,69 @@ public class UMLElementTypes {
 
 			elements.put(Package_1000, UMLPackage.eINSTANCE.getPackage());
 
-
 			elements.put(Actor_2011, UMLPackage.eINSTANCE.getActor());
-
 
 			elements.put(Actor_2012, UMLPackage.eINSTANCE.getActor());
 
-
 			elements.put(UseCase_2013, UMLPackage.eINSTANCE.getUseCase());
-
 
 			elements.put(UseCase_2014, UMLPackage.eINSTANCE.getUseCase());
 
-
 			elements.put(Component_2015, UMLPackage.eINSTANCE.getComponent());
-
 
 			elements.put(Package_2016, UMLPackage.eINSTANCE.getPackage());
 
-
 			elements.put(Constraint_2017, UMLPackage.eINSTANCE.getConstraint());
-
 
 			elements.put(Comment_2018, UMLPackage.eINSTANCE.getComment());
 
-
 			elements.put(Diagram_2019, NotationPackage.eINSTANCE.getDiagram());
-
 
 			elements.put(ExtensionPoint_3007, UMLPackage.eINSTANCE.getExtensionPoint());
 
-
 			elements.put(ExtensionPoint_3008, UMLPackage.eINSTANCE.getExtensionPoint());
-
 
 			elements.put(UseCase_3009, UMLPackage.eINSTANCE.getUseCase());
 
-
 			elements.put(Component_3016, UMLPackage.eINSTANCE.getComponent());
-
 
 			elements.put(Comment_3015, UMLPackage.eINSTANCE.getComment());
 
-
 			elements.put(Constraint_3017, UMLPackage.eINSTANCE.getConstraint());
-
 
 			elements.put(Actor_3018, UMLPackage.eINSTANCE.getActor());
 
-
 			elements.put(Constraint_3010, UMLPackage.eINSTANCE.getConstraint());
-
 
 			elements.put(Actor_3011, UMLPackage.eINSTANCE.getActor());
 
-
 			elements.put(UseCase_3012, UMLPackage.eINSTANCE.getUseCase());
-
 
 			elements.put(Component_3013, UMLPackage.eINSTANCE.getComponent());
 
-
 			elements.put(Package_3014, UMLPackage.eINSTANCE.getPackage());
-
 
 			elements.put(Include_4008, UMLPackage.eINSTANCE.getInclude());
 
-
 			elements.put(Extend_4009, UMLPackage.eINSTANCE.getExtend());
 
-
 			elements.put(Generalization_4010, UMLPackage.eINSTANCE.getGeneralization());
-
 
 			elements.put(Association_4011, UMLPackage.eINSTANCE.getAssociation());
 
 			elements.put(ConstraintConstrainedElement_4012, UMLPackage.eINSTANCE.getConstraint_ConstrainedElement());
 
-
 			elements.put(Dependency_4013, UMLPackage.eINSTANCE.getDependency());
 
 			elements.put(CommentAnnotatedElement_4014, UMLPackage.eINSTANCE.getComment_AnnotatedElement());
 
-
 			elements.put(Abstraction_4015, UMLPackage.eINSTANCE.getAbstraction());
-
 
 			elements.put(Usage_4016, UMLPackage.eINSTANCE.getUsage());
 
-
 			elements.put(Realization_4017, UMLPackage.eINSTANCE.getRealization());
 
-
 			elements.put(PackageMerge_4018, UMLPackage.eINSTANCE.getPackageMerge());
-
 
 			elements.put(PackageImport_4019, UMLPackage.eINSTANCE.getPackageImport());
 		}

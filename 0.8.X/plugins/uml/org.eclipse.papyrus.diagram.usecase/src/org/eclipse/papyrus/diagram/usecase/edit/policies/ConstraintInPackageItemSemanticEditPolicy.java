@@ -59,7 +59,6 @@ public class ConstraintInPackageItemSemanticEditPolicy extends UMLBaseItemSemant
 		super(UMLElementTypes.Constraint_3010);
 	}
 
-
 	/**
 	 * @generated
 	 */

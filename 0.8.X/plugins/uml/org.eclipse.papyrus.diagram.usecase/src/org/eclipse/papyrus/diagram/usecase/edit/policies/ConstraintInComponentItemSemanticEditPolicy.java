@@ -59,7 +59,6 @@ public class ConstraintInComponentItemSemanticEditPolicy extends UMLBaseItemSema
 		super(UMLElementTypes.Constraint_3017);
 	}
 
-
 	/**
 	 * @generated
 	 */

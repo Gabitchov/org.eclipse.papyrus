@@ -66,7 +66,6 @@ public class ActorItemSemanticEditPolicyTN extends UMLBaseItemSemanticEditPolicy
 		super(UMLElementTypes.Actor_2011);
 	}
 
-
 	/**
 	 * @generated
 	 */

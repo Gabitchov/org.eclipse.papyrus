@@ -112,10 +112,8 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 	public UMLDiagramEditor(ServicesRegistry servicesRegistry, Diagram diagram) throws ServiceException {
 		super(servicesRegistry, diagram);
 
-
 		// adds a listener to the palette service, which reacts to palette customizations
 		PapyrusPaletteService.getInstance().addProviderChangeListener(this);
-
 
 		// Share the same editing provider
 		editingDomain = servicesRegistry.getService(TransactionalEditingDomain.class);
@@ -123,7 +121,6 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 
 		// overrides editing domain created by super constructor
 		setDocumentProvider(documentProvider);
-
 
 	}
 

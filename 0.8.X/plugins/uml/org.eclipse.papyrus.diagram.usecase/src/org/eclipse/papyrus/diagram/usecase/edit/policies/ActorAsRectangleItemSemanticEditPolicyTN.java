@@ -66,7 +66,6 @@ public class ActorAsRectangleItemSemanticEditPolicyTN extends UMLBaseItemSemanti
 		super(UMLElementTypes.Actor_2012);
 	}
 
-
 	/**
 	 * @generated
 	 */

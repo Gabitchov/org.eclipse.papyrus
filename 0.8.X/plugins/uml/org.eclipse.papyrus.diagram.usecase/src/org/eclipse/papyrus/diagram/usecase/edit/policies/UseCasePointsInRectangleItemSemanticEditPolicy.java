@@ -30,7 +30,6 @@ public class UseCasePointsInRectangleItemSemanticEditPolicy extends UMLBaseItemS
 		super(UMLElementTypes.UseCase_2014);
 	}
 
-
 	/**
 	 * @generated
 	 */

@@ -102,10 +102,6 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
-
-
-
-
 	/**
 	 * @generated
 	 */
@@ -154,7 +150,6 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 			return true;
 		}
 
-
 		if(childEditPart instanceof UseCasePointsInPackageEditPart) {
 			IFigure pane = getPrimaryShape().getUseCaseFigure_contents();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
@@ -164,7 +159,6 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 
 		return false;
 	}
-
 
 	/**
 	 * @generated
@@ -212,7 +206,6 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 		return getContentPane();
 	}
 
-
 	/**
 	 * Use custom figure to return EllipseAnchors
 	 * 
@@ -223,7 +216,6 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 		UseCaseNodeFigure ucFigure = new UseCaseNodeFigure(getMapMode().DPtoLP(140), getMapMode().DPtoLP(60));
 		return ucFigure;
 	}
-
 
 	/**
 	 * Creates figure for this edit part.
@@ -866,7 +858,6 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 		return types;
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -880,10 +871,6 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 		}
 		return super.getTargetEditPart(request);
 	}
-
-
-
-
 
 	/**
 	 * @generated

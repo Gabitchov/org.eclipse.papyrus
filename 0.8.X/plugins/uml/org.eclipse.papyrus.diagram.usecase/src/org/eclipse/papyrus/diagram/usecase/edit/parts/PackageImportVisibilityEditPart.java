@@ -105,8 +105,6 @@ public class PackageImportVisibilityEditPart extends LabelEditPart implements IT
 	 */
 	private String defaultText;
 
-
-
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
 	 * 
@@ -120,8 +118,6 @@ public class PackageImportVisibilityEditPart extends LabelEditPart implements IT
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
-
-
 
 	/**
 	 * @generated
@@ -588,8 +584,6 @@ public class PackageImportVisibilityEditPart extends LabelEditPart implements IT
 		return getPrimaryView();
 	}
 
-
-
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
@@ -685,8 +679,6 @@ public class PackageImportVisibilityEditPart extends LabelEditPart implements IT
 		}
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -716,9 +708,6 @@ public class PackageImportVisibilityEditPart extends LabelEditPart implements IT
 				}
 			}
 		}
-
-
-
 
 		super.handleNotificationEvent(event);
 	}

@@ -82,7 +82,6 @@ public class ComponentItemSemanticEditPolicyTN extends UMLBaseItemSemanticEditPo
 		super(UMLElementTypes.Component_2015);
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -120,7 +119,6 @@ public class ComponentItemSemanticEditPolicyTN extends UMLBaseItemSemanticEditPo
 					Node cnode = (Node)cit.next();
 					switch(UMLVisualIDRegistry.getVisualID(cnode)) {
 					case UseCaseInComponentEditPart.VISUAL_ID:
-
 
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
@@ -170,7 +168,6 @@ public class ComponentItemSemanticEditPolicyTN extends UMLBaseItemSemanticEditPo
 						break;
 					case ComponentInComponentEditPart.VISUAL_ID:
 
-
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
 							switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -215,7 +212,6 @@ public class ComponentItemSemanticEditPolicyTN extends UMLBaseItemSemanticEditPo
 						break;
 					case CommentEditPartCN.VISUAL_ID:
 
-
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
 							switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -243,7 +239,6 @@ public class ComponentItemSemanticEditPolicyTN extends UMLBaseItemSemanticEditPo
 						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
 						break;
 					case ConstraintInComponentEditPart.VISUAL_ID:
-
 
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
@@ -288,7 +283,6 @@ public class ComponentItemSemanticEditPolicyTN extends UMLBaseItemSemanticEditPo
 						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
 						break;
 					case ActorInComponentEditPart.VISUAL_ID:
-
 
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();

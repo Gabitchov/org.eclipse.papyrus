@@ -85,9 +85,7 @@ import org.eclipse.ui.PlatformUI;
  */
 public class ActorInPackageNameEditPart
 
-
 extends LabelEditPart
-
 
 implements ITextAwareEditPart, IBorderItemEditPart, ILabelRoleProvider {
 
@@ -116,8 +114,6 @@ implements ITextAwareEditPart, IBorderItemEditPart, ILabelRoleProvider {
 	 */
 	private String defaultText;
 
-
-
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
 	 * 
@@ -131,8 +127,6 @@ implements ITextAwareEditPart, IBorderItemEditPart, ILabelRoleProvider {
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
-
-
 
 	/**
 	 * @generated
@@ -626,8 +620,6 @@ implements ITextAwareEditPart, IBorderItemEditPart, ILabelRoleProvider {
 		return getPrimaryView();
 	}
 
-
-
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
@@ -730,8 +722,6 @@ implements ITextAwareEditPart, IBorderItemEditPart, ILabelRoleProvider {
 			e.printStackTrace();
 		}
 	}
-
-
 
 	/**
 	 * @generated

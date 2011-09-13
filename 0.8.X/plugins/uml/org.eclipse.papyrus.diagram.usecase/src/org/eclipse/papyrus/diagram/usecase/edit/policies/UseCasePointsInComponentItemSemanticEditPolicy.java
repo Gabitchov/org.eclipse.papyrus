@@ -30,7 +30,6 @@ public class UseCasePointsInComponentItemSemanticEditPolicy extends UMLBaseItemS
 		super(UMLElementTypes.UseCase_3009);
 	}
 
-
 	/**
 	 * @generated
 	 */
