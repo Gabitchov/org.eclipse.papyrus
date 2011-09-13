@@ -22,7 +22,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.facet.widgets.nattable.internal.Messages;
-import org.eclipse.emf.facet.widgets.nattable.tableconfiguration.TableConfiguration;
 import org.eclipse.emf.facet.widgets.nattable.tableconfiguration2.TableConfiguration2;
 import org.eclipse.papyrus.sysml.table.requirement.editor.RequirementTableEditor;
 import org.eclipse.papyrus.sysml.util.SysmlResource;
@@ -56,7 +55,7 @@ public class CreateRequirementTableCommand extends AbstractCreateNattableEditorC
 	 * @return
 	 */
 	@Override
-	protected TableConfiguration getTableConfiguration2() {
+	protected TableConfiguration2 getTableConfiguration2() {
 		ResourceSet resourceSet = new ResourceSetImpl();
 
 		String symbolicName = org.eclipse.papyrus.sysml.table.requirement.Activator.getDefault().getBundle().getSymbolicName();
