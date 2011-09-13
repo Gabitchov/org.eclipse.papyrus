@@ -10,6 +10,8 @@
 		<Group.layout>
 			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
 		</Group.layout>
+		<ppe:IntegerEditor input="{Binding}"
+			property="notation:LineStyle:lineWidth"></ppe:IntegerEditor>
 		<gmf:XWTAwareColorPicker input="{Binding}"
 			property="notation:LineStyle:lineColor"></gmf:XWTAwareColorPicker>
 	</Group>
