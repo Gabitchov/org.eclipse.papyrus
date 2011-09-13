@@ -28,7 +28,6 @@ import org.eclipse.gmf.runtime.emf.ui.services.parser.ParserHintAdapter;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.parser.CommentParser;
-import org.eclipse.papyrus.diagram.common.parser.packageimport.PackageImportVisibilityParser;
 import org.eclipse.papyrus.diagram.common.parser.stereotype.AppliedStereotypeParser;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.AbstractionNameEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ActorAppliedStereotypeEditPartTN;
@@ -60,7 +59,6 @@ import org.eclipse.papyrus.diagram.usecase.edit.parts.ExtensionPointInRectangleE
 import org.eclipse.papyrus.diagram.usecase.edit.parts.GeneralizationAppliedStereotypeEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.IncludeAppliedStereotypeEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageImportAppliedStereotypeEditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageImportVisibilityEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageNameEditPartCN;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageNameEditPartTN;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.RealizationAppliedStereotypeEditPart;
@@ -700,21 +698,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
-	private PackageImportVisibilityParser packageImportVisibility_6017Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser getPackageImportVisibility_6017Parser() {
-		if(packageImportVisibility_6017Parser == null) {
-			packageImportVisibility_6017Parser = new PackageImportVisibilityParser();
-		}
-		return packageImportVisibility_6017Parser;
-	}
-
-	/**
-	 * @generated
-	 */
 	private AppliedStereotypeParser packageImportLabel_6036Parser;
 
 	/**
@@ -808,8 +791,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getRealizationLabel_6035Parser();
 		case AppliedStereotypePackageMergeEditPart.VISUAL_ID:
 			return getPackageMergeLabel_0Parser();
-		case PackageImportVisibilityEditPart.VISUAL_ID:
-			return getPackageImportVisibility_6017Parser();
 		case PackageImportAppliedStereotypeEditPart.VISUAL_ID:
 			return getPackageImportLabel_6036Parser();
 		}

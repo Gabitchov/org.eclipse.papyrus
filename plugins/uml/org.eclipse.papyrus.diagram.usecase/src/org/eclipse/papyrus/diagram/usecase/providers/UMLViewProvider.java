@@ -111,7 +111,6 @@ import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageEditPartCN;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageEditPartTN;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageImportAppliedStereotypeEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageImportEditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageImportVisibilityEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageMergeEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageNameEditPartCN;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageNameEditPartTN;
@@ -1440,11 +1439,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		PreferenceInitializerForElementHelper.initRountingFromPrefs(edge, prefStore, "PackageImport");
 
-		Node label6017 = createLabel(edge, UMLVisualIDRegistry.getType(PackageImportVisibilityEditPart.VISUAL_ID));
-		label6017.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location6017 = (Location)label6017.getLayoutConstraint();
-		location6017.setX(0);
-		location6017.setY(40);
 		Node label6036 = createLabel(edge, UMLVisualIDRegistry.getType(PackageImportAppliedStereotypeEditPart.VISUAL_ID));
 		label6036.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location location6036 = (Location)label6036.getLayoutConstraint();
