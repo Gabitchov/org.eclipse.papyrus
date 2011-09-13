@@ -3,9 +3,10 @@
   <associatedMetamodels href="http://www.eclipse.org/uml2/3.0.0/UML#/"/>
   <associatedMetamodels href="http://www.eclipse.org/papyrus/0.7.0/SysML#/"/>
   <associatedMetamodels href="http://www.eclipse.org/EmfFacet/infra/browser/custom/0.8#/"/>
+  <associatedMetamodels href="http://www.eclipse.org/emf/2002/Ecore#/"/>
   <queries xsi:type="query:JavaModelQuery" name="IsAllocateQuery" description="Test is the element is an Allocate" implementationClassName="org.eclipse.papyrus.sysml.table.allocation.queries.IsAllocateQuery">
     <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <scope href="http://www.eclipse.org/uml2/3.0.0/UML#//Element"/>
+    <scope href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
   </queries>
   <queries xsi:type="query:JavaModelQuery" name="CreateAbstractionQuery" description="Create a new Abstraction" lowerBound="1" implementationClassName="org.eclipse.papyrus.sysml.table.allocation.queries.CreateAbstractionQuery">
     <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Abstraction"/>
