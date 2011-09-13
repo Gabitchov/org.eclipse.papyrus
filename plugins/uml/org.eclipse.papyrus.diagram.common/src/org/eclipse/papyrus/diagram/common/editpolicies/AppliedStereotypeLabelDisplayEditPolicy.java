@@ -41,7 +41,7 @@ public abstract class AppliedStereotypeLabelDisplayEditPolicy extends AbstractAp
 	public final static String STEREOTYPE_LABEL_POLICY = "AppliedStereotypeLabelDisplayEditPolicy";
 
 	/** tag displayed for the UML element */
-	public final String tag;
+	public String tag;
 
 	/**
 	 * Creates a new AppliedStereotypeLabelDisplayEditPolicy, with the specified tag for the
