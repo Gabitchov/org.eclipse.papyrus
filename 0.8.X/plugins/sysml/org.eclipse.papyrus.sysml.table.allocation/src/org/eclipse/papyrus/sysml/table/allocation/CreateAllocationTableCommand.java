@@ -51,11 +51,11 @@ public class CreateAllocationTableCommand extends AbstractCreateNattableEditorCo
 	 * @return
 	 */
 	@Override
-	protected TableConfiguration getTableConfiguration() {
+	protected TableConfiguration getTableConfiguration2() {
 		ResourceSet resourceSet = new ResourceSetImpl();
 
 		String symbolicName = Activator.getDefault().getBundle().getSymbolicName();
-		URI uri = URI.createPlatformPluginURI(symbolicName + "/resources/allocate.tableconfiguration", true); //$NON-NLS-1$
+		URI uri = URI.createPlatformPluginURI(symbolicName + "/resources/allocate.tableconfiguration2", true); //$NON-NLS-1$
 		Resource resource = resourceSet.getResource(uri, true);
 
 		TableConfiguration tableConfiguration = null;
