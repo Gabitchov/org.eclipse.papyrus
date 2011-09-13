@@ -104,8 +104,6 @@ public class ConstraintInComponentNameEditPart extends CompartmentEditPart imple
 	 */
 	private String defaultText;
 
-
-
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
 	 * 
@@ -119,8 +117,6 @@ public class ConstraintInComponentNameEditPart extends CompartmentEditPart imple
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
-
-
 
 	/**
 	 * @generated
@@ -573,8 +569,6 @@ public class ConstraintInComponentNameEditPart extends CompartmentEditPart imple
 		return (View)getModel();
 	}
 
-
-
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
@@ -678,8 +672,6 @@ public class ConstraintInComponentNameEditPart extends CompartmentEditPart imple
 		}
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -695,7 +687,6 @@ public class ConstraintInComponentNameEditPart extends CompartmentEditPart imple
 		super.removeNotationalListeners();
 		removeListenerFilter("PrimaryView"); //$NON-NLS-1$
 	}
-
 
 	/**
 	 * @generated
@@ -728,7 +719,6 @@ public class ConstraintInComponentNameEditPart extends CompartmentEditPart imple
 			}
 		}
 
-
 		super.handleNotificationEvent(event);
 	}
 
@@ -740,13 +730,10 @@ public class ConstraintInComponentNameEditPart extends CompartmentEditPart imple
 		return null;
 	}
 
-
-
 	/**
 	 * @generated
 	 */
 	private static final String ADD_PARENT_MODEL = "AddParentModel";
-
 
 	/**
 	 * @generated
@@ -773,7 +760,6 @@ public class ConstraintInComponentNameEditPart extends CompartmentEditPart imple
 
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -781,6 +767,5 @@ public class ConstraintInComponentNameEditPart extends CompartmentEditPart imple
 		removeListenerFilter(ADD_PARENT_MODEL);
 
 	}
-
 
 }

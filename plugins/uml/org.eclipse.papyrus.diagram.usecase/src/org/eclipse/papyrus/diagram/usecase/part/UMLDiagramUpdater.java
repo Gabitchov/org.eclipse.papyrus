@@ -2028,14 +2028,9 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 
-
-
-
-
 			UseCase dst = link.getAddition();
 			UseCase src = link.getIncludingCase();
 			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Include_4008, IncludeEditPart.VISUAL_ID));
-
 
 		}
 		return result;
@@ -2056,14 +2051,9 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 
-
-
-
-
 			UseCase dst = link.getExtendedCase();
 			UseCase src = link.getExtension();
 			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Extend_4009, ExtendEditPart.VISUAL_ID));
-
 
 		}
 		return result;
@@ -2084,14 +2074,9 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 
-
-
-
-
 			Classifier dst = link.getGeneral();
 			Classifier src = link.getSpecific();
 			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Generalization_4010, GeneralizationEditPart.VISUAL_ID));
-
 
 		}
 		return result;
@@ -2112,10 +2097,6 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 
-
-
-
-
 			//Papyrus GenCode 
 			List targets = link.getEndTypes();
 			Object theTarget = targets.size() >= 2 ? targets.get(1) : null;
@@ -2124,7 +2105,6 @@ public class UMLDiagramUpdater {
 			}
 			Type dst = (Type)theTarget;
 			List sources = link.getEndTypes();
-
 
 			Object theSource = sources.size() >= 1 ? sources.get(0) : null;
 
@@ -2153,10 +2133,6 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 
-
-
-
-
 			List targets = link.getSuppliers();
 			Object theTarget = targets.size() == 1 ? targets.get(0) : null;
 			if(false == theTarget instanceof NamedElement) {
@@ -2165,7 +2141,6 @@ public class UMLDiagramUpdater {
 			NamedElement dst = (NamedElement)theTarget;
 			List sources = link.getClients();
 
-
 			Object theSource = sources.size() >= 1 ? sources.get(0) : null;
 
 			if(false == theSource instanceof NamedElement) {
@@ -2173,7 +2148,6 @@ public class UMLDiagramUpdater {
 			}
 			NamedElement src = (NamedElement)theSource;
 			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Dependency_4013, DependencyEditPart.VISUAL_ID));
-
 
 		}
 		return result;
@@ -2194,10 +2168,6 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 
-
-
-
-
 			List targets = link.getSuppliers();
 			Object theTarget = targets.size() == 1 ? targets.get(0) : null;
 			if(false == theTarget instanceof NamedElement) {
@@ -2206,7 +2176,6 @@ public class UMLDiagramUpdater {
 			NamedElement dst = (NamedElement)theTarget;
 			List sources = link.getClients();
 
-
 			Object theSource = sources.size() >= 1 ? sources.get(0) : null;
 
 			if(false == theSource instanceof NamedElement) {
@@ -2214,7 +2183,6 @@ public class UMLDiagramUpdater {
 			}
 			NamedElement src = (NamedElement)theSource;
 			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Abstraction_4015, AbstractionEditPart.VISUAL_ID));
-
 
 		}
 		return result;
@@ -2235,10 +2203,6 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 
-
-
-
-
 			List targets = link.getSuppliers();
 			Object theTarget = targets.size() == 1 ? targets.get(0) : null;
 			if(false == theTarget instanceof NamedElement) {
@@ -2247,7 +2211,6 @@ public class UMLDiagramUpdater {
 			NamedElement dst = (NamedElement)theTarget;
 			List sources = link.getClients();
 
-
 			Object theSource = sources.size() >= 1 ? sources.get(0) : null;
 
 			if(false == theSource instanceof NamedElement) {
@@ -2255,7 +2218,6 @@ public class UMLDiagramUpdater {
 			}
 			NamedElement src = (NamedElement)theSource;
 			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Usage_4016, UsageEditPart.VISUAL_ID));
-
 
 		}
 		return result;
@@ -2276,10 +2238,6 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 
-
-
-
-
 			List targets = link.getSuppliers();
 			Object theTarget = targets.size() == 1 ? targets.get(0) : null;
 			if(false == theTarget instanceof NamedElement) {
@@ -2288,7 +2246,6 @@ public class UMLDiagramUpdater {
 			NamedElement dst = (NamedElement)theTarget;
 			List sources = link.getClients();
 
-
 			Object theSource = sources.size() >= 1 ? sources.get(0) : null;
 
 			if(false == theSource instanceof NamedElement) {
@@ -2296,7 +2253,6 @@ public class UMLDiagramUpdater {
 			}
 			NamedElement src = (NamedElement)theSource;
 			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Realization_4017, RealizationEditPart.VISUAL_ID));
-
 
 		}
 		return result;
@@ -2317,14 +2273,9 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 
-
-
-
-
 			Package dst = link.getMergedPackage();
 			Package src = link.getReceivingPackage();
 			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.PackageMerge_4018, PackageMergeEditPart.VISUAL_ID));
-
 
 		}
 		return result;
@@ -2345,13 +2296,8 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 
-
-
-
-
 			Package dst = link.getImportedPackage();
 			result.add(new UMLLinkDescriptor(container, dst, link, UMLElementTypes.PackageImport_4019, PackageImportEditPart.VISUAL_ID));
-
 
 		}
 		return result;
@@ -2433,7 +2379,6 @@ public class UMLDiagramUpdater {
 			}
 			List sources = link.getEndTypes();
 
-
 			Object theSource = sources.size() >= 1 ? sources.get(0) : null;
 
 			if(false == theSource instanceof Type) {
@@ -2474,7 +2419,6 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 			List sources = link.getClients();
-
 
 			Object theSource = sources.size() >= 1 ? sources.get(0) : null;
 
@@ -2517,7 +2461,6 @@ public class UMLDiagramUpdater {
 			}
 			List sources = link.getClients();
 
-
 			Object theSource = sources.size() >= 1 ? sources.get(0) : null;
 
 			if(false == theSource instanceof NamedElement) {
@@ -2545,7 +2488,6 @@ public class UMLDiagramUpdater {
 			}
 			List sources = link.getClients();
 
-
 			Object theSource = sources.size() >= 1 ? sources.get(0) : null;
 
 			if(false == theSource instanceof NamedElement) {
@@ -2572,7 +2514,6 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 			List sources = link.getClients();
-
 
 			Object theSource = sources.size() >= 1 ? sources.get(0) : null;
 
@@ -2656,17 +2597,12 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 
-
-
-
-
 			UseCase dst = link.getAddition();
 			UseCase src = link.getIncludingCase();
 			if(src != source) {
 				continue;
 			}
 			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Include_4008, IncludeEditPart.VISUAL_ID));
-
 
 		}
 		return result;
@@ -2699,17 +2635,12 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 
-
-
-
-
 			UseCase dst = link.getExtendedCase();
 			UseCase src = link.getExtension();
 			if(src != source) {
 				continue;
 			}
 			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Extend_4009, ExtendEditPart.VISUAL_ID));
-
 
 		}
 		return result;
@@ -2742,17 +2673,12 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 
-
-
-
-
 			Classifier dst = link.getGeneral();
 			Classifier src = link.getSpecific();
 			if(src != source) {
 				continue;
 			}
 			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Generalization_4010, GeneralizationEditPart.VISUAL_ID));
-
 
 		}
 		return result;
@@ -2785,10 +2711,6 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 
-
-
-
-
 			//Papyrus GenCode 
 			List targets = link.getEndTypes();
 			Object theTarget = targets.size() >= 2 ? targets.get(1) : null;
@@ -2797,7 +2719,6 @@ public class UMLDiagramUpdater {
 			}
 			Type dst = (Type)theTarget;
 			List sources = link.getEndTypes();
-
 
 			Object theSource = sources.size() >= 1 ? sources.get(0) : null;
 
@@ -2853,10 +2774,6 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 
-
-
-
-
 			List targets = link.getSuppliers();
 			Object theTarget = targets.size() == 1 ? targets.get(0) : null;
 			if(false == theTarget instanceof NamedElement) {
@@ -2864,7 +2781,6 @@ public class UMLDiagramUpdater {
 			}
 			NamedElement dst = (NamedElement)theTarget;
 			List sources = link.getClients();
-
 
 			Object theSource = sources.size() >= 1 ? sources.get(0) : null;
 
@@ -2876,7 +2792,6 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Dependency_4013, DependencyEditPart.VISUAL_ID));
-
 
 		}
 		return result;
@@ -2921,10 +2836,6 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 
-
-
-
-
 			List targets = link.getSuppliers();
 			Object theTarget = targets.size() == 1 ? targets.get(0) : null;
 			if(false == theTarget instanceof NamedElement) {
@@ -2932,7 +2843,6 @@ public class UMLDiagramUpdater {
 			}
 			NamedElement dst = (NamedElement)theTarget;
 			List sources = link.getClients();
-
 
 			Object theSource = sources.size() >= 1 ? sources.get(0) : null;
 
@@ -2944,7 +2854,6 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Abstraction_4015, AbstractionEditPart.VISUAL_ID));
-
 
 		}
 		return result;
@@ -2977,10 +2886,6 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 
-
-
-
-
 			List targets = link.getSuppliers();
 			Object theTarget = targets.size() == 1 ? targets.get(0) : null;
 			if(false == theTarget instanceof NamedElement) {
@@ -2988,7 +2893,6 @@ public class UMLDiagramUpdater {
 			}
 			NamedElement dst = (NamedElement)theTarget;
 			List sources = link.getClients();
-
 
 			Object theSource = sources.size() >= 1 ? sources.get(0) : null;
 
@@ -3000,7 +2904,6 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Usage_4016, UsageEditPart.VISUAL_ID));
-
 
 		}
 		return result;
@@ -3033,10 +2936,6 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 
-
-
-
-
 			List targets = link.getSuppliers();
 			Object theTarget = targets.size() == 1 ? targets.get(0) : null;
 			if(false == theTarget instanceof NamedElement) {
@@ -3044,7 +2943,6 @@ public class UMLDiagramUpdater {
 			}
 			NamedElement dst = (NamedElement)theTarget;
 			List sources = link.getClients();
-
 
 			Object theSource = sources.size() >= 1 ? sources.get(0) : null;
 
@@ -3056,7 +2954,6 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Realization_4017, RealizationEditPart.VISUAL_ID));
-
 
 		}
 		return result;
@@ -3089,17 +2986,12 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 
-
-
-
-
 			Package dst = link.getMergedPackage();
 			Package src = link.getReceivingPackage();
 			if(src != source) {
 				continue;
 			}
 			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.PackageMerge_4018, PackageMergeEditPart.VISUAL_ID));
-
 
 		}
 		return result;

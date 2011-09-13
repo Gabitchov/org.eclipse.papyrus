@@ -38,7 +38,6 @@ public class ExtensionPointInRectangleItemSemanticEditPolicy extends UMLBaseItem
 		super(UMLElementTypes.ExtensionPoint_3008);
 	}
 
-
 	/**
 	 * @generated
 	 */

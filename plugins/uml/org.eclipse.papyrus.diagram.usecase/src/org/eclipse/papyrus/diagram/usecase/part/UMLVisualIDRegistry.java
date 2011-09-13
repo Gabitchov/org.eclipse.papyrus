@@ -811,21 +811,15 @@ public class UMLVisualIDRegistry {
 		}
 		if(UMLPackage.eINSTANCE.getInclude().isSuperTypeOf(domainElement.eClass())
 
-
-
 		) {
 			return IncludeEditPart.VISUAL_ID;
 		}
 		if(UMLPackage.eINSTANCE.getExtend().isSuperTypeOf(domainElement.eClass())
 
-
-
 		) {
 			return ExtendEditPart.VISUAL_ID;
 		}
 		if(UMLPackage.eINSTANCE.getGeneralization().isSuperTypeOf(domainElement.eClass())
-
-
 
 		) {
 			return GeneralizationEditPart.VISUAL_ID;
@@ -867,14 +861,10 @@ public class UMLVisualIDRegistry {
 		}
 		if(UMLPackage.eINSTANCE.getPackageMerge().isSuperTypeOf(domainElement.eClass())
 
-
-
 		) {
 			return PackageMergeEditPart.VISUAL_ID;
 		}
 		if(UMLPackage.eINSTANCE.getPackageImport().isSuperTypeOf(domainElement.eClass())
-
-
 
 		) {
 			return PackageImportEditPart.VISUAL_ID;
@@ -987,122 +977,92 @@ public class UMLVisualIDRegistry {
 		viewInfo = new BaseViewInfo(4008, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
-
 		labelInfo = new BaseViewInfo(6006, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
-
 
 		labelInfo = new BaseViewInfo(6030, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
 
-
 		viewInfo = new BaseViewInfo(4009, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
-
 
 		labelInfo = new BaseViewInfo(6007, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
 
-
 		labelInfo = new BaseViewInfo(6031, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
-
 
 		viewInfo = new BaseViewInfo(4010, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
-
 		labelInfo = new BaseViewInfo(6032, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
-
 
 		viewInfo = new BaseViewInfo(4011, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
-
 		labelInfo = new BaseViewInfo(6008, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
-
 
 		labelInfo = new BaseViewInfo(6033, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
 
-
 		viewInfo = new BaseViewInfo(4012, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
-
 
 		viewInfo = new BaseViewInfo(4013, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
-
 		labelInfo = new BaseViewInfo(6010, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
-
 
 		labelInfo = new BaseViewInfo(6034, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
 
-
 		viewInfo = new BaseViewInfo(4014, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
-
 
 		viewInfo = new BaseViewInfo(4015, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
-
 		labelInfo = new BaseViewInfo(6011, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
-
 
 		labelInfo = new BaseViewInfo(6014, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
 
-
 		viewInfo = new BaseViewInfo(4016, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
-
 
 		labelInfo = new BaseViewInfo(6012, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
 
-
 		labelInfo = new BaseViewInfo(6013, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
-
 
 		viewInfo = new BaseViewInfo(4017, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
-
 		labelInfo = new BaseViewInfo(6015, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
-
 
 		labelInfo = new BaseViewInfo(6035, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
 
-
 		viewInfo = new BaseViewInfo(4018, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
-
 
 		labelInfo = new BaseViewInfo(0, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
 
-
 		viewInfo = new BaseViewInfo(4019, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
-
 
 		labelInfo = new BaseViewInfo(6017, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
 
-
 		labelInfo = new BaseViewInfo(6036, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
-
 
 		viewInfo = new BaseViewInfo(3007, ViewInfo.Node, "ExtensionPoint");
 
@@ -1112,11 +1072,9 @@ public class UMLVisualIDRegistry {
 
 		root.addNode(7014, viewInfo);
 
-
 		viewInfo = new BaseViewInfo(3008, ViewInfo.Node, "ExtensionPoint");
 
 		root.addNode(7010, viewInfo);
-
 
 		viewInfo = new BaseViewInfo(3009, ViewInfo.Node, "UseCase");
 
@@ -1126,7 +1084,6 @@ public class UMLVisualIDRegistry {
 
 		root.addNode(7015, viewInfo);
 
-
 		viewInfo = new BaseViewInfo(3016, ViewInfo.Node, "Component");
 
 		root.addNode(7017, viewInfo);
@@ -1134,7 +1091,6 @@ public class UMLVisualIDRegistry {
 		root.addNode(7015, viewInfo);
 
 		root.addNode(7011, viewInfo);
-
 
 		viewInfo = new BaseViewInfo(3015, ViewInfo.Node, "Comment");
 
@@ -1148,7 +1104,6 @@ public class UMLVisualIDRegistry {
 
 		root.addNode(7013, viewInfo);
 
-
 		viewInfo = new BaseViewInfo(3017, ViewInfo.Node, "Constraint");
 
 		root.addNode(7017, viewInfo);
@@ -1156,7 +1111,6 @@ public class UMLVisualIDRegistry {
 		root.addNode(7015, viewInfo);
 
 		root.addNode(7011, viewInfo);
-
 
 		viewInfo = new BaseViewInfo(3018, ViewInfo.Node, "Actor");
 
@@ -1166,13 +1120,11 @@ public class UMLVisualIDRegistry {
 
 		root.addNode(7011, viewInfo);
 
-
 		viewInfo = new BaseViewInfo(3010, ViewInfo.Node, "Constraint");
 
 		root.addNode(7016, viewInfo);
 
 		root.addNode(7013, viewInfo);
-
 
 		viewInfo = new BaseViewInfo(3011, ViewInfo.Node, "Actor");
 
@@ -1180,20 +1132,17 @@ public class UMLVisualIDRegistry {
 
 		root.addNode(7013, viewInfo);
 
-
 		viewInfo = new BaseViewInfo(3012, ViewInfo.Node, "UseCase");
 
 		root.addNode(7016, viewInfo);
 
 		root.addNode(7013, viewInfo);
 
-
 		viewInfo = new BaseViewInfo(3013, ViewInfo.Node, "Component");
 
 		root.addNode(7016, viewInfo);
 
 		root.addNode(7013, viewInfo);
-
 
 		viewInfo = new BaseViewInfo(3014, ViewInfo.Node, "Package");
 

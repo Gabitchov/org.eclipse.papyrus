@@ -77,7 +77,6 @@ public class UseCaseInPackageItemSemanticEditPolicy extends UMLBaseItemSemanticE
 		super(UMLElementTypes.UseCase_3012);
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -115,8 +114,6 @@ public class UseCaseInPackageItemSemanticEditPolicy extends UMLBaseItemSemanticE
 					Node cnode = (Node)cit.next();
 					switch(UMLVisualIDRegistry.getVisualID(cnode)) {
 					case ExtensionPointEditPart.VISUAL_ID:
-
-
 
 						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode.getElement(), false))); // directlyOwned: true
 						// don't need explicit deletion of cnode as parent's view deletion would clean child views as well 

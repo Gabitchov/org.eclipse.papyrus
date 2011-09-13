@@ -109,10 +109,6 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
-
-
-
-
 	/**
 	 * @generated
 	 */
@@ -161,7 +157,6 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 			return true;
 		}
 
-
 		if(childEditPart instanceof ComponentUsecases2EditPart) {
 			IFigure pane = getPrimaryShape().getUseCaseSubjectFigure_contents();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
@@ -171,7 +166,6 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 
 		return false;
 	}
-
 
 	/**
 	 * @generated
@@ -219,7 +213,6 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 		return getContentPane();
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -232,7 +225,6 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 
 		return result;
 	}
-
 
 	/**
 	 * Creates figure for this edit part.
@@ -827,15 +819,10 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 		return types;
 	}
 
-
-
-
-
 	/**
 	 * @generated NOT extends AbstractSubjectFigure to manage stereotype display
 	 */
 	public class UseCaseSubjectFigure extends AbstractSubjectFigure {
-
 
 		/**
 		 * @generated
@@ -906,9 +893,6 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 			fUseCaseSubjectFigure_contents.setLayoutManager(new StackLayout());
 		}
 
-
-
-
 		/**
 		 * @generated
 		 */
@@ -928,8 +912,6 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 			myUseLocalCoordinates = useLocalCoordinates;
 		}
 
-
-
 		/**
 		 * @generated
 		 */
@@ -944,7 +926,6 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 			return fUseCaseSubjectFigure_name;
 		}
 
-
 	}
 
 	/**
@@ -956,9 +937,6 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 	 * @generated
 	 */
 	static final Font FUSECASESUBJECTFIGURE_NAME_FONT = new Font(Display.getCurrent(), Display.getDefault().getSystemFont().getFontData()[0].getName(), 9, SWT.NORMAL);
-
-
-
 
 	/**
 	 * @generated

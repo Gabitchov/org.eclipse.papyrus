@@ -109,10 +109,6 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
-
-
-
-
 	/**
 	 * @generated
 	 */
@@ -161,7 +157,6 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 			return true;
 		}
 
-
 		if(childEditPart instanceof ComponentUsecasesEditPart) {
 			IFigure pane = getPrimaryShape().getUseCaseSubjectFigure_contents();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
@@ -171,7 +166,6 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 
 		return false;
 	}
-
 
 	/**
 	 * @generated
@@ -219,7 +213,6 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 		return getContentPane();
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -232,7 +225,6 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 
 		return result;
 	}
-
 
 	/**
 	 * Creates figure for this edit part.
@@ -906,7 +898,6 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 		 */
 		private boolean myUseLocalCoordinates = false;
 
-
 		/**
 		 * @generated
 		 */
@@ -980,6 +971,5 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 		}
 		return result;
 	}
-
 
 }
