@@ -13,15 +13,15 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.table.allocation.queries;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.facet.infra.query.core.exception.ModelQueryExecutionException;
 import org.eclipse.emf.facet.infra.query.core.java.IJavaModelQuery;
 import org.eclipse.emf.facet.infra.query.core.java.ParameterValueList;
 import org.eclipse.uml2.uml.Abstraction;
-import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Stereotype;
 
 /** Test is the element is an Abstraction */
-public class IsAllocateQuery implements IJavaModelQuery<Element, Boolean> {
+public class IsAllocateQuery implements IJavaModelQuery<EObject, Boolean> {
 
 	/**
 	 * 
@@ -33,7 +33,7 @@ public class IsAllocateQuery implements IJavaModelQuery<Element, Boolean> {
 	 * @return
 	 * @throws ModelQueryExecutionException
 	 */
-	public Boolean evaluate(final Element context, final ParameterValueList parameterValues) throws ModelQueryExecutionException {
+	public Boolean evaluate(final EObject context, final ParameterValueList parameterValues) throws ModelQueryExecutionException {
 
 		if(context instanceof Abstraction) {
 			Abstraction abstraction = (Abstraction)context;
