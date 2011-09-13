@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
  *
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,12 +9,15 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr
  *
  *****************************************************************************/
 package org.eclipse.papyrus.eclipse.project.editors.file;
 
 
 import java.io.InputStream;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
@@ -71,6 +74,7 @@ public class ClasspathEditor extends AbstractFileEditor implements IClasspathEdi
 		this.javaProject = javaProject;
 	}
 
+	@Override
 	public void init() {
 		//nothing to do here
 	}
@@ -115,7 +119,7 @@ public class ClasspathEditor extends AbstractFileEditor implements IClasspathEdi
 				e.printStackTrace();
 			}
 
-			IClasspathEntry [] entries = new IClasspathEntry[classpathes.length +1 ]; 
+			IClasspathEntry [] entries = new IClasspathEntry[classpathes.length +1 ];
 			for(int i=0;i<classpathes.length;i++){
 				entries[i] = classpathes[i];
 			}
@@ -137,7 +141,7 @@ public class ClasspathEditor extends AbstractFileEditor implements IClasspathEdi
 	public boolean isSourceFolderRegistered(final String folderPath){
 		IClasspathEntry [] entries =null;
 		try {
-			entries = 	this.javaProject.getRawClasspath();
+			entries = this.javaProject.getRawClasspath();
 		} catch (JavaModelException e) {
 			Activator.log.error(e);
 		}
@@ -200,5 +204,52 @@ public class ClasspathEditor extends AbstractFileEditor implements IClasspathEdi
 				}
 			}
 		}
+	}
+
+	public String[] getSourceFolders() {
+		List<String> sourceFolders = new LinkedList<String>();
+		IClasspathEntry[] entries = null;
+		try {
+			entries = this.javaProject.getRawClasspath();
+		} catch (JavaModelException e) {
+			Activator.log.error(e);
+		}
+
+		for(int i = 0; i < entries.length; i++) {
+			IClasspathEntry entry = entries[i];
+			if(entry.getEntryKind() == IClasspathEntry.CPE_SOURCE) {
+				sourceFolders.add(entry.getPath().makeRelativeTo(javaProject.getPath()).toString());
+			}
+		}
+
+		return sourceFolders.toArray(new String[sourceFolders.size()]);
+	}
+
+	public String[] getBinFolders() {
+		List<String> binFolders = new LinkedList<String>();
+		try {
+			//General bin folder
+			binFolders.add(javaProject.getOutputLocation().makeRelativeTo(javaProject.getPath()).toString());
+		} catch (JavaModelException ex) {
+			Activator.log.error(ex);
+		}
+		IClasspathEntry[] entries = null;
+		try {
+			entries = this.javaProject.getRawClasspath();
+		} catch (JavaModelException e) {
+			Activator.log.error(e);
+		}
+
+		for(int i = 0; i < entries.length; i++) {
+			IClasspathEntry entry = entries[i];
+			if(entry.getEntryKind() == IClasspathEntry.CPE_SOURCE) {
+				if(entry.getOutputLocation() != null) {
+					//Bin folder associated to each source folder
+					binFolders.add(entry.getOutputLocation().makeRelativeTo(javaProject.getPath()).toString());
+				}
+			}
+		}
+
+		return binFolders.toArray(new String[binFolders.size()]);
 	}
 }

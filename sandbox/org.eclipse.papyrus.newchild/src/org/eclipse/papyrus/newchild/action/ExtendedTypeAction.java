@@ -17,15 +17,16 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
-import org.eclipse.gmf.runtime.emf.type.core.commands.CreateElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.papyrus.core.utils.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.extendedtypes.ExtendedEditHelperAdvice;
 import org.eclipse.papyrus.extendedtypes.ExtendedElementTypeConfiguration;
-import org.eclipse.papyrus.extendedtypes.gmf.ExtendedEditHelperAdvice;
-import org.eclipse.papyrus.extendedtypes.gmf.ExtendedSemanticTypeDescriptor;
-import org.eclipse.papyrus.extendedtypes.gmf.types.ExtendedHintedTypeFactory;
+import org.eclipse.papyrus.extendedtypes.ExtendedSemanticTypeDescriptor;
+import org.eclipse.papyrus.extendedtypes.types.ExtendedHintedTypeFactory;
+import org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils;
+import org.eclipse.papyrus.service.edit.service.IElementEditService;
 
 
 public class ExtendedTypeAction extends Action {
@@ -57,26 +58,15 @@ public class ExtendedTypeAction extends Action {
 	@Override
 	public void run() {
 		CreateElementRequest request = new CreateElementRequest((TransactionalEditingDomain)domain, parent, elementType);
-		//			ICommand beforeCommand = advice.getBeforeEditCommand(request);
-		ICommand command = new CreateElementCommand(request);
-		//			baseCommand.getCommandResult().getReturnValue();
-		//			ConfigureRequest configure = new ConfigureRequest(parent, elementType);
-		//			ICommand afterCommand = advice.getAfterEditCommand(configure);
-		//			CompositeCommand command = new CompositeCommand(getText());
-		//
-		//			if(beforeCommand != null) {
-		//				command.add(beforeCommand);
-		//			}
-		//			if (baseCommand != null){
-		//				command.add(baseCommand);
-		//			}
-		//			if(afterCommand != null) {
-		//				command.add(afterCommand);
-		//			}
 
-		Command emfCommand = new GMFtoEMFCommandWrapper(command);
+		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(parent);
 
-		System.out.println(emfCommand.canExecute());
-		domain.getCommandStack().execute(emfCommand);
+		if(provider != null) {
+			ICommand createGMFCommand = provider.getEditCommand(request);
+
+			Command emfCommand = new GMFtoEMFCommandWrapper(createGMFCommand);
+
+			domain.getCommandStack().execute(emfCommand);
+		}
 	}
 }

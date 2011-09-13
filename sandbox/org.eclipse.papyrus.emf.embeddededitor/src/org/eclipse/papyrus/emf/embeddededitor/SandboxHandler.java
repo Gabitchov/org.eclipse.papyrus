@@ -1,3 +1,14 @@
+/*****************************************************************************
+ * Copyright (c) 2011 CEA LIST.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *****************************************************************************/
 package org.eclipse.papyrus.emf.embeddededitor;
 
 import org.eclipse.core.commands.AbstractHandler;
@@ -14,7 +25,9 @@ public class SandboxHandler extends AbstractHandler {
 		IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindowChecked(event);
 		Shell shell = window.getShell();
 
-		(new SandboxDialog(shell)).open();
+		SandboxDialog dialog = new SandboxDialog(shell);
+		dialog.setBlockOnOpen(false);
+		dialog.open();
 
 		return null;
 	}

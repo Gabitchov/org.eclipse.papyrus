@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -73,7 +73,7 @@ public class ManifestEditor extends ProjectEditor implements IManifestEditor {
 		if(this.manifestFile == null) {
 			this.manifestFile = getManifestFile();
 		}
-		if(this.manifestFile!=null){
+		if(this.manifestFile != null) {
 			try {
 				this.manifest = new Manifest(this.manifestFile.getContents());
 			} catch (IOException e) {
@@ -97,8 +97,8 @@ public class ManifestEditor extends ProjectEditor implements IManifestEditor {
 
 		//TODO : Improve the detection of existing dependency
 		//If a.b.c exists, then a.b cannot be added (Because it is already contained)
-		//Moreover, the Manifest allows newlines anywhere (Including in the 
-		//middle of a word) : check if these newlines appear in this map, 
+		//Moreover, the Manifest allows newlines anywhere (Including in the
+		//middle of a word) : check if these newlines appear in this map,
 		//or if they have already been parsed. If the manifest value is copied as-is in the map,
 		//then we need to take care of newlines when parsing it
 
@@ -235,6 +235,9 @@ public class ManifestEditor extends ProjectEditor implements IManifestEditor {
 					}
 					this.manifestFile.create(getInputStream(input), true, null);
 					this.manifestFile = getProject().getFile(MANIFEST_PATH);
+
+					manifest = new Manifest(this.manifestFile.getContents());
+
 					int i;
 					//					InputStream is = this.manifestFile.getContents();
 					//					while((i = is.read()) > 0) {
@@ -245,12 +248,10 @@ public class ManifestEditor extends ProjectEditor implements IManifestEditor {
 
 				} catch (CoreException ex) {
 					Activator.log.error(ex);
+				} catch (IOException e) {
+					Activator.log.error(e);
 				}
-				/*
-				 * catch (IOException e) {
-				 * Activator.log.error(e);
-				 * }
-				 */
+
 			}
 		}
 
@@ -258,7 +259,7 @@ public class ManifestEditor extends ProjectEditor implements IManifestEditor {
 			setBundleName(getProject().getName());
 		}
 
-		if(getBundleVersion()==null){
+		if(getBundleVersion() == null) {
 			setBundleVersion("0.0.1"); //$NON-NLS-1$
 		}
 	}
@@ -308,17 +309,47 @@ public class ManifestEditor extends ProjectEditor implements IManifestEditor {
 	}
 
 	/**
+	 * @see org.eclipse.papyrus.eclipse.project.editors.interfaces.IManifestEditor#setBundleVersion(java.lang.String)
 	 * 
-	 * @param version
+	 *      {@inheritDoc}
 	 */
 	public void setBundleVersion(String version) {
 		if(this.manifest != null) {
-
-			if(version == null) {
-				version = "0.0.1"; //$NON-NLS-1$
-			}
 			Name bundleVersion = new Name(BUNDLE_VERSION);
-			//			this.manifest.getMainAttributes().put(bundleVersion, version);
+			if(version == null) {
+				this.manifest.getMainAttributes().remove(bundleVersion);
+			} else {
+				this.manifest.getMainAttributes().put(bundleVersion, version);
+			}
+		}
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.eclipse.project.editors.interfaces.IManifestEditor#getBundleVendor()
+	 * 
+	 *      {@inheritDoc}
+	 */
+	public String getBundleVendor() {
+		if(this.manifest != null) {
+			Name bundleVendor = new Name(BUNDLE_VENDOR);
+			return this.manifest.getMainAttributes().getValue(bundleVendor);
+		}
+		return null;
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.eclipse.project.editors.interfaces.IManifestEditor#setBundleVendor(java.lang.String)
+	 * 
+	 *      {@inheritDoc}
+	 */
+	public void setBundleVendor(String vendor) {
+		if(this.manifest != null) {
+			Name bundleVendor = new Name(BUNDLE_VENDOR);
+			if(vendor == null) {
+				this.manifest.getMainAttributes().remove(bundleVendor);
+			} else {
+				this.manifest.getMainAttributes().put(bundleVendor, vendor);
+			}
 		}
 	}
 }

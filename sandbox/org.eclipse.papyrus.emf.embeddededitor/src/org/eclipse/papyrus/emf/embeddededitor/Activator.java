@@ -1,3 +1,14 @@
+/*****************************************************************************
+ * Copyright (c) 2011 CEA LIST.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *****************************************************************************/
 package org.eclipse.papyrus.emf.embeddededitor;
 
 import java.util.List;
@@ -67,10 +78,10 @@ public class Activator extends AbstractUIPlugin {
 	 * @return the customization manager in charge to adapt element in modisco
 	 */
 	public CustomizationManager getCustomizationManager() {
-		if(this.fCustomizationManager == null) {
-			this.fCustomizationManager = new CustomizationManager();
-			init(this.fCustomizationManager);
-		}
+		//		if(this.fCustomizationManager == null) {
+		this.fCustomizationManager = new CustomizationManager();
+		init(this.fCustomizationManager);
+		//		}
 		return this.fCustomizationManager;
 	}
 

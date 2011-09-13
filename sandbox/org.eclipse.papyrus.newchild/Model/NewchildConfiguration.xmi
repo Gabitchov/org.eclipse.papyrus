@@ -9,6 +9,9 @@
     <groups before="" after="">
       <submenus xsi:type="ncpolicy:NewEMFChildMenu" id="" name="New child" icon="/org.eclipse.papyrus.properties.model.edit/icons/full/obj16/Customization.gif" layout="auto"/>
       <submenus xsi:type="ncpolicy:NewEMFChildMenu" name="New sibling" icon="/org.eclipse.papyrus.properties.model.edit/icons/full/obj16/Customization.gif" createIn="parent" layout="auto"/>
+      <submenus xsi:type="newchild:MenuAction">
+        <elementType href="../../../plugin/org.eclipse.papyrus.palette.emf.test/model/Test1.extendedtypes#//@elementType.0"/>
+      </submenus>
     </groups>
   </roots>
   <newChildPolicies name="FilterNewConstraints">

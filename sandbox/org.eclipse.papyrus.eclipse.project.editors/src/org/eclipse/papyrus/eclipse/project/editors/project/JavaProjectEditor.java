@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
  *
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -174,8 +174,8 @@ public class JavaProjectEditor extends ProjectEditor implements IJavaProjectEdit
 	 * 
 	 *      {@inheritDoc}
 	 */
-	public boolean isRegistred(final String path) {
-		return this.buildEditor.isRegistred(path);
+	public boolean isRegisteredSourceFolder(final String path) {
+		return this.buildEditor.isRegisteredSourceFolder(path);
 	}
 
 	/**
@@ -194,6 +194,7 @@ public class JavaProjectEditor extends ProjectEditor implements IJavaProjectEdit
 	 * 
 	 *      {@inheritDoc}
 	 */
+	@Override
 	public Set<String> getMissingBuildCommand() {
 		Set<String> buildCommand = super.getMissingBuildCommand();
 		if(!hasBuildCommand(IJavaProjectEditor.JAVA_BUILD_COMMAND)) {
@@ -202,4 +203,43 @@ public class JavaProjectEditor extends ProjectEditor implements IJavaProjectEdit
 		return buildCommand;
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.eclipse.project.editors.interfaces.IBuildEditor#removeFromBuild(java.lang.String)
+	 * 
+	 *      {@inheritDoc}
+	 */
+	public void removeFromBuild(String path) {
+		buildEditor.removeFromBuild(path);
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.eclipse.project.editors.interfaces.IBuildEditor#getElementsInBuild()
+	 * 
+	 *      {@inheritDoc}
+	 */
+	public String[] getElementsInBuild() {
+		return buildEditor.getElementsInBuild();
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.eclipse.project.editors.interfaces.IBuildEditor#registerBinFolder(java.lang.String)
+	 * 
+	 *      {@inheritDoc}
+	 */
+	public void registerBinFolder(String binFolder) {
+		buildEditor.registerBinFolder(binFolder);
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.eclipse.project.editors.interfaces.IBuildEditor#isRegisteredBinFolder(java.lang.String)
+	 * 
+	 *      {@inheritDoc}
+	 */
+	public boolean isRegisteredBinFolder(String binFolder) {
+		return buildEditor.isRegisteredBinFolder(binFolder);
+	}
 }

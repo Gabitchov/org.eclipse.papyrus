@@ -44,8 +44,7 @@ public interface Constraint {
 	public boolean match(Object selection);
 
 	/**
-	 * Returns the view associated to this constraint, or null if the constraint is associated to another
-	 * kind of display unit (e.g. a section)
+	 * Returns the DisplayUnit associated to this constraint
 	 * 
 	 * @return
 	 *         The view associated to this constraint

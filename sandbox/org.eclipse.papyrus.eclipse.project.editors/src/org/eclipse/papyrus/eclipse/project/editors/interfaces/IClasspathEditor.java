@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
  *
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr
  *
  *****************************************************************************/
 package org.eclipse.papyrus.eclipse.project.editors.interfaces;
@@ -39,4 +40,16 @@ public interface IClasspathEditor extends IFileEditor {
 	 *         <code>true</code> if the folderPath is already registered
 	 */
 	public boolean isSourceFolderRegistered(final String folderPath);
+
+	/**
+	 * 
+	 * @return the source folders for this classpath
+	 */
+	public String[] getSourceFolders();
+
+	/**
+	 * 
+	 * @return the bin folders for this classpath
+	 */
+	public String[] getBinFolders();
 }

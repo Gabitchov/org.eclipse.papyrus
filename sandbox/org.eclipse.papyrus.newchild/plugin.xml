@@ -8,5 +8,12 @@
             uri="http://www.eclipse.org/papyrus/newchild">
       </package>
    </extension>
+   <extension
+         point="org.eclipse.emf.ecore.generated_package">
+      <package
+            class="org.eclipse.papyrus.newchild.ncpolicy.NcpolicyPackage"
+            uri="http://www.eclipse.org/papyrus/newchild/ncpolicy">
+      </package>
+   </extension>
 
 </plugin>

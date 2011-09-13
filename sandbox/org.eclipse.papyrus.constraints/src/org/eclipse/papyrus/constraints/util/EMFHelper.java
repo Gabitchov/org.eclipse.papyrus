@@ -32,6 +32,8 @@ import org.eclipse.papyrus.constraints.Activator;
  * 
  * @author Camille Letavernier
  */
+//TODO : To be refactored
+//This class is a temporary copy of oep.properties.util.EMFHelper to avoid dependencies
 public class EMFHelper {
 
 	/**

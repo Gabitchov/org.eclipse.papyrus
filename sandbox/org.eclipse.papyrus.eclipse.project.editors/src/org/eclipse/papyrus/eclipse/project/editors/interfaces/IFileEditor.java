@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
  *
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -52,6 +52,7 @@ public interface IFileEditor {
 	public void createFiles(final Set<String> files);
 
 
+	//TODO : Remove that "Throwable" exception...
 	/** save the modification on the editor */
 	public void save() throws Throwable;
 

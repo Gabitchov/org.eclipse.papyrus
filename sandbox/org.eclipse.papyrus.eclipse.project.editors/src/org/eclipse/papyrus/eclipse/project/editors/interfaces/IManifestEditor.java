@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
  *
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr
  *
  *****************************************************************************/
 package org.eclipse.papyrus.eclipse.project.editors.interfaces;
@@ -24,6 +25,9 @@ public interface IManifestEditor extends IProjectEditor, IFileEditor {
 	/** the path for the manifest file */
 	public static final String MANIFEST_PATH = "META-INF/MANIFEST.MF"; //$NON-NLS-1$
 
+	/** the path for the META-INF folder */
+	public static final String META_INF_PATH = "META-INF/"; //$NON-NLS-1$
+
 	/** the key for the bundle symbolic name */
 	public static final String BUNDLE_SYMBOLIC_NAME = "Bundle-SymbolicName"; //$NON-NLS-1$
 
@@ -32,6 +36,9 @@ public interface IManifestEditor extends IProjectEditor, IFileEditor {
 
 	/** the key for the bundle version */
 	public static final String BUNDLE_VERSION = "Bundle-Version"; //$NON-NLS-1$
+
+	/** the key for the bundle vendor */
+	public static final String BUNDLE_VENDOR = "Bundle-Vendor"; //$NON-NLS-1$
 
 	/** the build command for the manifest */
 	public static final String MANIFEST_BUILD_COMMAND = "org.eclipse.pde.ManifestBuilder"; //$NON-NLS-1$
@@ -114,4 +121,20 @@ public interface IManifestEditor extends IProjectEditor, IFileEditor {
 	 * Set the version of the bundle
 	 */
 	public void setBundleVersion(final String version);
+
+	/**
+	 * Gets this plug-in's provider
+	 * 
+	 * @return
+	 *         this plug-in's provider
+	 */
+	public String getBundleVendor();
+
+	/**
+	 * Sets this plug-in's provider
+	 * 
+	 * @param vendor
+	 *        this plug-in's provider
+	 */
+	public void setBundleVendor(final String vendor);
 }

@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -18,6 +18,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Properties;
 import java.util.Set;
 
@@ -34,6 +35,12 @@ public class BuildEditor extends AbstractFileEditor implements IBuildEditor {
 	/** the buidl file */
 	private File buildFile;
 
+	/**
+	 * The build key to edit
+	 * Defaults to "bin.includes" (The eclipse standard binary build)
+	 */
+	private String buildKey = "bin.includes"; //$NON-NLS-1$
+
 
 	/**
 	 * 
@@ -48,10 +55,30 @@ public class BuildEditor extends AbstractFileEditor implements IBuildEditor {
 
 	/**
 	 * 
+	 * Constructor.
+	 * 
+	 * @param project
+	 *        the eclipse project
+	 * @param buildKey
+	 *        the build key to edit. If null, the "bin.includes" key will be used
+	 * 
+	 * @see IBuildEditor#BINARY_BUILD
+	 * @see IBuildEditor#SOURCE_BUILD
+	 */
+	public BuildEditor(final IProject project, String buildKey) {
+		super(project);
+		if(buildKey != null) {
+			this.buildKey = buildKey;
+		}
+	}
+
+	/**
+	 * 
 	 * @see org.eclipse.papyrus.eclipse.project.editors.project.ProjectEditor#init()
 	 * 
 	 *      {@inheritDoc}
 	 */
+	@Override
 	public void init() {
 		this.buildConfig = new Properties();
 		this.buildFile = getBuildProperties();
@@ -78,12 +105,38 @@ public class BuildEditor extends AbstractFileEditor implements IBuildEditor {
 	 *      {@inheritDoc}
 	 */
 	public void addToBuild(final String path) {
-		if(exists() && !isRegistred(path)) {
-			String currentValue = this.buildConfig.getProperty(BUILD_KEY);
+		if(exists()) {
+			String currentValue = this.buildConfig.getProperty(buildKey);
+			if(Arrays.asList(getElementsInBuild()).contains(path)) {
+				return;
+			}
 			if(currentValue == null || currentValue.trim().equals("")) { //$NON-NLS-1$
-				this.buildConfig.setProperty(BUILD_KEY, path);
+				this.buildConfig.setProperty(buildKey, path);
 			} else {
-				this.buildConfig.setProperty(BUILD_KEY, currentValue + "," + path); //$NON-NLS-1$
+				this.buildConfig.setProperty(buildKey, currentValue + "," + path); //$NON-NLS-1$
+			}
+		}
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.eclipse.project.editors.interfaces.IBuildEditor#removeFromBuild(java.lang.String)
+	 * 
+	 *      {@inheritDoc}
+	 */
+	public void removeFromBuild(String path) {
+		if(isRegisteredSourceFolder(path)) {
+			//Get the files from the build
+			List<String> allFiles = Arrays.asList(getElementsInBuild());
+
+			//Clear the build
+			this.buildConfig.setProperty(buildKey, "");
+
+			//Recreate the build without the removed files
+			for(String filePath : allFiles) {
+				if(!filePath.equals(path)) {
+					addToBuild(filePath);
+				}
 			}
 		}
 	}
@@ -109,7 +162,7 @@ public class BuildEditor extends AbstractFileEditor implements IBuildEditor {
 	 *      {@inheritDoc}
 	 */
 	public void registerSourceFolder(final String path) {
-		if(exists() && !isRegistred(path)) {
+		if(exists() && !isRegisteredSourceFolder(path)) {
 			String currentValue = this.buildConfig.getProperty(SOURCE_FOLDER_KEY);
 			if(currentValue == null || currentValue.trim().equals("")) { //$NON-NLS-1$
 				this.buildConfig.setProperty(SOURCE_FOLDER_KEY, path);
@@ -125,7 +178,7 @@ public class BuildEditor extends AbstractFileEditor implements IBuildEditor {
 	 * 
 	 *      {@inheritDoc}
 	 */
-	public boolean isRegistred(final String path) {
+	public boolean isRegisteredSourceFolder(final String path) {
 		return Arrays.asList(getSourceFolders()).contains(path);
 	}
 
@@ -152,14 +205,11 @@ public class BuildEditor extends AbstractFileEditor implements IBuildEditor {
 	 */
 	public String[] getSourceFolders() {
 		if(exists()) {
-			String currentValue = this.buildConfig.getProperty(SOURCE_FOLDER_KEY);
-			if(currentValue != null) {
-				String[] values = currentValue.split(","); //$NON-NLS-1$
-				return values;
-			}
+			String currentValue = this.buildConfig.getProperty(SOURCE_FOLDER_KEY, "").replace("\t|\r|\n", "");
+			String[] values = currentValue.split(","); //$NON-NLS-1$
+			return values;
 		}
 		return new String[0];
-
 	}
 
 	/**
@@ -193,5 +243,42 @@ public class BuildEditor extends AbstractFileEditor implements IBuildEditor {
 				}
 			}
 		}
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.eclipse.project.editors.interfaces.IBuildEditor#getElementsInBuild()
+	 * 
+	 *      {@inheritDoc}
+	 */
+	public String[] getElementsInBuild() {
+		String value = this.buildConfig.getProperty(buildKey);
+		return splitValues(value);
+	}
+
+	private String[] splitValues(String value) {
+		if(value == null) {
+			return new String[0];
+		}
+		return value.replace("\t|\r|\n", "").split(","); //$NON-NLS-1$ //$NON-NLS-2$
+	}
+
+	public void registerBinFolder(String binFolder) {
+		if(isRegisteredBinFolder(binFolder)) {
+			return;
+		}
+
+		String value = this.buildConfig.getProperty(BIN_KEY, ""); //$NON-NLS-1$
+		if(value.trim().equals("")) { //$NON-NLS-1$
+			value = binFolder;
+		} else {
+			value = value + "," + binFolder;
+		}
+		this.buildConfig.setProperty(BIN_KEY, value);
+	}
+
+	public boolean isRegisteredBinFolder(String binFolder) {
+		List<String> folders = Arrays.asList(splitValues(this.buildConfig.getProperty(BIN_KEY, ""))); //$NON-NLS-1$
+		return folders.contains(binFolder);
 	}
 }
