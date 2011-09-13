@@ -77,7 +77,6 @@ import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageEditPartCN;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageEditPartTN;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageImportAppliedStereotypeEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageImportEditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageImportVisibilityEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageMergeEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageNameEditPartCN;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageNameEditPartTN;
@@ -791,9 +790,6 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case PackageImportEditPart.VISUAL_ID:
-			if(PackageImportVisibilityEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
 			if(PackageImportAppliedStereotypeEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
@@ -1057,9 +1053,6 @@ public class UMLVisualIDRegistry {
 
 		viewInfo = new BaseViewInfo(4019, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
-
-		labelInfo = new BaseViewInfo(6017, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
 
 		labelInfo = new BaseViewInfo(6036, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
