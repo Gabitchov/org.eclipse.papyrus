@@ -43,6 +43,7 @@ import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.Column;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance2.TableInstance2;
 import org.eclipse.emf.facet.widgets.nattable.internal.NatTableWidgetInternalUtils;
 import org.eclipse.emf.facet.widgets.nattable.tableconfiguration.TableConfiguration;
+import org.eclipse.emf.facet.widgets.nattable.tableconfiguration2.TableConfiguration2;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.workspace.AbstractEMFOperation;
 import org.eclipse.jface.dialogs.Dialog;
@@ -321,7 +322,7 @@ public abstract class AbstractCreateNattableEditorCommand extends AbstractHandle
 	 */
 	@Deprecated
 	protected TableConfiguration getTableConfiguration() {
-		return null;
+		return getTableConfiguration2();
 	}
 
 	/**
@@ -331,7 +332,7 @@ public abstract class AbstractCreateNattableEditorCommand extends AbstractHandle
 	 *         the table configuration of the table
 	 * 
 	 */
-	protected TableConfiguration getTableConfiguration2() {
+	protected TableConfiguration2 getTableConfiguration2() {
 		return null;
 	}
 
