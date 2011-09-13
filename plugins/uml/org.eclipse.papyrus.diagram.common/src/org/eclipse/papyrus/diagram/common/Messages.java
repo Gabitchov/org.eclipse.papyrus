@@ -76,6 +76,9 @@ public class Messages extends NLS {
 	/** Label to be displayed on {@link org.eclipse.uml2.uml.PackageImport} links */
 	public static String AppliedStereotypeLabel_PackageImportTag;
 
+	/** Label to be displayed on {@link org.eclipse.uml2.uml.PackageImport} links with reduced visibility */
+	public static String AppliedStereotypeLabel_PackageImportAccessTag;
+
 	/** Label to be displayed on {@link org.eclipse.uml2.uml.PackageMerge} links */
 	public static String AppliedStereotypeLabel_PackageMergeTag;
 

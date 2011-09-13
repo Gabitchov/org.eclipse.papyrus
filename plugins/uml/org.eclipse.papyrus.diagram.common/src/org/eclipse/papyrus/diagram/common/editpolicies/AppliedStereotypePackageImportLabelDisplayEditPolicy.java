@@ -13,8 +13,12 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.common.editpolicies;
 
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.diagram.common.Messages;
 import org.eclipse.uml2.uml.PackageImport;
+import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.VisibilityKind;
 
 /**
  * Edit Policy for Applied Stereotype Label for {@link PackageImport}.
@@ -25,11 +29,30 @@ import org.eclipse.uml2.uml.PackageImport;
  */
 public class AppliedStereotypePackageImportLabelDisplayEditPolicy extends AppliedStereotypeLinkLabelDisplayEditPolicy {
 
-	/**
-	 * Creates a new AppliedStereotypePackageImportLabelDisplayEditPolicy, with the correct tag.
-	 */
-	public AppliedStereotypePackageImportLabelDisplayEditPolicy() {
-		super(Messages.AppliedStereotypeLabel_PackageImportTag);
+	String importTag = Activator.ST_LEFT + Messages.AppliedStereotypeLabel_PackageImportTag + Activator.ST_RIGHT;
+	String accessTag = Activator.ST_LEFT + Messages.AppliedStereotypeLabel_PackageImportAccessTag + Activator.ST_RIGHT;
+
+	@Override
+	public void activate() {
+		super.activate();
+		if (hostSemanticElement instanceof PackageImport) {
+			changeTag(((PackageImport)hostSemanticElement).getVisibility());
+		}
 	}
 
+	public void notifyChanged(Notification notification) {
+		super.notifyChanged(notification);
+		if (UMLPackage.Literals.PACKAGE_IMPORT__VISIBILITY.equals(notification.getFeature())) {
+			changeTag((VisibilityKind)notification.getNewValue());
+		}
+	}
+
+	protected void changeTag(VisibilityKind visibility) {
+		if (VisibilityKind.PUBLIC_LITERAL.equals(visibility)) {
+			tag = importTag;
+		} else {
+			tag = accessTag;
+		}
+		refreshDisplay();
+	}
 }
