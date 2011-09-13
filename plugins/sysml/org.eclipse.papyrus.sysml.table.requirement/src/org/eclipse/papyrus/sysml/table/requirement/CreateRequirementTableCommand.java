@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.facet.widgets.nattable.internal.Messages;
 import org.eclipse.emf.facet.widgets.nattable.tableconfiguration.TableConfiguration;
+import org.eclipse.emf.facet.widgets.nattable.tableconfiguration2.TableConfiguration2;
 import org.eclipse.papyrus.sysml.table.requirement.editor.RequirementTableEditor;
 import org.eclipse.papyrus.sysml.util.SysmlResource;
 import org.eclipse.papyrus.table.common.handlers.AbstractCreateNattableEditorCommand;
@@ -55,21 +56,20 @@ public class CreateRequirementTableCommand extends AbstractCreateNattableEditorC
 	 * @return
 	 */
 	@Override
-	protected TableConfiguration getTableConfiguration() {
+	protected TableConfiguration getTableConfiguration2() {
 		ResourceSet resourceSet = new ResourceSetImpl();
 
 		String symbolicName = org.eclipse.papyrus.sysml.table.requirement.Activator.getDefault().getBundle().getSymbolicName();
-		URI uri = URI.createPlatformPluginURI(symbolicName + "/resources/requirements.tableconfiguration", true); //$NON-NLS-1$
+		URI uri = URI.createPlatformPluginURI(symbolicName + "/resources/requirements.tableconfiguration2", true); //$NON-NLS-1$
 		Resource resource = resourceSet.getResource(uri, true);
 
-		TableConfiguration tableConfiguration = null;
-		if(resource.getContents().get(0) instanceof org.eclipse.emf.facet.widgets.nattable.tableconfiguration.TableConfiguration) {
-			tableConfiguration = (TableConfiguration)resource.getContents().get(0);
+		TableConfiguration2 tableConfiguration = null;
+		if(resource.getContents().get(0) instanceof TableConfiguration2) {
+			tableConfiguration = (TableConfiguration2)resource.getContents().get(0);
 			return tableConfiguration;
 		}
 		return null; 
 	}
-	
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.table.common.handlers.AbstractCreateNattableEditorCommand#isEnabled()

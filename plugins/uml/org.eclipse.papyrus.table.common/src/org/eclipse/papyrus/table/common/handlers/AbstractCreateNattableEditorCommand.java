@@ -224,7 +224,7 @@ public abstract class AbstractCreateNattableEditorCommand extends AbstractHandle
 		Assert.isNotNull(context);
 		List<EObject> elements = getInitialElement(papyrusTable, context);
 
-		TableInstance2 tableInstance = NatTableWidgetUtils.createTableInstance(elements, defaultDescription, getTableConfiguration(), getTableContext(), null);
+		TableInstance2 tableInstance = NatTableWidgetUtils.createTableInstance(elements, defaultDescription, getTableConfiguration2(), getTableContext(), null);
 		tableInstance.setDescription(description);
 
 		// Save the model in the associated resource
@@ -293,7 +293,7 @@ public abstract class AbstractCreateNattableEditorCommand extends AbstractHandle
 			}
 		}
 	}
- 
+
 	/**
 	 * Returns the list of the columns to hide. Currently, the name can be :
 	 * <ul>
@@ -310,13 +310,28 @@ public abstract class AbstractCreateNattableEditorCommand extends AbstractHandle
 	}
 
 	/**
-	 * Returns the table configura
-	 * tion for the table
+	 * Returns the table configuration for the table
+	 * 
+	 * {@link Deprecated} // use getTableConfiguration2
 	 * 
 	 * @return
 	 *         the table configuration of the table
+	 *         FIXME should be removed in Papyrus 0.9.0
+	 * 
 	 */
-	protected TableConfiguration getTableConfiguration(){
+	@Deprecated
+	protected TableConfiguration getTableConfiguration() {
+		return null;
+	}
+
+	/**
+	 * Returns the table configuration for the table
+	 * 
+	 * @return
+	 *         the table configuration of the table
+	 * 
+	 */
+	protected TableConfiguration getTableConfiguration2() {
 		return null;
 	}
 
@@ -446,6 +461,5 @@ public abstract class AbstractCreateNattableEditorCommand extends AbstractHandle
 		List<QueryRepresentation> list = new ArrayList<QueryRepresentation>();
 		return list;
 	}
-
 
 }
