@@ -120,7 +120,6 @@ public class PackageItemSemanticEditPolicyTN extends UMLBaseItemSemanticEditPoli
 					switch(UMLVisualIDRegistry.getVisualID(cnode)) {
 					case ConstraintInPackageEditPart.VISUAL_ID:
 
-
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
 							switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -165,7 +164,6 @@ public class PackageItemSemanticEditPolicyTN extends UMLBaseItemSemanticEditPoli
 						break;
 					case ActorInPackageEditPart.VISUAL_ID:
 
-
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
 							switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -209,7 +207,6 @@ public class PackageItemSemanticEditPolicyTN extends UMLBaseItemSemanticEditPoli
 						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
 						break;
 					case UseCaseInPackageEditPart.VISUAL_ID:
-
 
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
@@ -259,7 +256,6 @@ public class PackageItemSemanticEditPolicyTN extends UMLBaseItemSemanticEditPoli
 						break;
 					case ComponentInPackageEditPart.VISUAL_ID:
 
-
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
 							switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -304,7 +300,6 @@ public class PackageItemSemanticEditPolicyTN extends UMLBaseItemSemanticEditPoli
 						break;
 					case PackageEditPartCN.VISUAL_ID:
 
-
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
 							switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -347,7 +342,6 @@ public class PackageItemSemanticEditPolicyTN extends UMLBaseItemSemanticEditPoli
 						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
 						break;
 					case CommentEditPartCN.VISUAL_ID:
-
 
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();

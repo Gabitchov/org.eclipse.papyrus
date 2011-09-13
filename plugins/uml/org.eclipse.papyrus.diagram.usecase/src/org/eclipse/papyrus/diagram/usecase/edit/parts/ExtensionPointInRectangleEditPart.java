@@ -114,8 +114,6 @@ public class ExtensionPointInRectangleEditPart extends CompartmentEditPart imple
 	 */
 	private String defaultText;
 
-
-
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
 	 * 
@@ -129,8 +127,6 @@ public class ExtensionPointInRectangleEditPart extends CompartmentEditPart imple
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
-
-
 
 	/**
 	 * @generated
@@ -595,8 +591,6 @@ public class ExtensionPointInRectangleEditPart extends CompartmentEditPart imple
 		return getPrimaryView();
 	}
 
-
-
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
@@ -700,8 +694,6 @@ public class ExtensionPointInRectangleEditPart extends CompartmentEditPart imple
 		}
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -717,8 +709,6 @@ public class ExtensionPointInRectangleEditPart extends CompartmentEditPart imple
 		super.removeNotationalListeners();
 		removeListenerFilter("PrimaryView"); //$NON-NLS-1$
 	}
-
-
 
 	/**
 	 * @generated

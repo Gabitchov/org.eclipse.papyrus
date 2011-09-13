@@ -21,7 +21,6 @@ import org.eclipse.papyrus.diagram.common.helper.StereotypeFigureHelper;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
 
-
 public abstract class AbstractSubjectFigure extends RectangleFigure implements IPapyrusNodeUMLElementFigure {
 
 	static final Color THIS_BACK = new Color(null, 245, 245, 245);

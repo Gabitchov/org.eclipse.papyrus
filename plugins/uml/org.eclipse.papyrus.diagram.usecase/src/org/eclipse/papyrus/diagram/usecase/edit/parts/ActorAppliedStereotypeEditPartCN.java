@@ -84,9 +84,7 @@ import org.eclipse.ui.PlatformUI;
  */
 public class ActorAppliedStereotypeEditPartCN
 
-
 extends LabelEditPart
-
 
 implements ITextAwareEditPart, IBorderItemEditPart, IPapyrusEditPart {
 
@@ -115,8 +113,6 @@ implements ITextAwareEditPart, IBorderItemEditPart, IPapyrusEditPart {
 	 */
 	private String defaultText;
 
-
-
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
 	 * 
@@ -130,8 +126,6 @@ implements ITextAwareEditPart, IBorderItemEditPart, IPapyrusEditPart {
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
-
-
 
 	/**
 	 * @generated
@@ -610,8 +604,6 @@ implements ITextAwareEditPart, IBorderItemEditPart, IPapyrusEditPart {
 		return getPrimaryView();
 	}
 
-
-
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
@@ -714,8 +706,6 @@ implements ITextAwareEditPart, IBorderItemEditPart, IPapyrusEditPart {
 			e.printStackTrace();
 		}
 	}
-
-
 
 	/**
 	 * @generated

@@ -30,7 +30,6 @@ import org.eclipse.papyrus.diagram.usecase.command.CreateExtensionPointCommand;
 import org.eclipse.papyrus.diagram.usecase.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.Extend;
 
-
 /**
  * The custom policy CreateExtensionPointEditPolicy thats create an extension point with extend creation
  */

@@ -94,10 +94,6 @@ ShapeNodeEditPart {
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
-
-
-
-
 	/**
 	 * @generated
 	 */
@@ -140,10 +136,8 @@ ShapeNodeEditPart {
 			return true;
 		}
 
-
 		return false;
 	}
-
 
 	/**
 	 * @generated
@@ -182,7 +176,6 @@ ShapeNodeEditPart {
 		return getContentPane();
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -195,7 +188,6 @@ ShapeNodeEditPart {
 
 		return result;
 	}
-
 
 	/**
 	 * Creates figure for this edit part.
@@ -790,21 +782,15 @@ ShapeNodeEditPart {
 		return types;
 	}
 
-
-
-
-
 	/**
 	 * @generated
 	 */
 	public class ActorAsRectangleFigure extends RectangleFigure {
 
-
 		/**
 		 * @generated
 		 */
 		private WrappingLabel fActorAsRectangleFigure_name;
-
 
 		/**
 		 * @generated
@@ -829,13 +815,10 @@ ShapeNodeEditPart {
 		 */
 		private void createContents() {
 
-
 			WrappingLabel actorAsRectangleFigure_fixed_actor0 = new WrappingLabel();
 			actorAsRectangleFigure_fixed_actor0.setText("\u00ABactor\u00BB");
 
 			this.add(actorAsRectangleFigure_fixed_actor0);
-
-
 
 			RectangleFigure actorAsRectangleFigure_NameContainer0 = new RectangleFigure();
 			actorAsRectangleFigure_NameContainer0.setFill(false);
@@ -846,22 +829,14 @@ ShapeNodeEditPart {
 
 			CenterLayout layoutActorAsRectangleFigure_NameContainer0 = new CenterLayout();
 
-
 			actorAsRectangleFigure_NameContainer0.setLayoutManager(layoutActorAsRectangleFigure_NameContainer0);
-
-
 
 			fActorAsRectangleFigure_name = new WrappingLabel();
 			fActorAsRectangleFigure_name.setText("");
 
 			actorAsRectangleFigure_NameContainer0.add(fActorAsRectangleFigure_name);
 
-
-
 		}
-
-
-
 
 		/**
 		 * @generated
@@ -882,8 +857,6 @@ ShapeNodeEditPart {
 			myUseLocalCoordinates = useLocalCoordinates;
 		}
 
-
-
 		/**
 		 * @generated
 		 */
@@ -891,11 +864,7 @@ ShapeNodeEditPart {
 			return fActorAsRectangleFigure_name;
 		}
 
-
 	}
-
-
-
 
 	/**
 	 * @generated

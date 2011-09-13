@@ -41,7 +41,6 @@ import org.eclipse.uml2.uml.Extend;
 import org.eclipse.uml2.uml.ExtensionPoint;
 import org.eclipse.uml2.uml.UseCase;
 
-
 public class CreateExtensionPointCommand extends Command {
 
 	/** The command to create the extension point */
@@ -64,7 +63,6 @@ public class CreateExtensionPointCommand extends Command {
 
 	/** adapter to get the extend element */
 	private IAdaptable adapter;
-
 
 	public CreateExtensionPointCommand(IHintedType elementType, AbstractEditPart compartmentPart, EObject container, IAdaptable adapter) {
 		elementCreationCommand = getElementCreationCommand(container, elementType);

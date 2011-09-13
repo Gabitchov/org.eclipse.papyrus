@@ -29,5 +29,4 @@ public class UseCaseDiagramCreationCondition extends PerspectiveContextDependenc
 		return false;
 	}
 
-
 }

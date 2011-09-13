@@ -99,10 +99,6 @@ AbstractBorderedShapeEditPart {
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
-
-
-
-
 	/**
 	 * @generated
 	 */
@@ -155,7 +151,6 @@ AbstractBorderedShapeEditPart {
 		return (StickMan)primaryShape;
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -181,7 +176,6 @@ AbstractBorderedShapeEditPart {
 
 		return result;
 	}
-
 
 	/**
 	 * Creates figure for this edit part.
@@ -770,10 +764,6 @@ AbstractBorderedShapeEditPart {
 		}
 		return types;
 	}
-
-
-
-
 
 	/**
 	 * @generated

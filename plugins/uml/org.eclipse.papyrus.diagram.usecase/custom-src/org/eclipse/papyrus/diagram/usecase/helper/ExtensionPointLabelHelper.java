@@ -76,6 +76,4 @@ public class ExtensionPointLabelHelper extends StereotypedElementLabelHelper {
 		return ((NamedElement)getUMLElement(editPart)).getName();
 	}
 
-
-
 }

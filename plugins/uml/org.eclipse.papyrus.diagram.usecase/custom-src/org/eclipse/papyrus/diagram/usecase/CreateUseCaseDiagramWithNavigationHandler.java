@@ -15,7 +15,6 @@ package org.eclipse.papyrus.diagram.usecase;
 
 import org.eclipse.papyrus.navigation.CreateDiagramWithNavigationHandler;
 
-
 public class CreateUseCaseDiagramWithNavigationHandler extends CreateDiagramWithNavigationHandler {
 
 	public CreateUseCaseDiagramWithNavigationHandler() {

@@ -44,7 +44,6 @@ import org.eclipse.uml2.uml.UMLPackage;
  */
 public class UseCasePointsInPackageCanonicalEditPolicy extends CanonicalEditPolicy {
 
-
 	/**
 	 * @generated
 	 */

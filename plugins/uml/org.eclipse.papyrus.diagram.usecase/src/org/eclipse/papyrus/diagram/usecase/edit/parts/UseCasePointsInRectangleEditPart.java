@@ -36,8 +36,6 @@ import org.eclipse.papyrus.diagram.usecase.part.Messages;
  */
 public class UseCasePointsInRectangleEditPart
 
-
-
 extends ResizeableListCompartmentEditPart
 
 {
@@ -68,7 +66,6 @@ extends ResizeableListCompartmentEditPart
 		return Messages.UseCasePointsInRectangleEditPart_title;
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -80,15 +77,11 @@ extends ResizeableListCompartmentEditPart
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 		installEditPolicy(DuplicatePasteEditPolicy.PASTE_ROLE, new DuplicatePasteEditPolicy());
 
-
 		//in Papyrus diagrams are not strongly synchronised
 		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.diagram.usecase.edit.policies.UseCasePointsInRectangleCanonicalEditPolicy());
 
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
 	}
-
-
-
 
 	/**
 	 * @generated
@@ -97,8 +90,6 @@ extends ResizeableListCompartmentEditPart
 		// nothing to do -- parent layout does not accept Double constraints as ratio
 		// super.setRatio(ratio); 
 	}
-
-
 
 	/**
 	 * @generated
