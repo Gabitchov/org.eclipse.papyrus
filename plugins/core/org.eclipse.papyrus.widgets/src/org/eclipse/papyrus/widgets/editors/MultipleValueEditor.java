@@ -11,9 +11,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.widgets.editors;
 
+import java.util.Arrays;
 import java.util.Collection;
-import java.util.LinkedList;
-import java.util.List;
 
 import org.eclipse.core.databinding.observable.ChangeEvent;
 import org.eclipse.core.databinding.observable.IChangeListener;
@@ -355,6 +354,11 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 		}
 
 		if(modelProperty != null) {
+			//			Object[] initialSelection = new Object[modelProperty.size()];
+			//			int i = 0;
+			//			for(Object semanticObject : modelProperty) {
+			//				initialSelection[i++] = containObject(semanticObject);
+			//			}
 			dialog.setInitialSelections(modelProperty.toArray());
 		} else {
 			dialog.setInitialSelections(new Object[0]);
@@ -372,25 +376,14 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 			return;
 		}
 
-		List<Object> resultElements = new LinkedList<Object>();
-		for(Object r : result) {
-			resultElements.add(adaptResult(r));
-		}
+		//		List<Object> resultElements = new LinkedList<Object>();
+		//		for(Object r : result) {
+		//			resultElements.add(adaptResult(r));
+		//		}
 
-		modelProperty.addAll(resultElements);
+		modelProperty.addAll(Arrays.asList(result));
 
 		commit();
-	}
-
-	/**
-	 * Transforms the selected result object to the actual
-	 * semantic object, if needed
-	 * 
-	 * @param result
-	 * @return
-	 */
-	protected Object adaptResult(Object result) {
-		return result;
 	}
 
 	@Override

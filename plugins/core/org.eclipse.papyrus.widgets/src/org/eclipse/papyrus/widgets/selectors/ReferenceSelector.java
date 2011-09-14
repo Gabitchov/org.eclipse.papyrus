@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,6 +12,7 @@
 package org.eclipse.papyrus.widgets.selectors;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -20,7 +21,6 @@ import java.util.Set;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.papyrus.widgets.editors.IElementSelectionListener;
@@ -33,12 +33,15 @@ import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.TreeItem;
 import org.eclipse.ui.dialogs.FilteredTree;
 import org.eclipse.ui.dialogs.PatternFilter;
 
 
 /**
  * A Selector for Multiple Reference values, with a filter
+ * 
+ * This selector is compatible with {@link org.eclipse.papyrus.widgets.providers.IAdaptableContentProvider}
  * 
  * @author Camille Letavernier
  * 
@@ -82,6 +85,8 @@ public class ReferenceSelector implements IElementSelector {
 	/**
 	 * The set of selected elements. If the selector is marked as "unique",
 	 * these elements will be filtered in the Tree.
+	 * 
+	 * The Elements are in their container form
 	 */
 	protected Set<Object> selectedElements = new HashSet<Object>();
 
@@ -116,13 +121,67 @@ public class ReferenceSelector implements IElementSelector {
 		ISelection selection = fTree.getViewer().getSelection();
 
 		if(selection instanceof IStructuredSelection) {
-			Object[] elementsToMove = getElementsToMove(((IStructuredSelection)selection).toArray());
-
-			addSelectedElements(elementsToMove);
-			return elementsToMove;
+			Object[] containerElementsToMove = getElementsToMove(((IStructuredSelection)selection).toArray());
+			Object[] semanticElementsToMove = getSemanticElements(containerElementsToMove);
+			addSelectedElements(containerElementsToMove);
+			return semanticElementsToMove;
 		}
 
 		return new Object[0];
+	}
+
+	/**
+	 * This method is used for handling correctly the IAdaptableContentProvider
+	 * The objects can be in two different forms :
+	 * - The semantic element
+	 * - The container element
+	 * 
+	 * This methods returns an array of container elements from an array of
+	 * semantic elements. This is useful when specifying a selection to a
+	 * viewer using an IAdaptableContentProvider
+	 * 
+	 * @param semanticElements
+	 *        The array of semantic elements to be converted
+	 * @return
+	 *         The array of elements wrapped in their container
+	 * 
+	 * @see #getSemanticElements(Object[])
+	 * @see org.eclipse.papyrus.widgets.providers.IAdaptableContentProvider
+	 */
+	private Object[] getContainerElements(Object[] semanticElements) {
+		Object[] containerElements = new Object[semanticElements.length];
+		int i = 0;
+		for(Object semanticElement : semanticElements) {
+			containerElements[i++] = contentProvider.getContainerValue(semanticElement);
+		}
+		return containerElements;
+	}
+
+	/**
+	 * This method is used for handling correctly the IAdaptableContentProvider
+	 * The objects can be in two different forms :
+	 * - The semantic element
+	 * - The container element
+	 * 
+	 * This methods returns an array of semantic elements from an array of
+	 * container elements. This is useful for retrieving the semantic elements
+	 * from a viewer's selection when the viewer uses an IAdaptableContentProvider
+	 * 
+	 * @param containerElements
+	 *        The array of elements wrapped in their container
+	 * @return
+	 *         The array of semantic elements to be converted
+	 * 
+	 * @see #getContainerElements(Object[])
+	 * @see org.eclipse.papyrus.widgets.providers.IAdaptableContentProvider
+	 */
+	private Object[] getSemanticElements(Object[] containerElements) {
+		Object[] semanticElements = new Object[containerElements.length];
+		int i = 0;
+		for(Object containerElement : containerElements) {
+			semanticElements[i++] = contentProvider.getAdaptedValue(containerElement);
+		}
+		return semanticElements;
 	}
 
 	/**
@@ -154,9 +213,9 @@ public class ReferenceSelector implements IElementSelector {
 	 * 
 	 * @param elements
 	 */
-	private void addSelectedElements(Object[] elements) {
-		if(elements.length > 0) {
-			selectedElements.addAll(Arrays.asList(elements));
+	private void addSelectedElements(Object[] containerElements) {
+		if(containerElements.length > 0) {
+			selectedElements.addAll(Arrays.asList(containerElements));
 			fTree.getViewer().refresh();
 		}
 	}
@@ -177,11 +236,35 @@ public class ReferenceSelector implements IElementSelector {
 			return new Object[0];
 		}
 
-		fTree.getViewer().refresh();
-		fTree.getViewer().setSelection(new StructuredSelection(contentProvider.getElements()));
-		Object[] elementsToMove = getElementsToMove(((IStructuredSelection)fTree.getViewer().getSelection()).toArray());
-		addSelectedElements(elementsToMove);
-		return elementsToMove;
+		Collection<Object> visibleElements = new LinkedList<Object>();
+		for(TreeItem rootItem : fTree.getViewer().getTree().getItems()) {
+			visibleElements.add(getElement(rootItem));
+			if(rootItem.getExpanded()) {
+				fillVisibleElements(rootItem, visibleElements);
+			}
+		}
+
+		//		fTree.getViewer().refresh();
+		//		fTree.getViewer().setSelection(new StructuredSelection(visibleElements));
+
+		//		Object[] containerElementsToMove = getElementsToMove(((IStructuredSelection)fTree.getViewer().getSelection()).toArray());
+		Object[] containerElementsToMove = getElementsToMove(visibleElements.toArray());
+		Object[] semanticElementsToMove = getSemanticElements(containerElementsToMove);
+		addSelectedElements(containerElementsToMove);
+		return semanticElementsToMove;
+	}
+
+	private void fillVisibleElements(TreeItem item, Collection<Object> visibleElements) {
+		for(TreeItem childItem : item.getItems()) {
+			visibleElements.add(getElement(childItem));
+			if(childItem.getExpanded()) {
+				fillVisibleElements(childItem, visibleElements);
+			}
+		}
+	}
+
+	private Object getElement(TreeItem item) {
+		return item.getData();
 	}
 
 	/**
@@ -190,9 +273,9 @@ public class ReferenceSelector implements IElementSelector {
 	 * 
 	 * @param elements
 	 */
-	public void setSelectedElements(Object[] elements) {
+	public void setSelectedElements(Object[] semanticElements) {
 		selectedElements.clear();
-		selectedElements.addAll(Arrays.asList(elements));
+		selectedElements.addAll(Arrays.asList(getContainerElements(semanticElements)));
 		fTree.getViewer().refresh();
 	}
 
@@ -313,9 +396,9 @@ public class ReferenceSelector implements IElementSelector {
 
 	//	/**
 	//	 * A Text field to let the user type its own filter
-	//	 * 
+	//	 *
 	//	 * @author Camille Letavernier
-	//	 * 
+	//	 *
 	//	 */
 	//	private class Filter extends Composite implements KeyListener {
 	//
@@ -348,7 +431,7 @@ public class ReferenceSelector implements IElementSelector {
 	//		/**
 	//		 * Adds a listener on this filter. The listener is notified
 	//		 * each time the filter changes
-	//		 * 
+	//		 *
 	//		 * @param listener
 	//		 */
 	//		public void addChangeListener(Listener listener) {
