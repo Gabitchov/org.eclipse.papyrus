@@ -62,15 +62,42 @@
          <toolbar
                toolbarID="org.eclipse.papyrus.table.ui.toolbar">
          </toolbar>
-         <command
-               commandID="org.eclipse.ui.window.preferences">
-         </command>
          <toolbar
                toolbarID="org.eclipse.emf.facet.widgets.nattable.workbench.editor.NatTableEditor.toolbar">
          </toolbar>
          <category
                categoryID="org.eclipse.emf.facet.widgets.nattable.command.category">
          </category>
+         
+         
+         <command
+               commandID="org.eclipse.ui.window.preferences">
+         </command>
+         <category
+               categoryID="org.eclipse.ui.category.dialogs">
+         </category>
+         <category
+               categoryID="org.eclipse.ui.category.update">
+         </category>
+         <actionSet
+               actionSetID="org.eclipse.ui.cheatsheets.actionSet">
+         </actionSet>
+         <actionSet
+               actionSetID="org.eclipse.mylyn.doc.actionSet">
+         </actionSet>
+         <command
+               commandID="org.eclipse.amalgam.discovery.modeling.commands.discoveryCommand">
+         </command>
+         <command
+               commandID="org.eclipse.equinox.p2.ui.sdk.install">
+         </command>
+         <command
+               commandID="org.eclipse.equinox.p2.ui.sdk.update">
+         </command>
+         <command
+               commandID="org.eclipse.epp.mpc.ui.command.showMarketplaceWizard">
+         </command>
+         
       </configuration>
    </extension>
 
