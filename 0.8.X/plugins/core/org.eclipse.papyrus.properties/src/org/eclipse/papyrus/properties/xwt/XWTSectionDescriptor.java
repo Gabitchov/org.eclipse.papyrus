@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -29,7 +29,9 @@ public class XWTSectionDescriptor extends AbstractSectionDescriptor {
 
 	private Section section;
 
-	private ISection displaySection;
+	private View view;
+
+	private DisplayEngine display;
 
 	/**
 	 * 
@@ -45,7 +47,8 @@ public class XWTSectionDescriptor extends AbstractSectionDescriptor {
 	 */
 	public XWTSectionDescriptor(Section section, View view, DisplayEngine display) {
 		this.section = section;
-		displaySection = new XWTSection(section, view, display);
+		this.view = view;
+		this.display = display;
 	}
 
 	public String getId() {
@@ -53,7 +56,7 @@ public class XWTSectionDescriptor extends AbstractSectionDescriptor {
 	}
 
 	public ISection getSectionClass() {
-		return displaySection;
+		return new XWTSection(section, view, display);
 	}
 
 	public String getTargetTab() {
@@ -62,7 +65,7 @@ public class XWTSectionDescriptor extends AbstractSectionDescriptor {
 
 	@Override
 	public String toString() {
-		return "Section " + getId() + " => " + displaySection; //$NON-NLS-1$ //$NON-NLS-2$
+		return "Section " + getId(); //$NON-NLS-1$
 	}
 
 	@Override
