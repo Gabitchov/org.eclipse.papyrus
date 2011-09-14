@@ -104,5 +104,4 @@ public class XWTTabDescriptor extends AbstractTabDescriptor {
 	public int getPriority() {
 		return tab.getPriority();
 	}
-
 }
