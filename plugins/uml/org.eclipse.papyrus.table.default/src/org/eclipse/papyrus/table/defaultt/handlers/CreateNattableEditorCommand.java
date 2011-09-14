@@ -14,9 +14,14 @@
 
 package org.eclipse.papyrus.table.defaultt.handlers;
 
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.facet.widgets.nattable.tableconfiguration2.TableConfiguration2;
 import org.eclipse.papyrus.table.common.handlers.AbstractCreateNattableEditorCommand;
+import org.eclipse.papyrus.table.defaultt.Activator;
 import org.eclipse.papyrus.table.defaultt.editor.DefaultNattableEditor;
-
 
 /**
  * @author dumoulin
@@ -33,4 +38,23 @@ public class CreateNattableEditorCommand extends AbstractCreateNattableEditorCom
 		super(DefaultNattableEditor.EDITOR_TYPE, DefaultNattableEditor.DEFAULT_NAME);
 	}
 
+	/**
+	 * 
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected TableConfiguration2 getTableConfiguration2() {
+		ResourceSet resourceSet = new ResourceSetImpl();
+
+		String symbolicName = Activator.getInstance().getBundle().getSymbolicName();
+		URI uri = URI.createPlatformPluginURI(symbolicName + "/resources/default.tableconfiguration2", true); //$NON-NLS-1$
+		Resource resource = resourceSet.getResource(uri, true);
+
+		TableConfiguration2 tableConfiguration = null;
+		if(resource.getContents().get(0) instanceof TableConfiguration2) {
+			tableConfiguration = (TableConfiguration2)resource.getContents().get(0);
+			return tableConfiguration;
+		}
+		return null;
+	}
 }
