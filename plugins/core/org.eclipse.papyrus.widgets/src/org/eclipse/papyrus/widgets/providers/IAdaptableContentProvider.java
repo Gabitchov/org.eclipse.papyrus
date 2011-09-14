@@ -15,26 +15,28 @@ import org.eclipse.jface.viewers.IStructuredContentProvider;
 
 /**
  * A content provider that can be adapted from container value
- * to semantic value. Useful when you want to provide wrapped
- * values.
+ * to semantic value. Useful when you want to display wrapped
+ * values, but still keep an access to the actual semantic values
  * 
  * @author Camille Letavernier
  */
 public interface IAdaptableContentProvider extends IStructuredContentProvider {
 
 	/**
-	 * Returns the actual Object contained in the given selection
+	 * Returns the semantic Object contained in the given selection
 	 * 
-	 * @param selection
+	 * @param containerElement
 	 * @return
+	 *         The semantic element contained in the given containerElement
 	 */
-	public Object getAdaptedValue(Object selection);
+	public Object getAdaptedValue(Object containerElement);
 
 	/**
-	 * Return an object containing the given selection
+	 * Return an object wrapping the given semanticElement
 	 * 
-	 * @param selection
+	 * @param semanticElement
 	 * @return
+	 *         The container object wrapping the semantic element
 	 */
-	public Object getContainerValue(Object selection);
+	public Object getContainerValue(Object semanticElement);
 }

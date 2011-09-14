@@ -14,7 +14,6 @@ package org.eclipse.papyrus.widgets.editors;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.widgets.providers.EmptyContentProvider;
-import org.eclipse.papyrus.widgets.providers.IAdaptableContentProvider;
 import org.eclipse.papyrus.widgets.providers.IStaticContentProvider;
 import org.eclipse.papyrus.widgets.providers.WrappedLabelProvider;
 import org.eclipse.papyrus.widgets.selectors.ReferenceSelector;
@@ -112,13 +111,5 @@ public class MultipleReferenceEditor extends MultipleValueEditor {
 	public void setUnique(boolean unique) {
 		selector.setUnique(unique);
 		super.setUnique(unique);
-	}
-
-	@Override
-	protected Object adaptResult(Object result) {
-		if(contentProvider instanceof IAdaptableContentProvider) {
-			return ((IAdaptableContentProvider)contentProvider).getAdaptedValue(result);
-		}
-		return result;
 	}
 }
