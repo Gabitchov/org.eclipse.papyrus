@@ -341,5 +341,6 @@ public class DataSource implements IChangeListener {
 		for(ModelElement element : elements.values()) {
 			element.dispose();
 		}
+		elements.clear();
 	}
 }

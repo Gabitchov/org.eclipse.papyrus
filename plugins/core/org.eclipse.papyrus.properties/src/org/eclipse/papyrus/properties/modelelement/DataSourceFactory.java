@@ -30,6 +30,9 @@ import org.eclipse.papyrus.widgets.Activator;
  * 
  * @author Camille Letavernier
  */
+//FIXME : sources is never cleared (Memory leak)
+//TODO : The DataSource probably don't need a factory. Most methods are related
+//to ModelElement.
 public class DataSourceFactory {
 
 	/**
@@ -47,15 +50,19 @@ public class DataSourceFactory {
 	 * @return
 	 *         The DataSource that can be passed to the DisplayEngine to display the view
 	 */
+	//FIXME : sources is never cleared (Memory leak)
+	//We maintain pointers to all selected elements
 	public DataSource createDataSourceFromSelection(IStructuredSelection selection, View view) {
-		SelectionEntry selectionEntry = new SelectionEntry(selection, view);
+		//FIX : The cache is not needed anymore
+		//		SelectionEntry selectionEntry = new SelectionEntry(selection, view);
 
-		if(!sources.containsKey(selectionEntry)) {
-			DataSource source = new DataSource(view, selection);
-			sources.put(selectionEntry, source);
-		}
-
-		return sources.get(selectionEntry);
+		//		if(!sources.containsKey(selectionEntry)) {
+		//			DataSource source = new DataSource(view, selection);
+		//			sources.put(selectionEntry, source);
+		//		}
+		//
+		//		return sources.get(selectionEntry);
+		return new DataSource(view, selection);
 	}
 
 	/**
@@ -69,8 +76,18 @@ public class DataSourceFactory {
 	 *         The matching modelElement
 	 */
 	public ModelElement getModelElementFromPropertyPath(DataSource source, String propertyPath) {
-		ModelElement modelElement = findModelElement(source, propertyPath);
-		return modelElement;
+		String key = propertyPath.substring(0, propertyPath.lastIndexOf(":")); //$NON-NLS-1$
+		for(Context context : Util.getDependencies(source.getView().getContext())) {
+			DataContextElement element = Util.getContextElementByQualifiedName(key, context.getDataContexts());
+			if(element != null) {
+				ModelElement modelElement = DataSourceFactory.instance.createModelElement(element, source.getSelection());
+				if(modelElement != null) {
+					modelElement.setDataSource(source);
+				}
+				return modelElement;
+			}
+		}
+		return null;
 	}
 
 	/**
@@ -152,21 +169,6 @@ public class DataSourceFactory {
 		return getQualifiedName(context.getPackage()) + ":" + context.getName(); //$NON-NLS-1$
 	}
 
-	private ModelElement findModelElement(DataSource source, String propertyPath) {
-		String key = propertyPath.substring(0, propertyPath.lastIndexOf(":")); //$NON-NLS-1$
-		for(Context context : Util.getDependencies(source.getView().getContext())) {
-			DataContextElement element = Util.getContextElementByQualifiedName(key, context.getDataContexts());
-			if(element != null) {
-				ModelElement modelElement = DataSourceFactory.instance.createModelElement(element, source.getSelection());
-				if(modelElement != null) {
-					modelElement.setDataSource(source);
-				}
-				return modelElement;
-			}
-		}
-		return null;
-	}
-
 	/**
 	 * Singleton Constructor.
 	 */
@@ -178,6 +180,7 @@ public class DataSourceFactory {
 	//		return getRootPackage(context).getName();
 	//	}
 
+	@Deprecated
 	private class SelectionEntry {
 
 		private IStructuredSelection selection;
@@ -205,5 +208,6 @@ public class DataSourceFactory {
 		}
 	}
 
+	@Deprecated
 	private Map<SelectionEntry, DataSource> sources = new HashMap<SelectionEntry, DataSource>();
 }
