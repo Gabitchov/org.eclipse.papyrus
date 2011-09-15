@@ -125,8 +125,8 @@ public class ProxyManager implements IProxyManager {
 	 */
 	public EObject getEObjectFromStrategy(URI uri) throws MissingResourceException {
 		// ask the strategy if the resource of the uri must be loaded
-		boolean loadOnDemand = loadResource(uri);
 		URI trimFragment = uri.trimFragment();
+		boolean loadOnDemand = loadResource(trimFragment);
 		// accept to recover object, either if strategy provides it, or if it has already been loaded anyway
 		Resource resource = modelSet.getResource(trimFragment, loadOnDemand);
 		if(resource != null) {
