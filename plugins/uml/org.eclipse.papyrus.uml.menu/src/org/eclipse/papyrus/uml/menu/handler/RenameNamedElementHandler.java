@@ -27,9 +27,9 @@ import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.modelexplorer.handler.AbstractCommandHandler;
 import org.eclipse.papyrus.modelexplorer.handler.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.properties.util.EMFHelper;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.NamedElement;
-
 /**
  * This handler allows to rename {@link NamedElement}
  * 
@@ -84,6 +84,22 @@ public class RenameNamedElementHandler extends AbstractCommandHandler {
 		}
 
 		return null;
+	}
+
+	/**
+	 * 
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean isEnabled() {
+		boolean enabled = super.isEnabled();
+		if(enabled) {
+			List<EObject> selectedElements = getSelectedElements();
+			EObject selection = selectedElements.get(0);
+			//FIXME : EMFHelper should be moved
+			enabled = !EMFHelper.isReadOnly(selection);
+		}
+		return enabled;
 	}
 
 }
