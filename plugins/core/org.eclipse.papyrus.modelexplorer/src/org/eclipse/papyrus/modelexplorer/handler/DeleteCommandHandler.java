@@ -15,6 +15,7 @@
 package org.eclipse.papyrus.modelexplorer.handler;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.commands.IHandler;
@@ -24,6 +25,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
+import org.eclipse.papyrus.properties.util.EMFHelper;
 import org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.service.edit.service.IElementEditService;
 
@@ -108,6 +110,16 @@ public class DeleteCommandHandler extends AbstractCommandHandler implements IHan
 	 */
 	@Override
 	public boolean isEnabled() {
+		//we need to test if selected element is not a meta-class
+
+		List<EObject> selectedElements = getSelectedElements();
+		for(EObject current : selectedElements) {
+			//FIXME EMFHelper should be moved in an utils plugin
+			if(EMFHelper.isReadOnly(current)) {
+				return false;
+			}
+		}
+
 		// Don't compute the delete command to know if it is enabled,
 		// it can be WAY too slow...
 		return true;

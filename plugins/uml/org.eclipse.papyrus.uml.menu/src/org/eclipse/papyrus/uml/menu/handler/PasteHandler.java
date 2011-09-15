@@ -19,6 +19,7 @@ import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.papyrus.properties.util.EMFHelper;
 import org.eclipse.papyrus.uml.menu.command.PasteElementCommand;
 
 /**
@@ -43,6 +44,21 @@ public class PasteHandler extends AbstractEMFCommandHandler {
 			return new PasteElementCommand(editingDomain, selection.get(0));
 		}
 		return UnexecutableCommand.INSTANCE;
+	}
+
+	/**
+	 * 
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean isEnabled() {
+		boolean enabled = super.isEnabled();
+		if(enabled) {
+			List<EObject> selectedElements = getSelectedElements();
+			EObject selection = selectedElements.get(0);
+			enabled = !EMFHelper.isReadOnly(selection);
+		}
+		return enabled;
 	}
 
 }
