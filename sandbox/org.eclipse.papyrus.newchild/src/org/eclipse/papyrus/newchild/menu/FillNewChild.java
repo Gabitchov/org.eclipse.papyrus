@@ -12,7 +12,11 @@
 package org.eclipse.papyrus.newchild.menu;
 
 import java.io.IOException;
-import java.util.HashMap;
+import java.text.Collator;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -65,7 +69,7 @@ public class FillNewChild extends FillMenu implements FillElement {
 		//TODO : Extract that to a static instance, and load with extension point
 		policyManager = new PolicyManager();
 		try {
-			NewchildConfiguration configuration = (NewchildConfiguration)EMFHelper.loadEMFModel(null, URI.createPlatformResourceURI("org.eclipse.papyrus.newchild/Model/NewchildConfiguration.xmi", true));
+			NewchildConfiguration configuration = (NewchildConfiguration)EMFHelper.loadEMFModel(null, URI.createPlatformPluginURI("org.eclipse.papyrus.newchild/Model/NewchildConfiguration.xmi", true));
 			policyManager.addConfiguration(configuration);
 		} catch (IOException ex) {
 			Activator.log.error(ex);
@@ -94,12 +98,44 @@ public class FillNewChild extends FillMenu implements FillElement {
 
 		IMenuManager createChildMenu = getSubMenu(menuManager);
 
-		Map<EStructuralFeature, List<EClass>> instantiableClasses = new HashMap<EStructuralFeature, List<EClass>>();
+		Map<EStructuralFeature, List<EClass>> instantiableClasses = new LinkedHashMap<EStructuralFeature, List<EClass>>();
 
-		for(EStructuralFeature feature : parentEObject.eClass().getEAllStructuralFeatures()) {
+		List<EStructuralFeature> features = new LinkedList<EStructuralFeature>(parentEObject.eClass().getEAllStructuralFeatures());
+		Collections.sort(features, new Comparator<EStructuralFeature>() {
+
+			public int compare(EStructuralFeature feature1, EStructuralFeature feature2) {
+				if(feature1 == null) {
+					if(feature2 == null) {
+						return 0;
+					}
+					return -1;
+				}
+
+				return Collator.getInstance().compare(feature1.getName(), feature2.getName());
+			}
+
+		});
+
+		for(EStructuralFeature feature : features) {
 			if(feature instanceof EReference && ((EReference)feature).isContainment()) {
 				EClass type = (EClass)feature.getEType();
-				instantiableClasses.put(feature, EMFHelper.getSubclassesOf(type, true));
+				List<EClass> eClasses = EMFHelper.getSubclassesOf(type, true);
+				Collections.sort(eClasses, new Comparator<EClass>() {
+
+					public int compare(EClass class1, EClass class2) {
+						if(class1 == null) {
+							if(class2 == null) {
+								return 0;
+							}
+							return -1;
+						}
+
+						return Collator.getInstance().compare(class1.getName(), class2.getName());
+					}
+
+				});
+
+				instantiableClasses.put(feature, eClasses);
 			}
 		}
 

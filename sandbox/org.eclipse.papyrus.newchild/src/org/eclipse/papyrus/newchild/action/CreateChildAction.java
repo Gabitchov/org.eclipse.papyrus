@@ -52,7 +52,7 @@ public class CreateChildAction extends StaticSelectionCommandAction {
 
 		Command createInFeature = CreateChildCommand.create(domain, parent, creationParameter, collection);
 
-		super.setText(createInFeature.getLabel());
+		//		super.setText(createInFeature.getLabel());
 		super.setDescription(createInFeature.getDescription());
 		if(createInFeature instanceof CommandActionDelegate) {
 
@@ -64,5 +64,10 @@ public class CreateChildAction extends StaticSelectionCommandAction {
 		}
 
 		return createInFeature;
+	}
+
+	@Override
+	public String getText() {
+		return createAs.getName();
 	}
 }
