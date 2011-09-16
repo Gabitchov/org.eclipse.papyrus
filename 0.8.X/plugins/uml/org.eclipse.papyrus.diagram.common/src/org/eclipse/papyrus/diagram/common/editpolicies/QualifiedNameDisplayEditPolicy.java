@@ -198,11 +198,13 @@ public class QualifiedNameDisplayEditPolicy extends GraphicalEditPolicy implemen
 			if(parentListeners == null) {
 				parentListeners = new ArrayList<Object>();
 			}
-			EObject parentEOBject = getNamedElement().eContainer();
-			while(parentEOBject != null) {
-				diagramEventBroker.addNotificationListener(parentEOBject, this);
-				parentListeners.add(parentEOBject);
-				parentEOBject = parentEOBject.eContainer();
+			if (getNamedElement() != null) {
+				EObject parentEOBject = getNamedElement().eContainer();
+				while(parentEOBject != null) {
+					diagramEventBroker.addNotificationListener(parentEOBject, this);
+					parentListeners.add(parentEOBject);
+					parentEOBject = parentEOBject.eContainer();
+				}
 			}
 		}
 	}
