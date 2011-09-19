@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.papyrus.commands;singleton:=true
+Bundle-Version: 0.8.1.qualifier
+Bundle-Activator: org.eclipse.papyrus.commands.Activator
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.ui.workbench,
+ org.eclipse.papyrus.log,
+ org.eclipse.gmf.runtime.common.core,
+ org.eclipse.emf.common,
+ org.eclipse.gef,
+ org.eclipse.gmf.runtime.diagram.ui
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: org.eclipse.papyrus.commands,
+ org.eclipse.papyrus.commands.wrappers
