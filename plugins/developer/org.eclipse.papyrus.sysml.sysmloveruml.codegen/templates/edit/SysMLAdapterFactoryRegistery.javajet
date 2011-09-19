@@ -1,0 +1,193 @@
+<%@ jet package="org.eclipse.emf.codegen.ecore.templates.model" imports="import java.util.HashMap org.eclipse.papyrus.sysml.sysmloveruml.codegen.generationUtils.SysMLOverUMLHelper org.eclipse.emf.ecore.EClass java.util.* org.eclipse.emf.codegen.ecore.genmodel.*" class="SysMLadapterFactoryRegistryMap" version="$Id: SysMLadapterFactoryRegistryMap.javajet,v 1.13 2011/09/01 15:53:17 emerks Exp $" %>
+<%
+/*****************************************************************************
+ * Copyright (c) 2011 Atos.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *   Atos - Initial API and implementation
+ *
+ *****************************************************************************/
+%>
+<%GenModel genModel = (GenModel)argument; /* Trick to import java.util.* without warnings */Iterator.class.getName();%>
+/*****************************************************************************
+ * Copyright (c) 2011 Atos.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *   Atos - Initial API and implementation
+ *****************************************************************************/
+package <%=SysMLOverUMLHelper.getAdapterFactoryRegistryPackageName()%>;
+<%genModel.addImport("org.eclipse.uml2.uml.Package");%>
+<%genModel.addImport("org.eclipse.emf.edit.provider.ItemProviderAdapter");%>
+<%genModel.addImport("org.eclipse.uml2.uml.Class");%>
+<%genModel.addImport("org.eclipse.emf.common.notify.Adapter");%>
+<%genModel.addImport("org.eclipse.emf.common.notify.Notifier");%>
+<%genModel.addImport("org.eclipse.emf.common.notify.impl.AdapterFactoryImpl");%>
+<%genModel.addImport("org.eclipse.emf.ecore.EObject");%>
+<%genModel.addImport("org.eclipse.emf.ecore.EPackage");%>
+<%genModel.addImport("org.eclipse.uml2.uml.*");%>
+<%genModel.addImport("org.eclipse.papyrus.sysml.extendedelements.IComposableAdapterFactory");%>
+<%genModel.addImport("org.eclipse.uml2.uml.UMLPackage");%>
+
+
+<%genModel.addImport("org.eclipse.papyrus.sysml.extendedelements.AdapterFactoryImplExtended");%>
+<%for ( GenPackage genPackage : genModel.getAllGenPackagesWithConcreteClasses() ) { %>
+		<%genModel.addImport(genPackage.getItemProviderAdapterFactoryClassName());%>
+<%}%>
+
+/**
+ * Get a registry of all SysML Adapter Factory classified by the UML class their
+ * correspond.
+ * 
+ * Example:
+ * 
+ * <Class.class> ->[ModelelementsItemProviderAdapterFactory,
+ * BlocksAdapterItemProviderFactory, RequirementsAdapterItemProviderFactory]
+ * 
+ * @generated
+ */
+public class <%=SysMLOverUMLHelper.getAdapterFactoryRegistryClassName()%>
+{
+	<%HashMap<GenPackage,String> varaibleStoreName = new HashMap<GenPackage,String>();%>
+	<%for ( GenPackage genPackage : genModel.getAllGenPackagesWithConcreteClasses() ) { %>
+	/**
+	 * Keep track of the item provider of type <%=genPackage.getItemProviderAdapterFactoryClassName()%>
+	 * @generated
+    */
+    	<%varaibleStoreName.put(genPackage,genPackage.getUncapAdapterFactoryClassName()+"ItemProvider");%>
+		protected <%=genPackage.getItemProviderAdapterFactoryClassName()%> <%=genPackage.getUncapAdapterFactoryClassName()%>ItemProvider;
+	<%}%>
+	/**
+	 * Registry for all SysML AdapterFactory
+	 * @generated
+	 */
+	private List<AdapterFactory> adapterFactoryRegistry = new ArrayList<AdapterFactory>(<%=genModel.getAllGenPackagesWithConcreteClasses().size()%>);
+	
+	
+	/**
+    * Registry of all {@link AdapterFactory} classified by corresponding UML element
+	 * @generated
+    */
+	private HashMap<EClass,ArrayList<AdapterFactory>> adapterFactoryRegistryMap = new HashMap<EClass,ArrayList<AdapterFactory>>();
+	/**
+	 * Default adapterFactory
+	 * @generated
+	 */
+	private UMLItemProviderAdapterFactory defaultAdapterFactory = new UMLItemProviderAdapterFactory();
+	/**
+	 * Constructor + initialize
+    * @generated
+    */
+	private <%=SysMLOverUMLHelper.getAdapterFactoryRegistryClassName()%> (){
+	/**
+	 * Initialize all AdapterFactories
+    */
+			<%for ( GenPackage genPackage : genModel.getAllGenPackagesWithConcreteClasses() ) { %>
+    			<%=varaibleStoreName.get(genPackage)%> = new <%=genPackage.getItemProviderAdapterFactoryClassName()%>();
+				adapterFactoryRegistry.add(<%=varaibleStoreName.get(genPackage)%>);
+			<%}%>
+			<%	TreeMap<String, Set<GenPackage>> result = SysMLOverUMLHelper.getSortedEClassBasedElementFromModel(genModel);%>
+			<%for(Map.Entry<String,Set<GenPackage>> entry : result.entrySet()) {%>
+			  <%boolean isFirst = true;%>
+			  <%String key = entry.getKey();%>
+			  <%Set<GenPackage> value = entry.getValue();%>
+				 <% for (GenPackage genPackageAux : value) {%>
+				 	<% if (isFirst) {%>
+				 	<%isFirst = false;%>
+				 	/**
+					 * AdapterFactories for the <%=key%> elements
+					 */
+						 adapterFactoryRegistryMap.put(UMLPackage.Literals.<%=key%>,new ArrayList<AdapterFactory>(Collections.singletonList(<%=varaibleStoreName.get(genPackageAux)%>)));
+					<%} else { %>
+				  		 adapterFactoryRegistryMap.get(UMLPackage.Literals.<%=key%>).add(<%=varaibleStoreName.get(genPackageAux)%>);
+				  <%}%>				
+				<%}%>
+			<%}%>
+	}
+	/**
+	 * Singleton holder
+    * @generated
+    */
+	private static class SingletonHolder {
+		protected static <%=SysMLOverUMLHelper.getAdapterFactoryRegistryClassName()%> instance = null;
+		static {
+			instance = new <%=SysMLOverUMLHelper.getAdapterFactoryRegistryClassName()%>();
+		}
+	}
+	/**
+    * @generated
+    */
+	public static <%=SysMLOverUMLHelper.getAdapterFactoryRegistryClassName()%> getSingleton() {
+		return SingletonHolder.instance;
+	}
+	/**
+	 * Get the default AdapterFactory
+	 * @return List<AdapterFactory> return the default adapter factory (UML)
+	 * @generated
+	 */
+	public AdapterFactory getDefaultAdapterFactory() {
+		return (AdapterFactory)defaultAdapterFactory;
+	}
+	
+	/**
+	 * Get the list of all AdapterFactory for this type
+	 * @param Object element
+	 * @return List<AdapterFactory> List of all the adapter factories which can handle the object element
+	 * @generated
+	 */
+	public List<AdapterFactory> getAdapterFactoriesForType(Object element){
+	if (element instanceof EObject) {
+			EObject eObject = (EObject) element;
+			ArrayList<AdapterFactory> result = adapterFactoryRegistryMap.get(eObject.eClass());
+			if ( result != null){				
+				return result;
+			} else {
+				return Collections.singletonList(getDefaultAdapterFactory());
+			}
+		} else {
+			throw new RuntimeException("org.eclipse.papyrus.sysml.edit.utils.SysmlRegistryAdapterFactoryRegistery : This factory only works with EOBjects");
+		}
+	}
+	
+	/**
+	 * Set the the root AdapterFactory for all registered adapter factory
+	 * @param AdapterFactory The adapter factory which will be the root
+	 * @generated
+	 */
+	 public void setRootAdapterFactory(IRootAdapterFactory adapter){
+	 	for (AdapterFactory adap : adapterFactoryRegistry) {
+	 		if ( adap instanceof IComposableAdapterFactory){
+	 			((IComposableAdapterFactory)adap).setRootAdapterFactory(adapter);
+	 		}
+	 	}
+	 }
+	 /**
+	  * Get a map of all UML ItemProvider needed
+	  * @generated
+	  */
+	 public HashMap<EClass,ItemProviderAdapter> getUMLItemProviderClassifedByUMLElement(AdapterFactory rootAdapterFactory){
+	 		HashMap<EClass,ItemProviderAdapter> result = new HashMap<EClass,ItemProviderAdapter>();
+	 		<%for (EClass umlElement: SysMLOverUMLHelper.getAllUMLElementNameFromModel(genModel)) { %>
+	 			result.put(UMLPackage.Literals.<%=SysMLOverUMLHelper.getClassifierCorrectLabel(umlElement)%>,new <%=umlElement.getName()%>ItemProvider(rootAdapterFactory));
+	 		<%}%>
+	 		return result;
+	 }
+	 			
+	
+	
+	
+
+	
+} //<%=SysMLOverUMLHelper.getAdapterFactoryRegistryPackageName()%>;
+<%genModel.emitSortedImports();%>
