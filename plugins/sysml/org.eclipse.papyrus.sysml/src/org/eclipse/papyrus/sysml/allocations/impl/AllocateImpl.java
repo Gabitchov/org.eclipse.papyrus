@@ -162,5 +162,4 @@ public class AllocateImpl extends EObjectImpl implements Allocate {
 		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, AllocationsPackage.ALLOCATE__BASE_ABSTRACTION, oldBase_Abstraction, base_Abstraction));
 	}
-
 } // AllocateImpl

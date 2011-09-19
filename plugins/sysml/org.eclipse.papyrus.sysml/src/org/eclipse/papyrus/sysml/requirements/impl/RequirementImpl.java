@@ -143,15 +143,12 @@ public class RequirementImpl extends EObjectImpl implements Requirement {
 		// This should return the TestCase verifying current Requirement
 		Requirement master = null;
 		Copy currentCopy = null;
-
 		if(getBase_Class() != null) {
 			Iterator<Dependency> itDep = getBase_Class().getClientDependencies().iterator();
-
 			// Find Copy link
 			while(itDep.hasNext()) {
 				Dependency currentDep = itDep.next();
 				currentCopy = (Copy)ElementUtil.hasStereotype(currentDep, RequirementsPackage.eINSTANCE.getCopy());
-
 				if(currentCopy != null) {
 					EList<NamedElement> suppliers = currentCopy.getBase_Abstraction().getSuppliers();
 					Iterator<NamedElement> it = suppliers.iterator();
@@ -313,15 +310,12 @@ public class RequirementImpl extends EObjectImpl implements Requirement {
 		// This should return the Requirement(s) derived from current
 		EList<Requirement> derived = new BasicEList<Requirement>();
 		DeriveReqt currentDeriveReqt = null;
-
 		if(getBase_Class() != null) {
 			Iterator<DirectedRelationship> itDep = getBase_Class().getTargetDirectedRelationships().iterator();
-
 			// Find DeriveReqt link
 			while(itDep.hasNext()) {
 				DirectedRelationship currentDirectedRelationship = itDep.next();
 				currentDeriveReqt = (DeriveReqt)ElementUtil.hasStereotype(currentDirectedRelationship, RequirementsPackage.eINSTANCE.getDeriveReqt());
-
 				if(currentDeriveReqt != null) {
 					EList<NamedElement> clients = currentDeriveReqt.getBase_Abstraction().getClients();
 					Iterator<NamedElement> it = clients.iterator();
@@ -349,12 +343,10 @@ public class RequirementImpl extends EObjectImpl implements Requirement {
 		DeriveReqt currentDeriveReqt = null;
 		if(getBase_Class() != null) {
 			Iterator<DirectedRelationship> itDep = getBase_Class().getSourceDirectedRelationships().iterator();
-
 			// Find DeriveReqt link
 			while(itDep.hasNext()) {
 				DirectedRelationship currentDRelationship = itDep.next();
 				currentDeriveReqt = (DeriveReqt)ElementUtil.hasStereotype(currentDRelationship, RequirementsPackage.eINSTANCE.getDeriveReqt());
-
 				if(currentDeriveReqt != null) {
 					EList<NamedElement> suppliers = currentDeriveReqt.getBase_Abstraction().getSuppliers();
 					Iterator<NamedElement> it = suppliers.iterator();
@@ -399,15 +391,12 @@ public class RequirementImpl extends EObjectImpl implements Requirement {
 		// This should return the NamedElement(s) that refine current Requirement
 		EList<NamedElement> refinedBy = new BasicEList<NamedElement>();
 		Refine currentRefine = null;
-
 		if(getBase_Class() != null) {
 			Iterator<DirectedRelationship> itDep = getBase_Class().getTargetDirectedRelationships().iterator();
-
 			// Find Refine link
 			while(itDep.hasNext()) {
 				DirectedRelationship currentDRelationship = itDep.next();
 				currentRefine = (Refine)ElementUtil.hasStereotype(currentDRelationship, StandardPackage.eINSTANCE.getRefine());
-
 				if(currentRefine != null) {
 					refinedBy.addAll(currentRefine.getBase_Abstraction().getClients());
 				}
@@ -426,15 +415,12 @@ public class RequirementImpl extends EObjectImpl implements Requirement {
 		// This should return the NamedElement(s) that satisfy current Requirement
 		EList<NamedElement> satisfyBy = new BasicEList<NamedElement>();
 		Satisfy currentSatisfy = null;
-
 		if(getBase_Class() != null) {
 			Iterator<DirectedRelationship> itDep = getBase_Class().getTargetDirectedRelationships().iterator();
-
 			// Find Satisfy link
 			while(itDep.hasNext()) {
 				DirectedRelationship currentDRelationship = itDep.next();
 				currentSatisfy = (Satisfy)ElementUtil.hasStereotype(currentDRelationship, RequirementsPackage.eINSTANCE.getSatisfy());
-
 				if(currentSatisfy != null) {
 					satisfyBy.addAll(currentSatisfy.getBase_Abstraction().getClients());
 				}
@@ -464,15 +450,12 @@ public class RequirementImpl extends EObjectImpl implements Requirement {
 		// for which this requirement is a supplier.
 		EList<NamedElement> tracedTo = new BasicEList<NamedElement>();
 		Trace currentTrace = null;
-
 		if(getBase_Class() != null) {
 			Iterator<DirectedRelationship> itDep = getBase_Class().getTargetDirectedRelationships().iterator();
-
 			// Find Trace link
 			while(itDep.hasNext()) {
 				DirectedRelationship currentDR = itDep.next();
 				currentTrace = ElementUtil.getStereotypeApplication(currentDR, Trace.class);
-
 				// Must be a Trace not a subtype (see bug #352563).
 				if((currentTrace != null) && (currentTrace.eClass() == StandardPackage.eINSTANCE.getTrace())) {
 					EList<NamedElement> suppliers = currentTrace.getBase_Abstraction().getClients();
@@ -493,15 +476,12 @@ public class RequirementImpl extends EObjectImpl implements Requirement {
 		// This should return the list of NamedElement verifying current Requirement
 		EList<NamedElement> verifiedBy = new BasicEList<NamedElement>();
 		Verify currentVerify = null;
-
 		if(getBase_Class() != null) {
 			Iterator<DirectedRelationship> itDep = getBase_Class().getTargetDirectedRelationships().iterator();
-
 			// Find Verify link
 			while(itDep.hasNext()) {
 				DirectedRelationship currentDRelationship = itDep.next();
 				currentVerify = (Verify)ElementUtil.hasStereotype(currentDRelationship, RequirementsPackage.eINSTANCE.getVerify());
-
 				if(currentVerify != null) {
 					verifiedBy.addAll(currentVerify.getBase_Abstraction().getClients());
 				}
@@ -541,7 +521,6 @@ public class RequirementImpl extends EObjectImpl implements Requirement {
 	 * @generated NOT
 	 */
 	public void setMaster(Requirement newMaster) {
-
 	}
 
 	/**
@@ -574,5 +553,4 @@ public class RequirementImpl extends EObjectImpl implements Requirement {
 		result.append(')');
 		return result.toString();
 	}
-
 } // RequirementImpl

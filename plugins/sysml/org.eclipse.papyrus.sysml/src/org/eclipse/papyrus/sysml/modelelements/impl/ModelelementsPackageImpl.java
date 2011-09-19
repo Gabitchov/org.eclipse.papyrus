@@ -127,7 +127,6 @@ public class ModelelementsPackageImpl extends EPackageImpl implements Modeleleme
 		// Mark meta-data to indicate it can't be changed
 		theModelelementsPackage.freeze();
 
-
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(ModelelementsPackage.eNS_URI, theModelelementsPackage);
 		return theModelelementsPackage;
@@ -435,5 +434,4 @@ public class ModelelementsPackageImpl extends EPackageImpl implements Modeleleme
 		initEClass(problemEClass, Problem.class, "Problem", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getProblem_Base_Comment(), theUMLPackage.getComment(), null, "base_Comment", null, 1, 1, Problem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 	}
-
 } // ModelelementsPackageImpl

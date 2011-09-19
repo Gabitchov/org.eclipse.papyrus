@@ -89,5 +89,4 @@ public interface ItemFlow extends EObject {
 	 * @generated
 	 */
 	void setItemProperty(Property value);
-
 } // ItemFlow

@@ -225,7 +225,6 @@ public class TestCaseImpl extends EObjectImpl implements TestCase {
 		// This should return the Requirements verified by current TestCase
 		EList<Requirement> verifies = new BasicEList<Requirement>();
 		Verify currentVerify = null;
-
 		if((getBase_Behavior() != null) || (getBase_Operation() != null)) {
 			// Find Verify link
 			Iterator<Dependency> itDep;
@@ -234,11 +233,9 @@ public class TestCaseImpl extends EObjectImpl implements TestCase {
 			} else { // if (getBase_Operation() != null)
 				itDep = getBase_Operation().getClientDependencies().iterator();
 			}
-
 			while(itDep.hasNext()) {
 				Dependency currentDependency = itDep.next();
 				currentVerify = (Verify)ElementUtil.hasStereotype(currentDependency, RequirementsPackage.eINSTANCE.getVerify());
-
 				if(currentVerify != null) {
 					EList<NamedElement> suppliers = currentVerify.getBase_Abstraction().getSuppliers();
 					Iterator<NamedElement> it = suppliers.iterator();
@@ -278,5 +275,4 @@ public class TestCaseImpl extends EObjectImpl implements TestCase {
 		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, RequirementsPackage.TEST_CASE__BASE_OPERATION, oldBase_Operation, base_Operation));
 	}
-
 } // TestCaseImpl

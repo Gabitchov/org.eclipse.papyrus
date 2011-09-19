@@ -55,5 +55,4 @@ public class StatemachinesXMLProcessor extends XMLProcessor {
 		}
 		return registrations;
 	}
-
 } // StatemachinesXMLProcessor

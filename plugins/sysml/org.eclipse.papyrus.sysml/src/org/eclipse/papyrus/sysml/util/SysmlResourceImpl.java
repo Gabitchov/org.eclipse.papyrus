@@ -35,5 +35,4 @@ public class SysmlResourceImpl extends XMLResourceImpl {
 	public SysmlResourceImpl(URI uri) {
 		super(uri);
 	}
-
 } // SysmlResourceImpl

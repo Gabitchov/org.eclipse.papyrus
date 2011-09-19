@@ -55,5 +55,4 @@ public class RequirementsXMLProcessor extends XMLProcessor {
 		}
 		return registrations;
 	}
-
 } // RequirementsXMLProcessor

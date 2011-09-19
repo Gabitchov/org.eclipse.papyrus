@@ -193,5 +193,4 @@ public class PortandflowsFactoryImpl extends EFactoryImpl implements Portandflow
 	public PortandflowsPackage getPortandflowsPackage() {
 		return (PortandflowsPackage)getEPackage();
 	}
-
 } // PortandflowsFactoryImpl

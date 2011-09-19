@@ -132,7 +132,6 @@ public class BlocksPackageImpl extends EPackageImpl implements BlocksPackage {
 		// Mark meta-data to indicate it can't be changed
 		theBlocksPackage.freeze();
 
-
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(BlocksPackage.eNS_URI, theBlocksPackage);
 		return theBlocksPackage;
@@ -606,5 +605,4 @@ public class BlocksPackageImpl extends EPackageImpl implements BlocksPackage {
 		initEClass(propertySpecificTypeEClass, PropertySpecificType.class, "PropertySpecificType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPropertySpecificType_Base_Classifier(), theUMLPackage.getClassifier(), null, "base_Classifier", null, 1, 1, PropertySpecificType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 	}
-
 } // BlocksPackageImpl

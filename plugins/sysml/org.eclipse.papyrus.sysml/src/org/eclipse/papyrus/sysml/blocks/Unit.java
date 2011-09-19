@@ -88,5 +88,4 @@ public interface Unit extends EObject {
 	 * @generated
 	 */
 	void setDimension(Dimension value);
-
 } // Unit

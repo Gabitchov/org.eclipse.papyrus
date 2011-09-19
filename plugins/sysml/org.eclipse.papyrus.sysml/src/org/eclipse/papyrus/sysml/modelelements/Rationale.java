@@ -59,5 +59,4 @@ public interface Rationale extends EObject {
 	 * @generated
 	 */
 	void setBase_Comment(Comment value);
-
 } // Rationale

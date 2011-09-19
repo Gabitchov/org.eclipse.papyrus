@@ -286,5 +286,4 @@ public class ProbabilityImpl extends EObjectImpl implements Probability {
 		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ActivitiesPackage.PROBABILITY__PROBABILITY, oldProbability, probability));
 	}
-
 } // ProbabilityImpl

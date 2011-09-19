@@ -60,5 +60,4 @@ public interface Overwrite extends EObject {
 	 * @generated
 	 */
 	void setBase_ObjectNode(ObjectNode value);
-
 } // Overwrite

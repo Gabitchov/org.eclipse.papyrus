@@ -161,5 +161,4 @@ public class ConstraintPropertyImpl extends EObjectImpl implements ConstraintPro
 		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ConstraintsPackage.CONSTRAINT_PROPERTY__BASE_PROPERTY, oldBase_Property, base_Property));
 	}
-
 } // ConstraintPropertyImpl

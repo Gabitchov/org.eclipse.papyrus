@@ -161,5 +161,4 @@ public class BindingConnectorImpl extends EObjectImpl implements BindingConnecto
 		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, BlocksPackage.BINDING_CONNECTOR__BASE_CONNECTOR, oldBase_Connector, base_Connector));
 	}
-
 } // BindingConnectorImpl

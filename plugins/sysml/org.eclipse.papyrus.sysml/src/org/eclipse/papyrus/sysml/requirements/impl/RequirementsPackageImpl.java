@@ -129,7 +129,6 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 		// Mark meta-data to indicate it can't be changed
 		theRequirementsPackage.freeze();
 
-
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(RequirementsPackage.eNS_URI, theRequirementsPackage);
 		return theRequirementsPackage;
@@ -559,5 +558,4 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 		initEReference(getRequirementRelated_Refines(), this.getRequirement(), null, "refines", null, 0, -1, RequirementRelated.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 		initEReference(getRequirementRelated_Verifies(), this.getRequirement(), null, "verifies", null, 0, -1, RequirementRelated.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 	}
-
 } // RequirementsPackageImpl

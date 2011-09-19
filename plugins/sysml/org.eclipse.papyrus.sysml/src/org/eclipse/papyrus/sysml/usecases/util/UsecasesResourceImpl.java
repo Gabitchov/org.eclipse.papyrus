@@ -35,5 +35,4 @@ public class UsecasesResourceImpl extends XMLResourceImpl {
 	public UsecasesResourceImpl(URI uri) {
 		super(uri);
 	}
-
 } // UsecasesResourceImpl

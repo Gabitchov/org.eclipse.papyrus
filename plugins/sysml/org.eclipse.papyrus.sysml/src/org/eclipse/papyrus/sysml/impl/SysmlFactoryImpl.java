@@ -137,5 +137,4 @@ public class SysmlFactoryImpl extends EFactoryImpl implements SysmlFactory {
 	public SysmlPackage getSysmlPackage() {
 		return (SysmlPackage)getEPackage();
 	}
-
 } // SysmlFactoryImpl

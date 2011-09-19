@@ -60,5 +60,4 @@ public interface NoBuffer extends EObject {
 	 * @generated
 	 */
 	void setBase_ObjectNode(ObjectNode value);
-
 } // NoBuffer

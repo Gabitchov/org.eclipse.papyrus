@@ -35,5 +35,4 @@ public class ModelelementsResourceImpl extends XMLResourceImpl {
 	public ModelelementsResourceImpl(URI uri) {
 		super(uri);
 	}
-
 } // ModelelementsResourceImpl

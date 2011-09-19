@@ -172,7 +172,6 @@ public interface PortandflowsPackage extends EPackage {
 		 * @generated
 		 */
 		EEnum FLOW_DIRECTION = eINSTANCE.getFlowDirection();
-
 	}
 
 	/**
@@ -547,5 +546,4 @@ public interface PortandflowsPackage extends EPackage {
 	 * @generated
 	 */
 	PortandflowsFactory getPortandflowsFactory();
-
 } // PortandflowsPackage

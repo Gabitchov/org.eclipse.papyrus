@@ -115,5 +115,4 @@ public interface ValueType extends EObject {
 	 * @generated
 	 */
 	void setUnit(Unit value);
-
 } // ValueType

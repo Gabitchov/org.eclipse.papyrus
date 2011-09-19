@@ -46,5 +46,4 @@ public class ConstraintBlockImpl extends BlockImpl implements ConstraintBlock {
 	protected EClass eStaticClass() {
 		return ConstraintsPackage.Literals.CONSTRAINT_BLOCK;
 	}
-
 } // ConstraintBlockImpl

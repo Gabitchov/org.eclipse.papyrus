@@ -188,7 +188,6 @@ public interface ModelelementsPackage extends EPackage {
 		 * @generated
 		 */
 		EReference PROBLEM__BASE_COMMENT = eINSTANCE.getProblem_Base_Comment();
-
 	}
 
 	/**
@@ -615,5 +614,4 @@ public interface ModelelementsPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getViewPoint_StakeHolders();
-
 } // ModelelementsPackage

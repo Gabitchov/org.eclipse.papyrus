@@ -137,5 +137,4 @@ public class StatemachinesFactoryImpl extends EFactoryImpl implements Statemachi
 	public StatemachinesPackage getStatemachinesPackage() {
 		return (StatemachinesPackage)getEPackage();
 	}
-
 } // StatemachinesFactoryImpl

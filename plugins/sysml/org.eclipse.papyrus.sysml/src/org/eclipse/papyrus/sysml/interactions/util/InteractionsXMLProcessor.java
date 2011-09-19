@@ -55,5 +55,4 @@ public class InteractionsXMLProcessor extends XMLProcessor {
 		}
 		return registrations;
 	}
-
 } // InteractionsXMLProcessor

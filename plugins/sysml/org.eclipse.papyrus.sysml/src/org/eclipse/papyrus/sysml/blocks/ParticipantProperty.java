@@ -86,5 +86,4 @@ public interface ParticipantProperty extends EObject {
 	 * @generated
 	 */
 	void setEnd(Property value);
-
 } // ParticipantProperty

@@ -47,5 +47,4 @@ public class StatemachinesResourceFactoryImpl extends ResourceFactoryImpl {
 		Resource result = new StatemachinesResourceImpl(uri);
 		return result;
 	}
-
 } // StatemachinesResourceFactoryImpl

@@ -37,7 +37,6 @@ public enum FlowDirection implements Enumerator {
 	 * @ordered
 	 */
 	IN(0, "in", "in"),
-
 	/**
 	 * The '<em><b>Out</b></em>' literal object.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -47,7 +46,6 @@ public enum FlowDirection implements Enumerator {
 	 * @ordered
 	 */
 	OUT(1, "out", "out"),
-
 	/**
 	 * The '<em><b>Inout</b></em>' literal object.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -240,5 +238,4 @@ public enum FlowDirection implements Enumerator {
 	public String toString() {
 		return literal;
 	}
-
 } // FlowDirection

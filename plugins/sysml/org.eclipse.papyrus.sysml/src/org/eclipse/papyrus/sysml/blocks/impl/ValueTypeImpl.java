@@ -287,5 +287,4 @@ public class ValueTypeImpl extends EObjectImpl implements ValueType {
 		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, BlocksPackage.VALUE_TYPE__UNIT, oldUnit, unit));
 	}
-
 } // ValueTypeImpl

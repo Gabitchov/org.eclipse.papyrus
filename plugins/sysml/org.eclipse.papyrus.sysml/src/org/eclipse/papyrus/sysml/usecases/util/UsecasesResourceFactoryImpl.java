@@ -47,5 +47,4 @@ public class UsecasesResourceFactoryImpl extends ResourceFactoryImpl {
 		Resource result = new UsecasesResourceImpl(uri);
 		return result;
 	}
-
 } // UsecasesResourceFactoryImpl

@@ -162,5 +162,4 @@ public class ProblemImpl extends EObjectImpl implements Problem {
 		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ModelelementsPackage.PROBLEM__BASE_COMMENT, oldBase_Comment, base_Comment));
 	}
-
 } // ProblemImpl

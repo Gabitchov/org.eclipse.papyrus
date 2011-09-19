@@ -119,7 +119,6 @@ public class SysmlPackageImpl extends EPackageImpl implements SysmlPackage {
 		// Mark meta-data to indicate it can't be changed
 		theSysmlPackage.freeze();
 
-
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(SysmlPackage.eNS_URI, theSysmlPackage);
 		return theSysmlPackage;
@@ -244,5 +243,4 @@ public class SysmlPackageImpl extends EPackageImpl implements SysmlPackage {
 		// Create resource
 		createResource(eNS_URI);
 	}
-
 } // SysmlPackageImpl

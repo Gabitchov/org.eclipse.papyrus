@@ -60,5 +60,4 @@ public interface Allocate extends EObject {
 	 * @generated
 	 */
 	void setBase_Abstraction(Abstraction value);
-
 } // Allocate

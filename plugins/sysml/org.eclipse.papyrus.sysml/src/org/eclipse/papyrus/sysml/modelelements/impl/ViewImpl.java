@@ -80,7 +80,6 @@ public class ViewImpl extends EObjectImpl implements View {
 		// ViewPoint is related to View via a Conform dependency
 		ViewPoint viewPoint = null;
 		Conform conform = null;
-
 		if(getBase_Package() != null) {
 			// Find Conform link
 			Iterator<Dependency> itDep = getBase_Package().getClientDependencies().iterator();
@@ -88,7 +87,6 @@ public class ViewImpl extends EObjectImpl implements View {
 				Dependency currentDependency = itDep.next();
 				conform = (Conform)ElementUtil.hasStereotype(currentDependency, ModelelementsPackage.eINSTANCE.getConform());
 			}
-
 			// Find ViewPoint
 			if(conform != null) {
 				Iterator<Element> itElt = conform.getBase_Dependency().getTargets().iterator();
@@ -224,9 +222,7 @@ public class ViewImpl extends EObjectImpl implements View {
 	public void setViewPoint(ViewPoint newViewPoint) {
 		// TODO: implement this method to set the 'View Point' reference
 		// Ensure that you remove @generated or mark it @generated NOT
-
 		// The exception makes the model opening to fail...
 		// throw new UnsupportedOperationException();
 	}
-
 } // ViewImpl

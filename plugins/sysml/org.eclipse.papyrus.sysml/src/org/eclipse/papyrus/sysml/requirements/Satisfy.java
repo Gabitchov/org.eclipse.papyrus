@@ -25,5 +25,4 @@ import org.eclipse.papyrus.uml.standard.Trace;
  * @generated
  */
 public interface Satisfy extends Trace {
-
 } // Satisfy

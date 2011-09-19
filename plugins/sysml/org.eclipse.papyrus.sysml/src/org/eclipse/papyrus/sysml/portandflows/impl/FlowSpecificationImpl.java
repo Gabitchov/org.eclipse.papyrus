@@ -161,5 +161,4 @@ public class FlowSpecificationImpl extends EObjectImpl implements FlowSpecificat
 		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PortandflowsPackage.FLOW_SPECIFICATION__BASE_INTERFACE, oldBase_Interface, base_Interface));
 	}
-
 } // FlowSpecificationImpl

@@ -106,5 +106,4 @@ public interface TestCase extends EObject {
 	 * @generated
 	 */
 	void setBase_Operation(Operation value);
-
 } // TestCase

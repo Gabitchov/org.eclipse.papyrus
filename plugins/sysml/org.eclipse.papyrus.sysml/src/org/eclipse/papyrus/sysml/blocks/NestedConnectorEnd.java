@@ -78,5 +78,4 @@ public interface NestedConnectorEnd extends EObject {
 	 * @generated
 	 */
 	void setBase_ConnectorEnd(ConnectorEnd value);
-
 } // NestedConnectorEnd

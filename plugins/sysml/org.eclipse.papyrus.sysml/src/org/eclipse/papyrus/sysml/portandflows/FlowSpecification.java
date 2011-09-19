@@ -58,5 +58,4 @@ public interface FlowSpecification extends EObject {
 	 * @generated
 	 */
 	void setBase_Interface(Interface value);
-
 } // FlowSpecification

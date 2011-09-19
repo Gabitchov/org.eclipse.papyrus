@@ -59,5 +59,4 @@ public interface BindingConnector extends EObject {
 	 * @generated
 	 */
 	void setBase_Connector(Connector value);
-
 } // BindingConnector

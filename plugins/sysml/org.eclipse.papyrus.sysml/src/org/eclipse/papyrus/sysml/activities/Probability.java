@@ -119,5 +119,4 @@ public interface Probability extends EObject {
 	 * @generated
 	 */
 	void setProbability(ValueSpecification value);
-
 } // Probability

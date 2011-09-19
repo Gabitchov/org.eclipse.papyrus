@@ -47,5 +47,4 @@ public class SysmlResourceFactoryImpl extends ResourceFactoryImpl {
 		Resource result = new SysmlResourceImpl(uri);
 		return result;
 	}
-
 } // SysmlResourceFactoryImpl

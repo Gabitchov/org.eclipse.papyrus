@@ -77,7 +77,6 @@ public interface ConstraintsPackage extends EPackage {
 		 * @generated
 		 */
 		EReference CONSTRAINT_PROPERTY__BASE_PROPERTY = eINSTANCE.getConstraintProperty_Base_Property();
-
 	}
 
 	/**
@@ -221,5 +220,4 @@ public interface ConstraintsPackage extends EPackage {
 	 * @generated
 	 */
 	ConstraintsFactory getConstraintsFactory();
-
 } // ConstraintsPackage

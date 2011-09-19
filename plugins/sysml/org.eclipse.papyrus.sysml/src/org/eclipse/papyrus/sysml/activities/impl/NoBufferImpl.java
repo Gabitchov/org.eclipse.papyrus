@@ -162,5 +162,4 @@ public class NoBufferImpl extends EObjectImpl implements NoBuffer {
 		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ActivitiesPackage.NO_BUFFER__BASE_OBJECT_NODE, oldBase_ObjectNode, base_ObjectNode));
 	}
-
 } // NoBufferImpl

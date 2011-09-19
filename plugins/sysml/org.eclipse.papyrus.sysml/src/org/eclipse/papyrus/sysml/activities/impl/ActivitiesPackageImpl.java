@@ -137,7 +137,6 @@ public class ActivitiesPackageImpl extends EPackageImpl implements ActivitiesPac
 		// Mark meta-data to indicate it can't be changed
 		theActivitiesPackage.freeze();
 
-
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(ActivitiesPackage.eNS_URI, theActivitiesPackage);
 		return theActivitiesPackage;
@@ -502,5 +501,4 @@ public class ActivitiesPackageImpl extends EPackageImpl implements ActivitiesPac
 		initEClass(overwriteEClass, Overwrite.class, "Overwrite", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getOverwrite_Base_ObjectNode(), theUMLPackage.getObjectNode(), null, "base_ObjectNode", null, 1, 1, Overwrite.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 	}
-
 } // ActivitiesPackageImpl

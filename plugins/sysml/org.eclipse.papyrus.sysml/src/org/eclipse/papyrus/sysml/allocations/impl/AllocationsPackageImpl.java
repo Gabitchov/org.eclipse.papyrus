@@ -124,7 +124,6 @@ public class AllocationsPackageImpl extends EPackageImpl implements AllocationsP
 		// Mark meta-data to indicate it can't be changed
 		theAllocationsPackage.freeze();
 
-
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(AllocationsPackage.eNS_URI, theAllocationsPackage);
 		return theAllocationsPackage;
@@ -326,5 +325,4 @@ public class AllocationsPackageImpl extends EPackageImpl implements AllocationsP
 		initEClass(allocateActivityPartitionEClass, AllocateActivityPartition.class, "AllocateActivityPartition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getAllocateActivityPartition_Base_ActivityPartition(), theUMLPackage.getActivityPartition(), null, "base_ActivityPartition", null, 1, 1, AllocateActivityPartition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 	}
-
 } // AllocationsPackageImpl

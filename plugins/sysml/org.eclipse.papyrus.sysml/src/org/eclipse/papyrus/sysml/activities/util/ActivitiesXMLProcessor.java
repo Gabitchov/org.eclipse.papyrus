@@ -55,5 +55,4 @@ public class ActivitiesXMLProcessor extends XMLProcessor {
 		}
 		return registrations;
 	}
-
 } // ActivitiesXMLProcessor

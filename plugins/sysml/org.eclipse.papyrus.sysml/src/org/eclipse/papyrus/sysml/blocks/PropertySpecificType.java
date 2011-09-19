@@ -58,5 +58,4 @@ public interface PropertySpecificType extends EObject {
 	 * @generated
 	 */
 	void setBase_Classifier(Classifier value);
-
 } // PropertySpecificType

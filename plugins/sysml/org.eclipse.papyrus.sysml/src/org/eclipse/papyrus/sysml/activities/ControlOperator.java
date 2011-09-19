@@ -88,5 +88,4 @@ public interface ControlOperator extends EObject {
 	 * @generated
 	 */
 	void setBase_Operation(Operation value);
-
 } // ControlOperator

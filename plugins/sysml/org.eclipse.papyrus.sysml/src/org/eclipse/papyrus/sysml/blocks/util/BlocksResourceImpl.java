@@ -35,5 +35,4 @@ public class BlocksResourceImpl extends XMLResourceImpl {
 	public BlocksResourceImpl(URI uri) {
 		super(uri);
 	}
-
 } // BlocksResourceImpl

@@ -215,7 +215,6 @@ public interface ActivitiesPackage extends EPackage {
 		 * @generated
 		 */
 		EReference OVERWRITE__BASE_OBJECT_NODE = eINSTANCE.getOverwrite_Base_ObjectNode();
-
 	}
 
 	/**
@@ -797,5 +796,4 @@ public interface ActivitiesPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getRate_Rate();
-
 } // ActivitiesPackage

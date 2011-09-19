@@ -225,5 +225,4 @@ public class UnitImpl extends EObjectImpl implements Unit {
 		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, BlocksPackage.UNIT__DIMENSION, oldDimension, dimension));
 	}
-
 } // UnitImpl

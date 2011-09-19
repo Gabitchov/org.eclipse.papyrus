@@ -162,5 +162,4 @@ public class RationaleImpl extends EObjectImpl implements Rationale {
 		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ModelelementsPackage.RATIONALE__BASE_COMMENT, oldBase_Comment, base_Comment));
 	}
-
 } // RationaleImpl

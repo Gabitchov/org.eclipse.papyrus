@@ -55,5 +55,4 @@ public class UsecasesXMLProcessor extends XMLProcessor {
 		}
 		return registrations;
 	}
-
 } // UsecasesXMLProcessor

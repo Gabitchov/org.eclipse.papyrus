@@ -55,5 +55,4 @@ public class BlocksXMLProcessor extends XMLProcessor {
 		}
 		return registrations;
 	}
-
 } // BlocksXMLProcessor

@@ -35,5 +35,4 @@ public class ConstraintsResourceImpl extends XMLResourceImpl {
 	public ConstraintsResourceImpl(URI uri) {
 		super(uri);
 	}
-
 } // ConstraintsResourceImpl

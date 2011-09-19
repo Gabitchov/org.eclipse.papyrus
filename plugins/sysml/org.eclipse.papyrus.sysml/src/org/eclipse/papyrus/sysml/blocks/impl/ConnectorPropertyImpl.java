@@ -223,5 +223,4 @@ public class ConnectorPropertyImpl extends EObjectImpl implements ConnectorPrope
 		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, BlocksPackage.CONNECTOR_PROPERTY__CONNECTOR, oldConnector, connector));
 	}
-
 } // ConnectorPropertyImpl

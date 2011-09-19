@@ -116,5 +116,4 @@ public interface ActivitiesFactory extends EFactory {
 	 * @generated
 	 */
 	ActivitiesPackage getActivitiesPackage();
-
 } // ActivitiesFactory

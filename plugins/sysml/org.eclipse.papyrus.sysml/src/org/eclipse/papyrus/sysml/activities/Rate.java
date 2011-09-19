@@ -118,5 +118,4 @@ public interface Rate extends EObject {
 	 * @generated
 	 */
 	void setRate(InstanceSpecification value);
-
 } // Rate

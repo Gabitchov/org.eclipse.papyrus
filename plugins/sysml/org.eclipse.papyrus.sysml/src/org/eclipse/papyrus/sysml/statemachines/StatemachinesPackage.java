@@ -57,7 +57,6 @@ public interface StatemachinesPackage extends EPackage {
 		 * @generated
 		 */
 		EDataType DUMMY = eINSTANCE.getDummy();
-
 	}
 
 	/**
@@ -123,5 +122,4 @@ public interface StatemachinesPackage extends EPackage {
 	 * @generated
 	 */
 	StatemachinesFactory getStatemachinesFactory();
-
 } // StatemachinesPackage

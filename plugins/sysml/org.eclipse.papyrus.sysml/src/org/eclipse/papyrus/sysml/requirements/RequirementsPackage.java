@@ -264,7 +264,6 @@ public interface RequirementsPackage extends EPackage {
 		 * @generated
 		 */
 		EReference REQUIREMENT_RELATED__VERIFIES = eINSTANCE.getRequirementRelated_Verifies();
-
 	}
 
 	/**
@@ -941,5 +940,4 @@ public interface RequirementsPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getVerify();
-
 } // RequirementsPackage

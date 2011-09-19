@@ -55,5 +55,4 @@ public class ModelelementsXMLProcessor extends XMLProcessor {
 		}
 		return registrations;
 	}
-
 } // ModelelementsXMLProcessor

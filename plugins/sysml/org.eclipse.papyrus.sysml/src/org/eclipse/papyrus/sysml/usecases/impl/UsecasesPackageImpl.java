@@ -119,7 +119,6 @@ public class UsecasesPackageImpl extends EPackageImpl implements UsecasesPackage
 		// Mark meta-data to indicate it can't be changed
 		theUsecasesPackage.freeze();
 
-
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(UsecasesPackage.eNS_URI, theUsecasesPackage);
 		return theUsecasesPackage;
@@ -217,5 +216,4 @@ public class UsecasesPackageImpl extends EPackageImpl implements UsecasesPackage
 		// Initialize data types
 		initEDataType(dummyEDataType, String.class, "Dummy", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 	}
-
 } // UsecasesPackageImpl

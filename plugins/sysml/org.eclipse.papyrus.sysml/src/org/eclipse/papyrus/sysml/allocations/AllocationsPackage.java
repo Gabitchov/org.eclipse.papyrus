@@ -118,7 +118,6 @@ public interface AllocationsPackage extends EPackage {
 		 * @generated
 		 */
 		EReference ALLOCATE_ACTIVITY_PARTITION__BASE_ACTIVITY_PARTITION = eINSTANCE.getAllocateActivityPartition_Base_ActivityPartition();
-
 	}
 
 	/**
@@ -361,5 +360,4 @@ public interface AllocationsPackage extends EPackage {
 	 * @generated
 	 */
 	AllocationsFactory getAllocationsFactory();
-
 } // AllocationsPackage

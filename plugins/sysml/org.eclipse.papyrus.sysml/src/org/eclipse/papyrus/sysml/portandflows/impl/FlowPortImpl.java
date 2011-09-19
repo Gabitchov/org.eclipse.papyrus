@@ -248,24 +248,20 @@ public class FlowPortImpl extends EObjectImpl implements FlowPort {
 	/**
 	 * <!-- begin-user-doc -->
 	 * Images registered in Profile are :
-	 * 		0 - FlowPort (default, similar to INOUT)
-	 * 		1 - FlowPort IN
-	 * 		2 - FlowPort OUT
-	 * 		3 - FlowPort INOUT
-	 * 		4 - FlowPort NA (Non Atomic)
+	 * 0 - FlowPort (default, similar to INOUT)
+	 * 1 - FlowPort IN
+	 * 2 - FlowPort OUT
+	 * 3 - FlowPort INOUT
+	 * 4 - FlowPort NA (Non Atomic)
 	 * <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
 	 */
 	public Image getIcon() {
-
 		Image ImageNotFound = null;
-
 		if(getBase_Port() != null) {
 			Stereotype st = getBase_Port().getAppliedStereotype(SysmlResource.FLOW_PORT_ID);
-
 			Image image = st.getIcons().get(0);
-
 			if(isIsAtomic()) {
 				if(getDirection() == FlowDirection.IN) {
 					image = st.getIcons().get(1);
@@ -274,13 +270,10 @@ public class FlowPortImpl extends EObjectImpl implements FlowPort {
 				} else if(getDirection() == FlowDirection.INOUT) {
 					image = st.getIcons().get(3);
 				}
-
 			} else {
 				image = st.getIcons().get(4);
 			}
-
 			return image;
-
 		} else {
 			return ImageNotFound;
 		}
@@ -295,14 +288,12 @@ public class FlowPortImpl extends EObjectImpl implements FlowPort {
 		// The FlowPort is Atomic if it is not typed by a FlowSpecification
 		Boolean isAtomic = true;
 		FlowSpecification flowSpec = null;
-
 		if(getBase_Port() != null) {
 			// Find FlowPort type
 			Type type = getBase_Port().getType();
 			if((type != null) && (type instanceof Interface)) {
 				flowSpec = ElementUtil.getStereotypeApplication(type, FlowSpecification.class);
 			}
-
 			if(flowSpec != null) {
 				isAtomic = false;
 			}
@@ -384,5 +375,4 @@ public class FlowPortImpl extends EObjectImpl implements FlowPort {
 		result.append(')');
 		return result.toString();
 	}
-
 } // FlowPortImpl

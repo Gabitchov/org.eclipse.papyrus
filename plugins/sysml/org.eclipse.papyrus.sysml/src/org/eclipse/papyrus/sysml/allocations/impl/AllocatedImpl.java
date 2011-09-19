@@ -165,14 +165,12 @@ public class AllocatedImpl extends EObjectImpl implements Allocated {
 		// Current element is the target of the Allocate link.
 		EList<NamedElement> allocatedFrom = new BasicEList<NamedElement>();
 		Allocate currentAllocate = null;
-
 		if(getBase_NamedElement() != null) {
 			// Find Allocate link
 			Iterator<DirectedRelationship> itDep = getBase_NamedElement().getTargetDirectedRelationships().iterator();
 			while(itDep.hasNext()) {
 				DirectedRelationship currentDRelationship = itDep.next();
 				currentAllocate = (Allocate)ElementUtil.hasStereotype(currentDRelationship, AllocationsPackage.eINSTANCE.getAllocate());
-
 				if(currentAllocate != null) {
 					EList<Element> targets = currentAllocate.getBase_Abstraction().getSources();
 					Iterator<Element> it = targets.iterator();
@@ -200,14 +198,12 @@ public class AllocatedImpl extends EObjectImpl implements Allocated {
 		// Current element is the target of the Allocate link.
 		EList<NamedElement> allocatedFrom = new BasicEList<NamedElement>();
 		Allocate currentAllocate = null;
-
 		if(getBase_NamedElement() != null) {
 			// Find Allocate link
 			Iterator<Dependency> itDep = getBase_NamedElement().getClientDependencies().iterator();
 			while(itDep.hasNext()) {
 				Dependency currentDependency = itDep.next();
 				currentAllocate = (Allocate)ElementUtil.hasStereotype(currentDependency, AllocationsPackage.eINSTANCE.getAllocate());
-
 				if(currentAllocate != null) {
 					allocatedFrom.addAll(currentAllocate.getBase_Abstraction().getSuppliers());
 				}
@@ -245,5 +241,4 @@ public class AllocatedImpl extends EObjectImpl implements Allocated {
 		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, AllocationsPackage.ALLOCATED__BASE_NAMED_ELEMENT, oldBase_NamedElement, base_NamedElement));
 	}
-
 } // AllocatedImpl

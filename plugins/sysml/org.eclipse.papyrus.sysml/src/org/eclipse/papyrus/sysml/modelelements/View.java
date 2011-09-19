@@ -74,5 +74,4 @@ public interface View extends EObject {
 	 * @generated
 	 */
 	void setBase_Package(org.eclipse.uml2.uml.Package value);
-
 } // View

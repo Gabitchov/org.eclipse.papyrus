@@ -46,5 +46,4 @@ public class DeriveReqtImpl extends TraceImpl implements DeriveReqt {
 	protected EClass eStaticClass() {
 		return RequirementsPackage.Literals.DERIVE_REQT;
 	}
-
 } // DeriveReqtImpl

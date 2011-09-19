@@ -35,5 +35,4 @@ public class StatemachinesResourceImpl extends XMLResourceImpl {
 	public StatemachinesResourceImpl(URI uri) {
 		super(uri);
 	}
-
 } // StatemachinesResourceImpl

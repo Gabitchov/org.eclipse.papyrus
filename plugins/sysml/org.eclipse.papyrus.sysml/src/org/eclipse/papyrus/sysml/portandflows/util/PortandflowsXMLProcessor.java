@@ -55,5 +55,4 @@ public class PortandflowsXMLProcessor extends XMLProcessor {
 		}
 		return registrations;
 	}
-
 } // PortandflowsXMLProcessor

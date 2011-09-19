@@ -161,5 +161,4 @@ public class PropertySpecificTypeImpl extends EObjectImpl implements PropertySpe
 		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, BlocksPackage.PROPERTY_SPECIFIC_TYPE__BASE_CLASSIFIER, oldBase_Classifier, base_Classifier));
 	}
-
 } // PropertySpecificTypeImpl

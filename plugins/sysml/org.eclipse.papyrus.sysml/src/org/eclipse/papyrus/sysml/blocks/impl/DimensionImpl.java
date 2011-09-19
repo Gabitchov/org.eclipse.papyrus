@@ -163,5 +163,4 @@ public class DimensionImpl extends EObjectImpl implements Dimension {
 		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, BlocksPackage.DIMENSION__BASE_INSTANCE_SPECIFICATION, oldBase_InstanceSpecification, base_InstanceSpecification));
 	}
-
 } // DimensionImpl

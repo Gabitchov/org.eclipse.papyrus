@@ -137,5 +137,4 @@ public class UsecasesFactoryImpl extends EFactoryImpl implements UsecasesFactory
 	public UsecasesPackage getUsecasesPackage() {
 		return (UsecasesPackage)getEPackage();
 	}
-
 } // UsecasesFactoryImpl

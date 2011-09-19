@@ -25,6 +25,14 @@ import org.eclipse.papyrus.sysml.activities.Optional;
 import org.eclipse.papyrus.sysml.activities.Overwrite;
 import org.eclipse.papyrus.sysml.activities.Probability;
 import org.eclipse.papyrus.sysml.activities.Rate;
+import org.eclipse.papyrus.sysml.util.SysmlResource;
+import org.eclipse.uml2.uml.ActivityEdge;
+import org.eclipse.uml2.uml.Behavior;
+import org.eclipse.uml2.uml.ObjectNode;
+import org.eclipse.uml2.uml.Operation;
+import org.eclipse.uml2.uml.Parameter;
+import org.eclipse.uml2.uml.ParameterSet;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * <!-- begin-user-doc --> The <b>Switch</b> for the model's inheritance hierarchy. It supports the
@@ -69,7 +77,10 @@ public class ActivitiesSwitch<T> extends Switch<T> {
 	 */
 	@Override
 	protected boolean isSwitchFor(EPackage ePackage) {
-		return ePackage == modelPackage;
+		/**
+		 * ePackage == UMLPackage.eINSTANCE in order to accept UML element
+		 */
+		return ePackage == modelPackage || ePackage == UMLPackage.eINSTANCE;
 	}
 
 	/**
@@ -194,6 +205,383 @@ public class ActivitiesSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Tell if the Parameter is a Optional implementation
+	 * 
+	 * @param Parameter
+	 * @return
+	 * @generated
+	 */
+	protected Boolean isOptionalFromParameter(Parameter parameter_) {
+		if(parameter_.getAppliedStereotype(SysmlResource.OPTIONAL_ID) != null) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Optional</em>' from Parameter object. <!--
+	 * begin-user-doc --> This implementation returns null; returning a non-null result will
+	 * terminate the switch. <!-- end-user-doc -->
+	 * 
+	 * @param object
+	 *        the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Optional</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseParameterStereotypedByOptional(Parameter parameter_) {
+		return null;
+	}
+
+	/**
+	 * Tell if the Parameter is a Rate implementation
+	 * 
+	 * @param Parameter
+	 * @return
+	 * @generated
+	 */
+	protected Boolean isRateFromParameter(Parameter parameter_) {
+		if(parameter_.getAppliedStereotype(SysmlResource.RATE_ID) != null) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Rate</em>' from Parameter object. <!--
+	 * begin-user-doc --> This implementation returns null; returning a non-null result will
+	 * terminate the switch. <!-- end-user-doc -->
+	 * 
+	 * @param object
+	 *        the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Rate</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseParameterStereotypedByRate(Parameter parameter_) {
+		return null;
+	}
+
+	/**
+	 * Tell if the ActivityEdge is a Rate implementation
+	 * 
+	 * @param ActivityEdge
+	 * @return
+	 * @generated
+	 */
+	protected Boolean isRateFromActivityEdge(ActivityEdge activityEdge_) {
+		if(activityEdge_.getAppliedStereotype(SysmlResource.RATE_ID) != null) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Rate</em>' from ActivityEdge object. <!--
+	 * begin-user-doc --> This implementation returns null; returning a non-null result will
+	 * terminate the switch. <!-- end-user-doc -->
+	 * 
+	 * @param object
+	 *        the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Rate</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseActivityEdgeStereotypedByRate(ActivityEdge activityEdge_) {
+		return null;
+	}
+
+	/**
+	 * Tell if the ActivityEdge is a Probability implementation
+	 * 
+	 * @param ActivityEdge
+	 * @return
+	 * @generated
+	 */
+	protected Boolean isProbabilityFromActivityEdge(ActivityEdge activityEdge_) {
+		if(activityEdge_.getAppliedStereotype(SysmlResource.PROBABILITY_ID) != null) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Probability</em>' from ActivityEdge object. <!--
+	 * begin-user-doc --> This implementation returns null; returning a non-null result will
+	 * terminate the switch. <!-- end-user-doc -->
+	 * 
+	 * @param object
+	 *        the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Probability</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseActivityEdgeStereotypedByProbability(ActivityEdge activityEdge_) {
+		return null;
+	}
+
+	/**
+	 * Tell if the ParameterSet is a Probability implementation
+	 * 
+	 * @param ParameterSet
+	 * @return
+	 * @generated
+	 */
+	protected Boolean isProbabilityFromParameterSet(ParameterSet parameterSet_) {
+		if(parameterSet_.getAppliedStereotype(SysmlResource.PROBABILITY_ID) != null) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Probability</em>' from ParameterSet object. <!--
+	 * begin-user-doc --> This implementation returns null; returning a non-null result will
+	 * terminate the switch. <!-- end-user-doc -->
+	 * 
+	 * @param object
+	 *        the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Probability</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseParameterSetStereotypedByProbability(ParameterSet parameterSet_) {
+		return null;
+	}
+
+	/**
+	 * Tell if the Parameter is a Continuous implementation
+	 * 
+	 * @param Parameter
+	 * @return
+	 * @generated
+	 */
+	protected Boolean isContinuousFromParameter(Parameter parameter_) {
+		if(parameter_.getAppliedStereotype(SysmlResource.CONTINUOUS_ID) != null) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Continuous</em>' from Parameter object. <!--
+	 * begin-user-doc --> This implementation returns null; returning a non-null result will
+	 * terminate the switch. <!-- end-user-doc -->
+	 * 
+	 * @param object
+	 *        the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Continuous</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseParameterStereotypedByContinuous(Parameter parameter_) {
+		return null;
+	}
+
+	/**
+	 * Tell if the ActivityEdge is a Continuous implementation
+	 * 
+	 * @param ActivityEdge
+	 * @return
+	 * @generated
+	 */
+	protected Boolean isContinuousFromActivityEdge(ActivityEdge activityEdge_) {
+		if(activityEdge_.getAppliedStereotype(SysmlResource.CONTINUOUS_ID) != null) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Continuous</em>' from ActivityEdge object. <!--
+	 * begin-user-doc --> This implementation returns null; returning a non-null result will
+	 * terminate the switch. <!-- end-user-doc -->
+	 * 
+	 * @param object
+	 *        the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Continuous</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseActivityEdgeStereotypedByContinuous(ActivityEdge activityEdge_) {
+		return null;
+	}
+
+	/**
+	 * Tell if the Parameter is a Discrete implementation
+	 * 
+	 * @param Parameter
+	 * @return
+	 * @generated
+	 */
+	protected Boolean isDiscreteFromParameter(Parameter parameter_) {
+		if(parameter_.getAppliedStereotype(SysmlResource.DISCRETE_ID) != null) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Discrete</em>' from Parameter object. <!--
+	 * begin-user-doc --> This implementation returns null; returning a non-null result will
+	 * terminate the switch. <!-- end-user-doc -->
+	 * 
+	 * @param object
+	 *        the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Discrete</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseParameterStereotypedByDiscrete(Parameter parameter_) {
+		return null;
+	}
+
+	/**
+	 * Tell if the ActivityEdge is a Discrete implementation
+	 * 
+	 * @param ActivityEdge
+	 * @return
+	 * @generated
+	 */
+	protected Boolean isDiscreteFromActivityEdge(ActivityEdge activityEdge_) {
+		if(activityEdge_.getAppliedStereotype(SysmlResource.DISCRETE_ID) != null) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Discrete</em>' from ActivityEdge object. <!--
+	 * begin-user-doc --> This implementation returns null; returning a non-null result will
+	 * terminate the switch. <!-- end-user-doc -->
+	 * 
+	 * @param object
+	 *        the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Discrete</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseActivityEdgeStereotypedByDiscrete(ActivityEdge activityEdge_) {
+		return null;
+	}
+
+	/**
+	 * Tell if the Operation is a ControlOperator implementation
+	 * 
+	 * @param Operation
+	 * @return
+	 * @generated
+	 */
+	protected Boolean isControlOperatorFromOperation(Operation operation_) {
+		if(operation_.getAppliedStereotype(SysmlResource.CONTROL_OPERATOR_ID) != null) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>ControlOperator</em>' from Operation object. <!--
+	 * begin-user-doc --> This implementation returns null; returning a non-null result will
+	 * terminate the switch. <!-- end-user-doc -->
+	 * 
+	 * @param object
+	 *        the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>ControlOperator</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOperationStereotypedByControlOperator(Operation operation_) {
+		return null;
+	}
+
+	/**
+	 * Tell if the Behavior is a ControlOperator implementation
+	 * 
+	 * @param Behavior
+	 * @return
+	 * @generated
+	 */
+	protected Boolean isControlOperatorFromBehavior(Behavior behavior_) {
+		if(behavior_.getAppliedStereotype(SysmlResource.CONTROL_OPERATOR_ID) != null) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>ControlOperator</em>' from Behavior object. <!--
+	 * begin-user-doc --> This implementation returns null; returning a non-null result will
+	 * terminate the switch. <!-- end-user-doc -->
+	 * 
+	 * @param object
+	 *        the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>ControlOperator</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseBehaviorStereotypedByControlOperator(Behavior behavior_) {
+		return null;
+	}
+
+	/**
+	 * Tell if the ObjectNode is a NoBuffer implementation
+	 * 
+	 * @param ObjectNode
+	 * @return
+	 * @generated
+	 */
+	protected Boolean isNoBufferFromObjectNode(ObjectNode objectNode_) {
+		if(objectNode_.getAppliedStereotype(SysmlResource.NO_BUFFER_ID) != null) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>NoBuffer</em>' from ObjectNode object. <!--
+	 * begin-user-doc --> This implementation returns null; returning a non-null result will
+	 * terminate the switch. <!-- end-user-doc -->
+	 * 
+	 * @param object
+	 *        the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>NoBuffer</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseObjectNodeStereotypedByNoBuffer(ObjectNode objectNode_) {
+		return null;
+	}
+
+	/**
+	 * Tell if the ObjectNode is a Overwrite implementation
+	 * 
+	 * @param ObjectNode
+	 * @return
+	 * @generated
+	 */
+	protected Boolean isOverwriteFromObjectNode(ObjectNode objectNode_) {
+		if(objectNode_.getAppliedStereotype(SysmlResource.OVERWRITE_ID) != null) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Overwrite</em>' from ObjectNode object. <!--
+	 * begin-user-doc --> This implementation returns null; returning a non-null result will
+	 * terminate the switch. <!-- end-user-doc -->
+	 * 
+	 * @param object
+	 *        the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Overwrite</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseObjectNodeStereotypedByOverwrite(ObjectNode objectNode_) {
+		return null;
+	}
+
+	/**
 	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -202,77 +590,218 @@ public class ActivitiesSwitch<T> extends Switch<T> {
 	 */
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
-		switch(classifierID) {
-		case ActivitiesPackage.OPTIONAL:
-		{
-			Optional optional = (Optional)theEObject;
-			T result = caseOptional(optional);
-			if(result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case ActivitiesPackage.RATE:
-		{
-			Rate rate = (Rate)theEObject;
-			T result = caseRate(rate);
-			if(result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case ActivitiesPackage.PROBABILITY:
-		{
-			Probability probability = (Probability)theEObject;
-			T result = caseProbability(probability);
-			if(result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case ActivitiesPackage.CONTINUOUS:
-		{
-			Continuous continuous = (Continuous)theEObject;
-			T result = caseContinuous(continuous);
-			if(result == null)
-				result = caseRate(continuous);
-			if(result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case ActivitiesPackage.DISCRETE:
-		{
-			Discrete discrete = (Discrete)theEObject;
-			T result = caseDiscrete(discrete);
-			if(result == null)
-				result = caseRate(discrete);
-			if(result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case ActivitiesPackage.CONTROL_OPERATOR:
-		{
-			ControlOperator controlOperator = (ControlOperator)theEObject;
-			T result = caseControlOperator(controlOperator);
-			if(result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case ActivitiesPackage.NO_BUFFER:
-		{
-			NoBuffer noBuffer = (NoBuffer)theEObject;
-			T result = caseNoBuffer(noBuffer);
-			if(result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case ActivitiesPackage.OVERWRITE:
-		{
-			Overwrite overwrite = (Overwrite)theEObject;
-			T result = caseOverwrite(overwrite);
-			if(result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		default:
-			return defaultCase(theEObject);
+		if(theEObject.eClass().getEPackage() == UMLPackage.eINSTANCE) {
+			switch(classifierID) {
+
+			case UMLPackage.ACTIVITY_EDGE:
+			{
+				ActivityEdge umlElement = (ActivityEdge)theEObject;
+				T result;
+
+				result = caseActivityEdgeStereotypedByRate(umlElement);
+				if(result != null) {
+					return result;
+				}
+
+				result = caseActivityEdgeStereotypedByProbability(umlElement);
+				if(result != null) {
+					return result;
+				}
+
+				result = caseActivityEdgeStereotypedByContinuous(umlElement);
+				if(result != null) {
+					return result;
+				}
+
+				result = caseActivityEdgeStereotypedByDiscrete(umlElement);
+				if(result != null) {
+					return result;
+				}
+
+				return null;
+			}
+
+			case UMLPackage.BEHAVIOR:
+			{
+				Behavior umlElement = (Behavior)theEObject;
+				T result;
+
+				result = caseBehaviorStereotypedByControlOperator(umlElement);
+				if(result != null) {
+					return result;
+				}
+
+				return null;
+			}
+
+			case UMLPackage.OBJECT_NODE:
+			{
+				ObjectNode umlElement = (ObjectNode)theEObject;
+				T result;
+
+				result = caseObjectNodeStereotypedByNoBuffer(umlElement);
+				if(result != null) {
+					return result;
+				}
+
+				result = caseObjectNodeStereotypedByOverwrite(umlElement);
+				if(result != null) {
+					return result;
+				}
+
+				return null;
+			}
+
+			case UMLPackage.OPERATION:
+			{
+				Operation umlElement = (Operation)theEObject;
+				T result;
+
+				result = caseOperationStereotypedByControlOperator(umlElement);
+				if(result != null) {
+					return result;
+				}
+
+				return null;
+			}
+
+			case UMLPackage.PARAMETER:
+			{
+				Parameter umlElement = (Parameter)theEObject;
+				T result;
+
+				result = caseParameterStereotypedByOptional(umlElement);
+				if(result != null) {
+					return result;
+				}
+
+				result = caseParameterStereotypedByRate(umlElement);
+				if(result != null) {
+					return result;
+				}
+
+				result = caseParameterStereotypedByContinuous(umlElement);
+				if(result != null) {
+					return result;
+				}
+
+				result = caseParameterStereotypedByDiscrete(umlElement);
+				if(result != null) {
+					return result;
+				}
+
+				return null;
+			}
+
+			case UMLPackage.PARAMETER_SET:
+			{
+				ParameterSet umlElement = (ParameterSet)theEObject;
+				T result;
+
+				result = caseParameterSetStereotypedByProbability(umlElement);
+				if(result != null) {
+					return result;
+				}
+
+				return null;
+			}
+
+			default:
+				return defaultCase(theEObject);
+			}
+
+		} else {
+			switch(classifierID) {
+
+			case ActivitiesPackage.OPTIONAL:
+			{
+				Optional optional = (Optional)theEObject;
+				T result = caseOptional(optional);
+
+				if(result == null)
+					result = defaultCase(theEObject);
+				return result;
+			}
+
+			case ActivitiesPackage.RATE:
+			{
+				Rate rate = (Rate)theEObject;
+				T result = caseRate(rate);
+
+				if(result == null)
+					result = defaultCase(theEObject);
+				return result;
+			}
+
+			case ActivitiesPackage.PROBABILITY:
+			{
+				Probability probability = (Probability)theEObject;
+				T result = caseProbability(probability);
+
+				if(result == null)
+					result = defaultCase(theEObject);
+				return result;
+			}
+
+			case ActivitiesPackage.CONTINUOUS:
+			{
+				Continuous continuous = (Continuous)theEObject;
+				T result = caseContinuous(continuous);
+
+				if(result == null)
+					result = caseRate(continuous);
+
+				if(result == null)
+					result = defaultCase(theEObject);
+				return result;
+			}
+
+			case ActivitiesPackage.DISCRETE:
+			{
+				Discrete discrete = (Discrete)theEObject;
+				T result = caseDiscrete(discrete);
+
+				if(result == null)
+					result = caseRate(discrete);
+
+				if(result == null)
+					result = defaultCase(theEObject);
+				return result;
+			}
+
+			case ActivitiesPackage.CONTROL_OPERATOR:
+			{
+				ControlOperator controlOperator = (ControlOperator)theEObject;
+				T result = caseControlOperator(controlOperator);
+
+				if(result == null)
+					result = defaultCase(theEObject);
+				return result;
+			}
+
+			case ActivitiesPackage.NO_BUFFER:
+			{
+				NoBuffer noBuffer = (NoBuffer)theEObject;
+				T result = caseNoBuffer(noBuffer);
+
+				if(result == null)
+					result = defaultCase(theEObject);
+				return result;
+			}
+
+			case ActivitiesPackage.OVERWRITE:
+			{
+				Overwrite overwrite = (Overwrite)theEObject;
+				T result = caseOverwrite(overwrite);
+
+				if(result == null)
+					result = defaultCase(theEObject);
+				return result;
+			}
+
+			default:
+				return defaultCase(theEObject);
+			}
 		}
 	}
 
@@ -292,5 +821,4 @@ public class ActivitiesSwitch<T> extends Switch<T> {
 	public T caseOptional(Optional object) {
 		return null;
 	}
-
 } // ActivitiesSwitch

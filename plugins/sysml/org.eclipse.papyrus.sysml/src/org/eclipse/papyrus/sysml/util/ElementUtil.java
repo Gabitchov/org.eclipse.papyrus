@@ -38,7 +38,6 @@ public class ElementUtil {
 	@Deprecated
 	public static EObject hasStereotype(Element elt, EClass stereotypeClass) {
 		EObject stereotypeApplication = null;
-
 		// Stereotype parsing
 		Iterator<EObject> stAppIt = elt.getStereotypeApplications().iterator();
 		while(stAppIt.hasNext() && (stereotypeApplication == null)) {
@@ -47,7 +46,6 @@ public class ElementUtil {
 				stereotypeApplication = stApp;
 			}
 		}
-
 		return stereotypeApplication;
 	}
 

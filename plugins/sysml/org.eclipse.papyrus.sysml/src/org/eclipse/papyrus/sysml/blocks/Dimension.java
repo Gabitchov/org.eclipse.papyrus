@@ -60,5 +60,4 @@ public interface Dimension extends EObject {
 	 * @generated
 	 */
 	void setBase_InstanceSpecification(InstanceSpecification value);
-
 } // Dimension

@@ -35,5 +35,4 @@ public class PortandflowsResourceImpl extends XMLResourceImpl {
 	public PortandflowsResourceImpl(URI uri) {
 		super(uri);
 	}
-
 } // PortandflowsResourceImpl

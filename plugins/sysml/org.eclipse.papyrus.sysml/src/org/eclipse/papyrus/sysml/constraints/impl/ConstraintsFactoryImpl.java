@@ -114,5 +114,4 @@ public class ConstraintsFactoryImpl extends EFactoryImpl implements ConstraintsF
 	public ConstraintsPackage getConstraintsPackage() {
 		return (ConstraintsPackage)getEPackage();
 	}
-
 } // ConstraintsFactoryImpl

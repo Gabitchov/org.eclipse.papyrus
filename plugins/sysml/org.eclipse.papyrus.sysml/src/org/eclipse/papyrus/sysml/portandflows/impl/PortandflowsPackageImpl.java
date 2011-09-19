@@ -128,7 +128,6 @@ public class PortandflowsPackageImpl extends EPackageImpl implements Portandflow
 		// Mark meta-data to indicate it can't be changed
 		thePortandflowsPackage.freeze();
 
-
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(PortandflowsPackage.eNS_URI, thePortandflowsPackage);
 		return thePortandflowsPackage;
@@ -423,5 +422,4 @@ public class PortandflowsPackageImpl extends EPackageImpl implements Portandflow
 		addEEnumLiteral(flowDirectionEEnum, FlowDirection.OUT);
 		addEEnumLiteral(flowDirectionEEnum, FlowDirection.INOUT);
 	}
-
 } // PortandflowsPackageImpl

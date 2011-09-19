@@ -224,5 +224,4 @@ public class ItemFlowImpl extends EObjectImpl implements ItemFlow {
 		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PortandflowsPackage.ITEM_FLOW__ITEM_PROPERTY, oldItemProperty, itemProperty));
 	}
-
 } // ItemFlowImpl

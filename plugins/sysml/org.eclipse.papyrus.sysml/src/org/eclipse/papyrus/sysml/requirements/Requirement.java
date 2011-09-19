@@ -234,5 +234,4 @@ public interface Requirement extends EObject {
 	 * @generated
 	 */
 	void setText(String value);
-
 } // Requirement

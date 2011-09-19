@@ -55,5 +55,4 @@ public class ConstraintsXMLProcessor extends XMLProcessor {
 		}
 		return registrations;
 	}
-
 } // ConstraintsXMLProcessor

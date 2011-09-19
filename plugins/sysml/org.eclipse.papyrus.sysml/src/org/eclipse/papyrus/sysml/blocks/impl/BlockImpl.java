@@ -230,5 +230,4 @@ public class BlockImpl extends EObjectImpl implements Block {
 		result.append(')');
 		return result.toString();
 	}
-
 } // BlockImpl

@@ -86,5 +86,4 @@ public interface ModelelementsFactory extends EFactory {
 	 * @generated
 	 */
 	ModelelementsPackage getModelelementsPackage();
-
 } // ModelelementsFactory

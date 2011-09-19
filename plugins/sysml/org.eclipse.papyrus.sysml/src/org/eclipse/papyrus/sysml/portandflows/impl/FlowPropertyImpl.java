@@ -198,23 +198,19 @@ public class FlowPropertyImpl extends EObjectImpl implements FlowProperty {
 	/**
 	 * <!-- begin-user-doc -->
 	 * Images registered in Profile are :
-	 * 		0 - FlowPort (default, similar to INOUT)
-	 * 		1 - FlowPort IN
-	 * 		2 - FlowPort OUT
-	 * 		3 - FlowPort INOUT
+	 * 0 - FlowPort (default, similar to INOUT)
+	 * 1 - FlowPort IN
+	 * 2 - FlowPort OUT
+	 * 3 - FlowPort INOUT
 	 * <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
 	 */
 	public Image getIcon() {
-
 		Image ImageNotFound = null;
-
 		if(getBase_Property() != null) {
 			Stereotype st = getBase_Property().getAppliedStereotype(SysmlResource.FLOW_PROPERTY_ID);
-
 			Image image = st.getIcons().get(0);
-
 			if(getDirection() == FlowDirection.IN) {
 				image = st.getIcons().get(1);
 			} else if(getDirection() == FlowDirection.OUT) {
@@ -222,9 +218,7 @@ public class FlowPropertyImpl extends EObjectImpl implements FlowProperty {
 			} else if(getDirection() == FlowDirection.INOUT) {
 				image = st.getIcons().get(3);
 			}
-
 			return image;
-
 		} else {
 			return ImageNotFound;
 		}
@@ -270,5 +264,4 @@ public class FlowPropertyImpl extends EObjectImpl implements FlowProperty {
 		result.append(')');
 		return result.toString();
 	}
-
 } // FlowPropertyImpl

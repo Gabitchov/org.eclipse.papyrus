@@ -46,5 +46,4 @@ public class CopyImpl extends TraceImpl implements Copy {
 	protected EClass eStaticClass() {
 		return RequirementsPackage.Literals.COPY;
 	}
-
 } // CopyImpl

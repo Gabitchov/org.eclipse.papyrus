@@ -223,5 +223,4 @@ public class ParticipantPropertyImpl extends EObjectImpl implements ParticipantP
 		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, BlocksPackage.PARTICIPANT_PROPERTY__END, oldEnd, end));
 	}
-
 } // ParticipantPropertyImpl

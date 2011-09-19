@@ -86,5 +86,4 @@ public interface Block extends EObject {
 	 * @generated
 	 */
 	void setIsEncapsulated(boolean value);
-
 } // Block

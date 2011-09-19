@@ -58,5 +58,4 @@ public interface ConstraintProperty extends EObject {
 	 * @generated
 	 */
 	void setBase_Property(Property value);
-
 } // ConstraintProperty

@@ -173,5 +173,4 @@ public class OptionalImpl extends EObjectImpl implements Optional {
 		}
 		return super.eIsSet(featureID);
 	}
-
 } //OptionalImpl

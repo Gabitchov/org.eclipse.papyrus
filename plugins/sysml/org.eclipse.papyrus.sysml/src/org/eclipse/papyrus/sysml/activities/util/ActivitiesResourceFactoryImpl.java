@@ -57,5 +57,4 @@ public class ActivitiesResourceFactoryImpl extends ResourceFactoryImpl {
 		result.getDefaultLoadOptions().put(XMLResource.OPTION_USE_LEXICAL_HANDLER, Boolean.TRUE);
 		return result;
 	}
-
 } // ActivitiesResourceFactoryImpl

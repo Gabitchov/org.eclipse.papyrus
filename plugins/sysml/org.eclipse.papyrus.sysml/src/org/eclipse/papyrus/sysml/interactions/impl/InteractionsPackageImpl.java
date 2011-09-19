@@ -119,7 +119,6 @@ public class InteractionsPackageImpl extends EPackageImpl implements Interaction
 		// Mark meta-data to indicate it can't be changed
 		theInteractionsPackage.freeze();
 
-
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(InteractionsPackage.eNS_URI, theInteractionsPackage);
 		return theInteractionsPackage;
@@ -217,5 +216,4 @@ public class InteractionsPackageImpl extends EPackageImpl implements Interaction
 		// Initialize data types
 		initEDataType(dummyEDataType, String.class, "Dummy", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 	}
-
 } // InteractionsPackageImpl

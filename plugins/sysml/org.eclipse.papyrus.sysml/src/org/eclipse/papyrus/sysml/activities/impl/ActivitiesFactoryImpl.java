@@ -193,5 +193,4 @@ public class ActivitiesFactoryImpl extends EFactoryImpl implements ActivitiesFac
 	public ActivitiesPackage getActivitiesPackage() {
 		return (ActivitiesPackage)getEPackage();
 	}
-
 } // ActivitiesFactoryImpl

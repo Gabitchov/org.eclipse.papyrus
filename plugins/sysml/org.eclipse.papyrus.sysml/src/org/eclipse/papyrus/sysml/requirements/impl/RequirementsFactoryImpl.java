@@ -179,5 +179,4 @@ public class RequirementsFactoryImpl extends EFactoryImpl implements Requirement
 	public RequirementsPackage getRequirementsPackage() {
 		return (RequirementsPackage)getEPackage();
 	}
-
 } // RequirementsFactoryImpl

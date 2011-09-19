@@ -59,5 +59,4 @@ public interface Conform extends EObject {
 	 * @generated
 	 */
 	void setBase_Dependency(Dependency value);
-
 } // Conform

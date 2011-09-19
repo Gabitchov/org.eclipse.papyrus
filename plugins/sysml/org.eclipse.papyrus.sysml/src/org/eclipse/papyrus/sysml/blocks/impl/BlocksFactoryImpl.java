@@ -218,5 +218,4 @@ public class BlocksFactoryImpl extends EFactoryImpl implements BlocksFactory {
 	public BlocksPackage getBlocksPackage() {
 		return (BlocksPackage)getEPackage();
 	}
-
 } // BlocksFactoryImpl

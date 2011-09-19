@@ -161,5 +161,4 @@ public class DistributedPropertyImpl extends EObjectImpl implements DistributedP
 		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, BlocksPackage.DISTRIBUTED_PROPERTY__BASE_PROPERTY, oldBase_Property, base_Property));
 	}
-
 } // DistributedPropertyImpl

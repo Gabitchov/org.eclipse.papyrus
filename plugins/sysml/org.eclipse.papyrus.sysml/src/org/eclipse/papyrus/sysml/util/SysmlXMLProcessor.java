@@ -55,5 +55,4 @@ public class SysmlXMLProcessor extends XMLProcessor {
 		}
 		return registrations;
 	}
-
 } // SysmlXMLProcessor

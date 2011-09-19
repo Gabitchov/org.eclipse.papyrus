@@ -45,5 +45,4 @@ public class DiscreteImpl extends RateImpl implements Discrete {
 	protected EClass eStaticClass() {
 		return ActivitiesPackage.Literals.DISCRETE;
 	}
-
 } // DiscreteImpl

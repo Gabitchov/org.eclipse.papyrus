@@ -35,5 +35,4 @@ public class RequirementsResourceImpl extends XMLResourceImpl {
 	public RequirementsResourceImpl(URI uri) {
 		super(uri);
 	}
-
 } // RequirementsResourceImpl

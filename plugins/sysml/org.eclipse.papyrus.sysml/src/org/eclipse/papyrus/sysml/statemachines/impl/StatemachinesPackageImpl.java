@@ -119,7 +119,6 @@ public class StatemachinesPackageImpl extends EPackageImpl implements Statemachi
 		// Mark meta-data to indicate it can't be changed
 		theStatemachinesPackage.freeze();
 
-
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(StatemachinesPackage.eNS_URI, theStatemachinesPackage);
 		return theStatemachinesPackage;
@@ -217,5 +216,4 @@ public class StatemachinesPackageImpl extends EPackageImpl implements Statemachi
 		// Initialize data types
 		initEDataType(dummyEDataType, String.class, "Dummy", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 	}
-
 } // StatemachinesPackageImpl

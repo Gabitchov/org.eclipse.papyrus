@@ -40,5 +40,4 @@ public interface UsecasesFactory extends EFactory {
 	 * @generated
 	 */
 	UsecasesPackage getUsecasesPackage();
-
 } // UsecasesFactory

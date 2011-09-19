@@ -78,5 +78,4 @@ public interface PortandflowsFactory extends EFactory {
 	 * @generated
 	 */
 	PortandflowsPackage getPortandflowsPackage();
-
 } // PortandflowsFactory

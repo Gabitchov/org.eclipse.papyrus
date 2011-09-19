@@ -379,5 +379,4 @@ public class ViewPointImpl extends EObjectImpl implements ViewPoint {
 		result.append(')');
 		return result.toString();
 	}
-
 } // ViewPointImpl

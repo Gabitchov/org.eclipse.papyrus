@@ -40,5 +40,4 @@ public interface SysmlFactory extends EFactory {
 	 * @generated
 	 */
 	SysmlPackage getSysmlPackage();
-
 } // SysmlFactory

@@ -58,5 +58,4 @@ public interface DistributedProperty extends EObject {
 	 * @generated
 	 */
 	void setBase_Property(Property value);
-
 } // DistributedProperty

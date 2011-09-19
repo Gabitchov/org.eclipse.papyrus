@@ -68,5 +68,4 @@ public interface AllocationsFactory extends EFactory {
 	 * @generated
 	 */
 	AllocationsPackage getAllocationsPackage();
-
 } // AllocationsFactory

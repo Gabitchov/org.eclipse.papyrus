@@ -40,5 +40,4 @@ public interface InteractionsFactory extends EFactory {
 	 * @generated
 	 */
 	InteractionsPackage getInteractionsPackage();
-
 } // InteractionsFactory

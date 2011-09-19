@@ -287,7 +287,6 @@ public interface BlocksPackage extends EPackage {
 		 * @generated
 		 */
 		EReference PROPERTY_SPECIFIC_TYPE__BASE_CLASSIFIER = eINSTANCE.getPropertySpecificType_Base_Classifier();
-
 	}
 
 	/**
@@ -988,5 +987,4 @@ public interface BlocksPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getValueType_Unit();
-
 } // BlocksPackage

@@ -106,5 +106,4 @@ public interface RequirementsFactory extends EFactory {
 	 * @generated
 	 */
 	RequirementsPackage getRequirementsPackage();
-
 } // RequirementsFactory

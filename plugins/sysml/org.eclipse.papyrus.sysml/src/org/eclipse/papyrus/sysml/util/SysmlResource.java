@@ -15,7 +15,6 @@ package org.eclipse.papyrus.sysml.util;
 
 import org.eclipse.papyrus.sysml.SysmlPackage;
 
-
 public class SysmlResource {
 
 	public static final String LIBRARIES_PATHMAP = "pathmap://SysML_LIBRARIES/"; //$NON-NLS-1$
@@ -33,7 +32,10 @@ public class SysmlResource {
 
 	public static String VIEW_ID = "SysML::ModelElements::View";
 
-	public static String VIEWPOINT_ID = "SysML::ModelElements::ViewPoint";
+	public static String VIEW_POINT_ID = "SysML::ModelElements::ViewPoint";
+
+	/** @deprecated use VIEW_POINT_ID instead */
+	public static String VIEWPOINT_ID = VIEW_POINT_ID;
 
 	public static String RATIONALE_ID = "SysML::ModelElements::Rationale";
 
@@ -49,7 +51,10 @@ public class SysmlResource {
 
 	public static String VALUE_TYPE_ID = "SysML::Blocks::ValueType";
 
-	public static String NESTED_CONNECTOREND_ID = "SysML::Blocks::NestedConnectorEnd";
+	public static String NESTED_CONNECTOR_END_ID = "SysML::Blocks::NestedConnectorEnd";
+
+	/** @deprecated use NESTED_CONNECTOR_END_ID instead */
+	public static String NESTED_CONNECTOREND_ID = NESTED_CONNECTOR_END_ID;
 
 	public static String PARTICIPANT_PROPERTY_ID = "SysML::Blocks::ParticipantProperty";
 
@@ -107,7 +112,6 @@ public class SysmlResource {
 
 	public static String REQUIREMENT_RELATED_ID = "SysML::Requirements::RequirementRelated";
 
-
 	// SubProfiles ids
 	public static String SYSML_ID = "SysML";
 
@@ -156,6 +160,4 @@ public class SysmlResource {
 
 	@Deprecated
 	public static String REQUIREMENT_VERIFIED_BY_ID = "verifiedBy";//$NON-NLS-1$
-
-
 }

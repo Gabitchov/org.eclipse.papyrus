@@ -162,5 +162,4 @@ public class OverwriteImpl extends EObjectImpl implements Overwrite {
 		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ActivitiesPackage.OVERWRITE__BASE_OBJECT_NODE, oldBase_ObjectNode, base_ObjectNode));
 	}
-
 } // OverwriteImpl

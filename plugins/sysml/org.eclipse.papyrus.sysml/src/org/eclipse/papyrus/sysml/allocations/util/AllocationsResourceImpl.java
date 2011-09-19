@@ -35,5 +35,4 @@ public class AllocationsResourceImpl extends XMLResourceImpl {
 	public AllocationsResourceImpl(URI uri) {
 		super(uri);
 	}
-
 } // AllocationsResourceImpl

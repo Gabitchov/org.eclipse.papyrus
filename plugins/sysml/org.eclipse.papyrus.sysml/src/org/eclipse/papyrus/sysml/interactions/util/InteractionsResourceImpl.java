@@ -35,5 +35,4 @@ public class InteractionsResourceImpl extends XMLResourceImpl {
 	public InteractionsResourceImpl(URI uri) {
 		super(uri);
 	}
-
 } // InteractionsResourceImpl

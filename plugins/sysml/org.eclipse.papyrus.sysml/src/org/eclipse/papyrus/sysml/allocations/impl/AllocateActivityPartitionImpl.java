@@ -161,5 +161,4 @@ public class AllocateActivityPartitionImpl extends EObjectImpl implements Alloca
 		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, AllocationsPackage.ALLOCATE_ACTIVITY_PARTITION__BASE_ACTIVITY_PARTITION, oldBase_ActivityPartition, base_ActivityPartition));
 	}
-
 } // AllocateActivityPartitionImpl

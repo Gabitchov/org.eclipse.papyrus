@@ -145,5 +145,4 @@ public interface FlowPort extends EObject {
 	 * @generated
 	 */
 	void setIsConjugated(boolean value);
-
 } // FlowPort

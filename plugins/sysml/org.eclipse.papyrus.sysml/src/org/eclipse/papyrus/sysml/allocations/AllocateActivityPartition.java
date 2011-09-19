@@ -59,5 +59,4 @@ public interface AllocateActivityPartition extends EObject {
 	 * @generated
 	 */
 	void setBase_ActivityPartition(ActivityPartition value);
-
 } // AllocateActivityPartition

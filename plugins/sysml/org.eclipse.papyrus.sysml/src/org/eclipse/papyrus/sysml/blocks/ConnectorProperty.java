@@ -87,5 +87,4 @@ public interface ConnectorProperty extends EObject {
 	 * @generated
 	 */
 	void setConnector(Connector value);
-
 } // ConnectorProperty

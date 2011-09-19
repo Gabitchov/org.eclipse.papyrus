@@ -55,5 +55,4 @@ public class AllocationsXMLProcessor extends XMLProcessor {
 		}
 		return registrations;
 	}
-
 } // AllocationsXMLProcessor

@@ -40,5 +40,4 @@ public interface StatemachinesFactory extends EFactory {
 	 * @generated
 	 */
 	StatemachinesPackage getStatemachinesPackage();
-
 } // StatemachinesFactory

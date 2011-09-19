@@ -137,5 +137,4 @@ public interface BlocksFactory extends EFactory {
 	 * @generated
 	 */
 	BlocksPackage getBlocksPackage();
-
 } // BlocksFactory

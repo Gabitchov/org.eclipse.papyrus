@@ -201,5 +201,4 @@ public class NestedConnectorEndImpl extends EObjectImpl implements NestedConnect
 		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, BlocksPackage.NESTED_CONNECTOR_END__BASE_CONNECTOR_END, oldBase_ConnectorEnd, base_ConnectorEnd));
 	}
-
 } // NestedConnectorEndImpl

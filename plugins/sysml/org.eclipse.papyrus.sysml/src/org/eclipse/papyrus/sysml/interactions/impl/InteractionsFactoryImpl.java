@@ -137,5 +137,4 @@ public class InteractionsFactoryImpl extends EFactoryImpl implements Interaction
 	public InteractionsPackage getInteractionsPackage() {
 		return (InteractionsPackage)getEPackage();
 	}
-
 } // InteractionsFactoryImpl

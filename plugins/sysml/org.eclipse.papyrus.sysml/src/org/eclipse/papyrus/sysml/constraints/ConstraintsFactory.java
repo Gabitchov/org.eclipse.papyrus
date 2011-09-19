@@ -60,5 +60,4 @@ public interface ConstraintsFactory extends EFactory {
 	 * @generated
 	 */
 	ConstraintsPackage getConstraintsPackage();
-
 } // ConstraintsFactory

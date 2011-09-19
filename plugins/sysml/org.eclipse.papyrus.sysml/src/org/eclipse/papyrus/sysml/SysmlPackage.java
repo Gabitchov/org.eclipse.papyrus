@@ -59,7 +59,6 @@ public interface SysmlPackage extends EPackage {
 		 * @generated
 		 */
 		EDataType DUMMY = eINSTANCE.getDummy();
-
 	}
 
 	/**
@@ -125,5 +124,4 @@ public interface SysmlPackage extends EPackage {
 	 * @generated
 	 */
 	SysmlFactory getSysmlFactory();
-
 } // SysmlPackage

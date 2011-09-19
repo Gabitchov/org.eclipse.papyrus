@@ -61,5 +61,4 @@ public interface Optional extends EObject {
 	 * @generated
 	 */
 	void setBase_Parameter(Parameter value);
-
 } // Optional

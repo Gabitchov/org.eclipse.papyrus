@@ -46,5 +46,4 @@ public class SatisfyImpl extends TraceImpl implements Satisfy {
 	protected EClass eStaticClass() {
 		return RequirementsPackage.Literals.SATISFY;
 	}
-
 } // SatisfyImpl

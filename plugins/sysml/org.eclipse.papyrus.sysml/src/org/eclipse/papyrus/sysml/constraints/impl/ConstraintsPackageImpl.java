@@ -123,7 +123,6 @@ public class ConstraintsPackageImpl extends EPackageImpl implements ConstraintsP
 		// Mark meta-data to indicate it can't be changed
 		theConstraintsPackage.freeze();
 
-
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(ConstraintsPackage.eNS_URI, theConstraintsPackage);
 		return theConstraintsPackage;
@@ -263,5 +262,4 @@ public class ConstraintsPackageImpl extends EPackageImpl implements ConstraintsP
 		initEClass(constraintPropertyEClass, ConstraintProperty.class, "ConstraintProperty", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getConstraintProperty_Base_Property(), theUMLPackage.getProperty(), null, "base_Property", null, 1, 1, ConstraintProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 	}
-
 } // ConstraintsPackageImpl

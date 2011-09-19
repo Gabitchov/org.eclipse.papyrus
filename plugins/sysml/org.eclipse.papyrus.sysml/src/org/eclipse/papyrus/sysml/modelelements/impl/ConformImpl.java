@@ -162,5 +162,4 @@ public class ConformImpl extends EObjectImpl implements Conform {
 		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ModelelementsPackage.CONFORM__BASE_DEPENDENCY, oldBase_Dependency, base_Dependency));
 	}
-
 } // ConformImpl

@@ -127,5 +127,4 @@ public class AllocationsFactoryImpl extends EFactoryImpl implements AllocationsF
 	public AllocationsPackage getAllocationsPackage() {
 		return (AllocationsPackage)getEPackage();
 	}
-
 } // AllocationsFactoryImpl

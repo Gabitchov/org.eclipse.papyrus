@@ -129,5 +129,4 @@ public interface RequirementRelated extends EObject {
 	 * @generated
 	 */
 	void setBase_NamedElement(NamedElement value);
-
 } // RequirementRelated

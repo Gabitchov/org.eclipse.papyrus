@@ -153,5 +153,4 @@ public class ModelelementsFactoryImpl extends EFactoryImpl implements Modeleleme
 	public ModelelementsPackage getModelelementsPackage() {
 		return (ModelelementsPackage)getEPackage();
 	}
-
 } // ModelelementsFactoryImpl

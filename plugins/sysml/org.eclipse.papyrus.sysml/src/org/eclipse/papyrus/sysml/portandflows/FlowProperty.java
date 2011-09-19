@@ -100,5 +100,4 @@ public interface FlowProperty extends EObject {
 	 * @generated
 	 */
 	void setDirection(FlowDirection value);
-
 } // FlowProperty

@@ -47,5 +47,4 @@ public class InteractionsResourceFactoryImpl extends ResourceFactoryImpl {
 		Resource result = new InteractionsResourceImpl(uri);
 		return result;
 	}
-
 } // InteractionsResourceFactoryImpl

@@ -95,5 +95,4 @@ public interface Allocated extends EObject {
 	 * @generated
 	 */
 	void setBase_NamedElement(NamedElement value);
-
 } // Allocated

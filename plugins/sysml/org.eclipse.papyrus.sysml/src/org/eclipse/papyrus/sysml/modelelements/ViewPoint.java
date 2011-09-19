@@ -155,5 +155,4 @@ public interface ViewPoint extends EObject {
 	 * @generated
 	 */
 	void setPurpose(String value);
-
 } // ViewPoint

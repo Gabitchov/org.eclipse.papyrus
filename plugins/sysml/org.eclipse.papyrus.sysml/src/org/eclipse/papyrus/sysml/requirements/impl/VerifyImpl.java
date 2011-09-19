@@ -46,5 +46,4 @@ public class VerifyImpl extends TraceImpl implements Verify {
 	protected EClass eStaticClass() {
 		return RequirementsPackage.Literals.VERIFY;
 	}
-
 } // VerifyImpl

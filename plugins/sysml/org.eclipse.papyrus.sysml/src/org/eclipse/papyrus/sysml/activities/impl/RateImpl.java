@@ -287,5 +287,4 @@ public class RateImpl extends EObjectImpl implements Rate {
 		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ActivitiesPackage.RATE__RATE, oldRate, rate));
 	}
-
 } // RateImpl

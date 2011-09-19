@@ -17,10 +17,14 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.papyrus.sysml.blocks.Block;
 import org.eclipse.papyrus.sysml.constraints.ConstraintBlock;
 import org.eclipse.papyrus.sysml.constraints.ConstraintProperty;
 import org.eclipse.papyrus.sysml.constraints.ConstraintsPackage;
+import org.eclipse.uml2.uml.Class;
+import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * <!-- begin-user-doc --> The <b>Adapter Factory</b> for the model. It provides an adapter <code>createXXX</code> method for each class of the model.
@@ -47,6 +51,22 @@ public class ConstraintsAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	protected ConstraintsSwitch<Adapter> modelSwitch = new ConstraintsSwitch<Adapter>() {
+
+		@Override
+		public Adapter caseClassStereotypedByConstraintBlock(Class class_) {
+			if(isConstraintBlockFromClass(class_)) {
+				return createConstraintBlockAdapter();
+			}
+			return null;
+		}
+
+		@Override
+		public Adapter casePropertyStereotypedByConstraintProperty(Property property_) {
+			if(isConstraintPropertyFromProperty(property_)) {
+				return createConstraintPropertyAdapter();
+			}
+			return null;
+		}
 
 		@Override
 		public Adapter caseConstraintBlock(ConstraintBlock object) {
@@ -160,13 +180,13 @@ public class ConstraintsAdapterFactory extends AdapterFactoryImpl {
 	 */
 	@Override
 	public boolean isFactoryForType(Object object) {
-		if(object == modelPackage) {
+		if(object == modelPackage || object == UMLPackage.eINSTANCE) {
 			return true;
 		}
 		if(object instanceof EObject) {
-			return ((EObject)object).eClass().getEPackage() == modelPackage;
+			EPackage ePackage = ((EObject)object).eClass().getEPackage();
+			return ePackage != null && (ePackage == modelPackage || ePackage == UMLPackage.eINSTANCE);
 		}
 		return false;
 	}
-
 } // ConstraintsAdapterFactory

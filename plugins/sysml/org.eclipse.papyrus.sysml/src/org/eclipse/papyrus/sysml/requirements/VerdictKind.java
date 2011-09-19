@@ -36,7 +36,6 @@ public enum VerdictKind implements Enumerator {
 	 * @ordered
 	 */
 	PASS(0, "pass", "pass"),
-
 	/**
 	 * The '<em><b>Fail</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -45,7 +44,6 @@ public enum VerdictKind implements Enumerator {
 	 * @ordered
 	 */
 	FAIL(1, "fail", "fail"),
-
 	/**
 	 * The '<em><b>Inconclusive</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
@@ -55,7 +53,6 @@ public enum VerdictKind implements Enumerator {
 	 * @ordered
 	 */
 	INCONCLUSIVE(2, "inconclusive", "inconclusive"),
-
 	/**
 	 * The '<em><b>Error</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -258,5 +255,4 @@ public enum VerdictKind implements Enumerator {
 	public String toString() {
 		return literal;
 	}
-
 } // VerdictKind

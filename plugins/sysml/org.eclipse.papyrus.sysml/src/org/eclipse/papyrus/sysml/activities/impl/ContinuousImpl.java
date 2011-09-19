@@ -45,5 +45,4 @@ public class ContinuousImpl extends RateImpl implements Continuous {
 	protected EClass eStaticClass() {
 		return ActivitiesPackage.Literals.CONTINUOUS;
 	}
-
 } // ContinuousImpl

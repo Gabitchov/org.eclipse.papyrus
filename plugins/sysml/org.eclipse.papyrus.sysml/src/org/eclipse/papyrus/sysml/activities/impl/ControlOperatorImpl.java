@@ -224,5 +224,4 @@ public class ControlOperatorImpl extends EObjectImpl implements ControlOperator 
 		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ActivitiesPackage.CONTROL_OPERATOR__BASE_OPERATION, oldBase_Operation, base_Operation));
 	}
-
 } // ControlOperatorImpl
