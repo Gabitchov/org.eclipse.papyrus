@@ -22,10 +22,14 @@ import org.eclipse.core.commands.IHandler;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.URIConverter;
+import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
-import org.eclipse.papyrus.properties.util.EMFHelper;
 import org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.service.edit.service.IElementEditService;
 
@@ -114,8 +118,9 @@ public class DeleteCommandHandler extends AbstractCommandHandler implements IHan
 
 		List<EObject> selectedElements = getSelectedElements();
 		for(EObject current : selectedElements) {
-			//FIXME EMFHelper should be moved in an utils plugin
-			if(EMFHelper.isReadOnly(current)) {
+			//FIXME use the method isReadOnly provided by the class EMFHelper 
+			//TODO after the refactoring (currently, there is circular dependencies)
+			if(isReadOnly(current)) {
 				return false;
 			}
 		}
@@ -123,5 +128,61 @@ public class DeleteCommandHandler extends AbstractCommandHandler implements IHan
 		// Don't compute the delete command to know if it is enabled,
 		// it can be WAY too slow...
 		return true;
+	}
+
+	/**
+	 * Tests if an EObject is read only
+	 * Delegates to the EObject's editing domain if it can be found
+	 * 
+	 * @param eObject
+	 * @return
+	 *         True if the EObject is read only
+	 */
+	public static boolean isReadOnly(EObject eObject) {
+		EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(eObject);
+		return isReadOnly(eObject, domain);
+	}
+
+	/**
+	 * Tests if an EObject is read only
+	 * Delegates to the given editing domain if it isn't null
+	 * 
+	 * @param eObject
+	 * @param domain
+	 * @return
+	 *         True if the EObject is read only
+	 */
+	public static boolean isReadOnly(EObject eObject, EditingDomain domain) {
+		return isReadOnly(eObject.eResource(), domain);
+	}
+
+	/**
+	 * Tests if the Resource is read only
+	 * Delegates to the given editing domain if it isn't null
+	 * 
+	 * @param resource
+	 * @param domain
+	 * @return
+	 *         True if the Resource is read only
+	 */
+	public static boolean isReadOnly(Resource resource, EditingDomain domain) {
+		if(domain instanceof AdapterFactoryEditingDomain) {
+			return ((AdapterFactoryEditingDomain)domain).isReadOnly(resource);
+		}
+
+		if(resource == null) {
+			return false;
+		}
+
+		ResourceSet resourceSet = resource.getResourceSet();
+
+		if(resourceSet == null) {
+			return false;
+		}
+
+		Map<String, ?> attributes = resourceSet.getURIConverter().getAttributes(resource.getURI(), null);
+		Boolean readOnly = (Boolean)attributes.get(URIConverter.ATTRIBUTE_READ_ONLY);
+
+		return readOnly == null ? false : readOnly;
 	}
 }
