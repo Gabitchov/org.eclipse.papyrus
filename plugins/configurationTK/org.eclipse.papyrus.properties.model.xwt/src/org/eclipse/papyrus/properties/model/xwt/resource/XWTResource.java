@@ -110,7 +110,7 @@ public class XWTResource extends ResourceImpl {
 		Object formatValue = options.get(OPTION_FORMAT);
 		if(formatValue == null || formatValue == Boolean.TRUE) {
 			if(uri.isPlatform()) {
-				IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(uri.toPlatformString(false)));
+				IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(uri.toPlatformString(true)));
 				XMLFormatter.format(file);
 			}
 		}
