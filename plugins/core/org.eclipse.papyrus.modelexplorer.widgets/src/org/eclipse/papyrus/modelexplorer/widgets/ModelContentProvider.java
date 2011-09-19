@@ -105,7 +105,7 @@ public class ModelContentProvider extends MoDiscoContentProvider implements ISta
 				return treeElement;
 			}
 		}
-		return null;
+		return selection;
 	}
 
 	/**

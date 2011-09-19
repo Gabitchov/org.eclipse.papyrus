@@ -260,7 +260,7 @@ public class EMFModelElement extends AbstractModelElement {
 		if(feature != null) {
 			if(feature instanceof EReference) {
 				EReference reference = (EReference)feature;
-				if(reference.isContainer()) {
+				if(reference.isContainment()) {
 					return new EcorePropertyEditorFactory(reference);
 				}
 			}

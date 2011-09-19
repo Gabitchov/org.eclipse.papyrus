@@ -54,7 +54,7 @@ public class SelectionLabelProvider extends LabelProvider {
 				final int priority = Integer.parseInt(e.getAttribute(PRIORITY_PROPERTY));
 				getLabelProviders(priority).add(provider);
 			} catch (Exception ex) {
-				Activator.log.error(ex);
+				Activator.log.error("Cannot load the label provider : " + e.getAttribute(LABEL_PROVIDER_PROPERTY), ex);
 			}
 		}
 	}

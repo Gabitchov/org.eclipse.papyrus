@@ -50,4 +50,11 @@
             file="Model/UML/uml.querySet">
       </modelqueryset>
    </extension>
+   <extension
+         point="org.eclipse.papyrus.properties.labelprovider">
+      <labelProvider
+            labelProvider="org.eclipse.papyrus.properties.uml.providers.UMLLabelProvider"
+            priority="50">
+      </labelProvider>
+   </extension>
 </plugin>

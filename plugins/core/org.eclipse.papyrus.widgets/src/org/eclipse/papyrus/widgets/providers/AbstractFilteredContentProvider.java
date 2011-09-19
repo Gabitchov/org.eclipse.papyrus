@@ -42,7 +42,7 @@ import org.eclipse.swt.widgets.Composite;
  */
 public abstract class AbstractFilteredContentProvider implements IGraphicalContentProvider {
 
-	private StructuredViewer viewer;
+	protected StructuredViewer viewer;
 
 	private StringEditor filterPattern;
 

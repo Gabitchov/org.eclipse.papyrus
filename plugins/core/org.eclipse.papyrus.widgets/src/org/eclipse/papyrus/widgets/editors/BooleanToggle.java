@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -13,6 +13,8 @@ package org.eclipse.papyrus.widgets.editors;
 
 import org.eclipse.jface.databinding.swt.WidgetProperties;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
@@ -28,6 +30,16 @@ public class BooleanToggle extends AbstractValueEditor {
 		toggleButton = factory.createButton(this, null, style | SWT.TOGGLE);
 		setWidgetObservable(WidgetProperties.selection().observe(toggleButton));
 		setCommitOnFocusLost(toggleButton);
+		toggleButton.addSelectionListener(new SelectionListener() {
+
+			public void widgetSelected(SelectionEvent e) {
+				commit();
+			}
+
+			public void widgetDefaultSelected(SelectionEvent e) {
+				//Nothing
+			}
+		});
 
 		setText(text);
 		setImage(image);
@@ -50,17 +62,19 @@ public class BooleanToggle extends AbstractValueEditor {
 	}
 
 	public void setText(String text) {
-		if(text != null)
+		if(text != null) {
 			toggleButton.setText(text);
+		}
 	}
 
 	public void setImage(Image image) {
-		if(image != null)
+		if(image != null) {
 			toggleButton.setImage(image);
+		}
 	}
 
 	@Override
-	public Object getValue() {
+	public Boolean getValue() {
 		return toggleButton.getSelection();
 	}
 
@@ -83,6 +97,10 @@ public class BooleanToggle extends AbstractValueEditor {
 	public void setToolTipText(String text) {
 		toggleButton.setToolTipText(text);
 		setLabelToolTipText(text);
+	}
+
+	public void setValue(boolean isActive) {
+		toggleButton.setSelection(isActive);
 	}
 
 }

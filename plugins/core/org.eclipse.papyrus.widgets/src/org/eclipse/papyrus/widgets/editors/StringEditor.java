@@ -11,7 +11,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.widgets.editors;
 
-import org.eclipse.jface.databinding.swt.WidgetProperties;
+import org.eclipse.core.databinding.observable.value.IObservableValue;
+import org.eclipse.papyrus.widgets.databinding.TextObservableValue;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.KeyListener;
@@ -81,8 +82,6 @@ public class StringEditor extends AbstractValueEditor implements KeyListener {
 
 		text.addKeyListener(this);
 
-		setWidgetObservable(WidgetProperties.text(SWT.FocusOut).observe(text), true);
-
 		setCommitOnFocusLost(text);
 	}
 
@@ -128,6 +127,12 @@ public class StringEditor extends AbstractValueEditor implements KeyListener {
 				}
 			}
 		}
+	}
+
+	@Override
+	public void setModelObservable(IObservableValue observable) {
+		setWidgetObservable(new TextObservableValue(text, observable, SWT.FocusOut), true);
+		super.setModelObservable(observable);
 	}
 
 	/**

@@ -6,6 +6,7 @@
   <constraintTypes label="True Constraint" constraintClass="org.eclipse.papyrus.properties.constraints.TrueConstraint"/>
   <constraintTypes label="EMF Query" constraintClass="org.eclipse.papyrus.properties.constraints.EMFQueryConstraint"/>
   <constraintTypes label="Java Instance Of" constraintClass="org.eclipse.papyrus.properties.constraints.JavaInstanceOf"/>
+  <constraintTypes label="Java Query" constraintClass="org.eclipse.papyrus.properties.constraints.JavaQueryConstraint"/>
   <widgetTypes label="Label" widgetClass="Label"/>
   <widgetTypes label="Text" widgetClass="Text"/>
   <propertyEditorTypes label="StringEditor" widgetClass="StringEditor" namespace="//@namespaces.3"/>

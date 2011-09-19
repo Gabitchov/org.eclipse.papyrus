@@ -29,10 +29,14 @@ import org.eclipse.papyrus.properties.customization.providers.DataContextElement
 import org.eclipse.papyrus.properties.customization.providers.DependencyContentProvider;
 import org.eclipse.papyrus.properties.customization.providers.EnvironmentContentProvider;
 import org.eclipse.papyrus.properties.customization.providers.PropertyContentProvider;
+import org.eclipse.papyrus.properties.customization.providers.PropertyEditorTypeContentProvider;
 import org.eclipse.papyrus.properties.customization.providers.TabContentProvider;
 import org.eclipse.papyrus.properties.environment.EnvironmentPackage;
 import org.eclipse.papyrus.properties.modelelement.AbstractModelElement;
+import org.eclipse.papyrus.properties.modelelement.DataSource;
 import org.eclipse.papyrus.properties.modelelement.EMFModelElement;
+import org.eclipse.papyrus.properties.ui.PropertyEditor;
+import org.eclipse.papyrus.properties.ui.UiPackage;
 import org.eclipse.papyrus.properties.util.EMFHelper;
 import org.eclipse.papyrus.widgets.creation.ReferenceValueFactory;
 import org.eclipse.papyrus.widgets.providers.EmptyContentProvider;
@@ -73,7 +77,6 @@ public class CustomizationModelElement extends AbstractModelElement {
 	private static void initializeProviders() {
 		providers = new HashMap<EClassifier, IStaticContentProvider>();
 		providers.put(EnvironmentPackage.eINSTANCE.getCompositeWidgetType(), new EnvironmentContentProvider(EnvironmentPackage.eINSTANCE.getEnvironment_CompositeWidgetTypes()));
-		providers.put(EnvironmentPackage.eINSTANCE.getPropertyEditorType(), new EnvironmentContentProvider(EnvironmentPackage.eINSTANCE.getEnvironment_PropertyEditorTypes()));
 		providers.put(EnvironmentPackage.eINSTANCE.getStandardWidgetType(), new EnvironmentContentProvider(EnvironmentPackage.eINSTANCE.getEnvironment_WidgetTypes()));
 		providers.put(EnvironmentPackage.eINSTANCE.getConstraintType(), new EnvironmentContentProvider(EnvironmentPackage.eINSTANCE.getEnvironment_ConstraintTypes()));
 		providers.put(EnvironmentPackage.eINSTANCE.getLayoutType(), new EnvironmentContentProvider(EnvironmentPackage.eINSTANCE.getEnvironment_LayoutTypes()));
@@ -111,6 +114,8 @@ public class CustomizationModelElement extends AbstractModelElement {
 			return new DataContextElementContentProvider((DataContextElement)delegate.getSource());
 		} else if(classifier == ContextsPackage.eINSTANCE.getContext()) {
 			return new DependencyContentProvider((Context)delegate.getSource());
+		} else if(feature == UiPackage.eINSTANCE.getPropertyEditor_WidgetType()) {
+			return new PropertyEditorTypeContentProvider((PropertyEditor)delegate.getSource());
 		} else {
 			return delegate.getContentProvider(propertyPath);
 		}
@@ -164,6 +169,11 @@ public class CustomizationModelElement extends AbstractModelElement {
 	}
 
 	@Override
+	public boolean getDirectCreation(String propertyPath) {
+		return delegate.getDirectCreation(propertyPath);
+	}
+
+	@Override
 	public boolean forceRefresh(String localPropertyPath) {
 		return false;
 	}
@@ -171,5 +181,16 @@ public class CustomizationModelElement extends AbstractModelElement {
 	@Override
 	public Object getDefaultValue(String propertyPath) {
 		return delegate.getDefaultValue(propertyPath);
+	}
+
+	@Override
+	public void setDataSource(DataSource source) {
+		delegate.setDataSource(source);
+	}
+
+	@Override
+	public void dispose() {
+		super.dispose();
+		delegate.dispose();
 	}
 }
