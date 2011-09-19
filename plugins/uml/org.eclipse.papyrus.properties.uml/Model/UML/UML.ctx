@@ -1399,6 +1399,9 @@
     <sections name="ReplyMessage" sectionFile="ui/ReplyMessage.xwt">
       <widget href="ui/ReplyMessage.xwt#/"/>
     </sections>
+    <sections name="Metaclass" sectionFile="ui/Metaclass.xwt">
+      <widget href="ui/Metaclass.xwt#/"/>
+    </sections>
   </tabs>
   <tabs label="Profile" id="profile" category="org.eclipse.papyrus" priority="50">
     <sections name="SinglePackageProfile" sectionFile="ui/SinglePackageProfile.xwt">
@@ -4235,6 +4238,18 @@
       <properties xsi:type="contexts:ValueProperty" name="umlClassName" value="Image"/>
     </constraints>
   </views>
+  <views name="Metaclass" sections="//@tabs.0/@sections.466" elementMultiplicity="-1">
+    <constraints xsi:type="contexts:CompositeConstraint" name="isMetaclass" overriddenConstraints="//@views.73/@constraints.0 //@views.74/@constraints.0">
+      <constraints name="isClass">
+        <constraintType href="ppe:/environment/org.eclipse.papyrus.properties.uml/Model/Environment.xmi#//@constraintTypes.0"/>
+        <properties xsi:type="contexts:ValueProperty" name="umlClassName" value="Class"/>
+      </constraints>
+      <constraints name="isMetaclass">
+        <constraintType href="ppe:/environment/org.eclipse.papyrus.properties.uml/Model/Environment.xmi#//@constraintTypes.1"/>
+        <properties xsi:type="contexts:ValueProperty" name="stereotypeName" value="Standard::Metaclass"/>
+      </constraints>
+    </constraints>
+  </views>
   <dataContexts name="UML" label="UML">
     <elements name="Comment" supertypes="//@dataContexts.0/@elements.1">
       <properties name="body" description="Specifies a string that is the comment."/>
@@ -4312,7 +4327,7 @@
       <properties name="navigableOwnedEnd" type="Reference" description="The navigable ends that are owned by the association itself."/>
     </elements>
     <elements name="Classifier" supertypes="//@dataContexts.0/@elements.8 //@dataContexts.0/@elements.17 //@dataContexts.0/@elements.14 //@dataContexts.0/@elements.18">
-      <properties name="isAbstract" description="If true, the Classifier does not provide a complete declaration and can typically not be instantiated. An abstract classifier is intended to be used by other classifiers e.g. as the target of general metarelationships or generalization relationships.&#xD;&#xA;"/>
+      <properties name="isAbstract" type="Boolean" description="If true, the Classifier does not provide a complete declaration and can typically not be instantiated. An abstract classifier is intended to be used by other classifiers e.g. as the target of general metarelationships or generalization relationships.&#xD;&#xA;"/>
       <properties name="generalization" type="Reference" description="Specifies the Generalization relationships for this Classifier. These Generalizations navigaten to more general classifiers in the generalization hierarchy."/>
       <properties name="powertypeExtent" type="Reference" description="Designates the GeneralizationSet of which the associated Classifier is a power type."/>
       <properties name="feature" type="Reference" description="Note that there may be members of the Classifier that are of the type Feature but are not included in this association, e.g. inherited features.&#xD;&#xA;Specifies each feature defined in the classifier."/>
