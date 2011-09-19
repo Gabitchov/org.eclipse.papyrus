@@ -11,7 +11,6 @@
  *******************************************************************************/
 package org.eclipse.papyrus.diagram.common.command.wrappers;
 
-import org.eclipse.gef.commands.Command;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -20,15 +19,10 @@ import org.eclipse.gef.commands.Command;
  * 
  * Creation : 21 fev. 2006
  * 
+ * @deprecated use {@link org.eclipse.papyrus.commands.wrappers.EMFtoGEFCommandWrapper} instead
  * @author aarong, <a href="mailto:jacques.lescot@anyware-tech.com">Jacques LESCOT</a>
  */
-public final class EMFtoGEFCommandWrapper extends Command {
-
-	/**
-	 * The wrapped EMF Command. Package-level visibility so that the command stack wrapper can
-	 * access the field.
-	 */
-	private final org.eclipse.emf.common.command.Command emfCommand;
+public class EMFtoGEFCommandWrapper extends org.eclipse.papyrus.commands.wrappers.EMFtoGEFCommandWrapper {
 
 	/**
 	 * Constructor.
@@ -36,83 +30,7 @@ public final class EMFtoGEFCommandWrapper extends Command {
 	 * @param command
 	 *        the wrapped EMF command
 	 */
-	// @unused
 	public EMFtoGEFCommandWrapper(final org.eclipse.emf.common.command.Command command) {
-		super(command.getLabel());
-		emfCommand = command;
-	}
-
-	/**
-	 * Returns the wrapped EMF command.
-	 * 
-	 * @return the EMF command
-	 */
-	// @unused
-	public org.eclipse.emf.common.command.Command getEMFCommand() {
-		return emfCommand;
-	}
-
-	/**
-	 * Dispose.
-	 * 
-	 * @see org.eclipse.gef.commands.Command#dispose()
-	 */
-	@Override
-	public void dispose() {
-		emfCommand.dispose();
-	}
-
-	/**
-	 * Can execute.
-	 * 
-	 * @return true, if can execute
-	 * 
-	 * @see org.eclipse.gef.commands.Command#canExecute()
-	 */
-	@Override
-	public boolean canExecute() {
-		return emfCommand.canExecute();
-	}
-
-	/**
-	 * Can undo.
-	 * 
-	 * @return true, if can undo
-	 * 
-	 * @see org.eclipse.gef.commands.Command#canUndo()
-	 */
-	@Override
-	public boolean canUndo() {
-		return emfCommand.canUndo();
-	}
-
-	/**
-	 * Execute.
-	 * 
-	 * @see org.eclipse.gef.commands.Command#execute()
-	 */
-	@Override
-	public void execute() {
-		emfCommand.execute();
-	}
-
-	/**
-	 * Redo.
-	 * 
-	 * @see org.eclipse.gef.commands.Command#redo()
-	 */
-	@Override
-	public void redo() {
-		emfCommand.redo();
-	}
-
-	/**
-	 * Undo.
-	 * 
-	 * @see org.eclipse.gef.commands.Command#undo()
-	 */
-	@Override
-	public void undo() {
-		emfCommand.undo();
+		super(command);
 	}
 }

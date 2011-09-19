@@ -70,7 +70,7 @@ public class ConstraintBlockParameterHandler extends CreateCommandHandler implem
 
 		// Retrieve create command from the Element Edit service
 		ICommand createGMFCommand = provider.getEditCommand(createRequest);
-		Command emfCommand = new GMFtoEMFCommandWrapper(createGMFCommand);
+		Command emfCommand = new org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper(createGMFCommand);
 		return emfCommand;
 	}
 }

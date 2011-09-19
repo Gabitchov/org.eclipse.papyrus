@@ -30,7 +30,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelations
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.common.command.wrappers.EMFtoGMFCommandWrapper;
+import org.eclipse.papyrus.commands.wrappers.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.diagram.profile.edit.commands.AssociationBranchCreateCommand;
 import org.eclipse.papyrus.diagram.profile.edit.commands.AssociationBranchReorientCommand;
 import org.eclipse.papyrus.diagram.profile.edit.commands.AssociationCreateCommand;

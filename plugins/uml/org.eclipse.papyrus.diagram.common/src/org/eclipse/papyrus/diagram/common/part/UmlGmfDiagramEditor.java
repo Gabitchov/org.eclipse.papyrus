@@ -6,9 +6,14 @@ package org.eclipse.papyrus.diagram.common.part;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
+import org.eclipse.emf.workspace.impl.WorkspaceCommandStackImpl;
+import org.eclipse.gef.DefaultEditDomain;
 import org.eclipse.gef.KeyHandler;
+import org.eclipse.gef.commands.CommandStack;
+import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditDomain;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
+import org.eclipse.papyrus.commands.WorkspaceCommandStackProxy;
 import org.eclipse.papyrus.core.adaptor.gmf.SynchronizableGmfDiagramEditor;
 import org.eclipse.papyrus.core.lifecycleevents.ISaveAndDirtyService;
 import org.eclipse.papyrus.core.services.ServiceException;
@@ -185,5 +190,32 @@ public class UmlGmfDiagramEditor extends SynchronizableGmfDiagramEditor {
 			// Listen to name change
 			diagram.eAdapters().add(diagramNameListener);
 		}
+	}
+
+	/**
+	 * Configures my diagram edit domain with its command stack.
+	 * This method has been completely overridden in order to use a proxy stack.
+	 */
+	@Override
+	protected void configureDiagramEditDomain() {
+
+		DefaultEditDomain editDomain = getEditDomain();
+
+		if(editDomain != null) {
+			CommandStack stack = editDomain.getCommandStack();
+			if(stack != null) {
+				// dispose the old stack
+				stack.dispose();
+			}
+
+			// create and assign the new stack
+			WorkspaceCommandStackImpl wsStack = (WorkspaceCommandStackImpl)getEditingDomain().getCommandStack();
+			WorkspaceCommandStackProxy diagramStack = new WorkspaceCommandStackProxy(getDiagramEditDomain(), wsStack);
+
+			editDomain.setCommandStack(diagramStack);
+		}
+
+		DiagramEditDomain diagEditDomain = (DiagramEditDomain)getDiagramEditDomain();
+		diagEditDomain.setActionManager(createActionManager());
 	}
 }

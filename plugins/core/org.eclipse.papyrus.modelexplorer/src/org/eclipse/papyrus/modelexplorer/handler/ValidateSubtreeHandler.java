@@ -28,6 +28,6 @@ public class ValidateSubtreeHandler extends AbstractCommandHandler
 	@Override
 	protected Command getCommand() {
 		// not useful to cache command, since selected element may change
-		return new GMFtoEMFCommandWrapper(new ValidateSubtreeCommand(getSelectedElement()));
+		return new org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper(new ValidateSubtreeCommand(getSelectedElement()));
 	}	
 }

@@ -28,6 +28,6 @@ public class ValidateModelHandler extends AbstractCommandHandler
 	@Override
 	protected Command getCommand() {
 		// not useful to cache command, since selected element may change
-		return new GMFtoEMFCommandWrapper(new ValidateModelCommand(getSelectedElement()));
+		return new org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper(new ValidateModelCommand(getSelectedElement()));
 	}	
 }

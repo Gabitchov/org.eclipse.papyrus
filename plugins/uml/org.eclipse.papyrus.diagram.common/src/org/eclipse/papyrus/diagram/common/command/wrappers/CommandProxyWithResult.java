@@ -13,45 +13,19 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.common.command.wrappers;
 
-import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.gef.commands.Command;
-import org.eclipse.gmf.runtime.common.core.command.CommandResult;
-import org.eclipse.gmf.runtime.diagram.ui.commands.CommandProxy;
 
 /**
  * This command proxy wraps a GEF command into a GMF one,
  * with result stored in the CommandResult.
  * 
  * @author mvelten
+ * @deprecated use {@link org.eclipse.papyrus.commands.wrappers.CommandProxyWithResult} instead
  * 
  */
-public class CommandProxyWithResult extends CommandProxy {
+public class CommandProxyWithResult extends org.eclipse.papyrus.commands.wrappers.CommandProxyWithResult {
 
 	public CommandProxyWithResult(Command command, Object result) {
-		super(command);
-		setResult(CommandResult.newOKCommandResult(result));
-	}
-
-	@Override
-	protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
-
-		super.doExecuteWithResult(progressMonitor, info);
-		return getCommandResult();
-	}
-
-	@Override
-	protected CommandResult doRedoWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
-
-		super.doRedoWithResult(progressMonitor, info);
-		return getCommandResult();
-	}
-
-	@Override
-	protected CommandResult doUndoWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
-
-		super.doUndoWithResult(progressMonitor, info);
-		return getCommandResult();
+		super(command, result);
 	}
 }
