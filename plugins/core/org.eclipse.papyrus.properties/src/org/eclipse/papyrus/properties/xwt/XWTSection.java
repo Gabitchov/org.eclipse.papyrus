@@ -169,32 +169,55 @@ public class XWTSection extends AbstractPropertySection implements IChangeListen
 
 		ISelection selection = getSelection();
 
-		if(selection instanceof IStructuredSelection) {
+		//Return true only if at least one constraint matches all elements
+		
+		//Constraint loop
+		boolean oneConstraintMatch = false;
+		for(ConstraintDescriptor constraintDescriptor : section.getConstraints()) {
+			Constraint constraint = ConstraintFactory.getInstance().createFromModel(constraintDescriptor);
+			
 			Iterator<?> it = ((IStructuredSelection)selection).iterator();
+			
+			//Selection loop
+			boolean allObjectsMatch = true;
 			while(it.hasNext()) {
 				Object element = it.next();
-				for(ConstraintDescriptor constraintDescriptor : section.getConstraints()) {
-					Constraint constraint = ConstraintFactory.getInstance().createFromModel(constraintDescriptor);
-					if(constraint.match(element)) {
-						return true;
-					}
+				if(! constraint.match(element)) {
+					allObjectsMatch = false;
+					break;
 				}
 			}
+			
+			if (allObjectsMatch){
+				oneConstraintMatch = true;
+				break;
+			}
 		}
-
-		return false;
+		
+		return oneConstraintMatch;
 	}
 
 	@Override
 	public void dispose() {
+		//Dispose the DataSource
 		if(source != null) {
 			source.removeChangeListener(this);
 			source.dispose();
 		}
+		
+		//Dispose the SWT Composite
 		if(self != null) {
 			self.dispose();
 		}
+		
+		//Clean the DataSource cache
+		DataSourceFactory.instance.removeFromCache(getSelection(), view);
 		super.dispose();
+	}
+	
+	@Override
+	public IStructuredSelection getSelection(){
+		return (IStructuredSelection)super.getSelection();
 	}
 
 	@Override

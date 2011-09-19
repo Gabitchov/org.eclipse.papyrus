@@ -42,11 +42,14 @@ import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.ElementImport;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.InstanceValue;
 import org.eclipse.uml2.uml.LiteralNull;
 import org.eclipse.uml2.uml.LiteralString;
 import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.PackageImport;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.ValueSpecification;
 import org.eclipse.uml2.uml.util.UMLUtil;
@@ -237,6 +240,26 @@ public class EditorLabelProvider implements ILabelProvider {
 		if(element instanceof EObject && UMLUtil.getBaseElement((EObject)element) != null) { //Stereotype Application
 			//We return the label of the Stereotyped element, not of the Stereotype itself
 			return getText(UMLUtil.getBaseElement((EObject)element));
+		} else if(element instanceof org.eclipse.uml2.uml.Image) {
+			org.eclipse.uml2.uml.Image image = ((org.eclipse.uml2.uml.Image)element);
+			if(image.getLocation() == null || image.getLocation().equals("")) {
+				return "Image"; //$NON-NLS-1$
+			}
+			return image.getLocation();
+		} else if(element instanceof PackageImport) {
+			Package importedPackage = ((PackageImport)element).getImportedPackage();
+			if(importedPackage == null) {
+				return "<Package Import>";
+			} else {
+				return "<Package Import> " + importedPackage.getName();
+			}
+		} else if(element instanceof ElementImport) {
+			NamedElement importedElement = ((ElementImport)element).getImportedElement();
+			if(importedElement == null) {
+				return "<Element Import>";
+			} else {
+				return "<Element Import> " + importedElement.getName();
+			}
 		} else if(element instanceof NamedElement) {
 			if(element instanceof ValueSpecification) { //Format : [name=]value
 				String value = null;
