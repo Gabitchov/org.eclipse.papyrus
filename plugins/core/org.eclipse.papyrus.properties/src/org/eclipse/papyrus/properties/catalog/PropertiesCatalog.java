@@ -40,6 +40,10 @@ public class PropertiesCatalog implements Factory {
 	 * 
 	 * @author Camille Letavernier
 	 */
+	//TODO : This class should encapsulate a resource, and not extend it
+	//Non-xmi resources which are relative to a XMI resource cannot be handled
+	//Typically, xwt files cannot be handled by an XMIResource
+	//Problem : local calls to getURIConverter will skip the encapsulation...
 	public class PropertiesXMIResource extends XMIResourceImpl {
 
 		/**

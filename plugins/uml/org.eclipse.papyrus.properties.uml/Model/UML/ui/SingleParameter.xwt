@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Composite xmlns:j="clr-namespace:java.lang" xmlns="http://www.eclipse.org/xwt/presentation"
-	xmlns:ppe="clr-namespace:org.eclipse.papyrus.properties.widgets"
-	xmlns:x="http://www.eclipse.org/xwt" xmlns:uml="clr-namespace:org.eclipse.papyrus.properties.uml.widgets"
-	xmlns:ppel="clr-namespace:org.eclipse.papyrus.properties.widgets.layout">
+<Composite xmlns:uml="clr-namespace:org.eclipse.papyrus.properties.uml.widgets"
+	xmlns:j="clr-namespace:java.lang" xmlns:ppel="clr-namespace:org.eclipse.papyrus.properties.widgets.layout"
+	xmlns="http://www.eclipse.org/xwt/presentation" xmlns:ppe="clr-namespace:org.eclipse.papyrus.properties.widgets"
+	xmlns:x="http://www.eclipse.org/xwt">
 	<Composite.layout>
 		<ppel:PropertiesLayout></ppel:PropertiesLayout>
 	</Composite.layout>
@@ -38,7 +38,6 @@
 		<ppe:ReferenceDialog input="{Binding}"
 			property="UML:Parameter:defaultValue"></ppe:ReferenceDialog>
 		<ppe:StringCombo input="{Binding}" property="Multiplicity:multiplicity"></ppe:StringCombo>
-		<ppe:ReferenceDialog property="UML:TypedElement:type"
-			input="{Binding}"></ppe:ReferenceDialog>
+		<ppe:ReferenceDialog input="{Binding}" property="UML:TypedElement:type"></ppe:ReferenceDialog>
 	</Composite>
 </Composite>

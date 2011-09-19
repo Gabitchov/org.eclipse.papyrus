@@ -126,7 +126,7 @@ public class ProfileApplicationObservableList extends WritableList implements IC
 	@Override
 	public void dispose() {
 		super.dispose();
-		listener.dispose();
+		this.listener.dispose();
 	}
 
 	public void commit(AbstractEditor editor) {

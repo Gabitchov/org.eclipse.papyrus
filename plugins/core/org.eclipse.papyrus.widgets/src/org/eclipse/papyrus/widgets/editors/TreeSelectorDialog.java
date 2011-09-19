@@ -194,6 +194,8 @@ public class TreeSelectorDialog extends SelectionDialog implements ITreeSelector
 
 		treeViewer.setSelection(new StructuredSelection(getAdaptedInitialSelection()));
 
+		getShell().setDefaultButton(null);
+		getButton(OK).setFocus();
 		getShell().setImage(Activator.getDefault().getImage("/icons/papyrus.png")); //$NON-NLS-1$
 		getShell().pack();
 	}

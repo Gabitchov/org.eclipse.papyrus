@@ -39,6 +39,7 @@ import org.eclipse.papyrus.properties.providers.FeatureContentProvider;
 import org.eclipse.papyrus.properties.uml.creation.MessageValueSpecificationFactory;
 import org.eclipse.papyrus.properties.uml.creation.OwnedRuleCreationFactory;
 import org.eclipse.papyrus.properties.uml.creation.UMLPropertyEditorFactory;
+import org.eclipse.papyrus.properties.uml.databinding.ExtensionRequiredObservableValue;
 import org.eclipse.papyrus.properties.uml.databinding.PapyrusObservableList;
 import org.eclipse.papyrus.properties.uml.databinding.PapyrusObservableValue;
 import org.eclipse.papyrus.properties.uml.databinding.SignatureObservableValue;
@@ -50,6 +51,7 @@ import org.eclipse.papyrus.umlutils.PackageUtil;
 import org.eclipse.papyrus.widgets.creation.ReferenceValueFactory;
 import org.eclipse.papyrus.widgets.providers.IStaticContentProvider;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Extension;
 import org.eclipse.uml2.uml.InstanceValue;
 import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.Package;
@@ -97,6 +99,10 @@ public class UMLModelElement extends EMFModelElement {
 			return new SignatureObservableValue(source, domain);
 		}
 
+		if(feature == UMLPackage.eINSTANCE.getExtension_IsRequired()) {
+			return new ExtensionRequiredObservableValue((Extension)source, domain);
+		}
+
 		if(feature == null) {
 			return null;
 		}
@@ -114,6 +120,9 @@ public class UMLModelElement extends EMFModelElement {
 	public boolean isEditable(String propertyPath) {
 		EStructuralFeature feature = getFeature(propertyPath);
 		if(feature == UMLPackage.eINSTANCE.getMessage_Signature()) {
+			return true;
+		}
+		if(feature == UMLPackage.eINSTANCE.getExtension_IsRequired()) {
 			return true;
 		}
 		return super.isEditable(propertyPath);

@@ -263,6 +263,7 @@ public class Preview extends ViewPart implements ISelectionChangedListener, IPar
 		} catch (IOException ex) {
 			Activator.log.error(ex);
 		}
+
 		return null;
 	}
 

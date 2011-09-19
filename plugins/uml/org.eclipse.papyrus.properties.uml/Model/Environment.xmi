@@ -14,6 +14,6 @@
   <propertyEditorTypes label="StereotypeDisplayEditor" widgetClass="StereotypeDisplay" namespace="//@namespaces.0" type="Reference"/>
   <propertyEditorTypes label="Stereotype Application Editor" widgetClass="StereotypeApplication" namespace="//@namespaces.0" type="Reference" multiplicity="-1"/>
   <propertyEditorTypes label="Image content Editor" widgetClass="StereotypeImageEditor" namespace="//@namespaces.0"/>
-  <propertyEditorTypes label="Create or Select UML Element" widgetClass="SelectOrCreateDialogPropertyEditor" namespace="//@namespaces.0"/>
+  <propertyEditorTypes label="Create or Select UML Element" widgetClass="SelectOrCreateDialogPropertyEditor" namespace="//@namespaces.0" type="Reference"/>
   <namespaces prefix="clr-namespace" name="uml" value="org.eclipse.papyrus.properties.uml.widgets"/>
 </environment:Environment>

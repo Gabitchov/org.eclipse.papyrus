@@ -13,11 +13,15 @@ package org.eclipse.papyrus.properties.uml.modelelement;
 
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.papyrus.core.services.ServicesRegistry;
+import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.properties.Activator;
 import org.eclipse.papyrus.properties.contexts.DataContextElement;
 import org.eclipse.papyrus.properties.modelelement.ModelElement;
 import org.eclipse.papyrus.properties.modelelement.ModelElementFactory;
 import org.eclipse.papyrus.properties.uml.util.UMLUtil;
+import org.eclipse.papyrus.resource.ModelSet;
+import org.eclipse.papyrus.resource.ModelUtils;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Image;
 
@@ -38,6 +42,13 @@ public class CustomImageModelElementFactory implements ModelElementFactory {
 
 		if(umlSource instanceof Image) {
 			EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(umlSource);
+			//TODO : Find another way to find the EditingDomain, or a way to go
+			//without it
+			if(domain == null) {
+				ServicesRegistry registry = EditorUtils.getServiceRegistry();
+				ModelSet modelSet = ModelUtils.getModelSet(registry);
+				domain = AdapterFactoryEditingDomain.getEditingDomainFor(modelSet.getResources().get(0).getContents().get(0));
+			}
 			return new CustomImageModelElement((Image)umlSource, domain);
 		}
 

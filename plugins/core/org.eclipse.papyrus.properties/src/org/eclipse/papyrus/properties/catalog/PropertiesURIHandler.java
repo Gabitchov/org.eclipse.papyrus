@@ -122,6 +122,10 @@ public class PropertiesURIHandler implements URIHandler {
 	 *         The URIHandler corresponding to the converted URI
 	 */
 	protected URIHandler getDelegateHandler(URI convertedURI) {
+		if(convertedURI == null) {
+			return null;
+		}
+
 		for(URIHandler handler : URIHandler.DEFAULT_HANDLERS) {
 			if(handler.canHandle(convertedURI)) {
 				return handler;
