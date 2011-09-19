@@ -13,13 +13,17 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.activities.provider;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
+import org.eclipse.emf.edit.provider.ComposedImage;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -28,21 +32,61 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.papyrus.sysml.activities.ActivitiesPackage;
+import org.eclipse.papyrus.sysml.activities.ControlOperator;
+import org.eclipse.papyrus.sysml.edit.provider.IComposableAdapterFactory;
+import org.eclipse.papyrus.sysml.edit.provider.SysMLItemProviderAdapter;
 import org.eclipse.papyrus.sysml.provider.SysmlEditPlugin;
+import org.eclipse.papyrus.sysml.util.SysmlResource;
+import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.Stereotype;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.activities.ControlOperator} object.
- * <!-- begin-user-doc --> <!--
- * end-user-doc -->
+ * <!-- begin-user-doc -->
+ * <!-- end-user-doc -->
  * 
  * @generated
  */
-public class ControlOperatorItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class ControlOperatorItemProvider extends SysMLItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+
+	/**
+	 * This is used to store all the property descriptors for aclass stereotyped with a block.
+	 * Derived classes should add descriptors to this vector.
+	 */
+	protected List<IItemPropertyDescriptor> itemPropertyDescriptorsForoperation;
+
+	/**
+	 * This is used to store all the property descriptors for aclass stereotyped with a block.
+	 * Derived classes should add descriptors to this vector.
+	 */
+	protected List<IItemPropertyDescriptor> itemPropertyDescriptorsForbehavior;
+
+	/**
+	 * Pattern prefix of controlOperator
+	 * 
+	 * @generated
+	 */
+	private static Pattern CONTROL_OPERATOR_PREFIX_PATTERN = Pattern.compile("(controlOperator, |<<controlOperator>>|, controlOperator)");
+
+	/**
+	 * Get the prefix pattern of OPERATION_PREFIX_PATTERN
+	 * 
+	 * @generated
+	 */
+	private static Pattern OPERATION_PREFIX_PATTERN = Pattern.compile("Operation");
+
+	/**
+	 * Get the prefix pattern of BEHAVIOR_PREFIX_PATTERN
+	 * 
+	 * @generated
+	 */
+	private static Pattern BEHAVIOR_PREFIX_PATTERN = Pattern.compile("Behavior");
 
 	/**
 	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -52,8 +96,8 @@ public class ControlOperatorItemProvider extends ItemProviderAdapter implements 
 
 	/**
 	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -65,13 +109,42 @@ public class ControlOperatorItemProvider extends ItemProviderAdapter implements 
 			addBase_OperationPropertyDescriptor(object);
 			addBase_BehaviorPropertyDescriptor(object);
 		}
+
+		/**
+		 * Handle Operation stereotyped by ControlOperator
+		 */
+		if(object instanceof org.eclipse.uml2.uml.Operation) {
+			if(itemPropertyDescriptorsForoperation == null) {
+				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.OPERATION);
+				final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
+				itemPropertyDescriptorsForoperation = new ArrayList<IItemPropertyDescriptor>();
+				itemPropertyDescriptorsForoperation.addAll(propertyDescriptors);
+			}
+			return itemPropertyDescriptorsForoperation;
+
+		}
+
+		/**
+		 * Handle Behavior stereotyped by ControlOperator
+		 */
+		if(object instanceof org.eclipse.uml2.uml.Behavior) {
+			if(itemPropertyDescriptorsForbehavior == null) {
+				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.BEHAVIOR);
+				final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
+				itemPropertyDescriptorsForbehavior = new ArrayList<IItemPropertyDescriptor>();
+				itemPropertyDescriptorsForbehavior.addAll(propertyDescriptors);
+			}
+			return itemPropertyDescriptorsForbehavior;
+
+		}
+
 		return itemPropertyDescriptors;
 	}
 
 	/**
 	 * This adds a property descriptor for the Base Operation feature.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -81,8 +154,8 @@ public class ControlOperatorItemProvider extends ItemProviderAdapter implements 
 
 	/**
 	 * This adds a property descriptor for the Base Behavior feature.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -92,43 +165,106 @@ public class ControlOperatorItemProvider extends ItemProviderAdapter implements 
 
 	/**
 	 * This returns ControlOperator.gif.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ControlOperator"));
+		Object composedImage = overlayImage(object, getResourceLocator().getImage("full/obj16/ControlOperator"));
+		if(object instanceof NamedElement) {
+			ComposedImage aux = new ComposedImage(Collections.singletonList(composedImage));
+			return (Object)composeVisibilityImage(object, aux);
+		}
+		return composedImage;
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
+		/**
+		 * Handle Stereotype item and stereoted element
+		 */
+		ControlOperator controlOperator_ = null;
+
+		if(object instanceof org.eclipse.uml2.uml.Operation) {
+			Stereotype ste = ((org.eclipse.uml2.uml.Operation)object).getAppliedStereotype(SysmlResource.CONTROL_OPERATOR_ID);
+			if(ste != null) {
+				IItemLabelProvider ite = (IItemLabelProvider)((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.OPERATION);
+				String result = ite.getText(object);
+				result = CONTROL_OPERATOR_PREFIX_PATTERN.matcher(result).replaceFirst("");
+				return OPERATION_PREFIX_PATTERN.matcher(result).replaceFirst("ControlOperator");
+			}
+
+		}
+
+		if(object instanceof org.eclipse.uml2.uml.Behavior) {
+			Stereotype ste = ((org.eclipse.uml2.uml.Behavior)object).getAppliedStereotype(SysmlResource.CONTROL_OPERATOR_ID);
+			if(ste != null) {
+				IItemLabelProvider ite = (IItemLabelProvider)((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.BEHAVIOR);
+				String result = ite.getText(object);
+				result = CONTROL_OPERATOR_PREFIX_PATTERN.matcher(result).replaceFirst("");
+				return BEHAVIOR_PREFIX_PATTERN.matcher(result).replaceFirst("ControlOperator");
+			}
+
+		}
+
+		if(controlOperator_ == null) {
+			controlOperator_ = (ControlOperator)object;
+		}
+
 		return getString("_UI_ControlOperator_type");
 	}
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
+
+		/**
+		 * Handle Operation stereotyped by ControlOperator
+		 */
+
+		if(notification.getFeatureID(org.eclipse.uml2.uml.Operation.class) != Notification.NO_FEATURE_ID) {
+			ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.OPERATION);
+			ite.notifyChanged(notification);
+			return;
+
+		}
+
+		/**
+		 * Handle Behavior stereotyped by ControlOperator
+		 */
+
+		if(notification.getFeatureID(org.eclipse.uml2.uml.Behavior.class) != Notification.NO_FEATURE_ID) {
+			ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.BEHAVIOR);
+			ite.notifyChanged(notification);
+			return;
+
+		}
+
 		super.notifyChanged(notification);
 	}
 
 	/**
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
 	 * that can be created under this object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -139,8 +275,8 @@ public class ControlOperatorItemProvider extends ItemProviderAdapter implements 
 
 	/**
 	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -148,5 +284,4 @@ public class ControlOperatorItemProvider extends ItemProviderAdapter implements 
 	public ResourceLocator getResourceLocator() {
 		return SysmlEditPlugin.INSTANCE;
 	}
-
 }

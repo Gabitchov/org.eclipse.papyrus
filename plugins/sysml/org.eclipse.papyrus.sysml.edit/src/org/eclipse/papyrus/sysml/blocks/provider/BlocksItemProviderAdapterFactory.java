@@ -31,6 +31,8 @@ import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.papyrus.sysml.blocks.util.BlocksAdapterFactory;
+import org.eclipse.papyrus.sysml.edit.provider.IComposableAdapterFactory;
+import org.eclipse.papyrus.sysml.edit.provider.IRootAdapterFactory;
 
 /**
  * This is the factory that is used to provide the interfaces needed to support Viewers.
@@ -42,7 +44,36 @@ import org.eclipse.papyrus.sysml.blocks.util.BlocksAdapterFactory;
  * 
  * @generated
  */
-public class BlocksItemProviderAdapterFactory extends BlocksAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
+public class BlocksItemProviderAdapterFactory extends BlocksAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IComposableAdapterFactory, IDisposable {
+
+	/**
+	 * Get the root adapter factory ( SysMLOverULM layer )
+	 * 
+	 * @generated
+	 */
+	protected IRootAdapterFactory rootAdapterFactory;
+
+	/**
+	 * {@link this#rootAdapterFactory}
+	 * 
+	 * @generated
+	 */
+	public IRootAdapterFactory getIRootAdapterFactory() {
+		return rootAdapterFactory;
+	}
+
+	/**
+	 * {@link this#rootAdapterFactory}
+	 * 
+	 * @generated
+	 */
+	public void setRootAdapterFactory(IRootAdapterFactory root) {
+		if(root instanceof IRootAdapterFactory) {
+			rootAdapterFactory = (IRootAdapterFactory)root;
+		} else {
+			throw new RuntimeException(root + " do not implement IRootAdapterFactory");
+		}
+	}
 
 	/**
 	 * This keeps track of the root adapter factory that delegates to this adapter factory. <!--
@@ -445,5 +476,4 @@ public class BlocksItemProviderAdapterFactory extends BlocksAdapterFactory imple
 		if(propertySpecificTypeItemProvider != null)
 			propertySpecificTypeItemProvider.dispose();
 	}
-
 }

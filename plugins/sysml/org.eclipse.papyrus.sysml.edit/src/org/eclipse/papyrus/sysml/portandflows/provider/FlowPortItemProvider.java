@@ -13,13 +13,17 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.portandflows.provider;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
+import org.eclipse.emf.edit.provider.ComposedImage;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -29,22 +33,49 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+import org.eclipse.papyrus.sysml.edit.provider.IComposableAdapterFactory;
+import org.eclipse.papyrus.sysml.edit.provider.SysMLItemProviderAdapter;
 import org.eclipse.papyrus.sysml.portandflows.FlowPort;
 import org.eclipse.papyrus.sysml.portandflows.PortandflowsPackage;
 import org.eclipse.papyrus.sysml.provider.SysmlEditPlugin;
+import org.eclipse.papyrus.sysml.util.SysmlResource;
+import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.Stereotype;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.portandflows.FlowPort} object. <!-- begin-user-doc --> <!-- end-user-doc
- * -->
+ * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.portandflows.FlowPort} object.
+ * <!-- begin-user-doc -->
+ * <!-- end-user-doc -->
  * 
  * @generated
  */
-public class FlowPortItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class FlowPortItemProvider extends SysMLItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+
+	/**
+	 * This is used to store all the property descriptors for aclass stereotyped with a block.
+	 * Derived classes should add descriptors to this vector.
+	 */
+	protected List<IItemPropertyDescriptor> itemPropertyDescriptorsForport;
+
+	/**
+	 * Pattern prefix of flowPort
+	 * 
+	 * @generated
+	 */
+	private static Pattern FLOW_PORT_PREFIX_PATTERN = Pattern.compile("(flowPort, |<<flowPort>>|, flowPort)");
+
+	/**
+	 * Get the prefix pattern of PORT_PREFIX_PATTERN
+	 * 
+	 * @generated
+	 */
+	private static Pattern PORT_PREFIX_PATTERN = Pattern.compile("Port");
 
 	/**
 	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -54,8 +85,8 @@ public class FlowPortItemProvider extends ItemProviderAdapter implements IEditin
 
 	/**
 	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -69,13 +100,28 @@ public class FlowPortItemProvider extends ItemProviderAdapter implements IEditin
 			addIsConjugatedPropertyDescriptor(object);
 			addDirectionPropertyDescriptor(object);
 		}
+
+		/**
+		 * Handle Port stereotyped by FlowPort
+		 */
+		if(object instanceof org.eclipse.uml2.uml.Port) {
+			if(itemPropertyDescriptorsForport == null) {
+				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.PORT);
+				final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
+				itemPropertyDescriptorsForport = new ArrayList<IItemPropertyDescriptor>();
+				itemPropertyDescriptorsForport.addAll(propertyDescriptors);
+			}
+			return itemPropertyDescriptorsForport;
+
+		}
+
 		return itemPropertyDescriptors;
 	}
 
 	/**
 	 * This adds a property descriptor for the Base Port feature.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -85,8 +131,8 @@ public class FlowPortItemProvider extends ItemProviderAdapter implements IEditin
 
 	/**
 	 * This adds a property descriptor for the Is Atomic feature.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -96,8 +142,8 @@ public class FlowPortItemProvider extends ItemProviderAdapter implements IEditin
 
 	/**
 	 * This adds a property descriptor for the Is Conjugated feature.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -107,8 +153,8 @@ public class FlowPortItemProvider extends ItemProviderAdapter implements IEditin
 
 	/**
 	 * This adds a property descriptor for the Direction feature.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -118,31 +164,59 @@ public class FlowPortItemProvider extends ItemProviderAdapter implements IEditin
 
 	/**
 	 * This returns FlowPort.gif.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/FlowPort"));
+		Object composedImage = overlayImage(object, getResourceLocator().getImage("full/obj16/FlowPort"));
+		if(object instanceof NamedElement) {
+			ComposedImage aux = new ComposedImage(Collections.singletonList(composedImage));
+			return (Object)composeVisibilityImage(object, aux);
+		}
+		return composedImage;
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		FlowPort flowPort = (FlowPort)object;
+		/**
+		 * Handle Stereotype item and stereoted element
+		 */
+		FlowPort flowPort_ = null;
+
+		if(object instanceof org.eclipse.uml2.uml.Port) {
+			Stereotype ste = ((org.eclipse.uml2.uml.Port)object).getAppliedStereotype(SysmlResource.FLOW_PORT_ID);
+			if(ste != null) {
+				IItemLabelProvider ite = (IItemLabelProvider)((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.PORT);
+				String result = ite.getText(object);
+				result = FLOW_PORT_PREFIX_PATTERN.matcher(result).replaceFirst("");
+				return PORT_PREFIX_PATTERN.matcher(result).replaceFirst("FlowPort");
+			}
+
+		}
+
+		if(flowPort_ == null) {
+			flowPort_ = (FlowPort)object;
+		}
+
+		FlowPort flowPort = (FlowPort)flowPort_;
 		return getString("_UI_FlowPort_type") + " " + flowPort.isIsAtomic();
 	}
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -157,13 +231,26 @@ public class FlowPortItemProvider extends ItemProviderAdapter implements IEditin
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		}
+
+		/**
+		 * Handle Port stereotyped by FlowPort
+		 */
+
+		if(notification.getFeatureID(org.eclipse.uml2.uml.Port.class) != Notification.NO_FEATURE_ID) {
+			ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.PORT);
+			ite.notifyChanged(notification);
+			return;
+
+		}
+
 		super.notifyChanged(notification);
 	}
 
 	/**
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
 	 * that can be created under this object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -174,8 +261,8 @@ public class FlowPortItemProvider extends ItemProviderAdapter implements IEditin
 
 	/**
 	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -183,5 +270,4 @@ public class FlowPortItemProvider extends ItemProviderAdapter implements IEditin
 	public ResourceLocator getResourceLocator() {
 		return SysmlEditPlugin.INSTANCE;
 	}
-
 }

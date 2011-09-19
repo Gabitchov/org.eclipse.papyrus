@@ -102,5 +102,4 @@ public final class SysmlEditPlugin extends EMFPlugin {
 			plugin = this;
 		}
 	}
-
 }

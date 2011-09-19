@@ -13,13 +13,17 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.portandflows.provider;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
+import org.eclipse.emf.edit.provider.ComposedImage;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -29,24 +33,50 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+import org.eclipse.papyrus.sysml.edit.provider.IComposableAdapterFactory;
+import org.eclipse.papyrus.sysml.edit.provider.SysMLItemProviderAdapter;
 import org.eclipse.papyrus.sysml.portandflows.FlowDirection;
 import org.eclipse.papyrus.sysml.portandflows.FlowProperty;
 import org.eclipse.papyrus.sysml.portandflows.PortandflowsPackage;
 import org.eclipse.papyrus.sysml.provider.SysmlEditPlugin;
+import org.eclipse.papyrus.sysml.util.SysmlResource;
+import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.Stereotype;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.portandflows.FlowProperty} object.
- * <!-- begin-user-doc --> <!--
- * end-user-doc -->
+ * <!-- begin-user-doc -->
+ * <!-- end-user-doc -->
  * 
  * @generated
  */
-public class FlowPropertyItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class FlowPropertyItemProvider extends SysMLItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+
+	/**
+	 * This is used to store all the property descriptors for aclass stereotyped with a block.
+	 * Derived classes should add descriptors to this vector.
+	 */
+	protected List<IItemPropertyDescriptor> itemPropertyDescriptorsForproperty;
+
+	/**
+	 * Pattern prefix of flowProperty
+	 * 
+	 * @generated
+	 */
+	private static Pattern FLOW_PROPERTY_PREFIX_PATTERN = Pattern.compile("(flowProperty, |<<flowProperty>>|, flowProperty)");
+
+	/**
+	 * Get the prefix pattern of PROPERTY_PREFIX_PATTERN
+	 * 
+	 * @generated
+	 */
+	private static Pattern PROPERTY_PREFIX_PATTERN = Pattern.compile("Property");
 
 	/**
 	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -56,8 +86,8 @@ public class FlowPropertyItemProvider extends ItemProviderAdapter implements IEd
 
 	/**
 	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -69,13 +99,28 @@ public class FlowPropertyItemProvider extends ItemProviderAdapter implements IEd
 			addBase_PropertyPropertyDescriptor(object);
 			addDirectionPropertyDescriptor(object);
 		}
+
+		/**
+		 * Handle Property stereotyped by FlowProperty
+		 */
+		if(object instanceof org.eclipse.uml2.uml.Property) {
+			if(itemPropertyDescriptorsForproperty == null) {
+				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.PROPERTY);
+				final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
+				itemPropertyDescriptorsForproperty = new ArrayList<IItemPropertyDescriptor>();
+				itemPropertyDescriptorsForproperty.addAll(propertyDescriptors);
+			}
+			return itemPropertyDescriptorsForproperty;
+
+		}
+
 		return itemPropertyDescriptors;
 	}
 
 	/**
 	 * This adds a property descriptor for the Base Property feature.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -85,8 +130,8 @@ public class FlowPropertyItemProvider extends ItemProviderAdapter implements IEd
 
 	/**
 	 * This adds a property descriptor for the Direction feature.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -96,24 +141,51 @@ public class FlowPropertyItemProvider extends ItemProviderAdapter implements IEd
 
 	/**
 	 * This returns FlowProperty.gif.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/FlowProperty"));
+		Object composedImage = overlayImage(object, getResourceLocator().getImage("full/obj16/FlowProperty"));
+		if(object instanceof NamedElement) {
+			ComposedImage aux = new ComposedImage(Collections.singletonList(composedImage));
+			return (Object)composeVisibilityImage(object, aux);
+		}
+		return composedImage;
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		FlowDirection labelValue = ((FlowProperty)object).getDirection();
+		/**
+		 * Handle Stereotype item and stereoted element
+		 */
+		FlowProperty flowProperty_ = null;
+
+		if(object instanceof org.eclipse.uml2.uml.Property) {
+			Stereotype ste = ((org.eclipse.uml2.uml.Property)object).getAppliedStereotype(SysmlResource.FLOW_PROPERTY_ID);
+			if(ste != null) {
+				IItemLabelProvider ite = (IItemLabelProvider)((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.PROPERTY);
+				String result = ite.getText(object);
+				result = FLOW_PROPERTY_PREFIX_PATTERN.matcher(result).replaceFirst("");
+				return PROPERTY_PREFIX_PATTERN.matcher(result).replaceFirst("FlowProperty");
+			}
+
+		}
+
+		if(flowProperty_ == null) {
+			flowProperty_ = (FlowProperty)object;
+		}
+
+		FlowDirection labelValue = ((FlowProperty)flowProperty_).getDirection();
 		String label = labelValue == null ? null : labelValue.toString();
 		return label == null || label.length() == 0 ? getString("_UI_FlowProperty_type") : getString("_UI_FlowProperty_type") + " " + label;
 	}
@@ -121,7 +193,8 @@ public class FlowPropertyItemProvider extends ItemProviderAdapter implements IEd
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -134,13 +207,26 @@ public class FlowPropertyItemProvider extends ItemProviderAdapter implements IEd
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		}
+
+		/**
+		 * Handle Property stereotyped by FlowProperty
+		 */
+
+		if(notification.getFeatureID(org.eclipse.uml2.uml.Property.class) != Notification.NO_FEATURE_ID) {
+			ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.PROPERTY);
+			ite.notifyChanged(notification);
+			return;
+
+		}
+
 		super.notifyChanged(notification);
 	}
 
 	/**
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
 	 * that can be created under this object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -151,8 +237,8 @@ public class FlowPropertyItemProvider extends ItemProviderAdapter implements IEd
 
 	/**
 	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -160,5 +246,4 @@ public class FlowPropertyItemProvider extends ItemProviderAdapter implements IEd
 	public ResourceLocator getResourceLocator() {
 		return SysmlEditPlugin.INSTANCE;
 	}
-
 }

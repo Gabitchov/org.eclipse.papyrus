@@ -30,6 +30,8 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.papyrus.sysml.edit.provider.IComposableAdapterFactory;
+import org.eclipse.papyrus.sysml.edit.provider.IRootAdapterFactory;
 import org.eclipse.papyrus.sysml.requirements.util.RequirementsAdapterFactory;
 
 /**
@@ -42,7 +44,36 @@ import org.eclipse.papyrus.sysml.requirements.util.RequirementsAdapterFactory;
  * 
  * @generated
  */
-public class RequirementsItemProviderAdapterFactory extends RequirementsAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
+public class RequirementsItemProviderAdapterFactory extends RequirementsAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IComposableAdapterFactory, IDisposable {
+
+	/**
+	 * Get the root adapter factory ( SysMLOverULM layer )
+	 * 
+	 * @generated
+	 */
+	protected IRootAdapterFactory rootAdapterFactory;
+
+	/**
+	 * {@link this#rootAdapterFactory}
+	 * 
+	 * @generated
+	 */
+	public IRootAdapterFactory getIRootAdapterFactory() {
+		return rootAdapterFactory;
+	}
+
+	/**
+	 * {@link this#rootAdapterFactory}
+	 * 
+	 * @generated
+	 */
+	public void setRootAdapterFactory(IRootAdapterFactory root) {
+		if(root instanceof IRootAdapterFactory) {
+			rootAdapterFactory = (IRootAdapterFactory)root;
+		} else {
+			throw new RuntimeException(root + " do not implement IRootAdapterFactory");
+		}
+	}
 
 	/**
 	 * This keeps track of the root adapter factory that delegates to this adapter factory. <!--
@@ -367,5 +398,4 @@ public class RequirementsItemProviderAdapterFactory extends RequirementsAdapterF
 		if(requirementRelatedItemProvider != null)
 			requirementRelatedItemProvider.dispose();
 	}
-
 }
