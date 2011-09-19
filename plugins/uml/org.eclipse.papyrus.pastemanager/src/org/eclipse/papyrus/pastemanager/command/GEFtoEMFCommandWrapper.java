@@ -13,20 +13,14 @@
  *****************************************************************************/
 package org.eclipse.papyrus.pastemanager.command;
 
-import org.eclipse.emf.common.command.AbstractCommand;
 import org.eclipse.gef.commands.Command;
 
-// TODO: Auto-generated Javadoc
 /**
  * A EMF Command that wraps a GEF command. Each method is redirected to the GEF one.
+ * 
+ * @deprecated use {@link org.eclipse.papyrus.commands.wrappers.GEFtoEMFCommandWrapper} instead
  */
-public class GEFtoEMFCommandWrapper extends AbstractCommand {
-
-	/**
-	 * The wrapped GEF Command. Package-level visibility so that the command stack wrapper can
-	 * access the field.
-	 */
-	private final Command gefCommand;
+public class GEFtoEMFCommandWrapper extends org.eclipse.papyrus.commands.wrappers.GEFtoEMFCommandWrapper {
 
 	/**
 	 * Constructor.
@@ -35,77 +29,6 @@ public class GEFtoEMFCommandWrapper extends AbstractCommand {
 	 *        the gef command
 	 */
 	public GEFtoEMFCommandWrapper(Command gefCommand) {
-		super(gefCommand.getLabel());
-		this.gefCommand = gefCommand;
-	}
-
-	/**
-	 * Returns the wrapped GEF command.
-	 * 
-	 * @return the GEF command
-	 */
-	// @unused
-	public Command getGEFCommand() {
-		return gefCommand;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.emf.common.command.AbstractCommand#canExecute()
-	 */
-	@Override
-	public boolean canExecute() {
-		return gefCommand.canExecute();
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.emf.common.command.AbstractCommand#dispose()
-	 */
-	@Override
-	public void dispose() {
-		gefCommand.dispose();
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.emf.common.command.AbstractCommand#canUndo()
-	 */
-	@Override
-	public boolean canUndo() {
-		return gefCommand.canUndo();
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.emf.common.command.Command#execute()
-	 */
-	public void execute() {
-
-		gefCommand.execute();
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.emf.common.command.Command#redo()
-	 */
-	public void redo() {
-
-		gefCommand.redo();
-	}
-
-	/**
-	 * 
-	 * @see org.eclipse.emf.common.command.AbstractCommand#undo()
-	 * 
-	 */
-	@Override
-	public void undo() {
-		gefCommand.undo();
+		super(gefCommand);
 	}
 }

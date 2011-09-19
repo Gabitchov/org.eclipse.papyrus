@@ -31,7 +31,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassLinkEditPart
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DependencyBranchEditPart;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
-import org.eclipse.papyrus.diagram.common.command.wrappers.EMFtoGMFCommandWrapper;
+import org.eclipse.papyrus.commands.wrappers.EMFtoGMFCommandWrapper;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Property;
 

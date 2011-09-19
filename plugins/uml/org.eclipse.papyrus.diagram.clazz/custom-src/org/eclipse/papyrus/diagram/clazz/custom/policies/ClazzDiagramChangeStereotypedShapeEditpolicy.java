@@ -25,7 +25,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.papyrus.diagram.clazz.custom.command.ElementToStereotypedShape;
-import org.eclipse.papyrus.diagram.common.command.wrappers.GEFtoEMFCommandWrapper;
+import org.eclipse.papyrus.commands.wrappers.GEFtoEMFCommandWrapper;
 import org.eclipse.papyrus.diagram.common.editpolicies.ChangeStereotypedShapeEditPolicy;
 import org.eclipse.swt.widgets.Display;
 

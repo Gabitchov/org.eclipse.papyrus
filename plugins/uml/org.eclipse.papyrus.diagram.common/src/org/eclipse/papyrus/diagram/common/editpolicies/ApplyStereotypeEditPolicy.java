@@ -49,7 +49,7 @@ import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCo
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.core.utils.PapyrusTrace;
-import org.eclipse.papyrus.diagram.common.command.wrappers.EMFtoGMFCommandWrapper;
+import org.eclipse.papyrus.commands.wrappers.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.diagram.common.commands.DefferedAppliedStereotypeToDisplayCommand;
 import org.eclipse.papyrus.diagram.common.editparts.IUMLEditPart;
 import org.eclipse.papyrus.diagram.common.helper.NamedElementHelper;

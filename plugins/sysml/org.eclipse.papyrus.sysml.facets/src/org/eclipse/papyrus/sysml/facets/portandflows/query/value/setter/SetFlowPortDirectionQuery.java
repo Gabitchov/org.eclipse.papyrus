@@ -19,7 +19,7 @@ import org.eclipse.emf.facet.infra.query.core.java.IJavaModelQueryWithEditingDom
 import org.eclipse.emf.facet.infra.query.core.java.ParameterValueList;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.core.services.ServiceException;
-import org.eclipse.papyrus.core.utils.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.core.utils.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.gmf.diagram.common.commands.IdentityCommandWithNotification;
 import org.eclipse.papyrus.sysml.facets.extendedsysml.extendedsysml.portandflows.NAFlowPortDirection;

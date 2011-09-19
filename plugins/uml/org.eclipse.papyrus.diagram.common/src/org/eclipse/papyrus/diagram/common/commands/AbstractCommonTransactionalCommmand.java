@@ -17,7 +17,7 @@ import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
-import org.eclipse.papyrus.diagram.common.command.wrappers.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 
 /**
  * An <AbstractTransactionalCommand> that can give proxies for EMF and GEF.

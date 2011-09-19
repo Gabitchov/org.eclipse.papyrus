@@ -70,7 +70,7 @@ public class RenameDiagramHandler extends AbstractCommandHandler {
 						}
 					}
 				};
-				return new GMFtoEMFCommandWrapper(cmd);
+				return new org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper(cmd);
 			}
 		}
 		return UnexecutableCommand.INSTANCE;

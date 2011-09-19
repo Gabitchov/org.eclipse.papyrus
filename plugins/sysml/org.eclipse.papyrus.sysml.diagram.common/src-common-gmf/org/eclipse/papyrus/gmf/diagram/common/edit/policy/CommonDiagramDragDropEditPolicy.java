@@ -53,7 +53,7 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.common.command.wrappers.CommandProxyWithResult;
+import org.eclipse.papyrus.commands.wrappers.CommandProxyWithResult;
 import org.eclipse.papyrus.diagram.common.commands.CommonDeferredCreateConnectionViewCommand;
 import org.eclipse.papyrus.diagram.common.commands.SemanticAdapter;
 import org.eclipse.papyrus.gmf.diagram.common.provider.IGraphicalTypeRegistry;

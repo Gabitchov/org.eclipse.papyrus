@@ -36,7 +36,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramGraphicalViewer;
 import org.eclipse.gmf.runtime.diagram.ui.util.EditPartUtil;
 import org.eclipse.papyrus.diagram.common.Activator;
-import org.eclipse.papyrus.diagram.common.command.wrappers.EMFtoGMFCommandWrapper;
+import org.eclipse.papyrus.commands.wrappers.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.diagram.common.service.IPapyrusPaletteConstant;
 import org.eclipse.papyrus.umlutils.ui.VisualInformationPapyrusConstant;
 import org.eclipse.papyrus.umlutils.ui.helper.AppliedStereotypeHelper;

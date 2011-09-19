@@ -10,21 +10,14 @@
  ******************************************************************************/
 package org.eclipse.papyrus.core.utils;
 
-import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.emf.common.command.AbstractCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 
 /**
  * A EMF Command that wraps a GMF command. Each method is redirected to the GMF one.
+ * 
+ * @deprecated use {@link org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper} instead
  */
-public class GMFtoEMFCommandWrapper extends AbstractCommand {
-
-	/**
-	 * The wrapped GMF Command. Package-level visibility so that the command stack wrapper can
-	 * access the field.
-	 */
-	private final ICommand gmfCommand;
+public class GMFtoEMFCommandWrapper extends org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper {
 
 	/**
 	 * Constructor.
@@ -33,88 +26,6 @@ public class GMFtoEMFCommandWrapper extends AbstractCommand {
 	 *        the gmf command
 	 */
 	public GMFtoEMFCommandWrapper(ICommand gmfCommand) {
-		super(gmfCommand.getLabel());
-		this.gmfCommand = gmfCommand;
+		super(gmfCommand);
 	}
-
-	/**
-	 * Returns the wrapped GMF command.
-	 * 
-	 * @return the GMF command
-	 */
-	// @unused
-	public ICommand getGMFCommand() {
-		return gmfCommand;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.emf.common.command.AbstractCommand#canExecute()
-	 */
-	@Override
-	public boolean canExecute() {
-		return gmfCommand.canExecute();
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.emf.common.command.AbstractCommand#dispose()
-	 */
-	@Override
-	public void dispose() {
-		gmfCommand.dispose();
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.emf.common.command.AbstractCommand#canUndo()
-	 */
-	@Override
-	public boolean canUndo() {
-		return gmfCommand.canUndo();
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.emf.common.command.Command#execute()
-	 */
-	public void execute() {
-		try {
-			gmfCommand.execute(new NullProgressMonitor(), null);
-		} catch (ExecutionException e) {
-		}
-
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.emf.common.command.Command#redo()
-	 */
-	public void redo() {
-		try {
-			gmfCommand.redo(new NullProgressMonitor(), null);
-		} catch (ExecutionException e) {
-		}
-
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.emf.common.command.AbstractCommand#undo()
-	 */
-	@Override
-	public void undo() {
-		try {
-			gmfCommand.undo(new NullProgressMonitor(), null);
-		} catch (ExecutionException e) {
-		}
-
-	}
-
 }

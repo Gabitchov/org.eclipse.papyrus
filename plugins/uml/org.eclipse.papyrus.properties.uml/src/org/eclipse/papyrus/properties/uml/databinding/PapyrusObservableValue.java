@@ -21,7 +21,7 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
-import org.eclipse.papyrus.core.utils.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.properties.Activator;
 import org.eclipse.papyrus.properties.databinding.EMFObservableValue;
 import org.eclipse.papyrus.properties.util.EMFHelper;

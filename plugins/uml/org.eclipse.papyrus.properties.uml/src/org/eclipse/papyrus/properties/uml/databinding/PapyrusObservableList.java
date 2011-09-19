@@ -25,7 +25,7 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
-import org.eclipse.papyrus.diagram.common.command.wrappers.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.properties.databinding.EMFObservableList;
 import org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.service.edit.service.IElementEditService;

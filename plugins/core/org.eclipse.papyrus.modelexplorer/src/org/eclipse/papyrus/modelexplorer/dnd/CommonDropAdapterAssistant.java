@@ -52,7 +52,7 @@ import org.eclipse.papyrus.core.extension.commands.ICreationCommand;
 import org.eclipse.papyrus.core.extension.commands.ICreationCommandRegistry;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.modelexplorer.Activator;
-import org.eclipse.papyrus.modelexplorer.handler.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.service.edit.service.IElementEditService;
 import org.eclipse.swt.dnd.DND;

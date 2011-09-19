@@ -24,7 +24,7 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.window.Window;
-import org.eclipse.papyrus.modelexplorer.handler.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.table.instance.papyrustableinstance.PapyrusTableInstance;
 import org.eclipse.papyrus.table.modelexplorer.messages.Messages;
 import org.eclipse.swt.widgets.Display;

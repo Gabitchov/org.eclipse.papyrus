@@ -85,7 +85,7 @@ public abstract class CreateCommandHandler extends AbstractCommandHandler {
 
 		ICommand createGMFCommand = provider.getEditCommand(createRequest);
 
-		Command emfCommand = new GMFtoEMFCommandWrapper(createGMFCommand);
+		Command emfCommand = new org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper(createGMFCommand);
 		return emfCommand;
 	}
 

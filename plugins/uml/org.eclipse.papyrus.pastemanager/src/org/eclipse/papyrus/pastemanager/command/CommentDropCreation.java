@@ -78,7 +78,7 @@ public class CommentDropCreation extends AbstractCommand {
 			dropObjectsRequest.setObjects(objectList);
 			org.eclipse.gef.commands.Command cmd = targetEditPart.getCommand(dropObjectsRequest);
 			if(cmd != null) {
-				targetEditPart.getEditingDomain().getCommandStack().execute(new GEFtoEMFCommandWrapper(cmd));
+				targetEditPart.getEditingDomain().getCommandStack().execute(new org.eclipse.papyrus.commands.wrappers.GEFtoEMFCommandWrapper(cmd));
 			}
 			return result;
 		}

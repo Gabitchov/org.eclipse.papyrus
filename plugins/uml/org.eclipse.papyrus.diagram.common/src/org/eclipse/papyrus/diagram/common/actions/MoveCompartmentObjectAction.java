@@ -22,7 +22,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.papyrus.diagram.common.Activator;
-import org.eclipse.papyrus.diagram.common.command.wrappers.EMFtoGEFCommandWrapper;
+import org.eclipse.papyrus.commands.wrappers.EMFtoGEFCommandWrapper;
 import org.eclipse.ui.IWorkbenchPage;
 
 /**

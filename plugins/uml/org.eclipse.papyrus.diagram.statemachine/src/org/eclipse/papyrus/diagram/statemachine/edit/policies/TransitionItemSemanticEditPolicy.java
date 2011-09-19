@@ -8,7 +8,7 @@ import org.eclipse.emf.edit.command.DeleteCommand;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
-import org.eclipse.papyrus.diagram.common.command.wrappers.EMFtoGMFCommandWrapper;
+import org.eclipse.papyrus.commands.wrappers.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.diagram.statemachine.providers.UMLElementTypes;
 
 /**

@@ -42,8 +42,8 @@ import org.eclipse.gmf.runtime.diagram.ui.render.internal.providers.ImageSupport
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.ui.properties.actions.PropertyPageViewAction;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.papyrus.diagram.common.command.wrappers.EMFtoGMFCommandWrapper;
-import org.eclipse.papyrus.diagram.common.command.wrappers.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.commands.wrappers.EMFtoGMFCommandWrapper;
+import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.diagram.common.helper.CleanDiagramHelper;
 import org.eclipse.papyrus.pastemanager.service.PasteCommandService;
 import org.eclipse.ui.IEditorPart;

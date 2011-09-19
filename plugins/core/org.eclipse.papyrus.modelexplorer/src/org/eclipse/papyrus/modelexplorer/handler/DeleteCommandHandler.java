@@ -94,7 +94,7 @@ public class DeleteCommandHandler extends AbstractCommandHandler implements IHan
 			return UnexecutableCommand.INSTANCE;
 		}
 
-		Command emfCommand = new GMFtoEMFCommandWrapper(gmfCommand.reduce());
+		Command emfCommand = new org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper(gmfCommand.reduce());
 		return emfCommand;
 	}
 

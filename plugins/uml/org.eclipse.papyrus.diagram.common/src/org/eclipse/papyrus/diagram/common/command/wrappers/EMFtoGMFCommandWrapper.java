@@ -10,24 +10,15 @@
  ******************************************************************************/
 package org.eclipse.papyrus.diagram.common.command.wrappers;
 
-import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.command.Command;
-import org.eclipse.gmf.runtime.common.core.command.AbstractCommand;
-import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 
 // TODO: Auto-generated Javadoc
 /**
  * A GMF Command that wraps an EMF command. Each method is redirected to the EMF one.
+ * 
+ * @deprecated use {@link org.eclipse.papyrus.commands.wrappers.EMFtoGMFCommandWrapper} instead
  */
-public class EMFtoGMFCommandWrapper extends AbstractCommand {
-
-	/**
-	 * The wrapped EMF Command. Package-level visibility so that the command stack wrapper can
-	 * access the field.
-	 */
-	private final Command emfCommand;
+public class EMFtoGMFCommandWrapper extends org.eclipse.papyrus.commands.wrappers.EMFtoGMFCommandWrapper {
 
 	/**
 	 * Constructor.
@@ -36,95 +27,6 @@ public class EMFtoGMFCommandWrapper extends AbstractCommand {
 	 *        the emf command
 	 */
 	public EMFtoGMFCommandWrapper(Command emfCommand) {
-		super(emfCommand.getLabel());
-		this.emfCommand = emfCommand;
+		super(emfCommand);
 	}
-
-	/**
-	 * Returns the wrapped EMF command.
-	 * 
-	 * @return the EMF command
-	 */
-	// @unused
-	public org.eclipse.emf.common.command.Command getEMFCommand() {
-		return emfCommand;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @seeorg.eclipse.gmf.runtime.common.core.command.AbstractCommand#
-	 * doExecuteWithResult(org.eclipse .core.runtime.IProgressMonitor,
-	 * org.eclipse.core.runtime.IAdaptable)
-	 */
-	@Override
-	protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
-
-		if(canExecute()) {
-			emfCommand.execute();
-		}
-
-		return CommandResult.newOKCommandResult();
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.gmf.runtime.common.core.command.AbstractCommand#doRedoWithResult
-	 * (org.eclipse. core.runtime.IProgressMonitor, org.eclipse.core.runtime.IAdaptable)
-	 */
-	@Override
-	protected CommandResult doRedoWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
-
-		emfCommand.redo();
-
-		return CommandResult.newOKCommandResult();
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.gmf.runtime.common.core.command.AbstractCommand#doUndoWithResult
-	 * (org.eclipse. core.runtime.IProgressMonitor, org.eclipse.core.runtime.IAdaptable)
-	 */
-	@Override
-	protected CommandResult doUndoWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
-
-		if(canUndo()) {
-			emfCommand.undo();
-		}
-
-		return CommandResult.newOKCommandResult();
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.core.commands.operations.AbstractOperation#canExecute()
-	 */
-	@Override
-	public boolean canExecute() {
-		return emfCommand.canExecute();
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.gmf.runtime.common.core.command.AbstractCommand#dispose()
-	 */
-	@Override
-	public void dispose() {
-		emfCommand.dispose();
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.core.commands.operations.AbstractOperation#canUndo()
-	 */
-	@Override
-	public boolean canUndo() {
-		return emfCommand.canUndo();
-	}
-
 }

@@ -24,7 +24,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.papyrus.core.utils.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.diagram.common.groups.Messages;
 import org.eclipse.papyrus.diagram.common.groups.commands.ChangeGraphicalParentCommand;
 import org.eclipse.papyrus.diagram.common.groups.commands.ChangeModelParentCommand;

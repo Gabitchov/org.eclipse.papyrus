@@ -58,7 +58,7 @@ import org.eclipse.jface.action.IStatusLineManager;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.diagram.common.Activator;
-import org.eclipse.papyrus.diagram.common.command.wrappers.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.diagram.common.ids.MOSKittEditorIDs;
 import org.eclipse.papyrus.diagram.common.part.CachedResourcesDiagramEditor;
 import org.eclipse.papyrus.diagram.common.part.CachedResourcesEditorInput;
