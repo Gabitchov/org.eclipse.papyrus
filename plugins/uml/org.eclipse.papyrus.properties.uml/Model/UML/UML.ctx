@@ -5307,6 +5307,7 @@
     <elements name="Image">
       <properties name="kind" type="Enumeration" description="The kind of image to be used. If icon is set, the image will be displayed on the stereotyped element. If shape is used, the image will be used as the graphical element. "/>
       <properties name="expression" description="A boolean expression to determine under which condition this image should be displayed."/>
+      <properties name="name" label="" description="The image's name. This is a virtual property, used only for label display."/>
     </elements>
     <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.properties.uml/Model/Environment.xmi#//@modelElementFactories.5"/>
   </dataContexts>

@@ -21,6 +21,7 @@ import org.eclipse.papyrus.properties.modelelement.AbstractModelElement;
 import org.eclipse.papyrus.properties.uml.Activator;
 import org.eclipse.papyrus.properties.uml.databinding.ImageExpressionObservableValue;
 import org.eclipse.papyrus.properties.uml.databinding.ImageKindObservableValue;
+import org.eclipse.papyrus.properties.uml.databinding.ImageNameObservableValue;
 import org.eclipse.papyrus.widgets.providers.AbstractStaticContentProvider;
 import org.eclipse.papyrus.widgets.providers.EmptyContentProvider;
 import org.eclipse.papyrus.widgets.providers.IStaticContentProvider;
@@ -54,6 +55,11 @@ public class CustomImageModelElement extends AbstractModelElement {
 	public static final String EXPRESSION = "expression"; //$NON-NLS-1$
 
 	/**
+	 * The Image::name property
+	 */
+	public static final String NAME = "name"; //$NON-NLS-1$
+
+	/**
 	 * 
 	 * Constructor.
 	 * 
@@ -76,6 +82,8 @@ public class CustomImageModelElement extends AbstractModelElement {
 			return new ImageKindObservableValue(image, editingDomain);
 		} else if(propertyPath.equals(EXPRESSION)) {
 			return new ImageExpressionObservableValue(image, editingDomain);
+		} else if(propertyPath.equals(NAME)) {
+			return new ImageNameObservableValue(image, editingDomain);
 		}
 
 		Activator.log.warn("Unknown property : " + propertyPath); //$NON-NLS-1$
