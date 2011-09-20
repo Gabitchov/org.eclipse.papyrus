@@ -39,6 +39,7 @@ import org.eclipse.papyrus.core.editorsfactory.PageIconsRegistry;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.utils.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.diagram.common.Activator;
+import org.eclipse.papyrus.umlutils.ImageUtil;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Element;
@@ -241,11 +242,27 @@ public class EditorLabelProvider implements ILabelProvider {
 			//We return the label of the Stereotyped element, not of the Stereotype itself
 			return getText(UMLUtil.getBaseElement((EObject)element));
 		} else if(element instanceof org.eclipse.uml2.uml.Image) {
+			//imageName
+			//location
+			//imageName : location
+			//Image
 			org.eclipse.uml2.uml.Image image = ((org.eclipse.uml2.uml.Image)element);
-			if(image.getLocation() == null || image.getLocation().equals("")) {
-				return "Image"; //$NON-NLS-1$
+
+			String imageName = ImageUtil.getName(image);
+			String location = image.getLocation();
+
+			if(isEmptyString(imageName)) {
+				if(isEmptyString(location)) {
+					return "Image";
+				}
+				return location;
 			}
-			return image.getLocation();
+
+			if(isEmptyString(location)) {
+				return imageName;
+			}
+
+			return imageName + " : " + location; //$NON-NLS-1$
 		} else if(element instanceof PackageImport) {
 			Package importedPackage = ((PackageImport)element).getImportedPackage();
 			if(importedPackage == null) {
@@ -317,6 +334,10 @@ public class EditorLabelProvider implements ILabelProvider {
 		}
 
 		return element.toString();
+	}
+
+	private boolean isEmptyString(String s) {
+		return s == null || s.trim().equals(""); //$NON-NLS-1$
 	}
 
 	/**

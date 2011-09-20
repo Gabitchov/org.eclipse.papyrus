@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2008 CEA LIST.
  *
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Added support for Image's name
  *
  *****************************************************************************/
 
@@ -26,6 +27,7 @@ import java.util.StringTokenizer;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.jface.resource.ImageDescriptor;
@@ -55,6 +57,14 @@ public class ImageUtil {
 	 * KEY of the EAnnotation where "kind" (kind = icon/shape) is stored on image.
 	 */
 	public static String IMAGE_KIND_KEY = "image_kind_key";
+
+	/**
+	 * KEY of the EAnnotation where the image's name is stored
+	 * 
+	 * @see {@link #getName(Image)}
+	 * @see {@link #setName(Image, String)}
+	 */
+	public static String IMAGE_NAME_KEY = "image_name_key";
 
 	/**
 	 * Set the content of an {@link Image} with a file (containing an image).
@@ -216,8 +226,7 @@ public class ImageUtil {
 	 * @param expression
 	 *        the expression
 	 */
-	// @unused
-	public static void setExpression(org.eclipse.uml2.uml.Image image, String expression) {
+	public static void setExpression(Image image, String expression) {
 
 		EAnnotation ea_Image = image.getEAnnotation(ImageUtil.IMAGE_PAPYRUS_EA);
 		// Create annotation for icon selection if it does not exist
@@ -232,9 +241,7 @@ public class ImageUtil {
 			ea_Image.getDetails().put(ImageUtil.IMAGE_EXPR_KEY, expression);
 		}
 
-		if(!(ea_Image.getDetails().containsKey(IMAGE_EXPR_KEY)) && !(ea_Image.getDetails().containsKey(IMAGE_KIND_KEY))) {
-			ea_Image.setEModelElement(null);
-		}
+		cleanImageAnnotation(ea_Image);
 	}
 
 	/**
@@ -253,6 +260,71 @@ public class ImageUtil {
 			expr = ea_ImageExpr.getDetails().get(ImageUtil.IMAGE_EXPR_KEY);
 		}
 		return expr;
+	}
+
+	/**
+	 * Associates a name to an Image.
+	 * 
+	 * The UML Image is not a NamedElement : the name is stored as an
+	 * EAnnotation, and is not mandatory. The name should only be used for
+	 * displaying the image's label : this is *not* an identifier.
+	 * 
+	 * @param image
+	 *        The image
+	 * @param name
+	 *        The name
+	 */
+	public static void setName(Image image, String name) {
+		EAnnotation ea_Image = image.getEAnnotation(ImageUtil.IMAGE_PAPYRUS_EA);
+		// Create annotation for icon selection if it does not exist
+		if(ea_Image == null) {
+			ea_Image = image.createEAnnotation(ImageUtil.IMAGE_PAPYRUS_EA);
+		}
+
+		// If expression == "" remove the EAnnotation
+		if("".equals(name)) {
+			ea_Image.getDetails().removeKey(IMAGE_NAME_KEY);
+		} else {
+			ea_Image.getDetails().put(ImageUtil.IMAGE_NAME_KEY, name);
+		}
+
+		cleanImageAnnotation(ea_Image);
+	}
+
+	/**
+	 * Returns the name associated to the image
+	 * 
+	 * The UML Image is not a NamedElement : the name is stored as an
+	 * EAnnotation, and is not mandatory. The name should only be used for
+	 * displaying the image's label : this is *not* an identifier.
+	 * 
+	 * @param image
+	 *        the image
+	 * @return
+	 *         the name associated to the image
+	 */
+	public static String getName(Image image) {
+		EAnnotation ea_Image = image.getEAnnotation(ImageUtil.IMAGE_PAPYRUS_EA);
+
+		String name = null;
+		if((ea_Image != null) && (ea_Image.getDetails().containsKey(IMAGE_NAME_KEY))) {
+			name = ea_Image.getDetails().get(IMAGE_NAME_KEY);
+		}
+		return name;
+	}
+
+	/**
+	 * Removes the EAnnotation from the Image if the annotation doesn't contain any valid key
+	 * 
+	 * @param annotation
+	 */
+	private static void cleanImageAnnotation(EAnnotation annotation) {
+		EMap<String, String> details = annotation.getDetails();
+		if(details.isEmpty()) {
+			//if(!(details.containsKey(IMAGE_NAME_KEY)) && !(details.containsKey(IMAGE_KIND_KEY) && !(details.containsKey(IMAGE_NAME_KEY)))) {
+			annotation.setEModelElement(null);
+		}
+
 	}
 
 	/**
@@ -279,9 +351,7 @@ public class ImageUtil {
 			ea_Image.getDetails().put(ImageUtil.IMAGE_KIND_KEY, kind);
 		}
 
-		if(!(ea_Image.getDetails().containsKey(IMAGE_EXPR_KEY)) && !(ea_Image.getDetails().containsKey(IMAGE_KIND_KEY))) {
-			ea_Image.setEModelElement(null);
-		}
+		cleanImageAnnotation(ea_Image);
 	}
 
 	/**
