@@ -16,6 +16,7 @@ import org.eclipse.core.runtime.Assert;
 import org.eclipse.jface.viewers.ComboViewer;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.papyrus.widgets.databinding.AggregatedObservable;
 import org.eclipse.papyrus.widgets.databinding.ComboObservableValue;
 import org.eclipse.papyrus.widgets.providers.EncapsulatedContentProvider;
@@ -187,6 +188,19 @@ public class ReferenceCombo extends AbstractValueEditor { //implements Selection
 			return null;
 		}
 		return selection.getFirstElement();
+	}
+
+	/**
+	 * Sets the value for this widget
+	 * 
+	 * @param value
+	 */
+	public void setValue(Object value) {
+		if(value == null) {
+			viewer.setSelection(new StructuredSelection());
+		} else {
+			viewer.setSelection(new StructuredSelection(value), true);
+		}
 	}
 
 	@Override
