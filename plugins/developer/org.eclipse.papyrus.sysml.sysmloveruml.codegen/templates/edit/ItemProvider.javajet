@@ -126,6 +126,7 @@ public class <%=genClass.getProviderClassName()%>
 <%}%>
 	public <%=_List%> getPropertyDescriptors(Object object)
 	{
+	if(object instanceof <%=genClass.getName()%>) {
 		if (itemPropertyDescriptors == null)
 		{
 			super.getPropertyDescriptors(object);
@@ -134,6 +135,7 @@ public class <%=genClass.getProviderClassName()%>
 			add<%=genFeature.getCapName()%>PropertyDescriptor(object);
 <%}%>
 		}
+	}
 	
   		<%for(EClass basedClass : SysMLOverUMLHelper.getBasedElement(genClass.getEcoreClass())) {%>
   				
@@ -141,11 +143,21 @@ public class <%=genClass.getProviderClassName()%>
 		  * Handle <%=basedClass.getName()%> stereotyped by <%=genClass.getName()%>
 	      */
 	      if ( object instanceof <%=SysMLOverUMLHelper.getUMLInterfaceName(basedClass)%> ){
+	      <%=SysMLOverUMLHelper.getUMLInterfaceName(basedClass)%> element = (<%=SysMLOverUMLHelper.getUMLInterfaceName(basedClass)%>)object;
   			if ( <%=nameListDescriptorStore.get(basedClass)%> == null){
   			ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.<%=SysMLOverUMLHelper.getClassifierCorrectLabel(basedClass)%>);
 				final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);		
 				<%=nameListDescriptorStore.get(basedClass)%> = new ArrayList<IItemPropertyDescriptor>();
 				<%=nameListDescriptorStore.get(basedClass)%>.addAll(propertyDescriptors);
+  				Stereotype ste = (element).getAppliedStereotype(SysmlResource.<%=SysMLOverUMLHelper.getClassifierCorrectLabel(genClass.getEcoreClass())%>_ID);
+				if(ste != null) {
+					EObject steApplication = (element).getStereotypeApplication(ste);
+				<%for (GenFeature genFeature : genClass.getPropertyFeatures()) { %>
+					  		<%for(EClass basedClass2 : SysMLOverUMLHelper.getBasedElement(genClass.getEcoreClass())) {%>
+								add<%=genFeature.getCapName()%>PropertyDescriptorFor<%=basedClass2.getName()%>(steApplication);
+							<%}%>
+				<%}%>
+				}
 			}
 			return <%=nameListDescriptorStore.get(basedClass)%>;
 			
@@ -202,6 +214,56 @@ public class <%=genClass.getProviderClassName()%>
   <%}%>
 <%@ end %><%//ItemProvider/addPropertyDescriptor.override.javajetinc%>
 	}
+	
+		<%for(EClass basedClass : SysMLOverUMLHelper.getBasedElement(genClass.getEcoreClass())) {%>
+		/**
+		 * This adds a property descriptor for the <%=genFeature.getFormattedName()%> feature for the UML element <%=basedClass.getName()%>.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		protected void add<%=genFeature.getCapName()%>PropertyDescriptorFor<%=basedClass.getName()%>(Object object)
+		{<%@ include file="ItemProvider/addPropertyDescriptor.override.javajetinc" fail="alternative" %>
+		<%@ start %>
+				<%=nameListDescriptorStore.get(basedClass)%>.add
+					( new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor
+						(((<%=genModel.getImportedName("org.eclipse.emf.edit.provider.ComposeableAdapterFactory")%>)adapterFactory).getRootAdapterFactory(),
+						 getResourceLocator(),
+						 getString("_UI_<%=genFeature.getGenClass().getName()%>_<%=genFeature.getName()%>_feature"),<%=genModel.getNonNLS()%>
+		  <%if (genFeature.getPropertyDescription() == null || genFeature.getPropertyDescription().length() == 0) {%>
+						 getString("_UI_PropertyDescriptor_description", "_UI_<%=genFeature.getGenClass().getName()%>_<%=genFeature.getName()%>_feature", "_UI_<%=genFeature.getGenClass().getName()%>_type"),<%=genModel.getNonNLS()%><%=genModel.getNonNLS(2)%><%=genModel.getNonNLS(3)%>
+		  <%} else {%>
+						 getString("_UI_<%=genFeature.getGenClass().getName()%>_<%=genFeature.getName()%>_description"),<%=genModel.getNonNLS()%>
+		  <%}%>
+						 <%=genFeature.getQualifiedFeatureAccessor()%>,
+						 <%=genFeature.getProperty() == GenPropertyKind.EDITABLE_LITERAL ? "true" : "false"%>,
+						 <%=genFeature.isPropertyMultiLine() ? "true" : "false"%>,
+						 <%=genFeature.isPropertySortChoices() ? "true" : "false"%>,
+		  <%if (genFeature.isReferenceType()) {%>
+						 null,
+		  <%} else {%>
+						 <%=genModel.getImportedName("org.eclipse.emf.edit.provider.ItemPropertyDescriptor")%>.<%=genFeature.getPropertyImageName()%>,
+		  <%}%>
+		  <%if (genFeature.getPropertyCategory() == null || genFeature.getPropertyCategory().length() == 0) {%>
+						 null,
+		  <%} else {%>
+						 getString("<%=genModel.getPropertyCategoryKey(genFeature.getPropertyCategory())%>"),<%=genModel.getNonNLS()%>
+		  <%}%>
+		  <%if (genFeature.getPropertyFilterFlags().isEmpty()) {%>
+						 null)));
+		  <%} else {%>
+						 new String[] {
+		    <%for (Iterator<String> j = genFeature.getPropertyFilterFlags().iterator(); j.hasNext();) { String filterFlag = j.next();%>
+		      <%if (filterFlag != null && filterFlag.length() > 0) {%>
+							"<%=filterFlag%>"<%if (j.hasNext()) {%>,<%}%><%=genModel.getNonNLS()%>
+		      <%}%>
+		    <%}%>
+				 })));
+  <%}%>
+<%@ end %><%//ItemProvider/addPropertyDescriptor.override.javajetinc%>
+		}
+		<%}%>
+		
 
 <%}%>
 <%if (!genClass.getChildrenFeatures().isEmpty()) {%>

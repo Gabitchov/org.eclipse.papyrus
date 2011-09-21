@@ -13,10 +13,12 @@
 package org.eclipse.papyrus.sysml.sysmloveruml.codegen.core;
 
 import org.eclipse.osgi.util.NLS;
+
 /**
  * Externalize messages.
+ * 
  * @author "Arthur Daussy <a href="mailto:arthur.daussy@atos.net">arthur.daussy@atos.net</a>"
- *
+ * 
  */
 public class Messages extends NLS {
 

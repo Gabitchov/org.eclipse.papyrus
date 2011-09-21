@@ -18,10 +18,12 @@ import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.Monitor;
 import org.eclipse.papyrus.sysml.sysmloveruml.codegen.generationUtils.SysMLOverUMLHelper;
+
 /**
  * Generator for model elements.
+ * 
  * @author "Arthur Daussy <a href="mailto:arthur.daussy@atos.net">arthur.daussy@atos.net</a>"
- *
+ * 
  */
 public class SysMLOverUmlGenModelGenerator extends AbstractGeneratorAdaptor<GenModel> {
 
