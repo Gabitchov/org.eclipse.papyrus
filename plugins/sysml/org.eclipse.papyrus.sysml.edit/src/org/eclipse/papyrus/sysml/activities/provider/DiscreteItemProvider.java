@@ -21,6 +21,7 @@ import java.util.regex.Pattern;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposedImage;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -45,18 +46,22 @@ import org.eclipse.uml2.uml.edit.UMLEditPlugin;
  * 
  * @generated
  */
-public class DiscreteItemProvider extends RateItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, IVisibilityOverlayImage {
+public class DiscreteItemProvider extends RateItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, IVisibilityOverlayImage
+
+{
 
 	/**
 	 * This is used to store all the property descriptors for aclass stereotyped with a block.
 	 * Derived classes should add descriptors to this vector.
 	 */
+
 	protected List<IItemPropertyDescriptor> itemPropertyDescriptorsForparameter;
 
 	/**
 	 * This is used to store all the property descriptors for aclass stereotyped with a block.
 	 * Derived classes should add descriptors to this vector.
 	 */
+
 	protected List<IItemPropertyDescriptor> itemPropertyDescriptorsForactivityEdge;
 
 	/**
@@ -71,6 +76,7 @@ public class DiscreteItemProvider extends RateItemProvider implements IEditingDo
 	 * 
 	 * @generated
 	 */
+
 	private static Pattern PARAMETER_PREFIX_PATTERN = Pattern.compile("Parameter");
 
 	/**
@@ -78,6 +84,7 @@ public class DiscreteItemProvider extends RateItemProvider implements IEditingDo
 	 * 
 	 * @generated
 	 */
+
 	private static Pattern ACTIVITY_EDGE_PREFIX_PATTERN = Pattern.compile("ActivityEdge");
 
 	/**
@@ -100,20 +107,28 @@ public class DiscreteItemProvider extends RateItemProvider implements IEditingDo
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if(itemPropertyDescriptors == null) {
-			super.getPropertyDescriptors(object);
+		if(object instanceof Discrete) {
+			if(itemPropertyDescriptors == null) {
+				super.getPropertyDescriptors(object);
 
+			}
 		}
 
 		/**
 		 * Handle Parameter stereotyped by Discrete
 		 */
 		if(object instanceof org.eclipse.uml2.uml.Parameter) {
+			org.eclipse.uml2.uml.Parameter element = (org.eclipse.uml2.uml.Parameter)object;
 			if(itemPropertyDescriptorsForparameter == null) {
 				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.PARAMETER);
 				final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
 				itemPropertyDescriptorsForparameter = new ArrayList<IItemPropertyDescriptor>();
 				itemPropertyDescriptorsForparameter.addAll(propertyDescriptors);
+				Stereotype ste = (element).getAppliedStereotype(SysmlResource.DISCRETE_ID);
+				if(ste != null) {
+					EObject steApplication = (element).getStereotypeApplication(ste);
+
+				}
 			}
 			return itemPropertyDescriptorsForparameter;
 
@@ -123,11 +138,17 @@ public class DiscreteItemProvider extends RateItemProvider implements IEditingDo
 		 * Handle ActivityEdge stereotyped by Discrete
 		 */
 		if(object instanceof org.eclipse.uml2.uml.ActivityEdge) {
+			org.eclipse.uml2.uml.ActivityEdge element = (org.eclipse.uml2.uml.ActivityEdge)object;
 			if(itemPropertyDescriptorsForactivityEdge == null) {
 				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.ACTIVITY_EDGE);
 				final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
 				itemPropertyDescriptorsForactivityEdge = new ArrayList<IItemPropertyDescriptor>();
 				itemPropertyDescriptorsForactivityEdge.addAll(propertyDescriptors);
+				Stereotype ste = (element).getAppliedStereotype(SysmlResource.DISCRETE_ID);
+				if(ste != null) {
+					EObject steApplication = (element).getStereotypeApplication(ste);
+
+				}
 			}
 			return itemPropertyDescriptorsForactivityEdge;
 
@@ -256,10 +277,13 @@ public class DiscreteItemProvider extends RateItemProvider implements IEditingDo
 	 */
 	public ComposedImage composeVisibilityImage(Object object, ComposedImage composedImage) {
 		NamedElement namedElement = (NamedElement)object;
+
 		if(namedElement.isSetVisibility()) {
 			composedImage.getImages().add(UMLEditPlugin.INSTANCE.getImage("full/ovr16/VisibilityKind_" //$NON-NLS-1$
 				+ namedElement.getVisibility().getName()));
 		}
+
 		return composedImage;
 	}
+
 }

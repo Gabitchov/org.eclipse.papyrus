@@ -22,6 +22,7 @@ import java.util.regex.Pattern;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedImage;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -30,6 +31,7 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptorDecorator;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.papyrus.sysml.blocks.BlocksPackage;
 import org.eclipse.papyrus.sysml.blocks.PropertySpecificType;
@@ -48,12 +50,15 @@ import org.eclipse.uml2.uml.UMLPackage;
  * 
  * @generated
  */
-public class PropertySpecificTypeItemProvider extends SysMLItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class PropertySpecificTypeItemProvider extends SysMLItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
+
+{
 
 	/**
 	 * This is used to store all the property descriptors for aclass stereotyped with a block.
 	 * Derived classes should add descriptors to this vector.
 	 */
+
 	protected List<IItemPropertyDescriptor> itemPropertyDescriptorsForclassifier;
 
 	/**
@@ -68,6 +73,7 @@ public class PropertySpecificTypeItemProvider extends SysMLItemProviderAdapter i
 	 * 
 	 * @generated
 	 */
+
 	private static Pattern CLASSIFIER_PREFIX_PATTERN = Pattern.compile("Classifier");
 
 	/**
@@ -90,21 +96,31 @@ public class PropertySpecificTypeItemProvider extends SysMLItemProviderAdapter i
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if(itemPropertyDescriptors == null) {
-			super.getPropertyDescriptors(object);
+		if(object instanceof PropertySpecificType) {
+			if(itemPropertyDescriptors == null) {
+				super.getPropertyDescriptors(object);
 
-			addBase_ClassifierPropertyDescriptor(object);
+				addBase_ClassifierPropertyDescriptor(object);
+			}
 		}
 
 		/**
 		 * Handle Classifier stereotyped by PropertySpecificType
 		 */
 		if(object instanceof org.eclipse.uml2.uml.Classifier) {
+			org.eclipse.uml2.uml.Classifier element = (org.eclipse.uml2.uml.Classifier)object;
 			if(itemPropertyDescriptorsForclassifier == null) {
 				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.CLASSIFIER);
 				final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
 				itemPropertyDescriptorsForclassifier = new ArrayList<IItemPropertyDescriptor>();
 				itemPropertyDescriptorsForclassifier.addAll(propertyDescriptors);
+				Stereotype ste = (element).getAppliedStereotype(SysmlResource.PROPERTY_SPECIFIC_TYPE_ID);
+				if(ste != null) {
+					EObject steApplication = (element).getStereotypeApplication(ste);
+
+					addBase_ClassifierPropertyDescriptorForClassifier(steApplication);
+
+				}
 			}
 			return itemPropertyDescriptorsForclassifier;
 
@@ -122,6 +138,29 @@ public class PropertySpecificTypeItemProvider extends SysMLItemProviderAdapter i
 	 */
 	protected void addBase_ClassifierPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_PropertySpecificType_base_Classifier_feature"), getString("_UI_PropertyDescriptor_description", "_UI_PropertySpecificType_base_Classifier_feature", "_UI_PropertySpecificType_type"), BlocksPackage.Literals.PROPERTY_SPECIFIC_TYPE__BASE_CLASSIFIER, true, false, true, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Base Classifier feature for the UML element Classifier.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addBase_ClassifierPropertyDescriptorForClassifier(Object object) {
+
+		itemPropertyDescriptorsForclassifier.add(new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_PropertySpecificType_base_Classifier_feature"),
+
+		getString("_UI_PropertyDescriptor_description", "_UI_PropertySpecificType_base_Classifier_feature", "_UI_PropertySpecificType_type"),
+
+		BlocksPackage.Literals.PROPERTY_SPECIFIC_TYPE__BASE_CLASSIFIER, true, false, true,
+
+		null,
+
+		null,
+
+		null)));
+
 	}
 
 	/**
@@ -223,4 +262,5 @@ public class PropertySpecificTypeItemProvider extends SysMLItemProviderAdapter i
 	public ResourceLocator getResourceLocator() {
 		return SysmlEditPlugin.INSTANCE;
 	}
+
 }

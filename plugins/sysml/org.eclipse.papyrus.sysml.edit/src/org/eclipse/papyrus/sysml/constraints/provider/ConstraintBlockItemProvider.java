@@ -22,6 +22,7 @@ import java.util.regex.Pattern;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposedImage;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -48,12 +49,15 @@ import org.eclipse.uml2.uml.edit.UMLEditPlugin;
  * 
  * @generated
  */
-public class ConstraintBlockItemProvider extends BlockItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, IVisibilityOverlayImage {
+public class ConstraintBlockItemProvider extends BlockItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, IVisibilityOverlayImage
+
+{
 
 	/**
 	 * This is used to store all the property descriptors for aclass stereotyped with a block.
 	 * Derived classes should add descriptors to this vector.
 	 */
+
 	protected List<IItemPropertyDescriptor> itemPropertyDescriptorsForclass;
 
 	/**
@@ -68,6 +72,7 @@ public class ConstraintBlockItemProvider extends BlockItemProvider implements IE
 	 * 
 	 * @generated
 	 */
+
 	private static Pattern CLASS_PREFIX_PATTERN = Pattern.compile("Class");
 
 	/**
@@ -90,20 +95,28 @@ public class ConstraintBlockItemProvider extends BlockItemProvider implements IE
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if(itemPropertyDescriptors == null) {
-			super.getPropertyDescriptors(object);
+		if(object instanceof ConstraintBlock) {
+			if(itemPropertyDescriptors == null) {
+				super.getPropertyDescriptors(object);
 
+			}
 		}
 
 		/**
 		 * Handle Class stereotyped by ConstraintBlock
 		 */
 		if(object instanceof org.eclipse.uml2.uml.Class) {
+			org.eclipse.uml2.uml.Class element = (org.eclipse.uml2.uml.Class)object;
 			if(itemPropertyDescriptorsForclass == null) {
 				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.CLASS);
 				final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
 				itemPropertyDescriptorsForclass = new ArrayList<IItemPropertyDescriptor>();
 				itemPropertyDescriptorsForclass.addAll(propertyDescriptors);
+				Stereotype ste = (element).getAppliedStereotype(SysmlResource.CONSTRAINT_BLOCK_ID);
+				if(ste != null) {
+					EObject steApplication = (element).getStereotypeApplication(ste);
+
+				}
 			}
 			return itemPropertyDescriptorsForclass;
 
@@ -223,10 +236,13 @@ public class ConstraintBlockItemProvider extends BlockItemProvider implements IE
 	 */
 	public ComposedImage composeVisibilityImage(Object object, ComposedImage composedImage) {
 		NamedElement namedElement = (NamedElement)object;
+
 		if(namedElement.isSetVisibility()) {
 			composedImage.getImages().add(UMLEditPlugin.INSTANCE.getImage("full/ovr16/VisibilityKind_" //$NON-NLS-1$
 				+ namedElement.getVisibility().getName()));
 		}
+
 		return composedImage;
 	}
+
 }

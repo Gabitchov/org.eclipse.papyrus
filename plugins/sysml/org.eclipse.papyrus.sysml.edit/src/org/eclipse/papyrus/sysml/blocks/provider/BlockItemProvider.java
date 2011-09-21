@@ -22,6 +22,7 @@ import java.util.regex.Pattern;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedImage;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -31,6 +32,7 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptorDecorator;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.eclipse.papyrus.sysml.blocks.Block;
@@ -50,12 +52,15 @@ import org.eclipse.uml2.uml.UMLPackage;
  * 
  * @generated
  */
-public class BlockItemProvider extends SysMLItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class BlockItemProvider extends SysMLItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
+
+{
 
 	/**
 	 * This is used to store all the property descriptors for aclass stereotyped with a block.
 	 * Derived classes should add descriptors to this vector.
 	 */
+
 	protected List<IItemPropertyDescriptor> itemPropertyDescriptorsForclass;
 
 	/**
@@ -70,6 +75,7 @@ public class BlockItemProvider extends SysMLItemProviderAdapter implements IEdit
 	 * 
 	 * @generated
 	 */
+
 	private static Pattern CLASS_PREFIX_PATTERN = Pattern.compile("Class");
 
 	/**
@@ -92,22 +98,34 @@ public class BlockItemProvider extends SysMLItemProviderAdapter implements IEdit
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if(itemPropertyDescriptors == null) {
-			super.getPropertyDescriptors(object);
+		if(object instanceof Block) {
+			if(itemPropertyDescriptors == null) {
+				super.getPropertyDescriptors(object);
 
-			addIsEncapsulatedPropertyDescriptor(object);
-			addBase_ClassPropertyDescriptor(object);
+				addIsEncapsulatedPropertyDescriptor(object);
+				addBase_ClassPropertyDescriptor(object);
+			}
 		}
 
 		/**
 		 * Handle Class stereotyped by Block
 		 */
 		if(object instanceof org.eclipse.uml2.uml.Class) {
+			org.eclipse.uml2.uml.Class element = (org.eclipse.uml2.uml.Class)object;
 			if(itemPropertyDescriptorsForclass == null) {
 				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.CLASS);
 				final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
 				itemPropertyDescriptorsForclass = new ArrayList<IItemPropertyDescriptor>();
 				itemPropertyDescriptorsForclass.addAll(propertyDescriptors);
+				Stereotype ste = (element).getAppliedStereotype(SysmlResource.BLOCK_ID);
+				if(ste != null) {
+					EObject steApplication = (element).getStereotypeApplication(ste);
+
+					addIsEncapsulatedPropertyDescriptorForClass(steApplication);
+
+					addBase_ClassPropertyDescriptorForClass(steApplication);
+
+				}
 			}
 			return itemPropertyDescriptorsForclass;
 
@@ -128,6 +146,29 @@ public class BlockItemProvider extends SysMLItemProviderAdapter implements IEdit
 	}
 
 	/**
+	 * This adds a property descriptor for the Is Encapsulated feature for the UML element Class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addIsEncapsulatedPropertyDescriptorForClass(Object object) {
+
+		itemPropertyDescriptorsForclass.add(new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Block_isEncapsulated_feature"),
+
+		getString("_UI_PropertyDescriptor_description", "_UI_Block_isEncapsulated_feature", "_UI_Block_type"),
+
+		BlocksPackage.Literals.BLOCK__IS_ENCAPSULATED, true, false, false,
+
+		ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+
+		null,
+
+		null)));
+
+	}
+
+	/**
 	 * This adds a property descriptor for the Base Class feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -136,6 +177,29 @@ public class BlockItemProvider extends SysMLItemProviderAdapter implements IEdit
 	 */
 	protected void addBase_ClassPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Block_base_Class_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Block_base_Class_feature", "_UI_Block_type"), BlocksPackage.Literals.BLOCK__BASE_CLASS, true, false, true, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Base Class feature for the UML element Class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addBase_ClassPropertyDescriptorForClass(Object object) {
+
+		itemPropertyDescriptorsForclass.add(new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Block_base_Class_feature"),
+
+		getString("_UI_PropertyDescriptor_description", "_UI_Block_base_Class_feature", "_UI_Block_type"),
+
+		BlocksPackage.Literals.BLOCK__BASE_CLASS, true, false, true,
+
+		null,
+
+		null,
+
+		null)));
+
 	}
 
 	/**
@@ -244,4 +308,5 @@ public class BlockItemProvider extends SysMLItemProviderAdapter implements IEdit
 	public ResourceLocator getResourceLocator() {
 		return SysmlEditPlugin.INSTANCE;
 	}
+
 }

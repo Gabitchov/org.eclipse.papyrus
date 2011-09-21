@@ -22,6 +22,7 @@ import java.util.regex.Pattern;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedImage;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -30,6 +31,7 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptorDecorator;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.papyrus.sysml.edit.provider.IComposableAdapterFactory;
 import org.eclipse.papyrus.sysml.edit.provider.SysMLItemProviderAdapter;
@@ -48,12 +50,15 @@ import org.eclipse.uml2.uml.UMLPackage;
  * 
  * @generated
  */
-public class ConformItemProvider extends SysMLItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class ConformItemProvider extends SysMLItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
+
+{
 
 	/**
 	 * This is used to store all the property descriptors for aclass stereotyped with a block.
 	 * Derived classes should add descriptors to this vector.
 	 */
+
 	protected List<IItemPropertyDescriptor> itemPropertyDescriptorsFordependency;
 
 	/**
@@ -68,6 +73,7 @@ public class ConformItemProvider extends SysMLItemProviderAdapter implements IEd
 	 * 
 	 * @generated
 	 */
+
 	private static Pattern DEPENDENCY_PREFIX_PATTERN = Pattern.compile("Dependency");
 
 	/**
@@ -90,21 +96,31 @@ public class ConformItemProvider extends SysMLItemProviderAdapter implements IEd
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if(itemPropertyDescriptors == null) {
-			super.getPropertyDescriptors(object);
+		if(object instanceof Conform) {
+			if(itemPropertyDescriptors == null) {
+				super.getPropertyDescriptors(object);
 
-			addBase_DependencyPropertyDescriptor(object);
+				addBase_DependencyPropertyDescriptor(object);
+			}
 		}
 
 		/**
 		 * Handle Dependency stereotyped by Conform
 		 */
 		if(object instanceof org.eclipse.uml2.uml.Dependency) {
+			org.eclipse.uml2.uml.Dependency element = (org.eclipse.uml2.uml.Dependency)object;
 			if(itemPropertyDescriptorsFordependency == null) {
 				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.DEPENDENCY);
 				final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
 				itemPropertyDescriptorsFordependency = new ArrayList<IItemPropertyDescriptor>();
 				itemPropertyDescriptorsFordependency.addAll(propertyDescriptors);
+				Stereotype ste = (element).getAppliedStereotype(SysmlResource.CONFORM_ID);
+				if(ste != null) {
+					EObject steApplication = (element).getStereotypeApplication(ste);
+
+					addBase_DependencyPropertyDescriptorForDependency(steApplication);
+
+				}
 			}
 			return itemPropertyDescriptorsFordependency;
 
@@ -122,6 +138,29 @@ public class ConformItemProvider extends SysMLItemProviderAdapter implements IEd
 	 */
 	protected void addBase_DependencyPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Conform_base_Dependency_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Conform_base_Dependency_feature", "_UI_Conform_type"), ModelelementsPackage.Literals.CONFORM__BASE_DEPENDENCY, true, false, true, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Base Dependency feature for the UML element Dependency.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addBase_DependencyPropertyDescriptorForDependency(Object object) {
+
+		itemPropertyDescriptorsFordependency.add(new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Conform_base_Dependency_feature"),
+
+		getString("_UI_PropertyDescriptor_description", "_UI_Conform_base_Dependency_feature", "_UI_Conform_type"),
+
+		ModelelementsPackage.Literals.CONFORM__BASE_DEPENDENCY, true, false, true,
+
+		null,
+
+		null,
+
+		null)));
+
 	}
 
 	/**
@@ -223,4 +262,5 @@ public class ConformItemProvider extends SysMLItemProviderAdapter implements IEd
 	public ResourceLocator getResourceLocator() {
 		return SysmlEditPlugin.INSTANCE;
 	}
+
 }

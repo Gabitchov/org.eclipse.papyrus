@@ -22,6 +22,7 @@ import java.util.regex.Pattern;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedImage;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -30,6 +31,7 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptorDecorator;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.papyrus.sysml.blocks.BlocksPackage;
 import org.eclipse.papyrus.sysml.blocks.ValueType;
@@ -48,12 +50,15 @@ import org.eclipse.uml2.uml.UMLPackage;
  * 
  * @generated
  */
-public class ValueTypeItemProvider extends SysMLItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class ValueTypeItemProvider extends SysMLItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
+
+{
 
 	/**
 	 * This is used to store all the property descriptors for aclass stereotyped with a block.
 	 * Derived classes should add descriptors to this vector.
 	 */
+
 	protected List<IItemPropertyDescriptor> itemPropertyDescriptorsFordataType;
 
 	/**
@@ -68,6 +73,7 @@ public class ValueTypeItemProvider extends SysMLItemProviderAdapter implements I
 	 * 
 	 * @generated
 	 */
+
 	private static Pattern DATA_TYPE_PREFIX_PATTERN = Pattern.compile("DataType");
 
 	/**
@@ -90,23 +96,37 @@ public class ValueTypeItemProvider extends SysMLItemProviderAdapter implements I
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if(itemPropertyDescriptors == null) {
-			super.getPropertyDescriptors(object);
+		if(object instanceof ValueType) {
+			if(itemPropertyDescriptors == null) {
+				super.getPropertyDescriptors(object);
 
-			addBase_DataTypePropertyDescriptor(object);
-			addUnitPropertyDescriptor(object);
-			addDimensionPropertyDescriptor(object);
+				addBase_DataTypePropertyDescriptor(object);
+				addUnitPropertyDescriptor(object);
+				addDimensionPropertyDescriptor(object);
+			}
 		}
 
 		/**
 		 * Handle DataType stereotyped by ValueType
 		 */
 		if(object instanceof org.eclipse.uml2.uml.DataType) {
+			org.eclipse.uml2.uml.DataType element = (org.eclipse.uml2.uml.DataType)object;
 			if(itemPropertyDescriptorsFordataType == null) {
 				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.DATA_TYPE);
 				final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
 				itemPropertyDescriptorsFordataType = new ArrayList<IItemPropertyDescriptor>();
 				itemPropertyDescriptorsFordataType.addAll(propertyDescriptors);
+				Stereotype ste = (element).getAppliedStereotype(SysmlResource.VALUE_TYPE_ID);
+				if(ste != null) {
+					EObject steApplication = (element).getStereotypeApplication(ste);
+
+					addBase_DataTypePropertyDescriptorForDataType(steApplication);
+
+					addUnitPropertyDescriptorForDataType(steApplication);
+
+					addDimensionPropertyDescriptorForDataType(steApplication);
+
+				}
 			}
 			return itemPropertyDescriptorsFordataType;
 
@@ -127,6 +147,29 @@ public class ValueTypeItemProvider extends SysMLItemProviderAdapter implements I
 	}
 
 	/**
+	 * This adds a property descriptor for the Base Data Type feature for the UML element DataType.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addBase_DataTypePropertyDescriptorForDataType(Object object) {
+
+		itemPropertyDescriptorsFordataType.add(new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_ValueType_base_DataType_feature"),
+
+		getString("_UI_PropertyDescriptor_description", "_UI_ValueType_base_DataType_feature", "_UI_ValueType_type"),
+
+		BlocksPackage.Literals.VALUE_TYPE__BASE_DATA_TYPE, true, false, true,
+
+		null,
+
+		null,
+
+		null)));
+
+	}
+
+	/**
 	 * This adds a property descriptor for the Unit feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -138,6 +181,29 @@ public class ValueTypeItemProvider extends SysMLItemProviderAdapter implements I
 	}
 
 	/**
+	 * This adds a property descriptor for the Unit feature for the UML element DataType.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addUnitPropertyDescriptorForDataType(Object object) {
+
+		itemPropertyDescriptorsFordataType.add(new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_ValueType_unit_feature"),
+
+		getString("_UI_PropertyDescriptor_description", "_UI_ValueType_unit_feature", "_UI_ValueType_type"),
+
+		BlocksPackage.Literals.VALUE_TYPE__UNIT, true, false, true,
+
+		null,
+
+		null,
+
+		null)));
+
+	}
+
+	/**
 	 * This adds a property descriptor for the Dimension feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -146,6 +212,29 @@ public class ValueTypeItemProvider extends SysMLItemProviderAdapter implements I
 	 */
 	protected void addDimensionPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_ValueType_dimension_feature"), getString("_UI_PropertyDescriptor_description", "_UI_ValueType_dimension_feature", "_UI_ValueType_type"), BlocksPackage.Literals.VALUE_TYPE__DIMENSION, true, false, true, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Dimension feature for the UML element DataType.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addDimensionPropertyDescriptorForDataType(Object object) {
+
+		itemPropertyDescriptorsFordataType.add(new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_ValueType_dimension_feature"),
+
+		getString("_UI_PropertyDescriptor_description", "_UI_ValueType_dimension_feature", "_UI_ValueType_type"),
+
+		BlocksPackage.Literals.VALUE_TYPE__DIMENSION, true, false, true,
+
+		null,
+
+		null,
+
+		null)));
+
 	}
 
 	/**
@@ -247,4 +336,5 @@ public class ValueTypeItemProvider extends SysMLItemProviderAdapter implements I
 	public ResourceLocator getResourceLocator() {
 		return SysmlEditPlugin.INSTANCE;
 	}
+
 }

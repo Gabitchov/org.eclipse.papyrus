@@ -22,6 +22,7 @@ import java.util.regex.Pattern;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedImage;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -30,6 +31,7 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptorDecorator;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.papyrus.sysml.activities.ActivitiesPackage;
 import org.eclipse.papyrus.sysml.activities.Optional;
@@ -48,12 +50,15 @@ import org.eclipse.uml2.uml.UMLPackage;
  * 
  * @generated
  */
-public class OptionalItemProvider extends SysMLItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class OptionalItemProvider extends SysMLItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
+
+{
 
 	/**
 	 * This is used to store all the property descriptors for aclass stereotyped with a block.
 	 * Derived classes should add descriptors to this vector.
 	 */
+
 	protected List<IItemPropertyDescriptor> itemPropertyDescriptorsForparameter;
 
 	/**
@@ -68,6 +73,7 @@ public class OptionalItemProvider extends SysMLItemProviderAdapter implements IE
 	 * 
 	 * @generated
 	 */
+
 	private static Pattern PARAMETER_PREFIX_PATTERN = Pattern.compile("Parameter");
 
 	/**
@@ -90,21 +96,31 @@ public class OptionalItemProvider extends SysMLItemProviderAdapter implements IE
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if(itemPropertyDescriptors == null) {
-			super.getPropertyDescriptors(object);
+		if(object instanceof Optional) {
+			if(itemPropertyDescriptors == null) {
+				super.getPropertyDescriptors(object);
 
-			addBase_ParameterPropertyDescriptor(object);
+				addBase_ParameterPropertyDescriptor(object);
+			}
 		}
 
 		/**
 		 * Handle Parameter stereotyped by Optional
 		 */
 		if(object instanceof org.eclipse.uml2.uml.Parameter) {
+			org.eclipse.uml2.uml.Parameter element = (org.eclipse.uml2.uml.Parameter)object;
 			if(itemPropertyDescriptorsForparameter == null) {
 				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.PARAMETER);
 				final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
 				itemPropertyDescriptorsForparameter = new ArrayList<IItemPropertyDescriptor>();
 				itemPropertyDescriptorsForparameter.addAll(propertyDescriptors);
+				Stereotype ste = (element).getAppliedStereotype(SysmlResource.OPTIONAL_ID);
+				if(ste != null) {
+					EObject steApplication = (element).getStereotypeApplication(ste);
+
+					addBase_ParameterPropertyDescriptorForParameter(steApplication);
+
+				}
 			}
 			return itemPropertyDescriptorsForparameter;
 
@@ -122,6 +138,29 @@ public class OptionalItemProvider extends SysMLItemProviderAdapter implements IE
 	 */
 	protected void addBase_ParameterPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Optional_base_Parameter_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Optional_base_Parameter_feature", "_UI_Optional_type"), ActivitiesPackage.Literals.OPTIONAL__BASE_PARAMETER, true, false, true, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Base Parameter feature for the UML element Parameter.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addBase_ParameterPropertyDescriptorForParameter(Object object) {
+
+		itemPropertyDescriptorsForparameter.add(new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Optional_base_Parameter_feature"),
+
+		getString("_UI_PropertyDescriptor_description", "_UI_Optional_base_Parameter_feature", "_UI_Optional_type"),
+
+		ActivitiesPackage.Literals.OPTIONAL__BASE_PARAMETER, true, false, true,
+
+		null,
+
+		null,
+
+		null)));
+
 	}
 
 	/**
@@ -223,4 +262,5 @@ public class OptionalItemProvider extends SysMLItemProviderAdapter implements IE
 	public ResourceLocator getResourceLocator() {
 		return SysmlEditPlugin.INSTANCE;
 	}
+
 }

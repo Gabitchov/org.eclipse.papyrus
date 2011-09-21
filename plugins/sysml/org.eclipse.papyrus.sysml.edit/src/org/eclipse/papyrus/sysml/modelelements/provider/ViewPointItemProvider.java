@@ -22,6 +22,7 @@ import java.util.regex.Pattern;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedImage;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -31,6 +32,7 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptorDecorator;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.eclipse.papyrus.sysml.edit.provider.IComposableAdapterFactory;
@@ -50,12 +52,15 @@ import org.eclipse.uml2.uml.UMLPackage;
  * 
  * @generated
  */
-public class ViewPointItemProvider extends SysMLItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class ViewPointItemProvider extends SysMLItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
+
+{
 
 	/**
 	 * This is used to store all the property descriptors for aclass stereotyped with a block.
 	 * Derived classes should add descriptors to this vector.
 	 */
+
 	protected List<IItemPropertyDescriptor> itemPropertyDescriptorsForclass;
 
 	/**
@@ -70,6 +75,7 @@ public class ViewPointItemProvider extends SysMLItemProviderAdapter implements I
 	 * 
 	 * @generated
 	 */
+
 	private static Pattern CLASS_PREFIX_PATTERN = Pattern.compile("Class");
 
 	/**
@@ -92,26 +98,46 @@ public class ViewPointItemProvider extends SysMLItemProviderAdapter implements I
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if(itemPropertyDescriptors == null) {
-			super.getPropertyDescriptors(object);
+		if(object instanceof ViewPoint) {
+			if(itemPropertyDescriptors == null) {
+				super.getPropertyDescriptors(object);
 
-			addBase_ClassPropertyDescriptor(object);
-			addStakeHoldersPropertyDescriptor(object);
-			addPurposePropertyDescriptor(object);
-			addConcernsPropertyDescriptor(object);
-			addLanguagesPropertyDescriptor(object);
-			addMethodsPropertyDescriptor(object);
+				addBase_ClassPropertyDescriptor(object);
+				addStakeHoldersPropertyDescriptor(object);
+				addPurposePropertyDescriptor(object);
+				addConcernsPropertyDescriptor(object);
+				addLanguagesPropertyDescriptor(object);
+				addMethodsPropertyDescriptor(object);
+			}
 		}
 
 		/**
 		 * Handle Class stereotyped by ViewPoint
 		 */
 		if(object instanceof org.eclipse.uml2.uml.Class) {
+			org.eclipse.uml2.uml.Class element = (org.eclipse.uml2.uml.Class)object;
 			if(itemPropertyDescriptorsForclass == null) {
 				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.CLASS);
 				final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
 				itemPropertyDescriptorsForclass = new ArrayList<IItemPropertyDescriptor>();
 				itemPropertyDescriptorsForclass.addAll(propertyDescriptors);
+				Stereotype ste = (element).getAppliedStereotype(SysmlResource.VIEW_POINT_ID);
+				if(ste != null) {
+					EObject steApplication = (element).getStereotypeApplication(ste);
+
+					addBase_ClassPropertyDescriptorForClass(steApplication);
+
+					addStakeHoldersPropertyDescriptorForClass(steApplication);
+
+					addPurposePropertyDescriptorForClass(steApplication);
+
+					addConcernsPropertyDescriptorForClass(steApplication);
+
+					addLanguagesPropertyDescriptorForClass(steApplication);
+
+					addMethodsPropertyDescriptorForClass(steApplication);
+
+				}
 			}
 			return itemPropertyDescriptorsForclass;
 
@@ -132,6 +158,29 @@ public class ViewPointItemProvider extends SysMLItemProviderAdapter implements I
 	}
 
 	/**
+	 * This adds a property descriptor for the Base Class feature for the UML element Class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addBase_ClassPropertyDescriptorForClass(Object object) {
+
+		itemPropertyDescriptorsForclass.add(new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_ViewPoint_base_Class_feature"),
+
+		getString("_UI_PropertyDescriptor_description", "_UI_ViewPoint_base_Class_feature", "_UI_ViewPoint_type"),
+
+		ModelelementsPackage.Literals.VIEW_POINT__BASE_CLASS, true, false, true,
+
+		null,
+
+		null,
+
+		null)));
+
+	}
+
+	/**
 	 * This adds a property descriptor for the Stake Holders feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -140,6 +189,29 @@ public class ViewPointItemProvider extends SysMLItemProviderAdapter implements I
 	 */
 	protected void addStakeHoldersPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_ViewPoint_stakeHolders_feature"), getString("_UI_PropertyDescriptor_description", "_UI_ViewPoint_stakeHolders_feature", "_UI_ViewPoint_type"), ModelelementsPackage.Literals.VIEW_POINT__STAKE_HOLDERS, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Stake Holders feature for the UML element Class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addStakeHoldersPropertyDescriptorForClass(Object object) {
+
+		itemPropertyDescriptorsForclass.add(new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_ViewPoint_stakeHolders_feature"),
+
+		getString("_UI_PropertyDescriptor_description", "_UI_ViewPoint_stakeHolders_feature", "_UI_ViewPoint_type"),
+
+		ModelelementsPackage.Literals.VIEW_POINT__STAKE_HOLDERS, true, false, false,
+
+		ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+
+		null,
+
+		null)));
+
 	}
 
 	/**
@@ -154,6 +226,29 @@ public class ViewPointItemProvider extends SysMLItemProviderAdapter implements I
 	}
 
 	/**
+	 * This adds a property descriptor for the Purpose feature for the UML element Class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addPurposePropertyDescriptorForClass(Object object) {
+
+		itemPropertyDescriptorsForclass.add(new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_ViewPoint_purpose_feature"),
+
+		getString("_UI_PropertyDescriptor_description", "_UI_ViewPoint_purpose_feature", "_UI_ViewPoint_type"),
+
+		ModelelementsPackage.Literals.VIEW_POINT__PURPOSE, true, false, false,
+
+		ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+
+		null,
+
+		null)));
+
+	}
+
+	/**
 	 * This adds a property descriptor for the Concerns feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -162,6 +257,29 @@ public class ViewPointItemProvider extends SysMLItemProviderAdapter implements I
 	 */
 	protected void addConcernsPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_ViewPoint_concerns_feature"), getString("_UI_PropertyDescriptor_description", "_UI_ViewPoint_concerns_feature", "_UI_ViewPoint_type"), ModelelementsPackage.Literals.VIEW_POINT__CONCERNS, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Concerns feature for the UML element Class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addConcernsPropertyDescriptorForClass(Object object) {
+
+		itemPropertyDescriptorsForclass.add(new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_ViewPoint_concerns_feature"),
+
+		getString("_UI_PropertyDescriptor_description", "_UI_ViewPoint_concerns_feature", "_UI_ViewPoint_type"),
+
+		ModelelementsPackage.Literals.VIEW_POINT__CONCERNS, true, false, false,
+
+		ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+
+		null,
+
+		null)));
+
 	}
 
 	/**
@@ -176,6 +294,29 @@ public class ViewPointItemProvider extends SysMLItemProviderAdapter implements I
 	}
 
 	/**
+	 * This adds a property descriptor for the Languages feature for the UML element Class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addLanguagesPropertyDescriptorForClass(Object object) {
+
+		itemPropertyDescriptorsForclass.add(new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_ViewPoint_languages_feature"),
+
+		getString("_UI_PropertyDescriptor_description", "_UI_ViewPoint_languages_feature", "_UI_ViewPoint_type"),
+
+		ModelelementsPackage.Literals.VIEW_POINT__LANGUAGES, true, false, false,
+
+		ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+
+		null,
+
+		null)));
+
+	}
+
+	/**
 	 * This adds a property descriptor for the Methods feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -184,6 +325,29 @@ public class ViewPointItemProvider extends SysMLItemProviderAdapter implements I
 	 */
 	protected void addMethodsPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_ViewPoint_methods_feature"), getString("_UI_PropertyDescriptor_description", "_UI_ViewPoint_methods_feature", "_UI_ViewPoint_type"), ModelelementsPackage.Literals.VIEW_POINT__METHODS, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Methods feature for the UML element Class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addMethodsPropertyDescriptorForClass(Object object) {
+
+		itemPropertyDescriptorsForclass.add(new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_ViewPoint_methods_feature"),
+
+		getString("_UI_PropertyDescriptor_description", "_UI_ViewPoint_methods_feature", "_UI_ViewPoint_type"),
+
+		ModelelementsPackage.Literals.VIEW_POINT__METHODS, true, false, false,
+
+		ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+
+		null,
+
+		null)));
+
 	}
 
 	/**
@@ -296,4 +460,5 @@ public class ViewPointItemProvider extends SysMLItemProviderAdapter implements I
 	public ResourceLocator getResourceLocator() {
 		return SysmlEditPlugin.INSTANCE;
 	}
+
 }

@@ -22,6 +22,7 @@ import java.util.regex.Pattern;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedImage;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -31,6 +32,7 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptorDecorator;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.eclipse.papyrus.sysml.edit.provider.IComposableAdapterFactory;
@@ -51,12 +53,15 @@ import org.eclipse.uml2.uml.UMLPackage;
  * 
  * @generated
  */
-public class FlowPropertyItemProvider extends SysMLItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class FlowPropertyItemProvider extends SysMLItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
+
+{
 
 	/**
 	 * This is used to store all the property descriptors for aclass stereotyped with a block.
 	 * Derived classes should add descriptors to this vector.
 	 */
+
 	protected List<IItemPropertyDescriptor> itemPropertyDescriptorsForproperty;
 
 	/**
@@ -71,6 +76,7 @@ public class FlowPropertyItemProvider extends SysMLItemProviderAdapter implement
 	 * 
 	 * @generated
 	 */
+
 	private static Pattern PROPERTY_PREFIX_PATTERN = Pattern.compile("Property");
 
 	/**
@@ -93,22 +99,34 @@ public class FlowPropertyItemProvider extends SysMLItemProviderAdapter implement
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if(itemPropertyDescriptors == null) {
-			super.getPropertyDescriptors(object);
+		if(object instanceof FlowProperty) {
+			if(itemPropertyDescriptors == null) {
+				super.getPropertyDescriptors(object);
 
-			addBase_PropertyPropertyDescriptor(object);
-			addDirectionPropertyDescriptor(object);
+				addBase_PropertyPropertyDescriptor(object);
+				addDirectionPropertyDescriptor(object);
+			}
 		}
 
 		/**
 		 * Handle Property stereotyped by FlowProperty
 		 */
 		if(object instanceof org.eclipse.uml2.uml.Property) {
+			org.eclipse.uml2.uml.Property element = (org.eclipse.uml2.uml.Property)object;
 			if(itemPropertyDescriptorsForproperty == null) {
 				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.PROPERTY);
 				final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
 				itemPropertyDescriptorsForproperty = new ArrayList<IItemPropertyDescriptor>();
 				itemPropertyDescriptorsForproperty.addAll(propertyDescriptors);
+				Stereotype ste = (element).getAppliedStereotype(SysmlResource.FLOW_PROPERTY_ID);
+				if(ste != null) {
+					EObject steApplication = (element).getStereotypeApplication(ste);
+
+					addBase_PropertyPropertyDescriptorForProperty(steApplication);
+
+					addDirectionPropertyDescriptorForProperty(steApplication);
+
+				}
 			}
 			return itemPropertyDescriptorsForproperty;
 
@@ -129,6 +147,29 @@ public class FlowPropertyItemProvider extends SysMLItemProviderAdapter implement
 	}
 
 	/**
+	 * This adds a property descriptor for the Base Property feature for the UML element Property.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addBase_PropertyPropertyDescriptorForProperty(Object object) {
+
+		itemPropertyDescriptorsForproperty.add(new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_FlowProperty_base_Property_feature"),
+
+		getString("_UI_PropertyDescriptor_description", "_UI_FlowProperty_base_Property_feature", "_UI_FlowProperty_type"),
+
+		PortandflowsPackage.Literals.FLOW_PROPERTY__BASE_PROPERTY, true, false, true,
+
+		null,
+
+		null,
+
+		null)));
+
+	}
+
+	/**
 	 * This adds a property descriptor for the Direction feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -137,6 +178,29 @@ public class FlowPropertyItemProvider extends SysMLItemProviderAdapter implement
 	 */
 	protected void addDirectionPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_FlowProperty_direction_feature"), getString("_UI_PropertyDescriptor_description", "_UI_FlowProperty_direction_feature", "_UI_FlowProperty_type"), PortandflowsPackage.Literals.FLOW_PROPERTY__DIRECTION, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Direction feature for the UML element Property.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addDirectionPropertyDescriptorForProperty(Object object) {
+
+		itemPropertyDescriptorsForproperty.add(new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_FlowProperty_direction_feature"),
+
+		getString("_UI_PropertyDescriptor_description", "_UI_FlowProperty_direction_feature", "_UI_FlowProperty_type"),
+
+		PortandflowsPackage.Literals.FLOW_PROPERTY__DIRECTION, true, false, false,
+
+		ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+
+		null,
+
+		null)));
+
 	}
 
 	/**
@@ -246,4 +310,5 @@ public class FlowPropertyItemProvider extends SysMLItemProviderAdapter implement
 	public ResourceLocator getResourceLocator() {
 		return SysmlEditPlugin.INSTANCE;
 	}
+
 }

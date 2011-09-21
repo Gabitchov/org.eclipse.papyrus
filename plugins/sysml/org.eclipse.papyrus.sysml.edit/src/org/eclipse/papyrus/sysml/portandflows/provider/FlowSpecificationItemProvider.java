@@ -22,6 +22,7 @@ import java.util.regex.Pattern;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedImage;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -30,6 +31,7 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptorDecorator;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.papyrus.sysml.edit.provider.IComposableAdapterFactory;
 import org.eclipse.papyrus.sysml.edit.provider.SysMLItemProviderAdapter;
@@ -48,12 +50,15 @@ import org.eclipse.uml2.uml.UMLPackage;
  * 
  * @generated
  */
-public class FlowSpecificationItemProvider extends SysMLItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class FlowSpecificationItemProvider extends SysMLItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
+
+{
 
 	/**
 	 * This is used to store all the property descriptors for aclass stereotyped with a block.
 	 * Derived classes should add descriptors to this vector.
 	 */
+
 	protected List<IItemPropertyDescriptor> itemPropertyDescriptorsForinterface;
 
 	/**
@@ -68,6 +73,7 @@ public class FlowSpecificationItemProvider extends SysMLItemProviderAdapter impl
 	 * 
 	 * @generated
 	 */
+
 	private static Pattern INTERFACE_PREFIX_PATTERN = Pattern.compile("Interface");
 
 	/**
@@ -90,21 +96,31 @@ public class FlowSpecificationItemProvider extends SysMLItemProviderAdapter impl
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if(itemPropertyDescriptors == null) {
-			super.getPropertyDescriptors(object);
+		if(object instanceof FlowSpecification) {
+			if(itemPropertyDescriptors == null) {
+				super.getPropertyDescriptors(object);
 
-			addBase_InterfacePropertyDescriptor(object);
+				addBase_InterfacePropertyDescriptor(object);
+			}
 		}
 
 		/**
 		 * Handle Interface stereotyped by FlowSpecification
 		 */
 		if(object instanceof org.eclipse.uml2.uml.Interface) {
+			org.eclipse.uml2.uml.Interface element = (org.eclipse.uml2.uml.Interface)object;
 			if(itemPropertyDescriptorsForinterface == null) {
 				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.INTERFACE);
 				final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
 				itemPropertyDescriptorsForinterface = new ArrayList<IItemPropertyDescriptor>();
 				itemPropertyDescriptorsForinterface.addAll(propertyDescriptors);
+				Stereotype ste = (element).getAppliedStereotype(SysmlResource.FLOW_SPECIFICATION_ID);
+				if(ste != null) {
+					EObject steApplication = (element).getStereotypeApplication(ste);
+
+					addBase_InterfacePropertyDescriptorForInterface(steApplication);
+
+				}
 			}
 			return itemPropertyDescriptorsForinterface;
 
@@ -122,6 +138,29 @@ public class FlowSpecificationItemProvider extends SysMLItemProviderAdapter impl
 	 */
 	protected void addBase_InterfacePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_FlowSpecification_base_Interface_feature"), getString("_UI_PropertyDescriptor_description", "_UI_FlowSpecification_base_Interface_feature", "_UI_FlowSpecification_type"), PortandflowsPackage.Literals.FLOW_SPECIFICATION__BASE_INTERFACE, true, false, true, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Base Interface feature for the UML element Interface.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addBase_InterfacePropertyDescriptorForInterface(Object object) {
+
+		itemPropertyDescriptorsForinterface.add(new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_FlowSpecification_base_Interface_feature"),
+
+		getString("_UI_PropertyDescriptor_description", "_UI_FlowSpecification_base_Interface_feature", "_UI_FlowSpecification_type"),
+
+		PortandflowsPackage.Literals.FLOW_SPECIFICATION__BASE_INTERFACE, true, false, true,
+
+		null,
+
+		null,
+
+		null)));
+
 	}
 
 	/**
@@ -223,4 +262,5 @@ public class FlowSpecificationItemProvider extends SysMLItemProviderAdapter impl
 	public ResourceLocator getResourceLocator() {
 		return SysmlEditPlugin.INSTANCE;
 	}
+
 }

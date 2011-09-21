@@ -22,6 +22,7 @@ import java.util.regex.Pattern;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedImage;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -30,6 +31,7 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptorDecorator;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.papyrus.sysml.blocks.BlocksPackage;
 import org.eclipse.papyrus.sysml.blocks.ParticipantProperty;
@@ -48,12 +50,15 @@ import org.eclipse.uml2.uml.UMLPackage;
  * 
  * @generated
  */
-public class ParticipantPropertyItemProvider extends SysMLItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class ParticipantPropertyItemProvider extends SysMLItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
+
+{
 
 	/**
 	 * This is used to store all the property descriptors for aclass stereotyped with a block.
 	 * Derived classes should add descriptors to this vector.
 	 */
+
 	protected List<IItemPropertyDescriptor> itemPropertyDescriptorsForproperty;
 
 	/**
@@ -68,6 +73,7 @@ public class ParticipantPropertyItemProvider extends SysMLItemProviderAdapter im
 	 * 
 	 * @generated
 	 */
+
 	private static Pattern PROPERTY_PREFIX_PATTERN = Pattern.compile("Property");
 
 	/**
@@ -90,22 +96,34 @@ public class ParticipantPropertyItemProvider extends SysMLItemProviderAdapter im
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if(itemPropertyDescriptors == null) {
-			super.getPropertyDescriptors(object);
+		if(object instanceof ParticipantProperty) {
+			if(itemPropertyDescriptors == null) {
+				super.getPropertyDescriptors(object);
 
-			addBase_PropertyPropertyDescriptor(object);
-			addEndPropertyDescriptor(object);
+				addBase_PropertyPropertyDescriptor(object);
+				addEndPropertyDescriptor(object);
+			}
 		}
 
 		/**
 		 * Handle Property stereotyped by ParticipantProperty
 		 */
 		if(object instanceof org.eclipse.uml2.uml.Property) {
+			org.eclipse.uml2.uml.Property element = (org.eclipse.uml2.uml.Property)object;
 			if(itemPropertyDescriptorsForproperty == null) {
 				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.PROPERTY);
 				final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
 				itemPropertyDescriptorsForproperty = new ArrayList<IItemPropertyDescriptor>();
 				itemPropertyDescriptorsForproperty.addAll(propertyDescriptors);
+				Stereotype ste = (element).getAppliedStereotype(SysmlResource.PARTICIPANT_PROPERTY_ID);
+				if(ste != null) {
+					EObject steApplication = (element).getStereotypeApplication(ste);
+
+					addBase_PropertyPropertyDescriptorForProperty(steApplication);
+
+					addEndPropertyDescriptorForProperty(steApplication);
+
+				}
 			}
 			return itemPropertyDescriptorsForproperty;
 
@@ -126,6 +144,29 @@ public class ParticipantPropertyItemProvider extends SysMLItemProviderAdapter im
 	}
 
 	/**
+	 * This adds a property descriptor for the Base Property feature for the UML element Property.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addBase_PropertyPropertyDescriptorForProperty(Object object) {
+
+		itemPropertyDescriptorsForproperty.add(new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_ParticipantProperty_base_Property_feature"),
+
+		getString("_UI_PropertyDescriptor_description", "_UI_ParticipantProperty_base_Property_feature", "_UI_ParticipantProperty_type"),
+
+		BlocksPackage.Literals.PARTICIPANT_PROPERTY__BASE_PROPERTY, true, false, true,
+
+		null,
+
+		null,
+
+		null)));
+
+	}
+
+	/**
 	 * This adds a property descriptor for the End feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -134,6 +175,29 @@ public class ParticipantPropertyItemProvider extends SysMLItemProviderAdapter im
 	 */
 	protected void addEndPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_ParticipantProperty_end_feature"), getString("_UI_PropertyDescriptor_description", "_UI_ParticipantProperty_end_feature", "_UI_ParticipantProperty_type"), BlocksPackage.Literals.PARTICIPANT_PROPERTY__END, true, false, true, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the End feature for the UML element Property.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addEndPropertyDescriptorForProperty(Object object) {
+
+		itemPropertyDescriptorsForproperty.add(new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_ParticipantProperty_end_feature"),
+
+		getString("_UI_PropertyDescriptor_description", "_UI_ParticipantProperty_end_feature", "_UI_ParticipantProperty_type"),
+
+		BlocksPackage.Literals.PARTICIPANT_PROPERTY__END, true, false, true,
+
+		null,
+
+		null,
+
+		null)));
+
 	}
 
 	/**
@@ -235,4 +299,5 @@ public class ParticipantPropertyItemProvider extends SysMLItemProviderAdapter im
 	public ResourceLocator getResourceLocator() {
 		return SysmlEditPlugin.INSTANCE;
 	}
+
 }

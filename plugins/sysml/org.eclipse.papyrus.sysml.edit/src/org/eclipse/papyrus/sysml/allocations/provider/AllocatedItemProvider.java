@@ -22,6 +22,7 @@ import java.util.regex.Pattern;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedImage;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -30,6 +31,7 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptorDecorator;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.papyrus.sysml.allocations.Allocated;
 import org.eclipse.papyrus.sysml.allocations.AllocationsPackage;
@@ -48,12 +50,15 @@ import org.eclipse.uml2.uml.UMLPackage;
  * 
  * @generated
  */
-public class AllocatedItemProvider extends SysMLItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class AllocatedItemProvider extends SysMLItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
+
+{
 
 	/**
 	 * This is used to store all the property descriptors for aclass stereotyped with a block.
 	 * Derived classes should add descriptors to this vector.
 	 */
+
 	protected List<IItemPropertyDescriptor> itemPropertyDescriptorsFornamedElement;
 
 	/**
@@ -68,6 +73,7 @@ public class AllocatedItemProvider extends SysMLItemProviderAdapter implements I
 	 * 
 	 * @generated
 	 */
+
 	private static Pattern NAMED_ELEMENT_PREFIX_PATTERN = Pattern.compile("NamedElement");
 
 	/**
@@ -90,23 +96,37 @@ public class AllocatedItemProvider extends SysMLItemProviderAdapter implements I
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if(itemPropertyDescriptors == null) {
-			super.getPropertyDescriptors(object);
+		if(object instanceof Allocated) {
+			if(itemPropertyDescriptors == null) {
+				super.getPropertyDescriptors(object);
 
-			addBase_NamedElementPropertyDescriptor(object);
-			addAllocatedFromPropertyDescriptor(object);
-			addAllocatedToPropertyDescriptor(object);
+				addBase_NamedElementPropertyDescriptor(object);
+				addAllocatedFromPropertyDescriptor(object);
+				addAllocatedToPropertyDescriptor(object);
+			}
 		}
 
 		/**
 		 * Handle NamedElement stereotyped by Allocated
 		 */
 		if(object instanceof org.eclipse.uml2.uml.NamedElement) {
+			org.eclipse.uml2.uml.NamedElement element = (org.eclipse.uml2.uml.NamedElement)object;
 			if(itemPropertyDescriptorsFornamedElement == null) {
 				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.NAMED_ELEMENT);
 				final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
 				itemPropertyDescriptorsFornamedElement = new ArrayList<IItemPropertyDescriptor>();
 				itemPropertyDescriptorsFornamedElement.addAll(propertyDescriptors);
+				Stereotype ste = (element).getAppliedStereotype(SysmlResource.ALLOCATED_ID);
+				if(ste != null) {
+					EObject steApplication = (element).getStereotypeApplication(ste);
+
+					addBase_NamedElementPropertyDescriptorForNamedElement(steApplication);
+
+					addAllocatedFromPropertyDescriptorForNamedElement(steApplication);
+
+					addAllocatedToPropertyDescriptorForNamedElement(steApplication);
+
+				}
 			}
 			return itemPropertyDescriptorsFornamedElement;
 
@@ -127,6 +147,29 @@ public class AllocatedItemProvider extends SysMLItemProviderAdapter implements I
 	}
 
 	/**
+	 * This adds a property descriptor for the Base Named Element feature for the UML element NamedElement.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addBase_NamedElementPropertyDescriptorForNamedElement(Object object) {
+
+		itemPropertyDescriptorsFornamedElement.add(new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Allocated_base_NamedElement_feature"),
+
+		getString("_UI_PropertyDescriptor_description", "_UI_Allocated_base_NamedElement_feature", "_UI_Allocated_type"),
+
+		AllocationsPackage.Literals.ALLOCATED__BASE_NAMED_ELEMENT, true, false, true,
+
+		null,
+
+		null,
+
+		null)));
+
+	}
+
+	/**
 	 * This adds a property descriptor for the Allocated From feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -138,6 +181,29 @@ public class AllocatedItemProvider extends SysMLItemProviderAdapter implements I
 	}
 
 	/**
+	 * This adds a property descriptor for the Allocated From feature for the UML element NamedElement.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addAllocatedFromPropertyDescriptorForNamedElement(Object object) {
+
+		itemPropertyDescriptorsFornamedElement.add(new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Allocated_allocatedFrom_feature"),
+
+		getString("_UI_PropertyDescriptor_description", "_UI_Allocated_allocatedFrom_feature", "_UI_Allocated_type"),
+
+		AllocationsPackage.Literals.ALLOCATED__ALLOCATED_FROM, false, false, false,
+
+		null,
+
+		null,
+
+		null)));
+
+	}
+
+	/**
 	 * This adds a property descriptor for the Allocated To feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -146,6 +212,29 @@ public class AllocatedItemProvider extends SysMLItemProviderAdapter implements I
 	 */
 	protected void addAllocatedToPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Allocated_allocatedTo_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Allocated_allocatedTo_feature", "_UI_Allocated_type"), AllocationsPackage.Literals.ALLOCATED__ALLOCATED_TO, false, false, false, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Allocated To feature for the UML element NamedElement.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addAllocatedToPropertyDescriptorForNamedElement(Object object) {
+
+		itemPropertyDescriptorsFornamedElement.add(new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Allocated_allocatedTo_feature"),
+
+		getString("_UI_PropertyDescriptor_description", "_UI_Allocated_allocatedTo_feature", "_UI_Allocated_type"),
+
+		AllocationsPackage.Literals.ALLOCATED__ALLOCATED_TO, false, false, false,
+
+		null,
+
+		null,
+
+		null)));
+
 	}
 
 	/**
@@ -247,4 +336,5 @@ public class AllocatedItemProvider extends SysMLItemProviderAdapter implements I
 	public ResourceLocator getResourceLocator() {
 		return SysmlEditPlugin.INSTANCE;
 	}
+
 }

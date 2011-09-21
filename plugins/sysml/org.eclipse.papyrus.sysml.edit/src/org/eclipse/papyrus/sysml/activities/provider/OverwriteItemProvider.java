@@ -22,6 +22,7 @@ import java.util.regex.Pattern;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedImage;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -30,6 +31,7 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptorDecorator;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.papyrus.sysml.activities.ActivitiesPackage;
 import org.eclipse.papyrus.sysml.activities.Overwrite;
@@ -48,12 +50,15 @@ import org.eclipse.uml2.uml.UMLPackage;
  * 
  * @generated
  */
-public class OverwriteItemProvider extends SysMLItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class OverwriteItemProvider extends SysMLItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
+
+{
 
 	/**
 	 * This is used to store all the property descriptors for aclass stereotyped with a block.
 	 * Derived classes should add descriptors to this vector.
 	 */
+
 	protected List<IItemPropertyDescriptor> itemPropertyDescriptorsForobjectNode;
 
 	/**
@@ -68,6 +73,7 @@ public class OverwriteItemProvider extends SysMLItemProviderAdapter implements I
 	 * 
 	 * @generated
 	 */
+
 	private static Pattern OBJECT_NODE_PREFIX_PATTERN = Pattern.compile("ObjectNode");
 
 	/**
@@ -90,21 +96,31 @@ public class OverwriteItemProvider extends SysMLItemProviderAdapter implements I
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if(itemPropertyDescriptors == null) {
-			super.getPropertyDescriptors(object);
+		if(object instanceof Overwrite) {
+			if(itemPropertyDescriptors == null) {
+				super.getPropertyDescriptors(object);
 
-			addBase_ObjectNodePropertyDescriptor(object);
+				addBase_ObjectNodePropertyDescriptor(object);
+			}
 		}
 
 		/**
 		 * Handle ObjectNode stereotyped by Overwrite
 		 */
 		if(object instanceof org.eclipse.uml2.uml.ObjectNode) {
+			org.eclipse.uml2.uml.ObjectNode element = (org.eclipse.uml2.uml.ObjectNode)object;
 			if(itemPropertyDescriptorsForobjectNode == null) {
 				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.OBJECT_NODE);
 				final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
 				itemPropertyDescriptorsForobjectNode = new ArrayList<IItemPropertyDescriptor>();
 				itemPropertyDescriptorsForobjectNode.addAll(propertyDescriptors);
+				Stereotype ste = (element).getAppliedStereotype(SysmlResource.OVERWRITE_ID);
+				if(ste != null) {
+					EObject steApplication = (element).getStereotypeApplication(ste);
+
+					addBase_ObjectNodePropertyDescriptorForObjectNode(steApplication);
+
+				}
 			}
 			return itemPropertyDescriptorsForobjectNode;
 
@@ -122,6 +138,29 @@ public class OverwriteItemProvider extends SysMLItemProviderAdapter implements I
 	 */
 	protected void addBase_ObjectNodePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Overwrite_base_ObjectNode_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Overwrite_base_ObjectNode_feature", "_UI_Overwrite_type"), ActivitiesPackage.Literals.OVERWRITE__BASE_OBJECT_NODE, true, false, true, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Base Object Node feature for the UML element ObjectNode.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addBase_ObjectNodePropertyDescriptorForObjectNode(Object object) {
+
+		itemPropertyDescriptorsForobjectNode.add(new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Overwrite_base_ObjectNode_feature"),
+
+		getString("_UI_PropertyDescriptor_description", "_UI_Overwrite_base_ObjectNode_feature", "_UI_Overwrite_type"),
+
+		ActivitiesPackage.Literals.OVERWRITE__BASE_OBJECT_NODE, true, false, true,
+
+		null,
+
+		null,
+
+		null)));
+
 	}
 
 	/**
@@ -223,4 +262,5 @@ public class OverwriteItemProvider extends SysMLItemProviderAdapter implements I
 	public ResourceLocator getResourceLocator() {
 		return SysmlEditPlugin.INSTANCE;
 	}
+
 }
