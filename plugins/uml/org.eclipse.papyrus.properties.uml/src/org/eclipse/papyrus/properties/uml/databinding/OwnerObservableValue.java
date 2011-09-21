@@ -39,6 +39,7 @@ import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.DataType;
 import org.eclipse.uml2.uml.Interface;
 import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.Signal;
 import org.eclipse.uml2.uml.StructuredClassifier;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -204,10 +205,13 @@ public class OwnerObservableValue extends AbstractObservableValue implements ICh
 		if(type instanceof Artifact) {
 			return UMLPackage.eINSTANCE.getArtifact_OwnedAttribute();
 		}
+		if(type instanceof Signal) {
+			return UMLPackage.eINSTANCE.getSignal_OwnedAttribute();
+		}
 
 		//Unknown type : we try to find the feature reflexively
 		Activator.log.warn("Unknown type : " + type.eClass().getName());
-		EStructuralFeature feature = type.eClass().getEStructuralFeature("ownedAttribute");
+		EStructuralFeature feature = type.eClass().getEStructuralFeature("ownedAttribute"); //$NON-NLS-1$
 		if(feature == null) {
 			Activator.log.warn("Cannot find a valid feature for type " + type.eClass().getName());
 		}
