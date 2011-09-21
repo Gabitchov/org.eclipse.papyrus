@@ -273,6 +273,13 @@
          </dependsOn>
       </serviceFactory>
    </extension>
+   <extension
+         point="org.eclipse.ui.exportWizards">
+      <category
+            id="org.eclipse.papyrus.core.exportcategory"
+            name="Papyrus">
+      </category>
+   </extension>
 	
 	
 </plugin>

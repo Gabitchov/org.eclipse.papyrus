@@ -29,12 +29,18 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.SubProgressMonitor;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.emf.common.notify.Notifier;
+import org.eclipse.emf.common.util.BasicDiagnostic;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMLResource;
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.provider.IItemLabelProvider;
+import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
+import org.eclipse.emf.transaction.RunnableWithResult;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain.Factory;
 import org.eclipse.emf.transaction.util.TransactionUtil;
@@ -42,6 +48,7 @@ import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.ui.image.ImageFileFormat;
 import org.eclipse.gmf.runtime.diagram.ui.render.util.CopyToImageUtil;
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.emf.common.ui.dialogs.DiagnosticDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.papyrus.export.internal.Activator;
@@ -65,6 +72,10 @@ public class ExportAllDiagrams {
 
 	private static boolean useDisplayRunnable = true;
 
+	private boolean qualifiedName;
+
+	private BasicDiagnostic diagnostic = new BasicDiagnostic(Diagnostic.OK, "", 0, Messages.ExportAllDiagrams_18, null); //$NON-NLS-1$
+
 	/**
 	 * Constructor
 	 * 
@@ -79,7 +90,7 @@ public class ExportAllDiagrams {
 	 *        the image exporter used. The image exporter should be coherent
 	 *        with the file extension
 	 */
-	public ExportAllDiagrams(IFile file, String outputDirectoryPath, String extension) {
+	public ExportAllDiagrams(IFile file, String outputDirectoryPath, String extension, boolean qualifiedName) {
 		this.file = file;
 		this.extension = extension;
 		this.outputDirectoryPath = outputDirectoryPath;
@@ -90,6 +101,7 @@ public class ExportAllDiagrams {
 			// is normal in batch mode
 		}
 		this.displayRenamingInformation = true;
+		this.qualifiedName = qualifiedName;
 	}
 
 	/**
@@ -137,18 +149,40 @@ public class ExportAllDiagrams {
 		newMonitor.beginTask(Messages.ExportAllDiagrams_1, 10);
 		newMonitor.subTask(Messages.ExportAllDiagrams_2);
 		if(file != null) {
-			ResourceSetImpl resourceSet = new ResourceSetImpl();
+			final ResourceSetImpl resourceSet = new ResourceSetImpl();
 			resourceSet.getLoadOptions().put(XMLResource.OPTION_DEFER_IDREF_RESOLUTION, true);
 			resourceSet.getLoadOptions().put(XMLResource.OPTION_DEFER_ATTACHMENT, true);
 			resourceSet.getResource(URI.createPlatformResourceURI(file.getFullPath().toString(), true), true);
 
 			// create transactional editing domain
 
-			if(TransactionUtil.getEditingDomain(resourceSet) == null) {
+			TransactionalEditingDomain editingDomain = TransactionUtil.getEditingDomain(resourceSet);
+			if(editingDomain == null) {
 				Factory factory = TransactionalEditingDomain.Factory.INSTANCE;
-				factory.createEditingDomain(resourceSet);
+				editingDomain = factory.createEditingDomain(resourceSet);
 			}
+			try {
+				TransactionUtil.runExclusive(editingDomain, new RunnableWithResult<Object>()
+					{
 
+						public void run() {
+							EcoreUtil.resolveAll(resourceSet);
+						}
+
+						public Object getResult() {
+							return null;
+						}
+
+						public void setStatus(IStatus status) {
+						}
+
+						public IStatus getStatus() {
+							return Status.OK_STATUS;
+						}
+					
+					});
+			} catch (InterruptedException e) {
+			}
 			EcoreUtil.resolveAll(resourceSet);
 			List<Diagram> diagrams = new ArrayList<Diagram>();
 			if(newMonitor.isCanceled()) {
@@ -187,18 +221,47 @@ public class ExportAllDiagrams {
 
 		// Alert the user that file names have been changed to avoid duplicates
 		if(duplicates && displayRenamingInformation) {
+
+
+
 			final String message = Messages.ExportAllDiagrams_5;
+			if(workbenchWindow != null && workbenchWindow.getShell() != null) {
+
+				BasicDiagnostic newDiagnostic = new BasicDiagnostic(Diagnostic.WARNING, "", 0, message, null); //$NON-NLS-1$
+				diagnostic.add(newDiagnostic);
+
+			} else {
+				Activator.log(new Status(Status.INFO, Activator.PLUGIN_ID, message));
+			}
+
+		}
+		int severity = diagnostic.recomputeSeverity();
+		if(severity == Diagnostic.ERROR) {
+			BasicDiagnostic oldDiagnostic = diagnostic;
+			diagnostic = new BasicDiagnostic(Diagnostic.ERROR, "", 0, Messages.ExportAllDiagrams_22, null); //$NON-NLS-1$
+			diagnostic.addAll(oldDiagnostic);
+		} else if(severity == Diagnostic.WARNING) {
+			BasicDiagnostic oldDiagnostic = diagnostic;
+			diagnostic = new BasicDiagnostic(Diagnostic.WARNING, "", 0, Messages.ExportAllDiagrams_24, null); //$NON-NLS-1$
+			diagnostic.addAll(oldDiagnostic);
+		} else if(severity == Diagnostic.OK) {
 			if(workbenchWindow != null && workbenchWindow.getShell() != null) {
 				Display.getDefault().syncExec(new Runnable() {
 
 					public void run() {
-						MessageDialog.openInformation(Activator.getActiveWorkbenchShell(), Messages.ExportAllDiagrams_6, message);
+						MessageDialog.openInformation(Activator.getActiveWorkbenchShell(), Messages.ExportAllDiagrams_25, Messages.ExportAllDiagrams_26 + outputDirectoryPath);
 					}
 				});
-			} else {
-				Activator.log(new Status(Status.INFO, Activator.PLUGIN_ID, message));
 			}
 		}
+
+		Display.getDefault().syncExec(new Runnable() {
+
+			public void run() {
+				DiagnosticDialog.open(Activator.getActiveWorkbenchShell(), Messages.ExportAllDiagrams_27, "", diagnostic); //$NON-NLS-2$
+			}
+		});
+
 	}
 
 	/**
@@ -210,6 +273,7 @@ public class ExportAllDiagrams {
 	 */
 	private boolean createDiagramFiles(final IProgressMonitor newMonitor, List<Diagram> diagrams) {
 		boolean duplicates = false;
+		boolean nameCut = false;
 		try {
 			List<String> diagramNames = new ArrayList<String>();
 			try {
@@ -218,11 +282,31 @@ public class ExportAllDiagrams {
 					if(newMonitor.isCanceled()) {
 						break;
 					}
-					String uniqueFileName = encodeFileName(diagram.getName());
+					String label = ""; //$NON-NLS-1$
+					if(qualifiedName) {
+						ComposedAdapterFactory composedAdapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
+						composedAdapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
+						IItemLabelProvider itemLabelFactory = (IItemLabelProvider)composedAdapterFactory.adapt(diagram.getElement(), IItemLabelProvider.class);
+						label = itemLabelFactory.getText(diagram.getElement()).replace(Messages.ExportAllDiagrams_16, "") + "_"; //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$
+					}
+					String uniqueFileName = encodeFileName(label + diagram.getName());
+					if(uniqueFileName.length() > 150) {
+						nameCut = true;
+						uniqueFileName = uniqueFileName.substring(0, 150);
+					}
 					if(diagramNames.contains(uniqueFileName)) {
 						duplicates = true;
 						uniqueFileName = getFirstAvailableName(uniqueFileName, diagramNames, 1);
 					}
+
+					if(nameCut) {
+
+						BasicDiagnostic newDiagnostic = new BasicDiagnostic(Diagnostic.WARNING, "", 0, Messages.ExportAllDiagrams_10 + uniqueFileName, null); //$NON-NLS-1$
+						diagnostic.add(newDiagnostic);
+
+						nameCut = false;
+					}
+
 					final String finalUniqueFileName = uniqueFileName;
 					diagramNames.add(uniqueFileName);
 					newMonitor.subTask(Messages.ExportAllDiagrams_8 + uniqueFileName);
@@ -254,6 +338,8 @@ public class ExportAllDiagrams {
 			copyImageUtil.copyToImage(diagram, new Path(outputDirectoryPath + File.separator + uniqueFileName + "." //$NON-NLS-1$
 				+ ImageFileFormat.resolveImageFormat(extension)), ImageFileFormat.resolveImageFormat(extension), new SubProgressMonitor(newMonitor, 1), PreferencesHint.USE_DEFAULTS);
 		} catch (Throwable e) {
+			BasicDiagnostic newDiagnostic = new BasicDiagnostic(Diagnostic.ERROR, "", 0, String.format(Messages.ExportAllDiagrams_11, uniqueFileName, diagram.eResource().getURI().toString()), null); //$NON-NLS-1$
+			diagnostic.add(newDiagnostic);
 			Activator.log(String.format(Messages.ExportAllDiagrams_11, uniqueFileName, diagram.eResource().getURI().toString()), IStatus.ERROR, e);
 		}
 	}
@@ -263,7 +349,7 @@ public class ExportAllDiagrams {
 			newMonitor = new NullProgressMonitor();
 		}
 		newMonitor.subTask(Messages.ExportAllDiagrams_12);
-		if(diagrams != null) {
+		if(diagrams != null && !diagrams.isEmpty()) {
 			ResourceSet resourceSet2 = diagrams.get(0).eResource().getResourceSet();
 			newMonitor.beginTask(Messages.ExportAllDiagrams_13, resourceSet2.getResources().size());
 			for(int i = resourceSet2.getResources().size() - 1; i >= 0; i--) {
@@ -290,7 +376,19 @@ public class ExportAllDiagrams {
 	 */
 	private String encodeFileName(String pathName) {
 		pathName = pathName.trim();
-		return pathName.replaceAll(Messages.ExportAllDiagrams_14, Messages.ExportAllDiagrams_15);
+		pathName = pathName.replaceAll(Messages.ExportAllDiagrams_14, Messages.ExportAllDiagrams_15);
+		pathName = pathName.replaceAll("_-_", "-"); //$NON-NLS-1$ //$NON-NLS-2$
+		while(pathName.contains("__")) { //$NON-NLS-1$
+			pathName = pathName.replaceAll("__", "_"); //$NON-NLS-1$ //$NON-NLS-2$
+		}
+		if(pathName.startsWith("_")) { //$NON-NLS-1$
+			pathName = pathName.replaceFirst("_", ""); //$NON-NLS-1$ //$NON-NLS-2$
+		}
+		if(pathName.endsWith("_")) { //$NON-NLS-1$
+			pathName = pathName.substring(0, pathName.length() - 1);
+		}
+
+		return pathName;
 		// return URLEncoder.encode(pathName, "UTF-8").replaceAll("[*]", "_");
 	}
 

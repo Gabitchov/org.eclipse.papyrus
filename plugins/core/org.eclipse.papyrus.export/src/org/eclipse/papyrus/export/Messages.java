@@ -20,6 +20,8 @@ public class Messages extends NLS {
 
 	public static String ExportAllDiagrams_1;
 
+	public static String ExportAllDiagrams_10;
+
 	public static String ExportAllDiagrams_11;
 
 	public static String ExportAllDiagrams_12;
@@ -30,7 +32,23 @@ public class Messages extends NLS {
 
 	public static String ExportAllDiagrams_15;
 
+	public static String ExportAllDiagrams_16;
+
+	public static String ExportAllDiagrams_18;
+
 	public static String ExportAllDiagrams_2;
+
+	public static String ExportAllDiagrams_20;
+
+	public static String ExportAllDiagrams_22;
+
+	public static String ExportAllDiagrams_24;
+
+	public static String ExportAllDiagrams_25;
+
+	public static String ExportAllDiagrams_26;
+
+	public static String ExportAllDiagrams_27;
 
 	public static String ExportAllDiagrams_3;
 
