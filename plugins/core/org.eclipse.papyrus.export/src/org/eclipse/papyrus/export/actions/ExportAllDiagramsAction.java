@@ -86,7 +86,7 @@ public class ExportAllDiagramsAction extends AbstractHandler {
 		if(exportPopup.open() == Window.OK) {
 			final IFile file = convertSelection2File(selection);
 			ExportAllDiagrams exportAllDiagrams;
-			exportAllDiagrams = new ExportAllDiagrams(file, exportPopup.getOutputDirectory().getLocation().toString(), exportPopup.exporter);
+			exportAllDiagrams = new ExportAllDiagrams(file, exportPopup.getOutputDirectory().getLocation().toString(), exportPopup.getExporter(), exportPopup.getQualifiedName());
 			exportAllDiagrams.exportDiagramsToImages();
 		}
 		return null;

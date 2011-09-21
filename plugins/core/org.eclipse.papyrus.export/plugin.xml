@@ -70,5 +70,22 @@
             type="java.util.Collection">
       </propertyTester>
    </extension>
+   <extension
+         point="org.eclipse.ui.exportWizards">
+      <wizard
+            category="org.eclipse.papyrus.core.exportcategory"
+            class="org.eclipse.papyrus.export.wizard.ExportAllWizard"
+            icon="icons/exportAll.png"
+            id="org.eclipse.papyrus.export.diagrams.wizard"
+            name="Export All Diagrams">
+         <selection
+               class="org.eclipse.core.resources.IFile"
+               name="*.di">
+         </selection>
+         <selection
+               class="org.eclipse.papyrus.onefile.model.IPapyrusFile">
+         </selection>
+      </wizard>
+   </extension>
 
 </plugin>
