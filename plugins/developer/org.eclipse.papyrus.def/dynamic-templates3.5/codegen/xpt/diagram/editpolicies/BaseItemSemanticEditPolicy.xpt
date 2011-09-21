@@ -18,6 +18,7 @@
 «EXTENSION xpt::GenModelUtils»
 «EXTENSION xpt::expressions::ValueExpression»
 «EXTENSION xpt::StringOperations»
+«EXTENSION xpt::OclMigrationProblems»
 
 «REM»Documentation: PapyrusGenCode«ENDREM»
 «REM»This tamplate has been modified in order to allow the moving command«ENDREM»
@@ -400,24 +401,29 @@ public boolean canCreate«getUniqueIdentifier()»(«EXPAND canCreateParameters F
 
 «DEFINE checkEMFConstraints FOR gmfgen::LinkModelFacet»«ERROR 'Unrecognized link model facet in checkEMFConstraints: ' + self.repr()»«ENDDEFINE»
 
+
 «DEFINE checkEMFConstraints FOR gmfgen::TypeLinkModelFacet-»
-	«LET childMetaFeature <> containmentMetaFeature and childMetaFeature.ecoreFeature.upperBound.oclAsType(Integer) > 0 AS checkChildFeatureUpperBound-»
-		«IF containmentMetaFeature.ecoreFeature.upperBound.oclAsType(Integer) > 0 or checkChildFeatureUpperBound-»
+«IF  not containmentMetaFeature.ecoreFeature.oclIsUndefined()-»
+	«LET childMetaFeature <> containmentMetaFeature and not isUnbounded(childMetaFeature.ecoreFeature) AS checkChildFeatureBounds-»
+		«IF not isUnbounded(containmentMetaFeature.ecoreFeature) or checkChildFeatureBounds-»
 if («getContainerVariable(self)» != null) {
 			«EXPAND checkEMFConstraints(self) FOR containmentMetaFeature-»
-			«IF checkChildFeatureUpperBound-»
+			«IF checkChildFeatureBounds-»
 				«EXPAND checkEMFConstraints(self) FOR childMetaFeature-»
 			«ENDIF-»
 }
 		«ENDIF-»
 	«ENDLET-»
+«ENDIF-»
 «ENDDEFINE»
 
 «DEFINE checkEMFConstraints(modelFacet : gmfgen::TypeLinkModelFacet) FOR genmodel::GenFeature-»
-«IF ecoreFeature.upperBound.oclAsType(Integer) > 0-»
+«IF  not containmentMetaFeature.ecoreFeature.oclIsUndefined()-»
+«IF not isUnbounded(ecoreFeature)-»
 if («EXPAND featureBoundComparator(getContainerVariable(modelFacet), modelFacet.getSourceType())») {
 	return false;
 }
+«ENDIF-»
 «ENDIF-»
 «ENDDEFINE»
 
@@ -441,11 +447,13 @@ if (target != null && («EXPAND featureBoundsConditionClause('target', getTarget
 
 «DEFINE featureBoundsConditionClause(targetVar : String, targetType : genmodel::GenClass) FOR genmodel::GenFeature-»
 «REM»Checking upper bounds if was specified in MM«ENDREM»«-»
-«IF ecoreFeature.upperBound.oclAsType(Integer) > 0»«EXPAND featureBoundComparator(targetVar, targetType)»«ENDIF-»
-«REM»Checking uniqueness in addition if upper bounds > 1«ENDREM»«-»
-«IF ecoreFeature.upperBound.oclAsType(Integer) > 1» || «ENDIF-»
-«REM»Checking uniqueness in if upper bounds > 1 or < 0«ENDREM»«-»
-«IF ecoreFeature.upperBound.oclAsType(Integer) <> 1»«EXPAND featureUniquenessComparator(targetVar, targetType)»«ENDIF»
+«IF not ecoreFeature.oclIsUndefined()»
+	«IF not isUnbounded(ecoreFeature)»«EXPAND featureBoundComparator(targetVar, targetType)»«ENDIF-»
+	«REM»Checking uniqueness in addition if upper bounds != 1«ENDREM»«-»
+	«IF not isSingleValued(ecoreFeature) and not isUnbounded(ecoreFeature)» || «ENDIF-»
+	«REM»Checking uniqueness in if upper bounds !- 1«ENDREM»«-»
+	«IF not isSingleValued(ecoreFeature)»«EXPAND featureUniquenessComparator(targetVar, targetType)»«ENDIF»
+«ENDIF»
 «ENDDEFINE»
 
 «DEFINE featureBoundComparator(featureVar : String, featureVarGenClass : genmodel::GenClass) FOR genmodel::GenFeature»«EXPAND MetaModel::getFeatureValue(featureVar, featureVarGenClass)»«IF ecoreFeature.upperBound.oclAsType(Integer) = 1» != null«ELSE».size() >= «ecoreFeature.upperBound.oclAsType(Integer)»«ENDIF»«ENDDEFINE»
