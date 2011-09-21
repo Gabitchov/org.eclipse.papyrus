@@ -18,6 +18,8 @@ import static org.eclipse.papyrus.properties.uml.databinding.MultiplicityObserva
 import static org.eclipse.papyrus.properties.uml.databinding.OwnerObservableValue.ASSOCIATION;
 import static org.eclipse.papyrus.properties.uml.databinding.OwnerObservableValue.CLASSIFIER;
 
+import java.util.List;
+
 import org.eclipse.core.databinding.observable.IObservable;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
@@ -29,6 +31,7 @@ import org.eclipse.papyrus.properties.uml.databinding.OwnerObservableValue;
 import org.eclipse.papyrus.widgets.providers.IStaticContentProvider;
 import org.eclipse.papyrus.widgets.providers.StaticContentProvider;
 import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * A Model Element for manipulating MemberEnd properties
@@ -101,9 +104,20 @@ public class MemberEndModelElement extends AbstractModelElement {
 	@Override
 	public boolean isEditable(String propertyPath) {
 		if(propertyPath.equals(OWNER)) {
+			List<Property> memberEnds = ((Property)source).getAssociation().getMemberEnds();
+			if(memberEnds.size() == 2) {
+				//Association between two associations : this doesn't make sense ?
+				if(isAssociation(memberEnds.get(0)) && isAssociation(memberEnds.get(1))) {
+					return false;
+				}
+			}
 			return ((Property)source).getAssociation().getMemberEnds().size() <= 2;
 		}
 		return true;
+	}
+
+	private boolean isAssociation(Property property) {
+		return property.getType().eClass() == UMLPackage.eINSTANCE.getAssociation();
 	}
 
 	@Override
