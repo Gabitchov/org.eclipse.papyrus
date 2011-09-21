@@ -3721,5 +3721,10 @@
         role="Alias"
         iconPathRole="platform:/plugin/org.eclipse.papyrus.diagram.common/icons/label_role/alias.png"
         linkLabels="/0/@diagram/@links.7/@labels.0"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:CompartmentVisibilityPreference"
+        comment="Hidden Compartments in preference"
+        visibleByDefault="false"
+        compartments="/0/@diagram/@compartments.6 /0/@diagram/@compartments.7 /0/@diagram/@compartments.14 /0/@diagram/@compartments.15"/>
   </papyrusgmfgenextension:PapyrusExtensionRootNode>
 </xmi:XMI>

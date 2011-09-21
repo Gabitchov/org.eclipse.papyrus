@@ -102,7 +102,7 @@ public class StereotypePreferencePage extends AbstractPapyrusNodePreferencePage 
 	private static TreeMap<String, Boolean> getStaticCompartmentVisibilityPreferences() {
 		TreeMap<String, Boolean> map = new TreeMap<String, Boolean>();
 		map.put("AttributeCompartment", Boolean.TRUE);
-		map.put("OperationCompartment", Boolean.TRUE);
+		map.put("OperationCompartment", Boolean.FALSE);
 		return map;
 	}
 

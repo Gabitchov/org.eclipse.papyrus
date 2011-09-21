@@ -102,7 +102,7 @@ public class DataTypePreferencePage extends AbstractPapyrusNodePreferencePage {
 	private static TreeMap<String, Boolean> getStaticCompartmentVisibilityPreferences() {
 		TreeMap<String, Boolean> map = new TreeMap<String, Boolean>();
 		map.put("DataTypeAttributeCompartment", Boolean.TRUE);
-		map.put("DataTypeOperationCompartment", Boolean.TRUE);
+		map.put("DataTypeOperationCompartment", Boolean.FALSE);
 		return map;
 	}
 
