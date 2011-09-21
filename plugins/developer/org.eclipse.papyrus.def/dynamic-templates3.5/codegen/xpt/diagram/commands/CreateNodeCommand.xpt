@@ -18,6 +18,8 @@
 «EXTENSION xpt::diagram::Utils»
 «EXTENSION xpt::diagram::commands::file»
 «EXTENSION xpt::diagram::commands::NodeConstraintUtils»
+«EXTENSION xpt::OclMigrationProblems»
+
 «DEFINE CreateNodeCommand FOR gmfgen::GenNode-»
 «EXPAND xpt::Common::copyright FOR getDiagram().editorGen-»
 package «getDiagram().editCommandsPackageName»;
@@ -129,25 +131,29 @@ protected org.eclipse.emf.ecore.EObject getElementToEdit() {
 	}
 «ENDDEFINE»
 «DEFINE canExecute_Normal FOR gmfgen::TypeModelFacet-»
-«IF containmentMetaFeature.ecoreFeature.upperBound.oclAsType(Integer) > 0 or (childMetaFeature <> containmentMetaFeature and childMetaFeature.ecoreFeature.upperBound.oclAsType(Integer) > 0)-»
-	«EXPAND MetaModel::DeclareAndAssign('container', 'getElementToEdit()') FOR containmentMetaFeature.genClass-»
-	«IF containmentMetaFeature.ecoreFeature.upperBound.oclAsType(Integer) > 0-»
-			«IF containmentMetaFeature.ecoreFeature.upperBound.oclAsType(Integer) = 1»
-		if («EXPAND MetaModel::getFeatureValue('container', containmentMetaFeature.genClass) FOR containmentMetaFeature» != null) {
-			«ELSE-»
-		if («EXPAND MetaModel::getFeatureValue('container', containmentMetaFeature.genClass) FOR containmentMetaFeature».size() >= «containmentMetaFeature.ecoreFeature.upperBound.oclAsType(Integer)») {
+«IF not containmentMetaFeature.oclIsUndefined()-»
+	«IF  not containmentMetaFeature.ecoreFeature.oclIsUndefined()-»
+		«IF not isUnbounded(containmentMetaFeature.ecoreFeature) or (childMetaFeature <> containmentMetaFeature and not isUnbounded(childMetaFeature.ecoreFeature))-»
+			«EXPAND MetaModel::DeclareAndAssign('container', 'getElementToEdit()') FOR containmentMetaFeature.genClass-»
+			«IF not isUnbounded(containmentMetaFeature.ecoreFeature)-»
+					«IF isSingleValued(containmentMetaFeature.ecoreFeature)»
+				if («EXPAND MetaModel::getFeatureValue('container', containmentMetaFeature.genClass) FOR containmentMetaFeature» != null) {
+					«ELSE-»
+				if («EXPAND MetaModel::getFeatureValue('container', containmentMetaFeature.genClass) FOR containmentMetaFeature».size() >= «containmentMetaFeature.ecoreFeature.upperBound») {
+					«ENDIF-»
+					return false;
+				}
+				«ENDIF-»
+				«IF childMetaFeature <> containmentMetaFeature and not isUnbounded(childMetaFeature.ecoreFeature)-»
+					«IF isSingleValued(childMetaFeature.ecoreFeature)-»
+				if («EXPAND MetaModel::getFeatureValue('container', containmentMetaFeature.genClass) FOR childMetaFeature» != null) {
+					«ELSE-»
+				if («EXPAND MetaModel::getFeatureValue('container', containmentMetaFeature.genClass) FOR childMetaFeature».size() >= «childMetaFeature.ecoreFeature.upperBound») {
+					«ENDIF-»
+					return false;
+				}
 			«ENDIF-»
-			return false;
-		}
 		«ENDIF-»
-		«IF childMetaFeature <> containmentMetaFeature and childMetaFeature.ecoreFeature.upperBound.oclAsType(Integer) > 0-»
-			«IF childMetaFeature.ecoreFeature.upperBound.oclAsType(Integer) = 1-»
-		if («EXPAND MetaModel::getFeatureValue('container', containmentMetaFeature.genClass) FOR childMetaFeature» != null) {
-			«ELSE-»
-		if («EXPAND MetaModel::getFeatureValue('container', containmentMetaFeature.genClass) FOR childMetaFeature».size() >= «childMetaFeature.ecoreFeature.upperBound.oclAsType(Integer)») {
-			«ENDIF-»
-			return false;
-		}
 	«ENDIF-»
 «ENDIF-»
 «REM» [NodeCreationConstraint] START   «ENDREM»
@@ -173,7 +179,7 @@ return true;
 «ENDDEFINE»
 «DEFINE normalElementCreation(node : gmfgen::GenNode, varName : String) FOR gmfgen::TypeModelFacet-»
 	«EXPAND MetaModel::NewInstance(varName) FOR metaClass»
-«IF containmentMetaFeature <> null-»
+«IF not containmentMetaFeature.oclIsUndefined()-»
 	«EXPAND MetaModel::DeclareAndAssign('owner', 'getElementToEdit()') FOR containmentMetaFeature.genClass»
 	«EXPAND MetaModel::modifyFeature('owner', containmentMetaFeature.genClass, varName) FOR containmentMetaFeature-»
 «ELSE-»
