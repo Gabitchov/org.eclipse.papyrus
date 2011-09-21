@@ -56,9 +56,6 @@ import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.core.utils.ServiceUtils;
 import org.eclipse.papyrus.core.utils.ServiceUtilsForActionHandlers;
-import org.eclipse.papyrus.resource.AbstractBaseModel;
-import org.eclipse.papyrus.resource.IModel;
-import org.eclipse.papyrus.resource.ModelSet;
 import org.eclipse.papyrus.resource.NotFoundException;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
 import org.eclipse.papyrus.table.common.Activator;
@@ -71,6 +68,7 @@ import org.eclipse.papyrus.table.instance.papyrustableinstance.PapyrusTableInsta
 import org.eclipse.papyrus.table.instance.papyrustableinstance.PapyrustableinstanceFactory;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.uml2.uml.Element;
 
 
 /**
@@ -119,7 +117,8 @@ public abstract class AbstractCreateNattableEditorCommand extends AbstractHandle
 	 */
 	@Override
 	public boolean isEnabled() {
-		return getTableContext() != null;
+		EObject context = getTableContext();
+		return context instanceof Element;
 	}
 
 	/**
@@ -388,23 +387,27 @@ public abstract class AbstractCreateNattableEditorCommand extends AbstractHandle
 		if(!selection.isEmpty()) {
 			return selection.get(0);
 		}
-		ModelSet modelSet = null;
-		ServicesRegistry serviceRegistry;
-		try {
-			serviceRegistry = ServiceUtilsForActionHandlers.getInstance().getServiceRegistry();
-			modelSet = ServiceUtils.getInstance().getModelSet(serviceRegistry);
-		} catch (NullPointerException npe) {
-			//
-		} catch (ServiceException exception) {
 
-		}
-		if(modelSet != null) {
-			IModel model = modelSet.getModel(org.eclipse.papyrus.resource.uml.UmlModel.MODEL_ID);
-
-			if(model instanceof AbstractBaseModel) {
-				return getRootElement(((AbstractBaseModel)model).getResource());
-			}
-		}
+		//we shouldn't try to find a valid context when the selection is not valid!
+		//		ModelSet modelSet = null;
+		//		ServicesRegistry serviceRegistry;
+		//		try {
+		//			serviceRegistry = ServiceUtilsForActionHandlers.getInstance().getServiceRegistry();
+		//			modelSet = ServiceUtils.getInstance().getModelSet(serviceRegistry);
+		//		} catch (NullPointerException npe) {
+		//			//
+		//		} catch (ServiceException exception) {
+		//
+		//		}
+		//
+		// 
+		//		if(modelSet != null) {
+		//			IModel model = modelSet.getModel(org.eclipse.papyrus.resource.uml.UmlModel.MODEL_ID);
+		//
+		//			if(model instanceof AbstractBaseModel) {
+		//				return getRootElement(((AbstractBaseModel)model).getResource());
+		//			}
+		//		}
 		return null;
 	}
 
