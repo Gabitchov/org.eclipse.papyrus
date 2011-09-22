@@ -1,15 +1,16 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: MARTE tabbed properties
-Bundle-SymbolicName: org.eclipse.papyrus.properties.tabbed.marte;singleton:=true
-Bundle-Version: 0.8.1.qualifier
-Bundle-Activator: org.eclipse.papyrus.properties.tabbed.marte.Activator
+Require-Bundle: org.eclipse.ui,org.eclipse.core.runtime,org.eclipse.ui
+ .views;bundle-version="3.5.0",org.eclipse.papyrus.properties.tabbed.c
+ ore;bundle-version="0.7.0",org.eclipse.papyrus.properties.runtime;bun
+ dle-version="0.7.0",org.eclipse.ui.views.properties.tabbed
 Bundle-Vendor: CEA LIST
-Require-Bundle: org.eclipse.ui,
- org.eclipse.core.runtime,
- org.eclipse.ui.views;bundle-version="3.5.0",
- org.eclipse.papyrus.properties.tabbed.core;bundle-version="0.7.0",
- org.eclipse.papyrus.properties.runtime;bundle-version="0.7.0",
- org.eclipse.ui.views.properties.tabbed
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
+Bundle-Version: 0.8.2.qualifier
+Bundle-Name: MARTE tabbed properties
+Bundle-Activator: org.eclipse.papyrus.properties.tabbed.marte.Activato
+ r
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.papyrus.properties.tabbed.marte;singl
+ eton:=true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+

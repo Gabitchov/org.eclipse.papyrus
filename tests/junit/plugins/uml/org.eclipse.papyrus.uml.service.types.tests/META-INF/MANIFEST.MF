@@ -1,9 +1,11 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: %pluginName
-Bundle-SymbolicName: org.eclipse.papyrus.uml.service.types.tests
-Bundle-Version: 0.8.1.qualifier
-Bundle-Vendor: %providerName
-Fragment-Host: org.eclipse.papyrus.uml.service.types;bundle-version="0.8.0"
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: org.junit;bundle-version="4.8.2"
+Bundle-Vendor: %providerName
+Fragment-Host: org.eclipse.papyrus.uml.service.types;bundle-version="0
+ .8.0"
+Bundle-Version: 0.8.2.qualifier
+Bundle-Name: %pluginName
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.papyrus.uml.service.types.tests
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+

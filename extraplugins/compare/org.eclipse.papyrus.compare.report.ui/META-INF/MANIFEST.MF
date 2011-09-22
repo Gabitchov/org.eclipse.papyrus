@@ -1,24 +1,18 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: Acceleo GenerateReport Module IDE Plug-in
-Bundle-SymbolicName: org.eclipse.papyrus.compare.report.ui;singleton:=true
-Bundle-Version: 0.7.1.qualifier
-Bundle-Activator: org.eclipse.papyrus.compare.report.ui.Activator
-Bundle-Vendor: Eclipse Modeling Project
-Require-Bundle: org.eclipse.ui,
- org.eclipse.core.runtime,
- org.eclipse.core.resources,
- org.eclipse.ui.ide, 
- org.eclipse.papyrus.compare.report,
- org.eclipse.emf.ecore,
- org.eclipse.emf.ecore.xmi,
- org.eclipse.emf.compare.diff,
- org.eclipse.emf.compare.ui,
- org.eclipse.ocl,
- org.eclipse.ocl.ecore,
- org.eclipse.acceleo.model,
- org.eclipse.acceleo.engine
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-ActivationPolicy: lazy
-Eclipse-LazyStart: true
 Export-Package: org.eclipse.papyrus.compare.report.ui.common
+Require-Bundle: org.eclipse.ui,org.eclipse.core.runtime,org.eclipse.co
+ re.resources,org.eclipse.ui.ide, org.eclipse.papyrus.compare.report,o
+ rg.eclipse.emf.ecore,org.eclipse.emf.ecore.xmi,org.eclipse.emf.compar
+ e.diff,org.eclipse.emf.compare.ui,org.eclipse.ocl,org.eclipse.ocl.eco
+ re,org.eclipse.acceleo.model,org.eclipse.acceleo.engine
+Bundle-Vendor: Eclipse Modeling Project
+Eclipse-LazyStart: true
+Bundle-ActivationPolicy: lazy
+Bundle-Version: 0.8.2.qualifier
+Bundle-Name: Acceleo GenerateReport Module IDE Plug-in
+Bundle-Activator: org.eclipse.papyrus.compare.report.ui.Activator
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.papyrus.compare.report.ui;singleton:=
+ true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+

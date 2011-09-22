@@ -1,17 +1,16 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: QvtTransformation
-Bundle-SymbolicName: org.eclipse.papyrus.qvtTransformation; singleton:=true
-Bundle-Version: 1.0.0.qualifier
-Bundle-Activator: org.eclipse.papyrus.qvttransformation.Activator
-Require-Bundle: org.eclipse.ui,
- org.eclipse.core.runtime,
- org.eclipse.core.resources,
- org.eclipse.emf.ecore;bundle-version="2.5.0",
- org.eclipse.gmf.runtime.diagram.ui;bundle-version="1.4.0",
- org.eclipse.m2m.qvt.oml;bundle-version="3.0.0",
- org.eclipse.papyrus.core,
- org.eclipse.m2m.qvt.oml.runtime;bundle-version="2.1.0",
- org.eclipse.m2m.qvt.oml.common;bundle-version="2.1.0"
+Require-Bundle: org.eclipse.ui,org.eclipse.core.runtime,org.eclipse.co
+ re.resources,org.eclipse.emf.ecore;bundle-version="2.5.0",org.eclipse
+ .gmf.runtime.diagram.ui;bundle-version="1.4.0",org.eclipse.m2m.qvt.om
+ l;bundle-version="3.0.0",org.eclipse.papyrus.core,org.eclipse.m2m.qvt
+ .oml.runtime;bundle-version="2.1.0",org.eclipse.m2m.qvt.oml.common;bu
+ ndle-version="2.1.0"
 Bundle-ActivationPolicy: lazy
+Bundle-Version: 0.8.2.qualifier
+Bundle-Name: QvtTransformation
+Bundle-Activator: org.eclipse.papyrus.qvttransformation.Activator
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.papyrus.qvtTransformation; singleton:
+ =true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+

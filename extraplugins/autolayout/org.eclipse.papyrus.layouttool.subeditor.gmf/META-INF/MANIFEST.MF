@@ -1,12 +1,15 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: %pluginName
-Bundle-Localization: plugin
-Bundle-SymbolicName: org.eclipse.papyrus.layouttool.subeditor.gmf;singleton:=true
-Bundle-Version: 0.8.0.qualifier
-Bundle-Activator: org.eclipse.papyrus.layouttool.subeditor.gmf.Activator
-Require-Bundle: org.eclipse.gmf.runtime.diagram.ui,
- org.eclipse.papyrus.layouttool
-Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Require-Bundle: org.eclipse.gmf.runtime.diagram.ui,org.eclipse.papyrus
+ .layouttool
 Bundle-Vendor: %providerName
+Bundle-ActivationPolicy: lazy
+Bundle-Version: 0.8.2.qualifier
+Bundle-Localization: plugin
+Bundle-Name: %pluginName
+Bundle-Activator: org.eclipse.papyrus.layouttool.subeditor.gmf.Activat
+ or
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.papyrus.layouttool.subeditor.gmf;sing
+ leton:=true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+

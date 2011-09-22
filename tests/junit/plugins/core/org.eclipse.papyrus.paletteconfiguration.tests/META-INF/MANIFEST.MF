@@ -1,10 +1,13 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: Tests fragment for palette configuration plugin
-Bundle-SymbolicName: org.eclipse.papyrus.paletteconfiguration.tests;singleton:=true
-Bundle-Version: 0.8.1.qualifier
+Require-Bundle: org.junit;bundle-version="4.8.1",org.eclipse.papyrus.c
+ ore.queries.test;bundle-version="0.7.0"
 Bundle-Vendor: CEA LIST
-Fragment-Host: org.eclipse.papyrus.paletteconfiguration;bundle-version="0.7.1"
+Fragment-Host: org.eclipse.papyrus.paletteconfiguration;bundle-version
+ ="0.7.1"
+Bundle-Version: 0.8.2.qualifier
+Bundle-Name: Tests fragment for palette configuration plugin
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.papyrus.paletteconfiguration.tests;si
+ ngleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Require-Bundle: org.junit;bundle-version="4.8.1",
- org.eclipse.papyrus.core.queries.test;bundle-version="0.7.0"
+

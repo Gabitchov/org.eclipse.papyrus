@@ -1,12 +1,10 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Localization: plugin
-Bundle-Name: %pluginName
-Bundle-SymbolicName: org.eclipse.papyrus.doc;singleton:=true
-Bundle-Version: 0.8.1.qualifier
+Require-Bundle: org.eclipse.equinox.app,org.eclipse.ui,org.eclipse.hel
+ p,org.eclipse.ui.intro,org.eclipse.pde.ui;bundle-version="3.6.100"
 Bundle-Vendor: %providerName
-Require-Bundle: org.eclipse.equinox.app,
- org.eclipse.ui,
- org.eclipse.help,
- org.eclipse.ui.intro,
- org.eclipse.pde.ui;bundle-version="3.6.100"
+Bundle-Version: 0.8.2.qualifier
+Bundle-Name: %pluginName
+Bundle-Localization: plugin
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.papyrus.doc;singleton:=true
+

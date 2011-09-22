@@ -1,12 +1,14 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: %pluginName
-Bundle-SymbolicName: org.eclipse.papyrus.documentation.view.papyrus;singleton:=true
-Bundle-Version: 0.8.1.qualifier
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Require-Bundle: org.eclipse.papyrus.documentation.view;bundle-version="0.7.3",
- org.eclipse.papyrus.modelexplorer;bundle-version="0.7.3",
- org.eclipse.papyrus.core.adaptor.gmf;bundle-version="0.7.3",
- org.eclipse.emf.facet.infra.browser.uicore;bundle-version="0.1.0"
+Require-Bundle: org.eclipse.papyrus.documentation.view;bundle-version=
+ "0.7.3",org.eclipse.papyrus.modelexplorer;bundle-version="0.7.3",org.
+ eclipse.papyrus.core.adaptor.gmf;bundle-version="0.7.3",org.eclipse.e
+ mf.facet.infra.browser.uicore;bundle-version="0.1.0"
 Bundle-Vendor: %providerName
+Bundle-Version: 0.8.2.qualifier
 Bundle-Localization: plugin
+Bundle-Name: %pluginName
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.papyrus.documentation.view.papyrus;si
+ ngleton:=true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+

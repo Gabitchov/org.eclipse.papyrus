@@ -1,24 +1,21 @@
 Manifest-Version: 1.0
-Bundle-Name: %pluginName
-Bundle-Activator: org.eclipse.papyrus.core.queries.test.Activator
-Bundle-ManifestVersion: 2
-Bundle-Vendor: %providerName
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-SymbolicName: org.eclipse.papyrus.core.queries.test;singleton:=
- true
-Bundle-ActivationPolicy: lazy
-Require-Bundle: org.eclipse.ui,
- org.eclipse.core.runtime,
- org.eclipse.papyrus.core.queries;bundle-version="0.8.0",
- org.junit;resolution:=optional,
- org.eclipse.emf.facet.infra.query;bundle-version="0.1.0",
- org.eclipse.emf.facet.infra.query.core;bundle-version="0.1.0",
- org.eclipse.emf.facet.infra.common.core;bundle-version="0.1.0",
- org.eclipse.uml2.uml,
- org.eclipse.papyrus.core.queries.configuration;bundle-version=" 0.8.0",
- org.eclipse.emf.ecore
 Export-Package: org.eclipse.papyrus.core.queries.test,org.eclipse.papy
  rus.core.queries.test.modisco,org.eclipse.papyrus.core.queries.test.m
  odisco.queries
-Bundle-Version: 0.8.1.qualifier
+Require-Bundle: org.eclipse.ui,org.eclipse.core.runtime,org.eclipse.pa
+ pyrus.core.queries;bundle-version="0.8.0",org.junit;resolution:=optio
+ nal,org.eclipse.emf.facet.infra.query;bundle-version="0.1.0",org.ecli
+ pse.emf.facet.infra.query.core;bundle-version="0.1.0",org.eclipse.emf
+ .facet.infra.common.core;bundle-version="0.1.0",org.eclipse.uml2.uml,
+ org.eclipse.papyrus.core.queries.configuration;bundle-version=" 0.8.0
+ ",org.eclipse.emf.ecore
+Bundle-Vendor: %providerName
+Bundle-ActivationPolicy: lazy
+Bundle-Version: 0.8.2.qualifier
+Bundle-Name: %pluginName
+Bundle-ManifestVersion: 2
+Bundle-Activator: org.eclipse.papyrus.core.queries.test.Activator
+Bundle-SymbolicName: org.eclipse.papyrus.core.queries.test;singleton:=
+ true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

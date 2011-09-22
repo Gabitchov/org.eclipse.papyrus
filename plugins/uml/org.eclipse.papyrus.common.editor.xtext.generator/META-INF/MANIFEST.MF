@@ -1,17 +1,17 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: %pluginName
+Require-Bundle: org.eclipse.papyrus.common.editor.xtext;visibility:=re
+ export,org.eclipse.xpand;visibility:=reexport,org.eclipse.xtend;visib
+ ility:=reexport,org.eclipse.xtext;visibility:=reexport,org.eclipse.em
+ f.mwe2.launch;resolution:=optional,org.eclipse.emf.mwe.utils;visibili
+ ty:=reexport,org.eclipse.xtend.typesystem.emf;visibility:=reexport
 Bundle-Vendor: %providerName
-Bundle-Version: 0.8.1.qualifier
-Bundle-SymbolicName: org.eclipse.papyrus.common.editor.xtext.generator; singleton:=true
 Bundle-ActivationPolicy: lazy
-Require-Bundle: org.eclipse.papyrus.common.editor.xtext;visibility:=reexport,
- org.eclipse.xpand;visibility:=reexport,
- org.eclipse.xtend;visibility:=reexport,
- org.eclipse.xtext;visibility:=reexport,
- org.eclipse.emf.mwe2.launch;resolution:=optional,
- org.eclipse.emf.mwe.utils;visibility:=reexport,
- org.eclipse.xtend.typesystem.emf;visibility:=reexport
-Import-Package: org.apache.log4j
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Version: 0.8.2.qualifier
 Bundle-Localization: plugin
+Bundle-Name: %pluginName
+Bundle-ManifestVersion: 2
+Import-Package: org.apache.log4j
+Bundle-SymbolicName: org.eclipse.papyrus.common.editor.xtext.generator
+ ; singleton:=true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+

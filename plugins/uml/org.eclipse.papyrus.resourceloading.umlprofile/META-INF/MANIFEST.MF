@@ -1,10 +1,11 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: %pluginName
-Bundle-SymbolicName: org.eclipse.papyrus.resourceloading.umlprofile;singleton:=true
-Bundle-Version: 0.8.1.qualifier
+Require-Bundle: org.eclipse.papyrus.core,org.eclipse.uml2.uml,org.ecli
+ pse.papyrus.core.resourceloading
 Bundle-Vendor: %providerName
+Bundle-Version: 0.8.2.qualifier
+Bundle-Name: %pluginName
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.papyrus.resourceloading.umlprofile;si
+ ngleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Require-Bundle: org.eclipse.papyrus.core,
- org.eclipse.uml2.uml,
- org.eclipse.papyrus.core.resourceloading
+
