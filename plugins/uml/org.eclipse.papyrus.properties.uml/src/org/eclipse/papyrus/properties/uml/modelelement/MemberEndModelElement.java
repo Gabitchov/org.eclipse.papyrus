@@ -25,11 +25,13 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.papyrus.properties.modelelement.AbstractModelElement;
 import org.eclipse.papyrus.properties.uml.Activator;
+import org.eclipse.papyrus.properties.uml.databinding.ExtensionEndMultiplicityObservableValue;
 import org.eclipse.papyrus.properties.uml.databinding.MultiplicityObservableValue;
 import org.eclipse.papyrus.properties.uml.databinding.NavigationObservableValue;
 import org.eclipse.papyrus.properties.uml.databinding.OwnerObservableValue;
 import org.eclipse.papyrus.widgets.providers.IStaticContentProvider;
 import org.eclipse.papyrus.widgets.providers.StaticContentProvider;
+import org.eclipse.uml2.uml.ExtensionEnd;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -76,6 +78,9 @@ public class MemberEndModelElement extends AbstractModelElement {
 	@Override
 	public IObservable doGetObservable(String propertyPath) {
 		if(propertyPath.equals(MULTIPLICITY)) {
+			if(source instanceof ExtensionEnd) {
+				return new ExtensionEndMultiplicityObservableValue((ExtensionEnd)source, domain);
+			}
 			return new MultiplicityObservableValue(source, domain);
 		} else if(propertyPath.equals(OWNER)) {
 			return new OwnerObservableValue(source, domain);
@@ -89,6 +94,9 @@ public class MemberEndModelElement extends AbstractModelElement {
 	@Override
 	public IStaticContentProvider getContentProvider(String propertyPath) {
 		if(propertyPath.equals(MULTIPLICITY)) {
+			if(source instanceof ExtensionEnd) {
+				return new StaticContentProvider(new String[]{ ONE, OPTIONAL });
+			}
 			return new StaticContentProvider(new String[]{ ANY, ONE_OR_MORE, OPTIONAL, ONE });
 		} else if(propertyPath.equals(OWNER)) {
 			return new StaticContentProvider(new String[]{ ASSOCIATION, CLASSIFIER });
