@@ -33,7 +33,7 @@
 		<Composite.layout>
 			<ppel:PropertiesLayout numColumns="2"></ppel:PropertiesLayout>
 		</Composite.layout>
-		<ppe:BooleanRadio input="{Binding}" property="UML:Property:aggregation"></ppe:BooleanRadio>
+		<ppe:EnumCombo input="{Binding}" property="UML:Property:aggregation" readOnly="true"></ppe:EnumCombo>
 		<ppe:EnumCombo input="{Binding}" property="UML:NamedElement:visibility"></ppe:EnumCombo>
 	</Composite>
 	<Composite>
@@ -42,7 +42,7 @@
 		</Composite.layout>
 		<ppe:ReferenceDialog input="{Binding}"
 			property="UML:Property:defaultValue"></ppe:ReferenceDialog>
-		<ppe:StringCombo input="{Binding}" property="Multiplicity:multiplicity"></ppe:StringCombo>
+		<ppe:EnumCombo input="{Binding}" property="Multiplicity:multiplicity"></ppe:EnumCombo>
 		<ppe:ReferenceDialog input="{Binding}" property="UML:TypedElement:type"></ppe:ReferenceDialog>
 	</Composite>
 	<Composite>
