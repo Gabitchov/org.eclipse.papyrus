@@ -3,6 +3,7 @@ package org.eclipse.papyrus.properties.uml.databinding;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.papyrus.commands.Activator;
 import org.eclipse.uml2.uml.ExtensionEnd;
 
 /**
@@ -20,9 +21,11 @@ public class ExtensionEndMultiplicityObservableValue extends MultiplicityObserva
 
 	@Override
 	public Command getCommand(Object value) {
-		if(value == ONE || value == OPTIONAL) {
+		if(ONE.equals(value) || OPTIONAL.equals(value)) {
 			return super.getCommand(value);
 		}
+
+		Activator.log.warn(String.format("The multiplicity %s is not valid for an ExtensionEnd", value)); //$NON-NLS-1$
 		return UnexecutableCommand.INSTANCE;
 	}
 }
