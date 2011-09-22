@@ -12,13 +12,4 @@
 		</Composite.layout>
 		<ppe:StringEditor input="{Binding}" property="UML:NamedElement:name"></ppe:StringEditor>
 	</Composite>
-	<Composite>
-		<Composite.layout>
-			<ppel:PropertiesLayout numColumns="2"></ppel:PropertiesLayout>
-		</Composite.layout>
-		<ppe:MultiReference input="{Binding}"
-			property="UML:Profile:metamodelReference"></ppe:MultiReference>
-		<ppe:MultiReference input="{Binding}"
-			property="UML:Profile:metaclassReference"></ppe:MultiReference>
-	</Composite>
 </Composite>
