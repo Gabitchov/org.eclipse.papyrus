@@ -40,6 +40,8 @@ import org.eclipse.swt.widgets.Listener;
  * 
  * @see ExpressionLanguageEditor
  */
+//TODO : Check support for Ctrl+Z (Is there one single command executed ?)
+//TODO : Check listeners on observables (If there is an external modification, is the value correctly refreshed ?)
 public class ExpressionEditor extends AbstractPropertyEditor implements Listener, ISelectionChangedListener {
 
 	private final ExpressionLanguageEditor languageEditor;
@@ -89,7 +91,7 @@ public class ExpressionEditor extends AbstractPropertyEditor implements Listener
 		bodyEditor.setContext(input.getModelElement(propertyPath));
 
 		if(languageEditor.getViewer().getTree().getItemCount() > 0) {
-			Object firstItem = languageEditor.getViewer().getVisibleExpandedElements()[0];
+			Object firstItem = languageEditor.getViewer().getTree().getItem(0).getData();
 			StructuredSelection selection = new StructuredSelection(firstItem);
 			languageEditor.getViewer().setSelection(selection);
 		}
