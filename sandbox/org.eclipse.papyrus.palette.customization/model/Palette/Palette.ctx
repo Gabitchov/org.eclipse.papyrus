@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="ASCII"?>
+<contexts:Context xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:contexts="http://www.eclipse.org/papyrus/properties/contexts" name="Palette">
+  <tabs label="Palette" id="palette" category="org.eclipse.papyrus">
+    <sections name="Single PaletteConfiguration" sectionFile="ui/SinglePaletteConfiguration.xwt">
+      <widget href="ui/SinglePaletteConfiguration.xwt#/"/>
+    </sections>
+    <sections name="Single ToolConfiguration" sectionFile="ui/SingleToolConfiguration.xwt">
+      <widget href="ui/SingleToolConfiguration.xwt#/"/>
+    </sections>
+    <sections name="Single StackConfiguration" sectionFile="ui/SingleStackConfiguration.xwt">
+      <widget href="ui/SingleStackConfiguration.xwt#/"/>
+    </sections>
+    <sections name="Single ChildConfiguration" sectionFile="ui/SingleChildConfiguration.xwt">
+      <widget href="ui/SingleChildConfiguration.xwt#/"/>
+    </sections>
+    <sections name="Single DrawerConfiguration" sectionFile="ui/SingleDrawerConfiguration.xwt">
+      <widget href="ui/SingleDrawerConfiguration.xwt#/"/>
+    </sections>
+    <sections name="Single Configuration" sectionFile="ui/SingleConfiguration.xwt">
+      <widget href="ui/SingleConfiguration.xwt#/"/>
+    </sections>
+    <sections name="Single IconDescriptor" sectionFile="ui/SingleIconDescriptor.xwt">
+      <widget href="ui/SingleIconDescriptor.xwt#/"/>
+    </sections>
+    <sections name="Single ElementDescriptor" sectionFile="ui/SingleElementDescriptor.xwt">
+      <widget href="ui/SingleElementDescriptor.xwt#/"/>
+    </sections>
+    <sections name="Single SeparatorConfiguration" sectionFile="ui/SingleSeparatorConfiguration.xwt">
+      <widget href="ui/SingleSeparatorConfiguration.xwt#/"/>
+    </sections>
+    <sections name="Single LeafConfiguration" sectionFile="ui/SingleLeafConfiguration.xwt">
+      <widget href="ui/SingleLeafConfiguration.xwt#/"/>
+    </sections>
+    <sections name="Multiple PaletteConfiguration" sectionFile="ui/MultiplePaletteConfiguration.xwt">
+      <widget href="ui/MultiplePaletteConfiguration.xwt#/"/>
+    </sections>
+    <sections name="Multiple ToolConfiguration" sectionFile="ui/MultipleToolConfiguration.xwt">
+      <widget href="ui/MultipleToolConfiguration.xwt#/"/>
+    </sections>
+    <sections name="Multiple StackConfiguration" sectionFile="ui/MultipleStackConfiguration.xwt">
+      <widget href="ui/MultipleStackConfiguration.xwt#/"/>
+    </sections>
+    <sections name="Multiple ChildConfiguration" sectionFile="ui/MultipleChildConfiguration.xwt">
+      <widget href="ui/MultipleChildConfiguration.xwt#/"/>
+    </sections>
+    <sections name="Multiple DrawerConfiguration" sectionFile="ui/MultipleDrawerConfiguration.xwt">
+      <widget href="ui/MultipleDrawerConfiguration.xwt#/"/>
+    </sections>
+    <sections name="Multiple Configuration" sectionFile="ui/MultipleConfiguration.xwt">
+      <widget href="ui/MultipleConfiguration.xwt#/"/>
+    </sections>
+    <sections name="Multiple IconDescriptor" sectionFile="ui/MultipleIconDescriptor.xwt">
+      <widget href="ui/MultipleIconDescriptor.xwt#/"/>
+    </sections>
+    <sections name="Multiple ElementDescriptor" sectionFile="ui/MultipleElementDescriptor.xwt">
+      <widget href="ui/MultipleElementDescriptor.xwt#/"/>
+    </sections>
+    <sections name="Multiple SeparatorConfiguration" sectionFile="ui/MultipleSeparatorConfiguration.xwt">
+      <widget href="ui/MultipleSeparatorConfiguration.xwt#/"/>
+    </sections>
+    <sections name="Multiple LeafConfiguration" sectionFile="ui/MultipleLeafConfiguration.xwt">
+      <widget href="ui/MultipleLeafConfiguration.xwt#/"/>
+    </sections>
+    <sections name="SingleAspectAction" sectionFile="ui/SingleAspectAction.xwt">
+      <widget href="ui/SingleAspectAction.xwt#/"/>
+    </sections>
+  </tabs>
+  <tabs label="Aspect Actions" id="aspectActions" category="org.eclipse.papyrus" afterTab="//@tabs.0">
+    <sections name="AspectActions" sectionFile="ui/AspectActions.xwt">
+      <widget href="ui/AspectActions.xwt#/"/>
+    </sections>
+  </tabs>
+  <views name="Single PaletteConfiguration" sections="//@tabs.0/@sections.0" automaticContext="true" datacontexts="//@dataContexts.0/@elements.0">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSinglePaletteConfiguration">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/diagram/paletteconfiguration/0.7"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="PaletteConfiguration"/>
+    </constraints>
+  </views>
+  <views name="Single ToolConfiguration" sections="//@tabs.0/@sections.1 //@tabs.1/@sections.0" automaticContext="true" datacontexts="//@dataContexts.0/@elements.1">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleToolConfiguration">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="ToolConfiguration"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/diagram/paletteconfiguration/0.7"/>
+    </constraints>
+  </views>
+  <views name="Single StackConfiguration" sections="//@tabs.0/@sections.2" automaticContext="true" datacontexts="//@dataContexts.0/@elements.2">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleStackConfiguration">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/diagram/paletteconfiguration/0.7"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="StackConfiguration"/>
+    </constraints>
+  </views>
+  <views name="Single ChildConfiguration" sections="//@tabs.0/@sections.3" automaticContext="true" datacontexts="//@dataContexts.0/@elements.3">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleChildConfiguration">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/diagram/paletteconfiguration/0.7"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="ChildConfiguration"/>
+    </constraints>
+  </views>
+  <views name="Single DrawerConfiguration" sections="//@tabs.0/@sections.4" automaticContext="true" datacontexts="//@dataContexts.0/@elements.4">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleDrawerConfiguration">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/diagram/paletteconfiguration/0.7"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="DrawerConfiguration"/>
+    </constraints>
+  </views>
+  <views name="Single Configuration" sections="//@tabs.0/@sections.5" automaticContext="true" datacontexts="//@dataContexts.0/@elements.5">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleConfiguration">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="Configuration"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/diagram/paletteconfiguration/0.7"/>
+    </constraints>
+  </views>
+  <views name="Single IconDescriptor" sections="//@tabs.0/@sections.6" automaticContext="true" datacontexts="//@dataContexts.0/@elements.6">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleIconDescriptor">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/diagram/paletteconfiguration/0.7"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="IconDescriptor"/>
+    </constraints>
+  </views>
+  <views name="Single ElementDescriptor" sections="//@tabs.0/@sections.7" automaticContext="true" datacontexts="//@dataContexts.0/@elements.7">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleElementDescriptor">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="ElementDescriptor"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/diagram/paletteconfiguration/0.7"/>
+    </constraints>
+  </views>
+  <views name="Single SeparatorConfiguration" sections="//@tabs.0/@sections.8" automaticContext="true" datacontexts="//@dataContexts.0/@elements.8">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleSeparatorConfiguration">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="SeparatorConfiguration"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/diagram/paletteconfiguration/0.7"/>
+    </constraints>
+  </views>
+  <views name="Single LeafConfiguration" sections="//@tabs.0/@sections.9" automaticContext="true" datacontexts="//@dataContexts.0/@elements.9">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleLeafConfiguration">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="LeafConfiguration"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/diagram/paletteconfiguration/0.7"/>
+    </constraints>
+  </views>
+  <views name="Multiple PaletteConfiguration" sections="//@tabs.0/@sections.10" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.0">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultiplePaletteConfiguration">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/diagram/paletteconfiguration/0.7"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="PaletteConfiguration"/>
+    </constraints>
+  </views>
+  <views name="Multiple ToolConfiguration" sections="//@tabs.0/@sections.11" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.1">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleToolConfiguration">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/diagram/paletteconfiguration/0.7"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="ToolConfiguration"/>
+    </constraints>
+  </views>
+  <views name="Multiple StackConfiguration" sections="//@tabs.0/@sections.12" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.2">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleStackConfiguration">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/diagram/paletteconfiguration/0.7"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="StackConfiguration"/>
+    </constraints>
+  </views>
+  <views name="Multiple ChildConfiguration" sections="//@tabs.0/@sections.13" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.3">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleChildConfiguration">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="ChildConfiguration"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/diagram/paletteconfiguration/0.7"/>
+    </constraints>
+  </views>
+  <views name="Multiple DrawerConfiguration" sections="//@tabs.0/@sections.14" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.4">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleDrawerConfiguration">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="DrawerConfiguration"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/diagram/paletteconfiguration/0.7"/>
+    </constraints>
+  </views>
+  <views name="Multiple Configuration" sections="//@tabs.0/@sections.15" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.5">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleConfiguration">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="Configuration"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/diagram/paletteconfiguration/0.7"/>
+    </constraints>
+  </views>
+  <views name="Multiple IconDescriptor" sections="//@tabs.0/@sections.16" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.6">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleIconDescriptor">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="IconDescriptor"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/diagram/paletteconfiguration/0.7"/>
+    </constraints>
+  </views>
+  <views name="Multiple ElementDescriptor" sections="//@tabs.0/@sections.17" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.7">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleElementDescriptor">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/diagram/paletteconfiguration/0.7"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="ElementDescriptor"/>
+    </constraints>
+  </views>
+  <views name="Multiple SeparatorConfiguration" sections="//@tabs.0/@sections.18" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.8">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleSeparatorConfiguration">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="SeparatorConfiguration"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/diagram/paletteconfiguration/0.7"/>
+    </constraints>
+  </views>
+  <views name="Multiple LeafConfiguration" sections="//@tabs.0/@sections.19" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.9">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleLeafConfiguration">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/diagram/paletteconfiguration/0.7"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="LeafConfiguration"/>
+    </constraints>
+  </views>
+  <views name="SingleAspectAction" sections="//@tabs.0/@sections.20">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isAspectAction">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.3"/>
+      <properties xsi:type="contexts:ValueProperty" name="class" value="org.eclipse.papyrus.diagram.common.service.palette.IAspectAction"/>
+    </constraints>
+  </views>
+  <dataContexts name="paletteconfiguration" label="paletteconfiguration">
+    <elements name="PaletteConfiguration" supertypes="//@dataContexts.0/@elements.5">
+      <properties name="drawerConfigurations" type="Reference" multiplicity="-1"/>
+    </elements>
+    <elements name="ToolConfiguration" supertypes="//@dataContexts.0/@elements.9">
+      <properties name="preValidationQuery" type="Reference"/>
+      <properties name="kind" type="Enumeration"/>
+      <properties name="elementDescriptors" type="Reference" multiplicity="-1"/>
+    </elements>
+    <elements name="StackConfiguration" supertypes="//@dataContexts.0/@elements.3">
+      <properties name="ownedConfigurations" type="Reference" multiplicity="-1"/>
+    </elements>
+    <elements name="ChildConfiguration" supertypes="//@dataContexts.0/@elements.5"/>
+    <elements name="DrawerConfiguration" supertypes="//@dataContexts.0/@elements.5">
+      <properties name="ownedConfigurations" type="Reference" multiplicity="-1"/>
+    </elements>
+    <elements name="Configuration">
+      <properties name="id"/>
+      <properties name="label"/>
+      <properties name="description"/>
+      <properties name="icon" type="Reference"/>
+    </elements>
+    <elements name="IconDescriptor">
+      <properties name="pluginID"/>
+      <properties name="iconPath"/>
+    </elements>
+    <elements name="ElementDescriptor">
+      <properties name="elementTypeId"/>
+      <properties name="graphicalHints" multiplicity="-1"/>
+    </elements>
+    <elements name="SeparatorConfiguration" supertypes="//@dataContexts.0/@elements.9"/>
+    <elements name="LeafConfiguration" supertypes="//@dataContexts.0/@elements.3"/>
+    <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@modelElementFactories.0"/>
+  </dataContexts>
+  <dataContexts name="AspectActions" label="Aspect actions">
+    <elements name="ToolConfiguration">
+      <properties name="aspectActions" label="Aspect actions" type="Reference" multiplicity="-1" description="The list of aspect actions applied to this ToolConfiguration"/>
+    </elements>
+    <elements name="AspectAction">
+      <properties name="action" label="Action"/>
+    </elements>
+    <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.palette.customization/model/Environment.xmi#//@modelElementFactories.0"/>
+  </dataContexts>
+</contexts:Context>

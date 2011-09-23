@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="ASCII"?>
+<contexts:Context xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:contexts="http://www.eclipse.org/papyrus/properties/contexts" name="PaletteUML">
+  <dependencies href="ppe:/context/org.eclipse.papyrus.palette.customization/model/Palette/Palette.ctx#/"/>
+  <dependencies href="ppe:/context/org.eclipse.papyrus.extendedtypes.customization/model/ExtendedTypes.ctx#/"/>
+  <tabs label="Palette" id="palette" category="org.eclipse.papyrus">
+    <sections name="Single ApplyStereotypeActionConfiguration" sectionFile="ui/SingleApplyStereotypeActionConfiguration.xwt">
+      <widget href="ui/SingleApplyStereotypeActionConfiguration.xwt#/"/>
+    </sections>
+    <sections name="Single StereotypeToApply" sectionFile="ui/SingleStereotypeToApply.xwt">
+      <widget href="ui/SingleStereotypeToApply.xwt#/"/>
+    </sections>
+    <sections name="Multiple ApplyStereotypeActionConfiguration" sectionFile="ui/MultipleApplyStereotypeActionConfiguration.xwt">
+      <widget href="ui/MultipleApplyStereotypeActionConfiguration.xwt#/"/>
+    </sections>
+    <sections name="Multiple StereotypeToApply" sectionFile="ui/MultipleStereotypeToApply.xwt">
+      <widget href="ui/MultipleStereotypeToApply.xwt#/"/>
+    </sections>
+  </tabs>
+  <views name="Single ApplyStereotypeActionConfiguration" sections="//@tabs.0/@sections.0" automaticContext="true" datacontexts="//@dataContexts.0/@elements.0">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleApplyStereotypeActionConfiguration">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/diagram/types/applystereotypeactionconfiguration/0.7"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="ApplyStereotypeActionConfiguration"/>
+    </constraints>
+  </views>
+  <views name="Single StereotypeToApply" sections="//@tabs.0/@sections.1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.1">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleStereotypeToApply">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="StereotypeToApply"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/diagram/types/applystereotypeactionconfiguration/0.7"/>
+    </constraints>
+  </views>
+  <views name="Multiple ApplyStereotypeActionConfiguration" sections="//@tabs.0/@sections.2" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.0">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleApplyStereotypeActionConfiguration">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="ApplyStereotypeActionConfiguration"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/diagram/types/applystereotypeactionconfiguration/0.7"/>
+    </constraints>
+  </views>
+  <views name="Multiple StereotypeToApply" sections="//@tabs.0/@sections.3" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.1">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleStereotypeToApply">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/diagram/types/applystereotypeactionconfiguration/0.7"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="StereotypeToApply"/>
+    </constraints>
+  </views>
+  <dataContexts name="applystereotypeactionconfiguration" label="applystereotypeactionconfiguration">
+    <elements name="ApplyStereotypeActionConfiguration">
+      <properties name="stereotypesToApply" type="Reference" multiplicity="-1"/>
+      <supertypes href="ppe:/context/org.eclipse.papyrus.extendedtypes.customization/model/ExtendedTypes.ctx#//@dataContexts.0/@elements.5"/>
+    </elements>
+    <elements name="StereotypeToApply">
+      <properties name="stereotypeQualifiedName"/>
+      <properties name="updateName" type="Boolean"/>
+      <properties name="requiredProfiles" multiplicity="-1"/>
+    </elements>
+    <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@modelElementFactories.0"/>
+  </dataContexts>
+</contexts:Context>

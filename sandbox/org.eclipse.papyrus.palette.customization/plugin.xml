@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.papyrus.properties.context">
+      <context
+            contextModel="model/Palette/Palette.ctx"
+            loadDefault="true">
+      </context>
+      <context
+            contextModel="model/Palette.emf/PaletteEMF.ctx"
+            loadDefault="true">
+      </context>
+      <context
+            contextModel="model/Palette.uml/PaletteUML.ctx"
+            loadDefault="true">
+      </context>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.properties.environment">
+      <environment
+            environmentModel="model/Environment.xmi">
+      </environment>
+   </extension>
+
+</plugin>

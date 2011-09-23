@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="ASCII"?>
+<contexts:Context xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:contexts="http://www.eclipse.org/papyrus/properties/contexts" name="PaletteEMF">
+  <dependencies href="ppe:/context/org.eclipse.papyrus.palette.customization/model/Palette/Palette.ctx#/"/>
+  <dependencies href="ppe:/context/org.eclipse.papyrus.extendedtypes.customization/model/ExtendedTypes.ctx#/"/>
+  <tabs label="Palette" id="palette" category="org.eclipse.papyrus">
+    <sections name="Single ModifySemanticValuesActionConfiguration" sectionFile="ui/SingleModifySemanticValuesActionConfiguration.xwt">
+      <widget href="ui/SingleModifySemanticValuesActionConfiguration.xwt#/"/>
+    </sections>
+    <sections name="Single FeatureToSet" sectionFile="ui/SingleFeatureToSet.xwt">
+      <widget href="ui/SingleFeatureToSet.xwt#/"/>
+    </sections>
+    <sections name="Single FeatureValue" sectionFile="ui/SingleFeatureValue.xwt">
+      <widget href="ui/SingleFeatureValue.xwt#/"/>
+    </sections>
+    <sections name="Single DynamicValue" sectionFile="ui/SingleDynamicValue.xwt">
+      <widget href="ui/SingleDynamicValue.xwt#/"/>
+    </sections>
+    <sections name="Single ConstantValue" sectionFile="ui/SingleConstantValue.xwt">
+      <widget href="ui/SingleConstantValue.xwt#/"/>
+    </sections>
+    <sections name="Single ListValue" sectionFile="ui/SingleListValue.xwt">
+      <widget href="ui/SingleListValue.xwt#/"/>
+    </sections>
+    <sections name="Single QueryExecutionValue" sectionFile="ui/SingleQueryExecutionValue.xwt">
+      <widget href="ui/SingleQueryExecutionValue.xwt#/"/>
+    </sections>
+    <sections name="Multiple ModifySemanticValuesActionConfiguration" sectionFile="ui/MultipleModifySemanticValuesActionConfiguration.xwt">
+      <widget href="ui/MultipleModifySemanticValuesActionConfiguration.xwt#/"/>
+    </sections>
+    <sections name="Multiple FeatureToSet" sectionFile="ui/MultipleFeatureToSet.xwt">
+      <widget href="ui/MultipleFeatureToSet.xwt#/"/>
+    </sections>
+    <sections name="Multiple FeatureValue" sectionFile="ui/MultipleFeatureValue.xwt">
+      <widget href="ui/MultipleFeatureValue.xwt#/"/>
+    </sections>
+    <sections name="Multiple DynamicValue" sectionFile="ui/MultipleDynamicValue.xwt">
+      <widget href="ui/MultipleDynamicValue.xwt#/"/>
+    </sections>
+    <sections name="Multiple ConstantValue" sectionFile="ui/MultipleConstantValue.xwt">
+      <widget href="ui/MultipleConstantValue.xwt#/"/>
+    </sections>
+    <sections name="Multiple ListValue" sectionFile="ui/MultipleListValue.xwt">
+      <widget href="ui/MultipleListValue.xwt#/"/>
+    </sections>
+    <sections name="Multiple QueryExecutionValue" sectionFile="ui/MultipleQueryExecutionValue.xwt">
+      <widget href="ui/MultipleQueryExecutionValue.xwt#/"/>
+    </sections>
+  </tabs>
+  <views name="Single ModifySemanticValuesActionConfiguration" sections="//@tabs.0/@sections.0" automaticContext="true" datacontexts="//@dataContexts.0/@elements.0">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleModifySemanticValuesActionConfiguration">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/diagram/types/modifysemanticvaluesactionconfiguration/0.8"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="ModifySemanticValuesActionConfiguration"/>
+    </constraints>
+  </views>
+  <views name="Single FeatureToSet" sections="//@tabs.0/@sections.1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.1">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleFeatureToSet">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="FeatureToSet"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/diagram/types/modifysemanticvaluesactionconfiguration/0.8"/>
+    </constraints>
+  </views>
+  <views name="Single FeatureValue" sections="//@tabs.0/@sections.2" automaticContext="true" datacontexts="//@dataContexts.0/@elements.2">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleFeatureValue">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="FeatureValue"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/diagram/types/modifysemanticvaluesactionconfiguration/0.8"/>
+    </constraints>
+  </views>
+  <views name="Single DynamicValue" sections="//@tabs.0/@sections.3" automaticContext="true" datacontexts="//@dataContexts.0/@elements.3">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleDynamicValue">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/diagram/types/modifysemanticvaluesactionconfiguration/0.8"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="DynamicValue"/>
+    </constraints>
+  </views>
+  <views name="Single ConstantValue" sections="//@tabs.0/@sections.4" automaticContext="true" datacontexts="//@dataContexts.0/@elements.4">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleConstantValue">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/diagram/types/modifysemanticvaluesactionconfiguration/0.8"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="ConstantValue"/>
+    </constraints>
+  </views>
+  <views name="Single ListValue" sections="//@tabs.0/@sections.5" automaticContext="true" datacontexts="//@dataContexts.0/@elements.5">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleListValue">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="ListValue"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/diagram/types/modifysemanticvaluesactionconfiguration/0.8"/>
+    </constraints>
+  </views>
+  <views name="Single QueryExecutionValue" sections="//@tabs.0/@sections.6" automaticContext="true" datacontexts="//@dataContexts.0/@elements.6">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleQueryExecutionValue">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="QueryExecutionValue"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/diagram/types/modifysemanticvaluesactionconfiguration/0.8"/>
+    </constraints>
+  </views>
+  <views name="Multiple ModifySemanticValuesActionConfiguration" sections="//@tabs.0/@sections.7" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.0">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleModifySemanticValuesActionConfiguration">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="ModifySemanticValuesActionConfiguration"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/diagram/types/modifysemanticvaluesactionconfiguration/0.8"/>
+    </constraints>
+  </views>
+  <views name="Multiple FeatureToSet" sections="//@tabs.0/@sections.8" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.1">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleFeatureToSet">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="FeatureToSet"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/diagram/types/modifysemanticvaluesactionconfiguration/0.8"/>
+    </constraints>
+  </views>
+  <views name="Multiple FeatureValue" sections="//@tabs.0/@sections.9" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.2">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleFeatureValue">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/diagram/types/modifysemanticvaluesactionconfiguration/0.8"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="FeatureValue"/>
+    </constraints>
+  </views>
+  <views name="Multiple DynamicValue" sections="//@tabs.0/@sections.10" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.3">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleDynamicValue">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/diagram/types/modifysemanticvaluesactionconfiguration/0.8"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="DynamicValue"/>
+    </constraints>
+  </views>
+  <views name="Multiple ConstantValue" sections="//@tabs.0/@sections.11" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.4">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleConstantValue">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/diagram/types/modifysemanticvaluesactionconfiguration/0.8"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="ConstantValue"/>
+    </constraints>
+  </views>
+  <views name="Multiple ListValue" sections="//@tabs.0/@sections.12" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.5">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleListValue">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/diagram/types/modifysemanticvaluesactionconfiguration/0.8"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="ListValue"/>
+    </constraints>
+  </views>
+  <views name="Multiple QueryExecutionValue" sections="//@tabs.0/@sections.13" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.6">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleQueryExecutionValue">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/diagram/types/modifysemanticvaluesactionconfiguration/0.8"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="QueryExecutionValue"/>
+    </constraints>
+  </views>
+  <dataContexts name="modifysemanticvaluesactionconfiguration" label="modifysemanticvaluesactionconfiguration">
+    <elements name="ModifySemanticValuesActionConfiguration">
+      <properties name="featuresToSet" type="Reference" multiplicity="-1"/>
+      <supertypes href="ppe:/context/org.eclipse.papyrus.extendedtypes.customization/model/ExtendedTypes.ctx#//@dataContexts.0/@elements.5"/>
+    </elements>
+    <elements name="FeatureToSet">
+      <properties name="featureName"/>
+      <properties name="value" type="Reference"/>
+    </elements>
+    <elements name="FeatureValue"/>
+    <elements name="DynamicValue" supertypes="//@dataContexts.0/@elements.2"/>
+    <elements name="ConstantValue" supertypes="//@dataContexts.0/@elements.2">
+      <properties name="valueInstance" type="Reference"/>
+    </elements>
+    <elements name="ListValue" supertypes="//@dataContexts.0/@elements.2">
+      <properties name="values" type="Reference" multiplicity="-1"/>
+    </elements>
+    <elements name="QueryExecutionValue" supertypes="//@dataContexts.0/@elements.2">
+      <properties name="configuration" type="Reference"/>
+    </elements>
+    <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@modelElementFactories.0"/>
+  </dataContexts>
+</contexts:Context>

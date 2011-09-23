@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="ASCII"?>
+<contexts:Context xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:contexts="http://www.eclipse.org/papyrus/properties/contexts" name="Queries">
+  <tabs label="Default" id="default" category="default">
+    <sections name="Single QueryConfiguration" sectionFile="ui/SingleQueryConfiguration.xwt">
+      <widget href="ui/SingleQueryConfiguration.xwt#/"/>
+    </sections>
+    <sections name="Single ModiscoQueryConfiguration" sectionFile="ui/SingleModiscoQueryConfiguration.xwt">
+      <widget href="ui/SingleModiscoQueryConfiguration.xwt#/"/>
+    </sections>
+    <sections name="Single ParameterValue" sectionFile="ui/SingleParameterValue.xwt">
+      <widget href="ui/SingleParameterValue.xwt#/"/>
+    </sections>
+    <sections name="Single QueryExecutionValue" sectionFile="ui/SingleQueryExecutionValue.xwt">
+      <widget href="ui/SingleQueryExecutionValue.xwt#/"/>
+    </sections>
+    <sections name="Single ConstantParameterValue" sectionFile="ui/SingleConstantParameterValue.xwt">
+      <widget href="ui/SingleConstantParameterValue.xwt#/"/>
+    </sections>
+    <sections name="Single ListParameterValue" sectionFile="ui/SingleListParameterValue.xwt">
+      <widget href="ui/SingleListParameterValue.xwt#/"/>
+    </sections>
+    <sections name="Multiple QueryConfiguration" sectionFile="ui/MultipleQueryConfiguration.xwt">
+      <widget href="ui/MultipleQueryConfiguration.xwt#/"/>
+    </sections>
+    <sections name="Multiple ModiscoQueryConfiguration" sectionFile="ui/MultipleModiscoQueryConfiguration.xwt">
+      <widget href="ui/MultipleModiscoQueryConfiguration.xwt#/"/>
+    </sections>
+    <sections name="Multiple ParameterValue" sectionFile="ui/MultipleParameterValue.xwt">
+      <widget href="ui/MultipleParameterValue.xwt#/"/>
+    </sections>
+    <sections name="Multiple QueryExecutionValue" sectionFile="ui/MultipleQueryExecutionValue.xwt">
+      <widget href="ui/MultipleQueryExecutionValue.xwt#/"/>
+    </sections>
+    <sections name="Multiple ConstantParameterValue" sectionFile="ui/MultipleConstantParameterValue.xwt">
+      <widget href="ui/MultipleConstantParameterValue.xwt#/"/>
+    </sections>
+    <sections name="Multiple ListParameterValue" sectionFile="ui/MultipleListParameterValue.xwt">
+      <widget href="ui/MultipleListParameterValue.xwt#/"/>
+    </sections>
+  </tabs>
+  <views name="Single QueryConfiguration" sections="//@tabs.0/@sections.0" automaticContext="true" datacontexts="//@dataContexts.0/@elements.0">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleQueryConfiguration">
+      <constraintType href="../../../environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/core/queries/0.7"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="QueryConfiguration"/>
+    </constraints>
+  </views>
+  <views name="Single ModiscoQueryConfiguration" sections="//@tabs.0/@sections.1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.1">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleModiscoQueryConfiguration">
+      <constraintType href="../../../environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/core/queries/0.7"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="ModiscoQueryConfiguration"/>
+    </constraints>
+  </views>
+  <views name="Single ParameterValue" sections="//@tabs.0/@sections.2" automaticContext="true" datacontexts="//@dataContexts.0/@elements.2">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleParameterValue">
+      <constraintType href="../../../environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="ParameterValue"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/core/queries/0.7"/>
+    </constraints>
+  </views>
+  <views name="Single QueryExecutionValue" sections="//@tabs.0/@sections.3" automaticContext="true" datacontexts="//@dataContexts.0/@elements.3">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleQueryExecutionValue">
+      <constraintType href="../../../environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/core/queries/0.7"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="QueryExecutionValue"/>
+    </constraints>
+  </views>
+  <views name="Single ConstantParameterValue" sections="//@tabs.0/@sections.4" automaticContext="true" datacontexts="//@dataContexts.0/@elements.4">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleConstantParameterValue">
+      <constraintType href="../../../environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/core/queries/0.7"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="ConstantParameterValue"/>
+    </constraints>
+  </views>
+  <views name="Single ListParameterValue" sections="//@tabs.0/@sections.5" automaticContext="true" datacontexts="//@dataContexts.0/@elements.5">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleListParameterValue">
+      <constraintType href="../../../environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/core/queries/0.7"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="ListParameterValue"/>
+    </constraints>
+  </views>
+  <views name="Multiple QueryConfiguration" sections="//@tabs.0/@sections.6" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.0">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleQueryConfiguration">
+      <constraintType href="../../../environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="QueryConfiguration"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/core/queries/0.7"/>
+    </constraints>
+  </views>
+  <views name="Multiple ModiscoQueryConfiguration" sections="//@tabs.0/@sections.7" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.1">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleModiscoQueryConfiguration">
+      <constraintType href="../../../environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/core/queries/0.7"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="ModiscoQueryConfiguration"/>
+    </constraints>
+  </views>
+  <views name="Multiple ParameterValue" sections="//@tabs.0/@sections.8" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.2">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleParameterValue">
+      <constraintType href="../../../environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="ParameterValue"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/core/queries/0.7"/>
+    </constraints>
+  </views>
+  <views name="Multiple QueryExecutionValue" sections="//@tabs.0/@sections.9" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.3">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleQueryExecutionValue">
+      <constraintType href="../../../environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/core/queries/0.7"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="QueryExecutionValue"/>
+    </constraints>
+  </views>
+  <views name="Multiple ConstantParameterValue" sections="//@tabs.0/@sections.10" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.4">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleConstantParameterValue">
+      <constraintType href="../../../environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="ConstantParameterValue"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/core/queries/0.7"/>
+    </constraints>
+  </views>
+  <views name="Multiple ListParameterValue" sections="//@tabs.0/@sections.11" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.5">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleListParameterValue">
+      <constraintType href="../../../environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="ListParameterValue"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/core/queries/0.7"/>
+    </constraints>
+  </views>
+  <dataContexts name="configuration" label="configuration">
+    <elements name="QueryConfiguration">
+      <properties name="name"/>
+    </elements>
+    <elements name="ModiscoQueryConfiguration" supertypes="//@dataContexts.0/@elements.0">
+      <properties name="query" type="Reference"/>
+      <properties name="parameterValues" type="Reference" multiplicity="-1"/>
+    </elements>
+    <elements name="ParameterValue">
+      <properties name="parameter" type="Reference"/>
+    </elements>
+    <elements name="QueryExecutionValue" supertypes="//@dataContexts.0/@elements.2">
+      <properties name="configuration" type="Reference"/>
+    </elements>
+    <elements name="ConstantParameterValue" supertypes="//@dataContexts.0/@elements.2">
+      <properties name="valueInstance" type="Reference"/>
+    </elements>
+    <elements name="ListParameterValue" supertypes="//@dataContexts.0/@elements.2">
+      <properties name="values" type="Reference" multiplicity="-1"/>
+    </elements>
+    <modelElementFactory href="../../../environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@modelElementFactories.0"/>
+  </dataContexts>
+</contexts:Context>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Composite xmlns:x="http://www.eclipse.org/xwt" xmlns="http://www.eclipse.org/xwt/presentation"
+	xmlns:ppe="clr-namespace:org.eclipse.papyrus.properties.widgets"
+	xmlns:ppel="clr-namespace:org.eclipse.papyrus.properties.widgets.layout">
+	<Composite.layout>
+		<ppel:PropertiesLayout></ppel:PropertiesLayout>
+	</Composite.layout>
+	<Composite.layoutData>
+		<GridData horizontalAlignment="FILL" verticalAlignment="FILL"
+			grabExcessHorizontalSpace="true" grabExcessVerticalSpace="true" />
+	</Composite.layoutData>
+	<ppe:MultiReferencePropertyEditorWithPropertyView
+		input="{Binding}" property="AspectActions:ToolConfiguration:aspectActions">
+	</ppe:MultiReferencePropertyEditorWithPropertyView>
+</Composite>

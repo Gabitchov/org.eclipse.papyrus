@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Composite xmlns:ppel="clr-namespace:org.eclipse.papyrus.properties.widgets.layout"
+	xmlns="http://www.eclipse.org/xwt/presentation" xmlns:x="http://www.eclipse.org/xwt"
+	xmlns:ppe="clr-namespace:org.eclipse.papyrus.properties.widgets"
+	xmlns:palette="clr-namespace:org.eclipse.papyrus.palette.customization.widgets">
+	<Composite.layout>
+		<ppel:PropertiesLayout></ppel:PropertiesLayout>
+	</Composite.layout>
+	<Composite.layoutData>
+		<GridData verticalAlignment="FILL" grabExcessVerticalSpace="true"
+			horizontalAlignment="FILL" grabExcessHorizontalSpace="true"></GridData>
+	</Composite.layoutData>
+	<palette:AspectActionPropertyEditor
+		input="{Binding}" property="AspectActions:AspectAction:action"
+		showLabel="false">
+	<palette:AspectActionPropertyEditor.layoutData>
+		<GridData verticalAlignment="FILL" grabExcessVerticalSpace="true"
+			horizontalAlignment="FILL" grabExcessHorizontalSpace="true"></GridData>
+	</palette:AspectActionPropertyEditor.layoutData>	
+	</palette:AspectActionPropertyEditor>
+</Composite>
