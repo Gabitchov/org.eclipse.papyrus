@@ -5,21 +5,21 @@
          point="org.eclipse.ui.commands">
       <command
             categoryId="org.eclipse.papyrus.editor.category"
-            description="%command.description"
-            id="org.eclipse.papyrus.import.profile.from.registred.profile"
-            name="%command.name">
+            description="Import Registered Profile"
+            id="org.eclipse.papyrus.import.registered.profile"
+            name="Import Registered Profile">
       </command>
       <command
             categoryId="org.eclipse.papyrus.editor.category"
-            description="%command.description.0"
-            id="org.eclipse.papyrus.import.package.from.file"
-            name="%command.name.0">
+            description="Import Registered Package"
+            id="org.eclipse.papyrus.import.registered.package"
+            name="Import Registered Package">
       </command>
       <command
             categoryId="org.eclipse.papyrus.editor.category"
-            description="%command.description.1"
-            id="org.eclipse.papyrus.import.package.from.registered.library"
-            name="%command.name.1">
+            description="Import Package From Workspace"
+            id="org.eclipse.papyrus.import.package.from.workspace"
+            name="Import Package From Workspace">
       </command>
    </extension>
    <extension
@@ -29,22 +29,24 @@
          <menu
                icon="icons/import_wiz_16x16-papyrusColor.gif"
                id="org.eclipse.papyrus.uml.import.menu"
-               label="%menu.label"
-               mnemonic="%menu.mnemonic"
-               tooltip="%menu.tooltip">
+               label="&amp;Import"
+               tooltip="Papyrus Import Menu">
             <command
-                  commandId="org.eclipse.papyrus.import.profile.from.registred.profile"
+                  commandId="org.eclipse.papyrus.import.registered.profile"
                   icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Profile.gif"
+                  label="Import &amp;Registered Profile"
                   style="push">
             </command>
             <command
-                  commandId="org.eclipse.papyrus.import.package.from.file"
+                  commandId="org.eclipse.papyrus.import.registered.package"
                   icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Package.gif"
+                  label="Import Registered &amp;Package"
                   style="push">
             </command>
             <command
-                  commandId="org.eclipse.papyrus.import.package.from.registered.library"
+                  commandId="org.eclipse.papyrus.import.package.from.workspace"
                   icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Package.gif"
+                  label="Import Package From &amp;Workspace"
                   style="push">
             </command>
          </menu>
@@ -53,8 +55,8 @@
    <extension
          point="org.eclipse.ui.handlers">
       <handler
-            class="org.eclipse.papyrus.importt.handlers.ImportProfileFromRegisteredLibraryHandler"
-            commandId="org.eclipse.papyrus.import.profile.from.registred.profile">
+            class="org.eclipse.papyrus.importt.handlers.ImportRegisteredProfileHandler"
+            commandId="org.eclipse.papyrus.import.registered.profile">
          <activeWhen>
             <and>
                <with
@@ -75,8 +77,30 @@
          </activeWhen>
       </handler>
       <handler
-            class="org.eclipse.papyrus.importt.handlers.ImportPackageFromFileHandler"
-            commandId="org.eclipse.papyrus.import.package.from.file">
+            class="org.eclipse.papyrus.importt.handlers.ImportRegisteredPackageHandler"
+            commandId="org.eclipse.papyrus.import.registered.package">
+         <activeWhen>
+            <and>
+               <with
+                     variable="selection">
+                  <iterate>
+                     <adapt
+                           type="org.eclipse.emf.ecore.EObject">
+                        <instanceof
+                              value="org.eclipse.uml2.uml.Package">
+                        </instanceof>
+                     </adapt>
+                  </iterate>
+               </with>
+               <count
+                     value="1">
+               </count>
+            </and>
+         </activeWhen>
+      </handler>
+      <handler
+            class="org.eclipse.papyrus.importt.handlers.ImportPackageFromWorkspaceHandler"
+            commandId="org.eclipse.papyrus.import.package.from.workspace">
          <activeWhen>
          <and>
             <with
@@ -93,28 +117,6 @@
             <count
                   value="1">
             </count>
-            </and>
-         </activeWhen>
-      </handler>
-      <handler
-            class="org.eclipse.papyrus.importt.handlers.ImportPackageFromRegisteredLibraryHandler"
-            commandId="org.eclipse.papyrus.import.package.from.registered.library">
-         <activeWhen>
-            <and>
-               <with
-                     variable="selection">
-                  <iterate>
-                     <adapt
-                           type="org.eclipse.emf.ecore.EObject">
-                        <instanceof
-                              value="org.eclipse.uml2.uml.Package">
-                        </instanceof>
-                     </adapt>
-                  </iterate>
-               </with>
-               <count
-                     value="1">
-               </count>
             </and>
          </activeWhen>
       </handler>

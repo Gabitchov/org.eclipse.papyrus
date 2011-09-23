@@ -36,8 +36,12 @@ import org.eclipse.uml2.uml.PackageImport;
 import org.eclipse.uml2.uml.UMLFactory;
 
 
-public class ImportPackageFromFileHandler extends AbstractCommandHandler {
+public class ImportPackageFromWorkspaceHandler extends AbstractCommandHandler {
 
+	/**
+	 * 
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected Command getCommand() {
 		return new ImportFromFileCommand(getEditingDomain());

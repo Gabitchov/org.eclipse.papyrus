@@ -40,7 +40,7 @@ import org.eclipse.uml2.uml.UMLFactory;
 
 
 
-public class ImportProfileFromRegisteredLibraryHandler extends AbstractCommandHandler {
+public class ImportRegisteredProfileHandler extends AbstractCommandHandler {
 
 	/**
 	 * 
