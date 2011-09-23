@@ -47,7 +47,9 @@ public class InheritedDecoratorProvider extends AbstractProvider implements IDec
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.gmf.runtime.common.core.internal.service.IProvider#provides(org.eclipse.gmf.runtime.common.core.service.IOperation)
+	 * @see
+	 * org.eclipse.gmf.runtime.common.core.internal.service.IProvider#provides
+	 * (org.eclipse.gmf.runtime.common.core.service.IOperation)
 	 */
 	public boolean provides(IOperation operation) {
 		Assert.isNotNull(operation);
@@ -59,6 +61,5 @@ public class InheritedDecoratorProvider extends AbstractProvider implements IDec
 		IDecoratorTarget decoratorTarget = ((CreateDecoratorsOperation)operation).getDecoratorTarget();
 		return InheritedDecorator.getDecoratorTargetNode(decoratorTarget) != null;
 	}
-
 
 }

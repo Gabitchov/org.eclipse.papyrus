@@ -87,7 +87,8 @@ public abstract class AbstractAssociationEndParser implements IParser {
 	}
 
 	/**
-	 * Get the property associated with the given IAdaptable and the memberEndIndex .
+	 * Get the property associated with the given IAdaptable and the
+	 * memberEndIndex .
 	 * 
 	 * @param element
 	 *        the given IAdaptable

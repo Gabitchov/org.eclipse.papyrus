@@ -7,9 +7,9 @@ import org.eclipse.papyrus.core.services.IService;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
 
-
 /**
- * An ServiceEntry managing {@link IService} that should be started when the registry is started.
+ * An ServiceEntry managing {@link IService} that should be started when the
+ * registry is started.
  * 
  * @author cedric dumoulin
  * 
@@ -30,7 +30,7 @@ public class StartStartupEntry extends ServiceStartupEntry {
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.core.services.internal.ServiceStartupEntry#getServiceInstance()
-	 *
+	 * 
 	 * @return
 	 * @throws ServiceException
 	 */

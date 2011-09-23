@@ -25,7 +25,8 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 public class ExistingNavigableElement extends NavigableElement {
 
 	/**
-	 * This constructor initiates a navigable element from an existing model element.
+	 * This constructor initiates a navigable element from an existing model
+	 * element.
 	 * 
 	 * @param element
 	 */

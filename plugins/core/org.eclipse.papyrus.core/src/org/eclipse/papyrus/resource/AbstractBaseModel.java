@@ -11,10 +11,9 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
-
 /**
- * An abstract implmeentation of model.
- * This class should be subclassed to fit the required model.
+ * An abstract implmeentation of model. This class should be subclassed to fit
+ * the required model.
  * 
  * @author cedric dumoulin
  * 
@@ -96,8 +95,8 @@ public abstract class AbstractBaseModel implements IModel {
 	abstract protected String getModelFileExtension();
 
 	/**
-	 * Return true if the resource is set, false otherwise.
-	 * When the resource is set, this mean that the model is loaded or created.
+	 * Return true if the resource is set, false otherwise. When the resource is
+	 * set, this mean that the model is loaded or created.
 	 * 
 	 * @return
 	 */
@@ -130,13 +129,13 @@ public abstract class AbstractBaseModel implements IModel {
 		return URI.createPlatformResourceURI(path.toString(), true);
 	}
 
-
 	/**
-	 * Load the model repository.
-	 * The URI is calculated by removing the extension and replacing it by the model extension.
+	 * Load the model repository. The URI is calculated by removing the
+	 * extension and replacing it by the model extension.
 	 * 
 	 * @param file
-	 *        The file selected by user requesting load. Should be used as a bases to guess the model IPath.
+	 *        The file selected by user requesting load. Should be used as a
+	 *        bases to guess the model IPath.
 	 */
 	public void loadModel(IFile file) {
 		// Get the full path and call the load method with it.
@@ -144,8 +143,8 @@ public abstract class AbstractBaseModel implements IModel {
 	}
 
 	/**
-	 * Load the model by using the provided fullpath as a hint for the resource URI.
-	 * In this implementation, simply add the model extension.
+	 * Load the model by using the provided fullpath as a hint for the resource
+	 * URI. In this implementation, simply add the model extension.
 	 * 
 	 * @param fullPathWithoutExtension
 	 */
@@ -161,8 +160,8 @@ public abstract class AbstractBaseModel implements IModel {
 	}
 
 	/**
-	 * Import the model by using the provided fullpath as a hint for the resource URI.
-	 * In this implementation, simply call {@link #loadModel(IPath)}
+	 * Import the model by using the provided fullpath as a hint for the
+	 * resource URI. In this implementation, simply call {@link #loadModel(IPath)}
 	 * 
 	 * @param fullPathWithoutExtension
 	 */
@@ -208,10 +207,9 @@ public abstract class AbstractBaseModel implements IModel {
 	}
 
 	/**
-	 * Add a snippet to this model.
-	 * The snippet is called just after model is initialized,
-	 * and before it is disposed or unloaded.
-	 * Snippet can be shared among models.
+	 * Add a snippet to this model. The snippet is called just after model is
+	 * initialized, and before it is disposed or unloaded. Snippet can be shared
+	 * among models.
 	 * 
 	 * @param snippet
 	 *        The snippet to add.
@@ -219,6 +217,5 @@ public abstract class AbstractBaseModel implements IModel {
 	public void addModelSnippet(IModelSnippet snippet) {
 		snippets.add(snippet);
 	}
-
 
 }

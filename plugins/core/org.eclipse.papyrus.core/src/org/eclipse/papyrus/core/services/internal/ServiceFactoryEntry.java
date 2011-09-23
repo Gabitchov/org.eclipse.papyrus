@@ -10,12 +10,9 @@ import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.services.ServiceState;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
 
-
-
-
 /**
- * Entry of a Service implementing {@link IServiceFactory}.
- * This class provide methods to manage the Service life cycle.
+ * Entry of a Service implementing {@link IServiceFactory}. This class provide
+ * methods to manage the Service life cycle.
  * 
  * @author cedric dumoulin
  * 
@@ -35,15 +32,13 @@ public class ServiceFactoryEntry extends ServiceTypeEntry {
 	 * @param registry
 	 */
 	public ServiceFactoryEntry(ServiceDescriptor serviceDescriptor) {
-		super( serviceDescriptor );
+		super(serviceDescriptor);
 		setState(ServiceState.registered);
 
 	}
 
-
 	/**
-	 * Create an entry for an already created service.
-	 * Constructor.
+	 * Create an entry for an already created service. Constructor.
 	 * 
 	 * @param descriptor
 	 *        Descriptor of the service. Key and priority should be set.
@@ -51,38 +46,35 @@ public class ServiceFactoryEntry extends ServiceTypeEntry {
 	 *        The service Instance
 	 */
 	public ServiceFactoryEntry(ServiceDescriptor descriptor, IServiceFactory factoryInstance) {
-		super( descriptor );
+		super(descriptor);
 		this.factoryInstance = factoryInstance;
 		setState(ServiceState.registered);
 	}
 
 	/**
-	 * Get the service instance, even if it is not started.
-	 * The service should be created.
+	 * Get the service instance, even if it is not started. The service should
+	 * be created.
 	 * 
 	 * @return
 	 * @throws ServiceException
 	 *         If service can't be started.
 	 */
 	public Object getServiceInstance() throws ServiceException {
-		
-		if( factoryInstance == null)
+
+		if(factoryInstance == null)
 			throw new BadStateException("Service is not created.", state, serviceDescriptor);
-		
+
 		// Get the service instance if needed.
-		if(serviceInstance == null)
-		{
+		if(serviceInstance == null) {
 			serviceInstance = factoryInstance.createServiceInstance();
-			if( serviceInstance == null)
-			{
+			if(serviceInstance == null) {
 				throw new ServiceException("Service Factory '" + getDescriptor().getKey() + " return a null service. It should return a valid service.");
 			}
 		}
-		
-		return serviceInstance;
-			
-	}
 
+		return serviceInstance;
+
+	}
 
 	/**
 	 * @see java.lang.Object#toString()
@@ -94,7 +86,6 @@ public class ServiceFactoryEntry extends ServiceTypeEntry {
 		return "ServiceEntry [serviceDescriptor=" + serviceDescriptor.toString() + ", serviceInstance=" + serviceInstance + "]";
 	}
 
-
 	/**
 	 * Create the associated service if not a Lazy Service.
 	 * 
@@ -102,13 +93,12 @@ public class ServiceFactoryEntry extends ServiceTypeEntry {
 	 */
 	public void createService() throws ServiceException {
 		checkState(ServiceState.registered);
-		// Exit if already  created.
-		if( factoryInstance != null)
-		{
+		// Exit if already created.
+		if(factoryInstance != null) {
 			setState(ServiceState.created);
 			return;
 		}
-		
+
 		// Create it
 		try {
 			// Create the instance
@@ -149,10 +139,10 @@ public class ServiceFactoryEntry extends ServiceTypeEntry {
 	 * @throws ServiceException
 	 */
 	public void startService() throws ServiceException {
-		
+
 		checkState(ServiceState.initialized);
 		setState(ServiceState.starting);
-		
+
 		try {
 			factoryInstance.startService();
 		} catch (ServiceException e) {
@@ -162,7 +152,7 @@ public class ServiceFactoryEntry extends ServiceTypeEntry {
 			setState(ServiceState.error);
 			throw new ServiceException(e);
 		}
-		
+
 		setState(ServiceState.started);
 	}
 
@@ -177,6 +167,5 @@ public class ServiceFactoryEntry extends ServiceTypeEntry {
 		factoryInstance = null;
 		setState(ServiceState.disposed);
 	}
-
 
 }

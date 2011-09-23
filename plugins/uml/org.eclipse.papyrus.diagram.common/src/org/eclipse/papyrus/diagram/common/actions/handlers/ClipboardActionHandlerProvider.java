@@ -28,7 +28,8 @@ public class ClipboardActionHandlerProvider extends AbstractGlobalActionHandlerP
 	private Hashtable handlerList = new Hashtable();
 
 	/**
-	 * Returns a global action handler that supports operations (cut, copy, and paste).
+	 * Returns a global action handler that supports operations (cut, copy, and
+	 * paste).
 	 * 
 	 * @param context
 	 *        the context
@@ -45,8 +46,8 @@ public class ClipboardActionHandlerProvider extends AbstractGlobalActionHandlerP
 			getHandlerList().put(context.getActivePart(), getClipboardActionHandler());
 
 			/*
-			 * Register as a part listener so that the cache can be cleared when the part is
-			 * disposed
+			 * Register as a part listener so that the cache can be cleared when
+			 * the part is disposed
 			 */
 			context.getActivePart().getSite().getPage().addPartListener(new IPartListener() {
 

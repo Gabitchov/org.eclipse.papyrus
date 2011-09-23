@@ -18,9 +18,9 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
 import org.eclipse.papyrus.diagram.common.editpolicies.ApplyStereotypeEditPolicy;
 import org.eclipse.papyrus.diagram.common.service.ApplyStereotypeRequest;
 
-
 /**
- * This edit part manages the application and unapplication of stereotypes on creation.
+ * This edit part manages the application and unapplication of stereotypes on
+ * creation.
  */
 public class UMLCompartmentEditPart extends CompartmentEditPart {
 
@@ -36,13 +36,15 @@ public class UMLCompartmentEditPart extends CompartmentEditPart {
 
 	@Override
 	public boolean isSelectable() {
-		//See bug 351433 : https://bugs.eclipse.org/bugs/show_bug.cgi?id=351433
-		//This fix changes the behavior of selecting a Class : until now, we had
-		//to select a class before being able to select one of its operations or
-		//attributes. With this fix, we can select directly the operations or
-		//attributes, which means it is now harder to select the class
-		//(For Drag&Drop or resizing)
-		return getFigure().isShowing(); //FIXME : This is a temporary fix
+		// See bug 351433 : https://bugs.eclipse.org/bugs/show_bug.cgi?id=351433
+		// This fix changes the behavior of selecting a Class : until now, we
+		// had
+		// to select a class before being able to select one of its operations
+		// or
+		// attributes. With this fix, we can select directly the operations or
+		// attributes, which means it is now harder to select the class
+		// (For Drag&Drop or resizing)
+		return getFigure().isShowing(); // FIXME : This is a temporary fix
 	}
 
 	/**

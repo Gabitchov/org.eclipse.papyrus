@@ -3,13 +3,12 @@
  */
 package org.eclipse.papyrus.resource;
 
-
 /**
- * Exception thrown when a method is called while the object state is not ready for this 
- * call.
+ * Exception thrown when a method is called while the object state is not ready
+ * for this call.
  * 
  * @author cedric dumoulin
- *
+ * 
  */
 public class BadStateException extends Exception {
 
@@ -20,7 +19,7 @@ public class BadStateException extends Exception {
 
 	/**
 	 * Constructor.
-	 *
+	 * 
 	 */
 	public BadStateException() {
 		super();
@@ -29,7 +28,7 @@ public class BadStateException extends Exception {
 
 	/**
 	 * Constructor.
-	 *
+	 * 
 	 * @param message
 	 * @param cause
 	 */
@@ -40,7 +39,7 @@ public class BadStateException extends Exception {
 
 	/**
 	 * Constructor.
-	 *
+	 * 
 	 * @param message
 	 */
 	public BadStateException(String message) {
@@ -50,7 +49,7 @@ public class BadStateException extends Exception {
 
 	/**
 	 * Constructor.
-	 *
+	 * 
 	 * @param cause
 	 */
 	public BadStateException(Throwable cause) {

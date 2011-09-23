@@ -15,17 +15,17 @@ package org.eclipse.papyrus.diagram.common.parser.lookup;
 public class DefaultOclLookups {
 
 	// @unused
-	public static final String DEFAULT_TYPE_LOOKUP = "" + // 
+	public static final String DEFAULT_TYPE_LOOKUP = "" + //
 	" let result : Set(Type) = Set{} in " + //
-	" let pakkage : Package = self.getNearestPackage() in " + // 
-	" let siblings : Set(Type) = pakkage.ownedType in " + // 
+	" let pakkage : Package = self.getNearestPackage() in " + //
+	" let siblings : Set(Type) = pakkage.ownedType in " + //
 	" let imports : Bag(Type) = " + //
 	" 		pakkage.elementImport->select( " + //
 	" 			importedElement.oclIsKindOf(Type) " + //
 	" 			and (importedElement.oclIsKindOf(Class) implies not importedElement.oclAsType(Class).isMetaclass()) " + //
 	" 		)->collect(" + //
 	"			importedElement.oclAsType(Type)" + //
-	"		) in " + // 
+	"		) in " + //
 	" result->union(siblings)->union(imports->asSet()) ";
 
 }

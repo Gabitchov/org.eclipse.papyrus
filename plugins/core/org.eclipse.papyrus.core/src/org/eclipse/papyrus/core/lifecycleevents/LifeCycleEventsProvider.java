@@ -7,9 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * This class provides events about the life cycle of a MultiEditor.
- * Not all life cycle events are available.
- * Available events:
+ * This class provides events about the life cycle of a MultiEditor. Not all
+ * life cycle events are available. Available events:
  * <ul>
  * <li>aboutToDoSave, aboutToDoSaveAs - SaveEventListener</li>
  * <li>doSave, doSaveAs - SaveEventListener</li>
@@ -38,7 +37,6 @@ public class LifeCycleEventsProvider implements ILifeCycleEventsProvider {
 	 * 
 	 */
 	protected SaveEventListenerLazyList postSaveListeners = new SaveEventListenerLazyList();
-
 
 	/**
 	 * Add specified listener.
@@ -97,11 +95,9 @@ public class LifeCycleEventsProvider implements ILifeCycleEventsProvider {
 		postSaveListeners.removeListener(listener);
 	}
 
-
 	// ****************************************************** //
-	// Fire events methods                                    //
+	// Fire events methods //
 	// ****************************************************** //
-
 
 	/**
 	 * Fire AboutToSaveEvent to registered Listeners.
@@ -170,8 +166,8 @@ public class LifeCycleEventsProvider implements ILifeCycleEventsProvider {
 	}
 
 	/**
-	 * Fire all SaveAs events (about, events, post) to registered Listeners.
-	 * If one of the saveAs event fail, post events are not sent.
+	 * Fire all SaveAs events (about, events, post) to registered Listeners. If
+	 * one of the saveAs event fail, post events are not sent.
 	 * 
 	 * @param editorPart
 	 */
@@ -222,7 +218,6 @@ public class LifeCycleEventsProvider implements ILifeCycleEventsProvider {
 			listeners.remove(listener);
 		}
 
-
 		/**
 		 * @return the listeners
 		 */
@@ -241,9 +236,9 @@ public class LifeCycleEventsProvider implements ILifeCycleEventsProvider {
 	protected class SaveEventListenerLazyList extends AbstractEventListenersLazyList<ISaveEventListener> {
 
 		/**
-		 * Fire OpenEvent to registered Listeners.
-		 * If a listener throw an exception, remaining listeners are called, and then the exception
-		 * is resent.
+		 * Fire OpenEvent to registered Listeners. If a listener throw an
+		 * exception, remaining listeners are called, and then the exception is
+		 * resent.
 		 * 
 		 * @param editorPart
 		 */

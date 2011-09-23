@@ -3,8 +3,6 @@
  */
 package org.eclipse.papyrus.sasheditor.editor;
 
-
-
 /**
  * @author cedric dumoulin
  * 

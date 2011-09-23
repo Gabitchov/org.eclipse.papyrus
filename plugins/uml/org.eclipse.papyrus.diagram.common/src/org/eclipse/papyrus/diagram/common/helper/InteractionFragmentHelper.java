@@ -36,7 +36,8 @@ public class InteractionFragmentHelper {
 	 * @param interactionFragment
 	 *        interaction fragment to search the one before
 	 * @param uppestContainerToSearchInto
-	 *        the container which we will not search further if encountered (may be null)
+	 *        the container which we will not search further if encountered
+	 *        (may be null)
 	 * @return the fragment found happening just before, or null
 	 */
 	public static InteractionFragment findPreviousFragment(InteractionFragment interactionFragment, EObject uppestContainerToSearchInto) {
@@ -63,7 +64,8 @@ public class InteractionFragmentHelper {
 	 * @param interactionFragment
 	 *        interaction fragment to search the one after
 	 * @param uppestContainerToSearchInto
-	 *        the container which we will not search further if encountered (may be null)
+	 *        the container which we will not search further if encountered
+	 *        (may be null)
 	 * @return the fragment found happening just after, or null
 	 */
 	public static InteractionFragment findNextFragment(InteractionFragment interactionFragment, EObject uppestContainerToSearchInto) {
@@ -94,8 +96,10 @@ public class InteractionFragmentHelper {
 	 * @param fragmentToStartFrom
 	 *        the reference fragment
 	 * @param startFragmentFound
-	 *        use false for an external call, true for recursive internal call when the fragmentToStartFrom has already been found
-	 * @return the found interaction fragment or null if it is not in uppestContainerToSearchInto
+	 *        use false for an external call, true for recursive internal
+	 *        call when the fragmentToStartFrom has already been found
+	 * @return the found interaction fragment or null if it is not in
+	 *         uppestContainerToSearchInto
 	 */
 	private static InteractionFragment findInteractionFragment(Element uppestContainerToSearchInto, boolean reverseOrder, InteractionFragment fragmentToStartFrom, boolean startFragmentFound) {
 		List<? extends Element> listToSearchInto;
@@ -114,17 +118,18 @@ public class InteractionFragmentHelper {
 			}
 			Element searchElement = listToSearchInto.get(searchIndex);
 
-
 			if(fragmentToStartFrom.equals(searchElement)) {
 				startFragmentFound = true;
 				if(reverseOrder) {
 					// search in the previous child
 					continue;
 				} else {
-					// search deeper for children (which we consider they come after)
+					// search deeper for children (which we consider they come
+					// after)
 				}
 			} else if(!startFragmentFound) {
-				// go quicker to skip every node until we find the appropriate starting fragment
+				// go quicker to skip every node until we find the appropriate
+				// starting fragment
 				if(!EcoreUtil.isAncestor(searchElement, fragmentToStartFrom)) {
 					continue;
 				} else {
@@ -140,7 +145,8 @@ public class InteractionFragmentHelper {
 			if(fragment != null) {
 				return fragment;
 			} else if(reverseOrder && searchElement instanceof InteractionFragment) {
-				// we searched ineffectively in the children, stop here and return the element
+				// we searched ineffectively in the children, stop here and
+				// return the element
 				return (InteractionFragment)searchElement;
 			}
 			// else, continue

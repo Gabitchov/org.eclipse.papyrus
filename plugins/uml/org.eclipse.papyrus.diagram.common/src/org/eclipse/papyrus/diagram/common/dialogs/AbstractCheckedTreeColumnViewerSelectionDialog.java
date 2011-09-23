@@ -32,8 +32,8 @@ import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
 
 /**
- * This abstract class allows to create columns with a tree viewer.
- * A double Click on an element of the tree allows to expand/collapse the node!
+ * This abstract class allows to create columns with a tree viewer. A double
+ * Click on an element of the tree allows to expand/collapse the node!
  * 
  * 
  */
@@ -138,7 +138,7 @@ public abstract class AbstractCheckedTreeColumnViewerSelectionDialog extends Cus
 			 * @param e
 			 */
 			public void mouseUp(MouseEvent e) {
-				//nothing to do
+				// nothing to do
 			}
 
 			/**
@@ -148,7 +148,7 @@ public abstract class AbstractCheckedTreeColumnViewerSelectionDialog extends Cus
 			 * @param e
 			 */
 			public void mouseDown(MouseEvent e) {
-				//nothing to do
+				// nothing to do
 
 			}
 
@@ -159,7 +159,7 @@ public abstract class AbstractCheckedTreeColumnViewerSelectionDialog extends Cus
 			 * @param e
 			 */
 			public void mouseDoubleClick(MouseEvent e) {
-				//we expand the selected element
+				// we expand the selected element
 				Tree source = (Tree)e.getSource();
 				TreeItem[] item = source.getSelection();
 				List<?> expandedElements = Arrays.asList(getTreeViewer().getExpandedElements());
@@ -176,8 +176,7 @@ public abstract class AbstractCheckedTreeColumnViewerSelectionDialog extends Cus
 	 * Returns the {@link EditingSupport} for the column.
 	 * 
 	 * @param columnIndex
-	 * @return
-	 *         the {@link EditingSupport} for the column or <code>null</code>
+	 * @return the {@link EditingSupport} for the column or <code>null</code>
 	 */
 	abstract protected EditingSupport getEditingSupport(int columnIndex);
 }

@@ -30,8 +30,8 @@ import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.ui.part.EditorActionBarContributor;
 
 /**
- * A factory managing ActionBarContributor creation.
- * The factory is loaded from ActionBarContributor declared in Eclipse extension mechanism.
+ * A factory managing ActionBarContributor creation. The factory is loaded from
+ * ActionBarContributor declared in Eclipse extension mechanism.
  * 
  * @author dumoulin
  * 
@@ -50,16 +50,16 @@ public class ActionBarContributorRegistry implements IActionBarContributorFactor
 	private Map<Object, ActionBarContributorDescriptor> editorContextDescriptors;
 
 	/**
-	 * Constructor. defaultContext, input and site are explicitly required in order be sure that they are initialized. The multiEditor should be
-	 * initialized. In particular, getEditorSite(),
-	 * getEditorInput() and getDefaultContext() should return initialized values.
+	 * Constructor. defaultContext, input and site are explicitly required in
+	 * order be sure that they are initialized. The multiEditor should be
+	 * initialized. In particular, getEditorSite(), getEditorInput() and
+	 * getDefaultContext() should return initialized values.
 	 * 
-	 *@param multiEditor
+	 * @param multiEditor
 	 *        the multieditor
-	 *@param extensionPointNamespace
+	 * @param extensionPointNamespace
 	 */
 	public ActionBarContributorRegistry(String extensionPointNamespace) {
-
 
 		this.extensionPointNamespace = extensionPointNamespace;
 		initializeEditorContextDescriptors();
@@ -146,8 +146,9 @@ public class ActionBarContributorRegistry implements IActionBarContributorFactor
 
 	/**
 	 * Initialize the service. Do nothing here.
+	 * 
 	 * @see org.eclipse.papyrus.core.services.IService#init(org.eclipse.papyrus.core.services.ServicesRegistry)
-	 *
+	 * 
 	 * @param servicesRegistry
 	 */
 	public void init(ServicesRegistry servicesRegistry) {
@@ -167,6 +168,5 @@ public class ActionBarContributorRegistry implements IActionBarContributorFactor
 	 */
 	public void disposeService() {
 	}
-
 
 }

@@ -31,14 +31,13 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Stereotype;
 
 /**
- * this is an abstract class used to display an element as a shape. it looks for image in the associated stereotype
+ * this is an abstract class used to display an element as a shape. it looks for
+ * image in the associated stereotype
  * 
  */
 public abstract class AbstractShapeEditPart extends AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 
-
 	private static final String SHAPE_CONSTANT = "shape";
-
 
 	public AbstractShapeEditPart(View view) {
 		super(view);
@@ -51,10 +50,10 @@ public abstract class AbstractShapeEditPart extends AbstractBorderedShapeEditPar
 
 	private IPageIconsRegistry editorRegistry;
 
-
 	/**
-	 * Return the EditorRegistry for nested editor descriptors. Subclass should implements this
-	 * method in order to return the registry associated to the extension point namespace.
+	 * Return the EditorRegistry for nested editor descriptors. Subclass should
+	 * implements this method in order to return the registry associated to the
+	 * extension point namespace.
 	 * 
 	 * @return the EditorRegistry for nested editor descriptors
 	 * 
@@ -63,18 +62,21 @@ public abstract class AbstractShapeEditPart extends AbstractBorderedShapeEditPar
 		try {
 			return EditorUtils.getServiceRegistry().getService(IPageIconsRegistry.class);
 		} catch (ServiceException e) {
-			// Not found, return an empty one which return null for each request.
+			// Not found, return an empty one which return null for each
+			// request.
 			return new PageIconsRegistry();
 		} catch (NullPointerException e) {
-			//if the editor is null null pointer exception is raised
-			// Not found, return an empty one which return null for each request.
+			// if the editor is null null pointer exception is raised
+			// Not found, return an empty one which return null for each
+			// request.
 			return new PageIconsRegistry();
 		}
 	}
 
 	/**
-	 * Get the EditorRegistry used to create editor instances. This default implementation return
-	 * the singleton eINSTANCE. This method can be subclassed to return another registry.
+	 * Get the EditorRegistry used to create editor instances. This default
+	 * implementation return the singleton eINSTANCE. This method can be
+	 * subclassed to return another registry.
 	 * 
 	 * @return the singleton eINSTANCE of editor registry
 	 * 
@@ -106,7 +108,6 @@ public abstract class AbstractShapeEditPart extends AbstractBorderedShapeEditPar
 	protected Element getUMLElement() {
 		return (Element)resolveSemanticElement();
 	}
-
 
 	/**
 	 * refresh the icon by taking in account the type of the diagram

@@ -22,7 +22,6 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-
 /**
  * Factory in charge of the aspect actions taken before/after palette actions
  */
@@ -50,7 +49,8 @@ public class StereotypeAspectActionProvider extends AbstractAspectActionProvider
 	}
 
 	/**
-	 * Creates a configuration node for this provider, given a list of stereotypes to apply.
+	 * Creates a configuration node for this provider, given a list of
+	 * stereotypes to apply.
 	 * <P>
 	 * This method is used in the customize palette dialog, when pre-creating all available tools with stereotypes applied
 	 * </P>

@@ -18,6 +18,7 @@ import java.util.logging.Logger;
 
 import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
+import org.eclipse.papyrus.sasheditor.editor.SashWindowsContainer;
 import org.eclipse.papyrus.sasheditor.editor.actionbarcontributor.IMultiPageEditorActionBarContributor;
 import org.eclipse.papyrus.sasheditor.internal.ActivePageTracker.IActiveEditorChangedListener;
 import org.eclipse.papyrus.sasheditor.internal.eclipsecopy.MultiPageSelectionProvider;
@@ -32,14 +33,12 @@ import org.eclipse.ui.internal.services.INestable;
 import org.eclipse.ui.part.MultiPageEditorActionBarContributor;
 import org.eclipse.ui.services.IServiceLocator;
 
-
 /**
- * This class is used to switch the services of a nested editor when the active nested editor change.
- * This class is a {@link IActiveEditorChangedListener} registered to the {@link ActivePageTracker} 
- * by the {@link SashWindowsContainer}.
+ * This class is used to switch the services of a nested editor when the active
+ * nested editor change. This class is a {@link IActiveEditorChangedListener} registered to the {@link ActivePageTracker} by the
+ * {@link SashWindowsContainer}.
  * 
- * When a new Editor is set active, by calling {@link #setActiveEditor(PagePart)}, following actions are
- * performed:
+ * When a new Editor is set active, by calling {@link #setActiveEditor(PagePart)}, following actions are performed:
  * <ul>
  * <li>deactivate services: nested site and keybinding</li>
  * <li>An event is sent to the ActionBarContributor if it accept it (by implementing {@link IMultiPageEditorActionBarContributor})</li>
@@ -65,8 +64,8 @@ public class ActiveEditorServicesSwitcher implements IActiveEditorChangedListene
 	private IEditorSite outerEditorSite;
 
 	/**
-	 * The active service locator. This value may be <code>null</code> if there is no selected page, or if the selected page is a control with no
-	 * site.
+	 * The active service locator. This value may be <code>null</code> if there
+	 * is no selected page, or if the selected page is a control with no site.
 	 */
 	private INestable activeServiceLocator;
 
@@ -81,9 +80,9 @@ public class ActiveEditorServicesSwitcher implements IActiveEditorChangedListene
 	}
 
 	/**
-	 * Get the currently active IEditorPart, if any.
-	 * Return null if there is no active IeditorPart.
-	 * Method check if the active leaf encapsulate an IEditorPart. Return it if true.
+	 * Get the currently active IEditorPart, if any. Return null if there is no
+	 * active IeditorPart. Method check if the active leaf encapsulate an
+	 * IEditorPart. Return it if true.
 	 * 
 	 * @return The currentlyactive IEditorPart or null.
 	 */
@@ -92,9 +91,9 @@ public class ActiveEditorServicesSwitcher implements IActiveEditorChangedListene
 	}
 
 	/**
-	 * Get IEditorPart of the specified PagePart, if any.
-	 * Return null if there is no IeditorPart.
-	 * Method check if the leaf encapsulate an IEditorPart. Return it if true.
+	 * Get IEditorPart of the specified PagePart, if any. Return null if there
+	 * is no IeditorPart. Method check if the leaf encapsulate an IEditorPart.
+	 * Return it if true.
 	 * 
 	 * @return The IEditorPart or null.
 	 */
@@ -110,8 +109,7 @@ public class ActiveEditorServicesSwitcher implements IActiveEditorChangedListene
 	}
 
 	/**
-	 * Called when the active editor is changed.
-	 * Perform requested operations.
+	 * Called when the active editor is changed. Perform requested operations.
 	 * 
 	 * @param oldEditor
 	 * @param newEditor
@@ -121,7 +119,9 @@ public class ActiveEditorServicesSwitcher implements IActiveEditorChangedListene
 			return;
 		}
 
-		//		System.out.println(getClass().getSimpleName() + ".activeEditorChange('" + (newEditor != null ? newEditor.getPageTitle() : "null") + "')");
+		// System.out.println(getClass().getSimpleName() +
+		// ".activeEditorChange('" + (newEditor != null ?
+		// newEditor.getPageTitle() : "null") + "')");
 
 		activeEditor = newEditor;
 
@@ -137,15 +137,15 @@ public class ActiveEditorServicesSwitcher implements IActiveEditorChangedListene
 		propagateSelectionChanged();
 		activateServices();
 
-		// 
+		//
 		if(newEditor != null)
 			newEditor.setFocus();
 	}
 
 	/**
 	 * Change the current selection of the outermost editor (the main editor).
-	 * Send a {@link SelectionChangedEvent} event to the outerProvider. The event contains the current selection
-	 * of the new activeEditor.
+	 * Send a {@link SelectionChangedEvent} event to the outerProvider. The
+	 * event contains the current selection of the new activeEditor.
 	 * 
 	 * @param editor
 	 *        The new activeEditor.
@@ -156,7 +156,8 @@ public class ActiveEditorServicesSwitcher implements IActiveEditorChangedListene
 		IEditorPart editorPart = getActiveIEditorPart();
 
 		// Propagate the selection change event.
-		// Get the selection of the new activeEditor and send an SelectionChangedEvent to the outerProvider (provider of the main 
+		// Get the selection of the new activeEditor and send an
+		// SelectionChangedEvent to the outerProvider (provider of the main
 		// editor) with the selection.
 		if(editorPart != null) {
 			ISelectionProvider selectionProvider = editorPart.getSite().getSelectionProvider();
@@ -170,9 +171,8 @@ public class ActiveEditorServicesSwitcher implements IActiveEditorChangedListene
 					provider.firePostSelectionChanged(event);
 				} else {
 					if(log.isLoggable(Level.WARNING)) {
-						log.warning(this.getClass().getSimpleName()
-								+ " did not propogate selection for " //$NON-NLS-1$
-								+ editorPart.getTitle());
+						log.warning(this.getClass().getSimpleName() + " did not propogate selection for " //$NON-NLS-1$
+							+ editorPart.getTitle());
 					}
 				}
 			}
@@ -180,8 +180,8 @@ public class ActiveEditorServicesSwitcher implements IActiveEditorChangedListene
 	}
 
 	/**
-	 * Activates services of the active editor: site, keybinding
-	 * deactivate old active site.
+	 * Activates services of the active editor: site, keybinding deactivate old
+	 * active site.
 	 */
 	@SuppressWarnings({ "restriction", "deprecation" })
 	private void activateServices() {
@@ -191,10 +191,8 @@ public class ActiveEditorServicesSwitcher implements IActiveEditorChangedListene
 			activeServiceLocator = null;
 		}
 
-
 		// Get the service
 		final IKeyBindingService service = getOuterEditorSite().getKeyBindingService();
-
 
 		final IEditorPart editor = getActiveIEditorPart();
 
@@ -218,9 +216,9 @@ public class ActiveEditorServicesSwitcher implements IActiveEditorChangedListene
 	}
 
 	/**
-	 * Deactivate services: old nested site if any and keybinding service if there is no active editor.
-	 * Deactivate the key binding service.
-	 * Deactivate it only if there is no editor selected.
+	 * Deactivate services: old nested site if any and keybinding service if
+	 * there is no active editor. Deactivate the key binding service. Deactivate
+	 * it only if there is no editor selected.
 	 */
 	@SuppressWarnings({ "restriction", "deprecation" })
 	private void deactivateServices(boolean immediate) {
@@ -244,7 +242,8 @@ public class ActiveEditorServicesSwitcher implements IActiveEditorChangedListene
 	}
 
 	/**
-	 * Send message to the ActionBarContributor, like this it can switch the active editor.
+	 * Send message to the ActionBarContributor, like this it can switch the
+	 * active editor.
 	 */
 	private void fireChangeEventToActionBarContributor() {
 		IEditorActionBarContributor contributor = getOuterEditorSite().getActionBarContributor();
@@ -267,6 +266,5 @@ public class ActiveEditorServicesSwitcher implements IActiveEditorChangedListene
 	private IEditorSite getOuterEditorSite() {
 		return outerEditorSite;
 	}
-
 
 }

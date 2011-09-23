@@ -69,5 +69,4 @@ public class StringComparator implements Comparator<String> {
 		return o1.toLowerCase().compareTo(o2.toLowerCase());
 	}
 
-
 }

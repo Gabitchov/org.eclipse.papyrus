@@ -41,7 +41,8 @@ public class RemoveValueRequest extends AbstractEditCommandRequest {
 	private final Object value;
 
 	/**
-	 * Constructs a new request to remove the value of a structural feature in a model element.
+	 * Constructs a new request to remove the value of a structural feature in a
+	 * model element.
 	 * 
 	 * @param editingDomain
 	 *        the editing domain in which I am requesting to make model
@@ -61,8 +62,8 @@ public class RemoveValueRequest extends AbstractEditCommandRequest {
 	}
 
 	/**
-	 * Constructs a new request to remove the value of a structural feature in a model element. The
-	 * editing domain will be derived from the <code>elementToEdit</code>.
+	 * Constructs a new request to remove the value of a structural feature in a
+	 * model element. The editing domain will be derived from the <code>elementToEdit</code>.
 	 * 
 	 * @param elementToEdit
 	 *        the owner of the structural feature
@@ -107,7 +108,8 @@ public class RemoveValueRequest extends AbstractEditCommandRequest {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.gmf.runtime.emf.type.core.edithelper.IEditCommandRequest#
+	 * @see
+	 * org.eclipse.gmf.runtime.emf.type.core.edithelper.IEditCommandRequest#
 	 * getElementsToEdit()
 	 */
 	@Override
@@ -122,7 +124,8 @@ public class RemoveValueRequest extends AbstractEditCommandRequest {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.gmf.runtime.emf.type.core.edithelper.IEditCommandRequest#
+	 * @see
+	 * org.eclipse.gmf.runtime.emf.type.core.edithelper.IEditCommandRequest#
 	 * getEditHelperContext()
 	 */
 	public Object getEditHelperContext() {

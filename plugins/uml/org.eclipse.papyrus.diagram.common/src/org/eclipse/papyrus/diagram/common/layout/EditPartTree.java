@@ -25,8 +25,6 @@ import org.eclipse.gef.Request;
 import org.eclipse.gef.RootEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
 
-
-
 /**
  * This class is used to represent the hierarchy between selected editparts
  * 
@@ -58,7 +56,6 @@ public abstract class EditPartTree extends DefaultMutableTreeNode {
 	 * the request for the editpart
 	 */
 	private Request request;
-
 
 	/**
 	 * 
@@ -106,12 +103,12 @@ public abstract class EditPartTree extends DefaultMutableTreeNode {
 		this.request = request;
 	}
 
-
 	/**
 	 * Sets the used to precise if this tree is the reference of the alignment.
 	 * 
 	 * @param isReference
-	 *        the new used to precise if this tree is the reference of the alignment
+	 *        the new used to precise if this tree is the reference of the
+	 *        alignment
 	 */
 	public void setIsReference(boolean isReference) {
 		this.isReference = true;
@@ -120,8 +117,7 @@ public abstract class EditPartTree extends DefaultMutableTreeNode {
 	/**
 	 * Gets {@link #isReference()}
 	 * 
-	 * @return
-	 *         the {@link #isReference()} value
+	 * @return the {@link #isReference()} value
 	 */
 	public boolean isReference() {
 		return isReference;
@@ -140,13 +136,11 @@ public abstract class EditPartTree extends DefaultMutableTreeNode {
 	/**
 	 * Gets {@link #isSelected}
 	 * 
-	 * @return
-	 *         the {@link #isSelected} value
+	 * @return the {@link #isSelected} value
 	 */
 	public boolean isSelected() {
 		return isSelected;
 	}
-
 
 	/**
 	 * Gets the editpart represented by this tree
@@ -157,12 +151,10 @@ public abstract class EditPartTree extends DefaultMutableTreeNode {
 		return (EditPart)getUserObject();
 	}
 
-
 	/**
 	 * @see javax.swing.tree.DefaultMutableTreeNode#toString()
 	 * 
-	 * @return
-	 *         the string representing the tree with its children
+	 * @return the string representing the tree with its children
 	 */
 
 	@Override
@@ -221,8 +213,7 @@ public abstract class EditPartTree extends DefaultMutableTreeNode {
 	 * 
 	 * @param editpart
 	 *        the editpart that we look for
-	 * @return
-	 *         <ul>
+	 * @return <ul>
 	 *         <li> {@code true}</li> if the tree contains the editpart
 	 *         <li> {@code false}</li> if not
 	 *         </ul>
@@ -273,20 +264,19 @@ public abstract class EditPartTree extends DefaultMutableTreeNode {
 		return this.isFirstSelected;
 	}
 
-
 	/**
-	 * Gets the level for the first selected element in the full tree. This level is calculated from the root of this node.
+	 * Gets the level for the first selected element in the full tree. This
+	 * level is calculated from the root of this node.
 	 * 
 	 * @param index
 	 *        the index
-	 * @return
-	 *         <ul>
+	 * @return <ul>
 	 *         <li>the level for first selected element</li>
 	 *         <li> {@code -1}</li> if the first selected element can't be found
 	 *         </ul>
 	 */
 	public int getLevelForFirstSelectedElement() {
-		//We search the first level in the tree
+		// We search the first level in the tree
 		TreeNode[] path = this.getPath();
 		if(path.length > 1) {
 			EditPartTree result = getSelectedFirstEditPart((EditPartTree)path[1]);
@@ -301,7 +291,8 @@ public abstract class EditPartTree extends DefaultMutableTreeNode {
 	 * Gets the selected first edit part.
 	 * 
 	 * @param treeNode
-	 *        the tree node (level one of a tree) where we search the first selected element
+	 *        the tree node (level one of a tree) where we search the first
+	 *        selected element
 	 * @return the selected first edit part or {@code null} if not found
 	 */
 	protected EditPartTree getSelectedFirstEditPart(EditPartTree treeNode) {
@@ -321,8 +312,7 @@ public abstract class EditPartTree extends DefaultMutableTreeNode {
 	/**
 	 * Test if this node have child that are not selected
 	 * 
-	 * @return
-	 *         <ul>
+	 * @return <ul>
 	 *         <li>{@code true}</li> it exists a child which is not selected
 	 *         <li>{@code false}</li> all the children are selected
 	 *         </ul>
@@ -334,8 +324,7 @@ public abstract class EditPartTree extends DefaultMutableTreeNode {
 	/**
 	 * Returns the distance between the tree and the first unselected child
 	 * 
-	 * @return
-	 *         <ul>
+	 * @return <ul>
 	 *         <li>the distance between this tree and the first unselected child</li>
 	 *         <li>  {@code -1} when all the children are selected</li>
 	 *         </ul>
@@ -354,10 +343,11 @@ public abstract class EditPartTree extends DefaultMutableTreeNode {
 	}
 
 	/**
-	 * Returns the first unselected child or {@code null} if all the children are selected
+	 * Returns the first unselected child or {@code null} if all the children
+	 * are selected
 	 * 
-	 * @return
-	 *         the first unselected child or {@code null} if all the children are selected
+	 * @return the first unselected child or {@code null} if all the children
+	 *         are selected
 	 */
 	public EditPartTree getFirstUnselectedChild() {
 		int depth = this.getDepth();
@@ -373,10 +363,11 @@ public abstract class EditPartTree extends DefaultMutableTreeNode {
 	}
 
 	/**
-	 * Sorts the editparts in the tree
-	 * In this tree, we have the selected editparts.
-	 * Moreover, we add the intermediate packages, even if they aren't selected.
-	 * These intermediate packages are used to determine the final position of their parents, if the reference is inside on of these packages
+	 * Sorts the editparts in the tree In this tree, we have the selected
+	 * editparts. Moreover, we add the intermediate packages, even if they
+	 * aren't selected. These intermediate packages are used to determine the
+	 * final position of their parents, if the reference is inside on of these
+	 * packages
 	 * 
 	 * @param editparts
 	 *        the editparts to sort
@@ -385,7 +376,7 @@ public abstract class EditPartTree extends DefaultMutableTreeNode {
 		List<EditPart> parentsList;
 		if(editparts.size() >= 2) {
 
-			//we build the tree
+			// we build the tree
 			for(EditPart currentEP : editparts) {
 				parentsList = new ArrayList<EditPart>();
 				EditPart parent = currentEP;
@@ -394,15 +385,16 @@ public abstract class EditPartTree extends DefaultMutableTreeNode {
 				while(parent != null) {
 					if(this.contains(parent)) {
 						grandFatherTree = this.getTree(parent);
-						break; //on sort du while
+						break; // on sort du while
 					} else {
-						//we add all the parent in this list!
+						// we add all the parent in this list!
 						/*
-						 * we don't add the parent if it's a comparment , except if the parent is the selected element (property, enumeration
-						 * literal...),
-						 * of course, a property or a enumeration literal can't move in there compartment (in class diagram) but this choice allows
-						 * avoid some NullPointerException.
-						 * (see bug 317691)
+						 * we don't add the parent if it's a comparment , except
+						 * if the parent is the selected element (property,
+						 * enumeration literal...), of course, a property or a
+						 * enumeration literal can't move in there compartment
+						 * (in class diagram) but this choice allows avoid some
+						 * NullPointerException. (see bug 317691)
 						 */
 						if(!(parent instanceof CompartmentEditPart) || (parent instanceof CompartmentEditPart && parent == currentEP)) {
 							if(!(parent instanceof RootEditPart)) {
@@ -416,23 +408,24 @@ public abstract class EditPartTree extends DefaultMutableTreeNode {
 					parent = parent.getParent();
 				}
 
-
-				//We add all the node in the rootTree
+				// We add all the node in the rootTree
 				EditPartTree childTree = createChildrenTree(editparts, parentsList);
 
-				//we add the node to the tree
+				// we add the node to the tree
 				if(childTree != null) {
 					grandFatherTree.add(childTree);
 				}
 
 			}
 
-			//we precise which element is the reference (the last selected element)
+			// we precise which element is the reference (the last selected
+			// element)
 			this.getTree(editparts.get(editparts.size() - 1)).setIsReference(true);
 
 			/*
-			 * we precise for each branch the first selected element
-			 * it's this element (and its brothers) which are really align on the reference
+			 * we precise for each branch the first selected element it's this
+			 * element (and its brothers) which are really align on the
+			 * reference
 			 */
 
 			Enumeration childrenEnum = this.children();
@@ -457,9 +450,9 @@ public abstract class EditPartTree extends DefaultMutableTreeNode {
 	 * @param editparts
 	 *        the selected editparts for this action
 	 * @param children
-	 *        intermediate children which could be interesting to add like node in the tree
-	 * @return
-	 *         a new EditPartTree
+	 *        intermediate children which could be interesting to add like
+	 *        node in the tree
+	 * @return a new EditPartTree
 	 */
 	protected abstract EditPartTree createChildrenTree(List<EditPart> editparts, List<EditPart> children);
 

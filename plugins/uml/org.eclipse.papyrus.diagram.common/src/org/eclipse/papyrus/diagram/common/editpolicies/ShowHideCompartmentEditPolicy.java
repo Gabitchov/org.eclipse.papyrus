@@ -36,8 +36,8 @@ import org.eclipse.papyrus.diagram.common.commands.ShowHideCompartmentRequest;
 
 /**
  * 
- * This EditPolicy provides the same commands that {@link PropertyHandlerEditPolicy},
- * more the command to Show/Hide a given compartment
+ * This EditPolicy provides the same commands that {@link PropertyHandlerEditPolicy}, more the command to Show/Hide a given
+ * compartment
  * 
  */
 public class ShowHideCompartmentEditPolicy extends AbstractEditPolicy {
@@ -65,8 +65,7 @@ public class ShowHideCompartmentEditPolicy extends AbstractEditPolicy {
 	 * 
 	 * @param request
 	 *        the request
-	 * @return
-	 *         the command to show/hide a compartment
+	 * @return the command to show/hide a compartment
 	 */
 	protected Command getShowHideCompartmentCommand(ShowHideCompartmentRequest request) {
 		if(getHost() instanceof TopGraphicEditPart) {
@@ -88,8 +87,7 @@ public class ShowHideCompartmentEditPolicy extends AbstractEditPolicy {
 	 * 
 	 * @param ep
 	 *        a {@link TopGraphicEditPart}
-	 * @return
-	 *         all the views associated to this editpart
+	 * @return all the views associated to this editpart
 	 */
 	public List<?> getAllNotationViews(TopGraphicEditPart ep) {
 		View view = ep.getNotationView();
@@ -110,8 +108,7 @@ public class ShowHideCompartmentEditPolicy extends AbstractEditPolicy {
 	/**
 	 * Return the current {@link EditingDomain}
 	 * 
-	 * @return
-	 *         the current {@link EditingDomain}
+	 * @return the current {@link EditingDomain}
 	 */
 	protected TransactionalEditingDomain getEditingDomain() {
 		return ((IGraphicalEditPart)getHost()).getEditingDomain();

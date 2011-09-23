@@ -58,7 +58,9 @@ import org.w3c.dom.NodeList;
  */
 public class AspectUnspecifiedTypeCreationTool extends UnspecifiedTypeCreationTool {
 
-	/** List of element types of which one will be created (of type <code>IElementType</code>). */
+	/**
+	 * List of element types of which one will be created (of type <code>IElementType</code>).
+	 */
 	protected List<IElementType> elementTypes;
 
 	/** post action list */
@@ -164,8 +166,10 @@ public class AspectUnspecifiedTypeCreationTool extends UnspecifiedTypeCreationTo
 					org.w3c.dom.Node childNode = nodeList.item(i);
 					String childName = childNode.getNodeName();
 					if(IPapyrusPaletteConstant.POST_ACTION.equals(childName)) {
-						// node is a post action => retrieve the id of the factory in charge of this configuration
-						// node is a post action => retrieve the id of the provider in charge of this configuration
+						// node is a post action => retrieve the id of the
+						// factory in charge of this configuration
+						// node is a post action => retrieve the id of the
+						// provider in charge of this configuration
 						IAspectActionProvider provider = AspectToolService.getInstance().getProvider(AspectToolService.getProviderId(childNode));
 						if(provider != null) {
 							IAspectAction action = provider.createAction(childNode);
@@ -240,7 +244,6 @@ public class AspectUnspecifiedTypeCreationTool extends UnspecifiedTypeCreationTo
 		return buffer.toString();
 	}
 
-
 	public class CreateAspectUnspecifiedTypeRequest extends CreateUnspecifiedTypeRequest {
 
 		/**
@@ -281,7 +284,8 @@ public class AspectUnspecifiedTypeCreationTool extends UnspecifiedTypeCreationTo
 		}
 
 		/**
-		 * Returns the semantic hint for the given type. In case of extended type, it returns the hint of the super type
+		 * Returns the semantic hint for the given type. In case of extended
+		 * type, it returns the hint of the super type
 		 * 
 		 * @param elementType
 		 *        the hinted element type from which hint is retrieved

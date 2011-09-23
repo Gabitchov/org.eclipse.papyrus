@@ -19,8 +19,9 @@ import org.eclipse.papyrus.core.lifecycleevents.ISaveEventListener;
 import org.eclipse.swt.widgets.Display;
 
 /**
- * A listener for save actions. The goal is to track te editors save operations in order to
- * distinguish external resource modifications and those triggered by the save operation
+ * A listener for save actions. The goal is to track te editors save operations
+ * in order to distinguish external resource modifications and those triggered
+ * by the save operation
  * 
  * @author Ansgar Radermacher (CEA LIST)
  */
@@ -47,7 +48,8 @@ public class SaveListener {
 	class PostSaveListener implements ISaveEventListener {
 
 		public void doSaveAs(DoSaveEvent event) {
-			// do not reset saveActive directly to avoid eventual race conditions (avoid that the
+			// do not reset saveActive directly to avoid eventual race
+			// conditions (avoid that the
 			// resource change listener executes after the flag has been reset)
 			Display.getDefault().asyncExec(postSaveRunnable);
 		}

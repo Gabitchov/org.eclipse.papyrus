@@ -18,9 +18,9 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 
 /**
- * Copy of org.eclipse.ui.part.MultiPageEditorPart. Change if to be suitable has a sash leaf. A multi-page editor is an editor with multiple pages,
- * each of which may contain an editor or an arbitrary
- * SWT control.
+ * Copy of org.eclipse.ui.part.MultiPageEditorPart. Change if to be suitable has
+ * a sash leaf. A multi-page editor is an editor with multiple pages, each of
+ * which may contain an editor or an arbitrary SWT control.
  * <p>
  * This class is intented to separate folder stuff into 2 classes. Subclasses must implement the following methods:
  * <ul>
@@ -42,7 +42,8 @@ import org.eclipse.swt.widgets.Control;
 public abstract class AbstractTabFolderPart extends AbstractPanelPart {
 
 	/**
-	 * Subclasses that override {@link #createPageContainer(Composite)} can use this constant to get a site for the container that can be active while
+	 * Subclasses that override {@link #createPageContainer(Composite)} can use
+	 * this constant to get a site for the container that can be active while
 	 * the current page is deactivated.
 	 * 
 	 * @since 3.4
@@ -52,18 +53,20 @@ public abstract class AbstractTabFolderPart extends AbstractPanelPart {
 	 */
 	protected static final int PAGE_CONTAINER_SITE = 65535;
 
-	//	/**
-	//	 * Private tracing output.
-	//	 */
+	// /**
+	// * Private tracing output.
+	// */
 	//	private static final String TRACING_COMPONENT = "MPE"; //$NON-NLS-1$
 
-	//	/**
-	//	 * The active service locator. This value may be <code>null</code> if there is no selected page, or if the selected page is a control with no site.
-	//	 */
-	//	private INestable activeServiceLocator;
+	// /**
+	// * The active service locator. This value may be <code>null</code> if
+	// there is no selected page, or if the selected page is a control with no
+	// site.
+	// */
+	// private INestable activeServiceLocator;
 	//
 	//
-	//	private IServiceLocator pageContainerSite;
+	// private IServiceLocator pageContainerSite;
 
 	/**
 	 * Creates an empty multi-page editor with no pages.
@@ -73,8 +76,8 @@ public abstract class AbstractTabFolderPart extends AbstractPanelPart {
 	}
 
 	/**
-	 * The <code>MultiPageEditor</code> implementation of this <code>IWorkbenchPart</code> method creates the control for the multi-page editor by
-	 * calling <code>createContainer</code>, then <code>createPages</code>. Subclasses should implement <code>createPages</code> rather than
+	 * The <code>MultiPageEditor</code> implementation of this <code>IWorkbenchPart</code> method creates the control for the multi-page
+	 * editor by calling <code>createContainer</code>, then <code>createPages</code>. Subclasses should implement <code>createPages</code> rather than
 	 * overriding this method.
 	 * 
 	 * @param parent
@@ -91,16 +94,17 @@ public abstract class AbstractTabFolderPart extends AbstractPanelPart {
 	 * 
 	 * @return the active nested editor, or <code>null</code> if none
 	 */
-	//	public IEditorPart getActiveEditor() {
-	//		int index = getActivePage();
-	//		if (index != -1) {
-	//			return getEditor(index);
-	//		}
-	//		return null;
-	//	}
+	// public IEditorPart getActiveEditor() {
+	// int index = getActivePage();
+	// if (index != -1) {
+	// return getEditor(index);
+	// }
+	// return null;
+	// }
 
 	/**
-	 * Returns the index of the currently active page of this folder, or -1 if there is no active page.
+	 * Returns the index of the currently active page of this folder, or -1 if
+	 * there is no active page.
 	 * <p>
 	 * Subclasses should not override this method
 	 * </p>
@@ -116,31 +120,35 @@ public abstract class AbstractTabFolderPart extends AbstractPanelPart {
 	}
 
 	/**
-	 * Returns the control for the given page index, or <code>null</code> if no control has been set for the page. The page index must be valid.
+	 * Returns the control for the given page index, or <code>null</code> if no
+	 * control has been set for the page. The page index must be valid.
 	 * <p>
 	 * Subclasses should not override this method
 	 * </p>
 	 * 
 	 * @param pageIndex
 	 *        the index of the page
-	 * @return the control for the specified page, or <code>null</code> if none has been set
+	 * @return the control for the specified page, or <code>null</code> if none
+	 *         has been set
 	 */
 	protected Control getControl(int pageIndex) {
 		return getItem(pageIndex).getControl();
 	}
 
 	/**
-	 * Returns the editor for the given page index. The page index must be valid.
+	 * Returns the editor for the given page index. The page index must be
+	 * valid.
 	 * 
 	 * @param pageIndex
 	 *        the index of the page
-	 * @return the editor for the specified page, or <code>null</code> if the specified page was not created with
-	 *         <code>addPage(IEditorPart,IEditorInput)</code>
+	 * @return the editor for the specified page, or <code>null</code> if the
+	 *         specified page was not created with <code>addPage(IEditorPart,IEditorInput)</code>
 	 */
-	//	abstract protected IEditorPart getEditor(int pageIndex);
+	// abstract protected IEditorPart getEditor(int pageIndex);
 
 	/**
-	 * Returns the service locator for the given page index. This method can be used to create service locators for pages that are just controls. The
+	 * Returns the service locator for the given page index. This method can be
+	 * used to create service locators for pages that are just controls. The
 	 * page index must be valid.
 	 * <p>
 	 * This will return the editor site service locator for an editor, and create one for a page that is just a control.
@@ -148,20 +156,20 @@ public abstract class AbstractTabFolderPart extends AbstractPanelPart {
 	 * 
 	 * @param pageIndex
 	 *        the index of the page
-	 * @return the editor for the specified page, or <code>null</code> if the specified page was not created with
-	 *         <code>addPage(IEditorPart,IEditorInput)</code>
+	 * @return the editor for the specified page, or <code>null</code> if the
+	 *         specified page was not created with <code>addPage(IEditorPart,IEditorInput)</code>
 	 * @since 3.4
 	 */
-	//	protected final IServiceLocator getPageSite(int pageIndex) {
-	//		if (pageIndex == PAGE_CONTAINER_SITE) {
-	//			return getPageContainerSite();
-	//		}
+	// protected final IServiceLocator getPageSite(int pageIndex) {
+	// if (pageIndex == PAGE_CONTAINER_SITE) {
+	// return getPageContainerSite();
+	// }
 	//
-	//		/**
-	//		 * Return the site associated to the editor.
-	//		 */
-	//		return getEditor(pageIndex).getSite();
-	//	}
+	// /**
+	// * Return the site associated to the editor.
+	// */
+	// return getEditor(pageIndex).getSite();
+	// }
 
 	/**
 	 * @return A site that can be used with a header.
@@ -170,24 +178,27 @@ public abstract class AbstractTabFolderPart extends AbstractPanelPart {
 	 * @see #PAGE_CONTAINER_SITE
 	 * @see #getPageSite(int)
 	 */
-	//	private IServiceLocator getPageContainerSite() {
-	//		if (pageContainerSite == null) {
-	//			IServiceLocatorCreator slc = (IServiceLocatorCreator) getSite().getService(IServiceLocatorCreator.class);
-	//			pageContainerSite = slc.createServiceLocator(getSite(), null, new IDisposable() {
+	// private IServiceLocator getPageContainerSite() {
+	// if (pageContainerSite == null) {
+	// IServiceLocatorCreator slc = (IServiceLocatorCreator)
+	// getSite().getService(IServiceLocatorCreator.class);
+	// pageContainerSite = slc.createServiceLocator(getSite(), null, new
+	// IDisposable() {
 	//
-	//				public void dispose() {
-	//					final Control control = ((PartSite) getSite()).getPane().getControl();
-	//					if (control != null && !control.isDisposed()) {
-	//						((PartSite) getSite()).getPane().doHide();
-	//					}
-	//				}
-	//			});
-	//		}
-	//		return pageContainerSite;
-	//	}
+	// public void dispose() {
+	// final Control control = ((PartSite) getSite()).getPane().getControl();
+	// if (control != null && !control.isDisposed()) {
+	// ((PartSite) getSite()).getPane().doHide();
+	// }
+	// }
+	// });
+	// }
+	// return pageContainerSite;
+	// }
 
 	/**
-	 * Returns the tab item for the given page index (page index is 0-based). The page index must be valid.
+	 * Returns the tab item for the given page index (page index is 0-based).
+	 * The page index must be valid.
 	 * 
 	 * @param pageIndex
 	 *        the index of the page
@@ -219,8 +230,8 @@ public abstract class AbstractTabFolderPart extends AbstractPanelPart {
 	protected abstract CTabFolder getTabFolder();
 
 	/**
-	 * Notifies this multi-page editor that the page with the given id has been activated. This method is called when the user selects a different
-	 * tab.
+	 * Notifies this multi-page editor that the page with the given id has been
+	 * activated. This method is called when the user selects a different tab.
 	 * <p>
 	 * The <code>MultiPageEditorPart</code> implementation of this method sets focus to the new page, and notifies the action bar contributor (if
 	 * there is one). This checks whether the action bar contributor is an instance of <code>MultiPageEditorActionBarContributor</code>, and, if so,
@@ -234,48 +245,57 @@ public abstract class AbstractTabFolderPart extends AbstractPanelPart {
 	 *        the index of the activated page
 	 */
 	protected void pageChange(int newPageIndex) {
-		//		System.out.println(this.getClass().getSimpleName() + "pageChange()");
-		//		deactivateSite(false, false);
+		// System.out.println(this.getClass().getSimpleName() + "pageChange()");
+		// deactivateSite(false, false);
 		//
-		//		IPartService partService = (IPartService) getSite().getService(IPartService.class);
-		//		if (partService.getActivePart() == this) {
-		//			setFocus(newPageIndex);
-		//		}
+		// IPartService partService = (IPartService)
+		// getSite().getService(IPartService.class);
+		// if (partService.getActivePart() == this) {
+		// setFocus(newPageIndex);
+		// }
 		//
-		//		IEditorPart activeEditor = getEditor(newPageIndex);
+		// IEditorPart activeEditor = getEditor(newPageIndex);
 		//
-		//		IEditorActionBarContributor contributor = getEditorSite().getActionBarContributor();
-		//		if (contributor != null && contributor instanceof MultiPageEditorActionBarContributor) {
-		//			((MultiPageEditorActionBarContributor) contributor).setActivePage(activeEditor);
-		//		}
+		// IEditorActionBarContributor contributor =
+		// getEditorSite().getActionBarContributor();
+		// if (contributor != null && contributor instanceof
+		// MultiPageEditorActionBarContributor) {
+		// ((MultiPageEditorActionBarContributor)
+		// contributor).setActivePage(activeEditor);
+		// }
 		//
-		//		if (activeEditor != null) {
-		//			ISelectionProvider selectionProvider = activeEditor.getSite().getSelectionProvider();
-		//			if (selectionProvider != null) {
-		//				ISelectionProvider outerProvider = getSite().getSelectionProvider();
-		//				if (outerProvider instanceof MultiPageSelectionProvider) {
-		//					SelectionChangedEvent event = new SelectionChangedEvent(selectionProvider, selectionProvider.getSelection());
+		// if (activeEditor != null) {
+		// ISelectionProvider selectionProvider =
+		// activeEditor.getSite().getSelectionProvider();
+		// if (selectionProvider != null) {
+		// ISelectionProvider outerProvider = getSite().getSelectionProvider();
+		// if (outerProvider instanceof MultiPageSelectionProvider) {
+		// SelectionChangedEvent event = new
+		// SelectionChangedEvent(selectionProvider,
+		// selectionProvider.getSelection());
 		//
-		//					MultiPageSelectionProvider provider = (MultiPageSelectionProvider) outerProvider;
-		//					provider.fireSelectionChanged(event);
-		//					provider.firePostSelectionChanged(event);
-		//				} else {
-		//					if (Policy.DEBUG_MPE) {
+		// MultiPageSelectionProvider provider = (MultiPageSelectionProvider)
+		// outerProvider;
+		// provider.fireSelectionChanged(event);
+		// provider.firePostSelectionChanged(event);
+		// } else {
+		// if (Policy.DEBUG_MPE) {
 		//						Tracing.printTrace(TRACING_COMPONENT, "MultiPageEditorPart " + getTitle() //$NON-NLS-1$
 		//								+ " did not propogate selection for " //$NON-NLS-1$
-		//								+ activeEditor.getTitle());
-		//					}
-		//				}
-		//			}
-		//		}
+		// + activeEditor.getTitle());
+		// }
+		// }
+		// }
+		// }
 		//
-		//		activateSite();
+		// activateSite();
 	}
 
 	/**
-	 * This method can be used by implementors of {@link AbstractTabFolderPart#createPageContainer(Composite)} to deactivate the active inner editor
-	 * services while their header has focus. A
-	 * deactivateSite() must have a matching call to activateSite() when appropriate.
+	 * This method can be used by implementors of {@link AbstractTabFolderPart#createPageContainer(Composite)} to
+	 * deactivate the active inner editor services while their header has focus.
+	 * A deactivateSite() must have a matching call to activateSite() when
+	 * appropriate.
 	 * <p>
 	 * An new inner editor will have its site activated on a {@link AbstractTabFolderPart#pageChange(int)}.
 	 * </p>
@@ -293,38 +313,40 @@ public abstract class AbstractTabFolderPart extends AbstractPanelPart {
 	 * @see #getPageSite(int)
 	 * @see #PAGE_CONTAINER_SITE
 	 */
-	//	protected final void deactivateSite(boolean immediate, boolean containerSiteActive) {
-	//		// Deactivate the nested services from the last active service locator.
-	//		if (activeServiceLocator != null) {
-	//			activeServiceLocator.deactivate();
-	//			activeServiceLocator = null;
-	//		}
+	// protected final void deactivateSite(boolean immediate, boolean
+	// containerSiteActive) {
+	// // Deactivate the nested services from the last active service locator.
+	// if (activeServiceLocator != null) {
+	// activeServiceLocator.deactivate();
+	// activeServiceLocator = null;
+	// }
 	//
-	//		final int pageIndex = getActivePage();
-	//		final IKeyBindingService service = getSite().getKeyBindingService();
-	//		if (pageIndex < 0 || pageIndex >= getPageCount() || immediate) {
-	//			// There is no selected page, so deactivate the active service.
-	//			if (service instanceof INestableKeyBindingService) {
-	//				final INestableKeyBindingService nestableService = (INestableKeyBindingService) service;
-	//				nestableService.activateKeyBindingService(null);
-	//			} else {
-	//				WorkbenchPlugin
+	// final int pageIndex = getActivePage();
+	// final IKeyBindingService service = getSite().getKeyBindingService();
+	// if (pageIndex < 0 || pageIndex >= getPageCount() || immediate) {
+	// // There is no selected page, so deactivate the active service.
+	// if (service instanceof INestableKeyBindingService) {
+	// final INestableKeyBindingService nestableService =
+	// (INestableKeyBindingService) service;
+	// nestableService.activateKeyBindingService(null);
+	// } else {
+	// WorkbenchPlugin
 	//						.log("MultiPageEditorPart.deactivateSite()   Parent key binding service was not an instance of INestableKeyBindingService.  It was an instance of " + service.getClass().getName() + " instead."); //$NON-NLS-1$ //$NON-NLS-2$
-	//			}
-	//		}
+	// }
+	// }
 	//
-	//		if (containerSiteActive) {
-	//			IServiceLocator containerSite = getPageContainerSite();
-	//			if (containerSite instanceof INestable) {
-	//				activeServiceLocator = (INestable) containerSite;
-	//				activeServiceLocator.activate();
-	//			}
-	//		}
-	//	}
+	// if (containerSiteActive) {
+	// IServiceLocator containerSite = getPageContainerSite();
+	// if (containerSite instanceof INestable) {
+	// activeServiceLocator = (INestable) containerSite;
+	// activeServiceLocator.activate();
+	// }
+	// }
+	// }
 
 	/**
-	 * This method can be used by implementors of {@link #createPageContainer(Composite)} to activate the active inner editor services when their
-	 * header loses focus.
+	 * This method can be used by implementors of {@link #createPageContainer(Composite)} to activate the active inner
+	 * editor services when their header loses focus.
 	 * <p>
 	 * An new inner editor will have its site activated on a {@link #pageChange(int)}.
 	 * </p>
@@ -337,74 +359,76 @@ public abstract class AbstractTabFolderPart extends AbstractPanelPart {
 	 * @see #createPageContainer(Composite)
 	 * @see #getPageSite(int)
 	 */
-	//	protected final void activateSite() {
-	//		if (activeServiceLocator != null) {
-	//			activeServiceLocator.deactivate();
-	//			activeServiceLocator = null;
-	//		}
+	// protected final void activateSite() {
+	// if (activeServiceLocator != null) {
+	// activeServiceLocator.deactivate();
+	// activeServiceLocator = null;
+	// }
 	//
-	//		final IKeyBindingService service = getSite().getKeyBindingService();
-	//		final int pageIndex = getActivePage();
-	//		final IEditorPart editor = getEditor(pageIndex);
+	// final IKeyBindingService service = getSite().getKeyBindingService();
+	// final int pageIndex = getActivePage();
+	// final IEditorPart editor = getEditor(pageIndex);
 	//
-	//		if (editor != null) {
-	//			// active the service for this inner editor
-	//			if (service instanceof INestableKeyBindingService) {
-	//				final INestableKeyBindingService nestableService = (INestableKeyBindingService) service;
-	//				nestableService.activateKeyBindingService(editor.getEditorSite());
+	// if (editor != null) {
+	// // active the service for this inner editor
+	// if (service instanceof INestableKeyBindingService) {
+	// final INestableKeyBindingService nestableService =
+	// (INestableKeyBindingService) service;
+	// nestableService.activateKeyBindingService(editor.getEditorSite());
 	//
-	//			} else {
-	//				WorkbenchPlugin
+	// } else {
+	// WorkbenchPlugin
 	//						.log("MultiPageEditorPart.activateSite()   Parent key binding service was not an instance of INestableKeyBindingService.  It was an instance of " + service.getClass().getName() + " instead."); //$NON-NLS-1$ //$NON-NLS-2$
-	//			}
-	//			// Activate the services for the new service locator.
-	//			final IServiceLocator serviceLocator = editor.getEditorSite();
-	//			if (serviceLocator instanceof INestable) {
-	//				activeServiceLocator = (INestable) serviceLocator;
-	//				activeServiceLocator.activate();
-	//			}
+	// }
+	// // Activate the services for the new service locator.
+	// final IServiceLocator serviceLocator = editor.getEditorSite();
+	// if (serviceLocator instanceof INestable) {
+	// activeServiceLocator = (INestable) serviceLocator;
+	// activeServiceLocator.activate();
+	// }
 	//
-	//		} else {
-	//			Item item = getItem(pageIndex);
+	// } else {
+	// Item item = getItem(pageIndex);
 	//
-	//			// There is no selected editor, so deactivate the active service.
-	//			if (service instanceof INestableKeyBindingService) {
-	//				final INestableKeyBindingService nestableService = (INestableKeyBindingService) service;
-	//				nestableService.activateKeyBindingService(null);
-	//			} else {
-	//				WorkbenchPlugin
+	// // There is no selected editor, so deactivate the active service.
+	// if (service instanceof INestableKeyBindingService) {
+	// final INestableKeyBindingService nestableService =
+	// (INestableKeyBindingService) service;
+	// nestableService.activateKeyBindingService(null);
+	// } else {
+	// WorkbenchPlugin
 	//						.log("MultiPageEditorPart.activateSite()   Parent key binding service was not an instance of INestableKeyBindingService.  It was an instance of " + service.getClass().getName() + " instead."); //$NON-NLS-1$ //$NON-NLS-2$
-	//			}
+	// }
 	//
-	//			if (item.getData() instanceof INestable) {
-	//				activeServiceLocator = (INestable) item.getData();
-	//				activeServiceLocator.activate();
-	//			}
-	//		}
-	//	}
+	// if (item.getData() instanceof INestable) {
+	// activeServiceLocator = (INestable) item.getData();
+	// activeServiceLocator.activate();
+	// }
+	// }
+	// }
 
-	//	/**
-	//	 * Disposes the given part and its site.
-	//	 * 
-	//	 * @param part
-	//	 *            The part to dispose; must not be <code>null</code>.
-	//	 */
-	//	private void disposePart(final IWorkbenchPart part) {
-	//		SafeRunner.run(new ISafeRunnable() {
+	// /**
+	// * Disposes the given part and its site.
+	// *
+	// * @param part
+	// * The part to dispose; must not be <code>null</code>.
+	// */
+	// private void disposePart(final IWorkbenchPart part) {
+	// SafeRunner.run(new ISafeRunnable() {
 	//
-	//			public void run() {
-	//				IWorkbenchPartSite partSite = part.getSite();
-	//				part.dispose();
-	//				if (partSite instanceof MultiPageEditorSite) {
-	//					((MultiPageEditorSite) partSite).dispose();
-	//				}
-	//			}
+	// public void run() {
+	// IWorkbenchPartSite partSite = part.getSite();
+	// part.dispose();
+	// if (partSite instanceof MultiPageEditorSite) {
+	// ((MultiPageEditorSite) partSite).dispose();
+	// }
+	// }
 	//
-	//			public void handleException(Throwable e) {
-	//				// Exception has already being logged by Core. Do nothing.
-	//			}
-	//		});
-	//	}
+	// public void handleException(Throwable e) {
+	// // Exception has already being logged by Core. Do nothing.
+	// }
+	// });
+	// }
 
 	/**
 	 * Sets the currently active page for this folder.
@@ -413,7 +437,7 @@ public abstract class AbstractTabFolderPart extends AbstractPanelPart {
 	 *        the index of the page to be activated; the index must be valid
 	 */
 	public void setActivePage(int pageIndex) {
-		//		Assert.isTrue(pageIndex >= 0 && pageIndex < getPageCount());
+		// Assert.isTrue(pageIndex >= 0 && pageIndex < getPageCount());
 		if(!isValidPageIndex(pageIndex))
 			return;
 
@@ -422,9 +446,8 @@ public abstract class AbstractTabFolderPart extends AbstractPanelPart {
 	}
 
 	/**
-	 * Return true if the specified index is valid.
-	 * The index should be between 0 and pageCount.
-	 * If there is no page, return false.
+	 * Return true if the specified index is valid. The index should be between
+	 * 0 and pageCount. If there is no page, return false.
 	 * 
 	 * @param pageIndex
 	 * @return
@@ -440,40 +463,39 @@ public abstract class AbstractTabFolderPart extends AbstractPanelPart {
 	 * @param pageIndex
 	 *        the index of the page
 	 * @param control
-	 *        the control for the specified page, or <code>null</code> to clear the control
+	 *        the control for the specified page, or <code>null</code> to
+	 *        clear the control
 	 */
 	protected void setControl(int pageIndex, Control control) {
 		getItem(pageIndex).setControl(control);
 	}
 
-
 	/* *************************************** */
 	/* Added method. */
 	/* *************************************** */
 
-	//	/**
-	//	 * Title of this TilePart ? Needed by a trace message.
-	//	 */
-	//	protected String getTitle() {
-	//		return getClass().toString();
-	//	}
+	// /**
+	// * Title of this TilePart ? Needed by a trace message.
+	// */
+	// protected String getTitle() {
+	// return getClass().toString();
+	// }
 	//
-	//	/**
-	//	 * 
-	//	 */
-	//	protected IWorkbenchPartSite getSite() {
-	//		return getEditorSite();
-	//	}
+	// /**
+	// *
+	// */
+	// protected IWorkbenchPartSite getSite() {
+	// return getEditorSite();
+	// }
 	//
-	//	/**
-	//	 * 
-	//	 */
-	//	abstract protected void firePropertyChange(int propertyId);
+	// /**
+	// *
+	// */
+	// abstract protected void firePropertyChange(int propertyId);
 	//
-	//	/**
-	//	 * 
-	//	 */
-	//	abstract protected IEditorSite getEditorSite();
-
+	// /**
+	// *
+	// */
+	// abstract protected IEditorSite getEditorSite();
 
 }

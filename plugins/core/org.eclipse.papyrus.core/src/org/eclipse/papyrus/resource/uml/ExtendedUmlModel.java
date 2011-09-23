@@ -10,26 +10,25 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.ecore.resource.Resource;
 
-
 /**
  * A UML model whose resource is either a uml file or a profile(?).
  * 
  * @author cedric dumoulin
- *
+ * 
  */
 public class ExtendedUmlModel extends UmlModel {
 
-	
 	/**
-	 * Load the first resource with a supported extension
-	 * TODO: (question from Cedric) fix what is a supported extension ? 
+	 * Load the first resource with a supported extension TODO: (question from
+	 * Cedric) fix what is a supported extension ?
+	 * 
 	 * @see org.eclipse.papyrus.resource.AbstractBaseModel#loadModel(org.eclipse.core.runtime.IPath)
-	 *
+	 * 
 	 * @param fullPath
 	 */
 	@Override
 	public void loadModel(IFile file) {
-		
+
 		// Extract file name, without extension
 		IPath fullPath = file.getFullPath().removeFileExtension();
 

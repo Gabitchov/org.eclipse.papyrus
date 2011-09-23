@@ -28,9 +28,9 @@ public class Activator extends AbstractUIPlugin {
 	/** shared instance of the plugin */
 	private static Activator plugin;
 
-    /** Logging helper */
-    public static LogHelper log = new LogHelper();
-    
+	/** Logging helper */
+	public static LogHelper log = new LogHelper();
+
 	/**
 	 * The constructor
 	 */
@@ -45,7 +45,7 @@ public class Activator extends AbstractUIPlugin {
 		super.start(context);
 		plugin = this;
 		// register the login helper
-        log.setPlugin(plugin);
+		log.setPlugin(plugin);
 	}
 
 	/**

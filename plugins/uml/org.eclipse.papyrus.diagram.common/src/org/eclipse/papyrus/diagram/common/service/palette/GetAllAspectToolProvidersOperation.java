@@ -16,7 +16,6 @@ import java.util.List;
 import org.eclipse.gmf.runtime.common.core.service.IOperation;
 import org.eclipse.gmf.runtime.common.core.service.IProvider;
 
-
 /**
  * Operation to find an aspect tool provider, given its unique identifier
  */

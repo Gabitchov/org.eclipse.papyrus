@@ -48,9 +48,9 @@ import org.eclipse.uml2.uml.Profile;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-
 /**
- * Aspect action that modifies graphical appearance on the edit part newly created
+ * Aspect action that modifies graphical appearance on the edit part newly
+ * created
  */
 public class GraphicalPostAction extends ModelPostAction {
 
@@ -102,7 +102,6 @@ public class GraphicalPostAction extends ModelPostAction {
 		final CompositeCommand compositeCommand = new CompositeCommand("Modify Graphic");
 		EObject objectToEdit = (View)editPart.getModel();
 
-
 		for(String featureName : propertiesToUpdate.keySet()) {
 			// retrieve feature to set
 			EStructuralFeature feature = objectToEdit.eClass().getEStructuralFeature(featureName);
@@ -112,7 +111,8 @@ public class GraphicalPostAction extends ModelPostAction {
 			} else {
 
 				SetRequest request = new SetRequest(objectToEdit, feature, getValue(feature, propertiesToUpdate.get(featureName)));
-				// request.getExtendedData().put(ApplyStereotypeRequest.NEW_EDIT_PART_NAME, "NEW");
+				// request.getExtendedData().put(ApplyStereotypeRequest.NEW_EDIT_PART_NAME,
+				// "NEW");
 				compositeCommand.compose(new SetValueCommand(request));
 			}
 		}
@@ -121,8 +121,10 @@ public class GraphicalPostAction extends ModelPostAction {
 		if(compositeCommand.canExecute()) {
 			boolean isActivating = true;
 			Map<String, Boolean> options = null;
-			// use the viewer to determine if we are still initializing the diagram
-			// do not use the DiagramEditPart.isActivating since ConnectionEditPart's
+			// use the viewer to determine if we are still initializing the
+			// diagram
+			// do not use the DiagramEditPart.isActivating since
+			// ConnectionEditPart's
 			// parent will not be a diagram edit part
 			EditPartViewer viewer = editPart.getViewer();
 			if(viewer instanceof DiagramGraphicalViewer) {

@@ -29,9 +29,9 @@ import org.eclipse.gmf.runtime.notation.View;
 
 // TODO: Auto-generated Javadoc
 /**
- * Command to change the ZOrdering of the new created EditPart. The possible actions are Send to
- * back, Bring to the front, Send backward and Bring forward. Check ZOrderRequest class for the list
- * of strings.
+ * Command to change the ZOrdering of the new created EditPart. The possible
+ * actions are Send to back, Bring to the front, Send backward and Bring
+ * forward. Check ZOrderRequest class for the list of strings.
  * 
  * @author <a href="mailto:gmerin@prodevelop.es">Gabriel Merin</a>
  */
@@ -98,7 +98,8 @@ public class ChangeZOrderOfCreatedEP extends AbstractTransactionalCommand {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @seeorg.eclipse.gmf.runtime.emf.commands.core.command. AbstractTransactionalCommand#
+	 * @seeorg.eclipse.gmf.runtime.emf.commands.core.command.
+	 * AbstractTransactionalCommand#
 	 * doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor,
 	 * org.eclipse.core.runtime.IAdaptable)
 	 */
@@ -125,8 +126,8 @@ public class ChangeZOrderOfCreatedEP extends AbstractTransactionalCommand {
 	 * @param view
 	 *        the view
 	 * 
-	 * @return the appropriate ZOrder command depending on the requestString passed during the
-	 *         constructor of the class.
+	 * @return the appropriate ZOrder command depending on the requestString
+	 *         passed during the constructor of the class.
 	 */
 	private Command getZOrderCommand(View view) {
 		IGraphicalEditPart newElementEP = (IGraphicalEditPart)viewer.getEditPartRegistry().get(view);

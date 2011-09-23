@@ -56,7 +56,8 @@ public class BackboneException extends Exception {
 	}
 
 	/**
-	 * Creates a new BackboneException with a specified message and the specified cause.
+	 * Creates a new BackboneException with a specified message and the
+	 * specified cause.
 	 * 
 	 * @param message
 	 *        the message of the exception

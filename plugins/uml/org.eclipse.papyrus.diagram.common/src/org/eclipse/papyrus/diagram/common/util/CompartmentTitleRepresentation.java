@@ -17,7 +17,8 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.notation.View;
 
 /**
- * This class allows to represent the title of a compartment in a the Show/Hide Compartment Action
+ * This class allows to represent the title of a compartment in a the Show/Hide
+ * Compartment Action
  * 
  * 
  * 
@@ -50,8 +51,8 @@ public class CompartmentTitleRepresentation {
 
 	/**
 	 * 
-	 * @return
-	 *         <code>true</code> if the title of the compartment is displayed and <code>false</code> if not
+	 * @return <code>true</code> if the title of the compartment is displayed
+	 *         and <code>false</code> if not
 	 */
 	public boolean isTitleVisible() {
 		return CompartmentUtils.isCompartmentTitleVisible(view);
@@ -59,8 +60,7 @@ public class CompartmentTitleRepresentation {
 
 	/**
 	 * 
-	 * @return
-	 *         the real object represented by this class
+	 * @return the real object represented by this class
 	 */
 	public Object getRealObject() {
 		return view;
@@ -68,8 +68,7 @@ public class CompartmentTitleRepresentation {
 
 	/**
 	 * 
-	 * @return
-	 *         the parent editpart
+	 * @return the parent editpart
 	 */
 	public EditPart getParent() {
 		return this.parent;

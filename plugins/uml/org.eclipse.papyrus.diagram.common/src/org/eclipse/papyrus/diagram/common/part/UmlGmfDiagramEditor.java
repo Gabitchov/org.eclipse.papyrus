@@ -14,16 +14,14 @@ import org.eclipse.papyrus.core.lifecycleevents.ISaveAndDirtyService;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
 
-
 /**
- * Common ancestor of GMF based editors for UML.
- * This class allows to declare stuff commons to all this kind of editors.
+ * Common ancestor of GMF based editors for UML. This class allows to declare
+ * stuff commons to all this kind of editors.
  * 
  * @author cedric dumoulin
  * 
  */
 public class UmlGmfDiagramEditor extends SynchronizableGmfDiagramEditor {
-
 
 	/**
 	 * The associated Diagram.
@@ -31,7 +29,8 @@ public class UmlGmfDiagramEditor extends SynchronizableGmfDiagramEditor {
 	private Diagram diagram;
 
 	/**
-	 * Object used to synchronize the name of the editor with the name of the diagram.
+	 * Object used to synchronize the name of the editor with the name of the
+	 * diagram.
 	 */
 	private PartNameSynchronizer partNameSynchronizer;
 
@@ -55,7 +54,8 @@ public class UmlGmfDiagramEditor extends SynchronizableGmfDiagramEditor {
 		partNameSynchronizer = new PartNameSynchronizer(diagram);
 
 		// Register this part to the ISaveAndDirtyService.
-		// This will allows to be notified of saveAs events, and the isDirty flag will be taken into
+		// This will allows to be notified of saveAs events, and the isDirty
+		// flag will be taken into
 		// account.
 		ISaveAndDirtyService saveAndDirtyService = servicesRegistry.getService(ISaveAndDirtyService.class);
 		saveAndDirtyService.registerIsaveablePart(this);
@@ -117,14 +117,15 @@ public class UmlGmfDiagramEditor extends SynchronizableGmfDiagramEditor {
 	 */
 	@Override
 	protected KeyHandler getKeyHandler() {
-		//we remove all keybinding provided by GMF
+		// we remove all keybinding provided by GMF
 		KeyHandler keyHandler = new KeyHandler();
 		return keyHandler;
 	}
 
 	/**
-	 * A class taking in charge the synchronization of the partName and the diagram name.
-	 * When diagram name change, the other is automatically updated.
+	 * A class taking in charge the synchronization of the partName and the
+	 * diagram name. When diagram name change, the other is automatically
+	 * updated.
 	 * 
 	 * @author cedric dumoulin
 	 * 

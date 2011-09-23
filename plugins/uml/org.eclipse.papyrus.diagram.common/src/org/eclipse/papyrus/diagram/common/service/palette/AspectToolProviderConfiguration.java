@@ -27,7 +27,8 @@ public class AspectToolProviderConfiguration extends AbstractProviderConfigurati
 	protected final String id;
 
 	/**
-	 * Creates and builds a new provider contribution descriptor (<code>DecoratorProviderConfiguration</code>) by parsing its configuration element.
+	 * Creates and builds a new provider contribution descriptor ( <code>DecoratorProviderConfiguration</code>) by parsing its configuration
+	 * element.
 	 * 
 	 * @param configElement
 	 *        A provider XML configuration element
@@ -39,18 +40,18 @@ public class AspectToolProviderConfiguration extends AbstractProviderConfigurati
 	}
 
 	/**
-	 * Creates a new <code>ProviderContributionDescriptor</code> instance
-	 * by parsing its configuration element.
+	 * Creates a new <code>ProviderContributionDescriptor</code> instance by
+	 * parsing its configuration element.
 	 * 
 	 * @param configElement
 	 *        The provider XML configuration element
 	 */
 	protected AspectToolProviderConfiguration(IConfigurationElement configElement) {
-		// retrieve only ID, to test if the factory is the right one before creating whole element
+		// retrieve only ID, to test if the factory is the right one before
+		// creating whole element
 		id = configElement.getAttribute(ID);
 		Assert.isNotNull(id, "impossible to get the identifier for the factory");
 	}
-
 
 	/**
 	 * Returns the ID of the factory configured by this configuration

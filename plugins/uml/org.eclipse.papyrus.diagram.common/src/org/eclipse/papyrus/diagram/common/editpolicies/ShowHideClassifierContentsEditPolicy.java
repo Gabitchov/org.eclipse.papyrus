@@ -38,8 +38,8 @@ import org.eclipse.papyrus.diagram.common.commands.ShowHideElementsRequest;
 
 /**
  * 
- * This EditPolicy provides the same commands that {@link PropertyHandlerEditPolicy},
- * more the command to Show/Hide a given compartment
+ * This EditPolicy provides the same commands that {@link PropertyHandlerEditPolicy}, more the command to Show/Hide a given
+ * compartment
  * 
  */
 public class ShowHideClassifierContentsEditPolicy extends AbstractEditPolicy {
@@ -72,8 +72,7 @@ public class ShowHideClassifierContentsEditPolicy extends AbstractEditPolicy {
 	 * @param container
 	 *        the container for the element
 	 * @param semanticElement
-	 * @return
-	 *         The command to create the view
+	 * @return The command to create the view
 	 */
 	protected Command getCreateViewCommand(View container, EObject semanticElement, Point location) {
 
@@ -84,7 +83,7 @@ public class ShowHideClassifierContentsEditPolicy extends AbstractEditPolicy {
 		if(cmd.canExecute()) {
 			compositeCmd.add(new ICommandProxy(cmd));
 		}
-		//set the location
+		// set the location
 		if(location != null) {
 			SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", (IAdaptable)cmd.getCommandResult().getReturnValue(), location); //$NON-NLS-1$
 			if(setBoundsCommand.canExecute()) {
@@ -100,20 +99,17 @@ public class ShowHideClassifierContentsEditPolicy extends AbstractEditPolicy {
 	 * 
 	 * @param hidedEditPart
 	 *        the EditPart to hide
-	 * @return
-	 *         the command to the EditPart
+	 * @return the command to the EditPart
 	 */
 	protected Command getDestroyViewCommand(EditPart hidedEditPart) {
 		DeleteCommand cmd = new DeleteCommand(getEditingDomain(), (View)hidedEditPart.getModel());
 		return new ICommandProxy(cmd);
 	}
 
-
 	/**
 	 * Return the current {@link EditingDomain}
 	 * 
-	 * @return
-	 *         the current {@link EditingDomain}
+	 * @return the current {@link EditingDomain}
 	 */
 	protected TransactionalEditingDomain getEditingDomain() {
 		return ((IGraphicalEditPart)getHost()).getEditingDomain();

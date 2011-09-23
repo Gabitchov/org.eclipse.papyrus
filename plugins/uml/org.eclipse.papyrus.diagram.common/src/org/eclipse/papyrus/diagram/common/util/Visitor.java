@@ -47,8 +47,7 @@ public class Visitor {
 	 * 
 	 * @param visited
 	 *        the visited namespace
-	 * @return
-	 *         the owned and imported {@link Type} imported namespace
+	 * @return the owned and imported {@link Type} imported namespace
 	 */
 	public static List<Element> getOwnedAndImportedElement(Namespace visited, Class<?> wantedClass) {
 		List<Element> visibleElements = new ArrayList<Element>();
@@ -77,8 +76,7 @@ public class Visitor {
 	 * 
 	 * @param visited
 	 *        the visited namespace
-	 * @return
-	 *         the imported {@link Namespace}
+	 * @return the imported {@link Namespace}
 	 */
 	public static List<Namespace> getImportedNamespaces(Namespace visited) {
 		List<Namespace> namespaces = new ArrayList<Namespace>();
@@ -100,14 +98,13 @@ public class Visitor {
 	 * 
 	 * @param visited
 	 *        the visited namespace
-	 * @return
-	 *         the owned and imported {@link Namespace}
+	 * @return the owned and imported {@link Namespace}
 	 */
 	public static List<Namespace> getOwnedAndImportedNamespaces(Namespace visited) {
 		List<Namespace> namespaces = new ArrayList<Namespace>();
 		// first retrieves imported namespaces
 		namespaces.addAll(getImportedNamespaces(visited));
-		// 	then retrieves owned namespaces
+		// then retrieves owned namespaces
 		for(NamedElement n : visited.getOwnedMembers()) {
 			if(n instanceof Namespace)
 				namespaces.add((Namespace)n);

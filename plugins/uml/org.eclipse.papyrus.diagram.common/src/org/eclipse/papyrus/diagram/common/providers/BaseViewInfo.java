@@ -263,9 +263,9 @@ public class BaseViewInfo implements ViewInfo {
 	// // add a node
 
 	/**
-	 * Adds a node in its corresponding place in the hierarchy. The parent node needs not exist yet
-	 * in the hierarchy. Orphan nodes are stored in a temporary storage, that is revisited when a
-	 * new node is added.
+	 * Adds a node in its corresponding place in the hierarchy. The parent node
+	 * needs not exist yet in the hierarchy. Orphan nodes are stored in a
+	 * temporary storage, that is revisited when a new node is added.
 	 * 
 	 * @see es.cv.gvcase.mdt.common.provider.ViewInfo#addNode(int, es.cv.gvcase.mdt.common.provider.ViewInfo)
 	 */
@@ -324,8 +324,8 @@ public class BaseViewInfo implements ViewInfo {
 	}
 
 	/**
-	 * Adds a node that was in the temporary storage and its parent node has just been added to the
-	 * hierarchy.
+	 * Adds a node that was in the temporary storage and its parent node has
+	 * just been added to the hierarchy.
 	 * 
 	 * @param parentID
 	 *        the parent id
@@ -343,8 +343,8 @@ public class BaseViewInfo implements ViewInfo {
 	}
 
 	/**
-	 * Revise pending nodes in the temporary storage. Nodes whose parent has been added will be put
-	 * in their corresponding in the hierarchy.
+	 * Revise pending nodes in the temporary storage. Nodes whose parent has
+	 * been added will be put in their corresponding in the hierarchy.
 	 * 
 	 * @param info
 	 *        the info

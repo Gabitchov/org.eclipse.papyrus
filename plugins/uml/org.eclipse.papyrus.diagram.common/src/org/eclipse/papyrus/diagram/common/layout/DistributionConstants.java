@@ -26,19 +26,31 @@ import org.eclipse.papyrus.diagram.common.Messages;
  */
 public class DistributionConstants {
 
-	/** the list of the horizontal values for the distribution and the alignment actions */
+	/**
+	 * the list of the horizontal values for the distribution and the alignment
+	 * actions
+	 */
 	public static final List<Integer> horizontalValuesList = createArrayList(new int[]{ PositionConstants.NORTH, PositionConstants.SOUTH, PositionConstants.NORTH_EAST, PositionConstants.NORTH_WEST, PositionConstants.SOUTH_EAST, PositionConstants.SOUTH_WEST });
 
-	/** the list of the vertical values for the distribution and the alignment actions */
+	/**
+	 * the list of the vertical values for the distribution and the alignment
+	 * actions
+	 */
 	public static final List<Integer> verticalValuesList = createArrayList(new int[]{ PositionConstants.EAST, PositionConstants.WEST, PositionConstants.NORTH_EAST, PositionConstants.NORTH_WEST, PositionConstants.SOUTH_EAST, PositionConstants.SOUTH_WEST });
 
-	/** Constant used to identify the horizontal distribution in the parent container */
+	/**
+	 * Constant used to identify the horizontal distribution in the parent
+	 * container
+	 */
 	public static final int DISTRIBUTE_H_CONTAINER_INT = PositionConstants.HORIZONTAL;
 
 	/** Constant used to identify the horizontal distribution between nodes */
 	public static final int DISTRIBUTE_H_NODES_INT = PositionConstants.HORIZONTAL | PositionConstants.CENTER;
 
-	/** Constant used to identify the vertical distribution in the parent container */
+	/**
+	 * Constant used to identify the vertical distribution in the parent
+	 * container
+	 */
 	public static final int DISTRIBUTE_V_CONTAINER_INT = PositionConstants.VERTICAL;
 
 	/** Constant used to identify the vertical distribution between nodes */
@@ -105,8 +117,7 @@ public class DistributionConstants {
 	 * 
 	 * @param array
 	 *        the array used to create an {@link ArrayList}<{@link Integer}>
-	 * @return
-	 *         an {@link ArrayList}<{@link Integer}> filled with {@code array}
+	 * @return an {@link ArrayList}<{@link Integer}> filled with {@code array}
 	 */
 	private static List<Integer> createArrayList(int[] array) {
 		ArrayList<Integer> values = new ArrayList<Integer>();

@@ -22,7 +22,8 @@ import org.eclipse.swt.graphics.Font;
 import org.eclipse.uml2.uml.NamedElement;
 
 /**
- * this editpart manage the font and icon of the name label and qualified name label.
+ * this editpart manage the font and icon of the name label and qualified name
+ * label.
  * 
  */
 public abstract class NamedElementEditPart extends UMLNodeEditPart implements IUMLNamedElementEditPart {
@@ -56,8 +57,6 @@ public abstract class NamedElementEditPart extends UMLNodeEditPart implements IU
 		getNodeNamedElementFigure().setNameLabelIcon(NameLabelIconHelper.getNameLabelIconValue((View)getModel()));
 	}
 
-
-
 	protected void refreshVisuals() {
 		super.refreshVisuals();
 		if(getNodeNamedElementFigure() != null && resolveSemanticElement() != null) {
@@ -68,8 +67,8 @@ public abstract class NamedElementEditPart extends UMLNodeEditPart implements IU
 	}
 
 	/**
-	 * A method to specify the labels to be update when the font is refreshed. Subclasses should
-	 * call super.refreshLabelsFont(font)
+	 * A method to specify the labels to be update when the font is refreshed.
+	 * Subclasses should call super.refreshLabelsFont(font)
 	 * 
 	 * @param font
 	 *        the font to use

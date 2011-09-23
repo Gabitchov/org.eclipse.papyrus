@@ -31,25 +31,26 @@ import org.eclipse.papyrus.sashwindows.di.util.DiSwitch;
 import org.eclipse.swt.SWT;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Sash Model</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Sash Model</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.sashwindows.di.impl.SashModelImpl#getWindows <em>Windows</em>}</li>
- *   <li>{@link org.eclipse.papyrus.sashwindows.di.impl.SashModelImpl#getCurrentSelection <em>Current Selection</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sashwindows.di.impl.SashModelImpl#getWindows
+ * <em>Windows</em>}</li>
+ * <li>
+ * {@link org.eclipse.papyrus.sashwindows.di.impl.SashModelImpl#getCurrentSelection
+ * <em>Current Selection</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class SashModelImpl extends EObjectImpl implements SashModel {
 
 	/**
-	 * The cached value of the '{@link #getWindows() <em>Windows</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getWindows() <em>Windows</em>}'
+	 * containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getWindows()
 	 * @generated
 	 * @ordered
@@ -57,9 +58,10 @@ public class SashModelImpl extends EObjectImpl implements SashModel {
 	protected EList<Window> windows;
 
 	/**
-	 * The cached value of the '{@link #getCurrentSelection() <em>Current Selection</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getCurrentSelection()
+	 * <em>Current Selection</em>}' reference. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getCurrentSelection()
 	 * @generated
 	 * @ordered
@@ -67,8 +69,8 @@ public class SashModelImpl extends EObjectImpl implements SashModel {
 	protected TabFolder currentSelection;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected SashModelImpl() {
@@ -76,8 +78,8 @@ public class SashModelImpl extends EObjectImpl implements SashModel {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -86,28 +88,28 @@ public class SashModelImpl extends EObjectImpl implements SashModel {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Window> getWindows() {
-		if (windows == null) {
+		if(windows == null) {
 			windows = new EObjectContainmentEList<Window>(Window.class, this, DiPackage.SASH_MODEL__WINDOWS);
 		}
 		return windows;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public TabFolder getCurrentSelection() {
-		if (currentSelection != null && currentSelection.eIsProxy()) {
+		if(currentSelection != null && currentSelection.eIsProxy()) {
 			InternalEObject oldCurrentSelection = (InternalEObject)currentSelection;
 			currentSelection = (TabFolder)eResolveProxy(oldCurrentSelection);
-			if (currentSelection != oldCurrentSelection) {
-				if (eNotificationRequired())
+			if(currentSelection != oldCurrentSelection) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DiPackage.SASH_MODEL__CURRENT_SELECTION, oldCurrentSelection, currentSelection));
 			}
 		}
@@ -115,8 +117,8 @@ public class SashModelImpl extends EObjectImpl implements SashModel {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public TabFolder basicGetCurrentSelection() {
@@ -124,20 +126,19 @@ public class SashModelImpl extends EObjectImpl implements SashModel {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setCurrentSelection(TabFolder newCurrentSelection) {
 		TabFolder oldCurrentSelection = currentSelection;
 		currentSelection = newCurrentSelection;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DiPackage.SASH_MODEL__CURRENT_SELECTION, oldCurrentSelection, currentSelection));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
 	 */
@@ -146,8 +147,7 @@ public class SashModelImpl extends EObjectImpl implements SashModel {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
 	 */
@@ -161,8 +161,7 @@ public class SashModelImpl extends EObjectImpl implements SashModel {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
 	 */
@@ -181,8 +180,7 @@ public class SashModelImpl extends EObjectImpl implements SashModel {
 			 */
 			public PageRef caseSashModel(SashModel object) {
 				PageRef res = null;
-				for(Window window : object.getWindows())
-				{
+				for(Window window : object.getWindows()) {
 					res = this.doSwitch(window);
 					if(res != null)
 						return res;
@@ -204,7 +202,6 @@ public class SashModelImpl extends EObjectImpl implements SashModel {
 				if(panel == null)
 					return null;
 
-
 				PageRef res = this.doSwitch(panel);
 				if(res != null)
 					return res;
@@ -222,8 +219,7 @@ public class SashModelImpl extends EObjectImpl implements SashModel {
 			 */
 			public PageRef caseSashPanel(SashPanel object) {
 				PageRef res = null;
-				for(AbstractPanel panel : object.getChildren())
-				{
+				for(AbstractPanel panel : object.getChildren()) {
 					res = this.doSwitch(panel);
 					if(res != null)
 						return res;
@@ -241,8 +237,7 @@ public class SashModelImpl extends EObjectImpl implements SashModel {
 			 * @return
 			 */
 			public PageRef caseTabFolder(TabFolder object) {
-				for(PageRef pageRef : object.getChildren())
-				{
+				for(PageRef pageRef : object.getChildren()) {
 
 					if(pageRef.isForIdentifier(pageIdentifier))
 						return pageRef;
@@ -260,9 +255,8 @@ public class SashModelImpl extends EObjectImpl implements SashModel {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * TODO Add method to metamodel
+	 * <!-- begin-user-doc --> <!-- end-user-doc --> TODO Add method to
+	 * metamodel
 	 * 
 	 * @generated NOT
 	 */
@@ -281,8 +275,7 @@ public class SashModelImpl extends EObjectImpl implements SashModel {
 			 */
 			public TabFolder caseSashModel(SashModel object) {
 				TabFolder res = null;
-				for(Window window : object.getWindows())
-				{
+				for(Window window : object.getWindows()) {
 					res = this.doSwitch(window);
 					if(res != null)
 						return res;
@@ -304,7 +297,6 @@ public class SashModelImpl extends EObjectImpl implements SashModel {
 				if(panel == null)
 					return null;
 
-
 				TabFolder res = this.doSwitch(panel);
 				if(res != null)
 					return res;
@@ -322,8 +314,7 @@ public class SashModelImpl extends EObjectImpl implements SashModel {
 			 */
 			public TabFolder caseSashPanel(SashPanel object) {
 				TabFolder res = null;
-				for(AbstractPanel panel : object.getChildren())
-				{
+				for(AbstractPanel panel : object.getChildren()) {
 					res = this.doSwitch(panel);
 					if(res != null)
 						return res;
@@ -353,29 +344,26 @@ public class SashModelImpl extends EObjectImpl implements SashModel {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * TODO Add method to metamodel
+	 * <!-- begin-user-doc --> <!-- end-user-doc --> TODO Add method to
+	 * metamodel
 	 * 
 	 * @generated NOT
 	 */
 	public Window lookupFirstWindow() {
-	
+
 		List<Window> list = getWindows();
 		if(list.size() == 0)
 			return null;
-		
+
 		return list.get(0);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
 	 */
 	public void movePage(TabFolder srcParentFolder, int srcIndex, TabFolder targetParentFolder, int targetIndex) {
-
 
 		// Check if we move all pages of srcFolder
 		if(srcIndex == -1) {
@@ -401,8 +389,7 @@ public class SashModelImpl extends EObjectImpl implements SashModel {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
 	 */
@@ -421,7 +408,8 @@ public class SashModelImpl extends EObjectImpl implements SashModel {
 			direction = SWT.VERTICAL;
 		// Create sash
 		newSash = DiFactory.eINSTANCE.createSashPanel();
-		// Insert in parent. Should be done before setting childrens, otherwise, the child can't be
+		// Insert in parent. Should be done before setting childrens, otherwise,
+		// the child can't be
 		// replaced as it will not belong to parent anymore.
 		refParent.replaceChild(refFolder, newSash);
 
@@ -434,8 +422,7 @@ public class SashModelImpl extends EObjectImpl implements SashModel {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
 	 */
@@ -449,8 +436,7 @@ public class SashModelImpl extends EObjectImpl implements SashModel {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
 	 */
@@ -476,25 +462,25 @@ public class SashModelImpl extends EObjectImpl implements SashModel {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated NOT
 	 */
 	public void removeAllPages() {
-		
+
 		// Get a the first window and a folder.
 		// Clear the folder and set it as the root folder.
 		// This disguard all other folder and pages ...
 		Window firstWindow = lookupFirstWindow();
 		TabFolder folder = lookupFirstFolder();
-		
+
 		folder.getChildren().clear();
 		firstWindow.setPanel(folder);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated NOT
 	 */
 	public void removeOtherPages(Object pageIdentifier) {
@@ -504,99 +490,98 @@ public class SashModelImpl extends EObjectImpl implements SashModel {
 		Window firstWindow = lookupFirstWindow();
 		TabFolder folder = lookupFirstFolder();
 		PageRef page = lookupPage(pageIdentifier);
-		
+
 		folder.getChildren().clear();
-		if( page != null)
-		{
+		if(page != null) {
 			folder.getChildren().add(page);
 		}
 		firstWindow.setPanel(folder);
 	}
 
-	
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case DiPackage.SASH_MODEL__WINDOWS:
-				return ((InternalEList<?>)getWindows()).basicRemove(otherEnd, msgs);
+		switch(featureID) {
+		case DiPackage.SASH_MODEL__WINDOWS:
+			return ((InternalEList<?>)getWindows()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case DiPackage.SASH_MODEL__WINDOWS:
-				return getWindows();
-			case DiPackage.SASH_MODEL__CURRENT_SELECTION:
-				if (resolve) return getCurrentSelection();
-				return basicGetCurrentSelection();
+		switch(featureID) {
+		case DiPackage.SASH_MODEL__WINDOWS:
+			return getWindows();
+		case DiPackage.SASH_MODEL__CURRENT_SELECTION:
+			if(resolve)
+				return getCurrentSelection();
+			return basicGetCurrentSelection();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case DiPackage.SASH_MODEL__WINDOWS:
-				getWindows().clear();
-				getWindows().addAll((Collection<? extends Window>)newValue);
-				return;
-			case DiPackage.SASH_MODEL__CURRENT_SELECTION:
-				setCurrentSelection((TabFolder)newValue);
-				return;
+		switch(featureID) {
+		case DiPackage.SASH_MODEL__WINDOWS:
+			getWindows().clear();
+			getWindows().addAll((Collection<? extends Window>)newValue);
+			return;
+		case DiPackage.SASH_MODEL__CURRENT_SELECTION:
+			setCurrentSelection((TabFolder)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case DiPackage.SASH_MODEL__WINDOWS:
-				getWindows().clear();
-				return;
-			case DiPackage.SASH_MODEL__CURRENT_SELECTION:
-				setCurrentSelection((TabFolder)null);
-				return;
+		switch(featureID) {
+		case DiPackage.SASH_MODEL__WINDOWS:
+			getWindows().clear();
+			return;
+		case DiPackage.SASH_MODEL__CURRENT_SELECTION:
+			setCurrentSelection((TabFolder)null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case DiPackage.SASH_MODEL__WINDOWS:
-				return windows != null && !windows.isEmpty();
-			case DiPackage.SASH_MODEL__CURRENT_SELECTION:
-				return currentSelection != null;
+		switch(featureID) {
+		case DiPackage.SASH_MODEL__WINDOWS:
+			return windows != null && !windows.isEmpty();
+		case DiPackage.SASH_MODEL__CURRENT_SELECTION:
+			return currentSelection != null;
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //SashModelImpl
+} // SashModelImpl

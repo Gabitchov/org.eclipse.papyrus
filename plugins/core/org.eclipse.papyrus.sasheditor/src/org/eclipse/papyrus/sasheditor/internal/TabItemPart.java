@@ -22,9 +22,9 @@ import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Control;
 
 /**
- * A controller associated to a tabitem in a tabfolder. This controller contains a reference to
- * a PagePart.
- * This class is used exclusively by the TabFolderPart. It should be not used from elsewhere.
+ * A controller associated to a tabitem in a tabfolder. This controller contains
+ * a reference to a PagePart. This class is used exclusively by the
+ * TabFolderPart. It should be not used from elsewhere.
  * 
  * @author dumoulin
  * 
@@ -34,10 +34,11 @@ public class TabItemPart {
 	/**
 	 * The associated model TODO : change the type
 	 */
-	//	protected Object model;
+	// protected Object model;
 
 	/**
-	 * The child associated to this tabitem. The child is rendered by the tabitem.
+	 * The child associated to this tabitem. The child is rendered by the
+	 * tabitem.
 	 */
 	protected PagePart childPart;
 
@@ -48,8 +49,8 @@ public class TabItemPart {
 	protected TabFolderPart parent;
 
 	/**
-	 * The SWT item associated to this part. This item contains the control of the
-	 * associated editor.
+	 * The SWT item associated to this part. This item contains the control of
+	 * the associated editor.
 	 */
 	protected CTabItem control;
 
@@ -57,8 +58,7 @@ public class TabItemPart {
 	protected GarbageState garbageState;
 
 	/**
-	 * Constructor.
-	 * Create a TabItem for the provided modelPart.
+	 * Constructor. Create a TabItem for the provided modelPart.
 	 * 
 	 * @param tabFolderPart
 	 * @param modelPart
@@ -96,7 +96,8 @@ public class TabItemPart {
 	}
 
 	/**
-	 * Reset this TabItem to use the new part. Reparent the new part and orphan the old part.
+	 * Reset this TabItem to use the new part. Reparent the new part and orphan
+	 * the old part.
 	 * 
 	 * @param modelPart
 	 */
@@ -131,10 +132,8 @@ public class TabItemPart {
 	}
 
 	/**
-	 * Remove the TabPart.
-	 * Dispose the associated SWT CTabItem.
-	 * (TODO Remove from the parent list.)
-	 * Orphan the associated ITilePart
+	 * Remove the TabPart. Dispose the associated SWT CTabItem. (TODO Remove
+	 * from the parent list.) Orphan the associated ITilePart
 	 * 
 	 * @see
 	 * @return the parent
@@ -187,8 +186,8 @@ public class TabItemPart {
 	}
 
 	/**
-	 * Dispose the associated control.
-	 * Only dispose this tabitem, not the childpart.
+	 * Dispose the associated control. Only dispose this tabitem, not the
+	 * childpart.
 	 */
 	public void dispose() {
 		Control itemControl = control.getControl();
@@ -233,23 +232,23 @@ public class TabItemPart {
 	}
 
 	/**
-	 * Locates the part that intersects the given point and that have the expected type
+	 * Locates the part that intersects the given point and that have the
+	 * expected type
 	 * 
 	 * @param position
 	 * @return
 	 */
 	public AbstractPart findPartAt(Point position, Class<?> expectedTileType) {
 
-		//		if(expectedTileType == this.getClass())
-		//			return this;
+		// if(expectedTileType == this.getClass())
+		// return this;
 
 		return childPart.findPartAt(position, expectedTileType);
 	}
 
-
 	/**
-	 * Accept the provided visitor.
-	 * Call the corresponding accept method in the visitor.
+	 * Accept the provided visitor. Call the corresponding accept method in the
+	 * visitor.
 	 * 
 	 * @param visitor
 	 * @return
@@ -276,6 +275,5 @@ public class TabItemPart {
 	public boolean isTabItemFor(Object rawModel) {
 		return rawModel.equals(getChildPart().getRawModel());
 	}
-
 
 }

@@ -16,7 +16,8 @@ package org.eclipse.papyrus.diagram.common.directedit;
 import org.eclipse.draw2d.IFigure;
 
 /**
- * A figure controler is used to associate a IFigure to model properties in a lightweight way.
+ * A figure controler is used to associate a IFigure to model properties in a
+ * lightweight way.
  */
 public class FigureControler implements ILabelControler {
 

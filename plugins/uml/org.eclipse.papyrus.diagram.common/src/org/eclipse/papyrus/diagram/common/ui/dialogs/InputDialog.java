@@ -22,7 +22,6 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 
-
 /**
  * This class provides a Window with :
  * <ul>
@@ -34,7 +33,6 @@ import org.eclipse.swt.widgets.Shell;
  */
 public class InputDialog extends Dialog {
 
-
 	/** The title of the dialog. */
 
 	private final String title;
@@ -43,12 +41,9 @@ public class InputDialog extends Dialog {
 
 	private final String message;
 
-
-
 	/** The initial value. */
 
 	protected String initialValue = ""; //$NON-NLS-1$
-
 
 	private String value = ""; //$NON-NLS-1$
 
@@ -68,9 +63,6 @@ public class InputDialog extends Dialog {
 			this.value = initialValue;
 		}
 	}
-
-
-
 
 	/**
 	 * Gets the value.

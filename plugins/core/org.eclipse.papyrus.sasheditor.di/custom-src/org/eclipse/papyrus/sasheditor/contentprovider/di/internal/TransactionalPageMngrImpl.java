@@ -19,12 +19,11 @@ import java.util.List;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
-
+import org.eclipse.papyrus.sasheditor.editor.IPage;
 
 /**
- * A PageMngr based on EMF di and using Transactions.
- * This implementation is a wrapper on {@link PageMngrImpl}.
- * Each method is wrapped in a {@link RecordingCommand}.
+ * A PageMngr based on EMF di and using Transactions. This implementation is a
+ * wrapper on {@link PageMngrImpl}. Each method is wrapped in a {@link RecordingCommand}.
  * 
  * @author cedric dumoulin
  */
@@ -63,18 +62,14 @@ public class TransactionalPageMngrImpl implements IPageMngr {
 	 * @param pageIdentifier
 	 */
 	public void addPage(final Object pageIdentifier) {
-		TransactionalEditingDomain editingDomain = getTransactionalEditingDomain();
 
-		RecordingCommand command = new RecordingCommand(editingDomain) {
+		new TransactionPageMngrRunnable() {
 
 			@Override
-			protected void doExecute() {
+			public void doRun() {
 				pageMngr.addPage(pageIdentifier);
-
 			}
-		};
-
-		editingDomain.getCommandStack().execute(command);
+		}.run();
 	}
 
 	/**
@@ -92,18 +87,14 @@ public class TransactionalPageMngrImpl implements IPageMngr {
 	 * @param pageIdentifier
 	 */
 	public void closePage(final Object pageIdentifier) {
-		TransactionalEditingDomain editingDomain = getTransactionalEditingDomain();
 
-		RecordingCommand command = new RecordingCommand(editingDomain) {
+		new TransactionPageMngrRunnable() {
 
 			@Override
-			protected void doExecute() {
+			public void doRun() {
 				pageMngr.closePage(pageIdentifier);
-
 			}
-		};
-
-		editingDomain.getCommandStack().execute(command);
+		}.run();
 	}
 
 	/**
@@ -114,18 +105,14 @@ public class TransactionalPageMngrImpl implements IPageMngr {
 	 * @param pageIdentifier
 	 */
 	public void closeAllOpenedPages() {
-		TransactionalEditingDomain editingDomain = getTransactionalEditingDomain();
 
-		RecordingCommand command = new RecordingCommand(editingDomain) {
+		new TransactionPageMngrRunnable() {
 
 			@Override
-			protected void doExecute() {
+			public void doRun() {
 				pageMngr.closeAllOpenedPages();
-
 			}
-		};
-
-		editingDomain.getCommandStack().execute(command);
+		}.run();
 	}
 
 	/**
@@ -135,18 +122,14 @@ public class TransactionalPageMngrImpl implements IPageMngr {
 	 * @param pageIdentifier
 	 */
 	public void closeOtherPages(final Object pageIdentifier) {
-		TransactionalEditingDomain editingDomain = getTransactionalEditingDomain();
 
-		RecordingCommand command = new RecordingCommand(editingDomain) {
+		new TransactionPageMngrRunnable() {
 
 			@Override
-			protected void doExecute() {
+			public void doRun() {
 				pageMngr.closeOtherPages(pageIdentifier);
-
 			}
-		};
-
-		editingDomain.getCommandStack().execute(command);
+		}.run();
 	}
 
 	/**
@@ -155,18 +138,14 @@ public class TransactionalPageMngrImpl implements IPageMngr {
 	 * @param pageIdentifier
 	 */
 	public void openPage(final Object pageIdentifier) {
-		TransactionalEditingDomain editingDomain = getTransactionalEditingDomain();
 
-		RecordingCommand command = new RecordingCommand(editingDomain) {
+		new TransactionPageMngrRunnable() {
 
 			@Override
-			protected void doExecute() {
+			public void doRun() {
 				pageMngr.openPage(pageIdentifier);
-
 			}
-		};
-
-		editingDomain.getCommandStack().execute(command);
+		}.run();
 	}
 
 	/**
@@ -175,18 +154,14 @@ public class TransactionalPageMngrImpl implements IPageMngr {
 	 * @param pageIdentifier
 	 */
 	public void removePage(final Object pageIdentifier) {
-		TransactionalEditingDomain editingDomain = getTransactionalEditingDomain();
 
-		RecordingCommand command = new RecordingCommand(editingDomain) {
+		new TransactionPageMngrRunnable() {
 
 			@Override
-			protected void doExecute() {
+			public void doRun() {
 				pageMngr.removePage(pageIdentifier);
-
 			}
-		};
-
-		editingDomain.getCommandStack().execute(command);
+		}.run();
 	}
 
 	/**
@@ -198,6 +173,145 @@ public class TransactionalPageMngrImpl implements IPageMngr {
 	 */
 	public boolean isOpen(Object pageIdentifier) {
 		return pageMngr.isOpen(pageIdentifier);
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr#openPrevious()
+	 * 
+	 */
+	public void openPrevious() {
+
+		new TransactionPageMngrRunnable() {
+
+			@Override
+			public void doRun() {
+				pageMngr.openPrevious();
+			}
+		}.run();
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr#openNext()
+	 * 
+	 */
+	public void openNext() {
+
+		new TransactionPageMngrRunnable() {
+
+			@Override
+			public void doRun() {
+				pageMngr.openNext();
+			}
+		}.run();
+	}
+
+	public void pageChanged(final IPage page) {
+		new TransactionPageMngrRunnable() {
+
+			@Override
+			public void doRun() {
+				pageMngr.pageChanged(page);
+			}
+		}.run();
+
+	}
+
+	/**
+	 * class runnable to encapsulate a command
+	 * 
+	 * @author aradouan
+	 * 
+	 */
+	public abstract class TransactionPageMngrRunnable implements Runnable {
+
+		public void run() {
+			TransactionalEditingDomain editingDomain = getTransactionalEditingDomain();
+			RecordingCommand command = new RecordingCommand(editingDomain) {
+
+				@Override
+				protected void doExecute() {
+					doRun();
+				}
+			};
+			editingDomain.getCommandStack().execute(command);
+		}
+
+		public abstract void doRun();
+
+	}
+
+	public void pageOpened(final IPage page) {
+		new TransactionPageMngrRunnable() {
+
+			@Override
+			public void doRun() {
+				pageMngr.pageOpened(page);
+			}
+		}.run();
+	}
+
+	public void pageClosed(final IPage page) {
+		new TransactionPageMngrRunnable() {
+
+			@Override
+			public void doRun() {
+				pageMngr.pageClosed(page);
+			}
+		}.run();
+	}
+
+	public void pageActivated(final IPage page) {
+		new TransactionPageMngrRunnable() {
+
+			@Override
+			public void doRun() {
+				pageMngr.pageActivated(page);
+			}
+		}.run();
+	}
+
+	public void pageDeactivated(final IPage page) {
+		new TransactionPageMngrRunnable() {
+
+			@Override
+			public void doRun() {
+				pageMngr.pageDeactivated(page);
+			}
+		}.run();
+	}
+
+	public void pageAboutToBeOpened(final IPage page) {
+		new TransactionPageMngrRunnable() {
+
+			@Override
+			public void doRun() {
+				pageMngr.pageAboutToBeOpened(page);
+			}
+		}.run();
+	}
+
+	public void pageAboutToBeClosed(final IPage page) {
+		new TransactionPageMngrRunnable() {
+
+			@Override
+			public void doRun() {
+				pageMngr.pageAboutToBeClosed(page);
+			}
+		}.run();
+	}
+
+	public boolean hasPreviousHistory() {
+		return pageMngr.hasPreviousHistory();
+	}
+
+	public boolean hasNextHistory() {
+		return pageMngr.hasNextHistory();
+	}
+
+	public int isInHsitory(Object pageIdentifier) {
+		return pageMngr.isInHsitory(pageIdentifier);
 	}
 
 }

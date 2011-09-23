@@ -21,6 +21,7 @@ import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.util.Geometry;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageModel;
 import org.eclipse.papyrus.sasheditor.contentprovider.ITabFolderModel;
+import org.eclipse.papyrus.sasheditor.editor.SashWindowsContainer;
 import org.eclipse.papyrus.sasheditor.internal.eclipsecopy.AbstractTabFolderPart;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CTabFolder;
@@ -50,13 +51,14 @@ import org.eclipse.ui.internal.dnd.IDropTarget;
  * Extends MultiPageEditor to inherit methods implementations.
  * 
  * @param T
- *        Common ancestor for the model provided for the sash windows by the application.
- *        This is the type used externally by the application. Sash implementation don't use this type,
- *        it just carry it to ask for the appropriate wrapper. Concrete implementation can specify
- *        a type.
+ *        Common ancestor for the model provided for the sash windows by the
+ *        application. This is the type used externally by the application.
+ *        Sash implementation don't use this type, it just carry it to ask
+ *        for the appropriate wrapper. Concrete implementation can specify a
+ *        type.
  * 
- *        TODO : be more precise for the generic type ?
- *        TODO : Listen to the page change event, and call setActivePage().
+ *        TODO : be more precise for the generic type ? TODO : Listen to the
+ *        page change event, and call setActivePage().
  */
 @SuppressWarnings("restriction")
 public class TabFolderPart extends AbstractTabFolderPart {
@@ -67,13 +69,22 @@ public class TabFolderPart extends AbstractTabFolderPart {
 	/** Interface to the model */
 	protected ITabFolderModel partModel;
 
-	/** Raw model associated to this part. We store it because the PartModel do not provide it */
+	/**
+	 * Raw model associated to this part. We store it because the PartModel do
+	 * not provide it
+	 */
 	private Object rawModel;
 
-	/** The wrapper around the CTabFolder. This represent the SWT control associated to this part. */
+	/**
+	 * The wrapper around the CTabFolder. This represent the SWT control
+	 * associated to this part.
+	 */
 	protected PTabFolder pTabFolder;
 
-	/** Ordered set of currently shown diagrams (list of their models) TODO remove */
+	/**
+	 * Ordered set of currently shown diagrams (list of their models) TODO
+	 * remove
+	 */
 	protected TabPartList currentTabItems = new TabPartList();
 
 	/** The drop target associated to this folderPart */
@@ -83,7 +94,6 @@ public class TabFolderPart extends AbstractTabFolderPart {
 	 * Track the mouse hover and fire appropriate event.
 	 */
 	private MouseHoverTracker mouseHoverTracker;
-
 
 	/**
 	 * Listener on DragOver event.
@@ -96,8 +106,9 @@ public class TabFolderPart extends AbstractTabFolderPart {
 		 *      org.eclipse.swt.graphics.Rectangle)
 		 */
 		public IDropTarget drag(Control currentControl, Object draggedObject, Point position, Rectangle dragRectangle) {
-			// System.out.println(TabFolderPart.this.getClass().getSimpleName() + ".drag()");
-//			System.out.println(this + ".drag()");
+			// System.out.println(TabFolderPart.this.getClass().getSimpleName()
+			// + ".drag()");
+			// System.out.println(this + ".drag()");
 			return null;
 		}
 	};
@@ -108,22 +119,23 @@ public class TabFolderPart extends AbstractTabFolderPart {
 	private PTabFolder.IPTabFolderListener cTabFolderEventListener = new PTabFolder.IPTabFolderListener() {
 
 		public void contextMenuDetectEvent(CTabItem tab, Event event) {
-//			System.out.println("contextMenuDetect()");
+			// System.out.println("contextMenuDetect()");
 		}
 
 		/**
 		 * The close cross has been pressed. Remove the corresponding tab. {@inheritDoc}
 		 */
 		public void itemClosedEvent(CTabFolderEvent event, int pageIndex) {
-//			System.out.println("itemClosedEvent()");
+			// System.out.println("itemClosedEvent()");
 			// TODO: call appropriate method (to be determine)
-			//			model.removeTab(pageIndex);
-			//			getSashWindowContainer().getContentProvider().removeTab(model, pageIndex);
+			// model.removeTab(pageIndex);
+			// getSashWindowContainer().getContentProvider().removeTab(model,
+			// pageIndex);
 			getContentProvider().removePage(partModel, pageIndex);
 		}
 
 		public void menuDetectEvent(CTabItem tab, MenuDetectEvent event) {
-//			System.out.println("menuDetectEvent()");
+			// System.out.println("menuDetectEvent()");
 		}
 
 		/**
@@ -154,7 +166,7 @@ public class TabFolderPart extends AbstractTabFolderPart {
 	/**
 	 * Get the associated model.
 	 */
-	protected ITabFolderModel getPartModel() {
+	public ITabFolderModel getPartModel() {
 		return partModel;
 	}
 
@@ -169,8 +181,8 @@ public class TabFolderPart extends AbstractTabFolderPart {
 	}
 
 	/**
-	 * Deactivate this part.
-	 * Unregistered from required service. Do not dispose the part.
+	 * Deactivate this part. Unregistered from required service. Do not dispose
+	 * the part.
 	 */
 	private void deactivate() {
 		// Listen to page changes
@@ -179,7 +191,8 @@ public class TabFolderPart extends AbstractTabFolderPart {
 	}
 
 	/**
-	 * Fill the provided part map with this parts and recursively call children to fillin.
+	 * Fill the provided part map with this parts and recursively call children
+	 * to fillin.
 	 * 
 	 * @param partMap
 	 */
@@ -193,36 +206,37 @@ public class TabFolderPart extends AbstractTabFolderPart {
 	}
 
 	/**
-	 * Creates the control tree associated to this part.
-	 * Create the control for this part, and eventually recursively call the method for the childs, if any.
+	 * Creates the control tree associated to this part. Create the control for
+	 * this part, and eventually recursively call the method for the childs, if
+	 * any.
 	 * 
 	 */
 	@Override
 	public void createPartControl(Composite parent) {
 
 		createControl(parent);
-		//		createPages();
+		// createPages();
 		// model.addChangeListener(modelListener);
 		// model.activate();
 		activate();
 	}
 
 	/**
-	 * Add a new page at the end of pages. A new tab is created for the page, and
-	 * the page control is created.
+	 * Add a new page at the end of pages. A new tab is created for the page,
+	 * and the page control is created.
 	 * 
 	 * @param pageModel
 	 * @param index
 	 */
-	//	private void addPage(Object pageModel)
-	//	{
-	//		int index = currentTabItems.size();
-	//		createTabItem(pageModel, index);
-	//	}
+	// private void addPage(Object pageModel)
+	// {
+	// int index = currentTabItems.size();
+	// createTabItem(pageModel, index);
+	// }
 
 	/**
-	 * Create the control for this Part. Does not create children.
-	 * This method is called by the parent after this folder is created.
+	 * Create the control for this Part. Does not create children. This method
+	 * is called by the parent after this folder is created.
 	 * 
 	 */
 	public void createControl(Composite parent) {
@@ -235,29 +249,30 @@ public class TabFolderPart extends AbstractTabFolderPart {
 	}
 
 	/**
-	 * Init the menuManager after the control has been created.
-	 * Get the {@link MenuManager} from the {@link SashWindowsContainer}. Set it to this folder if it
-	 * is not null.
+	 * Init the menuManager after the control has been created. Get the {@link MenuManager} from the {@link SashWindowsContainer}. Set it to this
+	 * folder if it is not null.
 	 */
 	private void initMenuManager() {
 		MenuManager menuManager = getSashWindowContainer().getFolderTabMenuManager();
-		if(menuManager != null)
-		{
+		if(menuManager != null) {
 			setFolderTabMenuManager(menuManager);
 		}
-		
+
 	}
 
 	/**
-	 * Set a {@link MenuManager} used to manage a contextual menu that is shown on the tabs area of this folder.
-	 * @param menuManager The {@link MenuManager} used to create the menu on the tab area.
+	 * Set a {@link MenuManager} used to manage a contextual menu that is shown
+	 * on the tabs area of this folder.
+	 * 
+	 * @param menuManager
+	 *        The {@link MenuManager} used to create the menu on the tab
+	 *        area.
 	 */
 	public void setFolderTabMenuManager(MenuManager menuManager) {
 		Composite folderControl = getControl();
 		Menu menu = menuManager.createContextMenu(folderControl);
 		folderControl.setMenu(menu);
 	}
-
 
 	/**
 	 * The page has change. Propagate the event to the container.
@@ -267,7 +282,8 @@ public class TabFolderPart extends AbstractTabFolderPart {
 	@Override
 	protected void pageChange(int newPageIndex) {
 
-		//		System.out.println(this.getClass().getSimpleName() + ".pageChange("+ newPageIndex +")");
+		// System.out.println(this.getClass().getSimpleName() + ".pageChange("+
+		// newPageIndex +")");
 		// Do nothing if out of range.
 		if(newPageIndex < 0 || newPageIndex > currentTabItems.size() - 1)
 			return;
@@ -276,14 +292,15 @@ public class TabFolderPart extends AbstractTabFolderPart {
 	}
 
 	/**
-	 * An event signaling that the selected page is changed has been caught. Propagate the event to
-	 * the container.
+	 * An event signaling that the selected page is changed has been caught.
+	 * Propagate the event to the container.
 	 * 
 	 * @param newPageIndex
 	 */
 	protected void pageChangedEvent(int newPageIndex) {
 
-		//		System.out.println(this.getClass().getSimpleName() + ".pageChange("+ newPageIndex +")");
+		// System.out.println(this.getClass().getSimpleName() + ".pageChange("+
+		// newPageIndex +")");
 		// Do nothing if out of range.
 		if(newPageIndex < 0 || newPageIndex > currentTabItems.size() - 1)
 			return;
@@ -302,7 +319,6 @@ public class TabFolderPart extends AbstractTabFolderPart {
 
 		deactivate();
 		
-		
 //		getControl().dispose();
 		pTabFolder.dispose();
 	}
@@ -313,7 +329,6 @@ public class TabFolderPart extends AbstractTabFolderPart {
 	private void initDrag(Composite container) {
 		DragUtil.addDragTarget(container, dragOverListener);
 	}
-
 
 	/**
 	 * Get the associated CTabFolder
@@ -331,8 +346,8 @@ public class TabFolderPart extends AbstractTabFolderPart {
 	}
 
 	/**
-	 * The <code>MultiPageEditor</code> implementation of this <code>IWorkbenchPart</code> method sets focus on
-	 * the active nested editor, if there is one.
+	 * The <code>MultiPageEditor</code> implementation of this <code>IWorkbenchPart</code> method sets focus on the active nested
+	 * editor, if there is one.
 	 * <p>
 	 * Subclasses may extend or reimplement.
 	 * </p>
@@ -342,8 +357,8 @@ public class TabFolderPart extends AbstractTabFolderPart {
 	}
 
 	/**
-	 * Sets focus to the control for the given page. If the page has an editor, this calls its <code>setFocus()</code> method. Otherwise, this calls
-	 * <code>setFocus</code> on the control for the page.
+	 * Sets focus to the control for the given page. If the page has an editor,
+	 * this calls its <code>setFocus()</code> method. Otherwise, this calls <code>setFocus</code> on the control for the page.
 	 * 
 	 * @param pageIndex
 	 *        the index of the page
@@ -357,8 +372,9 @@ public class TabFolderPart extends AbstractTabFolderPart {
 	}
 
 	/**
-	 * Set the active page of this multi-page editor to the page that contains the given editor part. This method has no effect of the given editor
-	 * part is not contained in this multi-page editor.
+	 * Set the active page of this multi-page editor to the page that contains
+	 * the given editor part. This method has no effect of the given editor part
+	 * is not contained in this multi-page editor.
 	 * 
 	 * @param editorPart
 	 *        the editor part
@@ -376,8 +392,8 @@ public class TabFolderPart extends AbstractTabFolderPart {
 	}
 
 	/**
-	 * Return the part containing specified point. Normally return this part, because the caller has
-	 * already determine that this contain the part.
+	 * Return the part containing specified point. Normally return this part,
+	 * because the caller has already determine that this contain the part.
 	 * 
 	 */
 	@Override
@@ -386,7 +402,8 @@ public class TabFolderPart extends AbstractTabFolderPart {
 	}
 
 	/**
-	 * Locates the part that intersects the given point and that have the expected type
+	 * Locates the part that intersects the given point and that have the
+	 * expected type
 	 * 
 	 * @param toFind
 	 * @return
@@ -430,9 +447,10 @@ public class TabFolderPart extends AbstractTabFolderPart {
 	}
 
 	/**
-	 * Get the visible PagePart (from the Container point of view). 
-	 * The visible PagePart is the one that has its diagram area visible.
-	 * From the folder point of view, this is the active PagePart.
+	 * Get the visible PagePart (from the Container point of view). The visible
+	 * PagePart is the one that has its diagram area visible. From the folder
+	 * point of view, this is the active PagePart.
+	 * 
 	 * @return
 	 */
 	public PagePart getVisiblePagePart() {
@@ -442,7 +460,7 @@ public class TabFolderPart extends AbstractTabFolderPart {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Find the part associated to the provided control.
 	 * 
@@ -459,7 +477,6 @@ public class TabFolderPart extends AbstractTabFolderPart {
 		// Ask childs TODO
 		return null;
 	}
-
 
 	/**
 	 * 
@@ -483,7 +500,8 @@ public class TabFolderPart extends AbstractTabFolderPart {
 		if(tabUnderPointer == null) {
 			Rectangle titleArea = pTabFolder.getTabArea();
 
-			// If we're dragging over the title area, treat this as a drop in the last
+			// If we're dragging over the title area, treat this as a drop in
+			// the last
 			// tab position.
 			if(titleArea.contains(position) && pTabFolder.getTabFolder().getItemCount() > 0) {
 				int dragOverIndex = pTabFolder.getTabFolder().getItemCount();
@@ -494,7 +512,8 @@ public class TabFolderPart extends AbstractTabFolderPart {
 					return null;
 				}
 
-				// If we are unable to compute the bounds for this tab, then ignore the drop
+				// If we are unable to compute the bounds for this tab, then
+				// ignore the drop
 				Rectangle lastTabBounds = lastTab.getBounds();
 				if(lastTabBounds.isEmpty()) {
 					return null;
@@ -503,24 +522,32 @@ public class TabFolderPart extends AbstractTabFolderPart {
 				// if (dragStart >= 0) {
 				// dragOverIndex--;
 				//
-				// return createDropTarget( sourcePart, lastTabBounds, dragOverIndex);
-				// // return new StackDropResult(lastTabBounds, new Integer(dragOverIndex));
+				// return createDropTarget( sourcePart, lastTabBounds,
+				// dragOverIndex);
+				// // return new StackDropResult(lastTabBounds, new
+				// Integer(dragOverIndex));
 				// }
 
-				// Make the drag-over rectangle look like a tab at the end of the tab region.
-				// We don't actually know how wide the tab will be when it's dropped, so just
+				// Make the drag-over rectangle look like a tab at the end of
+				// the tab region.
+				// We don't actually know how wide the tab will be when it's
+				// dropped, so just
 				// make it 3 times wider than it is tall.
-				// titleArea is in Display coordinate, lastTabBounds in parent coordinate
+				// titleArea is in Display coordinate, lastTabBounds in parent
+				// coordinate
 				Rectangle dropRectangle = titleArea;
 
 				dropRectangle.x = dropRectangle.x + lastTabBounds.x + lastTabBounds.width;
 				dropRectangle.width = 3 * dropRectangle.height;
 				return createDropTarget(sourcePart, sourceIndex, dropRectangle, dragOverIndex);
-				// return new StackDropResult(dropRectangle, new Integer(dragOverIndex));
+				// return new StackDropResult(dropRectangle, new
+				// Integer(dragOverIndex));
 
 			} else {
-				// If the closest side is the side with the tabs, consider this a stack operation.
-				// Otherwise, let the drop fall through to whatever the default behavior is
+				// If the closest side is the side with the tabs, consider this
+				// a stack operation.
+				// Otherwise, let the drop fall through to whatever the default
+				// behavior is
 				Rectangle displayBounds = DragUtil.getDisplayBounds(pTabFolder.getControl());
 				int closestSide = Geometry.getClosestSide(displayBounds, position);
 				if(closestSide == pTabFolder.getTabFolder().getTabPosition()) {
@@ -560,7 +587,8 @@ public class TabFolderPart extends AbstractTabFolderPart {
 	}
 
 	/**
-	 * Class implementing methods required by drop targets. Drop target use when the drop occur on one of the thumbnail of the folder.
+	 * Class implementing methods required by drop targets. Drop target use when
+	 * the drop occur on one of the thumbnail of the folder.
 	 */
 	protected class DropTarget implements IDropTarget {
 
@@ -621,20 +649,23 @@ public class TabFolderPart extends AbstractTabFolderPart {
 		 * @see org.eclipse.ui.internal.dnd.IDropTarget#getCursor()
 		 */
 		public Cursor getCursor() {
-			// System.out.println(TabFolderPart.this.getClass().getSimpleName() + ".getCursor()-" + count++);
+			// System.out.println(TabFolderPart.this.getClass().getSimpleName()
+			// + ".getCursor()-" + count++);
 			return DragCursors.getCursor(DragCursors.positionToDragCursor(cursor));
 
 		}
 
 		public Rectangle getSnapRectangle() {
-			// System.out.println(TabFolderPart.this.getClass().getSimpleName() + ".getSnapRectangle()-" + count);
+			// System.out.println(TabFolderPart.this.getClass().getSimpleName()
+			// + ".getSnapRectangle()-" + count);
 			return snapRectangle;
 		}
 
 	}
 
 	/**
-	 * Orphan this node. The parent is set to null, but control is left unchanged. The node can be reattached with reparent().
+	 * Orphan this node. The parent is set to null, but control is left
+	 * unchanged. The node can be reattached with reparent().
 	 * 
 	 * @see
 	 * @return the parent
@@ -680,7 +711,8 @@ public class TabFolderPart extends AbstractTabFolderPart {
 	}
 
 	/**
-	 * Return true if the Part is for the specified real model. Return false otherwise.
+	 * Return true if the Part is for the specified real model. Return false
+	 * otherwise.
 	 * 
 	 * @param realModel
 	 *        The raw model to check
@@ -695,29 +727,30 @@ public class TabFolderPart extends AbstractTabFolderPart {
 	 * 
 	 * @return
 	 */
-	protected Object getRawModel() {
+	public Object getRawModel() {
 		return rawModel;
 	}
 
 	/**
 	 * Refresh the tab of this page (I.e the name and icon in the tab).
 	 * 
-	 * @param page The page to be refreshed
+	 * @param page
+	 *        The page to be refreshed
 	 */
-	public void refreshPageTab( PagePart page) {
+	public void refreshPageTab(PagePart page) {
 		TabItemPart itemPart = currentTabItems.getByPagePart(page);
-		if(itemPart==null)
+		if(itemPart == null)
 			return;
-		
+
 		itemPart.refreshTabDecorations();
 	}
-	
+
 	/**
-	 * Synchronize the TabFolder with the models.
-	 * The Tabs order is fixed and can't be moved. So, we move the associated ITilepart if needed.
-	 * For each existing Tab, compare its model and the requested model. Synchronize if necessary.
-	 * If their is more new model, add new Tab
-	 * If their is less newModel, remove unused Tabs.
+	 * Synchronize the TabFolder with the models. The Tabs order is fixed and
+	 * can't be moved. So, we move the associated ITilepart if needed. For each
+	 * existing Tab, compare its model and the requested model. Synchronize if
+	 * necessary. If their is more new model, add new Tab If their is less
+	 * newModel, remove unused Tabs.
 	 * 
 	 * @param partLists
 	 */
@@ -779,23 +812,24 @@ public class TabFolderPart extends AbstractTabFolderPart {
 				activePageIndex = currentTabItems.size() - 1;
 		}
 
-
 		folder.setRedraw(true);
-		//		folder.setSelection(activePageIndex);
+		// folder.setSelection(activePageIndex);
 		folder.redraw();
 
 		if(activePageIndex >= 0) {
-			//			System.err.println("setActivePage(" + activePageIndex + ") : " + this);
+			// System.err.println("setActivePage(" + activePageIndex + ") : " +
+			// this);
 			// Set the activeTab has visible.
 			// Do it here because otherwise the active tab could be not visible.
-			// This come from an undefined bug setting the tab.isVisible(false) in some case.
+			// This come from an undefined bug setting the tab.isVisible(false)
+			// in some case.
 			folder.getItem(activePageIndex).getControl().setVisible(true);
 			setActivePage(activePageIndex);
 		} else {
 			// Check if there is item in the CTabFolder.
 			// If true, we have a trouble
 			if(getTabFolder().getItemCount() > 0) {
-				//			  System.err.println("Active page not set while synchronizing !");
+				// System.err.println("Active page not set while synchronizing !");
 				// We have items, but none is selected.
 				// Select the first one.
 				if(getTabFolder().getSelectionIndex() < 0) {
@@ -803,14 +837,14 @@ public class TabFolderPart extends AbstractTabFolderPart {
 				}
 			}
 		}
-		//		folder.update();
-		//		folder.showSelection();
+		// folder.update();
+		// folder.showSelection();
 
 	}
 
 	/**
-	 * Remove the specified tabItem.
-	 * Also call appropriate remove() method on the tabItem.
+	 * Remove the specified tabItem. Also call appropriate remove() method on
+	 * the tabItem.
 	 * 
 	 * @param curTab
 	 */
@@ -820,9 +854,10 @@ public class TabFolderPart extends AbstractTabFolderPart {
 	}
 
 	/**
-	 * Create a new TabItem associated to the part corresponding to the specified newModel.
-	 * The TabItem is created at the specified index.
-	 * The associated parts is searched in the existingParts or created if none is found.
+	 * Create a new TabItem associated to the part corresponding to the
+	 * specified newModel. The TabItem is created at the specified index. The
+	 * associated parts is searched in the existingParts or created if none is
+	 * found.
 	 * 
 	 * @param existingParts
 	 *        List of existing parts.
@@ -851,30 +886,32 @@ public class TabFolderPart extends AbstractTabFolderPart {
 
 	}
 
-	//	/**
-	//	 * Create a new TabItem and associated part corresponding to the specified newModel.
-	//	 * The TabItem is created at the specified index.
-	//	 * The associated parts is created.
-	//	 * 
-	//	 * @param existingParts List of existing parts.
-	//	 * @param newModel
-	//	 * @param index
-	//	 * @param i
-	//	 */
-	//	private void createTabItem(Object newModel, int index) {
-	//		TabItemPart newTab;
+	// /**
+	// * Create a new TabItem and associated part corresponding to the specified
+	// newModel.
+	// * The TabItem is created at the specified index.
+	// * The associated parts is created.
+	// *
+	// * @param existingParts List of existing parts.
+	// * @param newModel
+	// * @param index
+	// * @param i
+	// */
+	// private void createTabItem(Object newModel, int index) {
+	// TabItemPart newTab;
 	//
-	//		PagePart modelPart = createChildPart( newModel );
-	//		// Attach it to the tabItem
-	//		newTab = new TabItemPart(this, modelPart, index);
+	// PagePart modelPart = createChildPart( newModel );
+	// // Attach it to the tabItem
+	// newTab = new TabItemPart(this, modelPart, index);
 	//
-	//		// Add to the list of items.
-	//		currentTabItems.add(index, newTab);
-	//	}
+	// // Add to the list of items.
+	// currentTabItems.add(index, newTab);
+	// }
 
 	/**
-	 * Instruct the specified tabItem to use the new model. Check if a part already exist for the model
-	 * and use it if any. Otherwise create a new Part.
+	 * Instruct the specified tabItem to use the new model. Check if a part
+	 * already exist for the model and use it if any. Otherwise create a new
+	 * Part.
 	 * 
 	 * @param curTab
 	 * @param existingParts
@@ -896,10 +933,10 @@ public class TabFolderPart extends AbstractTabFolderPart {
 	}
 
 	/**
-	 * Factory method to create a new Part for the specified newModel.
-	 * The method should always return a valid Part. In case of error while creating the requested part,
-	 * the method should return a default part, maybe showing the encountered error.
-	 * The control for the child is created.
+	 * Factory method to create a new Part for the specified newModel. The
+	 * method should always return a valid Part. In case of error while creating
+	 * the requested part, the method should return a default part, maybe
+	 * showing the encountered error. The control for the child is created.
 	 * 
 	 * @param newModel
 	 * @return The new part
@@ -909,7 +946,8 @@ public class TabFolderPart extends AbstractTabFolderPart {
 		// Create the child PartModel. Delegate creation to this part PartModel.
 		IPageModel partModel = getPartModel().createChildSashModel(newModel);
 
-		// Delegate part creation to the container. This allow the container to provide appropriate 
+		// Delegate part creation to the container. This allow the container to
+		// provide appropriate
 		// objects not available from the part.
 		PagePart newPart = getSashWindowContainer().createPagePart(this, partModel, newModel);
 		// Create control.
@@ -959,20 +997,20 @@ public class TabFolderPart extends AbstractTabFolderPart {
 		System.out.println();
 
 		//
-		//		System.out.printf("tabs.ctrl :"  );
-		//		for( TabItemPart tab : currentModels)
-		//		{
-		//			System.out.printf( "%10s |", tab.childPart.getControl());
-		//		}
-		//		System.out.println();
+		// System.out.printf("tabs.ctrl :" );
+		// for( TabItemPart tab : currentModels)
+		// {
+		// System.out.printf( "%10s |", tab.childPart.getControl());
+		// }
+		// System.out.println();
 
-		// 
-		//		System.out.printf("tab.editor:"  );
-		//		for( TabItemPart tab : currentModels)
-		//		{
-		//			System.out.printf( "%10s |", tab.childPart.getIEditorPart());
-		//		}
-		//		System.out.println();
+		//
+		// System.out.printf("tab.editor:" );
+		// for( TabItemPart tab : currentModels)
+		// {
+		// System.out.printf( "%10s |", tab.childPart.getIEditorPart());
+		// }
+		// System.out.println();
 
 		//
 		System.out.printf("tabs %2d :", currentTabItems.size());
@@ -987,20 +1025,19 @@ public class TabFolderPart extends AbstractTabFolderPart {
 	 * Show tile status.
 	 */
 	protected void showStatus() {
-		//		System.out.println( "tabfolder[" + currentModels.size()  + "]:"
-		//				+ ", disposed=" + getCTabFolder().isDisposed()
-		//				+ ", visible=" + getCTabFolder().isVisible()
-		//				+ ", garbState=" + garbageState
-		//				+ ", " + this);
+		// System.out.println( "tabfolder[" + currentModels.size() + "]:"
+		// + ", disposed=" + getCTabFolder().isDisposed()
+		// + ", visible=" + getCTabFolder().isVisible()
+		// + ", garbState=" + garbageState
+		// + ", " + this);
 
 		CTabFolder ctrl = getTabFolder();
-		System.out.printf("tabfolder[%2d]: disposed=%-5b, visible=%-5b, garbState=%-10s, %s\n"
-				, currentTabItems.size(), ctrl.isDisposed(), (ctrl.isDisposed() ? false : getTabFolder().isVisible()), garbageState, this);
+		System.out.printf("tabfolder[%2d]: disposed=%-5b, visible=%-5b, garbState=%-10s, %s\n", currentTabItems.size(), ctrl.isDisposed(), (ctrl.isDisposed() ? false : getTabFolder().isVisible()), garbageState, this);
 	}
 
 	/**
-	 * Accept the provided visitor.
-	 * Call the corresponding accept method in the visitor.
+	 * Accept the provided visitor. Call the corresponding accept method in the
+	 * visitor.
 	 * 
 	 * @param visitor
 	 * @return
@@ -1024,10 +1061,8 @@ public class TabFolderPart extends AbstractTabFolderPart {
 		return true;
 	}
 
-
 	/**
-	 * Collection of tabpart.
-	 * Add miscelenaous methods.
+	 * Collection of tabpart. Add miscelenaous methods.
 	 * 
 	 * @author dumoulin
 	 * 
@@ -1046,10 +1081,10 @@ public class TabFolderPart extends AbstractTabFolderPart {
 		}
 
 		/**
-		 * Returns the index of the first occurrence of the specified element
-		 * in this list, or -1 if this list does not contain the element.
-		 * More formally, returns the lowest index <tt>i</tt> such that <tt>(o==null&nbsp;?&nbsp;get(i)==null&nbsp;:&nbsp;o.equals(get(i)))</tt>,
-		 * or -1 if there is no such index.
+		 * Returns the index of the first occurrence of the specified element in
+		 * this list, or -1 if this list does not contain the element. More
+		 * formally, returns the lowest index <tt>i</tt> such that <tt>(o==null&nbsp;?&nbsp;get(i)==null&nbsp;:&nbsp;o.equals(get(i)))</tt> , or -1 if
+		 * there is no such index.
 		 */
 		public int indexOfModel(Object o) {
 			if(o == null) {
@@ -1063,7 +1098,6 @@ public class TabFolderPart extends AbstractTabFolderPart {
 			}
 			return -1;
 		}
-
 
 		/**
 		 * Get the TabPart by its model.
@@ -1088,10 +1122,9 @@ public class TabFolderPart extends AbstractTabFolderPart {
 	}
 
 	/**
-	 * Track the mouse for flying over the tabs and show tooltip.
-	 * Show the tooltip when the mouse stop over a tab.
-	 * Disable the tooltip if mouse is clicked.
-	 * Reenable the tooltip when exiting the tab.
+	 * Track the mouse for flying over the tabs and show tooltip. Show the
+	 * tooltip when the mouse stop over a tab. Disable the tooltip if mouse is
+	 * clicked. Reenable the tooltip when exiting the tab.
 	 * 
 	 * @author dumoulin
 	 * 
@@ -1112,33 +1145,32 @@ public class TabFolderPart extends AbstractTabFolderPart {
 			private int count = 0;
 
 			public void mouseEnter(MouseEvent e) {
-				//				System.out.println("MouseEnter()" + count++);
+				// System.out.println("MouseEnter()" + count++);
 
 			}
 
 			public void mouseExit(MouseEvent e) {
-				//				System.out.println("MouseExit()" + count++);
+				// System.out.println("MouseExit()" + count++);
 				toolTipManager.closeToolTip();
 			}
 
 			public void mouseHover(MouseEvent e) {
 				CTabFolder folder = getTabFolder();
-				//				Point pt = folder.toDisplay(e.x, e.y);
+				// Point pt = folder.toDisplay(e.x, e.y);
 				Point pt = new Point(e.x, e.y);
 				CTabItem item = folder.getItem(pt);
 				int index = pTabFolder.getItemIndex(pt);
-				if(index == -1)
-				{
+				if(index == -1) {
 					toolTipManager.closeToolTip();
 					return;
 				}
 
 				PagePart part = currentTabItems.get(index).getChildPart();
-//								System.out.println("MouseHover(" + e.widget 
-//										+ ", part=" + part.getPageTitle()
-//										+ ", item=" + item
-//										+ ") - " + count++);
-				// TODO move it away 
+				// System.out.println("MouseHover(" + e.widget
+				// + ", part=" + part.getPartTitle()
+				// + ", item=" + item
+				// + ") - " + count++);
+				// TODO move it away
 				//toolTipManager.showToolTip(item.getBounds(), part.getControl(), pt);
 				toolTipManager.showToolTip(part, item.getBounds(), pt);
 			}
@@ -1147,8 +1179,7 @@ public class TabFolderPart extends AbstractTabFolderPart {
 		};
 
 		/**
-		 * Listener on mouse clicked.
-		 * Used to disable the current tooltip.
+		 * Listener on mouse clicked. Used to disable the current tooltip.
 		 */
 		private Listener mouseClickedListener = new Listener() {
 
@@ -1157,7 +1188,7 @@ public class TabFolderPart extends AbstractTabFolderPart {
 			public void handleEvent(Event event) {
 				switch(event.type) {
 				case SWT.MouseUp:
-//					System.out.println("MouseUp()" + count++);
+					// System.out.println("MouseUp()" + count++);
 					toolTipManager.disableToolTip();
 					break;
 				}
@@ -1165,8 +1196,7 @@ public class TabFolderPart extends AbstractTabFolderPart {
 		};
 
 		/**
-		 * Build a tracker for the specified control.
-		 * Constructor.
+		 * Build a tracker for the specified control. Constructor.
 		 * 
 		 * @param control
 		 */

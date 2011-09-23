@@ -25,10 +25,10 @@ import org.eclipse.papyrus.core.utils.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.resource.ModelSet;
 
 /**
- * Utilities method to manage notation models. Should be moved in a more suitable plugin
+ * Utilities method to manage notation models. Should be moved in a more
+ * suitable plugin
  */
 public class NotationUtils {
-
 
 	/**
 	 * Get the notation Resource.
@@ -43,12 +43,14 @@ public class NotationUtils {
 
 	/**
 	 * Gets the NotationModel for the currently selected editor. <br>
-	 * Warning: This method is designed to be call from ui.handlers. It is not designed to 
-	 * be call from Editors. This method can return null if called during the MultiEditor initialization.
+	 * Warning: This method is designed to be call from ui.handlers. It is not
+	 * designed to be call from Editors. This method can return null if called
+	 * during the MultiEditor initialization.
 	 * 
 	 * @see ServiceUtilsForActionHandlers.getInstance().getModelSet()
 	 * 
-	 * @return The {@link NotationModel} of the current editor, or null if not found.
+	 * @return The {@link NotationModel} of the current editor, or null if not
+	 *         found.
 	 */
 	public static NotationModel getNotationModel() {
 
@@ -61,12 +63,14 @@ public class NotationUtils {
 
 	/**
 	 * Gets the NotationModel for the currently selected editor. <br>
-	 * Warning: This method is designed to be call from ui.handlers. It is not designed to 
-	 * be call from Editors. This method can return null if called during the MultiEditor initialization.
+	 * Warning: This method is designed to be call from ui.handlers. It is not
+	 * designed to be call from Editors. This method can return null if called
+	 * during the MultiEditor initialization.
 	 * 
 	 * @see ServiceUtilsForActionHandlers.getInstance().getModelSet()
 	 * 
-	 * @return The {@link NotationModel} of the current editor, or null if not found.
+	 * @return The {@link NotationModel} of the current editor, or null if not
+	 *         found.
 	 * @throws ServiceException
 	 *         If an error occurs while getting or starting the service.
 	 */
@@ -76,12 +80,13 @@ public class NotationUtils {
 	}
 
 	/**
-	 * Gets the NotationModel from the {@link ModelSet}. 
-	 * <br>
+	 * Gets the NotationModel from the {@link ModelSet}. <br>
 	 * 
-	 * @param modelsManager The modelManager containing the requested model.
+	 * @param modelsManager
+	 *        The modelManager containing the requested model.
 	 * 
-	 * @return The {@link NotationModel} registered in modelManager, or null if not found.
+	 * @return The {@link NotationModel} registered in modelManager, or null if
+	 *         not found.
 	 */
 	public static NotationModel getNotationModel(ModelSet modelsManager) {
 

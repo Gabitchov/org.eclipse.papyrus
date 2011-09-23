@@ -13,7 +13,6 @@ package org.eclipse.papyrus.diagram.common.figure.node;
 
 import org.eclipse.swt.graphics.Image;
 
-
 /**
  * Standard interface for custom figures displaying text and icon
  */

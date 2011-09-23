@@ -17,8 +17,8 @@ import org.eclipse.draw2d.AbstractLayout;
 import org.eclipse.gef.EditPolicy;
 
 /**
- * this goal of this kind of class is to provide the good editpolicy and the good layout to attach
- * at the figure.
+ * this goal of this kind of class is to provide the good editpolicy and the
+ * good layout to attach at the figure.
  */
 public interface ILayoutToolBox {
 

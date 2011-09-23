@@ -3,12 +3,11 @@
  */
 package org.eclipse.papyrus.resource;
 
-
 /**
  * Root exception for this package.
  * 
  * @author cedric dumoulin
- *
+ * 
  */
 public class ModelException extends Exception {
 
@@ -19,14 +18,14 @@ public class ModelException extends Exception {
 
 	/**
 	 * Constructor.
-	 *
+	 * 
 	 */
 	public ModelException() {
 	}
 
 	/**
 	 * Constructor.
-	 *
+	 * 
 	 * @param message
 	 */
 	public ModelException(String message) {
@@ -35,7 +34,7 @@ public class ModelException extends Exception {
 
 	/**
 	 * Constructor.
-	 *
+	 * 
 	 * @param cause
 	 */
 	public ModelException(Throwable cause) {
@@ -44,7 +43,7 @@ public class ModelException extends Exception {
 
 	/**
 	 * Constructor.
-	 *
+	 * 
 	 * @param message
 	 * @param cause
 	 */

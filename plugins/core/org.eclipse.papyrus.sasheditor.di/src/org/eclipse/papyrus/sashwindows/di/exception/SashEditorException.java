@@ -13,7 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sashwindows.di.exception;
 
-
 /**
  * Exception for the Sash editor system
  * 

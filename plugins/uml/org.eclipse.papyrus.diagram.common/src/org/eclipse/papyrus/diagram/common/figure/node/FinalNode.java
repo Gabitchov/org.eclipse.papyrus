@@ -49,7 +49,7 @@ public class FinalNode extends PapyrusNodeFigure implements IPapyrusNodeUMLEleme
 		
 		final int space = 5;
 		Rectangle f = Rectangle.SINGLETON;
-		//to be in adequation with the figure node plate
+		// to be in adequation with the figure node plate
 		Rectangle r = getBounds().getCopy().crop(new Insets(0,0,1,1));
 		graphics.setBackgroundColor(getForegroundColor());
 		graphics.drawOval(r);
@@ -60,7 +60,6 @@ public class FinalNode extends PapyrusNodeFigure implements IPapyrusNodeUMLEleme
 		graphics.setBackgroundColor(getForegroundColor());
 		graphics.fillOval(f);
 		
-
 	}
 	/**
 	 * {@inheritDoc}

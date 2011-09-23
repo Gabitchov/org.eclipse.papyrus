@@ -26,9 +26,9 @@ import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.UMLFactory;
 
 /**
- * Define a command to create a new Behavioral Diagram. This command is used by all UI (toolbar,
- * outline, creation wizards) to create a new Behavioral Diagram.
- * This class should be extended by behavioral diagram only.
+ * Define a command to create a new Behavioral Diagram. This command is used by
+ * all UI (toolbar, outline, creation wizards) to create a new Behavioral
+ * Diagram. This class should be extended by behavioral diagram only.
  */
 public abstract class CreateBehavioredClassifierDiagramCommand extends AbstractPapyrusGmfCreateDiagramCommandHandler {
 
@@ -98,7 +98,6 @@ public abstract class CreateBehavioredClassifierDiagramCommand extends AbstractP
 		ViewService.getInstance().createView(Node.class, new EObjectAdapter(behavior), diagram, null, ViewUtil.APPEND, true, getPreferenceHint());
 	}
 
-
 	/**
 	 * {@inheritDoc}
 	 */
@@ -137,24 +136,27 @@ public abstract class CreateBehavioredClassifierDiagramCommand extends AbstractP
 		return name;
 	}
 
-	//	@Override
-	//	protected void runAsTransaction(DiResourceSet diResourceSet, EObject container, String name) {
-	//		if(name == null && container instanceof NamedElement) {
-	//			setName(((NamedElement)container).getName());
-	//			if(!"".equals(getName())) {
-	//				// initialize name with activity's name
-	//				name = openDiagramNameDialog(getName());
-	//				if(name == null) {
-	//					// operation canceled
-	//					return;
-	//				}
-	//			}
-	//		}
-	//		super.runAsTransaction(diResourceSet, container, getDefaultDiagramName());
-	//	}
+	// @Override
+	// protected void runAsTransaction(DiResourceSet diResourceSet, EObject
+	// container, String name) {
+	// if(name == null && container instanceof NamedElement) {
+	// setName(((NamedElement)container).getName());
+	// if(!"".equals(getName())) {
+	// // initialize name with activity's name
+	// name = openDiagramNameDialog(getName());
+	// if(name == null) {
+	// // operation canceled
+	// return;
+	// }
+	// }
+	// }
+	// super.runAsTransaction(diResourceSet, container,
+	// getDefaultDiagramName());
+	// }
 	
 	/**
-	 * Check if the creation of this diagram is strongly attached to its parent or if it can be reassigned after creation.
+	 * Check if the creation of this diagram is strongly attached to its parent
+	 * or if it can be reassigned after creation.
 	 * 
 	 * @return true if parent can be reassigned
 	 */

@@ -39,8 +39,8 @@ import org.eclipse.swt.graphics.FontData;
 import org.eclipse.uml2.uml.Element;
 
 /**
- * this uml edit part that can manage node and compartments. It also manages the application of
- * stereotypes on uml elements represented by nodes
+ * This UML edit part that can manage node and compartments. It also manages the
+ * application of stereotypes on UML elements represented by nodes
  * 
  */
 public abstract class UMLNodeEditPart extends NodeEditPart implements IUMLEditPart {
@@ -135,11 +135,11 @@ public abstract class UMLNodeEditPart extends NodeEditPart implements IUMLEditPa
 	}
 
 	/**
-	 * Models created with Papyrus 0.7.x do not have a TitleStyle in the compartment views.
-	 * In this case, the GMF code does not touch the visibility of the title, i.e. it
-	 * remains true by default. This does not correspond to the diagrams in Papyrus
-	 * 0.7.x having no title visible.
-	 * See bug 351084
+	 * Models created with Papyrus 0.7.x do not have a TitleStyle in the
+	 * compartment views. In this case, the GMF code does not touch the
+	 * visibility of the title, i.e. it remains true by default. This does not
+	 * correspond to the diagrams in Papyrus 0.7.x having no title visible. See
+	 * bug 351084
 	 */
 	public void fixCompartmentTitleVisibility() {
 		for (Object currentEditPart : getChildren()) {
@@ -179,8 +179,8 @@ public abstract class UMLNodeEditPart extends NodeEditPart implements IUMLEditPa
 	}
 
 	/**
-	 * Refresh the font. This method shouldn't be overriden by subclasses. To refresh labels font,
-	 * the method refreshLabelsFont should be used. {@inheritDoc}
+	 * Refresh the font. This method shouldn't be overriden by subclasses. To
+	 * refresh labels font, the method refreshLabelsFont should be used. {@inheritDoc}
 	 */
 	@Override
 	protected void refreshFont() {
@@ -201,8 +201,8 @@ public abstract class UMLNodeEditPart extends NodeEditPart implements IUMLEditPa
 	}
 
 	/**
-	 * A method to specify the labels to be update when the font is refreshed. Subclasses should
-	 * call super.refreshLabelsFont(font)
+	 * A method to specify the labels to be update when the font is refreshed.
+	 * Subclasses should call super.refreshLabelsFont(font)
 	 * 
 	 * @param font
 	 *        the font to use

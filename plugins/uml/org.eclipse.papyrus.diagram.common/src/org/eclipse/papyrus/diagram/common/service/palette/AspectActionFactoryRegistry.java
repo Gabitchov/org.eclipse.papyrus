@@ -15,7 +15,6 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-
 /**
  * Registry for the Aspect action factories.
  * <p>
@@ -44,12 +43,18 @@ public class AspectActionFactoryRegistry {
 	 * Initialize the factory
 	 */
 	protected void init() {
-		// factories.put(StereotypeAspectActionProvider.FACTORY_ID, new StereotypeAspectActionProvider());
-		//factories.put(SemanticAspectActionProvider.FACTORY_ID, new SemanticAspectActionProvider());
-		//factories.put(GraphicalAspectActionFactory.GraphicalAspectActionProvider, new GraphicalAspectActionProvider());
-		// factories.put(DisplayAppliedStereotypeAspectActionProvider.FACTORY_ID, new DisplayAppliedStereotypeAspectActionProvider());
-		// factories.put(ChangeStereotypeDisplayAspectActionProvider.FACTORY_ID, new ChangeStereotypeDisplayAspectActionProvider());
-		// factories.put(AssociationEndAspectActionProvider.FACTORY_ID, new AssociationEndAspectActionProvider());
+		// factories.put(StereotypeAspectActionProvider.FACTORY_ID, new
+		// StereotypeAspectActionProvider());
+		// factories.put(SemanticAspectActionProvider.FACTORY_ID, new
+		// SemanticAspectActionProvider());
+		// factories.put(GraphicalAspectActionFactory.GraphicalAspectActionProvider,
+		// new GraphicalAspectActionProvider());
+		// factories.put(DisplayAppliedStereotypeAspectActionProvider.FACTORY_ID,
+		// new DisplayAppliedStereotypeAspectActionProvider());
+		// factories.put(ChangeStereotypeDisplayAspectActionProvider.FACTORY_ID,
+		// new ChangeStereotypeDisplayAspectActionProvider());
+		// factories.put(AssociationEndAspectActionProvider.FACTORY_ID, new
+		// AssociationEndAspectActionProvider());
 	}
 
 	/**
@@ -67,9 +72,6 @@ public class AspectActionFactoryRegistry {
 	public IAspectActionProvider getFactory(String id) {
 		return factories.get(id);
 	}
-
-
-
 
 	/**
 	 * Returns the list of registered aspect actions

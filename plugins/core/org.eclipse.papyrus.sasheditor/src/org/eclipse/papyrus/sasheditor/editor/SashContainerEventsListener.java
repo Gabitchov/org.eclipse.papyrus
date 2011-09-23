@@ -1,11 +1,7 @@
 /**
  * 
  */
-package org.eclipse.papyrus.sasheditor.internal;
-
-import org.eclipse.papyrus.sasheditor.editor.IPage;
-import org.eclipse.papyrus.sasheditor.editor.IPageChangedListener;
-
+package org.eclipse.papyrus.sasheditor.editor;
 
 /**
  * Interface to be implemented by listeners on {@link SashWindowsContainer} life

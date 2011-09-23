@@ -26,10 +26,9 @@ import org.eclipse.ui.internal.dnd.DragUtil;
 import org.eclipse.ui.internal.dnd.IDropTarget;
 
 /**
- * Controller for a sash panel.
- * A sash panel contain 2 children. It shows them in two windows separated by a sash.
- * Implementation use one model, a {@link ISashPanelModel}. This model encapsulate the real model which
- * is of an unknown type.
+ * Controller for a sash panel. A sash panel contain 2 children. It shows them
+ * in two windows separated by a sash. Implementation use one model, a {@link ISashPanelModel}. This model encapsulate the real model which is of an
+ * unknown type.
  * 
  * 
  * @author dumoulin
@@ -46,10 +45,16 @@ public class SashPanelPart extends AbstractPanelPart implements IPanelParent {
 	/** Interface to the model */
 	protected ISashPanelModel model;
 
-	/** Raw model associated to this part. We store it because the PartModel do not provide it */
+	/**
+	 * Raw model associated to this part. We store it because the PartModel do
+	 * not provide it
+	 */
 	private Object rawModel;
 
-	/** Ordered set of currently shown diagrams (a left and right child, or upper and lower) TODO rename as children */
+	/**
+	 * Ordered set of currently shown diagrams (a left and right child, or upper
+	 * and lower) TODO rename as children
+	 */
 	protected AbstractPanelPart[] currentChildParts = new AbstractPanelPart[2];
 
 	/**
@@ -58,7 +63,8 @@ public class SashPanelPart extends AbstractPanelPart implements IPanelParent {
 	private ReplaceableSashForm container;
 
 	/**
-	 * Direction of the sash: SWT.HORIZONTAL or SWT.VERTICAL. Default = SWT.HORIZONTAL
+	 * Direction of the sash: SWT.HORIZONTAL or SWT.VERTICAL. Default =
+	 * SWT.HORIZONTAL
 	 */
 	private int sashDirection = SWT.HORIZONTAL;
 
@@ -80,7 +86,8 @@ public class SashPanelPart extends AbstractPanelPart implements IPanelParent {
 	}
 
 	/**
-	 * Fill the provided part map with this parts and recursively call children to fillin.
+	 * Fill the provided part map with this parts and recursively call children
+	 * to fillin.
 	 * 
 	 * @param partMap
 	 */
@@ -93,7 +100,8 @@ public class SashPanelPart extends AbstractPanelPart implements IPanelParent {
 	}
 
 	/**
-	 * Create local control, and the tree of children (TileParts AND controls). Create this TilePart control, and then Tile childs of this TilePart.
+	 * Create local control, and the tree of children (TileParts AND controls).
+	 * Create this TilePart control, and then Tile childs of this TilePart.
 	 * 
 	 * @param parent
 	 * @return Control
@@ -101,8 +109,8 @@ public class SashPanelPart extends AbstractPanelPart implements IPanelParent {
 	public void createPartControl(Composite parent) {
 
 		createControl(parent);
-		//		activate();
-		//		createChildrenControl();
+		// activate();
+		// createChildrenControl();
 	}
 
 	/**
@@ -115,10 +123,11 @@ public class SashPanelPart extends AbstractPanelPart implements IPanelParent {
 	}
 
 	/**
-	 * Create the part for the specified child model.
-	 * The controls are NOT build.
+	 * Create the part for the specified child model. The controls are NOT
+	 * build.
 	 * 
-	 * TODO: delegate to sashContainer, remove duplication from here and RootPart.
+	 * TODO: delegate to sashContainer, remove duplication from here and
+	 * RootPart.
 	 * 
 	 * @param rootPart
 	 * @param partModel
@@ -136,20 +145,19 @@ public class SashPanelPart extends AbstractPanelPart implements IPanelParent {
 			createdPart = new SashPanelPart(this, (ISashPanelModel)model, rawModel);
 		} else {
 			// error
-			throw new IllegalArgumentException("Can't create child part for model of type '"
-					+ model.getClass().getName()
-					+ "'");
-			// TODO: Return an error Part showing the exception instead of throwing it ?
+			throw new IllegalArgumentException("Can't create child part for model of type '" + model.getClass().getName() + "'");
+			// TODO: Return an error Part showing the exception instead of
+			// throwing it ?
 		}
 
 		return createdPart;
 	}
 
 	/**
-	 * Create the part for the specified child model.
-	 * The controls are build.
+	 * Create the part for the specified child model. The controls are build.
 	 * 
-	 * TODO: delegate to sashContainer, remove duplication from here and RootPart.
+	 * TODO: delegate to sashContainer, remove duplication from here and
+	 * RootPart.
 	 * 
 	 * @param rootPart
 	 * @param partModel
@@ -163,7 +171,6 @@ public class SashPanelPart extends AbstractPanelPart implements IPanelParent {
 		return createdPart;
 	}
 
-
 	/**
 	 * Get the sash container.
 	 * 
@@ -176,7 +183,8 @@ public class SashPanelPart extends AbstractPanelPart implements IPanelParent {
 	}
 
 	/**
-	 * Change the parent of this method. Reparent the Tile and the control. Normally, the control already exists.
+	 * Change the parent of this method. Reparent the Tile and the control.
+	 * Normally, the control already exists.
 	 * 
 	 */
 	@Override
@@ -196,7 +204,8 @@ public class SashPanelPart extends AbstractPanelPart implements IPanelParent {
 	}
 
 	/**
-	 * Orphan this node, and children. The parent is set to null, but control is left unchanged. The node can be reattached with reparent().
+	 * Orphan this node, and children. The parent is set to null, but control is
+	 * left unchanged. The node can be reattached with reparent().
 	 * 
 	 * @see
 	 * @return the parent
@@ -247,11 +256,11 @@ public class SashPanelPart extends AbstractPanelPart implements IPanelParent {
 
 		throw new NotFoundException("Can't find a part at '" + toFind + "'");
 
-
 	}
 
 	/**
-	 * Locates the part that intersects the given point and that have the expected type
+	 * Locates the part that intersects the given point and that have the
+	 * expected type
 	 * 
 	 * @param toFind
 	 *        Position in Display coordinate.
@@ -276,7 +285,6 @@ public class SashPanelPart extends AbstractPanelPart implements IPanelParent {
 			return currentChildParts[1].findPartAt(toFind, expectedTileType);
 		}
 	}
-
 
 	/**
 	 * Return true if this sash is vertical, false otherwise.
@@ -316,7 +324,8 @@ public class SashPanelPart extends AbstractPanelPart implements IPanelParent {
 	}
 
 	/**
-	 * Return true if the Part is for the specified real model. Return false otherwise.
+	 * Return true if the Part is for the specified real model. Return false
+	 * otherwise.
 	 * 
 	 * @param realModel
 	 *        The raw model to check
@@ -377,8 +386,9 @@ public class SashPanelPart extends AbstractPanelPart implements IPanelParent {
 		Object newModel = model.getChildren().get(childIndex);
 
 		// Check if old child exist
-		// If exist, check if the current part is associated to the checked model
-		// 
+		// If exist, check if the current part is associated to the checked
+		// model
+		//
 		AbstractPanelPart currentChildPart = currentChildParts[childIndex];
 		if(currentChildPart != null) {
 			// If the tile is already for the model, there is nothing to do.
@@ -422,7 +432,8 @@ public class SashPanelPart extends AbstractPanelPart implements IPanelParent {
 	}
 
 	/**
-	 * Set the provided child at the specified index. If a child already exist at the specified index, it is lost. The controls are set accordingly
+	 * Set the provided child at the specified index. If a child already exist
+	 * at the specified index, it is lost. The controls are set accordingly
 	 * 
 	 * @param newTile
 	 * @param childIndex
@@ -433,8 +444,8 @@ public class SashPanelPart extends AbstractPanelPart implements IPanelParent {
 	}
 
 	/**
-	 * Accept the provided visitor.
-	 * Call the corresponding accept method in the visitor.
+	 * Accept the provided visitor. Call the corresponding accept method in the
+	 * visitor.
 	 * 
 	 * @param visitor
 	 * @return
@@ -460,15 +471,10 @@ public class SashPanelPart extends AbstractPanelPart implements IPanelParent {
 	}
 
 	/**
-	 * Show tile status.
-	 * Used for debug purpose
+	 * Show tile status. Used for debug purpose
 	 */
 	protected void showStatus() {
-		org.eclipse.papyrus.sasheditor.Activator.log.debug("sash[" + currentChildParts.length + "]:"
-				+ ", disposed=" + container.isDisposed()
-				+ ", visible=" + container.isVisible()
-				+ ", garbState=" + garbageState
-				+ ", " + this);
+		org.eclipse.papyrus.sasheditor.Activator.log.debug("sash[" + currentChildParts.length + "]:" + ", disposed=" + container.isDisposed() + ", visible=" + container.isVisible() + ", garbState=" + garbageState + ", " + this);
 	}
 
 }

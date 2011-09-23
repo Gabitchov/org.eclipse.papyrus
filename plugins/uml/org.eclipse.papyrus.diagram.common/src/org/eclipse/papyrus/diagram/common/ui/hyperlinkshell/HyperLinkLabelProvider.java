@@ -19,7 +19,6 @@ import org.eclipse.papyrus.core.editorsfactory.IPageIconsRegistry;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
-
 /**
  * The Class DocumentLabelProvider.
  */

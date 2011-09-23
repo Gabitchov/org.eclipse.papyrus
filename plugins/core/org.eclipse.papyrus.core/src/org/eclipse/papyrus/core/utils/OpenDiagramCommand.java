@@ -23,7 +23,6 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
 
-
 /**
  * The Class OpenDiagramCommand.
  * 
@@ -62,15 +61,13 @@ public class OpenDiagramCommand extends AbstractTransactionalCommand {
 		try {
 			if(diagramToOpen == null && previousCreateDiagramCommand != null) {
 				Object possibleDiagramToOpen = previousCreateDiagramCommand.getCommandResult().getReturnValue();
-				if (possibleDiagramToOpen instanceof EObject) {
+				if(possibleDiagramToOpen instanceof EObject) {
 					diagramToOpen = (EObject)possibleDiagramToOpen;
 				}
 			}
 
-			if(diagramToOpen != null && getEditingDomain().getResourceSet() instanceof DiResourceSet) {
-				DiResourceSet diResourceSet = (DiResourceSet)getEditingDomain().getResourceSet();
-
-				IPageMngr pageMngr = EditorUtils.getIPageMngr(diResourceSet.getDiResource());
+			if(diagramToOpen != null) {
+				IPageMngr pageMngr = EditorUtils.getServiceRegistry().getService(IPageMngr.class);
 
 				if(pageMngr.isOpen(diagramToOpen)) {
 					pageMngr.closePage(diagramToOpen);

@@ -6,10 +6,9 @@ package org.eclipse.papyrus.resource.sasheditor;
 import org.eclipse.papyrus.resource.AbstractBaseModel;
 import org.eclipse.papyrus.resource.IModel;
 
-
 /**
  * @author dumoulin
- *
+ * 
  */
 public class DiModel extends AbstractBaseModel implements IModel {
 
@@ -24,14 +23,15 @@ public class DiModel extends AbstractBaseModel implements IModel {
 	public static final String DI_FILE_EXTENSION = MODEL_FILE_EXTENSION;
 
 	/**
-	 *  Model ID.
+	 * Model ID.
 	 */
 	public static final String MODEL_ID = "org.eclipse.papyrus.resource.sasheditor.SashModel"; //$NON-NLS-1$
 
 	/**
 	 * Get the file extension used for this model.
+	 * 
 	 * @see org.eclipse.papyrus.resource.AbstractBaseModel#getModelFileExtension()
-	 *
+	 * 
 	 * @return
 	 */
 	@Override
@@ -41,8 +41,9 @@ public class DiModel extends AbstractBaseModel implements IModel {
 
 	/**
 	 * Get the identifier used to register this model.
+	 * 
 	 * @see org.eclipse.papyrus.resource.AbstractBaseModel#getIdentifier()
-	 *
+	 * 
 	 * @return
 	 */
 	@Override

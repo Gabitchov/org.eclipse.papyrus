@@ -20,6 +20,7 @@ import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.core.editorsfactory.IPageIconsRegistry;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.utils.EditorUtils;
+import org.eclipse.papyrus.core.utils.OpenDiagramCommand;
 import org.eclipse.papyrus.core.utils.ServiceUtils;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
 import org.eclipse.uml2.uml.Package;
@@ -27,6 +28,7 @@ import org.eclipse.uml2.uml.Package;
 /**
  * The Class HyperLinkDiagram a container of diagram
  */
+@SuppressWarnings("deprecation")
 public class HyperLinkDiagram extends HyperlinkObject {
 
 	/**
@@ -59,16 +61,13 @@ public class HyperLinkDiagram extends HyperlinkObject {
 		IMultiDiagramEditor papyrusEditor=EditorUtils.getMultiDiagramEditor();
 		IPageMngr pageMngr=null;
 		try {
-			pageMngr = ServiceUtils.getInstance().getIPageMngr(papyrusEditor.getServicesRegistry());
-		} catch (ServiceException e) {
+			OpenDiagramCommand openCommand = new OpenDiagramCommand(ServiceUtils.getInstance().getTransactionalEditingDomain(papyrusEditor.getServicesRegistry()), getDiagram());
+			if(openCommand.canExecute()) {
+				openCommand.execute(null, null);
+			}
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		// better to set focus on existing page than close and
-		// open
-		if(pageMngr.isOpen(this.getDiagram())) {
-			pageMngr.closePage(this.getDiagram());
-		}
-		pageMngr.openPage((this.getDiagram()));
 	}
 
 /**

@@ -33,7 +33,8 @@ public abstract class SupplementCommand {
 	private final EObject target;
 
 	/**
-	 * the supplement command has the same parameter as connection create command of gmf command
+	 * the supplement command has the same parameter as connection create
+	 * command of gmf command
 	 * 
 	 * @param container
 	 *        the container of the link

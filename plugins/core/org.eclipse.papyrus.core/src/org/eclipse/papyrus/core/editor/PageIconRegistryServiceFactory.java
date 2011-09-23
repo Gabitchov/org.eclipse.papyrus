@@ -11,7 +11,6 @@ import org.eclipse.papyrus.core.services.IServiceFactory;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
 
-
 /**
  * Service Factory to register {@link IPageIconsRegistry}.
  * 
@@ -49,7 +48,8 @@ public class PageIconRegistryServiceFactory implements IServiceFactory {
 	}
 
 	/**
-	 * Create and populate a {@link PageIconsRegistry}. Return it as the service instance.
+	 * Create and populate a {@link PageIconsRegistry}. Return it as the service
+	 * instance.
 	 * 
 	 * @return
 	 */

@@ -17,18 +17,16 @@ package org.eclipse.papyrus.core.lifecycleevents;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.ui.ISaveablePart;
 
-
-
 /**
  * @author dumoulin
- *
+ * 
  */
 public interface ISaveAndDirtyService extends ISaveablePart {
 
 	/**
-	 * Register a nested {@link ISaveablePart} as a listener that will be notified each time a {@link #doSave(IProgressMonitor)} or
-	 * {@link #doSaveAs()} is performed. 
-	 * Also, it will be asked for the dirtyState.
+	 * Register a nested {@link ISaveablePart} as a listener that will be
+	 * notified each time a {@link #doSave(IProgressMonitor)} or {@link #doSaveAs()} is performed. Also, it will be asked for the
+	 * dirtyState.
 	 * 
 	 * @param saveablePart
 	 */
@@ -36,20 +34,23 @@ public interface ISaveAndDirtyService extends ISaveablePart {
 
 	/**
 	 * Remove the specified {@link ISaveablePart} from the list of listeners.
+	 * 
 	 * @param saveablePart
 	 */
 	public abstract void removeIsaveablePart(ISaveablePart saveablePart);
 
 	/**
 	 * Add a listeners on input changed event.
+	 * 
 	 * @param inputChangedListener
 	 */
-	public void addInputChangedListener( IEditorInputChangedListener inputChangedListener );
-	
+	public void addInputChangedListener(IEditorInputChangedListener inputChangedListener);
+
 	/**
 	 * Remove a listeners on input changed event.
+	 * 
 	 * @param inputChangedListener
 	 */
-	public void removeInputChangedListener( IEditorInputChangedListener inputChangedListener );
+	public void removeInputChangedListener(IEditorInputChangedListener inputChangedListener);
 
 }

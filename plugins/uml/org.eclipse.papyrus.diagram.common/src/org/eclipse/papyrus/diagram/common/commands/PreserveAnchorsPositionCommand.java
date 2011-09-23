@@ -32,11 +32,13 @@ import org.eclipse.gmf.runtime.notation.IdentityAnchor;
 import org.eclipse.gmf.runtime.notation.View;
 
 /**
- * This class modifies the anchors of the edges connected to the passed element so that they can
- * preserve their position after the resize of the figure. If any of the anchors does not fit in the
- * new size, it will be positioned at the nearest bound.
+ * This class modifies the anchors of the edges connected to the passed element
+ * so that they can preserve their position after the resize of the figure. If
+ * any of the anchors does not fit in the new size, it will be positioned at the
+ * nearest bound.
  * 
- * This class allows to preserve the position in the Y axis, in the X axis or in both axis.
+ * This class allows to preserve the position in the Y axis, in the X axis or in
+ * both axis.
  * 
  * @author gmerin
  * 
@@ -52,7 +54,7 @@ public class PreserveAnchorsPositionCommand extends AbstractTransactionalCommand
 
 	private int preserveAxis;
 
-	// 
+	//
 	private IFigure figure;
 
 	// The resize direction
@@ -72,8 +74,9 @@ public class PreserveAnchorsPositionCommand extends AbstractTransactionalCommand
 	public final static int PRESERVE_XY = 2;
 
 	/**
-	 * Constructor. It needs the shape being resized, it's re-size delta and the axis where the
-	 * position should be preserved. The different preserveAxis values are the following:
+	 * Constructor. It needs the shape being resized, it's re-size delta and the
+	 * axis where the position should be preserved. The different preserveAxis
+	 * values are the following:
 	 * <ul>
 	 * <li>ModifyAnchorsToPreservePosition.PRESERVE_Y</li>
 	 * <li>ModifyAnchorsToPreservePosition.PRESERVE_X</li>
@@ -85,8 +88,8 @@ public class PreserveAnchorsPositionCommand extends AbstractTransactionalCommand
 	 * @param sizeDelta
 	 *        the re-size delta
 	 * @param preserveAxis
-	 *        the axis where the position should be preserved. If the given value is not valid,
-	 *        then PRESERVE_Y will be taken as default
+	 *        the axis where the position should be preserved. If the given
+	 *        value is not valid, then PRESERVE_Y will be taken as default
 	 */
 	public PreserveAnchorsPositionCommand(ShapeNodeEditPart shapeEP, Dimension sizeDelta, int preserveAxis) {
 		super(shapeEP.getEditingDomain(), COMMAND_LABEL, null);
@@ -96,8 +99,9 @@ public class PreserveAnchorsPositionCommand extends AbstractTransactionalCommand
 	}
 
 	/**
-	 * Constructor. It needs the shape being resized, it's re-size delta and the axis where the
-	 * position should be preserved. The different preserveAxis values are the following:
+	 * Constructor. It needs the shape being resized, it's re-size delta and the
+	 * axis where the position should be preserved. The different preserveAxis
+	 * values are the following:
 	 * <ul>
 	 * <li>ModifyAnchorsToPreservePosition.PRESERVE_Y</li>
 	 * <li>ModifyAnchorsToPreservePosition.PRESERVE_X</li>
@@ -110,10 +114,11 @@ public class PreserveAnchorsPositionCommand extends AbstractTransactionalCommand
 	 * @param sizeDelta
 	 *        the re-size delta
 	 * @param preserveAxis
-	 *        the axis where the position should be preserved. If the given value is not valid,
-	 *        then PRESERVE_Y will be taken as default
+	 *        the axis where the position should be preserved. If the given
+	 *        value is not valid, then PRESERVE_Y will be taken as default
 	 * @param figure
-	 *        the figure where the anchors are (when it is not the getShapeEP().getFigure()).
+	 *        the figure where the anchors are (when it is not the
+	 *        getShapeEP().getFigure()).
 	 * @param resizeDirection
 	 *        the resize direction. Possible values are
 	 *        <ul>
@@ -259,7 +264,8 @@ public class PreserveAnchorsPositionCommand extends AbstractTransactionalCommand
 
 			pp.preciseY = (double)anchorYPos / (figureBounds.height + sizeDelta.height);
 
-			// If the resize direction is NORTH, the location of the figure move, but the anchor stay visually at the same location
+			// If the resize direction is NORTH, the location of the figure
+			// move, but the anchor stay visually at the same location
 			if(PositionConstants.NORTH == resizeDirection || PositionConstants.NORTH_EAST == resizeDirection || PositionConstants.NORTH_WEST == resizeDirection) {
 				pp.preciseY = pp.preciseY + ((double)sizeDelta.height / (figureBounds.height + sizeDelta.height));
 			}
@@ -276,7 +282,8 @@ public class PreserveAnchorsPositionCommand extends AbstractTransactionalCommand
 
 			pp.preciseX = (double)anchorXPos / (figureBounds.width + sizeDelta.width);
 
-			// If the resize direction is WEST, the location of the figure move, but the anchor stay visually at the same location
+			// If the resize direction is WEST, the location of the figure move,
+			// but the anchor stay visually at the same location
 			if(PositionConstants.WEST == resizeDirection || PositionConstants.NORTH_WEST == resizeDirection || PositionConstants.SOUTH_WEST == resizeDirection) {
 				pp.preciseX = pp.preciseX + ((double)sizeDelta.width / (figureBounds.width + sizeDelta.width));
 			}
@@ -293,8 +300,8 @@ public class PreserveAnchorsPositionCommand extends AbstractTransactionalCommand
 	}
 
 	/**
-	 * This operation checks if, after resizing the ShapeNodeEditPart, all links anchors will fit
-	 * inside the figure in case their positions are preserved
+	 * This operation checks if, after resizing the ShapeNodeEditPart, all links
+	 * anchors will fit inside the figure in case their positions are preserved
 	 * 
 	 * @param shapeEP
 	 *        That shape being resized
@@ -326,8 +333,9 @@ public class PreserveAnchorsPositionCommand extends AbstractTransactionalCommand
 	}
 
 	/**
-	 * Used inside the getSizeDeltaToFitAnchors operation. It's goal is to modify a SizeDelta in
-	 * order to keep fitting an anchor within the figureBounds
+	 * Used inside the getSizeDeltaToFitAnchors operation. It's goal is to
+	 * modify a SizeDelta in order to keep fitting an anchor within the
+	 * figureBounds
 	 * 
 	 * @param anchor
 	 *        The anchor whose position will be kept
@@ -367,8 +375,8 @@ public class PreserveAnchorsPositionCommand extends AbstractTransactionalCommand
 	}
 
 	/**
-	 * Creations of a new request in order to have a correct visualization of the feedback in order
-	 * to preserve links's anchors.
+	 * Creations of a new request in order to have a correct visualization of
+	 * the feedback in order to preserve links's anchors.
 	 * 
 	 * @param request
 	 * @param editPart

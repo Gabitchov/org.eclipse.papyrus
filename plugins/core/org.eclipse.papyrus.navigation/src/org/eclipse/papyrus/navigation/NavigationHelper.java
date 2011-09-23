@@ -32,7 +32,6 @@ import org.eclipse.papyrus.core.extension.commands.ICreationCommand;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
 import org.eclipse.papyrus.core.utils.OpenDiagramCommand;
 
-
 public class NavigationHelper {
 
 	private static class NavigationHelperHolder {
@@ -45,7 +44,7 @@ public class NavigationHelper {
 	}
 
 	private static final String EXTENSION_ID = "org.eclipse.papyrus.navigation.navigationRules";
-	
+
 	private static final String NAVIGATIONRULE_ID = "navigationRule";
 
 	private static final String RULE_ID = "rule";
@@ -56,7 +55,7 @@ public class NavigationHelper {
 		// Reading data from plugins
 		IConfigurationElement[] configElements = Platform.getExtensionRegistry().getConfigurationElementsFor(EXTENSION_ID);
 		for(IConfigurationElement configElement : configElements) {
-			if (NAVIGATIONRULE_ID.equals(configElement.getName())) {
+			if(NAVIGATIONRULE_ID.equals(configElement.getName())) {
 				try {
 					Object obj = configElement.createExecutableExtension(RULE_ID);
 					if(obj instanceof INavigationRule) {
@@ -83,7 +82,8 @@ public class NavigationHelper {
 	}
 
 	/**
-	 * get all navigation possibilities (existing or "to create" elements) from the specified element.
+	 * get all navigation possibilities (existing or "to create" elements) from
+	 * the specified element.
 	 * 
 	 * @param element
 	 *        the element
@@ -98,10 +98,10 @@ public class NavigationHelper {
 	}
 
 	/**
-	 * This method link the created element with its parent
-	 * and browse the hierarchy to link the parents between them.
-	 * Ultimately the hierarchy will be attached to an {@link ExistingNavigableElement},
-	 * so to the original model.
+	 * This method link the created element with its parent and browse the
+	 * hierarchy to link the parents between them. Ultimately the hierarchy will
+	 * be attached to an {@link ExistingNavigableElement}, so to the original
+	 * model.
 	 * 
 	 * @param createdNavElement
 	 */
@@ -115,7 +115,8 @@ public class NavigationHelper {
 	}
 
 	/**
-	 * Same behavior as {@link NavigationHelper#linkToModel(CreatedNavigableElement)} but set the base name of the elements.
+	 * Same behavior as {@link NavigationHelper#linkToModel(CreatedNavigableElement)} but set the
+	 * base name of the elements.
 	 * 
 	 * @param createdNavElement
 	 * @param base

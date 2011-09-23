@@ -17,7 +17,6 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.PrecisionPoint;
 import org.eclipse.gmf.runtime.gef.ui.figures.SlidableAnchor;
 
-
 /**
  * An anchor that is attached to the top or the bottom of a figure.
  * 

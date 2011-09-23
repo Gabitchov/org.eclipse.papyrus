@@ -87,7 +87,6 @@ public class Rectangular3DBorder extends LineBorder {
 		else
 			graphics.setForegroundColor(ColorConstants.black);
 
-
 		graphics.drawRectangle(tempRect);
 
 		// draw the shadow
@@ -107,13 +106,10 @@ public class Rectangular3DBorder extends LineBorder {
 		plt.addPoint(tempRect.x, tempRect.y + tempRect.height);
 		plt.addPoint(tempRect.x + tempRect.width, tempRect.y + tempRect.height);
 
-
-
 		if(getColor() != null)
 			graphics.setBackgroundColor(getColor());
 		else
 			graphics.setBackgroundColor(ColorConstants.gray);
-
 
 		graphics.fillPolygon(plt);
 		graphics.popState();

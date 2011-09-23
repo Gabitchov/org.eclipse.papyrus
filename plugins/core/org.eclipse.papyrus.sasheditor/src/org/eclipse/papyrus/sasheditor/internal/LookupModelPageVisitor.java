@@ -5,7 +5,6 @@ package org.eclipse.papyrus.sasheditor.internal;
 
 import org.eclipse.papyrus.sasheditor.editor.IPage;
 
-
 /**
  * A visitor used to lookup a PagePart from its raw model.
  * 
@@ -17,7 +16,6 @@ public class LookupModelPageVisitor extends PartVisitor {
 	private Object rawModel;
 
 	private IPage result;
-
 
 	public LookupModelPageVisitor(Object rawModel) {
 		this.rawModel = rawModel;

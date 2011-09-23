@@ -24,7 +24,6 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.diagram.common.ui.hyperlinkshell.HyperlinkObject;
 import org.eclipse.uml2.uml.Package;
 
-
 /**
  * this class is an abstract use to serialize and deserialize a HyperLink Object
  *
@@ -37,22 +36,29 @@ public abstract class AbstractHyperLinkHelper {
 	 */
 	public abstract String getNameofManagedHyperLink();
 	/**
-	 * this method is called in order to create an hyperlinkObject and add into a given hyperlinkObject list
+	 * this method is called in order to create an hyperlinkObject and add into
+	 * a given hyperlinkObject list
 	 * @param list a list of hyperlink Object
 	 * @param amodel the root model
 	 */
 	public abstract void executeNewMousePressed(List<HyperlinkObject> list, org.eclipse.uml2.uml.Package amodel);
 	/**
-	 *this method is called in order to edit an hyperlinkObject and add into a given hyperlinkObject list
-	 * @param list a list of hyperlink Object
-	 * @param amodel the root model
-	 * @param hyperlinkObject the hyperlinkObject to edit
+	 * this method is called in order to edit an hyperlinkObject and add into a
+	 * given hyperlinkObject list
+	 * 
+	 * @param list
+	 *        a list of hyperlink Object
+	 * @param amodel
+	 *        the root model
+	 * @param hyperlinkObject
+	 *        the hyperlinkObject to edit
 	 */
 	public  void executeEditMousePressed(List<HyperlinkObject> list, HyperlinkObject hyperlinkObject,Package amodel){
 		hyperlinkObject.executeEditMousePressed(list, amodel);
 	}
 	/**
-	 * this method is called when the element is selected an clicked in order to open a diagram in the case of hyperlink diagram
+	 * this method is called when the element is selected an clicked in order to
+	 * open a diagram in the case of hyperlink diagram
 	 * @param hyperlinkObject  the hyperlink object that is selected
 	 */
 	public void executeSelectPressed(HyperlinkObject hyperlinkObject){
@@ -60,8 +66,8 @@ public abstract class AbstractHyperLinkHelper {
 	}
 	
 	/**
-	 * from a list of hyperlinks, it return a list of hyperlink with the same kind.
-	 * for example return a list of diagramhyperlink
+	 * from a list of hyperlinks, it return a list of hyperlink with the same
+	 * kind. for example return a list of diagramhyperlink
 	 * @param hyperlinkObjects the list of hyperlinkobjects
 	 * @return a list of hyperlink object with the same kind 
 	 */
@@ -72,9 +78,8 @@ public abstract class AbstractHyperLinkHelper {
 	 * @param eAnnotation that represents a hyperlink object
 	 * @return the hyperlink object from the eannotation
 	 */
-	public  abstract HyperlinkObject getHyperLinkObject(EAnnotation eAnnotation);
-	
-	
+	public abstract HyperlinkObject getHyperLinkObject(EAnnotation eAnnotation);
+
 	/**
 	 * get a command to serailize a hyperlink object
 	 * @param domain the editing domain

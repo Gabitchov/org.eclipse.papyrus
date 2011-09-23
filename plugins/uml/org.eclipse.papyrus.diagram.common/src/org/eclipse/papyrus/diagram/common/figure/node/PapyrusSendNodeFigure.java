@@ -24,7 +24,8 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.RoundedRectangleBorder;
 import org.eclipse.gmf.runtime.notation.GradientStyle;
 import org.eclipse.swt.graphics.Color;
 /**
- * this class is used to display a sendNodeFigure, the gradient can be only horizontal
+ * this class is used to display a sendNodeFigure, the gradient can be only
+ * horizontal
  *
  */
 
@@ -37,7 +38,6 @@ public class PapyrusSendNodeFigure extends NodeNamedElementFigure {
 		setBorder(this.shadowborder);
 	}
 	public int widthArrow=15;
-
 	
 	@Override
 	protected Border getDefaultBorder(Color borderColor) {
@@ -95,9 +95,5 @@ public class PapyrusSendNodeFigure extends NodeNamedElementFigure {
 			graphics.fillPolygon(ptList);
 		}
 	}
-
-
-
-
 
 }

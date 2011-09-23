@@ -30,8 +30,7 @@ public class CrossReferencerUtil {
 	 * 
 	 * @param element
 	 *        the {@link EObject} element
-	 * @return
-	 *         the {@link CrossReferenceAdapter} corresponding to element
+	 * @return the {@link CrossReferenceAdapter} corresponding to element
 	 */
 	public static CrossReferenceAdapter getCrossReferenceAdapter(EObject element) {
 
@@ -54,7 +53,8 @@ public class CrossReferencerUtil {
 	 * 
 	 * @param referencedObject
 	 * @param diagramType
-	 *        type of diagram containing the list of {@link View} (may be null)
+	 *        type of diagram containing the list of {@link View} (may be
+	 *        null)
 	 * @return the list of {@link View} referencing the referencedObject
 	 */
 	public static Set<View> getCrossReferencingViews(EObject referencedObject, String diagramType) {
@@ -69,9 +69,11 @@ public class CrossReferencerUtil {
 			while(views.hasNext()) {
 
 				View view = (View)views.next();
-				if(diagramType != null) { // Filter to get only view from this kind of diagram
+				if(diagramType != null) { // Filter to get only view from this
+											// kind of diagram
 
-					// Check if current view is owned by a diagram which type conforms to diagramType
+					// Check if current view is owned by a diagram which type
+					// conforms to diagramType
 					if(diagramType.equals(view.getDiagram().getType())) {
 						referencingObjects.add(view);
 					}

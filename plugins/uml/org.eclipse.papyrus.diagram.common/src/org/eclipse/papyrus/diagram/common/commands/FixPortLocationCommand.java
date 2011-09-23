@@ -49,9 +49,14 @@ public class FixPortLocationCommand extends AbstractTransactionalCommand {
 		
 	/**
 	 * Constructor for the command.
-	 * @param domain the editing domain.
-	 * @param borderItemEP assumed to be a Port due to the use of {@link PortPositionLocatorUtils} to calculate the correct location.
-	 * @param parentEP the edit part of the graphical parent of borderItemEP.
+	 * 
+	 * @param domain
+	 *        the editing domain.
+	 * @param borderItemEP
+	 *        assumed to be a Port due to the use of {@link PortPositionLocatorUtils} to calculate the correct
+	 *        location.
+	 * @param parentEP
+	 *        the edit part of the graphical parent of borderItemEP.
 	 */
 	public FixPortLocationCommand(TransactionalEditingDomain domain, IBorderItemEditPart borderItemEditPart, GraphicalEditPart parentEditPart) {
 		super(domain, "Fix port location command", null);

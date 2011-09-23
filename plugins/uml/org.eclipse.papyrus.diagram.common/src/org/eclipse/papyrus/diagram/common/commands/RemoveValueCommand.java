@@ -40,7 +40,8 @@ public class RemoveValueCommand extends EditElementCommand {
 	private final Object value;
 
 	/**
-	 * Constructs a new command to remove the value of a feature of a model element.
+	 * Constructs a new command to remove the value of a feature of a model
+	 * element.
 	 * 
 	 * @param request
 	 *        the set value request
@@ -55,7 +56,8 @@ public class RemoveValueCommand extends EditElementCommand {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @seeorg.eclipse.gmf.runtime.emf.commands.core.command. AbstractTransactionalCommand#
+	 * @seeorg.eclipse.gmf.runtime.emf.commands.core.command.
+	 * AbstractTransactionalCommand#
 	 * doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor,
 	 * org.eclipse.core.runtime.IAdaptable)
 	 */
@@ -86,8 +88,9 @@ public class RemoveValueCommand extends EditElementCommand {
 	}
 
 	/**
-	 * Checks that the feature is a modifiable feature of the element whose value will be removed by
-	 * this command. Also checks that the value is of the correct type for the feature.
+	 * Checks that the feature is a modifiable feature of the element whose
+	 * value will be removed by this command. Also checks that the value is of
+	 * the correct type for the feature.
 	 * 
 	 * @return true, if can execute
 	 */

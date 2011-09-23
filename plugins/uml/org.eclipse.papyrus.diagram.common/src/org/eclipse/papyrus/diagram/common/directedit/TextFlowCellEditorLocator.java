@@ -44,7 +44,9 @@ final public class TextFlowCellEditorLocator implements CellEditorLocator {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.gef.tools.CellEditorLocator#relocate(org.eclipse.jface.viewers .CellEditor)
+	 * @see
+	 * org.eclipse.gef.tools.CellEditorLocator#relocate(org.eclipse.jface.viewers
+	 * .CellEditor)
 	 */
 	/**
 	 * 

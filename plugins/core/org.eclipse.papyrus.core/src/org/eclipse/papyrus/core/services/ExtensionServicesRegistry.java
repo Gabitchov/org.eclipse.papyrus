@@ -11,9 +11,9 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.papyrus.core.services.ServiceDescriptor.ServiceTypeKind;
 
-
 /**
- * ServiceRegistry reading and registering services declared in Eclipse Extensions.
+ * ServiceRegistry reading and registering services declared in Eclipse
+ * Extensions.
  * 
  * @author dumoulin
  * 
@@ -140,11 +140,7 @@ public class ExtensionServicesRegistry extends ServicesRegistry {
 				serviceStartKind = ServiceStartKind.valueOf(serviceStartKindStr.toUpperCase());
 			} catch (IllegalArgumentException e) {
 				// Can't convert property
-				throw new ServiceException("Can't convert property " + STARTKIND_PROPERTY
-						+ "(plugin=" + ele.getContributor()
-						+ "declaringExtension=" + ele.getDeclaringExtension()
-						+ ")"
-						, e);
+				throw new ServiceException("Can't convert property " + STARTKIND_PROPERTY + "(plugin=" + ele.getContributor() + "declaringExtension=" + ele.getDeclaringExtension() + ")", e);
 			}
 		}
 
@@ -160,7 +156,6 @@ public class ExtensionServicesRegistry extends ServicesRegistry {
 
 		// Read dependsOn keys
 		List<String> keys = getDependsOn(ele);
-
 
 		// Create descriptor
 		ServiceDescriptor desc = new ServiceDescriptor(key, serviceClassname, serviceStartKind, priority);
@@ -197,6 +192,5 @@ public class ExtensionServicesRegistry extends ServicesRegistry {
 
 		return keys;
 	}
-
 
 }

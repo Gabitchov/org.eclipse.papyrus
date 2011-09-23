@@ -35,8 +35,10 @@ import org.eclipse.uml2.uml.Element;
 public abstract class AbstractMaskManagedEditPolicy extends GraphicalEditPolicyEx implements NotificationListener, IPapyrusListener, IMaskManagedLabelEditPolicy {
 
 	/**
-	 * Stores the semantic element related to the edit policy. If resolveSemanticElement is used, there are problems when the edit part is getting
-	 * destroyed, i.e. the link to the semantic element is removed, but the listeners should still be removed
+	 * Stores the semantic element related to the edit policy. If
+	 * resolveSemanticElement is used, there are problems when the edit part is
+	 * getting destroyed, i.e. the link to the semantic element is removed, but
+	 * the listeners should still be removed
 	 */
 	protected Element hostSemanticElement;
 
@@ -53,7 +55,8 @@ public abstract class AbstractMaskManagedEditPolicy extends GraphicalEditPolicyE
 		hostSemanticElement = initSemanticElement();
 		if(hostSemanticElement != null) {
 
-			// adds a listener on the view and the element controlled by the editpart
+			// adds a listener on the view and the element controlled by the
+			// editpart
 			getDiagramEventBroker().addNotificationListener(view, this);
 			getDiagramEventBroker().addNotificationListener(hostSemanticElement, this);
 
@@ -113,7 +116,8 @@ public abstract class AbstractMaskManagedEditPolicy extends GraphicalEditPolicyE
 	}
 
 	/**
-	 * Remove additional listeners that were added during activation of the edit policy
+	 * Remove additional listeners that were added during activation of the edit
+	 * policy
 	 */
 	protected void removeAdditionalListeners() {
 		// default implementation does nothing
@@ -151,19 +155,20 @@ public abstract class AbstractMaskManagedEditPolicy extends GraphicalEditPolicyE
 	}
 
 	/**
-	 * Returns <code>true</code> if the specified object is the annotation in charge of the mask
-	 * managed label.
+	 * Returns <code>true</code> if the specified object is the annotation in
+	 * charge of the mask managed label.
 	 * 
 	 * @param object
 	 *        the object to be checked
-	 * @return <code>true</code> if the object is an {@link EAnnotation} and its source is the
-	 *         correct one.
+	 * @return <code>true</code> if the object is an {@link EAnnotation} and its
+	 *         source is the correct one.
 	 */
 	protected boolean isMaskManagedAnnotation(Object object) {
 		// check the notifier is an annotation
 		if((object instanceof EAnnotation)) {
 
-			// notifier is the eannotation. Check this is the annotation in charge of the property
+			// notifier is the eannotation. Check this is the annotation in
+			// charge of the property
 			// label display
 			if(VisualInformationPapyrusConstant.CUSTOM_APPEARENCE_ANNOTATION.equals(((EAnnotation)object).getSource())) {
 				return true;
@@ -173,15 +178,15 @@ public abstract class AbstractMaskManagedEditPolicy extends GraphicalEditPolicyE
 	}
 
 	/**
-	 * Returns <code>true</code> if the the annotation in charge of the mask managed label is
-	 * removed from the given object which should be a View.
+	 * Returns <code>true</code> if the the annotation in charge of the mask
+	 * managed label is removed from the given object which should be a View.
 	 * 
 	 * @param object
 	 *        the object to be checked
 	 * @param notification
 	 *        the notification passed to the policy (which is a listener)
-	 * @return <code>true</code> if the object is an {@link EAnnotation} and its source is the
-	 *         correct one.
+	 * @return <code>true</code> if the object is an {@link EAnnotation} and its
+	 *         source is the correct one.
 	 */
 	protected boolean isRemovedMaskManagedLabelAnnotation(Object object, Notification notification) {
 		// object is a model element, that means it has EAnnotations

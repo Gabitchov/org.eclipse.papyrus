@@ -7,7 +7,6 @@ import org.eclipse.papyrus.core.listenerservice.ModelListenerManager;
 import org.eclipse.papyrus.resource.IModel;
 import org.eclipse.papyrus.resource.IModelSnippet;
 
-
 /**
  * A snippet registering adapters to the UML model.
  * 
@@ -26,7 +25,6 @@ public class UmlSnippet implements IModelSnippet {
 	 * @param startingModel
 	 */
 	public void start(IModel startingModel) {
-
 
 		// Modl should be an uml one
 		UmlModel umlModel = (UmlModel)startingModel;

@@ -39,8 +39,8 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Stereotype;
 
 /**
- * Specific edit policy for label displaying stereotypes and their properties for representing UML
- * elements.
+ * Specific edit policy for label displaying stereotypes and their properties
+ * for representing UML elements.
  */
 public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends GraphicalEditPolicy implements NotificationListener, IPapyrusListener {
 
@@ -69,7 +69,8 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 		}
 		hostSemanticElement = getUMLElement();
 
-		// adds a listener on the view and the element controlled by the editpart
+		// adds a listener on the view and the element controlled by the
+		// editpart
 		getDiagramEventBroker().addNotificationListener(view, this);
 
 		if(hostSemanticElement == null) {
@@ -151,10 +152,12 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 	 * {@inheritedDoc}
 	 */
 	public void notifyChanged(Notification notification) {
-		// change the label of the figure managed by the host edit part (managed by the parent edit
+		// change the label of the figure managed by the host edit part (managed
+		// by the parent edit
 		// part in general...)
 		// it must be changed only if:
-		// - the annotation corresponding to the display of the stereotype changes
+		// - the annotation corresponding to the display of the stereotype
+		// changes
 		// - the stereotype application list has changed
 		final int eventType = notification.getEventType();
 
@@ -180,20 +183,22 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 	}
 
 	/**
-	 * Refreshes the display for the element controlled by the edit part with this edit policies
+	 * Refreshes the display for the element controlled by the edit part with
+	 * this edit policies
 	 */
 	public abstract void refreshDisplay();
 
 	/**
-	 * Parses the string containing the complete definition of properties to be displayed, and
-	 * generates a map.
+	 * Parses the string containing the complete definition of properties to be
+	 * displayed, and generates a map.
 	 * 
 	 * @param stereotypesToDisplay
 	 *        the list of stereotypes to display
 	 * @param stereotypesPropertiesToDisplay
 	 *        the properties of stereotypes to display
-	 * @return a map. The keys are the name of displayed stereotypes, the corresponding data is a
-	 *         collection of its properties to be displayed
+	 * @return a map. The keys are the name of displayed stereotypes, the
+	 *         corresponding data is a collection of its properties to be
+	 *         displayed
 	 */
 	protected Map<String, List<String>> parseStereotypeProperties(String stereotypesToDisplay, String stereotypesPropertiesToDisplay) {
 		Map<String, List<String>> propertiesMap = new HashMap<String, List<String>>();
@@ -215,8 +220,7 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 	/**
 	 * Returns the image to be displayed for the applied stereotypes.
 	 * 
-	 * @return the image that represents the first applied stereotype or <code>null</code> if no
-	 *         image has to be displayed
+	 * @return the image that represents the first applied stereotype or <code>null</code> if no image has to be displayed
 	 */
 	public Image stereotypeIconToDisplay() {
 		String stereotypespresentationKind = AppliedStereotypeHelper.getAppliedStereotypePresentationKind((View)getHost().getModel());

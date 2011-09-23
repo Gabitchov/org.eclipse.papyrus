@@ -53,10 +53,12 @@ public class SingleFolderModel implements ITabFolderModel {
 	}
 
 	/**
-	 * This default implementation return directly the child which is already of the appropriate type.
+	 * This default implementation return directly the child which is already of
+	 * the appropriate type.
 	 */
 	public IPageModel createChildSashModel(Object child) {
-		// In this default implementation, the child is already of the appropriate type.
+		// In this default implementation, the child is already of the
+		// appropriate type.
 		return (IPageModel)child;
 	}
 
@@ -105,8 +107,8 @@ public class SingleFolderModel implements ITabFolderModel {
 	}
 
 	/**
-	 * Move a tab inside the folder.
-	 * Moves the tab from the old position to the new position.
+	 * Move a tab inside the folder. Moves the tab from the old position to the
+	 * new position.
 	 * 
 	 * @param oldIndex
 	 *        the position of the tab before the move.
@@ -128,7 +130,6 @@ public class SingleFolderModel implements ITabFolderModel {
 
 		if(listSize == 0)
 			return;
-
 
 		// Move
 		IPageModel toMove = itemModels.remove(oldIndex);

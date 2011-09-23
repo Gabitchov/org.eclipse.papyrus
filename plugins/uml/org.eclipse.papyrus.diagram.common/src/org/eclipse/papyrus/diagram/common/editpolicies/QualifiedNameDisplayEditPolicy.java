@@ -35,7 +35,8 @@ import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * this edit policy has in charge to display the qualified name of an element.
- * To display it, the editpart must be a {@link IPapyrusEditPart} and the associated figure has to be a {@link NodeNamedElementFigure}
+ * To display it, the editpart must be a {@link IPapyrusEditPart} and the
+ * associated figure has to be a {@link NodeNamedElementFigure}
  */
 public class QualifiedNameDisplayEditPolicy extends GraphicalEditPolicy implements NotificationListener, IPapyrusListener {
 
@@ -70,7 +71,8 @@ public class QualifiedNameDisplayEditPolicy extends GraphicalEditPolicy implemen
 
 		hostSemanticNamedElement = getNamedElement();
 		if(hostSemanticNamedElement != null) {
-			// adds a listener on the view and the element controlled by the editpart
+			// adds a listener on the view and the element controlled by the
+			// editpart
 			getDiagramEventBroker().addNotificationListener(view, this);
 
 			if(hostSemanticNamedElement == null) {
@@ -140,8 +142,8 @@ public class QualifiedNameDisplayEditPolicy extends GraphicalEditPolicy implemen
 
 	/**
 	 * 
-	 * @return the associated named element to the editpart.
-	 *         it can return null if this not a named element
+	 * @return the associated named element to the editpart. it can return null
+	 *         if this not a named element
 	 */
 	protected NamedElement getNamedElement() {
 		View view = (View)getHost().getModel();
@@ -198,7 +200,7 @@ public class QualifiedNameDisplayEditPolicy extends GraphicalEditPolicy implemen
 			if(parentListeners == null) {
 				parentListeners = new ArrayList<Object>();
 			}
-			if (getNamedElement() != null) {
+			if(getNamedElement() != null) {
 				EObject parentEOBject = getNamedElement().eContainer();
 				while(parentEOBject != null) {
 					diagramEventBroker.addNotificationListener(parentEOBject, this);

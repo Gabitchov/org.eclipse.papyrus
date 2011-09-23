@@ -32,11 +32,11 @@ import org.w3c.dom.NodeList;
 
 /**
  * 
- * This class provides methods to store the palette configuration concerning the stereotypes application
+ * This class provides methods to store the palette configuration concerning the
+ * stereotypes application
  * 
  */
 public class Configuration {
-
 
 	/** name of the property node */
 	public static final String PROPERTY = "property"; //$NON-NLS-1$
@@ -70,7 +70,6 @@ public class Configuration {
 	 */
 	private List<Profile> appliedProfiles;
 
-
 	/**
 	 * 
 	 * Constructor.
@@ -83,22 +82,24 @@ public class Configuration {
 	}
 
 	/**
-	 * builds the configuration with the configurationNode contents
-	 * That's to say create :
+	 * builds the configuration with the configurationNode contents That's to
+	 * say create :
 	 * <ul>
 	 * <li> {@link StereotypeRepresentation}</li>
 	 * <li> {@link PropertyRepresentation}</li>
 	 * <li> {@link Value}</li>
 	 * </ul>
-	 * corresponding to the configuration node contents to populate the configuration
+	 * corresponding to the configuration node contents to populate the
+	 * configuration
 	 */
 	public void buildConfiguration() {
 		if(configurationNode == null) {
 			return;
 		}
 		NamedNodeMap nodeAttributes = configurationNode.getAttributes();
-		//transform old version in new version!
-		if(null != nodeAttributes.getNamedItem(IPapyrusPaletteConstant.STEREOTYPES_TO_APPLY)) {//old version
+		// transform old version in new version!
+		if(null != nodeAttributes.getNamedItem(IPapyrusPaletteConstant.STEREOTYPES_TO_APPLY)) {// old
+																								// version
 			String stereotypesToApplyQN = configurationNode.getAttributes().getNamedItem(IPapyrusPaletteConstant.STEREOTYPES_TO_APPLY).getNodeValue();
 			if(stereotypesToApplyQN != null && !"".equals(stereotypesToApplyQN)) { //$NON-NLS-1$
 				List<String> stereotypesToApply = PaletteUtil.getStereotypeListFromString(stereotypesToApplyQN);
@@ -106,9 +107,10 @@ public class Configuration {
 					myStereotypesList.add(new StereotypeRepresentation(qualifiedName));
 				}
 			}
-		} else {//new version
+		} else {// new version
 
-			NodeList configurationChildren = configurationNode.getChildNodes();//stereotypesToApply Node
+			NodeList configurationChildren = configurationNode.getChildNodes();// stereotypesToApply
+																				// Node
 			Node stereotypesToApplyNode = null;
 
 			for(int i = 0; i < configurationChildren.getLength(); i++) {
@@ -122,7 +124,10 @@ public class Configuration {
 				NodeList childNodes = stereotypesToApplyNode.getChildNodes();
 				for(int iter = 0; iter < childNodes.getLength(); iter++) {
 					Node steNode = childNodes.item(iter);
-					if(STEREOTYPE.equals(steNode.getLocalName())) {//this node is really a stereotype?
+					if(STEREOTYPE.equals(steNode.getLocalName())) {// this node
+																	// is really
+																	// a
+																	// stereotype?
 
 						String stereotypeName = steNode.getAttributes().getNamedItem(STEREOTYPE_NAME).getNodeValue();
 						StereotypeRepresentation mySte = null;
@@ -134,11 +139,19 @@ public class Configuration {
 						}
 
 						// we store the stereotype
-						if(steNode.hasChildNodes()) {//there are associated properties and values
+						if(steNode.hasChildNodes()) {// there are associated
+														// properties and values
 							NodeList properties = steNode.getChildNodes();
-							for(int i = 0; i < properties.getLength(); i++) {//we iterate on the properties
+							for(int i = 0; i < properties.getLength(); i++) {// we
+																				// iterate
+																				// on
+																				// the
+																				// properties
 								Node propertyNode = properties.item(i);
-								if(PROPERTY.equals(propertyNode.getLocalName())) {//ist' a property node?
+								if(PROPERTY.equals(propertyNode.getLocalName())) {// ist'
+																					// a
+																					// property
+																					// node?
 									String propertyName = propertyNode.getAttributes().getNamedItem(PROPERTY_NAME).getNodeValue();
 									PropertyRepresentation proper = null;
 									if(mySte.getPropertyRepresentation(stereotypeName, propertyName) != null) {
@@ -148,18 +161,22 @@ public class Configuration {
 										mySte.addProperty(proper);
 									}
 
-
 									NodeList valuesList = propertyNode.getChildNodes();
 
-									for(int ii = 0; ii < valuesList.getLength(); ii++) {//we iterate on the values
+									for(int ii = 0; ii < valuesList.getLength(); ii++) {// we iterate
+																						// on the
+																						// values
 										Node valueNode = valuesList.item(ii);
-										if(VALUE.equals(valueNode.getLocalName())) {//this node is really a value?
+										if(VALUE.equals(valueNode.getLocalName())) {// this node
+																					// is really
+																					// a value?
 											Value myValue = new Value(valueNode.getTextContent());
 											proper.addValue(myValue);
 										}
 									}
 
-								} else if(RUNTIME_PROPERTY.equals(propertyNode.getLocalName())) {//it's a runtime property
+								} else if(RUNTIME_PROPERTY.equals(propertyNode.getLocalName())) {// it's a runtime
+																									// property
 									String propertyName = propertyNode.getAttributes().getNamedItem(PROPERTY_NAME).getNodeValue();
 									propertyName = propertyNode.getAttributes().getNamedItem(PROPERTY_NAME).getNodeValue();
 									PropertyRepresentation prop = null;
@@ -180,12 +197,10 @@ public class Configuration {
 		}
 	}
 
-
-
 	/**
-	 * This method completes the {@link Configuration} object with the properties owned by each stereotype.
-	 * It completes the contents obtained with the {@link #buildConfiguration()} method.
-	 * This method is called by :
+	 * This method completes the {@link Configuration} object with the
+	 * properties owned by each stereotype. It completes the contents obtained
+	 * with the {@link #buildConfiguration()} method. This method is called by :
 	 * <ul>
 	 * <li>{@link #setAppliedProfiles(List)}</li>
 	 * <li>{@link #setStereotypesRepresentations(ArrayList)}</li>
@@ -198,7 +213,7 @@ public class Configuration {
 			for(Stereotype ste : stereotypeList) {
 				if(ste != null) {
 					StereotypeRepresentation currentSte = null;
-					//does this stereotype exist?
+					// does this stereotype exist?
 					if(getStereotypeRepresentation(ste.getQualifiedName()) == null) {
 						currentSte = new StereotypeRepresentation(ste.getQualifiedName());
 						myStereotypesList.add(currentSte);
@@ -225,7 +240,6 @@ public class Configuration {
 		}
 	}
 
-
 	/**
 	 * Saves the configuration in the parentNode}
 	 * 
@@ -235,18 +249,20 @@ public class Configuration {
 	public void save(Node parentNode) {
 		ListIterator<StereotypeRepresentation> it = getStereotypesRepresentations().listIterator();
 		Element appliedStereotypeNode = ((Element)parentNode).getOwnerDocument().createElement(STEREOTYPE_TO_APPLY);
-		while(it.hasNext()) {//iteration on stereotypes
+		while(it.hasNext()) {// iteration on stereotypes
 			StereotypeRepresentation currentStereotype = it.next();
 			Element stereotypeNode = ((Element)parentNode).getOwnerDocument().createElement(STEREOTYPE);
 			stereotypeNode.setAttribute(STEREOTYPE_NAME, currentStereotype.getStereotypeQualifiedName());
 
-			//the properties with value
+			// the properties with value
 			for(PropertyRepresentation prop : currentStereotype.getPropertiesWithValues()) {
 				Element propertyNode = ((Element)parentNode).getOwnerDocument().createElement(PROPERTY);
 				propertyNode.setAttribute(PROPERTY_NAME, prop.getQualifiedName());
 				ArrayList<Value> values = prop.getValues();
 
-				for(int i = 0; i < ((ArrayList<?>)values).size(); i++) {//iteration on values
+				for(int i = 0; i < ((ArrayList<?>)values).size(); i++) {// iteration
+																		// on
+																		// values
 					Element valueNode = ((Element)parentNode).getOwnerDocument().createElement(VALUE);
 					valueNode.setTextContent(((ArrayList<?>)values).get(i).toString());
 					propertyNode.appendChild(valueNode);
@@ -256,7 +272,7 @@ public class Configuration {
 
 			}
 
-			//the runtime properties
+			// the runtime properties
 			for(PropertyRepresentation prop : currentStereotype.getRuntimeProperties()) {
 				Element propertyNode = ((Element)parentNode).getOwnerDocument().createElement(RUNTIME_PROPERTY);
 				propertyNode.setAttribute(PROPERTY_NAME, prop.getQualifiedName());
@@ -265,19 +281,17 @@ public class Configuration {
 
 			appliedStereotypeNode.appendChild(stereotypeNode);
 
-		}//end of iteration on stereotype
+		}// end of iteration on stereotype
 		parentNode.appendChild(appliedStereotypeNode);
 
 	}
-
-
-
 
 	/**
 	 * Adds new stereotypes to the {@link Configuration}
 	 * 
 	 * @param stereotypesQNList
-	 *        the list of stereotypes to add, identified by the qualified name
+	 *        the list of stereotypes to add, identified by the qualified
+	 *        name
 	 */
 	public void setStereotypesRepresentations(ArrayList<String> stereotypesQNList) {
 		// 1. remove unused stereotype
@@ -291,17 +305,16 @@ public class Configuration {
 			this.myStereotypesList.add(new StereotypeRepresentation(ste));
 		}
 
-		//3. complete datas
+		// 3. complete datas
 		completeData();
 	}
-
 
 	/**
 	 * 
 	 * @param stereotypeQN
-	 *        the stereotype to find in the configuration, identified by its qualified name
-	 * @return
-	 *         <ul>
+	 *        the stereotype to find in the configuration, identified by its
+	 *        qualified name
+	 * @return <ul>
 	 *         <li>  {@link StereotypeRepresentation} if it exits
 	 *         <li> {@code null} if not</li>
 	 *         </ul>
@@ -318,8 +331,7 @@ public class Configuration {
 	/**
 	 * Returns the list of stereotypes contained by the {@link Configuration}
 	 * 
-	 * @return
-	 *         all the {@link StereotypeRepresentation} owned by the {@link Configuration}
+	 * @return all the {@link StereotypeRepresentation} owned by the {@link Configuration}
 	 */
 	public ArrayList<StereotypeRepresentation> getStereotypesRepresentations() {
 		return myStereotypesList;
@@ -328,8 +340,7 @@ public class Configuration {
 	/**
 	 * Returns the list of applied stereotypes contained by the {@link Configuration}
 	 * 
-	 * @return
-	 *         the list of applied stereotypes identified by its qualified name
+	 * @return the list of applied stereotypes identified by its qualified name
 	 */
 	public ArrayList<String> getStereotypesToApplyQN() {
 		ArrayList<String> stereotypesList = new ArrayList<String>();
@@ -363,8 +374,7 @@ public class Configuration {
 	/**
 	 * Returns the list of the applied {@link Profile}
 	 * 
-	 * @return
-	 *         the applied profiles
+	 * @return the applied profiles
 	 */
 	public List<Profile> getAppliedProfiles() {
 		return this.appliedProfiles;
@@ -392,7 +402,6 @@ public class Configuration {
 		return stereotypes;
 	}
 
-
 	/**
 	 * Retrieves a Stereotype in a profile, given its qualified name.
 	 * 
@@ -414,8 +423,7 @@ public class Configuration {
 	/**
 	 * Returns all the stereotypes
 	 * 
-	 * @return
-	 *         all the stereotypes
+	 * @return all the stereotypes
 	 */
 	public List<Stereotype> getUMLStereotypes() {
 		ArrayList<Stereotype> list = new ArrayList<Stereotype>();
@@ -427,8 +435,7 @@ public class Configuration {
 
 	/**
 	 * 
-	 * @return
-	 *         <ul>
+	 * @return <ul>
 	 *         <li>  {@code true} if there is runtime properties
 	 *         <li> {@code false} if not</li>
 	 *         </ul>
@@ -445,8 +452,7 @@ public class Configuration {
 	/**
 	 * Returns the configuration node
 	 * 
-	 * @return
-	 *         the configuration node
+	 * @return the configuration node
 	 */
 	public Node getConfigurationNode() {
 		return configurationNode;

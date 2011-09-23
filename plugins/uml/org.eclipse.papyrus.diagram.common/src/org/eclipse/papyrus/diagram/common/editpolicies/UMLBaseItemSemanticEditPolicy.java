@@ -26,7 +26,8 @@ package org.eclipse.papyrus.diagram.common.editpolicies;
 public abstract class UMLBaseItemSemanticEditPolicy {
 
 	/**
-	 * Extended request data key to hold the edge view during a reconnect request.
+	 * Extended request data key to hold the edge view during a reconnect
+	 * request.
 	 */
 	public static final String GRAPHICAL_RECONNECTED_EDGE = "graphical_edge"; //$NON-NLS-1$
 

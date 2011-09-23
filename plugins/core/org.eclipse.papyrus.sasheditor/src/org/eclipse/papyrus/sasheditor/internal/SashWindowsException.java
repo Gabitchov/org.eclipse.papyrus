@@ -13,7 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sasheditor.internal;
 
-
 /**
  * Main Exception from the SashWindowsSystem.
  * 

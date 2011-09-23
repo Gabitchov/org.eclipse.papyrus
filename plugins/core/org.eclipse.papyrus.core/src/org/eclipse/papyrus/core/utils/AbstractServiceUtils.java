@@ -23,22 +23,19 @@ import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
 import org.eclipse.papyrus.sasheditor.editor.ISashWindowsContainer;
 import org.eclipse.ui.IEditorPart;
 
-
 /**
- * Set of utility methods for accessing core Services. 
- * This class provide methods to access the Papyrus well known services.
+ * Set of utility methods for accessing core Services. This class provide
+ * methods to access the Papyrus well known services.
  * 
  * <br>
- * This is the base class for concrete classes providing 
- * these utility methods. 
- * Concrete class need to provide method {@link #getServiceRegistry(Object)} implementing how the 
- * ServiceRegistry is retrieved from the provided object.
- * Subclasses can also provide a Singleton pattern (getInstance()) in order to allow access to the utility methods
- * in a static way.
- * <br>
+ * This is the base class for concrete classes providing these utility methods.
+ * Concrete class need to provide method {@link #getServiceRegistry(Object)} implementing how the ServiceRegistry is retrieved from the provided
+ * object.
+ * Subclasses can also provide a Singleton pattern (getInstance()) in order to
+ * allow access to the utility methods in a static way. <br>
  * 
  * @author cedri dumoulin
- *
+ * 
  */
 public abstract class AbstractServiceUtils<T> {
 
@@ -49,68 +46,74 @@ public abstract class AbstractServiceUtils<T> {
 	 * @return
 	 */
 	abstract public ServicesRegistry getServiceRegistry(T from) throws ServiceException;
-	
+
 	/**
-	 * Gets the {@link TransactionalEditingDomain} registered in the {@link ServicesRegistry}. 
+	 * Gets the {@link TransactionalEditingDomain} registered in the {@link ServicesRegistry}.
 	 * 
 	 * @param from
 	 * @return
-	 * @throws ServiceException If an error occurs while getting the requested service.
+	 * @throws ServiceException
+	 *         If an error occurs while getting the requested service.
 	 */
 	public TransactionalEditingDomain getTransactionalEditingDomain(T from) throws ServiceException {
 		return getServiceRegistry(from).getService(TransactionalEditingDomain.class);
 	}
-	
+
 	/**
-	 * Gets the {@link IPageMngr} registered in the {@link ServicesRegistry}. 
+	 * Gets the {@link IPageMngr} registered in the {@link ServicesRegistry}.
 	 * 
 	 * @param from
 	 * @return
-	 * @throws ServiceException If an error occurs while getting the requested service.
+	 * @throws ServiceException
+	 *         If an error occurs while getting the requested service.
 	 */
 	public IPageMngr getIPageMngr(T from) throws ServiceException {
 		return getServiceRegistry(from).getService(IPageMngr.class);
 	}
-	
+
 	/**
-	 * Gets the {@link IPageMngr} registered in the {@link ServicesRegistry}. 
+	 * Gets the {@link IPageMngr} registered in the {@link ServicesRegistry}.
 	 * 
 	 * @param from
 	 * @return
-	 * @throws ServiceException If an error occurs while getting the requested service.
+	 * @throws ServiceException
+	 *         If an error occurs while getting the requested service.
 	 */
 	public ModelSet getModelSet(T from) throws ServiceException {
 		return getServiceRegistry(from).getService(ModelSet.class);
 	}
 
 	/**
-	 * Gets the {@link ILifeCycleEventsProvider} registered in the {@link ServicesRegistry}. 
+	 * Gets the {@link ILifeCycleEventsProvider} registered in the {@link ServicesRegistry}.
 	 * 
 	 * @param from
 	 * @return
-	 * @throws ServiceException If an error occurs while getting the requested service.
+	 * @throws ServiceException
+	 *         If an error occurs while getting the requested service.
 	 */
 	public ILifeCycleEventsProvider getILifeCycleEventsProvider(T from) throws ServiceException {
 		return getServiceRegistry(from).getService(ILifeCycleEventsProvider.class);
 	}
 
 	/**
-	 * Gets the {@link ISashWindowsContainer} registered in the {@link ServicesRegistry}. 
+	 * Gets the {@link ISashWindowsContainer} registered in the {@link ServicesRegistry}.
 	 * 
 	 * @param from
 	 * @return
-	 * @throws ServiceException If an error occurs while getting the requested service.
+	 * @throws ServiceException
+	 *         If an error occurs while getting the requested service.
 	 */
 	public ISashWindowsContainer getISashWindowsContainer(T from) throws ServiceException {
 		return getServiceRegistry(from).getService(ISashWindowsContainer.class);
 	}
-	
+
 	/**
-	 * Gets the {@link IEditorPart} of the currently nested active editor. 
+	 * Gets the {@link IEditorPart} of the currently nested active editor.
 	 * 
 	 * @param from
 	 * @return
-	 * @throws ServiceException If an error occurs while getting the requested service.
+	 * @throws ServiceException
+	 *         If an error occurs while getting the requested service.
 	 */
 	public IEditorPart getNestedActiveIEditorPart(T from) throws ServiceException {
 		return getISashWindowsContainer(from).getActiveEditor();

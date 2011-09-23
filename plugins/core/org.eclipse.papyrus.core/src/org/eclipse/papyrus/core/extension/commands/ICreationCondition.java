@@ -24,10 +24,13 @@ public interface ICreationCondition {
 	 * @return true if the diagram can be created
 	 */
 	boolean create(EObject selectedElement);
+
 	/**
-	 * set the command ID in order to take account the environment in order to create a diagram
+	 * set the command ID in order to take account the environment in order to
+	 * create a diagram
+	 * 
 	 * @param commandID
 	 */
 	public void setCommand(String commandID);
-	
+
 }

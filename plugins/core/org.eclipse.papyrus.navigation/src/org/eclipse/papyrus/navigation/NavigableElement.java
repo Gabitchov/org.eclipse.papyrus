@@ -17,8 +17,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 /**
- * This class represents an element which can be accessed
- * from an other element throught a feature using defined navigation rules.
+ * This class represents an element which can be accessed from an other element
+ * throught a feature using defined navigation rules.
  * 
  * @author mvelten
  * 

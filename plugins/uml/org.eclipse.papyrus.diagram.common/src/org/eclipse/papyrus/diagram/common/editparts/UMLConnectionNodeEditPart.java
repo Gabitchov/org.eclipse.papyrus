@@ -35,9 +35,10 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Stereotype;
 
 /**
- * Abstract edit part for all connection nodes that control UML elements represented by edges. It
- * then defines basic behavior for Stereotype management. It has facilities to retrieve UML element
- * controlled by this edit part
+ * Abstract edit part for all connection nodes that control UML elements
+ * represented by edges. It then defines basic behavior for Stereotype
+ * management. It has facilities to retrieve UML element controlled by this edit
+ * part
  */
 public abstract class UMLConnectionNodeEditPart extends ConnectionNodeEditPart implements IUMLEditPart, IEditpartListenerAccess {
 
@@ -110,8 +111,9 @@ public abstract class UMLConnectionNodeEditPart extends ConnectionNodeEditPart i
 		// adds the stereotype application edit policy
 		installEditPolicy(ApplyStereotypeRequest.APPLY_STEREOTYPE_REQUEST, new ApplyStereotypeEditPolicy());
 
-		//adds a custom EditPolicy to manage the displaying of each label on the connector
-		//this editpolicy erase ConnectionLabelsEditPolicy
+		// adds a custom EditPolicy to manage the displaying of each label on
+		// the connector
+		// this editpolicy erase ConnectionLabelsEditPolicy
 		installEditPolicy(ShowHideLabelEditPolicy.SHOW_HIDE_LABEL_ROLE, new ShowHideLabelEditPolicy());
 	}
 
@@ -145,7 +147,8 @@ public abstract class UMLConnectionNodeEditPart extends ConnectionNodeEditPart i
 		// computes the icon to be displayed
 		final Image imageToDisplay = stereotypeIconToDisplay();
 
-		// if the string is not empty, then, the figure has to display it. Else, it displays nothing
+		// if the string is not empty, then, the figure has to display it. Else,
+		// it displays nothing
 		if(stereotypesToDisplay != "" || imageToDisplay != null) {
 			getPrimaryShape().setStereotypeDisplay(stereotypesToDisplay, imageToDisplay);
 		} else {
@@ -160,7 +163,8 @@ public abstract class UMLConnectionNodeEditPart extends ConnectionNodeEditPart i
 	protected void removeSemanticListeners() {
 		super.removeSemanticListeners();
 
-		// remove listeners to react to the application and remove of stereotypes
+		// remove listeners to react to the application and remove of
+		// stereotypes
 		removeListenerFilter(STEREOTYPABLE_ELEMENT);
 		removeListenerFilter(STEREOTYPED_ELEMENT);
 	}
@@ -181,9 +185,11 @@ public abstract class UMLConnectionNodeEditPart extends ConnectionNodeEditPart i
 		String stereotypesToDisplay = AppliedStereotypeHelper.getStereotypesToDisplay((View)getModel());
 		String stereotypespresentationKind = AppliedStereotypeHelper.getAppliedStereotypePresentationKind((View)getModel());
 
-		// check the presentation kind. if only icon => do not display stereotypes
+		// check the presentation kind. if only icon => do not display
+		// stereotypes
 		if(VisualInformationPapyrusConstant.ICON_STEREOTYPE_PRESENTATION.equals(stereotypespresentationKind)) {
-			return ""; // empty string, so stereotype label should not be displayed
+			return ""; // empty string, so stereotype label should not be
+						// displayed
 		}
 
 		String stereotypesToDisplayWithQN = AppliedStereotypeHelper.getStereotypesQNToDisplay(((View)getModel()));
@@ -197,8 +203,7 @@ public abstract class UMLConnectionNodeEditPart extends ConnectionNodeEditPart i
 	/**
 	 * Returns the image to be displayed for the applied stereotypes.
 	 * 
-	 * @return the image that represents the first applied stereotype or <code>null</code> if no
-	 *         image has to be displayed
+	 * @return the image that represents the first applied stereotype or <code>null</code> if no image has to be displayed
 	 */
 	public Image stereotypeIconToDisplay() {
 		String stereotypespresentationKind = AppliedStereotypeHelper.getAppliedStereotypePresentationKind((View)getModel());
@@ -223,7 +228,8 @@ public abstract class UMLConnectionNodeEditPart extends ConnectionNodeEditPart i
 	 * Computes the string that displays the stereotypes for the current element
 	 * 
 	 * @param separator
-	 *        the separator used to split the string representing the stereotypes.
+	 *        the separator used to split the string representing the
+	 *        stereotypes.
 	 * @param stereotypesToDisplay
 	 *        the list of stereotypes displayed
 	 * @param stereotypeWithQualifiedName
@@ -233,8 +239,10 @@ public abstract class UMLConnectionNodeEditPart extends ConnectionNodeEditPart i
 	public String stereotypesToDisplay(String separator, String stereotypesToDisplay, String stereotypeWithQualifiedName) {
 
 		// AL Changes Feb. 07 - Beg
-		// Style Handling for STEREOTYPE_NAME_APPEARANCE from ProfileApplicationPreferencePage
-		// Stereotype displayed according to UML standard (first letter forced to lower case) -
+		// Style Handling for STEREOTYPE_NAME_APPEARANCE from
+		// ProfileApplicationPreferencePage
+		// Stereotype displayed according to UML standard (first letter forced
+		// to lower case) -
 		// default -
 		// or kept as entered by user (user controlled)
 
@@ -257,7 +265,8 @@ public abstract class UMLConnectionNodeEditPart extends ConnectionNodeEditPart i
 			if(stereotype != null) {
 				String name = currentStereotype;
 				if((stereotypeWithQualifiedName.indexOf(currentStereotype)) == -1) {
-					// property value contains qualifiedName ==> extract name from it
+					// property value contains qualifiedName ==> extract name
+					// from it
 					StringTokenizer strToken = new StringTokenizer(currentStereotype, "::");
 
 					while(strToken.hasMoreTokens()) {
@@ -269,9 +278,11 @@ public abstract class UMLConnectionNodeEditPart extends ConnectionNodeEditPart i
 				// ProfileApplicationPreferencePage)
 				// Previously lowercase forced onto first letter (standard UML)
 				// stereotypesToDisplay = stereotypesToDisplay+name.substring(0,
-				// 1).toLowerCase()+name.substring(1, name.length())+","+separator;
+				// 1).toLowerCase()+name.substring(1,
+				// name.length())+","+separator;
 
-				// check that the name has not already been added to the displayed string
+				// check that the name has not already been added to the
+				// displayed string
 				if(sNameAppearance.equals(VisualInformationPapyrusConstant.P_STEREOTYPE_NAME_DISPLAY_USER_CONTROLLED)) {
 					if(out.indexOf(name) == -1) {
 						out = out + name + separator;

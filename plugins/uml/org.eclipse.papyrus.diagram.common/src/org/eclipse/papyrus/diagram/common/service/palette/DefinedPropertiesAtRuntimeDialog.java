@@ -43,10 +43,9 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Stereotype;
 
-
 /**
- * This Class provides a dialog to edit meta-elements properties. The editor is chosen following the property type.
- * The editor order is the following :
+ * This Class provides a dialog to edit meta-elements properties. The editor is
+ * chosen following the property type. The editor order is the following :
  * <ul>
  * <li> {@link Text}</li>
  * <li> {@link Combo}</li>
@@ -80,8 +79,6 @@ public class DefinedPropertiesAtRuntimeDialog extends Dialog {
 	/** The enumeration meta properties. */
 	private ArrayList<EAttribute> enumerationMetaProperties = new ArrayList<EAttribute>();
 
-
-
 	/**
 	 * Instantiates a new dialog.
 	 * 
@@ -109,7 +106,7 @@ public class DefinedPropertiesAtRuntimeDialog extends Dialog {
 		EList<EAttribute> allAttributs = currentEClass.getEAllAttributes();
 		for(EAttribute eAttribute : allAttributs) {
 			if((!eAttribute.isDerived()) && eAttribute.isChangeable()) {
-				//we class the properties following its type
+				// we class the properties following its type
 				EClassifier eType = eAttribute.getEType();
 				String instanceTypeName = eType.getInstanceClassName();
 				if(runtimeProperties.contains(eAttribute.getName())) {
@@ -165,14 +162,15 @@ public class DefinedPropertiesAtRuntimeDialog extends Dialog {
 	@Override
 	protected Control createDialogArea(Composite parent) {
 
-		//create the composite
+		// create the composite
 		Composite composite = (Composite)super.createDialogArea(parent);
 		GridLayout layout = new GridLayout(2, false);
 		composite.setLayout(layout);
 		GridData data = new GridData(GridData.FILL_HORIZONTAL);
 		composite.setLayoutData(data);
 
-		//trick to have the message on the two columns!(a GridData with horizontalSpan = 2 on label doesn't work)
+		// trick to have the message on the two columns!(a GridData with
+		// horizontalSpan = 2 on label doesn't work)
 		Composite compo = new Composite(composite, SWT.NONE);
 		GridLayout compoLayout = new GridLayout(1, false);
 		compo.setLayout(compoLayout);
@@ -180,11 +178,10 @@ public class DefinedPropertiesAtRuntimeDialog extends Dialog {
 		compoData.horizontalSpan = 2;
 		compo.setLayoutData(compoData);
 
-
 		Label label = new Label(compo, SWT.NONE);
 		label.setText(message);
 
-		//create the editors
+		// create the editors
 		if(stringMetaProperties.size() != 0) {
 			createTextArea(composite);
 		}
@@ -194,7 +191,6 @@ public class DefinedPropertiesAtRuntimeDialog extends Dialog {
 		if(booleanMetaProperties.size() != 0) {
 			createCheckBox(composite);
 		}
-
 
 		return composite;
 	}
@@ -266,7 +262,7 @@ public class DefinedPropertiesAtRuntimeDialog extends Dialog {
 			label.setText(fieldTitle);
 			Combo combo = new Combo(composite, SWT.READ_ONLY);
 
-			//get the items
+			// get the items
 			EAttribute currentAttributes = enumerationMetaProperties.get(iter);
 			EEnum eType = (EEnum)currentAttributes.getEType();
 
@@ -281,7 +277,7 @@ public class DefinedPropertiesAtRuntimeDialog extends Dialog {
 				list.add(i + 1, literals.get(i).getLiteral());
 			}
 			combo.setItems(proposals);
-			//get initial value
+			// get initial value
 			Object selection = ((EObject)elementToEdit).eGet(currentAttributes);
 			combo.select(list.indexOf(selection.toString()));
 			GridData textData = new GridData(GridData.FILL_HORIZONTAL);
@@ -331,7 +327,7 @@ public class DefinedPropertiesAtRuntimeDialog extends Dialog {
 			Label label = new Label(grp, SWT.NONE);
 			String fieldTitle = makeTitle(booleanMetaProperties.get(iter).getName());
 			label.setText(fieldTitle);
-			//get button state
+			// get button state
 			Boolean state = (Boolean)((EObject)elementToEdit).eGet(booleanMetaProperties.get(iter));
 			button.setSelection(state);
 			final int iterFinal = iter;
@@ -343,7 +339,7 @@ public class DefinedPropertiesAtRuntimeDialog extends Dialog {
 				 * @see org.eclipse.swt.events.SelectionAdapter#widgetSelected(org.eclipse.swt.events.SelectionEvent)
 				 */
 				public void widgetSelected(SelectionEvent e) {
-					//get the old value
+					// get the old value
 					Boolean oldValue = (Boolean)((EObject)elementToEdit).eGet(booleanMetaProperties.get(iterFinal));
 					((EObject)elementToEdit).eSet(booleanMetaProperties.get(iterFinal), !oldValue);
 				}

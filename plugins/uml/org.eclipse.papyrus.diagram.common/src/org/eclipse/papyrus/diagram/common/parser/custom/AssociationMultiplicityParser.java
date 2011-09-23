@@ -54,7 +54,8 @@ public class AssociationMultiplicityParser extends AbstractAssociationEndParser 
 	}
 
 	/**
-	 * Convert the int to a valid String to display. If the value is -1, then it is converted to *
+	 * Convert the int to a valid String to display. If the value is -1, then it
+	 * is converted to *
 	 * 
 	 * @param val
 	 *        the int to convert to String

@@ -13,10 +13,11 @@
 package org.eclipse.papyrus.navigation;
 
 import org.eclipse.papyrus.navigation.preference.NavigationPreferenceInitializer;
+import org.eclipse.swt.widgets.Shell;
+import org.eclipse.ui.IWorkbench;
+import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
-
-
 
 public class Activator extends AbstractUIPlugin {
 
@@ -35,7 +36,8 @@ public class Activator extends AbstractUIPlugin {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.core.runtime.Plugins#start(org.osgi.framework.BundleContext)
+	 * @see
+	 * org.eclipse.core.runtime.Plugins#start(org.osgi.framework.BundleContext)
 	 */
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
@@ -47,7 +49,8 @@ public class Activator extends AbstractUIPlugin {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.core.runtime.Plugin#stop(org.osgi.framework.BundleContext)
+	 * @see
+	 * org.eclipse.core.runtime.Plugin#stop(org.osgi.framework.BundleContext)
 	 */
 	public void stop(BundleContext context) throws Exception {
 		plugin = null;
@@ -63,5 +66,33 @@ public class Activator extends AbstractUIPlugin {
 		return plugin;
 	}
 
+	/**
+	 * Returns the active workbench shell
+	 * 
+	 * @return the active workbench shell
+	 */
+	public static Shell getActiveWorkbenchShell() {
+		IWorkbenchWindow workBenchWindow = getActiveWorkbenchWindow();
+		if(workBenchWindow == null) {
+			return null;
+		}
+		return workBenchWindow.getShell();
+	}
+
+	/**
+	 * Returns the active workbench window
+	 * 
+	 * @return the active workbench window
+	 */
+	public static IWorkbenchWindow getActiveWorkbenchWindow() {
+		if(getDefault() == null) {
+			return null;
+		}
+		IWorkbench workBench = getDefault().getWorkbench();
+		if(workBench == null) {
+			return null;
+		}
+		return workBench.getActiveWorkbenchWindow();
+	}
 
 }

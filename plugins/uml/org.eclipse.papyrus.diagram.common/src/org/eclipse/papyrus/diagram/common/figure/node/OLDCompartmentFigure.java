@@ -207,8 +207,9 @@ public class OLDCompartmentFigure extends NodeNamedElementFigure {
 		}
 
 		/**
-		 * Calculate the location of the compartment. It depends on its previous compartment
-		 * location and size if it has any. Otherwise it is the location of the contentPane
+		 * Calculate the location of the compartment. It depends on its previous
+		 * compartment location and size if it has any. Otherwise it is the
+		 * location of the contentPane
 		 * 
 		 * @param index
 		 *        the index of the compartment in the containerFigures list
@@ -227,9 +228,10 @@ public class OLDCompartmentFigure extends NodeNamedElementFigure {
 		}
 
 		/**
-		 * Optimize the size of each compartment depending on the size of the compartments
-		 * container, and the size of each compartment. If a compartment is empty, or not expanded,
-		 * then a default size is applied to this compartment
+		 * Optimize the size of each compartment depending on the size of the
+		 * compartments container, and the size of each compartment. If a
+		 * compartment is empty, or not expanded, then a default size is applied
+		 * to this compartment
 		 * 
 		 * @param compartmentsDimension
 		 *        an hashmap containing each compartment dimension.

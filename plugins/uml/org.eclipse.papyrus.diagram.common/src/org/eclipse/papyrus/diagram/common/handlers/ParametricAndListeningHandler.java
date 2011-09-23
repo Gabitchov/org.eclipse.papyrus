@@ -32,11 +32,10 @@ import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 
 /**
- * This abstract command handler:
- * - calculates the current selection
- * - calculates the visibility and enablement based on command executability
- * - executes the command in Papyrus command stack
- * - listen the SelectionService (usefull when the action is inside a Menu (like Diagram)
+ * This abstract command handler: - calculates the current selection -
+ * calculates the visibility and enablement based on command executability -
+ * executes the command in Papyrus command stack - listen the SelectionService
+ * (usefull when the action is inside a Menu (like Diagram)
  */
 public abstract class ParametricAndListeningHandler extends GraphicalCommandHandler implements IExecutableExtension {
 
@@ -79,8 +78,7 @@ public abstract class ParametricAndListeningHandler extends GraphicalCommandHand
 	 * 
 	 * @see org.eclipse.papyrus.diagram.common.handlers.GraphicalCommandHandler#getCommand()
 	 * 
-	 * @return
-	 *         {@link UnexecutableCommand}
+	 * @return {@link UnexecutableCommand}
 	 * @throws ExecutionException
 	 */
 	@Override
@@ -90,11 +88,13 @@ public abstract class ParametricAndListeningHandler extends GraphicalCommandHand
 	}
 
 	/***
-	 * Add a listener on the selection, in order to refresh the status of the action when the selection changes
+	 * Add a listener on the selection, in order to refresh the status of the
+	 * action when the selection changes
 	 */
 	protected void addSelectionListener() {
-		//when we are in the Menu, we need to refresh
-		if(serv == null) {//should be always!=null after the first call to getCommand()
+		// when we are in the Menu, we need to refresh
+		if(serv == null) {// should be always!=null after the first call to
+							// getCommand()
 			IWorkbench workbench = PlatformUI.getWorkbench();
 
 			if(workbench != null) {

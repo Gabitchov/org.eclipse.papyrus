@@ -75,23 +75,24 @@ public class ClassifierFigure extends CompartmentFigure {
 	 */
 	public void paint(Graphics graphics) {
 		super.paint(graphics);
-		if(active){
-		Rectangle rect= this.getBounds();
-		graphics.pushState();
-		graphics.setForegroundColor(getForegroundColor());
-		//do not forget to set line width to 1, if not the color will change because of the anti-aliasing 
-		graphics.setLineWidth(1);
-		
-		graphics.drawLine(new Point(rect.x+SPACE_FOR_ACTIVE_CLASS,rect.y), new Point(rect.x+SPACE_FOR_ACTIVE_CLASS,rect.y+ rect.height-1));
-		graphics.drawLine(new Point(rect.x-SPACE_FOR_ACTIVE_CLASS-1+rect.width,rect.y), new Point(rect.x-SPACE_FOR_ACTIVE_CLASS-1+rect.width,rect.y+ rect.height-1));
-		graphics.setBackgroundColor(getBackgroundColor());
-		graphics.setForegroundColor(getBackgroundColor());
-		graphics.setLineWidth(3);
-		
-		graphics.drawLine(new Point(rect.x+2,rect.y+1), new Point(rect.x+2,rect.y+ rect.height-2));
-		graphics.drawLine(new Point(rect.x-3+rect.width,rect.y+1), new Point(rect.x-3+rect.width,rect.y+ rect.height-2));
-		
-		graphics.popState();
+		if(active) {
+			Rectangle rect = this.getBounds();
+			graphics.pushState();
+			graphics.setForegroundColor(getForegroundColor());
+			// do not forget to set line width to 1, if not the color will
+			// change because of the anti-aliasing
+			graphics.setLineWidth(1);
+
+			graphics.drawLine(new Point(rect.x + SPACE_FOR_ACTIVE_CLASS, rect.y), new Point(rect.x + SPACE_FOR_ACTIVE_CLASS, rect.y + rect.height - 1));
+			graphics.drawLine(new Point(rect.x - SPACE_FOR_ACTIVE_CLASS - 1 + rect.width, rect.y), new Point(rect.x - SPACE_FOR_ACTIVE_CLASS - 1 + rect.width, rect.y + rect.height - 1));
+			graphics.setBackgroundColor(getBackgroundColor());
+			graphics.setForegroundColor(getBackgroundColor());
+			graphics.setLineWidth(3);
+
+			graphics.drawLine(new Point(rect.x + 2, rect.y + 1), new Point(rect.x + 2, rect.y + rect.height - 2));
+			graphics.drawLine(new Point(rect.x - 3 + rect.width, rect.y + 1), new Point(rect.x - 3 + rect.width, rect.y + rect.height - 2));
+
+			graphics.popState();
 		}
 	}
 	

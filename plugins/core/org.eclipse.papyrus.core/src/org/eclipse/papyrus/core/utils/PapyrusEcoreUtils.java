@@ -24,7 +24,6 @@ import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
-
 public class PapyrusEcoreUtils {
 
 	/**
@@ -66,7 +65,7 @@ public class PapyrusEcoreUtils {
 		Set<EObject> crossReferences = new HashSet<EObject>();
 		for(Setting setting : PapyrusEcoreUtils.getUsages(usedObject)) {
 			EObject eObj = setting.getEObject();
-			if (eObj.eClass().getEPackage().equals(mmPackage)) {
+			if(eObj.eClass().getEPackage().equals(mmPackage)) {
 				crossReferences.add(eObj);
 			}
 		}
@@ -76,8 +75,9 @@ public class PapyrusEcoreUtils {
 		// Remove the knownReferencer from the list of references.
 		crossReferences.remove(knownReferencer);
 
-		// If no referencer remains in the list, the known element is the only usage. 
-		if (crossReferences.isEmpty()) {
+		// If no referencer remains in the list, the known element is the only
+		// usage.
+		if(crossReferences.isEmpty()) {
 			isUsed = true;
 		}
 

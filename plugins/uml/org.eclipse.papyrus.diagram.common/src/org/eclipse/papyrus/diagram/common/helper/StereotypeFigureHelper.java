@@ -26,7 +26,8 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
 
 /**
- * StereotypeFigureHelper helps a Figure implement IPapyrusNodeUMLElementFigure class to support stereotypes
+ * StereotypeFigureHelper helps a Figure implement IPapyrusNodeUMLElementFigure
+ * class to support stereotypes
  */
 public abstract class StereotypeFigureHelper {
 
@@ -57,7 +58,6 @@ public abstract class StereotypeFigureHelper {
 	 * True if the container of the stereotype has to be filled
 	 */
 	private boolean isStereotypeContainerFilled = false;
-
 
 	/**
 	 * @generated
@@ -93,7 +93,8 @@ public abstract class StereotypeFigureHelper {
 	}
 
 	/**
-	 * This method is used to draw the rectangle displaying stereotype elements if not displayed
+	 * This method is used to draw the rectangle displaying stereotype elements
+	 * if not displayed
 	 */
 	protected void ensureStereotypeRectanglePrinted() {
 		if(!stereotypePrinted) {
@@ -105,7 +106,8 @@ public abstract class StereotypeFigureHelper {
 	}
 
 	/**
-	 * This method is used to ensure the rectangle displaying stereotype elements is not displayed if empty
+	 * This method is used to ensure the rectangle displaying stereotype
+	 * elements is not displayed if empty
 	 */
 	protected void cleanStereotypeRectangle() {
 		if(stereotypePrinted && stereotypeRectangle.getChildren().isEmpty()) {
@@ -172,9 +174,9 @@ public abstract class StereotypeFigureHelper {
 		cleanStereotypeRectangle();
 	}
 
-
 	/**
-	 * Create properties compartment for displaying visible properties of applied stereotypes
+	 * Create properties compartment for displaying visible properties of
+	 * applied stereotypes
 	 */
 	protected void createStereotypePropertiesInCompartment() {
 		ensureStereotypeRectanglePrinted();
@@ -232,7 +234,7 @@ public abstract class StereotypeFigureHelper {
 			// Set stereotype icon on figure
 			fActionStereotypeLabel.setIcon(image);
 		}
-		//refreshLayout();
+		// refreshLayout();
 	}
 
 	/**
@@ -246,7 +248,8 @@ public abstract class StereotypeFigureHelper {
 	 * </p>
 	 * 
 	 * @param stereotypeProperties
-	 *        the string representing the stereotype properties to be displayed
+	 *        the string representing the stereotype properties to be
+	 *        displayed
 	 */
 	public void setStereotypePropertiesInBrace(String stereotypeProperties) {
 		if("".equals(stereotypeProperties) || stereotypeProperties == null) {
@@ -259,14 +262,14 @@ public abstract class StereotypeFigureHelper {
 			// Set stereotype text on figure
 			stereotypePropertiesInBraceContent.setText("{" + stereotypeProperties + "}");
 		}
-		//refreshLayout();
+		// refreshLayout();
 	}
 
 	/**
 	 * displays the new string corresponding to the list of stereotypes.
 	 * 
-	 * if the string is <code>null</code>, then the figure that displays the stereotype label is
-	 * removed from the NodeNamedElementFigure.
+	 * if the string is <code>null</code>, then the figure that displays the
+	 * stereotype label is removed from the NodeNamedElementFigure.
 	 * 
 	 * @param stereotypeProperties
 	 *        the string to be displayed.
@@ -281,7 +284,7 @@ public abstract class StereotypeFigureHelper {
 			}
 			fillStereotypePropertiesInCompartment(stereotypeProperties);
 		}
-		//refreshLayout();
+		// refreshLayout();
 	}
 
 	/**
@@ -292,7 +295,8 @@ public abstract class StereotypeFigureHelper {
 	}
 
 	/**
-	 * Make the layout constraint which must be used to layout the stereotype rectangle
+	 * Make the layout constraint which must be used to layout the stereotype
+	 * rectangle
 	 */
 	public abstract Object getStereotypeRectangleConstraint();
 
@@ -301,7 +305,6 @@ public abstract class StereotypeFigureHelper {
 	 */
 	public abstract IMapMode getMapMode();
 
-	
 	public int getTopInset() {
 		return topInset;
 	}
@@ -314,7 +317,6 @@ public abstract class StereotypeFigureHelper {
 		this.topInset = topInset;
 	}
 
-	
 	/**
 	 * 
 	 * @return
@@ -364,7 +366,8 @@ public abstract class StereotypeFigureHelper {
 	}
 
 	/**
-	 * Return true if the Rectangle containing the the stereotype has to be filled
+	 * Return true if the Rectangle containing the the stereotype has to be
+	 * filled
 	 * @return
 	 */
 	public boolean isStereotypeContainerFilled() {
@@ -378,7 +381,4 @@ public abstract class StereotypeFigureHelper {
 	public void setStereotypeContainerFilled(boolean isStereotypeContainerFilled) {
 		this.isStereotypeContainerFilled = isStereotypeContainerFilled;
 	}
-	
-	
-
 }

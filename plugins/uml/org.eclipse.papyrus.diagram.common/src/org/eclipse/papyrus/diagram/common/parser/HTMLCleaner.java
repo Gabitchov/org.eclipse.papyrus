@@ -18,7 +18,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
 /**
  * Class that provides a html cleaner.
  */
@@ -187,7 +186,8 @@ public class HTMLCleaner {
 			if(c == '<') { // opening a new tag...
 				inTag = true;
 
-				// should do specific check for new lines (<BR>, <P>, <H1>, <H2>, etc..)
+				// should do specific check for new lines (<BR>, <P>, <H1>,
+				// <H2>, etc..)
 				// get tag value
 				String tagValue = htmlString.substring(i + 1, htmlString.indexOf('>', i));
 				if(newLine.contains(tagValue)) {
@@ -198,7 +198,8 @@ public class HTMLCleaner {
 					keepWhitespace = false;
 				}
 
-			} else if(c == '>' && inTag) { // closing tag. must be in tag to close it...
+			} else if(c == '>' && inTag) { // closing tag. must be in tag to
+											// close it...
 				inTag = false;
 				skip = true;
 			} else if(c == '&') {
@@ -207,7 +208,7 @@ public class HTMLCleaner {
 				// look for next ';', which closes the special character
 				String specialCharacter = htmlString.substring(i + 1, htmlString.indexOf(';', i));
 
-				// replace the value with the specified 
+				// replace the value with the specified
 				String replacement = specials.get(specialCharacter);
 				if(replacement == null) {
 					replacement = xmlSpecials.get(specialCharacter);
@@ -241,10 +242,12 @@ public class HTMLCleaner {
 	}
 
 	/**
-	 * Returns a string derived from the specified string. It removes htlm tags, adding new line separator when useful.
+	 * Returns a string derived from the specified string. It removes htlm tags,
+	 * adding new line separator when useful.
 	 * 
 	 * @param htmlString
-	 *        the string to clean. It should be neither <code>null</code>, nor empty
+	 *        the string to clean. It should be neither <code>null</code>,
+	 *        nor empty
 	 * @return a cleaned string.
 	 */
 	public static String cleanHTMLTags(String htmlString) {
@@ -321,7 +324,7 @@ public class HTMLCleaner {
 				// look for next ';', which closes the special character
 				String specialCharacter = htmlString.substring(i + 1, htmlString.indexOf(';', i));
 
-				// replace the value with the specified 
+				// replace the value with the specified
 				String replacement = specials.get(specialCharacter);
 				if(replacement != null) {
 					buffer.append(replacement);

@@ -11,17 +11,19 @@ import org.eclipse.papyrus.core.Activator;
 import org.eclipse.papyrus.core.extension.ExtensionException;
 import org.eclipse.papyrus.core.extension.ExtensionUtils;
 
-
 /**
- * A reader to read model from Eclipse extension
- * and register them to the specified ModelManager.
+ * A reader to read model from Eclipse extension and register them to the
+ * specified ModelManager.
  * 
  * @author cedric dumoulin
  * 
  */
 public class ModelsReader extends ExtensionUtils {
 
-	/** Name of the extension (as declared in 'plugin.xml->extension point->xxx->ID') */
+	/**
+	 * Name of the extension (as declared in 'plugin.xml->extension
+	 * point->xxx->ID')
+	 */
 	public static final String EXTENSION_POINT_NAME = "model";
 
 	/** Name for the element "model" */
@@ -52,8 +54,8 @@ public class ModelsReader extends ExtensionUtils {
 	}
 
 	/**
-	 * Create a ModelReader reading extension from the specified namespace. The namespace is
-	 * usually the name of the plugin owning the {@link ModelSet}.
+	 * Create a ModelReader reading extension from the specified namespace. The
+	 * namespace is usually the name of the plugin owning the {@link ModelSet}.
 	 * 
 	 * @param extensionPointNamespace
 	 */
@@ -67,19 +69,19 @@ public class ModelsReader extends ExtensionUtils {
 	 * 
 	 * @param modelSet
 	 */
-	public void readModel( ModelSet modelSet) {
-		
+	public void readModel(ModelSet modelSet) {
+
 		// Actually, we register model manually.
 		// TODO: read from Eclipse extension.
-//		modelSet.registerModel( new SashModel() );
-//		modelSet.registerModel( new NotationModel() );
-//		// uml model
-//		UmlModel umlModel = new ExtendedUmlModel();
-//		umlModel.addModelSnippet(new UmlSnippet());
-//		modelSet.registerModel(umlModel);
-//		// global snippets
-//		modelSet.addModelSetSnippet(new TypeCacheInitializer());
-		
+		// modelSet.registerModel( new SashModel() );
+		// modelSet.registerModel( new NotationModel() );
+		// // uml model
+		// UmlModel umlModel = new ExtendedUmlModel();
+		// umlModel.addModelSnippet(new UmlSnippet());
+		// modelSet.registerModel(umlModel);
+		// // global snippets
+		// modelSet.addModelSetSnippet(new TypeCacheInitializer());
+
 		// Reading data from plugins
 		IConfigurationElement[] configElements = Platform.getExtensionRegistry().getConfigurationElementsFor(extensionPointNamespace, EXTENSION_POINT_NAME);
 		addDeclaredModels(configElements, modelSet);
@@ -94,7 +96,7 @@ public class ModelsReader extends ExtensionUtils {
 	private void addDeclaredModels(IConfigurationElement[] configElements, ModelSet modelSet) {
 
 		for(IConfigurationElement ele : configElements) {
-			
+
 			// Check if it is a Model
 			try {
 				if(MODEL_ELEMENT_NAME.equals(ele.getName())) {
@@ -112,11 +114,12 @@ public class ModelsReader extends ExtensionUtils {
 
 	/**
 	 * Add ModelSet snippet
+	 * 
 	 * @param modelSet
 	 */
 	private void addDeclaredModelSetSnippets(IConfigurationElement[] configElements, ModelSet modelSet) {
 		for(IConfigurationElement ele : configElements) {
-			
+
 			// Check if it is a Model
 			try {
 				if(MODEL_SET_SNIPPET_ELEMENT_NAME.equals(ele.getName())) {
@@ -137,7 +140,7 @@ public class ModelsReader extends ExtensionUtils {
 	 * @return
 	 * @throws ExtensionException
 	 */
-	
+
 	private IModel instanciateModel(IConfigurationElement ele) throws ExtensionException {
 
 		@SuppressWarnings("unchecked")
@@ -154,7 +157,7 @@ public class ModelsReader extends ExtensionUtils {
 
 		return model;
 	}
-	
+
 	/**
 	 * Instanciate model snippet declared in the configuration element.
 	 * 
@@ -178,7 +181,7 @@ public class ModelsReader extends ExtensionUtils {
 
 		return snippet;
 	}
-	
+
 	/**
 	 * Instanciate modelSet snippet declared in the configuration element.
 	 * 
@@ -202,7 +205,7 @@ public class ModelsReader extends ExtensionUtils {
 
 		return snippet;
 	}
-	
+
 	/**
 	 * Add associated snippets to the model.
 	 * 
@@ -210,22 +213,20 @@ public class ModelsReader extends ExtensionUtils {
 	 * @param model
 	 */
 	private void addDeclaredModelSnippet(IConfigurationElement parentElement, IModel model) {
-		
+
 		// Get children
 		IConfigurationElement[] configElements = parentElement.getChildren(MODEL_SNIPPET_ELEMENT_NAME);
 
 		for(IConfigurationElement ele : configElements) {
 			try {
-					IModelSnippet snippet = instanciateModelSnippet(ele);
-					model.addModelSnippet(snippet);
-					log.debug("model snippet added: '" + model.getClass().getName() + "().add(" + snippet.getClass().getName() + ")'");
+				IModelSnippet snippet = instanciateModelSnippet(ele);
+				model.addModelSnippet(snippet);
+				log.debug("model snippet added: '" + model.getClass().getName() + "().add(" + snippet.getClass().getName() + ")'");
 			} catch (ExtensionException e) {
 				log.error("Problems occur while instanciating model snippet", e);
 			}
 		}
 
-		
 	}
-
 
 }

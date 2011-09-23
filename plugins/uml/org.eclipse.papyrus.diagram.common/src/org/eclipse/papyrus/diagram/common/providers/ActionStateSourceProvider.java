@@ -18,12 +18,13 @@ import org.eclipse.papyrus.diagram.common.handlers.RenamedElementHandler;
 import org.eclipse.ui.ISources;
 
 /**
- * This class provides the state of the actions. It's used to refresh
- * the status of these actions in the menu. (in toolbar and popup, it's not needed)
+ * This class provides the state of the actions. It's used to refresh the status
+ * of these actions in the menu. (in toolbar and popup, it's not needed)
  * 
- * To get the status, we listen the selection service AND the part service!
- * The part service is used to know if the selection is in the Model Explorer or not!
- * When the selection is not in the model explorer, the handlers listening the variable need to be disabled
+ * To get the status, we listen the selection service AND the part service! The
+ * part service is used to know if the selection is in the Model Explorer or
+ * not! When the selection is not in the model explorer, the handlers listening
+ * the variable need to be disabled
  */
 public class ActionStateSourceProvider extends AbstractActionStateSourceProvider {
 
@@ -45,7 +46,6 @@ public class ActionStateSourceProvider extends AbstractActionStateSourceProvider
 		currentState.put(RENAME_NAMED_ELEMENT, DISABLED);
 	}
 
-
 	/**
 	 * 
 	 * @see org.eclipse.ui.ISourceProvider#getProvidedSourceNames()
@@ -56,7 +56,6 @@ public class ActionStateSourceProvider extends AbstractActionStateSourceProvider
 	public String[] getProvidedSourceNames() {
 		return new String[]{ DELETE_IN_DIAGRAM, RENAME_NAMED_ELEMENT };
 	}
-
 
 	/**
 	 * Refresh the state of the Delete Action
@@ -72,10 +71,11 @@ public class ActionStateSourceProvider extends AbstractActionStateSourceProvider
 	}
 
 	/**
-	 * Tests if the action DeleteFromDiagram (now called Delete Selected Element can be executed
+	 * Tests if the action DeleteFromDiagram (now called Delete Selected Element
+	 * can be executed
 	 * 
-	 * @return
-	 *         <code>true</code> if the action DeleteFromDiagram (now called Delete Selected Element can be executed <code>false</code> if not
+	 * @return <code>true</code> if the action DeleteFromDiagram (now called
+	 *         Delete Selected Element can be executed <code>false</code> if not
 	 */
 	protected boolean testDeleteFromDiagram() {
 		DeleteFromDiagramCommandHandler handler = new DeleteFromDiagramCommandHandler();
@@ -92,7 +92,6 @@ public class ActionStateSourceProvider extends AbstractActionStateSourceProvider
 		refreshDeleteAction();
 		refreshRenamedNamedElement();
 	}
-
 
 	/**
 	 * Refresh the status of the handlers which listen {@link #RENAME_NAMED_ELEMENT}

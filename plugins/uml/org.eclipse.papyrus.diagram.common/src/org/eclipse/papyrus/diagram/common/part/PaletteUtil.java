@@ -172,7 +172,8 @@ public class PaletteUtil {
 	}
 
 	/**
-	 * Default constructor. Should never be used, as method are static in this class.
+	 * Default constructor. Should never be used, as method are static in this
+	 * class.
 	 */
 	// @unused
 	private PaletteUtil() {
@@ -180,7 +181,8 @@ public class PaletteUtil {
 	}
 
 	/**
-	 * return tool entries for the given {@link PaletteContainer} and its sub-containers
+	 * return tool entries for the given {@link PaletteContainer} and its
+	 * sub-containers
 	 * 
 	 * @param container
 	 *        the container that contains the ToolEntries
@@ -208,7 +210,8 @@ public class PaletteUtil {
 	 *        the root memento from which the memento is searched
 	 * @param id
 	 *        the id of the memento to search
-	 * @return the memento with the given ID or <code>null</code> if no memento was found
+	 * @return the memento with the given ID or <code>null</code> if no memento
+	 *         was found
 	 */
 	// @unused
 	public static IMemento getMemento(IMemento rootMemento, String id) {
@@ -254,7 +257,6 @@ public class PaletteUtil {
 		List<? extends PapyrusPaletteService.ProviderDescriptor> providers = (List<? extends ProviderDescriptor>)PapyrusPaletteService.getInstance().getProviders();
 		ContributeToPaletteOperation operation = new ContributeToPaletteOperation(part, part.getEditorInput(), root, new HashMap<Object, Object>());
 
-
 		// generate for each provider, according to priority
 		@SuppressWarnings("unchecked")
 		List<PapyrusPaletteService.ProviderDescriptor> providerList = (List<PapyrusPaletteService.ProviderDescriptor>)PapyrusPaletteService.getInstance().getProviders();
@@ -285,7 +287,6 @@ public class PaletteUtil {
 		PaletteRoot root = new PaletteRoot();
 		List<? extends PapyrusPaletteService.ProviderDescriptor> providers = (List<? extends ProviderDescriptor>)PapyrusPaletteService.getInstance().getProviders();
 		ContributeToPaletteOperation operation = new ContributeToPaletteOperation(part, part.getEditorInput(), root, entries);
-
 
 		// generate for each provider, according to priority
 		@SuppressWarnings("unchecked")
@@ -341,14 +342,16 @@ public class PaletteUtil {
 	 * 
 	 * @param stereotypeName
 	 *        the name of the stereotype to parse
-	 * @return the qualified name of the profile from the given stereotype qualified Name
+	 * @return the qualified name of the profile from the given stereotype
+	 *         qualified Name
 	 */
 	public static String findProfileNameFromStereotypeName(String stereotypeName) {
 		return stereotypeName.substring(0, stereotypeName.lastIndexOf(NamedElement.SEPARATOR));
 	}
 
 	/**
-	 * Returns the list of profile Qualified Names String under a serialized form
+	 * Returns the list of profile Qualified Names String under a serialized
+	 * form
 	 * 
 	 * @param list
 	 *        the list of profiles to serialize
@@ -414,7 +417,8 @@ public class PaletteUtil {
 				if(description != null) {
 					String requiredProfilesList = properties.get(IPapyrusPaletteConstant.PROFILE_LIST);
 					if(requiredProfilesList != null) {
-						// parse requiredProfile string (profile1QN, profile2QN, etc.)
+						// parse requiredProfile string (profile1QN, profile2QN,
+						// etc.)
 						Set<String> requiredProfiles = PaletteUtil.getProfileSetFromString(requiredProfilesList);
 						for(String requiredProfileName : requiredProfiles) {
 							if(!appliedProfilesNames.contains(requiredProfileName)) {
@@ -447,7 +451,8 @@ public class PaletteUtil {
 				return true;
 			}
 		}
-		// by default, returns true if the descriptor is not a local descriptor, as they do not use
+		// by default, returns true if the descriptor is not a local descriptor,
+		// as they do not use
 		// profile
 		return true;
 	}

@@ -41,7 +41,8 @@ public class DeleteFromModelCommandHandler extends GraphicalCommandHandler imple
 			return UnexecutableCommand.INSTANCE;
 		}
 
-		// Iterate over selection and retrieve the deletion command from each edit part
+		// Iterate over selection and retrieve the deletion command from each
+		// edit part
 		// Add each returned command to the composite command
 		CompositeTransactionalCommand command = new CompositeTransactionalCommand(getEditingDomain(), "Delete From Model");
 

@@ -20,7 +20,6 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
 
-
 /**
  * this class allows to have a list to choose one element!
  * 
@@ -52,7 +51,6 @@ public class ComboInputDialog extends InputDialog {
 		this.elementsList = elementsList;
 	}
 
-
 	/**
 	 * Ok pressed.
 	 */
@@ -62,7 +60,6 @@ public class ComboInputDialog extends InputDialog {
 		indexOfSelection = combo.getSelectionIndex();
 		super.okPressed();
 	}
-
 
 	/**
 	 * 
@@ -74,13 +71,15 @@ public class ComboInputDialog extends InputDialog {
 	@Override
 	protected Control createDialogArea(Composite parent) {
 		Composite comp = (Composite)super.createDialogArea(parent);
-		combo = new Combo(comp, SWT.READ_ONLY);//with READ_ONLY, we can't edit the selection!
+		combo = new Combo(comp, SWT.READ_ONLY);// with READ_ONLY, we can't edit
+												// the selection!
 		if(elementsList == null) {
 			combo.setItems(new String[]{ "" }); //$NON-NLS-1$
 		} else {
 			combo.setItems(elementsList);
 		}
-		//the width of the list depends of the windows size and note of the element from elementsList
+		// the width of the list depends of the windows size and note of the
+		// element from elementsList
 		GridData data = new GridData(GridData.GRAB_HORIZONTAL | GridData.GRAB_VERTICAL | GridData.HORIZONTAL_ALIGN_FILL | GridData.VERTICAL_ALIGN_CENTER);
 		combo.setLayoutData(data);
 		return comp;

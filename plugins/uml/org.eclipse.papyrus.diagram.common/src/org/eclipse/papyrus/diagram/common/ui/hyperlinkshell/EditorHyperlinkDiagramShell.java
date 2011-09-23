@@ -145,7 +145,8 @@ public class EditorHyperlinkDiagramShell extends AbstractEditHyperlinkDocumentSh
 
 				if(hyperLinkDiagram != null) {
 					hyperLinkDiagram.setTooltipText(getTooltipInputText().getText().trim());
-					// if diagram is null, maybe bad selection or other it return null!
+					// if diagram is null, maybe bad selection or other it
+					// return null!
 					if(hyperLinkDiagram.getDiagram() == null) {
 						hyperLinkDiagram = null;
 					}

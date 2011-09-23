@@ -24,12 +24,11 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.part.EditorActionBarContributor;
 
-
 /**
  * 
  * An ActionBarContributor composed of ActionBarContributor from multi editor.
- * This ActionBarContributor switch to the contributor dedicated to the active editor in
- * a MultiPageEditor environement.
+ * This ActionBarContributor switch to the contributor dedicated to the active
+ * editor in a MultiPageEditor environement.
  * 
  * @author dumoulin
  * 
@@ -63,14 +62,12 @@ public class CoreComposedActionBarContributor extends ComposedActionBarContribut
 		contributors = actionBarContributorRegistry.getActionBarContributors();
 	}
 
-
 	/**
 	 * @return the actionBarContributorRegistry
 	 */
 	public ActionBarContributorRegistry getActionBarContributorRegistry() {
 		return actionBarContributorRegistry;
 	}
-
 
 	/**
 	 * Dispose all nested ActionBarContributors.
@@ -105,14 +102,14 @@ public class CoreComposedActionBarContributor extends ComposedActionBarContribut
 	 * @see org.eclipse.gef.ui.actions.ActionBarContributor#buildActions()
 	 */
 	protected void buildActions() {
-		//getActionBars().getToolBarManager().add(new UndoRetargetAction());
-		//getActionBars().getToolBarManager().add(new RedoRetargetAction());
+		// getActionBars().getToolBarManager().add(new UndoRetargetAction());
+		// getActionBars().getToolBarManager().add(new RedoRetargetAction());
 	}
 
 	@Override
 	public void setActiveEditor(IEditorPart part) {
 		super.setActiveEditor(part);
-		for (EditorActionBarContributor contributor : contributors) {
+		for(EditorActionBarContributor contributor : contributors) {
 			contributor.setActiveEditor(part);
 		}
 	}

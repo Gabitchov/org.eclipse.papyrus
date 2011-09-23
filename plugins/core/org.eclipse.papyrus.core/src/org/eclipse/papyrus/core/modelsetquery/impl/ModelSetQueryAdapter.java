@@ -38,7 +38,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 
 /**
- * This cache creates a map associating EClasses to all the corresponding instances
+ * This cache creates a map associating EClasses to all the corresponding
+ * instances
  * 
  * @author Tristan Faure
  */
@@ -50,8 +51,9 @@ public class ModelSetQueryAdapter implements IModelSetQueryAdapter, Adapter.Inte
 	private Map<EClassifier, Collection<EObject>> cache = Collections.synchronizedMap(new HashMap<EClassifier, Collection<EObject>>());
 
 	/**
-	 * This cache adapter is only used if the caller don't use correctly TypeCacheAdapter.
-	 * With the simple cache adapter performance are not good but a result is still returned
+	 * This cache adapter is only used if the caller don't use correctly
+	 * TypeCacheAdapter. With the simple cache adapter performance are not good
+	 * but a result is still returned
 	 */
 	private static SimpleTypeCacheAdapter simpleCacheAdapter = new SimpleTypeCacheAdapter();
 
@@ -113,7 +115,6 @@ public class ModelSetQueryAdapter implements IModelSetQueryAdapter, Adapter.Inte
 			eAdapters.add(this);
 		}
 	}
-
 
 	protected void handleContainment(Notification notification) {
 		Object notifier = notification.getNotifier();
@@ -450,7 +451,8 @@ public class ModelSetQueryAdapter implements IModelSetQueryAdapter, Adapter.Inte
 	}
 
 	/**
-	 * This method provides a way for user to force first entries in the cache. The list of element must be a HashSet to optimize the performances
+	 * This method provides a way for user to force first entries in the cache.
+	 * The list of element must be a HashSet to optimize the performances
 	 * 
 	 * @param type
 	 * @param list
@@ -463,13 +465,13 @@ public class ModelSetQueryAdapter implements IModelSetQueryAdapter, Adapter.Inte
 		return cache.containsKey(type);
 	}
 
-
 	public static IModelSetQueryAdapter getSimpleTypeCacheAdapter() {
 		return simpleCacheAdapter;
 	}
 
 	/**
-	 * This implementation uses ItemPropertyDescriptor class to resolve objects from type
+	 * This implementation uses ItemPropertyDescriptor class to resolve objects
+	 * from type
 	 * 
 	 * @author tfaure
 	 */

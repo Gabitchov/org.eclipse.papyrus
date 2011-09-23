@@ -31,9 +31,9 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.RefreshConnectionsRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
 
-
 /**
- * Specific creation edit policy for Papyrus. It checks that the view creation can be done before returning the result of the getCommand
+ * Specific creation edit policy for Papyrus. It checks that the view creation
+ * can be done before returning the result of the getCommand
  */
 public class PapyrusCreationEditPolicy extends CreationEditPolicy {
 
@@ -91,7 +91,6 @@ public class PapyrusCreationEditPolicy extends CreationEditPolicy {
 		}
 
 		Command refreshConnectionCommand = getHost().getCommand(new RefreshConnectionsRequest(((List)request.getNewObject())));
-
 
 		// form the compound command and return
 		CompositeCommand cc = new CompositeCommand(semanticCommand.getLabel());

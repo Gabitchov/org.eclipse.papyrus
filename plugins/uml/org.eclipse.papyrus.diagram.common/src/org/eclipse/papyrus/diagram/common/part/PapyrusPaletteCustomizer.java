@@ -58,7 +58,6 @@ public class PapyrusPaletteCustomizer extends PaletteCustomizerEx {
 		this.preferences = preferenceStore;
 	}
 
-
 	/**
 	 * Returns the change parents
 	 * 
@@ -78,13 +77,16 @@ public class PapyrusPaletteCustomizer extends PaletteCustomizerEx {
 			applyCustomizations(rootMemento, paletteRoot, rootMemento);
 		}
 
-		// must now clean the palette, as the element whose parent container is changed is not
+		// must now clean the palette, as the element whose parent container is
+		// changed is not
 		// removed from its old container...
 		// 1. ContainerA -< PaletteA, ContainerB
-		// 2. apply customization => ContainerA -< PaletteA, ContainerB -< PaletteA (setParent =
+		// 2. apply customization => ContainerA -< PaletteA, ContainerB -<
+		// PaletteA (setParent =
 		// ContainerB)
 		// 3. clean => remove PaletteA from ContainerA.
-		// issue => cannot modify the list of children of containerA in applyCustomization because
+		// issue => cannot modify the list of children of containerA in
+		// applyCustomization because
 		// of the iterator system (concurrent modification)
 		// so, clean palette using a specific method
 		// 4. goal: ContainerA, ContainerB -< PaletteA
@@ -99,14 +101,16 @@ public class PapyrusPaletteCustomizer extends PaletteCustomizerEx {
 	 * @param paletteRoot
 	 */
 	protected void cleanPalette(PaletteContainer paletteContainer) {
-		// copy children list, then iterate, so the original children list can be modified...
+		// copy children list, then iterate, so the original children list can
+		// be modified...
 		List<PaletteEntry> children = new ArrayList<PaletteEntry>(paletteContainer.getChildren().size());
 		for(Object o : paletteContainer.getChildren()) {
 			children.add((PaletteEntry)o);
 		}
 
 		for(PaletteEntry entry : children) {
-			// if parent is not the correct one, delete this child from the children list
+			// if parent is not the correct one, delete this child from the
+			// children list
 			if(entry.getParent() != paletteContainer) {
 				paletteContainer.getChildren().remove(entry);
 			}
@@ -118,8 +122,8 @@ public class PapyrusPaletteCustomizer extends PaletteCustomizerEx {
 	}
 
 	/**
-	 * Creation factory method for the <code>IPaletteState</code>. Clients may override to provide
-	 * custom <code>IPaletteStates</code>.
+	 * Creation factory method for the <code>IPaletteState</code>. Clients may
+	 * override to provide custom <code>IPaletteStates</code>.
 	 * 
 	 * @param entry
 	 *        the palette entry
@@ -129,7 +133,8 @@ public class PapyrusPaletteCustomizer extends PaletteCustomizerEx {
 		if(entry instanceof PaletteDrawer) {
 			return new PaletteDrawerState((PaletteDrawer)entry);
 		} else {
-			// specific papyrus entry state. It manages at least the parent customization
+			// specific papyrus entry state. It manages at least the parent
+			// customization
 			return new PapyrusPaletteEntryState(entry);
 		}
 	}
@@ -145,7 +150,8 @@ public class PapyrusPaletteCustomizer extends PaletteCustomizerEx {
 	private HashMap<PaletteEntry, IPaletteState> paletteStates = new HashMap<PaletteEntry, IPaletteState>();
 
 	/**
-	 * the preference store in which the palette customizations are to be saved and retrieved from
+	 * the preference store in which the palette customizations are to be saved
+	 * and retrieved from
 	 */
 	private IPreferenceStore preferences;
 
@@ -157,7 +163,8 @@ public class PapyrusPaletteCustomizer extends PaletteCustomizerEx {
 	}
 
 	/**
-	 * Stores the palette state for a given palette entry if the state has not yet been stored.
+	 * Stores the palette state for a given palette entry if the state has not
+	 * yet been stored.
 	 * 
 	 * @param entry
 	 *        the palette entry
@@ -218,27 +225,31 @@ public class PapyrusPaletteCustomizer extends PaletteCustomizerEx {
 	}
 
 	/**
-	 * Given the rootMemento, gets the memento that already exists for the palette entry or creates
-	 * a new one in the rootMemento (and the necessary palette container mementos) if one does not
-	 * exist yet. The root memento's tree structure matches that of the palette root. If a palette
-	 * entry in stack A, in drawer B is customized, the root memento will have a child memento for
-	 * drawer B which has a child memento for stack A which has a child memento for the entry. The
-	 * memento's use the palette entry's id.
+	 * Given the rootMemento, gets the memento that already exists for the
+	 * palette entry or creates a new one in the rootMemento (and the necessary
+	 * palette container mementos) if one does not exist yet. The root memento's
+	 * tree structure matches that of the palette root. If a palette entry in
+	 * stack A, in drawer B is customized, the root memento will have a child
+	 * memento for drawer B which has a child memento for stack A which has a
+	 * child memento for the entry. The memento's use the palette entry's id.
 	 * 
 	 * @param rootMemento
 	 *        the root memento representing the palette root
 	 * @param paletteEntry
-	 *        the palette entry for which a memento should be retrieved or created
-	 * @return returns the memento that already exists for the palette entry or creates a new one in
-	 *         the rootMemento if one does not exist yet or null if the memento could not be created
-	 *         (most likely because the palete id is not acceptable).
+	 *        the palette entry for which a memento should be retrieved or
+	 *        created
+	 * @return returns the memento that already exists for the palette entry or
+	 *         creates a new one in the rootMemento if one does not exist yet or
+	 *         null if the memento could not be created (most likely because the
+	 *         palete id is not acceptable).
 	 */
 	private IMemento getMementoForEntry(IMemento rootMemento, PaletteEntry paletteEntry) {
 
 		ArrayList<String> idList = new ArrayList<String>();
 		idList.add(paletteEntry.getId());
 
-		// modification of GMF code to have the parent. takes the default parent instead of the
+		// modification of GMF code to have the parent. takes the default parent
+		// instead of the
 		// actual one...
 		PaletteContainer parent = changedParents.get(paletteEntry);
 		if(parent == null) {
@@ -269,8 +280,8 @@ public class PapyrusPaletteCustomizer extends PaletteCustomizerEx {
 	}
 
 	/**
-	 * Recursive helper method to apply the palette customizations in a memento to a palette
-	 * container.
+	 * Recursive helper method to apply the palette customizations in a memento
+	 * to a palette container.
 	 * 
 	 * @param containerMemento
 	 *        the mememto where the container's customizations are stored
@@ -283,7 +294,8 @@ public class PapyrusPaletteCustomizer extends PaletteCustomizerEx {
 			PaletteEntry entry = (PaletteEntry)iterator.next();
 			IMemento childMemento = containerMemento.getChild(entry.getId());
 			if(childMemento != null) {
-				// check that the memento does not change the parent of the entry
+				// check that the memento does not change the parent of the
+				// entry
 				if(isChangingParent(entry, childMemento)) {
 					changedParents.put(entry, entry.getParent());
 				}
@@ -307,10 +319,11 @@ public class PapyrusPaletteCustomizer extends PaletteCustomizerEx {
 	}
 
 	/**
-	 * Retrieves the root memento from the workspace preferences if there were existing palette
-	 * customizations.
+	 * Retrieves the root memento from the workspace preferences if there were
+	 * existing palette customizations.
 	 * 
-	 * @return the root memento if there were existing customizations; null otherwise
+	 * @return the root memento if there were existing customizations; null
+	 *         otherwise
 	 */
 	private XMLMemento getExistingCustomizations() {
 		if(preferences != null) {
@@ -328,9 +341,9 @@ public class PapyrusPaletteCustomizer extends PaletteCustomizerEx {
 	}
 
 	/**
-	 * Customized so that the palette state can be saved before the change is made to the palette
-	 * model so that: <li>when the cancel button is pressed, the stored state can be restored</li> <li>when the save button is pressed, the
-	 * customizations made since the state was stored can be written to the workspace preferences</li>
+	 * Customized so that the palette state can be saved before the change is
+	 * made to the palette model so that: <li>when the cancel button is pressed, the stored state can be restored</li> <li>when the save button is
+	 * pressed, the customizations made since the state was stored can be written to the workspace preferences</li>
 	 */
 	private class PapyrusDefaultEntryPage extends DefaultEntryPage {
 
@@ -352,9 +365,9 @@ public class PapyrusPaletteCustomizer extends PaletteCustomizerEx {
 	}
 
 	/**
-	 * Customized so that the palette state can be saved before the change is made to the palette
-	 * model so that: <li>when the cancel button is pressed, the stored state can be restored</li> <li>when the save button is pressed, the
-	 * customizations made since the state was stored can be written to the workspace preferences</li>
+	 * Customized so that the palette state can be saved before the change is
+	 * made to the palette model so that: <li>when the cancel button is pressed, the stored state can be restored</li> <li>when the save button is
+	 * pressed, the customizations made since the state was stored can be written to the workspace preferences</li>
 	 */
 	public class PapyrusDrawerEntryPage extends DrawerEntryPage {
 

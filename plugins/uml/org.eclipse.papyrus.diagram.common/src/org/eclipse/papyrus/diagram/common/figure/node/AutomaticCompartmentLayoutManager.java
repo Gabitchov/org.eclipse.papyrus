@@ -27,8 +27,9 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 
 /**
  * this is the layout manager in charge to place element in compartment element.
- * A modification of the code has been done in order to manage none visible compartment.
- * if a compartment becomes invisible, its size and its height are equal to 1.
+ * A modification of the code has been done in order to manage none visible
+ * compartment. if a compartment becomes invisible, its size and its height are
+ * equal to 1.
  * 
  */
 
@@ -129,13 +130,15 @@ public class AutomaticCompartmentLayoutManager extends AbstractLayout {
 	public void layout(IFigure container) {
 		collectInformationOnChildren(container);
 
-		// this list contains the visible compartments (that is to say :  notCompartmentList + compartmentsList
+		// this list contains the visible compartments (that is to say :
+		// notCompartmentList + compartmentsList
 		List<IFigure> visibleCompartments = new ArrayList<IFigure>();
 
 		visibleCompartments.addAll(notCompartmentList);
 		visibleCompartments.addAll(compartmentList);
 
-		// choose the good layout by taking in account if it exist GMF compartment
+		// choose the good layout by taking in account if it exist GMF
+		// compartment
 		if(compartmentList.size() != 0) {
 			// visit all compartment
 			for(int i = 0; i < container.getChildren().size(); i++) {
@@ -157,7 +160,7 @@ public class AutomaticCompartmentLayoutManager extends AbstractLayout {
 					currentCompartment.setBounds(bound);
 				}
 				else{
-					//this is a none visible compartment
+					// this is a none visible compartment
 					Rectangle bound = new Rectangle(currentCompartment.getBounds());
 					bound.setSize(1,1);
 					currentCompartment.setBounds(bound);
@@ -170,9 +173,10 @@ public class AutomaticCompartmentLayoutManager extends AbstractLayout {
 	}
 
 	/**
-	 * Optimize the size of each compartment depending on the size of the compartments container,
-	 * and the size of each compartment. If a compartment is empty, or not expanded, then a default
-	 * size is applied to this compartment
+	 * Optimize the size of each compartment depending on the size of the
+	 * compartments container, and the size of each compartment. If a
+	 * compartment is empty, or not expanded, then a default size is applied to
+	 * this compartment
 	 * 
 	 * @param compartmentsDimension
 	 *        an hashmap containing each compartment dimension.
@@ -189,7 +193,8 @@ public class AutomaticCompartmentLayoutManager extends AbstractLayout {
 		}
 		int remainingspace = container.getBounds().height - notCompartmentsHeight;
 
-		// ratio between the height of all compartments and the size of the compartments container.
+		// ratio between the height of all compartments and the size of the
+		// compartments container.
 		double ratio = new Integer(compartmentsHeight).doubleValue() / new Integer(remainingspace).doubleValue();
 
 		for(int i = 0; i < compartmentList.size(); i++) {
@@ -208,7 +213,8 @@ public class AutomaticCompartmentLayoutManager extends AbstractLayout {
 	}
 
 	/**
-	 * use to know what kind of element we have in order to apply the good policy for the disposition
+	 * use to know what kind of element we have in order to apply the good
+	 * policy for the disposition
 	 * @param container
 	 */
 	public void collectInformationOnChildren(IFigure container) {

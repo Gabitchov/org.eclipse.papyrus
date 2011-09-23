@@ -33,8 +33,8 @@ import org.eclipse.papyrus.umlutils.ui.VisualInformationPapyrusConstant;
 import org.eclipse.swt.graphics.Image;
 
 /**
- * This class is top graphNode figure. It contains: 1 icone label + 1 stereotype label + 1 qualified
- * nale label + 1 name label
+ * This class is top graphNode figure. It contains: 1 icone label + 1 stereotype
+ * label + 1 qualified nale label + 1 name label
  */
 public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyrusNodeNamedElementFigure, IPapyrusNodeUMLElementFigure {
 
@@ -117,8 +117,9 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	}
 
 	/**
-	 * Get the constraint for adding the name label.
-	 * Children should override and implement this method in case the label must be drawn with a specific constraint.
+	 * Get the constraint for adding the name label. Children should override
+	 * and implement this method in case the label must be drawn with a specific
+	 * constraint.
 	 * 
 	 * @return figure containing the name label
 	 * @see #getNameLabelContainer()
@@ -129,8 +130,9 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	}
 
 	/**
-	 * Get the constraint for adding the icon label.
-	 * Children should override and implement this method in case the label must be drawn with a specific constraint.
+	 * Get the constraint for adding the icon label. Children should override
+	 * and implement this method in case the label must be drawn with a specific
+	 * constraint.
 	 * 
 	 * @return figure containing the icon label
 	 * @see #getIconLabelContainer()
@@ -141,8 +143,9 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	}
 
 	/**
-	 * Get the constraint for adding the qualified name label.
-	 * Children should override and implement this method in case the label must be drawn with a specific constraint.
+	 * Get the constraint for adding the qualified name label. Children should
+	 * override and implement this method in case the label must be drawn with a
+	 * specific constraint.
 	 * 
 	 * @return figure containing the qualified name label
 	 * @see #getQualifiedNameLabelContainer()
@@ -153,8 +156,9 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	}
 
 	/**
-	 * Get the constraint for adding the stereotype label.
-	 * Children should override and implement this method in case the label must be drawn with a specific constraint.
+	 * Get the constraint for adding the stereotype label. Children should
+	 * override and implement this method in case the label must be drawn with a
+	 * specific constraint.
 	 * 
 	 * @return figure containing the qualified name label
 	 * @see #getStereotypeLabelContainer()
@@ -166,7 +170,8 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 
 	/**
 	 * Get the constraint for adding the stereotype properties in brace label.
-	 * Children should override and implement this method in case the label must be drawn with a specific constraint.
+	 * Children should override and implement this method in case the label must
+	 * be drawn with a specific constraint.
 	 * 
 	 * @return figure containing the stereotype properties in brace label
 	 * @see #getStereotypePropertiesInBraceLabelContainer()
@@ -178,7 +183,8 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 
 	/**
 	 * Get the constraint for adding the stereotype properties compartment.
-	 * Children should override and implement this method in case the label must be drawn with a specific constraint.
+	 * Children should override and implement this method in case the label must
+	 * be drawn with a specific constraint.
 	 * 
 	 * @return figure containing the stereotype properties compartment
 	 * @see #getStereotypePropertiesCompartmentContainer()
@@ -189,8 +195,9 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	}
 
 	/**
-	 * Get the constraint for adding the tag label.
-	 * Children should override and implement this method in case the label must be drawn with a specific constraint.
+	 * Get the constraint for adding the tag label. Children should override and
+	 * implement this method in case the label must be drawn with a specific
+	 * constraint.
 	 * 
 	 * @return figure containing the qualified name label
 	 * @see #getTagLabelContainer()
@@ -201,8 +208,9 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	}
 
 	/**
-	 * Get the default constraint for all labels.
-	 * Children should override and implement this method in case the label must be drawn with a specific constraint.
+	 * Get the default constraint for all labels. Children should override and
+	 * implement this method in case the label must be drawn with a specific
+	 * constraint.
 	 * 
 	 * @return constraint for all labels by default
 	 * @see #getDefaultLabelsContainer()
@@ -212,9 +220,9 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	}
 
 	/**
-	 * Get the container for the name label.
-	 * Children should override and implement this method in case the label must not be drawn in the overall figure. The returned figure shall be
-	 * created in the method {@link #createCompositeFigureStructure()}.
+	 * Get the container for the name label. Children should override and
+	 * implement this method in case the label must not be drawn in the overall
+	 * figure. The returned figure shall be created in the method {@link #createCompositeFigureStructure()}.
 	 * 
 	 * @return figure containing the name label
 	 * @see #getDefaultLabelsContainer()
@@ -224,9 +232,9 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	}
 
 	/**
-	 * Get the container for the icon label.
-	 * Children should override and implement this method in case the label must not be drawn in the overall figure. The returned figure shall be
-	 * created in the method {@link #createCompositeFigureStructure()}.
+	 * Get the container for the icon label. Children should override and
+	 * implement this method in case the label must not be drawn in the overall
+	 * figure. The returned figure shall be created in the method {@link #createCompositeFigureStructure()}.
 	 * 
 	 * @return figure containing the icon label
 	 * @see #getDefaultLabelsContainer()
@@ -236,9 +244,9 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	}
 
 	/**
-	 * Get the container for the qualified name label.
-	 * Children should override and implement this method in case the label must not be drawn in the overall figure. The returned figure shall be
-	 * created in the method {@link #createCompositeFigureStructure()}.
+	 * Get the container for the qualified name label. Children should override
+	 * and implement this method in case the label must not be drawn in the
+	 * overall figure. The returned figure shall be created in the method {@link #createCompositeFigureStructure()}.
 	 * 
 	 * @return figure containing the qualified name label
 	 * @see #getDefaultLabelsContainer()
@@ -248,9 +256,9 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	}
 
 	/**
-	 * Get the container for the stereotype label.
-	 * Children should override and implement this method in case the label must not be drawn in the overall figure. The returned figure shall be
-	 * created in the method {@link #createCompositeFigureStructure()}.
+	 * Get the container for the stereotype label. Children should override and
+	 * implement this method in case the label must not be drawn in the overall
+	 * figure. The returned figure shall be created in the method {@link #createCompositeFigureStructure()}.
 	 * 
 	 * @return figure containing the qualified name label
 	 * @see #getDefaultLabelsContainer()
@@ -260,9 +268,10 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	}
 
 	/**
-	 * Get the container for the stereotype properties in brace label.
-	 * Children should override and implement this method in case the label must not be drawn in the overall figure. The returned figure shall be
-	 * created in the method {@link #createCompositeFigureStructure()}.
+	 * Get the container for the stereotype properties in brace label. Children
+	 * should override and implement this method in case the label must not be
+	 * drawn in the overall figure. The returned figure shall be created in the
+	 * method {@link #createCompositeFigureStructure()}.
 	 * 
 	 * @return figure containing the stereotype properties in brace label
 	 * @see #getDefaultLabelsContainer()
@@ -272,9 +281,10 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	}
 
 	/**
-	 * Get the container for the stereotype properties compartment.
-	 * Children should override and implement this method in case the compartment must not be drawn in the overall figure. The returned figure shall
-	 * be created in the method {@link #createCompositeFigureStructure()}.
+	 * Get the container for the stereotype properties compartment. Children
+	 * should override and implement this method in case the compartment must
+	 * not be drawn in the overall figure. The returned figure shall be created
+	 * in the method {@link #createCompositeFigureStructure()}.
 	 * 
 	 * @return figure containing the stereotype properties compartment
 	 * @see #getDefaultLabelsContainer()
@@ -284,9 +294,9 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	}
 
 	/**
-	 * Get the container for the tag label.
-	 * Children should override and implement this method in case the label must not be drawn in the overall figure. The returned figure shall be
-	 * created in the method {@link #createCompositeFigureStructure()}.
+	 * Get the container for the tag label. Children should override and
+	 * implement this method in case the label must not be drawn in the overall
+	 * figure. The returned figure shall be created in the method {@link #createCompositeFigureStructure()}.
 	 * 
 	 * @return figure containing the qualified name label
 	 * @see #getDefaultLabelsContainer()
@@ -296,9 +306,9 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	}
 
 	/**
-	 * Get the default container for all labels.
-	 * Children should override and implement this method in case the label must not be drawn in the overall figure. The returned figure shall be
-	 * created in the method {@link #createCompositeFigureStructure()}.
+	 * Get the default container for all labels. Children should override and
+	 * implement this method in case the label must not be drawn in the overall
+	 * figure. The returned figure shall be created in the method {@link #createCompositeFigureStructure()}.
 	 * 
 	 * @return figure containing labels by default
 	 */
@@ -387,8 +397,8 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	}
 
 	/**
-	 * Get layout to display content of properties compartment.
-	 * Children may override this method.
+	 * Get layout to display content of properties compartment. Children may
+	 * override this method.
 	 * 
 	 * @return the layout
 	 */
@@ -441,7 +451,8 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	}
 
 	/**
-	 * Create the tag label in the figure. The tag label is created if value is not null.
+	 * Create the tag label in the figure. The tag label is created if value is
+	 * not null.
 	 * 
 	 * @param value
 	 *        the value to use
@@ -518,8 +529,7 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	 * Calculate the partial qualified name with a specified depth.
 	 * 
 	 * @param qualifiedName
-	 *        the qualified name
-	 *        can return null
+	 *        the qualified name can return null
 	 */
 	public String getQualifiedName(String qualifiedName, int depth) {
 		int n = -1;
@@ -580,8 +590,8 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	}
 
 	/**
-	 * Returns the position of the stereotype properties location. this is just after stereotype
-	 * position
+	 * Returns the position of the stereotype properties location. this is just
+	 * after stereotype position
 	 * 
 	 * @return the position of the stereotype properties in brace label
 	 */
@@ -855,7 +865,8 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	 * </p>
 	 * 
 	 * @param stereotypeProperties
-	 *        the string representing the stereotype properties to be displayed
+	 *        the string representing the stereotype properties to be
+	 *        displayed
 	 */
 	public void setStereotypePropertiesInBrace(String stereotypeProperties) {
 		if(stereotypeProperties == null) {
@@ -883,8 +894,8 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	/**
 	 * displays the new string corresponding to the list of stereotypes.
 	 * 
-	 * if the string is <code>null</code>, then the figure that displays the stereotype label is
-	 * removed from the NodeNamedElementFigure.
+	 * if the string is <code>null</code>, then the figure that displays the
+	 * stereotype label is removed from the NodeNamedElementFigure.
 	 * 
 	 * @param stereotypeProperties
 	 *        the string to be displayed.
@@ -986,7 +997,8 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 			return;
 		}
 
-		// Set the stereotype label with position parameter if it does not already exist
+		// Set the stereotype label with position parameter if it does not
+		// already exist
 		if(this.iconLabel == null) {
 			this.createIconLabel(position);
 		}

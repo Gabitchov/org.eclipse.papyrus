@@ -19,7 +19,6 @@ import org.eclipse.papyrus.core.Activator;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Display;
 
-
 /**
  * Services to access to Papyrus images
  * 
@@ -33,8 +32,8 @@ public class PapyrusImageUtils {
 	private static final String default_icon = "/icons/papyrus/Papyrus.gif";
 
 	/**
-	 * get the default icon for Papyrus
-	 * the image does not have to be disposed as it is registered in an ImageRegistry
+	 * get the default icon for Papyrus the image does not have to be disposed
+	 * as it is registered in an ImageRegistry
 	 * 
 	 * @return the Image
 	 */
@@ -43,8 +42,8 @@ public class PapyrusImageUtils {
 	}
 
 	/**
-	 * get the default icon 32x32 for Papyrus
-	 * the image does not have to be disposed as it is registered in an ImageRegistry
+	 * get the default icon 32x32 for Papyrus the image does not have to be
+	 * disposed as it is registered in an ImageRegistry
 	 * 
 	 * @return the Image
 	 */

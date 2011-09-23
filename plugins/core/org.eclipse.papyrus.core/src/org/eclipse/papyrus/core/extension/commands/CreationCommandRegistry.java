@@ -34,14 +34,16 @@ public class CreationCommandRegistry implements ICreationCommandRegistry {
 	private static Map<String, CreationCommandRegistry> registriesMap = new HashMap<String, CreationCommandRegistry>();
 
 	/**
-	 * This static method returns an instance of this class for a specified namespace
+	 * This static method returns an instance of this class for a specified
+	 * namespace
+	 * 
 	 * @param extensionPointNamespace
 	 * @return
 	 */
 	public static CreationCommandRegistry getInstance(String extensionPointNamespace) {
-		synchronized (registriesMap) {
+		synchronized(registriesMap) {
 			CreationCommandRegistry registry = registriesMap.get(extensionPointNamespace);
-			if (registry == null) {
+			if(registry == null) {
 				registry = new CreationCommandRegistry(extensionPointNamespace);
 				registriesMap.put(extensionPointNamespace, registry);
 			}

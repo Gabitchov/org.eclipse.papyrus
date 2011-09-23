@@ -56,7 +56,8 @@ public class UpdateLifelineRepresentsCommand extends AbstractCommand {
 	private boolean createConnectorEnd;
 
 	/**
-	 * The Property used to link the Classifier with the Lifeline through the Represents property
+	 * The Property used to link the Classifier with the Lifeline through the
+	 * Represents property
 	 */
 	private ConnectableElement newProperty;
 
@@ -88,8 +89,8 @@ public class UpdateLifelineRepresentsCommand extends AbstractCommand {
 	}
 
 	/**
-	 * Return the connector end which has the correct property as role, owned by a connector in the
-	 * interaction
+	 * Return the connector end which has the correct property as role, owned by
+	 * a connector in the interaction
 	 * 
 	 * @param interaction
 	 *        the owning interaction
@@ -123,8 +124,8 @@ public class UpdateLifelineRepresentsCommand extends AbstractCommand {
 	}
 
 	/**
-	 * Store the old Property associated with the represents property of the Lifeline and then make
-	 * the redo
+	 * Store the old Property associated with the represents property of the
+	 * Lifeline and then make the redo
 	 * 
 	 * @see org.eclipse.gef.commands.Command#execute()
 	 */

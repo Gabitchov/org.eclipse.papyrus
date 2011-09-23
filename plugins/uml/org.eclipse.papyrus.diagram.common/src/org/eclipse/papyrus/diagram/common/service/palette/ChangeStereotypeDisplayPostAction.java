@@ -155,7 +155,7 @@ public class ChangeStereotypeDisplayPostAction extends GraphicalPostAction {
 	public void run(final EditPart editPart) {
 
 		final CompositeCommand compositeCommand = new CompositeCommand("Modify Stereotype Display");
-		//	View view = (View)editPart.getModel();
+		// View view = (View)editPart.getModel();
 
 		final EModelElement view = (EModelElement)((GraphicalEditPart)editPart).getModel();
 		final TransactionalEditingDomain editingDomain = org.eclipse.papyrus.core.utils.EditorUtils.getTransactionalEditingDomain();
@@ -175,8 +175,10 @@ public class ChangeStereotypeDisplayPostAction extends GraphicalPostAction {
 							if(compositeCommand.canExecute()) {
 								boolean isActivating = true;
 								Map<String, Boolean> options = null;
-								// use the viewer to determine if we are still initializing the diagram
-								// do not use the DiagramEditPart.isActivating since ConnectionEditPart's
+								// use the viewer to determine if we are still
+								// initializing the diagram
+								// do not use the DiagramEditPart.isActivating
+								// since ConnectionEditPart's
 								// parent will not be a diagram edit part
 								EditPartViewer viewer = editPart.getViewer();
 								if(viewer instanceof DiagramGraphicalViewer) {
@@ -347,8 +349,10 @@ public class ChangeStereotypeDisplayPostAction extends GraphicalPostAction {
 		 * VisualInformationPapyrusConstant.TEXT_ICON_STEREOTYPE_PRESENTATION,
 		 * VisualInformationPapyrusConstant.ICON_STEREOTYPE_PRESENTATION,
 		 * VisualInformationPapyrusConstant.IMAGE_STEREOTYPE_PRESENTATION,
-		 * VisualInformationPapyrusConstant.STEREOTYPE_TEXT_HORIZONTAL_PRESENTATION,
-		 * VisualInformationPapyrusConstant.STEREOTYPE_TEXT_VERTICAL_PRESENTATION
+		 * VisualInformationPapyrusConstant
+		 * .STEREOTYPE_TEXT_HORIZONTAL_PRESENTATION,
+		 * VisualInformationPapyrusConstant
+		 * .STEREOTYPE_TEXT_VERTICAL_PRESENTATION
 		 */
 		if(VisualInformationPapyrusConstant.TEXT_ICON_STEREOTYPE_PRESENTATION.equals(displayKind)) {
 			displayCombo.select(DISPLAY_LIST.indexOf(TEXT_AND_ICON));

@@ -19,8 +19,8 @@ import org.eclipse.draw2d.ImageFigure;
 import org.eclipse.swt.graphics.Image;
 
 /**
- * Figure for Affixed NamedElement representation.
- * The name label is shown as an external label.
+ * Figure for Affixed NamedElement representation. The name label is shown as an
+ * external label.
  */
 public class AffixedNamedElementFigure extends NodeNamedElementFigure {
 

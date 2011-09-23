@@ -40,7 +40,9 @@ public class RoutingConstants {
 	/** id for the vertical routing moving the left anchor for popup menu action */
 	public static final String ROUTING_HORIZONTALLY_BY_LEFT_ACTION = "org.eclipse.papyrus.diagram.common.routing_horizontally_by_left_action";; //$NON-NLS-1$
 
-	/** id for the vertical routing moving the right anchor for popup menu action */
+	/**
+	 * id for the vertical routing moving the right anchor for popup menu action
+	 */
 	public static final String ROUTING_HORIZONTALLY_BY_RIGHT_ACTION = "org.eclipse.papyrus.diagram.common.routing_horizontally_by_right_action"; //$NON-NLS-1$
 
 	/** id for the vertical routing moving the top anchor for popup menu action */
@@ -105,7 +107,5 @@ public class RoutingConstants {
 
 	/** Tooltip message for horizontal routing by bottom */
 	public static String RouteVerticallyByBottomToolTipText = RouteVerticallyByBottom;
-
-
 
 }

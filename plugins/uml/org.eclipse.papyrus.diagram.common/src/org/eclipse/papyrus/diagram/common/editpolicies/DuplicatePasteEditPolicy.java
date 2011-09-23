@@ -51,7 +51,8 @@ import org.eclipse.papyrus.pastemanager.request.PasteRequest;
 import org.eclipse.uml2.uml.Element;
 
 /**
- * this class has in charge to give a paste command, ie to copy graphically element
+ * this class has in charge to give a paste command, ie to copy graphically
+ * element
  */
 
 @SuppressWarnings({ "rawtypes", "restriction" })
@@ -59,12 +60,10 @@ public class DuplicatePasteEditPolicy extends ContainerEditPolicy {
 
 	public final static String PASTE_ROLE = "PASTE_ROLE";
 
-
 	/**
 	 * @see org.eclipse.gef.EditPolicy#getCommand(Request)
 	 */
 	public Command getCommand(Request request) {
-
 
 		if(PasteRequest.REQ_PAPYRUS_PASTE.equals(request.getType())) {
 
@@ -98,8 +97,9 @@ public class DuplicatePasteEditPolicy extends ContainerEditPolicy {
 	 * elements (if applicable) of the given editparts.
 	 * 
 	 * @param request
-	 *        the <code>DuplicateElementsRequest</code> whose list of duplicated
-	 *        views will be populated when the command is executed
+	 *        the <code>DuplicateElementsRequest</code> whose list of
+	 *        duplicated views will be populated when the command is
+	 *        executed
 	 * @return the command to perform the duplication
 	 */
 	@SuppressWarnings("unchecked")
@@ -110,7 +110,7 @@ public class DuplicatePasteEditPolicy extends ContainerEditPolicy {
 		for(Iterator iter = request.getEditParts().iterator(); iter.hasNext();) {
 			Object ep = iter.next();
 
-			// Disable duplicate on groups for now.  See bugzilla 182972.
+			// Disable duplicate on groups for now. See bugzilla 182972.
 			if(ep instanceof GroupEditPart) {
 				return UnexecutableCommand.INSTANCE;
 			}
@@ -150,27 +150,29 @@ public class DuplicatePasteEditPolicy extends ContainerEditPolicy {
 	@SuppressWarnings("unchecked")
 	protected Command constructDuplicationCommand(List notationViewsToDuplicate, Set elementsToDuplicate, DuplicateRequest request, TransactionalEditingDomain editingDomain) {
 		/*
-		 * We must append all inner edges of a node being duplicated. Edges are non-containment
-		 * references, hence they won't be duplicated for free. Therefore, we add them here to
-		 * the list views to duplicate.
-		 * We don't add semantic elements of the edges to the list of semantic elements to duplicate
-		 * since we assume that their semantic elements are owned by source or target or their semantic
-		 * containers.
+		 * We must append all inner edges of a node being duplicated. Edges are
+		 * non-containment references, hence they won't be duplicated for free.
+		 * Therefore, we add them here to the list views to duplicate. We don't
+		 * add semantic elements of the edges to the list of semantic elements
+		 * to duplicate since we assume that their semantic elements are owned
+		 * by source or target or their semantic containers.
 		 */
 		/**
-		 * Until duplicate views action enablement is driven by the created duplicate views command,
-		 * we can't look for edges to duplicate. It's a performance hit.
+		 * Until duplicate views action enablement is driven by the created
+		 * duplicate views command, we can't look for edges to duplicate. It's a
+		 * performance hit.
 		 */
-		//    List<Edge> allInnerEdges = new LinkedList<Edge>();
-		//    for (Iterator itr = notationViewsToDuplicate.iterator(); itr.hasNext();) {
-		//    	allInnerEdges.addAll(ViewUtil.getAllInnerEdges((View) itr.next()));
-		//    }
-		//    notationViewsToDuplicate.addAll(allInnerEdges);
+		// List<Edge> allInnerEdges = new LinkedList<Edge>();
+		// for (Iterator itr = notationViewsToDuplicate.iterator();
+		// itr.hasNext();) {
+		// allInnerEdges.addAll(ViewUtil.getAllInnerEdges((View) itr.next()));
+		// }
+		// notationViewsToDuplicate.addAll(allInnerEdges);
 
 		if(!notationViewsToDuplicate.isEmpty()) {
 			if(!elementsToDuplicate.isEmpty()) {
 				ArrayList<EObject> stereotypedSelection = new ArrayList<EObject>();
-				//copy stereotype contained into
+				// copy stereotype contained into
 				Iterator<EObject> iter=elementsToDuplicate.iterator();
 				while (iter.hasNext()) {
 					EObject subeObject = (EObject) iter.next();

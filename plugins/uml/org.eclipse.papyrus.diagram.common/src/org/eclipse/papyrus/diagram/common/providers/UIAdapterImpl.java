@@ -17,7 +17,8 @@ import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.swt.widgets.Display;
 
 /**
- * This EMF listener receives an event and then handles this event in the UI thread
+ * This EMF listener receives an event and then handles this event in the UI
+ * thread
  * 
  * @author <a href="david.sciamma@anyware-tech.com">David Sciamma</a>
  */

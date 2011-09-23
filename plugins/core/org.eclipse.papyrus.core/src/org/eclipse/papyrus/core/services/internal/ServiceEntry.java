@@ -10,12 +10,9 @@ import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.services.ServiceState;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
 
-
-
-
 /**
- * Entry of a Service implementing {@link IService}.
- * This class provide methods to manage the Service life cycle.
+ * Entry of a Service implementing {@link IService}. This class provide methods
+ * to manage the Service life cycle.
  * 
  * @author cedric dumoulin
  * 
@@ -32,15 +29,13 @@ public class ServiceEntry extends ServiceTypeEntry {
 	 * @param registry
 	 */
 	public ServiceEntry(ServiceDescriptor serviceDescriptor) {
-		super( serviceDescriptor );
+		super(serviceDescriptor);
 		setState(ServiceState.registered);
 
 	}
 
-
 	/**
-	 * Create an entry for an already created service.
-	 * Constructor.
+	 * Create an entry for an already created service. Constructor.
 	 * 
 	 * @param descriptor
 	 *        Descriptor of the service. Key and priority should be set.
@@ -48,28 +43,27 @@ public class ServiceEntry extends ServiceTypeEntry {
 	 *        The service Instance
 	 */
 	public ServiceEntry(ServiceDescriptor descriptor, IService serviceInstance) {
-		super( descriptor );
+		super(descriptor);
 		this.serviceInstance = serviceInstance;
 		setState(ServiceState.registered);
 	}
 
 	/**
-	 * Get the service instance, even if it is not started.
-	 * The service should be created.
+	 * Get the service instance, even if it is not started. The service should
+	 * be created.
 	 * 
 	 * @return
 	 * @throws ServiceException
 	 *         If service can't be started.
 	 */
 	public Object getServiceInstance() throws ServiceException {
-		
-		if( serviceInstance == null)
-			throw new BadStateException("Service is not created.", state, serviceDescriptor);
-		
-		return serviceInstance;
-			
-	}
 
+		if(serviceInstance == null)
+			throw new BadStateException("Service is not created.", state, serviceDescriptor);
+
+		return serviceInstance;
+
+	}
 
 	/**
 	 * @see java.lang.Object#toString()
@@ -81,7 +75,6 @@ public class ServiceEntry extends ServiceTypeEntry {
 		return "ServiceEntry [serviceDescriptor=" + serviceDescriptor.toString() + ", serviceInstance=" + serviceInstance + "]";
 	}
 
-
 	/**
 	 * Create the associated service if not a Lazy Service.
 	 * 
@@ -89,13 +82,12 @@ public class ServiceEntry extends ServiceTypeEntry {
 	 */
 	public void createService() throws ServiceException {
 		checkState(ServiceState.registered);
-		// Exit if already  created.
-		if( serviceInstance != null)
-		{
+		// Exit if already created.
+		if(serviceInstance != null) {
 			setState(ServiceState.created);
 			return;
 		}
-		
+
 		// Create it
 		try {
 			// Create the instance
@@ -136,10 +128,10 @@ public class ServiceEntry extends ServiceTypeEntry {
 	 * @throws ServiceException
 	 */
 	public void startService() throws ServiceException {
-		
+
 		checkState(ServiceState.initialized);
 		setState(ServiceState.starting);
-		
+
 		try {
 			serviceInstance.startService();
 		} catch (ServiceException e) {
@@ -149,7 +141,7 @@ public class ServiceEntry extends ServiceTypeEntry {
 			setState(ServiceState.error);
 			throw new ServiceException(e);
 		}
-		
+
 		setState(ServiceState.started);
 	}
 
@@ -164,6 +156,5 @@ public class ServiceEntry extends ServiceTypeEntry {
 		serviceInstance = null;
 		setState(ServiceState.disposed);
 	}
-
 
 }

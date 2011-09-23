@@ -32,9 +32,10 @@ import org.eclipse.ui.dialogs.PatternFilter;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class AbstractLookForDiagramShell. This Class has been generated from VisualEditor. Do not
- * modify it manually by adding behavior! you will lose the capacity to open with VE. So this class
- * is abstract and it contains set of getter in order to connect behavior in subclasses
+ * The Class AbstractLookForDiagramShell. This Class has been generated from
+ * VisualEditor. Do not modify it manually by adding behavior! you will lose the
+ * capacity to open with VE. So this class is abstract and it contains set of
+ * getter in order to connect behavior in subclasses
  */
 public class AbstractLookForDiagramShell {
 

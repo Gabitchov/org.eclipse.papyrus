@@ -56,12 +56,11 @@ import org.eclipse.ui.services.IServiceScopes;
  */
 public class MultiPageEditorSite implements IEditorSite, INestable {
 
-
 	org.eclipse.ui.part.MultiPageEditorSite e;
-	
+
 	/**
-	 * The actionBarContributor associated to the site. Can be null. In this case,
-	 * use the multiEditor ActionBarContributor.
+	 * The actionBarContributor associated to the site. Can be null. In this
+	 * case, use the multiEditor ActionBarContributor.
 	 */
 	protected EditorActionBarContributor actionBarContributor;
 
@@ -154,9 +153,8 @@ public class MultiPageEditorSite implements IEditorSite, INestable {
 	}
 
 	/**
-	 * Return the EditorSite of the main editor.
-	 * This is the same object as getMainEditorSite.
-	 * TODO: Remove this one.
+	 * Return the EditorSite of the main editor. This is the same object as
+	 * getMainEditorSite. TODO: Remove this one.
 	 * 
 	 * @return
 	 */
@@ -211,7 +209,7 @@ public class MultiPageEditorSite implements IEditorSite, INestable {
 				nestableParent.removeKeyBindingService(this);
 			}
 			// TODO : dispose service ?
-			
+
 			service = null;
 		}
 
@@ -221,30 +219,34 @@ public class MultiPageEditorSite implements IEditorSite, INestable {
 	}
 
 	/**
-	 * The <code>MultiPageEditorSite</code> implementation of this <code>IEditorSite</code> method returns the EditorActionBarContributor associated
-	 * to the site if one is defined,
-	 * or the EditorActionBarContributor of the multiEditor.
+	 * The <code>MultiPageEditorSite</code> implementation of this <code>IEditorSite</code> method returns the EditorActionBarContributor
+	 * associated to the site if one is defined, or the
+	 * EditorActionBarContributor of the multiEditor.
 	 * 
 	 * @return <code>null</code>
 	 */
 	public IEditorActionBarContributor getActionBarContributor() {
 
-		// If we use an action bar contributor, look for a registered ActionBarContributor.
+		// If we use an action bar contributor, look for a registered
+		// ActionBarContributor.
 		// TODO : enable next asap
-		//		ActionBarContributor contributor =  multiPageEditor.getEditorSite().getActionBarContributor();
-		//		if(contributor instanceof ComposedActionBarContributor)
-		//		{
-		//			ComposedActionBarContributor composedContributor = (ComposedActionBarContributor)contributor;
-		//			return composedContributor.getContributorFor(editor);
-		//		}
+		// ActionBarContributor contributor =
+		// multiPageEditor.getEditorSite().getActionBarContributor();
+		// if(contributor instanceof ComposedActionBarContributor)
+		// {
+		// ComposedActionBarContributor composedContributor =
+		// (ComposedActionBarContributor)contributor;
+		// return composedContributor.getContributorFor(editor);
+		// }
 
-		// Return the main ActionBarContributor, usually ComposedActionBarContributor
+		// Return the main ActionBarContributor, usually
+		// ComposedActionBarContributor
 
 		if(actionBarContributor != null)
 			return actionBarContributor;
 		else
 			return getMainEditorEditorSite().getActionBarContributor();
-		//		return null;
+		// return null;
 	}
 
 	/**
@@ -312,8 +314,7 @@ public class MultiPageEditorSite implements IEditorSite, INestable {
 				 * client code. If you are thinking of copying this, DON'T DO
 				 * IT.
 				 */
-				WorkbenchPlugin
-						.log("MultiPageEditorSite.getKeyBindingService()   Parent key binding service was not an instance of INestableKeyBindingService.  It was an instance of " + service.getClass().getName() + " instead."); //$NON-NLS-1$ //$NON-NLS-2$
+				WorkbenchPlugin.log("MultiPageEditorSite.getKeyBindingService()   Parent key binding service was not an instance of INestableKeyBindingService.  It was an instance of " + service.getClass().getName() + " instead."); //$NON-NLS-1$ //$NON-NLS-2$
 			}
 		}
 		return service;
@@ -440,7 +441,7 @@ public class MultiPageEditorSite implements IEditorSite, INestable {
 	 */
 	protected void handlePostSelectionChanged(SelectionChangedEvent event) {
 		ISelectionProvider parentProvider = getMainEditorSite().getSelectionProvider();
-	
+
 		// TODO : use org.eclipse.ui.part.MultiPageSelectionProvider ?
 		if(parentProvider instanceof MultiPageSelectionProvider) {
 			SelectionChangedEvent newEvent = new SelectionChangedEvent(parentProvider, event.getSelection());
@@ -530,13 +531,13 @@ public class MultiPageEditorSite implements IEditorSite, INestable {
 		ISelectionProvider oldSelectionProvider = selectionProvider;
 		selectionProvider = provider;
 		if(oldSelectionProvider != null) {
-			//see code WindowSelectionService (line287)
-			// in some case as GraphicalView do not implement IPostSelectionProvider
+			// see code WindowSelectionService (line287)
+			// in some case as GraphicalView do not implement
+			// IPostSelectionProvider
 			oldSelectionProvider.removeSelectionChangedListener(getSelectionChangedListener());
 			if(oldSelectionProvider instanceof IPostSelectionProvider) {
 				((IPostSelectionProvider)oldSelectionProvider).removePostSelectionChangedListener(getPostSelectionChangedListener());
-			}
-			else{
+			} else {
 				oldSelectionProvider.removeSelectionChangedListener(getPostSelectionChangedListener());
 			}
 		}
@@ -544,10 +545,9 @@ public class MultiPageEditorSite implements IEditorSite, INestable {
 			selectionProvider.addSelectionChangedListener(getSelectionChangedListener());
 			if(selectionProvider instanceof IPostSelectionProvider) {
 				((IPostSelectionProvider)selectionProvider).addPostSelectionChangedListener(getPostSelectionChangedListener());
-			}
-			else{
+			} else {
 				selectionProvider.addSelectionChangedListener(getPostSelectionChangedListener());
-				
+
 			}
 		}
 	}

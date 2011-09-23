@@ -92,8 +92,10 @@ public class DeleteFromDiagramCommandHandler extends GraphicalCommandHandler imp
 
 				View view = (View)child.getAdapter(View.class);
 				if(view == null || view.getElement() == null || view.getElement() instanceof View) {
-					// If there is no element or the element is a view (e.g. diagram
-					// link) than we want to support delete from diagram. See bugzilla#148453.
+					// If there is no element or the element is a view (e.g.
+					// diagram
+					// link) than we want to support delete from diagram. See
+					// bugzilla#148453.
 					isCanonical = false;
 					continue;
 				}
@@ -115,7 +117,7 @@ public class DeleteFromDiagramCommandHandler extends GraphicalCommandHandler imp
 	protected boolean isCanonical(EditPart ep) {
 		EObject eObject = (EObject)ep.getAdapter(EObject.class);
 		EditPart parent = ep.getParent();
-		if(eObject != null && parent != null) { //sanity checks
+		if(eObject != null && parent != null) { // sanity checks
 			CanonicalEditPolicy cep = (CanonicalEditPolicy)parent.getEditPolicy(EditPolicyRoles.CANONICAL_ROLE);
 			return cep != null && cep.isEnabled() && cep.canCreate(eObject);
 		}

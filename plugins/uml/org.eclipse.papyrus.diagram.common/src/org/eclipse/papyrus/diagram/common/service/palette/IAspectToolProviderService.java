@@ -13,7 +13,6 @@ package org.eclipse.papyrus.diagram.common.service.palette;
 
 import java.util.List;
 
-
 /**
  * Interface that should be implemented by all aspect tool factory providers
  */

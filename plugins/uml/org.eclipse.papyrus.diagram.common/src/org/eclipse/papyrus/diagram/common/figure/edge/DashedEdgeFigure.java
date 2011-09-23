@@ -20,8 +20,9 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.swt.graphics.Color;
 
 /**
- * This is a custom figure to represents a default edge. This code was used in Papyrus 1.
- * This edge figure is painted using dashes. This is the base figure for dependencies, for exempale
+ * This is a custom figure to represents a default edge. This code was used in
+ * Papyrus 1. This edge figure is painted using dashes. This is the base figure
+ * for dependencies, for exempale
  */
 public class DashedEdgeFigure extends UMLEdgeFigure {
 
@@ -90,8 +91,9 @@ public class DashedEdgeFigure extends UMLEdgeFigure {
 	}
 
 	/**
-	 * Sets initial Style for the figure. It does not give any special Color for Background and
-	 * Foreground. This is the style used for classic arrows: ------>
+	 * Sets initial Style for the figure. It does not give any special Color for
+	 * Background and Foreground. This is the style used for classic arrows:
+	 * ------>
 	 */
 	protected void setStyle() {
 		PolylineDecoration dec = new PolylineDecoration();
@@ -113,7 +115,8 @@ public class DashedEdgeFigure extends UMLEdgeFigure {
 	}
 
 	/**
-	 * Sets initial style for this figure. This is the style used for full arrows: ------|>
+	 * Sets initial style for this figure. This is the style used for full
+	 * arrows: ------|>
 	 * 
 	 * @param lineWidth
 	 *        the width of the link
@@ -126,7 +129,8 @@ public class DashedEdgeFigure extends UMLEdgeFigure {
 	}
 
 	/**
-	 * Sets initial style for this figure. This is the style used for full arrows: ------|>
+	 * Sets initial style for this figure. This is the style used for full
+	 * arrows: ------|>
 	 * 
 	 * @param lineWidth
 	 *        the width of the link

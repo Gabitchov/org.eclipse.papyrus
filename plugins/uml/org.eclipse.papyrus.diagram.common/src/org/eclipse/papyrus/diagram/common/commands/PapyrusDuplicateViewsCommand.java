@@ -32,7 +32,6 @@ import org.eclipse.gmf.runtime.diagram.ui.internal.commands.DuplicateViewsComman
 import org.eclipse.gmf.runtime.diagram.ui.requests.DuplicateRequest;
 import org.eclipse.gmf.runtime.notation.View;
 
-
 /**
  * this command is used to copy view and to reassociate to a new container
  */
@@ -41,7 +40,6 @@ public class PapyrusDuplicateViewsCommand extends DuplicateViewsCommand implemen
 
 	// the new container
 	protected View container = null;
-
 
 	@SuppressWarnings("rawtypes")
 	public PapyrusDuplicateViewsCommand(TransactionalEditingDomain editingDomain, String label, DuplicateRequest request, List viewsToDuplicate, Map duplicatedElements, Point offset, View container) {
@@ -58,7 +56,7 @@ public class PapyrusDuplicateViewsCommand extends DuplicateViewsCommand implemen
 	public boolean canExecute() {
 		for(Iterator iter = getObjectsToBeDuplicated().iterator(); iter.hasNext();) {
 			EObject original = (EObject)iter.next();
-			//In the case of cut the owner does not exist 
+			// In the case of cut the owner does not exist
 			if(original.eContainer() == null) {
 				return true;
 
@@ -85,7 +83,7 @@ public class PapyrusDuplicateViewsCommand extends DuplicateViewsCommand implemen
 	@SuppressWarnings("rawtypes")
 	protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
 		CommandResult result = super.doExecuteWithResult(progressMonitor, info);
-		//reassociation to the new container
+		// reassociation to the new container
 		if(result.getReturnValue() instanceof List) {
 			List duplicatedObject = (List)result.getReturnValue();
 			Iterator iterator = duplicatedObject.iterator();

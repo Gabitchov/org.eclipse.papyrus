@@ -16,12 +16,12 @@ package org.eclipse.papyrus.sasheditor.internal;
 import java.util.ArrayList;
 import java.util.List;
 
-
 /**
- * This class contains lists of parts, regardless of the part parents.
- * There are two lists: one for the pane Parts and one for the Page Parts (leafs).
- * This class is used when refreshing the SashContainer: a new instance is created
- * and filled with existing parts. Then the list is carried in each pane refresh method.
+ * This class contains lists of parts, regardless of the part parents. There are
+ * two lists: one for the pane Parts and one for the Page Parts (leafs). This
+ * class is used when refreshing the SashContainer: a new instance is created
+ * and filled with existing parts. Then the list is carried in each pane refresh
+ * method.
  * 
  * @author cedric dumoulin
  */
@@ -35,8 +35,8 @@ public class PartLists {
 	private List<PagePart> createdPages /* = new ArrayList<PagePart>() */;
 
 	/**
-	 * Search for a Part associated to the specified newModel.
-	 * Return the part or null if none is found.
+	 * Search for a Part associated to the specified newModel. Return the part
+	 * or null if none is found.
 	 * 
 	 * @param rawModel
 	 * @return
@@ -51,8 +51,8 @@ public class PartLists {
 	}
 
 	/**
-	 * Find the pane part for the specified rawModel.
-	 * Return the found part or null
+	 * Find the pane part for the specified rawModel. Return the found part or
+	 * null
 	 * 
 	 * @param rawModel
 	 *        The raw model for which a part is lookup.
@@ -110,7 +110,7 @@ public class PartLists {
 	 * @return a valid active page, or null if none exists.
 	 */
 	public PagePart getFirstValidPage() {
-		
+
 		for(PagePart part : pageParts) {
 			if(!part.isOrphaned())
 				return part;
@@ -138,8 +138,8 @@ public class PartLists {
 	}
 
 	/**
-	 * Add a PagePart to the list of created Page.
-	 * This is called from the TabFolder when a new page is created.
+	 * Add a PagePart to the list of created Page. This is called from the
+	 * TabFolder when a new page is created.
 	 * 
 	 * @param modelPart
 	 */
@@ -151,6 +151,5 @@ public class PartLists {
 		createdPages.add(newPage);
 
 	}
-
 
 }

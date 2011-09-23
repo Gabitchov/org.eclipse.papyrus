@@ -29,9 +29,9 @@ import org.eclipse.papyrus.diagram.common.Activator;
 import org.osgi.framework.Bundle;
 import org.w3c.dom.Node;
 
-
 /**
- * Provider extending the {@link LocalPaletteProvider} to reference xml-defined palettes into plugins, using the papyrus palette extension point
+ * Provider extending the {@link LocalPaletteProvider} to reference xml-defined
+ * palettes into plugins, using the papyrus palette extension point
  */
 public class PluginPaletteProvider extends LocalPaletteProvider implements IProfileDependantPaletteProvider {
 
@@ -44,7 +44,8 @@ public class PluginPaletteProvider extends LocalPaletteProvider implements IProf
 	/**
 	 * Return the provider ID that declares this provider
 	 * 
-	 * @return the id of the plugin that realizes this contribution to the palette
+	 * @return the id of the plugin that realizes this contribution to the
+	 *         palette
 	 */
 	protected String getProviderID() {
 		return providerID;
@@ -85,7 +86,8 @@ public class PluginPaletteProvider extends LocalPaletteProvider implements IProf
 	}
 
 	/**
-	 * Adds the configuration elements to the list of palette provider XML contributions
+	 * Adds the configuration elements to the list of palette provider XML
+	 * contributions
 	 * 
 	 * @param configElement
 	 *        the configuration element from which information are retrieved
@@ -103,7 +105,8 @@ public class PluginPaletteProvider extends LocalPaletteProvider implements IProf
 			requiredProfiles = new HashSet<String>();
 
 			try {
-				// parse the content of the file to discover the required profiles
+				// parse the content of the file to discover the required
+				// profiles
 				// using safe computation
 				XMLDefinitionPaletteParser profileParser = new XMLDefinitionPaletteParser(new XMLRequiredProfileFactory(requiredProfiles));
 				for(int i = 0; i < contributions.getLength(); i++) {

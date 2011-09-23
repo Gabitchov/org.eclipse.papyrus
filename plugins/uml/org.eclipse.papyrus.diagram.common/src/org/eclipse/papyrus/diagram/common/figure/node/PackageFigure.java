@@ -50,7 +50,6 @@ public class PackageFigure extends NodeNamedElementFigure {
 	 */
 	private class PackageLayoutManager extends AbstractLayout {
 
-
 		/**
 		 * 
 		 * {@inheritDoc}
@@ -127,12 +126,11 @@ public class PackageFigure extends NodeNamedElementFigure {
 		setBorder(null);
 		getPackageableElementFigure().setFill(false);
 
-
-
 	}
 
 	/**
-	 * this method is used to display a symabol image for an element package as triangle for the model
+	 * this method is used to display a symabol image for an element package as
+	 * triangle for the model
 	 * 
 	 * @param image
 	 */
@@ -162,7 +160,8 @@ public class PackageFigure extends NodeNamedElementFigure {
 	/**
 	 * use to obtain the coordinates of the package header
 	 * 
-	 * @return coordinate of the package header, maybe null if the figure has never be painted.
+	 * @return coordinate of the package header, maybe null if the figure has
+	 *         never be painted.
 	 */
 	public Rectangle getHeader() {
 		// the index of the shape container
@@ -208,7 +207,6 @@ public class PackageFigure extends NodeNamedElementFigure {
 		graphics.drawRectangle(getHeader());
 		super.paintBorder(graphics);
 	}
-
 
 	/**
 	 * 

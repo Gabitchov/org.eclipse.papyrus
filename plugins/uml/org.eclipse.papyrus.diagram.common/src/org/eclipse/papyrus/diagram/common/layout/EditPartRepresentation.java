@@ -46,12 +46,10 @@ public class EditPartRepresentation {
 		this.representedEditPart = ep;
 	}
 
-
 	/**
 	 * Getter for {@link #representedEditPart}
 	 * 
-	 * @return
-	 *         {@link #representedEditPart}
+	 * @return {@link #representedEditPart}
 	 */
 	public EditPart getRepresentedEditPart() {
 		return representedEditPart;
@@ -61,8 +59,7 @@ public class EditPartRepresentation {
 	 * Returns the position of the {@link EditPart} before its shift
 	 * 
 	 * 
-	 * @return
-	 *         the position of the {@link EditPart} before its shift
+	 * @return the position of the {@link EditPart} before its shift
 	 */
 	public PrecisionRectangle getPosition() {
 		return LayoutUtils.getAbsolutePosition(representedEditPart);
@@ -72,8 +69,7 @@ public class EditPartRepresentation {
 	 * 
 	 * Returns the command for this {@link EditPart}
 	 * 
-	 * @return
-	 *         the command for this {@link EditPart}
+	 * @return the command for this {@link EditPart}
 	 */
 	public Command getCommand() {
 		if(request != null) {
@@ -107,8 +103,7 @@ public class EditPartRepresentation {
 	/**
 	 * Getter for {@link EditPartRepresentation#delta}
 	 * 
-	 * @return
-	 *         {@link #delta}
+	 * @return {@link #delta}
 	 */
 	public Dimension getMoveDelta() {
 		return this.delta;

@@ -32,7 +32,6 @@ public class LifelineDotLineFigure extends Shape {
 	/** The DASHE d_ size. */
 	private final int DASHED_SIZE = 10;
 
-
 	/** The DashLine figure where elements will be attached */
 	private NodeFigure dashLineRectangle;
 
@@ -49,7 +48,6 @@ public class LifelineDotLineFigure extends Shape {
 		dashLineRectangle.setParent(this);
 
 	}
-
 
 	/*
 	 * (non-Javadoc)
@@ -98,10 +96,10 @@ public class LifelineDotLineFigure extends Shape {
 			pAux.y = pAux.y + DASHED_SIZE;
 		}
 
-		//int pixels = 10;
+		// int pixels = 10;
 
-
-		// Update the size and the location of the rectangle representing the dash line
+		// Update the size and the location of the rectangle representing the
+		// dash line
 		dashLineRectangle.setSize(1, pEnd.y - pStart.y);
 		dashLineRectangle.setLocation(pStart);
 
@@ -116,7 +114,8 @@ public class LifelineDotLineFigure extends Shape {
 	@Override
 	public void setBounds(Rectangle rect) {
 		super.setBounds(rect);
-		// set bounds for child dash line to avoid problems during connected edges drawing
+		// set bounds for child dash line to avoid problems during connected
+		// edges drawing
 		Point pStart = new Point();
 		Point pEnd = new Point();
 
@@ -126,22 +125,23 @@ public class LifelineDotLineFigure extends Shape {
 		pEnd.x = pStart.x;
 		pEnd.y = pStart.y + rect.height - 1;
 
-
-		// Update the size and the location of the rectangle representing the dash line
+		// Update the size and the location of the rectangle representing the
+		// dash line
 		dashLineRectangle.setSize(1, pEnd.y - pStart.y);
 		dashLineRectangle.setLocation(pStart);
 	}
 
 	/**
-	 * Create a cross at the end of the figure.
-	 * The cross will be drawn at the pEnd - pixels position
+	 * Create a cross at the end of the figure. The cross will be drawn at the
+	 * pEnd - pixels position
 	 * 
 	 * @param graphics
 	 *        the graphics
 	 * @param pEnd
 	 *        the point used to position the cross
 	 * @param pixels
-	 *        the height which will be deduce from the pEnd to position the cross
+	 *        the height which will be deduce from the pEnd to position the
+	 *        cross
 	 */
 	private void drawCrossAtEnd(Graphics graphics, Point pEnd, int pixels) {
 		Point p1Start = new Point();

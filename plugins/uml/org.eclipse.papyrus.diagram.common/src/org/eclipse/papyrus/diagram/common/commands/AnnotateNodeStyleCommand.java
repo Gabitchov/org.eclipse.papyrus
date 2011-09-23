@@ -25,9 +25,10 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 
 /**
- * Command that adds an EAnnotation to the EditPart's Node in order to know which styles have been
- * changed by the user (in respect of the default style). The EAttributes stored within the
- * EAnnotation are taken into account when the EditPart's figure is refreshed.
+ * Command that adds an EAnnotation to the EditPart's Node in order to know
+ * which styles have been changed by the user (in respect of the default style).
+ * The EAttributes stored within the EAnnotation are taken into account when the
+ * EditPart's figure is refreshed.
  * 
  * @author gmerin
  * 
@@ -115,7 +116,8 @@ public class AnnotateNodeStyleCommand extends AbstractCommonTransactionalCommman
 	}
 
 	/**
-	 * Adds the new style change to the EAnnotation that stores the changed styles
+	 * Adds the new style change to the EAnnotation that stores the changed
+	 * styles
 	 * 
 	 * @param attribute
 	 */

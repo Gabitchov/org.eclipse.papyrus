@@ -52,8 +52,8 @@ public abstract class StereotypedElementLabelHelper {
 	}
 
 	/**
-	 * Parses the string containing the complete definition of properties to be displayed, and
-	 * generates a map.
+	 * Parses the string containing the complete definition of properties to be
+	 * displayed, and generates a map.
 	 * 
 	 * @param editPart
 	 *        the edit part for which the label is edited
@@ -61,8 +61,9 @@ public abstract class StereotypedElementLabelHelper {
 	 *        the list of stereotypes to display
 	 * @param stereotypesPropertiesToDisplay
 	 *        the properties of stereotypes to display
-	 * @return a map. The keys are the name of displayed stereotypes, the corresponding data is a
-	 *         collection of its properties to be displayed
+	 * @return a map. The keys are the name of displayed stereotypes, the
+	 *         corresponding data is a collection of its properties to be
+	 *         displayed
 	 */
 	protected Map<String, List<String>> parseStereotypeProperties(GraphicalEditPart editPart, String stereotypesToDisplay, String stereotypesPropertiesToDisplay) {
 		Map<String, List<String>> propertiesMap = new HashMap<String, List<String>>();
@@ -84,8 +85,7 @@ public abstract class StereotypedElementLabelHelper {
 	/**
 	 * Returns the image to be displayed for the applied stereotypes.
 	 * 
-	 * @return the image that represents the first applied stereotype or <code>null</code> if no
-	 *         image has to be displayed
+	 * @return the image that represents the first applied stereotype or <code>null</code> if no image has to be displayed
 	 */
 	public Collection<Image> stereotypeIconsToDisplay(GraphicalEditPart editPart) {
 		String stereotypespresentationKind = AppliedStereotypeHelper.getAppliedStereotypePresentationKind((View)editPart.getModel());
@@ -108,21 +108,22 @@ public abstract class StereotypedElementLabelHelper {
 	}
 
 	/**
-	 * Returns a String that displays stereotypes (using their simple name or their qualified name)
-	 * and their properties
+	 * Returns a String that displays stereotypes (using their simple name or
+	 * their qualified name) and their properties
 	 * 
 	 * @param editPart
 	 *        the edit part for which the label is edited
 	 * @param separator
-	 *        the separator used to split the string representing the stereotypes.
+	 *        the separator used to split the string representing the
+	 *        stereotypes.
 	 * @param stereotypesToDisplay
 	 *        the list of stereotypes displayed
 	 * @param stereotypeWithQualifiedName
 	 *        the list of stereotypes displayed using their qualified names
 	 * @param stereotypesPropertiesToDisplay
 	 *        the list of properties to display
-	 * @return a string that displays stereotypes (using their simple name or their qualified name)
-	 *         and their properties
+	 * @return a string that displays stereotypes (using their simple name or
+	 *         their qualified name) and their properties
 	 */
 	public String stereotypesAndPropertiesToDisplay(GraphicalEditPart editPart, String separator, String stereotypesToDisplay, String stereotypeWithQualifiedName, String stereotypesPropertiesToDisplay) {
 		// Get the preference from PreferenceStore. there should be an assert
@@ -131,10 +132,12 @@ public abstract class StereotypedElementLabelHelper {
 		if(store == null) {
 			return "";
 		}
-		// retrieve if the name of the stereotype has to put to lower case or not
+		// retrieve if the name of the stereotype has to put to lower case or
+		// not
 		String sNameAppearance = store.getString(VisualInformationPapyrusConstant.P_STEREOTYPE_NAME_APPEARANCE);
 
-		// changes the string of properties into a map, where the entries of the map are the
+		// changes the string of properties into a map, where the entries of the
+		// map are the
 		// stereotype qualified name, and the properties to display are the data
 		Map<String, List<String>> propertiesToDisplay = parseStereotypeProperties(editPart, stereotypesToDisplay, stereotypesPropertiesToDisplay);
 
@@ -149,7 +152,8 @@ public abstract class StereotypedElementLabelHelper {
 			if(stereotype != null) {
 				String name = currentStereotype;
 				if((stereotypeWithQualifiedName.indexOf(currentStereotype)) == -1) {
-					// property value contains qualifiedName ==> extract name from it
+					// property value contains qualifiedName ==> extract name
+					// from it
 					StringTokenizer strToken = new StringTokenizer(currentStereotype, "::");
 
 					while(strToken.hasMoreTokens()) {
@@ -161,9 +165,11 @@ public abstract class StereotypedElementLabelHelper {
 				// ProfileApplicationPreferencePage)
 				// Previously lowercase forced onto first letter (standard UML)
 				// stereotypesToDisplay = stereotypesToDisplay+name.substring(0,
-				// 1).toLowerCase()+name.substring(1, name.length())+","+separator;
+				// 1).toLowerCase()+name.substring(1,
+				// name.length())+","+separator;
 
-				// check that the name has not already been added to the displayed string
+				// check that the name has not already been added to the
+				// displayed string
 				if(sNameAppearance.equals(VisualInformationPapyrusConstant.P_STEREOTYPE_NAME_DISPLAY_USER_CONTROLLED)) {
 					if(out.indexOf(name) == -1) {
 						out = out + Activator.ST_LEFT + name + Activator.ST_RIGHT + separator;
@@ -210,12 +216,15 @@ public abstract class StereotypedElementLabelHelper {
 		String stereotypespresentationKind = AppliedStereotypeHelper.getAppliedStereotypePresentationKind(view);
 
 		// now check presentation.
-		// if horizontal => equivalent to the inBrace visualization in nodes (i.e. only name =
+		// if horizontal => equivalent to the inBrace visualization in nodes
+		// (i.e. only name =
 		// value, separator = comma, delimited with brace
-		// if vertical => equivalent to compartment visualization name of stereotype, NL, property =
+		// if vertical => equivalent to compartment visualization name of
+		// stereotype, NL, property =
 		// value, NL, etC.
 
-		// check the presentation kind. if only icon => do not display stereotype, only values
+		// check the presentation kind. if only icon => do not display
+		// stereotype, only values
 		if(VisualInformationPapyrusConstant.ICON_STEREOTYPE_PRESENTATION.equals(stereotypespresentationKind)) {
 			return StereotypeUtil.getPropertiesValuesInBrace(stereotypesPropertiesToDisplay, getUMLElement(editPart));
 		}
@@ -244,7 +253,8 @@ public abstract class StereotypedElementLabelHelper {
 	 * Computes the string that displays the stereotypes for the current element
 	 * 
 	 * @param separator
-	 *        the separator used to split the string representing the stereotypes.
+	 *        the separator used to split the string representing the
+	 *        stereotypes.
 	 * @param stereotypesToDisplay
 	 *        the list of stereotypes displayed
 	 * @param stereotypeWithQualifiedName
@@ -254,8 +264,10 @@ public abstract class StereotypedElementLabelHelper {
 	public String stereotypesToDisplay(GraphicalEditPart editPart, String separator, String stereotypesToDisplay, String stereotypeWithQualifiedName) {
 
 		// AL Changes Feb. 07 - Beg
-		// Style Handling for STEREOTYPE_NAME_APPEARANCE from ProfileApplicationPreferencePage
-		// Stereotype displayed according to UML standard (first letter forced to lower case) -
+		// Style Handling for STEREOTYPE_NAME_APPEARANCE from
+		// ProfileApplicationPreferencePage
+		// Stereotype displayed according to UML standard (first letter forced
+		// to lower case) -
 		// default -
 		// or kept as entered by user (user controlled)
 
@@ -278,7 +290,8 @@ public abstract class StereotypedElementLabelHelper {
 			if(stereotype != null) {
 				String name = currentStereotype;
 				if((stereotypeWithQualifiedName.indexOf(currentStereotype)) == -1) {
-					// property value contains qualifiedName ==> extract name from it
+					// property value contains qualifiedName ==> extract name
+					// from it
 					StringTokenizer strToken = new StringTokenizer(currentStereotype, "::");
 
 					while(strToken.hasMoreTokens()) {
@@ -290,9 +303,11 @@ public abstract class StereotypedElementLabelHelper {
 				// ProfileApplicationPreferencePage)
 				// Previously lowercase forced onto first letter (standard UML)
 				// stereotypesToDisplay = stereotypesToDisplay+name.substring(0,
-				// 1).toLowerCase()+name.substring(1, name.length())+","+separator;
+				// 1).toLowerCase()+name.substring(1,
+				// name.length())+","+separator;
 
-				// check that the name has not already been added to the displayed string
+				// check that the name has not already been added to the
+				// displayed string
 				if(sNameAppearance.equals(VisualInformationPapyrusConstant.P_STEREOTYPE_NAME_DISPLAY_USER_CONTROLLED)) {
 					if(out.indexOf(name) == -1) {
 						out = out + name + separator;
@@ -332,10 +347,13 @@ public abstract class StereotypedElementLabelHelper {
 			imageToDisplay.add(getImage(editPart));
 		}
 
-		// for each element in the list of stereotype icon, adds it to the icons list of the
+		// for each element in the list of stereotype icon, adds it to the icons
+		// list of the
 		// wrapping label
-		// problem (RS - CEA LIST): more icons were displayed before refresh: has to clean
-		// problem 2 (RS - CEA LIST): no method to know how many icons were displayed => should fix
+		// problem (RS - CEA LIST): more icons were displayed before refresh:
+		// has to clean
+		// problem 2 (RS - CEA LIST): no method to know how many icons were
+		// displayed => should fix
 		// a max number ?!
 		// solution: set all images to null, and then add the correct icons
 		int i = 0;

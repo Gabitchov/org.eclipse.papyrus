@@ -23,15 +23,18 @@ import org.eclipse.papyrus.sashwindows.di.PanelParent;
 import org.eclipse.papyrus.sashwindows.di.SashPanel;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Sash Panel</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Sash Panel</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.sashwindows.di.impl.SashPanelImpl#getChildren <em>Children</em>}</li>
- * <li>{@link org.eclipse.papyrus.sashwindows.di.impl.SashPanelImpl#getSashPosition <em>Sash Position</em>}</li>
- * <li>{@link org.eclipse.papyrus.sashwindows.di.impl.SashPanelImpl#getDirection <em>Direction</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sashwindows.di.impl.SashPanelImpl#getChildren
+ * <em>Children</em>}</li>
+ * <li>
+ * {@link org.eclipse.papyrus.sashwindows.di.impl.SashPanelImpl#getSashPosition
+ * <em>Sash Position</em>}</li>
+ * <li>
+ * {@link org.eclipse.papyrus.sashwindows.di.impl.SashPanelImpl#getDirection
+ * <em>Direction</em>}</li>
  * </ul>
  * </p>
  * 
@@ -40,9 +43,8 @@ import org.eclipse.papyrus.sashwindows.di.SashPanel;
 public class SashPanelImpl extends AbstractPanelImpl implements SashPanel {
 
 	/**
-	 * The cached value of the '{@link #getChildren() <em>Children</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getChildren() <em>Children</em>}'
+	 * containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getChildren()
 	 * @generated
@@ -51,9 +53,9 @@ public class SashPanelImpl extends AbstractPanelImpl implements SashPanel {
 	protected EList<AbstractPanel> children;
 
 	/**
-	 * The default value of the '{@link #getSashPosition() <em>Sash Position</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getSashPosition()
+	 * <em>Sash Position</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * 
 	 * @see #getSashPosition()
 	 * @generated
@@ -62,9 +64,9 @@ public class SashPanelImpl extends AbstractPanelImpl implements SashPanel {
 	protected static final float SASH_POSITION_EDEFAULT = 0.0F;
 
 	/**
-	 * The cached value of the '{@link #getSashPosition() <em>Sash Position</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getSashPosition()
+	 * <em>Sash Position</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * 
 	 * @see #getSashPosition()
 	 * @generated
@@ -73,9 +75,8 @@ public class SashPanelImpl extends AbstractPanelImpl implements SashPanel {
 	protected float sashPosition = SASH_POSITION_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getDirection() <em>Direction</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getDirection() <em>Direction</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getDirection()
 	 * @generated
@@ -84,9 +85,8 @@ public class SashPanelImpl extends AbstractPanelImpl implements SashPanel {
 	protected static final int DIRECTION_EDEFAULT = 0;
 
 	/**
-	 * The cached value of the '{@link #getDirection() <em>Direction</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getDirection() <em>Direction</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getDirection()
 	 * @generated
@@ -95,8 +95,7 @@ public class SashPanelImpl extends AbstractPanelImpl implements SashPanel {
 	protected int direction = DIRECTION_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -105,8 +104,7 @@ public class SashPanelImpl extends AbstractPanelImpl implements SashPanel {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -116,8 +114,7 @@ public class SashPanelImpl extends AbstractPanelImpl implements SashPanel {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -129,8 +126,7 @@ public class SashPanelImpl extends AbstractPanelImpl implements SashPanel {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -139,8 +135,7 @@ public class SashPanelImpl extends AbstractPanelImpl implements SashPanel {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -152,8 +147,7 @@ public class SashPanelImpl extends AbstractPanelImpl implements SashPanel {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -162,8 +156,7 @@ public class SashPanelImpl extends AbstractPanelImpl implements SashPanel {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -197,8 +190,7 @@ public class SashPanelImpl extends AbstractPanelImpl implements SashPanel {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
 	 */
@@ -209,13 +201,12 @@ public class SashPanelImpl extends AbstractPanelImpl implements SashPanel {
 
 		PanelParent parent = getParent();
 		// Change parent
-		//		otherChild.setParent( parent );
+		// otherChild.setParent( parent );
 		parent.replaceChild(this, otherChild);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -230,8 +221,7 @@ public class SashPanelImpl extends AbstractPanelImpl implements SashPanel {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -245,8 +235,7 @@ public class SashPanelImpl extends AbstractPanelImpl implements SashPanel {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -264,8 +253,7 @@ public class SashPanelImpl extends AbstractPanelImpl implements SashPanel {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -288,8 +276,7 @@ public class SashPanelImpl extends AbstractPanelImpl implements SashPanel {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -310,8 +297,7 @@ public class SashPanelImpl extends AbstractPanelImpl implements SashPanel {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -329,8 +315,7 @@ public class SashPanelImpl extends AbstractPanelImpl implements SashPanel {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -348,8 +333,7 @@ public class SashPanelImpl extends AbstractPanelImpl implements SashPanel {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -367,8 +351,7 @@ public class SashPanelImpl extends AbstractPanelImpl implements SashPanel {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -387,9 +370,8 @@ public class SashPanelImpl extends AbstractPanelImpl implements SashPanel {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * Set both ends (parent and child).
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> Set both ends (parent and child). <!--
+	 * end-user-doc -->
 	 * 
 	 * @generated NOT
 	 */
@@ -404,4 +386,4 @@ public class SashPanelImpl extends AbstractPanelImpl implements SashPanel {
 			throw new IndexOutOfBoundsException("Child '" + oldChild + "' not found in sash. Can't replace it.");
 	}
 
-} //SashPanelImpl
+} // SashPanelImpl

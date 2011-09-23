@@ -550,14 +550,17 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 	}
 
 	/**
-	 * Activate this editor.
-	 * Called after the SWT.control is created.
+	 * Activate this editor. Called after the SWT.control is created.
 	 */
 	@Override
 	protected void activate() {
 		// TODO Auto-generated method stub
 		super.activate();
 		initFolderTabMenus();
+
+		// add page changed listener to sash container to warn page manager
+		getISashWindowsContainer().addPageChangedListener(getIPageMngr());
+		getISashWindowsContainer().addLifeCycleListener(getIPageMngr());
 
 		try {
 			// Register ISashWindowsContainer as service
@@ -567,6 +570,12 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 		} catch (ServiceException e) {
 			log.error(e);
 		}
+	}
+
+	@Override
+	protected void deactivate() {
+		super.deactivate();
+		getISashWindowsContainer().removePageChangedListener(getIPageMngr());
 	}
 
 	/**

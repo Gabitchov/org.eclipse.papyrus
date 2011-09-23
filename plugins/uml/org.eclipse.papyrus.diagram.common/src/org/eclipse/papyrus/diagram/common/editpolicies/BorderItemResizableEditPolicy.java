@@ -35,7 +35,8 @@ import org.eclipse.gmf.runtime.notation.View;
 
 /**
  * 
- * @author Patrick Tessier Policy that allows resizing border item code comes form {@link BorderItemSelectionEditPolicy} and modify in order to use
+ * @author Patrick Tessier Policy that allows resizing border item code comes
+ *         form {@link BorderItemSelectionEditPolicy} and modify in order to use
  *         resize behavior
  */
 public class BorderItemResizableEditPolicy extends ResizableShapeEditPolicy {

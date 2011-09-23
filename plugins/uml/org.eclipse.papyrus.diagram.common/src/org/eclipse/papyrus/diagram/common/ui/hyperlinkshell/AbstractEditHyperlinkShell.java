@@ -26,9 +26,10 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.PlatformUI;
 
 /**
- * The Class EditHyperlinkShell. This Class has been generated from VisualEditor. Do not modify it
- * manually by adding behavior! you will lose the capacity to open with VE. So this class is
- * abstract and it contains set of getter in order to connect behavior in subclasses
+ * The Class EditHyperlinkShell. This Class has been generated from
+ * VisualEditor. Do not modify it manually by adding behavior! you will lose the
+ * capacity to open with VE. So this class is abstract and it contains set of
+ * getter in order to connect behavior in subclasses
  */
 public abstract class AbstractEditHyperlinkShell {
 
@@ -89,7 +90,8 @@ public abstract class AbstractEditHyperlinkShell {
 		// this line has to be commented in order to open with VISUAL EDITOR
 		editHyperlinkShell = new Shell(PlatformUI.getWorkbench().getDisplay().getActiveShell());
 
-		// editHyperlinkShell = new Shell(display, SWT.DIALOG_TRIM | SWT.APPLICATION_MODAL);
+		// editHyperlinkShell = new Shell(display, SWT.DIALOG_TRIM |
+		// SWT.APPLICATION_MODAL);
 
 		// editHyperlinkShell = new Shell();
 		editHyperlinkShell.setText("Edit Hyperlink");

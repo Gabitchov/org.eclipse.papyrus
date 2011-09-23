@@ -24,7 +24,6 @@ import org.eclipse.papyrus.umlutils.ui.command.CreateEAnnotationCommand;
  */
 public class setLayoutKindCommand extends CreateEAnnotationCommand {
 
-
 	/** The shadowFigure. */
 	private String layoutKind;
 

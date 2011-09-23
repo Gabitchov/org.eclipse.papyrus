@@ -30,12 +30,14 @@ import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 
 /**
- * This abstract class is used to provide the state of the actions. It's used to refresh
- * the status of these actions in the menu. (in toolbar and popup, it's not needed)
+ * This abstract class is used to provide the state of the actions. It's used to
+ * refresh the status of these actions in the menu. (in toolbar and popup, it's
+ * not needed)
  * 
- * To get the status, we listen the selection service AND the part service!
- * The part service is used to know if the selection is in the Model Explorer or not!
- * When the selection is not in the model explorer, the handlers listening the variable need to be disabled
+ * To get the status, we listen the selection service AND the part service! The
+ * part service is used to know if the selection is in the Model Explorer or
+ * not! When the selection is not in the model explorer, the handlers listening
+ * the variable need to be disabled
  */
 public abstract class AbstractActionStateSourceProvider extends AbstractSourceProvider {
 
@@ -67,12 +69,14 @@ public abstract class AbstractActionStateSourceProvider extends AbstractSourcePr
 	/**
 	 * The listener for the selection service
 	 */
-	private ISelectionListener listener; //we can't set the listener as a static field -> doesn't work
+	private ISelectionListener listener; // we can't set the listener as a
+											// static field -> doesn't work
 
 	/**
 	 * The listener for the part service
 	 */
-	private IPartListener partListener; //we can't set the listener as a static field -> doesn't work
+	private IPartListener partListener; // we can't set the listener as a static
+										// field -> doesn't work
 
 	/**
 	 * The activated part
@@ -125,9 +129,9 @@ public abstract class AbstractActionStateSourceProvider extends AbstractSourcePr
 
 	public abstract String[] getProvidedSourceNames();
 
-	//	public String[] getProvidedSourceNames() {
-	//		return new String[]{};
-	//	}
+	// public String[] getProvidedSourceNames() {
+	// return new String[]{};
+	// }
 
 	/**
 	 * Adds a listener on the selection service if the field {@link #selectionService} is <code>null</code>
@@ -138,7 +142,8 @@ public abstract class AbstractActionStateSourceProvider extends AbstractSourcePr
 
 				public void run() {
 					IWorkbench workbench = PlatformUI.getWorkbench();
-					//					selectionService = (ISelectionService)workbench.getService(ISelectionService.class);
+					// selectionService =
+					// (ISelectionService)workbench.getService(ISelectionService.class);
 					IWorkbenchWindow activeWorkbench = workbench.getActiveWorkbenchWindow();
 					if(activeWorkbench != null) {
 						selectionService = activeWorkbench.getSelectionService();
@@ -160,7 +165,8 @@ public abstract class AbstractActionStateSourceProvider extends AbstractSourcePr
 
 				public void run() {
 					IWorkbench workbench = PlatformUI.getWorkbench();
-					//					partService = (IPartService)workbench.getService(IPartService.class);
+					// partService =
+					// (IPartService)workbench.getService(IPartService.class);
 					IWorkbenchWindow activeWorkbench = workbench.getActiveWorkbenchWindow();
 					if(activeWorkbench != null) {
 						partService = activeWorkbench.getPartService();
@@ -176,8 +182,7 @@ public abstract class AbstractActionStateSourceProvider extends AbstractSourcePr
 	/**
 	 * Test if the current ActivePart is the Model Explorer
 	 * 
-	 * @return
-	 *         <code>true</code> if the current activePart is the Model Explorer <code>false</code> if not
+	 * @return <code>true</code> if the current activePart is the Model Explorer <code>false</code> if not
 	 */
 	protected boolean isSelectionInDiagram() {
 		return (workbenchPart instanceof PapyrusMultiDiagramEditor);
@@ -243,7 +248,6 @@ public abstract class AbstractActionStateSourceProvider extends AbstractSourcePr
 			workbenchPart = part;
 			refreshActions();
 		}
-
 
 	}
 

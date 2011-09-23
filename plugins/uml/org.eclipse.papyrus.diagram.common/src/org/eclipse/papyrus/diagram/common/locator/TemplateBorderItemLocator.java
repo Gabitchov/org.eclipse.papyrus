@@ -16,7 +16,6 @@ package org.eclipse.papyrus.diagram.common.locator;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Rectangle;
 
-
 /**
  * 
  * This code comes form composite diagram. I was copied to avoid dependencies
@@ -39,9 +38,10 @@ import org.eclipse.draw2d.geometry.Rectangle;
  * </pre>
  */
 public class TemplateBorderItemLocator extends PortPositionLocator{
-
-	
-	/** the width of the area surrounding the parent figure where border item can be put */
+	/**
+	 * the width of the area surrounding the parent figure where border item can
+	 * be put
+	 */
 	protected int borderItemOffset = 10;
 	
 	public TemplateBorderItemLocator(IFigure parentFigure, int preferredSide) {
@@ -62,7 +62,8 @@ public class TemplateBorderItemLocator extends PortPositionLocator{
 
 		Rectangle parentRec = getParentFigure().getBounds().getCopy();
 
-		// Calculate Max position around the graphical parent (1/2 size or the port around
+		// Calculate Max position around the graphical parent (1/2 size or the
+		// port around
 		// the graphical parent bounds.
 		int xMin = parentRec.x - borderItemOffset+parentRec.width/2;
 		int xMax = parentRec.x - borderItemOffset + parentRec.width;
@@ -86,7 +87,8 @@ public class TemplateBorderItemLocator extends PortPositionLocator{
 			realLocation.y = yMax;
 		}
 
-		// Ensure the port is positioned on its parent borders and not in the middle.
+		// Ensure the port is positioned on its parent borders and not in the
+		// middle.
 		// Modify position if needed.
 		if((realLocation.y != yMin) && (realLocation.y != yMax)) {
 			if((realLocation.x != xMin) && (realLocation.x != xMax)) {

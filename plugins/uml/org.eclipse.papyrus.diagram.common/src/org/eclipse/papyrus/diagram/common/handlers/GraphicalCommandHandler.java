@@ -32,10 +32,9 @@ import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 
 /**
- * This abstract command handler:
- * - calculates the current selection
- * - calculates the visibility and enablement based on command executability
- * - executes the command in Papyrus command stack
+ * This abstract command handler: - calculates the current selection -
+ * calculates the visibility and enablement based on command executability -
+ * executes the command in Papyrus command stack
  * 
  */
 public abstract class GraphicalCommandHandler extends AbstractHandler {
@@ -43,8 +42,7 @@ public abstract class GraphicalCommandHandler extends AbstractHandler {
 	protected abstract Command getCommand() throws ExecutionException;
 
 	/**
-	 * Iterate over current selection and build a list of the {@link IGraphicalEditPart} contained in
-	 * the selection.
+	 * Iterate over current selection and build a list of the {@link IGraphicalEditPart} contained in the selection.
 	 * 
 	 * @return the currently selected {@link IGraphicalEditPart}
 	 */

@@ -48,7 +48,6 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.diagram.common.editpolicies.OrphanViewPolicy;
 
-
 @SuppressWarnings("restriction")
 public class CleanDiagramHelper {
 
@@ -58,9 +57,6 @@ public class CleanDiagramHelper {
 	protected ArrayList<View> viewToRemove = new ArrayList<View>();
 
 	protected DiagramEditPart selectedElement;
-
-
-
 
 	public static CleanDiagramHelper getInstance() {
 		if(cleanDiagramHelper == null) {
@@ -93,7 +89,6 @@ public class CleanDiagramHelper {
 		}
 	}
 
-
 	/**
 	 * comes from {@link OrphanViewPolicy}.
 	 * 
@@ -107,7 +102,8 @@ public class CleanDiagramHelper {
 		EditPart ep = selectedElement;
 		boolean isActivating = true;
 		// use the viewer to determine if we are still initializing the diagram
-		// do not use the DiagramEditPart.isActivating since ConnectionEditPart's
+		// do not use the DiagramEditPart.isActivating since
+		// ConnectionEditPart's
 		// parent will not be a diagram edit part
 		EditPartViewer viewer = ep.getViewer();
 		if(viewer instanceof DiagramGraphicalViewer) {
@@ -157,7 +153,6 @@ public class CleanDiagramHelper {
 		return null;
 	}
 
-
 	/**
 	 * gets a {@link Command} to delete the supplied {@link View}.
 	 * 
@@ -170,8 +165,6 @@ public class CleanDiagramHelper {
 		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart)selectedElement).getEditingDomain();
 		return new ICommandProxy(new DeleteCommand(editingDomain, view));
 	}
-
-
 
 	/**
 	 * Scan.

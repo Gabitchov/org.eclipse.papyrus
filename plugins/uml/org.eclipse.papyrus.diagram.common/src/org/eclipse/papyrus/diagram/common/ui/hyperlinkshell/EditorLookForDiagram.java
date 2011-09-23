@@ -102,9 +102,10 @@ public class EditorLookForDiagram extends AbstractLookForDiagramShell {
 	protected TreeViewer treeViewer;
 
 	/**
-	 * The listener interface for receiving diagramCreate events. The class that is interested in
-	 * processing a diagramCreate event implements this interface, and the object created with that
-	 * class is registered with a component using the component's <code>addDiagramCreateListener<code> method. When
+	 * The listener interface for receiving diagramCreate events. The class that
+	 * is interested in processing a diagramCreate event implements this
+	 * interface, and the object created with that class is registered with a
+	 * component using the component's <code>addDiagramCreateListener<code> method. When
 	 * the diagramCreate event occurs, that object's appropriate
 	 * method is invoked.
 	 * 
@@ -311,13 +312,29 @@ public class EditorLookForDiagram extends AbstractLookForDiagramShell {
 
 				List<Object> res = new ArrayList<Object>();
 				for(Object current : result) {
-					if(current != null && current instanceof Diagram) { //if the model is a little bit corrupted, we can have a null element in the list
+					if(current != null && current instanceof Diagram) { // if
+																		// the
+																		// model
+																		// is
+																		// a
+																		// little
+																		// bit
+																		// corrupted,
+																		// we
+																		// can
+																		// have
+																		// a
+																		// null
+																		// element
+																		// in
+																		// the
+																		// list
 						res.add(current);
 					}
 				}
 				return res.toArray();
 
-				//				return result;
+				// return result;
 			} catch (Exception e) {
 			}
 			return null;

@@ -24,9 +24,10 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 
 /**
- * This destroy command uses the first generic cross referencer founded instead of using only the GMF one.
- * This is useful because elements that don't have a corresponding GMF type (like MOS in the sequence diagram)
- * don't have the GMF cross referencer registered after a reload.
+ * This destroy command uses the first generic cross referencer founded instead
+ * of using only the GMF one. This is useful because elements that don't have a
+ * corresponding GMF type (like MOS in the sequence diagram) don't have the GMF
+ * cross referencer registered after a reload.
  * 
  * @author mvelten
  * 

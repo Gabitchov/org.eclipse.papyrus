@@ -19,8 +19,8 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.LabelEditPart;
 import org.eclipse.gmf.runtime.notation.View;
 
 /**
- * This is an editpart in which we can access to the wrapping label
- * for example it can be use to display stereotype as external node
+ * This is an editpart in which we can access to the wrapping label for example
+ * it can be use to display stereotype as external node
  */
 public abstract class AbstractLabelEditPart extends LabelEditPart implements IPapyrusEditPart {
 
@@ -35,7 +35,5 @@ public abstract class AbstractLabelEditPart extends LabelEditPart implements IPa
 	public IFigure getPrimaryShape() {
 		return (IFigure)getFigure();
 	}
-
-
 
 }

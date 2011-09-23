@@ -54,8 +54,8 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Package;
 
 /**
- * This class is used to open a new diagram when the double click is detected. It is dependent of
- * papyrus environment
+ * This class is used to open a new diagram when the double click is detected.
+ * It is dependent of papyrus environment
  */
 public class NavigationEditPolicy extends OpenEditPolicy {
 
@@ -84,9 +84,10 @@ public class NavigationEditPolicy extends OpenEditPolicy {
 	protected Command getOpenCommand(Request request) {
 		final IGraphicalEditPart gep;
 		
-		//in order to obtain the list of default diagram we need to fin the edit part that refers to default diagram
+		// in order to obtain the list of default diagram we need to fin the
+		// edit part that refers to default diagram
 	
-		//if this a label of a compartment, the good editpart is the parent 
+		// if this a label of a compartment, the good editpart is the parent
 		if((IGraphicalEditPart)getHost() instanceof CompartmentEditPart ){
 			gep=(IGraphicalEditPart)getHost().getParent();
 		}
@@ -96,20 +97,20 @@ public class NavigationEditPolicy extends OpenEditPolicy {
 		}
 		final EObject semanticElement=gep.resolveSemanticElement();
 
-		//navigable element by using heuristic
+		// navigable element by using heuristic
 		List<NavigableElement> navElements=null;
 
-		//defaultHyperlinks
+		// defaultHyperlinks
 		final ArrayList<HyperlinkObject> defaultHyperLinkObject=new ArrayList<HyperlinkObject>();
 		final ArrayList<HyperlinkObject> hyperLinkObjectList;
-		//Diagrams that will be found by using heuristic
+		// Diagrams that will be found by using heuristic
 		HashMap<NavigableElement, List<Diagram>> existingDiagrams = new HashMap<NavigableElement, List<Diagram>>();
 
-		
-		if(semanticElement==null){
+		if(semanticElement == null) {
 			return UnexecutableCommand.INSTANCE;
 		}
-		//initialition of code to extract hyperlinks, in the future to do with extension points
+		// initialition of code to extract hyperlinks, in the future to do with
+		// extension points
 		ArrayList<AbstractHyperLinkHelper>  hyperLinkHelpers= new ArrayList<AbstractHyperLinkHelper>();
 		hyperLinkHelpers.add(new DiagramHyperLinkHelper());
 		hyperLinkHelpers.add(new DocumentHyperLinkHelper());
@@ -118,7 +119,7 @@ public class NavigationEditPolicy extends OpenEditPolicy {
 		final HyperlinkHelperFactory hyperlinkHelperFactory= new HyperlinkHelperFactory(hyperLinkHelpers);
 
 		try{
-			//fill the list of default hyperlinks
+			// fill the list of default hyperlinks
 			hyperLinkObjectList = (ArrayList<HyperlinkObject>)hyperlinkHelperFactory.getAllreferenced(gep.getNotationView());
 
 			Iterator<HyperlinkObject> iterator= hyperLinkObjectList.iterator();
@@ -131,21 +132,21 @@ public class NavigationEditPolicy extends OpenEditPolicy {
 
 			}
 
-			//fill navigation by using heuristics
+			// fill navigation by using heuristics
 			navElements = NavigationHelper.getInstance().getAllNavigableElements(semanticElement);
 			HashMap<NavigableElement, List<CreationCommandDescriptor>> possibleCreations = new HashMap<NavigableElement, List<CreationCommandDescriptor>>();
 
-			//test which kind of navigation by consulting preference
+			// test which kind of navigation by consulting preference
 			String navigationKind=Activator.getDefault().getPreferenceStore().getString(INavigationPreferenceConstant.PAPYRUS_NAVIGATION_DOUBLECLICK_KIND);
 
-			//no naviagation
+			// no naviagation
 			if(navigationKind.equals(INavigationPreferenceConstant.NO_NAVIGATION)){
-				//do nothing
+				// do nothing
 				return UnexecutableCommand.INSTANCE;
 			}
 
-			//navigation by using heuristic
-			//add list of diagram navigables by using heuristic
+			// navigation by using heuristic
+			// add list of diagram navigables by using heuristic
 			if(navigationKind.equals(INavigationPreferenceConstant.EXPLICIT_IMPLICIT_NAVIGATION)){
 				for(NavigableElement navElement : navElements) {
 					final EObject element = navElement.getElement();
@@ -169,14 +170,15 @@ public class NavigationEditPolicy extends OpenEditPolicy {
 						HyperLinkDiagram hyperLinkDiagram= new HyperLinkDiagram(); 
 						hyperLinkDiagram.setDiagram(diagram);
 						hyperLinkDiagram.setTooltipText(diagram.getName()+" (found by heuristic)");
-						//look for if a hyperlink already exists
+						// look for if a hyperlink already exists
 						HyperlinkObject foundHyperlink=null;
 						for(int i=0; i<defaultHyperLinkObject.size()&&foundHyperlink==null;i++){
 							if (defaultHyperLinkObject.get(i).getObject().equals(diagram)){
 								foundHyperlink=defaultHyperLinkObject.get(i);
 							}
 						}
-						//the diagram was not into the list of existing default hyperlink
+						// the diagram was not into the list of existing default
+						// hyperlink
 						if( foundHyperlink==null){
 							defaultHyperLinkObject.add(hyperLinkDiagram);
 						}
@@ -207,7 +209,7 @@ public class NavigationEditPolicy extends OpenEditPolicy {
 
 			}
 			if(defaultHyperLinkObject.size()>1){
-				//open a dialog to choose a diagram
+				// open a dialog to choose a diagram
 				DiagramNavigationDialog diagramNavigationDialog= new DiagramNavigationDialog(new Shell(),defaultHyperLinkObject);
 				diagramNavigationDialog.open();
 				final ArrayList<HyperlinkObject> hList=diagramNavigationDialog.getSelectedHyperlinks();
@@ -234,10 +236,10 @@ public class NavigationEditPolicy extends OpenEditPolicy {
 		return UnexecutableCommand.INSTANCE;
 	}
 
-
 	/**
-	 * Return the EditorRegistry for nested editor descriptors. Subclass should implements this
-	 * method in order to return the registry associated to the extension point namespace.
+	 * Return the EditorRegistry for nested editor descriptors. Subclass should
+	 * implements this method in order to return the registry associated to the
+	 * extension point namespace.
 	 * 
 	 * @return the EditorRegistry for nested editor descriptors
 	 * 

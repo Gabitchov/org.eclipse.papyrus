@@ -18,8 +18,9 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Point;
 
 /**
- * This interface is used to indicate that this kind of figure contains a multiline field.
- * It provides method to edit and the position to edit this field.
+ * This interface is used to indicate that this kind of figure contains a
+ * multiline field. It provides method to edit and the position to edit this
+ * field.
  */
 public interface IMultilineEditableFigure extends IFigure {
 

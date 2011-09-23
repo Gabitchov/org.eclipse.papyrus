@@ -15,16 +15,16 @@ package org.eclipse.papyrus.core.extension.commands;
 
 import org.eclipse.papyrus.core.utils.DiResourceSet;
 
-
 /**
  * The Interface IModelCreationCommand.
  */
 public interface IModelCreationCommand {
-	
+
 	/**
 	 * Creates the model.
-	 *
-	 * @param diResourceSet the di resource set
+	 * 
+	 * @param diResourceSet
+	 *        the di resource set
 	 */
 	void createModel(final DiResourceSet diResourceSet);
 

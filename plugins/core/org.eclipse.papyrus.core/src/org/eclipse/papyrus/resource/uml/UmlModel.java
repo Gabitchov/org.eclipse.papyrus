@@ -9,11 +9,11 @@ import org.eclipse.papyrus.resource.AbstractBaseModel;
 import org.eclipse.papyrus.resource.IModel;
 import org.eclipse.papyrus.resource.NotFoundException;
 
-
 /**
- * A UML  model.
+ * A UML model.
+ * 
  * @author cedric dumoulin
- *
+ * 
  */
 public class UmlModel extends AbstractBaseModel implements IModel {
 
@@ -29,11 +29,11 @@ public class UmlModel extends AbstractBaseModel implements IModel {
 
 	/**
 	 * @see org.eclipse.papyrus.resource.IModel#createModel(org.eclipse.core.runtime.IPath)
-	 *
+	 * 
 	 * @param fullPath
 	 */
 	public void createModel(IPath fullPath) {
-		
+
 		// Compute model URI
 		resourceURI = getPlatformURI(fullPath.addFileExtension(UML_FILE_EXTENSION));
 
@@ -50,11 +50,12 @@ public class UmlModel extends AbstractBaseModel implements IModel {
 		// return UMLPackage.eCONTENT_TYPE;
 		return "org.eclipse.uml2.uml";
 	}
-	
+
 	/**
 	 * Get the file extension used for this model.
+	 * 
 	 * @see org.eclipse.papyrus.resource.AbstractBaseModel#getModelFileExtension()
-	 *
+	 * 
 	 * @return
 	 */
 	@Override
@@ -64,8 +65,9 @@ public class UmlModel extends AbstractBaseModel implements IModel {
 
 	/**
 	 * Get the identifier used to register this model.
+	 * 
 	 * @see org.eclipse.papyrus.resource.AbstractBaseModel#getIdentifier()
-	 *
+	 * 
 	 * @return
 	 */
 	@Override
@@ -75,6 +77,7 @@ public class UmlModel extends AbstractBaseModel implements IModel {
 
 	/**
 	 * Lookup the root of the model. Throw an exception if not found.
+	 * 
 	 * @return
 	 */
 	public EObject lookupRoot() throws NotFoundException {
@@ -86,6 +89,5 @@ public class UmlModel extends AbstractBaseModel implements IModel {
 			throw new NotFoundException("No root defined in the model");
 		}
 	}
-
 
 }

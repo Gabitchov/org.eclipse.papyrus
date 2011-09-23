@@ -16,7 +16,6 @@ import org.eclipse.gmf.runtime.common.core.service.IProvider;
 import org.eclipse.swt.graphics.Image;
 import org.w3c.dom.Node;
 
-
 /**
  * Interface for aspect action factories
  */
@@ -55,7 +54,8 @@ public interface IAspectActionProvider extends IProvider {
 	 * returns <code>true</code> if this factory is enabled
 	 * 
 	 * @param entryProxy
-	 *        the entry proxy for which aspect action will be added or removed
+	 *        the entry proxy for which aspect action will be added or
+	 *        removed
 	 * 
 	 * @return <code>true</code> if this factory is enabled
 	 */

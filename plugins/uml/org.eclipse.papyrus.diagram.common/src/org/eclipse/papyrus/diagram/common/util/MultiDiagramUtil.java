@@ -85,7 +85,8 @@ public class MultiDiagramUtil {
 	public static final String DiagramsRelatedToElement = "es.cv.gvcase.mdt.uml2.diagram.common.DiagramsRelatedToElement";
 
 	/**
-	 * EAnnotation Source for diagrams that open the correct Upper Diagram <View>.
+	 * EAnnotation Source for diagrams that open the correct Upper Diagram
+	 * <View>.
 	 */
 	public static final String UpperDiagram = "es.cv.gvcase.mdt.diagram.common.UpperDiagram";
 

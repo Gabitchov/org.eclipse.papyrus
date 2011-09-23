@@ -18,7 +18,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageModel;
 
-
 /**
  * Factory used to create IPageModel from an object identifying a page.
  * IPageModel are objects used by the Sash Windows to create a page.
@@ -28,10 +27,10 @@ import org.eclipse.papyrus.sasheditor.contentprovider.IPageModel;
 public interface IPageModelFactory {
 
 	/**
-	 * Create the IPageModel for the pageIdentifier. The pageIdentifier is the object passed to
-	 * the {@link IPageMngr#addEditor(EObject)}.
-	 * This factory method is called by the Sash Windows whenever it needs to create a page. The identifier
-	 * is found in the sash model.
+	 * Create the IPageModel for the pageIdentifier. The pageIdentifier is the
+	 * object passed to the {@link IPageMngr#addEditor(EObject)}. This factory
+	 * method is called by the Sash Windows whenever it needs to create a page.
+	 * The identifier is found in the sash model.
 	 * 
 	 * @param pageIdentifier
 	 *        The identifier identifying the page to create.

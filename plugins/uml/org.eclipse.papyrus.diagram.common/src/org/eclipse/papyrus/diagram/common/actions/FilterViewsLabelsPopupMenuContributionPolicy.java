@@ -29,8 +29,8 @@ public class FilterViewsLabelsPopupMenuContributionPolicy implements IPopupMenuC
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.eclipse.gmf.runtime.common.ui.services.action.contributionitem.IPopupMenuContributionPolicy
+	 * @see org.eclipse.gmf.runtime.common.ui.services.action.contributionitem.
+	 * IPopupMenuContributionPolicy
 	 * #appliesTo(org.eclipse.jface.viewers.ISelection,
 	 * org.eclipse.core.runtime.IConfigurationElement)
 	 */

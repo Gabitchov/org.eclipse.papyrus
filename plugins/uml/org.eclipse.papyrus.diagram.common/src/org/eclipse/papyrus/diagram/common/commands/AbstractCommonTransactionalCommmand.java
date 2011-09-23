@@ -58,7 +58,8 @@ public abstract class AbstractCommonTransactionalCommmand extends AbstractTransa
 	}
 
 	/**
-	 * Execute this command in the <EditingDomain>'s <CommandStack> as a transaction.
+	 * Execute this command in the <EditingDomain>'s <CommandStack> as a
+	 * transaction.
 	 */
 	// @unused
 	public void executeInTransaction() {

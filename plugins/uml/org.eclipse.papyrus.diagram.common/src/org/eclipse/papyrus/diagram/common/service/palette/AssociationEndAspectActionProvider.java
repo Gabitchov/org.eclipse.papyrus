@@ -78,5 +78,4 @@ public class AssociationEndAspectActionProvider extends AbstractAspectActionProv
 		return false;
 	}
 
-
 }

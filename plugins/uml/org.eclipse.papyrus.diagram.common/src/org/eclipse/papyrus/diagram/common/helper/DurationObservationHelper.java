@@ -33,7 +33,8 @@ public class DurationObservationHelper {
 	private static final String DURATION_OBSERVATION_LABEL_FORMAT = "&%s";
 
 	/**
-	 * Get the list of all DurationObservation observing duration between the two elements (order of parameters does not matter)
+	 * Get the list of all DurationObservation observing duration between the
+	 * two elements (order of parameters does not matter)
 	 * 
 	 * @param element1
 	 *        the first observed element
@@ -51,7 +52,8 @@ public class DurationObservationHelper {
 	}
 
 	/**
-	 * Get the list of all DurationObservation observing duration from or to an element
+	 * Get the list of all DurationObservation observing duration from or to an
+	 * element
 	 * 
 	 * @param element
 	 *        the observed element
@@ -81,7 +83,8 @@ public class DurationObservationHelper {
 	}
 
 	/**
-	 * Check whether two occurrences are ends of the same message for enabling duration constraint creation
+	 * Check whether two occurrences are ends of the same message for enabling
+	 * duration constraint creation
 	 * 
 	 * @param occurrence
 	 *        first occurrence specification

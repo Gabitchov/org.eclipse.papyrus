@@ -23,8 +23,9 @@ import org.eclipse.papyrus.umlutils.ui.VisualInformationPapyrusConstant;
 import org.eclipse.papyrus.umlutils.ui.command.CreateEAnnotationCommand;
 
 /**
- * The Class DeleteHyperLinkCommand. it can be used also to remove an hyperlink web. It will remove
- * the first eannotation that corresponds to the link or the localization of the hyperlink
+ * The Class DeleteHyperLinkCommand. it can be used also to remove an hyperlink
+ * web. It will remove the first eannotation that corresponds to the link or the
+ * localization of the hyperlink
  */
 public class DeleteHyperLinkDiagramCommand extends CreateEAnnotationCommand {
 
@@ -32,7 +33,8 @@ public class DeleteHyperLinkDiagramCommand extends CreateEAnnotationCommand {
 	public EModelElement diagram;
 
 	/**
-	 * Instantiates a new delete hyper link command used to suppress a link in the view
+	 * Instantiates a new delete hyper link command used to suppress a link in
+	 * the view
 	 * 
 	 * @param domain
 	 *        the domain

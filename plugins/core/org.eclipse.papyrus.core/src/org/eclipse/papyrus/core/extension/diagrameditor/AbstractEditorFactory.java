@@ -18,8 +18,7 @@ import org.eclipse.papyrus.core.editorsfactory.IEditorFactory;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
 
 /**
- * Abstract base class for Factory of editors. 
- * See {@link IEditorFactory}.
+ * Abstract base class for Factory of editors. See {@link IEditorFactory}.
  * 
  * 
  * @author Remi Schnekenburger
@@ -37,8 +36,8 @@ public abstract class AbstractEditorFactory implements IPluggableEditorFactory {
 	private String expectedType;
 
 	/**
-	 * EditorDescriptor associated to the factory.
-	 * TODO : Maybe use individual setters to set the requested data (ContributorId and Icon).
+	 * EditorDescriptor associated to the factory. TODO : Maybe use individual
+	 * setters to set the requested data (ContributorId and Icon).
 	 */
 	protected EditorDescriptor editorDescriptor;
 
@@ -64,8 +63,10 @@ public abstract class AbstractEditorFactory implements IPluggableEditorFactory {
 	/**
 	 * Initialize the factory with useful Classes.
 	 * 
-	 * @param serviceRegistry Service registry that will be provided to created editor.
-	 * @param editorDescriptor Descriptor containing data from the Eclipse Extension.
+	 * @param serviceRegistry
+	 *        Service registry that will be provided to created editor.
+	 * @param editorDescriptor
+	 *        Descriptor containing data from the Eclipse Extension.
 	 */
 	public void init(ServicesRegistry serviceRegistry, EditorDescriptor editorDescriptor) {
 		this.editorDescriptor = editorDescriptor;
@@ -73,7 +74,6 @@ public abstract class AbstractEditorFactory implements IPluggableEditorFactory {
 
 	}
 
-	
 	/**
 	 * @return the serviceRegistry
 	 */
@@ -105,6 +105,5 @@ public abstract class AbstractEditorFactory implements IPluggableEditorFactory {
 	public EditorDescriptor getEditorDescriptor() {
 		return editorDescriptor;
 	}
-
 
 }

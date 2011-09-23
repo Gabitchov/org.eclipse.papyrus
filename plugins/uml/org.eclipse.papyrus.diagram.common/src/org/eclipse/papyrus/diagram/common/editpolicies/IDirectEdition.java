@@ -15,7 +15,10 @@ package org.eclipse.papyrus.diagram.common.editpolicies;
  */
 public interface IDirectEdition {
 
-	/** constant for undefined role. no editors have been checked for this element */
+	/**
+	 * constant for undefined role. no editors have been checked for this
+	 * element
+	 */
 	final int UNDEFINED_DIRECT_EDITOR = 0;
 
 	/** default direct editor (in diagram edition) */
@@ -24,6 +27,9 @@ public interface IDirectEdition {
 	/** extended editor, i.e opens a new dialog window */
 	final int EXTENDED_DIRECT_EDITOR = 1 << 2;
 
-	/** no editor for this element. this element does not respond to a direct edit request */
+	/**
+	 * no editor for this element. this element does not respond to a direct
+	 * edit request
+	 */
 	final int NO_DIRECT_EDITION = 1 << 3;
 }

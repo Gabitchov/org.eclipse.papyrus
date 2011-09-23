@@ -47,8 +47,7 @@ public class CompartmentUtils {
 	 *        an editpart
 	 * @param includeTitleCompartment
 	 *        if <code>true</code> we return the title compartment too
-	 * @return
-	 *         all compartments of the EditPart
+	 * @return all compartments of the EditPart
 	 */
 	public static List<View> getAllCompartments(EditPart editpart, boolean includeTitleCompartment) {
 		List<View> compartments = new ArrayList<View>();
@@ -89,8 +88,7 @@ public class CompartmentUtils {
 	 *        an editpart
 	 * @param includeTitleCompartment
 	 *        if <code>true</code> we return the title compartment too
-	 * @return
-	 *         all the displayed compartments for the EditPart
+	 * @return all the displayed compartments for the EditPart
 	 */
 	public static List<View> getAllVisibleCompartments(EditPart editpart, boolean includeTitleCompartment) {
 		List<View> visibleCompartments = new ArrayList<View>();
@@ -116,8 +114,7 @@ public class CompartmentUtils {
 	 *        the editpart
 	 * @param view
 	 *        a view of this editpart
-	 * @return
-	 *         <code>true</code> if this view is compartment name
+	 * @return <code>true</code> if this view is compartment name
 	 */
 	public static boolean isCompartmentName(EditPart editpart, View view) {
 		IGraphicalEditPart gep = EditPartService.getInstance().createGraphicEditPart(view);
@@ -131,8 +128,8 @@ public class CompartmentUtils {
 	 * 
 	 * @param editpart
 	 *        an editpart
-	 * @return
-	 *         A list of {@link CompartmentTitleRepresentation} which represents the visible titles of the compartments of the editpart
+	 * @return A list of {@link CompartmentTitleRepresentation} which represents
+	 *         the visible titles of the compartments of the editpart
 	 */
 	public static List<CompartmentTitleRepresentation> getAllVisibleCompartmentName(EditPart editpart) {
 		List<View> allCompartments = getAllCompartments(editpart, false);
@@ -149,8 +146,7 @@ public class CompartmentUtils {
 	 * 
 	 * @param compartmentView
 	 *        a view of a compartment
-	 * @return
-	 *         <code>true</code> if the title of the compartment is visible
+	 * @return <code>true</code> if the title of the compartment is visible
 	 */
 	public static boolean isCompartmentTitleVisible(View compartmentView) {
 		TitleStyle style = (TitleStyle)compartmentView.getStyle(NotationPackage.eINSTANCE.getTitleStyle());
@@ -166,8 +162,8 @@ public class CompartmentUtils {
 	 *        a list of {@link CompartmentTitleRepresentation}
 	 * @param view
 	 *        a view
-	 * @return
-	 *         the {@link CompartmentTitleRepresentation} which represents the view or <code>null</code> if not found
+	 * @return the {@link CompartmentTitleRepresentation} which represents the
+	 *         view or <code>null</code> if not found
 	 */
 	public static CompartmentTitleRepresentation getCompartmentTitleRepresentation(List<CompartmentTitleRepresentation> representations, View view) {
 		for(CompartmentTitleRepresentation current : representations) {

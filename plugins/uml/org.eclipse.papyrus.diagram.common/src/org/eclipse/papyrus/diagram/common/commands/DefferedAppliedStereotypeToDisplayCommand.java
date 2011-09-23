@@ -27,8 +27,8 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Stereotype;
 
 /**
- * The Class AddAppliedStereotypeToDisplayCommand used to set the list of applied stereotype to
- * display
+ * The Class AddAppliedStereotypeToDisplayCommand used to set the list of
+ * applied stereotype to display
  */
 public class DefferedAppliedStereotypeToDisplayCommand extends CreateEAnnotationCommand {
 

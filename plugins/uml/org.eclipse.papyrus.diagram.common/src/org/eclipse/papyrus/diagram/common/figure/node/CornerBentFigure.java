@@ -81,7 +81,6 @@ public class CornerBentFigure extends NoteFigure implements IPapyrusNodeUMLEleme
 		this.add(stereotypesLabel, getStereotypeLabelPosition());
 	}
 
-
 	protected void createStereotypePropertiesContent() {
 		stereotypePropertiesContent = new StereotypePropertiesCompartment();
 		stereotypePropertiesContent.setFill(false);
@@ -133,8 +132,8 @@ public class CornerBentFigure extends NoteFigure implements IPapyrusNodeUMLEleme
 	}
 
 	/**
-	 * Returns the position of the stereotype properties location. this is just after stereotype
-	 * position
+	 * Returns the position of the stereotype properties location. this is just
+	 * after stereotype position
 	 * 
 	 * @return the position of the stereotype properties label in the figure
 	 */
@@ -189,8 +188,8 @@ public class CornerBentFigure extends NoteFigure implements IPapyrusNodeUMLEleme
 	/**
 	 * displays the new string corresponding to the list of stereotypes.
 	 * 
-	 * if the string is <code>null</code>, then the figure that displays the stereotype label is
-	 * removed from the NodeNamedElementFigure.
+	 * if the string is <code>null</code>, then the figure that displays the
+	 * stereotype label is removed from the NodeNamedElementFigure.
 	 * 
 	 * @param stereotypeProperties
 	 *        the string to be displayed.
@@ -307,15 +306,13 @@ public class CornerBentFigure extends NoteFigure implements IPapyrusNodeUMLEleme
 		iconLabel.setLabelAlignment(PositionConstants.LEFT);
 	}
 
-
-
 	public Color getBorderColor() {
 		return borderColor;
 	}
 
 	public void setBorderColor(Color borderColor) {
-		//	this.borderColor = borderColor;
-		//	super.setBorder(new LineBorder(borderColor));
+		// this.borderColor = borderColor;
+		// super.setBorder(new LineBorder(borderColor));
 
 	}
 

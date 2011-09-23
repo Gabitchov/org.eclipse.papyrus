@@ -16,7 +16,8 @@ package org.eclipse.papyrus.core.extension.diagrameditor;
 import org.eclipse.jface.resource.ImageDescriptor;
 
 /**
- * This descriptor describes a nested diagram. It is used by MultiDiagramEditor to know about the nested diagram. It is fill by an extension.
+ * This descriptor describes a nested diagram. It is used by MultiDiagramEditor
+ * to know about the nested diagram. It is fill by an extension.
  * 
  * @author Cedric Dumoulin
  * 
@@ -29,7 +30,8 @@ public class EditorDescriptor {
 	private Class<IPluggableEditorFactory> editorFactoryClass;
 
 	/**
-	 * EditorActionBarContributor Id used to search the EditorActionBarContributor requested by the editor.
+	 * EditorActionBarContributor Id used to search the
+	 * EditorActionBarContributor requested by the editor.
 	 */
 	private String actionBarContributorId;
 

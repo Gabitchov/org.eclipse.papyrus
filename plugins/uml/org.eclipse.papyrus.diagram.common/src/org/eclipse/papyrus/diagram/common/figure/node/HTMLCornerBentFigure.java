@@ -37,7 +37,6 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-
 /**
  * Corner bend figure able to display styled text formatted in html
  */
@@ -67,7 +66,10 @@ public class HTMLCornerBentFigure extends CornerBentFigure implements ILabelFigu
 	/** font used for the figure */
 	private FontData currentFontData;
 
-	/** set of font datas used by this comment. It will be cleaned juste after the creation of the comment */
+	/**
+	 * set of font datas used by this comment. It will be cleaned juste after
+	 * the creation of the comment
+	 */
 	private Set<FontData> cachedFontDatas = new HashSet<FontData>();
 
 	/**
@@ -93,7 +95,8 @@ public class HTMLCornerBentFigure extends CornerBentFigure implements ILabelFigu
 	 * Generates the basic contents for this figure
 	 */
 	protected void createContents() {
-		// simply creates a Flow page, that will contains BlockFlows representing the html content
+		// simply creates a Flow page, that will contains BlockFlows
+		// representing the html content
 		page = new FlowPage();
 		page.setForegroundColor(getForegroundColor());
 		this.add(page);
@@ -155,7 +158,7 @@ public class HTMLCornerBentFigure extends CornerBentFigure implements ILabelFigu
 	 */
 
 	public void setText(String text) {
-		// remove all children from page. 
+		// remove all children from page.
 		page.removeAll();
 
 		// init the first font data
@@ -167,13 +170,15 @@ public class HTMLCornerBentFigure extends CornerBentFigure implements ILabelFigu
 	}
 
 	/**
-	 * Generates block list for the given text, and adds it to the root flow page
+	 * Generates block list for the given text, and adds it to the root flow
+	 * page
 	 * 
 	 * @param text
 	 *        the string to display
 	 */
 	protected void generateBlockForText(String text, FlowPage page) {
-		// parse the HMTL text and transforms it into a tree. "Body" tags enforce the character chain to be a valid xml chain 
+		// parse the HMTL text and transforms it into a tree. "Body" tags
+		// enforce the character chain to be a valid xml chain
 		NodeList nodeList = generateNodeList("<body>" + text + "</body>");
 
 		// generate blocks from this list and adds it to the flow page children
@@ -334,7 +339,8 @@ public class HTMLCornerBentFigure extends CornerBentFigure implements ILabelFigu
 			fontData = new FontData("Monotype Corsiva", 10, style);
 			textFlow.setBackgroundColor(DisplayUtils.getDisplay().getSystemColor(SWT.COLOR_RED));
 		} else {
-			// font size = [1..7] in html, but does not correspond to system size... 2 by default => 8 in real size.
+			// font size = [1..7] in html, but does not correspond to system
+			// size... 2 by default => 8 in real size.
 			// so: real size = (html font size)+6
 			fontData = new FontData(fontName, 2 * fontSize + 4, style);
 		}
@@ -513,7 +519,8 @@ public class HTMLCornerBentFigure extends CornerBentFigure implements ILabelFigu
 	protected void generateBlocksFromParagraphNode(Node node, BlockFlow parentFlow) {
 		BlockFlow blockFlow = new BlockFlow();
 
-		// perhaps a style is associated to the paragraph (class="code sample" for example)
+		// perhaps a style is associated to the paragraph (class="code sample"
+		// for example)
 		NamedNodeMap attributes = node.getAttributes();
 		Node classNode = attributes.getNamedItem("class");
 		boolean hasToPop = false;
@@ -552,7 +559,6 @@ public class HTMLCornerBentFigure extends CornerBentFigure implements ILabelFigu
 		parentFlow.add(blockFlow);
 	}
 
-
 	/**
 	 * Generates a list of nodes from the parse of an html text
 	 * 
@@ -564,14 +570,13 @@ public class HTMLCornerBentFigure extends CornerBentFigure implements ILabelFigu
 		return HTMLCommentParser.parse(text);
 	}
 
-
 	/**
 	 * Valid HTML tags enumeration
 	 */
 	protected enum HTMLTags {
 
 		body(""), // main tag for the comment body
-		h3(""), // section heading 
+		h3(""), // section heading
 		h4(""), // sub section heading
 		h5(""), // sub sub section heading
 		strong(""), // bold character
@@ -580,11 +585,10 @@ public class HTMLCornerBentFigure extends CornerBentFigure implements ILabelFigu
 		sub(""), // subscript
 		sup(""), // superscript
 		blockquote(""), // indent left or right
-		table(""), // table 
+		table(""), // table
 		p(""), // paragraph
 		br(""), // new line
 		font(""); // specific font
-
 
 		/** additional data for this enum */
 		protected String data;
@@ -592,7 +596,6 @@ public class HTMLCornerBentFigure extends CornerBentFigure implements ILabelFigu
 		HTMLTags(String data) {
 			this.data = data;
 		}
-
 
 		/**
 		 * Sets the data for this enum
@@ -603,7 +606,6 @@ public class HTMLCornerBentFigure extends CornerBentFigure implements ILabelFigu
 		public void setData(String data) {
 			this.data = data;
 		}
-
 
 		/**
 		 * Returns the data associated to this enum
@@ -633,7 +635,6 @@ public class HTMLCornerBentFigure extends CornerBentFigure implements ILabelFigu
 			this.data = data;
 		}
 
-
 		/**
 		 * sets the data associated to this enum
 		 * 
@@ -643,7 +644,6 @@ public class HTMLCornerBentFigure extends CornerBentFigure implements ILabelFigu
 		public void setData(Map<String, Object> data) {
 			this.data = data;
 		}
-
 
 		/**
 		 * Returns the data for this enum

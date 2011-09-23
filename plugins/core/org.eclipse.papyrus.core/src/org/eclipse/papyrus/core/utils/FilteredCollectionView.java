@@ -19,7 +19,8 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
- * A unmodifiable view on a specified list. The view filters the original list according to the provided filter.
+ * A unmodifiable view on a specified list. The view filters the original list
+ * according to the provided filter.
  */
 public class FilteredCollectionView<T> extends AbstractCollection<T> implements Collection<T> {
 
@@ -30,7 +31,8 @@ public class FilteredCollectionView<T> extends AbstractCollection<T> implements 
 	private IFilter filter;
 
 	/**
-	 * The cached size. Compute only once, so change in the underlying collection is not reflected
+	 * The cached size. Compute only once, so change in the underlying
+	 * collection is not reflected
 	 */
 	private int size = -1;
 
@@ -107,10 +109,9 @@ public class FilteredCollectionView<T> extends AbstractCollection<T> implements 
 		return list.contains(o);
 	}
 
-
 	/**
-	 * remove the object.
-	 * Throw an UnsupportedOperationException, as the FilteredCollection is ReadOnly.
+	 * remove the object. Throw an UnsupportedOperationException, as the
+	 * FilteredCollection is ReadOnly.
 	 * 
 	 * @see java.util.AbstractCollection#remove(java.lang.Object)
 	 * @param o
@@ -123,11 +124,13 @@ public class FilteredCollectionView<T> extends AbstractCollection<T> implements 
 	}
 
 	/**
-	 * Return the value to be returned by the iterator.next() method. This method can be overloaded by subclasses in order to return another value
+	 * Return the value to be returned by the iterator.next() method. This
+	 * method can be overloaded by subclasses in order to return another value
 	 * than the objects belonging to the underlying list.
 	 * 
 	 * @param ele
-	 *        The iterated object. This is the object iterated inside the underlying list.
+	 *        The iterated object. This is the object iterated inside the
+	 *        underlying list.
 	 * @return
 	 */
 	protected T returnedValue(T ele) {
@@ -195,7 +198,8 @@ public class FilteredCollectionView<T> extends AbstractCollection<T> implements 
 		}
 
 		/**
-		 * Compute the next field (null or next value), and return the previous value of the next field.
+		 * Compute the next field (null or next value), and return the previous
+		 * value of the next field.
 		 * 
 		 * @return Object
 		 */

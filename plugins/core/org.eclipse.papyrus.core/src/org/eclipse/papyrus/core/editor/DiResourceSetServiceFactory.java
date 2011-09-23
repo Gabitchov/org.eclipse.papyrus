@@ -8,11 +8,9 @@ import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.resource.ModelSet;
 
-
 /**
- * A service factory to create the {@link ModelSet} service.
- * This provide a nickname for {@link ModelSet} service.
- * This serviceFactory depends on {@link ModelSet} service.
+ * A service factory to create the {@link ModelSet} service. This provide a
+ * nickname for {@link ModelSet} service. This serviceFactory depends on {@link ModelSet} service.
  * 
  * @author cedric dumoulin
  * 

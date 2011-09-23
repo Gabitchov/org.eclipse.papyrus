@@ -22,22 +22,22 @@ import org.eclipse.papyrus.core.services.internal.ServiceStartupEntry;
 import org.eclipse.papyrus.core.services.internal.ServiceTypeEntry;
 import org.eclipse.papyrus.core.services.internal.StartStartupEntry;
 
-
 /**
- * A registry of services.
- * This registry allows to get a service by its identifier. The identifier is generally
- * the classname of the service.
- * Services can be added using the Eclipse extension mechanism (if you use {@link ExtensionServicesRegistry}).
- * <br>
- * A Service is a class providing operations. The ServiceRegistry is used to share objects (i.e. services) 
- * between nested editors and also the core main editor.
+ * A registry of services. This registry allows to get a service by its
+ * identifier. The identifier is generally the classname of the service.
+ * Services can be added using the Eclipse extension mechanism (if you use {@link ExtensionServicesRegistry}). <br>
+ * A Service is a class providing operations. The ServiceRegistry is used to
+ * share objects (i.e. services) between nested editors and also the core main
+ * editor.
  * 
  * <br>
- * In this implementation, services should be added to the registry before the call to createServices().
- * If a service is added after the call, it will not be started (except if it is a lazy service).
- * <br>
+ * In this implementation, services should be added to the registry before the
+ * call to createServices(). If a service is added after the call, it will not
+ * be started (except if it is a lazy service). <br>
  * A typical usage is:
- * <pre><code>
+ * 
+ * <pre>
+ * <code>
  *   ServicesRegistry serviceRegistry = new ServiceRegistry();
  *   // Add your services
  *   serviceRegistry.add( ...);
@@ -48,22 +48,27 @@ import org.eclipse.papyrus.core.services.internal.StartStartupEntry;
  *   
  *   // Retrieve a service
  *   myService = serviceRegistry.getService( serviceKey );
- * </code></pre>
+ * </code>
+ * </pre>
  * 
- * It is possible to register new services after the serviceRegistry has been started. In this case, you need to start
- * them explicitly if they are of type ServiceStartKind.STARTUP.
- * <pre><code>
+ * It is possible to register new services after the serviceRegistry has been
+ * started. In this case, you need to start them explicitly if they are of type
+ * ServiceStartKind.STARTUP.
+ * 
+ * <pre>
+ * <code>
  *   // Add your new services
  *   serviceRegistry.add( key1, ...);
  *   serviceRegistry.add( key2, ...);
  *   
  *   // start the new services
  *   serviceRegistry.startRegistry(key1, key2);
- * </code></pre>
+ * </code>
+ * </pre>
  * 
  * <ul>
- *  <li></li>
- *  <li></li>
+ * <li></li>
+ * <li></li>
  * </ul>
  * 
  * @author cedric dumoulin
@@ -78,11 +83,11 @@ public class ServicesRegistry {
 	/**
 	 * Map of existing services.
 	 */
-	//	private Map<Object, AbstractServiceEntry> services;
+	// private Map<Object, AbstractServiceEntry> services;
 
 	/**
-	 * A Map of services added to the register (thow the addXxx() methods), but not yet registered.
-	 * They will be registered after a call to startXxx().
+	 * A Map of services added to the register (thow the addXxx() methods), but
+	 * not yet registered. They will be registered after a call to startXxx().
 	 */
 	private Map<String, ServiceStartupEntry> addedServices = new HashMap<String, ServiceStartupEntry>();
 
@@ -92,10 +97,10 @@ public class ServicesRegistry {
 	private Map<String, ServiceStartupEntry> namedServices = new HashMap<String, ServiceStartupEntry>();
 
 	/**
-	 * Map of services registered without a name (anonymous). Such services can't be retrieved.
+	 * Map of services registered without a name (anonymous). Such services
+	 * can't be retrieved.
 	 */
 	private List<ServiceStartupEntry> anonymousServices = new ArrayList<ServiceStartupEntry>();
-
 
 	/**
 	 * Constructor.
@@ -117,17 +122,10 @@ public class ServicesRegistry {
 		if(service != null) {
 			if(service.getDescriptor().getPriority() > serviceDescriptor.getPriority())
 				return;
-			else if(service.getDescriptor().getPriority() == serviceDescriptor.getPriority())
-			{
-				log.warning("Two services with same priority (" + serviceDescriptor.getPriority() 
-						+ ") are declared under key '" + service.getDescriptor().getKey() 
-						+ "'. Keep the first encountered only. (bundles: " + service.getDescriptor().getClassBundleID()
-						+ ", " + serviceDescriptor.getClassBundleID() 
-						+ ")"
-						);
+			else if(service.getDescriptor().getPriority() == serviceDescriptor.getPriority()) {
+				log.warning("Two services with same priority (" + serviceDescriptor.getPriority() + ") are declared under key '" + service.getDescriptor().getKey() + "'. Keep the first encountered only. (bundles: " + service.getDescriptor().getClassBundleID() + ", " + serviceDescriptor.getClassBundleID() + ")");
 			}
 		}
-
 
 		// Compute the service type entry
 		ServiceTypeEntry serviceTypeEntry;
@@ -151,8 +149,7 @@ public class ServicesRegistry {
 	}
 
 	/**
-	 * Add a service.
-	 * The descriptor will be created.
+	 * Add a service. The descriptor will be created.
 	 * 
 	 * @param key
 	 *        Service key
@@ -166,8 +163,7 @@ public class ServicesRegistry {
 	}
 
 	/**
-	 * Add a service.
-	 * The descriptor will be created.
+	 * Add a service. The descriptor will be created.
 	 * 
 	 * @param key
 	 *        Service key
@@ -181,8 +177,7 @@ public class ServicesRegistry {
 	}
 
 	/**
-	 * Add a service.
-	 * The descriptor will be created.
+	 * Add a service. The descriptor will be created.
 	 * 
 	 * @param key
 	 *        Service key
@@ -211,8 +206,7 @@ public class ServicesRegistry {
 	}
 
 	/**
-	 * Add a service.
-	 * The descriptor will be created.
+	 * Add a service. The descriptor will be created.
 	 * 
 	 * @param key
 	 *        Service key Class used as key. The classname is used as key.
@@ -227,9 +221,9 @@ public class ServicesRegistry {
 	}
 
 	/**
-	 * Add an already instanciated pojo (Plain Old Java Object) as Service.
-	 * The descriptor will be created.
-	 * No life cycle methods are called on the service.
+	 * Add an already instanciated pojo (Plain Old Java Object) as Service. The
+	 * descriptor will be created. No life cycle methods are called on the
+	 * service.
 	 * 
 	 * @param key
 	 *        Service key
@@ -243,9 +237,9 @@ public class ServicesRegistry {
 	}
 
 	/**
-	 * Add an already instanciated pojo (Plain Old Java Object) as Service.
-	 * The descriptor will be created.
-	 * No life cycle methods are called on the service.
+	 * Add an already instanciated pojo (Plain Old Java Object) as Service. The
+	 * descriptor will be created. No life cycle methods are called on the
+	 * service.
 	 * 
 	 * @param key
 	 *        Service key
@@ -277,9 +271,9 @@ public class ServicesRegistry {
 	}
 
 	/**
-	 * Add an already instanciated pojo (Plain Old Java Object) as Service.
-	 * The descriptor will be created.
-	 * No life cycle methods are called on the service.
+	 * Add an already instanciated pojo (Plain Old Java Object) as Service. The
+	 * descriptor will be created. No life cycle methods are called on the
+	 * service.
 	 * 
 	 * @param key
 	 *        Service key Class used as key. The classname is used as key.
@@ -320,8 +314,8 @@ public class ServicesRegistry {
 	}
 
 	/**
-	 * Get the requested service by its key.
-	 * The key is usually the classname of the service.
+	 * Get the requested service by its key. The key is usually the classname of
+	 * the service.
 	 * 
 	 * @param serviceClass
 	 * @return
@@ -344,7 +338,8 @@ public class ServicesRegistry {
 	}
 
 	/**
-	 * Get the requested service by its class (the service has to be registered by its class object).
+	 * Get the requested service by its class (the service has to be registered
+	 * by its class object).
 	 * 
 	 * @param key
 	 *        The service class.
@@ -400,11 +395,10 @@ public class ServicesRegistry {
 	}
 
 	/**
-	 * Start the registry.
-	 * Start all services marked as start = STARTUP are started.
-	 * All services are first created, then initialized and finally started.
-	 * If an error occur on a service during one of this step, the service is removed from
-	 * the registry and and the error is logged.
+	 * Start the registry. Start all services marked as start = STARTUP are
+	 * started. All services are first created, then initialized and finally
+	 * started. If an error occur on a service during one of this step, the
+	 * service is removed from the registry and and the error is logged.
 	 * 
 	 * @throws ServiceMultiException
 	 * 
@@ -421,12 +415,12 @@ public class ServicesRegistry {
 
 		// Get all roots : LAZY and START
 		Collection<ServiceStartupEntry> roots = getServiceRoots(addedServices.values(), map);
-//		showServices(" Roots:", roots);
+		// showServices(" Roots:", roots);
 		// Detect cycles
 		checkCycle(roots, map);
 		// Retain only services with startupkind = START
 		roots = retainsToStartServices(roots);
-		// 
+		//
 		List<ServiceStartupEntry> toStart = buildTopologicalListOfServicesToStart(roots, map);
 
 		if(Activator.log.isDebugEnabled()) {
@@ -446,16 +440,15 @@ public class ServicesRegistry {
 		if(errors.getExceptions().size() > 0)
 			throw errors;
 
-
 	}
 
 	/**
-	 * Start the specified services, and their required services.
-	 * The specifies services should be in the addServices or already registered.
-	 * Start all services marked as start = STARTUP .
-	 * All eligible services are first created, then initialized and finally started.
-	 * If an error occur on a service during one of this step, the service is removed from
-	 * the registry and and the error is logged.
+	 * Start the specified services, and their required services. The specifies
+	 * services should be in the addServices or already registered. Start all
+	 * services marked as start = STARTUP . All eligible services are first
+	 * created, then initialized and finally started. If an error occur on a
+	 * service during one of this step, the service is removed from the registry
+	 * and and the error is logged.
 	 * 
 	 * @param serviceKeys
 	 *        Keys of services to start.
@@ -480,6 +473,7 @@ public class ServicesRegistry {
 
 	/**
 	 * Same as {@link #startServices(List)}, but with an array as input.
+	 * 
 	 * @see #startServices(List)
 	 * 
 	 * @param serviceKeys
@@ -491,22 +485,23 @@ public class ServicesRegistry {
 	 * @throws ServiceException
 	 *         If a service can't be started.
 	 */
-	public void startServices(String  ... serviceKeys) throws ServiceMultiException, ServiceNotFoundException {
+	public void startServices(String... serviceKeys) throws ServiceMultiException, ServiceNotFoundException {
 
 		List<String> serviceKeysList = Arrays.asList(serviceKeys);
 		startServices(serviceKeysList);
 	}
 
 	/**
-	 * Start the specified services, and their required services.
-	 * The specifies services should be in the addServices or already registered.
-	 * Start all services marked as start = STARTUP .
-	 * All eligible services are first created, then initialized and finally started.
-	 * If an error occur on a service during one of this step, the service is removed from
-	 * the registry and and the error is logged.
+	 * Start the specified services, and their required services. The specifies
+	 * services should be in the addServices or already registered. Start all
+	 * services marked as start = STARTUP . All eligible services are first
+	 * created, then initialized and finally started. If an error occur on a
+	 * service during one of this step, the service is removed from the registry
+	 * and and the error is logged.
 	 * 
 	 * @param serviceKeys
-	 *        Keys of services to start. Keys will be translated to the classname.
+	 *        Keys of services to start. Keys will be translated to the
+	 *        classname.
 	 * @throws ServiceMultiException
 	 * @throws ServiceNotFoundException
 	 *         If a service can't be retrieved by its key.
@@ -527,7 +522,9 @@ public class ServicesRegistry {
 	}
 
 	/**
-	 * Same as {@link #startServicesByClassKeys(List)}, but with an array as input.
+	 * Same as {@link #startServicesByClassKeys(List)}, but with an array as
+	 * input.
+	 * 
 	 * @see #startServices(List)
 	 * 
 	 * @param serviceKeys
@@ -539,20 +536,19 @@ public class ServicesRegistry {
 	 * @throws ServiceException
 	 *         If a service can't be started.
 	 */
-	public void startServicesByClassKeys(Class<?>  ... serviceKeys) throws ServiceMultiException, ServiceNotFoundException {
+	public void startServicesByClassKeys(Class<?>... serviceKeys) throws ServiceMultiException, ServiceNotFoundException {
 
 		List<Class<?>> serviceKeysList = Arrays.asList(serviceKeys);
 		startServicesByClassKeys(serviceKeysList);
 	}
 
 	/**
-	 * Start the specified services, and their required services.
-	 * The specifies services should be in the specified map.
-	 * The map is also used to resolves dependencies.
-	 * Start all services marked as start = STARTUP .
-	 * All eligible services are first created, then initialized and finally started.
-	 * If an error occur on a service during one of this step, the service is removed from
-	 * the registry and and the error is logged.
+	 * Start the specified services, and their required services. The specifies
+	 * services should be in the specified map. The map is also used to resolves
+	 * dependencies. Start all services marked as start = STARTUP . All eligible
+	 * services are first created, then initialized and finally started. If an
+	 * error occur on a service during one of this step, the service is removed
+	 * from the registry and and the error is logged.
 	 * 
 	 * @param services
 	 *        Services to start
@@ -572,18 +568,19 @@ public class ServicesRegistry {
 		}
 		// Detect cycles
 		checkCycle(roots, map);
-		// Retain only services with startupkind == START and state == REGISTERED
+		// Retain only services with startupkind == START and state ==
+		// REGISTERED
 		roots = retainsToStartServices(roots);
-		// 
+		//
 		List<ServiceStartupEntry> toStart = buildTopologicalListOfServicesToStart(roots, map);
-		
+
 		// Remove already started services
 		toStart = retainsToStartServices(toStart);
 
-		//		if( log.isLoggable(Level.FINE))
-		//		{
+		// if( log.isLoggable(Level.FINE))
+		// {
 		showServices(" Services to start:", toStart);
-		//		}
+		// }
 
 		// Create an object to collect errors if any.
 		ServiceMultiException errors = new ServiceMultiException();
@@ -638,8 +635,7 @@ public class ServicesRegistry {
 	}
 
 	/**
-	 * Print the services.
-	 * For debug purpose
+	 * Print the services. For debug purpose
 	 * 
 	 * @param roots
 	 */
@@ -658,8 +654,8 @@ public class ServicesRegistry {
 	}
 
 	/**
-	 * Check if all dependencies exist. Throw an error if a declared dependency has no corresponding
-	 * service.
+	 * Check if all dependencies exist. Throw an error if a declared dependency
+	 * has no corresponding service.
 	 * 
 	 * @param services
 	 *        Services to check
@@ -668,7 +664,6 @@ public class ServicesRegistry {
 	 * @throws ServiceMultiException
 	 */
 	private void checkDependencies(Collection<ServiceStartupEntry> services, LookupMap map) throws ServiceMultiException {
-
 
 		ServiceMultiException errors = new ServiceMultiException();
 
@@ -694,10 +689,11 @@ public class ServicesRegistry {
 	}
 
 	/**
-	 * Retains only the services that should be started.
-	 * Retains only services with startupkind = START and state == REGISTERED
+	 * Retains only the services that should be started. Retains only services
+	 * with startupkind = START and state == REGISTERED
 	 * 
-	 * @param services Collection to filter
+	 * @param services
+	 *        Collection to filter
 	 * @return a new Collection containing the services to start.
 	 */
 	private List<ServiceStartupEntry> retainsToStartServices(Collection<ServiceStartupEntry> services) {
@@ -714,8 +710,8 @@ public class ServicesRegistry {
 	}
 
 	/**
-	 * Check for cycles. Throws an exception if a cycle is discovered.
-	 * Each root is checked to see if it contains a cycle.
+	 * Check for cycles. Throws an exception if a cycle is discovered. Each root
+	 * is checked to see if it contains a cycle.
 	 * 
 	 * @param roots
 	 * @param map
@@ -726,9 +722,9 @@ public class ServicesRegistry {
 	}
 
 	/**
-	 * Build a list of services to start, in the topological order (right order).
-	 * The required services are placed before the dependent services in the list.
-	 * Services already started are disguarded.
+	 * Build a list of services to start, in the topological order (right
+	 * order). The required services are placed before the dependent services in
+	 * the list. Services already started are disguarded.
 	 * 
 	 * @param roots
 	 * @param map
@@ -739,7 +735,8 @@ public class ServicesRegistry {
 
 		List<ServiceStartupEntry> result = new ArrayList<ServiceStartupEntry>();
 
-		// Each root represent a graph. Walk the root and its child in the list, in the right order.
+		// Each root represent a graph. Walk the root and its child in the list,
+		// in the right order.
 		for(ServiceStartupEntry root : roots) {
 			walkGraphDepthFirst(result, root, map);
 		}
@@ -768,7 +765,8 @@ public class ServicesRegistry {
 				ServiceStartupEntry child = map.getChecked(serviceKey);
 				walkGraphDepthFirst(result, child, map);
 			} catch (ServiceNotFoundException e) {
-				// Do nothing, we have already reported the problems with checkServices;
+				// Do nothing, we have already reported the problems with
+				// checkServices;
 			}
 		}
 
@@ -777,11 +775,12 @@ public class ServicesRegistry {
 	}
 
 	/**
-	 * Create a List of the root services.
-	 * The roots are services that are not required by any service.
+	 * Create a List of the root services. The roots are services that are not
+	 * required by any service.
 	 * 
 	 * @param addedServices
-	 *        A collection from which roots are required. The collection is unmodified.
+	 *        A collection from which roots are required. The collection is
+	 *        unmodified.
 	 * @param map
 	 * @return
 	 */
@@ -791,7 +790,6 @@ public class ServicesRegistry {
 		Collection<ServiceStartupEntry> services = new ArrayList<ServiceStartupEntry>(addedServices);
 
 		List<ServiceStartupEntry> allRequired = new ArrayList<ServiceStartupEntry>();
-
 
 		// The roots are services that are not required by any service.
 		// Build a list of the services required by all other services.
@@ -803,7 +801,8 @@ public class ServicesRegistry {
 					ServiceStartupEntry child = keyServiceMap.getChecked(serviceKey);
 					allRequired.add(child);
 				} catch (ServiceNotFoundException e) {
-					// Do nothing, we have already reported the problems with checkServices;
+					// Do nothing, we have already reported the problems with
+					// checkServices;
 				}
 			}
 
@@ -823,7 +822,7 @@ public class ServicesRegistry {
 	 */
 	public void disposeRegistry() throws ServiceMultiException {
 
-		// List of keys of service in error. 
+		// List of keys of service in error.
 		ServiceMultiException errors = new ServiceMultiException();
 		disposeServices(namedServices.values(), errors);
 		disposeServices(anonymousServices, errors);
@@ -864,8 +863,8 @@ public class ServicesRegistry {
 	}
 
 	/**
-	 * Register all services provided in the list.
-	 * After this operation, services are available thru {@link #getService(Class)}.
+	 * Register all services provided in the list. After this operation,
+	 * services are available thru {@link #getService(Class)}.
 	 * 
 	 * @param toStart
 	 *        List of services to register.
@@ -965,8 +964,8 @@ public class ServicesRegistry {
 	}
 
 	/**
-	 * This class represents a union of two maps of <String, ServiceStartupEntry>. 
-	 * It provide specific methods to retrieve a {@link ServiceStartupEntry} by its key.
+	 * This class represents a union of two maps of <String,
+	 * ServiceStartupEntry>. It provide specific methods to retrieve a {@link ServiceStartupEntry} by its key.
 	 * 
 	 * @author cedric dumoulin
 	 * 
@@ -977,12 +976,10 @@ public class ServicesRegistry {
 
 		Map<String, ServiceStartupEntry> map2;
 
-
 		/**
 		 * 
-		 * Constructor.
-		 * Build a union of two maps.
-		 *
+		 * Constructor. Build a union of two maps.
+		 * 
 		 * @param map1
 		 * @param map2
 		 */
@@ -993,8 +990,7 @@ public class ServicesRegistry {
 
 		/**
 		 * 
-		 * Constructor.
-		 * Build a union of one map (sic).
+		 * Constructor. Build a union of one map (sic).
 		 * 
 		 * @param map
 		 */

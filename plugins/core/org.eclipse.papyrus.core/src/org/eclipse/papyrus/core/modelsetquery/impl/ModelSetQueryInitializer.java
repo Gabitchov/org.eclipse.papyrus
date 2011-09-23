@@ -15,40 +15,36 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.papyrus.resource.IModelSetSnippet;
 import org.eclipse.papyrus.resource.ModelSet;
 
-
 /**
- * This snippet take in charge the initialization of the TypeCache.
- * The snippet is attached to the {@link ModelSet} (in the extensions), and called 
- * right after ModelsManager is initialized.
+ * This snippet take in charge the initialization of the TypeCache. The snippet
+ * is attached to the {@link ModelSet} (in the extensions), and called right
+ * after ModelsManager is initialized.
  * 
  * @author cedric dumoulin
- *
+ * 
  */
 public class ModelSetQueryInitializer implements IModelSetSnippet {
 
 	/**
 	 * The type cache adapter used to reference elements from a type
 	 */
-	private ModelSetQueryAdapter modelQueryAdapter ;
+	private ModelSetQueryAdapter modelQueryAdapter;
 
 	/**
 	 * @see org.eclipse.papyrus.resource.IModelSetSnippet#start(org.eclipse.papyrus.resource.ModelSet)
-	 *
+	 * 
 	 * @param modelsManager
 	 */
 	public void start(ModelSet modelsManager) {
 		EList<Adapter> eAdapters = modelsManager.eAdapters();
-		boolean found = false ;
-		for (Adapter adapter : eAdapters)
-		{
-			if (adapter instanceof IModelSetQueryAdapter)
-			{
-				found = true ;
+		boolean found = false;
+		for(Adapter adapter : eAdapters) {
+			if(adapter instanceof IModelSetQueryAdapter) {
+				found = true;
 				modelQueryAdapter = (ModelSetQueryAdapter)adapter;
 			}
 		}
-		if (!found)
-		{
+		if(!found) {
 			modelQueryAdapter = new ModelSetQueryAdapter();
 			eAdapters.add(modelQueryAdapter);
 		}
@@ -57,12 +53,11 @@ public class ModelSetQueryInitializer implements IModelSetSnippet {
 
 	/**
 	 * @see org.eclipse.papyrus.resource.IModelSetSnippet#dispose(org.eclipse.papyrus.resource.ModelSet)
-	 *
+	 * 
 	 * @param modelsManager
 	 */
 	public void dispose(ModelSet modelsManager) {
-		if (modelQueryAdapter != null)
-		{
+		if(modelQueryAdapter != null) {
 			modelsManager.eAdapters().remove(modelQueryAdapter);
 		}
 

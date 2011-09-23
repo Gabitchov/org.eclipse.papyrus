@@ -104,7 +104,8 @@ public class DragDropEditPolicy extends org.eclipse.gmf.runtime.diagram.ui.editp
 	 * (non-Javadoc)
 	 * 
 	 * @seeorg.eclipse.gmf.runtime.diagram.ui.editpolicies.DragDropEditPolicy#
-	 * getDropObjectsCommand( org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest)
+	 * getDropObjectsCommand(
+	 * org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest)
 	 */
 	@Override
 	public Command getDropObjectsCommand(DropObjectsRequest dropRequest) {
@@ -232,8 +233,8 @@ public class DragDropEditPolicy extends org.eclipse.gmf.runtime.diagram.ui.editp
 	}
 
 	/**
-	 * createViewsAndArrangeCommand Method to create all the view based on the viewDescriptors list
-	 * and provide a default arrangement of them.
+	 * createViewsAndArrangeCommand Method to create all the view based on the
+	 * viewDescriptors list and provide a default arrangement of them.
 	 * 
 	 * @param dropRequest
 	 *        the drop request

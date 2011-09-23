@@ -63,8 +63,8 @@ import org.eclipse.ui.PlatformUI;
 public/* abstract */class ClipboardActionHandler extends DiagramGlobalActionHandler {
 
 	/*
-	 * Specifies whether the last executed action was a cut action or not. This is needed because
-	 * the paste action will vary depending on it
+	 * Specifies whether the last executed action was a cut action or not. This
+	 * is needed because the paste action will vary depending on it
 	 */
 	/** The is cut. */
 	private static boolean isCut = false;
@@ -106,8 +106,10 @@ public/* abstract */class ClipboardActionHandler extends DiagramGlobalActionHand
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.gmf.runtime.diagram.ui.providers.DiagramGlobalActionHandler
-	 * #canCopy(org.eclipse.gmf.runtime.common.ui.services.action.global. IGlobalActionContext)
+	 * @see
+	 * org.eclipse.gmf.runtime.diagram.ui.providers.DiagramGlobalActionHandler
+	 * #canCopy(org.eclipse.gmf.runtime.common.ui.services.action.global.
+	 * IGlobalActionContext)
 	 */
 	@Override
 	protected boolean canCopy(IGlobalActionContext cntxt) {
@@ -143,8 +145,10 @@ public/* abstract */class ClipboardActionHandler extends DiagramGlobalActionHand
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.gmf.runtime.diagram.ui.providers.DiagramGlobalActionHandler
-	 * #canCut(org.eclipse.gmf.runtime.common.ui.services.action.global. IGlobalActionContext)
+	 * @see
+	 * org.eclipse.gmf.runtime.diagram.ui.providers.DiagramGlobalActionHandler
+	 * #canCut(org.eclipse.gmf.runtime.common.ui.services.action.global.
+	 * IGlobalActionContext)
 	 */
 	@Override
 	protected boolean canCut(IGlobalActionContext cntxt) {
@@ -155,8 +159,10 @@ public/* abstract */class ClipboardActionHandler extends DiagramGlobalActionHand
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.gmf.runtime.diagram.ui.providers.DiagramGlobalActionHandler
-	 * #canPaste(org.eclipse.gmf.runtime.common.ui.services.action.global. IGlobalActionContext)
+	 * @see
+	 * org.eclipse.gmf.runtime.diagram.ui.providers.DiagramGlobalActionHandler
+	 * #canPaste(org.eclipse.gmf.runtime.common.ui.services.action.global.
+	 * IGlobalActionContext)
 	 */
 	@Override
 	protected boolean canPaste(IGlobalActionContext cntxt) {
@@ -189,8 +195,10 @@ public/* abstract */class ClipboardActionHandler extends DiagramGlobalActionHand
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.gmf.runtime.diagram.ui.providers.DiagramGlobalActionHandler
-	 * #getCommand(org.eclipse.gmf.runtime.common.ui.services.action.global. IGlobalActionContext)
+	 * @see
+	 * org.eclipse.gmf.runtime.diagram.ui.providers.DiagramGlobalActionHandler
+	 * #getCommand(org.eclipse.gmf.runtime.common.ui.services.action.global.
+	 * IGlobalActionContext)
 	 */
 	@Override
 	public ICommand getCommand(IGlobalActionContext cntxt) {
@@ -227,10 +235,11 @@ public/* abstract */class ClipboardActionHandler extends DiagramGlobalActionHand
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.gmf.runtime.diagram.ui.providers.DiagramGlobalActionHandler
+	 * @see
+	 * org.eclipse.gmf.runtime.diagram.ui.providers.DiagramGlobalActionHandler
 	 * #getCopyCommand(org.eclipse.gmf.runtime.common.ui.services.action.global.
-	 * IGlobalActionContext, org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart,
-	 * boolean)
+	 * IGlobalActionContext,
+	 * org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart, boolean)
 	 */
 	@Override
 	protected ICommand getCopyCommand(IGlobalActionContext cntxt, IDiagramWorkbenchPart diagramPart, boolean isUndoable) {
@@ -268,8 +277,9 @@ public/* abstract */class ClipboardActionHandler extends DiagramGlobalActionHand
 				public void doExecute() {
 
 					/**
-					 * @author mgil : Don't use a different command to copy every element, use the
-					 *         copy function from EcoreUtil
+					 * @author mgil : Don't use a different command to copy
+					 *         every element, use the copy function from
+					 *         EcoreUtil
 					 */
 					ArrayList<Object> list = new ArrayList<Object>();
 					for(EObject eobj : eobjects2) {
@@ -294,9 +304,11 @@ public/* abstract */class ClipboardActionHandler extends DiagramGlobalActionHand
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.gmf.runtime.diagram.ui.providers.DiagramGlobalActionHandler
+	 * @see
+	 * org.eclipse.gmf.runtime.diagram.ui.providers.DiagramGlobalActionHandler
 	 * #getCutCommand(org.eclipse.gmf.runtime.common.ui.services.action.global.
-	 * IGlobalActionContext, org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart)
+	 * IGlobalActionContext,
+	 * org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart)
 	 */
 	@Override
 	protected ICommand getCutCommand(IGlobalActionContext cntxt, IDiagramWorkbenchPart diagramPart) {
@@ -334,8 +346,9 @@ public/* abstract */class ClipboardActionHandler extends DiagramGlobalActionHand
 				public void doExecute() {
 
 					/**
-					 * @author mgil : Don't use a different command to copy every element, use the
-					 *         copy function from EcoreUtil
+					 * @author mgil : Don't use a different command to copy
+					 *         every element, use the copy function from
+					 *         EcoreUtil
 					 */
 					ArrayList<Object> list = new ArrayList<Object>();
 					for(EObject eobj : eobjects2) {
@@ -544,8 +557,8 @@ public/* abstract */class ClipboardActionHandler extends DiagramGlobalActionHand
 	}
 
 	/*
-	 * Checks if all the objects contained in the list are of the same type than the eobject passed
-	 * as parameter
+	 * Checks if all the objects contained in the list are of the same type than
+	 * the eobject passed as parameter
 	 */
 	/**
 	 * All elements same type.

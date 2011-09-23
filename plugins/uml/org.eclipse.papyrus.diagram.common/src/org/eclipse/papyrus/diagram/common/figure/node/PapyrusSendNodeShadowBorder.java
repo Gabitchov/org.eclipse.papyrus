@@ -22,15 +22,14 @@ import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 
-
 public class PapyrusSendNodeShadowBorder extends RectangularShadowBorder {
 
 	/** the width of the widthArrow */
 	protected int widthArrow;
 
-
 	/**
-	 * Creates an instance of this class with the given arc width and arc height in pixels
+	 * Creates an instance of this class with the given arc width and arc height
+	 * in pixels
 	 * 
 	 * @param borderwidth
 	 *        the width of the border line

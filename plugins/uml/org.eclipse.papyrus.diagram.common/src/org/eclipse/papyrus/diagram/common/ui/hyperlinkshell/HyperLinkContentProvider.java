@@ -18,10 +18,8 @@ import java.util.ArrayList;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 
-
 /**
- * The Class HyperlinkContentProvider
- * the input has to be a collection.
+ * The Class HyperlinkContentProvider the input has to be a collection.
  */
 public class HyperLinkContentProvider implements IStructuredContentProvider {
 

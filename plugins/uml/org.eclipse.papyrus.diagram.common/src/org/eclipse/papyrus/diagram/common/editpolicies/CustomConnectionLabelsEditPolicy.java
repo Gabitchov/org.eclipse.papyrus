@@ -26,8 +26,8 @@ import org.eclipse.papyrus.diagram.common.commands.ShowHideConnectionLabelsReque
 
 /**
  * This EditPolicy is used to show or hide only one Label View for a connection.
- * The EditPolicy {@link ConnectionLabelsEditPolicy} provided by GMF allows only show or hide
- * all the labels for a connection and not only some of them
+ * The EditPolicy {@link ConnectionLabelsEditPolicy} provided by GMF allows only
+ * show or hide all the labels for a connection and not only some of them
  * 
  * 
  * 
@@ -78,7 +78,7 @@ public class CustomConnectionLabelsEditPolicy extends ConnectionLabelsEditPolicy
 	 */
 	@Override
 	public EditPart getTargetEditPart(Request request) {
-		//nothing to do here!
+		// nothing to do here!
 		return super.getTargetEditPart(request);
 	}
 

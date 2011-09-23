@@ -19,11 +19,12 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.notation.View;
 
-
 /**
- * This class allows to retrieve the business object from an object representing a graphical artifact in a diagram. Each diagram can register its
- * resolver which will be added to the list of
- * resolvers. Some common resolvers are already registered : gef.EditPart TODO Use extensions to register additional resolvers.
+ * This class allows to retrieve the business object from an object representing
+ * a graphical artifact in a diagram. Each diagram can register its resolver
+ * which will be added to the list of resolvers. Some common resolvers are
+ * already registered : gef.EditPart TODO Use extensions to register additional
+ * resolvers.
  */
 public class BusinessModelResolver {
 
@@ -37,7 +38,8 @@ public class BusinessModelResolver {
 	}
 
 	/**
-	 * Get the business object associated to this object, if any. This method navigate throw the object if the object is an graphical artefact or a
+	 * Get the business object associated to this object, if any. This method
+	 * navigate throw the object if the object is an graphical artefact or a
 	 * diagram artifact.
 	 * 
 	 * @param object
@@ -57,7 +59,7 @@ public class BusinessModelResolver {
 			return ((View)object).getElement();
 
 		} else if(object instanceof IAdaptable) {
-			// Among others this is useful to retrieve the selected object from 
+			// Among others this is useful to retrieve the selected object from
 			// an explorer item.
 			return ((IAdaptable)object).getAdapter(EObject.class);
 
@@ -65,7 +67,6 @@ public class BusinessModelResolver {
 			return object;
 		}
 	}
-
 
 	/**
 	 * Get the business object from a GraphElement.

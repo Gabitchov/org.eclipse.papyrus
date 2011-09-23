@@ -75,10 +75,11 @@ public class PapyrusPalettePreferences implements IPapyrusPaletteConstant {
 	}
 
 	/**
-	 * Retrieves the root memento from the plugin preferences if there were existing palette
-	 * customizations.
+	 * Retrieves the root memento from the plugin preferences if there were
+	 * existing palette customizations.
 	 * 
-	 * @return the root memento if there were existing customizations; null otherwise
+	 * @return the root memento if there were existing customizations; null
+	 *         otherwise
 	 */
 	protected static XMLMemento getExistingCustomizations() {
 		String sValue = getPreferenceStore().getString(PALETTE_CUSTOMIZATIONS_ID);
@@ -96,10 +97,11 @@ public class PapyrusPalettePreferences implements IPapyrusPaletteConstant {
 	}
 
 	/**
-	 * Retrieves the root memento from the plugin preferences if there were existing local palette
-	 * redefinitions.
+	 * Retrieves the root memento from the plugin preferences if there were
+	 * existing local palette redefinitions.
 	 * 
-	 * @return the root memento if there were existing customizations, a newly created one otherwise (empty one)
+	 * @return the root memento if there were existing customizations, a newly
+	 *         created one otherwise (empty one)
 	 */
 	protected static XMLMemento getLocalRedefinitions() {
 		String sValue = getPreferenceStore().getString(PALETTE_REDEFINITIONS);
@@ -145,7 +147,6 @@ public class PapyrusPalettePreferences implements IPapyrusPaletteConstant {
 
 		return newMemento;
 	}
-
 
 	/**
 	 * Unregister a specific local redefinition
@@ -247,7 +248,8 @@ public class PapyrusPalettePreferences implements IPapyrusPaletteConstant {
 	}
 
 	/**
-	 * Retrieves the memento corresponding to the list of hidden palettes for a given editor part
+	 * Retrieves the memento corresponding to the list of hidden palettes for a
+	 * given editor part
 	 * 
 	 * @param part
 	 *        the editor for which preferences should be found
@@ -292,18 +294,21 @@ public class PapyrusPalettePreferences implements IPapyrusPaletteConstant {
 	}
 
 	/**
-	 * Returns the memento associated to the palette, or <code>null</code> if none exists
+	 * Returns the memento associated to the palette, or <code>null</code> if
+	 * none exists
 	 * 
 	 * @param paletteID
 	 *        the identifier of the palette to find
-	 * @return the memento found or <code>null</code> if no customization exists for this palette
+	 * @return the memento found or <code>null</code> if no customization exists
+	 *         for this palette
 	 */
 	private static IMemento getPaletteRedefinitionNode(String paletteID) {
 		XMLMemento rootMemento = getLocalRedefinitions();
 		IMemento[] redefinitions = rootMemento.getChildren(PALETTE_REDEFINITION);
 		for(IMemento redefinitionMemento : redefinitions) {
 			String paletteNodeID = redefinitionMemento.getString(ID);
-			// check equals. Palette ID is not null, as checked at the begining of the method.
+			// check equals. Palette ID is not null, as checked at the begining
+			// of the method.
 			if(paletteID.equals(paletteNodeID)) {
 				return redefinitionMemento;
 			}
@@ -410,9 +415,11 @@ public class PapyrusPalettePreferences implements IPapyrusPaletteConstant {
 	}
 
 	/**
-	 * Retrieves the root memento from the plugin preferences if there were existing local palettes.
+	 * Retrieves the root memento from the plugin preferences if there were
+	 * existing local palettes.
 	 * 
-	 * @return the root memento if there were existing customizations; null otherwise
+	 * @return the root memento if there were existing customizations; null
+	 *         otherwise
 	 */
 	protected static XMLMemento getExistingLocalPalettes() {
 		String sValue = getPreferenceStore().getString(PALETTE_LOCAL_DEFINITIONS);
@@ -522,7 +529,8 @@ public class PapyrusPalettePreferences implements IPapyrusPaletteConstant {
 	}
 
 	/**
-	 * Creates the palette memento for the given palette ID, in the given memento
+	 * Creates the palette memento for the given palette ID, in the given
+	 * memento
 	 * 
 	 * @param rootMemento
 	 *        the memento parent of the newly created memento

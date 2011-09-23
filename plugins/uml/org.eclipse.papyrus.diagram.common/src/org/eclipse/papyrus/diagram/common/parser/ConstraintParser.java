@@ -193,10 +193,8 @@ public class ConstraintParser implements IParser, ISemanticParser {
 			
 			Interval specif = (Interval)constraint.getSpecification();
 			command = new CompositeTransactionalCommand(editingDomain, "Set Value Constraint"); //$NON-NLS-1$
-			
-			
-			LiteralInteger min =UMLFactory.eINSTANCE.createLiteralInteger();
-			LiteralInteger max =UMLFactory.eINSTANCE.createLiteralInteger();
+			LiteralInteger min = UMLFactory.eINSTANCE.createLiteralInteger();
+			LiteralInteger max = UMLFactory.eINSTANCE.createLiteralInteger();
 			min.setName(NamedElementHelper.EINSTANCE.getNewUMLElementName(min, min.eClass()));
 			max.setName(NamedElementHelper.EINSTANCE.getNewUMLElementName(max, max.eClass()));
 			Integer minInt= new Integer(newString.substring(0, newString.indexOf("..")));

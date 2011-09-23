@@ -19,7 +19,8 @@ import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 
 /**
- * this figure is used to display at the good positionn acnhor on the packageable element
+ * this figure is used to display at the good positionn acnhor on the
+ * packageable element
  * 
  * @author PT202707
  * 

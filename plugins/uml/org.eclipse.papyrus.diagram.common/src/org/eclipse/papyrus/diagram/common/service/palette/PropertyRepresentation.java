@@ -27,8 +27,8 @@ import org.eclipse.uml2.uml.Type;
 public class PropertyRepresentation {
 
 	/**
-	 * The property ID is used to represent a unique property.
-	 * It's composed by : stereotype qualified name + {@link #separator} + {@link #propertyQualifiedName}
+	 * The property ID is used to represent a unique property. It's composed by
+	 * : stereotype qualified name + {@link #separator} + {@link #propertyQualifiedName}
 	 */
 	private String propID;
 
@@ -41,7 +41,11 @@ public class PropertyRepresentation {
 	/** Is it a runtime property? */
 	private boolean isRuntimeProperty = false;
 
-	/** the {@link StereotypeRepresentation owning this {@link PropertyRepresentation} */
+/**
+	 * the {@link StereotypeRepresentation owning this
+	 * 
+	 * @link PropertyRepresentation}
+	 */
 	private StereotypeRepresentation stereotype;
 
 	/** the property qualified name */
@@ -50,7 +54,10 @@ public class PropertyRepresentation {
 	/** the name of the property */
 	private String name;
 
-	/** separator used in the {@link #propID}. It's not useful, it's only to facilitate debug! */
+	/**
+	 * separator used in the {@link #propID}. It's not useful, it's only to
+	 * facilitate debug!
+	 */
 	static public String separator = "|";; //$NON-NLS-1$
 
 	/**
@@ -70,11 +77,12 @@ public class PropertyRepresentation {
 
 	/**
 	 * 
-	 * Constructor.
-	 * Note : the values aren't not duplicated. The two PropertyRepresentation share the same instances of the values
+	 * Constructor. Note : the values aren't not duplicated. The two
+	 * PropertyRepresentation share the same instances of the values
 	 * 
 	 * @param propRep
-	 *        the PropertyRepresentation used to instantiate a new PropertyRepresentation
+	 *        the PropertyRepresentation used to instantiate a new
+	 *        PropertyRepresentation
 	 */
 	public PropertyRepresentation(PropertyRepresentation propRep) {
 		this.propertyQualifiedName = new String(propRep.getQualifiedName());
@@ -87,8 +95,7 @@ public class PropertyRepresentation {
 	/**
 	 * Returns the property qualified name
 	 * 
-	 * @return
-	 *         the property qualified name
+	 * @return the property qualified name
 	 */
 	public String getQualifiedName() {
 		return propertyQualifiedName;
@@ -108,8 +115,7 @@ public class PropertyRepresentation {
 	/**
 	 * Returns all the values owned by this property
 	 * 
-	 * @return
-	 *         all the values owned by this property
+	 * @return all the values owned by this property
 	 */
 	public ArrayList<Value> getValues() {
 		return values;
@@ -118,8 +124,7 @@ public class PropertyRepresentation {
 	/**
 	 * Returns the type of the property
 	 * 
-	 * @return
-	 *         the type of the property
+	 * @return the type of the property
 	 */
 	public Type getType() {
 		Assert.isNotNull(UMLProperty, "The property has not been set!"); //$NON-NLS-1$
@@ -129,8 +134,7 @@ public class PropertyRepresentation {
 	/**
 	 * Setter for {@link #propID}
 	 * 
-	 * @return
-	 *         {@link #propID}
+	 * @return {@link #propID}
 	 */
 	public String getPropertyId() {
 		return propID;
@@ -149,8 +153,7 @@ public class PropertyRepresentation {
 	/**
 	 * Returns the string corresponding to the property multiplicity
 	 * 
-	 * @return
-	 *         the string corresponding to the property multiplicity
+	 * @return the string corresponding to the property multiplicity
 	 */
 	protected String getPropertyMultiplicity() {
 		Assert.isNotNull(UMLProperty, "The property has not been set!"); //$NON-NLS-1$
@@ -178,8 +181,7 @@ public class PropertyRepresentation {
 	/**
 	 * Returns the string corresponding to the value to display for the property
 	 * 
-	 * @return
-	 *         the string corresponding to the value to display for the property
+	 * @return the string corresponding to the value to display for the property
 	 * 
 	 */
 	protected String getValueToDisplay() {
@@ -207,8 +209,7 @@ public class PropertyRepresentation {
 	/**
 	 * Getter for {@link #isRuntimeProperty}
 	 * 
-	 * @return
-	 *         {@link #isRuntimeProperty}
+	 * @return {@link #isRuntimeProperty}
 	 */
 	public boolean isRuntime() {
 		return isRuntimeProperty;
@@ -246,8 +247,7 @@ public class PropertyRepresentation {
 
 	/**
 	 * 
-	 * @return
-	 *         <ul>
+	 * @return <ul>
 	 *         <li>{@code true} if the property has values</li>
 	 *         <li>{@code false} if not</li>
 	 *         </ul>
@@ -259,8 +259,7 @@ public class PropertyRepresentation {
 	/**
 	 * Returns the {@link StereotypeRepresentation} owning this {@link PropertyRepresentation}
 	 * 
-	 * @return
-	 *         the {@link StereotypeRepresentation} owning this {@link PropertyRepresentation}
+	 * @return the {@link StereotypeRepresentation} owning this {@link PropertyRepresentation}
 	 */
 	public StereotypeRepresentation getStereotypeRepresentation() {
 		return stereotype;
@@ -269,8 +268,7 @@ public class PropertyRepresentation {
 	/**
 	 * Returns the {@link org.eclipse.uml.uml.Property} represented by this {@link PropertyRepresentation}
 	 * 
-	 * @return
-	 *         the {@link org.eclipse.uml.uml.Property} represented by this {@link PropertyRepresentation}
+	 * @return the {@link org.eclipse.uml.uml.Property} represented by this {@link PropertyRepresentation}
 	 */
 	public Property getUMLProperty() {
 		Assert.isNotNull(UMLProperty, "The property has not been set!"); //$NON-NLS-1$
@@ -278,10 +276,11 @@ public class PropertyRepresentation {
 	}
 
 	/**
-	 * Returns the string representing this property, with this type and this value
+	 * Returns the string representing this property, with this type and this
+	 * value
 	 * 
-	 * @return
-	 *         the string representing this property, with this type and this value
+	 * @return the string representing this property, with this type and this
+	 *         value
 	 */
 	public String getLabel() {
 		String label = this.name;
@@ -294,10 +293,11 @@ public class PropertyRepresentation {
 	}
 
 	/**
-	 * Returns the values owned by this {@link PropertyRepresentation}, represented by a string
+	 * Returns the values owned by this {@link PropertyRepresentation},
+	 * represented by a string
 	 * 
-	 * @return
-	 *         the values owned by this {@link PropertyRepresentation}, represented by a string
+	 * @return the values owned by this {@link PropertyRepresentation},
+	 *         represented by a string
 	 */
 	public ArrayList<String> getStringValue() {
 		ArrayList<String> stringValues = new ArrayList<String>();

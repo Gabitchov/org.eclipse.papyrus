@@ -46,7 +46,8 @@ public class PapyrusPaletteEntryState extends PaletteEntryState {
 		String sValue = entryMemento.getString(PARENT_ID_KEY);
 		if(sValue != null) {
 			if(!entry.getParent().getId().equals(sValue)) {
-				// adds to the new container, but does nto remove from old one, because of
+				// adds to the new container, but does nto remove from old one,
+				// because of
 				// iterator...
 				PaletteContainer container = PaletteUtil.getContainerByID(entry, sValue);
 				container.add(entry);

@@ -57,7 +57,8 @@ public abstract class ModelCreationCommandBase implements IModelCreationCommand 
 	 *        the di resource set
 	 */
 	protected void runAsTransaction(final DiResourceSet diResourceSet) {
-		// Get the uml element to which the newly created diagram will be attached.
+		// Get the uml element to which the newly created diagram will be
+		// attached.
 		// Create the diagram
 		final Resource modelResource = diResourceSet.getModelResource();
 		TransactionalEditingDomain editingDomain = diResourceSet.getTransactionalEditingDomain();
@@ -126,7 +127,5 @@ public abstract class ModelCreationCommandBase implements IModelCreationCommand 
 	 * @return the root element
 	 */
 	protected abstract EObject createRootElement();
-
-
 
 }

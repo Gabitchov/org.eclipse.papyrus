@@ -24,15 +24,15 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.editor.PapyrusMultiDiagramEditor;
 import org.eclipse.ui.IEditorPart;
 
-
 /**
- * This class provides method to force the load of the view service
- * see bug 302555
+ * This class provides method to force the load of the view service see bug
+ * 302555
  */
 public class ViewServiceUtil {
 
 	/**
-	 * To load a service, we build a dummy command and we test if it can be executed
+	 * To load a service, we build a dummy command and we test if it can be
+	 * executed
 	 * 
 	 */
 	public static void forceLoad() {
@@ -44,12 +44,13 @@ public class ViewServiceUtil {
 					String diagramSemanticHint = diagram.getType();
 					DiagramEditPart host = ((PapyrusMultiDiagramEditor)activeEditor).getDiagramEditPart();
 
-					//When we don't have the semanticHint, the command can't be executed, if the ViewService is not started
-					//The goal of this class is to launch the view service
+					// When we don't have the semanticHint, the command can't be
+					// executed, if the ViewService is not started
+					// The goal of this class is to launch the view service
 					ViewDescriptor descriptor = new ViewDescriptor(new EObjectAdapter(diagram), Diagram.class, diagramSemanticHint, ViewUtil.APPEND, false, ((IGraphicalEditPart)host).getDiagramPreferencesHint());
 					CreateCommand dummyCommand = new CreateCommand(((IGraphicalEditPart)host).getEditingDomain(), descriptor, ((View)host.getModel()));
 
-					//this action force the load of the ViewService
+					// this action force the load of the ViewService
 					dummyCommand.canExecute();
 				}
 			}

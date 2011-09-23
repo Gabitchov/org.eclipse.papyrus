@@ -3,10 +3,8 @@
  */
 package org.eclipse.papyrus.core.lifecycleevents;
 
-
 import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
-
 
 /**
  * Event sent whith a Save or SaveAs.
@@ -17,13 +15,13 @@ import org.eclipse.papyrus.core.services.ServicesRegistry;
 public class DoSaveEvent {
 
 	final protected ServicesRegistry serviceRegistry;
+
 	final protected IMultiDiagramEditor multiDiagramEditor;
-	
+
 	/**
-	 * Create an Event that is sent with a Save or SaveAs.
-	 * The same event can be reused.
-	 * Constructor.
-	 *
+	 * Create an Event that is sent with a Save or SaveAs. The same event can be
+	 * reused. Constructor.
+	 * 
 	 * @param serviceRegistry
 	 * @param multiDiagramEditor
 	 */
@@ -38,12 +36,12 @@ public class DoSaveEvent {
 	public ServicesRegistry getServiceRegistry() {
 		return serviceRegistry;
 	}
-	
+
 	/**
 	 * @return the multiDiagramEditor
 	 */
 	public IMultiDiagramEditor getMultiDiagramEditor() {
 		return multiDiagramEditor;
 	}
-	
+
 }

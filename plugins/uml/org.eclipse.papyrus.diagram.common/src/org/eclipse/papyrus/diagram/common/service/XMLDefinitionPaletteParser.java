@@ -28,7 +28,8 @@ public class XMLDefinitionPaletteParser implements IPapyrusPaletteConstant {
 	 * Create a new XMLDefinitionPaletteParser
 	 * 
 	 * @param factory
-	 *        the factory used to create elements from the parsing of the xml file
+	 *        the factory used to create elements from the parsing of the
+	 *        xml file
 	 */
 	public XMLDefinitionPaletteParser(AbstractXMLDefinitionPaletteFactory factory) {
 		this.factory = factory;

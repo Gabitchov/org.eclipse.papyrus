@@ -55,10 +55,9 @@ import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.ValueSpecification;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
-
 /**
- * The Class EditorLabelProvider.
- * This class provides Label and Image for UML Element
+ * The Class EditorLabelProvider. This class provides Label and Image for UML
+ * Element
  * 
  */
 public class EditorLabelProvider implements ILabelProvider {
@@ -68,7 +67,6 @@ public class EditorLabelProvider implements ILabelProvider {
 	 * Key is a String representing the type of Element
 	 */
 	private Map<String, Integer> index = new HashMap<String, Integer>();
-
 
 	/** the plugin where owning the icons for the UML Element */
 	public static final String pluginID = "org.eclipse.uml2.uml.edit"; //$NON-NLS-1$
@@ -92,7 +90,7 @@ public class EditorLabelProvider implements ILabelProvider {
 	 * @param listener
 	 */
 	public void addListener(ILabelProviderListener listener) {
-		//TODO
+		// TODO
 	}
 
 	/**
@@ -115,7 +113,7 @@ public class EditorLabelProvider implements ILabelProvider {
 	 * @param listener
 	 */
 	public void removeListener(ILabelProviderListener listener) {
-		//TODO
+		// TODO
 	}
 
 	/**
@@ -123,8 +121,7 @@ public class EditorLabelProvider implements ILabelProvider {
 	 * @see org.eclipse.jface.viewers.ILabelProvider#getImage(java.lang.Object)
 	 * 
 	 * @param element
-	 * @return
-	 *         <ul>
+	 * @return <ul>
 	 *         <li>if stereotypes are applied on the elements : return the image corresponding to the first applied stereotype</li>
 	 *         <li>if the element is a MetaClass return the image representing a metaclass</li>
 	 *         <li>if the element is a {@link DecorationNode}, returns the image corresponding to a compartment</li>
@@ -139,16 +136,17 @@ public class EditorLabelProvider implements ILabelProvider {
 			}
 		}
 
-		//test for Metaclass
+		// test for Metaclass
 		if(element instanceof Class) {
 			if(org.eclipse.papyrus.diagram.common.util.Util.isMetaclass((Type)element)) {
 				return Activator.getPluginIconImage(Activator.ID, ICON_METACLASS);
 			}
 		}
 
-		//test for other UML Elements
+		// test for other UML Elements
 		if(element instanceof Element) {
-			//return the stereotype image if a stereotype is applied on the element
+			// return the stereotype image if a stereotype is applied on the
+			// element
 			Image im = Activator.getIconElement((Element)element);
 			String imagePath = new String(imageFolder);
 			if(im == null) {
@@ -162,7 +160,7 @@ public class EditorLabelProvider implements ILabelProvider {
 			return im;
 		}
 
-		//if the element is a compartment
+		// if the element is a compartment
 		if(element instanceof BasicCompartment || element instanceof DecorationNode) {
 			return Activator.getPluginIconImage(Activator.ID, ICON_COMPARTMENT);
 		} else if(element instanceof Diagram) {
@@ -170,7 +168,7 @@ public class EditorLabelProvider implements ILabelProvider {
 			try {
 				registry = ServiceUtilsForActionHandlers.getInstance().getServiceRegistry().getService(IPageIconsRegistry.class);
 			} catch (ServiceException e) {
-				//nothing to do
+				// nothing to do
 			}
 			if(registry == null) {
 				registry = new PageIconsRegistry();
@@ -178,7 +176,7 @@ public class EditorLabelProvider implements ILabelProvider {
 			return registry.getEditorIcon(element);
 		}
 
-		//Standard EMF image
+		// Standard EMF image
 		if(element instanceof EObject) {
 			EObject eObject = (EObject)element;
 			//
@@ -215,8 +213,7 @@ public class EditorLabelProvider implements ILabelProvider {
 	 * @see org.eclipse.jface.viewers.ILabelProvider#getText(java.lang.Object)
 	 * 
 	 * @param element
-	 * @return
-	 *         <ul>
+	 * @return <ul>
 	 *         <li>if element is a {@link NamedElement}, we return its name</li>
 	 *         <li>else if element is a {@link Element}, we return its type + a index</li>
 	 *         <li>else return {@link Messages#EditorLabelProvider_No_name}</li>
@@ -234,18 +231,20 @@ public class EditorLabelProvider implements ILabelProvider {
 			}
 		}
 
-		//		if(element instanceof EditPart) {
-		//			element = ((View)((EditPart)element).getModel()).getElement();
-		//		}
+		// if(element instanceof EditPart) {
+		// element = ((View)((EditPart)element).getModel()).getElement();
+		// }
 
-		if(element instanceof EObject && UMLUtil.getBaseElement((EObject)element) != null) { //Stereotype Application
-			//We return the label of the Stereotyped element, not of the Stereotype itself
+		if(element instanceof EObject && UMLUtil.getBaseElement((EObject)element) != null) { // Stereotype
+																								// Application
+			// We return the label of the Stereotyped element, not of the
+			// Stereotype itself
 			return getText(UMLUtil.getBaseElement((EObject)element));
 		} else if(element instanceof org.eclipse.uml2.uml.Image) {
-			//imageName
-			//location
-			//imageName : location
-			//Image
+			// imageName
+			// location
+			// imageName : location
+			// Image
 			org.eclipse.uml2.uml.Image image = ((org.eclipse.uml2.uml.Image)element);
 
 			String imageName = ImageUtil.getName(image);
@@ -278,7 +277,8 @@ public class EditorLabelProvider implements ILabelProvider {
 				return "<Element Import> " + importedElement.getName();
 			}
 		} else if(element instanceof NamedElement) {
-			if(element instanceof ValueSpecification) { //Format : [name=]value
+			if(element instanceof ValueSpecification) { // Format :
+														// [name=]value
 				String value = null;
 				if(element instanceof InstanceValue) {
 					InstanceSpecification specification = ((InstanceValue)element).getInstance();
@@ -310,7 +310,8 @@ public class EditorLabelProvider implements ILabelProvider {
 				return ((NamedElement)element).getName();
 			}
 		} else if(element instanceof Element) {
-			//when the element is not a NamedElement, we return its Type + a index
+			// when the element is not a NamedElement, we return its Type + a
+			// index
 			String className = element.getClass().getName();
 			int i = className.lastIndexOf(".");
 			className = className.substring(i + 1);
@@ -324,7 +325,8 @@ public class EditorLabelProvider implements ILabelProvider {
 			return className + " " + number;
 		} else if(element instanceof Diagram) {
 			return ((Diagram)element).getName();
-		} else if(element instanceof View) { //maybe it is a view of a compartment
+		} else if(element instanceof View) { // maybe it is a view of a
+												// compartment
 			EditPart dummyEP = EditPartService.getInstance().createGraphicEditPart((View)element);
 			if(dummyEP instanceof ResizableCompartmentEditPart) {
 				return ((ResizableCompartmentEditPart)dummyEP).getCompartmentName();
@@ -346,6 +348,6 @@ public class EditorLabelProvider implements ILabelProvider {
 	 * 
 	 */
 	public void dispose() {
-		//TODO
+		// TODO
 	}
 }

@@ -51,11 +51,10 @@ import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
 
-
 /**
  * 
- * The decorator to represent inherited element
- * This decorator adds a small image ( the generalization icon) next to the UML Element which are inherited.
+ * The decorator to represent inherited element This decorator adds a small
+ * image ( the generalization icon) next to the UML Element which are inherited.
  * 3 positions are defined for the decoration :
  * <ul>
  * <li>if the UML Element is represented like an affixed child node : in {@link PositionConstants#NORTH_WEST} or {@link PositionConstants#SOUTH_EAST}
@@ -80,7 +79,6 @@ public class InheritedDecorator implements IDecorator {
 
 	/** the image used added to represent an inherited element */
 	private static final Image ICON_HYPERLINK = Activator.getPluginIconImage(pluginID, imagePath);
-
 
 	/**
 	 * Creates a new <code>AbstractDecorator</code> for the decorator target
@@ -134,8 +132,7 @@ public class InheritedDecorator implements IDecorator {
 	 * 
 	 * @param decoratorTarget
 	 *        IDecoratorTarget to check and return valid Classifier target.
-	 * @return node Node if IDecoratorTarget can be supported, null
-	 *         otherwise.
+	 * @return node Node if IDecoratorTarget can be supported, null otherwise.
 	 */
 	static public Node getDecoratorTargetNode(IDecoratorTarget decoratorTarget) {
 		DescriptionStyle descStyle = null;
@@ -150,7 +147,6 @@ public class InheritedDecorator implements IDecorator {
 		return null;
 
 	}
-
 
 	/**
 	 * Creates the appropriate review decoration if all the criteria is
@@ -168,15 +164,27 @@ public class InheritedDecorator implements IDecorator {
 
 			if(descStyle != null) {
 				if(isInherited(node)) {
-					//					if(Util.isAffixedChildNode(gep)) {
+					// if(Util.isAffixedChildNode(gep)) {
 
-					//						setDecoration(getDecoratorTarget().addDecoration(figure, locator, false));
-					//					} else {
-					//						setDecoration(getDecoratorTarget().addShapeDecoration(figure, getDirection(node), -1, false));
-					//					}
+					// setDecoration(getDecoratorTarget().addDecoration(figure,
+					// locator, false));
+					// } else {
+					// setDecoration(getDecoratorTarget().addShapeDecoration(figure,
+					// getDirection(node), -1, false));
+					// }
 
-
-					if(gep != null && gep.getRoot() != null) {//if the gep has no parent, we can't test if the container is a compartment list (because, we call the method DiagramEditPartsUtil.getEditPartFromView((View)container, gep);
+					if(gep != null && gep.getRoot() != null) {// if the gep has
+																// no parent, we
+																// can't test if
+																// the container
+																// is a
+																// compartment
+																// list
+																// (because, we
+																// call the
+																// method
+																// DiagramEditPartsUtil.getEditPartFromView((View)container,
+																// gep);
 						IFigure figure = getFigure(ICON_HYPERLINK);
 						if(isInCompartmentList(node) && !Util.isAffixedChildNode(gep)) {
 							setDecoration(getDecoratorTarget().addShapeDecoration(figure, getDirection(node), -1, false));
@@ -186,22 +194,17 @@ public class InheritedDecorator implements IDecorator {
 						}
 					}
 
-
 				}
 			}
 		}
 	}
-
-
-
 
 	/**
 	 * Returns a figure corresponding to this image
 	 * 
 	 * @param image
 	 *        a image
-	 * @return
-	 *         a figure corresponding to this image
+	 * @return a figure corresponding to this image
 	 */
 	public IFigure getFigure(Image image) {
 		IMapMode mm = MapModeUtil.getMapMode(((IGraphicalEditPart)getDecoratorTarget().getAdapter(IGraphicalEditPart.class)).getFigure());
@@ -216,9 +219,8 @@ public class InheritedDecorator implements IDecorator {
 	 * 
 	 * @param node
 	 *        the node
-	 * @return
-	 *         the direction to set the decorator for the node
-	 *         direction can be :
+	 * @return the direction to set the decorator for the node direction can be
+	 *         :
 	 *         <ul>
 	 *         <li> {@link PositionConstants#NORTH_WEST} or {@link PositionConstants#SOUTH_EAST}</li> if the node is an Affixed Child Node
 	 *         <li>{@link PositionConstants#EAST}</li> if the node is in a compartment list
@@ -228,24 +230,26 @@ public class InheritedDecorator implements IDecorator {
 	protected Direction getDirection(Node node) {
 		IGraphicalEditPart gep = (IGraphicalEditPart)getDecoratorTarget().getAdapter(IGraphicalEditPart.class);
 		assert gep != null;
-		//test if its an affixed ChildNode
-		//		if(Util.isAffixedChildNode(gep)) {
+		// test if its an affixed ChildNode
+		// if(Util.isAffixedChildNode(gep)) {
 		//
-		//			IBorderItemLocator loc = ((BorderNamedElementEditPart)gep).getBorderItemLocator();
-		//			int location = loc.getCurrentSideOfParent();
-		//			if(PositionConstants.NONE == location) { //sometimes getBorderItemLocator doesn't work correctly!
-		//				location = PositionConstants.NORTH_WEST;
-		//			}
-		//			switch(location) {
-		//			case PositionConstants.NORTH:
-		//			case PositionConstants.NORTH_WEST:
-		//			case PositionConstants.WEST:
-		//			case PositionConstants.SOUTH_WEST:
-		//				//				return IDecoratorTarget.Direction.NORTH_WEST;
-		//			default:
-		//				return IDecoratorTarget.Direction.SOUTH_EAST;
-		//			}
-		//		}
+		// IBorderItemLocator loc =
+		// ((BorderNamedElementEditPart)gep).getBorderItemLocator();
+		// int location = loc.getCurrentSideOfParent();
+		// if(PositionConstants.NONE == location) { //sometimes
+		// getBorderItemLocator doesn't work correctly!
+		// location = PositionConstants.NORTH_WEST;
+		// }
+		// switch(location) {
+		// case PositionConstants.NORTH:
+		// case PositionConstants.NORTH_WEST:
+		// case PositionConstants.WEST:
+		// case PositionConstants.SOUTH_WEST:
+		// // return IDecoratorTarget.Direction.NORTH_WEST;
+		// default:
+		// return IDecoratorTarget.Direction.SOUTH_EAST;
+		// }
+		// }
 		if(gep.getParent() != null) {
 			if(isInCompartmentList(node) && !Util.isAffixedChildNode(gep)) {
 				return IDecoratorTarget.Direction.EAST;
@@ -259,8 +263,7 @@ public class InheritedDecorator implements IDecorator {
 	 * 
 	 * @param node
 	 *        the node on which we want add an Overlay
-	 * @return
-	 *         <code>true</code> if the compartment is managed by an {@link XYLayoutEditPolicy}
+	 * @return <code>true</code> if the compartment is managed by an {@link XYLayoutEditPolicy}
 	 */
 	protected boolean isInCompartmentList(Node node) {
 		IGraphicalEditPart gep = (IGraphicalEditPart)getDecoratorTarget().getAdapter(IGraphicalEditPart.class);
@@ -269,7 +272,9 @@ public class InheritedDecorator implements IDecorator {
 			if(container instanceof View) {
 				EditPart EP = DiagramEditPartsUtil.getEditPartFromView((View)container, gep);
 				EditPolicy editPolicy = EP.getEditPolicy(EditPolicy.LAYOUT_ROLE);
-				if(!(editPolicy instanceof XYLayoutEditPolicy)) {//we are in a compartment list
+				if(!(editPolicy instanceof XYLayoutEditPolicy)) {// we are in a
+																	// compartment
+																	// list
 					return true;
 				}
 			}
@@ -282,8 +287,7 @@ public class InheritedDecorator implements IDecorator {
 	 * 
 	 * @param node
 	 *        a node
-	 * @return
-	 *         <code>true</code> if the node is an inherited element <code>false</code> if not
+	 * @return <code>true</code> if the node is an inherited element <code>false</code> if not
 	 */
 	protected boolean isInherited(Node node) {
 		EObject element = node.getElement();
@@ -315,8 +319,8 @@ public class InheritedDecorator implements IDecorator {
 	}
 
 	/**
-	 * getDescriptionStyle
-	 * Accessor to retrieve the description style from a Node.
+	 * getDescriptionStyle Accessor to retrieve the description style from a
+	 * Node.
 	 * 
 	 * @param node
 	 *        Node to retrieve the description style from.
@@ -339,24 +343,23 @@ public class InheritedDecorator implements IDecorator {
 		 */
 		public void notifyChanged(Notification notification) {
 
-
-
 			if(notification.getEventType() == Notification.REMOVE) {
 				if(notification.getNotifier() instanceof Classifier) {
 					IGraphicalEditPart gep = (IGraphicalEditPart)getDecoratorTarget().getAdapter(IGraphicalEditPart.class);
 					assert gep != null;
-					//we remove the listener on the container (because it's changing
+					// we remove the listener on the container (because it's
+					// changing
 					DiagramEventBroker.getInstance(gep.getEditingDomain()).removeNotificationListener((EObject)notification.getNotifier(), notificationListener);
 				}
 			}
-			//we update the listeners It's useful when an Element with overlay changes of parent
+			// we update the listeners It's useful when an Element with overlay
+			// changes of parent
 			deactivate();
 			activate();
 			refresh();
 		}
 
 	};
-
 
 	/**
 	 * Adds listeners on
@@ -372,13 +375,15 @@ public class InheritedDecorator implements IDecorator {
 		View view = ((View)gep.getModel());
 
 		if(view instanceof Node) {
-			//the location of the decorator can change if it's an Affixed Child Node
+			// the location of the decorator can change if it's an Affixed Child
+			// Node
 			if(isInherited((Node)view) && Util.isAffixedChildNode(gep)) {
 				DiagramEventBroker.getInstance(gep.getEditingDomain()).addNotificationListener(gep.getNotationView(), notificationListener);
 			}
 		}
 
-		//if the graphical parent is a Property, we add a listener on the type of the property, to refresh the decoration
+		// if the graphical parent is a Property, we add a listener on the type
+		// of the property, to refresh the decoration
 		EObject parent = view.eContainer();
 		if(parent instanceof DecorationNode) {
 			parent = parent.eContainer();
@@ -391,21 +396,22 @@ public class InheritedDecorator implements IDecorator {
 		}
 
 		/*
-		 * We listen the changes on the UML parent, in order to know if the element is changing of parent
-		 * Adding a listener using the following EReference doesn't work
-		 * UMLPackage.eINSTANCE.getElement_Owner();
+		 * We listen the changes on the UML parent, in order to know if the
+		 * element is changing of parent Adding a listener using the following
+		 * EReference doesn't work UMLPackage.eINSTANCE.getElement_Owner();
 		 * UMLPackage.eINSTANCE.getProperty_Class();
-		 * UMLPackage.eINSTANCE.getNamedElement_Namespace();
-		 * that's why we listen the parent
+		 * UMLPackage.eINSTANCE.getNamedElement_Namespace(); that's why we
+		 * listen the parent
 		 */
 		if(view.getElement() instanceof Element) {
 			Element semanticElement = (Element)view.getElement();
 
 			/*
-			 * We need add a listener only if the element is an element which can be inherited, like Property, Operation, Signal, Classifier...
+			 * We need add a listener only if the element is an element which
+			 * can be inherited, like Property, Operation, Signal, Classifier...
 			 */
 			if(semanticElement != null && canBeInherited(semanticElement)) {
-				//we listen if the container of the element changes!
+				// we listen if the container of the element changes!
 				if(semanticElement.eContainer() != null) {
 					DiagramEventBroker.getInstance(gep.getEditingDomain()).addNotificationListener(semanticElement.eContainer(), notificationListener);
 				}
@@ -418,8 +424,7 @@ public class InheritedDecorator implements IDecorator {
 	 * 
 	 * @param semanticElement
 	 *        the element to test
-	 * @return
-	 *         <code>true</code> if the element can be inherited
+	 * @return <code>true</code> if the element can be inherited
 	 */
 	protected boolean canBeInherited(Element semanticElement) {
 		/*
@@ -442,14 +447,14 @@ public class InheritedDecorator implements IDecorator {
 	public void deactivate() {
 		removeDecoration();
 
-
 		IGraphicalEditPart gep = (IGraphicalEditPart)getDecoratorTarget().getAdapter(IGraphicalEditPart.class);
 		assert gep != null;
 		DiagramEventBroker.getInstance(gep.getEditingDomain()).removeNotificationListener(gep.getNotationView(), notificationListener);
 		View view = ((View)gep.getModel());
 
 		if(view instanceof Node) {
-			//the location of the decorator can change if it's an Affixed Child Node
+			// the location of the decorator can change if it's an Affixed Child
+			// Node
 			if(isInherited((Node)view) && Util.isAffixedChildNode(gep)) {
 				DiagramEventBroker.getInstance(gep.getEditingDomain()).removeNotificationListener(gep.getNotationView(), notificationListener);
 			}

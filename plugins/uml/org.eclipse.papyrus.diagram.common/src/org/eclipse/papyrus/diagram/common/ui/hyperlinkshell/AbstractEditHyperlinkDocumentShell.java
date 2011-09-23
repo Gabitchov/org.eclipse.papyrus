@@ -28,9 +28,10 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class AbstractEditHyperlinkDocumentShell. This Class has been generated from VisualEditor. Do
- * not modify it manually by adding behavior! you will lose the capacity to open with VE. So this
- * class is abstract and it contains set of getter in order to connect behavior in subclasses
+ * The Class AbstractEditHyperlinkDocumentShell. This Class has been generated
+ * from VisualEditor. Do not modify it manually by adding behavior! you will
+ * lose the capacity to open with VE. So this class is abstract and it contains
+ * set of getter in order to connect behavior in subclasses
  */
 public class AbstractEditHyperlinkDocumentShell {
 

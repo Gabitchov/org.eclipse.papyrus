@@ -24,16 +24,14 @@ public interface ILabelRoleProvider {
 	/**
 	 * Returns the label role
 	 * 
-	 * @return
-	 *         the label role
+	 * @return the label role
 	 */
 	public String getLabelRole();
 
 	/**
 	 * Returns an icon illustrating the label role
 	 * 
-	 * @return
-	 *         an icon illustrating the label role
+	 * @return an icon illustrating the label role
 	 */
 	public String getIconPathRole();
 }

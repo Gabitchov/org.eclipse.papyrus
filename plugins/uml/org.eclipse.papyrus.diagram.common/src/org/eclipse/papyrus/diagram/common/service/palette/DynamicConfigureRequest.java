@@ -19,9 +19,9 @@ import org.eclipse.gmf.runtime.emf.type.core.EditHelperContext;
 import org.eclipse.gmf.runtime.emf.type.core.IClientContext;
 import org.eclipse.gmf.runtime.emf.type.core.requests.AbstractEditCommandRequest;
 
-
 /**
- * Request to edit values of an object, after a dialog is opened to ask for the values to set
+ * Request to edit values of an object, after a dialog is opened to ask for the
+ * values to set
  */
 public class DynamicConfigureRequest extends AbstractEditCommandRequest {
 
@@ -66,7 +66,6 @@ public class DynamicConfigureRequest extends AbstractEditCommandRequest {
 	public EObject getElementToEdit() {
 		return elementToEdit;
 	}
-
 
 	/**
 	 * Returns the list of properties to define, identified by their name

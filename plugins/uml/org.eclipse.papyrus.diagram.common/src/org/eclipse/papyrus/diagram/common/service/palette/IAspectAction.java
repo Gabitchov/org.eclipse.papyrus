@@ -21,7 +21,6 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.uml2.uml.Profile;
 import org.w3c.dom.Node;
 
-
 /**
  * Interface implemented by actions run after or before palette creation
  */

@@ -10,7 +10,8 @@ import org.eclipse.ui.IPartListener;
 import org.eclipse.ui.IWorkbenchPart;
 
 /**
- * this is the provider is charge to give the handler in order to have the functionnality cut copy paste
+ * this is the provider is charge to give the handler in order to have the
+ * functionnality cut copy paste
  * 
  */
 public class PapyrusGlobalActionHandlerProvider extends AbstractGlobalActionHandlerProvider {
@@ -32,8 +33,9 @@ public class PapyrusGlobalActionHandlerProvider extends AbstractGlobalActionHand
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.eclipse.gmf.runtime.common.ui.services.action.global.IGlobalActionHandlerProvider#getGlobalActionHandler(org.eclipse.gmf.runtime.common
+	 * @see org.eclipse.gmf.runtime.common.ui.services.action.global.
+	 * IGlobalActionHandlerProvider
+	 * #getGlobalActionHandler(org.eclipse.gmf.runtime.common
 	 * .ui.services.action.global.IGlobalActionHandlerContext)
 	 */
 	@SuppressWarnings("unchecked")

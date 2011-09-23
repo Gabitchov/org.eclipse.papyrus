@@ -9,10 +9,9 @@ import org.eclipse.papyrus.resource.AbstractBaseModel;
 import org.eclipse.papyrus.resource.IModel;
 import org.eclipse.papyrus.resource.ModelSet;
 
-
 /**
  * @author dumoulin
- *
+ * 
  */
 public class NotationModel extends AbstractBaseModel implements IModel {
 
@@ -22,20 +21,19 @@ public class NotationModel extends AbstractBaseModel implements IModel {
 	public static final String NOTATION_FILE_EXTENSION = "notation"; //$NON-NLS-1$
 
 	/**
-	 *  Model ID.
+	 * Model ID.
 	 */
 	public static final String MODEL_ID = "org.eclipse.papyrus.resource.notation.NotationModel"; //$NON-NLS-1$
-
 
 	/**
 	 * 
 	 * Constructor.
-	 *
+	 * 
 	 */
 	public NotationModel() {
-		
+
 	}
-	
+
 	// Initialize stuff in the model.
 	@Override
 	public void init(ModelSet modelManager) {
@@ -45,10 +43,12 @@ public class NotationModel extends AbstractBaseModel implements IModel {
 		getResourceSet().getResourceFactoryRegistry().getExtensionToFactoryMap().put(NOTATION_FILE_EXTENSION, gmfFactory);
 
 	}
+
 	/**
 	 * Get the file extension used for this model.
+	 * 
 	 * @see org.eclipse.papyrus.resource.AbstractBaseModel#getModelFileExtension()
-	 *
+	 * 
 	 * @return
 	 */
 	@Override
@@ -58,8 +58,9 @@ public class NotationModel extends AbstractBaseModel implements IModel {
 
 	/**
 	 * Get the identifier used to register this model.
+	 * 
 	 * @see org.eclipse.papyrus.resource.AbstractBaseModel#getIdentifier()
-	 *
+	 * 
 	 * @return
 	 */
 	@Override
@@ -67,12 +68,13 @@ public class NotationModel extends AbstractBaseModel implements IModel {
 		return MODEL_ID;
 	}
 
-
 	/**
 	 * Add a new initialized {@link Diagram} to the model.
-	 * @param newDiagram The diagram to add.
+	 * 
+	 * @param newDiagram
+	 *        The diagram to add.
 	 */
-	public void addDiagram( Diagram newDiagram) {
+	public void addDiagram(Diagram newDiagram) {
 		getResource().getContents().add(newDiagram);
 	}
 }

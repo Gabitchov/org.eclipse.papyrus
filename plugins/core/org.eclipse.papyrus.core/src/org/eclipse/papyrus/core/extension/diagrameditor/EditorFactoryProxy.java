@@ -7,14 +7,13 @@ import org.eclipse.papyrus.core.editorsfactory.IEditorFactory;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageModel;
 
-
 /**
- * A proxy implementation of {@link IEditorFactory} used to do lazy instantiation 
- * of concrete {@link IPluggableEditorFactory}.
- * This class is used by the {@link PluggableEditorFactoryReader}
+ * A proxy implementation of {@link IEditorFactory} used to do lazy
+ * instantiation of concrete {@link IPluggableEditorFactory}. This class is used
+ * by the {@link PluggableEditorFactoryReader}
  * 
  * @author cedric dumoulin
- *
+ * 
  */
 public class EditorFactoryProxy implements IEditorFactory {
 
@@ -22,7 +21,7 @@ public class EditorFactoryProxy implements IEditorFactory {
 	 * The concrete implementation.
 	 */
 	private IPluggableEditorFactory editorFactory;
-	
+
 	/**
 	 * EditorDescriptor associated to the factory.
 	 */
@@ -35,7 +34,7 @@ public class EditorFactoryProxy implements IEditorFactory {
 
 	/**
 	 * Constructor.
-	 *
+	 * 
 	 * @param serviceRegistry
 	 * @param editorDescriptor
 	 */
@@ -46,7 +45,7 @@ public class EditorFactoryProxy implements IEditorFactory {
 
 	/**
 	 * @see org.eclipse.papyrus.core.editorsfactory.IEditorFactory#createIPageModel(java.lang.Object)
-	 *
+	 * 
 	 * @param pageIdentifier
 	 * @return
 	 */
@@ -56,7 +55,7 @@ public class EditorFactoryProxy implements IEditorFactory {
 
 	/**
 	 * @see org.eclipse.papyrus.core.editorsfactory.IEditorFactory#isPageModelFactoryFor(java.lang.Object)
-	 *
+	 * 
 	 * @param pageIdentifier
 	 * @return
 	 */
@@ -64,32 +63,32 @@ public class EditorFactoryProxy implements IEditorFactory {
 		return getEditorFactory().isPageModelFactoryFor(pageIdentifier);
 	}
 
-	
 	/**
 	 * @return the editorFactory
 	 */
 	protected IPluggableEditorFactory getEditorFactory() {
-		
-		if(editorFactory == null)
-		{
+
+		if(editorFactory == null) {
 			editorFactory = createEditorFactory();
 		}
-		
+
 		return editorFactory;
-		
+
 	}
 
 	/**
-	 * Create an instance of IPluggableEditorFactory as described in the editorDescriptor.
-	 * TODO let propagate the exceptions.
+	 * Create an instance of IPluggableEditorFactory as described in the
+	 * editorDescriptor. TODO let propagate the exceptions.
+	 * 
 	 * @return
 	 */
 	private IPluggableEditorFactory createEditorFactory() {
 		// Create the requested class.
 		try {
 			editorFactory = editorDescriptor.getEditorFactoryClass().newInstance();
-			// Set the descriptor. USed by the factory to get the ActionBarId and Icon
-			editorFactory.init(serviceRegistry,  editorDescriptor);
+			// Set the descriptor. USed by the factory to get the ActionBarId
+			// and Icon
+			editorFactory.init(serviceRegistry, editorDescriptor);
 			return editorFactory;
 		} catch (InstantiationException e) {
 			// Lets propagate. This is an implementation problem that should be
@@ -103,5 +102,4 @@ public class EditorFactoryProxy implements IEditorFactory {
 
 	}
 
-	
 }

@@ -104,9 +104,11 @@ public class ApplyStereotypeEditPolicy extends AbstractEditPolicy {
 	// */
 	// @Override
 	// public Command getCommand(Request request) {
-	// // command should be a composed command: apply stereotype, display stereotype and eventually
+	// // command should be a composed command: apply stereotype, display
+	// stereotype and eventually
 	// // change the name of the semantic element
-	// if (ApplyStereotypeRequest.APPLY_STEREOTYPE_REQUEST.equals(request.getType()))
+	// if
+	// (ApplyStereotypeRequest.APPLY_STEREOTYPE_REQUEST.equals(request.getType()))
 	// return getApplyStereotypeCommand((ApplyStereotypeRequest) request);
 	//
 	// return super.getCommand(request);
@@ -123,7 +125,8 @@ public class ApplyStereotypeEditPolicy extends AbstractEditPolicy {
 		EditPart ep = getHost();
 		boolean isActivating = true;
 		// use the viewer to determine if we are still initializing the diagram
-		// do not use the DiagramEditPart.isActivating since ConnectionEditPart's
+		// do not use the DiagramEditPart.isActivating since
+		// ConnectionEditPart's
 		// parent will not be a diagram edit part
 		EditPartViewer viewer = ep.getViewer();
 		if(viewer instanceof DiagramGraphicalViewer) {
@@ -192,7 +195,8 @@ public class ApplyStereotypeEditPolicy extends AbstractEditPolicy {
 						// retrieve the stereotype to apply
 						Stereotype stereotype = element.getApplicableStereotype(stereotypeQName);
 						if(stereotype == null) {
-							// stereotype has no been found. should ask for profile application ?
+							// stereotype has no been found. should ask for
+							// profile application ?
 							PapyrusTrace.log(IStatus.WARNING, "impossible to retrieve the stereotype " + stereotypeQName);
 						} else {
 							result.add(element.applyStereotype(stereotype));
@@ -204,7 +208,8 @@ public class ApplyStereotypeEditPolicy extends AbstractEditPolicy {
 			}
 		});
 
-		// check if the name of base element must be changed (don't bother what is the value of the
+		// check if the name of base element must be changed (don't bother what
+		// is the value of the
 		// element, only the key is needed
 		Object newName = request.getExtendedData().get(ApplyStereotypeRequest.NEW_EDIT_PART_NAME);
 		if(newName != null) {
@@ -213,13 +218,15 @@ public class ApplyStereotypeEditPolicy extends AbstractEditPolicy {
 				@Override
 				protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-					// retrieves the edit part on which stereotype request is made
+					// retrieves the edit part on which stereotype request is
+					// made
 					if(getHost() instanceof IUMLEditPart || ((getHost().getModel() instanceof View) && (((View)getHost().getModel()).getElement()) instanceof Element)) {
 						if(!(element instanceof NamedElement)) {
 							return null;
 						}
 
-						// retrieves the list of stereotypes to be applied (qualified names)
+						// retrieves the list of stereotypes to be applied
+						// (qualified names)
 						List<String> stereotypeQNames = _request.getStereotypesToApply();
 						String stereotypeName = NamedElementUtil.getNameFromQualifiedName(stereotypeQNames.get(0));
 						// find a new name for the element
@@ -234,7 +241,8 @@ public class ApplyStereotypeEditPolicy extends AbstractEditPolicy {
 
 		// 2. display stereotypes
 		String presentationKind = AppliedStereotypeHelper.getAppliedStereotypePresentationKind(element);
-		// should display real applied stereotypes and not the list of stereotypes to apply...
+		// should display real applied stereotypes and not the list of
+		// stereotypes to apply...
 		cc.compose(new EMFtoGMFCommandWrapper(new DefferedAppliedStereotypeToDisplayCommand(editingDomain, getHost(), "", presentationKind)));
 
 		return new ICommandProxy(cc.reduce());
@@ -248,7 +256,8 @@ public class ApplyStereotypeEditPolicy extends AbstractEditPolicy {
 	 * @return the list of stereotypes to display
 	 */
 	public String getStereotypeList(ApplyStereotypeRequest request) {
-		// transforms the list of stereotypes in the request into a string corresponding to the
+		// transforms the list of stereotypes in the request into a string
+		// corresponding to the
 		// string input of the display stereotype command.
 		StringBuffer buffer = new StringBuffer();
 		Iterator<String> it = request.getStereotypesToApply().iterator();

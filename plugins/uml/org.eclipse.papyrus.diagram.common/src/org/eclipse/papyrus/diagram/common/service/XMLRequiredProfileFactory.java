@@ -91,7 +91,8 @@ public class XMLRequiredProfileFactory extends AbstractXMLDefinitionPaletteFacto
 				Node childNode = children.item(i);
 				String childName = childNode.getNodeName();
 				if(IPapyrusPaletteConstant.POST_ACTION.equals(childName)) {
-					// node is a post action => retrieve the id of the provider in charge of this configuration
+					// node is a post action => retrieve the id of the provider
+					// in charge of this configuration
 					IAspectActionProvider provider = AspectToolService.getInstance().getProvider(AspectToolService.getProviderId(childNode));
 					if(provider != null) {
 						IAspectAction action = provider.createAction(childNode);

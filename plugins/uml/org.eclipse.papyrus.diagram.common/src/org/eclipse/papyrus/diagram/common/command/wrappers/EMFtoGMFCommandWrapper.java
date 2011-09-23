@@ -14,7 +14,8 @@ import org.eclipse.emf.common.command.Command;
 
 // TODO: Auto-generated Javadoc
 /**
- * A GMF Command that wraps an EMF command. Each method is redirected to the EMF one.
+ * A GMF Command that wraps an EMF command. Each method is redirected to the EMF
+ * one.
  * 
  * @deprecated use {@link org.eclipse.papyrus.commands.wrappers.EMFtoGMFCommandWrapper} instead
  */

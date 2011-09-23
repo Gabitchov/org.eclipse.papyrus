@@ -33,11 +33,13 @@ import org.eclipse.papyrus.preferences.Activator;
 public class NavigationDecoratorProvider extends AbstractProvider implements IDecoratorProvider {
 
 	private static Set<Class<?>> forbiddenClasses = new HashSet<Class<?>>();
+
 	private static Set<Class<?>> decoratedClasses = new HashSet<Class<?>>();
 
 	private static final String EXTENSION_ID = "org.eclipse.papyrus.navigation.navigationDecoratorRules";
 
 	private static final String FORBIDDENCLASS_ID = "forbiddenClass";
+
 	private static final String DECORATEDCLASS_ID = "decoratedClass";
 
 	private static final String CLASS_ID = "class";
@@ -50,12 +52,13 @@ public class NavigationDecoratorProvider extends AbstractProvider implements IDe
 			Class<?> class_ = null;
 			try {
 				class_ = Platform.getBundle(configElement.getContributor().getName()).loadClass(className);
-			} catch(Exception e) {}
+			} catch (Exception e) {
+			}
 
 			if(class_ != null) {
-				if (FORBIDDENCLASS_ID.equals(configElement.getName())) {
+				if(FORBIDDENCLASS_ID.equals(configElement.getName())) {
 					forbiddenClasses.add(class_);
-				} else if (DECORATEDCLASS_ID.equals(configElement.getName())) {
+				} else if(DECORATEDCLASS_ID.equals(configElement.getName())) {
 					decoratedClasses.add(class_);
 				}
 			}
@@ -64,20 +67,20 @@ public class NavigationDecoratorProvider extends AbstractProvider implements IDe
 
 	public boolean provides(IOperation operation) {
 		String decoratorVisibility = Activator.getDefault().getPreferenceStore().getString(INavigationPreferenceConstant.PAPYRUS_NAVIGATION_DECORATOR_VISIBILITY);
-		if (operation instanceof CreateDecoratorsOperation && !INavigationPreferenceConstant.DISABLED.equals(decoratorVisibility)) {
-			IDecoratorTarget decoratorTarget = ((CreateDecoratorsOperation) operation).getDecoratorTarget();
+		if(operation instanceof CreateDecoratorsOperation && !INavigationPreferenceConstant.DISABLED.equals(decoratorVisibility)) {
+			IDecoratorTarget decoratorTarget = ((CreateDecoratorsOperation)operation).getDecoratorTarget();
 			EditPart editPart = (EditPart)decoratorTarget.getAdapter(EditPart.class);
 			if(editPart instanceof IPrimaryEditPart) {
-				EObject element = ((IGraphicalEditPart) editPart).resolveSemanticElement();
+				EObject element = ((IGraphicalEditPart)editPart).resolveSemanticElement();
 				boolean decorate = false;
-				for (Class<?> class_ : decoratedClasses) {
-					if (class_.isInstance(element)) {
+				for(Class<?> class_ : decoratedClasses) {
+					if(class_.isInstance(element)) {
 						decorate = true;
 						break;
 					}
 				}
-				for (Class<?> class_ : forbiddenClasses) {
-					if (class_.isInstance(element)) {
+				for(Class<?> class_ : forbiddenClasses) {
+					if(class_.isInstance(element)) {
 						decorate = false;
 						break;
 					}
@@ -91,6 +94,5 @@ public class NavigationDecoratorProvider extends AbstractProvider implements IDe
 	public void createDecorators(IDecoratorTarget decoratorTarget) {
 		new NavigationDecorator(decoratorTarget);
 	}
-
 
 }
