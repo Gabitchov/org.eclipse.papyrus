@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.views.properties.tabbed.propertyContributor">
+      <propertyContributor
+            contributorId="CustomizablePropertyView"
+            labelProvider="org.eclipse.papyrus.properties.providers.SelectionLabelProvider"
+            tabDescriptorProvider="org.eclipse.papyrus.properties.xwt.XWTTabDescriptorProvider">
+      </propertyContributor>
+   </extension>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="org.eclipse.papyrus.emf.editor.part.PapyrusEditor"
+            contributorClass="org.eclipse.papyrus.emf.editor.part.ActionBarContributor"
+            default="false"
+            extensions="xmi"
+            icon="icons/papyrus_model.png"
+            id="org.eclipse.papyrus.emf.editor"
+            name="Papyrus EMF Editor">
+      </editor>
+   </extension>
+
+</plugin>
