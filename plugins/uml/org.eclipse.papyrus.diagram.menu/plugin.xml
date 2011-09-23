@@ -774,6 +774,16 @@
                   path="/selectMenu/selectGroup"
                   remove="true">
             </popupPredefinedItem>
+            <popupPredefinedItem
+                  id="snapBackAction"
+                  path="/formatMenu/miscellaneousGroup"
+                  remove="true">
+            </popupPredefinedItem>
+            <popupPredefinedItem
+                  id="showCompartmentTitle"
+                  path="/filtersMenu/miscellaneousGroup"
+                  remove="true">
+            </popupPredefinedItem>
          </popupContribution>
       </contributionItemProvider>
    </extension>
@@ -1105,6 +1115,13 @@
                name="org.eclipse.papyrus.diagram.menu.toolbar.separator2"
                visible="true">
          </separator>
+         <command
+               commandId="org.eclipse.papyrus.diagram.menu.commands.SnapBack"
+               icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/snapback.gif"
+               label="&amp;Snap Back"
+               style="push"
+               tooltip="Reset the element to its initial location">
+         </command>
          <command
                commandId="org.eclipse.papyrus.diagram.menu.command.autosize"
                icon="icons/autosize.gif"
@@ -1941,6 +1958,13 @@
             visible="true">
       </separator>
       <command
+            commandId="org.eclipse.papyrus.diagram.menu.commands.SnapBack"
+            icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/snapback.gif"
+            label="&amp;Snap Back"
+            style="push"
+            tooltip="Reset the element to its initial location">
+      </command>
+      <command
             commandId="org.eclipse.papyrus.diagram.menu.command.autosize"
             icon="icons/autosize.gif"
             label="&amp;Auto Size"
@@ -2610,6 +2634,13 @@
             visible="true">
       </separator>
       <command
+            commandId="org.eclipse.papyrus.diagram.menu.commands.SnapBack"
+            icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/snapback.gif"
+            label="&amp;Snap Back"
+            style="push"
+            tooltip="Reset the element to its initial location">
+      </command>
+      <command
             commandId="org.eclipse.papyrus.diagram.menu.command.autosize"
             icon="icons/autosize.gif"
             label="&amp;Autozise"
@@ -3099,6 +3130,12 @@
          id="org.eclipse.papyrus.diagram.menu.commands.link.label.hide.all"
          name="Hide all labels on links">
    </command>
+   <command
+         categoryId="org.eclipse.papyrus.editor.category"
+         description="Reset the label to its initial location"
+         id="org.eclipse.papyrus.diagram.menu.commands.SnapBack"
+         name="Snap Back">
+   </command>
 </extension>
 <extension
       id="viewCommands"
@@ -3523,6 +3560,39 @@
                value="parameter_zoom_selection">
          </parameter>
       </class>
+   </handler>
+   <handler
+         class="org.eclipse.papyrus.diagram.menu.actions.handlers.SnapBackHandler"
+         commandId="org.eclipse.papyrus.diagram.menu.commands.SnapBack">
+      <activeWhen>
+         <and>
+            <with
+                  variable="selection">
+               <iterate
+                     ifEmpty="false"
+                     operator="and">
+                  <adapt
+                        type="org.eclipse.gef.EditPart">
+                     <instanceof
+                           value="org.eclipse.gmf.runtime.diagram.ui.editparts.LabelEditPart">
+                     </instanceof>
+                  </adapt>
+               </iterate>
+            </with>
+         </and>
+      </activeWhen>
+<!--      <activeWhen>
+         <with
+               variable="selection">
+            <test
+                  args="org.eclipse.papyrus.diagram.menu.actions.handlers.SnapBackHandler"
+                  forcePluginActivation="true"
+                  property="org.eclipse.papyrus.handler.propertytester.isHandlerEnabled"
+                  value="true">
+            </test>
+         </with>
+      </activeWhen>
+      -->
    </handler>
 </extension>
 <extension
