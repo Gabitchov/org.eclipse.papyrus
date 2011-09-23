@@ -22,7 +22,7 @@
       <properties xsi:type="contexts:ValueProperty" name="editPolicy" value="MaskManagedLabelPolicy"/>
     </constraints>
   </views>
-  <views name="StereotypeDisplay" sections="//@tabs.0/@sections.1">
+  <views name="StereotypeDisplay" sections="//@tabs.0/@sections.1" elementMultiplicity="-1">
     <constraints xsi:type="contexts:CompositeConstraint" name="isElementWithEditPart" overrideable="false">
       <constraints name="isEditPart">
         <constraintType href="ppe:/environment/org.eclipse.papyrus.properties.notation/model/Environment.xmi#//@constraintTypes.2"/>
@@ -33,7 +33,7 @@
       </constraints>
     </constraints>
   </views>
-  <views name="NamedElementDisplay" sections="//@tabs.0/@sections.3">
+  <views name="NamedElementDisplay" sections="//@tabs.0/@sections.3" elementMultiplicity="-1">
     <constraints xsi:type="contexts:CompositeConstraint" name="isNamedElementWithEditPart" overrideable="false">
       <constraints name="isEditPart">
         <constraintType href="ppe:/environment/org.eclipse.papyrus.properties.notation/model/Environment.xmi#//@constraintTypes.2"/>
@@ -49,7 +49,7 @@
       <properties name="labelCustomization" label="Label customization" type="Integer" description="Define the elements to be displayed in the Property's label"/>
     </elements>
     <elements name="Element">
-      <properties name="stereotypeDisplay" label="Stereotype Display" type="Reference" description="Sets the elements you want to display in the Diagram"/>
+      <properties name="stereotypeDisplay" label="Stereotype display" type="Reference" description="Sets the elements you want to display in the Diagram"/>
       <properties name="elementIcon" label="Element icon" type="Boolean" description="Show the Element icon in the diagram"/>
       <properties name="shadow" label="Shadow" type="Boolean" description="Display a shadow in the Diagram"/>
       <properties name="qualifiedName" label="Qualified name depth" type="Enumeration" description="Choose the depth of the qualified name's display"/>
