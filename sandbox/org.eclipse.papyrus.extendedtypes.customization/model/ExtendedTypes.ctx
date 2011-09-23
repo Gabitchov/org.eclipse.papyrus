@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="ASCII"?>
+<contexts:Context xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:contexts="http://www.eclipse.org/papyrus/properties/contexts" name="ExtendedTypes">
+  <dependencies href="ppe:/context/org.eclipse.papyrus.queries.customization/model/Queries.ctx#/"/>
+  <tabs label="Default" id="default" category="default">
+    <sections name="Single ExtendedElementTypeSet" sectionFile="ui/SingleExtendedElementTypeSet.xwt">
+      <widget href="ui/SingleExtendedElementTypeSet.xwt#/"/>
+    </sections>
+    <sections name="Single ExtendedElementTypeConfiguration" sectionFile="ui/SingleExtendedElementTypeConfiguration.xwt">
+      <widget href="ui/SingleExtendedElementTypeConfiguration.xwt#/"/>
+    </sections>
+    <sections name="Single IconEntry" sectionFile="ui/SingleIconEntry.xwt">
+      <widget href="ui/SingleIconEntry.xwt#/"/>
+    </sections>
+    <sections name="Single ActionConfiguration" sectionFile="ui/SingleActionConfiguration.xwt">
+      <widget href="ui/SingleActionConfiguration.xwt#/"/>
+    </sections>
+    <sections name="Single PreActionConfiguration" sectionFile="ui/SinglePreActionConfiguration.xwt">
+      <widget href="ui/SinglePreActionConfiguration.xwt#/"/>
+    </sections>
+    <sections name="Single PostActionConfiguration" sectionFile="ui/SinglePostActionConfiguration.xwt">
+      <widget href="ui/SinglePostActionConfiguration.xwt#/"/>
+    </sections>
+    <sections name="Multiple ExtendedElementTypeSet" sectionFile="ui/MultipleExtendedElementTypeSet.xwt">
+      <widget href="ui/MultipleExtendedElementTypeSet.xwt#/"/>
+    </sections>
+    <sections name="Multiple ExtendedElementTypeConfiguration" sectionFile="ui/MultipleExtendedElementTypeConfiguration.xwt">
+      <widget href="ui/MultipleExtendedElementTypeConfiguration.xwt#/"/>
+    </sections>
+    <sections name="Multiple IconEntry" sectionFile="ui/MultipleIconEntry.xwt">
+      <widget href="ui/MultipleIconEntry.xwt#/"/>
+    </sections>
+    <sections name="Multiple ActionConfiguration" sectionFile="ui/MultipleActionConfiguration.xwt">
+      <widget href="ui/MultipleActionConfiguration.xwt#/"/>
+    </sections>
+    <sections name="Multiple PreActionConfiguration" sectionFile="ui/MultiplePreActionConfiguration.xwt">
+      <widget href="ui/MultiplePreActionConfiguration.xwt#/"/>
+    </sections>
+    <sections name="Multiple PostActionConfiguration" sectionFile="ui/MultiplePostActionConfiguration.xwt">
+      <widget href="ui/MultiplePostActionConfiguration.xwt#/"/>
+    </sections>
+  </tabs>
+  <views name="Single ExtendedElementTypeSet" sections="//@tabs.0/@sections.0" automaticContext="true" datacontexts="//@dataContexts.0/@elements.0">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleExtendedElementTypeSet">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/diagram/types/extendedtypes/0.7"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="ExtendedElementTypeSet"/>
+    </constraints>
+  </views>
+  <views name="Single ExtendedElementTypeConfiguration" sections="//@tabs.0/@sections.1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.1">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleExtendedElementTypeConfiguration">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/diagram/types/extendedtypes/0.7"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="ExtendedElementTypeConfiguration"/>
+    </constraints>
+  </views>
+  <views name="Single IconEntry" sections="//@tabs.0/@sections.2" automaticContext="true" datacontexts="//@dataContexts.0/@elements.2">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleIconEntry">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="IconEntry"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/diagram/types/extendedtypes/0.7"/>
+    </constraints>
+  </views>
+  <views name="Single ActionConfiguration" sections="//@tabs.0/@sections.3" automaticContext="true" datacontexts="//@dataContexts.0/@elements.3">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSingleActionConfiguration">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/diagram/types/extendedtypes/0.7"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="ActionConfiguration"/>
+    </constraints>
+  </views>
+  <views name="Single PreActionConfiguration" sections="//@tabs.0/@sections.4" automaticContext="true" datacontexts="//@dataContexts.0/@elements.4">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSinglePreActionConfiguration">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/diagram/types/extendedtypes/0.7"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="PreActionConfiguration"/>
+    </constraints>
+  </views>
+  <views name="Single PostActionConfiguration" sections="//@tabs.0/@sections.5" automaticContext="true" datacontexts="//@dataContexts.0/@elements.5">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isSinglePostActionConfiguration">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/diagram/types/extendedtypes/0.7"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="PostActionConfiguration"/>
+    </constraints>
+  </views>
+  <views name="Multiple ExtendedElementTypeSet" sections="//@tabs.0/@sections.6" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.0">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleExtendedElementTypeSet">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="ExtendedElementTypeSet"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/diagram/types/extendedtypes/0.7"/>
+    </constraints>
+  </views>
+  <views name="Multiple ExtendedElementTypeConfiguration" sections="//@tabs.0/@sections.7" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.1">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleExtendedElementTypeConfiguration">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="ExtendedElementTypeConfiguration"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/diagram/types/extendedtypes/0.7"/>
+    </constraints>
+  </views>
+  <views name="Multiple IconEntry" sections="//@tabs.0/@sections.8" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.2">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleIconEntry">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/diagram/types/extendedtypes/0.7"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="IconEntry"/>
+    </constraints>
+  </views>
+  <views name="Multiple ActionConfiguration" sections="//@tabs.0/@sections.9" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.3">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultipleActionConfiguration">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/diagram/types/extendedtypes/0.7"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="ActionConfiguration"/>
+    </constraints>
+  </views>
+  <views name="Multiple PreActionConfiguration" sections="//@tabs.0/@sections.10" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.4">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultiplePreActionConfiguration">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="PreActionConfiguration"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/diagram/types/extendedtypes/0.7"/>
+    </constraints>
+  </views>
+  <views name="Multiple PostActionConfiguration" sections="//@tabs.0/@sections.11" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.5">
+    <constraints xsi:type="contexts:SimpleConstraint" name="isMultiplePostActionConfiguration">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="contexts:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/diagram/types/extendedtypes/0.7"/>
+      <properties xsi:type="contexts:ValueProperty" name="className" value="PostActionConfiguration"/>
+    </constraints>
+  </views>
+  <dataContexts name="extendedtypes" label="extendedtypes">
+    <elements name="ExtendedElementTypeSet">
+      <properties name="elementType" type="Reference" multiplicity="-1"/>
+      <properties name="id"/>
+    </elements>
+    <elements name="ExtendedElementTypeConfiguration">
+      <properties name="name"/>
+      <properties name="id"/>
+      <properties name="iconEntry" type="Reference"/>
+      <properties name="hint"/>
+      <properties name="kindName"/>
+      <properties name="specializedTypesID" multiplicity="-1"/>
+      <properties name="preValidation" type="Reference" multiplicity="-1"/>
+      <properties name="preAction" type="Reference" multiplicity="-1"/>
+      <properties name="postAction" type="Reference" multiplicity="-1"/>
+    </elements>
+    <elements name="IconEntry">
+      <properties name="iconPath"/>
+      <properties name="bundleId"/>
+    </elements>
+    <elements name="ActionConfiguration">
+      <properties name="label"/>
+      <properties name="id"/>
+    </elements>
+    <elements name="PreActionConfiguration" supertypes="//@dataContexts.0/@elements.3"/>
+    <elements name="PostActionConfiguration" supertypes="//@dataContexts.0/@elements.3"/>
+    <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@modelElementFactories.0"/>
+  </dataContexts>
+</contexts:Context>
