@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2008 CEA LIST.
  *
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -52,7 +52,6 @@ import org.eclipse.papyrus.core.multidiagram.actionbarcontributor.CoreComposedAc
 import org.eclipse.papyrus.core.services.ExtensionServicesRegistry;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.services.ServiceMultiException;
-import org.eclipse.papyrus.core.services.ServiceNotFoundException;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.core.utils.BusinessModelResolver;
 import org.eclipse.papyrus.resource.ModelMultiException;
@@ -379,8 +378,9 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 		 * All papyrus views should use this context.
 		 */
 		if(IUndoContext.class == adapter) {
-			if(undoContext != null)
+			if(undoContext != null) {
 				return undoContext;
+			}
 
 			undoContext = new EditingDomainUndoContext(transactionalEditingDomain);
 			return undoContext;
@@ -405,6 +405,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 
 		// TODO : following code is GMF dependent. It should be moved to adapter
 		// Do we really need it? Who use it ?
+		// -> It seems to be needed, see bug 354050
 		if(adapter == IDiagramGraphicalViewer.class) {
 			IEditorPart activeEditor = getActiveEditor();
 			if(activeEditor instanceof DiagramEditor) {
@@ -485,6 +486,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 			 * This implements {@link ILabelProvider}.getText by forwarding it to an object that implements {@link IItemLabelProvider#getText
 			 * IItemLabelProvider.getText}
 			 */
+			@Override
 			public String getText(Object object) {
 				// Get the adapter from the factory.
 				//
@@ -556,7 +558,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 		// TODO Auto-generated method stub
 		super.activate();
 		initFolderTabMenus();
-		
+
 		try {
 			// Register ISashWindowsContainer as service
 			// Should be done only once the container is ready.
@@ -564,7 +566,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 			getServicesRegistry().startServicesByClassKeys(ISashWindowsContainer.class);
 		} catch (ServiceException e) {
 			log.error(e);
-		} 
+		}
 	}
 
 	/**
@@ -776,6 +778,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 	 * @deprecated Not used anymore
 	 */
 
+	@Deprecated
 	public void setEditorInput(IEditorInput newInput) {
 		setInputWithNotify(newInput);
 		setPartName(newInput.getName());
