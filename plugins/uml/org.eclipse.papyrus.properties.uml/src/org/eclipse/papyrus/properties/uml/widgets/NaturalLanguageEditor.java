@@ -56,7 +56,8 @@ public class NaturalLanguageEditor implements BodyEditor {
 
 			public void commit(AbstractEditor editor) {
 				Event event = new Event();
-				event.text = getValue();
+				currentValue = (String)NaturalLanguageEditor.this.editor.getValue();
+				event.text = (String)NaturalLanguageEditor.this.editor.getValue();
 				for(Listener listener : changeListeners) {
 					listener.handleEvent(event);
 				}
