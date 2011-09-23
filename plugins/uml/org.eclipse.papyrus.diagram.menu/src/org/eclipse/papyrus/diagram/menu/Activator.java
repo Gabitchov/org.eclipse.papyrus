@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.menu;
 
+import org.eclipse.papyrus.log.LogHelper;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
@@ -26,6 +27,11 @@ public class Activator extends AbstractUIPlugin implements org.eclipse.ui.IStart
 
 	// The shared instance
 	private static Activator plugin;
+
+	/**
+	 * Log
+	 */
+	public static LogHelper log;
 
 	/**
 	 * The constructor
@@ -42,6 +48,7 @@ public class Activator extends AbstractUIPlugin implements org.eclipse.ui.IStart
 	public void start(BundleContext context) throws Exception {
 		plugin = this;
 		super.start(context);
+		log = new LogHelper(plugin);
 	}
 
 	/*
