@@ -18,9 +18,9 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 
 /**
  * This class represents an element that have been created by the navigation.
- * This element is not currently linked to the model, but it can be
- * by using linkToModel if the user decides to navigate to it,
- * to create a diagram on it for example.
+ * This element is not currently linked to the model, but it can be by using
+ * linkToModel if the user decides to navigate to it, to create a diagram on it
+ * for example.
  * 
  * @author mvelten
  * 
@@ -34,8 +34,8 @@ public class CreatedNavigableElement extends NavigableElement {
 	private IBaseNameSetter baseNameSetter = null;
 
 	/**
-	 * This constructor initiates a navigable element from a newly created element.
-	 * This element is not directly linked to its container.
+	 * This constructor initiates a navigable element from a newly created
+	 * element. This element is not directly linked to its container.
 	 * linkToModel() needs to be defined and call when you want to link it.
 	 * 
 	 * @param element

@@ -59,8 +59,8 @@ import org.eclipse.papyrus.diagram.common.util.ViewServiceUtil;
 import org.eclipse.uml2.uml.Element;
 
 /**
- * This class is used to execute the drag and drop from the outline. It can manage the drop of nodes
- * and binary links.
+ * This class is used to execute the drag and drop from the outline. It can
+ * manage the drop of nodes and binary links.
  */
 public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEditPolicy {
 
@@ -121,12 +121,13 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 	}
 
 	/**
-	 * the method provides command to create the binary link into the diagram. If the source and the
-	 * target views do not exist, these views will be created.
+	 * the method provides command to create the binary link into the diagram.
+	 * If the source and the target views do not exist, these views will be
+	 * created.
 	 * 
 	 * @param cc
-	 *        the composite command that will contain the set of command to create the binary
-	 *        link
+	 *        the composite command that will contain the set of command to
+	 *        create the binary link
 	 * @param source
 	 *        the source the element source of the link
 	 * @param target
@@ -175,8 +176,9 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 	}
 
 	/**
-	 * This method allows to specify a location for the creation of a node at the source of a dropped link.
-	 * Overriding implementations must not modify the absoluteLocation parameter (use {@link Point#getCopy()})
+	 * This method allows to specify a location for the creation of a node at
+	 * the source of a dropped link. Overriding implementations must not modify
+	 * the absoluteLocation parameter (use {@link Point#getCopy()})
 	 * 
 	 * @param absoluteLocation
 	 *        the request's drop location
@@ -191,8 +193,9 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 	}
 
 	/**
-	 * This method allows to specify a location for the creation of a node at the target of a dropped link.
-	 * Overriding implementations must not modify the absoluteLocation parameter (use {@link Point#getCopy()})
+	 * This method allows to specify a location for the creation of a node at
+	 * the target of a dropped link. Overriding implementations must not modify
+	 * the absoluteLocation parameter (use {@link Point#getCopy()})
 	 * 
 	 * @param absoluteLocation
 	 *        the request's drop location
@@ -224,30 +227,26 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 	@Override
 	public Command getDropObjectsCommand(DropObjectsRequest dropRequest) {
 		/*
-		 * when it's the first action after the opening of Papyrus, the viewService is not loaded!
-		 * see bug 302555
+		 * when it's the first action after the opening of Papyrus, the
+		 * viewService is not loaded! see bug 302555
 		 * 
-		 * Duration test for 100000 creations of DropCommand :
-		 * Here 2 solutions :
-		 * - call ViewServiceUtil.forceLoad(); for each drop -> ~2500ms
+		 * Duration test for 100000 creations of DropCommand : Here 2 solutions
+		 * : - call ViewServiceUtil.forceLoad(); for each drop -> ~2500ms
 		 * 
-		 * - test if the command cc can be executed at the end of the method, and if not :
-		 * - call ViewServiceUtil.forceLoad();
-		 * - and return getDropObjectsCommand(getDropObjectsCommand)
-		 * -> ~4700ms
+		 * - test if the command cc can be executed at the end of the method,
+		 * and if not : - call ViewServiceUtil.forceLoad(); - and return
+		 * getDropObjectsCommand(getDropObjectsCommand) -> ~4700ms
 		 * 
-		 * - for information : without call ViewServiceUtil.forceLoad();
-		 * -> ~1600ms
+		 * - for information : without call ViewServiceUtil.forceLoad(); ->
+		 * ~1600ms
 		 * 
 		 * It's better don't test if the command is executable!
 		 */
 		ViewServiceUtil.forceLoad();
 
-
 		if(dropRequest.getObjects().size() > 0 && dropRequest.getObjects().get(0) instanceof String) {
 			return getDropFileCommand(dropRequest);
 		}
-
 
 		// Create a view request from the drop request and then forward getting
 		// the command for that.
@@ -320,8 +319,9 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 	}
 
 	/**
-	 * This method returns the default drop command for node. It create the view at the specified location,
-	 * using the gmf command framework so the policies are used.
+	 * This method returns the default drop command for node. It create the view
+	 * at the specified location, using the gmf command framework so the
+	 * policies are used.
 	 * 
 	 * @param nodeVISUALID
 	 *        the node visual identifier
@@ -336,8 +336,9 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 	}
 
 	/**
-	 * This method returns the default drop command for node. It create the view at the specified location,
-	 * using the gmf command framework so the policies are used.
+	 * This method returns the default drop command for node. It create the view
+	 * at the specified location, using the gmf command framework so the
+	 * policies are used.
 	 * 
 	 * @param location
 	 *        the drop location
@@ -350,8 +351,9 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 	}
 
 	/**
-	 * This method returns the default drop command for node. It create the view at the specified location,
-	 * using the gmf command framework so the policies are used.
+	 * This method returns the default drop command for node. It create the view
+	 * at the specified location, using the gmf command framework so the
+	 * policies are used.
 	 * 
 	 * @param hostEP
 	 *        The host edit part which will be the parent of the new node
@@ -366,8 +368,9 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 	}
 
 	/**
-	 * This method returns the default drop command for node. It create the view at the specified location,
-	 * using the gmf command framework so the policies are used.
+	 * This method returns the default drop command for node. It create the view
+	 * at the specified location, using the gmf command framework so the
+	 * policies are used.
 	 * 
 	 * @param hostEP
 	 *        The host edit part which will be the parent of the new node
@@ -391,8 +394,9 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 	}
 
 	/**
-	 * This method returns the default drop command for node. It create the view at the specified location,
-	 * using the gmf command framework so the policies are used.
+	 * This method returns the default drop command for node. It create the view
+	 * at the specified location, using the gmf command framework so the
+	 * policies are used.
 	 * 
 	 * @param hostEP
 	 *        The host edit part which will be the parent of the new node
@@ -415,7 +419,8 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 			CreateViewRequest createViewRequest = new CreateViewRequest(descriptor);
 			createViewRequest.setLocation(absoluteLocation);
 
-			// "ask" the host for a command associated with the CreateViewRequest
+			// "ask" the host for a command associated with the
+			// CreateViewRequest
 			Command command = hostEP.getCommand(createViewRequest);
 			// set the viewdescriptor as result
 			// it then can be used as an adaptable to retrieve the View
@@ -435,8 +440,9 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 	}
 
 	/**
-	 * for specific case of drop, the designers has to write the algorithm of its own drop. for
-	 * example case of associationClass, multi dependency etc....
+	 * for specific case of drop, the designers has to write the algorithm of
+	 * its own drop. for example case of associationClass, multi dependency
+	 * etc....
 	 * 
 	 * @param dropRequest
 	 *        the drop request
@@ -485,7 +491,8 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 	}
 
 	/**
-	 * Check if the edit part type is the best one to represent an object of the given EClass type
+	 * Check if the edit part type is the best one to represent an object of the
+	 * given EClass type
 	 * 
 	 * @param editPartClass
 	 *        the type of EditPart which may represent a semantic element
@@ -495,7 +502,8 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 	 */
 	private boolean isEditPartTypeAdapted(Class<? extends EditPart> editPartClass, EClass eClass) {
 		if(DiagramEditPart.class.isAssignableFrom(editPartClass) || CompartmentEditPart.class.isAssignableFrom(editPartClass)) {
-			// the edit part is disqualified, as a compartment or a diagram can not be dropped
+			// the edit part is disqualified, as a compartment or a diagram can
+			// not be dropped
 			return false;
 		} else if(GraphicalEditPart.class.isAssignableFrom(editPartClass)) {
 			// check the edit part type against advised ones
@@ -507,18 +515,20 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 	}
 
 	/**
-	 * Check if an edit part type correctly represent a semantic element of the given EClass.
-	 * Subclasses should implement this method to restrict the possibilities during drop of a link.
-	 * If an edit part is not of a suitable type, returning false will eliminate it to represent the
-	 * element as a source or target edit part. This can be used for example to disable label edit
-	 * parts, which may represent the same model element as the main node.
+	 * Check if an edit part type correctly represent a semantic element of the
+	 * given EClass. Subclasses should implement this method to restrict the
+	 * possibilities during drop of a link. If an edit part is not of a suitable
+	 * type, returning false will eliminate it to represent the element as a
+	 * source or target edit part. This can be used for example to disable label
+	 * edit parts, which may represent the same model element as the main node.
 	 * 
 	 * @param editPartClass
 	 *        the type of EditPart which must be checked
 	 * @param eClass
-	 *        the EClass type of the element which the edit part must represent
-	 * @return the only edit part type which can be selected (return a common super type if several
-	 *         edit parts can be chosen)
+	 *        the EClass type of the element which the edit part must
+	 *        represent
+	 * @return the only edit part type which can be selected (return a common
+	 *         super type if several edit parts can be chosen)
 	 */
 	protected boolean isEditPartTypeSuitableForEClass(Class<? extends GraphicalEditPart> editPartClass, EClass eClass) {
 		return true;

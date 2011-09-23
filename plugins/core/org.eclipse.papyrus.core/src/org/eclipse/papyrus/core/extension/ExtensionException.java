@@ -59,7 +59,8 @@ public class ExtensionException extends BackboneException {
 	}
 
 	/**
-	 * Creates a ExtensionException with a specific cause and a specific message.
+	 * Creates a ExtensionException with a specific cause and a specific
+	 * message.
 	 * 
 	 * @param message
 	 *        the message of the exception
@@ -75,7 +76,8 @@ public class ExtensionException extends BackboneException {
 	 * 
 	 * @param element
 	 *        the configuration element corresponding to the extension
-	 * @return a string containing the name of the plugin and the name of the extension
+	 * @return a string containing the name of the plugin and the name of the
+	 *         extension
 	 */
 	protected static String declaringExtensionToString(IConfigurationElement element) {
 		return "plugin:" + element.getContributor().getName() + " extension:" + element.getName();

@@ -19,8 +19,8 @@ import org.eclipse.papyrus.core.listenerservice.IPapyrusListener;
 import org.eclipse.uml2.uml.ProfileApplication;
 
 /**
- * Listener for the palette Service that updates palette contribution in case of profile
- * application/unapplication
+ * Listener for the palette Service that updates palette contribution in case of
+ * profile application/unapplication
  */
 public class PaletteProfileApplicationListener implements IPapyrusListener {
 
@@ -35,7 +35,8 @@ public class PaletteProfileApplicationListener implements IPapyrusListener {
 	 */
 	public void notifyChanged(Notification notification) {
 		// check notification is relevant for us
-		// notifier shoud be instance of profileApplication. In this case, reload the palette
+		// notifier shoud be instance of profileApplication. In this case,
+		// reload the palette
 		if(notification.getNotifier() instanceof ProfileApplication) {
 			if(Notification.SET == notification.getEventType()) {
 				PapyrusPaletteService.getInstance().providerChanged(new ProviderChangeEvent(PapyrusPaletteService.getInstance()));

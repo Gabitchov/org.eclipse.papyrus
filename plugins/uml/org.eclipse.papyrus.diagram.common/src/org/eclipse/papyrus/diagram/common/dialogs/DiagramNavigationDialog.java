@@ -33,13 +33,13 @@ import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableItem;
 
 /**
- * dialog to display a list of hyperlinks.
- * the button ok is use to excute the action linked to the hyperlink (open new diagram, open new editor...)
+ * dialog to display a list of hyperlinks. the button ok is use to excute the
+ * action linked to the hyperlink (open new diagram, open new editor...)
  * 
  */
 public class DiagramNavigationDialog extends Dialog {
 
-	//prefered dimension
+	// prefered dimension
 	protected int width = 350;
 
 	protected int height = 150;
@@ -56,8 +56,8 @@ public class DiagramNavigationDialog extends Dialog {
 
 	/**
 	 * 
-	 * dialog to display a list of hyperlinks.
-	 * the button ok is use to excute the action linked to the hyperlink (open new diagram, open new editor...)
+	 * dialog to display a list of hyperlinks. the button ok is use to excute
+	 * the action linked to the hyperlink (open new diagram, open new editor...)
 	 * 
 	 * @param parentShell
 	 *        a shell
@@ -76,25 +76,22 @@ public class DiagramNavigationDialog extends Dialog {
 		parent.setBounds(parent.getBounds().x, parent.getBounds().y, width + 50, height + 120);
 		Composite defaultHyperlinkComposite = new Composite(parent, SWT.NONE);
 
-
 		Label lblHyperlinks = new Label(defaultHyperlinkComposite, SWT.NONE);
 		lblHyperlinks.setForeground(Display.getCurrent().getSystemColor(SWT.COLOR_BLACK));
 		lblHyperlinks.setBounds(23, 10, width, 13);
 		lblHyperlinks.setText("Which hyperlinks would you like to navigate to?");
 
-
-		//creation of the table
+		// creation of the table
 		availableHyperLink = new Table(defaultHyperlinkComposite, SWT.CHECK | SWT.BORDER | SWT.FULL_SELECTION);
 		availableHyperLink.setBounds(30, 29, width, height);
 		super.createContents(parent);
 
-		//set the content provider
+		// set the content provider
 		this.contentProvider = new HyperLinkContentProvider();
 		tableViewer = new TableViewer(availableHyperLink);
 		tableViewer.setContentProvider(contentProvider);
 
-
-		//set the label provider
+		// set the label provider
 		IPageIconsRegistry editorRegistry = null;
 		IMultiDiagramEditor papyrusEditor = EditorUtils.getMultiDiagramEditor();
 		try {

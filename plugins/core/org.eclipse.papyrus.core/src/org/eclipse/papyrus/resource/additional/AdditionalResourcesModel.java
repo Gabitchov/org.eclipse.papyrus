@@ -54,7 +54,7 @@ public class AdditionalResourcesModel implements IModel {
 	 * useless for additional resources
 	 */
 	public void createModel(IPath fullPath) {
-		//do nothing
+		// do nothing
 	}
 
 	public void loadModel(IPath path) {
@@ -70,10 +70,9 @@ public class AdditionalResourcesModel implements IModel {
 		for(Resource r : modelSet.getResources()) {
 			if(modelSet.isAdditionalResource(r.getURI())) {
 				EditingDomain editingDomain = modelSet.getTransactionalEditingDomain();
-				// only save referenced models, if modified, not empty, not read-only and either platform or file
-				if(!r.getContents().isEmpty() && r.isModified() &&
-					(editingDomain != null) && !editingDomain.isReadOnly(r) &&
-					(r.getURI().isPlatform() || r.getURI().isFile())) {
+				// only save referenced models, if modified, not empty, not
+				// read-only and either platform or file
+				if(!r.getContents().isEmpty() && r.isModified() && (editingDomain != null) && !editingDomain.isReadOnly(r) && (r.getURI().isPlatform() || r.getURI().isFile())) {
 					r.save(Collections.EMPTY_MAP);
 				}
 			}
@@ -91,7 +90,7 @@ public class AdditionalResourcesModel implements IModel {
 		// call registered snippets
 		snippets.performDispose(this);
 
-		// Unload remaining resources 
+		// Unload remaining resources
 		for(Iterator<Resource> iter = modelSet.getResources().iterator(); iter.hasNext();) {
 			Resource next = iter.next();
 			if(modelSet.isAdditionalResource(next.getURI())) {

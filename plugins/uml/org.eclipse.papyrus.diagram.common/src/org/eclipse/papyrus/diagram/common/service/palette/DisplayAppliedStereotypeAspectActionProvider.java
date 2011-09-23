@@ -21,7 +21,6 @@ public class DisplayAppliedStereotypeAspectActionProvider extends AbstractAspect
 	/** semantic action key */
 	public final static String DISPLAY_APPLIED_STEREOTYPE_ACTION_KEY = "org.eclipse.papyrus.postaction.displayAppliedStereotypeaction";
 
-
 	/**
 	 * Constructor.
 	 */
@@ -43,6 +42,5 @@ public class DisplayAppliedStereotypeAspectActionProvider extends AbstractAspect
 	public boolean isEnable(IPaletteEntryProxy entryProxy) {
 		return true;
 	}
-
 
 }

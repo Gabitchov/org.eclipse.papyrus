@@ -3,14 +3,12 @@
  */
 package org.eclipse.papyrus.core.lifecycleevents;
 
-
-
 /**
- * Concrete implementation of this interface allows to listen on various lifecycle events.
- * This interface is the "public" part of the {@link LifeCycleEventsProvider}.
+ * Concrete implementation of this interface allows to listen on various
+ * lifecycle events. This interface is the "public" part of the {@link LifeCycleEventsProvider}.
  * 
  * @author cedric dumoulin
- *
+ * 
  */
 public interface ILifeCycleEventsProvider {
 

@@ -24,7 +24,6 @@ import org.eclipse.papyrus.diagram.common.helper.CleanDiagramHelper;
 import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
 
-
 /**
  * The Class CleanDiagram.
  */
@@ -32,7 +31,6 @@ public class CleanDiagram implements IObjectActionDelegate {
 
 	/** The view to remove. */
 	protected ArrayList<View> viewToRemove = new ArrayList<View>();
-
 
 	/** The selected element. */
 	private DiagramEditPart selectedElement;

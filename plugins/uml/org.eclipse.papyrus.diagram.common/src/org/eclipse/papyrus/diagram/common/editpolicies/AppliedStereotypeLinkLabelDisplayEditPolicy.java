@@ -19,8 +19,9 @@ import org.eclipse.papyrus.diagram.common.figure.node.IPapyrusUMLElementFigure;
 import org.eclipse.swt.graphics.Image;
 
 /**
- * the goal of this edit policy is to display applied stereotype and properties of stereotypes in to
- * a label attached to a link the edge figure figure has to be a {@link IPapyrusUMLElementFigure}
+ * the goal of this edit policy is to display applied stereotype and properties
+ * of stereotypes in to a label attached to a link the edge figure figure has to
+ * be a {@link IPapyrusUMLElementFigure}
  */
 public class AppliedStereotypeLinkLabelDisplayEditPolicy extends AppliedStereotypeLabelDisplayEditPolicy {
 
@@ -44,7 +45,8 @@ public class AppliedStereotypeLinkLabelDisplayEditPolicy extends AppliedStereoty
 		// computes the icon to be displayed
 		final Image imageToDisplay = stereotypeIconToDisplay();
 
-		// if the string is not empty, then, the figure has to display it. Else, it displays nothing
+		// if the string is not empty, then, the figure has to display it. Else,
+		// it displays nothing
 		// if (stereotypesToDisplay != "" || imageToDisplay != null) {
 		if(figure instanceof IPapyrusUMLElementFigure) {
 			((IPapyrusUMLElementFigure)figure).setStereotypeDisplay(tag + (stereotypesToDisplay.equals("") ? stereotypesToDisplay : "\n" + stereotypesToDisplay), imageToDisplay);

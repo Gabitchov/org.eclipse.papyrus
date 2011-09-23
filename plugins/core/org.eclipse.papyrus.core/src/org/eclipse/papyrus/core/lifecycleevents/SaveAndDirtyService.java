@@ -48,19 +48,21 @@ import org.eclipse.ui.actions.WorkspaceModifyOperation;
 import org.eclipse.ui.dialogs.SaveAsDialog;
 import org.eclipse.ui.part.FileEditorInput;
 
-
 /**
- * A Papyrus Service allowing to perform save and saveAs on Papyrus Models. The service also allows
- * to listen on the dirty state of the Models. <br>
- * The service implements the {@link ISaveablePart} interface, and can be used directly in part requiring such
- * interface of adapter.
+ * A Papyrus Service allowing to perform save and saveAs on Papyrus Models. The
+ * service also allows to listen on the dirty state of the Models. <br>
+ * The service implements the {@link ISaveablePart} interface, and can be used
+ * directly in part requiring such interface of adapter.
  * 
  * <br>
- * This class allows nested editors to register themselves as nested {@link ISaveablePart}. In this case, the registered part
- * will be notified each time a save or saveAs is performed. Also, the nested part will be asked for its dirtyState.
+ * This class allows nested editors to register themselves as nested {@link ISaveablePart}. In this case, the registered part will be notified
+ * each time a save or saveAs is performed. Also, the nested part will be asked
+ * for its dirtyState.
  * 
- * TODO : Improve the implementation by registering the isDirty flag value, and firing events only if the value really change.
- * Actually, the event is fired every time the model is modified, even if the virtual value of the flag hasn't changed.
+ * TODO : Improve the implementation by registering the isDirty flag value, and
+ * firing events only if the value really change. Actually, the event is fired
+ * every time the model is modified, even if the virtual value of the flag
+ * hasn't changed.
  * 
  * @author cedric dumoulin
  * 
@@ -68,10 +70,10 @@ import org.eclipse.ui.part.FileEditorInput;
 public class SaveAndDirtyService extends LifeCycleEventsProvider implements ISaveablePart, IService, ISaveAndDirtyService {
 
 	/**
-	 * Class used to propagate life cycle events.
-	 * This class can be retrieved as a service using {@link ILifeCycleEventsProvider}.class.
-	 * This class extends LifeCycleEventsProvider, so the local variable is set with ourself (historical reasons).
-	 * TODO : remove this local variable.
+	 * Class used to propagate life cycle events. This class can be retrieved as
+	 * a service using {@link ILifeCycleEventsProvider}.class. This class
+	 * extends LifeCycleEventsProvider, so the local variable is set with
+	 * ourself (historical reasons). TODO : remove this local variable.
 	 */
 	protected LifeCycleEventsProvider lifeCycleEventsProvider = this;
 
@@ -96,13 +98,13 @@ public class SaveAndDirtyService extends LifeCycleEventsProvider implements ISav
 	private ServicesRegistry servicesRegistry;
 
 	/**
-	 * Associated editor.
-	 * Needed by saveAs to synchronize editor input.
+	 * Associated editor. Needed by saveAs to synchronize editor input.
 	 */
 	private IMultiDiagramEditor multiDiagramEditor;
 
 	/**
-	 * List of registered {@link ISaveablePart}. This are usually nested editors.
+	 * List of registered {@link ISaveablePart}. This are usually nested
+	 * editors.
 	 */
 	private ISaveablePartList registeredIsaveablePart;
 
@@ -110,7 +112,6 @@ public class SaveAndDirtyService extends LifeCycleEventsProvider implements ISav
 	 * List of listeners on input changed event after a call to saveAs.
 	 */
 	private List<IEditorInputChangedListener> inputChangedListeners;
-
 
 	/**
 	 * Listener on commandStack changes.
@@ -122,7 +123,6 @@ public class SaveAndDirtyService extends LifeCycleEventsProvider implements ISav
 			fireIsDirtyChanged();
 		};
 	};
-
 
 	/*
 	 * Listener on ResourceSet
@@ -157,7 +157,6 @@ public class SaveAndDirtyService extends LifeCycleEventsProvider implements ISav
 
 	};
 
-
 	/**
 	 * Constructor.
 	 * 
@@ -168,8 +167,8 @@ public class SaveAndDirtyService extends LifeCycleEventsProvider implements ISav
 	}
 
 	/**
-	 * Initialize the service.
-	 * Retrieve other required services (ModelSet, CoreEditor).
+	 * Initialize the service. Retrieve other required services (ModelSet,
+	 * CoreEditor).
 	 * 
 	 * @see org.eclipse.papyrus.core.services.IService#init(org.eclipse.papyrus.core.services.ServicesRegistry)
 	 * 
@@ -185,10 +184,13 @@ public class SaveAndDirtyService extends LifeCycleEventsProvider implements ISav
 		multiDiagramEditor = servicesRegistry.getService(IMultiDiagramEditor.class);
 		transactionalEditingDomain = ServiceUtils.getInstance().getTransactionalEditingDomain(servicesRegistry);
 
-		// Initialize and register the ILifeCycleEventsProvider service (which is ourself).
-		// This mean that the ILifeCycleEventsProvider is not available until we are started.
+		// Initialize and register the ILifeCycleEventsProvider service (which
+		// is ourself).
+		// This mean that the ILifeCycleEventsProvider is not available until we
+		// are started.
 		lifeCycleEvent = new DoSaveEvent(servicesRegistry, multiDiagramEditor);
-		//		servicesRegistry.add(ILifeCycleEventsProvider.class, 1, lifeCycleEventsProvider);
+		// servicesRegistry.add(ILifeCycleEventsProvider.class, 1,
+		// lifeCycleEventsProvider);
 
 	}
 
@@ -262,7 +264,6 @@ public class SaveAndDirtyService extends LifeCycleEventsProvider implements ISav
 		lifeCycleEventsProvider.fireDoSaveAsEvent(lifeCycleEvent);
 		// Perform local doSaveAs
 
-
 		// Show a SaveAs dialog
 		Shell shell = multiDiagramEditor.getEditorSite().getWorkbenchWindow().getShell();
 		SaveAsDialog dialog = new SaveAsDialog(shell);
@@ -274,20 +275,20 @@ public class SaveAndDirtyService extends LifeCycleEventsProvider implements ISav
 			final IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(path);
 			try {
 				new ProgressMonitorDialog(shell).run(false, // don't fork
-				false, // can't cancel
-				new WorkspaceModifyOperation() { // run this operation
+					false, // can't cancel
+					new WorkspaceModifyOperation() { // run this operation
 
-					@Override
-					public void execute(final IProgressMonitor monitor) {
-						try {
-							resourceSet.saveAs(path);
-							// notify registered IsaveablePart
-							registeredIsaveablePart.doSave(monitor);
-						} catch (IOException e) {
-							log.error("Unable to saveAs the resource set", e);
+						@Override
+						public void execute(final IProgressMonitor monitor) {
+							try {
+								resourceSet.saveAs(path);
+								// notify registered IsaveablePart
+								registeredIsaveablePart.doSave(monitor);
+							} catch (IOException e) {
+								log.error("Unable to saveAs the resource set", e);
+							}
 						}
-					}
-				});
+					});
 				// set input to the new file
 				fireEditorInputChanged(new FileEditorInput(file));
 				markSaveLocation();
@@ -338,8 +339,8 @@ public class SaveAndDirtyService extends LifeCycleEventsProvider implements ISav
 	}
 
 	/**
-	 * Return true if the multiEditor is dirty, false otherwise.
-	 * The dirty state is compute as follow:
+	 * Return true if the multiEditor is dirty, false otherwise. The dirty state
+	 * is compute as follow:
 	 * <ul>
 	 * <li>The {@link TransactionalEditingDomain} commandStack is checked</li>
 	 * <li>and each registered nested Isaveable.isDirty() state is checked</li>
@@ -356,7 +357,8 @@ public class SaveAndDirtyService extends LifeCycleEventsProvider implements ISav
 	 * @return
 	 */
 	public boolean isDirty() {
-		// First, look if the model part (EMF) is dirty, else look at the Graphical part (GEF/GMF)
+		// First, look if the model part (EMF) is dirty, else look at the
+		// Graphical part (GEF/GMF)
 		return ((BasicCommandStack)transactionalEditingDomain.getCommandStack()).isSaveNeeded() || registeredIsaveablePart.isDirty();
 	}
 
@@ -379,7 +381,8 @@ public class SaveAndDirtyService extends LifeCycleEventsProvider implements ISav
 	}
 
 	/**
-	 * Mark the command stack of all sub-editors. Default implementation do nothing.
+	 * Mark the command stack of all sub-editors. Default implementation do
+	 * nothing.
 	 */
 	protected void markSaveLocation() {
 		((BasicCommandStack)transactionalEditingDomain.getCommandStack()).saveIsDone();
@@ -387,9 +390,9 @@ public class SaveAndDirtyService extends LifeCycleEventsProvider implements ISav
 	}
 
 	/**
-	 * Register a nested {@link ISaveablePart} as a listener that will be notified each time a {@link #doSave(IProgressMonitor)} or
-	 * {@link #doSaveAs()} is performed.
-	 * Also, it will be asked for the dirtyState.
+	 * Register a nested {@link ISaveablePart} as a listener that will be
+	 * notified each time a {@link #doSave(IProgressMonitor)} or {@link #doSaveAs()} is performed. Also, it will be asked for the
+	 * dirtyState.
 	 * 
 	 * @param saveablePart
 	 */
@@ -438,7 +441,8 @@ public class SaveAndDirtyService extends LifeCycleEventsProvider implements ISav
 		private static final long serialVersionUID = 1L;
 
 		/**
-		 * Return true if one of the part is dirty, false if all part are not dirty.
+		 * Return true if one of the part is dirty, false if all part are not
+		 * dirty.
 		 * 
 		 * @return
 		 */
@@ -458,7 +462,6 @@ public class SaveAndDirtyService extends LifeCycleEventsProvider implements ISav
 		 */
 		public void doSave(IProgressMonitor monitor) {
 			for(ISaveablePart part : this) {
-
 
 				try {
 					part.doSave(monitor);

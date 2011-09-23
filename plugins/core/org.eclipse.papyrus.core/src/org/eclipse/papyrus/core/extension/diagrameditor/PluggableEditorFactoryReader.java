@@ -26,8 +26,8 @@ import org.eclipse.papyrus.core.extension.ExtensionException;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
 
 /**
- * This reader is used to read PluggableEditorFactory from the Eclipse extension declarations.
- * It can be used to populate an {@link PageModelFactoryRegistry}.
+ * This reader is used to read PluggableEditorFactory from the Eclipse extension
+ * declarations. It can be used to populate an {@link PageModelFactoryRegistry}.
  */
 public class PluggableEditorFactoryReader {
 
@@ -43,10 +43,9 @@ public class PluggableEditorFactoryReader {
 	/** indicates if extension is loaded or not */
 	private boolean isExtensionLoaded = false;
 
-
 	/**
-	 * Create a new Registry reading extension from the specified namespace. The namespace is
-	 * usually the name of the plugin owning the registry.
+	 * Create a new Registry reading extension from the specified namespace. The
+	 * namespace is usually the name of the plugin owning the registry.
 	 * 
 	 * @param extensionPointNamespace
 	 */
@@ -57,13 +56,14 @@ public class PluggableEditorFactoryReader {
 	}
 
 	/**
-	 * Populate the provided {@link PageModelFactoryRegistry} with {@link IPluggableEditorFactory} read
-	 * from Eclipse extension declarations.
-	 * For each declared editor, create a proxy encapsulating the real EditorFactory. Then the proxy is
-	 * added to the PageModelFactoryRegistry.
+	 * Populate the provided {@link PageModelFactoryRegistry} with {@link IPluggableEditorFactory} read from Eclipse extension declarations.
+	 * For each declared editor, create a proxy encapsulating the real
+	 * EditorFactory. Then the proxy is added to the PageModelFactoryRegistry.
 	 * 
-	 * @param pageModelFactoryRegistry The object to populate
-	 * @param serviceRegistry ServiceRegistry provided to newly instantiated {@link IPluggableEditorFactory}.
+	 * @param pageModelFactoryRegistry
+	 *        The object to populate
+	 * @param serviceRegistry
+	 *        ServiceRegistry provided to newly instantiated {@link IPluggableEditorFactory}.
 	 */
 	public void populate(PageModelFactoryRegistry pageModelFactoryRegistry, ServicesRegistry serviceRegistry) {
 
@@ -75,12 +75,13 @@ public class PluggableEditorFactoryReader {
 	}
 
 	/**
-	 * Populate the provided {@link PageIconsRegistry} with icons read
-	 * from Eclipse extension declarations.
-	 * For each declared editor, create a {@link EditorIconFactory}.
+	 * Populate the provided {@link PageIconsRegistry} with icons read from
+	 * Eclipse extension declarations. For each declared editor, create a {@link EditorIconFactory}.
 	 * 
-	 * @param pageModelFactoryRegistry The object to populate
-	 * @param serviceRegistry ServiceRegistry provided to newly instantiated {@link IPluggableEditorFactory}.
+	 * @param pageModelFactoryRegistry
+	 *        The object to populate
+	 * @param serviceRegistry
+	 *        ServiceRegistry provided to newly instantiated {@link IPluggableEditorFactory}.
 	 */
 	public void populate(PageIconsRegistry registry) {
 
@@ -90,8 +91,6 @@ public class PluggableEditorFactoryReader {
 			registry.add(new EditorIconFactory(desc));
 		}
 	}
-
-
 
 	/**
 	 * Get the list of editor descriptor.

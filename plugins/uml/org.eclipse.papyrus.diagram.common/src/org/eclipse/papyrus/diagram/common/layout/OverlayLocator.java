@@ -23,8 +23,8 @@ import org.eclipse.gmf.runtime.diagram.ui.services.decorator.IDecoratorTarget.Di
 
 /**
  * 
- * A locator to add an overlay to an IFigure.
- * The Overlay can be located following theses value :
+ * A locator to add an overlay to an IFigure. The Overlay can be located
+ * following theses value :
  * <ul>
  * <li> {@link Direction#NORTH}</li>
  * <li> {@link Direction#NORTH_EAST}</li>
@@ -80,7 +80,6 @@ public class OverlayLocator implements Locator {
 
 		int height = target.getBounds().height;
 		int halfHeight = height / 2;
-
 
 		if(Direction.NORTH_WEST.equals(this.position)) {
 			target.setLocation(bounds.getTopLeft().getTranslated(-halfWidth, -halfHeight));

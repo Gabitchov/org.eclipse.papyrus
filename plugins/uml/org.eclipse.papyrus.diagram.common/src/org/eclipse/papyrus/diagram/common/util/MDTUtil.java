@@ -90,7 +90,8 @@ public class MDTUtil {
 	public static String EDITOR_VERSION = "org.eclipse.papyrus.diagram.common.Editor";
 
 	/**
-	 * Add to a diagram the version of the first editor that will modify the diagram.
+	 * Add to a diagram the version of the first editor that will modify the
+	 * diagram.
 	 * 
 	 * @param diagram
 	 *        the diagram
@@ -124,8 +125,8 @@ public class MDTUtil {
 	 * 
 	 * @return the diagram version
 	 * 
-	 * @author <a href="mailto:gmerin@prodevelop.es">Gabriel Merin</a> The version of the first
-	 *         editor that modified the diagram
+	 * @author <a href="mailto:gmerin@prodevelop.es">Gabriel Merin</a> The
+	 *         version of the first editor that modified the diagram
 	 */
 	// @unused
 	public static String getDiagramVersion(Diagram diagram) {
@@ -145,7 +146,8 @@ public class MDTUtil {
 	 * 
 	 * @return the editor version
 	 * 
-	 * @author <a href="mailto:gmerin@prodevelop.es">Gabriel Merin</a> The version of the editor
+	 * @author <a href="mailto:gmerin@prodevelop.es">Gabriel Merin</a> The
+	 *         version of the editor
 	 */
 	// @unused
 	public static String getEditorVersion(IEditorPart editor) {
@@ -350,8 +352,8 @@ public class MDTUtil {
 	}
 
 	/**
-	 * Gets a Diagram from the Request looking for it in the extended data with key
-	 * <MultiDiagramUtil.BelongToDiagramSource>
+	 * Gets a Diagram from the Request looking for it in the extended data with
+	 * key <MultiDiagramUtil.BelongToDiagramSource>
 	 * 
 	 * @param request
 	 * @return
@@ -764,10 +766,10 @@ public class MDTUtil {
 	}
 
 	/**
-	 * Gets or builds a valid CachedResourcesEditorInput for a given URI. The given URI must point
-	 * to a valid GMFResource. <br>
-	 * This URI can have a fragment defined. If the fragment does not point to a valid Diagram, the
-	 * first Diagram of the Resource is returned as input.
+	 * Gets or builds a valid CachedResourcesEditorInput for a given URI. The
+	 * given URI must point to a valid GMFResource. <br>
+	 * This URI can have a fragment defined. If the fragment does not point to a
+	 * valid Diagram, the first Diagram of the Resource is returned as input.
 	 * 
 	 * @param editorInput
 	 * @param editorID
@@ -793,7 +795,8 @@ public class MDTUtil {
 	}
 
 	/**
-	 * Tries to get the given Diagram in URI. If not, it will get the first Diagram.
+	 * Tries to get the given Diagram in URI. If not, it will get the first
+	 * Diagram.
 	 * 
 	 * @param resourceSet
 	 * @param editorInput
@@ -885,7 +888,8 @@ public class MDTUtil {
 	}
 
 	/**
-	 * Looks in the class hierarchy for a Class or Interface with qualified name className.
+	 * Looks in the class hierarchy for a Class or Interface with qualified name
+	 * className.
 	 * 
 	 * @param clazz
 	 * @param className
@@ -962,8 +966,8 @@ public class MDTUtil {
 	 * @param eObject
 	 *        <EObject> to begin the search
 	 * @param gmfResource
-	 *        <GMFResource> to look for <Diagram>s. If null, a <GMFResource> will be looked up
-	 *        in the <EObject>'s <ResourceSet>, if any.
+	 *        <GMFResource> to look for <Diagram>s. If null, a <GMFResource>
+	 *        will be looked up in the <EObject>'s <ResourceSet>, if any.
 	 * 
 	 * @return the diagrams in hierarchy
 	 */

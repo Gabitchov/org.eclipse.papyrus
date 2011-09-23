@@ -3,8 +3,6 @@
  */
 package org.eclipse.papyrus.sasheditor.internal;
 
-
-
 /**
  * A visitor used to lookup a {@link TabFolderPart} by its raw model.
  * 
@@ -16,7 +14,6 @@ public class LookupFolderPartByRawModelVisitor extends PartVisitor {
 	private Object rawModel;
 
 	private TabFolderPart result;
-
 
 	public LookupFolderPartByRawModelVisitor(Object rawModel) {
 		this.rawModel = rawModel;

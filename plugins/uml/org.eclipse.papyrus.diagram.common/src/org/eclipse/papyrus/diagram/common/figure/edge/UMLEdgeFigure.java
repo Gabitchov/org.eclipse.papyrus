@@ -47,8 +47,8 @@ public class UMLEdgeFigure extends PolylineConnectionEx implements IPapyrusUMLEl
 	}
 
 	/**
-	 * Creates the contents of the figure, i.e. child node. This basic implementation creates only a
-	 * new stereotype label.
+	 * Creates the contents of the figure, i.e. child node. This basic
+	 * implementation creates only a new stereotype label.
 	 * <p>
 	 * This method should be called when the parent figure is created, or when the label was removed and a string has to be displayed.
 	 * </p>

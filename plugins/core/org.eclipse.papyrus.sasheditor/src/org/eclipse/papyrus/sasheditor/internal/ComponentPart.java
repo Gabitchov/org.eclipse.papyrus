@@ -26,10 +26,8 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.internal.dnd.IDropTarget;
 
-
 /**
- * This is a controler/part for an SWT Control. It is associated to a {@link IComponentModel}.
- * This Part encapsulate a SWT Control.
+ * This is a controler/part for an SWT Control. It is associated to a {@link IComponentModel}. This Part encapsulate a SWT Control.
  * 
  * @author dumoulin
  * 
@@ -68,7 +66,7 @@ public class ComponentPart extends PagePart implements IComponentPage {
 		try {
 			// Initialize it and create its controls.
 			editorControl = createEditorPartControl(parent);
-			//			attachListeners(editorControl, true);
+			// attachListeners(editorControl, true);
 
 		} catch (PartInitException e) {
 			Activator.getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, e.getLocalizedMessage()));
@@ -76,8 +74,7 @@ public class ComponentPart extends PagePart implements IComponentPage {
 	}
 
 	/**
-	 * Create the controls required by the editor.
-	 * Init the editor.
+	 * Create the controls required by the editor. Init the editor.
 	 * 
 	 * @param viewer
 	 * @param editorInput
@@ -85,8 +82,7 @@ public class ComponentPart extends PagePart implements IComponentPage {
 	 * @return
 	 * @throws PartInitException
 	 */
-	private Composite createEditorPartControl(Composite parentControl)
-			throws PartInitException {
+	private Composite createEditorPartControl(Composite parentControl) throws PartInitException {
 		Composite editorParent = new Composite(parentControl, SWT.NONE);
 		editorParent.setLayout(new FillLayout());
 		partModel.createPartControl(editorParent);
@@ -99,15 +95,14 @@ public class ComponentPart extends PagePart implements IComponentPage {
 	 */
 	public void dispose() {
 
-		//		detachListeners(editorControl, true);
+		// detachListeners(editorControl, true);
 		// dispose the SWT root control
 		editorControl.dispose();
 	}
 
-
 	/**
-	 * As we are a final Tile, we should be the requested part.
-	 * Return this TilePart.
+	 * As we are a final Tile, we should be the requested part. Return this
+	 * TilePart.
 	 * 
 	 * @param toFind
 	 * @return
@@ -117,7 +112,8 @@ public class ComponentPart extends PagePart implements IComponentPage {
 	}
 
 	/**
-	 * Locates the part that intersects the given point and that have the expected type
+	 * Locates the part that intersects the given point and that have the
+	 * expected type
 	 * 
 	 * @param toFind
 	 * @return
@@ -129,10 +125,7 @@ public class ComponentPart extends PagePart implements IComponentPage {
 
 		// Not found !!
 		// The tile contains the position, but the type is not found.
-		throw new UnsupportedOperationException("Tile match the expected position '"
-				+ toFind
-				+ "' but there is no Tile of requested type '"
-				+ expectedTileType.getClass().getName() + "'");
+		throw new UnsupportedOperationException("Tile match the expected position '" + toFind + "' but there is no Tile of requested type '" + expectedTileType.getClass().getName() + "'");
 	}
 
 	/**
@@ -156,10 +149,9 @@ public class ComponentPart extends PagePart implements IComponentPage {
 		return editorControl;
 	}
 
-
 	/**
-	 * This is a container method. Not necessary in Leaf Tile.
-	 * TODO: change the interface.
+	 * This is a container method. Not necessary in Leaf Tile. TODO: change the
+	 * interface.
 	 * 
 	 * @param draggedObject
 	 * @param sourcePart
@@ -170,11 +162,10 @@ public class ComponentPart extends PagePart implements IComponentPage {
 		return null;
 	}
 
-
 	/**
 	 * Change the parent of the Tile. The parent is changed, and the control is
-	 * attached to the parent control. Change garbage state to {@link GarbageState.REPARENTED}.
-	 * Do not detach the Tile from its old parent.
+	 * attached to the parent control. Change garbage state to {@link GarbageState.REPARENTED}. Do not detach the Tile from its old
+	 * parent.
 	 * 
 	 * @param newParent
 	 *        The tilePart that should be used as part parent.
@@ -198,22 +189,20 @@ public class ComponentPart extends PagePart implements IComponentPage {
 		}
 	}
 
-
 	/**
-	 * Asks this part to take focus within the workbench.
-	 * Set the focus on the active nested part if the part is a container.
+	 * Asks this part to take focus within the workbench. Set the focus on the
+	 * active nested part if the part is a container.
 	 */
 	public void setFocus() {
 		editorControl.setFocus();
 	}
 
-
 	/**
-	 * Synchronize the Part, and its children. PartMap contains a snapshot of the available part before
-	 * the synchronization. After synchronization, unreachable parts should be marked "orphaned" (= no
-	 * parent).
-	 * Do nothing in this implementation, as we are a final leaf, and there is nothing to synchronize
-	 * with the underlying model.
+	 * Synchronize the Part, and its children. PartMap contains a snapshot of
+	 * the available part before the synchronization. After synchronization,
+	 * unreachable parts should be marked "orphaned" (= no parent). Do nothing
+	 * in this implementation, as we are a final leaf, and there is nothing to
+	 * synchronize with the underlying model.
 	 * 
 	 * @param partMap
 	 */
@@ -221,11 +210,9 @@ public class ComponentPart extends PagePart implements IComponentPage {
 
 	}
 
-
 	/**
-	 * Garbage this part.
-	 * The part is already marked as ORPHANED. It is not used anymore. It is already detached
-	 * from its parent.
+	 * Garbage this part. The part is already marked as ORPHANED. It is not used
+	 * anymore. It is already detached from its parent.
 	 * 
 	 */
 	public void garbage() {
@@ -234,10 +221,9 @@ public class ComponentPart extends PagePart implements IComponentPage {
 		getSashWindowContainer().getLifeCycleEventProvider().firePageClosedEvent(this);
 	}
 
-
 	/**
-	 * Accept the provided visitor.
-	 * Call the corresponding accept method in the visitor.
+	 * Accept the provided visitor. Call the corresponding accept method in the
+	 * visitor.
 	 * 
 	 * @param visitor
 	 * @return
@@ -247,8 +233,7 @@ public class ComponentPart extends PagePart implements IComponentPage {
 	}
 
 	/**
-	 * Visit the children of this Tile.
-	 * There is no child, so do nothing.
+	 * Visit the children of this Tile. There is no child, so do nothing.
 	 * 
 	 * @param visitor
 	 */
@@ -256,20 +241,18 @@ public class ComponentPart extends PagePart implements IComponentPage {
 		return true;
 	}
 
-
 	/**
 	 * Show item status.
 	 */
 	protected void showStatus() {
-		//		System.out.println( "EditorTile: " 
-		//				+ " disposed=" + editorControl.isDisposed()
-		//				+ ", visible=" + editorControl.isVisible()
-		//				+ ", garbState=" + garbageState
-		//				+ ", '" + editorPart.getTitle()
-		//				+ "', " + this);
+		// System.out.println( "EditorTile: "
+		// + " disposed=" + editorControl.isDisposed()
+		// + ", visible=" + editorControl.isVisible()
+		// + ", garbState=" + garbageState
+		// + ", '" + editorPart.getTitle()
+		// + "', " + this);
 
-		System.out.printf("ComponentPart: disposed=%-5b, visible=%-5b, garbState=%-10s, %s, %s\n"
-				, editorControl.isDisposed(), (editorControl.isDisposed() ? false : editorControl.isVisible()), garbageState, getPageTitle(), this);
+		System.out.printf("ComponentPart: disposed=%-5b, visible=%-5b, garbState=%-10s, %s, %s\n", editorControl.isDisposed(), (editorControl.isDisposed() ? false : editorControl.isVisible()), garbageState, getPageTitle(), this);
 
 	}
 

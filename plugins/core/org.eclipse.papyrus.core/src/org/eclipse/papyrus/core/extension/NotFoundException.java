@@ -14,7 +14,8 @@
 package org.eclipse.papyrus.core.extension;
 
 /**
- * Exception thrown when something is not found when parsing a configuration element.
+ * Exception thrown when something is not found when parsing a configuration
+ * element.
  * 
  * @author dumoulin
  * @author schnekenburger

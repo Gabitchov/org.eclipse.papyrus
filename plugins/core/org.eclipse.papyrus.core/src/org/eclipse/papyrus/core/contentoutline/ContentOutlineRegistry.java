@@ -45,9 +45,10 @@ public class ContentOutlineRegistry {
 	private IMultiDiagramEditor multiEditor;
 
 	/**
-	 * Constructor. defaultContext, input and site are explicitly required in order be sure that they are initialized. The multiEditor should be
-	 * initialized. In particular, getEditorSite(),
-	 * getEditorInput() and getDefaultContext() should return initialized values.
+	 * Constructor. defaultContext, input and site are explicitly required in
+	 * order be sure that they are initialized. The multiEditor should be
+	 * initialized. In particular, getEditorSite(), getEditorInput() and
+	 * getDefaultContext() should return initialized values.
 	 * 
 	 * @param multiEditor
 	 * @param defaultContext
@@ -61,7 +62,8 @@ public class ContentOutlineRegistry {
 	}
 
 	/**
-	 * Returns the single instance of the content outline. Creates one if necessary.
+	 * Returns the single instance of the content outline. Creates one if
+	 * necessary.
 	 * 
 	 * @return the contentOutline the single instance of the content outline
 	 * @throws BackboneException
@@ -117,9 +119,9 @@ public class ContentOutlineRegistry {
 	}
 
 	/**
-	 * Inner Descriptor for content outline.
-	 * This class load data from Eclipse extension mechanism
-	 * TODO Change the parent class. It is here just to have quick code.
+	 * Inner Descriptor for content outline. This class load data from Eclipse
+	 * extension mechanism TODO Change the parent class. It is here just to have
+	 * quick code.
 	 */
 	protected class ContentOutlineDescriptor extends EditorDescriptorExtensionFactory {
 
@@ -130,7 +132,6 @@ public class ContentOutlineRegistry {
 		private String actionBarContributorID;
 
 		private IConfigurationElement element;
-
 
 		/**
 		 * Instance is created when requested.
@@ -169,12 +170,12 @@ public class ContentOutlineRegistry {
 		}
 
 		/**
-		 * Return the higher value of the descriptor. This value is used to order the contentOutline. The highest priority win.
+		 * Return the higher value of the descriptor. This value is used to
+		 * order the contentOutline. The highest priority win.
 		 */
 		private int getPriority() {
 			return priority;
 		}
-
 
 		/**
 		 * @return the actionBarContributorID
@@ -221,7 +222,8 @@ public class ContentOutlineRegistry {
 		}
 
 		/**
-		 * create the outlinepage by calling constructor without parameter and then call init method
+		 * create the outlinepage by calling constructor without parameter and
+		 * then call init method
 		 * 
 		 * @return the outline.
 		 * @throws BackboneException
@@ -233,15 +235,18 @@ public class ContentOutlineRegistry {
 				return outline;
 
 			} catch (SecurityException e) {
-				// Lets propagate. This is an implementation problem that should be solved by programmer.
+				// Lets propagate. This is an implementation problem that should
+				// be solved by programmer.
 				throw new RuntimeException(e);
 			}
 
 			catch (InstantiationException e) {
-				// Lets propagate. This is an implementation problem that should be solved by programmer.
+				// Lets propagate. This is an implementation problem that should
+				// be solved by programmer.
 				// throw new RuntimeException(e);
 			} catch (IllegalAccessException e) {
-				// Lets propagate. This is an implementation problem that should be solved by programmer.
+				// Lets propagate. This is an implementation problem that should
+				// be solved by programmer.
 				throw new RuntimeException(e);
 			}
 			return null;

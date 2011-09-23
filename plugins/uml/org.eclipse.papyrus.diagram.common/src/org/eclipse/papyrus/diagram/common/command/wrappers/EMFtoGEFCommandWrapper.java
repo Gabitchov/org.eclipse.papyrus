@@ -11,16 +11,17 @@
  *******************************************************************************/
 package org.eclipse.papyrus.diagram.common.command.wrappers;
 
-
 // TODO: Auto-generated Javadoc
 /**
- * A GEF Command that wraps an EMF command. Each method is redirected to the EMF one. <br>
+ * A GEF Command that wraps an EMF command. Each method is redirected to the EMF
+ * one. <br>
  * Adapts an {@link org.eclipse.emf.common.command.Command EMF Command} to be a {@link org.eclipse.gef.commands.Command GEF Command}.
  * 
  * Creation : 21 fev. 2006
  * 
  * @deprecated use {@link org.eclipse.papyrus.commands.wrappers.EMFtoGEFCommandWrapper} instead
- * @author aarong, <a href="mailto:jacques.lescot@anyware-tech.com">Jacques LESCOT</a>
+ * @author aarong, <a href="mailto:jacques.lescot@anyware-tech.com">Jacques
+ *         LESCOT</a>
  */
 public class EMFtoGEFCommandWrapper extends org.eclipse.papyrus.commands.wrappers.EMFtoGEFCommandWrapper {
 

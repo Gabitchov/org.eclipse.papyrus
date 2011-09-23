@@ -175,8 +175,9 @@ public class LaneLayout extends AbstractHintLayout {
 				newBounds.width = Math.max(minWidth, clientArea.width);
 				if(isResizedByUser) {
 					/*
-					 * If all element are resized by user and summary preferred heigh is less then
-					 * client area, last element should cover spare space.
+					 * If all element are resized by user and summary preferred
+					 * heigh is less then client area, last element should cover
+					 * spare space.
 					 */
 					if(numChildren == nonExpansibleNum && totalPrefHeight < clientArea.height && i == numChildren - 1) {
 						newBounds.height += clientArea.height - totalPrefHeight;

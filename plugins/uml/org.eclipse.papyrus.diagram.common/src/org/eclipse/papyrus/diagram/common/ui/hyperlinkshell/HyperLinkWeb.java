@@ -22,7 +22,8 @@ import org.eclipse.ui.browser.IWorkbenchBrowserSupport;
 import org.eclipse.uml2.uml.Package;
 
 /**
- * this is an hyperlink to manage web link (it open a web browser when it is selected)
+ * this is an hyperlink to manage web link (it open a web browser when it is
+ * selected)
  * 
  */
 public class HyperLinkWeb extends HyperlinkObject {

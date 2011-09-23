@@ -55,14 +55,12 @@ public class SetDynamicValueCommand extends EditElementCommand implements IUndoa
 		this.request = request;
 	}
 
-
-
 	/**
 	 * @{inheritDoc
 	 */
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		//we edit meta-element properties
+		// we edit meta-element properties
 		DefinedPropertiesAtRuntimeDialog dialog = new DefinedPropertiesAtRuntimeDialog(DisplayUtils.getDefaultShell(), title, message, propertiesToEdit, getElementToEdit());
 		dialog.open();
 

@@ -27,7 +27,8 @@ import org.eclipse.draw2d.geometry.Rectangle;
 public class PortPositionLocatorUtils {
 
 	/**
-	 * Get the valid border location of the Port with the proposed location on the parent.
+	 * Get the valid border location of the Port with the proposed location on
+	 * the parent.
 	 * 
 	 * @param parentFigureBounds
 	 *        the parent bounds.
@@ -35,7 +36,8 @@ public class PortPositionLocatorUtils {
 	 *        the proposed Port bounds.
 	 * @param borderItemOffset
 	 *        the overlapping size of the Port over its parent figure.
-	 * @return the allowed bounds for the Port (location relative to parent TopLeft point).
+	 * @return the allowed bounds for the Port (location relative to parent
+	 *         TopLeft point).
 	 */
 	public static Rectangle getBorderLocation(Rectangle parentFigureBounds, Rectangle proposedFigureBounds, int borderItemOffset) {
 
@@ -45,7 +47,8 @@ public class PortPositionLocatorUtils {
 
 		Rectangle parentRec = parentFigureBounds.getCopy();
 
-		// Calculate Max position around the graphical parent (1/2 size or the port around
+		// Calculate Max position around the graphical parent (1/2 size or the
+		// port around
 		// the graphical parent bounds.
 		int xMin = -borderItemOffset;
 		int xMax = -borderItemOffset + parentRec.width;
@@ -69,7 +72,8 @@ public class PortPositionLocatorUtils {
 			realLocation.y = yMax;
 		}
 
-		// Ensure the port is positioned on its parent borders and not in the middle.
+		// Ensure the port is positioned on its parent borders and not in the
+		// middle.
 		// Modify position if needed.
 		if((realLocation.y != yMin) && (realLocation.y != yMax)) {
 			if((realLocation.x != xMin) && (realLocation.x != xMax)) {
@@ -111,35 +115,38 @@ public class PortPositionLocatorUtils {
 	public static int getCurrentSideOfParent(Rectangle parentFigureBounds, Rectangle figureBounds, int borderItemOffset) {
 		int position = PositionConstants.NONE;
 
-		//we are not on EAST, not on WEST, but we are on the NORTH
+		// we are not on EAST, not on WEST, but we are on the NORTH
 		if((figureBounds.x != parentFigureBounds.width - borderItemOffset) && (figureBounds.x != -borderItemOffset) && (figureBounds.y == -borderItemOffset)) {
 			position = PositionConstants.NORTH;
 
-			//we are not on the EAST and not on the WEST, but we are on the SOUTH			
+			// we are not on the EAST and not on the WEST, but we are on the
+			// SOUTH
 		} else if((figureBounds.x != parentFigureBounds.width - borderItemOffset) && (figureBounds.x != -borderItemOffset) && (figureBounds.y == parentFigureBounds.height - borderItemOffset)) {
 			position = PositionConstants.SOUTH;
 
-			//we are on the EAST, but we are not on the NORTH and not on the SOUTH
+			// we are on the EAST, but we are not on the NORTH and not on the
+			// SOUTH
 		} else if((figureBounds.x == parentFigureBounds.width - borderItemOffset) && (figureBounds.y != -borderItemOffset) && (figureBounds.y != parentFigureBounds.height - borderItemOffset)) {
 			position = PositionConstants.EAST;
 
-			//we are on the WEST, but we are not on the on the NORTH and not on the SOUTH
+			// we are on the WEST, but we are not on the on the NORTH and not on
+			// the SOUTH
 		} else if((figureBounds.x == -borderItemOffset) && (figureBounds.y != -borderItemOffset) && (figureBounds.y != parentFigureBounds.height - borderItemOffset)) {
 			position = PositionConstants.WEST;
 
-			//we are on the NORTH and on the EAST
+			// we are on the NORTH and on the EAST
 		} else if((figureBounds.x == parentFigureBounds.width - borderItemOffset) && (figureBounds.y == -borderItemOffset)) {
 			position = PositionConstants.NORTH_EAST;
 
-			//we are on the NORTH and on the WEST
+			// we are on the NORTH and on the WEST
 		} else if((figureBounds.x == -borderItemOffset) && (figureBounds.y == -borderItemOffset)) {
 			position = PositionConstants.NORTH_WEST;
 
-			//we are on the EAST and on the SOUTH
+			// we are on the EAST and on the SOUTH
 		} else if((figureBounds.x == parentFigureBounds.width - borderItemOffset) && (figureBounds.y == parentFigureBounds.height - borderItemOffset)) {
 			position = PositionConstants.SOUTH_EAST;
 
-			//we are on the WEST and on the SOUTH
+			// we are on the WEST and on the SOUTH
 		} else if((figureBounds.x == -borderItemOffset) && (figureBounds.y == parentFigureBounds.height - borderItemOffset)) {
 			position = PositionConstants.SOUTH_WEST;
 		}

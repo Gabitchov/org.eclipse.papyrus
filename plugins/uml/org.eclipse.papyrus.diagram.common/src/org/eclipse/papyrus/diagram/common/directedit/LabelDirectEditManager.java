@@ -28,8 +28,9 @@ import org.eclipse.ui.actions.ActionFactory;
 import org.eclipse.ui.part.CellEditorActionHandler;
 
 /**
- * DirectEdit manager for label managed by a LabelControlerManager. It is intended to be used in
- * conjunction with LabelDirectEditPolicy and LabelControler.
+ * DirectEdit manager for label managed by a LabelControlerManager. It is
+ * intended to be used in conjunction with LabelDirectEditPolicy and
+ * LabelControler.
  */
 public class LabelDirectEditManager extends DirectEditManager {
 
@@ -93,7 +94,8 @@ public class LabelDirectEditManager extends DirectEditManager {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.eclipse.gef.tools.DirectEditManager#createCellEditorOn(org.eclipse.swt.widgets.Composite)
+	 * org.eclipse.gef.tools.DirectEditManager#createCellEditorOn(org.eclipse
+	 * .swt.widgets.Composite)
 	 */
 	/**
 	 * 
@@ -136,7 +138,8 @@ public class LabelDirectEditManager extends DirectEditManager {
 		getCellEditor().setValue(labelCtrl.getPropertyAccessor().getValue());
 		getCellEditor().getControl().setFont(labelCtrl.getLabel().getFont());
 
-		// Hook the cell editor's copy/paste actions to the actionBars so that they can
+		// Hook the cell editor's copy/paste actions to the actionBars so that
+		// they can
 		// be invoked via keyboard shortcuts.
 		actionBars = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor().getEditorSite().getActionBars();
 		saveCurrentActions(actionBars);

@@ -58,7 +58,6 @@ public class DefaultHyperLinkTab {
 
 	protected Composite defaultHyperlinkComposite;
 
-
 	/**
 	 * 
 	 * @return get the list of hyperlink that are to be as default hyperlinks
@@ -99,7 +98,6 @@ public class DefaultHyperLinkTab {
 		Table availableHyperLink = new Table(defaultHyperlinkComposite, SWT.BORDER | SWT.FULL_SELECTION);
 		availableHyperLink.setBounds(30, 29, 250, 177);
 
-
 		defaultHRight = new Button(defaultHyperlinkComposite, SWT.NONE);
 		defaultHRight.setBounds(availableHyperLink.getBounds().x + availableHyperLink.getBounds().width + 20, availableHyperLink.getBounds().y + availableHyperLink.getBounds().height / 2 - 30, 30, 23);
 		defaultHRight.addMouseListener(new MouseListener() {
@@ -109,9 +107,9 @@ public class DefaultHyperLinkTab {
 			}
 
 			public void mouseDown(MouseEvent e) {
-				//move element left to right
+				// move element left to right
 				if(availableHyperLinkViewer.getSelection() != null) {
-					//normally this viewer contains only hyperlinkObject
+					// normally this viewer contains only hyperlinkObject
 					if(availableHyperLinkViewer.getSelection() instanceof IStructuredSelection) {
 						HyperlinkObject hyperlinkObjectToMove = (HyperlinkObject)((IStructuredSelection)availableHyperLinkViewer.getSelection()).getFirstElement();
 						hyperlinkObjectToMove.setIsDefault(true);
@@ -136,9 +134,9 @@ public class DefaultHyperLinkTab {
 			}
 
 			public void mouseDown(MouseEvent e) {
-				//move element right to left
+				// move element right to left
 				if(defaultHyperLinkViewer.getSelection() != null) {
-					//normally this viewer contains only hyperlinkObject
+					// normally this viewer contains only hyperlinkObject
 					if(defaultHyperLinkViewer.getSelection() instanceof IStructuredSelection) {
 
 						HyperlinkObject hyperlinkObjectToMove = (HyperlinkObject)((IStructuredSelection)defaultHyperLinkViewer.getSelection()).getFirstElement();
@@ -155,10 +153,8 @@ public class DefaultHyperLinkTab {
 			}
 		});
 
-
 		Table defaultHyperLink = new Table(defaultHyperlinkComposite, SWT.BORDER | SWT.FULL_SELECTION);
 		defaultHyperLink.setBounds(defaultHRight.getBounds().x + defaultHRight.getBounds().width + 20, 29, 250, 177);
-
 
 		defaultHup = new Button(defaultHyperlinkComposite, SWT.NONE);
 		defaultHup.setBounds(defaultHyperLink.getBounds().x + defaultHyperLink.getBounds().width + 20, defaultHyperLink.getBounds().y + (defaultHyperLink.getBounds().height / 2) - 30, 34, 23);
@@ -170,9 +166,9 @@ public class DefaultHyperLinkTab {
 			}
 
 			public void mouseDown(MouseEvent e) {
-				//move element bottom to top
+				// move element bottom to top
 				if(defaultHyperLinkViewer.getSelection() != null) {
-					//normally this viewer contains only hyperlinkObject
+					// normally this viewer contains only hyperlinkObject
 					if(defaultHyperLinkViewer.getSelection() instanceof IStructuredSelection) {
 
 						HyperlinkObject hyperlinkObjectToMove = (HyperlinkObject)((IStructuredSelection)defaultHyperLinkViewer.getSelection()).getFirstElement();
@@ -201,9 +197,9 @@ public class DefaultHyperLinkTab {
 			}
 
 			public void mouseDown(MouseEvent e) {
-				//move element top to bottom
+				// move element top to bottom
 				if(defaultHyperLinkViewer.getSelection() != null) {
-					//normally this viewer contains only hyperlinkObject
+					// normally this viewer contains only hyperlinkObject
 					if(defaultHyperLinkViewer.getSelection() instanceof IStructuredSelection) {
 
 						HyperlinkObject hyperlinkObjectToMove = (HyperlinkObject)((IStructuredSelection)defaultHyperLinkViewer.getSelection()).getFirstElement();
@@ -223,14 +219,11 @@ public class DefaultHyperLinkTab {
 			}
 		});
 
-
 		// associate image to buttons
 		defaultHdown.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.diagram.common", "/icons/obj16/ArrowDown_16x16.gif").createImage());
 		defaultHup.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.diagram.common", "/icons/obj16/ArrowUp_16x16.gif").createImage());
 		defaultHleft.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.diagram.common", "/icons/obj16/ArrowLeft_16x16.gif").createImage());
 		defaultHRight.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.diagram.common", "/icons/obj16/ArrowRight_16x16.gif").createImage());
-
-
 
 		IPageIconsRegistry editorRegistry = null;
 		IMultiDiagramEditor papyrusEditor = EditorUtils.getMultiDiagramEditor();
@@ -239,7 +232,7 @@ public class DefaultHyperLinkTab {
 		} catch (ServiceException e) {
 			e.printStackTrace();
 		}
-		//init tableviewer
+		// init tableviewer
 		availableHyperLinkViewer = new TableViewer(availableHyperLink);
 		availableHyperLinkViewer.setLabelProvider(new HyperLinkLabelProvider(editorRegistry));
 		availableHyperLinkViewer.setContentProvider(new HyperLinkContentProvider());
@@ -268,12 +261,9 @@ public class DefaultHyperLinkTab {
 		defaultHyperLinkViewer.setInput(defaultHyperLinkObject);
 	}
 
-
-
 	/**
-	 * input of this tab
-	 * --> fill all available hyperlinks
-	 * --> fill all default hyperlinks
+	 * input of this tab --> fill all available hyperlinks --> fill all default
+	 * hyperlinks
 	 * 
 	 * @param hyperLinkObjectList
 	 *        the list of hyperlinks
@@ -281,7 +271,7 @@ public class DefaultHyperLinkTab {
 	public void setInput(ArrayList<HyperlinkObject> hyperLinkObjectList) {
 		defaultHyperLinkObject.clear();
 		availableHyperLinkObject.clear();
-		//filter between default and not default
+		// filter between default and not default
 		Iterator<HyperlinkObject> iterator = hyperLinkObjectList.iterator();
 		while(iterator.hasNext()) {
 			HyperlinkObject hyperlinkObject = (HyperlinkObject)iterator.next();

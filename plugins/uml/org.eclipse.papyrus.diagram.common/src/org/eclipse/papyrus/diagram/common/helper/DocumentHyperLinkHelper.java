@@ -28,7 +28,6 @@ import org.eclipse.papyrus.diagram.common.ui.hyperlinkshell.HyperlinkDocument;
 import org.eclipse.papyrus.diagram.common.ui.hyperlinkshell.HyperlinkObject;
 import org.eclipse.papyrus.umlutils.ui.VisualInformationPapyrusConstant;
 
-
 /**
  * this an helper to manage hyperlink document
  * 

@@ -38,7 +38,8 @@ import org.eclipse.papyrus.diagram.common.part.UmlGmfDiagramEditor;
 import org.eclipse.ui.IWorkbenchPart;
 
 /**
- * this class is used to constraint the behavior of a node to obtain the behavior a short cut
+ * this class is used to constraint the behavior of a node to obtain the
+ * behavior a short cut
  */
 public abstract class AbstractShortCutDiagramEditPart extends AbstractBorderedShapeEditPart implements Adapter {
 
@@ -56,8 +57,8 @@ public abstract class AbstractShortCutDiagramEditPart extends AbstractBorderedSh
 
 	/**
 	 * 
-	 * @return the service registry from the backbone.
-	 *         it can return null if it does not found the {@link DiagramEditDomain}
+	 * @return the service registry from the backbone. it can return null if it
+	 *         does not found the {@link DiagramEditDomain}
 	 */
 	public ServicesRegistry getServicesRegistry() {
 		IDiagramEditDomain domain = getDiagramEditDomain();
@@ -71,8 +72,9 @@ public abstract class AbstractShortCutDiagramEditPart extends AbstractBorderedSh
 	}
 
 	/**
-	 * Return the EditorRegistry for nested editor descriptors. Subclass should implements this
-	 * method in order to return the registry associated to the extension point namespace.
+	 * Return the EditorRegistry for nested editor descriptors. Subclass should
+	 * implements this method in order to return the registry associated to the
+	 * extension point namespace.
 	 * 
 	 * @return the EditorRegistry for nested editor descriptors
 	 * 
@@ -87,11 +89,13 @@ public abstract class AbstractShortCutDiagramEditPart extends AbstractBorderedSh
 				return EditorUtils.getServiceRegistry().getService(IPageIconsRegistry.class);
 			}
 		} catch (ServiceException e) {
-			// Not found, return an empty one which return null for each request.
+			// Not found, return an empty one which return null for each
+			// request.
 			return new PageIconsRegistry();
 		} catch (NullPointerException e) {
-			//if the editor is null null pointer exception is raised
-			// Not found, return an empty one which return null for each request.
+			// if the editor is null null pointer exception is raised
+			// Not found, return an empty one which return null for each
+			// request.
 			return new PageIconsRegistry();
 		}
 	}
@@ -104,12 +108,12 @@ public abstract class AbstractShortCutDiagramEditPart extends AbstractBorderedSh
 		resourceToListen = eObject.eResource();
 		resourceToListen.eAdapters().add(this);
 
-
 	}
 
 	/**
-	 * Get the EditorRegistry used to create editor instances. This default implementation return
-	 * the singleton eINSTANCE. This method can be subclassed to return another registry.
+	 * Get the EditorRegistry used to create editor instances. This default
+	 * implementation return the singleton eINSTANCE. This method can be
+	 * subclassed to return another registry.
 	 * 
 	 * @return the singleton eINSTANCE of editor registry
 	 * 

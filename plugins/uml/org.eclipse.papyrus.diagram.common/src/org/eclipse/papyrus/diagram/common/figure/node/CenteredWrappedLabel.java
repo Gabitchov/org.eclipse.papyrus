@@ -16,7 +16,8 @@ package org.eclipse.papyrus.diagram.common.figure.node;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 
 /**
- * This class is a {@link WrappingLabel}, which default behavior is set differently :
+ * This class is a {@link WrappingLabel}, which default behavior is set
+ * differently :
  * 
  * The text is centered and automatically wraps on several lines.
  */

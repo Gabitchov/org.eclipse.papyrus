@@ -22,10 +22,7 @@ import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ListCompartmentEditPart;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 
-
 public abstract class ResizeableListCompartmentEditPart extends ListCompartmentEditPart {
-
-
 
 	public ResizeableListCompartmentEditPart(EObject model) {
 		super(model);

@@ -28,7 +28,8 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 
 /**
  * 
- * This class allows to regroup all the nodes which are linked by the selected links.
+ * This class allows to regroup all the nodes which are linked by the selected
+ * links.
  * 
  */
 public class SameAlignment {
@@ -57,15 +58,19 @@ public class SameAlignment {
 	/**
 	 * Returns the command to align all the selected {@linkplain EditPart}
 	 * 
-	 * @return
-	 *         the command to align all the selected {@linkplain EditPart}
+	 * @return the command to align all the selected {@linkplain EditPart}
 	 */
 	public Command getCommand() {
 		Collections.sort(linksRepresentation, new LinkComparator());
-		if(this.alignment == PositionConstants.RIGHT || this.alignment == PositionConstants.BOTTOM) {//we need to inverse the selection to do the correct action
+		if(this.alignment == PositionConstants.RIGHT || this.alignment == PositionConstants.BOTTOM) {// we need to
+																										// inverse the
+																										// selection to
+																										// do the
+																										// correct
+																										// action
 			Collections.reverse(linksRepresentation);
 		}
-		//we remove the selected link which are not interesting
+		// we remove the selected link which are not interesting
 		removeBadSideLink();
 
 		CompoundCommand cmd = new CompoundCommand("command for alignment"); //$NON-NLS-1$
@@ -81,14 +86,12 @@ public class SameAlignment {
 		return cmd;
 	}
 
-
 	/**
 	 * Returns a list with the link linked to the {@link EditPartRepresentation} {@code epRepresentation}
 	 * 
 	 * @param epRepresentation
 	 *        an {@linkplain EditPartRepresentation}
-	 * @return
-	 *         a list with the link linked to the {@link EditPartRepresentation} {@code epRepresentation}
+	 * @return a list with the link linked to the {@link EditPartRepresentation} {@code epRepresentation}
 	 */
 	protected List<LinkRepresentation> getLinkFor(EditPartRepresentation epRepresentation) {
 		List<LinkRepresentation> list = new ArrayList<LinkRepresentation>();
@@ -103,8 +106,7 @@ public class SameAlignment {
 	/**
 	 * Tests if each editpart is linked with only one or two other editparts
 	 * 
-	 * @return
-	 *         <ul>
+	 * @return <ul>
 	 *         <li>{@code true}</li> all the node are linked with only one or two other editparts
 	 *         <li> {@code false}</li> if not
 	 * 
@@ -177,8 +179,7 @@ public class SameAlignment {
 	/**
 	 * Getter for {@link #linksRepresentation}
 	 * 
-	 * @return
-	 *         {@link #linksRepresentation}
+	 * @return {@link #linksRepresentation}
 	 */
 	public List<LinkRepresentation> getLinks() {
 		return this.linksRepresentation;
@@ -188,8 +189,7 @@ public class SameAlignment {
 	 * 
 	 * @param representedEditPart
 	 *        the {@linkplain EditPart} that we are looking for
-	 * @return
-	 *         <ul>
+	 * @return <ul>
 	 *         <li>the {@linkplain EditPartRepresentation} for this editpart if it exists</li>
 	 *         <li>{@code null}if the representation for this editpart doesn't exist</li>
 	 *         </ul>
@@ -214,7 +214,7 @@ public class SameAlignment {
 	protected void removeBadSideLink() {
 		List<LinkRepresentation> linksToRemove = new ArrayList<LinkRepresentation>();
 
-		//we test if the tow anchors for the selected link are opposite or not
+		// we test if the tow anchors for the selected link are opposite or not
 		for(LinkRepresentation link : linksRepresentation) {
 			int side1 = link.getLinkSideOnSource();
 			int side2 = link.getLinkSideOnTarget();
@@ -237,7 +237,8 @@ public class SameAlignment {
 
 	/**
 	 * 
-	 * This class provides a comparator for the {@link EditPart}, using the coordinates of the representing {@link EditPart} The used coordinate is
+	 * This class provides a comparator for the {@link EditPart}, using the
+	 * coordinates of the representing {@link EditPart} The used coordinate is
 	 * the top left corner
 	 */
 	protected class LinkComparator implements Comparator<Object> {
@@ -252,19 +253,19 @@ public class SameAlignment {
 		 * @return
 		 */
 		public int compare(Object o1, Object o2) {
-			//the two figures to compare
+			// the two figures to compare
 			PolylineConnectionEx figure1 = (PolylineConnectionEx)((AbstractConnectionEditPart)((LinkRepresentation)o1).getLink()).getFigure();
 			PolylineConnectionEx figure2 = (PolylineConnectionEx)((AbstractConnectionEditPart)((LinkRepresentation)o2).getLink()).getFigure();
 
-			//the point for the first figure
+			// the point for the first figure
 			Point pt11;
 			Point pt12;
 
-			//the point for the second figure 
+			// the point for the second figure
 			Point pt21;
 			Point pt22;
 
-			//we want pt11.x<pt12.x<pt21.x<pt22.x
+			// we want pt11.x<pt12.x<pt21.x<pt22.x
 			if(alignment == PositionConstants.LEFT || alignment == PositionConstants.RIGHT) {
 				pt11 = (figure1.getStart().x < figure1.getEnd().x) ? figure1.getStart() : figure1.getEnd();
 				if(pt11.equals(figure1.getStart())) {
@@ -287,9 +288,8 @@ public class SameAlignment {
 				} else if(pt11.x > pt21.x && pt12.x > pt22.x) {
 					return 1;
 				} else {
-					return 0; //it's a strange model, if we come here
+					return 0; // it's a strange model, if we come here
 				}
-
 
 			} else if(alignment == PositionConstants.TOP || alignment == PositionConstants.BOTTOM) {
 				pt11 = (figure1.getStart().y < figure1.getEnd().y) ? figure1.getStart() : figure1.getEnd();
@@ -312,14 +312,12 @@ public class SameAlignment {
 				} else if(pt11.y > pt21.y && pt12.y > pt22.y) {
 					return 1;
 				} else {
-					return 0; //it's a strange model, if we come here
+					return 0; // it's a strange model, if we come here
 				}
 
 			}
 			return 0;
 		}
 	}
-
-
 
 }

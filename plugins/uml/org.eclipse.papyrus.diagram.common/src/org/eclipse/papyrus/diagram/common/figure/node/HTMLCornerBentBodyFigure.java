@@ -15,9 +15,9 @@ import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.text.FlowPage;
 import org.eclipse.swt.graphics.Image;
 
-
 /**
- * Flow Page that accept a text formatted in html, and displays it under a styled form
+ * Flow Page that accept a text formatted in html, and displays it under a
+ * styled form
  */
 public class HTMLCornerBentBodyFigure extends Figure implements ILabelFigure {
 
@@ -30,13 +30,13 @@ public class HTMLCornerBentBodyFigure extends Figure implements ILabelFigure {
 	/** main flow page for this figure */
 	private FlowPage flowPage;
 
-
 	/**
 	 * Creates a new HTMLCornerBentBodyFigure.
 	 */
 	public HTMLCornerBentBodyFigure() {
 		// flowPage = new FlowPage();
-		// flowPage.setBackgroundColor(new Color(Display.getCurrent(), new RGB(100, 100, 100)));
+		// flowPage.setBackgroundColor(new Color(Display.getCurrent(), new
+		// RGB(100, 100, 100)));
 		// this.add(flowPage);
 	}
 
@@ -49,9 +49,9 @@ public class HTMLCornerBentBodyFigure extends Figure implements ILabelFigure {
 	public void setText(String text) {
 		this.text = text;
 
-		//		TextFlowEx textFlow1 = new TextFlowEx();
-		//		textFlow1.setText("textFlow1 ");
-		//		this.add(textFlow1);
+		// TextFlowEx textFlow1 = new TextFlowEx();
+		// textFlow1.setText("textFlow1 ");
+		// this.add(textFlow1);
 
 	}
 

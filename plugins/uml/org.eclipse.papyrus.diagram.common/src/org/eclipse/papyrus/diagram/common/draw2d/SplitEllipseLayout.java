@@ -30,8 +30,7 @@ public class SplitEllipseLayout extends GravityConstrainedFlowLayout {
 	private int myYMargin;
 
 	/**
-	 * Constructor.
-	 * Calls super and configures this layout.
+	 * Constructor. Calls super and configures this layout.
 	 */
 	public SplitEllipseLayout() {
 		super();
@@ -76,10 +75,11 @@ public class SplitEllipseLayout extends GravityConstrainedFlowLayout {
 		Dimension minSizes[] = new Dimension[numChildren];
 		Dimension maxSizes[] = new Dimension[numChildren];
 
-		// Calculate the width and height hints.  If it's a vertical ToolBarLayout,
-		// then ignore the height hint (set it to -1); otherwise, ignore the 
-		// width hint.  These hints will be passed to the children of the parent
-		// figure when getting their preferred size. 
+		// Calculate the width and height hints. If it's a vertical
+		// ToolBarLayout,
+		// then ignore the height hint (set it to -1); otherwise, ignore the
+		// width hint. These hints will be passed to the children of the parent
+		// figure when getting their preferred size.
 		int wHint = -1;
 		int hHint = -1;
 		if(isHorizontal()) {
@@ -90,8 +90,8 @@ public class SplitEllipseLayout extends GravityConstrainedFlowLayout {
 
 		/*
 		 * Calculate sum of preferred heights of all children(totalHeight).
-		 * Calculate sum of minimum heights of all children(minHeight).
-		 * Cache Preferred Sizes and Minimum Sizes of all children.
+		 * Calculate sum of minimum heights of all children(minHeight). Cache
+		 * Preferred Sizes and Minimum Sizes of all children.
 		 * 
 		 * totalHeight is the sum of the preferred heights of all children
 		 * totalMinHeight is the sum of the minimum heights of all children
@@ -132,12 +132,13 @@ public class SplitEllipseLayout extends GravityConstrainedFlowLayout {
 		prefMaxSumHeight = totalMaxHeight - totalHeight;
 
 		/*
-		 * The total amount that the children must be shrunk is the
-		 * sum of the preferred Heights of the children minus
-		 * Max(the available area and the sum of the minimum heights of the children).
+		 * The total amount that the children must be shrunk is the sum of the
+		 * preferred Heights of the children minus Max(the available area and
+		 * the sum of the minimum heights of the children).
 		 * 
 		 * amntShrinkHeight is the combined amount that the children must shrink
-		 * amntShrinkCurrentHeight is the amount each child will shrink respectively
+		 * amntShrinkCurrentHeight is the amount each child will shrink
+		 * respectively
 		 */
 		int amntShrinkHeight = totalHeight - Math.max(availableHeight, totalMinHeight);
 
@@ -152,7 +153,8 @@ public class SplitEllipseLayout extends GravityConstrainedFlowLayout {
 			Rectangle newBounds = new Rectangle(x, y, prefWidth, prefHeight);
 
 			child = (IFigure)children.get(i);
-			// only difference with super : stretch the last item, whatever the policy.
+			// only difference with super : stretch the last item, whatever the
+			// policy.
 			// this enables to draw scrollbars for the last compartment.
 			if(getStretchMajorAxis() || i == numChildren - 1) {
 				if(amntShrinkHeight > 0 && prefMinSumHeight != 0)
@@ -193,8 +195,8 @@ public class SplitEllipseLayout extends GravityConstrainedFlowLayout {
 	}
 
 	/**
-	 * Gets the list of children after applying the layout options of
-	 * ignore invisible children & reverse children
+	 * Gets the list of children after applying the layout options of ignore
+	 * invisible children & reverse children
 	 */
 	private List getChildren(IFigure container) {
 		List children = new ArrayList(container.getChildren());

@@ -32,8 +32,9 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 
 /**
- * A listener for part activation. Will ask the user whether to reload when he enters an editor
- * whose underlying resources have changed, used to trigger an update of
+ * A listener for part activation. Will ask the user whether to reload when he
+ * enters an editor whose underlying resources have changed, used to trigger an
+ * update of
  * 
  * @author Ansgar Radermacher (CEA LIST)
  */
@@ -66,7 +67,8 @@ public class PartActivationListener implements IPartListener {
 	}
 
 	public void partActivated(IWorkbenchPart part) {
-		// don't use (part == editor.getSite().getPart()), since different views (e.g. model explorer or property)
+		// don't use (part == editor.getSite().getPart()), since different views
+		// (e.g. model explorer or property)
 		// of an active editor may actually be selected
 		IMultiDiagramEditor activeEditor = EditorUtils.getMultiDiagramEditor();
 		if((editor == activeEditor) && modifiedMainResource) {
@@ -75,17 +77,21 @@ public class PartActivationListener implements IPartListener {
 			case IResourceDelta.ADDED:
 				break;
 			case IResourceDelta.REMOVED:
-				// asynchronous notification to avoid that the removal of multiple resource files
-				// belonging to the editor (e.g. .uml and .notation) at the same time leads to multiple
+				// asynchronous notification to avoid that the removal of
+				// multiple resource files
+				// belonging to the editor (e.g. .uml and .notation) at the same
+				// time leads to multiple
 				// user feedback.
 
 				MessageDialog.openInformation(new Shell(), "Resource removal", "The resource " + changedResourcePath + " that is in use by a Papyrus editor has been removed. Use save/save as, if you want to keep the model");
 				break;
 
 			case IResourceDelta.CHANGED:
-				// reopen the editor asynchronously to avoid that changes of multiple resource files
-				// belonging to the editor (e.g. .uml and .notation) lead to multiple reloads.
-				// de-activate until user responds to message dialog 
+				// reopen the editor asynchronously to avoid that changes of
+				// multiple resource files
+				// belonging to the editor (e.g. .uml and .notation) lead to
+				// multiple reloads.
+				// de-activate until user responds to message dialog
 
 				String message = "The resource " + changedResourcePath + " that is in use by a Papyrus editor has changed. Do you want to reopen the editor in order to update its contents?";
 				if(editor.isDirty()) {
@@ -93,12 +99,16 @@ public class PartActivationListener implements IPartListener {
 				}
 
 				if(MessageDialog.openQuestion(new Shell(), "Resource change", message)) {
-					// unloading and reloading all resources of the main causes the following problems
-					//  - since resources are removed during the modelSets unload operation, the call eResource().getContents ()
-					//    used by the model explorer leads to a null pointer exception
-					//  - diagrams in model explorer are not shown
-					//  - would need to reset dirty flags
-					// => clean & simple option is to close and reopen the editor.
+					// unloading and reloading all resources of the main causes
+					// the following problems
+					// - since resources are removed during the modelSets unload
+					// operation, the call eResource().getContents ()
+					// used by the model explorer leads to a null pointer
+					// exception
+					// - diagrams in model explorer are not shown
+					// - would need to reset dirty flags
+					// => clean & simple option is to close and reopen the
+					// editor.
 
 					Display.getCurrent().asyncExec(new Runnable() {
 

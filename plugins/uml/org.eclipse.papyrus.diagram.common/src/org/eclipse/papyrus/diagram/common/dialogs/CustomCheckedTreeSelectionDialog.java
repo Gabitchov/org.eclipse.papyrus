@@ -50,8 +50,9 @@ import org.eclipse.ui.internal.WorkbenchMessages;
 
 /**
  * 
- * This class is copied from {@link org.eclipse.ui.dialogs.CheckedTreeSelectionDialog} We add it the possibility to change the style of the
- * TreeViewer! (we want use SWT.FULL_SELECTION)
+ * This class is copied from {@link org.eclipse.ui.dialogs.CheckedTreeSelectionDialog} We add it the
+ * possibility to change the style of the TreeViewer! (we want use
+ * SWT.FULL_SELECTION)
  * 
  * A patch has been provided to the Platform/SWT project (bug 341923)
  * 
@@ -299,7 +300,9 @@ public class CustomCheckedTreeSelectionDialog extends SelectionStatusDialog {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.jface.dialogs.Dialog#createDialogArea(org.eclipse.swt.widgets.Composite)
+	 * @see
+	 * org.eclipse.jface.dialogs.Dialog#createDialogArea(org.eclipse.swt.widgets
+	 * .Composite)
 	 */
 	@Override
 	protected Control createDialogArea(Composite parent) {

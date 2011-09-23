@@ -14,11 +14,11 @@
 package org.eclipse.papyrus.sasheditor.internal;
 
 import org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider;
-
+import org.eclipse.papyrus.sasheditor.editor.SashWindowsContainer;
 
 /**
- * Base class of the Part hierarchy.
- * This class provides common methods for sashwindows Parts.
+ * Base class of the Part hierarchy. This class provides common methods for
+ * sashwindows Parts.
  * 
  * 
  * @author dumoulin
@@ -40,7 +40,6 @@ public abstract class AbstractPart {
 		UNVISITED, ORPHANED, REPARENTED, CREATED, UNCHANGED
 	}
 
-
 	/**
 	 * The main container.
 	 */
@@ -49,14 +48,12 @@ public abstract class AbstractPart {
 	/** Garbage state used during refresh */
 	protected GarbageState garbageState = GarbageState.CREATED;
 
-
 	/**
 	 * @param sashWindowsContainer
 	 */
 	public AbstractPart(SashWindowsContainer sashWindowsContainer) {
 		this.sashWindowsContainer = sashWindowsContainer;
 	}
-
 
 	/**
 	 * Get the {@link SashWindowsContainer}.
@@ -66,7 +63,6 @@ public abstract class AbstractPart {
 	public SashWindowsContainer getSashWindowContainer() {
 		return sashWindowsContainer;
 	}
-
 
 	/**
 	 * Get the content provider of the sashwindows.
@@ -101,6 +97,5 @@ public abstract class AbstractPart {
 	public GarbageState getGarbageState() {
 		return garbageState;
 	}
-
 
 }

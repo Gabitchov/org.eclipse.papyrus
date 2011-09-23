@@ -7,10 +7,9 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.papyrus.core.editorsfactory.IEditorIconFactory;
 import org.eclipse.swt.graphics.Image;
 
-
 /**
- * A factory used to create the Icon associated to an editor
- * TODO Lets have a common ancestor for {@link EditorIconFactory} and {@link EditorFactoryProxy}
+ * A factory used to create the Icon associated to an editor TODO Lets have a
+ * common ancestor for {@link EditorIconFactory} and {@link EditorFactoryProxy}
  * 
  * @author cedric dumoulin
  * 
@@ -50,7 +49,6 @@ public class EditorIconFactory implements IEditorIconFactory {
 	 */
 	public Image getEditorIcon(Object pageIdentifier) {
 
-
 		if(cachedImage == null) {
 			cachedImage = createEditorIcon(pageIdentifier);
 		}
@@ -59,7 +57,8 @@ public class EditorIconFactory implements IEditorIconFactory {
 	}
 
 	/**
-	 * Create an Image associated to the editor used to render the specified pageIdentifier
+	 * Create an Image associated to the editor used to render the specified
+	 * pageIdentifier
 	 * 
 	 * @return
 	 */
@@ -81,7 +80,6 @@ public class EditorIconFactory implements IEditorIconFactory {
 		return getEditorFactory().isPageModelFactoryFor(pageIdentifier);
 	}
 
-
 	/**
 	 * @return the editorFactory
 	 */
@@ -96,8 +94,8 @@ public class EditorIconFactory implements IEditorIconFactory {
 	}
 
 	/**
-	 * Create an instance of IPluggableEditorFactory as described in the editorDescriptor.
-	 * TODO let propagate the exceptions.
+	 * Create an instance of IPluggableEditorFactory as described in the
+	 * editorDescriptor. TODO let propagate the exceptions.
 	 * 
 	 * @return
 	 */
@@ -105,8 +103,9 @@ public class EditorIconFactory implements IEditorIconFactory {
 		// Create the requested class.
 		try {
 			editorFactory = editorDescriptor.getEditorFactoryClass().newInstance();
-			// Set the descriptor. USed by the factory to get the ActionBarId and Icon
-			//			editorFactory.init(serviceRegistry,  editorDescriptor);
+			// Set the descriptor. USed by the factory to get the ActionBarId
+			// and Icon
+			// editorFactory.init(serviceRegistry, editorDescriptor);
 			return editorFactory;
 		} catch (InstantiationException e) {
 			// Lets propagate. This is an implementation problem that should be

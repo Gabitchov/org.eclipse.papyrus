@@ -14,7 +14,8 @@ import org.eclipse.gef.commands.Command;
 
 // TODO: Auto-generated Javadoc
 /**
- * A EMF Command that wraps a GEF command. Each method is redirected to the GEF one.
+ * A EMF Command that wraps a GEF command. Each method is redirected to the GEF
+ * one.
  * 
  * @deprecated use {@link org.eclipse.papyrus.commands.wrappers.GEFtoEMFCommandWrapper} instead
  */

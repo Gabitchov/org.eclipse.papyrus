@@ -30,8 +30,9 @@ import org.eclipse.swt.graphics.Point;
 /**
  * Computes completion proposals for given context EObject.
  * 
- * Intended to be used in case if the whole set of proposals does not depend on the suggested prefix
- * text and only filtering by given string prefix is required to compute the result list.
+ * Intended to be used in case if the whole set of proposals does not depend on
+ * the suggested prefix text and only filtering by given string prefix is
+ * required to compute the result list.
  */
 public abstract class EObjectCompletionProcessor implements IContentAssistProcessor, ISubjectControlContentAssistProcessor {
 

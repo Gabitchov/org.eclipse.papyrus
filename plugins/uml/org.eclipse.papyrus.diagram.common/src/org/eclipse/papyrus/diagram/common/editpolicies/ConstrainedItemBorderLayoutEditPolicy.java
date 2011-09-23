@@ -37,7 +37,8 @@ import org.eclipse.gmf.runtime.notation.View;
 /**
  * @author Patrick Tessier
  * 
- *         this class is used to create a resize command for border items and add the {@link BorderItemResizableEditPolicy} on border Item
+ *         this class is used to create a resize command for border items and
+ *         add the {@link BorderItemResizableEditPolicy} on border Item
  */
 public class ConstrainedItemBorderLayoutEditPolicy extends ConstrainedLayoutEditPolicy {
 

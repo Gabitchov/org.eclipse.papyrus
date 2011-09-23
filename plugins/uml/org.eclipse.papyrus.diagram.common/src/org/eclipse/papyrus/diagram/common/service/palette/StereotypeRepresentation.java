@@ -29,7 +29,6 @@ public class StereotypeRepresentation {
 	 */
 	private String stereotypeQualifiedName;
 
-
 	/**
 	 * the properties owned by the stereotype
 	 */
@@ -54,8 +53,7 @@ public class StereotypeRepresentation {
 
 	/**
 	 * 
-	 * Constructor.
-	 * Note : the properties are neither copied nor duplicated
+	 * Constructor. Note : the properties are neither copied nor duplicated
 	 * 
 	 * @param ste
 	 *        the {@link StereotypeRepresentation} uses to instantiate a new {@link StereotypeRepresentation}
@@ -67,8 +65,7 @@ public class StereotypeRepresentation {
 	}
 
 	/**
-	 * Adds a property to this stereotype
-	 * This method fills the field {@link StereotypeRepresentation} in the property
+	 * Adds a property to this stereotype This method fills the field {@link StereotypeRepresentation} in the property
 	 * 
 	 * @param property
 	 *        the property to add
@@ -81,8 +78,7 @@ public class StereotypeRepresentation {
 	/**
 	 * Returns all the {@link PropertyRepresentation} owned by this stereotype
 	 * 
-	 * @return
-	 *         all the {@link PropertyRepresentation} owned by this stereotype
+	 * @return all the {@link PropertyRepresentation} owned by this stereotype
 	 */
 	public ArrayList<PropertyRepresentation> getPropertyRepresentations() {
 		return properties;
@@ -91,8 +87,7 @@ public class StereotypeRepresentation {
 	/**
 	 * Returns all the properties containing values owned by this stereotype
 	 * 
-	 * @return
-	 *         all the properties containing values owned by this stereotype
+	 * @return all the properties containing values owned by this stereotype
 	 */
 	public ArrayList<PropertyRepresentation> getPropertiesWithValues() {
 		ArrayList<PropertyRepresentation> propertiesToSave = new ArrayList<PropertyRepresentation>();
@@ -107,13 +102,11 @@ public class StereotypeRepresentation {
 	/**
 	 * Setter for {@link #stereotypeQualifiedName}
 	 * 
-	 * @return
-	 *         the stereotype qualified name
+	 * @return the stereotype qualified name
 	 */
 	public String getStereotypeQualifiedName() {
 		return stereotypeQualifiedName;
 	}
-
 
 	/**
 	 * Returns the {@link PropertyRepresentation} corresponding the parameters
@@ -122,8 +115,7 @@ public class StereotypeRepresentation {
 	 *        the stereotype qualified name
 	 * @param propertyQualifiedName
 	 *        the property qualified name
-	 * @return
-	 *         <ul>
+	 * @return <ul>
 	 *         <li>the corresponding {@link PropertyRepresentation}</li>
 	 *         <li>{@code null} if the corresponding property was not found</li>
 	 *         </ul>
@@ -138,10 +130,11 @@ public class StereotypeRepresentation {
 	}
 
 	/**
-	 * Returns the {@link PropertyRepresentation} which need to be defined at runtime
+	 * Returns the {@link PropertyRepresentation} which need to be defined at
+	 * runtime
 	 * 
-	 * @return
-	 *         the {@link PropertyRepresentation} which need to be defined at runtime
+	 * @return the {@link PropertyRepresentation} which need to be defined at
+	 *         runtime
 	 */
 	public ArrayList<PropertyRepresentation> getRuntimeProperties() {
 		ArrayList<PropertyRepresentation> propertiesToSave = new ArrayList<PropertyRepresentation>();
@@ -165,8 +158,7 @@ public class StereotypeRepresentation {
 	/**
 	 * Getter for {@link #stereotype}
 	 * 
-	 * @return
-	 *         {@link #stereotype}
+	 * @return {@link #stereotype}
 	 */
 	public Stereotype getUMLStereotype() {
 
@@ -176,8 +168,7 @@ public class StereotypeRepresentation {
 
 	/**
 	 * 
-	 * @return
-	 *         <ul>
+	 * @return <ul>
 	 *         <li>  {@code true} if there is runtime properties in this stereotype
 	 *         <li> {@code false} if not</li>
 	 *         </ul>
@@ -190,7 +181,5 @@ public class StereotypeRepresentation {
 		}
 		return false;
 	}
-
-
 
 }

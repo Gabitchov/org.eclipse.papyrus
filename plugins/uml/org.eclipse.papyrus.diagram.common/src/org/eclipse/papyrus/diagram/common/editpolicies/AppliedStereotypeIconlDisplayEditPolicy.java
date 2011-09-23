@@ -17,10 +17,10 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.papyrus.diagram.common.editparts.IPapyrusEditPart;
 import org.eclipse.papyrus.diagram.common.figure.node.IPapyrusUMLElementFigure;
 
-
 /**
  * This edit policy displays only icon of applied stereotypes if its exists *.
- * In order to use it, the edit part has to be {@link IPapyrusEditPart} and the associated figure has to be {@link IPapyrusUMLElementFigure}
+ * In order to use it, the edit part has to be {@link IPapyrusEditPart} and the
+ * associated figure has to be {@link IPapyrusUMLElementFigure}
  */
 public class AppliedStereotypeIconlDisplayEditPolicy extends AppliedStereotypeLabelDisplayEditPolicy {
 

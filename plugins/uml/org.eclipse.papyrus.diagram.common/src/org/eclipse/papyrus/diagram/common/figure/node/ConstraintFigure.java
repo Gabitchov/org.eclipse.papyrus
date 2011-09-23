@@ -23,7 +23,8 @@ import org.eclipse.gmf.runtime.draw2d.ui.text.TextFlowEx;
 import org.eclipse.swt.graphics.Image;
 
 /**
- * this class is used to display the a constraint with the possibility of gradient qualified name
+ * this class is used to display the a constraint with the possibility of
+ * gradient qualified name
  * 
  */
 public class ConstraintFigure extends CornerBentFigure implements IPapyrusNodeNamedElementFigure, ILabelFigure, IMultilineEditableFigure {
@@ -52,8 +53,7 @@ public class ConstraintFigure extends CornerBentFigure implements IPapyrusNodeNa
 	 * Calculate the partial qualified name with a specified depth.
 	 * 
 	 * @param qualifiedName
-	 *        the qualified name
-	 *        can return null
+	 *        the qualified name can return null
 	 */
 	public String getQualifiedName(String qualifiedName, int depth) {
 		int n = -1;
@@ -161,7 +161,8 @@ public class ConstraintFigure extends CornerBentFigure implements IPapyrusNodeNa
 	}
 
 	/**
-	 * Create the tag label in the figure. The tag label is created if value is not null.
+	 * Create the tag label in the figure. The tag label is created if value is
+	 * not null.
 	 * 
 	 * @param value
 	 *        the value to use
@@ -231,8 +232,8 @@ public class ConstraintFigure extends CornerBentFigure implements IPapyrusNodeNa
 	}
 
 	/**
-	 * use to obtain the reference of this figure
-	 * (use in order to launch an edit request)
+	 * use to obtain the reference of this figure (use in order to launch an
+	 * edit request)
 	 * 
 	 * @return the constraintfigure
 	 */
@@ -253,7 +254,8 @@ public class ConstraintFigure extends CornerBentFigure implements IPapyrusNodeNa
 
 	/**
 	 * 
-	 * @return the textflow of the constraint that contain the string of the specification
+	 * @return the textflow of the constraint that contain the string of the
+	 *         specification
 	 */
 	public TextFlowEx getTextFlow() {
 		return textFlow;

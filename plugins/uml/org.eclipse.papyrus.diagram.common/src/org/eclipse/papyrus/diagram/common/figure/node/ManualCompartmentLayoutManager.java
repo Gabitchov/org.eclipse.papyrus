@@ -146,9 +146,10 @@ public class ManualCompartmentLayoutManager extends AbstractLayout {
 	}
 
 	/**
-	 * Optimize the size of each compartment depending on the size of the compartments container,
-	 * and the size of each compartment. If a compartment is empty, or not expanded, then a default
-	 * size is applied to this compartment
+	 * Optimize the size of each compartment depending on the size of the
+	 * compartments container, and the size of each compartment. If a
+	 * compartment is empty, or not expanded, then a default size is applied to
+	 * this compartment
 	 * 
 	 * @param compartmentsDimension
 	 *        an hashmap containing each compartment dimension.

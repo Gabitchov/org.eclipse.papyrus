@@ -39,8 +39,8 @@ public class DiagramCanvasSwitch {
 	}
 
 	/**
-	 * Gets the element to edit in a mutating canvas <Diagram>. By default, it's the canvas semantic
-	 * <EObject>.
+	 * Gets the element to edit in a mutating canvas <Diagram>. By default, it's
+	 * the canvas semantic <EObject>.
 	 * 
 	 * @param editPolicy
 	 *        the edit policy

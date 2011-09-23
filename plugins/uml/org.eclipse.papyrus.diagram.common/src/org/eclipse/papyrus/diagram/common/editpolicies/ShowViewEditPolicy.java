@@ -53,7 +53,8 @@ public class ShowViewEditPolicy {
 	}
 
 	/**
-	 * Listens to double-click event over some element of the diagram and shows properties tab.
+	 * Listens to double-click event over some element of the diagram and shows
+	 * properties tab.
 	 * 
 	 * @return the open edit policy
 	 */

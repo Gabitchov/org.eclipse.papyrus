@@ -15,16 +15,19 @@ package org.eclipse.papyrus.core;
 /**
  * 
  * all implementation is used to give the semantic element form a wrapper
- *
- * the implementation can call method getAdapter for example
- * for notation element return semantic element, for edit part return the semantic
- * element and not the view...
+ * 
+ * the implementation can call method getAdapter for example for notation
+ * element return semantic element, for edit part return the semantic element
+ * and not the view...
  */
 public interface IElementWithSemantic {
 
 	/**
 	 * return the semantic element linked to this wrapper
-	 * @param wrapper an object that wrapped or are linked to a semantic element <B>cannot be null</B>
+	 * 
+	 * @param wrapper
+	 *        an object that wrapped or are linked to a semantic element
+	 *        <B>cannot be null</B>
 	 * @return null or the semantic element
 	 */
 	public Object getSemanticElement(Object wrapper);

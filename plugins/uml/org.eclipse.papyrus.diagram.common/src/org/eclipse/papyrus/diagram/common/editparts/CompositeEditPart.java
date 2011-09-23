@@ -16,7 +16,6 @@ import org.eclipse.swt.graphics.Color;
  */
 public abstract class CompositeEditPart extends AbstractBorderedShapeEditPart {
 
-
 	public CompositeEditPart(View view) {
 		super(view);
 	}

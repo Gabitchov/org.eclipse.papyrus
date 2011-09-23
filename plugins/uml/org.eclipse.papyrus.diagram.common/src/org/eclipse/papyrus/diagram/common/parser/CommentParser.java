@@ -32,7 +32,6 @@ import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.UMLPackage;
 
-
 /**
  * Specific Parser for the comment, in case they have a html format.
  */
@@ -107,7 +106,6 @@ public class CommentParser implements IParser {
 
 		// comment not null, comment not empty, do the parse...
 
-
 		return roughBody;
 	}
 
@@ -131,9 +129,9 @@ public class CommentParser implements IParser {
 		return ParserEditStatus.EDITABLE_STATUS;
 	}
 
-
 	/**
-	 * Get the property associated with the given IAdaptable and the memberEndIndex .
+	 * Get the property associated with the given IAdaptable and the
+	 * memberEndIndex .
 	 * 
 	 * @param element
 	 *        the given IAdaptable

@@ -33,7 +33,6 @@ import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.Type;
 
-
 /**
  * this class provides editor for different types of properties
  */
@@ -96,10 +95,8 @@ public class PropertyEditors {
 	/** the UML elements who aren't NamedElement */
 	static String unNamedElements[] = new String[]{ "ActivityGroup", "Clause", "Comment", "ExceptionHandler", "Image", "LinkEndData", "MultiplicityElement", "ParameterableElement", "QualifierValue", "Relationship", "Slot", "TemplateableElement", "TemplateParameter", "TemplateParameterSubstitution", "TemplateableParameterSubsitution", }; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$ //$NON-NLS-11$ //$NON-NLS-12$ //$NON-NLS-13$ //$NON-NLS-14$ //$NON-NLS-15$
 
-
-
-	//TODO : we doesn't know edit a property if the initial value is a property
-	//need implements this functionality is editors
+	// TODO : we doesn't know edit a property if the initial value is a property
+	// need implements this functionality is editors
 	/**
 	 * Editor for the Type Integer.
 	 * 
@@ -131,8 +128,7 @@ public class PropertyEditors {
 	 *        (the property to edit)
 	 * @param oldValue
 	 *        (can be null)
-	 * @return
-	 *         the inital value for the property
+	 * @return the inital value for the property
 	 */
 	private static String findInitialValue(Property property, Object oldValue) {
 		String initialValue = null;
@@ -143,7 +139,6 @@ public class PropertyEditors {
 		}
 		return initialValue;
 	}
-
 
 	/**
 	 * Editor for the Type UnlimitedNatural.
@@ -212,7 +207,7 @@ public class PropertyEditors {
 	public static String DataTypeEditor(Property property, Object oldValue) {
 		String value = null;
 		String initialValue = null;
-		if(oldValue != null) { //we are modifying an existing value
+		if(oldValue != null) { // we are modifying an existing value
 			initialValue = oldValue.toString();
 		} else if(property.isSetDefault()) {
 			initialValue = property.getDefault();
@@ -282,7 +277,6 @@ public class PropertyEditors {
 		String value = null;
 		String[] listOfChoice;
 
-
 		if(property.getLower() > 0) {
 			listOfChoice = new String[literals.size()];
 			for(int i = 0; i < listOfChoice.length; i++) {
@@ -316,12 +310,10 @@ public class PropertyEditors {
 	 * @return
 	 */
 	public static String CompositeClassEditor(Property property, Object oldValue) {
-		//TODO
-		//we cannot do it!
+		// TODO
+		// we cannot do it!
 		return oldValue.toString();
 	}
-
-
 
 	/**
 	 * Editor for the type DataType
@@ -352,11 +344,12 @@ public class PropertyEditors {
 					if((stereotypedElement.get(i)) instanceof NamedElement) {
 						proposals[i] = ((NamedElement)stereotypedElement.get(i)).getQualifiedName();
 					} else {
-						//TODO need a solution!
-						//						String label = ((Element)stereotypedElement.get(i)).toString();
-						//						proposals[i + 1] = label;
-						//						//we don't obtain the ID from the XMI!
-						//						UML2Util.getXMIIdentifier((InternalEObject)(((Element)stereotypedElement.get(i))));
+						// TODO need a solution!
+						// String label =
+						// ((Element)stereotypedElement.get(i)).toString();
+						// proposals[i + 1] = label;
+						// //we don't obtain the ID from the XMI!
+						// UML2Util.getXMIIdentifier((InternalEObject)(((Element)stereotypedElement.get(i))));
 					}
 				}
 			} else {
@@ -366,15 +359,15 @@ public class PropertyEditors {
 					if((stereotypedElement.get(i - 1)) instanceof NamedElement) {
 						proposals[i] = ((NamedElement)stereotypedElement.get(i - 1)).getQualifiedName();
 					} else {
-						//TODO need a solution!
-						//						String label = ((Element)stereotypedElement.get(i)).toString();
-						//						proposals[i + 1] = label;
-						//						//we don't obtain the ID from the XMI!
-						//						UML2Util.getXMIIdentifier((InternalEObject)(((Element)stereotypedElement.get(i))));
+						// TODO need a solution!
+						// String label =
+						// ((Element)stereotypedElement.get(i)).toString();
+						// proposals[i + 1] = label;
+						// //we don't obtain the ID from the XMI!
+						// UML2Util.getXMIIdentifier((InternalEObject)(((Element)stereotypedElement.get(i))));
 					}
 				}
 			}
-
 
 			ComboDialogWithMessage dialog = new ComboDialogWithMessage(new Shell(), StereotypeEditor_Title, Choice, initialValue, proposals, StereotypeEditor_WarningMessage);
 			if(dialog.open() != ComboInputDialog.CANCEL) {
@@ -402,13 +395,11 @@ public class PropertyEditors {
 	public static String MetaclassEditor(Property property, Object oldValue, List<Profile> appliedProfiles) {
 
 		/*
-		 * 1/ find the interesting elements
-		 * 2/ check if they are problematic
-		 * 3/ create the proposals
+		 * 1/ find the interesting elements 2/ check if they are problematic 3/
+		 * create the proposals
 		 */
 		Type type = property.getType();
 		String returnedValue = null;
-
 
 		ArrayList<String> problematicMetaclasses = new ArrayList<String>(Arrays.asList(unNamedElements));
 		if(type != null && !problematicMetaclasses.contains(((org.eclipse.uml2.uml.Class)type).getName())) {
@@ -432,8 +423,6 @@ public class PropertyEditors {
 				metaclassElement.addAll(Util.getInstancesFilteredByType(profile, metaType, null));
 			}
 
-
-
 			/*
 			 * we create the list of proposals
 			 */
@@ -445,10 +434,10 @@ public class PropertyEditors {
 						proposals[i + 1] = ((NamedElement)metaclassElement.get(i)).getQualifiedName();
 
 					} else {
-						//TODO need a solution!
+						// TODO need a solution!
 						String label = ((Element)metaclassElement.get(i)).toString();
 						proposals[i + 1] = label;
-						//we don't obtain the ID from the XMI!
+						// we don't obtain the ID from the XMI!
 						UML2Util.getXMIIdentifier((InternalEObject)(((Element)metaclassElement.get(i))));
 					}
 				}
@@ -459,10 +448,10 @@ public class PropertyEditors {
 						proposals[i] = ((NamedElement)metaclassElement.get(i)).getQualifiedName();
 
 					} else {
-						//TODO need a solution!
+						// TODO need a solution!
 						String label = ((Element)metaclassElement.get(i)).toString();
 						proposals[i] = label;
-						//We don't obtain the ID from the XMI
+						// We don't obtain the ID from the XMI
 						UML2Util.getXMIIdentifier((InternalEObject)(((Element)metaclassElement.get(i))));
 
 					}
@@ -494,16 +483,18 @@ public class PropertyEditors {
 		 * @see org.eclipse.jface.dialogs.IInputValidator#isValid(java.lang.String)
 		 * 
 		 * @param newText
-		 * @return
-		 *         null if the newText is valid
-		 *         an error message when newText is invalid
+		 * @return null if the newText is valid an error message when newText is
+		 *         invalid
 		 */
 		public String isValid(String newText) {
 			if(newText != null && newText != "") { //$NON-NLS-1$
 				for(int iter = 0; iter < newText.length(); iter++) {
 					if(!Character.isDigit(newText.charAt(iter))) {
 						if(iter == 0) {
-							if((newText.charAt(iter) == '-')) { //the first character can be '-'
+							if((newText.charAt(iter) == '-')) { // the first
+																// character
+																// can be
+																// '-'
 								continue;
 							}
 						}
@@ -511,7 +502,7 @@ public class PropertyEditors {
 					}
 				}
 			}
-			return null;//it's OK
+			return null;// it's OK
 		}
 
 	}
@@ -525,23 +516,25 @@ public class PropertyEditors {
 		 * @see org.eclipse.jface.dialogs.IInputValidator#isValid(java.lang.String)
 		 * 
 		 * @param newText
-		 * @return
-		 *         null if the newText is valid
-		 *         an error message when newText is invalid
+		 * @return null if the newText is valid an error message when newText is
+		 *         invalid
 		 */
 
 		public String isValid(String newText) {
 			if(newText != null && newText != "") { //$NON-NLS-1$
 				for(int iter = 0; iter < newText.length(); iter++) {
 					if(!Character.isDigit(newText.charAt(iter))) {
-						if(newText.length() == 1 && newText.charAt(0) == '*') { //'*' means the infinity 
+						if(newText.length() == 1 && newText.charAt(0) == '*') { // '*'
+																				// means
+																				// the
+																				// infinity
 							break;
 						}
 						return UnlimitedNaturalValidator_WarningMessage;
 					}
 				}
 			}
-			return null;//it's OK
+			return null;// it's OK
 		}
 
 	}

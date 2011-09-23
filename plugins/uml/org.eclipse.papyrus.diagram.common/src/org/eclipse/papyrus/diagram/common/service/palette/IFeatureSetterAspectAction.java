@@ -75,9 +75,9 @@ public interface IFeatureSetterAspectAction {
 			return getAllImpactedFeatures(request.getParameters());
 		}
 
-
 		/**
-		 * Determine if the features in parameters are managed by Pre/Post Action in the request
+		 * Determine if the features in parameters are managed by Pre/Post
+		 * Action in the request
 		 * 
 		 * @param request
 		 * @param features
@@ -88,7 +88,8 @@ public interface IFeatureSetterAspectAction {
 		}
 
 		/**
-		 * Determine if the features in parameters are managed by Pre/Post Action in the request
+		 * Determine if the features in parameters are managed by Pre/Post
+		 * Action in the request
 		 * 
 		 * @param request
 		 * @param features
@@ -107,7 +108,6 @@ public interface IFeatureSetterAspectAction {
 			}
 			return true;
 		}
-
 
 	}
 

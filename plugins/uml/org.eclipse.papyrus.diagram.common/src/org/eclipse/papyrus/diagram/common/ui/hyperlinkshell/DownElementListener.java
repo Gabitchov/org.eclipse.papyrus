@@ -22,9 +22,10 @@ import org.eclipse.swt.events.MouseListener;
 
 // TODO: Auto-generated Javadoc
 /**
- * The listener interface for receiving downElement events. The class that is interested in
- * processing a downElement event implements this interface, and the object created with that class
- * is registered with a component using the component's <code>addDownElementListener<code> method. When
+ * The listener interface for receiving downElement events. The class that is
+ * interested in processing a downElement event implements this interface, and
+ * the object created with that class is registered with a component using the
+ * component's <code>addDownElementListener<code> method. When
  * the downElement event occurs, that object's appropriate
  * method is invoked.
  * 

@@ -45,7 +45,7 @@ public class StereotypePropertiesCompartment extends RectangleFigure {
 				} else {
 					target = new Point(parentFigure.getBounds().x + parentFigure.getBounds().width, ((IFigure)getChildren().get(i)).getBounds().getTopRight().y);
 				}
-				//graphics.setForegroundColor(ColorConstants.black);
+				// graphics.setForegroundColor(ColorConstants.black);
 				graphics.setLineWidth(1);
 				graphics.drawLine(source, target);
 			}

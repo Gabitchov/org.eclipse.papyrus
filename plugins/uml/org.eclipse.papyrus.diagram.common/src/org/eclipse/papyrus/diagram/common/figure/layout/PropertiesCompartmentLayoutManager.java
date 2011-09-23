@@ -17,7 +17,6 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Rectangle;
 
-
 public class PropertiesCompartmentLayoutManager extends AbstractLayout {
 
 	protected static int MARGIN_X = 5;

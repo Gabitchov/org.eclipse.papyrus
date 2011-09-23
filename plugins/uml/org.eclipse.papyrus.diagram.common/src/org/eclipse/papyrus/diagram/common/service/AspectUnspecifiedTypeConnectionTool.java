@@ -70,7 +70,9 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 
 	private static final int STATE_CONNECTION_WAITING_END = STATE_CONNECTION_STARTED + 1;
 
-	/** List of element types of which one will be created (of type <code>IElementType</code>). */
+	/**
+	 * List of element types of which one will be created (of type <code>IElementType</code>).
+	 */
 	// protected List elementTypes;
 
 	/** post action list */
@@ -134,7 +136,7 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 		if(!selectedEditParts.isEmpty()) {
 			IGraphicalEditPart targetEditPart = (IGraphicalEditPart)selectedEditParts.get(selectedEditParts.size() - 1);
 
-			//allow add the listener only one time the target
+			// allow add the listener only one time the target
 			boolean done = false;
 			for(int i = 0; i < selectedEditParts.size(); i++) {
 				IGraphicalEditPart sourceEditPart = (IGraphicalEditPart)selectedEditParts.get(i);
@@ -145,7 +147,7 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 				}
 
 				CreateConnectionRequest connectionRequest = (CreateConnectionRequest)createTargetRequest();
-				//get the anchors locations
+				// get the anchors locations
 				Point[] newLocation = LayoutUtils.getLinkAnchor(sourceEditPart, targetEditPart);
 				connectionRequest.setTargetEditPart(sourceEditPart);
 				connectionRequest.setType(RequestConstants.REQ_CONNECTION_START);
@@ -170,7 +172,8 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 
 					// adds the listener
 					if(requiresPostAction) {
-						// register a listener to have information about element creation
+						// register a listener to have information about element
+						// creation
 						// retrieves editing domain
 						TransactionalEditingDomain domain;
 						try {
@@ -193,7 +196,8 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 								}
 							};
 
-							//we need to add only one time the listener of the target (eobject)
+							// we need to add only one time the listener of the
+							// target (eobject)
 							if(!done) {
 								listeners.add(listener);
 								eobjects.add(eObject);
@@ -204,7 +208,6 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 							Activator.log.error(e);
 						}
 					}
-
 
 					Command command = targetEditPart.getCommand(connectionRequest);
 					cmd.add(command);
@@ -242,7 +245,6 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 		// erased. This behavior is overridden by setting the avoid
 		// deactivation flag.
 		setAvoidDeactivation(true);
-
 
 		if(getTargetEditPart() == null) {
 			return false;
@@ -326,7 +328,8 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 					Node childNode = nodeList.item(i);
 					String childName = childNode.getNodeName();
 					if(IPapyrusPaletteConstant.POST_ACTION.equals(childName)) {
-						// node is a post action => retrieve the id of the provider in charge of this configuration
+						// node is a post action => retrieve the id of the
+						// provider in charge of this configuration
 						IAspectActionProvider provider = AspectToolService.getInstance().getProvider(AspectToolService.getProviderId(childNode));
 						if(provider != null) {
 							IAspectAction action = provider.createAction(childNode);
@@ -352,9 +355,9 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 		return new CreateAspectUnspecifiedTypeConnectionRequest(getElementTypes(), false, getPreferencesHint());
 	}
 
-
 	/**
-	 * Copy of the class {@link CreateUnspecifiedTypeConnectionRequest} to use the Papyrus request factory instead of the gmf one.
+	 * Copy of the class {@link CreateUnspecifiedTypeConnectionRequest} to use
+	 * the Papyrus request factory instead of the gmf one.
 	 */
 	public class CreateAspectUnspecifiedTypeConnectionRequest extends CreateUnspecifiedTypeConnectionRequest {
 
@@ -370,22 +373,22 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 		private Map requests = new HashMap();
 
 		/**
-		 * A flag to indicate if the Modeling Assistant Service should be used to
-		 * find the types when the other end of the connection is known.
+		 * A flag to indicate if the Modeling Assistant Service should be used
+		 * to find the types when the other end of the connection is known.
 		 */
 		private boolean useModelingAssistantService;
 
 		/**
-		 * A flag to indicate if this request is to create a connection from target
-		 * to source.
+		 * A flag to indicate if this request is to create a connection from
+		 * target to source.
 		 */
 		private boolean directionReversed = false;
 
 		/**
-		 * The hint used to find the appropriate preference store from which general
-		 * diagramming preference values for properties of shapes, connections, and
-		 * diagrams can be retrieved. This hint is mapped to a preference store in
-		 * the {@link DiagramPreferencesRegistry}.
+		 * The hint used to find the appropriate preference store from which
+		 * general diagramming preference values for properties of shapes,
+		 * connections, and diagrams can be retrieved. This hint is mapped to a
+		 * preference store in the {@link DiagramPreferencesRegistry}.
 		 */
 		private PreferencesHint preferencesHint;
 
@@ -393,16 +396,18 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 		 * Creates a new <code>CreateUnspecifiedTypeConnectionRequest</code>.
 		 * 
 		 * @param relationshipTypes
-		 *        List of relationship types of which one will be created (of
-		 *        type <code>IElementType</code>).
+		 *        List of relationship types of which one will be created
+		 *        (of type <code>IElementType</code>).
 		 * @param useModelingAssistantService
-		 *        True if the Modeling Assistant Service should be used to find
-		 *        the types when the other end of the connection is known.
+		 *        True if the Modeling Assistant Service should be used to
+		 *        find the types when the other end of the connection is
+		 *        known.
 		 * @param preferencesHint
-		 *        The preference hint that is to be used to find the appropriate
-		 *        preference store from which to retrieve diagram preference
-		 *        values. The preference hint is mapped to a preference store in
-		 *        the preference registry <@link DiagramPreferencesRegistry>.
+		 *        The preference hint that is to be used to find the
+		 *        appropriate preference store from which to retrieve
+		 *        diagram preference values. The preference hint is mapped
+		 *        to a preference store in the preference registry <@link
+		 *        DiagramPreferencesRegistry>.
 		 */
 		public CreateAspectUnspecifiedTypeConnectionRequest(List<IElementType> relationshipTypes, boolean useModelingAssistantService, PreferencesHint preferencesHint) {
 			super(relationshipTypes, useModelingAssistantService, preferencesHint);
@@ -425,7 +430,8 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 		}
 
 		/**
-		 * Returns the <code>CreateRequest</code> for the relationship type passed in.
+		 * Returns the <code>CreateRequest</code> for the relationship type
+		 * passed in.
 		 * 
 		 * @param relationshipType
 		 * @return the <code>CreateRequest</code>
@@ -436,7 +442,6 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 			}
 			return null;
 		}
-
 
 		public void addRequest(IElementType relationshipType, Request request) {
 			if(requests != null) {
@@ -456,14 +461,14 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 			return Collections.EMPTY_LIST;
 		}
 
-		//		/**
-		//		 * Returns the list of element types.
-		//		 * 
-		//		 * @return Returns the list of element types.
-		//		 */
-		//		public List getElementTypes() {
-		//			return relationshipTypes;
-		//		}
+		// /**
+		// * Returns the list of element types.
+		// *
+		// * @return Returns the list of element types.
+		// */
+		// public List getElementTypes() {
+		// return relationshipTypes;
+		// }
 
 		/**
 		 * @see org.eclipse.gef.requests.CreateConnectionRequest#setSourceEditPart(org.eclipse.gef.EditPart)
@@ -540,8 +545,9 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 		/**
 		 * Should the Modeling Assistant Service be used?
 		 * 
-		 * @return Returns true if the Modeling Assistant Service should be used to
-		 *         find the types when the other end of the connection is known.
+		 * @return Returns true if the Modeling Assistant Service should be used
+		 *         to find the types when the other end of the connection is
+		 *         known.
 		 */
 		public boolean useModelingAssistantService() {
 			return useModelingAssistantService;
@@ -549,8 +555,8 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 
 		/**
 		 * Gets the preferences hint that is to be used to find the appropriate
-		 * preference store from which to retrieve diagram preference values. The
-		 * preference hint is mapped to a preference store in the preference
+		 * preference store from which to retrieve diagram preference values.
+		 * The preference hint is mapped to a preference store in the preference
 		 * registry <@link DiagramPreferencesRegistry>.
 		 * 
 		 * @return the preferences hint
@@ -568,10 +574,11 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 		 * @param type
 		 *        the <code>IElementType</code>
 		 * @param preferencesHint
-		 *        The preference hint that is to be used to find the appropriate
-		 *        preference store from which to retrieve diagram preference
-		 *        values. The preference hint is mapped to a preference store in
-		 *        the preference registry <@link DiagramPreferencesRegistry>.
+		 *        The preference hint that is to be used to find the
+		 *        appropriate preference store from which to retrieve
+		 *        diagram preference values. The preference hint is mapped
+		 *        to a preference store in the preference registry <@link
+		 *        DiagramPreferencesRegistry>.
 		 * @return the new request
 		 */
 		public static CreateViewRequest getCreateShapeRequest(IElementType type, PreferencesHint preferencesHint) {
@@ -593,10 +600,11 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 		 * @param type
 		 *        the <code>IElementType</code>
 		 * @param preferencesHint
-		 *        The preference hint that is to be used to find the appropriate
-		 *        preference store from which to retrieve diagram preference
-		 *        values. The preference hint is mapped to a preference store in
-		 *        the preference registry <@link DiagramPreferencesRegistry>.
+		 *        The preference hint that is to be used to find the
+		 *        appropriate preference store from which to retrieve
+		 *        diagram preference values. The preference hint is mapped
+		 *        to a preference store in the preference registry <@link
+		 *        DiagramPreferencesRegistry>.
 		 * @return the new request
 		 */
 		public static CreateConnectionViewRequest getCreateConnectionRequest(IElementType type, PreferencesHint preferencesHint) {
@@ -622,10 +630,11 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 		 * @param graphicalHint
 		 *        graphical hint for the view to create
 		 * @param preferencesHint
-		 *        The preference hint that is to be used to find the appropriate
-		 *        preference store from which to retrieve diagram preference
-		 *        values. The preference hint is mapped to a preference store in
-		 *        the preference registry <@link DiagramPreferencesRegistry>.
+		 *        The preference hint that is to be used to find the
+		 *        appropriate preference store from which to retrieve
+		 *        diagram preference values. The preference hint is mapped
+		 *        to a preference store in the preference registry <@link
+		 *        DiagramPreferencesRegistry>.
 		 * @return the new request
 		 */
 		public static CreateConnectionViewRequest getCreateConnectionRequest(IElementType type, String graphicalHint, PreferencesHint preferencesHint) {
@@ -636,7 +645,8 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 				ConnectionViewDescriptor viewDescriptor = new ConnectionViewDescriptor(type, graphicalHint, preferencesHint);
 				return new CreateConnectionViewRequest(viewDescriptor);
 			} else if(type instanceof IHintedType) {
-				// force the graphical hint instead of the hint of the hinted element
+				// force the graphical hint instead of the hint of the hinted
+				// element
 				return new CreateConnectionViewAndElementRequest(type, graphicalHint, preferencesHint);
 			} else {
 				return new CreateConnectionViewAndElementRequest(type, preferencesHint);

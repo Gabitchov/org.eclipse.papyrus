@@ -35,7 +35,6 @@ import org.eclipse.uml2.uml.NamedElement;
  */
 public class DuplicateNamedElementCommand extends DuplicateEObjectsCommand {
 
-
 	protected static final String COPY_OF = "Copy_Of_";
 
 	protected Object diagram;
@@ -69,10 +68,9 @@ public class DuplicateNamedElementCommand extends DuplicateEObjectsCommand {
 
 			}
 
-
 			if(currentObject instanceof NamedElement) {
 				namedElement = ((NamedElement)currentObject);
-				//some literal has not name
+				// some literal has not name
 				if(namedElement.getName() != null && !namedElement.getName().startsWith(COPY_OF)) {
 					namedElement.setName(COPY_OF + namedElement.getName());
 				}
@@ -88,12 +86,7 @@ public class DuplicateNamedElementCommand extends DuplicateEObjectsCommand {
 			}
 		}
 
-
 		return CommandResult.newOKCommandResult(getAllDuplicatedObjectsMap());
 	}
-
-
-
-
 
 }

@@ -28,7 +28,6 @@ import org.eclipse.papyrus.diagram.common.actions.AbstractShowHideAction;
 import org.eclipse.ui.ISelectionService;
 import org.eclipse.ui.PlatformUI;
 
-
 /**
  * 
  * Abstract Handler for the ShowHideActions
@@ -69,7 +68,7 @@ abstract public class AbstractShowHideHandler extends AbstractHandler {
 	 * @throws ExecutionException
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		//		buildSelection();
+		// buildSelection();
 		if(!selection.isEmpty()) {
 			this.action.setSelection(selection);
 			this.action.run(null);

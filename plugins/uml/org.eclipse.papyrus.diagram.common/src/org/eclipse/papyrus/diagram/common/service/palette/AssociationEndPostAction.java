@@ -64,13 +64,15 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-
 /**
  * Aspect action that modifies association end on creation
  */
 public class AssociationEndPostAction extends ModelPostAction {
 
-	/** list of property configurations, identified by their positions in the association end list */
+	/**
+	 * list of property configurations, identified by their positions in the
+	 * association end list
+	 */
 	protected List<PropertyEndConfiguration> configurations;
 
 	/** entry proxy "parent" of this action when configuring the action */
@@ -82,7 +84,10 @@ public class AssociationEndPostAction extends ModelPostAction {
 	/** viewer for the attributes to initialize */
 	protected TableViewer attributeViewer;
 
-	/** this attribute caches the value of the metaclass linked to the creation entry (performance optimization) */
+	/**
+	 * this attribute caches the value of the metaclass linked to the creation
+	 * entry (performance optimization)
+	 */
 	protected EClass metaclass = null;
 
 	/** path to the checked box image */
@@ -126,7 +131,6 @@ public class AssociationEndPostAction extends ModelPostAction {
 
 	/** list of composites */
 	protected List<PropertyEndComposite> configurationComposites = new ArrayList<PropertyEndComposite>();
-
 
 	/**
 	 * Constructor.
@@ -203,7 +207,6 @@ public class AssociationEndPostAction extends ModelPostAction {
 		final CompositeCommand compositeCommand = new CompositeCommand("Modify Association End");
 		EObject objectToEdit = ((View)editPart.getModel()).getElement();
 
-
 		// object to edit should be an association...
 		if(objectToEdit instanceof Association) {
 			for(PropertyEndConfiguration configuration : configurations) {
@@ -251,8 +254,10 @@ public class AssociationEndPostAction extends ModelPostAction {
 		if(compositeCommand.canExecute()) {
 			boolean isActivating = true;
 			Map<String, Boolean> options = null;
-			// use the viewer to determine if we are still initializing the diagram
-			// do not use the DiagramEditPart.isActivating since ConnectionEditPart's
+			// use the viewer to determine if we are still initializing the
+			// diagram
+			// do not use the DiagramEditPart.isActivating since
+			// ConnectionEditPart's
 			// parent will not be a diagram edit part
 			EditPartViewer viewer = editPart.getViewer();
 			if(viewer instanceof DiagramGraphicalViewer) {
@@ -443,7 +448,6 @@ public class AssociationEndPostAction extends ModelPostAction {
 				}
 			});
 
-
 			// owner elements
 			Label ownerLabel = new Label(mainComposite, SWT.NONE);
 			ownerLabel.setText("Owner");
@@ -508,7 +512,8 @@ public class AssociationEndPostAction extends ModelPostAction {
 				 * @{inheritDoc
 				 */
 				public void focusLost(FocusEvent e) {
-					// check validity. open a window to ask if we should stay on multiplicity combo or left.
+					// check validity. open a window to ask if we should stay on
+					// multiplicity combo or left.
 					String newValue = multiplicityCombo.getText();
 					if(isMultiplicityValid(newValue.trim())) {
 						configuration.setMultiplicity(newValue.trim());
@@ -536,7 +541,8 @@ public class AssociationEndPostAction extends ModelPostAction {
 		}
 
 		/**
-		 * update the values in the various composites, given the currently hold values
+		 * update the values in the various composites, given the currently hold
+		 * values
 		 */
 		public void update() {
 			navigationCombo.select(navigationItems.indexOf(configuration.getNavigation()));
@@ -563,7 +569,8 @@ public class AssociationEndPostAction extends ModelPostAction {
 					int lower = values[0];
 					int upper = values[1];
 
-					// returns true if upper = *, otherwise, returns true if upper > lower 
+					// returns true if upper = *, otherwise, returns true if
+					// upper > lower
 					return (upper == -1) ? true : upper >= lower;
 				}
 				return false;
@@ -572,7 +579,6 @@ public class AssociationEndPostAction extends ModelPostAction {
 			}
 		}
 	}
-
 
 	protected class PropertyEndConfiguration {
 
@@ -594,7 +600,6 @@ public class AssociationEndPostAction extends ModelPostAction {
 		/** name of the property end */
 		protected final String name;
 
-
 		/**
 		 * Returns the name of this configuration (the name of the property end)
 		 * 
@@ -605,9 +610,11 @@ public class AssociationEndPostAction extends ModelPostAction {
 		}
 
 		/**
-		 * Returns the index of this configuration (the index of the property end)
+		 * Returns the index of this configuration (the index of the property
+		 * end)
 		 * 
-		 * @return the index of this configuration (the index of the property end
+		 * @return the index of this configuration (the index of the property
+		 *         end
 		 */
 		public int getIndex() {
 			return index;
@@ -633,7 +640,6 @@ public class AssociationEndPostAction extends ModelPostAction {
 			return aggregationKind;
 		}
 
-
 		/**
 		 * Sets the current value of aggregationKind
 		 * 
@@ -644,7 +650,6 @@ public class AssociationEndPostAction extends ModelPostAction {
 			this.aggregationKind = aggregationKind;
 		}
 
-
 		/**
 		 * Returns the current value of owner
 		 * 
@@ -653,7 +658,6 @@ public class AssociationEndPostAction extends ModelPostAction {
 		public String getOwner() {
 			return owner;
 		}
-
 
 		/**
 		 * Sets the current value of owner
@@ -665,7 +669,6 @@ public class AssociationEndPostAction extends ModelPostAction {
 			this.owner = owner;
 		}
 
-
 		/**
 		 * Returns the current value of navigation
 		 * 
@@ -674,7 +677,6 @@ public class AssociationEndPostAction extends ModelPostAction {
 		public String getNavigation() {
 			return navigation;
 		}
-
 
 		/**
 		 * Sets the current value of navigation
@@ -686,7 +688,6 @@ public class AssociationEndPostAction extends ModelPostAction {
 			this.navigation = navigation;
 		}
 
-
 		/**
 		 * Returns the current value of multiplicity
 		 * 
@@ -695,7 +696,6 @@ public class AssociationEndPostAction extends ModelPostAction {
 		public String getMultiplicity() {
 			return multiplicity;
 		}
-
 
 		/**
 		 * Sets the current value of multiplicity

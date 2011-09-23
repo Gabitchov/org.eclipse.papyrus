@@ -71,7 +71,7 @@ public class ModelListenerManager extends EContentAdapter {
 			IPapyrusListener listener = (IPapyrusListener)createExtension(element, element.getAttribute(REALIZATION_ID));
 			listenerRegistry.put(listenerName, listener);
 		} catch (Exception e) {
-			Activator.log.error("- " + listenerName + " can not be loaded: "+e.getLocalizedMessage(), e);
+			Activator.log.error("- " + listenerName + " can not be loaded: " + e.getLocalizedMessage(), e);
 		}
 
 	}

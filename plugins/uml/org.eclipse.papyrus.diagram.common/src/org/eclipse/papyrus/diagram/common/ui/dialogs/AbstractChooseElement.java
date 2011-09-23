@@ -102,6 +102,5 @@ public class AbstractChooseElement extends Dialog {
 		filtercontrol = new FilteredTree(contentComposite, SWT.BORDER, new PatternFilter(), true);
 		filtercontrol.setBounds(10, 10, 424, 219);
 
-
 	}
 }

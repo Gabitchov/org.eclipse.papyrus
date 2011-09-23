@@ -31,7 +31,8 @@ import org.eclipse.papyrus.diagram.common.Activator;
 import org.w3c.dom.Node;
 
 /**
- * Standard implementation of the palette factory. This one should be use to provide palette content
+ * Standard implementation of the palette factory. This one should be use to
+ * provide palette content
  */
 public class XMLDefinitionPaletteFactory extends AbstractXMLDefinitionPaletteFactory implements IPapyrusPaletteConstant {
 
@@ -192,13 +193,13 @@ public class XMLDefinitionPaletteFactory extends AbstractXMLDefinitionPaletteFac
 	}
 
 	/**
-	 * Appends the given palette entry to the appropriate location in either a predefined palette
-	 * entry or the palette root.
+	 * Appends the given palette entry to the appropriate location in either a
+	 * predefined palette entry or the palette root.
 	 * 
 	 * @param root
 	 * @param predefinedEntries
-	 *        map of predefined palette entries where the key is the palette entry id and the
-	 *        value is the palette entry
+	 *        map of predefined palette entries where the key is the palette
+	 *        entry id and the value is the palette entry
 	 * @param path
 	 * @param paletteEntry
 	 */
@@ -221,7 +222,8 @@ public class XMLDefinitionPaletteFactory extends AbstractXMLDefinitionPaletteFac
 	}
 
 	/**
-	 * Finds a palette container starting from the given root and using the given path
+	 * Finds a palette container starting from the given root and using the
+	 * given path
 	 * 
 	 * @param root
 	 * @param aPath
@@ -239,7 +241,8 @@ public class XMLDefinitionPaletteFactory extends AbstractXMLDefinitionPaletteFac
 	}
 
 	/**
-	 * Finds a palette entry starting from the given container and using the given path
+	 * Finds a palette entry starting from the given container and using the
+	 * given path
 	 * 
 	 * @param root
 	 * @param path
@@ -256,11 +259,12 @@ public class XMLDefinitionPaletteFactory extends AbstractXMLDefinitionPaletteFac
 	}
 
 	/**
-	 * Searches the predefined entries for a palette entry given the full path as it was predefined.
+	 * Searches the predefined entries for a palette entry given the full path
+	 * as it was predefined.
 	 * 
 	 * @param predefinedEntries
-	 *        map of predefined palette entries where the key is the palette entry id and the
-	 *        value is the palette entry
+	 *        map of predefined palette entries where the key is the palette
+	 *        entry id and the value is the palette entry
 	 * @param path
 	 *        the path to the palette entry starting as it was predefined
 	 * @return the palette entry if one exists; null otherwise.

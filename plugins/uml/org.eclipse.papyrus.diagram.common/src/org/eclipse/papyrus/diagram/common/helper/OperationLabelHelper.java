@@ -70,12 +70,15 @@ public class OperationLabelHelper extends StereotypedElementLabelHelper {
 	}
 
 	/**
-	 * Computes the label that should be displayed by the figure managed by this edit part.
+	 * Computes the label that should be displayed by the figure managed by this
+	 * edit part.
 	 * 
 	 * @param editPart
-	 *        the edit part that controls the {@link Property} to be displayed
-	 * @return the label corresponding to the specific display of the property ("default" display
-	 *         given by preferences or specific display given by eAnnotation).
+	 *        the edit part that controls the {@link Property} to be
+	 *        displayed
+	 * @return the label corresponding to the specific display of the property
+	 *         ("default" display given by preferences or specific display given
+	 *         by eAnnotation).
 	 */
 	protected String elementLabel(GraphicalEditPart editPart) {
 		int displayValue = ICustomAppearence.DEFAULT_UML_OPERATION;

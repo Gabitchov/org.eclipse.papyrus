@@ -54,13 +54,15 @@ public class DiagramEditPartsUtil {
 	public static final String DiagramsRelatedToElement = "es.cv.gvcase.mdt.uml2.diagram.common.DiagramsRelatedToElement";
 
 	/**
-	 * Gets a list of all GraphicalEditParts in the diagram of the given EditPart.
+	 * Gets a list of all GraphicalEditParts in the diagram of the given
+	 * EditPart.
 	 * 
 	 * @param editPart
-	 *        Any <code>EditPart</code> in the diagram. The TopGraphicalNode will be found from
-	 *        this.
+	 *        Any <code>EditPart</code> in the diagram. The TopGraphicalNode
+	 *        will be found from this.
 	 * 
-	 * @return a list containing all <code>GraphicalEditPart</code> in the diagram.
+	 * @return a list containing all <code>GraphicalEditPart</code> in the
+	 *         diagram.
 	 */
 	// @unused
 	public static List<IGraphicalEditPart> getAllEditParts(EditPart editPart) {
@@ -87,7 +89,8 @@ public class DiagramEditPartsUtil {
 	 * @param editPart
 	 *        A non-null EditPart
 	 * 
-	 * @return The upper most EditPart in the hierarchy; may be the same EditPart
+	 * @return The upper most EditPart in the hierarchy; may be the same
+	 *         EditPart
 	 */
 	public static EditPart getTopMostEditPart(EditPart editPart) {
 
@@ -281,7 +284,8 @@ public class DiagramEditPartsUtil {
 	}
 
 	/**
-	 * Update EditPart and all contained EditPart that share the same type of model element.
+	 * Update EditPart and all contained EditPart that share the same type of
+	 * model element.
 	 * 
 	 * @param editPart
 	 *        the edit part

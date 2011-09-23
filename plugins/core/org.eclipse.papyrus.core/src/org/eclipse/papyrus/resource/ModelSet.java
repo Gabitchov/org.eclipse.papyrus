@@ -35,8 +35,6 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.workspace.WorkspaceEditingDomainFactory;
 import org.eclipse.papyrus.resource.additional.AdditionalResourcesModel;
 
-
-
 /**
  * This class is used to manage a set of {@link IModel}.
  * 
@@ -65,8 +63,8 @@ public class ModelSet extends ResourceSetImpl {
 
 	/** The snippets. */
 	private ModelSetSnippetList snippets = new ModelSetSnippetList();
-	
-	private AdditionalResourcesModel additional = new AdditionalResourcesModel(); 
+
+	private AdditionalResourcesModel additional = new AdditionalResourcesModel();
 
 	/**
 	 * The associated EditingDomain.
@@ -88,11 +86,10 @@ public class ModelSet extends ResourceSetImpl {
 		this.setURIResourceMap(new HashMap<URI, Resource>());
 		getLoadOptions().put(XMLResource.OPTION_DEFER_IDREF_RESOLUTION, true);
 	}
-	
 
 	/**
-	 * Register the specified model under its associated key.
-	 * The key is defined in the model itself. It is usually the model type from
+	 * Register the specified model under its associated key. The key is defined
+	 * in the model itself. It is usually the model type from
 	 * (ModelPackage.eCONTENT_TYPE).
 	 * 
 	 * @param model
@@ -104,8 +101,7 @@ public class ModelSet extends ResourceSetImpl {
 	}
 
 	/**
-	 * Get a model by its key.
-	 * TODO throw an exception if not found.
+	 * Get a model by its key. TODO throw an exception if not found.
 	 * 
 	 * @param key
 	 *        the key
@@ -116,8 +112,7 @@ public class ModelSet extends ResourceSetImpl {
 	}
 
 	/**
-	 * Get a model by its key.
-	 * TODO throw an exception if not found.
+	 * Get a model by its key. TODO throw an exception if not found.
 	 * 
 	 * @param key
 	 *        the key
@@ -132,19 +127,17 @@ public class ModelSet extends ResourceSetImpl {
 
 		return model;
 	}
-	
+
 	@Override
 	public Resource getResource(URI uri, boolean loadOnDemand) {
 		Resource r = super.getResource(uri, loadOnDemand);
-		if (r instanceof ResourceImpl)
-		{
-			ResourceImpl impl = (ResourceImpl) r ;
-			if (impl.getIntrinsicIDToEObjectMap() == null)
-			{
+		if(r instanceof ResourceImpl) {
+			ResourceImpl impl = (ResourceImpl)r;
+			if(impl.getIntrinsicIDToEObjectMap() == null) {
 				impl.setIntrinsicIDToEObjectMap(new HashMap<String, EObject>());
 			}
 		}
-		return r ;
+		return r;
 	}
 
 	/**
@@ -153,18 +146,19 @@ public class ModelSet extends ResourceSetImpl {
 	 * @return the transactional editing domain
 	 */
 	public TransactionalEditingDomain getTransactionalEditingDomain() {
-		//		transactionalEditingDomain = TransactionalEditingDomain.Factory.INSTANCE.getEditingDomain(this);
+		// transactionalEditingDomain =
+		// TransactionalEditingDomain.Factory.INSTANCE.getEditingDomain(this);
 		transactionalEditingDomain = WorkspaceEditingDomainFactory.INSTANCE.getEditingDomain(this);
 
 		if(transactionalEditingDomain == null) {
-			//			transactionalEditingDomain = TransactionalEditingDomain.Factory.INSTANCE.createEditingDomain(this);
+			// transactionalEditingDomain =
+			// TransactionalEditingDomain.Factory.INSTANCE.createEditingDomain(this);
 			transactionalEditingDomain = WorkspaceEditingDomainFactory.INSTANCE.createEditingDomain(this);
 			// What for?
 			transactionalEditingDomain.setID("SharedEditingDomain"); //$NON-NLS-1$
 		}
 		return transactionalEditingDomain;
 	}
-
 
 	/**
 	 * @return the filenameWithoutExtension
@@ -184,7 +178,6 @@ public class ModelSet extends ResourceSetImpl {
 		return filenameWithoutExtension;
 	}
 
-
 	/**
 	 * @param filenameWithoutExtension
 	 *        the filenameWithoutExtension to set
@@ -194,11 +187,12 @@ public class ModelSet extends ResourceSetImpl {
 	}
 
 	/**
-	 * Create all the associated models.
-	 * This creates the models, regardless if they already exist.
+	 * Create all the associated models. This creates the models, regardless if
+	 * they already exist.
 	 * 
 	 * @param newFile
-	 *        The file from which path is extracted to create the new resources
+	 *        The file from which path is extracted to create the new
+	 *        resources
 	 */
 	public void createsModels(IFile newFile) {
 
@@ -215,13 +209,14 @@ public class ModelSet extends ResourceSetImpl {
 	}
 
 	/**
-	 * Create the model specified by the identifiers. Other models are untouched, unless they are
-	 * sharing something with specified models.
+	 * Create the model specified by the identifiers. Other models are
+	 * untouched, unless they are sharing something with specified models.
 	 * 
 	 * This creates the models, regardless if they already exist.
 	 * 
 	 * @param newFile
-	 *        The file from which path is extracted to create the new resources
+	 *        The file from which path is extracted to create the new
+	 *        resources
 	 */
 	public void createsModels(ModelIdentifiers modelIdentifiers) {
 
@@ -234,12 +229,12 @@ public class ModelSet extends ResourceSetImpl {
 		}
 
 		// call snippets to allow them to do their stuff
-		//		snippets.modelsAdded(modelIdentifiers);
+		// snippets.modelsAdded(modelIdentifiers);
 	}
 
 	/**
-	 * Load only the specified model. ModelSetSnippets are not called.
-	 * Model is loaded using the ModelSet Path.
+	 * Load only the specified model. ModelSetSnippets are not called. Model is
+	 * loaded using the ModelSet Path.
 	 * 
 	 * @param modelIdentifier
 	 *        the model identifier
@@ -278,7 +273,8 @@ public class ModelSet extends ResourceSetImpl {
 	}
 
 	/**
-	 * Load all the associated models from a handle on one of the associated file.
+	 * Load all the associated models from a handle on one of the associated
+	 * file.
 	 * 
 	 * @param file
 	 *        The file to load (no matter the extension)
@@ -292,7 +288,8 @@ public class ModelSet extends ResourceSetImpl {
 
 		// Walk all registered models
 		for(IModel model : models.values()) {
-			// Try to load each model. Catch exceptions in order to load other models.
+			// Try to load each model. Catch exceptions in order to load other
+			// models.
 			try {
 				model.loadModel(filenameWithoutExtension);
 			} catch (Exception e) {
@@ -314,8 +311,9 @@ public class ModelSet extends ResourceSetImpl {
 	}
 
 	/**
-	 * Import specified models into the ModelSet. The models are imported using the specified IFile.
-	 * After import, the models are associated with the ModelSet Path.
+	 * Import specified models into the ModelSet. The models are imported using
+	 * the specified IFile. After import, the models are associated with the
+	 * ModelSet Path.
 	 * 
 	 * @param modelIdentifiers
 	 *        The model to import from the specified IFile.
@@ -339,9 +337,9 @@ public class ModelSet extends ResourceSetImpl {
 	}
 
 	/**
-	 * Import only the specified model. ModelSetSnippets are not called.
-	 * An import can be performed after model are loaded. Normally, it should not be done
-	 * before a model is loaded.
+	 * Import only the specified model. ModelSetSnippets are not called. An
+	 * import can be performed after model are loaded. Normally, it should not
+	 * be done before a model is loaded.
 	 * 
 	 * @param modelIdentifier
 	 *        the model identifier
@@ -373,7 +371,6 @@ public class ModelSet extends ResourceSetImpl {
 
 	}
 
-
 	/**
 	 * Save the resources.
 	 * 
@@ -391,8 +388,7 @@ public class ModelSet extends ResourceSetImpl {
 		try {
 			// Walk all registered models
 			for(IModel model : modelList) {
-				if (!(model instanceof AdditionalResourcesModel))
-				{
+				if(!(model instanceof AdditionalResourcesModel)) {
 					model.saveModel();
 					monitor.worked(1);
 				}
@@ -404,7 +400,8 @@ public class ModelSet extends ResourceSetImpl {
 	}
 
 	/**
-	 * The resources are already loaded, but we want to save them under another name.
+	 * The resources are already loaded, but we want to save them under another
+	 * name.
 	 * 
 	 * @param path
 	 *        the path
@@ -412,7 +409,6 @@ public class ModelSet extends ResourceSetImpl {
 	 *         Signals that an I/O exception has occurred.
 	 */
 	public void saveAs(IPath path) throws IOException {
-
 
 		// Get the file name, without extension.
 		filenameWithoutExtension = path.removeFileExtension();
@@ -436,14 +432,13 @@ public class ModelSet extends ResourceSetImpl {
 
 		// Walk all registered models
 		for(IModel model : models.values()) {
-			if (!(model instanceof AdditionalResourcesModel))
-			{
+			if(!(model instanceof AdditionalResourcesModel)) {
 				model.unload();
 			}
 		}
 		additional.unload();
 
-		// Unload remaining resources 
+		// Unload remaining resources
 		for(Iterator<Resource> iter = getResources().iterator(); iter.hasNext();) {
 			iter.next().unload();
 			iter.remove();
@@ -451,8 +446,8 @@ public class ModelSet extends ResourceSetImpl {
 	}
 
 	/**
-	 * Add a {@link IModelSetSnippet}. A snippet allows to add code that will perform
-	 * additional operations on the ModelSet.
+	 * Add a {@link IModelSetSnippet}. A snippet allows to add code that will
+	 * perform additional operations on the ModelSet.
 	 * 
 	 * @param snippet
 	 *        The snippet to add.
@@ -460,7 +455,7 @@ public class ModelSet extends ResourceSetImpl {
 	public void addModelSetSnippet(IModelSetSnippet snippet) {
 		snippets.add(snippet);
 	}
-	
+
 	/**
 	 * A list of {@link IModelSetSnippet}.
 	 * 
@@ -502,16 +497,17 @@ public class ModelSet extends ResourceSetImpl {
 
 	/**
 	 * Check is a resource is additional in the resource set
-	 * @param uri the specified URI of the resource
+	 * 
+	 * @param uri
+	 *        the specified URI of the resource
 	 * @return true if it is an additional resource
 	 */
 	public boolean isAdditionalResource(URI uri) {
-		if (uri != null) {
+		if(uri != null) {
 			String platformString = uri.trimFileExtension().toPlatformString(false);
-			return ((platformString == null) || !getFilenameWithoutExtension().toString().equals(platformString.toString()));			
+			return ((platformString == null) || !getFilenameWithoutExtension().toString().equals(platformString.toString()));
 		}
 		return false;
 	}
-	
-	
+
 }

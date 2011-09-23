@@ -11,7 +11,8 @@ import org.eclipse.draw2d.geometry.Insets;
 import org.eclipse.draw2d.geometry.Rectangle;
 
 /**
- * All children are placed on top of each other. Gap may be set between children.
+ * All children are placed on top of each other. Gap may be set between
+ * children.
  * 
  * @author dstadnik
  */
@@ -33,7 +34,8 @@ public class PileLayout extends AbstractHintLayout {
 	}
 
 	/**
-	 * The last (bottom) figure should be stretched to cover the rest of the container client area.
+	 * The last (bottom) figure should be stretched to cover the rest of the
+	 * container client area.
 	 */
 	public final boolean isStretchBottom() {
 		return myStretchBottom;
@@ -60,8 +62,8 @@ public class PileLayout extends AbstractHintLayout {
 	}
 
 	/**
-	 * Returns list constraint for specified figure. If constraint is null or not list constraint
-	 * returns FILL list constraint by default.
+	 * Returns list constraint for specified figure. If constraint is null or
+	 * not list constraint returns FILL list constraint by default.
 	 */
 	protected PileConstraint getPileConstraint(IFigure figure) {
 		Object constraint = getConstraint(figure);
@@ -154,8 +156,8 @@ public class PileLayout extends AbstractHintLayout {
 	public interface PileConstraint {
 
 		/**
-		 * Changes bounds of child with specified preferred size. New bounds should fit in specified
-		 * bounds.
+		 * Changes bounds of child with specified preferred size. New bounds
+		 * should fit in specified bounds.
 		 * 
 		 * @param preferred
 		 *        Prefferred size of a child.

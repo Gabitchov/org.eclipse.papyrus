@@ -43,7 +43,7 @@ public class PasteWithModelHandler extends AbstractHandler {
 			if(((IStructuredSelection)selection).getFirstElement() instanceof GraphicalEditPart) {
 				GraphicalEditPart targetEditPart = (GraphicalEditPart)((IStructuredSelection)selection).getFirstElement();
 				if(targetEditPart != null) {
-					//get the paste command with model form the service
+					// get the paste command with model form the service
 					ICommand pastecommand = PasteCommandService.getInstance().getPasteWithModelCommand(targetEditPart, Toolkit.getDefaultToolkit().getSystemClipboard(), targetEditPart.getEditingDomain().getClipboard());
 
 					if(pastecommand.canExecute()) {

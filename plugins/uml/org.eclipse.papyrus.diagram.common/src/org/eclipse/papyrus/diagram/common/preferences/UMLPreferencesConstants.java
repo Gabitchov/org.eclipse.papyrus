@@ -19,8 +19,6 @@ public interface UMLPreferencesConstants {
 
 	String PREF_ICON_STYLE = "iconstyle"; //$NON-NLS-1$
 
-
-
 	// @unused
 	String HIGHLIGHT_COLOR = "org.eclipse.uml2.diagram.highlight.color"; //$NON-NLS-1$
 

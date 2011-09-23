@@ -66,7 +66,8 @@ public class CommonDeferredCreateConnectionViewCommand extends DeferredCreateCon
 	 * @param preferencesHint
 	 *        the preferencehint of the diagram
 	 * @param command
-	 *        the command in which we look for the result for the target (may be null)
+	 *        the command in which we look for the result for the target
+	 *        (may be null)
 	 */
 	public CommonDeferredCreateConnectionViewCommand(TransactionalEditingDomain editingDomain, EObject element, IAdaptable sourceViewAdapter, IAdaptable targetViewAdapter, EditPartViewer viewer, PreferencesHint preferencesHint, ICommand command) {
 		super(editingDomain, element, sourceViewAdapter, targetViewAdapter, viewer, preferencesHint);
@@ -92,7 +93,8 @@ public class CommonDeferredCreateConnectionViewCommand extends DeferredCreateCon
 	 * @param viewDescriptor
 	 *        the view descriptor
 	 * @param command
-	 *        the command in which we look for the result for the target (may be null)
+	 *        the command in which we look for the result for the target
+	 *        (may be null)
 	 */
 	public CommonDeferredCreateConnectionViewCommand(TransactionalEditingDomain editingDomain, String semanticHint, IAdaptable sourceViewAdapter, IAdaptable targetViewAdapter, EditPartViewer viewer, PreferencesHint preferencesHint, ConnectionViewDescriptor viewDescriptor, ICommand command) {
 		super(editingDomain, semanticHint, sourceViewAdapter, targetViewAdapter, viewer, preferencesHint);
@@ -110,10 +112,10 @@ public class CommonDeferredCreateConnectionViewCommand extends DeferredCreateCon
 		IGraphicalEditPart sourceEP = (IGraphicalEditPart)epRegistry.get(sourceViewAdapter.getAdapter(View.class));
 		IGraphicalEditPart targetEP = (IGraphicalEditPart)epRegistry.get(targetViewAdapter.getAdapter(View.class));
 
-
 		/*
-		 * when the source or the target of a link is an other link, the previous method returns something like ElementNameEditPart
-		 * A such EditPart does not allow to get a Command for the creation of the link
+		 * when the source or the target of a link is an other link, the
+		 * previous method returns something like ElementNameEditPart A such
+		 * EditPart does not allow to get a Command for the creation of the link
 		 */
 		if(sourceEP instanceof LabelEditPart) {
 			sourceEP = findEditPartForCreation((View)sourceViewAdapter.getAdapter(View.class));
@@ -130,9 +132,9 @@ public class CommonDeferredCreateConnectionViewCommand extends DeferredCreateCon
 	 * Returns the EditPart for the creation
 	 * 
 	 * @param adapter
-	 *        the view of the element for which we are looking for a valid EditPart
-	 * @return
-	 *         the EditPart for the creation
+	 *        the view of the element for which we are looking for a valid
+	 *        EditPart
+	 * @return the EditPart for the creation
 	 */
 	protected IGraphicalEditPart findEditPartForCreation(View view) {
 		Iterator<?> editPartIterator = viewer.getEditPartRegistry().values().iterator();

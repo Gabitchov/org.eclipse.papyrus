@@ -15,7 +15,6 @@ import org.eclipse.papyrus.resource.sasheditor.SashModelUtils;
 import org.eclipse.papyrus.sasheditor.contentprovider.di.DiSashModelMngr;
 import org.eclipse.papyrus.sasheditor.contentprovider.di.TransactionalDiSashModelMngr;
 
-
 /**
  * Service Factory to create the {@link DiSashModelMngr} service.
  * 
@@ -24,7 +23,6 @@ import org.eclipse.papyrus.sasheditor.contentprovider.di.TransactionalDiSashMode
  */
 public class DiSashModelMngrServiceFactory implements IServiceFactory {
 
-
 	private TransactionalEditingDomain transactionalEditingDomain;
 
 	private SashModel sashModel;
@@ -32,8 +30,6 @@ public class DiSashModelMngrServiceFactory implements IServiceFactory {
 	private TransactionalDiSashModelMngr sashModelMngr;
 
 	private ServicesRegistry servicesRegistry;
-
-
 
 	/**
 	 * @see org.eclipse.papyrus.core.services.IService#init(org.eclipse.papyrus.core.services.ServicesRegistry)
@@ -70,7 +66,6 @@ public class DiSashModelMngrServiceFactory implements IServiceFactory {
 		// create the service
 		sashModelMngr = new TransactionalDiSashModelMngr(pageModelRegistry, sashModel.getResource(), transactionalEditingDomain);
 
-
 	}
 
 	/**
@@ -90,7 +85,8 @@ public class DiSashModelMngrServiceFactory implements IServiceFactory {
 	public Object createServiceInstance() throws ServiceException {
 
 		// Start locally the service if needed.
-		// Question: Can createServiceInstance() method be called before startService() is called ?
+		// Question: Can createServiceInstance() method be called before
+		// startService() is called ?
 		if(sashModelMngr == null) {
 			startService();
 		}

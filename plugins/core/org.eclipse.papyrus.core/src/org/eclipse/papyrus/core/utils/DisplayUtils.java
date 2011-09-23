@@ -17,7 +17,6 @@ import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
 
-
 /**
  * Util class for display in Papyrus (label providers, etc...)
  */
@@ -26,7 +25,8 @@ public class DisplayUtils {
 	/**
 	 * Gets the shared label provider.
 	 * 
-	 * @return Get the current {@link ILabelProvider} or <code>null</code> if not found
+	 * @return Get the current {@link ILabelProvider} or <code>null</code> if
+	 *         not found
 	 */
 	public static ILabelProvider getLabelProvider() {
 		try {

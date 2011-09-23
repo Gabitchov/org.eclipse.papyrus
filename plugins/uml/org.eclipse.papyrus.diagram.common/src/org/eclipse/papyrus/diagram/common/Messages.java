@@ -73,10 +73,15 @@ public class Messages extends NLS {
 	/** Label to be displayed on {@link org.eclipse.uml2.uml.Abstraction} links */
 	public static String AppliedStereotypeLabel_AbstractionTag;
 
-	/** Label to be displayed on {@link org.eclipse.uml2.uml.PackageImport} links */
+	/**
+	 * Label to be displayed on {@link org.eclipse.uml2.uml.PackageImport} links
+	 */
 	public static String AppliedStereotypeLabel_PackageImportTag;
 
-	/** Label to be displayed on {@link org.eclipse.uml2.uml.PackageImport} links with reduced visibility */
+	/**
+	 * Label to be displayed on {@link org.eclipse.uml2.uml.PackageImport} links
+	 * with reduced visibility
+	 */
 	public static String AppliedStereotypeLabel_PackageImportAccessTag;
 
 	/** Label to be displayed on {@link org.eclipse.uml2.uml.PackageMerge} links */
@@ -85,7 +90,8 @@ public class Messages extends NLS {
 	/** Label to be displayed on {@link org.eclipse.uml2.uml.Usage} links */
 	public static String AppliedStereotypeLabel_UsageTag;
 
-	// ///////////////////////// Palette Customisation /////////////////////////////////////
+	// ///////////////////////// Palette Customisation
+	// /////////////////////////////////////
 	/** Tooltip for the add button */
 	public static String PapyrusPaletteCustomizerDialog_AddButtonTooltip;
 
@@ -131,8 +137,6 @@ public class Messages extends NLS {
 	/** tooltip for the provider priority in the palette wizard */
 	public static String Local_Palette_Priority_Tooltip;
 
-
-
 	/** label for the advanced button, when advanced are not shown */
 	public static String Dialog_Advanced_Button_Closed;
 
@@ -142,13 +146,18 @@ public class Messages extends NLS {
 	/** Error message for the wizard page, when priority is not correctly filled */
 	public static String Local_Palette_Error_Priority;
 
-	/** Error message for the wizard page, when palette ID is not correctly filled */
+	/**
+	 * Error message for the wizard page, when palette ID is not correctly
+	 * filled
+	 */
 	public static String Local_Palette_Error_PaletteId;
 
 	/** Error message for the wizard page, when name is not correctly filled */
 	public static String Local_Palette_Error_Name;
 
-	/** Error message for the wizard page, when Editor ID is not correctly filled */
+	/**
+	 * Error message for the wizard page, when Editor ID is not correctly filled
+	 */
 	public static String Local_Palette_Error_EditorId;
 
 	/** Name of the information page */
@@ -253,13 +262,19 @@ public class Messages extends NLS {
 	/** tooltip for the disabled action because of missing profiles */
 	public static String PaletteContextMenu_MissingProfile;
 
-	/** tooltip for the edit local palette action disabled because of bad selection */
+	/**
+	 * tooltip for the edit local palette action disabled because of bad
+	 * selection
+	 */
 	public static String PapyrusPaletteCustomizerDialog_EditButtonTooltip_LocalPaletteNotSelected;
 
 	/** tooltip for the edit local palette action */
 	public static String PapyrusPaletteCustomizerDialog_EditButtonTooltip_LocalPaletteSelected;
 
-	/** tooltip for the edit local palette action disabled because of missing profiles */
+	/**
+	 * tooltip for the edit local palette action disabled because of missing
+	 * profiles
+	 */
 	public static String PapyrusPaletteCustomizerDialog_EditButtonTooltip_MissingProfile;
 
 	/** label for the name text editor for a given proxy */
@@ -381,7 +396,6 @@ public class Messages extends NLS {
 
 	/** The string No Name for the ShowHideCompartment Action */
 	public static String EditorLabelProvider_No_name;
-
 
 	public static String ShowHideContentsAction_Message;
 

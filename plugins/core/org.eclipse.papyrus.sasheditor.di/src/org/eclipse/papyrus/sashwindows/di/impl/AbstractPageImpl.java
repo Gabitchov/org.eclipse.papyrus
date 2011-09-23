@@ -14,13 +14,13 @@ import org.eclipse.papyrus.sashwindows.di.AbstractPage;
 import org.eclipse.papyrus.sashwindows.di.DiPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Abstract Page</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Abstract Page</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.sashwindows.di.impl.AbstractPageImpl#getPageIdentifier <em>Page Identifier</em>}</li>
+ * <li>
+ * {@link org.eclipse.papyrus.sashwindows.di.impl.AbstractPageImpl#getPageIdentifier
+ * <em>Page Identifier</em>}</li>
  * </ul>
  * </p>
  * 
@@ -29,9 +29,9 @@ import org.eclipse.papyrus.sashwindows.di.DiPackage;
 public class AbstractPageImpl extends EObjectImpl implements AbstractPage {
 
 	/**
-	 * The default value of the '{@link #getPageIdentifier() <em>Page Identifier</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getPageIdentifier()
+	 * <em>Page Identifier</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * 
 	 * @see #getPageIdentifier()
 	 * @generated
@@ -40,9 +40,9 @@ public class AbstractPageImpl extends EObjectImpl implements AbstractPage {
 	protected static final Object PAGE_IDENTIFIER_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getPageIdentifier() <em>Page Identifier</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getPageIdentifier()
+	 * <em>Page Identifier</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * 
 	 * @see #getPageIdentifier()
 	 * @generated
@@ -51,8 +51,7 @@ public class AbstractPageImpl extends EObjectImpl implements AbstractPage {
 	protected Object pageIdentifier = PAGE_IDENTIFIER_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -61,8 +60,7 @@ public class AbstractPageImpl extends EObjectImpl implements AbstractPage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -72,8 +70,7 @@ public class AbstractPageImpl extends EObjectImpl implements AbstractPage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -82,8 +79,7 @@ public class AbstractPageImpl extends EObjectImpl implements AbstractPage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -95,8 +91,7 @@ public class AbstractPageImpl extends EObjectImpl implements AbstractPage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -110,8 +105,7 @@ public class AbstractPageImpl extends EObjectImpl implements AbstractPage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -126,8 +120,7 @@ public class AbstractPageImpl extends EObjectImpl implements AbstractPage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -142,8 +135,7 @@ public class AbstractPageImpl extends EObjectImpl implements AbstractPage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -157,8 +149,7 @@ public class AbstractPageImpl extends EObjectImpl implements AbstractPage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -174,4 +165,4 @@ public class AbstractPageImpl extends EObjectImpl implements AbstractPage {
 		return result.toString();
 	}
 
-} //AbstractPageImpl
+} // AbstractPageImpl

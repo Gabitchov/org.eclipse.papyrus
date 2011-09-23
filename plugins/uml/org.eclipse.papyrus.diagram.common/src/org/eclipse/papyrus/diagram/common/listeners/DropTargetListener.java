@@ -42,7 +42,8 @@ public abstract class DropTargetListener extends DiagramDropTargetListener {
 	protected List<EObject> getObjectsBeingDropped() {
 		// get objects from transfer
 		TransferData data = getCurrentEvent().currentDataType;
-		ArrayList<URI> uris = new ArrayList<URI>(); //Array list to keep the order of the selection
+		ArrayList<URI> uris = new ArrayList<URI>(); // Array list to keep the
+													// order of the selection
 
 		Object transferedObject = getJavaObject(data);
 		if(transferedObject instanceof IStructuredSelection) {
@@ -50,7 +51,8 @@ public abstract class DropTargetListener extends DiagramDropTargetListener {
 			for(Iterator<?> it = selection.iterator(); it.hasNext();) {
 				Object nextSelectedObject = it.next();
 				// if (nextSelectedObject instanceof UMLNavigatorItem) {
-				// View view = ((UMLNavigatorItem) nextSelectedObject).getView();
+				// View view = ((UMLNavigatorItem)
+				// nextSelectedObject).getView();
 				// nextSelectedObject = view.getElement();
 				// } else
 				if(nextSelectedObject instanceof IAdaptable) {

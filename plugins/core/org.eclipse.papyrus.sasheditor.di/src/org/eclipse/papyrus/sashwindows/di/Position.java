@@ -9,9 +9,7 @@ package org.eclipse.papyrus.sashwindows.di;
 import org.eclipse.emf.ecore.EObject;
 
 /**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Position</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the model object ' <em><b>Position</b></em>'. <!-- end-user-doc -->
  * 
  * <p>
  * The following features are supported:
@@ -28,8 +26,8 @@ import org.eclipse.emf.ecore.EObject;
 public interface Position extends EObject {
 
 	/**
-	 * Returns the value of the '<em><b>X</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>X</b></em>' attribute. <!--
+	 * begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>X</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
@@ -44,9 +42,8 @@ public interface Position extends EObject {
 	int getX();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.sashwindows.di.Position#getX <em>X</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Sets the value of the ' {@link org.eclipse.papyrus.sashwindows.di.Position#getX <em>X</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value
 	 *        the new value of the '<em>X</em>' attribute.
@@ -56,8 +53,8 @@ public interface Position extends EObject {
 	void setX(int value);
 
 	/**
-	 * Returns the value of the '<em><b>Y</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Y</b></em>' attribute. <!--
+	 * begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Y</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
@@ -66,15 +63,15 @@ public interface Position extends EObject {
 	 * @return the value of the '<em>Y</em>' attribute.
 	 * @see #setY(int)
 	 * @see org.eclipse.papyrus.sashwindows.di.DiPackage#getPosition_Y()
-	 * @model unique="false" dataType="org.eclipse.papyrus.sashwindows.di.int" required="true" ordered="false"
+	 * @model unique="false" dataType="org.eclipse.papyrus.sashwindows.di.int"
+	 *        required="true" ordered="false"
 	 * @generated
 	 */
 	int getY();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.sashwindows.di.Position#getY <em>Y</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Sets the value of the ' {@link org.eclipse.papyrus.sashwindows.di.Position#getY <em>Y</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value
 	 *        the new value of the '<em>Y</em>' attribute.

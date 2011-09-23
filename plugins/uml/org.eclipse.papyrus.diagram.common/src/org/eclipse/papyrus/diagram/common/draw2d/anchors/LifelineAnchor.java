@@ -19,8 +19,8 @@ import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 
 /**
- * A specific anchor to attach "create message" to the middle of the rectangle representing the
- * header of the lifeline
+ * A specific anchor to attach "create message" to the middle of the rectangle
+ * representing the header of the lifeline
  * 
  */
 public class LifelineAnchor extends AbstractConnectionAnchor {
@@ -47,7 +47,8 @@ public class LifelineAnchor extends AbstractConnectionAnchor {
 		p.x = r.getLeft().x;
 
 		if(reference != null) {
-			// If the reference point is located at the right of the figure means the point should be attached to the right side.
+			// If the reference point is located at the right of the figure
+			// means the point should be attached to the right side.
 			if(reference.x > r.x) {
 				p.x = r.getRight().x;
 			}

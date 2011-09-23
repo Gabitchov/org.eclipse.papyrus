@@ -37,10 +37,10 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PlatformUI;
 
 /**
- * This command handler will try to create a diagram on the currently selected element,
- * using navigation if necessary.
- * The action is always available and the check is done in the run
- * to avoid heavy navigation computation on each selection change.
+ * This command handler will try to create a diagram on the currently selected
+ * element, using navigation if necessary. The action is always available and
+ * the check is done in the run to avoid heavy navigation computation on each
+ * selection change.
  * 
  * @author mvelten
  * 
@@ -65,8 +65,8 @@ public abstract class CreateDiagramWithNavigationHandler extends AbstractHandler
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		NavigableElement navElement = getNavigableElementWhereToCreateDiagram();
 
-		if (navElement == null) {
-			InformationDialog dialog = new InformationDialog(Display.getCurrent().getActiveShell(), "Impossible diagram creation", "It is not possible to create this diagram on the selected element.", null, null, SWT.OK, MessageDialog.WARNING, new String[] { IDialogConstants.OK_LABEL });
+		if(navElement == null) {
+			InformationDialog dialog = new InformationDialog(Display.getCurrent().getActiveShell(), "Impossible diagram creation", "It is not possible to create this diagram on the selected element.", null, null, SWT.OK, MessageDialog.WARNING, new String[]{ IDialogConstants.OK_LABEL });
 			dialog.open();
 		} else {
 			createDiagram(navElement);
@@ -87,7 +87,8 @@ public abstract class CreateDiagramWithNavigationHandler extends AbstractHandler
 				Collections.sort(navElements);
 
 				for(NavigableElement navElement : navElements) {
-					// ignore existing elements because we want a hierarchy to be created if it is not on the current element
+					// ignore existing elements because we want a hierarchy to
+					// be created if it is not on the current element
 					if(navElement instanceof CreatedNavigableElement && creationCondition.create(navElement.getElement())) {
 						return navElement;
 					}

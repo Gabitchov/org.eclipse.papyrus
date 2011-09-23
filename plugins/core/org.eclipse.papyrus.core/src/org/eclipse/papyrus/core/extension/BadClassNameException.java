@@ -16,9 +16,9 @@ package org.eclipse.papyrus.core.extension;
 import org.eclipse.core.runtime.IConfigurationElement;
 
 /**
- * Exception thrown as an extension point is parsed at runtime. More accurately, it is thrown when one attribute of an extension point that should
- * describe a class name does not correspond to a class
- * in the classpath.
+ * Exception thrown as an extension point is parsed at runtime. More accurately,
+ * it is thrown when one attribute of an extension point that should describe a
+ * class name does not correspond to a class in the classpath.
  * 
  * @author Cedric Dumoulin
  * @author Patrick Tessier

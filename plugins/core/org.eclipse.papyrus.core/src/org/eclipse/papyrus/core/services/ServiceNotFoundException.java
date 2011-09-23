@@ -1,6 +1,5 @@
 package org.eclipse.papyrus.core.services;
 
-
 /**
  * Service is not found.
  * 

@@ -27,9 +27,10 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 /**
- * The Class AbstractEditHyperlinkDiagramShell. This Class has been generated from VisualEditor. Do
- * not modify it manually by adding behavior! you will lose the capacity to open with VE. So this
- * class is abstract and it contains set of getter in order to connect behavior in subclasses
+ * The Class AbstractEditHyperlinkDiagramShell. This Class has been generated
+ * from VisualEditor. Do not modify it manually by adding behavior! you will
+ * lose the capacity to open with VE. So this class is abstract and it contains
+ * set of getter in order to connect behavior in subclasses
  */
 public class AbstractEditHyperlinkDiagramShell {
 

@@ -6,16 +6,13 @@
  */
 package org.eclipse.papyrus.sashwindows.di;
 
-
 /**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Window</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the model object ' <em><b>Window</b></em>'. <!-- end-user-doc -->
  * 
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.papyrus.sashwindows.di.Window#getPosition <em>Position</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sashwindows.di.Window#getPosition <em>Position </em>}</li>
  * <li>{@link org.eclipse.papyrus.sashwindows.di.Window#getSize <em>Size</em>}</li>
  * <li>{@link org.eclipse.papyrus.sashwindows.di.Window#getPanel <em>Panel</em>}</li>
  * </ul>
@@ -28,8 +25,8 @@ package org.eclipse.papyrus.sashwindows.di;
 public interface Window extends PanelParent {
 
 	/**
-	 * Returns the value of the '<em><b>Position</b></em>' reference.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Position</b></em>' reference. <!--
+	 * begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Position</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
@@ -44,9 +41,9 @@ public interface Window extends PanelParent {
 	Position getPosition();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.sashwindows.di.Window#getPosition <em>Position</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Sets the value of the ' {@link org.eclipse.papyrus.sashwindows.di.Window#getPosition
+	 * <em>Position</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
 	 * 
 	 * @param value
 	 *        the new value of the '<em>Position</em>' reference.
@@ -56,8 +53,8 @@ public interface Window extends PanelParent {
 	void setPosition(Position value);
 
 	/**
-	 * Returns the value of the '<em><b>Size</b></em>' reference.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Size</b></em>' reference. <!--
+	 * begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Size</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
@@ -72,9 +69,8 @@ public interface Window extends PanelParent {
 	Size getSize();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.sashwindows.di.Window#getSize <em>Size</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Sets the value of the ' {@link org.eclipse.papyrus.sashwindows.di.Window#getSize <em>Size</em>}'
+	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value
 	 *        the new value of the '<em>Size</em>' reference.
@@ -84,25 +80,22 @@ public interface Window extends PanelParent {
 	void setSize(Size value);
 
 	/**
-	 * Returns the value of the '<em><b>Panel</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * Redefine children.
-	 * <!-- end-model-doc -->
+	 * Returns the value of the '<em><b>Panel</b></em>' reference. <!--
+	 * begin-user-doc --> <!-- end-user-doc --> <!-- begin-model-doc -->
+	 * Redefine children. <!-- end-model-doc -->
 	 * 
 	 * @return the value of the '<em>Panel</em>' reference.
 	 * @see #setPanel(AbstractPanel)
 	 * @see org.eclipse.papyrus.sashwindows.di.DiPackage#getWindow_Panel()
-	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 * @model required="true" transient="true" volatile="true" derived="true"
+	 *        ordered="false"
 	 * @generated
 	 */
 	AbstractPanel getPanel();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.sashwindows.di.Window#getPanel <em>Panel</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Sets the value of the ' {@link org.eclipse.papyrus.sashwindows.di.Window#getPanel <em>Panel</em>} ' reference. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * 
 	 * @param value
 	 *        the new value of the '<em>Panel</em>' reference.

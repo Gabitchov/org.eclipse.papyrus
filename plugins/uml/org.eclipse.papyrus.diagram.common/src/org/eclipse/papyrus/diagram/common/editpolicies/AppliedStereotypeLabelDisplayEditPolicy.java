@@ -29,8 +29,8 @@ import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.Usage;
 
 /**
- * Specific edit policy for label displaying stereotypes and their properties for edges representing
- * UML elements.
+ * Specific edit policy for label displaying stereotypes and their properties
+ * for edges representing UML elements.
  * <p>
  * It also displays the tag for the links, for example "use" for {@link Usage}.
  * 
@@ -44,8 +44,8 @@ public abstract class AppliedStereotypeLabelDisplayEditPolicy extends AbstractAp
 	public String tag;
 
 	/**
-	 * Creates a new AppliedStereotypeLabelDisplayEditPolicy, with the specified tag for the
-	 * element.
+	 * Creates a new AppliedStereotypeLabelDisplayEditPolicy, with the specified
+	 * tag for the element.
 	 * 
 	 * @param tag
 	 *        the tag for element, for example "use" for {@link Usage}.
@@ -56,7 +56,8 @@ public abstract class AppliedStereotypeLabelDisplayEditPolicy extends AbstractAp
 	}
 
 	/**
-	 * Creates a new AppliedStereotypeLabelDisplayEditPolicy, with no tag for the element.
+	 * Creates a new AppliedStereotypeLabelDisplayEditPolicy, with no tag for
+	 * the element.
 	 */
 	public AppliedStereotypeLabelDisplayEditPolicy() {
 		super();
@@ -79,8 +80,7 @@ public abstract class AppliedStereotypeLabelDisplayEditPolicy extends AbstractAp
 	/**
 	 * Returns the image to be displayed for the applied stereotypes.
 	 * 
-	 * @return the image that represents the first applied stereotype or <code>null</code> if no
-	 *         image has to be displayed
+	 * @return the image that represents the first applied stereotype or <code>null</code> if no image has to be displayed
 	 */
 	public Image stereotypeIconToDisplay() {
 		String stereotypespresentationKind = AppliedStereotypeHelper.getAppliedStereotypePresentationKind((View)getHost().getModel());
@@ -102,19 +102,20 @@ public abstract class AppliedStereotypeLabelDisplayEditPolicy extends AbstractAp
 	}
 
 	/**
-	 * Returns a String that displays stereotypes (using their simple name or their qualified name)
-	 * and their properties
+	 * Returns a String that displays stereotypes (using their simple name or
+	 * their qualified name) and their properties
 	 * 
 	 * @param separator
-	 *        the separator used to split the string representing the stereotypes.
+	 *        the separator used to split the string representing the
+	 *        stereotypes.
 	 * @param stereotypesToDisplay
 	 *        the list of stereotypes displayed
 	 * @param stereotypeWithQualifiedName
 	 *        the list of stereotypes displayed using their qualified names
 	 * @param stereotypesPropertiesToDisplay
 	 *        the list of properties to display
-	 * @return a string that displays stereotypes (using their simple name or their qualified name)
-	 *         and their properties
+	 * @return a string that displays stereotypes (using their simple name or
+	 *         their qualified name) and their properties
 	 */
 	public String stereotypesAndPropertiesToDisplay(String separator, String stereotypesToDisplay, String stereotypeWithQualifiedName, String stereotypesPropertiesToDisplay) {
 		// Get the preference from PreferenceStore. there should be an assert
@@ -123,10 +124,12 @@ public abstract class AppliedStereotypeLabelDisplayEditPolicy extends AbstractAp
 		if(store == null) {
 			return "";
 		}
-		// retrieve if the name of the stereotype has to put to lower case or not
+		// retrieve if the name of the stereotype has to put to lower case or
+		// not
 		String sNameAppearance = store.getString(VisualInformationPapyrusConstant.P_STEREOTYPE_NAME_APPEARANCE);
 
-		// changes the string of properties into a map, where the entries of the map are the
+		// changes the string of properties into a map, where the entries of the
+		// map are the
 		// stereotype qualified name, and the properties to display are the data
 		Map<String, List<String>> propertiesToDisplay = parseStereotypeProperties(stereotypesToDisplay, stereotypesPropertiesToDisplay);
 
@@ -141,7 +144,8 @@ public abstract class AppliedStereotypeLabelDisplayEditPolicy extends AbstractAp
 			if(stereotype != null) {
 				String name = currentStereotype;
 				if((stereotypeWithQualifiedName.indexOf(currentStereotype)) == -1) {
-					// property value contains qualifiedName ==> extract name from it
+					// property value contains qualifiedName ==> extract name
+					// from it
 					StringTokenizer strToken = new StringTokenizer(currentStereotype, "::");
 
 					while(strToken.hasMoreTokens()) {
@@ -153,9 +157,11 @@ public abstract class AppliedStereotypeLabelDisplayEditPolicy extends AbstractAp
 				// ProfileApplicationPreferencePage)
 				// Previously lowercase forced onto first letter (standard UML)
 				// stereotypesToDisplay = stereotypesToDisplay+name.substring(0,
-				// 1).toLowerCase()+name.substring(1, name.length())+","+separator;
+				// 1).toLowerCase()+name.substring(1,
+				// name.length())+","+separator;
 
-				// check that the name has not already been added to the displayed string
+				// check that the name has not already been added to the
+				// displayed string
 				if(sNameAppearance.equals(VisualInformationPapyrusConstant.P_STEREOTYPE_NAME_DISPLAY_USER_CONTROLLED)) {
 					if(out.indexOf(name) == -1) {
 						out = out + Activator.ST_LEFT + name + Activator.ST_RIGHT + separator;
@@ -202,12 +208,15 @@ public abstract class AppliedStereotypeLabelDisplayEditPolicy extends AbstractAp
 		String stereotypespresentationKind = AppliedStereotypeHelper.getAppliedStereotypePresentationKind((View)getHost().getModel());
 
 		// now check presentation.
-		// if horizontal => equivalent to the inBrace visualization in nodes (i.e. only name =
+		// if horizontal => equivalent to the inBrace visualization in nodes
+		// (i.e. only name =
 		// value, separator = comma, delimited with brace
-		// if vertical => equivalent to compartment visualization name of stereotype, NL, property =
+		// if vertical => equivalent to compartment visualization name of
+		// stereotype, NL, property =
 		// value, NL, etC.
 
-		// check the presentation kind. if only icon => do not display stereotype, only values
+		// check the presentation kind. if only icon => do not display
+		// stereotype, only values
 		if(VisualInformationPapyrusConstant.ICON_STEREOTYPE_PRESENTATION.equals(stereotypespresentationKind)) {
 			return StereotypeUtil.getPropertiesValuesInBrace(stereotypesPropertiesToDisplay, getUMLElement());
 		}
@@ -236,7 +245,8 @@ public abstract class AppliedStereotypeLabelDisplayEditPolicy extends AbstractAp
 	 * Computes the string that displays the stereotypes for the current element
 	 * 
 	 * @param separator
-	 *        the separator used to split the string representing the stereotypes.
+	 *        the separator used to split the string representing the
+	 *        stereotypes.
 	 * @param stereotypesToDisplay
 	 *        the list of stereotypes displayed
 	 * @param stereotypeWithQualifiedName
@@ -246,8 +256,10 @@ public abstract class AppliedStereotypeLabelDisplayEditPolicy extends AbstractAp
 	public String stereotypesToDisplay(String separator, String stereotypesToDisplay, String stereotypeWithQualifiedName) {
 
 		// AL Changes Feb. 07 - Beg
-		// Style Handling for STEREOTYPE_NAME_APPEARANCE from ProfileApplicationPreferencePage
-		// Stereotype displayed according to UML standard (first letter forced to lower case) -
+		// Style Handling for STEREOTYPE_NAME_APPEARANCE from
+		// ProfileApplicationPreferencePage
+		// Stereotype displayed according to UML standard (first letter forced
+		// to lower case) -
 		// default -
 		// or kept as entered by user (user controlled)
 
@@ -270,7 +282,8 @@ public abstract class AppliedStereotypeLabelDisplayEditPolicy extends AbstractAp
 			if(stereotype != null) {
 				String name = currentStereotype;
 				if((stereotypeWithQualifiedName.indexOf(currentStereotype)) == -1) {
-					// property value contains qualifiedName ==> extract name from it
+					// property value contains qualifiedName ==> extract name
+					// from it
 					StringTokenizer strToken = new StringTokenizer(currentStereotype, "::");
 
 					while(strToken.hasMoreTokens()) {
@@ -282,9 +295,11 @@ public abstract class AppliedStereotypeLabelDisplayEditPolicy extends AbstractAp
 				// ProfileApplicationPreferencePage)
 				// Previously lowercase forced onto first letter (standard UML)
 				// stereotypesToDisplay = stereotypesToDisplay+name.substring(0,
-				// 1).toLowerCase()+name.substring(1, name.length())+","+separator;
+				// 1).toLowerCase()+name.substring(1,
+				// name.length())+","+separator;
 
-				// check that the name has not already been added to the displayed string
+				// check that the name has not already been added to the
+				// displayed string
 				if(sNameAppearance.equals(VisualInformationPapyrusConstant.P_STEREOTYPE_NAME_DISPLAY_USER_CONTROLLED)) {
 					if(out.indexOf(name) == -1) {
 						out = out + name + separator;

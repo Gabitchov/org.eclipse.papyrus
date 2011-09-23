@@ -53,7 +53,8 @@ public class DurationConstraintHelper {
 	}
 
 	/**
-	 * Get the list of all DurationConstraint constraining duration between the two elements (order of parameters does not matter)
+	 * Get the list of all DurationConstraint constraining duration between the
+	 * two elements (order of parameters does not matter)
 	 * 
 	 * @param element1
 	 *        the first observed element
@@ -68,7 +69,8 @@ public class DurationConstraintHelper {
 	}
 
 	/**
-	 * Check whether two occurrences cover the same lifeline for enabling duration constraint creation
+	 * Check whether two occurrences cover the same lifeline for enabling
+	 * duration constraint creation
 	 * 
 	 * @param occurrence
 	 *        first occurrence specification
@@ -77,14 +79,16 @@ public class DurationConstraintHelper {
 	 * @return true if occurrences cover the same lifeline
 	 */
 	public static boolean coversSameLifeline(OccurrenceSpecification occurrence, OccurrenceSpecification occurrence2) {
-		// In fact, the covered lifeline(s) should be a size 1 list (UML constraint on OccurrenceSpecification).
+		// In fact, the covered lifeline(s) should be a size 1 list (UML
+		// constraint on OccurrenceSpecification).
 		List<Lifeline> coveredLifeline = new ArrayList<Lifeline>(occurrence.getCovereds());
 		coveredLifeline.retainAll(occurrence2.getCovereds());
 		return !coveredLifeline.isEmpty();
 	}
 
 	/**
-	 * Check whether two occurrences are ends of the same message for enabling duration constraint creation
+	 * Check whether two occurrences are ends of the same message for enabling
+	 * duration constraint creation
 	 * 
 	 * @param occurrence
 	 *        first occurrence specification

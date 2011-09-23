@@ -24,13 +24,13 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 
 /**
- * DirectEdit manager for multi lines label managed by a LabelControlerManager. It is intended to be
- * used in conjunction with LabelDirectEditPolicy and LabelControler.
+ * DirectEdit manager for multi lines label managed by a LabelControlerManager.
+ * It is intended to be used in conjunction with LabelDirectEditPolicy and
+ * LabelControler.
  */
 public class MultilineLabelDirectEditManager extends TextDirectEditManager {
 
 	protected boolean multiLine = false;
-
 
 	/**
 	 * Constructor.
@@ -52,8 +52,8 @@ public class MultilineLabelDirectEditManager extends TextDirectEditManager {
 	 * @param source
 	 *        the <code>GraphicalEditPart</code> that is used to determine
 	 *        which <code>CellEditor</code> class to use.
-	 * @return the <code>Class</code> of the <code>CellEditor</code> to use
-	 *         for the text editing.
+	 * @return the <code>Class</code> of the <code>CellEditor</code> to use for
+	 *         the text editing.
 	 */
 	public static Class getTextCellEditorClass(GraphicalEditPart source) {
 		IFigure figure = source.getFigure();

@@ -228,7 +228,8 @@ public class PathsUtil {
 	}
 
 	/**
-	 * Gets the relative workspace from editor input. Does not remove <URI>'s fragments.
+	 * Gets the relative workspace from editor input. Does not remove <URI>'s
+	 * fragments.
 	 * 
 	 * @param input
 	 *        the input

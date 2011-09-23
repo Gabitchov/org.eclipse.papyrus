@@ -77,15 +77,13 @@ public class LinkRepresentationForLayoutAction {
 		Assert.isTrue(fig instanceof PolylineConnectionEx);
 		PolylineConnectionEx linkFigure = (PolylineConnectionEx)fig;
 
-		Point start = linkFigure.getStart();//source
-		Point end = linkFigure.getEnd();//target
+		Point start = linkFigure.getStart();// source
+		Point end = linkFigure.getEnd();// target
 		linkFigure.translateToAbsolute(start);
 		linkFigure.translateToAbsolute(end);
 		oldSourcePosition = start;
 		oldTargetPosition = end;
 	}
-
-
 
 	/**
 	 * 
@@ -98,18 +96,15 @@ public class LinkRepresentationForLayoutAction {
 		return ((View)(link.getModel())).getElement().toString();
 	}
 
-
-
 	/**
 	 * Return the command to move this link, following {@link #newSourcePosition} and {@link #newTargetPosition}
 	 * 
-	 * @return
-	 *         the command to move this link, following {@link #newSourcePosition} and {@link #newTargetPosition}
+	 * @return the command to move this link, following {@link #newSourcePosition} and {@link #newTargetPosition}
 	 */
 	public Command getCommand() {
 		/*
-		 * Sometimes, the anchors of the link move on the diagram, even if the location is the same!
-		 * see GMF bug 324208
+		 * Sometimes, the anchors of the link move on the diagram, even if the
+		 * location is the same! see GMF bug 324208
 		 */
 		if((newSourcePosition == null && newTargetPosition == null) || (oldSourcePosition.equals(newSourcePosition)) && oldTargetPosition.equals(newTargetPosition)) {
 			return new EMFtoGEFCommandWrapper(new IdentityCommand());
@@ -124,8 +119,7 @@ public class LinkRepresentationForLayoutAction {
 	/**
 	 * Returns the request to move the source anchor.
 	 * 
-	 * @return
-	 *         the request to move the source anchor.
+	 * @return the request to move the source anchor.
 	 */
 	public Request getRequestForSource() {
 		ReconnectRequest request = new ReconnectRequest(GraphicalNodeEditPolicy.REQ_RECONNECT_SOURCE);
@@ -138,8 +132,7 @@ public class LinkRepresentationForLayoutAction {
 	/**
 	 * Return the source location to move this link
 	 * 
-	 * @return
-	 *         the source location to move this link
+	 * @return the source location to move this link
 	 *         <ul>
 	 *         <li> {@link #newSourcePosition} if not <code>null</code></li>
 	 *         <li>{@link #oldSourcePosition} if {@link #newSourcePosition} is <code>null</code></li>
@@ -156,8 +149,7 @@ public class LinkRepresentationForLayoutAction {
 	/**
 	 * Return the target location to move this link
 	 * 
-	 * @return
-	 *         the target location to move this link
+	 * @return the target location to move this link
 	 *         <ul>
 	 *         <li> {@link #newTargetPosition} if not <code>null</code></li>
 	 *         <li>{@link #oldTargetPosition} if {@link #newTargetPosition} is <code>null</code></li>
@@ -189,13 +181,10 @@ public class LinkRepresentationForLayoutAction {
 		}
 	}
 
-
-
 	/**
 	 * Returns the request to relocate the fixed anchor.
 	 * 
-	 * @return
-	 *         The request to locate the fixed anchor.
+	 * @return The request to locate the fixed anchor.
 	 */
 	public Request getRequestForTarget() {
 		ReconnectRequest request = new ReconnectRequest(GraphicalNodeEditPolicy.REQ_RECONNECT_TARGET);
@@ -224,7 +213,6 @@ public class LinkRepresentationForLayoutAction {
 		return 0;
 	}
 
-
 	/**
 	 * Gets the represented link.
 	 * 
@@ -234,14 +222,14 @@ public class LinkRepresentationForLayoutAction {
 		return this.link;
 	}
 
-
 	/**
-	 * Return a PrecisionRectangle representing the current position of the anchor on this node (with width=height=1)
+	 * Return a PrecisionRectangle representing the current position of the
+	 * anchor on this node (with width=height=1)
 	 * 
 	 * @param node
 	 *        node should be the source or the target of the link
-	 * @return
-	 *         A PrecisionRectangle representing the current position of the anchor on this node (with width=height=1)
+	 * @return A PrecisionRectangle representing the current position of the
+	 *         anchor on this node (with width=height=1)
 	 */
 	public PrecisionRectangle getAbsolutePositionOn(EditPart node) {
 		PrecisionRectangle rect = new PrecisionRectangle();
@@ -258,14 +246,12 @@ public class LinkRepresentationForLayoutAction {
 		return rect;
 	}
 
-
 	/**
 	 * Return the current absolute location of the anchor on this node
 	 * 
 	 * @param node
 	 *        node should be the source or the target of the link
-	 * @return
-	 *         the current absolute location of the anchor on this node
+	 * @return the current absolute location of the anchor on this node
 	 */
 	public Point getAbsoluteLocationOn(EditPart node) {
 		if(source == node) {

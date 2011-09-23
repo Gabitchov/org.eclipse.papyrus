@@ -19,8 +19,8 @@ import org.eclipse.core.runtime.Platform;
 import org.osgi.framework.Bundle;
 
 /**
- * Utility methods for Eclipse extension reading.
- * This class can be extended, or access throw the unique instance.
+ * Utility methods for Eclipse extension reading. This class can be extended, or
+ * access throw the unique instance.
  * 
  * @author cedric dumoulin
  * @author Patrick Tessier
@@ -30,15 +30,18 @@ public abstract class ExtensionUtils {
 	/**
 	 * Unique instance that can be used directly.
 	 */
-	static public ExtensionUtils INSTANCE = new ExtensionUtils(){};
-	
+	static public ExtensionUtils INSTANCE = new ExtensionUtils() {
+	};
+
 	/**
-	 * used to verify if the name of the {@link IConfigurationElement} is the same as the given name
+	 * used to verify if the name of the {@link IConfigurationElement} is the
+	 * same as the given name
 	 * 
 	 * @param element
 	 *        an {@link IConfigurationElement} see eclipse extension point
 	 * @param tagName
-	 *        the name of the {@link IConfigurationElement} that has to be verified
+	 *        the name of the {@link IConfigurationElement} that has to be
+	 *        verified
 	 * @throws InvalidRegistryObjectException
 	 * @throws BadNameExtensionException
 	 */
@@ -56,7 +59,8 @@ public abstract class ExtensionUtils {
 	 * @param attributeName
 	 *        the name of the attribute to read
 	 * @param extensionPointName
-	 *        Name of the extension point. Used in exception msg. TODO: remove ?
+	 *        Name of the extension point. Used in exception msg. TODO:
+	 *        remove ?
 	 * 
 	 * @return the class, result of the parsing
 	 * @throws InvalidRegistryObjectException

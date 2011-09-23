@@ -61,17 +61,16 @@ public class DiamondNode extends PapyrusNodeFigure implements IPapyrusNodeUMLEle
 
 		if(isUsingGradient()) {
 			graphics.setBackgroundColor(FigureUtilities.integerToColor(getGradientColor2()));
-			//graphics.setForegroundColor(FigureUtilities.integerToColor(getGradientColor2()));
+			// graphics.setForegroundColor(FigureUtilities.integerToColor(getGradientColor2()));
 		} else {
 			graphics.setBackgroundColor(getBackgroundColor());
-			//graphics.setForegroundColor(getBackgroundColor);
+			// graphics.setForegroundColor(getBackgroundColor);
 		}
 		graphics.fillPolygon(ptList);
 		graphics.setLineWidth(1);
 		graphics.setBackgroundColor(getForegroundColor());
 		graphics.drawPolygon(ptList);
 		graphics.popState();
-
 
 	}
 

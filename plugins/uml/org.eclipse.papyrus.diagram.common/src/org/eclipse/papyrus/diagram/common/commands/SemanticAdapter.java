@@ -18,7 +18,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.View;
 
 /**
- * The Class SemanticAdapter used to package semantic or view element in a deferred command
+ * The Class SemanticAdapter used to package semantic or view element in a
+ * deferred command
  */
 public class SemanticAdapter implements IAdaptable {
 

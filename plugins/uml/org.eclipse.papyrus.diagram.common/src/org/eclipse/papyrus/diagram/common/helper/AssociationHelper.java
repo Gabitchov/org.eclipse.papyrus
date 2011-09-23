@@ -75,14 +75,16 @@ public class AssociationHelper {
 	}
 
 	/**
-	 * Creates the command to set the owner of a given property in an association
+	 * Creates the command to set the owner of a given property in an
+	 * association
 	 * 
 	 * @param association
 	 *        the association to modify
 	 * @param property
 	 *        the property to modify
 	 * @param belongsToClass
-	 *        boolean set to <code>true</code> if the property belongs to the class, <code>false</code> if it belongs to the association
+	 *        boolean set to <code>true</code> if the property belongs to
+	 *        the class, <code>false</code> if it belongs to the association
 	 * @return the command that will perform modifications or <code>null</code>!
 	 */
 	public static IUndoableOperation createSetOwnerCommand(Association association, Property property, boolean belongsToClass) {
@@ -92,7 +94,7 @@ public class AssociationHelper {
 			if(!(property.getOwner() instanceof Association)) {
 				return null;
 			} else {
-				//look for the owner of the property to Set
+				// look for the owner of the property to Set
 				List<Type> ownerList = association.getEndTypes();
 				if(ownerList.get(0).equals(property.getType()) && ownerList.size() > 1) {
 					owner = (Type)ownerList.get(1);
@@ -148,7 +150,6 @@ public class AssociationHelper {
 		compositeCommand.compose(new SetValueCommand(setUpperRequest));
 
 		return compositeCommand;
-
 
 	}
 

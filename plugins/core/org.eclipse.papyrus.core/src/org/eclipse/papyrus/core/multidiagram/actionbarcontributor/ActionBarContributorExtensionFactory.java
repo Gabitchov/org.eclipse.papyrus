@@ -20,10 +20,11 @@ import org.eclipse.papyrus.core.extension.ExtensionException;
 import org.eclipse.ui.part.EditorActionBarContributor;
 
 /**
- * A factory used to create ActionBarContributor object from Eclipse extensions points elements.
+ * A factory used to create ActionBarContributor object from Eclipse extensions
+ * points elements.
  * 
  * @author Cedric Dumoulin
- *@auhtor Patrick Tessier
+ * @auhtor Patrick Tessier
  */
 public class ActionBarContributorExtensionFactory extends ExtensionUtils {
 
@@ -47,11 +48,13 @@ public class ActionBarContributorExtensionFactory extends ExtensionUtils {
 	}
 
 	/**
-	 * Create a ContextDescriptor instance corresponding to the ConfigurationElement.
+	 * Create a ContextDescriptor instance corresponding to the
+	 * ConfigurationElement.
 	 * 
 	 * @param element
 	 *        an {@link IConfigurationElement} see eclipse extension point
-	 * @return a ContextDescriptor structure that contains information to the diagram context
+	 * @return a ContextDescriptor structure that contains information to the
+	 *         diagram context
 	 * @throws BadNameExtensionException
 	 **/
 	public ActionBarContributorDescriptor createActionBarContributorDescriptor(IConfigurationElement element) throws ExtensionException {

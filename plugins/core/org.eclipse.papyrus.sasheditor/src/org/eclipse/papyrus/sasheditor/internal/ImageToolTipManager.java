@@ -27,7 +27,6 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 
-
 /**
  * A class managing tooltips as Part.
  * 
@@ -80,11 +79,10 @@ public class ImageToolTipManager {
 	}
 
 	/**
-	 * Disable the tooltip.
-	 * If the tooltip is shown, hide it.
-	 * In the disable state, calls to showTooltip() with the same Control will not
-	 * show the tooltip again untill another control is proposed.
-	 * A call to closeToolTip() is required to show the same Control again.
+	 * Disable the tooltip. If the tooltip is shown, hide it. In the disable
+	 * state, calls to showTooltip() with the same Control will not show the
+	 * tooltip again untill another control is proposed. A call to
+	 * closeToolTip() is required to show the same Control again.
 	 */
 	public void disableToolTip() {
 		// Close the tooltip.
@@ -108,8 +106,8 @@ public class ImageToolTipManager {
 	}
 
 	/**
-	 * Show the tooltip for the part. Check if the tooltip should be reopen, or use the
-	 * previously open one.
+	 * Show the tooltip for the part. Check if the tooltip should be reopen, or
+	 * use the previously open one.
 	 * 
 	 * @param relatedControlBounds
 	 *        Bounds of the control for which the tooltip should be shown.
@@ -129,8 +127,8 @@ public class ImageToolTipManager {
 	}
 
 	/**
-	 * Show the tooltip for the part. Check if the tooltip should be reopen, or use the
-	 * previously open one.
+	 * Show the tooltip for the part. Check if the tooltip should be reopen, or
+	 * use the previously open one.
 	 * 
 	 * @param relatedControlBounds
 	 *        Bounds of the control for which the tooltip should be shown.
@@ -141,13 +139,13 @@ public class ImageToolTipManager {
 	 */
 	public void showToolTip(Rectangle relatedControlBounds, Image toolTipImage, Point mousePos) {
 		throw new UnsupportedOperationException("Not yet implemented");
-		//		if(toolTipedControl == control)
-		//		{
-		//			// resetTimer()
-		//			return;
-		//		}
-		//		
-		//		openToolTip(relatedControlBounds, control, mousePos);
+		// if(toolTipedControl == control)
+		// {
+		// // resetTimer()
+		// return;
+		// }
+		//
+		// openToolTip(relatedControlBounds, control, mousePos);
 
 	}
 
@@ -249,7 +247,8 @@ public class ImageToolTipManager {
 		gc.dispose();
 		if(!success) {
 			image.dispose();
-			//			log.warning("Can't create Snapshot for the control of '" + part + "'.");
+			// log.warning("Can't create Snapshot for the control of '" + part +
+			// "'.");
 			return null;
 		}
 
@@ -275,8 +274,8 @@ public class ImageToolTipManager {
 	}
 
 	/**
-	 * Compute the expected size of the tooltip.
-	 * For now, simply return the expected size.
+	 * Compute the expected size of the tooltip. For now, simply return the
+	 * expected size.
 	 * 
 	 * @param image
 	 * @param factor
@@ -284,8 +283,8 @@ public class ImageToolTipManager {
 	 */
 	private Rectangle computeToolTipSize(Image image, float factor) {
 
-		//		Rectangle imageBounds = image.getBounds();
-		//		Rectangle size;
+		// Rectangle imageBounds = image.getBounds();
+		// Rectangle size;
 
 		return toolTipExpectedSize;
 	}
@@ -300,7 +299,7 @@ public class ImageToolTipManager {
 	private Image scaledImage(Device device, Image image, float factor) {
 
 		Rectangle bounds = image.getBounds();
-		//		Float factor = 0.5f;
+		// Float factor = 0.5f;
 
 		Rectangle newBounds = new Rectangle(0, 0, Math.round(bounds.width * factor), Math.round(bounds.height * factor));
 		Image scaledImage = new Image(device, newBounds);

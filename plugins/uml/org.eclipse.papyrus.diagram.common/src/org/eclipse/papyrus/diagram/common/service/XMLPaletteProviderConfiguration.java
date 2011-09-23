@@ -38,14 +38,13 @@ public class XMLPaletteProviderConfiguration extends AbstractProviderConfigurati
 	private ProviderPriority priority = ProviderPriority.LOWEST;
 
 	/**
-	 * boolean set to true if the {@link XMLPaletteProviderConfiguration} creates new entries or
-	 * uses predefined ones.
+	 * boolean set to true if the {@link XMLPaletteProviderConfiguration} creates new entries or uses predefined ones.
 	 */
 	protected boolean displayEntries = false;
 
 	/**
-	 * Creates a new <code>ProviderContributionDescriptor</code> instance given a provider
-	 * configuration element
+	 * Creates a new <code>ProviderContributionDescriptor</code> instance given
+	 * a provider configuration element
 	 * 
 	 * @param configElement
 	 *        The provider XML configuration element
@@ -78,7 +77,7 @@ public class XMLPaletteProviderConfiguration extends AbstractProviderConfigurati
 		}
 
 		configChildren = configElement.getChildren(IPapyrusPaletteConstant.PRIORITY);
-		// sometimes, there is a confusion between priority and Priority... 
+		// sometimes, there is a confusion between priority and Priority...
 		if(configChildren.length > 0) {
 			configChildren = configElement.getChildren("Priority");
 		}
@@ -111,7 +110,8 @@ public class XMLPaletteProviderConfiguration extends AbstractProviderConfigurati
 	}
 
 	/**
-	 * Builds a new provider contribution descriptor by parsing its configuration element
+	 * Builds a new provider contribution descriptor by parsing its
+	 * configuration element
 	 * 
 	 * @param configElement
 	 *        A provider configuration element
@@ -146,7 +146,8 @@ public class XMLPaletteProviderConfiguration extends AbstractProviderConfigurati
 		private final String targetId;
 
 		/**
-		 * Initializes a new editor descriptor by reading the configuration element
+		 * Initializes a new editor descriptor by reading the configuration
+		 * element
 		 * 
 		 * @param configElement
 		 *        The contribution configuration element
@@ -157,7 +158,8 @@ public class XMLPaletteProviderConfiguration extends AbstractProviderConfigurati
 		}
 
 		/**
-		 * Determines whether this contribution is applicable to the given editor
+		 * Determines whether this contribution is applicable to the given
+		 * editor
 		 * 
 		 * @param editor
 		 *        The target editor
@@ -179,11 +181,13 @@ public class XMLPaletteProviderConfiguration extends AbstractProviderConfigurati
 	}
 
 	/**
-	 * Returns <code>true</code> if this configuration provides only predefinition of entries and
-	 * neither use predefined entries nor creates new entries.
+	 * Returns <code>true</code> if this configuration provides only
+	 * predefinition of entries and neither use predefined entries nor creates
+	 * new entries.
 	 * 
-	 * @return <code>true</code> if this configuration provides only predefinition of entries and
-	 *         neither use predefined entries nor creates new entries.
+	 * @return <code>true</code> if this configuration provides only
+	 *         predefinition of entries and neither use predefined entries nor
+	 *         creates new entries.
 	 */
 	public boolean hasOnlyEntriesDefinition() {
 		return !displayEntries;

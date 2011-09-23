@@ -10,9 +10,7 @@ import org.eclipse.gmf.runtime.notation.datatype.GradientData;
 import org.eclipse.papyrus.diagram.common.figure.node.IPapyrusNodeFigure;
 import org.eclipse.swt.graphics.Color;
 
-
 public abstract class DeploymentNodeEditPart extends AbstractBorderedShapeEditPart implements IPapyrusEditPart {
-
 
 	public DeploymentNodeEditPart(View view) {
 		super(view);

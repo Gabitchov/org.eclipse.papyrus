@@ -20,7 +20,8 @@ import org.eclipse.papyrus.umlutils.ui.VisualInformationPapyrusConstant;
 import org.eclipse.papyrus.umlutils.ui.command.CreateEAnnotationCommand;
 
 /**
- * The Class CreateHyperLinkCommand. this has in charge to add a new entry list of hyperlinks
+ * The Class CreateHyperLinkCommand. this has in charge to add a new entry list
+ * of hyperlinks
  * 
  */
 public class CreateHyperLinkWebCommand extends CreateEAnnotationCommand {

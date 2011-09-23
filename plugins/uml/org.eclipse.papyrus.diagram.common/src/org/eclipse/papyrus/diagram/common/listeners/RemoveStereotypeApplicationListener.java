@@ -24,9 +24,9 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.papyrus.core.listenerservice.IPapyrusListener;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
-
 /**
- * this class is used to listen remove element and has in charge to remove application of stereotype that are not used
+ * this class is used to listen remove element and has in charge to remove
+ * application of stereotype that are not used
  * 
  */
 public class RemoveStereotypeApplicationListener implements IPapyrusListener {
@@ -45,16 +45,16 @@ public class RemoveStereotypeApplicationListener implements IPapyrusListener {
 	public void notifyChanged(Notification notification) {
 		Resource resource = null;
 		ArrayList<DynamicEObjectImpl> appliedstereotypeToRemove = new ArrayList<DynamicEObjectImpl>();
-		//listen remove and Set notification
+		// listen remove and Set notification
 		if(notification.getEventType() == Notification.REMOVE || notification.getEventType() == Notification.SET) {
 
-			//listen if the the notifier  is an eObject
+			// listen if the the notifier is an eObject
 			if(notification.getNotifier() instanceof EObject) {
 				resource = ((EObject)notification.getNotifier()).eResource();
 				if(resource != null) {
 					TreeIterator<EObject> iterator = resource.getAllContents();
 
-					//look for applied stereotype without based element
+					// look for applied stereotype without based element
 					while(iterator.hasNext()) {
 						EObject eObject = (EObject)iterator.next();
 						if(eObject instanceof DynamicEObjectImpl && UMLUtil.getBaseElement(eObject) == null) {

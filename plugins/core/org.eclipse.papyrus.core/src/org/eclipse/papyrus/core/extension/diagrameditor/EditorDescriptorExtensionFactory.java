@@ -22,10 +22,11 @@ import org.eclipse.papyrus.core.extension.ExtensionException;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 /**
- * A factory used to create editor descriptor object from Eclipse extensions points elements.
+ * A factory used to create editor descriptor object from Eclipse extensions
+ * points elements.
  * 
- *@author Cedric Dumoulin
- *@author Patrick Tessier
+ * @author Cedric Dumoulin
+ * @author Patrick Tessier
  */
 public class EditorDescriptorExtensionFactory extends ExtensionUtils {
 
@@ -56,7 +57,8 @@ public class EditorDescriptorExtensionFactory extends ExtensionUtils {
 	 * 
 	 * @param element
 	 *        an {@link IConfigurationElement} see eclipse extension point
-	 * @return a nestedEditorDescriptor strucure that contains information to create diagrams
+	 * @return a nestedEditorDescriptor strucure that contains information to
+	 *         create diagrams
 	 * @throws BadNameExtensionException
 	 */
 	@SuppressWarnings("unchecked")

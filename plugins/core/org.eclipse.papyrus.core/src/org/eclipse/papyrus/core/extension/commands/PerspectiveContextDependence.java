@@ -21,7 +21,8 @@ import org.eclipse.ui.internal.WorkbenchPage;
 
 public class PerspectiveContextDependence implements ICreationCondition {
 
-	protected String commandID=null;
+	protected String commandID = null;
+
 	public PerspectiveContextDependence() {
 		// TODO Auto-generated constructor stub
 	}
@@ -32,18 +33,19 @@ public class PerspectiveContextDependence implements ICreationCondition {
 	public boolean create(EObject selectedElement) {
 		// Get the perspective
 		Perspective perspective = ((WorkbenchPage)PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()).getActivePerspective();
-		//look for the perspective
-		//verify if the commannd has to be displayed
-		if(perspective.getHiddenMenuItems().contains(commandID)&& perspective.getHiddenToolbarItems().contains(commandID)){
+		// look for the perspective
+		// verify if the commannd has to be displayed
+		if(perspective.getHiddenMenuItems().contains(commandID) && perspective.getHiddenToolbarItems().contains(commandID)) {
 			return false;
 		}
 		return true;
 	}
+
 	/**
 	 * {@inheritDoc}
 	 */
 	public void setCommand(String commandID) {
-		this.commandID=commandID;
+		this.commandID = commandID;
 	}
 
 }

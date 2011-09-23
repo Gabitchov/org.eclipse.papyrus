@@ -38,8 +38,7 @@ import org.eclipse.ui.internal.dnd.DragUtil;
 import org.eclipse.ui.presentations.PresentationUtil;
 
 /**
- * Papyrus wrapper for CTabFolder.
- * Provides miscelaneous methods for dragging.
+ * Papyrus wrapper for CTabFolder. Provides miscelaneous methods for dragging.
  * Provides different fireEvents for: menu detected, pageChange, itemClosed.
  * TODO : add listeners mechanism to listen on events ?
  */
@@ -65,8 +64,8 @@ public class PTabFolder {
 	};
 
 	/**
-	 * Listener on control activated event.
-	 * This event is used to set the tab as the active page.
+	 * Listener on control activated event. This event is used to set the tab as
+	 * the active page.
 	 */
 	private Listener activateListener = new Listener() {
 
@@ -77,14 +76,13 @@ public class PTabFolder {
 	};
 
 	/**
-	 * Listen on menu detect.
-	 * The event is forwarded.
-	 * TODO [20100417] deprecated ?
+	 * Listen on menu detect. The event is forwarded. TODO [20100417] deprecated
+	 * ?
 	 */
 	private MenuDetectListener menuDetectListener = new MenuDetectListener() {
 
 		public void menuDetected(MenuDetectEvent e) {
-			//			Point globalPos = ((Control) e.widget).toDisplay(e.x, e.y);
+			// Point globalPos = ((Control) e.widget).toDisplay(e.x, e.y);
 			Point globalPos = new Point(e.x, e.y);
 			handleMenuDetect(globalPos, e);
 		}
@@ -109,11 +107,12 @@ public class PTabFolder {
 	}
 
 	/**
-	 * Creates an empty container. Creates a CTabFolder with no style bits set, and hooks a selection listener which calls <code>pageChange()</code>
-	 * whenever the selected tab changes.
+	 * Creates an empty container. Creates a CTabFolder with no style bits set,
+	 * and hooks a selection listener which calls <code>pageChange()</code> whenever the selected tab changes.
 	 * 
 	 * @param parent
-	 *        The composite in which the container tab folder should be created; must not be <code>null</code>.
+	 *        The composite in which the container tab folder should be
+	 *        created; must not be <code>null</code>.
 	 * @return a new container
 	 */
 	private CTabFolder createContainer(Composite parent) {
@@ -159,7 +158,8 @@ public class PTabFolder {
 	}
 
 	/**
-	 * Copied from org.eclipse.ui.internal.presentations.util.AbstractTabFolder.attachListeners(Control, boolean)
+	 * Copied from org.eclipse.ui.internal.presentations.util.AbstractTabFolder.
+	 * attachListeners(Control, boolean)
 	 */
 	protected void attachListeners(CTabFolder theControl, boolean recursive) {
 
@@ -173,20 +173,21 @@ public class PTabFolder {
 	}
 
 	/**
-	 * Copied from org.eclipse.ui.internal.presentations.util.AbstractTabFolder.detachListeners(Control, boolean)
+	 * Copied from org.eclipse.ui.internal.presentations.util.AbstractTabFolder.
+	 * detachListeners(Control, boolean)
 	 */
 	private void detachListeners(Control theControl) {
 		theControl.removeMenuDetectListener(menuDetectListener);
 		//
 		PresentationUtil.removeDragListener(theControl, dragListener);
 		// theControl.removeDragDetectListener(dragDetectListener);
-		//		theControl.removeListener(SWT.MouseUp, mouseUpListener);
+		// theControl.removeListener(SWT.MouseUp, mouseUpListener);
 		theControl.removeListener(SWT.Activate, activateListener);
 	}
 
 	/**
-	 * The context menu event has been fired, handle it.
-	 * Actually, it is forwarded to the {@link EventsManager}.
+	 * The context menu event has been fired, handle it. Actually, it is
+	 * forwarded to the {@link EventsManager}.
 	 * 
 	 * @param displayPos
 	 * @param e
@@ -198,8 +199,9 @@ public class PTabFolder {
 	}
 
 	/**
-	 * Called when drag start. From here, DragUtil.performDrag() is called, which start the
-	 * dragging process. DragUtil.performDrag() will contains the tabFolder or the dragged tab.
+	 * Called when drag start. From here, DragUtil.performDrag() is called,
+	 * which start the dragging process. DragUtil.performDrag() will contains
+	 * the tabFolder or the dragged tab.
 	 */
 	protected void handleDragStarted(Point displayPos, Event e) {
 
@@ -215,28 +217,27 @@ public class PTabFolder {
 	}
 
 	/**
-	 * Handle menu detect.
-	 * TODO Connect menu staff here.
+	 * Handle menu detect. TODO Connect menu staff here.
 	 * 
 	 * @param displayPos
 	 * @param e
 	 */
 	private void handleMenuDetect(Point displayPos, MenuDetectEvent e) {
 
-		//		if(isOnBorder(displayPos)) {
-		//			return;
-		//		}
+		// if(isOnBorder(displayPos)) {
+		// return;
+		// }
 
 		CTabItem tab = getItem(displayPos);
 		listenersManager.fireMenuDetectEvent(tab, e);
 	}
 
 	/**
-	 * Handle folder reselected.
-	 * A folder is reselected by clicking on the active tabs, on the page or on the empty tabs area.
-	 * In each case a PageChangeEvent is fired.
-	 * When mouse click happen on the empty area, or on the page, the last selected tabs is used.
-	 * Used to switch the Active tab when user click on already opened tabs.
+	 * Handle folder reselected. A folder is reselected by clicking on the
+	 * active tabs, on the page or on the empty tabs area. In each case a
+	 * PageChangeEvent is fired. When mouse click happen on the empty area, or
+	 * on the page, the last selected tabs is used. Used to switch the Active
+	 * tab when user click on already opened tabs.
 	 * 
 	 * @param displayPos
 	 * @param e
@@ -254,8 +255,9 @@ public class PTabFolder {
 	}
 
 	/**
-	 * Returns true iff the given point is on the border of the folder. By default, double-clicking,
-	 * context menus, and drag/drop are disabled on the folder's border.
+	 * Returns true iff the given point is on the border of the folder. By
+	 * default, double-clicking, context menus, and drag/drop are disabled on
+	 * the folder's border.
 	 * 
 	 * @param toTest
 	 *        a point (display coordinates)
@@ -302,16 +304,17 @@ public class PTabFolder {
 	}
 
 	/**
-	 * Get the rectangle bounding the item, in the parent coordinates. Utility method. Can be moved somewhere else.
+	 * Get the rectangle bounding the item, in the parent coordinates. Utility
+	 * method. Can be moved somewhere else.
 	 */
 	public Rectangle getItemBounds(CTabItem item) {
 		return Geometry.toDisplay(item.getParent(), item.getBounds());
 	}
 
 	/**
-	 * Fire a page closed event. This event is fired when the close item is pressed. The item is not closed yet. By default, the item is closed after
-	 * the event. The item is not closed if event.doit is
-	 * set to false.
+	 * Fire a page closed event. This event is fired when the close item is
+	 * pressed. The item is not closed yet. By default, the item is closed after
+	 * the event. The item is not closed if event.doit is set to false.
 	 * 
 	 */
 	protected void fireItemClosed(CTabFolderEvent event, int pageIndex) {
@@ -353,7 +356,8 @@ public class PTabFolder {
 	 * Get the index of the draggedObject
 	 * 
 	 * @param draggedObject
-	 *        draggedObject should be of type CTabFolder or CTabItem (as provided by handleDragStarted())
+	 *        draggedObject should be of type CTabFolder or CTabItem (as
+	 *        provided by handleDragStarted())
 	 */
 	static public int getDraggedObjectTabIndex(Object draggedObject) {
 		if(draggedObject instanceof CTabItem) {
@@ -385,8 +389,7 @@ public class PTabFolder {
 	}
 
 	/**
-	 * Get the event manager.
-	 * The event manager can be used to listen to events.
+	 * Get the event manager. The event manager can be used to listen to events.
 	 * 
 	 * @return
 	 */
@@ -417,8 +420,7 @@ public class PTabFolder {
 	}
 
 	/**
-	 * Internal implementations.
-	 * Implements a list of listeners.
+	 * Internal implementations. Implements a list of listeners.
 	 * 
 	 * @author dumoulin
 	 * 

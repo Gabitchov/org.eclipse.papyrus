@@ -74,9 +74,9 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-
 /**
- * Aspect action that modifies semantic information on the edit part newly created
+ * Aspect action that modifies semantic information on the edit part newly
+ * created
  */
 public class SemanticPostAction extends ModelPostAction {
 
@@ -95,7 +95,10 @@ public class SemanticPostAction extends ModelPostAction {
 	/** viewer for the attributes to initialize */
 	protected TableViewer attributeViewer;
 
-	/** this attribute caches the value of the metaclass linked to the creation entry (performance optimization) */
+	/**
+	 * this attribute caches the value of the metaclass linked to the creation
+	 * entry (performance optimization)
+	 */
 	protected EClass metaclass = null;
 
 	/** path to the checked box image */
@@ -153,7 +156,8 @@ public class SemanticPostAction extends ModelPostAction {
 	 * @param nodeValue
 	 *        the serialized value of the element
 	 * @param separator
-	 *        the separator used to serialized, in case the element is a list
+	 *        the separator used to serialized, in case the element is a
+	 *        list
 	 * @return the value of the element
 	 */
 	protected Object parseValue(String nodeValue, String separator) {
@@ -182,7 +186,6 @@ public class SemanticPostAction extends ModelPostAction {
 		final CompositeCommand compositeCommand = new CompositeCommand("Modify Semantic");
 		EObject objectToEdit = ((View)editPart.getModel()).getElement();
 
-
 		for(String featureName : propertiesToUpdate.keySet()) {
 			// retrieve feature to set
 			EStructuralFeature feature = objectToEdit.eClass().getEStructuralFeature(featureName);
@@ -192,7 +195,8 @@ public class SemanticPostAction extends ModelPostAction {
 			} else {
 
 				SetRequest request = new SetRequest(objectToEdit, feature, getValue(feature, propertiesToUpdate.get(featureName)));
-				// request.getExtendedData().put(ApplyStereotypeRequest.NEW_EDIT_PART_NAME, "NEW");
+				// request.getExtendedData().put(ApplyStereotypeRequest.NEW_EDIT_PART_NAME,
+				// "NEW");
 				compositeCommand.compose(new SetValueCommand(request));
 			}
 		}
@@ -208,8 +212,10 @@ public class SemanticPostAction extends ModelPostAction {
 		if(compositeCommand.canExecute()) {
 			boolean isActivating = true;
 			Map<String, Boolean> options = null;
-			// use the viewer to determine if we are still initializing the diagram
-			// do not use the DiagramEditPart.isActivating since ConnectionEditPart's
+			// use the viewer to determine if we are still initializing the
+			// diagram
+			// do not use the DiagramEditPart.isActivating since
+			// ConnectionEditPart's
 			// parent will not be a diagram edit part
 			EditPartViewer viewer = editPart.getViewer();
 			if(viewer instanceof DiagramGraphicalViewer) {
@@ -294,7 +300,6 @@ public class SemanticPostAction extends ModelPostAction {
 		nameColumn.getColumn().setResizable(true);
 		nameColumn.getColumn().setMoveable(false);
 
-
 		// runtime defined property column
 		TableViewerColumn runtimeColumn = new TableViewerColumn(viewer, SWT.NONE);
 		runtimeColumn.getColumn().setText("Runtime");
@@ -315,8 +320,6 @@ public class SemanticPostAction extends ModelPostAction {
 		table.setHeaderVisible(true);
 		table.setLinesVisible(true);
 	}
-
-
 
 	/**
 	 * updates the stereotype viewer
@@ -374,16 +377,17 @@ public class SemanticPostAction extends ModelPostAction {
 	}
 
 	/**
-	 * Returns <code>true</code> if the value of this feature is defined at runtime
+	 * Returns <code>true</code> if the value of this feature is defined at
+	 * runtime
 	 * 
 	 * @param feature
 	 *        the feature to check
-	 * @return <code>true</code> if the value of this feature is defined at runtime, else <code>false</code>
+	 * @return <code>true</code> if the value of this feature is defined at
+	 *         runtime, else <code>false</code>
 	 */
 	protected boolean isRuntimeDefined(EStructuralFeature feature) {
 		return runtimeDefinedProperties.contains(feature.getName());
 	}
-
 
 	/**
 	 * Content provider for the attribute viewer
@@ -588,7 +592,6 @@ public class SemanticPostAction extends ModelPostAction {
 				}
 			}
 
-
 			getViewer().update(element, null);
 		}
 
@@ -649,7 +652,6 @@ public class SemanticPostAction extends ModelPostAction {
 	 * Class giving cell editors for statically defined values
 	 */
 	protected class DynamicFeatureEditingSupport extends EditingSupport {
-
 
 		/** editor */
 		private CellEditor editor;

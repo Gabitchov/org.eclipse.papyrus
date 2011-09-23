@@ -45,7 +45,7 @@ public class PapyrusPaletteViewer extends PaletteViewerEx {
 				if(constructor != null) {
 					customizerDialog = constructor.newInstance(getControl().getShell(), getCustomizer(), getPaletteRoot());
 					if(customizerDialog == null) {
-						//be sure it is not null
+						// be sure it is not null
 						customizerDialog = new PaletteCustomizerDialogEx(getControl().getShell(), getCustomizer(), getPaletteRoot());
 					}
 				}

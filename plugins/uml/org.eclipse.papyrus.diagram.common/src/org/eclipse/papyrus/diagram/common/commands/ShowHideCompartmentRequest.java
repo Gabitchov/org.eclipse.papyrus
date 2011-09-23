@@ -61,14 +61,10 @@ public class ShowHideCompartmentRequest extends ChangePropertyValueRequest {
 	/**
 	 * Return {@link #compartmentType}
 	 * 
-	 * @return
-	 *         {@link #compartmentType}
+	 * @return {@link #compartmentType}
 	 */
 	public String getCompartmentType() {
 		return this.compartmentType;
 	}
-
-
-
 
 }

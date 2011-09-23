@@ -26,7 +26,8 @@ import org.eclipse.uml2.uml.PackageMerge;
 public class AppliedStereotypePackageMergeLabelDisplayEditPolicy extends AppliedStereotypeLinkLabelDisplayEditPolicy {
 
 	/**
-	 * Creates a new AppliedStereotypePackageMergeLabelDisplayEditPolicy, with the correct tag.
+	 * Creates a new AppliedStereotypePackageMergeLabelDisplayEditPolicy, with
+	 * the correct tag.
 	 */
 	public AppliedStereotypePackageMergeLabelDisplayEditPolicy() {
 		super(Messages.AppliedStereotypeLabel_PackageMergeTag);

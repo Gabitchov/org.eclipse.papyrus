@@ -26,7 +26,8 @@ import org.eclipse.uml2.uml.Usage;
 public class AppliedStereotypeUsageLabelDisplayEditPolicy extends AppliedStereotypeLinkLabelDisplayEditPolicy {
 
 	/**
-	 * Creates a new AppliedStereotypeUsageLabelDisplayEditPolicy, with the correct tag.
+	 * Creates a new AppliedStereotypeUsageLabelDisplayEditPolicy, with the
+	 * correct tag.
 	 */
 	public AppliedStereotypeUsageLabelDisplayEditPolicy() {
 		super(Messages.AppliedStereotypeLabel_UsageTag);

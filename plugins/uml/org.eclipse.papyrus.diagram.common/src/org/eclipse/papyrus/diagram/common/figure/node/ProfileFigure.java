@@ -13,7 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.common.figure.node;
 
-
 public class ProfileFigure extends PackageFigure {
 
 	protected static final String PROFILE_TAG = "Profile"; //$NON-NLS-1$
@@ -25,6 +24,5 @@ public class ProfileFigure extends PackageFigure {
 		super();
 		initTagLabel(PROFILE_TAG);
 	}
-
 
 }

@@ -31,24 +31,24 @@ import org.eclipse.uml2.uml.util.UMLUtil;
 public class PapyrusStereotypeListener implements IPapyrusListener {
 
 	/**
-	 * An {@link Notification#getEventType event type} indicating that a stereotype has been applied
-	 * to the notifier
+	 * An {@link Notification#getEventType event type} indicating that a
+	 * stereotype has been applied to the notifier
 	 * 
 	 * @see Notification#getEventType
 	 */
 	public static final int APPLIED_STEREOTYPE = 20;
 
 	/**
-	 * An {@link Notification#getEventType event type} indicating that a stereotype has been
-	 * unapplied to the notifier
+	 * An {@link Notification#getEventType event type} indicating that a
+	 * stereotype has been unapplied to the notifier
 	 * 
 	 * @see Notification#getEventType
 	 */
 	public static final int UNAPPLIED_STEREOTYPE = 21;
 
 	/**
-	 * An {@link Notification#getEventType event type} indicating that a stereotype has been
-	 * unapplied to the notifier
+	 * An {@link Notification#getEventType event type} indicating that a
+	 * stereotype has been unapplied to the notifier
 	 * 
 	 * @see Notification#getEventType
 	 */
@@ -65,7 +65,8 @@ public class PapyrusStereotypeListener implements IPapyrusListener {
 	 */
 	public void notifyChanged(Notification notification) {
 		// feature should be the base_class feature
-		// check this is a EStructuralFeature that is changed. Could be something else ?!
+		// check this is a EStructuralFeature that is changed. Could be
+		// something else ?!
 		final EStructuralFeature feature;
 
 		if(!(notification.getFeature() instanceof EStructuralFeature)) {
@@ -89,17 +90,21 @@ public class PapyrusStereotypeListener implements IPapyrusListener {
 			return;
 		}
 
-		// check the SET base Element for stereotype elements.... if this is this kind of element
+		// check the SET base Element for stereotype elements.... if this is
+		// this kind of element
 		if(Notification.SET != notification.getEventType()) {
 			return;
 		}
 
-		// should retrieve the element on which modification is done. This should be the new value
+		// should retrieve the element on which modification is done. This
+		// should be the new value
 		// of the notification
 		int notificationValue;
-		Object value = notification.getNewValue(); // this should be the stereotyped element
+		Object value = notification.getNewValue(); // this should be the
+													// stereotyped element
 		if(value instanceof Element) {
-			// check the notifier (stereotype application) is in the list of stereotypes for the
+			// check the notifier (stereotype application) is in the list of
+			// stereotypes for the
 			// element
 			boolean isStereoApplication = ((Element)value).getStereotypeApplications().contains(notification.getNotifier());
 			if(!isStereoApplication) {
@@ -112,7 +117,8 @@ public class PapyrusStereotypeListener implements IPapyrusListener {
 			if(!(value instanceof Element)) {
 				return;
 			}
-			// check that the notifier (stereotype application) is NOT in the list of stereotypes for the
+			// check that the notifier (stereotype application) is NOT in the
+			// list of stereotypes for the
 			// element
 			boolean isStereoApplication = ((Element)value).getStereotypeApplications().contains(notification.getNotifier());
 			if(isStereoApplication) {
@@ -128,14 +134,16 @@ public class PapyrusStereotypeListener implements IPapyrusListener {
 	}
 
 	/**
-	 * checks if the notifier modified feature is the feature modified by stereotype applications
+	 * checks if the notifier modified feature is the feature modified by
+	 * stereotype applications
 	 * 
-	 * @return <code>true</code> if the feature of the notification is the "base_XXX" feature, else
-	 *         return <code>false</code>.
+	 * @return <code>true</code> if the feature of the notification is the
+	 *         "base_XXX" feature, else return <code>false</code>.
 	 */
 	private boolean isBaseElementChanged(EStructuralFeature feature) {
 		return feature.getName().startsWith(Extension.METACLASS_ROLE_PREFIX);
-		// && (element == null || eStructuralFeature.getEType().isInstance(element))) {
+		// && (element == null ||
+		// eStructuralFeature.getEType().isInstance(element))) {
 	}
 
 	/**

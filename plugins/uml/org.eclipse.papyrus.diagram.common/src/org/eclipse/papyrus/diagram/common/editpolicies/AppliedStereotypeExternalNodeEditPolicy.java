@@ -23,8 +23,9 @@ import org.eclipse.papyrus.umlutils.ui.VisualInformationPapyrusConstant;
 import org.eclipse.papyrus.umlutils.ui.helper.AppliedStereotypeHelper;
 
 /**
- * This edit policy is used to display only applied stereotypes and properties in a external node (that is a labelEditPart)
- * In order to use it, the edit part has to be {@link IPapyrusEditPart} and the associated figure has to be {@link IPapyrusUMLElementFigure}
+ * This edit policy is used to display only applied stereotypes and properties
+ * in a external node (that is a labelEditPart) In order to use it, the edit
+ * part has to be {@link IPapyrusEditPart} and the associated figure has to be {@link IPapyrusUMLElementFigure}
  */
 public class AppliedStereotypeExternalNodeEditPolicy extends AppliedStereotypeLabelDisplayEditPolicy {
 
@@ -59,7 +60,8 @@ public class AppliedStereotypeExternalNodeEditPolicy extends AppliedStereotypeLa
 	/**
 	 * 
 	 * 
-	 * @return the list of stereotypes to display with properties if there are selected to be displayed
+	 * @return the list of stereotypes to display with properties if there are
+	 *         selected to be displayed
 	 */
 	public String stereotypesToDisplay() {
 
@@ -71,12 +73,15 @@ public class AppliedStereotypeExternalNodeEditPolicy extends AppliedStereotypeLa
 		String stereotypespresentationKind = AppliedStereotypeHelper.getAppliedStereotypePresentationKind((View)((View)getHost().getModel()).eContainer());
 
 		// now check presentation.
-		// if horizontal => equivalent to the inBrace visualization in nodes (i.e. only name =
+		// if horizontal => equivalent to the inBrace visualization in nodes
+		// (i.e. only name =
 		// value, separator = comma, delimited with brace
-		// if vertical => equivalent to compartment visualization name of stereotype, NL, property =
+		// if vertical => equivalent to compartment visualization name of
+		// stereotype, NL, property =
 		// value, NL, etC.
 
-		// check the presentation kind. if only icon => do not display stereotype, only values
+		// check the presentation kind. if only icon => do not display
+		// stereotype, only values
 		if(VisualInformationPapyrusConstant.ICON_STEREOTYPE_PRESENTATION.equals(stereotypespresentationKind)) {
 			return StereotypeUtil.getPropertiesValuesInBrace(stereotypesPropertiesToDisplay, getUMLElement());
 		}
@@ -109,7 +114,9 @@ public class AppliedStereotypeExternalNodeEditPolicy extends AppliedStereotypeLa
 		if(getHost() instanceof IPapyrusEditPart) {
 			IFigure figure = ((IPapyrusEditPart)getHost()).getPrimaryShape();
 
-			if(figure instanceof IPapyrusUMLElementFigure) {// calculate text and icon to display
+			if(figure instanceof IPapyrusUMLElementFigure) {// calculate text
+															// and icon to
+															// display
 				final String stereotypesToDisplay = stereotypesToDisplay();
 				((IPapyrusUMLElementFigure)figure).setStereotypeDisplay(tag + (stereotypesToDisplay), null);
 			}

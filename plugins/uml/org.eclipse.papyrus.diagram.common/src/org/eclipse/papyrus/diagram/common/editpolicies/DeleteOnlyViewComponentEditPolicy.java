@@ -55,8 +55,8 @@ public class DeleteOnlyViewComponentEditPolicy extends ComponentEditPolicy {
 	}
 
 	/**
-	 * Will delete the view and remove the EObject's reference from the diagram's list of elements
-	 * to show.
+	 * Will delete the view and remove the EObject's reference from the
+	 * diagram's list of elements to show.
 	 * 
 	 * @param request
 	 *        the request

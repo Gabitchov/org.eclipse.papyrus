@@ -47,7 +47,8 @@ public abstract class CreateLinkToolBase extends UnspecifiedTypeConnectionTool {
 	}
 
 	/**
-	 * Creates additional data that should be passed into IEditCommandRequest#parameters
+	 * Creates additional data that should be passed into
+	 * IEditCommandRequest#parameters
 	 * 
 	 * @return not <code>null</code>
 	 */

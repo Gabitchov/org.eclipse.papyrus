@@ -20,13 +20,13 @@ import org.eclipse.papyrus.sashwindows.di.DiPackage;
 import org.eclipse.papyrus.sashwindows.di.PanelParent;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Panel Parent</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Panel Parent</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.sashwindows.di.impl.PanelParentImpl#getChildren <em>Children</em>}</li>
+ * <li>
+ * {@link org.eclipse.papyrus.sashwindows.di.impl.PanelParentImpl#getChildren
+ * <em>Children</em>}</li>
  * </ul>
  * </p>
  * 
@@ -35,9 +35,8 @@ import org.eclipse.papyrus.sashwindows.di.PanelParent;
 public abstract class PanelParentImpl extends EObjectImpl implements PanelParent {
 
 	/**
-	 * The cached value of the '{@link #getChildren() <em>Children</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getChildren() <em>Children</em>}'
+	 * containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getChildren()
 	 * @generated
@@ -46,8 +45,7 @@ public abstract class PanelParentImpl extends EObjectImpl implements PanelParent
 	protected EList<AbstractPanel> children;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -56,8 +54,7 @@ public abstract class PanelParentImpl extends EObjectImpl implements PanelParent
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -67,8 +64,7 @@ public abstract class PanelParentImpl extends EObjectImpl implements PanelParent
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -80,8 +76,7 @@ public abstract class PanelParentImpl extends EObjectImpl implements PanelParent
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -92,8 +87,7 @@ public abstract class PanelParentImpl extends EObjectImpl implements PanelParent
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -108,8 +102,7 @@ public abstract class PanelParentImpl extends EObjectImpl implements PanelParent
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -123,8 +116,7 @@ public abstract class PanelParentImpl extends EObjectImpl implements PanelParent
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -138,8 +130,7 @@ public abstract class PanelParentImpl extends EObjectImpl implements PanelParent
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -156,8 +147,7 @@ public abstract class PanelParentImpl extends EObjectImpl implements PanelParent
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -172,8 +162,7 @@ public abstract class PanelParentImpl extends EObjectImpl implements PanelParent
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -186,4 +175,4 @@ public abstract class PanelParentImpl extends EObjectImpl implements PanelParent
 		return super.eIsSet(featureID);
 	}
 
-} //PanelParentImpl
+} // PanelParentImpl

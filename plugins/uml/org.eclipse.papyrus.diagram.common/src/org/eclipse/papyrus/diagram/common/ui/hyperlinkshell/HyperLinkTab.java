@@ -36,8 +36,8 @@ import org.eclipse.swt.widgets.Table;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 /**
- * this class is GUI that represent a tab for each kind of hyperlink
- * for example a tab for diagram, for web links...
+ * this class is GUI that represent a tab for each kind of hyperlink for example
+ * a tab for diagram, for web links...
  * 
  */
 public class HyperLinkTab {
@@ -60,7 +60,6 @@ public class HyperLinkTab {
 	protected Button downHyperLinkButton;
 
 	protected TableViewer tableViewer;
-
 
 	protected ArrayList<HyperlinkObject> hyperlinkObjects = new ArrayList<HyperlinkObject>();
 
@@ -179,7 +178,6 @@ public class HyperLinkTab {
 		tableViewer.setLabelProvider(new HyperLinkLabelProvider(editorRegistry));
 		getTableViewer().setInput(this.hyperlinkObjects);
 	}
-
 
 	/**
 	 * @return the tabitem form the this tab

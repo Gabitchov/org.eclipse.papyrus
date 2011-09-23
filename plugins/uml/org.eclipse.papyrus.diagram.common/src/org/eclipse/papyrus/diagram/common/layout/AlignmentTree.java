@@ -27,7 +27,6 @@ import org.eclipse.gef.tools.ToolUtilities;
  */
 public class AlignmentTree extends EditPartTree {
 
-
 	/**
 	 * this UDI can be used to serialize this class
 	 */
@@ -75,8 +74,7 @@ public class AlignmentTree extends EditPartTree {
 	/**
 	 * Returns the new bounds of the container
 	 * 
-	 * @return
-	 *         <ul>
+	 * @return <ul>
 	 *         <li>{@link EditPartTree#diagramRect} if the container is the diagram</li>
 	 *         <li>the bounds of the container after the shift</li>
 	 *         </ul>
@@ -89,29 +87,26 @@ public class AlignmentTree extends EditPartTree {
 			Point oldParentLocation = LayoutUtils.getAbsolutePosition(treeParent.getEditPart()).getLocation();
 			Point newParentLocation = treeParent.getNewPosition().getLocation();
 
-			//shift between the two positions
+			// shift between the two positions
 			Point shift = newParentLocation.getTranslated(oldParentLocation.getNegated());
 
 			// we want know the final position for the container
 			PrecisionRectangle oldContainerBounds = LayoutUtils.getAbsolutePosition(this.getEditPart().getParent());
 			newContainerBounds = new PrecisionRectangle(oldContainerBounds);
 			newContainerBounds.translate(shift);
-		} else {//treeParent is the root of the tree
+		} else {// treeParent is the root of the tree
 			EditPart containerEditPart = this.getEditPart().getParent();
 			newContainerBounds = LayoutUtils.getAbsolutePosition(containerEditPart);
 		}
 		return newContainerBounds;
 	}
 
-
-
-
 	/**
 	 * Returns the absolute position for the editpart in the new container
 	 * 
-	 * @return
-	 *         the absolute position for the editpart in the new container. That's to say the intermediate position, when the container has moved, and
-	 *         the editpart hasn't moved
+	 * @return the absolute position for the editpart in the new container.
+	 *         That's to say the intermediate position, when the container has
+	 *         moved, and the editpart hasn't moved
 	 */
 	public PrecisionRectangle getAbsolutePositionInTheNewContainerPosition() {
 		PrecisionRectangle newPosition = new PrecisionRectangle(LayoutUtils.getAbsolutePosition(getEditPart()));
@@ -138,7 +133,8 @@ public class AlignmentTree extends EditPartTree {
 	 * @param editparts
 	 *        the selected editpart
 	 * @param parentsList
-	 *        parents of editparts which could be interesting to add to the tree
+	 *        parents of editparts which could be interesting to add to the
+	 *        tree
 	 * @return
 	 */
 	@Override
@@ -147,13 +143,15 @@ public class AlignmentTree extends EditPartTree {
 		for(EditPart editpart : parentsList) {
 
 			/*
-			 * the editparts are interesting only if they are selected or if its parent is selected!
+			 * the editparts are interesting only if they are selected or if its
+			 * parent is selected!
 			 */
 			if(editparts.contains(editpart) || ((!editparts.contains(editpart)) && ToolUtilities.isAncestorContainedIn(editparts, editpart))) {
 				boolean isSelected = editparts.contains(editpart);
 				AlignmentTree parentTree = new AlignmentTree(editpart, isSelected);
 				if(!isSelected) {
-					//this editpart won't move, so we can precise now its position
+					// this editpart won't move, so we can precise now its
+					// position
 					parentTree.setNewPosition(LayoutUtils.getAbsolutePosition(editpart));
 				}
 				if(childTree != null) {
@@ -166,7 +164,8 @@ public class AlignmentTree extends EditPartTree {
 	}
 
 	/**
-	 * Specifies in the tree which editpart in the selected editpart is used like reference to do the alignment action
+	 * Specifies in the tree which editpart in the selected editpart is used
+	 * like reference to do the alignment action
 	 * 
 	 * @see org.eclipse.papyrus.diagram.common.layout.EditPartTree#postBuildOperations(java.util.List)
 	 * 
@@ -175,7 +174,7 @@ public class AlignmentTree extends EditPartTree {
 	 */
 	@Override
 	protected void postBuildOperations(List<EditPart> editparts) {
-		//the reference for the alignment is the last selected element
+		// the reference for the alignment is the last selected element
 		((AlignmentTree)this.getTree(editparts.get(editparts.size() - 1))).setNewPosition(LayoutUtils.getAbsolutePosition(editparts.get(editparts.size() - 1)));
 
 	}

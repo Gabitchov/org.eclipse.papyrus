@@ -11,7 +11,7 @@
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.sasheditor.internal;
+package org.eclipse.papyrus.sasheditor.editor;
 
 import static org.eclipse.papyrus.sasheditor.Activator.log;
 
@@ -25,11 +25,24 @@ import org.eclipse.papyrus.sasheditor.contentprovider.IComponentModel;
 import org.eclipse.papyrus.sasheditor.contentprovider.IEditorModel;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageModel;
 import org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider;
-import org.eclipse.papyrus.sasheditor.editor.IEditorPage;
-import org.eclipse.papyrus.sasheditor.editor.IPage;
-import org.eclipse.papyrus.sasheditor.editor.IPageChangedListener;
-import org.eclipse.papyrus.sasheditor.editor.IPageVisitor;
-import org.eclipse.papyrus.sasheditor.editor.ISashWindowsContainer;
+import org.eclipse.papyrus.sasheditor.internal.AbstractPanelPart;
+import org.eclipse.papyrus.sasheditor.internal.AbstractPart;
+import org.eclipse.papyrus.sasheditor.internal.ActiveEditorServicesSwitcher;
+import org.eclipse.papyrus.sasheditor.internal.ActivePageTracker;
+import org.eclipse.papyrus.sasheditor.internal.ComponentPart;
+import org.eclipse.papyrus.sasheditor.internal.EditorPart;
+import org.eclipse.papyrus.sasheditor.internal.IPartVisitor;
+import org.eclipse.papyrus.sasheditor.internal.LookupIPageByIEditorPartVisitor;
+import org.eclipse.papyrus.sasheditor.internal.LookupModelPageVisitor;
+import org.eclipse.papyrus.sasheditor.internal.PTabFolder;
+import org.eclipse.papyrus.sasheditor.internal.PagePart;
+import org.eclipse.papyrus.sasheditor.internal.PageVisitorWrapper;
+import org.eclipse.papyrus.sasheditor.internal.PartLists;
+import org.eclipse.papyrus.sasheditor.internal.PartVisitor;
+import org.eclipse.papyrus.sasheditor.internal.RootPart;
+import org.eclipse.papyrus.sasheditor.internal.SashContainerEventsProvider;
+import org.eclipse.papyrus.sasheditor.internal.ShowPartStatusVisitor;
+import org.eclipse.papyrus.sasheditor.internal.TabFolderPart;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Cursor;
 import org.eclipse.swt.graphics.Point;
@@ -42,11 +55,10 @@ import org.eclipse.ui.internal.dnd.DragUtil;
 import org.eclipse.ui.internal.dnd.IDragOverListener;
 import org.eclipse.ui.internal.dnd.IDropTarget;
 
-
 /**
- * Main entry class of the SashWindows system.
- * This class allows to have a multitab window with sashes.
- * The class require a ContentProvider describing the content to be shown.
+ * Main entry class of the SashWindows system. This class allows to have a
+ * multitab window with sashes. The class require a ContentProvider describing
+ * the content to be shown.
  * 
  * @author dumoulin
  */
@@ -64,26 +76,26 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	private IMultiEditorManager multiEditorManager;
 
 	/**
-	 * Tracker tracking the current active page. The tracker also disconnect last active page and connect
-	 * the new one.
+	 * Tracker tracking the current active page. The tracker also disconnect
+	 * last active page and connect the new one.
 	 */
 	private ActivePageTracker activePageTracker;
 
 	/**
-	 * Event provider firing Pages life cycle events to registered listeners. Inner parts call the fireXxxEvents
-	 * when appropriate.
+	 * Event provider firing Pages life cycle events to registered listeners.
+	 * Inner parts call the fireXxxEvents when appropriate.
 	 */
 	private SashContainerEventsProvider lifeCycleEventProvider;
-	
+
 	/**
-	 * The part used as root. We use an extra class as root in order to separate the code dedicated to
-	 * ITilePart.
+	 * The part used as root. We use an extra class as root in order to separate
+	 * the code dedicated to ITilePart.
 	 */
 	private RootPart rootPart;
 
 	/**
-	 * The SWT container associated to this part. This is generally the container of the
-	 * parent.
+	 * The SWT container associated to this part. This is generally the
+	 * container of the parent.
 	 */
 	private Composite container;
 
@@ -101,18 +113,18 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	private MenuManager folderTabMenuManager;
 
 	/**
-	 * Constructor.
-	 * Build a Container without IEditor management. Trying to add a EditorPart will result in an Exception.
-	 * The ContentProvider should not contain IEditorModel.
+	 * Constructor. Build a Container without IEditor management. Trying to add
+	 * a EditorPart will result in an Exception. The ContentProvider should not
+	 * contain IEditorModel.
 	 */
 	public SashWindowsContainer() {
 		this(null);
 	}
 
 	/**
-	 * Constructor.
-	 * Build a container with EditorPart management. The container will allow to add EditorPart
-	 * (and thus IEditorModel to the ContentProvider).
+	 * Constructor. Build a container with EditorPart management. The container
+	 * will allow to add EditorPart (and thus IEditorModel to the
+	 * ContentProvider).
 	 * 
 	 * @param multiEditorManager
 	 *        The manager allowing to use {@link IEditorModel} in the model.
@@ -128,7 +140,7 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 			// This listener will take in charge editor services switching.
 			activePageTracker.addActiveEditorChangedListener(new ActiveEditorServicesSwitcher(multiEditorManager.getEditorSite()));
 		}
-		
+
 		// Life cycle event provider
 		lifeCycleEventProvider = new SashContainerEventsProvider();
 	}
@@ -136,7 +148,7 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	/**
 	 * @return the contentProvider
 	 */
-	protected ISashWindowsContentProvider getContentProvider() {
+	public ISashWindowsContentProvider getContentProvider() {
 		// Content provider should have been set.
 		assert (contentProvider != null);
 		// Double check for developement
@@ -157,8 +169,8 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	}
 
 	/**
-	 * Creates control associated to this Container.
-	 * This method should be called when the parent is build.
+	 * Creates control associated to this Container. This method should be
+	 * called when the parent is build.
 	 * 
 	 * @param parent
 	 *        The parent in which the editor should be created; must not be <code>null</code>.
@@ -189,33 +201,36 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	}
 
 	/**
-	 * Notifies this page container that the specified page has been activated. This method
-	 * is called after the current tabs has been changed, either by refreshing the tabs, or by a user
-	 * UI action.
-	 * This method just set correctly the active page value in the Container, and fire pageChanged events if needed.
-	 * It does not change the selected page in the Part.
+	 * Notifies this page container that the specified page has been activated.
+	 * This method is called after the current tabs has been changed, either by
+	 * refreshing the tabs, or by a user UI action. This method just set
+	 * correctly the active page value in the Container, and fire pageChanged
+	 * events if needed. It does not change the selected page in the Part.
 	 * 
 	 * Propagate the event to activePageTracker.
 	 * 
 	 * @param childPart
 	 */
-	protected void pageChanged(PagePart childPart) {
+	public void pageChanged(PagePart childPart) {
 		activePageTracker.setActiveEditor(childPart);
 		lifeCycleEventProvider.firePageActivatedEvent(childPart);
 	}
 
 	/**
-	 * Notifies this page container that a pageChanged event has been fired by one swt Control.
-	 * This method is usually called after the user selects a different tab.
+	 * Notifies this page container that a pageChanged event has been fired by
+	 * one swt Control. This method is usually called after the user selects a
+	 * different tab.
 	 * 
 	 * The method record the new active folder in the ContentProvider, and calls {@link #pageChanged(PagePart)}.
 	 * 
 	 * @param childPart
 	 */
-	protected void pageChangedEvent(PagePart childPart) {
+	public void pageChangedEvent(PagePart childPart) {
 
-		// Check if it is really a change before changing the model (which can throw change event)
-		// The folder model change is done before the tracker fires the listeners, like this
+		// Check if it is really a change before changing the model (which can
+		// throw change event)
+		// The folder model change is done before the tracker fires the
+		// listeners, like this
 		// listeners can check the model.
 		if(getActivePage() == childPart)
 			return;
@@ -237,13 +252,14 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	}
 
 	/**
-	 * A change has happen in one of the inner parts. Relay the event.
-	 * This method is called by inner parts whenever the event happen in one of the part.
-	 * It collects and relay the firePropertyChange(int propertyId) calls from the inner IEditor.
+	 * A change has happen in one of the inner parts. Relay the event. This
+	 * method is called by inner parts whenever the event happen in one of the
+	 * part. It collects and relay the firePropertyChange(int propertyId) calls
+	 * from the inner IEditor.
 	 * 
 	 * @param propertyId
 	 */
-	protected void firePropertyChange(int propertyId) {
+	public void firePropertyChange(int propertyId) {
 		// For now, we do nothing with this event.
 	}
 
@@ -256,8 +272,7 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	 *        The model for which a part should be created.
 	 * @return
 	 */
-	protected PagePart createPagePart(TabFolderPart parent, IPageModel partModel, Object rawModel) {
-
+	public PagePart createPagePart(TabFolderPart parent, IPageModel partModel, Object rawModel) {
 
 		if(partModel instanceof IEditorModel) {
 			// Check if we can use IEditorModel
@@ -307,46 +322,46 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	}
 
 	/**
-	 * Get the list of visible IPages. The visible IPages are the one that have there diagram area 
-	 * visible.
+	 * Get the list of visible IPages. The visible IPages are the one that have
+	 * there diagram area visible.
 	 * 
 	 * @return
 	 */
 	public List<IPage> getVisiblePages() {
 		CollectVisiblePageVisitor visitor = new CollectVisiblePageVisitor();
-		
+
 		rootPart.visit(visitor);
-		
+
 		return visitor.getVisiblePages();
 	}
 
 	/**
-	 * Get the list of visible IPages. The visible IPages are the one that have there diagram area 
-	 * visible.
+	 * Get the list of visible IPages. The visible IPages are the one that have
+	 * there diagram area visible.
 	 * 
 	 * @return
 	 */
-//	public List<IEditorPage> getVisibleIEditorPages() {
-//		CollectVisiblePageVisitor visitor = new CollectVisiblePageVisitor( IEditorPage.class);
-//		
-//		rootPart.visit(visitor);
-//		
-//		return visitor.getVisiblePages();
-//	}
+	// public List<IEditorPage> getVisibleIEditorPages() {
+	// CollectVisiblePageVisitor visitor = new CollectVisiblePageVisitor(
+	// IEditorPage.class);
+	//
+	// rootPart.visit(visitor);
+	//
+	// return visitor.getVisiblePages();
+	// }
 
 	/**
-	 * Get the list of visible IPages. The visible IPages are the one that have there diagram area 
-	 * visible.
+	 * Get the list of visible IPages. The visible IPages are the one that have
+	 * there diagram area visible.
 	 * 
 	 * @return
 	 */
 	public List<IEditorPart> getVisibleIEditorParts() {
 		CollectVisibleIEditorPart visitor = new CollectVisibleIEditorPart();
 		rootPart.visit(visitor);
-		
+
 		return visitor.getVisiblePages();
 	}
-
 
 	/**
 	 * @see org.eclipse.papyrus.sasheditor.editor.ISashWindowsContainer#setFocus()
@@ -368,10 +383,8 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 			part.setFocus();
 	}
 
-
 	/**
-	 * Refresh the tabs.
-	 * Is we are already currently refreshing, simply return.
+	 * Refresh the tabs. Is we are already currently refreshing, simply return.
 	 * 
 	 * @see org.eclipse.papyrus.sasheditor.editor.ISashWindowsContainer#refreshTabs()
 	 * 
@@ -394,19 +407,18 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	/**
 	 * Refresh the tab of the page, (i.e the name and icon in the page's tab).
 	 * 
-	 * @param page The page for which the name and icon should be refreshed.
+	 * @param page
+	 *        The page for which the name and icon should be refreshed.
 	 */
 	public void refreshPageTab(IPage page) {
-		if( page instanceof PagePart)
-		{
+		if(page instanceof PagePart) {
 			((PagePart)page).refreshTab();
-		}
-		else
-		{
+		} else {
 			// TODO : lookup for the corresponding PagePart, and call refresh.
-			
+
 		}
 	}
+
 	/**
 	 * Real implementation of refreshTab.
 	 * 
@@ -414,8 +426,8 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	 * 
 	 */
 	private void refreshTabsInternal() {
-		//		System.out.println("start synchronize2() ------------------------");
-		//		showTilesStatus();
+		// System.out.println("start synchronize2() ------------------------");
+		// showTilesStatus();
 
 		// Get the currently selected folder
 		PagePart oldActivePage = getActivePage();
@@ -430,7 +442,6 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 		// Synchronize parts
 		rootPart.synchronize2(garbageMaps);
 
-
 		// Remove orphaned parts (no more used)
 		garbageMaps.garbage();
 
@@ -440,15 +451,15 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 		// Reenable SWT and force layout
 		container.setRedraw(true);
 		container.layout(true, true);
-		//		System.out.println("end synchronize2() ------------------------");
-		//		showTilesStatus();
+		// System.out.println("end synchronize2() ------------------------");
+		// showTilesStatus();
 	}
 
 	/**
-	 * Select the specified page in the Parts. The specified page will becomes the active one.
-	 * Appropriate events are fired.
-	 * This is the programatic counterpart of selecting a page in the UI.
-	 * If the provided page is null, do nothing.
+	 * Select the specified page in the Parts. The specified page will becomes
+	 * the active one. Appropriate events are fired. This is the programatic
+	 * counterpart of selecting a page in the UI. If the provided page is null,
+	 * do nothing.
 	 * 
 	 * @param page
 	 *        The page to select or null.
@@ -461,14 +472,14 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	}
 
 	/**
-	 * Select the specified page in the Parts. The specified page will becomes the active one.
-	 * Appropriate events are fired.
-	 * This is the programatic counterpart of selecting a page in the UI.
-	 * If the provided page is null, do nothing.
+	 * Select the specified page in the Parts. The specified page will becomes
+	 * the active one. Appropriate events are fired. This is the programatic
+	 * counterpart of selecting a page in the UI. If the provided page is null,
+	 * do nothing.
 	 * 
 	 * @param page
-	 *        The page to select or null. The IPage should
-	 *        be an instance previously returned by the SashContainer.
+	 *        The page to select or null. The IPage should be an instance
+	 *        previously returned by the SashContainer.
 	 */
 	public void selectPage(IPage page) {
 		if(page == null)
@@ -485,8 +496,8 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	 * Lookup the {@link IPage} used to render the specified rawModel.
 	 * 
 	 * @param rawModel
-	 *        The model for which the IPage is requested.
-	 *        If the model is not rendered, return null;
+	 *        The model for which the IPage is requested. If the model is
+	 *        not rendered, return null;
 	 * 
 	 * @return The corresponding IPage or null if not found.
 	 */
@@ -501,8 +512,8 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	 * Lookup the {@link IPage} used to render the specified IEditorPart.
 	 * 
 	 * @param editor
-	 *        The IEditorPart for which the IPage is requested.
-	 *        If the IEditorPart is not rendered, return null;
+	 *        The IEditorPart for which the IPage is requested. If the
+	 *        IEditorPart is not rendered, return null;
 	 * 
 	 * @return The corresponding IPage or null if not found.
 	 */
@@ -514,10 +525,10 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	}
 
 	/**
-	 * Check if the oldActivePage still alive, and set it if needed.
-	 * If the oldActivePage is null, set an active page if one exist.
-	 * If the oldActivePage still alive, let it as the active one. If it is
-	 * disposed, get arbitrarily an active page if one exist.
+	 * Check if the oldActivePage still alive, and set it if needed. If the
+	 * oldActivePage is null, set an active page if one exist. If the
+	 * oldActivePage still alive, let it as the active one. If it is disposed,
+	 * get arbitrarily an active page if one exist.
 	 * 
 	 * @param oldActivePage
 	 * @param partLists
@@ -540,8 +551,8 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	}
 
 	/**
-	 * Lookup for a valid active Page. Return null if none is found.
-	 * TODO Use a visitor to implements this method.
+	 * Lookup for a valid active Page. Return null if none is found. TODO Use a
+	 * visitor to implements this method.
 	 * 
 	 * @return
 	 */
@@ -553,10 +564,12 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	}
 
 	/**
-	 * Set a {@link MenuManager} used to manage a contextual menu that is shown on the tabs area of the folders.
+	 * Set a {@link MenuManager} used to manage a contextual menu that is shown
+	 * on the tabs area of the folders.
 	 * 
 	 * @param menuManager
-	 *        The {@link MenuManager} used to create the menu on the tab area.
+	 *        The {@link MenuManager} used to create the menu on the tab
+	 *        area.
 	 */
 	public void setFolderTabMenuManager(MenuManager menuManager) {
 		this.folderTabMenuManager = menuManager;
@@ -569,22 +582,22 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	/**
 	 * @return the menuManager
 	 */
-	protected MenuManager getFolderTabMenuManager() {
+	public MenuManager getFolderTabMenuManager() {
 		return folderTabMenuManager;
 	}
 
 	/**
-	 * Show the status of the different Tiles composing the sash system.
-	 * Used for debug purpose.
+	 * Show the status of the different Tiles composing the sash system. Used
+	 * for debug purpose.
 	 */
 	public void showTilesStatus() {
 		ShowPartStatusVisitor visitor = new ShowPartStatusVisitor();
 		rootPart.visit(visitor);
 	}
 
-
 	/**
-	 * Visit all the Pages (IEditorPage and IComponentPage), allowing to access to the public interface.
+	 * Visit all the Pages (IEditorPage and IComponentPage), allowing to access
+	 * to the public interface.
 	 */
 	public void visit(IPageVisitor pageVisitor) {
 		PageVisitorWrapper visitor = new PageVisitorWrapper(pageVisitor);
@@ -592,9 +605,9 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	}
 
 	/**
-	 * Visit the Part associated to the container. This method visibility is protected in order to be able to access it
-	 * from junit tests.
-	 * It is not intended to be used by public API or from outside.
+	 * Visit the Part associated to the container. This method visibility is
+	 * protected in order to be able to access it from junit tests. It is not
+	 * intended to be used by public API or from outside.
 	 */
 	protected void visit(IPartVisitor visitor) {
 		rootPart.visit(visitor);
@@ -620,13 +633,15 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 		 *      org.eclipse.swt.graphics.Rectangle)
 		 */
 		public IDropTarget drag(Control currentControl, Object draggedObject, Point position, Rectangle dragRectangle) {
-			// TODO remove the cast by changing the method. Only folder can be source and target
+			// TODO remove the cast by changing the method. Only folder can be
+			// source and target
 			final TabFolderPart sourcePart = (TabFolderPart)rootPart.findPart(draggedObject); // (ITilePart) draggedObject;
 			// Compute src tab index
-			// TODO move that and previous in the sender of drag event. Use a class containing both as draggedObject.
+			// TODO move that and previous in the sender of drag event. Use a
+			// class containing both as draggedObject.
 			final int srcTabIndex = PTabFolder.getDraggedObjectTabIndex(draggedObject);
 
-//			System.out.println("drag to position=" + position);
+			// System.out.println("drag to position=" + position);
 			Rectangle containerDisplayBounds = DragUtil.getDisplayBounds(container);
 			AbstractPanelPart targetPart = null;
 
@@ -637,7 +652,8 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 					targetPart = (AbstractPanelPart)rootPart.findPart(position);
 					// System.out.println("targetPart=" + targetPart
 					// + ", position=" + position
-					// + "container.toControl(position)=" + container.toControl(position));
+					// + "container.toControl(position)=" +
+					// container.toControl(position));
 				}
 
 				if(targetPart != null) {
@@ -648,29 +664,34 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 					int side = Geometry.getClosestSide(targetBounds, position);
 					int distance = Geometry.getDistanceFromEdge(targetBounds, position, side);
 
-					// Reserve the 5 pixels around the edge of the part for the drop-on-edge cursor
+					// Reserve the 5 pixels around the edge of the part for the
+					// drop-on-edge cursor
 					// Check if the target can handle the drop.
 					if(distance >= 5) {
-						// Otherwise, ask the part if it has any special meaning for this drop location
+						// Otherwise, ask the part if it has any special meaning
+						// for this drop location
 						// TODO remove cast; change return type of findPart()
 						IDropTarget target = targetPart.getDropTarget(draggedObject, (TabFolderPart)sourcePart, position);
 						if(target != null) {
 							return target;
 						}
 					} else {
-						// We are on the boarder, try to drop on the parent 
+						// We are on the boarder, try to drop on the parent
 						// Warning : the parent could be the rootPart
-//						System.out.println("DropTarget near the border");
+						// System.out.println("DropTarget near the border");
 					}
-					//                     
+					//
 					if(distance > 30) {
 						side = SWT.CENTER;
 					}
-					//                     
-					// // If the part doesn't want to override this drop location then drop on the edge
-					//                     
-					// // A "pointless drop" would be one that will put the dragged object back where it started.
-					// // Note that it should be perfectly valid to drag an object back to where it came from -- however,
+					//
+					// // If the part doesn't want to override this drop
+					// location then drop on the edge
+					//
+					// // A "pointless drop" would be one that will put the
+					// dragged object back where it started.
+					// // Note that it should be perfectly valid to drag an
+					// object back to where it came from -- however,
 					// // the drop should be ignored.
 					//
 					@SuppressWarnings("unused")
@@ -684,7 +705,7 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 				}
 			} else {
 				// Cursor is outside the container
-//				System.out.println("Outside container bounds");
+				// System.out.println("Outside container bounds");
 				// This will be used to create a new Window.
 				// We only allow dropping into a stack, not creating one
 				// if (differentWindows)
@@ -774,13 +795,16 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 		 * @see org.eclipse.ui.internal.dnd.IDropTarget#getCursor()
 		 */
 		public Cursor getCursor() {
-//			System.out.println(SashWindowsContainer.this.getClass().getSimpleName() + ".getCursor()-" + count++);
+			// System.out.println(SashWindowsContainer.this.getClass().getSimpleName()
+			// + ".getCursor()-" + count++);
 			return DragCursors.getCursor(DragCursors.positionToDragCursor(cursor));
 
 		}
 
 		public Rectangle getSnapRectangle() {
-//			System.out.println(SashWindowsContainer.this.getClass().getSimpleName() + ".getSnapRectangle(" + "sourcePart=" + sourcePart + ", targetPart=" + targetPart + ", side=" + side);
+			// System.out.println(SashWindowsContainer.this.getClass().getSimpleName()
+			// + ".getSnapRectangle(" + "sourcePart=" + sourcePart +
+			// ", targetPart=" + targetPart + ", side=" + side);
 			Rectangle targetDisplayBounds;
 
 			if(targetPart != null) {
@@ -805,17 +829,16 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 
 	}
 
-	
 	/**
 	 * @return the lifeCycleEventProvider
 	 */
-	protected SashContainerEventsProvider getLifeCycleEventProvider() {
+	public SashContainerEventsProvider getLifeCycleEventProvider() {
 		return lifeCycleEventProvider;
 	}
 
 	/**
-	 * Add a listener on pageChanged event.
-	 * This implementation delegates to the internal PageTracker.
+	 * Add a listener on pageChanged event. This implementation delegates to the
+	 * internal PageTracker.
 	 * 
 	 * @see org.eclipse.papyrus.sasheditor.editor.ISashWindowsContainer#addPageChangedListener(org.eclipse.papyrus.sasheditor.editor.IPageChangedListener)
 	 * @param pageChangedListener
@@ -837,8 +860,8 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	}
 
 	/**
-	 * Add a listener on Page LifeCycle events.
-	 * This implementation delegates to the internal PageTracker.
+	 * Add a listener on Page LifeCycle events. This implementation delegates to
+	 * the internal PageTracker.
 	 * 
 	 * @see org.eclipse.papyrus.sasheditor.editor.ISashWindowsContainer#addPageChangedListener(org.eclipse.papyrus.sasheditor.editor.IPageChangedListener)
 	 * @param listener
@@ -863,13 +886,10 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	/* Internal Visitors */
 	/* ***************************************************** */
 
-
 	/**
-	 * Inner class.
-	 * A visitor setting the {@link MenuManager} on each folder.
+	 * Inner class. A visitor setting the {@link MenuManager} on each folder.
 	 */
 	private class SetFolderTabMenuVisitor extends PartVisitor {
-
 
 		private MenuManager menuManager;
 
@@ -894,23 +914,23 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	}
 
 	/**
-	 * Inner class.
-	 * A visitor used to collect all visible page in the sashcontainer.
-	 * A visible page is a page whose the diagram area is visible.
+	 * Inner class. A visitor used to collect all visible page in the
+	 * sashcontainer. A visible page is a page whose the diagram area is
+	 * visible.
 	 */
-	private class CollectVisiblePageVisitor  extends PartVisitor {
-		
+	private class CollectVisiblePageVisitor extends PartVisitor {
+
 		private List<IPage> visiblePages = new ArrayList<IPage>();
 
 		private Class<? extends IPage> expectedClass;
-		
+
 		/**
 		 * Constructor.
 		 * 
 		 * @param menuManager
 		 */
 		public CollectVisiblePageVisitor() {
-			
+
 		}
 
 		/**
@@ -925,6 +945,7 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 
 		/**
 		 * Get the result list.
+		 * 
 		 * @param <T>
 		 * @return
 		 */
@@ -938,42 +959,43 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 		 */
 		@Override
 		public boolean accept(TabFolderPart part) {
-			
+
 			IPage page = part.getVisiblePagePart();
-			if( part != null) {
-				if( expectedClass != null && expectedClass.isInstance(page)) {
+			if(part != null) {
+				if(expectedClass != null && expectedClass.isInstance(page)) {
+					visiblePages.add(page);
+				} else {
 					visiblePages.add(page);
 				}
-				else {
-					visiblePages.add(page);
-				}
-					
+
 			}
-			
+
 			return true;
 		}
 
 	}
 
 	/**
-	 * Inner class.
-	 * A visitor used to collect all visible page in the sashcontainer.
-	 * A visible page is a page whose the diagram area is visible.
+	 * Inner class. A visitor used to collect all visible page in the
+	 * sashcontainer. A visible page is a page whose the diagram area is
+	 * visible.
 	 */
-	private class CollectVisibleIEditorPart  extends PartVisitor {
-		
+	private class CollectVisibleIEditorPart extends PartVisitor {
+
 		private List<IEditorPart> visiblePages = new ArrayList<IEditorPart>();
+
 		/**
 		 * Constructor.
 		 * 
 		 * @param menuManager
 		 */
 		public CollectVisibleIEditorPart() {
-			
+
 		}
 
 		/**
 		 * Get the result list.
+		 * 
 		 * @param <T>
 		 * @return
 		 */
@@ -986,12 +1008,12 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 		 */
 		@Override
 		public boolean accept(TabFolderPart part) {
-			
+
 			IPage page = part.getVisiblePagePart();
-			if( page != null && page instanceof IEditorPage ) {
-				IEditorPage editorPage = (IEditorPage) page;
-					visiblePages.add(editorPage.getIEditorPart());
-					
+			if(page != null && page instanceof IEditorPage) {
+				IEditorPage editorPage = (IEditorPage)page;
+				visiblePages.add(editorPage.getIEditorPart());
+
 			}
 			// continue searching
 			return true;
@@ -999,5 +1021,4 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 
 	}
 
-	
 }

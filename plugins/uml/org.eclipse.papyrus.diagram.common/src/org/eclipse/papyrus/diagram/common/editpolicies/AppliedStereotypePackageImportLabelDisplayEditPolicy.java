@@ -30,25 +30,26 @@ import org.eclipse.uml2.uml.VisibilityKind;
 public class AppliedStereotypePackageImportLabelDisplayEditPolicy extends AppliedStereotypeLinkLabelDisplayEditPolicy {
 
 	String importTag = Activator.ST_LEFT + Messages.AppliedStereotypeLabel_PackageImportTag + Activator.ST_RIGHT;
+
 	String accessTag = Activator.ST_LEFT + Messages.AppliedStereotypeLabel_PackageImportAccessTag + Activator.ST_RIGHT;
 
 	@Override
 	public void activate() {
 		super.activate();
-		if (hostSemanticElement instanceof PackageImport) {
+		if(hostSemanticElement instanceof PackageImport) {
 			changeTag(((PackageImport)hostSemanticElement).getVisibility());
 		}
 	}
 
 	public void notifyChanged(Notification notification) {
 		super.notifyChanged(notification);
-		if (UMLPackage.Literals.PACKAGE_IMPORT__VISIBILITY.equals(notification.getFeature())) {
+		if(UMLPackage.Literals.PACKAGE_IMPORT__VISIBILITY.equals(notification.getFeature())) {
 			changeTag((VisibilityKind)notification.getNewValue());
 		}
 	}
 
 	protected void changeTag(VisibilityKind visibility) {
-		if (VisibilityKind.PUBLIC_LITERAL.equals(visibility)) {
+		if(VisibilityKind.PUBLIC_LITERAL.equals(visibility)) {
 			tag = importTag;
 		} else {
 			tag = accessTag;

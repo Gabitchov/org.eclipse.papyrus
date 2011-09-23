@@ -28,10 +28,9 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.eclipse.ui.views.properties.IPropertyDescriptor;
 
-
 /**
- * A specific property source for Papyrus.
- * It replaces the combo used to choose a single reference by a {@link ElementListSelectionDialog}
+ * A specific property source for Papyrus. It replaces the combo used to choose
+ * a single reference by a {@link ElementListSelectionDialog}
  * 
  */
 public class UMLPropertySource extends PropertySource {
@@ -44,11 +43,12 @@ public class UMLPropertySource extends PropertySource {
 		super(object, ips);
 	}
 
-
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.emf.edit.ui.provider.PropertySource#createPropertyDescriptor(org.eclipse.emf.edit.provider.IItemPropertyDescriptor)
+	 * @see
+	 * org.eclipse.emf.edit.ui.provider.PropertySource#createPropertyDescriptor
+	 * (org.eclipse.emf.edit.provider.IItemPropertyDescriptor)
 	 */
 	@Override
 	protected IPropertyDescriptor createPropertyDescriptor(IItemPropertyDescriptor itemPropertyDescriptor) {
@@ -56,8 +56,7 @@ public class UMLPropertySource extends PropertySource {
 	}
 
 	/**
-	 * A custom property descriptor.
-	 * It replaces the Combo by the {@link ElementListSelectionDialog}
+	 * A custom property descriptor. It replaces the Combo by the {@link ElementListSelectionDialog}
 	 */
 	private class CustomPropertyDescriptor extends PropertyDescriptor {
 

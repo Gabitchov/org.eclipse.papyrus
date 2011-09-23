@@ -39,8 +39,9 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.core.utils.PapyrusEcoreUtils;
 
 /**
- * The Class EObjectInheritanceCopyCommand. it takes an eobject in parameter and copy all the elements contained in the
- * source to the target and adds the target to the container of the source
+ * The Class EObjectInheritanceCopyCommand. it takes an eobject in parameter and
+ * copy all the elements contained in the source to the target and adds the
+ * target to the container of the source
  */
 public class EObjectInheritanceCopyCommand extends CompositeCommand {
 
@@ -97,8 +98,8 @@ public class EObjectInheritanceCopyCommand extends CompositeCommand {
 	}
 
 	/**
-	 * Contains. check if the target eclass contains a estructuralfeature with the same name less rigorous can work for
-	 * many cases
+	 * Contains. check if the target eclass contains a estructuralfeature with
+	 * the same name less rigorous can work for many cases
 	 * 
 	 * @param target
 	 *        the target
@@ -326,7 +327,8 @@ public class EObjectInheritanceCopyCommand extends CompositeCommand {
 	}
 
 	/**
-	 * The Class CustomSetCommand. permits to change a value from an eobject to eanother
+	 * The Class CustomSetCommand. permits to change a value from an eobject to
+	 * eanother
 	 */
 	private class CustomSetCommand extends SetValueCommand {
 
@@ -353,7 +355,8 @@ public class EObjectInheritanceCopyCommand extends CompositeCommand {
 	}
 
 	/**
-	 * The Class CustomSetCommand. permits to change a value from an eobject to eanother
+	 * The Class CustomSetCommand. permits to change a value from an eobject to
+	 * eanother
 	 */
 	private class CustomAddCommand extends SetValueCommand {
 

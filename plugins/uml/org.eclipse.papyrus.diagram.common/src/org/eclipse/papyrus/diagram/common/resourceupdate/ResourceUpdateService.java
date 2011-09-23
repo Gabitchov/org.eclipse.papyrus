@@ -43,8 +43,8 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.uml2.uml.Profile;
 
 /**
- * A listener for resource changes, used to trigger an update of
- * models whose underlying resources have been changed.
+ * A listener for resource changes, used to trigger an update of models whose
+ * underlying resources have been changed.
  * 
  * @author Ansgar Radermacher (CEA LIST)
  */
@@ -52,7 +52,8 @@ public class ResourceUpdateService implements IService, IResourceChangeListener,
 
 	public static final String RESOURCE_UPDATE_ID = Activator.ID + ".resourceUpdate";
 
-	// public init (CoreMultiDiagramEditor editor, ISaveAndDirtyService saveAndDirty, ModelSet modelSet) {
+	// public init (CoreMultiDiagramEditor editor, ISaveAndDirtyService
+	// saveAndDirty, ModelSet modelSet) {
 	public void init(ServicesRegistry serviceRegistry) throws ServiceException {
 		modelSet = serviceRegistry.getService(ModelSet.class);
 		editor = serviceRegistry.getService(IMultiDiagramEditor.class);
@@ -77,7 +78,8 @@ public class ResourceUpdateService implements IService, IResourceChangeListener,
 			break;
 		case IResourceChangeEvent.POST_CHANGE:
 			try {
-				// delegate to visitor (event.getResource is typically null) and there
+				// delegate to visitor (event.getResource is typically null) and
+				// there
 				// might be a tree of changed resources
 				event.getDelta().accept(this);
 			} catch (CoreException coreException) {
@@ -89,17 +91,21 @@ public class ResourceUpdateService implements IService, IResourceChangeListener,
 	}
 
 	/**
-	 * A visitor for resource changes. Detects, whether a changed resource belongs to an opened editor
+	 * A visitor for resource changes. Detects, whether a changed resource
+	 * belongs to an opened editor
 	 */
 	public boolean visit(IResourceDelta delta) {
 		IResource changedResource = delta.getResource();
 		if(delta.getFlags() == IResourceDelta.MARKERS) {
-			// only markers have been changed. Refresh their display only (no need to reload resources)
-			// TODO called once for each new marker => assure asynchronous refresh
+			// only markers have been changed. Refresh their display only (no
+			// need to reload resources)
+			// TODO called once for each new marker => assure asynchronous
+			// refresh
 			modelSet.eNotify(new NotificationImpl(Notification.SET, new Object(), delta.getMarkerDeltas()));
 			return false;
 		}
-		// only proceed in case of Files (not projects, folders, ...) for the moment
+		// only proceed in case of Files (not projects, folders, ...) for the
+		// moment
 		if(!(changedResource instanceof IFile)) {
 			return true;
 		}
@@ -111,22 +117,29 @@ public class ResourceUpdateService implements IService, IResourceChangeListener,
 			URI uri = resource.getURI();
 			URI normalizedURI = uriConverter.normalize(uri);
 
-			// URI path is prefixed with /resource or /plugin (registered model), therefore compare with
+			// URI path is prefixed with /resource or /plugin (registered
+			// model), therefore compare with
 			// endsWith.
-			// Comparison is done on path level since resource and changedResource are never
-			// identical. The latter is a generic system resource (File, ...), the former a
+			// Comparison is done on path level since resource and
+			// changedResource are never
+			// identical. The latter is a generic system resource (File, ...),
+			// the former a
 			// model-aware representation of the resource
 			if(normalizedURI.path().endsWith(changedResourcePath)) {
 				if(changedResourcePathWOExt.equals(modelSet.getFilenameWithoutExtension())) {
 					// model itself has changed.
-					// mark main resource as changed. User will asked later, when he activates the editor.
+					// mark main resource as changed. User will asked later,
+					// when he activates the editor.
 					if(!saveListener.isSaveActive() && !partActivationListener.isModied()) {
 						partActivationListener.setModificationData(changedResourcePath, delta);
 					}
 				}
-				// changed resource does not belong to the model, it might however belong to a referenced
-				// model. Since the referenced model is not editable (TODO: might change? see bug 317430),
-				// it can be unloaded without asking the user (it will be reloaded on demand)
+				// changed resource does not belong to the model, it might
+				// however belong to a referenced
+				// model. Since the referenced model is not editable (TODO:
+				// might change? see bug 317430),
+				// it can be unloaded without asking the user (it will be
+				// reloaded on demand)
 
 				else if(resource.isLoaded()) {
 					EList<EObject> contents = resource.getContents();
@@ -148,7 +161,8 @@ public class ResourceUpdateService implements IService, IResourceChangeListener,
 	// private ILifeCycleEventsProvider lifeCycleEvents;
 
 	/**
-	 * Activate the listeners. It will listen to resource changes and to changes of the active editor
+	 * Activate the listeners. It will listen to resource changes and to changes
+	 * of the active editor
 	 */
 	private void activate() {
 		// ... add service to the workspace

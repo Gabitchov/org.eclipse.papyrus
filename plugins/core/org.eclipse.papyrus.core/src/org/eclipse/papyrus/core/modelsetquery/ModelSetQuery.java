@@ -22,7 +22,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.core.modelsetquery.impl.IModelSetQueryAdapter;
 
 /**
- * The Class ModelSetQuery provides service to get objects of specified type using cache mechanism
+ * The Class ModelSetQuery provides service to get objects of specified type
+ * using cache mechanism
  */
 public class ModelSetQuery {
 

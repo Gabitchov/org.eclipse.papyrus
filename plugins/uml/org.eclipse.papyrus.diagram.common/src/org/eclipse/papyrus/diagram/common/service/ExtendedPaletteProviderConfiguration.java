@@ -29,8 +29,8 @@ public class ExtendedPaletteProviderConfiguration extends XMLPaletteProviderConf
 	private final String path;
 
 	/**
-	 * Creates a new <code>ProviderContributionDescriptor</code> instance given a provider
-	 * configuration element
+	 * Creates a new <code>ProviderContributionDescriptor</code> instance given
+	 * a provider configuration element
 	 * 
 	 * @param configElement
 	 *        The provider XML configuration element
@@ -51,7 +51,8 @@ public class ExtendedPaletteProviderConfiguration extends XMLPaletteProviderConf
 	}
 
 	/**
-	 * Builds a new provider contribution descriptor by parsing its configuration element
+	 * Builds a new provider contribution descriptor by parsing its
+	 * configuration element
 	 * 
 	 * @param configElement
 	 *        A provider configuration element
@@ -63,9 +64,11 @@ public class ExtendedPaletteProviderConfiguration extends XMLPaletteProviderConf
 	}
 
 	/**
-	 * Returns the unique identifier of the bundle that contains the configuration file
+	 * Returns the unique identifier of the bundle that contains the
+	 * configuration file
 	 * 
-	 * @return the unique identifier of the bundle that contains the configuration file
+	 * @return the unique identifier of the bundle that contains the
+	 *         configuration file
 	 */
 	public String getBundleID() {
 		return bundleID;
@@ -79,7 +82,5 @@ public class ExtendedPaletteProviderConfiguration extends XMLPaletteProviderConf
 	public String getPath() {
 		return path;
 	}
-
-
 
 }

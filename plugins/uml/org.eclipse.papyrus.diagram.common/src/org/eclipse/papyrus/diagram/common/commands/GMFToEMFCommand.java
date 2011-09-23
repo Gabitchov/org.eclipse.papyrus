@@ -63,7 +63,9 @@ public class GMFToEMFCommand implements Command {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.emf.common.command.Command#chain(org.eclipse.emf.common.command.Command)
+	 * @see
+	 * org.eclipse.emf.common.command.Command#chain(org.eclipse.emf.common.command
+	 * .Command)
 	 */
 	public Command chain(Command command) {
 		throw new UnsupportedOperationException("Cannot compose GMF command with EMF command");

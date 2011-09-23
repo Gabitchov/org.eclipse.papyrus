@@ -55,7 +55,8 @@ public class BadNameExtensionException extends ExtensionException {
 	}
 
 	/**
-	 * Creates a BadNameExtensionException with a specific cause and a specific message.
+	 * Creates a BadNameExtensionException with a specific cause and a specific
+	 * message.
 	 * 
 	 * @param message
 	 *        the message of the exception

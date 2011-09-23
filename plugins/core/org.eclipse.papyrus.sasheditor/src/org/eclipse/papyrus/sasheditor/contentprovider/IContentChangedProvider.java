@@ -1,11 +1,9 @@
 package org.eclipse.papyrus.sasheditor.contentprovider;
 
-
 /**
- * Interface implemented by classes firing events when the ContentProvider content
- * change.
- * This interface can be used by client of ContentProvider.
- * It is not use directly by the SashSystem.
+ * Interface implemented by classes firing events when the ContentProvider
+ * content change. This interface can be used by client of ContentProvider. It
+ * is not use directly by the SashSystem.
  * 
  * @author dumoulin
  */

@@ -50,8 +50,8 @@ import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
 
 /**
- * this is the tab in charge to display the hyperlink diagram created by using heuristic for the property default
- * the code was extract from {@link NavigationCreateDiagramDialog}
+ * this is the tab in charge to display the hyperlink diagram created by using
+ * heuristic for the property default the code was extract from {@link NavigationCreateDiagramDialog}
  * 
  */
 public class LocalDefaultLinkDiagramTab {
@@ -76,9 +76,7 @@ public class LocalDefaultLinkDiagramTab {
 
 	private EObject semanticElement;
 
-
 	private class NavigableGroupKey {
-
 
 		public NavigableElement ancestor = null;
 
@@ -99,7 +97,6 @@ public class LocalDefaultLinkDiagramTab {
 
 	private Composite defaultHyperlinkComposite;
 
-
 	/**
 	 * @return the composite that contains the table
 	 * **/
@@ -119,9 +116,9 @@ public class LocalDefaultLinkDiagramTab {
 
 	public LocalDefaultLinkDiagramTab(CTabFolder tabFolder, EObject semanticElement) {
 		this.semanticElement = semanticElement;
-		//init list of descriptor to fill the table
+		// init list of descriptor to fill the table
 		initLocalNavigableElement();
-		//associate the composite to the tabfolder
+		// associate the composite to the tabfolder
 		CTabItem tbtmDefaultsHyperlinks = new CTabItem(tabFolder, SWT.NONE);
 		tbtmDefaultsHyperlinks.setText("Hyperlink diagram with Heuristic");
 		defaultHyperlinkComposite = new Composite(tabFolder, SWT.NONE);
@@ -129,7 +126,6 @@ public class LocalDefaultLinkDiagramTab {
 		createArea(defaultHyperlinkComposite);
 		tbtmDefaultsHyperlinks.setControl(defaultHyperlinkComposite);
 	}
-
 
 	/**
 	 * get the command to create diagrams from the selection done into the table
@@ -196,7 +192,8 @@ public class LocalDefaultLinkDiagramTab {
 			col.setResizable(true);
 		}
 
-		// regroup CreatedNavigableElement which has same ancestor and use the same feature of this ancestor
+		// regroup CreatedNavigableElement which has same ancestor and use the
+		// same feature of this ancestor
 		Map<NavigableGroupKey, List<NavigableElement>> successorsMap = new HashMap<NavigableGroupKey, List<NavigableElement>>();
 
 		for(Entry<NavigableElement, List<CreationCommandDescriptor>> possibleCreationEntry : possibleCreations.entrySet()) {
@@ -227,7 +224,6 @@ public class LocalDefaultLinkDiagramTab {
 		for(Entry<NavigableGroupKey, List<NavigableElement>> successorsEntry : successorsMap.entrySet()) {
 			NavigableGroupKey groupKey = successorsEntry.getKey();
 			List<NavigableElement> successors = successorsEntry.getValue();
-
 
 			TableItem tableItem = new TableItem(table, SWT.NONE);
 			tableItem.setChecked(false);
@@ -285,10 +281,9 @@ public class LocalDefaultLinkDiagramTab {
 		return table;
 	}
 
-
 	/**
-	 * this method is used to construct descriptors of heuristic to construct diagrams.
-	 * These descriptors will be displayed in the table.
+	 * this method is used to construct descriptors of heuristic to construct
+	 * diagrams. These descriptors will be displayed in the table.
 	 */
 	protected void initLocalNavigableElement() {
 		List<NavigableElement> navElements = NavigationHelper.getInstance().getAllNavigableElements(semanticElement);

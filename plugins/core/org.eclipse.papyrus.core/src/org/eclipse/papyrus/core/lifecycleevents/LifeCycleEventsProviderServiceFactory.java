@@ -19,11 +19,10 @@ import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.resource.ModelSet;
 
-
 /**
  * A service factory to create the {@link ILifeCycleEventsProvider} service.
- * This provide a nickname for {@link SaveAndDirtyService} service.
- * This serviceFactory depends on {@link SaveAndDirtyService} service.
+ * This provide a nickname for {@link SaveAndDirtyService} service. This
+ * serviceFactory depends on {@link SaveAndDirtyService} service.
  * 
  * @author cedric dumoulin
  * 

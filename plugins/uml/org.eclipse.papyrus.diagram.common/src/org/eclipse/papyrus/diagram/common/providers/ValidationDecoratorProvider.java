@@ -184,7 +184,8 @@ public abstract class ValidationDecoratorProvider extends AbstractProvider imple
 			IResource emfResource = null;
 			if(view.getElement() != null) {
 				emfResource = WorkspaceSynchronizer.getFile(view.getElement().eResource());
-				// allow emfResource being empty, since there might be gmf views without an EObject behind;
+				// allow emfResource being empty, since there might be gmf views
+				// without an EObject behind;
 			}
 
 			IMarker[] gmfMarkers = null;
@@ -198,7 +199,8 @@ public abstract class ValidationDecoratorProvider extends AbstractProvider imple
 				log.error("Validation markers refresh failure", e); //$NON-NLS-1$
 			}
 			if(gmfMarkers == null) {
-				// indicates an exception, findMarkers returns an empty array, if there are no markers
+				// indicates an exception, findMarkers returns an empty array,
+				// if there are no markers
 				return;
 			}
 			Label toolTip = null;
@@ -258,7 +260,6 @@ public abstract class ValidationDecoratorProvider extends AbstractProvider imple
 			}
 		}
 
-
 		/**
 		 * Get the image for a given severity
 		 * 
@@ -281,8 +282,8 @@ public abstract class ValidationDecoratorProvider extends AbstractProvider imple
 		}
 
 		/**
-		 * activate the decorators of this view.
-		 * Register a listener for editing domain of the view
+		 * activate the decorators of this view. Register a listener for editing
+		 * domain of the view
 		 */
 		public void activate() {
 			if(viewId == null) {
@@ -295,7 +296,8 @@ public abstract class ValidationDecoratorProvider extends AbstractProvider imple
 				allDecorators.put(viewId, this);
 			}
 
-			// stop listening to changes in resources if there are no more decorators
+			// stop listening to changes in resources if there are no more
+			// decorators
 			MarkerObserver fileObserver = fileObservers.get(editingDomain);
 			if(fileObserver == null) {
 				fileObserver = new MarkerObserver(editingDomain);
@@ -329,12 +331,14 @@ public abstract class ValidationDecoratorProvider extends AbstractProvider imple
 				return;
 			}
 
-			// stop listening to changes in resources if there are no more decorators
+			// stop listening to changes in resources if there are no more
+			// decorators
 			MarkerObserver fileObserver = fileObservers.get(editingDomain);
 			if(fileObserver != null) {
 				fileObserver.views.remove(view);
 				if(fileObserver.views.isEmpty()) {
-					// no more views registered for the listener => remove observer
+					// no more views registered for the listener => remove
+					// observer
 					FileChangeManager.getInstance().removeFileObserver(fileObserver);
 					fileObservers.remove(editingDomain);
 				}
@@ -391,8 +395,8 @@ public abstract class ValidationDecoratorProvider extends AbstractProvider imple
 		}
 
 		/**
-		 * A marker has been deleted. Need to treat separately from change, since old values are not stored in
-		 * marker, but in attribute map
+		 * A marker has been deleted. Need to treat separately from change,
+		 * since old values are not stored in marker, but in attribute map
 		 */
 		public void handleMarkerDeleted(IMarker marker, @SuppressWarnings("rawtypes") Map attributes) {
 			String viewId = (String)attributes.get(org.eclipse.gmf.runtime.common.ui.resources.IMarker.ELEMENT_ID);
@@ -403,7 +407,8 @@ public abstract class ValidationDecoratorProvider extends AbstractProvider imple
 				EObject eObjectFromMarker = ValidationUtils.eObjectFromMarkerOrMap(null, attributes, domain);
 
 				if(eObjectFromMarker != null) {
-					// loop over all views that reference the eObject from the marker
+					// loop over all views that reference the eObject from the
+					// marker
 					for(View view : CrossReferencerUtil.getCrossReferencingViews(eObjectFromMarker, null)) {
 						refreshDecorators(view);
 					}
@@ -423,14 +428,16 @@ public abstract class ValidationDecoratorProvider extends AbstractProvider imple
 					EObject eObjectFromMarker = ValidationUtils.eObjectFromMarkerOrMap(marker, null, domain);
 
 					if(eObjectFromMarker != null) {
-						// loop over all views that reference the eObject from the marker
+						// loop over all views that reference the eObject from
+						// the marker
 						for(View view : CrossReferencerUtil.getCrossReferencingViews(eObjectFromMarker, null)) {
 							refreshDecorators(view);
 						}
 					}
 				}
 			} catch (CoreException e) {
-				// only reason: marker does not exist (ignore, should not happen)
+				// only reason: marker does not exist (ignore, should not
+				// happen)
 			}
 		}
 

@@ -26,15 +26,15 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 
 /**
- * The Class AbstractHyperLinkManagerShell. This Class has been generated from VisualEditor. Do not
- * modify it manually by adding behavior! you will lose the capacity to open with VE. So this class
- * is abstract and it contains set of getter in order to connect behavior in subclasses
+ * The Class AbstractHyperLinkManagerShell. This Class has been generated from
+ * VisualEditor. Do not modify it manually by adding behavior! you will lose the
+ * capacity to open with VE. So this class is abstract and it contains set of
+ * getter in order to connect behavior in subclasses
  */
 public abstract class AbstractHyperLinkManagerShell {
 
 	/** The hyper link shell. */
 	protected Shell hyperLinkShell = null;
-
 
 	public Shell getHyperLinkShell() {
 		return hyperLinkShell;
@@ -43,20 +43,15 @@ public abstract class AbstractHyperLinkManagerShell {
 	/** The c tab folder. */
 	private CTabFolder cTabFolder = null;
 
-
 	public CTabFolder getcTabFolder() {
 		return cTabFolder;
 	}
-
-
 
 	/** The Ok button. */
 	protected Button OkButton = null;
 
 	/** The cancel button. */
 	protected Button cancelButton = null;
-
-
 
 	protected ArrayList<HyperLinkTab> tabList = new ArrayList<HyperLinkTab>();
 
@@ -74,10 +69,7 @@ public abstract class AbstractHyperLinkManagerShell {
 		cTabFolder.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
 		cTabFolder.setLayoutData(gridData);
 
-
 	}
-
-
 
 	/**
 	 * This method initializes HyperlinkComposite.

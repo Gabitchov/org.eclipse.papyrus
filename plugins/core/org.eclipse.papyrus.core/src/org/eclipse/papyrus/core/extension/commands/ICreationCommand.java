@@ -15,7 +15,8 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
 
 /**
- * Define a command use to create new diagram. It use to provide Eclipse extension @see {@link PapyrusDiagram#creationCommand} It used by the creation
+ * Define a command use to create new diagram. It use to provide Eclipse
+ * extension @see {@link PapyrusDiagram#creationCommand} It used by the creation
  * model wizard.
  * 
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
@@ -28,24 +29,29 @@ public interface ICreationCommand {
 	 * @param diResourceSet
 	 *        the resourceSet containing all diagrams
 	 * @param container
-	 *        of the diagram, if container is null, the diagram is contained by the top level container
+	 *        of the diagram, if container is null, the diagram is contained
+	 *        by the top level container
 	 * @param diagramName
-	 *        the name of the new diagram or null to use a dialog to choose the name
+	 *        the name of the new diagram or null to use a dialog to choose
+	 *        the name
 	 */
 	public void createDiagram(DiResourceSet diResourceSet, EObject container, String diagramName);
-	
+
 	/**
-	 * Get a command to create a new diagram in diResourceSet with the given name.
+	 * Get a command to create a new diagram in diResourceSet with the given
+	 * name.
 	 * 
 	 * @param diResourceSet
 	 *        the resourceSet containing all diagrams
 	 * @param container
-	 *        of the diagram, if container is null, the diagram is contained by the top level container
+	 *        of the diagram, if container is null, the diagram is contained
+	 *        by the top level container
 	 * @param diagramName
-	 *        the name of the new diagram or null to use a dialog to choose the name
+	 *        the name of the new diagram or null to use a dialog to choose
+	 *        the name
 	 */
 	public ICommand getCreateDiagramCommand(final DiResourceSet diResourceSet, final EObject container, final String diagramName);
-	
+
 	/**
 	 * Get the type of the diagram to create.
 	 * 
@@ -54,7 +60,8 @@ public interface ICreationCommand {
 	public String getCreatedDiagramType();
 
 	/**
-	 * Check if the creation of this diagram is strongly attached to its parent or if it can be reassigned after creation.
+	 * Check if the creation of this diagram is strongly attached to its parent
+	 * or if it can be reassigned after creation.
 	 * 
 	 * @return true if parent can be reassigned
 	 */

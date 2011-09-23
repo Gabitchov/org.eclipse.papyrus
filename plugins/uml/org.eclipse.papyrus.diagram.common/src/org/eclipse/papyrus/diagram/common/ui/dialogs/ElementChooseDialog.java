@@ -35,7 +35,8 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.ParameterableElement;
 
 /**
- * this classs is used to display a ui in order to look for a kind of element, with a treeviewer
+ * this classs is used to display a ui in order to look for a kind of element,
+ * with a treeviewer
  * 
  */
 public class ElementChooseDialog extends AbstractChooseElement {
@@ -99,7 +100,8 @@ public class ElementChooseDialog extends AbstractChooseElement {
 	 * @param elementtype
 	 *        the kind of element that we look for
 	 * @param notWanted
-	 *        the list of element that we do not want to select (list of subclasses of elementtype) cannot be null
+	 *        the list of element that we do not want to select (list of
+	 *        subclasses of elementtype) cannot be null
 	 */
 	public ElementChooseDialog(Shell parent, int style, Element context, EClass elementtype, List<EClass> notWanted) {
 		super(parent, style);
@@ -117,18 +119,19 @@ public class ElementChooseDialog extends AbstractChooseElement {
 		treeViewer = filtercontrol.getViewer();
 		treeViewer.setUseHashlookup(true);
 
-		//inner class of filter. 
-		//display a parent if its childreen can be choosen
+		// inner class of filter.
+		// display a parent if its childreen can be choosen
 		treeViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 		ViewerFilter filter = new ViewerFilter() {
 
 			@Override
 			public boolean select(Viewer viewer, Object parentElement, Object element) {
-				if(element instanceof EObject) {//it contains nothing 
+				if(element instanceof EObject) {// it contains nothing
 					EObject eObject = (EObject)element;
 					if(eObject.eContents().size() == 0) {
 						return isSelectableEobject(eObject);
-					} else { //it contains something so we have to test children before
+					} else { // it contains something so we have to test
+								// children before
 						boolean result = false;
 						if(isSelectableEobject(eObject)) {
 							return true;
@@ -142,7 +145,6 @@ public class ElementChooseDialog extends AbstractChooseElement {
 						}
 						return result;
 
-
 					}
 				}
 				return false;
@@ -153,7 +155,6 @@ public class ElementChooseDialog extends AbstractChooseElement {
 
 		treeViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
 		treeViewer.setInput(context);
-
 
 		treeViewer.addSelectionChangedListener(new ISelectionChangedListener() {
 
@@ -206,7 +207,8 @@ public class ElementChooseDialog extends AbstractChooseElement {
 	 * 
 	 * @param eObject
 	 *        that we want to test
-	 * @return true if the eobject can be choosen, ie this is an instance of elementType and not instance of all type contained into notWanted
+	 * @return true if the eobject can be choosen, ie this is an instance of
+	 *         elementType and not instance of all type contained into notWanted
 	 */
 	protected boolean isSelectableEobject(EObject eObject) {
 		if(elementtype.isSuperTypeOf(eObject.eClass())) {

@@ -35,11 +35,10 @@ import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 
 /**
- * Handler for the load resource action.
- * This actions load a resource in the model set, which is not yet loaded (due to resource loading strategy).
+ * Handler for the load resource action. This actions load a resource in the
+ * model set, which is not yet loaded (due to resource loading strategy).
  */
 public class UnloadHandler extends GraphicalCommandHandler {
-
 
 	/**
 	 * @see org.eclipse.papyrus.modelexplorer.handler.AbstractCommandHandler#getCommand()

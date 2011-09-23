@@ -30,10 +30,9 @@ import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.ui.PlatformUI;
 
 /**
- * This handler allows to rename element in the Diagram.
- * It works with the org.eclipse.ui.edit.rename command.
- * It is created to replace the initial keybinding done by GMF.
- * see bug 317424
+ * This handler allows to rename element in the Diagram. It works with the
+ * org.eclipse.ui.edit.rename command. It is created to replace the initial
+ * keybinding done by GMF. see bug 317424
  * 
  */
 public class RenamedElementHandler extends AbstractHandler {
@@ -64,16 +63,14 @@ public class RenamedElementHandler extends AbstractHandler {
 		if(selection.size() == 1) {
 			IGraphicalEditPart editpart = selection.get(0);
 			DiagramEditPart diagramEP = DiagramEditPartsUtil.getDiagramEditPart(editpart);
-			//we don't rename the diagram 
+			// we don't rename the diagram
 			return editpart != diagramEP;
 		}
 		return false;
 	}
 
-
 	/**
-	 * Iterate over current selection and build a list of the {@link IGraphicalEditPart} contained in
-	 * the selection.
+	 * Iterate over current selection and build a list of the {@link IGraphicalEditPart} contained in the selection.
 	 * 
 	 * @return the currently selected {@link IGraphicalEditPart}
 	 */

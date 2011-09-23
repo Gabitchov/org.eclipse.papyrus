@@ -23,10 +23,9 @@ import org.eclipse.papyrus.core.utils.AbstractServiceUtils;
 import org.eclipse.papyrus.diagram.common.part.UmlGmfDiagramEditor;
 import org.eclipse.ui.IWorkbenchPart;
 
-
 /**
- * Set of utility methods for accessing core Services.
- * This methods are designed to be used from code from Papyrus GMF diagrams.
+ * Set of utility methods for accessing core Services. This methods are designed
+ * to be used from code from Papyrus GMF diagrams.
  * 
  * 
  * @author cedric dumoulin
@@ -48,8 +47,9 @@ public class ServiceUtilsForGMF extends AbstractServiceUtils<IDiagramEditDomain>
 	/**
 	 * Get the {@link ServicesRegistry} from an {@link IDiagramEditDomain}.
 	 * Throw an exception if the ServiceRegistry can't be found. <br>
-	 * This method get the ServiceRegistry from the IDiagramEditDomain associated to an GMF EditPart.
-	 * This IDiagramEditDomain can be obtained by calling:
+	 * This method get the ServiceRegistry from the IDiagramEditDomain
+	 * associated to an GMF EditPart. This IDiagramEditDomain can be obtained by
+	 * calling:
 	 * <ul>
 	 * <li>from EditParts - editpart.getDiagramEditDomain()</li>
 	 * <li>from EditPolicies - policy.getHost().getDiagramEditDomain()</li>

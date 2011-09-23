@@ -19,8 +19,8 @@ import org.eclipse.papyrus.diagram.common.part.UmlGmfDiagramEditor;
 import org.eclipse.ui.IEditorPart;
 
 /**
- * This class provides a Tester to know if the current diagram is the wanted diagram.
- * Test is done using {@link Diagram#getType()}
+ * This class provides a Tester to know if the current diagram is the wanted
+ * diagram. Test is done using {@link Diagram#getType()}
  * 
  * 
  * 
@@ -56,8 +56,7 @@ public class DiagramTester extends PropertyTester {
 	 *        the current editor
 	 * @param expectedValue
 	 *        the expected value : the wanted diagram type
-	 * @return
-	 *         <code>true</code> if the current diagram has the wanted type
+	 * @return <code>true</code> if the current diagram has the wanted type
 	 */
 	protected boolean testDiagramType(IEditorPart iEditor, Object expectedValue) {
 		UmlGmfDiagramEditor editor = (UmlGmfDiagramEditor)iEditor.getAdapter(UmlGmfDiagramEditor.class);

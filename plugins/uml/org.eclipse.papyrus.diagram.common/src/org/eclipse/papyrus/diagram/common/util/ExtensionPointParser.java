@@ -25,13 +25,14 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.papyrus.diagram.common.Activator;
 
 /**
- * A basic simple IExtensionPoint parser. It parses an IExtensionPoint and stores values in
- * instances of the specified Classes specified. It uses java reflection to get the elements and
- * their attributes to parse. It can handle String, Boolean and Object attributes. It can handle any
- * IExtensionPoint as long as the proper Classes are provided. <br>
- * It needs the IExtensionPoint string ID. It needs an Array of Classes to create instances of that
- * kind. If the Classes are internal to another Class, an instance of the enclosing Class is
- * required. <br>
+ * A basic simple IExtensionPoint parser. It parses an IExtensionPoint and
+ * stores values in instances of the specified Classes specified. It uses java
+ * reflection to get the elements and their attributes to parse. It can handle
+ * String, Boolean and Object attributes. It can handle any IExtensionPoint as
+ * long as the proper Classes are provided. <br>
+ * It needs the IExtensionPoint string ID. It needs an Array of Classes to
+ * create instances of that kind. If the Classes are internal to another Class,
+ * an instance of the enclosing Class is required. <br>
  * The Classes provided must follow these rules:
  * <ul>
  * <li>Each Class simple name must be equal to one of the elements defined in the IExtensionPoint to be parsed.</li>
@@ -111,9 +112,10 @@ public class ExtensionPointParser {
 	}
 
 	/**
-	 * Parses the <IExtensionPoint> specified in the constructor. Returns a <List> of <Object>
-	 * instances created from the <Class>es provided in the constructor. Fields with null value in
-	 * the returned <Object>s have not been initialized, as those values were not specified in the
+	 * Parses the <IExtensionPoint> specified in the constructor. Returns a
+	 * <List> of <Object> instances created from the <Class>es provided in the
+	 * constructor. Fields with null value in the returned <Object>s have not
+	 * been initialized, as those values were not specified in the
 	 * <IExtensionPoint>.
 	 * 
 	 * @return
@@ -145,7 +147,8 @@ public class ExtensionPointParser {
 	}
 
 	/**
-	 * Parse an <IConfigurationElement>, including its attributes and its children elements,
+	 * Parse an <IConfigurationElement>, including its attributes and its
+	 * children elements,
 	 * 
 	 * @param element
 	 * @return
@@ -246,7 +249,8 @@ public class ExtensionPointParser {
 	}
 
 	/**
-	 * Adds children instances to the proper <List> attribute of the instance parent.
+	 * Adds children instances to the proper <List> attribute of the instance
+	 * parent.
 	 * 
 	 * @param instance
 	 * @param children
@@ -275,9 +279,10 @@ public class ExtensionPointParser {
 	}
 
 	/**
-	 * Creates an instance of an <Object> searching for the matching <Class> by simple name. The
-	 * list of <Class>es to be used are provided in the constructor. Internal <Class>es must also
-	 * provide an enclosing instance in the constructor.
+	 * Creates an instance of an <Object> searching for the matching <Class> by
+	 * simple name. The list of <Class>es to be used are provided in the
+	 * constructor. Internal <Class>es must also provide an enclosing instance
+	 * in the constructor.
 	 * 
 	 * @param element
 	 * @return

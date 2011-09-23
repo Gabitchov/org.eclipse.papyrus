@@ -86,8 +86,7 @@ public class ShowHideElementsRequest extends Request {
 	/**
 	 * Getter for {@link #container}
 	 * 
-	 * @return
-	 *         {@link #container}
+	 * @return {@link #container}
 	 */
 	public View getContainer() {
 		return this.container;
@@ -96,8 +95,7 @@ public class ShowHideElementsRequest extends Request {
 	/**
 	 * Getter for {@link #semanticElement}
 	 * 
-	 * @return
-	 *         {@link #semanticElement}
+	 * @return {@link #semanticElement}
 	 */
 	public EObject getSemanticElement() {
 		return this.semanticElement;
@@ -116,8 +114,7 @@ public class ShowHideElementsRequest extends Request {
 	/**
 	 * Getter for {@link #location}
 	 * 
-	 * @return
-	 *         The location for the EditPart to show
+	 * @return The location for the EditPart to show
 	 */
 	public Point getLocation() {
 		return this.location;

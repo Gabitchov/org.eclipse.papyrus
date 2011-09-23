@@ -36,7 +36,6 @@ import org.eclipse.uml2.uml.Package;
  */
 public class HyperLinkManagerShell extends AbstractHyperLinkManagerShell {
 
-
 	protected ArrayList<HyperlinkObject> allhypHyperlinkObjects = new ArrayList<HyperlinkObject>();
 
 	/** The view. */
@@ -50,8 +49,6 @@ public class HyperLinkManagerShell extends AbstractHyperLinkManagerShell {
 
 	protected HyperlinkHelperFactory hyperLinkHelperFactory;
 
-
-
 	public void setInput(ArrayList<HyperlinkObject> hyperLinkObjectList) {
 		this.allhypHyperlinkObjects.clear();
 		this.allhypHyperlinkObjects.addAll(hyperLinkObjectList);
@@ -61,8 +58,6 @@ public class HyperLinkManagerShell extends AbstractHyperLinkManagerShell {
 			hyperLinkTab.setInput(allhypHyperlinkObjects);
 		}
 	}
-
-
 
 	/**
 	 * Instantiates a new hyper link manager shell2.
@@ -137,8 +132,6 @@ public class HyperLinkManagerShell extends AbstractHyperLinkManagerShell {
 		getHyperLinkShell().close();
 
 	}
-
-
 
 	/**
 	 * Initialize diagram folder.

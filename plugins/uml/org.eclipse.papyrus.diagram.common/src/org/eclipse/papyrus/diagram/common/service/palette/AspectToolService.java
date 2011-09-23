@@ -79,7 +79,8 @@ public class AspectToolService extends Service implements IAspectToolProviderSer
 	public IAspectActionProvider getProvider(String id) {
 		List<IAspectActionProvider> providers = (List)execute(ExecutionStrategy.REVERSE, new GetAspectToolProviderOperation(id));
 		if(providers == null) {
-			return new StereotypeAspectActionProvider(); // backward compatibility
+			return new StereotypeAspectActionProvider(); // backward
+															// compatibility
 		}
 		Iterator<IAspectActionProvider> it = providers.iterator();
 		while(it.hasNext()) {
@@ -92,7 +93,8 @@ public class AspectToolService extends Service implements IAspectToolProviderSer
 	}
 
 	/**
-	 * A descriptor for aspect tool providers defined by a configuration element.
+	 * A descriptor for aspect tool providers defined by a configuration
+	 * element.
 	 */
 	protected static class ProviderDescriptor extends ActivityFilterProviderDescriptor {
 
@@ -100,8 +102,8 @@ public class AspectToolService extends Service implements IAspectToolProviderSer
 		protected AspectToolProviderConfiguration providerConfiguration;
 
 		/**
-		 * Constructs a <code>ISemanticProvider</code> descriptor for
-		 * the specified configuration element.
+		 * Constructs a <code>ISemanticProvider</code> descriptor for the
+		 * specified configuration element.
 		 * 
 		 * @param element
 		 *        The configuration element describing the provider.
@@ -155,7 +157,8 @@ public class AspectToolService extends Service implements IAspectToolProviderSer
 		String id = "";
 		Node node = actionNode.getAttributes().getNamedItem(IPapyrusPaletteConstant.ID);
 		if(node == null) {
-			return StereotypeAspectActionProvider.FACTORY_ID; // backward compatibility
+			return StereotypeAspectActionProvider.FACTORY_ID; // backward
+																// compatibility
 		} else {
 			id = node.getNodeValue();
 		}

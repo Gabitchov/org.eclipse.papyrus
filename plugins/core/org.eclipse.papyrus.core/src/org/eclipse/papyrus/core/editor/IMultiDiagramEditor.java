@@ -21,18 +21,18 @@ import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.views.properties.IPropertySheetPage;
 
 /**
- * Interface implemented by the main multipage editor. This interface list the methods available to diagram editors. Diagram editors can relies on
- * this interface to retrieve services from the main
- * multi diagram editor.
- * <br>
- * This interface should stay minimalist, as the editor is not designed to handle the services itself.
- * A service should be retrieved by using {@link #getServicesRegistry()}.
+ * Interface implemented by the main multipage editor. This interface list the
+ * methods available to diagram editors. Diagram editors can relies on this
+ * interface to retrieve services from the main multi diagram editor. <br>
+ * This interface should stay minimalist, as the editor is not designed to
+ * handle the services itself. A service should be retrieved by using {@link #getServicesRegistry()}.
  * 
  * 
  * @author cedric dumoulin
  * 
- * TODO remove extends IEditingDomainProvider. This interface should be independant of any technology (EMF, GMF, ...).
- * If the EditingDomain is required, it can be retrieved by the registry.
+ *         TODO remove extends IEditingDomainProvider. This interface should be
+ *         independant of any technology (EMF, GMF, ...). If the EditingDomain
+ *         is required, it can be retrieved by the registry.
  * 
  */
 public interface IMultiDiagramEditor extends IEditorPart {
@@ -43,7 +43,6 @@ public interface IMultiDiagramEditor extends IEditorPart {
 	 * @return the servicesRegistry The registry.
 	 */
 	public ServicesRegistry getServicesRegistry();
-
 
 	/**
 	 * Return the editor site.
@@ -62,7 +61,8 @@ public interface IMultiDiagramEditor extends IEditorPart {
 	/**
 	 * Change the editor input.
 	 * 
-	 * @param newInput The new input.
+	 * @param newInput
+	 *        The new input.
 	 * @deprecated No replacement. Input can't be changed on multi editors.
 	 */
 	public void setEditorInput(IEditorInput newInput);

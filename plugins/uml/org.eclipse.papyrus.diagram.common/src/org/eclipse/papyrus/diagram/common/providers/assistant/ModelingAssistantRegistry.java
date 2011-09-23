@@ -93,7 +93,8 @@ public class ModelingAssistantRegistry {
 	// Types for an EditPart customization
 
 	/**
-	 * Customizes the list of types for an edit part according to the extensions.
+	 * Customizes the list of types for an edit part according to the
+	 * extensions.
 	 * 
 	 * @param editorID
 	 * @param editPart

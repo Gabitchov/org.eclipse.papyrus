@@ -62,9 +62,8 @@ import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Element;
 
 /**
- * @deprecated
- *             This class is used to execute the drag and drop from the outline. It can manage the drop of nodes
- *             and binary links.
+ * @deprecated This class is used to execute the drag and drop from the outline.
+ *             It can manage the drop of nodes and binary links.
  */
 public abstract class OldCommonDiagramDragDropEditPolicy extends DiagramDragDropEditPolicy {
 
@@ -125,12 +124,13 @@ public abstract class OldCommonDiagramDragDropEditPolicy extends DiagramDragDrop
 	}
 
 	/**
-	 * the method provides command to create the binary link into the diagram. If the source and the
-	 * target views do not exist, these views will be created.
+	 * the method provides command to create the binary link into the diagram.
+	 * If the source and the target views do not exist, these views will be
+	 * created.
 	 * 
 	 * @param cc
-	 *        the composite command that will contain the set of command to create the binary
-	 *        link
+	 *        the composite command that will contain the set of command to
+	 *        create the binary link
 	 * @param source
 	 *        the source the element source of the link
 	 * @param target
@@ -205,30 +205,26 @@ public abstract class OldCommonDiagramDragDropEditPolicy extends DiagramDragDrop
 	@Override
 	public Command getDropObjectsCommand(DropObjectsRequest dropRequest) {
 		/*
-		 * when it's the first action after the opening of Papyrus, the viewService is not loaded!
-		 * see bug 302555
+		 * when it's the first action after the opening of Papyrus, the
+		 * viewService is not loaded! see bug 302555
 		 * 
-		 * Duration test for 100000 creations of DropCommand :
-		 * Here 2 solutions :
-		 * - call ViewServiceUtil.forceLoad(); for each drop -> ~2500ms
+		 * Duration test for 100000 creations of DropCommand : Here 2 solutions
+		 * : - call ViewServiceUtil.forceLoad(); for each drop -> ~2500ms
 		 * 
-		 * - test if the command cc can be executed at the end of the method, and if not :
-		 * - call ViewServiceUtil.forceLoad();
-		 * - and return getDropObjectsCommand(getDropObjectsCommand)
-		 * -> ~4700ms
+		 * - test if the command cc can be executed at the end of the method,
+		 * and if not : - call ViewServiceUtil.forceLoad(); - and return
+		 * getDropObjectsCommand(getDropObjectsCommand) -> ~4700ms
 		 * 
-		 * - for information : without call ViewServiceUtil.forceLoad();
-		 * -> ~1600ms
+		 * - for information : without call ViewServiceUtil.forceLoad(); ->
+		 * ~1600ms
 		 * 
 		 * It's better don't test if the command is executable!
 		 */
 		ViewServiceUtil.forceLoad();
 
-
 		if(dropRequest.getObjects().size() > 0 && dropRequest.getObjects().get(0) instanceof String) {
 			return getDropFileCommand(dropRequest);
 		}
-
 
 		// Create a view request from the drop request and then forward getting
 		// the command for that.
@@ -296,9 +292,9 @@ public abstract class OldCommonDiagramDragDropEditPolicy extends DiagramDragDrop
 	}
 
 	/**
-	 * This method returns the default drop command for node. Default here means the no
-	 * consideration is made regarding the semantic elements, the expected figure is basically
-	 * created where expected.
+	 * This method returns the default drop command for node. Default here means
+	 * the no consideration is made regarding the semantic elements, the
+	 * expected figure is basically created where expected.
 	 * 
 	 * @param nodeVISUALID
 	 *        the node visual identifier
@@ -331,8 +327,9 @@ public abstract class OldCommonDiagramDragDropEditPolicy extends DiagramDragDrop
 	}
 
 	/**
-	 * for specific case of drop, the designers has to write the algorithm of its own drop. for
-	 * example case of associationClass, multi dependency etc....
+	 * for specific case of drop, the designers has to write the algorithm of
+	 * its own drop. for example case of associationClass, multi dependency
+	 * etc....
 	 * 
 	 * @param dropRequest
 	 *        the drop request
@@ -381,7 +378,8 @@ public abstract class OldCommonDiagramDragDropEditPolicy extends DiagramDragDrop
 	}
 
 	/**
-	 * Check if the edit part type is the best one to represent an object of the given EClass type
+	 * Check if the edit part type is the best one to represent an object of the
+	 * given EClass type
 	 * 
 	 * @param editPartClass
 	 *        the type of EditPart which may represent a semantic element
@@ -391,7 +389,8 @@ public abstract class OldCommonDiagramDragDropEditPolicy extends DiagramDragDrop
 	 */
 	private boolean isEditPartTypeAdapted(Class<? extends EditPart> editPartClass, EClass eClass) {
 		if(DiagramEditPart.class.isAssignableFrom(editPartClass) || CompartmentEditPart.class.isAssignableFrom(editPartClass)) {
-			// the edit part is disqualified, as a compartment or a diagram can not be dropped
+			// the edit part is disqualified, as a compartment or a diagram can
+			// not be dropped
 			return false;
 		} else if(GraphicalEditPart.class.isAssignableFrom(editPartClass)) {
 			// check the edit part type against advised ones
@@ -403,25 +402,28 @@ public abstract class OldCommonDiagramDragDropEditPolicy extends DiagramDragDrop
 	}
 
 	/**
-	 * Check if an edit part type correctly represent a semantic element of the given EClass.
-	 * Subclasses should implement this method to restrict the possibilities during drop of a link.
-	 * If an edit part is not of a suitable type, returning false will eliminate it to represent the
-	 * element as a source or target edit part. This can be used for example to disable label edit
-	 * parts, which may represent the same model element as the main node.
+	 * Check if an edit part type correctly represent a semantic element of the
+	 * given EClass. Subclasses should implement this method to restrict the
+	 * possibilities during drop of a link. If an edit part is not of a suitable
+	 * type, returning false will eliminate it to represent the element as a
+	 * source or target edit part. This can be used for example to disable label
+	 * edit parts, which may represent the same model element as the main node.
 	 * 
 	 * @param editPartClass
 	 *        the type of EditPart which must be checked
 	 * @param eClass
-	 *        the EClass type of the element which the edit part must represent
-	 * @return the only edit part type which can be selected (return a common super type if several
-	 *         edit parts can be chosen)
+	 *        the EClass type of the element which the edit part must
+	 *        represent
+	 * @return the only edit part type which can be selected (return a common
+	 *         super type if several edit parts can be chosen)
 	 */
 	protected boolean isEditPartTypeSuitableForEClass(Class<? extends GraphicalEditPart> editPartClass, EClass eClass) {
 		return true;
 	}
 
 	/**
-	 * Returns The command to drop the {@link Constraint} and the links, if the constraints elements are on the diagram
+	 * Returns The command to drop the {@link Constraint} and the links, if the
+	 * constraints elements are on the diagram
 	 * 
 	 * @param comment
 	 *        the comment to drop
@@ -437,8 +439,8 @@ public abstract class OldCommonDiagramDragDropEditPolicy extends DiagramDragDrop
 	 *        the IHintedType for the {@link Comment}
 	 * @param linkForComment
 	 *        the IHintedType for the link which attach the {@link Comment} to the annotated Element
-	 * @return
-	 *         The command to drop the {@link Constraint} and the links, if the constraints elements are on the diagram
+	 * @return The command to drop the {@link Constraint} and the links, if the
+	 *         constraints elements are on the diagram
 	 */
 	protected Command getDropConstraintCommand(Constraint constraint, EditPartViewer viewer, PreferencesHint diagramPreferencesHint, Point location, View containerView, IHintedType commentType, IHintedType linkForComment) {
 		/* for further information, see bug 302555 */
@@ -477,12 +479,13 @@ public abstract class OldCommonDiagramDragDropEditPolicy extends DiagramDragDrop
 			// used in the creation command of each event
 			ConnectionViewDescriptor dashedLineViewDescriptor = new ConnectionViewDescriptor(linkForComment, linkForComment.getSemanticHint(), diagramPreferencesHint);
 
-			// 3. creation of the dashed line between the Comment and the annotated element
+			// 3. creation of the dashed line between the Comment and the
+			// annotated element
 			for(GraphicalEditPart current : endEditPart) {
 				if(current != null) {
 					targetEventAdapter = new SemanticAdapter(null, current.getModel());
 					CommonDeferredCreateConnectionViewCommand dashedLineCmd = new CommonDeferredCreateConnectionViewCommand(getEditingDomain(), linkForComment.getSemanticHint(), (sourceEventAdapter), (targetEventAdapter), viewer, diagramPreferencesHint, dashedLineViewDescriptor, null);
-					//					dashedLineCmd.setElement(constraint);
+					// dashedLineCmd.setElement(constraint);
 					dashedLineCmd.setElement(null);
 					if(dashedLineCmd.canExecute()) {
 						cc.compose(dashedLineCmd);
@@ -495,7 +498,8 @@ public abstract class OldCommonDiagramDragDropEditPolicy extends DiagramDragDrop
 	}
 
 	/**
-	 * Returns The command to drop the {@link Comment} and the links, if the attached elements are on the diagram
+	 * Returns The command to drop the {@link Comment} and the links, if the
+	 * attached elements are on the diagram
 	 * 
 	 * @param comment
 	 *        the comment to drop
@@ -511,8 +515,8 @@ public abstract class OldCommonDiagramDragDropEditPolicy extends DiagramDragDrop
 	 *        the IHintedType for the {@link Comment}
 	 * @param linkForComment
 	 *        the IHintedType for the link which attach the {@link Comment} to the annotated Element
-	 * @return
-	 *         The command to drop the {@link Comment} and the link, if the attached elements are on the diagram
+	 * @return The command to drop the {@link Comment} and the link, if the
+	 *         attached elements are on the diagram
 	 */
 	protected Command getDropCommentCommand(Comment comment, EditPartViewer viewer, PreferencesHint diagramPreferencesHint, Point location, View containerView, IHintedType commentType, IHintedType linkForComment) {
 		/* for further information, see bug 302555 */
@@ -533,7 +537,6 @@ public abstract class OldCommonDiagramDragDropEditPolicy extends DiagramDragDrop
 			index += 1;
 		}
 
-
 		// 2. creation of the node Comment
 		IAdaptable elementAdapter = new EObjectAdapter(comment);
 		ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class, commentType.getSemanticHint(), ViewUtil.APPEND, false, diagramPreferencesHint);
@@ -547,18 +550,16 @@ public abstract class OldCommonDiagramDragDropEditPolicy extends DiagramDragDrop
 		IAdaptable targetEventAdapter = null;
 		if(nbAnnotated != 0) {
 
-
-
-
 			// used in the creation command of each event
 			ConnectionViewDescriptor dashedLineViewDescriptor = new ConnectionViewDescriptor(linkForComment, linkForComment.getSemanticHint(), diagramPreferencesHint);
 
-			// 3. creation of the dashed line between the Constraint and the constrained element
+			// 3. creation of the dashed line between the Constraint and the
+			// constrained element
 			for(GraphicalEditPart current : endEditPart) {
 				if(current != null) {
 					targetEventAdapter = new SemanticAdapter(null, current.getModel());
 					CommonDeferredCreateConnectionViewCommand dashedLineCmd = new CommonDeferredCreateConnectionViewCommand(getEditingDomain(), linkForComment.getSemanticHint(), (sourceEventAdapter), (targetEventAdapter), viewer, diagramPreferencesHint, dashedLineViewDescriptor, null);
-					//dashedLineCmd.setElement(comment);
+					// dashedLineCmd.setElement(comment);
 					dashedLineCmd.setElement(null);
 					if(dashedLineCmd.canExecute()) {
 						cc.compose(dashedLineCmd);
@@ -569,7 +570,5 @@ public abstract class OldCommonDiagramDragDropEditPolicy extends DiagramDragDrop
 		}
 		return new ICommandProxy(cc);
 	}
-
-
 
 }

@@ -21,7 +21,8 @@ import org.eclipse.papyrus.diagram.common.figure.layout.ILayoutToolBox;
 import org.eclipse.papyrus.diagram.common.figure.layout.ManualCompartmentToolBox;
 
 /**
- * The Class BasicClassifierCompartmentLayoutHelper offer automatic layout or manual layout
+ * The Class BasicClassifierCompartmentLayoutHelper offer automatic layout or
+ * manual layout
  */
 public class BasicClassifierCompartmentLayoutHelper extends ClassifierCompartmentLayoutHelper {
 

@@ -13,11 +13,11 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.common.editpolicies;
 
-
 /**
  * 
- * This EditPolicy provides the same behavior that ShowHideClassifierContentsEditPolicy.
- * Currently its used in the Composite Structure Diagram to Show/Hide the related Contents for the properties
+ * This EditPolicy provides the same behavior that
+ * ShowHideClassifierContentsEditPolicy. Currently its used in the Composite
+ * Structure Diagram to Show/Hide the related Contents for the properties
  * 
  */
 public class ShowHideRelatedContentsEditPolicy extends ShowHideClassifierContentsEditPolicy {

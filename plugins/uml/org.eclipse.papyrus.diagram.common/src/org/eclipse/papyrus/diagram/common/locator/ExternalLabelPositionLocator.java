@@ -19,9 +19,9 @@ import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
 
 /**
- * This class is used to constrain the position of ExternalNodeLabel.
- * The locator let the external node label be freely located by used anywhere around the
- * parent figure.
+ * This class is used to constrain the position of ExternalNodeLabel. The
+ * locator let the external node label be freely located by used anywhere around
+ * the parent figure.
  */
 public class ExternalLabelPositionLocator implements IBorderItemLocator {
 

@@ -26,7 +26,8 @@ import org.eclipse.uml2.uml.Abstraction;
 public class AppliedStereotypeAbstractionLabelDisplayEditPolicy extends AppliedStereotypeLinkLabelDisplayEditPolicy {
 
 	/**
-	 * Creates a new AppliedStereotypeAbstractionLabelDisplayEditPolicy, with the correct tag.
+	 * Creates a new AppliedStereotypeAbstractionLabelDisplayEditPolicy, with
+	 * the correct tag.
 	 */
 	public AppliedStereotypeAbstractionLabelDisplayEditPolicy() {
 		super(Messages.AppliedStereotypeLabel_AbstractionTag);

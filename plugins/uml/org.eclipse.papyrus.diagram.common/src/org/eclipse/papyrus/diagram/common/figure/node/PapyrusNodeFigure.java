@@ -26,7 +26,8 @@ import org.eclipse.gmf.runtime.notation.GradientStyle;
 import org.eclipse.swt.graphics.Color;
 
 /**
- * Common node figure. In charge of background, font, gradient, foreground, border, shadow
+ * Common node figure. In charge of background, font, gradient, foreground,
+ * border, shadow
  */
 public class PapyrusNodeFigure extends NodeFigure implements IPapyrusNodeFigure {
 
@@ -71,17 +72,18 @@ public class PapyrusNodeFigure extends NodeFigure implements IPapyrusNodeFigure 
 	}
 
 	/**
-	 * Create the composite structure of this figure, by adding it its necessary children.
-	 * Children should override and implement this method in case they have a composite figure, to add children forming the overall structure.
+	 * Create the composite structure of this figure, by adding it its necessary
+	 * children. Children should override and implement this method in case they
+	 * have a composite figure, to add children forming the overall structure.
 	 */
 	protected void createCompositeFigureStructure() {
 		// By default, do nothing : the figure is not composite
 	}
 
 	/**
-	 * Get the figure on which the border must be drawn.
-	 * Children should override and implement this method in case the border must not be drawn on the overall figure. The returned figure shall be
-	 * created in the method {@link #createCompositeFigureStructure()}.
+	 * Get the figure on which the border must be drawn. Children should
+	 * override and implement this method in case the border must not be drawn
+	 * on the overall figure. The returned figure shall be created in the method {@link #createCompositeFigureStructure()}.
 	 * 
 	 * @return the figure to draw the border on
 	 * @see #createCompositeFigureStructure()
@@ -92,11 +94,12 @@ public class PapyrusNodeFigure extends NodeFigure implements IPapyrusNodeFigure 
 	}
 
 	/**
-	 * Sets the border to the bordered figure.
-	 * This method is not intended to be overridden. Override {@link #getBorderedFigure()} instead.
+	 * Sets the border to the bordered figure. This method is not intended to be
+	 * overridden. Override {@link #getBorderedFigure()} instead.
 	 * 
 	 * @param borderedFigure
-	 *        the figure on which the border shall be drawn (or null for this figure)
+	 *        the figure on which the border shall be drawn (or null for
+	 *        this figure)
 	 * @param border
 	 *        The new border
 	 * @see IFigure#setBorder(Border)
@@ -134,8 +137,9 @@ public class PapyrusNodeFigure extends NodeFigure implements IPapyrusNodeFigure 
 	}
 
 	/**
-	 * Get the default non shadow border to use.
-	 * Children can override and implement this method if necessary, taking care not to fail if borderColor is null
+	 * Get the default non shadow border to use. Children can override and
+	 * implement this method if necessary, taking care not to fail if
+	 * borderColor is null
 	 * 
 	 * @param borderColor
 	 *        the color of the border to take if possible or null
@@ -184,8 +188,9 @@ public class PapyrusNodeFigure extends NodeFigure implements IPapyrusNodeFigure 
 	}
 
 	/**
-	 * Paint the background of the figure. If this figure uses gradient, then it will paint the
-	 * background with the gradient informations. Otherwise it will use the background color.
+	 * Paint the background of the figure. If this figure uses gradient, then it
+	 * will paint the background with the gradient informations. Otherwise it
+	 * will use the background color.
 	 * 
 	 * @param graphics
 	 *        the graphics

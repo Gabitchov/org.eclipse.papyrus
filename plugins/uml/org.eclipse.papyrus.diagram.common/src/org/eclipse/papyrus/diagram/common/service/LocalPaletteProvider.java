@@ -64,7 +64,8 @@ public class LocalPaletteProvider extends AbstractProvider implements IPalettePr
 	}
 
 	/**
-	 * Adds the configuration elements to the list of palette provider XML contributions
+	 * Adds the configuration elements to the list of palette provider XML
+	 * contributions
 	 * 
 	 * @param configElement
 	 *        the configuration element from which information are retrieved
@@ -109,7 +110,8 @@ public class LocalPaletteProvider extends AbstractProvider implements IPalettePr
 			DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
 
 			InputStream inputStream = getXmlFile(path);
-			// the file should never be null in this implementation, but sub-classes could return null
+			// the file should never be null in this implementation, but
+			// sub-classes could return null
 			if(inputStream == null) {
 				throw new IOException("Impossible to load file: " + path);
 			} else {
@@ -133,8 +135,8 @@ public class LocalPaletteProvider extends AbstractProvider implements IPalettePr
 	 * 
 	 * @param path
 	 *        the path to the file
-	 * @return the file using the specified path in the plugin state location, even if it does not exists. In the latter case, the method
-	 *         {@link File#exists()} returns <code>false</code>.
+	 * @return the file using the specified path in the plugin state location,
+	 *         even if it does not exists. In the latter case, the method {@link File#exists()} returns <code>false</code>.
 	 */
 	public InputStream getXmlFile(String path) throws IOException {
 		return new FileInputStream(Activator.getDefault().getStateLocation().append(path).toFile());

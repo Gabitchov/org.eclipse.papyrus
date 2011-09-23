@@ -17,19 +17,19 @@ package org.eclipse.papyrus.core.lifecycleevents;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.part.FileEditorInput;
 
-
 /**
- * Interface implemented by classes wishing to be notified of the inputChanged event after a call to 
- * {@link ISaveAndDirtyService#doSaveAs()}.
+ * Interface implemented by classes wishing to be notified of the inputChanged
+ * event after a call to {@link ISaveAndDirtyService#doSaveAs()}.
  * 
  * @author cedric dumoulin
- *
+ * 
  */
 public interface IEditorInputChangedListener {
 
 	/**
 	 * 
-	 * @param fileEditorInput The new value of EditorInput
+	 * @param fileEditorInput
+	 *        The new value of EditorInput
 	 */
 	public void editorInputChanged(FileEditorInput fileEditorInput);
 
@@ -37,5 +37,5 @@ public interface IEditorInputChangedListener {
 	 * Called when the value of the isDirty() flag has changed.
 	 */
 	public void isDirtyChanged();
-	
+
 }

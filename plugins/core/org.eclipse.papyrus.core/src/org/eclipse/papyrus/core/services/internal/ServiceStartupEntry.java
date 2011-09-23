@@ -11,7 +11,6 @@ import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.services.ServiceState;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
 
-
 /**
  * Base class for the different types of service startups (lazy, synchronized).
  * 
@@ -19,7 +18,6 @@ import org.eclipse.papyrus.core.services.ServicesRegistry;
  * 
  */
 public abstract class ServiceStartupEntry {
-
 
 	/**
 	 * The ServiceEntry, according to its type.
@@ -79,18 +77,20 @@ public abstract class ServiceStartupEntry {
 	abstract public void disposeService() throws ServiceException;
 
 	/**
-	 * Return the list of the {@link ServiceStartupEntry} required by this service.
+	 * Return the list of the {@link ServiceStartupEntry} required by this
+	 * service.
 	 * 
 	 * @return
 	 */
 	public Collection<ServiceStartupEntry> getRequiredServices() {
 
 		throw new UnsupportedOperationException("Not yet implemented");
-//		return requiredServices;
+		// return requiredServices;
 	}
 
 	/**
 	 * Get {@link ServiceDescriptor} associated to this entry.
+	 * 
 	 * @return
 	 */
 	public ServiceDescriptor getDescriptor() {
@@ -113,11 +113,10 @@ public abstract class ServiceStartupEntry {
 		return serviceEntry.isStarted();
 	}
 
-
 	/**
 	 * 
 	 * @see java.lang.Object#toString()
-	 *
+	 * 
 	 * @return
 	 */
 	@Override

@@ -11,9 +11,9 @@ import org.eclipse.papyrus.core.services.ServiceState;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.osgi.framework.Bundle;
 
-
 /**
- * Base class for the different types of service entries (PoJo, Service, ServiceFactory, ...).
+ * Base class for the different types of service entries (PoJo, Service,
+ * ServiceFactory, ...).
  * 
  * @author cedric dumoulin
  */
@@ -23,7 +23,7 @@ public abstract class ServiceTypeEntry {
 	 * Current state of the service.
 	 */
 	protected ServiceState state = ServiceState.registered;
-	
+
 	/**
 	 * Descriptor of the service associated to this entry.
 	 */
@@ -32,21 +32,21 @@ public abstract class ServiceTypeEntry {
 	/**
 	 * 
 	 * Constructor.
-	 *
+	 * 
 	 */
 	public ServiceTypeEntry(ServiceDescriptor serviceDescriptor) {
 		this.serviceDescriptor = serviceDescriptor;
 	}
-	
+
 	/**
 	 * Change the state of the service.
+	 * 
 	 * @param newState
 	 */
-	protected void setState( ServiceState newState ) {
+	protected void setState(ServiceState newState) {
 		state = newState;
 	}
-	
-	
+
 	/**
 	 * @return the state
 	 */
@@ -55,19 +55,18 @@ public abstract class ServiceTypeEntry {
 	}
 
 	/**
-	 * Check if the current state is the proposed state. 
-	 * Throws an exception if the state is different.
+	 * Check if the current state is the proposed state. Throws an exception if
+	 * the state is different.
 	 * 
 	 * @param expectedState
 	 * @throws BadStateException
 	 */
-	protected void checkState( ServiceState expectedState) throws BadStateException {
-		if(expectedState!=state)
-		{
+	protected void checkState(ServiceState expectedState) throws BadStateException {
+		if(expectedState != state) {
 			throw new BadStateException(expectedState, state, serviceDescriptor);
 		}
 	}
-	
+
 	/**
 	 * Get the descriptor of the service associated to this entry.
 	 * 
@@ -91,22 +90,27 @@ public abstract class ServiceTypeEntry {
 
 		// Try to get the one arg constructor.
 		// This require the ServiceRegistry. Old stuff, not more used.
-//		try {
-//			Constructor<?> constructor = classname.getConstructor(ServicesRegistry.class);
-//			return constructor.newInstance(registry);
-//		} catch (SecurityException e) {
-//			// Do nothing, try next constructor
-//		} catch (NoSuchMethodException e) {
-//			// Do nothing, try next constructor
-//		} catch (IllegalArgumentException e) {
-//			throw new ServiceException("Can't instanciate '" + serviceClassname + "' with args ServicesRegistry.", e);
-//		} catch (InstantiationException e) {
-//			throw new ServiceException("Can't instanciate '" + serviceClassname + "' with args ServicesRegistry.", e);
-//		} catch (IllegalAccessException e) {
-//			throw new ServiceException("Can't instanciate '" + serviceClassname + "' with args ServicesRegistry.", e);
-//		} catch (InvocationTargetException e) {
-//			throw new ServiceException("Can't instanciate '" + serviceClassname + "' with args ServicesRegistry.", e);
-//		}
+		// try {
+		// Constructor<?> constructor =
+		// classname.getConstructor(ServicesRegistry.class);
+		// return constructor.newInstance(registry);
+		// } catch (SecurityException e) {
+		// // Do nothing, try next constructor
+		// } catch (NoSuchMethodException e) {
+		// // Do nothing, try next constructor
+		// } catch (IllegalArgumentException e) {
+		// throw new ServiceException("Can't instanciate '" + serviceClassname +
+		// "' with args ServicesRegistry.", e);
+		// } catch (InstantiationException e) {
+		// throw new ServiceException("Can't instanciate '" + serviceClassname +
+		// "' with args ServicesRegistry.", e);
+		// } catch (IllegalAccessException e) {
+		// throw new ServiceException("Can't instanciate '" + serviceClassname +
+		// "' with args ServicesRegistry.", e);
+		// } catch (InvocationTargetException e) {
+		// throw new ServiceException("Can't instanciate '" + serviceClassname +
+		// "' with args ServicesRegistry.", e);
+		// }
 
 		// Try with zero arg constructor.
 		try {
@@ -122,10 +126,9 @@ public abstract class ServiceTypeEntry {
 		}
 	}
 
-
 	/**
-	 * Load the Class object. Try from current ClassLoader, then try using the plugin referenced in the
-	 * serviceDescriptor.PluginId
+	 * Load the Class object. Try from current ClassLoader, then try using the
+	 * plugin referenced in the serviceDescriptor.PluginId
 	 * 
 	 * @return
 	 * @throws ServiceException
@@ -160,6 +163,7 @@ public abstract class ServiceTypeEntry {
 
 	/**
 	 * Get the service instance.
+	 * 
 	 * @return
 	 * @throws ServiceException
 	 */
@@ -167,20 +171,24 @@ public abstract class ServiceTypeEntry {
 
 	/**
 	 * Create the associated service if not a Lazy Service.
+	 * 
 	 * @throws ServiceException
 	 */
 	abstract public void createService() throws ServiceException;
 
 	/**
 	 * Start the associated service if not a Lazy Service.
-	 * @param servicesRegistry The servicesRegistry containing this service.
+	 * 
+	 * @param servicesRegistry
+	 *        The servicesRegistry containing this service.
 	 * 
 	 * @throws ServiceException
 	 */
-	abstract public void initService( ServicesRegistry servicesRegistry) throws ServiceException;
+	abstract public void initService(ServicesRegistry servicesRegistry) throws ServiceException;
 
 	/**
 	 * Start the associated service if not a Lazy Service.
+	 * 
 	 * @throws ServiceException
 	 */
 	abstract public void startService() throws ServiceException;
@@ -189,6 +197,5 @@ public abstract class ServiceTypeEntry {
 	 * Dispose associated service.
 	 */
 	abstract public void disposeService() throws ServiceException;
-
 
 }

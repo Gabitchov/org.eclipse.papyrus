@@ -13,7 +13,8 @@ package org.eclipse.papyrus.core.utils;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 
 /**
- * A EMF Command that wraps a GMF command. Each method is redirected to the GMF one.
+ * A EMF Command that wraps a GMF command. Each method is redirected to the GMF
+ * one.
  * 
  * @deprecated use {@link org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper} instead
  */

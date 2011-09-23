@@ -3,8 +3,6 @@
  */
 package org.eclipse.papyrus.core.services;
 
-
-
 /**
  * @author cedric dumoulin
  * 
@@ -21,10 +19,7 @@ public class BadStateException extends ServiceException {
 	 * 
 	 */
 	public BadStateException(ServiceState expectedState, ServiceState state, ServiceDescriptor descriptor) {
-		super("Bad state for service '" + descriptor.getKey()
-				+ "'. Expected '" + expectedState
-				+ "' found '" + state
-				+ "'.");
+		super("Bad state for service '" + descriptor.getKey() + "'. Expected '" + expectedState + "' found '" + state + "'.");
 	}
 
 	/**
@@ -36,10 +31,7 @@ public class BadStateException extends ServiceException {
 	 * @param serviceDescriptor
 	 */
 	public BadStateException(String text, ServiceState state, ServiceDescriptor descriptor) {
-		super(text
-				+ " (Service= '" + descriptor.getKey()
-				+ ", state= " + state
-				+ ")");
+		super(text + " (Service= '" + descriptor.getKey() + ", state= " + state + ")");
 	}
 
 }

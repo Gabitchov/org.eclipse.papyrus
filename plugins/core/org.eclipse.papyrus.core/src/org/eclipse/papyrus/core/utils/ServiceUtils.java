@@ -17,15 +17,14 @@ package org.eclipse.papyrus.core.utils;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
 
-
 /**
  * @author cedric dumoulin
- *
+ * 
  */
 public class ServiceUtils extends AbstractServiceUtils<ServicesRegistry> {
 
 	private final static ServiceUtils instance = new ServiceUtils();
-	
+
 	/**
 	 * Get the singleton instance of the class.
 	 * 
@@ -34,10 +33,10 @@ public class ServiceUtils extends AbstractServiceUtils<ServicesRegistry> {
 	public static final ServiceUtils getInstance() {
 		return instance;
 	}
-	
+
 	/**
 	 * @see org.eclipse.papyrus.core.utils.AbstractServiceUtils#getServiceRegistry(java.lang.Object)
-	 *
+	 * 
 	 * @param from
 	 * @return
 	 * @throws ServiceException

@@ -9,7 +9,6 @@ import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.services.ServiceState;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
 
-
 /**
  * Entry for a service provided as POJO.
  * 
@@ -27,14 +26,12 @@ public class PojoServiceEntry extends ServiceTypeEntry {
 	 * @param serviceDescriptor
 	 */
 	public PojoServiceEntry(ServiceDescriptor serviceDescriptor) {
-		super( serviceDescriptor );
+		super(serviceDescriptor);
 		setState(ServiceState.registered);
 	}
 
-
 	/**
-	 * Create an entry for an already created service.
-	 * Constructor.
+	 * Create an entry for an already created service. Constructor.
 	 * 
 	 * @param descriptor
 	 *        Descriptor of the service. Key and priority should be set.
@@ -42,7 +39,7 @@ public class PojoServiceEntry extends ServiceTypeEntry {
 	 *        The service Instance
 	 */
 	public PojoServiceEntry(ServiceDescriptor descriptor, Object serviceInstance) {
-		super( descriptor );
+		super(descriptor);
 		this.serviceInstance = serviceInstance;
 		setState(ServiceState.registered);
 	}
@@ -55,10 +52,10 @@ public class PojoServiceEntry extends ServiceTypeEntry {
 	 *         If service can't be started.
 	 */
 	public Object getServiceInstance() throws ServiceException {
-		
-		if( serviceInstance == null)
+
+		if(serviceInstance == null)
 			throw new BadStateException("Service is not created.", state, serviceDescriptor);
-		
+
 		return serviceInstance;
 	}
 
@@ -69,13 +66,12 @@ public class PojoServiceEntry extends ServiceTypeEntry {
 	 */
 	public void createService() throws ServiceException {
 		checkState(ServiceState.registered);
-		// Exit if already  created.
-		if( serviceInstance != null)
-		{
+		// Exit if already created.
+		if(serviceInstance != null) {
 			setState(ServiceState.created);
 			return;
 		}
-		
+
 		// Create it
 		try {
 			// Create the instance
@@ -112,9 +108,9 @@ public class PojoServiceEntry extends ServiceTypeEntry {
 	 * Do nothing.
 	 */
 	public void disposeService() throws ServiceException {
-		if( serviceInstance == null)
+		if(serviceInstance == null)
 			return;
-		
+
 		serviceInstance = null;
 		setState(ServiceState.disposed);
 	}

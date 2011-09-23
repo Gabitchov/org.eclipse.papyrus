@@ -14,7 +14,6 @@ package org.eclipse.papyrus.diagram.common.service.palette;
 import org.eclipse.gmf.runtime.common.core.service.IOperation;
 import org.eclipse.gmf.runtime.common.core.service.IProvider;
 
-
 /**
  * Operation to find an aspect tool provider, given its unique identifier
  */
@@ -42,7 +41,6 @@ public class GetAspectToolProviderOperation implements IOperation {
 		String id = ((IAspectActionProvider)provider).getFactoryId();
 		return (identifier.equals(id) ? provider : null);
 	}
-
 
 	/**
 	 * Returns the identifier of the provider this operation is looking for

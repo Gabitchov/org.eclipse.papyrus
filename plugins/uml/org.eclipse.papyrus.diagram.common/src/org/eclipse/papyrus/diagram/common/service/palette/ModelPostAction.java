@@ -23,9 +23,9 @@ import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.swt.graphics.Image;
 import org.w3c.dom.Node;
 
-
 /**
- * Generic class for actions modifying directly the models (graphic or semantic model)
+ * Generic class for actions modifying directly the models (graphic or semantic
+ * model)
  */
 public abstract class ModelPostAction implements IPostAction {
 
@@ -74,14 +74,14 @@ public abstract class ModelPostAction implements IPostAction {
 		return factory.getName();
 	}
 
-
 	/**
 	 * @{inheritDoc
 	 */
 	public abstract void run(EditPart editPart);
 
 	/**
-	 * Retrieves the valid type of an object given the structural feature for which it gives a value
+	 * Retrieves the valid type of an object given the structural feature for
+	 * which it gives a value
 	 * 
 	 * @param feature
 	 *        the valued feature

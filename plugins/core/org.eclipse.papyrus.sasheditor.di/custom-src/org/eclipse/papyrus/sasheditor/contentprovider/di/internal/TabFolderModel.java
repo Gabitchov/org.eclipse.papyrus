@@ -22,7 +22,6 @@ import org.eclipse.papyrus.sasheditor.contentprovider.di.IPageModelFactory;
 import org.eclipse.papyrus.sashwindows.di.PageRef;
 import org.eclipse.papyrus.sashwindows.di.TabFolder;
 
-
 /**
  * @author dumoulin
  */
@@ -66,7 +65,6 @@ public class TabFolderModel implements ITabFolderModel {
 
 		return pageModelFactory.createIPageModel(pageRef.getPageIdentifier());
 	}
-
 
 	/**
 	 * @return the tabFolder

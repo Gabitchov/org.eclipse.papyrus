@@ -54,8 +54,8 @@ public abstract class CachedResourcesDiagramEditor extends DiagramDocumentEditor
 	}
 
 	/**
-	 * We want the EditingDomainRegistry to listen to editors closing. At each initialization we add
-	 * the EditingDomainRegistry as a PartListener.
+	 * We want the EditingDomainRegistry to listen to editors closing. At each
+	 * initialization we add the EditingDomainRegistry as a PartListener.
 	 * 
 	 * @param site
 	 *        the site

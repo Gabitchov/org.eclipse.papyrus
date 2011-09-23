@@ -38,9 +38,7 @@ import org.eclipse.papyrus.umlutils.ui.VisualInformationPapyrusConstant;
 import org.eclipse.papyrus.umlutils.ui.helper.AppliedStereotypeHelper;
 import org.eclipse.uml2.uml.Element;
 
-
 public abstract class ChangeStereotypedShapeEditPolicy extends GraphicalEditPolicy implements NotificationListener, IPapyrusListener {
-
 
 	/** constant for this edit policy role */
 	public final static String CHANGE_SHAPE_POLICY = "CHANGE_SHAPE_POLICY";
@@ -71,8 +69,8 @@ public abstract class ChangeStereotypedShapeEditPolicy extends GraphicalEditPoli
 	/**
 	 * Returns the uml element controlled by the host edit part
 	 * 
-	 * @return the uml element controlled by the host edit part
-	 *         can return null if this semantic element is not an uml element
+	 * @return the uml element controlled by the host edit part can return null
+	 *         if this semantic element is not an uml element
 	 */
 	protected Element getUMLElement() {
 		if(getView().getElement() instanceof Element) {
@@ -91,10 +89,12 @@ public abstract class ChangeStereotypedShapeEditPolicy extends GraphicalEditPoli
 	}
 
 	/**
-	 * get all semantic link that are source or target of the graphical edit part
+	 * get all semantic link that are source or target of the graphical edit
+	 * part
 	 * 
 	 * @param gmfpart
-	 *        the graphical editpart for each we look for source and target link
+	 *        the graphical editpart for each we look for source and target
+	 *        link
 	 * @return a list of eobject
 	 */
 	public ArrayList<EObject> getAllSemanticLink(GraphicalEditPart gmfpart) {
@@ -148,18 +148,19 @@ public abstract class ChangeStereotypedShapeEditPolicy extends GraphicalEditPoli
 	 * {@inheritedDoc}
 	 */
 	public void notifyChanged(Notification notification) {
-		// change the label of the figure managed by the host edit part (managed by the parent edit
+		// change the label of the figure managed by the host edit part (managed
+		// by the parent edit
 		// part in general...)
 		// it must be changed only if:
-		// - the annotation corresponding to the display of the stereotype changes
+		// - the annotation corresponding to the display of the stereotype
+		// changes
 		// - the stereotype application list has changed
-
 
 		// if element that has changed is a stereotype => refresh the label.
 		if(notification.getNotifier() instanceof EAnnotation) {
 			if(VisualInformationPapyrusConstant.STEREOTYPE_ANNOTATION == ((EAnnotation)notification.getNotifier()).getSource()) {
 				// stereotype annotation has changed => refresh label display
-				//add a test about kind old value 
+				// add a test about kind old value
 				if(!(getHost() instanceof AbstractShapeEditPart) && AppliedStereotypeHelper.getAppliedStereotypePresentationKind(getView()) == VisualInformationPapyrusConstant.IMAGE_STEREOTYPE_PRESENTATION) {
 					if(notification.getNewValue() instanceof Map.Entry<?, ?>) {
 						if(((Map.Entry<?, ?>)notification.getNewValue()).getKey().equals(VisualInformationPapyrusConstant.STEREOTYPE_PRESENTATION_KIND)) {
@@ -190,7 +191,8 @@ public abstract class ChangeStereotypedShapeEditPolicy extends GraphicalEditPoli
 		}
 		hostSemanticElement = getUMLElement();
 
-		// adds a listener on the view and the element controlled by the editpart
+		// adds a listener on the view and the element controlled by the
+		// editpart
 		getDiagramEventBroker().addNotificationListener(view, this);
 
 		if(hostSemanticElement == null) {
@@ -205,7 +207,6 @@ public abstract class ChangeStereotypedShapeEditPolicy extends GraphicalEditPoli
 		for(EObject stereotypeApplication : hostSemanticElement.getStereotypeApplications()) {
 			getDiagramEventBroker().addNotificationListener(stereotypeApplication, this);
 		}
-
 
 	}
 
@@ -243,7 +244,6 @@ public abstract class ChangeStereotypedShapeEditPolicy extends GraphicalEditPoli
 	 *        the graphical editpart to change
 	 */
 	public abstract void transformIntoShape(EditPart part);
-
 
 	/**
 	 * implementation to transform a shape editpart into normal editpart

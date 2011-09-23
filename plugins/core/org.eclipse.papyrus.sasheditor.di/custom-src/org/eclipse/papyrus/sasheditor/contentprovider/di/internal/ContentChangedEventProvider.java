@@ -17,15 +17,15 @@ import org.eclipse.papyrus.sashwindows.di.SashModel;
 import org.eclipse.papyrus.sashwindows.di.SashWindowsMngr;
 import org.eclipse.papyrus.sashwindows.di.Window;
 
-
 /**
- * A class listening on changes on the internal model and delivering events to registered listeners.
+ * A class listening on changes on the internal model and delivering events to
+ * registered listeners.
  * 
  * @author cedric dumoulin
- *
+ * 
  */
 public class ContentChangedEventProvider implements IContentChangedProvider {
-	
+
 	private List<IContentChangedListener> listeners;
 
 	/** Is this mngr delivering events ? */
@@ -40,31 +40,32 @@ public class ContentChangedEventProvider implements IContentChangedProvider {
 	 * The model firing events
 	 */
 	private SashModel diSashModel;
-	
+
 	/**
 	 * 
 	 * Constructor.
-	 *
+	 * 
 	 * @param diSashModel
 	 */
 	public ContentChangedEventProvider(SashModel diSashModel) {
 		this.diSashModel = diSashModel;
 		activate();
 	}
-	
+
 	/**
 	 * 
 	 * Constructor.
-	 *
+	 * 
 	 * @param diSashModel
 	 */
 	public ContentChangedEventProvider(SashWindowsMngr sashWindowMngr) {
 		this(sashWindowMngr.getSashModel());
 	}
-	
+
 	/**
 	 * Connect EMF changeListener to the {@link ContentChangeListenerManager}.
-	 * Changes in the EMF di model will be fired by the ContentChangeListenerManager.
+	 * Changes in the EMF di model will be fired by the
+	 * ContentChangeListenerManager.
 	 */
 	protected void activate() {
 		diSashModel.eAdapters().add(emfAdapter);
@@ -164,16 +165,15 @@ public class ContentChangedEventProvider implements IContentChangedProvider {
 	}
 
 	/**
-	 * Change event Adapter.
-	 * Forward EMF changeEvent to the {@link ContentChangeListenerManager}.
+	 * Change event Adapter. Forward EMF changeEvent to the {@link ContentChangeListenerManager}.
 	 * 
 	 * @author cedric dumoulin
 	 */
 	public class EMFAdapter extends EContentAdapter {
 
 		/**
-		 * ContentProvider Model has changed.
-		 * Changes includes : ADD, REMOVE and MOVE of elements
+		 * ContentProvider Model has changed. Changes includes : ADD, REMOVE and
+		 * MOVE of elements
 		 * 
 		 * @see org.eclipse.emf.common.notify.impl.AdapterImpl#notifyChanged(org.eclipse.emf.common.notify.Notification)
 		 * 

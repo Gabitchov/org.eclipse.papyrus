@@ -25,121 +25,134 @@ import org.eclipse.papyrus.sashwindows.di.TabFolder;
 import org.eclipse.papyrus.sashwindows.di.Window;
 
 /**
- * <!-- begin-user-doc -->
- * The <b>Adapter Factory</b> for the model.
- * It provides an adapter <code>createXXX</code> method for each class of the model.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> The <b>Adapter Factory</b> for the model. It provides
+ * an adapter <code>createXXX</code> method for each class of the model. <!--
+ * end-user-doc -->
+ * 
  * @see org.eclipse.papyrus.sashwindows.di.DiPackage
  * @generated
  */
 public class DiAdapterFactory extends AdapterFactoryImpl {
 
 	/**
-	 * The cached model package.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached model package. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected static DiPackage modelPackage;
 
 	/**
-	 * Creates an instance of the adapter factory.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Creates an instance of the adapter factory. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public DiAdapterFactory() {
-		if (modelPackage == null) {
+		if(modelPackage == null) {
 			modelPackage = DiPackage.eINSTANCE;
 		}
 	}
 
 	/**
 	 * Returns whether this factory is applicable for the type of the object.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns <code>true</code> if the object is either the model's package or is an instance object of the model.
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> This implementation returns <code>true</code> if
+	 * the object is either the model's package or is an instance object of the
+	 * model. <!-- end-user-doc -->
+	 * 
 	 * @return whether this factory is applicable for the type of the object.
 	 * @generated
 	 */
 	@Override
 	public boolean isFactoryForType(Object object) {
-		if (object == modelPackage) {
+		if(object == modelPackage) {
 			return true;
 		}
-		if (object instanceof EObject) {
+		if(object instanceof EObject) {
 			return ((EObject)object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
 	}
 
 	/**
-	 * The switch that delegates to the <code>createXXX</code> methods.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The switch that delegates to the <code>createXXX</code> methods. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	protected DiSwitch<Adapter> modelSwitch =
-			new DiSwitch<Adapter>() {
-			@Override
-			public Adapter caseSashModel(SashModel object) {
-				return createSashModelAdapter();
-			}
-			@Override
-			public Adapter caseWindow(Window object) {
-				return createWindowAdapter();
-			}
-			@Override
-			public Adapter casePanelParent(PanelParent object) {
-				return createPanelParentAdapter();
-			}
-			@Override
-			public Adapter caseAbstractPanel(AbstractPanel object) {
-				return createAbstractPanelAdapter();
-			}
-			@Override
-			public Adapter casePosition(Position object) {
-				return createPositionAdapter();
-			}
-			@Override
-			public Adapter caseSize(Size object) {
-				return createSizeAdapter();
-			}
-			@Override
-			public Adapter caseTabFolder(TabFolder object) {
-				return createTabFolderAdapter();
-			}
-			@Override
-			public Adapter casePageRef(PageRef object) {
-				return createPageRefAdapter();
-			}
-			@Override
-			public Adapter caseSashPanel(SashPanel object) {
-				return createSashPanelAdapter();
-			}
-			@Override
-			public Adapter caseAbstractPage(AbstractPage object) {
-				return createAbstractPageAdapter();
-			}
-			@Override
-			public Adapter casePageList(PageList object) {
-				return createPageListAdapter();
-			}
-			@Override
-			public Adapter caseSashWindowsMngr(SashWindowsMngr object) {
-				return createSashWindowsMngrAdapter();
-			}
-			@Override
-			public Adapter defaultCase(EObject object) {
-				return createEObjectAdapter();
-			}
-		};
+	protected DiSwitch<Adapter> modelSwitch = new DiSwitch<Adapter>() {
+
+		@Override
+		public Adapter caseSashModel(SashModel object) {
+			return createSashModelAdapter();
+		}
+
+		@Override
+		public Adapter caseWindow(Window object) {
+			return createWindowAdapter();
+		}
+
+		@Override
+		public Adapter casePanelParent(PanelParent object) {
+			return createPanelParentAdapter();
+		}
+
+		@Override
+		public Adapter caseAbstractPanel(AbstractPanel object) {
+			return createAbstractPanelAdapter();
+		}
+
+		@Override
+		public Adapter casePosition(Position object) {
+			return createPositionAdapter();
+		}
+
+		@Override
+		public Adapter caseSize(Size object) {
+			return createSizeAdapter();
+		}
+
+		@Override
+		public Adapter caseTabFolder(TabFolder object) {
+			return createTabFolderAdapter();
+		}
+
+		@Override
+		public Adapter casePageRef(PageRef object) {
+			return createPageRefAdapter();
+		}
+
+		@Override
+		public Adapter caseSashPanel(SashPanel object) {
+			return createSashPanelAdapter();
+		}
+
+		@Override
+		public Adapter caseAbstractPage(AbstractPage object) {
+			return createAbstractPageAdapter();
+		}
+
+		@Override
+		public Adapter casePageList(PageList object) {
+			return createPageListAdapter();
+		}
+
+		@Override
+		public Adapter caseSashWindowsMngr(SashWindowsMngr object) {
+			return createSashWindowsMngrAdapter();
+		}
+
+		@Override
+		public Adapter defaultCase(EObject object) {
+			return createEObjectAdapter();
+		}
+	};
 
 	/**
-	 * Creates an adapter for the <code>target</code>.
-	 * <!-- begin-user-doc -->
+	 * Creates an adapter for the <code>target</code>. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param target the object to adapt.
+	 * 
+	 * @param target
+	 *        the object to adapt.
 	 * @return the adapter for the <code>target</code>.
 	 * @generated
 	 */
@@ -148,13 +161,12 @@ public class DiAdapterFactory extends AdapterFactoryImpl {
 		return modelSwitch.doSwitch((EObject)target);
 	}
 
-
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.sashwindows.di.SashModel <em>Sash Model</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+	 * Creates a new adapter for an object of class ' {@link org.eclipse.papyrus.sashwindows.di.SashModel <em>Sash Model</em>} '. <!-- begin-user-doc
+	 * --> This default implementation returns null so
+	 * that we can easily ignore cases; it's useful to ignore a case when
+	 * inheritance will catch all the cases anyway. <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.sashwindows.di.SashModel
 	 * @generated
@@ -164,11 +176,11 @@ public class DiAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.sashwindows.di.Window <em>Window</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+	 * Creates a new adapter for an object of class ' {@link org.eclipse.papyrus.sashwindows.di.Window <em>Window</em>}'. <!--
+	 * begin-user-doc --> This default implementation returns null so that we
+	 * can easily ignore cases; it's useful to ignore a case when inheritance
+	 * will catch all the cases anyway. <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.sashwindows.di.Window
 	 * @generated
@@ -178,11 +190,12 @@ public class DiAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.sashwindows.di.PanelParent <em>Panel Parent</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * Creates a new adapter for an object of class ' {@link org.eclipse.papyrus.sashwindows.di.PanelParent
+	 * <em>Panel Parent</em>}'. <!-- begin-user-doc --> This default
+	 * implementation returns null so that we can easily ignore cases; it's
+	 * useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.sashwindows.di.PanelParent
 	 * @generated
@@ -192,11 +205,12 @@ public class DiAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.sashwindows.di.AbstractPanel <em>Abstract Panel</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * Creates a new adapter for an object of class ' {@link org.eclipse.papyrus.sashwindows.di.AbstractPanel
+	 * <em>Abstract Panel</em>}'. <!-- begin-user-doc --> This default
+	 * implementation returns null so that we can easily ignore cases; it's
+	 * useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.sashwindows.di.AbstractPanel
 	 * @generated
@@ -206,11 +220,11 @@ public class DiAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.sashwindows.di.Position <em>Position</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+	 * Creates a new adapter for an object of class ' {@link org.eclipse.papyrus.sashwindows.di.Position <em>Position</em>}'.
+	 * <!-- begin-user-doc --> This default implementation returns null so that
+	 * we can easily ignore cases; it's useful to ignore a case when inheritance
+	 * will catch all the cases anyway. <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.sashwindows.di.Position
 	 * @generated
@@ -220,11 +234,11 @@ public class DiAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.sashwindows.di.Size <em>Size</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+	 * Creates a new adapter for an object of class ' {@link org.eclipse.papyrus.sashwindows.di.Size <em>Size</em>}'. <!--
+	 * begin-user-doc --> This default implementation returns null so that we
+	 * can easily ignore cases; it's useful to ignore a case when inheritance
+	 * will catch all the cases anyway. <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.sashwindows.di.Size
 	 * @generated
@@ -234,11 +248,11 @@ public class DiAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.sashwindows.di.TabFolder <em>Tab Folder</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+	 * Creates a new adapter for an object of class ' {@link org.eclipse.papyrus.sashwindows.di.TabFolder <em>Tab Folder</em>} '. <!-- begin-user-doc
+	 * --> This default implementation returns null so
+	 * that we can easily ignore cases; it's useful to ignore a case when
+	 * inheritance will catch all the cases anyway. <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.sashwindows.di.TabFolder
 	 * @generated
@@ -248,11 +262,11 @@ public class DiAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.sashwindows.di.PageRef <em>Page Ref</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+	 * Creates a new adapter for an object of class ' {@link org.eclipse.papyrus.sashwindows.di.PageRef <em>Page Ref</em>}'.
+	 * <!-- begin-user-doc --> This default implementation returns null so that
+	 * we can easily ignore cases; it's useful to ignore a case when inheritance
+	 * will catch all the cases anyway. <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.sashwindows.di.PageRef
 	 * @generated
@@ -262,11 +276,11 @@ public class DiAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.sashwindows.di.SashPanel <em>Sash Panel</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+	 * Creates a new adapter for an object of class ' {@link org.eclipse.papyrus.sashwindows.di.SashPanel <em>Sash Panel</em>} '. <!-- begin-user-doc
+	 * --> This default implementation returns null so
+	 * that we can easily ignore cases; it's useful to ignore a case when
+	 * inheritance will catch all the cases anyway. <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.sashwindows.di.SashPanel
 	 * @generated
@@ -276,11 +290,12 @@ public class DiAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.sashwindows.di.AbstractPage <em>Abstract Page</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * Creates a new adapter for an object of class ' {@link org.eclipse.papyrus.sashwindows.di.AbstractPage
+	 * <em>Abstract Page</em>}'. <!-- begin-user-doc --> This default
+	 * implementation returns null so that we can easily ignore cases; it's
+	 * useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.sashwindows.di.AbstractPage
 	 * @generated
@@ -290,11 +305,11 @@ public class DiAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.sashwindows.di.PageList <em>Page List</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+	 * Creates a new adapter for an object of class ' {@link org.eclipse.papyrus.sashwindows.di.PageList <em>Page List</em>}'.
+	 * <!-- begin-user-doc --> This default implementation returns null so that
+	 * we can easily ignore cases; it's useful to ignore a case when inheritance
+	 * will catch all the cases anyway. <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.sashwindows.di.PageList
 	 * @generated
@@ -304,11 +319,12 @@ public class DiAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.sashwindows.di.SashWindowsMngr <em>Sash Windows Mngr</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * Creates a new adapter for an object of class ' {@link org.eclipse.papyrus.sashwindows.di.SashWindowsMngr
+	 * <em>Sash Windows Mngr</em>}'. <!-- begin-user-doc --> This default
+	 * implementation returns null so that we can easily ignore cases; it's
+	 * useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.sashwindows.di.SashWindowsMngr
 	 * @generated
@@ -318,10 +334,9 @@ public class DiAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for the default case.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null.
-	 * <!-- end-user-doc -->
+	 * Creates a new adapter for the default case. <!-- begin-user-doc --> This
+	 * default implementation returns null. <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @generated
 	 */
@@ -329,4 +344,4 @@ public class DiAdapterFactory extends AdapterFactoryImpl {
 		return null;
 	}
 
-} //DiAdapterFactory
+} // DiAdapterFactory

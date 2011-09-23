@@ -20,10 +20,9 @@ import org.eclipse.gef.ui.actions.ActionRegistry;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 
-
 /**
- * Provide methods and services needed for Gef Editors.
- * This class is intended to be used as a delegate inside classes providing MultiDiagramEditor.
+ * Provide methods and services needed for Gef Editors. This class is intended
+ * to be used as a delegate inside classes providing MultiDiagramEditor.
  * 
  * @author dumoulin
  * 
@@ -34,11 +33,10 @@ public class MultiDiagramEditorGefDelegate {
 	protected ActionRegistry actionRegistry;
 
 	/** Synchronizer object */
-	//	private MultiPageSelectionSynchronizer synchronizer;
+	// private MultiPageSelectionSynchronizer synchronizer;
 
 	/** List of listeners on SelectionChanged event */
 	private List<ISelectionChangedListener> selectionListeners = new ArrayList<ISelectionChangedListener>(1);
-
 
 	/**
 	 * This method should be called by the containing class.
@@ -50,9 +48,9 @@ public class MultiDiagramEditorGefDelegate {
 		}
 	}
 
-
 	/**
-	 * Adds a listener for selection changes in this selection provider. Has no effect if an identical listener is already registered.
+	 * Adds a listener for selection changes in this selection provider. Has no
+	 * effect if an identical listener is already registered.
 	 * 
 	 * @param listener
 	 *        a selection changed listener
@@ -72,22 +70,24 @@ public class MultiDiagramEditorGefDelegate {
 		return actionRegistry;
 	}
 
-	//	/**
-	//	 * Returns the selection synchronizer object. The synchronizer can be used to sync the selection of 2 or more EditPartViewers.
-	//	 * 
-	//	 * @return the syncrhonizer
-	//	 */
-	//	public MultiPageSelectionSynchronizer getSelectionSynchronizer() {
-	//		if (synchronizer == null) {
-	//			synchronizer = new MultiPageSelectionSynchronizer();
-	//			// Hook this editor.
-	////			synchronizer.addViewer(this);
-	//		}
-	//		return synchronizer;
-	//	}
+	// /**
+	// * Returns the selection synchronizer object. The synchronizer can be used
+	// to sync the selection of 2 or more EditPartViewers.
+	// *
+	// * @return the syncrhonizer
+	// */
+	// public MultiPageSelectionSynchronizer getSelectionSynchronizer() {
+	// if (synchronizer == null) {
+	// synchronizer = new MultiPageSelectionSynchronizer();
+	// // Hook this editor.
+	// // synchronizer.addViewer(this);
+	// }
+	// return synchronizer;
+	// }
 
 	/**
-	 * Removes the given selection change listener from this selection provider. Has no affect if an identical listener is not registered.
+	 * Removes the given selection change listener from this selection provider.
+	 * Has no affect if an identical listener is not registered.
 	 * 
 	 * @param listener
 	 *        the selection changed listener to be removed

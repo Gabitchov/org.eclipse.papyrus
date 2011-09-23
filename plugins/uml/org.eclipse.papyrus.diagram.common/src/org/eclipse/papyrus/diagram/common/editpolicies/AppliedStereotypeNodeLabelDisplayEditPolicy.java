@@ -24,8 +24,8 @@ import org.eclipse.papyrus.umlutils.ui.helper.AppliedStereotypeHelper;
 import org.eclipse.swt.graphics.Image;
 
 /**
- * this edit policy can be apply only on {@link IPapyrusEditPart} in order to access to primary figure.
- * the primary figure has to be a {@link IPapyrusNodeUMLElementFigure}
+ * this edit policy can be apply only on {@link IPapyrusEditPart} in order to
+ * access to primary figure. the primary figure has to be a {@link IPapyrusNodeUMLElementFigure}
  */
 public class AppliedStereotypeNodeLabelDisplayEditPolicy extends AppliedStereotypeLabelDisplayEditPolicy {
 
@@ -49,14 +49,16 @@ public class AppliedStereotypeNodeLabelDisplayEditPolicy extends AppliedStereoty
 			// computes the icon to be displayed
 			final Image imageToDisplay = stereotypeIconToDisplay();
 
-			// if the string is not empty, then, the figure has to display it. Else, it displays
+			// if the string is not empty, then, the figure has to display it.
+			// Else, it displays
 			// nothing
 			// if (stereotypesToDisplay != "" || imageToDisplay != null) {
 			if(figure instanceof IPapyrusNodeUMLElementFigure) {
 				((IPapyrusNodeUMLElementFigure)figure).setStereotypeDisplay(tag + (stereotypesOnlyToDisplay().equals("") ? stereotypesToDisplay : stereotypesToDisplay), imageToDisplay);
 				refreshAppliedStereotypesProperties(((IPapyrusNodeUMLElementFigure)figure));
 			}
-			// TODO we should manage PapyrusNodeFigure here too (and WrappingLabel ?)
+			// TODO we should manage PapyrusNodeFigure here too (and
+			// WrappingLabel ?)
 		}
 	}
 
@@ -71,7 +73,8 @@ public class AppliedStereotypeNodeLabelDisplayEditPolicy extends AppliedStereoty
 	}
 
 	/**
-	 * Refreshes the stereotypes properties displayed in a compartment of this edit part.
+	 * Refreshes the stereotypes properties displayed in a compartment of this
+	 * edit part.
 	 * 
 	 * @param stereotypesPropertiesToDisplay
 	 *        list of properties to display
@@ -83,7 +86,8 @@ public class AppliedStereotypeNodeLabelDisplayEditPolicy extends AppliedStereoty
 
 		final boolean displayInCompartment = AppliedStereotypeHelper.hasAppliedStereotypesPropertiesToDisplay((View)(View)getHost().getModel(), VisualInformationPapyrusConstant.STEREOTYPE_COMPARTMENT_LOCATION);
 
-		// if the string is not empty, then, the figure has to display it. Else, it displays nothing
+		// if the string is not empty, then, the figure has to display it. Else,
+		// it displays nothing
 		if(displayInCompartment) {
 			String todisplay = StereotypeUtil.getPropertiesValues(stereotypesPropertiesToDisplay, getUMLElement());
 			figure.setStereotypePropertiesInCompartment(todisplay);
@@ -93,15 +97,18 @@ public class AppliedStereotypeNodeLabelDisplayEditPolicy extends AppliedStereoty
 	}
 
 	/**
-	 * Refreshes the stereotypes properties displayed above name of the element in this edit part.
+	 * Refreshes the stereotypes properties displayed above name of the element
+	 * in this edit part.
 	 */
 	protected void refreshAppliedStereotypesPropertiesInBrace(String stereotypesPropertiesToDisplay, IPapyrusNodeUMLElementFigure figure) {
 		// check if properties have to be displayed in braces.
 		final boolean displayInBrace = AppliedStereotypeHelper.hasAppliedStereotypesPropertiesToDisplay((View)getHost().getModel(), VisualInformationPapyrusConstant.STEREOTYPE_BRACE_LOCATION);
 
-		// if the string is not empty, then, the figure has to display it. Else, it displays nothing
+		// if the string is not empty, then, the figure has to display it. Else,
+		// it displays nothing
 		if(displayInBrace) {
-			// it has to be displayed in braces, so compute the string to display
+			// it has to be displayed in braces, so compute the string to
+			// display
 			String todisplay = StereotypeUtil.getPropertiesValuesInBrace(stereotypesPropertiesToDisplay, getUMLElement());
 			figure.setStereotypePropertiesInBrace(todisplay);
 		} else {
@@ -112,8 +119,8 @@ public class AppliedStereotypeNodeLabelDisplayEditPolicy extends AppliedStereoty
 	/**
 	 * this method is used to display only applied stereotypes
 	 * 
-	 * @return the string with applied stereotypes. It can return "" if there is no stereotypes to
-	 *         display
+	 * @return the string with applied stereotypes. It can return "" if there is
+	 *         no stereotypes to display
 	 */
 	public String stereotypesOnlyToDisplay() {
 		// list of stereotypes to display
@@ -121,9 +128,11 @@ public class AppliedStereotypeNodeLabelDisplayEditPolicy extends AppliedStereoty
 		// Kind of the representation
 		String stereotypespresentationKind = AppliedStereotypeHelper.getAppliedStereotypePresentationKind((View)getHost().getModel());
 
-		// check the presentation kind. if only icon => do not display stereotypes
+		// check the presentation kind. if only icon => do not display
+		// stereotypes
 		if(VisualInformationPapyrusConstant.ICON_STEREOTYPE_PRESENTATION.equals(stereotypespresentationKind)) {
-			return ""; // empty string, so stereotype label should not be displayed
+			return ""; // empty string, so stereotype label should not be
+						// displayed
 		}
 
 		// stereotypes with qualified name to display

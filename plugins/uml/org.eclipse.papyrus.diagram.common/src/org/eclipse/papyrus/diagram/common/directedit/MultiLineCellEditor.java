@@ -13,7 +13,6 @@ package org.eclipse.papyrus.diagram.common.directedit;
 
 import org.eclipse.gmf.runtime.gef.ui.internal.parts.TextCellEditorEx;
 
-
 /**
  * Specific cell editor for multiline figures.
  */

@@ -34,7 +34,8 @@ import org.eclipse.uml2.uml.Package;
 
 /**
  * 
- * This hyperlink manager can manage default hyperlinks and creation of diagram with heuristic
+ * This hyperlink manager can manage default hyperlinks and creation of diagram
+ * with heuristic
  */
 public class AdvancedHLManager extends HyperLinkManagerShell {
 
@@ -68,11 +69,11 @@ public class AdvancedHLManager extends HyperLinkManagerShell {
 		super(editorFactoryRegistry, domain, umlElement, aview, model, hyperHelperFactory);
 		defaultHyperLinkTab = new DefaultHyperLinkTab(getcTabFolder(), allhypHyperlinkObjects);
 
-		// add a listener to refresh default link  tab
+		// add a listener to refresh default link tab
 		defaultHyperLinkTab.getMainComposite().addListener(SWT.Show, new Listener() {
 
 			public void handleEvent(Event event) {
-				//get all hyperlink from all tabs
+				// get all hyperlink from all tabs
 				allhypHyperlinkObjects.clear();
 				Iterator<HyperLinkTab> iter = tabList.iterator();
 				while(iter.hasNext()) {
@@ -85,9 +86,9 @@ public class AdvancedHLManager extends HyperLinkManagerShell {
 		defaultLinkDiagramTab = new LocalDefaultLinkDiagramTab(getcTabFolder(), umlElement);
 	}
 
-
 	/**
-	 * this method parse the command to extract created diagram and construct a list of hyperlinkDiagrams
+	 * this method parse the command to extract created diagram and construct a
+	 * list of hyperlinkDiagrams
 	 * 
 	 * @param creationcommand
 	 *        a gmf command
@@ -114,12 +115,11 @@ public class AdvancedHLManager extends HyperLinkManagerShell {
 		return hyperLinkDiagrams;
 	}
 
-
 	@Override
 	protected void executeOkButton() {
 		ArrayList<HyperLinkDiagram> defaultdiagramsWithHeuristic = new ArrayList<HyperLinkDiagram>();
 
-		//if the default diagrams is opened, get created default diagrams
+		// if the default diagrams is opened, get created default diagrams
 		if(defaultLinkDiagramTab.getDefaultHyperlinkComposite().isVisible()) {
 			defaultLinkDiagramTab.okPressed();
 			ICommand creationCommand = defaultLinkDiagramTab.getCommand();
@@ -127,26 +127,26 @@ public class AdvancedHLManager extends HyperLinkManagerShell {
 			defaultdiagramsWithHeuristic.addAll(getCreatedHyperlinkDiagramsWithHeuristic(creationCommand));
 		}
 
-
 		// empty all hyperlinks
 		transactionalEditingDomain.getCommandStack().execute(HyperlinkHelperFactory.getEmptyAllHyperLinkCommand(transactionalEditingDomain, view));
 		allhypHyperlinkObjects.clear();
 
-		//get all hyperlinks from tabs
+		// get all hyperlinks from tabs
 		Iterator<HyperLinkTab> iter = tabList.iterator();
 		while(iter.hasNext()) {
 			HyperLinkTab hyperLinkTab = (HyperLinkTab)iter.next();
 			allhypHyperlinkObjects.addAll(hyperLinkTab.getHyperlinkObjects());
 		}
 
-		//set all hyper links is default to false
+		// set all hyper links is default to false
 		Iterator<HyperlinkObject> iterator = allhypHyperlinkObjects.iterator();
 		while(iterator.hasNext()) {
 			HyperlinkObject hyperLink = (HyperlinkObject)iterator.next();
 			hyperLink.setIsDefault(false);
 		}
 
-		//look for all hyperlink default and put it as default at the top of the list
+		// look for all hyperlink default and put it as default at the top of
+		// the list
 		int i = defaultHyperLinkTab.getDefaultHyperLinkObject().size() - 1;
 		while(i >= 0) {
 			HyperlinkObject hyperLinkObject = defaultHyperLinkTab.getDefaultHyperLinkObject().get(i);
@@ -158,11 +158,10 @@ public class AdvancedHLManager extends HyperLinkManagerShell {
 
 			i--;
 		}
-		//add into the list all diagram create by using heuristic
+		// add into the list all diagram create by using heuristic
 		for(i = 0; i < defaultdiagramsWithHeuristic.size(); i++) {
 			allhypHyperlinkObjects.add(0, defaultdiagramsWithHeuristic.get(0));
 		}
-
 
 		// save hyperlink Document list
 		try {
@@ -174,8 +173,6 @@ public class AdvancedHLManager extends HyperLinkManagerShell {
 		tabList.clear();
 		getHyperLinkShell().close();
 	}
-
-
 
 	@Override
 	public void setInput(ArrayList<HyperlinkObject> hyperLinkObjectList) {

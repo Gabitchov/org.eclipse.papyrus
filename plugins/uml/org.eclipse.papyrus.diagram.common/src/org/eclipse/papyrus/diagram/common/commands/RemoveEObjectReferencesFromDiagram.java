@@ -67,7 +67,8 @@ public class RemoveEObjectReferencesFromDiagram extends AbstractTransactionalCom
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @seeorg.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand#
+	 * @seeorg.eclipse.gmf.runtime.emf.commands.core.command.
+	 * AbstractTransactionalCommand#
 	 * doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor,
 	 * org.eclipse.core.runtime.IAdaptable)
 	 */

@@ -15,7 +15,6 @@ import org.eclipse.papyrus.pastemanager.service.PasteCommandService;
 import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
 
-
 public class PasteWithModelAction implements IObjectActionDelegate {
 
 	protected GraphicalEditPart targetEditPart = null;
@@ -25,7 +24,7 @@ public class PasteWithModelAction implements IObjectActionDelegate {
 		/* Get the selected edit parts */
 
 		if(targetEditPart != null) {
-			//get the paste command with model form the service
+			// get the paste command with model form the service
 			ICommand pastecommand = PasteCommandService.getInstance().getPasteWithModelCommand(targetEditPart, Toolkit.getDefaultToolkit().getSystemClipboard(), targetEditPart.getEditingDomain().getClipboard());
 
 			if(pastecommand.canExecute()) {
@@ -38,7 +37,6 @@ public class PasteWithModelAction implements IObjectActionDelegate {
 		}
 	}
 
-
 	public void selectionChanged(IAction action, ISelection selection) {
 		if(selection instanceof IStructuredSelection) {
 			Object selectedElement = ((IStructuredSelection)selection).getFirstElement();
@@ -48,7 +46,6 @@ public class PasteWithModelAction implements IObjectActionDelegate {
 		}
 
 	}
-
 
 	public void setActivePart(IAction action, IWorkbenchPart targetPart) {
 		// TODO Auto-generated method stub

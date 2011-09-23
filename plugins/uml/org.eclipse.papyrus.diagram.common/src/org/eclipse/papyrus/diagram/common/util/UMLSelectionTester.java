@@ -14,10 +14,12 @@ import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Profile;
 
 /**
- * This class is a Property tester used to check is current model (meaning the model currently opened in Papyrus) is a UML Model or a UML Profile.
- * This class is used in order to create test for deciding whether a diagram creation command should be visible or not.
- * This property tester assumes that currently active editor is Papyrus, it should be used with care (simultaneously with a test to ensure Papyrus is
- * currently opened and active).
+ * This class is a Property tester used to check is current model (meaning the
+ * model currently opened in Papyrus) is a UML Model or a UML Profile. This
+ * class is used in order to create test for deciding whether a diagram creation
+ * command should be visible or not. This property tester assumes that currently
+ * active editor is Papyrus, it should be used with care (simultaneously with a
+ * test to ensure Papyrus is currently opened and active).
  */
 public class UMLSelectionTester extends PropertyTester {
 
@@ -56,8 +58,9 @@ public class UMLSelectionTester extends PropertyTester {
 	protected boolean testUMLModelNature(Object receiver) {
 		EObject root = getRoot();
 		/*
-		 * For controlled resources, it is very important to consider root of UML model can be a Package. Of course, we
-		 * can still exclude Profile, which should be dedicated to profile diagrams.
+		 * For controlled resources, it is very important to consider root of
+		 * UML model can be a Package. Of course, we can still exclude Profile,
+		 * which should be dedicated to profile diagrams.
 		 */
 		return root instanceof Package && !(root instanceof Profile);
 	}

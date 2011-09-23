@@ -17,20 +17,22 @@ import org.eclipse.papyrus.sasheditor.contentprovider.IAbstractPanelModel;
 import org.eclipse.papyrus.sasheditor.contentprovider.ISashPanelModel;
 import org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider;
 import org.eclipse.papyrus.sasheditor.contentprovider.ITabFolderModel;
+import org.eclipse.papyrus.sasheditor.editor.SashWindowsContainer;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Composite;
 
 /**
- * Part used as root. This is the one with no parent and no model. This class is intended for local
- * use only.
+ * Part used as root. This is the one with no parent and no model. This class is
+ * intended for local use only.
  * 
  * @author dumoulin
  * 
  * @param T
- *        Common ancestor for the model provided for the sash windows by the application.
- *        This is the type used externally by the application. Sash implementation don't use this type,
- *        it just carry it to ask for the appropriate wrapper. Concrete implementation can specify
- *        a type.
+ *        Common ancestor for the model provided for the sash windows by the
+ *        application. This is the type used externally by the application.
+ *        Sash implementation don't use this type, it just carry it to ask
+ *        for the appropriate wrapper. Concrete implementation can specify a
+ *        type.
  */
 @SuppressWarnings("restriction")
 public class RootPart extends AbstractPart implements IPanelParent {
@@ -43,7 +45,10 @@ public class RootPart extends AbstractPart implements IPanelParent {
 	 */
 	private AbstractPanelPart child;
 
-	/** Raw model associated to this part. We store it because the PartModel do not provide it */
+	/**
+	 * Raw model associated to this part. We store it because the PartModel do
+	 * not provide it
+	 */
 	private Object rawModel;
 
 	/**
@@ -54,15 +59,15 @@ public class RootPart extends AbstractPart implements IPanelParent {
 	}
 
 	/**
-	 * Create the SWT controls.
-	 * This Root as no control. Create the child part and call the same method on the child.
+	 * Create the SWT controls. This Root as no control. Create the child part
+	 * and call the same method on the child.
 	 */
 	public void createPartControl(Composite parent) {
 		this.container = parent;
 		Object rawModel = getContentProvider().getRootModel();
 
 		// Create child part
-		//		child = createChildPart(rawModel);
+		// child = createChildPart(rawModel);
 	}
 
 	/**
@@ -80,10 +85,9 @@ public class RootPart extends AbstractPart implements IPanelParent {
 		return container;
 	}
 
-
 	/**
-	 * Create the part for the specified child model.
-	 * The controls are also builds.
+	 * Create the part for the specified child model. The controls are also
+	 * builds.
 	 * 
 	 * TODO: delegate to sashContainer.
 	 * 
@@ -103,10 +107,9 @@ public class RootPart extends AbstractPart implements IPanelParent {
 			createdPart = new SashPanelPart(this, (ISashPanelModel)model, rawModel);
 		} else {
 			// error
-			throw new IllegalArgumentException("Can't create child part for model of type '"
-					+ model.getClass().getName()
-					+ "'");
-			// TODO: Return an error Part showing the exception instead of throwing it ?
+			throw new IllegalArgumentException("Can't create child part for model of type '" + model.getClass().getName() + "'");
+			// TODO: Return an error Part showing the exception instead of
+			// throwing it ?
 		}
 
 		// Create controls
@@ -151,8 +154,9 @@ public class RootPart extends AbstractPart implements IPanelParent {
 		Object rawModel = getContentProvider().getRootModel();
 
 		// Check if old child exist
-		// If exist, check if the current part is associated to the checked model
-		// 
+		// If exist, check if the current part is associated to the checked
+		// model
+		//
 		if(child != null) {
 			// If the tile is already for the model, there is nothing to do.
 			if(child.isPartFor(rawModel)) {
@@ -179,7 +183,8 @@ public class RootPart extends AbstractPart implements IPanelParent {
 	}
 
 	/**
-	 * Set the child. If a child already exist at the specified index, it is lost.
+	 * Set the child. If a child already exist at the specified index, it is
+	 * lost.
 	 * 
 	 * @param newTile
 	 */
@@ -223,15 +228,16 @@ public class RootPart extends AbstractPart implements IPanelParent {
 			return null;
 	}
 
-	//	/**
-	//	 * Locates the part that intersects the given point and that have the expected type
-	//	 * 
-	//	 * @param toFind
-	//	 * @return
-	//	 */
-	//	public AbstractPart findPartAt(Point toFind, Class<?> tileType) {
-	//		return child.findPartAt(toFind, tileType);
-	//	}
+	// /**
+	// * Locates the part that intersects the given point and that have the
+	// expected type
+	// *
+	// * @param toFind
+	// * @return
+	// */
+	// public AbstractPart findPartAt(Point toFind, Class<?> tileType) {
+	// return child.findPartAt(toFind, tileType);
+	// }
 
 	/**
 	 * 
@@ -243,12 +249,16 @@ public class RootPart extends AbstractPart implements IPanelParent {
 			return null;
 	}
 
-	//	/**
-	//	 * @see org.eclipse.papyrus.sasheditor.sash.ITilePart#getDropTarget(java.lang.Object, org.eclipse.papyrus.sasheditor.sash.TabFolderPart, org.eclipse.swt.graphics.Point)
-	//	 */
-	//	public IDropTarget getDropTarget(Object draggedObject, TabFolderPart sourcePart, Point position) {
-	//		return child.getDropTarget(draggedObject, sourcePart, position);
-	//	}
+	// /**
+	// * @see
+	// org.eclipse.papyrus.sasheditor.sash.ITilePart#getDropTarget(java.lang.Object,
+	// org.eclipse.papyrus.sasheditor.sash.TabFolderPart,
+	// org.eclipse.swt.graphics.Point)
+	// */
+	// public IDropTarget getDropTarget(Object draggedObject, TabFolderPart
+	// sourcePart, Point position) {
+	// return child.getDropTarget(draggedObject, sourcePart, position);
+	// }
 
 	/**
 	 * Do nothing. This node can't be orphaned
@@ -281,8 +291,8 @@ public class RootPart extends AbstractPart implements IPanelParent {
 	}
 
 	/**
-	 * Accept the provided visitor.
-	 * Call the corresponding accept method in the visitor.
+	 * Accept the provided visitor. Call the corresponding accept method in the
+	 * visitor.
 	 * 
 	 * @param visitor
 	 * @return
@@ -308,11 +318,7 @@ public class RootPart extends AbstractPart implements IPanelParent {
 	 * Show tile status.
 	 */
 	protected void showStatus() {
-		org.eclipse.papyrus.sasheditor.Activator.log.debug("rootPart (1)"
-				+ ", disposed=" + container.isDisposed()
-				+ ", visible=" + container.isVisible()
-				+ ", " + this);
+		org.eclipse.papyrus.sasheditor.Activator.log.debug("rootPart (1)" + ", disposed=" + container.isDisposed() + ", visible=" + container.isVisible() + ", " + this);
 	}
-
 
 }

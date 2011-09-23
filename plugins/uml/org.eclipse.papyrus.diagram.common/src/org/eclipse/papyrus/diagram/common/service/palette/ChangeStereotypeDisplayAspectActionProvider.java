@@ -14,7 +14,8 @@ package org.eclipse.papyrus.diagram.common.service.palette;
 import org.w3c.dom.Node;
 
 /**
- * Factory in charge of changing the display of stereotypes after palette actions
+ * Factory in charge of changing the display of stereotypes after palette
+ * actions
  */
 public class ChangeStereotypeDisplayAspectActionProvider extends AbstractAspectActionProvider {
 

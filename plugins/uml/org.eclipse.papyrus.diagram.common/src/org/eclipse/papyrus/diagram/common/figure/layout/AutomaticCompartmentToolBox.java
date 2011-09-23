@@ -18,16 +18,13 @@ import org.eclipse.gef.EditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ResizableCompartmentEditPolicy;
 import org.eclipse.papyrus.diagram.common.figure.node.AutomaticCompartmentLayoutManager;
 
-
 /**
  * The Class AutomaticCompartmentToolBox.
  */
 public class AutomaticCompartmentToolBox implements ILayoutToolBox {
 
-
 	/** The AUTOMATI c_ layout. */
 	protected final String AUTOMATIC_LAYOUT = "Automatic_Layout";
-
 
 	/**
 	 * {@inheritDoc}
@@ -49,6 +46,5 @@ public class AutomaticCompartmentToolBox implements ILayoutToolBox {
 	public AbstractLayout getFigureLayout() {
 		return new AutomaticCompartmentLayoutManager();
 	}
-
 
 }

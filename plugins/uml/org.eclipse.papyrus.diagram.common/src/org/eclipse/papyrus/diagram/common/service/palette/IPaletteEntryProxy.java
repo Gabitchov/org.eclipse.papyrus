@@ -13,7 +13,6 @@ package org.eclipse.papyrus.diagram.common.service.palette;
 
 import org.eclipse.gef.palette.PaletteEntry;
 
-
 /**
  * Interface implemented by all proxies for the palette customization dialog
  */

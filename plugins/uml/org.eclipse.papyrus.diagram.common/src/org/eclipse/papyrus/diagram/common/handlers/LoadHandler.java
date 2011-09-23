@@ -33,11 +33,10 @@ import org.eclipse.papyrus.core.resourceloading.util.LoadingUtils;
 import org.eclipse.papyrus.resource.ModelSet;
 
 /**
- * Handler for the load resource action.
- * This actions load a resource in the model set, which is not yet loaded (due to resource loading strategy).
+ * Handler for the load resource action. This actions load a resource in the
+ * model set, which is not yet loaded (due to resource loading strategy).
  */
 public class LoadHandler extends GraphicalCommandHandler {
-
 
 	/**
 	 * Get the command to load resource of selected model object

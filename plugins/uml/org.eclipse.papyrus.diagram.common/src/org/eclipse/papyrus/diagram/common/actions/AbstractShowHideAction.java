@@ -14,7 +14,6 @@ package org.eclipse.papyrus.diagram.common.actions;
  *
  *****************************************************************************/
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -147,7 +146,7 @@ public abstract class AbstractShowHideAction implements IActionDelegate, IWorkbe
 						public void run() {
 							PlatformUI.getWorkbench().getDisplay().asyncExec(new Runnable() {
 
-								//executing the command
+								// executing the command
 								public void run() {
 									domain.getCommandStack().execute(new GEFtoEMFCommandWrapper(command));
 								}
@@ -174,11 +173,10 @@ public abstract class AbstractShowHideAction implements IActionDelegate, IWorkbe
 
 	/**
 	 * 
-	 * Test if the action can be run!
-	 * Useful when we press F4 and it's the first action in Papyrus
+	 * Test if the action can be run! Useful when we press F4 and it's the first
+	 * action in Papyrus
 	 * 
-	 * @return
-	 *         if the action can be run or not
+	 * @return if the action can be run or not
 	 */
 	public boolean canRun() {
 
@@ -195,7 +193,6 @@ public abstract class AbstractShowHideAction implements IActionDelegate, IWorkbe
 				}
 			}
 		}
-
 
 		return true;
 	}
@@ -247,12 +244,10 @@ public abstract class AbstractShowHideAction implements IActionDelegate, IWorkbe
 		this.representations = new ArrayList<AbstractShowHideAction.EditPartRepresentation>();
 	}
 
-
 	/**
 	 * Returns the initial selection for the Tree Dialog.
 	 * 
-	 * @return
-	 *         The initial selection for the Tree Dialog
+	 * @return The initial selection for the Tree Dialog
 	 */
 	public List<Object> getInitialSelection() {
 		return this.initialSelection;
@@ -272,13 +267,13 @@ public abstract class AbstractShowHideAction implements IActionDelegate, IWorkbe
 	/**
 	 * Returns the input for the TreeDialog
 	 * 
-	 * @return
-	 *         the input for the TreeDialog
+	 * @return the input for the TreeDialog
 	 */
 	abstract protected List<Object> getInput();
 
 	/**
-	 * Fill the following fields with the elements to show and the elements to hide
+	 * Fill the following fields with the elements to show and the elements to
+	 * hide
 	 * <ul>
 	 * <li>{@link #viewsToCreate}</li>
 	 * <li> {@link #viewsToDestroy}</li>
@@ -295,8 +290,7 @@ public abstract class AbstractShowHideAction implements IActionDelegate, IWorkbe
 	/**
 	 * Returns the command done by this action
 	 * 
-	 * @return
-	 *         the command done by this action
+	 * @return the command done by this action
 	 */
 	abstract protected Command getActionCommand();
 
@@ -315,9 +309,9 @@ public abstract class AbstractShowHideAction implements IActionDelegate, IWorkbe
 	}
 
 	/**
-	 * Setter for {@link #selectedElements}.
-	 * When this action is called by a popup menu, {@link #selectedElements} is filled by {@link #selectionChanged(IAction, ISelection)} When this
-	 * action is called by a Handler, {@link #selectedElements} is filled with this method
+	 * Setter for {@link #selectedElements}. When this action is called by a
+	 * popup menu, {@link #selectedElements} is filled by {@link #selectionChanged(IAction, ISelection)} When this action is called
+	 * by a Handler, {@link #selectedElements} is filled with this method
 	 * 
 	 * @param selection
 	 *        the current selection
@@ -374,8 +368,7 @@ public abstract class AbstractShowHideAction implements IActionDelegate, IWorkbe
 		/**
 		 * Getter for {@link #representedEditPart}
 		 * 
-		 * @return
-		 *         the represented editpart, {@link #representedEditPart}
+		 * @return the represented editpart, {@link #representedEditPart}
 		 */
 		public EditPart getRepresentedEditPart() {
 			return this.representedEditPart;
@@ -384,8 +377,7 @@ public abstract class AbstractShowHideAction implements IActionDelegate, IWorkbe
 		/**
 		 * Getter for {@link #UMLElement}
 		 * 
-		 * @return
-		 *         {@link #UMLElement}
+		 * @return {@link #UMLElement}
 		 */
 		public Element getUMLElement() {
 			return this.UMLElement;
@@ -394,8 +386,7 @@ public abstract class AbstractShowHideAction implements IActionDelegate, IWorkbe
 		/**
 		 * Getter for {@link #initialSelection}
 		 * 
-		 * @return
-		 *         {@link #initialSelection}
+		 * @return {@link #initialSelection}
 		 */
 		public List<Object> getInitialSelection() {
 			return this.initialSelection;
@@ -416,8 +407,7 @@ public abstract class AbstractShowHideAction implements IActionDelegate, IWorkbe
 		/**
 		 * Setter for {@link #elementsToSelect}
 		 * 
-		 * @return
-		 *         {@link #elementsToSelect}
+		 * @return {@link #elementsToSelect}
 		 */
 		public List<Object> getPossibleElement() {
 			return this.elementsToSelect;

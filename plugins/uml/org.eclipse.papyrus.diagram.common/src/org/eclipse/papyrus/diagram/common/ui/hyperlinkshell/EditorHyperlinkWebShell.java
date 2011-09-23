@@ -20,8 +20,8 @@ import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.widgets.Display;
 
 /**
- * The Class HyperlinkWebEditor is used to add or modify an hyperlink web entry. you can use the
- * default button for the tooltip.
+ * The Class HyperlinkWebEditor is used to add or modify an hyperlink web entry.
+ * you can use the default button for the tooltip.
  */
 public class EditorHyperlinkWebShell extends AbstractEditHyperlinkShell {
 
@@ -128,7 +128,8 @@ public class EditorHyperlinkWebShell extends AbstractEditHyperlinkShell {
 			}
 		});
 
-		// add a key listener on inputText to synchronize with the tooltip in the case of use
+		// add a key listener on inputText to synchronize with the tooltip in
+		// the case of use
 		// default
 		getObjectLabeltext().addKeyListener(new KeyListener() {
 

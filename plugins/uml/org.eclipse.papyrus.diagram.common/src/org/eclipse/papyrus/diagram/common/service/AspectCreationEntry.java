@@ -22,7 +22,8 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.papyrus.diagram.common.Activator;
 
 /**
- * Entry that uses the functionality of another entry, but adds some actions to it
+ * Entry that uses the functionality of another entry, but adds some actions to
+ * it
  */
 public class AspectCreationEntry extends CombinedTemplateCreationEntry implements Cloneable {
 
@@ -57,7 +58,8 @@ public class AspectCreationEntry extends CombinedTemplateCreationEntry implement
 		super(name, desc, null, descriptor, descriptor);
 		setId(id);
 		// computes the icon path
-		// due to visibility problems on URL image descriptor, use the toString() method...
+		// due to visibility problems on URL image descriptor, use the
+		// toString() method...
 		computeIconPathFromImageDescriptor(descriptor);
 		this.entry = entry;
 		this.properties = properties;

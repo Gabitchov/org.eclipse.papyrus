@@ -71,7 +71,8 @@ import org.eclipse.ui.IEditorPart;
 import org.osgi.framework.Bundle;
 
 /**
- * Service that contributes to the palette of a given editor with a given content.
+ * Service that contributes to the palette of a given editor with a given
+ * content.
  * <p>
  * It replaces the standard palette service. It provides better preferences management, and better customization possibilities.
  */
@@ -86,8 +87,8 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 		protected XMLPaletteProviderConfiguration providerConfiguration;
 
 		/**
-		 * Constructs a <code>ISemanticProvider</code> descriptor for the specified configuration
-		 * element.
+		 * Constructs a <code>ISemanticProvider</code> descriptor for the
+		 * specified configuration element.
 		 * 
 		 * @param element
 		 *        The configuration element describing the provider.
@@ -112,7 +113,6 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 			return XMLPaletteProviderConfiguration.parse(element);
 		}
 
-
 		/**
 		 * Returns the provider configuration for this descriptor
 		 * 
@@ -123,11 +123,13 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 		}
 
 		/**
-		 * Returns <code>true</code> if this configuration provides only predefinition of entries
-		 * and neither use predefined entries nor creates new entries.
+		 * Returns <code>true</code> if this configuration provides only
+		 * predefinition of entries and neither use predefined entries nor
+		 * creates new entries.
 		 * 
-		 * @return <code>true</code> if this configuration provides only predefinition of entries
-		 *         and neither use predefined entries nor creates new entries.
+		 * @return <code>true</code> if this configuration provides only
+		 *         predefinition of entries and neither use predefined entries
+		 *         nor creates new entries.
 		 */
 		// @unused
 		public boolean hasOnlyEntriesDefinition() {
@@ -217,11 +219,13 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 		}
 
 		/**
-		 * checks if this provider is providing elements, even if this should be hidden
+		 * checks if this provider is providing elements, even if this should be
+		 * hidden
 		 * 
 		 * @param operation
 		 *        the operation to contribute
-		 * @return <code>true</code> if this provider contributes to the operation
+		 * @return <code>true</code> if this provider contributes to the
+		 *         operation
 		 */
 		public boolean providesWithVisibility(ContributeToPaletteOperation operation) {
 			if(!super.provides(operation)) {
@@ -235,7 +239,8 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 				return policy.provides(operation);
 			}
 
-			// FIXME: that statement is always true (let's see the method's parameter).
+			// FIXME: that statement is always true (let's see the method's
+			// parameter).
 			// => Remove the test
 			if(operation instanceof ContributeToPaletteOperation) {
 				ContributeToPaletteOperation o = operation;
@@ -293,7 +298,6 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 			return ExtendedPaletteProviderConfiguration.parse(element);
 		}
 
-
 		/**
 		 * {@inheritDoc}
 		 */
@@ -339,7 +343,7 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 				}
 			}
 
-			// check the stream 
+			// check the stream
 			if(stream == null) {
 				Activator.log.error("Impossible to read initial file", null);
 				return null;
@@ -349,10 +353,14 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 			File bundleFolder = new File(stateLocationRootFile, realId);
 			bundleFolder.mkdir();
 
-			// for all intermediate folders in filePath, create a folder in plugin state location
+			// for all intermediate folders in filePath, create a folder in
+			// plugin state location
 			File root = bundleFolder;
 			String[] folders = filePath.split("/");
-			for(int i = 0; i < folders.length - 1; i++) { // all intermediate folders. Last one is the file name itself...
+			for(int i = 0; i < folders.length - 1; i++) { // all intermediate
+															// folders. Last one
+															// is the file name
+															// itself...
 				String folderName = folders[i];
 				if(folderName != null && folderName.length() != 0) {
 					File newFolder = new File(root, folders[i]);
@@ -441,7 +449,8 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 		/**
 		 * Returns the redefinition file URI
 		 * 
-		 * @return the redefinition file URI or <code>null</code> if no local redefinition can be found.
+		 * @return the redefinition file URI or <code>null</code> if no local
+		 *         redefinition can be found.
 		 */
 		public URI getRedefinitionFileURI() {
 			String path = PapyrusPalettePreferences.getPaletteRedefinition(getContributionID());
@@ -492,8 +501,9 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 		}
 
 		/**
-		 * Returns <code>true</code> if this configuration provides only predefinition of entries
-		 * and neither use predefined entries nor creates new entries.
+		 * Returns <code>true</code> if this configuration provides only
+		 * predefinition of entries and neither use predefined entries nor
+		 * creates new entries.
 		 * 
 		 * @return <code>false</code> as local palettes are never defining tools
 		 */
@@ -564,7 +574,8 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 					return false;
 				}
 
-				// will never work, ID of the site is the multi diagram editor...
+				// will never work, ID of the site is the multi diagram
+				// editor...
 				if(description.getContributionEditorID() != null) {
 					if(!description.getContributionEditorID().equals(((DiagramEditorWithFlyOutPalette)part).getContributorId())) {
 						return false;
@@ -597,7 +608,8 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 			if(!isEnable) {
 				return false;
 			}
-			// FIXME: that statement is always true (let's see the method's parameter).
+			// FIXME: that statement is always true (let's see the method's
+			// parameter).
 			// => Remove the test
 			if(operation instanceof ContributeToPaletteOperation) {
 				ContributeToPaletteOperation o = operation;
@@ -607,7 +619,8 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 					return false;
 				}
 
-				// will never work, ID of the site is the multi diagram editor...
+				// will never work, ID of the site is the multi diagram
+				// editor...
 				if(description.getContributionEditorID() != null) {
 					if(!description.getContributionEditorID().equals(((DiagramEditorWithFlyOutPalette)part).getContributorId())) {
 						return false;
@@ -639,7 +652,7 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 	 */
 	@Override
 	public void setContributions(IConfigurationElement configElement) {
-		//  
+		//
 	}
 
 	/** the singleton instance of the palette service */
@@ -715,7 +728,8 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 	 */
 	@Override
 	protected Service.ProviderDescriptor newProviderDescriptor(IConfigurationElement element) {
-		// if provider is coming from palette definition extension point : define an extended palette provider...
+		// if provider is coming from palette definition extension point :
+		// define an extended palette provider...
 		String extensionPointId = element.getDeclaringExtension().getExtensionPointUniqueIdentifier();
 		if(PALETTE_DEFINITION_FULL_ID.equals(extensionPointId)) {
 			return new ExtendedProviderDescriptor(element);
@@ -745,7 +759,6 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 
 		execute(new ContributeToPaletteOperation(editor, content, root, predefinedEntries));
 	}
-
 
 	/**
 	 * Returns the list of providers for this service
@@ -803,16 +816,18 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 	}
 
 	/**
-	 * Updates the children of an existing palette container to match the palette entries in a new
-	 * palette container by adding or removing new palette entries only. This method works
-	 * recursively on any children that are palette container entries. Existing leaf palette entries
-	 * that are to be kept remain the same -- they are not replaced with the new palette entry. This
-	 * is so that palette state (such as whether a drawer is pinned or expanded) can be preserved
-	 * when the palette is updated.
+	 * Updates the children of an existing palette container to match the
+	 * palette entries in a new palette container by adding or removing new
+	 * palette entries only. This method works recursively on any children that
+	 * are palette container entries. Existing leaf palette entries that are to
+	 * be kept remain the same -- they are not replaced with the new palette
+	 * entry. This is so that palette state (such as whether a drawer is pinned
+	 * or expanded) can be preserved when the palette is updated.
 	 * 
 	 * @param existingContainer
-	 *        the palette container to be updated with new entries, have obsolete entries
-	 *        removed, and whose existing entries will remain the same
+	 *        the palette container to be updated with new entries, have
+	 *        obsolete entries removed, and whose existing entries will
+	 *        remain the same
 	 * @param newContainer
 	 *        the new palette entries
 	 */
@@ -855,13 +870,15 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 	}
 
 	/**
-	 * Returns the list of all providers that are really contributing to the palette
+	 * Returns the list of all providers that are really contributing to the
+	 * palette
 	 * 
 	 * @param part
 	 *        the editor part fopr which the palette is displayed
 	 * @param root
 	 *        the palette root of the current palette
-	 * @return the list of all providers that are really contributing to the palette
+	 * @return the list of all providers that are really contributing to the
+	 *         palette
 	 */
 	public List<PapyrusPaletteService.ProviderDescriptor> getContributingProviders(IEditorPart part, PaletteRoot root) {
 		// init...
@@ -872,7 +889,8 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 		// 3. inits the list of ids of hidden palettes
 		List<PapyrusPaletteService.ProviderDescriptor> descriptors = new ArrayList<PapyrusPaletteService.ProviderDescriptor>();
 		final ContributeToPaletteOperation o = new ContributeToPaletteOperation(part, part.getEditorInput(), root, new HashMap());
-		// For each provider, checks it contributes to the palette of this editor part
+		// For each provider, checks it contributes to the palette of this
+		// editor part
 		Iterator<? extends Service.ProviderDescriptor> it = getProviders().iterator();
 		while(it.hasNext()) {
 			Service.ProviderDescriptor provider = it.next();
@@ -886,7 +904,8 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 					name = papyrusProviderDesc.getContributionID();
 				}
 
-				// check if the name of the descriptor does not correspond to the name of a palette
+				// check if the name of the descriptor does not correspond to
+				// the name of a palette
 				// that should not be removed
 				boolean add = isChangeable(papyrusProviderDesc, name);
 
@@ -905,13 +924,15 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 	}
 
 	/**
-	 * Checks if the name does not belong to a set of names that should not be in the action list
+	 * Checks if the name does not belong to a set of names that should not be
+	 * in the action list
 	 * 
 	 * @param provider
 	 *        the provider to check
 	 * @param name
 	 *        the name of the provider to check
-	 * @return <code>true</code> if the provider should appear in the list of actions
+	 * @return <code>true</code> if the provider should appear in the list of
+	 *         actions
 	 */
 	protected boolean isChangeable(PapyrusPaletteService.ProviderDescriptor provider, String name) {
 		assert name != null;
@@ -927,12 +948,13 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 	}
 
 	/**
-	 * Checks if the provider descriptor is able to fill the palette for the current active diagram
+	 * Checks if the provider descriptor is able to fill the palette for the
+	 * current active diagram
 	 * 
 	 * @param provider
 	 *        the provider to check
-	 * @return <code>true</code> if the provider is able to fill the palette for the current active
-	 *         diagram
+	 * @return <code>true</code> if the provider is able to fill the palette for
+	 *         the current active diagram
 	 */
 	protected boolean isContributing(PapyrusPaletteService.ProviderDescriptor provider, ContributeToPaletteOperation o) {
 		return provider.providesWithVisibility(o);

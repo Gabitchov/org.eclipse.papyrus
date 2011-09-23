@@ -30,8 +30,8 @@ import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
 
 /**
- * This class is used to open a new diagram when the double click is detected. It is dependent of
- * papyrus environment
+ * This class is used to open a new diagram when the double click is detected.
+ * It is dependent of papyrus environment
  */
 public class ShortCutDiagramEditPolicy extends OpenEditPolicy {
 

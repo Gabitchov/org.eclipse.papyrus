@@ -22,7 +22,6 @@ import org.eclipse.papyrus.sasheditor.contentprovider.di.IPageModelFactory;
 import org.eclipse.papyrus.sashwindows.di.SashPanel;
 import org.eclipse.papyrus.sashwindows.di.TabFolder;
 
-
 /**
  * @author cedric dumoulin
  */

@@ -28,13 +28,12 @@ import org.eclipse.papyrus.diagram.common.ui.hyperlinkshell.HyperLinkException;
 import org.eclipse.papyrus.diagram.common.ui.hyperlinkshell.HyperlinkObject;
 
 /**
- * The Class HyperlinkHelper, contains all methods to manipulate information about hyperlinks in a
- * model
+ * The Class HyperlinkHelper, contains all methods to manipulate information
+ * about hyperlinks in a model
  */
 public class HyperlinkHelperFactory {
 
 	protected ArrayList<AbstractHyperLinkHelper> hyperLinkHelpers = new ArrayList<AbstractHyperLinkHelper>();
-
 
 	public ArrayList<AbstractHyperLinkHelper> getHyperLinkHelpers() {
 		return hyperLinkHelpers;
@@ -79,9 +78,6 @@ public class HyperlinkHelperFactory {
 		return cmpCommand;
 
 	}
-
-
-
 
 	/**
 	 * use to remove a hyperlink web or document

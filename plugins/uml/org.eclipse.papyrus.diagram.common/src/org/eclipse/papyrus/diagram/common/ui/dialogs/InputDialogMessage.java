@@ -26,7 +26,6 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-
 /**
  * This class provides a text area, with a validator to edit a text
  */
@@ -39,14 +38,12 @@ public class InputDialogMessage extends InputDialog {
 
 	private Text text;
 
-
 	/** Error message label widget. */
 	private CLabel warningMessageText;
 
 	/** Error message string. */
 
 	private String warningMessage;
-
 
 	/** Input Validator, can be null */
 	private final IInputValidator validator;
@@ -60,7 +57,6 @@ public class InputDialogMessage extends InputDialog {
 		super(parentShell, dialogTitle, errorMessage, initialValue);
 		this.validator = validator;
 	}
-
 
 	/**
 	 * 
@@ -171,14 +167,12 @@ public class InputDialogMessage extends InputDialog {
 			// button creation.
 			// See https://bugs.eclipse.org/bugs/show_bug.cgi?id=113643
 
-
-			//			Control button = getButton(IDialogConstants.OK_ID);
-			//			if(button != null) {
-			//				button.setEnabled(errorMessage == null);
-			//			}
+			// Control button = getButton(IDialogConstants.OK_ID);
+			// if(button != null) {
+			// button.setEnabled(errorMessage == null);
+			// }
 		}
 	}
-
 
 	/**
 	 * Returns the style bits that should be used for the input text field.

@@ -20,7 +20,8 @@ import org.eclipse.papyrus.core.utils.PapyrusTrace;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 /**
- * A factory used to create CreationCommand object from Eclipse extensions points elements.
+ * A factory used to create CreationCommand object from Eclipse extensions
+ * points elements.
  * 
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
  */
@@ -49,7 +50,7 @@ public class CreationCommandExtensionFactory extends ExtensionUtils {
 
 	/** constant for the attribute language **/
 	public final static String LANGUAGE_ATTR = "language";
-	
+
 	/**
 	 * @return the eINSTANCE
 	 */
@@ -58,20 +59,20 @@ public class CreationCommandExtensionFactory extends ExtensionUtils {
 	}
 
 	/**
-	 * Create a CreationCommand instance corresponding to the ConfigurationElement.
+	 * Create a CreationCommand instance corresponding to the
+	 * ConfigurationElement.
 	 * 
 	 * @param element
 	 *        an {@link IConfigurationElement} see eclipse extension point
-	 * @return a CreationCommandDescriptor structure that contains information to the creation
-	 *         diagram command
+	 * @return a CreationCommandDescriptor structure that contains information
+	 *         to the creation diagram command
 	 * @throws BadNameExtensionException
 	 **/
 	public CreationCommandDescriptor createCreationCommand(IConfigurationElement element) throws ExtensionException {
 		CreationCommandDescriptor res;
 		checkTagName(element, CREATION_COMMAND_EXTENSIONPOINT);
 		res = new CreationCommandDescriptor();
-		res.creationCommandClass = (Class<ICreationCommand>)parseClass(element, CREATION_COMMAND_CLASS_ATTR,
-				CREATION_COMMAND_EXTENSIONPOINT);
+		res.creationCommandClass = (Class<ICreationCommand>)parseClass(element, CREATION_COMMAND_CLASS_ATTR, CREATION_COMMAND_EXTENSIONPOINT);
 		res.commandId = element.getAttribute(ID_ATTRIBUTE);
 		res.label = element.getAttribute(LABEL_ATTR);
 		res.language = element.getAttribute(LANGUAGE_ATTR);
@@ -81,8 +82,7 @@ public class CreationCommandExtensionFactory extends ExtensionUtils {
 		}
 		String attributeForCreationCondition = element.getAttribute(CONDITION_COMMAND_CLASS_ATTR);
 		if(attributeForCreationCondition != null && attributeForCreationCondition.length() > 0) {
-			Class<ICreationCondition> classCondition = (Class<ICreationCondition>)parseClass(element,
-					CONDITION_COMMAND_CLASS_ATTR, CREATION_COMMAND_EXTENSIONPOINT);
+			Class<ICreationCondition> classCondition = (Class<ICreationCondition>)parseClass(element, CONDITION_COMMAND_CLASS_ATTR, CREATION_COMMAND_EXTENSIONPOINT);
 			if(classCondition != null) {
 				try {
 					res.setCondition(classCondition.newInstance());

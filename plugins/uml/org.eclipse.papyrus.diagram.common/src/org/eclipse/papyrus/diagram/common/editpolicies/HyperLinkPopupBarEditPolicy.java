@@ -58,11 +58,10 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Package;
 
 /**
- * The Class HyperLinkPopupBarEditPolicy can be applied on edit part to display shortcuts on
- * sub-diagrams or to associate hyper-link of files
+ * The Class HyperLinkPopupBarEditPolicy can be applied on edit part to display
+ * shortcuts on sub-diagrams or to associate hyper-link of files
  */
 public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
-
 
 	public static Package topPackage(Element element) {
 		if(element.getOwner() == null) {
@@ -81,7 +80,8 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 	private class PopupBarLabelHandle extends Label implements Handle {
 
 		/**
-		 * flag to drawFocus rect around the handle when the mouse rolls over it.
+		 * flag to drawFocus rect around the handle when the mouse rolls over
+		 * it.
 		 */
 		private boolean myMouseOver = false;
 
@@ -149,8 +149,8 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 		 * @param event
 		 *        the event
 		 * 
-		 * @see org.eclipse.draw2d.IFigure#handleMouseEntered(org.eclipse.draw2d.MouseEvent) flip
-		 *      myMouseOver bit and repaint
+		 * @see org.eclipse.draw2d.IFigure#handleMouseEntered(org.eclipse.draw2d.MouseEvent)
+		 *      flip myMouseOver bit and repaint
 		 */
 		@Override
 		public void handleMouseEntered(MouseEvent event) {
@@ -167,8 +167,8 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 		 * @param event
 		 *        the event
 		 * 
-		 * @see org.eclipse.draw2d.IFigure#handleMouseExited(org.eclipse.draw2d.MouseEvent) flip
-		 *      myMouseOver bit and repaint
+		 * @see org.eclipse.draw2d.IFigure#handleMouseExited(org.eclipse.draw2d.MouseEvent)
+		 *      flip myMouseOver bit and repaint
 		 */
 		@Override
 		public void handleMouseExited(MouseEvent event) {
@@ -185,9 +185,9 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 		 * @param event
 		 *        the event
 		 * 
-		 * @see org.eclipse.draw2d.IFigure#handleMousePressed(org.eclipse.draw2d.MouseEvent) set
-		 *      PopupBarEditPolicy.myActionMoveFigure bit so the popup bar is not dismissed after
-		 *      creating an item in the editpart
+		 * @see org.eclipse.draw2d.IFigure#handleMousePressed(org.eclipse.draw2d.MouseEvent)
+		 *      set PopupBarEditPolicy.myActionMoveFigure bit so the popup bar
+		 *      is not dismissed after creating an item in the editpart
 		 */
 		@Override
 		public void handleMousePressed(MouseEvent event) {
@@ -202,8 +202,9 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 		 * @param graphics
 		 *        the graphics
 		 * 
-		 * @see org.eclipse.draw2d.Figure#paintBorder(org.eclipse.draw2d.Graphics) paint a focus
-		 *      rectangle for the label if the mouse is inside the label
+		 * @see org.eclipse.draw2d.Figure#paintBorder(org.eclipse.draw2d.Graphics)
+		 *      paint a focus rectangle for the label if the mouse is inside the
+		 *      label
 		 */
 		@Override
 		protected void paintBorder(Graphics graphics) {
@@ -261,8 +262,8 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 	}
 
 	/**
-	 * Listens for mouse key presses so the popup bar can be dismissed if the context menu is
-	 * displayed.
+	 * Listens for mouse key presses so the popup bar can be dismissed if the
+	 * context menu is displayed.
 	 * 
 	 * @author affrantz@us.ibm.com
 	 */
@@ -371,19 +372,24 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 	/** The POPUPBA r_ mov e_ figure. */
 	// @unused
 	static private int POPUPBAR_MOVE_FIGURE = 0x02; /*
-													 * Ignore the first figureMoved event when
-													 * creating elements inside a shape via a popup
-													 * bar
+													 * Ignore the first
+													 * figureMoved event when
+													 * creating elements inside
+													 * a shape via a popup bar
 													 */
 
 	/** The POPUPBA r_ ondiagramactivated. */
 	// @unused
 	static private int POPUPBAR_ONDIAGRAMACTIVATED = 0x10; /*
-															 * For popup bars on diagram and machine
-															 * edit parts, where we
+															 * For popup bars on
+															 * diagram and
+															 * machine edit
+															 * parts, where we
 															 * POPUPBAR_DISPLAYATMOUSEHOVERLOCATION
-															 * , don't display popup bar until user
-															 * clicks on surface
+															 * , don't display
+															 * popup bar until
+															 * user clicks on
+															 * surface
 															 */
 
 	/** The editor registry. */
@@ -462,8 +468,9 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 	}
 
 	/**
-	 * Return the EditorRegistry for nested editor descriptors. Subclass should implements this
-	 * method in order to return the registry associated to the extension point namespace.
+	 * Return the EditorRegistry for nested editor descriptors. Subclass should
+	 * implements this method in order to return the registry associated to the
+	 * extension point namespace.
 	 * 
 	 * @return the EditorRegistry for nested editor descriptors
 	 * 
@@ -493,9 +500,9 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 	 * 
 	 * @return the singleton eINSTANCE of editor registry
 	 * 
-	 * @generated NOT Get the EditorRegistry used to create editor instances. This default
-	 *            implementation return the singleton eINSTANCE. This method can be subclassed to
-	 *            return another registry.
+	 * @generated NOT Get the EditorRegistry used to create editor instances.
+	 *            This default implementation return the singleton eINSTANCE.
+	 *            This method can be subclassed to return another registry.
 	 */
 	protected IPageIconsRegistry getEditorRegistry() {
 		if(editorRegistry == null) {

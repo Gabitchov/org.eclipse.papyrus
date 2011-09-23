@@ -50,11 +50,11 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.FontData;
 
 /**
- * this is an helper that contains method use to initialize font color etc in the view provider
+ * this is an helper that contains method use to initialize font color etc in
+ * the view provider
  * 
  */
 public class PreferenceInitializerForElementHelper {
-
 
 	public static String getpreferenceKey(View view, String elementName, int pref) {
 		return PreferenceConstantHelper.getElementConstant(view.getDiagram().getType() + "_" + elementName, pref); //$NON-NLS-1$
@@ -78,7 +78,6 @@ public class PreferenceInitializerForElementHelper {
 		String elementIcon = getpreferenceKey(view, elementName, PreferenceConstantHelper.ELEMENTICON);
 		String qualifiedName = getpreferenceKey(view, elementName, PreferenceConstantHelper.QUALIFIEDNAME);
 
-
 		org.eclipse.swt.graphics.RGB fillRGB = PreferenceConverter.getColor(store, fillColorConstant);
 		ViewUtil.setStructuralFeatureValue(view, NotationPackage.eINSTANCE.getFillStyle_FillColor(), FigureUtilities.RGBToInteger(fillRGB));
 
@@ -92,17 +91,17 @@ public class PreferenceInitializerForElementHelper {
 		}
 
 		if(EditorUtils.getTransactionalEditingDomain() != null) {
-			//shadow
+			// shadow
 			RecordingCommand shadowcommand = ShadowFigureHelper.getShadowColorCommand(EditorUtils.getTransactionalEditingDomain(), view, store.getBoolean(shadowConstant));
 			if(shadowcommand.canExecute()) {
 				shadowcommand.execute();
 			}
-			//icon label
+			// icon label
 			RecordingCommand namelabelIconCommand = NameLabelIconHelper.getNameLabelIconCommand(EditorUtils.getTransactionalEditingDomain(), view, store.getBoolean(elementIcon));
 			if(namelabelIconCommand.canExecute()) {
 				namelabelIconCommand.execute();
 			}
-			//qualified name
+			// qualified name
 			if(!store.getBoolean(qualifiedName)) {
 				RecordingCommand qualifiedNameCommand = QualifiedNameHelper.getSetQualifedNameDepthCommand(EditorUtils.getTransactionalEditingDomain(), view, 1000);
 				if(qualifiedNameCommand.canExecute()) {
@@ -224,7 +223,7 @@ public class PreferenceInitializerForElementHelper {
 		if(children != null) {
 			for(Object object : children) {
 
-				//we look for the name of the compartment for this view
+				// we look for the name of the compartment for this view
 				EditPart dummyEP = EditPartService.getInstance().createGraphicEditPart((View)object);
 				IGraphicalEditPart epp = (IGraphicalEditPart)dummyEP;
 				IFigure fig1 = epp.getFigure();
@@ -236,7 +235,8 @@ public class PreferenceInitializerForElementHelper {
 						String preferenceKey = PreferenceConstantHelper.getCompartmentElementConstant(diagramKind + "_" + elementName, compartmentName, PreferenceConstantHelper.COMPARTMENT_VISIBILITY); //$NON-NLS-1$
 						boolean value = store.getBoolean(preferenceKey);
 
-						if(!value) {//the default value is true : nothing to do
+						if(!value) {// the default value is true : nothing to
+									// do
 							ENamedElement namedElement = PackageUtil.getElement("notation.View.visible"); //$NON-NLS-1$
 							ViewUtil.setStructuralFeatureValue((View)object, (EStructuralFeature)namedElement, value);
 						}
@@ -256,7 +256,8 @@ public class PreferenceInitializerForElementHelper {
 	}
 
 	/**
-	 * initialize the status of each label for the node or for the link (Showed or hidden)
+	 * initialize the status of each label for the node or for the link (Showed
+	 * or hidden)
 	 * 
 	 * @param view
 	 *        the element to initialize
@@ -270,7 +271,7 @@ public class PreferenceInitializerForElementHelper {
 		if(children != null) {
 			for(Object object : children) {
 
-				//we look for the name of the label for this view
+				// we look for the name of the label for this view
 				EditPart dummyEP = EditPartService.getInstance().createGraphicEditPart((View)object);
 				if(dummyEP instanceof ILabelRoleProvider) {
 					String role = ((ILabelRoleProvider)dummyEP).getLabelRole();

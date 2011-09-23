@@ -42,8 +42,8 @@ public class Value {
 
 	/**
 	 * 
-	 * Constructor.
-	 * Note : the field {@link PropertyRepresentation} is not copied
+	 * Constructor. Note : the field {@link PropertyRepresentation} is not
+	 * copied
 	 * 
 	 * @param val
 	 *        The {@link Value} used to instantiate a new {@value}
@@ -66,8 +66,7 @@ public class Value {
 	/**
 	 * Getter for {@link #property}
 	 * 
-	 * @return
-	 *         the property owning this value
+	 * @return the property owning this value
 	 */
 	public PropertyRepresentation getPropertyRepresentation() {
 		Assert.isNotNull(property);
@@ -77,8 +76,7 @@ public class Value {
 	/**
 	 * Returns the string representing this value
 	 * 
-	 * @return
-	 *         the string representing this value
+	 * @return the string representing this value
 	 */
 	public String getValue() {
 		return value;

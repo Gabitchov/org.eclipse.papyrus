@@ -24,7 +24,8 @@ import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
 
 /**
- * The Class CustomAdapterFactoryContentProvider to display uml element + attached diagrams
+ * The Class CustomAdapterFactoryContentProvider to display uml element +
+ * attached diagrams
  */
 public class CustomAdapterFactoryContentProvider extends AdapterFactoryContentProvider {
 
@@ -82,8 +83,13 @@ public class CustomAdapterFactoryContentProvider extends AdapterFactoryContentPr
 			Object current = iter.next();
 			if(current instanceof Diagram) {
 				Diagram diag = (Diagram)current;
-				//sometimes diag can loose the link to the element, so we need to test it.
-				if(diag != null && diag.getElement() != null) {//if the model is a little corrupted, we can have diag==null
+				// sometimes diag can loose the link to the element, so we need
+				// to test it.
+				if(diag != null && diag.getElement() != null) {// if the model
+																// is a little
+																// corrupted, we
+																// can have
+																// diag==null
 					if(diag.getElement().equals(object)) {
 						result.add(diag);
 					}

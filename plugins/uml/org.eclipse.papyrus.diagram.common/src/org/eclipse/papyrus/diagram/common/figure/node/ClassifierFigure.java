@@ -78,7 +78,8 @@ public class ClassifierFigure extends CompartmentFigure {
 			Rectangle rect = this.getBounds();
 			graphics.pushState();
 			graphics.setForegroundColor(getForegroundColor());
-			//do not forget to set line width to 1, if not the color will change because of the anti-aliasing 
+			// do not forget to set line width to 1, if not the color will
+			// change because of the anti-aliasing
 			graphics.setLineWidth(1);
 
 			graphics.drawLine(new Point(rect.x + SPACE_FOR_ACTIVE_CLASS, rect.y), new Point(rect.x + SPACE_FOR_ACTIVE_CLASS, rect.y + rect.height - 1));

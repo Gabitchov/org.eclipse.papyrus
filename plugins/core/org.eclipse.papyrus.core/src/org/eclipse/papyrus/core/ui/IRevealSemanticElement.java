@@ -15,16 +15,20 @@ package org.eclipse.papyrus.core.ui;
 import java.util.List;
 
 /**
- * this interface is used to reveal element that are given in parameter.
- * Example of the use case:
- * the class that implements this interface can be a diagram that select all editparts 
- * that are linked to the given list of semantic element
- *
+ * this interface is used to reveal element that are given in parameter. Example
+ * of the use case: the class that implements this interface can be a diagram
+ * that select all editparts that are linked to the given list of semantic
+ * element
+ * 
  */
 public interface IRevealSemanticElement {
-/**
- * reveal all elements that represent an element in the given list.
- * @param elementList list of semantic element that we want to reveal, <B> cannot be null</B>
- */
+
+	/**
+	 * reveal all elements that represent an element in the given list.
+	 * 
+	 * @param elementList
+	 *        list of semantic element that we want to reveal, <B> cannot be
+	 *        null</B>
+	 */
 	public void revealSemanticElement(List<?> elementList);
 }

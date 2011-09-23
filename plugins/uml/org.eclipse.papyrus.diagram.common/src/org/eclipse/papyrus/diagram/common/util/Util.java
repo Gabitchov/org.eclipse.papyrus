@@ -70,9 +70,8 @@ public class Util {
 	}
 
 	/**
-	 * Retrieve an arraylist of all instances in the model that
-	 * are instances of the java.lang.Class metaType or with a
-	 * stereotype applied
+	 * Retrieve an arraylist of all instances in the model that are instances of
+	 * the java.lang.Class metaType or with a stereotype applied
 	 * 
 	 * @param metaType
 	 *        selected classes
@@ -84,15 +83,16 @@ public class Util {
 	 */
 	public static ArrayList getInstancesFilteredByType(Package topPackage, Class metaType, Stereotype appliedStereotype) {
 		// retrieve parent element
-		//		Package topPackage = Util.topPackage(element);
-		//		Assert.isNotNull(topPackage, "Top package should not be null for element " + element);
+		// Package topPackage = Util.topPackage(element);
+		// Assert.isNotNull(topPackage,
+		// "Top package should not be null for element " + element);
 		Iterator iter = topPackage.eAllContents();
 		ArrayList filteredElements = new ArrayList();
 
 		while(iter.hasNext()) {
 			Object currentElt = iter.next();
 
-			// If currentElt is an ElementImport, it is replaced by the imported 
+			// If currentElt is an ElementImport, it is replaced by the imported
 			// Element.
 			if(currentElt instanceof ElementImport) {
 				ElementImport elementImport = (ElementImport)currentElt;
@@ -172,7 +172,8 @@ public class Util {
 	}
 
 	/**
-	 * This method is used to look for the top package that contains this element.
+	 * This method is used to look for the top package that contains this
+	 * element.
 	 * 
 	 * @param element
 	 *        the element for which top package must be returned
@@ -187,14 +188,16 @@ public class Util {
 	}
 
 	/**
-	 * This method is used to look for the nearest common parent of two elements.
+	 * This method is used to look for the nearest common parent of two
+	 * elements.
 	 * 
 	 * @param element1
 	 *        the first element to find a parent
 	 * @param element2
 	 *        the other element to find a parent
 	 * @param parentClass
-	 *        the class the common parent must be (otherwise, search in its parents)
+	 *        the class the common parent must be (otherwise, search in its
+	 *        parents)
 	 * @return the common parent (not element1 or element2 themselves) or null
 	 */
 	@SuppressWarnings("unchecked")
@@ -305,12 +308,13 @@ public class Util {
 	 * @param propertyValue
 	 *        : the value to find
 	 * @param objectToEdit
-	 * @return the set of the element representing the value to apply to the property or <code>null</code>
+	 * @return the set of the element representing the value to apply to the
+	 *         property or <code>null</code>
 	 * 
 	 */
 	public static Object retrievesMetaclassElementFromString(Property property, ArrayList<String> stringValues, org.eclipse.uml2.uml.Element packageContainer) {
 
-		//the applied profiles
+		// the applied profiles
 		EList<Profile> profiles = ((org.eclipse.uml2.uml.Package)packageContainer).getAllAppliedProfiles();
 		ArrayList<Object> returnedValues = new ArrayList<Object>();
 		ArrayList<Object> metaclassElement = new ArrayList<Object>();
@@ -383,7 +387,7 @@ public class Util {
 				if(element instanceof NamedElement) {
 					if(((NamedElement)element).getQualifiedName().equals(valuesQualifiedName)) {
 
-						//Like in AppliedStereotypePropertyEditor
+						// Like in AppliedStereotypePropertyEditor
 						EObject newValue = ((NamedElement)element).getStereotypeApplication((Stereotype)property.getType());
 						if(newValue == null) {
 							List<?> subStereotypes = ((NamedElement)element).getAppliedSubstereotypes((Stereotype)property.getType());
@@ -391,7 +395,7 @@ public class Util {
 								newValue = ((NamedElement)element).getStereotypeApplication((Stereotype)subStereotypes.get(0));
 							}
 						}
-						//Like in StereotypeValueTreeObject
+						// Like in StereotypeValueTreeObject
 						if(newValue != null) {
 
 							returnedValues.add(newValue);
@@ -401,7 +405,7 @@ public class Util {
 						break;
 					}
 				} else {
-					//TODO for the element which aren't NamedElement
+					// TODO for the element which aren't NamedElement
 				}
 			}
 		}
@@ -433,7 +437,7 @@ public class Util {
 
 		ArrayList<Object> returnedValues = new ArrayList<Object>();
 
-		//we research the enumerationLiteral
+		// we research the enumerationLiteral
 		for(int i = 0; i < stringValues.size(); i++) {
 			Object obj = enume.getOwnedLiteral(stringValues.get(i));
 			returnedValues.add(obj);
@@ -452,8 +456,7 @@ public class Util {
 	 * 
 	 * @param ep
 	 *        an editpart
-	 * @return
-	 *         <ul>
+	 * @return <ul>
 	 *         <li> <code>true</code> if the editpart is an Affixed Child Node</li>
 	 *         <li> <code>false</code>if not</li>
 	 *         </ul>
@@ -472,15 +475,15 @@ public class Util {
 
 	/**
 	 * 
-	 * Returns a {@link Set} owning all the level of super classes for the Classifier
-	 * With this method we don't have loop problems with {@link Generalization}
+	 * Returns a {@link Set} owning all the level of super classes for the
+	 * Classifier With this method we don't have loop problems with {@link Generalization}
 	 * 
 	 * @param visitedClassifier
 	 *        the list of the visited Classifier (can be <code>null</code>)
 	 * @param clazz
 	 *        the classifier to visit
-	 * @return
-	 *         a {@link Set} owning all the level of super classes for the Classifier
+	 * @return a {@link Set} owning all the level of super classes for the
+	 *         Classifier
 	 */
 	public static Set<Classifier> getAllSuperClasses(Set<Classifier> visitedClassifier, Classifier clazz) {
 		Assert.isNotNull(clazz);

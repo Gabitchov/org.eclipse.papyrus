@@ -13,9 +13,9 @@ package org.eclipse.papyrus.diagram.common.service.palette;
 
 import java.util.List;
 
-
 /**
- * Interface implemented by all proxies for entries that contain pre/post actions
+ * Interface implemented by all proxies for entries that contain pre/post
+ * actions
  */
 public interface IPaletteAspectToolEntryProxy extends IPaletteEntryProxy {
 

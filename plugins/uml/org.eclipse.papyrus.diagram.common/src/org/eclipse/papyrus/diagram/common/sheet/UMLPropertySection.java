@@ -39,7 +39,8 @@ public class UMLPropertySection extends AdvancedPropertySection implements IProp
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.eclipse.ui.views.properties.IPropertySourceProvider#getPropertySource(java.lang.Object)
+	 * org.eclipse.ui.views.properties.IPropertySourceProvider#getPropertySource
+	 * (java.lang.Object)
 	 */
 	public IPropertySource getPropertySource(Object object) {
 		if(object instanceof IPropertySource) {
@@ -61,8 +62,8 @@ public class UMLPropertySection extends AdvancedPropertySection implements IProp
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @seeorg.eclipse.gmf.runtime.diagram.ui.properties.sections.AdvancedPropertySection#
-	 * getPropertySourceProvider()
+	 * @seeorg.eclipse.gmf.runtime.diagram.ui.properties.sections.
+	 * AdvancedPropertySection# getPropertySourceProvider()
 	 */
 	protected IPropertySourceProvider getPropertySourceProvider() {
 		return this;
@@ -100,9 +101,9 @@ public class UMLPropertySection extends AdvancedPropertySection implements IProp
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.eclipse.gmf.runtime.diagram.ui.properties.sections.AdvancedPropertySection#setInput(org
-	 * .eclipse.ui.IWorkbenchPart, org.eclipse.jface.viewers.ISelection)
+	 * @see org.eclipse.gmf.runtime.diagram.ui.properties.sections.
+	 * AdvancedPropertySection#setInput(org .eclipse.ui.IWorkbenchPart,
+	 * org.eclipse.jface.viewers.ISelection)
 	 */
 	public void setInput(IWorkbenchPart part, ISelection selection) {
 		if(selection.isEmpty() || false == selection instanceof StructuredSelection) {

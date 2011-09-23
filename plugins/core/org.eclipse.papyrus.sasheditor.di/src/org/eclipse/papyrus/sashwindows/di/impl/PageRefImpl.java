@@ -19,16 +19,20 @@ import org.eclipse.papyrus.sashwindows.di.PageRef;
 import org.eclipse.papyrus.sashwindows.di.TabFolder;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Page Ref</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Page Ref</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.sashwindows.di.impl.PageRefImpl#getEmfPageIdentifier <em>Emf Page Identifier</em>}</li>
- * <li>{@link org.eclipse.papyrus.sashwindows.di.impl.PageRefImpl#getPageIdentifier <em>Page Identifier</em>}</li>
- * <li>{@link org.eclipse.papyrus.sashwindows.di.impl.PageRefImpl#getObjectPageIdentifier <em>Object Page Identifier</em>}</li>
- * <li>{@link org.eclipse.papyrus.sashwindows.di.impl.PageRefImpl#getParent <em>Parent</em>}</li>
+ * <li>
+ * {@link org.eclipse.papyrus.sashwindows.di.impl.PageRefImpl#getEmfPageIdentifier
+ * <em>Emf Page Identifier</em>}</li>
+ * <li>
+ * {@link org.eclipse.papyrus.sashwindows.di.impl.PageRefImpl#getPageIdentifier
+ * <em>Page Identifier</em>}</li>
+ * <li>
+ * {@link org.eclipse.papyrus.sashwindows.di.impl.PageRefImpl#getObjectPageIdentifier
+ * <em>Object Page Identifier</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sashwindows.di.impl.PageRefImpl#getParent <em> Parent</em>}</li>
  * </ul>
  * </p>
  * 
@@ -37,9 +41,9 @@ import org.eclipse.papyrus.sashwindows.di.TabFolder;
 public class PageRefImpl extends EObjectImpl implements PageRef {
 
 	/**
-	 * The cached value of the '{@link #getEmfPageIdentifier() <em>Emf Page Identifier</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getEmfPageIdentifier()
+	 * <em>Emf Page Identifier</em>}' reference. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * 
 	 * @see #getEmfPageIdentifier()
 	 * @generated
@@ -48,9 +52,9 @@ public class PageRefImpl extends EObjectImpl implements PageRef {
 	protected EObject emfPageIdentifier;
 
 	/**
-	 * The default value of the '{@link #getPageIdentifier() <em>Page Identifier</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getPageIdentifier()
+	 * <em>Page Identifier</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * 
 	 * @see #getPageIdentifier()
 	 * @generated
@@ -59,9 +63,9 @@ public class PageRefImpl extends EObjectImpl implements PageRef {
 	protected static final Object PAGE_IDENTIFIER_EDEFAULT = null;
 
 	/**
-	 * The default value of the '{@link #getObjectPageIdentifier() <em>Object Page Identifier</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getObjectPageIdentifier()
+	 * <em>Object Page Identifier</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * 
 	 * @see #getObjectPageIdentifier()
 	 * @generated
@@ -70,9 +74,9 @@ public class PageRefImpl extends EObjectImpl implements PageRef {
 	protected static final Object OBJECT_PAGE_IDENTIFIER_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getObjectPageIdentifier() <em>Object Page Identifier</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getObjectPageIdentifier()
+	 * <em>Object Page Identifier</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * 
 	 * @see #getObjectPageIdentifier()
 	 * @generated
@@ -81,8 +85,7 @@ public class PageRefImpl extends EObjectImpl implements PageRef {
 	protected Object objectPageIdentifier = OBJECT_PAGE_IDENTIFIER_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -91,8 +94,7 @@ public class PageRefImpl extends EObjectImpl implements PageRef {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -102,8 +104,7 @@ public class PageRefImpl extends EObjectImpl implements PageRef {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -120,8 +121,7 @@ public class PageRefImpl extends EObjectImpl implements PageRef {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -130,8 +130,7 @@ public class PageRefImpl extends EObjectImpl implements PageRef {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -143,8 +142,7 @@ public class PageRefImpl extends EObjectImpl implements PageRef {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
 	 */
@@ -158,8 +156,7 @@ public class PageRefImpl extends EObjectImpl implements PageRef {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
 	 */
@@ -168,8 +165,7 @@ public class PageRefImpl extends EObjectImpl implements PageRef {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -185,8 +181,7 @@ public class PageRefImpl extends EObjectImpl implements PageRef {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -200,8 +195,7 @@ public class PageRefImpl extends EObjectImpl implements PageRef {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -215,8 +209,7 @@ public class PageRefImpl extends EObjectImpl implements PageRef {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -238,8 +231,7 @@ public class PageRefImpl extends EObjectImpl implements PageRef {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -263,8 +255,7 @@ public class PageRefImpl extends EObjectImpl implements PageRef {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -288,8 +279,7 @@ public class PageRefImpl extends EObjectImpl implements PageRef {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -309,8 +299,7 @@ public class PageRefImpl extends EObjectImpl implements PageRef {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -327,8 +316,7 @@ public class PageRefImpl extends EObjectImpl implements PageRef {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
 	 */
@@ -350,8 +338,7 @@ public class PageRefImpl extends EObjectImpl implements PageRef {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -360,8 +347,7 @@ public class PageRefImpl extends EObjectImpl implements PageRef {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -373,8 +359,7 @@ public class PageRefImpl extends EObjectImpl implements PageRef {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -385,8 +370,7 @@ public class PageRefImpl extends EObjectImpl implements PageRef {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -396,8 +380,7 @@ public class PageRefImpl extends EObjectImpl implements PageRef {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -417,4 +400,4 @@ public class PageRefImpl extends EObjectImpl implements PageRef {
 			eNotify(new ENotificationImpl(this, Notification.SET, DiPackage.PAGE_REF__PARENT, newParent, newParent));
 	}
 
-} //PageRefImpl
+} // PageRefImpl

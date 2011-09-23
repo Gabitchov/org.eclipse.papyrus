@@ -38,7 +38,8 @@ public interface EcoreSwitch<T, I> {
 	void setInfo(I info);
 
 	/**
-	 * Performs the switch action. Extra necessary info is available via the getInfo() method.
+	 * Performs the switch action. Extra necessary info is available via the
+	 * getInfo() method.
 	 * 
 	 * @param eObject
 	 *        the e object

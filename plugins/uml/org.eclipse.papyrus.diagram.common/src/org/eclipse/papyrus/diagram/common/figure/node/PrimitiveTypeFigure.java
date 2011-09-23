@@ -74,7 +74,8 @@ public class PrimitiveTypeFigure extends NodeNamedElementFigure {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.cea.papyrus.core.common.figures.NodeFigure#getIconLabelPosition()
+	 * @see
+	 * com.cea.papyrus.core.common.figures.NodeFigure#getIconLabelPosition()
 	 */
 	/**
 	 * 
@@ -100,7 +101,8 @@ public class PrimitiveTypeFigure extends NodeNamedElementFigure {
 	}
 
 	/**
-	 * Helper method to draw separate line between name and stereotypes properties displays
+	 * Helper method to draw separate line between name and stereotypes
+	 * properties displays
 	 * 
 	 * @param graphics
 	 */

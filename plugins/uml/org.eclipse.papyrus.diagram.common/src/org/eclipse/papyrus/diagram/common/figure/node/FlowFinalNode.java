@@ -52,10 +52,10 @@ public class FlowFinalNode extends PapyrusNodeFigure implements IPapyrusNodeUMLE
 		Rectangle r = getBounds().getCopy().crop(new Insets(0, 0, 1, 1));
 		if(isUsingGradient()) {
 			graphics.setBackgroundColor(FigureUtilities.integerToColor(getGradientColor2()));
-			//graphics.setForegroundColor(FigureUtilities.integerToColor(getGradientColor2()));
+			// graphics.setForegroundColor(FigureUtilities.integerToColor(getGradientColor2()));
 		} else {
 			graphics.setBackgroundColor(getBackgroundColor());
-			//graphics.setForegroundColor(getForegroundColor());
+			// graphics.setForegroundColor(getForegroundColor());
 		}
 		graphics.setLineWidth(1);
 		graphics.drawOval(r);

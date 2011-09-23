@@ -27,7 +27,6 @@ import org.eclipse.ui.forms.events.HyperlinkEvent;
 import org.eclipse.ui.forms.events.IHyperlinkListener;
 import org.eclipse.ui.forms.widgets.FormText;
 
-
 /**
  * The Class HelpDialog.
  */
@@ -40,8 +39,8 @@ public class HelpDialog extends CustomPopupDialog {
 	private boolean parseTags;
 
 	/**
-	 * Instantiates a new help dialog.
-	 * You must use constructor with parseTags parameter if you want to define rich text content in your description
+	 * Instantiates a new help dialog. You must use constructor with parseTags
+	 * parameter if you want to define rich text content in your description
 	 * 
 	 * @param parent
 	 *        the parent
@@ -59,9 +58,9 @@ public class HelpDialog extends CustomPopupDialog {
 	}
 
 	/**
-	 * Instantiates a new help dialog.
-	 * ParseTags parameter must be used if you want to define rich text content for the description.
-	 * For example use <form> tag to format your text
+	 * Instantiates a new help dialog. ParseTags parameter must be used if you
+	 * want to define rich text content for the description. For example use
+	 * <form> tag to format your text
 	 * 
 	 * @param parent
 	 *        the parent

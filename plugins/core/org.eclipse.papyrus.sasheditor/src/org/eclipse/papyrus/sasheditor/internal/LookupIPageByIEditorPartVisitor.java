@@ -6,7 +6,6 @@ package org.eclipse.papyrus.sasheditor.internal;
 import org.eclipse.papyrus.sasheditor.editor.IPage;
 import org.eclipse.ui.IEditorPart;
 
-
 /**
  * A visitor used to lookup a PagePart by its IEditorPart.
  * 
@@ -18,7 +17,6 @@ public class LookupIPageByIEditorPartVisitor extends PartVisitor {
 	private IEditorPart editorPart;
 
 	private IPage result;
-
 
 	public LookupIPageByIEditorPartVisitor(IEditorPart editorPart) {
 		this.editorPart = editorPart;

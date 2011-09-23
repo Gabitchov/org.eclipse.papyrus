@@ -6,7 +6,6 @@ package org.eclipse.papyrus.sasheditor.internal;
 import org.eclipse.papyrus.sasheditor.editor.IEditorPage;
 import org.eclipse.papyrus.sasheditor.editor.IPageVisitor;
 
-
 /**
  * A wrapper used to let the provided public visitor use the internal visitor to
  * visit {@link ComponentPart} and {@link EditorPart}.

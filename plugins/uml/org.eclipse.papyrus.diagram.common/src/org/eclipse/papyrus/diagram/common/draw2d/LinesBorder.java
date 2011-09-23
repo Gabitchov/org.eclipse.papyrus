@@ -21,7 +21,8 @@ import org.eclipse.draw2d.geometry.Insets;
 import org.eclipse.gmf.runtime.draw2d.ui.mapmode.MapModeUtil;
 
 /**
- * This is a border that draws lines at the given border positions around the shape.
+ * This is a border that draws lines at the given border positions around the
+ * shape.
  */
 public class LinesBorder extends LineBorder {
 
@@ -58,8 +59,10 @@ public class LinesBorder extends LineBorder {
 	 * @param width
 	 *        the width of the line in relative coordinates
 	 * @param sides
-	 *        the sides to draw. The value should be a bitwise composition of PositionConstants.NONE, PositionConstants.TOP, PositionConstants.BOTTOM,
-	 *        PositionConstants.LEFT, PositionConstants.RIGHT
+	 *        the sides to draw. The value should be a bitwise composition
+	 *        of PositionConstants.NONE, PositionConstants.TOP,
+	 *        PositionConstants.BOTTOM, PositionConstants.LEFT,
+	 *        PositionConstants.RIGHT
 	 */
 	public LinesBorder(int width, int sides) {
 		super(width);
@@ -79,8 +82,10 @@ public class LinesBorder extends LineBorder {
 	 * Change drawn sides
 	 * 
 	 * @param sides
-	 *        the sides to draw. The value should be a bitwise composition of PositionConstants.NONE, PositionConstants.TOP, PositionConstants.BOTTOM,
-	 *        PositionConstants.LEFT, PositionConstants.RIGHT
+	 *        the sides to draw. The value should be a bitwise composition
+	 *        of PositionConstants.NONE, PositionConstants.TOP,
+	 *        PositionConstants.BOTTOM, PositionConstants.LEFT,
+	 *        PositionConstants.RIGHT
 	 */
 	public void setSides(int sides) {
 		this.positions = sides;
@@ -136,16 +141,13 @@ public class LinesBorder extends LineBorder {
 		}
 	}
 
-
 	public int getPositions() {
 		return positions;
 	}
 
-
 	public void setPositions(int positions) {
 		this.positions = positions;
 	}
-
 
 	public int getLeftInset() {
 		if(leftInset < getWidth() && (positions & PositionConstants.LEFT) > 0) {
@@ -154,11 +156,9 @@ public class LinesBorder extends LineBorder {
 		return leftInset;
 	}
 
-
 	public void setLeftInset(int leftInset) {
 		this.leftInset = leftInset;
 	}
-
 
 	public int getRightInset() {
 		if(rightInset < getWidth() && (positions & PositionConstants.RIGHT) > 0) {
@@ -167,11 +167,9 @@ public class LinesBorder extends LineBorder {
 		return rightInset;
 	}
 
-
 	public void setRightInset(int rightInset) {
 		this.rightInset = rightInset;
 	}
-
 
 	public int getTopInset() {
 		if(topInset < getWidth() && (positions & PositionConstants.TOP) > 0) {
@@ -180,11 +178,9 @@ public class LinesBorder extends LineBorder {
 		return topInset;
 	}
 
-
 	public void setTopInset(int topInset) {
 		this.topInset = topInset;
 	}
-
 
 	public int getBottomInset() {
 		if(bottomInset < getWidth() && (positions & PositionConstants.TOP) > 0) {
@@ -193,12 +189,8 @@ public class LinesBorder extends LineBorder {
 		return bottomInset;
 	}
 
-
 	public void setBottomInset(int bottomInset) {
 		this.bottomInset = bottomInset;
 	}
-
-
-
 
 }

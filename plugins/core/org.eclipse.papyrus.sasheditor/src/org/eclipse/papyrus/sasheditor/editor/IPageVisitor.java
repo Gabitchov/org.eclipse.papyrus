@@ -3,9 +3,6 @@
  */
 package org.eclipse.papyrus.sasheditor.editor;
 
-import org.eclipse.papyrus.sasheditor.internal.SashWindowsContainer;
-
-
 /**
  * A Visitor used to visit all the {@link IPage} of a {@link SashWindowsContainer}.
  * 

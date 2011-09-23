@@ -24,8 +24,8 @@ import org.eclipse.gmf.runtime.notation.GradientStyle;
 import org.eclipse.swt.graphics.Color;
 
 /**
- * this class is used to display a rounded rectangle
- * with gradient and intherits from the hierarchy of papyrus nodes
+ * this class is used to display a rounded rectangle with gradient and intherits
+ * from the hierarchy of papyrus nodes
  * 
  */
 
@@ -39,7 +39,6 @@ public class PapyrusReceiveNodeFigure extends NodeNamedElementFigure {
 	}
 
 	public int corner = 15;
-
 
 	@Override
 	protected Border getDefaultBorder(Color borderColor) {
@@ -84,7 +83,6 @@ public class PapyrusReceiveNodeFigure extends NodeNamedElementFigure {
 				graphics.setBackgroundColor(FigureUtilities.integerToColor(getGradientColor1()));
 				graphics.fillRoundRectangle(rect2, corner, corner);
 
-
 				graphics.setBackgroundColor(FigureUtilities.integerToColor(getGradientColor1()));
 				graphics.setForegroundColor(FigureUtilities.integerToColor(getGradientColor2()));
 				Rectangle rect = new Rectangle(rectangle.x, rectangle.y + corner / 2, rectangle.width, rectangle.height - corner);
@@ -96,7 +94,6 @@ public class PapyrusReceiveNodeFigure extends NodeNamedElementFigure {
 				graphics.fillRoundRectangle(rect1, corner, corner);
 				graphics.setBackgroundColor(FigureUtilities.integerToColor(getGradientColor1()));
 				graphics.fillRoundRectangle(rect2, corner, corner);
-
 
 				graphics.setBackgroundColor(FigureUtilities.integerToColor(getGradientColor1()));
 				graphics.setForegroundColor(FigureUtilities.integerToColor(getGradientColor2()));
@@ -113,9 +110,5 @@ public class PapyrusReceiveNodeFigure extends NodeNamedElementFigure {
 			graphics.fillRoundRectangle(rectangle, corner, corner);
 		}
 	}
-
-
-
-
 
 }

@@ -17,7 +17,6 @@ import org.eclipse.gmf.runtime.common.core.service.IOperation;
 import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.swt.graphics.Image;
 
-
 /**
  * Abstract class for the aspect action providers
  */

@@ -49,8 +49,8 @@ import org.eclipse.uml2.uml.ElementImport;
 import org.eclipse.uml2.uml.NamedElement;
 
 /**
- * Extended edit policy for direct edit. this policy checks if an editor is available in the editor
- * registry for the given edited element
+ * Extended edit policy for direct edit. this policy checks if an editor is
+ * available in the editor registry for the given edited element
  */
 public class ExtendedDirectEditPolicy extends LabelDirectEditPolicy {
 
@@ -69,7 +69,8 @@ public class ExtendedDirectEditPolicy extends LabelDirectEditPolicy {
 	}
 
 	/**
-	 * The direct edit mechanism requires the edit part to handle the direct edit request.
+	 * The direct edit mechanism requires the edit part to handle the direct
+	 * edit request.
 	 * 
 	 * @param req
 	 *        the request that called the direct edit.
@@ -195,8 +196,8 @@ public class ExtendedDirectEditPolicy extends LabelDirectEditPolicy {
 	}
 
 	/**
-	 * Init the label direct edit manager. This method should be called when a Direct Edit request
-	 * is performed.
+	 * Init the label direct edit manager. This method should be called when a
+	 * Direct Edit request is performed.
 	 */
 	// @unused
 	protected void initLabelEditManager() {
@@ -263,7 +264,8 @@ public class ExtendedDirectEditPolicy extends LabelDirectEditPolicy {
 	/**
 	 * Returns the element associated to the edit part hosting this edit policy
 	 * 
-	 * @return the element associated to the edit part hosting this edit policy or <code>null</code> if the element is not an element import
+	 * @return the element associated to the edit part hosting this edit policy
+	 *         or <code>null</code> if the element is not an element import
 	 */
 	public ElementImport getElementImport() {
 		if(isElementImport()) {

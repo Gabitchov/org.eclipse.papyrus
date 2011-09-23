@@ -50,12 +50,12 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPart;
 
 /**
- * this class has in charge to launch command for cut copy paste (graphically) it is also used to launch the copy into bmp like as writer software
+ * this class has in charge to launch command for cut copy paste (graphically)
+ * it is also used to launch the copy into bmp like as writer software
  * 
  */
 @SuppressWarnings("restriction")
 public class PapyrusDiagramGlobalActionHandler extends ImageSupportGlobalActionHandler {
-
 
 	protected boolean canPaste(IGlobalActionContext cntxt) {
 		/* Get the selected edit parts */
@@ -78,7 +78,8 @@ public class PapyrusDiagramGlobalActionHandler extends ImageSupportGlobalActionH
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.eclipse.gmf.runtime.common.ui.services.action.global.IGlobalActionHandler#getCommand(org.eclipse.gmf.runtime.common.ui.services.action.
+	 * org.eclipse.gmf.runtime.common.ui.services.action.global.IGlobalActionHandler
+	 * #getCommand(org.eclipse.gmf.runtime.common.ui.services.action.
 	 * global.IGlobalActionContext)
 	 */
 	public ICommand getCommand(IGlobalActionContext cntxt) {
@@ -136,8 +137,8 @@ public class PapyrusDiagramGlobalActionHandler extends ImageSupportGlobalActionH
 
 	/**
 	 * @see org.eclipse.gmf.runtime.diagram.ui.providers.DiagramGlobalActionHandler#getCopyCommand(org.eclipse.gmf.runtime.common.ui.services.action.global.IGlobalActionContext,
-	 *      org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart, boolean)
-	 *      this class also copy in the clipboard of the editing domain selected elements
+	 *      org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart, boolean) this class also copy in the clipboard of the editing domain
+	 *      selected elements
 	 * 
 	 */
 
@@ -147,11 +148,13 @@ public class PapyrusDiagramGlobalActionHandler extends ImageSupportGlobalActionH
 		Object[] objectsArray = ((IStructuredSelection)cntxt.getSelection()).toArray();
 		CompositeCommand compositeCommand = new CompositeCommand(GlobalActionId.COPY);
 		if(objectsArray.length > 0 && objectsArray[0] instanceof GraphicalEditPart) {
-			//((GraphicalEditPart)objectsArray[0]).getEditingDomain().setClipboard(((IStructuredSelection) cntxt.getSelection()).toList());
+			// ((GraphicalEditPart)objectsArray[0]).getEditingDomain().setClipboard(((IStructuredSelection)
+			// cntxt.getSelection()).toList());
 			compositeCommand.add(new EMFtoGMFCommandWrapper(CopyToClipboardCommand.create(((GraphicalEditPart)objectsArray[0]).getEditingDomain(), getNotation(((IStructuredSelection)cntxt.getSelection()).toList()))));
 		}
 		if(objectsArray.length > 0 && objectsArray[0] instanceof ConnectionEditPart) {
-			//((GraphicalEditPart)objectsArray[0]).getEditingDomain().setClipboard(((IStructuredSelection) cntxt.getSelection()).toList());
+			// ((GraphicalEditPart)objectsArray[0]).getEditingDomain().setClipboard(((IStructuredSelection)
+			// cntxt.getSelection()).toList());
 			compositeCommand.add(new EMFtoGMFCommandWrapper(CopyToClipboardCommand.create(((ConnectionEditPart)objectsArray[0]).getEditingDomain(), getNotation(((IStructuredSelection)cntxt.getSelection()).toList()))));
 		}
 		compositeCommand.add(super.getCopyCommand(cntxt, diagramPart, isUndoable));
@@ -172,12 +175,14 @@ public class PapyrusDiagramGlobalActionHandler extends ImageSupportGlobalActionH
 		Object[] objectsArray = ((IStructuredSelection)cntxt.getSelection()).toArray();
 		CompositeCommand compositeCommand = new CompositeCommand(GlobalActionId.CUT);
 		if(objectsArray.length > 0 && objectsArray[0] instanceof GraphicalEditPart) {
-			//((GraphicalEditPart)objectsArray[0]).getEditingDomain().setClipboard(((IStructuredSelection) cntxt.getSelection()).toList());
+			// ((GraphicalEditPart)objectsArray[0]).getEditingDomain().setClipboard(((IStructuredSelection)
+			// cntxt.getSelection()).toList());
 			compositeCommand.add(new EMFtoGMFCommandWrapper(CopyToClipboardCommand.create(((GraphicalEditPart)objectsArray[0]).getEditingDomain(), getNotation(((IStructuredSelection)cntxt.getSelection()).toList()))));
 
 		}
 		if(objectsArray.length > 0 && objectsArray[0] instanceof ConnectionEditPart) {
-			//((GraphicalEditPart)objectsArray[0]).getEditingDomain().setClipboard(((IStructuredSelection) cntxt.getSelection()).toList());
+			// ((GraphicalEditPart)objectsArray[0]).getEditingDomain().setClipboard(((IStructuredSelection)
+			// cntxt.getSelection()).toList());
 			compositeCommand.add(new EMFtoGMFCommandWrapper(CopyToClipboardCommand.create(((ConnectionEditPart)objectsArray[0]).getEditingDomain(), getNotation(((IStructuredSelection)cntxt.getSelection()).toList()))));
 		}
 		ICommand cutCommand = super.getCutCommand(cntxt, diagramPart);
@@ -186,8 +191,6 @@ public class PapyrusDiagramGlobalActionHandler extends ImageSupportGlobalActionH
 		}
 		return compositeCommand;
 	}
-
-
 
 	/**
 	 * Returns appropriate delete command for this context.
@@ -254,7 +257,6 @@ public class PapyrusDiagramGlobalActionHandler extends ImageSupportGlobalActionH
 
 		return result;
 	}
-
 
 	/**
 	 * get the list of notation element from the a list of editpart

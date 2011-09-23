@@ -23,7 +23,6 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
 
-
 /**
  * 
  * this class provides a combo, with a warning message when the list is empty
@@ -40,13 +39,10 @@ public class ComboDialogWithMessage extends ComboInputDialog {
 	 */
 	private String warningMessage;
 
-
-
 	/**
 	 * the warning icon
 	 */
 	private static final String ICON_WARNING = "/icons/warning.gif"; //$NON-NLS-1$
-
 
 	protected ComboDialogWithMessage(Shell parentShell, String title, String message, String initialValue, String[] elementsList, String warningMessage) {
 		super(parentShell, title, message, initialValue, elementsList);
@@ -76,7 +72,6 @@ public class ComboDialogWithMessage extends ComboInputDialog {
 		return composite;
 	}
 
-
 	/**
 	 * Set the warning message
 	 * 
@@ -99,7 +94,6 @@ public class ComboDialogWithMessage extends ComboInputDialog {
 			}
 		}
 	}
-
 
 	/**
 	 * Returns the style bits that should be used for the input text field.

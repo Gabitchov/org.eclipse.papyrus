@@ -46,9 +46,8 @@ import org.eclipse.papyrus.preferences.Activator;
 import org.eclipse.papyrus.ui.toolbox.draw2d.ManuallyDrawnShortcutDecorationFigure;
 import org.eclipse.swt.graphics.Color;
 
-
 public class NavigationDecorator extends AbstractDecorator implements Adapter {
-	
+
 	private static final String EXTENSION_ID = "org.eclipse.papyrus.navigation.navigationColorProviders";
 
 	private static final String COLORPROVIDER_ID = "navigationColorProvider";
@@ -56,12 +55,12 @@ public class NavigationDecorator extends AbstractDecorator implements Adapter {
 	private static final String PROVIDER_ID = "provider";
 
 	private static List<IColorProvider> navigationColorProviders = new LinkedList<IColorProvider>();
-	
+
 	static {
 		// Reading data from plugins
 		IConfigurationElement[] configElements = Platform.getExtensionRegistry().getConfigurationElementsFor(EXTENSION_ID);
 		for(IConfigurationElement configElement : configElements) {
-			if (COLORPROVIDER_ID.equals(configElement.getName())) {
+			if(COLORPROVIDER_ID.equals(configElement.getName())) {
 				try {
 					Object obj = configElement.createExecutableExtension(PROVIDER_ID);
 					if(obj instanceof IColorProvider) {
@@ -78,7 +77,7 @@ public class NavigationDecorator extends AbstractDecorator implements Adapter {
 	private ManuallyDrawnShortcutDecorationFigure shortcutFigure = new ManuallyDrawnShortcutDecorationFigure();
 
 	private IGraphicalEditPart gep = null;
-	
+
 	private boolean displayOnly;
 
 	public NavigationDecorator(IDecoratorTarget decoratorTarget) {
@@ -101,7 +100,6 @@ public class NavigationDecorator extends AbstractDecorator implements Adapter {
 		if(editPart instanceof IGraphicalEditPart) {
 			gep = (IGraphicalEditPart)editPart;
 
-
 			if(editPart instanceof ShapeEditPart) {
 				setDecoration(getDecoratorTarget().addShapeDecoration(shortcutFigure, IDecoratorTarget.Direction.NORTH_EAST, -5, displayOnly));
 			} else if(editPart instanceof ConnectionEditPart) {
@@ -123,12 +121,12 @@ public class NavigationDecorator extends AbstractDecorator implements Adapter {
 				currentDiagram = view.getDiagram();
 			}
 
-			if (currentDiagram != null) {
+			if(currentDiagram != null) {
 				addResourceListener(currentDiagram.eResource());
 			}
 
 			List<NavigableElement> navElements = NavigationHelper.getInstance().getAllNavigableElements(element);
-			
+
 			Color shortcutColor = null;
 
 			for(NavigableElement navElement : navElements) {
@@ -146,13 +144,14 @@ public class NavigationDecorator extends AbstractDecorator implements Adapter {
 							for(Diagram diag : associatedDiagrams) {
 								addResourceListener(diag.eResource());
 								if(!diag.equals(currentDiagram)) {
-									for (IColorProvider provider : navigationColorProviders) {
+									for(IColorProvider provider : navigationColorProviders) {
 										Color color = provider.getBackground(navElement);
-										if (color != null) {
-											if (shortcutColor == null) {
+										if(color != null) {
+											if(shortcutColor == null) {
 												shortcutColor = color;
-											} else if (!shortcutColor.equals(color)) {
-												// more than one color for this element :
+											} else if(!shortcutColor.equals(color)) {
+												// more than one color for this
+												// element :
 												// just use white in this case
 												shortcutColor = ColorConstants.white;
 											}
@@ -165,8 +164,8 @@ public class NavigationDecorator extends AbstractDecorator implements Adapter {
 					}
 				}
 			}
-			
-			if (shortcutColor == null) {
+
+			if(shortcutColor == null) {
 				shortcutFigure.setVisible(false);
 			} else {
 				shortcutFigure.setVisible(true);

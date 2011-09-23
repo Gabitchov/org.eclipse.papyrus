@@ -31,7 +31,8 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
 
 /**
- * Action that builds the sub-menu for the palette viewer to configure the palettes seen or not
+ * Action that builds the sub-menu for the palette viewer to configure the
+ * palettes seen or not
  */
 public class PaletteMenuAction extends Action implements IMenuCreator {
 
@@ -68,8 +69,8 @@ public class PaletteMenuAction extends Action implements IMenuCreator {
 	}
 
 	/**
-	 * Helper method that wraps the given action in an ActionContributionItem and then adds it to
-	 * the given menu.
+	 * Helper method that wraps the given action in an ActionContributionItem
+	 * and then adds it to the given menu.
 	 * 
 	 * @param parent
 	 *        The menu to which the given action is to be added
@@ -82,7 +83,8 @@ public class PaletteMenuAction extends Action implements IMenuCreator {
 	}
 
 	/**
-	 * Creates and returns a list of actions that can toggle palette providers visiblity
+	 * Creates and returns a list of actions that can toggle palette providers
+	 * visiblity
 	 * 
 	 * @return a list of actions that can toggle palette providers visiblity
 	 */

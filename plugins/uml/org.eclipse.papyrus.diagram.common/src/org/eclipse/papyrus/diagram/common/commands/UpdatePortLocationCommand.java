@@ -81,7 +81,8 @@ public class UpdatePortLocationCommand extends AbstractTransactionalCommand {
 		Shape borderItemShape = (Shape)borderItemEditPart.getNotationView();
 		Bounds borderItemBounds = (Bounds)borderItemShape.getLayoutConstraint();
 
-		switch(borderItemSide) { // The borderItemSide is not supposed to change during a parent resize.
+		switch(borderItemSide) { // The borderItemSide is not supposed to
+									// change during a parent resize.
 		case PositionConstants.NORTH:
 			borderItemBounds.setY(-borderItemOffset);
 			break;

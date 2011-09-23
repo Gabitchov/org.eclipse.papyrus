@@ -6,11 +6,8 @@ package org.eclipse.papyrus.core.services;
 import java.util.Collections;
 import java.util.List;
 
-
-
 /**
- * Descriptor of a service.
- * This descriptor describe a service. 
+ * Descriptor of a service. This descriptor describe a service.
  * 
  * @author cedirc dumoulin
  * 
@@ -19,10 +16,12 @@ public class ServiceDescriptor {
 
 	/**
 	 * Possible kind for service types.
-	 *
+	 * 
 	 */
-	public enum ServiceTypeKind { service, serviceFactory, pojo };
-	
+	public enum ServiceTypeKind {
+		service, serviceFactory, pojo
+	};
+
 	/** Classname of the service. USed to start the service */
 	private String serviceClassname;
 
@@ -33,8 +32,8 @@ public class ServiceDescriptor {
 	private ServiceTypeKind serviceTypeKind = ServiceTypeKind.service;
 
 	/**
-	 * Service priority. If two service are registered under the same key, only the one with the
-	 * higher priority is started.
+	 * Service priority. If two service are registered under the same key, only
+	 * the one with the higher priority is started.
 	 */
 	private int priority;
 
@@ -44,14 +43,14 @@ public class ServiceDescriptor {
 	private String key;
 
 	/**
-	 * Id of the bundle owning the .class that is referenced by serviceClassname.
-	 * Requested when instanciating the class.
+	 * Id of the bundle owning the .class that is referenced by
+	 * serviceClassname. Requested when instanciating the class.
 	 */
 	private String classBundleID;
 
 	/**
-	 * If set to true, the service is anonymous : it is not registered and can't be retrieved with
-	 * getService().
+	 * If set to true, the service is anonymous : it is not registered and can't
+	 * be retrieved with getService().
 	 */
 	private boolean isAnonymous = false;
 
@@ -59,12 +58,12 @@ public class ServiceDescriptor {
 	 * List of keys of Services required by this service.
 	 */
 	private List<String> requiredServices = Collections.emptyList();
-	
+
 	/**
 	 * Empty list.
 	 */
 	private static List<String> EMPTY_LIST_STRING = Collections.emptyList();
-	
+
 	/**
 	 * Constructor.
 	 * 
@@ -85,7 +84,8 @@ public class ServiceDescriptor {
 	/**
 	 * Constructor.
 	 * 
-	 * @param key A class used as key. The classname is used as key.
+	 * @param key
+	 *        A class used as key. The classname is used as key.
 	 * @param serviceClassname
 	 * @param serviceStartKind
 	 * @param priority
@@ -98,7 +98,8 @@ public class ServiceDescriptor {
 	/**
 	 * Constructor.
 	 * 
-	 * @param key A class used as key. The classname is used as key.
+	 * @param key
+	 *        A class used as key. The classname is used as key.
 	 * @param serviceClassname
 	 * @param serviceStartKind
 	 * @param priority
@@ -117,7 +118,8 @@ public class ServiceDescriptor {
 	/**
 	 * Constructor.
 	 * 
-	 * @param key A class used as key. The classname is used as key.
+	 * @param key
+	 *        A class used as key. The classname is used as key.
 	 * @param serviceClassname
 	 * @param serviceStartKind
 	 * @param priority
@@ -143,7 +145,8 @@ public class ServiceDescriptor {
 	/**
 	 * Constructor.
 	 * 
-	 * @param key A class used as key. The classname is used as key.
+	 * @param key
+	 *        A class used as key. The classname is used as key.
 	 * @param serviceClassname
 	 * @param serviceStartKind
 	 * @param priority
@@ -209,7 +212,6 @@ public class ServiceDescriptor {
 		return priority;
 	}
 
-
 	/**
 	 * @return the key
 	 */
@@ -217,14 +219,12 @@ public class ServiceDescriptor {
 		return key;
 	}
 
-
 	/**
 	 * @return the serviceClassname
 	 */
 	public String getServiceClassname() {
 		return serviceClassname;
 	}
-
 
 	/**
 	 * @return the classBundleID
@@ -241,18 +241,18 @@ public class ServiceDescriptor {
 		classBundleID = classBundleId;
 	}
 
-
 	/**
 	 * Get the keys of all the required services
+	 * 
 	 * @return the requiredServices
 	 */
 	public List<String> getRequiredServiceKeys() {
 		return requiredServices;
 	}
 
-	
 	/**
-	 * @param requiredServices the requiredServices to set
+	 * @param requiredServices
+	 *        the requiredServices to set
 	 */
 	public void setRequiredServiceKeys(List<String> requiredServices) {
 		this.requiredServices = requiredServices;
@@ -275,15 +275,14 @@ public class ServiceDescriptor {
 		return isAnonymous;
 	}
 
-	
 	/**
-	 * @param isAnonymous the isAnonymous to set
+	 * @param isAnonymous
+	 *        the isAnonymous to set
 	 */
 	public void setAnonymous(boolean isAnonymous) {
 		this.isAnonymous = isAnonymous;
 	}
 
-	
 	/**
 	 * @return the serviceTypeKind
 	 */
@@ -291,13 +290,12 @@ public class ServiceDescriptor {
 		return serviceTypeKind;
 	}
 
-	
 	/**
-	 * @param serviceTypeKind the serviceTypeKind to set
+	 * @param serviceTypeKind
+	 *        the serviceTypeKind to set
 	 */
 	public void setServiceTypeKind(ServiceTypeKind serviceTypeKind) {
 		this.serviceTypeKind = serviceTypeKind;
 	}
-
 
 }

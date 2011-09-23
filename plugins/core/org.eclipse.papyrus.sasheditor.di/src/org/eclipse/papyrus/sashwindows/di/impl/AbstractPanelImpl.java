@@ -18,13 +18,13 @@ import org.eclipse.papyrus.sashwindows.di.DiPackage;
 import org.eclipse.papyrus.sashwindows.di.PanelParent;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Abstract Panel</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Abstract Panel</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.sashwindows.di.impl.AbstractPanelImpl#getParent <em>Parent</em>}</li>
+ * <li>
+ * {@link org.eclipse.papyrus.sashwindows.di.impl.AbstractPanelImpl#getParent
+ * <em>Parent</em>}</li>
  * </ul>
  * </p>
  * 
@@ -33,8 +33,7 @@ import org.eclipse.papyrus.sashwindows.di.PanelParent;
 public abstract class AbstractPanelImpl extends EObjectImpl implements AbstractPanel {
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -43,8 +42,7 @@ public abstract class AbstractPanelImpl extends EObjectImpl implements AbstractP
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -54,8 +52,7 @@ public abstract class AbstractPanelImpl extends EObjectImpl implements AbstractP
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -66,8 +63,7 @@ public abstract class AbstractPanelImpl extends EObjectImpl implements AbstractP
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -77,8 +73,7 @@ public abstract class AbstractPanelImpl extends EObjectImpl implements AbstractP
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -99,8 +94,7 @@ public abstract class AbstractPanelImpl extends EObjectImpl implements AbstractP
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -116,8 +110,7 @@ public abstract class AbstractPanelImpl extends EObjectImpl implements AbstractP
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -131,8 +124,7 @@ public abstract class AbstractPanelImpl extends EObjectImpl implements AbstractP
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -146,8 +138,7 @@ public abstract class AbstractPanelImpl extends EObjectImpl implements AbstractP
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -161,8 +152,7 @@ public abstract class AbstractPanelImpl extends EObjectImpl implements AbstractP
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -177,8 +167,7 @@ public abstract class AbstractPanelImpl extends EObjectImpl implements AbstractP
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -193,8 +182,7 @@ public abstract class AbstractPanelImpl extends EObjectImpl implements AbstractP
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -207,4 +195,4 @@ public abstract class AbstractPanelImpl extends EObjectImpl implements AbstractP
 		return super.eIsSet(featureID);
 	}
 
-} //AbstractPanelImpl
+} // AbstractPanelImpl

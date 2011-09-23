@@ -40,11 +40,11 @@ public class HelpComponentFactory {
 	}
 
 	/**
-	 * Creates help component that insert a new hyperlink icon to display additional help description
-	 * if tooltip is null, default value is "Help"
+	 * Creates help component that insert a new hyperlink icon to display
+	 * additional help description if tooltip is null, default value is "Help"
 	 * 
-	 * ParseTags parameter must be used if you want to define rich text content for the helpText.
-	 * For example use <form> tag to format your text
+	 * ParseTags parameter must be used if you want to define rich text content
+	 * for the helpText. For example use <form> tag to format your text
 	 * 
 	 * @param parent
 	 *        the parent
@@ -82,11 +82,10 @@ public class HelpComponentFactory {
 		return helpImage;
 	}
 
-
 	/**
-	 * Creates a new HelpComponent object.
-	 * ParseTags parameter must be used if you want to define rich text content for the helpText.
-	 * For example use <form> tag to format your text
+	 * Creates a new HelpComponent object. ParseTags parameter must be used if
+	 * you want to define rich text content for the helpText. For example use
+	 * <form> tag to format your text
 	 * 
 	 * @param parent
 	 *        the parent
@@ -103,8 +102,8 @@ public class HelpComponentFactory {
 	}
 
 	/**
-	 * Creates a new HelpComponent object.
-	 * You must use method with parseTags parameter if you want to define rich text content for the helpText
+	 * Creates a new HelpComponent object. You must use method with parseTags
+	 * parameter if you want to define rich text content for the helpText
 	 * 
 	 * @param parent
 	 *        the parent

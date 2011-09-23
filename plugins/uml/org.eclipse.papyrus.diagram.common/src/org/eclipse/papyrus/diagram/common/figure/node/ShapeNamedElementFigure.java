@@ -19,9 +19,7 @@ import org.eclipse.papyrus.diagram.common.figure.layout.PropertiesCompartmentLay
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.ImageData;
 
-
 public class ShapeNamedElementFigure extends PapyrusNodeFigure implements IPapyrusNodeUMLElementFigure {
-
 
 	public class ShapeLayoutManager extends AbstractLayout {
 
@@ -34,7 +32,6 @@ public class ShapeNamedElementFigure extends PapyrusNodeFigure implements IPapyr
 
 			int minimumWith = 50;
 			int minimumHeight = 50;
-
 
 			return new Dimension(minimumWith, minimumHeight);
 		}
@@ -77,7 +74,8 @@ public class ShapeNamedElementFigure extends PapyrusNodeFigure implements IPapyr
 					Activator.getDefault().getImageRegistry().put(key, ImageDescriptor.createFromImageData(imdata));
 					imm = Activator.getDefault().getImageRegistry().get(key);
 				}
-				// there is an image but we would like replace it by our new image
+				// there is an image but we would like replace it by our new
+				// image
 				else {
 					// imm.dispose();
 					Activator.getDefault().getImageRegistry().remove(key);
@@ -93,7 +91,6 @@ public class ShapeNamedElementFigure extends PapyrusNodeFigure implements IPapyr
 				adaptedImage = imm;
 				label.setIcon(adaptedImage);
 			}
-
 
 		}
 	}
@@ -112,7 +109,6 @@ public class ShapeNamedElementFigure extends PapyrusNodeFigure implements IPapyr
 	 * Added for stereptypes properties
 	 */
 	private RectangleFigure stereotypePropertiesContent;
-
 
 	/**
 	 * Added for stereptypes properties
@@ -134,19 +130,17 @@ public class ShapeNamedElementFigure extends PapyrusNodeFigure implements IPapyr
 	 */
 	protected int numerNode;
 
-
 	/**
 	 * create an icon figure.
 	 * 
 	 * @param numberNode
-	 *        is used to spcify a unique identfier tha t is associated to the image thanks to
-	 *        the graphNode.hashCode()
+	 *        is used to spcify a unique identfier tha t is associated to
+	 *        the image thanks to the graphNode.hashCode()
 	 * @param image
 	 *        the image (GIF) that we want to see
 	 */
 	public ShapeNamedElementFigure(Image image) {
 		super();
-
 
 		this.originalimage = image;
 		label = new Label("");
@@ -154,7 +148,7 @@ public class ShapeNamedElementFigure extends PapyrusNodeFigure implements IPapyr
 		label.setTextAlignment(PositionConstants.CENTER);
 		label.setIconTextGap(2);
 		this.add(label);
-		//the image can be null, if we display a SVG file
+		// the image can be null, if we display a SVG file
 		if(image != null) {
 			label.setIcon(image);
 		}
@@ -180,7 +174,6 @@ public class ShapeNamedElementFigure extends PapyrusNodeFigure implements IPapyr
 		this.add(scalableImageFigure);
 	}
 
-
 	/**
 	 * display icon from an image
 	 * 
@@ -196,7 +189,7 @@ public class ShapeNamedElementFigure extends PapyrusNodeFigure implements IPapyr
 	}
 
 	public void setStereotypeDisplay(String stereotypes, Image image) {
-		//do nothing
+		// do nothing
 
 	}
 
@@ -289,6 +282,5 @@ public class ShapeNamedElementFigure extends PapyrusNodeFigure implements IPapyr
 		stereotypePropertiesBrace.setLayoutManager(new PropertiesCompartmentLayoutManager());
 		this.add(stereotypePropertiesBrace, getStereotypePropertiesCompartmentPosition());
 	}
-
 
 }

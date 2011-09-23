@@ -27,7 +27,8 @@ import org.eclipse.swt.SWT;
 public class RoundedRectangleDashedBorder extends RoundedRectangleBorder {
 
 	/**
-	 * Creates an instance of this class with the given arc width and arc height in pixels
+	 * Creates an instance of this class with the given arc width and arc height
+	 * in pixels
 	 * 
 	 * @param arcWidth
 	 *        The width of the corner arc
@@ -50,7 +51,8 @@ public class RoundedRectangleDashedBorder extends RoundedRectangleBorder {
 	}
 
 	/**
-	 * Paints rounded rectangular dashed border taking into account arcWidth, arcHeight, line width and line style
+	 * Paints rounded rectangular dashed border taking into account arcWidth,
+	 * arcHeight, line width and line style
 	 * 
 	 * @see org.eclipse.gmf.runtime.draw2d.ui.figures.RoundedRectangleBorder#paint(org.eclipse.draw2d.IFigure, org.eclipse.draw2d.Graphics,
 	 *      org.eclipse.draw2d.geometry.Insets)

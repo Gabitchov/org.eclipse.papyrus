@@ -10,10 +10,9 @@ import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
 import org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider;
 import org.eclipse.papyrus.sasheditor.contentprovider.di.DiSashModelMngr;
 
-
 /**
- * A service factory to create the {@link IPageMngr} service.
- * This serviceFactory depends on {@link ISashWindowsContentProvider} service.
+ * A service factory to create the {@link IPageMngr} service. This
+ * serviceFactory depends on {@link ISashWindowsContentProvider} service.
  * 
  * @author cedric dumoulin
  * 

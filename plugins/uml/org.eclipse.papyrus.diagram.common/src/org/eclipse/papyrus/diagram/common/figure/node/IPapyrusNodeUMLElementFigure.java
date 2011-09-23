@@ -31,22 +31,21 @@ public interface IPapyrusNodeUMLElementFigure extends IPapyrusUMLElementFigure {
 	 * </p>
 	 * 
 	 * @param stereotypeProperties
-	 *        the string representing the stereotype properties to be displayed
+	 *        the string representing the stereotype properties to be
+	 *        displayed
 	 */
 	public void setStereotypePropertiesInBrace(String stereotypeProperties);
 
 	/**
 	 * displays the new string corresponding to the list of stereotypes.
 	 * 
-	 * if the string is <code>null</code>, then the figure that displays the stereotype label is
-	 * removed from the NodeNamedElementFigure.
+	 * if the string is <code>null</code>, then the figure that displays the
+	 * stereotype label is removed from the NodeNamedElementFigure.
 	 * 
 	 * @param stereotypeProperties
 	 *        the string to be displayed.
 	 */
 	public void setStereotypePropertiesInCompartment(String stereotypeProperties);
-
-
 
 	/**
 	 * Gets the stereotypes label.
@@ -54,6 +53,5 @@ public interface IPapyrusNodeUMLElementFigure extends IPapyrusUMLElementFigure {
 	 * @return the stereotypes label
 	 */
 	public Label getStereotypesLabel();
-
 
 }

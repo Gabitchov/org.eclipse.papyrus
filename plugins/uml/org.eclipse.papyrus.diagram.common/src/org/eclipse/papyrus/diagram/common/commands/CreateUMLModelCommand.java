@@ -17,7 +17,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.core.extension.commands.ModelCreationCommandBase;
 import org.eclipse.uml2.uml.UMLFactory;
 
-
 /**
  * The Class CreateUMLModelCommand.
  */

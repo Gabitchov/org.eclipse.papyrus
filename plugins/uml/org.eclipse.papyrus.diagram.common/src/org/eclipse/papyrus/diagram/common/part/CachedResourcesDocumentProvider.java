@@ -131,8 +131,10 @@ public class CachedResourcesDocumentProvider extends AbstractDocumentProvider im
 	 * (non-Javadoc)
 	 * 
 	 * @seeorg.eclipse.gmf.runtime.diagram.ui.resources.editor.document.
-	 * AbstractDocumentProvider#disposeElementInfo(java.lang.Object, org.eclipse.
-	 * gmf.runtime.diagram.ui.resources.editor.document.AbstractDocumentProvider .ElementInfo)
+	 * AbstractDocumentProvider#disposeElementInfo(java.lang.Object,
+	 * org.eclipse.
+	 * gmf.runtime.diagram.ui.resources.editor.document.AbstractDocumentProvider
+	 * .ElementInfo)
 	 */
 	@Override
 	protected void disposeElementInfo(Object element, ElementInfo info) {
@@ -547,9 +549,10 @@ public class CachedResourcesDocumentProvider extends AbstractDocumentProvider im
 	}
 
 	/**
-	 * The listener interface for receiving resourceSetModification events. The class that is
-	 * interested in processing a resourceSetModification event implements this interface, and the
-	 * object created with that class is registered with a component using the component's <code>addResourceSetModificationListener<code> method. When
+	 * The listener interface for receiving resourceSetModification events. The
+	 * class that is interested in processing a resourceSetModification event
+	 * implements this interface, and the object created with that class is
+	 * registered with a component using the component's <code>addResourceSetModificationListener<code> method. When
 	 * the resourceSetModification event occurs, that object's appropriate
 	 * method is invoked.
 	 * 
@@ -650,8 +653,9 @@ public class CachedResourcesDocumentProvider extends AbstractDocumentProvider im
 	}
 
 	/**
-	 * Sets up the given document as it would be provided for the given element. The content of the
-	 * document is not changed. This default implementation is empty. Subclasses may reimplement.
+	 * Sets up the given document as it would be provided for the given element.
+	 * The content of the document is not changed. This default implementation
+	 * is empty. Subclasses may reimplement.
 	 */
 	protected void setupDocument(Object element, IDocument document) {
 		// for subclasses

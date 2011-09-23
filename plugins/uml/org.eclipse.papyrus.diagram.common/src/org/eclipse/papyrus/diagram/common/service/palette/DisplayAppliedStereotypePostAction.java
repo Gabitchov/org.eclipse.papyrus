@@ -171,7 +171,7 @@ public class DisplayAppliedStereotypePostAction extends GraphicalPostAction {
 			compositeCommand.add(new EMFtoGMFCommandWrapper(command));
 		}
 
-		// creates the commands to display qualified names of stereotypes 
+		// creates the commands to display qualified names of stereotypes
 		for(String stereotypeName : stereotypesQNToDisplay) {
 			RecordingCommand command = AppliedStereotypeHelper.getAddAppliedStereotypeToDisplayWithQNCommand(editingDomain, view, stereotypeName);
 			compositeCommand.add(new EMFtoGMFCommandWrapper(command));
@@ -188,14 +188,15 @@ public class DisplayAppliedStereotypePostAction extends GraphicalPostAction {
 
 		compositeCommand.reduce();
 
-		//		AppliedStereotypeHelper.ge
-
+		// AppliedStereotypeHelper.ge
 
 		if(compositeCommand.canExecute()) {
 			boolean isActivating = true;
 			Map<String, Boolean> options = null;
-			// use the viewer to determine if we are still initializing the diagram
-			// do not use the DiagramEditPart.isActivating since ConnectionEditPart's
+			// use the viewer to determine if we are still initializing the
+			// diagram
+			// do not use the DiagramEditPart.isActivating since
+			// ConnectionEditPart's
 			// parent will not be a diagram edit part
 			EditPartViewer viewer = editPart.getViewer();
 			if(viewer instanceof DiagramGraphicalViewer) {
@@ -233,7 +234,7 @@ public class DisplayAppliedStereotypePostAction extends GraphicalPostAction {
 		this.appliedProfiles = appliedProfiles;
 		this.entryProxy = entryProxy;
 
-		//retrieve displayable stereotypes
+		// retrieve displayable stereotypes
 		if(entryProxy instanceof IPaletteAspectToolEntryProxy) {
 			for(IPostAction postAction : ((IPaletteAspectToolEntryProxy)entryProxy).getPostActions()) {
 				if(postAction instanceof StereotypePostAction) {
@@ -246,7 +247,7 @@ public class DisplayAppliedStereotypePostAction extends GraphicalPostAction {
 			}
 		}
 
-		//Load from config
+		// Load from config
 		for(String stereotypeName : stereotypesToDisplay) {
 			if(listOfDisplayableStereotypes.containsKey(stereotypeName)) {
 				listOfDisplayableStereotypes.put(stereotypeName, DISPLAY_SIMPLE_NAME);
@@ -295,12 +296,12 @@ public class DisplayAppliedStereotypePostAction extends GraphicalPostAction {
 
 		stereotypesToShowTableViewer.setInput(listOfDisplayableStereotypes);
 
-
 		return composite;
 	}
 
 	/**
-	 * The label provider for the tableviewer : one columns shows the stereotype name and the other shows the display option
+	 * The label provider for the tableviewer : one columns shows the stereotype
+	 * name and the other shows the display option
 	 */
 	class StereotypeToDisplayLabelProvider extends LabelProvider implements ITableLabelProvider {
 
@@ -358,7 +359,8 @@ public class DisplayAppliedStereotypePostAction extends GraphicalPostAction {
 	}
 
 	/**
-	 * Creates appropriate columns : one for the stereotype and one for its display options
+	 * Creates appropriate columns : one for the stereotype and one for its
+	 * display options
 	 * 
 	 * @param viewer
 	 *        the table to create the columns in

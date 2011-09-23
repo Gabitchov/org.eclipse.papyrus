@@ -17,7 +17,8 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.ToggleConnectionLabelsRequest
 import org.eclipse.gmf.runtime.notation.View;
 
 /**
- * This request is used to manage the display (or not) of ONE label for the connection
+ * This request is used to manage the display (or not) of ONE label for the
+ * connection
  * 
  * 
  * 
@@ -52,8 +53,7 @@ public class ShowHideLabelsRequest extends ToggleConnectionLabelsRequest {
 	/**
 	 * Returns the view to show/hide
 	 * 
-	 * @return
-	 *         the view to show/hide
+	 * @return the view to show/hide
 	 */
 	public View getView() {
 		return this.view;

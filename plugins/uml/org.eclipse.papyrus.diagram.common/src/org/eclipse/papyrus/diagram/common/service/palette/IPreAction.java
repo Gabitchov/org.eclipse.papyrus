@@ -11,7 +11,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.common.service.palette;
 
-
 /**
  * Interface implemented by pre execution actions
  */

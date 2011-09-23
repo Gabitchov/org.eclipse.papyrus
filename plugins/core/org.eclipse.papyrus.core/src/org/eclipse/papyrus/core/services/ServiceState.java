@@ -3,7 +3,6 @@
  */
 package org.eclipse.papyrus.core.services;
 
-
 /**
  * The different states that a service can have.
  * 
