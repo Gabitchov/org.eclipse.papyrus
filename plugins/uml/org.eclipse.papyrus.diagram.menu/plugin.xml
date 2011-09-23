@@ -1121,6 +1121,15 @@
                label="&amp;Snap Back"
                style="push"
                tooltip="Reset the element to its initial location">
+            <visibleWhen
+                  checkEnabled="false">
+               <with
+                     variable="activeEditorId">
+                  <equals
+                        value="org.eclipse.papyrus.core.papyrusEditor">
+                  </equals>
+               </with>
+            </visibleWhen>
          </command>
          <command
                commandId="org.eclipse.papyrus.diagram.menu.command.autosize"
@@ -1963,6 +1972,15 @@
             label="&amp;Snap Back"
             style="push"
             tooltip="Reset the element to its initial location">
+         <visibleWhen
+               checkEnabled="false">
+            <with
+                  variable="activeEditorId">
+               <equals
+                     value="org.eclipse.papyrus.core.papyrusEditor">
+               </equals>
+            </with>
+         </visibleWhen>
       </command>
       <command
             commandId="org.eclipse.papyrus.diagram.menu.command.autosize"
@@ -2639,6 +2657,15 @@
             label="&amp;Snap Back"
             style="push"
             tooltip="Reset the element to its initial location">
+         <visibleWhen
+               checkEnabled="false">
+            <with
+                  variable="activeEditorId">
+               <equals
+                     value="org.eclipse.papyrus.core.papyrusEditor">
+               </equals>
+            </with>
+         </visibleWhen>
       </command>
       <command
             commandId="org.eclipse.papyrus.diagram.menu.command.autosize"
@@ -3581,18 +3608,6 @@
             </with>
          </and>
       </activeWhen>
-<!--      <activeWhen>
-         <with
-               variable="selection">
-            <test
-                  args="org.eclipse.papyrus.diagram.menu.actions.handlers.SnapBackHandler"
-                  forcePluginActivation="true"
-                  property="org.eclipse.papyrus.handler.propertytester.isHandlerEnabled"
-                  value="true">
-            </test>
-         </with>
-      </activeWhen>
-      -->
    </handler>
 </extension>
 <extension
