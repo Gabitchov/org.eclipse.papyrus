@@ -29,4 +29,3 @@ Export-Package: org.eclipse.papyrus.properties.uml.constraints,
  org.eclipse.papyrus.properties.uml.providers,
  org.eclipse.papyrus.properties.uml.util
 Bundle-ActivationPolicy: lazy
-Bundle-Description: blabla
