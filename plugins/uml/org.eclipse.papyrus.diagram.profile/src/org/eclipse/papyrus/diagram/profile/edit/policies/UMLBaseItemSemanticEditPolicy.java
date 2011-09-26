@@ -450,7 +450,9 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 */
 		public boolean canCreateCommentAnnotatedElement_1022(Comment source, Element target) {
 			if(source != null) {
-				if(source.getAnnotatedElements().contains(target)) {
+				if(source.getAnnotatedElements().contains(target)
+
+				) {
 					return false;
 				}
 			}
@@ -464,7 +466,9 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 */
 		public boolean canCreateConstraintConstrainedElement_4014(Constraint source, Element target) {
 			if(source != null) {
-				if(source.getConstrainedElements().contains(target)) {
+				if(source.getConstrainedElements().contains(target)
+
+				) {
 					return false;
 				}
 			}

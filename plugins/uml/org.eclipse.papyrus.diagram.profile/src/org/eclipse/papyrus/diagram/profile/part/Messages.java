@@ -308,92 +308,82 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String createModel2CreationTool_title;
+	public static String createProfile2CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createModel2CreationTool_desc;
+	public static String createProfile2CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createProfile3CreationTool_title;
+	public static String createComment3CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createProfile3CreationTool_desc;
+	public static String createComment3CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createComment4CreationTool_title;
+	public static String createConstraint4CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createComment4CreationTool_desc;
+	public static String createConstraint4CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createConstraint5CreationTool_title;
+	public static String createStereotype1CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createConstraint5CreationTool_desc;
+	public static String createStereotype1CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createStereotype2CreationTool_title;
+	public static String createImportMetaclass2CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createStereotype2CreationTool_desc;
+	public static String createImportMetaclass2CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createImportMetaclass3CreationTool_title;
+	public static String createEnumeration3CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createImportMetaclass3CreationTool_desc;
+	public static String createEnumeration3CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createEnumeration4CreationTool_title;
+	public static String createDataType4CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createEnumeration4CreationTool_desc;
+	public static String createDataType4CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createDataType5CreationTool_title;
+	public static String createPrimitiveType5CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createDataType5CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String createPrimitiveType6CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String createPrimitiveType6CreationTool_desc;
+	public static String createPrimitiveType5CreationTool_desc;
 
 	/**
 	 * @generated
@@ -438,42 +428,12 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String createElementImport5CreationTool_title;
+	public static String createAssociation5CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createElementImport5CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String createPackageImport6CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String createPackageImport6CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String createDependency7CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String createDependency7CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String createAssociation8CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String createAssociation8CreationTool_desc;
+	public static String createAssociation5CreationTool_desc;
 
 	/**
 	 * @generated

@@ -41,18 +41,8 @@
  	</entry>
 	<entry
        defineOnly="true"
-       description="Add a model"
-       id="createModel2CreationTool"
-       kind="tool"
-       label="Model"
-       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Model.gif"
-       path=""
-       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Model.gif">
- 	</entry>
-	<entry
-       defineOnly="true"
        description="Add a new Profile"
-       id="createProfile3CreationTool"
+       id="createProfile2CreationTool"
        kind="tool"
        label="Profile"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Profile.gif"
@@ -62,7 +52,7 @@
 	<entry
        defineOnly="true"
        description="Create new comment"
-       id="createComment4CreationTool"
+       id="createComment3CreationTool"
        kind="tool"
        label="Comment"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"
@@ -72,7 +62,7 @@
 	<entry
        defineOnly="true"
        description="Create a constraint"
-       id="createConstraint5CreationTool"
+       id="createConstraint4CreationTool"
        kind="tool"
        label="Constraint"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
@@ -82,7 +72,7 @@
 	<entry
        defineOnly="true"
        description="Add new Stereotype"
-       id="createStereotype2CreationTool"
+       id="createStereotype1CreationTool"
        kind="tool"
        label="Stereotype"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Stereotype.gif"
@@ -92,7 +82,7 @@
 	<entry
        defineOnly="true"
        description="Import a new Metaclass"
-       id="createImportMetaclass3CreationTool"
+       id="createImportMetaclass2CreationTool"
        kind="tool"
        label="Import Metaclass"
        large_icon="/icons/Metaclass.gif"
@@ -102,7 +92,7 @@
 	<entry
        defineOnly="true"
        description="Create new Enumeration"
-       id="createEnumeration4CreationTool"
+       id="createEnumeration3CreationTool"
        kind="tool"
        label="Enumeration"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Enumeration.gif"
@@ -112,7 +102,7 @@
 	<entry
        defineOnly="true"
        description="Create new DataType"
-       id="createDataType5CreationTool"
+       id="createDataType4CreationTool"
        kind="tool"
        label="DataType"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DataType.gif"
@@ -122,7 +112,7 @@
 	<entry
        defineOnly="true"
        description="Create new PrimitiveType"
-       id="createPrimitiveType6CreationTool"
+       id="createPrimitiveType5CreationTool"
        kind="tool"
        label="PrimitiveType"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/PrimitiveType.gif"
@@ -171,38 +161,8 @@
  	</entry>
 	<entry
        defineOnly="true"
-       description="Create an ElementImport"
-       id="createElementImport5CreationTool"
-       kind="tool"
-       label="ElementImport"
-       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ElementImport.gif"
-       path=""
-       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ElementImport.gif">
- 	</entry>
-	<entry
-       defineOnly="true"
-       description="Create a PackageImport"
-       id="createPackageImport6CreationTool"
-       kind="tool"
-       label="PackageImport"
-       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/PackageImport.gif"
-       path=""
-       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/PackageImport.gif">
- 	</entry>
-	<entry
-       defineOnly="true"
-       description="Create a Dependency"
-       id="createDependency7CreationTool"
-       kind="tool"
-       label="Dependency"
-       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif"
-       path=""
-       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif">
- 	</entry>
-	<entry
-       defineOnly="true"
        description="Create an Association"
-       id="createAssociation8CreationTool"
+       id="createAssociation5CreationTool"
        kind="tool"
        label="Association"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif"
@@ -277,19 +237,15 @@
           path="/createPackages1Group">
     </predefinedEntry>
  	<predefinedEntry
-          id="createModel2CreationTool"
+          id="createProfile2CreationTool"
           path="/createPackages1Group">
     </predefinedEntry>
  	<predefinedEntry
-          id="createProfile3CreationTool"
+          id="createComment3CreationTool"
           path="/createPackages1Group">
     </predefinedEntry>
  	<predefinedEntry
-          id="createComment4CreationTool"
-          path="/createPackages1Group">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="createConstraint5CreationTool"
+          id="createConstraint4CreationTool"
           path="/createPackages1Group">
     </predefinedEntry>
 
@@ -307,27 +263,23 @@
  	</entry>
  	 
  	 	<predefinedEntry
-          id="createClass1CreationTool"
+          id="createStereotype1CreationTool"
           path="/createClassifiers2Group">
     </predefinedEntry>
  	<predefinedEntry
-          id="createStereotype2CreationTool"
+          id="createImportMetaclass2CreationTool"
           path="/createClassifiers2Group">
     </predefinedEntry>
  	<predefinedEntry
-          id="createImportMetaclass3CreationTool"
+          id="createEnumeration3CreationTool"
           path="/createClassifiers2Group">
     </predefinedEntry>
  	<predefinedEntry
-          id="createEnumeration4CreationTool"
+          id="createDataType4CreationTool"
           path="/createClassifiers2Group">
     </predefinedEntry>
  	<predefinedEntry
-          id="createDataType5CreationTool"
-          path="/createClassifiers2Group">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="createPrimitiveType6CreationTool"
+          id="createPrimitiveType5CreationTool"
           path="/createClassifiers2Group">
     </predefinedEntry>
 
@@ -361,19 +313,7 @@
           path="/createRelationShips3Group">
     </predefinedEntry>
  	<predefinedEntry
-          id="createElementImport5CreationTool"
-          path="/createRelationShips3Group">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="createPackageImport6CreationTool"
-          path="/createRelationShips3Group">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="createDependency7CreationTool"
-          path="/createRelationShips3Group">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="createAssociation8CreationTool"
+          id="createAssociation5CreationTool"
           path="/createRelationShips3Group">
     </predefinedEntry>
 
@@ -1122,7 +1062,7 @@
          </propertySection>
       </propertySections>
    </extension>
-
+
 <extension point="org.eclipse.ui.commands" id="menu-commands">
       <?gmfgen generated="true"?>
       <category id="org.eclipse.papyrus.diagram.profile.part.UMLDiagramEditorID" name="%cmdcategory.name" description="%cmdcategory.desc"/>
@@ -1327,9 +1267,9 @@
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
-			class="org.eclipse.papyrus.diagram.profile.preferences.OperationPreferencePage"
-            id="org.eclipse.papyrus.diagram.profile.preferences.OperationPreferencePage"
-            name="Operation Node" />
+			class="org.eclipse.papyrus.diagram.profile.preferences.PropertyPreferencePage"
+            id="org.eclipse.papyrus.diagram.profile.preferences.PropertyPreferencePage"
+            name="Property Node" />
 	
 		
 	<?gmfgen generated="true"?>
@@ -1341,30 +1281,9 @@
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
-			class="org.eclipse.papyrus.diagram.profile.preferences.ModelPreferencePage"
-            id="org.eclipse.papyrus.diagram.profile.preferences.ModelPreferencePage"
-            name="Model Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
-			class="org.eclipse.papyrus.diagram.profile.preferences.AssociationPreferencePage"
-            id="org.eclipse.papyrus.diagram.profile.preferences.AssociationPreferencePage"
-            name="Association Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
-			class="org.eclipse.papyrus.diagram.profile.preferences.ShortCutDiagramPreferencePage"
-            id="org.eclipse.papyrus.diagram.profile.preferences.ShortCutDiagramPreferencePage"
-            name="ShortCutDiagram Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
-			class="org.eclipse.papyrus.diagram.profile.preferences.ConstraintPreferencePage"
-            id="org.eclipse.papyrus.diagram.profile.preferences.ConstraintPreferencePage"
-            name="Constraint Node" />
+			class="org.eclipse.papyrus.diagram.profile.preferences.CommentPreferencePage"
+            id="org.eclipse.papyrus.diagram.profile.preferences.CommentPreferencePage"
+            name="Comment Node" />
 	
 		
 	<?gmfgen generated="true"?>
@@ -1376,16 +1295,16 @@
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
-			class="org.eclipse.papyrus.diagram.profile.preferences.PropertyPreferencePage"
-            id="org.eclipse.papyrus.diagram.profile.preferences.PropertyPreferencePage"
-            name="Property Node" />
+			class="org.eclipse.papyrus.diagram.profile.preferences.PackagePreferencePage"
+            id="org.eclipse.papyrus.diagram.profile.preferences.PackagePreferencePage"
+            name="Package Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
-			class="org.eclipse.papyrus.diagram.profile.preferences.StereotypePreferencePage"
-            id="org.eclipse.papyrus.diagram.profile.preferences.StereotypePreferencePage"
-            name="Stereotype Node" />
+			class="org.eclipse.papyrus.diagram.profile.preferences.ShortCutDiagramPreferencePage"
+            id="org.eclipse.papyrus.diagram.profile.preferences.ShortCutDiagramPreferencePage"
+            name="ShortCutDiagram Node" />
 	
 		
 	<?gmfgen generated="true"?>
@@ -1404,16 +1323,30 @@
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
-			class="org.eclipse.papyrus.diagram.profile.preferences.PackagePreferencePage"
-            id="org.eclipse.papyrus.diagram.profile.preferences.PackagePreferencePage"
-            name="Package Node" />
+			class="org.eclipse.papyrus.diagram.profile.preferences.EnumerationPreferencePage"
+            id="org.eclipse.papyrus.diagram.profile.preferences.EnumerationPreferencePage"
+            name="Enumeration Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
-			class="org.eclipse.papyrus.diagram.profile.preferences.CommentPreferencePage"
-            id="org.eclipse.papyrus.diagram.profile.preferences.CommentPreferencePage"
-            name="Comment Node" />
+			class="org.eclipse.papyrus.diagram.profile.preferences.ConstraintPreferencePage"
+            id="org.eclipse.papyrus.diagram.profile.preferences.ConstraintPreferencePage"
+            name="Constraint Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
+			class="org.eclipse.papyrus.diagram.profile.preferences.AssociationPreferencePage"
+            id="org.eclipse.papyrus.diagram.profile.preferences.AssociationPreferencePage"
+            name="Association Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
+			class="org.eclipse.papyrus.diagram.profile.preferences.OperationPreferencePage"
+            id="org.eclipse.papyrus.diagram.profile.preferences.OperationPreferencePage"
+            name="Operation Node" />
 	
 		
 	<?gmfgen generated="true"?>
@@ -1425,9 +1358,9 @@
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
-			class="org.eclipse.papyrus.diagram.profile.preferences.EnumerationPreferencePage"
-            id="org.eclipse.papyrus.diagram.profile.preferences.EnumerationPreferencePage"
-            name="Enumeration Node" />
+			class="org.eclipse.papyrus.diagram.profile.preferences.ModelPreferencePage"
+            id="org.eclipse.papyrus.diagram.profile.preferences.ModelPreferencePage"
+            name="Model Node" />
 	
 		
 	<?gmfgen generated="true"?>
@@ -1435,6 +1368,13 @@
 			class="org.eclipse.papyrus.diagram.profile.preferences.MetaclassPreferencePage"
             id="org.eclipse.papyrus.diagram.profile.preferences.MetaclassPreferencePage"
             name="Metaclass Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
+			class="org.eclipse.papyrus.diagram.profile.preferences.StereotypePreferencePage"
+            id="org.eclipse.papyrus.diagram.profile.preferences.StereotypePreferencePage"
+            name="Stereotype Node" />
 	
 
 
@@ -1458,9 +1398,17 @@
 
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
-			class="org.eclipse.papyrus.diagram.profile.preferences.AssociationPreferencePage"
-            id="org.eclipse.papyrus.diagram.profile.preferences.AssociationPreferencePage"
-            name="Association Link" />
+			class="org.eclipse.papyrus.diagram.profile.preferences.ElementImportPreferencePage"
+            id="org.eclipse.papyrus.diagram.profile.preferences.ElementImportPreferencePage"
+            name="ElementImport Link" />
+		
+		
+
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
+			class="org.eclipse.papyrus.diagram.profile.preferences.DependencyPreferencePage"
+            id="org.eclipse.papyrus.diagram.profile.preferences.DependencyPreferencePage"
+            name="Dependency Link" />
 		
 		
 
@@ -1469,14 +1417,6 @@
 			class="org.eclipse.papyrus.diagram.profile.preferences.GeneralizationPreferencePage"
             id="org.eclipse.papyrus.diagram.profile.preferences.GeneralizationPreferencePage"
             name="Generalization Link" />
-		
-		
-
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
-			class="org.eclipse.papyrus.diagram.profile.preferences.ElementImportPreferencePage"
-            id="org.eclipse.papyrus.diagram.profile.preferences.ElementImportPreferencePage"
-            name="ElementImport Link" />
 		
 		
 
@@ -1492,9 +1432,9 @@
 
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
-			class="org.eclipse.papyrus.diagram.profile.preferences.DependencyPreferencePage"
-            id="org.eclipse.papyrus.diagram.profile.preferences.DependencyPreferencePage"
-            name="Dependency Link" />
+			class="org.eclipse.papyrus.diagram.profile.preferences.AssociationPreferencePage"
+            id="org.eclipse.papyrus.diagram.profile.preferences.AssociationPreferencePage"
+            name="Association Link" />
 		
 
 </extension>

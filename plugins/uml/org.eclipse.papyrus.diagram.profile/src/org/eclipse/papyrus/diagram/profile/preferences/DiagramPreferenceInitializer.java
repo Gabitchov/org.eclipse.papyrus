@@ -28,31 +28,22 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 	public void initializeDefaultPreferences() {
 		IPreferenceStore store = getPreferenceStore();
 
-		OperationPreferencePage.initDefaults(store);
+		PropertyPreferencePage.initDefaults(store);
 
 
 		DataTypePreferencePage.initDefaults(store);
 
 
-		ModelPreferencePage.initDefaults(store);
-
-
-		AssociationPreferencePage.initDefaults(store);
-
-
-		ShortCutDiagramPreferencePage.initDefaults(store);
-
-
-		ConstraintPreferencePage.initDefaults(store);
+		CommentPreferencePage.initDefaults(store);
 
 
 		EnumerationLiteralPreferencePage.initDefaults(store);
 
 
-		PropertyPreferencePage.initDefaults(store);
+		PackagePreferencePage.initDefaults(store);
 
 
-		StereotypePreferencePage.initDefaults(store);
+		ShortCutDiagramPreferencePage.initDefaults(store);
 
 
 		DependencyPreferencePage.initDefaults(store);
@@ -61,19 +52,28 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 		PrimitiveTypePreferencePage.initDefaults(store);
 
 
-		PackagePreferencePage.initDefaults(store);
+		EnumerationPreferencePage.initDefaults(store);
 
 
-		CommentPreferencePage.initDefaults(store);
+		ConstraintPreferencePage.initDefaults(store);
+
+
+		AssociationPreferencePage.initDefaults(store);
+
+
+		OperationPreferencePage.initDefaults(store);
 
 
 		ProfilePreferencePage.initDefaults(store);
 
 
-		EnumerationPreferencePage.initDefaults(store);
+		ModelPreferencePage.initDefaults(store);
 
 
 		MetaclassPreferencePage.initDefaults(store);
+
+
+		StereotypePreferencePage.initDefaults(store);
 
 
 
@@ -84,20 +84,20 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 		ExtensionPreferencePage.initDefaults(store);
 
 
-		AssociationPreferencePage.initDefaults(store);
+		ElementImportPreferencePage.initDefaults(store);
+
+
+		DependencyPreferencePage.initDefaults(store);
 
 
 		GeneralizationPreferencePage.initDefaults(store);
-
-
-		ElementImportPreferencePage.initDefaults(store);
 
 
 		ProfileApplicationPreferencePage.initDefaults(store);
 
 
 
-		DependencyPreferencePage.initDefaults(store);
+		AssociationPreferencePage.initDefaults(store);
 
 
 	}
