@@ -1337,13 +1337,6 @@
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
-			class="org.eclipse.papyrus.diagram.profile.preferences.AssociationPreferencePage"
-            id="org.eclipse.papyrus.diagram.profile.preferences.AssociationPreferencePage"
-            name="Association Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
 			class="org.eclipse.papyrus.diagram.profile.preferences.OperationPreferencePage"
             id="org.eclipse.papyrus.diagram.profile.preferences.OperationPreferencePage"
             name="Operation Node" />
@@ -1375,6 +1368,13 @@
 			class="org.eclipse.papyrus.diagram.profile.preferences.StereotypePreferencePage"
             id="org.eclipse.papyrus.diagram.profile.preferences.StereotypePreferencePage"
             name="Stereotype Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
+			class="org.eclipse.papyrus.diagram.profile.preferences.AssociationNodePreferencePage"
+            id="org.eclipse.papyrus.diagram.profile.preferences.AssociationNodePreferencePage"
+            name="AssociationNode Node" />
 	
 
 
@@ -1427,6 +1427,14 @@
             name="ProfileApplication Link" />
 		
 		
+		
+		
+
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
+			class="org.eclipse.papyrus.diagram.profile.preferences.AssociationBranchPreferencePage"
+            id="org.eclipse.papyrus.diagram.profile.preferences.AssociationBranchPreferencePage"
+            name="AssociationBranch Link" />
 		
 		
 

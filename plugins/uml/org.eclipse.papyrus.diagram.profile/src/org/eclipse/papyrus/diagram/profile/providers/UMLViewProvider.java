@@ -478,7 +478,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Association");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "AssociationNode");
 
 
 
@@ -1381,10 +1381,10 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 
 
-		PreferenceInitializerForElementHelper.initForegroundFromPrefs(edge, prefStore, "Association");
+		PreferenceInitializerForElementHelper.initForegroundFromPrefs(edge, prefStore, "AssociationBranch");
 
 
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(edge, prefStore, "Association");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(edge, prefStore, "AssociationBranch");
 
 		//org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
 		//if (routing != null) {
@@ -1392,7 +1392,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		//}
 
 
-		PreferenceInitializerForElementHelper.initRountingFromPrefs(edge, prefStore, "Association");
+		PreferenceInitializerForElementHelper.initRountingFromPrefs(edge, prefStore, "AssociationBranch");
 
 		Node label6024 = createLabel(edge, UMLVisualIDRegistry.getType(AssociationBranchRoleEditPart.VISUAL_ID));
 		label6024.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());

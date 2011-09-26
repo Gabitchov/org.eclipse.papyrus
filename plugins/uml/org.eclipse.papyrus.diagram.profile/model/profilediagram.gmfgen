@@ -1196,7 +1196,8 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:MetamodelType"/>
+            xsi:type="gmfgen:MetamodelType"
+            displayName="AssociationNode"/>
         <viewmap
             xsi:type="gmfgen:InnerClassViewmap"
             className="AssociationNodeDescriptor"
@@ -2118,6 +2119,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            displayName="Association"
             metamodelType="/0/@diagram/@topLevelNodes.1/@elementType"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -2356,7 +2358,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            displayName="Association"
+            displayName="AssociationBranch"
             metamodelType="/0/@diagram/@topLevelNodes.1/@elementType"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -3650,22 +3652,24 @@
         comment="Stereotype"
         role="Stereotype"
         iconPathRole="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Stereotype.gif"
-        linkLabels="/0/@diagram/@links.5/@labels.1 /0/@diagram/@links.4/@labels.0 /0/@diagram/@links.1/@labels.0 /0/@diagram/@links.8/@labels.0 /0/@diagram/@links.7/@labels.1"/>
+        linkLabels="/0/@diagram/@links.5/@labels.1 /0/@diagram/@links.4/@labels.0 /0/@diagram/@links.8/@labels.0 /0/@diagram/@links.7/@labels.1"/>
     <extensionNodes
         xsi:type="papyrusgmfgenextension:LabelVisibilityPreference"
-        comment="Name"
+        comment="Name true"
         role="Name"
         iconPathRole="platform:/plugin/org.eclipse.papyrus.diagram.common/icons/label_role/name.png"
-        linkLabels="/0/@diagram/@links.1/@labels.1 /0/@diagram/@links.5/@labels.0"
         externalNodeLabels="/0/@diagram/@topLevelNodes.12/@labels.0"/>
     <extensionNodes
         xsi:type="papyrusgmfgenextension:LabelVisibilityPreference"
         comment="SourceMultiplicity"
+        role="SourceMultiplicity"
         iconPathRole="platform:/plugin/org.eclipse.papyrus.diagram.common/icons/label_role/MultiplicityHandler.gif"
-        linkLabels="/0/@diagram/@links.1/@labels.4"/>
+        linkLabels="/0/@diagram/@links.1/@labels.4"
+        visibleByDefault="false"/>
     <extensionNodes
         xsi:type="papyrusgmfgenextension:LabelVisibilityPreference"
         comment="TargetMultiplicity"
+        role="TargetMultiplicity"
         iconPathRole="platform:/plugin/org.eclipse.papyrus.diagram.common/icons/label_role/MultiplicityHandler.gif"
         linkLabels="/0/@diagram/@links.1/@labels.5"/>
     <extensionNodes
@@ -3673,7 +3677,8 @@
         comment="SourceRole"
         role="SourceRole"
         iconPathRole="platform:/plugin/org.eclipse.papyrus.diagram.common/icons/label_role/role.gif"
-        linkLabels="/0/@diagram/@links.1/@labels.3"/>
+        linkLabels="/0/@diagram/@links.1/@labels.3"
+        visibleByDefault="false"/>
     <extensionNodes
         xsi:type="papyrusgmfgenextension:LabelVisibilityPreference"
         comment="TargetRole"
@@ -3691,5 +3696,19 @@
         comment="Hidden Compartments in preference"
         visibleByDefault="false"
         compartments="/0/@diagram/@compartments.6 /0/@diagram/@compartments.7 /0/@diagram/@compartments.14 /0/@diagram/@compartments.15"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:LabelVisibilityPreference"
+        comment="Stereotype false"
+        role="Stereotype"
+        iconPathRole="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Stereotype.gif"
+        linkLabels="/0/@diagram/@links.1/@labels.0"
+        visibleByDefault="false"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:LabelVisibilityPreference"
+        comment="Name false"
+        role="Name"
+        iconPathRole="platform:/plugin/org.eclipse.papyrus.diagram.common/icons/label_role/name.png"
+        linkLabels="/0/@diagram/@links.1/@labels.1 /0/@diagram/@links.5/@labels.0"
+        visibleByDefault="false"/>
   </papyrusgmfgenextension:PapyrusExtensionRootNode>
 </xmi:XMI>

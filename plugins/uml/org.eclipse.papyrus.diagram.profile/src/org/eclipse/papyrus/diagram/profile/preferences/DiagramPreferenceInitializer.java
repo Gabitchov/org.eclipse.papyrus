@@ -58,9 +58,6 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 		ConstraintPreferencePage.initDefaults(store);
 
 
-		AssociationPreferencePage.initDefaults(store);
-
-
 		OperationPreferencePage.initDefaults(store);
 
 
@@ -74,6 +71,9 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 
 
 		StereotypePreferencePage.initDefaults(store);
+
+
+		AssociationNodePreferencePage.initDefaults(store);
 
 
 
@@ -95,6 +95,9 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 
 		ProfileApplicationPreferencePage.initDefaults(store);
 
+
+
+		AssociationBranchPreferencePage.initDefaults(store);
 
 
 		AssociationPreferencePage.initDefaults(store);
