@@ -38,6 +38,7 @@ public class CustomAssociationBranchItemSemanticEditPolicy extends AssociationBr
 			return getGEFWrapper(new org.eclipse.papyrus.diagram.profile.custom.commands.CustomAssociationCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		return super.getCompleteCreateRelationshipCommand(req);
+
 	}
 
 	/**
