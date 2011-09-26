@@ -3279,13 +3279,6 @@
               genNodes="/0/@diagram/@topLevelNodes.8 /0/@diagram/@childNodes.11"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
-              title="Model"
-              description="Add a model"
-              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Model.gif"
-              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Model.gif"
-              genNodes="/0/@diagram/@topLevelNodes.6 /0/@diagram/@childNodes.9"/>
-          <entries
-              xsi:type="gmfgen:ToolEntry"
               title="Profile"
               description="Add a new Profile"
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Profile.gif"
@@ -3311,13 +3304,6 @@
             description="Classifiers"
             largeIconPath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
             smallIconPath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
-          <entries
-              xsi:type="gmfgen:ToolEntry"
-              title="Class"
-              description="Add new Class"
-              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Class.gif"
-              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Class.gif"
-              qualifiedToolName=""/>
           <entries
               xsi:type="gmfgen:ToolEntry"
               title="Stereotype"
@@ -3388,27 +3374,6 @@
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ProfileApplication.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ProfileApplication.gif"
               genLinks="/0/@diagram/@links.2"/>
-          <entries
-              xsi:type="gmfgen:ToolEntry"
-              title="ElementImport"
-              description="Create an ElementImport"
-              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ElementImport.gif"
-              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ElementImport.gif"
-              genLinks="/0/@diagram/@links.7"/>
-          <entries
-              xsi:type="gmfgen:ToolEntry"
-              title="PackageImport"
-              description="Create a PackageImport"
-              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/PackageImport.gif"
-              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/PackageImport.gif"
-              genLinks="/0/@diagram/@links.8"/>
-          <entries
-              xsi:type="gmfgen:ToolEntry"
-              title="Dependency"
-              description="Create a Dependency"
-              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif"
-              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif"
-              genLinks="/0/@diagram/@links.5"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
               title="Association"
