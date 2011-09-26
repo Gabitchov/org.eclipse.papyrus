@@ -70,7 +70,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.commands;bundle-version="0.8.0"
 Bundle-Vendor: %providerName
 Eclipse-LazyStart: true
-Bundle-Version: 0.7.0.vqualifier
+Bundle-Version: 0.8.2.vqualifier
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.diagram.profile.part.UMLDiagramEditorPlugin
 Bundle-SymbolicName: org.eclipse.papyrus.diagram.profile; singleton:=true

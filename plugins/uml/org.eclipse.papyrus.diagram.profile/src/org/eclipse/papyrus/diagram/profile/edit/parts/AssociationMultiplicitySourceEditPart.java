@@ -747,7 +747,7 @@ public class AssociationMultiplicitySourceEditPart extends LabelEditPart impleme
 	 * @generated
 	 */
 	public String getLabelRole() {
-		return "";//$NON-NLS-1$
+		return "SourceMultiplicity";//$NON-NLS-1$
 	}
 
 	/**

@@ -747,7 +747,7 @@ public class AssociationMultiplicityTargetEditPart extends LabelEditPart impleme
 	 * @generated
 	 */
 	public String getLabelRole() {
-		return "";//$NON-NLS-1$
+		return "TargetMultiplicity";//$NON-NLS-1$
 	}
 
 	/**
