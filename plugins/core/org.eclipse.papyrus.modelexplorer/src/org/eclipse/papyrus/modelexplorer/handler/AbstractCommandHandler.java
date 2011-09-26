@@ -123,13 +123,17 @@ public abstract class AbstractCommandHandler extends AbstractModelExplorerHandle
 				for(Object current : structuredSelection.toArray()) {
 					// Adapt current selection to EObject
 					if(current instanceof IAdaptable) {
-						selectedEObjects.add((EObject)((IAdaptable)current).getAdapter(EObject.class));
+						EObject selectedElement = (EObject)((IAdaptable)current).getAdapter(EObject.class);
+						if(selectedElement != null) {//we avoid to add null element in the list!
+							selectedEObjects.add(selectedElement);
+						}
 					}
 				}
 			} else { // Not a IStructuredSelection
 						// Adapt current selection to EObject
-				if(selection instanceof IAdaptable) {
-					selectedEObjects.add((EObject)((IAdaptable)selection).getAdapter(EObject.class));
+				EObject selectedElement = (EObject)((IAdaptable)selection).getAdapter(EObject.class);
+				if(selectedElement != null) { //we avoid to add null element in the list!
+					selectedEObjects.add(selectedElement);
 				}
 			}
 		}
