@@ -84,17 +84,17 @@ public class RenameParticipantsDialog extends TitleAreaDialog {
 	 */
 	@Override
 	protected Control createDialogArea(Composite parent) {
-		setTitle("Select Rename Options");
+		setTitle(Messages.RenameParticipantsDialog_SELECT_RENAME_OPTION);
 		Composite area = (Composite)super.createDialogArea(parent);
 		Composite container = new Composite(area, SWT.NONE);
 		container.setLayout(new GridLayout(1, false));
 		container.setLayoutData(new GridData(GridData.FILL_BOTH));
 
 		Section sctnOptions = formToolkit.createSection(container, Section.EXPANDED | Section.TITLE_BAR);
-		sctnOptions.setDescription("");
+		sctnOptions.setDescription(""); //$NON-NLS-1$
 		sctnOptions.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
 		formToolkit.paintBordersFor(sctnOptions);
-		sctnOptions.setText("Options");
+		sctnOptions.setText(Messages.RenameParticipantsDialog_OPTIONS);
 
 		Composite composite = new Composite(sctnOptions, SWT.NONE);
 		formToolkit.adapt(composite);
@@ -105,7 +105,7 @@ public class RenameParticipantsDialog extends TitleAreaDialog {
 		FormText formText = formToolkit.createFormText(composite, false);
 		formText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 		formToolkit.paintBordersFor(formText);
-		formText.setText("<form><p>The rename operation can have several impacts on related files</p><p>Please choose the scope of references fixing operation</p></form>", true, false);
+		formText.setText(Messages.RenameParticipantsDialog_DESCRIPTION, true, false);
 
 		ComboViewer comboViewer = new ComboViewer(composite, SWT.READ_ONLY);
 		comboViewer.setUseHashlookup(true);
@@ -156,14 +156,14 @@ public class RenameParticipantsDialog extends TitleAreaDialog {
 		Group grpDescription = new Group(composite, SWT.NONE);
 		grpDescription.setLayout(new GridLayout(1, false));
 		grpDescription.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
-		grpDescription.setText("Description");
+		grpDescription.setText(Messages.RenameParticipantsDialog_DESCRIPTION_LABEL);
 		formToolkit.adapt(grpDescription);
 		formToolkit.paintBordersFor(grpDescription);
 
 		formDescription = formToolkit.createFormText(grpDescription, false);
 		formDescription.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, true, 1, 1));
 		formToolkit.paintBordersFor(formDescription);
-		formDescription.setText("", false, false);
+		formDescription.setText("", false, false); //$NON-NLS-1$
 
 		// when the selection changed the description too 
 		comboViewer.addSelectionChangedListener(new ISelectionChangedListener() {
@@ -192,7 +192,7 @@ public class RenameParticipantsDialog extends TitleAreaDialog {
 	 */
 	private Object[] getInput() {
 		final ScopeChooserVisitor visitor = new ScopeChooserVisitor();
-		return new IScopeChooser[]{ new ScopeChooser("Project (default)", "<form><p>The references will be analysed in the project of the renamed file</p></form>") {
+		return new IScopeChooser[]{ new ScopeChooser(Messages.RenameParticipantsDialog_NAME_PROJECT, Messages.RenameParticipantsDialog_DESCRIPTION_PROJECT) {
 
 			public List<IFile> getRelatedFiles(IFile f) {
 				try {
@@ -203,7 +203,7 @@ public class RenameParticipantsDialog extends TitleAreaDialog {
 				}
 				return Collections.emptyList();
 			}
-		}, new ScopeChooser("Workspace", "<form><p>The references will be analysed in the whole workspace</p><p>This operation can be long</p></form>") {
+		}, new ScopeChooser(Messages.RenameParticipantsDialog_NAME_WORKSPACE, Messages.RenameParticipantsDialog_DESCRIPTION_WORKSPACE) {
 
 			public List<IFile> getRelatedFiles(IFile f) {
 				try {
@@ -214,7 +214,7 @@ public class RenameParticipantsDialog extends TitleAreaDialog {
 				}
 				return Collections.emptyList();
 			}
-		}, new ScopeChooser("No Analysis", "<form><p>No analysis is performed, this option is recommended for experimented users</p></form>") {
+		}, new ScopeChooser(Messages.RenameParticipantsDialog_NAME_NO_ANALYSIS, Messages.RenameParticipantsDialog_DESCRIPTION_NO_ANALYSIS) {
 
 			public List<IFile> getRelatedFiles(IFile f) {
 				return Arrays.asList(f);
