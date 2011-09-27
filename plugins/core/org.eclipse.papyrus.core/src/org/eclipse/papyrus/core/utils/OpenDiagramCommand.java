@@ -21,6 +21,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
+import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
 
 /**
@@ -67,7 +68,16 @@ public class OpenDiagramCommand extends AbstractTransactionalCommand {
 			}
 
 			if(diagramToOpen != null) {
-				IPageMngr pageMngr = EditorUtils.getServiceRegistry().getService(IPageMngr.class);
+				IPageMngr pageMngr;
+				final ServicesRegistry serviceRegistry = EditorUtils.getServiceRegistry();
+				if(serviceRegistry != null) {
+					pageMngr =serviceRegistry.getService(IPageMngr.class);
+				} else if(getEditingDomain().getResourceSet() instanceof DiResourceSet){
+					DiResourceSet diResourceSet = (DiResourceSet)getEditingDomain().getResourceSet();
+					pageMngr = EditorUtils.getIPageMngr(diResourceSet.getDiResource());
+				} else {
+					throw new IllegalStateException("Enable to get the page manager");////$NON-NLS-1$
+				}
 
 				if(pageMngr.isOpen(diagramToOpen)) {
 					pageMngr.closePage(diagramToOpen);
