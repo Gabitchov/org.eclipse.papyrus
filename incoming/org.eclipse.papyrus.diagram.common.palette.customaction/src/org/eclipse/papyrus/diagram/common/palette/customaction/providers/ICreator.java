@@ -16,23 +16,28 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.papyrus.diagram.common.service.palette.IPaletteEntryProxy;
 
 public interface ICreator {
-	
+
 	/**
 	 * Creates an instance of {@link ITool}
-	 * @param part, the edit part created by MDT Papyrus
+	 * 
+	 * @param part
+	 *        , the edit part created by MDT Papyrus
 	 * @return the {@link ITool}
 	 */
-	ITool create (EditPart part) ;
-	
+	ITool create(EditPart part);
+
 	/**
 	 * Determines if the {@link ICreator} can be used
-	 * @param entryProxy, the palette entry used
+	 * 
+	 * @param entryProxy
+	 *        , the palette entry used
 	 * @return true if it can be enabled
 	 */
 	boolean isEnabled(IPaletteEntryProxy entryProxy);
 
 	/**
 	 * This method is used to determines features set by the tool
+	 * 
 	 * @return an array of {@link EStructuralFeature}
 	 */
 	EStructuralFeature[] getAllImpactedFeatures();
