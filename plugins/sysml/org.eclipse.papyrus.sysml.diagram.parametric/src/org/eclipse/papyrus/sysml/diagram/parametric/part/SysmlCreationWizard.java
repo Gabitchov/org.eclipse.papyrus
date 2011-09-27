@@ -104,8 +104,7 @@ public class SysmlCreationWizard extends Wizard implements INewWizard {
 		this.workbench = workbench;
 		this.selection = selection;
 		setWindowTitle(Messages.SysmlCreationWizardTitle);
-		setDefaultPageImageDescriptor(SysmlDiagramEditorPlugin
-				.getBundledImageDescriptor("icons/wizban/NewResourceWizard.gif")); //$NON-NLS-1$
+		setDefaultPageImageDescriptor(SysmlDiagramEditorPlugin.getBundledImageDescriptor("icons/wizban/NewResourceWizard.gif")); //$NON-NLS-1$
 		setNeedsProgressMonitor(true);
 	}
 
@@ -121,7 +120,7 @@ public class SysmlCreationWizard extends Wizard implements INewWizard {
 		domainModelFilePage = new SysmlCreationWizardPage("DomainModelFile", getSelection(), "sysml") { //$NON-NLS-1$ //$NON-NLS-2$
 
 			public void setVisible(boolean visible) {
-				if (visible) {
+				if(visible) {
 					String fileName = diagramModelFilePage.getFileName();
 					fileName = fileName.substring(0, fileName.length() - ".sysml_diagram".length()); //$NON-NLS-1$
 					setFileName(SysmlDiagramEditorUtil.getUniqueFileName(getContainerFullPath(), fileName, "sysml")); //$NON-NLS-1$
@@ -141,14 +140,12 @@ public class SysmlCreationWizard extends Wizard implements INewWizard {
 		IRunnableWithProgress op = new WorkspaceModifyOperation(null) {
 
 			protected void execute(IProgressMonitor monitor) throws CoreException, InterruptedException {
-				diagram = SysmlDiagramEditorUtil.createDiagram(diagramModelFilePage.getURI(), domainModelFilePage
-						.getURI(), monitor);
-				if (isOpenNewlyCreatedDiagramEditor() && diagram != null) {
+				diagram = SysmlDiagramEditorUtil.createDiagram(diagramModelFilePage.getURI(), domainModelFilePage.getURI(), monitor);
+				if(isOpenNewlyCreatedDiagramEditor() && diagram != null) {
 					try {
 						SysmlDiagramEditorUtil.openDiagram(diagram);
 					} catch (PartInitException e) {
-						ErrorDialog.openError(getContainer().getShell(), Messages.SysmlCreationWizardOpenEditorError,
-								null, e.getStatus());
+						ErrorDialog.openError(getContainer().getShell(), Messages.SysmlCreationWizardOpenEditorError, null, e.getStatus());
 					}
 				}
 			}
@@ -158,9 +155,8 @@ public class SysmlCreationWizard extends Wizard implements INewWizard {
 		} catch (InterruptedException e) {
 			return false;
 		} catch (InvocationTargetException e) {
-			if (e.getTargetException() instanceof CoreException) {
-				ErrorDialog.openError(getContainer().getShell(), Messages.SysmlCreationWizardCreationError, null,
-						((CoreException) e.getTargetException()).getStatus());
+			if(e.getTargetException() instanceof CoreException) {
+				ErrorDialog.openError(getContainer().getShell(), Messages.SysmlCreationWizardCreationError, null, ((CoreException)e.getTargetException()).getStatus());
 			} else {
 				SysmlDiagramEditorPlugin.getInstance().logError("Error creating diagram", e.getTargetException()); //$NON-NLS-1$
 			}

@@ -49,7 +49,7 @@ public class ConstraintPropertyItemSemanticEditPolicy extends SysmlBaseItemSeman
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if (SysmlElementTypes.Property_3002 == req.getElementType()) {
+		if(SysmlElementTypes.Property_3002 == req.getElementType()) {
 			return getGEFWrapper(new Property2CreateCommand(req));
 		}
 		return super.getCreateCommand(req);
@@ -59,12 +59,13 @@ public class ConstraintPropertyItemSemanticEditPolicy extends SysmlBaseItemSeman
 	 * @generated NOT delete property views if any
 	 */
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
-		View view = (View) getHost().getModel();
+		View view = (View)getHost().getModel();
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
 		cmd.setTransactionNestingEnabled(false);
 		EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
-		if (annotation == null) {
-			// there are indirectly referenced children, need extra commands: true
+		if(annotation == null) {
+			// there are indirectly referenced children, need extra commands:
+			// true
 			addDestroyChildNodesCommand(cmd);
 			addDestroyShortcutsCommand(cmd, view);
 			// delete host element
@@ -83,10 +84,10 @@ public class ConstraintPropertyItemSemanticEditPolicy extends SysmlBaseItemSeman
 	 * @generated NOT
 	 */
 	private void addDestroyChildNodesCommand(ICompositeCommand cmd) {
-		View view = (View) getHost().getModel();
-		for (Iterator<?> nit = view.getChildren().iterator(); nit.hasNext();) {
-			Node node = (Node) nit.next();
-			switch (SysmlVisualIDRegistry.getVisualID(node)) {
+		View view = (View)getHost().getModel();
+		for(Iterator<?> nit = view.getChildren().iterator(); nit.hasNext();) {
+			Node node = (Node)nit.next();
+			switch(SysmlVisualIDRegistry.getVisualID(node)) {
 			case Property2EditPart.VISUAL_ID:
 				// only delete from diagram
 				cmd.add(new DeleteCommand(getEditingDomain(), node));
@@ -101,11 +102,11 @@ public class ConstraintPropertyItemSemanticEditPolicy extends SysmlBaseItemSeman
 	 * @generated NOT
 	 */
 	private void addDestroyBasePropertyCommand(ICompositeCommand cmd) {
-		View view = (View) getHost().getModel();
+		View view = (View)getHost().getModel();
 		EObject element = view.getElement();
-		if (element instanceof ConstraintProperty) {
-			Property property = ((ConstraintProperty) element).getBase_Property();
-			if (property != null) {
+		if(element instanceof ConstraintProperty) {
+			Property property = ((ConstraintProperty)element).getBase_Property();
+			if(property != null) {
 				DestroyElementRequest request = new DestroyElementRequest(property, false);
 				cmd.add(new DestroyElementCommand(request));
 			}

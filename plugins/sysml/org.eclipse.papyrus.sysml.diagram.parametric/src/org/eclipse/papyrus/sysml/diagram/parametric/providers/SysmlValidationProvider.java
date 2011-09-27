@@ -63,7 +63,7 @@ public class SysmlValidationProvider {
 				}
 			}
 		};
-		if (editingDomain != null) {
+		if(editingDomain != null) {
 			try {
 				editingDomain.runExclusive(task);
 			} catch (Exception e) {
@@ -78,12 +78,11 @@ public class SysmlValidationProvider {
 	 * @generated
 	 */
 	static boolean isInDefaultEditorContext(Object object) {
-		if (shouldConstraintsBePrivate() && !constraintsActive) {
+		if(shouldConstraintsBePrivate() && !constraintsActive) {
 			return false;
 		}
-		if (object instanceof View) {
-			return constraintsActive
-					&& ParametricEditPart.MODEL_ID.equals(SysmlVisualIDRegistry.getModelID((View) object));
+		if(object instanceof View) {
+			return constraintsActive && ParametricEditPart.MODEL_ID.equals(SysmlVisualIDRegistry.getModelID((View)object));
 		}
 		return true;
 	}
@@ -110,7 +109,7 @@ public class SysmlValidationProvider {
 		 * @generated
 		 */
 		public IStatus validate(IValidationContext ctx) {
-			Connector context = (Connector) ctx.getTarget();
+			Connector context = (Connector)ctx.getTarget();
 			return ModelValidationHelper.validateConnector(context, ctx);
 		}
 	}
@@ -124,7 +123,7 @@ public class SysmlValidationProvider {
 		 * @generated
 		 */
 		public IStatus validate(IValidationContext ctx) {
-			Property context = (Property) ctx.getTarget();
+			Property context = (Property)ctx.getTarget();
 			return ModelValidationHelper.validateProperty(context, ctx);
 		}
 	}
@@ -138,7 +137,7 @@ public class SysmlValidationProvider {
 		 * @generated
 		 */
 		public IStatus validate(IValidationContext ctx) {
-			ConnectorEnd context = (ConnectorEnd) ctx.getTarget();
+			ConnectorEnd context = (ConnectorEnd)ctx.getTarget();
 			return ModelValidationHelper.validateConnectorEnd(context, ctx);
 		}
 	}
@@ -152,7 +151,7 @@ public class SysmlValidationProvider {
 		 * @generated
 		 */
 		public IStatus validate(IValidationContext ctx) {
-			NestedConnectorEnd context = (NestedConnectorEnd) ctx.getTarget();
+			NestedConnectorEnd context = (NestedConnectorEnd)ctx.getTarget();
 			return ModelValidationHelper.validateNestedConnectorEnd(context, ctx);
 		}
 	}

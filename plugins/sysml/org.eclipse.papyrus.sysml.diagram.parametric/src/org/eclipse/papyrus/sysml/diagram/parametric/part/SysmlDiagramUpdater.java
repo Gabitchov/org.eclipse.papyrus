@@ -49,14 +49,14 @@ public class SysmlDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List getSemanticChildren(View view) {
+	public static List<SysmlNodeDescriptor> getSemanticChildren(View view) {
 		switch(SysmlVisualIDRegistry.getVisualID(view)) {
-		case ConstraintPropertyEditPart.VISUAL_ID:
-			return getConstraintProperty_2003SemanticChildren(view);
 		case ParametricEditPart.VISUAL_ID:
 			return getResource_1000SemanticChildren(view);
+		case ConstraintPropertyEditPart.VISUAL_ID:
+			return getConstraintProperty_2003SemanticChildren(view);
 		}
-		return Collections.EMPTY_LIST;
+		return Collections.emptyList();
 	}
 
 	/**
@@ -77,17 +77,21 @@ public class SysmlDiagramUpdater {
 		}
 		return result;
 		/*
-		 * if (!view.isSetElement()) { return Collections.EMPTY_LIST; } ConstraintProperty
-		 * modelElement = (ConstraintProperty) view.getElement(); List result = new LinkedList();
+		 * if (!view.isSetElement()) { return Collections.EMPTY_LIST; }
+		 * ConstraintProperty modelElement = (ConstraintProperty)
+		 * view.getElement(); List result = new LinkedList();
 		 * 
-		 * Object oclRuleResult = OCLUtils.runOclRule("self.base_Property.type", modelElement); if
-		 * (oclRuleResult != null) { if (oclRuleResult instanceof StructuredClassifier) {
-		 * StructuredClassifier aClass = (StructuredClassifier) oclRuleResult; for (Iterator it =
-		 * aClass.getAttributes().iterator(); it.hasNext();) { Property childElement = (Property)
-		 * it.next(); int visualID = SysmlVisualIDRegistry.getNodeVisualID(view, childElement); if
+		 * Object oclRuleResult = OCLUtils.runOclRule("self.base_Property.type",
+		 * modelElement); if (oclRuleResult != null) { if (oclRuleResult
+		 * instanceof StructuredClassifier) { StructuredClassifier aClass =
+		 * (StructuredClassifier) oclRuleResult; for (Iterator it =
+		 * aClass.getAttributes().iterator(); it.hasNext();) { Property
+		 * childElement = (Property) it.next(); int visualID =
+		 * SysmlVisualIDRegistry.getNodeVisualID(view, childElement); if
 		 * (visualID == Property2EditPart.VISUAL_ID) { result.add(new
-		 * SysmlNodeDescriptor(childElement, visualID)); //continue; } } } else { throw new
-		 * UnsupportedOperationException("Can't access with ..."); } }
+		 * SysmlNodeDescriptor(childElement, visualID)); //continue; } } } else
+		 * { throw new UnsupportedOperationException("Can't access with ..."); }
+		 * }
 		 */
 	}
 
@@ -131,7 +135,7 @@ public class SysmlDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List getContainedLinks(View view) {
+	public static List<SysmlLinkDescriptor> getContainedLinks(View view) {
 		switch(SysmlVisualIDRegistry.getVisualID(view)) {
 		case ParametricEditPart.VISUAL_ID:
 			return getResource_1000ContainedLinks(view);
@@ -144,13 +148,13 @@ public class SysmlDiagramUpdater {
 		case ConnectorEditPart.VISUAL_ID:
 			return getConnector_4001ContainedLinks(view);
 		}
-		return Collections.EMPTY_LIST;
+		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getIncomingLinks(View view) {
+	public static List<SysmlLinkDescriptor> getIncomingLinks(View view) {
 		switch(SysmlVisualIDRegistry.getVisualID(view)) {
 		case ConstraintPropertyEditPart.VISUAL_ID:
 			return getConstraintProperty_2003IncomingLinks(view);
@@ -161,13 +165,13 @@ public class SysmlDiagramUpdater {
 		case ConnectorEditPart.VISUAL_ID:
 			return getConnector_4001IncomingLinks(view);
 		}
-		return Collections.EMPTY_LIST;
+		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getOutgoingLinks(View view) {
+	public static List<SysmlLinkDescriptor> getOutgoingLinks(View view) {
 		switch(SysmlVisualIDRegistry.getVisualID(view)) {
 		case ConstraintPropertyEditPart.VISUAL_ID:
 			return getConstraintProperty_2003OutgoingLinks(view);
@@ -178,58 +182,58 @@ public class SysmlDiagramUpdater {
 		case ConnectorEditPart.VISUAL_ID:
 			return getConnector_4001OutgoingLinks(view);
 		}
-		return Collections.EMPTY_LIST;
+		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getResource_1000ContainedLinks(View view) {
-		return Collections.EMPTY_LIST;
+	public static List<SysmlLinkDescriptor> getResource_1000ContainedLinks(View view) {
+		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getConstraintProperty_2003ContainedLinks(View view) {
-		return Collections.EMPTY_LIST;
+	public static List<SysmlLinkDescriptor> getConstraintProperty_2003ContainedLinks(View view) {
+		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getProperty_2005ContainedLinks(View view) {
-		return Collections.EMPTY_LIST;
+	public static List<SysmlLinkDescriptor> getProperty_2005ContainedLinks(View view) {
+		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getProperty_3002ContainedLinks(View view) {
-		return Collections.EMPTY_LIST;
+	public static List<SysmlLinkDescriptor> getProperty_3002ContainedLinks(View view) {
+		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getConnector_4001ContainedLinks(View view) {
-		return Collections.EMPTY_LIST;
+	public static List<SysmlLinkDescriptor> getConnector_4001ContainedLinks(View view) {
+		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getConstraintProperty_2003IncomingLinks(View view) {
-		return Collections.EMPTY_LIST;
+	public static List<SysmlLinkDescriptor> getConstraintProperty_2003IncomingLinks(View view) {
+		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getProperty_2005IncomingLinks(View view) {
+	public static List<SysmlLinkDescriptor> getProperty_2005IncomingLinks(View view) {
 		Property modelElement = (Property)view.getElement();
-		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
-		List result = new LinkedList();
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		LinkedList<SysmlLinkDescriptor> result = new LinkedList<SysmlLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_Connector_4001(modelElement, crossReferences));
 		return result;
 	}
@@ -237,10 +241,10 @@ public class SysmlDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List getProperty_3002IncomingLinks(View view) {
+	public static List<SysmlLinkDescriptor> getProperty_3002IncomingLinks(View view) {
 		Property modelElement = (Property)view.getElement();
-		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
-		List result = new LinkedList();
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		LinkedList<SysmlLinkDescriptor> result = new LinkedList<SysmlLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_Connector_4001(modelElement, crossReferences));
 		return result;
 	}
@@ -248,23 +252,23 @@ public class SysmlDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List getConnector_4001IncomingLinks(View view) {
-		return Collections.EMPTY_LIST;
+	public static List<SysmlLinkDescriptor> getConnector_4001IncomingLinks(View view) {
+		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getConstraintProperty_2003OutgoingLinks(View view) {
-		return Collections.EMPTY_LIST;
+	public static List<SysmlLinkDescriptor> getConstraintProperty_2003OutgoingLinks(View view) {
+		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getProperty_2005OutgoingLinks(View view) {
+	public static List<SysmlLinkDescriptor> getProperty_2005OutgoingLinks(View view) {
 		Property modelElement = (Property)view.getElement();
-		List result = new LinkedList();
+		LinkedList<SysmlLinkDescriptor> result = new LinkedList<SysmlLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_Connector_4001(modelElement));
 		return result;
 	}
@@ -272,9 +276,9 @@ public class SysmlDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List getProperty_3002OutgoingLinks(View view) {
+	public static List<SysmlLinkDescriptor> getProperty_3002OutgoingLinks(View view) {
 		Property modelElement = (Property)view.getElement();
-		List result = new LinkedList();
+		LinkedList<SysmlLinkDescriptor> result = new LinkedList<SysmlLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_Connector_4001(modelElement));
 		return result;
 	}
@@ -282,8 +286,8 @@ public class SysmlDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List getConnector_4001OutgoingLinks(View view) {
-		return Collections.EMPTY_LIST;
+	public static List<SysmlLinkDescriptor> getConnector_4001OutgoingLinks(View view) {
+		return Collections.emptyList();
 	}
 
 	/**

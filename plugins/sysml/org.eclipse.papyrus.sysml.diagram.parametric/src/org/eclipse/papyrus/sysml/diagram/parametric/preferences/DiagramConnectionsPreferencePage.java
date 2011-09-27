@@ -26,5 +26,6 @@ public class DiagramConnectionsPreferencePage extends ConnectionsPreferencePage 
 	 */
 	public DiagramConnectionsPreferencePage() {
 		setPreferenceStore(SysmlDiagramEditorPlugin.getInstance().getPreferenceStore());
+
 	}
 }

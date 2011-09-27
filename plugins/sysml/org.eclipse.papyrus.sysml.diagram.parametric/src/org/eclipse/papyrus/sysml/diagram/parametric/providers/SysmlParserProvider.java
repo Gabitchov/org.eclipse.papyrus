@@ -49,7 +49,7 @@ public class SysmlParserProvider extends AbstractProvider implements IParserProv
 	 * @generated
 	 */
 	private IParser getConstraintPropertyLabel_5001Parser() {
-		if (constraintPropertyLabel_5001Parser == null) {
+		if(constraintPropertyLabel_5001Parser == null) {
 			constraintPropertyLabel_5001Parser = new ConstraintPropertyLabelParser();
 		}
 		return constraintPropertyLabel_5001Parser;
@@ -64,7 +64,7 @@ public class SysmlParserProvider extends AbstractProvider implements IParserProv
 	 * @generated
 	 */
 	private IParser getConstraintPropertyLabel_5004Parser() {
-		if (constraintPropertyLabel_5004Parser == null) {
+		if(constraintPropertyLabel_5004Parser == null) {
 			constraintPropertyLabel_5004Parser = new ConstraintLabelParser();
 		}
 		return constraintPropertyLabel_5004Parser;
@@ -79,7 +79,7 @@ public class SysmlParserProvider extends AbstractProvider implements IParserProv
 	 * @generated
 	 */
 	private IParser getPropertyName_5002Parser() {
-		if (propertyName_5002Parser == null) {
+		if(propertyName_5002Parser == null) {
 			propertyName_5002Parser = new PropertyLabelParser();
 		}
 		return propertyName_5002Parser;
@@ -94,7 +94,7 @@ public class SysmlParserProvider extends AbstractProvider implements IParserProv
 	 * @generated
 	 */
 	private IParser getPropertyName_5003Parser() {
-		if (propertyName_5003Parser == null) {
+		if(propertyName_5003Parser == null) {
 			propertyName_5003Parser = new PropertyLabelParser();
 		}
 		return propertyName_5003Parser;
@@ -109,7 +109,7 @@ public class SysmlParserProvider extends AbstractProvider implements IParserProv
 	 * @generated
 	 */
 	private IParser getConnectorName_6001Parser() {
-		if (connectorName_6001Parser == null) {
+		if(connectorName_6001Parser == null) {
 			connectorName_6001Parser = new ConnectorLabelParser();
 		}
 		return connectorName_6001Parser;
@@ -119,7 +119,7 @@ public class SysmlParserProvider extends AbstractProvider implements IParserProv
 	 * @generated
 	 */
 	protected IParser getParser(int visualID) {
-		switch (visualID) {
+		switch(visualID) {
 		case ConstraintPropertyNameEditPart.VISUAL_ID:
 			return getConstraintPropertyLabel_5001Parser();
 		case ConstraintLabelEditPart.VISUAL_ID:
@@ -147,12 +147,12 @@ public class SysmlParserProvider extends AbstractProvider implements IParserProv
 	 * @generated
 	 */
 	public IParser getParser(IAdaptable hint) {
-		String vid = (String) hint.getAdapter(String.class);
-		if (vid != null) {
+		String vid = (String)hint.getAdapter(String.class);
+		if(vid != null) {
 			return getParser(SysmlVisualIDRegistry.getVisualID(vid));
 		}
-		View view = (View) hint.getAdapter(View.class);
-		if (view != null) {
+		View view = (View)hint.getAdapter(View.class);
+		if(view != null) {
 			return getParser(SysmlVisualIDRegistry.getVisualID(view));
 		}
 		return null;
@@ -162,9 +162,9 @@ public class SysmlParserProvider extends AbstractProvider implements IParserProv
 	 * @generated
 	 */
 	public boolean provides(IOperation operation) {
-		if (operation instanceof GetParserOperation) {
-			IAdaptable hint = ((GetParserOperation) operation).getHint();
-			if (SysmlElementTypes.getElement(hint) == null) {
+		if(operation instanceof GetParserOperation) {
+			IAdaptable hint = ((GetParserOperation)operation).getHint();
+			if(SysmlElementTypes.getElement(hint) == null) {
 				return false;
 			}
 			return getParser(hint) != null;
@@ -195,7 +195,7 @@ public class SysmlParserProvider extends AbstractProvider implements IParserProv
 		 * @generated
 		 */
 		public Object getAdapter(Class adapter) {
-			if (IElementType.class.equals(adapter)) {
+			if(IElementType.class.equals(adapter)) {
 				return elementType;
 			}
 			return super.getAdapter(adapter);

@@ -30,8 +30,8 @@ public class SysmlNavigatorSorter extends ViewerSorter {
 	 * @generated
 	 */
 	public int category(Object element) {
-		if (element instanceof SysmlNavigatorItem) {
-			SysmlNavigatorItem item = (SysmlNavigatorItem) element;
+		if(element instanceof SysmlNavigatorItem) {
+			SysmlNavigatorItem item = (SysmlNavigatorItem)element;
 			return SysmlVisualIDRegistry.getVisualID(item.getView());
 		}
 		return GROUP_CATEGORY;

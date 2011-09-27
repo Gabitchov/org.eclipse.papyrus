@@ -44,10 +44,15 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelations
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.extendedtypes.types.IExtendedHintedElementType;
+import org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils;
+import org.eclipse.papyrus.service.edit.service.IElementEditService;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.helpers.SysmlBaseEditHelper;
+import org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlDiagramEditorPlugin;
 import org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlVisualIDRegistry;
 import org.eclipse.papyrus.sysml.diagram.parametric.providers.SysmlElementTypes;
 import org.eclipse.uml2.uml.ConnectableElement;
+import org.eclipse.uml2.uml.Connector;
 import org.eclipse.uml2.uml.StructuredClassifier;
 import org.eclipse.uml2.uml.Type;
 
@@ -64,6 +69,14 @@ public class SysmlBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	public static final String VISUAL_ID_KEY = "visual_id"; //$NON-NLS-1$
 
 	/**
+	 * Extended request data key to hold the edge view during a reconnect
+	 * request.
+	 * 
+	 * @generated
+	 */
+	public static final String GRAPHICAL_RECONNECTED_EDGE = "graphical_edge"; //$NON-NLS-1$
+
+	/**
 	 * @generated
 	 */
 	private final IElementType myElementType;
@@ -76,19 +89,22 @@ public class SysmlBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	}
 
 	/**
-	 * Extended request data key to hold editpart visual id. Add visual id of edited editpart to
-	 * extended data of the request so command switch can decide what kind of diagram element is
-	 * being edited. It is done in those cases when it's not possible to deduce diagram element kind
-	 * from domain element.
+	 * Extended request data key to hold editpart visual id. Add visual id of
+	 * edited editpart to extended data of the request so command switch can
+	 * decide what kind of diagram element is being edited. It is done in those
+	 * cases when it's not possible to deduce diagram element kind from domain
+	 * element.
 	 * 
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	public Command getCommand(Request request) {
-		if (request instanceof ReconnectRequest) {
-			Object view = ((ReconnectRequest) request).getConnectionEditPart().getModel();
-			if (view instanceof View) {
-				Integer id = new Integer(SysmlVisualIDRegistry.getVisualID((View) view));
+		if(request instanceof ReconnectRequest) {
+			Object view = ((ReconnectRequest)request).getConnectionEditPart().getModel();
+			if(view instanceof View) {
+				Integer id = new Integer(SysmlVisualIDRegistry.getVisualID((View)view));
 				request.getExtendedData().put(VISUAL_ID_KEY, id);
+				request.getExtendedData().put(GRAPHICAL_RECONNECTED_EDGE, (View)view);
 			}
 		}
 		return super.getCommand(request);
@@ -101,7 +117,7 @@ public class SysmlBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 */
 	protected int getVisualID(IEditCommandRequest request) {
 		Object id = request.getParameter(VISUAL_ID_KEY);
-		return id instanceof Integer ? ((Integer) id).intValue() : -1;
+		return id instanceof Integer ? ((Integer)id).intValue() : -1;
 	}
 
 	/**
@@ -111,8 +127,8 @@ public class SysmlBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		IEditCommandRequest completedRequest = completeRequest(request);
 		Command semanticCommand = getSemanticCommandSwitch(completedRequest);
 		semanticCommand = getEditHelperCommand(completedRequest, semanticCommand);
-		if (completedRequest instanceof DestroyRequest) {
-			DestroyRequest destroyRequest = (DestroyRequest) completedRequest;
+		if(completedRequest instanceof DestroyRequest) {
+			DestroyRequest destroyRequest = (DestroyRequest)completedRequest;
 			return shouldProceed(destroyRequest) ? addDeleteViewCommand(semanticCommand, destroyRequest) : null;
 		}
 		return semanticCommand;
@@ -122,7 +138,7 @@ public class SysmlBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 * @generated
 	 */
 	protected Command addDeleteViewCommand(Command mainCommand, DestroyRequest completedRequest) {
-		Command deleteViewCommand = getGEFWrapper(new DeleteCommand(getEditingDomain(), (View) getHost().getModel()));
+		Command deleteViewCommand = getGEFWrapper(new DeleteCommand(getEditingDomain(), (View)getHost().getModel()));
 		return mainCommand == null ? deleteViewCommand : mainCommand.chain(deleteViewCommand);
 	}
 
@@ -130,9 +146,8 @@ public class SysmlBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 * @generated
 	 */
 	private Command getEditHelperCommand(IEditCommandRequest request, Command editPolicyCommand) {
-		if (editPolicyCommand != null) {
-			ICommand command = editPolicyCommand instanceof ICommandProxy ? ((ICommandProxy) editPolicyCommand)
-					.getICommand() : new CommandProxy(editPolicyCommand);
+		if(editPolicyCommand != null) {
+			ICommand command = editPolicyCommand instanceof ICommandProxy ? ((ICommandProxy)editPolicyCommand).getICommand() : new CommandProxy(editPolicyCommand);
 			request.setParameter(SysmlBaseEditHelper.EDIT_POLICY_COMMAND, command);
 		}
 		IElementType requestContextElementType = getContextElementType(request);
@@ -140,8 +155,8 @@ public class SysmlBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		ICommand command = requestContextElementType.getEditCommand(request);
 		request.setParameter(SysmlBaseEditHelper.EDIT_POLICY_COMMAND, null);
 		request.setParameter(SysmlBaseEditHelper.CONTEXT_ELEMENT_TYPE, null);
-		if (command != null) {
-			if (!(command instanceof CompositeTransactionalCommand)) {
+		if(command != null) {
+			if(!(command instanceof CompositeTransactionalCommand)) {
 				command = new CompositeTransactionalCommand(getEditingDomain(), command.getLabel()).compose(command);
 			}
 			return new ICommandProxy(command);
@@ -152,7 +167,7 @@ public class SysmlBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	/**
 	 * @generated
 	 */
-	private IElementType getContextElementType(IEditCommandRequest request) {
+	protected IElementType getContextElementType(IEditCommandRequest request) {
 		IElementType requestContextElementType = SysmlElementTypes.getElementType(getVisualID(request));
 		return requestContextElementType != null ? requestContextElementType : myElementType;
 	}
@@ -161,28 +176,28 @@ public class SysmlBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 * @generated
 	 */
 	protected Command getSemanticCommandSwitch(IEditCommandRequest req) {
-		if (req instanceof CreateRelationshipRequest) {
-			return getCreateRelationshipCommand((CreateRelationshipRequest) req);
-		} else if (req instanceof CreateElementRequest) {
-			return getCreateCommand((CreateElementRequest) req);
-		} else if (req instanceof ConfigureRequest) {
-			return getConfigureCommand((ConfigureRequest) req);
-		} else if (req instanceof DestroyElementRequest) {
-			return getDestroyElementCommand((DestroyElementRequest) req);
-		} else if (req instanceof DestroyReferenceRequest) {
-			return getDestroyReferenceCommand((DestroyReferenceRequest) req);
-		} else if (req instanceof DuplicateElementsRequest) {
-			return getDuplicateCommand((DuplicateElementsRequest) req);
-		} else if (req instanceof GetEditContextRequest) {
-			return getEditContextCommand((GetEditContextRequest) req);
-		} else if (req instanceof MoveRequest) {
-			return getMoveCommand((MoveRequest) req);
-		} else if (req instanceof ReorientReferenceRelationshipRequest) {
-			return getReorientReferenceRelationshipCommand((ReorientReferenceRelationshipRequest) req);
-		} else if (req instanceof ReorientRelationshipRequest) {
-			return getReorientRelationshipCommand((ReorientRelationshipRequest) req);
-		} else if (req instanceof SetRequest) {
-			return getSetCommand((SetRequest) req);
+		if(req instanceof CreateRelationshipRequest) {
+			return getCreateRelationshipCommand((CreateRelationshipRequest)req);
+		} else if(req instanceof CreateElementRequest) {
+			return getCreateCommand((CreateElementRequest)req);
+		} else if(req instanceof ConfigureRequest) {
+			return getConfigureCommand((ConfigureRequest)req);
+		} else if(req instanceof DestroyElementRequest) {
+			return getDestroyElementCommand((DestroyElementRequest)req);
+		} else if(req instanceof DestroyReferenceRequest) {
+			return getDestroyReferenceCommand((DestroyReferenceRequest)req);
+		} else if(req instanceof DuplicateElementsRequest) {
+			return getDuplicateCommand((DuplicateElementsRequest)req);
+		} else if(req instanceof GetEditContextRequest) {
+			return getEditContextCommand((GetEditContextRequest)req);
+		} else if(req instanceof MoveRequest) {
+			return getMoveCommand((MoveRequest)req);
+		} else if(req instanceof ReorientReferenceRelationshipRequest) {
+			return getReorientReferenceRelationshipCommand((ReorientReferenceRelationshipRequest)req);
+		} else if(req instanceof ReorientRelationshipRequest) {
+			return getReorientRelationshipCommand((ReorientRelationshipRequest)req);
+		} else if(req instanceof SetRequest) {
+			return getSetCommand((SetRequest)req);
 		}
 		return null;
 	}
@@ -205,6 +220,20 @@ public class SysmlBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
+		// check if the type is an extended type, and then create directly the element...
+		IElementType type = req.getElementType();
+		if(type instanceof IExtendedHintedElementType) {
+			IElementEditService provider = ElementEditServiceUtils.getCommandProvider(req.getContainer());
+			if(provider == null) {
+				return UnexecutableCommand.INSTANCE;
+			}
+
+			// Retrieve create command from the Element Edit service
+			ICommand createGMFCommand = provider.getEditCommand(req);
+
+			return getGEFWrapper(createGMFCommand);
+		}
+
 		return null;
 	}
 
@@ -279,7 +308,7 @@ public class SysmlBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 * @generated
 	 */
 	protected TransactionalEditingDomain getEditingDomain() {
-		return ((IGraphicalEditPart) getHost()).getEditingDomain();
+		return ((IGraphicalEditPart)getHost()).getEditingDomain();
 	}
 
 	/**
@@ -289,13 +318,24 @@ public class SysmlBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 */
 	protected void addDestroyShortcutsCommand(ICompositeCommand cmd, View view) {
 		assert view.getEAnnotation("Shortcut") == null; //$NON-NLS-1$
-		for (Iterator it = view.getDiagram().getChildren().iterator(); it.hasNext();) {
-			View nextView = (View) it.next();
-			if (nextView.getEAnnotation("Shortcut") == null || !nextView.isSetElement() || nextView.getElement() != view.getElement()) { //$NON-NLS-1$
+		for(Iterator it = view.getDiagram().getChildren().iterator(); it.hasNext();) {
+			View nextView = (View)it.next();
+			if(nextView.getEAnnotation("Shortcut") == null || !nextView.isSetElement() || nextView.getElement() != view.getElement()) { //$NON-NLS-1$
 				continue;
 			}
 			cmd.add(new DeleteCommand(getEditingDomain(), nextView));
 		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public static LinkConstraints getLinkConstraints() {
+		LinkConstraints cached = SysmlDiagramEditorPlugin.getInstance().getLinkConstraints();
+		if(cached == null) {
+			SysmlDiagramEditorPlugin.getInstance().setLinkConstraints(cached = new LinkConstraints());
+		}
+		return cached;
 	}
 
 	/**
@@ -306,14 +346,22 @@ public class SysmlBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		private static final String OPPOSITE_END_VAR = "oppositeEnd"; //$NON-NLS-1$
+		public LinkConstraints() {
+			// use static method #getLinkConstraints() to access instance
+		}
 
 		/**
 		 * @generated
 		 */
-		public static boolean canCreateConnector_4001(StructuredClassifier container, ConnectableElement source,
-				ConnectableElement target) {
-			return canExistConnector_4001(container, source, target);
+		public boolean canCreateConnector_4001(StructuredClassifier container, ConnectableElement source, ConnectableElement target) {
+			return canExistConnector_4001(container, null, source, target);
+		}
+
+		/**
+		 * @generated
+		 */
+		public boolean canExistConnector_4001(StructuredClassifier container, Connector linkInstance, ConnectableElement source, ConnectableElement target) {
+			return true;
 		}
 
 		/**
@@ -321,11 +369,10 @@ public class SysmlBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 * 
 		 * @generated NOT
 		 */
-		public static boolean canExistConnector_4001(StructuredClassifier container, ConnectableElement source,
-				ConnectableElement target) {
+		public static boolean canExistConnector_4001(StructuredClassifier container, ConnectableElement source, ConnectableElement target) {
 			Type sourceType = (source == null) ? null : source.getType();
 			Type targetType = (target == null) ? null : target.getType();
-			if (sourceType != null && target == null) {
+			if(sourceType != null && target == null) {
 				return true;
 			}
 			return (sourceType != null && targetType != null && sourceType.equals(targetType));

@@ -54,13 +54,13 @@ public class SysmlPaletteFactory extends PaletteFactory.Adapter {
 	 * @generated
 	 */
 	public Tool createTool(String toolId) {
-		if (toolId.equals(CREATECONSTRAINTPROPERTY1CREATIONTOOL)) {
+		if(toolId.equals(CREATECONSTRAINTPROPERTY1CREATIONTOOL)) {
 			return createConstraintProperty1CreationTool();
 		}
-		if (toolId.equals(CREATEPROPERTY2CREATIONTOOL)) {
+		if(toolId.equals(CREATEPROPERTY2CREATIONTOOL)) {
 			return createProperty2CreationTool();
 		}
-		if (toolId.equals(CREATECONNECTOR3CREATIONTOOL)) {
+		if(toolId.equals(CREATECONNECTOR3CREATIONTOOL)) {
 			return createConnector3CreationTool();
 		}
 

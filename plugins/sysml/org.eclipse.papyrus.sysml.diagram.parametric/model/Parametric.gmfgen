@@ -82,7 +82,7 @@
             xsi:type="gmfgen:GenDomainElementTarget"
             contextSelector="/0/@audits/@clientContexts.0">
           <element
-              href="../../org.eclipse.papyrus.sysml.converted/model/sysml.genmodel#//sysml/blocks/NestedConnectorEnd"/>
+              href="../../org.eclipse.papyrus.sysml/model/sysml.genmodel#//sysml/blocks/NestedConnectorEnd"/>
         </target>
       </rules>
       <clientContexts
@@ -149,7 +149,7 @@
           <containmentMetaFeature
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/StructuredClassifier/ownedAttribute"/>
           <childMetaFeature
-              href="../../org.eclipse.papyrus.sysml.converted/model/sysml.genmodel#//sysml/constraints/ConstraintProperty/base_Property"/>
+              href="../../org.eclipse.papyrus.sysml/model/sysml.genmodel#//sysml/constraints/ConstraintProperty/base_Property"/>
         </modelFacet>
         <labels
             xsi:type="gmfgen:GenExternalNodeLabel"
@@ -202,7 +202,7 @@
             editPolicyQualifiedClassName="org.eclipse.papyrus.sysml.diagram.parametric.edit.policies.CreateParameterEditPolicy"/>
         <modelFacet>
           <metaClass
-              href="../../org.eclipse.papyrus.sysml.converted/model/sysml.genmodel#//sysml/constraints/ConstraintProperty"/>
+              href="../../org.eclipse.papyrus.sysml/model/sysml.genmodel#//sysml/constraints/ConstraintProperty"/>
           <containmentMetaFeature
               href="../../../plugin/org.eclipse.papyrus.resource/model/resource.genmodel#//resource/Resource/eobjects"/>
           <childMetaFeature
@@ -398,7 +398,7 @@
         iD="org.eclipse.papyrus.sysml.diagram.parametric"
         name="Sysml Parametric diagram Plugin"
         provider="Eclipse.org"
-        version="0.7.1.qualifier">
+        version="0.8.2.qualifier">
       <requiredPlugins>org.eclipse.draw2d</requiredPlugins>
       <requiredPlugins>org.eclipse.gmf.runtime.draw2d.ui</requiredPlugins>
     </plugin>
@@ -490,7 +490,7 @@
       </tabs>
     </propertySheet>
     <domainGenModel
-        href="../../org.eclipse.papyrus.sysml.converted/model/sysml.genmodel#/"/>
+        href="../../org.eclipse.papyrus.sysml/model/sysml.genmodel#/"/>
     <expressionProviders>
       <providers
           xsi:type="gmfgen:GenJavaExpressionProvider"
@@ -542,5 +542,18 @@
         comment="Affixed Parameter locator"
         classpath="org.eclipse.papyrus.sysml.diagram.parametric.locator.ParameterPositionLocator"
         genChildSideAffixedNode="/0/@diagram/@childNodes.0"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:LabelVisibilityPreference"
+        comment="HiddenName"
+        role="Name"
+        iconPathRole="platform:/plugin/org.eclipse.papyrus.diagram.common/icons/label_role/name.png"
+        linkLabels="/0/@diagram/@links.0/@labels.0"
+        visibleByDefault="false"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:ExtendedGenView"
+        comment=""
+        genView="/0/@diagram/@links.0"
+        name="ExtendedUMLLinks"
+        superOwnedEditPart="org.eclipse.papyrus.diagram.common.editparts.UMLConnectionNodeEditPart"/>
   </papyrusgmfgenextension:PapyrusExtensionRootNode>
 </xmi:XMI>

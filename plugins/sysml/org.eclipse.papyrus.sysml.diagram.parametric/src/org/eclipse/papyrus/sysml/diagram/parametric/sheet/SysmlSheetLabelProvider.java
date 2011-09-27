@@ -34,8 +34,8 @@ public class SysmlSheetLabelProvider extends BaseLabelProvider implements ILabel
 	 */
 	public String getText(Object element) {
 		element = unwrap(element);
-		if (element instanceof SysmlNavigatorGroup) {
-			return ((SysmlNavigatorGroup) element).getGroupName();
+		if(element instanceof SysmlNavigatorGroup) {
+			return ((SysmlNavigatorGroup)element).getGroupName();
 		}
 		IElementType etype = getElementType(getView(element));
 		return etype == null ? "" : etype.getDisplayName();
@@ -53,8 +53,8 @@ public class SysmlSheetLabelProvider extends BaseLabelProvider implements ILabel
 	 * @generated
 	 */
 	private Object unwrap(Object element) {
-		if (element instanceof IStructuredSelection) {
-			return ((IStructuredSelection) element).getFirstElement();
+		if(element instanceof IStructuredSelection) {
+			return ((IStructuredSelection)element).getFirstElement();
 		}
 		return element;
 	}
@@ -63,11 +63,11 @@ public class SysmlSheetLabelProvider extends BaseLabelProvider implements ILabel
 	 * @generated
 	 */
 	private View getView(Object element) {
-		if (element instanceof View) {
-			return (View) element;
+		if(element instanceof View) {
+			return (View)element;
 		}
-		if (element instanceof IAdaptable) {
-			return (View) ((IAdaptable) element).getAdapter(View.class);
+		if(element instanceof IAdaptable) {
+			return (View)((IAdaptable)element).getAdapter(View.class);
 		}
 		return null;
 	}
@@ -76,15 +76,14 @@ public class SysmlSheetLabelProvider extends BaseLabelProvider implements ILabel
 	 * @generated
 	 */
 	private IElementType getElementType(View view) {
-		// For intermediate views climb up the containment hierarchy to find the one associated with
-		// an element type.
-		while (view != null) {
+		// For intermediate views climb up the containment hierarchy to find the one associated with an element type.
+		while(view != null) {
 			int vid = SysmlVisualIDRegistry.getVisualID(view);
 			IElementType etype = SysmlElementTypes.getElementType(vid);
-			if (etype != null) {
+			if(etype != null) {
 				return etype;
 			}
-			view = view.eContainer() instanceof View ? (View) view.eContainer() : null;
+			view = view.eContainer() instanceof View ? (View)view.eContainer() : null;
 		}
 		return null;
 	}

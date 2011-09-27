@@ -30,17 +30,17 @@ public class SysmlDomainNavigatorItem extends PlatformObject {
 	 * @generated
 	 */
 	static {
-		final Class[] supportedTypes = new Class[] { EObject.class, IPropertySource.class };
+		final Class[] supportedTypes = new Class[]{ EObject.class, IPropertySource.class };
 		Platform.getAdapterManager().registerAdapters(new IAdapterFactory() {
 
 			public Object getAdapter(Object adaptableObject, Class adapterType) {
-				if (adaptableObject instanceof org.eclipse.papyrus.sysml.diagram.parametric.navigator.SysmlDomainNavigatorItem) {
-					org.eclipse.papyrus.sysml.diagram.parametric.navigator.SysmlDomainNavigatorItem domainNavigatorItem = (org.eclipse.papyrus.sysml.diagram.parametric.navigator.SysmlDomainNavigatorItem) adaptableObject;
+				if(adaptableObject instanceof org.eclipse.papyrus.sysml.diagram.parametric.navigator.SysmlDomainNavigatorItem) {
+					org.eclipse.papyrus.sysml.diagram.parametric.navigator.SysmlDomainNavigatorItem domainNavigatorItem = (org.eclipse.papyrus.sysml.diagram.parametric.navigator.SysmlDomainNavigatorItem)adaptableObject;
 					EObject eObject = domainNavigatorItem.getEObject();
-					if (adapterType == EObject.class) {
+					if(adapterType == EObject.class) {
 						return eObject;
 					}
-					if (adapterType == IPropertySource.class) {
+					if(adapterType == IPropertySource.class) {
 						return domainNavigatorItem.getPropertySourceProvider().getPropertySource(eObject);
 					}
 				}
@@ -103,13 +103,8 @@ public class SysmlDomainNavigatorItem extends PlatformObject {
 	 * @generated
 	 */
 	public boolean equals(Object obj) {
-		if (obj instanceof org.eclipse.papyrus.sysml.diagram.parametric.navigator.SysmlDomainNavigatorItem) {
-			return EcoreUtil
-					.getURI(getEObject())
-					.equals(
-							EcoreUtil
-									.getURI(((org.eclipse.papyrus.sysml.diagram.parametric.navigator.SysmlDomainNavigatorItem) obj)
-											.getEObject()));
+		if(obj instanceof org.eclipse.papyrus.sysml.diagram.parametric.navigator.SysmlDomainNavigatorItem) {
+			return EcoreUtil.getURI(getEObject()).equals(EcoreUtil.getURI(((org.eclipse.papyrus.sysml.diagram.parametric.navigator.SysmlDomainNavigatorItem)obj).getEObject()));
 		}
 		return super.equals(obj);
 	}

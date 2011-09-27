@@ -51,10 +51,8 @@ public class SysmlNavigatorLabelProvider extends LabelProvider implements ICommo
 	 * @generated
 	 */
 	static {
-		SysmlDiagramEditorPlugin.getInstance().getImageRegistry().put(
-				"Navigator?UnknownElement", ImageDescriptor.getMissingImageDescriptor()); //$NON-NLS-1$
-		SysmlDiagramEditorPlugin.getInstance().getImageRegistry().put(
-				"Navigator?ImageNotFound", ImageDescriptor.getMissingImageDescriptor()); //$NON-NLS-1$
+		SysmlDiagramEditorPlugin.getInstance().getImageRegistry().put("Navigator?UnknownElement", ImageDescriptor.getMissingImageDescriptor()); //$NON-NLS-1$
+		SysmlDiagramEditorPlugin.getInstance().getImageRegistry().put("Navigator?ImageNotFound", ImageDescriptor.getMissingImageDescriptor()); //$NON-NLS-1$
 	}
 
 	/**
@@ -62,7 +60,7 @@ public class SysmlNavigatorLabelProvider extends LabelProvider implements ICommo
 	 */
 	public void updateLabel(ViewerLabel label, TreePath elementPath) {
 		Object element = elementPath.getLastSegment();
-		if (element instanceof SysmlNavigatorItem && !isOwnView(((SysmlNavigatorItem) element).getView())) {
+		if(element instanceof SysmlNavigatorItem && !isOwnView(((SysmlNavigatorItem)element).getView())) {
 			return;
 		}
 		label.setText(getText(element));
@@ -73,14 +71,14 @@ public class SysmlNavigatorLabelProvider extends LabelProvider implements ICommo
 	 * @generated
 	 */
 	public Image getImage(Object element) {
-		if (element instanceof SysmlNavigatorGroup) {
-			SysmlNavigatorGroup group = (SysmlNavigatorGroup) element;
+		if(element instanceof SysmlNavigatorGroup) {
+			SysmlNavigatorGroup group = (SysmlNavigatorGroup)element;
 			return SysmlDiagramEditorPlugin.getInstance().getBundledImage(group.getIcon());
 		}
 
-		if (element instanceof SysmlNavigatorItem) {
-			SysmlNavigatorItem navigatorItem = (SysmlNavigatorItem) element;
-			if (!isOwnView(navigatorItem.getView())) {
+		if(element instanceof SysmlNavigatorItem) {
+			SysmlNavigatorItem navigatorItem = (SysmlNavigatorItem)element;
+			if(!isOwnView(navigatorItem.getView())) {
 				return super.getImage(element);
 			}
 			return getImage(navigatorItem.getView());
@@ -93,22 +91,17 @@ public class SysmlNavigatorLabelProvider extends LabelProvider implements ICommo
 	 * @generated
 	 */
 	public Image getImage(View view) {
-		switch (SysmlVisualIDRegistry.getVisualID(view)) {
-		case ParametricEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Diagram?http://www.eclipse.org/papyurs/0.7.0/Resource?Resource", SysmlElementTypes.Resource_1000); //$NON-NLS-1$
+		switch(SysmlVisualIDRegistry.getVisualID(view)) {
 		case ConstraintPropertyEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?TopLevelNode?http://www.eclipse.org/papyrus/0.7.0/SysML/Constraints?ConstraintProperty", SysmlElementTypes.ConstraintProperty_2003); //$NON-NLS-1$
+			return getImage("Navigator?TopLevelNode?http://www.eclipse.org/papyrus/0.7.0/SysML/Constraints?ConstraintProperty", SysmlElementTypes.ConstraintProperty_2003); //$NON-NLS-1$
 		case PropertyEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?TopLevelNode?http://www.eclipse.org/uml2/3.0.0/UML?Property", SysmlElementTypes.Property_2005); //$NON-NLS-1$
+			return getImage("Navigator?TopLevelNode?http://www.eclipse.org/uml2/3.0.0/UML?Property", SysmlElementTypes.Property_2005); //$NON-NLS-1$
 		case Property2EditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?Property", SysmlElementTypes.Property_3002); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?Property", SysmlElementTypes.Property_3002); //$NON-NLS-1$
+		case ParametricEditPart.VISUAL_ID:
+			return getImage("Navigator?Diagram?http://www.eclipse.org/papyurs/0.7.0/Resource?Resource", SysmlElementTypes.Resource_1000); //$NON-NLS-1$
 		case ConnectorEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Link?http://www.eclipse.org/uml2/3.0.0/UML?Connector", SysmlElementTypes.Connector_4001); //$NON-NLS-1$
+			return getImage("Navigator?Link?http://www.eclipse.org/uml2/3.0.0/UML?Connector", SysmlElementTypes.Connector_4001); //$NON-NLS-1$
 		}
 		return getImage("Navigator?UnknownElement", null); //$NON-NLS-1$
 	}
@@ -119,12 +112,12 @@ public class SysmlNavigatorLabelProvider extends LabelProvider implements ICommo
 	private Image getImage(String key, IElementType elementType) {
 		ImageRegistry imageRegistry = SysmlDiagramEditorPlugin.getInstance().getImageRegistry();
 		Image image = imageRegistry.get(key);
-		if (image == null && elementType != null && SysmlElementTypes.isKnownElementType(elementType)) {
+		if(image == null && elementType != null && SysmlElementTypes.isKnownElementType(elementType)) {
 			image = SysmlElementTypes.getImage(elementType);
 			imageRegistry.put(key, image);
 		}
 
-		if (image == null) {
+		if(image == null) {
 			image = imageRegistry.get("Navigator?ImageNotFound"); //$NON-NLS-1$
 			imageRegistry.put(key, image);
 		}
@@ -135,14 +128,14 @@ public class SysmlNavigatorLabelProvider extends LabelProvider implements ICommo
 	 * @generated
 	 */
 	public String getText(Object element) {
-		if (element instanceof SysmlNavigatorGroup) {
-			SysmlNavigatorGroup group = (SysmlNavigatorGroup) element;
+		if(element instanceof SysmlNavigatorGroup) {
+			SysmlNavigatorGroup group = (SysmlNavigatorGroup)element;
 			return group.getGroupName();
 		}
 
-		if (element instanceof SysmlNavigatorItem) {
-			SysmlNavigatorItem navigatorItem = (SysmlNavigatorItem) element;
-			if (!isOwnView(navigatorItem.getView())) {
+		if(element instanceof SysmlNavigatorItem) {
+			SysmlNavigatorItem navigatorItem = (SysmlNavigatorItem)element;
+			if(!isOwnView(navigatorItem.getView())) {
 				return null;
 			}
 			return getText(navigatorItem.getView());
@@ -155,18 +148,18 @@ public class SysmlNavigatorLabelProvider extends LabelProvider implements ICommo
 	 * @generated
 	 */
 	public String getText(View view) {
-		if (view.getElement() != null && view.getElement().eIsProxy()) {
+		if(view.getElement() != null && view.getElement().eIsProxy()) {
 			return getUnresolvedDomainElementProxyText(view);
 		}
-		switch (SysmlVisualIDRegistry.getVisualID(view)) {
-		case ParametricEditPart.VISUAL_ID:
-			return getResource_1000Text(view);
+		switch(SysmlVisualIDRegistry.getVisualID(view)) {
 		case ConstraintPropertyEditPart.VISUAL_ID:
 			return getConstraintProperty_2003Text(view);
 		case PropertyEditPart.VISUAL_ID:
 			return getProperty_2005Text(view);
 		case Property2EditPart.VISUAL_ID:
 			return getProperty_3002Text(view);
+		case ParametricEditPart.VISUAL_ID:
+			return getResource_1000Text(view);
 		case ConnectorEditPart.VISUAL_ID:
 			return getConnector_4001Text(view);
 		}
@@ -184,12 +177,9 @@ public class SysmlNavigatorLabelProvider extends LabelProvider implements ICommo
 	 * @generated
 	 */
 	private String getConstraintProperty_2003Text(View view) {
-		IParser parser = SysmlParserProvider.getParser(SysmlElementTypes.ConstraintProperty_2003,
-				view.getElement() != null ? view.getElement() : view, SysmlVisualIDRegistry
-						.getType(ConstraintPropertyNameEditPart.VISUAL_ID));
-		if (parser != null) {
-			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
-					ParserOptions.NONE.intValue());
+		IParser parser = SysmlParserProvider.getParser(SysmlElementTypes.ConstraintProperty_2003, view.getElement() != null ? view.getElement() : view, SysmlVisualIDRegistry.getType(ConstraintPropertyNameEditPart.VISUAL_ID));
+		if(parser != null) {
+			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view), ParserOptions.NONE.intValue());
 		} else {
 			SysmlDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 5001); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
@@ -200,12 +190,9 @@ public class SysmlNavigatorLabelProvider extends LabelProvider implements ICommo
 	 * @generated
 	 */
 	private String getProperty_2005Text(View view) {
-		IParser parser = SysmlParserProvider.getParser(SysmlElementTypes.Property_2005,
-				view.getElement() != null ? view.getElement() : view, SysmlVisualIDRegistry
-						.getType(PropertyNameEditPart.VISUAL_ID));
-		if (parser != null) {
-			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
-					ParserOptions.NONE.intValue());
+		IParser parser = SysmlParserProvider.getParser(SysmlElementTypes.Property_2005, view.getElement() != null ? view.getElement() : view, SysmlVisualIDRegistry.getType(PropertyNameEditPart.VISUAL_ID));
+		if(parser != null) {
+			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view), ParserOptions.NONE.intValue());
 		} else {
 			SysmlDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 5002); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
@@ -216,12 +203,9 @@ public class SysmlNavigatorLabelProvider extends LabelProvider implements ICommo
 	 * @generated
 	 */
 	private String getProperty_3002Text(View view) {
-		IParser parser = SysmlParserProvider.getParser(SysmlElementTypes.Property_3002,
-				view.getElement() != null ? view.getElement() : view, SysmlVisualIDRegistry
-						.getType(PropertyName2EditPart.VISUAL_ID));
-		if (parser != null) {
-			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
-					ParserOptions.NONE.intValue());
+		IParser parser = SysmlParserProvider.getParser(SysmlElementTypes.Property_3002, view.getElement() != null ? view.getElement() : view, SysmlVisualIDRegistry.getType(PropertyName2EditPart.VISUAL_ID));
+		if(parser != null) {
+			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view), ParserOptions.NONE.intValue());
 		} else {
 			SysmlDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 5003); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
@@ -232,12 +216,9 @@ public class SysmlNavigatorLabelProvider extends LabelProvider implements ICommo
 	 * @generated
 	 */
 	private String getConnector_4001Text(View view) {
-		IParser parser = SysmlParserProvider.getParser(SysmlElementTypes.Connector_4001,
-				view.getElement() != null ? view.getElement() : view, SysmlVisualIDRegistry
-						.getType(ConnectorNameEditPart.VISUAL_ID));
-		if (parser != null) {
-			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
-					ParserOptions.NONE.intValue());
+		IParser parser = SysmlParserProvider.getParser(SysmlElementTypes.Connector_4001, view.getElement() != null ? view.getElement() : view, SysmlVisualIDRegistry.getType(ConnectorNameEditPart.VISUAL_ID));
+		if(parser != null) {
+			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view), ParserOptions.NONE.intValue());
 		} else {
 			SysmlDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 6001); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$

@@ -76,11 +76,11 @@ public class Property2CreateCommand extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
-		EObject container = ((CreateElementRequest) getRequest()).getContainer();
-		if (container instanceof View) {
-			container = ((View) container).getElement();
+		EObject container = ((CreateElementRequest)getRequest()).getContainer();
+		if(container instanceof View) {
+			container = ((View)container).getElement();
 		}
-		if (container != null) {
+		if(container != null) {
 			return container;
 		}
 		return eObject;
@@ -90,11 +90,12 @@ public class Property2CreateCommand extends EditElementCommand {
 	 * @generated NOT
 	 */
 	public boolean canExecute() {
-		ConstraintProperty container = (ConstraintProperty) getElementToEdit();
+		ConstraintProperty container = (ConstraintProperty)getElementToEdit();
 		Property baseProperty = container.getBase_Property();
-		if (baseProperty != null && baseProperty.getType() != null) {
+		if(baseProperty != null && baseProperty.getType() != null) {
 			// TODO constraint is too restrictive
-			// && StereotypeUtils.isStereotypeApplied("SysML::Constraints::ConstraintBlock",
+			// &&
+			// StereotypeUtils.isStereotypeApplied("SysML::Constraints::ConstraintBlock",
 			// baseProperty.getType())) {
 			return true;
 		}
@@ -108,16 +109,16 @@ public class Property2CreateCommand extends EditElementCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		Property newElement = UMLFactory.eINSTANCE.createProperty();
-		ConstraintProperty owner = (ConstraintProperty) getElementToEdit();
+		ConstraintProperty owner = (ConstraintProperty)getElementToEdit();
 		Type type = owner.getBase_Property().getType();
 
-		if (type != null && type instanceof StructuredClassifier) {
-			StructuredClassifier classifier = (StructuredClassifier) type;
+		if(type != null && type instanceof StructuredClassifier) {
+			StructuredClassifier classifier = (StructuredClassifier)type;
 			classifier.getOwnedAttributes().add(newElement);
 
 			doConfigure(newElement, monitor, info);
 
-			((CreateElementRequest) getRequest()).setNewElement(newElement);
+			((CreateElementRequest)getRequest()).setNewElement(newElement);
 			return CommandResult.newOKCommandResult(newElement);
 		} else {
 			return CommandResult.newCancelledCommandResult();
@@ -127,14 +128,13 @@ public class Property2CreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected void doConfigure(Property newElement, IProgressMonitor monitor, IAdaptable info)
-			throws ExecutionException {
-		IElementType elementType = ((CreateElementRequest) getRequest()).getElementType();
+	protected void doConfigure(Property newElement, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+		IElementType elementType = ((CreateElementRequest)getRequest()).getElementType();
 		ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);
-		configureRequest.setClientContext(((CreateElementRequest) getRequest()).getClientContext());
+		configureRequest.setClientContext(((CreateElementRequest)getRequest()).getClientContext());
 		configureRequest.addParameters(getRequest().getParameters());
 		ICommand configureCommand = elementType.getEditCommand(configureRequest);
-		if (configureCommand != null && configureCommand.canExecute()) {
+		if(configureCommand != null && configureCommand.canExecute()) {
 			configureCommand.execute(monitor, info);
 		}
 	}

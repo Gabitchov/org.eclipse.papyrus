@@ -49,6 +49,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.diagram.common.editpolicies.BorderItemResizableEditPolicy;
+import org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.papyrus.sysml.constraints.ConstraintProperty;
@@ -57,6 +58,7 @@ import org.eclipse.papyrus.sysml.diagram.parametric.edit.policies.CreateParamete
 import org.eclipse.papyrus.sysml.diagram.parametric.figures.CenteredWrappedLabel;
 import org.eclipse.papyrus.sysml.diagram.parametric.helper.SelfCompartmentNotificationHelper;
 import org.eclipse.papyrus.sysml.diagram.parametric.locator.ParameterPositionLocator;
+import org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlDiagramEditorPlugin;
 import org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlVisualIDRegistry;
 import org.eclipse.papyrus.sysml.diagram.parametric.providers.SysmlElementTypes;
 import org.eclipse.swt.graphics.Color;
@@ -88,9 +90,7 @@ AbstractBorderedShapeEditPart {
 	/**
 	 * Notifier for listening and stop listening model element.
 	 */
-	private SelfCompartmentNotificationHelper notifier = new SelfCompartmentNotificationHelper(this,
-			UMLPackage.eINSTANCE.getStructuredClassifier_OwnedAttribute(),
-			(IHintedType) SysmlElementTypes.Property_3002);
+	private SelfCompartmentNotificationHelper notifier = new SelfCompartmentNotificationHelper(this, UMLPackage.eINSTANCE.getStructuredClassifier_OwnedAttribute(), (IHintedType)SysmlElementTypes.Property_3002);
 
 	/**
 	 * @generated
@@ -108,15 +108,12 @@ AbstractBorderedShapeEditPart {
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ConstraintPropertyItemSemanticEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 
-		// in Papyrus diagrams are not strongly synchronised
-		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE,
-		// new
-		// org.eclipse.papyrus.sysml.diagram.parametric.edit.policies.ConstraintPropertyCanonicalEditPolicy());
+		//in Papyrus diagrams are not strongly synchronised
+		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.sysml.diagram.parametric.edit.policies.ConstraintPropertyCanonicalEditPolicy());
 
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(RequestConstants.REQ_CREATE, new CreateParameterEditPolicy());
-		// XXX need an SCR to runtime to have another abstract superclass that would let children
-		// add reasonable editpolicies
+		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
@@ -124,18 +121,18 @@ AbstractBorderedShapeEditPart {
 	 * @generated
 	 */
 	protected LayoutEditPolicy createLayoutEditPolicy() {
-		LayoutEditPolicy lep = new LayoutEditPolicy() {
+		org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy lep = new org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy() {
 
 			protected EditPolicy createChildEditPolicy(EditPart child) {
-				View childView = (View) child.getModel();
-				switch (SysmlVisualIDRegistry.getVisualID(childView)) {
+				View childView = (View)child.getModel();
+				switch(SysmlVisualIDRegistry.getVisualID(childView)) {
 				case Property2EditPart.VISUAL_ID:
 
 					return new BorderItemResizableEditPolicy();
 
 				}
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-				if (result == null) {
+				if(result == null) {
 					result = new NonResizableEditPolicy();
 				}
 				return result;
@@ -156,35 +153,33 @@ AbstractBorderedShapeEditPart {
 	 * @generated
 	 */
 	protected IFigure createNodeShape() {
-		ConstraintPropertyFigureDescriptor figure = new ConstraintPropertyFigureDescriptor();
-		return primaryShape = figure;
+		return primaryShape = new ConstraintPropertyFigureDescriptor();
 	}
 
 	/**
 	 * @generated
 	 */
 	public ConstraintPropertyFigureDescriptor getPrimaryShape() {
-		return (ConstraintPropertyFigureDescriptor) primaryShape;
+		return (ConstraintPropertyFigureDescriptor)primaryShape;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof ConstraintLabelEditPart) {
-			((ConstraintLabelEditPart) childEditPart).setLabel(getPrimaryShape().getConstraintLabel());
+		if(childEditPart instanceof ConstraintPropertyNameEditPart) {
+			((ConstraintPropertyNameEditPart)childEditPart).setLabel(getPrimaryShape().getConstraintPropertyFigureLabel());
 			return true;
 		}
-		if (childEditPart instanceof ConstraintPropertyNameEditPart) {
-			((ConstraintPropertyNameEditPart) childEditPart).setLabel(getPrimaryShape()
-					.getConstraintPropertyFigureLabel());
+		if(childEditPart instanceof ConstraintLabelEditPart) {
+			((ConstraintLabelEditPart)childEditPart).setLabel(getPrimaryShape().getConstraintLabel());
 			return true;
 		}
 
-		// Papyrus Gencode :Affixed Parameter locator
-		if (childEditPart instanceof Property2EditPart) {
+		//Papyrus Gencode :Affixed Parameter locator
+		if(childEditPart instanceof Property2EditPart) {
 			IBorderItemLocator locator = new ParameterPositionLocator(getMainFigure(), PositionConstants.NONE);
-			getBorderedFigure().getBorderItemContainer().add(((Property2EditPart) childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer().add(((Property2EditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
 
@@ -195,14 +190,14 @@ AbstractBorderedShapeEditPart {
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof ConstraintLabelEditPart) {
+		if(childEditPart instanceof ConstraintPropertyNameEditPart) {
 			return true;
 		}
-		if (childEditPart instanceof ConstraintPropertyNameEditPart) {
+		if(childEditPart instanceof ConstraintLabelEditPart) {
 			return true;
 		}
-		if (childEditPart instanceof Property2EditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((Property2EditPart) childEditPart).getFigure());
+		if(childEditPart instanceof Property2EditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(((Property2EditPart)childEditPart).getFigure());
 			return true;
 		}
 		return false;
@@ -212,7 +207,7 @@ AbstractBorderedShapeEditPart {
 	 * @generated
 	 */
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if (addFixedChild(childEditPart)) {
+		if(addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -222,7 +217,7 @@ AbstractBorderedShapeEditPart {
 	 * @generated
 	 */
 	protected void removeChildVisual(EditPart childEditPart) {
-		if (removeFixedChild(childEditPart)) {
+		if(removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -232,7 +227,7 @@ AbstractBorderedShapeEditPart {
 	 * @generated
 	 */
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
-		if (editPart instanceof IBorderItemEditPart) {
+		if(editPart instanceof IBorderItemEditPart) {
 			return getBorderedFigure().getBorderItemContainer();
 		}
 		return getContentPane();
@@ -242,15 +237,20 @@ AbstractBorderedShapeEditPart {
 	 * @generated
 	 */
 	protected NodeFigure createNodePlate() {
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(40, 40);
+		String prefElementId = "ConstraintProperty";
+		IPreferenceStore store = SysmlDiagramEditorPlugin.getInstance().getPreferenceStore();
+		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
+		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
+		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
+
 		return result;
 	}
 
 	/**
 	 * Creates figure for this edit part.
 	 * 
-	 * Body of this method does not depend on settings in generation model so you may safely remove
-	 * <i>generated</i> tag and modify it.
+	 * Body of this method does not depend on settings in generation model so
+	 * you may safely remove <i>generated</i> tag and modify it.
 	 * 
 	 * @generated
 	 */
@@ -264,15 +264,15 @@ AbstractBorderedShapeEditPart {
 	}
 
 	/**
-	 * Default implementation treats passed figure as content pane. Respects layout one may have set
-	 * for generated figure.
+	 * Default implementation treats passed figure as content pane. Respects
+	 * layout one may have set for generated figure.
 	 * 
 	 * @param nodeShape
-	 *            instance of generated figure class
+	 *        instance of generated figure class
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
-		if (nodeShape.getLayoutManager() == null) {
+		if(nodeShape.getLayoutManager() == null) {
 			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
 			layout.setSpacing(5);
 			nodeShape.setLayoutManager(layout);
@@ -284,7 +284,7 @@ AbstractBorderedShapeEditPart {
 	 * @generated
 	 */
 	public IFigure getContentPane() {
-		if (contentPane != null) {
+		if(contentPane != null) {
 			return contentPane;
 		}
 		return super.getContentPane();
@@ -294,7 +294,7 @@ AbstractBorderedShapeEditPart {
 	 * @generated
 	 */
 	protected void setForegroundColor(Color color) {
-		if (primaryShape != null) {
+		if(primaryShape != null) {
 			primaryShape.setForegroundColor(color);
 		}
 	}
@@ -303,8 +303,8 @@ AbstractBorderedShapeEditPart {
 	 * @generated
 	 */
 	protected void setLineWidth(int width) {
-		if (primaryShape instanceof Shape) {
-			((Shape) primaryShape).setLineWidth(width);
+		if(primaryShape instanceof Shape) {
+			((Shape)primaryShape).setLineWidth(width);
 		}
 	}
 
@@ -312,8 +312,8 @@ AbstractBorderedShapeEditPart {
 	 * @generated
 	 */
 	protected void setLineType(int style) {
-		if (primaryShape instanceof Shape) {
-			((Shape) primaryShape).setLineStyle(style);
+		if(primaryShape instanceof Shape) {
+			((Shape)primaryShape).setLineStyle(style);
 		}
 	}
 
@@ -426,39 +426,30 @@ AbstractBorderedShapeEditPart {
 	 */
 	@Override
 	public Object getPreferredValue(EStructuralFeature feature) {
-		IPreferenceStore preferenceStore = (IPreferenceStore) getDiagramPreferencesHint().getPreferenceStore();
+		IPreferenceStore preferenceStore = (IPreferenceStore)getDiagramPreferencesHint().getPreferenceStore();
 		Object result = null;
 
-		if (feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()
-				|| feature == NotationPackage.eINSTANCE.getFontStyle_FontColor()
-				|| feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
+		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 			String prefColor = null;
-			if (feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
-				prefColor = PreferenceConstantHelper.getElementConstant("ConstraintProperty",
-						PreferenceConstantHelper.COLOR_LINE);
-			} else if (feature == NotationPackage.eINSTANCE.getFontStyle_FontColor()) {
-				prefColor = PreferenceConstantHelper.getElementConstant("ConstraintProperty",
-						PreferenceConstantHelper.COLOR_FONT);
-			} else if (feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
-				prefColor = PreferenceConstantHelper.getElementConstant("ConstraintProperty",
-						PreferenceConstantHelper.COLOR_FILL);
+			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
+				prefColor = PreferenceConstantHelper.getElementConstant("ConstraintProperty", PreferenceConstantHelper.COLOR_LINE);
+			} else if(feature == NotationPackage.eINSTANCE.getFontStyle_FontColor()) {
+				prefColor = PreferenceConstantHelper.getElementConstant("ConstraintProperty", PreferenceConstantHelper.COLOR_FONT);
+			} else if(feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
+				prefColor = PreferenceConstantHelper.getElementConstant("ConstraintProperty", PreferenceConstantHelper.COLOR_FILL);
 			}
-			result = FigureUtilities.RGBToInteger(PreferenceConverter.getColor((IPreferenceStore) preferenceStore,
-					prefColor));
-		} else if (feature == NotationPackage.eINSTANCE.getFillStyle_Transparency()
-				|| feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
-			String prefGradient = PreferenceConstantHelper.getElementConstant("ConstraintProperty",
-					PreferenceConstantHelper.COLOR_GRADIENT);
-			GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(preferenceStore
-					.getString(prefGradient));
-			if (feature == NotationPackage.eINSTANCE.getFillStyle_Transparency()) {
+			result = FigureUtilities.RGBToInteger(PreferenceConverter.getColor((IPreferenceStore)preferenceStore, prefColor));
+		} else if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency() || feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
+			String prefGradient = PreferenceConstantHelper.getElementConstant("ConstraintProperty", PreferenceConstantHelper.COLOR_GRADIENT);
+			GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(preferenceStore.getString(prefGradient));
+			if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency()) {
 				result = new Integer(gradientPreferenceConverter.getTransparency());
-			} else if (feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
+			} else if(feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
 				result = gradientPreferenceConverter.getGradientData();
 			}
 		}
 
-		if (result == null) {
+		if(result == null) {
 			result = getStructuralFeatureValue(feature);
 		}
 		return result;
@@ -473,20 +464,20 @@ AbstractBorderedShapeEditPart {
 		EObject parent = resolveSemanticElement();
 		// listen constraint property and self base property
 		notifier.listenObject(parent);
-		if (parent instanceof ConstraintProperty) {
-			Property property = ((ConstraintProperty) parent).getBase_Property();
+		if(parent instanceof ConstraintProperty) {
+			Property property = ((ConstraintProperty)parent).getBase_Property();
 			notifier.listenObject(property);
-			if (property.getType() != null) {
+			if(property.getType() != null) {
 				notifier.listenObject(property.getType());
 			}
 		}
 		// ensure children parts are correctly initialized.
-		SelfCompartmentNotificationHelper.updatePropertiesParts(this, UMLPackage.eINSTANCE
-				.getStructuredClassifier_OwnedAttribute(), (IHintedType) SysmlElementTypes.Property_3002);
+		SelfCompartmentNotificationHelper.updatePropertiesParts(this, UMLPackage.eINSTANCE.getStructuredClassifier_OwnedAttribute(), (IHintedType)SysmlElementTypes.Property_3002);
 	}
 
 	/**
-	 * Deactivate listeners to handle notification in the message occurence specification
+	 * Deactivate listeners to handle notification in the message occurence
+	 * specification
 	 */
 	@Override
 	public void deactivate() {
@@ -495,7 +486,8 @@ AbstractBorderedShapeEditPart {
 	}
 
 	/**
-	 * Remove listeners to handle notification in the message occurence specification
+	 * Remove listeners to handle notification in the message occurence
+	 * specification
 	 */
 	@Override
 	public void removeNotify() {

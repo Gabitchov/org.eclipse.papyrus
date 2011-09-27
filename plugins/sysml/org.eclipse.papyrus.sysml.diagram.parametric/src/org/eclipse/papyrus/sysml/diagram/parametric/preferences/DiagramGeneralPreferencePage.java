@@ -13,18 +13,21 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.parametric.preferences;
 
-import org.eclipse.gmf.runtime.diagram.ui.preferences.DiagramsPreferencePage;
+import org.eclipse.papyrus.preferences.pages.DiagramPreferencePage;
+import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ParametricEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlDiagramEditorPlugin;
 
 /**
  * @generated
  */
-public class DiagramGeneralPreferencePage extends DiagramsPreferencePage {
+public class DiagramGeneralPreferencePage extends DiagramPreferencePage {
 
 	/**
 	 * @generated
 	 */
 	public DiagramGeneralPreferencePage() {
 		setPreferenceStore(SysmlDiagramEditorPlugin.getInstance().getPreferenceStore());
+		setPreferenceKey(ParametricEditPart.MODEL_ID);
+
 	}
 }

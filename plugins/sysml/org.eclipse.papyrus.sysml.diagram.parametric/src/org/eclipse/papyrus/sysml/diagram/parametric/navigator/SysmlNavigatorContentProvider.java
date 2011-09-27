@@ -74,13 +74,14 @@ public class SysmlNavigatorContentProvider implements ICommonContentProvider {
 	/**
 	 * @generated
 	 */
+	@SuppressWarnings({ "unchecked", "serial", "rawtypes" })
 	public SysmlNavigatorContentProvider() {
 		TransactionalEditingDomain editingDomain = GMFEditingDomainFactory.INSTANCE.createEditingDomain();
-		myEditingDomain = (AdapterFactoryEditingDomain) editingDomain;
+		myEditingDomain = (AdapterFactoryEditingDomain)editingDomain;
 		myEditingDomain.setResourceToReadOnlyMap(new HashMap() {
 
 			public Object get(Object key) {
-				if (!containsKey(key)) {
+				if(!containsKey(key)) {
 					put(key, Boolean.TRUE);
 				}
 				return super.get(key);
@@ -89,7 +90,7 @@ public class SysmlNavigatorContentProvider implements ICommonContentProvider {
 		myViewerRefreshRunnable = new Runnable() {
 
 			public void run() {
-				if (myViewer != null) {
+				if(myViewer != null) {
 					myViewer.refresh();
 				}
 			}
@@ -100,33 +101,33 @@ public class SysmlNavigatorContentProvider implements ICommonContentProvider {
 			}
 
 			public boolean handleResourceChanged(final Resource resource) {
-				for (Iterator it = myEditingDomain.getResourceSet().getResources().iterator(); it.hasNext();) {
-					Resource nextResource = (Resource) it.next();
+				for(Iterator it = myEditingDomain.getResourceSet().getResources().iterator(); it.hasNext();) {
+					Resource nextResource = (Resource)it.next();
 					nextResource.unload();
 				}
-				if (myViewer != null) {
+				if(myViewer != null) {
 					myViewer.getControl().getDisplay().asyncExec(myViewerRefreshRunnable);
 				}
 				return true;
 			}
 
 			public boolean handleResourceDeleted(Resource resource) {
-				for (Iterator it = myEditingDomain.getResourceSet().getResources().iterator(); it.hasNext();) {
-					Resource nextResource = (Resource) it.next();
+				for(Iterator it = myEditingDomain.getResourceSet().getResources().iterator(); it.hasNext();) {
+					Resource nextResource = (Resource)it.next();
 					nextResource.unload();
 				}
-				if (myViewer != null) {
+				if(myViewer != null) {
 					myViewer.getControl().getDisplay().asyncExec(myViewerRefreshRunnable);
 				}
 				return true;
 			}
 
 			public boolean handleResourceMoved(Resource resource, final URI newURI) {
-				for (Iterator it = myEditingDomain.getResourceSet().getResources().iterator(); it.hasNext();) {
-					Resource nextResource = (Resource) it.next();
+				for(Iterator it = myEditingDomain.getResourceSet().getResources().iterator(); it.hasNext();) {
+					Resource nextResource = (Resource)it.next();
 					nextResource.unload();
 				}
-				if (myViewer != null) {
+				if(myViewer != null) {
 					myViewer.getControl().getDisplay().asyncExec(myViewerRefreshRunnable);
 				}
 				return true;
@@ -136,25 +137,21 @@ public class SysmlNavigatorContentProvider implements ICommonContentProvider {
 
 	/**
 	 * 
-	 *Papyrus Template this method is a modification of gmf code in order to avoid
-	 * getViewChidreen() method becoming greater than 64kb.
+	 * Papyrus Template this method is a modification of gmf code in order to
+	 * avoid getViewChidreen() method becoming greater than 64kb.
 	 * 
 	 * @generated
 	 **/
 	private Object[] getViewChildrenForParametricEditPart(View view, Object parentElement) {
 		Collection result = new ArrayList();
-		SysmlNavigatorGroup links = new SysmlNavigatorGroup(Messages.NavigatorGroupName_Resource_1000_links,
-				"icons/linksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-		Collection connectedViews = getChildrenByType(Collections.singleton(view), SysmlVisualIDRegistry
-				.getType(ConstraintPropertyEditPart.VISUAL_ID));
+		SysmlNavigatorGroup links = new SysmlNavigatorGroup(Messages.NavigatorGroupName_Resource_1000_links, "icons/linksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+		Collection connectedViews = getChildrenByType(Collections.singleton(view), SysmlVisualIDRegistry.getType(ConstraintPropertyEditPart.VISUAL_ID));
 		result.addAll(createNavigatorItems(connectedViews, parentElement, false));
-		connectedViews = getChildrenByType(Collections.singleton(view), SysmlVisualIDRegistry
-				.getType(PropertyEditPart.VISUAL_ID));
+		connectedViews = getChildrenByType(Collections.singleton(view), SysmlVisualIDRegistry.getType(PropertyEditPart.VISUAL_ID));
 		result.addAll(createNavigatorItems(connectedViews, parentElement, false));
-		connectedViews = getDiagramLinksByType(Collections.singleton(view), SysmlVisualIDRegistry
-				.getType(ConnectorEditPart.VISUAL_ID));
+		connectedViews = getDiagramLinksByType(Collections.singleton(view), SysmlVisualIDRegistry.getType(ConnectorEditPart.VISUAL_ID));
 		links.addChildren(createNavigatorItems(connectedViews, links, false));
-		if (!links.isEmpty()) {
+		if(!links.isEmpty()) {
 			result.add(links);
 		}
 		return result.toArray();
@@ -162,44 +159,37 @@ public class SysmlNavigatorContentProvider implements ICommonContentProvider {
 
 	/**
 	 * 
-	 *Papyrus Template this method is a modification of gmf code in order to avoid
-	 * getViewChidreen() method becoming greater than 64kb.
+	 * Papyrus Template this method is a modification of gmf code in order to
+	 * avoid getViewChidreen() method becoming greater than 64kb.
 	 * 
 	 * @generated
 	 **/
 	private Object[] getViewChildrenForConstraintPropertyEditPart(View view, Object parentElement) {
 		Collection result = new ArrayList();
-		Collection connectedViews = getChildrenByType(Collections.singleton(view), SysmlVisualIDRegistry
-				.getType(Property2EditPart.VISUAL_ID));
+		Collection connectedViews = getChildrenByType(Collections.singleton(view), SysmlVisualIDRegistry.getType(Property2EditPart.VISUAL_ID));
 		result.addAll(createNavigatorItems(connectedViews, parentElement, false));
 		return result.toArray();
 	}
 
 	/**
 	 * 
-	 *Papyrus Template this method is a modification of gmf code in order to avoid
-	 * getViewChidreen() method becoming greater than 64kb.
+	 * Papyrus Template this method is a modification of gmf code in order to
+	 * avoid getViewChidreen() method becoming greater than 64kb.
 	 * 
 	 * @generated
 	 **/
 	private Object[] getViewChildrenForPropertyEditPart(View view, Object parentElement) {
 		Collection result = new ArrayList();
-		SysmlNavigatorGroup incominglinks = new SysmlNavigatorGroup(
-				Messages.NavigatorGroupName_Property_2005_incominglinks,
-				"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-		SysmlNavigatorGroup outgoinglinks = new SysmlNavigatorGroup(
-				Messages.NavigatorGroupName_Property_2005_outgoinglinks,
-				"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-		Collection connectedViews = getIncomingLinksByType(Collections.singleton(view), SysmlVisualIDRegistry
-				.getType(ConnectorEditPart.VISUAL_ID));
+		SysmlNavigatorGroup incominglinks = new SysmlNavigatorGroup(Messages.NavigatorGroupName_Property_2005_incominglinks, "icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+		SysmlNavigatorGroup outgoinglinks = new SysmlNavigatorGroup(Messages.NavigatorGroupName_Property_2005_outgoinglinks, "icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+		Collection connectedViews = getIncomingLinksByType(Collections.singleton(view), SysmlVisualIDRegistry.getType(ConnectorEditPart.VISUAL_ID));
 		incominglinks.addChildren(createNavigatorItems(connectedViews, incominglinks, true));
-		connectedViews = getOutgoingLinksByType(Collections.singleton(view), SysmlVisualIDRegistry
-				.getType(ConnectorEditPart.VISUAL_ID));
+		connectedViews = getOutgoingLinksByType(Collections.singleton(view), SysmlVisualIDRegistry.getType(ConnectorEditPart.VISUAL_ID));
 		outgoinglinks.addChildren(createNavigatorItems(connectedViews, outgoinglinks, true));
-		if (!incominglinks.isEmpty()) {
+		if(!incominglinks.isEmpty()) {
 			result.add(incominglinks);
 		}
-		if (!outgoinglinks.isEmpty()) {
+		if(!outgoinglinks.isEmpty()) {
 			result.add(outgoinglinks);
 		}
 		return result.toArray();
@@ -207,29 +197,23 @@ public class SysmlNavigatorContentProvider implements ICommonContentProvider {
 
 	/**
 	 * 
-	 *Papyrus Template this method is a modification of gmf code in order to avoid
-	 * getViewChidreen() method becoming greater than 64kb.
+	 * Papyrus Template this method is a modification of gmf code in order to
+	 * avoid getViewChidreen() method becoming greater than 64kb.
 	 * 
 	 * @generated
 	 **/
 	private Object[] getViewChildrenForProperty2EditPart(View view, Object parentElement) {
 		Collection result = new ArrayList();
-		SysmlNavigatorGroup incominglinks = new SysmlNavigatorGroup(
-				Messages.NavigatorGroupName_Property_3002_incominglinks,
-				"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-		SysmlNavigatorGroup outgoinglinks = new SysmlNavigatorGroup(
-				Messages.NavigatorGroupName_Property_3002_outgoinglinks,
-				"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-		Collection connectedViews = getIncomingLinksByType(Collections.singleton(view), SysmlVisualIDRegistry
-				.getType(ConnectorEditPart.VISUAL_ID));
+		SysmlNavigatorGroup incominglinks = new SysmlNavigatorGroup(Messages.NavigatorGroupName_Property_3002_incominglinks, "icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+		SysmlNavigatorGroup outgoinglinks = new SysmlNavigatorGroup(Messages.NavigatorGroupName_Property_3002_outgoinglinks, "icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+		Collection connectedViews = getIncomingLinksByType(Collections.singleton(view), SysmlVisualIDRegistry.getType(ConnectorEditPart.VISUAL_ID));
 		incominglinks.addChildren(createNavigatorItems(connectedViews, incominglinks, true));
-		connectedViews = getOutgoingLinksByType(Collections.singleton(view), SysmlVisualIDRegistry
-				.getType(ConnectorEditPart.VISUAL_ID));
+		connectedViews = getOutgoingLinksByType(Collections.singleton(view), SysmlVisualIDRegistry.getType(ConnectorEditPart.VISUAL_ID));
 		outgoinglinks.addChildren(createNavigatorItems(connectedViews, outgoinglinks, true));
-		if (!incominglinks.isEmpty()) {
+		if(!incominglinks.isEmpty()) {
 			result.add(incominglinks);
 		}
-		if (!outgoinglinks.isEmpty()) {
+		if(!outgoinglinks.isEmpty()) {
 			result.add(outgoinglinks);
 		}
 		return result.toArray();
@@ -237,33 +221,27 @@ public class SysmlNavigatorContentProvider implements ICommonContentProvider {
 
 	/**
 	 * 
-	 *Papyrus Template this method is a modification of gmf code in order to avoid
-	 * getViewChidreen() method becoming greater than 64kb.
+	 * Papyrus Template this method is a modification of gmf code in order to
+	 * avoid getViewChidreen() method becoming greater than 64kb.
 	 * 
 	 * @generated
 	 **/
 	private Object[] getViewChildrenForConnectorEditPart(View view, Object parentElement) {
 		Collection result = new ArrayList();
-		SysmlNavigatorGroup target = new SysmlNavigatorGroup(Messages.NavigatorGroupName_Connector_4001_target,
-				"icons/linkTargetNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-		SysmlNavigatorGroup source = new SysmlNavigatorGroup(Messages.NavigatorGroupName_Connector_4001_source,
-				"icons/linkSourceNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-		Collection connectedViews = getLinksTargetByType(Collections.singleton(view), SysmlVisualIDRegistry
-				.getType(PropertyEditPart.VISUAL_ID));
+		SysmlNavigatorGroup target = new SysmlNavigatorGroup(Messages.NavigatorGroupName_Connector_4001_target, "icons/linkTargetNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+		SysmlNavigatorGroup source = new SysmlNavigatorGroup(Messages.NavigatorGroupName_Connector_4001_source, "icons/linkSourceNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+		Collection connectedViews = getLinksTargetByType(Collections.singleton(view), SysmlVisualIDRegistry.getType(PropertyEditPart.VISUAL_ID));
 		target.addChildren(createNavigatorItems(connectedViews, target, true));
-		connectedViews = getLinksTargetByType(Collections.singleton(view), SysmlVisualIDRegistry
-				.getType(Property2EditPart.VISUAL_ID));
+		connectedViews = getLinksTargetByType(Collections.singleton(view), SysmlVisualIDRegistry.getType(Property2EditPart.VISUAL_ID));
 		target.addChildren(createNavigatorItems(connectedViews, target, true));
-		connectedViews = getLinksSourceByType(Collections.singleton(view), SysmlVisualIDRegistry
-				.getType(PropertyEditPart.VISUAL_ID));
+		connectedViews = getLinksSourceByType(Collections.singleton(view), SysmlVisualIDRegistry.getType(PropertyEditPart.VISUAL_ID));
 		source.addChildren(createNavigatorItems(connectedViews, source, true));
-		connectedViews = getLinksSourceByType(Collections.singleton(view), SysmlVisualIDRegistry
-				.getType(Property2EditPart.VISUAL_ID));
+		connectedViews = getLinksSourceByType(Collections.singleton(view), SysmlVisualIDRegistry.getType(Property2EditPart.VISUAL_ID));
 		source.addChildren(createNavigatorItems(connectedViews, source, true));
-		if (!target.isEmpty()) {
+		if(!target.isEmpty()) {
 			result.add(target);
 		}
-		if (!source.isEmpty()) {
+		if(!source.isEmpty()) {
 			result.add(source);
 		}
 		return result.toArray();
@@ -276,11 +254,11 @@ public class SysmlNavigatorContentProvider implements ICommonContentProvider {
 		myWorkspaceSynchronizer.dispose();
 		myWorkspaceSynchronizer = null;
 		myViewerRefreshRunnable = null;
-		for (Iterator it = myEditingDomain.getResourceSet().getResources().iterator(); it.hasNext();) {
-			Resource resource = (Resource) it.next();
+		for(Iterator it = myEditingDomain.getResourceSet().getResources().iterator(); it.hasNext();) {
+			Resource resource = (Resource)it.next();
 			resource.unload();
 		}
-		((TransactionalEditingDomain) myEditingDomain).dispose();
+		((TransactionalEditingDomain)myEditingDomain).dispose();
 		myEditingDomain = null;
 	}
 
@@ -320,24 +298,22 @@ public class SysmlNavigatorContentProvider implements ICommonContentProvider {
 	 * @generated
 	 */
 	public Object[] getChildren(Object parentElement) {
-		if (parentElement instanceof IFile) {
-			IFile file = (IFile) parentElement;
+		if(parentElement instanceof IFile) {
+			IFile file = (IFile)parentElement;
 			URI fileURI = URI.createPlatformResourceURI(file.getFullPath().toString(), true);
 			Resource resource = myEditingDomain.getResourceSet().getResource(fileURI, true);
 			Collection result = new ArrayList();
-			result.addAll(createNavigatorItems(selectViewsByType(resource.getContents(), ParametricEditPart.MODEL_ID),
-					file, false));
 			return result.toArray();
 		}
 
-		if (parentElement instanceof SysmlNavigatorGroup) {
-			SysmlNavigatorGroup group = (SysmlNavigatorGroup) parentElement;
+		if(parentElement instanceof SysmlNavigatorGroup) {
+			SysmlNavigatorGroup group = (SysmlNavigatorGroup)parentElement;
 			return group.getChildren();
 		}
 
-		if (parentElement instanceof SysmlNavigatorItem) {
-			SysmlNavigatorItem navigatorItem = (SysmlNavigatorItem) parentElement;
-			if (navigatorItem.isLeaf() || !isOwnView(navigatorItem.getView())) {
+		if(parentElement instanceof SysmlNavigatorItem) {
+			SysmlNavigatorItem navigatorItem = (SysmlNavigatorItem)parentElement;
+			if(navigatorItem.isLeaf() || !isOwnView(navigatorItem.getView())) {
 				return EMPTY_ARRAY;
 			}
 			return getViewChildren(navigatorItem.getView(), parentElement);
@@ -350,39 +326,44 @@ public class SysmlNavigatorContentProvider implements ICommonContentProvider {
 	 * @generated
 	 */
 	private Object[] getViewChildren(View view, Object parentElement) {
-		switch (SysmlVisualIDRegistry.getVisualID(view)) {
+		switch(SysmlVisualIDRegistry.getVisualID(view)) {
 
-		case ParametricEditPart.VISUAL_ID: {
+		case ConstraintPropertyEditPart.VISUAL_ID:
+		{
 
-			// modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForParametricEditPart(view, parentElement);
-
-		}
-
-		case ConstraintPropertyEditPart.VISUAL_ID: {
-
-			// modification of the template to avoid mistake of 65kb.
+			//modification of the template to avoid mistake of 65kb.
 			return getViewChildrenForConstraintPropertyEditPart(view, parentElement);
 
 		}
 
-		case PropertyEditPart.VISUAL_ID: {
+		case PropertyEditPart.VISUAL_ID:
+		{
 
-			// modification of the template to avoid mistake of 65kb.
+			//modification of the template to avoid mistake of 65kb.
 			return getViewChildrenForPropertyEditPart(view, parentElement);
 
 		}
 
-		case Property2EditPart.VISUAL_ID: {
+		case Property2EditPart.VISUAL_ID:
+		{
 
-			// modification of the template to avoid mistake of 65kb.
+			//modification of the template to avoid mistake of 65kb.
 			return getViewChildrenForProperty2EditPart(view, parentElement);
 
 		}
 
-		case ConnectorEditPart.VISUAL_ID: {
+		case ParametricEditPart.VISUAL_ID:
+		{
 
-			// modification of the template to avoid mistake of 65kb.
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForParametricEditPart(view, parentElement);
+
+		}
+
+		case ConnectorEditPart.VISUAL_ID:
+		{
+
+			//modification of the template to avoid mistake of 65kb.
 			return getViewChildrenForConnectorEditPart(view, parentElement);
 
 		}
@@ -396,10 +377,10 @@ public class SysmlNavigatorContentProvider implements ICommonContentProvider {
 	 */
 	private Collection getLinksSourceByType(Collection edges, String type) {
 		Collection result = new ArrayList();
-		for (Iterator it = edges.iterator(); it.hasNext();) {
-			Edge nextEdge = (Edge) it.next();
+		for(Iterator it = edges.iterator(); it.hasNext();) {
+			Edge nextEdge = (Edge)it.next();
 			View nextEdgeSource = nextEdge.getSource();
-			if (type.equals(nextEdgeSource.getType()) && isOwnView(nextEdgeSource)) {
+			if(type.equals(nextEdgeSource.getType()) && isOwnView(nextEdgeSource)) {
 				result.add(nextEdgeSource);
 			}
 		}
@@ -411,10 +392,10 @@ public class SysmlNavigatorContentProvider implements ICommonContentProvider {
 	 */
 	private Collection getLinksTargetByType(Collection edges, String type) {
 		Collection result = new ArrayList();
-		for (Iterator it = edges.iterator(); it.hasNext();) {
-			Edge nextEdge = (Edge) it.next();
+		for(Iterator it = edges.iterator(); it.hasNext();) {
+			Edge nextEdge = (Edge)it.next();
 			View nextEdgeTarget = nextEdge.getTarget();
-			if (type.equals(nextEdgeTarget.getType()) && isOwnView(nextEdgeTarget)) {
+			if(type.equals(nextEdgeTarget.getType()) && isOwnView(nextEdgeTarget)) {
 				result.add(nextEdgeTarget);
 			}
 		}
@@ -426,8 +407,8 @@ public class SysmlNavigatorContentProvider implements ICommonContentProvider {
 	 */
 	private Collection getOutgoingLinksByType(Collection nodes, String type) {
 		Collection result = new ArrayList();
-		for (Iterator it = nodes.iterator(); it.hasNext();) {
-			View nextNode = (View) it.next();
+		for(Iterator it = nodes.iterator(); it.hasNext();) {
+			View nextNode = (View)it.next();
 			result.addAll(selectViewsByType(nextNode.getSourceEdges(), type));
 		}
 		return result;
@@ -438,8 +419,8 @@ public class SysmlNavigatorContentProvider implements ICommonContentProvider {
 	 */
 	private Collection getIncomingLinksByType(Collection nodes, String type) {
 		Collection result = new ArrayList();
-		for (Iterator it = nodes.iterator(); it.hasNext();) {
-			View nextNode = (View) it.next();
+		for(Iterator it = nodes.iterator(); it.hasNext();) {
+			View nextNode = (View)it.next();
 			result.addAll(selectViewsByType(nextNode.getTargetEdges(), type));
 		}
 		return result;
@@ -450,8 +431,8 @@ public class SysmlNavigatorContentProvider implements ICommonContentProvider {
 	 */
 	private Collection getChildrenByType(Collection nodes, String type) {
 		Collection result = new ArrayList();
-		for (Iterator it = nodes.iterator(); it.hasNext();) {
-			View nextNode = (View) it.next();
+		for(Iterator it = nodes.iterator(); it.hasNext();) {
+			View nextNode = (View)it.next();
 			result.addAll(selectViewsByType(nextNode.getChildren(), type));
 		}
 		return result;
@@ -462,8 +443,8 @@ public class SysmlNavigatorContentProvider implements ICommonContentProvider {
 	 */
 	private Collection getDiagramLinksByType(Collection diagrams, String type) {
 		Collection result = new ArrayList();
-		for (Iterator it = diagrams.iterator(); it.hasNext();) {
-			Diagram nextDiagram = (Diagram) it.next();
+		for(Iterator it = diagrams.iterator(); it.hasNext();) {
+			Diagram nextDiagram = (Diagram)it.next();
 			result.addAll(selectViewsByType(nextDiagram.getEdges(), type));
 		}
 		return result;
@@ -474,9 +455,9 @@ public class SysmlNavigatorContentProvider implements ICommonContentProvider {
 	 */
 	private Collection selectViewsByType(Collection views, String type) {
 		Collection result = new ArrayList();
-		for (Iterator it = views.iterator(); it.hasNext();) {
-			View nextView = (View) it.next();
-			if (type.equals(nextView.getType()) && isOwnView(nextView)) {
+		for(Iterator it = views.iterator(); it.hasNext();) {
+			View nextView = (View)it.next();
+			if(type.equals(nextView.getType()) && isOwnView(nextView)) {
 				result.add(nextView);
 			}
 		}
@@ -495,8 +476,8 @@ public class SysmlNavigatorContentProvider implements ICommonContentProvider {
 	 */
 	private Collection createNavigatorItems(Collection views, Object parent, boolean isLeafs) {
 		Collection result = new ArrayList();
-		for (Iterator it = views.iterator(); it.hasNext();) {
-			result.add(new SysmlNavigatorItem((View) it.next(), parent, isLeafs));
+		for(Iterator it = views.iterator(); it.hasNext();) {
+			result.add(new SysmlNavigatorItem((View)it.next(), parent, isLeafs));
 		}
 		return result;
 	}
@@ -505,8 +486,8 @@ public class SysmlNavigatorContentProvider implements ICommonContentProvider {
 	 * @generated
 	 */
 	public Object getParent(Object element) {
-		if (element instanceof SysmlAbstractNavigatorItem) {
-			SysmlAbstractNavigatorItem abstractNavigatorItem = (SysmlAbstractNavigatorItem) element;
+		if(element instanceof SysmlAbstractNavigatorItem) {
+			SysmlAbstractNavigatorItem abstractNavigatorItem = (SysmlAbstractNavigatorItem)element;
 			return abstractNavigatorItem.getParent();
 		}
 		return null;

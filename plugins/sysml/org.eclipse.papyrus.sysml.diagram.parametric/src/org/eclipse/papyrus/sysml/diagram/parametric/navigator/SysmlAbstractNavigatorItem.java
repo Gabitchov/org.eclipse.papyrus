@@ -27,7 +27,7 @@ public abstract class SysmlAbstractNavigatorItem extends PlatformObject {
 	 * @generated
 	 */
 	static {
-		final Class[] supportedTypes = new Class[] { ITabbedPropertySheetPageContributor.class };
+		final Class[] supportedTypes = new Class[]{ ITabbedPropertySheetPageContributor.class };
 		final ITabbedPropertySheetPageContributor propertySheetPageContributor = new ITabbedPropertySheetPageContributor() {
 
 			public String getContributorId() {
@@ -37,8 +37,7 @@ public abstract class SysmlAbstractNavigatorItem extends PlatformObject {
 		Platform.getAdapterManager().registerAdapters(new IAdapterFactory() {
 
 			public Object getAdapter(Object adaptableObject, Class adapterType) {
-				if (adaptableObject instanceof org.eclipse.papyrus.sysml.diagram.parametric.navigator.SysmlAbstractNavigatorItem
-						&& adapterType == ITabbedPropertySheetPageContributor.class) {
+				if(adaptableObject instanceof org.eclipse.papyrus.sysml.diagram.parametric.navigator.SysmlAbstractNavigatorItem && adapterType == ITabbedPropertySheetPageContributor.class) {
 					return propertySheetPageContributor;
 				}
 				return null;

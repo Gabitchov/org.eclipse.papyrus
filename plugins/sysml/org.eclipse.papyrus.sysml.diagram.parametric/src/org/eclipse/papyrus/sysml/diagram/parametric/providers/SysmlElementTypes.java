@@ -41,7 +41,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 /**
  * @generated
  */
-public class SysmlElementTypes extends ElementInitializers {
+public class SysmlElementTypes {
 
 	/**
 	 * @generated
@@ -52,7 +52,7 @@ public class SysmlElementTypes extends ElementInitializers {
 	/**
 	 * @generated
 	 */
-	private static Map elements;
+	private static Map<IElementType, ENamedElement> elements;
 
 	/**
 	 * @generated
@@ -62,7 +62,7 @@ public class SysmlElementTypes extends ElementInitializers {
 	/**
 	 * @generated
 	 */
-	private static Set KNOWN_ELEMENT_TYPES;
+	private static Set<IElementType> KNOWN_ELEMENT_TYPES;
 
 	/**
 	 * @generated
@@ -93,7 +93,7 @@ public class SysmlElementTypes extends ElementInitializers {
 	 * @generated
 	 */
 	private static ImageRegistry getImageRegistry() {
-		if (imageRegistry == null) {
+		if(imageRegistry == null) {
 			imageRegistry = new ImageRegistry();
 		}
 		return imageRegistry;
@@ -110,21 +110,20 @@ public class SysmlElementTypes extends ElementInitializers {
 	 * @generated
 	 */
 	private static ImageDescriptor getProvidedImageDescriptor(ENamedElement element) {
-		if (element instanceof EStructuralFeature) {
-			EStructuralFeature feature = ((EStructuralFeature) element);
+		if(element instanceof EStructuralFeature) {
+			EStructuralFeature feature = ((EStructuralFeature)element);
 			EClass eContainingClass = feature.getEContainingClass();
 			EClassifier eType = feature.getEType();
-			if (eContainingClass != null && !eContainingClass.isAbstract()) {
+			if(eContainingClass != null && !eContainingClass.isAbstract()) {
 				element = eContainingClass;
-			} else if (eType instanceof EClass && !((EClass) eType).isAbstract()) {
+			} else if(eType instanceof EClass && !((EClass)eType).isAbstract()) {
 				element = eType;
 			}
 		}
-		if (element instanceof EClass) {
-			EClass eClass = (EClass) element;
-			if (!eClass.isAbstract()) {
-				return SysmlDiagramEditorPlugin.getInstance().getItemImageDescriptor(
-						eClass.getEPackage().getEFactoryInstance().create(eClass));
+		if(element instanceof EClass) {
+			EClass eClass = (EClass)element;
+			if(!eClass.isAbstract()) {
+				return SysmlDiagramEditorPlugin.getInstance().getItemImageDescriptor(eClass.getEPackage().getEFactoryInstance().create(eClass));
 			}
 		}
 		// TODO : support structural features
@@ -137,9 +136,9 @@ public class SysmlElementTypes extends ElementInitializers {
 	public static ImageDescriptor getImageDescriptor(ENamedElement element) {
 		String key = getImageRegistryKey(element);
 		ImageDescriptor imageDescriptor = getImageRegistry().getDescriptor(key);
-		if (imageDescriptor == null) {
+		if(imageDescriptor == null) {
 			imageDescriptor = getProvidedImageDescriptor(element);
-			if (imageDescriptor == null) {
+			if(imageDescriptor == null) {
 				imageDescriptor = ImageDescriptor.getMissingImageDescriptor();
 			}
 			getImageRegistry().put(key, imageDescriptor);
@@ -153,9 +152,9 @@ public class SysmlElementTypes extends ElementInitializers {
 	public static Image getImage(ENamedElement element) {
 		String key = getImageRegistryKey(element);
 		Image image = getImageRegistry().get(key);
-		if (image == null) {
+		if(image == null) {
 			ImageDescriptor imageDescriptor = getProvidedImageDescriptor(element);
-			if (imageDescriptor == null) {
+			if(imageDescriptor == null) {
 				imageDescriptor = ImageDescriptor.getMissingImageDescriptor();
 			}
 			getImageRegistry().put(key, imageDescriptor);
@@ -169,7 +168,7 @@ public class SysmlElementTypes extends ElementInitializers {
 	 */
 	public static ImageDescriptor getImageDescriptor(IAdaptable hint) {
 		ENamedElement element = getElement(hint);
-		if (element == null) {
+		if(element == null) {
 			return null;
 		}
 		return getImageDescriptor(element);
@@ -180,7 +179,7 @@ public class SysmlElementTypes extends ElementInitializers {
 	 */
 	public static Image getImage(IAdaptable hint) {
 		ENamedElement element = getElement(hint);
-		if (element == null) {
+		if(element == null) {
 			return null;
 		}
 		return getImage(element);
@@ -193,8 +192,8 @@ public class SysmlElementTypes extends ElementInitializers {
 	 */
 	public static ENamedElement getElement(IAdaptable hint) {
 		Object type = hint.getAdapter(IElementType.class);
-		if (elements == null) {
-			elements = new IdentityHashMap();
+		if(elements == null) {
+			elements = new IdentityHashMap<IElementType, ENamedElement>();
 
 			elements.put(Resource_1000, ResourcePackage.eINSTANCE.getResource());
 
@@ -206,7 +205,7 @@ public class SysmlElementTypes extends ElementInitializers {
 
 			elements.put(Connector_4001, UMLPackage.eINSTANCE.getConnector());
 		}
-		return (ENamedElement) elements.get(type);
+		return (ENamedElement)elements.get(type);
 	}
 
 	/**
@@ -220,8 +219,8 @@ public class SysmlElementTypes extends ElementInitializers {
 	 * @generated
 	 */
 	public static boolean isKnownElementType(IElementType elementType) {
-		if (KNOWN_ELEMENT_TYPES == null) {
-			KNOWN_ELEMENT_TYPES = new HashSet();
+		if(KNOWN_ELEMENT_TYPES == null) {
+			KNOWN_ELEMENT_TYPES = new HashSet<IElementType>();
 			KNOWN_ELEMENT_TYPES.add(Resource_1000);
 			KNOWN_ELEMENT_TYPES.add(ConstraintProperty_2003);
 			KNOWN_ELEMENT_TYPES.add(Property_2005);
@@ -235,7 +234,7 @@ public class SysmlElementTypes extends ElementInitializers {
 	 * @generated
 	 */
 	public static IElementType getElementType(int visualID) {
-		switch (visualID) {
+		switch(visualID) {
 		case ParametricEditPart.VISUAL_ID:
 			return Resource_1000;
 		case ConstraintPropertyEditPart.VISUAL_ID:
