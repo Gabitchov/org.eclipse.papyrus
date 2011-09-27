@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.ui.resources.refactoring;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -28,12 +29,11 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
-import org.eclipse.papyrus.resource.notation.NotationModel;
 import org.eclipse.papyrus.resource.sasheditor.DiModel;
+import org.eclipse.papyrus.ui.resources.refactoring.ui.RenameParticipantsDialog;
+import org.eclipse.swt.widgets.Display;
 
 public class ModelParticipantHelpers {
 
@@ -44,9 +44,22 @@ public class ModelParticipantHelpers {
 	 * @param initialFile
 	 * @return a list of related files. Does not include initialFile.
 	 */
-	public static Set<IResource> getRelatedFiles(IFile initialFile) {
+	public static Set<IResource> getResourceToFix(final IFile initialFile) {
 
-		Set<IResource> relatedFiles = new HashSet<IResource>();
+		RenameDialogRunnable runnable = new RenameDialogRunnable(initialFile);
+		Display.getDefault().syncExec(runnable);
+		return new HashSet<IResource>(runnable.getFiles());
+	}
+
+	/**
+	 * get the files related the initialFile which need to be modified/deleted
+	 * if initialFile is modified/deleted
+	 * 
+	 * @param initialFile
+	 * @return a list of related files. Does not include initialFile.
+	 */
+	public static Set<IResource> getRelatedFiles(final IFile initialFile) {
+
 
 		IContainer parent = initialFile.getParent();
 		IPath initialPath = initialFile.getFullPath();
@@ -69,27 +82,17 @@ public class ModelParticipantHelpers {
 			}
 		}
 
+		Set<IResource> relatedFiles = new HashSet<IResource>();
 		if(diPath != null) {
 			IFile diFile = parent.getFile(diPath.makeRelativeTo(parent.getFullPath()));
-
 			if(diFile.exists()) {
-				relatedFiles.add(diFile);
-
-				// add the notation file
-				IPath notationPath = initialPath.removeFileExtension().addFileExtension(NotationModel.NOTATION_FILE_EXTENSION);
-				IFile notationFile = parent.getFile(notationPath.makeRelativeTo(parent.getFullPath()));
-
-				if(notationFile.exists()) {
-					relatedFiles.add(notationFile);
-
-					// find the related model files referenced in the notation file
-					URI notationURI = URI.createPlatformResourceURI(notationPath.toString(), true);
-					ResourceSet rs = new ResourceSetImpl();
-					Resource notationResource = rs.getResource(notationURI, true);
-
-					if(notationResource != null) {
-						relatedFiles.addAll(getModelFilesFromNotationResource(notationResource));
+				try {
+					for(IResource r : diFile.getParent().members()) {
+						if(r.getFullPath().removeFileExtension().lastSegment().equals(diFile.getFullPath().removeFileExtension().lastSegment())) {
+							relatedFiles.add(r);
+						}
 					}
+				} catch (CoreException e) {
 				}
 			}
 		}
@@ -98,6 +101,8 @@ public class ModelParticipantHelpers {
 		if(relatedFiles.contains(initialFile)) {
 			relatedFiles.remove(initialFile);
 		}
+
+
 
 		return relatedFiles;
 	}
@@ -123,5 +128,25 @@ public class ModelParticipantHelpers {
 		}
 
 		return modelFiles;
+	}
+
+	public static class RenameDialogRunnable implements Runnable {
+
+		private IFile initialFile;
+
+		private RenameParticipantsDialog renameParticipantsDialog;
+
+		public RenameDialogRunnable(IFile file) {
+			initialFile = file;
+		}
+
+		public void run() {
+			renameParticipantsDialog = new RenameParticipantsDialog(Display.getDefault().getActiveShell(), initialFile);
+			renameParticipantsDialog.open();
+		}
+
+		public Collection<? extends IResource> getFiles() {
+			return renameParticipantsDialog.getFiles();
+		}
 	}
 }

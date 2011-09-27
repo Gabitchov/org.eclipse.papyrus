@@ -13,6 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.ui.resources.refactoring;
 
+import java.util.Collection;
+
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
@@ -36,6 +38,8 @@ public class RenameModelParticipant extends RenameParticipant {
 	private IFile fileToRename;
 
 	private IFile newFile;
+
+	private Collection<? extends IResource> impacted;
 
 	/**
 	 * @see org.eclipse.ltk.core.refactoring.participants.RefactoringParticipant#createPreChange(org.eclipse.core.runtime.IProgressMonitor)
@@ -74,7 +78,7 @@ public class RenameModelParticipant extends RenameParticipant {
 	 */
 	@Override
 	public Change createChange(IProgressMonitor pm) throws CoreException, OperationCanceledException {
-		return new RenameModelChange(fileToRename, newFile);
+		return new RenameModelChange(fileToRename, newFile, impacted);
 	}
 
 	/**
@@ -128,6 +132,7 @@ public class RenameModelParticipant extends RenameParticipant {
 			IPath newDiPath = fileToRename.getFullPath().removeLastSegments(1);
 			newDiPath = newDiPath.append(newName).addFileExtension(ext);
 			newFile = parent.getFile(newDiPath.makeRelativeTo(parent.getFullPath()));
+			impacted = ModelParticipantHelpers.getResourceToFix(fileToRename);
 			return true;
 		} else {
 			return false;
