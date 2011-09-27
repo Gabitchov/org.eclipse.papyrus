@@ -15,7 +15,6 @@ package org.eclipse.papyrus.resource.additional;
 
 import java.io.IOException;
 import java.util.Collections;
-import java.util.Iterator;
 
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -91,12 +90,11 @@ public class AdditionalResourcesModel implements IModel {
 		snippets.performDispose(this);
 
 		// Unload remaining resources
-		for(Iterator<Resource> iter = modelSet.getResources().iterator(); iter.hasNext();) {
-			Resource next = iter.next();
+		for(int i = 0; i < modelSet.getResources().size(); i++) {
+			Resource next = modelSet.getResources().get(i);
 			if(modelSet.isAdditionalResource(next.getURI())) {
 				next.unload();
 			}
-			iter.remove();
 		}
 	}
 
