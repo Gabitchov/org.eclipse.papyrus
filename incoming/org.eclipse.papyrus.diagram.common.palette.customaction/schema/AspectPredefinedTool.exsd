@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="org.eclipse.papyrus.diagram.common.palette.wizards" xmlns="http://www.w3.org/2001/XMLSchema">
+<schema targetNamespace="org.eclipse.papyrus.diagram.common.palette.customaction" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appinfo>
-         <meta.schema plugin="org.eclipse.papyrus.diagram.common.palette.wizards" id="AspectPredefinedTool" name="Aspect Predefined Tool"/>
+         <meta.schema plugin="org.eclipse.papyrus.diagram.common.palette.customaction" id="AspectPredefinedTool" name="Aspect Predefined Tool"/>
       </appinfo>
       <documentation>
          This extension point make possible to add some custom actions to the custom palette
