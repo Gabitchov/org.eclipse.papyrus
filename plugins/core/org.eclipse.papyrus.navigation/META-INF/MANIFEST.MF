@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.papyrus.navigation;singleton:=true
-Bundle-Version: 0.8.1.qualifier
+Bundle-Version: 0.8.2.qualifier
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: org.eclipse.papyrus.core;bundle-version="0.8.0";visibility:=reexport,
  org.eclipse.papyrus.commands,
@@ -16,6 +16,7 @@ Require-Bundle: org.eclipse.papyrus.core;bundle-version="0.8.0";visibility:=reex
  org.eclipse.papyrus.ui.perspectiveconfiguration
 Export-Package: org.eclipse.papyrus.navigation,
  org.eclipse.papyrus.navigation.decorator,
+ org.eclipse.papyrus.navigation.handlers,
  org.eclipse.papyrus.navigation.preference
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
