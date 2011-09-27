@@ -51,8 +51,8 @@ public class SysmlVisualIDRegistry {
 	 * @generated
 	 */
 	public static int getVisualID(View view) {
-		if (view instanceof Diagram) {
-			if (ParametricEditPart.MODEL_ID.equals(view.getType())) {
+		if(view instanceof Diagram) {
+			if(ParametricEditPart.MODEL_ID.equals(view.getType())) {
 				return ParametricEditPart.VISUAL_ID;
 			} else {
 				return -1;
@@ -66,12 +66,12 @@ public class SysmlVisualIDRegistry {
 	 */
 	public static String getModelID(View view) {
 		View diagram = view.getDiagram();
-		while (view != diagram) {
+		while(view != diagram) {
 			EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
-			if (annotation != null) {
-				return (String) annotation.getDetails().get("modelID"); //$NON-NLS-1$
+			if(annotation != null) {
+				return (String)annotation.getDetails().get("modelID"); //$NON-NLS-1$
 			}
-			view = (View) view.eContainer();
+			view = (View)view.eContainer();
 		}
 		return diagram != null ? diagram.getType() : null;
 	}
@@ -83,9 +83,8 @@ public class SysmlVisualIDRegistry {
 		try {
 			return Integer.parseInt(type);
 		} catch (NumberFormatException e) {
-			if (Boolean.TRUE.toString().equalsIgnoreCase(Platform.getDebugOption(DEBUG_KEY))) {
-				SysmlDiagramEditorPlugin.getInstance().logError(
-						"Unable to parse view type as a visualID number: " + type);
+			if(Boolean.TRUE.toString().equalsIgnoreCase(Platform.getDebugOption(DEBUG_KEY))) {
+				SysmlDiagramEditorPlugin.getInstance().logError("Unable to parse view type as a visualID number: " + type);
 			}
 		}
 		return -1;
@@ -95,18 +94,18 @@ public class SysmlVisualIDRegistry {
 	 * @generated
 	 */
 	public static String getType(int visualID) {
-		return String.valueOf(visualID);
+		return Integer.toString(visualID);
 	}
 
 	/**
 	 * @generated NOT
 	 */
 	public static int getDiagramVisualID(EObject domainElement) {
-		if (domainElement == null) {
+		if(domainElement == null) {
 			return -1;
 		}
 		// test if it is a class for the parametric diagram
-		if (UMLPackage.eINSTANCE.getClass_().equals(domainElement.eClass())) {
+		if(UMLPackage.eINSTANCE.getClass_().equals(domainElement.eClass())) {
 			return ParametricEditPart.VISUAL_ID;
 		}
 		return -1;
@@ -116,43 +115,41 @@ public class SysmlVisualIDRegistry {
 	 * @generated
 	 */
 	public static int getNodeVisualID(View containerView, EObject domainElement) {
-		if (domainElement == null) {
+		if(domainElement == null) {
 			return -1;
 		}
-		String containerModelID = org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlVisualIDRegistry
-				.getModelID(containerView);
-		if (!ParametricEditPart.MODEL_ID.equals(containerModelID)) {
+		String containerModelID = org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlVisualIDRegistry.getModelID(containerView);
+		if(!ParametricEditPart.MODEL_ID.equals(containerModelID)) {
 			return -1;
 		}
 		int containerVisualID;
-		if (ParametricEditPart.MODEL_ID.equals(containerModelID)) {
-			containerVisualID = org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlVisualIDRegistry
-					.getVisualID(containerView);
+		if(ParametricEditPart.MODEL_ID.equals(containerModelID)) {
+			containerVisualID = org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlVisualIDRegistry.getVisualID(containerView);
 		} else {
-			if (containerView instanceof Diagram) {
+			if(containerView instanceof Diagram) {
 				containerVisualID = ParametricEditPart.VISUAL_ID;
 			} else {
 				return -1;
 			}
 		}
-		switch (containerVisualID) {
-		case ConstraintPropertyEditPart.VISUAL_ID:
-			if (UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return Property2EditPart.VISUAL_ID;
-			}
-			break;
+		switch(containerVisualID) {
 		case ParametricEditPart.VISUAL_ID:
-			if (ConstraintsPackage.eINSTANCE.getConstraintProperty().isSuperTypeOf(domainElement.eClass())
+			if(ConstraintsPackage.eINSTANCE.getConstraintProperty().isSuperTypeOf(domainElement.eClass())
 
 			) {
 				return ConstraintPropertyEditPart.VISUAL_ID;
 			}
-			if (UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())
+			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())
 
 			) {
 				return PropertyEditPart.VISUAL_ID;
+			}
+			break;
+		case ConstraintPropertyEditPart.VISUAL_ID:
+			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return Property2EditPart.VISUAL_ID;
 			}
 			break;
 		}
@@ -163,54 +160,52 @@ public class SysmlVisualIDRegistry {
 	 * @generated
 	 */
 	public static boolean canCreateNode(View containerView, int nodeVisualID) {
-		String containerModelID = org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlVisualIDRegistry
-				.getModelID(containerView);
-		if (!ParametricEditPart.MODEL_ID.equals(containerModelID)) {
+		String containerModelID = org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlVisualIDRegistry.getModelID(containerView);
+		if(!ParametricEditPart.MODEL_ID.equals(containerModelID)) {
 			return false;
 		}
 		int containerVisualID;
-		if (ParametricEditPart.MODEL_ID.equals(containerModelID)) {
-			containerVisualID = org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlVisualIDRegistry
-					.getVisualID(containerView);
+		if(ParametricEditPart.MODEL_ID.equals(containerModelID)) {
+			containerVisualID = org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlVisualIDRegistry.getVisualID(containerView);
 		} else {
-			if (containerView instanceof Diagram) {
+			if(containerView instanceof Diagram) {
 				containerVisualID = ParametricEditPart.VISUAL_ID;
 			} else {
 				return false;
 			}
 		}
-		switch (containerVisualID) {
+		switch(containerVisualID) {
+		case ParametricEditPart.VISUAL_ID:
+			if(ConstraintPropertyEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(PropertyEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
 		case ConstraintPropertyEditPart.VISUAL_ID:
-			if (ConstraintPropertyNameEditPart.VISUAL_ID == nodeVisualID) {
+			if(ConstraintPropertyNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
-			if (ConstraintLabelEditPart.VISUAL_ID == nodeVisualID) {
+			if(ConstraintLabelEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
-			if (Property2EditPart.VISUAL_ID == nodeVisualID) {
+			if(Property2EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
 		case PropertyEditPart.VISUAL_ID:
-			if (PropertyNameEditPart.VISUAL_ID == nodeVisualID) {
+			if(PropertyNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
 		case Property2EditPart.VISUAL_ID:
-			if (PropertyName2EditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			break;
-		case ParametricEditPart.VISUAL_ID:
-			if (ConstraintPropertyEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (PropertyEditPart.VISUAL_ID == nodeVisualID) {
+			if(PropertyName2EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
 		case ConnectorEditPart.VISUAL_ID:
-			if (ConnectorNameEditPart.VISUAL_ID == nodeVisualID) {
+			if(ConnectorNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -222,10 +217,10 @@ public class SysmlVisualIDRegistry {
 	 * @generated
 	 */
 	public static int getLinkWithClassVisualID(EObject domainElement) {
-		if (domainElement == null) {
+		if(domainElement == null) {
 			return -1;
 		}
-		if (UMLPackage.eINSTANCE.getConnector().isSuperTypeOf(domainElement.eClass())
+		if(UMLPackage.eINSTANCE.getConnector().isSuperTypeOf(domainElement.eClass())
 
 		) {
 			return ConnectorEditPart.VISUAL_ID;
@@ -252,7 +247,7 @@ public class SysmlVisualIDRegistry {
 	 * @generated
 	 */
 	public static ViewInfo getDiagramViewInfo() {
-		if (diagramViewInfo == null) {
+		if(diagramViewInfo == null) {
 			diagramViewInfo = getResource_1000ViewInfo();
 		}
 		return diagramViewInfo;

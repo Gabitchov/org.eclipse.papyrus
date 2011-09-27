@@ -30,7 +30,7 @@ public class ParametricDiagramCondition extends PerspectiveContextDependence {
 		if(super.create(selectedElement)) {
 			if(selectedElement instanceof org.eclipse.uml2.uml.Class) {
 				Class clazz = (org.eclipse.uml2.uml.Class)selectedElement;
-				if(clazz.getAppliedStereotype(SysmlResource.BLOCK_ID) != null) {
+				if(clazz.getAppliedStereotype(SysmlResource.BLOCK_ID) != null || clazz.getAppliedStereotype(SysmlResource.CONSTRAINT_BLOCK_ID) != null) {
 					return true;
 				}
 			}

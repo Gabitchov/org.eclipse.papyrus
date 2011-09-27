@@ -44,8 +44,8 @@ public class SysmlReorientConnectionViewCommand extends AbstractTransactionalCom
 	 * @generated
 	 */
 	public List getAffectedFiles() {
-		View view = (View) edgeAdaptor.getAdapter(View.class);
-		if (view != null) {
+		View view = (View)edgeAdaptor.getAdapter(View.class);
+		if(view != null) {
 			return getWorkspaceFiles(view);
 		}
 		return super.getAffectedFiles();
@@ -70,7 +70,7 @@ public class SysmlReorientConnectionViewCommand extends AbstractTransactionalCom
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) {
 		assert null != edgeAdaptor : "Null child in SysmlReorientConnectionViewCommand"; //$NON-NLS-1$
-		Edge edge = (Edge) getEdgeAdaptor().getAdapter(Edge.class);
+		Edge edge = (Edge)getEdgeAdaptor().getAdapter(Edge.class);
 		assert null != edge : "Null edge in SysmlReorientConnectionViewCommand"; //$NON-NLS-1$
 		View tempView = edge.getSource();
 		edge.setSource(edge.getTarget());

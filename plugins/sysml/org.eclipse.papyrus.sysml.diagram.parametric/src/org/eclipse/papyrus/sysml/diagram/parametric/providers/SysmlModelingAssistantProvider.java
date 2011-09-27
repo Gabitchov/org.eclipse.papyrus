@@ -49,16 +49,16 @@ public class SysmlModelingAssistantProvider extends ModelingAssistantProvider {
 	 * @generated
 	 */
 	public List getTypesForPopupBar(IAdaptable host) {
-		IGraphicalEditPart editPart = (IGraphicalEditPart) host.getAdapter(IGraphicalEditPart.class);
-		if (editPart instanceof ConstraintPropertyEditPart) {
-			ArrayList types = new ArrayList(1);
-			types.add(SysmlElementTypes.Property_3002);
-			return types;
-		}
-		if (editPart instanceof ParametricEditPart) {
-			ArrayList types = new ArrayList(2);
+		IGraphicalEditPart editPart = (IGraphicalEditPart)host.getAdapter(IGraphicalEditPart.class);
+		if(editPart instanceof ParametricEditPart) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(2);
 			types.add(SysmlElementTypes.ConstraintProperty_2003);
 			types.add(SysmlElementTypes.Property_2005);
+			return types;
+		}
+		if(editPart instanceof ConstraintPropertyEditPart) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(1);
+			types.add(SysmlElementTypes.Property_3002);
 			return types;
 		}
 		return Collections.EMPTY_LIST;
@@ -68,12 +68,12 @@ public class SysmlModelingAssistantProvider extends ModelingAssistantProvider {
 	 * @generated
 	 */
 	public List getRelTypesOnSource(IAdaptable source) {
-		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source.getAdapter(IGraphicalEditPart.class);
-		if (sourceEditPart instanceof PropertyEditPart) {
-			return ((PropertyEditPart) sourceEditPart).getMARelTypesOnSource();
+		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart)source.getAdapter(IGraphicalEditPart.class);
+		if(sourceEditPart instanceof PropertyEditPart) {
+			return ((PropertyEditPart)sourceEditPart).getMARelTypesOnSource();
 		}
-		if (sourceEditPart instanceof Property2EditPart) {
-			return ((Property2EditPart) sourceEditPart).getMARelTypesOnSource();
+		if(sourceEditPart instanceof Property2EditPart) {
+			return ((Property2EditPart)sourceEditPart).getMARelTypesOnSource();
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -82,12 +82,12 @@ public class SysmlModelingAssistantProvider extends ModelingAssistantProvider {
 	 * @generated
 	 */
 	public List getRelTypesOnTarget(IAdaptable target) {
-		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target.getAdapter(IGraphicalEditPart.class);
-		if (targetEditPart instanceof PropertyEditPart) {
-			return ((PropertyEditPart) targetEditPart).getMARelTypesOnTarget();
+		IGraphicalEditPart targetEditPart = (IGraphicalEditPart)target.getAdapter(IGraphicalEditPart.class);
+		if(targetEditPart instanceof PropertyEditPart) {
+			return ((PropertyEditPart)targetEditPart).getMARelTypesOnTarget();
 		}
-		if (targetEditPart instanceof Property2EditPart) {
-			return ((Property2EditPart) targetEditPart).getMARelTypesOnTarget();
+		if(targetEditPart instanceof Property2EditPart) {
+			return ((Property2EditPart)targetEditPart).getMARelTypesOnTarget();
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -96,13 +96,13 @@ public class SysmlModelingAssistantProvider extends ModelingAssistantProvider {
 	 * @generated
 	 */
 	public List getRelTypesOnSourceAndTarget(IAdaptable source, IAdaptable target) {
-		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source.getAdapter(IGraphicalEditPart.class);
-		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target.getAdapter(IGraphicalEditPart.class);
-		if (sourceEditPart instanceof PropertyEditPart) {
-			return ((PropertyEditPart) sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
+		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart)source.getAdapter(IGraphicalEditPart.class);
+		IGraphicalEditPart targetEditPart = (IGraphicalEditPart)target.getAdapter(IGraphicalEditPart.class);
+		if(sourceEditPart instanceof PropertyEditPart) {
+			return ((PropertyEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
-		if (sourceEditPart instanceof Property2EditPart) {
-			return ((Property2EditPart) sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
+		if(sourceEditPart instanceof Property2EditPart) {
+			return ((Property2EditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -111,12 +111,12 @@ public class SysmlModelingAssistantProvider extends ModelingAssistantProvider {
 	 * @generated
 	 */
 	public List getTypesForSource(IAdaptable target, IElementType relationshipType) {
-		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target.getAdapter(IGraphicalEditPart.class);
-		if (targetEditPart instanceof PropertyEditPart) {
-			return ((PropertyEditPart) targetEditPart).getMATypesForSource(relationshipType);
+		IGraphicalEditPart targetEditPart = (IGraphicalEditPart)target.getAdapter(IGraphicalEditPart.class);
+		if(targetEditPart instanceof PropertyEditPart) {
+			return ((PropertyEditPart)targetEditPart).getMATypesForSource(relationshipType);
 		}
-		if (targetEditPart instanceof Property2EditPart) {
-			return ((Property2EditPart) targetEditPart).getMATypesForSource(relationshipType);
+		if(targetEditPart instanceof Property2EditPart) {
+			return ((Property2EditPart)targetEditPart).getMATypesForSource(relationshipType);
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -125,12 +125,12 @@ public class SysmlModelingAssistantProvider extends ModelingAssistantProvider {
 	 * @generated
 	 */
 	public List getTypesForTarget(IAdaptable source, IElementType relationshipType) {
-		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source.getAdapter(IGraphicalEditPart.class);
-		if (sourceEditPart instanceof PropertyEditPart) {
-			return ((PropertyEditPart) sourceEditPart).getMATypesForTarget(relationshipType);
+		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart)source.getAdapter(IGraphicalEditPart.class);
+		if(sourceEditPart instanceof PropertyEditPart) {
+			return ((PropertyEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
 		}
-		if (sourceEditPart instanceof Property2EditPart) {
-			return ((Property2EditPart) sourceEditPart).getMATypesForTarget(relationshipType);
+		if(sourceEditPart instanceof Property2EditPart) {
+			return ((Property2EditPart)sourceEditPart).getMATypesForTarget(relationshipType);
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -153,25 +153,25 @@ public class SysmlModelingAssistantProvider extends ModelingAssistantProvider {
 	 * @generated
 	 */
 	protected EObject selectExistingElement(IAdaptable host, Collection types) {
-		if (types.isEmpty()) {
+		if(types.isEmpty()) {
 			return null;
 		}
-		IGraphicalEditPart editPart = (IGraphicalEditPart) host.getAdapter(IGraphicalEditPart.class);
-		if (editPart == null) {
+		IGraphicalEditPart editPart = (IGraphicalEditPart)host.getAdapter(IGraphicalEditPart.class);
+		if(editPart == null) {
 			return null;
 		}
-		Diagram diagram = (Diagram) editPart.getRoot().getContents().getModel();
-		Collection elements = new HashSet();
-		for (Iterator it = diagram.getElement().eAllContents(); it.hasNext();) {
-			EObject element = (EObject) it.next();
-			if (isApplicableElement(element, types)) {
+		Diagram diagram = (Diagram)editPart.getRoot().getContents().getModel();
+		HashSet<EObject> elements = new HashSet<EObject>();
+		for(Iterator<EObject> it = diagram.getElement().eAllContents(); it.hasNext();) {
+			EObject element = it.next();
+			if(isApplicableElement(element, types)) {
 				elements.add(element);
 			}
 		}
-		if (elements.isEmpty()) {
+		if(elements.isEmpty()) {
 			return null;
 		}
-		return selectElement((EObject[]) elements.toArray(new EObject[elements.size()]));
+		return selectElement((EObject[])elements.toArray(new EObject[elements.size()]));
 	}
 
 	/**
@@ -187,16 +187,15 @@ public class SysmlModelingAssistantProvider extends ModelingAssistantProvider {
 	 */
 	protected EObject selectElement(EObject[] elements) {
 		Shell shell = Display.getCurrent().getActiveShell();
-		ILabelProvider labelProvider = new AdapterFactoryLabelProvider(SysmlDiagramEditorPlugin.getInstance()
-				.getItemProvidersAdapterFactory());
+		ILabelProvider labelProvider = new AdapterFactoryLabelProvider(SysmlDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory());
 		ElementListSelectionDialog dialog = new ElementListSelectionDialog(shell, labelProvider);
 		dialog.setMessage(Messages.SysmlModelingAssistantProviderMessage);
 		dialog.setTitle(Messages.SysmlModelingAssistantProviderTitle);
 		dialog.setMultipleSelection(false);
 		dialog.setElements(elements);
 		EObject selected = null;
-		if (dialog.open() == Window.OK) {
-			selected = (EObject) dialog.getFirstResult();
+		if(dialog.open() == Window.OK) {
+			selected = (EObject)dialog.getFirstResult();
 		}
 		return selected;
 	}

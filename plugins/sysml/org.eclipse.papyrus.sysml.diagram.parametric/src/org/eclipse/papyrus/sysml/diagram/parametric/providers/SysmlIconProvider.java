@@ -36,8 +36,8 @@ public class SysmlIconProvider extends AbstractProvider implements IIconProvider
 	 * @generated
 	 */
 	public boolean provides(IOperation operation) {
-		if (operation instanceof GetIconOperation) {
-			return ((GetIconOperation) operation).execute(this) != null;
+		if(operation instanceof GetIconOperation) {
+			return ((GetIconOperation)operation).execute(this) != null;
 		}
 		return false;
 	}

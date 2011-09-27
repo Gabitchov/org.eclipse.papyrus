@@ -15,6 +15,7 @@ package org.eclipse.papyrus.sysml.diagram.parametric.edit.parts;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.draw2d.IFigure;
@@ -48,12 +49,14 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
+import org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.policies.NoDeleteFromDiagramEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.policies.NoDeleteFromModelEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.policies.OpenDiagramEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.policies.Property2ItemSemanticEditPolicy;
+import org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlDiagramEditorPlugin;
 import org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlVisualIDRegistry;
 import org.eclipse.papyrus.sysml.diagram.parametric.providers.SysmlElementTypes;
 import org.eclipse.swt.graphics.Color;
@@ -98,8 +101,7 @@ BorderedBorderItemEditPart {
 		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
 		installEditPolicy(RequestConstants.REQ_DELETE, new NoDeleteFromDiagramEditPolicy());
 		installEditPolicy(RequestConstants.REQ_SEMANTIC_WRAPPER, new NoDeleteFromModelEditPolicy());
-		// XXX need an SCR to runtime to have another abstract superclass that would let children
-		// add reasonable editpolicies
+		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
@@ -107,23 +109,23 @@ BorderedBorderItemEditPart {
 	 * @generated
 	 */
 	protected LayoutEditPolicy createLayoutEditPolicy() {
-		LayoutEditPolicy lep = new LayoutEditPolicy() {
+		org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy lep = new org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy() {
 
 			protected EditPolicy createChildEditPolicy(EditPart child) {
-				View childView = (View) child.getModel();
-				switch (SysmlVisualIDRegistry.getVisualID(childView)) {
+				View childView = (View)child.getModel();
+				switch(SysmlVisualIDRegistry.getVisualID(childView)) {
 				case PropertyName2EditPart.VISUAL_ID:
 					return new BorderItemSelectionEditPolicy() {
 
 						protected List createSelectionHandles() {
-							MoveHandle mh = new MoveHandle((GraphicalEditPart) getHost());
+							MoveHandle mh = new MoveHandle((GraphicalEditPart)getHost());
 							mh.setBorder(null);
 							return Collections.singletonList(mh);
 						}
 					};
 				}
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-				if (result == null) {
+				if(result == null) {
 					result = new NonResizableEditPolicy();
 				}
 				return result;
@@ -144,22 +146,21 @@ BorderedBorderItemEditPart {
 	 * @generated
 	 */
 	protected IFigure createNodeShape() {
-		ParameterDescriptor figure = new ParameterDescriptor();
-		return primaryShape = figure;
+		return primaryShape = new ParameterDescriptor();
 	}
 
 	/**
 	 * @generated
 	 */
 	public ParameterDescriptor getPrimaryShape() {
-		return (ParameterDescriptor) primaryShape;
+		return (ParameterDescriptor)primaryShape;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected void addBorderItem(IFigure borderItemContainer, IBorderItemEditPart borderItemEditPart) {
-		if (borderItemEditPart instanceof PropertyName2EditPart) {
+		if(borderItemEditPart instanceof PropertyName2EditPart) {
 			BorderItemLocator locator = new BorderItemLocator(getMainFigure(), PositionConstants.SOUTH);
 			locator.setBorderItemOffset(new Dimension(-20, -20));
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
@@ -172,9 +173,13 @@ BorderedBorderItemEditPart {
 	 * @generated
 	 */
 	protected NodeFigure createNodePlate() {
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(16, 16);
+		String prefElementId = "Property";
+		IPreferenceStore store = SysmlDiagramEditorPlugin.getInstance().getPreferenceStore();
+		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
+		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
+		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
 
-		// FIXME: workaround for #154536
+		//FIXME: workaround for #154536
 		result.getBounds().setSize(result.getPreferredSize());
 		return result;
 	}
@@ -201,7 +206,7 @@ BorderedBorderItemEditPart {
 	 * for generated figure.
 	 * 
 	 * @param nodeShape
-	 *            instance of generated figure class
+	 *        instance of generated figure class
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
@@ -212,7 +217,7 @@ BorderedBorderItemEditPart {
 	 * @generated
 	 */
 	public IFigure getContentPane() {
-		if (contentPane != null) {
+		if(contentPane != null) {
 			return contentPane;
 		}
 		return super.getContentPane();
@@ -222,7 +227,7 @@ BorderedBorderItemEditPart {
 	 * @generated
 	 */
 	protected void setForegroundColor(Color color) {
-		if (primaryShape != null) {
+		if(primaryShape != null) {
 			primaryShape.setForegroundColor(color);
 		}
 	}
@@ -231,8 +236,8 @@ BorderedBorderItemEditPart {
 	 * @generated
 	 */
 	protected void setLineWidth(int width) {
-		if (primaryShape instanceof Shape) {
-			((Shape) primaryShape).setLineWidth(width);
+		if(primaryShape instanceof Shape) {
+			((Shape)primaryShape).setLineWidth(width);
 		}
 	}
 
@@ -240,8 +245,8 @@ BorderedBorderItemEditPart {
 	 * @generated
 	 */
 	protected void setLineType(int style) {
-		if (primaryShape instanceof Shape) {
-			((Shape) primaryShape).setLineStyle(style);
+		if(primaryShape instanceof Shape) {
+			((Shape)primaryShape).setLineStyle(style);
 		}
 	}
 
@@ -255,18 +260,8 @@ BorderedBorderItemEditPart {
 	/**
 	 * @generated
 	 */
-	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnSource() {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-																							 * <org.eclipse
-																							 * .gmf.
-																							 * runtime
-																							 * .
-																							 * emf.type
-																							 * .
-																							 * core.
-																							 * IElementType
-																							 * >
-																							 */();
+	public List<IElementType> getMARelTypesOnSource() {
+		ArrayList<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(SysmlElementTypes.Connector_4001);
 		return types;
 	}
@@ -274,23 +269,12 @@ BorderedBorderItemEditPart {
 	/**
 	 * @generated
 	 */
-	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnSourceAndTarget(
-			IGraphicalEditPart targetEditPart) {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-																							 * <org.eclipse
-																							 * .gmf.
-																							 * runtime
-																							 * .
-																							 * emf.type
-																							 * .
-																							 * core.
-																							 * IElementType
-																							 * >
-																							 */();
-		if (targetEditPart instanceof PropertyEditPart) {
+	public List<IElementType> getMARelTypesOnSourceAndTarget(IGraphicalEditPart targetEditPart) {
+		LinkedList<IElementType> types = new LinkedList<IElementType>();
+		if(targetEditPart instanceof PropertyEditPart) {
 			types.add(SysmlElementTypes.Connector_4001);
 		}
-		if (targetEditPart instanceof org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.Property2EditPart) {
+		if(targetEditPart instanceof org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.Property2EditPart) {
 			types.add(SysmlElementTypes.Connector_4001);
 		}
 		return types;
@@ -299,23 +283,10 @@ BorderedBorderItemEditPart {
 	/**
 	 * @generated
 	 */
-	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMATypesForTarget(
-			IElementType relationshipType) {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-																							 * <org.eclipse
-																							 * .gmf.
-																							 * runtime
-																							 * .
-																							 * emf.type
-																							 * .
-																							 * core.
-																							 * IElementType
-																							 * >
-																							 */();
-		if (relationshipType == SysmlElementTypes.Connector_4001) {
+	public List<IElementType> getMATypesForTarget(IElementType relationshipType) {
+		LinkedList<IElementType> types = new LinkedList<IElementType>();
+		if(relationshipType == SysmlElementTypes.Connector_4001) {
 			types.add(SysmlElementTypes.Property_2005);
-		}
-		if (relationshipType == SysmlElementTypes.Connector_4001) {
 			types.add(SysmlElementTypes.Property_3002);
 		}
 		return types;
@@ -324,18 +295,8 @@ BorderedBorderItemEditPart {
 	/**
 	 * @generated
 	 */
-	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnTarget() {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-																							 * <org.eclipse
-																							 * .gmf.
-																							 * runtime
-																							 * .
-																							 * emf.type
-																							 * .
-																							 * core.
-																							 * IElementType
-																							 * >
-																							 */();
+	public List<IElementType> getMARelTypesOnTarget() {
+		ArrayList<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(SysmlElementTypes.Connector_4001);
 		return types;
 	}
@@ -343,23 +304,10 @@ BorderedBorderItemEditPart {
 	/**
 	 * @generated
 	 */
-	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMATypesForSource(
-			IElementType relationshipType) {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-																							 * <org.eclipse
-																							 * .gmf.
-																							 * runtime
-																							 * .
-																							 * emf.type
-																							 * .
-																							 * core.
-																							 * IElementType
-																							 * >
-																							 */();
-		if (relationshipType == SysmlElementTypes.Connector_4001) {
+	public List<IElementType> getMATypesForSource(IElementType relationshipType) {
+		LinkedList<IElementType> types = new LinkedList<IElementType>();
+		if(relationshipType == SysmlElementTypes.Connector_4001) {
 			types.add(SysmlElementTypes.Property_2005);
-		}
-		if (relationshipType == SysmlElementTypes.Connector_4001) {
 			types.add(SysmlElementTypes.Property_3002);
 		}
 		return types;
@@ -404,39 +352,30 @@ BorderedBorderItemEditPart {
 	 */
 	@Override
 	public Object getPreferredValue(EStructuralFeature feature) {
-		IPreferenceStore preferenceStore = (IPreferenceStore) getDiagramPreferencesHint().getPreferenceStore();
+		IPreferenceStore preferenceStore = (IPreferenceStore)getDiagramPreferencesHint().getPreferenceStore();
 		Object result = null;
 
-		if (feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()
-				|| feature == NotationPackage.eINSTANCE.getFontStyle_FontColor()
-				|| feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
+		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 			String prefColor = null;
-			if (feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
-				prefColor = PreferenceConstantHelper
-						.getElementConstant("Property", PreferenceConstantHelper.COLOR_LINE);
-			} else if (feature == NotationPackage.eINSTANCE.getFontStyle_FontColor()) {
-				prefColor = PreferenceConstantHelper
-						.getElementConstant("Property", PreferenceConstantHelper.COLOR_FONT);
-			} else if (feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
-				prefColor = PreferenceConstantHelper
-						.getElementConstant("Property", PreferenceConstantHelper.COLOR_FILL);
+			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
+				prefColor = PreferenceConstantHelper.getElementConstant("Property", PreferenceConstantHelper.COLOR_LINE);
+			} else if(feature == NotationPackage.eINSTANCE.getFontStyle_FontColor()) {
+				prefColor = PreferenceConstantHelper.getElementConstant("Property", PreferenceConstantHelper.COLOR_FONT);
+			} else if(feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
+				prefColor = PreferenceConstantHelper.getElementConstant("Property", PreferenceConstantHelper.COLOR_FILL);
 			}
-			result = FigureUtilities.RGBToInteger(PreferenceConverter.getColor((IPreferenceStore) preferenceStore,
-					prefColor));
-		} else if (feature == NotationPackage.eINSTANCE.getFillStyle_Transparency()
-				|| feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
-			String prefGradient = PreferenceConstantHelper.getElementConstant("Property",
-					PreferenceConstantHelper.COLOR_GRADIENT);
-			GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(preferenceStore
-					.getString(prefGradient));
-			if (feature == NotationPackage.eINSTANCE.getFillStyle_Transparency()) {
+			result = FigureUtilities.RGBToInteger(PreferenceConverter.getColor((IPreferenceStore)preferenceStore, prefColor));
+		} else if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency() || feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
+			String prefGradient = PreferenceConstantHelper.getElementConstant("Property", PreferenceConstantHelper.COLOR_GRADIENT);
+			GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(preferenceStore.getString(prefGradient));
+			if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency()) {
 				result = new Integer(gradientPreferenceConverter.getTransparency());
-			} else if (feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
+			} else if(feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
 				result = gradientPreferenceConverter.getGradientData();
 			}
 		}
 
-		if (result == null) {
+		if(result == null) {
 			result = getStructuralFeatureValue(feature);
 		}
 		return result;

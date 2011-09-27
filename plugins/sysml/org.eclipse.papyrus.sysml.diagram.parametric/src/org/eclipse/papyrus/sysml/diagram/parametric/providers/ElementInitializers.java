@@ -13,9 +13,26 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.parametric.providers;
 
+import org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlDiagramEditorPlugin;
+
 /**
  * @generated
  */
 public class ElementInitializers {
+
+	protected ElementInitializers() {
+		// use #getInstance to access cached instance
+	}
+
+	/**
+	 * @generated
+	 */
+	public static ElementInitializers getInstance() {
+		ElementInitializers cached = SysmlDiagramEditorPlugin.getInstance().getElementInitializers();
+		if(cached == null) {
+			SysmlDiagramEditorPlugin.getInstance().setElementInitializers(cached = new ElementInitializers());
+		}
+		return cached;
+	}
 
 }

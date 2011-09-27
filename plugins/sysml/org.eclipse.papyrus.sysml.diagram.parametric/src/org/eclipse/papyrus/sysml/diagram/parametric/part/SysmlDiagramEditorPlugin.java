@@ -28,12 +28,17 @@ import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.ExtendedImageRegistry;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
+import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.papyrus.preferences.Activator;
 import org.eclipse.papyrus.resource.provider.ResourceItemProviderAdapterFactory;
 import org.eclipse.papyrus.sysml.activities.provider.ActivitiesItemProviderAdapterFactory;
 import org.eclipse.papyrus.sysml.allocations.provider.AllocationsItemProviderAdapterFactory;
 import org.eclipse.papyrus.sysml.blocks.provider.BlocksItemProviderAdapterFactory;
 import org.eclipse.papyrus.sysml.constraints.provider.ConstraintsItemProviderAdapterFactory;
+import org.eclipse.papyrus.sysml.diagram.parametric.edit.policies.SysmlBaseItemSemanticEditPolicy;
+import org.eclipse.papyrus.sysml.diagram.parametric.preferences.DiagramPreferenceInitializer;
+import org.eclipse.papyrus.sysml.diagram.parametric.providers.ElementInitializers;
 import org.eclipse.papyrus.sysml.modelelements.provider.ModelelementsItemProviderAdapterFactory;
 import org.eclipse.papyrus.sysml.portandflows.provider.PortandflowsItemProviderAdapterFactory;
 import org.eclipse.papyrus.sysml.requirements.provider.RequirementsItemProviderAdapterFactory;
@@ -76,6 +81,16 @@ public class SysmlDiagramEditorPlugin extends AbstractUIPlugin {
 	/**
 	 * @generated
 	 */
+	private SysmlBaseItemSemanticEditPolicy.LinkConstraints linkConstraints;
+
+	/**
+	 * @generated
+	 */
+	private ElementInitializers initializers;
+
+	/**
+	 * @generated
+	 */
 	public SysmlDiagramEditorPlugin() {
 	}
 
@@ -87,6 +102,8 @@ public class SysmlDiagramEditorPlugin extends AbstractUIPlugin {
 		instance = this;
 		PreferencesHint.registerPreferenceStore(DIAGRAM_PREFERENCES_HINT, getPreferenceStore());
 		adapterFactory = createAdapterFactory();
+		DiagramPreferenceInitializer diagramPreferenceInitializer = new DiagramPreferenceInitializer();
+		diagramPreferenceInitializer.initializeDefaultPreferences();
 	}
 
 	/**
@@ -95,6 +112,8 @@ public class SysmlDiagramEditorPlugin extends AbstractUIPlugin {
 	public void stop(BundleContext context) throws Exception {
 		adapterFactory.dispose();
 		adapterFactory = null;
+		linkConstraints = null;
+		initializers = null;
 		instance = null;
 		super.stop(context);
 	}
@@ -109,8 +128,16 @@ public class SysmlDiagramEditorPlugin extends AbstractUIPlugin {
 	/**
 	 * @generated
 	 */
+	public IPreferenceStore getPreferenceStore() {
+		IPreferenceStore store = Activator.getDefault().getPreferenceStore();
+		return store;
+	}
+
+	/**
+	 * @generated
+	 */
 	protected ComposedAdapterFactory createAdapterFactory() {
-		List factories = new ArrayList();
+		ArrayList<AdapterFactory> factories = new ArrayList<AdapterFactory>();
 		fillItemProviderFactories(factories);
 		return new ComposedAdapterFactory(factories);
 	}
@@ -149,8 +176,8 @@ public class SysmlDiagramEditorPlugin extends AbstractUIPlugin {
 	 * @generated
 	 */
 	public ImageDescriptor getItemImageDescriptor(Object item) {
-		IItemLabelProvider labelProvider = (IItemLabelProvider) adapterFactory.adapt(item, IItemLabelProvider.class);
-		if (labelProvider != null) {
+		IItemLabelProvider labelProvider = (IItemLabelProvider)adapterFactory.adapt(item, IItemLabelProvider.class);
+		if(labelProvider != null) {
 			return ExtendedImageRegistry.getInstance().getImageDescriptor(labelProvider.getImage(item));
 		}
 		return null;
@@ -161,7 +188,7 @@ public class SysmlDiagramEditorPlugin extends AbstractUIPlugin {
 	 * 
 	 * @generated
 	 * @param path
-	 *            the path
+	 *        the path
 	 * @return the image descriptor
 	 */
 	public static ImageDescriptor getBundledImageDescriptor(String path) {
@@ -175,15 +202,14 @@ public class SysmlDiagramEditorPlugin extends AbstractUIPlugin {
 	 * 
 	 * @generated
 	 * @param path
-	 *            the path to image, either absolute (with plug-in id as first segment), or relative
-	 *            for bundled images
+	 *        the path to image, either absolute (with plug-in id as first segment), or relative
+	 *        for bundled images
 	 * @return the image descriptor
 	 */
 	public static ImageDescriptor findImageDescriptor(String path) {
 		final IPath p = new Path(path);
-		if (p.isAbsolute() && p.segmentCount() > 1) {
-			return AbstractUIPlugin.imageDescriptorFromPlugin(p.segment(0), p.removeFirstSegments(1).makeAbsolute()
-					.toString());
+		if(p.isAbsolute() && p.segmentCount() > 1) {
+			return AbstractUIPlugin.imageDescriptorFromPlugin(p.segment(0), p.removeFirstSegments(1).makeAbsolute().toString());
 		} else {
 			return getBundledImageDescriptor(p.makeAbsolute().toString());
 		}
@@ -195,12 +221,12 @@ public class SysmlDiagramEditorPlugin extends AbstractUIPlugin {
 	 * 
 	 * @generated
 	 * @param path
-	 *            the path
+	 *        the path
 	 * @return image instance
 	 */
 	public Image getBundledImage(String path) {
 		Image image = getImageRegistry().get(path);
-		if (image == null) {
+		if(image == null) {
 			getImageRegistry().put(path, getBundledImageDescriptor(path));
 			image = getImageRegistry().get(path);
 		}
@@ -220,10 +246,38 @@ public class SysmlDiagramEditorPlugin extends AbstractUIPlugin {
 	 * @generated
 	 */
 	public SysmlDocumentProvider getDocumentProvider() {
-		if (documentProvider == null) {
+		if(documentProvider == null) {
 			documentProvider = new SysmlDocumentProvider();
 		}
 		return documentProvider;
+	}
+
+	/**
+	 * @generated
+	 */
+	public SysmlBaseItemSemanticEditPolicy.LinkConstraints getLinkConstraints() {
+		return linkConstraints;
+	}
+
+	/**
+	 * @generated
+	 */
+	public void setLinkConstraints(SysmlBaseItemSemanticEditPolicy.LinkConstraints lc) {
+		this.linkConstraints = lc;
+	}
+
+	/**
+	 * @generated
+	 */
+	public ElementInitializers getElementInitializers() {
+		return initializers;
+	}
+
+	/**
+	 * @generated
+	 */
+	public void setElementInitializers(ElementInitializers i) {
+		this.initializers = i;
 	}
 
 	/**
@@ -237,7 +291,7 @@ public class SysmlDiagramEditorPlugin extends AbstractUIPlugin {
 	 * @generated
 	 */
 	public void logError(String error, Throwable throwable) {
-		if (error == null && throwable != null) {
+		if(error == null && throwable != null) {
 			error = throwable.getMessage();
 		}
 		getLog().log(new Status(IStatus.ERROR, SysmlDiagramEditorPlugin.ID, IStatus.OK, error, throwable));
@@ -255,7 +309,7 @@ public class SysmlDiagramEditorPlugin extends AbstractUIPlugin {
 	 * @generated
 	 */
 	public void logInfo(String message, Throwable throwable) {
-		if (message == null && throwable != null) {
+		if(message == null && throwable != null) {
 			message = throwable.getMessage();
 		}
 		getLog().log(new Status(IStatus.INFO, SysmlDiagramEditorPlugin.ID, IStatus.OK, message, throwable));
@@ -266,13 +320,13 @@ public class SysmlDiagramEditorPlugin extends AbstractUIPlugin {
 	 * @generated
 	 */
 	private void debug(String message, Throwable throwable) {
-		if (!isDebugging()) {
+		if(!isDebugging()) {
 			return;
 		}
-		if (message != null) {
+		if(message != null) {
 			System.err.println(message);
 		}
-		if (throwable != null) {
+		if(throwable != null) {
 			throwable.printStackTrace();
 		}
 	}

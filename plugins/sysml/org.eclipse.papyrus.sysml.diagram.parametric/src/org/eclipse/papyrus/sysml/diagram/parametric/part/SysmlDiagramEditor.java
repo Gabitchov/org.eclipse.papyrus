@@ -37,7 +37,6 @@ import org.eclipse.gmf.runtime.diagram.ui.actions.ActionIds;
 import org.eclipse.gmf.runtime.diagram.ui.internal.parts.PaletteToolTransferDragSourceListener;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocument;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDocumentProvider;
-import org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.util.LocalSelectionTransfer;
 import org.eclipse.jface.viewers.ISelection;
@@ -49,6 +48,7 @@ import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.diagram.common.listeners.DropTargetListener;
 import org.eclipse.papyrus.diagram.common.part.PapyrusPaletteContextMenuProvider;
 import org.eclipse.papyrus.diagram.common.part.PapyrusPaletteViewer;
+import org.eclipse.papyrus.diagram.common.part.UmlGmfDiagramEditor;
 import org.eclipse.papyrus.diagram.common.service.PapyrusPaletteService;
 import org.eclipse.papyrus.sysml.diagram.parametric.navigator.SysmlNavigatorItem;
 import org.eclipse.swt.SWT;
@@ -68,7 +68,7 @@ import org.eclipse.ui.part.ShowInContext;
 /**
  * @generated
  */
-public class SysmlDiagramEditor extends DiagramDocumentEditor implements IProviderChangeListener, IGotoMarker {
+public class SysmlDiagramEditor extends UmlGmfDiagramEditor implements IProviderChangeListener, IGotoMarker {
 
 	/**
 	 * @generated
@@ -108,14 +108,8 @@ public class SysmlDiagramEditor extends DiagramDocumentEditor implements IProvid
 	/**
 	 * @generated
 	 */
-	private Diagram diagram;
-
-	/**
-	 * @generated
-	 */
 	public SysmlDiagramEditor(ServicesRegistry servicesRegistry, Diagram diagram) throws ServiceException {
-		super(true);
-		this.diagram = diagram;
+		super(servicesRegistry, diagram);
 
 		// adds a listener to the palette service, which reacts to palette customizations
 		PapyrusPaletteService.getInstance().addProviderChangeListener(this);
@@ -192,7 +186,6 @@ public class SysmlDiagramEditor extends DiagramDocumentEditor implements IProvid
 	protected final IDocumentProvider getDocumentProvider(IEditorInput input) {
 		return documentProvider;
 	}
-
 
 	/**
 	 * 
@@ -273,6 +266,9 @@ public class SysmlDiagramEditor extends DiagramDocumentEditor implements IProvid
 			return StructuredSelection.EMPTY;
 		}
 		Diagram diagram = document.getDiagram();
+		if(diagram == null || diagram.eResource() == null) {
+			return StructuredSelection.EMPTY;
+		}
 		IFile file = WorkspaceSynchronizer.getFile(diagram.eResource());
 		if(file != null) {
 			SysmlNavigatorItem item = new SysmlNavigatorItem(diagram, file, false);
@@ -385,7 +381,6 @@ public class SysmlDiagramEditor extends DiagramDocumentEditor implements IProvid
 			 * with a defaultTool that is the SelectToolEx that undestands how to handle the enter
 			 * key which will result in the creation of the shape also.
 			 */
-			@Override
 			protected void configurePaletteViewer(PaletteViewer viewer) {
 				super.configurePaletteViewer(viewer);
 
@@ -403,7 +398,6 @@ public class SysmlDiagramEditor extends DiagramDocumentEditor implements IProvid
 				viewer.setCustomizer(createPaletteCustomizer());
 			}
 
-			@Override
 			public PaletteViewer createPaletteViewer(Composite parent) {
 				PaletteViewer pViewer = constructPaletteViewer();
 				pViewer.createControl(parent);
@@ -431,7 +425,6 @@ public class SysmlDiagramEditor extends DiagramDocumentEditor implements IProvid
 						 *        the KeyEvent
 						 * @return <code>true</code> if KeyEvent was handled in some way
 						 */
-						@Override
 						public boolean keyReleased(KeyEvent event) {
 
 							if(event.keyCode == SWT.Selection) {
@@ -524,21 +517,6 @@ public class SysmlDiagramEditor extends DiagramDocumentEditor implements IProvid
 	@Override
 	public GraphicalViewer getGraphicalViewer() {
 		return super.getGraphicalViewer();
-	}
-
-	/**
-	 * @generated
-	 */
-	@Override
-	public Diagram getDiagram() {
-		return diagram;
-	}
-
-	/**
-	 * @generated
-	 */
-	public void setDiagram(Diagram diagram) {
-		this.diagram = diagram;
 	}
 
 	/**

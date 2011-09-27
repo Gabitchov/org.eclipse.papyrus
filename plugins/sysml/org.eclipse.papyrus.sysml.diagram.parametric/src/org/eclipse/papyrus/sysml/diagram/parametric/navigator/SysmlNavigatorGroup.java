@@ -91,9 +91,9 @@ public class SysmlNavigatorGroup extends SysmlAbstractNavigatorItem {
 	 * @generated
 	 */
 	public boolean equals(Object obj) {
-		if (obj instanceof org.eclipse.papyrus.sysml.diagram.parametric.navigator.SysmlNavigatorGroup) {
-			org.eclipse.papyrus.sysml.diagram.parametric.navigator.SysmlNavigatorGroup anotherGroup = (org.eclipse.papyrus.sysml.diagram.parametric.navigator.SysmlNavigatorGroup) obj;
-			if (getGroupName().equals(anotherGroup.getGroupName())) {
+		if(obj instanceof org.eclipse.papyrus.sysml.diagram.parametric.navigator.SysmlNavigatorGroup) {
+			org.eclipse.papyrus.sysml.diagram.parametric.navigator.SysmlNavigatorGroup anotherGroup = (org.eclipse.papyrus.sysml.diagram.parametric.navigator.SysmlNavigatorGroup)obj;
+			if(getGroupName().equals(anotherGroup.getGroupName())) {
 				return getParent().equals(anotherGroup.getParent());
 			}
 		}

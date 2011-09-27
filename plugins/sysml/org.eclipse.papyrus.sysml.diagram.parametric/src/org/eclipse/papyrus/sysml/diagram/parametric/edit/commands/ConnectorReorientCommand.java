@@ -61,13 +61,13 @@ public class ConnectorReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
-		if (false == getElementToEdit() instanceof Connector) {
+		if(false == getElementToEdit() instanceof Connector) {
 			return false;
 		}
-		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
+		if(reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return canReorientSource();
 		}
-		if (reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
+		if(reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
 			return canReorientTarget();
 		}
 		return false;
@@ -77,53 +77,51 @@ public class ConnectorReorientCommand extends EditElementCommand {
 	 * @generated NOT
 	 */
 	protected boolean canReorientSource() {
-		if (!(oldEnd instanceof ConnectableElement && newEnd instanceof ConnectableElement)) {
+		if(!(oldEnd instanceof ConnectableElement && newEnd instanceof ConnectableElement)) {
 			return false;
 		}
 		ConnectableElement target = null;
 		EList<ConnectorEnd> ends = getLink().getEnds();
-		if (ends != null && !ends.isEmpty()) {
+		if(ends != null && !ends.isEmpty()) {
 			target = ends.get(1).getRole();
 		}
-		if (!(getLink().eContainer() instanceof StructuredClassifier)) {
+		if(!(getLink().eContainer() instanceof StructuredClassifier)) {
 			return false;
 		}
-		StructuredClassifier container = (StructuredClassifier) getLink().eContainer();
-		return SysmlBaseItemSemanticEditPolicy.LinkConstraints
-				.canExistConnector_4001(container, getNewSource(), target);
+		StructuredClassifier container = (StructuredClassifier)getLink().eContainer();
+		return SysmlBaseItemSemanticEditPolicy.LinkConstraints.canExistConnector_4001(container, getNewSource(), target);
 	}
 
 	/**
 	 * @generated NOT
 	 */
 	protected boolean canReorientTarget() {
-		if (!(oldEnd instanceof ConnectableElement && newEnd instanceof ConnectableElement)) {
+		if(!(oldEnd instanceof ConnectableElement && newEnd instanceof ConnectableElement)) {
 			return false;
 		}
 		ConnectableElement source = null;
 		EList<ConnectorEnd> ends = getLink().getEnds();
-		if (ends != null && !ends.isEmpty()) {
+		if(ends != null && !ends.isEmpty()) {
 			source = ends.get(0).getRole();
 		}
-		if (!(getLink().eContainer() instanceof StructuredClassifier)) {
+		if(!(getLink().eContainer() instanceof StructuredClassifier)) {
 			return false;
 		}
-		StructuredClassifier container = (StructuredClassifier) getLink().eContainer();
-		return SysmlBaseItemSemanticEditPolicy.LinkConstraints
-				.canExistConnector_4001(container, source, getNewTarget());
+		StructuredClassifier container = (StructuredClassifier)getLink().eContainer();
+		return SysmlBaseItemSemanticEditPolicy.LinkConstraints.canExistConnector_4001(container, source, getNewTarget());
 	}
 
 	/**
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		if (!canExecute()) {
+		if(!canExecute()) {
 			throw new ExecutionException("Invalid arguments in reorient link command"); //$NON-NLS-1$
 		}
-		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
+		if(reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return reorientSource();
 		}
-		if (reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
+		if(reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
 			return reorientTarget();
 		}
 		throw new IllegalStateException();
@@ -134,7 +132,7 @@ public class ConnectorReorientCommand extends EditElementCommand {
 	 */
 	protected CommandResult reorientSource() throws ExecutionException {
 		EList<ConnectorEnd> ends = getLink().getEnds();
-		if (ends != null && !ends.isEmpty()) {
+		if(ends != null && !ends.isEmpty()) {
 			ends.get(0).setRole(getNewSource());
 			return CommandResult.newOKCommandResult(getLink());
 		} else {
@@ -147,7 +145,7 @@ public class ConnectorReorientCommand extends EditElementCommand {
 	 */
 	protected CommandResult reorientTarget() throws ExecutionException {
 		EList<ConnectorEnd> ends = getLink().getEnds();
-		if (ends != null && !ends.isEmpty()) {
+		if(ends != null && !ends.isEmpty()) {
 			ends.get(1).setRole(getNewTarget());
 			return CommandResult.newOKCommandResult(getLink());
 		} else {
@@ -159,34 +157,34 @@ public class ConnectorReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected Connector getLink() {
-		return (Connector) getElementToEdit();
+		return (Connector)getElementToEdit();
 	}
 
 	/**
 	 * @generated
 	 */
 	protected ConnectableElement getOldSource() {
-		return (ConnectableElement) oldEnd;
+		return (ConnectableElement)oldEnd;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected ConnectableElement getNewSource() {
-		return (ConnectableElement) newEnd;
+		return (ConnectableElement)newEnd;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected ConnectableElement getOldTarget() {
-		return (ConnectableElement) oldEnd;
+		return (ConnectableElement)oldEnd;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected ConnectableElement getNewTarget() {
-		return (ConnectableElement) newEnd;
+		return (ConnectableElement)newEnd;
 	}
 }

@@ -15,18 +15,18 @@ package org.eclipse.papyrus.sysml.diagram.parametric.edit.parts;
 
 import org.eclipse.draw2d.Connection;
 import org.eclipse.gef.EditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.common.editparts.UMLConnectionNodeEditPart;
+import org.eclipse.papyrus.diagram.common.figure.edge.UMLEdgeFigure;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.policies.ConnectorItemSemanticEditPolicy;
 
 /**
  * @generated
  */
-public class ConnectorEditPart extends ConnectionNodeEditPart
+public class ConnectorEditPart extends UMLConnectionNodeEditPart
 
 implements ITreeBranchEditPart {
 
@@ -54,8 +54,8 @@ implements ITreeBranchEditPart {
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof ConnectorNameEditPart) {
-			((ConnectorNameEditPart) childEditPart).setLabel(getPrimaryShape().getConnectorLabel());
+		if(childEditPart instanceof ConnectorNameEditPart) {
+			((ConnectorNameEditPart)childEditPart).setLabel(getPrimaryShape().getConnectorLabel());
 			return true;
 		}
 		return false;
@@ -65,7 +65,7 @@ implements ITreeBranchEditPart {
 	 * @generated
 	 */
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if (addFixedChild(childEditPart)) {
+		if(addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -75,7 +75,7 @@ implements ITreeBranchEditPart {
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof ConnectorNameEditPart) {
+		if(childEditPart instanceof ConnectorNameEditPart) {
 			return true;
 		}
 		return false;
@@ -85,7 +85,7 @@ implements ITreeBranchEditPart {
 	 * @generated
 	 */
 	protected void removeChildVisual(EditPart childEditPart) {
-		if (removeFixedChild(childEditPart)) {
+		if(removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -108,13 +108,13 @@ implements ITreeBranchEditPart {
 	 * @generated
 	 */
 	public ConnectorFigure getPrimaryShape() {
-		return (ConnectorFigure) getFigure();
+		return (ConnectorFigure)getFigure();
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT extends UMLEdgeFigure
 	 */
-	public class ConnectorFigure extends PolylineConnectionEx {
+	public class ConnectorFigure extends UMLEdgeFigure {
 
 		/**
 		 * @generated
@@ -131,9 +131,9 @@ implements ITreeBranchEditPart {
 		}
 
 		/**
-		 * @generated
+		 * @generated NOT protected
 		 */
-		private void createContents() {
+		protected void createContents() {
 
 			fConnectorLabel = new WrappingLabel();
 			fConnectorLabel.setText("");

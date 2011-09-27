@@ -10,33 +10,9 @@
          </popupContribution>
       </contributionItemProvider>
    </extension>
-   <extension point="org.eclipse.team.core.fileTypes" id="repo-ftype">
-      <?gmfgen generated="true"?>
-      <fileTypes type="text" extension="sysml_diagram"/>
-   </extension>
-
-   <extension point="org.eclipse.emf.ecore.extension_parser" id="resource-factory">
-      <?gmfgen generated="true"?>
-      <parser
-         type="sysml_diagram"
-         class="org.eclipse.gmf.runtime.emf.core.resources.GMFResourceFactory">
-      </parser>
-   </extension>
-
-   <extension point="org.eclipse.ui.editors" id="gmf-editor">
-      <?gmfgen generated="true"?>
-      <editor
-         id="org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlDiagramEditorID"
-         name="%editorName"
-         icon="icons/obj16/Diagram_Parametric.gif"
-         extensions="sysml_diagram"
-         default="true"
-         class="org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlDiagramEditor"
-         matchingStrategy="org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlMatchingStrategy"
-         contributorClass="org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlDiagramActionBarContributor">
-      </editor>
-   </extension>
    
+   
+      
    <extension point="org.eclipse.ui.contexts" id="ui-context">
       <?gmfgen generated="true"?>
       <context
@@ -47,18 +23,7 @@
       </context>
    </extension>
 
-   <extension point="org.eclipse.ui.newWizards" id="creation-wizard">
-      <?gmfgen generated="true"?>
-  	  <wizard
-  	     name="%newWizardName"
-  	     icon="icons/obj16/Diagram_Parametric.gif"
-  	     category="org.eclipse.ui.Examples"
-  	     class="org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlCreationWizard"
-  	     id="org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlCreationWizardID">
-  	  	 <description>%newWizardDesc</description>  
-      </wizard>
-   </extension>
-
+   
    <extension point="org.eclipse.ui.popupMenus" id="init-diagram-action">
       <?gmfgen generated="false"?>
        <!-- FIX Bug 314257-->
@@ -636,29 +601,30 @@
 <extension point="org.eclipse.ui.preferencePages">
 
 
-	
-			<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.Parametric"
-			class="org.eclipse.papyrus.sysml.diagram.parametric.preferences.PropertyPreferencePage"
-            id="org.eclipse.papyrus.sysml.diagram.parametric.preferences.PropertyPreferencePage"
-            name="Property" />	
-	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.Parametric"
 			class="org.eclipse.papyrus.sysml.diagram.parametric.preferences.ConstraintPropertyPreferencePage"
             id="org.eclipse.papyrus.sysml.diagram.parametric.preferences.ConstraintPropertyPreferencePage"
-            name="ConstraintProperty" />	
+            name="ConstraintProperty Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.Parametric"
+			class="org.eclipse.papyrus.sysml.diagram.parametric.preferences.PropertyPreferencePage"
+            id="org.eclipse.papyrus.sysml.diagram.parametric.preferences.PropertyPreferencePage"
+            name="Property Node" />
 	
 
 
-	
-			<?gmfgen generated="true"?>
+		
+
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.Parametric"
 			class="org.eclipse.papyrus.sysml.diagram.parametric.preferences.ConnectorPreferencePage"
             id="org.eclipse.papyrus.sysml.diagram.parametric.preferences.ConnectorPreferencePage"
-            name="Connector" />	
-	
+            name="Connector Link" />
+		
 
 </extension>
 <extension
@@ -755,6 +721,118 @@
       </Priority>
    </editpolicyProvider>
 </extension>
+<extension point="org.eclipse.gmf.runtime.common.ui.services.markerNavigationProviders" id="markers-navigation">
+      <?gmfgen generated="true"?>
+      <MarkerNavigationProvider class="org.eclipse.papyrus.sysml.diagram.parametric.providers.SysmlMarkerNavigationProvider">
+         <MarkerType name="org.eclipse.papyrus.sysml.diagram.parametric.diagnostic"/>
+         <Priority name="Lowest"/>
+      </MarkerNavigationProvider>
+   </extension>
+
+<extension id="diagnostic" name="Sysml Parametric diagram Plugin problems" point="org.eclipse.core.resources.markers">
+      <?gmfgen generated="true"?>
+      <super type="org.eclipse.core.resources.problemmarker"/>
+      <super type="org.eclipse.gmf.runtime.common.ui.services.marker"/>
+      <persistent value="true"/>
+   </extension><extension
+		id="Sysml Parametric diagram Plugin.palettedefinition"
+		name="Sysml Parametric diagram Plugin Predefined Entries"
+		point="org.eclipse.gmf.runtime.diagram.ui.paletteProviders"> 
+		
+		<?gmfgen generated="true"?>	
+		<paletteProvider class="org.eclipse.gmf.runtime.diagram.ui.providers.DefaultPaletteProvider">
+			<Priority name="Lowest"/>
+      		<contribution
+            	factoryClass="org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlPaletteFactory">
+     			<predefinedEntry id="standardGroup/noteStack/noteTool" remove="true"/> 
+				<predefinedEntry id="standardGroup/noteStack/textTool" remove="true"/> 
+				<predefinedEntry id="standardGroup/noteStack/noteattachmentTool" remove="true"/>
+					<entry
+       defineOnly="true"
+       description="Create new ConstraintProperty"
+       id="createConstraintProperty1CreationTool"
+       kind="tool"
+       label="ConstraintProperty"
+       large_icon="platform:/plugin/org.eclipse.papyrus.sysml.edit/icons/full/obj16/ConstraintProperty.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.papyrus.sysml.edit/icons/full/obj16/ConstraintProperty.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create new Property"
+       id="createProperty2CreationTool"
+       kind="tool"
+       label="Property"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create new Connector"
+       id="createConnector3CreationTool"
+       kind="tool"
+       label="Connector"
+       large_icon=""
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Connector.gif">
+ 	</entry>
+
+			</contribution>
+		</paletteProvider>	
+			
+	</extension>
+
+<extension
+		id="Sysml Parametric diagram Plugin.standard"
+		name="Sysml Parametric diagram Plugin Standard Palette"
+		point="org.eclipse.gmf.runtime.diagram.ui.paletteProviders"> 
+		
+		<?gmfgen generated="true"?>	
+		<paletteProvider class="org.eclipse.gmf.runtime.diagram.ui.providers.DefaultPaletteProvider">
+			<Priority name="Low"/>
+      		<contribution
+            	factoryClass="org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlPaletteFactory">
+     			<predefinedEntry id="standardGroup/noteStack/noteTool" remove="true"/> 
+				<predefinedEntry id="standardGroup/noteStack/textTool" remove="true"/> 
+				<predefinedEntry id="standardGroup/noteStack/noteattachmentTool" remove="true"/>
+					<entry
+       description=""
+       id="createParametric1Group"
+       kind="drawer"
+       label="Parametric"
+       large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
+       path="/"
+       small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
+       <expand
+              force="true">
+       </expand>
+ 	</entry>
+ 	 
+ 	 	<predefinedEntry
+          id="createConstraintProperty1CreationTool"
+          path="/createParametric1Group">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createProperty2CreationTool"
+          path="/createParametric1Group">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createConnector3CreationTool"
+          path="/createParametric1Group">
+    </predefinedEntry>
+
+
+			</contribution>
+			<editor id="org.eclipse.papyrus.sysml.diagram.parametric"/>
+		</paletteProvider>	
+			
+	</extension>
+
+<extension point="org.eclipse.ui.handlers" id="menu-handlers">
+      <?gmfgen generated="true"?>
+   </extension>
+
 
    <!-- optionally, specify keybindings -->
 </plugin>

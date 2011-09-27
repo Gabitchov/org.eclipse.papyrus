@@ -29,8 +29,7 @@ public class SysmlDomainNavigatorLabelProvider implements ICommonLabelProvider {
 	/**
 	 * @generated
 	 */
-	private AdapterFactoryLabelProvider myAdapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
-			SysmlDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory());
+	private AdapterFactoryLabelProvider myAdapterFactoryLabelProvider = new AdapterFactoryLabelProvider(SysmlDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory());
 
 	/**
 	 * @generated
@@ -42,8 +41,8 @@ public class SysmlDomainNavigatorLabelProvider implements ICommonLabelProvider {
 	 * @generated
 	 */
 	public Image getImage(Object element) {
-		if (element instanceof SysmlDomainNavigatorItem) {
-			return myAdapterFactoryLabelProvider.getImage(((SysmlDomainNavigatorItem) element).getEObject());
+		if(element instanceof SysmlDomainNavigatorItem) {
+			return myAdapterFactoryLabelProvider.getImage(((SysmlDomainNavigatorItem)element).getEObject());
 		}
 		return null;
 	}
@@ -52,8 +51,8 @@ public class SysmlDomainNavigatorLabelProvider implements ICommonLabelProvider {
 	 * @generated
 	 */
 	public String getText(Object element) {
-		if (element instanceof SysmlDomainNavigatorItem) {
-			return myAdapterFactoryLabelProvider.getText(((SysmlDomainNavigatorItem) element).getEObject());
+		if(element instanceof SysmlDomainNavigatorItem) {
+			return myAdapterFactoryLabelProvider.getText(((SysmlDomainNavigatorItem)element).getEObject());
 		}
 		return null;
 	}

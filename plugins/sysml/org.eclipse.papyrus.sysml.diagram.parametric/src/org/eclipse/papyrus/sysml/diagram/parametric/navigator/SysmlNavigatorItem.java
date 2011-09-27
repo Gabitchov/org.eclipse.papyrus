@@ -28,14 +28,12 @@ public class SysmlNavigatorItem extends SysmlAbstractNavigatorItem {
 	 * @generated
 	 */
 	static {
-		final Class[] supportedTypes = new Class[] { View.class, EObject.class };
+		final Class[] supportedTypes = new Class[]{ View.class, EObject.class };
 		Platform.getAdapterManager().registerAdapters(new IAdapterFactory() {
 
 			public Object getAdapter(Object adaptableObject, Class adapterType) {
-				if (adaptableObject instanceof org.eclipse.papyrus.sysml.diagram.parametric.navigator.SysmlNavigatorItem
-						&& (adapterType == View.class || adapterType == EObject.class)) {
-					return ((org.eclipse.papyrus.sysml.diagram.parametric.navigator.SysmlNavigatorItem) adaptableObject)
-							.getView();
+				if(adaptableObject instanceof org.eclipse.papyrus.sysml.diagram.parametric.navigator.SysmlNavigatorItem && (adapterType == View.class || adapterType == EObject.class)) {
+					return ((org.eclipse.papyrus.sysml.diagram.parametric.navigator.SysmlNavigatorItem)adaptableObject).getView();
 				}
 				return null;
 			}
@@ -83,10 +81,8 @@ public class SysmlNavigatorItem extends SysmlAbstractNavigatorItem {
 	 * @generated
 	 */
 	public boolean equals(Object obj) {
-		if (obj instanceof org.eclipse.papyrus.sysml.diagram.parametric.navigator.SysmlNavigatorItem) {
-			return EcoreUtil.getURI(getView()).equals(
-					EcoreUtil.getURI(((org.eclipse.papyrus.sysml.diagram.parametric.navigator.SysmlNavigatorItem) obj)
-							.getView()));
+		if(obj instanceof org.eclipse.papyrus.sysml.diagram.parametric.navigator.SysmlNavigatorItem) {
+			return EcoreUtil.getURI(getView()).equals(EcoreUtil.getURI(((org.eclipse.papyrus.sysml.diagram.parametric.navigator.SysmlNavigatorItem)obj).getView()));
 		}
 		return super.equals(obj);
 	}

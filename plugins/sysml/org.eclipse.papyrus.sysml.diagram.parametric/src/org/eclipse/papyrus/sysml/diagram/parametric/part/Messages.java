@@ -256,37 +256,37 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String Parametric1Group_title;
+	public static String createParametric1Group_title;
 
 	/**
 	 * @generated
 	 */
-	public static String ConstraintProperty1CreationTool_title;
+	public static String createConstraintProperty1CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String ConstraintProperty1CreationTool_desc;
+	public static String createConstraintProperty1CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Property2CreationTool_title;
+	public static String createProperty2CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Property2CreationTool_desc;
+	public static String createProperty2CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Connector3CreationTool_title;
+	public static String createConnector3CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Connector3CreationTool_desc;
+	public static String createConnector3CreationTool_desc;
 
 	/**
 	 * @generated

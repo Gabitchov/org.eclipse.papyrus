@@ -15,10 +15,10 @@ package org.eclipse.papyrus.sysml.diagram.parametric.part;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -76,14 +76,12 @@ public class SysmlDocumentProvider extends AbstractDocumentProvider implements I
 	 * @generated
 	 */
 	protected ElementInfo createElementInfo(Object element) throws CoreException {
-		if (false == element instanceof FileEditorInput && false == element instanceof URIEditorInput) {
-			throw new CoreException(new Status(IStatus.ERROR, SysmlDiagramEditorPlugin.ID, 0, NLS.bind(
-					Messages.SysmlDocumentProvider_IncorrectInputError, new Object[] { element,
-							"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
-					null));
+		if(false == element instanceof FileEditorInput && false == element instanceof URIEditorInput) {
+			throw new CoreException(new Status(IStatus.ERROR, SysmlDiagramEditorPlugin.ID, 0, NLS.bind(Messages.SysmlDocumentProvider_IncorrectInputError, new Object[]{ element, "org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
+			null));
 		}
-		IEditorInput editorInput = (IEditorInput) element;
-		IDiagramDocument document = (IDiagramDocument) createDocument(editorInput);
+		IEditorInput editorInput = (IEditorInput)element;
+		IDiagramDocument document = (IDiagramDocument)createDocument(editorInput);
 
 		ResourceSetInfo info = new ResourceSetInfo(document, editorInput);
 		info.setModificationStamp(computeModificationStamp(info));
@@ -95,14 +93,12 @@ public class SysmlDocumentProvider extends AbstractDocumentProvider implements I
 	 * @generated
 	 */
 	protected IDocument createDocument(Object element) throws CoreException {
-		if (false == element instanceof FileEditorInput && false == element instanceof URIEditorInput) {
-			throw new CoreException(new Status(IStatus.ERROR, SysmlDiagramEditorPlugin.ID, 0, NLS.bind(
-					Messages.SysmlDocumentProvider_IncorrectInputError, new Object[] { element,
-							"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
-					null));
+		if(false == element instanceof FileEditorInput && false == element instanceof URIEditorInput) {
+			throw new CoreException(new Status(IStatus.ERROR, SysmlDiagramEditorPlugin.ID, 0, NLS.bind(Messages.SysmlDocumentProvider_IncorrectInputError, new Object[]{ element, "org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
+			null));
 		}
 		IDocument document = createEmptyDocument();
-		setDocumentContent(document, (IEditorInput) element);
+		setDocumentContent(document, (IEditorInput)element);
 		setupDocument(element, document);
 		return document;
 	}
@@ -112,9 +108,9 @@ public class SysmlDocumentProvider extends AbstractDocumentProvider implements I
 	 * document is not changed. This default implementation is empty. Subclasses may reimplement.
 	 * 
 	 * @param element
-	 *            the blue-print element
+	 *        the blue-print element
 	 * @param document
-	 *            the document to set up
+	 *        the document to set up
 	 * @generated
 	 */
 	protected void setupDocument(Object element, IDocument document) {
@@ -126,11 +122,11 @@ public class SysmlDocumentProvider extends AbstractDocumentProvider implements I
 	 */
 	private long computeModificationStamp(ResourceSetInfo info) {
 		int result = 0;
-		for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = info.getLoadedResourcesIterator(); it.hasNext();) {
-			Resource nextResource = (Resource) it.next();
+		for(Iterator<Resource> it = info.getLoadedResourcesIterator(); it.hasNext();) {
+			Resource nextResource = it.next();
 			IFile file = WorkspaceSynchronizer.getFile(nextResource);
-			if (file != null) {
-				if (file.getLocation() != null) {
+			if(file != null) {
+				if(file.getLocation() != null) {
 					result += file.getLocation().toFile().lastModified();
 				} else {
 					result += file.getModificationStamp();
@@ -155,9 +151,7 @@ public class SysmlDocumentProvider extends AbstractDocumentProvider implements I
 	private TransactionalEditingDomain createEditingDomain() {
 		TransactionalEditingDomain editingDomain = DiagramEditingDomainFactory.getInstance().createEditingDomain();
 		editingDomain.setID("org.eclipse.papyrus.sysml.diagram.parametric.EditingDomain"); //$NON-NLS-1$
-		final NotificationFilter diagramResourceModifiedFilter = NotificationFilter.createNotifierFilter(
-				editingDomain.getResourceSet()).and(NotificationFilter.createEventTypeFilter(Notification.ADD)).and(
-				NotificationFilter.createFeatureFilter(ResourceSet.class, ResourceSet.RESOURCE_SET__RESOURCES));
+		final NotificationFilter diagramResourceModifiedFilter = NotificationFilter.createNotifierFilter(editingDomain.getResourceSet()).and(NotificationFilter.createEventTypeFilter(Notification.ADD)).and(NotificationFilter.createFeatureFilter(ResourceSet.class, ResourceSet.RESOURCE_SET__RESOURCES));
 		editingDomain.getResourceSet().eAdapters().add(new Adapter() {
 
 			private Notifier myTarger;
@@ -171,10 +165,10 @@ public class SysmlDocumentProvider extends AbstractDocumentProvider implements I
 			}
 
 			public void notifyChanged(Notification notification) {
-				if (diagramResourceModifiedFilter.matches(notification)) {
+				if(diagramResourceModifiedFilter.matches(notification)) {
 					Object value = notification.getNewValue();
-					if (value instanceof Resource) {
-						((Resource) value).setTrackingModification(true);
+					if(value instanceof Resource) {
+						((Resource)value).setTrackingModification(true);
 					}
 				}
 			}
@@ -192,43 +186,42 @@ public class SysmlDocumentProvider extends AbstractDocumentProvider implements I
 	 * @generated
 	 */
 	protected void setDocumentContent(IDocument document, IEditorInput element) throws CoreException {
-		IDiagramDocument diagramDocument = (IDiagramDocument) document;
+		IDiagramDocument diagramDocument = (IDiagramDocument)document;
 		TransactionalEditingDomain domain = diagramDocument.getEditingDomain();
-		if (element instanceof FileEditorInput) {
-			IStorage storage = ((FileEditorInput) element).getStorage();
+		if(element instanceof FileEditorInput) {
+			IStorage storage = ((FileEditorInput)element).getStorage();
 			Diagram diagram = DiagramIOUtil.load(domain, storage, true, getProgressMonitor());
 			document.setContent(diagram);
-		} else if (element instanceof URIEditorInput) {
-			URI uri = ((URIEditorInput) element).getURI();
+		} else if(element instanceof URIEditorInput) {
+			URI uri = ((URIEditorInput)element).getURI();
 			Resource resource = null;
 			try {
 				resource = domain.getResourceSet().getResource(uri.trimFragment(), false);
-				if (resource == null) {
+				if(resource == null) {
 					resource = domain.getResourceSet().createResource(uri.trimFragment());
 				}
-				if (!resource.isLoaded()) {
+				if(!resource.isLoaded()) {
 					try {
 						Map options = new HashMap(GMFResourceFactory.getDefaultLoadOptions());
-						// @see 171060
-						// options.put(org.eclipse.emf.ecore.xmi.XMLResource.OPTION_RECORD_UNKNOWN_FEATURE,
-						// Boolean.TRUE);
+						// @see 171060 
+						// options.put(org.eclipse.emf.ecore.xmi.XMLResource.OPTION_RECORD_UNKNOWN_FEATURE, Boolean.TRUE);
 						resource.load(options);
 					} catch (IOException e) {
 						resource.unload();
 						throw e;
 					}
 				}
-				if (uri.fragment() != null) {
+				if(uri.fragment() != null) {
 					EObject rootElement = resource.getEObject(uri.fragment());
-					if (rootElement instanceof Diagram) {
-						document.setContent((Diagram) rootElement);
+					if(rootElement instanceof Diagram) {
+						document.setContent((Diagram)rootElement);
 						return;
 					}
 				} else {
-					for (Iterator it = resource.getContents().iterator(); it.hasNext();) {
+					for(Iterator it = resource.getContents().iterator(); it.hasNext();) {
 						Object rootElement = it.next();
-						if (rootElement instanceof Diagram) {
-							document.setContent((Diagram) rootElement);
+						if(rootElement instanceof Diagram) {
+							document.setContent((Diagram)rootElement);
 							return;
 						}
 					}
@@ -236,20 +229,17 @@ public class SysmlDocumentProvider extends AbstractDocumentProvider implements I
 				throw new RuntimeException(Messages.SysmlDocumentProvider_NoDiagramInResourceError);
 			} catch (Exception e) {
 				CoreException thrownExcp = null;
-				if (e instanceof CoreException) {
-					thrownExcp = (CoreException) e;
+				if(e instanceof CoreException) {
+					thrownExcp = (CoreException)e;
 				} else {
 					String msg = e.getLocalizedMessage();
-					thrownExcp = new CoreException(new Status(IStatus.ERROR, SysmlDiagramEditorPlugin.ID, 0,
-							msg != null ? msg : Messages.SysmlDocumentProvider_DiagramLoadingError, e));
+					thrownExcp = new CoreException(new Status(IStatus.ERROR, SysmlDiagramEditorPlugin.ID, 0, msg != null ? msg : Messages.SysmlDocumentProvider_DiagramLoadingError, e));
 				}
 				throw thrownExcp;
 			}
 		} else {
-			throw new CoreException(new Status(IStatus.ERROR, SysmlDiagramEditorPlugin.ID, 0, NLS.bind(
-					Messages.SysmlDocumentProvider_IncorrectInputError, new Object[] { element,
-							"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
-					null));
+			throw new CoreException(new Status(IStatus.ERROR, SysmlDiagramEditorPlugin.ID, 0, NLS.bind(Messages.SysmlDocumentProvider_IncorrectInputError, new Object[]{ element, "org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
+			null));
 		}
 	}
 
@@ -258,7 +248,7 @@ public class SysmlDocumentProvider extends AbstractDocumentProvider implements I
 	 */
 	public long getModificationStamp(Object element) {
 		ResourceSetInfo info = getResourceSetInfo(element);
-		if (info != null) {
+		if(info != null) {
 			return computeModificationStamp(info);
 		}
 		return super.getModificationStamp(element);
@@ -269,9 +259,9 @@ public class SysmlDocumentProvider extends AbstractDocumentProvider implements I
 	 */
 	public boolean isDeleted(Object element) {
 		IDiagramDocument document = getDiagramDocument(element);
-		if (document != null) {
+		if(document != null) {
 			Resource diagramResource = document.getDiagram().eResource();
-			if (diagramResource != null) {
+			if(diagramResource != null) {
 				IFile file = WorkspaceSynchronizer.getFile(diagramResource);
 				return file == null || file.getLocation() == null || !file.getLocation().toFile().exists();
 			}
@@ -283,15 +273,15 @@ public class SysmlDocumentProvider extends AbstractDocumentProvider implements I
 	 * @generated
 	 */
 	public ResourceSetInfo getResourceSetInfo(Object editorInput) {
-		return (ResourceSetInfo) super.getElementInfo(editorInput);
+		return (ResourceSetInfo)super.getElementInfo(editorInput);
 	}
 
 	/**
 	 * @generated
 	 */
 	protected void disposeElementInfo(Object element, ElementInfo info) {
-		if (info instanceof ResourceSetInfo) {
-			ResourceSetInfo resourceSetInfo = (ResourceSetInfo) info;
+		if(info instanceof ResourceSetInfo) {
+			ResourceSetInfo resourceSetInfo = (ResourceSetInfo)info;
 			resourceSetInfo.dispose();
 		}
 		super.disposeElementInfo(element, info);
@@ -302,23 +292,16 @@ public class SysmlDocumentProvider extends AbstractDocumentProvider implements I
 	 */
 	protected void doValidateState(Object element, Object computationContext) throws CoreException {
 		ResourceSetInfo info = getResourceSetInfo(element);
-		if (info != null) {
-			Collection/* <org.eclipse.core.resources.IFile> */files2Validate = new ArrayList/*
-																						 * <org.eclipse
-																						 * .core.
-																						 * resources
-																						 * .IFile>
-																						 */();
-			for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = info.getLoadedResourcesIterator(); it
-					.hasNext();) {
-				Resource nextResource = (Resource) it.next();
+		if(info != null) {
+			LinkedList<IFile> files2Validate = new LinkedList<IFile>();
+			for(Iterator<Resource> it = info.getLoadedResourcesIterator(); it.hasNext();) {
+				Resource nextResource = it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
-				if (file != null && file.isReadOnly()) {
+				if(file != null && file.isReadOnly()) {
 					files2Validate.add(file);
 				}
 			}
-			ResourcesPlugin.getWorkspace().validateEdit(
-					(IFile[]) files2Validate.toArray(new IFile[files2Validate.size()]), computationContext);
+			ResourcesPlugin.getWorkspace().validateEdit((IFile[])files2Validate.toArray(new IFile[files2Validate.size()]), computationContext);
 		}
 
 		super.doValidateState(element, computationContext);
@@ -329,14 +312,13 @@ public class SysmlDocumentProvider extends AbstractDocumentProvider implements I
 	 */
 	public boolean isReadOnly(Object element) {
 		ResourceSetInfo info = getResourceSetInfo(element);
-		if (info != null) {
-			if (info.isUpdateCache()) {
+		if(info != null) {
+			if(info.isUpdateCache()) {
 				try {
 					updateCache(element);
 				} catch (CoreException ex) {
 					SysmlDiagramEditorPlugin.getInstance().logError(Messages.SysmlDocumentProvider_isModifiable, ex);
-					// Error message to log was initially taken from
-					// org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide.internal.l10n.EditorMessages.StorageDocumentProvider_isModifiable
+					// Error message to log was initially taken from org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide.internal.l10n.EditorMessages.StorageDocumentProvider_isModifiable
 				}
 			}
 			return info.isReadOnly();
@@ -348,20 +330,19 @@ public class SysmlDocumentProvider extends AbstractDocumentProvider implements I
 	 * @generated
 	 */
 	public boolean isModifiable(Object element) {
-		if (!isStateValidated(element)) {
-			if (element instanceof FileEditorInput || element instanceof URIEditorInput) {
+		if(!isStateValidated(element)) {
+			if(element instanceof FileEditorInput || element instanceof URIEditorInput) {
 				return true;
 			}
 		}
 		ResourceSetInfo info = getResourceSetInfo(element);
-		if (info != null) {
-			if (info.isUpdateCache()) {
+		if(info != null) {
+			if(info.isUpdateCache()) {
 				try {
 					updateCache(element);
 				} catch (CoreException ex) {
 					SysmlDiagramEditorPlugin.getInstance().logError(Messages.SysmlDocumentProvider_isModifiable, ex);
-					// Error message to log was initially taken from
-					// org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide.internal.l10n.EditorMessages.StorageDocumentProvider_isModifiable
+					// Error message to log was initially taken from org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide.internal.l10n.EditorMessages.StorageDocumentProvider_isModifiable
 				}
 			}
 			return info.isModifiable();
@@ -374,12 +355,11 @@ public class SysmlDocumentProvider extends AbstractDocumentProvider implements I
 	 */
 	protected void updateCache(Object element) throws CoreException {
 		ResourceSetInfo info = getResourceSetInfo(element);
-		if (info != null) {
-			for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = info.getLoadedResourcesIterator(); it
-					.hasNext();) {
-				Resource nextResource = (Resource) it.next();
+		if(info != null) {
+			for(Iterator<Resource> it = info.getLoadedResourcesIterator(); it.hasNext();) {
+				Resource nextResource = it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
-				if (file != null && file.isReadOnly()) {
+				if(file != null && file.isReadOnly()) {
 					info.setReadOnly(true);
 					info.setModifiable(false);
 					return;
@@ -396,7 +376,7 @@ public class SysmlDocumentProvider extends AbstractDocumentProvider implements I
 	 */
 	protected void doUpdateStateCache(Object element) throws CoreException {
 		ResourceSetInfo info = getResourceSetInfo(element);
-		if (info != null) {
+		if(info != null) {
 			info.setUpdateCache(true);
 		}
 		super.doUpdateStateCache(element);
@@ -407,7 +387,7 @@ public class SysmlDocumentProvider extends AbstractDocumentProvider implements I
 	 */
 	public boolean isSynchronized(Object element) {
 		ResourceSetInfo info = getResourceSetInfo(element);
-		if (info != null) {
+		if(info != null) {
 			return info.isSynchronized();
 		}
 		return super.isSynchronized(element);
@@ -418,26 +398,16 @@ public class SysmlDocumentProvider extends AbstractDocumentProvider implements I
 	 */
 	protected ISchedulingRule getResetRule(Object element) {
 		ResourceSetInfo info = getResourceSetInfo(element);
-		if (info != null) {
-			Collection/* <org.eclipse.core.runtime.jobs.ISchedulingRule> */rules = new ArrayList/*
-																							 * <org.eclipse
-																							 * .
-																							 * core.
-																							 * runtime
-																							 * .
-																							 * jobs.
-																							 * ISchedulingRule
-																							 * >
-																							 */();
-			for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = info.getLoadedResourcesIterator(); it
-					.hasNext();) {
-				Resource nextResource = (Resource) it.next();
+		if(info != null) {
+			LinkedList<ISchedulingRule> rules = new LinkedList<ISchedulingRule>();
+			for(Iterator<Resource> it = info.getLoadedResourcesIterator(); it.hasNext();) {
+				Resource nextResource = it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
-				if (file != null) {
+				if(file != null) {
 					rules.add(ResourcesPlugin.getWorkspace().getRuleFactory().modifyRule(file));
 				}
 			}
-			return new MultiRule((ISchedulingRule[]) rules.toArray(new ISchedulingRule[rules.size()]));
+			return new MultiRule((ISchedulingRule[])rules.toArray(new ISchedulingRule[rules.size()]));
 		}
 		return null;
 	}
@@ -447,26 +417,16 @@ public class SysmlDocumentProvider extends AbstractDocumentProvider implements I
 	 */
 	protected ISchedulingRule getSaveRule(Object element) {
 		ResourceSetInfo info = getResourceSetInfo(element);
-		if (info != null) {
-			Collection/* <org.eclipse.core.runtime.jobs.ISchedulingRule> */rules = new ArrayList/*
-																							 * <org.eclipse
-																							 * .
-																							 * core.
-																							 * runtime
-																							 * .
-																							 * jobs.
-																							 * ISchedulingRule
-																							 * >
-																							 */();
-			for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = info.getLoadedResourcesIterator(); it
-					.hasNext();) {
-				Resource nextResource = (Resource) it.next();
+		if(info != null) {
+			LinkedList<ISchedulingRule> rules = new LinkedList<ISchedulingRule>();
+			for(Iterator<Resource> it = info.getLoadedResourcesIterator(); it.hasNext();) {
+				Resource nextResource = it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
-				if (file != null) {
+				if(file != null) {
 					rules.add(computeSchedulingRule(file));
 				}
 			}
-			return new MultiRule((ISchedulingRule[]) rules.toArray(new ISchedulingRule[rules.size()]));
+			return new MultiRule((ISchedulingRule[])rules.toArray(new ISchedulingRule[rules.size()]));
 		}
 		return null;
 	}
@@ -476,26 +436,16 @@ public class SysmlDocumentProvider extends AbstractDocumentProvider implements I
 	 */
 	protected ISchedulingRule getSynchronizeRule(Object element) {
 		ResourceSetInfo info = getResourceSetInfo(element);
-		if (info != null) {
-			Collection/* <org.eclipse.core.runtime.jobs.ISchedulingRule> */rules = new ArrayList/*
-																							 * <org.eclipse
-																							 * .
-																							 * core.
-																							 * runtime
-																							 * .
-																							 * jobs.
-																							 * ISchedulingRule
-																							 * >
-																							 */();
-			for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = info.getLoadedResourcesIterator(); it
-					.hasNext();) {
-				Resource nextResource = (Resource) it.next();
+		if(info != null) {
+			LinkedList<ISchedulingRule> rules = new LinkedList<ISchedulingRule>();
+			for(Iterator<Resource> it = info.getLoadedResourcesIterator(); it.hasNext();) {
+				Resource nextResource = it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
-				if (file != null) {
+				if(file != null) {
 					rules.add(ResourcesPlugin.getWorkspace().getRuleFactory().refreshRule(file));
 				}
 			}
-			return new MultiRule((ISchedulingRule[]) rules.toArray(new ISchedulingRule[rules.size()]));
+			return new MultiRule((ISchedulingRule[])rules.toArray(new ISchedulingRule[rules.size()]));
 		}
 		return null;
 	}
@@ -505,27 +455,16 @@ public class SysmlDocumentProvider extends AbstractDocumentProvider implements I
 	 */
 	protected ISchedulingRule getValidateStateRule(Object element) {
 		ResourceSetInfo info = getResourceSetInfo(element);
-		if (info != null) {
-			Collection/* <org.eclipse.core.runtime.jobs.ISchedulingRule> */files = new ArrayList/*
-																							 * <org.eclipse
-																							 * .
-																							 * core.
-																							 * runtime
-																							 * .
-																							 * jobs.
-																							 * ISchedulingRule
-																							 * >
-																							 */();
-			for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = info.getLoadedResourcesIterator(); it
-					.hasNext();) {
-				Resource nextResource = (Resource) it.next();
+		if(info != null) {
+			LinkedList<ISchedulingRule> files = new LinkedList<ISchedulingRule>();
+			for(Iterator<Resource> it = info.getLoadedResourcesIterator(); it.hasNext();) {
+				Resource nextResource = it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
-				if (file != null) {
+				if(file != null) {
 					files.add(file);
 				}
 			}
-			return ResourcesPlugin.getWorkspace().getRuleFactory().validateEditRule(
-					(IFile[]) files.toArray(new IFile[files.size()]));
+			return ResourcesPlugin.getWorkspace().getRuleFactory().validateEditRule((IFile[])files.toArray(new IFile[files.size()]));
 		}
 		return null;
 	}
@@ -534,18 +473,20 @@ public class SysmlDocumentProvider extends AbstractDocumentProvider implements I
 	 * @generated
 	 */
 	private ISchedulingRule computeSchedulingRule(IResource toCreateOrModify) {
-		if (toCreateOrModify.exists())
+		if(toCreateOrModify.exists())
 			return ResourcesPlugin.getWorkspace().getRuleFactory().modifyRule(toCreateOrModify);
 
 		IResource parent = toCreateOrModify;
 		do {
 			/*
-			 * XXX This is a workaround for https://bugs.eclipse.org/bugs/show_bug.cgi?id=67601
-			 * IResourceRuleFactory.createRule should iterate the hierarchy itself.
+			 * XXX This is a workaround for
+			 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=67601
+			 * IResourceRuleFactory.createRule should iterate the hierarchy
+			 * itself.
 			 */
 			toCreateOrModify = parent;
 			parent = toCreateOrModify.getParent();
-		} while (parent != null && !parent.exists());
+		} while(parent != null && !parent.exists());
 
 		return ResourcesPlugin.getWorkspace().getRuleFactory().createRule(toCreateOrModify);
 	}
@@ -555,10 +496,9 @@ public class SysmlDocumentProvider extends AbstractDocumentProvider implements I
 	 */
 	protected void doSynchronize(Object element, IProgressMonitor monitor) throws CoreException {
 		ResourceSetInfo info = getResourceSetInfo(element);
-		if (info != null) {
-			for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = info.getLoadedResourcesIterator(); it
-					.hasNext();) {
-				Resource nextResource = (Resource) it.next();
+		if(info != null) {
+			for(Iterator<Resource> it = info.getLoadedResourcesIterator(); it.hasNext();) {
+				Resource nextResource = it.next();
 				handleElementChanged(info, nextResource, monitor);
 			}
 			return;
@@ -569,32 +509,25 @@ public class SysmlDocumentProvider extends AbstractDocumentProvider implements I
 	/**
 	 * @generated
 	 */
-	protected void doSaveDocument(IProgressMonitor monitor, Object element, IDocument document, boolean overwrite)
-			throws CoreException {
+	protected void doSaveDocument(IProgressMonitor monitor, Object element, IDocument document, boolean overwrite) throws CoreException {
 		ResourceSetInfo info = getResourceSetInfo(element);
-		if (info != null) {
-			if (!overwrite && !info.isSynchronized()) {
-				throw new CoreException(new Status(IStatus.ERROR, SysmlDiagramEditorPlugin.ID,
-						IResourceStatus.OUT_OF_SYNC_LOCAL, Messages.SysmlDocumentProvider_UnsynchronizedFileSaveError,
-						null));
+		if(info != null) {
+			if(!overwrite && !info.isSynchronized()) {
+				throw new CoreException(new Status(IStatus.ERROR, SysmlDiagramEditorPlugin.ID, IResourceStatus.OUT_OF_SYNC_LOCAL, Messages.SysmlDocumentProvider_UnsynchronizedFileSaveError, null));
 			}
 			info.stopResourceListening();
 			fireElementStateChanging(element);
 			try {
-				monitor.beginTask(Messages.SysmlDocumentProvider_SaveDiagramTask, info.getResourceSet().getResources()
-						.size() + 1); // "Saving diagram"
-				for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = info.getLoadedResourcesIterator(); it
-						.hasNext();) {
-					Resource nextResource = (Resource) it.next();
-					monitor.setTaskName(NLS.bind(Messages.SysmlDocumentProvider_SaveNextResourceTask, nextResource
-							.getURI()));
-					if (nextResource.isLoaded() && !info.getEditingDomain().isReadOnly(nextResource)) {
+				monitor.beginTask(Messages.SysmlDocumentProvider_SaveDiagramTask, info.getResourceSet().getResources().size() + 1); //"Saving diagram"
+				for(Iterator<Resource> it = info.getLoadedResourcesIterator(); it.hasNext();) {
+					Resource nextResource = it.next();
+					monitor.setTaskName(NLS.bind(Messages.SysmlDocumentProvider_SaveNextResourceTask, nextResource.getURI()));
+					if(nextResource.isLoaded() && !info.getEditingDomain().isReadOnly(nextResource)) {
 						try {
 							nextResource.save(SysmlDiagramEditorUtil.getSaveOptions());
 						} catch (IOException e) {
 							fireElementStateChangeFailed(element);
-							throw new CoreException(new Status(IStatus.ERROR, SysmlDiagramEditorPlugin.ID,
-									EditorStatusCodes.RESOURCE_FAILURE, e.getLocalizedMessage(), null));
+							throw new CoreException(new Status(IStatus.ERROR, SysmlDiagramEditorPlugin.ID, EditorStatusCodes.RESOURCE_FAILURE, e.getLocalizedMessage(), null));
 						}
 					}
 					monitor.worked(1);
@@ -609,39 +542,29 @@ public class SysmlDocumentProvider extends AbstractDocumentProvider implements I
 			}
 		} else {
 			URI newResoruceURI;
-			List affectedFiles = null;
-			if (element instanceof FileEditorInput) {
-				IFile newFile = ((FileEditorInput) element).getFile();
+			List<IFile> affectedFiles = null;
+			if(element instanceof FileEditorInput) {
+				IFile newFile = ((FileEditorInput)element).getFile();
 				affectedFiles = Collections.singletonList(newFile);
 				newResoruceURI = URI.createPlatformResourceURI(newFile.getFullPath().toString(), true);
-			} else if (element instanceof URIEditorInput) {
-				newResoruceURI = ((URIEditorInput) element).getURI();
+			} else if(element instanceof URIEditorInput) {
+				newResoruceURI = ((URIEditorInput)element).getURI();
 			} else {
 				fireElementStateChangeFailed(element);
-				throw new CoreException(new Status(IStatus.ERROR, SysmlDiagramEditorPlugin.ID, 0, NLS.bind(
-						Messages.SysmlDocumentProvider_IncorrectInputError, new Object[] { element,
-								"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
-						null));
+				throw new CoreException(new Status(IStatus.ERROR, SysmlDiagramEditorPlugin.ID, 0, NLS.bind(Messages.SysmlDocumentProvider_IncorrectInputError, new Object[]{ element, "org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
+				null));
 			}
-			if (false == document instanceof IDiagramDocument) {
+			if(false == document instanceof IDiagramDocument) {
 				fireElementStateChangeFailed(element);
-				throw new CoreException(
-						new Status(
-								IStatus.ERROR,
-								SysmlDiagramEditorPlugin.ID,
-								0,
-								"Incorrect document used: " + document + " instead of org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocument", null)); //$NON-NLS-1$ //$NON-NLS-2$
+				throw new CoreException(new Status(IStatus.ERROR, SysmlDiagramEditorPlugin.ID, 0, "Incorrect document used: " + document + " instead of org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocument", null)); //$NON-NLS-1$ //$NON-NLS-2$
 			}
-			IDiagramDocument diagramDocument = (IDiagramDocument) document;
-			final Resource newResource = diagramDocument.getEditingDomain().getResourceSet().createResource(
-					newResoruceURI);
-			final Diagram diagramCopy = (Diagram) EcoreUtil.copy(diagramDocument.getDiagram());
+			IDiagramDocument diagramDocument = (IDiagramDocument)document;
+			final Resource newResource = diagramDocument.getEditingDomain().getResourceSet().createResource(newResoruceURI);
+			final Diagram diagramCopy = (Diagram)EcoreUtil.copy(diagramDocument.getDiagram());
 			try {
-				new AbstractTransactionalCommand(diagramDocument.getEditingDomain(), NLS.bind(
-						Messages.SysmlDocumentProvider_SaveAsOperation, diagramCopy.getName()), affectedFiles) {
+				new AbstractTransactionalCommand(diagramDocument.getEditingDomain(), NLS.bind(Messages.SysmlDocumentProvider_SaveAsOperation, diagramCopy.getName()), affectedFiles) {
 
-					protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info)
-							throws ExecutionException {
+					protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 						newResource.getContents().add(diagramCopy);
 						return CommandResult.newOKCommandResult();
 					}
@@ -649,12 +572,10 @@ public class SysmlDocumentProvider extends AbstractDocumentProvider implements I
 				newResource.save(SysmlDiagramEditorUtil.getSaveOptions());
 			} catch (ExecutionException e) {
 				fireElementStateChangeFailed(element);
-				throw new CoreException(new Status(IStatus.ERROR, SysmlDiagramEditorPlugin.ID, 0, e
-						.getLocalizedMessage(), null));
+				throw new CoreException(new Status(IStatus.ERROR, SysmlDiagramEditorPlugin.ID, 0, e.getLocalizedMessage(), null));
 			} catch (IOException e) {
 				fireElementStateChangeFailed(element);
-				throw new CoreException(new Status(IStatus.ERROR, SysmlDiagramEditorPlugin.ID, 0, e
-						.getLocalizedMessage(), null));
+				throw new CoreException(new Status(IStatus.ERROR, SysmlDiagramEditorPlugin.ID, 0, e.getLocalizedMessage(), null));
 			}
 			newResource.unload();
 		}
@@ -665,14 +586,12 @@ public class SysmlDocumentProvider extends AbstractDocumentProvider implements I
 	 */
 	protected void handleElementChanged(ResourceSetInfo info, Resource changedResource, IProgressMonitor monitor) {
 		IFile file = WorkspaceSynchronizer.getFile(changedResource);
-		if (file != null) {
+		if(file != null) {
 			try {
 				file.refreshLocal(IResource.DEPTH_INFINITE, monitor);
 			} catch (CoreException ex) {
-				SysmlDiagramEditorPlugin.getInstance().logError(
-						Messages.SysmlDocumentProvider_handleElementContentChanged, ex);
-				// Error message to log was initially taken from
-				// org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide.internal.l10n.EditorMessages.FileDocumentProvider_handleElementContentChanged
+				SysmlDiagramEditorPlugin.getInstance().logError(Messages.SysmlDocumentProvider_handleElementContentChanged, ex);
+				// Error message to log was initially taken from org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide.internal.l10n.EditorMessages.FileDocumentProvider_handleElementContentChanged
 			}
 		}
 		changedResource.unload();
@@ -685,7 +604,7 @@ public class SysmlDocumentProvider extends AbstractDocumentProvider implements I
 		} catch (CoreException e) {
 			info.fStatus = e.getStatus();
 		}
-		if (!info.fCanBeSaved) {
+		if(!info.fCanBeSaved) {
 			info.setModificationStamp(computeModificationStamp(info));
 		}
 		addUnchangedElementListeners(info.getEditorInput(), info);
@@ -696,9 +615,8 @@ public class SysmlDocumentProvider extends AbstractDocumentProvider implements I
 	 * @generated
 	 */
 	protected void handleElementMoved(IEditorInput input, URI uri) {
-		if (input instanceof FileEditorInput) {
-			IFile newFile = ResourcesPlugin.getWorkspace().getRoot().getFile(
-					new Path(URI.decode(uri.path())).removeFirstSegments(1));
+		if(input instanceof FileEditorInput) {
+			IFile newFile = ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(URI.decode(uri.path())).removeFirstSegments(1));
 			fireElementMoved(input, newFile == null ? null : new FileEditorInput(newFile));
 			return;
 		}
@@ -718,8 +636,8 @@ public class SysmlDocumentProvider extends AbstractDocumentProvider implements I
 	 */
 	public IDiagramDocument getDiagramDocument(Object element) {
 		IDocument doc = getDocument(element);
-		if (doc instanceof IDiagramDocument) {
-			return (IDiagramDocument) doc;
+		if(doc instanceof IDiagramDocument) {
+			return (IDiagramDocument)doc;
 		}
 		return null;
 	}
@@ -749,7 +667,7 @@ public class SysmlDocumentProvider extends AbstractDocumentProvider implements I
 		/**
 		 * @generated
 		 */
-		private Collection myUnSynchronizedResources = new ArrayList();
+		private LinkedList<Resource> myUnSynchronizedResources = new LinkedList<Resource>();
 
 		/**
 		 * @generated
@@ -824,9 +742,8 @@ public class SysmlDocumentProvider extends AbstractDocumentProvider implements I
 		/**
 		 * @generated
 		 */
-		public Iterator/* <org.eclipse.emf.ecore.resource.Resource> */getLoadedResourcesIterator() {
-			return new ArrayList/* <org.eclipse.emf.ecore.resource.Resource> */(getResourceSet().getResources())
-					.iterator();
+		public Iterator<Resource> getLoadedResourcesIterator() {
+			return new ArrayList<Resource>(getResourceSet().getResources()).iterator();
 		}
 
 		/**
@@ -842,8 +759,8 @@ public class SysmlDocumentProvider extends AbstractDocumentProvider implements I
 		public void dispose() {
 			stopResourceListening();
 			getResourceSet().eAdapters().remove(myResourceSetListener);
-			for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = getLoadedResourcesIterator(); it.hasNext();) {
-				Resource resource = (Resource) it.next();
+			for(Iterator<Resource> it = getLoadedResourcesIterator(); it.hasNext();) {
+				Resource resource = it.next();
 				resource.unload();
 			}
 			getEditingDomain().dispose();
@@ -942,8 +859,8 @@ public class SysmlDocumentProvider extends AbstractDocumentProvider implements I
 			 * @generated
 			 */
 			public boolean handleResourceChanged(final Resource resource) {
-				synchronized (ResourceSetInfo.this) {
-					if (ResourceSetInfo.this.fCanBeSaved) {
+				synchronized(ResourceSetInfo.this) {
+					if(ResourceSetInfo.this.fCanBeSaved) {
 						ResourceSetInfo.this.setUnSynchronized(resource);
 						return true;
 					}
@@ -961,8 +878,8 @@ public class SysmlDocumentProvider extends AbstractDocumentProvider implements I
 			 * @generated
 			 */
 			public boolean handleResourceDeleted(Resource resource) {
-				synchronized (ResourceSetInfo.this) {
-					if (ResourceSetInfo.this.fCanBeSaved) {
+				synchronized(ResourceSetInfo.this) {
+					if(ResourceSetInfo.this.fCanBeSaved) {
 						ResourceSetInfo.this.setUnSynchronized(resource);
 						return true;
 					}
@@ -980,13 +897,13 @@ public class SysmlDocumentProvider extends AbstractDocumentProvider implements I
 			 * @generated
 			 */
 			public boolean handleResourceMoved(Resource resource, final URI newURI) {
-				synchronized (ResourceSetInfo.this) {
-					if (ResourceSetInfo.this.fCanBeSaved) {
+				synchronized(ResourceSetInfo.this) {
+					if(ResourceSetInfo.this.fCanBeSaved) {
 						ResourceSetInfo.this.setUnSynchronized(resource);
 						return true;
 					}
 				}
-				if (myDocument.getDiagram().eResource() == resource) {
+				if(myDocument.getDiagram().eResource() == resource) {
 					Display.getDefault().asyncExec(new Runnable() {
 
 						public void run() {
@@ -1023,44 +940,41 @@ public class SysmlDocumentProvider extends AbstractDocumentProvider implements I
 		 */
 		public ResourceSetModificationListener(ResourceSetInfo info) {
 			myInfo = info;
-			myModifiedFilter = NotificationFilter.createEventTypeFilter(Notification.SET).or(
-					NotificationFilter.createEventTypeFilter(Notification.UNSET)).and(
-					NotificationFilter.createFeatureFilter(Resource.class, Resource.RESOURCE__IS_MODIFIED));
+			myModifiedFilter = NotificationFilter.createEventTypeFilter(Notification.SET).or(NotificationFilter.createEventTypeFilter(Notification.UNSET)).and(NotificationFilter.createFeatureFilter(Resource.class, Resource.RESOURCE__IS_MODIFIED));
 		}
 
 		/**
 		 * @generated
 		 */
 		public void notifyChanged(Notification notification) {
-			if (notification.getNotifier() instanceof ResourceSet) {
+			if(notification.getNotifier() instanceof ResourceSet) {
 				super.notifyChanged(notification);
 			}
-			if (!notification.isTouch() && myModifiedFilter.matches(notification)) {
-				if (notification.getNotifier() instanceof Resource) {
-					Resource resource = (Resource) notification.getNotifier();
-					if (resource.isLoaded()) {
+			if(!notification.isTouch() && myModifiedFilter.matches(notification)) {
+				if(notification.getNotifier() instanceof Resource) {
+					Resource resource = (Resource)notification.getNotifier();
+					if(resource.isLoaded()) {
 						boolean modified = false;
-						for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = myInfo
-								.getLoadedResourcesIterator(); it.hasNext() && !modified;) {
-							Resource nextResource = (Resource) it.next();
-							if (nextResource.isLoaded()) {
+						for(Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = myInfo.getLoadedResourcesIterator(); it.hasNext() && !modified;) {
+							Resource nextResource = (Resource)it.next();
+							if(nextResource.isLoaded()) {
 								modified = nextResource.isModified();
 							}
 						}
 						boolean dirtyStateChanged = false;
-						synchronized (myInfo) {
-							if (modified != myInfo.fCanBeSaved) {
+						synchronized(myInfo) {
+							if(modified != myInfo.fCanBeSaved) {
 								myInfo.fCanBeSaved = modified;
 								dirtyStateChanged = true;
 							}
-							if (!resource.isModified()) {
+							if(!resource.isModified()) {
 								myInfo.setSynchronized(resource);
 							}
 						}
-						if (dirtyStateChanged) {
+						if(dirtyStateChanged) {
 							fireElementDirtyStateChanged(myInfo.getEditorInput(), modified);
 
-							if (!modified) {
+							if(!modified) {
 								myInfo.setModificationStamp(computeModificationStamp(myInfo));
 							}
 						}

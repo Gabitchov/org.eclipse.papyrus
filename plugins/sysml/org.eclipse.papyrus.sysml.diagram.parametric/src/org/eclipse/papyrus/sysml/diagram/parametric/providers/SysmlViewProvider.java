@@ -30,7 +30,6 @@ import org.eclipse.gmf.runtime.diagram.core.services.view.CreateNodeViewOperatio
 import org.eclipse.gmf.runtime.diagram.core.services.view.CreateViewForKindOperation;
 import org.eclipse.gmf.runtime.diagram.core.services.view.CreateViewOperation;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
-import org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.emf.core.util.EMFCoreUtil;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
@@ -47,12 +46,12 @@ import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.RelativeBendpoints;
-import org.eclipse.gmf.runtime.notation.Routing;
 import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.datatype.RelativeBendpoint;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
+import org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.papyrus.sysml.constraints.ConstraintProperty;
@@ -81,17 +80,17 @@ public class SysmlViewProvider extends AbstractProvider implements IViewProvider
 	/**
 	 * @generated
 	 */
-	public boolean provides(IOperation operation) {
-		if (operation instanceof CreateViewForKindOperation) {
-			return provides((CreateViewForKindOperation) operation);
+	public final boolean provides(IOperation operation) {
+		if(operation instanceof CreateViewForKindOperation) {
+			return provides((CreateViewForKindOperation)operation);
 		}
 		assert operation instanceof CreateViewOperation;
-		if (operation instanceof CreateDiagramViewOperation) {
-			return provides((CreateDiagramViewOperation) operation);
-		} else if (operation instanceof CreateEdgeViewOperation) {
-			return provides((CreateEdgeViewOperation) operation);
-		} else if (operation instanceof CreateNodeViewOperation) {
-			return provides((CreateNodeViewOperation) operation);
+		if(operation instanceof CreateDiagramViewOperation) {
+			return provides((CreateDiagramViewOperation)operation);
+		} else if(operation instanceof CreateEdgeViewOperation) {
+			return provides((CreateEdgeViewOperation)operation);
+		} else if(operation instanceof CreateNodeViewOperation) {
+			return provides((CreateNodeViewOperation)operation);
 		}
 		return false;
 	}
@@ -101,68 +100,89 @@ public class SysmlViewProvider extends AbstractProvider implements IViewProvider
 	 */
 	protected boolean provides(CreateViewForKindOperation op) {
 		/*
-		 * if (op.getViewKind() == Node.class) return getNodeViewClass(op.getSemanticAdapter(),
-		 * op.getContainerView(), op.getSemanticHint()) != null; if (op.getViewKind() == Edge.class)
-		 * return getEdgeViewClass(op.getSemanticAdapter(), op.getContainerView(),
-		 * op.getSemanticHint()) != null;
+		 * if (op.getViewKind() == Node.class)
+		 * return getNodeViewClass(op.getSemanticAdapter(), op.getContainerView(), op.getSemanticHint()) != null;
+		 * if (op.getViewKind() == Edge.class)
+		 * return getEdgeViewClass(op.getSemanticAdapter(), op.getContainerView(), op.getSemanticHint()) != null;
 		 */
+
+		// check Diagram Type should be the class diagram
+		String modelID = SysmlVisualIDRegistry.getModelID(op.getContainerView());
+		if(!getDiagramProvidedId().equals(modelID)) {
+			return false;
+		}
+
+		int visualID = SysmlVisualIDRegistry.getVisualID(op.getSemanticHint());
+		if(Node.class.isAssignableFrom(op.getViewKind())) {
+			return SysmlVisualIDRegistry.canCreateNode(op.getContainerView(), visualID);
+		}
+
 		return true;
 	}
 
 	/**
 	 * @generated
 	 */
+	protected String getDiagramProvidedId() {
+		/*
+		 * Indicates for which diagram this provider works for.
+		 * <p>
+		 * This method can be overloaded when diagram editor inherits from another one, but should never be <code>null</code>
+		 * </p>
+		 * 
+		 * @return the unique identifier of the diagram for which views are provided.
+		 */
+		return ParametricEditPart.MODEL_ID;
+	}
+
+	/**
+	 * @generated
+	 */
 	protected boolean provides(CreateDiagramViewOperation op) {
-		return ParametricEditPart.MODEL_ID.equals(op.getSemanticHint())
-				&& SysmlVisualIDRegistry.getDiagramVisualID(getSemanticElement(op.getSemanticAdapter())) != -1;
+		return ParametricEditPart.MODEL_ID.equals(op.getSemanticHint()) && SysmlVisualIDRegistry.getDiagramVisualID(getSemanticElement(op.getSemanticAdapter())) != -1;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean provides(CreateNodeViewOperation op) {
-		if (op.getContainerView() == null) {
+		if(op.getContainerView() == null) {
 			return false;
 		}
 		IElementType elementType = getSemanticElementType(op.getSemanticAdapter());
 		EObject domainElement = getSemanticElement(op.getSemanticAdapter());
 		int visualID;
-		if (op.getSemanticHint() == null) {
+		if(op.getSemanticHint() == null) {
 			// Semantic hint is not specified. Can be a result of call from CanonicalEditPolicy.
 			// In this situation there should be NO elementType, visualID will be determined
 			// by VisualIDRegistry.getNodeVisualID() for domainElement.
-			if (elementType != null || domainElement == null) {
+			if(elementType != null || domainElement == null) {
 				return false;
 			}
 			visualID = SysmlVisualIDRegistry.getNodeVisualID(op.getContainerView(), domainElement);
 		} else {
 			visualID = SysmlVisualIDRegistry.getVisualID(op.getSemanticHint());
-			if (elementType != null) {
-				if (!SysmlElementTypes.isKnownElementType(elementType) || (!(elementType instanceof IHintedType))) {
+			if(elementType != null) {
+				if(!SysmlElementTypes.isKnownElementType(elementType) || (!(elementType instanceof IHintedType))) {
 					return false; // foreign element type
 				}
-				String elementTypeHint = ((IHintedType) elementType).getSemanticHint();
-				if (!op.getSemanticHint().equals(elementTypeHint)) {
-					return false; // if semantic hint is specified it should be the same as in
-									// element type
+				String elementTypeHint = ((IHintedType)elementType).getSemanticHint();
+				if(!op.getSemanticHint().equals(elementTypeHint)) {
+					return false; // if semantic hint is specified it should be the same as in element type
 				}
-				if (domainElement != null
-						&& visualID != SysmlVisualIDRegistry.getNodeVisualID(op.getContainerView(), domainElement)) {
-					return false; // visual id for node EClass should match visual id from element
-									// type
+				if(domainElement != null && visualID != SysmlVisualIDRegistry.getNodeVisualID(op.getContainerView(), domainElement)) {
+					return false; // visual id for node EClass should match visual id from element type
 				}
 			} else {
-				if (!ParametricEditPart.MODEL_ID.equals(SysmlVisualIDRegistry.getModelID(op.getContainerView()))) {
+				if(!ParametricEditPart.MODEL_ID.equals(SysmlVisualIDRegistry.getModelID(op.getContainerView()))) {
 					return false; // foreign diagram
 				}
-				switch (visualID) {
+				switch(visualID) {
 				case ConstraintPropertyEditPart.VISUAL_ID:
 				case Property2EditPart.VISUAL_ID:
 				case PropertyEditPart.VISUAL_ID:
-					if (domainElement == null
-							|| visualID != SysmlVisualIDRegistry.getNodeVisualID(op.getContainerView(), domainElement)) {
-						return false; // visual id in semantic hint should match visual id for
-										// domain element
+					if(domainElement == null || visualID != SysmlVisualIDRegistry.getNodeVisualID(op.getContainerView(), domainElement)) {
+						return false; // visual id in semantic hint should match visual id for domain element
 					}
 					break;
 				default:
@@ -170,8 +190,7 @@ public class SysmlViewProvider extends AbstractProvider implements IViewProvider
 				}
 			}
 		}
-		return ConstraintPropertyEditPart.VISUAL_ID == visualID || PropertyEditPart.VISUAL_ID == visualID
-				|| Property2EditPart.VISUAL_ID == visualID;
+		return ConstraintPropertyEditPart.VISUAL_ID == visualID || PropertyEditPart.VISUAL_ID == visualID || Property2EditPart.VISUAL_ID == visualID;
 	}
 
 	/**
@@ -179,17 +198,16 @@ public class SysmlViewProvider extends AbstractProvider implements IViewProvider
 	 */
 	protected boolean provides(CreateEdgeViewOperation op) {
 		IElementType elementType = getSemanticElementType(op.getSemanticAdapter());
-		if (!SysmlElementTypes.isKnownElementType(elementType) || (!(elementType instanceof IHintedType))) {
+		if(!SysmlElementTypes.isKnownElementType(elementType) || (!(elementType instanceof IHintedType))) {
 			return false; // foreign element type
 		}
-		String elementTypeHint = ((IHintedType) elementType).getSemanticHint();
-		if (elementTypeHint == null || (op.getSemanticHint() != null && !elementTypeHint.equals(op.getSemanticHint()))) {
-			return false; // our hint is visual id and must be specified, and it should be the same
-							// as in element type
+		String elementTypeHint = ((IHintedType)elementType).getSemanticHint();
+		if(elementTypeHint == null || (op.getSemanticHint() != null && !elementTypeHint.equals(op.getSemanticHint()))) {
+			return false; // our hint is visual id and must be specified, and it should be the same as in element type
 		}
 		int visualID = SysmlVisualIDRegistry.getVisualID(elementTypeHint);
 		EObject domainElement = getSemanticElement(op.getSemanticAdapter());
-		if (domainElement != null && visualID != SysmlVisualIDRegistry.getLinkWithClassVisualID(domainElement)) {
+		if(domainElement != null && visualID != SysmlVisualIDRegistry.getLinkWithClassVisualID(domainElement)) {
 			return false; // visual id for link EClass should match visual id from element type
 		}
 		return true;
@@ -210,16 +228,15 @@ public class SysmlViewProvider extends AbstractProvider implements IViewProvider
 	/**
 	 * @generated
 	 */
-	public Node createNode(IAdaptable semanticAdapter, View containerView, String semanticHint, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createNode(IAdaptable semanticAdapter, View containerView, String semanticHint, int index, boolean persisted, PreferencesHint preferencesHint) {
 		final EObject domainElement = getSemanticElement(semanticAdapter);
 		final int visualID;
-		if (semanticHint == null) {
+		if(semanticHint == null) {
 			visualID = SysmlVisualIDRegistry.getNodeVisualID(containerView, domainElement);
 		} else {
 			visualID = SysmlVisualIDRegistry.getVisualID(semanticHint);
 		}
-		switch (visualID) {
+		switch(visualID) {
 		case ConstraintPropertyEditPart.VISUAL_ID:
 			return createConstraintProperty_2003(domainElement, containerView, index, persisted, preferencesHint);
 		case PropertyEditPart.VISUAL_ID:
@@ -234,14 +251,12 @@ public class SysmlViewProvider extends AbstractProvider implements IViewProvider
 	/**
 	 * @generated
 	 */
-	public Edge createEdge(IAdaptable semanticAdapter, View containerView, String semanticHint, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Edge createEdge(IAdaptable semanticAdapter, View containerView, String semanticHint, int index, boolean persisted, PreferencesHint preferencesHint) {
 		IElementType elementType = getSemanticElementType(semanticAdapter);
-		String elementTypeHint = ((IHintedType) elementType).getSemanticHint();
-		switch (SysmlVisualIDRegistry.getVisualID(elementTypeHint)) {
+		String elementTypeHint = ((IHintedType)elementType).getSemanticHint();
+		switch(SysmlVisualIDRegistry.getVisualID(elementTypeHint)) {
 		case ConnectorEditPart.VISUAL_ID:
-			return createConnector_4001(getSemanticElement(semanticAdapter), containerView, index, persisted,
-					preferencesHint);
+			return createConnector_4001(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
 		}
 		// can never happen, provided #provides(CreateEdgeViewOperation) is correct
 		return null;
@@ -250,8 +265,7 @@ public class SysmlViewProvider extends AbstractProvider implements IViewProvider
 	/**
 	 * @generated NOT
 	 */
-	public Node createConstraintProperty_2003(EObject domainElement, View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
+	public Node createConstraintProperty_2003(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(SysmlVisualIDRegistry.getType(ConstraintPropertyEditPart.VISUAL_ID));
@@ -261,7 +275,7 @@ public class SysmlViewProvider extends AbstractProvider implements IViewProvider
 
 		stampShortcut(containerView, node);
 		// initializeFromPreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 
 		initForegroundFromPrefs(node, prefStore, "ConstraintProperty");
 
@@ -273,9 +287,9 @@ public class SysmlViewProvider extends AbstractProvider implements IViewProvider
 		Node label5004 = createLabel(node, SysmlVisualIDRegistry.getType(ConstraintLabelEditPart.VISUAL_ID));
 
 		// create the associated properties
-		Type type = ((ConstraintProperty) domainElement).getBase_Property().getType();
-		if (type != null && type instanceof StructuredClassifier) {
-			for (Property property : ((StructuredClassifier) type).getOwnedAttributes()) {
+		Type type = ((ConstraintProperty)domainElement).getBase_Property().getType();
+		if(type != null && type instanceof StructuredClassifier) {
+			for(Property property : ((StructuredClassifier)type).getOwnedAttributes()) {
 				createProperty_3002(property, node, index, persisted, preferencesHint);
 			}
 		}
@@ -285,70 +299,64 @@ public class SysmlViewProvider extends AbstractProvider implements IViewProvider
 	/**
 	 * @generated
 	 */
-	public Node createProperty_2005(EObject domainElement, View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
+	public Node createProperty_2005(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(SysmlVisualIDRegistry.getType(PropertyEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
 		stampShortcut(containerView, node);
-		// initializeFromPreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 
-		initForegroundFromPrefs(node, prefStore, "Property");
+		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node, prefStore, "Property");
 
-		initFontStyleFromPrefs(node, prefStore, "Property");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Property");
 
-		initBackgroundFromPrefs(node, prefStore, "Property");
+		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "Property");
 
 		Node label5002 = createLabel(node, SysmlVisualIDRegistry.getType(PropertyNameEditPart.VISUAL_ID));
-		
-//		if (containerView.getElement() instanceof Classifier) {
-//			PropertyLinkedToClassifierNode link = new PropertyLinkedToClassifierNode((Classifier) containerView.getElement(), (Property) node.getElement(), node);
-//			link.refresh();
-//			String name = link.getName();
-//			link.createRootingProperty(node, name);
-//		}
+
 		return node;
 	}
 
 	/**
 	 * @generated
 	 */
-	public Node createProperty_3002(EObject domainElement, View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
+	public Node createProperty_3002(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.getStyles().add(NotationFactory.eINSTANCE.createHintedDiagramLinkStyle());
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(SysmlVisualIDRegistry.getType(Property2EditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-		// initializeFromPreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 
-		initForegroundFromPrefs(node, prefStore, "Property");
+		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node, prefStore, "Property");
 
-		initBackgroundFromPrefs(node, prefStore, "Property");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Property");
+
+		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "Property");
 
 		Node label5003 = createLabel(node, SysmlVisualIDRegistry.getType(PropertyName2EditPart.VISUAL_ID));
 		label5003.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 
-		Location location5003 = (Location) label5003.getLayoutConstraint();
+		Location location5003 = (Location)label5003.getLayoutConstraint();
 		location5003.setX(0);
 		location5003.setY(5);
+
 		return node;
 	}
 
 	/**
 	 * @generated
 	 */
-	public Edge createConnector_4001(EObject domainElement, View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
+	public Edge createConnector_4001(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Connector edge = NotationFactory.eINSTANCE.createConnector();
 		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
 		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE.createRelativeBendpoints();
-		ArrayList points = new ArrayList(2);
+		ArrayList<RelativeBendpoint> points = new ArrayList<RelativeBendpoint>(2);
 		points.add(new RelativeBendpoint());
 		points.add(new RelativeBendpoint());
 		bendpoints.setPoints(points);
@@ -357,29 +365,35 @@ public class SysmlViewProvider extends AbstractProvider implements IViewProvider
 		edge.setType(SysmlVisualIDRegistry.getType(ConnectorEditPart.VISUAL_ID));
 		edge.setElement(domainElement);
 		// initializePreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 
-		initForegroundFromPrefs(edge, prefStore, "Connector");
+		PreferenceInitializerForElementHelper.initForegroundFromPrefs(edge, prefStore, "Connector");
 
-		initFontStyleFromPrefs(edge, prefStore, "Connector");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(edge, prefStore, "Connector");
 
-		Routing routing = Routing.get(prefStore.getInt(IPreferenceConstants.PREF_LINE_STYLE));
-		if (routing != null) {
-			ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
-		}
+		//org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
+		//if (routing != null) {
+		//	org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
+		//}
+
+		PreferenceInitializerForElementHelper.initRountingFromPrefs(edge, prefStore, "Connector");
+
 		Node label6001 = createLabel(edge, SysmlVisualIDRegistry.getType(ConnectorNameEditPart.VISUAL_ID));
 		label6001.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location6001 = (Location) label6001.getLayoutConstraint();
+		Location location6001 = (Location)label6001.getLayoutConstraint();
 		location6001.setX(0);
 		location6001.setY(40);
+
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(edge, prefStore, "Connector");
+
 		return edge;
 	}
 
 	/**
 	 * @generated
 	 */
-	private void stampShortcut(View containerView, Node target) {
-		if (!ParametricEditPart.MODEL_ID.equals(SysmlVisualIDRegistry.getModelID(containerView))) {
+	protected void stampShortcut(View containerView, Node target) {
+		if(!ParametricEditPart.MODEL_ID.equals(SysmlVisualIDRegistry.getModelID(containerView))) {
 			EAnnotation shortcutAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
 			shortcutAnnotation.setSource("Shortcut"); //$NON-NLS-1$
 			shortcutAnnotation.getDetails().put("modelID", ParametricEditPart.MODEL_ID); //$NON-NLS-1$
@@ -390,7 +404,7 @@ public class SysmlViewProvider extends AbstractProvider implements IViewProvider
 	/**
 	 * @generated
 	 */
-	private Node createLabel(View owner, String hint) {
+	protected Node createLabel(View owner, String hint) {
 		DecorationNode rv = NotationFactory.eINSTANCE.createDecorationNode();
 		rv.setType(hint);
 		ViewUtil.insertChildView(owner, rv, ViewUtil.APPEND, true);
@@ -400,12 +414,12 @@ public class SysmlViewProvider extends AbstractProvider implements IViewProvider
 	/**
 	 * @generated
 	 */
-	private EObject getSemanticElement(IAdaptable semanticAdapter) {
-		if (semanticAdapter == null) {
+	protected EObject getSemanticElement(IAdaptable semanticAdapter) {
+		if(semanticAdapter == null) {
 			return null;
 		}
-		EObject eObject = (EObject) semanticAdapter.getAdapter(EObject.class);
-		if (eObject != null) {
+		EObject eObject = (EObject)semanticAdapter.getAdapter(EObject.class);
+		if(eObject != null) {
 			return EMFCoreUtil.resolve(TransactionUtil.getEditingDomain(eObject), eObject);
 		}
 		return null;
@@ -414,11 +428,11 @@ public class SysmlViewProvider extends AbstractProvider implements IViewProvider
 	/**
 	 * @generated
 	 */
-	private IElementType getSemanticElementType(IAdaptable semanticAdapter) {
-		if (semanticAdapter == null) {
+	protected IElementType getSemanticElementType(IAdaptable semanticAdapter) {
+		if(semanticAdapter == null) {
 			return null;
 		}
-		return (IElementType) semanticAdapter.getAdapter(IElementType.class);
+		return (IElementType)semanticAdapter.getAdapter(IElementType.class);
 	}
 
 	/**
@@ -426,11 +440,10 @@ public class SysmlViewProvider extends AbstractProvider implements IViewProvider
 	 */
 	private void initFontStyleFromPrefs(View view, final IPreferenceStore store, String elementName) {
 		String fontConstant = PreferenceConstantHelper.getElementConstant(elementName, PreferenceConstantHelper.FONT);
-		String fontColorConstant = PreferenceConstantHelper.getElementConstant(elementName,
-				PreferenceConstantHelper.COLOR_FONT);
+		String fontColorConstant = PreferenceConstantHelper.getElementConstant(elementName, PreferenceConstantHelper.COLOR_FONT);
 
-		FontStyle viewFontStyle = (FontStyle) view.getStyle(NotationPackage.Literals.FONT_STYLE);
-		if (viewFontStyle != null) {
+		FontStyle viewFontStyle = (FontStyle)view.getStyle(NotationPackage.Literals.FONT_STYLE);
+		if(viewFontStyle != null) {
 			FontData fontData = PreferenceConverter.getFontData(store, fontConstant);
 			viewFontStyle.setFontName(fontData.getName());
 			viewFontStyle.setFontHeight(fontData.getHeight());
@@ -446,35 +459,28 @@ public class SysmlViewProvider extends AbstractProvider implements IViewProvider
 	 * @generated
 	 */
 	private void initForegroundFromPrefs(View view, final IPreferenceStore store, String elementName) {
-		String lineColorConstant = PreferenceConstantHelper.getElementConstant(elementName,
-				PreferenceConstantHelper.COLOR_LINE);
+		String lineColorConstant = PreferenceConstantHelper.getElementConstant(elementName, PreferenceConstantHelper.COLOR_LINE);
 		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(store, lineColorConstant);
-		ViewUtil.setStructuralFeatureValue(view, NotationPackage.eINSTANCE.getLineStyle_LineColor(), FigureUtilities
-				.RGBToInteger(lineRGB));
+		ViewUtil.setStructuralFeatureValue(view, NotationPackage.eINSTANCE.getLineStyle_LineColor(), FigureUtilities.RGBToInteger(lineRGB));
 	}
 
 	/**
 	 * @generated
 	 */
 	private void initBackgroundFromPrefs(View view, final IPreferenceStore store, String elementName) {
-		String fillColorConstant = PreferenceConstantHelper.getElementConstant(elementName,
-				PreferenceConstantHelper.COLOR_FILL);
-		String gradientColorConstant = PreferenceConstantHelper.getElementConstant(elementName,
-				PreferenceConstantHelper.COLOR_GRADIENT);
-		String gradientPolicyConstant = PreferenceConstantHelper.getElementConstant(elementName,
-				PreferenceConstantHelper.GRADIENT_POLICY);
+		String fillColorConstant = PreferenceConstantHelper.getElementConstant(elementName, PreferenceConstantHelper.COLOR_FILL);
+		String gradientColorConstant = PreferenceConstantHelper.getElementConstant(elementName, PreferenceConstantHelper.COLOR_GRADIENT);
+		String gradientPolicyConstant = PreferenceConstantHelper.getElementConstant(elementName, PreferenceConstantHelper.GRADIENT_POLICY);
 
 		org.eclipse.swt.graphics.RGB fillRGB = PreferenceConverter.getColor(store, fillColorConstant);
-		ViewUtil.setStructuralFeatureValue(view, NotationPackage.eINSTANCE.getFillStyle_FillColor(), FigureUtilities
-				.RGBToInteger(fillRGB));
+		ViewUtil.setStructuralFeatureValue(view, NotationPackage.eINSTANCE.getFillStyle_FillColor(), FigureUtilities.RGBToInteger(fillRGB));
 
-		FillStyle fillStyle = (FillStyle) view.getStyle(NotationPackage.Literals.FILL_STYLE);
+		FillStyle fillStyle = (FillStyle)view.getStyle(NotationPackage.Literals.FILL_STYLE);
 		fillStyle.setFillColor(FigureUtilities.RGBToInteger(fillRGB).intValue());
 
 		;
-		if (store.getBoolean(gradientPolicyConstant)) {
-			GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(store
-					.getString(gradientColorConstant));
+		if(store.getBoolean(gradientPolicyConstant)) {
+			GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(store.getString(gradientColorConstant));
 			fillStyle.setGradient(gradientPreferenceConverter.getGradientData());
 			fillStyle.setTransparency(gradientPreferenceConverter.getTransparency());
 		}

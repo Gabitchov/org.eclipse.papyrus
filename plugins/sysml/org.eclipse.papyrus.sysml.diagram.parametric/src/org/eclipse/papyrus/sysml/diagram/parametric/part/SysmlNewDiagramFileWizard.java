@@ -15,7 +15,6 @@ package org.eclipse.papyrus.sysml.diagram.parametric.part;
 
 import java.io.IOException;
 import java.util.LinkedList;
-import java.util.List;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.operations.OperationHistoryFactory;
@@ -71,16 +70,14 @@ public class SysmlNewDiagramFileWizard extends Wizard {
 		assert diagramRoot != null : "Doagram root element must be specified"; //$NON-NLS-1$
 		assert editingDomain != null : "Editing domain must be specified"; //$NON-NLS-1$
 
-		myFileCreationPage = new WizardNewFileCreationPage(Messages.SysmlNewDiagramFileWizard_CreationPageName,
-				StructuredSelection.EMPTY);
+		myFileCreationPage = new WizardNewFileCreationPage(Messages.SysmlNewDiagramFileWizard_CreationPageName, StructuredSelection.EMPTY);
 		myFileCreationPage.setTitle(Messages.SysmlNewDiagramFileWizard_CreationPageTitle);
-		myFileCreationPage.setDescription(NLS.bind(Messages.SysmlNewDiagramFileWizard_CreationPageDescription,
-				ParametricEditPart.MODEL_ID));
+		myFileCreationPage.setDescription(NLS.bind(Messages.SysmlNewDiagramFileWizard_CreationPageDescription, ParametricEditPart.MODEL_ID));
 		IPath filePath;
 		String fileName = URI.decode(domainModelURI.trimFileExtension().lastSegment());
-		if (domainModelURI.isPlatformResource()) {
+		if(domainModelURI.isPlatformResource()) {
 			filePath = new Path(domainModelURI.trimSegments(1).toPlatformString(true));
-		} else if (domainModelURI.isFile()) {
+		} else if(domainModelURI.isFile()) {
 			filePath = new Path(domainModelURI.trimSegments(1).toFileString());
 		} else {
 			// TODO : use some default path
@@ -89,8 +86,7 @@ public class SysmlNewDiagramFileWizard extends Wizard {
 		myFileCreationPage.setContainerFullPath(filePath);
 		myFileCreationPage.setFileName(SysmlDiagramEditorUtil.getUniqueFileName(filePath, fileName, "sysml_diagram")); //$NON-NLS-1$
 
-		diagramRootElementSelectionPage = new DiagramRootElementSelectionPage(
-				Messages.SysmlNewDiagramFileWizard_RootSelectionPageName);
+		diagramRootElementSelectionPage = new DiagramRootElementSelectionPage(Messages.SysmlNewDiagramFileWizard_RootSelectionPageName);
 		diagramRootElementSelectionPage.setTitle(Messages.SysmlNewDiagramFileWizard_RootSelectionPageTitle);
 		diagramRootElementSelectionPage.setDescription(Messages.SysmlNewDiagramFileWizard_RootSelectionPageDescription);
 		diagramRootElementSelectionPage.setModelElement(diagramRoot);
@@ -110,25 +106,21 @@ public class SysmlNewDiagramFileWizard extends Wizard {
 	 * @generated
 	 */
 	public boolean performFinish() {
-		List affectedFiles = new LinkedList();
+		LinkedList<IFile> affectedFiles = new LinkedList<IFile>();
 		IFile diagramFile = myFileCreationPage.createNewFile();
 		SysmlDiagramEditorUtil.setCharset(diagramFile);
 		affectedFiles.add(diagramFile);
 		URI diagramModelURI = URI.createPlatformResourceURI(diagramFile.getFullPath().toString(), true);
 		ResourceSet resourceSet = myEditingDomain.getResourceSet();
 		final Resource diagramResource = resourceSet.createResource(diagramModelURI);
-		AbstractTransactionalCommand command = new AbstractTransactionalCommand(myEditingDomain,
-				Messages.SysmlNewDiagramFileWizard_InitDiagramCommand, affectedFiles) {
+		AbstractTransactionalCommand command = new AbstractTransactionalCommand(myEditingDomain, Messages.SysmlNewDiagramFileWizard_InitDiagramCommand, affectedFiles) {
 
-			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info)
-					throws ExecutionException {
-				int diagramVID = SysmlVisualIDRegistry.getDiagramVisualID(diagramRootElementSelectionPage
-						.getModelElement());
-				if (diagramVID != ParametricEditPart.VISUAL_ID) {
+			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+				int diagramVID = SysmlVisualIDRegistry.getDiagramVisualID(diagramRootElementSelectionPage.getModelElement());
+				if(diagramVID != ParametricEditPart.VISUAL_ID) {
 					return CommandResult.newErrorCommandResult(Messages.SysmlNewDiagramFileWizard_IncorrectRootError);
 				}
-				Diagram diagram = ViewService.createDiagram(diagramRootElementSelectionPage.getModelElement(),
-						ParametricEditPart.MODEL_ID, SysmlDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
+				Diagram diagram = ViewService.createDiagram(diagramRootElementSelectionPage.getModelElement(), ParametricEditPart.MODEL_ID, SysmlDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
 				diagramResource.getContents().add(diagram);
 				return CommandResult.newOKCommandResult();
 			}
@@ -170,13 +162,11 @@ public class SysmlNewDiagramFileWizard extends Wizard {
 		 * @generated
 		 */
 		protected boolean validatePage() {
-			if (selectedModelElement == null) {
+			if(selectedModelElement == null) {
 				setErrorMessage(Messages.SysmlNewDiagramFileWizard_RootSelectionPageNoSelectionMessage);
 				return false;
 			}
-			boolean result = ViewService.getInstance().provides(
-					new CreateDiagramViewOperation(new EObjectAdapter(selectedModelElement),
-							ParametricEditPart.MODEL_ID, SysmlDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT));
+			boolean result = ViewService.getInstance().provides(new CreateDiagramViewOperation(new EObjectAdapter(selectedModelElement), ParametricEditPart.MODEL_ID, SysmlDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT));
 			setErrorMessage(result ? null : Messages.SysmlNewDiagramFileWizard_RootSelectionPageInvalidSelectionMessage);
 			return result;
 		}
