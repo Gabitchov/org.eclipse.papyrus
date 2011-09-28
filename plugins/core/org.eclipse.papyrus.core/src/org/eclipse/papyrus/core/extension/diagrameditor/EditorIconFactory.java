@@ -5,6 +5,7 @@ package org.eclipse.papyrus.core.extension.diagrameditor;
 
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.papyrus.core.editorsfactory.IEditorIconFactory;
+import org.eclipse.papyrus.core.editorsfactory.IEditorIconFactoryExtended;
 import org.eclipse.swt.graphics.Image;
 
 /**
@@ -14,7 +15,7 @@ import org.eclipse.swt.graphics.Image;
  * @author cedric dumoulin
  * 
  */
-public class EditorIconFactory implements IEditorIconFactory {
+public class EditorIconFactory implements IEditorIconFactoryExtended {
 
 	/**
 	 * The concrete implementation.
@@ -117,6 +118,18 @@ public class EditorIconFactory implements IEditorIconFactory {
 			throw new RuntimeException(e);
 		}
 
+	}
+
+	/**
+	 * Return the URL of the main icon used to create this icon
+	 * 
+	 * @see org.eclipse.papyrus.core.editorsfactory.IEditorIconFactory#getURLMainIcon(java.lang.Object)
+	 * 
+	 * @param pageIdentifier
+	 * @return
+	 */
+	public String getURLMainIcon(Object pageIdentifier) {
+		return editorDescriptor.getIconURL();
 	}
 
 }

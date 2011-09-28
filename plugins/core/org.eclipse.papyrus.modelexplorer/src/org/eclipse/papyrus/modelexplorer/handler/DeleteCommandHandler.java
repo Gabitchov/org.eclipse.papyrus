@@ -139,8 +139,11 @@ public class DeleteCommandHandler extends AbstractCommandHandler implements IHan
 	 *         True if the EObject is read only
 	 */
 	public static boolean isReadOnly(EObject eObject) {
-		EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(eObject);
-		return isReadOnly(eObject, domain);
+		if(eObject != null) {
+			EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(eObject);
+			return isReadOnly(eObject, domain);
+		}
+		return false;
 	}
 
 	/**

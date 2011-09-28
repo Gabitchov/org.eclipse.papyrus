@@ -75,6 +75,9 @@ public class MoDiscoLabelProvider extends CustomizableModelLabelProvider {
 		ValidationTool vt = new ValidationTool (element);
 		vt.tryChildIfEmpty();
 		int severity = vt.getSeverity();
+		/**
+		 * Useless since EMF Facet integration with bug 358732
+		 */
 		if(element instanceof Diagram) {
 			return getDecoratedImage (getEditorRegistry().getEditorIcon(element), severity);
 		}

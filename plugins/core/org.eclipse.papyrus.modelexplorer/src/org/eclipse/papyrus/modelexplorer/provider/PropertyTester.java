@@ -22,6 +22,7 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.utils.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.modelexplorer.ModelExplorerPageBookView;
+import org.eclipse.papyrus.modelexplorer.NavigatorUtils;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
 import org.eclipse.ui.IWorkbenchPart;
 
@@ -165,7 +166,6 @@ public class PropertyTester extends org.eclipse.core.expressions.PropertyTester 
 		return false;
 	}
 
-
 	/**
 	 * Tests the selection in order to know if it contains only {@link Diagram}
 	 * 
@@ -180,7 +180,13 @@ public class PropertyTester extends org.eclipse.core.expressions.PropertyTester 
 		if(!selection.isEmpty()) {
 			Iterator<?> iter = selection.iterator();
 			while(iter.hasNext()) {
-				if(!(iter.next() instanceof Diagram)) {
+				/**
+				 * Set to use the IAdaptable mechanism
+				 * Used for example for facet elements
+				 */
+				final Object next = iter.next();
+				EObject diag = NavigatorUtils.getElement(next, EObject.class);
+				if(!(diag instanceof Diagram)) {
 					return false;
 				}
 			}

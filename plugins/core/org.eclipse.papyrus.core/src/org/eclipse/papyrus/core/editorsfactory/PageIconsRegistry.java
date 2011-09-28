@@ -15,7 +15,7 @@ import org.eclipse.swt.graphics.Image;
  * 
  * @author cedric dumoulin
  */
-public class PageIconsRegistry implements IPageIconsRegistry {
+public class PageIconsRegistry implements IPageIconsRegistryExtended {
 
 	/** list of registered icon factories */
 	protected List<IEditorIconFactory> pageIcons = new ArrayList<IEditorIconFactory>();
@@ -83,5 +83,26 @@ public class PageIconsRegistry implements IPageIconsRegistry {
 	 */
 	public void remove(IEditorIconFactory editorIconFactory) {
 		pageIcons.remove(editorIconFactory);
+	}
+
+	/**
+	 * Return the path to the icon ressource.
+	 * 
+	 * @see org.eclipse.papyrus.core.editorsfactory.IPageIconsRegistryExtended#getEditorURLIcon(java.lang.Object)
+	 * 
+	 * @param model
+	 * @return
+	 */
+	public String getEditorURLIcon(Object model) {
+		for(IEditorIconFactory factory : getPageIcons()) {
+			if(factory.isPageModelFactoryFor(model)) {
+				{
+					if ( factory instanceof IEditorIconFactoryExtended){						
+						return ((IEditorIconFactoryExtended)factory).getURLMainIcon(model);
+					}
+				}
+			}
+		}
+		return "";
 	}
 }

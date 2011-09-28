@@ -15,6 +15,7 @@ package org.eclipse.papyrus.modelexplorer.listener;
 
 import java.util.Iterator;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.ISelection;
@@ -22,6 +23,7 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.core.utils.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.modelexplorer.Activator;
 import org.eclipse.papyrus.modelexplorer.Messages;
+import org.eclipse.papyrus.modelexplorer.NavigatorUtils;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
 
 /**
@@ -49,10 +51,15 @@ public class DoubleClickListener implements IDoubleClickListener {
 				Iterator<?> iter = ((IStructuredSelection)selection).iterator();
 				while(iter.hasNext()) {
 					Object currentObject = iter.next();
-					if(pageMngr.allPages().contains(currentObject)) {
-						//					if(currentObject instanceof Diagram){
-						// open the page
-						pageMngr.openPage(currentObject);
+					EObject diag = NavigatorUtils.getElement(currentObject, EObject.class);
+					if(pageMngr.allPages().contains(diag)) {
+						/**
+						 * Close the diagram if it was already open
+						 */
+						if(pageMngr.isOpen(diag)) {
+							pageMngr.closePage(diag);
+						}
+						pageMngr.openPage(diag);
 					}
 				}
 			}

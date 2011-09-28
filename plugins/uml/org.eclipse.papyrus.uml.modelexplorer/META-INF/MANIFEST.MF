@@ -13,6 +13,8 @@ Require-Bundle: org.eclipse.ui,org.eclipse.core.runtime,org.eclipse.pa
  ion="0.1.0"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: .,
+ bin/
 Bundle-Version: 0.8.2.qualifier
 Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.uml.modelexplorer.Activator
