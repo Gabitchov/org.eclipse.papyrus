@@ -63,9 +63,6 @@
         <valueCalculator xsi:type="query:JavaModelQuery" href="emffacet:/query/PapyrusBrowserQuery#GetComplexName"/>
       </defaultValue>
     </customizedFeatures>
-    <customizedFeatures customizedFeature="color">
-      <defaultValue xsi:type="uicustom:StaticFeatureValue" value="(0,0,0)"/>
-    </customizedFeatures>
     <references referenceName="ownedElement">
       <customizedFeatures>
         <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
@@ -83,6 +80,17 @@
     </references>
   </types>
   <types metaclassName="uml.Element">
+    <customizedFeatures customizedFeature="color">
+      <valueCases>
+        <value xsi:type="uicustom:StaticFeatureValue" value="(192,192,192)"/>
+        <condition xsi:type="query:JavaModelQuery" href="emffacet:/query/PapyrusBrowserQuery#IsReadOnly"/>
+      </valueCases>
+    </customizedFeatures>
+    <customizedFeatures customizedFeature="italic">
+      <defaultValue xsi:type="uicustom:DerivedFeatureValue">
+        <valueCalculator xsi:type="query:JavaModelQuery" href="emffacet:/query/PapyrusBrowserQuery#IsReadOnly"/>
+      </defaultValue>
+    </customizedFeatures>
     <customizedFeatures customizedFeature="hideMetaclassName">
       <defaultValue xsi:type="uicustom:StaticFeatureValue" value="true"/>
     </customizedFeatures>

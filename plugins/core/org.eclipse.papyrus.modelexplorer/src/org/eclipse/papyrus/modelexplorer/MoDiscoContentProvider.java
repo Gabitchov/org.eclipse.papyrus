@@ -32,9 +32,9 @@ import org.eclipse.papyrus.sasheditor.contentprovider.di.DiSashModelMngr;
  */
 public class MoDiscoContentProvider extends CustomizableModelContentProvider {
 
-	/** The ModelSet containing all the models. This is the initial input.*/
+	/** The ModelSet containing all the models. This is the initial input. */
 	protected ModelSet modelSet;
-	
+
 	/** The list of open pages (diagrams) */
 	protected IPageMngr pageMngr;
 
@@ -49,49 +49,52 @@ public class MoDiscoContentProvider extends CustomizableModelContentProvider {
 	public boolean hasChildren(Object element) {
 		return getChildren(element).length > 0;
 	}
-	
+
 	@Override
 	public Object[] getChildren(final Object parentElement) {
 		ArrayList<Object> result = new ArrayList<Object>();
 
 		Object[] arrayObject = super.getChildren(parentElement);
-		if (arrayObject != null) {
-			for (int i = 0; i < arrayObject.length; i++) {
+		if(arrayObject != null) {
+			for(int i = 0; i < arrayObject.length; i++) {
 				result.add(arrayObject[i]);
 			}
 		}
-		
-		if (parentElement instanceof IAdaptable) {
-			EObject eObject = (EObject)((IAdaptable)parentElement).getAdapter(EObject.class);
-			if(eObject !=null) {
-				List<Diagram> diagramList = findAllExistingDiagrams(eObject);
-					Iterator<Diagram> iterator = diagramList.iterator();
-					while (iterator.hasNext()) {
-						result.add(iterator.next());
-					}
-			}
-			
-		}
+		/**
+		 * Refactoring with bug 358732
+		 */
+		//		
+		//		if (parentElement instanceof IAdaptable) {
+		//			EObject eObject = (EObject)((IAdaptable)parentElement).getAdapter(EObject.class);
+		//			if(eObject !=null) {
+		//				List<Diagram> diagramList = findAllExistingDiagrams(eObject);
+		//					Iterator<Diagram> iterator = diagramList.iterator();
+		//					while (iterator.hasNext()) {
+		//						result.add(iterator.next());
+		//					}
+		//			}
+		//			
+		//		}
 
 		return result.toArray();
 	}
 
 	/**
 	 * @param owner
-	 *            the owner of the diagrams
+	 *        the owner of the diagrams
 	 * @return the list of diagrams contained by the given owner
 	 */
 	private List<Diagram> findAllExistingDiagrams(EObject owner) {
 		ArrayList<Diagram> diagrams = new ArrayList<Diagram>();
 
 		// Walk on page (Diagram) references
-		for (Object page : pageMngr.allPages()) {
-			if (!(page instanceof Diagram)) {
+		for(Object page : pageMngr.allPages()) {
+			if(!(page instanceof Diagram)) {
 				continue;
 			}
 			// We have a GMF Diagram
-			Diagram diagram = (Diagram) page;
-			if (owner.equals(diagram.getElement())) {
+			Diagram diagram = (Diagram)page;
+			if(owner.equals(diagram.getElement())) {
 				diagrams.add(diagram);
 			}
 
@@ -103,8 +106,9 @@ public class MoDiscoContentProvider extends CustomizableModelContentProvider {
 	/**
 	 * Return the initial values from the input.
 	 * Input should be of type {@link UmlModel}.
+	 * 
 	 * @see org.eclipse.gmt.modisco.infra.browser.uicore.CustomizableModelContentProvider#getRootElements(java.lang.Object)
-	 *
+	 * 
 	 * @param inputElement
 	 * @return
 	 */
@@ -112,39 +116,39 @@ public class MoDiscoContentProvider extends CustomizableModelContentProvider {
 	public EObject[] getRootElements(Object inputElement) {
 
 		try {
-			if(! (inputElement instanceof ServicesRegistry) )
-			{
+			if(!(inputElement instanceof ServicesRegistry)) {
 				return null;
 			}
 
 			ServicesRegistry servicesRegistry = (ServicesRegistry)inputElement;
-			
+
 			modelSet = ModelUtils.getModelSetChecked(servicesRegistry);
 			pageMngr = servicesRegistry.getService(DiSashModelMngr.class).getIPageMngr();
-			
+
 			return getRootElements(modelSet);
 		} catch (Exception e) {
 			Activator.log.error(e);
 		}
-		
+
 		return new EObject[0];
-}
+	}
 
 	/**
 	 * Get the roots elements from the {@link ModelSet} provided as input.
+	 * 
 	 * @return
 	 */
-	protected EObject[] getRootElements( ModelSet modelSet) {
+	protected EObject[] getRootElements(ModelSet modelSet) {
 		UmlModel umlModel = (UmlUtils.getUmlModel(modelSet));
 
-		if( umlModel == null)
+		if(umlModel == null)
 			return null;
 
 		EList<EObject> contents = umlModel.getResource().getContents();
 		ArrayList<EObject> result = new ArrayList<EObject>();
 		Iterator<EObject> iterator = contents.iterator();
-		while (iterator.hasNext()) {
-			EObject eObject = (EObject) iterator.next();
+		while(iterator.hasNext()) {
+			EObject eObject = (EObject)iterator.next();
 			result.add(eObject);
 		}
 		return result.toArray(new EObject[result.size()]);

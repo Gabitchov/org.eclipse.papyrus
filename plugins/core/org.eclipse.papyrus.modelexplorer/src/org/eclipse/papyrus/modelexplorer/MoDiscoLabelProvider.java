@@ -87,6 +87,9 @@ public class MoDiscoLabelProvider extends CustomizableModelLabelProvider {
 
 
 		//Set the decoration target
+		/**
+		 * Useless since EMF Facet integration with bug 358732
+		 */
 		if(element instanceof Diagram)
 			adapter.setDecoratorTarget(getEditorRegistry().getEditorIcon(element));
 		else

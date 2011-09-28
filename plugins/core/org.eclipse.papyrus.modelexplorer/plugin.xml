@@ -492,13 +492,6 @@
                <count
                      value="1">
                </count>
-               <iterate
-                     ifEmpty="false"
-                     operator="and">
-                  <instanceof
-                        value="org.eclipse.gmf.runtime.notation.Diagram">
-                  </instanceof>
-               </iterate>
                <!-- We add this test in order to refresh the Rename action in the menu edit -->
                <test
                      forcePluginActivation="true"
@@ -560,13 +553,6 @@
          <and>
             <with
                   variable="selection">
-               <iterate
-                     ifEmpty="false"
-                     operator="and">
-                  <instanceof
-                        value="org.eclipse.gmf.runtime.notation.Diagram">
-                  </instanceof>
-               </iterate>
             </with>
             <!-- We add this test in order to refresh the Delete action in the menu edit -->
             <with
@@ -635,13 +621,6 @@
                <count
                      value="1">
                </count>
-               <iterate
-                     ifEmpty="false"
-                     operator="and">
-                  <instanceof
-                        value="org.eclipse.gmf.runtime.notation.Diagram">
-                  </instanceof>
-               </iterate>
             </and>
          </with>
          <with

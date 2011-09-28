@@ -17,16 +17,14 @@ import static org.eclipse.papyrus.core.Activator.log;
 
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.papyrus.core.extension.BadNameExtensionException;
-import org.eclipse.papyrus.core.extension.ExtensionUtils;
 import org.eclipse.papyrus.core.extension.ExtensionException;
-import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.eclipse.papyrus.core.extension.ExtensionUtils;
 
 /**
- * A factory used to create editor descriptor object from Eclipse extensions
- * points elements.
+ * A factory used to create editor descriptor object from Eclipse extensions points elements.
  * 
- * @author Cedric Dumoulin
- * @author Patrick Tessier
+ *@author Cedric Dumoulin
+ *@author Patrick Tessier
  */
 public class EditorDescriptorExtensionFactory extends ExtensionUtils {
 
@@ -57,8 +55,7 @@ public class EditorDescriptorExtensionFactory extends ExtensionUtils {
 	 * 
 	 * @param element
 	 *        an {@link IConfigurationElement} see eclipse extension point
-	 * @return a nestedEditorDescriptor strucure that contains information to
-	 *         create diagrams
+	 * @return a nestedEditorDescriptor structure that contains information to create diagrams
 	 * @throws BadNameExtensionException
 	 */
 	@SuppressWarnings("unchecked")
@@ -72,7 +69,9 @@ public class EditorDescriptorExtensionFactory extends ExtensionUtils {
 		res.setActionBarContributorId(element.getAttribute(ACTIONBARCONTRIBUTORID_ATTRIBUTE));
 		String iconPath = element.getAttribute(ICON_ATTRIBUTE);
 		if(iconPath != null) {
-			res.setIcon(AbstractUIPlugin.imageDescriptorFromPlugin(element.getNamespaceIdentifier(), iconPath));
+			/** Implementation which set the icon and register the complete URL of the icon : Bug eclipse 358732*/
+			res.setIcon(element, iconPath, org.eclipse.papyrus.core.Activator.PLUGIN_ID);
+
 		}
 
 		if(log.isDebugEnabled()) {

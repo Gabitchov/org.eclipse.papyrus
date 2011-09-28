@@ -123,10 +123,6 @@ public class DeleteCommandHandler extends AbstractCommandHandler implements IHan
 			if(isReadOnly(current)) {
 				return false;
 			}
-			//the root of the model can't be deleted!
-			if(current.eContainer() == null) {
-				return false;
-			}
 		}
 
 		// Don't compute the delete command to know if it is enabled,
@@ -143,8 +139,11 @@ public class DeleteCommandHandler extends AbstractCommandHandler implements IHan
 	 *         True if the EObject is read only
 	 */
 	public static boolean isReadOnly(EObject eObject) {
-		EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(eObject);
-		return isReadOnly(eObject, domain);
+		if(eObject != null) {
+			EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(eObject);
+			return isReadOnly(eObject, domain);
+		}
+		return false;
 	}
 
 	/**

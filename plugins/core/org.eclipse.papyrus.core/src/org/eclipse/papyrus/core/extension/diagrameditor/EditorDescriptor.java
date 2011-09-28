@@ -9,11 +9,12 @@
  *
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
- *
  *****************************************************************************/
 package org.eclipse.papyrus.core.extension.diagrameditor;
 
+import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 /**
  * This descriptor describes a nested diagram. It is used by MultiDiagramEditor
@@ -39,6 +40,10 @@ public class EditorDescriptor {
 	 * The icon representing the diagram
 	 */
 	private ImageDescriptor icon;
+	/**
+	 * Resource path to the icon
+	 */
+	private String inconPath;
 
 	/**
 	 * Constructor.
@@ -112,6 +117,36 @@ public class EditorDescriptor {
 			return "[nestedEditor  editorFactory:" + editorFactoryClass + "(null)]";
 		}
 		return "[nestedEditor  editorFactory:" + editorFactoryClass.getName() + "]";
+	}
+
+	/**
+	 * Set the URL of the Icon
+	 * 
+	 * @param iconPath
+	 *        path of the Icon
+	 */
+	public void setIconURL(String iconPath) {
+		inconPath = iconPath;
+	}
+
+	/**
+	 * Get the URL of the based images
+	 * 
+	 * @return the path of the mai image. can return null if this property is not set
+	 */
+	public String getIconURL() {
+		return inconPath;
+	}
+
+	/**
+	 * set the Icon thanks to a {@link IConfigurationElement} and {@link String}which represent the path of the Icon
+	 * 
+	 * @param element
+	 * @param iconPath
+	 */
+	public void setIcon(IConfigurationElement element, String iconPath, String pluginID) {
+		setIcon(AbstractUIPlugin.imageDescriptorFromPlugin(element.getNamespaceIdentifier(), iconPath));
+		setIconURL(element.getNamespaceIdentifier() + '/' + iconPath);
 	}
 
 }
