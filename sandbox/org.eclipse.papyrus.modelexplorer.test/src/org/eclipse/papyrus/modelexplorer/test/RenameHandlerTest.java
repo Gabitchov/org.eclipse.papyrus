@@ -6,6 +6,20 @@ import org.junit.Test;
 
 public class RenameHandlerTest extends AbstractHandlerTest {
 
+	/**
+	 * the id of the command to rename the element
+	 */
+	private static final String commandId = "org.eclipse.ui.edit.rename";
+
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 */
+	public RenameHandlerTest() {
+		super(commandId);
+	}
+
 	@Test
 	public void renamedUMLUnnamedElementTest() {
 		Assert.isTrue(false, "TODO");
