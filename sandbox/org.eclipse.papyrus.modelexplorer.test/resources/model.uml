@@ -10,4 +10,5 @@
   <packagedElement xmi:type="uml:Package" xmi:id="_wJw0MOjXEeCR1ocpRNl5DQ" name="Package0">
     <packagedElement xmi:type="uml:Interaction" xmi:id="_w-OXAOjXEeCR1ocpRNl5DQ" name="Interaction0"/>
   </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_7yIzYOnFEeCWs89WZtbW4A" name="Package1"/>
 </uml:Model>

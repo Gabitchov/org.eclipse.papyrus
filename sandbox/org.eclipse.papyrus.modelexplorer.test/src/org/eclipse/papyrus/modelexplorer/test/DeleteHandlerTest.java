@@ -71,7 +71,7 @@ import org.eclipse.uml2.uml.internal.impl.AssociationImpl;
  *         This plugin tests the activation of the correct handler for differents selection in the ModelExplorer
  */
 //FIXME : remove the dependency with EMF-Facet
-public class DeleteHandlerActivationTest {
+public class DeleteHandlerTest {
 
 	private static final String PROJECT_NAME = "Project Handler Test"; //$NON-NLS-1$
 
@@ -108,7 +108,7 @@ public class DeleteHandlerActivationTest {
 		for(IProject project : workspace.getRoot().getProjects()) {
 			project.delete(true, new NullProgressMonitor());
 		}
-		IProject testProject = workspace.getRoot().getProject(DeleteHandlerActivationTest.PROJECT_NAME);
+		IProject testProject = workspace.getRoot().getProject(DeleteHandlerTest.PROJECT_NAME);
 		testProject.create(new NullProgressMonitor());
 		testProject.open(new NullProgressMonitor());
 
