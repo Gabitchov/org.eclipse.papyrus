@@ -123,6 +123,10 @@ public class DeleteCommandHandler extends AbstractCommandHandler implements IHan
 			if(isReadOnly(current)) {
 				return false;
 			}
+			//the root of the model can't be deleted!
+			if(current.eContainer() == null) {
+				return false;
+			}
 		}
 
 		// Don't compute the delete command to know if it is enabled,
