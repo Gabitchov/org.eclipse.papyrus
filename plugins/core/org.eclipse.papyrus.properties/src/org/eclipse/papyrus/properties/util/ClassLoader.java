@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -18,6 +18,9 @@ import org.eclipse.papyrus.properties.Activator;
  * 
  * @author Camille Letavernier
  */
+//TODO : Rename that class to ClassLoaderHelper (avoir class name conflict with the standard ClassLoader)
+//TODO : Change all methods to static methods
+//TODO : Move that class to a more generic plug-in
 public class ClassLoader {
 
 	/**
@@ -34,14 +37,61 @@ public class ClassLoader {
 			Class<?> clazz = Activator.getDefault().getBundle().loadClass(className);
 			return clazz;
 		} catch (ClassNotFoundException ex) {
-			Activator.log.error("Cannot load class " + className, ex); //$NON-NLS-1$
-		} catch (ClassCastException ex) {
-			Activator.log.error("Cannot load class " + className, ex); //$NON-NLS-1$
+			Activator.log.error("The class " + className + " doesn't exist", ex); //$NON-NLS-1$
 		} catch (NullPointerException ex) {
 			Activator.log.error("Cannot load class " + className, ex); //$NON-NLS-1$
 		}
 
 		return null;
+	}
+
+	/**
+	 * Loads and returns the class denoted by the given className.
+	 * Checks that the loaded class is a subtype of the given Class.
+	 * 
+	 * @param className
+	 *        The qualified name of the class to be loaded
+	 * @param asSubClass
+	 *        The interface or class that the loaded class must implement or extend
+	 * @return
+	 *         The loaded class, or null if the class doesn't exist or is invalid.
+	 *         In such a case, the exception is logged.
+	 */
+	public <T> Class<? extends T> loadClass(String className, Class<T> asSubClass) {
+		Class<?> theClass = loadClass(className);
+		if(theClass == null) {
+			return null;
+		}
+
+		try {
+			Class<? extends T> typedClass = theClass.asSubclass(asSubClass);
+			return typedClass;
+		} catch (ClassCastException ex) {
+			Activator.log.error(String.format("The class %1$s doesn't extend or implement %2$s", className, asSubClass.getName()), ex); //$NON-NLS-1$
+		}
+
+		return null;
+	}
+
+	/**
+	 * Creates a new instance of class denoted by the given className.
+	 * Checks that the instantiated class is a subtype of the given class
+	 * 
+	 * @param className
+	 *        The qualified name of the class to be instantiated
+	 * @param asSubclass
+	 *        The interface or class that the loaded class must implement or extend
+	 * @return
+	 *         An instance of the loaded class, or null if a valid instance
+	 *         cannot be created. In such a case, the exception is logged.
+	 */
+	public <T> T newInstance(String className, Class<T> asSubclass) {
+		Class<? extends T> typedClass = loadClass(className, asSubclass);
+		if(typedClass == null) {
+			return null;
+		}
+
+		return newInstance(typedClass);
 	}
 
 	/**
@@ -67,15 +117,16 @@ public class ClassLoader {
 	 *         instantiated
 	 */
 	public <T extends Object> T newInstance(Class<T> theClass) {
-		if(theClass == null)
+		if(theClass == null) {
 			return null;
+		}
 
 		try {
 			return theClass.newInstance();
 		} catch (IllegalAccessException ex) {
-			Activator.log.error(ex);
+			Activator.log.error("Cannot find a valid public constructor for the class " + theClass.getName(), ex); //$NON-NLS-1$
 		} catch (InstantiationException ex) {
-			Activator.log.error(ex);
+			Activator.log.error(String.format("The class %s cannot be instantiated.", theClass.getName()), ex); //$NON-NLS-1$
 		}
 
 		return null;

@@ -8,9 +8,5 @@
 	</Composite.layout>
 	<ppe:MultiReference input="{Binding}"
 		property="properties:ui:UIComponent:attributes">
-		<ppe:MultiReference.factory>
-			<ppec:EcorePropertyEditorFactory
-				className="ValueAttribute" nsUri="http://www.eclipse.org/papyrus/properties/ui"></ppec:EcorePropertyEditorFactory>
-		</ppe:MultiReference.factory>
 	</ppe:MultiReference>
 </Composite>

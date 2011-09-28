@@ -97,6 +97,9 @@ public class XWTSection extends AbstractPropertySection implements IChangeListen
 			return;
 		}
 
+		//Sets the initial input, *or* changes the input for the same view : we need to clean the cache
+		DataSourceFactory.instance.removeFromCache(getSelection(), view);
+
 		super.setInput(part, selection);
 
 		if(selection instanceof IStructuredSelection) {
@@ -170,14 +173,14 @@ public class XWTSection extends AbstractPropertySection implements IChangeListen
 		ISelection selection = getSelection();
 
 		//Return true only if at least one constraint matches all elements
-		
+
 		//Constraint loop
 		boolean oneConstraintMatch = false;
 		for(ConstraintDescriptor constraintDescriptor : section.getConstraints()) {
 			Constraint constraint = ConstraintFactory.getInstance().createFromModel(constraintDescriptor);
-			
+
 			Iterator<?> it = ((IStructuredSelection)selection).iterator();
-			
+
 			//Selection loop
 			boolean allObjectsMatch = true;
 			while(it.hasNext()) {
@@ -187,13 +190,13 @@ public class XWTSection extends AbstractPropertySection implements IChangeListen
 					break;
 				}
 			}
-			
+
 			if (allObjectsMatch){
 				oneConstraintMatch = true;
 				break;
 			}
 		}
-		
+
 		return oneConstraintMatch;
 	}
 
@@ -204,17 +207,17 @@ public class XWTSection extends AbstractPropertySection implements IChangeListen
 			source.removeChangeListener(this);
 			source.dispose();
 		}
-		
+
 		//Dispose the SWT Composite
 		if(self != null) {
 			self.dispose();
 		}
-		
+
 		//Clean the DataSource cache
 		DataSourceFactory.instance.removeFromCache(getSelection(), view);
 		super.dispose();
 	}
-	
+
 	@Override
 	public IStructuredSelection getSelection(){
 		return (IStructuredSelection)super.getSelection();

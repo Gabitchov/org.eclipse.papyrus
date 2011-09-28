@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -85,8 +85,9 @@ public class GenericAttributeObservable extends AbstractObservableValue {
 	@Override
 	protected Object doGetValue() {
 		EObject attribute = findAttribute();
-		if(attribute == null)
+		if(attribute == null) {
 			return null;
+		}
 		Object result = attribute.eGet(attribute.eClass().getEStructuralFeature("value")); //$NON-NLS-1$
 		return result;
 	}
@@ -122,7 +123,7 @@ public class GenericAttributeObservable extends AbstractObservableValue {
 		EObject attribute = findAttribute();
 		EList<? extends EObject> collection = (EList<? extends EObject>)source.eGet(createIn);
 
-		CompoundCommand command = new CompoundCommand("Set " + propertyPath + " value"); //$NON-NLS-1$ //$NON-NLS-2$
+		CompoundCommand command = new CompoundCommand(String.format("Set %1 value", propertyPath)); //$NON-NLS-1$
 
 		if(value == null || value.equals("")) { //$NON-NLS-1$
 			if(attribute != null) {
@@ -131,10 +132,11 @@ public class GenericAttributeObservable extends AbstractObservableValue {
 			}
 		} else {
 			if(attribute == null) {
-				if(value instanceof String)
+				if(value instanceof String) {
 					attribute = createFrom.create(createAsValue);
-				else
+				} else {
 					attribute = createFrom.create(createAsReference);
+				}
 
 				CreateChildCommand crCommand = new CreateChildCommand(domain, source, createIn, attribute, null);
 				command.append(crCommand);

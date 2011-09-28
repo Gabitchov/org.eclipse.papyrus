@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -63,7 +63,7 @@ public class StandardLayoutGenerator implements ILayoutGenerator {
 			Category category = new Category(editor.getProperty());
 			getByCategory(category).add(editor);
 			if(editor.getWidgetType() == null) {
-				Activator.log.warn("Editor for property " + editor.getProperty().getName() + " doesn't have a WidgetType"); //$NON-NLS-1$ //$NON-NLS-2$
+				Activator.log.warn(String.format("Editor for property %s doesn't have a WidgetType", editor.getProperty().getName())); //$NON-NLS-1$
 			} else {
 				namespaces.add(editor.getWidgetType().getNamespace());
 			}
@@ -118,8 +118,9 @@ public class StandardLayoutGenerator implements ILayoutGenerator {
 	private List<ValueAttribute> createNamespaces(Collection<Namespace> namespaces) {
 		List<ValueAttribute> xmlNamespaces = new LinkedList<ValueAttribute>();
 		for(Namespace namespace : namespaces) {
-			if(namespace == null)
+			if(namespace == null) {
 				continue;
+			}
 
 			ValueAttribute attribute = UiFactory.eINSTANCE.createValueAttribute();
 			attribute.setName(Util.getQualifiedName(namespace));
@@ -170,18 +171,21 @@ public class StandardLayoutGenerator implements ILayoutGenerator {
 
 		@Override
 		public boolean equals(Object o) {
-			if(o == null)
+			if(o == null) {
 				return false;
-			if(!(o instanceof Category))
+			}
+			if(!(o instanceof Category)) {
 				return false;
+			}
 
 			Category category = (Category)o;
 			return category.editorType == editorType && category.multiplicity == multiplicity;
 		}
 
 		public int compareTo(Category category) {
-			if(category == null)
+			if(category == null) {
 				return -1;
+			}
 
 			if(category.multiplicity != multiplicity) {
 				return multiplicity == 1 ? -1 : 1;
@@ -194,8 +198,9 @@ public class StandardLayoutGenerator implements ILayoutGenerator {
 		public Integer getTypeIndex() {
 			int i = 0;
 			for(Type type : orderedTypes) {
-				if(type == editorType)
+				if(type == editorType) {
 					return i;
+				}
 				i++;
 			}
 			return orderedTypes.length;

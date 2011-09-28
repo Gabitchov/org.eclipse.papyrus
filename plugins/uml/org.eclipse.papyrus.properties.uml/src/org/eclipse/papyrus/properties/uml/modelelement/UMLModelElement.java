@@ -161,7 +161,7 @@ public class UMLModelElement extends EMFModelElement {
 	@Override
 	public ILabelProvider getLabelProvider(String propertyPath) {
 		EStructuralFeature feature = getFeature(propertyPath);
-		if(feature.getEType() instanceof EEnum) {
+		if(feature != null && feature.getEType() instanceof EEnum) {
 			return super.getLabelProvider(propertyPath);
 		}
 		return new UMLLabelProvider();

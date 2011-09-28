@@ -16,6 +16,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.papyrus.diagram.common.editpolicies.IMaskManagedLabelEditPolicy;
+import org.eclipse.papyrus.properties.modelelement.CompositeModelElement;
 import org.eclipse.papyrus.properties.modelelement.DataSource;
 import org.eclipse.papyrus.properties.modelelement.ModelElement;
 import org.eclipse.papyrus.properties.providers.XWTCompliantMaskProvider;
@@ -28,7 +29,6 @@ import org.eclipse.papyrus.properties.uml.modelelement.UMLNotationModelElement;
  * 
  * @author Camille Letavernier
  */
-//TODO : we should actually look for the right Edit Policy to use (There are many implementations of IMaskManagedLabelEditPolicy)
 public class LabelCustomizationMaskProvider implements XWTCompliantMaskProvider {
 
 	private IMaskManagedLabelEditPolicy editPolicy;
@@ -70,6 +70,31 @@ public class LabelCustomizationMaskProvider implements XWTCompliantMaskProvider 
 			if(element instanceof UMLNotationModelElement) {
 				UMLNotationModelElement modelElement = (UMLNotationModelElement)element;
 				editPolicy = (IMaskManagedLabelEditPolicy)modelElement.getEditPart().getEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY);
+				if(editPolicy != null) {
+					notifyListeners();
+				}
+			} else if(element instanceof CompositeModelElement) {
+				editPolicy = null;
+				IMaskManagedLabelEditPolicy currentEditPolicy = null;
+				//Check that all elements have the same edit policy
+				for(ModelElement subElement : ((CompositeModelElement)element).getSubElements()) {
+					if(subElement instanceof UMLNotationModelElement) {
+						UMLNotationModelElement modelElement = (UMLNotationModelElement)subElement;
+						currentEditPolicy = (IMaskManagedLabelEditPolicy)modelElement.getEditPart().getEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY);
+						if(currentEditPolicy == null) {
+							editPolicy = null;
+							break;
+						}
+						if(editPolicy != null && !editPolicy.getMasks().equals(currentEditPolicy.getMasks())) {
+							editPolicy = null;
+							break;
+						}
+						if(editPolicy == null) {
+							editPolicy = currentEditPolicy;
+							continue;
+						}
+					}
+				}
 				if(editPolicy != null) {
 					notifyListeners();
 				}

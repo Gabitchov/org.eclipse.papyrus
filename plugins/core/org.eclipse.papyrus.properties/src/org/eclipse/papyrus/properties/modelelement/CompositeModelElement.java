@@ -181,4 +181,8 @@ public class CompositeModelElement extends AbstractModelElement {
 		}
 		return elements.get(0).getDefaultValue(propertyPath);
 	}
+
+	public List<ModelElement> getSubElements() {
+		return elements;
+	}
 }
