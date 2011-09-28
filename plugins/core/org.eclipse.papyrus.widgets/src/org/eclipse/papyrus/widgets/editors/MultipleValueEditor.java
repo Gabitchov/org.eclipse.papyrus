@@ -533,7 +533,7 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 	public void setReadOnly(boolean readOnly) {
 		this.readOnly = readOnly;
 		updateControls();
-		tree.setEnabled(!readOnly);
+		//		tree.setEnabled(!readOnly);
 	}
 
 	/**

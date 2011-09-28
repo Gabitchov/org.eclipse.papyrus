@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -23,6 +23,7 @@ import org.eclipse.papyrus.properties.runtime.ConfigurationManager;
 import org.eclipse.papyrus.properties.runtime.EmbeddedDisplayEngine;
 import org.eclipse.papyrus.widgets.creation.ReferenceValueFactory;
 import org.eclipse.papyrus.widgets.editors.AbstractListEditor;
+import org.eclipse.papyrus.widgets.editors.ICommitListener;
 import org.eclipse.papyrus.widgets.editors.MultipleReferenceEditor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FillLayout;
@@ -41,6 +42,7 @@ public class MultiReferenceEditorWithPropertyView extends AbstractListEditor imp
 
 	public MultiReferenceEditorWithPropertyView(Composite parent, int style) {
 		super(parent, style);
+		//		parent.setBackground(getDisplay().getSystemColor(SWT.COLOR_RED));
 		((GridLayout)getLayout()).numColumns++;
 
 		multiReferenceEditor = new MultipleReferenceEditor(this, style);
@@ -50,6 +52,15 @@ public class MultiReferenceEditorWithPropertyView extends AbstractListEditor imp
 		propertiesComposite = new Composite(this, style);
 		propertiesComposite.setLayout(new FillLayout());
 		propertiesComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+	}
+
+	@Override
+	public GridData getDefaultLayoutData() {
+		GridData data = super.getDefaultLayoutData();
+		data.grabExcessVerticalSpace = true;
+		data.grabExcessHorizontalSpace = true;
+		data.verticalAlignment = SWT.FILL;
+		return data;
 	}
 
 	@Override
@@ -89,6 +100,7 @@ public class MultiReferenceEditorWithPropertyView extends AbstractListEditor imp
 	@Override
 	public void setModelObservable(IObservableList modelObservable) {
 		multiReferenceEditor.setModelObservable(modelObservable);
+		//TODO : Set the initial selection (first element) to the editor
 	}
 
 	@Override
@@ -102,6 +114,15 @@ public class MultiReferenceEditorWithPropertyView extends AbstractListEditor imp
 
 		Set<View> views = ConfigurationManager.instance.constraintEngine.getViews(selection);
 		displayEngine.display(views, propertiesComposite, selection, SWT.NONE);
+		this.layout();
+		propertiesComposite.layout();
+
+		//TODO : How can we force the property view layout ?
+		//In the tabbed property view, we need to go up to the 4th parent
+		getParent().layout(); //This one works in the embedded editor
+
+		// In the Eclipse Tabbed Property View, we need to go this far...
+		//		getParent().getParent().getParent().getParent().layout();
 	}
 
 	public void setFactory(ReferenceValueFactory valueFactory) {
@@ -114,5 +135,10 @@ public class MultiReferenceEditorWithPropertyView extends AbstractListEditor imp
 
 	public void setLabelProvider(ILabelProvider labelProvider) {
 		multiReferenceEditor.setLabelProvider(labelProvider);
+	}
+
+	@Override
+	public void addCommitListener(ICommitListener commitListener) {
+		multiReferenceEditor.addCommitListener(commitListener);
 	}
 }

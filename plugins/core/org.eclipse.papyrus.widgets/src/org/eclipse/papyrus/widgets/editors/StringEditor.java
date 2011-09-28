@@ -113,6 +113,8 @@ public class StringEditor extends AbstractValueEditor implements KeyListener {
 	 * 
 	 * @param e
 	 */
+	//TODO : we should prevent the \n from being written when validating the
+	//multi-line field with Ctrl + CR
 	public void keyReleased(KeyEvent e) {
 		//We listen on Carriage Return or Ctrl+ Carriage return, depending on
 		//whether the editor is single- or multi-line
@@ -177,7 +179,11 @@ public class StringEditor extends AbstractValueEditor implements KeyListener {
 	 * 
 	 * @param value
 	 */
-	public void setValue(String value) {
-		this.text.setText(value);
+	public void setValue(Object value) {
+		if(value instanceof String) {
+			this.text.setText((String)value);
+		} else {
+			this.text.setText(""); //$NON-NLS-1$;
+		}
 	}
 }

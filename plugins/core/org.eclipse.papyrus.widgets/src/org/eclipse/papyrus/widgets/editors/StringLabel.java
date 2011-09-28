@@ -34,6 +34,8 @@ public class StringLabel extends AbstractValueEditor implements IChangeListener 
 
 	private ILabelProvider labelProvider;
 
+	private Object value;
+
 	/**
 	 * Constructor.
 	 * 
@@ -94,27 +96,37 @@ public class StringLabel extends AbstractValueEditor implements IChangeListener 
 			return;
 		}
 
-		if(this.modelProperty != null) {
-			Object value = this.modelProperty.getValue();
+		Object value = getValue();
 
-			String text;
-			Image image = null;
+		String text;
+		Image image = null;
 
-			if(value instanceof String) {
-				text = (String)value;
-			} else {
-				text = this.labelProvider.getText(this.modelProperty.getValue());
-				image = this.labelProvider.getImage(this.modelProperty.getValue());
-			}
-
-			this.valueLabel.setText(text);
-			this.valueLabel.setImage(image);
+		if(value instanceof String) {
+			text = (String)value;
+		} else {
+			text = this.labelProvider.getText(this.modelProperty.getValue());
+			image = this.labelProvider.getImage(this.modelProperty.getValue());
 		}
+
+		this.valueLabel.setText(text);
+		this.valueLabel.setImage(image);
 	}
 
 	@Override
 	public Object getValue() {
-		return this.valueLabel.getText();
+		if(modelProperty != null) {
+			return modelProperty.getValue();
+		}
+		return value;
+	}
+
+	public void setValue(Object value) {
+		if(modelProperty != null) {
+			modelProperty.setValue(value);
+		}
+		this.value = value;
+
+		updateLabel();
 	}
 
 	@Override

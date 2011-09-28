@@ -66,6 +66,7 @@ public class DataSourceFactory {
 		if(selection == null || view == null) {
 			return;
 		}
+
 		SelectionEntry entry = new SelectionEntry(selection, view);
 		sources.remove(entry);
 	}

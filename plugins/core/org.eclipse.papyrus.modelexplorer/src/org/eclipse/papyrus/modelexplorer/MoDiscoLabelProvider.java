@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
  *
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -33,7 +33,6 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
 
-// TODO: Auto-generated Javadoc
 /**
  * the label provider that inherits of modisco label provider.
  */
@@ -53,9 +52,8 @@ public class MoDiscoLabelProvider extends CustomizableModelLabelProvider {
 		try {
 			decorationService = EditorUtils.getServiceRegistry().getService(DecorationService.class);
 			/* OR : decorationService = ServiceUtilsForActionHandlers.getInstance().getServiceRegistry().getService(DecorationService.class); */
-		} catch (ServiceException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (ServiceException ex) {
+			Activator.log.error(ex);
 		}
 
 	}

@@ -60,7 +60,6 @@ import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.events.ControlAdapter;
 import org.eclipse.swt.events.ControlEvent;
-import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Menu;
@@ -96,7 +95,7 @@ public class UIEditor extends EcoreEditor implements ITabbedPropertySheetPageCon
 		//
 		createModel();
 
-		getContainer().setBackground(new Color(getContainer().getDisplay(), 255, 255, 255));
+		getContainer().setBackground(getContainer().getDisplay().getSystemColor(SWT.COLOR_WHITE));
 		getContainer().setBackgroundMode(SWT.INHERIT_DEFAULT);
 
 		Composite gParent = new Composite(getContainer(), SWT.NONE);
