@@ -133,7 +133,8 @@
     </rm:provider>
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
         mutable="false">
-      <rm:uri format="{0}/modeling/emf/cdo/updates/releases/4.0">
+      <!--rm:uri format="{0}/modeling/emf/cdo/updates/releases/4.0"-->
+      <rm:uri format="{0}/modeling/emf/cdo/drops/R20110913-0010">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
@@ -145,7 +146,8 @@
     </rm:provider>
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
         mutable="false">
-      <rm:uri format="{0}/modeling/emft/mwe/updates/milestones">
+      <!--rm:uri format="{0}/modeling/emft/mwe/updates/milestones"--> 
+      <rm:uri format="{0}/modeling/emft/mwe/updates/releases/R201108020506/mwe">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
@@ -183,7 +185,7 @@
     
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
         mutable="false">
-      <rm:uri format="{0}/facet/updates/milestones/0.1">
+      <rm:uri format="{0}/facet/updates/milestones/0.1/SR1_RC4">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>    
@@ -229,13 +231,13 @@
     </rm:provider>
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
         mutable="false">
-      <rm:uri format="{0}/modeling/emf/updates/releases/">
+      <rm:uri format="{0}/modeling/emf/updates/releases/"> 
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
         mutable="false">
-      <rm:uri format="{0}/modeling/emf/emf/updates/2.7milestones">
+      <rm:uri format="{0}/modeling/emf/emf/updates/2.7">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
