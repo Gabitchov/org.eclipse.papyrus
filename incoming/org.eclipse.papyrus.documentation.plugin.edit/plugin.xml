@@ -12,7 +12,7 @@
 
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <factory
-            uri="http://www.eclipse.org/papyrus/plugin/documentation"
+            uri="http://www.eclipse.org/papyrus/documentation/plugin/documentation"
             class="org.eclipse.papyrus.documentation.plugin.documentation.provider.DocumentationItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider

@@ -8,7 +8,7 @@
     complianceLevel="5.0" copyrightFields="false" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore">
   <foreignModel>PluginDoc.ecore</foreignModel>
   <genPackages prefix="Documentation" basePackage="org.eclipse.papyrus.documentation.plugin"
-      disposableProviderFactory="true" ecorePackage="PluginDoc.ecore#/">
+      disposableProviderFactory="true" fileExtensions="pdoc" ecorePackage="PluginDoc.ecore#/">
     <genClasses ecoreClass="PluginDoc.ecore#//Documentation">
       <genFeatures createChild="false" propertyMultiLine="true" ecoreFeature="ecore:EAttribute PluginDoc.ecore#//Documentation/description"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PluginDoc.ecore#//Documentation/implicitDependencies"/>
