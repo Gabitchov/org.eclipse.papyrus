@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="ASCII"?>
+<doc:Documentation xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:doc="http://www.eclipse.org/papyrus/documentation/plugin/documentation" xsi:schemaLocation="http://www.eclipse.org/papyrus/documentation/plugin/documentation Model/PluginDoc.ecore" description="A model for adding a local documentation and metadata to a plug-in.">
+  <referent firstName="Camille" lastName="Letavernier" eMail="camille.letavernier@wanadoo.fr" currentCompany="CEA LIST"/>
+</doc:Documentation>

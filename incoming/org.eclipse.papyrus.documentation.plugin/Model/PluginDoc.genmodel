@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.papyrus.documentation.plugin/src-gen"
+    editDirectory="/org.eclipse.papyrus.documentation.plugin.edit/src-gen" editorDirectory="/org.eclipse.papyrus.documentation.plugin.editor/src-gen"
+    modelPluginID="org.eclipse.papyrus.documentation.plugin" modelName="PluginDoc"
+    testsDirectory="/org.eclipse.papyrus.documentation.plugin.tests/src-gen" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="5.0" copyrightFields="false" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore">
+  <foreignModel>PluginDoc.ecore</foreignModel>
+  <genPackages prefix="Documentation" basePackage="org.eclipse.papyrus.documentation.plugin"
+      disposableProviderFactory="true" ecorePackage="PluginDoc.ecore#/">
+    <genClasses ecoreClass="PluginDoc.ecore#//Documentation">
+      <genFeatures createChild="false" propertyMultiLine="true" ecoreFeature="ecore:EAttribute PluginDoc.ecore#//Documentation/description"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PluginDoc.ecore#//Documentation/implicitDependencies"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PluginDoc.ecore#//Documentation/referent"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PluginDoc.ecore#//Documentation/additionalComments"/>
+    </genClasses>
+    <genClasses ecoreClass="PluginDoc.ecore#//Dependency">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PluginDoc.ecore#//Dependency/plugin"/>
+      <genFeatures createChild="false" propertyMultiLine="true" ecoreFeature="ecore:EAttribute PluginDoc.ecore#//Dependency/comment"/>
+    </genClasses>
+    <genClasses ecoreClass="PluginDoc.ecore#//FileDependency">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PluginDoc.ecore#//FileDependency/file"/>
+    </genClasses>
+    <genClasses ecoreClass="PluginDoc.ecore#//Person">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PluginDoc.ecore#//Person/firstName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PluginDoc.ecore#//Person/lastName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PluginDoc.ecore#//Person/eMail"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PluginDoc.ecore#//Person/currentCompany"/>
+    </genClasses>
+    <genClasses ecoreClass="PluginDoc.ecore#//Comment">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PluginDoc.ecore#//Comment/title"/>
+      <genFeatures createChild="false" propertyMultiLine="true" ecoreFeature="ecore:EAttribute PluginDoc.ecore#//Comment/contents"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
