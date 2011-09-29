@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.papyrus.svn;singleton:=true
+Bundle-Version: 0.8.2.qualifier
+Bundle-Activator: org.eclipse.papyrus.svn.Activator
+Require-Bundle: org.eclipse.papyrus.onefile,
+ org.eclipse.team.svn.ui,
+ org.eclipse.gmf.runtime.common.core,
+ org.eclipse.emf.ecore,
+ org.eclipse.team.svn.core,
+ org.eclipse.papyrus.readonly;bundle-version="0.8.2",
+ org.eclipse.papyrus.commands
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: org.eclipse.papyrus.svn
+Bundle-Vendor: %providerName
