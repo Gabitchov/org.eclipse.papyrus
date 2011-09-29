@@ -28,6 +28,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
@@ -52,10 +53,13 @@ import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.commands.wrappers.CommandProxyWithResult;
 import org.eclipse.papyrus.diagram.common.commands.CommonDeferredCreateConnectionViewCommand;
+import org.eclipse.papyrus.diagram.common.commands.DeferredCreateCommand;
 import org.eclipse.papyrus.diagram.common.commands.SemanticAdapter;
 import org.eclipse.papyrus.diagram.common.helper.ILinkMappingHelper;
+import org.eclipse.papyrus.diagram.common.listeners.DropTargetListener;
 import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.papyrus.diagram.common.util.ViewServiceUtil;
+import org.eclipse.swt.dnd.DND;
 import org.eclipse.uml2.uml.Element;
 
 /**
@@ -261,8 +265,24 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 		int nodeVISUALID = getNodeVisualID(((IGraphicalEditPart)getHost()).getNotationView(), droppedObject);
 		int linkVISUALID = getLinkWithClassVisualID(droppedObject);
 		if(getSpecificDrop().contains(nodeVISUALID) || getSpecificDrop().contains(linkVISUALID)) {
-			// TODO: add to composite command ?
-			return new CommandProxy(getSpecificDropCommand(dropRequest, (Element)droppedObject, nodeVISUALID, linkVISUALID));
+			Command specificDropCommand = getSpecificDropCommand(dropRequest, (Element)droppedObject, nodeVISUALID, linkVISUALID);
+			CompositeCommand cc = new CompositeCommand("Drop command");
+			cc.compose(new CommandProxy(specificDropCommand));
+			// If ctrl key activate, get the content of element dropped
+			if(isCopy(dropRequest)) {
+				// Check for ICommandProxy and CompoundCommand the most command type used
+				if(specificDropCommand instanceof ICommandProxy) {
+					ICommandProxy specificDropCommandProxy = (ICommandProxy)specificDropCommand;
+					createDeferredCommandWithCommandResult(droppedObject, cc, specificDropCommandProxy);
+				} else if(specificDropCommand instanceof CompoundCommand) {
+					CompoundCommand specificDropCompoundCommand = (CompoundCommand)specificDropCommand;
+					ICommandProxy cp = getCommandProxyFromCompoundCommand(specificDropCompoundCommand);
+					if(cp != null) {
+						createDeferredCommandWithCommandResult(droppedObject, cc, cp);
+					}
+				}
+			}
+			return cc;
 		}
 
 		if(linkVISUALID == -1 && nodeVISUALID != -1) {
@@ -274,9 +294,9 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 			// . Take the containment relationship into consideration
 			// . Release the constraint when GraphicalParent is a diagram
 			if(getHost().getModel() instanceof Diagram) {
-				return getDefaultDropNodeCommand(nodeVISUALID, location, droppedObject);
+				return getDefaultDropNodeCommand(nodeVISUALID, location, droppedObject, dropRequest);
 			} else if((graphicalParent instanceof Element) && ((Element)graphicalParent).getOwnedElements().contains(droppedObject)) {
-				return getDefaultDropNodeCommand(nodeVISUALID, location, droppedObject);
+				return getDefaultDropNodeCommand(nodeVISUALID, location, droppedObject, dropRequest);
 			}
 			return org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand.INSTANCE;
 
@@ -295,6 +315,51 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 			return cc;
 		}
 		return org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand.INSTANCE;
+	}
+	
+	/**
+	 * Get a command proxy from the compound command
+	 * 
+	 * @param cc
+	 *        the compound command
+	 * @return the command proxy found or null
+	 */
+	protected ICommandProxy getCommandProxyFromCompoundCommand(CompoundCommand cc) {
+		if(cc != null && cc.getCommands() != null) {
+			for(Object command : cc.getCommands()) {
+				if(command instanceof ICommandProxy) {
+					return (ICommandProxy)command;
+				} else if(command instanceof CompoundCommand) {
+					getCommandProxyFromCompoundCommand((CompoundCommand)command);
+				}
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Create deferred command for a command proxy
+	 * 
+	 * @param droppedObject
+	 *        the dropped object
+	 * @param cc
+	 *        the composite command to add the deferred command
+	 * @param specificDropCommandProxy
+	 *        the specific drop command to get the result
+	 */
+	protected void createDeferredCommandWithCommandResult(EObject droppedObject, CompositeCommand cc, ICommandProxy specificDropCommandProxy) {
+		if(specificDropCommandProxy != null && specificDropCommandProxy.getICommand() != null && specificDropCommandProxy.getICommand().getCommandResult() != null && specificDropCommandProxy.getICommand().getCommandResult().getReturnValue() != null) {
+			Object object = specificDropCommandProxy.getICommand().getCommandResult().getReturnValue();
+			if(object instanceof Collection<?>) {
+				for(Object o : (Collection<?>)object) {
+					if(o instanceof CreateViewRequest.ViewDescriptor) {
+						CreateViewRequest.ViewDescriptor viewDescritor = (CreateViewRequest.ViewDescriptor)o;
+						DeferredCreateCommand createCommand2 = new DeferredCreateCommand(getEditingDomain(), droppedObject, (IAdaptable)viewDescritor, getHost().getViewer());
+						cc.compose(createCommand2);
+					}
+				}
+			}
+		}
 	}
 
 	/**
@@ -323,10 +388,29 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 	 *        the drop location
 	 * @param droppedObject
 	 *        the object to drop
+	 * @param request
+	 * 		  the drop request
+	 * @return the creation node command
+	 */
+	protected ICommand getDefaultDropNodeCommand(int nodeVISUALID, Point absoluteLocation, EObject droppedObject, DropObjectsRequest request) {
+		return getDefaultDropNodeCommand(getHost(), nodeVISUALID, absoluteLocation, droppedObject);
+	}
+	
+	/**
+	 * This method returns the default drop command for node. It create the view
+	 * at the specified location, using the gmf command framework so the
+	 * policies are used.
+	 * 
+	 * @param nodeVISUALID
+	 *        the node visual identifier
+	 * @param location
+	 *        the drop location
+	 * @param droppedObject
+	 *        the object to drop
 	 * @return the creation node command
 	 */
 	protected ICommand getDefaultDropNodeCommand(int nodeVISUALID, Point absoluteLocation, EObject droppedObject) {
-		return getDefaultDropNodeCommand(getHost(), nodeVISUALID, absoluteLocation, droppedObject);
+		return getDefaultDropNodeCommand(nodeVISUALID, absoluteLocation, droppedObject, null);
 	}
 
 	/**
@@ -374,9 +458,11 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 	 *        the drop location
 	 * @param droppedObject
 	 *        the object to drop
+	 * @param request
+	 * 		  the drop request
 	 * @return the creation node command
 	 */
-	protected ICommand getDefaultDropNodeCommand(EditPart hostEP, int nodeVISUALID, Point absoluteLocation, EObject droppedObject) {
+	protected ICommand getDefaultDropNodeCommand(EditPart hostEP, int nodeVISUALID, Point absoluteLocation, EObject droppedObject, DropObjectsRequest request) {
 		IHintedType type = ((IHintedType)getUMLElementType(nodeVISUALID));
 
 		String semanticHint = null;
@@ -384,9 +470,28 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 			semanticHint = type.getSemanticHint();
 		}
 
-		return getDefaultDropNodeCommand(getHost(), semanticHint, absoluteLocation, droppedObject);
+		return getDefaultDropNodeCommand(getHost(), semanticHint, absoluteLocation, droppedObject, request);
 	}
-
+	
+	/**
+	 * This method returns the default drop command for node. It create the view
+	 * at the specified location, using the gmf command framework so the
+	 * policies are used.
+	 * 
+	 * @param hostEP
+	 *        The host edit part which will be the parent of the new node
+	 * @param nodeVISUALID
+	 *        the node visual identifier
+	 * @param location
+	 *        the drop location
+	 * @param droppedObject
+	 *        the object to drop
+	 * @return the creation node command
+	 */
+	protected ICommand getDefaultDropNodeCommand(EditPart hostEP, int nodeVISUALID, Point absoluteLocation, EObject droppedObject) {
+		return getDefaultDropNodeCommand(hostEP, nodeVISUALID, absoluteLocation, droppedObject, null);
+	}
+	
 	/**
 	 * This method returns the default drop command for node. It create the view
 	 * at the specified location, using the gmf command framework so the
@@ -403,6 +508,28 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 	 * @return the creation node command
 	 */
 	protected ICommand getDefaultDropNodeCommand(EditPart hostEP, String semanticHint, Point absoluteLocation, EObject droppedObject) {
+		return getDefaultDropNodeCommand(hostEP, semanticHint, absoluteLocation, droppedObject, null);
+	}
+
+	/**
+	 * This method returns the default drop command for node. It create the view
+	 * at the specified location, using the gmf command framework so the
+	 * policies are used.
+	 * If the ctrl key is pressed, do a command to add content of the new node
+	 * 
+	 * @param hostEP
+	 *        The host edit part which will be the parent of the new node
+	 * @param semanticHint
+	 *        the semantic hint of the view to create
+	 * @param location
+	 *        the drop location
+	 * @param droppedObject
+	 *        the object to drop
+	 * @param request
+	 *        the drop request (use to test ctrl key)
+	 * @return the creation node command
+	 */
+	protected ICommand getDefaultDropNodeCommand(EditPart hostEP, String semanticHint, Point absoluteLocation, EObject droppedObject, DropObjectsRequest request) {
 		List<View> existingViews = DiagramEditPartsUtil.findViews(droppedObject, getViewer());
 
 		// only allow one view instance of a single element by diagram
@@ -416,12 +543,37 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 			// "ask" the host for a command associated with the
 			// CreateViewRequest
 			Command command = hostEP.getCommand(createViewRequest);
+			if(isCopy(request) && createViewRequest.getNewObject() instanceof List) {
+				for(Object object : (List<?>)createViewRequest.getNewObject()) {
+					if(object instanceof IAdaptable) {
+						DeferredCreateCommand createCommand2 = new DeferredCreateCommand(getEditingDomain(), droppedObject, (IAdaptable)object, getHost().getViewer());
+						command.chain(new ICommandProxy(createCommand2));
+					}
+				}
+			}
 			// set the viewdescriptor as result
 			// it then can be used as an adaptable to retrieve the View
 			return new CommandProxyWithResult(command, descriptor);
 		}
 
 		return org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand.INSTANCE;
+	}
+	
+	/**
+	 * Check if the ctrl key event is activate
+	 * 
+	 * @param dropRequest
+	 *        the request which contain the event
+	 * @return true if ctrl key is activate, else return false
+	 */
+	public boolean isCopy(DropObjectsRequest dropRequest) {
+		if(dropRequest != null && dropRequest.getExtendedData() != null && dropRequest.getExtendedData().get(DropTargetListener.EVENT_DETAIL) instanceof Integer) {
+			int eventDetail = (Integer)dropRequest.getExtendedData().get(DropTargetListener.EVENT_DETAIL);
+			if(((eventDetail & DND.DROP_COPY) != 0)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	/**

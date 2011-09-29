@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPartViewer;
+import org.eclipse.gef.Request;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramDropTargetListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.swt.dnd.Transfer;
@@ -33,8 +34,21 @@ import org.eclipse.swt.dnd.TransferData;
  */
 public abstract class DropTargetListener extends DiagramDropTargetListener {
 
+	public static final String EVENT_DETAIL = "EVENT_DETAIL";
+
 	public DropTargetListener(EditPartViewer viewer, Transfer xfer) {
 		super(viewer, xfer);
+	}
+
+
+	@SuppressWarnings("unchecked")
+	@Override
+	protected Request createTargetRequest() {
+		Request r = super.createTargetRequest();
+		if(r != null && r.getExtendedData() != null) {
+			r.getExtendedData().put(EVENT_DETAIL, getCurrentEvent().detail);
+		}
+		return r;
 	}
 
 	protected abstract Object getJavaObject(TransferData data);
