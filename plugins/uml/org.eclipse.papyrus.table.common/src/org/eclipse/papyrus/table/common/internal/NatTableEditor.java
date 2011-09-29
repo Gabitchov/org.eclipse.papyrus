@@ -326,7 +326,9 @@ public class NatTableEditor extends EditorPart implements ISelectionProvider, IE
 
 	@Override
 	public void dispose() {
-		this.natTableWidget.getTableInstance().getContext().eAdapters().remove(this.contextListener);
+		if(this.natTableWidget.getTableInstance().getContext() != null) {//can be null when we are destroying the context (and the table!)
+			this.natTableWidget.getTableInstance().getContext().eAdapters().remove(this.contextListener);
+		}
 		super.dispose();
 	}
 
