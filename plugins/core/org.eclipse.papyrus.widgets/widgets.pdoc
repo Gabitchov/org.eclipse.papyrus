@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doc:Documentation xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:doc="http://www.eclipse.org/papyrus/documentation/plugin/documentation" description="This plug-in contains a set of SWT widgets for editing different kind of elements.&#xD;&#xA;&#xD;&#xA;These widgets should be used as a standard in Papyrus. Most of them can be used in two different ways:&#xD;&#xA;&#xD;&#xA;- Eclipse Databinding&#xD;&#xA;- setValue/getValue">
+  <referent firstName="Camille" lastName="Letavernier" eMail="camille.letavernier@cea.fr" currentCompany="CEA LIST"/>
+</doc:Documentation>

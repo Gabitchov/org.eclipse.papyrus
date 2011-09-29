@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doc:Documentation xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:doc="http://www.eclipse.org/papyrus/documentation/plugin/documentation" description="An EMF Model for defining a Property view configuration.&#xD;&#xA;&#xD;&#xA;It contains three packages: &#xD;&#xA;&#xD;&#xA;- The Environment packages describes the tools available for defining a property view: Widgets, Data manipulation, ...&#xD;&#xA;- The Context package describing the behavior for a property view: Data manipulation, conditions under which a view is displayed, ...&#xD;&#xA;- The UI package describes a single view, graphically: widgets, hierarchy, layout">
+  <referent firstName="Camille" lastName="Letavernier" eMail="camille.letavernier@cea.fr" currentCompany="CEA LIST"/>
+</doc:Documentation>
