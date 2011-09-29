@@ -10,7 +10,6 @@
  *******************************************************************************/
 package org.eclipse.papyrus.diagram.clazz.custom.edit.commands;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -39,22 +38,11 @@ import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.ComponentEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.DataTypeEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.EnumerationEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.InstanceSpecificationEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.InterfaceEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.PackageEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.PrimitiveTypeEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.SignalEditPart;
 import org.eclipse.papyrus.diagram.clazz.part.UMLDiagramUpdater;
 import org.eclipse.papyrus.diagram.clazz.part.UMLLinkDescriptor;
 import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.common.util.CommandUtil;
-import org.eclipse.uml2.uml.Association;
-import org.eclipse.uml2.uml.Type;
 
 /**
  * Restore related links to selected element
@@ -63,8 +51,6 @@ import org.eclipse.uml2.uml.Type;
  */
 // Inspired from EcoreTools source code
 public class RestoreRelatedLinksCommand extends AbstractTransactionalCommand {
-
-	private final static List<Integer> visualIds = Arrays.asList(ClassEditPart.VISUAL_ID, InstanceSpecificationEditPart.VISUAL_ID, InterfaceEditPart.VISUAL_ID, ComponentEditPart.VISUAL_ID, DataTypeEditPart.VISUAL_ID, EnumerationEditPart.VISUAL_ID, PrimitiveTypeEditPart.VISUAL_ID, SignalEditPart.VISUAL_ID, PackageEditPart.VISUAL_ID);
 
 	protected List<?> adapters;
 
@@ -99,38 +85,18 @@ public class RestoreRelatedLinksCommand extends AbstractTransactionalCommand {
 	/**
 	 * Detect if similar descriptor already exist in given collection.
 	 * 
-	 * @param result
+	 * @param collection
 	 *        the collection of unique ingoing and outgoing links descriptors
 	 * @param umlLinkDescriptor
 	 *        the descriptor to search
 	 * @return true if already exist
 	 */
-	private boolean cleanContains(Collection<? extends UMLLinkDescriptor> result, UMLLinkDescriptor umlLinkDescriptor) {
-		for(Object object : result) {
-			if(false == object instanceof UMLLinkDescriptor) {
-				continue;
-			}
-			UMLLinkDescriptor descriptor = (UMLLinkDescriptor)object;
-			if(descriptor.getModelElement() == umlLinkDescriptor.getModelElement() && descriptor.getSource() == umlLinkDescriptor.getSource() && descriptor.getDestination() == umlLinkDescriptor.getDestination() && descriptor.getVisualID() == umlLinkDescriptor.getVisualID()) {
-				return true;
-			}
-
-			// prevent duplicate association descriptors
-			// detect fake association due to GMF limitations to compute derived attribute
-			// "Association.endType"
-			// it seems GMF Node cannot use two structuralFeature for one graphical Node ... (dixit
-			// Patrick)
-			if(descriptor.getModelElement() instanceof Association && umlLinkDescriptor.getModelElement() instanceof Association) {
-				Association assoc1 = (Association)descriptor.getModelElement();
-				Association assoc2 = (Association)umlLinkDescriptor.getModelElement();
-				if(assoc1.getEndTypes().size() > 1 && assoc2.getEndTypes().size() > 1) {
-					Type source1 = assoc1.getEndTypes().get(0);
-					Type target1 = assoc1.getEndTypes().get(1);
-					Type source2 = assoc2.getEndTypes().get(0);
-					Type target2 = assoc2.getEndTypes().get(1);
-					if(source1.equals(source2) && target1.equals(target2)) {
-						return true;
-					}
+	private boolean cleanContains(Collection<? extends UMLLinkDescriptor> collection, UMLLinkDescriptor umlLinkDescriptor) {
+		for(Object object : collection) {
+			if(object instanceof UMLLinkDescriptor) {
+				UMLLinkDescriptor descriptor = (UMLLinkDescriptor)object;
+				if(descriptor.getModelElement() == umlLinkDescriptor.getModelElement() && descriptor.getSource() == umlLinkDescriptor.getSource() && descriptor.getDestination() == umlLinkDescriptor.getDestination() && descriptor.getVisualID() == umlLinkDescriptor.getVisualID()) {
+					return true;
 				}
 			}
 		}
@@ -317,7 +283,8 @@ public class RestoreRelatedLinksCommand extends AbstractTransactionalCommand {
 			return;
 		}
 
-		if(visualIds.contains(UMLVisualIDRegistry.getVisualID(view))) {
+		// register the view if its type allows incoming or outgoing links
+		if(!UMLDiagramUpdater.getOutgoingLinks(view).isEmpty() || !UMLDiagramUpdater.getIncomingLinks(view).isEmpty()) {
 			if(!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) {
 				domain2NotationMap.put(view.getElement(), view);
 			}
