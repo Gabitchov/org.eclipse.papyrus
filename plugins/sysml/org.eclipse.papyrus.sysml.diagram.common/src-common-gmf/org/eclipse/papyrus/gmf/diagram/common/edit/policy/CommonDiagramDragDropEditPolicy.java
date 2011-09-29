@@ -55,8 +55,11 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.commands.wrappers.CommandProxyWithResult;
 import org.eclipse.papyrus.diagram.common.commands.CommonDeferredCreateConnectionViewCommand;
+import org.eclipse.papyrus.diagram.common.commands.DeferredCreateCommand;
 import org.eclipse.papyrus.diagram.common.commands.SemanticAdapter;
+import org.eclipse.papyrus.diagram.common.listeners.DropTargetListener;
 import org.eclipse.papyrus.gmf.diagram.common.provider.IGraphicalTypeRegistry;
+import org.eclipse.swt.dnd.DND;
 
 /**
  * Abstract DND edit policy delegating the choice of the view to create for an EObject to a local
@@ -146,7 +149,24 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 
 		// Test if a specific drop command should be used
 		if(getSpecificDropList().contains(droppedNodeType) || getSpecificDropList().contains(droppedEdgeType)) {
-			return getSpecificDropCommand(dropRequest, droppedObject, droppedNodeType, droppedEdgeType);
+			ICommand specificDropCommand = getSpecificDropCommand(dropRequest, droppedObject, droppedNodeType, droppedEdgeType);
+			CompositeCommand cc = new CompositeCommand("Drop command");
+			cc.compose(specificDropCommand);
+			// If ctrl key activate, get the content of element dropped
+			if(isCopy(dropRequest)) {
+				// Check for ICommandProxy and CompoundCommand the most command type used
+				if(specificDropCommand instanceof ICommandProxy) {
+					ICommandProxy specificDropCommandProxy = (ICommandProxy)specificDropCommand;
+					createDeferredCommandWithCommandResult(droppedObject, cc, specificDropCommandProxy);
+				} else if(specificDropCommand instanceof CompoundCommand) {
+					CompoundCommand specificDropCompoundCommand = (CompoundCommand)specificDropCommand;
+					ICommandProxy cp = getCommandProxyFromCompoundCommand(specificDropCompoundCommand);
+					if(cp != null) {
+						createDeferredCommandWithCommandResult(droppedObject, cc, cp);
+					}
+				}
+			}
+			return cc;
 		}
 
 		// Decide unknown type handling
@@ -161,7 +181,7 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 			// - no restriction when dropped on diagram
 			// - require containment when dropped on any other EObject
 			if((dropTargetView instanceof Diagram) || (dropTargetElement.eContents().contains(droppedObject))) {
-				return getDefaultDropNodeCommand(droppedNodeType, location, droppedObject);
+				return getDefaultDropNodeCommand(droppedNodeType, location, droppedObject, dropRequest);
 			}
 
 			return org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand.INSTANCE;
@@ -186,7 +206,56 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 		return org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand.INSTANCE;
 	}
 
+	/**
+	 * Get a command proxy from the compound command
+	 * 
+	 * @param cc
+	 *        the compound command
+	 * @return the command proxy found or null
+	 */
+	protected ICommandProxy getCommandProxyFromCompoundCommand(CompoundCommand cc) {
+		if(cc != null && cc.getCommands() != null) {
+			for(Object command : cc.getCommands()) {
+				if(command instanceof ICommandProxy) {
+					return (ICommandProxy)command;
+				} else if(command instanceof CompoundCommand) {
+					getCommandProxyFromCompoundCommand((CompoundCommand)command);
+				}
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Create deferred command for a command proxy
+	 * 
+	 * @param droppedObject
+	 *        the dropped object
+	 * @param cc
+	 *        the composite command to add the deferred command
+	 * @param specificDropCommandProxy
+	 *        the specific drop command to get the result
+	 */
+	protected void createDeferredCommandWithCommandResult(EObject droppedObject, CompositeCommand cc, ICommandProxy specificDropCommandProxy) {
+		if(specificDropCommandProxy != null && specificDropCommandProxy.getICommand() != null && specificDropCommandProxy.getICommand().getCommandResult() != null && specificDropCommandProxy.getICommand().getCommandResult().getReturnValue() != null) {
+			Object object = specificDropCommandProxy.getICommand().getCommandResult().getReturnValue();
+			if(object instanceof Collection<?>) {
+				for(Object o : (Collection<?>)object) {
+					if(o instanceof CreateViewRequest.ViewDescriptor) {
+						CreateViewRequest.ViewDescriptor viewDescritor = (CreateViewRequest.ViewDescriptor)o;
+						DeferredCreateCommand createCommand2 = new DeferredCreateCommand(getEditingDomain(), droppedObject, (IAdaptable)viewDescritor, getHost().getViewer());
+						cc.compose(createCommand2);
+					}
+				}
+			}
+		}
+	}
+
 	protected ICommand getDefaultDropNodeCommand(String droppedObjectGraphicalType, Point absoluteLocation, EObject droppedObject) {
+		return getDefaultDropNodeCommand(droppedObjectGraphicalType, absoluteLocation, droppedObject, null);
+	}
+	
+	protected ICommand getDefaultDropNodeCommand(String droppedObjectGraphicalType, Point absoluteLocation, EObject droppedObject, DropObjectsRequest request) {
 
 		IAdaptable elementAdapter = new EObjectAdapter(droppedObject);
 
@@ -196,9 +265,34 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 
 		// Get view creation command for the dropped object
 		Command command = getHost().getCommand(createViewRequest);
+		if(isCopy(request) && createViewRequest.getNewObject() instanceof List) {
+			for(Object object : (List<?>)createViewRequest.getNewObject()) {
+				if(object instanceof IAdaptable) {
+					DeferredCreateCommand createCommand2 = new DeferredCreateCommand(getEditingDomain(), droppedObject, (IAdaptable)object, getHost().getViewer());
+					command.chain(new ICommandProxy(createCommand2));
+				}
+			}
+		}
 		// Use the ViewDescriptor as command result, it then can be used as an adaptable to retrieve the View
 		return new CommandProxyWithResult(command, descriptor);
 
+	}
+	
+	/**
+	 * Check if the ctrl key event is activate
+	 * 
+	 * @param dropRequest
+	 *        the request which contain the event
+	 * @return true if ctrl key is activate, else return false
+	 */
+	public boolean isCopy(DropObjectsRequest dropRequest) {
+		if(dropRequest != null && dropRequest.getExtendedData() != null && dropRequest.getExtendedData().get(DropTargetListener.EVENT_DETAIL) instanceof Integer) {
+			int eventDetail = (Integer)dropRequest.getExtendedData().get(DropTargetListener.EVENT_DETAIL);
+			if(((eventDetail & DND.DROP_COPY) != 0)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	protected ICommand getDefaultDropEdgeCommand(EObject droppedObject, EObject source, EObject target, String droppedEdgeType, Point absoluteLocation) {
