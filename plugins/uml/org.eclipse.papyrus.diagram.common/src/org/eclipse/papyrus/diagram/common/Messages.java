@@ -298,6 +298,36 @@ public class Messages extends NLS {
 	/** label for the tooltip of the edit drawer icon */
 	public static String PapyrusPaletteCustomizerDialog_EditButtonTooltip;
 
+	/** message when many resources have changed (including main) */
+	public static String PartActivationListener_ChangedMainMsg_many;
+
+	/** message when main resource has changed */
+	public static String PartActivationListener_ChangedMainMsg_single;
+
+	/** message when main resource is conflicting */
+	public static String PartActivationListener_ChangedMainWarning;
+
+	/** message when many resources have changed */
+	public static String PartActivationListener_ChangedMsg_many;
+
+	/** message when single resource has changed */
+	public static String PartActivationListener_ChangedMsg_single;
+
+	/** title when resources have changed */
+	public static String PartActivationListener_ChangedTitle;
+
+	/** message when resource is conflicting */
+	public static String PartActivationListener_ChangedWarning;
+
+	/** message when many resources have been removed */
+	public static String PartActivationListener_RemovedMsg_many;
+
+	/** message when single resource has been removed */
+	public static String PartActivationListener_RemovedMsg_single;
+
+	/** title when resources have been removed */
+	public static String PartActivationListener_RemovedTitle;
+
 	/** Message for dialog to edit the runtime properties */
 	public static String StereotypePostAction_EditRuntimePropertiesMessage;
 

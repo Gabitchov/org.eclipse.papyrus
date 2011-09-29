@@ -130,23 +130,20 @@ public class ResourceUpdateService implements IService, IResourceChangeListener,
 					// model itself has changed.
 					// mark main resource as changed. User will asked later,
 					// when he activates the editor.
-					if(!saveListener.isSaveActive() && !partActivationListener.isModied()) {
-						partActivationListener.setModificationData(changedResourcePath, delta);
+					if(!saveListener.isSaveActive()) {
+						partActivationListener.setModificationData(changedResource.getFullPath(), delta, true, resource.isModified());
 					}
 				}
-				// changed resource does not belong to the model, it might
-				// however belong to a referenced
-				// model. Since the referenced model is not editable (TODO:
-				// might change? see bug 317430),
-				// it can be unloaded without asking the user (it will be
-				// reloaded on demand)
+				// Changed resource does not belong to the model, it might however belong to a referenced model.
+				// Since the referenced model may be editable (case of controlled sub-model with write access),
+				// it must not be unloaded without asking the user. User will be asked when activating the editor.
 
 				else if(resource.isLoaded()) {
 					EList<EObject> contents = resource.getContents();
 					if((contents.size() > 0) && (contents.get(0) instanceof Profile)) {
 						// don't touch profiles
-					} else {
-						resource.unload();
+					} else if(!saveListener.isSaveActive()) {
+						partActivationListener.setModificationData(changedResource.getFullPath(), delta, false, resource.isModified());
 					}
 				}
 			}
