@@ -16,16 +16,15 @@ package org.eclipse.papyrus.core.extension.commands;
 import java.util.Collections;
 
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.commands.operations.OperationHistoryFactory;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
+import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
 
 /**
@@ -77,11 +76,7 @@ public abstract class ModelCreationCommandBase implements IModelCreationCommand 
 
 			}
 		};
-		try {
-			OperationHistoryFactory.getOperationHistory().execute(command, new NullProgressMonitor(), null);
-		} catch (ExecutionException e) {
-			e.printStackTrace();
-		}
+		editingDomain.getCommandStack().execute(new GMFtoEMFCommandWrapper(command));
 	}
 
 	/**

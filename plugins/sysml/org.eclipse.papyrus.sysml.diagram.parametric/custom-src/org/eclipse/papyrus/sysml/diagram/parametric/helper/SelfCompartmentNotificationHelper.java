@@ -19,10 +19,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.commands.operations.OperationHistoryFactory;
 import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EObject;
@@ -38,7 +35,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.core.adaptor.gmf.Activator;
+import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.diagram.common.helper.NotificationHelper;
 import org.eclipse.papyrus.diagram.common.providers.UIAdapterImpl;
@@ -197,12 +194,7 @@ public class SelfCompartmentNotificationHelper extends NotificationHelper {
 	 */
 	private static void execute() {
 		if(!command.isEmpty()) {
-			try {
-				OperationHistoryFactory.getOperationHistory().execute(command, new NullProgressMonitor(), null);
-			} catch (ExecutionException e) {
-				e.printStackTrace();
-				Activator.getInstance().logError("Unable to create diagram elements", e); //$NON-NLS-1$
-			}
+			command.getEditingDomain().getCommandStack().execute(new GMFtoEMFCommandWrapper(command));
 		}
 	}
 

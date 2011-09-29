@@ -54,13 +54,10 @@ public class PapyrusDocumentationPartHandler implements IDocumentationPartHandle
 	}
 
 	public void executeCommand(IWorkbenchPart part, Command cmd) {
-		try {
-			CoreMultiDiagramEditor editor = getPapyrusEditor(part);
-			if(editor != null && cmd != null) {
-				OperationHistoryFactory.getOperationHistory().execute(new TransactionalUncheckedCommandProxy((TransactionalEditingDomain)editor.getEditingDomain(), cmd), null, null);
-			}
-		} catch (ExecutionException e) {
-			e.printStackTrace();
+		CoreMultiDiagramEditor editor = getPapyrusEditor(part);
+		if(editor != null && cmd != null) {
+			TransactionalEditingDomain domain = (TransactionalEditingDomain)editor.getEditingDomain();
+			domain.getCommandStack().execute(cmd);
 		}
 	}
 
@@ -140,6 +137,11 @@ public class PapyrusDocumentationPartHandler implements IDocumentationPartHandle
 	}
 
 	public boolean isReadOnly(IWorkbenchPart part, EObject eObject) {
+		CoreMultiDiagramEditor editor = getPapyrusEditor(part);
+		if(editor != null && eObject != null) {
+			TransactionalEditingDomain domain = (TransactionalEditingDomain)editor.getEditingDomain();
+			return domain.isReadOnly(eObject.eResource());
+		}
 		return false;
 	}
 

@@ -49,6 +49,7 @@ import org.eclipse.emf.workspace.AbstractEMFOperation;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.papyrus.commands.CheckedOperationHistory;
 import org.eclipse.papyrus.core.editor.BackboneException;
 import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.core.services.ServiceException;
@@ -181,7 +182,7 @@ public abstract class AbstractCreateNattableEditorCommand extends AbstractHandle
 
 			// Execute the command
 			try {
-				OperationHistoryFactory.getOperationHistory().execute(command, new NullProgressMonitor(), null);
+				CheckedOperationHistory.getInstance().execute(command, new NullProgressMonitor(), null);
 			} catch (ExecutionException e) {
 				Activator.getDefault().helper.error("Can't create Table Editor", e); //$NON-NLS-1$
 			}

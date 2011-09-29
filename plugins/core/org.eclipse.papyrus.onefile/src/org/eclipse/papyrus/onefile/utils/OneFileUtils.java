@@ -11,6 +11,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.onefile.utils;
 
+import java.util.ArrayList;
+
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
@@ -44,7 +46,7 @@ import org.eclipse.ui.part.FileEditorInput;
  * @author tristan.faure@atosorigin.com
  * 
  */
-public class Utils {
+public class OneFileUtils {
 
 	/**
 	 * Determines if a di exist in the container from a file name
@@ -101,7 +103,7 @@ public class Utils {
 				|| element instanceof ISubResourceFile;
 		if (typeOk && element instanceof IFile) {
 			IFile file = (IFile) element;
-			typeOk &= !Utils.diExists(file.getName(), file.getParent());
+			typeOk &= !OneFileUtils.diExists(file.getName(), file.getParent());
 		}
 		return typeOk;
 	}
@@ -332,4 +334,13 @@ public class Utils {
 
 	}
 
+	public static IFile[] getAssociatedFiles(IPapyrusFile papyrusFile) {
+		ArrayList<IFile> files = new ArrayList<IFile>();
+		for (IResource res : papyrusFile.getAssociatedResources()) {
+			if (res instanceof IFile) {
+				files.add((IFile) res);
+			}
+		}
+		return files.toArray(new IFile[files.size()]);
+	}
 }

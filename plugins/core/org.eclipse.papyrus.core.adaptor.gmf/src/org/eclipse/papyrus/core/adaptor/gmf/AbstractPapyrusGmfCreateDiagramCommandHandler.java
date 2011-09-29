@@ -13,16 +13,18 @@
  *****************************************************************************/
 package org.eclipse.papyrus.core.adaptor.gmf;
 
+import java.util.ArrayList;
 import java.util.Collections;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.IHandler;
-import org.eclipse.core.commands.operations.OperationHistoryFactory;
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.RecordingCommand;
@@ -38,6 +40,7 @@ import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.window.Window;
+import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.core.extension.commands.ICreationCommand;
 import org.eclipse.papyrus.core.services.ServiceException;
@@ -110,17 +113,13 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 	 *        The eObject to which the diagram should be attached, if possible.
 	 */
 	protected void runAsTransaction(final DiResourceSet diResourceSet, final EObject container, String name) {
-		try {
-			CompositeCommand cmd = new CompositeCommand("Create diagram");
-			ICommand createCmd = getCreateDiagramCommand(diResourceSet, container, name);
-			cmd.add(createCmd);
-			cmd.add(new OpenDiagramCommand(diResourceSet.getTransactionalEditingDomain(), createCmd));
+		TransactionalEditingDomain dom = diResourceSet.getTransactionalEditingDomain();
+		CompositeCommand cmd = new CompositeCommand("Create diagram");
+		ICommand createCmd = getCreateDiagramCommand(diResourceSet, container, name);
+		cmd.add(createCmd);
+		cmd.add(new OpenDiagramCommand(dom, createCmd));
 
-			OperationHistoryFactory.getOperationHistory().execute(cmd, new NullProgressMonitor(), null);
-		} catch (ExecutionException e) {
-			e.printStackTrace();
-			Activator.getInstance().logError(Messages.AbstractPapyrusGmfCreateDiagramCommandHandler_UnableCreateModelAndDiagram, e);
-		}
+		dom.getCommandStack().execute(new GMFtoEMFCommandWrapper(cmd));
 	}
 
 	/**
@@ -284,14 +283,19 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 	 * {@inheritDoc}
 	 */
 	public ICommand getCreateDiagramCommand(final DiResourceSet diResourceSet, final EObject container, final String diagramName) {
+		final Resource modelResource = diResourceSet.getAssociatedModelResource(container);
+		final Resource notationResource = diResourceSet.getAssociatedNotationResource(container);
+		final Resource diResource = diResourceSet.getAssociatedDiResource(container);
+		
+		ArrayList<IFile> modifiedFiles = new ArrayList<IFile>();
+		modifiedFiles.add(ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(modelResource.getURI().toPlatformString(true))));
+		modifiedFiles.add(ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(notationResource.getURI().toPlatformString(true))));
+		modifiedFiles.add(ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(diResource.getURI().toPlatformString(true))));
 
-		return new AbstractTransactionalCommand(diResourceSet.getTransactionalEditingDomain(), Messages.AbstractPapyrusGmfCreateDiagramCommandHandler_CreateDiagramCommandLabel, Collections.EMPTY_LIST) {
+		return new AbstractTransactionalCommand(diResourceSet.getTransactionalEditingDomain(), Messages.AbstractPapyrusGmfCreateDiagramCommandHandler_CreateDiagramCommandLabel, modifiedFiles) {
 
 			@Override
 			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-				Resource modelResource = diResourceSet.getAssociatedModelResource(container);
-				Resource notationResource = diResourceSet.getAssociatedNotationResource(container);
-				Resource diResource = diResourceSet.getAssociatedDiResource(container);
 
 				String name = diagramName;
 				if(name == null) {

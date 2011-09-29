@@ -17,17 +17,15 @@ package org.eclipse.papyrus.message.editor.xtext.ui.contributions;
 import java.util.Iterator;
 
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.commands.operations.OperationHistoryFactory;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.validation.internal.util.Log;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
-import org.eclipse.papyrus.log.LogHelper;
 import org.eclipse.papyrus.message.editor.xtext.ui.internal.UmlMessageActivator;
 import org.eclipse.papyrus.message.editor.xtext.umlMessage.MessageRule;
 import org.eclipse.uml2.uml.Interaction;
@@ -170,12 +168,8 @@ public class MessagePopupEditor extends PopupEditorConfiguration {
 				// Creates and executes the update command
 				UpdateUMLMessageCommand updateCommand = new UpdateUMLMessageCommand(message);
 
-				try {
-					OperationHistoryFactory.getOperationHistory().execute(updateCommand, new NullProgressMonitor(), null);
-				} catch (ExecutionException e) {
-					//org.eclipse.papyrus.properties.runtime.Activator.log.error(e) ;
-					//((LogHelper)Activator.log).error(e);
-				}
+				TransactionalEditingDomain dom = EditorUtils.getTransactionalEditingDomain();
+				dom.getCommandStack().execute(new GMFtoEMFCommandWrapper(updateCommand));
 
 			}
 

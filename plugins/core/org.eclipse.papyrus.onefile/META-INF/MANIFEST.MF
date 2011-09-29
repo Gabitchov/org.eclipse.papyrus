@@ -1,9 +1,11 @@
 Manifest-Version: 1.0
 Export-Package: org.eclipse.papyrus.onefile.model,org.eclipse.papyrus.
  onefile.utils
-Require-Bundle: org.eclipse.papyrus.core,org.eclipse.ui.navigator,org.
- eclipse.team.ui,org.eclipse.ui.navigator.resources,org.eclipse.papyru
- s.ui.resources
+Require-Bundle: org.eclipse.papyrus.core,
+ org.eclipse.ui.navigator,
+ org.eclipse.team.ui,
+ org.eclipse.ui.navigator.resources,
+ org.eclipse.papyrus.ui.resources
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 0.8.2.qualifier

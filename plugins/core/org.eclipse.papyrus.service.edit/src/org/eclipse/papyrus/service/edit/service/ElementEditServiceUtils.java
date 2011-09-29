@@ -46,12 +46,14 @@ public class ElementEditServiceUtils {
 	 */
 	public static IElementEditService getCommandProvider(Object objectToEdit) {
 
-		try {
-			return getEditServiceProvider().getEditService(objectToEdit);
-		} catch (ServiceException e) {
-			Activator.log.error(NLS.bind(Messages.ElementEditServiceUtils_UnableToFindElementType, objectToEdit), e);
-		} catch (NullPointerException e) {
-			Activator.log.error(NLS.bind(Messages.ElementEditServiceUtils_UnableToFindElementType, objectToEdit), e);
+		if (objectToEdit != null) {
+			try {
+				return getEditServiceProvider().getEditService(objectToEdit);
+			} catch (ServiceException e) {
+				Activator.log.error(NLS.bind(Messages.ElementEditServiceUtils_UnableToFindElementType, objectToEdit), e);
+			} catch (NullPointerException e) {
+				Activator.log.error(NLS.bind(Messages.ElementEditServiceUtils_UnableToFindElementType, objectToEdit), e);
+			}
 		}
 
 		return null;

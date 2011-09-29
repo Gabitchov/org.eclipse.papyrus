@@ -19,7 +19,7 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.papyrus.onefile.model.IPapyrusFile;
 import org.eclipse.papyrus.onefile.model.PapyrusModelHelper;
-import org.eclipse.papyrus.onefile.utils.Utils;
+import org.eclipse.papyrus.onefile.utils.OneFileUtils;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IFileEditorInput;
@@ -68,7 +68,7 @@ public class PapyrusLinkHelper implements ILinkHelper {
 		if (selection == null || selection.isEmpty())
 			return;
 		Object element = selection.getFirstElement();
-		IEditorPart part = Utils.isOpenInEditor(element);
+		IEditorPart part = OneFileUtils.isOpenInEditor(element);
 		if (part != null) {
 			page.bringToTop(part);
 		}

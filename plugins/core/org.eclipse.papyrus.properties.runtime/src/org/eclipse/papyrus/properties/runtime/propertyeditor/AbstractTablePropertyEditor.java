@@ -31,6 +31,7 @@ import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.papyrus.commands.CheckedOperationHistory;
 import org.eclipse.papyrus.properties.runtime.Activator;
 import org.eclipse.papyrus.properties.runtime.controller.ILabelProviderController;
 import org.eclipse.papyrus.properties.runtime.propertyeditor.descriptor.IPropertyEditorDescriptor;
@@ -283,7 +284,7 @@ public abstract class AbstractTablePropertyEditor extends AbstractPropertyEditor
 		}
 		if(operations.size() == 1) {
 			try {
-				OperationHistoryFactory.getOperationHistory().execute(operations.get(0), new NullProgressMonitor(), null);
+				CheckedOperationHistory.getInstance().execute(operations.get(0), new NullProgressMonitor(), null);
 			} catch (ExecutionException e1) {
 				Activator.log.error(e1);
 			}
@@ -296,7 +297,7 @@ public abstract class AbstractTablePropertyEditor extends AbstractPropertyEditor
 
 					public void widgetSelected(SelectionEvent e) {
 						try {
-							OperationHistoryFactory.getOperationHistory().execute(operation, new NullProgressMonitor(), null);
+							CheckedOperationHistory.getInstance().execute(operation, new NullProgressMonitor(), null);
 						} catch (ExecutionException e1) {
 							Activator.log.error(e1);
 						}
@@ -337,7 +338,7 @@ public abstract class AbstractTablePropertyEditor extends AbstractPropertyEditor
 		IUndoableOperation operation = getController().getDeleteValueOperation(indexes);
 		if(operation != null && operation.canExecute()) {
 			try {
-				OperationHistoryFactory.getOperationHistory().execute(operation, new NullProgressMonitor(), null);
+				CheckedOperationHistory.getInstance().execute(operation, new NullProgressMonitor(), null);
 			} catch (ExecutionException e1) {
 				Activator.log.error(e1);
 			}
@@ -358,7 +359,7 @@ public abstract class AbstractTablePropertyEditor extends AbstractPropertyEditor
 		IUndoableOperation moveOperation = getController().getMoveCurrentValuesOperation(selectionList, -1);
 		if(moveOperation != null && moveOperation.canExecute()) {
 			try {
-				OperationHistoryFactory.getOperationHistory().execute(moveOperation, new NullProgressMonitor(), null);
+				CheckedOperationHistory.getInstance().execute(moveOperation, new NullProgressMonitor(), null);
 				// try to restore selection in the view
 				int[] newSelection = new int[newSelectionList.size()];
 				for(int i = 0; i < newSelectionList.size(); i++) {
@@ -387,7 +388,7 @@ public abstract class AbstractTablePropertyEditor extends AbstractPropertyEditor
 		IUndoableOperation moveOperation = getController().getMoveCurrentValuesOperation(selectionList, +1);
 		if(moveOperation != null && moveOperation.canExecute()) {
 			try {
-				OperationHistoryFactory.getOperationHistory().execute(moveOperation, new NullProgressMonitor(), null);
+				CheckedOperationHistory.getInstance().execute(moveOperation, new NullProgressMonitor(), null);
 				// try to restore selection in the view
 				int[] newSelection = new int[newSelectionList.size()];
 				for(int i = 0; i < newSelectionList.size(); i++) {

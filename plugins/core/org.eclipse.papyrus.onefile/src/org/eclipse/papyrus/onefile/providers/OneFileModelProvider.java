@@ -21,7 +21,7 @@ import org.eclipse.core.resources.mapping.ResourceTraversal;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.papyrus.onefile.model.mapping.PapyrusResourceMapping;
-import org.eclipse.papyrus.onefile.utils.Utils;
+import org.eclipse.papyrus.onefile.utils.OneFileUtils;
 
 @SuppressWarnings("restriction")
 public class OneFileModelProvider extends ModelProvider {
@@ -33,7 +33,7 @@ public class OneFileModelProvider extends ModelProvider {
 
 	public ResourceMapping[] getMappings(IResource resource,
 			ResourceMappingContext context, IProgressMonitor monitor) {
-		if (Utils.isDi(resource)) {
+		if (OneFileUtils.isDi(resource)) {
 			return new ResourceMapping[] { new PapyrusResourceMapping(
 					(IFile) resource) };
 		}

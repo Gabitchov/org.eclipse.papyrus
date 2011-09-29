@@ -12,13 +12,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.runtime.controller;
 
-import static org.eclipse.papyrus.properties.runtime.Activator.log;
-
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.commands.operations.OperationHistoryFactory;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
@@ -26,6 +22,7 @@ import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
+import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.properties.runtime.modelhandler.emf.IEMFModelHandler;
 import org.eclipse.papyrus.properties.runtime.modelhandler.emf.TransactionUtil;
 
@@ -80,11 +77,7 @@ public abstract class EMFTPropertyEditorController extends EMFPropertyEditorCont
 			}
 
 			if(cc.canExecute() && !(TransactionUtil.isReadTransactionInProgress(getEditingDomain(), true, true))) {
-				try {
-					OperationHistoryFactory.getOperationHistory().execute(cc, new NullProgressMonitor(), null);
-				} catch (ExecutionException e) {
-					log.error(e);
-				}
+				getEditingDomain().getCommandStack().execute(new GMFtoEMFCommandWrapper(cc));
 				return;
 			}
 		}
@@ -95,11 +88,7 @@ public abstract class EMFTPropertyEditorController extends EMFPropertyEditorCont
 		 */
 		AbstractTransactionalCommand command = new EMFTControllerCommand();
 		if(command.canExecute() && !(TransactionUtil.isReadTransactionInProgress(editingDomain, true, true))) {
-			try {
-				OperationHistoryFactory.getOperationHistory().execute(command, new NullProgressMonitor(), null);
-			} catch (ExecutionException e) {
-				log.error(e);
-			}
+			editingDomain.getCommandStack().execute(new GMFtoEMFCommandWrapper(command));
 		}
 	}
 

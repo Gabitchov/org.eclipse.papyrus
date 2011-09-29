@@ -14,12 +14,12 @@ package org.eclipse.papyrus.properties.uml.widgets;
 import java.io.File;
 
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.commands.operations.OperationHistoryFactory;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
+import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.properties.modelelement.ModelElement;
 import org.eclipse.papyrus.properties.uml.Activator;
@@ -133,7 +133,8 @@ public class StereotypeImageEditor extends AbstractPropertyEditor implements Sel
 
 			final File imgFile = new File(iconSelected);
 
-			AbstractTransactionalCommand operation = new AbstractTransactionalCommand(EditorUtils.getTransactionalEditingDomain(), "Set Image content", null) {
+			TransactionalEditingDomain domain = EditorUtils.getTransactionalEditingDomain();
+			AbstractTransactionalCommand operation = new AbstractTransactionalCommand(domain, "Set Image content", null) {
 
 				/**
 				 * {@inheritDoc}
@@ -149,12 +150,7 @@ public class StereotypeImageEditor extends AbstractPropertyEditor implements Sel
 					return CommandResult.newOKCommandResult();
 				}
 			};
-
-			try {
-				OperationHistoryFactory.getOperationHistory().execute(operation, new NullProgressMonitor(), null);
-			} catch (ExecutionException e1) {
-				Activator.log.error(e1);
-			}
+			domain.getCommandStack().execute(new GMFtoEMFCommandWrapper(operation));
 
 			refresh();
 		}
@@ -164,7 +160,8 @@ public class StereotypeImageEditor extends AbstractPropertyEditor implements Sel
 		// Erase image content
 		if(getElement() instanceof Image) {
 
-			AbstractTransactionalCommand operation = new AbstractTransactionalCommand(EditorUtils.getTransactionalEditingDomain(), "Remove Image content", null) {
+			TransactionalEditingDomain dom = EditorUtils.getTransactionalEditingDomain();
+			AbstractTransactionalCommand operation = new AbstractTransactionalCommand(dom, "Remove Image content", null) {
 
 				/**
 				 * {@inheritDoc}
@@ -180,11 +177,7 @@ public class StereotypeImageEditor extends AbstractPropertyEditor implements Sel
 				}
 			};
 
-			try {
-				OperationHistoryFactory.getOperationHistory().execute(operation, new NullProgressMonitor(), null);
-			} catch (ExecutionException e1) {
-				Activator.log.error(e1);
-			}
+			dom.getCommandStack().execute(new GMFtoEMFCommandWrapper(operation));
 
 			refresh();
 		}

@@ -11,7 +11,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.onefile.model.impl;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -23,7 +22,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.papyrus.core.utils.PapyrusImageUtils;
 import org.eclipse.papyrus.onefile.model.IPapyrusFile;
-import org.eclipse.papyrus.onefile.utils.Utils;
+import org.eclipse.papyrus.onefile.utils.OneFileUtils;
 import org.eclipse.swt.graphics.Image;
 
 /**
@@ -34,18 +33,19 @@ import org.eclipse.swt.graphics.Image;
  */
 public class PapyrusFile implements IPapyrusFile {
 
-	private final IFile file;
+	private IFile file;
 	private final List<IFile> files = new LinkedList<IFile>();
 
 	public PapyrusFile(IFile file) {
-		this.file = file;
 		try {
 			for (IResource res : file.getParent().members()) {
-				if (res instanceof IFile
-						&& !Utils.isDi((IFile) res)
-						&& Utils.withoutFileExtension(file).equals(
-								Utils.withoutFileExtension(res))) {
-					files.add((IFile) res);
+				if (res instanceof IFile && OneFileUtils.withoutFileExtension(file).equals(OneFileUtils.withoutFileExtension(res))) {
+					IFile castedRes = (IFile) res;
+					if (OneFileUtils.isDi(castedRes)) {
+						this.file = castedRes;
+					} else {
+						files.add(castedRes);
+					}
 				}
 			}
 		} catch (CoreException e) {
@@ -57,10 +57,12 @@ public class PapyrusFile implements IPapyrusFile {
 	}
 
 	public IResource[] getAssociatedResources() {
-		ArrayList<IResource> list = new ArrayList<IResource>(files.size() + 1);
-		list.add(file);
-		list.addAll(files);
-		return list.toArray(new IResource[] {});
+		IResource[] resources = new IResource[files.size() + 1];
+		resources[0] = file;
+		for (int i = 0; i < files.size(); i++) {
+			resources[i + 1] = files.get(i);
+		}
+		return resources;
 	}
 
 	public String getLabel() {

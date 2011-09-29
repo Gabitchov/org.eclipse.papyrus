@@ -26,7 +26,7 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.papyrus.onefile.model.IPapyrusFile;
-import org.eclipse.papyrus.onefile.utils.Utils;
+import org.eclipse.papyrus.onefile.utils.OneFileUtils;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.IViewPart;
@@ -165,7 +165,7 @@ public class PapyrusModelActionProvider extends CommonActionProvider {
 			public boolean isEnabled() {
 				return getSelectedResources() != null
 					 && getSelectedResources().size() > 0
-					 && Utils.isDi((IResource) getSelectedResources().get(0));
+					 && OneFileUtils.isDi((IResource) getSelectedResources().get(0));
 					
 			}
 
@@ -272,7 +272,7 @@ public class PapyrusModelActionProvider extends CommonActionProvider {
 					Object o = i.next();
 					if (o instanceof IFile) {
 						IFile file = (IFile) o;
-						if (!Utils.isDi(file))
+						if (!OneFileUtils.isDi(file))
 						{
 							i.remove();
 						}

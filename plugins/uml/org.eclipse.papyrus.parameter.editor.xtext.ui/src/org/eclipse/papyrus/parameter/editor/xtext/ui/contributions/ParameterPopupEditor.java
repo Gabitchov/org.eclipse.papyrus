@@ -25,6 +25,7 @@ import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
+import org.eclipse.papyrus.commands.CheckedOperationHistory;
 import org.eclipse.papyrus.common.editor.xtext.umlCommon.TypeRule;
 import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
 import org.eclipse.papyrus.parameter.editor.xtext.ui.internal.UmlParameterActivator;
@@ -235,7 +236,7 @@ public class ParameterPopupEditor extends org.eclipse.xtext.gmf.glue.PopupEditor
 				IUndoableOperation updateCommand = getUpdateCommand();
 
 				try {
-					OperationHistoryFactory.getOperationHistory().execute(updateCommand, new NullProgressMonitor(), null);
+					CheckedOperationHistory.getInstance().execute(updateCommand, new NullProgressMonitor(), null);
 				} catch (ExecutionException e) {
 					org.eclipse.papyrus.properties.runtime.Activator.log.error(e);
 				}
