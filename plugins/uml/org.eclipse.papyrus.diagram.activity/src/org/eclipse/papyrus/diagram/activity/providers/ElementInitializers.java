@@ -34,6 +34,8 @@ import org.eclipse.uml2.uml.InputPin;
 import org.eclipse.uml2.uml.Interval;
 import org.eclipse.uml2.uml.IntervalConstraint;
 import org.eclipse.uml2.uml.JoinNode;
+import org.eclipse.uml2.uml.LiteralBoolean;
+import org.eclipse.uml2.uml.LiteralInteger;
 import org.eclipse.uml2.uml.LoopNode;
 import org.eclipse.uml2.uml.MergeNode;
 import org.eclipse.uml2.uml.ObjectFlow;
@@ -1175,12 +1177,25 @@ public class ElementInitializers {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	public void init_ControlFlow_4004(ControlFlow instance) {
 		try {
 			Object value_0 = name_ControlFlow_4004(instance);
 			instance.setName((String)value_0);
+
+			// Initialize the guard to true
+			LiteralBoolean lBoolean = UMLFactory.eINSTANCE.createLiteralBoolean();
+			lBoolean.setValue(true);
+
+			instance.setGuard(lBoolean);
+
+			// Initialize the weight to 0
+			LiteralInteger lInteger = UMLFactory.eINSTANCE.createLiteralInteger();
+			lInteger.setValue(0);
+
+			instance.setWeight(lInteger);
+
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
 		}
