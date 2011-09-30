@@ -91,8 +91,6 @@ public class BroadcastSignalActionNameEditPart extends CompartmentEditPart imple
 	 */
 	private String defaultText;
 
-
-
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
 	 * 
@@ -106,8 +104,6 @@ public class BroadcastSignalActionNameEditPart extends CompartmentEditPart imple
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
-
-
 
 	/**
 	 * @generated
@@ -560,8 +556,6 @@ public class BroadcastSignalActionNameEditPart extends CompartmentEditPart imple
 		return getPrimaryView();
 	}
 
-
-
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
@@ -665,8 +659,6 @@ public class BroadcastSignalActionNameEditPart extends CompartmentEditPart imple
 		}
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -682,7 +674,6 @@ public class BroadcastSignalActionNameEditPart extends CompartmentEditPart imple
 		super.removeNotationalListeners();
 		removeListenerFilter("PrimaryView"); //$NON-NLS-1$
 	}
-
 
 	/**
 	 * @generated
@@ -715,7 +706,6 @@ public class BroadcastSignalActionNameEditPart extends CompartmentEditPart imple
 			}
 		}
 
-
 		super.handleNotificationEvent(event);
 	}
 
@@ -727,13 +717,10 @@ public class BroadcastSignalActionNameEditPart extends CompartmentEditPart imple
 		return null;
 	}
 
-
-
 	/**
 	 * @generated
 	 */
 	private static final String ADD_PARENT_MODEL = "AddParentModel";
-
 
 	/**
 	 * @generated
@@ -760,7 +747,6 @@ public class BroadcastSignalActionNameEditPart extends CompartmentEditPart imple
 
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -768,6 +754,5 @@ public class BroadcastSignalActionNameEditPart extends CompartmentEditPart imple
 		removeListenerFilter(ADD_PARENT_MODEL);
 
 	}
-
 
 }

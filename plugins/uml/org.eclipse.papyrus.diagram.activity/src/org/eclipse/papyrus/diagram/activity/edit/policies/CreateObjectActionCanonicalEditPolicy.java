@@ -43,7 +43,6 @@ public class CreateObjectActionCanonicalEditPolicy extends CanonicalEditPolicy {
 		super.refreshOnActivate();
 	}
 
-
 	/**
 	 * @generated
 	 */

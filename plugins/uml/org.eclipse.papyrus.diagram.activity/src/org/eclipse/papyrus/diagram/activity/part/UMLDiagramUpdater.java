@@ -41,6 +41,7 @@ import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.BroadcastSignalAction;
 import org.eclipse.uml2.uml.CallBehaviorAction;
 import org.eclipse.uml2.uml.CallOperationAction;
+import org.eclipse.uml2.uml.CentralBufferNode;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.ConditionalNode;
 import org.eclipse.uml2.uml.Constraint;
@@ -840,6 +841,10 @@ public class UMLDiagramUpdater {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
+			if(visualID == CentralBufferNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
 		}
 		//		for (Iterator<?> it = modelElement.getLocalPreconditions().iterator(); it
 		//				.hasNext();) {
@@ -1065,6 +1070,10 @@ public class UMLDiagramUpdater {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
+			if(visualID == CentralBufferNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
 			//add children actions' local conditions (2 blocks removed)
 		}
 		for(Iterator<?> it = modelElement.getGroups().iterator(); it.hasNext();) {
@@ -1210,6 +1219,10 @@ public class UMLDiagramUpdater {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
+			if(visualID == CentralBufferNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
 			//add children actions' local conditions (2 blocks removed)
 			//add structured activity group as nodes
 			//		}
@@ -1345,6 +1358,10 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 			if(visualID == ValueSpecificationActionEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == CentralBufferNodeEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -1486,6 +1503,10 @@ public class UMLDiagramUpdater {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
+			if(visualID == CentralBufferNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
 			//add children actions' local conditions (2 blocks removed)
 			//add structured activity group as nodes
 			//		}
@@ -1621,6 +1642,10 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 			if(visualID == ValueSpecificationActionEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == CentralBufferNodeEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -1762,6 +1787,10 @@ public class UMLDiagramUpdater {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
+			if(visualID == CentralBufferNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
 			//add children actions' local conditions (2 blocks removed)
 			//add structured activity group as nodes
 			//		}
@@ -1897,6 +1926,10 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 			if(visualID == ValueSpecificationActionEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == CentralBufferNodeEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -2039,6 +2072,10 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 			if(visualID == ValueSpecificationActionEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == CentralBufferNodeEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -2251,6 +2288,10 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 			if(visualID == ReadSelfActionEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == CentralBufferNodeEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -2626,6 +2667,8 @@ public class UMLDiagramUpdater {
 			return getBroadcastSignalAction_3102ContainedLinks(view);
 		case InputPinInBroadcastSignalActionEditPart.VISUAL_ID:
 			return getInputPin_3103ContainedLinks(view);
+		case CentralBufferNodeEditPart.VISUAL_ID:
+			return getCentralBufferNode_3104ContainedLinks(view);
 		case ObjectFlowEditPart.VISUAL_ID:
 			return getObjectFlow_4003ContainedLinks(view);
 		case ControlFlowEditPart.VISUAL_ID:
@@ -2819,6 +2862,8 @@ public class UMLDiagramUpdater {
 			return getBroadcastSignalAction_3102IncomingLinks(view);
 		case InputPinInBroadcastSignalActionEditPart.VISUAL_ID:
 			return getInputPin_3103IncomingLinks(view);
+		case CentralBufferNodeEditPart.VISUAL_ID:
+			return getCentralBufferNode_3104IncomingLinks(view);
 		case ObjectFlowEditPart.VISUAL_ID:
 			return getObjectFlow_4003IncomingLinks(view);
 		case ControlFlowEditPart.VISUAL_ID:
@@ -3012,6 +3057,8 @@ public class UMLDiagramUpdater {
 			return getBroadcastSignalAction_3102OutgoingLinks(view);
 		case InputPinInBroadcastSignalActionEditPart.VISUAL_ID:
 			return getInputPin_3103OutgoingLinks(view);
+		case CentralBufferNodeEditPart.VISUAL_ID:
+			return getCentralBufferNode_3104OutgoingLinks(view);
 		case ObjectFlowEditPart.VISUAL_ID:
 			return getObjectFlow_4003OutgoingLinks(view);
 		case ControlFlowEditPart.VISUAL_ID:
@@ -3630,6 +3677,13 @@ public class UMLDiagramUpdater {
 	 * @generated
 	 */
 	public static List<UMLLinkDescriptor> getInputPin_3103ContainedLinks(View view) {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<UMLLinkDescriptor> getCentralBufferNode_3104ContainedLinks(View view) {
 		return Collections.emptyList();
 	}
 
@@ -4760,6 +4814,20 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
+	public static List<UMLLinkDescriptor> getCentralBufferNode_3104IncomingLinks(View view) {
+		CentralBufferNode modelElement = (CentralBufferNode)view.getElement();
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ControlFlow_4004(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ExceptionHandler_4005(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4006(modelElement, crossReferences));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
 	public static List<UMLLinkDescriptor> getValueSpecificationAction_3076IncomingLinks(View view) {
 		ValueSpecificationAction modelElement = (ValueSpecificationAction)view.getElement();
 		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
@@ -5810,6 +5878,17 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
+	public static List<UMLLinkDescriptor> getCentralBufferNode_3104OutgoingLinks(View view) {
+		CentralBufferNode modelElement = (CentralBufferNode)view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
 	public static List<UMLLinkDescriptor> getValueSpecificationAction_3076OutgoingLinks(View view) {
 		ValueSpecificationAction modelElement = (ValueSpecificationAction)view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
@@ -5999,14 +6078,9 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 
-
-
-
-
 			ActivityNode dst = link.getTarget();
 			ActivityNode src = link.getSource();
 			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.ObjectFlow_4003, ObjectFlowEditPart.VISUAL_ID));
-
 
 		}
 		return result;
@@ -6027,14 +6101,9 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 
-
-
-
-
 			ActivityNode dst = link.getTarget();
 			ActivityNode src = link.getSource();
 			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.ControlFlow_4004, ControlFlowEditPart.VISUAL_ID));
-
 
 		}
 		return result;
@@ -6055,14 +6124,9 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 
-
-
-
-
 			ObjectNode dst = link.getExceptionInput();
 			ExecutableNode src = link.getProtectedNode();
 			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.ExceptionHandler_4005, ExceptionHandlerEditPart.VISUAL_ID));
-
 
 		}
 		return result;
@@ -6221,17 +6285,12 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 
-
-
-
-
 			ActivityNode dst = link.getTarget();
 			ActivityNode src = link.getSource();
 			if(src != source) {
 				continue;
 			}
 			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.ObjectFlow_4003, ObjectFlowEditPart.VISUAL_ID));
-
 
 		}
 		return result;
@@ -6264,17 +6323,12 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 
-
-
-
-
 			ActivityNode dst = link.getTarget();
 			ActivityNode src = link.getSource();
 			if(src != source) {
 				continue;
 			}
 			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.ControlFlow_4004, ControlFlowEditPart.VISUAL_ID));
-
 
 		}
 		return result;
@@ -6307,17 +6361,12 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 
-
-
-
-
 			ObjectNode dst = link.getExceptionInput();
 			ExecutableNode src = link.getProtectedNode();
 			if(src != source) {
 				continue;
 			}
 			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.ExceptionHandler_4005, ExceptionHandlerEditPart.VISUAL_ID));
-
 
 		}
 		return result;

@@ -62,7 +62,6 @@ public class InputPinInAddVariableValueActionAsInsertAtCreateCommand extends Edi
 	 */
 	protected EObject getElementToEdit() {
 
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -82,10 +81,7 @@ public class InputPinInAddVariableValueActionAsInsertAtCreateCommand extends Edi
 			return false;
 		}
 
-
 		return true;
-
-
 
 	}
 
@@ -94,13 +90,10 @@ public class InputPinInAddVariableValueActionAsInsertAtCreateCommand extends Edi
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-
-
 		InputPin newElement = UMLFactory.eINSTANCE.createInputPin();
 
 		AddVariableValueAction owner = (AddVariableValueAction)getElementToEdit();
 		owner.setInsertAt(newElement);
-
 
 		ElementInitializers.getInstance().init_InputPin_3100(newElement);
 
@@ -109,9 +102,6 @@ public class InputPinInAddVariableValueActionAsInsertAtCreateCommand extends Edi
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
-
-
-
 
 	/**
 	 * @generated

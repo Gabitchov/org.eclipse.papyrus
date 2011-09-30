@@ -321,9 +321,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 */
 	protected Command getMoveCommand(MoveRequest req) {
 
-
 		return getGEFWrapper(new MoveElementsCommand(req));
-
 
 	}
 
@@ -401,7 +399,9 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 */
 		public boolean canCreateActionLocalPrecondition_4001(Action source, Constraint target) {
 			if(source != null) {
-				if(source.getLocalPreconditions().contains(target)) {
+				if(source.getLocalPreconditions().contains(target)
+
+				) {
 					return false;
 				}
 				if(source == target) {
@@ -417,7 +417,9 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 */
 		public boolean canCreateActionLocalPostcondition_4002(Action source, Constraint target) {
 			if(source != null) {
-				if(source.getLocalPostconditions().contains(target)) {
+				if(source.getLocalPostconditions().contains(target)
+
+				) {
 					return false;
 				}
 				if(source == target) {
@@ -454,7 +456,9 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 */
 		public boolean canCreateCommentAnnotatedElement_4006(Comment source, Element target) {
 			if(source != null) {
-				if(source.getAnnotatedElements().contains(target)) {
+				if(source.getAnnotatedElements().contains(target)
+
+				) {
 					return false;
 				}
 			}

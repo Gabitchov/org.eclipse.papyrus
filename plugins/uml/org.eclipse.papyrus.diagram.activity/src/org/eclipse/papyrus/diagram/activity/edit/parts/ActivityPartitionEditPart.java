@@ -169,7 +169,6 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 			return true;
 		}
 
-
 		if(childEditPart instanceof ActivityPartitionActivityPartitionContentCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getActivityPartitionCompartment();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
@@ -360,7 +359,6 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 		/** The helper which handles stereotype aspects */
 		private StereotypeFigureHelper stereotypeHelper;
 
-
 		/**
 		 * @generated NOT Instanciate stereotypeHelper
 		 */
@@ -368,36 +366,17 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 
 			FlowLayoutAdvanced layoutThis = new FlowLayoutAdvanced();
 
-
-
-
 			layoutThis.setStretchMinorAxis(true);
-
-
-
 
 			layoutThis.setMinorAlignment(FlowLayout.ALIGN_CENTER);
 
-
-
-
 			layoutThis.setMajorAlignment(FlowLayout.ALIGN_TOPLEFT);
-
-
-
 
 			layoutThis.setMajorSpacing(0);
 
-
-
-
 			layoutThis.setMinorSpacing(0);
 
-
-
-
 			layoutThis.setHorizontal(false);
-
 
 			this.setLayoutManager(layoutThis);
 			//Look for the default preference
@@ -447,7 +426,6 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 					setStereotypeContainerFilled(true);
 				}
 
-
 			};
 		}
 
@@ -483,7 +461,6 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 		 */
 		private void createContents() {
 
-
 			fFigureCompartmentLabelActivityPartition = new RectangleFigure();
 			fFigureCompartmentLabelActivityPartition.setOutline(false);
 			fFigureCompartmentLabelActivityPartition.setLineWidth(0);
@@ -491,12 +468,7 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 
 			FlowLayoutAdvancedConstraint constraintFFigureCompartmentLabelActivityPartition = new FlowLayoutAdvancedConstraint();
 
-
-
-
 			constraintFFigureCompartmentLabelActivityPartition.setHasMinsize(true);
-
-
 
 			this.add(fFigureCompartmentLabelActivityPartition, constraintFFigureCompartmentLabelActivityPartition);
 
@@ -511,16 +483,9 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 
 			fFigureCompartmentLabelActivityPartition.setLayoutManager(layoutFFigureCompartmentLabelActivityPartition);
 
-
-
 			fPartitionLabel = new CenteredWrappedLabel();
 
-
-
 			fFigureCompartmentLabelActivityPartition.add(fPartitionLabel);
-
-
-
 
 			fActivityPartitionCompartment = new RectangleFigure();
 			fActivityPartitionCompartment.setFill(false);
@@ -529,15 +494,9 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 
 			FlowLayoutAdvancedConstraint constraintFActivityPartitionCompartment = new FlowLayoutAdvancedConstraint();
 
-
-
-
 			constraintFActivityPartitionCompartment.setFill(true);
 
-
-
 			this.add(fActivityPartitionCompartment, constraintFActivityPartitionCompartment);
-
 
 		}
 
@@ -547,12 +506,7 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 		private Border createBorder0() {
 			LinesBorder result = new LinesBorder();
 
-
-
-
 			result.setSides(PositionConstants.TOP | PositionConstants.LEFT | PositionConstants.RIGHT);
-
-
 
 			return result;
 		}
@@ -563,32 +517,15 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 		private Border createBorder1() {
 			LinesBorder result = new LinesBorder();
 
-
-
-
 			result.setSides(PositionConstants.BOTTOM);
-
-
-
 
 			result.setLeftInset(5);
 
-
-
-
 			result.setRightInset(5);
-
-
-
 
 			result.setTopInset(5);
 
-
-
-
 			result.setBottomInset(5);
-
-
 
 			return result;
 		}
@@ -627,7 +564,6 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 			stereotypeHelper.setStereotypeDisplay(stereotypes, image);
 			this.layout();
 
-
 		}
 
 		/**
@@ -639,7 +575,6 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 		public void setStereotypePropertiesInBrace(String stereotypeProperties) {
 			stereotypeHelper.setStereotypePropertiesInBrace(stereotypeProperties);
 			this.layout();
-
 
 		}
 

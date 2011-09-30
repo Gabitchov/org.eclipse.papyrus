@@ -62,7 +62,6 @@ public class OutputPinInReadStructuralFeatureAsResultCreateCommand extends EditE
 	 */
 	protected EObject getElementToEdit() {
 
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -82,10 +81,7 @@ public class OutputPinInReadStructuralFeatureAsResultCreateCommand extends EditE
 			return false;
 		}
 
-
 		return true;
-
-
 
 	}
 
@@ -94,13 +90,10 @@ public class OutputPinInReadStructuralFeatureAsResultCreateCommand extends EditE
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-
-
 		OutputPin newElement = UMLFactory.eINSTANCE.createOutputPin();
 
 		ReadStructuralFeatureAction owner = (ReadStructuralFeatureAction)getElementToEdit();
 		owner.setResult(newElement);
-
 
 		ElementInitializers.getInstance().init_OutputPin_3090(newElement);
 
@@ -109,9 +102,6 @@ public class OutputPinInReadStructuralFeatureAsResultCreateCommand extends EditE
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
-
-
-
 
 	/**
 	 * @generated

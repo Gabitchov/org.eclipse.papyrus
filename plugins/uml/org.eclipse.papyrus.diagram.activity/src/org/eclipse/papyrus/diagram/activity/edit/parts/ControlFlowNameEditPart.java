@@ -744,9 +744,6 @@ public class ControlFlowNameEditPart extends LabelEditPart implements ITextAware
 			}
 		}
 
-
-
-
 		super.handleNotificationEvent(event);
 	}
 

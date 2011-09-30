@@ -62,7 +62,6 @@ public class AddStructuralFeatureValueActionCreateCommand extends EditElementCom
 	 */
 	protected EObject getElementToEdit() {
 
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -78,10 +77,7 @@ public class AddStructuralFeatureValueActionCreateCommand extends EditElementCom
 	 */
 	public boolean canExecute() {
 
-
 		return true;
-
-
 
 	}
 
@@ -90,13 +86,10 @@ public class AddStructuralFeatureValueActionCreateCommand extends EditElementCom
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-
-
 		AddStructuralFeatureValueAction newElement = UMLFactory.eINSTANCE.createAddStructuralFeatureValueAction();
 
 		Activity owner = (Activity)getElementToEdit();
 		owner.getNodes().add(newElement);
-
 
 		ElementInitializers.getInstance().init_AddStructuralFeatureValueAction_3091(newElement);
 
@@ -105,9 +98,6 @@ public class AddStructuralFeatureValueActionCreateCommand extends EditElementCom
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
-
-
-
 
 	/**
 	 * @generated

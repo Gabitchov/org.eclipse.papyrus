@@ -91,10 +91,6 @@ BorderedBorderItemEditPart {
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
-
-
-
-
 	/**
 	 * @generated
 	 */
@@ -148,7 +144,6 @@ BorderedBorderItemEditPart {
 		return (PinDescriptor)primaryShape;
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -172,12 +167,10 @@ BorderedBorderItemEditPart {
 		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
 
-
 		//FIXME: workaround for #154536
 		result.getBounds().setSize(result.getPreferredSize());
 		return result;
 	}
-
 
 	/**
 	 * Creates figure for this edit part.
@@ -483,6 +476,9 @@ BorderedBorderItemEditPart {
 		if(targetEditPart instanceof org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInBroadcastSignalActionEditPart) {
 			types.add(UMLElementTypes.ObjectFlow_4003);
 		}
+		if(targetEditPart instanceof CentralBufferNodeEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
 		if(targetEditPart instanceof InitialNodeEditPart) {
 			types.add(UMLElementTypes.ControlFlow_4004);
 		}
@@ -699,6 +695,9 @@ BorderedBorderItemEditPart {
 		if(targetEditPart instanceof org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInBroadcastSignalActionEditPart) {
 			types.add(UMLElementTypes.ControlFlow_4004);
 		}
+		if(targetEditPart instanceof CentralBufferNodeEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
 		return types;
 	}
 
@@ -780,6 +779,7 @@ BorderedBorderItemEditPart {
 			types.add(UMLElementTypes.InputPin_3101);
 			types.add(UMLElementTypes.BroadcastSignalAction_3102);
 			types.add(UMLElementTypes.InputPin_3103);
+			types.add(UMLElementTypes.CentralBufferNode_3104);
 		} else if(relationshipType == UMLElementTypes.ControlFlow_4004) {
 			types.add(UMLElementTypes.InitialNode_3004);
 			types.add(UMLElementTypes.ActivityFinalNode_3005);
@@ -853,6 +853,7 @@ BorderedBorderItemEditPart {
 			types.add(UMLElementTypes.InputPin_3101);
 			types.add(UMLElementTypes.BroadcastSignalAction_3102);
 			types.add(UMLElementTypes.InputPin_3103);
+			types.add(UMLElementTypes.CentralBufferNode_3104);
 		}
 		return types;
 	}
@@ -947,6 +948,7 @@ BorderedBorderItemEditPart {
 			types.add(UMLElementTypes.InputPin_3101);
 			types.add(UMLElementTypes.BroadcastSignalAction_3102);
 			types.add(UMLElementTypes.InputPin_3103);
+			types.add(UMLElementTypes.CentralBufferNode_3104);
 		} else if(relationshipType == UMLElementTypes.ControlFlow_4004) {
 			types.add(UMLElementTypes.InitialNode_3004);
 			types.add(UMLElementTypes.ActivityFinalNode_3005);
@@ -1020,6 +1022,7 @@ BorderedBorderItemEditPart {
 			types.add(UMLElementTypes.InputPin_3101);
 			types.add(UMLElementTypes.BroadcastSignalAction_3102);
 			types.add(UMLElementTypes.InputPin_3103);
+			types.add(UMLElementTypes.CentralBufferNode_3104);
 		} else if(relationshipType == UMLElementTypes.ExceptionHandler_4005) {
 			types.add(UMLElementTypes.OpaqueAction_3007);
 			types.add(UMLElementTypes.CallBehaviorAction_3008);
@@ -1047,21 +1050,15 @@ BorderedBorderItemEditPart {
 		return types;
 	}
 
-
-
-
-
 	/**
 	 * @generated
 	 */
 	public class PinDescriptor extends RectangleFigure {
 
-
 		/**
 		 * @generated
 		 */
 		private PolylineShape fOptionalArrowFigure;
-
 
 		/**
 		 * @generated
@@ -1076,17 +1073,11 @@ BorderedBorderItemEditPart {
 		 */
 		private void createContents() {
 
-
 			fOptionalArrowFigure = new PolylineShape();
 
 			this.add(fOptionalArrowFigure);
 
-
 		}
-
-
-
-
 
 		/**
 		 * @generated
@@ -1095,11 +1086,7 @@ BorderedBorderItemEditPart {
 			return fOptionalArrowFigure;
 		}
 
-
 	}
-
-
-
 
 	/**
 	 * @generated

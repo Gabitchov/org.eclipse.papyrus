@@ -707,7 +707,6 @@ public class ReadSelfActionNameEditPart extends CompartmentEditPart implements I
 			}
 		}
 
-
 		super.handleNotificationEvent(event);
 	}
 

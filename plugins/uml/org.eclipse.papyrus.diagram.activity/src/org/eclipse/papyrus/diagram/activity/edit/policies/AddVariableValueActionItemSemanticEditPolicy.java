@@ -21,6 +21,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipReques
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.commands.wrappers.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.diagram.activity.edit.commands.ActionLocalPostconditionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.ActionLocalPostconditionReorientCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.ActionLocalPreconditionCreateCommand;
@@ -45,7 +46,6 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInAddVariableValu
 import org.eclipse.papyrus.diagram.activity.edit.parts.ObjectFlowEditPart;
 import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
-import org.eclipse.papyrus.commands.wrappers.EMFtoGMFCommandWrapper;
 
 /**
  * @generated
@@ -59,7 +59,6 @@ public class AddVariableValueActionItemSemanticEditPolicy extends UMLBaseItemSem
 		super(UMLElementTypes.AddVariableValueAction_3099);
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -72,8 +71,6 @@ public class AddVariableValueActionItemSemanticEditPolicy extends UMLBaseItemSem
 		}
 		return super.getCreateCommand(req);
 	}
-
-
 
 	/**
 	 * @generated
@@ -109,7 +106,6 @@ public class AddVariableValueActionItemSemanticEditPolicy extends UMLBaseItemSem
 			switch(UMLVisualIDRegistry.getVisualID(node)) {
 			case InputPinInAddVariableValueActionAsInsertAtEditPart.VISUAL_ID:
 
-
 				for(Iterator<?> it = node.getTargetEdges().iterator(); it.hasNext();) {
 					Edge incomingLink = (Edge)it.next();
 					switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -144,7 +140,6 @@ public class AddVariableValueActionItemSemanticEditPolicy extends UMLBaseItemSem
 				// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), node));
 				break;
 			case InputPinInAddVariableValueActionAsValueEditPart.VISUAL_ID:
-
 
 				for(Iterator<?> it = node.getTargetEdges().iterator(); it.hasNext();) {
 					Edge incomingLink = (Edge)it.next();
@@ -182,7 +177,6 @@ public class AddVariableValueActionItemSemanticEditPolicy extends UMLBaseItemSem
 			}
 		}
 	}
-
 
 	/**
 	 * @generated

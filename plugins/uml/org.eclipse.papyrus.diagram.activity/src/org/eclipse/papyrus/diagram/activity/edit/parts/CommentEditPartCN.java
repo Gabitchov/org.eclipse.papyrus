@@ -154,7 +154,6 @@ AbstractCommentEditPart {
 			return true;
 		}
 
-
 		return false;
 	}
 
@@ -558,6 +557,9 @@ AbstractCommentEditPart {
 		if(targetEditPart instanceof InputPinInBroadcastSignalActionEditPart) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
 		}
+		if(targetEditPart instanceof CentralBufferNodeEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		}
 		return types;
 	}
 
@@ -653,6 +655,7 @@ AbstractCommentEditPart {
 			types.add(UMLElementTypes.InputPin_3101);
 			types.add(UMLElementTypes.BroadcastSignalAction_3102);
 			types.add(UMLElementTypes.InputPin_3103);
+			types.add(UMLElementTypes.CentralBufferNode_3104);
 		}
 		return types;
 	}

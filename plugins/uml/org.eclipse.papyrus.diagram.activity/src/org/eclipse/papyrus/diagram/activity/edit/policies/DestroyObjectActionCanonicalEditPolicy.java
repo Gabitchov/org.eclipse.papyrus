@@ -43,7 +43,6 @@ public class DestroyObjectActionCanonicalEditPolicy extends CanonicalEditPolicy 
 		super.refreshOnActivate();
 	}
 
-
 	/**
 	 * @generated
 	 */

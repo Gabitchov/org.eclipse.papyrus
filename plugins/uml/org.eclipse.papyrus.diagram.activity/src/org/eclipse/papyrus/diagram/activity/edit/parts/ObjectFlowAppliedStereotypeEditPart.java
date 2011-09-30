@@ -711,9 +711,6 @@ public class ObjectFlowAppliedStereotypeEditPart extends LabelEditPart implement
 			}
 		}
 
-
-
-
 		super.handleNotificationEvent(event);
 	}
 

@@ -699,7 +699,6 @@ public class ActivityIsSingleExecutionCNEditPart extends CompartmentEditPart imp
 			}
 		}
 
-
 		super.handleNotificationEvent(event);
 	}
 

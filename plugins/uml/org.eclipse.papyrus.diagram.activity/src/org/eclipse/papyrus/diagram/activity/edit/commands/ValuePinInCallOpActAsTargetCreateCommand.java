@@ -75,7 +75,6 @@ public class ValuePinInCallOpActAsTargetCreateCommand extends EditElementCommand
 	 */
 	protected EObject getElementToEdit() {
 
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -95,10 +94,7 @@ public class ValuePinInCallOpActAsTargetCreateCommand extends EditElementCommand
 			return false;
 		}
 
-
 		return true;
-
-
 
 	}
 
@@ -107,13 +103,10 @@ public class ValuePinInCallOpActAsTargetCreateCommand extends EditElementCommand
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-
-
 		ValuePin newElement = UMLFactory.eINSTANCE.createValuePin();
 
 		CallOperationAction owner = (CallOperationAction)getElementToEdit();
 		owner.setTarget(newElement);
-
 
 		ElementInitializers.getInstance().init_ValuePin_3025(newElement);
 

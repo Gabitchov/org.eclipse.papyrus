@@ -62,7 +62,6 @@ public class BroadcastSignalActionCreateCommand extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -78,10 +77,7 @@ public class BroadcastSignalActionCreateCommand extends EditElementCommand {
 	 */
 	public boolean canExecute() {
 
-
 		return true;
-
-
 
 	}
 
@@ -90,13 +86,10 @@ public class BroadcastSignalActionCreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-
-
 		BroadcastSignalAction newElement = UMLFactory.eINSTANCE.createBroadcastSignalAction();
 
 		Activity owner = (Activity)getElementToEdit();
 		owner.getNodes().add(newElement);
-
 
 		ElementInitializers.getInstance().init_BroadcastSignalAction_3102(newElement);
 
@@ -105,9 +98,6 @@ public class BroadcastSignalActionCreateCommand extends EditElementCommand {
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
-
-
-
 
 	/**
 	 * @generated

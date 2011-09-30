@@ -701,7 +701,6 @@ public class ExpansionRegionKeywordEditPart extends CompartmentEditPart implemen
 			}
 		}
 
-
 		super.handleNotificationEvent(event);
 	}
 

@@ -43,7 +43,6 @@ public class BroadcastSignalActionCanonicalEditPolicy extends CanonicalEditPolic
 		super.refreshOnActivate();
 	}
 
-
 	/**
 	 * @generated
 	 */

@@ -710,7 +710,6 @@ public class ActivityPartitionNameEditPart extends CompartmentEditPart implement
 			}
 		}
 
-
 		super.handleNotificationEvent(event);
 	}
 

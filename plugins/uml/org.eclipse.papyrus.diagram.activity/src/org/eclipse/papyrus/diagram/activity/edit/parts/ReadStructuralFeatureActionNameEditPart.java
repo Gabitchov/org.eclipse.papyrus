@@ -91,8 +91,6 @@ public class ReadStructuralFeatureActionNameEditPart extends CompartmentEditPart
 	 */
 	private String defaultText;
 
-
-
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
 	 * 
@@ -106,8 +104,6 @@ public class ReadStructuralFeatureActionNameEditPart extends CompartmentEditPart
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
-
-
 
 	/**
 	 * @generated
@@ -560,8 +556,6 @@ public class ReadStructuralFeatureActionNameEditPart extends CompartmentEditPart
 		return getPrimaryView();
 	}
 
-
-
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
@@ -665,8 +659,6 @@ public class ReadStructuralFeatureActionNameEditPart extends CompartmentEditPart
 		}
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -682,7 +674,6 @@ public class ReadStructuralFeatureActionNameEditPart extends CompartmentEditPart
 		super.removeNotationalListeners();
 		removeListenerFilter("PrimaryView"); //$NON-NLS-1$
 	}
-
 
 	/**
 	 * @generated
@@ -715,7 +706,6 @@ public class ReadStructuralFeatureActionNameEditPart extends CompartmentEditPart
 			}
 		}
 
-
 		super.handleNotificationEvent(event);
 	}
 
@@ -727,13 +717,10 @@ public class ReadStructuralFeatureActionNameEditPart extends CompartmentEditPart
 		return null;
 	}
 
-
-
 	/**
 	 * @generated
 	 */
 	private static final String ADD_PARENT_MODEL = "AddParentModel";
-
 
 	/**
 	 * @generated
@@ -760,7 +747,6 @@ public class ReadStructuralFeatureActionNameEditPart extends CompartmentEditPart
 
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -768,6 +754,5 @@ public class ReadStructuralFeatureActionNameEditPart extends CompartmentEditPart
 		removeListenerFilter(ADD_PARENT_MODEL);
 
 	}
-
 
 }

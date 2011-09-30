@@ -49,8 +49,10 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.AcceptEventActionEditPart
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityFinalNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.AddStructuralFeatureValueActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.AddVariableValueActionEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.BroadcastSignalActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.CallBehaviorActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.CallOperationActionEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.CentralBufferNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConditionalNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintAsLocalPostcondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintAsLocalPrecondEditPart;
@@ -183,6 +185,8 @@ public class InterruptibleActivityRegionInterruptibleActivityRegionContentCompar
 		case DestroyObjectActionEditPart.VISUAL_ID:
 		case ReadVariableActionEditPart.VISUAL_ID:
 		case AddVariableValueActionEditPart.VISUAL_ID:
+		case BroadcastSignalActionEditPart.VISUAL_ID:
+		case CentralBufferNodeEditPart.VISUAL_ID:
 			return true;
 		}
 		return false;

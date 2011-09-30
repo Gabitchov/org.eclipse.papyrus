@@ -21,6 +21,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipReques
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.commands.wrappers.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.diagram.activity.edit.commands.ActionLocalPostconditionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.ActionLocalPostconditionReorientCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.ActionLocalPreconditionCreateCommand;
@@ -47,7 +48,6 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.ObjectFlowEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInAddStructuralFeatureValueActionAsResultEditPart;
 import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
-import org.eclipse.papyrus.commands.wrappers.EMFtoGMFCommandWrapper;
 
 /**
  * @generated
@@ -60,7 +60,6 @@ public class AddStructuralFeatureValueActionItemSemanticEditPolicy extends UMLBa
 	public AddStructuralFeatureValueActionItemSemanticEditPolicy() {
 		super(UMLElementTypes.AddStructuralFeatureValueAction_3091);
 	}
-
 
 	/**
 	 * @generated
@@ -77,8 +76,6 @@ public class AddStructuralFeatureValueActionItemSemanticEditPolicy extends UMLBa
 		}
 		return super.getCreateCommand(req);
 	}
-
-
 
 	/**
 	 * @generated
@@ -113,7 +110,6 @@ public class AddStructuralFeatureValueActionItemSemanticEditPolicy extends UMLBa
 			Node node = (Node)nit.next();
 			switch(UMLVisualIDRegistry.getVisualID(node)) {
 			case InputPinInAddStructuralFeatureValueActionAsObjectEditPart.VISUAL_ID:
-
 
 				for(Iterator<?> it = node.getTargetEdges().iterator(); it.hasNext();) {
 					Edge incomingLink = (Edge)it.next();
@@ -150,7 +146,6 @@ public class AddStructuralFeatureValueActionItemSemanticEditPolicy extends UMLBa
 				break;
 			case InputPinInAddStructuralFeatureValueActionAsValueEditPart.VISUAL_ID:
 
-
 				for(Iterator<?> it = node.getTargetEdges().iterator(); it.hasNext();) {
 					Edge incomingLink = (Edge)it.next();
 					switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -185,7 +180,6 @@ public class AddStructuralFeatureValueActionItemSemanticEditPolicy extends UMLBa
 				// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), node));
 				break;
 			case OutputPinInAddStructuralFeatureValueActionAsResultEditPart.VISUAL_ID:
-
 
 				for(Iterator<?> it = node.getTargetEdges().iterator(); it.hasNext();) {
 					Edge incomingLink = (Edge)it.next();
@@ -223,7 +217,6 @@ public class AddStructuralFeatureValueActionItemSemanticEditPolicy extends UMLBa
 			}
 		}
 	}
-
 
 	/**
 	 * @generated

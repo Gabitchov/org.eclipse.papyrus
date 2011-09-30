@@ -161,7 +161,6 @@ AbstractConstraintEditPart {
 			return true;
 		}
 
-
 		return false;
 	}
 

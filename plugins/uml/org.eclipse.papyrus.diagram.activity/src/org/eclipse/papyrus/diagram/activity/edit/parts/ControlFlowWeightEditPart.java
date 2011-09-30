@@ -708,9 +708,6 @@ public class ControlFlowWeightEditPart extends LabelEditPart implements ITextAwa
 			}
 		}
 
-
-
-
 		super.handleNotificationEvent(event);
 	}
 

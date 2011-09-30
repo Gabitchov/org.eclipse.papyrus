@@ -18,10 +18,11 @@ import java.lang.annotation.Target;
 
 /**
  * Annotation to specify on methods which ones are used for validation
+ * 
  * @author tristan.faure@atos.net
  */
-@Target(ElementType.METHOD) 
-@Retention(RetentionPolicy.RUNTIME)  
+@Target(ElementType.METHOD)
+@Retention(RetentionPolicy.RUNTIME)
 public @interface PinAndParameterSynchronizeValidator {
-	
+
 }

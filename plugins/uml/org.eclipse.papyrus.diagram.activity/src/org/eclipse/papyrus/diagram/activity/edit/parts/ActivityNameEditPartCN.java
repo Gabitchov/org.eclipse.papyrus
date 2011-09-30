@@ -707,7 +707,6 @@ public class ActivityNameEditPartCN extends CompartmentEditPart implements IText
 			}
 		}
 
-
 		super.handleNotificationEvent(event);
 	}
 

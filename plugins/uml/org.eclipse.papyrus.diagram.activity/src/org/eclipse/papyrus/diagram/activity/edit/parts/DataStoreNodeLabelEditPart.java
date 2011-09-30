@@ -709,7 +709,6 @@ public class DataStoreNodeLabelEditPart extends CompartmentEditPart implements I
 			}
 		}
 
-
 		super.handleNotificationEvent(event);
 	}
 

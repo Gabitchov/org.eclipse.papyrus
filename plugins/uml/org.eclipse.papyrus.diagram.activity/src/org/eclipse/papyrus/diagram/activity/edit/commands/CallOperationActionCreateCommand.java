@@ -84,6 +84,7 @@ public class CallOperationActionCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected EObject getElementToEdit() {
+
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -118,8 +119,7 @@ public class CallOperationActionCreateCommand extends EditElementCommand {
 		}
 
 		CallOperationAction newElement = UMLFactory.eINSTANCE.createCallOperationAction();
-		if (isOperationAlreadyManaged())
-		{
+		if(isOperationAlreadyManaged()) {
 			CreateCallOperationActionDialog dialog = new CreateCallOperationActionDialog(Display.getDefault().getActiveShell(), parentActivity);
 			getRequest();
 			if(IDialogConstants.OK_ID == dialog.open()) {
@@ -151,7 +151,7 @@ public class CallOperationActionCreateCommand extends EditElementCommand {
 	}
 
 	private boolean isOperationAlreadyManaged() {
-		IEditCommandRequest aRequest = getRequest() ;
+		IEditCommandRequest aRequest = getRequest();
 		Map map = aRequest.getParameters();
 		return !IFeatureSetterAspectActionUtil.areFeaturesManaged(getRequest(), UMLPackage.Literals.CALL_OPERATION_ACTION__OPERATION);
 	}

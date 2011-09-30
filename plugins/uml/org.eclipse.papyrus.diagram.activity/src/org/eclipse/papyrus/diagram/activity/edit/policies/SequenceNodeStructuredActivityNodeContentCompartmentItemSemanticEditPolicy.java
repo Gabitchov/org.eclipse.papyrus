@@ -22,6 +22,7 @@ import org.eclipse.papyrus.diagram.activity.edit.commands.AddVariableValueAction
 import org.eclipse.papyrus.diagram.activity.edit.commands.BroadcastSignalActionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.CallBehaviorActionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.CallOperationActionCreateCommand;
+import org.eclipse.papyrus.diagram.activity.edit.commands.CentralBufferNodeCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.ConditionalNodeCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.CreateObjectActionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.DataStoreNodeCreateCommand;
@@ -170,6 +171,9 @@ public class SequenceNodeStructuredActivityNodeContentCompartmentItemSemanticEdi
 		}
 		if(UMLElementTypes.BroadcastSignalAction_3102 == req.getElementType()) {
 			return getGEFWrapper(new BroadcastSignalActionCreateCommand(req));
+		}
+		if(UMLElementTypes.CentralBufferNode_3104 == req.getElementType()) {
+			return getGEFWrapper(new CentralBufferNodeCreateCommand(req));
 		}
 		return super.getCreateCommand(req);
 	}

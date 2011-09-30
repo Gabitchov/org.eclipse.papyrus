@@ -184,7 +184,6 @@ public class CallOperationActionItemSemanticEditPolicy extends UMLBaseItemSemant
 			switch(UMLVisualIDRegistry.getVisualID(node)) {
 			case ActionInputPinInCallOpActEditPart.VISUAL_ID:
 
-
 				for(Iterator<?> it = node.getTargetEdges().iterator(); it.hasNext();) {
 					Edge incomingLink = (Edge)it.next();
 					switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -219,7 +218,6 @@ public class CallOperationActionItemSemanticEditPolicy extends UMLBaseItemSemant
 				// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), node));
 				break;
 			case ValuePinInCallOpActEditPart.VISUAL_ID:
-
 
 				for(Iterator<?> it = node.getTargetEdges().iterator(); it.hasNext();) {
 					Edge incomingLink = (Edge)it.next();
@@ -256,7 +254,6 @@ public class CallOperationActionItemSemanticEditPolicy extends UMLBaseItemSemant
 				break;
 			case InputPinInCallOpActEditPart.VISUAL_ID:
 
-
 				for(Iterator<?> it = node.getTargetEdges().iterator(); it.hasNext();) {
 					Edge incomingLink = (Edge)it.next();
 					switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -291,7 +288,6 @@ public class CallOperationActionItemSemanticEditPolicy extends UMLBaseItemSemant
 				// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), node));
 				break;
 			case OutputPinInCallOpActEditPart.VISUAL_ID:
-
 
 				for(Iterator<?> it = node.getTargetEdges().iterator(); it.hasNext();) {
 					Edge incomingLink = (Edge)it.next();
@@ -328,7 +324,6 @@ public class CallOperationActionItemSemanticEditPolicy extends UMLBaseItemSemant
 				break;
 			case ValuePinInCallOpActAsTargetEditPart.VISUAL_ID:
 
-
 				for(Iterator<?> it = node.getTargetEdges().iterator(); it.hasNext();) {
 					Edge incomingLink = (Edge)it.next();
 					switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -364,7 +359,6 @@ public class CallOperationActionItemSemanticEditPolicy extends UMLBaseItemSemant
 				break;
 			case ActionInputPinInCallOpActAsTargetEditPart.VISUAL_ID:
 
-
 				for(Iterator<?> it = node.getTargetEdges().iterator(); it.hasNext();) {
 					Edge incomingLink = (Edge)it.next();
 					switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -399,7 +393,6 @@ public class CallOperationActionItemSemanticEditPolicy extends UMLBaseItemSemant
 				// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), node));
 				break;
 			case InputPinInCallOpActAsTargetEditPart.VISUAL_ID:
-
 
 				for(Iterator<?> it = node.getTargetEdges().iterator(); it.hasNext();) {
 					Edge incomingLink = (Edge)it.next();

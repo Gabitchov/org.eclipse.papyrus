@@ -716,7 +716,6 @@ public class ConditionalNodeKeywordEditPart extends CompartmentEditPart implemen
 			}
 		}
 
-
 		super.handleNotificationEvent(event);
 	}
 

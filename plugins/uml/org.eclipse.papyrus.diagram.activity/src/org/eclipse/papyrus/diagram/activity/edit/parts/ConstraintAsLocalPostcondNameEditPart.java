@@ -709,7 +709,6 @@ public class ConstraintAsLocalPostcondNameEditPart extends CompartmentEditPart i
 			}
 		}
 
-
 		super.handleNotificationEvent(event);
 	}
 

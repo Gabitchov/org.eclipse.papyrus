@@ -42,6 +42,7 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.AddVariableValueActionEdi
 import org.eclipse.papyrus.diagram.activity.edit.parts.BroadcastSignalActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.CallBehaviorActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.CallOperationActionEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.CentralBufferNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.CommentEditPartCN;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConditionalNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintAsLocalPostcondEditPart;
@@ -179,11 +180,12 @@ public class ActivityCNContentCompartmentCanonicalEditPolicy extends CanonicalEd
 		case CreateObjectActionEditPart.VISUAL_ID:
 		case ReadStructuralFeatureActionEditPart.VISUAL_ID:
 		case AddStructuralFeatureValueActionEditPart.VISUAL_ID:
-		case ActivityParameterNodeEditPart.VISUAL_ID:
 		case DestroyObjectActionEditPart.VISUAL_ID:
 		case ReadVariableActionEditPart.VISUAL_ID:
 		case AddVariableValueActionEditPart.VISUAL_ID:
 		case BroadcastSignalActionEditPart.VISUAL_ID:
+		case CentralBufferNodeEditPart.VISUAL_ID:
+		case ActivityParameterNodeEditPart.VISUAL_ID:
 			return true;
 		}
 		return false;

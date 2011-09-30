@@ -169,7 +169,6 @@ public class CallBehaviorActionItemSemanticEditPolicy extends UMLBaseItemSemanti
 			switch(UMLVisualIDRegistry.getVisualID(node)) {
 			case ValuePinInCallBeActEditPart.VISUAL_ID:
 
-
 				for(Iterator<?> it = node.getTargetEdges().iterator(); it.hasNext();) {
 					Edge incomingLink = (Edge)it.next();
 					switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -204,7 +203,6 @@ public class CallBehaviorActionItemSemanticEditPolicy extends UMLBaseItemSemanti
 				// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), node));
 				break;
 			case ActionInputPinInCallBeActEditPart.VISUAL_ID:
-
 
 				for(Iterator<?> it = node.getTargetEdges().iterator(); it.hasNext();) {
 					Edge incomingLink = (Edge)it.next();
@@ -241,7 +239,6 @@ public class CallBehaviorActionItemSemanticEditPolicy extends UMLBaseItemSemanti
 				break;
 			case InputPinInCallBeActEditPart.VISUAL_ID:
 
-
 				for(Iterator<?> it = node.getTargetEdges().iterator(); it.hasNext();) {
 					Edge incomingLink = (Edge)it.next();
 					switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -276,7 +273,6 @@ public class CallBehaviorActionItemSemanticEditPolicy extends UMLBaseItemSemanti
 				// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), node));
 				break;
 			case OutputPinInCallBeActEditPart.VISUAL_ID:
-
 
 				for(Iterator<?> it = node.getTargetEdges().iterator(); it.hasNext();) {
 					Edge incomingLink = (Edge)it.next();

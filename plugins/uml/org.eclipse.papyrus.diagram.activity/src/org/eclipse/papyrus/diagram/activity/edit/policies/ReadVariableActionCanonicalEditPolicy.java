@@ -43,7 +43,6 @@ public class ReadVariableActionCanonicalEditPolicy extends CanonicalEditPolicy {
 		super.refreshOnActivate();
 	}
 
-
 	/**
 	 * @generated
 	 */

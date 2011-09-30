@@ -108,7 +108,6 @@ public class LoopNodeKeywordEditPart extends CompartmentEditPart implements ITex
 	 */
 	private String defaultText;
 
-
 	/** direct edition mode (default, undefined, registered editor, etc.) */
 	protected int directEditionMode = IDirectEdition.UNDEFINED_DIRECT_EDITOR;
 
@@ -716,7 +715,6 @@ public class LoopNodeKeywordEditPart extends CompartmentEditPart implements ITex
 				}
 			}
 		}
-
 
 		super.handleNotificationEvent(event);
 	}

@@ -701,7 +701,6 @@ public class StructuredActivityNodeKeywordEditPart extends CompartmentEditPart i
 			}
 		}
 
-
 		super.handleNotificationEvent(event);
 	}
 

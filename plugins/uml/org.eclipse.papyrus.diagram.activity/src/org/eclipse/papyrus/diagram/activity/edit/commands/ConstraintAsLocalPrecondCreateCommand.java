@@ -75,7 +75,6 @@ public class ConstraintAsLocalPrecondCreateCommand extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -91,10 +90,7 @@ public class ConstraintAsLocalPrecondCreateCommand extends EditElementCommand {
 	 */
 	public boolean canExecute() {
 
-
 		return true;
-
-
 
 	}
 
@@ -103,13 +99,10 @@ public class ConstraintAsLocalPrecondCreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-
-
 		Constraint newElement = UMLFactory.eINSTANCE.createConstraint();
 
 		Action owner = (Action)getElementToEdit();
 		owner.getLocalPreconditions().add(newElement);
-
 
 		ElementInitializers.getInstance().init_Constraint_3011(newElement);
 

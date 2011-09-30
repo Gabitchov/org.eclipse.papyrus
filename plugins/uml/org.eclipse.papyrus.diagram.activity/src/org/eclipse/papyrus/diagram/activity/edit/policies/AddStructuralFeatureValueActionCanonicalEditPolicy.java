@@ -62,7 +62,6 @@ public class AddStructuralFeatureValueActionCanonicalEditPolicy extends Canonica
 		super.refreshOnActivate();
 	}
 
-
 	/**
 	 * @generated
 	 */

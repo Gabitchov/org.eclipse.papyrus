@@ -715,7 +715,6 @@ public class SequenceNodeKeywordEditPart extends CompartmentEditPart implements 
 			}
 		}
 
-
 		super.handleNotificationEvent(event);
 	}
 

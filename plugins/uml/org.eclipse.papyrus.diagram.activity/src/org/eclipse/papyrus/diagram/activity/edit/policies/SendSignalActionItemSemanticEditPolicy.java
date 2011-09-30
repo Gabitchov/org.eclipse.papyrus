@@ -34,6 +34,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipReques
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.commands.wrappers.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.diagram.activity.edit.commands.ActionInputPinInSendSigActAsTargetCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.ActionInputPinInSendSigActCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.ActionLocalPostconditionCreateCommand;
@@ -66,7 +67,6 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInSendSigActAsTar
 import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInSendSigActEditPart;
 import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
-import org.eclipse.papyrus.commands.wrappers.EMFtoGMFCommandWrapper;
 
 /**
  * @generated
@@ -139,7 +139,6 @@ public class SendSignalActionItemSemanticEditPolicy extends UMLBaseItemSemanticE
 			switch(UMLVisualIDRegistry.getVisualID(node)) {
 			case ActionInputPinInSendSigActEditPart.VISUAL_ID:
 
-
 				for(Iterator<?> it = node.getTargetEdges().iterator(); it.hasNext();) {
 					Edge incomingLink = (Edge)it.next();
 					switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -174,7 +173,6 @@ public class SendSignalActionItemSemanticEditPolicy extends UMLBaseItemSemanticE
 				// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), node));
 				break;
 			case ValuePinInSendSigActEditPart.VISUAL_ID:
-
 
 				for(Iterator<?> it = node.getTargetEdges().iterator(); it.hasNext();) {
 					Edge incomingLink = (Edge)it.next();
@@ -211,7 +209,6 @@ public class SendSignalActionItemSemanticEditPolicy extends UMLBaseItemSemanticE
 				break;
 			case InputPinInSendSigActEditPart.VISUAL_ID:
 
-
 				for(Iterator<?> it = node.getTargetEdges().iterator(); it.hasNext();) {
 					Edge incomingLink = (Edge)it.next();
 					switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -246,7 +243,6 @@ public class SendSignalActionItemSemanticEditPolicy extends UMLBaseItemSemanticE
 				// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), node));
 				break;
 			case ValuePinInSendSigActAsTargetEditPart.VISUAL_ID:
-
 
 				for(Iterator<?> it = node.getTargetEdges().iterator(); it.hasNext();) {
 					Edge incomingLink = (Edge)it.next();
@@ -283,7 +279,6 @@ public class SendSignalActionItemSemanticEditPolicy extends UMLBaseItemSemanticE
 				break;
 			case ActionInputPinInSendSigActAsTargetEditPart.VISUAL_ID:
 
-
 				for(Iterator<?> it = node.getTargetEdges().iterator(); it.hasNext();) {
 					Edge incomingLink = (Edge)it.next();
 					switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -318,7 +313,6 @@ public class SendSignalActionItemSemanticEditPolicy extends UMLBaseItemSemanticE
 				// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), node));
 				break;
 			case InputPinInSendSigActAsTargetEditPart.VISUAL_ID:
-
 
 				for(Iterator<?> it = node.getTargetEdges().iterator(); it.hasNext();) {
 					Edge incomingLink = (Edge)it.next();

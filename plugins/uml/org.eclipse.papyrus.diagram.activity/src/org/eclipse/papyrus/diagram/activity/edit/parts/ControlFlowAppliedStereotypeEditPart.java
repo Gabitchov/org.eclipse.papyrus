@@ -711,9 +711,6 @@ public class ControlFlowAppliedStereotypeEditPart extends LabelEditPart implemen
 			}
 		}
 
-
-
-
 		super.handleNotificationEvent(event);
 	}
 

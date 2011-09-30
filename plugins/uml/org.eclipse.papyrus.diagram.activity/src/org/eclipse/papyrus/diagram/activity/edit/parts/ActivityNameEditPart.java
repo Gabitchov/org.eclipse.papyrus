@@ -709,7 +709,6 @@ public class ActivityNameEditPart extends CompartmentEditPart implements ITextAw
 			}
 		}
 
-
 		super.handleNotificationEvent(event);
 	}
 

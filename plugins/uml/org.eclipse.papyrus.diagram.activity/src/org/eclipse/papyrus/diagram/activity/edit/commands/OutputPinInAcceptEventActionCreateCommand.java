@@ -75,7 +75,6 @@ public class OutputPinInAcceptEventActionCreateCommand extends EditElementComman
 	 */
 	protected EObject getElementToEdit() {
 
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -91,10 +90,7 @@ public class OutputPinInAcceptEventActionCreateCommand extends EditElementComman
 	 */
 	public boolean canExecute() {
 
-
 		return true;
-
-
 
 	}
 

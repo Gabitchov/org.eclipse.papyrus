@@ -51,7 +51,6 @@ public class ReadStructuralFeatureActionCanonicalEditPolicy extends CanonicalEdi
 		super.refreshOnActivate();
 	}
 
-
 	/**
 	 * @generated
 	 */

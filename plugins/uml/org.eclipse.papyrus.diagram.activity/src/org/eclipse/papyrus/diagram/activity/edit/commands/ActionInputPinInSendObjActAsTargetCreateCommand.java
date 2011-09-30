@@ -75,7 +75,6 @@ public class ActionInputPinInSendObjActAsTargetCreateCommand extends EditElement
 	 */
 	protected EObject getElementToEdit() {
 
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -95,10 +94,7 @@ public class ActionInputPinInSendObjActAsTargetCreateCommand extends EditElement
 			return false;
 		}
 
-
 		return true;
-
-
 
 	}
 
@@ -107,13 +103,10 @@ public class ActionInputPinInSendObjActAsTargetCreateCommand extends EditElement
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-
-
 		ActionInputPin newElement = UMLFactory.eINSTANCE.createActionInputPin();
 
 		SendObjectAction owner = (SendObjectAction)getElementToEdit();
 		owner.setTarget(newElement);
-
 
 		ElementInitializers.getInstance().init_ActionInputPin_3050(newElement);
 

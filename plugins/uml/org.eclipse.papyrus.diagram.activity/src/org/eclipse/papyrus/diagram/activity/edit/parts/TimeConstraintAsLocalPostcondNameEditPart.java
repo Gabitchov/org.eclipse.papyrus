@@ -709,7 +709,6 @@ public class TimeConstraintAsLocalPostcondNameEditPart extends CompartmentEditPa
 			}
 		}
 
-
 		super.handleNotificationEvent(event);
 	}
 

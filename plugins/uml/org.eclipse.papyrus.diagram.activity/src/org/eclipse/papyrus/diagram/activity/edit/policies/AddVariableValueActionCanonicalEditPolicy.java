@@ -61,7 +61,6 @@ public class AddVariableValueActionCanonicalEditPolicy extends CanonicalEditPoli
 		super.refreshOnActivate();
 	}
 
-
 	/**
 	 * @generated
 	 */

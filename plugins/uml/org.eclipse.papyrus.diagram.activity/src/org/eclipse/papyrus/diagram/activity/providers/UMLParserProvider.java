@@ -2071,6 +2071,36 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
+	private ObjectNodeParser centralBufferNodeLabel_5176Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getCentralBufferNodeLabel_5176Parser() {
+		if(centralBufferNodeLabel_5176Parser == null) {
+			centralBufferNodeLabel_5176Parser = new ObjectNodeParser();
+		}
+		return centralBufferNodeLabel_5176Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private ObjectNodeSelectionParser centralBufferNodeLabel_5177Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getCentralBufferNodeLabel_5177Parser() {
+		if(centralBufferNodeLabel_5177Parser == null) {
+			centralBufferNodeLabel_5177Parser = new ObjectNodeSelectionParser();
+		}
+		return centralBufferNodeLabel_5177Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private CommentParser commentBody_5138Parser;
 
 	/**
@@ -2998,6 +3028,10 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getInputPinLabel_5173Parser();
 		case InputPinInBroadcastSignalActionAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
 			return getInputPinLabel_5174Parser();
+		case CentralBufferNodeLabelEditPart.VISUAL_ID:
+			return getCentralBufferNodeLabel_5176Parser();
+		case CentralBufferNodeSelectionEditPart.VISUAL_ID:
+			return getCentralBufferNodeLabel_5177Parser();
 		case ObjectFlowNameEditPart.VISUAL_ID:
 			return getObjectFlowName_6001Parser();
 		case ObjectFlowWeightEditPart.VISUAL_ID:

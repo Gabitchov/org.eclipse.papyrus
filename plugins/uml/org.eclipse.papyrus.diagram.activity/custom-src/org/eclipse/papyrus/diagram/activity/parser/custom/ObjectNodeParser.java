@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
 import org.eclipse.papyrus.diagram.activity.parsers.MessageFormatParser;
+import org.eclipse.uml2.uml.CentralBufferNode;
 import org.eclipse.uml2.uml.DataStoreNode;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.ObjectNode;
@@ -33,6 +34,9 @@ import org.eclipse.uml2.uml.UMLPackage;
  * The Class ObjectNodeParser. This parser handle labels for Object Nodes
  */
 public class ObjectNodeParser extends MessageFormatParser implements ISemanticParser {
+
+	/** The String to display in front of a Data Store */
+	private static final String CENTRAL_BUFFER_NODE_PREFIX = "<<centralBuffer>>".concat(System.getProperty("line.separator"));////$NON-NLS-1$////$NON-NLS-2$
 
 	/** The String to display in front of a Data Store */
 	private static final String DATASTORE_PREFIX = "<<datastore>>".concat(System.getProperty("line.separator"));
@@ -92,8 +96,12 @@ public class ObjectNodeParser extends MessageFormatParser implements ISemanticPa
 	public String getPrintString(IAdaptable element, int flags) {
 		StringBuffer result = new StringBuffer();
 		Object adapter = element.getAdapter(EObject.class);
-		if(adapter instanceof DataStoreNode) {
-			result.append(DATASTORE_PREFIX);
+		if(adapter instanceof CentralBufferNode) {
+			if(adapter instanceof DataStoreNode) {
+				result.append(DATASTORE_PREFIX);
+			} else {
+				result.append(CENTRAL_BUFFER_NODE_PREFIX);
+			}
 		}
 		if(adapter instanceof ObjectNode) {
 			ObjectNode objectNode = (ObjectNode)adapter;
