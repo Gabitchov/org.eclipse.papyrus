@@ -21,6 +21,7 @@ import org.eclipse.core.commands.operations.OperationHistoryFactory;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
@@ -35,15 +36,19 @@ import org.eclipse.papyrus.transition.editor.xtext.umlTransition.EventRule;
 import org.eclipse.papyrus.transition.editor.xtext.umlTransition.RelativeTimeEventRule;
 import org.eclipse.papyrus.transition.editor.xtext.umlTransition.TimeEventRule;
 import org.eclipse.papyrus.transition.editor.xtext.umlTransition.TransitionRule;
+import org.eclipse.uml2.common.util.UML2Util;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.CallEvent;
 import org.eclipse.uml2.uml.ChangeEvent;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Event;
+import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.OpaqueBehavior;
 import org.eclipse.uml2.uml.OpaqueExpression;
 import org.eclipse.uml2.uml.Operation;
+import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.Signal;
 import org.eclipse.uml2.uml.SignalEvent;
 import org.eclipse.uml2.uml.StateMachine;
@@ -52,6 +57,7 @@ import org.eclipse.uml2.uml.TimeExpression;
 import org.eclipse.uml2.uml.Transition;
 import org.eclipse.uml2.uml.Trigger;
 import org.eclipse.uml2.uml.UMLFactory;
+import org.eclipse.uml2.uml.ValueSpecification;
 import org.eclipse.xtext.gmf.glue.PopupEditorConfiguration;
 import org.eclipse.xtext.gmf.glue.edit.part.DefaultXtextSemanticValidator;
 import org.eclipse.xtext.gmf.glue.edit.part.IXtextEMFReconciler;
@@ -69,6 +75,8 @@ public class TransitionPopupEditorConfigurationContribution extends PopupEditorC
 
 	private Transition transition = null;
 
+	private final static String EVENTS = "events";
+	
 	private TransitionRule transitionRuleObject = null;
 
 	/*
@@ -247,7 +255,10 @@ public class TransitionPopupEditorConfigurationContribution extends PopupEditorC
 			for(Trigger t : transition.getTriggers()) {
 				Event e = t.getEvent();
 				t.setEvent(null);
-				e.destroy();
+				if (UML2Util.getNonNavigableInverseReferences(e).size() == 0) {
+					// no trigger is referencing the event any more, delete call event
+					e.destroy();
+				}
 			}
 			// - Triggers owned by this transition
 			transition.getTriggers().removeAll(transition.getTriggers());
@@ -287,56 +298,170 @@ public class TransitionPopupEditorConfigurationContribution extends PopupEditorC
 			return CommandResult.newOKCommandResult(transition);
 		}
 
+		/**
+		 * put events in a sub-directory of the nearest package
+		 *
+		 * @return the resulting package
+		 */
+		protected Package getEventPackage () {
+			Package np = transition.getNearestPackage();
+			for (int i=0;; i++) {
+				String name = EVENTS;
+				if (i>0) name += i;
+				PackageableElement ep = np.getPackagedElement(name);
+				if (ep instanceof Package) {
+					return (Package) ep;
+				}
+				else if (ep == null) {
+					// does not exist, create
+					return np.createNestedPackage(name);	
+				}
+				// exists, but is not a package, try again with different name ...
+			}
+		}
+		
+		/**
+		 * Create a new call event (or get an existing call event) for an operation
+		 * @param operation
+		 * @return
+		 */
+		private CallEvent getOrCreateCallEvent (Operation operation) {
+			String name = "CE - " + operation.getClass_().getName() + " - " + operation.getName();
+			Package eventPkg = getEventPackage();
+			for (PackageableElement existingPE : eventPkg.getPackagedElements()) {
+				if (existingPE instanceof CallEvent) {
+					// Call event with this operation exists already
+					if (((CallEvent) existingPE).getOperation() == operation) {
+						((CallEvent) existingPE).setName(name);
+						return (CallEvent) existingPE;
+					}
+				}
+			}
+			CallEvent ce = UMLFactory.eINSTANCE.createCallEvent();
+			ce.setOperation(operation);
+			ce.setName(name);
+			eventPkg.getPackagedElements().add(ce);
+			return ce;
+		}
+		
+		/**
+		 * Create a new signal event (or get an existing) for a signal
+		 * @param operation
+		 * @return
+		 */
+		private SignalEvent getOrCreateSignalEvent (Signal signal) {
+			Package eventPkg = getEventPackage();
+			String name = "SE - " + signal.getName();
+			for (PackageableElement existingPE : eventPkg.getPackagedElements()) {
+				if (existingPE instanceof CallEvent) {
+					// Call event with this operation exists already
+					if (((SignalEvent) existingPE).getSignal() == signal) {
+						((SignalEvent) existingPE).setName(name);
+						return (SignalEvent) existingPE;
+					}
+				}
+			}
+			SignalEvent se = UMLFactory.eINSTANCE.createSignalEvent();
+			se.setSignal(signal);
+			se.setName(name);
+			eventPkg.getPackagedElements().add(se);
+			return se;
+		}
+	
+		/**
+		 * Create a new change event (or get an existing) for an opaque change expression
+		 * @param operation
+		 * @return
+		 */
+		private ChangeEvent getOrCreateChangeEvent (String opaqueChangeExpr) {
+			Package eventPkg = getEventPackage();
+			String name = "CE - " + opaqueChangeExpr;
+			for (PackageableElement existingPE : eventPkg.getPackagedElements()) {
+				if (existingPE instanceof ChangeEvent) {
+					// Call event with this operation exists already
+					ValueSpecification vs = ((ChangeEvent) existingPE).getChangeExpression();
+					if (vs instanceof OpaqueExpression) {
+						EList<String> bodies = ((OpaqueExpression) vs).getBodies();
+						if ((bodies.size()>0) && bodies.get(0).equals(opaqueChangeExpr)) {
+							((ChangeEvent) existingPE).setName(name);
+							return (ChangeEvent) existingPE;
+						}
+					}
+				}
+			}
+			ChangeEvent ce = UMLFactory.eINSTANCE.createChangeEvent();
+			OpaqueExpression changeExpression = UMLFactory.eINSTANCE.createOpaqueExpression();
+			changeExpression.getLanguages().add("Natural language");
+			changeExpression.getBodies().add(opaqueChangeExpr);
+			ce.setChangeExpression(changeExpression);
+			ce.setName(name);
+			eventPkg.getPackagedElements().add(ce);
+			return ce;
+		}
+	
+		/**
+		 * Create a new time event (or get an existing) for an opaque time expression
+		 * @param operation
+		 * @return
+		 */
+		private TimeEvent getOrCreateTimeEvent (String opaqueWhen, boolean isRelative) {
+			Package eventPkg = getEventPackage();
+			String name = "TE - " + opaqueWhen;
+			for (PackageableElement existingPE : eventPkg.getPackagedElements()) {
+				if (existingPE instanceof TimeEvent) {
+					// Call event with this operation exists already
+					ValueSpecification vs = ((TimeEvent) existingPE).getWhen().getExpr();
+					if (vs instanceof OpaqueExpression) {
+						EList<String> bodies = ((OpaqueExpression) vs).getBodies();
+						if ((bodies.size()>0) && bodies.get(0).equals(opaqueWhen)) {
+							((TimeEvent) existingPE).setName(name);
+							return (TimeEvent) existingPE;
+						}
+					}
+				}
+			}
+			TimeEvent te = UMLFactory.eINSTANCE.createTimeEvent();
+			OpaqueExpression timeExpressionExp = UMLFactory.eINSTANCE.createOpaqueExpression();
+			timeExpressionExp.getLanguages().add("Natural language");
+			timeExpressionExp.getBodies().add(opaqueWhen);
+			TimeExpression timeExpression = UMLFactory.eINSTANCE.createTimeExpression();
+			timeExpression.setExpr(timeExpressionExp);
+			te.setWhen(timeExpression);
+			te.setIsRelative(isRelative);
+			te.setName(name);
+			eventPkg.getPackagedElements().add(te);
+			return te;
+		}
+	
+		
 		private Event createUMLEvent(EventRule eventRule) {
 			Event e = null;
 			// TODO : implement
 			if(eventRule instanceof CallOrSignalEventRule) {
 				CallOrSignalEventRule callOrSignalEventRule = (CallOrSignalEventRule)eventRule;
 				if(callOrSignalEventRule.getOperationOrSignal() != null) {
-					if(callOrSignalEventRule.getOperationOrSignal() instanceof Operation) {
-						e = UMLFactory.eINSTANCE.createCallEvent();
-						e.setName("");
-						transition.getNearestPackage().getPackagedElements().add(e);
-						((CallEvent)e).setOperation((Operation)callOrSignalEventRule.getOperationOrSignal());
+					NamedElement operationOrSignal = callOrSignalEventRule.getOperationOrSignal();
+					if(operationOrSignal instanceof Operation) {
+						e = getOrCreateCallEvent((Operation) operationOrSignal);
 					} else { // instanceof Signal
-						e = UMLFactory.eINSTANCE.createSignalEvent();
-						transition.getNearestPackage().getPackagedElements().add(e);
-						((SignalEvent)e).setSignal((Signal)callOrSignalEventRule.getOperationOrSignal());
+						e = getOrCreateSignalEvent((Signal) operationOrSignal);
 					}
 				}
 			} else if(eventRule instanceof ChangeEventRule) {
 				ChangeEventRule changeEventRule = (ChangeEventRule)eventRule;
 				if(changeEventRule.getExp() != null) {
-					e = UMLFactory.eINSTANCE.createChangeEvent();
-					e.setName("");
-					transition.getNearestPackage().getPackagedElements().add(e);
-					OpaqueExpression changeExpression = UMLFactory.eINSTANCE.createOpaqueExpression();
-					changeExpression.getLanguages().add("Natural language");
-					changeExpression.getBodies().add("" + changeEventRule.getExp());
-					((ChangeEvent)e).setChangeExpression(changeExpression);
+					e = getOrCreateChangeEvent(changeEventRule.getExp());
 				}
 			} else if(eventRule instanceof TimeEventRule) {
 				TimeEventRule timeEventRule = (TimeEventRule)eventRule;
 				if(timeEventRule.getExpr() != null) {
-					e = UMLFactory.eINSTANCE.createTimeEvent();
-					e.setName("");
-					transition.getNearestPackage().getPackagedElements().add(e);
-					OpaqueExpression timeExpressionExp = UMLFactory.eINSTANCE.createOpaqueExpression();
-					timeExpressionExp.getLanguages().add("Natural language");
-					timeExpressionExp.getBodies().add("" + timeEventRule.getExpr());
-					TimeExpression timeExpression = UMLFactory.eINSTANCE.createTimeExpression();
-					timeExpression.setExpr(timeExpressionExp);
-					((TimeEvent)e).setWhen(timeExpression);
-					if(timeEventRule instanceof RelativeTimeEventRule) // relative time event
-						((TimeEvent)e).setIsRelative(true);
-					else
-						// absolute time event
-						((TimeEvent)e).setIsRelative(false);
+					e = getOrCreateTimeEvent(timeEventRule.getExpr(),
+							timeEventRule instanceof RelativeTimeEventRule);
 				}
 			} else { // AnyReceiveEventRule
 				e = UMLFactory.eINSTANCE.createAnyReceiveEvent();
-				transition.getNearestPackage().getPackagedElements().add(e);
-				e.setName("");
+				getEventPackage().getPackagedElements().add(e);
+				e.setName("any");
 			}
 			return e;
 		}
