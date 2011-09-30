@@ -29,7 +29,7 @@
     <command
           commandId="org.eclipse.papyrus.modelexplorer.resourceloading.LoadResource"
           icon="icons/LoadResource.gif"
-          label="Load Resource"
+          label="Load"
           style="push"
           tooltip="Load Resource containing this object">
        <visibleWhen
@@ -46,7 +46,7 @@
     <command
           commandId="org.eclipse.papyrus.modelexplorer.resourceloading.UnloadResource"
           icon="icons/UnloadResource.gif"
-          label="Unload Resource"
+          label="Unload"
           style="push"
           tooltip="Unload Resource containing this object">
        <visibleWhen
@@ -67,12 +67,12 @@
 <extension point="org.eclipse.ui.commands">
 	<!-- Command declaration : Load resource command -->
 	<command id="org.eclipse.papyrus.modelexplorer.resourceloading.LoadResource"
-		name="Load Resource" description="Load Resource containing this object"	
+		name="Load" description="Load Resource containing this object"	
 		categoryId="org.eclipse.papyrus.editor.category"
 		defaultHandler="org.eclipse.papyrus.modelexplorer.resourceloading.handler.LoadResourceHandler">
 	</command>
 	<command id="org.eclipse.papyrus.modelexplorer.resourceloading.UnloadResource"
-		name="Unload Resource" description="Unload Resource containing this object"	
+		name="Unload" description="Unload Resource containing this object"	
 		categoryId="org.eclipse.papyrus.editor.category"
 		defaultHandler="org.eclipse.papyrus.modelexplorer.resourceloading.handler.UnloadResourceHandler">
 	</command>

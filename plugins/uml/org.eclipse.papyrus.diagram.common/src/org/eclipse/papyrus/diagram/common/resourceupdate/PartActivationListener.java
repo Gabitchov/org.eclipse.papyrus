@@ -352,7 +352,7 @@ public class PartActivationListener implements IPartListener {
 
 			public void execute() {
 				for(URI uri : urisToUpdate) {
-					LoadingUtils.unloadResourcesFromModelSet(modelSet, uri);
+					LoadingUtils.unloadResourcesFromModelSet(modelSet, uri, false);
 					LoadingUtils.loadResourcesInModelSet(modelSet, uri);
 				}
 			}
