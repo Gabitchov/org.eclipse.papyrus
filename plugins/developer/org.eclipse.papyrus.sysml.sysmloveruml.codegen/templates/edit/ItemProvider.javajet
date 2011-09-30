@@ -483,7 +483,11 @@ public class <%=genClass.getProviderClassName()%>
 		
 <%}%>
 
-		
+	/**
+	 * Notify UML element
+	 */
+	 if ( ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
+	 
 	<%for(EClass basedClass : SysMLOverUMLHelper.getBasedElement(genClass.getEcoreClass())) {%>
   				
 		  /**
@@ -498,6 +502,7 @@ public class <%=genClass.getProviderClassName()%>
 			
 			}
 	<%}%>	
+	}
 
 		super.notifyChanged(notification);
 	}
