@@ -386,6 +386,9 @@
 			</visibleWhen>			
 		</command>
 		
+  <separator
+        name="org.eclipse.papyrus.diagram.common.commands.LoadSeparator">
+  </separator>
   <command
         commandId="org.eclipse.papyrus.diagram.common.commands.Load"
         icon="icons/obj16/LoadResource.gif"
