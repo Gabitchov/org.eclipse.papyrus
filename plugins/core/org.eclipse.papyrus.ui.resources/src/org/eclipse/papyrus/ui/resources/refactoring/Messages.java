@@ -19,9 +19,25 @@ public class Messages extends NLS {
 
 	private static final String BUNDLE_NAME = "org.eclipse.papyrus.ui.resources.refactoring.messages"; //$NON-NLS-1$
 
+	public static String DirtyEditorChange_0;
+
+	public static String DirtyEditorChange_1;
+
+	public static String DirtyEditorChange_2;
+
+	public static String DirtyEditorChange_3;
+
 	public static String MoveModelParticipant_Name;
 
+	public static String RenameModelChange_0;
+
+	public static String RenameModelChange_5;
+
 	public static String RenameModelChange_6;
+
+	public static String RenameModelChange_7;
+
+	public static String RenameModelChange_8;
 
 	public static String RenameModelChange_Change;
 

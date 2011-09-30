@@ -71,7 +71,7 @@ public class DirtyEditorChange extends Change {
 
 	@Override
 	public String getName() {
-		return "Check opened editors";
+		return Messages.DirtyEditorChange_0;
 	}
 
 	/**
@@ -118,8 +118,8 @@ public class DirtyEditorChange extends Change {
 
 			public void run() {
 				if(hasDirtyEditors()) {
-					if(!MessageDialog.openConfirm(Display.getDefault().getActiveShell(), "Confirm saving", "The related editor(s) must be saved to continue.")) {
-						status.addFatalError("User doesn't want to save the related editor(s)");
+					if(!MessageDialog.openConfirm(Display.getDefault().getActiveShell(), Messages.DirtyEditorChange_1, Messages.DirtyEditorChange_2)) {
+						status.addFatalError(Messages.DirtyEditorChange_3);
 					}
 				}
 			}

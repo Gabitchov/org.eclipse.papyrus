@@ -181,7 +181,7 @@ public class RenameModelChange extends Change {
 
 			public void run() {
 				IMultiDiagramEditor[] multiEditors = EditorUtils.getRelatedEditors(oldFile);
-				if(multiEditors != null) {
+				if(multiEditors != null && multiEditors.length > 0) {
 					for(IMultiDiagramEditor editor : multiEditors) {
 						if(editor.isDirty()) {
 							editor.doSave(new NullProgressMonitor());
@@ -218,7 +218,11 @@ public class RenameModelChange extends Change {
 			e.printStackTrace();
 		}
 		// Force EMF resolve and load all the resources
-		EcoreUtil.resolveAll(resourceSet);
+		try {
+			EcoreUtil.resolveAll(resourceSet);
+		} catch (RuntimeException e) {
+			// the resolve all does not have to break the operation
+		}
 		pm.worked(4);
 		domain = resourceSet.getTransactionalEditingDomain();
 		// TODO improve when impact analysis will be effective
