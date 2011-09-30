@@ -24,8 +24,9 @@ import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.common.groups.edit.policies.CreateInGroupEditPolicy;
 
 /**
- * This class provide customization of the CreationEditPolicy to support the case where
- * a Port is created in a Compartment. In such a case the Port should be added to the compartment owner.
+ * This class provide customization of the CreationEditPolicy to support the
+ * case where a Port is created in a Compartment. In such a case the Port should
+ * be added to the compartment owner.
  * 
  * Class created from PinInCompartmentCreationEditPolicy (composite diagram)
  * TODO change extend CreationEditPolicy by CreateInReferencingGroupEditPolicy
@@ -43,7 +44,8 @@ public class ActivityParameterNodeInCompartmentCreationEditPolicy extends Create
 				// Treat the case where only one element type is listed
 				// Only take Port element type into account
 				if((elementTypes.size() == 1) && ((IElementType)(elementTypes.get(0)) == UMLElementTypes.ActivityParameterNode_3059)) {
-					// If the target is a compartment replace by its parent edit part
+					// If the target is a compartment replace by its parent edit
+					// part
 					if((getHost() instanceof ShapeCompartmentEditPart)) {
 						return getHost().getParent();
 					}

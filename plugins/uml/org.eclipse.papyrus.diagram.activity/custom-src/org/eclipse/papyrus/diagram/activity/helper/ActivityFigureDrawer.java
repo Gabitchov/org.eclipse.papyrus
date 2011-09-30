@@ -30,8 +30,8 @@ import org.eclipse.gmf.runtime.notation.Bounds;
 import org.eclipse.gmf.runtime.notation.Shape;
 
 /**
- * The ActivityFigureDrawer helps drawing representations for activity diagram out of a Polyline
- * figure
+ * The ActivityFigureDrawer helps drawing representations for activity diagram
+ * out of a Polyline figure
  */
 public class ActivityFigureDrawer {
 
@@ -262,7 +262,8 @@ public class ActivityFigureDrawer {
 	 */
 	public static Dimension getNodeSize(AbstractGraphicalEditPart editPart, Notification dimensionChangeEvent) {
 		Bounds bounds = null;
-		// if a bounds change is notified, size may have changed, otherwise, get size from model
+		// if a bounds change is notified, size may have changed, otherwise, get
+		// size from model
 		// shape
 		if(dimensionChangeEvent != null && dimensionChangeEvent.getNotifier() instanceof Bounds) {
 			bounds = (Bounds)dimensionChangeEvent.getNotifier();

@@ -30,7 +30,8 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 import org.eclipse.uml2.uml.Action;
 
 /**
- * This edit policy deletes linked local conditions view when an action view is deleted.
+ * This edit policy deletes linked local conditions view when an action view is
+ * deleted.
  */
 public class DeleteActionViewEditPolicy extends ViewComponentEditPolicy {
 
@@ -46,7 +47,8 @@ public class DeleteActionViewEditPolicy extends ViewComponentEditPolicy {
 	}
 
 	/**
-	 * Returns a command for graphical delete (with local conditions also deleted).
+	 * Returns a command for graphical delete (with local conditions also
+	 * deleted).
 	 * 
 	 * @see org.eclipse.gef.EditPolicy#getCommand(Request)
 	 * @return the command or null
@@ -55,7 +57,8 @@ public class DeleteActionViewEditPolicy extends ViewComponentEditPolicy {
 	public Command getCommand(Request request) {
 		if(RequestConstants.REQ_DELETE.equals(request.getType())) {
 			if(request instanceof GroupRequest) {
-				// List of parts from the request is not up to date. Consider the host only.
+				// List of parts from the request is not up to date. Consider
+				// the host only.
 				List<?> parts = Collections.singletonList(getHost());
 				((GroupRequest)request).setEditParts(getHost());
 				// inspect the list of parts to add linked local conditions

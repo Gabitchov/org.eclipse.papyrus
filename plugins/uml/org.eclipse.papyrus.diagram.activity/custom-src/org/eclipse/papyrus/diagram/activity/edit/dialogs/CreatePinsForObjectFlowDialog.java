@@ -58,7 +58,8 @@ import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
- * This class provides a dialog to initialize a CallBehaviorAction at its creation.
+ * This class provides a dialog to initialize a CallBehaviorAction at its
+ * creation.
  */
 public class CreatePinsForObjectFlowDialog extends FormDialog {
 
@@ -342,8 +343,8 @@ public class CreatePinsForObjectFlowDialog extends FormDialog {
 	}
 
 	/**
-	 * Set correctly the invoked object, by creating it if needed.
-	 * Then, notifies that the ok button of this dialog has been pressed.
+	 * Set correctly the invoked object, by creating it if needed. Then,
+	 * notifies that the ok button of this dialog has been pressed.
 	 * 
 	 * @see org.eclipse.jface.dialogs.Dialog#okPressed()
 	 * 

@@ -16,7 +16,8 @@ package org.eclipse.papyrus.diagram.activity.draw2d;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.GravityConstrainedFlowLayout;
 
 /**
- * This class is used to pass a Constraint to a {@link GravityConstrainedFlowLayout}. This is a workaround to allow this constraint in a generate way
+ * This class is used to pass a Constraint to a {@link GravityConstrainedFlowLayout}. This is a workaround to allow this
+ * constraint in a generate way
  * 
  * @author adaussy
  * 
@@ -28,11 +29,9 @@ public class GravityConstrainedFlowLayoutConstraint {
 	 */
 	private Integer align = new Integer(GravityConstrainedFlowLayout.ALIGN_TOPLEFT);
 
-
 	public int getAlign() {
 		return align;
 	}
-
 
 	public void setAlign(int align) {
 		this.align = align;

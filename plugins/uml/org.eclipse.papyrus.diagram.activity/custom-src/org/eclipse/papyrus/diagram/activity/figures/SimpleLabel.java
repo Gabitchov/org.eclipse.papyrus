@@ -21,7 +21,8 @@ import org.eclipse.draw2d.text.TextLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 
 /**
- * This class is a {@link WrappingLabel}, which default behavior is set differently :
+ * This class is a {@link WrappingLabel}, which default behavior is set
+ * differently :
  * 
  * The text is centered and does not wrap on several lines.
  */

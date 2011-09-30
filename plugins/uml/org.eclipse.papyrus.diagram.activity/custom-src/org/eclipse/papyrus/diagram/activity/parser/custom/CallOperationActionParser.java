@@ -29,17 +29,20 @@ import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
- * A specific parser for displaying the label of a CallOperationAction. This parser refreshes the
- * text displayed for the CallOperationAction.
+ * A specific parser for displaying the label of a CallOperationAction. This
+ * parser refreshes the text displayed for the CallOperationAction.
  */
 public class CallOperationActionParser extends MessageFormatParser implements ISemanticParser {
 
-	/** The String format for displaying an action with its name, class name and operation name */
+	/**
+	 * The String format for displaying an action with its name, class name and
+	 * operation name
+	 */
 	private static final String NAME_CLASS_OPERATION_FORMAT = "%s\n(%s::%s)";
 
 	/**
-	 * The String format for displaying an action with its name (same as operation name) and class
-	 * name
+	 * The String format for displaying an action with its name (same as
+	 * operation name) and class name
 	 */
 	private static final String NAME_CLASS_FORMAT = "%s\n(%s::)";
 
@@ -73,8 +76,8 @@ public class CallOperationActionParser extends MessageFormatParser implements IS
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.eclipse.papyrus.diagram.sequence.parsers.AbstractParser#isAffectingEvent(java.lang.Object
-	 * , int)
+	 * org.eclipse.papyrus.diagram.sequence.parsers.AbstractParser#isAffectingEvent
+	 * (java.lang.Object , int)
 	 */
 	public boolean isAffectingEvent(Object event, int flags) {
 		EStructuralFeature feature = getEStructuralFeature(event);
@@ -85,9 +88,8 @@ public class CallOperationActionParser extends MessageFormatParser implements IS
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.eclipse.papyrus.diagram.sequence.parsers.MessageFormatParser#getPrintString(org.eclipse
-	 * .core.runtime.IAdaptable, int)
+	 * @see org.eclipse.papyrus.diagram.sequence.parsers.MessageFormatParser#
+	 * getPrintString(org.eclipse .core.runtime.IAdaptable, int)
 	 */
 	public String getPrintString(IAdaptable element, int flags) {
 		Object obj = element.getAdapter(EObject.class);
@@ -112,7 +114,8 @@ public class CallOperationActionParser extends MessageFormatParser implements IS
 					}
 				}
 			}
-			// name, operation and className are initialized with non null values
+			// name, operation and className are initialized with non null
+			// values
 			return getPrintString(name, operation, className);
 		}
 		return " ";
@@ -141,7 +144,8 @@ public class CallOperationActionParser extends MessageFormatParser implements IS
 			// name only is displayed
 			return String.format(NAME_FORMAT, name);
 		} else {
-			// all information is displayed (even case when operation or class name is "")
+			// all information is displayed (even case when operation or class
+			// name is "")
 			return String.format(NAME_CLASS_OPERATION_FORMAT, name, className, operation);
 		}
 	}
@@ -149,9 +153,9 @@ public class CallOperationActionParser extends MessageFormatParser implements IS
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser#areSemanticElementsAffected
-	 * (org.eclipse.emf.ecore.EObject, java.lang.Object)
+	 * @see org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser#
+	 * areSemanticElementsAffected (org.eclipse.emf.ecore.EObject,
+	 * java.lang.Object)
 	 */
 	public boolean areSemanticElementsAffected(EObject listener, Object notification) {
 		EStructuralFeature feature = getEStructuralFeature(notification);
@@ -161,9 +165,8 @@ public class CallOperationActionParser extends MessageFormatParser implements IS
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser#getSemanticElementsBeingParsed
-	 * (org.eclipse.emf.ecore.EObject)
+	 * @see org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser#
+	 * getSemanticElementsBeingParsed (org.eclipse.emf.ecore.EObject)
 	 */
 	public List<?> getSemanticElementsBeingParsed(EObject element) {
 		List<Element> semanticElementsBeingParsed = new ArrayList<Element>();
@@ -182,7 +185,8 @@ public class CallOperationActionParser extends MessageFormatParser implements IS
 	}
 
 	/**
-	 * Determines if the given feature has to be taken into account in this parser
+	 * Determines if the given feature has to be taken into account in this
+	 * parser
 	 * 
 	 * @param feature
 	 *        the feature to test

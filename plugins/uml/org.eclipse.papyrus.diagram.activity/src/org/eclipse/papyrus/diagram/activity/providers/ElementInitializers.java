@@ -14,6 +14,7 @@ import org.eclipse.uml2.uml.AddVariableValueAction;
 import org.eclipse.uml2.uml.BroadcastSignalAction;
 import org.eclipse.uml2.uml.CallBehaviorAction;
 import org.eclipse.uml2.uml.CallOperationAction;
+import org.eclipse.uml2.uml.CentralBufferNode;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.ConditionalNode;
 import org.eclipse.uml2.uml.Constraint;
@@ -1152,6 +1153,18 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
+	public void init_CentralBufferNode_3104(CentralBufferNode instance) {
+		try {
+			Object value_0 = name_CentralBufferNode_3104(instance);
+			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
 	public void init_ObjectFlow_4003(ObjectFlow instance) {
 		try {
 			Object value_0 = name_ObjectFlow_4003(instance);
@@ -1835,6 +1848,13 @@ public class ElementInitializers {
 	 * @generated
 	 */
 	private String name_InputPin_3103(InputPin self) {
+		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_CentralBufferNode_3104(CentralBufferNode self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
 

@@ -11,7 +11,7 @@
  *   Atos - Initial API and implementation
  *
  *****************************************************************************/
- package org.eclipse.papyrus.diagram.activity.edit.policies;
+package org.eclipse.papyrus.diagram.activity.edit.policies;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -34,6 +34,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipReques
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.commands.wrappers.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.diagram.activity.edit.commands.ActionLocalPostconditionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.ActionLocalPostconditionReorientCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.ActionLocalPreconditionCreateCommand;
@@ -58,7 +59,6 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.ObjectFlowEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInReadStructuralFeatureAsResultEditPart;
 import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
-import org.eclipse.papyrus.commands.wrappers.EMFtoGMFCommandWrapper;
 
 /**
  * @generated
@@ -71,7 +71,6 @@ public class ReadStructuralFeatureActionItemSemanticEditPolicy extends UMLBaseIt
 	public ReadStructuralFeatureActionItemSemanticEditPolicy() {
 		super(UMLElementTypes.ReadStructuralFeatureAction_3088);
 	}
-
 
 	/**
 	 * @generated
@@ -86,8 +85,6 @@ public class ReadStructuralFeatureActionItemSemanticEditPolicy extends UMLBaseIt
 		return super.getCreateCommand(req);
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -98,13 +95,15 @@ public class ReadStructuralFeatureActionItemSemanticEditPolicy extends UMLBaseIt
 
 		EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
 		if(annotation == null) {
-			// there are indirectly referenced children, need extra commands: false
+			// there are indirectly referenced children, need extra commands:
+			// false
 			addDestroyChildNodesCommand(cmd);
 			addDestroyShortcutsCommand(cmd, view);
 			// delete host element
 			List<EObject> todestroy = new ArrayList<EObject>();
 			todestroy.add(req.getElementToDestroy());
-			//cmd.add(new org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand(req));
+			// cmd.add(new
+			// org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand(req));
 			cmd.add(new EMFtoGMFCommandWrapper(new DeleteCommand(getEditingDomain(), todestroy)));
 		} else {
 			cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), view));
@@ -122,7 +121,6 @@ public class ReadStructuralFeatureActionItemSemanticEditPolicy extends UMLBaseIt
 			switch(UMLVisualIDRegistry.getVisualID(node)) {
 			case InputPinInReadStructuralFeatureAsObjectEditPart.VISUAL_ID:
 
-
 				for(Iterator<?> it = node.getTargetEdges().iterator(); it.hasNext();) {
 					Edge incomingLink = (Edge)it.next();
 					switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -152,13 +150,16 @@ public class ReadStructuralFeatureActionItemSemanticEditPolicy extends UMLBaseIt
 						break;
 					}
 				}
-				cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), node.getElement(), false))); // directlyOwned: true
-				// don't need explicit deletion of node as parent's view deletion would clean child views as well 
-				// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), node));
+				cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), node.getElement(), false))); // directlyOwned:
+																																// true
+				// don't need explicit deletion of node as parent's view
+				// deletion would clean child views as well
+				// cmd.add(new
+				// org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(),
+				// node));
 				break;
 			case OutputPinInReadStructuralFeatureAsResultEditPart.VISUAL_ID:
 
-
 				for(Iterator<?> it = node.getTargetEdges().iterator(); it.hasNext();) {
 					Edge incomingLink = (Edge)it.next();
 					switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -188,14 +189,17 @@ public class ReadStructuralFeatureActionItemSemanticEditPolicy extends UMLBaseIt
 						break;
 					}
 				}
-				cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), node.getElement(), false))); // directlyOwned: true
-				// don't need explicit deletion of node as parent's view deletion would clean child views as well 
-				// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), node));
+				cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), node.getElement(), false))); // directlyOwned:
+																																// true
+				// don't need explicit deletion of node as parent's view
+				// deletion would clean child views as well
+				// cmd.add(new
+				// org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(),
+				// node));
 				break;
 			}
 		}
 	}
-
 
 	/**
 	 * @generated
@@ -274,8 +278,8 @@ public class ReadStructuralFeatureActionItemSemanticEditPolicy extends UMLBaseIt
 	}
 
 	/**
-	 * Returns command to reorient EReference based link. New link target or source
-	 * should be the domain model element associated with this node.
+	 * Returns command to reorient EReference based link. New link target or
+	 * source should be the domain model element associated with this node.
 	 * 
 	 * @generated
 	 */

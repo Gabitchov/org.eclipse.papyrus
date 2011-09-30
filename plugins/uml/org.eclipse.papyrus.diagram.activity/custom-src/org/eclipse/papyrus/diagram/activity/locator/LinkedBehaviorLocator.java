@@ -23,7 +23,10 @@ import org.eclipse.papyrus.diagram.common.locator.AdvancedBorderItemLocator;
  */
 public class LinkedBehaviorLocator extends AdvancedBorderItemLocator {
 
-	/** The margin to leave between the property node and its parent when relocating */
+	/**
+	 * The margin to leave between the property node and its parent when
+	 * relocating
+	 */
 	private static final int MARGIN = 5;
 
 	/** Constructor **/
@@ -84,7 +87,8 @@ public class LinkedBehaviorLocator extends AdvancedBorderItemLocator {
 		if(rectSuggested.getTopLeft().x == 0 && rectSuggested.getTopLeft().y == 0) {
 			rectSuggested.setLocation(getPreferredLocation(borderItem));
 		} else {
-			// recovered constraint must be translated with the parent location to be absolute
+			// recovered constraint must be translated with the parent location
+			// to be absolute
 			rectSuggested.setLocation(rectSuggested.getLocation().translate(getParentBorder().getTopLeft()));
 		}
 		rectSuggested.setSize(size);

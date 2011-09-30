@@ -53,7 +53,8 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.ui.forms.widgets.ImageHyperlink;
 
 /**
- * Section to use in the properties view. This section enables to switch the direction of a segment representation (for fork or join).
+ * Section to use in the properties view. This section enables to switch the
+ * direction of a segment representation (for fork or join).
  */
 public class SwitchSegmentDirectionSection extends AbstractNotationPropertiesSection {
 
@@ -148,7 +149,8 @@ public class SwitchSegmentDirectionSection extends AbstractNotationPropertiesSec
 	}
 
 	/**
-	 * This class is a command which switches the orientation of a figure. The figure's width and height are switched, rotating the figure on its
+	 * This class is a command which switches the orientation of a figure. The
+	 * figure's width and height are switched, rotating the figure on its
 	 * center. (center location kept)
 	 */
 	private class SwitchSegmentOrientation extends AbstractTransactionalCommand {

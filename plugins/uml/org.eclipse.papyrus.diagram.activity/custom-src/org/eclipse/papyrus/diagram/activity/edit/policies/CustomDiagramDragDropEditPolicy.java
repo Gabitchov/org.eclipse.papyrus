@@ -80,8 +80,8 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.ObjectFlow;
 
 /**
- * This class is used to execute the drag and drop from the outline. It can manage the drop of nodes
- * and binary links. To manage specific drop the method
+ * This class is used to execute the drag and drop from the outline. It can
+ * manage the drop of nodes and binary links. To manage specific drop the method
  * CommonDiagramDragDropEditPolicy.getSpecificDropCommand has to be implemented
  */
 public class CustomDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEditPolicy {
@@ -93,7 +93,8 @@ public class CustomDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdi
 	private static final Point LOCAL_CONDITIONS_TRANSLATION_POINT = new Point(160, 0);
 
 	/**
-	 * Instantiates a new custom diagram drag drop edit policy with the right link mapping helper
+	 * Instantiates a new custom diagram drag drop edit policy with the right
+	 * link mapping helper
 	 */
 	public CustomDiagramDragDropEditPolicy() {
 		super(ActivityLinkMappingHelper.getInstance());
@@ -156,8 +157,6 @@ public class CustomDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdi
 	public int getLinkWithClassVisualID(EObject domainElement) {
 		return UMLVisualIDRegistry.getLinkWithClassVisualID(domainElement);
 	}
-
-
 
 	/**
 	 * {@inheritDoc}
@@ -235,7 +234,8 @@ public class CustomDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdi
 			location.y += 100;
 			// Retrieve expected graphical parent
 			EObject graphicalParent = ((GraphicalEditPart)getHost()).resolveSemanticElement();
-			// verification of container differs from usually, condition is graphically contained by the activity
+			// verification of container differs from usually, condition is
+			// graphically contained by the activity
 			if(graphicalParent instanceof Activity) {
 				// drop the constraint and its link to the action
 				Element linkSource = semanticElement.getOwner();
@@ -262,12 +262,13 @@ public class CustomDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdi
 	}
 
 	/**
-	 * the method provides command to create the binary link into the diagram. If the source and the
-	 * target views do not exist, these views will be created.
+	 * the method provides command to create the binary link into the diagram.
+	 * If the source and the target views do not exist, these views will be
+	 * created.
 	 * 
 	 * @param cc
-	 *        the composite command that will contain the set of command to create the binary
-	 *        link
+	 *        the composite command that will contain the set of command to
+	 *        create the binary link
 	 * @param source
 	 *        the source the element source of the link
 	 * @param target
@@ -287,7 +288,8 @@ public class CustomDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdi
 		// look for editpart linked with the object flow
 		GraphicalEditPart targetEditPart = null;
 		if(sourceEditPart != null) {
-			//TODO check that there is not already a representation linked to the source object flow
+			// TODO check that there is not already a representation linked to
+			// the source object flow
 		}
 
 		// descriptor of the link
@@ -390,9 +392,11 @@ public class CustomDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdi
 	}
 
 	/**
-	 * This action enables to drop an action's local conditions when an action is dropped.
-	 * Check of the existing action view is run at execution time to avoid duplication of the action's view.
-	 * This action is an intern class since it is narrowly linked with this edit policy properties and operations
+	 * This action enables to drop an action's local conditions when an action
+	 * is dropped. Check of the existing action view is run at execution time to
+	 * avoid duplication of the action's view. This action is an intern class
+	 * since it is narrowly linked with this edit policy properties and
+	 * operations
 	 */
 	private class DropActionLocalConditionsAfterActionCommand extends Command {
 
@@ -437,7 +441,8 @@ public class CustomDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdi
 		 */
 		@Override
 		public void execute() {
-			// update request to unset the position, so that position is automatically recomputed each time (to avoid superposition).
+			// update request to unset the position, so that position is
+			// automatically recomputed each time (to avoid superposition).
 			Object hostView = getHost().getModel();
 			if(hostView instanceof View) {
 				if(droppedAction instanceof Action) {
@@ -448,7 +453,8 @@ public class CustomDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdi
 						if(localCmd != null && localCmd.canExecute()) {
 							localCmd.execute();
 							executedCommands.add(localCmd);
-							// update the request's position to avoid conditions superposition
+							// update the request's position to avoid conditions
+							// superposition
 							request.getLocation().translate(LOCAL_CONDITIONS_TRANSLATION_POINT);
 						}
 					}
@@ -458,11 +464,12 @@ public class CustomDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdi
 						if(localCmd != null && localCmd.canExecute()) {
 							localCmd.execute();
 							executedCommands.add(localCmd);
-							// update the request's position to avoid conditions superposition
+							// update the request's position to avoid conditions
+							// superposition
 							request.getLocation().translate(LOCAL_CONDITIONS_TRANSLATION_POINT);
 						}
 					}
-					//restore initial location
+					// restore initial location
 					request.getLocation().setLocation(initialLocation);
 				}
 			}

@@ -17,7 +17,8 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
- * A specific parser for displaying the selection behavior associated to an object flow.
+ * A specific parser for displaying the selection behavior associated to an
+ * object flow.
  */
 public class ObjectFlowSelectionParser extends AssociatedBehaviorParser {
 

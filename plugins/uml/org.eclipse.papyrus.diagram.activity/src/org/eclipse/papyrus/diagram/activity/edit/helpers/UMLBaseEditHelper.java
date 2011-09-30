@@ -87,8 +87,7 @@ public class UMLBaseEditHelper extends AbstractEditHelper {
 	}
 
 	/**
-	 * @generated NOT
-	 *            handle unapply stereotypes before delete
+	 * @generated NOT handle unapply stereotypes before delete
 	 */
 	protected ICommand getDestroyElementCommand(DestroyElementRequest req) {
 		EObject elementToDestroy = req.getElementToDestroy();

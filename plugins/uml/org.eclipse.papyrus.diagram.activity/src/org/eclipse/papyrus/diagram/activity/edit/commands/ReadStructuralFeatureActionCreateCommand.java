@@ -75,7 +75,6 @@ public class ReadStructuralFeatureActionCreateCommand extends EditElementCommand
 	 */
 	protected EObject getElementToEdit() {
 
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -91,10 +90,7 @@ public class ReadStructuralFeatureActionCreateCommand extends EditElementCommand
 	 */
 	public boolean canExecute() {
 
-
 		return true;
-
-
 
 	}
 
@@ -103,13 +99,10 @@ public class ReadStructuralFeatureActionCreateCommand extends EditElementCommand
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-
-
 		ReadStructuralFeatureAction newElement = UMLFactory.eINSTANCE.createReadStructuralFeatureAction();
 
 		Activity owner = (Activity)getElementToEdit();
 		owner.getNodes().add(newElement);
-
 
 		ElementInitializers.getInstance().init_ReadStructuralFeatureAction_3088(newElement);
 
@@ -118,9 +111,6 @@ public class ReadStructuralFeatureActionCreateCommand extends EditElementCommand
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
-
-
-
 
 	/**
 	 * @generated

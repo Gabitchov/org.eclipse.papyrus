@@ -30,7 +30,8 @@ import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
- * The descriptor for ActivityPartition node used by org.eclipse.papyrus.diagram.common.groups.groupcontainment extension point.
+ * The descriptor for ActivityPartition node used by
+ * org.eclipse.papyrus.diagram.common.groups.groupcontainment extension point.
  * 
  * @author vhemery
  */
@@ -50,7 +51,8 @@ public class ActivityPartitionContainment extends AbstractContainerNodeDescripto
 	 * 
 	 * @param containerPart
 	 *        the ActivityPartition part
-	 * @return the rectangle in which nodes are considered as children of this part
+	 * @return the rectangle in which nodes are considered as children of this
+	 *         part
 	 */
 	public Rectangle getContentArea(IGraphicalEditPart containerPart) {
 		Rectangle bounds = containerPart.getContentPane().getBounds().getCopy();
@@ -59,7 +61,8 @@ public class ActivityPartitionContainment extends AbstractContainerNodeDescripto
 	}
 
 	/**
-	 * Get the list of references linking the ActivityPartition to children element.
+	 * Get the list of references linking the ActivityPartition to children
+	 * element.
 	 * 
 	 * @return the references to contained elements
 	 */
@@ -72,10 +75,12 @@ public class ActivityPartitionContainment extends AbstractContainerNodeDescripto
 	}
 
 	/**
-	 * Get the activity partition content compartment edit part from a view of the activity partition.
+	 * Get the activity partition content compartment edit part from a view of
+	 * the activity partition.
 	 * 
 	 * @param nodeView
-	 *        a view of the node, which can be either the compartment's view or the primary view of the containing node
+	 *        a view of the node, which can be either the compartment's view
+	 *        or the primary view of the containing node
 	 * @param diagramPart
 	 *        the diagram edit part (used to recover parts from views)
 	 * @return the activity partition content compartment edit part
@@ -88,7 +93,5 @@ public class ActivityPartitionContainment extends AbstractContainerNodeDescripto
 		}
 		return null;
 	}
-
-
 
 }

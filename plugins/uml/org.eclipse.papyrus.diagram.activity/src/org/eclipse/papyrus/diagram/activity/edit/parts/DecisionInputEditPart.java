@@ -277,7 +277,7 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 	 * @generated NOT do not edit label if hidden
 	 */
 	protected String getLabelText() {
-		//do not edit label if hidden
+		// do not edit label if hidden
 		boolean decisionSet = ((DecisionNode)resolveSemanticElement()).getDecisionInput() != null;
 		if(decisionSet) {
 			String text = null;
@@ -313,7 +313,7 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 	 * @generated NOT do not edit label if hidden
 	 */
 	public String getEditText() {
-		//do not edit label if hidden
+		// do not edit label if hidden
 		boolean decisionSet = ((DecisionNode)resolveSemanticElement()).getDecisionInput() != null;
 		if(getParserElement() == null || getParser() == null || !decisionSet) {
 			return ""; //$NON-NLS-1$
@@ -405,7 +405,7 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 	 * @generated NOT do not edit label if hidden
 	 */
 	protected void performDirectEdit() {
-		//do not edit label if hidden
+		// do not edit label if hidden
 		boolean decisionSet = ((DecisionNode)resolveSemanticElement()).getDecisionInput() != null;
 		if(decisionSet) {
 			getManager().show();
@@ -416,7 +416,7 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 	 * @generated NOT do not edit label if hidden
 	 */
 	protected void performDirectEdit(Point eventLocation) {
-		//do not edit label if hidden
+		// do not edit label if hidden
 		boolean decisionSet = ((DecisionNode)resolveSemanticElement()).getDecisionInput() != null;
 		if(getManager() instanceof TextDirectEditManager && decisionSet) {
 			((TextDirectEditManager)getManager()).show(eventLocation.getSWTPoint());
@@ -427,7 +427,7 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 	 * @generated NOT do not edit label if hidden
 	 */
 	private void performDirectEdit(char initialCharacter) {
-		//do not edit label if hidden
+		// do not edit label if hidden
 		boolean decisionSet = ((DecisionNode)resolveSemanticElement()).getDecisionInput() != null;
 		if(getManager() instanceof TextDirectEditManager && decisionSet) {
 			((TextDirectEditManager)getManager()).show(initialCharacter);
@@ -440,7 +440,7 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 	 * @generated NOT do not edit label if hidden
 	 */
 	protected void performDirectEditRequest(Request request) {
-		//do not edit label if hidden
+		// do not edit label if hidden
 		boolean decisionSet = ((DecisionNode)resolveSemanticElement()).getDecisionInput() != null;
 		if(!decisionSet) {
 			return;
@@ -654,7 +654,8 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
-	 * @return an <code>int</code> corresponding to the kind of direct editor, @see org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition
+	 * @return an <code>int</code> corresponding to the kind of direct editor, @see
+	 *         org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition
 	 * @generated
 	 */
 	public int getDirectEditionType() {
@@ -752,7 +753,8 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 	}
 
 	/**
-	 * @generated NOT refresh the visibility in case the decision input assignment changed
+	 * @generated NOT refresh the visibility in case the decision input
+	 *            assignment changed
 	 */
 	protected void handleNotificationEvent(Notification event) {
 		Object feature = event.getFeature();
@@ -777,7 +779,8 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 						addSemanticListeners();
 					}
 					refreshLabel();
-					// refresh the visibility in case the decision input assignment changed
+					// refresh the visibility in case the decision input
+					// assignment changed
 					refreshVisibility();
 				}
 			}
@@ -820,7 +823,6 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 		 * @generated
 		 */
 		public LinkAndCornerBentWithTextFigure() {
-
 
 			this.setBackgroundColor(THIS_BACK);
 			createContents();

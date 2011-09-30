@@ -32,7 +32,6 @@ import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.UMLPackage;
 
-
 /**
  * Specific Parser for the comment, in case they have a html format.
  */
@@ -101,7 +100,6 @@ public class PreConditionConstraintLabelParser implements IParser {
 			return "<NULL CONSTRAINT>"; //$NON-NLS-1$
 		}
 
-
 		return CHEVRON + constraint.getName();
 	}
 
@@ -125,9 +123,9 @@ public class PreConditionConstraintLabelParser implements IParser {
 		return ParserEditStatus.EDITABLE_STATUS;
 	}
 
-
 	/**
-	 * Get the property associated with the given IAdaptable and the memberEndIndex .
+	 * Get the property associated with the given IAdaptable and the
+	 * memberEndIndex .
 	 * 
 	 * @param element
 	 *        the given IAdaptable

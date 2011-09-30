@@ -23,9 +23,9 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.ExpansionRegionStructured
 import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.uml2.uml.UMLPackage;
 
-
 /**
- * The descriptor for ExpansionRegion node used by org.eclipse.papyrus.diagram.common.groups.groupcontainment extension point.
+ * The descriptor for ExpansionRegion node used by
+ * org.eclipse.papyrus.diagram.common.groups.groupcontainment extension point.
  * 
  * @author vhemery
  */
@@ -41,10 +41,12 @@ public class ExpansionRegionContainment extends StructuredActivityNodeContainmen
 	}
 
 	/**
-	 * Get the expansion region content compartment edit part from a view of the expansion region.
+	 * Get the expansion region content compartment edit part from a view of the
+	 * expansion region.
 	 * 
 	 * @param nodeView
-	 *        a view of the node, which can be either the compartment's view or the primary view of the containing node
+	 *        a view of the node, which can be either the compartment's view
+	 *        or the primary view of the containing node
 	 * @param diagramPart
 	 *        the diagram edit part (used to recover parts from views)
 	 * @return the expansion region content compartment edit part

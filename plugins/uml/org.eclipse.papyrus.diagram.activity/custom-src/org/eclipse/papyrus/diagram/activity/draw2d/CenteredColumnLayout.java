@@ -25,8 +25,9 @@ import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.papyrus.diagram.common.draw2d.CenterLayout;
 
 /**
- * This implementation is based on {@link CenterLayout}, except it avoids superposing figures.
- * Elements are centered and placed in a row. Available extra place is dispatched between figures with fill constraint.
+ * This implementation is based on {@link CenterLayout}, except it avoids
+ * superposing figures. Elements are centered and placed in a row. Available
+ * extra place is dispatched between figures with fill constraint.
  * 
  * @see CenteredColumnConstraint
  */

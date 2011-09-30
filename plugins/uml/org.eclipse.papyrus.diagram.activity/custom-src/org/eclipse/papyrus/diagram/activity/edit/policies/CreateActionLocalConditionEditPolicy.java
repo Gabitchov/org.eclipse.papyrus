@@ -32,7 +32,8 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityActivityContentCo
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
 
 /**
- * This Edit Policy applies on an action. It enables to create a local condition linked with this action, in the parent compartment.
+ * This Edit Policy applies on an action. It enables to create a local condition
+ * linked with this action, in the parent compartment.
  */
 public class CreateActionLocalConditionEditPolicy extends AbstractEditPolicy {
 

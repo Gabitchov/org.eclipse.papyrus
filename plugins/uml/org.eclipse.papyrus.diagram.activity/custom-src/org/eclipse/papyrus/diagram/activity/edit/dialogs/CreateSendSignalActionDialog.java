@@ -31,7 +31,8 @@ import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
- * This class provides a dialog to initialize a SendSignalAction at its creation.
+ * This class provides a dialog to initialize a SendSignalAction at its
+ * creation.
  */
 public class CreateSendSignalActionDialog extends CreateInvocationActionDialog {
 
@@ -48,7 +49,8 @@ public class CreateSendSignalActionDialog extends CreateInvocationActionDialog {
 	}
 
 	/**
-	 * Get the id of the preference storing whether selection is the default choice.
+	 * Get the id of the preference storing whether selection is the default
+	 * choice.
 	 * 
 	 * @return preference id
 	 */

@@ -39,7 +39,8 @@ import org.eclipse.uml2.uml.ValueSpecification;
 public class UMLValidationHelper {
 
 	/**
-	 * The source and target of an edge must be in the same activity as the edge.
+	 * The source and target of an edge must be in the same activity as the
+	 * edge.
 	 * 
 	 * @param context
 	 *        The receiving '<em><b>Activity Edge</b></em>' model object.
@@ -49,7 +50,8 @@ public class UMLValidationHelper {
 	public static IStatus validateSourceAndTarget(ActivityEdge context, IValidationContext ctx) {
 		Activity edgeActivity = context.getActivity();
 		if(edgeActivity == null) {
-			// edge is contained by activity or group. Its activity is by consequence a parent of it
+			// edge is contained by activity or group. Its activity is by
+			// consequence a parent of it
 			Element edgeOwner = context.getOwner();
 			while(edgeOwner != null && !(edgeOwner instanceof Activity)) {
 				edgeOwner = edgeOwner.getOwner();
@@ -57,7 +59,8 @@ public class UMLValidationHelper {
 			if(edgeOwner instanceof Activity) {
 				edgeActivity = (Activity)edgeOwner;
 			} else {
-				// this case should not occur. But in such a case, model is invalid for another
+				// this case should not occur. But in such a case, model is
+				// invalid for another
 				// reason
 				return ctx.createSuccessStatus();
 			}
@@ -67,7 +70,8 @@ public class UMLValidationHelper {
 		if(source != null && target != null) {
 			Activity sourceActivity = source.getActivity();
 			if(sourceActivity == null) {
-				// activity node is contained by activity or group. Its activity is by consequence a
+				// activity node is contained by activity or group. Its activity
+				// is by consequence a
 				// parent of it
 				Element sourceOwner = source.getOwner();
 				while(sourceOwner != null && !(sourceOwner instanceof Activity)) {
@@ -76,14 +80,16 @@ public class UMLValidationHelper {
 				if(sourceOwner instanceof Activity) {
 					sourceActivity = (Activity)sourceOwner;
 				} else {
-					// this case should not occur. But in such a case, model is invalid for another
+					// this case should not occur. But in such a case, model is
+					// invalid for another
 					// reason
 					return ctx.createSuccessStatus();
 				}
 			}
 			Activity targetActivity = target.getActivity();
 			if(targetActivity == null) {
-				// activity node is contained by activity or group. Its activity is by consequence a
+				// activity node is contained by activity or group. Its activity
+				// is by consequence a
 				// parent of it
 				Element targetOwner = target.getOwner();
 				while(targetOwner != null && !(targetOwner instanceof Activity)) {
@@ -92,7 +98,8 @@ public class UMLValidationHelper {
 				if(targetOwner instanceof Activity) {
 					targetActivity = (Activity)targetOwner;
 				} else {
-					// this case should not occur. But in such a case, model is invalid for another
+					// this case should not occur. But in such a case, model is
+					// invalid for another
 					// reason
 					return ctx.createSuccessStatus();
 				}
@@ -105,9 +112,10 @@ public class UMLValidationHelper {
 	}
 
 	/**
-	 * Object nodes connected by an object flow, with optionally intervening control nodes, must
-	 * have compatible types. In particular, the downstream object node type must be the same or a
-	 * supertype of the upstream object node type.
+	 * Object nodes connected by an object flow, with optionally intervening
+	 * control nodes, must have compatible types. In particular, the downstream
+	 * object node type must be the same or a supertype of the upstream object
+	 * node type.
 	 * 
 	 * @param context
 	 *        The receiving '<em><b>Object Flow</b></em>' model object.
@@ -116,10 +124,12 @@ public class UMLValidationHelper {
 	 */
 	public static IStatus validateCompatibleTypes(ObjectFlow context, IValidationContext ctx) {
 		/*
-		 * In case object flow have transformation behavior, the basic constraint (which describes
-		 * general case only) does not need to be respected. In such a case Type consistency is
-		 * checked by validateTransformationBehaviour. The UML specification is not very precise on
-		 * this point. The constraint must be relaxed when a transformation interferes.
+		 * In case object flow have transformation behavior, the basic
+		 * constraint (which describes general case only) does not need to be
+		 * respected. In such a case Type consistency is checked by
+		 * validateTransformationBehaviour. The UML specification is not very
+		 * precise on this point. The constraint must be relaxed when a
+		 * transformation interferes.
 		 */
 		if(context.getTransformation() == null) {
 			List<Type> srcTypes = getUpstreamExpectedTypes(context, new LinkedList<ObjectFlow>());
@@ -131,13 +141,14 @@ public class UMLValidationHelper {
 				}
 			}
 		}
-		// if there is a transformation, validateTransformationBehaviour applies.
+		// if there is a transformation, validateTransformationBehaviour
+		// applies.
 		return ctx.createSuccessStatus();
 	}
 
 	/**
-	 * Object nodes connected by an object flow, with optionally intervening control nodes, must
-	 * have the same upper bounds.
+	 * Object nodes connected by an object flow, with optionally intervening
+	 * control nodes, must have the same upper bounds.
 	 * 
 	 * @param context
 	 *        The receiving '<em><b>Object Flow</b></em>' model object.
@@ -159,8 +170,9 @@ public class UMLValidationHelper {
 	}
 
 	/**
-	 * An edge with constant weight may not target an object node, or lead to an object node
-	 * downstream with no intervening actions, that has an upper bound less than the weight.
+	 * An edge with constant weight may not target an object node, or lead to an
+	 * object node downstream with no intervening actions, that has an upper
+	 * bound less than the weight.
 	 * 
 	 * @param context
 	 *        The receiving '<em><b>Object Flow</b></em>' model object.
@@ -199,10 +211,11 @@ public class UMLValidationHelper {
 	}
 
 	/**
-	 * A transformation behavior has one input parameter and one output parameter. The input
-	 * parameter must be the same as or a supertype of the type of object token coming from the
-	 * source end. The output parameter must be the same or a subtype of the type of object token
-	 * expected downstream. The behavior cannot have side effects.
+	 * A transformation behavior has one input parameter and one output
+	 * parameter. The input parameter must be the same as or a supertype of the
+	 * type of object token coming from the source end. The output parameter
+	 * must be the same or a subtype of the type of object token expected
+	 * downstream. The behavior cannot have side effects.
 	 * 
 	 * @param context
 	 *        The receiving '<em><b>Object Flow</b></em>' model object.
@@ -257,10 +270,11 @@ public class UMLValidationHelper {
 	}
 
 	/**
-	 * A selection behavior has one input parameter and one output parameter. The input parameter
-	 * must be a bag of elements of the same as or a supertype of the type of source object node.
-	 * The output parameter must be the same or a subtype of the type of source object node. The
-	 * behavior cannot have side effects.
+	 * A selection behavior has one input parameter and one output parameter.
+	 * The input parameter must be a bag of elements of the same as or a
+	 * supertype of the type of source object node. The output parameter must be
+	 * the same or a subtype of the type of source object node. The behavior
+	 * cannot have side effects.
 	 * 
 	 * @param context
 	 *        The receiving '<em><b>Object Flow</b></em>' model object.
@@ -315,7 +329,8 @@ public class UMLValidationHelper {
 	}
 
 	/**
-	 * The type of value specification must be compatible with the type of the value pin.
+	 * The type of value specification must be compatible with the type of the
+	 * value pin.
 	 * 
 	 * @param context
 	 *        The receiving '<em><b>Value Pin</b></em>' model object.
@@ -333,9 +348,10 @@ public class UMLValidationHelper {
 	}
 
 	/**
-	 * If the decision node has no decision input flow and an incoming object flow, then a decision
-	 * input behavior has one input parameter whose type is the same as or a supertype of the type
-	 * of object tokens offered on the incoming edge.
+	 * If the decision node has no decision input flow and an incoming object
+	 * flow, then a decision input behavior has one input parameter whose type
+	 * is the same as or a supertype of the type of object tokens offered on the
+	 * incoming edge.
 	 * 
 	 * @param context
 	 *        The receiving '<em><b>Decision Node</b></em>' model object.
@@ -350,8 +366,9 @@ public class UMLValidationHelper {
 			if(decisionInputFlow == null && incomingObjectFlow != null) {
 				ObjectFlow inFlow = (ObjectFlow)incomingObjectFlow;
 				/*
-				 * No decision input flow and an incoming object flow. There must be 1 in parameter
-				 * with type compatibility with incomingObjectFlow
+				 * No decision input flow and an incoming object flow. There
+				 * must be 1 in parameter with type compatibility with
+				 * incomingObjectFlow
 				 */
 				boolean parameterFound = false;
 				for(Parameter param : behavior.getOwnedParameters()) {
@@ -361,7 +378,8 @@ public class UMLValidationHelper {
 							List<Type> types = getTypeComingFromFlow(inFlow, new LinkedList<ObjectFlow>());
 							for(Type comingType : types) {
 								if(!isSuperType(param.getType(), comingType)) {
-									// type of the parameter is not compatible with incoming edge
+									// type of the parameter is not compatible
+									// with incoming edge
 									return ctx.createFailureStatus();
 								}
 							}
@@ -381,9 +399,10 @@ public class UMLValidationHelper {
 	}
 
 	/**
-	 * If the decision node has a decision input flow and an incoming control flow, then a decision
-	 * input behavior has one input parameter whose type is the same as or a supertype of the type
-	 * of object tokens offered on the decision input flow.
+	 * If the decision node has a decision input flow and an incoming control
+	 * flow, then a decision input behavior has one input parameter whose type
+	 * is the same as or a supertype of the type of object tokens offered on the
+	 * decision input flow.
 	 * 
 	 * @param context
 	 *        The receiving '<em><b>Decision Node</b></em>' model object.
@@ -397,8 +416,9 @@ public class UMLValidationHelper {
 			ActivityEdge incomingControlFlow = context.getIncoming(null, true, UMLPackage.eINSTANCE.getControlFlow());
 			if(decisionInputFlow != null && incomingControlFlow != null) {
 				/*
-				 * Decision input flow and an incoming control flow. There must be 1 in parameter
-				 * with type compatibility with decisionInputFlow
+				 * Decision input flow and an incoming control flow. There must
+				 * be 1 in parameter with type compatibility with
+				 * decisionInputFlow
 				 */
 				boolean parameterFound = false;
 				for(Parameter param : behavior.getOwnedParameters()) {
@@ -408,7 +428,8 @@ public class UMLValidationHelper {
 							List<Type> types = getTypeComingFromFlow(decisionInputFlow, new LinkedList<ObjectFlow>());
 							for(Type comingType : types) {
 								if(!isSuperType(param.getType(), comingType)) {
-									// type of the parameter is not compatible with incoming edge
+									// type of the parameter is not compatible
+									// with incoming edge
 									return ctx.createFailureStatus();
 								}
 							}
@@ -429,11 +450,12 @@ public class UMLValidationHelper {
 	}
 
 	/**
-	 * If the decision node has a decision input flow and an second incoming object flow, then a
-	 * decision input behavior has two input parameters, the first of which has a type that is the
-	 * same as or a supertype of the type of the type of object tokens offered on the nondecision
-	 * input flow and the second of which has a type that is the same as or a supertype of the type
-	 * of object tokens offered on the decision input flow.
+	 * If the decision node has a decision input flow and an second incoming
+	 * object flow, then a decision input behavior has two input parameters, the
+	 * first of which has a type that is the same as or a supertype of the type
+	 * of the type of object tokens offered on the nondecision input flow and
+	 * the second of which has a type that is the same as or a supertype of the
+	 * type of object tokens offered on the decision input flow.
 	 * 
 	 * @param context
 	 *        The receiving '<em><b>Decision Node</b></em>' model object.
@@ -454,8 +476,9 @@ public class UMLValidationHelper {
 			if(decisionInputFlow != null && incomingObjectFlow != null) {
 				ObjectFlow inFlow = (ObjectFlow)incomingObjectFlow;
 				/*
-				 * Decision input flow and an other incoming object flow. There must be 2 in
-				 * parameters with type compatibility with each flow
+				 * Decision input flow and an other incoming object flow. There
+				 * must be 2 in parameters with type compatibility with each
+				 * flow
 				 */
 				int numberOfParameterFound = 0;
 				for(Parameter param : behavior.getOwnedParameters()) {
@@ -465,7 +488,8 @@ public class UMLValidationHelper {
 							List<Type> types = getTypeComingFromFlow(inFlow, new LinkedList<ObjectFlow>());
 							for(Type comingType : types) {
 								if(!isSuperType(param.getType(), comingType)) {
-									// type of the parameter is not compatible with incoming edge
+									// type of the parameter is not compatible
+									// with incoming edge
 									return ctx.createFailureStatus();
 								}
 							}
@@ -475,7 +499,8 @@ public class UMLValidationHelper {
 							List<Type> types = getTypeComingFromFlow(decisionInputFlow, new LinkedList<ObjectFlow>());
 							for(Type comingType : types) {
 								if(!isSuperType(param.getType(), comingType)) {
-									// type of the parameter is not compatible with incoming edge
+									// type of the parameter is not compatible
+									// with incoming edge
 									return ctx.createFailureStatus();
 								}
 							}
@@ -496,8 +521,10 @@ public class UMLValidationHelper {
 	}
 
 	/**
-	 * A selection behavior has one input parameter and one output parameter. The input parameter must be a bag of elements of the same type as the
-	 * object node or a supertype of the type of object node. The output parameter must be the same or a subtype of the type of object node. The
+	 * A selection behavior has one input parameter and one output parameter.
+	 * The input parameter must be a bag of elements of the same type as the
+	 * object node or a supertype of the type of object node. The output
+	 * parameter must be the same or a subtype of the type of object node. The
 	 * behavior cannot have side effects.
 	 * 
 	 * @param context
@@ -563,7 +590,8 @@ public class UMLValidationHelper {
 	 *        the type which should be supertype
 	 * @param childType
 	 *        the type which should be at lower level
-	 * @return true if superType is a supertype of childType or if one of them is null
+	 * @return true if superType is a supertype of childType or if one of them
+	 *         is null
 	 */
 	private static boolean isSuperType(Type superType, Type childType) {
 		if(superType == null || childType == null) {
@@ -573,8 +601,9 @@ public class UMLValidationHelper {
 	}
 
 	/**
-	 * Get all object nodes which are downstream this object flow. These are the target of the
-	 * object flow, eventually by the intermediate of control nodes.
+	 * Get all object nodes which are downstream this object flow. These are the
+	 * target of the object flow, eventually by the intermediate of control
+	 * nodes.
 	 * 
 	 * @param objectFlow
 	 *        the object flow to explore
@@ -597,14 +626,16 @@ public class UMLValidationHelper {
 	}
 
 	/**
-	 * Get the type which should be expected upstream an object flow (considering the source)
+	 * Get the type which should be expected upstream an object flow
+	 * (considering the source)
 	 * 
 	 * @param objectFlow
 	 *        the object flow
 	 * @param alreadyMetObjectFlows
-	 *        the list of object flows which have already been visited to avoid loops. Callers
-	 *        shall pass new LinkedList<ObjectFlow>()
-	 * @return the list of types according to different incoming flows (unspecified types omitted).
+	 *        the list of object flows which have already been visited to
+	 *        avoid loops. Callers shall pass new LinkedList<ObjectFlow>()
+	 * @return the list of types according to different incoming flows
+	 *         (unspecified types omitted).
 	 */
 	private static List<Type> getUpstreamExpectedTypes(ObjectFlow objectFlow, List<ObjectFlow> alreadyMetObjectFlows) {
 		ActivityNode src = objectFlow.getSource();
@@ -640,14 +671,16 @@ public class UMLValidationHelper {
 	}
 
 	/**
-	 * Get the type which should be expected downstream an object flow (considering the target)
+	 * Get the type which should be expected downstream an object flow
+	 * (considering the target)
 	 * 
 	 * @param objectFlow
 	 *        the object flow
 	 * @param alreadyMetObjectFlows
-	 *        the list of object flows which have already been visited to avoid loops. Callers
-	 *        shall pass new LinkedList<ObjectFlow>()
-	 * @return the list of types according to different outgoing flows (unspecified types omitted).
+	 *        the list of object flows which have already been visited to
+	 *        avoid loops. Callers shall pass new LinkedList<ObjectFlow>()
+	 * @return the list of types according to different outgoing flows
+	 *         (unspecified types omitted).
 	 */
 	private static List<Type> getDownstreamExpectedTypes(ObjectFlow objectFlow, List<ObjectFlow> alreadyMetObjectFlows) {
 		ActivityNode target = objectFlow.getTarget();
@@ -683,14 +716,16 @@ public class UMLValidationHelper {
 	}
 
 	/**
-	 * Get the types which an object flow sends (considering itself and its source)
+	 * Get the types which an object flow sends (considering itself and its
+	 * source)
 	 * 
 	 * @param inputFlow
 	 *        the object flow
 	 * @param alreadyMetObjectFlows
-	 *        the list of object flows which have already been visited to avoid loops. Callers
-	 *        shall pass new LinkedList<ObjectFlow>()
-	 * @return the list of types according to different incoming flows (unspecified types omitted).
+	 *        the list of object flows which have already been visited to
+	 *        avoid loops. Callers shall pass new LinkedList<ObjectFlow>()
+	 * @return the list of types according to different incoming flows
+	 *         (unspecified types omitted).
 	 */
 	private static List<Type> getTypeComingFromFlow(ObjectFlow inputFlow, List<ObjectFlow> alreadyMetObjectFlows) {
 		List<Type> result = new LinkedList<Type>();
@@ -732,14 +767,16 @@ public class UMLValidationHelper {
 	}
 
 	/**
-	 * Get the types which an object flow handles (considering itself and its target)
+	 * Get the types which an object flow handles (considering itself and its
+	 * target)
 	 * 
 	 * @param outputFlow
 	 *        the object flow
 	 * @param alreadyMetObjectFlows
-	 *        the list of object flows which have already been visited to avoid loops. Callers
-	 *        shall pass new LinkedList<ObjectFlow>()
-	 * @return the list of types according to different outgoing flows (unspecified types omitted).
+	 *        the list of object flows which have already been visited to
+	 *        avoid loops. Callers shall pass new LinkedList<ObjectFlow>()
+	 * @return the list of types according to different outgoing flows
+	 *         (unspecified types omitted).
 	 */
 	private static List<Type> getTypeExpectedByFlow(ObjectFlow outputFlow, List<ObjectFlow> alreadyMetObjectFlows) {
 		List<Type> result = new LinkedList<Type>();

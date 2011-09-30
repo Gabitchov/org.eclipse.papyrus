@@ -26,7 +26,8 @@ import org.eclipse.papyrus.diagram.common.figure.node.RoundedRectangleDashedShad
 import org.eclipse.swt.graphics.Image;
 
 /**
- * This figure handles a rounded dashed rectangle Papyrus node, with no displayed label.
+ * This figure handles a rounded dashed rectangle Papyrus node, with no
+ * displayed label.
  * 
  * @author vhemery
  */
@@ -59,8 +60,9 @@ public class InterruptibleActivityRegionFigure extends PapyrusNodeFigure impleme
 	}
 
 	/**
-	 * Paint the background of the figure. If this figure uses gradient, then it will paint the
-	 * background with the gradient informations. Otherwise it will use the background color.
+	 * Paint the background of the figure. If this figure uses gradient, then it
+	 * will paint the background with the gradient informations. Otherwise it
+	 * will use the background color.
 	 * 
 	 * @param graphics
 	 *        the graphics
@@ -78,7 +80,7 @@ public class InterruptibleActivityRegionFigure extends PapyrusNodeFigure impleme
 			graphics.setBackgroundColor(getBackgroundColor());
 			graphics.setForegroundColor(getForegroundColor());
 			// let the figure unfilled to see behind it
-			//graphics.fillRectangle(rectangle);
+			// graphics.fillRectangle(rectangle);
 		}
 	}
 

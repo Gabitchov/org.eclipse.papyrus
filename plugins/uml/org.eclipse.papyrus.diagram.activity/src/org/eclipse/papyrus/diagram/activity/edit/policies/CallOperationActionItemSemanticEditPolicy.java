@@ -132,8 +132,9 @@ public class CallOperationActionItemSemanticEditPolicy extends UMLBaseItemSemant
 			Edge outgoingLink = (Edge)it.next();
 			if(UMLVisualIDRegistry.getVisualID(outgoingLink) == ActionLocalPreconditionEditPart.VISUAL_ID) {
 				/*
-				 * Simply delete the link and the local condition view.
-				 * Model arrangement are automatic since local condition is contained by the action.
+				 * Simply delete the link and the local condition view. Model
+				 * arrangement are automatic since local condition is contained
+				 * by the action.
 				 */
 				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink.getTarget()));
 				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
@@ -141,8 +142,9 @@ public class CallOperationActionItemSemanticEditPolicy extends UMLBaseItemSemant
 			}
 			if(UMLVisualIDRegistry.getVisualID(outgoingLink) == ActionLocalPostconditionEditPart.VISUAL_ID) {
 				/*
-				 * Simply delete the link and the local condition view.
-				 * Model arrangement are automatic since local condition is contained by the action.
+				 * Simply delete the link and the local condition view. Model
+				 * arrangement are automatic since local condition is contained
+				 * by the action.
 				 */
 				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink.getTarget()));
 				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
@@ -163,7 +165,8 @@ public class CallOperationActionItemSemanticEditPolicy extends UMLBaseItemSemant
 		}
 		EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
 		if(annotation == null) {
-			// there are indirectly referenced children, need extra commands: false
+			// there are indirectly referenced children, need extra commands:
+			// false
 			addDestroyChildNodesCommand(cmd);
 			addDestroyShortcutsCommand(cmd, view);
 			// delete host element
@@ -184,7 +187,6 @@ public class CallOperationActionItemSemanticEditPolicy extends UMLBaseItemSemant
 			switch(UMLVisualIDRegistry.getVisualID(node)) {
 			case ActionInputPinInCallOpActEditPart.VISUAL_ID:
 
-
 				for(Iterator<?> it = node.getTargetEdges().iterator(); it.hasNext();) {
 					Edge incomingLink = (Edge)it.next();
 					switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -214,13 +216,16 @@ public class CallOperationActionItemSemanticEditPolicy extends UMLBaseItemSemant
 						break;
 					}
 				}
-				cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), node.getElement(), false))); // directlyOwned: true
-				// don't need explicit deletion of node as parent's view deletion would clean child views as well 
-				// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), node));
+				cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), node.getElement(), false))); // directlyOwned:
+																																// true
+				// don't need explicit deletion of node as parent's view
+				// deletion would clean child views as well
+				// cmd.add(new
+				// org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(),
+				// node));
 				break;
 			case ValuePinInCallOpActEditPart.VISUAL_ID:
 
-
 				for(Iterator<?> it = node.getTargetEdges().iterator(); it.hasNext();) {
 					Edge incomingLink = (Edge)it.next();
 					switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -250,13 +255,16 @@ public class CallOperationActionItemSemanticEditPolicy extends UMLBaseItemSemant
 						break;
 					}
 				}
-				cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), node.getElement(), false))); // directlyOwned: true
-				// don't need explicit deletion of node as parent's view deletion would clean child views as well 
-				// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), node));
+				cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), node.getElement(), false))); // directlyOwned:
+																																// true
+				// don't need explicit deletion of node as parent's view
+				// deletion would clean child views as well
+				// cmd.add(new
+				// org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(),
+				// node));
 				break;
 			case InputPinInCallOpActEditPart.VISUAL_ID:
 
-
 				for(Iterator<?> it = node.getTargetEdges().iterator(); it.hasNext();) {
 					Edge incomingLink = (Edge)it.next();
 					switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -286,13 +294,16 @@ public class CallOperationActionItemSemanticEditPolicy extends UMLBaseItemSemant
 						break;
 					}
 				}
-				cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), node.getElement(), false))); // directlyOwned: true
-				// don't need explicit deletion of node as parent's view deletion would clean child views as well 
-				// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), node));
+				cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), node.getElement(), false))); // directlyOwned:
+																																// true
+				// don't need explicit deletion of node as parent's view
+				// deletion would clean child views as well
+				// cmd.add(new
+				// org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(),
+				// node));
 				break;
 			case OutputPinInCallOpActEditPart.VISUAL_ID:
 
-
 				for(Iterator<?> it = node.getTargetEdges().iterator(); it.hasNext();) {
 					Edge incomingLink = (Edge)it.next();
 					switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -322,13 +333,16 @@ public class CallOperationActionItemSemanticEditPolicy extends UMLBaseItemSemant
 						break;
 					}
 				}
-				cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), node.getElement(), false))); // directlyOwned: true
-				// don't need explicit deletion of node as parent's view deletion would clean child views as well 
-				// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), node));
+				cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), node.getElement(), false))); // directlyOwned:
+																																// true
+				// don't need explicit deletion of node as parent's view
+				// deletion would clean child views as well
+				// cmd.add(new
+				// org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(),
+				// node));
 				break;
 			case ValuePinInCallOpActAsTargetEditPart.VISUAL_ID:
 
-
 				for(Iterator<?> it = node.getTargetEdges().iterator(); it.hasNext();) {
 					Edge incomingLink = (Edge)it.next();
 					switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -358,13 +372,16 @@ public class CallOperationActionItemSemanticEditPolicy extends UMLBaseItemSemant
 						break;
 					}
 				}
-				cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), node.getElement(), false))); // directlyOwned: true
-				// don't need explicit deletion of node as parent's view deletion would clean child views as well 
-				// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), node));
+				cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), node.getElement(), false))); // directlyOwned:
+																																// true
+				// don't need explicit deletion of node as parent's view
+				// deletion would clean child views as well
+				// cmd.add(new
+				// org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(),
+				// node));
 				break;
 			case ActionInputPinInCallOpActAsTargetEditPart.VISUAL_ID:
 
-
 				for(Iterator<?> it = node.getTargetEdges().iterator(); it.hasNext();) {
 					Edge incomingLink = (Edge)it.next();
 					switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -394,13 +411,16 @@ public class CallOperationActionItemSemanticEditPolicy extends UMLBaseItemSemant
 						break;
 					}
 				}
-				cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), node.getElement(), false))); // directlyOwned: true
-				// don't need explicit deletion of node as parent's view deletion would clean child views as well 
-				// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), node));
+				cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), node.getElement(), false))); // directlyOwned:
+																																// true
+				// don't need explicit deletion of node as parent's view
+				// deletion would clean child views as well
+				// cmd.add(new
+				// org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(),
+				// node));
 				break;
 			case InputPinInCallOpActAsTargetEditPart.VISUAL_ID:
 
-
 				for(Iterator<?> it = node.getTargetEdges().iterator(); it.hasNext();) {
 					Edge incomingLink = (Edge)it.next();
 					switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -430,9 +450,13 @@ public class CallOperationActionItemSemanticEditPolicy extends UMLBaseItemSemant
 						break;
 					}
 				}
-				cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), node.getElement(), false))); // directlyOwned: true
-				// don't need explicit deletion of node as parent's view deletion would clean child views as well 
-				// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), node));
+				cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), node.getElement(), false))); // directlyOwned:
+																																// true
+				// don't need explicit deletion of node as parent's view
+				// deletion would clean child views as well
+				// cmd.add(new
+				// org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(),
+				// node));
 				break;
 			}
 		}
@@ -515,8 +539,8 @@ public class CallOperationActionItemSemanticEditPolicy extends UMLBaseItemSemant
 	}
 
 	/**
-	 * Returns command to reorient EReference based link. New link target or source
-	 * should be the domain model element associated with this node.
+	 * Returns command to reorient EReference based link. New link target or
+	 * source should be the domain model element associated with this node.
 	 * 
 	 * @generated
 	 */

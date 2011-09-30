@@ -26,7 +26,8 @@ import org.eclipse.uml2.uml.OutputPin;
 public class ObjectFlowEditHelper extends UMLBaseEditHelper {
 
 	/**
-	 * Return whether we can create a new object flow starting from this action by adding an intermediate output pin at it.
+	 * Return whether we can create a new object flow starting from this action
+	 * by adding an intermediate output pin at it.
 	 * 
 	 * @param action
 	 *        the action to start from
@@ -34,14 +35,17 @@ public class ObjectFlowEditHelper extends UMLBaseEditHelper {
 	 * @generated NOT
 	 */
 	public static boolean canStartNewObjectFlow(Action action) {
-		// CallOperationAction and CallBehaviorAction have pre-defined pins which are all represented.
+		// CallOperationAction and CallBehaviorAction have pre-defined pins
+		// which are all represented.
 		// SendObjectAction have only two input pins which are all represented.
-		// SendSignalAction has only pre-defined input pins which are all represented.
+		// SendSignalAction has only pre-defined input pins which are all
+		// represented.
 		return (action instanceof OpaqueAction) || (action instanceof AcceptEventAction);
 	}
 
 	/**
-	 * Return whether we can create a new object flow ending to this action by adding an intermediate input pin at it.
+	 * Return whether we can create a new object flow ending to this action by
+	 * adding an intermediate input pin at it.
 	 * 
 	 * @param action
 	 *        the action to end to
@@ -49,19 +53,23 @@ public class ObjectFlowEditHelper extends UMLBaseEditHelper {
 	 * @generated NOT
 	 */
 	public static boolean canEndNewObjectFlow(Action action) {
-		// CallOperationAction and CallBehaviorAction have pre-defined pins which are all represented.
+		// CallOperationAction and CallBehaviorAction have pre-defined pins
+		// which are all represented.
 		// SendObjectAction have only two input pins which are all represented.
-		// SendSignalAction has only pre-defined input pins which are all represented.
+		// SendSignalAction has only pre-defined input pins which are all
+		// represented.
 		// AcceptEventAction has no input pin
 		return action instanceof OpaqueAction;
 	}
 
 	/**
-	 * Return whether a pin must be inserted to create a new object flow starting from this activity node.
+	 * Return whether a pin must be inserted to create a new object flow
+	 * starting from this activity node.
 	 * 
 	 * @param node
 	 *        the activity node to start from
-	 * @return whether a pin must can inserted to create an object flow from this node
+	 * @return whether a pin must can inserted to create an object flow from
+	 *         this node
 	 * @generated NOT
 	 */
 	public static boolean insertPinForStartingNewObjectFlow(ActivityNode node) {
@@ -72,11 +80,13 @@ public class ObjectFlowEditHelper extends UMLBaseEditHelper {
 	}
 
 	/**
-	 * Return whether a pin must be inserted to create a new object flow ending to this activity node.
+	 * Return whether a pin must be inserted to create a new object flow ending
+	 * to this activity node.
 	 * 
 	 * @param node
 	 *        the activity node to end to
-	 * @return whether a pin must can inserted to create an object flow to this node
+	 * @return whether a pin must can inserted to create an object flow to this
+	 *         node
 	 * @generated NOT
 	 */
 	public static boolean insertPinForEndingNewObjectFlow(ActivityNode node) {

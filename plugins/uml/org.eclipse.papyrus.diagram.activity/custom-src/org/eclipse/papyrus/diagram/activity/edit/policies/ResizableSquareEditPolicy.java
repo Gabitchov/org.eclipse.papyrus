@@ -20,15 +20,16 @@ import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ResizableShapeEditPolicy;
 
 /**
- * A resizable editpolicy for shape editparts. It constraint the resize requests so that the shape stays as a square.
+ * A resizable editpolicy for shape editparts. It constraint the resize requests
+ * so that the shape stays as a square.
  * 
  * @see ResizableShapeEditPolicy
  */
 public class ResizableSquareEditPolicy extends ResizableShapeEditPolicy {
 
 	/**
-	 * Shows or updates feedback for a change bounds request.
-	 * The request is updated by the way so that the shape stays a square.
+	 * Shows or updates feedback for a change bounds request. The request is
+	 * updated by the way so that the shape stays a square.
 	 * 
 	 * @param request
 	 *        the request

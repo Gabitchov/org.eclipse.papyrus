@@ -29,9 +29,9 @@ import org.eclipse.papyrus.diagram.common.groups.groupcontainment.AbstractContai
 import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.uml2.uml.UMLPackage;
 
-
 /**
- * The descriptor for StructuredActivityNode node used by org.eclipse.papyrus.diagram.common.groups.groupcontainment extension point.
+ * The descriptor for StructuredActivityNode node used by
+ * org.eclipse.papyrus.diagram.common.groups.groupcontainment extension point.
  * 
  * @author vhemery
  */
@@ -51,7 +51,8 @@ public class StructuredActivityNodeContainment extends AbstractContainerNodeDesc
 	 * 
 	 * @param containerPart
 	 *        the StructuredActivityNode part
-	 * @return the rectangle in which nodes are considered as children of this part
+	 * @return the rectangle in which nodes are considered as children of this
+	 *         part
 	 */
 	public Rectangle getContentArea(IGraphicalEditPart containerPart) {
 		Rectangle bounds = containerPart.getContentPane().getBounds().getCopy();
@@ -60,7 +61,8 @@ public class StructuredActivityNodeContainment extends AbstractContainerNodeDesc
 	}
 
 	/**
-	 * Get the list of references linking the StructuredActivityNode to children element.
+	 * Get the list of references linking the StructuredActivityNode to children
+	 * element.
 	 * 
 	 * @return the references to contained elements
 	 */
@@ -72,10 +74,12 @@ public class StructuredActivityNodeContainment extends AbstractContainerNodeDesc
 	}
 
 	/**
-	 * Get the structured activity node content compartment edit part from a view of the structured activity node.
+	 * Get the structured activity node content compartment edit part from a
+	 * view of the structured activity node.
 	 * 
 	 * @param nodeView
-	 *        a view of the node, which can be either the compartment's view or the primary view of the containing node
+	 *        a view of the node, which can be either the compartment's view
+	 *        or the primary view of the containing node
 	 * @param diagramPart
 	 *        the diagram edit part (used to recover parts from views)
 	 * @return the structured activity node content compartment edit part

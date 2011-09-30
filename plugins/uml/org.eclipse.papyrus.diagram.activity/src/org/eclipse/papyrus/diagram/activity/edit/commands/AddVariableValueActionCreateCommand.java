@@ -75,7 +75,6 @@ public class AddVariableValueActionCreateCommand extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -91,10 +90,7 @@ public class AddVariableValueActionCreateCommand extends EditElementCommand {
 	 */
 	public boolean canExecute() {
 
-
 		return true;
-
-
 
 	}
 
@@ -103,13 +99,10 @@ public class AddVariableValueActionCreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-
-
 		AddVariableValueAction newElement = UMLFactory.eINSTANCE.createAddVariableValueAction();
 
 		Activity owner = (Activity)getElementToEdit();
 		owner.getNodes().add(newElement);
-
 
 		ElementInitializers.getInstance().init_AddVariableValueAction_3099(newElement);
 
@@ -118,9 +111,6 @@ public class AddVariableValueActionCreateCommand extends EditElementCommand {
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
-
-
-
 
 	/**
 	 * @generated

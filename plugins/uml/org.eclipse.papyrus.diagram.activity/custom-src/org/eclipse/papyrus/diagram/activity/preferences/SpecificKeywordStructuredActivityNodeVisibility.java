@@ -23,7 +23,8 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 
 /**
- * Preference group to define whether the specific keyword of the descendant of structured activity node has to be displayed of not
+ * Preference group to define whether the specific keyword of the descendant of
+ * structured activity node has to be displayed of not
  * 
  * @author adaussy
  * 
@@ -59,7 +60,6 @@ public class SpecificKeywordStructuredActivityNodeVisibility extends AbstractGro
 
 	}
 
-
 	/**
 	 * Creates the content.
 	 * 
@@ -90,7 +90,5 @@ public class SpecificKeywordStructuredActivityNodeVisibility extends AbstractGro
 		addFieldEditor(specificKeywordVisibility);
 
 	}
-
-
 
 }

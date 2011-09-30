@@ -205,7 +205,8 @@ public class UMLOCLFactory {
 			if(oclExpression == null) {
 				return null;
 			}
-			// on the first call, both evalEnvironment and extentMap are clear, for later we have finally, below.
+			// on the first call, both evalEnvironment and extentMap are clear,
+			// for later we have finally, below.
 			EvaluationEnvironment<?, ?, ?, ?, ?> evalEnv = oclInstance.getEvaluationEnvironment();
 			// initialize environment
 			for(Object nextKey : env.keySet()) {
@@ -216,7 +217,9 @@ public class UMLOCLFactory {
 				return oclInstance.isInvalid(result) ? null : result;
 			} finally {
 				evalEnv.clear();
-				oclInstance.setExtentMap(null); // clear allInstances cache, and get the oclInstance ready for the next call
+				oclInstance.setExtentMap(null); // clear allInstances cache, and
+												// get the oclInstance ready for
+												// the next call
 			}
 		}
 
@@ -224,7 +227,8 @@ public class UMLOCLFactory {
 		 * @generated
 		 */
 		private static void initCustomEnv(Environment<?, EClassifier, ?, ?, ?, EParameter, ?, ?, ?, ?, ?, ?> ecoreEnv, Map<String, EClassifier> environment) {
-			// Use EObject as implicit root class for any object, to allow eContainer() and other EObject operations from OCL expressions
+			// Use EObject as implicit root class for any object, to allow
+			// eContainer() and other EObject operations from OCL expressions
 			ParsingOptions.setOption(ecoreEnv, ParsingOptions.implicitRootClass(ecoreEnv), EcorePackage.eINSTANCE.getEObject());
 			for(String varName : environment.keySet()) {
 				EClassifier varType = environment.get(varName);

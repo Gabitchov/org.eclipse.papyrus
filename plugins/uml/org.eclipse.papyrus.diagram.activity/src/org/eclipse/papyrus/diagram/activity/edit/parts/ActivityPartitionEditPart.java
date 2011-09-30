@@ -117,7 +117,8 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
 		installEditPolicy(ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY, new ShowHideCompartmentEditPolicy());
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
-		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
+		// XXX need an SCR to runtime to have another abstract superclass that
+		// would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
@@ -169,10 +170,10 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 			return true;
 		}
 
-
 		if(childEditPart instanceof ActivityPartitionActivityPartitionContentCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getActivityPartitionCompartment();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
+			setupContentPane(pane); // FIXME each comparment should handle his
+									// content pane in his own way
 			pane.add(((ActivityPartitionActivityPartitionContentCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
@@ -189,7 +190,8 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 		}
 		if(childEditPart instanceof ActivityPartitionActivityPartitionContentCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getActivityPartitionCompartment();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
+			setupContentPane(pane); // FIXME each comparment should handle his
+									// content pane in his own way
 			pane.remove(((ActivityPartitionActivityPartitionContentCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
@@ -242,8 +244,8 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 	/**
 	 * Creates figure for this edit part.
 	 * 
-	 * Body of this method does not depend on settings in generation model
-	 * so you may safely remove <i>generated</i> tag and modify it.
+	 * Body of this method does not depend on settings in generation model so
+	 * you may safely remove <i>generated</i> tag and modify it.
 	 * 
 	 * @generated
 	 */
@@ -257,8 +259,8 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 	}
 
 	/**
-	 * Default implementation treats passed figure as content pane.
-	 * Respects layout one may have set for generated figure.
+	 * Default implementation treats passed figure as content pane. Respects
+	 * layout one may have set for generated figure.
 	 * 
 	 * @param nodeShape
 	 *        instance of generated figure class
@@ -338,7 +340,8 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 	}
 
 	/**
-	 * @generated NOT (Implement IPapyrusNodeUMLElementFigure in order to have stereotypes applied to it)
+	 * @generated NOT (Implement IPapyrusNodeUMLElementFigure in order to have
+	 *            stereotypes applied to it)
 	 */
 	public class ActivityPartitionDescriptor extends RectangleFigure implements IPapyrusNodeUMLElementFigure {
 
@@ -360,7 +363,6 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 		/** The helper which handles stereotype aspects */
 		private StereotypeFigureHelper stereotypeHelper;
 
-
 		/**
 		 * @generated NOT Instanciate stereotypeHelper
 		 */
@@ -368,41 +370,22 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 
 			FlowLayoutAdvanced layoutThis = new FlowLayoutAdvanced();
 
-
-
-
 			layoutThis.setStretchMinorAxis(true);
-
-
-
 
 			layoutThis.setMinorAlignment(FlowLayout.ALIGN_CENTER);
 
-
-
-
 			layoutThis.setMajorAlignment(FlowLayout.ALIGN_TOPLEFT);
-
-
-
 
 			layoutThis.setMajorSpacing(0);
 
-
-
-
 			layoutThis.setMinorSpacing(0);
-
-
-
 
 			layoutThis.setHorizontal(false);
 
-
 			this.setLayoutManager(layoutThis);
-			//Look for the default preference
+			// Look for the default preference
 			this.setAlpha(new Integer(store.getInt(IActivityPreferenceConstants.PREF_ACTIVITY_PARTITION_ALPHA)));
-			//Add a listener to update the alpha value from preferences
+			// Add a listener to update the alpha value from preferences
 			store.addPropertyChangeListener(new IPropertyChangeListener() {
 
 				public void propertyChange(PropertyChangeEvent event) {
@@ -447,7 +430,6 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 					setStereotypeContainerFilled(true);
 				}
 
-
 			};
 		}
 
@@ -483,7 +465,6 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 		 */
 		private void createContents() {
 
-
 			fFigureCompartmentLabelActivityPartition = new RectangleFigure();
 			fFigureCompartmentLabelActivityPartition.setOutline(false);
 			fFigureCompartmentLabelActivityPartition.setLineWidth(0);
@@ -491,12 +472,7 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 
 			FlowLayoutAdvancedConstraint constraintFFigureCompartmentLabelActivityPartition = new FlowLayoutAdvancedConstraint();
 
-
-
-
 			constraintFFigureCompartmentLabelActivityPartition.setHasMinsize(true);
-
-
 
 			this.add(fFigureCompartmentLabelActivityPartition, constraintFFigureCompartmentLabelActivityPartition);
 
@@ -511,16 +487,9 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 
 			fFigureCompartmentLabelActivityPartition.setLayoutManager(layoutFFigureCompartmentLabelActivityPartition);
 
-
-
 			fPartitionLabel = new CenteredWrappedLabel();
 
-
-
 			fFigureCompartmentLabelActivityPartition.add(fPartitionLabel);
-
-
-
 
 			fActivityPartitionCompartment = new RectangleFigure();
 			fActivityPartitionCompartment.setFill(false);
@@ -529,15 +498,9 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 
 			FlowLayoutAdvancedConstraint constraintFActivityPartitionCompartment = new FlowLayoutAdvancedConstraint();
 
-
-
-
 			constraintFActivityPartitionCompartment.setFill(true);
 
-
-
 			this.add(fActivityPartitionCompartment, constraintFActivityPartitionCompartment);
-
 
 		}
 
@@ -547,12 +510,7 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 		private Border createBorder0() {
 			LinesBorder result = new LinesBorder();
 
-
-
-
 			result.setSides(PositionConstants.TOP | PositionConstants.LEFT | PositionConstants.RIGHT);
-
-
 
 			return result;
 		}
@@ -563,32 +521,15 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 		private Border createBorder1() {
 			LinesBorder result = new LinesBorder();
 
-
-
-
 			result.setSides(PositionConstants.BOTTOM);
-
-
-
 
 			result.setLeftInset(5);
 
-
-
-
 			result.setRightInset(5);
-
-
-
 
 			result.setTopInset(5);
 
-
-
-
 			result.setBottomInset(5);
-
-
 
 			return result;
 		}
@@ -627,7 +568,6 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 			stereotypeHelper.setStereotypeDisplay(stereotypes, image);
 			this.layout();
 
-
 		}
 
 		/**
@@ -639,7 +579,6 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 		public void setStereotypePropertiesInBrace(String stereotypeProperties) {
 			stereotypeHelper.setStereotypePropertiesInBrace(stereotypeProperties);
 			this.layout();
-
 
 		}
 

@@ -80,7 +80,6 @@ public class CallBehaviorActionCreateCommand extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -95,7 +94,7 @@ public class CallBehaviorActionCreateCommand extends EditElementCommand {
 	 * @generated NOT check that there is a correct model container.
 	 */
 	public boolean canExecute() {
-		//check that there is a correct model container
+		// check that there is a correct model container
 		return CreateCommandUtil.canCreateNode(getRequest(), getElementToEdit());
 	}
 
@@ -118,7 +117,8 @@ public class CallBehaviorActionCreateCommand extends EditElementCommand {
 
 		CreateCallBehaviorActionDialog dialog = new CreateCallBehaviorActionDialog(Display.getDefault().getActiveShell(), parentActivity);
 		if(IDialogConstants.OK_ID == dialog.open()) {
-			// initialize the invoked element (no need to use a command, since action is being created)
+			// initialize the invoked element (no need to use a command, since
+			// action is being created)
 			EObject behavior = dialog.getSelectedInvoked();
 			if(behavior instanceof Behavior) {
 				newElement.setBehavior((Behavior)behavior);
@@ -133,8 +133,8 @@ public class CallBehaviorActionCreateCommand extends EditElementCommand {
 		if(!CreateCommandUtil.setNodeParents(newElement, getRequest(), getElementToEdit())) {
 			return CommandResult.newCancelledCommandResult();
 		}
-		//		Activity owner = (Activity)getElementToEdit();
-		//		owner.getNodes().add(newElement);
+		// Activity owner = (Activity)getElementToEdit();
+		// owner.getNodes().add(newElement);
 
 		ElementInitializers.getInstance().init_CallBehaviorAction_3008(newElement);
 

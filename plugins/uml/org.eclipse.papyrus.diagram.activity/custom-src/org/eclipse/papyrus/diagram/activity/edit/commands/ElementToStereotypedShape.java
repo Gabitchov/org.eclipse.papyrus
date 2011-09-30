@@ -25,7 +25,8 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.activity.providers.UMLViewProvider;
 
 /**
- * this is the specific command in charge to transform an element editpart into a shape_namedElement Editpart
+ * this is the specific command in charge to transform an element editpart into
+ * a shape_namedElement Editpart
  * 
  */
 public class ElementToStereotypedShape extends RecordingCommand {
@@ -49,12 +50,12 @@ public class ElementToStereotypedShape extends RecordingCommand {
 	@Override
 	protected void doExecute() {
 
-		//creation of the node
+		// creation of the node
 		UMLViewProvider umlViewProvider = new UMLViewProvider();
 		Node packageview = umlViewProvider.createNamedElement_3085(elementEditPart.resolveSemanticElement(), (View)elementEditPart.getNotationView().eContainer(), -1, true, elementEditPart.getDiagramPreferencesHint());
 		packageview.setLayoutConstraint(((Node)elementEditPart.getNotationView()).getLayoutConstraint());
 
-		//copy of all eannotations
+		// copy of all eannotations
 		Iterator<EAnnotation> iter = elementEditPart.getNotationView().getEAnnotations().iterator();
 		while(iter.hasNext()) {
 			EAnnotation annotation = EcoreUtil.copy(iter.next());

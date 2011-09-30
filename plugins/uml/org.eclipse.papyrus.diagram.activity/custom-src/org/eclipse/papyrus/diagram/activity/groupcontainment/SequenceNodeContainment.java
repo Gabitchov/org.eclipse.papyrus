@@ -23,9 +23,9 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.SequenceNodeStructuredAct
 import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.uml2.uml.UMLPackage;
 
-
 /**
- * The descriptor for SequenceNode node used by org.eclipse.papyrus.diagram.common.groups.groupcontainment extension point.
+ * The descriptor for SequenceNode node used by
+ * org.eclipse.papyrus.diagram.common.groups.groupcontainment extension point.
  * 
  * @author vhemery
  */
@@ -41,10 +41,12 @@ public class SequenceNodeContainment extends StructuredActivityNodeContainment {
 	}
 
 	/**
-	 * Get the sequence node content compartment edit part from a view of the sequence node.
+	 * Get the sequence node content compartment edit part from a view of the
+	 * sequence node.
 	 * 
 	 * @param nodeView
-	 *        a view of the node, which can be either the compartment's view or the primary view of the containing node
+	 *        a view of the node, which can be either the compartment's view
+	 *        or the primary view of the containing node
 	 * @param diagramPart
 	 *        the diagram edit part (used to recover parts from views)
 	 * @return the sequence node content compartment edit part

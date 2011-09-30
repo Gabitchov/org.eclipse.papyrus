@@ -17,7 +17,8 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
- * A specific parser for displaying the input decision behavior associated to a decision node.
+ * A specific parser for displaying the input decision behavior associated to a
+ * decision node.
  */
 public class InputDecisionParser extends AssociatedBehaviorParser {
 

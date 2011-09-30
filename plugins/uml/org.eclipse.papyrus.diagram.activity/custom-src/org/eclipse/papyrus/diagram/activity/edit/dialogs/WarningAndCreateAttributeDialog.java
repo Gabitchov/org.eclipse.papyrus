@@ -33,7 +33,6 @@ import org.eclipse.uml2.common.util.CacheAdapter;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Property;
 
-
 /**
  * WarningAndCreateAttributeDialog warns the user he can not perform an action.
  * It enables him to create an attribute instead after appropriate warnings.
@@ -94,7 +93,8 @@ public class WarningAndCreateAttributeDialog extends MessageDialog {
 	}
 
 	/**
-	 * Create the deactivated link and the warning message for attribute creation
+	 * Create the deactivated link and the warning message for attribute
+	 * creation
 	 * 
 	 * @see org.eclipse.papyrus.diagram.activity.edit.dialogs.WarningAndLinkDialog#createCustomArea(org.eclipse.swt.widgets.Composite)
 	 * @param parent

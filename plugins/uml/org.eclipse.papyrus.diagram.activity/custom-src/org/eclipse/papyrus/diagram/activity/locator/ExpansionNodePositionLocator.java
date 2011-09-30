@@ -61,7 +61,8 @@ public class ExpansionNodePositionLocator extends AdvancedBorderItemLocator {
 		if(rectSuggested.getTopLeft().x == 0 && rectSuggested.getTopLeft().y == 0) {
 			rectSuggested.setLocation(getPreferredLocation(borderItem));
 		} else {
-			// recovered constraint must be translated with the parent location to be absolute
+			// recovered constraint must be translated with the parent location
+			// to be absolute
 			rectSuggested.setLocation(rectSuggested.getLocation().translate(getParentBorder().getTopLeft()));
 		}
 		rectSuggested.setSize(size);

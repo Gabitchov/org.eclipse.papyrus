@@ -106,9 +106,10 @@ NamedElementEditPart {
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new SendObjectActionItemSemanticEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 
-
-		//in Papyrus diagrams are not strongly synchronised
-		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.diagram.activity.edit.policies.SendObjectActionCanonicalEditPolicy());
+		// in Papyrus diagrams are not strongly synchronised
+		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE,
+		// new
+		// org.eclipse.papyrus.diagram.activity.edit.policies.SendObjectActionCanonicalEditPolicy());
 
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
@@ -118,7 +119,8 @@ NamedElementEditPart {
 		installEditPolicy(EditPolicyRoles.CANONICAL_ROLE, new SendObjectActionCanonicalEditPolicy());
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
 		installEditPolicy(ChangeStereotypedShapeEditPolicy.CHANGE_SHAPE_POLICY, new ActivityDiagramChangeStereotypedShapeEditpolicy());
-		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
+		// XXX need an SCR to runtime to have another abstract superclass that
+		// would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
@@ -192,74 +194,47 @@ NamedElementEditPart {
 			return true;
 		}
 
-
-
-
-
-		//Papyrus Gencode :Affixed Pin locator for Actions
+		// Papyrus Gencode :Affixed Pin locator for Actions
 		if(childEditPart instanceof ValuePinInSendObjActAsReqEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.WEST);
 			getBorderedFigure().getBorderItemContainer().add(((ValuePinInSendObjActAsReqEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
 
-
-
-
-
-		//Papyrus Gencode :Affixed Pin locator for Actions
+		// Papyrus Gencode :Affixed Pin locator for Actions
 		if(childEditPart instanceof ActionInputPinInSendObjActAsReqEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.WEST);
 			getBorderedFigure().getBorderItemContainer().add(((ActionInputPinInSendObjActAsReqEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
 
-
-
-
-
-		//Papyrus Gencode :Affixed Pin locator for Actions
+		// Papyrus Gencode :Affixed Pin locator for Actions
 		if(childEditPart instanceof InputPinInSendObjActAsReqEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.WEST);
 			getBorderedFigure().getBorderItemContainer().add(((InputPinInSendObjActAsReqEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
 
-
-
-
-
-		//Papyrus Gencode :Affixed Pin locator for Actions
+		// Papyrus Gencode :Affixed Pin locator for Actions
 		if(childEditPart instanceof ValuePinInSendObjActAsTargetEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.NORTH);
 			getBorderedFigure().getBorderItemContainer().add(((ValuePinInSendObjActAsTargetEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
 
-
-
-
-
-		//Papyrus Gencode :Affixed Pin locator for Actions
+		// Papyrus Gencode :Affixed Pin locator for Actions
 		if(childEditPart instanceof ActionInputPinInSendObjActAsTargetEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.NORTH);
 			getBorderedFigure().getBorderItemContainer().add(((ActionInputPinInSendObjActAsTargetEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
 
-
-
-
-
-		//Papyrus Gencode :Affixed Pin locator for Actions
+		// Papyrus Gencode :Affixed Pin locator for Actions
 		if(childEditPart instanceof InputPinInSendObjActAsTargetEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.NORTH);
 			getBorderedFigure().getBorderItemContainer().add(((InputPinInSendObjActAsTargetEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
-
-
-
 
 		return false;
 	}
@@ -344,8 +319,8 @@ NamedElementEditPart {
 	/**
 	 * Creates figure for this edit part.
 	 * 
-	 * Body of this method does not depend on settings in generation model
-	 * so you may safely remove <i>generated</i> tag and modify it.
+	 * Body of this method does not depend on settings in generation model so
+	 * you may safely remove <i>generated</i> tag and modify it.
 	 * 
 	 * @generated
 	 */
@@ -359,8 +334,8 @@ NamedElementEditPart {
 	}
 
 	/**
-	 * Default implementation treats passed figure as content pane.
-	 * Respects layout one may have set for generated figure.
+	 * Default implementation treats passed figure as content pane. Respects
+	 * layout one may have set for generated figure.
 	 * 
 	 * @param nodeShape
 	 *        instance of generated figure class
@@ -701,6 +676,9 @@ NamedElementEditPart {
 		if(targetEditPart instanceof InputPinInBroadcastSignalActionEditPart) {
 			types.add(UMLElementTypes.ObjectFlow_4003);
 		}
+		if(targetEditPart instanceof CentralBufferNodeEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
 		if(targetEditPart instanceof InitialNodeEditPart) {
 			types.add(UMLElementTypes.ControlFlow_4004);
 		}
@@ -917,6 +895,9 @@ NamedElementEditPart {
 		if(targetEditPart instanceof InputPinInBroadcastSignalActionEditPart) {
 			types.add(UMLElementTypes.ControlFlow_4004);
 		}
+		if(targetEditPart instanceof CentralBufferNodeEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
 		if(targetEditPart instanceof ValuePinInOpaqueActEditPart) {
 			types.add(UMLElementTypes.ExceptionHandler_4005);
 		}
@@ -1052,6 +1033,9 @@ NamedElementEditPart {
 		if(targetEditPart instanceof InputPinInBroadcastSignalActionEditPart) {
 			types.add(UMLElementTypes.ExceptionHandler_4005);
 		}
+		if(targetEditPart instanceof CentralBufferNodeEditPart) {
+			types.add(UMLElementTypes.ExceptionHandler_4005);
+		}
 		return types;
 	}
 
@@ -1151,6 +1135,7 @@ NamedElementEditPart {
 			types.add(UMLElementTypes.InputPin_3101);
 			types.add(UMLElementTypes.BroadcastSignalAction_3102);
 			types.add(UMLElementTypes.InputPin_3103);
+			types.add(UMLElementTypes.CentralBufferNode_3104);
 		} else if(relationshipType == UMLElementTypes.ControlFlow_4004) {
 			types.add(UMLElementTypes.InitialNode_3004);
 			types.add(UMLElementTypes.ActivityFinalNode_3005);
@@ -1224,6 +1209,7 @@ NamedElementEditPart {
 			types.add(UMLElementTypes.InputPin_3101);
 			types.add(UMLElementTypes.BroadcastSignalAction_3102);
 			types.add(UMLElementTypes.InputPin_3103);
+			types.add(UMLElementTypes.CentralBufferNode_3104);
 		} else if(relationshipType == UMLElementTypes.ExceptionHandler_4005) {
 			types.add(UMLElementTypes.ValuePin_3015);
 			types.add(UMLElementTypes.ActionInputPin_3016);
@@ -1270,6 +1256,7 @@ NamedElementEditPart {
 			types.add(UMLElementTypes.InputPin_3100);
 			types.add(UMLElementTypes.InputPin_3101);
 			types.add(UMLElementTypes.InputPin_3103);
+			types.add(UMLElementTypes.CentralBufferNode_3104);
 		}
 		return types;
 	}
@@ -1363,6 +1350,7 @@ NamedElementEditPart {
 			types.add(UMLElementTypes.InputPin_3101);
 			types.add(UMLElementTypes.BroadcastSignalAction_3102);
 			types.add(UMLElementTypes.InputPin_3103);
+			types.add(UMLElementTypes.CentralBufferNode_3104);
 		} else if(relationshipType == UMLElementTypes.ControlFlow_4004) {
 			types.add(UMLElementTypes.InitialNode_3004);
 			types.add(UMLElementTypes.ActivityFinalNode_3005);
@@ -1436,6 +1424,7 @@ NamedElementEditPart {
 			types.add(UMLElementTypes.InputPin_3101);
 			types.add(UMLElementTypes.BroadcastSignalAction_3102);
 			types.add(UMLElementTypes.InputPin_3103);
+			types.add(UMLElementTypes.CentralBufferNode_3104);
 		} else if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4006) {
 			types.add(UMLElementTypes.Comment_3080);
 		}

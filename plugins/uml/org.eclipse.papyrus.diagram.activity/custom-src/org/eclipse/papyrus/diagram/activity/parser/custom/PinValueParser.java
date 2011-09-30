@@ -44,8 +44,8 @@ import org.eclipse.uml2.uml.ValueSpecificationAction;
 import org.eclipse.uml2.uml.Variable;
 
 /**
- * A specific parser for displaying the label of a Pin. This parser refreshes the text displayed for
- * the Pin.
+ * A specific parser for displaying the label of a Pin. This parser refreshes
+ * the text displayed for the Pin.
  */
 public class PinValueParser extends MessageFormatParser implements ISemanticParser {
 
@@ -79,8 +79,8 @@ public class PinValueParser extends MessageFormatParser implements ISemanticPars
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.eclipse.papyrus.diagram.sequence.parsers.AbstractParser#isAffectingEvent(java.lang.Object
-	 * , int)
+	 * org.eclipse.papyrus.diagram.sequence.parsers.AbstractParser#isAffectingEvent
+	 * (java.lang.Object , int)
 	 */
 	public boolean isAffectingEvent(Object event, int flags) {
 		EStructuralFeature feature = getEStructuralFeature(event);
@@ -135,9 +135,8 @@ public class PinValueParser extends MessageFormatParser implements ISemanticPars
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.eclipse.papyrus.diagram.sequence.parsers.MessageFormatParser#getPrintString(org.eclipse
-	 * .core.runtime.IAdaptable, int)
+	 * @see org.eclipse.papyrus.diagram.sequence.parsers.MessageFormatParser#
+	 * getPrintString(org.eclipse .core.runtime.IAdaptable, int)
 	 */
 	public String getPrintString(IAdaptable element, int flags) {
 		// ensure valueLabel is never null
@@ -184,9 +183,9 @@ public class PinValueParser extends MessageFormatParser implements ISemanticPars
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser#areSemanticElementsAffected
-	 * (org.eclipse.emf.ecore.EObject, java.lang.Object)
+	 * @see org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser#
+	 * areSemanticElementsAffected (org.eclipse.emf.ecore.EObject,
+	 * java.lang.Object)
 	 */
 	public boolean areSemanticElementsAffected(EObject listener, Object notification) {
 		EStructuralFeature feature = getEStructuralFeature(notification);
@@ -196,9 +195,8 @@ public class PinValueParser extends MessageFormatParser implements ISemanticPars
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser#getSemanticElementsBeingParsed
-	 * (org.eclipse.emf.ecore.EObject)
+	 * @see org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser#
+	 * getSemanticElementsBeingParsed (org.eclipse.emf.ecore.EObject)
 	 */
 	public List<?> getSemanticElementsBeingParsed(EObject element) {
 		List<Element> semanticElementsBeingParsed = new ArrayList<Element>();
@@ -232,7 +230,8 @@ public class PinValueParser extends MessageFormatParser implements ISemanticPars
 	}
 
 	/**
-	 * Determines if the given feature has to be taken into account in this parser
+	 * Determines if the given feature has to be taken into account in this
+	 * parser
 	 * 
 	 * @param feature
 	 *        the feature to test

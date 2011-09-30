@@ -12,6 +12,7 @@ import org.eclipse.papyrus.diagram.activity.edit.commands.AddVariableValueAction
 import org.eclipse.papyrus.diagram.activity.edit.commands.BroadcastSignalActionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.CallBehaviorActionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.CallOperationActionCreateCommand;
+import org.eclipse.papyrus.diagram.activity.edit.commands.CentralBufferNodeCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.CommentCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.ConditionalNodeCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.ConstraintAsLocalPostcondCreateCommand;
@@ -169,9 +170,6 @@ public class ActivityCNContentCompartmentItemSemanticEditPolicy extends UMLBaseI
 		if(UMLElementTypes.AddStructuralFeatureValueAction_3091 == req.getElementType()) {
 			return getGEFWrapper(new AddStructuralFeatureValueActionCreateCommand(req));
 		}
-		if(UMLElementTypes.ActivityParameterNode_3059 == req.getElementType()) {
-			return getGEFWrapper(new ActivityParameterNodeCreateCommand(req));
-		}
 		if(UMLElementTypes.DestroyObjectAction_3095 == req.getElementType()) {
 			return getGEFWrapper(new DestroyObjectActionCreateCommand(req));
 		}
@@ -183,6 +181,12 @@ public class ActivityCNContentCompartmentItemSemanticEditPolicy extends UMLBaseI
 		}
 		if(UMLElementTypes.BroadcastSignalAction_3102 == req.getElementType()) {
 			return getGEFWrapper(new BroadcastSignalActionCreateCommand(req));
+		}
+		if(UMLElementTypes.CentralBufferNode_3104 == req.getElementType()) {
+			return getGEFWrapper(new CentralBufferNodeCreateCommand(req));
+		}
+		if(UMLElementTypes.ActivityParameterNode_3059 == req.getElementType()) {
+			return getGEFWrapper(new ActivityParameterNodeCreateCommand(req));
 		}
 		return super.getCreateCommand(req);
 	}

@@ -32,8 +32,8 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
- * A specific parser for displaying a behavior which is associated to an element. This parser
- * refreshes the text displayed for the behavior.
+ * A specific parser for displaying a behavior which is associated to an
+ * element. This parser refreshes the text displayed for the behavior.
  */
 public abstract class AssociatedBehaviorParser extends MessageFormatParser implements ISemanticParser {
 
@@ -64,8 +64,8 @@ public abstract class AssociatedBehaviorParser extends MessageFormatParser imple
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.eclipse.papyrus.diagram.sequence.parsers.AbstractParser#isAffectingEvent(java.lang.Object
-	 * , int)
+	 * org.eclipse.papyrus.diagram.sequence.parsers.AbstractParser#isAffectingEvent
+	 * (java.lang.Object , int)
 	 */
 	public boolean isAffectingEvent(Object event, int flags) {
 		EStructuralFeature feature = getEStructuralFeature(event);
@@ -101,9 +101,8 @@ public abstract class AssociatedBehaviorParser extends MessageFormatParser imple
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.eclipse.papyrus.diagram.sequence.parsers.MessageFormatParser#getPrintString(org.eclipse
-	 * .core.runtime.IAdaptable, int)
+	 * @see org.eclipse.papyrus.diagram.sequence.parsers.MessageFormatParser#
+	 * getPrintString(org.eclipse .core.runtime.IAdaptable, int)
 	 */
 	public String getPrintString(IAdaptable element, int flags) {
 		String label = getValueString(element, flags);
@@ -116,8 +115,8 @@ public abstract class AssociatedBehaviorParser extends MessageFormatParser imple
 	}
 
 	/**
-	 * Get the string format for formatting the text value. This String must contain a single "%s"
-	 * occurrence where to place the value.
+	 * Get the string format for formatting the text value. This String must
+	 * contain a single "%s" occurrence where to place the value.
 	 * 
 	 * @return the format string
 	 */
@@ -140,9 +139,9 @@ public abstract class AssociatedBehaviorParser extends MessageFormatParser imple
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser#areSemanticElementsAffected
-	 * (org.eclipse.emf.ecore.EObject, java.lang.Object)
+	 * @see org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser#
+	 * areSemanticElementsAffected (org.eclipse.emf.ecore.EObject,
+	 * java.lang.Object)
 	 */
 	public boolean areSemanticElementsAffected(EObject listener, Object notification) {
 		EStructuralFeature feature = getEStructuralFeature(notification);
@@ -152,9 +151,8 @@ public abstract class AssociatedBehaviorParser extends MessageFormatParser imple
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser#getSemanticElementsBeingParsed
-	 * (org.eclipse.emf.ecore.EObject)
+	 * @see org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser#
+	 * getSemanticElementsBeingParsed (org.eclipse.emf.ecore.EObject)
 	 */
 	public List<?> getSemanticElementsBeingParsed(EObject element) {
 		List<Element> semanticElementsBeingParsed = new ArrayList<Element>();
@@ -169,7 +167,8 @@ public abstract class AssociatedBehaviorParser extends MessageFormatParser imple
 	}
 
 	/**
-	 * Determines if the given feature has to be taken into account in this parser
+	 * Determines if the given feature has to be taken into account in this
+	 * parser
 	 * 
 	 * @param feature
 	 *        the feature to test
@@ -180,8 +179,9 @@ public abstract class AssociatedBehaviorParser extends MessageFormatParser imple
 	}
 
 	/**
-	 * Get the feature by which the property behavior is linked. This method must be implemented by
-	 * subclasses and the returned feature must reference a Behavior.
+	 * Get the feature by which the property behavior is linked. This method
+	 * must be implemented by subclasses and the returned feature must reference
+	 * a Behavior.
 	 * 
 	 * @return reference feature
 	 */

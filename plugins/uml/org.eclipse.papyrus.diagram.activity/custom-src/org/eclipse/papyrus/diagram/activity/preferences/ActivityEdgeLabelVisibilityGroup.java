@@ -23,7 +23,8 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 
 /**
- * The Class ActivityEdgeLabelVisibilityGroup contains editor to edit preferences concerning the visibility of labels of an ActivityEdge
+ * The Class ActivityEdgeLabelVisibilityGroup contains editor to edit
+ * preferences concerning the visibility of labels of an ActivityEdge
  */
 public class ActivityEdgeLabelVisibilityGroup extends AbstractGroup {
 

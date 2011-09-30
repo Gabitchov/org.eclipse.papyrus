@@ -15,8 +15,8 @@ import org.eclipse.papyrus.core.extension.commands.PerspectiveContextDependence;
 import org.eclipse.uml2.uml.Activity;
 
 /**
- * ActivityDiagramCreationCondition class allows to check if an Activity diagram can be added to the
- * selected element.
+ * ActivityDiagramCreationCondition class allows to check if an Activity diagram
+ * can be added to the selected element.
  */
 public class ActivityDiagramCreationCondition extends PerspectiveContextDependence {
 
@@ -29,6 +29,5 @@ public class ActivityDiagramCreationCondition extends PerspectiveContextDependen
 		}
 		return false;
 	}
-
 
 }

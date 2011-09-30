@@ -76,18 +76,26 @@ public class ActivityPartitionPreferencePage extends AbstractPapyrusNodePreferen
 			store.setDefault(preferenceName, map.get(name));
 		}
 
-
-
-
-		//org.eclipse.jface.preference.PreferenceConverter.setDefault(store, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_FILL), new org.eclipse.swt.graphics.RGB(255, 255, 255));
-		//org.eclipse.jface.preference.PreferenceConverter.setDefault(store, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_LINE), new org.eclipse.swt.graphics.RGB(0, 0, 0));
+		// org.eclipse.jface.preference.PreferenceConverter.setDefault(store,
+		// org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName,
+		// org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_FILL),
+		// new org.eclipse.swt.graphics.RGB(255, 255, 255));
+		// org.eclipse.jface.preference.PreferenceConverter.setDefault(store,
+		// org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName,
+		// org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_LINE),
+		// new org.eclipse.swt.graphics.RGB(0, 0, 0));
 
 		// Set the default for the gradient
-		//store.setDefault(org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.GRADIENT_POLICY),false);
-		//org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter gradientPreferenceConverter = new  org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter(
-		//		new org.eclipse.swt.graphics.RGB(255, 255, 255),
-		//		new org.eclipse.swt.graphics.RGB(0, 0, 0), 0, 0);
-		//store.setDefault(org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_GRADIENT), gradientPreferenceConverter.getPreferenceValue());
+		// store.setDefault(org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName,
+		// org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.GRADIENT_POLICY),false);
+		// org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter
+		// gradientPreferenceConverter = new
+		// org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter(
+		// new org.eclipse.swt.graphics.RGB(255, 255, 255),
+		// new org.eclipse.swt.graphics.RGB(0, 0, 0), 0, 0);
+		// store.setDefault(org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName,
+		// org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_GRADIENT),
+		// gradientPreferenceConverter.getPreferenceValue());
 
 	}
 
@@ -126,8 +134,7 @@ public class ActivityPartitionPreferencePage extends AbstractPapyrusNodePreferen
 	}
 
 	/**
-	 * Add the opacity group preference
-	 * Remove the background color group
+	 * Add the opacity group preference Remove the background color group
 	 * 
 	 * @generated not
 	 * @see org.eclipse.papyrus.preferences.pages.AbstractPapyrusNodePreferencePage#createPageContents(org.eclipse.swt.widgets.Composite)
@@ -148,13 +155,11 @@ public class ActivityPartitionPreferencePage extends AbstractPapyrusNodePreferen
 			addAbstractGroup(compartmentGroup);
 		}
 
-		//Label role group
+		// Label role group
 		if(!getLabelRole().isEmpty()) {
 			LabelGroup compartmentGroup = new LabelGroup(parent, getPreferenceKey(), this, getLabelRole());
 			addAbstractGroup(compartmentGroup);
 		}
 	}
-
-
 
 }

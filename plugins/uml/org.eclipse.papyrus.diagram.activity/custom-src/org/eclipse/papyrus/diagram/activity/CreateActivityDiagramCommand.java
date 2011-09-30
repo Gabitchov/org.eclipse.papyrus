@@ -18,11 +18,10 @@ import org.eclipse.papyrus.diagram.common.commands.CreateBehavioredClassifierDia
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
- * Define a command to create a new Activity Diagram. This command is used by all UI (toolbar,
- * outline, creation wizards) to create a new Activity Diagram.
+ * Define a command to create a new Activity Diagram. This command is used by
+ * all UI (toolbar, outline, creation wizards) to create a new Activity Diagram.
  */
 public class CreateActivityDiagramCommand extends CreateBehavioredClassifierDiagramCommand {
-
 
 	/**
 	 * {@inheritDoc}

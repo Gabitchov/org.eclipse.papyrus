@@ -26,7 +26,8 @@ import org.eclipse.papyrus.diagram.common.editpolicies.HyperLinkPopupBarEditPoli
 import org.eclipse.papyrus.diagram.common.editpolicies.NavigationEditPolicy;
 
 /**
- * this is an editpolicy provider in charge to install a policy to create a AssociationClass
+ * this is an editpolicy provider in charge to install a policy to create a
+ * AssociationClass
  * 
  * @author Patrick Tessier
  */
@@ -65,7 +66,6 @@ public class CustomEditPolicyProvider implements IEditPolicyProvider {
 		if(ActivityDiagramEditPart.MODEL_ID.equals(diagramType)) {
 			return true;
 		}
-
 
 		return false;
 	}

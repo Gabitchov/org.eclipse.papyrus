@@ -73,7 +73,8 @@ public class UMLValidationProvider {
 	private static class ValidationReportListener implements IValidationListener {
 
 		/**
-		 * Report the validation result to the user in case operation did not fully succeed
+		 * Report the validation result to the user in case operation did not
+		 * fully succeed
 		 * 
 		 * @see org.eclipse.emf.validation.service.IValidationListener#validationOccurred(org.eclipse.emf.validation.service.ValidationEvent)
 		 * 

@@ -26,3 +26,5 @@ Procedure to merge a new gmfgen files where modifications are made.
 	This means these should have been done in the tooling files,
 	rather than directly in the gmfgen file.
 9. Save and close the merge.
+10. Search in all source @generated NOT (update at each gmf change) en add en extra "_" in front of each method
+11. Merge the old and new method

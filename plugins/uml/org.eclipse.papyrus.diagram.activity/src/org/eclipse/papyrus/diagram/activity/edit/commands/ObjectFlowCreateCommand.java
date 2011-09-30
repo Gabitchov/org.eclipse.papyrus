@@ -79,7 +79,8 @@ public class ObjectFlowCreateCommand extends EditElementCommand {
 			return false;
 		}
 		if(getSource() == null) {
-			return true; // link creation is in progress; source is not defined yet
+			return true; // link creation is in progress; source is not defined
+							// yet
 		}
 		// target may be null here but it's possible to check constraint
 		if(getContainer() == null) {
@@ -89,7 +90,8 @@ public class ObjectFlowCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated NOT handling addition of pins when creating an object flow on actions
+	 * @generated NOT handling addition of pins when creating an object flow on
+	 *            actions
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if(!canExecute()) {
@@ -163,8 +165,8 @@ public class ObjectFlowCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * Default approach is to traverse ancestors of the source to find instance of container.
-	 * Modify with appropriate logic.
+	 * Default approach is to traverse ancestors of the source to find instance
+	 * of container. Modify with appropriate logic.
 	 * 
 	 * @generated
 	 */

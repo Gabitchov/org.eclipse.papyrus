@@ -619,7 +619,8 @@ implements ITextAwareEditPart {
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
-	 * @return an <code>int</code> corresponding to the kind of direct editor, @see org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition
+	 * @return an <code>int</code> corresponding to the kind of direct editor, @see
+	 *         org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition
 	 * @generated
 	 */
 	public int getDirectEditionType() {
@@ -717,7 +718,8 @@ implements ITextAwareEditPart {
 	}
 
 	/**
-	 * @generated NOT refresh the visibility in case the transformation assignment changed
+	 * @generated NOT refresh the visibility in case the transformation
+	 *            assignment changed
 	 */
 	protected void handleNotificationEvent(Notification event) {
 		Object feature = event.getFeature();
@@ -742,7 +744,8 @@ implements ITextAwareEditPart {
 						addSemanticListeners();
 					}
 					refreshLabel();
-					// refresh the visibility in case the transformation assignment changed
+					// refresh the visibility in case the transformation
+					// assignment changed
 					refreshVisibility();
 				}
 			}
@@ -786,7 +789,6 @@ implements ITextAwareEditPart {
 		 * @generated
 		 */
 		public LinkAndCornerBentWithTextFigure() {
-
 
 			this.setBackgroundColor(THIS_BACK);
 			createContents();

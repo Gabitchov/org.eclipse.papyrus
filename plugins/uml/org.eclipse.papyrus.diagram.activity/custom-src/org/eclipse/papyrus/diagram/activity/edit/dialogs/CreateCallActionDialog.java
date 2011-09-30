@@ -65,7 +65,8 @@ public abstract class CreateCallActionDialog extends CreateInvocationActionDialo
 	 * Refresh the enabled and disabled elements in various sections
 	 * 
 	 * @param isSelectionSelected
-	 *        true if we choose to select an existing element, false if we choose to create an element
+	 *        true if we choose to select an existing element, false if we
+	 *        choose to create an element
 	 */
 	protected void refreshSectionsEnable(boolean isSelectionSelected) {
 		super.refreshSectionsEnable(isSelectionSelected);
@@ -78,7 +79,8 @@ public abstract class CreateCallActionDialog extends CreateInvocationActionDialo
 	}
 
 	/**
-	 * Define the object that will be invoked by the action (if selection mode is chosen)
+	 * Define the object that will be invoked by the action (if selection mode
+	 * is chosen)
 	 * 
 	 * @param invokedElement
 	 *        the selected element
@@ -125,8 +127,8 @@ public abstract class CreateCallActionDialog extends CreateInvocationActionDialo
 	}
 
 	/**
-	 * Set correctly the invoked object, by creating it if needed.
-	 * Then, notifies that the ok button of this dialog has been pressed.
+	 * Set correctly the invoked object, by creating it if needed. Then,
+	 * notifies that the ok button of this dialog has been pressed.
 	 * 
 	 * @see org.eclipse.jface.dialogs.Dialog#okPressed()
 	 * 
@@ -152,7 +154,8 @@ public abstract class CreateCallActionDialog extends CreateInvocationActionDialo
 	 * 
 	 * @param invokedObject
 	 *        the object whose parameters must be inspected
-	 * @return true if there are parameters which will be mapped with output pins
+	 * @return true if there are parameters which will be mapped with output
+	 *         pins
 	 */
 	abstract protected boolean hasOutParameters(EObject invokedObject);
 

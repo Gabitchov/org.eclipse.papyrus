@@ -33,13 +33,22 @@ import org.eclipse.uml2.uml.UMLPackage;
  */
 public class ActivityParameterNodeParser extends MessageFormatParser implements ISemanticParser {
 
-	/** The String format for displaying an ActivityParameterNodeParser with no type */
+	/**
+	 * The String format for displaying an ActivityParameterNodeParser with no
+	 * type
+	 */
 	private static final String UNTYPED_PARAMETER_FORMAT = "%s";
 
-	/** The String format for displaying an ActivityParameterNodeParser with its type */
+	/**
+	 * The String format for displaying an ActivityParameterNodeParser with its
+	 * type
+	 */
 	private static final String TYPED_PARAMETER_FORMAT = "%s: %s";
 
-	/** The String format for displaying an ActivityParameterNodeParser with in State property */
+	/**
+	 * The String format for displaying an ActivityParameterNodeParser with in
+	 * State property
+	 */
 	private static final String STATE_FORMAT = System.getProperty("line.separator").concat("[%s]");
 
 	/** The String for separating states */
@@ -148,7 +157,8 @@ public class ActivityParameterNodeParser extends MessageFormatParser implements 
 	}
 
 	/**
-	 * Determines if the given feature has to be taken into account in this parser
+	 * Determines if the given feature has to be taken into account in this
+	 * parser
 	 * 
 	 * @param feature
 	 *        the feature to test

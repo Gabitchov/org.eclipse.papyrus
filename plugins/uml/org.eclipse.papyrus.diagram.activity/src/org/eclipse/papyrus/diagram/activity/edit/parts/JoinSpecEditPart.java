@@ -403,7 +403,8 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 	}
 
 	/**
-	 * @generated NOT default direct edit occurs only if there is a defined join specification
+	 * @generated NOT default direct edit occurs only if there is a defined join
+	 *            specification
 	 */
 	protected void performDirectEditRequest(Request request) {
 
@@ -601,7 +602,8 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
-	 * @return an <code>int</code> corresponding to the kind of direct editor, @see org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition
+	 * @return an <code>int</code> corresponding to the kind of direct editor, @see
+	 *         org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition
 	 * @generated
 	 */
 	public int getDirectEditionType() {

@@ -101,7 +101,8 @@ AbstractShapeEditPart {
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
 		installEditPolicy(QualifiedNameDisplayEditPolicy.QUALIFIED_NAME_POLICY, new QualifiedNameDisplayEditPolicy());
 		installEditPolicy(ChangeStereotypedShapeEditPolicy.CHANGE_SHAPE_POLICY, new ActivityDiagramChangeStereotypedShapeEditpolicy());
-		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
+		// XXX need an SCR to runtime to have another abstract superclass that
+		// would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
@@ -112,8 +113,10 @@ AbstractShapeEditPart {
 	 **/
 	protected void handleNotificationEvent(Notification event) {
 		/*
-		 * when a node have external node labels, the methods refreshChildren() remove the EditPart corresponding to the Label from the EditPart
-		 * Registry. After that, we can't reset the visibility to true (using the Show/Hide Label Action)!
+		 * when a node have external node labels, the methods refreshChildren()
+		 * remove the EditPart corresponding to the Label from the EditPart
+		 * Registry. After that, we can't reset the visibility to true (using
+		 * the Show/Hide Label Action)!
 		 */
 		if(NotationPackage.eINSTANCE.getView_Visible().equals(event.getFeature())) {
 			Object notifier = event.getNotifier();
@@ -208,8 +211,8 @@ AbstractShapeEditPart {
 	/**
 	 * Creates figure for this edit part.
 	 * 
-	 * Body of this method does not depend on settings in generation model
-	 * so you may safely remove <i>generated</i> tag and modify it.
+	 * Body of this method does not depend on settings in generation model so
+	 * you may safely remove <i>generated</i> tag and modify it.
 	 * 
 	 * @generated
 	 */
@@ -223,8 +226,8 @@ AbstractShapeEditPart {
 	}
 
 	/**
-	 * Default implementation treats passed figure as content pane.
-	 * Respects layout one may have set for generated figure.
+	 * Default implementation treats passed figure as content pane. Respects
+	 * layout one may have set for generated figure.
 	 * 
 	 * @param nodeShape
 	 *        instance of generated figure class

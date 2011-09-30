@@ -24,6 +24,7 @@ import org.eclipse.papyrus.diagram.activity.edit.commands.AddVariableValueAction
 import org.eclipse.papyrus.diagram.activity.edit.commands.BroadcastSignalActionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.CallBehaviorActionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.CallOperationActionCreateCommand;
+import org.eclipse.papyrus.diagram.activity.edit.commands.CentralBufferNodeCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.CommentCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.ConditionalNodeCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.CreateObjectActionCreateCommand;
@@ -62,7 +63,8 @@ public class ActivityActivityContentCompartmentItemSemanticEditPolicy extends UM
 	}
 
 	/**
-	 * @generated NOT (update at each gmf change) moved local conditions creation commands to {@link CreateActionLocalConditionEditPolicy}
+	 * @generated NOT (update at each gmf change) moved local conditions
+	 *            creation commands to {@link CreateActionLocalConditionEditPolicy}
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
 		if(UMLElementTypes.InitialNode_3004 == req.getElementType()) {
@@ -89,36 +91,47 @@ public class ActivityActivityContentCompartmentItemSemanticEditPolicy extends UM
 		if(UMLElementTypes.Activity_3083 == req.getElementType()) {
 			return getGEFWrapper(new ActivityCreateCommandCN(req));
 		}
-		//		if(UMLElementTypes.DurationConstraint_3034 == req.getElementType()) {
-		//			return getGEFWrapper(new DurationConstraintAsLocalPrecondCreateCommand(req));
-		//		}
-		//		if(UMLElementTypes.DurationConstraint_3035 == req.getElementType()) {
-		//			return getGEFWrapper(new DurationConstraintAsLocalPostcondCreateCommand(req));
-		//		}
-		//		if(UMLElementTypes.TimeConstraint_3036 == req.getElementType()) {
-		//			return getGEFWrapper(new TimeConstraintAsLocalPrecondCreateCommand(req));
-		//		}
-		//		if(UMLElementTypes.TimeConstraint_3037 == req.getElementType()) {
-		//			return getGEFWrapper(new TimeConstraintAsLocalPostcondCreateCommand(req));
-		//		}
-		//		if(UMLElementTypes.InteractionConstraint_3030 == req.getElementType()) {
-		//			return getGEFWrapper(new InteractionConstraintAsLocalPrecondCreateCommand(req));
-		//		}
-		//		if(UMLElementTypes.InteractionConstraint_3031 == req.getElementType()) {
-		//			return getGEFWrapper(new InteractionConstraintAsLocalPostcondCreateCommand(req));
-		//		}
-		//		if(UMLElementTypes.IntervalConstraint_3032 == req.getElementType()) {
-		//			return getGEFWrapper(new IntervalConstraintAsLocalPrecondCreateCommand(req));
-		//		}
-		//		if(UMLElementTypes.IntervalConstraint_3033 == req.getElementType()) {
-		//			return getGEFWrapper(new IntervalConstraintAsLocalPostcondCreateCommand(req));
-		//		}
-		//		if(UMLElementTypes.Constraint_3011 == req.getElementType()) {
-		//			return getGEFWrapper(new ConstraintAsLocalPrecondCreateCommand(req));
-		//		}
-		//		if(UMLElementTypes.Constraint_3012 == req.getElementType()) {
-		//			return getGEFWrapper(new ConstraintAsLocalPostcondCreateCommand(req));
-		//		}
+		// if(UMLElementTypes.DurationConstraint_3034 == req.getElementType()) {
+		// return getGEFWrapper(new
+		// DurationConstraintAsLocalPrecondCreateCommand(req));
+		// }
+		// if(UMLElementTypes.DurationConstraint_3035 == req.getElementType()) {
+		// return getGEFWrapper(new
+		// DurationConstraintAsLocalPostcondCreateCommand(req));
+		// }
+		// if(UMLElementTypes.TimeConstraint_3036 == req.getElementType()) {
+		// return getGEFWrapper(new
+		// TimeConstraintAsLocalPrecondCreateCommand(req));
+		// }
+		// if(UMLElementTypes.TimeConstraint_3037 == req.getElementType()) {
+		// return getGEFWrapper(new
+		// TimeConstraintAsLocalPostcondCreateCommand(req));
+		// }
+		// if(UMLElementTypes.InteractionConstraint_3030 ==
+		// req.getElementType()) {
+		// return getGEFWrapper(new
+		// InteractionConstraintAsLocalPrecondCreateCommand(req));
+		// }
+		// if(UMLElementTypes.InteractionConstraint_3031 ==
+		// req.getElementType()) {
+		// return getGEFWrapper(new
+		// InteractionConstraintAsLocalPostcondCreateCommand(req));
+		// }
+		// if(UMLElementTypes.IntervalConstraint_3032 == req.getElementType()) {
+		// return getGEFWrapper(new
+		// IntervalConstraintAsLocalPrecondCreateCommand(req));
+		// }
+		// if(UMLElementTypes.IntervalConstraint_3033 == req.getElementType()) {
+		// return getGEFWrapper(new
+		// IntervalConstraintAsLocalPostcondCreateCommand(req));
+		// }
+		// if(UMLElementTypes.Constraint_3011 == req.getElementType()) {
+		// return getGEFWrapper(new ConstraintAsLocalPrecondCreateCommand(req));
+		// }
+		// if(UMLElementTypes.Constraint_3012 == req.getElementType()) {
+		// return getGEFWrapper(new
+		// ConstraintAsLocalPostcondCreateCommand(req));
+		// }
 		if(UMLElementTypes.DecisionNode_3038 == req.getElementType()) {
 			return getGEFWrapper(new DecisionNodeCreateCommand(req));
 		}
@@ -190,6 +203,9 @@ public class ActivityActivityContentCompartmentItemSemanticEditPolicy extends UM
 		}
 		if(UMLElementTypes.BroadcastSignalAction_3102 == req.getElementType()) {
 			return getGEFWrapper(new BroadcastSignalActionCreateCommand(req));
+		}
+		if(UMLElementTypes.CentralBufferNode_3104 == req.getElementType()) {
+			return getGEFWrapper(new CentralBufferNodeCreateCommand(req));
 		}
 		return super.getCreateCommand(req);
 	}

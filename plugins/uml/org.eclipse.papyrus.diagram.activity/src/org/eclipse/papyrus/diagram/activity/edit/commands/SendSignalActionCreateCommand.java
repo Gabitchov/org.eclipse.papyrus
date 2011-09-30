@@ -80,7 +80,6 @@ public class SendSignalActionCreateCommand extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -95,7 +94,7 @@ public class SendSignalActionCreateCommand extends EditElementCommand {
 	 * @generated NOT check that there is a correct model container.
 	 */
 	public boolean canExecute() {
-		//check that there is a correct model container
+		// check that there is a correct model container
 		return CreateCommandUtil.canCreateNode(getRequest(), getElementToEdit());
 	}
 
@@ -118,7 +117,8 @@ public class SendSignalActionCreateCommand extends EditElementCommand {
 
 		CreateSendSignalActionDialog dialog = new CreateSendSignalActionDialog(Display.getDefault().getActiveShell(), parentActivity);
 		if(IDialogConstants.OK_ID == dialog.open()) {
-			// initialize the invoked element (no need to use a command, since action is being created)
+			// initialize the invoked element (no need to use a command, since
+			// action is being created)
 			EObject signal = dialog.getSelectedInvoked();
 			if(signal instanceof Signal) {
 				newElement.setSignal((Signal)signal);
@@ -133,11 +133,11 @@ public class SendSignalActionCreateCommand extends EditElementCommand {
 		if(!CreateCommandUtil.setNodeParents(newElement, getRequest(), getElementToEdit())) {
 			return CommandResult.newCancelledCommandResult();
 		}
-		//		Activity owner = (Activity)getElementToEdit();
-		//		owner.getNodes().add(newElement);
+		// Activity owner = (Activity)getElementToEdit();
+		// owner.getNodes().add(newElement);
 
 		if(newElement.getName() == null || newElement.getName().length() == 0) {
-			// initialize name if it is not yet 
+			// initialize name if it is not yet
 			ElementInitializers.getInstance().init_SendSignalAction_3052(newElement);
 		}
 

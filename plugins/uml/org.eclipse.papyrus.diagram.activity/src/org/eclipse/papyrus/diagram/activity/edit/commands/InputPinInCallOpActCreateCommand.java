@@ -75,7 +75,6 @@ public class InputPinInCallOpActCreateCommand extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -91,10 +90,7 @@ public class InputPinInCallOpActCreateCommand extends EditElementCommand {
 	 */
 	public boolean canExecute() {
 
-
 		return true;
-
-
 
 	}
 
@@ -113,8 +109,8 @@ public class InputPinInCallOpActCreateCommand extends EditElementCommand {
 		doConfigure(newElement, monitor, info);
 
 		// do not set new element which may change after validation
-		//((CreateElementRequest)getRequest()).setNewElement(newElement);
-		return CommandResult.newOKCommandResult();//newElement);
+		// ((CreateElementRequest)getRequest()).setNewElement(newElement);
+		return CommandResult.newOKCommandResult();// newElement);
 	}
 
 	/**

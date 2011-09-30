@@ -97,7 +97,8 @@ UMLNodeEditPart {
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
 		installEditPolicy(ChangeStereotypedShapeEditPolicy.CHANGE_SHAPE_POLICY, new ActivityDiagramChangeStereotypedShapeEditpolicy());
-		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
+		// XXX need an SCR to runtime to have another abstract superclass that
+		// would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
@@ -108,8 +109,10 @@ UMLNodeEditPart {
 	 **/
 	protected void handleNotificationEvent(Notification event) {
 		/*
-		 * when a node have external node labels, the methods refreshChildren() remove the EditPart corresponding to the Label from the EditPart
-		 * Registry. After that, we can't reset the visibility to true (using the Show/Hide Label Action)!
+		 * when a node have external node labels, the methods refreshChildren()
+		 * remove the EditPart corresponding to the Label from the EditPart
+		 * Registry. After that, we can't reset the visibility to true (using
+		 * the Show/Hide Label Action)!
 		 */
 		if(NotationPackage.eINSTANCE.getView_Visible().equals(event.getFeature())) {
 			Object notifier = event.getNotifier();
@@ -199,8 +202,8 @@ UMLNodeEditPart {
 	/**
 	 * Creates figure for this edit part.
 	 * 
-	 * Body of this method does not depend on settings in generation model
-	 * so you may safely remove <i>generated</i> tag and modify it.
+	 * Body of this method does not depend on settings in generation model so
+	 * you may safely remove <i>generated</i> tag and modify it.
 	 * 
 	 * @generated
 	 */
@@ -214,8 +217,8 @@ UMLNodeEditPart {
 	}
 
 	/**
-	 * Default implementation treats passed figure as content pane.
-	 * Respects layout one may have set for generated figure.
+	 * Default implementation treats passed figure as content pane. Respects
+	 * layout one may have set for generated figure.
 	 * 
 	 * @param nodeShape
 	 *        instance of generated figure class
@@ -500,6 +503,9 @@ UMLNodeEditPart {
 		if(targetEditPart instanceof InputPinInBroadcastSignalActionEditPart) {
 			types.add(UMLElementTypes.ObjectFlow_4003);
 		}
+		if(targetEditPart instanceof CentralBufferNodeEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
 		if(targetEditPart instanceof InitialNodeEditPart) {
 			types.add(UMLElementTypes.ControlFlow_4004);
 		}
@@ -716,6 +722,9 @@ UMLNodeEditPart {
 		if(targetEditPart instanceof InputPinInBroadcastSignalActionEditPart) {
 			types.add(UMLElementTypes.ControlFlow_4004);
 		}
+		if(targetEditPart instanceof CentralBufferNodeEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
 		return types;
 	}
 
@@ -797,6 +806,7 @@ UMLNodeEditPart {
 			types.add(UMLElementTypes.InputPin_3101);
 			types.add(UMLElementTypes.BroadcastSignalAction_3102);
 			types.add(UMLElementTypes.InputPin_3103);
+			types.add(UMLElementTypes.CentralBufferNode_3104);
 		} else if(relationshipType == UMLElementTypes.ControlFlow_4004) {
 			types.add(UMLElementTypes.InitialNode_3004);
 			types.add(UMLElementTypes.ActivityFinalNode_3005);
@@ -870,6 +880,7 @@ UMLNodeEditPart {
 			types.add(UMLElementTypes.InputPin_3101);
 			types.add(UMLElementTypes.BroadcastSignalAction_3102);
 			types.add(UMLElementTypes.InputPin_3103);
+			types.add(UMLElementTypes.CentralBufferNode_3104);
 		}
 		return types;
 	}
@@ -963,6 +974,7 @@ UMLNodeEditPart {
 			types.add(UMLElementTypes.InputPin_3101);
 			types.add(UMLElementTypes.BroadcastSignalAction_3102);
 			types.add(UMLElementTypes.InputPin_3103);
+			types.add(UMLElementTypes.CentralBufferNode_3104);
 		} else if(relationshipType == UMLElementTypes.ControlFlow_4004) {
 			types.add(UMLElementTypes.InitialNode_3004);
 			types.add(UMLElementTypes.ActivityFinalNode_3005);
@@ -1036,6 +1048,7 @@ UMLNodeEditPart {
 			types.add(UMLElementTypes.InputPin_3101);
 			types.add(UMLElementTypes.BroadcastSignalAction_3102);
 			types.add(UMLElementTypes.InputPin_3103);
+			types.add(UMLElementTypes.CentralBufferNode_3104);
 		} else if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4006) {
 			types.add(UMLElementTypes.Comment_3080);
 		}

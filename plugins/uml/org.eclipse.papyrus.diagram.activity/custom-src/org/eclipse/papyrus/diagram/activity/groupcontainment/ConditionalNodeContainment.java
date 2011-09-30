@@ -23,9 +23,9 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.ConditionalNodeStructured
 import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.uml2.uml.UMLPackage;
 
-
 /**
- * The descriptor for ConditionalNode node used by org.eclipse.papyrus.diagram.common.groups.groupcontainment extension point.
+ * The descriptor for ConditionalNode node used by
+ * org.eclipse.papyrus.diagram.common.groups.groupcontainment extension point.
  * 
  * @author vhemery
  */
@@ -41,10 +41,12 @@ public class ConditionalNodeContainment extends StructuredActivityNodeContainmen
 	}
 
 	/**
-	 * Get the conditional node content compartment edit part from a view of the conditional node.
+	 * Get the conditional node content compartment edit part from a view of the
+	 * conditional node.
 	 * 
 	 * @param nodeView
-	 *        a view of the node, which can be either the compartment's view or the primary view of the containing node
+	 *        a view of the node, which can be either the compartment's view
+	 *        or the primary view of the containing node
 	 * @param diagramPart
 	 *        the diagram edit part (used to recover parts from views)
 	 * @return the conditional node content compartment edit part

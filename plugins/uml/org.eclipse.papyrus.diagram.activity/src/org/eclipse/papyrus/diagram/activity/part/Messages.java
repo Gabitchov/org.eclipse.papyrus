@@ -20,7 +20,6 @@ import org.eclipse.osgi.util.NLS;
  */
 public class Messages extends NLS {
 
-
 	/**
 	 * @generated
 	 */
@@ -1122,6 +1121,16 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String createCentralBufferNode50CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createCentralBufferNode50CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
 	public static String createControlFlow1CreationTool_title;
 
 	/**
@@ -2002,6 +2011,16 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String NavigatorGroupName_CentralBufferNode_3104_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_CentralBufferNode_3104_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
 	public static String NavigatorGroupName_DurationConstraint_3035_incominglinks;
 
 	/**
@@ -2153,5 +2172,5 @@ public class Messages extends NLS {
 	 * @generated NOT
 	 */
 	public static String StructuredActivityNodePreferencePage_showSpecificKeyword;
-	//TODO: put accessor fields manually	
+	// TODO: put accessor fields manually
 }

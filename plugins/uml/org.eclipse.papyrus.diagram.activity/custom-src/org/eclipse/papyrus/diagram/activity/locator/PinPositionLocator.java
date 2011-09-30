@@ -78,13 +78,19 @@ import org.eclipse.uml2.uml.CallOperationAction;
  */
 public class PinPositionLocator extends AdvancedBorderItemLocator {
 
-	/** The offset to add to default position. (to avoid corner of rounded rectangles) */
+	/**
+	 * The offset to add to default position. (to avoid corner of rounded
+	 * rectangles)
+	 */
 	public static final int EXTRA_BORDER_DEFAULT_OFFSET = 8;
 
 	/** The default size of a pin */
 	public static final int DEFAULT_PIN_SIZE = 16;
 
-	/** the maximum authorized x position on the template of a Send Signal Action figure */
+	/**
+	 * the maximum authorized x position on the template of a Send Signal Action
+	 * figure
+	 */
 	private static final int SEND_SIGNAL_ACTION_MAX_X = 150;
 
 	/** the width of the template of a Send Signal Action figure */
@@ -132,7 +138,8 @@ public class PinPositionLocator extends AdvancedBorderItemLocator {
 		Point suggestedCenter = borderItem.getBounds().getCopy().setLocation(suggestedLocation).getCenter();
 		suggestedSide = redefineSuggestedSide(suggestedCenter, suggestedSide);
 		if(isInSendSignalAction()) {
-			// prevent a pin too far EAST that would be on the convex sides of the pentagon
+			// prevent a pin too far EAST that would be on the convex sides of
+			// the pentagon
 			if(suggestedSide == PositionConstants.SOUTH || suggestedSide == PositionConstants.NORTH) {
 				int maxLocation = getParentBorder().x + getParentBorder().width * SEND_SIGNAL_ACTION_MAX_X / SEND_SIGNAL_ACTION_WIDTH - getSize(borderItem).width;
 				if(suggestedLocation.x > maxLocation) {
@@ -145,8 +152,8 @@ public class PinPositionLocator extends AdvancedBorderItemLocator {
 	}
 
 	/**
-	 * Ensure the suggested location actually lies on the parent boundary. The side takes
-	 * precedence.
+	 * Ensure the suggested location actually lies on the parent boundary. The
+	 * side takes precedence.
 	 * 
 	 * @param suggestedLocation
 	 *        suggested location
@@ -169,7 +176,8 @@ public class PinPositionLocator extends AdvancedBorderItemLocator {
 		int eastX = parentFigureX + parentFigureWidth - getBorderItemOffset().width;
 		int maxX = 0;
 		if(isInSendSignalAction()) {
-			// prevent a pin too far EAST that would be on the convex sides of the pentagon
+			// prevent a pin too far EAST that would be on the convex sides of
+			// the pentagon
 			if(suggestedSide == PositionConstants.SOUTH || suggestedSide == PositionConstants.NORTH) {
 				maxX = parentFigureX + parentFigureWidth * SEND_SIGNAL_ACTION_MAX_X / SEND_SIGNAL_ACTION_WIDTH - getBorderItemOffset().width;
 			}
@@ -220,7 +228,8 @@ public class PinPositionLocator extends AdvancedBorderItemLocator {
 	}
 
 	/**
-	 * Recomputes the suggested side by eliminating unauthorized sides depending on the action type
+	 * Recomputes the suggested side by eliminating unauthorized sides depending
+	 * on the action type
 	 * 
 	 * @param childCenter
 	 *        suggested location center
@@ -309,7 +318,8 @@ public class PinPositionLocator extends AdvancedBorderItemLocator {
 	/**
 	 * Know whether containing action is an AcceptTimeEventAction
 	 * 
-	 * @return true is containing action is an AcceptEventAction with AcceptTimeEventAction representation
+	 * @return true is containing action is an AcceptEventAction with
+	 *         AcceptTimeEventAction representation
 	 */
 	private boolean isInAcceptTimeEventAction() {
 		IFigure parentFigure = getParentFigure();
@@ -336,7 +346,8 @@ public class PinPositionLocator extends AdvancedBorderItemLocator {
 		if(rectSuggested.getTopLeft().x == 0 && rectSuggested.getTopLeft().y == 0) {
 			rectSuggested.setLocation(getPreferredLocation(borderItem));
 		} else {
-			// recovered constraint must be translated with the parent location to be absolute
+			// recovered constraint must be translated with the parent location
+			// to be absolute
 			rectSuggested.setLocation(rectSuggested.getLocation().translate(getParentBorder().getTopLeft()));
 		}
 		rectSuggested.setSize(size);
@@ -345,7 +356,8 @@ public class PinPositionLocator extends AdvancedBorderItemLocator {
 		borderItem.setBounds(validLocation);
 		// ensure the side property is correctly set
 		setCurrentSideOfParent(findClosestAuthorizedSideOfParent(borderItem.getBounds(), getParentBorder()));
-		// refresh the arrow depending on the Pin type and the side on which it is located
+		// refresh the arrow depending on the Pin type and the side on which it
+		// is located
 		for(Object subfigure : borderItem.getChildren()) {
 			if(subfigure instanceof IFigure) {
 				for(Object child : ((IFigure)subfigure).getChildren()) {
@@ -530,11 +542,12 @@ public class PinPositionLocator extends AdvancedBorderItemLocator {
 	}
 
 	/**
-	 * Get an initial location based on the side. ( appropriate extremity of the side )
+	 * Get an initial location based on the side. ( appropriate extremity of the
+	 * side )
 	 * 
 	 * @param side
-	 *        the preferred side of the parent figure on which to place this border item as
-	 *        defined in {@link PositionConstants}
+	 *        the preferred side of the parent figure on which to place this
+	 *        border item as defined in {@link PositionConstants}
 	 * @return point
 	 */
 	protected Point getPreferredLocation(int side, IFigure borderItem) {

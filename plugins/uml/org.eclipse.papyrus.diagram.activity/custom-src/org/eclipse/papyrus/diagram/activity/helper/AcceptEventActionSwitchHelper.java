@@ -30,25 +30,31 @@ import org.eclipse.uml2.uml.Trigger;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
- * The AcceptEventActionSwitchHelper class is used to help updating an AcceptEventAction's figure.
- * It enables to switch between the classic pentagon representation and the hourglass representation of an AcceptTimeEventAction.
+ * The AcceptEventActionSwitchHelper class is used to help updating an
+ * AcceptEventAction's figure. It enables to switch between the classic pentagon
+ * representation and the hourglass representation of an AcceptTimeEventAction.
  */
 public class AcceptEventActionSwitchHelper extends NotificationHelper {
 
 	/** The size factor between the classic figure and the hourglass figure */
 	private static final int REDUCE_WIDTH_FACTOR_FOR_HOURGLASS = 4;
 
-	/** The UI adapter that listens model update to detect when figure switch must be performed */
+	/**
+	 * The UI adapter that listens model update to detect when figure switch
+	 * must be performed
+	 */
 	private UIAdapter adapter = new UIAdapter();
 
 	/** The edit part which this helper handles the switch for */
 	private AcceptEventActionEditPart editPart;
 
 	/**
-	 * Construct a new switch helper which will automatically manage the switch when properties are edited.
+	 * Construct a new switch helper which will automatically manage the switch
+	 * when properties are edited.
 	 * 
 	 * @param acceptEventActionEditPart
-	 *        the part of an AcceptEventAction, for which the switch must be managed.
+	 *        the part of an AcceptEventAction, for which the switch must be
+	 *        managed.
 	 */
 	public AcceptEventActionSwitchHelper(AcceptEventActionEditPart acceptEventActionEditPart) {
 		editPart = acceptEventActionEditPart;
@@ -56,12 +62,14 @@ public class AcceptEventActionSwitchHelper extends NotificationHelper {
 	}
 
 	/**
-	 * Private class UIAdapter. This class listens at appropriate model elements to detect when an AcceptEventAction becomes an AcceptTimeEventAction.
+	 * Private class UIAdapter. This class listens at appropriate model elements
+	 * to detect when an AcceptEventAction becomes an AcceptTimeEventAction.
 	 */
 	private class UIAdapter extends UIAdapterImpl {
 
 		/**
-		 * Notify the changes by updating listened elements if necessary and performing the switch if necessary.
+		 * Notify the changes by updating listened elements if necessary and
+		 * performing the switch if necessary.
 		 * 
 		 * @see org.eclipse.papyrus.diagram.common.providers.UIAdapterImpl#safeNotifyChanged(org.eclipse.emf.common.notify.Notification)
 		 * @param msg
@@ -106,7 +114,8 @@ public class AcceptEventActionSwitchHelper extends NotificationHelper {
 	}
 
 	/**
-	 * Update the figure representation, to switch to or from the hourglass representation
+	 * Update the figure representation, to switch to or from the hourglass
+	 * representation
 	 */
 	public void updateAcceptEventActionFigure() {
 		AcceptEventActionFigure actionFigure = editPart.getPrimaryShape();
@@ -135,7 +144,8 @@ public class AcceptEventActionSwitchHelper extends NotificationHelper {
 	}
 
 	/**
-	 * Add listener on an element and its appropriate children in case of an AcceptEventAction
+	 * Add listener on an element and its appropriate children in case of an
+	 * AcceptEventAction
 	 * 
 	 * @param element
 	 *        The object to listen

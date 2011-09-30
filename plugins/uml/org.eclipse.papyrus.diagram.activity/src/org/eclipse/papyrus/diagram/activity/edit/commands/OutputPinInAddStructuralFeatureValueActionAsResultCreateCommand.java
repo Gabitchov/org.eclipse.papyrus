@@ -75,7 +75,6 @@ public class OutputPinInAddStructuralFeatureValueActionAsResultCreateCommand ext
 	 */
 	protected EObject getElementToEdit() {
 
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -95,10 +94,7 @@ public class OutputPinInAddStructuralFeatureValueActionAsResultCreateCommand ext
 			return false;
 		}
 
-
 		return true;
-
-
 
 	}
 
@@ -107,13 +103,10 @@ public class OutputPinInAddStructuralFeatureValueActionAsResultCreateCommand ext
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-
-
 		OutputPin newElement = UMLFactory.eINSTANCE.createOutputPin();
 
 		WriteStructuralFeatureAction owner = (WriteStructuralFeatureAction)getElementToEdit();
 		owner.setResult(newElement);
-
 
 		ElementInitializers.getInstance().init_OutputPin_3094(newElement);
 
@@ -122,9 +115,6 @@ public class OutputPinInAddStructuralFeatureValueActionAsResultCreateCommand ext
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
-
-
-
 
 	/**
 	 * @generated

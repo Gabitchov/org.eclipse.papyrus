@@ -63,8 +63,8 @@ public class UmlActivityDiagramForMultiEditor extends UMLDiagramEditor {
 	private Composite splitter;
 
 	/**
-	 * Constructor for SashSystem v2. Context and required objects are retrieved from the
-	 * ServiceRegistry.
+	 * Constructor for SashSystem v2. Context and required objects are retrieved
+	 * from the ServiceRegistry.
 	 * 
 	 * @throws BackboneException
 	 * @throws ServiceException
@@ -115,18 +115,18 @@ public class UmlActivityDiagramForMultiEditor extends UMLDiagramEditor {
 	/*
 	 * FIXME create viewer which allow to select element trought group
 	 */
-	//    /**
-	//     * Creates a ScrollingGraphicalViewer without the drop adapter which
-	//     * excludes drag and drop functionality from other defined views (XML)
-	//     * Subclasses must override this method to include the DnD functionality
-	//     * 
-	//     * @return ScrollingGraphicalViewer
-	//     */
-	//	@Override
-	//    protected ScrollingGraphicalViewer createScrollingGraphicalViewer() {
-	//       // return new DiagramGraphicalViewer();
-	//        return new GroupGraphicalViewer();
-	//    }
+	// /**
+	// * Creates a ScrollingGraphicalViewer without the drop adapter which
+	// * excludes drag and drop functionality from other defined views (XML)
+	// * Subclasses must override this method to include the DnD functionality
+	// *
+	// * @return ScrollingGraphicalViewer
+	// */
+	// @Override
+	// protected ScrollingGraphicalViewer createScrollingGraphicalViewer() {
+	// // return new DiagramGraphicalViewer();
+	// return new GroupGraphicalViewer();
+	// }
 
 	/**
 	 * {@inheritDoc}
@@ -148,14 +148,17 @@ public class UmlActivityDiagramForMultiEditor extends UMLDiagramEditor {
 	@Override
 	protected void initializeGraphicalViewer() {
 		/*
-		 * During content initialization, view with unknown semantic hint can be loaded (hint must be deduced).
-		 * In such cases, if the provider has not been set yet, view providing fails instead of loading the provider.
-		 * Ensure the activity diagram provider is correctly loaded before trying to initialize content.
-		 * To do so, we ask to provide the main activity node with all required details.
+		 * During content initialization, view with unknown semantic hint can be
+		 * loaded (hint must be deduced). In such cases, if the provider has not
+		 * been set yet, view providing fails instead of loading the provider.
+		 * Ensure the activity diagram provider is correctly loaded before
+		 * trying to initialize content. To do so, we ask to provide the main
+		 * activity node with all required details.
 		 */
 		IAdaptable adapter = new SemanticAdapter(getDiagram().getElement(), null);
 		String semanticHint = ((IHintedType)UMLElementTypes.Activity_2001).getSemanticHint();
-		// We already know that result is true. Provider is correctly initialized during the process.
+		// We already know that result is true. Provider is correctly
+		// initialized during the process.
 		ViewService.getInstance().provides(Node.class, adapter, getDiagram(), semanticHint, ViewUtil.APPEND, false, getPreferencesHint());
 		// initialize content
 		super.initializeGraphicalViewer();

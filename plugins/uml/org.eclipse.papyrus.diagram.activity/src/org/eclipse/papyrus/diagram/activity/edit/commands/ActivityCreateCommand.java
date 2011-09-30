@@ -75,7 +75,6 @@ public class ActivityCreateCommand extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -91,10 +90,7 @@ public class ActivityCreateCommand extends EditElementCommand {
 	 */
 	public boolean canExecute() {
 
-
 		return true;
-
-
 
 	}
 
@@ -103,13 +99,10 @@ public class ActivityCreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-
-
 		Activity newElement = UMLFactory.eINSTANCE.createActivity();
 
 		Package owner = (Package)getElementToEdit();
 		owner.getPackagedElements().add(newElement);
-
 
 		ElementInitializers.getInstance().init_Activity_2001(newElement);
 

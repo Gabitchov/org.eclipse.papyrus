@@ -79,7 +79,6 @@ public class ActivityParameterNodeCreateCommand extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -95,10 +94,7 @@ public class ActivityParameterNodeCreateCommand extends EditElementCommand {
 	 */
 	public boolean canExecute() {
 
-
 		return true;
-
-
 
 	}
 
@@ -112,7 +108,8 @@ public class ActivityParameterNodeCreateCommand extends EditElementCommand {
 
 		CreateActivityParameterNodeDialog dialog = new CreateActivityParameterNodeDialog(Display.getDefault().getActiveShell(), owner);
 		if(IDialogConstants.OK_ID == dialog.open()) {
-			// initialize the invoked element (no need to use a command, since action is being created)
+			// initialize the invoked element (no need to use a command, since
+			// action is being created)
 			EObject parameter = dialog.getSelectedInvoked();
 			if(parameter instanceof Parameter) {
 				newElement.setParameter((Parameter)parameter);
@@ -126,7 +123,7 @@ public class ActivityParameterNodeCreateCommand extends EditElementCommand {
 		owner.getNodes().add(newElement);
 
 		if(newElement.getName() == null || newElement.getName().length() == 0) {
-			// initialize name if it is not yet 
+			// initialize name if it is not yet
 			ElementInitializers.getInstance().init_ActivityParameterNode_3059(newElement);
 		}
 

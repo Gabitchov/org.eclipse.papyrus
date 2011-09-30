@@ -67,7 +67,8 @@ import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
- * DialogBox in order to link a parameter with the new ActivityParameterNode that will be created
+ * DialogBox in order to link a parameter with the new ActivityParameterNode
+ * that will be created
  * 
  */
 public class CreateParameterDialog extends FormDialog {
@@ -131,7 +132,8 @@ public class CreateParameterDialog extends FormDialog {
 		createParameterSection(scrolledForm.getBody(), toolkit);
 
 		hookListeners();
-		// invoked name is set after listeners, since we count on listener to update it properly
+		// invoked name is set after listeners, since we count on listener to
+		// update it properly
 		setInvokedName(null);
 
 		scrolledForm.reflow(true);
@@ -209,8 +211,8 @@ public class CreateParameterDialog extends FormDialog {
 	}
 
 	/**
-	 * Set correctly the invoked object, by creating it if needed.
-	 * Then, notifies that the ok button of this dialog has been pressed.
+	 * Set correctly the invoked object, by creating it if needed. Then,
+	 * notifies that the ok button of this dialog has been pressed.
 	 * 
 	 * @see org.eclipse.jface.dialogs.Dialog#okPressed()
 	 * 
@@ -373,7 +375,6 @@ public class CreateParameterDialog extends FormDialog {
 		addCmd.execute();
 	}
 
-
 	/**
 	 * Gets the possible types for the parameter
 	 * 
@@ -386,7 +387,6 @@ public class CreateParameterDialog extends FormDialog {
 		result.addAll(types);
 		return result;
 	}
-
 
 	/**
 	 * Gets the possible directions.
@@ -402,7 +402,6 @@ public class CreateParameterDialog extends FormDialog {
 		return ret;
 	}
 
-
 	/**
 	 * Gets the direction which is selected by default.
 	 * 
@@ -415,7 +414,6 @@ public class CreateParameterDialog extends FormDialog {
 			return getPossibleDirections()[0];
 		}
 	}
-
 
 	private Image getTypeImage() {
 		return UMLElementTypes.getImage(UMLPackage.eINSTANCE.getPackage_PackagedElement());

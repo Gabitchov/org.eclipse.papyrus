@@ -565,7 +565,8 @@ public class ExpansionRegionKeywordEditPart extends CompartmentEditPart implemen
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
-	 * @return an <code>int</code> corresponding to the kind of direct editor, @see org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition
+	 * @return an <code>int</code> corresponding to the kind of direct editor, @see
+	 *         org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition
 	 * @generated
 	 */
 	public int getDirectEditionType() {
@@ -700,7 +701,6 @@ public class ExpansionRegionKeywordEditPart extends CompartmentEditPart implemen
 				}
 			}
 		}
-
 
 		super.handleNotificationEvent(event);
 	}

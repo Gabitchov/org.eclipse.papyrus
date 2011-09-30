@@ -258,7 +258,7 @@ public class ControlFlowNameEditPart extends LabelEditPart implements ITextAware
 	 * @generated NOT consult preference store before displaying label
 	 */
 	protected String getLabelText() {
-		//consult preference store before displaying label
+		// consult preference store before displaying label
 		boolean showName = preferenceStore.getBoolean(IActivityPreferenceConstants.PREF_ACTIVITY_EDGE_SHOW_NAME_LABEL);
 		if(showName) {
 			String text = null;
@@ -294,7 +294,7 @@ public class ControlFlowNameEditPart extends LabelEditPart implements ITextAware
 	 * @generated NOT consult preference store before displaying label
 	 */
 	public String getEditText() {
-		//consult preference store before displaying label
+		// consult preference store before displaying label
 		boolean showName = preferenceStore.getBoolean(IActivityPreferenceConstants.PREF_ACTIVITY_EDGE_SHOW_NAME_LABEL);
 		if(getParserElement() == null || getParser() == null || !showName) {
 			return ""; //$NON-NLS-1$
@@ -386,7 +386,7 @@ public class ControlFlowNameEditPart extends LabelEditPart implements ITextAware
 	 * @generated NOT consult preference store before displaying label
 	 */
 	protected void performDirectEdit() {
-		//consult preference store before displaying label
+		// consult preference store before displaying label
 		boolean showName = preferenceStore.getBoolean(IActivityPreferenceConstants.PREF_ACTIVITY_EDGE_SHOW_NAME_LABEL);
 		if(showName) {
 			getManager().show();
@@ -397,7 +397,7 @@ public class ControlFlowNameEditPart extends LabelEditPart implements ITextAware
 	 * @generated NOT consult preference store before displaying label
 	 */
 	protected void performDirectEdit(Point eventLocation) {
-		//consult preference store before displaying label
+		// consult preference store before displaying label
 		boolean showName = preferenceStore.getBoolean(IActivityPreferenceConstants.PREF_ACTIVITY_EDGE_SHOW_NAME_LABEL);
 		if(getManager() instanceof TextDirectEditManager && showName) {
 			((TextDirectEditManager)getManager()).show(eventLocation.getSWTPoint());
@@ -408,7 +408,7 @@ public class ControlFlowNameEditPart extends LabelEditPart implements ITextAware
 	 * @generated NOT consult preference store before displaying label
 	 */
 	private void performDirectEdit(char initialCharacter) {
-		//consult preference store before displaying label
+		// consult preference store before displaying label
 		boolean showName = preferenceStore.getBoolean(IActivityPreferenceConstants.PREF_ACTIVITY_EDGE_SHOW_NAME_LABEL);
 		if(getManager() instanceof TextDirectEditManager && showName) {
 			((TextDirectEditManager)getManager()).show(initialCharacter);
@@ -421,7 +421,7 @@ public class ControlFlowNameEditPart extends LabelEditPart implements ITextAware
 	 * @generated NOT consult preference store before displaying label
 	 */
 	protected void performDirectEditRequest(Request request) {
-		//consult preference store before displaying label
+		// consult preference store before displaying label
 		boolean showName = preferenceStore.getBoolean(IActivityPreferenceConstants.PREF_ACTIVITY_EDGE_SHOW_NAME_LABEL);
 		if(!showName) {
 			return;
@@ -617,7 +617,8 @@ public class ControlFlowNameEditPart extends LabelEditPart implements ITextAware
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
-	 * @return an <code>int</code> corresponding to the kind of direct editor, @see org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition
+	 * @return an <code>int</code> corresponding to the kind of direct editor, @see
+	 *         org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition
 	 * @generated
 	 */
 	public int getDirectEditionType() {
@@ -743,9 +744,6 @@ public class ControlFlowNameEditPart extends LabelEditPart implements ITextAware
 				}
 			}
 		}
-
-
-
 
 		super.handleNotificationEvent(event);
 	}

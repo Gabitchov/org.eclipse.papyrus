@@ -100,8 +100,8 @@ implements ITreeBranchEditPart {
 	/**
 	 * Creates figure for this edit part.
 	 * 
-	 * Body of this method does not depend on settings in generation model
-	 * so you may safely remove <i>generated</i> tag and modify it.
+	 * Body of this method does not depend on settings in generation model so
+	 * you may safely remove <i>generated</i> tag and modify it.
 	 * 
 	 * @generated
 	 */
@@ -152,15 +152,16 @@ implements ITreeBranchEditPart {
 		protected void createContents() {
 			super.createContents();
 
-			//fAppliedStereotypeLabel = new WrappingLabel();
-			//fAppliedStereotypeLabel.setText("");
+			// fAppliedStereotypeLabel = new WrappingLabel();
+			// fAppliedStereotypeLabel.setText("");
 
-			//this.add(fAppliedStereotypeLabel);
+			// this.add(fAppliedStereotypeLabel);
 
 		}
 
 		/**
-		 * @generated NOT scale changed from default 7:3 to 5:2 to make a smaller arrow
+		 * @generated NOT scale changed from default 7:3 to 5:2 to make a
+		 *            smaller arrow
 		 */
 		private RotatableDecoration createTargetDecoration() {
 			PolylineDecoration df = new PolylineDecoration();

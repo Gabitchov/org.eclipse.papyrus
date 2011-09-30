@@ -86,7 +86,8 @@ public class RestoreRelatedLinksCommand extends AbstractTransactionalCommand {
 	 * Detect if similar descriptor already exist in given collection.
 	 * 
 	 * @param collection
-	 *        the collection of unique ingoing and outgoing links descriptors
+	 *        the collection of unique ingoing and outgoing links
+	 *        descriptors
 	 * @param umlLinkDescriptor
 	 *        the descriptor to search
 	 * @return true if already exist

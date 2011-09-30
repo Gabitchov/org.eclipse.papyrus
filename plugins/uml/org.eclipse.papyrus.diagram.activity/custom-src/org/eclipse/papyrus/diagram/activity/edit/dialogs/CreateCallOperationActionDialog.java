@@ -34,7 +34,8 @@ import org.eclipse.uml2.uml.ParameterDirectionKind;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
- * This class provides a dialog to initialize a CallOperationAction at its creation.
+ * This class provides a dialog to initialize a CallOperationAction at its
+ * creation.
  */
 public class CreateCallOperationActionDialog extends CreateCallActionDialog {
 
@@ -51,7 +52,8 @@ public class CreateCallOperationActionDialog extends CreateCallActionDialog {
 	}
 
 	/**
-	 * Get the id of the preference storing whether selection is the default choice.
+	 * Get the id of the preference storing whether selection is the default
+	 * choice.
 	 * 
 	 * @return preference id
 	 */

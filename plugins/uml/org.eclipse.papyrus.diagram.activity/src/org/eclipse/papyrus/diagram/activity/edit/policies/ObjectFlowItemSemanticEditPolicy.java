@@ -23,11 +23,11 @@ import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalC
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
+import org.eclipse.papyrus.commands.wrappers.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.diagram.activity.edit.commands.CommentLinkCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.CommentLinkReorientCommand;
 import org.eclipse.papyrus.diagram.activity.edit.parts.CommentLinkEditPart;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
-import org.eclipse.papyrus.commands.wrappers.EMFtoGMFCommandWrapper;
 
 /**
  * @generated
@@ -49,10 +49,12 @@ public class ObjectFlowItemSemanticEditPolicy extends UMLBaseItemSemanticEditPol
 		cmd.setTransactionNestingEnabled(true);
 		List<EObject> todestroy = new ArrayList<EObject>();
 		todestroy.add(req.getElementToDestroy());
-		//cmd.add(new org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand(req));
+		// cmd.add(new
+		// org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand(req));
 		cmd.add(new EMFtoGMFCommandWrapper(new DeleteCommand(getEditingDomain(), todestroy)));
 		return getGEFWrapper(cmd.reduce());
-		//return getGEFWrapper(new org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand(req));
+		// return getGEFWrapper(new
+		// org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand(req));
 	}
 
 	/**
@@ -84,8 +86,8 @@ public class ObjectFlowItemSemanticEditPolicy extends UMLBaseItemSemanticEditPol
 	}
 
 	/**
-	 * Returns command to reorient EReference based link. New link target or source
-	 * should be the domain model element associated with this node.
+	 * Returns command to reorient EReference based link. New link target or
+	 * source should be the domain model element associated with this node.
 	 * 
 	 * @generated
 	 */

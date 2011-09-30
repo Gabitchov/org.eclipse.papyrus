@@ -23,7 +23,10 @@ import org.eclipse.papyrus.diagram.common.locator.AdvancedBorderItemLocator;
 
 public class ActivityParameterNodePositionLocator extends AdvancedBorderItemLocator implements IBorderItemLocator {
 
-	/** The offset to add to default position. (to avoid corner of rounded rectangles) */
+	/**
+	 * The offset to add to default position. (to avoid corner of rounded
+	 * rectangles)
+	 */
 	public static final int EXTRA_BORDER_DEFAULT_OFFSET = 8;
 
 	/** The default size of a pin */
@@ -78,8 +81,8 @@ public class ActivityParameterNodePositionLocator extends AdvancedBorderItemLoca
 	}
 
 	/**
-	 * Ensure the suggested location actually lies on the parent boundary. The side takes
-	 * precedence.
+	 * Ensure the suggested location actually lies on the parent boundary. The
+	 * side takes precedence.
 	 * 
 	 * @param suggestedLocation
 	 * @param suggestedSide
@@ -146,7 +149,8 @@ public class ActivityParameterNodePositionLocator extends AdvancedBorderItemLoca
 		if(rectSuggested.getTopLeft().x == 0 && rectSuggested.getTopLeft().y == 0) {
 			rectSuggested.setLocation(getPreferredLocation(borderItem));
 		} else {
-			// recovered constraint must be translated with the parent location to be absolute
+			// recovered constraint must be translated with the parent location
+			// to be absolute
 			rectSuggested.setLocation(rectSuggested.getLocation().translate(getParentBorder().getTopLeft()));
 		}
 		rectSuggested.setSize(size);
@@ -179,7 +183,8 @@ public class ActivityParameterNodePositionLocator extends AdvancedBorderItemLoca
 		// case PositionConstants.EAST:
 		// // take south east extremity to allow following pins placing above
 		// x += parentFigureWidth - getBorderItemOffset().width;
-		// y += parentFigureHeight - borderItemSize.height - EXTRA_BORDER_DEFAULT_OFFSET -
+		// y += parentFigureHeight - borderItemSize.height -
+		// EXTRA_BORDER_DEFAULT_OFFSET -
 		// getBorderItemOffset().height;
 		// break;
 		// case PositionConstants.SOUTH:
@@ -208,7 +213,8 @@ public class ActivityParameterNodePositionLocator extends AdvancedBorderItemLoca
 
 		Rectangle parentRec = getParentFigure().getBounds().getCopy();
 
-		// Calculate Max position around the graphical parent (1/2 size or the port around
+		// Calculate Max position around the graphical parent (1/2 size or the
+		// port around
 		// the graphical parent bounds.
 		int xMin = parentRec.x - borderItemOffset;
 		int xMax = parentRec.x - borderItemOffset + parentRec.width;
@@ -232,7 +238,8 @@ public class ActivityParameterNodePositionLocator extends AdvancedBorderItemLoca
 			realLocation.y = yMax;
 		}
 
-		// Ensure the port is positioned on its parent borders and not in the middle.
+		// Ensure the port is positioned on its parent borders and not in the
+		// middle.
 		// Modify position if needed.
 		if((realLocation.y != yMin) && (realLocation.y != yMax)) {
 			if((realLocation.x != xMin) && (realLocation.x != xMax)) {

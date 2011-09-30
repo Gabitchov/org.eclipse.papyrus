@@ -44,7 +44,8 @@ public class AcceptEventActionEditHelper extends UMLBaseEditHelper {
 					}
 				}
 			}
-			// only time events have been encountered, but maybe no event at all.
+			// only time events have been encountered, but maybe no event at
+			// all.
 			return hasTimeEvent;
 		}
 		return false;

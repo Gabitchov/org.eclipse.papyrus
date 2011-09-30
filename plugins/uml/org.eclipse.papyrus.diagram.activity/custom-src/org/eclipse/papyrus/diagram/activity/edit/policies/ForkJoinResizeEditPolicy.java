@@ -20,15 +20,16 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ResizableShapeEditPolicy;
 import org.eclipse.papyrus.diagram.common.editparts.UMLNodeEditPart;
 
 /**
- * A resizable editpolicy for shape editparts. It ensure that the resize keeps the shape as a fork or a join
+ * A resizable editpolicy for shape editparts. It ensure that the resize keeps
+ * the shape as a fork or a join
  * 
  * @see ResizableShapeEditPolicy
  */
 public class ForkJoinResizeEditPolicy extends ResizableShapeEditPolicy {
 
 	/**
-	 * Shows or updates feedback for a change bounds request.
-	 * The request is updated by the way so that the shape stays a square.
+	 * Shows or updates feedback for a change bounds request. The request is
+	 * updated by the way so that the shape stays a square.
 	 * 
 	 * @param request
 	 *        the request

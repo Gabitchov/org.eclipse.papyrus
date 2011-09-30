@@ -76,18 +76,26 @@ public class StructuredActivityNodePreferencePage extends AbstractPapyrusNodePre
 			store.setDefault(preferenceName, map.get(name));
 		}
 
-
-
-
-		//org.eclipse.jface.preference.PreferenceConverter.setDefault(store, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_FILL), new org.eclipse.swt.graphics.RGB(255, 255, 255));
-		//org.eclipse.jface.preference.PreferenceConverter.setDefault(store, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_LINE), new org.eclipse.swt.graphics.RGB(0, 0, 0));
+		// org.eclipse.jface.preference.PreferenceConverter.setDefault(store,
+		// org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName,
+		// org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_FILL),
+		// new org.eclipse.swt.graphics.RGB(255, 255, 255));
+		// org.eclipse.jface.preference.PreferenceConverter.setDefault(store,
+		// org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName,
+		// org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_LINE),
+		// new org.eclipse.swt.graphics.RGB(0, 0, 0));
 
 		// Set the default for the gradient
-		//store.setDefault(org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.GRADIENT_POLICY),false);
-		//org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter gradientPreferenceConverter = new  org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter(
-		//		new org.eclipse.swt.graphics.RGB(255, 255, 255),
-		//		new org.eclipse.swt.graphics.RGB(0, 0, 0), 0, 0);
-		//store.setDefault(org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_GRADIENT), gradientPreferenceConverter.getPreferenceValue());
+		// store.setDefault(org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName,
+		// org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.GRADIENT_POLICY),false);
+		// org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter
+		// gradientPreferenceConverter = new
+		// org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter(
+		// new org.eclipse.swt.graphics.RGB(255, 255, 255),
+		// new org.eclipse.swt.graphics.RGB(0, 0, 0), 0, 0);
+		// store.setDefault(org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName,
+		// org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_GRADIENT),
+		// gradientPreferenceConverter.getPreferenceValue());
 
 	}
 
@@ -131,7 +139,7 @@ public class StructuredActivityNodePreferencePage extends AbstractPapyrusNodePre
 		addAbstractGroup(fontGroupComposite);
 		NodeColorGroup colorGroupForNodeComposite = new NodeColorGroup(parent, getPreferenceKey(), this);
 		addAbstractGroup(colorGroupForNodeComposite);
-		//Add opacity Group
+		// Add opacity Group
 		addAbstractGroup(OpacityFactoryHelper.getOpacityGroup(parent, getPreferenceKey(), this, IActivityPreferenceConstants.PREF_STRUCTURED_NODE_ALPHA));
 		DecorationGroup decorationGroup = new DecorationGroup(parent, getPreferenceKey(), this);
 		addAbstractGroup(decorationGroup);
@@ -140,13 +148,11 @@ public class StructuredActivityNodePreferencePage extends AbstractPapyrusNodePre
 			addAbstractGroup(compartmentGroup);
 		}
 
-		//Label role group
+		// Label role group
 		if(!getLabelRole().isEmpty()) {
 			LabelGroup compartmentGroup = new LabelGroup(parent, getPreferenceKey(), this, getLabelRole());
 			addAbstractGroup(compartmentGroup);
 		}
 	}
-
-
 
 }

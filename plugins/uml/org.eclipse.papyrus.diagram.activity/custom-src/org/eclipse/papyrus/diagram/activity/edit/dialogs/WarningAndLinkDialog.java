@@ -48,7 +48,8 @@ public class WarningAndLinkDialog extends MessageDialog {
 	private boolean allowNavigation;
 
 	/**
-	 * Construct a new dialog to open a warning message and a link to an element.
+	 * Construct a new dialog to open a warning message and a link to an
+	 * element.
 	 * 
 	 * @param parentShell
 	 *        the parent shell
@@ -69,7 +70,8 @@ public class WarningAndLinkDialog extends MessageDialog {
 	}
 
 	/**
-	 * Construct a new dialog to open a warning message and a link to an element.
+	 * Construct a new dialog to open a warning message and a link to an
+	 * element.
 	 * 
 	 * @param parentShell
 	 *        the parent shell
@@ -134,7 +136,8 @@ public class WarningAndLinkDialog extends MessageDialog {
 	}
 
 	/**
-	 * Navigate to the linked element. Open it in model editor and print its properties.
+	 * Navigate to the linked element. Open it in model editor and print its
+	 * properties.
 	 */
 	protected void navigateToElement() {
 		IMultiDiagramEditor editor = EditorUtils.getMultiDiagramEditor();
@@ -143,7 +146,8 @@ public class WarningAndLinkDialog extends MessageDialog {
 			IWorkbenchPart part = view.getPart(false);
 			if(part instanceof CommonNavigator) {
 				CommonNavigator navigator = (CommonNavigator)part;
-				// set focus to navigator, otherwise, diagram view will reset the selection
+				// set focus to navigator, otherwise, diagram view will reset
+				// the selection
 				navigator.setFocus();
 				navigator.selectReveal(new StructuredSelection(element));
 			}

@@ -70,12 +70,9 @@ import org.eclipse.ui.PlatformUI;
  */
 public class OutputPinInCreateObjectActionAsResultLabelEditPart
 
-
 extends LabelEditPart
 
-
 implements ITextAwareEditPart, IBorderItemEditPart
-
 
 {
 
@@ -104,8 +101,6 @@ implements ITextAwareEditPart, IBorderItemEditPart
 	 */
 	private String defaultText;
 
-
-
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
 	 * 
@@ -119,8 +114,6 @@ implements ITextAwareEditPart, IBorderItemEditPart
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
-
-
 
 	/**
 	 * @generated
@@ -602,12 +595,11 @@ implements ITextAwareEditPart, IBorderItemEditPart
 		return getPrimaryView();
 	}
 
-
-
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
-	 * @return an <code>int</code> corresponding to the kind of direct editor, @see org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition
+	 * @return an <code>int</code> corresponding to the kind of direct editor, @see
+	 *         org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition
 	 * @generated
 	 */
 	public int getDirectEditionType() {
@@ -707,8 +699,6 @@ implements ITextAwareEditPart, IBorderItemEditPart
 		}
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -756,8 +746,5 @@ implements ITextAwareEditPart, IBorderItemEditPart
 	protected IFigure createFigurePrim() {
 		return new SimpleLabel();
 	}
-
-
-
 
 }

@@ -31,14 +31,15 @@ import org.eclipse.swt.widgets.Group;
 public class DiagramGeneralPreferencePage extends DiagramPreferencePage {
 
 	/**
-	 * @generated NOT
-	 *            preference page editor control for displaying the pin synchronization from parameter confirmation dialog
+	 * @generated NOT preference page editor control for displaying the pin
+	 *            synchronization from parameter confirmation dialog
 	 */
 	private BooleanFieldEditor confirmPinSyncFromParameter = null;
 
 	/**
-	 * @generated NOT
-	 *            preference page editor control for displaying the activity parameter node synchronization from parameter confirmation dialog
+	 * @generated NOT preference page editor control for displaying the activity
+	 *            parameter node synchronization from parameter confirmation
+	 *            dialog
 	 */
 	private BooleanFieldEditor confirmActivityParameterNodeSyncFromParameter = null;
 

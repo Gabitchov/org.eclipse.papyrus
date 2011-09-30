@@ -75,7 +75,6 @@ public class DataStoreNodeCreateCommand extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -90,7 +89,7 @@ public class DataStoreNodeCreateCommand extends EditElementCommand {
 	 * @generated NOT check that there is a correct model container.
 	 */
 	public boolean canExecute() {
-		//check that there is a correct model container
+		// check that there is a correct model container
 		return CreateCommandUtil.canCreateNode(getRequest(), getElementToEdit());
 	}
 
@@ -105,8 +104,8 @@ public class DataStoreNodeCreateCommand extends EditElementCommand {
 		if(!CreateCommandUtil.setNodeParents(newElement, getRequest(), getElementToEdit())) {
 			return CommandResult.newCancelledCommandResult();
 		}
-		//		Activity owner = (Activity)getElementToEdit();
-		//		owner.getNodes().add(newElement);
+		// Activity owner = (Activity)getElementToEdit();
+		// owner.getNodes().add(newElement);
 
 		ElementInitializers.getInstance().init_DataStoreNode_3078(newElement);
 

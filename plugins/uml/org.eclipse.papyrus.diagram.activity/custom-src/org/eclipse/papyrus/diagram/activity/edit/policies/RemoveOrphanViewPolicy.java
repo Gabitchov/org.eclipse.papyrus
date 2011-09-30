@@ -31,9 +31,9 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.StructuredActivityNodeStr
 import org.eclipse.papyrus.diagram.common.editpolicies.OrphanViewPolicy;
 
 /**
- * this policy is used to suppress orphan node view in GMF view the policy to remove orphan
- * connection is more complex. It is dependent of the diagram. see remove OrphanConnectionView
- * policy
+ * this policy is used to suppress orphan node view in GMF view the policy to
+ * remove orphan connection is more complex. It is dependent of the diagram. see
+ * remove OrphanConnectionView policy
  * 
  */
 public class RemoveOrphanViewPolicy extends OrphanViewPolicy {

@@ -119,7 +119,8 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
 		installEditPolicy(ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY, new ShowHideCompartmentEditPolicy());
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
-		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
+		// XXX need an SCR to runtime to have another abstract superclass that
+		// would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
@@ -171,10 +172,10 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 			return true;
 		}
 
-
 		if(childEditPart instanceof ConditionalNodeStructuredActivityNodeContentCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getStructuredActivityNodeCompartment();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
+			setupContentPane(pane); // FIXME each comparment should handle his
+									// content pane in his own way
 			pane.add(((ConditionalNodeStructuredActivityNodeContentCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
@@ -191,7 +192,8 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 		}
 		if(childEditPart instanceof ConditionalNodeStructuredActivityNodeContentCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getStructuredActivityNodeCompartment();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
+			setupContentPane(pane); // FIXME each comparment should handle his
+									// content pane in his own way
 			pane.remove(((ConditionalNodeStructuredActivityNodeContentCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
@@ -244,8 +246,8 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 	/**
 	 * Creates figure for this edit part.
 	 * 
-	 * Body of this method does not depend on settings in generation model
-	 * so you may safely remove <i>generated</i> tag and modify it.
+	 * Body of this method does not depend on settings in generation model so
+	 * you may safely remove <i>generated</i> tag and modify it.
 	 * 
 	 * @generated
 	 */
@@ -259,8 +261,8 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 	}
 
 	/**
-	 * Default implementation treats passed figure as content pane.
-	 * Respects layout one may have set for generated figure.
+	 * Default implementation treats passed figure as content pane. Respects
+	 * layout one may have set for generated figure.
 	 * 
 	 * @param nodeShape
 	 *        instance of generated figure class
@@ -601,6 +603,9 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 		if(targetEditPart instanceof InputPinInBroadcastSignalActionEditPart) {
 			types.add(UMLElementTypes.ObjectFlow_4003);
 		}
+		if(targetEditPart instanceof CentralBufferNodeEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
 		if(targetEditPart instanceof InitialNodeEditPart) {
 			types.add(UMLElementTypes.ControlFlow_4004);
 		}
@@ -817,6 +822,9 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 		if(targetEditPart instanceof InputPinInBroadcastSignalActionEditPart) {
 			types.add(UMLElementTypes.ControlFlow_4004);
 		}
+		if(targetEditPart instanceof CentralBufferNodeEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
 		if(targetEditPart instanceof ValuePinInOpaqueActEditPart) {
 			types.add(UMLElementTypes.ExceptionHandler_4005);
 		}
@@ -952,6 +960,9 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 		if(targetEditPart instanceof InputPinInBroadcastSignalActionEditPart) {
 			types.add(UMLElementTypes.ExceptionHandler_4005);
 		}
+		if(targetEditPart instanceof CentralBufferNodeEditPart) {
+			types.add(UMLElementTypes.ExceptionHandler_4005);
+		}
 		return types;
 	}
 
@@ -1051,6 +1062,7 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 			types.add(UMLElementTypes.InputPin_3101);
 			types.add(UMLElementTypes.BroadcastSignalAction_3102);
 			types.add(UMLElementTypes.InputPin_3103);
+			types.add(UMLElementTypes.CentralBufferNode_3104);
 		} else if(relationshipType == UMLElementTypes.ControlFlow_4004) {
 			types.add(UMLElementTypes.InitialNode_3004);
 			types.add(UMLElementTypes.ActivityFinalNode_3005);
@@ -1124,6 +1136,7 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 			types.add(UMLElementTypes.InputPin_3101);
 			types.add(UMLElementTypes.BroadcastSignalAction_3102);
 			types.add(UMLElementTypes.InputPin_3103);
+			types.add(UMLElementTypes.CentralBufferNode_3104);
 		} else if(relationshipType == UMLElementTypes.ExceptionHandler_4005) {
 			types.add(UMLElementTypes.ValuePin_3015);
 			types.add(UMLElementTypes.ActionInputPin_3016);
@@ -1170,6 +1183,7 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 			types.add(UMLElementTypes.InputPin_3100);
 			types.add(UMLElementTypes.InputPin_3101);
 			types.add(UMLElementTypes.InputPin_3103);
+			types.add(UMLElementTypes.CentralBufferNode_3104);
 		}
 		return types;
 	}
@@ -1263,6 +1277,7 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 			types.add(UMLElementTypes.InputPin_3101);
 			types.add(UMLElementTypes.BroadcastSignalAction_3102);
 			types.add(UMLElementTypes.InputPin_3103);
+			types.add(UMLElementTypes.CentralBufferNode_3104);
 		} else if(relationshipType == UMLElementTypes.ControlFlow_4004) {
 			types.add(UMLElementTypes.InitialNode_3004);
 			types.add(UMLElementTypes.ActivityFinalNode_3005);
@@ -1336,6 +1351,7 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 			types.add(UMLElementTypes.InputPin_3101);
 			types.add(UMLElementTypes.BroadcastSignalAction_3102);
 			types.add(UMLElementTypes.InputPin_3103);
+			types.add(UMLElementTypes.CentralBufferNode_3104);
 		} else if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4006) {
 			types.add(UMLElementTypes.Comment_3080);
 		}
@@ -1343,7 +1359,8 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 	}
 
 	/**
-	 * @generated NOT Implements IPapyrusNodeUMLElementFigure (Used to apply stereotype) and Initialize the opacity preferences
+	 * @generated NOT Implements IPapyrusNodeUMLElementFigure (Used to apply
+	 *            stereotype) and Initialize the opacity preferences
 	 */
 	public class StructuredActivityNodeDescriptor extends RoundedRectangle implements IPapyrusNodeUMLElementFigure {
 
@@ -1365,8 +1382,7 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 		private StereotypeFigureHelper stereotypeHelper;
 
 		/**
-		 * Custom border
-		 * (Used to avoid the alpa setting affect the border)
+		 * Custom border (Used to avoid the alpa setting affect the border)
 		 * 
 		 * @generated NOT
 		 * @return
@@ -1385,35 +1401,17 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 
 			FlowLayoutAdvanced layoutThis = new FlowLayoutAdvanced();
 
-
-
-
 			layoutThis.setStretchMinorAxis(true);
-
-
-
 
 			layoutThis.setMinorAlignment(FlowLayout.ALIGN_CENTER);
 
-
-
-
 			layoutThis.setMajorAlignment(FlowLayout.ALIGN_TOPLEFT);
-
-
-
 
 			layoutThis.setMajorSpacing(0);
 
-
-
 			layoutThis.setMinorSpacing(0);
 
-
-
-
 			layoutThis.setHorizontal(false);
-
 
 			this.setLayoutManager(layoutThis);
 
@@ -1424,7 +1422,7 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 			this.setFill(true);
 
 			createContents();
-			//Initialize the opacity preferences
+			// Initialize the opacity preferences
 			OpacityFactoryHelper.initOpacityPreferences(IActivityPreferenceConstants.PREF_CONDITIONAL_NODE_ALPHA, store, this);
 			/*
 			 * Create the helper which will help to display stereotype
@@ -1455,7 +1453,6 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 		 */
 		private void createContents() {
 
-
 			fFigureCompartmentLabelStructuredActivityNode = new RoundedRectangle();
 			fFigureCompartmentLabelStructuredActivityNode.setCornerDimensions(new Dimension(getMapMode().DPtoLP(8), getMapMode().DPtoLP(8)));
 			fFigureCompartmentLabelStructuredActivityNode.setFill(false);
@@ -1464,56 +1461,29 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 
 			FlowLayoutAdvancedConstraint constraintFFigureCompartmentLabelStructuredActivityNode = new FlowLayoutAdvancedConstraint();
 
-
-
-
 			constraintFFigureCompartmentLabelStructuredActivityNode.setHasMinsize(true);
-
-
 
 			this.add(fFigureCompartmentLabelStructuredActivityNode, constraintFFigureCompartmentLabelStructuredActivityNode);
 
 			GravityConstrainedFlowLayout layoutFFigureCompartmentLabelStructuredActivityNode = new GravityConstrainedFlowLayout();
 
-
 			fFigureCompartmentLabelStructuredActivityNode.setLayoutManager(layoutFFigureCompartmentLabelStructuredActivityNode);
-
-
 
 			fKeyword = new WrappingLabel();
 
-
-
-
 			fKeyword.setTextJustification(SWT.LEFT);
-
-
-
 
 			fKeyword.setTextAlignment(PositionConstants.LEFT);
 
-
-
-
 			fKeyword.setTextWrap(true);
-
-
 
 			fKeyword.setBorder(new MarginBorder(getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5)));
 
 			GravityConstrainedFlowLayoutConstraint constraintFKeyword = new GravityConstrainedFlowLayoutConstraint();
 
-
-
-
 			constraintFKeyword.setAlign(GravityConstrainedFlowLayout.ALIGN_TOPLEFT);
 
-
-
 			fFigureCompartmentLabelStructuredActivityNode.add(fKeyword, constraintFKeyword);
-
-
-
 
 			fStructuredActivityNodeCompartment = new RoundedRectangle();
 			fStructuredActivityNodeCompartment.setCornerDimensions(new Dimension(getMapMode().DPtoLP(8), getMapMode().DPtoLP(8)));
@@ -1523,15 +1493,9 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 
 			FlowLayoutAdvancedConstraint constraintFStructuredActivityNodeCompartment = new FlowLayoutAdvancedConstraint();
 
-
-
-
 			constraintFStructuredActivityNodeCompartment.setFull(true);
 
-
-
 			this.add(fStructuredActivityNodeCompartment, constraintFStructuredActivityNodeCompartment);
-
 
 		}
 

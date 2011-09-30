@@ -24,13 +24,14 @@ import org.eclipse.gef.requests.GroupRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
-import org.eclipse.papyrus.diagram.activity.edit.commands.ElementToStereotypedShape;
 import org.eclipse.papyrus.commands.wrappers.GEFtoEMFCommandWrapper;
+import org.eclipse.papyrus.diagram.activity.edit.commands.ElementToStereotypedShape;
 import org.eclipse.papyrus.diagram.common.editpolicies.ChangeStereotypedShapeEditPolicy;
 import org.eclipse.swt.widgets.Display;
 
 /**
- * the goal of this class is to allow changing the aspect of an element by taking in account its stereotype
+ * the goal of this class is to allow changing the aspect of an element by
+ * taking in account its stereotype
  * 
  */
 public class ActivityDiagramChangeStereotypedShapeEditpolicy extends ChangeStereotypedShapeEditPolicy {
@@ -67,7 +68,6 @@ public class ActivityDiagramChangeStereotypedShapeEditpolicy extends ChangeStere
 			e.printStackTrace();
 		}
 	}
-
 
 	@Override
 	public void transformIntoNormalShape(final EditPart part) {

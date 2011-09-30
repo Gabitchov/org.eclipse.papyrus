@@ -104,8 +104,6 @@ public class DestroyObjectActionNameEditPart extends CompartmentEditPart impleme
 	 */
 	private String defaultText;
 
-
-
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
 	 * 
@@ -119,8 +117,6 @@ public class DestroyObjectActionNameEditPart extends CompartmentEditPart impleme
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
-
-
 
 	/**
 	 * @generated
@@ -573,12 +569,11 @@ public class DestroyObjectActionNameEditPart extends CompartmentEditPart impleme
 		return getPrimaryView();
 	}
 
-
-
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
-	 * @return an <code>int</code> corresponding to the kind of direct editor, @see org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition
+	 * @return an <code>int</code> corresponding to the kind of direct editor, @see
+	 *         org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition
 	 * @generated
 	 */
 	public int getDirectEditionType() {
@@ -678,8 +673,6 @@ public class DestroyObjectActionNameEditPart extends CompartmentEditPart impleme
 		}
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -695,7 +688,6 @@ public class DestroyObjectActionNameEditPart extends CompartmentEditPart impleme
 		super.removeNotationalListeners();
 		removeListenerFilter("PrimaryView"); //$NON-NLS-1$
 	}
-
 
 	/**
 	 * @generated
@@ -728,7 +720,6 @@ public class DestroyObjectActionNameEditPart extends CompartmentEditPart impleme
 			}
 		}
 
-
 		super.handleNotificationEvent(event);
 	}
 
@@ -740,13 +731,10 @@ public class DestroyObjectActionNameEditPart extends CompartmentEditPart impleme
 		return null;
 	}
 
-
-
 	/**
 	 * @generated
 	 */
 	private static final String ADD_PARENT_MODEL = "AddParentModel";
-
 
 	/**
 	 * @generated
@@ -773,7 +761,6 @@ public class DestroyObjectActionNameEditPart extends CompartmentEditPart impleme
 
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -781,6 +768,5 @@ public class DestroyObjectActionNameEditPart extends CompartmentEditPart impleme
 		removeListenerFilter(ADD_PARENT_MODEL);
 
 	}
-
 
 }

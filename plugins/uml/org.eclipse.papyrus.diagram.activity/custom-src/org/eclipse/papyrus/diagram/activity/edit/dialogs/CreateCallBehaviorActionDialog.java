@@ -36,7 +36,8 @@ import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.edit.providers.UMLItemPropertyDescriptor;
 
 /**
- * This class provides a dialog to initialize a CallBehaviorAction at its creation.
+ * This class provides a dialog to initialize a CallBehaviorAction at its
+ * creation.
  */
 public class CreateCallBehaviorActionDialog extends CreateCallActionDialog {
 
@@ -53,7 +54,8 @@ public class CreateCallBehaviorActionDialog extends CreateCallActionDialog {
 	}
 
 	/**
-	 * Get the id of the preference storing whether selection is the default choice.
+	 * Get the id of the preference storing whether selection is the default
+	 * choice.
 	 * 
 	 * @return preference id
 	 */

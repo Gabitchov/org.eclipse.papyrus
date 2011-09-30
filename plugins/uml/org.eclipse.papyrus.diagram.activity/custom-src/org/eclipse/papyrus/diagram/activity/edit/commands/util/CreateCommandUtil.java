@@ -28,28 +28,33 @@ import org.eclipse.uml2.uml.StructuredActivityNode;
 public class CreateCommandUtil {
 
 	/**
-	 * Check whether an Activity Partition can be created according to the element to edit and the node creation request
+	 * Check whether an Activity Partition can be created according to the
+	 * element to edit and the node creation request
 	 * 
 	 * @param request
-	 *        request to create an Activity Partition (and not an other element)
+	 *        request to create an Activity Partition (and not an other
+	 *        element)
 	 * @param elementToEdit
 	 *        the element the command must edit
 	 * @return true id a node creation command should be executable
 	 */
 	public static boolean canCreatePartition(IEditCommandRequest request, EObject elementToEdit) {
-		//		//check whether there is a model container parameter.
-		//		Object modelContainer = request.getParameter(GroupRequestConstants.MODEL_CONTAINERS);
-		//		if(modelContainer == null) {
-		//			// otherwise, simply take the command edited element
-		//			modelContainer = elementToEdit;
-		//		}
-		//		//check the container's type.
-		//		return modelContainer instanceof Activity || modelContainer instanceof ActivityPartition;
+		// //check whether there is a model container parameter.
+		// Object modelContainer =
+		// request.getParameter(GroupRequestConstants.MODEL_CONTAINERS);
+		// if(modelContainer == null) {
+		// // otherwise, simply take the command edited element
+		// modelContainer = elementToEdit;
+		// }
+		// //check the container's type.
+		// return modelContainer instanceof Activity || modelContainer
+		// instanceof ActivityPartition;
 		return true;
 	}
 
 	/**
-	 * Check whether an Activity Node can be created according to the element to edit and the node creation request
+	 * Check whether an Activity Node can be created according to the element to
+	 * edit and the node creation request
 	 * 
 	 * @param request
 	 *        request to create an Activity Node (and not an other element)
@@ -58,19 +63,22 @@ public class CreateCommandUtil {
 	 * @return true id a node creation command should be executable
 	 */
 	public static boolean canCreateNode(IEditCommandRequest request, EObject elementToEdit) {
-		//		//check whether there is a model container parameter.
-		//		Object modelContainer = request.getParameter(GroupRequestConstants.MODEL_CONTAINER);
-		//		if(modelContainer == null) {
-		//			// otherwise, simply take the command edited element
-		//			modelContainer = elementToEdit;
-		//		}
-		//		//check the container's type.
-		//		return modelContainer instanceof Activity || modelContainer instanceof StructuredActivityNode;
+		// //check whether there is a model container parameter.
+		// Object modelContainer =
+		// request.getParameter(GroupRequestConstants.MODEL_CONTAINER);
+		// if(modelContainer == null) {
+		// // otherwise, simply take the command edited element
+		// modelContainer = elementToEdit;
+		// }
+		// //check the container's type.
+		// return modelContainer instanceof Activity || modelContainer
+		// instanceof StructuredActivityNode;
 		return true;
 	}
 
 	/**
-	 * Set the node's parents : create in appropriate container and set extra parent reference if necessary.
+	 * Set the node's parents : create in appropriate container and set extra
+	 * parent reference if necessary.
 	 * 
 	 * @param newElement
 	 *        the element in creation
@@ -93,23 +101,24 @@ public class CreateCommandUtil {
 			// incorrect model container
 			return false;
 		}
-		//		// add extra parent reference
-		//		if(elementToEdit != owner) {
-		//			EObject childHolder = elementToEdit;
-		//			if(childHolder instanceof InterruptibleActivityRegion) {
-		//				((InterruptibleActivityRegion)childHolder).getNodes().add(newElement);
-		//			} else if(childHolder instanceof ActivityPartition) {
-		//				((ActivityPartition)childHolder).getNodes().add(newElement);
-		//			} else {
-		//				// incorrect referencing parent
-		//				return false;
-		//			}
-		//		}
+		// // add extra parent reference
+		// if(elementToEdit != owner) {
+		// EObject childHolder = elementToEdit;
+		// if(childHolder instanceof InterruptibleActivityRegion) {
+		// ((InterruptibleActivityRegion)childHolder).getNodes().add(newElement);
+		// } else if(childHolder instanceof ActivityPartition) {
+		// ((ActivityPartition)childHolder).getNodes().add(newElement);
+		// } else {
+		// // incorrect referencing parent
+		// return false;
+		// }
+		// }
 		return true;
 	}
 
 	/**
-	 * Set the structured activity node's parents : create in appropriate container and set extra parent reference if necessary.
+	 * Set the structured activity node's parents : create in appropriate
+	 * container and set extra parent reference if necessary.
 	 * 
 	 * @param newElement
 	 *        the element in creation
@@ -120,7 +129,7 @@ public class CreateCommandUtil {
 	 * @return false if command must be cancelled
 	 */
 	public static boolean setStructuredActivityNodeParents(StructuredActivityNode newElement, IEditCommandRequest request, EObject elementToEdit) {
-		//check whether there is a model container parameter.
+		// check whether there is a model container parameter.
 		EObject owner = elementToEdit;
 		// create in appropriate model container
 		if(owner instanceof Activity) {
@@ -131,23 +140,24 @@ public class CreateCommandUtil {
 			// incorrect model container
 			return false;
 		}
-		//		// add extra parent reference
-		//		if(elementToEdit != owner) {
-		//			EObject childHolder = elementToEdit;
-		//			if(childHolder instanceof InterruptibleActivityRegion) {
-		//				((InterruptibleActivityRegion)childHolder).getNodes().add(newElement);
-		//			} else if(childHolder instanceof ActivityPartition) {
-		//				((ActivityPartition)childHolder).getNodes().add(newElement);
-		//			} else {
-		//				// incorrect referencing parent
-		//				return false;
-		//			}
-		//		}
+		// // add extra parent reference
+		// if(elementToEdit != owner) {
+		// EObject childHolder = elementToEdit;
+		// if(childHolder instanceof InterruptibleActivityRegion) {
+		// ((InterruptibleActivityRegion)childHolder).getNodes().add(newElement);
+		// } else if(childHolder instanceof ActivityPartition) {
+		// ((ActivityPartition)childHolder).getNodes().add(newElement);
+		// } else {
+		// // incorrect referencing parent
+		// return false;
+		// }
+		// }
 		return true;
 	}
 
 	/**
-	 * Set the activity partition's parents : create in appropriate container and set extra parent reference if necessary.
+	 * Set the activity partition's parents : create in appropriate container
+	 * and set extra parent reference if necessary.
 	 * 
 	 * @param newElement
 	 *        the element in creation
@@ -158,7 +168,7 @@ public class CreateCommandUtil {
 	 * @return false if command must be cancelled
 	 */
 	public static boolean setActivityPartitionParents(ActivityPartition newElement, IEditCommandRequest request, EObject elementToEdit) {
-		//check whether there is a model container parameter.
+		// check whether there is a model container parameter.
 		EObject owner = elementToEdit;
 		// create in appropriate model container
 		if(owner instanceof Activity) {
@@ -169,16 +179,16 @@ public class CreateCommandUtil {
 			// incorrect model container
 			return false;
 		}
-		//		// add extra parent reference
-		//		if(elementToEdit != owner) {
-		//			EObject childHolder = elementToEdit;
-		//			if(childHolder instanceof ActivityPartition) {
-		//				((ActivityPartition)childHolder).getSubpartitions().add(newElement);
-		//			} else {
-		//				// incorrect referencing parent
-		//				return false;
-		//			}
-		//		}
+		// // add extra parent reference
+		// if(elementToEdit != owner) {
+		// EObject childHolder = elementToEdit;
+		// if(childHolder instanceof ActivityPartition) {
+		// ((ActivityPartition)childHolder).getSubpartitions().add(newElement);
+		// } else {
+		// // incorrect referencing parent
+		// return false;
+		// }
+		// }
 		return true;
 	}
 }

@@ -100,13 +100,10 @@ BorderedBorderItemEditPart {
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new InputPinInAddVariableValueActionAsInsertAtItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
-		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
+		// XXX need an SCR to runtime to have another abstract superclass that
+		// would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
-
-
-
-
 
 	/**
 	 * @generated
@@ -160,7 +157,6 @@ BorderedBorderItemEditPart {
 		return (PinDescriptor)primaryShape;
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -184,18 +180,16 @@ BorderedBorderItemEditPart {
 		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
 
-
-		//FIXME: workaround for #154536
+		// FIXME: workaround for #154536
 		result.getBounds().setSize(result.getPreferredSize());
 		return result;
 	}
 
-
 	/**
 	 * Creates figure for this edit part.
 	 * 
-	 * Body of this method does not depend on settings in generation model
-	 * so you may safely remove <i>generated</i> tag and modify it.
+	 * Body of this method does not depend on settings in generation model so
+	 * you may safely remove <i>generated</i> tag and modify it.
 	 * 
 	 * @generated
 	 */
@@ -209,8 +203,8 @@ BorderedBorderItemEditPart {
 	}
 
 	/**
-	 * Default implementation treats passed figure as content pane.
-	 * Respects layout one may have set for generated figure.
+	 * Default implementation treats passed figure as content pane. Respects
+	 * layout one may have set for generated figure.
 	 * 
 	 * @param nodeShape
 	 *        instance of generated figure class
@@ -495,6 +489,9 @@ BorderedBorderItemEditPart {
 		if(targetEditPart instanceof InputPinInBroadcastSignalActionEditPart) {
 			types.add(UMLElementTypes.ObjectFlow_4003);
 		}
+		if(targetEditPart instanceof CentralBufferNodeEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
 		if(targetEditPart instanceof InitialNodeEditPart) {
 			types.add(UMLElementTypes.ControlFlow_4004);
 		}
@@ -711,6 +708,9 @@ BorderedBorderItemEditPart {
 		if(targetEditPart instanceof InputPinInBroadcastSignalActionEditPart) {
 			types.add(UMLElementTypes.ControlFlow_4004);
 		}
+		if(targetEditPart instanceof CentralBufferNodeEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
 		return types;
 	}
 
@@ -792,6 +792,7 @@ BorderedBorderItemEditPart {
 			types.add(UMLElementTypes.InputPin_3101);
 			types.add(UMLElementTypes.BroadcastSignalAction_3102);
 			types.add(UMLElementTypes.InputPin_3103);
+			types.add(UMLElementTypes.CentralBufferNode_3104);
 		} else if(relationshipType == UMLElementTypes.ControlFlow_4004) {
 			types.add(UMLElementTypes.InitialNode_3004);
 			types.add(UMLElementTypes.ActivityFinalNode_3005);
@@ -865,6 +866,7 @@ BorderedBorderItemEditPart {
 			types.add(UMLElementTypes.InputPin_3101);
 			types.add(UMLElementTypes.BroadcastSignalAction_3102);
 			types.add(UMLElementTypes.InputPin_3103);
+			types.add(UMLElementTypes.CentralBufferNode_3104);
 		}
 		return types;
 	}
@@ -959,6 +961,7 @@ BorderedBorderItemEditPart {
 			types.add(UMLElementTypes.InputPin_3101);
 			types.add(UMLElementTypes.BroadcastSignalAction_3102);
 			types.add(UMLElementTypes.InputPin_3103);
+			types.add(UMLElementTypes.CentralBufferNode_3104);
 		} else if(relationshipType == UMLElementTypes.ControlFlow_4004) {
 			types.add(UMLElementTypes.InitialNode_3004);
 			types.add(UMLElementTypes.ActivityFinalNode_3005);
@@ -1032,6 +1035,7 @@ BorderedBorderItemEditPart {
 			types.add(UMLElementTypes.InputPin_3101);
 			types.add(UMLElementTypes.BroadcastSignalAction_3102);
 			types.add(UMLElementTypes.InputPin_3103);
+			types.add(UMLElementTypes.CentralBufferNode_3104);
 		} else if(relationshipType == UMLElementTypes.ExceptionHandler_4005) {
 			types.add(UMLElementTypes.OpaqueAction_3007);
 			types.add(UMLElementTypes.CallBehaviorAction_3008);
@@ -1059,21 +1063,15 @@ BorderedBorderItemEditPart {
 		return types;
 	}
 
-
-
-
-
 	/**
 	 * @generated
 	 */
 	public class PinDescriptor extends RectangleFigure {
 
-
 		/**
 		 * @generated
 		 */
 		private PolylineShape fOptionalArrowFigure;
-
 
 		/**
 		 * @generated
@@ -1088,17 +1086,11 @@ BorderedBorderItemEditPart {
 		 */
 		private void createContents() {
 
-
 			fOptionalArrowFigure = new PolylineShape();
 
 			this.add(fOptionalArrowFigure);
 
-
 		}
-
-
-
-
 
 		/**
 		 * @generated
@@ -1107,11 +1099,7 @@ BorderedBorderItemEditPart {
 			return fOptionalArrowFigure;
 		}
 
-
 	}
-
-
-
 
 	/**
 	 * @generated

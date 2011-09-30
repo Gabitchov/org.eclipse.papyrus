@@ -128,7 +128,7 @@ public abstract class CreateInvocationActionDialog extends FormDialog {
 	 * @return default parent to select
 	 */
 	private EObject getDefaultParent(Activity owner) {
-		//try recovering last user choice from preferences
+		// try recovering last user choice from preferences
 		IPreferenceStore prefStore = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
 		String ownerString = prefStore.getString(getCreationDefaultOwnerPreference());
 		if(ownerString != null && !"".equals(ownerString)) {
@@ -175,7 +175,8 @@ public abstract class CreateInvocationActionDialog extends FormDialog {
 
 		refreshSectionsEnable(isSelectionDefault());
 		hookListeners();
-		// invoked name is set after listeners, since we count on listener to update it properly
+		// invoked name is set after listeners, since we count on listener to
+		// update it properly
 		setInvokedName(null);
 
 		scrolledForm.reflow(true);
@@ -192,7 +193,8 @@ public abstract class CreateInvocationActionDialog extends FormDialog {
 	}
 
 	/**
-	 * Get the id of the preference storing whether selection is the default choice.
+	 * Get the id of the preference storing whether selection is the default
+	 * choice.
 	 * 
 	 * @return preference id
 	 */
@@ -206,8 +208,7 @@ public abstract class CreateInvocationActionDialog extends FormDialog {
 	abstract protected String getCreationDefaultOwnerPreference();
 
 	/**
-	 * Create the other needed sections.
-	 * Subclasses can override this method.
+	 * Create the other needed sections. Subclasses can override this method.
 	 * 
 	 * @param pParent
 	 *        the section's parent widget
@@ -215,7 +216,7 @@ public abstract class CreateInvocationActionDialog extends FormDialog {
 	 *        the form toolkit
 	 */
 	protected void createExtraSections(Composite pParent, FormToolkit pToolkit) {
-		//do nothing
+		// do nothing
 	}
 
 	/**
@@ -231,7 +232,8 @@ public abstract class CreateInvocationActionDialog extends FormDialog {
 	}
 
 	/**
-	 * Create the section to ask the user to choose or create an invoked element.
+	 * Create the section to ask the user to choose or create an invoked
+	 * element.
 	 * 
 	 * @param pParent
 	 *        the section's parent widget
@@ -258,7 +260,7 @@ public abstract class CreateInvocationActionDialog extends FormDialog {
 
 		// content of the section
 		selectionRadio = pToolkit.createButton(lBody, getSelectionLabel(), SWT.RADIO);
-		//selectionRadio.setSelection(false);
+		// selectionRadio.setSelection(false);
 		selectionRadio.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 3, 1));
 
 		pToolkit.createLabel(lBody, getInvokedObjectLabel(), SWT.NONE);
@@ -274,7 +276,8 @@ public abstract class CreateInvocationActionDialog extends FormDialog {
 	}
 
 	/**
-	 * Create the section to ask the user to choose or create an invoked element.
+	 * Create the section to ask the user to choose or create an invoked
+	 * element.
 	 * 
 	 * @param pParent
 	 *        the section's parent widget
@@ -303,7 +306,7 @@ public abstract class CreateInvocationActionDialog extends FormDialog {
 
 		// content of the section
 		creationRadio = pToolkit.createButton(lBody, getCreationLabel(), SWT.RADIO);
-		//creationRadio.setSelection(true);
+		// creationRadio.setSelection(true);
 		creationRadio.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 3, 1));
 
 		if(getPossibleInvokedTypes().length == 1) {
@@ -341,8 +344,8 @@ public abstract class CreateInvocationActionDialog extends FormDialog {
 	}
 
 	/**
-	 * Set correctly the invoked object, by creating it if needed.
-	 * Then, notifies that the ok button of this dialog has been pressed.
+	 * Set correctly the invoked object, by creating it if needed. Then,
+	 * notifies that the ok button of this dialog has been pressed.
 	 * 
 	 * @see org.eclipse.jface.dialogs.Dialog#okPressed()
 	 * 
@@ -517,7 +520,8 @@ public abstract class CreateInvocationActionDialog extends FormDialog {
 	}
 
 	/**
-	 * Define the object that will be invoked by the action (if selection mode is chosen)
+	 * Define the object that will be invoked by the action (if selection mode
+	 * is chosen)
 	 * 
 	 * @param invokedElement
 	 *        the selected element
@@ -549,7 +553,8 @@ public abstract class CreateInvocationActionDialog extends FormDialog {
 	}
 
 	/**
-	 * Define the object in which invoked object will be created (if creation mode is chosen)
+	 * Define the object in which invoked object will be created (if creation
+	 * mode is chosen)
 	 * 
 	 * @param invokedParent
 	 *        the selected parent
@@ -567,7 +572,8 @@ public abstract class CreateInvocationActionDialog extends FormDialog {
 	 * Refresh the enabled and disabled elements in various sections
 	 * 
 	 * @param isSelectionSelected
-	 *        true if we choose to select an existing element, false if we choose to create an element
+	 *        true if we choose to select an existing element, false if we
+	 *        choose to create an element
 	 */
 	protected void refreshSectionsEnable(boolean isSelectionSelected) {
 		// handle radio button value

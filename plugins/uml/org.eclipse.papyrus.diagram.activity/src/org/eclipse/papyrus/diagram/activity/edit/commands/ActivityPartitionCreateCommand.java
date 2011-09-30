@@ -75,7 +75,6 @@ public class ActivityPartitionCreateCommand extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -91,10 +90,7 @@ public class ActivityPartitionCreateCommand extends EditElementCommand {
 	 */
 	public boolean canExecute() {
 
-
 		return true;
-
-
 
 	}
 
@@ -109,8 +105,8 @@ public class ActivityPartitionCreateCommand extends EditElementCommand {
 		if(!CreateCommandUtil.setActivityPartitionParents(newElement, getRequest(), getElementToEdit())) {
 			return CommandResult.newCancelledCommandResult();
 		}
-		//		Activity owner = (Activity)getElementToEdit();
-		//		owner.getGroups().add(newElement);
+		// Activity owner = (Activity)getElementToEdit();
+		// owner.getGroups().add(newElement);
 
 		ElementInitializers.getInstance().init_ActivityPartition_3067(newElement);
 

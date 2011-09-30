@@ -75,7 +75,6 @@ public class InputPinInBroadcastSignalActionCreateCommand extends EditElementCom
 	 */
 	protected EObject getElementToEdit() {
 
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -91,10 +90,7 @@ public class InputPinInBroadcastSignalActionCreateCommand extends EditElementCom
 	 */
 	public boolean canExecute() {
 
-
 		return true;
-
-
 
 	}
 
@@ -103,13 +99,10 @@ public class InputPinInBroadcastSignalActionCreateCommand extends EditElementCom
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-
-
 		InputPin newElement = UMLFactory.eINSTANCE.createInputPin();
 
 		InvocationAction owner = (InvocationAction)getElementToEdit();
 		owner.getArguments().add(newElement);
-
 
 		ElementInitializers.getInstance().init_InputPin_3103(newElement);
 
@@ -118,9 +111,6 @@ public class InputPinInBroadcastSignalActionCreateCommand extends EditElementCom
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
-
-
-
 
 	/**
 	 * @generated

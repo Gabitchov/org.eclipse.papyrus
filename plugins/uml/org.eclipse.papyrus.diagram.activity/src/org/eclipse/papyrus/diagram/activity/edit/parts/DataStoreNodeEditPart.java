@@ -101,7 +101,8 @@ NamedElementEditPart {
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
-		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
+		// XXX need an SCR to runtime to have another abstract superclass that
+		// would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
@@ -112,8 +113,10 @@ NamedElementEditPart {
 	 **/
 	protected void handleNotificationEvent(Notification event) {
 		/*
-		 * when a node have external node labels, the methods refreshChildren() remove the EditPart corresponding to the Label from the EditPart
-		 * Registry. After that, we can't reset the visibility to true (using the Show/Hide Label Action)!
+		 * when a node have external node labels, the methods refreshChildren()
+		 * remove the EditPart corresponding to the Label from the EditPart
+		 * Registry. After that, we can't reset the visibility to true (using
+		 * the Show/Hide Label Action)!
 		 */
 		if(NotationPackage.eINSTANCE.getView_Visible().equals(event.getFeature())) {
 			Object notifier = event.getNotifier();
@@ -180,7 +183,6 @@ NamedElementEditPart {
 			((DataStoreNodeLabelEditPart)childEditPart).setLabel(getPrimaryShape().getObjectNodeLabel());
 			return true;
 		}
-
 
 		return false;
 	}
@@ -255,8 +257,8 @@ NamedElementEditPart {
 	/**
 	 * Creates figure for this edit part.
 	 * 
-	 * Body of this method does not depend on settings in generation model
-	 * so you may safely remove <i>generated</i> tag and modify it.
+	 * Body of this method does not depend on settings in generation model so
+	 * you may safely remove <i>generated</i> tag and modify it.
 	 * 
 	 * @generated
 	 */
@@ -270,8 +272,8 @@ NamedElementEditPart {
 	}
 
 	/**
-	 * Default implementation treats passed figure as content pane.
-	 * Respects layout one may have set for generated figure.
+	 * Default implementation treats passed figure as content pane. Respects
+	 * layout one may have set for generated figure.
 	 * 
 	 * @param nodeShape
 	 *        instance of generated figure class
@@ -561,6 +563,9 @@ NamedElementEditPart {
 		if(targetEditPart instanceof InputPinInBroadcastSignalActionEditPart) {
 			types.add(UMLElementTypes.ObjectFlow_4003);
 		}
+		if(targetEditPart instanceof CentralBufferNodeEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
 		if(targetEditPart instanceof InitialNodeEditPart) {
 			types.add(UMLElementTypes.ControlFlow_4004);
 		}
@@ -777,6 +782,9 @@ NamedElementEditPart {
 		if(targetEditPart instanceof InputPinInBroadcastSignalActionEditPart) {
 			types.add(UMLElementTypes.ControlFlow_4004);
 		}
+		if(targetEditPart instanceof CentralBufferNodeEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
 		return types;
 	}
 
@@ -858,6 +866,7 @@ NamedElementEditPart {
 			types.add(UMLElementTypes.InputPin_3101);
 			types.add(UMLElementTypes.BroadcastSignalAction_3102);
 			types.add(UMLElementTypes.InputPin_3103);
+			types.add(UMLElementTypes.CentralBufferNode_3104);
 		} else if(relationshipType == UMLElementTypes.ControlFlow_4004) {
 			types.add(UMLElementTypes.InitialNode_3004);
 			types.add(UMLElementTypes.ActivityFinalNode_3005);
@@ -931,6 +940,7 @@ NamedElementEditPart {
 			types.add(UMLElementTypes.InputPin_3101);
 			types.add(UMLElementTypes.BroadcastSignalAction_3102);
 			types.add(UMLElementTypes.InputPin_3103);
+			types.add(UMLElementTypes.CentralBufferNode_3104);
 		}
 		return types;
 	}
@@ -1025,6 +1035,7 @@ NamedElementEditPart {
 			types.add(UMLElementTypes.InputPin_3101);
 			types.add(UMLElementTypes.BroadcastSignalAction_3102);
 			types.add(UMLElementTypes.InputPin_3103);
+			types.add(UMLElementTypes.CentralBufferNode_3104);
 		} else if(relationshipType == UMLElementTypes.ControlFlow_4004) {
 			types.add(UMLElementTypes.InitialNode_3004);
 			types.add(UMLElementTypes.ActivityFinalNode_3005);
@@ -1098,6 +1109,7 @@ NamedElementEditPart {
 			types.add(UMLElementTypes.InputPin_3101);
 			types.add(UMLElementTypes.BroadcastSignalAction_3102);
 			types.add(UMLElementTypes.InputPin_3103);
+			types.add(UMLElementTypes.CentralBufferNode_3104);
 		} else if(relationshipType == UMLElementTypes.ExceptionHandler_4005) {
 			types.add(UMLElementTypes.OpaqueAction_3007);
 			types.add(UMLElementTypes.CallBehaviorAction_3008);
@@ -1148,19 +1160,21 @@ NamedElementEditPart {
 		 * @generated NOT use super figure name label instead
 		 */
 		private void createContents() {
-			//use super figure name label instead
+			// use super figure name label instead
 			getNameLabel().setTextJustification(WrappingLabel.CENTER);
 			getNameLabel().setAlignment(WrappingLabel.CENTER);
 			getNameLabel().setTextWrap(true);
 			getNameLabel().setBorder(new MarginBorder(getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5)));
 
-			//			fObjectNodeLabel = new WrappingLabel();
+			// fObjectNodeLabel = new WrappingLabel();
 			//
 			//
 			//
-			//			fObjectNodeLabel.setBorder(new MarginBorder(getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5)));
+			// fObjectNodeLabel.setBorder(new
+			// MarginBorder(getMapMode().DPtoLP(5), getMapMode().DPtoLP(5),
+			// getMapMode().DPtoLP(5), getMapMode().DPtoLP(5)));
 			//
-			//			this.add(fObjectNodeLabel);
+			// this.add(fObjectNodeLabel);
 		}
 
 		/**
@@ -1169,7 +1183,7 @@ NamedElementEditPart {
 		public WrappingLabel getObjectNodeLabel() {
 			// get label from super figure instead
 			return getNameLabel();
-			//return fObjectNodeLabel;
+			// return fObjectNodeLabel;
 		}
 
 	}

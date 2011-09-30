@@ -100,7 +100,8 @@ public class WarningAndCreateParameterDialog extends MessageDialog {
 	}
 
 	/**
-	 * Create the deactivated link and the warning message for parameter creation
+	 * Create the deactivated link and the warning message for parameter
+	 * creation
 	 * 
 	 * @see org.eclipse.papyrus.diagram.activity.edit.dialogs.WarningAndLinkDialog#createCustomArea(org.eclipse.swt.widgets.Composite)
 	 * @param parent

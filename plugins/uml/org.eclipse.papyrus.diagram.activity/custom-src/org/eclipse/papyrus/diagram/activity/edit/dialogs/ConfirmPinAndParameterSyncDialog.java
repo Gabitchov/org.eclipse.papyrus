@@ -33,7 +33,8 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.uml2.uml.NamedElement;
 
 /**
- * This class enables to open a dialog to ask the user to confirm he wants to update a Parameter and associated Pins
+ * This class enables to open a dialog to ask the user to confirm he wants to
+ * update a Parameter and associated Pins
  * 
  */
 public class ConfirmPinAndParameterSyncDialog extends MessageDialog {
