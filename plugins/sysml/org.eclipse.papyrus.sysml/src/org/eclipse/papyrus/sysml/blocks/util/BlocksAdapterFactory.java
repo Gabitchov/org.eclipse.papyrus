@@ -30,8 +30,9 @@ import org.eclipse.papyrus.sysml.blocks.Unit;
 import org.eclipse.papyrus.sysml.blocks.ValueType;
 
 /**
- * <!-- begin-user-doc --> The <b>Adapter Factory</b> for the model. It provides an adapter <code>createXXX</code> method for each class of the model.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> The <b>Adapter Factory</b> for the model. It provides
+ * an adapter <code>createXXX</code> method for each class of the model. <!--
+ * end-user-doc -->
  * 
  * @see org.eclipse.papyrus.sysml.blocks.BlocksPackage
  * @generated
@@ -39,17 +40,15 @@ import org.eclipse.papyrus.sysml.blocks.ValueType;
 public class BlocksAdapterFactory extends AdapterFactoryImpl {
 
 	/**
-	 * The cached model package.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached model package. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	protected static BlocksPackage modelPackage;
 
 	/**
-	 * The switch that delegates to the <code>createXXX</code> methods.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * The switch that delegates to the <code>createXXX</code> methods. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -112,8 +111,8 @@ public class BlocksAdapterFactory extends AdapterFactoryImpl {
 	};
 
 	/**
-	 * Creates an instance of the adapter factory.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates an instance of the adapter factory. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -124,8 +123,8 @@ public class BlocksAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates an adapter for the <code>target</code>.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates an adapter for the <code>target</code>. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @param target
 	 *        the object to adapt.
@@ -138,10 +137,11 @@ public class BlocksAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class ' {@link org.eclipse.papyrus.sysml.blocks.BindingConnector <em>Binding Connector</em>}'. <!--
-	 * begin-user-doc --> This default implementation returns null so that we can easily ignore
-	 * cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
-	 * end-user-doc -->
+	 * Creates a new adapter for an object of class ' {@link org.eclipse.papyrus.sysml.blocks.BindingConnector
+	 * <em>Binding Connector</em>}'. <!-- begin-user-doc --> This default
+	 * implementation returns null so that we can easily ignore cases; it's
+	 * useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
 	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.sysml.blocks.BindingConnector
@@ -152,10 +152,10 @@ public class BlocksAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.sysml.blocks.Block <em>Block</em>}'.
-	 * <!-- begin-user-doc --> This default implementation returns null so that we
-	 * can easily ignore cases; it's useful to ignore a case when inheritance will catch all the
-	 * cases anyway. <!-- end-user-doc -->
+	 * Creates a new adapter for an object of class ' {@link org.eclipse.papyrus.sysml.blocks.Block <em>Block</em>}'. <!--
+	 * begin-user-doc --> This default implementation returns null so that we
+	 * can easily ignore cases; it's useful to ignore a case when inheritance
+	 * will catch all the cases anyway. <!-- end-user-doc -->
 	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.sysml.blocks.Block
@@ -166,10 +166,11 @@ public class BlocksAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class ' {@link org.eclipse.papyrus.sysml.blocks.ConnectorProperty <em>Connector Property</em>}'. <!--
-	 * begin-user-doc --> This default implementation returns null so that we can easily ignore
-	 * cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
-	 * end-user-doc -->
+	 * Creates a new adapter for an object of class ' {@link org.eclipse.papyrus.sysml.blocks.ConnectorProperty
+	 * <em>Connector Property</em>}'. <!-- begin-user-doc --> This default
+	 * implementation returns null so that we can easily ignore cases; it's
+	 * useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
 	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.sysml.blocks.ConnectorProperty
@@ -180,10 +181,10 @@ public class BlocksAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.sysml.blocks.Dimension <em>Dimension</em>}'.
-	 * <!-- begin-user-doc
-	 * --> This default implementation returns null so that we can easily ignore cases; it's useful
-	 * to ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
+	 * Creates a new adapter for an object of class ' {@link org.eclipse.papyrus.sysml.blocks.Dimension <em>Dimension</em>}'.
+	 * <!-- begin-user-doc --> This default implementation returns null so that
+	 * we can easily ignore cases; it's useful to ignore a case when inheritance
+	 * will catch all the cases anyway. <!-- end-user-doc -->
 	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.sysml.blocks.Dimension
@@ -194,10 +195,11 @@ public class BlocksAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.sysml.blocks.DistributedProperty <em>Distributed Property</em>}'.
-	 * <!-- begin-user-doc --> This default implementation returns null so that we can easily ignore
-	 * cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
-	 * end-user-doc -->
+	 * Creates a new adapter for an object of class ' {@link org.eclipse.papyrus.sysml.blocks.DistributedProperty
+	 * <em>Distributed Property</em>}'. <!-- begin-user-doc --> This default
+	 * implementation returns null so that we can easily ignore cases; it's
+	 * useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
 	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.sysml.blocks.DistributedProperty
@@ -208,9 +210,8 @@ public class BlocksAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for the default case.
-	 * <!-- begin-user-doc --> This default
-	 * implementation returns null. <!-- end-user-doc -->
+	 * Creates a new adapter for the default case. <!-- begin-user-doc --> This
+	 * default implementation returns null. <!-- end-user-doc -->
 	 * 
 	 * @return the new adapter.
 	 * @generated
@@ -220,10 +221,11 @@ public class BlocksAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.sysml.blocks.NestedConnectorEnd <em>Nested Connector End</em>}'.
-	 * <!-- begin-user-doc --> This default implementation returns null so that we can easily ignore
-	 * cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
-	 * end-user-doc -->
+	 * Creates a new adapter for an object of class ' {@link org.eclipse.papyrus.sysml.blocks.NestedConnectorEnd
+	 * <em>Nested Connector End</em>}'. <!-- begin-user-doc --> This default
+	 * implementation returns null so that we can easily ignore cases; it's
+	 * useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
 	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.sysml.blocks.NestedConnectorEnd
@@ -234,10 +236,11 @@ public class BlocksAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.sysml.blocks.ParticipantProperty <em>Participant Property</em>}'.
-	 * <!-- begin-user-doc --> This default implementation returns null so that we can easily ignore
-	 * cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
-	 * end-user-doc -->
+	 * Creates a new adapter for an object of class ' {@link org.eclipse.papyrus.sysml.blocks.ParticipantProperty
+	 * <em>Participant Property</em>}'. <!-- begin-user-doc --> This default
+	 * implementation returns null so that we can easily ignore cases; it's
+	 * useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
 	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.sysml.blocks.ParticipantProperty
@@ -248,9 +251,10 @@ public class BlocksAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.sysml.blocks.PropertySpecificType <em>Property Specific Type</em>}'.
-	 * <!-- begin-user-doc --> This default implementation returns null so that we can easily
-	 * ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * Creates a new adapter for an object of class ' {@link org.eclipse.papyrus.sysml.blocks.PropertySpecificType
+	 * <em>Property Specific Type</em>}'. <!-- begin-user-doc --> This default
+	 * implementation returns null so that we can easily ignore cases; it's
+	 * useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * 
 	 * @return the new adapter.
@@ -262,10 +266,10 @@ public class BlocksAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.sysml.blocks.Unit <em>Unit</em>}'.
-	 * <!-- begin-user-doc --> This default implementation returns null so that we
-	 * can easily ignore cases; it's useful to ignore a case when inheritance will catch all the
-	 * cases anyway. <!-- end-user-doc -->
+	 * Creates a new adapter for an object of class ' {@link org.eclipse.papyrus.sysml.blocks.Unit <em>Unit</em>}'. <!--
+	 * begin-user-doc --> This default implementation returns null so that we
+	 * can easily ignore cases; it's useful to ignore a case when inheritance
+	 * will catch all the cases anyway. <!-- end-user-doc -->
 	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.sysml.blocks.Unit
@@ -276,10 +280,10 @@ public class BlocksAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.sysml.blocks.ValueType <em>Value Type</em>}'.
-	 * <!-- begin-user-doc
-	 * --> This default implementation returns null so that we can easily ignore cases; it's useful
-	 * to ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
+	 * Creates a new adapter for an object of class ' {@link org.eclipse.papyrus.sysml.blocks.ValueType <em>Value Type</em>}'.
+	 * <!-- begin-user-doc --> This default implementation returns null so that
+	 * we can easily ignore cases; it's useful to ignore a case when inheritance
+	 * will catch all the cases anyway. <!-- end-user-doc -->
 	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.sysml.blocks.ValueType
@@ -291,9 +295,9 @@ public class BlocksAdapterFactory extends AdapterFactoryImpl {
 
 	/**
 	 * Returns whether this factory is applicable for the type of the object.
-	 * <!-- begin-user-doc
-	 * --> This implementation returns <code>true</code> if the object is either the model's package
-	 * or is an instance object of the model. <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> This implementation returns <code>true</code> if
+	 * the object is either the model's package or is an instance object of the
+	 * model. <!-- end-user-doc -->
 	 * 
 	 * @return whether this factory is applicable for the type of the object.
 	 * @generated

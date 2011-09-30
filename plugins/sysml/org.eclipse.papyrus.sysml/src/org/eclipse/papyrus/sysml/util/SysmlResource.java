@@ -15,7 +15,6 @@ package org.eclipse.papyrus.sysml.util;
 
 import org.eclipse.papyrus.sysml.SysmlPackage;
 
-
 public class SysmlResource {
 
 	public static final String LIBRARIES_PATHMAP = "pathmap://SysML_LIBRARIES/"; //$NON-NLS-1$
@@ -107,7 +106,6 @@ public class SysmlResource {
 
 	public static String REQUIREMENT_RELATED_ID = "SysML::Requirements::RequirementRelated";
 
-
 	// SubProfiles ids
 	public static String SYSML_ID = "SysML";
 
@@ -125,8 +123,8 @@ public class SysmlResource {
 
 	public static String REQUIREMENTS_ID = "SysML::Requirements";
 
-	// stereotype properties  ids
-	//requirements properties
+	// stereotype properties ids
+	// requirements properties
 	@Deprecated
 	public static String REQUIREMENT_BASE_CLASS_ID = "base_Class"; //$NON-NLS-1$
 
@@ -156,6 +154,5 @@ public class SysmlResource {
 
 	@Deprecated
 	public static String REQUIREMENT_VERIFIED_BY_ID = "verifiedBy";//$NON-NLS-1$
-
 
 }

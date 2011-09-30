@@ -23,7 +23,8 @@ import org.eclipse.papyrus.sysml.statemachines.StatemachinesFactory;
 import org.eclipse.papyrus.sysml.statemachines.StatemachinesPackage;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!--
+ * end-user-doc -->
  * 
  * @generated
  */
@@ -41,8 +42,8 @@ public class StatemachinesFactoryImpl extends EFactoryImpl implements Statemachi
 	}
 
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates the default factory implementation. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -59,8 +60,8 @@ public class StatemachinesFactoryImpl extends EFactoryImpl implements Statemachi
 	}
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates an instance of the factory. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * 
 	 * @generated
 	 */

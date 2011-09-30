@@ -24,12 +24,16 @@ import org.eclipse.uml2.uml.Connector;
 import org.eclipse.uml2.uml.Property;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Connector Property</b></em> '. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Connector Property</b></em> '. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.sysml.blocks.impl.ConnectorPropertyImpl#getBase_Property <em>Base Property</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.blocks.impl.ConnectorPropertyImpl#getConnector <em>Connector</em>}</li>
+ * <li>
+ * {@link org.eclipse.papyrus.sysml.blocks.impl.ConnectorPropertyImpl#getBase_Property
+ * <em>Base Property</em>}</li>
+ * <li>
+ * {@link org.eclipse.papyrus.sysml.blocks.impl.ConnectorPropertyImpl#getConnector
+ * <em>Connector</em>}</li>
  * </ul>
  * </p>
  * 
@@ -38,8 +42,9 @@ import org.eclipse.uml2.uml.Property;
 public class ConnectorPropertyImpl extends EObjectImpl implements ConnectorProperty {
 
 	/**
-	 * The cached value of the '{@link #getBase_Property() <em>Base Property</em>}' reference. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getBase_Property()
+	 * <em>Base Property</em>}' reference. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * 
 	 * @see #getBase_Property()
 	 * @generated
@@ -48,8 +53,8 @@ public class ConnectorPropertyImpl extends EObjectImpl implements ConnectorPrope
 	protected Property base_Property;
 
 	/**
-	 * The cached value of the '{@link #getConnector() <em>Connector</em>}' reference. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getConnector() <em>Connector</em>}'
+	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getConnector()
 	 * @generated

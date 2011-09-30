@@ -28,7 +28,8 @@ import org.eclipse.papyrus.sysml.portandflows.PortandflowsFactory;
 import org.eclipse.papyrus.sysml.portandflows.PortandflowsPackage;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!--
+ * end-user-doc -->
  * 
  * @generated
  */
@@ -46,8 +47,8 @@ public class PortandflowsFactoryImpl extends EFactoryImpl implements Portandflow
 	}
 
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates the default factory implementation. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -64,8 +65,8 @@ public class PortandflowsFactoryImpl extends EFactoryImpl implements Portandflow
 	}
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates an instance of the factory. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * 
 	 * @generated
 	 */

@@ -23,11 +23,13 @@ import org.eclipse.papyrus.sysml.blocks.BlocksPackage;
 import org.eclipse.uml2.uml.Connector;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Binding Connector</b></em> '. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Binding Connector</b></em> '. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.sysml.blocks.impl.BindingConnectorImpl#getBase_Connector <em>Base Connector</em>}</li>
+ * <li>
+ * {@link org.eclipse.papyrus.sysml.blocks.impl.BindingConnectorImpl#getBase_Connector
+ * <em>Base Connector</em>}</li>
  * </ul>
  * </p>
  * 
@@ -36,8 +38,9 @@ import org.eclipse.uml2.uml.Connector;
 public class BindingConnectorImpl extends EObjectImpl implements BindingConnector {
 
 	/**
-	 * The cached value of the '{@link #getBase_Connector() <em>Base Connector</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getBase_Connector()
+	 * <em>Base Connector</em>}' reference. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * 
 	 * @see #getBase_Connector()
 	 * @generated

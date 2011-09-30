@@ -22,7 +22,9 @@ import org.eclipse.uml2.uml.ActivityPartition;
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.papyrus.sysml.allocations.AllocateActivityPartition#getBase_ActivityPartition <em>Base Activity Partition</em>}</li>
+ * <li>
+ * {@link org.eclipse.papyrus.sysml.allocations.AllocateActivityPartition#getBase_ActivityPartition
+ * <em>Base Activity Partition</em>}</li>
  * </ul>
  * </p>
  * 
@@ -33,8 +35,8 @@ import org.eclipse.uml2.uml.ActivityPartition;
 public interface AllocateActivityPartition extends EObject {
 
 	/**
-	 * Returns the value of the '<em><b>Base Activity Partition</b></em>' reference. <!--
-	 * begin-user-doc -->
+	 * Returns the value of the '<em><b>Base Activity Partition</b></em>'
+	 * reference. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Base Activity Partition</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
@@ -49,12 +51,13 @@ public interface AllocateActivityPartition extends EObject {
 	ActivityPartition getBase_ActivityPartition();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.sysml.allocations.AllocateActivityPartition#getBase_ActivityPartition
-	 * <em>Base Activity Partition</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the ' {@link org.eclipse.papyrus.sysml.allocations.AllocateActivityPartition#getBase_ActivityPartition
+	 * <em>Base Activity Partition</em>}' reference. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @param value
-	 *        the new value of the '<em>Base Activity Partition</em>' reference.
+	 *        the new value of the '<em>Base Activity Partition</em>'
+	 *        reference.
 	 * @see #getBase_ActivityPartition()
 	 * @generated
 	 */

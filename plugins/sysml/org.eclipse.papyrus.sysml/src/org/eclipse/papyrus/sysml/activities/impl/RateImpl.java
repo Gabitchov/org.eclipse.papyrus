@@ -25,14 +25,17 @@ import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.Parameter;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Rate</b></em>'. <!--
- * end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Rate</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.sysml.activities.impl.RateImpl#getBase_Parameter <em>Base Parameter</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.activities.impl.RateImpl#getBase_ActivityEdge <em>Base Activity Edge</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.activities.impl.RateImpl#getRate <em>Rate</em>}</li>
+ * <li>
+ * {@link org.eclipse.papyrus.sysml.activities.impl.RateImpl#getBase_Parameter
+ * <em>Base Parameter</em>}</li>
+ * <li>
+ * {@link org.eclipse.papyrus.sysml.activities.impl.RateImpl#getBase_ActivityEdge
+ * <em>Base Activity Edge</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.activities.impl.RateImpl#getRate <em> Rate</em>}</li>
  * </ul>
  * </p>
  * 
@@ -41,8 +44,9 @@ import org.eclipse.uml2.uml.Parameter;
 public class RateImpl extends EObjectImpl implements Rate {
 
 	/**
-	 * The cached value of the '{@link #getBase_Parameter() <em>Base Parameter</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getBase_Parameter()
+	 * <em>Base Parameter</em>}' reference. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * 
 	 * @see #getBase_Parameter()
 	 * @generated
@@ -51,8 +55,9 @@ public class RateImpl extends EObjectImpl implements Rate {
 	protected Parameter base_Parameter;
 
 	/**
-	 * The cached value of the '{@link #getBase_ActivityEdge() <em>Base Activity Edge</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getBase_ActivityEdge()
+	 * <em>Base Activity Edge</em>}' reference. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * 
 	 * @see #getBase_ActivityEdge()
 	 * @generated
@@ -62,8 +67,7 @@ public class RateImpl extends EObjectImpl implements Rate {
 
 	/**
 	 * The cached value of the '{@link #getRate() <em>Rate</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getRate()
 	 * @generated

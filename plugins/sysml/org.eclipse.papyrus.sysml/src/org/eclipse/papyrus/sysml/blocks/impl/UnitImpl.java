@@ -24,13 +24,14 @@ import org.eclipse.papyrus.sysml.blocks.Unit;
 import org.eclipse.uml2.uml.InstanceSpecification;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Unit</b></em>'. <!--
- * end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Unit</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.sysml.blocks.impl.UnitImpl#getBase_InstanceSpecification <em>Base Instance Specification</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.blocks.impl.UnitImpl#getDimension <em>Dimension</em>}</li>
+ * <li>
+ * {@link org.eclipse.papyrus.sysml.blocks.impl.UnitImpl#getBase_InstanceSpecification
+ * <em>Base Instance Specification</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.blocks.impl.UnitImpl#getDimension <em> Dimension</em>}</li>
  * </ul>
  * </p>
  * 
@@ -40,8 +41,8 @@ public class UnitImpl extends EObjectImpl implements Unit {
 
 	/**
 	 * The cached value of the '{@link #getBase_InstanceSpecification()
-	 * <em>Base Instance Specification</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
+	 * <em>Base Instance Specification</em>}' reference. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @see #getBase_InstanceSpecification()
 	 * @generated
@@ -50,8 +51,8 @@ public class UnitImpl extends EObjectImpl implements Unit {
 	protected InstanceSpecification base_InstanceSpecification;
 
 	/**
-	 * The cached value of the '{@link #getDimension() <em>Dimension</em>}' reference. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getDimension() <em>Dimension</em>}'
+	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getDimension()
 	 * @generated

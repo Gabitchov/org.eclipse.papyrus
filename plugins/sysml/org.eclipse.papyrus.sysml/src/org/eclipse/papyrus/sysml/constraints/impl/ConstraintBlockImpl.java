@@ -19,8 +19,7 @@ import org.eclipse.papyrus.sysml.constraints.ConstraintBlock;
 import org.eclipse.papyrus.sysml.constraints.ConstraintsPackage;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Constraint Block</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Constraint Block</b></em>'. <!-- end-user-doc -->
  * <p>
  * </p>
  * 

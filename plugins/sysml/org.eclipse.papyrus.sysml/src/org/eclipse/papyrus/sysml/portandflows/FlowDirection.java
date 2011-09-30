@@ -21,7 +21,8 @@ import org.eclipse.emf.common.util.Enumerator;
 
 /**
  * <!-- begin-user-doc --> A representation of the literals of the enumeration ' <em><b>Flow Direction</b></em>', and utility methods for working with
- * them. <!-- end-user-doc -->
+ * them.
+ * <!-- end-user-doc -->
  * 
  * @see org.eclipse.papyrus.sysml.portandflows.PortandflowsPackage#getFlowDirection()
  * @model
@@ -29,8 +30,8 @@ import org.eclipse.emf.common.util.Enumerator;
  */
 public enum FlowDirection implements Enumerator {
 	/**
-	 * The '<em><b>In</b></em>' literal object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The '<em><b>In</b></em>' literal object. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * 
 	 * @see #IN_VALUE
 	 * @generated
@@ -39,8 +40,8 @@ public enum FlowDirection implements Enumerator {
 	IN(0, "in", "in"),
 
 	/**
-	 * The '<em><b>Out</b></em>' literal object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The '<em><b>Out</b></em>' literal object. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * 
 	 * @see #OUT_VALUE
 	 * @generated
@@ -49,8 +50,8 @@ public enum FlowDirection implements Enumerator {
 	OUT(1, "out", "out"),
 
 	/**
-	 * The '<em><b>Inout</b></em>' literal object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The '<em><b>Inout</b></em>' literal object. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * 
 	 * @see #INOUT_VALUE
 	 * @generated
@@ -59,8 +60,7 @@ public enum FlowDirection implements Enumerator {
 	INOUT(2, "inout", "inout");
 
 	/**
-	 * The '<em><b>In</b></em>' literal value.
-	 * <!-- begin-user-doc -->
+	 * The '<em><b>In</b></em>' literal value. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of '<em><b>In</b></em>' literal object isn't clear, there really should be more of a description here...
 	 * </p>
@@ -74,8 +74,7 @@ public enum FlowDirection implements Enumerator {
 	public static final int IN_VALUE = 0;
 
 	/**
-	 * The '<em><b>Out</b></em>' literal value.
-	 * <!-- begin-user-doc -->
+	 * The '<em><b>Out</b></em>' literal value. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of '<em><b>Out</b></em>' literal object isn't clear, there really should be more of a description here...
 	 * </p>
@@ -89,8 +88,7 @@ public enum FlowDirection implements Enumerator {
 	public static final int OUT_VALUE = 1;
 
 	/**
-	 * The '<em><b>Inout</b></em>' literal value.
-	 * <!-- begin-user-doc -->
+	 * The '<em><b>Inout</b></em>' literal value. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of '<em><b>Inout</b></em>' literal object isn't clear, there really should be more of a description here...
 	 * </p>
@@ -104,25 +102,24 @@ public enum FlowDirection implements Enumerator {
 	public static final int INOUT_VALUE = 2;
 
 	/**
-	 * An array of all the '<em><b>Flow Direction</b></em>' enumerators.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * An array of all the '<em><b>Flow Direction</b></em>' enumerators. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	private static final FlowDirection[] VALUES_ARRAY = new FlowDirection[]{ IN, OUT, INOUT, };
 
 	/**
-	 * A public read-only list of all the '<em><b>Flow Direction</b></em>' enumerators. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * A public read-only list of all the '<em><b>Flow Direction</b></em>'
+	 * enumerators. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	public static final List<FlowDirection> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>Flow Direction</b></em>' literal with the specified integer value. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the '<em><b>Flow Direction</b></em>' literal with the specified
+	 * integer value. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -139,8 +136,8 @@ public enum FlowDirection implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Flow Direction</b></em>' literal with the specified literal value. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the '<em><b>Flow Direction</b></em>' literal with the specified
+	 * literal value. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -155,8 +152,8 @@ public enum FlowDirection implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Flow Direction</b></em>' literal with the specified name. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the '<em><b>Flow Direction</b></em>' literal with the specified
+	 * name. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -192,8 +189,8 @@ public enum FlowDirection implements Enumerator {
 	private final String literal;
 
 	/**
-	 * Only this class can construct instances.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Only this class can construct instances. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -231,8 +228,8 @@ public enum FlowDirection implements Enumerator {
 	}
 
 	/**
-	 * Returns the literal value of the enumerator, which is its string representation. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the literal value of the enumerator, which is its string
+	 * representation. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */

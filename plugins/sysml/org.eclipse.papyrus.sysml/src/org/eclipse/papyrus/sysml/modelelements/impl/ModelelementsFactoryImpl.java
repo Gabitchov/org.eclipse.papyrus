@@ -27,7 +27,8 @@ import org.eclipse.papyrus.sysml.modelelements.View;
 import org.eclipse.papyrus.sysml.modelelements.ViewPoint;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!--
+ * end-user-doc -->
  * 
  * @generated
  */
@@ -45,8 +46,8 @@ public class ModelelementsFactoryImpl extends EFactoryImpl implements Modeleleme
 	}
 
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates the default factory implementation. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -63,8 +64,8 @@ public class ModelelementsFactoryImpl extends EFactoryImpl implements Modeleleme
 	}
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates an instance of the factory. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * 
 	 * @generated
 	 */

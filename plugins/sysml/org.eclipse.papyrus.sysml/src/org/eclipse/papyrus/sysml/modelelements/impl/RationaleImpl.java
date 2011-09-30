@@ -23,12 +23,13 @@ import org.eclipse.papyrus.sysml.modelelements.Rationale;
 import org.eclipse.uml2.uml.Comment;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Rationale</b></em>'. <!--
- * end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Rationale</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.sysml.modelelements.impl.RationaleImpl#getBase_Comment <em>Base Comment</em>}</li>
+ * <li>
+ * {@link org.eclipse.papyrus.sysml.modelelements.impl.RationaleImpl#getBase_Comment
+ * <em>Base Comment</em>}</li>
  * </ul>
  * </p>
  * 
@@ -37,8 +38,7 @@ import org.eclipse.uml2.uml.Comment;
 public class RationaleImpl extends EObjectImpl implements Rationale {
 
 	/**
-	 * The cached value of the '{@link #getBase_Comment() <em>Base Comment</em>}' reference. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getBase_Comment() <em>Base Comment</em>} ' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getBase_Comment()
 	 * @generated

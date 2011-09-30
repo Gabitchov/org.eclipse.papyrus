@@ -46,7 +46,8 @@ import org.eclipse.papyrus.uml.standard.StandardPackage;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!--
+ * end-user-doc -->
  * 
  * @generated
  */
@@ -60,7 +61,8 @@ public class AllocationsPackageImpl extends EPackageImpl implements AllocationsP
 	private static boolean isInited = false;
 
 	/**
-	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
+	 * Creates, registers, and initializes the <b>Package</b> for this model,
+	 * and for any others upon which it depends.
 	 * 
 	 * <p>
 	 * This method is used to initialize {@link AllocationsPackage#eINSTANCE} when that field is accessed. Clients should not invoke it directly.
@@ -124,7 +126,6 @@ public class AllocationsPackageImpl extends EPackageImpl implements AllocationsP
 		// Mark meta-data to indicate it can't be changed
 		theAllocationsPackage.freeze();
 
-
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(AllocationsPackage.eNS_URI, theAllocationsPackage);
 		return theAllocationsPackage;
@@ -167,8 +168,7 @@ public class AllocationsPackageImpl extends EPackageImpl implements AllocationsP
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the
-	 * package
-	 * package URI value.
+	 * package package URI value.
 	 * <p>
 	 * Note: the correct way to create the package is via the static factory method {@link #init init()}, which also performs initialization of the
 	 * package, or returns the registered package, if one already exists. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -183,9 +183,9 @@ public class AllocationsPackageImpl extends EPackageImpl implements AllocationsP
 	}
 
 	/**
-	 * Creates the meta-model objects for the package. This method is
-	 * guarded to have no affect on any invocation but its first.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates the meta-model objects for the package. This method is guarded to
+	 * have no affect on any invocation but its first. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -290,8 +290,8 @@ public class AllocationsPackageImpl extends EPackageImpl implements AllocationsP
 
 	/**
 	 * Complete the initialization of the package and its meta-model. This
-	 * method is guarded to have no affect on any invocation but its first.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * method is guarded to have no affect on any invocation but its first. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */

@@ -19,8 +19,7 @@ import org.eclipse.papyrus.sysml.requirements.RequirementsPackage;
 import org.eclipse.papyrus.uml.standard.impl.TraceImpl;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Derive Reqt</b></em>'. <!--
- * end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Derive Reqt</b></em>'. <!-- end-user-doc -->
  * <p>
  * </p>
  * 

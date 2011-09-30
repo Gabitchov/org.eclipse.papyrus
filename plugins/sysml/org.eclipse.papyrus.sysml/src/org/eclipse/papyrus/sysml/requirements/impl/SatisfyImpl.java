@@ -19,8 +19,7 @@ import org.eclipse.papyrus.sysml.requirements.Satisfy;
 import org.eclipse.papyrus.uml.standard.impl.TraceImpl;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Satisfy</b></em>'. <!--
- * end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Satisfy</b></em>'. <!-- end-user-doc -->
  * <p>
  * </p>
  * 

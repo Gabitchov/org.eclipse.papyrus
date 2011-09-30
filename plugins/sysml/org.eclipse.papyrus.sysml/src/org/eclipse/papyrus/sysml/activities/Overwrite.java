@@ -17,13 +17,13 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.ObjectNode;
 
 /**
- * <!-- begin-user-doc --> A representation of the model object '<em><b>Overwrite</b></em>'. <!--
- * end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the model object ' <em><b>Overwrite</b></em>'. <!-- end-user-doc -->
  * 
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.papyrus.sysml.activities.Overwrite#getBase_ObjectNode <em>Base Object Node</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.activities.Overwrite#getBase_ObjectNode
+ * <em>Base Object Node</em>}</li>
  * </ul>
  * </p>
  * 
@@ -35,8 +35,7 @@ public interface Overwrite extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Base Object Node</b></em>' reference.
-	 * <!-- begin-user-doc
-	 * -->
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Base Object Node</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
@@ -51,8 +50,9 @@ public interface Overwrite extends EObject {
 	ObjectNode getBase_ObjectNode();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.sysml.activities.Overwrite#getBase_ObjectNode <em>Base Object Node</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the ' {@link org.eclipse.papyrus.sysml.activities.Overwrite#getBase_ObjectNode
+	 * <em>Base Object Node</em>}' reference. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * 
 	 * @param value
 	 *        the new value of the '<em>Base Object Node</em>' reference.

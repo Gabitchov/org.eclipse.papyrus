@@ -16,8 +16,8 @@ package org.eclipse.papyrus.sysml.constraints;
 import org.eclipse.emf.ecore.EFactory;
 
 /**
- * <!-- begin-user-doc --> The <b>Factory</b> for the model. It provides a create method for each
- * non-abstract class of the model. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> The <b>Factory</b> for the model. It provides a
+ * create method for each non-abstract class of the model. <!-- end-user-doc -->
  * 
  * @see org.eclipse.papyrus.sysml.constraints.ConstraintsPackage
  * @generated
@@ -25,17 +25,16 @@ import org.eclipse.emf.ecore.EFactory;
 public interface ConstraintsFactory extends EFactory {
 
 	/**
-	 * The singleton instance of the factory.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The singleton instance of the factory. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	ConstraintsFactory eINSTANCE = org.eclipse.papyrus.sysml.constraints.impl.ConstraintsFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Constraint Block</em>'.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * Returns a new object of class '<em>Constraint Block</em>'. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return a new object of class '<em>Constraint Block</em>'.
 	 * @generated
@@ -43,9 +42,8 @@ public interface ConstraintsFactory extends EFactory {
 	ConstraintBlock createConstraintBlock();
 
 	/**
-	 * Returns a new object of class '<em>Constraint Property</em>'.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * Returns a new object of class '<em>Constraint Property</em>'. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return a new object of class '<em>Constraint Property</em>'.
 	 * @generated
@@ -53,8 +51,8 @@ public interface ConstraintsFactory extends EFactory {
 	ConstraintProperty createConstraintProperty();
 
 	/**
-	 * Returns the package supported by this factory.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the package supported by this factory. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @return the package supported by this factory.
 	 * @generated

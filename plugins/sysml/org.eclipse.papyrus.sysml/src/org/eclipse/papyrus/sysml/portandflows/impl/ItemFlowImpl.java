@@ -24,13 +24,16 @@ import org.eclipse.uml2.uml.InformationFlow;
 import org.eclipse.uml2.uml.Property;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Item Flow</b></em>'. <!--
- * end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Item Flow</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.sysml.portandflows.impl.ItemFlowImpl#getBase_InformationFlow <em>Base Information Flow</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.portandflows.impl.ItemFlowImpl#getItemProperty <em>Item Property</em>}</li>
+ * <li>
+ * {@link org.eclipse.papyrus.sysml.portandflows.impl.ItemFlowImpl#getBase_InformationFlow
+ * <em>Base Information Flow</em>}</li>
+ * <li>
+ * {@link org.eclipse.papyrus.sysml.portandflows.impl.ItemFlowImpl#getItemProperty
+ * <em>Item Property</em>}</li>
  * </ul>
  * </p>
  * 
@@ -39,8 +42,9 @@ import org.eclipse.uml2.uml.Property;
 public class ItemFlowImpl extends EObjectImpl implements ItemFlow {
 
 	/**
-	 * The cached value of the '{@link #getBase_InformationFlow() <em>Base Information Flow</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getBase_InformationFlow()
+	 * <em>Base Information Flow</em>}' reference. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * 
 	 * @see #getBase_InformationFlow()
 	 * @generated
@@ -49,8 +53,9 @@ public class ItemFlowImpl extends EObjectImpl implements ItemFlow {
 	protected InformationFlow base_InformationFlow;
 
 	/**
-	 * The cached value of the '{@link #getItemProperty() <em>Item Property</em>}' reference. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getItemProperty()
+	 * <em>Item Property</em>}' reference. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * 
 	 * @see #getItemProperty()
 	 * @generated

@@ -23,12 +23,13 @@ import org.eclipse.papyrus.sysml.blocks.Dimension;
 import org.eclipse.uml2.uml.InstanceSpecification;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Dimension</b></em>'. <!--
- * end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Dimension</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.sysml.blocks.impl.DimensionImpl#getBase_InstanceSpecification <em>Base Instance Specification</em>}</li>
+ * <li>
+ * {@link org.eclipse.papyrus.sysml.blocks.impl.DimensionImpl#getBase_InstanceSpecification
+ * <em>Base Instance Specification</em>}</li>
  * </ul>
  * </p>
  * 
@@ -38,8 +39,8 @@ public class DimensionImpl extends EObjectImpl implements Dimension {
 
 	/**
 	 * The cached value of the '{@link #getBase_InstanceSpecification()
-	 * <em>Base Instance Specification</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
+	 * <em>Base Instance Specification</em>}' reference. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @see #getBase_InstanceSpecification()
 	 * @generated

@@ -22,16 +22,15 @@ import org.eclipse.papyrus.sysml.interactions.InteractionsPackage;
 
 /**
  * This class contains helper methods to serialize and deserialize XML documents
- * <!-- begin-user-doc
- * --> <!-- end-user-doc -->
+ * <!-- begin-user-doc --> <!-- end-user-doc -->
  * 
  * @generated
  */
 public class InteractionsXMLProcessor extends XMLProcessor {
 
 	/**
-	 * Public constructor to instantiate the helper.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Public constructor to instantiate the helper. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -41,8 +40,9 @@ public class InteractionsXMLProcessor extends XMLProcessor {
 	}
 
 	/**
-	 * Register for "*" and "xml" file extensions the InteractionsResourceFactoryImpl factory. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * Register for "*" and "xml" file extensions the
+	 * InteractionsResourceFactoryImpl factory. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * 
 	 * @generated
 	 */

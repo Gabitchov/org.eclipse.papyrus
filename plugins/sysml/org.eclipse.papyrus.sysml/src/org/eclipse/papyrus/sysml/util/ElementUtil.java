@@ -22,13 +22,12 @@ import org.eclipse.uml2.uml.Element;
 public class ElementUtil {
 
 	/**
-	 * Check if the StereotypedElement has the given stereotype,
-	 * or if one of its stereotype is inherits from the stereotype passed in parameter.
-	 * This method currently exists in UMLUtils, this one is a copy created to avoid some dependencies
-	 * propagated by UMLUtils (jface...).
-	 * Current UMLUtils plug-in should probably be separated into two parts
-	 * one depending on UML2 plug-in only, and the other bringing
-	 * ui related features;
+	 * Check if the StereotypedElement has the given stereotype, or if one of
+	 * its stereotype is inherits from the stereotype passed in parameter. This
+	 * method currently exists in UMLUtils, this one is a copy created to avoid
+	 * some dependencies propagated by UMLUtils (jface...). Current UMLUtils
+	 * plug-in should probably be separated into two parts one depending on UML2
+	 * plug-in only, and the other bringing ui related features;
 	 * 
 	 * @param stereotypeName
 	 *        The name of the stereotype to find.
@@ -52,20 +51,24 @@ public class ElementUtil {
 	}
 
 	/**
-	 * Convenient method to retrieve the StereotypeApplication by passing an element of the static profile.
+	 * Convenient method to retrieve the StereotypeApplication by passing an
+	 * element of the static profile.
 	 * 
 	 * @param <T>
 	 *        the type of stereotype to look for
 	 * @param element
 	 *        an UML model element
 	 * @param clazz
-	 *        the class of an element of a static profile. Compatible sub-types will be returned as well
-	 * @return the stereotype application or null if such stereotype is not applied
+	 *        the class of an element of a static profile. Compatible
+	 *        sub-types will be returned as well
+	 * @return the stereotype application or null if such stereotype is not
+	 *         applied
 	 */
 	@SuppressWarnings("unchecked")
 	public static <T extends EObject> T getStereotypeApplication(Element element, java.lang.Class<T> clazz) {
 		for(EObject stereoApplication : element.getStereotypeApplications()) {
-			// check whether the stereotype is an instance of the passed parameter class
+			// check whether the stereotype is an instance of the passed
+			// parameter class
 			if(clazz.isInstance(stereoApplication)) {
 				return (T)stereoApplication;
 			}

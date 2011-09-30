@@ -29,13 +29,16 @@ import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.Element;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>View</b></em>'. <!--
- * end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>View</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.sysml.modelelements.impl.ViewImpl#getViewPoint <em>View Point</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.modelelements.impl.ViewImpl#getBase_Package <em>Base Package</em>}</li>
+ * <li>
+ * {@link org.eclipse.papyrus.sysml.modelelements.impl.ViewImpl#getViewPoint
+ * <em>View Point</em>}</li>
+ * <li>
+ * {@link org.eclipse.papyrus.sysml.modelelements.impl.ViewImpl#getBase_Package
+ * <em>Base Package</em>}</li>
  * </ul>
  * </p>
  * 
@@ -44,8 +47,7 @@ import org.eclipse.uml2.uml.Element;
 public class ViewImpl extends EObjectImpl implements View {
 
 	/**
-	 * The cached value of the '{@link #getBase_Package() <em>Base Package</em>}' reference. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getBase_Package() <em>Base Package</em>} ' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getBase_Package()
 	 * @generated

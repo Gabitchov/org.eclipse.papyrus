@@ -24,7 +24,8 @@ import org.eclipse.papyrus.sysml.constraints.ConstraintsFactory;
 import org.eclipse.papyrus.sysml.constraints.ConstraintsPackage;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!--
+ * end-user-doc -->
  * 
  * @generated
  */
@@ -42,8 +43,8 @@ public class ConstraintsFactoryImpl extends EFactoryImpl implements ConstraintsF
 	}
 
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates the default factory implementation. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -60,8 +61,8 @@ public class ConstraintsFactoryImpl extends EFactoryImpl implements ConstraintsF
 	}
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates an instance of the factory. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * 
 	 * @generated
 	 */

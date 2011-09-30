@@ -17,13 +17,14 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.Abstraction;
 
 /**
- * <!-- begin-user-doc --> A representation of the model object '<em><b>Allocate</b></em>'. <!--
- * end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the model object ' <em><b>Allocate</b></em>'. <!-- end-user-doc -->
  * 
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.papyrus.sysml.allocations.Allocate#getBase_Abstraction <em>Base Abstraction</em>}</li>
+ * <li>
+ * {@link org.eclipse.papyrus.sysml.allocations.Allocate#getBase_Abstraction
+ * <em>Base Abstraction</em>}</li>
  * </ul>
  * </p>
  * 
@@ -35,8 +36,7 @@ public interface Allocate extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Base Abstraction</b></em>' reference.
-	 * <!-- begin-user-doc
-	 * -->
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Base Abstraction</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
@@ -51,8 +51,9 @@ public interface Allocate extends EObject {
 	Abstraction getBase_Abstraction();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.sysml.allocations.Allocate#getBase_Abstraction <em>Base Abstraction</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the ' {@link org.eclipse.papyrus.sysml.allocations.Allocate#getBase_Abstraction
+	 * <em>Base Abstraction</em>}' reference. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * 
 	 * @param value
 	 *        the new value of the '<em>Base Abstraction</em>' reference.

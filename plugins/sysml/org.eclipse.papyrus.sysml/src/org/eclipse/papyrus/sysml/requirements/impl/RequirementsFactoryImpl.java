@@ -29,7 +29,8 @@ import org.eclipse.papyrus.sysml.requirements.TestCase;
 import org.eclipse.papyrus.sysml.requirements.Verify;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!--
+ * end-user-doc -->
  * 
  * @generated
  */
@@ -47,8 +48,8 @@ public class RequirementsFactoryImpl extends EFactoryImpl implements Requirement
 	}
 
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates the default factory implementation. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -65,8 +66,8 @@ public class RequirementsFactoryImpl extends EFactoryImpl implements Requirement
 	}
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates an instance of the factory. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * 
 	 * @generated
 	 */

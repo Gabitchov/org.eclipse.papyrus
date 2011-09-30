@@ -31,15 +31,22 @@ import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.Type;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Flow Port</b></em>'. <!--
- * end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Flow Port</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.sysml.portandflows.impl.FlowPortImpl#getBase_Port <em>Base Port</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.portandflows.impl.FlowPortImpl#isIsAtomic <em>Is Atomic</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.portandflows.impl.FlowPortImpl#isIsConjugated <em>Is Conjugated</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.portandflows.impl.FlowPortImpl#getDirection <em>Direction</em>}</li>
+ * <li>
+ * {@link org.eclipse.papyrus.sysml.portandflows.impl.FlowPortImpl#getBase_Port
+ * <em>Base Port</em>}</li>
+ * <li>
+ * {@link org.eclipse.papyrus.sysml.portandflows.impl.FlowPortImpl#isIsAtomic
+ * <em>Is Atomic</em>}</li>
+ * <li>
+ * {@link org.eclipse.papyrus.sysml.portandflows.impl.FlowPortImpl#isIsConjugated
+ * <em>Is Conjugated</em>}</li>
+ * <li>
+ * {@link org.eclipse.papyrus.sysml.portandflows.impl.FlowPortImpl#getDirection
+ * <em>Direction</em>}</li>
  * </ul>
  * </p>
  * 
@@ -48,8 +55,8 @@ import org.eclipse.uml2.uml.Type;
 public class FlowPortImpl extends EObjectImpl implements FlowPort {
 
 	/**
-	 * The cached value of the '{@link #getBase_Port() <em>Base Port</em>}' reference. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getBase_Port() <em>Base Port</em>}'
+	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getBase_Port()
 	 * @generated
@@ -58,8 +65,8 @@ public class FlowPortImpl extends EObjectImpl implements FlowPort {
 	protected Port base_Port;
 
 	/**
-	 * The default value of the '{@link #isIsAtomic() <em>Is Atomic</em>}' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #isIsAtomic() <em>Is Atomic</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #isIsAtomic()
 	 * @generated
@@ -68,8 +75,9 @@ public class FlowPortImpl extends EObjectImpl implements FlowPort {
 	protected static final boolean IS_ATOMIC_EDEFAULT = false;
 
 	/**
-	 * The default value of the '{@link #isIsConjugated() <em>Is Conjugated</em>}' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #isIsConjugated()
+	 * <em>Is Conjugated</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * 
 	 * @see #isIsConjugated()
 	 * @generated
@@ -78,8 +86,7 @@ public class FlowPortImpl extends EObjectImpl implements FlowPort {
 	protected static final boolean IS_CONJUGATED_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isIsConjugated() <em>Is Conjugated</em>}' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #isIsConjugated() <em>Is Conjugated</em>} ' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #isIsConjugated()
 	 * @generated
@@ -88,8 +95,8 @@ public class FlowPortImpl extends EObjectImpl implements FlowPort {
 	protected boolean isConjugated = IS_CONJUGATED_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getDirection() <em>Direction</em>}' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #getDirection() <em>Direction</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getDirection()
 	 * @generated
@@ -98,8 +105,8 @@ public class FlowPortImpl extends EObjectImpl implements FlowPort {
 	protected static final FlowDirection DIRECTION_EDEFAULT = FlowDirection.INOUT;
 
 	/**
-	 * The cached value of the '{@link #getDirection() <em>Direction</em>}' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getDirection() <em>Direction</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getDirection()
 	 * @generated
@@ -246,14 +253,9 @@ public class FlowPortImpl extends EObjectImpl implements FlowPort {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * Images registered in Profile are :
-	 * 		0 - FlowPort (default, similar to INOUT)
-	 * 		1 - FlowPort IN
-	 * 		2 - FlowPort OUT
-	 * 		3 - FlowPort INOUT
-	 * 		4 - FlowPort NA (Non Atomic)
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> Images registered in Profile are : 0 - FlowPort
+	 * (default, similar to INOUT) 1 - FlowPort IN 2 - FlowPort OUT 3 - FlowPort
+	 * INOUT 4 - FlowPort NA (Non Atomic) <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
 	 */

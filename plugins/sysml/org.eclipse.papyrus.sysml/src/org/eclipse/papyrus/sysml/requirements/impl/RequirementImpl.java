@@ -38,21 +38,39 @@ import org.eclipse.uml2.uml.DirectedRelationship;
 import org.eclipse.uml2.uml.NamedElement;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Requirement</b></em>'. <!--
- * end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Requirement</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementImpl#getText <em>Text</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementImpl#getId <em>Id</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementImpl#getDerived <em>Derived</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementImpl#getDerivedFrom <em>Derived From</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementImpl#getSatisfiedBy <em>Satisfied By</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementImpl#getRefinedBy <em>Refined By</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementImpl#getTracedTo <em>Traced To</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementImpl#getVerifiedBy <em>Verified By</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementImpl#getMaster <em>Master</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementImpl#getBase_Class <em>Base Class</em>}</li>
+ * <li>
+ * {@link org.eclipse.papyrus.sysml.requirements.impl.RequirementImpl#getText
+ * <em>Text</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementImpl#getId
+ * <em>Id</em>}</li>
+ * <li>
+ * {@link org.eclipse.papyrus.sysml.requirements.impl.RequirementImpl#getDerived
+ * <em>Derived</em>}</li>
+ * <li>
+ * {@link org.eclipse.papyrus.sysml.requirements.impl.RequirementImpl#getDerivedFrom
+ * <em>Derived From</em>}</li>
+ * <li>
+ * {@link org.eclipse.papyrus.sysml.requirements.impl.RequirementImpl#getSatisfiedBy
+ * <em>Satisfied By</em>}</li>
+ * <li>
+ * {@link org.eclipse.papyrus.sysml.requirements.impl.RequirementImpl#getRefinedBy
+ * <em>Refined By</em>}</li>
+ * <li>
+ * {@link org.eclipse.papyrus.sysml.requirements.impl.RequirementImpl#getTracedTo
+ * <em>Traced To</em>}</li>
+ * <li>
+ * {@link org.eclipse.papyrus.sysml.requirements.impl.RequirementImpl#getVerifiedBy
+ * <em>Verified By</em>}</li>
+ * <li>
+ * {@link org.eclipse.papyrus.sysml.requirements.impl.RequirementImpl#getMaster
+ * <em>Master</em>}</li>
+ * <li>
+ * {@link org.eclipse.papyrus.sysml.requirements.impl.RequirementImpl#getBase_Class
+ * <em>Base Class</em>}</li>
  * </ul>
  * </p>
  * 
@@ -62,8 +80,7 @@ public class RequirementImpl extends EObjectImpl implements Requirement {
 
 	/**
 	 * The default value of the '{@link #getText() <em>Text</em>}' attribute.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getText()
 	 * @generated
@@ -73,8 +90,7 @@ public class RequirementImpl extends EObjectImpl implements Requirement {
 
 	/**
 	 * The cached value of the '{@link #getText() <em>Text</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getText()
 	 * @generated
@@ -83,9 +99,8 @@ public class RequirementImpl extends EObjectImpl implements Requirement {
 	protected String text = TEXT_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getId() <em>Id</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getId() <em>Id</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getId()
 	 * @generated
@@ -94,9 +109,8 @@ public class RequirementImpl extends EObjectImpl implements Requirement {
 	protected static final String ID_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getId() <em>Id</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getId() <em>Id</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getId()
 	 * @generated
@@ -105,8 +119,8 @@ public class RequirementImpl extends EObjectImpl implements Requirement {
 	protected String id = ID_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getBase_Class() <em>Base Class</em>}' reference. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getBase_Class() <em>Base Class</em>}'
+	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getBase_Class()
 	 * @generated
@@ -138,7 +152,8 @@ public class RequirementImpl extends EObjectImpl implements Requirement {
 	 * @generated NOT
 	 */
 	public Requirement basicGetMaster() {
-		// The Requirement is the supplier of the Copy link between the master Requirement and
+		// The Requirement is the supplier of the Copy link between the master
+		// Requirement and
 		// current
 		// This should return the TestCase verifying current Requirement
 		Requirement master = null;
@@ -344,7 +359,8 @@ public class RequirementImpl extends EObjectImpl implements Requirement {
 	 * @generated NOT
 	 */
 	public EList<Requirement> getDerivedFrom() {
-		// This should return the Requirement(s) this Requirement is derived from
+		// This should return the Requirement(s) this Requirement is derived
+		// from
 		EList<Requirement> derivedFrom = new BasicEList<Requirement>();
 		DeriveReqt currentDeriveReqt = null;
 		if(getBase_Class() != null) {
@@ -396,7 +412,8 @@ public class RequirementImpl extends EObjectImpl implements Requirement {
 	 * @generated NOT
 	 */
 	public EList<NamedElement> getRefinedBy() {
-		// This should return the NamedElement(s) that refine current Requirement
+		// This should return the NamedElement(s) that refine current
+		// Requirement
 		EList<NamedElement> refinedBy = new BasicEList<NamedElement>();
 		Refine currentRefine = null;
 
@@ -423,7 +440,8 @@ public class RequirementImpl extends EObjectImpl implements Requirement {
 	 * @generated NOT
 	 */
 	public EList<NamedElement> getSatisfiedBy() {
-		// This should return the NamedElement(s) that satisfy current Requirement
+		// This should return the NamedElement(s) that satisfy current
+		// Requirement
 		EList<NamedElement> satisfyBy = new BasicEList<NamedElement>();
 		Satisfy currentSatisfy = null;
 
@@ -460,7 +478,8 @@ public class RequirementImpl extends EObjectImpl implements Requirement {
 	 */
 	public EList<NamedElement> getTracedTo() {
 		// This should return the NamedElement(s) traced by current Requirement
-		// SysML spec. : Derived from all elements that are the client of a «trace» relationship
+		// SysML spec. : Derived from all elements that are the client of a
+		// «trace» relationship
 		// for which this requirement is a supplier.
 		EList<NamedElement> tracedTo = new BasicEList<NamedElement>();
 		Trace currentTrace = null;
@@ -490,7 +509,8 @@ public class RequirementImpl extends EObjectImpl implements Requirement {
 	 * @generated NOT
 	 */
 	public EList<NamedElement> getVerifiedBy() {
-		// This should return the list of NamedElement verifying current Requirement
+		// This should return the list of NamedElement verifying current
+		// Requirement
 		EList<NamedElement> verifiedBy = new BasicEList<NamedElement>();
 		Verify currentVerify = null;
 

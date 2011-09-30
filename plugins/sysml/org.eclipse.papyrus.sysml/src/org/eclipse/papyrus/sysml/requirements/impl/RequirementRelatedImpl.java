@@ -41,11 +41,21 @@ import org.eclipse.uml2.uml.NamedElement;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementRelatedImpl#getBase_NamedElement <em>Base Named Element</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementRelatedImpl#getTracedFrom <em>Traced From</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementRelatedImpl#getSatisfies <em>Satisfies</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementRelatedImpl#getRefines <em>Refines</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementRelatedImpl#getVerifies <em>Verifies</em>}</li>
+ * <li>
+ * {@link org.eclipse.papyrus.sysml.requirements.impl.RequirementRelatedImpl#getBase_NamedElement
+ * <em>Base Named Element</em>}</li>
+ * <li>
+ * {@link org.eclipse.papyrus.sysml.requirements.impl.RequirementRelatedImpl#getTracedFrom
+ * <em>Traced From</em>}</li>
+ * <li>
+ * {@link org.eclipse.papyrus.sysml.requirements.impl.RequirementRelatedImpl#getSatisfies
+ * <em>Satisfies</em>}</li>
+ * <li>
+ * {@link org.eclipse.papyrus.sysml.requirements.impl.RequirementRelatedImpl#getRefines
+ * <em>Refines</em>}</li>
+ * <li>
+ * {@link org.eclipse.papyrus.sysml.requirements.impl.RequirementRelatedImpl#getVerifies
+ * <em>Verifies</em>}</li>
  * </ul>
  * </p>
  * 
@@ -54,8 +64,9 @@ import org.eclipse.uml2.uml.NamedElement;
 public class RequirementRelatedImpl extends EObjectImpl implements RequirementRelated {
 
 	/**
-	 * The cached value of the '{@link #getBase_NamedElement() <em>Base Named Element</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getBase_NamedElement()
+	 * <em>Base Named Element</em>}' reference. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * 
 	 * @see #getBase_NamedElement()
 	 * @generated
@@ -259,7 +270,8 @@ public class RequirementRelatedImpl extends EObjectImpl implements RequirementRe
 	 */
 	public EList<Requirement> getTracedFrom() {
 
-		// Derived from all requirements that are supplier of a "trace" relationship for 
+		// Derived from all requirements that are supplier of a "trace"
+		// relationship for
 		// which this element is a client.
 		// "trace" subtypes are not included (see bug #352563).
 		EList<Requirement> tracedFrom = new BasicEList<Requirement>();

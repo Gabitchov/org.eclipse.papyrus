@@ -27,13 +27,16 @@ import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Stereotype;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Flow Property</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Flow Property</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.sysml.portandflows.impl.FlowPropertyImpl#getBase_Property <em>Base Property</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.portandflows.impl.FlowPropertyImpl#getDirection <em>Direction</em>}</li>
+ * <li>
+ * {@link org.eclipse.papyrus.sysml.portandflows.impl.FlowPropertyImpl#getBase_Property
+ * <em>Base Property</em>}</li>
+ * <li>
+ * {@link org.eclipse.papyrus.sysml.portandflows.impl.FlowPropertyImpl#getDirection
+ * <em>Direction</em>}</li>
  * </ul>
  * </p>
  * 
@@ -42,8 +45,9 @@ import org.eclipse.uml2.uml.Stereotype;
 public class FlowPropertyImpl extends EObjectImpl implements FlowProperty {
 
 	/**
-	 * The cached value of the '{@link #getBase_Property() <em>Base Property</em>}' reference. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getBase_Property()
+	 * <em>Base Property</em>}' reference. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * 
 	 * @see #getBase_Property()
 	 * @generated
@@ -52,8 +56,8 @@ public class FlowPropertyImpl extends EObjectImpl implements FlowProperty {
 	protected Property base_Property;
 
 	/**
-	 * The default value of the '{@link #getDirection() <em>Direction</em>}' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #getDirection() <em>Direction</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getDirection()
 	 * @generated
@@ -62,8 +66,8 @@ public class FlowPropertyImpl extends EObjectImpl implements FlowProperty {
 	protected static final FlowDirection DIRECTION_EDEFAULT = FlowDirection.INOUT;
 
 	/**
-	 * The cached value of the '{@link #getDirection() <em>Direction</em>}' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getDirection() <em>Direction</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getDirection()
 	 * @generated
@@ -196,13 +200,9 @@ public class FlowPropertyImpl extends EObjectImpl implements FlowProperty {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * Images registered in Profile are :
-	 * 		0 - FlowPort (default, similar to INOUT)
-	 * 		1 - FlowPort IN
-	 * 		2 - FlowPort OUT
-	 * 		3 - FlowPort INOUT
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> Images registered in Profile are : 0 - FlowPort
+	 * (default, similar to INOUT) 1 - FlowPort IN 2 - FlowPort OUT 3 - FlowPort
+	 * INOUT <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
 	 */

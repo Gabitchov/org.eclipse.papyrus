@@ -17,13 +17,14 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.Dependency;
 
 /**
- * <!-- begin-user-doc --> A representation of the model object '<em><b>Conform</b></em>'. <!--
- * end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the model object ' <em><b>Conform</b></em>'. <!-- end-user-doc -->
  * 
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.papyrus.sysml.modelelements.Conform#getBase_Dependency <em>Base Dependency</em>}</li>
+ * <li>
+ * {@link org.eclipse.papyrus.sysml.modelelements.Conform#getBase_Dependency
+ * <em>Base Dependency</em>}</li>
  * </ul>
  * </p>
  * 
@@ -50,8 +51,9 @@ public interface Conform extends EObject {
 	Dependency getBase_Dependency();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.sysml.modelelements.Conform#getBase_Dependency <em>Base Dependency</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the ' {@link org.eclipse.papyrus.sysml.modelelements.Conform#getBase_Dependency
+	 * <em>Base Dependency</em>}' reference. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * 
 	 * @param value
 	 *        the new value of the '<em>Base Dependency</em>' reference.

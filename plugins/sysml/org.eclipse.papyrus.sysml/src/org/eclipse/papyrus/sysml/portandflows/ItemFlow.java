@@ -18,14 +18,16 @@ import org.eclipse.uml2.uml.InformationFlow;
 import org.eclipse.uml2.uml.Property;
 
 /**
- * <!-- begin-user-doc --> A representation of the model object '<em><b>Item Flow</b></em>'. <!--
- * end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the model object ' <em><b>Item Flow</b></em>'. <!-- end-user-doc -->
  * 
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.papyrus.sysml.portandflows.ItemFlow#getBase_InformationFlow <em>Base Information Flow</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.portandflows.ItemFlow#getItemProperty <em>Item Property</em>}</li>
+ * <li>
+ * {@link org.eclipse.papyrus.sysml.portandflows.ItemFlow#getBase_InformationFlow
+ * <em>Base Information Flow</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.portandflows.ItemFlow#getItemProperty
+ * <em>Item Property</em>}</li>
  * </ul>
  * </p>
  * 
@@ -36,8 +38,8 @@ import org.eclipse.uml2.uml.Property;
 public interface ItemFlow extends EObject {
 
 	/**
-	 * Returns the value of the '<em><b>Base Information Flow</b></em>' reference. <!--
-	 * begin-user-doc -->
+	 * Returns the value of the '<em><b>Base Information Flow</b></em>'
+	 * reference. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Base Information Flow</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
@@ -52,8 +54,8 @@ public interface ItemFlow extends EObject {
 	InformationFlow getBase_InformationFlow();
 
 	/**
-	 * Returns the value of the '<em><b>Item Property</b></em>' reference.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Item Property</b></em>' reference. <!--
+	 * begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Item Property</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
@@ -68,20 +70,22 @@ public interface ItemFlow extends EObject {
 	Property getItemProperty();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.sysml.portandflows.ItemFlow#getBase_InformationFlow <em>Base Information Flow</em>}'
-	 * reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the ' {@link org.eclipse.papyrus.sysml.portandflows.ItemFlow#getBase_InformationFlow
+	 * <em>Base Information Flow</em>}' reference. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * 
 	 * @param value
-	 *        the new value of the '<em>Base Information Flow</em>' reference.
+	 *        the new value of the '<em>Base Information Flow</em>'
+	 *        reference.
 	 * @see #getBase_InformationFlow()
 	 * @generated
 	 */
 	void setBase_InformationFlow(InformationFlow value);
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.sysml.portandflows.ItemFlow#getItemProperty <em>Item Property</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the ' {@link org.eclipse.papyrus.sysml.portandflows.ItemFlow#getItemProperty
+	 * <em>Item Property</em>}' reference. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * 
 	 * @param value
 	 *        the new value of the '<em>Item Property</em>' reference.

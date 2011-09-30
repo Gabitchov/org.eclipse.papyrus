@@ -17,18 +17,20 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 /**
- * <!-- begin-user-doc --> A representation of the model object '<em><b>View Point</b></em>'. <!--
- * end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the model object ' <em><b>View Point</b></em>'. <!-- end-user-doc -->
  * 
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.papyrus.sysml.modelelements.ViewPoint#getBase_Class <em>Base Class</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.modelelements.ViewPoint#getStakeHolders <em>Stake Holders</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.modelelements.ViewPoint#getPurpose <em>Purpose</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.modelelements.ViewPoint#getConcerns <em>Concerns</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.modelelements.ViewPoint#getLanguages <em>Languages</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.modelelements.ViewPoint#getMethods <em>Methods</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.modelelements.ViewPoint#getBase_Class
+ * <em>Base Class</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.modelelements.ViewPoint#getStakeHolders
+ * <em>Stake Holders</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.modelelements.ViewPoint#getPurpose <em> Purpose</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.modelelements.ViewPoint#getConcerns <em> Concerns</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.modelelements.ViewPoint#getLanguages
+ * <em>Languages</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.modelelements.ViewPoint#getMethods <em> Methods</em>}</li>
  * </ul>
  * </p>
  * 
@@ -39,8 +41,8 @@ import org.eclipse.emf.ecore.EObject;
 public interface ViewPoint extends EObject {
 
 	/**
-	 * Returns the value of the '<em><b>Base Class</b></em>' reference.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Base Class</b></em>' reference. <!--
+	 * begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Base Class</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
@@ -55,9 +57,9 @@ public interface ViewPoint extends EObject {
 	org.eclipse.uml2.uml.Class getBase_Class();
 
 	/**
-	 * Returns the value of the '<em><b>Concerns</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.String}.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Concerns</b></em>' attribute list. The
+	 * list contents are of type {@link java.lang.String}. <!-- begin-user-doc
+	 * -->
 	 * <p>
 	 * If the meaning of the '<em>Concerns</em>' attribute list isn't clear, there really should be more of a description here...
 	 * </p>
@@ -71,9 +73,9 @@ public interface ViewPoint extends EObject {
 	EList<String> getConcerns();
 
 	/**
-	 * Returns the value of the '<em><b>Languages</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.String}.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Languages</b></em>' attribute list. The
+	 * list contents are of type {@link java.lang.String}. <!-- begin-user-doc
+	 * -->
 	 * <p>
 	 * If the meaning of the '<em>Languages</em>' attribute list isn't clear, there really should be more of a description here...
 	 * </p>
@@ -87,9 +89,9 @@ public interface ViewPoint extends EObject {
 	EList<String> getLanguages();
 
 	/**
-	 * Returns the value of the '<em><b>Methods</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.String}.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Methods</b></em>' attribute list. The
+	 * list contents are of type {@link java.lang.String}. <!-- begin-user-doc
+	 * -->
 	 * <p>
 	 * If the meaning of the '<em>Methods</em>' attribute list isn't clear, there really should be more of a description here...
 	 * </p>
@@ -103,8 +105,8 @@ public interface ViewPoint extends EObject {
 	EList<String> getMethods();
 
 	/**
-	 * Returns the value of the '<em><b>Purpose</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Purpose</b></em>' attribute. <!--
+	 * begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Purpose</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
@@ -120,8 +122,8 @@ public interface ViewPoint extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Stake Holders</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.String}.
-	 * <!-- begin-user-doc -->
+	 * The list contents are of type {@link java.lang.String}. <!--
+	 * begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Stake Holders</em>' attribute list isn't clear, there really should be more of a description here...
 	 * </p>
@@ -135,8 +137,9 @@ public interface ViewPoint extends EObject {
 	EList<String> getStakeHolders();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.sysml.modelelements.ViewPoint#getBase_Class <em>Base Class</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the ' {@link org.eclipse.papyrus.sysml.modelelements.ViewPoint#getBase_Class
+	 * <em>Base Class</em>}' reference. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * 
 	 * @param value
 	 *        the new value of the '<em>Base Class</em>' reference.
@@ -146,8 +149,9 @@ public interface ViewPoint extends EObject {
 	void setBase_Class(org.eclipse.uml2.uml.Class value);
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.sysml.modelelements.ViewPoint#getPurpose <em>Purpose</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the ' {@link org.eclipse.papyrus.sysml.modelelements.ViewPoint#getPurpose
+	 * <em>Purpose</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
 	 * 
 	 * @param value
 	 *        the new value of the '<em>Purpose</em>' attribute.

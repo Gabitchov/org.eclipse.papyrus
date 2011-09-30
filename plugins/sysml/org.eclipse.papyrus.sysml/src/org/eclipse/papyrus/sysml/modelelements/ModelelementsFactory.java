@@ -16,8 +16,8 @@ package org.eclipse.papyrus.sysml.modelelements;
 import org.eclipse.emf.ecore.EFactory;
 
 /**
- * <!-- begin-user-doc --> The <b>Factory</b> for the model. It provides a create method for each
- * non-abstract class of the model. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> The <b>Factory</b> for the model. It provides a
+ * create method for each non-abstract class of the model. <!-- end-user-doc -->
  * 
  * @see org.eclipse.papyrus.sysml.modelelements.ModelelementsPackage
  * @generated
@@ -25,16 +25,16 @@ import org.eclipse.emf.ecore.EFactory;
 public interface ModelelementsFactory extends EFactory {
 
 	/**
-	 * The singleton instance of the factory.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The singleton instance of the factory. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	ModelelementsFactory eINSTANCE = org.eclipse.papyrus.sysml.modelelements.impl.ModelelementsFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Conform</em>'. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
+	 * Returns a new object of class '<em>Conform</em>'. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @return a new object of class '<em>Conform</em>'.
 	 * @generated
@@ -42,8 +42,8 @@ public interface ModelelementsFactory extends EFactory {
 	Conform createConform();
 
 	/**
-	 * Returns a new object of class '<em>Problem</em>'. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
+	 * Returns a new object of class '<em>Problem</em>'. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @return a new object of class '<em>Problem</em>'.
 	 * @generated
@@ -51,8 +51,8 @@ public interface ModelelementsFactory extends EFactory {
 	Problem createProblem();
 
 	/**
-	 * Returns a new object of class '<em>Rationale</em>'. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
+	 * Returns a new object of class '<em>Rationale</em>'. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * 
 	 * @return a new object of class '<em>Rationale</em>'.
 	 * @generated
@@ -60,8 +60,8 @@ public interface ModelelementsFactory extends EFactory {
 	Rationale createRationale();
 
 	/**
-	 * Returns a new object of class '<em>View</em>'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns a new object of class '<em>View</em>'. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @return a new object of class '<em>View</em>'.
 	 * @generated
@@ -69,9 +69,8 @@ public interface ModelelementsFactory extends EFactory {
 	View createView();
 
 	/**
-	 * Returns a new object of class '<em>View Point</em>'.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * Returns a new object of class '<em>View Point</em>'. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * 
 	 * @return a new object of class '<em>View Point</em>'.
 	 * @generated
@@ -79,8 +78,8 @@ public interface ModelelementsFactory extends EFactory {
 	ViewPoint createViewPoint();
 
 	/**
-	 * Returns the package supported by this factory.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the package supported by this factory. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @return the package supported by this factory.
 	 * @generated

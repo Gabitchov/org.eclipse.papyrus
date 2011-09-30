@@ -30,7 +30,8 @@ import org.eclipse.papyrus.sysml.activities.Probability;
 import org.eclipse.papyrus.sysml.activities.Rate;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!--
+ * end-user-doc -->
  * 
  * @generated
  */
@@ -48,8 +49,8 @@ public class ActivitiesFactoryImpl extends EFactoryImpl implements ActivitiesFac
 	}
 
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates the default factory implementation. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -66,8 +67,8 @@ public class ActivitiesFactoryImpl extends EFactoryImpl implements ActivitiesFac
 	}
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates an instance of the factory. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -105,8 +106,7 @@ public class ActivitiesFactoryImpl extends EFactoryImpl implements ActivitiesFac
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */

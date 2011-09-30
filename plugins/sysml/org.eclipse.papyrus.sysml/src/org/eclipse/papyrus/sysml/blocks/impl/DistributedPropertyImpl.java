@@ -27,7 +27,9 @@ import org.eclipse.uml2.uml.Property;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.sysml.blocks.impl.DistributedPropertyImpl#getBase_Property <em>Base Property</em>}</li>
+ * <li>
+ * {@link org.eclipse.papyrus.sysml.blocks.impl.DistributedPropertyImpl#getBase_Property
+ * <em>Base Property</em>}</li>
  * </ul>
  * </p>
  * 
@@ -36,8 +38,9 @@ import org.eclipse.uml2.uml.Property;
 public class DistributedPropertyImpl extends EObjectImpl implements DistributedProperty {
 
 	/**
-	 * The cached value of the '{@link #getBase_Property() <em>Base Property</em>}' reference. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getBase_Property()
+	 * <em>Base Property</em>}' reference. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * 
 	 * @see #getBase_Property()
 	 * @generated

@@ -18,8 +18,7 @@ import org.eclipse.papyrus.sysml.activities.ActivitiesPackage;
 import org.eclipse.papyrus.sysml.activities.Discrete;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Discrete</b></em>'. <!--
- * end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Discrete</b></em>'. <!-- end-user-doc -->
  * <p>
  * </p>
  * 

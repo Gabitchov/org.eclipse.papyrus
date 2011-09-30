@@ -16,8 +16,7 @@ package org.eclipse.papyrus.sysml.constraints;
 import org.eclipse.papyrus.sysml.blocks.Block;
 
 /**
- * <!-- begin-user-doc --> A representation of the model object '<em><b>Constraint Block</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the model object ' <em><b>Constraint Block</b></em>'. <!-- end-user-doc -->
  * 
  * 
  * @see org.eclipse.papyrus.sysml.constraints.ConstraintsPackage#getConstraintBlock()

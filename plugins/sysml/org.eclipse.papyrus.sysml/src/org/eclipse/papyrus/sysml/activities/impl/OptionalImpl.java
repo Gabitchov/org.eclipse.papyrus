@@ -23,13 +23,13 @@ import org.eclipse.papyrus.sysml.activities.Optional;
 import org.eclipse.uml2.uml.Parameter;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Optional</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Optional</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.sysml.activities.impl.OptionalImpl#getBase_Parameter <em>Base Parameter</em>}</li>
+ * <li>
+ * {@link org.eclipse.papyrus.sysml.activities.impl.OptionalImpl#getBase_Parameter
+ * <em>Base Parameter</em>}</li>
  * </ul>
  * </p>
  * 
@@ -38,9 +38,9 @@ import org.eclipse.uml2.uml.Parameter;
 public class OptionalImpl extends EObjectImpl implements Optional {
 
 	/**
-	 * The cached value of the '{@link #getBase_Parameter() <em>Base Parameter</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getBase_Parameter()
+	 * <em>Base Parameter</em>}' reference. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * 
 	 * @see #getBase_Parameter()
 	 * @generated
@@ -49,8 +49,7 @@ public class OptionalImpl extends EObjectImpl implements Optional {
 	protected Parameter base_Parameter;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -59,8 +58,7 @@ public class OptionalImpl extends EObjectImpl implements Optional {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -70,8 +68,7 @@ public class OptionalImpl extends EObjectImpl implements Optional {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -88,8 +85,7 @@ public class OptionalImpl extends EObjectImpl implements Optional {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -98,8 +94,7 @@ public class OptionalImpl extends EObjectImpl implements Optional {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -111,8 +106,7 @@ public class OptionalImpl extends EObjectImpl implements Optional {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -128,8 +122,7 @@ public class OptionalImpl extends EObjectImpl implements Optional {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -144,8 +137,7 @@ public class OptionalImpl extends EObjectImpl implements Optional {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -160,8 +152,7 @@ public class OptionalImpl extends EObjectImpl implements Optional {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -174,4 +165,4 @@ public class OptionalImpl extends EObjectImpl implements Optional {
 		return super.eIsSet(featureID);
 	}
 
-} //OptionalImpl
+} // OptionalImpl

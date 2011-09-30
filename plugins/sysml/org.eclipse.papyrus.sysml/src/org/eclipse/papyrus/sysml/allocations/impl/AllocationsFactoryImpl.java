@@ -25,7 +25,8 @@ import org.eclipse.papyrus.sysml.allocations.AllocationsFactory;
 import org.eclipse.papyrus.sysml.allocations.AllocationsPackage;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!--
+ * end-user-doc -->
  * 
  * @generated
  */
@@ -43,8 +44,8 @@ public class AllocationsFactoryImpl extends EFactoryImpl implements AllocationsF
 	}
 
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates the default factory implementation. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -61,8 +62,8 @@ public class AllocationsFactoryImpl extends EFactoryImpl implements AllocationsF
 	}
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates an instance of the factory. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * 
 	 * @generated
 	 */

@@ -24,8 +24,12 @@ import org.eclipse.uml2.uml.Property;
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.papyrus.sysml.blocks.NestedConnectorEnd#getPropertyPath <em>Property Path</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.blocks.NestedConnectorEnd#getBase_ConnectorEnd <em>Base Connector End</em>}</li>
+ * <li>
+ * {@link org.eclipse.papyrus.sysml.blocks.NestedConnectorEnd#getPropertyPath
+ * <em>Property Path</em>}</li>
+ * <li>
+ * {@link org.eclipse.papyrus.sysml.blocks.NestedConnectorEnd#getBase_ConnectorEnd
+ * <em>Base Connector End</em>}</li>
  * </ul>
  * </p>
  * 
@@ -37,8 +41,7 @@ public interface NestedConnectorEnd extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Base Connector End</b></em>' reference.
-	 * <!-- begin-user-doc
-	 * -->
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Base Connector End</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
@@ -54,8 +57,8 @@ public interface NestedConnectorEnd extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Property Path</b></em>' reference list.
-	 * The list contents are of type {@link org.eclipse.uml2.uml.Property}.
-	 * <!-- begin-user-doc -->
+	 * The list contents are of type {@link org.eclipse.uml2.uml.Property}. <!--
+	 * begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Property Path</em>' reference list isn't clear, there really should be more of a description here...
 	 * </p>
@@ -69,8 +72,9 @@ public interface NestedConnectorEnd extends EObject {
 	EList<Property> getPropertyPath();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.sysml.blocks.NestedConnectorEnd#getBase_ConnectorEnd <em>Base Connector End</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the ' {@link org.eclipse.papyrus.sysml.blocks.NestedConnectorEnd#getBase_ConnectorEnd
+	 * <em>Base Connector End</em>}' reference. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * 
 	 * @param value
 	 *        the new value of the '<em>Base Connector End</em>' reference.

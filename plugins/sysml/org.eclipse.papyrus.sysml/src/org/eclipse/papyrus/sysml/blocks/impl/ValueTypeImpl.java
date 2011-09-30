@@ -25,14 +25,16 @@ import org.eclipse.papyrus.sysml.blocks.ValueType;
 import org.eclipse.uml2.uml.DataType;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Value Type</b></em>'. <!--
- * end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Value Type</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.sysml.blocks.impl.ValueTypeImpl#getBase_DataType <em>Base Data Type</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.blocks.impl.ValueTypeImpl#getUnit <em>Unit</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.blocks.impl.ValueTypeImpl#getDimension <em>Dimension</em>}</li>
+ * <li>
+ * {@link org.eclipse.papyrus.sysml.blocks.impl.ValueTypeImpl#getBase_DataType
+ * <em>Base Data Type</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.blocks.impl.ValueTypeImpl#getUnit <em> Unit</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.blocks.impl.ValueTypeImpl#getDimension
+ * <em>Dimension</em>}</li>
  * </ul>
  * </p>
  * 
@@ -41,8 +43,9 @@ import org.eclipse.uml2.uml.DataType;
 public class ValueTypeImpl extends EObjectImpl implements ValueType {
 
 	/**
-	 * The cached value of the '{@link #getBase_DataType() <em>Base Data Type</em>}' reference. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getBase_DataType()
+	 * <em>Base Data Type</em>}' reference. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * 
 	 * @see #getBase_DataType()
 	 * @generated
@@ -52,8 +55,7 @@ public class ValueTypeImpl extends EObjectImpl implements ValueType {
 
 	/**
 	 * The cached value of the '{@link #getUnit() <em>Unit</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getUnit()
 	 * @generated
@@ -62,8 +64,8 @@ public class ValueTypeImpl extends EObjectImpl implements ValueType {
 	protected Unit unit;
 
 	/**
-	 * The cached value of the '{@link #getDimension() <em>Dimension</em>}' reference. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getDimension() <em>Dimension</em>}'
+	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getDimension()
 	 * @generated

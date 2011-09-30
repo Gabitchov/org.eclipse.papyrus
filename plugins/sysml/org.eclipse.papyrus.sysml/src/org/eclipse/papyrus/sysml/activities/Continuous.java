@@ -14,8 +14,7 @@
 package org.eclipse.papyrus.sysml.activities;
 
 /**
- * <!-- begin-user-doc --> A representation of the model object '<em><b>Continuous</b></em>'. <!--
- * end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the model object ' <em><b>Continuous</b></em>'. <!-- end-user-doc -->
  * 
  * 
  * @see org.eclipse.papyrus.sysml.activities.ActivitiesPackage#getContinuous()

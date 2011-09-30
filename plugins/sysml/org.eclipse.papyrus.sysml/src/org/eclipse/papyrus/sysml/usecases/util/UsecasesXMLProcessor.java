@@ -22,16 +22,15 @@ import org.eclipse.papyrus.sysml.usecases.UsecasesPackage;
 
 /**
  * This class contains helper methods to serialize and deserialize XML documents
- * <!-- begin-user-doc
- * --> <!-- end-user-doc -->
+ * <!-- begin-user-doc --> <!-- end-user-doc -->
  * 
  * @generated
  */
 public class UsecasesXMLProcessor extends XMLProcessor {
 
 	/**
-	 * Public constructor to instantiate the helper.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Public constructor to instantiate the helper. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -41,8 +40,9 @@ public class UsecasesXMLProcessor extends XMLProcessor {
 	}
 
 	/**
-	 * Register for "*" and "xml" file extensions the UsecasesResourceFactoryImpl factory. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * Register for "*" and "xml" file extensions the
+	 * UsecasesResourceFactoryImpl factory. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * 
 	 * @generated
 	 */
