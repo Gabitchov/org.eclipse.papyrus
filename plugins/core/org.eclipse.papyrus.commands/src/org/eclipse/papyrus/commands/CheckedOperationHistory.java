@@ -129,7 +129,7 @@ public class CheckedOperationHistory implements IOperationHistory {
 	protected IStatus getExecuteApproval(IUndoableOperation operation, IAdaptable info) {
 		operation = unwrap(operation);
 		for(int i = 0; i < approversArray.length; i++) {
-			IStatus approval = approversArray[i].proceedRedoing(operation, this, info);
+			IStatus approval = approversArray[i].proceedExecuting(operation, this, info);
 			if(!approval.isOK()) {
 				return approval;
 			}
