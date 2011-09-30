@@ -225,13 +225,20 @@ public class NoBufferItemProvider extends SysMLItemProviderAdapter implements IE
 		updateChildren(notification);
 
 		/**
-		 * Handle ObjectNode stereotyped by NoBuffer
+		 * Notify UML element
 		 */
+		if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
 
-		if(notification.getFeatureID(org.eclipse.uml2.uml.ObjectNode.class) != Notification.NO_FEATURE_ID) {
-			ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.OBJECT_NODE);
-			ite.notifyChanged(notification);
-			return;
+			/**
+			 * Handle ObjectNode stereotyped by NoBuffer
+			 */
+
+			if(notification.getFeatureID(org.eclipse.uml2.uml.ObjectNode.class) != Notification.NO_FEATURE_ID) {
+				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.OBJECT_NODE);
+				ite.notifyChanged(notification);
+				return;
+
+			}
 
 		}
 

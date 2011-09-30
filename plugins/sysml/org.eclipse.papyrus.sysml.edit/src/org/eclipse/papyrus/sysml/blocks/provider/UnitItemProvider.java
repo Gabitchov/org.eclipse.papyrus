@@ -262,13 +262,20 @@ public class UnitItemProvider extends SysMLItemProviderAdapter implements IEditi
 		updateChildren(notification);
 
 		/**
-		 * Handle InstanceSpecification stereotyped by Unit
+		 * Notify UML element
 		 */
+		if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
 
-		if(notification.getFeatureID(org.eclipse.uml2.uml.InstanceSpecification.class) != Notification.NO_FEATURE_ID) {
-			ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.INSTANCE_SPECIFICATION);
-			ite.notifyChanged(notification);
-			return;
+			/**
+			 * Handle InstanceSpecification stereotyped by Unit
+			 */
+
+			if(notification.getFeatureID(org.eclipse.uml2.uml.InstanceSpecification.class) != Notification.NO_FEATURE_ID) {
+				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.INSTANCE_SPECIFICATION);
+				ite.notifyChanged(notification);
+				return;
+
+			}
 
 		}
 

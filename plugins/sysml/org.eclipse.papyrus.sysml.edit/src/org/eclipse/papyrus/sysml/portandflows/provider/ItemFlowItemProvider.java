@@ -262,13 +262,20 @@ public class ItemFlowItemProvider extends SysMLItemProviderAdapter implements IE
 		updateChildren(notification);
 
 		/**
-		 * Handle InformationFlow stereotyped by ItemFlow
+		 * Notify UML element
 		 */
+		if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
 
-		if(notification.getFeatureID(org.eclipse.uml2.uml.InformationFlow.class) != Notification.NO_FEATURE_ID) {
-			ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.INFORMATION_FLOW);
-			ite.notifyChanged(notification);
-			return;
+			/**
+			 * Handle InformationFlow stereotyped by ItemFlow
+			 */
+
+			if(notification.getFeatureID(org.eclipse.uml2.uml.InformationFlow.class) != Notification.NO_FEATURE_ID) {
+				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.INFORMATION_FLOW);
+				ite.notifyChanged(notification);
+				return;
+
+			}
 
 		}
 

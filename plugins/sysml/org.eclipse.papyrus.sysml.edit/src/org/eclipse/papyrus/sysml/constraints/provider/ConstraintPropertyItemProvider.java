@@ -225,13 +225,20 @@ public class ConstraintPropertyItemProvider extends SysMLItemProviderAdapter imp
 		updateChildren(notification);
 
 		/**
-		 * Handle Property stereotyped by ConstraintProperty
+		 * Notify UML element
 		 */
+		if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
 
-		if(notification.getFeatureID(org.eclipse.uml2.uml.Property.class) != Notification.NO_FEATURE_ID) {
-			ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.PROPERTY);
-			ite.notifyChanged(notification);
-			return;
+			/**
+			 * Handle Property stereotyped by ConstraintProperty
+			 */
+
+			if(notification.getFeatureID(org.eclipse.uml2.uml.Property.class) != Notification.NO_FEATURE_ID) {
+				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.PROPERTY);
+				ite.notifyChanged(notification);
+				return;
+
+			}
 
 		}
 

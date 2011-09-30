@@ -225,13 +225,20 @@ public class ConformItemProvider extends SysMLItemProviderAdapter implements IEd
 		updateChildren(notification);
 
 		/**
-		 * Handle Dependency stereotyped by Conform
+		 * Notify UML element
 		 */
+		if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
 
-		if(notification.getFeatureID(org.eclipse.uml2.uml.Dependency.class) != Notification.NO_FEATURE_ID) {
-			ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.DEPENDENCY);
-			ite.notifyChanged(notification);
-			return;
+			/**
+			 * Handle Dependency stereotyped by Conform
+			 */
+
+			if(notification.getFeatureID(org.eclipse.uml2.uml.Dependency.class) != Notification.NO_FEATURE_ID) {
+				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.DEPENDENCY);
+				ite.notifyChanged(notification);
+				return;
+
+			}
 
 		}
 

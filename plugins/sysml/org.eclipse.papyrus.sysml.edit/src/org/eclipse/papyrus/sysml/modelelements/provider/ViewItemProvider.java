@@ -262,13 +262,20 @@ public class ViewItemProvider extends SysMLItemProviderAdapter implements IEditi
 		updateChildren(notification);
 
 		/**
-		 * Handle Package stereotyped by View
+		 * Notify UML element
 		 */
+		if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
 
-		if(notification.getFeatureID(org.eclipse.uml2.uml.Package.class) != Notification.NO_FEATURE_ID) {
-			ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.PACKAGE);
-			ite.notifyChanged(notification);
-			return;
+			/**
+			 * Handle Package stereotyped by View
+			 */
+
+			if(notification.getFeatureID(org.eclipse.uml2.uml.Package.class) != Notification.NO_FEATURE_ID) {
+				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.PACKAGE);
+				ite.notifyChanged(notification);
+				return;
+
+			}
 
 		}
 

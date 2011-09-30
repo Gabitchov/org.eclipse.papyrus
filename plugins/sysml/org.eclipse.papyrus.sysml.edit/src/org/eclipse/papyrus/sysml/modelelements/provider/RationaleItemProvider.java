@@ -225,13 +225,20 @@ public class RationaleItemProvider extends SysMLItemProviderAdapter implements I
 		updateChildren(notification);
 
 		/**
-		 * Handle Comment stereotyped by Rationale
+		 * Notify UML element
 		 */
+		if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
 
-		if(notification.getFeatureID(org.eclipse.uml2.uml.Comment.class) != Notification.NO_FEATURE_ID) {
-			ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.COMMENT);
-			ite.notifyChanged(notification);
-			return;
+			/**
+			 * Handle Comment stereotyped by Rationale
+			 */
+
+			if(notification.getFeatureID(org.eclipse.uml2.uml.Comment.class) != Notification.NO_FEATURE_ID) {
+				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.COMMENT);
+				ite.notifyChanged(notification);
+				return;
+
+			}
 
 		}
 

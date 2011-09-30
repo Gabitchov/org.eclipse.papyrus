@@ -299,13 +299,20 @@ public class ValueTypeItemProvider extends SysMLItemProviderAdapter implements I
 		updateChildren(notification);
 
 		/**
-		 * Handle DataType stereotyped by ValueType
+		 * Notify UML element
 		 */
+		if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
 
-		if(notification.getFeatureID(org.eclipse.uml2.uml.DataType.class) != Notification.NO_FEATURE_ID) {
-			ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.DATA_TYPE);
-			ite.notifyChanged(notification);
-			return;
+			/**
+			 * Handle DataType stereotyped by ValueType
+			 */
+
+			if(notification.getFeatureID(org.eclipse.uml2.uml.DataType.class) != Notification.NO_FEATURE_ID) {
+				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.DATA_TYPE);
+				ite.notifyChanged(notification);
+				return;
+
+			}
 
 		}
 

@@ -373,13 +373,20 @@ public class RequirementRelatedItemProvider extends SysMLItemProviderAdapter imp
 		updateChildren(notification);
 
 		/**
-		 * Handle NamedElement stereotyped by RequirementRelated
+		 * Notify UML element
 		 */
+		if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
 
-		if(notification.getFeatureID(org.eclipse.uml2.uml.NamedElement.class) != Notification.NO_FEATURE_ID) {
-			ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.NAMED_ELEMENT);
-			ite.notifyChanged(notification);
-			return;
+			/**
+			 * Handle NamedElement stereotyped by RequirementRelated
+			 */
+
+			if(notification.getFeatureID(org.eclipse.uml2.uml.NamedElement.class) != Notification.NO_FEATURE_ID) {
+				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.NAMED_ELEMENT);
+				ite.notifyChanged(notification);
+				return;
+
+			}
 
 		}
 

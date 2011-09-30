@@ -271,13 +271,20 @@ public class BlockItemProvider extends SysMLItemProviderAdapter implements IEdit
 		}
 
 		/**
-		 * Handle Class stereotyped by Block
+		 * Notify UML element
 		 */
+		if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
 
-		if(notification.getFeatureID(org.eclipse.uml2.uml.Class.class) != Notification.NO_FEATURE_ID) {
-			ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.CLASS);
-			ite.notifyChanged(notification);
-			return;
+			/**
+			 * Handle Class stereotyped by Block
+			 */
+
+			if(notification.getFeatureID(org.eclipse.uml2.uml.Class.class) != Notification.NO_FEATURE_ID) {
+				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.CLASS);
+				ite.notifyChanged(notification);
+				return;
+
+			}
 
 		}
 

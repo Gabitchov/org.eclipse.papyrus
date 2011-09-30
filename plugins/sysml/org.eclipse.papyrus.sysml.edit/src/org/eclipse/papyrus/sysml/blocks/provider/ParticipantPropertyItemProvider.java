@@ -262,13 +262,20 @@ public class ParticipantPropertyItemProvider extends SysMLItemProviderAdapter im
 		updateChildren(notification);
 
 		/**
-		 * Handle Property stereotyped by ParticipantProperty
+		 * Notify UML element
 		 */
+		if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
 
-		if(notification.getFeatureID(org.eclipse.uml2.uml.Property.class) != Notification.NO_FEATURE_ID) {
-			ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.PROPERTY);
-			ite.notifyChanged(notification);
-			return;
+			/**
+			 * Handle Property stereotyped by ParticipantProperty
+			 */
+
+			if(notification.getFeatureID(org.eclipse.uml2.uml.Property.class) != Notification.NO_FEATURE_ID) {
+				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.PROPERTY);
+				ite.notifyChanged(notification);
+				return;
+
+			}
 
 		}
 

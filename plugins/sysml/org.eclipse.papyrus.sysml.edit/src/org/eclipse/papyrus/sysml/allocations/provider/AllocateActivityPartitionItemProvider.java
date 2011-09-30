@@ -225,13 +225,20 @@ public class AllocateActivityPartitionItemProvider extends SysMLItemProviderAdap
 		updateChildren(notification);
 
 		/**
-		 * Handle ActivityPartition stereotyped by AllocateActivityPartition
+		 * Notify UML element
 		 */
+		if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
 
-		if(notification.getFeatureID(org.eclipse.uml2.uml.ActivityPartition.class) != Notification.NO_FEATURE_ID) {
-			ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.ACTIVITY_PARTITION);
-			ite.notifyChanged(notification);
-			return;
+			/**
+			 * Handle ActivityPartition stereotyped by AllocateActivityPartition
+			 */
+
+			if(notification.getFeatureID(org.eclipse.uml2.uml.ActivityPartition.class) != Notification.NO_FEATURE_ID) {
+				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.ACTIVITY_PARTITION);
+				ite.notifyChanged(notification);
+				return;
+
+			}
 
 		}
 

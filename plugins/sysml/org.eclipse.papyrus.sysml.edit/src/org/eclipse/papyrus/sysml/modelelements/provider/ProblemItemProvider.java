@@ -225,13 +225,20 @@ public class ProblemItemProvider extends SysMLItemProviderAdapter implements IEd
 		updateChildren(notification);
 
 		/**
-		 * Handle Comment stereotyped by Problem
+		 * Notify UML element
 		 */
+		if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
 
-		if(notification.getFeatureID(org.eclipse.uml2.uml.Comment.class) != Notification.NO_FEATURE_ID) {
-			ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.COMMENT);
-			ite.notifyChanged(notification);
-			return;
+			/**
+			 * Handle Comment stereotyped by Problem
+			 */
+
+			if(notification.getFeatureID(org.eclipse.uml2.uml.Comment.class) != Notification.NO_FEATURE_ID) {
+				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.COMMENT);
+				ite.notifyChanged(notification);
+				return;
+
+			}
 
 		}
 

@@ -188,13 +188,20 @@ public class ConstraintBlockItemProvider extends BlockItemProvider implements IE
 		updateChildren(notification);
 
 		/**
-		 * Handle Class stereotyped by ConstraintBlock
+		 * Notify UML element
 		 */
+		if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
 
-		if(notification.getFeatureID(org.eclipse.uml2.uml.Class.class) != Notification.NO_FEATURE_ID) {
-			ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.CLASS);
-			ite.notifyChanged(notification);
-			return;
+			/**
+			 * Handle Class stereotyped by ConstraintBlock
+			 */
+
+			if(notification.getFeatureID(org.eclipse.uml2.uml.Class.class) != Notification.NO_FEATURE_ID) {
+				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.CLASS);
+				ite.notifyChanged(notification);
+				return;
+
+			}
 
 		}
 

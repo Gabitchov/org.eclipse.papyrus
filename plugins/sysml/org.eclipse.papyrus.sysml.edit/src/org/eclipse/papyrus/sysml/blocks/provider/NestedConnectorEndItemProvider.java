@@ -262,13 +262,20 @@ public class NestedConnectorEndItemProvider extends SysMLItemProviderAdapter imp
 		updateChildren(notification);
 
 		/**
-		 * Handle ConnectorEnd stereotyped by NestedConnectorEnd
+		 * Notify UML element
 		 */
+		if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
 
-		if(notification.getFeatureID(org.eclipse.uml2.uml.ConnectorEnd.class) != Notification.NO_FEATURE_ID) {
-			ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.CONNECTOR_END);
-			ite.notifyChanged(notification);
-			return;
+			/**
+			 * Handle ConnectorEnd stereotyped by NestedConnectorEnd
+			 */
+
+			if(notification.getFeatureID(org.eclipse.uml2.uml.ConnectorEnd.class) != Notification.NO_FEATURE_ID) {
+				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.CONNECTOR_END);
+				ite.notifyChanged(notification);
+				return;
+
+			}
 
 		}
 

@@ -225,13 +225,20 @@ public class BindingConnectorItemProvider extends SysMLItemProviderAdapter imple
 		updateChildren(notification);
 
 		/**
-		 * Handle Connector stereotyped by BindingConnector
+		 * Notify UML element
 		 */
+		if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
 
-		if(notification.getFeatureID(org.eclipse.uml2.uml.Connector.class) != Notification.NO_FEATURE_ID) {
-			ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.CONNECTOR);
-			ite.notifyChanged(notification);
-			return;
+			/**
+			 * Handle Connector stereotyped by BindingConnector
+			 */
+
+			if(notification.getFeatureID(org.eclipse.uml2.uml.Connector.class) != Notification.NO_FEATURE_ID) {
+				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.CONNECTOR);
+				ite.notifyChanged(notification);
+				return;
+
+			}
 
 		}
 

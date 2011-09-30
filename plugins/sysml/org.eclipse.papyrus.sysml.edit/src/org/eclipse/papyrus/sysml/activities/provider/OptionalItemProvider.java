@@ -225,13 +225,20 @@ public class OptionalItemProvider extends SysMLItemProviderAdapter implements IE
 		updateChildren(notification);
 
 		/**
-		 * Handle Parameter stereotyped by Optional
+		 * Notify UML element
 		 */
+		if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
 
-		if(notification.getFeatureID(org.eclipse.uml2.uml.Parameter.class) != Notification.NO_FEATURE_ID) {
-			ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.PARAMETER);
-			ite.notifyChanged(notification);
-			return;
+			/**
+			 * Handle Parameter stereotyped by Optional
+			 */
+
+			if(notification.getFeatureID(org.eclipse.uml2.uml.Parameter.class) != Notification.NO_FEATURE_ID) {
+				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.PARAMETER);
+				ite.notifyChanged(notification);
+				return;
+
+			}
 
 		}
 

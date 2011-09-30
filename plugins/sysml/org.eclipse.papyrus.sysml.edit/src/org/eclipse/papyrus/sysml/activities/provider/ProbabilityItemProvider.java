@@ -432,24 +432,31 @@ public class ProbabilityItemProvider extends SysMLItemProviderAdapter implements
 		updateChildren(notification);
 
 		/**
-		 * Handle ActivityEdge stereotyped by Probability
+		 * Notify UML element
 		 */
+		if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
 
-		if(notification.getFeatureID(org.eclipse.uml2.uml.ActivityEdge.class) != Notification.NO_FEATURE_ID) {
-			ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.ACTIVITY_EDGE);
-			ite.notifyChanged(notification);
-			return;
+			/**
+			 * Handle ActivityEdge stereotyped by Probability
+			 */
 
-		}
+			if(notification.getFeatureID(org.eclipse.uml2.uml.ActivityEdge.class) != Notification.NO_FEATURE_ID) {
+				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.ACTIVITY_EDGE);
+				ite.notifyChanged(notification);
+				return;
 
-		/**
-		 * Handle ParameterSet stereotyped by Probability
-		 */
+			}
 
-		if(notification.getFeatureID(org.eclipse.uml2.uml.ParameterSet.class) != Notification.NO_FEATURE_ID) {
-			ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.PARAMETER_SET);
-			ite.notifyChanged(notification);
-			return;
+			/**
+			 * Handle ParameterSet stereotyped by Probability
+			 */
+
+			if(notification.getFeatureID(org.eclipse.uml2.uml.ParameterSet.class) != Notification.NO_FEATURE_ID) {
+				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.PARAMETER_SET);
+				ite.notifyChanged(notification);
+				return;
+
+			}
 
 		}
 

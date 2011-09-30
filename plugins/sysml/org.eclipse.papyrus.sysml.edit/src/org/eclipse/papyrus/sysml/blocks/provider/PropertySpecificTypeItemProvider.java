@@ -225,13 +225,20 @@ public class PropertySpecificTypeItemProvider extends SysMLItemProviderAdapter i
 		updateChildren(notification);
 
 		/**
-		 * Handle Classifier stereotyped by PropertySpecificType
+		 * Notify UML element
 		 */
+		if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
 
-		if(notification.getFeatureID(org.eclipse.uml2.uml.Classifier.class) != Notification.NO_FEATURE_ID) {
-			ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.CLASSIFIER);
-			ite.notifyChanged(notification);
-			return;
+			/**
+			 * Handle Classifier stereotyped by PropertySpecificType
+			 */
+
+			if(notification.getFeatureID(org.eclipse.uml2.uml.Classifier.class) != Notification.NO_FEATURE_ID) {
+				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.CLASSIFIER);
+				ite.notifyChanged(notification);
+				return;
+
+			}
 
 		}
 

@@ -262,13 +262,20 @@ public class ConnectorPropertyItemProvider extends SysMLItemProviderAdapter impl
 		updateChildren(notification);
 
 		/**
-		 * Handle Property stereotyped by ConnectorProperty
+		 * Notify UML element
 		 */
+		if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
 
-		if(notification.getFeatureID(org.eclipse.uml2.uml.Property.class) != Notification.NO_FEATURE_ID) {
-			ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.PROPERTY);
-			ite.notifyChanged(notification);
-			return;
+			/**
+			 * Handle Property stereotyped by ConnectorProperty
+			 */
+
+			if(notification.getFeatureID(org.eclipse.uml2.uml.Property.class) != Notification.NO_FEATURE_ID) {
+				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.PROPERTY);
+				ite.notifyChanged(notification);
+				return;
+
+			}
 
 		}
 

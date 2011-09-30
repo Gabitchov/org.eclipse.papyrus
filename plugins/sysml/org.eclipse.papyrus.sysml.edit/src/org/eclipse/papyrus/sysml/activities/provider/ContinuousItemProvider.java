@@ -230,24 +230,31 @@ public class ContinuousItemProvider extends RateItemProvider implements IEditing
 		updateChildren(notification);
 
 		/**
-		 * Handle Parameter stereotyped by Continuous
+		 * Notify UML element
 		 */
+		if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
 
-		if(notification.getFeatureID(org.eclipse.uml2.uml.Parameter.class) != Notification.NO_FEATURE_ID) {
-			ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.PARAMETER);
-			ite.notifyChanged(notification);
-			return;
+			/**
+			 * Handle Parameter stereotyped by Continuous
+			 */
 
-		}
+			if(notification.getFeatureID(org.eclipse.uml2.uml.Parameter.class) != Notification.NO_FEATURE_ID) {
+				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.PARAMETER);
+				ite.notifyChanged(notification);
+				return;
 
-		/**
-		 * Handle ActivityEdge stereotyped by Continuous
-		 */
+			}
 
-		if(notification.getFeatureID(org.eclipse.uml2.uml.ActivityEdge.class) != Notification.NO_FEATURE_ID) {
-			ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.ACTIVITY_EDGE);
-			ite.notifyChanged(notification);
-			return;
+			/**
+			 * Handle ActivityEdge stereotyped by Continuous
+			 */
+
+			if(notification.getFeatureID(org.eclipse.uml2.uml.ActivityEdge.class) != Notification.NO_FEATURE_ID) {
+				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.ACTIVITY_EDGE);
+				ite.notifyChanged(notification);
+				return;
+
+			}
 
 		}
 

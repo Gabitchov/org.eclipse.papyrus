@@ -273,13 +273,20 @@ public class FlowPropertyItemProvider extends SysMLItemProviderAdapter implement
 		}
 
 		/**
-		 * Handle Property stereotyped by FlowProperty
+		 * Notify UML element
 		 */
+		if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
 
-		if(notification.getFeatureID(org.eclipse.uml2.uml.Property.class) != Notification.NO_FEATURE_ID) {
-			ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.PROPERTY);
-			ite.notifyChanged(notification);
-			return;
+			/**
+			 * Handle Property stereotyped by FlowProperty
+			 */
+
+			if(notification.getFeatureID(org.eclipse.uml2.uml.Property.class) != Notification.NO_FEATURE_ID) {
+				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.PROPERTY);
+				ite.notifyChanged(notification);
+				return;
+
+			}
 
 		}
 

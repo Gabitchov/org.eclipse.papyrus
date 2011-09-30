@@ -568,13 +568,20 @@ public class RequirementItemProvider extends SysMLItemProviderAdapter implements
 		}
 
 		/**
-		 * Handle Class stereotyped by Requirement
+		 * Notify UML element
 		 */
+		if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
 
-		if(notification.getFeatureID(org.eclipse.uml2.uml.Class.class) != Notification.NO_FEATURE_ID) {
-			ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.CLASS);
-			ite.notifyChanged(notification);
-			return;
+			/**
+			 * Handle Class stereotyped by Requirement
+			 */
+
+			if(notification.getFeatureID(org.eclipse.uml2.uml.Class.class) != Notification.NO_FEATURE_ID) {
+				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.CLASS);
+				ite.notifyChanged(notification);
+				return;
+
+			}
 
 		}
 

@@ -187,13 +187,20 @@ public class SatisfyItemProvider extends TraceItemProvider implements IEditingDo
 		updateChildren(notification);
 
 		/**
-		 * Handle Abstraction stereotyped by Satisfy
+		 * Notify UML element
 		 */
+		if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
 
-		if(notification.getFeatureID(org.eclipse.uml2.uml.Abstraction.class) != Notification.NO_FEATURE_ID) {
-			ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.ABSTRACTION);
-			ite.notifyChanged(notification);
-			return;
+			/**
+			 * Handle Abstraction stereotyped by Satisfy
+			 */
+
+			if(notification.getFeatureID(org.eclipse.uml2.uml.Abstraction.class) != Notification.NO_FEATURE_ID) {
+				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.ABSTRACTION);
+				ite.notifyChanged(notification);
+				return;
+
+			}
 
 		}
 

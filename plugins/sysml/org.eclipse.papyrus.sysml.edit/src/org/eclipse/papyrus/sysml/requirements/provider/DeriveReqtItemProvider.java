@@ -187,13 +187,20 @@ public class DeriveReqtItemProvider extends TraceItemProvider implements IEditin
 		updateChildren(notification);
 
 		/**
-		 * Handle Abstraction stereotyped by DeriveReqt
+		 * Notify UML element
 		 */
+		if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
 
-		if(notification.getFeatureID(org.eclipse.uml2.uml.Abstraction.class) != Notification.NO_FEATURE_ID) {
-			ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.ABSTRACTION);
-			ite.notifyChanged(notification);
-			return;
+			/**
+			 * Handle Abstraction stereotyped by DeriveReqt
+			 */
+
+			if(notification.getFeatureID(org.eclipse.uml2.uml.Abstraction.class) != Notification.NO_FEATURE_ID) {
+				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.ABSTRACTION);
+				ite.notifyChanged(notification);
+				return;
+
+			}
 
 		}
 

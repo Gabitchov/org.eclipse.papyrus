@@ -347,13 +347,20 @@ public class FlowPortItemProvider extends SysMLItemProviderAdapter implements IE
 		}
 
 		/**
-		 * Handle Port stereotyped by FlowPort
+		 * Notify UML element
 		 */
+		if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
 
-		if(notification.getFeatureID(org.eclipse.uml2.uml.Port.class) != Notification.NO_FEATURE_ID) {
-			ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.PORT);
-			ite.notifyChanged(notification);
-			return;
+			/**
+			 * Handle Port stereotyped by FlowPort
+			 */
+
+			if(notification.getFeatureID(org.eclipse.uml2.uml.Port.class) != Notification.NO_FEATURE_ID) {
+				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.PORT);
+				ite.notifyChanged(notification);
+				return;
+
+			}
 
 		}
 

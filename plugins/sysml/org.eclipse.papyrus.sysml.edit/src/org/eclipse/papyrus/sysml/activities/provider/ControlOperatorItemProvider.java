@@ -366,24 +366,31 @@ public class ControlOperatorItemProvider extends SysMLItemProviderAdapter implem
 		updateChildren(notification);
 
 		/**
-		 * Handle Operation stereotyped by ControlOperator
+		 * Notify UML element
 		 */
+		if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
 
-		if(notification.getFeatureID(org.eclipse.uml2.uml.Operation.class) != Notification.NO_FEATURE_ID) {
-			ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.OPERATION);
-			ite.notifyChanged(notification);
-			return;
+			/**
+			 * Handle Operation stereotyped by ControlOperator
+			 */
 
-		}
+			if(notification.getFeatureID(org.eclipse.uml2.uml.Operation.class) != Notification.NO_FEATURE_ID) {
+				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.OPERATION);
+				ite.notifyChanged(notification);
+				return;
 
-		/**
-		 * Handle Behavior stereotyped by ControlOperator
-		 */
+			}
 
-		if(notification.getFeatureID(org.eclipse.uml2.uml.Behavior.class) != Notification.NO_FEATURE_ID) {
-			ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.BEHAVIOR);
-			ite.notifyChanged(notification);
-			return;
+			/**
+			 * Handle Behavior stereotyped by ControlOperator
+			 */
+
+			if(notification.getFeatureID(org.eclipse.uml2.uml.Behavior.class) != Notification.NO_FEATURE_ID) {
+				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.BEHAVIOR);
+				ite.notifyChanged(notification);
+				return;
+
+			}
 
 		}
 

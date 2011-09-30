@@ -225,13 +225,20 @@ public class OverwriteItemProvider extends SysMLItemProviderAdapter implements I
 		updateChildren(notification);
 
 		/**
-		 * Handle ObjectNode stereotyped by Overwrite
+		 * Notify UML element
 		 */
+		if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
 
-		if(notification.getFeatureID(org.eclipse.uml2.uml.ObjectNode.class) != Notification.NO_FEATURE_ID) {
-			ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.OBJECT_NODE);
-			ite.notifyChanged(notification);
-			return;
+			/**
+			 * Handle ObjectNode stereotyped by Overwrite
+			 */
+
+			if(notification.getFeatureID(org.eclipse.uml2.uml.ObjectNode.class) != Notification.NO_FEATURE_ID) {
+				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.OBJECT_NODE);
+				ite.notifyChanged(notification);
+				return;
+
+			}
 
 		}
 

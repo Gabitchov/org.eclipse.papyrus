@@ -432,24 +432,31 @@ public class TestCaseItemProvider extends SysMLItemProviderAdapter implements IE
 		updateChildren(notification);
 
 		/**
-		 * Handle Behavior stereotyped by TestCase
+		 * Notify UML element
 		 */
+		if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
 
-		if(notification.getFeatureID(org.eclipse.uml2.uml.Behavior.class) != Notification.NO_FEATURE_ID) {
-			ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.BEHAVIOR);
-			ite.notifyChanged(notification);
-			return;
+			/**
+			 * Handle Behavior stereotyped by TestCase
+			 */
 
-		}
+			if(notification.getFeatureID(org.eclipse.uml2.uml.Behavior.class) != Notification.NO_FEATURE_ID) {
+				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.BEHAVIOR);
+				ite.notifyChanged(notification);
+				return;
 
-		/**
-		 * Handle Operation stereotyped by TestCase
-		 */
+			}
 
-		if(notification.getFeatureID(org.eclipse.uml2.uml.Operation.class) != Notification.NO_FEATURE_ID) {
-			ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.OPERATION);
-			ite.notifyChanged(notification);
-			return;
+			/**
+			 * Handle Operation stereotyped by TestCase
+			 */
+
+			if(notification.getFeatureID(org.eclipse.uml2.uml.Operation.class) != Notification.NO_FEATURE_ID) {
+				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.OPERATION);
+				ite.notifyChanged(notification);
+				return;
+
+			}
 
 		}
 

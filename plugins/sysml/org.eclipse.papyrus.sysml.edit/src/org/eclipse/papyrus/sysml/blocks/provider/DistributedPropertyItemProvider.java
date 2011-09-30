@@ -225,13 +225,20 @@ public class DistributedPropertyItemProvider extends SysMLItemProviderAdapter im
 		updateChildren(notification);
 
 		/**
-		 * Handle Property stereotyped by DistributedProperty
+		 * Notify UML element
 		 */
+		if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
 
-		if(notification.getFeatureID(org.eclipse.uml2.uml.Property.class) != Notification.NO_FEATURE_ID) {
-			ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.PROPERTY);
-			ite.notifyChanged(notification);
-			return;
+			/**
+			 * Handle Property stereotyped by DistributedProperty
+			 */
+
+			if(notification.getFeatureID(org.eclipse.uml2.uml.Property.class) != Notification.NO_FEATURE_ID) {
+				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.PROPERTY);
+				ite.notifyChanged(notification);
+				return;
+
+			}
 
 		}
 

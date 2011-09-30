@@ -423,13 +423,20 @@ public class ViewPointItemProvider extends SysMLItemProviderAdapter implements I
 		}
 
 		/**
-		 * Handle Class stereotyped by ViewPoint
+		 * Notify UML element
 		 */
+		if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
 
-		if(notification.getFeatureID(org.eclipse.uml2.uml.Class.class) != Notification.NO_FEATURE_ID) {
-			ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.CLASS);
-			ite.notifyChanged(notification);
-			return;
+			/**
+			 * Handle Class stereotyped by ViewPoint
+			 */
+
+			if(notification.getFeatureID(org.eclipse.uml2.uml.Class.class) != Notification.NO_FEATURE_ID) {
+				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.CLASS);
+				ite.notifyChanged(notification);
+				return;
+
+			}
 
 		}
 

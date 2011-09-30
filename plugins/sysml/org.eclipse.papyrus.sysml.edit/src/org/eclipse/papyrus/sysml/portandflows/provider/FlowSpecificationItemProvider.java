@@ -225,13 +225,20 @@ public class FlowSpecificationItemProvider extends SysMLItemProviderAdapter impl
 		updateChildren(notification);
 
 		/**
-		 * Handle Interface stereotyped by FlowSpecification
+		 * Notify UML element
 		 */
+		if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
 
-		if(notification.getFeatureID(org.eclipse.uml2.uml.Interface.class) != Notification.NO_FEATURE_ID) {
-			ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.INTERFACE);
-			ite.notifyChanged(notification);
-			return;
+			/**
+			 * Handle Interface stereotyped by FlowSpecification
+			 */
+
+			if(notification.getFeatureID(org.eclipse.uml2.uml.Interface.class) != Notification.NO_FEATURE_ID) {
+				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.INTERFACE);
+				ite.notifyChanged(notification);
+				return;
+
+			}
 
 		}
 
