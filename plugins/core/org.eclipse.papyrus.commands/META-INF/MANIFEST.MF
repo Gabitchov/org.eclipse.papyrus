@@ -5,7 +5,8 @@ Require-Bundle: org.eclipse.ui.workbench,
  org.eclipse.papyrus.log,
  org.eclipse.gmf.runtime.common.core,
  org.eclipse.emf.common,
- org.eclipse.gef
+ org.eclipse.gef,
+ org.eclipse.gmf.runtime.diagram.ui
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 0.8.2.qualifier
