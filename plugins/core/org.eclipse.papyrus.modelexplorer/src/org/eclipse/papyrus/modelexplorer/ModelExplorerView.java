@@ -99,10 +99,12 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 	 * Listener on {@link ISaveAndDirtyService#addInputChangedListener(IEditorInputChangedListener)}
 	 */
 	protected IEditorInputChangedListener editorInputChangedListener = new IEditorInputChangedListener() {
+
 		/**
 		 * This method is called when the editor input is changed from the ISaveAndDirtyService.
+		 * 
 		 * @see org.eclipse.papyrus.core.lifecycleevents.IEditorInputChangedListener#editorInputChanged(org.eclipse.ui.part.FileEditorInput)
-		 *
+		 * 
 		 * @param fileEditorInput
 		 */
 		public void editorInputChanged(FileEditorInput fileEditorInput) {
@@ -112,8 +114,9 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 
 		/**
 		 * The isDirty flag has changed, reflect its new value
+		 * 
 		 * @see org.eclipse.papyrus.core.lifecycleevents.IEditorInputChangedListener#isDirtyChanged()
-		 *
+		 * 
 		 */
 		public void isDirtyChanged() {
 			firePropertyChange(IEditorPart.PROP_DIRTY);
@@ -141,13 +144,14 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 	public ModelExplorerView(IMultiDiagramEditor part) {
 		this.editorPart = part;
 		setLinkingEnabled(true);
-	
+
 		try {
-			this.saveAndDirtyService =editorPart.getServicesRegistry().getService(ISaveAndDirtyService.class);
+			this.saveAndDirtyService = editorPart.getServicesRegistry().getService(ISaveAndDirtyService.class);
 		} catch (ServiceException e) {
 			e.printStackTrace();
 		}
 	}
+
 	/**
 	 * Handle a selection change in the editor.
 	 * 
@@ -156,16 +160,16 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 	 */
 	private void handleSelectionChangedFromDiagramEditor(IWorkbenchPart part, ISelection selection) {
 		// Handle selection from diagram editor
-		if(isLinkingEnabled() ) {
+		if(isLinkingEnabled()) {
 			if(part instanceof IEditorPart) {
-				if( selection instanceof IStructuredSelection){
-					Iterator<?> selectionIterator=((IStructuredSelection)selection).iterator();
-					ArrayList<Object> semanticElementList= new ArrayList<Object>();
+				if(selection instanceof IStructuredSelection) {
+					Iterator<?> selectionIterator = ((IStructuredSelection)selection).iterator();
+					ArrayList<Object> semanticElementList = new ArrayList<Object>();
 					while(selectionIterator.hasNext()) {
 						Object currentSelection = selectionIterator.next();
-						if( currentSelection instanceof IAdaptable){
-							Object semanticElement=((IAdaptable)currentSelection).getAdapter(EObject.class);
-							if( semanticElement!=null){
+						if(currentSelection instanceof IAdaptable) {
+							Object semanticElement = ((IAdaptable)currentSelection).getAdapter(EObject.class);
+							if(semanticElement != null) {
 								semanticElementList.add(semanticElement);
 							}
 							//when we are in a table, the selected element are EObject
@@ -184,19 +188,22 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 
 	/**
 	 * look for the path the list of element (comes from the content provider) to go the eObject
-	 * @param eobject that we look for.
-	 * @param objects a list of elements where eobject can be wrapped.
+	 * 
+	 * @param eobject
+	 *        that we look for.
+	 * @param objects
+	 *        a list of elements where eobject can be wrapped.
 	 * @return the list of modelElementItem ( from the root to the element that wrap the eobject)
 	 */
 	protected List<Object> searchPath(EObject eobject, List<Object> objects) {
-		SemanticFromModelExplorer semanticGetter= new SemanticFromModelExplorer();
+		SemanticFromModelExplorer semanticGetter = new SemanticFromModelExplorer();
 		List<Object> path = new ArrayList<Object>();
-		ITreeContentProvider contentProvider=(ITreeContentProvider)getCommonViewer().getContentProvider();
+		ITreeContentProvider contentProvider = (ITreeContentProvider)getCommonViewer().getContentProvider();
 
 		for(Object o : objects) {
 			// Search matches in this level
 			if(!(o instanceof Diagram) && o instanceof IAdaptable) {
-				if(eobject.equals((EObject)((IAdaptable)o).getAdapter(EObject.class))){
+				if(eobject.equals((EObject)((IAdaptable)o).getAdapter(EObject.class))) {
 					path.add(o);
 					return path;
 				}
@@ -204,32 +211,32 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 
 			// Find childs only for feature container
 			for(int i = 0; i < contentProvider.getChildren(o).length; i++) {
-				Object treeItem=contentProvider.getChildren(o)[i];
+				Object treeItem = contentProvider.getChildren(o)[i];
 
-				List<Object> tmppath=new ArrayList<Object>();
-				Object element=semanticGetter.getSemanticElement(treeItem);
-				if(element !=null){
-					if(element instanceof EReference){
-						if (((EReference)element).isContainment()&& (!((EReference)element).isDerived())){
+				List<Object> tmppath = new ArrayList<Object>();
+				Object element = semanticGetter.getSemanticElement(treeItem);
+				if(element != null) {
+					if(element instanceof EReference) {
+						if(((EReference)element).isContainment() && (!((EReference)element).isDerived())) {
 							List<Object> childs = new ArrayList<Object>();
 							childs.add(treeItem);
-							tmppath=searchPath(eobject, childs);
+							tmppath = searchPath(eobject, childs);
 						}
 					}
 
-					else{
+					else {
 						if(element instanceof EObject) {
 							List<Object> childs = new ArrayList<Object>();
 							childs.add(treeItem);
-							tmppath=searchPath(eobject, childs);
+							tmppath = searchPath(eobject, childs);
 						}
 					}
 				}
 
 				// if tmppath contains the wrapped eobject we have find the good path 
-				if(tmppath.size()>0){
-					if( tmppath.get(tmppath.size()-1) instanceof IAdaptable){
-						if(eobject.equals((EObject)((IAdaptable)(tmppath.get(tmppath.size()-1))).getAdapter(EObject.class))){
+				if(tmppath.size() > 0) {
+					if(tmppath.get(tmppath.size() - 1) instanceof IAdaptable) {
+						if(eobject.equals((EObject)((IAdaptable)(tmppath.get(tmppath.size() - 1))).getAdapter(EObject.class))) {
 							path.add(o);
 							path.addAll(tmppath);
 							return path;
@@ -242,15 +249,14 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 		return new ArrayList<Object>();
 	}
 
- 
+
 	/**
 	 * {@inheritDoc}
 	 */
 	// FIXME Use of internal class (NavigatorContentService) - in the hope that the bug gets fixed soon.
 	@Override
 	protected CommonViewer createCommonViewerObject(Composite aParent) {
-		CommonViewer viewer = new CustomCommonViewer(getViewSite().getId(), aParent,
-			SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL);
+		CommonViewer viewer = new CustomCommonViewer(getViewSite().getId(), aParent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL);
 		// enable tool-tips
 		// workaround for bug 311827: the Common Viewer always uses NavigatorDecoratingLabelProvider
 		// as a wrapper for the LabelProvider provided by the application. The NavigatorDecoratingLabelProvider
@@ -259,21 +265,20 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 		@SuppressWarnings("unchecked")
 		// get label provider from content service (which in turn evaluates extension points in
 		// function of the input)
-		Set<Object> descriptors =  contentService.findDescriptorsByTriggerPoint(getInitialInput(), false);
-		for (Object descriptor : descriptors) {
-			if (descriptor instanceof NavigatorContentDescriptor) {
+		Set<Object> descriptors = contentService.findDescriptorsByTriggerPoint(getInitialInput(), false);
+		for(Object descriptor : descriptors) {
+			if(descriptor instanceof NavigatorContentDescriptor) {
 				try {
-					ILabelProvider labelProvider = ((NavigatorContentDescriptor) descriptor).createLabelProvider();
+					ILabelProvider labelProvider = ((NavigatorContentDescriptor)descriptor).createLabelProvider();
 					viewer.setLabelProvider(labelProvider);
-				}
-				catch (CoreException e) {
+				} catch (CoreException e) {
 					Activator.log.error(e);
 				}
 				break;
 			}
 		}
-		ColumnViewerToolTipSupport.enableFor(viewer,ToolTip.NO_RECREATE);
-		
+		ColumnViewerToolTipSupport.enableFor(viewer, ToolTip.NO_RECREATE);
+
 		return viewer;
 	}
 
@@ -287,6 +292,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 		Activator.getDefault().getCustomizationManager().installCustomPainter(tree);
 
 	}
+
 	/**
 	 * Return the control used to render this View
 	 * 
@@ -323,10 +329,13 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 		// an ISelectionListener to react to workbench selection changes.
 
 		page.addSelectionListener(new ISelectionListener() {
+
 			public void selectionChanged(IWorkbenchPart part, ISelection selection) {
 				handleSelectionChangedFromDiagramEditor(part, selection);
-			}});
+			}
+		});
 	}
+
 	/**
 	 * Hook the global undo/redi actions.
 	 */
@@ -361,15 +370,16 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 
 	/**
 	 * Run in a UI thread to avoid non UI thread exception.
+	 * 
 	 * @param event
 	 */
 	private void handleResourceSetChanged(ResourceSetChangeEvent event) {
 		// avoid refreshing N times for the same transaction (called for each object in resource)
 		Transaction curTrans = event.getTransaction();
-		if(lastTrans != null && lastTrans.equals(curTrans)){
+		if(lastTrans != null && lastTrans.equals(curTrans)) {
 			return;
 		}
-		lastTrans  = curTrans;
+		lastTrans = curTrans;
 		PlatformUI.getWorkbench().getDisplay().syncExec(new Runnable() {
 
 			/**
@@ -387,7 +397,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 	public void refresh() {
 		// Need to refresh, even if (temporarily) invisible
 		// (Better alternative?: store refresh event and execute once visible again)
-		if (getControl().isDisposed())
+		if(getControl().isDisposed())
 			return;
 
 		// avoid reentrant call
@@ -495,8 +505,8 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 	 */
 	@Override
 	public void dispose() {
-		super.dispose();
 		deactivate();
+		super.dispose();
 
 	}
 
@@ -538,7 +548,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 			// Let the parent return the adapter.
 		}
 
-		if( ISaveablePart.class.equals(adapter)) {
+		if(ISaveablePart.class.equals(adapter)) {
 			return saveAndDirtyService;
 		}
 
@@ -565,16 +575,16 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 	}
 
 
-	public void expandItems(List<Object> treeElementList, TreeItem[] list){
+	public void expandItems(List<Object> treeElementList, TreeItem[] list) {
 		//the treeElement has more tan one element
-		if(treeElementList.size()>0){
-			for(int i=0;i<list.length;i++) {
-				if(list[i].getData()!=null && list[i].getData().equals(treeElementList.get(0))){
-					if(treeElementList.size()>1){//Do no expand the last
-						Object[] toexpand={treeElementList.get(0)};
+		if(treeElementList.size() > 0) {
+			for(int i = 0; i < list.length; i++) {
+				if(list[i].getData() != null && list[i].getData().equals(treeElementList.get(0))) {
+					if(treeElementList.size() > 1) {//Do no expand the last
+						Object[] toexpand = { treeElementList.get(0) };
 						getCommonViewer().setExpandedElements(toexpand);
 					}
-					ArrayList<Object> tmpList= new ArrayList<Object>();
+					ArrayList<Object> tmpList = new ArrayList<Object>();
 					tmpList.addAll(treeElementList);
 					tmpList.remove(tmpList.get(0));
 					expandItems(tmpList, list[i].getItems());
@@ -588,23 +598,23 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 	 */
 	public void revealSemanticElement(List<?> elementList) {
 		//for each element we reveal it
-		Iterator<?> elementListIterator= elementList.iterator();
-		ArrayList<Object> treeElementToSelect= new ArrayList<Object>();
+		Iterator<?> elementListIterator = elementList.iterator();
+		ArrayList<Object> treeElementToSelect = new ArrayList<Object>();
 		while(elementListIterator.hasNext()) {
 			Object currentElement = (Object)elementListIterator.next();
 			//test if the type is an EObject
-			if(currentElement instanceof EObject){
-				EObject currentEObject=(EObject)currentElement;
+			if(currentElement instanceof EObject) {
+				EObject currentEObject = (EObject)currentElement;
 				//the content provider exist?
-				if(getCommonViewer().getContentProvider()!=null){
+				if(getCommonViewer().getContentProvider() != null) {
 					//need the root in order to find all element in the tree
-					Object root=getCommonViewer().getInput();
+					Object root = getCommonViewer().getInput();
 					//look for the path in order to access to this element
-					List<Object> path =searchPath(currentEObject, Arrays.asList(((ITreeContentProvider)getCommonViewer().getContentProvider()).getElements(root)));
-					if(path.size()>0){
+					List<Object> path = searchPath(currentEObject, Arrays.asList(((ITreeContentProvider)getCommonViewer().getContentProvider()).getElements(root)));
+					if(path.size() > 0) {
 						//expand in the common viewer the path
 						expandItems(path, getCommonViewer().getTree().getItems());
-						treeElementToSelect.add(path.get(path.size()-1));
+						treeElementToSelect.add(path.get(path.size() - 1));
 					}
 				}
 			}

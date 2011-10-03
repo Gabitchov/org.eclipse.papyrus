@@ -20,6 +20,7 @@ import java.util.List;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -131,7 +132,13 @@ public abstract class AbstractCommandHandler extends AbstractModelExplorerHandle
 				}
 			} else { // Not a IStructuredSelection
 						// Adapt current selection to EObject
-				EObject selectedElement = (EObject)((IAdaptable)selection).getAdapter(EObject.class);
+				EObject selectedElement = null;
+				if(selection instanceof IAdaptable) {
+					selectedElement = (EObject)((IAdaptable)selection).getAdapter(EObject.class);
+				}
+				if(selectedElement == null) {
+					selectedElement = (EObject)Platform.getAdapterManager().getAdapter(selection, EObject.class);
+				}
 				if(selectedElement != null) { //we avoid to add null element in the list!
 					selectedEObjects.add(selectedElement);
 				}
