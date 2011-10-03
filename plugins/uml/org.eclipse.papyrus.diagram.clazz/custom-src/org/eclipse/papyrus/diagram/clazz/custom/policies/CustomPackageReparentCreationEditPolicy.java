@@ -31,13 +31,13 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.LabelEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
 import org.eclipse.gmf.runtime.diagram.ui.requests.EditCommandRequestWrapper;
-import org.eclipse.gmf.runtime.emf.type.core.requests.MoveRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.custom.edit.part.CModelEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PackageEditPartCN;
+import org.eclipse.papyrus.service.edit.request.PapyrusMoveRequest;
 import org.eclipse.uml2.uml.Element;
 
 public class CustomPackageReparentCreationEditPolicy extends CreationEditPolicy {
@@ -116,7 +116,7 @@ public class CustomPackageReparentCreationEditPolicy extends CreationEditPolicy 
 
 		// Copied Code :semantic
 		if(element != null) {
-			Command moveSemanticCmd = getHost().getCommand(new EditCommandRequestWrapper(new MoveRequest(editingDomain, context, element)));
+			Command moveSemanticCmd = getHost().getCommand(new EditCommandRequestWrapper(new PapyrusMoveRequest(editingDomain, context, element)));
 
 			// Added code
 			// if the element is a Package and if it is contained by an other package which is not a Model, we return an UnexecutableCommand to execute a specific Drop command

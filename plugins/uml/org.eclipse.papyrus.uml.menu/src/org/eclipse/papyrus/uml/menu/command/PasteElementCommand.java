@@ -24,7 +24,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
-import org.eclipse.gmf.runtime.emf.type.core.requests.MoveRequest;
+import org.eclipse.papyrus.service.edit.request.PapyrusMoveRequest;
 import org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.service.edit.service.IElementEditService;
 import org.eclipse.uml2.uml.Element;
@@ -87,7 +87,7 @@ public class PasteElementCommand extends AbstractCommand {
 			this.targetOwner = targetOwner;
 			
 			//5. prepare the move command to move UML element to their new owner
-			MoveRequest moveRequest= new MoveRequest(targetOwner, eobjectTopaste);
+			PapyrusMoveRequest moveRequest= new PapyrusMoveRequest(targetOwner, eobjectTopaste);
 			IElementEditService provider = ElementEditServiceUtils.getCommandProvider(targetOwner);
 			if(provider != null) {
 				command = provider.getEditCommand(moveRequest);

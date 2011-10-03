@@ -36,7 +36,6 @@ import org.eclipse.emf.facet.infra.browser.uicore.internal.model.LinkItem;
 import org.eclipse.emf.facet.infra.browser.uicore.internal.model.ModelElementItem;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
-import org.eclipse.gmf.runtime.emf.type.core.requests.MoveRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
@@ -53,6 +52,7 @@ import org.eclipse.papyrus.core.extension.commands.ICreationCommandRegistry;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.modelexplorer.Activator;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.service.edit.request.PapyrusMoveRequest;
 import org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.service.edit.service.IElementEditService;
 import org.eclipse.swt.dnd.DND;
@@ -89,7 +89,7 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 	 */
 	protected List<Command> getDropIntoCommand(TransactionalEditingDomain domain,EObject targetOwner, EObject childElement,EReference eref){
 		ArrayList<Command> commandList= new ArrayList<Command>();
-		MoveRequest moveRequest= new MoveRequest(targetOwner, childElement);
+		PapyrusMoveRequest moveRequest= new PapyrusMoveRequest(targetOwner, childElement);
 		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(targetOwner);
 		if(provider != null) {
 			// Retrieve delete command from the Element Edit service
