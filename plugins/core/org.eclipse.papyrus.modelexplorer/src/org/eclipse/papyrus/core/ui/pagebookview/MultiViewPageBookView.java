@@ -20,7 +20,9 @@ import org.eclipse.papyrus.modelexplorer.Activator;
 import org.eclipse.ui.IMemento;
 import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.IViewSite;
+import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
+import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.IPage;
@@ -56,7 +58,7 @@ public abstract class MultiViewPageBookView extends PageBookView {
 		initPage(page);
 		page.createControl(book);
 
-		return new DefaultPage();
+		return page;
 	}
 
 	/**
@@ -99,17 +101,22 @@ public abstract class MultiViewPageBookView extends PageBookView {
 	protected IWorkbenchPart getBootstrapPart() {
 
 
-		IWorkbenchPart part;
+		IWorkbenchPart part = null;
 		try {
-			part = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
+			IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
+			if(activeWorkbenchWindow != null) {
+				IWorkbenchPage activePage = activeWorkbenchWindow.getActivePage();
+				if(activePage != null) {
+					part = activePage.getActiveEditor();
+				}
+			}
 		} catch (NullPointerException e) {
 			// An element is not active yet
 			return null;
 		}
-
-		if(isImportant(part))
+		if(isImportant(part)) {
 			return part;
-
+		}
 		// The current active part is not for us.
 		return null;
 	}
