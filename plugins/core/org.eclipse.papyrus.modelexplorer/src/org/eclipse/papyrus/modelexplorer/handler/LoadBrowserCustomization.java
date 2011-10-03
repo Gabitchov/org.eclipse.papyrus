@@ -40,13 +40,18 @@ import org.eclipse.emf.facet.infra.facet.core.FacetSetCatalog;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.window.Window;
 import org.eclipse.osgi.util.NLS;
+import org.eclipse.papyrus.core.services.ServiceException;
+import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.core.ui.pagebookview.MultiViewPageBookView;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
 import org.eclipse.papyrus.core.utils.EditorUtils;
+import org.eclipse.papyrus.core.utils.ServiceUtils;
+import org.eclipse.papyrus.core.utils.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.modelexplorer.Activator;
 import org.eclipse.papyrus.modelexplorer.CustomCommonViewer;
 import org.eclipse.papyrus.modelexplorer.ModelExplorerPageBookView;
 import org.eclipse.papyrus.modelexplorer.ModelExplorerView;
+import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.ui.IViewPart;
@@ -264,6 +269,30 @@ public class LoadBrowserCustomization extends AbstractHandler {
 	 * Get the metmodel URI
 	 * **/
 	public List<EPackage> getMetamodels() {
+		List<EPackage> ePackages = new ArrayList<EPackage>();
+		ServicesRegistry serviceRegistry = null;
+		try {
+			serviceRegistry = ServiceUtilsForActionHandlers.getInstance()
+					.getServiceRegistry();
+		} catch (ServiceException e) {
+			Activator.log.error(e);
+		}
+		IPageMngr pageMngr = null;
+		try {
+			pageMngr = ServiceUtils.getInstance().getIPageMngr(serviceRegistry);
+		} catch (ServiceException e) {
+			Activator.log.error(e);
+		}
+		List<Object> pages = pageMngr.allPages();
+		for (int i = 0; i < pages.size(); i++) {
+			if (pages.get(i) instanceof EObject) {
+				EPackage ePackage = ((EObject) pages.get(i)).eClass()
+						.getEPackage();
+				if (!ePackages.contains(ePackage)) {
+					ePackages.add(ePackage);
+				}
+			}
+		}
 
 		try {
 			EList<EObject> contents = getDiResourceSet().getModelResource()
@@ -272,13 +301,13 @@ public class LoadBrowserCustomization extends AbstractHandler {
 				EObject eObject = contents.get(0);
 				EClass eClass = eObject.eClass();
 				if (eClass != null) {
-					return Collections.singletonList(eClass.getEPackage());
+					ePackages.add(eClass.getEPackage());
 				}
 			}
 		} catch (Exception e) {
 			Activator.log.error(e);
 		}
-		return Collections.emptyList(); 
+		return ePackages; 
 	}
 
 }
