@@ -1336,6 +1336,26 @@
                      </Priority>
                   </editpolicyProvider>
                </extension>
+               <extension
+                     point="org.eclipse.gmf.runtime.common.ui.services.action.contributionItemProviders">
+                  <contributionItemProvider
+                        checkPluginLoaded="false"
+                        class="org.eclipse.papyrus.diagram.usecase.providers.UseCaseDiagramContributionItemProvider">
+                     <Priority
+                           name="Low">
+                     </Priority>
+                     <popupContribution
+                           class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
+                        <popupStructuredContributionCriteria
+                              objectClass="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart"
+                              policyClass="org.eclipse.papyrus.diagram.usecase.providers.UseCaseDiagramPopupMenuContributionPolicy"></popupStructuredContributionCriteria>
+                        <popupAction
+                              id="papyrus.restoreRelatedLinksAction"
+                              path="/navigateMenu/additions">
+                        </popupAction>
+                     </popupContribution>
+                  </contributionItemProvider>
+               </extension>
 
 
 
