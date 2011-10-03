@@ -1,13 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.2"?>
 <plugin>
-   <extension point="org.eclipse.ui.views.properties.tabbed.propertyContributor">
-      <propertyContributor 
-            contributorId="TreeOutlinePage"
-            labelProvider="org.eclipse.papyrus.tabbedproperties.core.providers.EMFObjectLabelProvider">
-         <propertyCategory category="org.eclipse.papyrus"/>
-      </propertyContributor>
-   </extension>
    
    <extension point="org.eclipse.ui.views.properties.tabbed.propertyTabs">
       <propertyTabs contributorId="TreeOutlinePage">
