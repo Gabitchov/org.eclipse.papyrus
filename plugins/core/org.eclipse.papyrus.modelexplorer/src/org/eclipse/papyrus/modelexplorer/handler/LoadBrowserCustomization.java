@@ -277,6 +277,9 @@ public class LoadBrowserCustomization extends AbstractHandler {
 		} catch (ServiceException e) {
 			Activator.log.error(e);
 		}
+		
+		/*we look for the current editors, because their are represented in the model explorer
+		using specific facet and uiCustom. (see bug 359692) */
 		IPageMngr pageMngr = null;
 		try {
 			pageMngr = ServiceUtils.getInstance().getIPageMngr(serviceRegistry);
