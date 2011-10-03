@@ -1,9 +1,11 @@
 Manifest-Version: 1.0
 Export-Package: org.eclipse.papyrus.commands,
  org.eclipse.papyrus.commands.wrappers
-Require-Bundle: org.eclipse.core.runtime,org.eclipse.ui.workbench,org.
- eclipse.papyrus.log,org.eclipse.gmf.runtime.common.core,org.eclipse.e
- mf.common,org.eclipse.gef,org.eclipse.gmf.runtime.diagram.ui
+Require-Bundle: org.eclipse.ui.workbench,
+ org.eclipse.papyrus.log,
+ org.eclipse.gmf.runtime.common.core,
+ org.eclipse.emf.common,
+ org.eclipse.gef
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 0.8.2.qualifier
