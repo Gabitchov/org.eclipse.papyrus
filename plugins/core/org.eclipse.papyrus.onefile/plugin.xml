@@ -9,6 +9,9 @@
            	 class="org.eclipse.papyrus.onefile.model.adapters.ModelAdapterFactory">
 	        <adapter type="org.eclipse.core.resources.mapping.ResourceMapping" />
 	        <adapter type="java.util.Collection" />
+         <adapter
+               type="org.eclipse.ui.ide.IContributorResourceAdapter2">
+         </adapter>
       </factory>
       <factory
             adaptableType="org.eclipse.papyrus.onefile.model.ISubResourceFile"
@@ -21,6 +24,12 @@
          </adapter>
          <adapter
                type="org.eclipse.core.resources.IResource">
+         </adapter>
+         <adapter
+               type="org.eclipse.ui.IContributorResourceAdapter">
+         </adapter>
+         <adapter
+               type="org.eclipse.ui.ide.IContributorResourceAdapter2">
          </adapter>
       </factory>
    </extension>
@@ -82,6 +91,13 @@
                class="org.eclipse.papyrus.onefile.providers.PapyrusViewerSorter"
                id="org.eclipse.papyrus.onefile.sorter">
          </commonSorter>
+         <triggerPoints>
+            <or>
+            	<instanceof
+                  value="org.eclipse.core.resources.IResource">
+            	</instanceof>
+            </or>
+         </triggerPoints>
       </navigatorContent>
      </extension>
       <extension point="org.eclipse.ui.navigator.viewer">
@@ -103,6 +119,10 @@
             <contentExtension
                   pattern="org.eclipse.papyrus.onefile.oneFileLinkHelper">
             </contentExtension>
+            <contentExtension 
+			    pattern="org.eclipse.ui.navigator.resourceContent" />                     
+		      <contentExtension 
+			    pattern="org.eclipse.ui.navigator.resources.filters.*"/>
          </includes>
       </viewerContentBinding>
       <viewerContentBinding
@@ -117,6 +137,10 @@
             <contentExtension
                   pattern="org.eclipse.papyrus.onefile.oneFileLinkHelper">
             </contentExtension>
+            <contentExtension 
+			    pattern="org.eclipse.ui.navigator.resourceContent" />                     
+	      <contentExtension 
+			    pattern="org.eclipse.ui.navigator.resources.filters.*"/>
          </includes>
       </viewerContentBinding>
       <viewerContentBinding 
@@ -206,5 +230,21 @@
             instance="org.eclipse.papyrus.onefile.model.impl.PapyrusModelFactory"
             priority="1">
       </factory>
+   </extension>
+   <extension
+         point="org.eclipse.ui.decorators">
+      <decorator
+            adaptable="true"
+            class="org.eclipse.papyrus.onefile.providers.OneFileDecorator"
+            id="org.eclipse.papyrus.onefile.onefiledecorator"
+            label="One File Decorator"
+            lightweight="true"
+            state="true">
+         <enablement>
+            <objectClass
+                  name="org.eclipse.papyrus.onefile.model.IPapyrusFile">
+            </objectClass>
+         </enablement>
+      </decorator>
    </extension>
 </plugin>

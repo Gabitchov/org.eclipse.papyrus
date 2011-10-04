@@ -31,6 +31,7 @@ import org.eclipse.team.core.mapping.ISynchronizationContext;
 import org.eclipse.team.ui.mapping.SynchronizationContentProvider;
 import org.eclipse.ui.model.WorkbenchContentProvider;
 import org.eclipse.ui.navigator.CommonViewer;
+import org.eclipse.ui.navigator.ICommonContentExtensionSite;
 
 /**
  * Content provider able to retrieve Papyrus children from an {@link IContainer}
@@ -41,11 +42,18 @@ import org.eclipse.ui.navigator.CommonViewer;
 public class PapyrusContentProvider extends SynchronizationContentProvider {
 
 	private ITreeContentProvider provider = null;
+
 	private CommonViewer common;
 
+	@Override
+	public void init(ICommonContentExtensionSite site) {
+		super.init(site);
+	}
+
 	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
-		if (viewer instanceof CommonViewer) {
-			common = (CommonViewer) viewer;
+		super.inputChanged(viewer, oldInput, newInput);
+		if(viewer instanceof CommonViewer) {
+			common = (CommonViewer)viewer;
 		}
 	}
 
@@ -55,45 +63,37 @@ public class PapyrusContentProvider extends SynchronizationContentProvider {
 	 * @return true if the viewer is filtered
 	 */
 	public boolean isFiltered() {
-		return common != null
-				&& common.getNavigatorContentService() != null
-				&& common.getNavigatorContentService().getFilterService() != null
-				&& common.getNavigatorContentService().getFilterService()
-						.isActive(OnlyDiFilter.FILTER_ID);
+		return common != null && common.getNavigatorContentService() != null && common.getNavigatorContentService().getFilterService() != null && common.getNavigatorContentService().getFilterService().isActive(OnlyDiFilter.FILTER_ID);
 	}
 
+
 	public Object[] getElements(Object inputElement) {
-		if (inputElement instanceof IWorkspaceRoot) {
+		if(inputElement instanceof IWorkspaceRoot) {
 			return null;
 		}
 		List<Object> result = new LinkedList<Object>();
 		try {
-			if (isFiltered()) {
-				if (inputElement instanceof IPapyrusFile) {
-					IPapyrusFile file = (IPapyrusFile) inputElement;
-					for (IResource r : file.getAssociatedResources()) {
-						result.add(PapyrusModelHelper.getPapyrusModelFactory()
-								.createISubResourceFile(file, (IFile) r));
+			if(isFiltered()) {
+				if(inputElement instanceof IPapyrusFile) {
+					IPapyrusFile file = (IPapyrusFile)inputElement;
+					for(IResource r : file.getAssociatedResources()) {
+						result.add(PapyrusModelHelper.getPapyrusModelFactory().createISubResourceFile(file, (IFile)r));
 					}
 				} else {
 					IResource[] members = null;
-					if (inputElement instanceof IContainer) {
-						members = ((IContainer) inputElement).members();
+					if(inputElement instanceof IContainer) {
+						members = ((IContainer)inputElement).members();
 					}
-					if (members != null) {
-						for (IResource r : members) {
-							if (r instanceof IContainer
-									&& !(r instanceof IProject)) {
-								IContainer cont = (IContainer) r;
+					if(members != null) {
+						for(IResource r : members) {
+							if(r instanceof IContainer && !(r instanceof IProject)) {
+								IContainer cont = (IContainer)r;
 								result.add(cont);
-							} else if (r instanceof IFile) {
-								if (Utils.isDi(r)) {
-									result.add(PapyrusModelHelper
-											.getPapyrusModelFactory()
-											.createIPapyrusFile((IFile) r));
+							} else if(r instanceof IFile) {
+								if(Utils.isDi(r)) {
+									result.add(PapyrusModelHelper.getPapyrusModelFactory().createIPapyrusFile((IFile)r));
 								} else {
-									if (!Utils.diExists(r.getName(),
-											r.getParent())) {
+									if(!Utils.diExists(r.getName(), r.getParent())) {
 										result.add(r);
 									}
 								}
@@ -115,8 +115,8 @@ public class PapyrusContentProvider extends SynchronizationContentProvider {
 	}
 
 	public Object getParent(Object element) {
-		if (element instanceof IPapyrusFile) {
-			IPapyrusFile papyFile = (IPapyrusFile) element;
+		if(element instanceof IPapyrusFile) {
+			IPapyrusFile papyFile = (IPapyrusFile)element;
 			return papyFile.getParent();
 		}
 		return null;
@@ -128,7 +128,7 @@ public class PapyrusContentProvider extends SynchronizationContentProvider {
 
 	@Override
 	protected ITreeContentProvider getDelegateContentProvider() {
-		if (provider == null) {
+		if(provider == null) {
 			provider = new WorkbenchContentProvider();
 		}
 		return provider;
@@ -145,8 +145,7 @@ public class PapyrusContentProvider extends SynchronizationContentProvider {
 	}
 
 	@Override
-	protected ResourceTraversal[] getTraversals(
-			ISynchronizationContext context, Object object) {
+	protected ResourceTraversal[] getTraversals(ISynchronizationContext context, Object object) {
 		return null;
 	}
 
