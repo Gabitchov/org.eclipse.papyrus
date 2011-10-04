@@ -2,12 +2,16 @@ Manifest-Version: 1.0
 Export-Package: org.eclipse.papyrus.table.modelexplorer,org.eclipse.pa
  pyrus.table.modelexplorer.handlers,org.eclipse.papyrus.table.modelexp
  lorer.messages,org.eclipse.papyrus.table.modelexplorer.providers
-Require-Bundle: org.eclipse.papyrus.resource,org.eclipse.emf.facet.inf
- ra.browser.uicore;bundle-version="0.1.0",org.eclipse.emf.facet.infra.
- browser.custom.core,org.eclipse.papyrus.modelexplorer;bundle-version=
- "0.8.0",org.eclipse.core.expressions,org.eclipse.emf.facet.widgets.na
- ttable.instance;bundle-version="0.1.0",org.eclipse.papyrus.table.inst
- ance,org.eclipse.uml2.uml
+Require-Bundle: org.eclipse.papyrus.resource,
+ org.eclipse.emf.facet.infra.browser.uicore;bundle-version="0.1.0",
+ org.eclipse.emf.facet.infra.browser.custom.core,
+ org.eclipse.papyrus.modelexplorer;bundle-version="0.8.0",
+ org.eclipse.core.expressions,
+ org.eclipse.emf.facet.widgets.nattable.instance;bundle-version="0.1.0",
+ org.eclipse.papyrus.table.instance,
+ org.eclipse.emf.ecore,
+ org.eclipse.emf.facet.infra.query.core,
+ org.eclipse.uml2.uml;bundle-version="3.2.100"
 Bundle-Vendor: %pluginProvider
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 0.8.2.qualifier

@@ -21,7 +21,7 @@ import org.eclipse.swt.graphics.Image;
  * This Label Provider provides the names of the tables
  * 
  * 
- * 
+ * @deprecated : we use facets to display tables in the model explorer
  */
 public class NavigatorTableLabelProvider extends MoDiscoLabelProvider {
 

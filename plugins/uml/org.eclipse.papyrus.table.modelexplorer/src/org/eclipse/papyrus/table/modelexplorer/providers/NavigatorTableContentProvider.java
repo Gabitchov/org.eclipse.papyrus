@@ -31,7 +31,7 @@ import org.eclipse.uml2.uml.util.UMLUtil;
  * This class provides a NavigatorContentProvider used to display tables in the Model Explorer
  * 
  * 
- * 
+ * @deprecated : we use facet to display the tables in the ModelExplorer
  */
 public class NavigatorTableContentProvider extends MoDiscoContentProvider {
 
