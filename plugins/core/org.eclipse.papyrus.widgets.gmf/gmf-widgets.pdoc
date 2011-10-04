@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doc:Documentation xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:doc="http://www.eclipse.org/papyrus/documentation/plugin/documentation" description="This plug-in contains the GMF-specific property editors, which can be used either in the property view or any other SWT UI.">
+  <referent firstName="Camille" lastName="Letavernier" eMail="camille.letavernier@cea.fr" currentCompany="CEA LIST"/>
+</doc:Documentation>

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doc:Documentation xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:doc="http://www.eclipse.org/papyrus/documentation/plugin/documentation" description="This plug-in contains the EMF Projectors for XWT files.&#xD;&#xA;&#xD;&#xA;The XWT format is an xml-based format. In order to manipulate these files as EMF Models, we need an Injector to parse them, and an extractor to re-generate them from the modified EMF model.">
+  <referent firstName="Camille" lastName="Letavernier" eMail="camille.letavernier@cea.fr" currentCompany="CEA LIST"/>
+</doc:Documentation>
