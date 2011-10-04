@@ -69,6 +69,35 @@ public class StringCombo extends ReferenceCombo {
 		return new CComboObservableValue();
 	}
 
+	@Override
+	public String getValue() {
+		//See Bug 359835 : The ComboViewer doesn't support custom values
+		//We can't rely on the ComboViewer#getSelection() method
+		return combo.getText();
+	}
+	
+	@Override
+	public void setValue(Object value){
+		//See Bug 359835 : The ComboViewer doesn't support custom values
+		//We can't rely on the ComboViewer#setSelection() method
+		if (value instanceof String){
+			combo.setText((String)value);
+		} else {
+			combo.setText("");
+		}
+	}
+
+	/**
+	 * Updates the controls display
+	 */
+	@Override
+	protected void updateControls() {
+		//See Bug 359835 : The ComboViewer doesn't support custom values
+		String value = getValue();
+		super.updateControls();
+		setValue(value);
+	}
+
 	class CComboObservableValue extends AbstractObservableValue implements SelectionListener, KeyListener, FocusListener {
 
 		private String previousValue;
