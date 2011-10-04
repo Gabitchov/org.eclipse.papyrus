@@ -66,7 +66,7 @@ public class ChangeEdgeTargetCommand extends AbstractTransactionalCommand {
 
 		if(obj instanceof Edge) {
 			Edge edge = (Edge)obj;
-			edge.setTarget(createElementAndNodeCommand.getElementEditPart().getNotationView());
+			edge.setTarget(createElementAndNodeCommand.getCreatedView());
 
 			IdentityAnchor anchor = NotationFactory.eINSTANCE.createIdentityAnchor();
 			anchor.setId(anchorId);

@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.diagram.sequence.command;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.draw2d.geometry.Point;
@@ -28,6 +29,7 @@ import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.Node;
+import org.eclipse.gmf.runtime.notation.View;
 
 /**
  * Command to create an element and its associated view.
@@ -52,6 +54,8 @@ public class CreateElementAndNodeCommand extends Command {
 	protected Map<String, Object> createElementRequestParameters = new HashMap<String, Object>();
 
 	protected IHintedType elementType;
+
+	protected CreateViewRequest createViewRequest;
 
 	/**
 	 * 
@@ -85,19 +89,15 @@ public class CreateElementAndNodeCommand extends Command {
 	}
 
 	/**
-	 * retrieve the edit part associated with the created execution specification
+	 * retrieve the view associated with the created execution specification
 	 * 
-	 * @return the edit part or null if not created/founded
+	 * @return the view or null if not created/founded
 	 */
-	public ShapeNodeEditPart getElementEditPart() {
-		if(nodeEditPart != null) {
-			for(Object obj : nodeEditPart.getChildren()) {
-				if(obj instanceof ShapeNodeEditPart) {
-					ShapeNodeEditPart editPart = (ShapeNodeEditPart)obj;
-					if(element != null && element.equals(editPart.resolveSemanticElement())) {
-						return editPart;
-					}
-				}
+	public View getCreatedView() {
+		if (createViewRequest != null) {
+			List l = (List)createViewRequest.getNewObject();
+			if(!l.isEmpty() && l.get(0) instanceof ViewDescriptor) {
+				return (View)((ViewDescriptor)l.get(0)).getAdapter(View.class);
 			}
 		}
 		return null;
@@ -113,10 +113,10 @@ public class CreateElementAndNodeCommand extends Command {
 	}
 
 	public void undo() {
-		if(nodeCreationCommand != null) {
+		if(nodeCreationCommand != null && nodeCreationCommand.canUndo()) {
 			nodeCreationCommand.undo();
 		}
-		if(elementCreationCommand != null) {
+		if(elementCreationCommand != null && elementCreationCommand.canUndo()) {
 			elementCreationCommand.undo();
 		}
 	}
@@ -150,12 +150,12 @@ public class CreateElementAndNodeCommand extends Command {
 	protected void createElementView() {
 		if(nodeEditPart != null) {
 			// check if execution specification is already drawn
-			if(getElementEditPart() == null) {
+			if(getCreatedView() == null) {
 				ViewDescriptor descriptor = new CreateViewRequest.ViewDescriptor(new EObjectAdapter((EObject)element), Node.class, elementType.getSemanticHint(), nodeEditPart.getDiagramPreferencesHint());
-				CreateViewRequest request = new CreateViewRequest(descriptor);
-				request.setLocation(location);
-				nodeCreationCommand = nodeEditPart.getCommand(request);
-				if(nodeCreationCommand != null) {
+				createViewRequest = new CreateViewRequest(descriptor);
+				createViewRequest.setLocation(location);
+				nodeCreationCommand = nodeEditPart.getCommand(createViewRequest);
+				if(nodeCreationCommand != null && nodeCreationCommand.canExecute()) {
 					nodeCreationCommand.execute();
 				}
 			}
