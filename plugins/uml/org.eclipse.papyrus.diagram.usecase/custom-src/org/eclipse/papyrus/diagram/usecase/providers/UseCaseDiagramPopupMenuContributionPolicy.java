@@ -30,7 +30,6 @@ import org.eclipse.ui.PlatformUI;
  */
 public class UseCaseDiagramPopupMenuContributionPolicy implements IPopupMenuContributionPolicy {
 
-	@Override
 	public boolean appliesTo(ISelection selection, IConfigurationElement configuration) {
 		IEditorPart editorPart = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
 		if(editorPart instanceof IMultiDiagramEditor) {
