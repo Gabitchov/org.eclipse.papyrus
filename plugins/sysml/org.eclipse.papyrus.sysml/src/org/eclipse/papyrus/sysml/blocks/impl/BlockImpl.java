@@ -26,9 +26,8 @@ import org.eclipse.papyrus.sysml.blocks.BlocksPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.sysml.blocks.impl.BlockImpl#isIsEncapsulated
- * <em>Is Encapsulated</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.blocks.impl.BlockImpl#getBase_Class <em> Base Class</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.blocks.impl.BlockImpl#isIsEncapsulated <em>Is Encapsulated</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.blocks.impl.BlockImpl#getBase_Class <em>Base Class</em>}</li>
  * </ul>
  * </p>
  * 
@@ -37,8 +36,8 @@ import org.eclipse.papyrus.sysml.blocks.BlocksPackage;
 public class BlockImpl extends EObjectImpl implements Block {
 
 	/**
-	 * The default value of the '{@link #isIsEncapsulated()
-	 * <em>Is Encapsulated</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #isIsEncapsulated() <em>Is Encapsulated</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @see #isIsEncapsulated()
@@ -48,8 +47,8 @@ public class BlockImpl extends EObjectImpl implements Block {
 	protected static final boolean IS_ENCAPSULATED_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isIsEncapsulated()
-	 * <em>Is Encapsulated</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #isIsEncapsulated() <em>Is Encapsulated</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @see #isIsEncapsulated()
@@ -59,8 +58,8 @@ public class BlockImpl extends EObjectImpl implements Block {
 	protected boolean isEncapsulated = IS_ENCAPSULATED_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getBase_Class() <em>Base Class</em>}'
-	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getBase_Class() <em>Base Class</em>}' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getBase_Class()
 	 * @generated

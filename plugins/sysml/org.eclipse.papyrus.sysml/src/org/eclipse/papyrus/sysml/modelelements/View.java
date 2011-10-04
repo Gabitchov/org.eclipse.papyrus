@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * <ul>
  * <li>{@link org.eclipse.papyrus.sysml.modelelements.View#getViewPoint <em>View Point</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.modelelements.View#getBase_Package <em> Base Package</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.modelelements.View#getBase_Package <em>Base Package</em>}</li>
  * </ul>
  * </p>
  * 
@@ -65,8 +65,8 @@ public interface View extends EObject {
 	ViewPoint getViewPoint();
 
 	/**
-	 * Sets the value of the ' {@link org.eclipse.papyrus.sysml.modelelements.View#getBase_Package
-	 * <em>Base Package</em>}' reference. <!-- begin-user-doc --> <!--
+	 * Sets the value of the '{@link org.eclipse.papyrus.sysml.modelelements.View#getBase_Package <em>Base Package</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @param value

@@ -17,10 +17,14 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.papyrus.sysml.blocks.Block;
 import org.eclipse.papyrus.sysml.constraints.ConstraintBlock;
 import org.eclipse.papyrus.sysml.constraints.ConstraintProperty;
 import org.eclipse.papyrus.sysml.constraints.ConstraintsPackage;
+import org.eclipse.uml2.uml.Class;
+import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * <!-- begin-user-doc --> The <b>Adapter Factory</b> for the model. It provides
@@ -33,7 +37,8 @@ import org.eclipse.papyrus.sysml.constraints.ConstraintsPackage;
 public class ConstraintsAdapterFactory extends AdapterFactoryImpl {
 
 	/**
-	 * The cached model package. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached model package.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -46,6 +51,26 @@ public class ConstraintsAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	protected ConstraintsSwitch<Adapter> modelSwitch = new ConstraintsSwitch<Adapter>() {
+
+
+		@Override
+		public Adapter caseClassStereotypedByConstraintBlock(Class class_) {
+			if(isConstraintBlockFromClass(class_)) {
+				return createConstraintBlockAdapter();
+			}
+			return null;
+		}
+
+
+
+		@Override
+		public Adapter casePropertyStereotypedByConstraintProperty(Property property_) {
+			if(isConstraintPropertyFromProperty(property_)) {
+				return createConstraintPropertyAdapter();
+			}
+			return null;
+		}
+
 
 		@Override
 		public Adapter caseConstraintBlock(ConstraintBlock object) {
@@ -69,7 +94,8 @@ public class ConstraintsAdapterFactory extends AdapterFactoryImpl {
 	};
 
 	/**
-	 * Creates an instance of the adapter factory. <!-- begin-user-doc --> <!--
+	 * Creates an instance of the adapter factory.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated
@@ -81,7 +107,8 @@ public class ConstraintsAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates an adapter for the <code>target</code>. <!-- begin-user-doc -->
+	 * Creates an adapter for the <code>target</code>.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
 	 * @param target
@@ -109,8 +136,8 @@ public class ConstraintsAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class ' {@link org.eclipse.papyrus.sysml.constraints.ConstraintBlock
-	 * <em>Constraint Block</em>}'. <!-- begin-user-doc --> This default
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.sysml.constraints.ConstraintBlock <em>Constraint Block</em>}'.
+	 * <!-- begin-user-doc --> This default
 	 * implementation returns null so that we can easily ignore cases; it's
 	 * useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
@@ -124,8 +151,8 @@ public class ConstraintsAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class ' {@link org.eclipse.papyrus.sysml.constraints.ConstraintProperty
-	 * <em>Constraint Property</em>}'. <!-- begin-user-doc --> This default
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.sysml.constraints.ConstraintProperty <em>Constraint Property</em>}'.
+	 * <!-- begin-user-doc --> This default
 	 * implementation returns null so that we can easily ignore cases; it's
 	 * useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
@@ -139,7 +166,8 @@ public class ConstraintsAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for the default case. <!-- begin-user-doc --> This
+	 * Creates a new adapter for the default case.
+	 * <!-- begin-user-doc --> This
 	 * default implementation returns null. <!-- end-user-doc -->
 	 * 
 	 * @return the new adapter.
@@ -160,11 +188,12 @@ public class ConstraintsAdapterFactory extends AdapterFactoryImpl {
 	 */
 	@Override
 	public boolean isFactoryForType(Object object) {
-		if(object == modelPackage) {
+		if(object == modelPackage || object == UMLPackage.eINSTANCE) {
 			return true;
 		}
 		if(object instanceof EObject) {
-			return ((EObject)object).eClass().getEPackage() == modelPackage;
+			EPackage ePackage = ((EObject)object).eClass().getEPackage();
+			return ePackage != null && (ePackage == modelPackage || ePackage == UMLPackage.eINSTANCE);
 		}
 		return false;
 	}

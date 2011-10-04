@@ -17,6 +17,7 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.papyrus.sysml.blocks.BindingConnector;
 import org.eclipse.papyrus.sysml.blocks.Block;
 import org.eclipse.papyrus.sysml.blocks.BlocksPackage;
@@ -28,6 +29,14 @@ import org.eclipse.papyrus.sysml.blocks.ParticipantProperty;
 import org.eclipse.papyrus.sysml.blocks.PropertySpecificType;
 import org.eclipse.papyrus.sysml.blocks.Unit;
 import org.eclipse.papyrus.sysml.blocks.ValueType;
+import org.eclipse.uml2.uml.Class;
+import org.eclipse.uml2.uml.Classifier;
+import org.eclipse.uml2.uml.Connector;
+import org.eclipse.uml2.uml.ConnectorEnd;
+import org.eclipse.uml2.uml.DataType;
+import org.eclipse.uml2.uml.InstanceSpecification;
+import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * <!-- begin-user-doc --> The <b>Adapter Factory</b> for the model. It provides
@@ -40,7 +49,8 @@ import org.eclipse.papyrus.sysml.blocks.ValueType;
 public class BlocksAdapterFactory extends AdapterFactoryImpl {
 
 	/**
-	 * The cached model package. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached model package.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -53,6 +63,106 @@ public class BlocksAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	protected BlocksSwitch<Adapter> modelSwitch = new BlocksSwitch<Adapter>() {
+
+
+		@Override
+		public Adapter caseClassStereotypedByBlock(Class class_) {
+			if(isBlockFromClass(class_)) {
+				return createBlockAdapter();
+			}
+			return null;
+		}
+
+
+
+		@Override
+		public Adapter casePropertyStereotypedByDistributedProperty(Property property_) {
+			if(isDistributedPropertyFromProperty(property_)) {
+				return createDistributedPropertyAdapter();
+			}
+			return null;
+		}
+
+
+
+		@Override
+		public Adapter caseInstanceSpecificationStereotypedByDimension(InstanceSpecification instanceSpecification_) {
+			if(isDimensionFromInstanceSpecification(instanceSpecification_)) {
+				return createDimensionAdapter();
+			}
+			return null;
+		}
+
+
+
+		@Override
+		public Adapter caseInstanceSpecificationStereotypedByUnit(InstanceSpecification instanceSpecification_) {
+			if(isUnitFromInstanceSpecification(instanceSpecification_)) {
+				return createUnitAdapter();
+			}
+			return null;
+		}
+
+
+
+		@Override
+		public Adapter caseDataTypeStereotypedByValueType(DataType dataType_) {
+			if(isValueTypeFromDataType(dataType_)) {
+				return createValueTypeAdapter();
+			}
+			return null;
+		}
+
+
+
+		@Override
+		public Adapter caseConnectorEndStereotypedByNestedConnectorEnd(ConnectorEnd connectorEnd_) {
+			if(isNestedConnectorEndFromConnectorEnd(connectorEnd_)) {
+				return createNestedConnectorEndAdapter();
+			}
+			return null;
+		}
+
+
+
+		@Override
+		public Adapter casePropertyStereotypedByParticipantProperty(Property property_) {
+			if(isParticipantPropertyFromProperty(property_)) {
+				return createParticipantPropertyAdapter();
+			}
+			return null;
+		}
+
+
+
+		@Override
+		public Adapter casePropertyStereotypedByConnectorProperty(Property property_) {
+			if(isConnectorPropertyFromProperty(property_)) {
+				return createConnectorPropertyAdapter();
+			}
+			return null;
+		}
+
+
+
+		@Override
+		public Adapter caseConnectorStereotypedByBindingConnector(Connector connector_) {
+			if(isBindingConnectorFromConnector(connector_)) {
+				return createBindingConnectorAdapter();
+			}
+			return null;
+		}
+
+
+
+		@Override
+		public Adapter caseClassifierStereotypedByPropertySpecificType(Classifier classifier_) {
+			if(isPropertySpecificTypeFromClassifier(classifier_)) {
+				return createPropertySpecificTypeAdapter();
+			}
+			return null;
+		}
+
 
 		@Override
 		public Adapter caseBlock(Block object) {
@@ -111,7 +221,8 @@ public class BlocksAdapterFactory extends AdapterFactoryImpl {
 	};
 
 	/**
-	 * Creates an instance of the adapter factory. <!-- begin-user-doc --> <!--
+	 * Creates an instance of the adapter factory.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated
@@ -123,7 +234,8 @@ public class BlocksAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates an adapter for the <code>target</code>. <!-- begin-user-doc -->
+	 * Creates an adapter for the <code>target</code>.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
 	 * @param target
@@ -137,8 +249,8 @@ public class BlocksAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class ' {@link org.eclipse.papyrus.sysml.blocks.BindingConnector
-	 * <em>Binding Connector</em>}'. <!-- begin-user-doc --> This default
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.sysml.blocks.BindingConnector <em>Binding Connector</em>}'.
+	 * <!-- begin-user-doc --> This default
 	 * implementation returns null so that we can easily ignore cases; it's
 	 * useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
@@ -166,8 +278,8 @@ public class BlocksAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class ' {@link org.eclipse.papyrus.sysml.blocks.ConnectorProperty
-	 * <em>Connector Property</em>}'. <!-- begin-user-doc --> This default
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.sysml.blocks.ConnectorProperty <em>Connector Property</em>}'.
+	 * <!-- begin-user-doc --> This default
 	 * implementation returns null so that we can easily ignore cases; it's
 	 * useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
@@ -181,7 +293,7 @@ public class BlocksAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class ' {@link org.eclipse.papyrus.sysml.blocks.Dimension <em>Dimension</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.sysml.blocks.Dimension <em>Dimension</em>}'.
 	 * <!-- begin-user-doc --> This default implementation returns null so that
 	 * we can easily ignore cases; it's useful to ignore a case when inheritance
 	 * will catch all the cases anyway. <!-- end-user-doc -->
@@ -195,8 +307,8 @@ public class BlocksAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class ' {@link org.eclipse.papyrus.sysml.blocks.DistributedProperty
-	 * <em>Distributed Property</em>}'. <!-- begin-user-doc --> This default
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.sysml.blocks.DistributedProperty <em>Distributed Property</em>}'.
+	 * <!-- begin-user-doc --> This default
 	 * implementation returns null so that we can easily ignore cases; it's
 	 * useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
@@ -210,7 +322,8 @@ public class BlocksAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for the default case. <!-- begin-user-doc --> This
+	 * Creates a new adapter for the default case.
+	 * <!-- begin-user-doc --> This
 	 * default implementation returns null. <!-- end-user-doc -->
 	 * 
 	 * @return the new adapter.
@@ -221,8 +334,8 @@ public class BlocksAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class ' {@link org.eclipse.papyrus.sysml.blocks.NestedConnectorEnd
-	 * <em>Nested Connector End</em>}'. <!-- begin-user-doc --> This default
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.sysml.blocks.NestedConnectorEnd <em>Nested Connector End</em>}'.
+	 * <!-- begin-user-doc --> This default
 	 * implementation returns null so that we can easily ignore cases; it's
 	 * useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
@@ -236,8 +349,8 @@ public class BlocksAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class ' {@link org.eclipse.papyrus.sysml.blocks.ParticipantProperty
-	 * <em>Participant Property</em>}'. <!-- begin-user-doc --> This default
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.sysml.blocks.ParticipantProperty <em>Participant Property</em>}'.
+	 * <!-- begin-user-doc --> This default
 	 * implementation returns null so that we can easily ignore cases; it's
 	 * useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
@@ -251,8 +364,8 @@ public class BlocksAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class ' {@link org.eclipse.papyrus.sysml.blocks.PropertySpecificType
-	 * <em>Property Specific Type</em>}'. <!-- begin-user-doc --> This default
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.sysml.blocks.PropertySpecificType <em>Property Specific Type</em>}'.
+	 * <!-- begin-user-doc --> This default
 	 * implementation returns null so that we can easily ignore cases; it's
 	 * useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
@@ -280,7 +393,7 @@ public class BlocksAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class ' {@link org.eclipse.papyrus.sysml.blocks.ValueType <em>Value Type</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.sysml.blocks.ValueType <em>Value Type</em>}'.
 	 * <!-- begin-user-doc --> This default implementation returns null so that
 	 * we can easily ignore cases; it's useful to ignore a case when inheritance
 	 * will catch all the cases anyway. <!-- end-user-doc -->
@@ -304,11 +417,12 @@ public class BlocksAdapterFactory extends AdapterFactoryImpl {
 	 */
 	@Override
 	public boolean isFactoryForType(Object object) {
-		if(object == modelPackage) {
+		if(object == modelPackage || object == UMLPackage.eINSTANCE) {
 			return true;
 		}
 		if(object instanceof EObject) {
-			return ((EObject)object).eClass().getEPackage() == modelPackage;
+			EPackage ePackage = ((EObject)object).eClass().getEPackage();
+			return ePackage != null && (ePackage == modelPackage || ePackage == UMLPackage.eINSTANCE);
 		}
 		return false;
 	}

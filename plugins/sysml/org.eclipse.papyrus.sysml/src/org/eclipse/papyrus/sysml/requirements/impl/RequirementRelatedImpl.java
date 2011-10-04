@@ -41,21 +41,11 @@ import org.eclipse.uml2.uml.NamedElement;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>
- * {@link org.eclipse.papyrus.sysml.requirements.impl.RequirementRelatedImpl#getBase_NamedElement
- * <em>Base Named Element</em>}</li>
- * <li>
- * {@link org.eclipse.papyrus.sysml.requirements.impl.RequirementRelatedImpl#getTracedFrom
- * <em>Traced From</em>}</li>
- * <li>
- * {@link org.eclipse.papyrus.sysml.requirements.impl.RequirementRelatedImpl#getSatisfies
- * <em>Satisfies</em>}</li>
- * <li>
- * {@link org.eclipse.papyrus.sysml.requirements.impl.RequirementRelatedImpl#getRefines
- * <em>Refines</em>}</li>
- * <li>
- * {@link org.eclipse.papyrus.sysml.requirements.impl.RequirementRelatedImpl#getVerifies
- * <em>Verifies</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementRelatedImpl#getBase_NamedElement <em>Base Named Element</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementRelatedImpl#getTracedFrom <em>Traced From</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementRelatedImpl#getSatisfies <em>Satisfies</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementRelatedImpl#getRefines <em>Refines</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementRelatedImpl#getVerifies <em>Verifies</em>}</li>
  * </ul>
  * </p>
  * 
@@ -64,8 +54,8 @@ import org.eclipse.uml2.uml.NamedElement;
 public class RequirementRelatedImpl extends EObjectImpl implements RequirementRelated {
 
 	/**
-	 * The cached value of the '{@link #getBase_NamedElement()
-	 * <em>Base Named Element</em>}' reference. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getBase_NamedElement() <em>Base Named Element</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @see #getBase_NamedElement()

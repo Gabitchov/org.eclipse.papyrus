@@ -22,8 +22,7 @@ import org.eclipse.uml2.uml.Comment;
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.papyrus.sysml.modelelements.Problem#getBase_Comment
- * <em>Base Comment</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.modelelements.Problem#getBase_Comment <em>Base Comment</em>}</li>
  * </ul>
  * </p>
  * 
@@ -50,8 +49,8 @@ public interface Problem extends EObject {
 	Comment getBase_Comment();
 
 	/**
-	 * Sets the value of the ' {@link org.eclipse.papyrus.sysml.modelelements.Problem#getBase_Comment
-	 * <em>Base Comment</em>} ' reference. <!-- begin-user-doc --> <!--
+	 * Sets the value of the '{@link org.eclipse.papyrus.sysml.modelelements.Problem#getBase_Comment <em>Base Comment</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @param value

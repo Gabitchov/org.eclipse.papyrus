@@ -13,35 +13,86 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.requirements.provider;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
+import org.eclipse.emf.edit.provider.ComposedImage;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptorDecorator;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
+import org.eclipse.papyrus.sysml.edit.provider.IComposableAdapterFactory;
+import org.eclipse.papyrus.sysml.edit.provider.SysMLItemProviderAdapter;
 import org.eclipse.papyrus.sysml.provider.SysmlEditPlugin;
 import org.eclipse.papyrus.sysml.requirements.RequirementsPackage;
+import org.eclipse.papyrus.sysml.requirements.TestCase;
+import org.eclipse.papyrus.sysml.util.SysmlResource;
+import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.Stereotype;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.requirements.TestCase} object. <!-- begin-user-doc --> <!-- end-user-doc
- * -->
+ * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.requirements.TestCase} object. <!--
+ * begin-user-doc --> <!-- end-user-doc -->
  * 
  * @generated
  */
-public class TestCaseItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class TestCaseItemProvider extends SysMLItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 
 	/**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * This is used to store all the property descriptors for aclass stereotyped with a block.
+	 * Derived classes should add descriptors to this vector.
+	 */
+
+
+	protected List<IItemPropertyDescriptor> itemPropertyDescriptorsForbehavior;
+
+	/**
+	 * This is used to store all the property descriptors for aclass stereotyped with a block.
+	 * Derived classes should add descriptors to this vector.
+	 */
+
+
+	protected List<IItemPropertyDescriptor> itemPropertyDescriptorsForoperation;
+
+	/**
+	 * Pattern prefix of testCase
+	 * 
+	 * @generated
+	 */
+	private static Pattern TEST_CASE_PREFIX_PATTERN = Pattern.compile("(testCase, |<<testCase>>|, testCase)");
+
+	/**
+	 * Get the prefix pattern of BEHAVIOR_PREFIX_PATTERN
+	 * 
+	 * @generated
+	 */
+
+	private static Pattern BEHAVIOR_PREFIX_PATTERN = Pattern.compile("Behavior");
+
+	/**
+	 * Get the prefix pattern of OPERATION_PREFIX_PATTERN
+	 * 
+	 * @generated
+	 */
+
+	private static Pattern OPERATION_PREFIX_PATTERN = Pattern.compile("Operation");
+
+	/**
+	 * This constructs an instance from a factory and a notifier. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -50,28 +101,108 @@ public class TestCaseItemProvider extends ItemProviderAdapter implements IEditin
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if(itemPropertyDescriptors == null) {
-			super.getPropertyDescriptors(object);
+		if(object instanceof TestCase) {
+			if(itemPropertyDescriptors == null) {
+				super.getPropertyDescriptors(object);
 
-			addBase_BehaviorPropertyDescriptor(object);
-			addBase_OperationPropertyDescriptor(object);
-			addVerifiesPropertyDescriptor(object);
+				addBase_BehaviorPropertyDescriptor(object);
+				addBase_OperationPropertyDescriptor(object);
+				addVerifiesPropertyDescriptor(object);
+			}
 		}
+
+
+
+		/**
+		 * Handle Behavior stereotyped by TestCase
+		 */
+		if(object instanceof org.eclipse.uml2.uml.Behavior) {
+			org.eclipse.uml2.uml.Behavior element = (org.eclipse.uml2.uml.Behavior)object;
+			if(itemPropertyDescriptorsForbehavior == null) {
+				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.BEHAVIOR);
+				final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
+				itemPropertyDescriptorsForbehavior = new ArrayList<IItemPropertyDescriptor>();
+				itemPropertyDescriptorsForbehavior.addAll(propertyDescriptors);
+				Stereotype ste = (element).getAppliedStereotype(SysmlResource.TEST_CASE_ID);
+				if(ste != null) {
+					EObject steApplication = (element).getStereotypeApplication(ste);
+
+
+					addBase_BehaviorPropertyDescriptorForBehavior(steApplication);
+
+					addBase_BehaviorPropertyDescriptorForOperation(steApplication);
+
+
+
+					addBase_OperationPropertyDescriptorForBehavior(steApplication);
+
+					addBase_OperationPropertyDescriptorForOperation(steApplication);
+
+
+
+					addVerifiesPropertyDescriptorForBehavior(steApplication);
+
+					addVerifiesPropertyDescriptorForOperation(steApplication);
+
+
+				}
+			}
+			return itemPropertyDescriptorsForbehavior;
+
+		}
+
+
+		/**
+		 * Handle Operation stereotyped by TestCase
+		 */
+		if(object instanceof org.eclipse.uml2.uml.Operation) {
+			org.eclipse.uml2.uml.Operation element = (org.eclipse.uml2.uml.Operation)object;
+			if(itemPropertyDescriptorsForoperation == null) {
+				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.OPERATION);
+				final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
+				itemPropertyDescriptorsForoperation = new ArrayList<IItemPropertyDescriptor>();
+				itemPropertyDescriptorsForoperation.addAll(propertyDescriptors);
+				Stereotype ste = (element).getAppliedStereotype(SysmlResource.TEST_CASE_ID);
+				if(ste != null) {
+					EObject steApplication = (element).getStereotypeApplication(ste);
+
+
+					addBase_BehaviorPropertyDescriptorForBehavior(steApplication);
+
+					addBase_BehaviorPropertyDescriptorForOperation(steApplication);
+
+
+
+					addBase_OperationPropertyDescriptorForBehavior(steApplication);
+
+					addBase_OperationPropertyDescriptorForOperation(steApplication);
+
+
+
+					addVerifiesPropertyDescriptorForBehavior(steApplication);
+
+					addVerifiesPropertyDescriptorForOperation(steApplication);
+
+
+				}
+			}
+			return itemPropertyDescriptorsForoperation;
+
+		}
+
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Base Behavior feature.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * This adds a property descriptor for the Base Behavior feature. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -80,9 +211,58 @@ public class TestCaseItemProvider extends ItemProviderAdapter implements IEditin
 	}
 
 	/**
-	 * This adds a property descriptor for the Base Operation feature.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * This adds a property descriptor for the Base Behavior feature for the UML element Behavior.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addBase_BehaviorPropertyDescriptorForBehavior(Object object) {
+
+		itemPropertyDescriptorsForbehavior.add(new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_TestCase_base_Behavior_feature"),
+
+		getString("_UI_PropertyDescriptor_description", "_UI_TestCase_base_Behavior_feature", "_UI_TestCase_type"),
+
+		RequirementsPackage.Literals.TEST_CASE__BASE_BEHAVIOR, true, false, true,
+
+		null,
+
+
+		null,
+
+
+		null)));
+
+	}
+
+	/**
+	 * This adds a property descriptor for the Base Behavior feature for the UML element Operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addBase_BehaviorPropertyDescriptorForOperation(Object object) {
+
+		itemPropertyDescriptorsForoperation.add(new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_TestCase_base_Behavior_feature"),
+
+		getString("_UI_PropertyDescriptor_description", "_UI_TestCase_base_Behavior_feature", "_UI_TestCase_type"),
+
+		RequirementsPackage.Literals.TEST_CASE__BASE_BEHAVIOR, true, false, true,
+
+		null,
+
+
+		null,
+
+
+		null)));
+
+	}
+
+	/**
+	 * This adds a property descriptor for the Base Operation feature. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -91,14 +271,113 @@ public class TestCaseItemProvider extends ItemProviderAdapter implements IEditin
 	}
 
 	/**
-	 * This adds a property descriptor for the Verifies feature.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * This adds a property descriptor for the Base Operation feature for the UML element Behavior.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addBase_OperationPropertyDescriptorForBehavior(Object object) {
+
+		itemPropertyDescriptorsForbehavior.add(new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_TestCase_base_Operation_feature"),
+
+		getString("_UI_PropertyDescriptor_description", "_UI_TestCase_base_Operation_feature", "_UI_TestCase_type"),
+
+		RequirementsPackage.Literals.TEST_CASE__BASE_OPERATION, true, false, true,
+
+		null,
+
+
+		null,
+
+
+		null)));
+
+	}
+
+	/**
+	 * This adds a property descriptor for the Base Operation feature for the UML element Operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addBase_OperationPropertyDescriptorForOperation(Object object) {
+
+		itemPropertyDescriptorsForoperation.add(new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_TestCase_base_Operation_feature"),
+
+		getString("_UI_PropertyDescriptor_description", "_UI_TestCase_base_Operation_feature", "_UI_TestCase_type"),
+
+		RequirementsPackage.Literals.TEST_CASE__BASE_OPERATION, true, false, true,
+
+		null,
+
+
+		null,
+
+
+		null)));
+
+	}
+
+	/**
+	 * This adds a property descriptor for the Verifies feature. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	protected void addVerifiesPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_TestCase_verifies_feature"), getString("_UI_PropertyDescriptor_description", "_UI_TestCase_verifies_feature", "_UI_TestCase_type"), RequirementsPackage.Literals.TEST_CASE__VERIFIES, false, false, false, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Verifies feature for the UML element Behavior.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addVerifiesPropertyDescriptorForBehavior(Object object) {
+
+		itemPropertyDescriptorsForbehavior.add(new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_TestCase_verifies_feature"),
+
+		getString("_UI_PropertyDescriptor_description", "_UI_TestCase_verifies_feature", "_UI_TestCase_type"),
+
+		RequirementsPackage.Literals.TEST_CASE__VERIFIES, false, false, false,
+
+		null,
+
+
+		null,
+
+
+		null)));
+
+	}
+
+	/**
+	 * This adds a property descriptor for the Verifies feature for the UML element Operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addVerifiesPropertyDescriptorForOperation(Object object) {
+
+		itemPropertyDescriptorsForoperation.add(new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_TestCase_verifies_feature"),
+
+		getString("_UI_PropertyDescriptor_description", "_UI_TestCase_verifies_feature", "_UI_TestCase_type"),
+
+		RequirementsPackage.Literals.TEST_CASE__VERIFIES, false, false, false,
+
+		null,
+
+
+		null,
+
+
+		null)));
+
 	}
 
 	/**
@@ -109,37 +388,111 @@ public class TestCaseItemProvider extends ItemProviderAdapter implements IEditin
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/TestCase"));
+		Object composedImage = overlayImage(object, getResourceLocator().getImage("full/obj16/TestCase"));
+		if(object instanceof NamedElement) {
+			ComposedImage aux = new ComposedImage(Collections.singletonList(composedImage));
+			return (Object)composeVisibilityImage(object, aux);
+		}
+		return composedImage;
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
+		/**
+		 * Handle Stereotype item and stereoted element
+		 */
+		TestCase testCase_ = null;
+
+		if(object instanceof org.eclipse.uml2.uml.Behavior) {
+			Stereotype ste = ((org.eclipse.uml2.uml.Behavior)object).getAppliedStereotype(SysmlResource.TEST_CASE_ID);
+			if(ste != null) {
+				IItemLabelProvider ite = (IItemLabelProvider)((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.BEHAVIOR);
+				String result = ite.getText(object);
+				result = TEST_CASE_PREFIX_PATTERN.matcher(result).replaceFirst("");
+				return BEHAVIOR_PREFIX_PATTERN.matcher(result).replaceFirst("TestCase");
+			}
+
+		}
+
+		if(object instanceof org.eclipse.uml2.uml.Operation) {
+			Stereotype ste = ((org.eclipse.uml2.uml.Operation)object).getAppliedStereotype(SysmlResource.TEST_CASE_ID);
+			if(ste != null) {
+				IItemLabelProvider ite = (IItemLabelProvider)((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.OPERATION);
+				String result = ite.getText(object);
+				result = TEST_CASE_PREFIX_PATTERN.matcher(result).replaceFirst("");
+				return OPERATION_PREFIX_PATTERN.matcher(result).replaceFirst("TestCase");
+			}
+
+		}
+
+		if(testCase_ == null) {
+			testCase_ = (TestCase)object;
+		}
+
+
 		return getString("_UI_TestCase_type");
 	}
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
+
+		/**
+		 * Notify UML element
+		 */
+		if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
+
+
+
+			/**
+			 * Handle Behavior stereotyped by TestCase
+			 */
+
+
+			if(notification.getFeatureID(org.eclipse.uml2.uml.Behavior.class) != Notification.NO_FEATURE_ID) {
+				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.BEHAVIOR);
+				ite.notifyChanged(notification);
+				return;
+
+			}
+
+
+			/**
+			 * Handle Operation stereotyped by TestCase
+			 */
+
+
+			if(notification.getFeatureID(org.eclipse.uml2.uml.Operation.class) != Notification.NO_FEATURE_ID) {
+				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.OPERATION);
+				ite.notifyChanged(notification);
+				return;
+
+			}
+
+		}
+
 		super.notifyChanged(notification);
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-	 * that can be created under this object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
+	 * describing the children that can be created under this object. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -149,9 +502,8 @@ public class TestCaseItemProvider extends ItemProviderAdapter implements IEditin
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * Return the resource locator for this item provider's resources. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */

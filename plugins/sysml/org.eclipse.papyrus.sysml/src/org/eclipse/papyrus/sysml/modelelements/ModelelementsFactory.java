@@ -25,7 +25,8 @@ import org.eclipse.emf.ecore.EFactory;
 public interface ModelelementsFactory extends EFactory {
 
 	/**
-	 * The singleton instance of the factory. <!-- begin-user-doc --> <!--
+	 * The singleton instance of the factory.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated
@@ -33,7 +34,8 @@ public interface ModelelementsFactory extends EFactory {
 	ModelelementsFactory eINSTANCE = org.eclipse.papyrus.sysml.modelelements.impl.ModelelementsFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Conform</em>'. <!-- begin-user-doc -->
+	 * Returns a new object of class '<em>Conform</em>'.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
 	 * @return a new object of class '<em>Conform</em>'.
@@ -42,7 +44,8 @@ public interface ModelelementsFactory extends EFactory {
 	Conform createConform();
 
 	/**
-	 * Returns a new object of class '<em>Problem</em>'. <!-- begin-user-doc -->
+	 * Returns a new object of class '<em>Problem</em>'.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
 	 * @return a new object of class '<em>Problem</em>'.
@@ -51,7 +54,8 @@ public interface ModelelementsFactory extends EFactory {
 	Problem createProblem();
 
 	/**
-	 * Returns a new object of class '<em>Rationale</em>'. <!-- begin-user-doc
+	 * Returns a new object of class '<em>Rationale</em>'.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
 	 * 
 	 * @return a new object of class '<em>Rationale</em>'.
@@ -60,7 +64,8 @@ public interface ModelelementsFactory extends EFactory {
 	Rationale createRationale();
 
 	/**
-	 * Returns a new object of class '<em>View</em>'. <!-- begin-user-doc -->
+	 * Returns a new object of class '<em>View</em>'.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
 	 * @return a new object of class '<em>View</em>'.
@@ -69,7 +74,8 @@ public interface ModelelementsFactory extends EFactory {
 	View createView();
 
 	/**
-	 * Returns a new object of class '<em>View Point</em>'. <!-- begin-user-doc
+	 * Returns a new object of class '<em>View Point</em>'.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
 	 * 
 	 * @return a new object of class '<em>View Point</em>'.
@@ -78,7 +84,8 @@ public interface ModelelementsFactory extends EFactory {
 	ViewPoint createViewPoint();
 
 	/**
-	 * Returns the package supported by this factory. <!-- begin-user-doc -->
+	 * Returns the package supported by this factory.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
 	 * @return the package supported by this factory.

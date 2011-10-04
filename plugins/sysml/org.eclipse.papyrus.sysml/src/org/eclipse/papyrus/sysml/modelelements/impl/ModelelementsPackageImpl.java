@@ -64,8 +64,7 @@ public class ModelelementsPackageImpl extends EPackageImpl implements Modeleleme
 	private static boolean isInited = false;
 
 	/**
-	 * Creates, registers, and initializes the <b>Package</b> for this model,
-	 * and for any others upon which it depends.
+	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
 	 * 
 	 * <p>
 	 * This method is used to initialize {@link ModelelementsPackage#eINSTANCE} when that field is accessed. Clients should not invoke it directly.
@@ -129,6 +128,7 @@ public class ModelelementsPackageImpl extends EPackageImpl implements Modeleleme
 		// Mark meta-data to indicate it can't be changed
 		theModelelementsPackage.freeze();
 
+
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(ModelelementsPackage.eNS_URI, theModelelementsPackage);
 		return theModelelementsPackage;
@@ -185,7 +185,8 @@ public class ModelelementsPackageImpl extends EPackageImpl implements Modeleleme
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the
-	 * package package URI value.
+	 * package
+	 * package URI value.
 	 * <p>
 	 * Note: the correct way to create the package is via the static factory method {@link #init init()}, which also performs initialization of the
 	 * package, or returns the registered package, if one already exists. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -200,8 +201,9 @@ public class ModelelementsPackageImpl extends EPackageImpl implements Modeleleme
 	}
 
 	/**
-	 * Creates the meta-model objects for the package. This method is guarded to
-	 * have no affect on any invocation but its first. <!-- begin-user-doc -->
+	 * Creates the meta-model objects for the package. This method is
+	 * guarded to have no affect on any invocation but its first.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
 	 * @generated

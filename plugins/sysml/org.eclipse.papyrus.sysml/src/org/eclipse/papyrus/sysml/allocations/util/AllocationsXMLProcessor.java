@@ -29,7 +29,8 @@ import org.eclipse.papyrus.sysml.allocations.AllocationsPackage;
 public class AllocationsXMLProcessor extends XMLProcessor {
 
 	/**
-	 * Public constructor to instantiate the helper. <!-- begin-user-doc -->
+	 * Public constructor to instantiate the helper.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -40,8 +41,8 @@ public class AllocationsXMLProcessor extends XMLProcessor {
 	}
 
 	/**
-	 * Register for "*" and "xml" file extensions the
-	 * AllocationsResourceFactoryImpl factory. <!-- begin-user-doc --> <!--
+	 * Register for "*" and "xml" file extensions the AllocationsResourceFactoryImpl factory.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated

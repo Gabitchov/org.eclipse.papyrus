@@ -22,9 +22,7 @@ import org.eclipse.uml2.uml.Interface;
  * <p>
  * The following features are supported:
  * <ul>
- * <li>
- * {@link org.eclipse.papyrus.sysml.portandflows.FlowSpecification#getBase_Interface
- * <em>Base Interface</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.portandflows.FlowSpecification#getBase_Interface <em>Base Interface</em>}</li>
  * </ul>
  * </p>
  * 
@@ -51,8 +49,8 @@ public interface FlowSpecification extends EObject {
 	Interface getBase_Interface();
 
 	/**
-	 * Sets the value of the ' {@link org.eclipse.papyrus.sysml.portandflows.FlowSpecification#getBase_Interface
-	 * <em>Base Interface</em>}' reference. <!-- begin-user-doc --> <!--
+	 * Sets the value of the '{@link org.eclipse.papyrus.sysml.portandflows.FlowSpecification#getBase_Interface <em>Base Interface</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @param value

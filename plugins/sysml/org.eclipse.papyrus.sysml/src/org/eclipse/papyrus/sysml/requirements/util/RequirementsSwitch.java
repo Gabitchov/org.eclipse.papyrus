@@ -24,7 +24,14 @@ import org.eclipse.papyrus.sysml.requirements.RequirementsPackage;
 import org.eclipse.papyrus.sysml.requirements.Satisfy;
 import org.eclipse.papyrus.sysml.requirements.TestCase;
 import org.eclipse.papyrus.sysml.requirements.Verify;
+import org.eclipse.papyrus.sysml.util.SysmlResource;
 import org.eclipse.papyrus.uml.standard.Trace;
+import org.eclipse.uml2.uml.Abstraction;
+import org.eclipse.uml2.uml.Behavior;
+import org.eclipse.uml2.uml.Class;
+import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.Operation;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * <!-- begin-user-doc --> The <b>Switch</b> for the model's inheritance
@@ -39,14 +46,16 @@ import org.eclipse.papyrus.uml.standard.Trace;
 public class RequirementsSwitch<T> extends Switch<T> {
 
 	/**
-	 * The cached model package <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached model package
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	protected static RequirementsPackage modelPackage;
 
 	/**
-	 * Creates an instance of the switch. <!-- begin-user-doc --> <!--
+	 * Creates an instance of the switch.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated
@@ -67,7 +76,10 @@ public class RequirementsSwitch<T> extends Switch<T> {
 	 */
 	@Override
 	protected boolean isSwitchFor(EPackage ePackage) {
-		return ePackage == modelPackage;
+		/**
+		 * ePackage == UMLPackage.eINSTANCE in order to accept UML element
+		 */
+		return ePackage == modelPackage || ePackage == UMLPackage.eINSTANCE;
 	}
 
 	/**
@@ -86,13 +98,14 @@ public class RequirementsSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of ' <em>Derive Reqt</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Derive Reqt</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
 	 * 
 	 * @param object
 	 *        the target of the switch.
-	 * @return the result of interpreting the object as an instance of ' <em>Derive Reqt</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Derive Reqt</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -101,13 +114,14 @@ public class RequirementsSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of ' <em>Requirement</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Requirement</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
 	 * 
 	 * @param object
 	 *        the target of the switch.
-	 * @return the result of interpreting the object as an instance of ' <em>Requirement</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Requirement</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -116,13 +130,14 @@ public class RequirementsSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of ' <em>Requirement Related</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Requirement Related</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
 	 * 
 	 * @param object
 	 *        the target of the switch.
-	 * @return the result of interpreting the object as an instance of ' <em>Requirement Related</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Requirement Related</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -131,13 +146,14 @@ public class RequirementsSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of ' <em>Satisfy</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Satisfy</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
 	 * 
 	 * @param object
 	 *        the target of the switch.
-	 * @return the result of interpreting the object as an instance of ' <em>Satisfy</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Satisfy</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -146,13 +162,14 @@ public class RequirementsSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of ' <em>Test Case</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Test Case</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
 	 * 
 	 * @param object
 	 *        the target of the switch.
-	 * @return the result of interpreting the object as an instance of ' <em>Test Case</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Test Case</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -161,13 +178,14 @@ public class RequirementsSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of ' <em>Trace</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Trace</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
 	 * 
 	 * @param object
 	 *        the target of the switch.
-	 * @return the result of interpreting the object as an instance of ' <em>Trace</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Trace</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -176,13 +194,14 @@ public class RequirementsSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of ' <em>Verify</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Verify</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
 	 * 
 	 * @param object
 	 *        the target of the switch.
-	 * @return the result of interpreting the object as an instance of ' <em>Verify</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Verify</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -191,13 +210,14 @@ public class RequirementsSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of ' <em>EObject</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>EObject</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch, but this is
 	 * the last case anyway. <!-- end-user-doc -->
 	 * 
 	 * @param object
 	 *        the target of the switch.
-	 * @return the result of interpreting the object as an instance of ' <em>EObject</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)
 	 * @generated
 	 */
@@ -207,8 +227,240 @@ public class RequirementsSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Calls <code>caseXXX</code> for each class of the model until one returns
-	 * a non null result; it yields that result. <!-- begin-user-doc --> <!--
+	 * Tell if the Abstraction is a DeriveReqt implementation
+	 * 
+	 * @param Abstraction
+	 * @return
+	 * @generated
+	 */
+	protected Boolean isDeriveReqtFromAbstraction(Abstraction abstraction_) {
+		if(abstraction_.getAppliedStereotype(SysmlResource.DERIVE_REQT_ID) != null) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>DeriveReqt</em>' from Abstraction object. <!--
+	 * begin-user-doc --> This implementation returns null; returning a non-null result will
+	 * terminate the switch. <!-- end-user-doc -->
+	 * 
+	 * @param object
+	 *        the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>DeriveReqt</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAbstractionStereotypedByDeriveReqt(Abstraction abstraction_) {
+		return null;
+	}
+
+	/**
+	 * Tell if the Abstraction is a Verify implementation
+	 * 
+	 * @param Abstraction
+	 * @return
+	 * @generated
+	 */
+	protected Boolean isVerifyFromAbstraction(Abstraction abstraction_) {
+		if(abstraction_.getAppliedStereotype(SysmlResource.VERIFY_ID) != null) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Verify</em>' from Abstraction object. <!--
+	 * begin-user-doc --> This implementation returns null; returning a non-null result will
+	 * terminate the switch. <!-- end-user-doc -->
+	 * 
+	 * @param object
+	 *        the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Verify</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAbstractionStereotypedByVerify(Abstraction abstraction_) {
+		return null;
+	}
+
+	/**
+	 * Tell if the Abstraction is a Copy implementation
+	 * 
+	 * @param Abstraction
+	 * @return
+	 * @generated
+	 */
+	protected Boolean isCopyFromAbstraction(Abstraction abstraction_) {
+		if(abstraction_.getAppliedStereotype(SysmlResource.COPY_ID) != null) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Copy</em>' from Abstraction object. <!--
+	 * begin-user-doc --> This implementation returns null; returning a non-null result will
+	 * terminate the switch. <!-- end-user-doc -->
+	 * 
+	 * @param object
+	 *        the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Copy</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAbstractionStereotypedByCopy(Abstraction abstraction_) {
+		return null;
+	}
+
+	/**
+	 * Tell if the Abstraction is a Satisfy implementation
+	 * 
+	 * @param Abstraction
+	 * @return
+	 * @generated
+	 */
+	protected Boolean isSatisfyFromAbstraction(Abstraction abstraction_) {
+		if(abstraction_.getAppliedStereotype(SysmlResource.SATISFY_ID) != null) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Satisfy</em>' from Abstraction object. <!--
+	 * begin-user-doc --> This implementation returns null; returning a non-null result will
+	 * terminate the switch. <!-- end-user-doc -->
+	 * 
+	 * @param object
+	 *        the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Satisfy</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAbstractionStereotypedBySatisfy(Abstraction abstraction_) {
+		return null;
+	}
+
+	/**
+	 * Tell if the Behavior is a TestCase implementation
+	 * 
+	 * @param Behavior
+	 * @return
+	 * @generated
+	 */
+	protected Boolean isTestCaseFromBehavior(Behavior behavior_) {
+		if(behavior_.getAppliedStereotype(SysmlResource.TEST_CASE_ID) != null) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>TestCase</em>' from Behavior object. <!--
+	 * begin-user-doc --> This implementation returns null; returning a non-null result will
+	 * terminate the switch. <!-- end-user-doc -->
+	 * 
+	 * @param object
+	 *        the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>TestCase</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseBehaviorStereotypedByTestCase(Behavior behavior_) {
+		return null;
+	}
+
+	/**
+	 * Tell if the Operation is a TestCase implementation
+	 * 
+	 * @param Operation
+	 * @return
+	 * @generated
+	 */
+	protected Boolean isTestCaseFromOperation(Operation operation_) {
+		if(operation_.getAppliedStereotype(SysmlResource.TEST_CASE_ID) != null) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>TestCase</em>' from Operation object. <!--
+	 * begin-user-doc --> This implementation returns null; returning a non-null result will
+	 * terminate the switch. <!-- end-user-doc -->
+	 * 
+	 * @param object
+	 *        the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>TestCase</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOperationStereotypedByTestCase(Operation operation_) {
+		return null;
+	}
+
+	/**
+	 * Tell if the Class is a Requirement implementation
+	 * 
+	 * @param Class
+	 * @return
+	 * @generated
+	 */
+	protected Boolean isRequirementFromClass(Class class_) {
+		if(class_.getAppliedStereotype(SysmlResource.REQUIREMENT_ID) != null) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Requirement</em>' from Class object. <!--
+	 * begin-user-doc --> This implementation returns null; returning a non-null result will
+	 * terminate the switch. <!-- end-user-doc -->
+	 * 
+	 * @param object
+	 *        the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Requirement</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseClassStereotypedByRequirement(Class class_) {
+		return null;
+	}
+
+	/**
+	 * Tell if the NamedElement is a RequirementRelated implementation
+	 * 
+	 * @param NamedElement
+	 * @return
+	 * @generated
+	 */
+	protected Boolean isRequirementRelatedFromNamedElement(NamedElement namedElement_) {
+		if(namedElement_.getAppliedStereotype(SysmlResource.REQUIREMENT_RELATED_ID) != null) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>RequirementRelated</em>' from NamedElement object. <!--
+	 * begin-user-doc --> This implementation returns null; returning a non-null result will
+	 * terminate the switch. <!-- end-user-doc -->
+	 * 
+	 * @param object
+	 *        the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>RequirementRelated</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseNamedElementStereotypedByRequirementRelated(NamedElement namedElement_) {
+		return null;
+	}
+
+	/**
+	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
@@ -216,73 +468,222 @@ public class RequirementsSwitch<T> extends Switch<T> {
 	 */
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
-		switch(classifierID) {
-		case RequirementsPackage.DERIVE_REQT:
-		{
-			DeriveReqt deriveReqt = (DeriveReqt)theEObject;
-			T result = caseDeriveReqt(deriveReqt);
-			if(result == null)
-				result = caseTrace(deriveReqt);
-			if(result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case RequirementsPackage.VERIFY:
-		{
-			Verify verify = (Verify)theEObject;
-			T result = caseVerify(verify);
-			if(result == null)
-				result = caseTrace(verify);
-			if(result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case RequirementsPackage.COPY:
-		{
-			Copy copy = (Copy)theEObject;
-			T result = caseCopy(copy);
-			if(result == null)
-				result = caseTrace(copy);
-			if(result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case RequirementsPackage.SATISFY:
-		{
-			Satisfy satisfy = (Satisfy)theEObject;
-			T result = caseSatisfy(satisfy);
-			if(result == null)
-				result = caseTrace(satisfy);
-			if(result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case RequirementsPackage.TEST_CASE:
-		{
-			TestCase testCase = (TestCase)theEObject;
-			T result = caseTestCase(testCase);
-			if(result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case RequirementsPackage.REQUIREMENT:
-		{
-			Requirement requirement = (Requirement)theEObject;
-			T result = caseRequirement(requirement);
-			if(result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case RequirementsPackage.REQUIREMENT_RELATED:
-		{
-			RequirementRelated requirementRelated = (RequirementRelated)theEObject;
-			T result = caseRequirementRelated(requirementRelated);
-			if(result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		default:
-			return defaultCase(theEObject);
+		if(theEObject.eClass().getEPackage() == UMLPackage.eINSTANCE) {
+			switch(classifierID) {
+
+
+
+
+
+			case UMLPackage.ABSTRACTION:
+			{
+				Abstraction umlElement = (Abstraction)theEObject;
+				T result;
+
+				result = caseAbstractionStereotypedByDeriveReqt(umlElement);
+				if(result != null) {
+					return result;
+				}
+
+
+
+
+				result = caseAbstractionStereotypedByVerify(umlElement);
+				if(result != null) {
+					return result;
+				}
+
+
+
+
+				result = caseAbstractionStereotypedByCopy(umlElement);
+				if(result != null) {
+					return result;
+				}
+
+
+
+
+				result = caseAbstractionStereotypedBySatisfy(umlElement);
+				if(result != null) {
+					return result;
+				}
+
+				return null;
+			}
+
+
+
+
+
+			case UMLPackage.BEHAVIOR:
+			{
+				Behavior umlElement = (Behavior)theEObject;
+				T result;
+
+				result = caseBehaviorStereotypedByTestCase(umlElement);
+				if(result != null) {
+					return result;
+				}
+
+				return null;
+			}
+
+
+
+
+
+			case UMLPackage.CLASS:
+			{
+				Class umlElement = (Class)theEObject;
+				T result;
+
+				result = caseClassStereotypedByRequirement(umlElement);
+				if(result != null) {
+					return result;
+				}
+
+				return null;
+			}
+
+
+
+
+
+			case UMLPackage.NAMED_ELEMENT:
+			{
+				NamedElement umlElement = (NamedElement)theEObject;
+				T result;
+
+				result = caseNamedElementStereotypedByRequirementRelated(umlElement);
+				if(result != null) {
+					return result;
+				}
+
+				return null;
+			}
+
+
+
+
+
+			case UMLPackage.OPERATION:
+			{
+				Operation umlElement = (Operation)theEObject;
+				T result;
+
+				result = caseOperationStereotypedByTestCase(umlElement);
+				if(result != null) {
+					return result;
+				}
+
+				return null;
+			}
+
+
+
+
+			default:
+				return defaultCase(theEObject);
+			}
+
+
+
+
+		} else {
+			switch(classifierID) {
+
+			case RequirementsPackage.DERIVE_REQT:
+			{
+				DeriveReqt deriveReqt = (DeriveReqt)theEObject;
+				T result = caseDeriveReqt(deriveReqt);
+
+				if(result == null)
+					result = caseTrace(deriveReqt);
+
+				if(result == null)
+					result = defaultCase(theEObject);
+				return result;
+			}
+
+
+			case RequirementsPackage.VERIFY:
+			{
+				Verify verify = (Verify)theEObject;
+				T result = caseVerify(verify);
+
+				if(result == null)
+					result = caseTrace(verify);
+
+				if(result == null)
+					result = defaultCase(theEObject);
+				return result;
+			}
+
+
+			case RequirementsPackage.COPY:
+			{
+				Copy copy = (Copy)theEObject;
+				T result = caseCopy(copy);
+
+				if(result == null)
+					result = caseTrace(copy);
+
+				if(result == null)
+					result = defaultCase(theEObject);
+				return result;
+			}
+
+
+			case RequirementsPackage.SATISFY:
+			{
+				Satisfy satisfy = (Satisfy)theEObject;
+				T result = caseSatisfy(satisfy);
+
+				if(result == null)
+					result = caseTrace(satisfy);
+
+				if(result == null)
+					result = defaultCase(theEObject);
+				return result;
+			}
+
+
+			case RequirementsPackage.TEST_CASE:
+			{
+				TestCase testCase = (TestCase)theEObject;
+				T result = caseTestCase(testCase);
+
+				if(result == null)
+					result = defaultCase(theEObject);
+				return result;
+			}
+
+
+			case RequirementsPackage.REQUIREMENT:
+			{
+				Requirement requirement = (Requirement)theEObject;
+				T result = caseRequirement(requirement);
+
+				if(result == null)
+					result = defaultCase(theEObject);
+				return result;
+			}
+
+
+			case RequirementsPackage.REQUIREMENT_RELATED:
+			{
+				RequirementRelated requirementRelated = (RequirementRelated)theEObject;
+				T result = caseRequirementRelated(requirementRelated);
+
+				if(result == null)
+					result = defaultCase(theEObject);
+				return result;
+			}
+
+			default:
+				return defaultCase(theEObject);
+			}
 		}
 	}
 

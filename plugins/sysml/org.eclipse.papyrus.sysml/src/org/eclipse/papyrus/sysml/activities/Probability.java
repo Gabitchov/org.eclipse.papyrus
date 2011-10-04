@@ -24,14 +24,9 @@ import org.eclipse.uml2.uml.ValueSpecification;
  * <p>
  * The following features are supported:
  * <ul>
- * <li>
- * {@link org.eclipse.papyrus.sysml.activities.Probability#getBase_ActivityEdge
- * <em>Base Activity Edge</em>}</li>
- * <li>
- * {@link org.eclipse.papyrus.sysml.activities.Probability#getBase_ParameterSet
- * <em>Base Parameter Set</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.activities.Probability#getProbability
- * <em>Probability</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.activities.Probability#getBase_ActivityEdge <em>Base Activity Edge</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.activities.Probability#getBase_ParameterSet <em>Base Parameter Set</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.activities.Probability#getProbability <em>Probability</em>}</li>
  * </ul>
  * </p>
  * 
@@ -90,8 +85,8 @@ public interface Probability extends EObject {
 	ValueSpecification getProbability();
 
 	/**
-	 * Sets the value of the ' {@link org.eclipse.papyrus.sysml.activities.Probability#getBase_ActivityEdge
-	 * <em>Base Activity Edge</em>}' reference. <!-- begin-user-doc --> <!--
+	 * Sets the value of the '{@link org.eclipse.papyrus.sysml.activities.Probability#getBase_ActivityEdge <em>Base Activity Edge</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @param value
@@ -102,8 +97,8 @@ public interface Probability extends EObject {
 	void setBase_ActivityEdge(ActivityEdge value);
 
 	/**
-	 * Sets the value of the ' {@link org.eclipse.papyrus.sysml.activities.Probability#getBase_ParameterSet
-	 * <em>Base Parameter Set</em>}' reference. <!-- begin-user-doc --> <!--
+	 * Sets the value of the '{@link org.eclipse.papyrus.sysml.activities.Probability#getBase_ParameterSet <em>Base Parameter Set</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @param value
@@ -114,8 +109,8 @@ public interface Probability extends EObject {
 	void setBase_ParameterSet(ParameterSet value);
 
 	/**
-	 * Sets the value of the ' {@link org.eclipse.papyrus.sysml.activities.Probability#getProbability
-	 * <em>Probability</em>}' reference. <!-- begin-user-doc --> <!--
+	 * Sets the value of the '{@link org.eclipse.papyrus.sysml.activities.Probability#getProbability <em>Probability</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @param value

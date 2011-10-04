@@ -27,9 +27,7 @@ import org.eclipse.uml2.uml.Abstraction;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>
- * {@link org.eclipse.papyrus.sysml.allocations.impl.AllocateImpl#getBase_Abstraction
- * <em>Base Abstraction</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.allocations.impl.AllocateImpl#getBase_Abstraction <em>Base Abstraction</em>}</li>
  * </ul>
  * </p>
  * 
@@ -38,8 +36,8 @@ import org.eclipse.uml2.uml.Abstraction;
 public class AllocateImpl extends EObjectImpl implements Allocate {
 
 	/**
-	 * The cached value of the '{@link #getBase_Abstraction()
-	 * <em>Base Abstraction</em>}' reference. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getBase_Abstraction() <em>Base Abstraction</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @see #getBase_Abstraction()

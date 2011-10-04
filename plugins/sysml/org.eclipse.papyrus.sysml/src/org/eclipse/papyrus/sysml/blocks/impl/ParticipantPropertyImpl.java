@@ -27,12 +27,8 @@ import org.eclipse.uml2.uml.Property;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>
- * {@link org.eclipse.papyrus.sysml.blocks.impl.ParticipantPropertyImpl#getBase_Property
- * <em>Base Property</em>}</li>
- * <li>
- * {@link org.eclipse.papyrus.sysml.blocks.impl.ParticipantPropertyImpl#getEnd
- * <em>End</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.blocks.impl.ParticipantPropertyImpl#getBase_Property <em>Base Property</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.blocks.impl.ParticipantPropertyImpl#getEnd <em>End</em>}</li>
  * </ul>
  * </p>
  * 
@@ -41,8 +37,8 @@ import org.eclipse.uml2.uml.Property;
 public class ParticipantPropertyImpl extends EObjectImpl implements ParticipantProperty {
 
 	/**
-	 * The cached value of the '{@link #getBase_Property()
-	 * <em>Base Property</em>}' reference. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getBase_Property() <em>Base Property</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @see #getBase_Property()

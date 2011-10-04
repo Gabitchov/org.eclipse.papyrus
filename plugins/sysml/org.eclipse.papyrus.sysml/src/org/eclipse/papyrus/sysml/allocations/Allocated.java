@@ -23,13 +23,9 @@ import org.eclipse.uml2.uml.NamedElement;
  * <p>
  * The following features are supported:
  * <ul>
- * <li>
- * {@link org.eclipse.papyrus.sysml.allocations.Allocated#getBase_NamedElement
- * <em>Base Named Element</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.allocations.Allocated#getAllocatedFrom
- * <em>Allocated From</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.allocations.Allocated#getAllocatedTo
- * <em>Allocated To</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.allocations.Allocated#getBase_NamedElement <em>Base Named Element</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.allocations.Allocated#getAllocatedFrom <em>Allocated From</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.allocations.Allocated#getAllocatedTo <em>Allocated To</em>}</li>
  * </ul>
  * </p>
  * 
@@ -50,8 +46,7 @@ public interface Allocated extends EObject {
 	 * 
 	 * @return the value of the '<em>Allocated From</em>' reference list.
 	 * @see org.eclipse.papyrus.sysml.allocations.AllocationsPackage#getAllocated_AllocatedFrom()
-	 * @model transient="true" changeable="false" volatile="true" derived="true"
-	 *        ordered="false"
+	 * @model transient="true" changeable="false" volatile="true" derived="true" ordered="false"
 	 * @generated
 	 */
 	EList<NamedElement> getAllocatedFrom();
@@ -67,8 +62,7 @@ public interface Allocated extends EObject {
 	 * 
 	 * @return the value of the '<em>Allocated To</em>' reference list.
 	 * @see org.eclipse.papyrus.sysml.allocations.AllocationsPackage#getAllocated_AllocatedTo()
-	 * @model transient="true" changeable="false" volatile="true" derived="true"
-	 *        ordered="false"
+	 * @model transient="true" changeable="false" volatile="true" derived="true" ordered="false"
 	 * @generated
 	 */
 	EList<NamedElement> getAllocatedTo();
@@ -90,8 +84,8 @@ public interface Allocated extends EObject {
 	NamedElement getBase_NamedElement();
 
 	/**
-	 * Sets the value of the ' {@link org.eclipse.papyrus.sysml.allocations.Allocated#getBase_NamedElement
-	 * <em>Base Named Element</em>}' reference. <!-- begin-user-doc --> <!--
+	 * Sets the value of the '{@link org.eclipse.papyrus.sysml.allocations.Allocated#getBase_NamedElement <em>Base Named Element</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @param value

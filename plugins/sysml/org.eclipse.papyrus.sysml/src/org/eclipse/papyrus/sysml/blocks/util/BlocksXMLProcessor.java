@@ -29,7 +29,8 @@ import org.eclipse.papyrus.sysml.blocks.BlocksPackage;
 public class BlocksXMLProcessor extends XMLProcessor {
 
 	/**
-	 * Public constructor to instantiate the helper. <!-- begin-user-doc -->
+	 * Public constructor to instantiate the helper.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -40,8 +41,8 @@ public class BlocksXMLProcessor extends XMLProcessor {
 	}
 
 	/**
-	 * Register for "*" and "xml" file extensions the BlocksResourceFactoryImpl
-	 * factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Register for "*" and "xml" file extensions the BlocksResourceFactoryImpl factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */

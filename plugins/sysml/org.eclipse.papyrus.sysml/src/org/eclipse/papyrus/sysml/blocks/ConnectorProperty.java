@@ -23,11 +23,8 @@ import org.eclipse.uml2.uml.Property;
  * <p>
  * The following features are supported:
  * <ul>
- * <li>
- * {@link org.eclipse.papyrus.sysml.blocks.ConnectorProperty#getBase_Property
- * <em>Base Property</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.blocks.ConnectorProperty#getConnector
- * <em>Connector</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.blocks.ConnectorProperty#getBase_Property <em>Base Property</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.blocks.ConnectorProperty#getConnector <em>Connector</em>}</li>
  * </ul>
  * </p>
  * 
@@ -70,8 +67,8 @@ public interface ConnectorProperty extends EObject {
 	Connector getConnector();
 
 	/**
-	 * Sets the value of the ' {@link org.eclipse.papyrus.sysml.blocks.ConnectorProperty#getBase_Property
-	 * <em>Base Property</em>}' reference. <!-- begin-user-doc --> <!--
+	 * Sets the value of the '{@link org.eclipse.papyrus.sysml.blocks.ConnectorProperty#getBase_Property <em>Base Property</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @param value

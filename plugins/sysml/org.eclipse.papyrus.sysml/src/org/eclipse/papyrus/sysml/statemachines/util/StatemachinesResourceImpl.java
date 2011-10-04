@@ -26,7 +26,8 @@ import org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl;
 public class StatemachinesResourceImpl extends XMLResourceImpl {
 
 	/**
-	 * Creates an instance of the resource. <!-- begin-user-doc --> <!--
+	 * Creates an instance of the resource.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @param uri

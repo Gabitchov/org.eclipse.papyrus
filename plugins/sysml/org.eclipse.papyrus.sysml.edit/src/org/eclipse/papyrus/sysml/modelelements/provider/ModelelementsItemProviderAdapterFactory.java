@@ -30,6 +30,8 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.papyrus.sysml.edit.provider.IComposableAdapterFactory;
+import org.eclipse.papyrus.sysml.edit.provider.IRootAdapterFactory;
 import org.eclipse.papyrus.sysml.modelelements.util.ModelelementsAdapterFactory;
 
 /**
@@ -42,11 +44,40 @@ import org.eclipse.papyrus.sysml.modelelements.util.ModelelementsAdapterFactory;
  * 
  * @generated
  */
-public class ModelelementsItemProviderAdapterFactory extends ModelelementsAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
+public class ModelelementsItemProviderAdapterFactory extends ModelelementsAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IComposableAdapterFactory, IDisposable {
 
 	/**
-	 * This keeps track of the root adapter factory that delegates to this adapter factory. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * Get the root adapter factory ( SysMLOverULM layer )
+	 * 
+	 * @generated
+	 */
+	protected IRootAdapterFactory rootAdapterFactory;
+
+	/**
+	 * {@link this#rootAdapterFactory}
+	 * 
+	 * @generated
+	 */
+	public IRootAdapterFactory getIRootAdapterFactory() {
+		return rootAdapterFactory;
+	}
+
+	/**
+	 * {@link this#rootAdapterFactory}
+	 * 
+	 * @generated
+	 */
+	public void setRootAdapterFactory(IRootAdapterFactory root) {
+		if(root instanceof IRootAdapterFactory) {
+			rootAdapterFactory = (IRootAdapterFactory)root;
+		} else {
+			throw new RuntimeException(root + " do not implement IRootAdapterFactory");
+		}
+	}
+
+	/**
+	 * This keeps track of the root adapter factory that delegates to this adapter factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -62,15 +93,16 @@ public class ModelelementsItemProviderAdapterFactory extends ModelelementsAdapte
 
 	/**
 	 * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	protected Collection<Object> supportedTypes = new ArrayList<Object>();
 
 	/**
-	 * This constructs an instance.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
 	 * 
 	 * @generated
 	 */
@@ -83,9 +115,8 @@ public class ModelelementsItemProviderAdapterFactory extends ModelelementsAdapte
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.sysml.modelelements.Conform} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.sysml.modelelements.Conform} instances. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -107,17 +138,17 @@ public class ModelelementsItemProviderAdapterFactory extends ModelelementsAdapte
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.sysml.modelelements.View} instances.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.sysml.modelelements.View} instances. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	protected ViewItemProvider viewItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.papyrus.sysml.modelelements.View}. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.papyrus.sysml.modelelements.View}.
+	 * <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -131,9 +162,8 @@ public class ModelelementsItemProviderAdapterFactory extends ModelelementsAdapte
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.sysml.modelelements.ViewPoint} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.sysml.modelelements.ViewPoint} instances. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -155,9 +185,8 @@ public class ModelelementsItemProviderAdapterFactory extends ModelelementsAdapte
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.sysml.modelelements.Rationale} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.sysml.modelelements.Rationale} instances. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -179,9 +208,8 @@ public class ModelelementsItemProviderAdapterFactory extends ModelelementsAdapte
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.sysml.modelelements.Problem} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.sysml.modelelements.Problem} instances. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -203,9 +231,8 @@ public class ModelelementsItemProviderAdapterFactory extends ModelelementsAdapte
 	}
 
 	/**
-	 * This returns the root adapter factory that contains this factory.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This returns the root adapter factory that contains this factory. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -214,9 +241,8 @@ public class ModelelementsItemProviderAdapterFactory extends ModelelementsAdapte
 	}
 
 	/**
-	 * This sets the composed adapter factory that contains this factory.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This sets the composed adapter factory that contains this factory. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -235,8 +261,8 @@ public class ModelelementsItemProviderAdapterFactory extends ModelelementsAdapte
 	}
 
 	/**
-	 * This implementation substitutes the factory itself as the key for the adapter. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This implementation substitutes the factory itself as the key for the adapter.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -283,8 +309,8 @@ public class ModelelementsItemProviderAdapterFactory extends ModelelementsAdapte
 	}
 
 	/**
-	 * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
 	 * 
 	 * @generated
 	 */
@@ -297,9 +323,8 @@ public class ModelelementsItemProviderAdapterFactory extends ModelelementsAdapte
 	}
 
 	/**
-	 * This disposes all of the item providers created by this factory.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * This disposes all of the item providers created by this factory. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */

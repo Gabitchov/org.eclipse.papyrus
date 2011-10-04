@@ -32,12 +32,8 @@ import org.eclipse.uml2.uml.Property;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>
- * {@link org.eclipse.papyrus.sysml.blocks.impl.NestedConnectorEndImpl#getPropertyPath
- * <em>Property Path</em>}</li>
- * <li>
- * {@link org.eclipse.papyrus.sysml.blocks.impl.NestedConnectorEndImpl#getBase_ConnectorEnd
- * <em>Base Connector End</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.blocks.impl.NestedConnectorEndImpl#getPropertyPath <em>Property Path</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.blocks.impl.NestedConnectorEndImpl#getBase_ConnectorEnd <em>Base Connector End</em>}</li>
  * </ul>
  * </p>
  * 
@@ -46,8 +42,8 @@ import org.eclipse.uml2.uml.Property;
 public class NestedConnectorEndImpl extends EObjectImpl implements NestedConnectorEnd {
 
 	/**
-	 * The cached value of the '{@link #getPropertyPath()
-	 * <em>Property Path</em>}' reference list. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getPropertyPath() <em>Property Path</em>}' reference list.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @see #getPropertyPath()
@@ -57,8 +53,8 @@ public class NestedConnectorEndImpl extends EObjectImpl implements NestedConnect
 	protected EList<Property> propertyPath;
 
 	/**
-	 * The cached value of the '{@link #getBase_ConnectorEnd()
-	 * <em>Base Connector End</em>}' reference. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getBase_ConnectorEnd() <em>Base Connector End</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @see #getBase_ConnectorEnd()

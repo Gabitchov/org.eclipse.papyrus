@@ -22,8 +22,7 @@ import org.eclipse.uml2.uml.Parameter;
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.papyrus.sysml.activities.Optional#getBase_Parameter
- * <em>Base Parameter</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.activities.Optional#getBase_Parameter <em>Base Parameter</em>}</li>
  * </ul>
  * </p>
  * 
@@ -50,8 +49,8 @@ public interface Optional extends EObject {
 	Parameter getBase_Parameter();
 
 	/**
-	 * Sets the value of the ' {@link org.eclipse.papyrus.sysml.activities.Optional#getBase_Parameter
-	 * <em>Base Parameter</em>}' reference. <!-- begin-user-doc --> <!--
+	 * Sets the value of the '{@link org.eclipse.papyrus.sysml.activities.Optional#getBase_Parameter <em>Base Parameter</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @param value

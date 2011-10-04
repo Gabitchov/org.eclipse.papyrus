@@ -22,9 +22,7 @@ import org.eclipse.uml2.uml.Dependency;
  * <p>
  * The following features are supported:
  * <ul>
- * <li>
- * {@link org.eclipse.papyrus.sysml.modelelements.Conform#getBase_Dependency
- * <em>Base Dependency</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.modelelements.Conform#getBase_Dependency <em>Base Dependency</em>}</li>
  * </ul>
  * </p>
  * 
@@ -51,8 +49,8 @@ public interface Conform extends EObject {
 	Dependency getBase_Dependency();
 
 	/**
-	 * Sets the value of the ' {@link org.eclipse.papyrus.sysml.modelelements.Conform#getBase_Dependency
-	 * <em>Base Dependency</em>}' reference. <!-- begin-user-doc --> <!--
+	 * Sets the value of the '{@link org.eclipse.papyrus.sysml.modelelements.Conform#getBase_Dependency <em>Base Dependency</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @param value

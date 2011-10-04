@@ -29,15 +29,9 @@ import org.eclipse.uml2.uml.ValueSpecification;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>
- * {@link org.eclipse.papyrus.sysml.activities.impl.ProbabilityImpl#getBase_ActivityEdge
- * <em>Base Activity Edge</em>}</li>
- * <li>
- * {@link org.eclipse.papyrus.sysml.activities.impl.ProbabilityImpl#getBase_ParameterSet
- * <em>Base Parameter Set</em>}</li>
- * <li>
- * {@link org.eclipse.papyrus.sysml.activities.impl.ProbabilityImpl#getProbability
- * <em>Probability</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.activities.impl.ProbabilityImpl#getBase_ActivityEdge <em>Base Activity Edge</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.activities.impl.ProbabilityImpl#getBase_ParameterSet <em>Base Parameter Set</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.activities.impl.ProbabilityImpl#getProbability <em>Probability</em>}</li>
  * </ul>
  * </p>
  * 
@@ -46,8 +40,8 @@ import org.eclipse.uml2.uml.ValueSpecification;
 public class ProbabilityImpl extends EObjectImpl implements Probability {
 
 	/**
-	 * The cached value of the '{@link #getBase_ActivityEdge()
-	 * <em>Base Activity Edge</em>}' reference. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getBase_ActivityEdge() <em>Base Activity Edge</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @see #getBase_ActivityEdge()
@@ -57,8 +51,8 @@ public class ProbabilityImpl extends EObjectImpl implements Probability {
 	protected ActivityEdge base_ActivityEdge;
 
 	/**
-	 * The cached value of the '{@link #getBase_ParameterSet()
-	 * <em>Base Parameter Set</em>}' reference. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getBase_ParameterSet() <em>Base Parameter Set</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @see #getBase_ParameterSet()
@@ -68,8 +62,8 @@ public class ProbabilityImpl extends EObjectImpl implements Probability {
 	protected ParameterSet base_ParameterSet;
 
 	/**
-	 * The cached value of the '{@link #getProbability() <em>Probability</em>}'
-	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getProbability() <em>Probability</em>}' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getProbability()
 	 * @generated

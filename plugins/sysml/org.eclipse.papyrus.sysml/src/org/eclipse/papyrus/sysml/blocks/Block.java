@@ -65,8 +65,8 @@ public interface Block extends EObject {
 	boolean isIsEncapsulated();
 
 	/**
-	 * Sets the value of the ' {@link org.eclipse.papyrus.sysml.blocks.Block#getBase_Class
-	 * <em>Base Class</em>}' reference. <!-- begin-user-doc --> <!--
+	 * Sets the value of the '{@link org.eclipse.papyrus.sysml.blocks.Block#getBase_Class <em>Base Class</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @param value
@@ -77,8 +77,8 @@ public interface Block extends EObject {
 	void setBase_Class(org.eclipse.uml2.uml.Class value);
 
 	/**
-	 * Sets the value of the ' {@link org.eclipse.papyrus.sysml.blocks.Block#isIsEncapsulated
-	 * <em>Is Encapsulated</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * Sets the value of the '{@link org.eclipse.papyrus.sysml.blocks.Block#isIsEncapsulated <em>Is Encapsulated</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @param value

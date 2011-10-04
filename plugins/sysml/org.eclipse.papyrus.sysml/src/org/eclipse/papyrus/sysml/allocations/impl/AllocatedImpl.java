@@ -37,15 +37,9 @@ import org.eclipse.uml2.uml.NamedElement;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>
- * {@link org.eclipse.papyrus.sysml.allocations.impl.AllocatedImpl#getBase_NamedElement
- * <em>Base Named Element</em>}</li>
- * <li>
- * {@link org.eclipse.papyrus.sysml.allocations.impl.AllocatedImpl#getAllocatedFrom
- * <em>Allocated From</em>}</li>
- * <li>
- * {@link org.eclipse.papyrus.sysml.allocations.impl.AllocatedImpl#getAllocatedTo
- * <em>Allocated To</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.allocations.impl.AllocatedImpl#getBase_NamedElement <em>Base Named Element</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.allocations.impl.AllocatedImpl#getAllocatedFrom <em>Allocated From</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.allocations.impl.AllocatedImpl#getAllocatedTo <em>Allocated To</em>}</li>
  * </ul>
  * </p>
  * 
@@ -54,8 +48,8 @@ import org.eclipse.uml2.uml.NamedElement;
 public class AllocatedImpl extends EObjectImpl implements Allocated {
 
 	/**
-	 * The cached value of the '{@link #getBase_NamedElement()
-	 * <em>Base Named Element</em>}' reference. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getBase_NamedElement() <em>Base Named Element</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @see #getBase_NamedElement()

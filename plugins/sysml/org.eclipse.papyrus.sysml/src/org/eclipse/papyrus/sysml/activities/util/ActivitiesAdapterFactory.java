@@ -17,6 +17,7 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.papyrus.sysml.activities.ActivitiesPackage;
 import org.eclipse.papyrus.sysml.activities.Continuous;
 import org.eclipse.papyrus.sysml.activities.ControlOperator;
@@ -26,6 +27,13 @@ import org.eclipse.papyrus.sysml.activities.Optional;
 import org.eclipse.papyrus.sysml.activities.Overwrite;
 import org.eclipse.papyrus.sysml.activities.Probability;
 import org.eclipse.papyrus.sysml.activities.Rate;
+import org.eclipse.uml2.uml.ActivityEdge;
+import org.eclipse.uml2.uml.Behavior;
+import org.eclipse.uml2.uml.ObjectNode;
+import org.eclipse.uml2.uml.Operation;
+import org.eclipse.uml2.uml.Parameter;
+import org.eclipse.uml2.uml.ParameterSet;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * <!-- begin-user-doc --> The <b>Adapter Factory</b> for the model. It provides
@@ -38,7 +46,8 @@ import org.eclipse.papyrus.sysml.activities.Rate;
 public class ActivitiesAdapterFactory extends AdapterFactoryImpl {
 
 	/**
-	 * The cached model package. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached model package.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -51,6 +60,126 @@ public class ActivitiesAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	protected ActivitiesSwitch<Adapter> modelSwitch = new ActivitiesSwitch<Adapter>() {
+
+
+		@Override
+		public Adapter caseParameterStereotypedByOptional(Parameter parameter_) {
+			if(isOptionalFromParameter(parameter_)) {
+				return createOptionalAdapter();
+			}
+			return null;
+		}
+
+
+
+		@Override
+		public Adapter caseParameterStereotypedByRate(Parameter parameter_) {
+			if(isRateFromParameter(parameter_)) {
+				return createRateAdapter();
+			}
+			return null;
+		}
+
+		@Override
+		public Adapter caseActivityEdgeStereotypedByRate(ActivityEdge activityEdge_) {
+			if(isRateFromActivityEdge(activityEdge_)) {
+				return createRateAdapter();
+			}
+			return null;
+		}
+
+
+
+		@Override
+		public Adapter caseActivityEdgeStereotypedByProbability(ActivityEdge activityEdge_) {
+			if(isProbabilityFromActivityEdge(activityEdge_)) {
+				return createProbabilityAdapter();
+			}
+			return null;
+		}
+
+		@Override
+		public Adapter caseParameterSetStereotypedByProbability(ParameterSet parameterSet_) {
+			if(isProbabilityFromParameterSet(parameterSet_)) {
+				return createProbabilityAdapter();
+			}
+			return null;
+		}
+
+
+
+		@Override
+		public Adapter caseParameterStereotypedByContinuous(Parameter parameter_) {
+			if(isContinuousFromParameter(parameter_)) {
+				return createContinuousAdapter();
+			}
+			return null;
+		}
+
+		@Override
+		public Adapter caseActivityEdgeStereotypedByContinuous(ActivityEdge activityEdge_) {
+			if(isContinuousFromActivityEdge(activityEdge_)) {
+				return createContinuousAdapter();
+			}
+			return null;
+		}
+
+
+
+		@Override
+		public Adapter caseParameterStereotypedByDiscrete(Parameter parameter_) {
+			if(isDiscreteFromParameter(parameter_)) {
+				return createDiscreteAdapter();
+			}
+			return null;
+		}
+
+		@Override
+		public Adapter caseActivityEdgeStereotypedByDiscrete(ActivityEdge activityEdge_) {
+			if(isDiscreteFromActivityEdge(activityEdge_)) {
+				return createDiscreteAdapter();
+			}
+			return null;
+		}
+
+
+
+		@Override
+		public Adapter caseOperationStereotypedByControlOperator(Operation operation_) {
+			if(isControlOperatorFromOperation(operation_)) {
+				return createControlOperatorAdapter();
+			}
+			return null;
+		}
+
+		@Override
+		public Adapter caseBehaviorStereotypedByControlOperator(Behavior behavior_) {
+			if(isControlOperatorFromBehavior(behavior_)) {
+				return createControlOperatorAdapter();
+			}
+			return null;
+		}
+
+
+
+		@Override
+		public Adapter caseObjectNodeStereotypedByNoBuffer(ObjectNode objectNode_) {
+			if(isNoBufferFromObjectNode(objectNode_)) {
+				return createNoBufferAdapter();
+			}
+			return null;
+		}
+
+
+
+		@Override
+		public Adapter caseObjectNodeStereotypedByOverwrite(ObjectNode objectNode_) {
+			if(isOverwriteFromObjectNode(objectNode_)) {
+				return createOverwriteAdapter();
+			}
+			return null;
+		}
+
 
 		@Override
 		public Adapter caseOptional(Optional object) {
@@ -99,7 +228,8 @@ public class ActivitiesAdapterFactory extends AdapterFactoryImpl {
 	};
 
 	/**
-	 * Creates an instance of the adapter factory. <!-- begin-user-doc --> <!--
+	 * Creates an instance of the adapter factory.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated
@@ -111,7 +241,8 @@ public class ActivitiesAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates an adapter for the <code>target</code>. <!-- begin-user-doc -->
+	 * Creates an adapter for the <code>target</code>.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
 	 * @param target
@@ -125,7 +256,7 @@ public class ActivitiesAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class ' {@link org.eclipse.papyrus.sysml.activities.Optional <em>Optional</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.sysml.activities.Optional <em>Optional</em>}'.
 	 * <!-- begin-user-doc --> This default implementation returns null so that
 	 * we can easily ignore cases; it's useful to ignore a case when inheritance
 	 * will catch all the cases anyway. <!-- end-user-doc -->
@@ -139,8 +270,8 @@ public class ActivitiesAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class ' {@link org.eclipse.papyrus.sysml.activities.Continuous
-	 * <em>Continuous</em>}'. <!-- begin-user-doc --> This default
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.sysml.activities.Continuous <em>Continuous</em>}'.
+	 * <!-- begin-user-doc --> This default
 	 * implementation returns null so that we can easily ignore cases; it's
 	 * useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
@@ -154,8 +285,8 @@ public class ActivitiesAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class ' {@link org.eclipse.papyrus.sysml.activities.ControlOperator
-	 * <em>Control Operator</em>}'. <!-- begin-user-doc --> This default
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.sysml.activities.ControlOperator <em>Control Operator</em>}'.
+	 * <!-- begin-user-doc --> This default
 	 * implementation returns null so that we can easily ignore cases; it's
 	 * useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
@@ -169,7 +300,7 @@ public class ActivitiesAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class ' {@link org.eclipse.papyrus.sysml.activities.Discrete <em>Discrete</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.sysml.activities.Discrete <em>Discrete</em>}'.
 	 * <!-- begin-user-doc --> This default implementation returns null so that
 	 * we can easily ignore cases; it's useful to ignore a case when inheritance
 	 * will catch all the cases anyway. <!-- end-user-doc -->
@@ -183,7 +314,8 @@ public class ActivitiesAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for the default case. <!-- begin-user-doc --> This
+	 * Creates a new adapter for the default case.
+	 * <!-- begin-user-doc --> This
 	 * default implementation returns null. <!-- end-user-doc -->
 	 * 
 	 * @return the new adapter.
@@ -194,7 +326,8 @@ public class ActivitiesAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class ' {@link org.eclipse.papyrus.sysml.activities.NoBuffer <em>No Buffer</em>} '. <!-- begin-user-doc
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.sysml.activities.NoBuffer <em>No Buffer</em>}'.
+	 * <!-- begin-user-doc
 	 * --> This default implementation returns null so
 	 * that we can easily ignore cases; it's useful to ignore a case when
 	 * inheritance will catch all the cases anyway. <!-- end-user-doc -->
@@ -208,7 +341,8 @@ public class ActivitiesAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class ' {@link org.eclipse.papyrus.sysml.activities.Overwrite <em>Overwrite</em>} '. <!-- begin-user-doc
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.sysml.activities.Overwrite <em>Overwrite</em>}'.
+	 * <!-- begin-user-doc
 	 * --> This default implementation returns null so
 	 * that we can easily ignore cases; it's useful to ignore a case when
 	 * inheritance will catch all the cases anyway. <!-- end-user-doc -->
@@ -222,8 +356,8 @@ public class ActivitiesAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class ' {@link org.eclipse.papyrus.sysml.activities.Probability
-	 * <em>Probability</em>}'. <!-- begin-user-doc --> This default
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.sysml.activities.Probability <em>Probability</em>}'.
+	 * <!-- begin-user-doc --> This default
 	 * implementation returns null so that we can easily ignore cases; it's
 	 * useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
@@ -261,11 +395,12 @@ public class ActivitiesAdapterFactory extends AdapterFactoryImpl {
 	 */
 	@Override
 	public boolean isFactoryForType(Object object) {
-		if(object == modelPackage) {
+		if(object == modelPackage || object == UMLPackage.eINSTANCE) {
 			return true;
 		}
 		if(object instanceof EObject) {
-			return ((EObject)object).eClass().getEPackage() == modelPackage;
+			EPackage ePackage = ((EObject)object).eClass().getEPackage();
+			return ePackage != null && (ePackage == modelPackage || ePackage == UMLPackage.eINSTANCE);
 		}
 		return false;
 	}

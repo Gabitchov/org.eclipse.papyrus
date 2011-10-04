@@ -22,9 +22,7 @@ import org.eclipse.uml2.uml.Classifier;
  * <p>
  * The following features are supported:
  * <ul>
- * <li>
- * {@link org.eclipse.papyrus.sysml.blocks.PropertySpecificType#getBase_Classifier
- * <em>Base Classifier</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.blocks.PropertySpecificType#getBase_Classifier <em>Base Classifier</em>}</li>
  * </ul>
  * </p>
  * 
@@ -51,8 +49,8 @@ public interface PropertySpecificType extends EObject {
 	Classifier getBase_Classifier();
 
 	/**
-	 * Sets the value of the ' {@link org.eclipse.papyrus.sysml.blocks.PropertySpecificType#getBase_Classifier
-	 * <em>Base Classifier</em>}' reference. <!-- begin-user-doc --> <!--
+	 * Sets the value of the '{@link org.eclipse.papyrus.sysml.blocks.PropertySpecificType#getBase_Classifier <em>Base Classifier</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @param value

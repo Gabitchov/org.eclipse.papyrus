@@ -27,9 +27,7 @@ import org.eclipse.uml2.uml.ObjectNode;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>
- * {@link org.eclipse.papyrus.sysml.activities.impl.OverwriteImpl#getBase_ObjectNode
- * <em>Base Object Node</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.activities.impl.OverwriteImpl#getBase_ObjectNode <em>Base Object Node</em>}</li>
  * </ul>
  * </p>
  * 
@@ -38,8 +36,8 @@ import org.eclipse.uml2.uml.ObjectNode;
 public class OverwriteImpl extends EObjectImpl implements Overwrite {
 
 	/**
-	 * The cached value of the '{@link #getBase_ObjectNode()
-	 * <em>Base Object Node</em>}' reference. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getBase_ObjectNode() <em>Base Object Node</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @see #getBase_ObjectNode()

@@ -43,7 +43,8 @@ public class ConstraintsFactoryImpl extends EFactoryImpl implements ConstraintsF
 	}
 
 	/**
-	 * Creates the default factory implementation. <!-- begin-user-doc --> <!--
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated
@@ -61,7 +62,8 @@ public class ConstraintsFactoryImpl extends EFactoryImpl implements ConstraintsF
 	}
 
 	/**
-	 * Creates an instance of the factory. <!-- begin-user-doc --> <!--
+	 * Creates an instance of the factory.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated

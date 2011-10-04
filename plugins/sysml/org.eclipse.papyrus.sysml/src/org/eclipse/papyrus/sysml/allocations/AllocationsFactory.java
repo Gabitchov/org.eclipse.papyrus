@@ -25,7 +25,8 @@ import org.eclipse.emf.ecore.EFactory;
 public interface AllocationsFactory extends EFactory {
 
 	/**
-	 * The singleton instance of the factory. <!-- begin-user-doc --> <!--
+	 * The singleton instance of the factory.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated
@@ -33,7 +34,8 @@ public interface AllocationsFactory extends EFactory {
 	AllocationsFactory eINSTANCE = org.eclipse.papyrus.sysml.allocations.impl.AllocationsFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Allocate</em>'. <!-- begin-user-doc
+	 * Returns a new object of class '<em>Allocate</em>'.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
 	 * 
 	 * @return a new object of class '<em>Allocate</em>'.
@@ -51,7 +53,8 @@ public interface AllocationsFactory extends EFactory {
 	AllocateActivityPartition createAllocateActivityPartition();
 
 	/**
-	 * Returns a new object of class '<em>Allocated</em>'. <!-- begin-user-doc
+	 * Returns a new object of class '<em>Allocated</em>'.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
 	 * 
 	 * @return a new object of class '<em>Allocated</em>'.
@@ -60,7 +63,8 @@ public interface AllocationsFactory extends EFactory {
 	Allocated createAllocated();
 
 	/**
-	 * Returns the package supported by this factory. <!-- begin-user-doc -->
+	 * Returns the package supported by this factory.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
 	 * @return the package supported by this factory.

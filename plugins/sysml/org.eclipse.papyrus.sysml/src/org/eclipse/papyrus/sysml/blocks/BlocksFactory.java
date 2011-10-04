@@ -25,7 +25,8 @@ import org.eclipse.emf.ecore.EFactory;
 public interface BlocksFactory extends EFactory {
 
 	/**
-	 * The singleton instance of the factory. <!-- begin-user-doc --> <!--
+	 * The singleton instance of the factory.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated
@@ -42,7 +43,8 @@ public interface BlocksFactory extends EFactory {
 	BindingConnector createBindingConnector();
 
 	/**
-	 * Returns a new object of class '<em>Block</em>'. <!-- begin-user-doc -->
+	 * Returns a new object of class '<em>Block</em>'.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
 	 * @return a new object of class '<em>Block</em>'.
@@ -60,7 +62,8 @@ public interface BlocksFactory extends EFactory {
 	ConnectorProperty createConnectorProperty();
 
 	/**
-	 * Returns a new object of class '<em>Dimension</em>'. <!-- begin-user-doc
+	 * Returns a new object of class '<em>Dimension</em>'.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
 	 * 
 	 * @return a new object of class '<em>Dimension</em>'.
@@ -105,7 +108,8 @@ public interface BlocksFactory extends EFactory {
 	PropertySpecificType createPropertySpecificType();
 
 	/**
-	 * Returns a new object of class '<em>Unit</em>'. <!-- begin-user-doc -->
+	 * Returns a new object of class '<em>Unit</em>'.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
 	 * @return a new object of class '<em>Unit</em>'.
@@ -114,7 +118,8 @@ public interface BlocksFactory extends EFactory {
 	Unit createUnit();
 
 	/**
-	 * Returns a new object of class '<em>Value Type</em>'. <!-- begin-user-doc
+	 * Returns a new object of class '<em>Value Type</em>'.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
 	 * 
 	 * @return a new object of class '<em>Value Type</em>'.
@@ -123,7 +128,8 @@ public interface BlocksFactory extends EFactory {
 	ValueType createValueType();
 
 	/**
-	 * Returns the package supported by this factory. <!-- begin-user-doc -->
+	 * Returns the package supported by this factory.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
 	 * @return the package supported by this factory.

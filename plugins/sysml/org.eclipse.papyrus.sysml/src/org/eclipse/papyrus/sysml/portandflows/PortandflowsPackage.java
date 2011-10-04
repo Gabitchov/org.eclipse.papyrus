@@ -63,40 +63,40 @@ public interface PortandflowsPackage extends EPackage {
 		EClass FLOW_PORT = eINSTANCE.getFlowPort();
 
 		/**
-		 * The meta object literal for the '<em><b>Base Port</b></em>' reference
-		 * feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * The meta object literal for the '<em><b>Base Port</b></em>' reference feature.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @generated
 		 */
 		EReference FLOW_PORT__BASE_PORT = eINSTANCE.getFlowPort_Base_Port();
 
 		/**
-		 * The meta object literal for the '<em><b>Is Atomic</b></em>' attribute
-		 * feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * The meta object literal for the '<em><b>Is Atomic</b></em>' attribute feature.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @generated
 		 */
 		EAttribute FLOW_PORT__IS_ATOMIC = eINSTANCE.getFlowPort_IsAtomic();
 
 		/**
-		 * The meta object literal for the '<em><b>Is Conjugated</b></em>'
-		 * attribute feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * The meta object literal for the '<em><b>Is Conjugated</b></em>' attribute feature.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @generated
 		 */
 		EAttribute FLOW_PORT__IS_CONJUGATED = eINSTANCE.getFlowPort_IsConjugated();
 
 		/**
-		 * The meta object literal for the '<em><b>Direction</b></em>' attribute
-		 * feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * The meta object literal for the '<em><b>Direction</b></em>' attribute feature.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @generated
 		 */
 		EAttribute FLOW_PORT__DIRECTION = eINSTANCE.getFlowPort_Direction();
 
 		/**
-		 * The meta object literal for the ' {@link org.eclipse.papyrus.sysml.portandflows.impl.FlowPropertyImpl
-		 * <em>Flow Property</em>}' class. <!-- begin-user-doc --> <!--
+		 * The meta object literal for the '{@link org.eclipse.papyrus.sysml.portandflows.impl.FlowPropertyImpl <em>Flow Property</em>}' class.
+		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
 		 * 
 		 * @see org.eclipse.papyrus.sysml.portandflows.impl.FlowPropertyImpl
@@ -106,24 +106,25 @@ public interface PortandflowsPackage extends EPackage {
 		EClass FLOW_PROPERTY = eINSTANCE.getFlowProperty();
 
 		/**
-		 * The meta object literal for the '<em><b>Base Property</b></em>'
-		 * reference feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * The meta object literal for the '<em><b>Base Property</b></em>' reference feature.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @generated
 		 */
 		EReference FLOW_PROPERTY__BASE_PROPERTY = eINSTANCE.getFlowProperty_Base_Property();
 
 		/**
-		 * The meta object literal for the '<em><b>Direction</b></em>' attribute
-		 * feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * The meta object literal for the '<em><b>Direction</b></em>' attribute feature.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @generated
 		 */
 		EAttribute FLOW_PROPERTY__DIRECTION = eINSTANCE.getFlowProperty_Direction();
 
 		/**
-		 * The meta object literal for the ' {@link org.eclipse.papyrus.sysml.portandflows.impl.FlowSpecificationImpl
-		 * <em>Flow Specification</em>}' class. <!-- begin-user-doc --> <!--
+		 * The meta object literal for the '{@link org.eclipse.papyrus.sysml.portandflows.impl.FlowSpecificationImpl <em>Flow Specification</em>}'
+		 * class.
+		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
 		 * 
 		 * @see org.eclipse.papyrus.sysml.portandflows.impl.FlowSpecificationImpl
@@ -133,8 +134,8 @@ public interface PortandflowsPackage extends EPackage {
 		EClass FLOW_SPECIFICATION = eINSTANCE.getFlowSpecification();
 
 		/**
-		 * The meta object literal for the '<em><b>Base Interface</b></em>'
-		 * reference feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * The meta object literal for the '<em><b>Base Interface</b></em>' reference feature.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @generated
 		 */
@@ -160,16 +161,16 @@ public interface PortandflowsPackage extends EPackage {
 		EReference ITEM_FLOW__BASE_INFORMATION_FLOW = eINSTANCE.getItemFlow_Base_InformationFlow();
 
 		/**
-		 * The meta object literal for the '<em><b>Item Property</b></em>'
-		 * reference feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * The meta object literal for the '<em><b>Item Property</b></em>' reference feature.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @generated
 		 */
 		EReference ITEM_FLOW__ITEM_PROPERTY = eINSTANCE.getItemFlow_ItemProperty();
 
 		/**
-		 * The meta object literal for the ' {@link org.eclipse.papyrus.sysml.portandflows.FlowDirection
-		 * <em>Flow Direction</em>}' enum. <!-- begin-user-doc --> <!--
+		 * The meta object literal for the '{@link org.eclipse.papyrus.sysml.portandflows.FlowDirection <em>Flow Direction</em>}' enum.
+		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
 		 * 
 		 * @see org.eclipse.papyrus.sysml.portandflows.FlowDirection
@@ -181,28 +182,32 @@ public interface PortandflowsPackage extends EPackage {
 	}
 
 	/**
-	 * The package name. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The package name.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	String eNAME = "portandflows";
 
 	/**
-	 * The package namespace URI. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The package namespace URI.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	String eNS_URI = "http://www.eclipse.org/papyrus/0.7.0/SysML/PortAndFlows";
 
 	/**
-	 * The package namespace name. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The package namespace name.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	String eNS_PREFIX = "PortAndFlows";
 
 	/**
-	 * The singleton instance of the package. <!-- begin-user-doc --> <!--
+	 * The singleton instance of the package.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated
@@ -210,8 +215,8 @@ public interface PortandflowsPackage extends EPackage {
 	PortandflowsPackage eINSTANCE = org.eclipse.papyrus.sysml.portandflows.impl.PortandflowsPackageImpl.init();
 
 	/**
-	 * The meta object id for the ' {@link org.eclipse.papyrus.sysml.portandflows.impl.FlowPortImpl
-	 * <em>Flow Port</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.portandflows.impl.FlowPortImpl <em>Flow Port</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see org.eclipse.papyrus.sysml.portandflows.impl.FlowPortImpl
 	 * @see org.eclipse.papyrus.sysml.portandflows.impl.PortandflowsPackageImpl#getFlowPort()
@@ -303,8 +308,8 @@ public interface PortandflowsPackage extends EPackage {
 	int FLOW_PROPERTY_FEATURE_COUNT = 2;
 
 	/**
-	 * The meta object id for the ' {@link org.eclipse.papyrus.sysml.portandflows.impl.FlowSpecificationImpl
-	 * <em>Flow Specification</em>}' class. <!-- begin-user-doc --> <!--
+	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.portandflows.impl.FlowSpecificationImpl <em>Flow Specification</em>}' class.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @see org.eclipse.papyrus.sysml.portandflows.impl.FlowSpecificationImpl
@@ -323,8 +328,8 @@ public interface PortandflowsPackage extends EPackage {
 	int FLOW_SPECIFICATION__BASE_INTERFACE = 0;
 
 	/**
-	 * The number of structural features of the '<em>Flow Specification</em>'
-	 * class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The number of structural features of the '<em>Flow Specification</em>' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -332,8 +337,8 @@ public interface PortandflowsPackage extends EPackage {
 	int FLOW_SPECIFICATION_FEATURE_COUNT = 1;
 
 	/**
-	 * The meta object id for the ' {@link org.eclipse.papyrus.sysml.portandflows.impl.ItemFlowImpl
-	 * <em>Item Flow</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.portandflows.impl.ItemFlowImpl <em>Item Flow</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see org.eclipse.papyrus.sysml.portandflows.impl.ItemFlowImpl
 	 * @see org.eclipse.papyrus.sysml.portandflows.impl.PortandflowsPackageImpl#getItemFlow()
@@ -380,8 +385,8 @@ public interface PortandflowsPackage extends EPackage {
 	int FLOW_DIRECTION = 4;
 
 	/**
-	 * Returns the meta object for enum ' {@link org.eclipse.papyrus.sysml.portandflows.FlowDirection
-	 * <em>Flow Direction</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for enum '{@link org.eclipse.papyrus.sysml.portandflows.FlowDirection <em>Flow Direction</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for enum '<em>Flow Direction</em>'.
 	 * @see org.eclipse.papyrus.sysml.portandflows.FlowDirection
@@ -390,8 +395,8 @@ public interface PortandflowsPackage extends EPackage {
 	EEnum getFlowDirection();
 
 	/**
-	 * Returns the meta object for class ' {@link org.eclipse.papyrus.sysml.portandflows.FlowPort
-	 * <em>Flow Port</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.sysml.portandflows.FlowPort <em>Flow Port</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for class '<em>Flow Port</em>'.
 	 * @see org.eclipse.papyrus.sysml.portandflows.FlowPort
@@ -400,8 +405,8 @@ public interface PortandflowsPackage extends EPackage {
 	EClass getFlowPort();
 
 	/**
-	 * Returns the meta object for the reference ' {@link org.eclipse.papyrus.sysml.portandflows.FlowPort#getBase_Port
-	 * <em>Base Port</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.sysml.portandflows.FlowPort#getBase_Port <em>Base Port</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference '<em>Base Port</em>'.
 	 * @see org.eclipse.papyrus.sysml.portandflows.FlowPort#getBase_Port()
@@ -411,8 +416,8 @@ public interface PortandflowsPackage extends EPackage {
 	EReference getFlowPort_Base_Port();
 
 	/**
-	 * Returns the meta object for the attribute ' {@link org.eclipse.papyrus.sysml.portandflows.FlowPort#getDirection
-	 * <em>Direction</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.sysml.portandflows.FlowPort#getDirection <em>Direction</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the attribute '<em>Direction</em>'.
 	 * @see org.eclipse.papyrus.sysml.portandflows.FlowPort#getDirection()
@@ -422,8 +427,8 @@ public interface PortandflowsPackage extends EPackage {
 	EAttribute getFlowPort_Direction();
 
 	/**
-	 * Returns the meta object for the attribute ' {@link org.eclipse.papyrus.sysml.portandflows.FlowPort#isIsAtomic
-	 * <em>Is Atomic</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.sysml.portandflows.FlowPort#isIsAtomic <em>Is Atomic</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the attribute '<em>Is Atomic</em>'.
 	 * @see org.eclipse.papyrus.sysml.portandflows.FlowPort#isIsAtomic()
@@ -433,8 +438,8 @@ public interface PortandflowsPackage extends EPackage {
 	EAttribute getFlowPort_IsAtomic();
 
 	/**
-	 * Returns the meta object for the attribute ' {@link org.eclipse.papyrus.sysml.portandflows.FlowPort#isIsConjugated
-	 * <em>Is Conjugated</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.sysml.portandflows.FlowPort#isIsConjugated <em>Is Conjugated</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the attribute '<em>Is Conjugated</em>'.
 	 * @see org.eclipse.papyrus.sysml.portandflows.FlowPort#isIsConjugated()
@@ -444,8 +449,8 @@ public interface PortandflowsPackage extends EPackage {
 	EAttribute getFlowPort_IsConjugated();
 
 	/**
-	 * Returns the meta object for class ' {@link org.eclipse.papyrus.sysml.portandflows.FlowProperty
-	 * <em>Flow Property</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.sysml.portandflows.FlowProperty <em>Flow Property</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for class '<em>Flow Property</em>'.
 	 * @see org.eclipse.papyrus.sysml.portandflows.FlowProperty
@@ -454,8 +459,9 @@ public interface PortandflowsPackage extends EPackage {
 	EClass getFlowProperty();
 
 	/**
-	 * Returns the meta object for the reference ' {@link org.eclipse.papyrus.sysml.portandflows.FlowProperty#getBase_Property
-	 * <em>Base Property</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.sysml.portandflows.FlowProperty#getBase_Property <em>Base Property</em>}
+	 * '.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference '<em>Base Property</em>'.
 	 * @see org.eclipse.papyrus.sysml.portandflows.FlowProperty#getBase_Property()
@@ -465,8 +471,8 @@ public interface PortandflowsPackage extends EPackage {
 	EReference getFlowProperty_Base_Property();
 
 	/**
-	 * Returns the meta object for the attribute ' {@link org.eclipse.papyrus.sysml.portandflows.FlowProperty#getDirection
-	 * <em>Direction</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.sysml.portandflows.FlowProperty#getDirection <em>Direction</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the attribute '<em>Direction</em>'.
 	 * @see org.eclipse.papyrus.sysml.portandflows.FlowProperty#getDirection()
@@ -487,8 +493,9 @@ public interface PortandflowsPackage extends EPackage {
 	EClass getFlowSpecification();
 
 	/**
-	 * Returns the meta object for the reference ' {@link org.eclipse.papyrus.sysml.portandflows.FlowSpecification#getBase_Interface
-	 * <em>Base Interface</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.sysml.portandflows.FlowSpecification#getBase_Interface
+	 * <em>Base Interface</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference '<em>Base Interface</em>'.
 	 * @see org.eclipse.papyrus.sysml.portandflows.FlowSpecification#getBase_Interface()
@@ -498,8 +505,8 @@ public interface PortandflowsPackage extends EPackage {
 	EReference getFlowSpecification_Base_Interface();
 
 	/**
-	 * Returns the meta object for class ' {@link org.eclipse.papyrus.sysml.portandflows.ItemFlow
-	 * <em>Item Flow</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.sysml.portandflows.ItemFlow <em>Item Flow</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for class '<em>Item Flow</em>'.
 	 * @see org.eclipse.papyrus.sysml.portandflows.ItemFlow
@@ -508,11 +515,12 @@ public interface PortandflowsPackage extends EPackage {
 	EClass getItemFlow();
 
 	/**
-	 * Returns the meta object for the reference ' {@link org.eclipse.papyrus.sysml.portandflows.ItemFlow#getBase_InformationFlow
-	 * <em>Base Information Flow</em>}'. <!-- begin-user-doc --> <!--
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.sysml.portandflows.ItemFlow#getBase_InformationFlow
+	 * <em>Base Information Flow</em>}'.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
-	 * @return the meta object for the reference '<em>Base Information Flow</em> '.
+	 * @return the meta object for the reference '<em>Base Information Flow</em>'.
 	 * @see org.eclipse.papyrus.sysml.portandflows.ItemFlow#getBase_InformationFlow()
 	 * @see #getItemFlow()
 	 * @generated
@@ -520,8 +528,8 @@ public interface PortandflowsPackage extends EPackage {
 	EReference getItemFlow_Base_InformationFlow();
 
 	/**
-	 * Returns the meta object for the reference ' {@link org.eclipse.papyrus.sysml.portandflows.ItemFlow#getItemProperty
-	 * <em>Item Property</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.sysml.portandflows.ItemFlow#getItemProperty <em>Item Property</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference '<em>Item Property</em>'.
 	 * @see org.eclipse.papyrus.sysml.portandflows.ItemFlow#getItemProperty()

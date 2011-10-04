@@ -24,9 +24,8 @@ import org.eclipse.uml2.uml.Parameter;
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.papyrus.sysml.activities.Rate#getBase_Parameter <em> Base Parameter</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.activities.Rate#getBase_ActivityEdge
- * <em>Base Activity Edge</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.activities.Rate#getBase_Parameter <em>Base Parameter</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.activities.Rate#getBase_ActivityEdge <em>Base Activity Edge</em>}</li>
  * <li>{@link org.eclipse.papyrus.sysml.activities.Rate#getRate <em>Rate</em>}</li>
  * </ul>
  * </p>
@@ -86,8 +85,8 @@ public interface Rate extends EObject {
 	InstanceSpecification getRate();
 
 	/**
-	 * Sets the value of the ' {@link org.eclipse.papyrus.sysml.activities.Rate#getBase_ActivityEdge
-	 * <em>Base Activity Edge</em>}' reference. <!-- begin-user-doc --> <!--
+	 * Sets the value of the '{@link org.eclipse.papyrus.sysml.activities.Rate#getBase_ActivityEdge <em>Base Activity Edge</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @param value
@@ -98,8 +97,8 @@ public interface Rate extends EObject {
 	void setBase_ActivityEdge(ActivityEdge value);
 
 	/**
-	 * Sets the value of the ' {@link org.eclipse.papyrus.sysml.activities.Rate#getBase_Parameter
-	 * <em>Base Parameter</em>}' reference. <!-- begin-user-doc --> <!--
+	 * Sets the value of the '{@link org.eclipse.papyrus.sysml.activities.Rate#getBase_Parameter <em>Base Parameter</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @param value
@@ -110,8 +109,8 @@ public interface Rate extends EObject {
 	void setBase_Parameter(Parameter value);
 
 	/**
-	 * Sets the value of the ' {@link org.eclipse.papyrus.sysml.activities.Rate#getRate <em>Rate</em>}'
-	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.papyrus.sysml.activities.Rate#getRate <em>Rate</em>}' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value
 	 *        the new value of the '<em>Rate</em>' reference.

@@ -27,9 +27,7 @@ import org.eclipse.uml2.uml.Comment;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>
- * {@link org.eclipse.papyrus.sysml.modelelements.impl.ProblemImpl#getBase_Comment
- * <em>Base Comment</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.modelelements.impl.ProblemImpl#getBase_Comment <em>Base Comment</em>}</li>
  * </ul>
  * </p>
  * 
@@ -38,7 +36,8 @@ import org.eclipse.uml2.uml.Comment;
 public class ProblemImpl extends EObjectImpl implements Problem {
 
 	/**
-	 * The cached value of the '{@link #getBase_Comment() <em>Base Comment</em>} ' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getBase_Comment() <em>Base Comment</em>}' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getBase_Comment()
 	 * @generated

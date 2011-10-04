@@ -22,9 +22,7 @@ import org.eclipse.uml2.uml.Abstraction;
  * <p>
  * The following features are supported:
  * <ul>
- * <li>
- * {@link org.eclipse.papyrus.sysml.allocations.Allocate#getBase_Abstraction
- * <em>Base Abstraction</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.allocations.Allocate#getBase_Abstraction <em>Base Abstraction</em>}</li>
  * </ul>
  * </p>
  * 
@@ -51,8 +49,8 @@ public interface Allocate extends EObject {
 	Abstraction getBase_Abstraction();
 
 	/**
-	 * Sets the value of the ' {@link org.eclipse.papyrus.sysml.allocations.Allocate#getBase_Abstraction
-	 * <em>Base Abstraction</em>}' reference. <!-- begin-user-doc --> <!--
+	 * Sets the value of the '{@link org.eclipse.papyrus.sysml.allocations.Allocate#getBase_Abstraction <em>Base Abstraction</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @param value

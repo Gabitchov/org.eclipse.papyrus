@@ -22,9 +22,7 @@ import org.eclipse.uml2.uml.Connector;
  * <p>
  * The following features are supported:
  * <ul>
- * <li>
- * {@link org.eclipse.papyrus.sysml.blocks.BindingConnector#getBase_Connector
- * <em>Base Connector</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.blocks.BindingConnector#getBase_Connector <em>Base Connector</em>}</li>
  * </ul>
  * </p>
  * 
@@ -51,8 +49,8 @@ public interface BindingConnector extends EObject {
 	Connector getBase_Connector();
 
 	/**
-	 * Sets the value of the ' {@link org.eclipse.papyrus.sysml.blocks.BindingConnector#getBase_Connector
-	 * <em>Base Connector</em>}' reference. <!-- begin-user-doc --> <!--
+	 * Sets the value of the '{@link org.eclipse.papyrus.sysml.blocks.BindingConnector#getBase_Connector <em>Base Connector</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @param value

@@ -22,9 +22,9 @@ import org.eclipse.uml2.uml.DataType;
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.papyrus.sysml.blocks.ValueType#getBase_DataType <em> Base Data Type</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.blocks.ValueType#getBase_DataType <em>Base Data Type</em>}</li>
  * <li>{@link org.eclipse.papyrus.sysml.blocks.ValueType#getUnit <em>Unit</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.blocks.ValueType#getDimension <em> Dimension</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.blocks.ValueType#getDimension <em>Dimension</em>}</li>
  * </ul>
  * </p>
  * 
@@ -83,8 +83,8 @@ public interface ValueType extends EObject {
 	Unit getUnit();
 
 	/**
-	 * Sets the value of the ' {@link org.eclipse.papyrus.sysml.blocks.ValueType#getBase_DataType
-	 * <em>Base Data Type</em>}' reference. <!-- begin-user-doc --> <!--
+	 * Sets the value of the '{@link org.eclipse.papyrus.sysml.blocks.ValueType#getBase_DataType <em>Base Data Type</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @param value
@@ -107,8 +107,8 @@ public interface ValueType extends EObject {
 	void setDimension(Dimension value);
 
 	/**
-	 * Sets the value of the ' {@link org.eclipse.papyrus.sysml.blocks.ValueType#getUnit <em>Unit</em>}'
-	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.papyrus.sysml.blocks.ValueType#getUnit <em>Unit</em>}' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value
 	 *        the new value of the '<em>Unit</em>' reference.

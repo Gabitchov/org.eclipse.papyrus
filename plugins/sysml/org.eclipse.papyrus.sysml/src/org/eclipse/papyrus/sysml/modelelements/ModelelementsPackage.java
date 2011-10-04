@@ -64,16 +64,16 @@ public interface ModelelementsPackage extends EPackage {
 		EClass CONFORM = eINSTANCE.getConform();
 
 		/**
-		 * The meta object literal for the '<em><b>Base Dependency</b></em>'
-		 * reference feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * The meta object literal for the '<em><b>Base Dependency</b></em>' reference feature.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @generated
 		 */
 		EReference CONFORM__BASE_DEPENDENCY = eINSTANCE.getConform_Base_Dependency();
 
 		/**
-		 * The meta object literal for the ' {@link org.eclipse.papyrus.sysml.modelelements.impl.ViewImpl
-		 * <em>View</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * The meta object literal for the '{@link org.eclipse.papyrus.sysml.modelelements.impl.ViewImpl <em>View</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @see org.eclipse.papyrus.sysml.modelelements.impl.ViewImpl
 		 * @see org.eclipse.papyrus.sysml.modelelements.impl.ModelelementsPackageImpl#getView()
@@ -82,24 +82,24 @@ public interface ModelelementsPackage extends EPackage {
 		EClass VIEW = eINSTANCE.getView();
 
 		/**
-		 * The meta object literal for the '<em><b>View Point</b></em>'
-		 * reference feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * The meta object literal for the '<em><b>View Point</b></em>' reference feature.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @generated
 		 */
 		EReference VIEW__VIEW_POINT = eINSTANCE.getView_ViewPoint();
 
 		/**
-		 * The meta object literal for the '<em><b>Base Package</b></em>'
-		 * reference feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * The meta object literal for the '<em><b>Base Package</b></em>' reference feature.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @generated
 		 */
 		EReference VIEW__BASE_PACKAGE = eINSTANCE.getView_Base_Package();
 
 		/**
-		 * The meta object literal for the ' {@link org.eclipse.papyrus.sysml.modelelements.impl.ViewPointImpl
-		 * <em>View Point</em>}' class. <!-- begin-user-doc --> <!--
+		 * The meta object literal for the '{@link org.eclipse.papyrus.sysml.modelelements.impl.ViewPointImpl <em>View Point</em>}' class.
+		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
 		 * 
 		 * @see org.eclipse.papyrus.sysml.modelelements.impl.ViewPointImpl
@@ -109,48 +109,48 @@ public interface ModelelementsPackage extends EPackage {
 		EClass VIEW_POINT = eINSTANCE.getViewPoint();
 
 		/**
-		 * The meta object literal for the '<em><b>Base Class</b></em>'
-		 * reference feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * The meta object literal for the '<em><b>Base Class</b></em>' reference feature.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @generated
 		 */
 		EReference VIEW_POINT__BASE_CLASS = eINSTANCE.getViewPoint_Base_Class();
 
 		/**
-		 * The meta object literal for the '<em><b>Stake Holders</b></em>'
-		 * attribute list feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * The meta object literal for the '<em><b>Stake Holders</b></em>' attribute list feature.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @generated
 		 */
 		EAttribute VIEW_POINT__STAKE_HOLDERS = eINSTANCE.getViewPoint_StakeHolders();
 
 		/**
-		 * The meta object literal for the '<em><b>Purpose</b></em>' attribute
-		 * feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * The meta object literal for the '<em><b>Purpose</b></em>' attribute feature.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @generated
 		 */
 		EAttribute VIEW_POINT__PURPOSE = eINSTANCE.getViewPoint_Purpose();
 
 		/**
-		 * The meta object literal for the '<em><b>Concerns</b></em>' attribute
-		 * list feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * The meta object literal for the '<em><b>Concerns</b></em>' attribute list feature.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @generated
 		 */
 		EAttribute VIEW_POINT__CONCERNS = eINSTANCE.getViewPoint_Concerns();
 
 		/**
-		 * The meta object literal for the '<em><b>Languages</b></em>' attribute
-		 * list feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * The meta object literal for the '<em><b>Languages</b></em>' attribute list feature.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @generated
 		 */
 		EAttribute VIEW_POINT__LANGUAGES = eINSTANCE.getViewPoint_Languages();
 
 		/**
-		 * The meta object literal for the '<em><b>Methods</b></em>' attribute
-		 * list feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * The meta object literal for the '<em><b>Methods</b></em>' attribute list feature.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @generated
 		 */
@@ -168,8 +168,8 @@ public interface ModelelementsPackage extends EPackage {
 		EClass RATIONALE = eINSTANCE.getRationale();
 
 		/**
-		 * The meta object literal for the '<em><b>Base Comment</b></em>'
-		 * reference feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * The meta object literal for the '<em><b>Base Comment</b></em>' reference feature.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @generated
 		 */
@@ -187,8 +187,8 @@ public interface ModelelementsPackage extends EPackage {
 		EClass PROBLEM = eINSTANCE.getProblem();
 
 		/**
-		 * The meta object literal for the '<em><b>Base Comment</b></em>'
-		 * reference feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * The meta object literal for the '<em><b>Base Comment</b></em>' reference feature.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @generated
 		 */
@@ -197,28 +197,32 @@ public interface ModelelementsPackage extends EPackage {
 	}
 
 	/**
-	 * The package name. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The package name.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	String eNAME = "modelelements";
 
 	/**
-	 * The package namespace URI. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The package namespace URI.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	String eNS_URI = "http://www.eclipse.org/papyrus/0.7.0/SysML/ModelElements";
 
 	/**
-	 * The package namespace name. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The package namespace name.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	String eNS_PREFIX = "ModelElements";
 
 	/**
-	 * The singleton instance of the package. <!-- begin-user-doc --> <!--
+	 * The singleton instance of the package.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated
@@ -226,8 +230,8 @@ public interface ModelelementsPackage extends EPackage {
 	ModelelementsPackage eINSTANCE = org.eclipse.papyrus.sysml.modelelements.impl.ModelelementsPackageImpl.init();
 
 	/**
-	 * The meta object id for the ' {@link org.eclipse.papyrus.sysml.modelelements.impl.ConformImpl
-	 * <em>Conform</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.modelelements.impl.ConformImpl <em>Conform</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see org.eclipse.papyrus.sysml.modelelements.impl.ConformImpl
 	 * @see org.eclipse.papyrus.sysml.modelelements.impl.ModelelementsPackageImpl#getConform()
@@ -254,8 +258,8 @@ public interface ModelelementsPackage extends EPackage {
 	int CONFORM_FEATURE_COUNT = 1;
 
 	/**
-	 * The meta object id for the ' {@link org.eclipse.papyrus.sysml.modelelements.impl.ViewImpl
-	 * <em>View</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.modelelements.impl.ViewImpl <em>View</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see org.eclipse.papyrus.sysml.modelelements.impl.ViewImpl
 	 * @see org.eclipse.papyrus.sysml.modelelements.impl.ModelelementsPackageImpl#getView()
@@ -365,8 +369,8 @@ public interface ModelelementsPackage extends EPackage {
 	int VIEW_POINT_FEATURE_COUNT = 6;
 
 	/**
-	 * The meta object id for the ' {@link org.eclipse.papyrus.sysml.modelelements.impl.RationaleImpl
-	 * <em>Rationale</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.modelelements.impl.RationaleImpl <em>Rationale</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see org.eclipse.papyrus.sysml.modelelements.impl.RationaleImpl
 	 * @see org.eclipse.papyrus.sysml.modelelements.impl.ModelelementsPackageImpl#getRationale()
@@ -393,8 +397,8 @@ public interface ModelelementsPackage extends EPackage {
 	int RATIONALE_FEATURE_COUNT = 1;
 
 	/**
-	 * The meta object id for the ' {@link org.eclipse.papyrus.sysml.modelelements.impl.ProblemImpl
-	 * <em>Problem</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.modelelements.impl.ProblemImpl <em>Problem</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see org.eclipse.papyrus.sysml.modelelements.impl.ProblemImpl
 	 * @see org.eclipse.papyrus.sysml.modelelements.impl.ModelelementsPackageImpl#getProblem()
@@ -421,7 +425,8 @@ public interface ModelelementsPackage extends EPackage {
 	int PROBLEM_FEATURE_COUNT = 1;
 
 	/**
-	 * Returns the meta object for class ' {@link org.eclipse.papyrus.sysml.modelelements.Conform <em>Conform</em>} '. <!-- begin-user-doc --> <!--
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.sysml.modelelements.Conform <em>Conform</em>}'.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @return the meta object for class '<em>Conform</em>'.
@@ -431,8 +436,9 @@ public interface ModelelementsPackage extends EPackage {
 	EClass getConform();
 
 	/**
-	 * Returns the meta object for the reference ' {@link org.eclipse.papyrus.sysml.modelelements.Conform#getBase_Dependency
-	 * <em>Base Dependency</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.sysml.modelelements.Conform#getBase_Dependency <em>Base Dependency</em>}
+	 * '.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference '<em>Base Dependency</em>'.
 	 * @see org.eclipse.papyrus.sysml.modelelements.Conform#getBase_Dependency()
@@ -451,7 +457,8 @@ public interface ModelelementsPackage extends EPackage {
 	ModelelementsFactory getModelelementsFactory();
 
 	/**
-	 * Returns the meta object for class ' {@link org.eclipse.papyrus.sysml.modelelements.Problem <em>Problem</em>} '. <!-- begin-user-doc --> <!--
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.sysml.modelelements.Problem <em>Problem</em>}'.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @return the meta object for class '<em>Problem</em>'.
@@ -461,8 +468,8 @@ public interface ModelelementsPackage extends EPackage {
 	EClass getProblem();
 
 	/**
-	 * Returns the meta object for the reference ' {@link org.eclipse.papyrus.sysml.modelelements.Problem#getBase_Comment
-	 * <em>Base Comment</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.sysml.modelelements.Problem#getBase_Comment <em>Base Comment</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference '<em>Base Comment</em>'.
 	 * @see org.eclipse.papyrus.sysml.modelelements.Problem#getBase_Comment()
@@ -472,8 +479,8 @@ public interface ModelelementsPackage extends EPackage {
 	EReference getProblem_Base_Comment();
 
 	/**
-	 * Returns the meta object for class ' {@link org.eclipse.papyrus.sysml.modelelements.Rationale
-	 * <em>Rationale</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.sysml.modelelements.Rationale <em>Rationale</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for class '<em>Rationale</em>'.
 	 * @see org.eclipse.papyrus.sysml.modelelements.Rationale
@@ -482,8 +489,8 @@ public interface ModelelementsPackage extends EPackage {
 	EClass getRationale();
 
 	/**
-	 * Returns the meta object for the reference ' {@link org.eclipse.papyrus.sysml.modelelements.Rationale#getBase_Comment
-	 * <em>Base Comment</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.sysml.modelelements.Rationale#getBase_Comment <em>Base Comment</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference '<em>Base Comment</em>'.
 	 * @see org.eclipse.papyrus.sysml.modelelements.Rationale#getBase_Comment()
@@ -503,8 +510,8 @@ public interface ModelelementsPackage extends EPackage {
 	EClass getView();
 
 	/**
-	 * Returns the meta object for the reference ' {@link org.eclipse.papyrus.sysml.modelelements.View#getBase_Package
-	 * <em>Base Package</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.sysml.modelelements.View#getBase_Package <em>Base Package</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference '<em>Base Package</em>'.
 	 * @see org.eclipse.papyrus.sysml.modelelements.View#getBase_Package()
@@ -514,8 +521,8 @@ public interface ModelelementsPackage extends EPackage {
 	EReference getView_Base_Package();
 
 	/**
-	 * Returns the meta object for the reference ' {@link org.eclipse.papyrus.sysml.modelelements.View#getViewPoint
-	 * <em>View Point</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.sysml.modelelements.View#getViewPoint <em>View Point</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference '<em>View Point</em>'.
 	 * @see org.eclipse.papyrus.sysml.modelelements.View#getViewPoint()
@@ -525,8 +532,8 @@ public interface ModelelementsPackage extends EPackage {
 	EReference getView_ViewPoint();
 
 	/**
-	 * Returns the meta object for class ' {@link org.eclipse.papyrus.sysml.modelelements.ViewPoint
-	 * <em>View Point</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.sysml.modelelements.ViewPoint <em>View Point</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for class '<em>View Point</em>'.
 	 * @see org.eclipse.papyrus.sysml.modelelements.ViewPoint
@@ -535,8 +542,8 @@ public interface ModelelementsPackage extends EPackage {
 	EClass getViewPoint();
 
 	/**
-	 * Returns the meta object for the reference ' {@link org.eclipse.papyrus.sysml.modelelements.ViewPoint#getBase_Class
-	 * <em>Base Class</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.sysml.modelelements.ViewPoint#getBase_Class <em>Base Class</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference '<em>Base Class</em>'.
 	 * @see org.eclipse.papyrus.sysml.modelelements.ViewPoint#getBase_Class()
@@ -546,8 +553,8 @@ public interface ModelelementsPackage extends EPackage {
 	EReference getViewPoint_Base_Class();
 
 	/**
-	 * Returns the meta object for the attribute list ' {@link org.eclipse.papyrus.sysml.modelelements.ViewPoint#getConcerns
-	 * <em>Concerns</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for the attribute list '{@link org.eclipse.papyrus.sysml.modelelements.ViewPoint#getConcerns <em>Concerns</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the attribute list '<em>Concerns</em>'.
 	 * @see org.eclipse.papyrus.sysml.modelelements.ViewPoint#getConcerns()
@@ -557,8 +564,8 @@ public interface ModelelementsPackage extends EPackage {
 	EAttribute getViewPoint_Concerns();
 
 	/**
-	 * Returns the meta object for the attribute list ' {@link org.eclipse.papyrus.sysml.modelelements.ViewPoint#getLanguages
-	 * <em>Languages</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for the attribute list '{@link org.eclipse.papyrus.sysml.modelelements.ViewPoint#getLanguages <em>Languages</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the attribute list '<em>Languages</em>'.
 	 * @see org.eclipse.papyrus.sysml.modelelements.ViewPoint#getLanguages()
@@ -568,8 +575,8 @@ public interface ModelelementsPackage extends EPackage {
 	EAttribute getViewPoint_Languages();
 
 	/**
-	 * Returns the meta object for the attribute list ' {@link org.eclipse.papyrus.sysml.modelelements.ViewPoint#getMethods
-	 * <em>Methods</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for the attribute list '{@link org.eclipse.papyrus.sysml.modelelements.ViewPoint#getMethods <em>Methods</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the attribute list '<em>Methods</em>'.
 	 * @see org.eclipse.papyrus.sysml.modelelements.ViewPoint#getMethods()
@@ -579,8 +586,8 @@ public interface ModelelementsPackage extends EPackage {
 	EAttribute getViewPoint_Methods();
 
 	/**
-	 * Returns the meta object for the attribute ' {@link org.eclipse.papyrus.sysml.modelelements.ViewPoint#getPurpose
-	 * <em>Purpose</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.sysml.modelelements.ViewPoint#getPurpose <em>Purpose</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the attribute '<em>Purpose</em>'.
 	 * @see org.eclipse.papyrus.sysml.modelelements.ViewPoint#getPurpose()
@@ -590,8 +597,9 @@ public interface ModelelementsPackage extends EPackage {
 	EAttribute getViewPoint_Purpose();
 
 	/**
-	 * Returns the meta object for the attribute list ' {@link org.eclipse.papyrus.sysml.modelelements.ViewPoint#getStakeHolders
-	 * <em>Stake Holders</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for the attribute list '{@link org.eclipse.papyrus.sysml.modelelements.ViewPoint#getStakeHolders
+	 * <em>Stake Holders</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the attribute list '<em>Stake Holders</em>'.
 	 * @see org.eclipse.papyrus.sysml.modelelements.ViewPoint#getStakeHolders()

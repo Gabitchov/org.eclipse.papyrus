@@ -27,9 +27,7 @@ import org.eclipse.uml2.uml.Classifier;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>
- * {@link org.eclipse.papyrus.sysml.blocks.impl.PropertySpecificTypeImpl#getBase_Classifier
- * <em>Base Classifier</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.blocks.impl.PropertySpecificTypeImpl#getBase_Classifier <em>Base Classifier</em>}</li>
  * </ul>
  * </p>
  * 
@@ -38,8 +36,8 @@ import org.eclipse.uml2.uml.Classifier;
 public class PropertySpecificTypeImpl extends EObjectImpl implements PropertySpecificType {
 
 	/**
-	 * The cached value of the '{@link #getBase_Classifier()
-	 * <em>Base Classifier</em>}' reference. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getBase_Classifier() <em>Base Classifier</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @see #getBase_Classifier()

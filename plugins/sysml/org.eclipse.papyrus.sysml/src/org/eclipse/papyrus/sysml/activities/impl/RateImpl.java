@@ -29,13 +29,9 @@ import org.eclipse.uml2.uml.Parameter;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>
- * {@link org.eclipse.papyrus.sysml.activities.impl.RateImpl#getBase_Parameter
- * <em>Base Parameter</em>}</li>
- * <li>
- * {@link org.eclipse.papyrus.sysml.activities.impl.RateImpl#getBase_ActivityEdge
- * <em>Base Activity Edge</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.activities.impl.RateImpl#getRate <em> Rate</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.activities.impl.RateImpl#getBase_Parameter <em>Base Parameter</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.activities.impl.RateImpl#getBase_ActivityEdge <em>Base Activity Edge</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.activities.impl.RateImpl#getRate <em>Rate</em>}</li>
  * </ul>
  * </p>
  * 
@@ -44,8 +40,8 @@ import org.eclipse.uml2.uml.Parameter;
 public class RateImpl extends EObjectImpl implements Rate {
 
 	/**
-	 * The cached value of the '{@link #getBase_Parameter()
-	 * <em>Base Parameter</em>}' reference. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getBase_Parameter() <em>Base Parameter</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @see #getBase_Parameter()
@@ -55,8 +51,8 @@ public class RateImpl extends EObjectImpl implements Rate {
 	protected Parameter base_Parameter;
 
 	/**
-	 * The cached value of the '{@link #getBase_ActivityEdge()
-	 * <em>Base Activity Edge</em>}' reference. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getBase_ActivityEdge() <em>Base Activity Edge</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @see #getBase_ActivityEdge()

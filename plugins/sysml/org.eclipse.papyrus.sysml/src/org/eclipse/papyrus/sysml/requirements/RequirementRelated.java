@@ -23,21 +23,11 @@ import org.eclipse.uml2.uml.NamedElement;
  * <p>
  * The following features are supported:
  * <ul>
- * <li>
- * {@link org.eclipse.papyrus.sysml.requirements.RequirementRelated#getBase_NamedElement
- * <em>Base Named Element</em>}</li>
- * <li>
- * {@link org.eclipse.papyrus.sysml.requirements.RequirementRelated#getTracedFrom
- * <em>Traced From</em>}</li>
- * <li>
- * {@link org.eclipse.papyrus.sysml.requirements.RequirementRelated#getSatisfies
- * <em>Satisfies</em>}</li>
- * <li>
- * {@link org.eclipse.papyrus.sysml.requirements.RequirementRelated#getRefines
- * <em>Refines</em>}</li>
- * <li>
- * {@link org.eclipse.papyrus.sysml.requirements.RequirementRelated#getVerifies
- * <em>Verifies</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.requirements.RequirementRelated#getBase_NamedElement <em>Base Named Element</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.requirements.RequirementRelated#getTracedFrom <em>Traced From</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.requirements.RequirementRelated#getSatisfies <em>Satisfies</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.requirements.RequirementRelated#getRefines <em>Refines</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.requirements.RequirementRelated#getVerifies <em>Verifies</em>}</li>
  * </ul>
  * </p>
  * 
@@ -132,8 +122,9 @@ public interface RequirementRelated extends EObject {
 	EList<Requirement> getVerifies();
 
 	/**
-	 * Sets the value of the ' {@link org.eclipse.papyrus.sysml.requirements.RequirementRelated#getBase_NamedElement
-	 * <em>Base Named Element</em>}' reference. <!-- begin-user-doc --> <!--
+	 * Sets the value of the '{@link org.eclipse.papyrus.sysml.requirements.RequirementRelated#getBase_NamedElement <em>Base Named Element</em>}'
+	 * reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @param value

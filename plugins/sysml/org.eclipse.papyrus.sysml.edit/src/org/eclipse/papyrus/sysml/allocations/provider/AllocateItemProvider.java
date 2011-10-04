@@ -13,35 +13,70 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.allocations.provider;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
+import org.eclipse.emf.edit.provider.ComposedImage;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptorDecorator;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
+import org.eclipse.papyrus.sysml.allocations.Allocate;
 import org.eclipse.papyrus.sysml.allocations.AllocationsPackage;
+import org.eclipse.papyrus.sysml.edit.provider.IComposableAdapterFactory;
+import org.eclipse.papyrus.sysml.edit.provider.SysMLItemProviderAdapter;
 import org.eclipse.papyrus.sysml.provider.SysmlEditPlugin;
+import org.eclipse.papyrus.sysml.util.SysmlResource;
+import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.Stereotype;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.allocations.Allocate} object. <!-- begin-user-doc --> <!-- end-user-doc
- * -->
+ * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.allocations.Allocate} object. <!--
+ * begin-user-doc --> <!-- end-user-doc -->
  * 
  * @generated
  */
-public class AllocateItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class AllocateItemProvider extends SysMLItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 
 	/**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * This is used to store all the property descriptors for aclass stereotyped with a block.
+	 * Derived classes should add descriptors to this vector.
+	 */
+
+
+	protected List<IItemPropertyDescriptor> itemPropertyDescriptorsForabstraction;
+
+	/**
+	 * Pattern prefix of allocate
+	 * 
+	 * @generated
+	 */
+	private static Pattern ALLOCATE_PREFIX_PATTERN = Pattern.compile("(allocate, |<<allocate>>|, allocate)");
+
+	/**
+	 * Get the prefix pattern of ABSTRACTION_PREFIX_PATTERN
+	 * 
+	 * @generated
+	 */
+
+	private static Pattern ABSTRACTION_PREFIX_PATTERN = Pattern.compile("Abstraction");
+
+	/**
+	 * This constructs an instance from a factory and a notifier. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -50,31 +85,83 @@ public class AllocateItemProvider extends ItemProviderAdapter implements IEditin
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if(itemPropertyDescriptors == null) {
-			super.getPropertyDescriptors(object);
+		if(object instanceof Allocate) {
+			if(itemPropertyDescriptors == null) {
+				super.getPropertyDescriptors(object);
 
-			addBase_AbstractionPropertyDescriptor(object);
+				addBase_AbstractionPropertyDescriptor(object);
+			}
 		}
+
+
+
+		/**
+		 * Handle Abstraction stereotyped by Allocate
+		 */
+		if(object instanceof org.eclipse.uml2.uml.Abstraction) {
+			org.eclipse.uml2.uml.Abstraction element = (org.eclipse.uml2.uml.Abstraction)object;
+			if(itemPropertyDescriptorsForabstraction == null) {
+				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.ABSTRACTION);
+				final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
+				itemPropertyDescriptorsForabstraction = new ArrayList<IItemPropertyDescriptor>();
+				itemPropertyDescriptorsForabstraction.addAll(propertyDescriptors);
+				Stereotype ste = (element).getAppliedStereotype(SysmlResource.ALLOCATE_ID);
+				if(ste != null) {
+					EObject steApplication = (element).getStereotypeApplication(ste);
+
+
+					addBase_AbstractionPropertyDescriptorForAbstraction(steApplication);
+
+
+				}
+			}
+			return itemPropertyDescriptorsForabstraction;
+
+		}
+
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Base Abstraction feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This adds a property descriptor for the Base Abstraction feature. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	protected void addBase_AbstractionPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Allocate_base_Abstraction_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Allocate_base_Abstraction_feature", "_UI_Allocate_type"), AllocationsPackage.Literals.ALLOCATE__BASE_ABSTRACTION, true, false, true, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Base Abstraction feature for the UML element Abstraction.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addBase_AbstractionPropertyDescriptorForAbstraction(Object object) {
+
+		itemPropertyDescriptorsForabstraction.add(new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Allocate_base_Abstraction_feature"),
+
+		getString("_UI_PropertyDescriptor_description", "_UI_Allocate_base_Abstraction_feature", "_UI_Allocate_type"),
+
+		AllocationsPackage.Literals.ALLOCATE__BASE_ABSTRACTION, true, false, true,
+
+		null,
+
+
+		null,
+
+
+		null)));
+
 	}
 
 	/**
@@ -85,37 +172,87 @@ public class AllocateItemProvider extends ItemProviderAdapter implements IEditin
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Allocate"));
+		Object composedImage = overlayImage(object, getResourceLocator().getImage("full/obj16/Allocate"));
+		if(object instanceof NamedElement) {
+			ComposedImage aux = new ComposedImage(Collections.singletonList(composedImage));
+			return (Object)composeVisibilityImage(object, aux);
+		}
+		return composedImage;
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
+		/**
+		 * Handle Stereotype item and stereoted element
+		 */
+		Allocate allocate_ = null;
+
+		if(object instanceof org.eclipse.uml2.uml.Abstraction) {
+			Stereotype ste = ((org.eclipse.uml2.uml.Abstraction)object).getAppliedStereotype(SysmlResource.ALLOCATE_ID);
+			if(ste != null) {
+				IItemLabelProvider ite = (IItemLabelProvider)((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.ABSTRACTION);
+				String result = ite.getText(object);
+				result = ALLOCATE_PREFIX_PATTERN.matcher(result).replaceFirst("");
+				return ABSTRACTION_PREFIX_PATTERN.matcher(result).replaceFirst("Allocate");
+			}
+
+		}
+
+		if(allocate_ == null) {
+			allocate_ = (Allocate)object;
+		}
+
+
 		return getString("_UI_Allocate_type");
 	}
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
+
+		/**
+		 * Notify UML element
+		 */
+		if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
+
+
+
+			/**
+			 * Handle Abstraction stereotyped by Allocate
+			 */
+
+
+			if(notification.getFeatureID(org.eclipse.uml2.uml.Abstraction.class) != Notification.NO_FEATURE_ID) {
+				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.ABSTRACTION);
+				ite.notifyChanged(notification);
+				return;
+
+			}
+
+		}
+
 		super.notifyChanged(notification);
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-	 * that can be created under this object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
+	 * describing the children that can be created under this object. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -125,9 +262,8 @@ public class AllocateItemProvider extends ItemProviderAdapter implements IEditin
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * Return the resource locator for this item provider's resources. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */

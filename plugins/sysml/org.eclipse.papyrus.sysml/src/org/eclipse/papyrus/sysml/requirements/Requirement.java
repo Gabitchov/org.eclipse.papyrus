@@ -23,22 +23,16 @@ import org.eclipse.uml2.uml.NamedElement;
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.papyrus.sysml.requirements.Requirement#getText <em> Text</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.requirements.Requirement#getId <em>Id </em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.requirements.Requirement#getDerived <em> Derived</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.requirements.Requirement#getDerivedFrom
- * <em>Derived From</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.requirements.Requirement#getSatisfiedBy
- * <em>Satisfied By</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.requirements.Requirement#getRefinedBy
- * <em>Refined By</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.requirements.Requirement#getTracedTo
- * <em>Traced To</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.requirements.Requirement#getVerifiedBy
- * <em>Verified By</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.requirements.Requirement#getMaster <em> Master</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.requirements.Requirement#getBase_Class
- * <em>Base Class</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.requirements.Requirement#getText <em>Text</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.requirements.Requirement#getId <em>Id</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.requirements.Requirement#getDerived <em>Derived</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.requirements.Requirement#getDerivedFrom <em>Derived From</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.requirements.Requirement#getSatisfiedBy <em>Satisfied By</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.requirements.Requirement#getRefinedBy <em>Refined By</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.requirements.Requirement#getTracedTo <em>Traced To</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.requirements.Requirement#getVerifiedBy <em>Verified By</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.requirements.Requirement#getMaster <em>Master</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.requirements.Requirement#getBase_Class <em>Base Class</em>}</li>
  * </ul>
  * </p>
  * 
@@ -158,8 +152,7 @@ public interface Requirement extends EObject {
 	 * 
 	 * @return the value of the '<em>Satisfied By</em>' reference list.
 	 * @see org.eclipse.papyrus.sysml.requirements.RequirementsPackage#getRequirement_SatisfiedBy()
-	 * @model transient="true" changeable="false" volatile="true" derived="true"
-	 *        ordered="false"
+	 * @model transient="true" changeable="false" volatile="true" derived="true" ordered="false"
 	 * @generated
 	 */
 	EList<NamedElement> getSatisfiedBy();
@@ -208,15 +201,14 @@ public interface Requirement extends EObject {
 	 * 
 	 * @return the value of the '<em>Verified By</em>' reference list.
 	 * @see org.eclipse.papyrus.sysml.requirements.RequirementsPackage#getRequirement_VerifiedBy()
-	 * @model transient="true" changeable="false" volatile="true" derived="true"
-	 *        ordered="false"
+	 * @model transient="true" changeable="false" volatile="true" derived="true" ordered="false"
 	 * @generated
 	 */
 	EList<NamedElement> getVerifiedBy();
 
 	/**
-	 * Sets the value of the ' {@link org.eclipse.papyrus.sysml.requirements.Requirement#getBase_Class
-	 * <em>Base Class</em>}' reference. <!-- begin-user-doc --> <!--
+	 * Sets the value of the '{@link org.eclipse.papyrus.sysml.requirements.Requirement#getBase_Class <em>Base Class</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @param value
@@ -227,8 +219,8 @@ public interface Requirement extends EObject {
 	void setBase_Class(org.eclipse.uml2.uml.Class value);
 
 	/**
-	 * Sets the value of the ' {@link org.eclipse.papyrus.sysml.requirements.Requirement#getId
-	 * <em>Id</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.papyrus.sysml.requirements.Requirement#getId <em>Id</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value
 	 *        the new value of the '<em>Id</em>' attribute.
@@ -238,8 +230,8 @@ public interface Requirement extends EObject {
 	void setId(String value);
 
 	/**
-	 * Sets the value of the ' {@link org.eclipse.papyrus.sysml.requirements.Requirement#getText
-	 * <em>Text</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.papyrus.sysml.requirements.Requirement#getText <em>Text</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value
 	 *        the new value of the '<em>Text</em>' attribute.

@@ -22,9 +22,7 @@ import org.eclipse.uml2.uml.Property;
  * <p>
  * The following features are supported:
  * <ul>
- * <li>
- * {@link org.eclipse.papyrus.sysml.constraints.ConstraintProperty#getBase_Property
- * <em>Base Property</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.constraints.ConstraintProperty#getBase_Property <em>Base Property</em>}</li>
  * </ul>
  * </p>
  * 
@@ -51,8 +49,8 @@ public interface ConstraintProperty extends EObject {
 	Property getBase_Property();
 
 	/**
-	 * Sets the value of the ' {@link org.eclipse.papyrus.sysml.constraints.ConstraintProperty#getBase_Property
-	 * <em>Base Property</em>}' reference. <!-- begin-user-doc --> <!--
+	 * Sets the value of the '{@link org.eclipse.papyrus.sysml.constraints.ConstraintProperty#getBase_Property <em>Base Property</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @param value

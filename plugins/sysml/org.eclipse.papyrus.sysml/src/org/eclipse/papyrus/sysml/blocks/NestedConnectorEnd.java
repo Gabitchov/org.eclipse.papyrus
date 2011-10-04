@@ -24,12 +24,8 @@ import org.eclipse.uml2.uml.Property;
  * <p>
  * The following features are supported:
  * <ul>
- * <li>
- * {@link org.eclipse.papyrus.sysml.blocks.NestedConnectorEnd#getPropertyPath
- * <em>Property Path</em>}</li>
- * <li>
- * {@link org.eclipse.papyrus.sysml.blocks.NestedConnectorEnd#getBase_ConnectorEnd
- * <em>Base Connector End</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.blocks.NestedConnectorEnd#getPropertyPath <em>Property Path</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.blocks.NestedConnectorEnd#getBase_ConnectorEnd <em>Base Connector End</em>}</li>
  * </ul>
  * </p>
  * 
@@ -72,8 +68,8 @@ public interface NestedConnectorEnd extends EObject {
 	EList<Property> getPropertyPath();
 
 	/**
-	 * Sets the value of the ' {@link org.eclipse.papyrus.sysml.blocks.NestedConnectorEnd#getBase_ConnectorEnd
-	 * <em>Base Connector End</em>}' reference. <!-- begin-user-doc --> <!--
+	 * Sets the value of the '{@link org.eclipse.papyrus.sysml.blocks.NestedConnectorEnd#getBase_ConnectorEnd <em>Base Connector End</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @param value

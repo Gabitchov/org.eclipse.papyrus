@@ -25,7 +25,8 @@ import org.eclipse.emf.ecore.EFactory;
 public interface ActivitiesFactory extends EFactory {
 
 	/**
-	 * The singleton instance of the factory. <!-- begin-user-doc --> <!--
+	 * The singleton instance of the factory.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated
@@ -33,7 +34,8 @@ public interface ActivitiesFactory extends EFactory {
 	ActivitiesFactory eINSTANCE = org.eclipse.papyrus.sysml.activities.impl.ActivitiesFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Optional</em>'. <!-- begin-user-doc
+	 * Returns a new object of class '<em>Optional</em>'.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
 	 * 
 	 * @return a new object of class '<em>Optional</em>'.
@@ -42,7 +44,8 @@ public interface ActivitiesFactory extends EFactory {
 	Optional createOptional();
 
 	/**
-	 * Returns a new object of class '<em>Continuous</em>'. <!-- begin-user-doc
+	 * Returns a new object of class '<em>Continuous</em>'.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
 	 * 
 	 * @return a new object of class '<em>Continuous</em>'.
@@ -60,7 +63,8 @@ public interface ActivitiesFactory extends EFactory {
 	ControlOperator createControlOperator();
 
 	/**
-	 * Returns a new object of class '<em>Discrete</em>'. <!-- begin-user-doc
+	 * Returns a new object of class '<em>Discrete</em>'.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
 	 * 
 	 * @return a new object of class '<em>Discrete</em>'.
@@ -69,7 +73,8 @@ public interface ActivitiesFactory extends EFactory {
 	Discrete createDiscrete();
 
 	/**
-	 * Returns a new object of class '<em>No Buffer</em>'. <!-- begin-user-doc
+	 * Returns a new object of class '<em>No Buffer</em>'.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
 	 * 
 	 * @return a new object of class '<em>No Buffer</em>'.
@@ -78,7 +83,8 @@ public interface ActivitiesFactory extends EFactory {
 	NoBuffer createNoBuffer();
 
 	/**
-	 * Returns a new object of class '<em>Overwrite</em>'. <!-- begin-user-doc
+	 * Returns a new object of class '<em>Overwrite</em>'.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
 	 * 
 	 * @return a new object of class '<em>Overwrite</em>'.
@@ -87,7 +93,8 @@ public interface ActivitiesFactory extends EFactory {
 	Overwrite createOverwrite();
 
 	/**
-	 * Returns a new object of class '<em>Probability</em>'. <!-- begin-user-doc
+	 * Returns a new object of class '<em>Probability</em>'.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
 	 * 
 	 * @return a new object of class '<em>Probability</em>'.
@@ -96,7 +103,8 @@ public interface ActivitiesFactory extends EFactory {
 	Probability createProbability();
 
 	/**
-	 * Returns a new object of class '<em>Rate</em>'. <!-- begin-user-doc -->
+	 * Returns a new object of class '<em>Rate</em>'.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
 	 * @return a new object of class '<em>Rate</em>'.
@@ -105,7 +113,8 @@ public interface ActivitiesFactory extends EFactory {
 	Rate createRate();
 
 	/**
-	 * Returns the package supported by this factory. <!-- begin-user-doc -->
+	 * Returns the package supported by this factory.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
 	 * @return the package supported by this factory.

@@ -42,35 +42,16 @@ import org.eclipse.uml2.uml.NamedElement;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>
- * {@link org.eclipse.papyrus.sysml.requirements.impl.RequirementImpl#getText
- * <em>Text</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementImpl#getId
- * <em>Id</em>}</li>
- * <li>
- * {@link org.eclipse.papyrus.sysml.requirements.impl.RequirementImpl#getDerived
- * <em>Derived</em>}</li>
- * <li>
- * {@link org.eclipse.papyrus.sysml.requirements.impl.RequirementImpl#getDerivedFrom
- * <em>Derived From</em>}</li>
- * <li>
- * {@link org.eclipse.papyrus.sysml.requirements.impl.RequirementImpl#getSatisfiedBy
- * <em>Satisfied By</em>}</li>
- * <li>
- * {@link org.eclipse.papyrus.sysml.requirements.impl.RequirementImpl#getRefinedBy
- * <em>Refined By</em>}</li>
- * <li>
- * {@link org.eclipse.papyrus.sysml.requirements.impl.RequirementImpl#getTracedTo
- * <em>Traced To</em>}</li>
- * <li>
- * {@link org.eclipse.papyrus.sysml.requirements.impl.RequirementImpl#getVerifiedBy
- * <em>Verified By</em>}</li>
- * <li>
- * {@link org.eclipse.papyrus.sysml.requirements.impl.RequirementImpl#getMaster
- * <em>Master</em>}</li>
- * <li>
- * {@link org.eclipse.papyrus.sysml.requirements.impl.RequirementImpl#getBase_Class
- * <em>Base Class</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementImpl#getText <em>Text</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementImpl#getId <em>Id</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementImpl#getDerived <em>Derived</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementImpl#getDerivedFrom <em>Derived From</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementImpl#getSatisfiedBy <em>Satisfied By</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementImpl#getRefinedBy <em>Refined By</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementImpl#getTracedTo <em>Traced To</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementImpl#getVerifiedBy <em>Verified By</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementImpl#getMaster <em>Master</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementImpl#getBase_Class <em>Base Class</em>}</li>
  * </ul>
  * </p>
  * 
@@ -119,8 +100,8 @@ public class RequirementImpl extends EObjectImpl implements Requirement {
 	protected String id = ID_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getBase_Class() <em>Base Class</em>}'
-	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getBase_Class() <em>Base Class</em>}' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getBase_Class()
 	 * @generated

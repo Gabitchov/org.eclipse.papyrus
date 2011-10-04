@@ -27,9 +27,7 @@ import org.eclipse.uml2.uml.Interface;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>
- * {@link org.eclipse.papyrus.sysml.portandflows.impl.FlowSpecificationImpl#getBase_Interface
- * <em>Base Interface</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.portandflows.impl.FlowSpecificationImpl#getBase_Interface <em>Base Interface</em>}</li>
  * </ul>
  * </p>
  * 
@@ -38,8 +36,8 @@ import org.eclipse.uml2.uml.Interface;
 public class FlowSpecificationImpl extends EObjectImpl implements FlowSpecification {
 
 	/**
-	 * The cached value of the '{@link #getBase_Interface()
-	 * <em>Base Interface</em>}' reference. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getBase_Interface() <em>Base Interface</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @see #getBase_Interface()

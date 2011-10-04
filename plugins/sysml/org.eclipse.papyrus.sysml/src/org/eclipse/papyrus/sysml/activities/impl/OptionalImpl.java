@@ -27,9 +27,7 @@ import org.eclipse.uml2.uml.Parameter;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>
- * {@link org.eclipse.papyrus.sysml.activities.impl.OptionalImpl#getBase_Parameter
- * <em>Base Parameter</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.activities.impl.OptionalImpl#getBase_Parameter <em>Base Parameter</em>}</li>
  * </ul>
  * </p>
  * 
@@ -38,8 +36,8 @@ import org.eclipse.uml2.uml.Parameter;
 public class OptionalImpl extends EObjectImpl implements Optional {
 
 	/**
-	 * The cached value of the '{@link #getBase_Parameter()
-	 * <em>Base Parameter</em>}' reference. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getBase_Parameter() <em>Base Parameter</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @see #getBase_Parameter()

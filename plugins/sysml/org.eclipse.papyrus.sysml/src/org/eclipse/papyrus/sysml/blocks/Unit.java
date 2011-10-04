@@ -22,10 +22,8 @@ import org.eclipse.uml2.uml.InstanceSpecification;
  * <p>
  * The following features are supported:
  * <ul>
- * <li>
- * {@link org.eclipse.papyrus.sysml.blocks.Unit#getBase_InstanceSpecification
- * <em>Base Instance Specification</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.blocks.Unit#getDimension <em>Dimension </em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.blocks.Unit#getBase_InstanceSpecification <em>Base Instance Specification</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.blocks.Unit#getDimension <em>Dimension</em>}</li>
  * </ul>
  * </p>
  * 
@@ -36,15 +34,14 @@ import org.eclipse.uml2.uml.InstanceSpecification;
 public interface Unit extends EObject {
 
 	/**
-	 * Returns the value of the '<em><b>Base Instance Specification</b></em>'
-	 * reference. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Base Instance Specification</b></em>' reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Base Instance Specification</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
-	 * @return the value of the '<em>Base Instance Specification</em>'
-	 *         reference.
+	 * @return the value of the '<em>Base Instance Specification</em>' reference.
 	 * @see #setBase_InstanceSpecification(InstanceSpecification)
 	 * @see org.eclipse.papyrus.sysml.blocks.BlocksPackage#getUnit_Base_InstanceSpecification()
 	 * @model required="true" ordered="false"
@@ -69,13 +66,13 @@ public interface Unit extends EObject {
 	Dimension getDimension();
 
 	/**
-	 * Sets the value of the ' {@link org.eclipse.papyrus.sysml.blocks.Unit#getBase_InstanceSpecification
-	 * <em>Base Instance Specification</em>}' reference. <!-- begin-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.papyrus.sysml.blocks.Unit#getBase_InstanceSpecification <em>Base Instance Specification</em>}'
+	 * reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
 	 * @param value
-	 *        the new value of the '<em>Base Instance Specification</em>'
-	 *        reference.
+	 *        the new value of the '<em>Base Instance Specification</em>' reference.
 	 * @see #getBase_InstanceSpecification()
 	 * @generated
 	 */

@@ -23,12 +23,8 @@ import org.eclipse.uml2.uml.Operation;
  * <p>
  * The following features are supported:
  * <ul>
- * <li>
- * {@link org.eclipse.papyrus.sysml.activities.ControlOperator#getBase_Operation
- * <em>Base Operation</em>}</li>
- * <li>
- * {@link org.eclipse.papyrus.sysml.activities.ControlOperator#getBase_Behavior
- * <em>Base Behavior</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.activities.ControlOperator#getBase_Operation <em>Base Operation</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.activities.ControlOperator#getBase_Behavior <em>Base Behavior</em>}</li>
  * </ul>
  * </p>
  * 
@@ -71,8 +67,8 @@ public interface ControlOperator extends EObject {
 	Operation getBase_Operation();
 
 	/**
-	 * Sets the value of the ' {@link org.eclipse.papyrus.sysml.activities.ControlOperator#getBase_Behavior
-	 * <em>Base Behavior</em>}' reference. <!-- begin-user-doc --> <!--
+	 * Sets the value of the '{@link org.eclipse.papyrus.sysml.activities.ControlOperator#getBase_Behavior <em>Base Behavior</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @param value
@@ -83,8 +79,8 @@ public interface ControlOperator extends EObject {
 	void setBase_Behavior(Behavior value);
 
 	/**
-	 * Sets the value of the ' {@link org.eclipse.papyrus.sysml.activities.ControlOperator#getBase_Operation
-	 * <em>Base Operation</em>}' reference. <!-- begin-user-doc --> <!--
+	 * Sets the value of the '{@link org.eclipse.papyrus.sysml.activities.ControlOperator#getBase_Operation <em>Base Operation</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @param value

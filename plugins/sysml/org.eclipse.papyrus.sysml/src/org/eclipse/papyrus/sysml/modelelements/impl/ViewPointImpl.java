@@ -30,24 +30,12 @@ import org.eclipse.papyrus.sysml.modelelements.ViewPoint;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>
- * {@link org.eclipse.papyrus.sysml.modelelements.impl.ViewPointImpl#getBase_Class
- * <em>Base Class</em>}</li>
- * <li>
- * {@link org.eclipse.papyrus.sysml.modelelements.impl.ViewPointImpl#getStakeHolders
- * <em>Stake Holders</em>}</li>
- * <li>
- * {@link org.eclipse.papyrus.sysml.modelelements.impl.ViewPointImpl#getPurpose
- * <em>Purpose</em>}</li>
- * <li>
- * {@link org.eclipse.papyrus.sysml.modelelements.impl.ViewPointImpl#getConcerns
- * <em>Concerns</em>}</li>
- * <li>
- * {@link org.eclipse.papyrus.sysml.modelelements.impl.ViewPointImpl#getLanguages
- * <em>Languages</em>}</li>
- * <li>
- * {@link org.eclipse.papyrus.sysml.modelelements.impl.ViewPointImpl#getMethods
- * <em>Methods</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.modelelements.impl.ViewPointImpl#getBase_Class <em>Base Class</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.modelelements.impl.ViewPointImpl#getStakeHolders <em>Stake Holders</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.modelelements.impl.ViewPointImpl#getPurpose <em>Purpose</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.modelelements.impl.ViewPointImpl#getConcerns <em>Concerns</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.modelelements.impl.ViewPointImpl#getLanguages <em>Languages</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.modelelements.impl.ViewPointImpl#getMethods <em>Methods</em>}</li>
  * </ul>
  * </p>
  * 
@@ -56,8 +44,8 @@ import org.eclipse.papyrus.sysml.modelelements.ViewPoint;
 public class ViewPointImpl extends EObjectImpl implements ViewPoint {
 
 	/**
-	 * The cached value of the '{@link #getBase_Class() <em>Base Class</em>}'
-	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getBase_Class() <em>Base Class</em>}' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getBase_Class()
 	 * @generated
@@ -66,8 +54,8 @@ public class ViewPointImpl extends EObjectImpl implements ViewPoint {
 	protected org.eclipse.uml2.uml.Class base_Class;
 
 	/**
-	 * The cached value of the '{@link #getStakeHolders()
-	 * <em>Stake Holders</em>}' attribute list. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getStakeHolders() <em>Stake Holders</em>}' attribute list.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @see #getStakeHolders()
@@ -77,8 +65,8 @@ public class ViewPointImpl extends EObjectImpl implements ViewPoint {
 	protected EList<String> stakeHolders;
 
 	/**
-	 * The default value of the '{@link #getPurpose() <em>Purpose</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #getPurpose() <em>Purpose</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getPurpose()
 	 * @generated
@@ -87,8 +75,8 @@ public class ViewPointImpl extends EObjectImpl implements ViewPoint {
 	protected static final String PURPOSE_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getPurpose() <em>Purpose</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getPurpose() <em>Purpose</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getPurpose()
 	 * @generated
@@ -97,8 +85,8 @@ public class ViewPointImpl extends EObjectImpl implements ViewPoint {
 	protected String purpose = PURPOSE_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getConcerns() <em>Concerns</em>}'
-	 * attribute list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getConcerns() <em>Concerns</em>}' attribute list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getConcerns()
 	 * @generated
@@ -107,8 +95,8 @@ public class ViewPointImpl extends EObjectImpl implements ViewPoint {
 	protected EList<String> concerns;
 
 	/**
-	 * The cached value of the '{@link #getLanguages() <em>Languages</em>}'
-	 * attribute list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getLanguages() <em>Languages</em>}' attribute list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getLanguages()
 	 * @generated
@@ -117,8 +105,8 @@ public class ViewPointImpl extends EObjectImpl implements ViewPoint {
 	protected EList<String> languages;
 
 	/**
-	 * The cached value of the '{@link #getMethods() <em>Methods</em>}'
-	 * attribute list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getMethods() <em>Methods</em>}' attribute list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getMethods()
 	 * @generated
