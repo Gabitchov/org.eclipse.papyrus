@@ -13,7 +13,7 @@ package org.eclipse.papyrus.onefile.matcher;
 
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
-import org.eclipse.papyrus.onefile.utils.Utils;
+import org.eclipse.papyrus.onefile.utils.OneFileUtils;
 
 /**
  * Filter hiding di files and associated. the filter enables the content
@@ -36,7 +36,7 @@ public class OnlyDiFilter extends ViewerFilter {
 	 * @Override
 	 */
 	public boolean select(Viewer viewer, Object parentElement, Object element) {
-		return Utils.isVisible(element);
+		return OneFileUtils.isVisible(element);
 	}
 
 	/*

@@ -26,7 +26,7 @@ import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.papyrus.onefile.matcher.OnlyDiFilter;
 import org.eclipse.papyrus.onefile.model.IPapyrusFile;
 import org.eclipse.papyrus.onefile.model.PapyrusModelHelper;
-import org.eclipse.papyrus.onefile.utils.Utils;
+import org.eclipse.papyrus.onefile.utils.OneFileUtils;
 import org.eclipse.team.core.mapping.ISynchronizationContext;
 import org.eclipse.team.ui.mapping.SynchronizationContentProvider;
 import org.eclipse.ui.model.WorkbenchContentProvider;
@@ -90,10 +90,10 @@ public class PapyrusContentProvider extends SynchronizationContentProvider {
 								IContainer cont = (IContainer)r;
 								result.add(cont);
 							} else if(r instanceof IFile) {
-								if(Utils.isDi(r)) {
+								if(OneFileUtils.isDi(r)) {
 									result.add(PapyrusModelHelper.getPapyrusModelFactory().createIPapyrusFile((IFile)r));
 								} else {
-									if(!Utils.diExists(r.getName(), r.getParent())) {
+									if(!OneFileUtils.diExists(r.getName(), r.getParent())) {
 										result.add(r);
 									}
 								}
@@ -123,7 +123,7 @@ public class PapyrusContentProvider extends SynchronizationContentProvider {
 	}
 
 	public boolean hasChildren(Object element) {
-		return Utils.hasChildren(element);
+		return OneFileUtils.hasChildren(element);
 	}
 
 	@Override

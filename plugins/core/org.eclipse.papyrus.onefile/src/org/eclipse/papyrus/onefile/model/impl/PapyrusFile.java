@@ -23,7 +23,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.papyrus.core.utils.PapyrusImageUtils;
 import org.eclipse.papyrus.onefile.model.IPapyrusFile;
-import org.eclipse.papyrus.onefile.utils.Utils;
+import org.eclipse.papyrus.onefile.utils.OneFileUtils;
 import org.eclipse.swt.graphics.Image;
 
 /**
@@ -35,17 +35,15 @@ import org.eclipse.swt.graphics.Image;
 public class PapyrusFile implements IPapyrusFile {
 
 	private final IFile file;
+
 	private final List<IFile> files = new LinkedList<IFile>();
 
 	public PapyrusFile(IFile file) {
 		this.file = file;
 		try {
-			for (IResource res : file.getParent().members()) {
-				if (res instanceof IFile
-						&& !Utils.isDi((IFile) res)
-						&& Utils.withoutFileExtension(file).equals(
-								Utils.withoutFileExtension(res))) {
-					files.add((IFile) res);
+			for(IResource res : file.getParent().members()) {
+				if(res instanceof IFile && !OneFileUtils.isDi((IFile)res) && OneFileUtils.withoutFileExtension(file).equals(OneFileUtils.withoutFileExtension(res))) {
+					files.add((IFile)res);
 				}
 			}
 		} catch (CoreException e) {
@@ -60,7 +58,7 @@ public class PapyrusFile implements IPapyrusFile {
 		ArrayList<IResource> list = new ArrayList<IResource>(files.size() + 1);
 		list.add(file);
 		list.addAll(files);
-		return list.toArray(new IResource[] {});
+		return list.toArray(new IResource[]{});
 	}
 
 	public String getLabel() {
@@ -69,8 +67,8 @@ public class PapyrusFile implements IPapyrusFile {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj instanceof PapyrusFile) {
-			PapyrusFile papy = (PapyrusFile) obj;
+		if(obj instanceof PapyrusFile) {
+			PapyrusFile papy = (PapyrusFile)obj;
 			return getMainFile().equals(papy.getMainFile());
 		}
 		return super.equals(obj);

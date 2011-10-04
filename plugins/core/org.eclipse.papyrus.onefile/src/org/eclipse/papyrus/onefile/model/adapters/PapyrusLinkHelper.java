@@ -19,7 +19,7 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.papyrus.onefile.model.IPapyrusFile;
 import org.eclipse.papyrus.onefile.model.PapyrusModelHelper;
-import org.eclipse.papyrus.onefile.utils.Utils;
+import org.eclipse.papyrus.onefile.utils.OneFileUtils;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IFileEditorInput;
@@ -42,13 +42,12 @@ public class PapyrusLinkHelper implements ILinkHelper {
 	 */
 	public IStructuredSelection findSelection(IEditorInput anInput) {
 		List<Object> select = new ArrayList<Object>();
-		if (anInput instanceof IFileEditorInput) {
-			IFileEditorInput input = (IFileEditorInput) anInput;
-			IPapyrusFile papy = PapyrusModelHelper.getPapyrusModelFactory()
-					.createIPapyrusFile(input.getFile());
+		if(anInput instanceof IFileEditorInput) {
+			IFileEditorInput input = (IFileEditorInput)anInput;
+			IPapyrusFile papy = PapyrusModelHelper.getPapyrusModelFactory().createIPapyrusFile(input.getFile());
 			select.add(papy);
 			IResource res = papy.getMainFile();
-			while (res.getParent() != null) {
+			while(res.getParent() != null) {
 				select.add(0, res.getParent());
 				res = res.getParent();
 			}
@@ -63,13 +62,12 @@ public class PapyrusLinkHelper implements ILinkHelper {
 	 * @see org.eclipse.ui.navigator.ILinkHelper#activateEditor(org.eclipse.ui.
 	 * IWorkbenchPage, org.eclipse.jface.viewers.IStructuredSelection)
 	 */
-	public void activateEditor(IWorkbenchPage page,
-			IStructuredSelection selection) {
-		if (selection == null || selection.isEmpty())
+	public void activateEditor(IWorkbenchPage page, IStructuredSelection selection) {
+		if(selection == null || selection.isEmpty())
 			return;
 		Object element = selection.getFirstElement();
-		IEditorPart part = Utils.isOpenInEditor(element);
-		if (part != null) {
+		IEditorPart part = OneFileUtils.isOpenInEditor(element);
+		if(part != null) {
 			page.bringToTop(part);
 		}
 

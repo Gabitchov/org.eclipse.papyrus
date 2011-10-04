@@ -21,7 +21,7 @@ import org.eclipse.core.resources.mapping.ResourceTraversal;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.papyrus.onefile.model.mapping.PapyrusResourceMapping;
-import org.eclipse.papyrus.onefile.utils.Utils;
+import org.eclipse.papyrus.onefile.utils.OneFileUtils;
 
 @SuppressWarnings("restriction")
 public class OneFileModelProvider extends ModelProvider {
@@ -31,33 +31,25 @@ public class OneFileModelProvider extends ModelProvider {
 	public OneFileModelProvider() {
 	}
 
-	public ResourceMapping[] getMappings(IResource resource,
-			ResourceMappingContext context, IProgressMonitor monitor) {
-		if (Utils.isDi(resource)) {
-			return new ResourceMapping[] { new PapyrusResourceMapping(
-					(IFile) resource) };
+	public ResourceMapping[] getMappings(IResource resource, ResourceMappingContext context, IProgressMonitor monitor) {
+		if(OneFileUtils.isDi(resource)) {
+			return new ResourceMapping[]{ new PapyrusResourceMapping((IFile)resource) };
 		}
-		return new ResourceMapping[] { new SimpleResourceMapping(resource) };
+		return new ResourceMapping[]{ new SimpleResourceMapping(resource) };
 	}
 
 	@Override
-	public ResourceMapping[] getMappings(IResource[] resources,
-			ResourceMappingContext context, IProgressMonitor monitor)
-			throws CoreException {
+	public ResourceMapping[] getMappings(IResource[] resources, ResourceMappingContext context, IProgressMonitor monitor) throws CoreException {
 		return super.getMappings(resources, context, monitor);
 	}
 
 	@Override
-	public ResourceTraversal[] getTraversals(ResourceMapping[] mappings,
-			ResourceMappingContext context, IProgressMonitor monitor)
-			throws CoreException {
+	public ResourceTraversal[] getTraversals(ResourceMapping[] mappings, ResourceMappingContext context, IProgressMonitor monitor) throws CoreException {
 		return super.getTraversals(mappings, context, monitor);
 	}
 
 	@Override
-	public ResourceMapping[] getMappings(ResourceTraversal[] traversals,
-			ResourceMappingContext context, IProgressMonitor monitor)
-			throws CoreException {
+	public ResourceMapping[] getMappings(ResourceTraversal[] traversals, ResourceMappingContext context, IProgressMonitor monitor) throws CoreException {
 		return super.getMappings(traversals, context, monitor);
 	}
 

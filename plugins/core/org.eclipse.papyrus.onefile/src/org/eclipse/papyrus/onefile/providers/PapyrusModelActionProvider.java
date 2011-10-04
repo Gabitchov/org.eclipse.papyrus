@@ -26,7 +26,7 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.papyrus.onefile.model.IPapyrusFile;
-import org.eclipse.papyrus.onefile.utils.Utils;
+import org.eclipse.papyrus.onefile.utils.OneFileUtils;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.IViewPart;
@@ -55,16 +55,23 @@ import org.eclipse.ui.navigator.ICommonViewerWorkbenchSite;
  * @author tfaure
  * 
  */
-@SuppressWarnings({"restriction","rawtypes"})
+@SuppressWarnings({ "restriction", "rawtypes" })
 public class PapyrusModelActionProvider extends CommonActionProvider {
 
 	private boolean fInViewPart = false;
+
 	private ICommonViewerWorkbenchSite workbenchSite;
+
 	private Action openAction;
+
 	private Action deleteAction;
+
 	private Action copyAction;
+
 	private Action renameAction;
+
 	private Action refreshAction;
+
 	private Action moveAction;
 
 	public PapyrusModelActionProvider() {
@@ -78,19 +85,13 @@ public class PapyrusModelActionProvider extends CommonActionProvider {
 
 	@Override
 	public void fillActionBars(IActionBars actionBars) {
-		if (fInViewPart) {
-			actionBars.setGlobalActionHandler(ICommonActionConstants.OPEN,
-					openAction);
-			actionBars.setGlobalActionHandler(ActionFactory.DELETE.getId(),
-					deleteAction);
-			actionBars.setGlobalActionHandler(ActionFactory.RENAME.getId(),
-					renameAction);
-			actionBars.setGlobalActionHandler(ActionFactory.MOVE.getId(),
-					moveAction);
-			actionBars.setGlobalActionHandler(ActionFactory.COPY.getId(),
-					copyAction);
-			actionBars.setGlobalActionHandler(ActionFactory.REFRESH.getId(),
-					refreshAction);
+		if(fInViewPart) {
+			actionBars.setGlobalActionHandler(ICommonActionConstants.OPEN, openAction);
+			actionBars.setGlobalActionHandler(ActionFactory.DELETE.getId(), deleteAction);
+			actionBars.setGlobalActionHandler(ActionFactory.RENAME.getId(), renameAction);
+			actionBars.setGlobalActionHandler(ActionFactory.MOVE.getId(), moveAction);
+			actionBars.setGlobalActionHandler(ActionFactory.COPY.getId(), copyAction);
+			actionBars.setGlobalActionHandler(ActionFactory.REFRESH.getId(), refreshAction);
 
 		}
 		super.fillActionBars(actionBars);
@@ -108,19 +109,18 @@ public class PapyrusModelActionProvider extends CommonActionProvider {
 	}
 
 	private void appendToGroup(IMenuManager menu, IAction action, String id) {
-		if (action != null && action.isEnabled()) {
+		if(action != null && action.isEnabled()) {
 			menu.appendToGroup(id, action);
 		}
 	}
 
 	@Override
 	public void init(ICommonActionExtensionSite site) {
-		if (site.getViewSite() instanceof ICommonViewerWorkbenchSite) {
-			workbenchSite = (ICommonViewerWorkbenchSite) site.getViewSite();
+		if(site.getViewSite() instanceof ICommonViewerWorkbenchSite) {
+			workbenchSite = (ICommonViewerWorkbenchSite)site.getViewSite();
 		}
-		if (workbenchSite != null) {
-			if (workbenchSite.getPart() != null
-					&& workbenchSite.getPart() instanceof IViewPart) {
+		if(workbenchSite != null) {
+			if(workbenchSite.getPart() != null && workbenchSite.getPart() instanceof IViewPart) {
 				fInViewPart = true;
 			}
 			makeActions();
@@ -134,11 +134,9 @@ public class PapyrusModelActionProvider extends CommonActionProvider {
 
 			@Override
 			public void run() {
-				if (getIFile() != null) {
+				if(getIFile() != null) {
 					try {
-						IDE.openEditor(PlatformUI.getWorkbench()
-								.getActiveWorkbenchWindow().getActivePage(),
-								getIFile(), true);
+						IDE.openEditor(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage(), getIFile(), true);
 					} catch (WorkbenchException e) {
 					}
 				}
@@ -160,13 +158,11 @@ public class PapyrusModelActionProvider extends CommonActionProvider {
 		};
 
 		deleteAction = new DeleteResourceAction(provider) {
-			
+
 			@Override
 			public boolean isEnabled() {
-				return getSelectedResources() != null
-					 && getSelectedResources().size() > 0
-					 && Utils.isDi((IResource) getSelectedResources().get(0));
-					
+				return getSelectedResources() != null && getSelectedResources().size() > 0 && OneFileUtils.isDi((IResource)getSelectedResources().get(0));
+
 			}
 
 			@Override
@@ -180,8 +176,8 @@ public class PapyrusModelActionProvider extends CommonActionProvider {
 			}
 		};
 
-		moveAction = new MoveResourceAction(provider)
-		{
+		moveAction = new MoveResourceAction(provider) {
+
 			@Override
 			public IStructuredSelection getStructuredSelection() {
 				return helper.getStructuredSelection(getContext());
@@ -192,8 +188,9 @@ public class PapyrusModelActionProvider extends CommonActionProvider {
 				return helper.getSelectedResources(getContext());
 			}
 		};
-		
+
 		copyAction = new CopyResourceAction(provider) {
+
 			@Override
 			public IStructuredSelection getStructuredSelection() {
 				return helper.getStructuredSelection(getContext());
@@ -209,8 +206,7 @@ public class PapyrusModelActionProvider extends CommonActionProvider {
 
 			@Override
 			public IStructuredSelection getStructuredSelection() {
-				IStructuredSelection selec = helper
-						.getOneStructuredSelection(getContext());
+				IStructuredSelection selec = helper.getOneStructuredSelection(getContext());
 				return selec != null ? selec : super.getStructuredSelection();
 			}
 
@@ -223,37 +219,26 @@ public class PapyrusModelActionProvider extends CommonActionProvider {
 
 		refreshAction = new RefreshAction(provider);
 
-		makeAction(openAction, ICommonActionConstants.OPEN,
-				ISharedImages.IMG_TOOL_COPY,
-				ISharedImages.IMG_TOOL_COPY_DISABLED);
-		makeAction(deleteAction, IWorkbenchCommandConstants.EDIT_DELETE,
-				ISharedImages.IMG_TOOL_DELETE,
-				ISharedImages.IMG_TOOL_DELETE_DISABLED);
-		makeAction(moveAction, ActionFactory.MOVE.getId(),null,null);
-		makeAction(copyAction, IWorkbenchCommandConstants.EDIT_CUT,
-				ISharedImages.IMG_TOOL_CUT,
-				ISharedImages.IMG_TOOL_CUT_DISABLED);
-		makeAction(copyAction, IWorkbenchCommandConstants.EDIT_COPY,
-				ISharedImages.IMG_TOOL_COPY,
-				ISharedImages.IMG_TOOL_COPY_DISABLED);
-		makeAction(refreshAction, ActionFactory.REFRESH.getCommandId(), null,
-				null);
+		makeAction(openAction, ICommonActionConstants.OPEN, ISharedImages.IMG_TOOL_COPY, ISharedImages.IMG_TOOL_COPY_DISABLED);
+		makeAction(deleteAction, IWorkbenchCommandConstants.EDIT_DELETE, ISharedImages.IMG_TOOL_DELETE, ISharedImages.IMG_TOOL_DELETE_DISABLED);
+		makeAction(moveAction, ActionFactory.MOVE.getId(), null, null);
+		makeAction(copyAction, IWorkbenchCommandConstants.EDIT_CUT, ISharedImages.IMG_TOOL_CUT, ISharedImages.IMG_TOOL_CUT_DISABLED);
+		makeAction(copyAction, IWorkbenchCommandConstants.EDIT_COPY, ISharedImages.IMG_TOOL_COPY, ISharedImages.IMG_TOOL_COPY_DISABLED);
+		makeAction(refreshAction, ActionFactory.REFRESH.getCommandId(), null, null);
 	}
 
-	protected void makeAction(Action action, String id, String imgTool,
-			String imgToolDisabled) {
-		if (action != null) {
+	protected void makeAction(Action action, String id, String imgTool, String imgToolDisabled) {
+		if(action != null) {
 			ISharedImages images = PlatformUI.getWorkbench().getSharedImages();
-			if (id != null) {
+			if(id != null) {
 				action.setId(id);
 				action.setActionDefinitionId(id);
 			}
-			if (imgTool != null) {
+			if(imgTool != null) {
 				action.setImageDescriptor(images.getImageDescriptor(imgTool));
 			}
-			if (imgToolDisabled != null) {
-				action.setDisabledImageDescriptor(images
-						.getImageDescriptor(imgToolDisabled));
+			if(imgToolDisabled != null) {
+				action.setDisabledImageDescriptor(images.getImageDescriptor(imgToolDisabled));
 			}
 		}
 	}
@@ -266,14 +251,12 @@ public class PapyrusModelActionProvider extends CommonActionProvider {
 
 		public List getOneSelectedResources(ActionContext context) {
 			List selectedResources = getSelectedResources(context);
-			if (selectedResources.size() > 0) {
-				for (Iterator<?> i = selectedResources.iterator() ; i.hasNext() ; )
-				{
+			if(selectedResources.size() > 0) {
+				for(Iterator<?> i = selectedResources.iterator(); i.hasNext();) {
 					Object o = i.next();
-					if (o instanceof IFile) {
-						IFile file = (IFile) o;
-						if (!Utils.isDi(file))
-						{
+					if(o instanceof IFile) {
+						IFile file = (IFile)o;
+						if(!OneFileUtils.isDi(file)) {
 							i.remove();
 						}
 					}
@@ -283,10 +266,9 @@ public class PapyrusModelActionProvider extends CommonActionProvider {
 			return Collections.EMPTY_LIST;
 		}
 
-		public IStructuredSelection getOneStructuredSelection(
-				ActionContext context) {
+		public IStructuredSelection getOneStructuredSelection(ActionContext context) {
 			List selectedResources = getOneSelectedResources(context);
-			if (selectedResources.size() > 0) {
+			if(selectedResources.size() > 0) {
 				return new StructuredSelection(selectedResources);
 			}
 			return null;
@@ -295,14 +277,13 @@ public class PapyrusModelActionProvider extends CommonActionProvider {
 		protected List getSelectedResources(ActionContext context) {
 			ISelection selec = context.getSelection();
 			List<IResource> resources = new ArrayList<IResource>();
-			if (selec instanceof IStructuredSelection) {
-				IStructuredSelection struc = (IStructuredSelection) selec;
-				for (Iterator<Object> i = struc.iterator(); i.hasNext();) {
+			if(selec instanceof IStructuredSelection) {
+				IStructuredSelection struc = (IStructuredSelection)selec;
+				for(Iterator<Object> i = struc.iterator(); i.hasNext();) {
 					Object o = i.next();
-					if (o instanceof IPapyrusFile) {
-						IPapyrusFile papy = (IPapyrusFile) o;
-						resources.addAll(Arrays.asList(papy
-								.getAssociatedResources()));
+					if(o instanceof IPapyrusFile) {
+						IPapyrusFile papy = (IPapyrusFile)o;
+						resources.addAll(Arrays.asList(papy.getAssociatedResources()));
 					}
 				}
 			}
@@ -311,14 +292,14 @@ public class PapyrusModelActionProvider extends CommonActionProvider {
 
 		public IFile getIFile(ActionContext context) {
 			ISelection selec = context.getSelection();
-			if (selec instanceof IStructuredSelection) {
-				IStructuredSelection struc = (IStructuredSelection) selec;
+			if(selec instanceof IStructuredSelection) {
+				IStructuredSelection struc = (IStructuredSelection)selec;
 				Object firstElement = struc.getFirstElement();
-				if (firstElement instanceof IFile) {
-					IFile file = (IFile) firstElement;
+				if(firstElement instanceof IFile) {
+					IFile file = (IFile)firstElement;
 					return file;
-				} else if (firstElement instanceof IPapyrusFile) {
-					return (IFile) ((IPapyrusFile) firstElement).getMainFile();
+				} else if(firstElement instanceof IPapyrusFile) {
+					return (IFile)((IPapyrusFile)firstElement).getMainFile();
 				}
 			}
 			return null;
