@@ -19,6 +19,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
@@ -27,6 +28,8 @@ import org.eclipse.gmf.runtime.emf.type.core.edithelper.IEditHelperAdvice;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyDependentsRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.MoveRequest;
+import org.eclipse.papyrus.service.edit.commands.FakeMoveCommand;
 
 /**
  * <pre>
@@ -241,5 +244,10 @@ public class DefaultEditHelper extends AbstractEditHelper {
 		}
 
 		return advices;
+	}
+
+	@Override
+	protected ICommand getMoveCommand(MoveRequest req) {
+		return CompositeCommand.compose(super.getMoveCommand(req), new FakeMoveCommand(req));
 	}
 }

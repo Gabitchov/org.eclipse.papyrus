@@ -33,11 +33,11 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescrip
 import org.eclipse.gmf.runtime.diagram.ui.requests.EditCommandRequestWrapper;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
+import org.eclipse.gmf.runtime.emf.type.core.requests.MoveRequest;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
-import org.eclipse.papyrus.service.edit.request.PapyrusMoveRequest;
 
 
 
@@ -70,7 +70,7 @@ public class NestedClazzCompartmentCreationEditPolicy extends CreationEditPolicy
 
 		// semantic reparent
 		if(element != null) {
-			Command moveSemanticCmd = getHost().getCommand(new EditCommandRequestWrapper(new PapyrusMoveRequest(editingDomain, context, element)));
+			Command moveSemanticCmd = getHost().getCommand(new EditCommandRequestWrapper(new MoveRequest(editingDomain, context, element)));
 
 			if(moveSemanticCmd == null) {
 				return org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand.INSTANCE;
