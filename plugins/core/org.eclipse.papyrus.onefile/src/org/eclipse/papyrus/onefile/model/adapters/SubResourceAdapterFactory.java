@@ -18,6 +18,7 @@ import org.eclipse.core.runtime.IAdapterFactory;
 import org.eclipse.papyrus.onefile.model.ISubResourceFile;
 import org.eclipse.papyrus.onefile.model.impl.SubResourceFile;
 import org.eclipse.papyrus.onefile.model.mapping.SubResourceMapping;
+import org.eclipse.ui.IContributorResourceAdapter;
 
 /**
  * Adapter Factory for {@link SubResourceFile}
@@ -28,25 +29,28 @@ import org.eclipse.papyrus.onefile.model.mapping.SubResourceMapping;
 public class SubResourceAdapterFactory implements IAdapterFactory {
 
 	public Object getAdapter(Object adaptableObject, Class adapterType) {
-		if (ResourceMapping.class.equals(adapterType)) {
-			if (adaptableObject instanceof ISubResourceFile) {
-				return new SubResourceMapping(
-						(ISubResourceFile) adaptableObject);
+		if(ResourceMapping.class.equals(adapterType)) {
+			if(adaptableObject instanceof ISubResourceFile) {
+				return new SubResourceMapping((ISubResourceFile)adaptableObject);
 			}
-		} else if (IFile.class.equals(adapterType)) {
-			if (adaptableObject instanceof ISubResourceFile) {
-				return ((ISubResourceFile) adaptableObject).getFile();
+		} else if(IFile.class.equals(adapterType)) {
+			if(adaptableObject instanceof ISubResourceFile) {
+				return ((ISubResourceFile)adaptableObject).getFile();
 			}
-		} else if (IResource.class.equals(adapterType)) {
-			if (adaptableObject instanceof ISubResourceFile) {
-				return ((ISubResourceFile) adaptableObject).getFile();
+		} else if(IContributorResourceAdapter.class.equals(adapterType)) {
+			if(adaptableObject instanceof ISubResourceFile) {
+				return new PapyrusModelContributorResourceAdapter();
+			}
+		} else if(IResource.class.equals(adapterType)) {
+			if(adaptableObject instanceof ISubResourceFile) {
+				return ((ISubResourceFile)adaptableObject).getFile();
 			}
 		}
 		return null;
 	}
 
 	public Class[] getAdapterList() {
-		return new Class[] {};
+		return new Class[]{};
 	}
 
 }

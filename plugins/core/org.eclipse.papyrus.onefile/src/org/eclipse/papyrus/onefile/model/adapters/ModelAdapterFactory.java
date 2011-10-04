@@ -14,11 +14,12 @@ package org.eclipse.papyrus.onefile.model.adapters;
 import java.util.Arrays;
 import java.util.Collection;
 
-import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.mapping.ResourceMapping;
 import org.eclipse.core.runtime.IAdapterFactory;
 import org.eclipse.papyrus.onefile.model.IPapyrusFile;
 import org.eclipse.papyrus.onefile.model.mapping.PapyrusResourceMapping;
+import org.eclipse.ui.IContributorResourceAdapter;
+import org.eclipse.ui.ide.IContributorResourceAdapter2;
 
 /**
  * Adapter factory to adapt {@link IPapyrusFile}
@@ -36,23 +37,27 @@ public class ModelAdapterFactory implements IAdapterFactory {
 	 * java.lang.Class)
 	 */
 	public Object getAdapter(Object adaptableObject, Class adapterType) {
-		if (ResourceMapping.class.equals(adapterType)) {
-			if (adaptableObject instanceof IPapyrusFile) {
-				return new PapyrusResourceMapping(
-						(IPapyrusFile) adaptableObject);
+		if(ResourceMapping.class.equals(adapterType)) {
+			if(adaptableObject instanceof IPapyrusFile) {
+				return new PapyrusResourceMapping((IPapyrusFile)adaptableObject);
 			}
 		}
-		if (Collection.class.equals(adapterType))
-		{
-			if (adaptableObject instanceof IPapyrusFile) {
-				return Arrays.asList(((IPapyrusFile) adaptableObject).getAssociatedResources());
+		if(IContributorResourceAdapter.class.equals(adapterType)) {
+			return new PapyrusModelContributorResourceAdapter();
+		}
+		if(IContributorResourceAdapter2.class.equals(adapterType)) {
+			return new PapyrusModelContributorResourceAdapter();
+		}
+		if(Collection.class.equals(adapterType)) {
+			if(adaptableObject instanceof IPapyrusFile) {
+				return Arrays.asList(((IPapyrusFile)adaptableObject).getAssociatedResources());
 			}
 		}
 		return null;
 	}
 
 	public Class[] getAdapterList() {
-		return new Class[] {};
+		return new Class[]{};
 	}
 
 }
