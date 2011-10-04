@@ -114,16 +114,16 @@ public class GenericAttributeObservable extends AbstractObservableValue {
 	@SuppressWarnings("unchecked")
 	@Override
 	public void doSetValue(final Object value) {
-		if(value != null && value.equals(doGetValue())) {
+		final Object oldValue = doGetValue();
+
+		if(value != null && value.equals(oldValue)) {
 			return;
 		}
-
-		final Object oldValue = doGetValue();
 
 		EObject attribute = findAttribute();
 		EList<? extends EObject> collection = (EList<? extends EObject>)source.eGet(createIn);
 
-		CompoundCommand command = new CompoundCommand(String.format("Set %1 value", propertyPath)); //$NON-NLS-1$
+		CompoundCommand command = new CompoundCommand(String.format("Set %s value", propertyPath)); //$NON-NLS-1$
 
 		if(value == null || value.equals("")) { //$NON-NLS-1$
 			if(attribute != null) {
