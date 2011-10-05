@@ -12,8 +12,6 @@
 package org.eclipse.papyrus.onefile.model.impl;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
 
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
@@ -36,18 +34,9 @@ public class PapyrusFile implements IPapyrusFile {
 
 	private final IFile file;
 
-	private final List<IFile> files = new LinkedList<IFile>();
 
 	public PapyrusFile(IFile file) {
 		this.file = file;
-		try {
-			for(IResource res : file.getParent().members()) {
-				if(res instanceof IFile && !OneFileUtils.isDi((IFile)res) && OneFileUtils.withoutFileExtension(file).equals(OneFileUtils.withoutFileExtension(res))) {
-					files.add((IFile)res);
-				}
-			}
-		} catch (CoreException e) {
-		}
 	}
 
 	public IFile getMainFile() {
@@ -55,14 +44,27 @@ public class PapyrusFile implements IPapyrusFile {
 	}
 
 	public IResource[] getAssociatedResources() {
-		ArrayList<IResource> list = new ArrayList<IResource>(files.size() + 1);
-		list.add(file);
-		list.addAll(files);
-		return list.toArray(new IResource[]{});
+		ArrayList<IResource> files = new ArrayList<IResource>();
+		try {
+			for(IResource res : file.getParent().members()) {
+				if(res instanceof IFile && OneFileUtils.withoutFileExtension(file).equals(OneFileUtils.withoutFileExtension(res))) {
+					files.add((IFile)res);
+				}
+			}
+		} catch (CoreException e) {
+		}
+		return files.toArray(new IResource[]{});
 	}
 
 	public String getLabel() {
 		return file.getName();
+	}
+
+
+
+	@Override
+	public int hashCode() {
+		return getMainFile().hashCode();
 	}
 
 	@Override

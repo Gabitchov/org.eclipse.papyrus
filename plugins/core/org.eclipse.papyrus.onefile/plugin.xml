@@ -72,6 +72,12 @@
                <instanceof
                      value="org.eclipse.core.internal.resources.mapping.ResourceModelProvider">
 		      </instanceof>
+               <instanceof
+                     value="org.eclipse.core.resources.IFile">
+               </instanceof>
+               <adapt
+                     type="org.eclipse.core.resources.IResource">
+               </adapt>
             </or>
          </enablement>
          <actionProvider
@@ -81,7 +87,7 @@
          </actionProvider>
          <dropAssistant
                class="org.eclipse.papyrus.onefile.model.adapters.PapyrusCommonDropAdapterAssistant"
-               id="org.eclipse.papyrus.onefile.PapyrusDropAssistantt">
+               id="org.eclipse.papyrus.onefile.PapyrusDropAssistant">
             <possibleDropTargets>
                <instanceof
                      value="org.eclipse.core.resources.IContainer">
@@ -96,6 +102,12 @@
             	<instanceof
                   value="org.eclipse.core.resources.IResource">
             	</instanceof>
+             <instanceof
+                   value="org.eclipse.papyrus.onefile.model.IPapyrusFile">
+             </instanceof>
+             <instanceof
+                   value="org.eclipse.papyrus.onefile.model.ISubResourceFile">
+             </instanceof>
             </or>
          </triggerPoints>
       </navigatorContent>

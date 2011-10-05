@@ -217,7 +217,14 @@ public class PapyrusModelActionProvider extends CommonActionProvider {
 
 		};
 
-		refreshAction = new RefreshAction(provider);
+		refreshAction = new RefreshAction(provider) {
+
+			@Override
+			public void run() {
+				super.run();
+			}
+
+		};
 
 		makeAction(openAction, ICommonActionConstants.OPEN, ISharedImages.IMG_TOOL_COPY, ISharedImages.IMG_TOOL_COPY_DISABLED);
 		makeAction(deleteAction, IWorkbenchCommandConstants.EDIT_DELETE, ISharedImages.IMG_TOOL_DELETE, ISharedImages.IMG_TOOL_DELETE_DISABLED);

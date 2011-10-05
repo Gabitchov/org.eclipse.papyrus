@@ -56,15 +56,29 @@ public class OneFileUtils {
 	 * @return
 	 */
 	public static boolean diExists(String fileName, IContainer parent) {
+		return getDi(fileName, parent) != null;
+	}
+
+	/**
+	 * Determines if a di exist in the container from a file name
+	 * 
+	 * @param fileName
+	 * @param parent
+	 * @return
+	 */
+	public static IFile getDi(String fileName, IContainer parent) {
 		if(parent == null || parent.getType() == IResource.ROOT) {
-			return false;
+			return null;
 		}
 		String substring = fileName;
 		if(fileName.indexOf('.') > 0) {
 			substring = fileName.substring(0, fileName.lastIndexOf('.'));
 		}
 		IFile file = parent.getFile(new Path(substring + "." + DiModel.DI_FILE_EXTENSION));
-		return file != null && file.exists();
+		if(file.exists()) {
+			return file;
+		}
+		return null;
 	}
 
 	/**
