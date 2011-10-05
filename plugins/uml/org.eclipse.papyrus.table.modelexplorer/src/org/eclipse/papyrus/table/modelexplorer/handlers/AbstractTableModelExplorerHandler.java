@@ -17,6 +17,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.modelexplorer.handler.AbstractCommandHandler;
@@ -45,12 +47,14 @@ public abstract class AbstractTableModelExplorerHandler extends AbstractCommandH
 			Iterator<?> iter = structuredSelection.iterator();
 			while(iter.hasNext()) {
 				Object current = iter.next();
-				if(current instanceof PapyrusTableInstance) {
-					tables.add((PapyrusTableInstance)current);
+				if(current instanceof IAdaptable){
+					EObject table = (EObject)((IAdaptable)current).getAdapter(EObject.class);
+					if(table instanceof PapyrusTableInstance){
+						tables.add((PapyrusTableInstance)table);
+					}
 				}
 			}
 		}
-
 		return tables;
 	}
 
