@@ -11,6 +11,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.onefile.providers;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -18,37 +21,30 @@ import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.IResourceDelta;
 import org.eclipse.core.resources.IWorkspaceRoot;
-import org.eclipse.core.resources.mapping.ResourceTraversal;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.jface.viewers.ITreeContentProvider;
+import org.eclipse.jface.viewers.AbstractTreeViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.papyrus.onefile.matcher.OnlyDiFilter;
 import org.eclipse.papyrus.onefile.model.IPapyrusFile;
 import org.eclipse.papyrus.onefile.model.PapyrusModelHelper;
 import org.eclipse.papyrus.onefile.utils.OneFileUtils;
-import org.eclipse.team.core.mapping.ISynchronizationContext;
-import org.eclipse.team.ui.mapping.SynchronizationContentProvider;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.model.WorkbenchContentProvider;
 import org.eclipse.ui.navigator.CommonViewer;
-import org.eclipse.ui.navigator.ICommonContentExtensionSite;
 
 /**
  * Content provider able to retrieve Papyrus children from an {@link IContainer}
  * 
- * @author tfaure
+ * @author Tristan FAURE
  * 
  */
-public class PapyrusContentProvider extends SynchronizationContentProvider {
+public class PapyrusContentProvider extends WorkbenchContentProvider {
 
-	private ITreeContentProvider provider = null;
 
 	private CommonViewer common;
 
-	@Override
-	public void init(ICommonContentExtensionSite site) {
-		super.init(site);
-	}
 
 	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
 		super.inputChanged(viewer, oldInput, newInput);
@@ -66,6 +62,10 @@ public class PapyrusContentProvider extends SynchronizationContentProvider {
 		return common != null && common.getNavigatorContentService() != null && common.getNavigatorContentService().getFilterService() != null && common.getNavigatorContentService().getFilterService().isActive(OnlyDiFilter.FILTER_ID);
 	}
 
+	@Override
+	public void dispose() {
+		super.dispose();
+	}
 
 	public Object[] getElements(Object inputElement) {
 		if(inputElement instanceof IWorkspaceRoot) {
@@ -91,7 +91,8 @@ public class PapyrusContentProvider extends SynchronizationContentProvider {
 								result.add(cont);
 							} else if(r instanceof IFile) {
 								if(OneFileUtils.isDi(r)) {
-									result.add(PapyrusModelHelper.getPapyrusModelFactory().createIPapyrusFile((IFile)r));
+									IPapyrusFile createIPapyrusFile = PapyrusModelHelper.getPapyrusModelFactory().createIPapyrusFile((IFile)r);
+									result.add(createIPapyrusFile);
 								} else {
 									if(!OneFileUtils.diExists(r.getName(), r.getParent())) {
 										result.add(r);
@@ -127,26 +128,141 @@ public class PapyrusContentProvider extends SynchronizationContentProvider {
 	}
 
 	@Override
-	protected ITreeContentProvider getDelegateContentProvider() {
-		if(provider == null) {
-			provider = new WorkbenchContentProvider();
+	protected void processDelta(IResourceDelta delta) {
+		super.processDelta(delta);
+		if(!isFiltered()) {
+			return;
 		}
-		return provider;
+		Control ctrl = common.getControl();
+		if(ctrl == null || ctrl.isDisposed()) {
+			return;
+		}
+
+
+		final Collection<Runnable> runnables = new ArrayList<Runnable>();
+		processPapyrusDelta(delta, runnables);
+
+		if(runnables.isEmpty()) {
+			return;
+		}
+
+		//Are we in the UIThread? If so spin it until we are done
+		ctrl.getDisplay().asyncExec(new Runnable() {
+
+			/*
+			 * (non-Javadoc)
+			 * 
+			 * @see java.lang.Runnable#run()
+			 */
+			public void run() {
+				//Abort if this happens after disposes
+				Control ctrl = common.getControl();
+				if(ctrl == null || ctrl.isDisposed()) {
+					return;
+				}
+				runUpdates(runnables);
+			}
+		});
+
 	}
 
-	@Override
-	protected String getModelProviderId() {
-		return OneFileModelProvider.MODEL_PROVIDER_ID;
+	private void runUpdates(Collection<?> runnables) {
+		Iterator<?> runnableIterator = runnables.iterator();
+		while(runnableIterator.hasNext()) {
+			((Runnable)runnableIterator.next()).run();
+		}
+
 	}
 
-	@Override
-	protected Object getModelRoot() {
-		return null;
+	protected void processPapyrusDelta(IResourceDelta delta, Collection<Runnable> runnables) {
+		IResourceDelta[] affectedChildren = delta.getAffectedChildren(IResourceDelta.CHANGED);
+
+		// Handle changed children .
+		for(int i = 0; i < affectedChildren.length; i++) {
+			processPapyrusDelta(affectedChildren[i], runnables);
+		}
+
+		IResourceDelta[] addedChildren = delta.getAffectedChildren(IResourceDelta.ADDED);
+
+		final Object[] addedObjects;
+
+		// Process additions before removals as to not cause selection
+		// preservation prior to new objects being added
+		// Handle added children. Issue one update for all insertions.
+		if(addedChildren.length > 0) {
+			addedObjects = new Object[addedChildren.length];
+			for(int i = 0; i < addedChildren.length; i++) {
+				addedObjects[i] = addedChildren[i].getResource();
+			}
+		} else {
+			addedObjects = new Object[0];
+		}
+
+		// Handle removed children. Issue one update for all removals.
+		// heuristic test for items moving within same folder (i.e. renames)
+		Runnable addAndRemove = new Runnable() {
+
+			public void run() {
+				if(common instanceof AbstractTreeViewer) {
+					AbstractTreeViewer treeViewer = (AbstractTreeViewer)common;
+					// Disable redraw until the operation is finished so we don't
+					// get a flash of both the new and old item (in the case of
+					// rename)
+					// Only do this if we're both adding and removing files (the
+					// rename case)
+					try {
+						// need to handle resource addition
+						if(addedObjects.length > 0) {
+							ArrayList<IPapyrusFile> elements = new ArrayList<IPapyrusFile>(addedObjects.length);
+							ArrayList<IPapyrusFile> toAdd = new ArrayList<IPapyrusFile>(addedObjects.length);
+							for(Object r : addedObjects) {
+								if(r instanceof IResource) {
+									IResource current = (IResource)r;
+									if(OneFileUtils.diExists(current.getName(), current.getParent())) {
+										elements.add(PapyrusModelHelper.getPapyrusModelFactory().createIPapyrusFile(OneFileUtils.getDi(current.getName(), current.getParent())));
+									}
+									if(OneFileUtils.isDi(current)) {
+										toAdd.add(PapyrusModelHelper.getPapyrusModelFactory().createIPapyrusFile((IFile)current));
+									}
+								}
+							}
+							for(Object o : elements) {
+								common.refresh(o);
+							}
+							for(IPapyrusFile o : toAdd) {
+								common.add(o.getParent(), o);
+							}
+						}
+					} finally {
+
+					}
+				}
+			}
+		};
+		runnables.add(addAndRemove);
 	}
 
-	@Override
-	protected ResourceTraversal[] getTraversals(ISynchronizationContext context, Object object) {
-		return null;
-	}
+	//	@Override
+	//	protected ITreeContentProvider getDelegateContentProvider() {
+	//		if(provider == null) {
+	//			provider = new WorkbenchContentProvider();
+	//		}
+	//		return provider;
+	//	}
+	//
+	//	@Override
+	//	protected String getModelProviderId() {
+	//		return OneFileModelProvider.MODEL_PROVIDER_ID;
+	//	}
+	//
+	//	@Override
+	//	protected Object getModelRoot() {
+	//		return null;
+	//	}
+
+	//	@Override
+	//	protected ResourceTraversal[] getTraversals(ISynchronizationContext context, Object object) {
+	//		return null;
+	//	}
 
 }

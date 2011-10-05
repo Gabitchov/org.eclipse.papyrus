@@ -11,8 +11,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.onefile.model.impl;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.ArrayList;
 
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
@@ -33,23 +32,11 @@ import org.eclipse.swt.graphics.Image;
  */
 public class PapyrusFile implements IPapyrusFile {
 
-	private IFile file;
-	private final List<IFile> files = new LinkedList<IFile>();
+	private final IFile file;
+
 
 	public PapyrusFile(IFile file) {
-		try {
-			for (IResource res : file.getParent().members()) {
-				if (res instanceof IFile && OneFileUtils.withoutFileExtension(file).equals(OneFileUtils.withoutFileExtension(res))) {
-					IFile castedRes = (IFile) res;
-					if (OneFileUtils.isDi(castedRes)) {
-						this.file = castedRes;
-					} else {
-						files.add(castedRes);
-					}
-				}
-			}
-		} catch (CoreException e) {
-		}
+		this.file = file;
 	}
 
 	public IFile getMainFile() {
@@ -57,22 +44,33 @@ public class PapyrusFile implements IPapyrusFile {
 	}
 
 	public IResource[] getAssociatedResources() {
-		IResource[] resources = new IResource[files.size() + 1];
-		resources[0] = file;
-		for (int i = 0; i < files.size(); i++) {
-			resources[i + 1] = files.get(i);
+		ArrayList<IResource> files = new ArrayList<IResource>();
+		try {
+			for(IResource res : file.getParent().members()) {
+				if(res instanceof IFile && OneFileUtils.withoutFileExtension(file).equals(OneFileUtils.withoutFileExtension(res))) {
+					files.add((IFile)res);
+				}
+			}
+		} catch (CoreException e) {
 		}
-		return resources;
+		return files.toArray(new IResource[]{});
 	}
 
 	public String getLabel() {
 		return file.getName();
 	}
 
+
+
+	@Override
+	public int hashCode() {
+		return getMainFile().hashCode();
+	}
+
 	@Override
 	public boolean equals(Object obj) {
-		if (obj instanceof PapyrusFile) {
-			PapyrusFile papy = (PapyrusFile) obj;
+		if(obj instanceof PapyrusFile) {
+			PapyrusFile papy = (PapyrusFile)obj;
 			return getMainFile().equals(papy.getMainFile());
 		}
 		return super.equals(obj);

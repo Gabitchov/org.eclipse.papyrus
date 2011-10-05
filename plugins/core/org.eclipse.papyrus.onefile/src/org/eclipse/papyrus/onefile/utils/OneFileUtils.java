@@ -56,16 +56,29 @@ public class OneFileUtils {
 	 * @return
 	 */
 	public static boolean diExists(String fileName, IContainer parent) {
-		if (parent == null || parent.getType() == IResource.ROOT) {
-			return false;
+		return getDi(fileName, parent) != null;
+	}
+
+	/**
+	 * Determines if a di exist in the container from a file name
+	 * 
+	 * @param fileName
+	 * @param parent
+	 * @return
+	 */
+	public static IFile getDi(String fileName, IContainer parent) {
+		if(parent == null || parent.getType() == IResource.ROOT) {
+			return null;
 		}
 		String substring = fileName;
-		if (fileName.indexOf('.') > 0) {
+		if(fileName.indexOf('.') > 0) {
 			substring = fileName.substring(0, fileName.lastIndexOf('.'));
 		}
-		IFile file = parent.getFile(new Path(substring + "."
-				+ DiModel.DI_FILE_EXTENSION));
-		return file != null && file.exists();
+		IFile file = parent.getFile(new Path(substring + "." + DiModel.DI_FILE_EXTENSION));
+		if(file.exists()) {
+			return file;
+		}
+		return null;
 	}
 
 	/**
@@ -75,17 +88,16 @@ public class OneFileUtils {
 	 * @return
 	 */
 	public static boolean hasChildren(Object element) {
-		if (element instanceof IContainer) {
-			IContainer container = (IContainer) element;
+		if(element instanceof IContainer) {
+			IContainer container = (IContainer)element;
 			try {
 				return container.members().length > 0;
 			} catch (CoreException e) {
 			}
 		}
-		if (element instanceof IPapyrusFile) {
-			IPapyrusFile iPapyrusFile = (IPapyrusFile) element;
-			return iPapyrusFile.getMainFile() != null
-					&& iPapyrusFile.getAssociatedResources().length > 1;
+		if(element instanceof IPapyrusFile) {
+			IPapyrusFile iPapyrusFile = (IPapyrusFile)element;
+			return iPapyrusFile.getMainFile() != null && iPapyrusFile.getAssociatedResources().length > 1;
 		}
 		return false;
 	}
@@ -97,12 +109,9 @@ public class OneFileUtils {
 	 * @return
 	 */
 	public static boolean isVisible(Object element) {
-		boolean typeOk = element instanceof IPapyrusFile
-				|| element instanceof IProject || element instanceof IFile
-				|| element instanceof IContainer
-				|| element instanceof ISubResourceFile;
-		if (typeOk && element instanceof IFile) {
-			IFile file = (IFile) element;
+		boolean typeOk = element instanceof IPapyrusFile || element instanceof IProject || element instanceof IFile || element instanceof IContainer || element instanceof ISubResourceFile;
+		if(typeOk && element instanceof IFile) {
+			IFile file = (IFile)element;
 			typeOk &= !OneFileUtils.diExists(file.getName(), file.getParent());
 		}
 		return typeOk;
@@ -125,8 +134,7 @@ public class OneFileUtils {
 	 * @return
 	 */
 	public static String withoutFileExtension(IResource res) {
-		if (res.getFileExtension() != null
-				&& res.getFileExtension().length() > 0) {
+		if(res.getFileExtension() != null && res.getFileExtension().length() > 0) {
 			return res.getName().substring(0, res.getName().lastIndexOf('.'));
 		} else {
 			return res.getName();
@@ -140,11 +148,11 @@ public class OneFileUtils {
 	 * @return
 	 */
 	public static boolean containsModelFiles(IResource resource) {
-		if (resource instanceof IContainer) {
-			IContainer container = (IContainer) resource;
+		if(resource instanceof IContainer) {
+			IContainer container = (IContainer)resource;
 			try {
-				for (IResource m : container.members()) {
-					if (isDi(m)) {
+				for(IResource m : container.members()) {
+					if(isDi(m)) {
 						return true;
 					}
 				}
@@ -164,14 +172,14 @@ public class OneFileUtils {
 	 */
 	public static IEditorPart isOpenInEditor(Object inputElement) {
 		IEditorPart editor = findEditor(inputElement, false);
-		if (editor != null) {
+		if(editor != null) {
 			return editor;
 		}
 		IEditorInput input = getEditorInput(inputElement);
-		if (input != null) {
+		if(input != null) {
 
 			IWorkbenchPage p = getActivePage();
-			if (p != null) {
+			if(p != null) {
 				return p.findEditor(input);
 			}
 		}
@@ -183,23 +191,22 @@ public class OneFileUtils {
 	 * 
 	 * @param inputElement
 	 * @param activate
-	 *            , if activate is true, once the editor is found it is
-	 *            activated
+	 *        , if activate is true, once the editor is found it is
+	 *        activated
 	 * @return null if no editor is found
 	 */
 	private static IEditorPart findEditor(Object inputElement, boolean activate) {
-		if (inputElement instanceof IPapyrusFile) {
-			IPapyrusFile cu = (IPapyrusFile) inputElement;
-			if (cu != null) {
+		if(inputElement instanceof IPapyrusFile) {
+			IPapyrusFile cu = (IPapyrusFile)inputElement;
+			if(cu != null) {
 				IWorkbenchPage page = getActivePage();
-				for (IEditorReference ref : page.getEditorReferences()) {
+				for(IEditorReference ref : page.getEditorReferences()) {
 					IEditorPart editor = ref.getEditor(false);
-					if (editor != null) {
+					if(editor != null) {
 						IEditorInput editorInput;
-						editorInput = (IEditorInput) editor.getEditorInput();
-						if (cu.getMainFile().equals(
-								editorInput.getAdapter(IFile.class))) {
-							if (activate && page.getActivePart() != editor) {
+						editorInput = (IEditorInput)editor.getEditorInput();
+						if(cu.getMainFile().equals(editorInput.getAdapter(IFile.class))) {
+							if(activate && page.getActivePart() != editor) {
 								page.activate(editor);
 							}
 							return editor;
@@ -219,20 +226,18 @@ public class OneFileUtils {
 	 * @return
 	 * @throws PartInitException
 	 */
-	public static IEditorPart openInEditor(Object inputElement, boolean activate)
-			throws PartInitException {
+	public static IEditorPart openInEditor(Object inputElement, boolean activate) throws PartInitException {
 
-		if (inputElement instanceof IFile) {
-			return openInEditor((IFile) inputElement, activate);
+		if(inputElement instanceof IFile) {
+			return openInEditor((IFile)inputElement, activate);
 		}
 		IEditorPart editor = findEditor(inputElement, activate);
-		if (editor != null) {
+		if(editor != null) {
 			return editor;
 		}
 		IEditorInput input = getEditorInput(inputElement);
-		if (input == null) {
-			throw new PartInitException(new Status(IStatus.ERROR,
-					Activator.PLUGIN_ID, "not found"));
+		if(input == null) {
+			throw new PartInitException(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "not found"));
 		}
 		return openInEditor(input, getEditorID(input), activate);
 	}
@@ -244,8 +249,8 @@ public class OneFileUtils {
 	 * @return
 	 */
 	private static IEditorInput getEditorInput(Object inputElement) {
-		if (inputElement instanceof IFile) {
-			IFile file = (IFile) inputElement;
+		if(inputElement instanceof IFile) {
+			IFile file = (IFile)inputElement;
 			return new FileEditorInput(file);
 		}
 		return null;
@@ -258,16 +263,14 @@ public class OneFileUtils {
 	 * @return
 	 * @throws PartInitException
 	 */
-	public static String getEditorID(IEditorInput input)
-			throws PartInitException {
+	public static String getEditorID(IEditorInput input) throws PartInitException {
 
 		Assert.isNotNull(input);
 
 		IEditorDescriptor editorDescriptor;
 
-		if (input instanceof IFileEditorInput)
-			editorDescriptor = IDE
-					.getEditorDescriptor(((IFileEditorInput) input).getFile());
+		if(input instanceof IFileEditorInput)
+			editorDescriptor = IDE.getEditorDescriptor(((IFileEditorInput)input).getFile());
 		else {
 			editorDescriptor = IDE.getEditorDescriptor(input.getName());
 		}
@@ -281,19 +284,16 @@ public class OneFileUtils {
 	 * @return
 	 * @throws PartInitException
 	 */
-	private static IEditorPart openInEditor(IFile file, boolean activate)
-			throws PartInitException {
+	private static IEditorPart openInEditor(IFile file, boolean activate) throws PartInitException {
 
-		if (file == null) {
-			throw new PartInitException(new Status(IStatus.ERROR,
-					Activator.PLUGIN_ID, "not found"));
+		if(file == null) {
+			throw new PartInitException(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "not found"));
 		}
 
 		IWorkbenchPage p = getActivePage();
 
-		if (p == null) {
-			throw new PartInitException(new Status(IStatus.ERROR,
-					Activator.PLUGIN_ID, "not found"));
+		if(p == null) {
+			throw new PartInitException(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "not found"));
 		}
 
 		IEditorPart editorPart = IDE.openEditor(p, file, activate);
@@ -309,25 +309,22 @@ public class OneFileUtils {
 	 */
 	public static IWorkbenchPage getActivePage() {
 		IWorkbench workbench = PlatformUI.getWorkbench();
-		if (workbench == null) {
+		if(workbench == null) {
 			return null;
 		}
-		IWorkbenchWindow activeWorkbenchWindow = workbench
-				.getActiveWorkbenchWindow();
-		if (activeWorkbenchWindow == null) {
+		IWorkbenchWindow activeWorkbenchWindow = workbench.getActiveWorkbenchWindow();
+		if(activeWorkbenchWindow == null) {
 			return null;
 		}
 		return activeWorkbenchWindow.getActivePage();
 	}
 
-	private static IEditorPart openInEditor(IEditorInput input,
-			String editorID, boolean activate) throws PartInitException {
+	private static IEditorPart openInEditor(IEditorInput input, String editorID, boolean activate) throws PartInitException {
 		Assert.isNotNull(input);
 		Assert.isNotNull(editorID);
 		IWorkbenchPage p = getActivePage();
-		if (p == null) {
-			throw new PartInitException(new Status(IStatus.ERROR,
-					Activator.PLUGIN_ID, "not found"));
+		if(p == null) {
+			throw new PartInitException(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "not found"));
 		}
 		IEditorPart editorPart = p.openEditor(input, editorID, activate);
 		return editorPart;
@@ -336,9 +333,9 @@ public class OneFileUtils {
 
 	public static IFile[] getAssociatedFiles(IPapyrusFile papyrusFile) {
 		ArrayList<IFile> files = new ArrayList<IFile>();
-		for (IResource res : papyrusFile.getAssociatedResources()) {
-			if (res instanceof IFile) {
-				files.add((IFile) res);
+		for(IResource res : papyrusFile.getAssociatedResources()) {
+			if(res instanceof IFile) {
+				files.add((IFile)res);
 			}
 		}
 		return files.toArray(new IFile[files.size()]);
