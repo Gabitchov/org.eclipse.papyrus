@@ -14,7 +14,7 @@
       <handler
             class="org.eclipse.papyrus.readonly.handlers.EnableWriteHandler"
             commandId="org.eclipse.papyrus.readonly.EnableWriteCommand">
-         <activeWhen>
+         <enabledWhen>
             <and>
                <with variable="activeEditorId">
                   <equals value="org.eclipse.papyrus.core.papyrusEditor"/>
@@ -30,7 +30,7 @@
                   </count>
                </with>
             </and>
-         </activeWhen>
+         </enabledWhen>
       </handler>
    </extension>
    <extension
@@ -73,7 +73,7 @@
 		</command>
 	</menuContribution>
 
-	<menuContribution locationURI="toolbar:org.eclipse.ui.main.toolbar">
+	<menuContribution locationURI="toolbar:org.eclipse.ui.main.toolbar?after=additions">
 	<toolbar id="org.eclipse.papyrus.readonly.toolbar">
 		<command commandId="org.eclipse.papyrus.readonly.EnableWriteCommand"
 			icon="icons/enable_write.png"
@@ -111,4 +111,16 @@
          priority="10">
    </operationApprover>
 </extension>
+   <extension
+         point="org.eclipse.papyrus.ui.perspectiveconfiguration">
+      <configuration
+            perspectiveID="org.eclipse.papyrus.core.perspective">
+         <toolbar
+               toolbarID="org.eclipse.papyrus.readonly.toolbar">
+         </toolbar>
+         <command
+               commandID="org.eclipse.papyrus.readonly.EnableWriteCommand">
+         </command>
+      </configuration>
+   </extension>
 </plugin>
