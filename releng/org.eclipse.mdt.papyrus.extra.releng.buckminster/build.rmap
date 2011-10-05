@@ -118,12 +118,6 @@
     </rm:provider>
   </rm:searchPath>
   <rm:searchPath name="platform.binaries">
-    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
-      <rm:uri format="{0}/modeling/mdt/papyrus/updates/nightly/indigo/">
-        <bc:propertyRef key="eclipse.downloads"/>
-      </rm:uri>
-    </rm:provider>
-  
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
         mutable="false">
       <rm:uri format="{0}/birt/update-site/4.0-interim/">
@@ -132,19 +126,21 @@
     </rm:provider>
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
         mutable="false">
-      <rm:uri format="{0}/modeling/emf/cdo/updates/releases/4.0">
+      <!--rm:uri format="{0}/modeling/emf/cdo/updates/releases/4.0"-->
+      <rm:uri format="{0}/modeling/emf/cdo/drops/R20110913-0010">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
         mutable="false">
-      <rm:uri format="{0}/modeling/m2m/atl/updates/milestones/3.2/">
+      <rm:uri format="{0}/modeling/m2m/atl/updates/releases/3.2/">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
         mutable="false">
-      <rm:uri format="{0}/modeling/emft/mwe/updates/milestones">
+      <!--rm:uri format="{0}/modeling/emft/mwe/updates/milestones"--> 
+      <rm:uri format="{0}/modeling/emft/mwe/updates/releases/R201108020506/mwe">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
@@ -162,13 +158,13 @@
     </rm:provider>
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
         mutable="false">
-      <rm:uri format="{0}/modeling/m2t/acceleo/updates/milestones/3.1">
+      <rm:uri format="{0}/modeling/m2t/acceleo/updates/releases/3.1/R201109140246">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
         mutable="false">
-      <rm:uri format="{0}/modeling/mdt/ocl/updates/milestones/3.1.0">
+      <rm:uri format="{0}/modeling/mdt/ocl/updates/releases/3.1.0">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
@@ -182,17 +178,19 @@
     
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
         mutable="false">
-      <rm:uri format="{0}/facet/updates/nightly-maintenance/">
+      <rm:uri format="{0}/facet/updates/milestones/0.1/SR1_RC4">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>    
     
+    <!--
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
         mutable="false">
       <rm:uri format="{0}/modeling/mdt/modisco/updates/milestones/0.9">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
+    -->
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
         mutable="false">
       <rm:uri format="{0}/modeling/mdt/updates/milestones/">
@@ -213,25 +211,26 @@
     </rm:provider>
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
         mutable="false">
-      <rm:uri format="{0}/modeling/m2t/xpand/updates/milestones">
+      <rm:uri format="{0}/modeling/m2t/xpand/updates/releases/R201108020519">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
         mutable="false">
-      <rm:uri format="{0}/modeling/tmf/xtext/updates/milestones">
+      <!--rm:uri format="{0}/modeling/tmf/xtext/updates/milestones"-->
+      <rm:uri format="{0}/modeling/tmf/xtext/updates/releases/head/R201108020636">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
         mutable="false">
-      <rm:uri format="{0}/modeling/emf/updates/releases/">
+      <rm:uri format="{0}/modeling/emf/updates/releases/"> 
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
         mutable="false">
-      <rm:uri format="{0}/modeling/emf/emf/updates/2.7milestones">
+      <rm:uri format="{0}/modeling/emf/emf/updates/2.7">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
@@ -263,14 +262,21 @@
     </rm:provider>
 		<rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
 			<!--rm:uri format="{0}/eclipse/updates/3.7milestones/S-3.7RC3-I201105261708"-->
-			<rm:uri format="{0}/eclipse/updates/3.7milestones/S-3.7RC4-201106030909">
+			<!--rm:uri format="{0}/eclipse/updates/3.7milestones/S-3.7RC4-201106030909"-->
+			<rm:uri format="{0}/eclipse/updates/3.7.x/M20110909-1335">
 				<bc:propertyRef key="eclipse.downloads"/>
 			</rm:uri>
 		</rm:provider>
 		<rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
-			<rm:uri format="{0}/eclipse/updates/3.7milestones" >
+			<rm:uri format="{0}/eclipse/updates/3.7milestones">
 				<bc:propertyRef key="eclipse.downloads"/>
 			</rm:uri>
 		</rm:provider>
+	<rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
+        mutable="false">
+      <rm:uri format="{0}/releases/indigo">
+        <bc:propertyRef key="eclipse.downloads"/>
+      </rm:uri>
+    </rm:provider>
   </rm:searchPath>
-  </rm:rmap>
+</rm:rmap>
