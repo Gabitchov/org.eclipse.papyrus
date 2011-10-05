@@ -367,7 +367,9 @@ public class DiagramOutline extends Page implements IPapyrusContentOutlinePage, 
 		}
 
 		// Update outline view
-		sashComp.setMaximizedControl(control);
+		if(sashComp != null && !sashComp.isDisposed()) {
+			sashComp.setMaximizedControl(control);
+		}
 	}
 
 	/**
