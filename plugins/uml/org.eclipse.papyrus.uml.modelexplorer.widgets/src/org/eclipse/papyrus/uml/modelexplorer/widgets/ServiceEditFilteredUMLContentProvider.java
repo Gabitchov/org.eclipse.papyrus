@@ -20,8 +20,17 @@ public class ServiceEditFilteredUMLContentProvider extends UMLElementMEBContentP
 	private EditServiceValidator validator;
 
 	public ServiceEditFilteredUMLContentProvider(EObject editedObject, EStructuralFeature feature, EObject semanticRoot) {
-		super(semanticRoot, "history_" + feature.getEType().getEPackage().getName() + ":" + feature.getEType().getName() + ":" + feature.getName()); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		super(semanticRoot, getHistoryID(editedObject, feature, semanticRoot));
 		validator = new EditServiceValidator(editedObject, feature);
+	}
+
+	private static String getHistoryID(EObject editedObject, EStructuralFeature feature, EObject semanticRoot) {
+		//		return String.format("history_%s:%s:%s", feature.getEType().getEPackage().getName(), feature.getEType().getName(), feature.getName()); //$NON-NLS-1$
+		if(editedObject.eResource() == null) {
+			return String.format("history_%s:%s:%s", feature.getEType().getEPackage().getName(), feature.getEType().getName(), feature.getName());
+		}
+
+		return String.format("history_%s:%s:%s:%s", editedObject.eResource().getURI(), feature.getEType().getEPackage().getName(), feature.getEType().getName(), feature.getName());
 	}
 
 	@Override
