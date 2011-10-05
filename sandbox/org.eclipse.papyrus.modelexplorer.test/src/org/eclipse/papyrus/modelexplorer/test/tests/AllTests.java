@@ -13,7 +13,7 @@
  *    Gregoire Dupe (Mia-Software) - Bug 350700 - TableWidget: Wrong cell label in multi-valued facet reference columns
  *    Gregoire Dupe (Mia-Software) - Bug 345730 - Deleting an element in the model breaks the table
  *******************************************************************************/
-package org.eclipse.papyrus.modelexplorer.test;
+package org.eclipse.papyrus.modelexplorer.test.tests;
 
 
 import org.junit.runner.RunWith;

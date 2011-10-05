@@ -1,4 +1,4 @@
-package org.eclipse.papyrus.modelexplorer.test;
+package org.eclipse.papyrus.modelexplorer.test.tests;
 
 import java.util.List;
 

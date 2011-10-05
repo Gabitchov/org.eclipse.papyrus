@@ -1,4 +1,4 @@
-package org.eclipse.papyrus.modelexplorer.test;
+package org.eclipse.papyrus.modelexplorer.test.tests;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -25,6 +25,7 @@ import org.eclipse.papyrus.core.editor.CoreMultiDiagramEditor;
 import org.eclipse.papyrus.modelexplorer.ModelExplorerPage;
 import org.eclipse.papyrus.modelexplorer.ModelExplorerPageBookView;
 import org.eclipse.papyrus.modelexplorer.ModelExplorerView;
+import org.eclipse.papyrus.modelexplorer.test.Activator;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
 import org.eclipse.papyrus.table.instance.papyrustableinstance.PapyrusTableInstance;
 import org.eclipse.ui.IEditorPart;
