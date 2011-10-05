@@ -14,7 +14,10 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.modelexplorer,
  org.eclipse.ui.navigator,
  org.eclipse.uml2.uml,
- org.eclipse.papyrus.table.instance;bundle-version="0.8.2",
- org.eclipse.papyrus.umlutils
+ org.eclipse.papyrus.table.instance;bundle-version="0.8.1",
+ org.eclipse.papyrus.umlutils,
+ org.eclipse.papyrus.table.modelexplorer;bundle-version="0.8.1",
+ org.eclipse.papyrus.uml.menu;bundle-version="0.8.1",
+ org.eclipse.emf.facet.infra.browser.uicore
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy

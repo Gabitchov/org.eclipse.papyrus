@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.commands.Command;
+import org.eclipse.core.commands.IHandler;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IWorkspace;
@@ -14,8 +15,12 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.facet.infra.browser.uicore.internal.model.ITreeElement;
 import org.eclipse.emf.facet.util.core.internal.FileUtils;
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.papyrus.core.editor.CoreMultiDiagramEditor;
 import org.eclipse.papyrus.modelexplorer.ModelExplorerPage;
 import org.eclipse.papyrus.modelexplorer.ModelExplorerPageBookView;
@@ -26,11 +31,13 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.ISelectionService;
 import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.commands.ICommandService;
 import org.eclipse.ui.ide.IDE;
+import org.eclipse.ui.internal.handlers.HandlerProxy;
 import org.eclipse.ui.navigator.CommonViewer;
 import org.eclipse.ui.part.IPage;
 import org.eclipse.uml2.uml.Package;
@@ -101,6 +108,60 @@ public abstract class AbstractHandlerTest {
 		IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 		IEditorPart editor = IDE.openEditor(activePage, file);
 		return editor;
+	}
+
+	/**
+	 * This method tests if the active part is the model explorer
+	 */
+	protected void testIsModelExplorerActivePart() {
+		IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+		IWorkbenchPart activePart = activePage.getActivePart();
+		Assert.isTrue(activePart instanceof ModelExplorerPageBookView, "The active part is not the ModelExplorer");
+	}
+
+	/**
+	 * This method selects an element in the modelexplorer and test that the new selection is the wanted selection using assertion
+	 * 
+	 * @param elementToSelect
+	 *        the element to select
+	 */
+	protected void selectElementInTheModelexplorer(final EObject elementToSelect) {
+		List<EObject> selectedElement = new ArrayList<EObject>();
+		selectedElement.add(elementToSelect);
+		modelExplorerView.revealSemanticElement(selectedElement);
+		IStructuredSelection currentSelection = (IStructuredSelection)selectionService.getSelection();
+		Assert.isTrue(((IStructuredSelection)currentSelection).size() == 1, "Only one element should be selected");
+		Object obj = currentSelection.getFirstElement();
+		if(obj instanceof IAdaptable) {
+			obj = ((IAdaptable)obj).getAdapter(EObject.class);
+		}
+		Assert.isTrue(obj == elementToSelect, "the current selected element is not the wanted element");
+	}
+
+	/**
+	 * This method selects an element in the modelexplorer and test that the new selection is the wanted selection using assertion
+	 * 
+	 * @param elementToSelect
+	 *        the element to select
+	 */
+	protected void selectElementInTheModelexplorer(final ITreeElement elementToSelect) {
+		commonViewer.setSelection(new StructuredSelection(elementToSelect));
+		IStructuredSelection currentSelection = (IStructuredSelection)selectionService.getSelection();
+		Assert.isTrue(((IStructuredSelection)currentSelection).size() == 1, "Only one element should be selected");
+		Object obj = currentSelection.getFirstElement();
+		Assert.isTrue(obj == elementToSelect, "the current selected element is not the wanted element");
+	}
+	/**
+	 * 
+	 * @return
+	 *         the current handler for the command
+	 */
+	protected IHandler getActiveHandler() {
+		IHandler currentHandler = testedCommand.getHandler();
+		if(currentHandler instanceof HandlerProxy) {
+			currentHandler = ((HandlerProxy)currentHandler).getHandler();
+		}
+		return currentHandler;
 	}
 
 	@Before

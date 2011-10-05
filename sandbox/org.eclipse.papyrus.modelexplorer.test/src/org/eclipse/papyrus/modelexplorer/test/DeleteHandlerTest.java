@@ -21,6 +21,7 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.facet.infra.browser.uicore.internal.model.ITreeElement;
 import org.eclipse.emf.facet.util.core.internal.FileUtils;
 import org.eclipse.gmf.runtime.emf.core.util.PackageUtil;
 import org.eclipse.gmf.runtime.notation.Diagram;
@@ -35,8 +36,11 @@ import org.eclipse.papyrus.modelexplorer.ModelExplorerPage;
 import org.eclipse.papyrus.modelexplorer.ModelExplorerPageBookView;
 import org.eclipse.papyrus.modelexplorer.ModelExplorerView;
 import org.eclipse.papyrus.modelexplorer.handler.DeleteCommandHandler;
+import org.eclipse.papyrus.modelexplorer.handler.DeleteDiagramHandler;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
 import org.eclipse.papyrus.table.instance.papyrustableinstance.PapyrusTableInstance;
+import org.eclipse.papyrus.table.modelexplorer.handlers.DeleteTableHandler;
+import org.eclipse.papyrus.table.modelexplorer.handlers.RenameTableHandler;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.ISelectionService;
@@ -114,12 +118,6 @@ public class DeleteHandlerTest extends AbstractHandlerTest {
 		}
 	}
 
-	protected void testIsModelExplorerActivePart() {
-		IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-		IWorkbenchPart activePart = activePage.getActivePart();
-		Assert.isTrue(activePart instanceof ModelExplorerPageBookView, "The active part is not the ModelExplorer");
-	}
-
 	/**
 	 * We test if we can delete other uml elements
 	 */
@@ -180,7 +178,6 @@ public class DeleteHandlerTest extends AbstractHandlerTest {
 			elementToDelete = packageImports.get(0).getImportedPackage();
 			selectedElement.add(elementToDelete);
 
-
 			modelExplorerView.revealSemanticElement(selectedElement);
 
 
@@ -202,23 +199,53 @@ public class DeleteHandlerTest extends AbstractHandlerTest {
 
 	@Test
 	public void deleteDiagramTest() {
-		Assert.isTrue(false, "TODO");
+
+		EObject elementToDelete;
+		for(int i = 0; i < diagrams.size(); i++) {
+			elementToDelete = diagrams.get(i);
+			List<EObject> selectedElement = new ArrayList<EObject>();
+			selectedElement.add(elementToDelete);
+			selectedElement.add(elementToDelete);
+			modelExplorerView.revealSemanticElement(selectedElement);
+			IStructuredSelection currentSelection = (IStructuredSelection)selectionService.getSelection();
+			Assert.isTrue(((IStructuredSelection)currentSelection).size() == 1, "Only one element should be selected");
+			Object obj = currentSelection.getFirstElement();
+			if(obj instanceof IAdaptable) {
+				obj = ((IAdaptable)obj).getAdapter(EObject.class);
+			}
+			Assert.isTrue(obj == elementToDelete);
+			IHandler currentHandler = testedCommand.getHandler();
+			if(currentHandler instanceof HandlerProxy) {
+				currentHandler = ((HandlerProxy)currentHandler).getHandler();
+			}
+			Assert.isTrue(currentHandler instanceof DeleteDiagramHandler, "The current handler is " + currentHandler + " instead of org.eclipse.papyrus.modelexplorer.handler.DeleteCommandHandler");
+			Assert.isTrue(currentHandler.isEnabled(), "We can't delete the following element" + elementToDelete);
+
+		}
 	}
 
 	@Test
 	public void deletePapyrusTableInstanceTest() {
-		Assert.isTrue(false, "TODO");
+		for(int i = 0; i < papyrusTable.size(); i++) {
+			selectElementInTheModelexplorer(papyrusTable.get(i));
+			IHandler handler = getActiveHandler();
+			Assert.isTrue(handler instanceof DeleteTableHandler);
+			Assert.isTrue(handler.isEnabled());
+		}
 	}
 
 	@Test
-	public void deleteLinkTest() {
-		Assert.isTrue(false, "TODO");
-	}
-
-
-	@After
-	public void endOfTests() {
-		// So that the Workbench can be closed.
-		PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().closeAllEditors(false);
+	public void deleteLinkItemTest() {
+		commonViewer.expandToLevel(3);
+		Object[] expandedElement = commonViewer.getExpandedElements();
+		for(Object object : expandedElement) {
+			if(object instanceof org.eclipse.emf.facet.infra.browser.uicore.internal.model.LinkItem) {
+				selectElementInTheModelexplorer((ITreeElement)object);
+				IHandler handler = getActiveHandler();
+				if(handler != null) {
+					Assert.isTrue(handler.isEnabled() == false, "The handler " + handler + " is active on LinkItem, it is not the wanted behavior");
+				}
+			}
+		}
 	}
 }
