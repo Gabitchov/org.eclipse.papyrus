@@ -22,47 +22,12 @@ import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.papyrus.core.editorsfactory.IPageIconsRegistryExtended;
+import org.eclipse.papyrus.modelexplorer.queries.AbstractGetEditorIconQuery;
 
 /** Return the path to the icon of the corresponding diagram */
-public class GetDiagramIcon implements IJavaModelQuery<Diagram, String> {
-
-	private static IPageIconsRegistry editorRegistry;
+public class GetDiagramIcon extends AbstractGetEditorIconQuery implements IJavaModelQuery<Diagram, String> {
 
 	public String evaluate(final Diagram context, final ParameterValueList parameterValues) throws ModelQueryExecutionException {
-		return "/" + ((IPageIconsRegistryExtended)getEditorRegistry()).getEditorURLIcon(context);
-	}
-
-	/**
-	 * Get the EditorRegistry used to create editor instances. This default
-	 * implementation return the singleton eINSTANCE. This method can be
-	 * subclassed to return another registry.
-	 * 
-	 * @return the singleton eINSTANCE of editor registry
-	 */
-	protected IPageIconsRegistryExtended getEditorRegistry() {
-		if(editorRegistry == null) {
-			editorRegistry = createEditorRegistry();
-		}
-		if(!(editorRegistry instanceof IPageIconsRegistryExtended)) {
-			throw new RuntimeException("The editor registry do not implement IPageIconsRegistryExtended");////$NON-NLS-1$
-		}
-		return (IPageIconsRegistryExtended)editorRegistry;
-	}
-
-	/**
-	 * Return the EditorRegistry for nested editor descriptors. Subclass should
-	 * implements this method in order to return the registry associated to the
-	 * extension point namespace.
-	 * 
-	 * @return the EditorRegistry for nested editor descriptors
-	 */
-	protected IPageIconsRegistry createEditorRegistry() {
-		try {
-			return EditorUtils.getServiceRegistry().getService(IPageIconsRegistry.class);
-		} catch (ServiceException e) {
-			// Not found, return an empty one which return null for each
-			// request.
-			return new PageIconsRegistry();
-		}
+		return "/" + ((IPageIconsRegistryExtended)getEditorRegistry()).getEditorURLIcon(context); //$NON-NLS-1$
 	}
 }
