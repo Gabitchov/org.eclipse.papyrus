@@ -56,7 +56,7 @@ import org.eclipse.papyrus.diagram.component.edit.parts.SubstitutionAppliedStere
 import org.eclipse.papyrus.diagram.component.edit.parts.SubstitutionEditPart;
 import org.eclipse.papyrus.diagram.component.edit.parts.SubstitutionNameEditPart;
 import org.eclipse.papyrus.diagram.component.edit.parts.UsageEditPart;
-import org.eclipse.uml2.uml.Model;
+import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
@@ -130,7 +130,7 @@ public class UMLVisualIDRegistry {
 		if(domainElement == null) {
 			return -1;
 		}
-		if(UMLPackage.eINSTANCE.getModel().isSuperTypeOf(domainElement.eClass()) && isDiagram((Model)domainElement)) {
+		if(UMLPackage.eINSTANCE.getPackage().isSuperTypeOf(domainElement.eClass()) && isDiagram((Package)domainElement)) {
 			return ComponentDiagramEditPart.VISUAL_ID;
 		}
 
@@ -462,56 +462,40 @@ public class UMLVisualIDRegistry {
 		}
 		if(UMLPackage.eINSTANCE.getUsage().isSuperTypeOf(domainElement.eClass())
 
-
-
 		) {
 			return UsageEditPart.VISUAL_ID;
 		}
 		if(UMLPackage.eINSTANCE.getInterfaceRealization().isSuperTypeOf(domainElement.eClass())
-
-
 
 		) {
 			return InterfaceRealizationEditPart.VISUAL_ID;
 		}
 		if(UMLPackage.eINSTANCE.getGeneralization().isSuperTypeOf(domainElement.eClass())
 
-
-
 		) {
 			return GeneralizationEditPart.VISUAL_ID;
 		}
 		if(UMLPackage.eINSTANCE.getSubstitution().isSuperTypeOf(domainElement.eClass())
-
-
 
 		) {
 			return SubstitutionEditPart.VISUAL_ID;
 		}
 		if(UMLPackage.eINSTANCE.getManifestation().isSuperTypeOf(domainElement.eClass())
 
-
-
 		) {
 			return ManifestationEditPart.VISUAL_ID;
 		}
 		if(UMLPackage.eINSTANCE.getComponentRealization().isSuperTypeOf(domainElement.eClass())
-
-
 
 		) {
 			return ComponentRealizationEditPart.VISUAL_ID;
 		}
 		if(UMLPackage.eINSTANCE.getAbstraction().isSuperTypeOf(domainElement.eClass())
 
-
-
 		) {
 			return AbstractionEditPart.VISUAL_ID;
 		}
 		if(UMLPackage.eINSTANCE.getDependency().isSuperTypeOf(domainElement.eClass())
-
-
 
 		) {
 			return DependencyEditPart.VISUAL_ID;
@@ -521,38 +505,32 @@ public class UMLVisualIDRegistry {
 
 	/**
 	 * "User can change implementation of this method to handle some specific\n""situations not covered by default logic.\n"
+	 * 
 	 * @generated
 	 */
-	private static boolean isDiagram(Model element) {
+	private static boolean isDiagram(Package element) {
 		return true;
 	}
-
-
-
-
 
 	/**
 	 * @generated
 	 */
 	private static ViewInfo diagramViewInfo = null;
 
-
 	/**
 	 * @generated
 	 */
 	public static ViewInfo getDiagramViewInfo() {
 		if(diagramViewInfo == null) {
-			diagramViewInfo = getModel_1000ViewInfo();
+			diagramViewInfo = getPackage_1000ViewInfo();
 		}
 		return diagramViewInfo;
 	}
 
-
-
 	/**
 	 * @generated
 	 */
-	protected static ViewInfo getModel_1000ViewInfo() {
+	protected static ViewInfo getPackage_1000ViewInfo() {
 		ViewInfo root = new BaseViewInfo(1000, ViewInfo.Head, "", null, null);
 		ViewInfo viewInfo = null;
 		ViewInfo labelInfo = null;
@@ -575,90 +553,68 @@ public class UMLVisualIDRegistry {
 		viewInfo = new BaseViewInfo(4001, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
-
 		viewInfo = new BaseViewInfo(4006, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
-
 
 		viewInfo = new BaseViewInfo(4003, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
-
 		labelInfo = new BaseViewInfo(2, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
-
 
 		viewInfo = new BaseViewInfo(4012, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
-
 		labelInfo = new BaseViewInfo(6006, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
-
 
 		labelInfo = new BaseViewInfo(6020, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
 
-
 		viewInfo = new BaseViewInfo(4014, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
-
 
 		labelInfo = new BaseViewInfo(6008, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
 
-
 		labelInfo = new BaseViewInfo(6022, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
-
 
 		viewInfo = new BaseViewInfo(4007, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
-
 		labelInfo = new BaseViewInfo(3, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
-
 
 		labelInfo = new BaseViewInfo(4, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
 
-
 		viewInfo = new BaseViewInfo(4013, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
-
 
 		labelInfo = new BaseViewInfo(6007, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
 
-
 		labelInfo = new BaseViewInfo(6021, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
-
 
 		viewInfo = new BaseViewInfo(4016, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
-
 		viewInfo = new BaseViewInfo(4015, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
-
 
 		viewInfo = new BaseViewInfo(4009, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
-
 		viewInfo = new BaseViewInfo(4010, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
-
 
 		labelInfo = new BaseViewInfo(6009, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
 
-
 		labelInfo = new BaseViewInfo(6023, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
-
 
 		viewInfo = new BaseViewInfo(3069, ViewInfo.Node, "Port");
 
@@ -668,7 +624,6 @@ public class UMLVisualIDRegistry {
 
 		root.addNode(3071, viewInfo);
 
-
 		viewInfo = new BaseViewInfo(3070, ViewInfo.Node, "Component");
 
 		root.addNode(7003, viewInfo);
@@ -677,21 +632,17 @@ public class UMLVisualIDRegistry {
 
 		root.addNode(7001, viewInfo);
 
-
 		viewInfo = new BaseViewInfo(3071, ViewInfo.Node, "Component");
 
 		root.addNode(7002, viewInfo);
-
 
 		viewInfo = new BaseViewInfo(3072, ViewInfo.Node, "Interface");
 
 		root.addNode(7002, viewInfo);
 
-
 		viewInfo = new BaseViewInfo(3074, ViewInfo.Node, "Comment");
 
 		root.addNode(7002, viewInfo);
-
 
 		viewInfo = new BaseViewInfo(3075, ViewInfo.Node, "Constraint");
 

@@ -52,25 +52,25 @@ import org.eclipse.papyrus.service.edit.service.IElementEditService;
 // TODO: Auto-generated Javadoc
 /**
  * The Class ComponentItemSemanticEditPolicy.
- *
+ * 
  * @generated
  */
 public class ComponentItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 
 	/**
 	 * Instantiates a new component item semantic edit policy.
-	 *
+	 * 
 	 * @generated
 	 */
 	public ComponentItemSemanticEditPolicy() {
 		super(UMLElementTypes.Component_2002);
 	}
 
-
 	/**
 	 * Gets the creates the command.
-	 *
-	 * @param req the req
+	 * 
+	 * @param req
+	 *        the req
 	 * @return the creates the command
 	 * @generated
 	 */
@@ -81,12 +81,11 @@ public class ComponentItemSemanticEditPolicy extends UMLBaseItemSemanticEditPoli
 		return super.getCreateCommand(req);
 	}
 
-
-
 	/**
 	 * Gets the destroy element command.
-	 *
-	 * @param req the req
+	 * 
+	 * @param req
+	 *        the req
 	 * @return the destroy element command
 	 * @generated
 	 */
@@ -104,11 +103,11 @@ public class ComponentItemSemanticEditPolicy extends UMLBaseItemSemanticEditPoli
 		return UnexecutableCommand.INSTANCE;
 	}
 
-
 	/**
 	 * Gets the creates the relationship command.
-	 *
-	 * @param req the req
+	 * 
+	 * @param req
+	 *        the req
 	 * @return the creates the relationship command
 	 * @generated
 	 */
@@ -119,8 +118,9 @@ public class ComponentItemSemanticEditPolicy extends UMLBaseItemSemanticEditPoli
 
 	/**
 	 * Gets the start create relationship command.
-	 *
-	 * @param req the req
+	 * 
+	 * @param req
+	 *        the req
 	 * @return the start create relationship command
 	 * @generated
 	 */
@@ -160,8 +160,9 @@ public class ComponentItemSemanticEditPolicy extends UMLBaseItemSemanticEditPoli
 
 	/**
 	 * Gets the complete create relationship command.
-	 *
-	 * @param req the req
+	 * 
+	 * @param req
+	 *        the req
 	 * @return the complete create relationship command
 	 * @generated
 	 */
@@ -202,8 +203,9 @@ public class ComponentItemSemanticEditPolicy extends UMLBaseItemSemanticEditPoli
 	/**
 	 * Returns command to reorient EClass based link. New link target or source
 	 * should be the domain model element associated with this node.
-	 *
-	 * @param req the req
+	 * 
+	 * @param req
+	 *        the req
 	 * @return the reorient relationship command
 	 * @generated
 	 */
@@ -234,8 +236,9 @@ public class ComponentItemSemanticEditPolicy extends UMLBaseItemSemanticEditPoli
 	/**
 	 * Returns command to reorient EReference based link. New link target or source
 	 * should be the domain model element associated with this node.
-	 *
-	 * @param req the req
+	 * 
+	 * @param req
+	 *        the req
 	 * @return the reorient reference relationship command
 	 * @generated
 	 */

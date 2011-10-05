@@ -46,14 +46,13 @@ import org.eclipse.uml2.uml.UMLPackage;
 // TODO: Auto-generated Javadoc
 /**
  * The Class PackagePackageableElementCompartmentCanonicalEditPolicy.
- *
+ * 
  * @generated
  */
 public class PackagePackageableElementCompartmentCanonicalEditPolicy extends CanonicalEditPolicy {
 
 	/** The my features to synchronize. @generated */
 	private Set<EStructuralFeature> myFeaturesToSynchronize;
-
 
 	/**
 	 * @generated
@@ -69,7 +68,7 @@ public class PackagePackageableElementCompartmentCanonicalEditPolicy extends Can
 
 	/**
 	 * Gets the features to synchronize.
-	 *
+	 * 
 	 * @return the features to synchronize
 	 * @generated
 	 */
@@ -85,7 +84,7 @@ public class PackagePackageableElementCompartmentCanonicalEditPolicy extends Can
 
 	/**
 	 * Gets the semantic children list.
-	 *
+	 * 
 	 * @return the semantic children list
 	 * @generated
 	 */
@@ -102,9 +101,11 @@ public class PackagePackageableElementCompartmentCanonicalEditPolicy extends Can
 
 	/**
 	 * Checks if is orphaned.
-	 *
-	 * @param semanticChildren the semantic children
-	 * @param view the view
+	 * 
+	 * @param semanticChildren
+	 *        the semantic children
+	 * @param view
+	 *        the view
 	 * @return true, if is orphaned
 	 * @generated
 	 */
@@ -114,8 +115,9 @@ public class PackagePackageableElementCompartmentCanonicalEditPolicy extends Can
 
 	/**
 	 * Checks if is my diagram element.
-	 *
-	 * @param view the view
+	 * 
+	 * @param view
+	 *        the view
 	 * @return true, if is my diagram element
 	 * @generated
 	 */
@@ -133,7 +135,7 @@ public class PackagePackageableElementCompartmentCanonicalEditPolicy extends Can
 
 	/**
 	 * Refresh semantic.
-	 *
+	 * 
 	 * @generated
 	 */
 	protected void refreshSemantic() {

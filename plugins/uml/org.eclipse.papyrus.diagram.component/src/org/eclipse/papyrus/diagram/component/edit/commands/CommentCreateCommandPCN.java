@@ -57,10 +57,10 @@ public class CommentCreateCommandPCN extends EditElementCommand {
 
 	/**
 	 * FIXME: replace with setElementToEdit()
+	 * 
 	 * @generated
 	 */
 	protected EObject getElementToEdit() {
-
 
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
@@ -77,10 +77,7 @@ public class CommentCreateCommandPCN extends EditElementCommand {
 	 */
 	public boolean canExecute() {
 
-
 		return true;
-
-
 
 	}
 
@@ -89,13 +86,10 @@ public class CommentCreateCommandPCN extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-
-
 		Comment newElement = UMLFactory.eINSTANCE.createComment();
 
 		Element owner = (Element)getElementToEdit();
 		owner.getOwnedComments().add(newElement);
-
 
 		ElementInitializers.getInstance().init_Comment_3074(newElement);
 
@@ -104,9 +98,6 @@ public class CommentCreateCommandPCN extends EditElementCommand {
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
-
-
-
 
 	/**
 	 * @generated

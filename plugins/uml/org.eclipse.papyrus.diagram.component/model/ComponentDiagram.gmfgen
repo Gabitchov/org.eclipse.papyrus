@@ -42,7 +42,7 @@
           key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
           editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.component.custom.edit.policies.CustomDiagramDragDropEditPolicy"/>
       <domainDiagramElement
-          href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Model"/>
+          href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package"/>
       <childNodes
           xsi:type="gmfgen:GenChildSideAffixedNode"
           visualID="3069"
@@ -1965,7 +1965,7 @@
         iD="org.eclipse.papyrus.diagram.component"
         name="Papyrus Component Diagram (Incubation)"
         provider="Eclipse Modeling Project"
-        version="0.9.0.qualifier">
+        version="0.8.2.qualifier">
       <requiredPlugins>org.eclipse.draw2d</requiredPlugins>
       <requiredPlugins>org.eclipse.gmf.runtime.draw2d.ui</requiredPlugins>
     </plugin>

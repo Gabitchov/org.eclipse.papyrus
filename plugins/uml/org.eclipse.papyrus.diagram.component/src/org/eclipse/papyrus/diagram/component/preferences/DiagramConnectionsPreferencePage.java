@@ -18,14 +18,14 @@ import org.eclipse.papyrus.diagram.component.part.UMLDiagramEditorPlugin;
 // TODO: Auto-generated Javadoc
 /**
  * The Class DiagramConnectionsPreferencePage.
- *
+ * 
  * @generated
  */
 public class DiagramConnectionsPreferencePage extends ConnectionsPreferencePage {
 
 	/**
 	 * Instantiates a new diagram connections preference page.
-	 *
+	 * 
 	 * @generated
 	 */
 	public DiagramConnectionsPreferencePage() {

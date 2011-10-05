@@ -40,7 +40,7 @@ import org.eclipse.papyrus.diagram.component.part.UMLDiagramEditorPlugin;
 // TODO: Auto-generated Javadoc
 /**
  * The Class AbstractParser.
- *
+ * 
  * @generated
  */
 public abstract class AbstractParser implements IParser {
@@ -62,8 +62,9 @@ public abstract class AbstractParser implements IParser {
 
 	/**
 	 * Instantiates a new abstract parser.
-	 *
-	 * @param features the features
+	 * 
+	 * @param features
+	 *        the features
 	 * @generated
 	 */
 	public AbstractParser(EAttribute[] features) {
@@ -75,9 +76,11 @@ public abstract class AbstractParser implements IParser {
 
 	/**
 	 * Instantiates a new abstract parser.
-	 *
-	 * @param features the features
-	 * @param editableFeatures the editable features
+	 * 
+	 * @param features
+	 *        the features
+	 * @param editableFeatures
+	 *        the editable features
 	 * @generated
 	 */
 	public AbstractParser(EAttribute[] features, EAttribute[] editableFeatures) {
@@ -93,7 +96,7 @@ public abstract class AbstractParser implements IParser {
 
 	/**
 	 * Gets the view pattern.
-	 *
+	 * 
 	 * @return the view pattern
 	 * @generated
 	 */
@@ -103,8 +106,9 @@ public abstract class AbstractParser implements IParser {
 
 	/**
 	 * Sets the view pattern.
-	 *
-	 * @param viewPattern the new view pattern
+	 * 
+	 * @param viewPattern
+	 *        the new view pattern
 	 * @generated
 	 */
 	public void setViewPattern(String viewPattern) {
@@ -113,7 +117,7 @@ public abstract class AbstractParser implements IParser {
 
 	/**
 	 * Gets the editor pattern.
-	 *
+	 * 
 	 * @return the editor pattern
 	 * @generated
 	 */
@@ -123,8 +127,9 @@ public abstract class AbstractParser implements IParser {
 
 	/**
 	 * Sets the editor pattern.
-	 *
-	 * @param editorPattern the new editor pattern
+	 * 
+	 * @param editorPattern
+	 *        the new editor pattern
 	 * @generated
 	 */
 	public void setEditorPattern(String editorPattern) {
@@ -133,7 +138,7 @@ public abstract class AbstractParser implements IParser {
 
 	/**
 	 * Gets the edits the pattern.
-	 *
+	 * 
 	 * @return the edits the pattern
 	 * @generated
 	 */
@@ -143,8 +148,9 @@ public abstract class AbstractParser implements IParser {
 
 	/**
 	 * Sets the edits the pattern.
-	 *
-	 * @param editPattern the new edits the pattern
+	 * 
+	 * @param editPattern
+	 *        the new edits the pattern
 	 * @generated
 	 */
 	public void setEditPattern(String editPattern) {
@@ -153,9 +159,11 @@ public abstract class AbstractParser implements IParser {
 
 	/**
 	 * Checks if is affecting event.
-	 *
-	 * @param event the event
-	 * @param flags the flags
+	 * 
+	 * @param event
+	 *        the event
+	 * @param flags
+	 *        the flags
 	 * @return true, if is affecting event
 	 * @generated
 	 */
@@ -168,8 +176,9 @@ public abstract class AbstractParser implements IParser {
 
 	/**
 	 * Checks if is affecting feature.
-	 *
-	 * @param feature the feature
+	 * 
+	 * @param feature
+	 *        the feature
 	 * @return true, if is affecting feature
 	 * @generated
 	 */
@@ -184,8 +193,9 @@ public abstract class AbstractParser implements IParser {
 
 	/**
 	 * Gets the completion processor.
-	 *
-	 * @param element the element
+	 * 
+	 * @param element
+	 *        the element
 	 * @return the completion processor
 	 * @generated
 	 */
@@ -195,8 +205,9 @@ public abstract class AbstractParser implements IParser {
 
 	/**
 	 * Gets the values.
-	 *
-	 * @param element the element
+	 * 
+	 * @param element
+	 *        the element
 	 * @return the values
 	 * @generated
 	 */
@@ -210,8 +221,9 @@ public abstract class AbstractParser implements IParser {
 
 	/**
 	 * Gets the editable values.
-	 *
-	 * @param element the element
+	 * 
+	 * @param element
+	 *        the element
 	 * @return the editable values
 	 * @generated
 	 */
@@ -225,9 +237,11 @@ public abstract class AbstractParser implements IParser {
 
 	/**
 	 * Gets the value.
-	 *
-	 * @param element the element
-	 * @param feature the feature
+	 * 
+	 * @param element
+	 *        the element
+	 * @param feature
+	 *        the feature
 	 * @return the value
 	 * @generated
 	 */
@@ -244,10 +258,13 @@ public abstract class AbstractParser implements IParser {
 
 	/**
 	 * Gets the parses the command.
-	 *
-	 * @param adapter the adapter
-	 * @param values the values
-	 * @param flags the flags
+	 * 
+	 * @param adapter
+	 *        the adapter
+	 * @param values
+	 *        the values
+	 * @param flags
+	 *        the flags
 	 * @return the parses the command
 	 * @generated
 	 */
@@ -269,10 +286,13 @@ public abstract class AbstractParser implements IParser {
 
 	/**
 	 * Gets the modification command.
-	 *
-	 * @param element the element
-	 * @param feature the feature
-	 * @param value the value
+	 * 
+	 * @param element
+	 *        the element
+	 * @param feature
+	 *        the feature
+	 * @param value
+	 *        the value
 	 * @return the modification command
 	 * @generated
 	 */
@@ -287,8 +307,9 @@ public abstract class AbstractParser implements IParser {
 
 	/**
 	 * Validate new values.
-	 *
-	 * @param values the values
+	 * 
+	 * @param values
+	 *        the values
 	 * @return the i parser edit status
 	 * @generated
 	 */
@@ -307,9 +328,11 @@ public abstract class AbstractParser implements IParser {
 
 	/**
 	 * Gets the valid new value.
-	 *
-	 * @param feature the feature
-	 * @param value the value
+	 * 
+	 * @param feature
+	 *        the feature
+	 * @param value
+	 *        the value
 	 * @return the valid new value
 	 * @generated
 	 */
@@ -470,7 +493,7 @@ public abstract class AbstractParser implements IParser {
 
 	/**
 	 * The Class InvalidValue.
-	 *
+	 * 
 	 * @generated
 	 */
 	protected class InvalidValue {
@@ -480,8 +503,9 @@ public abstract class AbstractParser implements IParser {
 
 		/**
 		 * Instantiates a new invalid value.
-		 *
-		 * @param description the description
+		 * 
+		 * @param description
+		 *        the description
 		 * @generated
 		 */
 		public InvalidValue(String description) {
@@ -490,7 +514,7 @@ public abstract class AbstractParser implements IParser {
 
 		/**
 		 * To string.
-		 *
+		 * 
 		 * @return the string
 		 * @generated
 		 */

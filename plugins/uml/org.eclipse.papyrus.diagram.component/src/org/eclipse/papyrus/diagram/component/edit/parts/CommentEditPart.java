@@ -46,7 +46,6 @@ import org.eclipse.swt.graphics.Color;
  */
 public class CommentEditPart extends
 
-
 AbstractCommentEditPart {
 
 	/**
@@ -84,21 +83,15 @@ AbstractCommentEditPart {
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
-
-
-
 	/**
-	 *Papyrus codeGen
-	 *@generated
+	 * Papyrus codeGen
+	 * 
+	 * @generated
 	 **/
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
 
 	}
-
-
-
-
 
 	/**
 	 * @generated
@@ -148,10 +141,8 @@ AbstractCommentEditPart {
 			return true;
 		}
 
-
 		return false;
 	}
-
 
 	/**
 	 * @generated
@@ -190,7 +181,6 @@ AbstractCommentEditPart {
 		return getContentPane();
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -203,7 +193,6 @@ AbstractCommentEditPart {
 
 		return result;
 	}
-
 
 	/**
 	 * Creates figure for this edit part.
@@ -225,7 +214,9 @@ AbstractCommentEditPart {
 	/**
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
-	 * @param nodeShape instance of generated figure class
+	 * 
+	 * @param nodeShape
+	 *        instance of generated figure class
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
@@ -376,10 +367,6 @@ AbstractCommentEditPart {
 		}
 		return types;
 	}
-
-
-
-
 
 	/**
 	 * @generated

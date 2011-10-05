@@ -74,7 +74,7 @@ import org.eclipse.uml2.uml.Usage;
 // TODO: Auto-generated Javadoc
 /**
  * The Class UMLBaseItemSemanticEditPolicy.
- *
+ * 
  * @generated
  */
 public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
@@ -98,8 +98,9 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 
 	/**
 	 * Instantiates a new uML base item semantic edit policy.
-	 *
-	 * @param elementType the element type
+	 * 
+	 * @param elementType
+	 *        the element type
 	 * @generated
 	 */
 	protected UMLBaseItemSemanticEditPolicy(IElementType elementType) {
@@ -113,17 +114,18 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 * It is done in those cases when it's not possible to deduce diagram
 	 * element kind from domain element.
 	 * Add the reoriented view to the request extended data so that the view
-<<<<<<< .mine
-	 * currently edited can be distinguished from other views of the same element
-	 * and these latter possibly removed if they become inconsistent after reconnect
-	 *
-	 * @param request the request
-	 * @return the command
-=======
+	 * <<<<<<< .mine
 	 * currently edited can be distinguished from other views of the same element
 	 * and these latter possibly removed if they become inconsistent after reconnect
 	 * 
->>>>>>> .r4908
+	 * @param request
+	 *        the request
+	 * @return the command
+	 *         =======
+	 *         currently edited can be distinguished from other views of the same element
+	 *         and these latter possibly removed if they become inconsistent after reconnect
+	 * 
+	 *         >>>>>>> .r4908
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -141,13 +143,14 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 
 	/**
 	 * Returns visual id from request parameters.
-<<<<<<< .mine
-	 *
-	 * @param request the request
-	 * @return the visual id
-=======
+	 * <<<<<<< .mine
 	 * 
->>>>>>> .r4908
+	 * @param request
+	 *        the request
+	 * @return the visual id
+	 *         =======
+	 * 
+	 *         >>>>>>> .r4908
 	 * @generated
 	 */
 	protected int getVisualID(IEditCommandRequest request) {
@@ -157,8 +160,9 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 
 	/**
 	 * Gets the semantic command.
-	 *
-	 * @param request the request
+	 * 
+	 * @param request
+	 *        the request
 	 * @return the semantic command
 	 * @generated
 	 */
@@ -175,9 +179,11 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 
 	/**
 	 * Adds the delete view command.
-	 *
-	 * @param mainCommand the main command
-	 * @param completedRequest the completed request
+	 * 
+	 * @param mainCommand
+	 *        the main command
+	 * @param completedRequest
+	 *        the completed request
 	 * @return the command
 	 * @generated
 	 */
@@ -188,9 +194,11 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 
 	/**
 	 * Gets the edits the helper command.
-	 *
-	 * @param request the request
-	 * @param editPolicyCommand the edit policy command
+	 * 
+	 * @param request
+	 *        the request
+	 * @param editPolicyCommand
+	 *        the edit policy command
 	 * @return the edits the helper command
 	 * @generated
 	 */
@@ -215,8 +223,9 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 
 	/**
 	 * Gets the context element type.
-	 *
-	 * @param request the request
+	 * 
+	 * @param request
+	 *        the request
 	 * @return the context element type
 	 * @generated
 	 */
@@ -227,8 +236,9 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 
 	/**
 	 * Gets the semantic command switch.
-	 *
-	 * @param req the req
+	 * 
+	 * @param req
+	 *        the req
 	 * @return the semantic command switch
 	 * @generated
 	 */
@@ -261,8 +271,9 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 
 	/**
 	 * Gets the configure command.
-	 *
-	 * @param req the req
+	 * 
+	 * @param req
+	 *        the req
 	 * @return the configure command
 	 * @generated
 	 */
@@ -272,8 +283,9 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 
 	/**
 	 * Gets the creates the relationship command.
-	 *
-	 * @param req the req
+	 * 
+	 * @param req
+	 *        the req
 	 * @return the creates the relationship command
 	 * @generated
 	 */
@@ -283,8 +295,9 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 
 	/**
 	 * Gets the creates the command.
-	 *
-	 * @param req the req
+	 * 
+	 * @param req
+	 *        the req
 	 * @return the creates the command
 	 * @generated
 	 */
@@ -296,18 +309,21 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			if(provider == null) {
 				return UnexecutableCommand.INSTANCE;
 			}
+
 			// Retrieve create command from the Element Edit service
 			ICommand createGMFCommand = provider.getEditCommand(req);
 
 			return getGEFWrapper(createGMFCommand);
 		}
+
 		return null;
 	}
 
 	/**
 	 * Gets the sets the command.
-	 *
-	 * @param req the req
+	 * 
+	 * @param req
+	 *        the req
 	 * @return the sets the command
 	 * @generated
 	 */
@@ -317,8 +333,9 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 
 	/**
 	 * Gets the edits the context command.
-	 *
-	 * @param req the req
+	 * 
+	 * @param req
+	 *        the req
 	 * @return the edits the context command
 	 * @generated
 	 */
@@ -328,8 +345,9 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 
 	/**
 	 * Gets the destroy element command.
-	 *
-	 * @param req the req
+	 * 
+	 * @param req
+	 *        the req
 	 * @return the destroy element command
 	 * @generated
 	 */
@@ -339,8 +357,9 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 
 	/**
 	 * Gets the destroy reference command.
-	 *
-	 * @param req the req
+	 * 
+	 * @param req
+	 *        the req
 	 * @return the destroy reference command
 	 * @generated
 	 */
@@ -350,8 +369,9 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 
 	/**
 	 * Gets the duplicate command.
-	 *
-	 * @param req the req
+	 * 
+	 * @param req
+	 *        the req
 	 * @return the duplicate command
 	 * @generated
 	 */
@@ -361,23 +381,23 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 
 	/**
 	 * Gets the move command.
-	 *
-	 * @param req the req
+	 * 
+	 * @param req
+	 *        the req
 	 * @return the move command
 	 * @generated
 	 */
 	protected Command getMoveCommand(MoveRequest req) {
 
-
 		return getGEFWrapper(new MoveElementsCommand(req));
-
 
 	}
 
 	/**
 	 * Gets the reorient reference relationship command.
-	 *
-	 * @param req the req
+	 * 
+	 * @param req
+	 *        the req
 	 * @return the reorient reference relationship command
 	 * @generated
 	 */
@@ -387,8 +407,9 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 
 	/**
 	 * Gets the reorient relationship command.
-	 *
-	 * @param req the req
+	 * 
+	 * @param req
+	 *        the req
 	 * @return the reorient relationship command
 	 * @generated
 	 */
@@ -398,8 +419,9 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 
 	/**
 	 * Gets the gEF wrapper.
-	 *
-	 * @param cmd the cmd
+	 * 
+	 * @param cmd
+	 *        the cmd
 	 * @return the gEF wrapper
 	 * @generated
 	 */
@@ -409,12 +431,12 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 
 	/**
 	 * Returns editing domain from the host edit part.
-<<<<<<< .mine
-	 *
-	 * @return the editing domain
-=======
+	 * <<<<<<< .mine
 	 * 
->>>>>>> .r4908
+	 * @return the editing domain
+	 *         =======
+	 * 
+	 *         >>>>>>> .r4908
 	 * @generated
 	 */
 	protected TransactionalEditingDomain getEditingDomain() {
@@ -423,9 +445,11 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 
 	/**
 	 * Clean all shortcuts to the host element from the same diagram.
-	 *
-	 * @param cmd the cmd
-	 * @param view the view
+	 * 
+	 * @param cmd
+	 *        the cmd
+	 * @param view
+	 *        the view
 	 * 
 	 * @generated
 	 */
@@ -440,10 +464,9 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		}
 	}
 
-
 	/**
 	 * Gets the link constraints.
-	 *
+	 * 
 	 * @return the link constraints
 	 * @generated
 	 */
@@ -455,30 +478,31 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		return cached;
 	}
 
-
 	/**
 	 * The Class LinkConstraints.
-	 *
+	 * 
 	 * @generated
 	 */
 	public static class LinkConstraints {
 
 		/**
 		 * Instantiates a new link constraints.
-		 *
+		 * 
 		 * @generated
 		 */
 		public LinkConstraints() {
 			// use static method #getLinkConstraints() to access instance
 		}
 
-
 		/**
 		 * Can create usage_4001.
-		 *
-		 * @param container the container
-		 * @param source the source
-		 * @param target the target
+		 * 
+		 * @param container
+		 *        the container
+		 * @param source
+		 *        the source
+		 * @param target
+		 *        the target
 		 * @return true, if successful
 		 * @generated
 		 */
@@ -486,13 +510,15 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			return canExistUsage_4001(container, null, source, target);
 		}
 
-
 		/**
 		 * Can create interface realization_4006.
-		 *
-		 * @param container the container
-		 * @param source the source
-		 * @param target the target
+		 * 
+		 * @param container
+		 *        the container
+		 * @param source
+		 *        the source
+		 * @param target
+		 *        the target
 		 * @return true, if successful
 		 * @generated
 		 */
@@ -500,13 +526,15 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			return canExistInterfaceRealization_4006(container, null, source, target);
 		}
 
-
 		/**
 		 * Can create generalization_4003.
-		 *
-		 * @param container the container
-		 * @param source the source
-		 * @param target the target
+		 * 
+		 * @param container
+		 *        the container
+		 * @param source
+		 *        the source
+		 * @param target
+		 *        the target
 		 * @return true, if successful
 		 * @generated
 		 */
@@ -514,13 +542,15 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			return canExistGeneralization_4003(container, null, source, target);
 		}
 
-
 		/**
 		 * Can create substitution_4012.
-		 *
-		 * @param container the container
-		 * @param source the source
-		 * @param target the target
+		 * 
+		 * @param container
+		 *        the container
+		 * @param source
+		 *        the source
+		 * @param target
+		 *        the target
 		 * @return true, if successful
 		 * @generated
 		 */
@@ -528,13 +558,15 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			return canExistSubstitution_4012(container, null, source, target);
 		}
 
-
 		/**
 		 * Can create manifestation_4014.
-		 *
-		 * @param container the container
-		 * @param source the source
-		 * @param target the target
+		 * 
+		 * @param container
+		 *        the container
+		 * @param source
+		 *        the source
+		 * @param target
+		 *        the target
 		 * @return true, if successful
 		 * @generated
 		 */
@@ -542,13 +574,15 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			return canExistManifestation_4014(container, null, source, target);
 		}
 
-
 		/**
 		 * Can create component realization_4007.
-		 *
-		 * @param container the container
-		 * @param source the source
-		 * @param target the target
+		 * 
+		 * @param container
+		 *        the container
+		 * @param source
+		 *        the source
+		 * @param target
+		 *        the target
 		 * @return true, if successful
 		 * @generated
 		 */
@@ -556,13 +590,15 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			return canExistComponentRealization_4007(container, null, source, target);
 		}
 
-
 		/**
 		 * Can create abstraction_4013.
-		 *
-		 * @param container the container
-		 * @param source the source
-		 * @param target the target
+		 * 
+		 * @param container
+		 *        the container
+		 * @param source
+		 *        the source
+		 * @param target
+		 *        the target
 		 * @return true, if successful
 		 * @generated
 		 */
@@ -570,10 +606,9 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			return canExistAbstraction_4013(container, null, source, target);
 		}
 
-
 		/**
 		 * Can create link_4016.
-		 *
+		 * 
 		 * @return true, if successful
 		 * @generated
 		 */
@@ -581,18 +616,21 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			return canExistLink_4016();
 		}
 
-
 		/**
 		 * Can create comment annotated element_4015.
-		 *
-		 * @param source the source
-		 * @param target the target
+		 * 
+		 * @param source
+		 *        the source
+		 * @param target
+		 *        the target
 		 * @return true, if successful
 		 * @generated
 		 */
 		public boolean canCreateCommentAnnotatedElement_4015(Comment source, Element target) {
 			if(source != null) {
-				if(source.getAnnotatedElements().contains(target)) {
+				if(source.getAnnotatedElements().contains(target)
+
+				) {
 					return false;
 				}
 			}
@@ -600,18 +638,21 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			return canExistCommentAnnotatedElement_4015(source, target);
 		}
 
-
 		/**
 		 * Can create constraint constrained element_4009.
-		 *
-		 * @param source the source
-		 * @param target the target
+		 * 
+		 * @param source
+		 *        the source
+		 * @param target
+		 *        the target
 		 * @return true, if successful
 		 * @generated
 		 */
 		public boolean canCreateConstraintConstrainedElement_4009(Constraint source, Element target) {
 			if(source != null) {
-				if(source.getConstrainedElements().contains(target)) {
+				if(source.getConstrainedElements().contains(target)
+
+				) {
 					return false;
 				}
 			}
@@ -619,13 +660,15 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			return canExistConstraintConstrainedElement_4009(source, target);
 		}
 
-
 		/**
 		 * Can create dependency_4010.
-		 *
-		 * @param container the container
-		 * @param source the source
-		 * @param target the target
+		 * 
+		 * @param container
+		 *        the container
+		 * @param source
+		 *        the source
+		 * @param target
+		 *        the target
 		 * @return true, if successful
 		 * @generated
 		 */
@@ -633,14 +676,17 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			return canExistDependency_4010(container, null, source, target);
 		}
 
-
 		/**
 		 * Can exist usage_4001.
-		 *
-		 * @param container the container
-		 * @param linkInstance the link instance
-		 * @param source the source
-		 * @param target the target
+		 * 
+		 * @param container
+		 *        the container
+		 * @param linkInstance
+		 *        the link instance
+		 * @param source
+		 *        the source
+		 * @param target
+		 *        the target
 		 * @return true, if successful
 		 * @generated
 		 */
@@ -673,11 +719,15 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 
 		/**
 		 * Can exist interface realization_4006.
-		 *
-		 * @param container the container
-		 * @param linkInstance the link instance
-		 * @param source the source
-		 * @param target the target
+		 * 
+		 * @param container
+		 *        the container
+		 * @param linkInstance
+		 *        the link instance
+		 * @param source
+		 *        the source
+		 * @param target
+		 *        the target
 		 * @return true, if successful
 		 * @generated
 		 */
@@ -710,11 +760,15 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 
 		/**
 		 * Can exist generalization_4003.
-		 *
-		 * @param container the container
-		 * @param linkInstance the link instance
-		 * @param source the source
-		 * @param target the target
+		 * 
+		 * @param container
+		 *        the container
+		 * @param linkInstance
+		 *        the link instance
+		 * @param source
+		 *        the source
+		 * @param target
+		 *        the target
 		 * @return true, if successful
 		 * @generated
 		 */
@@ -724,11 +778,15 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 
 		/**
 		 * Can exist substitution_4012.
-		 *
-		 * @param container the container
-		 * @param linkInstance the link instance
-		 * @param source the source
-		 * @param target the target
+		 * 
+		 * @param container
+		 *        the container
+		 * @param linkInstance
+		 *        the link instance
+		 * @param source
+		 *        the source
+		 * @param target
+		 *        the target
 		 * @return true, if successful
 		 * @generated
 		 */
@@ -738,11 +796,15 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 
 		/**
 		 * Can exist manifestation_4014.
-		 *
-		 * @param container the container
-		 * @param linkInstance the link instance
-		 * @param source the source
-		 * @param target the target
+		 * 
+		 * @param container
+		 *        the container
+		 * @param linkInstance
+		 *        the link instance
+		 * @param source
+		 *        the source
+		 * @param target
+		 *        the target
 		 * @return true, if successful
 		 * @generated
 		 */
@@ -752,11 +814,15 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 
 		/**
 		 * Can exist component realization_4007.
-		 *
-		 * @param container the container
-		 * @param linkInstance the link instance
-		 * @param source the source
-		 * @param target the target
+		 * 
+		 * @param container
+		 *        the container
+		 * @param linkInstance
+		 *        the link instance
+		 * @param source
+		 *        the source
+		 * @param target
+		 *        the target
 		 * @return true, if successful
 		 * @generated
 		 */
@@ -766,11 +832,15 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 
 		/**
 		 * Can exist abstraction_4013.
-		 *
-		 * @param container the container
-		 * @param linkInstance the link instance
-		 * @param source the source
-		 * @param target the target
+		 * 
+		 * @param container
+		 *        the container
+		 * @param linkInstance
+		 *        the link instance
+		 * @param source
+		 *        the source
+		 * @param target
+		 *        the target
 		 * @return true, if successful
 		 * @generated
 		 */
@@ -780,7 +850,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 
 		/**
 		 * Can exist link_4016.
-		 *
+		 * 
 		 * @return true, if successful
 		 * @generated
 		 */
@@ -790,9 +860,11 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 
 		/**
 		 * Can exist comment annotated element_4015.
-		 *
-		 * @param source the source
-		 * @param target the target
+		 * 
+		 * @param source
+		 *        the source
+		 * @param target
+		 *        the target
 		 * @return true, if successful
 		 * @generated
 		 */
@@ -802,9 +874,11 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 
 		/**
 		 * Can exist constraint constrained element_4009.
-		 *
-		 * @param source the source
-		 * @param target the target
+		 * 
+		 * @param source
+		 *        the source
+		 * @param target
+		 *        the target
 		 * @return true, if successful
 		 * @generated
 		 */
@@ -814,11 +888,15 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 
 		/**
 		 * Can exist dependency_4010.
-		 *
-		 * @param container the container
-		 * @param linkInstance the link instance
-		 * @param source the source
-		 * @param target the target
+		 * 
+		 * @param container
+		 *        the container
+		 * @param linkInstance
+		 *        the link instance
+		 * @param source
+		 *        the source
+		 * @param target
+		 *        the target
 		 * @return true, if successful
 		 * @generated
 		 */

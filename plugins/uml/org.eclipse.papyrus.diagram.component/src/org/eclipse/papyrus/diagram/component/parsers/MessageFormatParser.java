@@ -29,7 +29,7 @@ import org.eclipse.papyrus.diagram.component.part.UMLDiagramEditorPlugin;
 // TODO: Auto-generated Javadoc
 /**
  * The Class MessageFormatParser.
- *
+ * 
  * @generated
  */
 public class MessageFormatParser extends AbstractParser {
@@ -51,8 +51,9 @@ public class MessageFormatParser extends AbstractParser {
 
 	/**
 	 * Instantiates a new message format parser.
-	 *
-	 * @param features the features
+	 * 
+	 * @param features
+	 *        the features
 	 * @generated
 	 */
 	public MessageFormatParser(EAttribute[] features) {
@@ -61,9 +62,11 @@ public class MessageFormatParser extends AbstractParser {
 
 	/**
 	 * Instantiates a new message format parser.
-	 *
-	 * @param features the features
-	 * @param editableFeatures the editable features
+	 * 
+	 * @param features
+	 *        the features
+	 * @param editableFeatures
+	 *        the editable features
 	 * @generated
 	 */
 	public MessageFormatParser(EAttribute[] features, EAttribute[] editableFeatures) {
@@ -72,7 +75,7 @@ public class MessageFormatParser extends AbstractParser {
 
 	/**
 	 * Gets the default pattern.
-	 *
+	 * 
 	 * @return the default pattern
 	 * @generated
 	 */
@@ -94,8 +97,9 @@ public class MessageFormatParser extends AbstractParser {
 
 	/**
 	 * Sets the view pattern.
-	 *
-	 * @param viewPattern the new view pattern
+	 * 
+	 * @param viewPattern
+	 *        the new view pattern
 	 * @generated
 	 */
 	public void setViewPattern(String viewPattern) {
@@ -105,8 +109,9 @@ public class MessageFormatParser extends AbstractParser {
 
 	/**
 	 * Sets the editor pattern.
-	 *
-	 * @param editorPattern the new editor pattern
+	 * 
+	 * @param editorPattern
+	 *        the new editor pattern
 	 * @generated
 	 */
 	public void setEditorPattern(String editorPattern) {
@@ -116,7 +121,7 @@ public class MessageFormatParser extends AbstractParser {
 
 	/**
 	 * Gets the view processor.
-	 *
+	 * 
 	 * @return the view processor
 	 * @generated
 	 */
@@ -129,7 +134,7 @@ public class MessageFormatParser extends AbstractParser {
 
 	/**
 	 * Gets the editor processor.
-	 *
+	 * 
 	 * @return the editor processor
 	 * @generated
 	 */
@@ -142,7 +147,7 @@ public class MessageFormatParser extends AbstractParser {
 
 	/**
 	 * Gets the default editable pattern.
-	 *
+	 * 
 	 * @return the default editable pattern
 	 * @generated
 	 */
@@ -164,8 +169,9 @@ public class MessageFormatParser extends AbstractParser {
 
 	/**
 	 * Sets the edits the pattern.
-	 *
-	 * @param editPattern the new edits the pattern
+	 * 
+	 * @param editPattern
+	 *        the new edits the pattern
 	 * @generated
 	 */
 	public void setEditPattern(String editPattern) {
@@ -175,7 +181,7 @@ public class MessageFormatParser extends AbstractParser {
 
 	/**
 	 * Gets the edits the processor.
-	 *
+	 * 
 	 * @return the edits the processor
 	 * @generated
 	 */
@@ -188,9 +194,11 @@ public class MessageFormatParser extends AbstractParser {
 
 	/**
 	 * Gets the edits the string.
-	 *
-	 * @param adapter the adapter
-	 * @param flags the flags
+	 * 
+	 * @param adapter
+	 *        the adapter
+	 * @param flags
+	 *        the flags
 	 * @return the edits the string
 	 * @generated
 	 */
@@ -201,9 +209,11 @@ public class MessageFormatParser extends AbstractParser {
 
 	/**
 	 * Checks if is valid edit string.
-	 *
-	 * @param adapter the adapter
-	 * @param editString the edit string
+	 * 
+	 * @param adapter
+	 *        the adapter
+	 * @param editString
+	 *        the edit string
 	 * @return the i parser edit status
 	 * @generated
 	 */
@@ -218,10 +228,13 @@ public class MessageFormatParser extends AbstractParser {
 
 	/**
 	 * Gets the parses the command.
-	 *
-	 * @param adapter the adapter
-	 * @param newString the new string
-	 * @param flags the flags
+	 * 
+	 * @param adapter
+	 *        the adapter
+	 * @param newString
+	 *        the new string
+	 * @param flags
+	 *        the flags
 	 * @return the parses the command
 	 * @generated
 	 */
@@ -232,9 +245,11 @@ public class MessageFormatParser extends AbstractParser {
 
 	/**
 	 * Gets the prints the string.
-	 *
-	 * @param adapter the adapter
-	 * @param flags the flags
+	 * 
+	 * @param adapter
+	 *        the adapter
+	 * @param flags
+	 *        the flags
 	 * @return the prints the string
 	 * @generated
 	 */
@@ -242,8 +257,5 @@ public class MessageFormatParser extends AbstractParser {
 		EObject element = (EObject)adapter.getAdapter(EObject.class);
 		return getViewProcessor().format(getValues(element), new StringBuffer(), new FieldPosition(0)).toString();
 	}
-
-
-
 
 }

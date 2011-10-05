@@ -19,14 +19,14 @@ import org.eclipse.papyrus.diagram.component.part.UMLDiagramEditorPlugin;
 // TODO: Auto-generated Javadoc
 /**
  * The Class DiagramPreferenceInitializer.
- *
+ * 
  * @generated
  */
 public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer {
 
 	/**
 	 * Initialize default preferences.
-	 *
+	 * 
 	 * @generated
 	 */
 	public void initializeDefaultPreferences() {
@@ -34,60 +34,41 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 
 		InterfacePreferencePage.initDefaults(store);
 
-
 		PortPreferencePage.initDefaults(store);
-
 
 		ConstraintPreferencePage.initDefaults(store);
 
-
 		CommentPreferencePage.initDefaults(store);
-
 
 		PackagePreferencePage.initDefaults(store);
 
-
 		ComponentPreferencePage.initDefaults(store);
-
-
-
 
 		ConstraintConstrainedElementPreferencePage.initDefaults(store);
 
-
 		AbstractionPreferencePage.initDefaults(store);
-
 
 		CommentAnnotatedElementPreferencePage.initDefaults(store);
 
-
 		SubstitutionPreferencePage.initDefaults(store);
-
 
 		ManifestationPreferencePage.initDefaults(store);
 
-
 		GeneralizationPreferencePage.initDefaults(store);
-
-
 
 		DependencyPreferencePage.initDefaults(store);
 
-
 		ComponentRealizationPreferencePage.initDefaults(store);
-
 
 		InterfaceRealizationPreferencePage.initDefaults(store);
 
-
 		UsagePreferencePage.initDefaults(store);
-
 
 	}
 
 	/**
 	 * Gets the preference store.
-	 *
+	 * 
 	 * @return the preference store
 	 * @generated
 	 */

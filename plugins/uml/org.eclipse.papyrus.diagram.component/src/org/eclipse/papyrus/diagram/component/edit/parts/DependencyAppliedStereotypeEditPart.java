@@ -93,21 +93,19 @@ public class DependencyAppliedStereotypeEditPart extends LabelEditPart implement
 	 */
 	private String defaultText;
 
-
-
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
+	 * 
 	 * @generated
 	 */
 	protected int directEditionMode = IDirectEdition.UNDEFINED_DIRECT_EDITOR;
 
 	/**
 	 * configuration from a registered edit dialog
+	 * 
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
-
-
 
 	/**
 	 * @generated
@@ -574,8 +572,6 @@ public class DependencyAppliedStereotypeEditPart extends LabelEditPart implement
 		return getPrimaryView();
 	}
 
-
-
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
@@ -612,6 +608,7 @@ public class DependencyAppliedStereotypeEditPart extends LabelEditPart implement
 
 	/**
 	 * Initializes the extended editor configuration
+	 * 
 	 * @generated
 	 */
 	protected void initExtendedEditorConfiguration() {
@@ -627,6 +624,7 @@ public class DependencyAppliedStereotypeEditPart extends LabelEditPart implement
 
 	/**
 	 * Updates the preference configuration
+	 * 
 	 * @generated
 	 */
 	protected void updateExtendedEditorConfiguration() {
@@ -640,7 +638,9 @@ public class DependencyAppliedStereotypeEditPart extends LabelEditPart implement
 
 	/**
 	 * Performs the direct edit usually used by GMF editors.
-	 * @param theRequest the direct edit request that starts the direct edit system
+	 * 
+	 * @param theRequest
+	 *        the direct edit request that starts the direct edit system
 	 * @generated
 	 */
 	protected void performDefaultDirectEditorEdit(final Request theRequest) {
@@ -666,8 +666,6 @@ public class DependencyAppliedStereotypeEditPart extends LabelEditPart implement
 			e.printStackTrace();
 		}
 	}
-
-
 
 	/**
 	 * @generated
@@ -698,9 +696,6 @@ public class DependencyAppliedStereotypeEditPart extends LabelEditPart implement
 				}
 			}
 		}
-
-
-
 
 		super.handleNotificationEvent(event);
 	}

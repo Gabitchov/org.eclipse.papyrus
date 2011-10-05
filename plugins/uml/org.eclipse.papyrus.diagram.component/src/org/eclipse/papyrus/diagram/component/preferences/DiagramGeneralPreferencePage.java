@@ -19,14 +19,14 @@ import org.eclipse.papyrus.preferences.pages.DiagramPreferencePage;
 // TODO: Auto-generated Javadoc
 /**
  * The Class DiagramGeneralPreferencePage.
- *
+ * 
  * @generated
  */
 public class DiagramGeneralPreferencePage extends DiagramPreferencePage {
 
 	/**
 	 * Instantiates a new diagram general preference page.
-	 *
+	 * 
 	 * @generated
 	 */
 	public DiagramGeneralPreferencePage() {

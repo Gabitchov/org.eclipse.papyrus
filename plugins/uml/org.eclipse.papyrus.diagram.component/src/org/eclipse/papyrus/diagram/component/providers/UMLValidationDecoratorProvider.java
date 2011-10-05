@@ -16,7 +16,6 @@ import org.eclipse.papyrus.diagram.component.edit.parts.ComponentDiagramEditPart
 import org.eclipse.papyrus.diagram.component.part.UMLDiagramEditor;
 import org.eclipse.papyrus.diagram.component.part.UMLVisualIDRegistry;
 
-
 public class UMLValidationDecoratorProvider extends ValidationDecoratorProvider implements IDecoratorProvider {
 
 	/**

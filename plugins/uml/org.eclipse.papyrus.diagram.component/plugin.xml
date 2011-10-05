@@ -287,7 +287,7 @@
          </propertySection>
       </propertySections>
    </extension>
-
+
 
 	<extension point="org.eclipse.core.runtime.preferences">
 		<?gmfgen generated="true"?>
@@ -331,13 +331,13 @@
       <?gmfgen generated="true"?>
       <modelingAssistantProvider class="org.eclipse.papyrus.diagram.component.providers.UMLModelingAssistantProvider">
          <Priority name="Lowest"/>
-         <object class="org.eclipse.papyrus.diagram.component.edit.parts.ComponentDiagramEditPart" id="Model_1000"/>
+         <object class="org.eclipse.papyrus.diagram.component.edit.parts.ComponentDiagramEditPart" id="Package_1000"/>
          <object class="org.eclipse.papyrus.diagram.component.edit.parts.ComponentEditPart" id="Component_2002"/>
          <object class="org.eclipse.papyrus.diagram.component.edit.parts.InterfaceEditPart" id="Interface_2003"/>
          <object class="org.eclipse.papyrus.diagram.component.edit.parts.PackageEditPart" id="Package_3200"/>
          <object class="org.eclipse.papyrus.diagram.component.edit.parts.CommentEditPart" id="Comment_3201"/>
          <object class="org.eclipse.papyrus.diagram.component.edit.parts.ConstraintEditPart" id="Constraint_3199"/>
-         <context elements="Model_1000,Component_2002,Interface_2003,Package_3200,Comment_3201,Constraint_3199"/>
+         <context elements="Package_1000,Component_2002,Interface_2003,Package_3200,Comment_3201,Constraint_3199"/>
       </modelingAssistantProvider>
    </extension>
 
@@ -354,9 +354,9 @@
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.diagram.component.Model_1000"
-               name="%metatype.name.Model_1000"
+               name="%metatype.name.Package_1000"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="Model"
+               eclass="Package"
                edithelper="org.eclipse.papyrus.diagram.component.edit.helpers.ModelEditHelper">
             <param name="semanticHint" value="1000"/>
          </metamodelType>
@@ -1121,8 +1121,7 @@
       <super type="org.eclipse.core.resources.problemmarker"/>
       <super type="org.eclipse.gmf.runtime.common.ui.services.marker"/>
       <persistent value="true"/>
-   </extension>
-<extension id="validationDecoratorProvider" name="ValidationDecorations" point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders">
+   </extension><extension id="validationDecoratorProvider" name="ValidationDecorations" point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders">
       <?gmfgen generated="true"?>
       <decoratorProvider class="org.eclipse.papyrus.diagram.component.providers.UMLValidationDecoratorProvider">
          <Priority name="Lowest"/>

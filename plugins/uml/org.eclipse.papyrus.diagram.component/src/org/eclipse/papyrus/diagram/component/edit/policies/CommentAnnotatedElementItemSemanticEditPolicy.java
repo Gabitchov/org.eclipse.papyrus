@@ -20,14 +20,14 @@ import org.eclipse.papyrus.diagram.component.providers.UMLElementTypes;
 // TODO: Auto-generated Javadoc
 /**
  * The Class CommentAnnotatedElementItemSemanticEditPolicy.
- *
+ * 
  * @generated
  */
 public class CommentAnnotatedElementItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 
 	/**
 	 * Instantiates a new comment annotated element item semantic edit policy.
-	 *
+	 * 
 	 * @generated
 	 */
 	public CommentAnnotatedElementItemSemanticEditPolicy() {
@@ -36,8 +36,9 @@ public class CommentAnnotatedElementItemSemanticEditPolicy extends UMLBaseItemSe
 
 	/**
 	 * Gets the destroy reference command.
-	 *
-	 * @param req the req
+	 * 
+	 * @param req
+	 *        the req
 	 * @return the destroy reference command
 	 * @generated
 	 */

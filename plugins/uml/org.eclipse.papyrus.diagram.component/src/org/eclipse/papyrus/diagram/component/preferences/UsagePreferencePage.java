@@ -25,14 +25,14 @@ import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 // TODO: Auto-generated Javadoc
 /**
  * The Class UsagePreferencePage.
- *
+ * 
  * @generated
  */
 public class UsagePreferencePage extends AbstractPapyrusLinkPreferencePage {
 
 	/**
 	 * Instantiates a new usage preference page.
-	 *
+	 * 
 	 * @generated
 	 */
 	public UsagePreferencePage() {
@@ -42,7 +42,7 @@ public class UsagePreferencePage extends AbstractPapyrusLinkPreferencePage {
 
 	/**
 	 * Gets the bundle id.
-	 *
+	 * 
 	 * @return the bundle id
 	 * @generated
 	 */
@@ -53,60 +53,13 @@ public class UsagePreferencePage extends AbstractPapyrusLinkPreferencePage {
 
 	/**
 	 * Inits the defaults.
-	 *
-	 * @param store the store
+	 * 
+	 * @param store
+	 *        the store
 	 * @generated
 	 */
 	public static void initDefaults(IPreferenceStore store) {
 
-		String key = ComponentDiagramEditPart.MODEL_ID + "_Usage";
-		Map<String, Boolean> map = getStaticLabelVisibilityPreferences();
-		for(String role : map.keySet()) {
-			String preferenceName = PreferenceConstantHelper.getLabelElementConstant(key, role, PreferenceConstantHelper.LABEL_VISIBILITY);
-			store.setDefault(preferenceName, map.get(role));
-		}
-
 	}
-
-
-	/**
-	 * Gets the static label role.
-	 *
-	 * @return the static label role
-	 * @generated
-	 */
-	private static TreeMap<String, String> getStaticLabelRole() {
-		TreeMap<String, String> map = new TreeMap<String, String>(new StringComparator());
-		map.put("Name", "");//$NON-NLS-1$ //$NON-NLS-2$
-		map.put("Stereotype", "");//$NON-NLS-1$ //$NON-NLS-2$
-		return map;
-	}
-
-	/**
-	 * Gets the static label visibility preferences.
-	 *
-	 * @return the static label visibility preferences
-	 * @generated
-	 */
-	private static TreeMap<String, Boolean> getStaticLabelVisibilityPreferences() {
-		TreeMap<String, Boolean> map = new TreeMap<String, Boolean>();
-		map.put("Name", Boolean.TRUE);
-
-		map.put("Stereotype", Boolean.TRUE);
-
-		return map;
-	}
-
-	/**
-	 * Gets the label role.
-	 *
-	 * @return the label role
-	 * @generated
-	 */
-	@Override
-	protected TreeMap<String, String> getLabelRole() {
-		return getStaticLabelRole();
-	}
-
 
 }

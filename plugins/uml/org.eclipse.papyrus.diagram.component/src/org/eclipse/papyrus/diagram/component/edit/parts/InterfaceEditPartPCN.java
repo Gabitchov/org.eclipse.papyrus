@@ -55,7 +55,6 @@ import org.eclipse.swt.graphics.Color;
  */
 public class InterfaceEditPartPCN extends
 
-
 AbstractBorderedShapeEditPart {
 
 	/**
@@ -92,9 +91,6 @@ AbstractBorderedShapeEditPart {
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
-
-
-
 
 	/**
 	 * @generated
@@ -146,7 +142,6 @@ AbstractBorderedShapeEditPart {
 	public InterfaceAsCercle getPrimaryShape() {
 		return (InterfaceAsCercle)primaryShape;
 	}
-
 
 	/**
 	 * @generated
@@ -205,7 +200,9 @@ AbstractBorderedShapeEditPart {
 	/**
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
-	 * @param nodeShape instance of generated figure class
+	 * 
+	 * @param nodeShape
+	 *        instance of generated figure class
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
@@ -650,17 +647,10 @@ AbstractBorderedShapeEditPart {
 		return types;
 	}
 
-
-
-
-
 	/**
 	 * @generated
 	 */
 	public class InterfaceAsCercle extends Ellipse {
-
-
-
 
 		/**
 		 * @generated
@@ -670,14 +660,7 @@ AbstractBorderedShapeEditPart {
 			this.setForegroundColor(ColorConstants.black);
 		}
 
-
-
-
-
 	}
-
-
-
 
 	/**
 	 * @generated
