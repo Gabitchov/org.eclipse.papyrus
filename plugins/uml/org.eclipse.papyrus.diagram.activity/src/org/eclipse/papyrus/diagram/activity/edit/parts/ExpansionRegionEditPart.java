@@ -119,17 +119,14 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ExpansionRegionItemSemanticEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 
-		// in Papyrus diagrams are not strongly synchronised
-		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE,
-		// new
-		// org.eclipse.papyrus.diagram.activity.edit.policies.ExpansionRegionCanonicalEditPolicy());
+		//in Papyrus diagrams are not strongly synchronised
+		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.diagram.activity.edit.policies.ExpansionRegionCanonicalEditPolicy());
 
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
 		installEditPolicy(ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY, new ShowHideCompartmentEditPolicy());
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
-		// XXX need an SCR to runtime to have another abstract superclass that
-		// would let children add reasonable editpolicies
+		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
@@ -191,20 +188,19 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 
 		if(childEditPart instanceof ExpansionRegionStructuredActivityNodeContentCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getStructuredActivityNodeCompartment();
-			setupContentPane(pane); // FIXME each comparment should handle his
-									// content pane in his own way
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.add(((ExpansionRegionStructuredActivityNodeContentCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
 
-		// Papyrus Gencode :Affixed Expansion Node locator for Activity
+		//Papyrus Gencode :Affixed Expansion Node locator for Activity
 		if(childEditPart instanceof ExpansionNodeAsInEditPart) {
 			IBorderItemLocator locator = new ExpansionNodePositionLocator(getMainFigure(), PositionConstants.NORTH);
 			getBorderedFigure().getBorderItemContainer().add(((ExpansionNodeAsInEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
 
-		// Papyrus Gencode :Affixed Expansion Node locator for Activity
+		//Papyrus Gencode :Affixed Expansion Node locator for Activity
 		if(childEditPart instanceof ExpansionNodeAsOutEditPart) {
 			IBorderItemLocator locator = new ExpansionNodePositionLocator(getMainFigure(), PositionConstants.SOUTH);
 			getBorderedFigure().getBorderItemContainer().add(((ExpansionNodeAsOutEditPart)childEditPart).getFigure(), locator);
@@ -223,8 +219,7 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 		}
 		if(childEditPart instanceof ExpansionRegionStructuredActivityNodeContentCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getStructuredActivityNodeCompartment();
-			setupContentPane(pane); // FIXME each comparment should handle his
-									// content pane in his own way
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.remove(((ExpansionRegionStructuredActivityNodeContentCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}

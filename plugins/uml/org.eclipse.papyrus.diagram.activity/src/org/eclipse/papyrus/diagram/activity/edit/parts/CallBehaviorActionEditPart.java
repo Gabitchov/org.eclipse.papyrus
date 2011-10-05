@@ -108,10 +108,8 @@ NamedElementEditPart {
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CallBehaviorActionItemSemanticEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 
-		// in Papyrus diagrams are not strongly synchronised
-		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE,
-		// new
-		// org.eclipse.papyrus.diagram.activity.edit.policies.CallBehaviorActionCanonicalEditPolicy());
+		//in Papyrus diagrams are not strongly synchronised
+		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.diagram.activity.edit.policies.CallBehaviorActionCanonicalEditPolicy());
 
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
@@ -120,8 +118,7 @@ NamedElementEditPart {
 		installEditPolicy(EditPolicyRoles.CANONICAL_ROLE, new CallBehaviorActionCanonicalEditPolicy());
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
 		installEditPolicy(ChangeStereotypedShapeEditPolicy.CHANGE_SHAPE_POLICY, new ActivityDiagramChangeStereotypedShapeEditpolicy());
-		// XXX need an SCR to runtime to have another abstract superclass that
-		// would let children add reasonable editpolicies
+		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
@@ -133,8 +130,7 @@ NamedElementEditPart {
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
 
-		// Add/Remove the RakeFigure when an Activity is selected as behavior or
-		// deselected
+		//Add/Remove the RakeFigure when an Activity is selected as behavior or deselected
 		if(resolveSemanticElement() != null) {
 			if(resolveSemanticElement() instanceof CallBehaviorAction && resolveSemanticElement().equals(event.getNotifier()) && event.getFeature().equals(UMLPackage.eINSTANCE.getCallBehaviorAction_Behavior())) {
 				CallBehaviorAction action = (CallBehaviorAction)resolveSemanticElement();
@@ -206,28 +202,28 @@ NamedElementEditPart {
 			return true;
 		}
 
-		// Papyrus Gencode :Affixed Pin locator for Actions
+		//Papyrus Gencode :Affixed Pin locator for Actions
 		if(childEditPart instanceof ValuePinInCallBeActEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.WEST);
 			getBorderedFigure().getBorderItemContainer().add(((ValuePinInCallBeActEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
 
-		// Papyrus Gencode :Affixed Pin locator for Actions
+		//Papyrus Gencode :Affixed Pin locator for Actions
 		if(childEditPart instanceof ActionInputPinInCallBeActEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.WEST);
 			getBorderedFigure().getBorderItemContainer().add(((ActionInputPinInCallBeActEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
 
-		// Papyrus Gencode :Affixed Pin locator for Actions
+		//Papyrus Gencode :Affixed Pin locator for Actions
 		if(childEditPart instanceof InputPinInCallBeActEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.WEST);
 			getBorderedFigure().getBorderItemContainer().add(((InputPinInCallBeActEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
 
-		// Papyrus Gencode :Affixed Pin locator for Actions
+		//Papyrus Gencode :Affixed Pin locator for Actions
 		if(childEditPart instanceof OutputPinInCallBeActEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.EAST);
 			getBorderedFigure().getBorderItemContainer().add(((OutputPinInCallBeActEditPart)childEditPart).getFigure(), locator);

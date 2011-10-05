@@ -62,6 +62,7 @@ import org.eclipse.papyrus.diagram.activity.preferences.IActivityPreferenceConst
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.activity.providers.UMLParserProvider;
 import org.eclipse.papyrus.diagram.common.directedit.MultilineLabelDirectEditManager;
+import org.eclipse.papyrus.diagram.common.editparts.ILabelRoleProvider;
 import org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition;
 import org.eclipse.papyrus.diagram.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.diagram.common.figure.node.ILabelFigure;
@@ -82,7 +83,7 @@ import org.eclipse.ui.PlatformUI;
 /**
  * @generated
  */
-public class ControlFlowNameEditPart extends LabelEditPart implements ITextAwareEditPart {
+public class ControlFlowNameEditPart extends LabelEditPart implements ITextAwareEditPart, ILabelRoleProvider {
 
 	/**
 	 * @generated
@@ -762,6 +763,20 @@ public class ControlFlowNameEditPart extends LabelEditPart implements ITextAware
 	 */
 	protected IFigure createFigurePrim() {
 		return new SimpleLabel();
+	}
+
+	/**
+	 * @generated
+	 */
+	public String getLabelRole() {
+		return "Name";//$NON-NLS-1$
+	}
+
+	/**
+	 * @generated
+	 */
+	public String getIconPathRole() {
+		return "platform:/plugin/org.eclipse.papyrus.diagram.common/icons/label_role/name.png";//$NON-NLS-1$
 	}
 
 }

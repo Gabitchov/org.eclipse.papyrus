@@ -266,8 +266,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
-		// check if the type is an extended type, and then create directly the
-		// element...
+		// check if the type is an extended type, and then create directly the element...
 		IElementType type = req.getElementType();
 		if(type instanceof IExtendedHintedElementType) {
 			IElementEditService provider = ElementEditServiceUtils.getCommandProvider(req.getContainer());
@@ -519,11 +518,9 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 						return false;
 					}
 					/*
-					 * rule validateJoinNode_validateIncomingObjectFlow : We do
-					 * not prevent creation of an outgoing ObjectFlow even if
-					 * there is no incoming ObjectFlow. We let the possibility
-					 * that the user intends to add an incoming ObjectFlow
-					 * later.
+					 * rule validateJoinNode_validateIncomingObjectFlow :
+					 * We do not prevent creation of an outgoing ObjectFlow even if there is no incoming ObjectFlow.
+					 * We let the possibility that the user intends to add an incoming ObjectFlow later.
 					 */
 				}
 				if(source instanceof ForkNode) {
@@ -531,13 +528,12 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 					ActivityEdge outgoingControlFlow = source.getOutgoing(null, true, UMLPackage.eINSTANCE.getControlFlow());
 					ActivityEdge incomingControlFlow = source.getIncoming(null, true, UMLPackage.eINSTANCE.getControlFlow());
 					if(outgoingControlFlow != null || incomingControlFlow != null) {
-						// there is a ControlFlow which means there must be no
-						// ObjectFlow
+						// there is a ControlFlow which means there must be no ObjectFlow
 						return false;
 					}
 				}
 				if(source instanceof MergeNode) {
-					// rule validateMergeNode_validateOneOutgoingEdge
+					//rule validateMergeNode_validateOneOutgoingEdge
 					if(!source.getOutgoings().isEmpty()) {
 						return false;
 					}
@@ -545,25 +541,21 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 					ActivityEdge outgoingControlFlow = source.getOutgoing(null, true, UMLPackage.eINSTANCE.getControlFlow());
 					ActivityEdge incomingControlFlow = source.getIncoming(null, true, UMLPackage.eINSTANCE.getControlFlow());
 					if(outgoingControlFlow != null || incomingControlFlow != null) {
-						// there is a ControlFlow which means there must be no
-						// ObjectFlow
+						// there is a ControlFlow which means there must be no ObjectFlow
 						return false;
 					}
 				}
 				if(source instanceof DecisionNode) {
-					// rule validateDecisionNode_validateEdges on source
-					// Decision node
+					// rule validateDecisionNode_validateEdges on source Decision node
 					ActivityEdge outgoingControlFlow = source.getOutgoing(null, true, UMLPackage.eINSTANCE.getControlFlow());
 					ActivityEdge incomingControlFlow = source.getIncoming(null, true, UMLPackage.eINSTANCE.getControlFlow());
 					if(outgoingControlFlow != null || incomingControlFlow != null) {
-						// there is a ControlFlow which means there must be no
-						// ObjectFlow
+						// there is a ControlFlow which means there must be no ObjectFlow
 						return false;
 					}
 				}
 				if(source instanceof ActivityParameterNode) {
-					// rule
-					// validateActivityParameterNode_validateIncomingOrOutgoing
+					// rule validateActivityParameterNode_validateIncomingOrOutgoing
 					EList<ActivityEdge> incomings = source.getIncomings();
 					if(!incomings.isEmpty()) {
 						return false;
@@ -578,8 +570,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 					}
 				}
 				if(target instanceof OutputPin) {
-					// rule
-					// validateOutputPin_validateIncomingEdgesStructuredOnly
+					// rule validateOutputPin_validateIncomingEdgesStructuredOnly
 					if(target.getOwner() instanceof StructuredActivityNode) {
 						if(source != null && !target.getOwner().equals(source.getInStructuredNode())) {
 							return false;
@@ -596,8 +587,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 					// rule validateJoinNode_validateIncomingObjectFlow
 					ActivityEdge outgoingControlFlow = target.getOutgoing(null, true, UMLPackage.eINSTANCE.getControlFlow());
 					if(outgoingControlFlow != null) {
-						// the outgoing edge is a ControlFlow which means there
-						// must be no incoming ObjectFlow
+						// the outgoing edge is a ControlFlow which means there must be no incoming ObjectFlow
 						return false;
 					}
 				}
@@ -610,8 +600,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 					ActivityEdge outgoingControlFlow = target.getOutgoing(null, true, UMLPackage.eINSTANCE.getControlFlow());
 					ActivityEdge incomingControlFlow = target.getIncoming(null, true, UMLPackage.eINSTANCE.getControlFlow());
 					if(outgoingControlFlow != null || incomingControlFlow != null) {
-						// there is a ControlFlow which means there must be no
-						// ObjectFlow
+						// there is a ControlFlow which means there must be no ObjectFlow
 						return false;
 					}
 				}
@@ -620,8 +609,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 					ActivityEdge outgoingControlFlow = target.getOutgoing(null, true, UMLPackage.eINSTANCE.getControlFlow());
 					ActivityEdge incomingControlFlow = target.getIncoming(null, true, UMLPackage.eINSTANCE.getControlFlow());
 					if(outgoingControlFlow != null || incomingControlFlow != null) {
-						// there is a ControlFlow which means there must be no
-						// ObjectFlow
+						// there is a ControlFlow which means there must be no ObjectFlow
 						return false;
 					}
 				}
@@ -631,27 +619,25 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 						// no more than two incoming edges
 						return false;
 					}
-					// rule validateDecisionNode_validateEdges on target
-					// Decision node
+					// rule validateDecisionNode_validateEdges on target Decision node
 					ActivityEdge outgoingControlFlow = target.getOutgoing(null, true, UMLPackage.eINSTANCE.getControlFlow());
 					ActivityEdge incomingControlFlow = target.getIncoming(null, true, UMLPackage.eINSTANCE.getControlFlow());
 					if(outgoingControlFlow != null || incomingControlFlow != null) {
 						/*
 						 * There is a ControlFlow which means there must be no
-						 * ObjectFlow but the decision flow itself. We let the
-						 * user insert up to one ObjectFlow for being able to
-						 * select the decision flow among existing input flows.
+						 * ObjectFlow but the decision flow itself.
+						 * We let the user insert up to one ObjectFlow for being
+						 * able to select the decision flow among existing
+						 * input flows.
 						 */
 						if(target.getIncoming(null, true, UMLPackage.eINSTANCE.getObjectFlow()) != null) {
-							// there is already an object flow which is intended
-							// to become the decision flow
+							// there is already an object flow which is intended to become the decision flow
 							return false;
 						}
 					}
 				}
 				if(target instanceof ActivityParameterNode) {
-					// rule
-					// validateActivityParameterNode_validateIncomingOrOutgoing
+					// rule validateActivityParameterNode_validateIncomingOrOutgoing
 					EList<ActivityEdge> outgoings = target.getOutgoings();
 					if(!outgoings.isEmpty()) {
 						return false;
@@ -707,13 +693,12 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 					ActivityEdge outgoingObjectFlow = source.getOutgoing(null, true, UMLPackage.eINSTANCE.getObjectFlow());
 					ActivityEdge incomingObjectFlow = source.getIncoming(null, true, UMLPackage.eINSTANCE.getObjectFlow());
 					if(outgoingObjectFlow != null || incomingObjectFlow != null) {
-						// there is an ObjectFlow which means there must be no
-						// ControlFlow
+						// there is an ObjectFlow which means there must be no ControlFlow
 						return false;
 					}
 				}
 				if(source instanceof MergeNode) {
-					// rule validateMergeNode_validateOneOutgoingEdge
+					//rule validateMergeNode_validateOneOutgoingEdge
 					if(!source.getOutgoings().isEmpty()) {
 						return false;
 					}
@@ -721,14 +706,12 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 					ActivityEdge outgoingObjectFlow = source.getOutgoing(null, true, UMLPackage.eINSTANCE.getObjectFlow());
 					ActivityEdge incomingObjectFlow = source.getIncoming(null, true, UMLPackage.eINSTANCE.getObjectFlow());
 					if(outgoingObjectFlow != null || incomingObjectFlow != null) {
-						// there is an ObjectFlow which means there must be no
-						// ControlFlow
+						// there is an ObjectFlow which means there must be no ControlFlow
 						return false;
 					}
 				}
 				if(source instanceof DecisionNode) {
-					// rule validateDecisionNode_validateEdges on source
-					// Decision node
+					// rule validateDecisionNode_validateEdges on source Decision node
 					ActivityEdge outgoingObjectFlow = source.getOutgoing(null, true, UMLPackage.eINSTANCE.getObjectFlow());
 					int incomingObjectFlowNumber = 0;
 					for(ActivityEdge incomingEdge : source.getIncomings()) {
@@ -737,9 +720,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 						}
 					}
 					if(outgoingObjectFlow != null || incomingObjectFlowNumber > 1) {
-						// there is an ObjectFlow (not intended for
-						// decisionInputFlow) which means there must be no
-						// ControlFlow
+						// there is an ObjectFlow (not intended for decisionInputFlow) which means there must be no ControlFlow
 						return false;
 					}
 				}
@@ -750,8 +731,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 					}
 				}
 				if(target instanceof OutputPin) {
-					// rule
-					// validateOutputPin_validateIncomingEdgesStructuredOnly
+					// rule validateOutputPin_validateIncomingEdgesStructuredOnly
 					if(target.getOwner() instanceof StructuredActivityNode) {
 						if(source != null && !target.getOwner().equals(source.getInStructuredNode())) {
 							return false;
@@ -773,8 +753,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 					ActivityEdge outgoingObjectFlow = target.getOutgoing(null, true, UMLPackage.eINSTANCE.getObjectFlow());
 					ActivityEdge incomingObjectFlow = target.getIncoming(null, true, UMLPackage.eINSTANCE.getObjectFlow());
 					if(outgoingObjectFlow != null || incomingObjectFlow != null) {
-						// there is an ObjectFlow which means there must be no
-						// ControlFlow
+						// there is an ObjectFlow which means there must be no ControlFlow
 						return false;
 					}
 				}
@@ -783,8 +762,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 					ActivityEdge outgoingObjectFlow = target.getOutgoing(null, true, UMLPackage.eINSTANCE.getObjectFlow());
 					ActivityEdge incomingObjectFlow = target.getIncoming(null, true, UMLPackage.eINSTANCE.getObjectFlow());
 					if(outgoingObjectFlow != null || incomingObjectFlow != null) {
-						// there is an ObjectFlow which means there must be no
-						// ControlFlow
+						// there is an ObjectFlow which means there must be no ControlFlow
 						return false;
 					}
 				}
@@ -794,8 +772,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 						// no more than two incoming edges
 						return false;
 					}
-					// rule validateDecisionNode_validateEdges on target
-					// Decision node
+					// rule validateDecisionNode_validateEdges on target Decision node
 					ActivityEdge outgoingObjectFlow = target.getOutgoing(null, true, UMLPackage.eINSTANCE.getObjectFlow());
 					ActivityEdge incomingObjectFlow = null;
 					for(ActivityEdge incomingEdge : target.getIncomings()) {
@@ -805,8 +782,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 						}
 					}
 					if(outgoingObjectFlow != null || incomingObjectFlow != null) {
-						// there is an ObjectFlow which means there must be no
-						// ControlFlow
+						// there is an ObjectFlow which means there must be no ControlFlow
 						return false;
 					}
 				}

@@ -757,6 +757,20 @@ extends LabelEditPart implements ITextAwareEditPart, IBorderItemEditPart, IPapyr
 	}
 
 	/**
+	 * @generated
+	 */
+	public String getLabelRole() {
+		return "Stereotype";//$NON-NLS-1$
+	}
+
+	/**
+	 * @generated
+	 */
+	public String getIconPathRole() {
+		return "platform:/plugin/org.eclipse.papyrus.diagram.common/icons/stereotype.gif";//$NON-NLS-1$
+	}
+
+	/**
 	 * @generated NOT
 	 */
 	public IFigure getPrimaryShape() {
