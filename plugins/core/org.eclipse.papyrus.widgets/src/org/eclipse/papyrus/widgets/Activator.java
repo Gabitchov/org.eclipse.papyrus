@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,6 +11,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.widgets;
 
+import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.papyrus.log.LogHelper;
 import org.eclipse.swt.graphics.Image;
@@ -105,6 +106,39 @@ public class Activator extends AbstractUIPlugin {
 			image = registry.get(key);
 		}
 		return image;
+	}
+
+	/**
+	 * Returns the image from the given image location
+	 * 
+	 * @param pluginId
+	 *        The plugin in which the image is located
+	 * @param path
+	 *        The path to the image from the plugin
+	 * @return
+	 *         The Image Descriptor at the given location, or null if it
+	 *         couldn't be found
+	 */
+	public ImageDescriptor getImageDescriptor(String pluginId, String path){
+		final ImageRegistry registry = getImageRegistry();
+		String key = pluginId + "/" + path; //$NON-NLS-1$
+		ImageDescriptor descriptor = registry.getDescriptor(key);
+		if(descriptor == null) {
+			registry.put(key, AbstractUIPlugin.imageDescriptorFromPlugin(pluginId, path));
+			descriptor = registry.getDescriptor(key);
+		}
+		return descriptor;
+	}
+
+	/**
+	 * Returns the image descriptor at the given path from this plugin
+	 * 
+	 * @param path
+	 *        the path of the image to be displayed
+	 * @return The ImageDescriptor at the given location, or null if it couldn't be found
+	 */
+	public ImageDescriptor getImageDescriptor(String path) {
+		return getImageDescriptor(PLUGIN_ID, path);
 	}
 
 	/**

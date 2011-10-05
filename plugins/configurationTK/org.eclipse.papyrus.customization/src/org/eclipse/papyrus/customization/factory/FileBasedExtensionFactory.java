@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -13,9 +13,10 @@ package org.eclipse.papyrus.customization.factory;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 
 import org.eclipse.papyrus.customization.Activator;
 import org.eclipse.papyrus.customization.model.customization.CustomizableElement;
@@ -69,7 +70,6 @@ public class FileBasedExtensionFactory implements ExtensionFactory {
 		}
 
 		try {
-			//System.out.println("TargetFile : " + targetFile.getAbsolutePath());
 			copy(new FileInputStream(sourceFile), targetFile);
 		} catch (IOException ex) {
 			Activator.log.error(ex);
@@ -85,6 +85,7 @@ public class FileBasedExtensionFactory implements ExtensionFactory {
 	protected String getFileName(FileBasedCustomizableElement element) {
 		String path = element.getFile();
 		String fileName;
+		path = path.replace("\\", "/");
 		if(path.indexOf("/") < 0) { //$NON-NLS-1$
 			fileName = path;
 		} else {
@@ -98,7 +99,7 @@ public class FileBasedExtensionFactory implements ExtensionFactory {
 			target.getParentFile().mkdirs();
 		}
 
-		FileWriter out = new FileWriter(target);
+		OutputStream out = new FileOutputStream(target);
 		try {
 			int c;
 

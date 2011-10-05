@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,11 +11,17 @@
  *****************************************************************************/
 package org.eclipse.papyrus.customization.factory;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+
+import org.eclipse.papyrus.customization.Activator;
 import org.eclipse.papyrus.customization.messages.Messages;
 import org.eclipse.papyrus.customization.model.customization.CustomizableElement;
 import org.eclipse.papyrus.customization.model.customization.FileBasedCustomizableElement;
 import org.eclipse.papyrus.customization.model.customization.Profile;
 import org.eclipse.papyrus.customization.plugin.PluginEditor;
+import org.eclipse.papyrus.widgets.util.FileUtil;
 import org.w3c.dom.Element;
 
 
@@ -44,7 +50,9 @@ public class ProfileExtensionFactory extends FileBasedExtensionFactory {
 		}
 
 		if(profile.getIconpath() != null) {
-			extension.setAttribute("iconpath", profile.getIconpath()); //$NON-NLS-1$
+			//extension.setAttribute("iconpath", profile.getIconpath()); //$NON-NLS-1$
+			copyIcon(profile.getIconpath(), editor);
+			extension.setAttribute("iconpath", getIconPath(profile.getIconpath())); //$NON-NLS-1$
 		}
 
 		if(profile.getProvider() != null) {
@@ -52,6 +60,37 @@ public class ProfileExtensionFactory extends FileBasedExtensionFactory {
 		}
 
 		return extension;
+	}
+
+	protected void copyIcon(String path, PluginEditor editor) {
+		File sourceFile = FileUtil.getFile(path);
+		File targetFile = FileUtil.getWorkspaceFile("/" + editor.getProject().getName() + "/" + getIconPath(path)); //$NON-NLS-1$ //$NON-NLS-2$
+		if(!targetFile.getParentFile().exists()) {
+			targetFile.getParentFile().mkdirs();
+		}
+
+		try {
+			copy(new FileInputStream(sourceFile), targetFile);
+		} catch (IOException ex) {
+			Activator.log.error(ex);
+		}
+
+		editor.getBuildEditor().addToBuild("icons/"); //$NON-NLS-1$
+	}
+
+	protected String getIconPath(String path) {
+		return "icons/" + getFileName(path); //$NON-NLS-1$
+	}
+
+	protected String getFileName(String path) {
+		String fileName;
+		path = path.replace("\\", "/");
+		if(path.indexOf("/") < 0) { //$NON-NLS-1$
+			fileName = path;
+		} else {
+			fileName = path.substring(path.lastIndexOf("/") + 1, path.length()); //$NON-NLS-1$
+		}
+		return fileName;
 	}
 
 	@Override

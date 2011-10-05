@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -66,10 +66,6 @@ public class PluginEditor extends PluginProjectEditor implements IPluginProjectE
 		build.addToBuild(path);
 	}
 
-	public boolean isRegistred(String path) {
-		return build.isRegistred(path);
-	}
-
 	public String[] getSourceFolders() {
 		return build.getSourceFolders();
 	}
@@ -119,5 +115,33 @@ public class PluginEditor extends PluginProjectEditor implements IPluginProjectE
 		super.save();
 		manifest.save();
 		build.save();
+	}
+
+	public void registerBinFolder(String binFolder) {
+		build.registerBinFolder(binFolder);
+	}
+
+	public void removeFromBuild(String path) {
+		build.removeFromBuild(path);
+	}
+
+	public boolean isRegisteredSourceFolder(String path) {
+		return build.isRegisteredSourceFolder(path);
+	}
+
+	public boolean isRegisteredBinFolder(String binFolder) {
+		return build.isRegisteredBinFolder(binFolder);
+	}
+
+	public String[] getElementsInBuild() {
+		return build.getElementsInBuild();
+	}
+
+	public String getBundleVendor() {
+		return manifest.getBundleVendor();
+	}
+
+	public void setBundleVendor(String vendor) {
+		manifest.setBundleVendor(vendor);
 	}
 }

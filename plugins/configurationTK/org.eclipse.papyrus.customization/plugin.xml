@@ -21,7 +21,7 @@
       <wizard
             category="org.eclipse.papyrus.wizards.category"
             class="org.eclipse.papyrus.customization.wizard.CreateNewCustomizationPluginWizard"
-            icon="icons/papyrus.png"
+            icon="icons/16-config.png"
             id="org.eclipse.papyrus.customization.wizard"
             name="%wizard.name">
       </wizard>
@@ -32,6 +32,12 @@
             contextModel="Model/Customization/Customization.ctx"
             loadDefault="true">
       </context>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.properties.environment">
+      <environment
+            environmentModel="Model/Environment.xmi">
+      </environment>
    </extension>
 
 </plugin>

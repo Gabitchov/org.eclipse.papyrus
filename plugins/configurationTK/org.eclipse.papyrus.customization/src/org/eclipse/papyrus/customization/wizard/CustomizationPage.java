@@ -39,7 +39,9 @@ public class CustomizationPage extends WizardPage {
 	}
 
 	protected CustomizationPage(CustomizationConfiguration configuration) {
-		super(Messages.CustomizationPage_Customization);
+		super(Messages.CustomizationPage_Customization);//, null, org.eclipse.papyrus.widgets.Activator.getDefault().getImageDescriptor("icons/papyrus.png"));
+		setDescription("Select your customization configuration files");
+		setTitle(Messages.CustomizationPage_Customization);
 		this.configuration = configuration;
 	}
 

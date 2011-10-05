@@ -185,7 +185,7 @@
   <dataContexts name="customization" label="customization">
     <elements name="CustomizationConfiguration">
       <properties name="plugin"/>
-      <properties name="elements" type="Reference" multiplicity="-1"/>
+      <properties name="elements" label="Configuration elements" type="Reference" multiplicity="-1"/>
     </elements>
     <elements name="CustomizableElement"/>
     <elements name="FileBasedCustomizableElement">
@@ -214,6 +214,6 @@
       <properties name="description"/>
       <properties name="provider"/>
     </elements>
-    <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.properties/model/Environment.xmi#//@modelElementFactories.0"/>
+    <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.customization/Model/Environment.xmi#//@modelElementFactories.0"/>
   </dataContexts>
 </contexts:Context>
