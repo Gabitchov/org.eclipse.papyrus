@@ -54,7 +54,7 @@ public class DeleteFromDiagramCommandHandler extends GraphicalCommandHandler imp
 		}
 
 		if(!supportViews(editParts) || isCanonical(editParts)) {
-			return null;
+			return UnexecutableCommand.INSTANCE;
 		}
 
 		CompoundCommand command = new CompoundCommand("Delete From Diagram");

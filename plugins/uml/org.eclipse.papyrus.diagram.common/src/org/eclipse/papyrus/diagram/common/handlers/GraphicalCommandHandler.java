@@ -87,8 +87,9 @@ public abstract class GraphicalCommandHandler extends AbstractHandler {
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
 		TransactionalEditingDomain editingDomain = getEditingDomain();
-		if(editingDomain != null) {
-			editingDomain.getCommandStack().execute(new GEFtoEMFCommandWrapper(getCommand()));
+		Command command = getCommand();
+		if(editingDomain != null && command != null) {
+			editingDomain.getCommandStack().execute(new GEFtoEMFCommandWrapper(command));
 		}
 
 		return null;
@@ -103,7 +104,8 @@ public abstract class GraphicalCommandHandler extends AbstractHandler {
 	public boolean isEnabled() {
 
 		try {
-			if(getCommand().canExecute()) {
+			Command command = getCommand();
+			if(command != null && command.canExecute()) {
 				return true;
 			}
 		} catch (ExecutionException e) {
@@ -118,15 +120,7 @@ public abstract class GraphicalCommandHandler extends AbstractHandler {
 	 * @return true if the command can be executed
 	 */
 	public boolean isVisible() {
-		try {
-			if(getCommand().canExecute()) {
-				return true;
-			}
-		} catch (ExecutionException e) {
-			e.printStackTrace();
-		}
-
-		return false;
+		return isEnabled();
 	}
 
 	/**
