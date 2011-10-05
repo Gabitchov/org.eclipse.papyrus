@@ -9614,7 +9614,7 @@
         iD="org.eclipse.papyrus.diagram.activity"
         name="Papyrus activity editor Plugin"
         provider="Papyrus"
-        version="0.8.1.qualifier">
+        version="0.9.0.qualifier">
       <requiredPlugins>org.eclipse.draw2d</requiredPlugins>
       <requiredPlugins>org.eclipse.papyrus.diagram.common</requiredPlugins>
       <requiredPlugins>org.eclipse.gmf.runtime.draw2d.ui</requiredPlugins>
@@ -16826,5 +16826,58 @@
         genView="/0/@diagram/@childNodes.51"
         name="BorderNamedElementEditPart"
         superOwnedEditPart="org.eclipse.papyrus.diagram.common.editparts.BorderNamedElementEditPart"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:LabelVisibilityPreference"
+        comment="HiddenName"
+        role="Name"
+        iconPathRole="platform:/plugin/org.eclipse.papyrus.diagram.common/icons/label_role/name.png"
+        linkLabels="/0/@diagram/@links.2/@labels.0 /0/@diagram/@links.3/@labels.0"
+        visibleByDefault="false"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:LabelVisibilityPreference"
+        comment="Name"
+        role="Name"
+        iconPathRole="platform:/plugin/org.eclipse.papyrus.diagram.common/icons/label_role/name.png"
+        externalNodeLabels="/0/@diagram/@childNodes.71/@labels.0"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:LabelVisibilityPreference"
+        comment="HiddenWeight"
+        role="Weight"
+        linkLabels="/0/@diagram/@links.2/@labels.1 /0/@diagram/@links.3/@labels.1"
+        visibleByDefault="false"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:LabelVisibilityPreference"
+        comment="Guard"
+        role="Guard"
+        linkLabels="/0/@diagram/@links.3/@labels.2"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:LabelVisibilityPreference"
+        comment="HiddenGuard"
+        role="Guard"
+        linkLabels="/0/@diagram/@links.2/@labels.5"
+        visibleByDefault="false"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:LabelVisibilityPreference"
+        comment="Stereotype"
+        role="Stereotype"
+        iconPathRole="platform:/plugin/org.eclipse.papyrus.diagram.common/icons/stereotype.gif"
+        linkLabels="/0/@diagram/@links.2/@labels.6 /0/@diagram/@links.3/@labels.3"
+        externalNodeLabels="/0/@diagram/@childNodes.3/@labels.0 /0/@diagram/@childNodes.4/@labels.0 /0/@diagram/@childNodes.5/@labels.0 /0/@diagram/@childNodes.7/@labels.2 /0/@diagram/@childNodes.8/@labels.2 /0/@diagram/@childNodes.9/@labels.1 /0/@diagram/@childNodes.10/@labels.1 /0/@diagram/@childNodes.12/@labels.2 /0/@diagram/@childNodes.13/@labels.2 /0/@diagram/@childNodes.14/@labels.1 /0/@diagram/@childNodes.15/@labels.1 /0/@diagram/@childNodes.17/@labels.2 /0/@diagram/@childNodes.18/@labels.2 /0/@diagram/@childNodes.19/@labels.1 /0/@diagram/@childNodes.20/@labels.1 /0/@diagram/@childNodes.21/@labels.2 /0/@diagram/@childNodes.22/@labels.2 /0/@diagram/@childNodes.23/@labels.1 /0/@diagram/@childNodes.32/@labels.1 /0/@diagram/@childNodes.33/@labels.0 /0/@diagram/@childNodes.34/@labels.0 /0/@diagram/@childNodes.35/@labels.1 /0/@diagram/@childNodes.38/@labels.2 /0/@diagram/@childNodes.39/@labels.2 /0/@diagram/@childNodes.40/@labels.1 /0/@diagram/@childNodes.41/@labels.2 /0/@diagram/@childNodes.42/@labels.2 /0/@diagram/@childNodes.43/@labels.1 /0/@diagram/@childNodes.45/@labels.2 /0/@diagram/@childNodes.46/@labels.2 /0/@diagram/@childNodes.47/@labels.1 /0/@diagram/@childNodes.48/@labels.2 /0/@diagram/@childNodes.49/@labels.2 /0/@diagram/@childNodes.50/@labels.1 /0/@diagram/@childNodes.52/@labels.2 /0/@diagram/@childNodes.53/@labels.1 /0/@diagram/@childNodes.55/@labels.1 /0/@diagram/@childNodes.67/@labels.1 /0/@diagram/@childNodes.70/@labels.1 /0/@diagram/@childNodes.73/@labels.1 /0/@diagram/@childNodes.76/@labels.1 /0/@diagram/@childNodes.77/@labels.1 /0/@diagram/@childNodes.78/@labels.1 /0/@diagram/@childNodes.80/@labels.1 /0/@diagram/@childNodes.82/@labels.1 /0/@diagram/@childNodes.84/@labels.1 /0/@diagram/@childNodes.85/@labels.1 /0/@diagram/@childNodes.87/@labels.2"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:LabelVisibilityPreference"
+        comment="Selection"
+        role="Selection"
+        linkLabels="/0/@diagram/@links.2/@labels.2"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:LabelVisibilityPreference"
+        comment="Transformation"
+        role="Transformation"
+        linkLabels="/0/@diagram/@links.2/@labels.3"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:LabelVisibilityPreference"
+        comment="DecisionInputFlow"
+        role="DecisionInputFlow"
+        iconPathRole=""
+        linkLabels="/0/@diagram/@links.2/@labels.4"/>
   </papyrusgmfgenextension:PapyrusExtensionRootNode>
 </xmi:XMI>

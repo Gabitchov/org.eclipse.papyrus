@@ -3549,6 +3549,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		location6010.setX(0);
 		location6010.setY(-20);
 
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(edge, prefStore, "ObjectFlow");
+
 		return edge;
 	}
 
@@ -3601,6 +3603,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location6011 = (Location)label6011.getLayoutConstraint();
 		location6011.setX(0);
 		location6011.setY(-20);
+
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(edge, prefStore, "ControlFlow");
 
 		return edge;
 	}
