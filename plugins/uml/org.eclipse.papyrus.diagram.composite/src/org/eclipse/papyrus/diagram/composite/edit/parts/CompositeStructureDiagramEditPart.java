@@ -50,8 +50,6 @@ public class CompositeStructureDiagramEditPart extends DiagramEditPart {
 	 */
 	public static final int VISUAL_ID = 1000;
 
-
-
 	/**
 	 * @generated
 	 */
@@ -72,7 +70,6 @@ public class CompositeStructureDiagramEditPart extends DiagramEditPart {
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE);
 	}
-
 
 	/**
 	 * @generated
@@ -104,7 +101,6 @@ public class CompositeStructureDiagramEditPart extends DiagramEditPart {
 		}
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -121,10 +117,6 @@ public class CompositeStructureDiagramEditPart extends DiagramEditPart {
 		}
 	}
 
-
-
-
-
 	/**
 	 * @generated
 	 */
@@ -140,7 +132,6 @@ public class CompositeStructureDiagramEditPart extends DiagramEditPart {
 		}
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -151,7 +142,5 @@ public class CompositeStructureDiagramEditPart extends DiagramEditPart {
 		}
 		return super.getAdapter(adapter);
 	}
-
-
 
 }

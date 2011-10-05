@@ -73,9 +73,6 @@ public class ExpressionItemSemanticEditPolicy extends UMLBaseItemSemanticEditPol
 		super(UMLElementTypes.Expression_2103);
 	}
 
-
-
-
 	/**
 	 * @generated
 	 */
@@ -92,7 +89,6 @@ public class ExpressionItemSemanticEditPolicy extends UMLBaseItemSemanticEditPol
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
-
 
 	/**
 	 * @generated

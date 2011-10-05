@@ -46,8 +46,10 @@ import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeNodeLabe
 import org.eclipse.papyrus.diagram.common.editpolicies.HyperLinkPopupBarEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.QualifiedNameDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper;
+import org.eclipse.papyrus.diagram.composite.custom.edit.parts.ConstrainedNamedElementEditPart;
 import org.eclipse.papyrus.diagram.composite.custom.edit.policies.CollaborationRoleItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.composite.custom.edit.policies.GraphicalNodeEditPolicy;
+import org.eclipse.papyrus.diagram.composite.custom.edit.policies.NoScrollBehaviorResizableShapeEditPolicy;
 import org.eclipse.papyrus.diagram.composite.custom.figures.CollaborationRoleFigure;
 import org.eclipse.papyrus.diagram.composite.edit.policies.CollaborationRoleItemSemanticEditPolicyCN;
 import org.eclipse.papyrus.diagram.composite.part.UMLDiagramEditorPlugin;
@@ -62,8 +64,7 @@ import org.eclipse.swt.graphics.Color;
  */
 public class CollaborationRoleEditPartCN extends
 
-
-NamedElementEditPart {
+ConstrainedNamedElementEditPart {
 
 	/**
 	 * @generated
@@ -99,12 +100,10 @@ NamedElementEditPart {
 		installEditPolicy(QualifiedNameDisplayEditPolicy.QUALIFIED_NAME_POLICY, new QualifiedNameDisplayEditPolicy());
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
 		installEditPolicy(EditPolicyRoles.POPUPBAR_ROLE, new HyperLinkPopupBarEditPolicy());
+		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new NoScrollBehaviorResizableShapeEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
-
-
-
 
 	/**
 	 * Papyrus codeGen
@@ -115,10 +114,6 @@ NamedElementEditPart {
 		super.handleNotificationEvent(event);
 
 	}
-
-
-
-
 
 	/**
 	 * @generated
@@ -168,10 +163,8 @@ NamedElementEditPart {
 			return true;
 		}
 
-
 		return false;
 	}
-
 
 	/**
 	 * @generated
@@ -210,7 +203,6 @@ NamedElementEditPart {
 		return getContentPane();
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -223,7 +215,6 @@ NamedElementEditPart {
 
 		return result;
 	}
-
 
 	/**
 	 * Creates figure for this edit part.
@@ -5085,10 +5076,6 @@ NamedElementEditPart {
 		}
 		return types;
 	}
-
-
-
-
 
 	/**
 	 * @generated

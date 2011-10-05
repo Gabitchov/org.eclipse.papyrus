@@ -73,9 +73,6 @@ public class InteractionConstraintItemSemanticEditPolicyCN extends UMLBaseItemSe
 		super(UMLElementTypes.InteractionConstraint_3119);
 	}
 
-
-
-
 	/**
 	 * @generated
 	 */
@@ -92,7 +89,6 @@ public class InteractionConstraintItemSemanticEditPolicyCN extends UMLBaseItemSe
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
-
 
 	/**
 	 * @generated

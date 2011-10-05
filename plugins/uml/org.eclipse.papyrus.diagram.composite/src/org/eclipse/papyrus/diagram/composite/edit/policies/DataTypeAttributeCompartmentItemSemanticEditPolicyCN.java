@@ -30,7 +30,6 @@ public class DataTypeAttributeCompartmentItemSemanticEditPolicyCN extends UMLBas
 		super(UMLElementTypes.DataType_3080);
 	}
 
-
 	/**
 	 * @generated
 	 */

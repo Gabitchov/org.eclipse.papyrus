@@ -55,8 +55,10 @@ import org.eclipse.papyrus.diagram.common.editpolicies.QualifiedNameDisplayEditP
 import org.eclipse.papyrus.diagram.common.editpolicies.ShowHideClassifierContentsEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.ShowHideCompartmentEditPolicy;
 import org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper;
+import org.eclipse.papyrus.diagram.composite.custom.edit.parts.ConstrainedNamedElementEditPart;
 import org.eclipse.papyrus.diagram.composite.custom.edit.policies.CustomDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.diagram.composite.custom.edit.policies.EncapsulatedClassifierResizableShapeEditPolicy;
+import org.eclipse.papyrus.diagram.composite.custom.edit.policies.NoScrollBehaviorResizableShapeEditPolicy;
 import org.eclipse.papyrus.diagram.composite.custom.edit.policies.RemoveOrphanViewPolicy;
 import org.eclipse.papyrus.diagram.composite.custom.edit.policies.StructuredClassifierLayoutEditPolicy;
 import org.eclipse.papyrus.diagram.composite.custom.figures.DeviceCompositeFigure;
@@ -74,8 +76,7 @@ import org.eclipse.swt.graphics.Color;
  */
 public class DeviceCompositeEditPartCN extends
 
-
-NamedElementEditPart {
+ConstrainedNamedElementEditPart {
 
 	/**
 	 * @generated
@@ -117,13 +118,10 @@ NamedElementEditPart {
 		installEditPolicy(ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY, new ShowHideCompartmentEditPolicy());
 		installEditPolicy(AffixedNodeAlignmentEditPolicy.AFFIXED_CHILD_ALIGNMENT_ROLE, new AffixedNodeAlignmentEditPolicy());
 		installEditPolicy("REMOVE_ORPHAN_VIEW", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
+		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new NoScrollBehaviorResizableShapeEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
-		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new EncapsulatedClassifierResizableShapeEditPolicy());
 	}
-
-
-
 
 	/**
 	 * Papyrus codeGen
@@ -134,10 +132,6 @@ NamedElementEditPart {
 		super.handleNotificationEvent(event);
 
 	}
-
-
-
-
 
 	/**
 	 * @generated
@@ -194,17 +188,12 @@ NamedElementEditPart {
 			return true;
 		}
 
-
 		if(childEditPart instanceof DeviceCompositeCompartmentEditPartCN) {
 			IFigure pane = getPrimaryShape().getCompositeCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.add(((DeviceCompositeCompartmentEditPartCN)childEditPart).getFigure());
 			return true;
 		}
-
-
-
-
 
 		//Papyrus Gencode :Affixed Port locator
 		if(childEditPart instanceof PortEditPart) {
@@ -213,12 +202,8 @@ NamedElementEditPart {
 			return true;
 		}
 
-
-
-
 		return false;
 	}
-
 
 	/**
 	 * @generated
@@ -273,7 +258,6 @@ NamedElementEditPart {
 		return getContentPane();
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -286,7 +270,6 @@ NamedElementEditPart {
 
 		return result;
 	}
-
 
 	/**
 	 * Creates figure for this edit part.
@@ -5376,10 +5359,6 @@ NamedElementEditPart {
 		}
 		return types;
 	}
-
-
-
-
 
 	/**
 	 * @generated

@@ -73,9 +73,6 @@ public class TimeExpressionItemSemanticEditPolicy extends UMLBaseItemSemanticEdi
 		super(UMLElementTypes.TimeExpression_2102);
 	}
 
-
-
-
 	/**
 	 * @generated
 	 */
@@ -92,7 +89,6 @@ public class TimeExpressionItemSemanticEditPolicy extends UMLBaseItemSemanticEdi
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
-
 
 	/**
 	 * @generated

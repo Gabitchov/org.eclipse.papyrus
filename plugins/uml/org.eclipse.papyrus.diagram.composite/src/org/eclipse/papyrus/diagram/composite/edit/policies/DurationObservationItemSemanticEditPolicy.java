@@ -73,9 +73,6 @@ public class DurationObservationItemSemanticEditPolicy extends UMLBaseItemSemant
 		super(UMLElementTypes.DurationObservation_2093);
 	}
 
-
-
-
 	/**
 	 * @generated
 	 */
@@ -92,7 +89,6 @@ public class DurationObservationItemSemanticEditPolicy extends UMLBaseItemSemant
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
-
 
 	/**
 	 * @generated

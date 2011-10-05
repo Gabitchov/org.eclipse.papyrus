@@ -73,9 +73,6 @@ public class DurationIntervalItemSemanticEditPolicy extends UMLBaseItemSemanticE
 		super(UMLElementTypes.DurationInterval_2106);
 	}
 
-
-
-
 	/**
 	 * @generated
 	 */
@@ -92,7 +89,6 @@ public class DurationIntervalItemSemanticEditPolicy extends UMLBaseItemSemanticE
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
-
 
 	/**
 	 * @generated

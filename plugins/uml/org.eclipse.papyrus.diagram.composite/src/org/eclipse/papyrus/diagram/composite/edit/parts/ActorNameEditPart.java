@@ -108,8 +108,6 @@ public class ActorNameEditPart extends CompartmentEditPart implements ITextAware
 	 */
 	private String defaultText;
 
-
-
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
 	 * 
@@ -123,8 +121,6 @@ public class ActorNameEditPart extends CompartmentEditPart implements ITextAware
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
-
-
 
 	/**
 	 * @generated
@@ -589,8 +585,6 @@ public class ActorNameEditPart extends CompartmentEditPart implements ITextAware
 		return (View)getModel();
 	}
 
-
-
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
@@ -694,8 +688,6 @@ public class ActorNameEditPart extends CompartmentEditPart implements ITextAware
 		}
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -711,7 +703,6 @@ public class ActorNameEditPart extends CompartmentEditPart implements ITextAware
 		super.removeNotationalListeners();
 		removeListenerFilter("PrimaryView"); //$NON-NLS-1$
 	}
-
 
 	/**
 	 * @generated
@@ -759,13 +750,10 @@ public class ActorNameEditPart extends CompartmentEditPart implements ITextAware
 		return null;
 	}
 
-
-
 	/**
 	 * @generated
 	 */
 	private static final String ADD_PARENT_MODEL = "AddParentModel";
-
 
 	/**
 	 * @generated
@@ -792,7 +780,6 @@ public class ActorNameEditPart extends CompartmentEditPart implements ITextAware
 
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -800,6 +787,5 @@ public class ActorNameEditPart extends CompartmentEditPart implements ITextAware
 		removeListenerFilter(ADD_PARENT_MODEL);
 
 	}
-
 
 }

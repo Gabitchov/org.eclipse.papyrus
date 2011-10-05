@@ -73,10 +73,6 @@ public class InterfaceRealizationItemSemanticEditPolicy extends UMLBaseItemSeman
 		super(UMLElementTypes.InterfaceRealization_4005);
 	}
 
-
-
-
-
 	/**
 	 * @generated
 	 */

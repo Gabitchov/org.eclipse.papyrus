@@ -73,9 +73,6 @@ public class ConstraintItemSemanticEditPolicy extends UMLBaseItemSemanticEditPol
 		super(UMLElementTypes.Constraint_2114);
 	}
 
-
-
-
 	/**
 	 * @generated
 	 */
@@ -92,7 +89,6 @@ public class ConstraintItemSemanticEditPolicy extends UMLBaseItemSemanticEditPol
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
-
 
 	/**
 	 * @generated

@@ -60,7 +60,6 @@ public class ExecutionEnvironmentCompositeCompartmentItemSemanticEditPolicyCN ex
 		super(UMLElementTypes.ExecutionEnvironment_3083);
 	}
 
-
 	/**
 	 * @generated
 	 */

@@ -30,7 +30,6 @@ public class EnumerationEnumerationLiteralCompartmentItemSemanticEditPolicyCN ex
 		super(UMLElementTypes.Enumeration_3079);
 	}
 
-
 	/**
 	 * @generated
 	 */

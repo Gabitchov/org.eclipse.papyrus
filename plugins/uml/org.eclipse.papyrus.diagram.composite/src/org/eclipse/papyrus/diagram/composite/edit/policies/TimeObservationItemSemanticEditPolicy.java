@@ -73,9 +73,6 @@ public class TimeObservationItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 		super(UMLElementTypes.TimeObservation_2094);
 	}
 
-
-
-
 	/**
 	 * @generated
 	 */
@@ -92,7 +89,6 @@ public class TimeObservationItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
-
 
 	/**
 	 * @generated

@@ -80,7 +80,6 @@ public class ComponentCompositeItemSemanticEditPolicy extends UMLBaseItemSemanti
 		super(UMLElementTypes.Component_2069);
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -90,8 +89,6 @@ public class ComponentCompositeItemSemanticEditPolicy extends UMLBaseItemSemanti
 		}
 		return super.getCreateCommand(req);
 	}
-
-
 
 	/**
 	 * @generated
@@ -109,7 +106,6 @@ public class ComponentCompositeItemSemanticEditPolicy extends UMLBaseItemSemanti
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
-
 
 	/**
 	 * @generated

@@ -78,9 +78,6 @@ public class ActorItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 		super(UMLElementTypes.Actor_2077);
 	}
 
-
-
-
 	/**
 	 * @generated
 	 */
@@ -97,7 +94,6 @@ public class ActorItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
-
 
 	/**
 	 * @generated

@@ -93,8 +93,6 @@ import org.eclipse.ui.PlatformUI;
  */
 public class OperationEditPartCLN
 
-
-
 extends CompartmentEditPart
 
 implements ITextAwareEditPart, IPrimaryEditPart {
@@ -124,8 +122,6 @@ implements ITextAwareEditPart, IPrimaryEditPart {
 	 */
 	private String defaultText;
 
-
-
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
 	 * 
@@ -139,8 +135,6 @@ implements ITextAwareEditPart, IPrimaryEditPart {
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
-
-
 
 	/**
 	 * @generated
@@ -616,8 +610,6 @@ implements ITextAwareEditPart, IPrimaryEditPart {
 		return (View)getModel();
 	}
 
-
-
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
@@ -721,8 +713,6 @@ implements ITextAwareEditPart, IPrimaryEditPart {
 		}
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -738,8 +728,6 @@ implements ITextAwareEditPart, IPrimaryEditPart {
 		super.removeNotationalListeners();
 		removeListenerFilter("PrimaryView"); //$NON-NLS-1$
 	}
-
-
 
 	/**
 	 * @generated
@@ -792,14 +780,10 @@ implements ITextAwareEditPart, IPrimaryEditPart {
 		return new OperationFigureDescriptor();
 	}
 
-
 	/**
 	 * @generated
 	 */
 	public class OperationFigureDescriptor extends WrappingLabel {
-
-
-
 
 		/**
 		 * @generated
@@ -809,12 +793,7 @@ implements ITextAwareEditPart, IPrimaryEditPart {
 
 			this.setFont(THIS_FONT);
 
-
 		}
-
-
-
-
 
 	}
 
@@ -822,7 +801,5 @@ implements ITextAwareEditPart, IPrimaryEditPart {
 	 * @generated
 	 */
 	static final Font THIS_FONT = new Font(Display.getCurrent(), "Arial", 10, SWT.NORMAL);
-
-
 
 }

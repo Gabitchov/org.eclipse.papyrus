@@ -78,9 +78,6 @@ public class UseCaseItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPoli
 		super(UMLElementTypes.UseCase_3096);
 	}
 
-
-
-
 	/**
 	 * @generated
 	 */
@@ -97,7 +94,6 @@ public class UseCaseItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPoli
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
-
 
 	/**
 	 * @generated

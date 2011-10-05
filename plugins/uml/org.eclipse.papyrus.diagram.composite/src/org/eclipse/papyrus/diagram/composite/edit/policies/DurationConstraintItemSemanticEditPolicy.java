@@ -73,9 +73,6 @@ public class DurationConstraintItemSemanticEditPolicy extends UMLBaseItemSemanti
 		super(UMLElementTypes.DurationConstraint_2110);
 	}
 
-
-
-
 	/**
 	 * @generated
 	 */
@@ -92,7 +89,6 @@ public class DurationConstraintItemSemanticEditPolicy extends UMLBaseItemSemanti
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
-
 
 	/**
 	 * @generated

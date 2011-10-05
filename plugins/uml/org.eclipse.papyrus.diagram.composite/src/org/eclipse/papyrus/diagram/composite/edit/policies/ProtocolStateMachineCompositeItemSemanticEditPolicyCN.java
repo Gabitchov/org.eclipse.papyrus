@@ -81,7 +81,6 @@ public class ProtocolStateMachineCompositeItemSemanticEditPolicyCN extends UMLBa
 		super(UMLElementTypes.ProtocolStateMachine_3074);
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -94,8 +93,6 @@ public class ProtocolStateMachineCompositeItemSemanticEditPolicyCN extends UMLBa
 		}
 		return super.getCreateCommand(req);
 	}
-
-
 
 	/**
 	 * @generated
@@ -113,7 +110,6 @@ public class ProtocolStateMachineCompositeItemSemanticEditPolicyCN extends UMLBa
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
-
 
 	/**
 	 * @generated

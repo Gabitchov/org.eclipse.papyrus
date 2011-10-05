@@ -73,9 +73,6 @@ public class LiteralStringItemSemanticEditPolicy extends UMLBaseItemSemanticEdit
 		super(UMLElementTypes.LiteralString_2098);
 	}
 
-
-
-
 	/**
 	 * @generated
 	 */
@@ -92,7 +89,6 @@ public class LiteralStringItemSemanticEditPolicy extends UMLBaseItemSemanticEdit
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
-
 
 	/**
 	 * @generated

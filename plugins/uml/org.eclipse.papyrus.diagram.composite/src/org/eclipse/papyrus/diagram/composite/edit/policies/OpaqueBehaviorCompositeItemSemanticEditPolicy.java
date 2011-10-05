@@ -81,7 +81,6 @@ public class OpaqueBehaviorCompositeItemSemanticEditPolicy extends UMLBaseItemSe
 		super(UMLElementTypes.OpaqueBehavior_2065);
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -94,8 +93,6 @@ public class OpaqueBehaviorCompositeItemSemanticEditPolicy extends UMLBaseItemSe
 		}
 		return super.getCreateCommand(req);
 	}
-
-
 
 	/**
 	 * @generated
@@ -113,7 +110,6 @@ public class OpaqueBehaviorCompositeItemSemanticEditPolicy extends UMLBaseItemSe
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
-
 
 	/**
 	 * @generated

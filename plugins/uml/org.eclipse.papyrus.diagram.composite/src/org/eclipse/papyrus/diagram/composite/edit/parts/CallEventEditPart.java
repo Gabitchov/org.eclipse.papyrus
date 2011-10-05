@@ -102,10 +102,6 @@ ShapeNodeEditPart {
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
-
-
-
-
 	/**
 	 * @generated
 	 */
@@ -154,10 +150,8 @@ ShapeNodeEditPart {
 			return true;
 		}
 
-
 		return false;
 	}
-
 
 	/**
 	 * @generated
@@ -196,7 +190,6 @@ ShapeNodeEditPart {
 		return getContentPane();
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -209,7 +202,6 @@ ShapeNodeEditPart {
 
 		return result;
 	}
-
 
 	/**
 	 * Creates figure for this edit part.
@@ -5072,21 +5064,15 @@ ShapeNodeEditPart {
 		return types;
 	}
 
-
-
-
-
 	/**
 	 * @generated
 	 */
 	public class NamedElementDescriptor extends RectangleFigure {
 
-
 		/**
 		 * @generated
 		 */
 		private WrappingLabel fNamedElementNameLabel;
-
 
 		/**
 		 * @generated
@@ -5102,22 +5088,15 @@ ShapeNodeEditPart {
 		 */
 		private void createContents() {
 
-
 			fNamedElementNameLabel = new WrappingLabel();
 			fNamedElementNameLabel.setText("");
 			fNamedElementNameLabel.setForegroundColor(ColorConstants.black);
 
 			fNamedElementNameLabel.setFont(FNAMEDELEMENTNAMELABEL_FONT);
 
-
-
 			this.add(fNamedElementNameLabel);
 
-
 		}
-
-
-
 
 		/**
 		 * @generated
@@ -5138,8 +5117,6 @@ ShapeNodeEditPart {
 			myUseLocalCoordinates = useLocalCoordinates;
 		}
 
-
-
 		/**
 		 * @generated
 		 */
@@ -5147,16 +5124,12 @@ ShapeNodeEditPart {
 			return fNamedElementNameLabel;
 		}
 
-
 	}
 
 	/**
 	 * @generated
 	 */
 	static final Font FNAMEDELEMENTNAMELABEL_FONT = new Font(Display.getCurrent(), "Arial", 10, SWT.BOLD);
-
-
-
 
 	/**
 	 * @generated

@@ -81,7 +81,6 @@ public class InteractionCompositeItemSemanticEditPolicyCN extends UMLBaseItemSem
 		super(UMLElementTypes.Interaction_3073);
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -94,8 +93,6 @@ public class InteractionCompositeItemSemanticEditPolicyCN extends UMLBaseItemSem
 		}
 		return super.getCreateCommand(req);
 	}
-
-
 
 	/**
 	 * @generated
@@ -113,7 +110,6 @@ public class InteractionCompositeItemSemanticEditPolicyCN extends UMLBaseItemSem
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
-
 
 	/**
 	 * @generated

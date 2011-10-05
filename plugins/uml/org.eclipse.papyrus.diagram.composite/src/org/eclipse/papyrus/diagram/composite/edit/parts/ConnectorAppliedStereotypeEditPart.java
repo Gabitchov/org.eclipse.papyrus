@@ -110,8 +110,6 @@ public class ConnectorAppliedStereotypeEditPart extends LabelEditPart implements
 	 */
 	private String defaultText;
 
-
-
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
 	 * 
@@ -125,8 +123,6 @@ public class ConnectorAppliedStereotypeEditPart extends LabelEditPart implements
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
-
-
 
 	/**
 	 * @generated
@@ -593,8 +589,6 @@ public class ConnectorAppliedStereotypeEditPart extends LabelEditPart implements
 		return getPrimaryView();
 	}
 
-
-
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
@@ -690,8 +684,6 @@ public class ConnectorAppliedStereotypeEditPart extends LabelEditPart implements
 		}
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -722,9 +714,6 @@ public class ConnectorAppliedStereotypeEditPart extends LabelEditPart implements
 			}
 		}
 
-
-
-
 		super.handleNotificationEvent(event);
 	}
 
@@ -735,9 +724,6 @@ public class ConnectorAppliedStereotypeEditPart extends LabelEditPart implements
 		// Parent should assign one using setLabel() method
 		return null;
 	}
-
-
-
 
 	/**
 	 * @generated
@@ -752,6 +738,5 @@ public class ConnectorAppliedStereotypeEditPart extends LabelEditPart implements
 	public String getIconPathRole() {
 		return "";//$NON-NLS-1$
 	}
-
 
 }

@@ -78,9 +78,6 @@ public class PrimitiveTypeItemSemanticEditPolicy extends UMLBaseItemSemanticEdit
 		super(UMLElementTypes.PrimitiveType_2066);
 	}
 
-
-
-
 	/**
 	 * @generated
 	 */
@@ -97,7 +94,6 @@ public class PrimitiveTypeItemSemanticEditPolicy extends UMLBaseItemSemanticEdit
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
-
 
 	/**
 	 * @generated

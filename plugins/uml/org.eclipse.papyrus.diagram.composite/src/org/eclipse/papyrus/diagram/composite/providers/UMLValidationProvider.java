@@ -76,8 +76,4 @@ public class UMLValidationProvider {
 		return true;
 	}
 
-
-
-
-
 }

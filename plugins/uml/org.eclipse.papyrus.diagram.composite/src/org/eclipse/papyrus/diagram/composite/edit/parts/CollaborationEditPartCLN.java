@@ -91,8 +91,6 @@ import org.eclipse.ui.PlatformUI;
  */
 public class CollaborationEditPartCLN
 
-
-
 extends CompartmentEditPart
 
 implements ITextAwareEditPart, IPrimaryEditPart {
@@ -122,8 +120,6 @@ implements ITextAwareEditPart, IPrimaryEditPart {
 	 */
 	private String defaultText;
 
-
-
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
 	 * 
@@ -137,8 +133,6 @@ implements ITextAwareEditPart, IPrimaryEditPart {
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
-
-
 
 	/**
 	 * @generated
@@ -614,8 +608,6 @@ implements ITextAwareEditPart, IPrimaryEditPart {
 		return getPrimaryView();
 	}
 
-
-
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
@@ -719,8 +711,6 @@ implements ITextAwareEditPart, IPrimaryEditPart {
 		}
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -736,8 +726,6 @@ implements ITextAwareEditPart, IPrimaryEditPart {
 		super.removeNotationalListeners();
 		removeListenerFilter("PrimaryView"); //$NON-NLS-1$
 	}
-
-
 
 	/**
 	 * @generated

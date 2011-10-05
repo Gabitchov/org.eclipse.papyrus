@@ -73,9 +73,6 @@ public class SendOperationEventItemSemanticEditPolicy extends UMLBaseItemSemanti
 		super(UMLElementTypes.SendOperationEvent_2087);
 	}
 
-
-
-
 	/**
 	 * @generated
 	 */
@@ -92,7 +89,6 @@ public class SendOperationEventItemSemanticEditPolicy extends UMLBaseItemSemanti
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
-
 
 	/**
 	 * @generated
