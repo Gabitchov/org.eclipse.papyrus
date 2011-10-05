@@ -1,7 +1,0 @@
-# Tracing options for the org.eclipse.papyrus.diagram.clazz plug-in
-
-# Common issues
-org.eclipse.papyrus.diagram.clazz/debug=false
-
-# Visual IDs
-org.eclipse.papyrus.diagram.clazz/debug/visualID=false

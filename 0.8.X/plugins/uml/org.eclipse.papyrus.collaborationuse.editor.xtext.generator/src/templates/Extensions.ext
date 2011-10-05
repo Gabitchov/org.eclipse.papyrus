@@ -1,4 +1,0 @@
-import org::eclipse::papyrus::collaborationuse::editor::xtext::umlCollaborationUse;
-
-sortedGreetings(Model this) :
-	this.greetings.sortBy(g|g.name.toLowerCase());

@@ -1,7 +1,0 @@
-# Tracing options for the org.eclipse.papyrus.sysml.diagram.parametric plug-in
-
-# Common issues
-org.eclipse.papyrus.sysml.diagram.parametric/debug=false
-
-# Visual IDs
-org.eclipse.papyrus.sysml.diagram.parametric/debug/visualID=false
