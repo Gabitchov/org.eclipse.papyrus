@@ -7,14 +7,26 @@
       <handler class="org.eclipse.papyrus.table.modelexplorer.handlers.DeleteTableHandler" commandId="org.eclipse.ui.edit.delete">
          <activeWhen>
             <or>
-               <with variable="selection">
+               <with
+                     variable="selection">
                   <and>
-                     <count value="1">
+                     <count
+                           value="1">
                      </count>
-                     <test forcePluginActivation="true" property="org.eclipse.papyrus.table.menu.providers.TableTester.isTable" value="true">
-                     </test>
-                     <test forcePluginActivation="true" property="org.eclipse.papyrus.modelexplorer.tester.view.isModelExplorer" value="true">
-                     </test>
+                     <iterate>
+                        <adapt
+                              type="org.eclipse.emf.ecore.EObject">
+                           <instanceof
+                                 value="org.eclipse.papyrus.table.instance.papyrustableinstance.PapyrusTableInstance">
+                           </instanceof>
+                        </adapt>
+                     </iterate>
+                     <with
+                           variable="activePart">
+                        <instanceof
+                              value="org.eclipse.papyrus.modelexplorer.ModelExplorerPageBookView">
+                        </instanceof>
+                     </with>
                   </and>
                </with>
             </or>
@@ -22,34 +34,56 @@
       </handler>
          <handler class="org.eclipse.papyrus.table.modelexplorer.handlers.DuplicateTableHandler" commandId="org.eclipse.papyrus.modelexplorer.duplicate.command">
          <activeWhen>
-            <and>
-               <with variable="selection">
-                     <!-- We add these tests for : 
-                     	- force the refresh of the action in the menu edit  
-                     	- avoid have 2 handlers enabled in the same time 
-                     	-->
+            <or>
+               <with
+                     variable="selection">
                   <and>
-                     <test forcePluginActivation="true" property="org.eclipse.papyrus.modelexplorer.tester.isDiagram" value="false">
-                     </test>
-                     <test forcePluginActivation="true" property="org.eclipse.papyrus.table.modelexplorer.tester.isTable" value="true">
-                     </test>
+                     <count
+                           value="1">
+                     </count>
+                     <iterate>
+                        <adapt
+                              type="org.eclipse.emf.ecore.EObject">
+                           <instanceof
+                                 value="org.eclipse.papyrus.table.instance.papyrustableinstance.PapyrusTableInstance">
+                           </instanceof>
+                        </adapt>
+                     </iterate>
                   </and>
+                  <with
+                        variable="activePart">
+                     <instanceof
+                           value="org.eclipse.papyrus.modelexplorer.ModelExplorerPageBookView">
+                     </instanceof>
+                  </with>
                </with>
-            </and>
+            </or>
          </activeWhen>
       </handler>
             <handler class="org.eclipse.papyrus.table.modelexplorer.handlers.RenameTableHandler" commandId="org.eclipse.ui.edit.rename">
          <activeWhen>
             <or>
-               <with variable="selection">
+               <with
+                     variable="selection">
                   <and>
-                     <count value="1">
+                     <count
+                           value="1">
                      </count>
-                     <test forcePluginActivation="true" property="org.eclipse.papyrus.table.menu.providers.TableTester.isTable" value="true">
-                     </test>
-                     <test forcePluginActivation="true" property="org.eclipse.papyrus.modelexplorer.tester.view.isModelExplorer" value="true">
-                     </test>
+                     <iterate>
+                        <adapt
+                              type="org.eclipse.emf.ecore.EObject">
+                           <instanceof
+                                 value="org.eclipse.papyrus.table.instance.papyrustableinstance.PapyrusTableInstance">
+                           </instanceof>
+                        </adapt>
+                     </iterate>
                   </and>
+                  <with
+                        variable="activePart">
+                     <instanceof
+                           value="org.eclipse.papyrus.modelexplorer.ModelExplorerPageBookView">
+                     </instanceof>
+                  </with>
                </with>
             </or>
          </activeWhen>

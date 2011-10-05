@@ -27,7 +27,7 @@ import org.eclipse.papyrus.table.instance.papyrustableinstance.PapyrusTableInsta
  * but in this case, Eclipse doesn't refresh correctly the status of the command in the menu Edit or in other menu.
  * 
  * 
- * 
+ * FIXME : i think this class is not yet used
  */
 public class TablePropertyTester extends PropertyTester {
 
