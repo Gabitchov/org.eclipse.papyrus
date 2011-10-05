@@ -14,16 +14,16 @@ import org.eclipse.uml2.uml.Stereotype;
 /** get the name + the list of applied stereotypes */
 public class GetComplexName implements IJavaModelQuery<NamedElement, String> {
 	/** left Stereotype delimiters ('Guillemets francais'). */
-	public static String ST_LEFT = String.valueOf("\u00AB");
+	public static String ST_LEFT = String.valueOf("\u00AB"); //$NON-NLS-1$
 
 	/** Right Stereotype delimiters ('Guillemets francais'). */
-	public static String ST_RIGHT = String.valueOf("\u00BB");
+	public static String ST_RIGHT = String.valueOf("\u00BB"); //$NON-NLS-1$
 
 	public String evaluate(final NamedElement context,
 			final ParameterValueList parameterValues)
 			throws ModelQueryExecutionException {
 		// TODO Auto-generated method stub
-		String txt = "";
+		String txt = ""; //$NON-NLS-1$
 		List<Stereotype> stereoList = context.getAppliedStereotypes();
 		if (stereoList.size() == 0) {
 			return context.getName();
@@ -31,10 +31,10 @@ public class GetComplexName implements IJavaModelQuery<NamedElement, String> {
 			for (int i = 0; i < stereoList.size(); i++) {
 				txt = txt + stereoList.get(i).getName();
 				if (i < stereoList.size() - 1) {
-					txt = txt + ", ";
+					txt = txt + ", "; //$NON-NLS-1$
 				}
 			}
-			txt = ST_LEFT + txt + ST_RIGHT + " " + context.getName();
+			txt = ST_LEFT + txt + ST_RIGHT + " " + context.getName(); //$NON-NLS-1$
 			return txt;
 		}
 	}

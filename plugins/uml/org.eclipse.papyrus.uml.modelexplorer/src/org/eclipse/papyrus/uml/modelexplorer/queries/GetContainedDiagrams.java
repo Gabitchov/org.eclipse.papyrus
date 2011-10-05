@@ -19,6 +19,7 @@ import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.core.utils.EditorUtils;
+import org.eclipse.papyrus.modelexplorer.queries.AbstractEditorContainerQuery;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.emf.facet.infra.query.core.exception.ModelQueryExecutionException;
@@ -26,9 +27,7 @@ import org.eclipse.emf.facet.infra.query.core.java.IJavaModelQuery;
 import org.eclipse.emf.facet.infra.query.core.java.ParameterValueList;
 
 /** Get the collection of all contained diagrams */
-public class GetContainedDiagrams implements IJavaModelQuery<Element, Collection<org.eclipse.gmf.runtime.notation.Diagram>> {
-
-	private IPageMngr pageMngr;
+public class GetContainedDiagrams extends AbstractEditorContainerQuery implements IJavaModelQuery<Element, Collection<org.eclipse.gmf.runtime.notation.Diagram>> {
 
 	public Collection<org.eclipse.gmf.runtime.notation.Diagram> evaluate(final Element context, final ParameterValueList parameterValues) throws ModelQueryExecutionException {
 		Collection<Diagram> diagrams = new ArrayList<Diagram>();
@@ -46,20 +45,8 @@ public class GetContainedDiagrams implements IJavaModelQuery<Element, Collection
 
 			}
 		} catch (ServiceException e) {
-			throw new ModelQueryExecutionException("Enable to find the Services Registry");
+			throw new ModelQueryExecutionException("Enable to find the Services Registry"); //$NON-NLS-1$
 		}
 		return diagrams;
-	}
-
-	public IPageMngr getPageMngr() throws ServiceException {
-		if(pageMngr == null) {
-			IMultiDiagramEditor papyrusEditor = EditorUtils.getMultiDiagramEditor();
-			/**
-			 * test non null
-			 */
-			ServicesRegistry serviceRegistry = papyrusEditor.getServicesRegistry();
-			pageMngr = org.eclipse.papyrus.core.utils.ServiceUtils.getInstance().getIPageMngr(serviceRegistry);
-		}
-		return pageMngr;
 	}
 }

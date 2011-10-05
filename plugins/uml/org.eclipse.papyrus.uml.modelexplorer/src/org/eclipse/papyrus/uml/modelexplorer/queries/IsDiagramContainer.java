@@ -23,12 +23,11 @@ import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.core.utils.EditorUtils;
+import org.eclipse.papyrus.modelexplorer.queries.AbstractEditorContainerQuery;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
 
-public class IsDiagramContainer implements IJavaModelQuery<EObject, Boolean> {
+public class IsDiagramContainer extends AbstractEditorContainerQuery implements IJavaModelQuery<EObject, Boolean> {
 
-	/** The list of open pages (diagrams) */
-	protected IPageMngr pageMngr;
 
 	public Boolean evaluate(EObject context, ParameterValueList parameterValues) throws ModelQueryExecutionException {
 		ArrayList<Diagram> diagrams = new ArrayList<Diagram>();
@@ -48,18 +47,8 @@ public class IsDiagramContainer implements IJavaModelQuery<EObject, Boolean> {
 
 			}
 		} catch (ServiceException e) {
-			throw new ModelQueryExecutionException("Enable to find the Services Registry");
+			throw new ModelQueryExecutionException("Enable to find the Services Registry"); //$NON-NLS-1$
 		}
 		return false;
 	}
-
-	public IPageMngr getPageMngr() throws ServiceException {
-		if(pageMngr == null) {
-			IMultiDiagramEditor papyrusEditor = EditorUtils.getMultiDiagramEditor();
-			ServicesRegistry serviceRegistry = papyrusEditor.getServicesRegistry();
-			pageMngr = org.eclipse.papyrus.core.utils.ServiceUtils.getInstance().getIPageMngr(serviceRegistry);
-		}
-		return pageMngr;
-	}
-
 }
