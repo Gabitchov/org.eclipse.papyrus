@@ -8,7 +8,7 @@
       <wizard
             category="org.eclipse.papyrus.wizards.category"
             class="org.eclipse.papyrus.properties.generation.wizard.CreateContextWizard"
-            icon="/icons/Context.gif"
+            icon="icons/new_customization.png"
             id="org.eclipse.papyrus.properties.generation.wizard"
             name="%generation.wizard.name">
       </wizard>

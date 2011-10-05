@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -88,6 +88,10 @@ public class CreateContextWizard extends Wizard implements INewWizard {
 	 */
 	protected ILayoutGenerator layoutGenerator;
 
+	public CreateContextWizard() {
+		setDefaultPageImageDescriptor(Activator.getDefault().getImageDescriptor("/icons/wizban-custom.png")); //$NON-NLS-1$
+	}
+
 	@Override
 	public boolean performFinish() {
 		if(generator == null || context == null) {
@@ -116,8 +120,9 @@ public class CreateContextWizard extends Wizard implements INewWizard {
 		layoutGenerator = layoutGenerators.get(0); //TODO : Use the layoutGenerator combo
 
 		for(View view : context.getViews()) {
-			if(view.getConstraints().size() == 0) //TODO : Problem with external resource references
+			if(view.getConstraints().size() == 0) {
 				continue;
+			}
 
 			List<PropertyEditor> editors = new LinkedList<PropertyEditor>();
 
@@ -245,8 +250,9 @@ public class CreateContextWizard extends Wizard implements INewWizard {
 			}
 		}
 		propertyPath.remove(0);
-		if(currentElement == null)
+		if(currentElement == null) {
 			return null;
+		}
 
 		while(propertyPath.size() > 0) {
 			String name = propertyPath.get(0);
@@ -265,8 +271,9 @@ public class CreateContextWizard extends Wizard implements INewWizard {
 
 	ContextElement findByName(ContextElement source, String name) {
 		for(ContextElement element : source.getElements()) {
-			if(element.getName().equals(name))
+			if(element.getName().equals(name)) {
 				return element;
+			}
 		}
 		return null;
 	}
@@ -291,8 +298,9 @@ public class CreateContextWizard extends Wizard implements INewWizard {
 	}
 
 	private void getAllContextElements(DataContextElement source, Set<DataContextElement> result) {
-		if(result.contains(source))
+		if(result.contains(source)) {
 			return;
+		}
 
 		result.add(source);
 		for(DataContextElement element : source.getSupertypes()) {

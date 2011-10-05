@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,6 +11,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.generation;
 
+import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.papyrus.log.LogHelper;
 import org.eclipse.papyrus.properties.generation.extensionpoint.GeneratorExtensionPoint;
@@ -65,6 +66,24 @@ public class Activator extends AbstractUIPlugin {
 	 */
 	public Image getImage(String path) {
 		return getImage(PLUGIN_ID, path);
+	}
+
+	/**
+	 * Returns the image descriptor at the given path from this plugin
+	 * 
+	 * @param path
+	 *        the path of the image to be displayed
+	 * @return The Image Descriptor at the given location, or null if it couldn't be found
+	 */
+	public ImageDescriptor getImageDescriptor(String path) {
+		final ImageRegistry registry = getImageRegistry();
+		String key = PLUGIN_ID + "/" + path; //$NON-NLS-1$
+		ImageDescriptor descriptor = registry.getDescriptor(key);
+		if(descriptor == null) {
+			registry.put(key, AbstractUIPlugin.imageDescriptorFromPlugin(PLUGIN_ID, path));
+			descriptor = registry.getDescriptor(key);
+		}
+		return descriptor;
 	}
 
 	/**
