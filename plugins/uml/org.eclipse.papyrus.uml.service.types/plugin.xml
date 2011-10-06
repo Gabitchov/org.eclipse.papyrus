@@ -1829,6 +1829,12 @@
 		inheritance="all" typeId="org.eclipse.papyrus.uml.DirectedRelationship">
 	</adviceBinding>
 	
+	<!-- Helper advice for EncapsulatedClassifier -->
+	<adviceBinding id="org.eclipse.papyrus.uml.advice.EncapsulatedClassifier"
+		class="org.eclipse.papyrus.uml.service.types.helper.advice.EncapsulatedClassifierHelperAdvice"
+		inheritance="all" typeId="org.eclipse.papyrus.uml.EncapsulatedClassifier">
+	</adviceBinding>
+	
 	<!-- Helper advice for ExecutionSpecification -->
 	<adviceBinding id="org.eclipse.papyrus.uml.advice.ExecutionSpecification"
 		class="org.eclipse.papyrus.uml.service.types.helper.advice.ExecutionSpecificationHelperAdvice"
@@ -1911,6 +1917,7 @@
 		<advice ref="org.eclipse.papyrus.uml.advice.ConnectorEnd" />
 		<advice ref="org.eclipse.papyrus.uml.advice.DestructionEvent" />
 		<advice ref="org.eclipse.papyrus.uml.advice.DirectedRelationship" />
+		<advice ref="org.eclipse.papyrus.uml.advice.EncapsulatedClassifier" />		
 		<advice ref="org.eclipse.papyrus.uml.advice.ExecutionSpecification" />
 		<advice ref="org.eclipse.papyrus.uml.advice.FeatureNameInitializer" />
 		<advice ref="org.eclipse.papyrus.uml.advice.Lifeline" />
