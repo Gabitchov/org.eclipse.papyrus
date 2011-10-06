@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2011 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Vincent Lorenzo (CEA LIST) Vincent.Lorenzo@cea.fr - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.modelexplorer.test.tests;
 
 import java.io.IOException;
@@ -35,6 +48,7 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.core.editor.CoreMultiDiagramEditor;
 import org.eclipse.papyrus.core.utils.PapyrusTrace;
 import org.eclipse.papyrus.modelexplorer.Activator;
@@ -91,7 +105,7 @@ public class DeleteHandlerTest extends AbstractHandlerTest {
 	/**
 	 * the id of the delete command
 	 */
-	private static final String DELETE_COMMAND_ID = "org.eclipse.ui.edit.delete";
+	private static final String DELETE_COMMAND_ID = "org.eclipse.ui.edit.delete"; //$NON-NLS-1$
 
 	/**
 	 * 
@@ -108,14 +122,14 @@ public class DeleteHandlerTest extends AbstractHandlerTest {
 	@Test
 	public void deleteRootOfTheModel() {
 		selectElementInTheModelexplorer(rootOfTheModel);
-		IHandler currentHandler = getActiveHandler();
-		if(currentHandler == null) {
+		IHandler handler = getActiveHandler();
+		if(handler == null) {
 			//not a problem in this case
 		} else {
-			Assert.isTrue(currentHandler.isEnabled() == false, "We can delete the root of the model. It is not the wanted behavior");
+			Assert.isTrue(handler.isEnabled() == false, NLS.bind("The handler {0} is enabled on the root of the model", handler) + " " + IT_IS_NOT_THE_REQUIRED_BEHAVIOR);  //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
-
+	
 	/**
 	 * We test if we can delete other uml elements
 	 */
@@ -124,9 +138,37 @@ public class DeleteHandlerTest extends AbstractHandlerTest {
 		List<PackageableElement> packagedElements = rootOfTheModel.getPackagedElements();
 		for(int i = 0; i < packagedElements.size(); i++) {
 			selectElementInTheModelexplorer(packagedElements.get(i));
-			IHandler currentHandler = getActiveHandler();
-			Assert.isTrue(currentHandler instanceof DeleteCommandHandler, "The current handler is " + currentHandler + " instead of org.eclipse.papyrus.modelexplorer.handler.DeleteCommandHandler");
-			Assert.isTrue(currentHandler.isEnabled(), "We can't delete the following element" + packagedElements.get(i));
+			IHandler handler = getActiveHandler();
+			Assert.isTrue(handler instanceof DeleteCommandHandler, NLS.bind("The handler {0} is actived on {1} instead of org.eclipse.papyrus.modelexplorer.handler.DeleteCommandHandler", new Object[]{handler, packagedElements.get(i)})); //$NON-NLS-1$
+			Assert.isTrue(handler.isEnabled(), NLS.bind("The handler {0} is disabled on {1}.",new Object[]{handler,packagedElements.get(i)})+ " " + IT_IS_NOT_THE_REQUIRED_BEHAVIOR); //$NON-NLS-1$ //$NON-NLS-2$
+		}
+	}
+
+	
+
+	/**
+	 * We test the delete on the diagrams
+	 */
+	@Test
+	public void deleteDiagramTest() {
+		for(int i = 0; i < diagrams.size(); i++) {
+			selectElementInTheModelexplorer(diagrams.get(i));
+			IHandler handler =  getActiveHandler();
+			Assert.isTrue(handler instanceof DeleteDiagramHandler, NLS.bind("The handler {0} is actived on {1} instead of instead of org.eclipse.papyrus.modelexplorer.handler.DeleteCommandHandler",handler)); //$NON-NLS-1$
+			Assert.isTrue(handler.isEnabled(), NLS.bind("The handler {0} is disabled on {1}.",new Object[]{handler,diagrams.get(i)})+ " " + IT_IS_NOT_THE_REQUIRED_BEHAVIOR); //$NON-NLS-1$ //$NON-NLS-2$
+		}
+	}
+	
+	/**
+	 * We test the delete on the table instance
+	 */
+	@Test
+	public void deletePapyrusTableInstanceTest() {
+		for(int i = 0; i < papyrusTable.size(); i++) {
+			selectElementInTheModelexplorer(papyrusTable.get(i));
+			IHandler handler = getActiveHandler();
+			Assert.isTrue(handler instanceof DeleteTableHandler,NLS.bind("The handler {0} is actived on {1} instead of org.eclipse.papyrus.table.modelexplorer.handlers.DeleteTableHandler", new Object[]{handler, papyrusTable.get(i)})); //$NON-NLS-1$
+			Assert.isTrue(handler.isEnabled(), "We can't delete the following element" + papyrusTable.get(i)); //$NON-NLS-1$
 		}
 	}
 
@@ -145,7 +187,7 @@ public class DeleteHandlerTest extends AbstractHandlerTest {
 		for(int i=0;i<elements.length;i++){
 			Object current = elements[i];
 			if(current instanceof LinkItem){
-				if(((LinkItem)current).getReference().getName().equals("importedPackage")){
+				if(((LinkItem)current).getReference().getName().equals("importedPackage")){ //$NON-NLS-1$
 					readOnlyElement.addAll(((LinkItem)current).getChildren());
 					break;
 				}
@@ -155,42 +197,16 @@ public class DeleteHandlerTest extends AbstractHandlerTest {
 		
 		for(int j=0;j<readOnlyElement.size();j++){
 			selectElementInTheModelexplorer((ITreeElement)readOnlyElement.get(j));
-			IHandler currentHandler = getActiveHandler();
-			if(currentHandler==null){
+			IHandler handler = getActiveHandler();
+			if(handler==null){
 				//not a problem here
 			}else{
-				Assert.isTrue(!currentHandler.isEnabled(),"We can delete a read-only element. The active handler is : " + currentHandler);
+				Assert.isTrue(!handler.isEnabled(),NLS.bind("The handler {0} is enabled on read-only element",handler) + IT_IS_NOT_THE_REQUIRED_BEHAVIOR); //$NON-NLS-1$
 			}
 			return;
 		}
 	}
-
-	/**
-	 * We test the delete on the diagrams
-	 */
-	@Test
-	public void deleteDiagramTest() {
-		for(int i = 0; i < diagrams.size(); i++) {
-			selectElementInTheModelexplorer(diagrams.get(i));
-			IHandler handler =  getActiveHandler();
-			Assert.isTrue(handler instanceof DeleteDiagramHandler, "The current handler is " + handler + " instead of org.eclipse.papyrus.modelexplorer.handler.DeleteCommandHandler");
-			Assert.isTrue(handler.isEnabled(), "We can't delete the following element" + diagrams.get(i));
-		}
-	}
 	
-	/**
-	 * We test the delete on the table instance
-	 */
-	@Test
-	public void deletePapyrusTableInstanceTest() {
-		for(int i = 0; i < papyrusTable.size(); i++) {
-			selectElementInTheModelexplorer(papyrusTable.get(i));
-			IHandler handler = getActiveHandler();
-			Assert.isTrue(handler instanceof DeleteTableHandler,"The current handler is " + handler + " instead of org.eclipse.papyrus.table.modelexplorer.handlers.DeleteTableHandler");
-			Assert.isTrue(handler.isEnabled(), "We can't delete the following element" + papyrusTable.get(i));
-		}
-	}
-
 	/**
 	 * we test the delete on the link item
 	 */
@@ -203,7 +219,7 @@ public class DeleteHandlerTest extends AbstractHandlerTest {
 				selectElementInTheModelexplorer((ITreeElement)object);
 				IHandler handler = getActiveHandler();
 				if(handler != null) {
-					Assert.isTrue(!handler.isEnabled(), "The handler " + handler + " is active on LinkItem, it is not the wanted behavior");
+					Assert.isTrue(!handler.isEnabled(), NLS.bind("The handler {0} is enabled on LinkItem",handler) + IT_IS_NOT_THE_REQUIRED_BEHAVIOR); //$NON-NLS-1$
 				}
 			}
 		}

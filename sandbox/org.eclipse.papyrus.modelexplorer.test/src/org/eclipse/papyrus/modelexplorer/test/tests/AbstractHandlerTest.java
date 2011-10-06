@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2011 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Vincent Lorenzo (CEA LIST) Vincent.Lorenzo@cea.fr - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.modelexplorer.test.tests;
 
 import java.io.IOException;
@@ -51,16 +64,16 @@ import org.osgi.framework.Bundle;
 public abstract class AbstractHandlerTest {
 
 	/** the di extension */
-	protected static final String EXTENSION_DI = ".di";
+	protected static final String EXTENSION_DI = ".di"; //$NON-NLS-1$
 
 	/** the notation extension */
-	protected static final String EXTENSION_NOTATION = ".notation";
+	protected static final String EXTENSION_NOTATION = ".notation"; //$NON-NLS-1$
 
 	/** the uml extension */
-	protected static final String EXTENSION_UML = ".uml";
+	protected static final String EXTENSION_UML = ".uml"; //$NON-NLS-1$
 
 	/** the name of the file to open */
-	protected static final String FILE_NAME = "model";
+	protected static final String FILE_NAME = "model"; //$NON-NLS-1$
 
 	/** the name of the project used to test the handler */
 	private static final String PROJECT_NAME = "Project Handler Test"; //$NON-NLS-1$
@@ -72,20 +85,35 @@ public abstract class AbstractHandlerTest {
 	protected List<Diagram> diagrams = new ArrayList<Diagram>();
 
 	/** the id of the model explorer */
-	protected static final String viewId = "org.eclipse.papyrus.modelexplorer.modelexplorer";
-
+	protected static final String viewId = "org.eclipse.papyrus.modelexplorer.modelexplorer"; //$NON-NLS-1$
+		
 	/** the root of the model */
 	protected Package rootOfTheModel;
 
+	/**the model explorer view*/
 	protected ModelExplorerView modelExplorerView;
 
+	/**the tested command*/
 	protected Command testedCommand;
 
+	/**the common viewer*/
 	protected CommonViewer commonViewer;
 
+	/**the selection servive*/
 	protected ISelectionService selectionService;
 
+	/** the id of the command to test*/
 	private String commandId;
+	
+	/**
+	 * useful messages for the tests
+	 */
+	public static final String INITIALIZATION_ERROR = "Initialization error"; //$NON-NLS-1$
+
+	public static final String IT_IS_NOT_THE_REQUIRED_BEHAVIOR = "It is not the required behavior"; //$NON-NLS-1$
+	
+	public static final String THE_HANDLER = "The handler"; //$NON-NLS-1$
+
 
 	/**
 	 * 
@@ -95,7 +123,6 @@ public abstract class AbstractHandlerTest {
 	 *        the id of the command to test
 	 */
 	public AbstractHandlerTest(String commandId) {
-		Assert.isNotNull(commandId, "CommandId should not be null");
 		this.commandId = commandId;
 	}
 
@@ -119,7 +146,7 @@ public abstract class AbstractHandlerTest {
 	protected void testIsModelExplorerActivePart() {
 		IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 		IWorkbenchPart activePart = activePage.getActivePart();
-		Assert.isTrue(activePart instanceof ModelExplorerPageBookView, "The active part is not the ModelExplorer");
+		Assert.isTrue(activePart instanceof ModelExplorerPageBookView, "The active part is not the ModelExplorer"); //$NON-NLS-1$
 	}
 
 	/**
@@ -133,13 +160,13 @@ public abstract class AbstractHandlerTest {
 		selectedElement.add(elementToSelect);
 		modelExplorerView.revealSemanticElement(selectedElement);
 		IStructuredSelection currentSelection = (IStructuredSelection)selectionService.getSelection();
-		Assert.isTrue(!((IStructuredSelection)currentSelection).isEmpty(), "The current selection is empty!");
-		Assert.isTrue(((IStructuredSelection)currentSelection).size() == 1, "Only one element should be selected");
+		Assert.isTrue(!((IStructuredSelection)currentSelection).isEmpty(), "The current selection is empty!"); //$NON-NLS-1$
+		Assert.isTrue(((IStructuredSelection)currentSelection).size() == 1, "Only one element should be selected"); //$NON-NLS-1$
 		Object obj = currentSelection.getFirstElement();
 		if(obj instanceof IAdaptable) {
 			obj = ((IAdaptable)obj).getAdapter(EObject.class);
 		}
-		Assert.isTrue(obj == elementToSelect, "the current selected element is not the wanted element");
+		Assert.isTrue(obj == elementToSelect, "the current selected element is not the wanted element"); //$NON-NLS-1$
 	}
 
 	/**
@@ -151,9 +178,9 @@ public abstract class AbstractHandlerTest {
 	protected void selectElementInTheModelexplorer(final ITreeElement elementToSelect) {
 		commonViewer.setSelection(new StructuredSelection(elementToSelect));
 		IStructuredSelection currentSelection = (IStructuredSelection)selectionService.getSelection();
-		Assert.isTrue(((IStructuredSelection)currentSelection).size() == 1, "Only one element should be selected");
+		Assert.isTrue(((IStructuredSelection)currentSelection).size() == 1, "Only one element should be selected"); //$NON-NLS-1$
 		Object obj = currentSelection.getFirstElement();
-		Assert.isTrue(obj == elementToSelect, "the current selected element is not the wanted element");
+		Assert.isTrue(obj == elementToSelect, "the current selected element is not the wanted element"); //$NON-NLS-1$
 	}
 
 	/**
@@ -169,6 +196,11 @@ public abstract class AbstractHandlerTest {
 		return currentHandler;
 	}
 
+	/**
+	 * This method cleans the workspace, creates a new project with the model and initialize the fields of the class
+	 * @throws CoreException
+	 * @throws IOException
+	 */
 	@Before
 	public void initTests() throws CoreException, IOException {
 		//we clean the workspace and create a new project to test the handlers
@@ -194,7 +226,6 @@ public abstract class AbstractHandlerTest {
 		CoreMultiDiagramEditor editor = (CoreMultiDiagramEditor)openEditor(file);
 
 		//we store all the diagrams and tables of the model
-		//TODO : a best way to do that?
 		IEditorPart activeEditor = editor.getActiveEditor();
 		IPageMngr pageManager = (IPageMngr)editor.getAdapter(IPageMngr.class);
 		List<Object> pages = pageManager.allPages();
@@ -206,8 +237,6 @@ public abstract class AbstractHandlerTest {
 				papyrusTable.add((PapyrusTableInstance)current);
 			}
 		}
-
-
 
 		IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
 
@@ -232,9 +261,6 @@ public abstract class AbstractHandlerTest {
 
 		commonViewer.expandToLevel(2);
 		Object[] visibleElement = commonViewer.getVisibleExpandedElements();
-		for(int i = 0; i < visibleElement.length; i++) {
-			System.out.println(visibleElement[i]);
-		}
 		EObject el = null;
 		if(visibleElement[0] instanceof IAdaptable) {
 			el = (EObject)((IAdaptable)visibleElement[0]).getAdapter(EObject.class);
@@ -242,7 +268,12 @@ public abstract class AbstractHandlerTest {
 		if(el instanceof org.eclipse.uml2.uml.Element) {
 			rootOfTheModel = (Package)org.eclipse.papyrus.umlutils.PackageUtil.getRootPackage((org.eclipse.uml2.uml.Element)el);
 		}
-		//TODO : test that all the fields are not null
+		Assert.isTrue(rootOfTheModel!=null, INITIALIZATION_ERROR + " I can't find the root of the model"); //$NON-NLS-1$
+		Assert.isTrue(commandId!=null, INITIALIZATION_ERROR + " Initialization error : the commandid can't be null"); //$NON-NLS-1$
+		Assert.isTrue(commonViewer!=null, INITIALIZATION_ERROR + " I can' find the CommonViewer"); //$NON-NLS-1$
+		Assert.isTrue(selectionService!=null, INITIALIZATION_ERROR + " I can't find the SelectionService"); //$NON-NLS-1$
+		Assert.isTrue(diagrams.size()!=0, INITIALIZATION_ERROR + " I can't find diagrams in this model"); //$NON-NLS-1$
+		Assert.isTrue(papyrusTable.size()!=0,INITIALIZATION_ERROR + " I can't find tables in this model"); //$NON-NLS-1$
 	}
 
 	protected void doUndo() {
@@ -261,6 +292,10 @@ public abstract class AbstractHandlerTest {
 		}
 	}
 
+
+	/**
+	 * We close the editors
+	 */
 	@After
 	public void endOfTests() {
 		// So that the Workbench can be closed.
