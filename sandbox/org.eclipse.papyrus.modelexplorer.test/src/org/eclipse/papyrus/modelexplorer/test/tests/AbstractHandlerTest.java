@@ -15,10 +15,16 @@ package org.eclipse.papyrus.modelexplorer.test.tests;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.core.commands.Command;
+import org.eclipse.core.commands.ExecutionEvent;
+import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.IHandler;
+import org.eclipse.core.commands.NotEnabledException;
+import org.eclipse.core.commands.NotHandledException;
+import org.eclipse.core.commands.common.NotDefinedException;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IWorkspace;
@@ -27,7 +33,9 @@ import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.emf.common.command.CommandStack;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.facet.infra.browser.uicore.internal.model.ITreeElement;
 import org.eclipse.emf.facet.util.core.internal.FileUtils;
 import org.eclipse.gmf.runtime.notation.Diagram;
@@ -86,32 +94,35 @@ public abstract class AbstractHandlerTest {
 
 	/** the id of the model explorer */
 	protected static final String viewId = "org.eclipse.papyrus.modelexplorer.modelexplorer"; //$NON-NLS-1$
-		
+
 	/** the root of the model */
 	protected Package rootOfTheModel;
 
-	/**the model explorer view*/
+	/** the model explorer view */
 	protected ModelExplorerView modelExplorerView;
 
-	/**the tested command*/
+	/** the tested command */
 	protected Command testedCommand;
 
-	/**the common viewer*/
+	/** the common viewer */
 	protected CommonViewer commonViewer;
 
-	/**the selection servive*/
+	/** the selection servive */
 	protected ISelectionService selectionService;
 
-	/** the id of the command to test*/
+	/** the id of the command to test */
 	private String commandId;
-	
+
+	/** the IPageMngr */
+	private IPageMngr pageManager;
+
 	/**
 	 * useful messages for the tests
 	 */
 	public static final String INITIALIZATION_ERROR = "Initialization error"; //$NON-NLS-1$
 
 	public static final String IT_IS_NOT_THE_REQUIRED_BEHAVIOR = "It is not the required behavior"; //$NON-NLS-1$
-	
+
 	public static final String THE_HANDLER = "The handler"; //$NON-NLS-1$
 
 
@@ -198,6 +209,7 @@ public abstract class AbstractHandlerTest {
 
 	/**
 	 * This method cleans the workspace, creates a new project with the model and initialize the fields of the class
+	 * 
 	 * @throws CoreException
 	 * @throws IOException
 	 */
@@ -227,16 +239,10 @@ public abstract class AbstractHandlerTest {
 
 		//we store all the diagrams and tables of the model
 		IEditorPart activeEditor = editor.getActiveEditor();
-		IPageMngr pageManager = (IPageMngr)editor.getAdapter(IPageMngr.class);
-		List<Object> pages = pageManager.allPages();
+		pageManager = (IPageMngr)editor.getAdapter(IPageMngr.class);
 
-		for(Object current : pages) {
-			if(current instanceof Diagram) {
-				diagrams.add((Diagram)current);
-			} else if(current instanceof PapyrusTableInstance) {
-				papyrusTable.add((PapyrusTableInstance)current);
-			}
-		}
+		diagrams = getDiagrams();
+		papyrusTable = getTables();
 
 		IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
 
@@ -268,22 +274,92 @@ public abstract class AbstractHandlerTest {
 		if(el instanceof org.eclipse.uml2.uml.Element) {
 			rootOfTheModel = (Package)org.eclipse.papyrus.umlutils.PackageUtil.getRootPackage((org.eclipse.uml2.uml.Element)el);
 		}
-		Assert.isTrue(rootOfTheModel!=null, INITIALIZATION_ERROR + " I can't find the root of the model"); //$NON-NLS-1$
-		Assert.isTrue(commandId!=null, INITIALIZATION_ERROR + " Initialization error : the commandid can't be null"); //$NON-NLS-1$
-		Assert.isTrue(commonViewer!=null, INITIALIZATION_ERROR + " I can' find the CommonViewer"); //$NON-NLS-1$
-		Assert.isTrue(selectionService!=null, INITIALIZATION_ERROR + " I can't find the SelectionService"); //$NON-NLS-1$
-		Assert.isTrue(diagrams.size()!=0, INITIALIZATION_ERROR + " I can't find diagrams in this model"); //$NON-NLS-1$
-		Assert.isTrue(papyrusTable.size()!=0,INITIALIZATION_ERROR + " I can't find tables in this model"); //$NON-NLS-1$
+		Assert.isTrue(rootOfTheModel != null, INITIALIZATION_ERROR + " I can't find the root of the model"); //$NON-NLS-1$
+		Assert.isTrue(commandId != null, INITIALIZATION_ERROR + " Initialization error : the commandid can't be null"); //$NON-NLS-1$
+		Assert.isTrue(commonViewer != null, INITIALIZATION_ERROR + " I can' find the CommonViewer"); //$NON-NLS-1$
+		Assert.isTrue(selectionService != null, INITIALIZATION_ERROR + " I can't find the SelectionService"); //$NON-NLS-1$
+		Assert.isTrue(pageManager != null, INITIALIZATION_ERROR + " I can't find the IPageMngr"); //$NON-NLS-1$
+		Assert.isTrue(diagrams.size() != 0, INITIALIZATION_ERROR + " I can't find diagrams in this model"); //$NON-NLS-1$
+		Assert.isTrue(papyrusTable.size() != 0, INITIALIZATION_ERROR + " I can't find tables in this model"); //$NON-NLS-1$
 	}
 
-	protected void doUndo() {
-
+	/**
+	 * 
+	 * @return
+	 *         the tables owned by the IPageMngr
+	 */
+	protected List<PapyrusTableInstance> getTables() {
+		List<Object> pages = pageManager.allPages();
+		List<PapyrusTableInstance> tables = new ArrayList<PapyrusTableInstance>();
+		for(Object current : pages) {
+			if(current instanceof PapyrusTableInstance) {
+				tables.add((PapyrusTableInstance)current);
+			}
+		}
+		return tables;
 	}
 
-	protected void doRedo() {
-
+	/**
+	 * 
+	 * @return
+	 *         the diagrams owned by the IPageMngr
+	 */
+	protected List<Diagram> getDiagrams() {
+		List<Object> pages = pageManager.allPages();
+		List<Diagram> diagrams = new ArrayList<Diagram>();
+		for(Object current : pages) {
+			if(current instanceof Diagram) {
+				diagrams.add((Diagram)current);
+			}
+		}
+		return diagrams;
 	}
 
+	/**
+	 * do an undo of the last executed command
+	 */
+	private void doUndo() {
+		Assert.isTrue(getCommandStack().canUndo(), "I can't undo the last executed command"); //$NON-NLS-1$
+		getCommandStack().undo();
+	}
+
+	/**
+	 * do a redo on the last executed command
+	 */
+	private void doRedo() {
+		Assert.isTrue(getCommandStack().canRedo(), "I can't redo the last executed command"); //$NON-NLS-1$
+		getCommandStack().redo();
+	}
+
+	/**
+	 * Execute the current command
+	 * @throws NotDefinedException
+	 * @throws NotEnabledException
+	 * @throws NotHandledException
+	 * @throws ExecutionException
+	 */
+	protected void executeActiveCommand() throws NotDefinedException, NotEnabledException, NotHandledException, ExecutionException {
+		testedCommand.executeWithChecks(new ExecutionEvent(testedCommand, Collections.emptyMap(), null, null));
+	}
+
+	/**
+	 * 
+	 * @return
+	 *         the command stack
+	 */
+	private CommandStack getCommandStack() {
+		EditingDomain domain = modelExplorerView.getEditingDomain();
+		Assert.isNotNull(domain, "I can't find the EditingDomain"); //$NON-NLS-1$
+		CommandStack commandStack = domain.getCommandStack();
+		Assert.isNotNull(commandStack, "I can't find the CommandStack"); //$NON-NLS-1$
+		return commandStack;
+	}
+
+	/**
+	 * 
+	 * @param time
+	 *        the number of time we want to do Undo/Redo
+	 */
 	protected void doUndoRedo(int time) {
 		Assert.isTrue(time >= 1);//to be sure that the calling method is correctly written
 		for(int i = 0; i < time; i++) {

@@ -23,7 +23,11 @@ import javax.swing.text.Element;
 
 import org.eclipse.core.commands.Command;
 import org.eclipse.core.commands.CommandManager;
+import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.IHandler;
+import org.eclipse.core.commands.NotEnabledException;
+import org.eclipse.core.commands.NotHandledException;
+import org.eclipse.core.commands.common.NotDefinedException;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IWorkspace;
@@ -120,7 +124,7 @@ public class DeleteHandlerTest extends AbstractHandlerTest {
 	 * We test if we can delete the root of the Model or not
 	 */
 	@Test
-	public void deleteRootOfTheModel() {
+	public void deleteRootOfTheModelTest() {
 		selectElementInTheModelexplorer(rootOfTheModel);
 		IHandler handler = getActiveHandler();
 		if(handler == null) {
@@ -132,15 +136,26 @@ public class DeleteHandlerTest extends AbstractHandlerTest {
 	
 	/**
 	 * We test if we can delete other uml elements
+	 * @throws ExecutionException 
+	 * @throws NotHandledException 
+	 * @throws NotEnabledException 
+	 * @throws NotDefinedException 
 	 */
 	@Test
-	public void deleteUMLElementsTest() {
+	public void deleteUMLElementsTest() throws ExecutionException, NotDefinedException, NotEnabledException, NotHandledException {
 		List<PackageableElement> packagedElements = rootOfTheModel.getPackagedElements();
-		for(int i = 0; i < packagedElements.size(); i++) {
-			selectElementInTheModelexplorer(packagedElements.get(i));
+		int nbInitialElement = packagedElements.size();
+		int j=1;
+		while(packagedElements.size()!=0){
+			selectElementInTheModelexplorer(packagedElements.get(0));
 			IHandler handler = getActiveHandler();
-			Assert.isTrue(handler instanceof DeleteCommandHandler, NLS.bind("The handler {0} is actived on {1} instead of org.eclipse.papyrus.modelexplorer.handler.DeleteCommandHandler", new Object[]{handler, packagedElements.get(i)})); //$NON-NLS-1$
-			Assert.isTrue(handler.isEnabled(), NLS.bind("The handler {0} is disabled on {1}.",new Object[]{handler,packagedElements.get(i)})+ " " + IT_IS_NOT_THE_REQUIRED_BEHAVIOR); //$NON-NLS-1$ //$NON-NLS-2$
+			Assert.isTrue(handler instanceof DeleteCommandHandler, NLS.bind("The handler {0} is actived on {1} instead of org.eclipse.papyrus.modelexplorer.handler.DeleteCommandHandler", new Object[]{handler, packagedElements.get(0)})); //$NON-NLS-1$
+			Assert.isTrue(handler.isEnabled(), NLS.bind("The handler {0} is disabled on {1}.",new Object[]{handler,packagedElements.get(0)})+ " " + IT_IS_NOT_THE_REQUIRED_BEHAVIOR); //$NON-NLS-1$ //$NON-NLS-2$
+			executeActiveCommand();
+			int nbElement = packagedElements.size();
+			Assert.isTrue((nbElement+j) == nbInitialElement);
+			j++;
+			doUndoRedo(10);
 		}
 	}
 
@@ -148,9 +163,13 @@ public class DeleteHandlerTest extends AbstractHandlerTest {
 
 	/**
 	 * We test the delete on the diagrams
+	 * @throws ExecutionException 
+	 * @throws NotHandledException 
+	 * @throws NotEnabledException 
+	 * @throws NotDefinedException 
 	 */
 	@Test
-	public void deleteDiagramTest() {
+	public void deleteDiagramTest() throws NotDefinedException, NotEnabledException, NotHandledException, ExecutionException {
 		for(int i = 0; i < diagrams.size(); i++) {
 			selectElementInTheModelexplorer(diagrams.get(i));
 			IHandler handler =  getActiveHandler();
