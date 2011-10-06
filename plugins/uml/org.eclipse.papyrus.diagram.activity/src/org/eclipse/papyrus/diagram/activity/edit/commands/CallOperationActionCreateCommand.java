@@ -13,6 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.activity.edit.commands;
 
+import java.util.Map;
+
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -24,16 +26,19 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.papyrus.diagram.activity.edit.commands.util.CreateCommandUtil;
 import org.eclipse.papyrus.diagram.activity.edit.dialogs.CreateCallOperationActionDialog;
 import org.eclipse.papyrus.diagram.activity.providers.ElementInitializers;
+import org.eclipse.papyrus.diagram.common.service.palette.IFeatureSetterAspectAction.IFeatureSetterAspectActionUtil;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.CallOperationAction;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.UMLFactory;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * @generated
@@ -114,19 +119,20 @@ public class CallOperationActionCreateCommand extends EditElementCommand {
 		}
 
 		CallOperationAction newElement = UMLFactory.eINSTANCE.createCallOperationAction();
-
-		CreateCallOperationActionDialog dialog = new CreateCallOperationActionDialog(Display.getDefault().getActiveShell(), parentActivity);
-		if(IDialogConstants.OK_ID == dialog.open()) {
-			// initialize the invoked element (no need to use a command, since
-			// action is being created)
-			EObject operation = dialog.getSelectedInvoked();
-			if(operation instanceof Operation) {
-				newElement.setOperation((Operation)operation);
+		if(isOperationAlreadyManaged()) {
+			CreateCallOperationActionDialog dialog = new CreateCallOperationActionDialog(Display.getDefault().getActiveShell(), parentActivity);
+			getRequest();
+			if(IDialogConstants.OK_ID == dialog.open()) {
+				// initialize the invoked element (no need to use a command, since action is being created)
+				EObject operation = dialog.getSelectedInvoked();
+				if(operation instanceof Operation) {
+					newElement.setOperation((Operation)operation);
+				}
+				// initialize synchronous
+				newElement.setIsSynchronous(dialog.getIsSynchronous());
+			} else {
+				return CommandResult.newCancelledCommandResult();
 			}
-			// initialize synchronous
-			newElement.setIsSynchronous(dialog.getIsSynchronous());
-		} else {
-			return CommandResult.newCancelledCommandResult();
 		}
 
 		// set appropriate parents
@@ -142,6 +148,12 @@ public class CallOperationActionCreateCommand extends EditElementCommand {
 
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
+	}
+
+	private boolean isOperationAlreadyManaged() {
+		IEditCommandRequest aRequest = getRequest();
+		Map map = aRequest.getParameters();
+		return !IFeatureSetterAspectActionUtil.areFeaturesManaged(getRequest(), UMLPackage.Literals.CALL_OPERATION_ACTION__OPERATION);
 	}
 
 	/**

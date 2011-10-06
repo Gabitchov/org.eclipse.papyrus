@@ -13,6 +13,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.activity.helper;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -62,6 +65,7 @@ import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.uml2.common.util.CacheAdapter;
+import org.eclipse.uml2.uml.ActivityNode;
 import org.eclipse.uml2.uml.AddStructuralFeatureValueAction;
 import org.eclipse.uml2.uml.AddVariableValueAction;
 import org.eclipse.uml2.uml.Behavior;
@@ -748,6 +752,8 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 	protected IStatus handleCallOperationActionModification(CallOperationAction action, IValidationContext ctx) {
 		if(testTransformPinCase(ctx)) {
 			return ctx.createSuccessStatus();
+		} else if(testCustomModificationToValidPins(action, ctx)) {
+			return ctx.createSuccessStatus();
 		} else if(EMFEventType.ADD.equals(ctx.getEventType()) || EMFEventType.ADD_MANY.equals(ctx.getEventType())) {
 			if(testActionFeature(ctx.getFeature()) && action.getOperation() != null) {
 				if(action.getOperation() != null) {
@@ -810,6 +816,38 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 			}
 		}
 		return ctx.createSuccessStatus();
+	}
+
+	/**
+	 * @param node
+	 * @param ctx
+	 * @return
+	 */
+	protected boolean testCustomModificationToValidPins(ActivityNode node, IValidationContext ctx) {
+		// reflexive code to call each validation method matching the given object in : UMLValidationHelper.class
+		// the method call rach public and static method
+		IStatus status = null;
+		Class<? extends UMLValidationHelper> aClass = UMLValidationHelper.class;
+		Method[] methods = aClass.getDeclaredMethods();
+		for(Method m : methods) {
+			if(Modifier.isStatic(m.getModifiers()) && Modifier.isPublic(m.getModifiers()) && m.getReturnType() == IStatus.class) {
+				if(m.isAnnotationPresent(PinAndParameterSynchronizeValidator.class) && m.getParameterTypes().length == 2) {
+					if(m.getParameterTypes()[0].isInstance(node)) {
+						try {
+							status = (IStatus)m.invoke(aClass, node, ctx);
+							if(status != null && !status.isOK()) {
+								break;
+							}
+						} catch (IllegalAccessException e) {
+							e.printStackTrace();
+						} catch (InvocationTargetException e) {
+							e.printStackTrace();
+						}
+					}
+				}
+			}
+		}
+		return status == null || status.isOK();
 	}
 
 	/**
