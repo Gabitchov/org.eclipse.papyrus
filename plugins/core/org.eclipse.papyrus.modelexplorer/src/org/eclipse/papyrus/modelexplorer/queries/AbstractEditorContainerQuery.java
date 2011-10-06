@@ -28,21 +28,15 @@ import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
 public abstract class AbstractEditorContainerQuery {//we don't need to implements IJavaModelQuery  here
 
 	/**
-	 * The IPageMngr
-	 */
-	protected static IPageMngr pageMngr;
-
-	/**
 	 * 
 	 * @return
 	 * @throws ServiceException
 	 */
 	protected IPageMngr getPageMngr() throws ServiceException {
-		if(pageMngr == null) {
-			IMultiDiagramEditor papyrusEditor = EditorUtils.getMultiDiagramEditor();
-			ServicesRegistry serviceRegistry = papyrusEditor.getServicesRegistry();
-			pageMngr = org.eclipse.papyrus.core.utils.ServiceUtils.getInstance().getIPageMngr(serviceRegistry);
-		}
+		IPageMngr pageMngr;//can't be static, because there is a new IPageMngr each time we open a Papyrus Editor
+		IMultiDiagramEditor papyrusEditor = EditorUtils.getMultiDiagramEditor();
+		ServicesRegistry serviceRegistry = papyrusEditor.getServicesRegistry();
+		pageMngr = org.eclipse.papyrus.core.utils.ServiceUtils.getInstance().getIPageMngr(serviceRegistry);
 		return pageMngr;
 	}
 }
