@@ -13,9 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.readonly;
 
-import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -37,13 +34,7 @@ public class ReadOnlyTransactionalEditingDomainProvider implements ITransactiona
 
 			@Override
 			public boolean isReadOnly(Resource resource) {
-				if(resource != null && resource.getURI() != null && resource.getURI().isPlatform()) {
-					IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(resource.getURI().toPlatformString(true)));
-					if(file != null) {
-						return ReadOnlyManager.isReadOnly(file);
-					}
-				}
-				return false;
+				return ReadOnlyManager.isReadOnly(resource);
 			}
 		};
 

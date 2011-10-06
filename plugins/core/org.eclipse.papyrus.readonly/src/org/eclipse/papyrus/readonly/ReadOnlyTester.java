@@ -16,9 +16,6 @@ package org.eclipse.papyrus.readonly;
 import java.util.Iterator;
 
 import org.eclipse.core.expressions.PropertyTester;
-import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -38,10 +35,7 @@ public class ReadOnlyTester extends PropertyTester {
 				Object businessObject = BusinessModelResolver.getInstance().getBusinessModel(obj);
 				if(businessObject instanceof EObject) {
 					Resource resource = ((EObject)businessObject).eResource();
-					IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(resource.getURI().toPlatformString(true)));
-					if(ReadOnlyManager.isReadOnly(file)) {
-						return true;
-					}
+					return ReadOnlyManager.isReadOnly(resource);
 				}
 			}
 		}

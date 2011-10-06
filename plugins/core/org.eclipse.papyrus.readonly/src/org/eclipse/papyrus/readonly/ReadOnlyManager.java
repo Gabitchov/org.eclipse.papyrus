@@ -18,8 +18,11 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.ecore.resource.Resource;
 
 public class ReadOnlyManager {
 
@@ -66,6 +69,20 @@ public class ReadOnlyManager {
 		for(int i = 0; i < orderedHandlersArray.length; i++) {
 			orderedHandlersArray[i] = handlerPriorityPairs.get(i).handler;
 		}
+	}
+
+	public static boolean isReadOnly(Resource resource) {
+		if(resource != null && resource.getURI() != null) {
+			if (resource.getURI().isPlatform()) {
+				IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(resource.getURI().toPlatformString(true)));
+				if(isReadOnly(file)) {
+					return true;
+				}
+			} else {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public static boolean isReadOnly(IFile file) {
