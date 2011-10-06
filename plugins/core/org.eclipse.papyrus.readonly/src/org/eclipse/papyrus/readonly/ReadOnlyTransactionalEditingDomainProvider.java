@@ -37,7 +37,7 @@ public class ReadOnlyTransactionalEditingDomainProvider implements ITransactiona
 
 			@Override
 			public boolean isReadOnly(Resource resource) {
-				if(resource != null) {
+				if(resource != null && resource.getURI() != null && resource.getURI().isPlatform()) {
 					IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(resource.getURI().toPlatformString(true)));
 					if(file != null) {
 						return ReadOnlyManager.isReadOnly(file);
