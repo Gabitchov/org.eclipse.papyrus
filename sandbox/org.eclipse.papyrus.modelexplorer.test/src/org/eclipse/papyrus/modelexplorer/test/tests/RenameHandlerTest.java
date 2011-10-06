@@ -74,6 +74,7 @@ public class RenameHandlerTest extends AbstractHandlerTest {
 		}
 	}
 
+	
 	@Test
 	public void renameLinkItemTest() {
 		commonViewer.expandToLevel(3);

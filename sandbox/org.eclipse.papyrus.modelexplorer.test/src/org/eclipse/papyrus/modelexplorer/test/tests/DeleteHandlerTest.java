@@ -20,8 +20,13 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EcoreFactory;
+import org.eclipse.emf.facet.infra.browser.uicore.CustomizationManager;
 import org.eclipse.emf.facet.infra.browser.uicore.internal.model.ITreeElement;
+import org.eclipse.emf.facet.infra.browser.uicore.internal.model.LinkItem;
 import org.eclipse.emf.facet.util.core.internal.FileUtils;
 import org.eclipse.gmf.runtime.emf.core.util.PackageUtil;
 import org.eclipse.gmf.runtime.notation.Diagram;
@@ -32,6 +37,7 @@ import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.papyrus.core.editor.CoreMultiDiagramEditor;
 import org.eclipse.papyrus.core.utils.PapyrusTrace;
+import org.eclipse.papyrus.modelexplorer.Activator;
 import org.eclipse.papyrus.modelexplorer.ModelExplorerPage;
 import org.eclipse.papyrus.modelexplorer.ModelExplorerPageBookView;
 import org.eclipse.papyrus.modelexplorer.ModelExplorerView;
@@ -62,12 +68,17 @@ import org.osgi.framework.Bundle;
 import org.eclipse.ui.navigator.CommonNavigator;
 import org.eclipse.ui.navigator.CommonViewer;
 import org.eclipse.uml2.uml.Class;
+import org.eclipse.uml2.uml.DataType;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.PackageImport;
 import org.eclipse.uml2.uml.PackageableElement;
+import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.internal.impl.AssociationImpl;
-
+import org.eclipse.emf.facet.infra.facet.FacetFactory;
+import org.eclipse.emf.facet.infra.facet.FacetSet;
+import org.eclipse.emf.facet.infra.facet.impl.*;
+import org.eclipse.emf.facet.infra.browser.custom.MetamodelView ;
 /**
  * 
  * @author VL222926
@@ -96,21 +107,8 @@ public class DeleteHandlerTest extends AbstractHandlerTest {
 	 */
 	@Test
 	public void deleteRootOfTheModel() {
-		List<EObject> selectedElement = new ArrayList<EObject>();
-		selectedElement.add(rootOfTheModel);
-		modelExplorerView.revealSemanticElement(selectedElement);
-		IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-		IWorkbenchPart activePart = activePage.getActivePart();
-		Assert.isTrue(activePart instanceof ModelExplorerPageBookView, "The active part is not the ModelExplorer");
-
-		IStructuredSelection currentSelection = (IStructuredSelection)selectionService.getSelection();
-		Assert.isTrue(((IStructuredSelection)currentSelection).size() == 1, "Only one element should be selected");
-		Object obj = currentSelection.getFirstElement();
-		if(obj instanceof IAdaptable) {
-			obj = ((IAdaptable)obj).getAdapter(EObject.class);
-		}
-		Assert.isTrue(obj == rootOfTheModel);
-		IHandler currentHandler = testedCommand.getHandler();
+		selectElementInTheModelexplorer(rootOfTheModel);
+		IHandler currentHandler = getActiveHandler();
 		if(currentHandler == null) {
 			//not a problem in this case
 		} else {
@@ -123,117 +121,79 @@ public class DeleteHandlerTest extends AbstractHandlerTest {
 	 */
 	@Test
 	public void deleteUMLElementsTest() {
-		testIsModelExplorerActivePart();
-
 		List<PackageableElement> packagedElements = rootOfTheModel.getPackagedElements();
-		EObject elementToDelete;
 		for(int i = 0; i < packagedElements.size(); i++) {
-			//we need to clean the selection
-			commonViewer.setSelection(new StructuredSelection());
-			IStructuredSelection currentSelection = (IStructuredSelection)selectionService.getSelection();
-			elementToDelete = packagedElements.get(i);
-			List<EObject> selectedElement = new ArrayList<EObject>();
-			selectedElement.add(elementToDelete);
-			modelExplorerView.revealSemanticElement(selectedElement);
-			currentSelection = (IStructuredSelection)selectionService.getSelection();
-			Assert.isTrue(((IStructuredSelection)currentSelection).size() == 1, "Only one element should be selected");
-			Object obj = currentSelection.getFirstElement();
-			if(obj instanceof IAdaptable) {
-				obj = ((IAdaptable)obj).getAdapter(EObject.class);
-			}
-			Assert.isTrue(obj == elementToDelete);
-			IHandler currentHandler = testedCommand.getHandler();
-			if(currentHandler instanceof HandlerProxy) {
-				currentHandler = ((HandlerProxy)currentHandler).getHandler();
-			}
+			selectElementInTheModelexplorer(packagedElements.get(i));
+			IHandler currentHandler = getActiveHandler();
 			Assert.isTrue(currentHandler instanceof DeleteCommandHandler, "The current handler is " + currentHandler + " instead of org.eclipse.papyrus.modelexplorer.handler.DeleteCommandHandler");
-			Assert.isTrue(currentHandler.isEnabled(), "We can't delete the following element" + elementToDelete);
+			Assert.isTrue(currentHandler.isEnabled(), "We can't delete the following element" + packagedElements.get(i));
 		}
 	}
 
+	/**
+	 * We test the delete on the ReadOnly element 
+	 */
 	@Test
 	public void deleteReadOnlyElementsTest() {
-		testIsModelExplorerActivePart();
 
-		List<PackageImport> packageImports = rootOfTheModel.getPackageImports();
-		EObject elementToDelete;
-		for(int i = 0; i < packageImports.size(); i++) {
-			//we clean the selection
-			commonViewer.setSelection(new StructuredSelection());
-			IStructuredSelection currentSelection = (IStructuredSelection)selectionService.getSelection();
-			Assert.isTrue(currentSelection.isEmpty());
-
-			List<EObject> selectedElement = new ArrayList<EObject>();
-			selectedElement.add(packageImports.get(i));
-			modelExplorerView.revealSemanticElement(selectedElement);
-			currentSelection = (IStructuredSelection)selectionService.getSelection();
-			IContentProvider contentProvider = modelExplorerView.getCommonViewer().getContentProvider();
-			Object[] children = ((ITreeContentProvider)contentProvider).getChildren(currentSelection.getFirstElement());
-			for(int iter = 0; iter < children.length; iter++) {
-				Object tcurrent = children[0];
-				int d = 0;
-				d++;
+		List<PackageImport> packageImports = rootOfTheModel.getPackageImports();		
+		commonViewer.expandToLevel(4);
+		
+		//the method revealSemanticelement doesn't work for imported element (bug 360092), so we use a workaround to write this JUnit test
+		Object[] elements = commonViewer.getVisibleExpandedElements();
+		List<Object> readOnlyElement = new ArrayList<Object>();
+		for(int i=0;i<elements.length;i++){
+			Object current = elements[i];
+			if(current instanceof LinkItem){
+				if(((LinkItem)current).getReference().getName().equals("importedPackage")){
+					readOnlyElement.addAll(((LinkItem)current).getChildren());
+					break;
+				}
+			
 			}
-			selectedElement.clear();
-			elementToDelete = packageImports.get(0).getImportedPackage();
-			selectedElement.add(elementToDelete);
-
-			modelExplorerView.revealSemanticElement(selectedElement);
-
-
-			currentSelection = (IStructuredSelection)selectionService.getSelection();
-			Assert.isTrue(((IStructuredSelection)currentSelection).size() == 1, "Only one element should be selected");
-			Object obj = currentSelection.getFirstElement();
-			if(obj instanceof IAdaptable) {
-				obj = ((IAdaptable)obj).getAdapter(EObject.class);
+		}
+		
+		for(int j=0;j<readOnlyElement.size();j++){
+			selectElementInTheModelexplorer((ITreeElement)readOnlyElement.get(j));
+			IHandler currentHandler = getActiveHandler();
+			if(currentHandler==null){
+				//not a problem here
+			}else{
+				Assert.isTrue(!currentHandler.isEnabled(),"We can delete a read-only element. The active handler is : " + currentHandler);
 			}
-			Assert.isTrue(obj == elementToDelete);
-			IHandler currentHandler = testedCommand.getHandler();
-			if(currentHandler instanceof HandlerProxy) {
-				currentHandler = ((HandlerProxy)currentHandler).getHandler();
-			}
-			Assert.isTrue(currentHandler instanceof DeleteCommandHandler, "The current handler is " + currentHandler + " instead of org.eclipse.papyrus.modelexplorer.handler.DeleteCommandHandler");
-			Assert.isTrue(currentHandler.isEnabled(), "We can't delete the following element" + elementToDelete);
+			return;
 		}
 	}
 
+	/**
+	 * We test the delete on the diagrams
+	 */
 	@Test
 	public void deleteDiagramTest() {
-
-		EObject elementToDelete;
 		for(int i = 0; i < diagrams.size(); i++) {
-			elementToDelete = diagrams.get(i);
-			List<EObject> selectedElement = new ArrayList<EObject>();
-			selectedElement.add(elementToDelete);
-			selectedElement.add(elementToDelete);
-			modelExplorerView.revealSemanticElement(selectedElement);
-			IStructuredSelection currentSelection = (IStructuredSelection)selectionService.getSelection();
-			Assert.isTrue(((IStructuredSelection)currentSelection).size() == 1, "Only one element should be selected");
-			Object obj = currentSelection.getFirstElement();
-			if(obj instanceof IAdaptable) {
-				obj = ((IAdaptable)obj).getAdapter(EObject.class);
-			}
-			Assert.isTrue(obj == elementToDelete);
-			IHandler currentHandler = testedCommand.getHandler();
-			if(currentHandler instanceof HandlerProxy) {
-				currentHandler = ((HandlerProxy)currentHandler).getHandler();
-			}
-			Assert.isTrue(currentHandler instanceof DeleteDiagramHandler, "The current handler is " + currentHandler + " instead of org.eclipse.papyrus.modelexplorer.handler.DeleteCommandHandler");
-			Assert.isTrue(currentHandler.isEnabled(), "We can't delete the following element" + elementToDelete);
-
+			selectElementInTheModelexplorer(diagrams.get(i));
+			IHandler handler =  getActiveHandler();
+			Assert.isTrue(handler instanceof DeleteDiagramHandler, "The current handler is " + handler + " instead of org.eclipse.papyrus.modelexplorer.handler.DeleteCommandHandler");
+			Assert.isTrue(handler.isEnabled(), "We can't delete the following element" + diagrams.get(i));
 		}
 	}
-
+	
+	/**
+	 * We test the delete on the table instance
+	 */
 	@Test
 	public void deletePapyrusTableInstanceTest() {
 		for(int i = 0; i < papyrusTable.size(); i++) {
 			selectElementInTheModelexplorer(papyrusTable.get(i));
 			IHandler handler = getActiveHandler();
-			Assert.isTrue(handler instanceof DeleteTableHandler);
-			Assert.isTrue(handler.isEnabled());
+			Assert.isTrue(handler instanceof DeleteTableHandler,"The current handler is " + handler + " instead of org.eclipse.papyrus.table.modelexplorer.handlers.DeleteTableHandler");
+			Assert.isTrue(handler.isEnabled(), "We can't delete the following element" + papyrusTable.get(i));
 		}
 	}
 
+	/**
+	 * we test the delete on the link item
+	 */
 	@Test
 	public void deleteLinkItemTest() {
 		commonViewer.expandToLevel(3);
@@ -243,7 +203,7 @@ public class DeleteHandlerTest extends AbstractHandlerTest {
 				selectElementInTheModelexplorer((ITreeElement)object);
 				IHandler handler = getActiveHandler();
 				if(handler != null) {
-					Assert.isTrue(handler.isEnabled() == false, "The handler " + handler + " is active on LinkItem, it is not the wanted behavior");
+					Assert.isTrue(!handler.isEnabled(), "The handler " + handler + " is active on LinkItem, it is not the wanted behavior");
 				}
 			}
 		}

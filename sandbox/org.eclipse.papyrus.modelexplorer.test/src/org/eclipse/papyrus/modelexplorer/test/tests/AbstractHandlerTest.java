@@ -95,8 +95,10 @@ public abstract class AbstractHandlerTest {
 	 *        the id of the command to test
 	 */
 	public AbstractHandlerTest(String commandId) {
+		Assert.isNotNull(commandId, "CommandId should not be null");
 		this.commandId = commandId;
 	}
+
 	/**
 	 * 
 	 * @param file
@@ -131,6 +133,7 @@ public abstract class AbstractHandlerTest {
 		selectedElement.add(elementToSelect);
 		modelExplorerView.revealSemanticElement(selectedElement);
 		IStructuredSelection currentSelection = (IStructuredSelection)selectionService.getSelection();
+		Assert.isTrue(!((IStructuredSelection)currentSelection).isEmpty(), "The current selection is empty!");
 		Assert.isTrue(((IStructuredSelection)currentSelection).size() == 1, "Only one element should be selected");
 		Object obj = currentSelection.getFirstElement();
 		if(obj instanceof IAdaptable) {
@@ -152,6 +155,7 @@ public abstract class AbstractHandlerTest {
 		Object obj = currentSelection.getFirstElement();
 		Assert.isTrue(obj == elementToSelect, "the current selected element is not the wanted element");
 	}
+
 	/**
 	 * 
 	 * @return
@@ -241,7 +245,21 @@ public abstract class AbstractHandlerTest {
 		//TODO : test that all the fields are not null
 	}
 
+	protected void doUndo() {
 
+	}
+
+	protected void doRedo() {
+
+	}
+
+	protected void doUndoRedo(int time) {
+		Assert.isTrue(time >= 1);//to be sure that the calling method is correctly written
+		for(int i = 0; i < time; i++) {
+			doUndo();
+			doRedo();
+		}
+	}
 
 	@After
 	public void endOfTests() {
