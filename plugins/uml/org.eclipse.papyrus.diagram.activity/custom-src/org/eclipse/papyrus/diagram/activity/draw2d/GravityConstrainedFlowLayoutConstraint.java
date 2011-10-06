@@ -28,11 +28,9 @@ public class GravityConstrainedFlowLayoutConstraint {
 	 */
 	private Integer align = new Integer(GravityConstrainedFlowLayout.ALIGN_TOPLEFT);
 
-
 	public int getAlign() {
 		return align;
 	}
-
 
 	public void setAlign(int align) {
 		this.align = align;

@@ -23,7 +23,6 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.ConditionalNodeStructured
 import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.uml2.uml.UMLPackage;
 
-
 /**
  * The descriptor for ConditionalNode node used by org.eclipse.papyrus.diagram.common.groups.groupcontainment extension point.
  * 

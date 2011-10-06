@@ -66,7 +66,6 @@ public class CustomEditPolicyProvider implements IEditPolicyProvider {
 			return true;
 		}
 
-
 		return false;
 	}
 

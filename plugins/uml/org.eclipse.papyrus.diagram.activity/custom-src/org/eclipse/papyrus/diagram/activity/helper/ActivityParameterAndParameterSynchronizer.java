@@ -236,7 +236,6 @@ public class ActivityParameterAndParameterSynchronizer extends AbstractModelCons
 		return RemoveCommand.create(editingdomain, owner, UMLPackage.eINSTANCE.getActivity_Node(), nodes);
 	}
 
-
 	/**
 	 * Gets the adds the activity parameter nodes command.
 	 * 

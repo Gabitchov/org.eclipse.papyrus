@@ -59,7 +59,6 @@ public class SpecificKeywordStructuredActivityNodeVisibility extends AbstractGro
 
 	}
 
-
 	/**
 	 * Creates the content.
 	 * 
@@ -90,7 +89,5 @@ public class SpecificKeywordStructuredActivityNodeVisibility extends AbstractGro
 		addFieldEditor(specificKeywordVisibility);
 
 	}
-
-
 
 }

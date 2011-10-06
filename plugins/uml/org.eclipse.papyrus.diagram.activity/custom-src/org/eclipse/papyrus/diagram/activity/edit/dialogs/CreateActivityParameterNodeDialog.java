@@ -531,8 +531,6 @@ public class CreateActivityParameterNodeDialog extends FormDialog {
 		}
 	}
 
-
-
 	/**
 	 * Gets the parameter feature.
 	 * 
@@ -552,7 +550,6 @@ public class CreateActivityParameterNodeDialog extends FormDialog {
 		addCmd.execute();
 	}
 
-
 	/**
 	 * Gets the available types for the parameter
 	 * 
@@ -565,7 +562,6 @@ public class CreateActivityParameterNodeDialog extends FormDialog {
 		result.addAll(types);
 		return result;
 	}
-
 
 	/**
 	 * Gets the possible directions.

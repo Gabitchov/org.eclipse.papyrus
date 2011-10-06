@@ -21,7 +21,6 @@ import org.eclipse.papyrus.diagram.common.locator.PortPositionLocator;
  */
 public class ParameterNodeLocator extends PortPositionLocator {
 
-
 	/** Constructor **/
 	public ParameterNodeLocator(IFigure parentFigure, int preferredSide) {
 		super(parentFigure, preferredSide);

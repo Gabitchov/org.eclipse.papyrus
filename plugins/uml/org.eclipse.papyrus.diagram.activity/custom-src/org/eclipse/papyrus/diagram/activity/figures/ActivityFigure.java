@@ -188,7 +188,6 @@ public class ActivityFigure extends PapyrusRoundedNodeFigure {
 				getStereotypePropertiesContent().setBounds(pscontainer);
 			}
 
-
 			//place parameter
 			//replace compartment stereotype properties
 			if(getStereotypePropertiesContent() != null) {
@@ -197,7 +196,6 @@ public class ActivityFigure extends PapyrusRoundedNodeFigure {
 				getParameterFigure().setBounds(paramBoundcontainer);
 				if(getParameterFigure().getChildren().size() > 0) {
 					((IFigure)shapeCompartment.getChildren().get(0)).setBounds(paramBoundcontainer);
-
 
 				}
 			} else {
@@ -265,7 +263,6 @@ public class ActivityFigure extends PapyrusRoundedNodeFigure {
 		shapeCompartment.setLineWidth(0);
 		add(shapeCompartment);
 
-
 		preconditionFigure = new RectangleFigure();
 		preconditionFigure.setOpaque(false);
 		preconditionFigure.setFill(false);
@@ -274,7 +271,6 @@ public class ActivityFigure extends PapyrusRoundedNodeFigure {
 		preconditionFigure.setBorder(null);
 		preconditionFigure.setForegroundColor(ColorConstants.red);
 		add(preconditionFigure);
-
 
 		parameterFigure = new RectangleFigure();
 		parameterFigure.setOpaque(false);
@@ -289,7 +285,6 @@ public class ActivityFigure extends PapyrusRoundedNodeFigure {
 		postconditionFigure.setOutline(false);
 		postconditionFigure.setLineWidth(0);
 		add(postconditionFigure);
-
 
 		fHeaderSingleExecution = new WrappingLabel();
 		add(fHeaderSingleExecution);
@@ -334,7 +329,6 @@ public class ActivityFigure extends PapyrusRoundedNodeFigure {
 		//to remove
 		activityBorderFigure0.setBackgroundColor(ColorConstants.red);
 
-
 		GridLayout layoutActivityBorderFigure0 = new GridLayout();
 		layoutActivityBorderFigure0.numColumns = 3;
 		layoutActivityBorderFigure0.makeColumnsEqualWidth = false;
@@ -368,7 +362,6 @@ public class ActivityFigure extends PapyrusRoundedNodeFigure {
 
 		fHeaderLabel = new WrappingLabel();
 		fHeaderLabel.setText("ActivityName");
-
 
 		GridData constraintFHeaderLabel = new GridData();
 		constraintFHeaderLabel.verticalAlignment = GridData.CENTER;
@@ -528,7 +521,5 @@ public class ActivityFigure extends PapyrusRoundedNodeFigure {
 	public RectangleFigure getCompartmentFigure() {
 		return fCompartmentFigure;
 	}
-
-
 
 }

@@ -68,7 +68,6 @@ public class ActivityDiagramChangeStereotypedShapeEditpolicy extends ChangeStere
 		}
 	}
 
-
 	@Override
 	public void transformIntoNormalShape(final EditPart part) {
 		try {

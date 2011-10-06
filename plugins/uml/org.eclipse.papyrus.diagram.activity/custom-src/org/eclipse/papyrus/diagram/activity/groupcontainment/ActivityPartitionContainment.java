@@ -89,6 +89,4 @@ public class ActivityPartitionContainment extends AbstractContainerNodeDescripto
 		return null;
 	}
 
-
-
 }

@@ -373,7 +373,6 @@ public class CreateParameterDialog extends FormDialog {
 		addCmd.execute();
 	}
 
-
 	/**
 	 * Gets the possible types for the parameter
 	 * 
@@ -386,7 +385,6 @@ public class CreateParameterDialog extends FormDialog {
 		result.addAll(types);
 		return result;
 	}
-
 
 	/**
 	 * Gets the possible directions.
@@ -402,7 +400,6 @@ public class CreateParameterDialog extends FormDialog {
 		return ret;
 	}
 
-
 	/**
 	 * Gets the direction which is selected by default.
 	 * 
@@ -415,7 +412,6 @@ public class CreateParameterDialog extends FormDialog {
 			return getPossibleDirections()[0];
 		}
 	}
-
 
 	private Image getTypeImage() {
 		return UMLElementTypes.getImage(UMLPackage.eINSTANCE.getPackage_PackagedElement());

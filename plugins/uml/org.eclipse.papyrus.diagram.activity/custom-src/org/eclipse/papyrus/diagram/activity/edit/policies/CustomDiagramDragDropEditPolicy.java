@@ -157,8 +157,6 @@ public class CustomDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdi
 		return UMLVisualIDRegistry.getLinkWithClassVisualID(domainElement);
 	}
 
-
-
 	/**
 	 * {@inheritDoc}
 	 */

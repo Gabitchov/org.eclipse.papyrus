@@ -29,7 +29,6 @@ import org.eclipse.papyrus.diagram.common.groups.groupcontainment.AbstractContai
 import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.uml2.uml.UMLPackage;
 
-
 /**
  * The descriptor for InterruptibleActivityRegion node used by org.eclipse.papyrus.diagram.common.groups.groupcontainment extension point.
  * 

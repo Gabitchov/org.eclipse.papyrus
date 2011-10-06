@@ -23,7 +23,6 @@ import org.eclipse.uml2.uml.UMLPackage;
  */
 public class CreateActivityDiagramCommand extends CreateBehavioredClassifierDiagramCommand {
 
-
 	/**
 	 * {@inheritDoc}
 	 */

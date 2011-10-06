@@ -42,17 +42,12 @@ public class FlowLayoutAdvanced extends FlowLayout {
 		HORIZONTAL, VERTICAL
 	}
 
-
-
-
 	/**
 	 * Not implemented yet TODO
 	 */
 	private Orientation orientation = Orientation.VERTICAL;
 
-
 	private Map<IFigure, Object> constraints = new HashMap<IFigure, Object>();
-
 
 	protected void setBoundsOfChild(IFigure parent, IFigure child, Rectangle bounds) {
 		parent.getClientArea(Rectangle.SINGLETON);
@@ -80,7 +75,6 @@ public class FlowLayoutAdvanced extends FlowLayout {
 		}
 		child.setBounds(bounds);
 	}
-
 
 	public Object getConstraint(IFigure child) {
 		return constraints.get(child);
@@ -133,18 +127,13 @@ public class FlowLayoutAdvanced extends FlowLayout {
 		return parentDim;
 	}
 
-
-
 	public Orientation getOrientation() {
 		return orientation;
 	}
 
-
-
 	public void setOrientation(Orientation orientation) {
 		this.orientation = orientation;
 	}
-
 
 	@Override
 	public Dimension getMinimumSize(IFigure container, int w, int h) {
@@ -168,9 +157,5 @@ public class FlowLayoutAdvanced extends FlowLayout {
 		}
 		return minDim;
 	}
-
-
-
-
 
 }

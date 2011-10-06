@@ -37,7 +37,6 @@ public abstract class AbstractActionFigure extends RoundedRectangle implements I
 	/** The helper which handles stereotype aspects */
 	private StereotypeFigureHelper stereotypeHelper;
 
-
 	/**
 	 * @generated NOT use StereotypeFigureHelper
 	 */

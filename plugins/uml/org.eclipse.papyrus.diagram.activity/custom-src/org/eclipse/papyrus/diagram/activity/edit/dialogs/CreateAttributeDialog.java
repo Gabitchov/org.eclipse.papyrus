@@ -367,7 +367,6 @@ public class CreateAttributeDialog extends FormDialog {
 		addCmd.execute();
 	}
 
-
 	/**
 	 * Gets the possible types for the parameter
 	 * 
@@ -415,7 +414,6 @@ public class CreateAttributeDialog extends FormDialog {
 	protected EClass[] getPossibleAttributes() {
 		return new EClass[]{ UMLPackage.eINSTANCE.getProperty(), UMLPackage.eINSTANCE.getExtensionEnd(), UMLPackage.eINSTANCE.getPort() };
 	}
-
 
 	private Image getTypeImage() {
 		return UMLElementTypes.getImage(UMLPackage.eINSTANCE.getPackage_PackagedElement());

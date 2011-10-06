@@ -33,7 +33,6 @@ import org.eclipse.uml2.common.util.CacheAdapter;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Property;
 
-
 /**
  * WarningAndCreateAttributeDialog warns the user he can not perform an action.
  * It enables him to create an attribute instead after appropriate warnings.

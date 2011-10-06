@@ -21,9 +21,6 @@ package org.eclipse.papyrus.diagram.activity.draw2d;
  */
 public class FlowLayoutAdvancedConstraint {
 
-
-
-
 	/**
 	 * If true then the figure take all the free space left (divided by the number of fill element (An element is event full or fill)
 	 */
@@ -110,7 +107,5 @@ public class FlowLayoutAdvancedConstraint {
 	public void setHasMinsize(boolean hasMinsize) {
 		this.hasMinsize = hasMinsize;
 	}
-
-
 
 }

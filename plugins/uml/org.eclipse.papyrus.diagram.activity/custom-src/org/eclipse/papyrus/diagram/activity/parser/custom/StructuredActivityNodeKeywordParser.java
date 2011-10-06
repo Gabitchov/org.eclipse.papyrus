@@ -55,7 +55,6 @@ public class StructuredActivityNodeKeywordParser extends MessageFormatParser imp
 	/** Specific sequence node Keyword */
 	private static final Object SEQUENCE_NODE_KEYWORD = "sequence";
 
-
 	/**
 	 * the preference store
 	 */

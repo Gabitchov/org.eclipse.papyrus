@@ -27,7 +27,6 @@ import org.eclipse.emf.validation.internal.service.ResourceStatus;
  */
 public abstract class SafeDialogOpenerDuringValidation<ReturnType> {
 
-
 	/**
 	 * This approver is used to disable any operation during opening of a popup to avoid side
 	 * effects
