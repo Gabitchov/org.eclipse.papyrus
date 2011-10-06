@@ -32,11 +32,10 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 // TODO: Auto-generated Javadoc
 /**
  * The Class UMLTextNonResizableEditPolicy.
- *
+ * 
  * @generated
  */
 public class UMLTextNonResizableEditPolicy extends NonResizableEditPolicyEx {
-
 
 	/** The selection feedback figure. @generated */
 	private IFigure selectionFeedbackFigure;
@@ -49,7 +48,7 @@ public class UMLTextNonResizableEditPolicy extends NonResizableEditPolicyEx {
 
 	/**
 	 * Show primary selection.
-	 *
+	 * 
 	 * @generated
 	 */
 	protected void showPrimarySelection() {
@@ -64,7 +63,7 @@ public class UMLTextNonResizableEditPolicy extends NonResizableEditPolicyEx {
 
 	/**
 	 * Show selection.
-	 *
+	 * 
 	 * @generated
 	 */
 	protected void showSelection() {
@@ -82,7 +81,7 @@ public class UMLTextNonResizableEditPolicy extends NonResizableEditPolicyEx {
 
 	/**
 	 * Hide selection.
-	 *
+	 * 
 	 * @generated
 	 */
 	protected void hideSelection() {
@@ -101,7 +100,7 @@ public class UMLTextNonResizableEditPolicy extends NonResizableEditPolicyEx {
 
 	/**
 	 * Show focus.
-	 *
+	 * 
 	 * @generated
 	 */
 	protected void showFocus() {
@@ -116,7 +115,7 @@ public class UMLTextNonResizableEditPolicy extends NonResizableEditPolicyEx {
 
 	/**
 	 * Hide focus.
-	 *
+	 * 
 	 * @generated
 	 */
 	protected void hideFocus() {
@@ -132,7 +131,7 @@ public class UMLTextNonResizableEditPolicy extends NonResizableEditPolicyEx {
 
 	/**
 	 * Gets the feedback bounds.
-	 *
+	 * 
 	 * @return the feedback bounds
 	 * @generated
 	 */
@@ -151,7 +150,7 @@ public class UMLTextNonResizableEditPolicy extends NonResizableEditPolicyEx {
 
 	/**
 	 * Creates the selection feedback figure.
-	 *
+	 * 
 	 * @return the i figure
 	 * @generated
 	 */
@@ -171,7 +170,7 @@ public class UMLTextNonResizableEditPolicy extends NonResizableEditPolicyEx {
 
 	/**
 	 * Creates the focus feedback figure.
-	 *
+	 * 
 	 * @return the i figure
 	 * @generated
 	 */
@@ -186,8 +185,9 @@ public class UMLTextNonResizableEditPolicy extends NonResizableEditPolicyEx {
 
 	/**
 	 * Update label.
-	 *
-	 * @param target the target
+	 * 
+	 * @param target
+	 *        the target
 	 * @generated
 	 */
 	protected void updateLabel(Label target) {
@@ -199,7 +199,7 @@ public class UMLTextNonResizableEditPolicy extends NonResizableEditPolicyEx {
 
 	/**
 	 * Refresh selection feedback.
-	 *
+	 * 
 	 * @generated
 	 */
 	protected void refreshSelectionFeedback() {
@@ -215,7 +215,7 @@ public class UMLTextNonResizableEditPolicy extends NonResizableEditPolicyEx {
 
 	/**
 	 * Refresh focus feedback.
-	 *
+	 * 
 	 * @generated
 	 */
 	protected void refreshFocusFeedback() {
@@ -226,7 +226,7 @@ public class UMLTextNonResizableEditPolicy extends NonResizableEditPolicyEx {
 
 	/**
 	 * Refresh feedback.
-	 *
+	 * 
 	 * @generated
 	 */
 	public void refreshFeedback() {
@@ -236,7 +236,7 @@ public class UMLTextNonResizableEditPolicy extends NonResizableEditPolicyEx {
 
 	/**
 	 * Gets the host position listener.
-	 *
+	 * 
 	 * @return the host position listener
 	 * @generated
 	 */
@@ -254,7 +254,7 @@ public class UMLTextNonResizableEditPolicy extends NonResizableEditPolicyEx {
 
 	/**
 	 * Creates the selection handles.
-	 *
+	 * 
 	 * @return the list
 	 * @generated
 	 */

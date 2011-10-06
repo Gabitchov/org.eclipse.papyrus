@@ -3,9 +3,6 @@ package org.eclipse.papyrus.diagram.component.edit.parts;
 import java.util.Collections;
 import java.util.List;
 
-import org.eclipse.draw2d.IClippingStrategy;
-import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.gef.GraphicalEditPart;
@@ -16,7 +13,6 @@ import org.eclipse.gef.handles.MoveHandle;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.NonResizableLabelEditPolicy;
-import org.eclipse.gmf.runtime.diagram.ui.figures.BorderedNodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.editpolicies.DuplicatePasteEditPolicy;
 import org.eclipse.papyrus.diagram.common.providers.ViewInfo;
@@ -41,8 +37,6 @@ public class ComponentDiagramEditPart extends DiagramEditPart {
 	 */
 	public static final int VISUAL_ID = 1000;
 
-
-
 	/**
 	 * @generated
 	 */
@@ -59,21 +53,18 @@ public class ComponentDiagramEditPart extends DiagramEditPart {
 
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ComponentDiagramItemSemanticEditPolicy());
 
-
 		//in Papyrus diagrams are not strongly synchronised
 		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.diagram.component.edit.policies.ModelCanonicalEditPolicy());
-
 
 		installEditPolicy("REMOVE_ORPHAN_VIEW", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE);
 	}
 
-
 	/**
 	 * @generated
 	 */
-	/*package-local*/static class NodeLabelDragPolicy extends NonResizableEditPolicy {
+	/* package-local */static class NodeLabelDragPolicy extends NonResizableEditPolicy {
 
 		/**
 		 * @generated
@@ -100,11 +91,10 @@ public class ComponentDiagramEditPart extends DiagramEditPart {
 		}
 	}
 
-
 	/**
 	 * @generated
 	 */
-	/*package-local*/static class LinkLabelDragPolicy extends NonResizableLabelEditPolicy {
+	/* package-local */static class LinkLabelDragPolicy extends NonResizableLabelEditPolicy {
 
 		/**
 		 * @generated
@@ -116,10 +106,6 @@ public class ComponentDiagramEditPart extends DiagramEditPart {
 			return Collections.singletonList(mh);
 		}
 	}
-
-
-
-
 
 	/**
 	 * @generated
@@ -136,7 +122,6 @@ public class ComponentDiagramEditPart extends DiagramEditPart {
 		}
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -147,7 +132,5 @@ public class ComponentDiagramEditPart extends DiagramEditPart {
 		}
 		return super.getAdapter(adapter);
 	}
-
-
 
 }

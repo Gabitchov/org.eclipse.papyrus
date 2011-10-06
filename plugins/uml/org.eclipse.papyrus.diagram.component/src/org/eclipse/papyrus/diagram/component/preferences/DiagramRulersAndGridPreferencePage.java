@@ -18,14 +18,14 @@ import org.eclipse.papyrus.diagram.component.part.UMLDiagramEditorPlugin;
 // TODO: Auto-generated Javadoc
 /**
  * The Class DiagramRulersAndGridPreferencePage.
- *
+ * 
  * @generated
  */
 public class DiagramRulersAndGridPreferencePage extends RulerGridPreferencePage {
 
 	/**
 	 * Instantiates a new diagram rulers and grid preference page.
-	 *
+	 * 
 	 * @generated
 	 */
 	public DiagramRulersAndGridPreferencePage() {

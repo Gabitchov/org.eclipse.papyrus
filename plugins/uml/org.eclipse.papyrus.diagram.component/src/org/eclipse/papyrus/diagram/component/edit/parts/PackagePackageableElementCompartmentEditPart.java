@@ -21,8 +21,6 @@ import org.eclipse.papyrus.diagram.component.part.Messages;
  */
 public class PackagePackageableElementCompartmentEditPart
 
-
-
 extends ShapeCompartmentEditPart
 
 {
@@ -39,14 +37,12 @@ extends ShapeCompartmentEditPart
 		super(view);
 	}
 
-
 	/**
 	 * @generated
 	 */
 	public String getCompartmentName() {
 		return Messages.PackagePackageableElementCompartmentEditPart_title;
 	}
-
 
 	/**
 	 * @generated
@@ -58,14 +54,10 @@ extends ShapeCompartmentEditPart
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 		installEditPolicy(DuplicatePasteEditPolicy.PASTE_ROLE, new DuplicatePasteEditPolicy());
 
-
 		//in Papyrus diagrams are not strongly synchronised
 		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.diagram.component.edit.policies.PackagePackageableElementCompartmentCanonicalEditPolicy());
 
 	}
-
-
-
 
 	/**
 	 * @generated
@@ -75,8 +67,6 @@ extends ShapeCompartmentEditPart
 			super.setRatio(ratio);
 		}
 	}
-
-
 
 	/**
 	 * @generated

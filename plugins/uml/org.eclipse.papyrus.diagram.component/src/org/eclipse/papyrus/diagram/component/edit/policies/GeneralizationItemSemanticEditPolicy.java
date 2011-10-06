@@ -33,28 +33,25 @@ import org.eclipse.papyrus.service.edit.service.IElementEditService;
 // TODO: Auto-generated Javadoc
 /**
  * The Class GeneralizationItemSemanticEditPolicy.
- *
+ * 
  * @generated
  */
 public class GeneralizationItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 
 	/**
 	 * Instantiates a new generalization item semantic edit policy.
-	 *
+	 * 
 	 * @generated
 	 */
 	public GeneralizationItemSemanticEditPolicy() {
 		super(UMLElementTypes.Generalization_4003);
 	}
 
-
-
-
-
 	/**
 	 * Gets the destroy element command.
-	 *
-	 * @param req the req
+	 * 
+	 * @param req
+	 *        the req
 	 * @return the destroy element command
 	 * @generated
 	 */
@@ -74,8 +71,9 @@ public class GeneralizationItemSemanticEditPolicy extends UMLBaseItemSemanticEdi
 
 	/**
 	 * Gets the creates the relationship command.
-	 *
-	 * @param req the req
+	 * 
+	 * @param req
+	 *        the req
 	 * @return the creates the relationship command
 	 * @generated
 	 */
@@ -86,8 +84,9 @@ public class GeneralizationItemSemanticEditPolicy extends UMLBaseItemSemanticEdi
 
 	/**
 	 * Gets the start create relationship command.
-	 *
-	 * @param req the req
+	 * 
+	 * @param req
+	 *        the req
 	 * @return the start create relationship command
 	 * @generated
 	 */
@@ -103,8 +102,9 @@ public class GeneralizationItemSemanticEditPolicy extends UMLBaseItemSemanticEdi
 
 	/**
 	 * Gets the complete create relationship command.
-	 *
-	 * @param req the req
+	 * 
+	 * @param req
+	 *        the req
 	 * @return the complete create relationship command
 	 * @generated
 	 */
@@ -121,8 +121,9 @@ public class GeneralizationItemSemanticEditPolicy extends UMLBaseItemSemanticEdi
 	/**
 	 * Returns command to reorient EReference based link. New link target or source
 	 * should be the domain model element associated with this node.
-	 *
-	 * @param req the req
+	 * 
+	 * @param req
+	 *        the req
 	 * @return the reorient reference relationship command
 	 * @generated
 	 */

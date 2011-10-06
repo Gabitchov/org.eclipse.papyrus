@@ -49,7 +49,7 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.FileEditorInput;
-import org.eclipse.uml2.uml.Model;
+import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.UMLFactory;
 
 /**
@@ -121,8 +121,6 @@ public class UMLDiagramEditorUtil {
 		return filePath.lastSegment();
 	}
 
-
-
 	/**
 	 * Runs the wizard in a dialog.
 	 * 
@@ -143,6 +141,7 @@ public class UMLDiagramEditorUtil {
 
 	/**
 	 * This method should be called within a workspace modify operation since it creates resources.
+	 * 
 	 * @generated
 	 */
 	public static Resource createDiagram(URI diagramURI, URI modelURI, IProgressMonitor progressMonitor) {
@@ -154,7 +153,7 @@ public class UMLDiagramEditorUtil {
 		AbstractTransactionalCommand command = new AbstractTransactionalCommand(editingDomain, Messages.UMLDiagramEditorUtil_CreateDiagramCommandLabel, Collections.EMPTY_LIST) {
 
 			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-				Model model = createInitialModel();
+				Package model = createInitialModel();
 				attachModelToResource(model, modelResource);
 
 				Diagram diagram = ViewService.createDiagram(model, ComponentDiagramEditPart.MODEL_ID, UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
@@ -184,31 +183,27 @@ public class UMLDiagramEditorUtil {
 		return diagramResource;
 	}
 
-
 	/**
 	 * Create a new instance of domain element associated with canvas.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	private static Model createInitialModel() {
-		return UMLFactory.eINSTANCE.createModel();
+	private static Package createInitialModel() {
+		return UMLFactory.eINSTANCE.createPackage();
 	}
-
 
 	/**
 	 * Store model element in the resource.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	private static void attachModelToResource(Model model, Resource resource) {
+	private static void attachModelToResource(Package model, Resource resource) {
 		resource.getContents().add(model);
 	}
-
-
-
-
 
 	/**
 	 * @generated
@@ -228,7 +223,6 @@ public class UMLDiagramEditorUtil {
 			diagramPart.getDiagramGraphicalViewer().reveal(firstPrimary != null ? firstPrimary : (EditPart)editParts.get(0));
 		}
 	}
-
 
 	/**
 	 * @generated
@@ -271,7 +265,6 @@ public class UMLDiagramEditorUtil {
 		return editPartCollector.size() - intialNumOfEditParts;
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -295,6 +288,7 @@ public class UMLDiagramEditorUtil {
 
 	/**
 	 * XXX This is quite suspicious code (especially editPartTmpHolder) and likely to be removed soon
+	 * 
 	 * @generated
 	 */
 	public static class LazyElement2ViewMap {
@@ -370,7 +364,5 @@ public class UMLDiagramEditorUtil {
 			return complete;
 		}
 	} //LazyElement2ViewMap	
-
-
 
 }

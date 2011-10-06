@@ -20,25 +20,25 @@ import org.eclipse.papyrus.diagram.component.providers.UMLElementTypes;
 // TODO: Auto-generated Javadoc
 /**
  * The Class ComponentCompositeCompartmentItemSemanticEditPolicyPCN.
- *
+ * 
  * @generated
  */
 public class ComponentCompositeCompartmentItemSemanticEditPolicyPCN extends UMLBaseItemSemanticEditPolicy {
 
 	/**
 	 * Instantiates a new component composite compartment item semantic edit policy pcn.
-	 *
+	 * 
 	 * @generated
 	 */
 	public ComponentCompositeCompartmentItemSemanticEditPolicyPCN() {
 		super(UMLElementTypes.Component_3071);
 	}
 
-
 	/**
 	 * Gets the creates the command.
-	 *
-	 * @param req the req
+	 * 
+	 * @param req
+	 *        the req
 	 * @return the creates the command
 	 * @generated
 	 */

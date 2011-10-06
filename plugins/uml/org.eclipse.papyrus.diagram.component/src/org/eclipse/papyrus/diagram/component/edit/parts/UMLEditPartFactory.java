@@ -122,17 +122,14 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case UsageEditPart.VISUAL_ID:
 				return new UsageEditPart(view);
 
-
 			case InterfaceRealizationEditPart.VISUAL_ID:
 				return new InterfaceRealizationEditPart(view);
-
 
 			case GeneralizationEditPart.VISUAL_ID:
 				return new GeneralizationEditPart(view);
 
 			case GeneralizationAppliedStereotypeEditPart.VISUAL_ID:
 				return new GeneralizationAppliedStereotypeEditPart(view);
-
 
 			case SubstitutionEditPart.VISUAL_ID:
 				return new SubstitutionEditPart(view);
@@ -143,7 +140,6 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case SubstitutionAppliedStereotypeEditPart.VISUAL_ID:
 				return new SubstitutionAppliedStereotypeEditPart(view);
 
-
 			case ManifestationEditPart.VISUAL_ID:
 				return new ManifestationEditPart(view);
 
@@ -152,7 +148,6 @@ public class UMLEditPartFactory implements EditPartFactory {
 
 			case ManifestationAppliedStereotypeEditPart.VISUAL_ID:
 				return new ManifestationAppliedStereotypeEditPart(view);
-
 
 			case ComponentRealizationEditPart.VISUAL_ID:
 				return new ComponentRealizationEditPart(view);
@@ -163,7 +158,6 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case ComponentRealizationAppliedStereotypeEditPart.VISUAL_ID:
 				return new ComponentRealizationAppliedStereotypeEditPart(view);
 
-
 			case AbstractionEditPart.VISUAL_ID:
 				return new AbstractionEditPart(view);
 
@@ -173,18 +167,14 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case AbstractionAppliedStereotypeEditPart.VISUAL_ID:
 				return new AbstractionAppliedStereotypeEditPart(view);
 
-
 			case LinkDescriptorEditPart.VISUAL_ID:
 				return new LinkDescriptorEditPart(view);
-
 
 			case CommentAnnotatedElementEditPart.VISUAL_ID:
 				return new CommentAnnotatedElementEditPart(view);
 
-
 			case ConstraintConstrainedElementEditPart.VISUAL_ID:
 				return new ConstraintConstrainedElementEditPart(view);
-
 
 			case DependencyEditPart.VISUAL_ID:
 				return new DependencyEditPart(view);
@@ -220,7 +210,6 @@ public class UMLEditPartFactory implements EditPartFactory {
 			return new LabelCellEditorLocator((Label)source.getFigure());
 		}
 	}
-
 
 	/**
 	 * @generated
@@ -263,7 +252,6 @@ public class UMLEditPartFactory implements EditPartFactory {
 			}
 		}
 	}
-
 
 	/**
 	 * @generated

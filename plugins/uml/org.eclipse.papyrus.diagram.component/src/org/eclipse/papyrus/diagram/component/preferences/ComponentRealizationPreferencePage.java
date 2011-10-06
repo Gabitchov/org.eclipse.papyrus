@@ -25,14 +25,14 @@ import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 // TODO: Auto-generated Javadoc
 /**
  * The Class ComponentRealizationPreferencePage.
- *
+ * 
  * @generated
  */
 public class ComponentRealizationPreferencePage extends AbstractPapyrusLinkPreferencePage {
 
 	/**
 	 * Instantiates a new component realization preference page.
-	 *
+	 * 
 	 * @generated
 	 */
 	public ComponentRealizationPreferencePage() {
@@ -42,7 +42,7 @@ public class ComponentRealizationPreferencePage extends AbstractPapyrusLinkPrefe
 
 	/**
 	 * Gets the bundle id.
-	 *
+	 * 
 	 * @return the bundle id
 	 * @generated
 	 */
@@ -53,8 +53,9 @@ public class ComponentRealizationPreferencePage extends AbstractPapyrusLinkPrefe
 
 	/**
 	 * Inits the defaults.
-	 *
-	 * @param store the store
+	 * 
+	 * @param store
+	 *        the store
 	 * @generated
 	 */
 	public static void initDefaults(IPreferenceStore store) {
@@ -68,10 +69,9 @@ public class ComponentRealizationPreferencePage extends AbstractPapyrusLinkPrefe
 
 	}
 
-
 	/**
 	 * Gets the static label role.
-	 *
+	 * 
 	 * @return the static label role
 	 * @generated
 	 */
@@ -84,7 +84,7 @@ public class ComponentRealizationPreferencePage extends AbstractPapyrusLinkPrefe
 
 	/**
 	 * Gets the static label visibility preferences.
-	 *
+	 * 
 	 * @return the static label visibility preferences
 	 * @generated
 	 */
@@ -99,7 +99,7 @@ public class ComponentRealizationPreferencePage extends AbstractPapyrusLinkPrefe
 
 	/**
 	 * Gets the label role.
-	 *
+	 * 
 	 * @return the label role
 	 * @generated
 	 */
@@ -107,6 +107,5 @@ public class ComponentRealizationPreferencePage extends AbstractPapyrusLinkPrefe
 	protected TreeMap<String, String> getLabelRole() {
 		return getStaticLabelRole();
 	}
-
 
 }

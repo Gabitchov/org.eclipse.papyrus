@@ -29,25 +29,25 @@ import org.eclipse.papyrus.diagram.component.providers.UMLElementTypes;
 // TODO: Auto-generated Javadoc
 /**
  * The Class ComponentDiagramItemSemanticEditPolicy.
- *
+ * 
  * @generated
  */
 public class ComponentDiagramItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 
 	/**
 	 * Instantiates a new component diagram item semantic edit policy.
-	 *
+	 * 
 	 * @generated
 	 */
 	public ComponentDiagramItemSemanticEditPolicy() {
-		super(UMLElementTypes.Model_1000);
+		super(UMLElementTypes.Package_1000);
 	}
-
 
 	/**
 	 * Gets the creates the command.
-	 *
-	 * @param req the req
+	 * 
+	 * @param req
+	 *        the req
 	 * @return the creates the command
 	 * @generated
 	 */
@@ -72,8 +72,9 @@ public class ComponentDiagramItemSemanticEditPolicy extends UMLBaseItemSemanticE
 
 	/**
 	 * Gets the duplicate command.
-	 *
-	 * @param req the req
+	 * 
+	 * @param req
+	 *        the req
 	 * @return the duplicate command
 	 * @generated
 	 */
@@ -88,7 +89,7 @@ public class ComponentDiagramItemSemanticEditPolicy extends UMLBaseItemSemanticE
 
 	/**
 	 * The Class DuplicateAnythingCommand.
-	 *
+	 * 
 	 * @generated
 	 */
 	private static class DuplicateAnythingCommand extends DuplicateNamedElementCommand {
@@ -98,10 +99,13 @@ public class ComponentDiagramItemSemanticEditPolicy extends UMLBaseItemSemanticE
 
 		/**
 		 * Instantiates a new duplicate anything command.
-		 *
-		 * @param editingDomain the editing domain
-		 * @param req the req
-		 * @param currentDiagram the current diagram
+		 * 
+		 * @param editingDomain
+		 *        the editing domain
+		 * @param req
+		 *        the req
+		 * @param currentDiagram
+		 *        the current diagram
 		 * @generated
 		 */
 		public DuplicateAnythingCommand(TransactionalEditingDomain editingDomain, DuplicateElementsRequest req, Diagram currentDiagram) {

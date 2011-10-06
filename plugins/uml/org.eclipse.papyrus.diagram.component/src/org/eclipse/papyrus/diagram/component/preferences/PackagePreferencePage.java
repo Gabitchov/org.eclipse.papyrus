@@ -14,6 +14,7 @@ package org.eclipse.papyrus.diagram.component.preferences;
 
 import java.util.Map;
 import java.util.TreeMap;
+
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.diagram.component.edit.parts.ComponentDiagramEditPart;
 import org.eclipse.papyrus.diagram.component.part.UMLDiagramEditorPlugin;
@@ -23,7 +24,7 @@ import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 // TODO: Auto-generated Javadoc
 /**
  * The Class PackagePreferencePage.
- *
+ * 
  * @generated
  */
 public class PackagePreferencePage extends AbstractPapyrusNodePreferencePage {
@@ -31,10 +32,9 @@ public class PackagePreferencePage extends AbstractPapyrusNodePreferencePage {
 	/** The Constant compartments. @generated */
 	public static final String compartments[] = { "PackageableElementCompartment" };
 
-
 	/**
 	 * Instantiates a new package preference page.
-	 *
+	 * 
 	 * @generated
 	 */
 	public PackagePreferencePage() {
@@ -44,7 +44,7 @@ public class PackagePreferencePage extends AbstractPapyrusNodePreferencePage {
 
 	/**
 	 * Gets the bundle id.
-	 *
+	 * 
 	 * @return the bundle id
 	 * @generated
 	 */
@@ -55,8 +55,9 @@ public class PackagePreferencePage extends AbstractPapyrusNodePreferencePage {
 
 	/**
 	 * Inits the defaults.
-	 *
-	 * @param store the store
+	 * 
+	 * @param store
+	 *        the store
 	 * @generated
 	 */
 	public static void initDefaults(IPreferenceStore store) {
@@ -77,9 +78,6 @@ public class PackagePreferencePage extends AbstractPapyrusNodePreferencePage {
 			store.setDefault(preferenceName, map.get(name));
 		}
 
-
-
-
 		//org.eclipse.jface.preference.PreferenceConverter.setDefault(store, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_FILL), new org.eclipse.swt.graphics.RGB(255, 255, 255));
 		//org.eclipse.jface.preference.PreferenceConverter.setDefault(store, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_LINE), new org.eclipse.swt.graphics.RGB(0, 0, 0));
 
@@ -94,7 +92,7 @@ public class PackagePreferencePage extends AbstractPapyrusNodePreferencePage {
 
 	/**
 	 * Initialize compartments list.
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override

@@ -147,7 +147,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 		return constraintSpecification_5253Parser;
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -283,7 +282,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 		}
 		return constraintSpecification_5260Parser;
 	}
-
 
 	/**
 	 * @generated
@@ -460,7 +458,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 		return dependencyName_6023Parser;
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -522,6 +519,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 
 	/**
 	 * Utility method that consults ParserService
+	 * 
 	 * @generated
 	 */
 	public static IParser getParser(IElementType type, EObject object, String parserHint) {

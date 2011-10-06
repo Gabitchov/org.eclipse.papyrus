@@ -72,16 +72,13 @@ import org.eclipse.uml2.uml.UMLPackage;
 // TODO: Auto-generated Javadoc
 /**
  * The Class ModelCanonicalEditPolicy.
- *
+ * 
  * @generated
  */
 public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 
-
-
 	/** The my features to synchronize. @generated */
 	private Set<EStructuralFeature> myFeaturesToSynchronize;
-
 
 	/**
 	 * @generated
@@ -97,7 +94,7 @@ public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 
 	/**
 	 * Gets the features to synchronize.
-	 *
+	 * 
 	 * @return the features to synchronize
 	 * @generated
 	 */
@@ -113,7 +110,7 @@ public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 
 	/**
 	 * Gets the semantic children list.
-	 *
+	 * 
 	 * @return the semantic children list
 	 * @generated
 	 */
@@ -121,7 +118,7 @@ public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 	protected List getSemanticChildrenList() {
 		View viewObject = (View)getHost().getModel();
 		LinkedList<EObject> result = new LinkedList<EObject>();
-		List<UMLNodeDescriptor> childDescriptors = UMLDiagramUpdater.getModel_1000SemanticChildren(viewObject);
+		List<UMLNodeDescriptor> childDescriptors = UMLDiagramUpdater.getPackage_1000SemanticChildren(viewObject);
 		for(UMLNodeDescriptor d : childDescriptors) {
 			result.add(d.getModelElement());
 		}
@@ -130,9 +127,11 @@ public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 
 	/**
 	 * Checks if is orphaned.
-	 *
-	 * @param semanticChildren the semantic children
-	 * @param view the view
+	 * 
+	 * @param semanticChildren
+	 *        the semantic children
+	 * @param view
+	 *        the view
 	 * @return true, if is orphaned
 	 * @generated
 	 */
@@ -142,8 +141,9 @@ public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 
 	/**
 	 * Checks if is my diagram element.
-	 *
-	 * @param view the view
+	 * 
+	 * @param view
+	 *        the view
 	 * @return true, if is my diagram element
 	 * @generated
 	 */
@@ -162,7 +162,7 @@ public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 
 	/**
 	 * Refresh semantic.
-	 *
+	 * 
 	 * @generated
 	 */
 	protected void refreshSemantic() {
@@ -170,7 +170,7 @@ public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 			return;
 		}
 		LinkedList<IAdaptable> createdViews = new LinkedList<IAdaptable>();
-		List<UMLNodeDescriptor> childDescriptors = UMLDiagramUpdater.getModel_1000SemanticChildren((View)getHost().getModel());
+		List<UMLNodeDescriptor> childDescriptors = UMLDiagramUpdater.getPackage_1000SemanticChildren((View)getHost().getModel());
 		LinkedList<View> orphaned = new LinkedList<View>();
 		// we care to check only views we recognize as ours
 		LinkedList<View> knownViewChildren = new LinkedList<View>();
@@ -247,7 +247,7 @@ public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 
 	/**
 	 * Refresh connections.
-	 *
+	 * 
 	 * @return the collection
 	 * @generated
 	 */
@@ -282,9 +282,11 @@ public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 
 	/**
 	 * Collect all links.
-	 *
-	 * @param view the view
-	 * @param domain2NotationMap the domain2 notation map
+	 * 
+	 * @param view
+	 *        the view
+	 * @param domain2NotationMap
+	 *        the domain2 notation map
 	 * @return the collection
 	 * @generated
 	 */
@@ -297,7 +299,7 @@ public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 		case ComponentDiagramEditPart.VISUAL_ID:
 		{
 			if(!domain2NotationMap.containsKey(view.getElement())) {
-				result.addAll(UMLDiagramUpdater.getModel_1000ContainedLinks(view));
+				result.addAll(UMLDiagramUpdater.getPackage_1000ContainedLinks(view));
 			}
 			if(!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
 				domain2NotationMap.put(view.getElement(), view);
@@ -506,9 +508,11 @@ public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 
 	/**
 	 * Creates the connections.
-	 *
-	 * @param linkDescriptors the link descriptors
-	 * @param domain2NotationMap the domain2 notation map
+	 * 
+	 * @param linkDescriptors
+	 *        the link descriptors
+	 * @param domain2NotationMap
+	 *        the domain2 notation map
 	 * @return the collection
 	 * @generated
 	 */
@@ -541,9 +545,11 @@ public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 
 	/**
 	 * Gets the edits the part.
-	 *
-	 * @param domainModelElement the domain model element
-	 * @param domain2NotationMap the domain2 notation map
+	 * 
+	 * @param domainModelElement
+	 *        the domain model element
+	 * @param domain2NotationMap
+	 *        the domain2 notation map
 	 * @return the edits the part
 	 * @generated
 	 */
@@ -557,7 +563,7 @@ public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 
 	/**
 	 * Gets the diagram.
-	 *
+	 * 
 	 * @return the diagram
 	 * @generated
 	 */

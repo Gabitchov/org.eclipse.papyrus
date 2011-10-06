@@ -23,16 +23,16 @@ import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.EcoreFactory;
+import org.eclipse.ocl.ecore.OCL.Helper;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.Variable;
-import org.eclipse.ocl.ecore.OCL.Helper;
 import org.eclipse.ocl.options.ParsingOptions;
 import org.eclipse.papyrus.diagram.component.part.UMLDiagramEditorPlugin;
 
 // TODO: Auto-generated Javadoc
 /**
  * A factory for creating UMLOCL objects.
- *
+ * 
  * @generated
  */
 public class UMLOCLFactory {
@@ -42,7 +42,7 @@ public class UMLOCLFactory {
 
 	/**
 	 * Instantiates a new uMLOCL factory.
-	 *
+	 * 
 	 * @generated
 	 */
 	protected UMLOCLFactory() {
@@ -51,10 +51,13 @@ public class UMLOCLFactory {
 
 	/**
 	 * Gets the expression.
-	 *
-	 * @param index the index
-	 * @param context the context
-	 * @param environment the environment
+	 * 
+	 * @param index
+	 *        the index
+	 * @param context
+	 *        the context
+	 * @param environment
+	 *        the environment
 	 * @return the expression
 	 * @generated
 	 */
@@ -82,13 +85,15 @@ public class UMLOCLFactory {
 		return cached.expressions[index];
 	}
 
-
 	/**
 	 * This is factory method, callers are responsible to keep reference to the return value if they want to reuse parsed expression.
-	 *
-	 * @param body the body
-	 * @param context the context
-	 * @param environment the environment
+	 * 
+	 * @param body
+	 *        the body
+	 * @param context
+	 *        the context
+	 * @param environment
+	 *        the environment
 	 * @return the expression
 	 * @generated
 	 */
@@ -98,9 +103,11 @@ public class UMLOCLFactory {
 
 	/**
 	 * This method will become private in the next release.
-	 *
-	 * @param body the body
-	 * @param context the context
+	 * 
+	 * @param body
+	 *        the body
+	 * @param context
+	 *        the context
 	 * @return the expression
 	 * @generated
 	 */
@@ -110,7 +117,7 @@ public class UMLOCLFactory {
 
 	/**
 	 * The Class Expression.
-	 *
+	 * 
 	 * @generated
 	 */
 	private static class Expression extends UMLAbstractExpression {
@@ -123,10 +130,13 @@ public class UMLOCLFactory {
 
 		/**
 		 * Instantiates a new expression.
-		 *
-		 * @param body the body
-		 * @param context the context
-		 * @param environment the environment
+		 * 
+		 * @param body
+		 *        the body
+		 * @param context
+		 *        the context
+		 * @param environment
+		 *        the environment
 		 * @generated
 		 */
 		public Expression(String body, EClassifier context, Map<String, EClassifier> environment) {
@@ -145,9 +155,11 @@ public class UMLOCLFactory {
 
 		/**
 		 * Do evaluate.
-		 *
-		 * @param context the context
-		 * @param env the env
+		 * 
+		 * @param context
+		 *        the context
+		 * @param env
+		 *        the env
 		 * @return the object
 		 * @generated
 		 */
@@ -173,9 +185,11 @@ public class UMLOCLFactory {
 
 		/**
 		 * Inits the custom env.
-		 *
-		 * @param ecoreEnv the ecore env
-		 * @param environment the environment
+		 * 
+		 * @param ecoreEnv
+		 *        the ecore env
+		 * @param environment
+		 *        the environment
 		 * @generated
 		 */
 		private static void initCustomEnv(Environment<?, EClassifier, ?, ?, ?, EParameter, ?, ?, ?, ?, ?, ?> ecoreEnv, Map<String, EClassifier> environment) {
@@ -189,10 +203,13 @@ public class UMLOCLFactory {
 
 		/**
 		 * Creates the var.
-		 *
-		 * @param ecoreEnv the ecore env
-		 * @param name the name
-		 * @param type the type
+		 * 
+		 * @param ecoreEnv
+		 *        the ecore env
+		 * @param name
+		 *        the name
+		 * @param type
+		 *        the type
 		 * @return the variable
 		 * @generated
 		 */

@@ -11,7 +11,6 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
@@ -37,7 +36,6 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
-import org.eclipse.papyrus.diagram.common.editparts.NamedElementEditPart;
 import org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.diagram.common.locator.ExternalLabelPositionLocator;
 import org.eclipse.papyrus.diagram.component.custom.edit.policies.CustomDiagramDragDropEditPolicy;
@@ -54,7 +52,6 @@ import org.eclipse.swt.graphics.Color;
  * @generated
  */
 public class InterfaceEditPartPCN extends
-
 
 AbstractBorderedShapeEditPart {
 
@@ -92,9 +89,6 @@ AbstractBorderedShapeEditPart {
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
-
-
-
 
 	/**
 	 * @generated
@@ -146,7 +140,6 @@ AbstractBorderedShapeEditPart {
 	public InterfaceAsCercle getPrimaryShape() {
 		return (InterfaceAsCercle)primaryShape;
 	}
-
 
 	/**
 	 * @generated
@@ -205,7 +198,9 @@ AbstractBorderedShapeEditPart {
 	/**
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
-	 * @param nodeShape instance of generated figure class
+	 * 
+	 * @param nodeShape
+	 *        instance of generated figure class
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
@@ -650,17 +645,10 @@ AbstractBorderedShapeEditPart {
 		return types;
 	}
 
-
-
-
-
 	/**
 	 * @generated
 	 */
 	public class InterfaceAsCercle extends Ellipse {
-
-
-
 
 		/**
 		 * @generated
@@ -670,14 +658,7 @@ AbstractBorderedShapeEditPart {
 			this.setForegroundColor(ColorConstants.black);
 		}
 
-
-
-
-
 	}
-
-
-
 
 	/**
 	 * @generated

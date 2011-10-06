@@ -92,21 +92,19 @@ public class CommentBodyEditPart extends CompartmentEditPart implements ITextAwa
 	 */
 	private String defaultText;
 
-
-
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
+	 * 
 	 * @generated
 	 */
 	protected int directEditionMode = IDirectEdition.UNDEFINED_DIRECT_EDITOR;
 
 	/**
 	 * configuration from a registered edit dialog
+	 * 
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
-
-
 
 	/**
 	 * @generated
@@ -559,8 +557,6 @@ public class CommentBodyEditPart extends CompartmentEditPart implements ITextAwa
 		return (View)getModel();
 	}
 
-
-
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
@@ -605,6 +601,7 @@ public class CommentBodyEditPart extends CompartmentEditPart implements ITextAwa
 
 	/**
 	 * Initializes the extended editor configuration
+	 * 
 	 * @generated
 	 */
 	protected void initExtendedEditorConfiguration() {
@@ -620,6 +617,7 @@ public class CommentBodyEditPart extends CompartmentEditPart implements ITextAwa
 
 	/**
 	 * Updates the preference configuration
+	 * 
 	 * @generated
 	 */
 	protected void updateExtendedEditorConfiguration() {
@@ -633,7 +631,9 @@ public class CommentBodyEditPart extends CompartmentEditPart implements ITextAwa
 
 	/**
 	 * Performs the direct edit usually used by GMF editors.
-	 * @param theRequest the direct edit request that starts the direct edit system
+	 * 
+	 * @param theRequest
+	 *        the direct edit request that starts the direct edit system
 	 * @generated
 	 */
 	protected void performDefaultDirectEditorEdit(final Request theRequest) {
@@ -660,8 +660,6 @@ public class CommentBodyEditPart extends CompartmentEditPart implements ITextAwa
 		}
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -677,7 +675,6 @@ public class CommentBodyEditPart extends CompartmentEditPart implements ITextAwa
 		super.removeNotationalListeners();
 		removeListenerFilter("PrimaryView"); //$NON-NLS-1$
 	}
-
 
 	/**
 	 * @generated
@@ -710,7 +707,6 @@ public class CommentBodyEditPart extends CompartmentEditPart implements ITextAwa
 			}
 		}
 
-
 		super.handleNotificationEvent(event);
 	}
 
@@ -722,13 +718,10 @@ public class CommentBodyEditPart extends CompartmentEditPart implements ITextAwa
 		return null;
 	}
 
-
-
 	/**
 	 * @generated
 	 */
 	private static final String ADD_PARENT_MODEL = "AddParentModel";
-
 
 	/**
 	 * @generated
@@ -755,7 +748,6 @@ public class CommentBodyEditPart extends CompartmentEditPart implements ITextAwa
 
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -763,6 +755,5 @@ public class CommentBodyEditPart extends CompartmentEditPart implements ITextAwa
 		removeListenerFilter(ADD_PARENT_MODEL);
 
 	}
-
 
 }

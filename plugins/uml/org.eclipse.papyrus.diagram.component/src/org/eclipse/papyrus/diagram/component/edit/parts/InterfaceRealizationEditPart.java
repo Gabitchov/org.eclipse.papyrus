@@ -36,10 +36,6 @@ implements ITreeBranchEditPart {
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new InterfaceRealizationItemSemanticEditPolicy());
 	}
 
-
-
-
-
 	/**
 	 * Creates figure for this edit part.
 	 * 
@@ -60,14 +56,10 @@ implements ITreeBranchEditPart {
 		return (SimpleDependency)getFigure();
 	}
 
-
 	/**
 	 * @generated
 	 */
 	public class SimpleDependency extends PolylineConnectionEx {
-
-
-
 
 		/**
 		 * @generated
@@ -77,11 +69,6 @@ implements ITreeBranchEditPart {
 
 		}
 
-
-
-
 	}
-
-
 
 }

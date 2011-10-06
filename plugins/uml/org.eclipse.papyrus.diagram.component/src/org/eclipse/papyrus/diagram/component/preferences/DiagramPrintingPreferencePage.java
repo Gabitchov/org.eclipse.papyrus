@@ -18,14 +18,14 @@ import org.eclipse.papyrus.diagram.component.part.UMLDiagramEditorPlugin;
 // TODO: Auto-generated Javadoc
 /**
  * The Class DiagramPrintingPreferencePage.
- *
+ * 
  * @generated
  */
 public class DiagramPrintingPreferencePage extends PrintingPreferencePage {
 
 	/**
 	 * Instantiates a new diagram printing preference page.
-	 *
+	 * 
 	 * @generated
 	 */
 	public DiagramPrintingPreferencePage() {

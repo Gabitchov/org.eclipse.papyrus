@@ -24,7 +24,7 @@ import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 // TODO: Auto-generated Javadoc
 /**
  * The Class ComponentPreferencePage.
- *
+ * 
  * @generated
  */
 public class ComponentPreferencePage extends AbstractPapyrusNodePreferencePage {
@@ -32,10 +32,9 @@ public class ComponentPreferencePage extends AbstractPapyrusNodePreferencePage {
 	/** The Constant compartments. @generated */
 	public static final String compartments[] = { "CompositeCompartment" };
 
-
 	/**
 	 * Instantiates a new component preference page.
-	 *
+	 * 
 	 * @generated
 	 */
 	public ComponentPreferencePage() {
@@ -45,7 +44,7 @@ public class ComponentPreferencePage extends AbstractPapyrusNodePreferencePage {
 
 	/**
 	 * Gets the bundle id.
-	 *
+	 * 
 	 * @return the bundle id
 	 * @generated
 	 */
@@ -56,8 +55,9 @@ public class ComponentPreferencePage extends AbstractPapyrusNodePreferencePage {
 
 	/**
 	 * Inits the defaults.
-	 *
-	 * @param store the store
+	 * 
+	 * @param store
+	 *        the store
 	 * @generated
 	 */
 	public static void initDefaults(IPreferenceStore store) {
@@ -92,7 +92,7 @@ public class ComponentPreferencePage extends AbstractPapyrusNodePreferencePage {
 
 	/**
 	 * Initialize compartments list.
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -104,7 +104,7 @@ public class ComponentPreferencePage extends AbstractPapyrusNodePreferencePage {
 
 	/**
 	 * Gets the static compartment visibility preferences.
-	 *
+	 * 
 	 * @return the static compartment visibility preferences
 	 * @generated
 	 */
@@ -116,7 +116,7 @@ public class ComponentPreferencePage extends AbstractPapyrusNodePreferencePage {
 
 	/**
 	 * Gets the static compartment title visibility preferences.
-	 *
+	 * 
 	 * @return the static compartment title visibility preferences
 	 * @generated
 	 */
@@ -129,7 +129,7 @@ public class ComponentPreferencePage extends AbstractPapyrusNodePreferencePage {
 
 	/**
 	 * Gets the compartment title visibility preferences.
-	 *
+	 * 
 	 * @return the compartment title visibility preferences
 	 * @generated
 	 */

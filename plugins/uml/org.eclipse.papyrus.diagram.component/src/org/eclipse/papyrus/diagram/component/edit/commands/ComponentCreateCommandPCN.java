@@ -57,10 +57,10 @@ public class ComponentCreateCommandPCN extends EditElementCommand {
 
 	/**
 	 * FIXME: replace with setElementToEdit()
+	 * 
 	 * @generated
 	 */
 	protected EObject getElementToEdit() {
-
 
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
@@ -77,10 +77,7 @@ public class ComponentCreateCommandPCN extends EditElementCommand {
 	 */
 	public boolean canExecute() {
 
-
 		return true;
-
-
 
 	}
 
@@ -89,13 +86,10 @@ public class ComponentCreateCommandPCN extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-
-
 		Component newElement = UMLFactory.eINSTANCE.createComponent();
 
 		Package owner = (Package)getElementToEdit();
 		owner.getPackagedElements().add(newElement);
-
 
 		ElementInitializers.getInstance().init_Component_3071(newElement);
 
@@ -104,9 +98,6 @@ public class ComponentCreateCommandPCN extends EditElementCommand {
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
-
-
-
 
 	/**
 	 * @generated

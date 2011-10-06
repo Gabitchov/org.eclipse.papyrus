@@ -58,10 +58,10 @@ public class ConstraintCreateCommand extends EditElementCommand {
 
 	/**
 	 * FIXME: replace with setElementToEdit()
+	 * 
 	 * @generated
 	 */
 	protected EObject getElementToEdit() {
-
 
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
@@ -92,13 +92,10 @@ public class ConstraintCreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-
-
 		Constraint newElement = UMLFactory.eINSTANCE.createConstraint();
 
 		Namespace owner = (Namespace)getElementToEdit();
 		owner.getOwnedRules().add(newElement);
-
 
 		ElementInitializers.getInstance().init_Constraint_3199(newElement);
 
@@ -107,9 +104,6 @@ public class ConstraintCreateCommand extends EditElementCommand {
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
-
-
-
 
 	/**
 	 * @generated

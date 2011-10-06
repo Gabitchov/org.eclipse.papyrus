@@ -20,14 +20,14 @@ import org.eclipse.papyrus.diagram.component.providers.UMLElementTypes;
 // TODO: Auto-generated Javadoc
 /**
  * The Class ConstraintConstrainedElementItemSemanticEditPolicy.
- *
+ * 
  * @generated
  */
 public class ConstraintConstrainedElementItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 
 	/**
 	 * Instantiates a new constraint constrained element item semantic edit policy.
-	 *
+	 * 
 	 * @generated
 	 */
 	public ConstraintConstrainedElementItemSemanticEditPolicy() {
@@ -36,8 +36,9 @@ public class ConstraintConstrainedElementItemSemanticEditPolicy extends UMLBaseI
 
 	/**
 	 * Gets the destroy reference command.
-	 *
-	 * @param req the req
+	 * 
+	 * @param req
+	 *        the req
 	 * @return the destroy reference command
 	 * @generated
 	 */

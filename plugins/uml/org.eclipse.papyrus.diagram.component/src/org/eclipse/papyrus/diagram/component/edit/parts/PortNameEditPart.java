@@ -71,9 +71,7 @@ import org.eclipse.ui.PlatformUI;
  */
 public class PortNameEditPart
 
-
 extends LabelEditPart
-
 
 implements ITextAwareEditPart, IBorderItemEditPart, ILabelRoleProvider {
 
@@ -102,21 +100,19 @@ implements ITextAwareEditPart, IBorderItemEditPart, ILabelRoleProvider {
 	 */
 	private String defaultText;
 
-
-
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
+	 * 
 	 * @generated
 	 */
 	protected int directEditionMode = IDirectEdition.UNDEFINED_DIRECT_EDITOR;
 
 	/**
 	 * configuration from a registered edit dialog
+	 * 
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
-
-
 
 	/**
 	 * @generated
@@ -599,8 +595,6 @@ implements ITextAwareEditPart, IBorderItemEditPart, ILabelRoleProvider {
 		return getPrimaryView();
 	}
 
-
-
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
@@ -645,6 +639,7 @@ implements ITextAwareEditPart, IBorderItemEditPart, ILabelRoleProvider {
 
 	/**
 	 * Initializes the extended editor configuration
+	 * 
 	 * @generated
 	 */
 	protected void initExtendedEditorConfiguration() {
@@ -660,6 +655,7 @@ implements ITextAwareEditPart, IBorderItemEditPart, ILabelRoleProvider {
 
 	/**
 	 * Updates the preference configuration
+	 * 
 	 * @generated
 	 */
 	protected void updateExtendedEditorConfiguration() {
@@ -673,7 +669,9 @@ implements ITextAwareEditPart, IBorderItemEditPart, ILabelRoleProvider {
 
 	/**
 	 * Performs the direct edit usually used by GMF editors.
-	 * @param theRequest the direct edit request that starts the direct edit system
+	 * 
+	 * @param theRequest
+	 *        the direct edit request that starts the direct edit system
 	 * @generated
 	 */
 	protected void performDefaultDirectEditorEdit(final Request theRequest) {
@@ -699,8 +697,6 @@ implements ITextAwareEditPart, IBorderItemEditPart, ILabelRoleProvider {
 			e.printStackTrace();
 		}
 	}
-
-
 
 	/**
 	 * @generated

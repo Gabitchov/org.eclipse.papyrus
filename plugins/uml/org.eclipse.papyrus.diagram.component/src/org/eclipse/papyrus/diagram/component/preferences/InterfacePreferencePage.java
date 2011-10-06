@@ -25,16 +25,14 @@ import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 // TODO: Auto-generated Javadoc
 /**
  * The Class InterfacePreferencePage.
- *
+ * 
  * @generated
  */
 public class InterfacePreferencePage extends AbstractPapyrusNodePreferencePage {
 
-
-
 	/**
 	 * Instantiates a new interface preference page.
-	 *
+	 * 
 	 * @generated
 	 */
 	public InterfacePreferencePage() {
@@ -44,7 +42,7 @@ public class InterfacePreferencePage extends AbstractPapyrusNodePreferencePage {
 
 	/**
 	 * Gets the bundle id.
-	 *
+	 * 
 	 * @return the bundle id
 	 * @generated
 	 */
@@ -55,8 +53,9 @@ public class InterfacePreferencePage extends AbstractPapyrusNodePreferencePage {
 
 	/**
 	 * Inits the defaults.
-	 *
-	 * @param store the store
+	 * 
+	 * @param store
+	 *        the store
 	 * @generated
 	 */
 	public static void initDefaults(IPreferenceStore store) {
@@ -86,7 +85,7 @@ public class InterfacePreferencePage extends AbstractPapyrusNodePreferencePage {
 
 	/**
 	 * Gets the static label role.
-	 *
+	 * 
 	 * @return the static label role
 	 * @generated
 	 */
@@ -98,7 +97,7 @@ public class InterfacePreferencePage extends AbstractPapyrusNodePreferencePage {
 
 	/**
 	 * Gets the static label visibility preferences.
-	 *
+	 * 
 	 * @return the static label visibility preferences
 	 * @generated
 	 */
@@ -110,7 +109,7 @@ public class InterfacePreferencePage extends AbstractPapyrusNodePreferencePage {
 
 	/**
 	 * Gets the label role.
-	 *
+	 * 
 	 * @return the label role
 	 * @generated
 	 */

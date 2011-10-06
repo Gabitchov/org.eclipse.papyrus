@@ -41,11 +41,10 @@ import org.eclipse.uml2.uml.UMLPackage;
 // TODO: Auto-generated Javadoc
 /**
  * The Class ComponentCompositeCompartmentCanonicalEditPolicyCN.
- *
+ * 
  * @generated
  */
 public class ComponentCompositeCompartmentCanonicalEditPolicyCN extends CanonicalEditPolicy {
-
 
 	/**
 	 * @generated
@@ -61,7 +60,7 @@ public class ComponentCompositeCompartmentCanonicalEditPolicyCN extends Canonica
 
 	/**
 	 * Gets the feature to synchronize.
-	 *
+	 * 
 	 * @return the feature to synchronize
 	 * @generated
 	 */
@@ -71,7 +70,7 @@ public class ComponentCompositeCompartmentCanonicalEditPolicyCN extends Canonica
 
 	/**
 	 * Gets the semantic children list.
-	 *
+	 * 
 	 * @return the semantic children list
 	 * @generated
 	 */
@@ -88,9 +87,11 @@ public class ComponentCompositeCompartmentCanonicalEditPolicyCN extends Canonica
 
 	/**
 	 * Checks if is orphaned.
-	 *
-	 * @param semanticChildren the semantic children
-	 * @param view the view
+	 * 
+	 * @param semanticChildren
+	 *        the semantic children
+	 * @param view
+	 *        the view
 	 * @return true, if is orphaned
 	 * @generated
 	 */
@@ -100,8 +101,9 @@ public class ComponentCompositeCompartmentCanonicalEditPolicyCN extends Canonica
 
 	/**
 	 * Checks if is my diagram element.
-	 *
-	 * @param view the view
+	 * 
+	 * @param view
+	 *        the view
 	 * @return true, if is my diagram element
 	 * @generated
 	 */
@@ -111,7 +113,7 @@ public class ComponentCompositeCompartmentCanonicalEditPolicyCN extends Canonica
 
 	/**
 	 * Refresh semantic.
-	 *
+	 * 
 	 * @generated
 	 */
 	protected void refreshSemantic() {

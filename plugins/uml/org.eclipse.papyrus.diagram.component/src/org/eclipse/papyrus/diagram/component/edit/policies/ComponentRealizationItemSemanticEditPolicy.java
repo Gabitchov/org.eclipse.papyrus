@@ -48,28 +48,25 @@ import org.eclipse.papyrus.service.edit.service.IElementEditService;
 // TODO: Auto-generated Javadoc
 /**
  * The Class ComponentRealizationItemSemanticEditPolicy.
- *
+ * 
  * @generated
  */
 public class ComponentRealizationItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 
 	/**
 	 * Instantiates a new component realization item semantic edit policy.
-	 *
+	 * 
 	 * @generated
 	 */
 	public ComponentRealizationItemSemanticEditPolicy() {
 		super(UMLElementTypes.ComponentRealization_4007);
 	}
 
-
-
-
-
 	/**
 	 * Gets the destroy element command.
-	 *
-	 * @param req the req
+	 * 
+	 * @param req
+	 *        the req
 	 * @return the destroy element command
 	 * @generated
 	 */
@@ -89,8 +86,9 @@ public class ComponentRealizationItemSemanticEditPolicy extends UMLBaseItemSeman
 
 	/**
 	 * Gets the creates the relationship command.
-	 *
-	 * @param req the req
+	 * 
+	 * @param req
+	 *        the req
 	 * @return the creates the relationship command
 	 * @generated
 	 */
@@ -101,8 +99,9 @@ public class ComponentRealizationItemSemanticEditPolicy extends UMLBaseItemSeman
 
 	/**
 	 * Gets the start create relationship command.
-	 *
-	 * @param req the req
+	 * 
+	 * @param req
+	 *        the req
 	 * @return the start create relationship command
 	 * @generated
 	 */
@@ -139,8 +138,9 @@ public class ComponentRealizationItemSemanticEditPolicy extends UMLBaseItemSeman
 
 	/**
 	 * Gets the complete create relationship command.
-	 *
-	 * @param req the req
+	 * 
+	 * @param req
+	 *        the req
 	 * @return the complete create relationship command
 	 * @generated
 	 */
@@ -178,8 +178,9 @@ public class ComponentRealizationItemSemanticEditPolicy extends UMLBaseItemSeman
 	/**
 	 * Returns command to reorient EClass based link. New link target or source
 	 * should be the domain model element associated with this node.
-	 *
-	 * @param req the req
+	 * 
+	 * @param req
+	 *        the req
 	 * @return the reorient relationship command
 	 * @generated
 	 */
@@ -209,8 +210,9 @@ public class ComponentRealizationItemSemanticEditPolicy extends UMLBaseItemSeman
 	/**
 	 * Returns command to reorient EReference based link. New link target or source
 	 * should be the domain model element associated with this node.
-	 *
-	 * @param req the req
+	 * 
+	 * @param req
+	 *        the req
 	 * @return the reorient reference relationship command
 	 * @generated
 	 */

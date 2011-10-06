@@ -53,28 +53,25 @@ import org.eclipse.papyrus.service.edit.service.IElementEditService;
 // TODO: Auto-generated Javadoc
 /**
  * The Class DependencyItemSemanticEditPolicy.
- *
+ * 
  * @generated
  */
 public class DependencyItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 
 	/**
 	 * Instantiates a new dependency item semantic edit policy.
-	 *
+	 * 
 	 * @generated
 	 */
 	public DependencyItemSemanticEditPolicy() {
 		super(UMLElementTypes.Dependency_4010);
 	}
 
-
-
-
-
 	/**
 	 * Gets the destroy element command.
-	 *
-	 * @param req the req
+	 * 
+	 * @param req
+	 *        the req
 	 * @return the destroy element command
 	 * @generated
 	 */
@@ -91,8 +88,9 @@ public class DependencyItemSemanticEditPolicy extends UMLBaseItemSemanticEditPol
 
 	/**
 	 * Gets the creates the relationship command.
-	 *
-	 * @param req the req
+	 * 
+	 * @param req
+	 *        the req
 	 * @return the creates the relationship command
 	 * @generated
 	 */
@@ -103,8 +101,9 @@ public class DependencyItemSemanticEditPolicy extends UMLBaseItemSemanticEditPol
 
 	/**
 	 * Gets the start create relationship command.
-	 *
-	 * @param req the req
+	 * 
+	 * @param req
+	 *        the req
 	 * @return the start create relationship command
 	 * @generated
 	 */
@@ -141,8 +140,9 @@ public class DependencyItemSemanticEditPolicy extends UMLBaseItemSemanticEditPol
 
 	/**
 	 * Gets the complete create relationship command.
-	 *
-	 * @param req the req
+	 * 
+	 * @param req
+	 *        the req
 	 * @return the complete create relationship command
 	 * @generated
 	 */
@@ -180,8 +180,9 @@ public class DependencyItemSemanticEditPolicy extends UMLBaseItemSemanticEditPol
 	/**
 	 * Returns command to reorient EClass based link. New link target or source
 	 * should be the domain model element associated with this node.
-	 *
-	 * @param req the req
+	 * 
+	 * @param req
+	 *        the req
 	 * @return the reorient relationship command
 	 * @generated
 	 */
@@ -211,8 +212,9 @@ public class DependencyItemSemanticEditPolicy extends UMLBaseItemSemanticEditPol
 	/**
 	 * Returns command to reorient EReference based link. New link target or source
 	 * should be the domain model element associated with this node.
-	 *
-	 * @param req the req
+	 * 
+	 * @param req
+	 *        the req
 	 * @return the reorient reference relationship command
 	 * @generated
 	 */

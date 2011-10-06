@@ -96,21 +96,19 @@ public class ConstraintSpecificationEditPart extends CompartmentEditPart impleme
 	 */
 	private String defaultText;
 
-
-
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
+	 * 
 	 * @generated
 	 */
 	protected int directEditionMode = IDirectEdition.UNDEFINED_DIRECT_EDITOR;
 
 	/**
 	 * configuration from a registered edit dialog
+	 * 
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
-
-
 
 	/**
 	 * @generated
@@ -575,8 +573,6 @@ public class ConstraintSpecificationEditPart extends CompartmentEditPart impleme
 		return getPrimaryView();
 	}
 
-
-
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
@@ -621,6 +617,7 @@ public class ConstraintSpecificationEditPart extends CompartmentEditPart impleme
 
 	/**
 	 * Initializes the extended editor configuration
+	 * 
 	 * @generated
 	 */
 	protected void initExtendedEditorConfiguration() {
@@ -636,6 +633,7 @@ public class ConstraintSpecificationEditPart extends CompartmentEditPart impleme
 
 	/**
 	 * Updates the preference configuration
+	 * 
 	 * @generated
 	 */
 	protected void updateExtendedEditorConfiguration() {
@@ -649,7 +647,9 @@ public class ConstraintSpecificationEditPart extends CompartmentEditPart impleme
 
 	/**
 	 * Performs the direct edit usually used by GMF editors.
-	 * @param theRequest the direct edit request that starts the direct edit system
+	 * 
+	 * @param theRequest
+	 *        the direct edit request that starts the direct edit system
 	 * @generated
 	 */
 	protected void performDefaultDirectEditorEdit(final Request theRequest) {
@@ -676,8 +676,6 @@ public class ConstraintSpecificationEditPart extends CompartmentEditPart impleme
 		}
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -693,7 +691,6 @@ public class ConstraintSpecificationEditPart extends CompartmentEditPart impleme
 		super.removeNotationalListeners();
 		removeListenerFilter("PrimaryView"); //$NON-NLS-1$
 	}
-
 
 	/**
 	 * @generated
@@ -741,13 +738,10 @@ public class ConstraintSpecificationEditPart extends CompartmentEditPart impleme
 		return null;
 	}
 
-
-
 	/**
 	 * @generated
 	 */
 	private static final String ADD_PARENT_MODEL = "AddParentModel";
-
 
 	/**
 	 * @generated
@@ -774,7 +768,6 @@ public class ConstraintSpecificationEditPart extends CompartmentEditPart impleme
 
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -782,6 +775,5 @@ public class ConstraintSpecificationEditPart extends CompartmentEditPart impleme
 		removeListenerFilter(ADD_PARENT_MODEL);
 
 	}
-
 
 }

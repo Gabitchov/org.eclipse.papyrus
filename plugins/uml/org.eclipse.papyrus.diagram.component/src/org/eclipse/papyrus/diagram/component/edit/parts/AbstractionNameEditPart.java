@@ -93,21 +93,19 @@ public class AbstractionNameEditPart extends LabelEditPart implements ITextAware
 	 */
 	private String defaultText;
 
-
-
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
+	 * 
 	 * @generated
 	 */
 	protected int directEditionMode = IDirectEdition.UNDEFINED_DIRECT_EDITOR;
 
 	/**
 	 * configuration from a registered edit dialog
+	 * 
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
-
-
 
 	/**
 	 * @generated
@@ -574,8 +572,6 @@ public class AbstractionNameEditPart extends LabelEditPart implements ITextAware
 		return getPrimaryView();
 	}
 
-
-
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
@@ -620,6 +616,7 @@ public class AbstractionNameEditPart extends LabelEditPart implements ITextAware
 
 	/**
 	 * Initializes the extended editor configuration
+	 * 
 	 * @generated
 	 */
 	protected void initExtendedEditorConfiguration() {
@@ -635,6 +632,7 @@ public class AbstractionNameEditPart extends LabelEditPart implements ITextAware
 
 	/**
 	 * Updates the preference configuration
+	 * 
 	 * @generated
 	 */
 	protected void updateExtendedEditorConfiguration() {
@@ -648,7 +646,9 @@ public class AbstractionNameEditPart extends LabelEditPart implements ITextAware
 
 	/**
 	 * Performs the direct edit usually used by GMF editors.
-	 * @param theRequest the direct edit request that starts the direct edit system
+	 * 
+	 * @param theRequest
+	 *        the direct edit request that starts the direct edit system
 	 * @generated
 	 */
 	protected void performDefaultDirectEditorEdit(final Request theRequest) {
@@ -674,8 +674,6 @@ public class AbstractionNameEditPart extends LabelEditPart implements ITextAware
 			e.printStackTrace();
 		}
 	}
-
-
 
 	/**
 	 * @generated
@@ -706,9 +704,6 @@ public class AbstractionNameEditPart extends LabelEditPart implements ITextAware
 				}
 			}
 		}
-
-
-
 
 		super.handleNotificationEvent(event);
 	}

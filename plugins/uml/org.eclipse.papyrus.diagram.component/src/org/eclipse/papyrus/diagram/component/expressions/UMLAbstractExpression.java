@@ -29,7 +29,7 @@ import org.eclipse.papyrus.diagram.component.part.UMLDiagramEditorPlugin;
 // TODO: Auto-generated Javadoc
 /**
  * The Class UMLAbstractExpression.
- *
+ * 
  * @generated
  */
 public abstract class UMLAbstractExpression {
@@ -39,10 +39,13 @@ public abstract class UMLAbstractExpression {
 
 	/**
 	 * Sets the status.
-	 *
-	 * @param severity the severity
-	 * @param message the message
-	 * @param throwable the throwable
+	 * 
+	 * @param severity
+	 *        the severity
+	 * @param message
+	 *        the message
+	 * @param throwable
+	 *        the throwable
 	 * @generated
 	 */
 	protected void setStatus(int severity, String message, Throwable throwable) {
@@ -55,7 +58,7 @@ public abstract class UMLAbstractExpression {
 
 	/**
 	 * Gets the status.
-	 *
+	 * 
 	 * @return the status
 	 * @generated
 	 */
@@ -68,7 +71,7 @@ public abstract class UMLAbstractExpression {
 
 	/**
 	 * Body.
-	 *
+	 * 
 	 * @return the string
 	 * @generated
 	 */
@@ -81,7 +84,7 @@ public abstract class UMLAbstractExpression {
 
 	/**
 	 * Context.
-	 *
+	 * 
 	 * @return the e classifier
 	 * @generated
 	 */
@@ -89,12 +92,13 @@ public abstract class UMLAbstractExpression {
 		return myContext;
 	}
 
-
 	/**
 	 * Instantiates a new uML abstract expression.
-	 *
-	 * @param body the body
-	 * @param context the context
+	 * 
+	 * @param body
+	 *        the body
+	 * @param context
+	 *        the context
 	 * @generated
 	 */
 	protected UMLAbstractExpression(String body, EClassifier context) {
@@ -104,9 +108,11 @@ public abstract class UMLAbstractExpression {
 
 	/**
 	 * Do evaluate.
-	 *
-	 * @param context the context
-	 * @param env the env
+	 * 
+	 * @param context
+	 *        the context
+	 * @param env
+	 *        the env
 	 * @return the object
 	 * @generated
 	 */
@@ -115,8 +121,9 @@ public abstract class UMLAbstractExpression {
 
 	/**
 	 * Evaluate.
-	 *
-	 * @param context the context
+	 * 
+	 * @param context
+	 *        the context
 	 * @return the object
 	 * @generated
 	 */
@@ -126,9 +133,11 @@ public abstract class UMLAbstractExpression {
 
 	/**
 	 * Evaluate.
-	 *
-	 * @param context the context
-	 * @param env the env
+	 * 
+	 * @param context
+	 *        the context
+	 * @param env
+	 *        the env
 	 * @return the object
 	 * @generated
 	 */
@@ -145,10 +154,13 @@ public abstract class UMLAbstractExpression {
 	}
 
 	/**
-	 * Expression may return number value which is not directly compatible with feature type (e.g. Double when Integer is expected), or EEnumLiteral meta-object when literal instance is expected
-	 *
-	 * @param value the value
-	 * @param targetType the target type
+	 * Expression may return number value which is not directly compatible with feature type (e.g. Double when Integer is expected), or EEnumLiteral
+	 * meta-object when literal instance is expected
+	 * 
+	 * @param value
+	 *        the value
+	 * @param targetType
+	 *        the target type
 	 * @return the object
 	 * @generated
 	 */

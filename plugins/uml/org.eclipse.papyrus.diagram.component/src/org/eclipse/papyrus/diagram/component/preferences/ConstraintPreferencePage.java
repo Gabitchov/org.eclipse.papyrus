@@ -21,16 +21,14 @@ import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 // TODO: Auto-generated Javadoc
 /**
  * The Class ConstraintPreferencePage.
- *
+ * 
  * @generated
  */
 public class ConstraintPreferencePage extends AbstractPapyrusNodePreferencePage {
 
-
-
 	/**
 	 * Instantiates a new constraint preference page.
-	 *
+	 * 
 	 * @generated
 	 */
 	public ConstraintPreferencePage() {
@@ -40,7 +38,7 @@ public class ConstraintPreferencePage extends AbstractPapyrusNodePreferencePage 
 
 	/**
 	 * Gets the bundle id.
-	 *
+	 * 
 	 * @return the bundle id
 	 * @generated
 	 */
@@ -51,8 +49,9 @@ public class ConstraintPreferencePage extends AbstractPapyrusNodePreferencePage 
 
 	/**
 	 * Inits the defaults.
-	 *
-	 * @param store the store
+	 * 
+	 * @param store
+	 *        the store
 	 * @generated
 	 */
 	public static void initDefaults(IPreferenceStore store) {
@@ -60,7 +59,6 @@ public class ConstraintPreferencePage extends AbstractPapyrusNodePreferencePage 
 		String key = ComponentDiagramEditPart.MODEL_ID + "_Constraint";
 		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.WIDTH), 40);
 		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.HEIGHT), 40);
-
 
 		//org.eclipse.jface.preference.PreferenceConverter.setDefault(store, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_FILL), new org.eclipse.swt.graphics.RGB(255, 255, 255));
 		//org.eclipse.jface.preference.PreferenceConverter.setDefault(store, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_LINE), new org.eclipse.swt.graphics.RGB(0, 0, 0));
@@ -73,6 +71,5 @@ public class ConstraintPreferencePage extends AbstractPapyrusNodePreferencePage 
 		//store.setDefault(org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_GRADIENT), gradientPreferenceConverter.getPreferenceValue());
 
 	}
-
 
 }
