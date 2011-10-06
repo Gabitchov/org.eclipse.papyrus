@@ -70,7 +70,6 @@ import org.eclipse.swt.graphics.Color;
  */
 public class DurationObservationEditPart extends
 
-
 AbstractObservationEditPart {
 
 	/**
@@ -112,9 +111,6 @@ AbstractObservationEditPart {
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
-
-
-
 	/**
 	 * Papyrus codeGen
 	 * 
@@ -137,10 +133,6 @@ AbstractObservationEditPart {
 		super.handleNotificationEvent(event);
 
 	}
-
-
-
-
 
 	/**
 	 * @generated
@@ -194,7 +186,6 @@ AbstractObservationEditPart {
 		return (DurationObservationNodeFigure)primaryShape;
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -222,7 +213,6 @@ AbstractObservationEditPart {
 
 		return result;
 	}
-
 
 	/**
 	 * Creates figure for this edit part.
@@ -5421,10 +5411,6 @@ AbstractObservationEditPart {
 		}
 		return types;
 	}
-
-
-
-
 
 	/**
 	 * @generated

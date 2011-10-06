@@ -73,9 +73,6 @@ public class OpaqueExpressionItemSemanticEditPolicy extends UMLBaseItemSemanticE
 		super(UMLElementTypes.OpaqueExpression_2101);
 	}
 
-
-
-
 	/**
 	 * @generated
 	 */
@@ -92,7 +89,6 @@ public class OpaqueExpressionItemSemanticEditPolicy extends UMLBaseItemSemanticE
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
-
 
 	/**
 	 * @generated

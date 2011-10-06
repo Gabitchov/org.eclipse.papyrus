@@ -60,7 +60,6 @@ public class ClassCompositeCompartmentItemSemanticEditPolicyCN extends UMLBaseIt
 		super(UMLElementTypes.Class_3085);
 	}
 
-
 	/**
 	 * @generated
 	 */

@@ -61,7 +61,6 @@ public class OpaqueBehaviorCompositeCompartmentItemSemanticEditPolicy extends UM
 		super(UMLElementTypes.OpaqueBehavior_2065);
 	}
 
-
 	/**
 	 * @generated
 	 */

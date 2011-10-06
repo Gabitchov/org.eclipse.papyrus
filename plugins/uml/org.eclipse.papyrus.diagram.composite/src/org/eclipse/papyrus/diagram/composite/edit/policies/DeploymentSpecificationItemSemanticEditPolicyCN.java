@@ -78,9 +78,6 @@ public class DeploymentSpecificationItemSemanticEditPolicyCN extends UMLBaseItem
 		super(UMLElementTypes.DeploymentSpecification_3092);
 	}
 
-
-
-
 	/**
 	 * @generated
 	 */
@@ -97,7 +94,6 @@ public class DeploymentSpecificationItemSemanticEditPolicyCN extends UMLBaseItem
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
-
 
 	/**
 	 * @generated

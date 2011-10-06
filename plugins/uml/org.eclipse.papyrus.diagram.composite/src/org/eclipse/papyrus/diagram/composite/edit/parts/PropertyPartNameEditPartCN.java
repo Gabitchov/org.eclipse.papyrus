@@ -109,8 +109,6 @@ public class PropertyPartNameEditPartCN extends CompartmentEditPart implements I
 	 */
 	private String defaultText;
 
-
-
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
 	 * 
@@ -124,8 +122,6 @@ public class PropertyPartNameEditPartCN extends CompartmentEditPart implements I
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
-
-
 
 	/**
 	 * @generated
@@ -591,8 +587,6 @@ public class PropertyPartNameEditPartCN extends CompartmentEditPart implements I
 		return (View)getModel();
 	}
 
-
-
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
@@ -696,8 +690,6 @@ public class PropertyPartNameEditPartCN extends CompartmentEditPart implements I
 		}
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -713,7 +705,6 @@ public class PropertyPartNameEditPartCN extends CompartmentEditPart implements I
 		super.removeNotationalListeners();
 		removeListenerFilter("PrimaryView"); //$NON-NLS-1$
 	}
-
 
 	/**
 	 * @generated
@@ -761,13 +752,10 @@ public class PropertyPartNameEditPartCN extends CompartmentEditPart implements I
 		return null;
 	}
 
-
-
 	/**
 	 * @generated
 	 */
 	private static final String ADD_PARENT_MODEL = "AddParentModel";
-
 
 	/**
 	 * @generated
@@ -794,7 +782,6 @@ public class PropertyPartNameEditPartCN extends CompartmentEditPart implements I
 
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -802,6 +789,5 @@ public class PropertyPartNameEditPartCN extends CompartmentEditPart implements I
 		removeListenerFilter(ADD_PARENT_MODEL);
 
 	}
-
 
 }

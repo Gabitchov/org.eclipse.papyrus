@@ -66,7 +66,6 @@ import org.eclipse.swt.graphics.Color;
  */
 public class EnumerationEditPart extends
 
-
 NamedElementEditPart {
 
 	/**
@@ -109,9 +108,6 @@ NamedElementEditPart {
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
-
-
-
 	/**
 	 * Papyrus codeGen
 	 * 
@@ -121,10 +117,6 @@ NamedElementEditPart {
 		super.handleNotificationEvent(event);
 
 	}
-
-
-
-
 
 	/**
 	 * @generated
@@ -174,7 +166,6 @@ NamedElementEditPart {
 			return true;
 		}
 
-
 		if(childEditPart instanceof EnumerationEnumerationLiteralCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getEnumerationLiteralCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
@@ -184,7 +175,6 @@ NamedElementEditPart {
 
 		return false;
 	}
-
 
 	/**
 	 * @generated
@@ -232,7 +222,6 @@ NamedElementEditPart {
 		return getContentPane();
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -245,7 +234,6 @@ NamedElementEditPart {
 
 		return result;
 	}
-
 
 	/**
 	 * Creates figure for this edit part.
@@ -5336,7 +5324,6 @@ NamedElementEditPart {
 		return types;
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -5350,10 +5337,6 @@ NamedElementEditPart {
 		}
 		return super.getTargetEditPart(request);
 	}
-
-
-
-
 
 	/**
 	 * @generated

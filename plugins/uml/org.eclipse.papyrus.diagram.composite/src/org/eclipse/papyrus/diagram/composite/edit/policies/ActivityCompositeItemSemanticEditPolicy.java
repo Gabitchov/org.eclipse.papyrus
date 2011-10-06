@@ -81,7 +81,6 @@ public class ActivityCompositeItemSemanticEditPolicy extends UMLBaseItemSemantic
 		super(UMLElementTypes.Activity_2060);
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -94,8 +93,6 @@ public class ActivityCompositeItemSemanticEditPolicy extends UMLBaseItemSemantic
 		}
 		return super.getCreateCommand(req);
 	}
-
-
 
 	/**
 	 * @generated
@@ -113,7 +110,6 @@ public class ActivityCompositeItemSemanticEditPolicy extends UMLBaseItemSemantic
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
-
 
 	/**
 	 * @generated

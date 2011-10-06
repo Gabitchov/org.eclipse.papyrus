@@ -38,9 +38,6 @@ public class InteractionItemSemanticEditPolicyCLN extends UMLBaseItemSemanticEdi
 		super(UMLElementTypes.Interaction_3104);
 	}
 
-
-
-
 	/**
 	 * @generated
 	 */
@@ -63,6 +60,5 @@ public class InteractionItemSemanticEditPolicyCLN extends UMLBaseItemSemanticEdi
 		}
 		return getGEFWrapper(cmd.reduce());
 	}
-
 
 }

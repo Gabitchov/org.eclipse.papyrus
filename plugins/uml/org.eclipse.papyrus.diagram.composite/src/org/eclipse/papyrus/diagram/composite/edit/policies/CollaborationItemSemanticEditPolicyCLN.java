@@ -38,9 +38,6 @@ public class CollaborationItemSemanticEditPolicyCLN extends UMLBaseItemSemanticE
 		super(UMLElementTypes.Collaboration_3109);
 	}
 
-
-
-
 	/**
 	 * @generated
 	 */
@@ -63,6 +60,5 @@ public class CollaborationItemSemanticEditPolicyCLN extends UMLBaseItemSemanticE
 		}
 		return getGEFWrapper(cmd.reduce());
 	}
-
 
 }

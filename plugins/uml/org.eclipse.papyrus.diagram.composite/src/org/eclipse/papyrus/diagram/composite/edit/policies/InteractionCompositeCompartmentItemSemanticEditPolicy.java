@@ -61,7 +61,6 @@ public class InteractionCompositeCompartmentItemSemanticEditPolicy extends UMLBa
 		super(UMLElementTypes.Interaction_2061);
 	}
 
-
 	/**
 	 * @generated
 	 */

@@ -73,9 +73,6 @@ public class SignalEventItemSemanticEditPolicy extends UMLBaseItemSemanticEditPo
 		super(UMLElementTypes.SignalEvent_2083);
 	}
 
-
-
-
 	/**
 	 * @generated
 	 */
@@ -92,7 +89,6 @@ public class SignalEventItemSemanticEditPolicy extends UMLBaseItemSemanticEditPo
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
-
 
 	/**
 	 * @generated

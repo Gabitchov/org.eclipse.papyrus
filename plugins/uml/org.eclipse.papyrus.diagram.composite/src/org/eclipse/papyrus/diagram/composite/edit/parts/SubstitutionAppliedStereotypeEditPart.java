@@ -110,8 +110,6 @@ public class SubstitutionAppliedStereotypeEditPart extends LabelEditPart impleme
 	 */
 	private String defaultText;
 
-
-
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
 	 * 
@@ -125,8 +123,6 @@ public class SubstitutionAppliedStereotypeEditPart extends LabelEditPart impleme
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
-
-
 
 	/**
 	 * @generated
@@ -593,8 +589,6 @@ public class SubstitutionAppliedStereotypeEditPart extends LabelEditPart impleme
 		return getPrimaryView();
 	}
 
-
-
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
@@ -690,8 +684,6 @@ public class SubstitutionAppliedStereotypeEditPart extends LabelEditPart impleme
 		}
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -722,9 +714,6 @@ public class SubstitutionAppliedStereotypeEditPart extends LabelEditPart impleme
 			}
 		}
 
-
-
-
 		super.handleNotificationEvent(event);
 	}
 
@@ -735,9 +724,6 @@ public class SubstitutionAppliedStereotypeEditPart extends LabelEditPart impleme
 		// Parent should assign one using setLabel() method
 		return null;
 	}
-
-
-
 
 	/**
 	 * @generated
@@ -752,6 +738,5 @@ public class SubstitutionAppliedStereotypeEditPart extends LabelEditPart impleme
 	public String getIconPathRole() {
 		return "";//$NON-NLS-1$
 	}
-
 
 }

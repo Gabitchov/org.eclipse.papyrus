@@ -86,7 +86,6 @@ import org.eclipse.ui.PlatformUI;
  */
 public class TimeObservationStereotypeLabelEditPart
 
-
 extends AbstractLabelEditPart
 
 implements ITextAwareEditPart, IBorderItemEditPart
@@ -120,8 +119,6 @@ implements ITextAwareEditPart, IBorderItemEditPart
 	 */
 	private String defaultText;
 
-
-
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
 	 * 
@@ -135,8 +132,6 @@ implements ITextAwareEditPart, IBorderItemEditPart
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
-
-
 
 	/**
 	 * @generated
@@ -619,8 +614,6 @@ implements ITextAwareEditPart, IBorderItemEditPart
 		return getPrimaryView();
 	}
 
-
-
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
@@ -724,8 +717,6 @@ implements ITextAwareEditPart, IBorderItemEditPart
 		}
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -774,8 +765,6 @@ implements ITextAwareEditPart, IBorderItemEditPart
 		return new AppliedStereotypeWrappingLabelFigure();
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -789,6 +778,5 @@ implements ITextAwareEditPart, IBorderItemEditPart
 	public String getIconPathRole() {
 		return "";//$NON-NLS-1$
 	}
-
 
 }

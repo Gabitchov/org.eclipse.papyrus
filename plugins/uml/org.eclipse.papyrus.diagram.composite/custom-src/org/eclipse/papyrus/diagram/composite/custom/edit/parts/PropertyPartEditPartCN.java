@@ -15,7 +15,10 @@ package org.eclipse.papyrus.diagram.composite.custom.edit.parts;
 
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.gef.DragTracker;
+import org.eclipse.gef.Request;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.common.dragtracker.NoScrollDragEditPartsTrackerEx;
 import org.eclipse.papyrus.diagram.common.editparts.NamedElementEditPart;
 import org.eclipse.uml2.uml.AggregationKind;
 import org.eclipse.uml2.uml.Property;
@@ -57,6 +60,16 @@ public abstract class PropertyPartEditPartCN extends NamedElementEditPart {
 		}
 		super.handleNotificationEvent(event);
 	}
+	/**
+	 * the drag tracker has been specialized in order to constraint mvt inside its container without 
+	 * scroll bar
+	 * {@inheritDoc}
+	 */
+	@Override
+	public DragTracker getDragTracker(Request request) {
+		return new NoScrollDragEditPartsTrackerEx(this);
+	}
+
 
 	/**
 	 * <pre>

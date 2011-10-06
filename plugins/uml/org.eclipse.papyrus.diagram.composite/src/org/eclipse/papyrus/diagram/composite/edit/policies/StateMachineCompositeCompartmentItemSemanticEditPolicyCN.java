@@ -61,7 +61,6 @@ public class StateMachineCompositeCompartmentItemSemanticEditPolicyCN extends UM
 		super(UMLElementTypes.StateMachine_3075);
 	}
 
-
 	/**
 	 * @generated
 	 */

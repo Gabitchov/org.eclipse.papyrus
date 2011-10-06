@@ -73,9 +73,6 @@ public class TimeConstraintItemSemanticEditPolicy extends UMLBaseItemSemanticEdi
 		super(UMLElementTypes.TimeConstraint_2111);
 	}
 
-
-
-
 	/**
 	 * @generated
 	 */
@@ -92,7 +89,6 @@ public class TimeConstraintItemSemanticEditPolicy extends UMLBaseItemSemanticEdi
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
-
 
 	/**
 	 * @generated

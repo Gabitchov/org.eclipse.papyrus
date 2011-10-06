@@ -38,9 +38,6 @@ public class ClassItemSemanticEditPolicyCLN extends UMLBaseItemSemanticEditPolic
 		super(UMLElementTypes.Class_3114);
 	}
 
-
-
-
 	/**
 	 * @generated
 	 */
@@ -63,6 +60,5 @@ public class ClassItemSemanticEditPolicyCLN extends UMLBaseItemSemanticEditPolic
 		}
 		return getGEFWrapper(cmd.reduce());
 	}
-
 
 }

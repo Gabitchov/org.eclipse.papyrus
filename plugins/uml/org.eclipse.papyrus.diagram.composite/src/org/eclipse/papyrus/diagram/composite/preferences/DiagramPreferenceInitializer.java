@@ -28,245 +28,163 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 	public void initializeDefaultPreferences() {
 		IPreferenceStore store = getPreferenceStore();
 
-		ExecutionEnvironmentPreferencePage.initDefaults(store);
-
-
-		DataTypePreferencePage.initDefaults(store);
-
-
-		InformationItemPreferencePage.initDefaults(store);
-
-
 		PropertyPreferencePage.initDefaults(store);
-
-
-		SendSignalEventPreferencePage.initDefaults(store);
-
-
-		InstanceValuePreferencePage.initDefaults(store);
-
-
-		OpaqueExpressionPreferencePage.initDefaults(store);
-
-
-		SignalPreferencePage.initDefaults(store);
-
-
-		CommentPreferencePage.initDefaults(store);
-
-
-		DestructionEventPreferencePage.initDefaults(store);
-
-
-		PortPreferencePage.initDefaults(store);
-
-
-		ActivityPreferencePage.initDefaults(store);
-
-
-		NodePreferencePage.initDefaults(store);
-
-
-		ClassPreferencePage.initDefaults(store);
-
-
-		LiteralStringPreferencePage.initDefaults(store);
-
-
-		FunctionBehaviorPreferencePage.initDefaults(store);
-
-
-		IntervalPreferencePage.initDefaults(store);
-
-
-		UseCasePreferencePage.initDefaults(store);
-
-
-		SendOperationEventPreferencePage.initDefaults(store);
-
-
-		ProtocolStateMachinePreferencePage.initDefaults(store);
-
-
-		ConstraintPreferencePage.initDefaults(store);
-
-
-		TimeIntervalPreferencePage.initDefaults(store);
-
-
-		OpaqueBehaviorPreferencePage.initDefaults(store);
-
-
-		PrimitiveTypePreferencePage.initDefaults(store);
-
-
-		IntervalConstraintPreferencePage.initDefaults(store);
-
-
-		ExpressionPreferencePage.initDefaults(store);
-
-
-		TimeEventPreferencePage.initDefaults(store);
-
-
-		ChangeEventPreferencePage.initDefaults(store);
-
-
-		DeploymentSpecificationPreferencePage.initDefaults(store);
-
-
-		ReceptionPreferencePage.initDefaults(store);
-
-
-		SignalEventPreferencePage.initDefaults(store);
-
-
-		OperationPreferencePage.initDefaults(store);
-
-
-		TimeConstraintPreferencePage.initDefaults(store);
-
-
-		ExecutionEventPreferencePage.initDefaults(store);
-
-
-		ActorPreferencePage.initDefaults(store);
-
-
-		ComponentPreferencePage.initDefaults(store);
-
-
-		LiteralBooleanPreferencePage.initDefaults(store);
-
-
-		InteractionPreferencePage.initDefaults(store);
-
-
-		LiteralIntegerPreferencePage.initDefaults(store);
-
-
-		CollaborationUsePreferencePage.initDefaults(store);
-
-
-		LiteralNullPreferencePage.initDefaults(store);
-
-
-		DurationConstraintPreferencePage.initDefaults(store);
-
-
-		DurationObservationPreferencePage.initDefaults(store);
-
-
-		InterfacePreferencePage.initDefaults(store);
-
-
-		ArtifactPreferencePage.initDefaults(store);
-
-
-		StateMachinePreferencePage.initDefaults(store);
-
-
-		CollaborationPreferencePage.initDefaults(store);
-
-
-		StringExpressionPreferencePage.initDefaults(store);
-
-
-		TimeObservationPreferencePage.initDefaults(store);
-
-
-		AnyReceiveEventPreferencePage.initDefaults(store);
-
-
-		DevicePreferencePage.initDefaults(store);
-
-
-		CallEventPreferencePage.initDefaults(store);
-
-
-		EnumerationLiteralPreferencePage.initDefaults(store);
-
 
 		InteractionConstraintPreferencePage.initDefaults(store);
 
+		CommentPreferencePage.initDefaults(store);
 
-		DurationPreferencePage.initDefaults(store);
+		ClassPreferencePage.initDefaults(store);
 
+		ActorPreferencePage.initDefaults(store);
 
-		ParameterPreferencePage.initDefaults(store);
+		TimeEventPreferencePage.initDefaults(store);
 
+		StateMachinePreferencePage.initDefaults(store);
 
-		DurationIntervalPreferencePage.initDefaults(store);
+		ProtocolStateMachinePreferencePage.initDefaults(store);
 
+		OpaqueBehaviorPreferencePage.initDefaults(store);
 
-		LiteralUnlimitedNaturalPreferencePage.initDefaults(store);
-
-
-		CreationEventPreferencePage.initDefaults(store);
-
-
-		EnumerationPreferencePage.initDefaults(store);
-
-
-		CollaborationRolePreferencePage.initDefaults(store);
-
+		TimeIntervalPreferencePage.initDefaults(store);
 
 		TimeExpressionPreferencePage.initDefaults(store);
 
+		LiteralStringPreferencePage.initDefaults(store);
 
+		ExecutionEnvironmentPreferencePage.initDefaults(store);
 
+		LiteralNullPreferencePage.initDefaults(store);
 
-		ConstraintConstrainedElementPreferencePage.initDefaults(store);
+		ArtifactPreferencePage.initDefaults(store);
 
+		DurationConstraintPreferencePage.initDefaults(store);
 
-		AbstractionPreferencePage.initDefaults(store);
+		SignalPreferencePage.initDefaults(store);
 
+		AnyReceiveEventPreferencePage.initDefaults(store);
+
+		ReceptionPreferencePage.initDefaults(store);
+
+		CollaborationUsePreferencePage.initDefaults(store);
+
+		LiteralUnlimitedNaturalPreferencePage.initDefaults(store);
+
+		StringExpressionPreferencePage.initDefaults(store);
+
+		LiteralBooleanPreferencePage.initDefaults(store);
+
+		CollaborationRolePreferencePage.initDefaults(store);
+
+		SendSignalEventPreferencePage.initDefaults(store);
+
+		OpaqueExpressionPreferencePage.initDefaults(store);
+
+		ParameterPreferencePage.initDefaults(store);
+
+		InformationItemPreferencePage.initDefaults(store);
+
+		DataTypePreferencePage.initDefaults(store);
+
+		EnumerationLiteralPreferencePage.initDefaults(store);
+
+		ChangeEventPreferencePage.initDefaults(store);
+
+		InstanceValuePreferencePage.initDefaults(store);
+
+		NodePreferencePage.initDefaults(store);
+
+		LiteralIntegerPreferencePage.initDefaults(store);
+
+		InterfacePreferencePage.initDefaults(store);
+
+		SignalEventPreferencePage.initDefaults(store);
+
+		PrimitiveTypePreferencePage.initDefaults(store);
+
+		OperationPreferencePage.initDefaults(store);
+
+		ActivityPreferencePage.initDefaults(store);
+
+		InteractionPreferencePage.initDefaults(store);
+
+		IntervalPreferencePage.initDefaults(store);
+
+		DurationPreferencePage.initDefaults(store);
+
+		IntervalConstraintPreferencePage.initDefaults(store);
+
+		TimeObservationPreferencePage.initDefaults(store);
+
+		CollaborationPreferencePage.initDefaults(store);
+
+		CallEventPreferencePage.initDefaults(store);
+
+		ComponentPreferencePage.initDefaults(store);
+
+		PortPreferencePage.initDefaults(store);
+
+		FunctionBehaviorPreferencePage.initDefaults(store);
+
+		DeploymentSpecificationPreferencePage.initDefaults(store);
+
+		DestructionEventPreferencePage.initDefaults(store);
+
+		UseCasePreferencePage.initDefaults(store);
+
+		DevicePreferencePage.initDefaults(store);
+
+		DurationObservationPreferencePage.initDefaults(store);
+
+		CreationEventPreferencePage.initDefaults(store);
+
+		SendOperationEventPreferencePage.initDefaults(store);
+
+		EnumerationPreferencePage.initDefaults(store);
+
+		ConstraintPreferencePage.initDefaults(store);
+
+		DurationIntervalPreferencePage.initDefaults(store);
+
+		ExpressionPreferencePage.initDefaults(store);
+
+		TimeConstraintPreferencePage.initDefaults(store);
+
+		ExecutionEventPreferencePage.initDefaults(store);
 
 		DurationObservationEventPreferencePage.initDefaults(store);
 
-
-		InformationFlowPreferencePage.initDefaults(store);
-
+		DependencyPreferencePage.initDefaults(store);
 
 		GeneralizationPreferencePage.initDefaults(store);
 
+		ComponentRealizationPreferencePage.initDefaults(store);
 
 		ConnectorPreferencePage.initDefaults(store);
 
-
-		ManifestationPreferencePage.initDefaults(store);
-
-
-		TimeObservationEventPreferencePage.initDefaults(store);
-
-
-		DependencyPreferencePage.initDefaults(store);
-
-
-		RealizationPreferencePage.initDefaults(store);
-
+		ConstraintConstrainedElementPreferencePage.initDefaults(store);
 
 		UsagePreferencePage.initDefaults(store);
 
+		ManifestationPreferencePage.initDefaults(store);
 
-		InterfaceRealizationPreferencePage.initDefaults(store);
-
-
-		ComponentRealizationPreferencePage.initDefaults(store);
-
+		TimeObservationEventPreferencePage.initDefaults(store);
 
 		SubstitutionPreferencePage.initDefaults(store);
 
-
-		CommentAnnotatedElementPreferencePage.initDefaults(store);
-
-
-		RoleBindingPreferencePage.initDefaults(store);
-
-
+		AbstractionPreferencePage.initDefaults(store);
 
 		DeploymentPreferencePage.initDefaults(store);
 
+		CommentAnnotatedElementPreferencePage.initDefaults(store);
+
+		RoleBindingPreferencePage.initDefaults(store);
+
+		RealizationPreferencePage.initDefaults(store);
+
+		InterfaceRealizationPreferencePage.initDefaults(store);
+
+		InformationFlowPreferencePage.initDefaults(store);
 
 	}
 

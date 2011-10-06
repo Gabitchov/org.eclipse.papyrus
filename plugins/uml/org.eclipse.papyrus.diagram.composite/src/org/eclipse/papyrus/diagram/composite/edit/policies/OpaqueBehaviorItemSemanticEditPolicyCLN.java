@@ -38,9 +38,6 @@ public class OpaqueBehaviorItemSemanticEditPolicyCLN extends UMLBaseItemSemantic
 		super(UMLElementTypes.OpaqueBehavior_3108);
 	}
 
-
-
-
 	/**
 	 * @generated
 	 */
@@ -63,6 +60,5 @@ public class OpaqueBehaviorItemSemanticEditPolicyCLN extends UMLBaseItemSemantic
 		}
 		return getGEFWrapper(cmd.reduce());
 	}
-
 
 }

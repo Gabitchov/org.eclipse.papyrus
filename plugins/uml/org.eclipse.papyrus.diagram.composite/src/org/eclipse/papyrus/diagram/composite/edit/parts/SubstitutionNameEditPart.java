@@ -110,8 +110,6 @@ public class SubstitutionNameEditPart extends LabelEditPart implements ITextAwar
 	 */
 	private String defaultText;
 
-
-
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
 	 * 
@@ -125,8 +123,6 @@ public class SubstitutionNameEditPart extends LabelEditPart implements ITextAwar
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
-
-
 
 	/**
 	 * @generated
@@ -593,8 +589,6 @@ public class SubstitutionNameEditPart extends LabelEditPart implements ITextAwar
 		return getPrimaryView();
 	}
 
-
-
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
@@ -698,8 +692,6 @@ public class SubstitutionNameEditPart extends LabelEditPart implements ITextAwar
 		}
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -730,9 +722,6 @@ public class SubstitutionNameEditPart extends LabelEditPart implements ITextAwar
 			}
 		}
 
-
-
-
 		super.handleNotificationEvent(event);
 	}
 
@@ -743,9 +732,6 @@ public class SubstitutionNameEditPart extends LabelEditPart implements ITextAwar
 		// Parent should assign one using setLabel() method
 		return null;
 	}
-
-
-
 
 	/**
 	 * @generated
@@ -760,6 +746,5 @@ public class SubstitutionNameEditPart extends LabelEditPart implements ITextAwar
 	public String getIconPathRole() {
 		return "";//$NON-NLS-1$
 	}
-
 
 }

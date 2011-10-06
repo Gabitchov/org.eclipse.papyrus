@@ -78,9 +78,6 @@ public class CollaborationCompositeItemSemanticEditPolicy extends UMLBaseItemSem
 		super(UMLElementTypes.Collaboration_2075);
 	}
 
-
-
-
 	/**
 	 * @generated
 	 */
@@ -97,7 +94,6 @@ public class CollaborationCompositeItemSemanticEditPolicy extends UMLBaseItemSem
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
-
 
 	/**
 	 * @generated

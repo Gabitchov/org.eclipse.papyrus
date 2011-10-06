@@ -43,9 +43,6 @@ public class CommentItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy
 		super(UMLElementTypes.Comment_2109);
 	}
 
-
-
-
 	/**
 	 * @generated
 	 */
@@ -62,7 +59,6 @@ public class CommentItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
-
 
 	/**
 	 * @generated

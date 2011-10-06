@@ -27,8 +27,6 @@ import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
  */
 public class EnumerationPreferencePage extends AbstractPapyrusNodePreferencePage {
 
-
-
 	/**
 	 * @generated
 	 */
@@ -70,9 +68,6 @@ public class EnumerationPreferencePage extends AbstractPapyrusNodePreferencePage
 			String preferenceName = PreferenceConstantHelper.getLabelElementConstant(key, name, PreferenceConstantHelper.COMPARTMENT_NAME_VISIBILITY);
 			store.setDefault(preferenceName, map.get(name));
 		}
-
-
-
 
 		//org.eclipse.jface.preference.PreferenceConverter.setDefault(store, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_FILL), new org.eclipse.swt.graphics.RGB(255, 255, 255));
 		//org.eclipse.jface.preference.PreferenceConverter.setDefault(store, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_LINE), new org.eclipse.swt.graphics.RGB(0, 0, 0));
@@ -121,7 +116,5 @@ public class EnumerationPreferencePage extends AbstractPapyrusNodePreferencePage
 	protected TreeMap<String, Boolean> getCompartmentTitleVisibilityPreferences() {
 		return getStaticCompartmentTitleVisibilityPreferences();
 	}
-
-
 
 }

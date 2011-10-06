@@ -108,8 +108,6 @@ public class DeviceCompositeNameEditPartCN extends CompartmentEditPart implement
 	 */
 	private String defaultText;
 
-
-
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
 	 * 
@@ -123,8 +121,6 @@ public class DeviceCompositeNameEditPartCN extends CompartmentEditPart implement
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
-
-
 
 	/**
 	 * @generated
@@ -589,8 +585,6 @@ public class DeviceCompositeNameEditPartCN extends CompartmentEditPart implement
 		return (View)getModel();
 	}
 
-
-
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
@@ -694,8 +688,6 @@ public class DeviceCompositeNameEditPartCN extends CompartmentEditPart implement
 		}
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -711,7 +703,6 @@ public class DeviceCompositeNameEditPartCN extends CompartmentEditPart implement
 		super.removeNotationalListeners();
 		removeListenerFilter("PrimaryView"); //$NON-NLS-1$
 	}
-
 
 	/**
 	 * @generated
@@ -759,13 +750,10 @@ public class DeviceCompositeNameEditPartCN extends CompartmentEditPart implement
 		return null;
 	}
 
-
-
 	/**
 	 * @generated
 	 */
 	private static final String ADD_PARENT_MODEL = "AddParentModel";
-
 
 	/**
 	 * @generated
@@ -792,7 +780,6 @@ public class DeviceCompositeNameEditPartCN extends CompartmentEditPart implement
 
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -800,6 +787,5 @@ public class DeviceCompositeNameEditPartCN extends CompartmentEditPart implement
 		removeListenerFilter(ADD_PARENT_MODEL);
 
 	}
-
 
 }
