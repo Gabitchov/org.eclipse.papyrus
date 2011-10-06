@@ -34,8 +34,6 @@ public class IsReadOnly implements IJavaModelQuery<EObject, Boolean> {
 			if(editingDomain.isReadOnly(context.eResource())) {
 				return true;
 			}
-		} else {
-			throw new ModelQueryExecutionException("Enable to find the editiong domain");////$NON-NLS-N$ //$NON-NLS-1$
 		}
 		return false;
 	}
