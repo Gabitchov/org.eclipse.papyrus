@@ -129,6 +129,9 @@ public class DeleteCommandHandler extends AbstractCommandHandler implements IHan
 			}
 		}
 
+		if(selectedElements.size()==0){
+			return false;
+		}
 		// Don't compute the delete command to know if it is enabled,
 		// it can be WAY too slow...
 		return true;
