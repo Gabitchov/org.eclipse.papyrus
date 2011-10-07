@@ -83,7 +83,12 @@
          <actionProvider
 		         class="org.eclipse.papyrus.onefile.providers.PapyrusModelActionProvider"
 		         id="org.eclipse.papyrus.onefile.DiContent.OpenActions"
-		         overrides="org.eclipse.ui.navigator.resources.OpenActions"> 
+		         overrides="org.eclipse.ui.navigator.resources.OpenActions">
+            <enablement>
+               <instanceof
+                     value="org.eclipse.papyrus.onefile.model.IPapyrusFile">
+               </instanceof>
+            </enablement> 
          </actionProvider>
          <dropAssistant
                class="org.eclipse.papyrus.onefile.model.adapters.PapyrusCommonDropAdapterAssistant"
