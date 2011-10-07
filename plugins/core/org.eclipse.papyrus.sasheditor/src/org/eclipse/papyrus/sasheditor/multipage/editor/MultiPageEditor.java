@@ -276,7 +276,10 @@ public abstract class MultiPageEditor extends MultiPageEditorPart {
 		while(newIter.hasNext()) {
 			Object model = newIter.next();
 			if(!tabExistsFor(model)) { // create a new editor for the model
-				addEditor(tabFolderModel.createChildSashModel(model));
+				IPageModel pageModel = tabFolderModel.createChildSashModel(model);
+				if(pageModel != null) {
+					addEditor(pageModel);
+				}
 			}
 		}
 

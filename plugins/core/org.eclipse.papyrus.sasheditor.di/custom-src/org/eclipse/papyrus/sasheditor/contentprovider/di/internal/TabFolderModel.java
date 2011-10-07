@@ -63,7 +63,12 @@ public class TabFolderModel implements ITabFolderModel {
 
 		PageRef pageRef = (PageRef)child;
 
-		return pageModelFactory.createIPageModel(pageRef.getPageIdentifier());
+		Object pageIdentifier = pageRef.getPageIdentifier();
+		if(pageIdentifier != null) {
+			return pageModelFactory.createIPageModel(pageIdentifier);
+		} else {
+			return null;
+		}
 	}
 
 	/**

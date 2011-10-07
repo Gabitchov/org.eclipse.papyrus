@@ -816,7 +816,7 @@ public class TabFolderPart extends AbstractTabFolderPart {
 		// folder.setSelection(activePageIndex);
 		folder.redraw();
 
-		if(activePageIndex >= 0) {
+		if(activePageIndex >= 0 && activePageIndex < folder.getItemCount()) {
 			// System.err.println("setActivePage(" + activePageIndex + ") : " +
 			// this);
 			// Set the activeTab has visible.
@@ -866,7 +866,7 @@ public class TabFolderPart extends AbstractTabFolderPart {
 	 * @param i
 	 */
 	private void createTabItem(PartLists existingParts, Object newModel, int index) {
-		TabItemPart newTab;
+		TabItemPart newTab = null;
 
 		PagePart modelPart = existingParts.findPagePartFor(newModel);
 		if(modelPart != null) {
@@ -876,14 +876,17 @@ public class TabFolderPart extends AbstractTabFolderPart {
 		} else {
 			// No part found, create one
 			modelPart = createChildPart(newModel);
-			existingParts.addCreatedPage(modelPart);
-			// Attach it to the tabItem
-			newTab = new TabItemPart(this, modelPart, index);
+			if(modelPart != null) {
+				existingParts.addCreatedPage(modelPart);
+				// Attach it to the tabItem
+				newTab = new TabItemPart(this, modelPart, index);
+			}
 		}
 
 		// Add to the list of items.
-		currentTabItems.add(index, newTab);
-
+		if(newTab != null) {
+			currentTabItems.add(index, newTab);
+		}
 	}
 
 	// /**
@@ -946,17 +949,21 @@ public class TabFolderPart extends AbstractTabFolderPart {
 		// Create the child PartModel. Delegate creation to this part PartModel.
 		IPageModel partModel = getPartModel().createChildSashModel(newModel);
 
-		// Delegate part creation to the container. This allow the container to
-		// provide appropriate
-		// objects not available from the part.
-		PagePart newPart = getSashWindowContainer().createPagePart(this, partModel, newModel);
-		// Create control.
-		// Fire events before and after
-		getSashWindowContainer().getLifeCycleEventProvider().firePageAboutToBeOpenedEvent(newPart);
-		newPart.createPartControl(getControl());
-		getSashWindowContainer().getLifeCycleEventProvider().firePageOpenedEvent(newPart);
+		if(partModel != null) {
+			// Delegate part creation to the container. This allow the container to
+			// provide appropriate
+			// objects not available from the part.
+			PagePart newPart = getSashWindowContainer().createPagePart(this, partModel, newModel);
+			// Create control.
+			// Fire events before and after
+			getSashWindowContainer().getLifeCycleEventProvider().firePageAboutToBeOpenedEvent(newPart);
+			newPart.createPartControl(getControl());
+			getSashWindowContainer().getLifeCycleEventProvider().firePageOpenedEvent(newPart);
 
-		return newPart;
+			return newPart;
+		}
+
+		return null;
 	}
 
 	/**
