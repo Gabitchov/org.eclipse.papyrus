@@ -16,11 +16,15 @@ package org.eclipse.papyrus.export;
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-
+import java.util.Map;
+import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
@@ -28,6 +32,7 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.SubProgressMonitor;
 import org.eclipse.core.runtime.jobs.Job;
+import org.eclipse.emf.common.command.CommandStack;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
@@ -40,17 +45,22 @@ import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
-import org.eclipse.emf.transaction.RunnableWithResult;
+import org.eclipse.emf.transaction.RollbackException;
+import org.eclipse.emf.transaction.Transaction;
+import org.eclipse.emf.transaction.TransactionalCommandStack;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain.Factory;
 import org.eclipse.emf.transaction.util.TransactionUtil;
+import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.ui.image.ImageFileFormat;
 import org.eclipse.gmf.runtime.diagram.ui.render.util.CopyToImageUtil;
+import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.emf.common.ui.dialogs.DiagnosticDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
+import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.export.internal.Activator;
 import org.eclipse.swt.SWTError;
 import org.eclipse.swt.widgets.Display;
@@ -138,7 +148,6 @@ public class ExportAllDiagrams {
 
 	}
 
-
 	/**
 	 * Export all diagrams of the IFile
 	 * 
@@ -161,29 +170,38 @@ public class ExportAllDiagrams {
 				Factory factory = TransactionalEditingDomain.Factory.INSTANCE;
 				editingDomain = factory.createEditingDomain(resourceSet);
 			}
-			try {
-				TransactionUtil.runExclusive(editingDomain, new RunnableWithResult<Object>()
-					{
 
-						public void run() {
-							EcoreUtil.resolveAll(resourceSet);
-						}
+			AbstractTransactionalCommand com = new AbstractTransactionalCommand(editingDomain, "Resolve", Collections.emptyList()) {
 
-						public Object getResult() {
-							return null;
-						}
-
-						public void setStatus(IStatus status) {
-						}
-
-						public IStatus getStatus() {
-							return Status.OK_STATUS;
-						}
-					
-					});
-			} catch (InterruptedException e) {
+				@Override
+				protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+					EcoreUtil.resolveAll(resourceSet);
+					return null;
+				}
+			};
+			
+			// bypass all the transaction/validate/notification mechanisms, it is a lot faster and it has no impact
+			// since we do not modify the model
+			CommandStack commandStack = editingDomain.getCommandStack();
+			if(commandStack instanceof TransactionalCommandStack) {
+				TransactionalCommandStack stack = (TransactionalCommandStack)commandStack;
+				Map<Object, Object> options = new HashMap<Object, Object>();
+				options.put(Transaction.OPTION_NO_NOTIFICATIONS, Boolean.TRUE);
+				options.put(Transaction.OPTION_NO_UNDO, Boolean.TRUE);
+				options.put(Transaction.OPTION_UNPROTECTED, Boolean.TRUE);
+				options.put(Transaction.OPTION_IS_UNDO_REDO_TRANSACTION, Boolean.FALSE);
+				options.put(Transaction.OPTION_NO_TRIGGERS, Boolean.TRUE);
+				options.put(Transaction.OPTION_VALIDATE_EDIT, Boolean.FALSE);
+				options.put(Transaction.OPTION_VALIDATE_EDIT_CONTEXT, Boolean.FALSE);
+				try {
+					stack.execute(new GMFtoEMFCommandWrapper(com), options);
+				} catch (InterruptedException e) {
+				} catch (RollbackException e) {
+				}
+			} else {
+				Activator.log("no transactional editing domain found", Status.WARNING);
 			}
-			EcoreUtil.resolveAll(resourceSet);
+
 			List<Diagram> diagrams = new ArrayList<Diagram>();
 			if(newMonitor.isCanceled()) {
 				return;
@@ -221,8 +239,6 @@ public class ExportAllDiagrams {
 
 		// Alert the user that file names have been changed to avoid duplicates
 		if(duplicates && displayRenamingInformation) {
-
-
 
 			final String message = Messages.ExportAllDiagrams_5;
 			if(workbenchWindow != null && workbenchWindow.getShell() != null) {
