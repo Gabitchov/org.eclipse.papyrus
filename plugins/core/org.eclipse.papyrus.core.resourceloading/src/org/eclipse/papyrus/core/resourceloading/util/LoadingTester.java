@@ -87,7 +87,7 @@ public class LoadingTester extends PropertyTester {
 						// test that there is at least one not loaded resource object
 						if(!atLeastOneInSubmodel) {
 							Resource containingResource = eObject.eResource();
-							if(mainURI == null && containingResource.getResourceSet() instanceof ModelSet) {
+							if(mainURI == null && containingResource != null && containingResource.getResourceSet() instanceof ModelSet) {
 								mainURI = NotationUtils.getNotationModel((ModelSet)containingResource.getResourceSet()).getResourceURI().trimFileExtension();
 							}
 							if(mainURI != null) {
