@@ -335,6 +335,10 @@ public class RenameModelChange extends Change {
 						for(Iterator<EObject> i = EcoreUtil.getAllProperContents(r, false); i.hasNext();) {
 							EObject e = i.next();
 							ECrossReferenceAdapter adapter = ECrossReferenceAdapter.getCrossReferenceAdapter(e);
+							if(adapter == null) {
+								adapter = new ECrossReferenceAdapter();
+								adapter.setTarget(resourceSet);
+							}
 							Collection<Setting> references = adapter.getInverseReferences(e);
 							for(Setting s : references) {
 								EObject eObject = s.getEObject();
