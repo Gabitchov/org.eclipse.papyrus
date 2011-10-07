@@ -17,7 +17,6 @@ import java.util.Iterator;
 
 import org.eclipse.core.expressions.PropertyTester;
 import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -88,7 +87,7 @@ public class LoadingTester extends PropertyTester {
 						// test that there is at least one not loaded resource object
 						if(!atLeastOneInSubmodel) {
 							Resource containingResource = eObject.eResource();
-							if(mainURI == null && containingResource.getResourceSet() instanceof ModelSet) {
+							if(mainURI == null && containingResource != null && containingResource.getResourceSet() instanceof ModelSet) {
 								mainURI = NotationUtils.getNotationModel((ModelSet)containingResource.getResourceSet()).getResourceURI().trimFileExtension();
 							}
 							if(mainURI != null) {
