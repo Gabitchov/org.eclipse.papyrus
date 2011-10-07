@@ -49,7 +49,7 @@ public class AssociationReorientCommand extends EditElementCommand {
 	private final EObject oldEnd;
 
 	private final EObject newEnd;
-	
+
 	/**
 	 * Constructor.
 	 */
@@ -67,19 +67,19 @@ public class AssociationReorientCommand extends EditElementCommand {
 		if(false == getElementToEdit() instanceof Association) {
 			return false;
 		}
-		
+
 		if(getLink().getMemberEnds().size() != 2) {
 			return false;
 		}
-				
+
 		if(reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return canReorientSource();
 		}
-		
+
 		if(reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
 			return canReorientTarget();
 		}
-		
+
 		return false;
 	}
 
@@ -92,29 +92,22 @@ public class AssociationReorientCommand extends EditElementCommand {
 	 */
 	protected boolean canReorientSource() {
 		// Verify possible type of new source
-		
+
 		// The re-orient of the graphical source of the link also results in the
 		// modification of the semantic source of the association (if not owned by the association)
 		// the new parent of the semantic source has to be the new graphical source.
-		if (! getLink().getOwnedEnds().contains(getSemanticSource())) {
-		
+		if(!getLink().getOwnedEnds().contains(getSemanticSource())) {
+
 			// The semantic source should be moved to a new parent (a Classifier that can hold
 			// attributes), ensure the new parent (new graphical source) match following kind of
 			// Classifier: Artifact, DataType, Interface, Signal, StructuredClassifier, Class.
-			if(!(
-				(getNewSource() instanceof Artifact)
-				|| (getNewSource() instanceof DataType)
-				|| (getNewSource() instanceof Interface)
-				|| (getNewSource() instanceof Signal)
-				|| (getNewSource() instanceof StructuredClassifier)
-				|| (getNewSource() instanceof Class)
-				)) {
+			if(!((getNewSource() instanceof Artifact) || (getNewSource() instanceof DataType) || (getNewSource() instanceof Interface) || (getNewSource() instanceof Signal) || (getNewSource() instanceof StructuredClassifier) || (getNewSource() instanceof Class))) {
 				return false;
 			}
-			
+
 			return true;
 		}
-			
+
 		// Semantic source is owned by the Association, only ensure the graphical source is a Classifier.
 		if(!(getNewSource() instanceof Classifier)) {
 			return false;
@@ -132,29 +125,22 @@ public class AssociationReorientCommand extends EditElementCommand {
 	 */
 	protected boolean canReorientTarget() {
 		// Verify possible type of new target
-		
+
 		// The re-orient of the graphical target of the link also results in the
 		// modification of the semantic target of the association (if not owned by the association)
 		// the new parent of the semantic target has to be the new graphical target.
-		if (! getLink().getOwnedEnds().contains(getSemanticTarget())) {
-		
+		if(!getLink().getOwnedEnds().contains(getSemanticTarget())) {
+
 			// The semantic target should be moved to a new parent (a Classifier that can hold
 			// attributes), ensure the new parent (new graphical target) match following kind of
 			// Classifier: Artifact, DataType, Interface, Signal, StructuredClassifier, Class.
-			if(!(
-				(getNewTarget() instanceof Artifact)
-				|| (getNewTarget() instanceof DataType)
-				|| (getNewTarget() instanceof Interface)
-				|| (getNewTarget() instanceof Signal)
-				|| (getNewTarget() instanceof StructuredClassifier)
-				|| (getNewTarget() instanceof Class)
-				)) {
+			if(!((getNewTarget() instanceof Artifact) || (getNewTarget() instanceof DataType) || (getNewTarget() instanceof Interface) || (getNewTarget() instanceof Signal) || (getNewTarget() instanceof StructuredClassifier) || (getNewTarget() instanceof Class))) {
 				return false;
 			}
-			
+
 			return true;
 		}
-			
+
 		// Semantic target is owned by the Association, only ensure the graphical target is a Classifier.
 		if(!(getNewTarget() instanceof Classifier)) {
 			return false;
@@ -184,10 +170,11 @@ public class AssociationReorientCommand extends EditElementCommand {
 		// The re-orient of the graphical source of the link also results in the
 		// modification of the semantic source of the association (if not owned by the association)
 		// the new parent of the semantic source has to be the new graphical source.
-		if (! getLink().getOwnedEnds().contains(getSemanticSource())) {
-			moveEnd(getSemanticSource(), (Classifier)getNewSource());
+		if(!getLink().getOwnedEnds().contains(getSemanticSource())) {
+			// Let the advice do the property move via edit service
+			//moveEnd(getSemanticSource(), (Classifier)getNewSource());
 		}
-		
+
 		return CommandResult.newOKCommandResult(getLink());
 	}
 
@@ -195,31 +182,34 @@ public class AssociationReorientCommand extends EditElementCommand {
 		// The re-orient of the graphical target of the link results in the
 		// modification of the semantic source of the association.		
 		reorientEnd(getSemanticSource(), (Classifier)getNewTarget());
-		
+
 		// The re-orient of the graphical target of the link also results in the
 		// modification of the semantic target of the association (if not owned by the association)
 		// the new parent of the semantic target has to be the new graphical target.
-		if (! getLink().getOwnedEnds().contains(getSemanticTarget())) {
-			moveEnd(getSemanticTarget(), (Classifier)getNewTarget());
+		if(!getLink().getOwnedEnds().contains(getSemanticTarget())) {
+			// Let the advice do the property move via edit service
+			//moveEnd(getSemanticTarget(), (Classifier)getNewTarget());
 		}
-		
+
 		return CommandResult.newOKCommandResult(getLink());
 	}
-	
-	private void reorientEnd(Property end, Classifier newEndType) throws ExecutionException {		
+
+	private void reorientEnd(Property end, Classifier newEndType) throws ExecutionException {
 		end.setType(newEndType);
 	}
-	
-	private void moveEnd(Property end, Classifier newOwner) throws ExecutionException {		
+
+	@Deprecated
+	private void moveEnd(Property end, Classifier newOwner) throws ExecutionException {
 		boolean added = ClassifierUtils.addOwnedAttribute(newOwner, end);
-		
-		if (! added) {
-			throw new UnsupportedOperationException("Cannot add a Property on Classifier "+newOwner.getQualifiedName());
+
+		if(!added) {
+			throw new UnsupportedOperationException("Cannot add a Property on Classifier " + newOwner.getQualifiedName());
 		}
 	}
 
 	/**
 	 * Get the link to re-orient.
+	 * 
 	 * @return the edited {@link Association}
 	 */
 	protected Association getLink() {
@@ -228,6 +218,7 @@ public class AssociationReorientCommand extends EditElementCommand {
 
 	/**
 	 * Get the old {@link Association} source.
+	 * 
 	 * @return the previous {@link Association} source.
 	 */
 	protected Element getOldSource() {
@@ -236,6 +227,7 @@ public class AssociationReorientCommand extends EditElementCommand {
 
 	/**
 	 * Get the new {@link Association} source.
+	 * 
 	 * @return the new {@link Association} source.
 	 */
 	protected Element getNewSource() {
@@ -244,6 +236,7 @@ public class AssociationReorientCommand extends EditElementCommand {
 
 	/**
 	 * Get the old {@link Association} target.
+	 * 
 	 * @return the previous {@link Association} target.
 	 */
 	protected Element getOldTarget() {
@@ -252,23 +245,26 @@ public class AssociationReorientCommand extends EditElementCommand {
 
 	/**
 	 * Get the new {@link Association} target.
+	 * 
 	 * @return the new {@link Association} target.
 	 */
 	protected Element getNewTarget() {
 		return (Element)newEnd;
 	}
-	
-	
+
+
 	/**
 	 * Get the {@link Association} semantic source.
+	 * 
 	 * @return the {@link Association} semantic source.
 	 */
 	protected Property getSemanticSource() {
 		return getLink().getMemberEnds().get(0);
 	}
-	
+
 	/**
 	 * Get the {@link Association} semantic target.
+	 * 
 	 * @return the {@link Association} semantic target.
 	 */
 	protected Property getSemanticTarget() {

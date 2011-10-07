@@ -2,12 +2,15 @@ Manifest-Version: 1.0
 Export-Package: org.eclipse.papyrus.sysml.service.types,org.eclipse.pa
  pyrus.sysml.service.types.element,org.eclipse.papyrus.sysml.service.t
  ypes.helper,org.eclipse.papyrus.sysml.service.types.matcher
-Require-Bundle: org.eclipse.ui,org.eclipse.core.runtime,org.eclipse.um
- l2.uml;bundle-version="3.1.0",org.eclipse.papyrus.sysml;bundle-versio
- n="0.8.0",org.eclipse.papyrus.log;bundle-version="0.8.0",org.eclipse.
- gmf.runtime.emf.type.core;bundle-version="1.4.0",org.eclipse.papyrus.
- uml.standard;bundle-version="0.7.0",org.eclipse.papyrus.uml.service.t
- ypes;bundle-version="0.8.0"
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.uml2.uml;bundle-version="3.1.0",
+ org.eclipse.papyrus.sysml;bundle-version="0.8.0",
+ org.eclipse.papyrus.log;bundle-version="0.8.0",
+ org.eclipse.gmf.runtime.emf.type.core;bundle-version="1.4.0",
+ org.eclipse.papyrus.uml.standard;bundle-version="0.7.0",
+ org.eclipse.papyrus.uml.service.types;bundle-version="0.8.0",
+ org.eclipse.papyrus.service.edit;bundle-version="0.8.2"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 0.8.2.qualifier
