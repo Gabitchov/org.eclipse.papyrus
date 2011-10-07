@@ -115,6 +115,15 @@
              </instanceof>
             </or>
          </triggerPoints>
+         <actionProvider
+               class="org.eclipse.papyrus.onefile.providers.ISubresourceFileActionProvider"
+               id="org.eclipse.papyrus.onefile.DiContent.EditActions">
+            <enablement>
+               <instanceof
+                     value="org.eclipse.papyrus.onefile.model.ISubResourceFile">
+               </instanceof>
+            </enablement>
+         </actionProvider>
       </navigatorContent>
      </extension>
       <extension point="org.eclipse.ui.navigator.viewer">
