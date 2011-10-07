@@ -337,6 +337,7 @@ public class RenameModelChange extends Change {
 							ECrossReferenceAdapter adapter = ECrossReferenceAdapter.getCrossReferenceAdapter(e);
 							if(adapter != null) {
 								adapter = new ECrossReferenceAdapter();
+								adapter.setTarget(resourceSet);
 							}
 							Collection<Setting> references = adapter.getInverseReferences(e);
 							for(Setting s : references) {
