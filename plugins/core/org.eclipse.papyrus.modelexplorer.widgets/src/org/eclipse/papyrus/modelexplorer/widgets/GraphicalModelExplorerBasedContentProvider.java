@@ -69,7 +69,7 @@ import org.eclipse.swt.widgets.Table;
 public class GraphicalModelExplorerBasedContentProvider extends ModelContentProvider implements IMetaclassFilteredContentProvider, IHierarchicContentProvider, IGraphicalContentProvider, ISelectionChangedListener, ICommitListener {
 
 
-	private static final String DIALOG_SETTINGS = Activator.PLUGIN_ID + "." + GraphicalModelExplorerBasedContentProvider.class.getName(); //$NON-NLS-1$
+	private static final String DIALOG_SETTINGS = GraphicalModelExplorerBasedContentProvider.class.getName();
 
 	/** The not wanted. */
 	protected ArrayList<Object> metaClassNotWantedList = new ArrayList<Object>();
@@ -102,6 +102,8 @@ public class GraphicalModelExplorerBasedContentProvider extends ModelContentProv
 	protected Object selectedObject;
 
 	private static final int HISTORY_MAX_SIZE = 5;
+
+	private String currentFilterPattern = ""; //$NON-NLS-1$
 
 	/**
 	 * the wanted root of the contentprovider
@@ -198,12 +200,24 @@ public class GraphicalModelExplorerBasedContentProvider extends ModelContentProv
 	protected void createPatternFilter(Composite parent) {
 		StringEditor editor = new StringEditor(parent, SWT.NONE);
 		editor.setLabel("Filter:");
+		editor.setToolTipText("Enter the name of the element you're looking for. You can use * as a wildcard");
+		editor.setValidateOnDelay(true);
 		patternFilter = new PatternViewerFilter();
+		((PatternViewerFilter)patternFilter).setPattern(currentFilterPattern);
+
 		editor.addCommitListener(new ICommitListener() {
 
 			public void commit(AbstractEditor editor) {
-				((PatternViewerFilter)patternFilter).setPattern((String)((StringEditor)editor).getValue());
+				String filterPattern = (String)((StringEditor)editor).getValue();
+				((PatternViewerFilter)patternFilter).setPattern(filterPattern);
 				viewer.refresh();
+				if(!("".equals(filterPattern) || currentFilterPattern.equals(filterPattern))) {
+					Object firstMatch = getFirstMatchingElement(null);
+					if(firstMatch != null) {
+						viewer.reveal(firstMatch);
+					}
+					currentFilterPattern = filterPattern;
+				}
 			}
 
 		});
@@ -211,6 +225,46 @@ public class GraphicalModelExplorerBasedContentProvider extends ModelContentProv
 		List<ViewerFilter> filters = new LinkedList<ViewerFilter>(Arrays.asList(viewer.getFilters()));
 		filters.add(patternFilter);
 		viewer.setFilters(filters.toArray(new ViewerFilter[filters.size()]));
+	}
+
+	/**
+	 * Returns the first (encapsulated) element matching the current filters
+	 * 
+	 * @return
+	 */
+	protected Object getFirstMatchingElement(Object parent) {
+		//Browse from the root element
+		if(parent == null) {
+			for(Object parentElement : getElements(viewer.getInput())) {
+				Object firstMatch = getFirstMatchingElement(parentElement);
+				if(firstMatch != null) {
+					return firstMatch;
+				}
+			}
+			return null;
+		}
+
+		for(ViewerFilter filter : viewer.getFilters()) {
+			if(!filter.select(viewer, getParent(parent), parent)) {
+				return null;
+			}
+		}
+
+		//Test the current element
+		if(isValidValue(parent)) {
+			return parent;
+		}
+
+		//Browse the child elements
+		for(Object childElement : getChildren(parent)) {
+			Object firstMatch = getFirstMatchingElement(childElement);
+			if(firstMatch != null) {
+				return firstMatch;
+			}
+		}
+
+		//No match found
+		return null;
 	}
 
 	/**
