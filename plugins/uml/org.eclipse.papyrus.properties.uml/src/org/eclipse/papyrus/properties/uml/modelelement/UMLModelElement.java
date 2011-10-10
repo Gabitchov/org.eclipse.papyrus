@@ -36,6 +36,7 @@ import org.eclipse.papyrus.properties.modelelement.EMFModelElement;
 import org.eclipse.papyrus.properties.providers.ContainerContentProvider;
 import org.eclipse.papyrus.properties.providers.EMFObjectLabelProvider;
 import org.eclipse.papyrus.properties.providers.FeatureContentProvider;
+import org.eclipse.papyrus.properties.uml.creation.ConnectorTypeEditorFactory;
 import org.eclipse.papyrus.properties.uml.creation.MessageValueSpecificationFactory;
 import org.eclipse.papyrus.properties.uml.creation.OwnedRuleCreationFactory;
 import org.eclipse.papyrus.properties.uml.creation.UMLPropertyEditorFactory;
@@ -50,6 +51,7 @@ import org.eclipse.papyrus.uml.modelexplorer.widgets.ServiceEditFilteredUMLConte
 import org.eclipse.papyrus.umlutils.PackageUtil;
 import org.eclipse.papyrus.widgets.creation.ReferenceValueFactory;
 import org.eclipse.papyrus.widgets.providers.IStaticContentProvider;
+import org.eclipse.uml2.uml.Connector;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Extension;
 import org.eclipse.uml2.uml.InstanceValue;
@@ -208,9 +210,16 @@ public class UMLModelElement extends EMFModelElement {
 			return new OwnedRuleCreationFactory(reference);
 		}
 
+		UMLPropertyEditorFactory factory;
+
+		if(reference == UMLPackage.eINSTANCE.getConnector_Type() && source instanceof Connector) {
+			factory = new ConnectorTypeEditorFactory(reference);
+		} else {
+			factory = new UMLPropertyEditorFactory(reference);
+		}
+
 		EClass type = reference.getEReferenceType();
 
-		UMLPropertyEditorFactory factory = new UMLPropertyEditorFactory(reference);
 		factory.setContainerLabelProvider(new UMLLabelProvider());
 		factory.setReferenceLabelProvider(new EMFObjectLabelProvider());
 		IStaticContentProvider contentProvider = new ContainerContentProvider(type);

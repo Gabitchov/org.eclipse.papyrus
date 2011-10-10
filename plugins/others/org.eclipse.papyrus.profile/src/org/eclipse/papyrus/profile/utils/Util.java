@@ -654,6 +654,9 @@ public class Util {
 	 */
 	public static boolean isDirty(Package _package, Profile _profile) {
 		boolean isDirty = false;
+		if(_profile == null || _profile.eResource() == null) {
+			return false;
+		}
 
 		// Retrieve model resourceSet
 		ResourceSet pkge_resourceSet = _package.eResource().getResourceSet();
