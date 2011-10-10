@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -24,6 +24,8 @@ public class ProfileLabelProvider extends EMFObjectLabelProvider implements ILab
 
 	public final static String TAG_PROFILE_CHANGED = " (has changed, consider re-applying profile)";
 
+	public final static String UNKNOWN_PROFILE = "<Unknown>";
+
 	public ProfileLabelProvider(Package umlPackage) {
 		this.umlPackage = umlPackage;
 	}
@@ -33,6 +35,9 @@ public class ProfileLabelProvider extends EMFObjectLabelProvider implements ILab
 		if(source instanceof Profile) {
 			Profile profile = (Profile)source;
 			String name = profile.getQualifiedName();
+			if(name == null) {
+				name = UNKNOWN_PROFILE;
+			}
 			if(Util.isDirty(umlPackage, profile)) {
 				name += TAG_PROFILE_CHANGED;
 			}
