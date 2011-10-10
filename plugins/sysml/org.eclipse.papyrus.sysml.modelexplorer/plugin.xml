@@ -4,7 +4,9 @@
 
 <!-- SysML ModelExplorer customization -->
 <extension point="org.eclipse.emf.facet.infra.browser.custom.core.registration">
-	<browserCustomization file="resources/SysMLDefaultExplorerCustomization.uiCustom"/>
+	<browserCustomization
+       file="resources/SysMLDefaultExplorerCustomization.uiCustom"
+       loadByDefault="true"/>
 </extension>
    
 <extension point="org.eclipse.emf.facet.infra.query.registration">
