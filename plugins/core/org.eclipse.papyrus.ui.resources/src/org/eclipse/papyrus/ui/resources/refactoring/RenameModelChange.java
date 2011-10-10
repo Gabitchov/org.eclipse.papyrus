@@ -22,6 +22,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -255,6 +256,7 @@ public class RenameModelChange extends Change {
 		if(!isUndoOperation) {
 			newFile.move(oldFile.getFullPath(), true, new SubProgressMonitor(pm, 1));
 		}
+		log.info(lMsg);
 		pm.beginTask(lMsg, 30);
 		try {
 			doRun(pm, resourceSet, domain);
@@ -388,7 +390,24 @@ public class RenameModelChange extends Change {
 						}
 					}
 					if(first != null) {
-						Collection<EObject> resources = controledResourcesAdapter.getReachableObjectsOfType(first, historyPackage.Literals.CONTROLED_RESOURCE);
+						Collection<EObject> resources = null;
+						try {
+							resources = controledResourcesAdapter.getReachableObjectsOfType(first, historyPackage.Literals.CONTROLED_RESOURCE);
+						} catch (RuntimeException e) {
+							// in case of errors integrity must be valid 
+							// even performances are bad
+							resources = new LinkedList<EObject>();
+							for(int i = 0; i < resourceSet.getResources().size(); i++) {
+								Resource r = resourceSet.getResources().get(i);
+								for(Iterator<EObject> it = r.getAllContents(); it.hasNext();) {
+									EObject tmp = it.next();
+									if(tmp instanceof ControledResource) {
+										ControledResource controled = (ControledResource)tmp;
+										resources.add(controled);
+									}
+								}
+							}
+						}
 						for(EObject e : resources) {
 							if(e instanceof ControledResource) {
 								ControledResource controled = (ControledResource)e;
