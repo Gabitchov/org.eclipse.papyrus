@@ -255,7 +255,6 @@ public class RenameModelChange extends Change {
 		if(!isUndoOperation) {
 			newFile.move(oldFile.getFullPath(), true, new SubProgressMonitor(pm, 1));
 		}
-		log.info(lMsg);
 		pm.beginTask(lMsg, 30);
 		try {
 			doRun(pm, resourceSet, domain);
