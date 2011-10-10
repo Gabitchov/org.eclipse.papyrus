@@ -11,11 +11,16 @@
  *****************************************************************************/
 package org.eclipse.papyrus.widgets.editors;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.papyrus.widgets.databinding.TextObservableValue;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.KeyListener;
+import org.eclipse.swt.events.ModifyEvent;
+import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
@@ -32,12 +37,20 @@ import org.eclipse.swt.widgets.Text;
  * 
  * @author Camille Letavernier
  */
-public class StringEditor extends AbstractValueEditor implements KeyListener {
+public class StringEditor extends AbstractValueEditor implements KeyListener, ModifyListener {
 
 	/**
 	 * The text box for editing this editor's value
 	 */
 	protected Text text;
+
+	private int delay = 600;
+
+	private boolean validateOnDelay = false;
+
+	private final Timer timer;
+
+	private TimerTask currentValidateTask;
 
 	/**
 	 * 
@@ -83,6 +96,8 @@ public class StringEditor extends AbstractValueEditor implements KeyListener {
 		text.addKeyListener(this);
 
 		setCommitOnFocusLost(text);
+
+		timer = new Timer(true);
 	}
 
 	@Override
@@ -185,5 +200,81 @@ public class StringEditor extends AbstractValueEditor implements KeyListener {
 		} else {
 			this.text.setText(""); //$NON-NLS-1$;
 		}
+	}
+
+	/**
+	 * Indicates that this editor should be automatically validated after
+	 * a timer.
+	 * 
+	 * @param validateOnDelay
+	 */
+	public void setValidateOnDelay(boolean validateOnDelay) {
+		this.validateOnDelay = validateOnDelay;
+
+		if(validateOnDelay) {
+			text.addModifyListener(this);
+		} else {
+			text.removeModifyListener(this);
+			cancelCurrentTask();
+		}
+	}
+
+	/**
+	 * Indicates that this editor should be automatically validated after
+	 * the given timer
+	 * 
+	 * @param millis
+	 *        The delay after which the editor should be automatically validated,
+	 *        in milliseconds. The default is 600ms
+	 */
+	public void setValidateOnDelay(int millis) {
+		this.delay = millis;
+		setValidateOnDelay(true);
+		if(delay == 0) {
+			cancelCurrentTask();
+		}
+	}
+
+	private void cancelCurrentTask() {
+		if(currentValidateTask != null) {
+			currentValidateTask.cancel();
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void modifyText(ModifyEvent e) {
+		//SWT Thread
+		if(validateOnDelay) {
+			if(delay == 0) {
+				commit(); //Direct commit on edition, to avoid creating useless threads
+				return;
+			}
+			cancelCurrentTask();
+
+			currentValidateTask = new TimerTask() {
+
+				//Timer thread
+				@Override
+				public void run() {
+					StringEditor.this.getDisplay().syncExec(new Runnable() {
+
+						//SWT Thread
+						public void run() {
+							commit();
+						}
+					});
+				}
+			};
+			timer.schedule(currentValidateTask, delay);
+		}
+	}
+
+	@Override
+	public void dispose() {
+		cancelCurrentTask();
+		timer.cancel();
+		super.dispose();
 	}
 }
