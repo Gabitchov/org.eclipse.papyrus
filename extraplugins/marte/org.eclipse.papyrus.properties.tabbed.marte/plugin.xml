@@ -20,7 +20,6 @@
          </Priority>
          <PropertyViewContribution
                description="This is the generic view for marte tabbed properties"
-               icon="icons/tool.gif"
                id="propertyview.marte.basic"
                name="MARTE"
                path="resources/marte.ecore.xml">
