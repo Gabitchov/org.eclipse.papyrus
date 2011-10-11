@@ -44,11 +44,13 @@ public class ProfileApplicationHelper {
 	 *        profile to apply
 	 */
 	public static void duplicateProfileApplication(Package _package, Profile profile) {
-		if(!isSameProfileApplied(_package, profile)) {
-			_package.applyProfile(profile);
-			ProfileApplication profileAppl = _package.getProfileApplication(profile);
-			if(profileAppl != null) {
-				markAsDuplicate(profileAppl);
+		if(profile != null && profile.getDefinition() != null) {
+			if(!isSameProfileApplied(_package, profile)) {
+				_package.applyProfile(profile);
+				ProfileApplication profileAppl = _package.getProfileApplication(profile);
+				if(profileAppl != null) {
+					markAsDuplicate(profileAppl);
+				}
 			}
 		}
 	}
@@ -64,16 +66,18 @@ public class ProfileApplicationHelper {
 	 *        true when package is no longer controlled for forcing profile application removal
 	 */
 	public static void removeProfileApplicationDuplication(Package _package, Profile profile, boolean force) {
-		if(isSameProfileApplied(_package, profile)) {
-			ProfileApplication profileAppl = _package.getProfileApplication(profile);
-			// remove only duplicated profile applications with eannotation
-			if(isDuplicatedProfileApplication(profileAppl)) {
-				if(force || getParentPackageWithProfile(_package, profile, false) == null) {
-					// first remove eannotation to ensure it will not added again by checker
-					profileAppl.getEAnnotations().remove(profileAppl.getEAnnotation(DUPLICATED_PROFILE));
-					_package.unapplyProfile(profile);
+		if(profile != null && profile.getDefinition() != null) {
+			if(isSameProfileApplied(_package, profile)) {
+				ProfileApplication profileAppl = _package.getProfileApplication(profile);
+				// remove only duplicated profile applications with eannotation
+				if(isDuplicatedProfileApplication(profileAppl)) {
+					if(force || getParentPackageWithProfile(_package, profile, false) == null) {
+						// first remove eannotation to ensure it will not added again by checker
+						profileAppl.getEAnnotations().remove(profileAppl.getEAnnotation(DUPLICATED_PROFILE));
+						_package.unapplyProfile(profile);
+					}
+					// else, there is another parent profile which justifies the duplication
 				}
-				// else, there is another parent profile which justifies the duplication
 			}
 		}
 	}
@@ -89,10 +93,13 @@ public class ProfileApplicationHelper {
 	 */
 	private static boolean isSameProfileApplied(Package _package, Profile profile) {
 		for(Profile prof : _package.getAppliedProfiles()) {
+			if(prof == null) {
+				break;
+			}
 			if(prof.equals(profile)) {
 				return true;
 			}
-			if(profile.getQualifiedName().equals(prof.getQualifiedName())) {
+			if(profile.getQualifiedName() != null && profile.getQualifiedName().equals(prof.getQualifiedName())) {
 				return true;
 			}
 		}
@@ -146,17 +153,19 @@ public class ProfileApplicationHelper {
 	 * @return the parent package with profile application
 	 */
 	public static Package getParentPackageWithProfile(Package packageElement, Profile profile, boolean notControlledOnly) {
-		Element parent = packageElement.getOwner();
-		while(parent != null) {
-			if(parent instanceof Package) {
-				Package parentPackage = (Package)parent;
-				if(isSameProfileApplied(parentPackage, profile)) {
-					if(!notControlledOnly || !AdapterFactoryEditingDomain.isControlled(parentPackage)) {
-						return parentPackage;
+		if(profile != null && profile.getDefinition() != null) {
+			Element parent = packageElement.getOwner();
+			while(parent != null) {
+				if(parent instanceof Package) {
+					Package parentPackage = (Package)parent;
+					if(isSameProfileApplied(parentPackage, profile)) {
+						if(!notControlledOnly || !AdapterFactoryEditingDomain.isControlled(parentPackage)) {
+							return parentPackage;
+						}
 					}
 				}
+				parent = parent.getOwner();
 			}
-			parent = parent.getOwner();
 		}
 		return null;
 	}
