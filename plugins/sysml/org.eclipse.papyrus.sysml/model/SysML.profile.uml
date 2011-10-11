@@ -96,7 +96,7 @@
         <ownedAttribute xmi:id="_9cxv0LU9Edu2ieF4ON8UjA" name="base_Dependency" isUnique="false" association="_9csQQLU9Edu2ieF4ON8UjA">
           <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Dependency"/>
         </ownedAttribute>
-        <icon xmi:id="_K8KhEIxREeCeve9iisDgtA" content="" location="icons/modelelements/Conform.gif" format="">
+        <icon xmi:id="_K8KhEIxREeCeve9iisDgtA" content="" location="platform:/plugin/org.eclipse.papyrus.sysml/icons/modelelements/Conform.gif" format="">
           <eAnnotations xmi:id="_K8KhEYxREeCeve9iisDgtA" source="image_papyrus">
             <details xmi:id="_K8KhEoxREeCeve9iisDgtA" key="image_kind_key" value="icon"/>
           </eAnnotations>
@@ -107,7 +107,7 @@
         <ownedAttribute xmi:id="_9HrpkLU9Edu2ieF4ON8UjA" name="base_Package" isUnique="false" association="_9Hn_MLU9Edu2ieF4ON8UjA">
           <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Package"/>
         </ownedAttribute>
-        <icon xmi:id="_HbhE0IxREeCeve9iisDgtA" content="" location="icons/modelelements/View.gif" format="">
+        <icon xmi:id="_HbhE0IxREeCeve9iisDgtA" content="" location="platform:/plugin/org.eclipse.papyrus.sysml/icons/modelelements/View.gif" format="">
           <eAnnotations xmi:id="_HbhE0YxREeCeve9iisDgtA" source="image_papyrus">
             <details xmi:id="_HbhE0oxREeCeve9iisDgtA" key="image_kind_key" value="icon"/>
           </eAnnotations>
@@ -142,7 +142,7 @@
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_NyTz0LU-Edu2ieF4ON8UjA" value="*"/>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_NyO7ULU-Edu2ieF4ON8UjA"/>
         </ownedAttribute>
-        <icon xmi:id="__ZyqEIxQEeCeve9iisDgtA" content="" location="icons/modelelements/Viewpoint.gif" format="">
+        <icon xmi:id="__ZyqEIxQEeCeve9iisDgtA" content="" location="platform:/plugin/org.eclipse.papyrus.sysml/icons/modelelements/Viewpoint.gif" format="">
           <eAnnotations xmi:id="__ZyqEYxQEeCeve9iisDgtA" source="image_papyrus">
             <details xmi:id="__ZyqEoxQEeCeve9iisDgtA" key="image_kind_key" value="icon"/>
           </eAnnotations>
@@ -152,7 +152,7 @@
         <ownedAttribute xmi:id="_8w124LU9Edu2ieF4ON8UjA" name="base_Comment" isUnique="false" association="_8wOy4LU9Edu2ieF4ON8UjA">
           <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Comment"/>
         </ownedAttribute>
-        <icon xmi:id="_he_gwJaqEd2oqf5htPjXnA" content="71%73%70%56%57%97%16%0%16%0%-91%41%0%-12%-8%-3%59%103%-105%60%103%-105%60%104%-105%62%107%-101%59%104%-105%65%112%-96%65%112%-97%69%117%-90%70%117%-90%-13%-8%-3%-6%-4%-2%24%78%126%53%105%-104%73%124%-84%74%124%-84%78%-126%-77%83%-120%-71%86%-115%-66%86%-116%-67%-44%-26%-10%34%92%-114%35%94%-113%69%118%-96%85%-115%-67%88%-112%-63%83%-128%-89%96%-118%-83%109%-109%-76%118%-101%-71%-128%-94%-66%-111%-78%-51%-101%-73%-49%-49%-28%-11%-38%-22%-9%-20%-12%-5%-44%-25%-10%-37%-21%-9%-30%-17%-7%-21%-12%-5%-21%-12%-6%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%33%-7%4%1%10%0%63%0%44%0%0%0%0%16%0%16%0%0%6%98%-64%-97%112%72%44%26%-113%-56%-92%114%105%-55%56%-97%79%75%81%-78%-88%90%-83%25%-23%48%-94%80%0%44%96%-128%120%-126%-87%12%33%35%16%-56%98%50%89%64%40%-44%9%50%124%-76%-35%-32%123%-37%49%68%-108%-44%111%111%106%32%34%9%67%6%36%-119%22%-118%-119%20%20%7%67%4%33%-109%-108%-107%33%4%67%12%3%2%1%3%1%2%2%5%-101%3%12%75%-90%-89%-89%65%0%59%" location="icons/modelelements/Rationale.gif" format="">
+        <icon xmi:id="_he_gwJaqEd2oqf5htPjXnA" location="platform:/plugin/org.eclipse.papyrus.sysml/icons/modelelements/Rationale.gif" format="">
           <eAnnotations xmi:id="_iLsOsJaqEd2oqf5htPjXnA" source="image_papyrus">
             <details xmi:id="_iLsOsZaqEd2oqf5htPjXnA" key="image_kind_key" value="icon"/>
           </eAnnotations>
@@ -162,7 +162,7 @@
         <ownedAttribute xmi:id="_8fBuILU9Edu2ieF4ON8UjA" name="base_Comment" isUnique="false" association="_8ezEoLU9Edu2ieF4ON8UjA">
           <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Comment"/>
         </ownedAttribute>
-        <icon xmi:id="_bMlHgJaqEd2oqf5htPjXnA" content="71%73%70%56%57%97%16%0%16%0%-91%41%0%-12%-8%-3%59%103%-105%60%103%-105%60%104%-105%62%107%-101%59%104%-105%65%112%-96%65%112%-97%69%117%-90%70%117%-90%-13%-8%-3%-6%-4%-2%24%78%126%53%105%-104%73%124%-84%74%124%-84%78%-126%-77%83%-120%-71%86%-115%-66%86%-116%-67%-44%-26%-10%34%92%-114%35%94%-113%69%118%-96%85%-115%-67%88%-112%-63%83%-128%-89%96%-118%-83%109%-109%-76%118%-101%-71%-128%-94%-66%-111%-78%-51%-101%-73%-49%-49%-28%-11%-38%-22%-9%-20%-12%-5%-44%-25%-10%-37%-21%-9%-30%-17%-7%-21%-12%-5%-21%-12%-6%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%33%-7%4%1%10%0%63%0%44%0%0%0%0%16%0%16%0%0%6%97%-64%-97%112%72%44%26%-113%-56%-92%114%105%-55%56%-97%79%75%81%-78%-88%90%-83%25%-23%48%-94%80%0%44%96%-128%120%-126%-87%12%33%35%16%-56%98%50%89%64%40%-44%9%50%124%-76%-35%-32%123%-37%49%68%-108%-44%111%106%-126%34%9%67%6%36%-120%22%-120%-117%20%20%7%67%4%33%-110%-109%-108%33%4%67%12%3%2%1%3%1%2%2%5%-102%3%12%75%-91%-90%-90%65%0%59%" location="icons/modelelements/Problem.gif">
+        <icon xmi:id="_bMlHgJaqEd2oqf5htPjXnA" location="platform:/plugin/org.eclipse.papyrus.sysml/icons/modelelements/Problem.gif">
           <eAnnotations xmi:id="_clOVcJaqEd2oqf5htPjXnA" source="image_papyrus">
             <details xmi:id="_clOVcZaqEd2oqf5htPjXnA" key="image_kind_key" value="icon"/>
           </eAnnotations>
@@ -197,7 +197,7 @@
         <ownedAttribute xmi:id="_GdjFYLVBEdu2ieF4ON8UjA" name="base_Class" isUnique="false" association="_GdeM4LVBEdu2ieF4ON8UjA">
           <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Class"/>
         </ownedAttribute>
-        <icon xmi:id="_YOLAMJarEd2oqf5htPjXnA" content="71%73%70%56%57%97%16%0%16%0%-124%27%0%-3%-3%-2%-6%-5%-3%-31%-23%-12%-11%-8%-4%-24%-17%-9%-20%-14%-7%75%126%-78%74%125%-79%74%125%-80%76%127%-77%75%125%-79%77%-128%-76%76%126%-79%75%125%-80%78%-127%-76%77%127%-77%80%-124%-73%79%-125%-74%-16%-11%-6%79%-124%-73%79%-123%-73%78%-125%-75%80%-123%-73%80%-124%-74%32%104%-96%112%-96%-60%-80%-57%-39%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%33%-7%4%1%10%0%31%0%44%0%0%0%0%16%0%16%0%0%5%114%-32%-9%101%23%116%77%16%101%89%83%-101%-119%95%36%-52%116%45%84%-16%66%16%26%-127%-3%-68%-99%35%87%-48%96%10%24%-55%17%-93%41%12%69%11%-91%68%-55%-100%38%-97%-97%-59%-64%56%72%98%-70%-102%1%-10%17%8%104%2%63%-116%-71%-100%-128%49%0%-16%-72%28%96%112%55%20%-121%-5%97%-81%64%52%24%110%83%-126%-125%83%-128%34%12%-124%-119%-122%31%12%-115%-114%-113%-114%-127%-119%-125%-117%-120%-109%-126%-117%25%-112%-101%47%48%-98%-97%-98%33%0%59%" location="icons/blocks/Block.gif">
+        <icon xmi:id="_YOLAMJarEd2oqf5htPjXnA" location="platform:/plugin/org.eclipse.papyrus.sysml/icons/blocks/Block.gif">
           <eAnnotations xmi:id="_YvPs8JarEd2oqf5htPjXnA" source="image_papyrus">
             <details xmi:id="_YvPs8ZarEd2oqf5htPjXnA" key="image_kind_key" value="icon"/>
           </eAnnotations>
@@ -215,7 +215,7 @@
         <ownedAttribute xmi:id="_A8oRkKGxEdyj2Ya50HPlXg" name="base_InstanceSpecification" isUnique="false" association="_A73ckKGxEdyj2Ya50HPlXg">
           <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#InstanceSpecification"/>
         </ownedAttribute>
-        <icon xmi:id="_cmay0JarEd2oqf5htPjXnA" content="71%73%70%56%57%97%16%0%16%0%-91%49%0%-3%-3%-1%-3%-3%-2%42%55%103%46%74%-123%-4%-3%-1%-6%-5%-3%-24%-18%-9%-31%-23%-12%-11%-8%-4%-32%-23%-12%-19%-14%-8%-15%-11%-6%-32%-23%-13%-31%-22%-12%-24%-17%-9%-20%-14%-7%75%126%-78%74%125%-79%74%125%-80%76%127%-77%75%125%-79%77%-128%-76%76%126%-79%75%125%-80%78%-127%-76%77%127%-77%80%-124%-73%79%-125%-74%-32%-22%-12%-31%-22%-13%-24%-17%-10%-20%-14%-8%-16%-11%-6%-11%-8%-5%-7%-5%-3%-4%-3%-2%79%-124%-73%79%-123%-73%78%-125%-75%80%-123%-73%80%-124%-74%80%-123%-74%-25%-17%-10%112%-96%-60%-80%-57%-39%-11%-7%-4%-4%-2%-1%-4%-2%-2%-3%-2%-2%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%33%-7%4%1%10%0%63%0%44%0%0%0%0%16%0%16%0%0%6%-112%-64%-97%112%72%44%26%-113%-59%21%74%-125%34%105%82%-91%-45%-119%68%93%-83%126%-101%4%35%-47%104%112%58%9%-50%33%113%56%-104%126%21%-121%-121%101%80%-87%4%111%21%-53%-29%56%87%30%-84%-63%103%47%-8%40%20%3%44%15%118%11%3%11%11%2%-119%-120%-121%3%32%118%33%121%33%2%-110%-108%-127%8%24%63%25%34%34%44%34%-119%2%-98%-100%34%5%103%22%4%46%35%1%4%1%47%-87%0%48%1%1%16%63%22%23%20%17%-74%-73%17%17%20%18%23%22%-91%32%-62%-61%-60%-61%22%-76%-59%-55%-62%-57%43%22%-50%-49%-48%-49%87%72%-44%-43%68%65%0%59%" location="icons/blocks/Dimension.gif">
+        <icon xmi:id="_cmay0JarEd2oqf5htPjXnA" location="platform:/plugin/org.eclipse.papyrus.sysml/icons/blocks/Dimension.gif">
           <eAnnotations xmi:id="_dWPtQJarEd2oqf5htPjXnA" source="image_papyrus">
             <details xmi:id="_dWPtQZarEd2oqf5htPjXnA" key="image_kind_key" value="icon"/>
           </eAnnotations>
@@ -229,7 +229,7 @@
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_U8fSQKGxEdyj2Ya50HPlXg" value="1"/>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_U8ZLoKGxEdyj2Ya50HPlXg"/>
         </ownedAttribute>
-        <icon xmi:id="_fyOngJarEd2oqf5htPjXnA" content="71%73%70%56%57%97%16%0%16%0%-91%49%0%-3%-3%-1%-3%-3%-2%42%55%103%46%74%-123%-4%-3%-1%-6%-5%-3%-24%-18%-9%-31%-23%-12%-11%-8%-4%-32%-23%-12%-19%-14%-8%-15%-11%-6%-32%-23%-13%-31%-22%-12%-24%-17%-9%-20%-14%-7%75%126%-78%74%125%-79%74%125%-80%76%127%-77%75%125%-79%77%-128%-76%76%126%-79%75%125%-80%78%-127%-76%77%127%-77%80%-124%-73%79%-125%-74%-32%-22%-12%-31%-22%-13%-24%-17%-10%-20%-14%-8%-16%-11%-6%-11%-8%-5%-7%-5%-3%-4%-3%-2%79%-124%-73%79%-123%-73%78%-125%-75%80%-123%-73%80%-124%-74%80%-123%-74%-25%-17%-10%112%-96%-60%-80%-57%-39%-11%-7%-4%-4%-2%-1%-4%-2%-2%-3%-2%-2%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%33%-7%4%1%10%0%63%0%44%0%0%0%0%16%0%16%0%0%6%-123%-64%-97%112%72%44%26%-113%-59%21%74%-125%34%105%82%-91%-45%-119%68%90%13%55%9%70%-94%-47%-32%116%18%-100%67%-62%52%-84%56%60%44%-125%-38%-96%98%121%28%-104%-14%-125%53%-8%8%-20%-118%1%11%20%23%86%22%3%11%11%2%-125%-126%3%124%101%33%116%33%2%-115%33%122%8%125%63%25%34%34%44%-107%-104%-105%5%19%67%22%4%46%35%1%4%1%47%-95%0%48%16%-99%23%20%17%-85%-84%17%17%20%18%22%-99%32%-74%-73%-72%32%-76%66%22%-71%-66%-69%63%43%22%-61%-60%-59%22%86%72%-55%-54%70%65%0%59%" location="icons/blocks/Unit.gif">
+        <icon xmi:id="_fyOngJarEd2oqf5htPjXnA" location="platform:/plugin/org.eclipse.papyrus.sysml/icons/blocks/Unit.gif">
           <eAnnotations xmi:id="_gUMsIJarEd2oqf5htPjXnA" source="image_papyrus">
             <details xmi:id="_gUMsIZarEd2oqf5htPjXnA" key="image_kind_key" value="icon"/>
           </eAnnotations>
@@ -247,7 +247,7 @@
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_pkLH8aGxEdyj2Ya50HPlXg" value="1"/>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_pkLH8KGxEdyj2Ya50HPlXg"/>
         </ownedAttribute>
-        <icon xmi:id="_hqnFcJarEd2oqf5htPjXnA" content="71%73%70%56%57%97%16%0%16%0%-91%49%0%-3%-3%-1%-3%-3%-2%42%55%103%46%74%-123%-4%-3%-1%-6%-5%-3%-24%-18%-9%-31%-23%-12%-11%-8%-4%-32%-23%-12%-19%-14%-8%-15%-11%-6%-32%-23%-13%-31%-22%-12%-24%-17%-9%-20%-14%-7%75%126%-78%74%125%-79%74%125%-80%76%127%-77%75%125%-79%77%-128%-76%76%126%-79%75%125%-80%78%-127%-76%77%127%-77%80%-124%-73%79%-125%-74%-32%-22%-12%-31%-22%-13%-24%-17%-10%-20%-14%-8%-16%-11%-6%-11%-8%-5%-7%-5%-3%-4%-3%-2%79%-124%-73%79%-123%-73%78%-125%-75%80%-123%-73%80%-124%-74%80%-123%-74%-25%-17%-10%112%-96%-60%-80%-57%-39%-11%-7%-4%-4%-2%-1%-4%-2%-2%-3%-2%-2%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%33%-7%4%1%10%0%63%0%44%0%0%0%0%16%0%16%0%0%6%-123%-64%-97%112%72%44%26%-113%-58%-107%6%69%-46%-92%74%-89%19%105%-70%26%86%24%-119%70%-125%-45%73%112%14%-119%-125%-55%-6%-16%-80%62%2%-76%-118%-27%113%96%-56%-84%1%26%-83%24%-80%30%111%97%-27%49%88%-128%4%127%11%11%3%32%121%63%21%8%113%8%2%-117%33%118%8%-122%21%35%34%44%35%35%2%-109%44%34%5%19%86%46%35%1%4%1%47%-96%0%48%1%16%86%20%17%23%20%-85%17%17%20%18%23%22%86%32%-73%-72%-71%32%-75%122%-70%-66%-68%63%43%22%-61%-60%-59%22%85%72%-55%-54%69%65%0%59%" location="icons/blocks/ValueType.gif">
+        <icon xmi:id="_hqnFcJarEd2oqf5htPjXnA" location="platform:/plugin/org.eclipse.papyrus.sysml/icons/blocks/ValueType.gif">
           <eAnnotations xmi:id="_iJTzoJarEd2oqf5htPjXnA" source="image_papyrus">
             <details xmi:id="_iJTzoZarEd2oqf5htPjXnA" key="image_kind_key" value="icon"/>
           </eAnnotations>
@@ -374,27 +374,27 @@
             <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Image"/>
           </ownedParameter>
         </ownedOperation>
-        <icon xmi:id="_Prrn8KaUEd2T5POpEd8M_A" location="icons/portandflows/FlowPort.gif" format="">
+        <icon xmi:id="_Prrn8KaUEd2T5POpEd8M_A" location="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort.gif" format="">
           <eAnnotations xmi:id="_bgbBUKaUEd2T5POpEd8M_A" source="image_papyrus">
             <details xmi:id="_bgbBUaaUEd2T5POpEd8M_A" key="image_kind_key" value="icon"/>
           </eAnnotations>
         </icon>
-        <icon xmi:id="_RCIdgKaUEd2T5POpEd8M_A" location="icons/portandflows/FlowPort_IN.gif">
+        <icon xmi:id="_RCIdgKaUEd2T5POpEd8M_A" location="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort_IN.gif">
           <eAnnotations xmi:id="_c1rkEKaUEd2T5POpEd8M_A" source="image_papyrus">
             <details xmi:id="_c1rkEaaUEd2T5POpEd8M_A" key="image_kind_key" value="icon"/>
           </eAnnotations>
         </icon>
-        <icon xmi:id="_UZgpAKaUEd2T5POpEd8M_A" location="icons/portandflows/FlowPort_OUT.gif">
+        <icon xmi:id="_UZgpAKaUEd2T5POpEd8M_A" location="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort_OUT.gif">
           <eAnnotations xmi:id="_eKCu8KaUEd2T5POpEd8M_A" source="image_papyrus">
             <details xmi:id="_eKL44KaUEd2T5POpEd8M_A" key="image_kind_key" value="icon"/>
           </eAnnotations>
         </icon>
-        <icon xmi:id="_WNehAKaUEd2T5POpEd8M_A" location="icons/portandflows/FlowPort_INOUT.gif">
+        <icon xmi:id="_WNehAKaUEd2T5POpEd8M_A" location="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort_INOUT.gif">
           <eAnnotations xmi:id="_geMi4KaUEd2T5POpEd8M_A" source="image_papyrus">
             <details xmi:id="_geMi4aaUEd2T5POpEd8M_A" key="image_kind_key" value="icon"/>
           </eAnnotations>
         </icon>
-        <icon xmi:id="_Wx_jUKaUEd2T5POpEd8M_A" location="icons/portandflows/FlowPort_NA.gif">
+        <icon xmi:id="_Wx_jUKaUEd2T5POpEd8M_A" location="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort_NA.gif">
           <eAnnotations xmi:id="_iKaNEKaUEd2T5POpEd8M_A" source="image_papyrus">
             <details xmi:id="_iKaNEaaUEd2T5POpEd8M_A" key="image_kind_key" value="icon"/>
           </eAnnotations>
@@ -414,22 +414,22 @@
             <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Image"/>
           </ownedParameter>
         </ownedOperation>
-        <icon xmi:id="_3Fo88NOpEeCksKIBVNCBtw" location="icons/portandflows/FlowProperty.gif">
+        <icon xmi:id="_3Fo88NOpEeCksKIBVNCBtw" location="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowProperty.gif">
           <eAnnotations xmi:id="_3Fo88dOpEeCksKIBVNCBtw" source="image_papyrus">
             <details xmi:id="_3Fo88tOpEeCksKIBVNCBtw" key="image_kind_key" value="icon"/>
           </eAnnotations>
         </icon>
-        <icon xmi:id="_yZrmoJayEd2oqf5htPjXnA" location="icons/portandflows/FlowProperty_IN.gif">
+        <icon xmi:id="_yZrmoJayEd2oqf5htPjXnA" location="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowProperty_IN.gif">
           <eAnnotations xmi:id="_010R4JayEd2oqf5htPjXnA" source="image_papyrus">
             <details xmi:id="_01-C4JayEd2oqf5htPjXnA" key="image_kind_key" value="icon"/>
           </eAnnotations>
         </icon>
-        <icon xmi:id="_y_heoJayEd2oqf5htPjXnA" location="icons/portandflows/FlowProperty_OUT.gif">
+        <icon xmi:id="_y_heoJayEd2oqf5htPjXnA" location="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowProperty_OUT.gif">
           <eAnnotations xmi:id="_2tBEEJayEd2oqf5htPjXnA" source="image_papyrus">
             <details xmi:id="_2tBEEZayEd2oqf5htPjXnA" key="image_kind_key" value="icon"/>
           </eAnnotations>
         </icon>
-        <icon xmi:id="_z-GmwJayEd2oqf5htPjXnA" location="icons/portandflows/FlowProperty_INOUT.gif">
+        <icon xmi:id="_z-GmwJayEd2oqf5htPjXnA" location="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowProperty_INOUT.gif">
           <eAnnotations xmi:id="_36CQ0JayEd2oqf5htPjXnA" source="image_papyrus">
             <details xmi:id="_36CQ0ZayEd2oqf5htPjXnA" key="image_kind_key" value="icon"/>
           </eAnnotations>
@@ -439,7 +439,7 @@
         <ownedAttribute xmi:id="_DD6vwLVEEdu2ieF4ON8UjA" name="base_Interface" isUnique="false" association="_DD0pILVEEdu2ieF4ON8UjA">
           <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Interface"/>
         </ownedAttribute>
-        <icon xmi:id="_viR7sJayEd2oqf5htPjXnA" content="71%73%70%56%57%97%16%0%16%0%-124%27%0%-3%-3%-2%-6%-5%-3%-31%-23%-12%-11%-8%-4%-24%-17%-9%-20%-14%-7%75%126%-78%74%125%-79%74%125%-80%76%127%-77%75%125%-79%77%-128%-76%76%126%-79%75%125%-80%78%-127%-76%77%127%-77%80%-124%-73%79%-125%-74%-16%-11%-6%79%-124%-73%79%-123%-73%78%-125%-75%80%-123%-73%80%-124%-74%32%104%-96%112%-96%-60%-80%-57%-39%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%33%-7%4%1%10%0%31%0%44%0%0%0%0%16%0%16%0%0%5%115%-32%-9%101%23%116%77%16%101%89%83%-101%-119%95%36%-52%116%45%84%-16%66%16%26%-127%-3%-68%-99%35%87%-48%96%10%-104%77%1%-87%41%12%69%11%9%70%34%-99%82%-89%-49%-49%98%96%28%36%7%94%-51%32%-5%8%4%52%-127%-28%-26%108%78%-64%24%-128%-72%124%14%48%-68%27%-118%3%-2%-64%87%32%26%12%111%84%-125%-124%84%-127%34%12%-123%-118%-121%31%12%-114%-113%-112%-113%-126%-118%-124%-116%-119%-108%-125%-116%25%-111%-100%47%48%-97%-96%-97%33%0%59%" location="icons/portandflows/FlowSpecification.gif">
+        <icon xmi:id="_viR7sJayEd2oqf5htPjXnA" location="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowSpecification.gif">
           <eAnnotations xmi:id="_wU7goJayEd2oqf5htPjXnA" source="image_papyrus">
             <details xmi:id="_wU7goZayEd2oqf5htPjXnA" key="image_kind_key" value="icon"/>
           </eAnnotations>
@@ -471,7 +471,7 @@
             <value xsi:nil="true"/>
           </defaultValue>
         </ownedAttribute>
-        <icon xmi:id="_iNY0AIQlEd-0wPxCyQxNhg" location="icons/portandflows/ItemFlow.gif">
+        <icon xmi:id="_iNY0AIQlEd-0wPxCyQxNhg" location="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/ItemFlow.gif">
           <eAnnotations xmi:id="_mKHvUIQlEd-0wPxCyQxNhg" source="image_papyrus">
             <details xmi:id="_mKHvUYQlEd-0wPxCyQxNhg" key="image_kind_key" value="icon"/>
           </eAnnotations>
@@ -484,7 +484,7 @@
     <packagedElement xmi:type="uml:Profile" xmi:id="_5WYJ0LX7EduFmqQsrNB9lw" name="Constraints">
       <packagedElement xmi:type="uml:Stereotype" xmi:id="_YDK7cLVFEdu2ieF4ON8UjA" name="ConstraintBlock">
         <generalization xmi:id="_dgUgoLVFEdu2ieF4ON8UjA" general="_8J2A8LVAEdu2ieF4ON8UjA"/>
-        <icon xmi:id="_Oy6msJarEd2oqf5htPjXnA" content="71%73%70%56%57%97%16%0%16%0%-124%27%0%-3%-3%-2%-6%-5%-3%-31%-23%-12%-11%-8%-4%-24%-17%-9%-20%-14%-7%75%126%-78%74%125%-79%74%125%-80%76%127%-77%75%125%-79%77%-128%-76%76%126%-79%75%125%-80%78%-127%-76%77%127%-77%80%-124%-73%79%-125%-74%-16%-11%-6%79%-124%-73%79%-123%-73%78%-125%-75%80%-123%-73%80%-124%-74%32%104%-96%112%-96%-60%-80%-57%-39%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%33%-7%4%1%10%0%31%0%44%0%0%0%0%16%0%16%0%0%5%113%-32%-9%101%23%116%77%16%101%89%83%-101%-119%95%36%-52%51%65%-49%21%-68%16%-124%70%96%-64%30%-49%-95%43%104%48%60%9%-90%-128%-47%20%-120%-94%-123%82%66%-59%80%-89%-48%-49%98%112%28%12%36%-34%-26%32%-5%8%4%52%102%-116%25%29%72%-64%24%-128%-72%124%14%48%-68%27%-118%3%-2%-64%87%32%26%12%111%87%-125%-125%-127%34%12%-124%-119%-122%31%12%-115%-114%-113%-114%-126%-119%-123%-110%-109%84%-117%25%-112%-102%47%48%-99%-98%-99%33%0%59%" location="icons/constraints/ConstraintBlock.gif">
+        <icon xmi:id="_Oy6msJarEd2oqf5htPjXnA" location="platform:/plugin/org.eclipse.papyrus.sysml/icons/constraints/ConstraintBlock.gif">
           <eAnnotations xmi:id="_PcehEJarEd2oqf5htPjXnA" source="image_papyrus">
             <details xmi:id="_PcehEZarEd2oqf5htPjXnA" key="image_kind_key" value="icon"/>
           </eAnnotations>
@@ -494,7 +494,7 @@
         <ownedAttribute xmi:id="_F3b3UKG0Edyj2Ya50HPlXg" name="base_Property" isUnique="false" association="_F2AT8KG0Edyj2Ya50HPlXg">
           <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Property"/>
         </ownedAttribute>
-        <icon xmi:id="_TSAoMJarEd2oqf5htPjXnA" content="71%73%70%56%57%97%16%0%16%0%-91%40%0%-3%-2%-1%59%120%-82%42%111%-88%43%110%-88%43%111%-88%49%116%-85%50%115%-85%58%121%-81%58%120%-82%58%121%-82%67%127%-78%67%-128%-78%68%127%-78%77%-123%-74%77%-122%-74%85%-116%-70%86%-116%-70%86%-115%-70%86%-116%-71%94%-110%-66%94%-111%-67%94%-110%-67%95%-110%-67%101%-106%-64%101%-105%-64%106%-102%-62%-6%-3%-1%-19%-7%-1%-10%-4%-1%-14%-5%-1%-28%-9%-1%-31%-9%-1%-28%-8%-1%-24%-7%-1%-20%-6%-1%-19%-6%-1%-29%-8%-1%-25%-7%-1%-14%-4%-1%-10%-3%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%33%-7%4%1%10%0%63%0%44%0%0%0%0%16%0%16%0%0%6%114%-64%-97%112%72%44%26%-113%-56%-92%82%-103%105%54%7%80%103%115%120%1%88%7%86%0%-42%-118%25%78%52%-107%10%37%76%25%-124%53%-106%33%-28%36%-7%-72%-35%-125%-49%-125%19%25%54%58%-115%79%-89%99%26%-104%58%14%-128%67%10%34%11%31%35%34%3%35%35%27%11%34%12%67%7%37%8%9%-107%3%-107%1%9%33%9%67%5%32%36%30%32%32%3%32%-95%36%32%6%67%4%2%4%80%3%-83%80%4%-83%75%-76%66%3%-75%75%65%0%59%" location="icons/constraints/ConstraintProperty.gif">
+        <icon xmi:id="_TSAoMJarEd2oqf5htPjXnA" location="platform:/plugin/org.eclipse.papyrus.sysml/icons/constraints/ConstraintProperty.gif">
           <eAnnotations xmi:id="_T2OIgJarEd2oqf5htPjXnA" source="image_papyrus">
             <details xmi:id="_T2OIgZarEd2oqf5htPjXnA" key="image_kind_key" value="icon"/>
           </eAnnotations>
@@ -647,7 +647,7 @@
         <generalization xmi:id="_lr5SAKG1Edyj2Ya50HPlXg">
           <general xmi:type="uml:Stereotype" href="pathmap://UML_PROFILES/Standard.profile.uml#Trace"/>
         </generalization>
-        <icon xmi:id="__AeBoJaqEd2oqf5htPjXnA" content="71%73%70%56%57%97%16%0%16%0%-62%5%0%74%100%-105%-114%-89%-61%-87%-68%-46%32%104%-96%-80%-57%-39%-1%-1%-1%-1%-1%-1%-1%-1%-1%33%-7%4%1%10%0%7%0%44%0%0%0%0%16%0%16%0%0%3%60%120%-70%-36%-2%71%4%-56%-60%24%-126%-98%112%57%13%0%86%96%-97%104%105%7%-127%13%19%-91%114%0%-70%109%-19%-93%-54%41%-101%30%-105%66%56%-109%-37%-128%-57%-5%-27%22%67%98%114%-8%90%8%-107%-58%-102%-113%-105%52%-30%20%9%0%59%" location="icons/requirements/DeriveReqt.gif">
+        <icon xmi:id="__AeBoJaqEd2oqf5htPjXnA" location="platform:/plugin/org.eclipse.papyrus.sysml/icons/requirements/DeriveReqt.gif">
           <eAnnotations xmi:id="__kO2AJaqEd2oqf5htPjXnA" source="image_papyrus">
             <details xmi:id="__kO2AZaqEd2oqf5htPjXnA" key="image_kind_key" value="icon"/>
           </eAnnotations>
@@ -657,7 +657,7 @@
         <generalization xmi:id="_mRzbcKG1Edyj2Ya50HPlXg">
           <general xmi:type="uml:Stereotype" href="pathmap://UML_PROFILES/Standard.profile.uml#Trace"/>
         </generalization>
-        <icon xmi:id="_Kcv3sJarEd2oqf5htPjXnA" content="71%73%70%56%57%97%16%0%16%0%-62%5%0%74%100%-105%-114%-89%-61%-87%-68%-46%32%104%-96%-80%-57%-39%-1%-1%-1%-1%-1%-1%-1%-1%-1%33%-7%4%1%10%0%7%0%44%0%0%0%0%16%0%16%0%0%3%61%120%-70%-36%-2%71%4%-56%-60%24%-126%-98%112%57%13%0%118%-120%16%-105%89%-38%65%96%-61%68%-83%28%-112%110%-101%-5%-84%-77%-38%-86%99%79%56%19%-36%-96%55%-8%-23%22%67%-94%98%8%91%8%47%35%-93%77%97%76%26%115%-118%4%0%59%" location="icons/requirements/Verify.gif">
+        <icon xmi:id="_Kcv3sJarEd2oqf5htPjXnA" location="platform:/plugin/org.eclipse.papyrus.sysml/icons/requirements/Verify.gif">
           <eAnnotations xmi:id="_LGnUEJarEd2oqf5htPjXnA" source="image_papyrus">
             <details xmi:id="_LGxFEJarEd2oqf5htPjXnA" key="image_kind_key" value="icon"/>
           </eAnnotations>
@@ -667,7 +667,7 @@
         <generalization xmi:id="_m3h-sKG1Edyj2Ya50HPlXg">
           <general xmi:type="uml:Stereotype" href="pathmap://UML_PROFILES/Standard.profile.uml#Trace"/>
         </generalization>
-        <icon xmi:id="_6oq68JaqEd2oqf5htPjXnA" content="71%73%70%56%57%97%16%0%16%0%-62%5%0%74%100%-105%-114%-89%-61%-87%-68%-46%32%104%-96%-80%-57%-39%-1%-1%-1%-1%-1%-1%-1%-1%-1%33%-7%4%1%10%0%7%0%44%0%0%0%0%16%0%16%0%0%3%60%120%-70%-36%-2%71%4%-56%-60%24%-126%-98%112%57%13%0%86%96%-97%104%105%7%-127%13%19%-91%114%0%-70%109%-19%-93%-54%41%-101%30%-41%-80%55%-109%-101%79%49%32%40%110%-60%-28%-62%-9%90%8%-105%-58%25%-61%-40%-5%-31%20%9%0%59%" location="icons/requirements/Copy.gif">
+        <icon xmi:id="_6oq68JaqEd2oqf5htPjXnA" location="platform:/plugin/org.eclipse.papyrus.sysml/icons/requirements/Copy.gif">
           <eAnnotations xmi:id="_7LYmcJaqEd2oqf5htPjXnA" source="image_papyrus">
             <details xmi:id="_7LYmcZaqEd2oqf5htPjXnA" key="image_kind_key" value="icon"/>
           </eAnnotations>
@@ -677,7 +677,7 @@
         <generalization xmi:id="_qvChAMq5Ed2earfX6q16xg">
           <general xmi:type="uml:Stereotype" href="pathmap://UML_PROFILES/Standard.profile.uml#Trace"/>
         </generalization>
-        <icon xmi:id="_Fsqz4JarEd2oqf5htPjXnA" content="71%73%70%56%57%97%16%0%16%0%-62%5%0%74%100%-105%-114%-89%-61%-87%-68%-46%32%104%-96%-80%-57%-39%-1%-1%-1%-1%-1%-1%-1%-1%-1%33%-7%4%1%10%0%7%0%44%0%0%0%0%16%0%16%0%0%3%61%120%-70%-36%-2%71%4%-56%-60%24%-126%-98%112%57%13%0%86%96%-97%104%105%7%-127%13%19%-91%114%0%-70%109%-19%-93%-54%41%-101%-26%-61%-34%76%-73%-98%98%64%80%-36%-122%70%34%-14%-75%56%30%122%-54%25%-93%120%41%22%113%-117%4%0%59%" location="icons/requirements/Satisfy.gif">
+        <icon xmi:id="_Fsqz4JarEd2oqf5htPjXnA" location="platform:/plugin/org.eclipse.papyrus.sysml/icons/requirements/Satisfy.gif">
           <eAnnotations xmi:id="_GTQSwJarEd2oqf5htPjXnA" source="image_papyrus">
             <details xmi:id="_GTQSwZarEd2oqf5htPjXnA" key="image_kind_key" value="icon"/>
           </eAnnotations>
@@ -697,7 +697,7 @@
             <value xsi:nil="true"/>
           </defaultValue>
         </ownedAttribute>
-        <icon xmi:id="_Hz8pcJarEd2oqf5htPjXnA" content="71%73%70%56%57%97%16%0%16%0%-91%49%0%-3%-3%-1%-3%-3%-2%42%55%103%46%74%-123%-4%-3%-1%-6%-5%-3%-24%-18%-9%-31%-23%-12%-11%-8%-4%-32%-23%-12%-19%-14%-8%-15%-11%-6%-32%-23%-13%-31%-22%-12%-24%-17%-9%-20%-14%-7%75%126%-78%74%125%-79%74%125%-80%76%127%-77%75%125%-79%77%-128%-76%76%126%-79%75%125%-80%78%-127%-76%77%127%-77%80%-124%-73%79%-125%-74%-32%-22%-12%-31%-22%-13%-24%-17%-10%-20%-14%-8%-16%-11%-6%-11%-8%-5%-7%-5%-3%-4%-3%-2%79%-124%-73%79%-123%-73%78%-125%-75%80%-123%-73%80%-124%-74%80%-123%-74%-25%-17%-10%112%-96%-60%-80%-57%-39%-11%-7%-4%-4%-2%-1%-4%-2%-2%-3%-2%-2%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%33%-7%4%1%10%0%63%0%44%0%0%0%0%16%0%16%0%0%6%-115%-64%-97%112%72%44%26%-113%-59%21%74%-125%34%105%82%-91%-45%-119%68%93%9%55%9%70%-94%-47%-32%116%18%-100%67%-30%96%18%86%28%14%15%-53%33%104%-85%88%30%7%-58%-4%120%-80%6%118%1%75%49%96%61%-26%63%21%11%11%3%-125%33%2%33%-125%3%32%-128%21%33%33%119%33%45%-120%33%125%8%-128%25%34%-102%44%34%-121%-101%34%5%19%66%22%4%46%35%1%4%1%47%-89%0%48%1%16%-93%23%20%17%-78%-77%17%17%20%18%23%22%-93%32%-66%-65%-64%-66%-68%63%22%-63%-58%32%-61%43%22%-53%-52%-51%-53%86%72%-47%-46%69%65%0%59%" location="icons/requirements/TestCase.gif">
+        <icon xmi:id="_Hz8pcJarEd2oqf5htPjXnA" location="platform:/plugin/org.eclipse.papyrus.sysml/icons/requirements/TestCase.gif">
           <eAnnotations xmi:id="_ITiIcJarEd2oqf5htPjXnA" source="image_papyrus">
             <details xmi:id="_ITiIcZarEd2oqf5htPjXnA" key="image_kind_key" value="icon"/>
           </eAnnotations>
@@ -782,7 +782,7 @@
         <ownedAttribute xmi:id="_tSTRwLXsEduHWpAaWjM62w" name="base_Class" isUnique="false" association="_tRNsoLXsEduHWpAaWjM62w">
           <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Class"/>
         </ownedAttribute>
-        <icon xmi:id="_CEZFoJarEd2oqf5htPjXnA" content="71%73%70%56%57%97%16%0%16%0%-91%49%0%-3%-3%-1%-3%-3%-2%42%55%103%46%74%-123%-4%-3%-1%-6%-5%-3%-24%-18%-9%-31%-23%-12%-11%-8%-4%-32%-23%-12%-19%-14%-8%-15%-11%-6%-32%-23%-13%-31%-22%-12%-24%-17%-9%-20%-14%-7%75%126%-78%74%125%-79%74%125%-80%76%127%-77%75%125%-79%77%-128%-76%76%126%-79%75%125%-80%78%-127%-76%77%127%-77%80%-124%-73%79%-125%-74%-32%-22%-12%-31%-22%-13%-24%-17%-10%-20%-14%-8%-16%-11%-6%-11%-8%-5%-7%-5%-3%-4%-3%-2%79%-124%-73%79%-123%-73%78%-125%-75%80%-123%-73%80%-124%-74%80%-123%-74%-25%-17%-10%112%-96%-60%-80%-57%-39%-11%-7%-4%-4%-2%-1%-4%-2%-2%-3%-2%-2%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%33%-7%4%1%10%0%63%0%44%0%0%0%0%16%0%16%0%0%6%-112%-64%-97%112%72%44%26%-113%-59%21%74%-125%34%105%82%-91%-45%-119%68%93%9%55%9%70%-94%-47%-32%116%18%-100%67%-30%96%18%86%28%30%-106%65%-64%86%-87%88%30%7%-58%-4%96%13%62%-126%15%94%49%96%61%-26%63%21%11%3%11%11%108%2%33%-123%3%32%-128%21%33%118%33%2%45%-120%33%125%8%-128%25%34%34%44%34%-108%2%-101%34%5%19%66%22%4%46%35%1%4%1%47%-88%0%48%1%16%-92%23%20%17%-77%-76%17%17%20%18%23%22%-92%32%-65%-64%-63%-65%-67%63%22%-62%-57%32%-60%-58%-56%-63%-60%43%22%-48%-47%-46%-48%86%72%72%65%0%59%" location="icons/requirements/Requirement.gif">
+        <icon xmi:id="_CEZFoJarEd2oqf5htPjXnA" location="platform:/plugin/org.eclipse.papyrus.sysml/icons/requirements/Requirement.gif">
           <eAnnotations xmi:id="_CsUoUJarEd2oqf5htPjXnA" source="image_papyrus">
             <details xmi:id="_CsUoUZarEd2oqf5htPjXnA" key="image_kind_key" value="icon"/>
           </eAnnotations>
