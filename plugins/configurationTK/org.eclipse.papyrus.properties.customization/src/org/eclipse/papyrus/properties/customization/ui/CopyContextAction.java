@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -16,27 +16,37 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
 
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.papyrus.properties.Activator;
 import org.eclipse.papyrus.properties.catalog.PropertiesURIHandler;
 import org.eclipse.papyrus.properties.contexts.Context;
+import org.eclipse.papyrus.properties.contexts.ContextsPackage;
+import org.eclipse.papyrus.properties.contexts.Section;
+import org.eclipse.papyrus.properties.contexts.Tab;
 import org.eclipse.papyrus.properties.customization.messages.Messages;
 import org.eclipse.papyrus.properties.runtime.ConfigurationManager;
 import org.eclipse.papyrus.properties.util.EMFHelper;
+import org.eclipse.papyrus.properties.util.Util;
 import org.eclipse.swt.widgets.Display;
 
 /**
@@ -97,6 +107,47 @@ public class CopyContextAction {
 		}
 	}
 
+	/**
+	 * Lightweight method for loading a resource set
+	 * This method ignores the *.xwt files, which do not contain any useful
+	 * cross-reference (As they can only reference Environment files), and are
+	 * really expensive to load.
+	 */
+	private void resolveAllResources(Context source) {
+		resolveAllResources(source, new HashSet<EObject>());
+	}
+
+	/**
+	 * Lightweight method for loading a resource set
+	 * This method ignores the *.xwt files, which do not contain any useful
+	 * cross-reference (As they can only reference Environment files), and are
+	 * really expensive to load.
+	 */
+	private void resolveAllResources(EObject source, Set<EObject> visitedEObjects) {
+		if(!visitedEObjects.add(source)) {
+			return;
+		}
+
+		for(EReference reference : source.eClass().getEAllReferences()) {
+			//Do not load *.xwt resources
+			//These files do not contain any useful cross-reference, and are really expensive to load
+			if(reference == ContextsPackage.eINSTANCE.getSection_Widget()) {
+				continue;
+			}
+
+			Object value = source.eGet(reference);
+			if(value instanceof EList) {
+				for(Object object : (EList<?>)value) {
+					if(object instanceof EObject) {
+						resolveAllResources((EObject)object, visitedEObjects);
+					}
+				}
+			} else if(value instanceof EObject) {
+				resolveAllResources((EObject)value, visitedEObjects);
+			}
+		}
+	}
+
 	private void copyAll(final Context source, final File target) {
 		final File targetDirectory = target.getParentFile();
 		final String targetName = target.getName();
@@ -107,7 +158,8 @@ public class CopyContextAction {
 
 				public void run(IProgressMonitor monitor) {
 					monitor.beginTask(Messages.CopyContextAction_InitializingTheCopyOf + source.getName() + Messages.CopyContextAction_ThisMayTakeSomeTime, IProgressMonitor.UNKNOWN);
-					EcoreUtil.resolveAll(source);
+					//EcoreUtil.resolveAll(source); //This method is too expensive
+					resolveAllResources(source); //Ignores the *.xwt files. We will copy them manually.
 					monitor.done();
 					result = Status.OK_STATUS;
 				}
@@ -123,7 +175,18 @@ public class CopyContextAction {
 						try {
 							targetDirectory.mkdirs();
 
-							monitor.beginTask(Messages.CopyContextAction_Copying + source.getName() + Messages.CopyContextAction_To + targetName, source.eResource().getResourceSet().getResources().size());
+							int filesToCopy = source.eResource().getResourceSet().getResources().size();
+							List<Context> contexts = new LinkedList<Context>();
+							for(Context context : Util.getDependencies(source)) {
+								if(isRelative(source, context.eResource())) {
+									contexts.add(context);
+									for(Tab tab : context.getTabs()) {
+										filesToCopy += tab.getSections().size();
+									}
+								}
+							}
+
+							monitor.beginTask(Messages.CopyContextAction_Copying + source.getName() + Messages.CopyContextAction_To + targetName, filesToCopy);
 
 							//Copy of the context
 							copy(source.eResource(), target);
@@ -141,6 +204,19 @@ public class CopyContextAction {
 								monitor.worked(1);
 							}
 
+							//Copy the XWT files (they haven't been loaded in the resource set)
+							for(Context context : contexts) {
+								for(Tab tab : context.getTabs()) {
+									for(Section section : tab.getSections()) {
+										if(monitor.isCanceled()) {
+											return;
+										}
+										copy(section.getSectionFile(), targetDirectory, source);
+										monitor.worked(1);
+									}
+								}
+							}
+
 							monitor.done();
 						} catch (IOException ex) {
 							Activator.log.error(ex);
@@ -154,6 +230,25 @@ public class CopyContextAction {
 		} catch (InvocationTargetException ex) {
 			Activator.log.error(ex);
 		} catch (InterruptedException ex) {
+			Activator.log.error(ex);
+		}
+	}
+
+	protected void copy(String xwtFileName, File targetDirectory, Context source) {
+		File target = new File(targetDirectory, xwtFileName);
+		URI sourceURI = URI.createURI(xwtFileName).resolve(source.eResource().getURI());
+		PropertiesURIHandler uriHandler = new PropertiesURIHandler();
+		if(uriHandler.canHandle(sourceURI)) {
+			sourceURI = uriHandler.getConvertedURI(sourceURI);
+		}
+
+		try {
+			java.net.URL netURL = new java.net.URL(sourceURI.toString());
+			InputStream is = netURL.openStream();
+			copy(is, target);
+		} catch (MalformedURLException ex) {
+			Activator.log.error(ex);
+		} catch (IOException ex) {
 			Activator.log.error(ex);
 		}
 	}
