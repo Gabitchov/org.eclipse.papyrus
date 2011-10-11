@@ -155,7 +155,9 @@ public class ImageUtil {
 
 			URI iconURI = URI.createURI(location);
 			if(iconURI.isRelative()) {
-				URI pluginURI = URI.createPlatformPluginURI(location, true);
+				String err_msg = "Incorrect implementation of relative location." + location;
+				Activator.getDefault().getLog().log(new Status(IStatus.WARNING, Activator.PLUGIN_ID, err_msg, new Exception(err_msg)));
+				URI pluginURI = URI.createPlatformPluginURI(location, true); // <- TODO : fix this to retrieve the related plug-in URI
 				iconURI = iconURI.resolve(pluginURI);
 			}
 
