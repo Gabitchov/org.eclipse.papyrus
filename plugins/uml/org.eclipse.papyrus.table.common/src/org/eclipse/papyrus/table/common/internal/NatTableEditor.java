@@ -28,6 +28,7 @@ import org.eclipse.core.databinding.conversion.IConverter;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.command.BasicCommandStack;
+import org.eclipse.emf.common.command.CommandStack;
 import org.eclipse.emf.common.command.CommandStackListener;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
@@ -50,12 +51,14 @@ import org.eclipse.emf.facet.widgets.nattable.IWorkbenchPartProvider;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableInstance;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableinstancePackage;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance2.TableInstance2;
+import org.eclipse.emf.workspace.impl.WorkspaceCommandStackImpl;
 import org.eclipse.jface.action.GroupMarker;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.papyrus.commands.CheckedOperationHistory;
 import org.eclipse.papyrus.diagram.common.providers.EditorLabelProvider;
 import org.eclipse.papyrus.properties.databinding.EMFObservableValue;
 import org.eclipse.papyrus.table.common.messages.Messages;
@@ -396,7 +399,7 @@ public class NatTableEditor extends EditorPart implements ISelectionProvider, IE
 	protected void initializeEditingDomain() {
 		if(this.editingDomain == null) {
 			ComposedAdapterFactory adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
-			BasicCommandStack commandStack = new BasicCommandStack();
+			CommandStack commandStack = new WorkspaceCommandStackImpl(CheckedOperationHistory.getInstance());
 			this.editingDomain = new AdapterFactoryEditingDomain(adapterFactory, commandStack, new HashMap<Resource, Boolean>());
 		}
 		this.editingDomain.getCommandStack().removeCommandStackListener(this.commandListener);

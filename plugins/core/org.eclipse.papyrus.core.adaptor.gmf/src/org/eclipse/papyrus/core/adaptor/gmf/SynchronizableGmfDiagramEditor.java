@@ -24,7 +24,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditDomain;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor;
-import org.eclipse.papyrus.commands.WorkspaceCommandStackProxy;
+import org.eclipse.papyrus.commands.CheckedDiagramCommandStack;
 import org.eclipse.papyrus.core.ui.IRevealSemanticElement;
 
 /**
@@ -90,8 +90,7 @@ public class SynchronizableGmfDiagramEditor extends DiagramDocumentEditor implem
 			}
 
 			// create and assign the new stack
-			WorkspaceCommandStackImpl wsStack = (WorkspaceCommandStackImpl)getEditingDomain().getCommandStack();
-			WorkspaceCommandStackProxy diagramStack = new WorkspaceCommandStackProxy(getDiagramEditDomain(), wsStack);
+			CheckedDiagramCommandStack diagramStack = new CheckedDiagramCommandStack(getDiagramEditDomain());
 
 			editDomain.setCommandStack(diagramStack);
 		}

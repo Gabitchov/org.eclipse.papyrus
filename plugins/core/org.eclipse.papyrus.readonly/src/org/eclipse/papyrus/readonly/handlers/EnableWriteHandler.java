@@ -62,9 +62,6 @@ public class EnableWriteHandler extends AbstractHandler {
 	 *         specified object
 	 */
 	protected EObject resolveSemanticObject(Object object) {
-		if(object instanceof EObject) {
-			return (EObject)object;
-		}
 		Object businessObject = BusinessModelResolver.getInstance().getBusinessModel(object);
 		if(businessObject instanceof EObject) {
 			return (EObject)businessObject;
