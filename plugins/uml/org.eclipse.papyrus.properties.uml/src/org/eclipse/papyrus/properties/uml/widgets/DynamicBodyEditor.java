@@ -62,6 +62,9 @@ public class DynamicBodyEditor extends AbstractValueEditor implements Listener {
 		bodyEditorContainer = new Composite(this, style);
 		bodyEditorContainer.setLayout(new FillLayout());
 		bodyEditorContainer.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+
+		currentEditor = new NullBodyEditor();
+		currentEditor.createWidget(bodyEditorContainer, SWT.NONE);
 	}
 
 	/**
@@ -72,14 +75,23 @@ public class DynamicBodyEditor extends AbstractValueEditor implements Listener {
 	 *        the expression to edit
 	 */
 	public void display(Expression expression) {
-		String language = expression.getLanguage();
-		String initialText = expression.getBody();
-
 		if(currentEditor != null) {
 			disposeBodyEditor();
 		}
 
-		BodyEditor editor = getEditor(language);
+		BodyEditor editor;
+
+		if(expression == null) {
+			editor = new NullBodyEditor();
+			editor.createWidget(bodyEditorContainer, SWT.NONE);
+			bodyEditorContainer.layout();
+			return;
+		}
+
+		String language = expression.getLanguage();
+		String initialText = expression.getBody();
+
+		editor = getEditor(language);
 		editor.createWidget(bodyEditorContainer, SWT.NONE);
 		if(context != null) {
 			editor.setContext(context);
