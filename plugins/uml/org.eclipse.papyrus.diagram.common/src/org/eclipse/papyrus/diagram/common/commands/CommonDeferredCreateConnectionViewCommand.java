@@ -109,26 +109,9 @@ public class CommonDeferredCreateConnectionViewCommand extends DeferredCreateCon
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
 		Map<?, ?> epRegistry = viewer.getEditPartRegistry();
-		
-		/**
-		 * Refresh the registry
-		 */
-		View sourceView = (View)sourceViewAdapter.getAdapter(View.class);
-		EObject sourceContainer = sourceView.eContainer();
-		IGraphicalEditPart sourceContainerEP = (IGraphicalEditPart)epRegistry.get(sourceContainer);
-		View targetView = (View)targetViewAdapter.getAdapter(View.class);
-		EObject targetContainer = targetView.eContainer();
-		IGraphicalEditPart targetContainerEP = (IGraphicalEditPart)epRegistry.get(targetContainer);
+		IGraphicalEditPart sourceEP = (IGraphicalEditPart)epRegistry.get(sourceViewAdapter.getAdapter(View.class));
+		IGraphicalEditPart targetEP = (IGraphicalEditPart)epRegistry.get(targetViewAdapter.getAdapter(View.class));
 
-		if (sourceContainerEP != null) {
-			sourceContainerEP.refresh();
-		}
-		if (targetContainerEP != null && !targetContainerEP.equals(sourceContainerEP)) {
-			targetContainerEP.refresh();
-		}
-
-		IGraphicalEditPart sourceEP = (IGraphicalEditPart)epRegistry.get(sourceView);
-		IGraphicalEditPart targetEP = (IGraphicalEditPart)epRegistry.get(targetView);
 		/*
 		 * when the source or the target of a link is an other link, the
 		 * previous method returns something like ElementNameEditPart A such
