@@ -22,6 +22,8 @@ import org.eclipse.papyrus.properties.uml.expression.ExpressionList;
 import org.eclipse.papyrus.properties.uml.expression.ExpressionList.Expression;
 import org.eclipse.papyrus.properties.uml.messages.Messages;
 import org.eclipse.papyrus.properties.widgets.AbstractPropertyEditor;
+import org.eclipse.papyrus.widgets.editors.AbstractEditor;
+import org.eclipse.papyrus.widgets.editors.ICommitListener;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -42,7 +44,7 @@ import org.eclipse.swt.widgets.Listener;
  */
 //TODO : Check support for Ctrl+Z (Is there one single command executed ?)
 //TODO : Check listeners on observables (If there is an external modification, is the value correctly refreshed ?)
-public class ExpressionEditor extends AbstractPropertyEditor implements Listener, ISelectionChangedListener {
+public class ExpressionEditor extends AbstractPropertyEditor implements Listener, ISelectionChangedListener, ICommitListener {
 
 	private final ExpressionLanguageEditor languageEditor;
 
@@ -74,6 +76,7 @@ public class ExpressionEditor extends AbstractPropertyEditor implements Listener
 		bodyEditor.addChangeListener(this);
 
 		languageEditor.getViewer().addSelectionChangedListener(this);
+		languageEditor.addCommitListener(this);
 
 		setEditor(languageEditor);
 	}
@@ -123,17 +126,34 @@ public class ExpressionEditor extends AbstractPropertyEditor implements Listener
 	public void selectionChanged(SelectionChangedEvent event) {
 		ISelection selection = event.getSelection();
 
-		if(!selection.isEmpty() && selection instanceof IStructuredSelection) {
+		if(selection.isEmpty()) {
+			bodyEditor.display(null);
+		} else if(selection instanceof IStructuredSelection) {
 			IStructuredSelection sSelection = (IStructuredSelection)selection;
 			currentExpression = (Expression)sSelection.getFirstElement();
 
 			bodyEditor.display(currentExpression);
 		}
+
+		//Force the layout of the widget after the new widget has been displayed
+		bodyEditorContainer.getParent().layout();
 	}
 
 	@Override
 	protected void applyReadOnly(boolean readOnly) {
 		languageEditor.setReadOnly(readOnly);
 		bodyEditor.setReadOnly(readOnly);
+	}
+
+	public void commit(AbstractEditor editor) {
+		//If the viewer has no selection, or if there is only one element,
+		//automatically set the selection to the first element
+		if(editor == languageEditor && observableList != null) {
+			if(observableList.size() == 0) {
+				languageEditor.getViewer().setSelection(StructuredSelection.EMPTY);
+			} else if(observableList.size() == 1 || languageEditor.getViewer().getSelection().isEmpty()) {
+				languageEditor.getViewer().setSelection(new StructuredSelection(observableList.get(0)));
+			}
+		}
 	}
 }

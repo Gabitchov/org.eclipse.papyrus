@@ -13,6 +13,7 @@ package org.eclipse.papyrus.properties.widgets;
 
 import org.eclipse.core.databinding.observable.ChangeEvent;
 import org.eclipse.core.databinding.observable.IChangeListener;
+import org.eclipse.core.databinding.observable.IObservable;
 import org.eclipse.core.databinding.observable.list.IObservableList;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.papyrus.properties.Activator;
@@ -204,7 +205,15 @@ public abstract class AbstractPropertyEditor implements IChangeListener {
 		}
 	}
 
-	public void handleChange(ChangeEvent event) {
+	/**
+	 * {@inheritDoc}
+	 */
+	//TODO : This method handles a change on the DataSource. This should not be a ChangeEvent, as the DataSource is not an IObservable
+	//This method should be changed, and the source of the event should be checked (Otherwise, it cannot be extended).
+	//TODO : Remove the "final" modifier to let subclasses extend this behavior,
+	//when the source of the event is checked. Until then, it is not safe to override this method
+	public final void handleChange(ChangeEvent event) {
+		//Handle the "forceRefresh" behavior when the input DataSource sends a ChangeEvent
 		AbstractEditor editor = getEditor();
 		if(editor != null) {
 			editor.refreshValue();
@@ -388,6 +397,22 @@ public abstract class AbstractPropertyEditor implements IChangeListener {
 		}
 
 		return observableValue;
+	}
+
+	/**
+	 * Returns the IObservable for this propertyEditor, or null if it is
+	 * not available
+	 * 
+	 * @return The IObservable associated to this propertyEditor
+	 */
+	protected IObservable getInputObservable() {
+		if(listEditor != null) {
+			return getInputObservableList();
+		}
+		if(valueEditor != null) {
+			return getInputObservableValue();
+		}
+		return null;
 	}
 
 	/**

@@ -64,6 +64,8 @@ public class NaturalLanguageEditor implements BodyEditor {
 			}
 
 		});
+
+		editor.layout();
 	}
 
 	public void setInput(String value) {
