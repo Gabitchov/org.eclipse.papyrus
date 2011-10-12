@@ -18,6 +18,7 @@ import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.core.utils.EditorUtils;
+import org.eclipse.papyrus.core.utils.ServiceUtils;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
 
 /**
@@ -33,10 +34,12 @@ public abstract class AbstractEditorContainerQuery {//we don't need to implement
 	 * @throws ServiceException
 	 */
 	protected IPageMngr getPageMngr() throws ServiceException {
-		IPageMngr pageMngr;//can't be static, because there is a new IPageMngr each time we open a Papyrus Editor
+		// pageMngr can't be static, because there is a new IPageMngr each time we open a Papyrus Editor
 		IMultiDiagramEditor papyrusEditor = EditorUtils.getMultiDiagramEditor();
-		ServicesRegistry serviceRegistry = papyrusEditor.getServicesRegistry();
-		pageMngr = org.eclipse.papyrus.core.utils.ServiceUtils.getInstance().getIPageMngr(serviceRegistry);
-		return pageMngr;
+		if (papyrusEditor != null) {
+			ServicesRegistry serviceRegistry = papyrusEditor.getServicesRegistry();
+			return ServiceUtils.getInstance().getIPageMngr(serviceRegistry);
+		}
+		throw new ServiceException("Can't retrieve the IPageMngr");
 	}
 }
