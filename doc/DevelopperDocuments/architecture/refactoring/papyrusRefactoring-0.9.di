@@ -27,25 +27,7 @@
     <windows>
       <children xsi:type="di:TabFolder">
         <children>
-          <emfPageIdentifier href="papyrusRefactoring-0.9.notation#_6Xlc0Ot5EeCGSbsQKN6UYQ"/>
-        </children>
-        <children>
-          <emfPageIdentifier href="papyrusRefactoring-0.9.notation#_7MbIMOt7EeCKeKm6CrRGNQ"/>
-        </children>
-        <children>
-          <emfPageIdentifier href="papyrusRefactoring-0.9.notation#_mWtBEOt8EeCKeKm6CrRGNQ"/>
-        </children>
-        <children>
-          <emfPageIdentifier href="papyrusRefactoring-0.9.notation#_2gsHkPAKEeCJwqXbPMSp2g"/>
-        </children>
-        <children>
-          <emfPageIdentifier href="papyrusRefactoring-0.9.notation#_6Xlc0Ot5EeCGSbsQKN6UYQ"/>
-        </children>
-        <children>
           <emfPageIdentifier href="papyrusRefactoring-0.9.notation#_-rxCgPSzEeCQ4s2W2w_p6A"/>
-        </children>
-        <children>
-          <emfPageIdentifier href="papyrusRefactoring-0.9.notation#_Lbyw4PTfEeCm_IWJByqtzA"/>
         </children>
       </children>
     </windows>
