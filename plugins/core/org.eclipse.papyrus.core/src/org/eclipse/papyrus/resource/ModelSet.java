@@ -84,6 +84,7 @@ public class ModelSet extends ResourceSetImpl {
 	public ModelSet() {
 		registerModel(additional);
 		this.setURIResourceMap(new HashMap<URI, Resource>());
+		getLoadOptions().put(XMLResource.OPTION_DEFER_ATTACHMENT, true);
 		getLoadOptions().put(XMLResource.OPTION_DEFER_IDREF_RESOLUTION, true);
 	}
 
@@ -133,7 +134,6 @@ public class ModelSet extends ResourceSetImpl {
 		Resource r = super.getResource(uri, loadOnDemand);
 		if(r instanceof ResourceImpl) {
 			ResourceImpl impl = (ResourceImpl)r;
-			impl.setTrackingModification(true);
 			if(impl.getIntrinsicIDToEObjectMap() == null) {
 				impl.setIntrinsicIDToEObjectMap(new HashMap<String, EObject>());
 			}
@@ -147,10 +147,14 @@ public class ModelSet extends ResourceSetImpl {
 	 * @return the transactional editing domain
 	 */
 	public TransactionalEditingDomain getTransactionalEditingDomain() {
+		// transactionalEditingDomain =
+		// TransactionalEditingDomain.Factory.INSTANCE.getEditingDomain(this);
 		transactionalEditingDomain = WorkspaceEditingDomainFactory.INSTANCE.getEditingDomain(this);
 
 		if(transactionalEditingDomain == null) {
-			transactionalEditingDomain = TransactionalEditingDomainManager.createTransactionalEditingDomain(this);
+			// transactionalEditingDomain =
+			// TransactionalEditingDomain.Factory.INSTANCE.createEditingDomain(this);
+			transactionalEditingDomain = WorkspaceEditingDomainFactory.INSTANCE.createEditingDomain(this);
 			// What for?
 			transactionalEditingDomain.setID("SharedEditingDomain"); //$NON-NLS-1$
 		}

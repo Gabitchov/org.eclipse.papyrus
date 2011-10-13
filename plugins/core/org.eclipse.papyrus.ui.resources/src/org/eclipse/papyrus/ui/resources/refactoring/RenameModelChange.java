@@ -44,7 +44,6 @@ import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.ltk.core.refactoring.Change;
@@ -198,9 +197,9 @@ public class RenameModelChange extends Change {
 		 * Load ModelSet
 		 */
 		resourceSet = new ModelSet();
-		XMIResourceFactoryImpl value = new XMIResourceFactoryImpl();
-		resourceSet.getResourceFactoryRegistry().getContentTypeToFactoryMap().put(Resource.Factory.Registry.DEFAULT_CONTENT_TYPE_IDENTIFIER, value);
-		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(Resource.Factory.Registry.DEFAULT_EXTENSION, value);
+		//		XMIResourceFactoryImpl value = new XMIResourceFactoryImpl();
+		//		resourceSet.getResourceFactoryRegistry().getContentTypeToFactoryMap().put(Resource.Factory.Registry.DEFAULT_CONTENT_TYPE_IDENTIFIER, value);
+		//		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(Resource.Factory.Registry.DEFAULT_EXTENSION, value);
 		try {
 			ModelsReader reader = new ModelsReader();
 			reader.readModel(resourceSet);
@@ -331,14 +330,14 @@ public class RenameModelChange extends Change {
 			protected void doExecute() {
 				for(URI uri : uriMap.keySet()) {
 					Resource r = resourceSet.getResource(uri, false);
+					ECrossReferenceAdapter adapter = ECrossReferenceAdapter.getCrossReferenceAdapter(resourceSet);
+					if(adapter != null) {
+						adapter = new ECrossReferenceAdapter();
+						adapter.setTarget(resourceSet);
+					}
 					if(r != null) {
 						for(Iterator<EObject> i = EcoreUtil.getAllProperContents(r, false); i.hasNext();) {
 							EObject e = i.next();
-							ECrossReferenceAdapter adapter = ECrossReferenceAdapter.getCrossReferenceAdapter(e);
-							if(adapter == null) {
-								adapter = new ECrossReferenceAdapter();
-								adapter.setTarget(resourceSet);
-							}
 							Collection<Setting> references = adapter.getInverseReferences(e);
 							for(Setting s : references) {
 								EObject eObject = s.getEObject();
