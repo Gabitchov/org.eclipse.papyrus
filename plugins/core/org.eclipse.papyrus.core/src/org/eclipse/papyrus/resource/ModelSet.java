@@ -84,6 +84,7 @@ public class ModelSet extends ResourceSetImpl {
 	public ModelSet() {
 		registerModel(additional);
 		this.setURIResourceMap(new HashMap<URI, Resource>());
+		getLoadOptions().put(XMLResource.OPTION_DEFER_ATTACHMENT, true);
 		getLoadOptions().put(XMLResource.OPTION_DEFER_IDREF_RESOLUTION, true);
 	}
 
