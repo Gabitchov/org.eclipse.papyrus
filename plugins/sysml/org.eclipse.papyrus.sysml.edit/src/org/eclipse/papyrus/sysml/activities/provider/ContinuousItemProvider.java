@@ -45,23 +45,9 @@ import org.eclipse.uml2.uml.edit.UMLEditPlugin;
  * 
  * @generated
  */
-public class ContinuousItemProvider extends RateItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, IVisibilityOverlayImage {
+public class ContinuousItemProvider extends RateItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, IVisibilityOverlayImage
 
-	/**
-	 * This is used to store all the property descriptors for aclass stereotyped with a block.
-	 * Derived classes should add descriptors to this vector.
-	 */
-
-
-	protected List<IItemPropertyDescriptor> itemPropertyDescriptorsForparameter;
-
-	/**
-	 * This is used to store all the property descriptors for aclass stereotyped with a block.
-	 * Derived classes should add descriptors to this vector.
-	 */
-
-
-	protected List<IItemPropertyDescriptor> itemPropertyDescriptorsForactivityEdge;
+{
 
 	/**
 	 * Pattern prefix of continuous
@@ -111,44 +97,51 @@ public class ContinuousItemProvider extends RateItemProvider implements IEditing
 			}
 		}
 
-
-
 		/**
 		 * Handle Parameter stereotyped by Continuous
 		 */
 		if(object instanceof org.eclipse.uml2.uml.Parameter) {
 			org.eclipse.uml2.uml.Parameter element = (org.eclipse.uml2.uml.Parameter)object;
-			if(itemPropertyDescriptorsForparameter == null) {
-				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.PARAMETER);
-				final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
-				itemPropertyDescriptorsForparameter = new ArrayList<IItemPropertyDescriptor>();
-				itemPropertyDescriptorsForparameter.addAll(propertyDescriptors);
-				Stereotype ste = (element).getAppliedStereotype(SysmlResource.CONTINUOUS_ID);
-				if(ste != null) {
-					EObject steApplication = (element).getStereotypeApplication(ste);
+			/**
+			 * This is used to store all the property descriptors for a class
+			 * stereotyped with a block. Derived classes should add descriptors
+			 * to this vector.
+			 */
 
-				}
+			List<IItemPropertyDescriptor> itemPropertyDescriptorsForparameter = new ArrayList<IItemPropertyDescriptor>();
+			ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.PARAMETER);
+			final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
+
+			itemPropertyDescriptorsForparameter.addAll(propertyDescriptors);
+			Stereotype ste = (element).getAppliedStereotype(SysmlResource.CONTINUOUS_ID);
+			if(ste != null) {
+				EObject steApplication = (element).getStereotypeApplication(ste);
+
 			}
 			return itemPropertyDescriptorsForparameter;
 
 		}
-
 
 		/**
 		 * Handle ActivityEdge stereotyped by Continuous
 		 */
 		if(object instanceof org.eclipse.uml2.uml.ActivityEdge) {
 			org.eclipse.uml2.uml.ActivityEdge element = (org.eclipse.uml2.uml.ActivityEdge)object;
-			if(itemPropertyDescriptorsForactivityEdge == null) {
-				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.ACTIVITY_EDGE);
-				final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
-				itemPropertyDescriptorsForactivityEdge = new ArrayList<IItemPropertyDescriptor>();
-				itemPropertyDescriptorsForactivityEdge.addAll(propertyDescriptors);
-				Stereotype ste = (element).getAppliedStereotype(SysmlResource.CONTINUOUS_ID);
-				if(ste != null) {
-					EObject steApplication = (element).getStereotypeApplication(ste);
+			/**
+			 * This is used to store all the property descriptors for a class
+			 * stereotyped with a block. Derived classes should add descriptors
+			 * to this vector.
+			 */
 
-				}
+			List<IItemPropertyDescriptor> itemPropertyDescriptorsForactivityEdge = new ArrayList<IItemPropertyDescriptor>();
+			ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.ACTIVITY_EDGE);
+			final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
+
+			itemPropertyDescriptorsForactivityEdge.addAll(propertyDescriptors);
+			Stereotype ste = (element).getAppliedStereotype(SysmlResource.CONTINUOUS_ID);
+			if(ste != null) {
+				EObject steApplication = (element).getStereotypeApplication(ste);
+
 			}
 			return itemPropertyDescriptorsForactivityEdge;
 
@@ -174,8 +167,7 @@ public class ContinuousItemProvider extends RateItemProvider implements IEditing
 	}
 
 	/**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc
+	 * This returns the label text for the adapted class. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -213,14 +205,13 @@ public class ContinuousItemProvider extends RateItemProvider implements IEditing
 			continuous_ = (Continuous)object;
 		}
 
-
 		return getString("_UI_Continuous_type");
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc --> <!--
+	 * This handles model notifications by calling {@link #updateChildren} to
+	 * update any cached children and by creating a viewer notification, which
+	 * it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated
@@ -234,12 +225,9 @@ public class ContinuousItemProvider extends RateItemProvider implements IEditing
 		 */
 		if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
 
-
-
 			/**
 			 * Handle Parameter stereotyped by Continuous
 			 */
-
 
 			if(notification.getFeatureID(org.eclipse.uml2.uml.Parameter.class) != Notification.NO_FEATURE_ID) {
 				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.PARAMETER);
@@ -248,11 +236,9 @@ public class ContinuousItemProvider extends RateItemProvider implements IEditing
 
 			}
 
-
 			/**
 			 * Handle ActivityEdge stereotyped by Continuous
 			 */
-
 
 			if(notification.getFeatureID(org.eclipse.uml2.uml.ActivityEdge.class) != Notification.NO_FEATURE_ID) {
 				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.ACTIVITY_EDGE);
@@ -279,8 +265,8 @@ public class ContinuousItemProvider extends RateItemProvider implements IEditing
 	}
 
 	/**
-	 * Compose the image with specific visibility logo
-	 * Copied from UML implementation
+	 * Compose the image with specific visibility logo Copied from UML
+	 * implementation
 	 * 
 	 * @param object
 	 * @param composedImage

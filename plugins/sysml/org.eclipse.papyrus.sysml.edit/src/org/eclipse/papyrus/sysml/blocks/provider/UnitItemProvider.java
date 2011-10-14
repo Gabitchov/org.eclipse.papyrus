@@ -44,21 +44,14 @@ import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.blocks.Unit} object.
- * <!-- begin-user-doc -->
+ * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.blocks.Unit} object. <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * 
  * @generated
  */
-public class UnitItemProvider extends SysMLItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class UnitItemProvider extends SysMLItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 
-	/**
-	 * This is used to store all the property descriptors for aclass stereotyped with a block.
-	 * Derived classes should add descriptors to this vector.
-	 */
-
-
-	protected List<IItemPropertyDescriptor> itemPropertyDescriptorsForinstanceSpecification;
+{
 
 	/**
 	 * Pattern prefix of unit
@@ -102,31 +95,30 @@ public class UnitItemProvider extends SysMLItemProviderAdapter implements IEditi
 			}
 		}
 
-
-
 		/**
 		 * Handle InstanceSpecification stereotyped by Unit
 		 */
 		if(object instanceof org.eclipse.uml2.uml.InstanceSpecification) {
 			org.eclipse.uml2.uml.InstanceSpecification element = (org.eclipse.uml2.uml.InstanceSpecification)object;
-			if(itemPropertyDescriptorsForinstanceSpecification == null) {
-				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.INSTANCE_SPECIFICATION);
-				final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
-				itemPropertyDescriptorsForinstanceSpecification = new ArrayList<IItemPropertyDescriptor>();
-				itemPropertyDescriptorsForinstanceSpecification.addAll(propertyDescriptors);
-				Stereotype ste = (element).getAppliedStereotype(SysmlResource.UNIT_ID);
-				if(ste != null) {
-					EObject steApplication = (element).getStereotypeApplication(ste);
+			/**
+			 * This is used to store all the property descriptors for a class
+			 * stereotyped with a block. Derived classes should add descriptors
+			 * to this vector.
+			 */
 
+			List<IItemPropertyDescriptor> itemPropertyDescriptorsForinstanceSpecification = new ArrayList<IItemPropertyDescriptor>();
+			ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.INSTANCE_SPECIFICATION);
+			final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
 
-					addBase_InstanceSpecificationPropertyDescriptorForInstanceSpecification(steApplication);
+			itemPropertyDescriptorsForinstanceSpecification.addAll(propertyDescriptors);
+			Stereotype ste = (element).getAppliedStereotype(SysmlResource.UNIT_ID);
+			if(ste != null) {
+				EObject steApplication = (element).getStereotypeApplication(ste);
 
+				itemPropertyDescriptorsForinstanceSpecification.add(createBase_InstanceSpecificationPropertyDescriptorForInstanceSpecification(steApplication));
 
+				itemPropertyDescriptorsForinstanceSpecification.add(createDimensionPropertyDescriptorForInstanceSpecification(steApplication));
 
-					addDimensionPropertyDescriptorForInstanceSpecification(steApplication);
-
-
-				}
 			}
 			return itemPropertyDescriptorsForinstanceSpecification;
 
@@ -136,8 +128,8 @@ public class UnitItemProvider extends SysMLItemProviderAdapter implements IEditi
 	}
 
 	/**
-	 * This adds a property descriptor for the Base Instance Specification feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Base Instance Specification
+	 * feature. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -146,15 +138,15 @@ public class UnitItemProvider extends SysMLItemProviderAdapter implements IEditi
 	}
 
 	/**
-	 * This adds a property descriptor for the Base Instance Specification feature for the UML element InstanceSpecification.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This adds a property descriptor for the Base Instance Specification
+	 * feature for the UML element InstanceSpecification. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
-	protected void addBase_InstanceSpecificationPropertyDescriptorForInstanceSpecification(Object object) {
+	protected ItemPropertyDescriptorDecorator createBase_InstanceSpecificationPropertyDescriptorForInstanceSpecification(Object object) {
 
-		itemPropertyDescriptorsForinstanceSpecification.add(new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Unit_base_InstanceSpecification_feature"),
+		return new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Unit_base_InstanceSpecification_feature"),
 
 		getString("_UI_PropertyDescriptor_description", "_UI_Unit_base_InstanceSpecification_feature", "_UI_Unit_type"),
 
@@ -162,11 +154,9 @@ public class UnitItemProvider extends SysMLItemProviderAdapter implements IEditi
 
 		null,
 
-
 		null,
 
-
-		null)));
+		null));
 
 	}
 
@@ -181,15 +171,15 @@ public class UnitItemProvider extends SysMLItemProviderAdapter implements IEditi
 	}
 
 	/**
-	 * This adds a property descriptor for the Dimension feature for the UML element InstanceSpecification.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This adds a property descriptor for the Dimension feature for the UML
+	 * element InstanceSpecification. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
 	 * 
 	 * @generated
 	 */
-	protected void addDimensionPropertyDescriptorForInstanceSpecification(Object object) {
+	protected ItemPropertyDescriptorDecorator createDimensionPropertyDescriptorForInstanceSpecification(Object object) {
 
-		itemPropertyDescriptorsForinstanceSpecification.add(new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Unit_dimension_feature"),
+		return new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Unit_dimension_feature"),
 
 		getString("_UI_PropertyDescriptor_description", "_UI_Unit_dimension_feature", "_UI_Unit_type"),
 
@@ -197,17 +187,14 @@ public class UnitItemProvider extends SysMLItemProviderAdapter implements IEditi
 
 		null,
 
-
 		null,
 
-
-		null)));
+		null));
 
 	}
 
 	/**
-	 * This returns Unit.gif.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns Unit.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -222,8 +209,7 @@ public class UnitItemProvider extends SysMLItemProviderAdapter implements IEditi
 	}
 
 	/**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc
+	 * This returns the label text for the adapted class. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -250,14 +236,13 @@ public class UnitItemProvider extends SysMLItemProviderAdapter implements IEditi
 			unit_ = (Unit)object;
 		}
 
-
 		return getString("_UI_Unit_type");
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc --> <!--
+	 * This handles model notifications by calling {@link #updateChildren} to
+	 * update any cached children and by creating a viewer notification, which
+	 * it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated
@@ -271,12 +256,9 @@ public class UnitItemProvider extends SysMLItemProviderAdapter implements IEditi
 		 */
 		if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
 
-
-
 			/**
 			 * Handle InstanceSpecification stereotyped by Unit
 			 */
-
 
 			if(notification.getFeatureID(org.eclipse.uml2.uml.InstanceSpecification.class) != Notification.NO_FEATURE_ID) {
 				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.INSTANCE_SPECIFICATION);

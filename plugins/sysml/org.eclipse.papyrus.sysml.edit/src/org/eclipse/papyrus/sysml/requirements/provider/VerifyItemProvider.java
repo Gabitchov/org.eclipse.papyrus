@@ -48,15 +48,9 @@ import org.eclipse.uml2.uml.edit.UMLEditPlugin;
  * 
  * @generated
  */
-public class VerifyItemProvider extends TraceItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, IVisibilityOverlayImage {
+public class VerifyItemProvider extends TraceItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, IVisibilityOverlayImage
 
-	/**
-	 * This is used to store all the property descriptors for aclass stereotyped with a block.
-	 * Derived classes should add descriptors to this vector.
-	 */
-
-
-	protected List<IItemPropertyDescriptor> itemPropertyDescriptorsForabstraction;
+{
 
 	/**
 	 * Pattern prefix of verify
@@ -98,23 +92,26 @@ public class VerifyItemProvider extends TraceItemProvider implements IEditingDom
 			}
 		}
 
-
-
 		/**
 		 * Handle Abstraction stereotyped by Verify
 		 */
 		if(object instanceof org.eclipse.uml2.uml.Abstraction) {
 			org.eclipse.uml2.uml.Abstraction element = (org.eclipse.uml2.uml.Abstraction)object;
-			if(itemPropertyDescriptorsForabstraction == null) {
-				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.ABSTRACTION);
-				final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
-				itemPropertyDescriptorsForabstraction = new ArrayList<IItemPropertyDescriptor>();
-				itemPropertyDescriptorsForabstraction.addAll(propertyDescriptors);
-				Stereotype ste = (element).getAppliedStereotype(SysmlResource.VERIFY_ID);
-				if(ste != null) {
-					EObject steApplication = (element).getStereotypeApplication(ste);
+			/**
+			 * This is used to store all the property descriptors for a class
+			 * stereotyped with a block. Derived classes should add descriptors
+			 * to this vector.
+			 */
 
-				}
+			List<IItemPropertyDescriptor> itemPropertyDescriptorsForabstraction = new ArrayList<IItemPropertyDescriptor>();
+			ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.ABSTRACTION);
+			final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
+
+			itemPropertyDescriptorsForabstraction.addAll(propertyDescriptors);
+			Stereotype ste = (element).getAppliedStereotype(SysmlResource.VERIFY_ID);
+			if(ste != null) {
+				EObject steApplication = (element).getStereotypeApplication(ste);
+
 			}
 			return itemPropertyDescriptorsForabstraction;
 
@@ -124,8 +121,7 @@ public class VerifyItemProvider extends TraceItemProvider implements IEditingDom
 	}
 
 	/**
-	 * This returns Verify.gif.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns Verify.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -140,8 +136,7 @@ public class VerifyItemProvider extends TraceItemProvider implements IEditingDom
 	}
 
 	/**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc
+	 * This returns the label text for the adapted class. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -168,14 +163,13 @@ public class VerifyItemProvider extends TraceItemProvider implements IEditingDom
 			verify_ = (Verify)object;
 		}
 
-
 		return getString("_UI_Verify_type");
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc --> <!--
+	 * This handles model notifications by calling {@link #updateChildren} to
+	 * update any cached children and by creating a viewer notification, which
+	 * it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated
@@ -189,12 +183,9 @@ public class VerifyItemProvider extends TraceItemProvider implements IEditingDom
 		 */
 		if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
 
-
-
 			/**
 			 * Handle Abstraction stereotyped by Verify
 			 */
-
 
 			if(notification.getFeatureID(org.eclipse.uml2.uml.Abstraction.class) != Notification.NO_FEATURE_ID) {
 				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.ABSTRACTION);
@@ -232,8 +223,8 @@ public class VerifyItemProvider extends TraceItemProvider implements IEditingDom
 	}
 
 	/**
-	 * Compose the image with specific visibility logo
-	 * Copied from UML implementation
+	 * Compose the image with specific visibility logo Copied from UML
+	 * implementation
 	 * 
 	 * @param object
 	 * @param composedImage

@@ -49,15 +49,9 @@ import org.eclipse.uml2.uml.UMLPackage;
  * 
  * @generated
  */
-public class OptionalItemProvider extends SysMLItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class OptionalItemProvider extends SysMLItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 
-	/**
-	 * This is used to store all the property descriptors for aclass stereotyped with a block.
-	 * Derived classes should add descriptors to this vector.
-	 */
-
-
-	protected List<IItemPropertyDescriptor> itemPropertyDescriptorsForparameter;
+{
 
 	/**
 	 * Pattern prefix of optional
@@ -100,27 +94,28 @@ public class OptionalItemProvider extends SysMLItemProviderAdapter implements IE
 			}
 		}
 
-
-
 		/**
 		 * Handle Parameter stereotyped by Optional
 		 */
 		if(object instanceof org.eclipse.uml2.uml.Parameter) {
 			org.eclipse.uml2.uml.Parameter element = (org.eclipse.uml2.uml.Parameter)object;
-			if(itemPropertyDescriptorsForparameter == null) {
-				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.PARAMETER);
-				final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
-				itemPropertyDescriptorsForparameter = new ArrayList<IItemPropertyDescriptor>();
-				itemPropertyDescriptorsForparameter.addAll(propertyDescriptors);
-				Stereotype ste = (element).getAppliedStereotype(SysmlResource.OPTIONAL_ID);
-				if(ste != null) {
-					EObject steApplication = (element).getStereotypeApplication(ste);
+			/**
+			 * This is used to store all the property descriptors for a class
+			 * stereotyped with a block. Derived classes should add descriptors
+			 * to this vector.
+			 */
 
+			List<IItemPropertyDescriptor> itemPropertyDescriptorsForparameter = new ArrayList<IItemPropertyDescriptor>();
+			ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.PARAMETER);
+			final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
 
-					addBase_ParameterPropertyDescriptorForParameter(steApplication);
+			itemPropertyDescriptorsForparameter.addAll(propertyDescriptors);
+			Stereotype ste = (element).getAppliedStereotype(SysmlResource.OPTIONAL_ID);
+			if(ste != null) {
+				EObject steApplication = (element).getStereotypeApplication(ste);
 
+				itemPropertyDescriptorsForparameter.add(createBase_ParameterPropertyDescriptorForParameter(steApplication));
 
-				}
 			}
 			return itemPropertyDescriptorsForparameter;
 
@@ -140,15 +135,14 @@ public class OptionalItemProvider extends SysMLItemProviderAdapter implements IE
 	}
 
 	/**
-	 * This adds a property descriptor for the Base Parameter feature for the UML element Parameter.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This adds a property descriptor for the Base Parameter feature for the
+	 * UML element Parameter. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
-	protected void addBase_ParameterPropertyDescriptorForParameter(Object object) {
+	protected ItemPropertyDescriptorDecorator createBase_ParameterPropertyDescriptorForParameter(Object object) {
 
-		itemPropertyDescriptorsForparameter.add(new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Optional_base_Parameter_feature"),
+		return new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Optional_base_Parameter_feature"),
 
 		getString("_UI_PropertyDescriptor_description", "_UI_Optional_base_Parameter_feature", "_UI_Optional_type"),
 
@@ -156,17 +150,14 @@ public class OptionalItemProvider extends SysMLItemProviderAdapter implements IE
 
 		null,
 
-
 		null,
 
-
-		null)));
+		null));
 
 	}
 
 	/**
-	 * This returns Optional.gif.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns Optional.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -181,8 +172,7 @@ public class OptionalItemProvider extends SysMLItemProviderAdapter implements IE
 	}
 
 	/**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc
+	 * This returns the label text for the adapted class. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -209,14 +199,13 @@ public class OptionalItemProvider extends SysMLItemProviderAdapter implements IE
 			optional_ = (Optional)object;
 		}
 
-
 		return getString("_UI_Optional_type");
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc --> <!--
+	 * This handles model notifications by calling {@link #updateChildren} to
+	 * update any cached children and by creating a viewer notification, which
+	 * it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated
@@ -230,12 +219,9 @@ public class OptionalItemProvider extends SysMLItemProviderAdapter implements IE
 		 */
 		if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
 
-
-
 			/**
 			 * Handle Parameter stereotyped by Optional
 			 */
-
 
 			if(notification.getFeatureID(org.eclipse.uml2.uml.Parameter.class) != Notification.NO_FEATURE_ID) {
 				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.PARAMETER);

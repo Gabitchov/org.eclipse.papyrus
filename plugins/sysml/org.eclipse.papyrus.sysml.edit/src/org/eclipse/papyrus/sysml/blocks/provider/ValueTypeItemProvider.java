@@ -49,15 +49,9 @@ import org.eclipse.uml2.uml.UMLPackage;
  * 
  * @generated
  */
-public class ValueTypeItemProvider extends SysMLItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class ValueTypeItemProvider extends SysMLItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 
-	/**
-	 * This is used to store all the property descriptors for aclass stereotyped with a block.
-	 * Derived classes should add descriptors to this vector.
-	 */
-
-
-	protected List<IItemPropertyDescriptor> itemPropertyDescriptorsFordataType;
+{
 
 	/**
 	 * Pattern prefix of valueType
@@ -102,35 +96,32 @@ public class ValueTypeItemProvider extends SysMLItemProviderAdapter implements I
 			}
 		}
 
-
-
 		/**
 		 * Handle DataType stereotyped by ValueType
 		 */
 		if(object instanceof org.eclipse.uml2.uml.DataType) {
 			org.eclipse.uml2.uml.DataType element = (org.eclipse.uml2.uml.DataType)object;
-			if(itemPropertyDescriptorsFordataType == null) {
-				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.DATA_TYPE);
-				final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
-				itemPropertyDescriptorsFordataType = new ArrayList<IItemPropertyDescriptor>();
-				itemPropertyDescriptorsFordataType.addAll(propertyDescriptors);
-				Stereotype ste = (element).getAppliedStereotype(SysmlResource.VALUE_TYPE_ID);
-				if(ste != null) {
-					EObject steApplication = (element).getStereotypeApplication(ste);
+			/**
+			 * This is used to store all the property descriptors for a class
+			 * stereotyped with a block. Derived classes should add descriptors
+			 * to this vector.
+			 */
 
+			List<IItemPropertyDescriptor> itemPropertyDescriptorsFordataType = new ArrayList<IItemPropertyDescriptor>();
+			ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.DATA_TYPE);
+			final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
 
-					addBase_DataTypePropertyDescriptorForDataType(steApplication);
+			itemPropertyDescriptorsFordataType.addAll(propertyDescriptors);
+			Stereotype ste = (element).getAppliedStereotype(SysmlResource.VALUE_TYPE_ID);
+			if(ste != null) {
+				EObject steApplication = (element).getStereotypeApplication(ste);
 
+				itemPropertyDescriptorsFordataType.add(createBase_DataTypePropertyDescriptorForDataType(steApplication));
 
+				itemPropertyDescriptorsFordataType.add(createUnitPropertyDescriptorForDataType(steApplication));
 
-					addUnitPropertyDescriptorForDataType(steApplication);
+				itemPropertyDescriptorsFordataType.add(createDimensionPropertyDescriptorForDataType(steApplication));
 
-
-
-					addDimensionPropertyDescriptorForDataType(steApplication);
-
-
-				}
 			}
 			return itemPropertyDescriptorsFordataType;
 
@@ -150,15 +141,14 @@ public class ValueTypeItemProvider extends SysMLItemProviderAdapter implements I
 	}
 
 	/**
-	 * This adds a property descriptor for the Base Data Type feature for the UML element DataType.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This adds a property descriptor for the Base Data Type feature for the
+	 * UML element DataType. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
-	protected void addBase_DataTypePropertyDescriptorForDataType(Object object) {
+	protected ItemPropertyDescriptorDecorator createBase_DataTypePropertyDescriptorForDataType(Object object) {
 
-		itemPropertyDescriptorsFordataType.add(new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_ValueType_base_DataType_feature"),
+		return new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_ValueType_base_DataType_feature"),
 
 		getString("_UI_PropertyDescriptor_description", "_UI_ValueType_base_DataType_feature", "_UI_ValueType_type"),
 
@@ -166,17 +156,14 @@ public class ValueTypeItemProvider extends SysMLItemProviderAdapter implements I
 
 		null,
 
-
 		null,
 
-
-		null)));
+		null));
 
 	}
 
 	/**
-	 * This adds a property descriptor for the Unit feature.
-	 * <!-- begin-user-doc
+	 * This adds a property descriptor for the Unit feature. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -186,15 +173,14 @@ public class ValueTypeItemProvider extends SysMLItemProviderAdapter implements I
 	}
 
 	/**
-	 * This adds a property descriptor for the Unit feature for the UML element DataType.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This adds a property descriptor for the Unit feature for the UML element
+	 * DataType. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
-	protected void addUnitPropertyDescriptorForDataType(Object object) {
+	protected ItemPropertyDescriptorDecorator createUnitPropertyDescriptorForDataType(Object object) {
 
-		itemPropertyDescriptorsFordataType.add(new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_ValueType_unit_feature"),
+		return new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_ValueType_unit_feature"),
 
 		getString("_UI_PropertyDescriptor_description", "_UI_ValueType_unit_feature", "_UI_ValueType_type"),
 
@@ -202,11 +188,9 @@ public class ValueTypeItemProvider extends SysMLItemProviderAdapter implements I
 
 		null,
 
-
 		null,
 
-
-		null)));
+		null));
 
 	}
 
@@ -221,15 +205,14 @@ public class ValueTypeItemProvider extends SysMLItemProviderAdapter implements I
 	}
 
 	/**
-	 * This adds a property descriptor for the Dimension feature for the UML element DataType.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This adds a property descriptor for the Dimension feature for the UML
+	 * element DataType. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
-	protected void addDimensionPropertyDescriptorForDataType(Object object) {
+	protected ItemPropertyDescriptorDecorator createDimensionPropertyDescriptorForDataType(Object object) {
 
-		itemPropertyDescriptorsFordataType.add(new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_ValueType_dimension_feature"),
+		return new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_ValueType_dimension_feature"),
 
 		getString("_UI_PropertyDescriptor_description", "_UI_ValueType_dimension_feature", "_UI_ValueType_type"),
 
@@ -237,17 +220,14 @@ public class ValueTypeItemProvider extends SysMLItemProviderAdapter implements I
 
 		null,
 
-
 		null,
 
-
-		null)));
+		null));
 
 	}
 
 	/**
-	 * This returns ValueType.gif.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns ValueType.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -262,8 +242,7 @@ public class ValueTypeItemProvider extends SysMLItemProviderAdapter implements I
 	}
 
 	/**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc
+	 * This returns the label text for the adapted class. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -290,14 +269,13 @@ public class ValueTypeItemProvider extends SysMLItemProviderAdapter implements I
 			valueType_ = (ValueType)object;
 		}
 
-
 		return getString("_UI_ValueType_type");
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc --> <!--
+	 * This handles model notifications by calling {@link #updateChildren} to
+	 * update any cached children and by creating a viewer notification, which
+	 * it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated
@@ -311,12 +289,9 @@ public class ValueTypeItemProvider extends SysMLItemProviderAdapter implements I
 		 */
 		if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
 
-
-
 			/**
 			 * Handle DataType stereotyped by ValueType
 			 */
-
 
 			if(notification.getFeatureID(org.eclipse.uml2.uml.DataType.class) != Notification.NO_FEATURE_ID) {
 				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.DATA_TYPE);

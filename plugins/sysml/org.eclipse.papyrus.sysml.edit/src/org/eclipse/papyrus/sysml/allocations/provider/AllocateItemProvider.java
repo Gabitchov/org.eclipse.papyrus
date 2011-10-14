@@ -49,15 +49,9 @@ import org.eclipse.uml2.uml.UMLPackage;
  * 
  * @generated
  */
-public class AllocateItemProvider extends SysMLItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class AllocateItemProvider extends SysMLItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 
-	/**
-	 * This is used to store all the property descriptors for aclass stereotyped with a block.
-	 * Derived classes should add descriptors to this vector.
-	 */
-
-
-	protected List<IItemPropertyDescriptor> itemPropertyDescriptorsForabstraction;
+{
 
 	/**
 	 * Pattern prefix of allocate
@@ -100,27 +94,28 @@ public class AllocateItemProvider extends SysMLItemProviderAdapter implements IE
 			}
 		}
 
-
-
 		/**
 		 * Handle Abstraction stereotyped by Allocate
 		 */
 		if(object instanceof org.eclipse.uml2.uml.Abstraction) {
 			org.eclipse.uml2.uml.Abstraction element = (org.eclipse.uml2.uml.Abstraction)object;
-			if(itemPropertyDescriptorsForabstraction == null) {
-				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.ABSTRACTION);
-				final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
-				itemPropertyDescriptorsForabstraction = new ArrayList<IItemPropertyDescriptor>();
-				itemPropertyDescriptorsForabstraction.addAll(propertyDescriptors);
-				Stereotype ste = (element).getAppliedStereotype(SysmlResource.ALLOCATE_ID);
-				if(ste != null) {
-					EObject steApplication = (element).getStereotypeApplication(ste);
+			/**
+			 * This is used to store all the property descriptors for a class
+			 * stereotyped with a block. Derived classes should add descriptors
+			 * to this vector.
+			 */
 
+			List<IItemPropertyDescriptor> itemPropertyDescriptorsForabstraction = new ArrayList<IItemPropertyDescriptor>();
+			ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.ABSTRACTION);
+			final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
 
-					addBase_AbstractionPropertyDescriptorForAbstraction(steApplication);
+			itemPropertyDescriptorsForabstraction.addAll(propertyDescriptors);
+			Stereotype ste = (element).getAppliedStereotype(SysmlResource.ALLOCATE_ID);
+			if(ste != null) {
+				EObject steApplication = (element).getStereotypeApplication(ste);
 
+				itemPropertyDescriptorsForabstraction.add(createBase_AbstractionPropertyDescriptorForAbstraction(steApplication));
 
-				}
 			}
 			return itemPropertyDescriptorsForabstraction;
 
@@ -140,15 +135,14 @@ public class AllocateItemProvider extends SysMLItemProviderAdapter implements IE
 	}
 
 	/**
-	 * This adds a property descriptor for the Base Abstraction feature for the UML element Abstraction.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This adds a property descriptor for the Base Abstraction feature for the
+	 * UML element Abstraction. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
-	protected void addBase_AbstractionPropertyDescriptorForAbstraction(Object object) {
+	protected ItemPropertyDescriptorDecorator createBase_AbstractionPropertyDescriptorForAbstraction(Object object) {
 
-		itemPropertyDescriptorsForabstraction.add(new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Allocate_base_Abstraction_feature"),
+		return new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Allocate_base_Abstraction_feature"),
 
 		getString("_UI_PropertyDescriptor_description", "_UI_Allocate_base_Abstraction_feature", "_UI_Allocate_type"),
 
@@ -156,17 +150,14 @@ public class AllocateItemProvider extends SysMLItemProviderAdapter implements IE
 
 		null,
 
-
 		null,
 
-
-		null)));
+		null));
 
 	}
 
 	/**
-	 * This returns Allocate.gif.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns Allocate.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -181,8 +172,7 @@ public class AllocateItemProvider extends SysMLItemProviderAdapter implements IE
 	}
 
 	/**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc
+	 * This returns the label text for the adapted class. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -209,14 +199,13 @@ public class AllocateItemProvider extends SysMLItemProviderAdapter implements IE
 			allocate_ = (Allocate)object;
 		}
 
-
 		return getString("_UI_Allocate_type");
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc --> <!--
+	 * This handles model notifications by calling {@link #updateChildren} to
+	 * update any cached children and by creating a viewer notification, which
+	 * it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated
@@ -230,12 +219,9 @@ public class AllocateItemProvider extends SysMLItemProviderAdapter implements IE
 		 */
 		if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
 
-
-
 			/**
 			 * Handle Abstraction stereotyped by Allocate
 			 */
-
 
 			if(notification.getFeatureID(org.eclipse.uml2.uml.Abstraction.class) != Notification.NO_FEATURE_ID) {
 				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.ABSTRACTION);

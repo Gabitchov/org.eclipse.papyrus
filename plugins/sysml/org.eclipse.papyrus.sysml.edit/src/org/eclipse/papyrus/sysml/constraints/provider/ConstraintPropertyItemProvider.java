@@ -49,15 +49,9 @@ import org.eclipse.uml2.uml.UMLPackage;
  * 
  * @generated
  */
-public class ConstraintPropertyItemProvider extends SysMLItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class ConstraintPropertyItemProvider extends SysMLItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 
-	/**
-	 * This is used to store all the property descriptors for aclass stereotyped with a block.
-	 * Derived classes should add descriptors to this vector.
-	 */
-
-
-	protected List<IItemPropertyDescriptor> itemPropertyDescriptorsForproperty;
+{
 
 	/**
 	 * Pattern prefix of constraintProperty
@@ -100,27 +94,28 @@ public class ConstraintPropertyItemProvider extends SysMLItemProviderAdapter imp
 			}
 		}
 
-
-
 		/**
 		 * Handle Property stereotyped by ConstraintProperty
 		 */
 		if(object instanceof org.eclipse.uml2.uml.Property) {
 			org.eclipse.uml2.uml.Property element = (org.eclipse.uml2.uml.Property)object;
-			if(itemPropertyDescriptorsForproperty == null) {
-				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.PROPERTY);
-				final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
-				itemPropertyDescriptorsForproperty = new ArrayList<IItemPropertyDescriptor>();
-				itemPropertyDescriptorsForproperty.addAll(propertyDescriptors);
-				Stereotype ste = (element).getAppliedStereotype(SysmlResource.CONSTRAINT_PROPERTY_ID);
-				if(ste != null) {
-					EObject steApplication = (element).getStereotypeApplication(ste);
+			/**
+			 * This is used to store all the property descriptors for a class
+			 * stereotyped with a block. Derived classes should add descriptors
+			 * to this vector.
+			 */
 
+			List<IItemPropertyDescriptor> itemPropertyDescriptorsForproperty = new ArrayList<IItemPropertyDescriptor>();
+			ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.PROPERTY);
+			final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
 
-					addBase_PropertyPropertyDescriptorForProperty(steApplication);
+			itemPropertyDescriptorsForproperty.addAll(propertyDescriptors);
+			Stereotype ste = (element).getAppliedStereotype(SysmlResource.CONSTRAINT_PROPERTY_ID);
+			if(ste != null) {
+				EObject steApplication = (element).getStereotypeApplication(ste);
 
+				itemPropertyDescriptorsForproperty.add(createBase_PropertyPropertyDescriptorForProperty(steApplication));
 
-				}
 			}
 			return itemPropertyDescriptorsForproperty;
 
@@ -140,15 +135,14 @@ public class ConstraintPropertyItemProvider extends SysMLItemProviderAdapter imp
 	}
 
 	/**
-	 * This adds a property descriptor for the Base Property feature for the UML element Property.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This adds a property descriptor for the Base Property feature for the UML
+	 * element Property. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
-	protected void addBase_PropertyPropertyDescriptorForProperty(Object object) {
+	protected ItemPropertyDescriptorDecorator createBase_PropertyPropertyDescriptorForProperty(Object object) {
 
-		itemPropertyDescriptorsForproperty.add(new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_ConstraintProperty_base_Property_feature"),
+		return new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_ConstraintProperty_base_Property_feature"),
 
 		getString("_UI_PropertyDescriptor_description", "_UI_ConstraintProperty_base_Property_feature", "_UI_ConstraintProperty_type"),
 
@@ -156,17 +150,14 @@ public class ConstraintPropertyItemProvider extends SysMLItemProviderAdapter imp
 
 		null,
 
-
 		null,
 
-
-		null)));
+		null));
 
 	}
 
 	/**
-	 * This returns ConstraintProperty.gif.
-	 * <!-- begin-user-doc --> <!--
+	 * This returns ConstraintProperty.gif. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated
@@ -182,8 +173,7 @@ public class ConstraintPropertyItemProvider extends SysMLItemProviderAdapter imp
 	}
 
 	/**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc
+	 * This returns the label text for the adapted class. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -210,14 +200,13 @@ public class ConstraintPropertyItemProvider extends SysMLItemProviderAdapter imp
 			constraintProperty_ = (ConstraintProperty)object;
 		}
 
-
 		return getString("_UI_ConstraintProperty_type");
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc --> <!--
+	 * This handles model notifications by calling {@link #updateChildren} to
+	 * update any cached children and by creating a viewer notification, which
+	 * it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated
@@ -231,12 +220,9 @@ public class ConstraintPropertyItemProvider extends SysMLItemProviderAdapter imp
 		 */
 		if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
 
-
-
 			/**
 			 * Handle Property stereotyped by ConstraintProperty
 			 */
-
 
 			if(notification.getFeatureID(org.eclipse.uml2.uml.Property.class) != Notification.NO_FEATURE_ID) {
 				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.PROPERTY);
