@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -166,7 +166,7 @@ public class PluginProjectEditor extends ProjectEditor implements IPluginProject
 						Node point = attributes.getNamedItem(POINT);
 						if(extensionPoint.equals(point.getNodeValue())){
 							if(item instanceof Node) {
-								extensions.add(item);	
+								extensions.add(item);
 							}
 						}
 					}
@@ -283,5 +283,14 @@ public class PluginProjectEditor extends ProjectEditor implements IPluginProject
 			commands.add(PLUGIN_BUILD_COMMAND);
 		}
 		return commands;
+	}
+
+	/**
+	 * @return The XML Document associated to this plugin.xml file
+	 * @see PluginProjectEditor#init()
+	 * @see PluginProjectEditor#create()
+	 */
+	public Document getDocument() {
+		return pluginXML;
 	}
 }
