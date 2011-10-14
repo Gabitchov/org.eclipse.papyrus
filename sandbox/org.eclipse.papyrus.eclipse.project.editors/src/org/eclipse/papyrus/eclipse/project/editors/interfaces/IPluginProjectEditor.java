@@ -15,6 +15,7 @@ package org.eclipse.papyrus.eclipse.project.editors.interfaces;
 
 import java.util.List;
 
+import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
@@ -51,4 +52,7 @@ public interface IPluginProjectEditor extends IProjectEditor, IFileEditor {
 
 	/** the method to add a child to an element */
 	public Element addChild(final Element element, final String childName);
+
+	/** the method to retrieve the plugin.xml XML Document associated to this project */
+	public Document getDocument();
 }
