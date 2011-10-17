@@ -2,33 +2,6 @@
 <xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:architecture="http://www.eclipse.org/papyrus/design/architecture/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:java="http://www.eclipse.org/papyrus/JAVA/1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML">
   <uml:Model xmi:id="_47VhQOt5EeCGSbsQKN6UYQ" name="model">
     <packagedElement xmi:type="uml:Model" xmi:id="_Of4n0Ot6EeCKeKm6CrRGNQ" name="papyrus">
-      <packagedElement xmi:type="uml:Package" xmi:id="_Vu3XAOt6EeCKeKm6CrRGNQ" name="org.eclipse.papyrus.documentation.uml" clientDependency="_Vu5zQOt6EeCKeKm6CrRGNQ _Vu-EsOt6EeCKeKm6CrRGNQ _VvCWIOt6EeCKeKm6CrRGNQ">
-        <packagedElement xmi:type="uml:Dependency" xmi:id="_Vu5zQOt6EeCKeKm6CrRGNQ" name="org.eclipse.papyrus.documentation" supplier="_Pj9T8Ot6EeCKeKm6CrRGNQ" client="_Vu3XAOt6EeCKeKm6CrRGNQ"/>
-        <packagedElement xmi:type="uml:Dependency" xmi:id="_Vu-EsOt6EeCKeKm6CrRGNQ" name="org.eclipse.uml2.uml" supplier="_PihwkOt6EeCKeKm6CrRGNQ" client="_Vu3XAOt6EeCKeKm6CrRGNQ"/>
-        <packagedElement xmi:type="uml:Dependency" xmi:id="_VvCWIOt6EeCKeKm6CrRGNQ" name="org.eclipse.papyrus.uml.profile" supplier="_VvAg8Ot6EeCKeKm6CrRGNQ" client="_Vu3XAOt6EeCKeKm6CrRGNQ"/>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Package" xmi:id="_Pj9T8Ot6EeCKeKm6CrRGNQ" name="org.eclipse.papyrus.documentation" clientDependency="_Pj_JIOt6EeCKeKm6CrRGNQ _PkA-UOt6EeCKeKm6CrRGNQ _PkCzgOt6EeCKeKm6CrRGNQ">
-        <packagedElement xmi:type="uml:Dependency" xmi:id="_Pj_JIOt6EeCKeKm6CrRGNQ" name="R_org.eclipse.emf.ecore" supplier="_PCTYYOt6EeCKeKm6CrRGNQ" client="_Pj9T8Ot6EeCKeKm6CrRGNQ"/>
-        <packagedElement xmi:type="uml:Dependency" xmi:id="_PkA-UOt6EeCKeKm6CrRGNQ" name="R_org.eclipse.core.runtime" supplier="_O8JGAOt6EeCKeKm6CrRGNQ" client="_Pj9T8Ot6EeCKeKm6CrRGNQ"/>
-        <packagedElement xmi:type="uml:Dependency" xmi:id="_PkCzgOt6EeCKeKm6CrRGNQ" name="R_org.eclipse.core.commands" supplier="_O_G6cOt6EeCKeKm6CrRGNQ" client="_Pj9T8Ot6EeCKeKm6CrRGNQ"/>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Package" xmi:id="_PkLWYOt6EeCKeKm6CrRGNQ" name="org.eclipse.papyrus.documentation.view" clientDependency="_PkNLkOt6EeCKeKm6CrRGNQ _PkPAwOt6EeCKeKm6CrRGNQ _PkQ18Ot6EeCKeKm6CrRGNQ _PkTSMOt6EeCKeKm6CrRGNQ _PkUgUOt6EeCKeKm6CrRGNQ _PkWVgOt6EeCKeKm6CrRGNQ _PkZY0Ot6EeCKeKm6CrRGNQ _PlwDsOt6EeCKeKm6CrRGNQ _Plx44Ot6EeCKeKm6CrRGNQ">
-        <packagedElement xmi:type="uml:Dependency" xmi:id="_PkNLkOt6EeCKeKm6CrRGNQ" name="R_org.eclipse.core.expressions" supplier="_O-10sOt6EeCKeKm6CrRGNQ" client="_PkLWYOt6EeCKeKm6CrRGNQ"/>
-        <packagedElement xmi:type="uml:Dependency" xmi:id="_PkPAwOt6EeCKeKm6CrRGNQ" name="R_org.eclipse.ui.editors" supplier="_PboeYOt6EeCKeKm6CrRGNQ" client="_PkLWYOt6EeCKeKm6CrRGNQ"/>
-        <packagedElement xmi:type="uml:Dependency" xmi:id="_PkQ18Ot6EeCKeKm6CrRGNQ" name="R_org.eclipse.ui.ide" supplier="_PIoC0Ot6EeCKeKm6CrRGNQ" client="_PkLWYOt6EeCKeKm6CrRGNQ"/>
-        <packagedElement xmi:type="uml:Dependency" xmi:id="_PkTSMOt6EeCKeKm6CrRGNQ" name="org.eclipse.emf.edit.ui" supplier="_PIYLMOt6EeCKeKm6CrRGNQ" client="_PkLWYOt6EeCKeKm6CrRGNQ"/>
-        <packagedElement xmi:type="uml:Dependency" xmi:id="_PkUgUOt6EeCKeKm6CrRGNQ" name="org.eclipse.jface.text" supplier="_PD8XIOt6EeCKeKm6CrRGNQ" client="_PkLWYOt6EeCKeKm6CrRGNQ"/>
-        <packagedElement xmi:type="uml:Dependency" xmi:id="_PkWVgOt6EeCKeKm6CrRGNQ" name="org.eclipse.core.resources" supplier="_PAHnEOt6EeCKeKm6CrRGNQ" client="_PkLWYOt6EeCKeKm6CrRGNQ"/>
-        <packagedElement xmi:type="uml:Dependency" xmi:id="_PkZY0Ot6EeCKeKm6CrRGNQ" name="org.eclipse.epf.richtext" supplier="_PkYKsOt6EeCKeKm6CrRGNQ" client="_PkLWYOt6EeCKeKm6CrRGNQ"/>
-        <packagedElement xmi:type="uml:Dependency" xmi:id="_PlwDsOt6EeCKeKm6CrRGNQ" name="R_org.eclipse.papyrus.documentation" supplier="_Pj9T8Ot6EeCKeKm6CrRGNQ" client="_PkLWYOt6EeCKeKm6CrRGNQ"/>
-        <packagedElement xmi:type="uml:Dependency" xmi:id="_Plx44Ot6EeCKeKm6CrRGNQ" name="org.eclipse.ui.views" supplier="_PAy8gOt6EeCKeKm6CrRGNQ" client="_PkLWYOt6EeCKeKm6CrRGNQ"/>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Package" xmi:id="_Pl2KUOt6EeCKeKm6CrRGNQ" name="org.eclipse.papyrus.documentation.view.papyrus" clientDependency="_Pl3_gOt6EeCKeKm6CrRGNQ _Pl50sOt6EeCKeKm6CrRGNQ _Pl7p4Ot6EeCKeKm6CrRGNQ _Pl9fEOt6EeCKeKm6CrRGNQ">
-        <packagedElement xmi:type="uml:Dependency" xmi:id="_Pl3_gOt6EeCKeKm6CrRGNQ" name="org.eclipse.papyrus.documentation.view" supplier="_PkLWYOt6EeCKeKm6CrRGNQ" client="_Pl2KUOt6EeCKeKm6CrRGNQ"/>
-        <packagedElement xmi:type="uml:Dependency" xmi:id="_Pl50sOt6EeCKeKm6CrRGNQ" name="org.eclipse.papyrus.modelexplorer" supplier="_PKGCcOt6EeCKeKm6CrRGNQ" client="_Pl2KUOt6EeCKeKm6CrRGNQ"/>
-        <packagedElement xmi:type="uml:Dependency" xmi:id="_Pl7p4Ot6EeCKeKm6CrRGNQ" name="org.eclipse.papyrus.core.adaptor.gmf" supplier="_Pha9UOt6EeCKeKm6CrRGNQ" client="_Pl2KUOt6EeCKeKm6CrRGNQ"/>
-        <packagedElement xmi:type="uml:Dependency" xmi:id="_Pl9fEOt6EeCKeKm6CrRGNQ" name="org.eclipse.emf.facet.infra.browser.uicore" supplier="_POokMOt6EeCKeKm6CrRGNQ" client="_Pl2KUOt6EeCKeKm6CrRGNQ"/>
-      </packagedElement>
       <packagedElement xmi:type="uml:Package" xmi:id="_Vygg4Ot6EeCKeKm6CrRGNQ" name="org.eclipse.papyrus.outline.emftree" clientDependency="_Vyi9IOt6EeCKeKm6CrRGNQ _VykyUOt6EeCKeKm6CrRGNQ _VynOkOt6EeCKeKm6CrRGNQ">
         <ownedComment xmi:id="_XQfTcPWOEeCzRZJQWR1Svg" annotatedElement="_Vygg4Ot6EeCKeKm6CrRGNQ">
           <body>Deprecated ?</body>
@@ -68,6 +41,9 @@
         <packagedElement xmi:type="uml:Dependency" xmi:id="_PsoHwOt6EeCKeKm6CrRGNQ" name="org.antlr.runtime" supplier="_Psm5oOt6EeCKeKm6CrRGNQ" client="_PseWwOt6EeCKeKm6CrRGNQ"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Package" xmi:id="_VyJUgOt6EeCKeKm6CrRGNQ" name="org.eclipse.papyrus.navigator" clientDependency="_VyLwwOt6EeCKeKm6CrRGNQ _VyONAOt6EeCKeKm6CrRGNQ _VyQCMOt6EeCKeKm6CrRGNQ _VySecOt6EeCKeKm6CrRGNQ _VyUToOt6EeCKeKm6CrRGNQ _VyWv4Ot6EeCKeKm6CrRGNQ _VyZzMOt6EeCKeKm6CrRGNQ _VycPcOt6EeCKeKm6CrRGNQ">
+        <ownedComment xmi:id="_vYf9kPi1EeCpzZC6nmLjDQ" annotatedElement="_VyJUgOt6EeCKeKm6CrRGNQ">
+          <body>Deprecated ?</body>
+        </ownedComment>
         <packagedElement xmi:type="uml:Dependency" xmi:id="_VyLwwOt6EeCKeKm6CrRGNQ" name="org.eclipse.ui.navigator" supplier="_PJ_70Ot6EeCKeKm6CrRGNQ" client="_VyJUgOt6EeCKeKm6CrRGNQ"/>
         <packagedElement xmi:type="uml:Dependency" xmi:id="_VyONAOt6EeCKeKm6CrRGNQ" name="org.eclipse.emf.ecore.editor" supplier="_PN49UOt6EeCKeKm6CrRGNQ" client="_VyJUgOt6EeCKeKm6CrRGNQ"/>
         <packagedElement xmi:type="uml:Dependency" xmi:id="_VyQCMOt6EeCKeKm6CrRGNQ" name="org.eclipse.uml2.uml.editor" supplier="_P5ZYcOt6EeCKeKm6CrRGNQ" client="_VyJUgOt6EeCKeKm6CrRGNQ"/>
@@ -3742,6 +3718,11 @@
           <packagedElement xmi:type="uml:Dependency" xmi:id="_Pv1MwOt6EeCKeKm6CrRGNQ" name="org.eclipse.papyrus.log" supplier="_O_9PAOt6EeCKeKm6CrRGNQ" client="_PvqNoOt6EeCKeKm6CrRGNQ"/>
           <packagedElement xmi:type="uml:Dependency" xmi:id="_Pv2a4Ot6EeCKeKm6CrRGNQ" name="org.eclipse.papyrus.commands" supplier="_Of7EEOt6EeCKeKm6CrRGNQ" client="_PvqNoOt6EeCKeKm6CrRGNQ"/>
         </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="_Vu3XAOt6EeCKeKm6CrRGNQ" name="org.eclipse.papyrus.documentation.uml" clientDependency="_Vu5zQOt6EeCKeKm6CrRGNQ _Vu-EsOt6EeCKeKm6CrRGNQ _VvCWIOt6EeCKeKm6CrRGNQ">
+          <packagedElement xmi:type="uml:Dependency" xmi:id="_Vu5zQOt6EeCKeKm6CrRGNQ" name="org.eclipse.papyrus.documentation" supplier="_Pj9T8Ot6EeCKeKm6CrRGNQ" client="_Vu3XAOt6EeCKeKm6CrRGNQ"/>
+          <packagedElement xmi:type="uml:Dependency" xmi:id="_Vu-EsOt6EeCKeKm6CrRGNQ" name="org.eclipse.uml2.uml" supplier="_PihwkOt6EeCKeKm6CrRGNQ" client="_Vu3XAOt6EeCKeKm6CrRGNQ"/>
+          <packagedElement xmi:type="uml:Dependency" xmi:id="_VvCWIOt6EeCKeKm6CrRGNQ" name="org.eclipse.papyrus.uml.profile" supplier="_VvAg8Ot6EeCKeKm6CrRGNQ" client="_Vu3XAOt6EeCKeKm6CrRGNQ"/>
+        </packagedElement>
       </packagedElement>
       <packagedElement xmi:type="uml:Package" xmi:id="_w-B3AOt6EeCKeKm6CrRGNQ" name="sysml" clientDependency="_MkEPEPS0EeCQ4s2W2w_p6A">
         <packagedElement xmi:type="uml:Dependency" xmi:id="_MkEPEPS0EeCQ4s2W2w_p6A" name="" supplier="_kSCFgOt6EeCKeKm6CrRGNQ" client="_w-B3AOt6EeCKeKm6CrRGNQ"/>
@@ -4366,6 +4347,30 @@
             <packagedElement xmi:type="uml:Dependency" xmi:id="_Pq4bUOt6EeCKeKm6CrRGNQ" name="org.eclipse.papyrus.core" supplier="_PKNXMOt6EeCKeKm6CrRGNQ" client="_PqxtoOt6EeCKeKm6CrRGNQ"/>
           </packagedElement>
         </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="_S4JigPi1EeCpzZC6nmLjDQ" name="documentation">
+          <packagedElement xmi:type="uml:Package" xmi:id="_Pj9T8Ot6EeCKeKm6CrRGNQ" name="org.eclipse.papyrus.documentation" clientDependency="_Pj_JIOt6EeCKeKm6CrRGNQ _PkA-UOt6EeCKeKm6CrRGNQ _PkCzgOt6EeCKeKm6CrRGNQ">
+            <packagedElement xmi:type="uml:Dependency" xmi:id="_Pj_JIOt6EeCKeKm6CrRGNQ" name="R_org.eclipse.emf.ecore" supplier="_PCTYYOt6EeCKeKm6CrRGNQ" client="_Pj9T8Ot6EeCKeKm6CrRGNQ"/>
+            <packagedElement xmi:type="uml:Dependency" xmi:id="_PkA-UOt6EeCKeKm6CrRGNQ" name="R_org.eclipse.core.runtime" supplier="_O8JGAOt6EeCKeKm6CrRGNQ" client="_Pj9T8Ot6EeCKeKm6CrRGNQ"/>
+            <packagedElement xmi:type="uml:Dependency" xmi:id="_PkCzgOt6EeCKeKm6CrRGNQ" name="R_org.eclipse.core.commands" supplier="_O_G6cOt6EeCKeKm6CrRGNQ" client="_Pj9T8Ot6EeCKeKm6CrRGNQ"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Package" xmi:id="_PkLWYOt6EeCKeKm6CrRGNQ" name="org.eclipse.papyrus.documentation.view" clientDependency="_PkNLkOt6EeCKeKm6CrRGNQ _PkPAwOt6EeCKeKm6CrRGNQ _PkQ18Ot6EeCKeKm6CrRGNQ _PkTSMOt6EeCKeKm6CrRGNQ _PkUgUOt6EeCKeKm6CrRGNQ _PkWVgOt6EeCKeKm6CrRGNQ _PkZY0Ot6EeCKeKm6CrRGNQ _PlwDsOt6EeCKeKm6CrRGNQ _Plx44Ot6EeCKeKm6CrRGNQ">
+            <packagedElement xmi:type="uml:Dependency" xmi:id="_PkNLkOt6EeCKeKm6CrRGNQ" name="R_org.eclipse.core.expressions" supplier="_O-10sOt6EeCKeKm6CrRGNQ" client="_PkLWYOt6EeCKeKm6CrRGNQ"/>
+            <packagedElement xmi:type="uml:Dependency" xmi:id="_PkPAwOt6EeCKeKm6CrRGNQ" name="R_org.eclipse.ui.editors" supplier="_PboeYOt6EeCKeKm6CrRGNQ" client="_PkLWYOt6EeCKeKm6CrRGNQ"/>
+            <packagedElement xmi:type="uml:Dependency" xmi:id="_PkQ18Ot6EeCKeKm6CrRGNQ" name="R_org.eclipse.ui.ide" supplier="_PIoC0Ot6EeCKeKm6CrRGNQ" client="_PkLWYOt6EeCKeKm6CrRGNQ"/>
+            <packagedElement xmi:type="uml:Dependency" xmi:id="_PkTSMOt6EeCKeKm6CrRGNQ" name="org.eclipse.emf.edit.ui" supplier="_PIYLMOt6EeCKeKm6CrRGNQ" client="_PkLWYOt6EeCKeKm6CrRGNQ"/>
+            <packagedElement xmi:type="uml:Dependency" xmi:id="_PkUgUOt6EeCKeKm6CrRGNQ" name="org.eclipse.jface.text" supplier="_PD8XIOt6EeCKeKm6CrRGNQ" client="_PkLWYOt6EeCKeKm6CrRGNQ"/>
+            <packagedElement xmi:type="uml:Dependency" xmi:id="_PkWVgOt6EeCKeKm6CrRGNQ" name="org.eclipse.core.resources" supplier="_PAHnEOt6EeCKeKm6CrRGNQ" client="_PkLWYOt6EeCKeKm6CrRGNQ"/>
+            <packagedElement xmi:type="uml:Dependency" xmi:id="_PkZY0Ot6EeCKeKm6CrRGNQ" name="org.eclipse.epf.richtext" supplier="_PkYKsOt6EeCKeKm6CrRGNQ" client="_PkLWYOt6EeCKeKm6CrRGNQ"/>
+            <packagedElement xmi:type="uml:Dependency" xmi:id="_PlwDsOt6EeCKeKm6CrRGNQ" name="R_org.eclipse.papyrus.documentation" supplier="_Pj9T8Ot6EeCKeKm6CrRGNQ" client="_PkLWYOt6EeCKeKm6CrRGNQ"/>
+            <packagedElement xmi:type="uml:Dependency" xmi:id="_Plx44Ot6EeCKeKm6CrRGNQ" name="org.eclipse.ui.views" supplier="_PAy8gOt6EeCKeKm6CrRGNQ" client="_PkLWYOt6EeCKeKm6CrRGNQ"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Package" xmi:id="_Pl2KUOt6EeCKeKm6CrRGNQ" name="org.eclipse.papyrus.documentation.view.papyrus" clientDependency="_Pl3_gOt6EeCKeKm6CrRGNQ _Pl50sOt6EeCKeKm6CrRGNQ _Pl7p4Ot6EeCKeKm6CrRGNQ _Pl9fEOt6EeCKeKm6CrRGNQ">
+            <packagedElement xmi:type="uml:Dependency" xmi:id="_Pl3_gOt6EeCKeKm6CrRGNQ" name="org.eclipse.papyrus.documentation.view" supplier="_PkLWYOt6EeCKeKm6CrRGNQ" client="_Pl2KUOt6EeCKeKm6CrRGNQ"/>
+            <packagedElement xmi:type="uml:Dependency" xmi:id="_Pl50sOt6EeCKeKm6CrRGNQ" name="org.eclipse.papyrus.modelexplorer" supplier="_PKGCcOt6EeCKeKm6CrRGNQ" client="_Pl2KUOt6EeCKeKm6CrRGNQ"/>
+            <packagedElement xmi:type="uml:Dependency" xmi:id="_Pl7p4Ot6EeCKeKm6CrRGNQ" name="org.eclipse.papyrus.core.adaptor.gmf" supplier="_Pha9UOt6EeCKeKm6CrRGNQ" client="_Pl2KUOt6EeCKeKm6CrRGNQ"/>
+            <packagedElement xmi:type="uml:Dependency" xmi:id="_Pl9fEOt6EeCKeKm6CrRGNQ" name="org.eclipse.emf.facet.infra.browser.uicore" supplier="_POokMOt6EeCKeKm6CrRGNQ" client="_Pl2KUOt6EeCKeKm6CrRGNQ"/>
+          </packagedElement>
+        </packagedElement>
       </packagedElement>
       <packagedElement xmi:type="uml:Package" xmi:id="_QaQQMPamEeCMT_0n-PmDbg" name="dev"/>
       <packagedElement xmi:type="uml:Package" xmi:id="_T2H6IPamEeCMT_0n-PmDbg" name="others" clientDependency="_lOBaEPamEeCMT_0n-PmDbg">
@@ -4848,4 +4853,5 @@
   <architecture:Layer xmi:id="_VCLBEPanEeCMT_0n-PmDbg" base_Package="_lISUYPZ4EeCvvoi7hupG1w"/>
   <architecture:Layer xmi:id="_eJ_hMPanEeCMT_0n-PmDbg" base_Package="_T2H6IPamEeCMT_0n-PmDbg"/>
   <java:JavaProject xmi:id="_b7kLIPiyEeCpzZC6nmLjDQ" base_Package="_VaMHgOt6EeCKeKm6CrRGNQ"/>
+  <architecture:Layer xmi:id="_VJSesPi1EeCpzZC6nmLjDQ" base_Package="_S4JigPi1EeCpzZC6nmLjDQ"/>
 </xmi:XMI>
