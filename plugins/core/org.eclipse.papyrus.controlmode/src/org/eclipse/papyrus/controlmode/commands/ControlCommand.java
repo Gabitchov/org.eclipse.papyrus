@@ -22,7 +22,6 @@ import java.util.List;
 import java.util.Set;
 
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.commands.operations.OperationHistoryFactory;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IConfigurationElement;
@@ -46,6 +45,7 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.EditingDomainUndoContext;
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.controlmode.commands.IControlCommand.STATE_CONTROL;
 import org.eclipse.papyrus.controlmode.history.HistoryModel;
 import org.eclipse.papyrus.controlmode.history.utils.HistoryUtils;
@@ -143,14 +143,9 @@ public class ControlCommand extends AbstractTransactionalCommand {
 	@Override
 	protected IStatus doUndo(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		// execute uncontrol command
-		try {
-			UncontrolCommand transactionalCommand = new UncontrolCommand(getEditingDomain(), eObject, "Uncontrol", null, true);
-			OperationHistoryFactory.getOperationHistory().execute(transactionalCommand, new NullProgressMonitor(), null);
-			return Status.OK_STATUS;
-		} catch (ExecutionException e) {
-			EMFEditUIPlugin.INSTANCE.log(e);
-			return Status.CANCEL_STATUS;
-		}
+		UncontrolCommand transactionalCommand = new UncontrolCommand(getEditingDomain(), eObject, "Uncontrol", null, true);
+		getEditingDomain().getCommandStack().execute(new GMFtoEMFCommandWrapper(transactionalCommand));
+		return Status.OK_STATUS;
 	}
 
 	/**

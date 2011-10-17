@@ -13,20 +13,17 @@
  *****************************************************************************/
 package org.eclipse.papyrus.property.editor.xtext.ui.contributions;
 
-import static org.eclipse.papyrus.properties.runtime.Activator.log;
-
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.commands.operations.OperationHistoryFactory;
-import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
+import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
 import org.eclipse.papyrus.properties.runtime.modelhandler.emf.EMFUtils;
 import org.eclipse.papyrus.properties.runtime.modelhandler.emf.TransactionUtil;
@@ -234,11 +231,8 @@ public class PropertyPopupEditorConfigurationContribution extends PopupEditorCon
 				TransactionalEditingDomain editingDomain = EMFUtils.getTransactionalEditingDomain(editedObjects);
 
 				if(updateCommand.canExecute() && !(TransactionUtil.isReadTransactionInProgress(editingDomain, true, true))) {
-					try {
-						OperationHistoryFactory.getOperationHistory().execute(updateCommand, new NullProgressMonitor(), null);
-					} catch (ExecutionException e) {
-						log.error(e);
-					}
+					TransactionalEditingDomain dom = EditorUtils.getTransactionalEditingDomain();
+					dom.getCommandStack().execute(new GMFtoEMFCommandWrapper(updateCommand));
 					return;
 				}
 			}

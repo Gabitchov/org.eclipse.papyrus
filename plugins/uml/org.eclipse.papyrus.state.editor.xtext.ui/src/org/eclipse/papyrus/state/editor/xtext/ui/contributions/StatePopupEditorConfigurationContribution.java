@@ -14,14 +14,14 @@
 package org.eclipse.papyrus.state.editor.xtext.ui.contributions;
 
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.commands.operations.OperationHistoryFactory;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
+import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
 import org.eclipse.papyrus.state.editor.xtext.ui.contentassist.UmlStateProposalProvider;
@@ -154,11 +154,8 @@ public class StatePopupEditorConfigurationContribution extends PopupEditorConfig
 				// Creates and executes the update command
 				UpdateUMLStateCommand updateCommand = new UpdateUMLStateCommand(state);
 
-				try {
-					OperationHistoryFactory.getOperationHistory().execute(updateCommand, new NullProgressMonitor(), null);
-				} catch (ExecutionException e) {
-					org.eclipse.papyrus.properties.runtime.Activator.log.error(e);
-				}
+				TransactionalEditingDomain dom = EditorUtils.getTransactionalEditingDomain();
+				dom.getCommandStack().execute(new GMFtoEMFCommandWrapper(updateCommand));
 			}
 		};
 		return super.createPopupEditorHelper(graphicalEditPart, 

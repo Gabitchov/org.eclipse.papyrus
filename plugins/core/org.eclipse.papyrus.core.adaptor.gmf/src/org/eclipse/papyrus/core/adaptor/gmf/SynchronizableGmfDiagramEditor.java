@@ -16,11 +16,15 @@ package org.eclipse.papyrus.core.adaptor.gmf;
 import java.util.Iterator;
 import java.util.List;
 
-import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.emf.workspace.impl.WorkspaceCommandStackImpl;
+import org.eclipse.gef.DefaultEditDomain;
 import org.eclipse.gef.GraphicalViewer;
+import org.eclipse.gef.commands.CommandStack;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditDomain;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor;
+import org.eclipse.papyrus.commands.CheckedDiagramCommandStack;
 import org.eclipse.papyrus.core.ui.IRevealSemanticElement;
 
 /**
@@ -69,4 +73,29 @@ public class SynchronizableGmfDiagramEditor extends DiagramDocumentEditor implem
 		}
 	}
 
+	/**
+	 * Configures my diagram edit domain with its command stack.
+	 * This method has been completely overridden in order to use a proxy stack.
+	 */
+	@Override
+	protected void configureDiagramEditDomain() {
+
+		DefaultEditDomain editDomain = getEditDomain();
+
+		if(editDomain != null) {
+			CommandStack stack = editDomain.getCommandStack();
+			if(stack != null) {
+				// dispose the old stack
+				stack.dispose();
+			}
+
+			// create and assign the new stack
+			CheckedDiagramCommandStack diagramStack = new CheckedDiagramCommandStack(getDiagramEditDomain());
+
+			editDomain.setCommandStack(diagramStack);
+		}
+
+		DiagramEditDomain diagEditDomain = (DiagramEditDomain)getDiagramEditDomain();
+		diagEditDomain.setActionManager(createActionManager());
+	}
 }

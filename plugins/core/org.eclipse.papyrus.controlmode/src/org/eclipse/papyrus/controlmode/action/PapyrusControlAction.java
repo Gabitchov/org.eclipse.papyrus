@@ -17,7 +17,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.commands.operations.OperationHistoryFactory;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IConfigurationElement;
@@ -39,6 +38,7 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.window.Window;
+import org.eclipse.papyrus.commands.CheckedOperationHistory;
 import org.eclipse.papyrus.controlmode.commands.ControlCommand;
 import org.eclipse.papyrus.controlmode.commands.IControlCondition;
 import org.eclipse.papyrus.core.utils.EditorUtils;
@@ -176,7 +176,7 @@ public class PapyrusControlAction extends ControlAction {
 			}
 			try {
 				ControlCommand transactionalCommand = new ControlCommand(EditorUtils.getTransactionalEditingDomain(), controlledModel, eObject, "Control", null);
-				IStatus status = OperationHistoryFactory.getOperationHistory().execute(transactionalCommand, new NullProgressMonitor(), null);
+				IStatus status = CheckedOperationHistory.getInstance().execute(transactionalCommand, new NullProgressMonitor(), null);
 				if (status.isOK()) {
 					notifySave();					
 				} else {

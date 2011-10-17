@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.controlmode.action;
 
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.commands.operations.OperationHistoryFactory;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
@@ -26,6 +25,7 @@ import org.eclipse.emf.edit.ui.EMFEditUIPlugin;
 import org.eclipse.emf.edit.ui.action.CommandActionHandler;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.papyrus.commands.CheckedOperationHistory;
 import org.eclipse.papyrus.controlmode.commands.UncontrolCommand;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.resource.AbstractBaseModel;
@@ -119,7 +119,7 @@ public class PapyrusUncontrolAction extends CommandActionHandler {
 		try {
 			boolean confirmDelete = MessageDialog.openQuestion(Display.getDefault().getActiveShell(), "Delete controlled resources?", "Delete the original controlled files ?");
 			UncontrolCommand transactionalCommand = new UncontrolCommand(EditorUtils.getTransactionalEditingDomain(), eObject, "Uncontrol", null, confirmDelete);
-			IStatus status = OperationHistoryFactory.getOperationHistory().execute(transactionalCommand, new NullProgressMonitor(), null);
+			IStatus status = CheckedOperationHistory.getInstance().execute(transactionalCommand, new NullProgressMonitor(), null);
 			if (!status.isOK()) {
 				NotificationBuilder.createErrorPopup(status.getMessage()).setTitle("Unable to uncontrol").run();
 			}

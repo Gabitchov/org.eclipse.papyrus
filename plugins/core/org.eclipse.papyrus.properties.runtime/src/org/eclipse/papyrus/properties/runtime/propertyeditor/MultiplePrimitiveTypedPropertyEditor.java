@@ -13,12 +13,12 @@ package org.eclipse.papyrus.properties.runtime.propertyeditor;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.operations.IUndoableOperation;
-import org.eclipse.core.commands.operations.OperationHistoryFactory;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.ColumnViewer;
 import org.eclipse.jface.viewers.EditingSupport;
 import org.eclipse.jface.viewers.TextCellEditor;
+import org.eclipse.papyrus.commands.CheckedOperationHistory;
 import org.eclipse.papyrus.properties.runtime.Activator;
 
 
@@ -88,7 +88,7 @@ public class MultiplePrimitiveTypedPropertyEditor extends AbstractTablePropertyE
 			IUndoableOperation operation = getController().getEditValueOperation(index, table, value);
 			if(operation != null && operation.canExecute()) {
 				try {
-					OperationHistoryFactory.getOperationHistory().execute(operation, new NullProgressMonitor(), null);
+					CheckedOperationHistory.getInstance().execute(operation, new NullProgressMonitor(), null);
 				} catch (ExecutionException e) {
 					Activator.log.error(e);
 				}

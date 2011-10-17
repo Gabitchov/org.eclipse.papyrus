@@ -13,10 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.parametric;
 
-import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.commands.operations.OperationHistoryFactory;
 import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -28,6 +25,7 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescrip
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Node;
+import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.core.adaptor.gmf.AbstractPapyrusGmfCreateDiagramCommandHandler;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ParametricEditPart;
@@ -133,11 +131,6 @@ public class CreateParametricDiagramCommand extends AbstractPapyrusGmfCreateDiag
 
 		CreateCommand nodeCreationCommand = new CreateCommand(editingdomain, descriptor, diagram);
 
-		try {
-			OperationHistoryFactory.getOperationHistory().execute(nodeCreationCommand, new NullProgressMonitor(), null);
-		} catch (ExecutionException e) {
-			e.printStackTrace();
-			SysmlDiagramEditorPlugin.getInstance().logError("Unable to create model and diagram", e); //$NON-NLS-1$
-		}
+		editingdomain.getCommandStack().execute(new GMFtoEMFCommandWrapper(nodeCreationCommand));
 	}
 }

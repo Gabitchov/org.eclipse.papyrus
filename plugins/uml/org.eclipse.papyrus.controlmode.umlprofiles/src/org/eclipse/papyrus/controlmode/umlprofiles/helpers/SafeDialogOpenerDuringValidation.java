@@ -16,10 +16,10 @@ package org.eclipse.papyrus.controlmode.umlprofiles.helpers;
 import org.eclipse.core.commands.operations.IOperationApprover2;
 import org.eclipse.core.commands.operations.IOperationHistory;
 import org.eclipse.core.commands.operations.IUndoableOperation;
-import org.eclipse.core.commands.operations.OperationHistoryFactory;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.papyrus.commands.CheckedOperationHistory;
 
 /**
  * This class must be used to open a dialog during a validation. Its usage avoids side effects with the Properties view, which would throw an
@@ -63,7 +63,7 @@ public abstract class SafeDialogOpenerDuringValidation<ReturnType> {
 		 * temporarily disable all operations on the history, just enough time for opening the
 		 * popup.
 		 */
-		IOperationHistory history = OperationHistoryFactory.getOperationHistory();
+		IOperationHistory history = CheckedOperationHistory.getInstance();
 		history.addOperationApprover(operationDisapprover);
 		ReturnType result = openDialog();
 		history.removeOperationApprover(operationDisapprover);

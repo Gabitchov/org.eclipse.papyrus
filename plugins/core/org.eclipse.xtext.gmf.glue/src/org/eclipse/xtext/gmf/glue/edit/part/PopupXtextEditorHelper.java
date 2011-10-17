@@ -11,10 +11,8 @@ package org.eclipse.xtext.gmf.glue.edit.part;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.core.commands.operations.DefaultOperationHistory;
 import org.eclipse.core.commands.operations.IOperationHistory;
 import org.eclipse.core.commands.operations.IUndoContext;
-import org.eclipse.core.commands.operations.OperationHistoryFactory;
 import org.eclipse.core.expressions.Expression;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
@@ -27,13 +25,13 @@ import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditDomain;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramEditDomain;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.commands.ActionHandler;
-import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.text.ITextOperationTarget;
 import org.eclipse.jface.text.contentassist.ContentAssistant;
 import org.eclipse.jface.text.source.ISourceViewer;
 import org.eclipse.jface.text.source.SourceViewer;
 import org.eclipse.jface.text.templates.TemplateException;
 import org.eclipse.jface.viewers.TextCellEditor;
+import org.eclipse.papyrus.commands.CheckedOperationHistory;
 import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StyledText;
@@ -376,7 +374,7 @@ public class PopupXtextEditorHelper implements IPopupEditorHelper {
 	protected void installUndoRedoSupport(SourceViewer viewer) {
 		IDocumentUndoManager undoManager = DocumentUndoManagerRegistry.getDocumentUndoManager(viewer.getDocument());
 		final IUndoContext context = undoManager.getUndoContext();
-		IOperationHistory operationHistory = OperationHistoryFactory.getOperationHistory() ;
+		IOperationHistory operationHistory = CheckedOperationHistory.getInstance();
 		operationHistoryListener = new OperationHistoryListener(context, new IUpdate() {
 			public void update() {
 				updateAction(ITextEditorActionConstants.REDO);

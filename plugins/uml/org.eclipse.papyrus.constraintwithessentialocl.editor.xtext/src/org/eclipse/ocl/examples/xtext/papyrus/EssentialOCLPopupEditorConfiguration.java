@@ -16,12 +16,11 @@
 package org.eclipse.ocl.examples.xtext.papyrus;
 
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.commands.operations.OperationHistoryFactory;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
@@ -31,6 +30,7 @@ import org.eclipse.ocl.examples.pivot.uml.UML2Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManagerResourceAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.utilities.EssentialOCLPlugin;
+import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
 import org.eclipse.uml2.uml.Constraint;
@@ -68,14 +68,8 @@ public class EssentialOCLPopupEditorConfiguration extends org.eclipse.xtext.gmf.
 			// Creates and executes the update command
 			//
 			UpdateConstraintCommand updateCommand = new UpdateConstraintCommand((org.eclipse.uml2.uml.Constraint)modelObject, newTextualRepresentation);
-			try {
-				OperationHistoryFactory.getOperationHistory().execute(updateCommand, new NullProgressMonitor(), null);
-			} catch (ExecutionException e) {
-				/* [AC] TODO AC => check why LogHelper is not visible
-				 * org.eclipse.papyrus.properties.runtime.Activator.log.error(e);
-				 */
-				e.printStackTrace() ;
-			}
+			TransactionalEditingDomain dom = EditorUtils.getTransactionalEditingDomain();
+			dom.getCommandStack().execute(new GMFtoEMFCommandWrapper(updateCommand));
 			//
 		}
 	}

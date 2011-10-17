@@ -137,7 +137,7 @@ public class MultipleReferencePropertyEditor extends AbstractTablePropertyEditor
 	//						IUndoableOperation moveOperation = getController().getMoveCurrentValuesOperation(selectionList, -1);
 	//						if(moveOperation != null && moveOperation.canExecute()) {
 	//							try {
-	//								OperationHistoryFactory.getOperationHistory().execute(moveOperation, new NullProgressMonitor(), null);
+	//								CheckedOperationHistory.getInstance().execute(moveOperation, new NullProgressMonitor(), null);
 	//								// try to restore selection in the view
 	//								int[] newSelection = new int[newSelectionList.size()];
 	//								for(int i = 0; i < newSelectionList.size(); i++) {
@@ -185,7 +185,7 @@ public class MultipleReferencePropertyEditor extends AbstractTablePropertyEditor
 	//						IUndoableOperation moveOperation = getController().getMoveCurrentValuesOperation(selectionList, +1);
 	//						if(moveOperation != null && moveOperation.canExecute()) {
 	//							try {
-	//								OperationHistoryFactory.getOperationHistory().execute(moveOperation, new NullProgressMonitor(), null);
+	//								CheckedOperationHistory.getInstance().execute(moveOperation, new NullProgressMonitor(), null);
 	//								// try to restore selection in the view
 	//								int[] newSelection = new int[newSelectionList.size()];
 	//								for(int i = 0; i < newSelectionList.size(); i++) {

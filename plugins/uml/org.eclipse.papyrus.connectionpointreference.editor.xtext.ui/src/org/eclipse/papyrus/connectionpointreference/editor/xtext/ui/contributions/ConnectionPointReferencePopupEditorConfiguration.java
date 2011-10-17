@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.commands.operations.OperationHistoryFactory;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
+import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.connectionpointreference.editor.xtext.uMLConnectionPointReference.ConnectionPointReferenceRule;
 import org.eclipse.papyrus.connectionpointreference.editor.xtext.ui.internal.UMLConnectionPointReferenceActivator;
 import org.eclipse.papyrus.connectionpointreference.editor.xtext.validation.UMLConnectionPointReferenceJavaValidator;
@@ -113,12 +113,8 @@ public class ConnectionPointReferencePopupEditorConfiguration extends PopupEdito
 				// Creates and executes the update command
 				UpdateConnectionPointReferenceCommand updateCommand = new UpdateConnectionPointReferenceCommand(connectionPoint);
 				
-				try {
-					OperationHistoryFactory.getOperationHistory().execute(updateCommand, new NullProgressMonitor(), null) ;
-				}
-				catch (ExecutionException e) {
-					org.eclipse.papyrus.properties.runtime.Activator.log.error(e);
-				}
+				TransactionalEditingDomain dom = EditorUtils.getTransactionalEditingDomain();
+				dom.getCommandStack().execute(new GMFtoEMFCommandWrapper(updateCommand));
 			}
 		};
 		return super.createPopupEditorHelper(graphicalEditPart, injector, reconciler, textToEdit, fileExtension, new DefaultXtextSemanticValidator());

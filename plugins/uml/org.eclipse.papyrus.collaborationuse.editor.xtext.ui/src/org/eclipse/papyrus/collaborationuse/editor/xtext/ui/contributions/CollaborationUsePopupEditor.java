@@ -18,7 +18,6 @@ import java.util.List;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.operations.IUndoableOperation;
-import org.eclipse.core.commands.operations.OperationHistoryFactory;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
@@ -29,6 +28,7 @@ import org.eclipse.papyrus.collaborationuse.editor.xtext.ui.internal.UmlCollabor
 import org.eclipse.papyrus.collaborationuse.editor.xtext.umlCollaborationUse.CollaborationUseRule;
 import org.eclipse.papyrus.collaborationuse.editor.xtext.umlCollaborationUse.TypeRule;
 import org.eclipse.papyrus.collaborationuse.editor.xtext.validation.SemanticValidator;
+import org.eclipse.papyrus.commands.CheckedOperationHistory;
 import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
 import org.eclipse.uml2.uml.Collaboration;
 import org.eclipse.uml2.uml.CollaborationUse;
@@ -133,7 +133,7 @@ public class CollaborationUsePopupEditor extends org.eclipse.xtext.gmf.glue.Popu
 				IUndoableOperation updateCommand = getUpdateCommand();
 
 				try {
-					OperationHistoryFactory.getOperationHistory().execute(updateCommand, new NullProgressMonitor(), null);
+					CheckedOperationHistory.getInstance().execute(updateCommand, new NullProgressMonitor(), null);
 				} catch (ExecutionException e) {
 					org.eclipse.papyrus.properties.runtime.Activator.log.error(e);
 				}
