@@ -52,21 +52,8 @@ import org.eclipse.uml2.uml.UMLPackage;
  */
 public class ProbabilityItemProvider extends SysMLItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 
+
 {
-
-	/**
-	 * This is used to store all the property descriptors for aclass stereotyped with a block.
-	 * Derived classes should add descriptors to this vector.
-	 */
-
-	protected List<IItemPropertyDescriptor> itemPropertyDescriptorsForactivityEdge;
-
-	/**
-	 * This is used to store all the property descriptors for aclass stereotyped with a block.
-	 * Derived classes should add descriptors to this vector.
-	 */
-
-	protected List<IItemPropertyDescriptor> itemPropertyDescriptorsForparameterSet;
 
 	/**
 	 * Pattern prefix of probability
@@ -102,6 +89,8 @@ public class ProbabilityItemProvider extends SysMLItemProviderAdapter implements
 		super(adapterFactory);
 	}
 
+
+
 	/**
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
@@ -121,65 +110,90 @@ public class ProbabilityItemProvider extends SysMLItemProviderAdapter implements
 			}
 		}
 
+
+
 		/**
 		 * Handle ActivityEdge stereotyped by Probability
 		 */
 		if(object instanceof org.eclipse.uml2.uml.ActivityEdge) {
 			org.eclipse.uml2.uml.ActivityEdge element = (org.eclipse.uml2.uml.ActivityEdge)object;
-			if(itemPropertyDescriptorsForactivityEdge == null) {
-				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.ACTIVITY_EDGE);
-				final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
-				itemPropertyDescriptorsForactivityEdge = new ArrayList<IItemPropertyDescriptor>();
-				itemPropertyDescriptorsForactivityEdge.addAll(propertyDescriptors);
-				Stereotype ste = (element).getAppliedStereotype(SysmlResource.PROBABILITY_ID);
-				if(ste != null) {
-					EObject steApplication = (element).getStereotypeApplication(ste);
+			/**
+			 * This is used to store all the property descriptors for a class stereotyped with a block.
+			 * Derived classes should add descriptors to this vector.
+			 */
 
-					addBase_ActivityEdgePropertyDescriptorForActivityEdge(steApplication);
+			List<IItemPropertyDescriptor> itemPropertyDescriptorsForactivityEdge = new ArrayList<IItemPropertyDescriptor>();
+			ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.ACTIVITY_EDGE);
+			final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
 
-					addBase_ActivityEdgePropertyDescriptorForParameterSet(steApplication);
+			itemPropertyDescriptorsForactivityEdge.addAll(propertyDescriptors);
+			Stereotype ste = (element).getAppliedStereotype(SysmlResource.PROBABILITY_ID);
+			if(ste != null) {
+				EObject steApplication = (element).getStereotypeApplication(ste);
 
-					addBase_ParameterSetPropertyDescriptorForActivityEdge(steApplication);
 
-					addBase_ParameterSetPropertyDescriptorForParameterSet(steApplication);
+				itemPropertyDescriptorsForactivityEdge.add(createBase_ActivityEdgePropertyDescriptorForActivityEdge(steApplication));
 
-					addProbabilityPropertyDescriptorForActivityEdge(steApplication);
+				itemPropertyDescriptorsForactivityEdge.add(createBase_ActivityEdgePropertyDescriptorForParameterSet(steApplication));
 
-					addProbabilityPropertyDescriptorForParameterSet(steApplication);
 
-				}
+
+				itemPropertyDescriptorsForactivityEdge.add(createBase_ParameterSetPropertyDescriptorForActivityEdge(steApplication));
+
+				itemPropertyDescriptorsForactivityEdge.add(createBase_ParameterSetPropertyDescriptorForParameterSet(steApplication));
+
+
+
+				itemPropertyDescriptorsForactivityEdge.add(createProbabilityPropertyDescriptorForActivityEdge(steApplication));
+
+				itemPropertyDescriptorsForactivityEdge.add(createProbabilityPropertyDescriptorForParameterSet(steApplication));
+
+
+
 			}
 			return itemPropertyDescriptorsForactivityEdge;
 
 		}
+
 
 		/**
 		 * Handle ParameterSet stereotyped by Probability
 		 */
 		if(object instanceof org.eclipse.uml2.uml.ParameterSet) {
 			org.eclipse.uml2.uml.ParameterSet element = (org.eclipse.uml2.uml.ParameterSet)object;
-			if(itemPropertyDescriptorsForparameterSet == null) {
-				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.PARAMETER_SET);
-				final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
-				itemPropertyDescriptorsForparameterSet = new ArrayList<IItemPropertyDescriptor>();
-				itemPropertyDescriptorsForparameterSet.addAll(propertyDescriptors);
-				Stereotype ste = (element).getAppliedStereotype(SysmlResource.PROBABILITY_ID);
-				if(ste != null) {
-					EObject steApplication = (element).getStereotypeApplication(ste);
+			/**
+			 * This is used to store all the property descriptors for a class stereotyped with a block.
+			 * Derived classes should add descriptors to this vector.
+			 */
 
-					addBase_ActivityEdgePropertyDescriptorForActivityEdge(steApplication);
+			List<IItemPropertyDescriptor> itemPropertyDescriptorsForparameterSet = new ArrayList<IItemPropertyDescriptor>();
+			ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.PARAMETER_SET);
+			final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
 
-					addBase_ActivityEdgePropertyDescriptorForParameterSet(steApplication);
+			itemPropertyDescriptorsForparameterSet.addAll(propertyDescriptors);
+			Stereotype ste = (element).getAppliedStereotype(SysmlResource.PROBABILITY_ID);
+			if(ste != null) {
+				EObject steApplication = (element).getStereotypeApplication(ste);
 
-					addBase_ParameterSetPropertyDescriptorForActivityEdge(steApplication);
 
-					addBase_ParameterSetPropertyDescriptorForParameterSet(steApplication);
+				itemPropertyDescriptorsForparameterSet.add(createBase_ActivityEdgePropertyDescriptorForActivityEdge(steApplication));
 
-					addProbabilityPropertyDescriptorForActivityEdge(steApplication);
+				itemPropertyDescriptorsForparameterSet.add(createBase_ActivityEdgePropertyDescriptorForParameterSet(steApplication));
 
-					addProbabilityPropertyDescriptorForParameterSet(steApplication);
 
-				}
+
+				itemPropertyDescriptorsForparameterSet.add(createBase_ParameterSetPropertyDescriptorForActivityEdge(steApplication));
+
+				itemPropertyDescriptorsForparameterSet.add(createBase_ParameterSetPropertyDescriptorForParameterSet(steApplication));
+
+
+
+				itemPropertyDescriptorsForparameterSet.add(createProbabilityPropertyDescriptorForActivityEdge(steApplication));
+
+				itemPropertyDescriptorsForparameterSet.add(createProbabilityPropertyDescriptorForParameterSet(steApplication));
+
+
+
 			}
 			return itemPropertyDescriptorsForparameterSet;
 
@@ -199,6 +213,7 @@ public class ProbabilityItemProvider extends SysMLItemProviderAdapter implements
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Probability_base_ActivityEdge_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Probability_base_ActivityEdge_feature", "_UI_Probability_type"), ActivitiesPackage.Literals.PROBABILITY__BASE_ACTIVITY_EDGE, true, false, true, null, null, null));
 	}
 
+
 	/**
 	 * This adds a property descriptor for the Base Activity Edge feature for the UML element ActivityEdge.
 	 * <!-- begin-user-doc -->
@@ -206,9 +221,9 @@ public class ProbabilityItemProvider extends SysMLItemProviderAdapter implements
 	 * 
 	 * @generated
 	 */
-	protected void addBase_ActivityEdgePropertyDescriptorForActivityEdge(Object object) {
+	protected ItemPropertyDescriptorDecorator createBase_ActivityEdgePropertyDescriptorForActivityEdge(Object object) {
 
-		itemPropertyDescriptorsForactivityEdge.add(new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Probability_base_ActivityEdge_feature"),
+		return new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Probability_base_ActivityEdge_feature"),
 
 		getString("_UI_PropertyDescriptor_description", "_UI_Probability_base_ActivityEdge_feature", "_UI_Probability_type"),
 
@@ -216,9 +231,11 @@ public class ProbabilityItemProvider extends SysMLItemProviderAdapter implements
 
 		null,
 
+
 		null,
 
-		null)));
+
+		null));
 
 	}
 
@@ -229,9 +246,9 @@ public class ProbabilityItemProvider extends SysMLItemProviderAdapter implements
 	 * 
 	 * @generated
 	 */
-	protected void addBase_ActivityEdgePropertyDescriptorForParameterSet(Object object) {
+	protected ItemPropertyDescriptorDecorator createBase_ActivityEdgePropertyDescriptorForParameterSet(Object object) {
 
-		itemPropertyDescriptorsForparameterSet.add(new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Probability_base_ActivityEdge_feature"),
+		return new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Probability_base_ActivityEdge_feature"),
 
 		getString("_UI_PropertyDescriptor_description", "_UI_Probability_base_ActivityEdge_feature", "_UI_Probability_type"),
 
@@ -239,11 +256,15 @@ public class ProbabilityItemProvider extends SysMLItemProviderAdapter implements
 
 		null,
 
+
 		null,
 
-		null)));
+
+		null));
 
 	}
+
+
 
 	/**
 	 * This adds a property descriptor for the Base Parameter Set feature.
@@ -256,6 +277,7 @@ public class ProbabilityItemProvider extends SysMLItemProviderAdapter implements
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Probability_base_ParameterSet_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Probability_base_ParameterSet_feature", "_UI_Probability_type"), ActivitiesPackage.Literals.PROBABILITY__BASE_PARAMETER_SET, true, false, true, null, null, null));
 	}
 
+
 	/**
 	 * This adds a property descriptor for the Base Parameter Set feature for the UML element ActivityEdge.
 	 * <!-- begin-user-doc -->
@@ -263,9 +285,9 @@ public class ProbabilityItemProvider extends SysMLItemProviderAdapter implements
 	 * 
 	 * @generated
 	 */
-	protected void addBase_ParameterSetPropertyDescriptorForActivityEdge(Object object) {
+	protected ItemPropertyDescriptorDecorator createBase_ParameterSetPropertyDescriptorForActivityEdge(Object object) {
 
-		itemPropertyDescriptorsForactivityEdge.add(new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Probability_base_ParameterSet_feature"),
+		return new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Probability_base_ParameterSet_feature"),
 
 		getString("_UI_PropertyDescriptor_description", "_UI_Probability_base_ParameterSet_feature", "_UI_Probability_type"),
 
@@ -273,9 +295,11 @@ public class ProbabilityItemProvider extends SysMLItemProviderAdapter implements
 
 		null,
 
+
 		null,
 
-		null)));
+
+		null));
 
 	}
 
@@ -286,9 +310,9 @@ public class ProbabilityItemProvider extends SysMLItemProviderAdapter implements
 	 * 
 	 * @generated
 	 */
-	protected void addBase_ParameterSetPropertyDescriptorForParameterSet(Object object) {
+	protected ItemPropertyDescriptorDecorator createBase_ParameterSetPropertyDescriptorForParameterSet(Object object) {
 
-		itemPropertyDescriptorsForparameterSet.add(new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Probability_base_ParameterSet_feature"),
+		return new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Probability_base_ParameterSet_feature"),
 
 		getString("_UI_PropertyDescriptor_description", "_UI_Probability_base_ParameterSet_feature", "_UI_Probability_type"),
 
@@ -296,11 +320,15 @@ public class ProbabilityItemProvider extends SysMLItemProviderAdapter implements
 
 		null,
 
+
 		null,
 
-		null)));
+
+		null));
 
 	}
+
+
 
 	/**
 	 * This adds a property descriptor for the Probability feature.
@@ -313,6 +341,7 @@ public class ProbabilityItemProvider extends SysMLItemProviderAdapter implements
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Probability_probability_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Probability_probability_feature", "_UI_Probability_type"), ActivitiesPackage.Literals.PROBABILITY__PROBABILITY, true, false, true, null, null, null));
 	}
 
+
 	/**
 	 * This adds a property descriptor for the Probability feature for the UML element ActivityEdge.
 	 * <!-- begin-user-doc -->
@@ -320,9 +349,9 @@ public class ProbabilityItemProvider extends SysMLItemProviderAdapter implements
 	 * 
 	 * @generated
 	 */
-	protected void addProbabilityPropertyDescriptorForActivityEdge(Object object) {
+	protected ItemPropertyDescriptorDecorator createProbabilityPropertyDescriptorForActivityEdge(Object object) {
 
-		itemPropertyDescriptorsForactivityEdge.add(new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Probability_probability_feature"),
+		return new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Probability_probability_feature"),
 
 		getString("_UI_PropertyDescriptor_description", "_UI_Probability_probability_feature", "_UI_Probability_type"),
 
@@ -330,9 +359,11 @@ public class ProbabilityItemProvider extends SysMLItemProviderAdapter implements
 
 		null,
 
+
 		null,
 
-		null)));
+
+		null));
 
 	}
 
@@ -343,9 +374,9 @@ public class ProbabilityItemProvider extends SysMLItemProviderAdapter implements
 	 * 
 	 * @generated
 	 */
-	protected void addProbabilityPropertyDescriptorForParameterSet(Object object) {
+	protected ItemPropertyDescriptorDecorator createProbabilityPropertyDescriptorForParameterSet(Object object) {
 
-		itemPropertyDescriptorsForparameterSet.add(new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Probability_probability_feature"),
+		return new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Probability_probability_feature"),
 
 		getString("_UI_PropertyDescriptor_description", "_UI_Probability_probability_feature", "_UI_Probability_type"),
 
@@ -353,11 +384,15 @@ public class ProbabilityItemProvider extends SysMLItemProviderAdapter implements
 
 		null,
 
+
 		null,
 
-		null)));
+
+		null));
 
 	}
+
+
 
 	/**
 	 * This returns Probability.gif.
@@ -416,6 +451,7 @@ public class ProbabilityItemProvider extends SysMLItemProviderAdapter implements
 			probability_ = (Probability)object;
 		}
 
+
 		return getString("_UI_Probability_type");
 	}
 
@@ -436,9 +472,12 @@ public class ProbabilityItemProvider extends SysMLItemProviderAdapter implements
 		 */
 		if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
 
+
+
 			/**
 			 * Handle ActivityEdge stereotyped by Probability
 			 */
+
 
 			if(notification.getFeatureID(org.eclipse.uml2.uml.ActivityEdge.class) != Notification.NO_FEATURE_ID) {
 				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.ACTIVITY_EDGE);
@@ -447,9 +486,11 @@ public class ProbabilityItemProvider extends SysMLItemProviderAdapter implements
 
 			}
 
+
 			/**
 			 * Handle ParameterSet stereotyped by Probability
 			 */
+
 
 			if(notification.getFeatureID(org.eclipse.uml2.uml.ParameterSet.class) != Notification.NO_FEATURE_ID) {
 				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.PARAMETER_SET);
@@ -487,5 +528,7 @@ public class ProbabilityItemProvider extends SysMLItemProviderAdapter implements
 	public ResourceLocator getResourceLocator() {
 		return SysmlEditPlugin.INSTANCE;
 	}
+
+
 
 }

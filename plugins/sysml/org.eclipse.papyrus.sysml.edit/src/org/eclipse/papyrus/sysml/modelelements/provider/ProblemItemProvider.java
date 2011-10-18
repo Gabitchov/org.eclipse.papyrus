@@ -52,14 +52,8 @@ import org.eclipse.uml2.uml.UMLPackage;
  */
 public class ProblemItemProvider extends SysMLItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 
+
 {
-
-	/**
-	 * This is used to store all the property descriptors for aclass stereotyped with a block.
-	 * Derived classes should add descriptors to this vector.
-	 */
-
-	protected List<IItemPropertyDescriptor> itemPropertyDescriptorsForcomment;
 
 	/**
 	 * Pattern prefix of problem
@@ -87,6 +81,8 @@ public class ProblemItemProvider extends SysMLItemProviderAdapter implements IEd
 		super(adapterFactory);
 	}
 
+
+
 	/**
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
@@ -104,23 +100,32 @@ public class ProblemItemProvider extends SysMLItemProviderAdapter implements IEd
 			}
 		}
 
+
+
 		/**
 		 * Handle Comment stereotyped by Problem
 		 */
 		if(object instanceof org.eclipse.uml2.uml.Comment) {
 			org.eclipse.uml2.uml.Comment element = (org.eclipse.uml2.uml.Comment)object;
-			if(itemPropertyDescriptorsForcomment == null) {
-				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.COMMENT);
-				final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
-				itemPropertyDescriptorsForcomment = new ArrayList<IItemPropertyDescriptor>();
-				itemPropertyDescriptorsForcomment.addAll(propertyDescriptors);
-				Stereotype ste = (element).getAppliedStereotype(SysmlResource.PROBLEM_ID);
-				if(ste != null) {
-					EObject steApplication = (element).getStereotypeApplication(ste);
+			/**
+			 * This is used to store all the property descriptors for a class stereotyped with a block.
+			 * Derived classes should add descriptors to this vector.
+			 */
 
-					addBase_CommentPropertyDescriptorForComment(steApplication);
+			List<IItemPropertyDescriptor> itemPropertyDescriptorsForcomment = new ArrayList<IItemPropertyDescriptor>();
+			ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.COMMENT);
+			final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
 
-				}
+			itemPropertyDescriptorsForcomment.addAll(propertyDescriptors);
+			Stereotype ste = (element).getAppliedStereotype(SysmlResource.PROBLEM_ID);
+			if(ste != null) {
+				EObject steApplication = (element).getStereotypeApplication(ste);
+
+
+				itemPropertyDescriptorsForcomment.add(createBase_CommentPropertyDescriptorForComment(steApplication));
+
+
+
 			}
 			return itemPropertyDescriptorsForcomment;
 
@@ -140,6 +145,7 @@ public class ProblemItemProvider extends SysMLItemProviderAdapter implements IEd
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Problem_base_Comment_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Problem_base_Comment_feature", "_UI_Problem_type"), ModelelementsPackage.Literals.PROBLEM__BASE_COMMENT, true, false, true, null, null, null));
 	}
 
+
 	/**
 	 * This adds a property descriptor for the Base Comment feature for the UML element Comment.
 	 * <!-- begin-user-doc -->
@@ -147,9 +153,9 @@ public class ProblemItemProvider extends SysMLItemProviderAdapter implements IEd
 	 * 
 	 * @generated
 	 */
-	protected void addBase_CommentPropertyDescriptorForComment(Object object) {
+	protected ItemPropertyDescriptorDecorator createBase_CommentPropertyDescriptorForComment(Object object) {
 
-		itemPropertyDescriptorsForcomment.add(new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Problem_base_Comment_feature"),
+		return new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Problem_base_Comment_feature"),
 
 		getString("_UI_PropertyDescriptor_description", "_UI_Problem_base_Comment_feature", "_UI_Problem_type"),
 
@@ -157,11 +163,15 @@ public class ProblemItemProvider extends SysMLItemProviderAdapter implements IEd
 
 		null,
 
+
 		null,
 
-		null)));
+
+		null));
 
 	}
+
+
 
 	/**
 	 * This returns Problem.gif.
@@ -209,6 +219,7 @@ public class ProblemItemProvider extends SysMLItemProviderAdapter implements IEd
 			problem_ = (Problem)object;
 		}
 
+
 		return getString("_UI_Problem_type");
 	}
 
@@ -229,9 +240,12 @@ public class ProblemItemProvider extends SysMLItemProviderAdapter implements IEd
 		 */
 		if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
 
+
+
 			/**
 			 * Handle Comment stereotyped by Problem
 			 */
+
 
 			if(notification.getFeatureID(org.eclipse.uml2.uml.Comment.class) != Notification.NO_FEATURE_ID) {
 				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.COMMENT);
@@ -269,5 +283,7 @@ public class ProblemItemProvider extends SysMLItemProviderAdapter implements IEd
 	public ResourceLocator getResourceLocator() {
 		return SysmlEditPlugin.INSTANCE;
 	}
+
+
 
 }

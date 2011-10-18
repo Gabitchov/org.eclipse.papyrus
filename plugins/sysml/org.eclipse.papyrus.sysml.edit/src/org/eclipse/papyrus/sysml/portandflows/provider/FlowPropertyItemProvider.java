@@ -55,14 +55,8 @@ import org.eclipse.uml2.uml.UMLPackage;
  */
 public class FlowPropertyItemProvider extends SysMLItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 
+
 {
-
-	/**
-	 * This is used to store all the property descriptors for aclass stereotyped with a block.
-	 * Derived classes should add descriptors to this vector.
-	 */
-
-	protected List<IItemPropertyDescriptor> itemPropertyDescriptorsForproperty;
 
 	/**
 	 * Pattern prefix of flowProperty
@@ -90,6 +84,8 @@ public class FlowPropertyItemProvider extends SysMLItemProviderAdapter implement
 		super(adapterFactory);
 	}
 
+
+
 	/**
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
@@ -108,25 +104,36 @@ public class FlowPropertyItemProvider extends SysMLItemProviderAdapter implement
 			}
 		}
 
+
+
 		/**
 		 * Handle Property stereotyped by FlowProperty
 		 */
 		if(object instanceof org.eclipse.uml2.uml.Property) {
 			org.eclipse.uml2.uml.Property element = (org.eclipse.uml2.uml.Property)object;
-			if(itemPropertyDescriptorsForproperty == null) {
-				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.PROPERTY);
-				final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
-				itemPropertyDescriptorsForproperty = new ArrayList<IItemPropertyDescriptor>();
-				itemPropertyDescriptorsForproperty.addAll(propertyDescriptors);
-				Stereotype ste = (element).getAppliedStereotype(SysmlResource.FLOW_PROPERTY_ID);
-				if(ste != null) {
-					EObject steApplication = (element).getStereotypeApplication(ste);
+			/**
+			 * This is used to store all the property descriptors for a class stereotyped with a block.
+			 * Derived classes should add descriptors to this vector.
+			 */
 
-					addBase_PropertyPropertyDescriptorForProperty(steApplication);
+			List<IItemPropertyDescriptor> itemPropertyDescriptorsForproperty = new ArrayList<IItemPropertyDescriptor>();
+			ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.PROPERTY);
+			final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
 
-					addDirectionPropertyDescriptorForProperty(steApplication);
+			itemPropertyDescriptorsForproperty.addAll(propertyDescriptors);
+			Stereotype ste = (element).getAppliedStereotype(SysmlResource.FLOW_PROPERTY_ID);
+			if(ste != null) {
+				EObject steApplication = (element).getStereotypeApplication(ste);
 
-				}
+
+				itemPropertyDescriptorsForproperty.add(createBase_PropertyPropertyDescriptorForProperty(steApplication));
+
+
+
+				itemPropertyDescriptorsForproperty.add(createDirectionPropertyDescriptorForProperty(steApplication));
+
+
+
 			}
 			return itemPropertyDescriptorsForproperty;
 
@@ -146,6 +153,7 @@ public class FlowPropertyItemProvider extends SysMLItemProviderAdapter implement
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_FlowProperty_base_Property_feature"), getString("_UI_PropertyDescriptor_description", "_UI_FlowProperty_base_Property_feature", "_UI_FlowProperty_type"), PortandflowsPackage.Literals.FLOW_PROPERTY__BASE_PROPERTY, true, false, true, null, null, null));
 	}
 
+
 	/**
 	 * This adds a property descriptor for the Base Property feature for the UML element Property.
 	 * <!-- begin-user-doc -->
@@ -153,9 +161,9 @@ public class FlowPropertyItemProvider extends SysMLItemProviderAdapter implement
 	 * 
 	 * @generated
 	 */
-	protected void addBase_PropertyPropertyDescriptorForProperty(Object object) {
+	protected ItemPropertyDescriptorDecorator createBase_PropertyPropertyDescriptorForProperty(Object object) {
 
-		itemPropertyDescriptorsForproperty.add(new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_FlowProperty_base_Property_feature"),
+		return new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_FlowProperty_base_Property_feature"),
 
 		getString("_UI_PropertyDescriptor_description", "_UI_FlowProperty_base_Property_feature", "_UI_FlowProperty_type"),
 
@@ -163,11 +171,15 @@ public class FlowPropertyItemProvider extends SysMLItemProviderAdapter implement
 
 		null,
 
+
 		null,
 
-		null)));
+
+		null));
 
 	}
+
+
 
 	/**
 	 * This adds a property descriptor for the Direction feature.
@@ -180,6 +192,7 @@ public class FlowPropertyItemProvider extends SysMLItemProviderAdapter implement
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_FlowProperty_direction_feature"), getString("_UI_PropertyDescriptor_description", "_UI_FlowProperty_direction_feature", "_UI_FlowProperty_type"), PortandflowsPackage.Literals.FLOW_PROPERTY__DIRECTION, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
+
 	/**
 	 * This adds a property descriptor for the Direction feature for the UML element Property.
 	 * <!-- begin-user-doc -->
@@ -187,9 +200,9 @@ public class FlowPropertyItemProvider extends SysMLItemProviderAdapter implement
 	 * 
 	 * @generated
 	 */
-	protected void addDirectionPropertyDescriptorForProperty(Object object) {
+	protected ItemPropertyDescriptorDecorator createDirectionPropertyDescriptorForProperty(Object object) {
 
-		itemPropertyDescriptorsForproperty.add(new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_FlowProperty_direction_feature"),
+		return new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_FlowProperty_direction_feature"),
 
 		getString("_UI_PropertyDescriptor_description", "_UI_FlowProperty_direction_feature", "_UI_FlowProperty_type"),
 
@@ -197,11 +210,15 @@ public class FlowPropertyItemProvider extends SysMLItemProviderAdapter implement
 
 		ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 
+
 		null,
 
-		null)));
+
+		null));
 
 	}
+
+
 
 	/**
 	 * This returns FlowProperty.gif.
@@ -249,6 +266,7 @@ public class FlowPropertyItemProvider extends SysMLItemProviderAdapter implement
 			flowProperty_ = (FlowProperty)object;
 		}
 
+
 		FlowDirection labelValue = ((FlowProperty)flowProperty_).getDirection();
 		String label = labelValue == null ? null : labelValue.toString();
 		return label == null || label.length() == 0 ? getString("_UI_FlowProperty_type") : getString("_UI_FlowProperty_type") + " " + label;
@@ -272,14 +290,19 @@ public class FlowPropertyItemProvider extends SysMLItemProviderAdapter implement
 			return;
 		}
 
+
+
 		/**
 		 * Notify UML element
 		 */
 		if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
 
+
+
 			/**
 			 * Handle Property stereotyped by FlowProperty
 			 */
+
 
 			if(notification.getFeatureID(org.eclipse.uml2.uml.Property.class) != Notification.NO_FEATURE_ID) {
 				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.PROPERTY);
@@ -317,5 +340,7 @@ public class FlowPropertyItemProvider extends SysMLItemProviderAdapter implement
 	public ResourceLocator getResourceLocator() {
 		return SysmlEditPlugin.INSTANCE;
 	}
+
+
 
 }

@@ -52,14 +52,8 @@ import org.eclipse.uml2.uml.UMLPackage;
  */
 public class ConformItemProvider extends SysMLItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 
+
 {
-
-	/**
-	 * This is used to store all the property descriptors for aclass stereotyped with a block.
-	 * Derived classes should add descriptors to this vector.
-	 */
-
-	protected List<IItemPropertyDescriptor> itemPropertyDescriptorsFordependency;
 
 	/**
 	 * Pattern prefix of conform
@@ -87,6 +81,8 @@ public class ConformItemProvider extends SysMLItemProviderAdapter implements IEd
 		super(adapterFactory);
 	}
 
+
+
 	/**
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
@@ -104,23 +100,32 @@ public class ConformItemProvider extends SysMLItemProviderAdapter implements IEd
 			}
 		}
 
+
+
 		/**
 		 * Handle Dependency stereotyped by Conform
 		 */
 		if(object instanceof org.eclipse.uml2.uml.Dependency) {
 			org.eclipse.uml2.uml.Dependency element = (org.eclipse.uml2.uml.Dependency)object;
-			if(itemPropertyDescriptorsFordependency == null) {
-				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.DEPENDENCY);
-				final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
-				itemPropertyDescriptorsFordependency = new ArrayList<IItemPropertyDescriptor>();
-				itemPropertyDescriptorsFordependency.addAll(propertyDescriptors);
-				Stereotype ste = (element).getAppliedStereotype(SysmlResource.CONFORM_ID);
-				if(ste != null) {
-					EObject steApplication = (element).getStereotypeApplication(ste);
+			/**
+			 * This is used to store all the property descriptors for a class stereotyped with a block.
+			 * Derived classes should add descriptors to this vector.
+			 */
 
-					addBase_DependencyPropertyDescriptorForDependency(steApplication);
+			List<IItemPropertyDescriptor> itemPropertyDescriptorsFordependency = new ArrayList<IItemPropertyDescriptor>();
+			ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.DEPENDENCY);
+			final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
 
-				}
+			itemPropertyDescriptorsFordependency.addAll(propertyDescriptors);
+			Stereotype ste = (element).getAppliedStereotype(SysmlResource.CONFORM_ID);
+			if(ste != null) {
+				EObject steApplication = (element).getStereotypeApplication(ste);
+
+
+				itemPropertyDescriptorsFordependency.add(createBase_DependencyPropertyDescriptorForDependency(steApplication));
+
+
+
 			}
 			return itemPropertyDescriptorsFordependency;
 
@@ -140,6 +145,7 @@ public class ConformItemProvider extends SysMLItemProviderAdapter implements IEd
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Conform_base_Dependency_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Conform_base_Dependency_feature", "_UI_Conform_type"), ModelelementsPackage.Literals.CONFORM__BASE_DEPENDENCY, true, false, true, null, null, null));
 	}
 
+
 	/**
 	 * This adds a property descriptor for the Base Dependency feature for the UML element Dependency.
 	 * <!-- begin-user-doc -->
@@ -147,9 +153,9 @@ public class ConformItemProvider extends SysMLItemProviderAdapter implements IEd
 	 * 
 	 * @generated
 	 */
-	protected void addBase_DependencyPropertyDescriptorForDependency(Object object) {
+	protected ItemPropertyDescriptorDecorator createBase_DependencyPropertyDescriptorForDependency(Object object) {
 
-		itemPropertyDescriptorsFordependency.add(new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Conform_base_Dependency_feature"),
+		return new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Conform_base_Dependency_feature"),
 
 		getString("_UI_PropertyDescriptor_description", "_UI_Conform_base_Dependency_feature", "_UI_Conform_type"),
 
@@ -157,11 +163,15 @@ public class ConformItemProvider extends SysMLItemProviderAdapter implements IEd
 
 		null,
 
+
 		null,
 
-		null)));
+
+		null));
 
 	}
+
+
 
 	/**
 	 * This returns Conform.gif.
@@ -209,6 +219,7 @@ public class ConformItemProvider extends SysMLItemProviderAdapter implements IEd
 			conform_ = (Conform)object;
 		}
 
+
 		return getString("_UI_Conform_type");
 	}
 
@@ -229,9 +240,12 @@ public class ConformItemProvider extends SysMLItemProviderAdapter implements IEd
 		 */
 		if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
 
+
+
 			/**
 			 * Handle Dependency stereotyped by Conform
 			 */
+
 
 			if(notification.getFeatureID(org.eclipse.uml2.uml.Dependency.class) != Notification.NO_FEATURE_ID) {
 				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.DEPENDENCY);
@@ -269,5 +283,7 @@ public class ConformItemProvider extends SysMLItemProviderAdapter implements IEd
 	public ResourceLocator getResourceLocator() {
 		return SysmlEditPlugin.INSTANCE;
 	}
+
+
 
 }

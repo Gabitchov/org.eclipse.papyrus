@@ -52,14 +52,8 @@ import org.eclipse.uml2.uml.UMLPackage;
  */
 public class AllocateActivityPartitionItemProvider extends SysMLItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 
+
 {
-
-	/**
-	 * This is used to store all the property descriptors for aclass stereotyped with a block.
-	 * Derived classes should add descriptors to this vector.
-	 */
-
-	protected List<IItemPropertyDescriptor> itemPropertyDescriptorsForactivityPartition;
 
 	/**
 	 * Pattern prefix of allocateActivityPartition
@@ -87,6 +81,8 @@ public class AllocateActivityPartitionItemProvider extends SysMLItemProviderAdap
 		super(adapterFactory);
 	}
 
+
+
 	/**
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
@@ -104,23 +100,32 @@ public class AllocateActivityPartitionItemProvider extends SysMLItemProviderAdap
 			}
 		}
 
+
+
 		/**
 		 * Handle ActivityPartition stereotyped by AllocateActivityPartition
 		 */
 		if(object instanceof org.eclipse.uml2.uml.ActivityPartition) {
 			org.eclipse.uml2.uml.ActivityPartition element = (org.eclipse.uml2.uml.ActivityPartition)object;
-			if(itemPropertyDescriptorsForactivityPartition == null) {
-				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.ACTIVITY_PARTITION);
-				final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
-				itemPropertyDescriptorsForactivityPartition = new ArrayList<IItemPropertyDescriptor>();
-				itemPropertyDescriptorsForactivityPartition.addAll(propertyDescriptors);
-				Stereotype ste = (element).getAppliedStereotype(SysmlResource.ALLOCATE_ACTIVITY_PARTITION_ID);
-				if(ste != null) {
-					EObject steApplication = (element).getStereotypeApplication(ste);
+			/**
+			 * This is used to store all the property descriptors for a class stereotyped with a block.
+			 * Derived classes should add descriptors to this vector.
+			 */
 
-					addBase_ActivityPartitionPropertyDescriptorForActivityPartition(steApplication);
+			List<IItemPropertyDescriptor> itemPropertyDescriptorsForactivityPartition = new ArrayList<IItemPropertyDescriptor>();
+			ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.ACTIVITY_PARTITION);
+			final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
 
-				}
+			itemPropertyDescriptorsForactivityPartition.addAll(propertyDescriptors);
+			Stereotype ste = (element).getAppliedStereotype(SysmlResource.ALLOCATE_ACTIVITY_PARTITION_ID);
+			if(ste != null) {
+				EObject steApplication = (element).getStereotypeApplication(ste);
+
+
+				itemPropertyDescriptorsForactivityPartition.add(createBase_ActivityPartitionPropertyDescriptorForActivityPartition(steApplication));
+
+
+
 			}
 			return itemPropertyDescriptorsForactivityPartition;
 
@@ -140,6 +145,7 @@ public class AllocateActivityPartitionItemProvider extends SysMLItemProviderAdap
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_AllocateActivityPartition_base_ActivityPartition_feature"), getString("_UI_PropertyDescriptor_description", "_UI_AllocateActivityPartition_base_ActivityPartition_feature", "_UI_AllocateActivityPartition_type"), AllocationsPackage.Literals.ALLOCATE_ACTIVITY_PARTITION__BASE_ACTIVITY_PARTITION, true, false, true, null, null, null));
 	}
 
+
 	/**
 	 * This adds a property descriptor for the Base Activity Partition feature for the UML element ActivityPartition.
 	 * <!-- begin-user-doc -->
@@ -147,9 +153,9 @@ public class AllocateActivityPartitionItemProvider extends SysMLItemProviderAdap
 	 * 
 	 * @generated
 	 */
-	protected void addBase_ActivityPartitionPropertyDescriptorForActivityPartition(Object object) {
+	protected ItemPropertyDescriptorDecorator createBase_ActivityPartitionPropertyDescriptorForActivityPartition(Object object) {
 
-		itemPropertyDescriptorsForactivityPartition.add(new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_AllocateActivityPartition_base_ActivityPartition_feature"),
+		return new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_AllocateActivityPartition_base_ActivityPartition_feature"),
 
 		getString("_UI_PropertyDescriptor_description", "_UI_AllocateActivityPartition_base_ActivityPartition_feature", "_UI_AllocateActivityPartition_type"),
 
@@ -157,11 +163,15 @@ public class AllocateActivityPartitionItemProvider extends SysMLItemProviderAdap
 
 		null,
 
+
 		null,
 
-		null)));
+
+		null));
 
 	}
+
+
 
 	/**
 	 * This returns AllocateActivityPartition.gif.
@@ -209,6 +219,7 @@ public class AllocateActivityPartitionItemProvider extends SysMLItemProviderAdap
 			allocateActivityPartition_ = (AllocateActivityPartition)object;
 		}
 
+
 		return getString("_UI_AllocateActivityPartition_type");
 	}
 
@@ -229,9 +240,12 @@ public class AllocateActivityPartitionItemProvider extends SysMLItemProviderAdap
 		 */
 		if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
 
+
+
 			/**
 			 * Handle ActivityPartition stereotyped by AllocateActivityPartition
 			 */
+
 
 			if(notification.getFeatureID(org.eclipse.uml2.uml.ActivityPartition.class) != Notification.NO_FEATURE_ID) {
 				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.ACTIVITY_PARTITION);
@@ -269,5 +283,7 @@ public class AllocateActivityPartitionItemProvider extends SysMLItemProviderAdap
 	public ResourceLocator getResourceLocator() {
 		return SysmlEditPlugin.INSTANCE;
 	}
+
+
 
 }

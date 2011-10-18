@@ -68,12 +68,13 @@ import org.eclipse.uml2.uml.edit.providers.UMLItemProviderAdapterFactory;
  */
 public class SysmlRegistryAdapterFactoryRegistry {
 
+
 	/**
-	 * Keep track of the item provider of type
-	 * ModelelementsItemProviderAdapterFactory
+	 * Keep track of the item provider of type ModelelementsItemProviderAdapterFactory
 	 * 
 	 * @generated
 	 */
+
 	protected ModelelementsItemProviderAdapterFactory modelelementsAdapterFactoryItemProvider;
 
 	/**
@@ -81,46 +82,47 @@ public class SysmlRegistryAdapterFactoryRegistry {
 	 * 
 	 * @generated
 	 */
+
 	protected BlocksItemProviderAdapterFactory blocksAdapterFactoryItemProvider;
 
 	/**
-	 * Keep track of the item provider of type
-	 * PortandflowsItemProviderAdapterFactory
+	 * Keep track of the item provider of type PortandflowsItemProviderAdapterFactory
 	 * 
 	 * @generated
 	 */
+
 	protected PortandflowsItemProviderAdapterFactory portandflowsAdapterFactoryItemProvider;
 
 	/**
-	 * Keep track of the item provider of type
-	 * ConstraintsItemProviderAdapterFactory
+	 * Keep track of the item provider of type ConstraintsItemProviderAdapterFactory
 	 * 
 	 * @generated
 	 */
+
 	protected ConstraintsItemProviderAdapterFactory constraintsAdapterFactoryItemProvider;
 
 	/**
-	 * Keep track of the item provider of type
-	 * ActivitiesItemProviderAdapterFactory
+	 * Keep track of the item provider of type ActivitiesItemProviderAdapterFactory
 	 * 
 	 * @generated
 	 */
+
 	protected ActivitiesItemProviderAdapterFactory activitiesAdapterFactoryItemProvider;
 
 	/**
-	 * Keep track of the item provider of type
-	 * AllocationsItemProviderAdapterFactory
+	 * Keep track of the item provider of type AllocationsItemProviderAdapterFactory
 	 * 
 	 * @generated
 	 */
+
 	protected AllocationsItemProviderAdapterFactory allocationsAdapterFactoryItemProvider;
 
 	/**
-	 * Keep track of the item provider of type
-	 * RequirementsItemProviderAdapterFactory
+	 * Keep track of the item provider of type RequirementsItemProviderAdapterFactory
 	 * 
 	 * @generated
 	 */
+
 	protected RequirementsItemProviderAdapterFactory requirementsAdapterFactoryItemProvider;
 
 	/**
@@ -130,9 +132,9 @@ public class SysmlRegistryAdapterFactoryRegistry {
 	 */
 	private List<AdapterFactory> adapterFactoryRegistry = new ArrayList<AdapterFactory>(7);
 
+
 	/**
-	 * Registry of all {@link AdapterFactory} classified by corresponding UML
-	 * element
+	 * Registry of all {@link AdapterFactory} classified by corresponding UML element
 	 * 
 	 * @generated
 	 */
@@ -176,133 +178,241 @@ public class SysmlRegistryAdapterFactoryRegistry {
 		requirementsAdapterFactoryItemProvider = new RequirementsItemProviderAdapterFactory();
 		adapterFactoryRegistry.add(requirementsAdapterFactoryItemProvider);
 
+
+
+
+
 		/**
 		 * AdapterFactories for the ABSTRACTION elements
 		 */
-		adapterFactoryRegistryMap.put(UMLPackage.Literals.ABSTRACTION, new ArrayList<AdapterFactory>(Collections.singletonList(requirementsAdapterFactoryItemProvider)));
+		adapterFactoryRegistryMap.put(UMLPackage.Literals.ABSTRACTION, new ArrayList<AdapterFactory>(Collections.singletonList(allocationsAdapterFactoryItemProvider)));
 
-		adapterFactoryRegistryMap.get(UMLPackage.Literals.ABSTRACTION).add(allocationsAdapterFactoryItemProvider);
+
+
+		adapterFactoryRegistryMap.get(UMLPackage.Literals.ABSTRACTION).add(requirementsAdapterFactoryItemProvider);
+
+
+
+
 
 		/**
 		 * AdapterFactories for the ACTIVITY_EDGE elements
 		 */
 		adapterFactoryRegistryMap.put(UMLPackage.Literals.ACTIVITY_EDGE, new ArrayList<AdapterFactory>(Collections.singletonList(activitiesAdapterFactoryItemProvider)));
 
+
+
+
+
 		/**
 		 * AdapterFactories for the ACTIVITY_PARTITION elements
 		 */
 		adapterFactoryRegistryMap.put(UMLPackage.Literals.ACTIVITY_PARTITION, new ArrayList<AdapterFactory>(Collections.singletonList(allocationsAdapterFactoryItemProvider)));
 
+
+
+
+
 		/**
 		 * AdapterFactories for the BEHAVIOR elements
 		 */
-		adapterFactoryRegistryMap.put(UMLPackage.Literals.BEHAVIOR, new ArrayList<AdapterFactory>(Collections.singletonList(activitiesAdapterFactoryItemProvider)));
+		adapterFactoryRegistryMap.put(UMLPackage.Literals.BEHAVIOR, new ArrayList<AdapterFactory>(Collections.singletonList(requirementsAdapterFactoryItemProvider)));
 
-		adapterFactoryRegistryMap.get(UMLPackage.Literals.BEHAVIOR).add(requirementsAdapterFactoryItemProvider);
+
+
+		adapterFactoryRegistryMap.get(UMLPackage.Literals.BEHAVIOR).add(activitiesAdapterFactoryItemProvider);
+
+
+
+
 
 		/**
 		 * AdapterFactories for the CLASS elements
 		 */
-		adapterFactoryRegistryMap.put(UMLPackage.Literals.CLASS, new ArrayList<AdapterFactory>(Collections.singletonList(modelelementsAdapterFactoryItemProvider)));
+		adapterFactoryRegistryMap.put(UMLPackage.Literals.CLASS, new ArrayList<AdapterFactory>(Collections.singletonList(constraintsAdapterFactoryItemProvider)));
 
-		adapterFactoryRegistryMap.get(UMLPackage.Literals.CLASS).add(constraintsAdapterFactoryItemProvider);
+
 
 		adapterFactoryRegistryMap.get(UMLPackage.Literals.CLASS).add(blocksAdapterFactoryItemProvider);
 
+
+
+		adapterFactoryRegistryMap.get(UMLPackage.Literals.CLASS).add(modelelementsAdapterFactoryItemProvider);
+
+
+
 		adapterFactoryRegistryMap.get(UMLPackage.Literals.CLASS).add(requirementsAdapterFactoryItemProvider);
+
+
+
+
 
 		/**
 		 * AdapterFactories for the CLASSIFIER elements
 		 */
 		adapterFactoryRegistryMap.put(UMLPackage.Literals.CLASSIFIER, new ArrayList<AdapterFactory>(Collections.singletonList(blocksAdapterFactoryItemProvider)));
 
+
+
+
+
 		/**
 		 * AdapterFactories for the COMMENT elements
 		 */
 		adapterFactoryRegistryMap.put(UMLPackage.Literals.COMMENT, new ArrayList<AdapterFactory>(Collections.singletonList(modelelementsAdapterFactoryItemProvider)));
+
+
+
+
 
 		/**
 		 * AdapterFactories for the CONNECTOR elements
 		 */
 		adapterFactoryRegistryMap.put(UMLPackage.Literals.CONNECTOR, new ArrayList<AdapterFactory>(Collections.singletonList(blocksAdapterFactoryItemProvider)));
 
+
+
+
+
 		/**
 		 * AdapterFactories for the CONNECTOR_END elements
 		 */
 		adapterFactoryRegistryMap.put(UMLPackage.Literals.CONNECTOR_END, new ArrayList<AdapterFactory>(Collections.singletonList(blocksAdapterFactoryItemProvider)));
+
+
+
+
 
 		/**
 		 * AdapterFactories for the DATA_TYPE elements
 		 */
 		adapterFactoryRegistryMap.put(UMLPackage.Literals.DATA_TYPE, new ArrayList<AdapterFactory>(Collections.singletonList(blocksAdapterFactoryItemProvider)));
 
+
+
+
+
 		/**
 		 * AdapterFactories for the DEPENDENCY elements
 		 */
 		adapterFactoryRegistryMap.put(UMLPackage.Literals.DEPENDENCY, new ArrayList<AdapterFactory>(Collections.singletonList(modelelementsAdapterFactoryItemProvider)));
+
+
+
+
 
 		/**
 		 * AdapterFactories for the INFORMATION_FLOW elements
 		 */
 		adapterFactoryRegistryMap.put(UMLPackage.Literals.INFORMATION_FLOW, new ArrayList<AdapterFactory>(Collections.singletonList(portandflowsAdapterFactoryItemProvider)));
 
+
+
+
+
 		/**
 		 * AdapterFactories for the INSTANCE_SPECIFICATION elements
 		 */
 		adapterFactoryRegistryMap.put(UMLPackage.Literals.INSTANCE_SPECIFICATION, new ArrayList<AdapterFactory>(Collections.singletonList(blocksAdapterFactoryItemProvider)));
+
+
+
+
 
 		/**
 		 * AdapterFactories for the INTERFACE elements
 		 */
 		adapterFactoryRegistryMap.put(UMLPackage.Literals.INTERFACE, new ArrayList<AdapterFactory>(Collections.singletonList(portandflowsAdapterFactoryItemProvider)));
 
+
+
+
+
 		/**
 		 * AdapterFactories for the NAMED_ELEMENT elements
 		 */
-		adapterFactoryRegistryMap.put(UMLPackage.Literals.NAMED_ELEMENT, new ArrayList<AdapterFactory>(Collections.singletonList(requirementsAdapterFactoryItemProvider)));
+		adapterFactoryRegistryMap.put(UMLPackage.Literals.NAMED_ELEMENT, new ArrayList<AdapterFactory>(Collections.singletonList(allocationsAdapterFactoryItemProvider)));
 
-		adapterFactoryRegistryMap.get(UMLPackage.Literals.NAMED_ELEMENT).add(allocationsAdapterFactoryItemProvider);
+
+
+		adapterFactoryRegistryMap.get(UMLPackage.Literals.NAMED_ELEMENT).add(requirementsAdapterFactoryItemProvider);
+
+
+
+
 
 		/**
 		 * AdapterFactories for the OBJECT_NODE elements
 		 */
 		adapterFactoryRegistryMap.put(UMLPackage.Literals.OBJECT_NODE, new ArrayList<AdapterFactory>(Collections.singletonList(activitiesAdapterFactoryItemProvider)));
 
+
+
+
+
 		/**
 		 * AdapterFactories for the OPERATION elements
 		 */
-		adapterFactoryRegistryMap.put(UMLPackage.Literals.OPERATION, new ArrayList<AdapterFactory>(Collections.singletonList(activitiesAdapterFactoryItemProvider)));
+		adapterFactoryRegistryMap.put(UMLPackage.Literals.OPERATION, new ArrayList<AdapterFactory>(Collections.singletonList(requirementsAdapterFactoryItemProvider)));
 
-		adapterFactoryRegistryMap.get(UMLPackage.Literals.OPERATION).add(requirementsAdapterFactoryItemProvider);
+
+
+		adapterFactoryRegistryMap.get(UMLPackage.Literals.OPERATION).add(activitiesAdapterFactoryItemProvider);
+
+
+
+
 
 		/**
 		 * AdapterFactories for the PACKAGE elements
 		 */
 		adapterFactoryRegistryMap.put(UMLPackage.Literals.PACKAGE, new ArrayList<AdapterFactory>(Collections.singletonList(modelelementsAdapterFactoryItemProvider)));
 
+
+
+
+
 		/**
 		 * AdapterFactories for the PARAMETER elements
 		 */
 		adapterFactoryRegistryMap.put(UMLPackage.Literals.PARAMETER, new ArrayList<AdapterFactory>(Collections.singletonList(activitiesAdapterFactoryItemProvider)));
+
+
+
+
 
 		/**
 		 * AdapterFactories for the PARAMETER_SET elements
 		 */
 		adapterFactoryRegistryMap.put(UMLPackage.Literals.PARAMETER_SET, new ArrayList<AdapterFactory>(Collections.singletonList(activitiesAdapterFactoryItemProvider)));
 
+
+
+
+
 		/**
 		 * AdapterFactories for the PORT elements
 		 */
 		adapterFactoryRegistryMap.put(UMLPackage.Literals.PORT, new ArrayList<AdapterFactory>(Collections.singletonList(portandflowsAdapterFactoryItemProvider)));
+
+
+
+
 
 		/**
 		 * AdapterFactories for the PROPERTY elements
 		 */
 		adapterFactoryRegistryMap.put(UMLPackage.Literals.PROPERTY, new ArrayList<AdapterFactory>(Collections.singletonList(constraintsAdapterFactoryItemProvider)));
 
-		adapterFactoryRegistryMap.get(UMLPackage.Literals.PROPERTY).add(blocksAdapterFactoryItemProvider);
+
 
 		adapterFactoryRegistryMap.get(UMLPackage.Literals.PROPERTY).add(portandflowsAdapterFactoryItemProvider);
+
+
+
+		adapterFactoryRegistryMap.get(UMLPackage.Literals.PROPERTY).add(blocksAdapterFactoryItemProvider);
+
+
 
 	}
 
@@ -341,8 +451,7 @@ public class SysmlRegistryAdapterFactoryRegistry {
 	 * 
 	 * @param Object
 	 *        element
-	 * @return List<AdapterFactory> List of all the adapter factories which can
-	 *         handle the object element
+	 * @return List<AdapterFactory> List of all the adapter factories which can handle the object element
 	 * @generated
 	 */
 	public List<AdapterFactory> getAdapterFactoriesForType(Object element) {
@@ -382,50 +491,56 @@ public class SysmlRegistryAdapterFactoryRegistry {
 	public HashMap<EClass, ItemProviderAdapter> getUMLItemProviderClassifedByUMLElement(AdapterFactory rootAdapterFactory) {
 		HashMap<EClass, ItemProviderAdapter> result = new HashMap<EClass, ItemProviderAdapter>();
 
-		result.put(UMLPackage.Literals.CLASS, new ClassItemProvider(rootAdapterFactory));
-
-		result.put(UMLPackage.Literals.COMMENT, new CommentItemProvider(rootAdapterFactory));
-
-		result.put(UMLPackage.Literals.NAMED_ELEMENT, new NamedElementItemProvider(rootAdapterFactory));
-
-		result.put(UMLPackage.Literals.BEHAVIOR, new BehaviorItemProvider(rootAdapterFactory));
-
-		result.put(UMLPackage.Literals.PROPERTY, new PropertyItemProvider(rootAdapterFactory));
-
-		result.put(UMLPackage.Literals.ABSTRACTION, new AbstractionItemProvider(rootAdapterFactory));
-
-		result.put(UMLPackage.Literals.DEPENDENCY, new DependencyItemProvider(rootAdapterFactory));
-
-		result.put(UMLPackage.Literals.CONNECTOR_END, new ConnectorEndItemProvider(rootAdapterFactory));
-
-		result.put(UMLPackage.Literals.PARAMETER, new ParameterItemProvider(rootAdapterFactory));
-
-		result.put(UMLPackage.Literals.INFORMATION_FLOW, new InformationFlowItemProvider(rootAdapterFactory));
-
-		result.put(UMLPackage.Literals.OBJECT_NODE, new ObjectNodeItemProvider(rootAdapterFactory));
+		result.put(UMLPackage.Literals.PACKAGE, new PackageItemProvider(rootAdapterFactory));
 
 		result.put(UMLPackage.Literals.DATA_TYPE, new DataTypeItemProvider(rootAdapterFactory));
 
-		result.put(UMLPackage.Literals.ACTIVITY_PARTITION, new ActivityPartitionItemProvider(rootAdapterFactory));
+		result.put(UMLPackage.Literals.PORT, new PortItemProvider(rootAdapterFactory));
+
+		result.put(UMLPackage.Literals.PROPERTY, new PropertyItemProvider(rootAdapterFactory));
+
+		result.put(UMLPackage.Literals.OBJECT_NODE, new ObjectNodeItemProvider(rootAdapterFactory));
+
+		result.put(UMLPackage.Literals.COMMENT, new CommentItemProvider(rootAdapterFactory));
+
+		result.put(UMLPackage.Literals.CLASS, new ClassItemProvider(rootAdapterFactory));
+
+		result.put(UMLPackage.Literals.ABSTRACTION, new AbstractionItemProvider(rootAdapterFactory));
 
 		result.put(UMLPackage.Literals.INSTANCE_SPECIFICATION, new InstanceSpecificationItemProvider(rootAdapterFactory));
 
-		result.put(UMLPackage.Literals.PORT, new PortItemProvider(rootAdapterFactory));
+		result.put(UMLPackage.Literals.INTERFACE, new InterfaceItemProvider(rootAdapterFactory));
+
+		result.put(UMLPackage.Literals.BEHAVIOR, new BehaviorItemProvider(rootAdapterFactory));
 
 		result.put(UMLPackage.Literals.CLASSIFIER, new ClassifierItemProvider(rootAdapterFactory));
 
-		result.put(UMLPackage.Literals.PARAMETER_SET, new ParameterSetItemProvider(rootAdapterFactory));
+		result.put(UMLPackage.Literals.CONNECTOR, new ConnectorItemProvider(rootAdapterFactory));
+
+		result.put(UMLPackage.Literals.ACTIVITY_PARTITION, new ActivityPartitionItemProvider(rootAdapterFactory));
 
 		result.put(UMLPackage.Literals.ACTIVITY_EDGE, new ActivityEdgeItemProvider(rootAdapterFactory));
 
-		result.put(UMLPackage.Literals.PACKAGE, new PackageItemProvider(rootAdapterFactory));
-
-		result.put(UMLPackage.Literals.INTERFACE, new InterfaceItemProvider(rootAdapterFactory));
-
 		result.put(UMLPackage.Literals.OPERATION, new OperationItemProvider(rootAdapterFactory));
 
-		result.put(UMLPackage.Literals.CONNECTOR, new ConnectorItemProvider(rootAdapterFactory));
+		result.put(UMLPackage.Literals.CONNECTOR_END, new ConnectorEndItemProvider(rootAdapterFactory));
+
+		result.put(UMLPackage.Literals.INFORMATION_FLOW, new InformationFlowItemProvider(rootAdapterFactory));
+
+		result.put(UMLPackage.Literals.NAMED_ELEMENT, new NamedElementItemProvider(rootAdapterFactory));
+
+		result.put(UMLPackage.Literals.PARAMETER, new ParameterItemProvider(rootAdapterFactory));
+
+		result.put(UMLPackage.Literals.PARAMETER_SET, new ParameterSetItemProvider(rootAdapterFactory));
+
+		result.put(UMLPackage.Literals.DEPENDENCY, new DependencyItemProvider(rootAdapterFactory));
 
 		return result;
 	}
-} // org.eclipse.papyrus.sysml.registry;
+
+
+
+
+
+} //org.eclipse.papyrus.sysml.registry;
+

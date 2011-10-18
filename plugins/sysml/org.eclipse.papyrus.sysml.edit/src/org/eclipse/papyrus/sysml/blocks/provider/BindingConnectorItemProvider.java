@@ -52,14 +52,8 @@ import org.eclipse.uml2.uml.UMLPackage;
  */
 public class BindingConnectorItemProvider extends SysMLItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 
+
 {
-
-	/**
-	 * This is used to store all the property descriptors for aclass stereotyped with a block.
-	 * Derived classes should add descriptors to this vector.
-	 */
-
-	protected List<IItemPropertyDescriptor> itemPropertyDescriptorsForconnector;
 
 	/**
 	 * Pattern prefix of bindingConnector
@@ -87,6 +81,8 @@ public class BindingConnectorItemProvider extends SysMLItemProviderAdapter imple
 		super(adapterFactory);
 	}
 
+
+
 	/**
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
@@ -104,23 +100,32 @@ public class BindingConnectorItemProvider extends SysMLItemProviderAdapter imple
 			}
 		}
 
+
+
 		/**
 		 * Handle Connector stereotyped by BindingConnector
 		 */
 		if(object instanceof org.eclipse.uml2.uml.Connector) {
 			org.eclipse.uml2.uml.Connector element = (org.eclipse.uml2.uml.Connector)object;
-			if(itemPropertyDescriptorsForconnector == null) {
-				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.CONNECTOR);
-				final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
-				itemPropertyDescriptorsForconnector = new ArrayList<IItemPropertyDescriptor>();
-				itemPropertyDescriptorsForconnector.addAll(propertyDescriptors);
-				Stereotype ste = (element).getAppliedStereotype(SysmlResource.BINDING_CONNECTOR_ID);
-				if(ste != null) {
-					EObject steApplication = (element).getStereotypeApplication(ste);
+			/**
+			 * This is used to store all the property descriptors for a class stereotyped with a block.
+			 * Derived classes should add descriptors to this vector.
+			 */
 
-					addBase_ConnectorPropertyDescriptorForConnector(steApplication);
+			List<IItemPropertyDescriptor> itemPropertyDescriptorsForconnector = new ArrayList<IItemPropertyDescriptor>();
+			ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.CONNECTOR);
+			final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
 
-				}
+			itemPropertyDescriptorsForconnector.addAll(propertyDescriptors);
+			Stereotype ste = (element).getAppliedStereotype(SysmlResource.BINDING_CONNECTOR_ID);
+			if(ste != null) {
+				EObject steApplication = (element).getStereotypeApplication(ste);
+
+
+				itemPropertyDescriptorsForconnector.add(createBase_ConnectorPropertyDescriptorForConnector(steApplication));
+
+
+
 			}
 			return itemPropertyDescriptorsForconnector;
 
@@ -140,6 +145,7 @@ public class BindingConnectorItemProvider extends SysMLItemProviderAdapter imple
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_BindingConnector_base_Connector_feature"), getString("_UI_PropertyDescriptor_description", "_UI_BindingConnector_base_Connector_feature", "_UI_BindingConnector_type"), BlocksPackage.Literals.BINDING_CONNECTOR__BASE_CONNECTOR, true, false, true, null, null, null));
 	}
 
+
 	/**
 	 * This adds a property descriptor for the Base Connector feature for the UML element Connector.
 	 * <!-- begin-user-doc -->
@@ -147,9 +153,9 @@ public class BindingConnectorItemProvider extends SysMLItemProviderAdapter imple
 	 * 
 	 * @generated
 	 */
-	protected void addBase_ConnectorPropertyDescriptorForConnector(Object object) {
+	protected ItemPropertyDescriptorDecorator createBase_ConnectorPropertyDescriptorForConnector(Object object) {
 
-		itemPropertyDescriptorsForconnector.add(new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_BindingConnector_base_Connector_feature"),
+		return new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_BindingConnector_base_Connector_feature"),
 
 		getString("_UI_PropertyDescriptor_description", "_UI_BindingConnector_base_Connector_feature", "_UI_BindingConnector_type"),
 
@@ -157,11 +163,15 @@ public class BindingConnectorItemProvider extends SysMLItemProviderAdapter imple
 
 		null,
 
+
 		null,
 
-		null)));
+
+		null));
 
 	}
+
+
 
 	/**
 	 * This returns BindingConnector.gif.
@@ -209,6 +219,7 @@ public class BindingConnectorItemProvider extends SysMLItemProviderAdapter imple
 			bindingConnector_ = (BindingConnector)object;
 		}
 
+
 		return getString("_UI_BindingConnector_type");
 	}
 
@@ -229,9 +240,12 @@ public class BindingConnectorItemProvider extends SysMLItemProviderAdapter imple
 		 */
 		if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
 
+
+
 			/**
 			 * Handle Connector stereotyped by BindingConnector
 			 */
+
 
 			if(notification.getFeatureID(org.eclipse.uml2.uml.Connector.class) != Notification.NO_FEATURE_ID) {
 				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.CONNECTOR);
@@ -269,5 +283,7 @@ public class BindingConnectorItemProvider extends SysMLItemProviderAdapter imple
 	public ResourceLocator getResourceLocator() {
 		return SysmlEditPlugin.INSTANCE;
 	}
+
+
 
 }

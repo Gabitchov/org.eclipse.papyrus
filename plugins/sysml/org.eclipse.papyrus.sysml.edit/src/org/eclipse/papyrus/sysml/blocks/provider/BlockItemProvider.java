@@ -54,14 +54,8 @@ import org.eclipse.uml2.uml.UMLPackage;
  */
 public class BlockItemProvider extends SysMLItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 
+
 {
-
-	/**
-	 * This is used to store all the property descriptors for aclass stereotyped with a block.
-	 * Derived classes should add descriptors to this vector.
-	 */
-
-	protected List<IItemPropertyDescriptor> itemPropertyDescriptorsForclass;
 
 	/**
 	 * Pattern prefix of block
@@ -89,6 +83,8 @@ public class BlockItemProvider extends SysMLItemProviderAdapter implements IEdit
 		super(adapterFactory);
 	}
 
+
+
 	/**
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
@@ -107,25 +103,36 @@ public class BlockItemProvider extends SysMLItemProviderAdapter implements IEdit
 			}
 		}
 
+
+
 		/**
 		 * Handle Class stereotyped by Block
 		 */
 		if(object instanceof org.eclipse.uml2.uml.Class) {
 			org.eclipse.uml2.uml.Class element = (org.eclipse.uml2.uml.Class)object;
-			if(itemPropertyDescriptorsForclass == null) {
-				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.CLASS);
-				final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
-				itemPropertyDescriptorsForclass = new ArrayList<IItemPropertyDescriptor>();
-				itemPropertyDescriptorsForclass.addAll(propertyDescriptors);
-				Stereotype ste = (element).getAppliedStereotype(SysmlResource.BLOCK_ID);
-				if(ste != null) {
-					EObject steApplication = (element).getStereotypeApplication(ste);
+			/**
+			 * This is used to store all the property descriptors for a class stereotyped with a block.
+			 * Derived classes should add descriptors to this vector.
+			 */
 
-					addIsEncapsulatedPropertyDescriptorForClass(steApplication);
+			List<IItemPropertyDescriptor> itemPropertyDescriptorsForclass = new ArrayList<IItemPropertyDescriptor>();
+			ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.CLASS);
+			final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
 
-					addBase_ClassPropertyDescriptorForClass(steApplication);
+			itemPropertyDescriptorsForclass.addAll(propertyDescriptors);
+			Stereotype ste = (element).getAppliedStereotype(SysmlResource.BLOCK_ID);
+			if(ste != null) {
+				EObject steApplication = (element).getStereotypeApplication(ste);
 
-				}
+
+				itemPropertyDescriptorsForclass.add(createIsEncapsulatedPropertyDescriptorForClass(steApplication));
+
+
+
+				itemPropertyDescriptorsForclass.add(createBase_ClassPropertyDescriptorForClass(steApplication));
+
+
+
 			}
 			return itemPropertyDescriptorsForclass;
 
@@ -145,6 +152,7 @@ public class BlockItemProvider extends SysMLItemProviderAdapter implements IEdit
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Block_isEncapsulated_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Block_isEncapsulated_feature", "_UI_Block_type"), BlocksPackage.Literals.BLOCK__IS_ENCAPSULATED, true, false, false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
 	}
 
+
 	/**
 	 * This adds a property descriptor for the Is Encapsulated feature for the UML element Class.
 	 * <!-- begin-user-doc -->
@@ -152,9 +160,9 @@ public class BlockItemProvider extends SysMLItemProviderAdapter implements IEdit
 	 * 
 	 * @generated
 	 */
-	protected void addIsEncapsulatedPropertyDescriptorForClass(Object object) {
+	protected ItemPropertyDescriptorDecorator createIsEncapsulatedPropertyDescriptorForClass(Object object) {
 
-		itemPropertyDescriptorsForclass.add(new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Block_isEncapsulated_feature"),
+		return new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Block_isEncapsulated_feature"),
 
 		getString("_UI_PropertyDescriptor_description", "_UI_Block_isEncapsulated_feature", "_UI_Block_type"),
 
@@ -162,11 +170,15 @@ public class BlockItemProvider extends SysMLItemProviderAdapter implements IEdit
 
 		ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
 
+
 		null,
 
-		null)));
+
+		null));
 
 	}
+
+
 
 	/**
 	 * This adds a property descriptor for the Base Class feature.
@@ -179,6 +191,7 @@ public class BlockItemProvider extends SysMLItemProviderAdapter implements IEdit
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Block_base_Class_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Block_base_Class_feature", "_UI_Block_type"), BlocksPackage.Literals.BLOCK__BASE_CLASS, true, false, true, null, null, null));
 	}
 
+
 	/**
 	 * This adds a property descriptor for the Base Class feature for the UML element Class.
 	 * <!-- begin-user-doc -->
@@ -186,9 +199,9 @@ public class BlockItemProvider extends SysMLItemProviderAdapter implements IEdit
 	 * 
 	 * @generated
 	 */
-	protected void addBase_ClassPropertyDescriptorForClass(Object object) {
+	protected ItemPropertyDescriptorDecorator createBase_ClassPropertyDescriptorForClass(Object object) {
 
-		itemPropertyDescriptorsForclass.add(new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Block_base_Class_feature"),
+		return new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Block_base_Class_feature"),
 
 		getString("_UI_PropertyDescriptor_description", "_UI_Block_base_Class_feature", "_UI_Block_type"),
 
@@ -196,11 +209,15 @@ public class BlockItemProvider extends SysMLItemProviderAdapter implements IEdit
 
 		null,
 
+
 		null,
 
-		null)));
+
+		null));
 
 	}
+
+
 
 	/**
 	 * This returns Block.gif.
@@ -248,6 +265,7 @@ public class BlockItemProvider extends SysMLItemProviderAdapter implements IEdit
 			block_ = (Block)object;
 		}
 
+
 		Block block = (Block)block_;
 		return getString("_UI_Block_type") + " " + block.isIsEncapsulated();
 	}
@@ -270,14 +288,19 @@ public class BlockItemProvider extends SysMLItemProviderAdapter implements IEdit
 			return;
 		}
 
+
+
 		/**
 		 * Notify UML element
 		 */
 		if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
 
+
+
 			/**
 			 * Handle Class stereotyped by Block
 			 */
+
 
 			if(notification.getFeatureID(org.eclipse.uml2.uml.Class.class) != Notification.NO_FEATURE_ID) {
 				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.CLASS);
@@ -315,5 +338,7 @@ public class BlockItemProvider extends SysMLItemProviderAdapter implements IEdit
 	public ResourceLocator getResourceLocator() {
 		return SysmlEditPlugin.INSTANCE;
 	}
+
+
 
 }

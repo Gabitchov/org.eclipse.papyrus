@@ -48,21 +48,10 @@ import org.eclipse.uml2.uml.edit.UMLEditPlugin;
  */
 public class DiscreteItemProvider extends RateItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, IVisibilityOverlayImage
 
+
+
+
 {
-
-	/**
-	 * This is used to store all the property descriptors for aclass stereotyped with a block.
-	 * Derived classes should add descriptors to this vector.
-	 */
-
-	protected List<IItemPropertyDescriptor> itemPropertyDescriptorsForparameter;
-
-	/**
-	 * This is used to store all the property descriptors for aclass stereotyped with a block.
-	 * Derived classes should add descriptors to this vector.
-	 */
-
-	protected List<IItemPropertyDescriptor> itemPropertyDescriptorsForactivityEdge;
 
 	/**
 	 * Pattern prefix of discrete
@@ -98,6 +87,8 @@ public class DiscreteItemProvider extends RateItemProvider implements IEditingDo
 		super(adapterFactory);
 	}
 
+
+
 	/**
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
@@ -114,41 +105,54 @@ public class DiscreteItemProvider extends RateItemProvider implements IEditingDo
 			}
 		}
 
+
+
 		/**
 		 * Handle Parameter stereotyped by Discrete
 		 */
 		if(object instanceof org.eclipse.uml2.uml.Parameter) {
 			org.eclipse.uml2.uml.Parameter element = (org.eclipse.uml2.uml.Parameter)object;
-			if(itemPropertyDescriptorsForparameter == null) {
-				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.PARAMETER);
-				final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
-				itemPropertyDescriptorsForparameter = new ArrayList<IItemPropertyDescriptor>();
-				itemPropertyDescriptorsForparameter.addAll(propertyDescriptors);
-				Stereotype ste = (element).getAppliedStereotype(SysmlResource.DISCRETE_ID);
-				if(ste != null) {
-					EObject steApplication = (element).getStereotypeApplication(ste);
+			/**
+			 * This is used to store all the property descriptors for a class stereotyped with a block.
+			 * Derived classes should add descriptors to this vector.
+			 */
 
-				}
+			List<IItemPropertyDescriptor> itemPropertyDescriptorsForparameter = new ArrayList<IItemPropertyDescriptor>();
+			ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.PARAMETER);
+			final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
+
+			itemPropertyDescriptorsForparameter.addAll(propertyDescriptors);
+			Stereotype ste = (element).getAppliedStereotype(SysmlResource.DISCRETE_ID);
+			if(ste != null) {
+				EObject steApplication = (element).getStereotypeApplication(ste);
+
+
 			}
 			return itemPropertyDescriptorsForparameter;
 
 		}
+
 
 		/**
 		 * Handle ActivityEdge stereotyped by Discrete
 		 */
 		if(object instanceof org.eclipse.uml2.uml.ActivityEdge) {
 			org.eclipse.uml2.uml.ActivityEdge element = (org.eclipse.uml2.uml.ActivityEdge)object;
-			if(itemPropertyDescriptorsForactivityEdge == null) {
-				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.ACTIVITY_EDGE);
-				final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
-				itemPropertyDescriptorsForactivityEdge = new ArrayList<IItemPropertyDescriptor>();
-				itemPropertyDescriptorsForactivityEdge.addAll(propertyDescriptors);
-				Stereotype ste = (element).getAppliedStereotype(SysmlResource.DISCRETE_ID);
-				if(ste != null) {
-					EObject steApplication = (element).getStereotypeApplication(ste);
+			/**
+			 * This is used to store all the property descriptors for a class stereotyped with a block.
+			 * Derived classes should add descriptors to this vector.
+			 */
 
-				}
+			List<IItemPropertyDescriptor> itemPropertyDescriptorsForactivityEdge = new ArrayList<IItemPropertyDescriptor>();
+			ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.ACTIVITY_EDGE);
+			final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
+
+			itemPropertyDescriptorsForactivityEdge.addAll(propertyDescriptors);
+			Stereotype ste = (element).getAppliedStereotype(SysmlResource.DISCRETE_ID);
+			if(ste != null) {
+				EObject steApplication = (element).getStereotypeApplication(ste);
+
+
 			}
 			return itemPropertyDescriptorsForactivityEdge;
 
@@ -214,6 +218,7 @@ public class DiscreteItemProvider extends RateItemProvider implements IEditingDo
 			discrete_ = (Discrete)object;
 		}
 
+
 		return getString("_UI_Discrete_type");
 	}
 
@@ -234,9 +239,12 @@ public class DiscreteItemProvider extends RateItemProvider implements IEditingDo
 		 */
 		if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
 
+
+
 			/**
 			 * Handle Parameter stereotyped by Discrete
 			 */
+
 
 			if(notification.getFeatureID(org.eclipse.uml2.uml.Parameter.class) != Notification.NO_FEATURE_ID) {
 				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.PARAMETER);
@@ -245,9 +253,11 @@ public class DiscreteItemProvider extends RateItemProvider implements IEditingDo
 
 			}
 
+
 			/**
 			 * Handle ActivityEdge stereotyped by Discrete
 			 */
+
 
 			if(notification.getFeatureID(org.eclipse.uml2.uml.ActivityEdge.class) != Notification.NO_FEATURE_ID) {
 				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.ACTIVITY_EDGE);
@@ -273,6 +283,7 @@ public class DiscreteItemProvider extends RateItemProvider implements IEditingDo
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
+
 
 	/**
 	 * Compose the image with specific visibility logo

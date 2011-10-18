@@ -52,14 +52,8 @@ import org.eclipse.uml2.uml.UMLPackage;
  */
 public class NoBufferItemProvider extends SysMLItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 
+
 {
-
-	/**
-	 * This is used to store all the property descriptors for aclass stereotyped with a block.
-	 * Derived classes should add descriptors to this vector.
-	 */
-
-	protected List<IItemPropertyDescriptor> itemPropertyDescriptorsForobjectNode;
 
 	/**
 	 * Pattern prefix of noBuffer
@@ -87,6 +81,8 @@ public class NoBufferItemProvider extends SysMLItemProviderAdapter implements IE
 		super(adapterFactory);
 	}
 
+
+
 	/**
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
@@ -104,23 +100,32 @@ public class NoBufferItemProvider extends SysMLItemProviderAdapter implements IE
 			}
 		}
 
+
+
 		/**
 		 * Handle ObjectNode stereotyped by NoBuffer
 		 */
 		if(object instanceof org.eclipse.uml2.uml.ObjectNode) {
 			org.eclipse.uml2.uml.ObjectNode element = (org.eclipse.uml2.uml.ObjectNode)object;
-			if(itemPropertyDescriptorsForobjectNode == null) {
-				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.OBJECT_NODE);
-				final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
-				itemPropertyDescriptorsForobjectNode = new ArrayList<IItemPropertyDescriptor>();
-				itemPropertyDescriptorsForobjectNode.addAll(propertyDescriptors);
-				Stereotype ste = (element).getAppliedStereotype(SysmlResource.NO_BUFFER_ID);
-				if(ste != null) {
-					EObject steApplication = (element).getStereotypeApplication(ste);
+			/**
+			 * This is used to store all the property descriptors for a class stereotyped with a block.
+			 * Derived classes should add descriptors to this vector.
+			 */
 
-					addBase_ObjectNodePropertyDescriptorForObjectNode(steApplication);
+			List<IItemPropertyDescriptor> itemPropertyDescriptorsForobjectNode = new ArrayList<IItemPropertyDescriptor>();
+			ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.OBJECT_NODE);
+			final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
 
-				}
+			itemPropertyDescriptorsForobjectNode.addAll(propertyDescriptors);
+			Stereotype ste = (element).getAppliedStereotype(SysmlResource.NO_BUFFER_ID);
+			if(ste != null) {
+				EObject steApplication = (element).getStereotypeApplication(ste);
+
+
+				itemPropertyDescriptorsForobjectNode.add(createBase_ObjectNodePropertyDescriptorForObjectNode(steApplication));
+
+
+
 			}
 			return itemPropertyDescriptorsForobjectNode;
 
@@ -140,6 +145,7 @@ public class NoBufferItemProvider extends SysMLItemProviderAdapter implements IE
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_NoBuffer_base_ObjectNode_feature"), getString("_UI_PropertyDescriptor_description", "_UI_NoBuffer_base_ObjectNode_feature", "_UI_NoBuffer_type"), ActivitiesPackage.Literals.NO_BUFFER__BASE_OBJECT_NODE, true, false, true, null, null, null));
 	}
 
+
 	/**
 	 * This adds a property descriptor for the Base Object Node feature for the UML element ObjectNode.
 	 * <!-- begin-user-doc -->
@@ -147,9 +153,9 @@ public class NoBufferItemProvider extends SysMLItemProviderAdapter implements IE
 	 * 
 	 * @generated
 	 */
-	protected void addBase_ObjectNodePropertyDescriptorForObjectNode(Object object) {
+	protected ItemPropertyDescriptorDecorator createBase_ObjectNodePropertyDescriptorForObjectNode(Object object) {
 
-		itemPropertyDescriptorsForobjectNode.add(new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_NoBuffer_base_ObjectNode_feature"),
+		return new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_NoBuffer_base_ObjectNode_feature"),
 
 		getString("_UI_PropertyDescriptor_description", "_UI_NoBuffer_base_ObjectNode_feature", "_UI_NoBuffer_type"),
 
@@ -157,11 +163,15 @@ public class NoBufferItemProvider extends SysMLItemProviderAdapter implements IE
 
 		null,
 
+
 		null,
 
-		null)));
+
+		null));
 
 	}
+
+
 
 	/**
 	 * This returns NoBuffer.gif.
@@ -209,6 +219,7 @@ public class NoBufferItemProvider extends SysMLItemProviderAdapter implements IE
 			noBuffer_ = (NoBuffer)object;
 		}
 
+
 		return getString("_UI_NoBuffer_type");
 	}
 
@@ -229,9 +240,12 @@ public class NoBufferItemProvider extends SysMLItemProviderAdapter implements IE
 		 */
 		if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
 
+
+
 			/**
 			 * Handle ObjectNode stereotyped by NoBuffer
 			 */
+
 
 			if(notification.getFeatureID(org.eclipse.uml2.uml.ObjectNode.class) != Notification.NO_FEATURE_ID) {
 				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.OBJECT_NODE);
@@ -269,5 +283,7 @@ public class NoBufferItemProvider extends SysMLItemProviderAdapter implements IE
 	public ResourceLocator getResourceLocator() {
 		return SysmlEditPlugin.INSTANCE;
 	}
+
+
 
 }

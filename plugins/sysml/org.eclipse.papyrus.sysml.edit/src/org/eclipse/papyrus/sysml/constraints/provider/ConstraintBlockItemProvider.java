@@ -51,14 +51,10 @@ import org.eclipse.uml2.uml.edit.UMLEditPlugin;
  */
 public class ConstraintBlockItemProvider extends BlockItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, IVisibilityOverlayImage
 
+
+
+
 {
-
-	/**
-	 * This is used to store all the property descriptors for aclass stereotyped with a block.
-	 * Derived classes should add descriptors to this vector.
-	 */
-
-	protected List<IItemPropertyDescriptor> itemPropertyDescriptorsForclass;
 
 	/**
 	 * Pattern prefix of constraintBlock
@@ -86,6 +82,8 @@ public class ConstraintBlockItemProvider extends BlockItemProvider implements IE
 		super(adapterFactory);
 	}
 
+
+
 	/**
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
@@ -102,21 +100,28 @@ public class ConstraintBlockItemProvider extends BlockItemProvider implements IE
 			}
 		}
 
+
+
 		/**
 		 * Handle Class stereotyped by ConstraintBlock
 		 */
 		if(object instanceof org.eclipse.uml2.uml.Class) {
 			org.eclipse.uml2.uml.Class element = (org.eclipse.uml2.uml.Class)object;
-			if(itemPropertyDescriptorsForclass == null) {
-				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.CLASS);
-				final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
-				itemPropertyDescriptorsForclass = new ArrayList<IItemPropertyDescriptor>();
-				itemPropertyDescriptorsForclass.addAll(propertyDescriptors);
-				Stereotype ste = (element).getAppliedStereotype(SysmlResource.CONSTRAINT_BLOCK_ID);
-				if(ste != null) {
-					EObject steApplication = (element).getStereotypeApplication(ste);
+			/**
+			 * This is used to store all the property descriptors for a class stereotyped with a block.
+			 * Derived classes should add descriptors to this vector.
+			 */
 
-				}
+			List<IItemPropertyDescriptor> itemPropertyDescriptorsForclass = new ArrayList<IItemPropertyDescriptor>();
+			ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.CLASS);
+			final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
+
+			itemPropertyDescriptorsForclass.addAll(propertyDescriptors);
+			Stereotype ste = (element).getAppliedStereotype(SysmlResource.CONSTRAINT_BLOCK_ID);
+			if(ste != null) {
+				EObject steApplication = (element).getStereotypeApplication(ste);
+
+
 			}
 			return itemPropertyDescriptorsForclass;
 
@@ -171,6 +176,7 @@ public class ConstraintBlockItemProvider extends BlockItemProvider implements IE
 			constraintBlock_ = (ConstraintBlock)object;
 		}
 
+
 		ConstraintBlock constraintBlock = (ConstraintBlock)constraintBlock_;
 		return getString("_UI_ConstraintBlock_type") + " " + constraintBlock.isIsEncapsulated();
 	}
@@ -192,9 +198,12 @@ public class ConstraintBlockItemProvider extends BlockItemProvider implements IE
 		 */
 		if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
 
+
+
 			/**
 			 * Handle Class stereotyped by ConstraintBlock
 			 */
+
 
 			if(notification.getFeatureID(org.eclipse.uml2.uml.Class.class) != Notification.NO_FEATURE_ID) {
 				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.CLASS);
@@ -232,6 +241,7 @@ public class ConstraintBlockItemProvider extends BlockItemProvider implements IE
 	public ResourceLocator getResourceLocator() {
 		return SysmlEditPlugin.INSTANCE;
 	}
+
 
 	/**
 	 * Compose the image with specific visibility logo

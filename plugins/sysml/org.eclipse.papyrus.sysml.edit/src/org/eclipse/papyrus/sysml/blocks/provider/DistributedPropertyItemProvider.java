@@ -52,14 +52,8 @@ import org.eclipse.uml2.uml.UMLPackage;
  */
 public class DistributedPropertyItemProvider extends SysMLItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 
+
 {
-
-	/**
-	 * This is used to store all the property descriptors for aclass stereotyped with a block.
-	 * Derived classes should add descriptors to this vector.
-	 */
-
-	protected List<IItemPropertyDescriptor> itemPropertyDescriptorsForproperty;
 
 	/**
 	 * Pattern prefix of distributedProperty
@@ -87,6 +81,8 @@ public class DistributedPropertyItemProvider extends SysMLItemProviderAdapter im
 		super(adapterFactory);
 	}
 
+
+
 	/**
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
@@ -104,23 +100,32 @@ public class DistributedPropertyItemProvider extends SysMLItemProviderAdapter im
 			}
 		}
 
+
+
 		/**
 		 * Handle Property stereotyped by DistributedProperty
 		 */
 		if(object instanceof org.eclipse.uml2.uml.Property) {
 			org.eclipse.uml2.uml.Property element = (org.eclipse.uml2.uml.Property)object;
-			if(itemPropertyDescriptorsForproperty == null) {
-				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.PROPERTY);
-				final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
-				itemPropertyDescriptorsForproperty = new ArrayList<IItemPropertyDescriptor>();
-				itemPropertyDescriptorsForproperty.addAll(propertyDescriptors);
-				Stereotype ste = (element).getAppliedStereotype(SysmlResource.DISTRIBUTED_PROPERTY_ID);
-				if(ste != null) {
-					EObject steApplication = (element).getStereotypeApplication(ste);
+			/**
+			 * This is used to store all the property descriptors for a class stereotyped with a block.
+			 * Derived classes should add descriptors to this vector.
+			 */
 
-					addBase_PropertyPropertyDescriptorForProperty(steApplication);
+			List<IItemPropertyDescriptor> itemPropertyDescriptorsForproperty = new ArrayList<IItemPropertyDescriptor>();
+			ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.PROPERTY);
+			final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
 
-				}
+			itemPropertyDescriptorsForproperty.addAll(propertyDescriptors);
+			Stereotype ste = (element).getAppliedStereotype(SysmlResource.DISTRIBUTED_PROPERTY_ID);
+			if(ste != null) {
+				EObject steApplication = (element).getStereotypeApplication(ste);
+
+
+				itemPropertyDescriptorsForproperty.add(createBase_PropertyPropertyDescriptorForProperty(steApplication));
+
+
+
 			}
 			return itemPropertyDescriptorsForproperty;
 
@@ -140,6 +145,7 @@ public class DistributedPropertyItemProvider extends SysMLItemProviderAdapter im
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_DistributedProperty_base_Property_feature"), getString("_UI_PropertyDescriptor_description", "_UI_DistributedProperty_base_Property_feature", "_UI_DistributedProperty_type"), BlocksPackage.Literals.DISTRIBUTED_PROPERTY__BASE_PROPERTY, true, false, true, null, null, null));
 	}
 
+
 	/**
 	 * This adds a property descriptor for the Base Property feature for the UML element Property.
 	 * <!-- begin-user-doc -->
@@ -147,9 +153,9 @@ public class DistributedPropertyItemProvider extends SysMLItemProviderAdapter im
 	 * 
 	 * @generated
 	 */
-	protected void addBase_PropertyPropertyDescriptorForProperty(Object object) {
+	protected ItemPropertyDescriptorDecorator createBase_PropertyPropertyDescriptorForProperty(Object object) {
 
-		itemPropertyDescriptorsForproperty.add(new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_DistributedProperty_base_Property_feature"),
+		return new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_DistributedProperty_base_Property_feature"),
 
 		getString("_UI_PropertyDescriptor_description", "_UI_DistributedProperty_base_Property_feature", "_UI_DistributedProperty_type"),
 
@@ -157,11 +163,15 @@ public class DistributedPropertyItemProvider extends SysMLItemProviderAdapter im
 
 		null,
 
+
 		null,
 
-		null)));
+
+		null));
 
 	}
+
+
 
 	/**
 	 * This returns DistributedProperty.gif.
@@ -209,6 +219,7 @@ public class DistributedPropertyItemProvider extends SysMLItemProviderAdapter im
 			distributedProperty_ = (DistributedProperty)object;
 		}
 
+
 		return getString("_UI_DistributedProperty_type");
 	}
 
@@ -229,9 +240,12 @@ public class DistributedPropertyItemProvider extends SysMLItemProviderAdapter im
 		 */
 		if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
 
+
+
 			/**
 			 * Handle Property stereotyped by DistributedProperty
 			 */
+
 
 			if(notification.getFeatureID(org.eclipse.uml2.uml.Property.class) != Notification.NO_FEATURE_ID) {
 				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.PROPERTY);
@@ -269,5 +283,7 @@ public class DistributedPropertyItemProvider extends SysMLItemProviderAdapter im
 	public ResourceLocator getResourceLocator() {
 		return SysmlEditPlugin.INSTANCE;
 	}
+
+
 
 }

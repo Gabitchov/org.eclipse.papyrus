@@ -52,14 +52,8 @@ import org.eclipse.uml2.uml.UMLPackage;
  */
 public class DimensionItemProvider extends SysMLItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 
+
 {
-
-	/**
-	 * This is used to store all the property descriptors for aclass stereotyped with a block.
-	 * Derived classes should add descriptors to this vector.
-	 */
-
-	protected List<IItemPropertyDescriptor> itemPropertyDescriptorsForinstanceSpecification;
 
 	/**
 	 * Pattern prefix of dimension
@@ -87,6 +81,8 @@ public class DimensionItemProvider extends SysMLItemProviderAdapter implements I
 		super(adapterFactory);
 	}
 
+
+
 	/**
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
@@ -104,23 +100,32 @@ public class DimensionItemProvider extends SysMLItemProviderAdapter implements I
 			}
 		}
 
+
+
 		/**
 		 * Handle InstanceSpecification stereotyped by Dimension
 		 */
 		if(object instanceof org.eclipse.uml2.uml.InstanceSpecification) {
 			org.eclipse.uml2.uml.InstanceSpecification element = (org.eclipse.uml2.uml.InstanceSpecification)object;
-			if(itemPropertyDescriptorsForinstanceSpecification == null) {
-				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.INSTANCE_SPECIFICATION);
-				final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
-				itemPropertyDescriptorsForinstanceSpecification = new ArrayList<IItemPropertyDescriptor>();
-				itemPropertyDescriptorsForinstanceSpecification.addAll(propertyDescriptors);
-				Stereotype ste = (element).getAppliedStereotype(SysmlResource.DIMENSION_ID);
-				if(ste != null) {
-					EObject steApplication = (element).getStereotypeApplication(ste);
+			/**
+			 * This is used to store all the property descriptors for a class stereotyped with a block.
+			 * Derived classes should add descriptors to this vector.
+			 */
 
-					addBase_InstanceSpecificationPropertyDescriptorForInstanceSpecification(steApplication);
+			List<IItemPropertyDescriptor> itemPropertyDescriptorsForinstanceSpecification = new ArrayList<IItemPropertyDescriptor>();
+			ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.INSTANCE_SPECIFICATION);
+			final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
 
-				}
+			itemPropertyDescriptorsForinstanceSpecification.addAll(propertyDescriptors);
+			Stereotype ste = (element).getAppliedStereotype(SysmlResource.DIMENSION_ID);
+			if(ste != null) {
+				EObject steApplication = (element).getStereotypeApplication(ste);
+
+
+				itemPropertyDescriptorsForinstanceSpecification.add(createBase_InstanceSpecificationPropertyDescriptorForInstanceSpecification(steApplication));
+
+
+
 			}
 			return itemPropertyDescriptorsForinstanceSpecification;
 
@@ -140,6 +145,7 @@ public class DimensionItemProvider extends SysMLItemProviderAdapter implements I
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Dimension_base_InstanceSpecification_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Dimension_base_InstanceSpecification_feature", "_UI_Dimension_type"), BlocksPackage.Literals.DIMENSION__BASE_INSTANCE_SPECIFICATION, true, false, true, null, null, null));
 	}
 
+
 	/**
 	 * This adds a property descriptor for the Base Instance Specification feature for the UML element InstanceSpecification.
 	 * <!-- begin-user-doc -->
@@ -147,9 +153,9 @@ public class DimensionItemProvider extends SysMLItemProviderAdapter implements I
 	 * 
 	 * @generated
 	 */
-	protected void addBase_InstanceSpecificationPropertyDescriptorForInstanceSpecification(Object object) {
+	protected ItemPropertyDescriptorDecorator createBase_InstanceSpecificationPropertyDescriptorForInstanceSpecification(Object object) {
 
-		itemPropertyDescriptorsForinstanceSpecification.add(new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Dimension_base_InstanceSpecification_feature"),
+		return new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Dimension_base_InstanceSpecification_feature"),
 
 		getString("_UI_PropertyDescriptor_description", "_UI_Dimension_base_InstanceSpecification_feature", "_UI_Dimension_type"),
 
@@ -157,11 +163,15 @@ public class DimensionItemProvider extends SysMLItemProviderAdapter implements I
 
 		null,
 
+
 		null,
 
-		null)));
+
+		null));
 
 	}
+
+
 
 	/**
 	 * This returns Dimension.gif.
@@ -209,6 +219,7 @@ public class DimensionItemProvider extends SysMLItemProviderAdapter implements I
 			dimension_ = (Dimension)object;
 		}
 
+
 		return getString("_UI_Dimension_type");
 	}
 
@@ -229,9 +240,12 @@ public class DimensionItemProvider extends SysMLItemProviderAdapter implements I
 		 */
 		if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
 
+
+
 			/**
 			 * Handle InstanceSpecification stereotyped by Dimension
 			 */
+
 
 			if(notification.getFeatureID(org.eclipse.uml2.uml.InstanceSpecification.class) != Notification.NO_FEATURE_ID) {
 				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.INSTANCE_SPECIFICATION);
@@ -269,5 +283,7 @@ public class DimensionItemProvider extends SysMLItemProviderAdapter implements I
 	public ResourceLocator getResourceLocator() {
 		return SysmlEditPlugin.INSTANCE;
 	}
+
+
 
 }

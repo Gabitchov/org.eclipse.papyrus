@@ -52,21 +52,8 @@ import org.eclipse.uml2.uml.UMLPackage;
  */
 public class TestCaseItemProvider extends SysMLItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 
+
 {
-
-	/**
-	 * This is used to store all the property descriptors for aclass stereotyped with a block.
-	 * Derived classes should add descriptors to this vector.
-	 */
-
-	protected List<IItemPropertyDescriptor> itemPropertyDescriptorsForbehavior;
-
-	/**
-	 * This is used to store all the property descriptors for aclass stereotyped with a block.
-	 * Derived classes should add descriptors to this vector.
-	 */
-
-	protected List<IItemPropertyDescriptor> itemPropertyDescriptorsForoperation;
 
 	/**
 	 * Pattern prefix of testCase
@@ -102,6 +89,8 @@ public class TestCaseItemProvider extends SysMLItemProviderAdapter implements IE
 		super(adapterFactory);
 	}
 
+
+
 	/**
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
@@ -121,65 +110,90 @@ public class TestCaseItemProvider extends SysMLItemProviderAdapter implements IE
 			}
 		}
 
+
+
 		/**
 		 * Handle Behavior stereotyped by TestCase
 		 */
 		if(object instanceof org.eclipse.uml2.uml.Behavior) {
 			org.eclipse.uml2.uml.Behavior element = (org.eclipse.uml2.uml.Behavior)object;
-			if(itemPropertyDescriptorsForbehavior == null) {
-				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.BEHAVIOR);
-				final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
-				itemPropertyDescriptorsForbehavior = new ArrayList<IItemPropertyDescriptor>();
-				itemPropertyDescriptorsForbehavior.addAll(propertyDescriptors);
-				Stereotype ste = (element).getAppliedStereotype(SysmlResource.TEST_CASE_ID);
-				if(ste != null) {
-					EObject steApplication = (element).getStereotypeApplication(ste);
+			/**
+			 * This is used to store all the property descriptors for a class stereotyped with a block.
+			 * Derived classes should add descriptors to this vector.
+			 */
 
-					addBase_BehaviorPropertyDescriptorForBehavior(steApplication);
+			List<IItemPropertyDescriptor> itemPropertyDescriptorsForbehavior = new ArrayList<IItemPropertyDescriptor>();
+			ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.BEHAVIOR);
+			final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
 
-					addBase_BehaviorPropertyDescriptorForOperation(steApplication);
+			itemPropertyDescriptorsForbehavior.addAll(propertyDescriptors);
+			Stereotype ste = (element).getAppliedStereotype(SysmlResource.TEST_CASE_ID);
+			if(ste != null) {
+				EObject steApplication = (element).getStereotypeApplication(ste);
 
-					addBase_OperationPropertyDescriptorForBehavior(steApplication);
 
-					addBase_OperationPropertyDescriptorForOperation(steApplication);
+				itemPropertyDescriptorsForbehavior.add(createBase_BehaviorPropertyDescriptorForBehavior(steApplication));
 
-					addVerifiesPropertyDescriptorForBehavior(steApplication);
+				itemPropertyDescriptorsForbehavior.add(createBase_BehaviorPropertyDescriptorForOperation(steApplication));
 
-					addVerifiesPropertyDescriptorForOperation(steApplication);
 
-				}
+
+				itemPropertyDescriptorsForbehavior.add(createBase_OperationPropertyDescriptorForBehavior(steApplication));
+
+				itemPropertyDescriptorsForbehavior.add(createBase_OperationPropertyDescriptorForOperation(steApplication));
+
+
+
+				itemPropertyDescriptorsForbehavior.add(createVerifiesPropertyDescriptorForBehavior(steApplication));
+
+				itemPropertyDescriptorsForbehavior.add(createVerifiesPropertyDescriptorForOperation(steApplication));
+
+
+
 			}
 			return itemPropertyDescriptorsForbehavior;
 
 		}
+
 
 		/**
 		 * Handle Operation stereotyped by TestCase
 		 */
 		if(object instanceof org.eclipse.uml2.uml.Operation) {
 			org.eclipse.uml2.uml.Operation element = (org.eclipse.uml2.uml.Operation)object;
-			if(itemPropertyDescriptorsForoperation == null) {
-				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.OPERATION);
-				final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
-				itemPropertyDescriptorsForoperation = new ArrayList<IItemPropertyDescriptor>();
-				itemPropertyDescriptorsForoperation.addAll(propertyDescriptors);
-				Stereotype ste = (element).getAppliedStereotype(SysmlResource.TEST_CASE_ID);
-				if(ste != null) {
-					EObject steApplication = (element).getStereotypeApplication(ste);
+			/**
+			 * This is used to store all the property descriptors for a class stereotyped with a block.
+			 * Derived classes should add descriptors to this vector.
+			 */
 
-					addBase_BehaviorPropertyDescriptorForBehavior(steApplication);
+			List<IItemPropertyDescriptor> itemPropertyDescriptorsForoperation = new ArrayList<IItemPropertyDescriptor>();
+			ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.OPERATION);
+			final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
 
-					addBase_BehaviorPropertyDescriptorForOperation(steApplication);
+			itemPropertyDescriptorsForoperation.addAll(propertyDescriptors);
+			Stereotype ste = (element).getAppliedStereotype(SysmlResource.TEST_CASE_ID);
+			if(ste != null) {
+				EObject steApplication = (element).getStereotypeApplication(ste);
 
-					addBase_OperationPropertyDescriptorForBehavior(steApplication);
 
-					addBase_OperationPropertyDescriptorForOperation(steApplication);
+				itemPropertyDescriptorsForoperation.add(createBase_BehaviorPropertyDescriptorForBehavior(steApplication));
 
-					addVerifiesPropertyDescriptorForBehavior(steApplication);
+				itemPropertyDescriptorsForoperation.add(createBase_BehaviorPropertyDescriptorForOperation(steApplication));
 
-					addVerifiesPropertyDescriptorForOperation(steApplication);
 
-				}
+
+				itemPropertyDescriptorsForoperation.add(createBase_OperationPropertyDescriptorForBehavior(steApplication));
+
+				itemPropertyDescriptorsForoperation.add(createBase_OperationPropertyDescriptorForOperation(steApplication));
+
+
+
+				itemPropertyDescriptorsForoperation.add(createVerifiesPropertyDescriptorForBehavior(steApplication));
+
+				itemPropertyDescriptorsForoperation.add(createVerifiesPropertyDescriptorForOperation(steApplication));
+
+
+
 			}
 			return itemPropertyDescriptorsForoperation;
 
@@ -199,6 +213,7 @@ public class TestCaseItemProvider extends SysMLItemProviderAdapter implements IE
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_TestCase_base_Behavior_feature"), getString("_UI_PropertyDescriptor_description", "_UI_TestCase_base_Behavior_feature", "_UI_TestCase_type"), RequirementsPackage.Literals.TEST_CASE__BASE_BEHAVIOR, true, false, true, null, null, null));
 	}
 
+
 	/**
 	 * This adds a property descriptor for the Base Behavior feature for the UML element Behavior.
 	 * <!-- begin-user-doc -->
@@ -206,9 +221,9 @@ public class TestCaseItemProvider extends SysMLItemProviderAdapter implements IE
 	 * 
 	 * @generated
 	 */
-	protected void addBase_BehaviorPropertyDescriptorForBehavior(Object object) {
+	protected ItemPropertyDescriptorDecorator createBase_BehaviorPropertyDescriptorForBehavior(Object object) {
 
-		itemPropertyDescriptorsForbehavior.add(new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_TestCase_base_Behavior_feature"),
+		return new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_TestCase_base_Behavior_feature"),
 
 		getString("_UI_PropertyDescriptor_description", "_UI_TestCase_base_Behavior_feature", "_UI_TestCase_type"),
 
@@ -216,9 +231,11 @@ public class TestCaseItemProvider extends SysMLItemProviderAdapter implements IE
 
 		null,
 
+
 		null,
 
-		null)));
+
+		null));
 
 	}
 
@@ -229,9 +246,9 @@ public class TestCaseItemProvider extends SysMLItemProviderAdapter implements IE
 	 * 
 	 * @generated
 	 */
-	protected void addBase_BehaviorPropertyDescriptorForOperation(Object object) {
+	protected ItemPropertyDescriptorDecorator createBase_BehaviorPropertyDescriptorForOperation(Object object) {
 
-		itemPropertyDescriptorsForoperation.add(new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_TestCase_base_Behavior_feature"),
+		return new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_TestCase_base_Behavior_feature"),
 
 		getString("_UI_PropertyDescriptor_description", "_UI_TestCase_base_Behavior_feature", "_UI_TestCase_type"),
 
@@ -239,11 +256,15 @@ public class TestCaseItemProvider extends SysMLItemProviderAdapter implements IE
 
 		null,
 
+
 		null,
 
-		null)));
+
+		null));
 
 	}
+
+
 
 	/**
 	 * This adds a property descriptor for the Base Operation feature.
@@ -256,6 +277,7 @@ public class TestCaseItemProvider extends SysMLItemProviderAdapter implements IE
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_TestCase_base_Operation_feature"), getString("_UI_PropertyDescriptor_description", "_UI_TestCase_base_Operation_feature", "_UI_TestCase_type"), RequirementsPackage.Literals.TEST_CASE__BASE_OPERATION, true, false, true, null, null, null));
 	}
 
+
 	/**
 	 * This adds a property descriptor for the Base Operation feature for the UML element Behavior.
 	 * <!-- begin-user-doc -->
@@ -263,9 +285,9 @@ public class TestCaseItemProvider extends SysMLItemProviderAdapter implements IE
 	 * 
 	 * @generated
 	 */
-	protected void addBase_OperationPropertyDescriptorForBehavior(Object object) {
+	protected ItemPropertyDescriptorDecorator createBase_OperationPropertyDescriptorForBehavior(Object object) {
 
-		itemPropertyDescriptorsForbehavior.add(new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_TestCase_base_Operation_feature"),
+		return new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_TestCase_base_Operation_feature"),
 
 		getString("_UI_PropertyDescriptor_description", "_UI_TestCase_base_Operation_feature", "_UI_TestCase_type"),
 
@@ -273,9 +295,11 @@ public class TestCaseItemProvider extends SysMLItemProviderAdapter implements IE
 
 		null,
 
+
 		null,
 
-		null)));
+
+		null));
 
 	}
 
@@ -286,9 +310,9 @@ public class TestCaseItemProvider extends SysMLItemProviderAdapter implements IE
 	 * 
 	 * @generated
 	 */
-	protected void addBase_OperationPropertyDescriptorForOperation(Object object) {
+	protected ItemPropertyDescriptorDecorator createBase_OperationPropertyDescriptorForOperation(Object object) {
 
-		itemPropertyDescriptorsForoperation.add(new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_TestCase_base_Operation_feature"),
+		return new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_TestCase_base_Operation_feature"),
 
 		getString("_UI_PropertyDescriptor_description", "_UI_TestCase_base_Operation_feature", "_UI_TestCase_type"),
 
@@ -296,11 +320,15 @@ public class TestCaseItemProvider extends SysMLItemProviderAdapter implements IE
 
 		null,
 
+
 		null,
 
-		null)));
+
+		null));
 
 	}
+
+
 
 	/**
 	 * This adds a property descriptor for the Verifies feature.
@@ -313,6 +341,7 @@ public class TestCaseItemProvider extends SysMLItemProviderAdapter implements IE
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_TestCase_verifies_feature"), getString("_UI_PropertyDescriptor_description", "_UI_TestCase_verifies_feature", "_UI_TestCase_type"), RequirementsPackage.Literals.TEST_CASE__VERIFIES, false, false, false, null, null, null));
 	}
 
+
 	/**
 	 * This adds a property descriptor for the Verifies feature for the UML element Behavior.
 	 * <!-- begin-user-doc -->
@@ -320,9 +349,9 @@ public class TestCaseItemProvider extends SysMLItemProviderAdapter implements IE
 	 * 
 	 * @generated
 	 */
-	protected void addVerifiesPropertyDescriptorForBehavior(Object object) {
+	protected ItemPropertyDescriptorDecorator createVerifiesPropertyDescriptorForBehavior(Object object) {
 
-		itemPropertyDescriptorsForbehavior.add(new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_TestCase_verifies_feature"),
+		return new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_TestCase_verifies_feature"),
 
 		getString("_UI_PropertyDescriptor_description", "_UI_TestCase_verifies_feature", "_UI_TestCase_type"),
 
@@ -330,9 +359,11 @@ public class TestCaseItemProvider extends SysMLItemProviderAdapter implements IE
 
 		null,
 
+
 		null,
 
-		null)));
+
+		null));
 
 	}
 
@@ -343,9 +374,9 @@ public class TestCaseItemProvider extends SysMLItemProviderAdapter implements IE
 	 * 
 	 * @generated
 	 */
-	protected void addVerifiesPropertyDescriptorForOperation(Object object) {
+	protected ItemPropertyDescriptorDecorator createVerifiesPropertyDescriptorForOperation(Object object) {
 
-		itemPropertyDescriptorsForoperation.add(new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_TestCase_verifies_feature"),
+		return new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_TestCase_verifies_feature"),
 
 		getString("_UI_PropertyDescriptor_description", "_UI_TestCase_verifies_feature", "_UI_TestCase_type"),
 
@@ -353,11 +384,15 @@ public class TestCaseItemProvider extends SysMLItemProviderAdapter implements IE
 
 		null,
 
+
 		null,
 
-		null)));
+
+		null));
 
 	}
+
+
 
 	/**
 	 * This returns TestCase.gif.
@@ -416,6 +451,7 @@ public class TestCaseItemProvider extends SysMLItemProviderAdapter implements IE
 			testCase_ = (TestCase)object;
 		}
 
+
 		return getString("_UI_TestCase_type");
 	}
 
@@ -436,9 +472,12 @@ public class TestCaseItemProvider extends SysMLItemProviderAdapter implements IE
 		 */
 		if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
 
+
+
 			/**
 			 * Handle Behavior stereotyped by TestCase
 			 */
+
 
 			if(notification.getFeatureID(org.eclipse.uml2.uml.Behavior.class) != Notification.NO_FEATURE_ID) {
 				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.BEHAVIOR);
@@ -447,9 +486,11 @@ public class TestCaseItemProvider extends SysMLItemProviderAdapter implements IE
 
 			}
 
+
 			/**
 			 * Handle Operation stereotyped by TestCase
 			 */
+
 
 			if(notification.getFeatureID(org.eclipse.uml2.uml.Operation.class) != Notification.NO_FEATURE_ID) {
 				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.OPERATION);
@@ -487,5 +528,7 @@ public class TestCaseItemProvider extends SysMLItemProviderAdapter implements IE
 	public ResourceLocator getResourceLocator() {
 		return SysmlEditPlugin.INSTANCE;
 	}
+
+
 
 }
