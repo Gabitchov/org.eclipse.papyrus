@@ -147,14 +147,10 @@ public class ModelSet extends ResourceSetImpl {
 	 * @return the transactional editing domain
 	 */
 	public TransactionalEditingDomain getTransactionalEditingDomain() {
-		// transactionalEditingDomain =
-		// TransactionalEditingDomain.Factory.INSTANCE.getEditingDomain(this);
 		transactionalEditingDomain = WorkspaceEditingDomainFactory.INSTANCE.getEditingDomain(this);
 
 		if(transactionalEditingDomain == null) {
-			// transactionalEditingDomain =
-			// TransactionalEditingDomain.Factory.INSTANCE.createEditingDomain(this);
-			transactionalEditingDomain = WorkspaceEditingDomainFactory.INSTANCE.createEditingDomain(this);
+			transactionalEditingDomain = TransactionalEditingDomainManager.createTransactionalEditingDomain(this);
 			// What for?
 			transactionalEditingDomain.setID("SharedEditingDomain"); //$NON-NLS-1$
 		}
