@@ -44,8 +44,9 @@ import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.modelelements.Problem} object. <!--
- * begin-user-doc --> <!-- end-user-doc -->
+ * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.modelelements.Problem} object.
+ * <!-- begin-user-doc -->
+ * <!-- end-user-doc -->
  * 
  * @generated
  */
@@ -69,8 +70,9 @@ public class ProblemItemProvider extends SysMLItemProviderAdapter implements IEd
 	private static Pattern COMMENT_PREFIX_PATTERN = Pattern.compile("Comment");
 
 	/**
-	 * This constructs an instance from a factory and a notifier. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -79,8 +81,9 @@ public class ProblemItemProvider extends SysMLItemProviderAdapter implements IEd
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -100,9 +103,8 @@ public class ProblemItemProvider extends SysMLItemProviderAdapter implements IEd
 		if(object instanceof org.eclipse.uml2.uml.Comment) {
 			org.eclipse.uml2.uml.Comment element = (org.eclipse.uml2.uml.Comment)object;
 			/**
-			 * This is used to store all the property descriptors for a class
-			 * stereotyped with a block. Derived classes should add descriptors
-			 * to this vector.
+			 * This is used to store all the property descriptors for a class stereotyped with a block.
+			 * Derived classes should add descriptors to this vector.
 			 */
 
 			List<IItemPropertyDescriptor> itemPropertyDescriptorsForcomment = new ArrayList<IItemPropertyDescriptor>();
@@ -125,8 +127,9 @@ public class ProblemItemProvider extends SysMLItemProviderAdapter implements IEd
 	}
 
 	/**
-	 * This adds a property descriptor for the Base Comment feature. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Base Comment feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -135,8 +138,9 @@ public class ProblemItemProvider extends SysMLItemProviderAdapter implements IEd
 	}
 
 	/**
-	 * This adds a property descriptor for the Base Comment feature for the UML
-	 * element Comment. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Base Comment feature for the UML element Comment.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -157,7 +161,9 @@ public class ProblemItemProvider extends SysMLItemProviderAdapter implements IEd
 	}
 
 	/**
-	 * This returns Problem.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns Problem.gif.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -172,8 +178,9 @@ public class ProblemItemProvider extends SysMLItemProviderAdapter implements IEd
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -203,10 +210,10 @@ public class ProblemItemProvider extends SysMLItemProviderAdapter implements IEd
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to
-	 * update any cached children and by creating a viewer notification, which
-	 * it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -236,9 +243,10 @@ public class ProblemItemProvider extends SysMLItemProviderAdapter implements IEd
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
-	 * describing the children that can be created under this object. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -248,14 +256,72 @@ public class ProblemItemProvider extends SysMLItemProviderAdapter implements IEd
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	@Override
 	public ResourceLocator getResourceLocator() {
 		return SysmlEditPlugin.INSTANCE;
+	}
+
+	/**
+	 * Override in order to handle has children for based class
+	 * 
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public Collection<?> getChildren(Object object) {
+		Collection<Object> result = (Collection<Object>)super.getChildren(object);
+		if(object instanceof EObject) {
+			EObject eObject = (EObject)object;
+			/**
+			 * Handle based elements type
+			 */
+			if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
+
+				/**
+				 * Handle Comment stereotyped by Problem
+				 */
+				if(UMLPackage.Literals.COMMENT.equals(eObject.eClass())) {
+					ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.COMMENT);
+					result.addAll((Collection<Object>)ite.getChildren(object));
+					return result;
+				}
+
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * Override in order to handle has children for based class
+	 * 
+	 * @generated
+	 */
+	@Override
+	public boolean hasChildren(Object object) {
+		if(object instanceof EObject) {
+			EObject eObject = (EObject)object;
+			/**
+			 * Handle based elements type
+			 */
+			if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
+
+				/**
+				 * Handle Comment stereotyped by Problem
+				 */
+				if(UMLPackage.Literals.COMMENT.equals(eObject.eClass())) {
+					ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.COMMENT);
+					return super.hasChildren(object) || ite.hasChildren(object);
+				}
+
+			}
+		}
+		return super.hasChildren(object);
 	}
 
 }

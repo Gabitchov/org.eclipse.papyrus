@@ -40,8 +40,9 @@ import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.edit.UMLEditPlugin;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.activities.Discrete} object. <!--
- * begin-user-doc --> <!-- end-user-doc -->
+ * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.activities.Discrete} object.
+ * <!-- begin-user-doc -->
+ * <!-- end-user-doc -->
  * 
  * @generated
  */
@@ -73,8 +74,9 @@ public class DiscreteItemProvider extends RateItemProvider implements IEditingDo
 	private static Pattern ACTIVITY_EDGE_PREFIX_PATTERN = Pattern.compile("ActivityEdge");
 
 	/**
-	 * This constructs an instance from a factory and a notifier. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -83,8 +85,9 @@ public class DiscreteItemProvider extends RateItemProvider implements IEditingDo
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -103,9 +106,8 @@ public class DiscreteItemProvider extends RateItemProvider implements IEditingDo
 		if(object instanceof org.eclipse.uml2.uml.Parameter) {
 			org.eclipse.uml2.uml.Parameter element = (org.eclipse.uml2.uml.Parameter)object;
 			/**
-			 * This is used to store all the property descriptors for a class
-			 * stereotyped with a block. Derived classes should add descriptors
-			 * to this vector.
+			 * This is used to store all the property descriptors for a class stereotyped with a block.
+			 * Derived classes should add descriptors to this vector.
 			 */
 
 			List<IItemPropertyDescriptor> itemPropertyDescriptorsForparameter = new ArrayList<IItemPropertyDescriptor>();
@@ -128,9 +130,8 @@ public class DiscreteItemProvider extends RateItemProvider implements IEditingDo
 		if(object instanceof org.eclipse.uml2.uml.ActivityEdge) {
 			org.eclipse.uml2.uml.ActivityEdge element = (org.eclipse.uml2.uml.ActivityEdge)object;
 			/**
-			 * This is used to store all the property descriptors for a class
-			 * stereotyped with a block. Derived classes should add descriptors
-			 * to this vector.
+			 * This is used to store all the property descriptors for a class stereotyped with a block.
+			 * Derived classes should add descriptors to this vector.
 			 */
 
 			List<IItemPropertyDescriptor> itemPropertyDescriptorsForactivityEdge = new ArrayList<IItemPropertyDescriptor>();
@@ -151,7 +152,9 @@ public class DiscreteItemProvider extends RateItemProvider implements IEditingDo
 	}
 
 	/**
-	 * This returns Discrete.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns Discrete.gif.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -166,8 +169,9 @@ public class DiscreteItemProvider extends RateItemProvider implements IEditingDo
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -208,10 +212,10 @@ public class DiscreteItemProvider extends RateItemProvider implements IEditingDo
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to
-	 * update any cached children and by creating a viewer notification, which
-	 * it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -252,9 +256,10 @@ public class DiscreteItemProvider extends RateItemProvider implements IEditingDo
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
-	 * describing the children that can be created under this object. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -264,8 +269,8 @@ public class DiscreteItemProvider extends RateItemProvider implements IEditingDo
 	}
 
 	/**
-	 * Compose the image with specific visibility logo Copied from UML
-	 * implementation
+	 * Compose the image with specific visibility logo
+	 * Copied from UML implementation
 	 * 
 	 * @param object
 	 * @param composedImage
@@ -280,6 +285,80 @@ public class DiscreteItemProvider extends RateItemProvider implements IEditingDo
 		}
 
 		return composedImage;
+	}
+
+	/**
+	 * Override in order to handle has children for based class
+	 * 
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public Collection<?> getChildren(Object object) {
+		Collection<Object> result = (Collection<Object>)super.getChildren(object);
+		if(object instanceof EObject) {
+			EObject eObject = (EObject)object;
+			/**
+			 * Handle based elements type
+			 */
+			if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
+
+				/**
+				 * Handle Parameter stereotyped by Discrete
+				 */
+				if(UMLPackage.Literals.PARAMETER.equals(eObject.eClass())) {
+					ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.PARAMETER);
+					result.addAll((Collection<Object>)ite.getChildren(object));
+					return result;
+				}
+
+				/**
+				 * Handle ActivityEdge stereotyped by Discrete
+				 */
+				if(UMLPackage.Literals.ACTIVITY_EDGE.equals(eObject.eClass())) {
+					ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.ACTIVITY_EDGE);
+					result.addAll((Collection<Object>)ite.getChildren(object));
+					return result;
+				}
+
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * Override in order to handle has children for based class
+	 * 
+	 * @generated
+	 */
+	@Override
+	public boolean hasChildren(Object object) {
+		if(object instanceof EObject) {
+			EObject eObject = (EObject)object;
+			/**
+			 * Handle based elements type
+			 */
+			if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
+
+				/**
+				 * Handle Parameter stereotyped by Discrete
+				 */
+				if(UMLPackage.Literals.PARAMETER.equals(eObject.eClass())) {
+					ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.PARAMETER);
+					return super.hasChildren(object) || ite.hasChildren(object);
+				}
+
+				/**
+				 * Handle ActivityEdge stereotyped by Discrete
+				 */
+				if(UMLPackage.Literals.ACTIVITY_EDGE.equals(eObject.eClass())) {
+					ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.ACTIVITY_EDGE);
+					return super.hasChildren(object) || ite.hasChildren(object);
+				}
+
+			}
+		}
+		return super.hasChildren(object);
 	}
 
 }

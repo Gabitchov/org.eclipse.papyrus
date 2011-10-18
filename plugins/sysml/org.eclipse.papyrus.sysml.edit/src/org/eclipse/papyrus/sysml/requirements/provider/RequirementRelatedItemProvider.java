@@ -45,7 +45,8 @@ import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.requirements.RequirementRelated} object.
- * <!-- begin-user-doc --> <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * <!-- end-user-doc -->
  * 
  * @generated
  */
@@ -69,8 +70,9 @@ public class RequirementRelatedItemProvider extends SysMLItemProviderAdapter imp
 	private static Pattern NAMED_ELEMENT_PREFIX_PATTERN = Pattern.compile("NamedElement");
 
 	/**
-	 * This constructs an instance from a factory and a notifier. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -79,8 +81,9 @@ public class RequirementRelatedItemProvider extends SysMLItemProviderAdapter imp
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -104,9 +107,8 @@ public class RequirementRelatedItemProvider extends SysMLItemProviderAdapter imp
 		if(object instanceof org.eclipse.uml2.uml.NamedElement) {
 			org.eclipse.uml2.uml.NamedElement element = (org.eclipse.uml2.uml.NamedElement)object;
 			/**
-			 * This is used to store all the property descriptors for a class
-			 * stereotyped with a block. Derived classes should add descriptors
-			 * to this vector.
+			 * This is used to store all the property descriptors for a class stereotyped with a block.
+			 * Derived classes should add descriptors to this vector.
 			 */
 
 			List<IItemPropertyDescriptor> itemPropertyDescriptorsFornamedElement = new ArrayList<IItemPropertyDescriptor>();
@@ -137,8 +139,9 @@ public class RequirementRelatedItemProvider extends SysMLItemProviderAdapter imp
 	}
 
 	/**
-	 * This adds a property descriptor for the Base Named Element feature. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Base Named Element feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -147,9 +150,9 @@ public class RequirementRelatedItemProvider extends SysMLItemProviderAdapter imp
 	}
 
 	/**
-	 * This adds a property descriptor for the Base Named Element feature for
-	 * the UML element NamedElement. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
+	 * This adds a property descriptor for the Base Named Element feature for the UML element NamedElement.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -170,8 +173,9 @@ public class RequirementRelatedItemProvider extends SysMLItemProviderAdapter imp
 	}
 
 	/**
-	 * This adds a property descriptor for the Traced From feature. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Traced From feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -180,8 +184,9 @@ public class RequirementRelatedItemProvider extends SysMLItemProviderAdapter imp
 	}
 
 	/**
-	 * This adds a property descriptor for the Traced From feature for the UML
-	 * element NamedElement. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Traced From feature for the UML element NamedElement.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -202,8 +207,9 @@ public class RequirementRelatedItemProvider extends SysMLItemProviderAdapter imp
 	}
 
 	/**
-	 * This adds a property descriptor for the Satisfies feature. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Satisfies feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -212,8 +218,9 @@ public class RequirementRelatedItemProvider extends SysMLItemProviderAdapter imp
 	}
 
 	/**
-	 * This adds a property descriptor for the Satisfies feature for the UML
-	 * element NamedElement. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Satisfies feature for the UML element NamedElement.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -234,8 +241,9 @@ public class RequirementRelatedItemProvider extends SysMLItemProviderAdapter imp
 	}
 
 	/**
-	 * This adds a property descriptor for the Refines feature. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Refines feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -244,8 +252,9 @@ public class RequirementRelatedItemProvider extends SysMLItemProviderAdapter imp
 	}
 
 	/**
-	 * This adds a property descriptor for the Refines feature for the UML
-	 * element NamedElement. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Refines feature for the UML element NamedElement.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -266,8 +275,9 @@ public class RequirementRelatedItemProvider extends SysMLItemProviderAdapter imp
 	}
 
 	/**
-	 * This adds a property descriptor for the Verifies feature. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Verifies feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -276,8 +286,9 @@ public class RequirementRelatedItemProvider extends SysMLItemProviderAdapter imp
 	}
 
 	/**
-	 * This adds a property descriptor for the Verifies feature for the UML
-	 * element NamedElement. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Verifies feature for the UML element NamedElement.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -298,8 +309,9 @@ public class RequirementRelatedItemProvider extends SysMLItemProviderAdapter imp
 	}
 
 	/**
-	 * This returns RequirementRelated.gif. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * This returns RequirementRelated.gif.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -314,8 +326,9 @@ public class RequirementRelatedItemProvider extends SysMLItemProviderAdapter imp
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -345,10 +358,10 @@ public class RequirementRelatedItemProvider extends SysMLItemProviderAdapter imp
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to
-	 * update any cached children and by creating a viewer notification, which
-	 * it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -378,9 +391,10 @@ public class RequirementRelatedItemProvider extends SysMLItemProviderAdapter imp
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
-	 * describing the children that can be created under this object. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -390,14 +404,72 @@ public class RequirementRelatedItemProvider extends SysMLItemProviderAdapter imp
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	@Override
 	public ResourceLocator getResourceLocator() {
 		return SysmlEditPlugin.INSTANCE;
+	}
+
+	/**
+	 * Override in order to handle has children for based class
+	 * 
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public Collection<?> getChildren(Object object) {
+		Collection<Object> result = (Collection<Object>)super.getChildren(object);
+		if(object instanceof EObject) {
+			EObject eObject = (EObject)object;
+			/**
+			 * Handle based elements type
+			 */
+			if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
+
+				/**
+				 * Handle NamedElement stereotyped by RequirementRelated
+				 */
+				if(UMLPackage.Literals.NAMED_ELEMENT.equals(eObject.eClass())) {
+					ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.NAMED_ELEMENT);
+					result.addAll((Collection<Object>)ite.getChildren(object));
+					return result;
+				}
+
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * Override in order to handle has children for based class
+	 * 
+	 * @generated
+	 */
+	@Override
+	public boolean hasChildren(Object object) {
+		if(object instanceof EObject) {
+			EObject eObject = (EObject)object;
+			/**
+			 * Handle based elements type
+			 */
+			if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
+
+				/**
+				 * Handle NamedElement stereotyped by RequirementRelated
+				 */
+				if(UMLPackage.Literals.NAMED_ELEMENT.equals(eObject.eClass())) {
+					ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.NAMED_ELEMENT);
+					return super.hasChildren(object) || ite.hasChildren(object);
+				}
+
+			}
+		}
+		return super.hasChildren(object);
 	}
 
 }
