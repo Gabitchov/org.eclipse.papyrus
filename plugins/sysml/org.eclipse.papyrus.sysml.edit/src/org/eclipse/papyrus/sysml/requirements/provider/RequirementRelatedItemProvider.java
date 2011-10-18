@@ -34,6 +34,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptorDecorator;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.papyrus.sysml.edit.provider.IComposableAdapterFactory;
+import org.eclipse.papyrus.sysml.edit.provider.IRootAdapterFactory;
 import org.eclipse.papyrus.sysml.edit.provider.SysMLItemProviderAdapter;
 import org.eclipse.papyrus.sysml.provider.SysmlEditPlugin;
 import org.eclipse.papyrus.sysml.requirements.RequirementRelated;
@@ -47,11 +48,9 @@ import org.eclipse.uml2.uml.UMLPackage;
  * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.requirements.RequirementRelated} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class RequirementRelatedItemProvider extends SysMLItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
-
 
 {
 
@@ -74,20 +73,16 @@ public class RequirementRelatedItemProvider extends SysMLItemProviderAdapter imp
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public RequirementRelatedItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
-
-
 	/**
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -103,8 +98,6 @@ public class RequirementRelatedItemProvider extends SysMLItemProviderAdapter imp
 				addVerifiesPropertyDescriptor(object);
 			}
 		}
-
-
 
 		/**
 		 * Handle NamedElement stereotyped by RequirementRelated
@@ -125,26 +118,15 @@ public class RequirementRelatedItemProvider extends SysMLItemProviderAdapter imp
 			if(ste != null) {
 				EObject steApplication = (element).getStereotypeApplication(ste);
 
-
 				itemPropertyDescriptorsFornamedElement.add(createBase_NamedElementPropertyDescriptorForNamedElement(steApplication));
-
-
 
 				itemPropertyDescriptorsFornamedElement.add(createTracedFromPropertyDescriptorForNamedElement(steApplication));
 
-
-
 				itemPropertyDescriptorsFornamedElement.add(createSatisfiesPropertyDescriptorForNamedElement(steApplication));
-
-
 
 				itemPropertyDescriptorsFornamedElement.add(createRefinesPropertyDescriptorForNamedElement(steApplication));
 
-
-
 				itemPropertyDescriptorsFornamedElement.add(createVerifiesPropertyDescriptorForNamedElement(steApplication));
-
-
 
 			}
 			return itemPropertyDescriptorsFornamedElement;
@@ -158,19 +140,16 @@ public class RequirementRelatedItemProvider extends SysMLItemProviderAdapter imp
 	 * This adds a property descriptor for the Base Named Element feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addBase_NamedElementPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_RequirementRelated_base_NamedElement_feature"), getString("_UI_PropertyDescriptor_description", "_UI_RequirementRelated_base_NamedElement_feature", "_UI_RequirementRelated_type"), RequirementsPackage.Literals.REQUIREMENT_RELATED__BASE_NAMED_ELEMENT, true, false, true, null, null, null));
 	}
 
-
 	/**
 	 * This adds a property descriptor for the Base Named Element feature for the UML element NamedElement.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ItemPropertyDescriptorDecorator createBase_NamedElementPropertyDescriptorForNamedElement(Object object) {
@@ -183,33 +162,26 @@ public class RequirementRelatedItemProvider extends SysMLItemProviderAdapter imp
 
 		null,
 
-
 		null,
-
 
 		null));
 
 	}
 
-
-
 	/**
 	 * This adds a property descriptor for the Traced From feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addTracedFromPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_RequirementRelated_tracedFrom_feature"), getString("_UI_PropertyDescriptor_description", "_UI_RequirementRelated_tracedFrom_feature", "_UI_RequirementRelated_type"), RequirementsPackage.Literals.REQUIREMENT_RELATED__TRACED_FROM, false, false, false, null, null, null));
 	}
 
-
 	/**
 	 * This adds a property descriptor for the Traced From feature for the UML element NamedElement.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ItemPropertyDescriptorDecorator createTracedFromPropertyDescriptorForNamedElement(Object object) {
@@ -222,33 +194,26 @@ public class RequirementRelatedItemProvider extends SysMLItemProviderAdapter imp
 
 		null,
 
-
 		null,
-
 
 		null));
 
 	}
 
-
-
 	/**
 	 * This adds a property descriptor for the Satisfies feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addSatisfiesPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_RequirementRelated_satisfies_feature"), getString("_UI_PropertyDescriptor_description", "_UI_RequirementRelated_satisfies_feature", "_UI_RequirementRelated_type"), RequirementsPackage.Literals.REQUIREMENT_RELATED__SATISFIES, false, false, false, null, null, null));
 	}
 
-
 	/**
 	 * This adds a property descriptor for the Satisfies feature for the UML element NamedElement.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ItemPropertyDescriptorDecorator createSatisfiesPropertyDescriptorForNamedElement(Object object) {
@@ -261,33 +226,26 @@ public class RequirementRelatedItemProvider extends SysMLItemProviderAdapter imp
 
 		null,
 
-
 		null,
-
 
 		null));
 
 	}
 
-
-
 	/**
 	 * This adds a property descriptor for the Refines feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addRefinesPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_RequirementRelated_refines_feature"), getString("_UI_PropertyDescriptor_description", "_UI_RequirementRelated_refines_feature", "_UI_RequirementRelated_type"), RequirementsPackage.Literals.REQUIREMENT_RELATED__REFINES, false, false, false, null, null, null));
 	}
 
-
 	/**
 	 * This adds a property descriptor for the Refines feature for the UML element NamedElement.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ItemPropertyDescriptorDecorator createRefinesPropertyDescriptorForNamedElement(Object object) {
@@ -300,33 +258,26 @@ public class RequirementRelatedItemProvider extends SysMLItemProviderAdapter imp
 
 		null,
 
-
 		null,
-
 
 		null));
 
 	}
 
-
-
 	/**
 	 * This adds a property descriptor for the Verifies feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addVerifiesPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_RequirementRelated_verifies_feature"), getString("_UI_PropertyDescriptor_description", "_UI_RequirementRelated_verifies_feature", "_UI_RequirementRelated_type"), RequirementsPackage.Literals.REQUIREMENT_RELATED__VERIFIES, false, false, false, null, null, null));
 	}
 
-
 	/**
 	 * This adds a property descriptor for the Verifies feature for the UML element NamedElement.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ItemPropertyDescriptorDecorator createVerifiesPropertyDescriptorForNamedElement(Object object) {
@@ -339,21 +290,16 @@ public class RequirementRelatedItemProvider extends SysMLItemProviderAdapter imp
 
 		null,
 
-
 		null,
-
 
 		null));
 
 	}
 
-
-
 	/**
 	 * This returns RequirementRelated.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -370,7 +316,6 @@ public class RequirementRelatedItemProvider extends SysMLItemProviderAdapter imp
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -395,7 +340,6 @@ public class RequirementRelatedItemProvider extends SysMLItemProviderAdapter imp
 			requirementRelated_ = (RequirementRelated)object;
 		}
 
-
 		return getString("_UI_RequirementRelated_type");
 	}
 
@@ -404,7 +348,6 @@ public class RequirementRelatedItemProvider extends SysMLItemProviderAdapter imp
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -416,12 +359,9 @@ public class RequirementRelatedItemProvider extends SysMLItemProviderAdapter imp
 		 */
 		if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
 
-
-
 			/**
 			 * Handle NamedElement stereotyped by RequirementRelated
 			 */
-
 
 			if(notification.getFeatureID(org.eclipse.uml2.uml.NamedElement.class) != Notification.NO_FEATURE_ID) {
 				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.NAMED_ELEMENT);
@@ -440,7 +380,6 @@ public class RequirementRelatedItemProvider extends SysMLItemProviderAdapter imp
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -452,7 +391,6 @@ public class RequirementRelatedItemProvider extends SysMLItemProviderAdapter imp
 	 * Return the resource locator for this item provider's resources.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -460,6 +398,59 @@ public class RequirementRelatedItemProvider extends SysMLItemProviderAdapter imp
 		return SysmlEditPlugin.INSTANCE;
 	}
 
+	/**
+	 * Override in order to handle has children for based class
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public Collection<?> getChildren(Object object) {
+		Collection<Object> result = (Collection<Object>)super.getChildren(object);
+		if(object instanceof EObject) {
+			EObject eObject = (EObject)object;
+			/**
+			 * Handle based elements type
+			 */
+			if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
 
+				/**
+				 * Handle NamedElement stereotyped by RequirementRelated
+				 */
+				if(UMLPackage.Literals.NAMED_ELEMENT.equals(eObject.eClass())) {
+					ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.NAMED_ELEMENT);
+					result.addAll((Collection<Object>)ite.getChildren(object));
+					return result;
+				}
+
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * Override in order to handle has children for based class
+	 * @generated
+	 */
+	@Override
+	public boolean hasChildren(Object object) {
+		if(object instanceof EObject) {
+			EObject eObject = (EObject)object;
+			/**
+			 * Handle based elements type
+			 */
+			if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
+
+				/**
+				 * Handle NamedElement stereotyped by RequirementRelated
+				 */
+				if(UMLPackage.Literals.NAMED_ELEMENT.equals(eObject.eClass())) {
+					ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.NAMED_ELEMENT);
+					return super.hasChildren(object) || ite.hasChildren(object);
+				}
+
+			}
+		}
+		return super.hasChildren(object);
+	}
 
 }

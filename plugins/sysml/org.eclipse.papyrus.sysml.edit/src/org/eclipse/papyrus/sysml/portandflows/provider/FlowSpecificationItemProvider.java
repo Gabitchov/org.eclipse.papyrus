@@ -34,6 +34,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptorDecorator;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.papyrus.sysml.edit.provider.IComposableAdapterFactory;
+import org.eclipse.papyrus.sysml.edit.provider.IRootAdapterFactory;
 import org.eclipse.papyrus.sysml.edit.provider.SysMLItemProviderAdapter;
 import org.eclipse.papyrus.sysml.portandflows.FlowSpecification;
 import org.eclipse.papyrus.sysml.portandflows.PortandflowsPackage;
@@ -47,11 +48,9 @@ import org.eclipse.uml2.uml.UMLPackage;
  * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.portandflows.FlowSpecification} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class FlowSpecificationItemProvider extends SysMLItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
-
 
 {
 
@@ -74,20 +73,16 @@ public class FlowSpecificationItemProvider extends SysMLItemProviderAdapter impl
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public FlowSpecificationItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
-
-
 	/**
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -99,8 +94,6 @@ public class FlowSpecificationItemProvider extends SysMLItemProviderAdapter impl
 				addBase_InterfacePropertyDescriptor(object);
 			}
 		}
-
-
 
 		/**
 		 * Handle Interface stereotyped by FlowSpecification
@@ -121,10 +114,7 @@ public class FlowSpecificationItemProvider extends SysMLItemProviderAdapter impl
 			if(ste != null) {
 				EObject steApplication = (element).getStereotypeApplication(ste);
 
-
 				itemPropertyDescriptorsForinterface.add(createBase_InterfacePropertyDescriptorForInterface(steApplication));
-
-
 
 			}
 			return itemPropertyDescriptorsForinterface;
@@ -138,19 +128,16 @@ public class FlowSpecificationItemProvider extends SysMLItemProviderAdapter impl
 	 * This adds a property descriptor for the Base Interface feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addBase_InterfacePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_FlowSpecification_base_Interface_feature"), getString("_UI_PropertyDescriptor_description", "_UI_FlowSpecification_base_Interface_feature", "_UI_FlowSpecification_type"), PortandflowsPackage.Literals.FLOW_SPECIFICATION__BASE_INTERFACE, true, false, true, null, null, null));
 	}
 
-
 	/**
 	 * This adds a property descriptor for the Base Interface feature for the UML element Interface.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ItemPropertyDescriptorDecorator createBase_InterfacePropertyDescriptorForInterface(Object object) {
@@ -163,21 +150,16 @@ public class FlowSpecificationItemProvider extends SysMLItemProviderAdapter impl
 
 		null,
 
-
 		null,
-
 
 		null));
 
 	}
 
-
-
 	/**
 	 * This returns FlowSpecification.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -194,7 +176,6 @@ public class FlowSpecificationItemProvider extends SysMLItemProviderAdapter impl
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -219,7 +200,6 @@ public class FlowSpecificationItemProvider extends SysMLItemProviderAdapter impl
 			flowSpecification_ = (FlowSpecification)object;
 		}
 
-
 		return getString("_UI_FlowSpecification_type");
 	}
 
@@ -228,7 +208,6 @@ public class FlowSpecificationItemProvider extends SysMLItemProviderAdapter impl
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -240,12 +219,9 @@ public class FlowSpecificationItemProvider extends SysMLItemProviderAdapter impl
 		 */
 		if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
 
-
-
 			/**
 			 * Handle Interface stereotyped by FlowSpecification
 			 */
-
 
 			if(notification.getFeatureID(org.eclipse.uml2.uml.Interface.class) != Notification.NO_FEATURE_ID) {
 				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.INTERFACE);
@@ -264,7 +240,6 @@ public class FlowSpecificationItemProvider extends SysMLItemProviderAdapter impl
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -276,7 +251,6 @@ public class FlowSpecificationItemProvider extends SysMLItemProviderAdapter impl
 	 * Return the resource locator for this item provider's resources.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -284,6 +258,59 @@ public class FlowSpecificationItemProvider extends SysMLItemProviderAdapter impl
 		return SysmlEditPlugin.INSTANCE;
 	}
 
+	/**
+	 * Override in order to handle has children for based class
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public Collection<?> getChildren(Object object) {
+		Collection<Object> result = (Collection<Object>)super.getChildren(object);
+		if(object instanceof EObject) {
+			EObject eObject = (EObject)object;
+			/**
+			 * Handle based elements type
+			 */
+			if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
 
+				/**
+				 * Handle Interface stereotyped by FlowSpecification
+				 */
+				if(UMLPackage.Literals.INTERFACE.equals(eObject.eClass())) {
+					ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.INTERFACE);
+					result.addAll((Collection<Object>)ite.getChildren(object));
+					return result;
+				}
+
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * Override in order to handle has children for based class
+	 * @generated
+	 */
+	@Override
+	public boolean hasChildren(Object object) {
+		if(object instanceof EObject) {
+			EObject eObject = (EObject)object;
+			/**
+			 * Handle based elements type
+			 */
+			if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
+
+				/**
+				 * Handle Interface stereotyped by FlowSpecification
+				 */
+				if(UMLPackage.Literals.INTERFACE.equals(eObject.eClass())) {
+					ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.INTERFACE);
+					return super.hasChildren(object) || ite.hasChildren(object);
+				}
+
+			}
+		}
+		return super.hasChildren(object);
+	}
 
 }

@@ -36,6 +36,7 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.papyrus.sysml.blocks.BlocksPackage;
 import org.eclipse.papyrus.sysml.blocks.ParticipantProperty;
 import org.eclipse.papyrus.sysml.edit.provider.IComposableAdapterFactory;
+import org.eclipse.papyrus.sysml.edit.provider.IRootAdapterFactory;
 import org.eclipse.papyrus.sysml.edit.provider.SysMLItemProviderAdapter;
 import org.eclipse.papyrus.sysml.provider.SysmlEditPlugin;
 import org.eclipse.papyrus.sysml.util.SysmlResource;
@@ -47,11 +48,9 @@ import org.eclipse.uml2.uml.UMLPackage;
  * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.blocks.ParticipantProperty} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class ParticipantPropertyItemProvider extends SysMLItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
-
 
 {
 
@@ -74,20 +73,16 @@ public class ParticipantPropertyItemProvider extends SysMLItemProviderAdapter im
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ParticipantPropertyItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
-
-
 	/**
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -100,8 +95,6 @@ public class ParticipantPropertyItemProvider extends SysMLItemProviderAdapter im
 				addEndPropertyDescriptor(object);
 			}
 		}
-
-
 
 		/**
 		 * Handle Property stereotyped by ParticipantProperty
@@ -122,14 +115,9 @@ public class ParticipantPropertyItemProvider extends SysMLItemProviderAdapter im
 			if(ste != null) {
 				EObject steApplication = (element).getStereotypeApplication(ste);
 
-
 				itemPropertyDescriptorsForproperty.add(createBase_PropertyPropertyDescriptorForProperty(steApplication));
 
-
-
 				itemPropertyDescriptorsForproperty.add(createEndPropertyDescriptorForProperty(steApplication));
-
-
 
 			}
 			return itemPropertyDescriptorsForproperty;
@@ -143,19 +131,16 @@ public class ParticipantPropertyItemProvider extends SysMLItemProviderAdapter im
 	 * This adds a property descriptor for the Base Property feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addBase_PropertyPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_ParticipantProperty_base_Property_feature"), getString("_UI_PropertyDescriptor_description", "_UI_ParticipantProperty_base_Property_feature", "_UI_ParticipantProperty_type"), BlocksPackage.Literals.PARTICIPANT_PROPERTY__BASE_PROPERTY, true, false, true, null, null, null));
 	}
 
-
 	/**
 	 * This adds a property descriptor for the Base Property feature for the UML element Property.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ItemPropertyDescriptorDecorator createBase_PropertyPropertyDescriptorForProperty(Object object) {
@@ -168,33 +153,26 @@ public class ParticipantPropertyItemProvider extends SysMLItemProviderAdapter im
 
 		null,
 
-
 		null,
-
 
 		null));
 
 	}
 
-
-
 	/**
 	 * This adds a property descriptor for the End feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addEndPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_ParticipantProperty_end_feature"), getString("_UI_PropertyDescriptor_description", "_UI_ParticipantProperty_end_feature", "_UI_ParticipantProperty_type"), BlocksPackage.Literals.PARTICIPANT_PROPERTY__END, true, false, true, null, null, null));
 	}
 
-
 	/**
 	 * This adds a property descriptor for the End feature for the UML element Property.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ItemPropertyDescriptorDecorator createEndPropertyDescriptorForProperty(Object object) {
@@ -207,21 +185,16 @@ public class ParticipantPropertyItemProvider extends SysMLItemProviderAdapter im
 
 		null,
 
-
 		null,
-
 
 		null));
 
 	}
 
-
-
 	/**
 	 * This returns ParticipantProperty.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -238,7 +211,6 @@ public class ParticipantPropertyItemProvider extends SysMLItemProviderAdapter im
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -263,7 +235,6 @@ public class ParticipantPropertyItemProvider extends SysMLItemProviderAdapter im
 			participantProperty_ = (ParticipantProperty)object;
 		}
 
-
 		return getString("_UI_ParticipantProperty_type");
 	}
 
@@ -272,7 +243,6 @@ public class ParticipantPropertyItemProvider extends SysMLItemProviderAdapter im
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -284,12 +254,9 @@ public class ParticipantPropertyItemProvider extends SysMLItemProviderAdapter im
 		 */
 		if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
 
-
-
 			/**
 			 * Handle Property stereotyped by ParticipantProperty
 			 */
-
 
 			if(notification.getFeatureID(org.eclipse.uml2.uml.Property.class) != Notification.NO_FEATURE_ID) {
 				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.PROPERTY);
@@ -308,7 +275,6 @@ public class ParticipantPropertyItemProvider extends SysMLItemProviderAdapter im
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -320,7 +286,6 @@ public class ParticipantPropertyItemProvider extends SysMLItemProviderAdapter im
 	 * Return the resource locator for this item provider's resources.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -328,6 +293,59 @@ public class ParticipantPropertyItemProvider extends SysMLItemProviderAdapter im
 		return SysmlEditPlugin.INSTANCE;
 	}
 
+	/**
+	 * Override in order to handle has children for based class
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public Collection<?> getChildren(Object object) {
+		Collection<Object> result = (Collection<Object>)super.getChildren(object);
+		if(object instanceof EObject) {
+			EObject eObject = (EObject)object;
+			/**
+			 * Handle based elements type
+			 */
+			if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
 
+				/**
+				 * Handle Property stereotyped by ParticipantProperty
+				 */
+				if(UMLPackage.Literals.PROPERTY.equals(eObject.eClass())) {
+					ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.PROPERTY);
+					result.addAll((Collection<Object>)ite.getChildren(object));
+					return result;
+				}
+
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * Override in order to handle has children for based class
+	 * @generated
+	 */
+	@Override
+	public boolean hasChildren(Object object) {
+		if(object instanceof EObject) {
+			EObject eObject = (EObject)object;
+			/**
+			 * Handle based elements type
+			 */
+			if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
+
+				/**
+				 * Handle Property stereotyped by ParticipantProperty
+				 */
+				if(UMLPackage.Literals.PROPERTY.equals(eObject.eClass())) {
+					ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.PROPERTY);
+					return super.hasChildren(object) || ite.hasChildren(object);
+				}
+
+			}
+		}
+		return super.hasChildren(object);
+	}
 
 }

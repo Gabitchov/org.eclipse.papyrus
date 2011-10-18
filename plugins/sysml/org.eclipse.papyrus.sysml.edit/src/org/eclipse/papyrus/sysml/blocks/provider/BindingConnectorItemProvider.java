@@ -36,6 +36,7 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.papyrus.sysml.blocks.BindingConnector;
 import org.eclipse.papyrus.sysml.blocks.BlocksPackage;
 import org.eclipse.papyrus.sysml.edit.provider.IComposableAdapterFactory;
+import org.eclipse.papyrus.sysml.edit.provider.IRootAdapterFactory;
 import org.eclipse.papyrus.sysml.edit.provider.SysMLItemProviderAdapter;
 import org.eclipse.papyrus.sysml.provider.SysmlEditPlugin;
 import org.eclipse.papyrus.sysml.util.SysmlResource;
@@ -47,11 +48,9 @@ import org.eclipse.uml2.uml.UMLPackage;
  * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.blocks.BindingConnector} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class BindingConnectorItemProvider extends SysMLItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
-
 
 {
 
@@ -74,20 +73,16 @@ public class BindingConnectorItemProvider extends SysMLItemProviderAdapter imple
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public BindingConnectorItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
-
-
 	/**
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -99,8 +94,6 @@ public class BindingConnectorItemProvider extends SysMLItemProviderAdapter imple
 				addBase_ConnectorPropertyDescriptor(object);
 			}
 		}
-
-
 
 		/**
 		 * Handle Connector stereotyped by BindingConnector
@@ -121,10 +114,7 @@ public class BindingConnectorItemProvider extends SysMLItemProviderAdapter imple
 			if(ste != null) {
 				EObject steApplication = (element).getStereotypeApplication(ste);
 
-
 				itemPropertyDescriptorsForconnector.add(createBase_ConnectorPropertyDescriptorForConnector(steApplication));
-
-
 
 			}
 			return itemPropertyDescriptorsForconnector;
@@ -138,19 +128,16 @@ public class BindingConnectorItemProvider extends SysMLItemProviderAdapter imple
 	 * This adds a property descriptor for the Base Connector feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addBase_ConnectorPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_BindingConnector_base_Connector_feature"), getString("_UI_PropertyDescriptor_description", "_UI_BindingConnector_base_Connector_feature", "_UI_BindingConnector_type"), BlocksPackage.Literals.BINDING_CONNECTOR__BASE_CONNECTOR, true, false, true, null, null, null));
 	}
 
-
 	/**
 	 * This adds a property descriptor for the Base Connector feature for the UML element Connector.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ItemPropertyDescriptorDecorator createBase_ConnectorPropertyDescriptorForConnector(Object object) {
@@ -163,21 +150,16 @@ public class BindingConnectorItemProvider extends SysMLItemProviderAdapter imple
 
 		null,
 
-
 		null,
-
 
 		null));
 
 	}
 
-
-
 	/**
 	 * This returns BindingConnector.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -194,7 +176,6 @@ public class BindingConnectorItemProvider extends SysMLItemProviderAdapter imple
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -219,7 +200,6 @@ public class BindingConnectorItemProvider extends SysMLItemProviderAdapter imple
 			bindingConnector_ = (BindingConnector)object;
 		}
 
-
 		return getString("_UI_BindingConnector_type");
 	}
 
@@ -228,7 +208,6 @@ public class BindingConnectorItemProvider extends SysMLItemProviderAdapter imple
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -240,12 +219,9 @@ public class BindingConnectorItemProvider extends SysMLItemProviderAdapter imple
 		 */
 		if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
 
-
-
 			/**
 			 * Handle Connector stereotyped by BindingConnector
 			 */
-
 
 			if(notification.getFeatureID(org.eclipse.uml2.uml.Connector.class) != Notification.NO_FEATURE_ID) {
 				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.CONNECTOR);
@@ -264,7 +240,6 @@ public class BindingConnectorItemProvider extends SysMLItemProviderAdapter imple
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -276,7 +251,6 @@ public class BindingConnectorItemProvider extends SysMLItemProviderAdapter imple
 	 * Return the resource locator for this item provider's resources.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -284,6 +258,59 @@ public class BindingConnectorItemProvider extends SysMLItemProviderAdapter imple
 		return SysmlEditPlugin.INSTANCE;
 	}
 
+	/**
+	 * Override in order to handle has children for based class
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public Collection<?> getChildren(Object object) {
+		Collection<Object> result = (Collection<Object>)super.getChildren(object);
+		if(object instanceof EObject) {
+			EObject eObject = (EObject)object;
+			/**
+			 * Handle based elements type
+			 */
+			if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
 
+				/**
+				 * Handle Connector stereotyped by BindingConnector
+				 */
+				if(UMLPackage.Literals.CONNECTOR.equals(eObject.eClass())) {
+					ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.CONNECTOR);
+					result.addAll((Collection<Object>)ite.getChildren(object));
+					return result;
+				}
+
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * Override in order to handle has children for based class
+	 * @generated
+	 */
+	@Override
+	public boolean hasChildren(Object object) {
+		if(object instanceof EObject) {
+			EObject eObject = (EObject)object;
+			/**
+			 * Handle based elements type
+			 */
+			if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
+
+				/**
+				 * Handle Connector stereotyped by BindingConnector
+				 */
+				if(UMLPackage.Literals.CONNECTOR.equals(eObject.eClass())) {
+					ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.CONNECTOR);
+					return super.hasChildren(object) || ite.hasChildren(object);
+				}
+
+			}
+		}
+		return super.hasChildren(object);
+	}
 
 }

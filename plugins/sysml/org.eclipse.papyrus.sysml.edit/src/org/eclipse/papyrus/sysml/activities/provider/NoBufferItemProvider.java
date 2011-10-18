@@ -36,6 +36,7 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.papyrus.sysml.activities.ActivitiesPackage;
 import org.eclipse.papyrus.sysml.activities.NoBuffer;
 import org.eclipse.papyrus.sysml.edit.provider.IComposableAdapterFactory;
+import org.eclipse.papyrus.sysml.edit.provider.IRootAdapterFactory;
 import org.eclipse.papyrus.sysml.edit.provider.SysMLItemProviderAdapter;
 import org.eclipse.papyrus.sysml.provider.SysmlEditPlugin;
 import org.eclipse.papyrus.sysml.util.SysmlResource;
@@ -47,11 +48,9 @@ import org.eclipse.uml2.uml.UMLPackage;
  * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.activities.NoBuffer} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class NoBufferItemProvider extends SysMLItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
-
 
 {
 
@@ -74,20 +73,16 @@ public class NoBufferItemProvider extends SysMLItemProviderAdapter implements IE
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NoBufferItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
-
-
 	/**
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -99,8 +94,6 @@ public class NoBufferItemProvider extends SysMLItemProviderAdapter implements IE
 				addBase_ObjectNodePropertyDescriptor(object);
 			}
 		}
-
-
 
 		/**
 		 * Handle ObjectNode stereotyped by NoBuffer
@@ -121,10 +114,7 @@ public class NoBufferItemProvider extends SysMLItemProviderAdapter implements IE
 			if(ste != null) {
 				EObject steApplication = (element).getStereotypeApplication(ste);
 
-
 				itemPropertyDescriptorsForobjectNode.add(createBase_ObjectNodePropertyDescriptorForObjectNode(steApplication));
-
-
 
 			}
 			return itemPropertyDescriptorsForobjectNode;
@@ -138,19 +128,16 @@ public class NoBufferItemProvider extends SysMLItemProviderAdapter implements IE
 	 * This adds a property descriptor for the Base Object Node feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addBase_ObjectNodePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_NoBuffer_base_ObjectNode_feature"), getString("_UI_PropertyDescriptor_description", "_UI_NoBuffer_base_ObjectNode_feature", "_UI_NoBuffer_type"), ActivitiesPackage.Literals.NO_BUFFER__BASE_OBJECT_NODE, true, false, true, null, null, null));
 	}
 
-
 	/**
 	 * This adds a property descriptor for the Base Object Node feature for the UML element ObjectNode.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ItemPropertyDescriptorDecorator createBase_ObjectNodePropertyDescriptorForObjectNode(Object object) {
@@ -163,21 +150,16 @@ public class NoBufferItemProvider extends SysMLItemProviderAdapter implements IE
 
 		null,
 
-
 		null,
-
 
 		null));
 
 	}
 
-
-
 	/**
 	 * This returns NoBuffer.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -194,7 +176,6 @@ public class NoBufferItemProvider extends SysMLItemProviderAdapter implements IE
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -219,7 +200,6 @@ public class NoBufferItemProvider extends SysMLItemProviderAdapter implements IE
 			noBuffer_ = (NoBuffer)object;
 		}
 
-
 		return getString("_UI_NoBuffer_type");
 	}
 
@@ -228,7 +208,6 @@ public class NoBufferItemProvider extends SysMLItemProviderAdapter implements IE
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -240,12 +219,9 @@ public class NoBufferItemProvider extends SysMLItemProviderAdapter implements IE
 		 */
 		if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
 
-
-
 			/**
 			 * Handle ObjectNode stereotyped by NoBuffer
 			 */
-
 
 			if(notification.getFeatureID(org.eclipse.uml2.uml.ObjectNode.class) != Notification.NO_FEATURE_ID) {
 				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.OBJECT_NODE);
@@ -264,7 +240,6 @@ public class NoBufferItemProvider extends SysMLItemProviderAdapter implements IE
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -276,7 +251,6 @@ public class NoBufferItemProvider extends SysMLItemProviderAdapter implements IE
 	 * Return the resource locator for this item provider's resources.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -284,6 +258,59 @@ public class NoBufferItemProvider extends SysMLItemProviderAdapter implements IE
 		return SysmlEditPlugin.INSTANCE;
 	}
 
+	/**
+	 * Override in order to handle has children for based class
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public Collection<?> getChildren(Object object) {
+		Collection<Object> result = (Collection<Object>)super.getChildren(object);
+		if(object instanceof EObject) {
+			EObject eObject = (EObject)object;
+			/**
+			 * Handle based elements type
+			 */
+			if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
 
+				/**
+				 * Handle ObjectNode stereotyped by NoBuffer
+				 */
+				if(UMLPackage.Literals.OBJECT_NODE.equals(eObject.eClass())) {
+					ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.OBJECT_NODE);
+					result.addAll((Collection<Object>)ite.getChildren(object));
+					return result;
+				}
+
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * Override in order to handle has children for based class
+	 * @generated
+	 */
+	@Override
+	public boolean hasChildren(Object object) {
+		if(object instanceof EObject) {
+			EObject eObject = (EObject)object;
+			/**
+			 * Handle based elements type
+			 */
+			if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
+
+				/**
+				 * Handle ObjectNode stereotyped by NoBuffer
+				 */
+				if(UMLPackage.Literals.OBJECT_NODE.equals(eObject.eClass())) {
+					ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.OBJECT_NODE);
+					return super.hasChildren(object) || ite.hasChildren(object);
+				}
+
+			}
+		}
+		return super.hasChildren(object);
+	}
 
 }

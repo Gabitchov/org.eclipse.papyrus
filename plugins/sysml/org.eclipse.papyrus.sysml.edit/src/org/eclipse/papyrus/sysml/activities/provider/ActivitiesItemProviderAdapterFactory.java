@@ -33,6 +33,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.papyrus.sysml.activities.util.ActivitiesAdapterFactory;
 import org.eclipse.papyrus.sysml.edit.provider.IComposableAdapterFactory;
 import org.eclipse.papyrus.sysml.edit.provider.IRootAdapterFactory;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * This is the factory that is used to provide the interfaces needed to support Viewers.
@@ -41,7 +42,6 @@ import org.eclipse.papyrus.sysml.edit.provider.IRootAdapterFactory;
  * Note that most of the adapters are shared among multiple instances.
  * <!-- begin-user-doc --> <!--
  * end-user-doc -->
- * 
  * @generated
  */
 public class ActivitiesItemProviderAdapterFactory extends ActivitiesAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IComposableAdapterFactory, IDisposable {
@@ -94,7 +94,6 @@ public class ActivitiesItemProviderAdapterFactory extends ActivitiesAdapterFacto
 	/**
 	 * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected Collection<Object> supportedTypes = new ArrayList<Object>();
@@ -102,7 +101,6 @@ public class ActivitiesItemProviderAdapterFactory extends ActivitiesAdapterFacto
 	/**
 	 * This constructs an instance.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ActivitiesItemProviderAdapterFactory() {
@@ -117,7 +115,6 @@ public class ActivitiesItemProviderAdapterFactory extends ActivitiesAdapterFacto
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.sysml.activities.Optional} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected OptionalItemProvider optionalItemProvider;
@@ -126,7 +123,6 @@ public class ActivitiesItemProviderAdapterFactory extends ActivitiesAdapterFacto
 	 * This creates an adapter for a {@link org.eclipse.papyrus.sysml.activities.Optional}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -142,7 +138,6 @@ public class ActivitiesItemProviderAdapterFactory extends ActivitiesAdapterFacto
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.sysml.activities.Rate} instances.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected RateItemProvider rateItemProvider;
@@ -166,7 +161,6 @@ public class ActivitiesItemProviderAdapterFactory extends ActivitiesAdapterFacto
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.sysml.activities.Probability} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ProbabilityItemProvider probabilityItemProvider;
@@ -190,7 +184,6 @@ public class ActivitiesItemProviderAdapterFactory extends ActivitiesAdapterFacto
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.sysml.activities.Continuous} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ContinuousItemProvider continuousItemProvider;
@@ -214,7 +207,6 @@ public class ActivitiesItemProviderAdapterFactory extends ActivitiesAdapterFacto
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.sysml.activities.Discrete} instances.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected DiscreteItemProvider discreteItemProvider;
@@ -238,7 +230,6 @@ public class ActivitiesItemProviderAdapterFactory extends ActivitiesAdapterFacto
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.sysml.activities.ControlOperator} instances.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ControlOperatorItemProvider controlOperatorItemProvider;
@@ -246,7 +237,6 @@ public class ActivitiesItemProviderAdapterFactory extends ActivitiesAdapterFacto
 	/**
 	 * This creates an adapter for a {@link org.eclipse.papyrus.sysml.activities.ControlOperator}.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -262,7 +252,6 @@ public class ActivitiesItemProviderAdapterFactory extends ActivitiesAdapterFacto
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.sysml.activities.NoBuffer} instances.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected NoBufferItemProvider noBufferItemProvider;
@@ -286,7 +275,6 @@ public class ActivitiesItemProviderAdapterFactory extends ActivitiesAdapterFacto
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.sysml.activities.Overwrite} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected OverwriteItemProvider overwriteItemProvider;
@@ -310,7 +298,6 @@ public class ActivitiesItemProviderAdapterFactory extends ActivitiesAdapterFacto
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ComposeableAdapterFactory getRootAdapterFactory() {
@@ -321,7 +308,6 @@ public class ActivitiesItemProviderAdapterFactory extends ActivitiesAdapterFacto
 	 * This sets the composed adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
@@ -330,7 +316,6 @@ public class ActivitiesItemProviderAdapterFactory extends ActivitiesAdapterFacto
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -351,7 +336,6 @@ public class ActivitiesItemProviderAdapterFactory extends ActivitiesAdapterFacto
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -369,7 +353,6 @@ public class ActivitiesItemProviderAdapterFactory extends ActivitiesAdapterFacto
 	/**
 	 * This adds a listener.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void addListener(INotifyChangedListener notifyChangedListener) {
@@ -379,7 +362,6 @@ public class ActivitiesItemProviderAdapterFactory extends ActivitiesAdapterFacto
 	/**
 	 * This removes a listener.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void removeListener(INotifyChangedListener notifyChangedListener) {
@@ -401,10 +383,9 @@ public class ActivitiesItemProviderAdapterFactory extends ActivitiesAdapterFacto
 	}
 
 	/**
-	 * This disposes all of the item providers created by this factory.
+	 * This disposes all of the item providers created by this factory. 
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void dispose() {

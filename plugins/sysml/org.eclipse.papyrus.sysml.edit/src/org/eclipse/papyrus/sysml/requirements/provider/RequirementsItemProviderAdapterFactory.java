@@ -33,6 +33,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.papyrus.sysml.edit.provider.IComposableAdapterFactory;
 import org.eclipse.papyrus.sysml.edit.provider.IRootAdapterFactory;
 import org.eclipse.papyrus.sysml.requirements.util.RequirementsAdapterFactory;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * This is the factory that is used to provide the interfaces needed to support Viewers.
@@ -41,7 +42,6 @@ import org.eclipse.papyrus.sysml.requirements.util.RequirementsAdapterFactory;
  * Note that most of the adapters are shared among multiple instances.
  * <!-- begin-user-doc --> <!--
  * end-user-doc -->
- * 
  * @generated
  */
 public class RequirementsItemProviderAdapterFactory extends RequirementsAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IComposableAdapterFactory, IDisposable {
@@ -94,7 +94,6 @@ public class RequirementsItemProviderAdapterFactory extends RequirementsAdapterF
 	/**
 	 * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected Collection<Object> supportedTypes = new ArrayList<Object>();
@@ -102,7 +101,6 @@ public class RequirementsItemProviderAdapterFactory extends RequirementsAdapterF
 	/**
 	 * This constructs an instance.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public RequirementsItemProviderAdapterFactory() {
@@ -117,7 +115,6 @@ public class RequirementsItemProviderAdapterFactory extends RequirementsAdapterF
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.sysml.requirements.DeriveReqt} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected DeriveReqtItemProvider deriveReqtItemProvider;
@@ -141,7 +138,6 @@ public class RequirementsItemProviderAdapterFactory extends RequirementsAdapterF
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.sysml.requirements.Verify} instances.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected VerifyItemProvider verifyItemProvider;
@@ -165,7 +161,6 @@ public class RequirementsItemProviderAdapterFactory extends RequirementsAdapterF
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.sysml.requirements.Copy} instances.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected CopyItemProvider copyItemProvider;
@@ -189,7 +184,6 @@ public class RequirementsItemProviderAdapterFactory extends RequirementsAdapterF
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.sysml.requirements.Satisfy} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected SatisfyItemProvider satisfyItemProvider;
@@ -213,7 +207,6 @@ public class RequirementsItemProviderAdapterFactory extends RequirementsAdapterF
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.sysml.requirements.TestCase} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected TestCaseItemProvider testCaseItemProvider;
@@ -237,7 +230,6 @@ public class RequirementsItemProviderAdapterFactory extends RequirementsAdapterF
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.sysml.requirements.Requirement} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected RequirementItemProvider requirementItemProvider;
@@ -245,7 +237,6 @@ public class RequirementsItemProviderAdapterFactory extends RequirementsAdapterF
 	/**
 	 * This creates an adapter for a {@link org.eclipse.papyrus.sysml.requirements.Requirement}.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -269,7 +260,6 @@ public class RequirementsItemProviderAdapterFactory extends RequirementsAdapterF
 	 * This creates an adapter for a {@link org.eclipse.papyrus.sysml.requirements.RequirementRelated}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -285,7 +275,6 @@ public class RequirementsItemProviderAdapterFactory extends RequirementsAdapterF
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ComposeableAdapterFactory getRootAdapterFactory() {
@@ -296,7 +285,6 @@ public class RequirementsItemProviderAdapterFactory extends RequirementsAdapterF
 	 * This sets the composed adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
@@ -305,7 +293,6 @@ public class RequirementsItemProviderAdapterFactory extends RequirementsAdapterF
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -326,7 +313,6 @@ public class RequirementsItemProviderAdapterFactory extends RequirementsAdapterF
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -344,7 +330,6 @@ public class RequirementsItemProviderAdapterFactory extends RequirementsAdapterF
 	/**
 	 * This adds a listener.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void addListener(INotifyChangedListener notifyChangedListener) {
@@ -354,7 +339,6 @@ public class RequirementsItemProviderAdapterFactory extends RequirementsAdapterF
 	/**
 	 * This removes a listener.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void removeListener(INotifyChangedListener notifyChangedListener) {
@@ -376,10 +360,9 @@ public class RequirementsItemProviderAdapterFactory extends RequirementsAdapterF
 	}
 
 	/**
-	 * This disposes all of the item providers created by this factory.
+	 * This disposes all of the item providers created by this factory. 
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void dispose() {

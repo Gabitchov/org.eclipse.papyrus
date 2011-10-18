@@ -33,6 +33,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.papyrus.sysml.constraints.util.ConstraintsAdapterFactory;
 import org.eclipse.papyrus.sysml.edit.provider.IComposableAdapterFactory;
 import org.eclipse.papyrus.sysml.edit.provider.IRootAdapterFactory;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * This is the factory that is used to provide the interfaces needed to support Viewers.
@@ -41,7 +42,6 @@ import org.eclipse.papyrus.sysml.edit.provider.IRootAdapterFactory;
  * Note that most of the adapters are shared among multiple instances.
  * <!-- begin-user-doc --> <!--
  * end-user-doc -->
- * 
  * @generated
  */
 public class ConstraintsItemProviderAdapterFactory extends ConstraintsAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IComposableAdapterFactory, IDisposable {
@@ -94,7 +94,6 @@ public class ConstraintsItemProviderAdapterFactory extends ConstraintsAdapterFac
 	/**
 	 * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected Collection<Object> supportedTypes = new ArrayList<Object>();
@@ -102,7 +101,6 @@ public class ConstraintsItemProviderAdapterFactory extends ConstraintsAdapterFac
 	/**
 	 * This constructs an instance.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ConstraintsItemProviderAdapterFactory() {
@@ -117,7 +115,6 @@ public class ConstraintsItemProviderAdapterFactory extends ConstraintsAdapterFac
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.sysml.constraints.ConstraintBlock} instances.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ConstraintBlockItemProvider constraintBlockItemProvider;
@@ -125,7 +122,6 @@ public class ConstraintsItemProviderAdapterFactory extends ConstraintsAdapterFac
 	/**
 	 * This creates an adapter for a {@link org.eclipse.papyrus.sysml.constraints.ConstraintBlock}.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -149,7 +145,6 @@ public class ConstraintsItemProviderAdapterFactory extends ConstraintsAdapterFac
 	 * This creates an adapter for a {@link org.eclipse.papyrus.sysml.constraints.ConstraintProperty}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -165,7 +160,6 @@ public class ConstraintsItemProviderAdapterFactory extends ConstraintsAdapterFac
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ComposeableAdapterFactory getRootAdapterFactory() {
@@ -176,7 +170,6 @@ public class ConstraintsItemProviderAdapterFactory extends ConstraintsAdapterFac
 	 * This sets the composed adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
@@ -185,7 +178,6 @@ public class ConstraintsItemProviderAdapterFactory extends ConstraintsAdapterFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -206,7 +198,6 @@ public class ConstraintsItemProviderAdapterFactory extends ConstraintsAdapterFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -224,7 +215,6 @@ public class ConstraintsItemProviderAdapterFactory extends ConstraintsAdapterFac
 	/**
 	 * This adds a listener.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void addListener(INotifyChangedListener notifyChangedListener) {
@@ -234,7 +224,6 @@ public class ConstraintsItemProviderAdapterFactory extends ConstraintsAdapterFac
 	/**
 	 * This removes a listener.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void removeListener(INotifyChangedListener notifyChangedListener) {
@@ -256,10 +245,9 @@ public class ConstraintsItemProviderAdapterFactory extends ConstraintsAdapterFac
 	}
 
 	/**
-	 * This disposes all of the item providers created by this factory.
+	 * This disposes all of the item providers created by this factory. 
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void dispose() {

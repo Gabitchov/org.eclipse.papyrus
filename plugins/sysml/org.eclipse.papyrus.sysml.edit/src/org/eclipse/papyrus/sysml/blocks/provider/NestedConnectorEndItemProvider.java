@@ -36,6 +36,7 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.papyrus.sysml.blocks.BlocksPackage;
 import org.eclipse.papyrus.sysml.blocks.NestedConnectorEnd;
 import org.eclipse.papyrus.sysml.edit.provider.IComposableAdapterFactory;
+import org.eclipse.papyrus.sysml.edit.provider.IRootAdapterFactory;
 import org.eclipse.papyrus.sysml.edit.provider.SysMLItemProviderAdapter;
 import org.eclipse.papyrus.sysml.provider.SysmlEditPlugin;
 import org.eclipse.papyrus.sysml.util.SysmlResource;
@@ -47,11 +48,9 @@ import org.eclipse.uml2.uml.UMLPackage;
  * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.blocks.NestedConnectorEnd} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class NestedConnectorEndItemProvider extends SysMLItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
-
 
 {
 
@@ -74,20 +73,16 @@ public class NestedConnectorEndItemProvider extends SysMLItemProviderAdapter imp
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NestedConnectorEndItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
-
-
 	/**
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -100,8 +95,6 @@ public class NestedConnectorEndItemProvider extends SysMLItemProviderAdapter imp
 				addBase_ConnectorEndPropertyDescriptor(object);
 			}
 		}
-
-
 
 		/**
 		 * Handle ConnectorEnd stereotyped by NestedConnectorEnd
@@ -122,14 +115,9 @@ public class NestedConnectorEndItemProvider extends SysMLItemProviderAdapter imp
 			if(ste != null) {
 				EObject steApplication = (element).getStereotypeApplication(ste);
 
-
 				itemPropertyDescriptorsForconnectorEnd.add(createPropertyPathPropertyDescriptorForConnectorEnd(steApplication));
 
-
-
 				itemPropertyDescriptorsForconnectorEnd.add(createBase_ConnectorEndPropertyDescriptorForConnectorEnd(steApplication));
-
-
 
 			}
 			return itemPropertyDescriptorsForconnectorEnd;
@@ -143,19 +131,16 @@ public class NestedConnectorEndItemProvider extends SysMLItemProviderAdapter imp
 	 * This adds a property descriptor for the Property Path feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addPropertyPathPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_NestedConnectorEnd_propertyPath_feature"), getString("_UI_PropertyDescriptor_description", "_UI_NestedConnectorEnd_propertyPath_feature", "_UI_NestedConnectorEnd_type"), BlocksPackage.Literals.NESTED_CONNECTOR_END__PROPERTY_PATH, true, false, true, null, null, null));
 	}
 
-
 	/**
 	 * This adds a property descriptor for the Property Path feature for the UML element ConnectorEnd.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ItemPropertyDescriptorDecorator createPropertyPathPropertyDescriptorForConnectorEnd(Object object) {
@@ -168,33 +153,26 @@ public class NestedConnectorEndItemProvider extends SysMLItemProviderAdapter imp
 
 		null,
 
-
 		null,
-
 
 		null));
 
 	}
 
-
-
 	/**
 	 * This adds a property descriptor for the Base Connector End feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addBase_ConnectorEndPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_NestedConnectorEnd_base_ConnectorEnd_feature"), getString("_UI_PropertyDescriptor_description", "_UI_NestedConnectorEnd_base_ConnectorEnd_feature", "_UI_NestedConnectorEnd_type"), BlocksPackage.Literals.NESTED_CONNECTOR_END__BASE_CONNECTOR_END, true, false, true, null, null, null));
 	}
 
-
 	/**
 	 * This adds a property descriptor for the Base Connector End feature for the UML element ConnectorEnd.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ItemPropertyDescriptorDecorator createBase_ConnectorEndPropertyDescriptorForConnectorEnd(Object object) {
@@ -207,21 +185,16 @@ public class NestedConnectorEndItemProvider extends SysMLItemProviderAdapter imp
 
 		null,
 
-
 		null,
-
 
 		null));
 
 	}
 
-
-
 	/**
 	 * This returns NestedConnectorEnd.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -238,7 +211,6 @@ public class NestedConnectorEndItemProvider extends SysMLItemProviderAdapter imp
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -263,7 +235,6 @@ public class NestedConnectorEndItemProvider extends SysMLItemProviderAdapter imp
 			nestedConnectorEnd_ = (NestedConnectorEnd)object;
 		}
 
-
 		return getString("_UI_NestedConnectorEnd_type");
 	}
 
@@ -272,7 +243,6 @@ public class NestedConnectorEndItemProvider extends SysMLItemProviderAdapter imp
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -284,12 +254,9 @@ public class NestedConnectorEndItemProvider extends SysMLItemProviderAdapter imp
 		 */
 		if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
 
-
-
 			/**
 			 * Handle ConnectorEnd stereotyped by NestedConnectorEnd
 			 */
-
 
 			if(notification.getFeatureID(org.eclipse.uml2.uml.ConnectorEnd.class) != Notification.NO_FEATURE_ID) {
 				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.CONNECTOR_END);
@@ -308,7 +275,6 @@ public class NestedConnectorEndItemProvider extends SysMLItemProviderAdapter imp
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -320,7 +286,6 @@ public class NestedConnectorEndItemProvider extends SysMLItemProviderAdapter imp
 	 * Return the resource locator for this item provider's resources.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -328,6 +293,59 @@ public class NestedConnectorEndItemProvider extends SysMLItemProviderAdapter imp
 		return SysmlEditPlugin.INSTANCE;
 	}
 
+	/**
+	 * Override in order to handle has children for based class
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public Collection<?> getChildren(Object object) {
+		Collection<Object> result = (Collection<Object>)super.getChildren(object);
+		if(object instanceof EObject) {
+			EObject eObject = (EObject)object;
+			/**
+			 * Handle based elements type
+			 */
+			if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
 
+				/**
+				 * Handle ConnectorEnd stereotyped by NestedConnectorEnd
+				 */
+				if(UMLPackage.Literals.CONNECTOR_END.equals(eObject.eClass())) {
+					ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.CONNECTOR_END);
+					result.addAll((Collection<Object>)ite.getChildren(object));
+					return result;
+				}
+
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * Override in order to handle has children for based class
+	 * @generated
+	 */
+	@Override
+	public boolean hasChildren(Object object) {
+		if(object instanceof EObject) {
+			EObject eObject = (EObject)object;
+			/**
+			 * Handle based elements type
+			 */
+			if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
+
+				/**
+				 * Handle ConnectorEnd stereotyped by NestedConnectorEnd
+				 */
+				if(UMLPackage.Literals.CONNECTOR_END.equals(eObject.eClass())) {
+					ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.CONNECTOR_END);
+					return super.hasChildren(object) || ite.hasChildren(object);
+				}
+
+			}
+		}
+		return super.hasChildren(object);
+	}
 
 }

@@ -36,6 +36,7 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.papyrus.sysml.activities.ActivitiesPackage;
 import org.eclipse.papyrus.sysml.activities.ControlOperator;
 import org.eclipse.papyrus.sysml.edit.provider.IComposableAdapterFactory;
+import org.eclipse.papyrus.sysml.edit.provider.IRootAdapterFactory;
 import org.eclipse.papyrus.sysml.edit.provider.SysMLItemProviderAdapter;
 import org.eclipse.papyrus.sysml.provider.SysmlEditPlugin;
 import org.eclipse.papyrus.sysml.util.SysmlResource;
@@ -47,11 +48,9 @@ import org.eclipse.uml2.uml.UMLPackage;
  * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.activities.ControlOperator} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class ControlOperatorItemProvider extends SysMLItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
-
 
 {
 
@@ -82,20 +81,16 @@ public class ControlOperatorItemProvider extends SysMLItemProviderAdapter implem
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ControlOperatorItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
-
-
 	/**
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -108,8 +103,6 @@ public class ControlOperatorItemProvider extends SysMLItemProviderAdapter implem
 				addBase_BehaviorPropertyDescriptor(object);
 			}
 		}
-
-
 
 		/**
 		 * Handle Operation stereotyped by ControlOperator
@@ -130,24 +123,18 @@ public class ControlOperatorItemProvider extends SysMLItemProviderAdapter implem
 			if(ste != null) {
 				EObject steApplication = (element).getStereotypeApplication(ste);
 
-
 				itemPropertyDescriptorsForoperation.add(createBase_OperationPropertyDescriptorForOperation(steApplication));
 
 				itemPropertyDescriptorsForoperation.add(createBase_OperationPropertyDescriptorForBehavior(steApplication));
-
-
 
 				itemPropertyDescriptorsForoperation.add(createBase_BehaviorPropertyDescriptorForOperation(steApplication));
 
 				itemPropertyDescriptorsForoperation.add(createBase_BehaviorPropertyDescriptorForBehavior(steApplication));
 
-
-
 			}
 			return itemPropertyDescriptorsForoperation;
 
 		}
-
 
 		/**
 		 * Handle Behavior stereotyped by ControlOperator
@@ -168,18 +155,13 @@ public class ControlOperatorItemProvider extends SysMLItemProviderAdapter implem
 			if(ste != null) {
 				EObject steApplication = (element).getStereotypeApplication(ste);
 
-
 				itemPropertyDescriptorsForbehavior.add(createBase_OperationPropertyDescriptorForOperation(steApplication));
 
 				itemPropertyDescriptorsForbehavior.add(createBase_OperationPropertyDescriptorForBehavior(steApplication));
 
-
-
 				itemPropertyDescriptorsForbehavior.add(createBase_BehaviorPropertyDescriptorForOperation(steApplication));
 
 				itemPropertyDescriptorsForbehavior.add(createBase_BehaviorPropertyDescriptorForBehavior(steApplication));
-
-
 
 			}
 			return itemPropertyDescriptorsForbehavior;
@@ -193,19 +175,16 @@ public class ControlOperatorItemProvider extends SysMLItemProviderAdapter implem
 	 * This adds a property descriptor for the Base Operation feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addBase_OperationPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_ControlOperator_base_Operation_feature"), getString("_UI_PropertyDescriptor_description", "_UI_ControlOperator_base_Operation_feature", "_UI_ControlOperator_type"), ActivitiesPackage.Literals.CONTROL_OPERATOR__BASE_OPERATION, true, false, true, null, null, null));
 	}
 
-
 	/**
 	 * This adds a property descriptor for the Base Operation feature for the UML element Operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ItemPropertyDescriptorDecorator createBase_OperationPropertyDescriptorForOperation(Object object) {
@@ -218,9 +197,7 @@ public class ControlOperatorItemProvider extends SysMLItemProviderAdapter implem
 
 		null,
 
-
 		null,
-
 
 		null));
 
@@ -230,7 +207,6 @@ public class ControlOperatorItemProvider extends SysMLItemProviderAdapter implem
 	 * This adds a property descriptor for the Base Operation feature for the UML element Behavior.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ItemPropertyDescriptorDecorator createBase_OperationPropertyDescriptorForBehavior(Object object) {
@@ -243,33 +219,26 @@ public class ControlOperatorItemProvider extends SysMLItemProviderAdapter implem
 
 		null,
 
-
 		null,
-
 
 		null));
 
 	}
 
-
-
 	/**
 	 * This adds a property descriptor for the Base Behavior feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addBase_BehaviorPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_ControlOperator_base_Behavior_feature"), getString("_UI_PropertyDescriptor_description", "_UI_ControlOperator_base_Behavior_feature", "_UI_ControlOperator_type"), ActivitiesPackage.Literals.CONTROL_OPERATOR__BASE_BEHAVIOR, true, false, true, null, null, null));
 	}
 
-
 	/**
 	 * This adds a property descriptor for the Base Behavior feature for the UML element Operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ItemPropertyDescriptorDecorator createBase_BehaviorPropertyDescriptorForOperation(Object object) {
@@ -282,9 +251,7 @@ public class ControlOperatorItemProvider extends SysMLItemProviderAdapter implem
 
 		null,
 
-
 		null,
-
 
 		null));
 
@@ -294,7 +261,6 @@ public class ControlOperatorItemProvider extends SysMLItemProviderAdapter implem
 	 * This adds a property descriptor for the Base Behavior feature for the UML element Behavior.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ItemPropertyDescriptorDecorator createBase_BehaviorPropertyDescriptorForBehavior(Object object) {
@@ -307,21 +273,16 @@ public class ControlOperatorItemProvider extends SysMLItemProviderAdapter implem
 
 		null,
 
-
 		null,
-
 
 		null));
 
 	}
 
-
-
 	/**
 	 * This returns ControlOperator.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -338,7 +299,6 @@ public class ControlOperatorItemProvider extends SysMLItemProviderAdapter implem
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -374,7 +334,6 @@ public class ControlOperatorItemProvider extends SysMLItemProviderAdapter implem
 			controlOperator_ = (ControlOperator)object;
 		}
 
-
 		return getString("_UI_ControlOperator_type");
 	}
 
@@ -383,7 +342,6 @@ public class ControlOperatorItemProvider extends SysMLItemProviderAdapter implem
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -395,12 +353,9 @@ public class ControlOperatorItemProvider extends SysMLItemProviderAdapter implem
 		 */
 		if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
 
-
-
 			/**
 			 * Handle Operation stereotyped by ControlOperator
 			 */
-
 
 			if(notification.getFeatureID(org.eclipse.uml2.uml.Operation.class) != Notification.NO_FEATURE_ID) {
 				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.OPERATION);
@@ -409,11 +364,9 @@ public class ControlOperatorItemProvider extends SysMLItemProviderAdapter implem
 
 			}
 
-
 			/**
 			 * Handle Behavior stereotyped by ControlOperator
 			 */
-
 
 			if(notification.getFeatureID(org.eclipse.uml2.uml.Behavior.class) != Notification.NO_FEATURE_ID) {
 				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.BEHAVIOR);
@@ -432,7 +385,6 @@ public class ControlOperatorItemProvider extends SysMLItemProviderAdapter implem
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -444,7 +396,6 @@ public class ControlOperatorItemProvider extends SysMLItemProviderAdapter implem
 	 * Return the resource locator for this item provider's resources.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -452,6 +403,76 @@ public class ControlOperatorItemProvider extends SysMLItemProviderAdapter implem
 		return SysmlEditPlugin.INSTANCE;
 	}
 
+	/**
+	 * Override in order to handle has children for based class
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public Collection<?> getChildren(Object object) {
+		Collection<Object> result = (Collection<Object>)super.getChildren(object);
+		if(object instanceof EObject) {
+			EObject eObject = (EObject)object;
+			/**
+			 * Handle based elements type
+			 */
+			if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
 
+				/**
+				 * Handle Operation stereotyped by ControlOperator
+				 */
+				if(UMLPackage.Literals.OPERATION.equals(eObject.eClass())) {
+					ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.OPERATION);
+					result.addAll((Collection<Object>)ite.getChildren(object));
+					return result;
+				}
+
+				/**
+				 * Handle Behavior stereotyped by ControlOperator
+				 */
+				if(UMLPackage.Literals.BEHAVIOR.equals(eObject.eClass())) {
+					ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.BEHAVIOR);
+					result.addAll((Collection<Object>)ite.getChildren(object));
+					return result;
+				}
+
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * Override in order to handle has children for based class
+	 * @generated
+	 */
+	@Override
+	public boolean hasChildren(Object object) {
+		if(object instanceof EObject) {
+			EObject eObject = (EObject)object;
+			/**
+			 * Handle based elements type
+			 */
+			if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
+
+				/**
+				 * Handle Operation stereotyped by ControlOperator
+				 */
+				if(UMLPackage.Literals.OPERATION.equals(eObject.eClass())) {
+					ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.OPERATION);
+					return super.hasChildren(object) || ite.hasChildren(object);
+				}
+
+				/**
+				 * Handle Behavior stereotyped by ControlOperator
+				 */
+				if(UMLPackage.Literals.BEHAVIOR.equals(eObject.eClass())) {
+					ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.BEHAVIOR);
+					return super.hasChildren(object) || ite.hasChildren(object);
+				}
+
+			}
+		}
+		return super.hasChildren(object);
+	}
 
 }

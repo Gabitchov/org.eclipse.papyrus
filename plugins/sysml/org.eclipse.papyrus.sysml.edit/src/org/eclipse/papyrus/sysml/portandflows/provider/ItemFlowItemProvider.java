@@ -34,6 +34,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptorDecorator;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.papyrus.sysml.edit.provider.IComposableAdapterFactory;
+import org.eclipse.papyrus.sysml.edit.provider.IRootAdapterFactory;
 import org.eclipse.papyrus.sysml.edit.provider.SysMLItemProviderAdapter;
 import org.eclipse.papyrus.sysml.portandflows.ItemFlow;
 import org.eclipse.papyrus.sysml.portandflows.PortandflowsPackage;
@@ -47,11 +48,9 @@ import org.eclipse.uml2.uml.UMLPackage;
  * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.portandflows.ItemFlow} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class ItemFlowItemProvider extends SysMLItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
-
 
 {
 
@@ -74,20 +73,16 @@ public class ItemFlowItemProvider extends SysMLItemProviderAdapter implements IE
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ItemFlowItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
-
-
 	/**
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -100,8 +95,6 @@ public class ItemFlowItemProvider extends SysMLItemProviderAdapter implements IE
 				addItemPropertyPropertyDescriptor(object);
 			}
 		}
-
-
 
 		/**
 		 * Handle InformationFlow stereotyped by ItemFlow
@@ -122,14 +115,9 @@ public class ItemFlowItemProvider extends SysMLItemProviderAdapter implements IE
 			if(ste != null) {
 				EObject steApplication = (element).getStereotypeApplication(ste);
 
-
 				itemPropertyDescriptorsForinformationFlow.add(createBase_InformationFlowPropertyDescriptorForInformationFlow(steApplication));
 
-
-
 				itemPropertyDescriptorsForinformationFlow.add(createItemPropertyPropertyDescriptorForInformationFlow(steApplication));
-
-
 
 			}
 			return itemPropertyDescriptorsForinformationFlow;
@@ -143,19 +131,16 @@ public class ItemFlowItemProvider extends SysMLItemProviderAdapter implements IE
 	 * This adds a property descriptor for the Base Information Flow feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addBase_InformationFlowPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_ItemFlow_base_InformationFlow_feature"), getString("_UI_PropertyDescriptor_description", "_UI_ItemFlow_base_InformationFlow_feature", "_UI_ItemFlow_type"), PortandflowsPackage.Literals.ITEM_FLOW__BASE_INFORMATION_FLOW, true, false, true, null, null, null));
 	}
 
-
 	/**
 	 * This adds a property descriptor for the Base Information Flow feature for the UML element InformationFlow.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ItemPropertyDescriptorDecorator createBase_InformationFlowPropertyDescriptorForInformationFlow(Object object) {
@@ -168,33 +153,26 @@ public class ItemFlowItemProvider extends SysMLItemProviderAdapter implements IE
 
 		null,
 
-
 		null,
-
 
 		null));
 
 	}
 
-
-
 	/**
 	 * This adds a property descriptor for the Item Property feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addItemPropertyPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_ItemFlow_itemProperty_feature"), getString("_UI_PropertyDescriptor_description", "_UI_ItemFlow_itemProperty_feature", "_UI_ItemFlow_type"), PortandflowsPackage.Literals.ITEM_FLOW__ITEM_PROPERTY, true, false, true, null, null, null));
 	}
 
-
 	/**
 	 * This adds a property descriptor for the Item Property feature for the UML element InformationFlow.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ItemPropertyDescriptorDecorator createItemPropertyPropertyDescriptorForInformationFlow(Object object) {
@@ -207,21 +185,16 @@ public class ItemFlowItemProvider extends SysMLItemProviderAdapter implements IE
 
 		null,
 
-
 		null,
-
 
 		null));
 
 	}
 
-
-
 	/**
 	 * This returns ItemFlow.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -238,7 +211,6 @@ public class ItemFlowItemProvider extends SysMLItemProviderAdapter implements IE
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -263,7 +235,6 @@ public class ItemFlowItemProvider extends SysMLItemProviderAdapter implements IE
 			itemFlow_ = (ItemFlow)object;
 		}
 
-
 		return getString("_UI_ItemFlow_type");
 	}
 
@@ -272,7 +243,6 @@ public class ItemFlowItemProvider extends SysMLItemProviderAdapter implements IE
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -284,12 +254,9 @@ public class ItemFlowItemProvider extends SysMLItemProviderAdapter implements IE
 		 */
 		if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
 
-
-
 			/**
 			 * Handle InformationFlow stereotyped by ItemFlow
 			 */
-
 
 			if(notification.getFeatureID(org.eclipse.uml2.uml.InformationFlow.class) != Notification.NO_FEATURE_ID) {
 				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.INFORMATION_FLOW);
@@ -308,7 +275,6 @@ public class ItemFlowItemProvider extends SysMLItemProviderAdapter implements IE
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -320,7 +286,6 @@ public class ItemFlowItemProvider extends SysMLItemProviderAdapter implements IE
 	 * Return the resource locator for this item provider's resources.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -328,6 +293,59 @@ public class ItemFlowItemProvider extends SysMLItemProviderAdapter implements IE
 		return SysmlEditPlugin.INSTANCE;
 	}
 
+	/**
+	 * Override in order to handle has children for based class
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public Collection<?> getChildren(Object object) {
+		Collection<Object> result = (Collection<Object>)super.getChildren(object);
+		if(object instanceof EObject) {
+			EObject eObject = (EObject)object;
+			/**
+			 * Handle based elements type
+			 */
+			if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
 
+				/**
+				 * Handle InformationFlow stereotyped by ItemFlow
+				 */
+				if(UMLPackage.Literals.INFORMATION_FLOW.equals(eObject.eClass())) {
+					ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.INFORMATION_FLOW);
+					result.addAll((Collection<Object>)ite.getChildren(object));
+					return result;
+				}
+
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * Override in order to handle has children for based class
+	 * @generated
+	 */
+	@Override
+	public boolean hasChildren(Object object) {
+		if(object instanceof EObject) {
+			EObject eObject = (EObject)object;
+			/**
+			 * Handle based elements type
+			 */
+			if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
+
+				/**
+				 * Handle InformationFlow stereotyped by ItemFlow
+				 */
+				if(UMLPackage.Literals.INFORMATION_FLOW.equals(eObject.eClass())) {
+					ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.INFORMATION_FLOW);
+					return super.hasChildren(object) || ite.hasChildren(object);
+				}
+
+			}
+		}
+		return super.hasChildren(object);
+	}
 
 }

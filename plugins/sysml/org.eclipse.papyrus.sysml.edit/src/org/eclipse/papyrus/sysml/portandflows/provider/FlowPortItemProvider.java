@@ -36,6 +36,7 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptorDecorator;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.eclipse.papyrus.sysml.edit.provider.IComposableAdapterFactory;
+import org.eclipse.papyrus.sysml.edit.provider.IRootAdapterFactory;
 import org.eclipse.papyrus.sysml.edit.provider.SysMLItemProviderAdapter;
 import org.eclipse.papyrus.sysml.portandflows.FlowPort;
 import org.eclipse.papyrus.sysml.portandflows.PortandflowsPackage;
@@ -49,11 +50,9 @@ import org.eclipse.uml2.uml.UMLPackage;
  * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.portandflows.FlowPort} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class FlowPortItemProvider extends SysMLItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
-
 
 {
 
@@ -76,20 +75,16 @@ public class FlowPortItemProvider extends SysMLItemProviderAdapter implements IE
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public FlowPortItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
-
-
 	/**
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -104,8 +99,6 @@ public class FlowPortItemProvider extends SysMLItemProviderAdapter implements IE
 				addDirectionPropertyDescriptor(object);
 			}
 		}
-
-
 
 		/**
 		 * Handle Port stereotyped by FlowPort
@@ -126,22 +119,13 @@ public class FlowPortItemProvider extends SysMLItemProviderAdapter implements IE
 			if(ste != null) {
 				EObject steApplication = (element).getStereotypeApplication(ste);
 
-
 				itemPropertyDescriptorsForport.add(createBase_PortPropertyDescriptorForPort(steApplication));
-
-
 
 				itemPropertyDescriptorsForport.add(createIsAtomicPropertyDescriptorForPort(steApplication));
 
-
-
 				itemPropertyDescriptorsForport.add(createIsConjugatedPropertyDescriptorForPort(steApplication));
 
-
-
 				itemPropertyDescriptorsForport.add(createDirectionPropertyDescriptorForPort(steApplication));
-
-
 
 			}
 			return itemPropertyDescriptorsForport;
@@ -155,19 +139,16 @@ public class FlowPortItemProvider extends SysMLItemProviderAdapter implements IE
 	 * This adds a property descriptor for the Base Port feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addBase_PortPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_FlowPort_base_Port_feature"), getString("_UI_PropertyDescriptor_description", "_UI_FlowPort_base_Port_feature", "_UI_FlowPort_type"), PortandflowsPackage.Literals.FLOW_PORT__BASE_PORT, true, false, true, null, null, null));
 	}
 
-
 	/**
 	 * This adds a property descriptor for the Base Port feature for the UML element Port.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ItemPropertyDescriptorDecorator createBase_PortPropertyDescriptorForPort(Object object) {
@@ -180,33 +161,26 @@ public class FlowPortItemProvider extends SysMLItemProviderAdapter implements IE
 
 		null,
 
-
 		null,
-
 
 		null));
 
 	}
 
-
-
 	/**
 	 * This adds a property descriptor for the Is Atomic feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addIsAtomicPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_FlowPort_isAtomic_feature"), getString("_UI_PropertyDescriptor_description", "_UI_FlowPort_isAtomic_feature", "_UI_FlowPort_type"), PortandflowsPackage.Literals.FLOW_PORT__IS_ATOMIC, false, false, false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
 	}
 
-
 	/**
 	 * This adds a property descriptor for the Is Atomic feature for the UML element Port.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ItemPropertyDescriptorDecorator createIsAtomicPropertyDescriptorForPort(Object object) {
@@ -219,33 +193,26 @@ public class FlowPortItemProvider extends SysMLItemProviderAdapter implements IE
 
 		ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
 
-
 		null,
-
 
 		null));
 
 	}
 
-
-
 	/**
 	 * This adds a property descriptor for the Is Conjugated feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addIsConjugatedPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_FlowPort_isConjugated_feature"), getString("_UI_PropertyDescriptor_description", "_UI_FlowPort_isConjugated_feature", "_UI_FlowPort_type"), PortandflowsPackage.Literals.FLOW_PORT__IS_CONJUGATED, true, false, false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
 	}
 
-
 	/**
 	 * This adds a property descriptor for the Is Conjugated feature for the UML element Port.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ItemPropertyDescriptorDecorator createIsConjugatedPropertyDescriptorForPort(Object object) {
@@ -258,33 +225,26 @@ public class FlowPortItemProvider extends SysMLItemProviderAdapter implements IE
 
 		ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
 
-
 		null,
-
 
 		null));
 
 	}
 
-
-
 	/**
 	 * This adds a property descriptor for the Direction feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addDirectionPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_FlowPort_direction_feature"), getString("_UI_PropertyDescriptor_description", "_UI_FlowPort_direction_feature", "_UI_FlowPort_type"), PortandflowsPackage.Literals.FLOW_PORT__DIRECTION, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
-
 	/**
 	 * This adds a property descriptor for the Direction feature for the UML element Port.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ItemPropertyDescriptorDecorator createDirectionPropertyDescriptorForPort(Object object) {
@@ -297,21 +257,16 @@ public class FlowPortItemProvider extends SysMLItemProviderAdapter implements IE
 
 		ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 
-
 		null,
-
 
 		null));
 
 	}
 
-
-
 	/**
 	 * This returns FlowPort.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -328,7 +283,6 @@ public class FlowPortItemProvider extends SysMLItemProviderAdapter implements IE
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -353,7 +307,6 @@ public class FlowPortItemProvider extends SysMLItemProviderAdapter implements IE
 			flowPort_ = (FlowPort)object;
 		}
 
-
 		FlowPort flowPort = (FlowPort)flowPort_;
 		return getString("_UI_FlowPort_type") + " " + flowPort.isIsAtomic();
 	}
@@ -363,7 +316,6 @@ public class FlowPortItemProvider extends SysMLItemProviderAdapter implements IE
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -378,19 +330,14 @@ public class FlowPortItemProvider extends SysMLItemProviderAdapter implements IE
 			return;
 		}
 
-
-
 		/**
 		 * Notify UML element
 		 */
 		if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
 
-
-
 			/**
 			 * Handle Port stereotyped by FlowPort
 			 */
-
 
 			if(notification.getFeatureID(org.eclipse.uml2.uml.Port.class) != Notification.NO_FEATURE_ID) {
 				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.PORT);
@@ -409,7 +356,6 @@ public class FlowPortItemProvider extends SysMLItemProviderAdapter implements IE
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -421,7 +367,6 @@ public class FlowPortItemProvider extends SysMLItemProviderAdapter implements IE
 	 * Return the resource locator for this item provider's resources.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -429,6 +374,59 @@ public class FlowPortItemProvider extends SysMLItemProviderAdapter implements IE
 		return SysmlEditPlugin.INSTANCE;
 	}
 
+	/**
+	 * Override in order to handle has children for based class
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public Collection<?> getChildren(Object object) {
+		Collection<Object> result = (Collection<Object>)super.getChildren(object);
+		if(object instanceof EObject) {
+			EObject eObject = (EObject)object;
+			/**
+			 * Handle based elements type
+			 */
+			if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
 
+				/**
+				 * Handle Port stereotyped by FlowPort
+				 */
+				if(UMLPackage.Literals.PORT.equals(eObject.eClass())) {
+					ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.PORT);
+					result.addAll((Collection<Object>)ite.getChildren(object));
+					return result;
+				}
+
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * Override in order to handle has children for based class
+	 * @generated
+	 */
+	@Override
+	public boolean hasChildren(Object object) {
+		if(object instanceof EObject) {
+			EObject eObject = (EObject)object;
+			/**
+			 * Handle based elements type
+			 */
+			if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
+
+				/**
+				 * Handle Port stereotyped by FlowPort
+				 */
+				if(UMLPackage.Literals.PORT.equals(eObject.eClass())) {
+					ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.PORT);
+					return super.hasChildren(object) || ite.hasChildren(object);
+				}
+
+			}
+		}
+		return super.hasChildren(object);
+	}
 
 }

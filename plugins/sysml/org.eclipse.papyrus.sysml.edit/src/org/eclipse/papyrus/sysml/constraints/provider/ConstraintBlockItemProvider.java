@@ -34,7 +34,9 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.papyrus.sysml.blocks.provider.BlockItemProvider;
 import org.eclipse.papyrus.sysml.constraints.ConstraintBlock;
 import org.eclipse.papyrus.sysml.edit.provider.IComposableAdapterFactory;
+import org.eclipse.papyrus.sysml.edit.provider.IRootAdapterFactory;
 import org.eclipse.papyrus.sysml.edit.provider.IVisibilityOverlayImage;
+import org.eclipse.papyrus.sysml.edit.provider.SysMLItemProviderAdapter;
 import org.eclipse.papyrus.sysml.provider.SysmlEditPlugin;
 import org.eclipse.papyrus.sysml.util.SysmlResource;
 import org.eclipse.uml2.uml.NamedElement;
@@ -46,13 +48,9 @@ import org.eclipse.uml2.uml.edit.UMLEditPlugin;
  * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.constraints.ConstraintBlock} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class ConstraintBlockItemProvider extends BlockItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, IVisibilityOverlayImage
-
-
-
 
 {
 
@@ -75,20 +73,16 @@ public class ConstraintBlockItemProvider extends BlockItemProvider implements IE
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ConstraintBlockItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
-
-
 	/**
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -99,8 +93,6 @@ public class ConstraintBlockItemProvider extends BlockItemProvider implements IE
 
 			}
 		}
-
-
 
 		/**
 		 * Handle Class stereotyped by ConstraintBlock
@@ -121,7 +113,6 @@ public class ConstraintBlockItemProvider extends BlockItemProvider implements IE
 			if(ste != null) {
 				EObject steApplication = (element).getStereotypeApplication(ste);
 
-
 			}
 			return itemPropertyDescriptorsForclass;
 
@@ -134,7 +125,6 @@ public class ConstraintBlockItemProvider extends BlockItemProvider implements IE
 	 * This returns ConstraintBlock.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -151,7 +141,6 @@ public class ConstraintBlockItemProvider extends BlockItemProvider implements IE
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -176,7 +165,6 @@ public class ConstraintBlockItemProvider extends BlockItemProvider implements IE
 			constraintBlock_ = (ConstraintBlock)object;
 		}
 
-
 		ConstraintBlock constraintBlock = (ConstraintBlock)constraintBlock_;
 		return getString("_UI_ConstraintBlock_type") + " " + constraintBlock.isIsEncapsulated();
 	}
@@ -186,7 +174,6 @@ public class ConstraintBlockItemProvider extends BlockItemProvider implements IE
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -198,12 +185,9 @@ public class ConstraintBlockItemProvider extends BlockItemProvider implements IE
 		 */
 		if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
 
-
-
 			/**
 			 * Handle Class stereotyped by ConstraintBlock
 			 */
-
 
 			if(notification.getFeatureID(org.eclipse.uml2.uml.Class.class) != Notification.NO_FEATURE_ID) {
 				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.CLASS);
@@ -222,7 +206,6 @@ public class ConstraintBlockItemProvider extends BlockItemProvider implements IE
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -234,14 +217,12 @@ public class ConstraintBlockItemProvider extends BlockItemProvider implements IE
 	 * Return the resource locator for this item provider's resources.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public ResourceLocator getResourceLocator() {
 		return SysmlEditPlugin.INSTANCE;
 	}
-
 
 	/**
 	 * Compose the image with specific visibility logo
@@ -260,6 +241,61 @@ public class ConstraintBlockItemProvider extends BlockItemProvider implements IE
 		}
 
 		return composedImage;
+	}
+
+	/**
+	 * Override in order to handle has children for based class
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public Collection<?> getChildren(Object object) {
+		Collection<Object> result = (Collection<Object>)super.getChildren(object);
+		if(object instanceof EObject) {
+			EObject eObject = (EObject)object;
+			/**
+			 * Handle based elements type
+			 */
+			if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
+
+				/**
+				 * Handle Class stereotyped by ConstraintBlock
+				 */
+				if(UMLPackage.Literals.CLASS.equals(eObject.eClass())) {
+					ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.CLASS);
+					result.addAll((Collection<Object>)ite.getChildren(object));
+					return result;
+				}
+
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * Override in order to handle has children for based class
+	 * @generated
+	 */
+	@Override
+	public boolean hasChildren(Object object) {
+		if(object instanceof EObject) {
+			EObject eObject = (EObject)object;
+			/**
+			 * Handle based elements type
+			 */
+			if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
+
+				/**
+				 * Handle Class stereotyped by ConstraintBlock
+				 */
+				if(UMLPackage.Literals.CLASS.equals(eObject.eClass())) {
+					ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.CLASS);
+					return super.hasChildren(object) || ite.hasChildren(object);
+				}
+
+			}
+		}
+		return super.hasChildren(object);
 	}
 
 }

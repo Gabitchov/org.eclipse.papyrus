@@ -36,6 +36,7 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.papyrus.sysml.allocations.Allocated;
 import org.eclipse.papyrus.sysml.allocations.AllocationsPackage;
 import org.eclipse.papyrus.sysml.edit.provider.IComposableAdapterFactory;
+import org.eclipse.papyrus.sysml.edit.provider.IRootAdapterFactory;
 import org.eclipse.papyrus.sysml.edit.provider.SysMLItemProviderAdapter;
 import org.eclipse.papyrus.sysml.provider.SysmlEditPlugin;
 import org.eclipse.papyrus.sysml.util.SysmlResource;
@@ -47,11 +48,9 @@ import org.eclipse.uml2.uml.UMLPackage;
  * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.allocations.Allocated} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class AllocatedItemProvider extends SysMLItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
-
 
 {
 
@@ -74,20 +73,16 @@ public class AllocatedItemProvider extends SysMLItemProviderAdapter implements I
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public AllocatedItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
-
-
 	/**
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -101,8 +96,6 @@ public class AllocatedItemProvider extends SysMLItemProviderAdapter implements I
 				addAllocatedToPropertyDescriptor(object);
 			}
 		}
-
-
 
 		/**
 		 * Handle NamedElement stereotyped by Allocated
@@ -123,18 +116,11 @@ public class AllocatedItemProvider extends SysMLItemProviderAdapter implements I
 			if(ste != null) {
 				EObject steApplication = (element).getStereotypeApplication(ste);
 
-
 				itemPropertyDescriptorsFornamedElement.add(createBase_NamedElementPropertyDescriptorForNamedElement(steApplication));
-
-
 
 				itemPropertyDescriptorsFornamedElement.add(createAllocatedFromPropertyDescriptorForNamedElement(steApplication));
 
-
-
 				itemPropertyDescriptorsFornamedElement.add(createAllocatedToPropertyDescriptorForNamedElement(steApplication));
-
-
 
 			}
 			return itemPropertyDescriptorsFornamedElement;
@@ -148,19 +134,16 @@ public class AllocatedItemProvider extends SysMLItemProviderAdapter implements I
 	 * This adds a property descriptor for the Base Named Element feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addBase_NamedElementPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Allocated_base_NamedElement_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Allocated_base_NamedElement_feature", "_UI_Allocated_type"), AllocationsPackage.Literals.ALLOCATED__BASE_NAMED_ELEMENT, true, false, true, null, null, null));
 	}
 
-
 	/**
 	 * This adds a property descriptor for the Base Named Element feature for the UML element NamedElement.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ItemPropertyDescriptorDecorator createBase_NamedElementPropertyDescriptorForNamedElement(Object object) {
@@ -173,33 +156,26 @@ public class AllocatedItemProvider extends SysMLItemProviderAdapter implements I
 
 		null,
 
-
 		null,
-
 
 		null));
 
 	}
 
-
-
 	/**
 	 * This adds a property descriptor for the Allocated From feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addAllocatedFromPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Allocated_allocatedFrom_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Allocated_allocatedFrom_feature", "_UI_Allocated_type"), AllocationsPackage.Literals.ALLOCATED__ALLOCATED_FROM, false, false, false, null, null, null));
 	}
 
-
 	/**
 	 * This adds a property descriptor for the Allocated From feature for the UML element NamedElement.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ItemPropertyDescriptorDecorator createAllocatedFromPropertyDescriptorForNamedElement(Object object) {
@@ -212,33 +188,26 @@ public class AllocatedItemProvider extends SysMLItemProviderAdapter implements I
 
 		null,
 
-
 		null,
-
 
 		null));
 
 	}
 
-
-
 	/**
 	 * This adds a property descriptor for the Allocated To feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addAllocatedToPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Allocated_allocatedTo_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Allocated_allocatedTo_feature", "_UI_Allocated_type"), AllocationsPackage.Literals.ALLOCATED__ALLOCATED_TO, false, false, false, null, null, null));
 	}
 
-
 	/**
 	 * This adds a property descriptor for the Allocated To feature for the UML element NamedElement.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ItemPropertyDescriptorDecorator createAllocatedToPropertyDescriptorForNamedElement(Object object) {
@@ -251,21 +220,16 @@ public class AllocatedItemProvider extends SysMLItemProviderAdapter implements I
 
 		null,
 
-
 		null,
-
 
 		null));
 
 	}
 
-
-
 	/**
 	 * This returns Allocated.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -282,7 +246,6 @@ public class AllocatedItemProvider extends SysMLItemProviderAdapter implements I
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -307,7 +270,6 @@ public class AllocatedItemProvider extends SysMLItemProviderAdapter implements I
 			allocated_ = (Allocated)object;
 		}
 
-
 		return getString("_UI_Allocated_type");
 	}
 
@@ -316,7 +278,6 @@ public class AllocatedItemProvider extends SysMLItemProviderAdapter implements I
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -328,12 +289,9 @@ public class AllocatedItemProvider extends SysMLItemProviderAdapter implements I
 		 */
 		if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
 
-
-
 			/**
 			 * Handle NamedElement stereotyped by Allocated
 			 */
-
 
 			if(notification.getFeatureID(org.eclipse.uml2.uml.NamedElement.class) != Notification.NO_FEATURE_ID) {
 				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.NAMED_ELEMENT);
@@ -352,7 +310,6 @@ public class AllocatedItemProvider extends SysMLItemProviderAdapter implements I
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -364,7 +321,6 @@ public class AllocatedItemProvider extends SysMLItemProviderAdapter implements I
 	 * Return the resource locator for this item provider's resources.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -372,6 +328,59 @@ public class AllocatedItemProvider extends SysMLItemProviderAdapter implements I
 		return SysmlEditPlugin.INSTANCE;
 	}
 
+	/**
+	 * Override in order to handle has children for based class
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public Collection<?> getChildren(Object object) {
+		Collection<Object> result = (Collection<Object>)super.getChildren(object);
+		if(object instanceof EObject) {
+			EObject eObject = (EObject)object;
+			/**
+			 * Handle based elements type
+			 */
+			if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
 
+				/**
+				 * Handle NamedElement stereotyped by Allocated
+				 */
+				if(UMLPackage.Literals.NAMED_ELEMENT.equals(eObject.eClass())) {
+					ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.NAMED_ELEMENT);
+					result.addAll((Collection<Object>)ite.getChildren(object));
+					return result;
+				}
+
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * Override in order to handle has children for based class
+	 * @generated
+	 */
+	@Override
+	public boolean hasChildren(Object object) {
+		if(object instanceof EObject) {
+			EObject eObject = (EObject)object;
+			/**
+			 * Handle based elements type
+			 */
+			if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
+
+				/**
+				 * Handle NamedElement stereotyped by Allocated
+				 */
+				if(UMLPackage.Literals.NAMED_ELEMENT.equals(eObject.eClass())) {
+					ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.NAMED_ELEMENT);
+					return super.hasChildren(object) || ite.hasChildren(object);
+				}
+
+			}
+		}
+		return super.hasChildren(object);
+	}
 
 }

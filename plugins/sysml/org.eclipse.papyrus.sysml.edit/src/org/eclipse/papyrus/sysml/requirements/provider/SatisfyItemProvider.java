@@ -32,7 +32,9 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.papyrus.sysml.edit.provider.IComposableAdapterFactory;
+import org.eclipse.papyrus.sysml.edit.provider.IRootAdapterFactory;
 import org.eclipse.papyrus.sysml.edit.provider.IVisibilityOverlayImage;
+import org.eclipse.papyrus.sysml.edit.provider.SysMLItemProviderAdapter;
 import org.eclipse.papyrus.sysml.provider.SysmlEditPlugin;
 import org.eclipse.papyrus.sysml.requirements.Satisfy;
 import org.eclipse.papyrus.sysml.util.SysmlResource;
@@ -46,13 +48,9 @@ import org.eclipse.uml2.uml.edit.UMLEditPlugin;
  * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.requirements.Satisfy} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class SatisfyItemProvider extends TraceItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, IVisibilityOverlayImage
-
-
-
 
 {
 
@@ -75,20 +73,16 @@ public class SatisfyItemProvider extends TraceItemProvider implements IEditingDo
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public SatisfyItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
-
-
 	/**
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -99,8 +93,6 @@ public class SatisfyItemProvider extends TraceItemProvider implements IEditingDo
 
 			}
 		}
-
-
 
 		/**
 		 * Handle Abstraction stereotyped by Satisfy
@@ -121,7 +113,6 @@ public class SatisfyItemProvider extends TraceItemProvider implements IEditingDo
 			if(ste != null) {
 				EObject steApplication = (element).getStereotypeApplication(ste);
 
-
 			}
 			return itemPropertyDescriptorsForabstraction;
 
@@ -134,7 +125,6 @@ public class SatisfyItemProvider extends TraceItemProvider implements IEditingDo
 	 * This returns Satisfy.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -151,7 +141,6 @@ public class SatisfyItemProvider extends TraceItemProvider implements IEditingDo
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -176,7 +165,6 @@ public class SatisfyItemProvider extends TraceItemProvider implements IEditingDo
 			satisfy_ = (Satisfy)object;
 		}
 
-
 		return getString("_UI_Satisfy_type");
 	}
 
@@ -185,7 +173,6 @@ public class SatisfyItemProvider extends TraceItemProvider implements IEditingDo
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -197,12 +184,9 @@ public class SatisfyItemProvider extends TraceItemProvider implements IEditingDo
 		 */
 		if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
 
-
-
 			/**
 			 * Handle Abstraction stereotyped by Satisfy
 			 */
-
 
 			if(notification.getFeatureID(org.eclipse.uml2.uml.Abstraction.class) != Notification.NO_FEATURE_ID) {
 				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.ABSTRACTION);
@@ -221,7 +205,6 @@ public class SatisfyItemProvider extends TraceItemProvider implements IEditingDo
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -233,14 +216,12 @@ public class SatisfyItemProvider extends TraceItemProvider implements IEditingDo
 	 * Return the resource locator for this item provider's resources.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public ResourceLocator getResourceLocator() {
 		return SysmlEditPlugin.INSTANCE;
 	}
-
 
 	/**
 	 * Compose the image with specific visibility logo
@@ -259,6 +240,61 @@ public class SatisfyItemProvider extends TraceItemProvider implements IEditingDo
 		}
 
 		return composedImage;
+	}
+
+	/**
+	 * Override in order to handle has children for based class
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public Collection<?> getChildren(Object object) {
+		Collection<Object> result = (Collection<Object>)super.getChildren(object);
+		if(object instanceof EObject) {
+			EObject eObject = (EObject)object;
+			/**
+			 * Handle based elements type
+			 */
+			if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
+
+				/**
+				 * Handle Abstraction stereotyped by Satisfy
+				 */
+				if(UMLPackage.Literals.ABSTRACTION.equals(eObject.eClass())) {
+					ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.ABSTRACTION);
+					result.addAll((Collection<Object>)ite.getChildren(object));
+					return result;
+				}
+
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * Override in order to handle has children for based class
+	 * @generated
+	 */
+	@Override
+	public boolean hasChildren(Object object) {
+		if(object instanceof EObject) {
+			EObject eObject = (EObject)object;
+			/**
+			 * Handle based elements type
+			 */
+			if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
+
+				/**
+				 * Handle Abstraction stereotyped by Satisfy
+				 */
+				if(UMLPackage.Literals.ABSTRACTION.equals(eObject.eClass())) {
+					ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.ABSTRACTION);
+					return super.hasChildren(object) || ite.hasChildren(object);
+				}
+
+			}
+		}
+		return super.hasChildren(object);
 	}
 
 }
