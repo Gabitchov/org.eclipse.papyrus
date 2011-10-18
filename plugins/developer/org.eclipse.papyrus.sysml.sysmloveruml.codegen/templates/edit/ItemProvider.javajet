@@ -64,19 +64,6 @@ public class <%=genClass.getProviderClassName()%>
 
 {
 
-		<%Map<EClass,String> nameListDescriptorStore = new HashMap<EClass,String>();%>
-  		<%for(EClass basedClass : SysMLOverUMLHelper.getBasedElement(genClass.getEcoreClass())) {%>
-  		
-		  /**
-		   * This is used to store all the property descriptors for aclass stereotyped with a block.
-		   * Derived classes should add descriptors to this vector.
-		   */
-		   <%String name = "itemPropertyDescriptorsFor"+SysMLOverUMLHelper.getDisplayedClassName(basedClass);%>
-		   <%nameListDescriptorStore.put(basedClass,name);%>
-		  protected List<IItemPropertyDescriptor> <%=name%> ;
-		<%}%>
-
-
 /**
  * Pattern prefix of <%=genClass.getSafeUncapName()%>
  * @generated
@@ -144,22 +131,27 @@ public class <%=genClass.getProviderClassName()%>
 	      */
 	      if ( object instanceof <%=SysMLOverUMLHelper.getUMLInterfaceName(basedClass)%> ){
 	      <%=SysMLOverUMLHelper.getUMLInterfaceName(basedClass)%> element = (<%=SysMLOverUMLHelper.getUMLInterfaceName(basedClass)%>)object;
-  			if ( <%=nameListDescriptorStore.get(basedClass)%> == null){
+  			 /**
+		   * This is used to store all the property descriptors for a class stereotyped with a block.
+		   * Derived classes should add descriptors to this vector.
+		   */
+		   <%String name = "itemPropertyDescriptorsFor"+SysMLOverUMLHelper.getDisplayedClassName(basedClass);%>
+		  List<IItemPropertyDescriptor> <%=name%> = new ArrayList<IItemPropertyDescriptor>();
   			ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.<%=SysMLOverUMLHelper.getClassifierCorrectLabel(basedClass)%>);
 				final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);		
-				<%=nameListDescriptorStore.get(basedClass)%> = new ArrayList<IItemPropertyDescriptor>();
-				<%=nameListDescriptorStore.get(basedClass)%>.addAll(propertyDescriptors);
+				
+				<%=name%>.addAll(propertyDescriptors);
   				Stereotype ste = (element).getAppliedStereotype(SysmlResource.<%=SysMLOverUMLHelper.getClassifierCorrectLabel(genClass.getEcoreClass())%>_ID);
 				if(ste != null) {
 					EObject steApplication = (element).getStereotypeApplication(ste);
 				<%for (GenFeature genFeature : genClass.getPropertyFeatures()) { %>
 					  		<%for(EClass basedClass2 : SysMLOverUMLHelper.getBasedElement(genClass.getEcoreClass())) {%>
-								add<%=genFeature.getCapName()%>PropertyDescriptorFor<%=basedClass2.getName()%>(steApplication);
+								<%=name%>.add(create<%=genFeature.getCapName()%>PropertyDescriptorFor<%=basedClass2.getName()%>(steApplication));
 							<%}%>
 				<%}%>
-				}
+				
 			}
-			return <%=nameListDescriptorStore.get(basedClass)%>;
+			return <%=name%>;
 			
 			}
 		<%}%>		
@@ -222,11 +214,10 @@ public class <%=genClass.getProviderClassName()%>
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		protected void add<%=genFeature.getCapName()%>PropertyDescriptorFor<%=basedClass.getName()%>(Object object)
+		protected ItemPropertyDescriptorDecorator create<%=genFeature.getCapName()%>PropertyDescriptorFor<%=basedClass.getName()%>(Object object)
 		{<%@ include file="ItemProvider/addPropertyDescriptor.override.javajetinc" fail="alternative" %>
 		<%@ start %>
-				<%=nameListDescriptorStore.get(basedClass)%>.add
-					( new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor
+				return new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor
 						(((<%=genModel.getImportedName("org.eclipse.emf.edit.provider.ComposeableAdapterFactory")%>)adapterFactory).getRootAdapterFactory(),
 						 getResourceLocator(),
 						 getString("_UI_<%=genFeature.getGenClass().getName()%>_<%=genFeature.getName()%>_feature"),<%=genModel.getNonNLS()%>
@@ -250,7 +241,7 @@ public class <%=genClass.getProviderClassName()%>
 						 getString("<%=genModel.getPropertyCategoryKey(genFeature.getPropertyCategory())%>"),<%=genModel.getNonNLS()%>
 		  <%}%>
 		  <%if (genFeature.getPropertyFilterFlags().isEmpty()) {%>
-						 null)));
+						 null));
 		  <%} else {%>
 						 new String[] {
 		    <%for (Iterator<String> j = genFeature.getPropertyFilterFlags().iterator(); j.hasNext();) { String filterFlag = j.next();%>
@@ -673,6 +664,63 @@ public class <%=genClass.getProviderClassName()%>
 		return composedImage;
 	}
 <%}%>
+
+
+	/**
+	 * Override in order to handle has children for based class
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public Collection<?> getChildren(Object object) {
+		Collection<Object> result = (Collection<Object>)super.getChildren(object);	
+		if (object instanceof EObject){
+			EObject eObject = (EObject)object;
+			/**
+			 * Handle based elements type
+			 */
+			if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {		
+				<%for(EClass basedClass : SysMLOverUMLHelper.getBasedElement(genClass.getEcoreClass())) {%>		
+				  /**
+				  * Handle <%=basedClass.getName()%> stereotyped by <%=genClass.getName()%>
+			      */   
+			      if (UMLPackage.Literals.<%=SysMLOverUMLHelper.getClassifierCorrectLabel(basedClass)%>.equals(eObject.eClass())){
+		  			ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.<%=SysMLOverUMLHelper.getClassifierCorrectLabel(basedClass)%>);
+					result.addAll((Collection<Object>)ite.getChildren(object));
+					return result;			
+					}
+				<%}%>
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * Override in order to handle has children for based class
+	 * @generated
+	 */
+	@Override
+	public boolean hasChildren(Object object) {
+		if (object instanceof EObject){
+			EObject eObject = (EObject)object;
+			/**
+			 * Handle based elements type
+			 */
+			if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {		
+				<%for(EClass basedClass : SysMLOverUMLHelper.getBasedElement(genClass.getEcoreClass())) {%>		
+				  /**
+				  * Handle <%=basedClass.getName()%> stereotyped by <%=genClass.getName()%>
+			      */   
+			      if (UMLPackage.Literals.<%=SysMLOverUMLHelper.getClassifierCorrectLabel(basedClass)%>.equals(eObject.eClass())){
+						ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.<%=SysMLOverUMLHelper.getClassifierCorrectLabel(basedClass)%>);
+						return super.hasChildren(object) || ite.hasChildren(object);
+				  }
+				<%}%>
+			}
+		}
+		return super.hasChildren(object);
+	}
+
 
 <%@ include file="ItemProvider/insert.javajetinc" fail="silent" %>
 }
