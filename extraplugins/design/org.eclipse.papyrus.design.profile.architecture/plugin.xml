@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id$
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://www.eclipse.org/papyrus/design/architecture/1"
+            class="org.eclipse.papyrus.design.profile.architecture.ArchitecturePackage"
+            genModel="models/architecture.profile.genmodel"/>
+   </extension>
+   <extension
+         point="org.eclipse.emf.ecore.uri_mapping">
+      <mapping
+            source="pathmap://Papyrus_DESIGN_PROFILES_ARCHITECTURE/"
+            target="platform:/plugin/org.eclipse.papyrus.design.profile.architecture/models/">
+      </mapping>
+   </extension>
+   <extension
+         point="org.eclipse.uml2.uml.generated_package">
+      <profile
+            location="pathmap://Papyrus_DESIGN_PROFILES_ARCHITECTURE/architecture.profile.uml#_4J5UIPS3EeCQ4s2W2w_p6A"
+            uri="http://www.eclipse.org/papyrus/design/architecture/1">
+      </profile>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.extensionpoints.uml2.UMLProfile">
+      <profile
+            description="Profile for software architecture design"
+            iconpath="icons/architectureprofile.gif"
+            name="Architecture"
+            path="pathmap://Papyrus_DESIGN_PROFILES_ARCHITECTURE/architecture.profile.uml"
+            provider="Cedric Dumoulin">
+      </profile>
+   </extension>
+
+</plugin>

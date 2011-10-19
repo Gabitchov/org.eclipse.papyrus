@@ -1,0 +1,711 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Ecore="http://www.eclipse.org/uml2/schemas/Ecore/5" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/uml2/schemas/Ecore/5 pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA">
+  <uml:Profile xmi:id="_4J5UIPS3EeCQ4s2W2w_p6A" name="architecture" metamodelReference="_4J5UIfS3EeCQ4s2W2w_p6A">
+    <eAnnotations xmi:id="_tWgYIPS5EeCQ4s2W2w_p6A" source="http://www.eclipse.org/uml2/2.0.0/UML">
+      <contents xmi:type="ecore:EPackage" xmi:id="_f-_v8PpVEeCbIZwHSJSkOQ" name="architecture" nsURI="http://www.eclipse.org/papyrus/design/architecture/1" nsPrefix="architecture">
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_f-_v8fpVEeCbIZwHSJSkOQ" name="Layer" eSuperTypes="_f-_wAPpVEeCbIZwHSJSkOQ">
+          <eAnnotations xmi:id="_f-_v8vpVEeCbIZwHSJSkOQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_9DuJ0PS3EeCQ4s2W2w_p6A"/>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_f-_v8_pVEeCbIZwHSJSkOQ" name="name" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_f-_v9fpVEeCbIZwHSJSkOQ" name="parentFolder" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_f-_v9_pVEeCbIZwHSJSkOQ" name="base_Package" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Package"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_f-_v-fpVEeCbIZwHSJSkOQ" name="isDeprecated" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_f-_v-_pVEeCbIZwHSJSkOQ" name="deprecatedComment" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_f-_v_fpVEeCbIZwHSJSkOQ" name="referent" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_f-_wAPpVEeCbIZwHSJSkOQ" name="Element" abstract="true">
+          <eAnnotations xmi:id="_f-_wAfpVEeCbIZwHSJSkOQ" source="http://www.eclipse.org/uml2/2.0.0/UML"/>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_f-_wAvpVEeCbIZwHSJSkOQ" name="documentation" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_f-_wBPpVEeCbIZwHSJSkOQ" name="comment" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_f-_wBvpVEeCbIZwHSJSkOQ" name="LayerDependency" eSuperTypes="_f-_wAPpVEeCbIZwHSJSkOQ">
+          <eAnnotations xmi:id="_f-_wB_pVEeCbIZwHSJSkOQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_BRgBAPapEeCMT_0n-PmDbg"/>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_f-_wCPpVEeCbIZwHSJSkOQ" name="isDeprecated" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_f-_wCvpVEeCbIZwHSJSkOQ" name="deprecatedComment" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_f-_wDPpVEeCbIZwHSJSkOQ" name="base_Dependency" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Dependency"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_f-_wD_pVEeCbIZwHSJSkOQ" name="Plugin" eSuperTypes="_f-_wAPpVEeCbIZwHSJSkOQ">
+          <eAnnotations xmi:id="_f-_wEPpVEeCbIZwHSJSkOQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_GbwbsPpUEeCbIZwHSJSkOQ"/>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_f-_wEfpVEeCbIZwHSJSkOQ" name="name" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_f-_wE_pVEeCbIZwHSJSkOQ" name="parentFolder" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_f-_wFfpVEeCbIZwHSJSkOQ" name="originalParentFolder" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_f-_wF_pVEeCbIZwHSJSkOQ" name="isDeprecated" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_f-_wGfpVEeCbIZwHSJSkOQ" name="deprecatedComment" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_f-_wG_pVEeCbIZwHSJSkOQ" name="referent" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_f-_wHfpVEeCbIZwHSJSkOQ" name="base_Package" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Package"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_f-_wIPpVEeCbIZwHSJSkOQ" name="PluginDependency" eSuperTypes="_f-_wAPpVEeCbIZwHSJSkOQ">
+          <eAnnotations xmi:id="_f-_wIfpVEeCbIZwHSJSkOQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_SoO_oPpUEeCbIZwHSJSkOQ"/>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_f-_wIvpVEeCbIZwHSJSkOQ" name="deprecatedComment" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_f-_wJPpVEeCbIZwHSJSkOQ" name="isDeprecated" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_f-_wJvpVEeCbIZwHSJSkOQ" name="base_Dependency" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Dependency"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+      </contents>
+      <contents xmi:type="ecore:EPackage" xmi:id="_X3s4sPpVEeCbIZwHSJSkOQ" name="architecture" nsURI="http://www.eclipse.org/papyrus/design/architecture/1" nsPrefix="architecture">
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_X3s4sfpVEeCbIZwHSJSkOQ" name="Layer">
+          <eAnnotations xmi:id="_X3s4svpVEeCbIZwHSJSkOQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_9DuJ0PS3EeCQ4s2W2w_p6A"/>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_X3s4s_pVEeCbIZwHSJSkOQ" name="name" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_X3s4tfpVEeCbIZwHSJSkOQ" name="parentFolder" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_X3s4t_pVEeCbIZwHSJSkOQ" name="base_Package" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Package"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_X3s4ufpVEeCbIZwHSJSkOQ" name="isDeprecated" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_X3s4u_pVEeCbIZwHSJSkOQ" name="deprecatedComment" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_X3s4vfpVEeCbIZwHSJSkOQ" name="referent" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_X3s4wPpVEeCbIZwHSJSkOQ" name="Element" abstract="true">
+          <eAnnotations xmi:id="_X3s4wfpVEeCbIZwHSJSkOQ" source="http://www.eclipse.org/uml2/2.0.0/UML"/>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_X3s4wvpVEeCbIZwHSJSkOQ" name="documentation" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_X3s4xPpVEeCbIZwHSJSkOQ" name="comment" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_X3s4xvpVEeCbIZwHSJSkOQ" name="LayerDependency">
+          <eAnnotations xmi:id="_X3s4x_pVEeCbIZwHSJSkOQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_BRgBAPapEeCMT_0n-PmDbg"/>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_X3s4yPpVEeCbIZwHSJSkOQ" name="isDeprecated" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_X3s4yvpVEeCbIZwHSJSkOQ" name="deprecatedComment" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_X3s4zPpVEeCbIZwHSJSkOQ" name="base_Dependency" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Dependency"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_X3s4z_pVEeCbIZwHSJSkOQ" name="Plugin">
+          <eAnnotations xmi:id="_X3s40PpVEeCbIZwHSJSkOQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_GbwbsPpUEeCbIZwHSJSkOQ"/>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_X3s40fpVEeCbIZwHSJSkOQ" name="name" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_X3s40_pVEeCbIZwHSJSkOQ" name="parentFolder" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_X3tfwfpVEeCbIZwHSJSkOQ" name="originalParentFolder" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_X3tfw_pVEeCbIZwHSJSkOQ" name="isDeprecated" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_X3tfxfpVEeCbIZwHSJSkOQ" name="deprecatedComment" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_X3tfx_pVEeCbIZwHSJSkOQ" name="referent" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_X3tfyfpVEeCbIZwHSJSkOQ" name="base_Package" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Package"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_X3tfzPpVEeCbIZwHSJSkOQ" name="PluginDependency">
+          <eAnnotations xmi:id="_X3tfzfpVEeCbIZwHSJSkOQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_SoO_oPpUEeCbIZwHSJSkOQ"/>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_X3tfzvpVEeCbIZwHSJSkOQ" name="deprecatedComment" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_X3tf0PpVEeCbIZwHSJSkOQ" name="isDeprecated" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_X3tf0vpVEeCbIZwHSJSkOQ" name="base_Dependency" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Dependency"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+      </contents>
+      <contents xmi:type="ecore:EPackage" xmi:id="_ewIh4fasEeCMT_0n-PmDbg" name="architecture" nsURI="http://www.eclipse.org/papyrus/design/architecture/1" nsPrefix="architecture">
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_ewIh4vasEeCMT_0n-PmDbg" name="Layer" eSuperTypes="_ewIh8fasEeCMT_0n-PmDbg">
+          <eAnnotations xmi:id="_ewIh4_asEeCMT_0n-PmDbg" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_9DuJ0PS3EeCQ4s2W2w_p6A"/>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_ewIh5PasEeCMT_0n-PmDbg" name="name" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_ewIh5vasEeCMT_0n-PmDbg" name="parentFolder" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_ewIh6PasEeCMT_0n-PmDbg" name="base_Package" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Package"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_ewIh6vasEeCMT_0n-PmDbg" name="isDeprecated" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_ewIh7PasEeCMT_0n-PmDbg" name="deprecatedComment" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_ewIh7vasEeCMT_0n-PmDbg" name="referent" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_ewIh8fasEeCMT_0n-PmDbg" name="Element" abstract="true">
+          <eAnnotations xmi:id="_ewIh8vasEeCMT_0n-PmDbg" source="http://www.eclipse.org/uml2/2.0.0/UML"/>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_ewIh8_asEeCMT_0n-PmDbg" name="documentation" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_ewIh9fasEeCMT_0n-PmDbg" name="comment" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_ewIh9_asEeCMT_0n-PmDbg" name="LayerDependency" eSuperTypes="_ewIh8fasEeCMT_0n-PmDbg">
+          <eAnnotations xmi:id="_ewIh-PasEeCMT_0n-PmDbg" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_BRgBAPapEeCMT_0n-PmDbg"/>
+        </eClassifiers>
+      </contents>
+      <contents xmi:type="ecore:EPackage" xmi:id="_blvpgPasEeCMT_0n-PmDbg" name="architecture" nsURI="http://www.eclipse.org/papyrus/design/architecture/1" nsPrefix="architecture">
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_blvpgfasEeCMT_0n-PmDbg" name="Layer" eSuperTypes="_blvpkPasEeCMT_0n-PmDbg">
+          <eAnnotations xmi:id="_blvpgvasEeCMT_0n-PmDbg" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_9DuJ0PS3EeCQ4s2W2w_p6A"/>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_blvpg_asEeCMT_0n-PmDbg" name="name" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_blvphfasEeCMT_0n-PmDbg" name="parentFolder" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_blvph_asEeCMT_0n-PmDbg" name="base_Package" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Package"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_blvpifasEeCMT_0n-PmDbg" name="isDeprecated" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_blvpi_asEeCMT_0n-PmDbg" name="deprecatedComment" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_blvpjfasEeCMT_0n-PmDbg" name="referent" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_blvpkPasEeCMT_0n-PmDbg" name="Element" abstract="true">
+          <eAnnotations xmi:id="_blvpkfasEeCMT_0n-PmDbg" source="http://www.eclipse.org/uml2/2.0.0/UML"/>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_blvpkvasEeCMT_0n-PmDbg" name="documentation" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_blvplPasEeCMT_0n-PmDbg" name="comment" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_blvplvasEeCMT_0n-PmDbg" name="LayerDependency" eSuperTypes="_blvpkPasEeCMT_0n-PmDbg">
+          <eAnnotations xmi:id="_blvpl_asEeCMT_0n-PmDbg" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_BRgBAPapEeCMT_0n-PmDbg"/>
+        </eClassifiers>
+      </contents>
+      <contents xmi:type="ecore:EPackage" xmi:id="_o1PmIParEeCMT_0n-PmDbg" name="architecture" nsURI="http://www.eclipse.org/papyrus/design/architecture/1" nsPrefix="architecture">
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_o1PmIfarEeCMT_0n-PmDbg" name="Layer" eSuperTypes="_o1PmL_arEeCMT_0n-PmDbg">
+          <eAnnotations xmi:id="_o1PmIvarEeCMT_0n-PmDbg" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_9DuJ0PS3EeCQ4s2W2w_p6A"/>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_o1PmI_arEeCMT_0n-PmDbg" name="name" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_o1PmJfarEeCMT_0n-PmDbg" name="parentFolder" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_o1PmJ_arEeCMT_0n-PmDbg" name="base_Package" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Package"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_o1PmKfarEeCMT_0n-PmDbg" name="isDeprecated" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_o1PmK_arEeCMT_0n-PmDbg" name="deprecatedComment" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_o1PmLfarEeCMT_0n-PmDbg" name="referent" ordered="false" lowerBound="1"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_o1PmL_arEeCMT_0n-PmDbg" name="Element" abstract="true">
+          <eAnnotations xmi:id="_o1PmMParEeCMT_0n-PmDbg" source="http://www.eclipse.org/uml2/2.0.0/UML"/>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_o1PmMfarEeCMT_0n-PmDbg" name="documentation" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_o1PmM_arEeCMT_0n-PmDbg" name="comment" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_o1PmNfarEeCMT_0n-PmDbg" name="LayerDependency" eSuperTypes="_o1PmL_arEeCMT_0n-PmDbg">
+          <eAnnotations xmi:id="_o1PmNvarEeCMT_0n-PmDbg" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_BRgBAPapEeCMT_0n-PmDbg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_o1PmOParEeCMT_0n-PmDbg" name="Class0">
+          <eAnnotations xmi:id="_o1PmOfarEeCMT_0n-PmDbg" source="http://www.eclipse.org/uml2/2.0.0/UML"/>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_o1PmOvarEeCMT_0n-PmDbg" name="firstName" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_o1PmPParEeCMT_0n-PmDbg" name="lastName" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_o1PmPvarEeCMT_0n-PmDbg" name="email" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_o1PmQParEeCMT_0n-PmDbg" name="company" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+      </contents>
+      <contents xmi:type="ecore:EPackage" xmi:id="_ZoB1EfarEeCMT_0n-PmDbg" name="architecture" nsURI="http://www.eclipse.org/papyrus/design/architecture/1" nsPrefix="architecture">
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_ZoB1EvarEeCMT_0n-PmDbg" name="Layer" eSuperTypes="_ZoCcJParEeCMT_0n-PmDbg">
+          <eAnnotations xmi:id="_ZoB1E_arEeCMT_0n-PmDbg" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_9DuJ0PS3EeCQ4s2W2w_p6A"/>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_ZoB1FParEeCMT_0n-PmDbg" name="name" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_ZoB1FvarEeCMT_0n-PmDbg" name="parentFolder" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_ZoB1GParEeCMT_0n-PmDbg" name="base_Package" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Package"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_ZoB1GvarEeCMT_0n-PmDbg" name="isDeprecated" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_ZoB1HParEeCMT_0n-PmDbg" name="deprecatedComment" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_ZoCcIfarEeCMT_0n-PmDbg" name="referent" ordered="false" lowerBound="1" eType="_ZoCcKvarEeCMT_0n-PmDbg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_ZoCcJParEeCMT_0n-PmDbg" name="Element" abstract="true">
+          <eAnnotations xmi:id="_ZoCcJfarEeCMT_0n-PmDbg" source="http://www.eclipse.org/uml2/2.0.0/UML"/>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_ZoCcJvarEeCMT_0n-PmDbg" name="documentation" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_ZoCcKParEeCMT_0n-PmDbg" name="comment" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_ZoCcKvarEeCMT_0n-PmDbg" name="Committer">
+          <eAnnotations xmi:id="_ZoCcK_arEeCMT_0n-PmDbg" source="http://www.eclipse.org/uml2/2.0.0/UML"/>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_ZoCcLParEeCMT_0n-PmDbg" name="firstName" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_ZoCcLvarEeCMT_0n-PmDbg" name="lastName" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_ZoCcMParEeCMT_0n-PmDbg" name="email" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_ZoCcMvarEeCMT_0n-PmDbg" name="company" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_ZoCcNParEeCMT_0n-PmDbg" name="LayerDependency" eSuperTypes="_ZoCcJParEeCMT_0n-PmDbg">
+          <eAnnotations xmi:id="_ZoCcNfarEeCMT_0n-PmDbg" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_BRgBAPapEeCMT_0n-PmDbg"/>
+        </eClassifiers>
+      </contents>
+      <contents xmi:type="ecore:EPackage" xmi:id="_MZcT4ParEeCMT_0n-PmDbg" name="architecture" nsURI="http://www.eclipse.org/papyrus/design/architecture/1" nsPrefix="architecture">
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_MZcT4farEeCMT_0n-PmDbg" name="Layer">
+          <eAnnotations xmi:id="_MZcT4varEeCMT_0n-PmDbg" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_9DuJ0PS3EeCQ4s2W2w_p6A"/>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_MZcT4_arEeCMT_0n-PmDbg" name="name" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_MZcT5farEeCMT_0n-PmDbg" name="parentFolder" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_MZcT5_arEeCMT_0n-PmDbg" name="base_Package" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Package"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_MZcT6farEeCMT_0n-PmDbg" name="isDeprecated" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_MZcT6_arEeCMT_0n-PmDbg" name="deprecatedComment" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_MZcT7farEeCMT_0n-PmDbg" name="referent" ordered="false" lowerBound="1" eType="_MZcT8ParEeCMT_0n-PmDbg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_MZcT8ParEeCMT_0n-PmDbg" name="Committer">
+          <eAnnotations xmi:id="_MZcT8farEeCMT_0n-PmDbg" source="http://www.eclipse.org/uml2/2.0.0/UML"/>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_MZcT8varEeCMT_0n-PmDbg" name="firstName" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_MZcT9ParEeCMT_0n-PmDbg" name="lastName" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_MZcT9varEeCMT_0n-PmDbg" name="email" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_MZcT-ParEeCMT_0n-PmDbg" name="company" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_MZcT-varEeCMT_0n-PmDbg" name="Element" abstract="true">
+          <eAnnotations xmi:id="_MZcT-_arEeCMT_0n-PmDbg" source="http://www.eclipse.org/uml2/2.0.0/UML"/>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_MZcT_ParEeCMT_0n-PmDbg" name="documentation" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_MZcT_varEeCMT_0n-PmDbg" name="comment" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_MZcUAParEeCMT_0n-PmDbg" name="LayerDependency">
+          <eAnnotations xmi:id="_MZcUAfarEeCMT_0n-PmDbg" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_BRgBAPapEeCMT_0n-PmDbg"/>
+        </eClassifiers>
+      </contents>
+      <contents xmi:type="ecore:EPackage" xmi:id="_I8W30PTQEeCDBuWvZAIMYg" name="architecture" nsURI="http://www.eclipse.org/papyrus/design/architecture/1" nsPrefix="architecture">
+        <eAnnotations xmi:id="_I8aiMPTQEeCDBuWvZAIMYg" source="PapyrusVersion">
+          <details xmi:id="_I8aiMfTQEeCDBuWvZAIMYg" key="Version" value="0.0.6"/>
+          <details xmi:id="_I8aiMvTQEeCDBuWvZAIMYg" key="Comment" value=""/>
+          <details xmi:id="_I8aiM_TQEeCDBuWvZAIMYg" key="Copyright" value=""/>
+          <details xmi:id="_I8aiNPTQEeCDBuWvZAIMYg" key="Date" value="2011-10-12"/>
+          <details xmi:id="_I8aiNfTQEeCDBuWvZAIMYg" key="Author" value=""/>
+        </eAnnotations>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_I8W30fTQEeCDBuWvZAIMYg" name="Layer" eSuperTypes="_I8W32vTQEeCDBuWvZAIMYg">
+          <eAnnotations xmi:id="_I8W30vTQEeCDBuWvZAIMYg" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_9DuJ0PS3EeCQ4s2W2w_p6A"/>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_I8W30_TQEeCDBuWvZAIMYg" name="name" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_I8W31fTQEeCDBuWvZAIMYg" name="parentFolder" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_I8W31_TQEeCDBuWvZAIMYg" name="base_Package" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Package"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_I8W32vTQEeCDBuWvZAIMYg" name="Element" abstract="true">
+          <eAnnotations xmi:id="_I8W32_TQEeCDBuWvZAIMYg" source="http://www.eclipse.org/uml2/2.0.0/UML"/>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_I8W33PTQEeCDBuWvZAIMYg" name="documentation" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_I8W33vTQEeCDBuWvZAIMYg" name="comment" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+      </contents>
+      <contents xmi:type="ecore:EPackage" xmi:id="_ATlEIPTQEeCDBuWvZAIMYg" name="architecture" nsURI="http://www.eclipse.org/papyrus/design/architecture/1" nsPrefix="architecture">
+        <eAnnotations xmi:id="_ATlrMPTQEeCDBuWvZAIMYg" source="PapyrusVersion">
+          <details xmi:id="_ATlrMfTQEeCDBuWvZAIMYg" key="Version" value="0.0.5"/>
+          <details xmi:id="_ATlrMvTQEeCDBuWvZAIMYg" key="Comment" value=""/>
+          <details xmi:id="_ATlrM_TQEeCDBuWvZAIMYg" key="Copyright" value=""/>
+          <details xmi:id="_ATlrNPTQEeCDBuWvZAIMYg" key="Date" value="2011-10-12"/>
+          <details xmi:id="_ATlrNfTQEeCDBuWvZAIMYg" key="Author" value=""/>
+        </eAnnotations>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_ATlEIfTQEeCDBuWvZAIMYg" name="Layer" eSuperTypes="_ATlEKPTQEeCDBuWvZAIMYg">
+          <eAnnotations xmi:id="_ATlEIvTQEeCDBuWvZAIMYg" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_9DuJ0PS3EeCQ4s2W2w_p6A"/>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_ATlEI_TQEeCDBuWvZAIMYg" name="name" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_ATlEJfTQEeCDBuWvZAIMYg" name="parentFolder" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_ATlEKPTQEeCDBuWvZAIMYg" name="Element" abstract="true">
+          <eAnnotations xmi:id="_ATlEKfTQEeCDBuWvZAIMYg" source="http://www.eclipse.org/uml2/2.0.0/UML"/>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_ATlEKvTQEeCDBuWvZAIMYg" name="documentation" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_ATlELPTQEeCDBuWvZAIMYg" name="comment" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+      </contents>
+      <contents xmi:type="ecore:EPackage" xmi:id="_2doSsPTPEeCDBuWvZAIMYg" name="architecture" nsURI="http://www.eclipse.org/papyrus/design/architecture/1" nsPrefix="architecture">
+        <eAnnotations xmi:id="_2dqH4PTPEeCDBuWvZAIMYg" source="PapyrusVersion">
+          <details xmi:id="_2dqH4fTPEeCDBuWvZAIMYg" key="Version" value="0.0.4"/>
+          <details xmi:id="_2dqH4vTPEeCDBuWvZAIMYg" key="Comment" value=""/>
+          <details xmi:id="_2dqH4_TPEeCDBuWvZAIMYg" key="Copyright" value=""/>
+          <details xmi:id="_2dqH5PTPEeCDBuWvZAIMYg" key="Date" value="2011-10-12"/>
+          <details xmi:id="_2dqH5fTPEeCDBuWvZAIMYg" key="Author" value=""/>
+        </eAnnotations>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_2doSsfTPEeCDBuWvZAIMYg" name="Layer" eSuperTypes="_2doSuvTPEeCDBuWvZAIMYg">
+          <eAnnotations xmi:id="_2doSsvTPEeCDBuWvZAIMYg" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_9DuJ0PS3EeCQ4s2W2w_p6A"/>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_2doSs_TPEeCDBuWvZAIMYg" name="name" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_2doStfTPEeCDBuWvZAIMYg" name="parentFolder" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_2doSt_TPEeCDBuWvZAIMYg" name="base_Package" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Package"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_2doSuvTPEeCDBuWvZAIMYg" name="Element" abstract="true">
+          <eAnnotations xmi:id="_2doSu_TPEeCDBuWvZAIMYg" source="http://www.eclipse.org/uml2/2.0.0/UML"/>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_2doSvPTPEeCDBuWvZAIMYg" name="documentation" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_2doSvvTPEeCDBuWvZAIMYg" name="comment" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+      </contents>
+      <contents xmi:type="ecore:EPackage" xmi:id="_mK4c8fTPEeCDBuWvZAIMYg" name="architecture" nsURI="http://www.eclipse.org/papyrus/design/architecture/1" nsPrefix="architecture">
+        <eAnnotations xmi:id="_mK8HUPTPEeCDBuWvZAIMYg" source="PapyrusVersion">
+          <details xmi:id="_mK8HUfTPEeCDBuWvZAIMYg" key="Version" value="0.0.3"/>
+          <details xmi:id="_mK8HUvTPEeCDBuWvZAIMYg" key="Comment" value=""/>
+          <details xmi:id="_mK8HU_TPEeCDBuWvZAIMYg" key="Copyright" value=""/>
+          <details xmi:id="_mK8HVPTPEeCDBuWvZAIMYg" key="Date" value="2011-10-12"/>
+          <details xmi:id="_mK8HVfTPEeCDBuWvZAIMYg" key="Author" value=""/>
+        </eAnnotations>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_mK4c8vTPEeCDBuWvZAIMYg" name="Layer" eSuperTypes="_mK5EB_TPEeCDBuWvZAIMYg">
+          <eAnnotations xmi:id="_mK4c8_TPEeCDBuWvZAIMYg" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_9DuJ0PS3EeCQ4s2W2w_p6A"/>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_mK4c9PTPEeCDBuWvZAIMYg" name="name" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_mK5EAPTPEeCDBuWvZAIMYg" name="parentFolder" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_mK5EAvTPEeCDBuWvZAIMYg" name="base_Package" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Package"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_mK5EBPTPEeCDBuWvZAIMYg" name="base_Model" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Model"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_mK5EB_TPEeCDBuWvZAIMYg" name="Element" abstract="true">
+          <eAnnotations xmi:id="_mK5ECPTPEeCDBuWvZAIMYg" source="http://www.eclipse.org/uml2/2.0.0/UML"/>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_mK5ECfTPEeCDBuWvZAIMYg" name="documentation" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_mK5EC_TPEeCDBuWvZAIMYg" name="comment" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+      </contents>
+      <contents xmi:type="ecore:EPackage" xmi:id="_g8PTAPS9EeCDBuWvZAIMYg" name="architecture" nsURI="http://www.eclipse.org/papyrus/design/architecture/1" nsPrefix="architecture">
+        <eAnnotations xmi:id="_g8SWUPS9EeCDBuWvZAIMYg" source="PapyrusVersion">
+          <details xmi:id="_g8SWUfS9EeCDBuWvZAIMYg" key="Version" value="0.0.2"/>
+          <details xmi:id="_g8SWUvS9EeCDBuWvZAIMYg" key="Comment" value=""/>
+          <details xmi:id="_g8SWU_S9EeCDBuWvZAIMYg" key="Copyright" value=""/>
+          <details xmi:id="_g8SWVPS9EeCDBuWvZAIMYg" key="Date" value="2011-10-12"/>
+          <details xmi:id="_g8SWVfS9EeCDBuWvZAIMYg" key="Author" value=""/>
+        </eAnnotations>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_g8PTAfS9EeCDBuWvZAIMYg" name="Layer" eSuperTypes="_g8PTCPS9EeCDBuWvZAIMYg">
+          <eAnnotations xmi:id="_g8PTAvS9EeCDBuWvZAIMYg" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_9DuJ0PS3EeCQ4s2W2w_p6A"/>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_g8PTA_S9EeCDBuWvZAIMYg" name="name" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_g8PTBfS9EeCDBuWvZAIMYg" name="parentFolder" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_g8PTCPS9EeCDBuWvZAIMYg" name="Element" abstract="true">
+          <eAnnotations xmi:id="_g8PTCfS9EeCDBuWvZAIMYg" source="http://www.eclipse.org/uml2/2.0.0/UML"/>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_g8PTCvS9EeCDBuWvZAIMYg" name="documentation" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_g8PTDPS9EeCDBuWvZAIMYg" name="comment" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+      </contents>
+      <contents xmi:type="ecore:EPackage" xmi:id="_tWgYIfS5EeCQ4s2W2w_p6A" name="Profile" nsURI="http:///schemas/Profile/_tWdU0PS5EeCQ4s2W2w_p6A/0" nsPrefix="Profile">
+        <eAnnotations xmi:id="_tWjbcPS5EeCQ4s2W2w_p6A" source="PapyrusVersion">
+          <details xmi:id="_tWjbcfS5EeCQ4s2W2w_p6A" key="Version" value="0.0.1"/>
+          <details xmi:id="_tWjbcvS5EeCQ4s2W2w_p6A" key="Comment" value=""/>
+          <details xmi:id="_tWjbc_S5EeCQ4s2W2w_p6A" key="Copyright" value="Cedric Dumoulin"/>
+          <details xmi:id="_tWjbdPS5EeCQ4s2W2w_p6A" key="Date" value="2011-10-12"/>
+          <details xmi:id="_tWjbdfS5EeCQ4s2W2w_p6A" key="Author" value=""/>
+        </eAnnotations>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_tWgYIvS5EeCQ4s2W2w_p6A" name="layer" eSuperTypes="_tWgYKfS5EeCQ4s2W2w_p6A">
+          <eAnnotations xmi:id="_tWgYI_S5EeCQ4s2W2w_p6A" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_9DuJ0PS3EeCQ4s2W2w_p6A"/>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_tWgYJPS5EeCQ4s2W2w_p6A" name="name" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_tWgYJvS5EeCQ4s2W2w_p6A" name="parentFolder" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_tWgYKfS5EeCQ4s2W2w_p6A" name="Element" abstract="true">
+          <eAnnotations xmi:id="_tWgYKvS5EeCQ4s2W2w_p6A" source="http://www.eclipse.org/uml2/2.0.0/UML"/>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_tWgYK_S5EeCQ4s2W2w_p6A" name="documentation" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_tWgYLfS5EeCQ4s2W2w_p6A" name="comment" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+      </contents>
+    </eAnnotations>
+    <packageImport xmi:id="_4J5UIfS3EeCQ4s2W2w_p6A">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_METAMODELS/UML.metamodel.uml#_0"/>
+    </packageImport>
+    <packageImport xmi:id="_4J5UIvS3EeCQ4s2W2w_p6A">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="_9DuJ0PS3EeCQ4s2W2w_p6A" name="Layer">
+      <ownedAttribute xmi:id="_CE8A8PS4EeCQ4s2W2w_p6A" name="name">
+        <ownedComment xmi:id="_VjUFMPS4EeCQ4s2W2w_p6A" annotatedElement="_CE8A8PS4EeCQ4s2W2w_p6A">
+          <body>&lt;p>&#xD;
+    An alternative name to be used in place of the stereotyped element's name.&#xD;
+&lt;/p></body>
+        </ownedComment>
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_U5kvMPS5EeCQ4s2W2w_p6A" name="parentFolder">
+        <ownedComment xmi:id="_U5kvMfS5EeCQ4s2W2w_p6A" annotatedElement="_U5kvMPS5EeCQ4s2W2w_p6A">
+          <body>&lt;p>&#xD;
+    The name of the parent folder that will contain the layer, if any.&#xD;
+&lt;/p>&#xD;
+&lt;p>&#xD;
+    If no parent is specified, the layer is 'virtual' (no corresponding physical folder)&#xD;
+&lt;/p>&#xD;
+&lt;p>&#xD;
+    Ex: plugins&#xD;
+&lt;/p></body>
+        </ownedComment>
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_HAJp0PTQEeCDBuWvZAIMYg" name="base_Package" association="_HAKQ4PTQEeCDBuWvZAIMYg">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Package"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_L3QCQPaqEeCMT_0n-PmDbg" name="isDeprecated">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_Ykw2sPaqEeCMT_0n-PmDbg" name="deprecatedComment">
+        <ownedComment xmi:id="_Ykw2sfaqEeCMT_0n-PmDbg" annotatedElement="_Ykw2sPaqEeCMT_0n-PmDbg">
+          <body>&lt;p>&#xD;
+    A comment associated to the isDeprecated=true&#xD;
+&lt;/p></body>
+        </ownedComment>
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_z55b0PaqEeCMT_0n-PmDbg" name="referent">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Extension" xmi:id="_HAKQ4PTQEeCDBuWvZAIMYg" name="E_Layer_Package0" memberEnd="_HAKQ4fTQEeCDBuWvZAIMYg _HAJp0PTQEeCDBuWvZAIMYg">
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_HAKQ4fTQEeCDBuWvZAIMYg" name="extension_Layer" type="_9DuJ0PS3EeCQ4s2W2w_p6A" aggregation="composite" association="_HAKQ4PTQEeCDBuWvZAIMYg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="_BRgBAPapEeCMT_0n-PmDbg" name="LayerDependency">
+      <ownedComment xmi:id="_D_G2wPapEeCMT_0n-PmDbg" annotatedElement="_BRgBAPapEeCMT_0n-PmDbg">
+        <body>&lt;p>&#xD;
+    A dependency between two layers.&#xD;
+&lt;/p>&#xD;
+&lt;p>&#xD;
+    This dependency is computed from the dependencies of internal layer or packages.&#xD;
+&lt;/p></body>
+      </ownedComment>
+      <ownedAttribute xmi:id="_cg_NcPpUEeCbIZwHSJSkOQ" name="isDeprecated">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_cg_0gPpUEeCbIZwHSJSkOQ" name="deprecatedComment">
+        <ownedComment xmi:id="_cg_0gfpUEeCbIZwHSJSkOQ" annotatedElement="_cg_0gPpUEeCbIZwHSJSkOQ">
+          <body>&lt;p>&#xD;
+    A comment associated to the isDeprecated=true&#xD;
+&lt;/p></body>
+        </ownedComment>
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_Brk0wPpVEeCbIZwHSJSkOQ" name="base_Dependency" association="_Brlb0PpVEeCbIZwHSJSkOQ">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Dependency"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="_GbwbsPpUEeCbIZwHSJSkOQ" name="Plugin">
+      <ownedAttribute xmi:id="_Xk8KMfpUEeCbIZwHSJSkOQ" name="name">
+        <ownedComment xmi:id="_Xk8KMvpUEeCbIZwHSJSkOQ" annotatedElement="_Xk8KMfpUEeCbIZwHSJSkOQ">
+          <body>&lt;p>&#xD;
+    An alternative name to be used in place of the stereotyped element's name.&#xD;
+&lt;/p></body>
+        </ownedComment>
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_Xk8xQ_pUEeCbIZwHSJSkOQ" name="parentFolder">
+        <ownedComment xmi:id="_Xk8xRPpUEeCbIZwHSJSkOQ" annotatedElement="_Xk8xQ_pUEeCbIZwHSJSkOQ">
+          <body>&lt;p>&#xD;
+    The name of the parent folder that will contain the layer, if any.&#xD;
+&lt;/p>&#xD;
+&lt;p>&#xD;
+    If no parent is specified, the layer is 'virtual' (no corresponding physical folder)&#xD;
+&lt;/p>&#xD;
+&lt;p>&#xD;
+    Ex: plugins&#xD;
+&lt;/p></body>
+        </ownedComment>
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_jifhUPpUEeCbIZwHSJSkOQ" name="originalParentFolder">
+        <ownedComment xmi:id="_jifhUfpUEeCbIZwHSJSkOQ" annotatedElement="_jifhUPpUEeCbIZwHSJSkOQ">
+          <body>&lt;p>&#xD;
+    The name of the parent folder that was containing the layer before the refactoring, if any.&#xD;
+&lt;/p>&#xD;
+</body>
+        </ownedComment>
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_Xk8KMPpUEeCbIZwHSJSkOQ" name="isDeprecated">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_Xk8xQPpUEeCbIZwHSJSkOQ" name="deprecatedComment">
+        <ownedComment xmi:id="_Xk8xQfpUEeCbIZwHSJSkOQ" annotatedElement="_Xk8xQPpUEeCbIZwHSJSkOQ">
+          <body>&lt;p>&#xD;
+    A comment associated to the isDeprecated=true&#xD;
+&lt;/p></body>
+        </ownedComment>
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_Xk8xQvpUEeCbIZwHSJSkOQ" name="referent">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_GPu8cPpVEeCbIZwHSJSkOQ" name="base_Package" association="_GPvjgPpVEeCbIZwHSJSkOQ">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Package"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="_SoO_oPpUEeCbIZwHSJSkOQ" name="PluginDependency">
+      <ownedAttribute xmi:id="_dN_dYPpUEeCbIZwHSJSkOQ" name="deprecatedComment">
+        <ownedComment xmi:id="_dN_dYfpUEeCbIZwHSJSkOQ" annotatedElement="_dN_dYPpUEeCbIZwHSJSkOQ">
+          <body>&lt;p>&#xD;
+    A comment associated to the isDeprecated=true&#xD;
+&lt;/p></body>
+        </ownedComment>
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_dN_dYvpUEeCbIZwHSJSkOQ" name="isDeprecated">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_BGdVgPpVEeCbIZwHSJSkOQ" name="base_Dependency" association="_BGejoPpVEeCbIZwHSJSkOQ">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Dependency"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Extension" xmi:id="_BGejoPpVEeCbIZwHSJSkOQ" name="E_PluginDependency_Dependency0" memberEnd="_BGejofpVEeCbIZwHSJSkOQ _BGdVgPpVEeCbIZwHSJSkOQ">
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_BGejofpVEeCbIZwHSJSkOQ" name="extension_PluginDependency" type="_SoO_oPpUEeCbIZwHSJSkOQ" aggregation="composite" association="_BGejoPpVEeCbIZwHSJSkOQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Extension" xmi:id="_Brlb0PpVEeCbIZwHSJSkOQ" name="E_LayerDependency_Dependency0" memberEnd="_Brlb0fpVEeCbIZwHSJSkOQ _Brk0wPpVEeCbIZwHSJSkOQ">
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_Brlb0fpVEeCbIZwHSJSkOQ" name="extension_LayerDependency" type="_BRgBAPapEeCMT_0n-PmDbg" aggregation="composite" association="_Brlb0PpVEeCbIZwHSJSkOQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Extension" xmi:id="_GPvjgPpVEeCbIZwHSJSkOQ" name="E_Plugin_Package0" memberEnd="_GPvjgfpVEeCbIZwHSJSkOQ _GPu8cPpVEeCbIZwHSJSkOQ">
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_GPvjgfpVEeCbIZwHSJSkOQ" name="extension_Plugin" type="_GbwbsPpUEeCbIZwHSJSkOQ" aggregation="composite" association="_GPvjgPpVEeCbIZwHSJSkOQ"/>
+    </packagedElement>
+    <profileApplication xmi:id="_s0-i8PS6EeCDBuWvZAIMYg">
+      <eAnnotations xmi:id="_s13TwPS6EeCDBuWvZAIMYg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UML_PROFILES/Ecore.profile.uml#_0"/>
+    </profileApplication>
+  </uml:Profile>
+  <Ecore:EPackage xmi:id="_wJJpcPS6EeCDBuWvZAIMYg" base_Package="_4J5UIPS3EeCQ4s2W2w_p6A" nsURI="http://www.eclipse.org/papyrus/design/architecture/1" basePackage="org.eclipse.papyrus.design.profile"/>
+</xmi:XMI>

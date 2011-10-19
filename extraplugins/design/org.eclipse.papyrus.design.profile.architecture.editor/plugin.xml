@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id$
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="org.eclipse.papyrus.design.profile.architecture.presentation.ArchitectureModelWizardID"
+            name="%_UI_ArchitectureModelWizard_label"
+            class="org.eclipse.papyrus.design.profile.architecture.presentation.ArchitectureModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/ArchitectureModelFile.gif">
+         <description>%_UI_ArchitectureModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <editor
+            id="org.eclipse.papyrus.design.profile.architecture.presentation.ArchitectureEditorID"
+            name="%_UI_ArchitectureEditor_label"
+            icon="icons/full/obj16/ArchitectureModelFile.gif"
+            extensions="architecture"
+            class="org.eclipse.papyrus.design.profile.architecture.presentation.ArchitectureEditor"
+            contributorClass="org.eclipse.papyrus.design.profile.architecture.presentation.ArchitectureActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>

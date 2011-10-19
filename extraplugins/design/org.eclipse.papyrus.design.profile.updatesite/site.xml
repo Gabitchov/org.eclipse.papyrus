@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/org.eclipse.papyrus.design.profile.feature_0.9.0.201110191532.jar" id="org.eclipse.papyrus.design.profile.feature" version="0.9.0.201110191532">
+      <category name="org.eclipse.papyrus.design"/>
+   </feature>
+   <category-def name="org.eclipse.papyrus.design" label="Papyrus Design">
+      <description>
+         Plugins related to architecture design.
+      </description>
+   </category-def>
+</site>
