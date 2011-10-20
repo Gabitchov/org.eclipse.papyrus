@@ -25,13 +25,13 @@
     <availablePage>
       <emfPageIdentifier href="papyrusRefactoring-0.9.notation#_6R9RcPanEeCMT_0n-PmDbg"/>
     </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="papyrusRefactoring-0.9.notation#_iRwZgPsVEeCJHfZ767zc0Q"/>
+    </availablePage>
   </pageList>
   <sashModel currentSelection="//@sashModel/@windows.0/@children.0">
     <windows>
       <children xsi:type="di:TabFolder">
-        <children>
-          <emfPageIdentifier href="papyrusRefactoring-0.9.notation#_-rxCgPSzEeCQ4s2W2w_p6A"/>
-        </children>
         <children>
           <emfPageIdentifier href="papyrusRefactoring-0.9.notation#_Lbyw4PTfEeCm_IWJByqtzA"/>
         </children>
@@ -43,6 +43,15 @@
         </children>
         <children>
           <emfPageIdentifier href="papyrusRefactoring-0.9.notation#_6R9RcPanEeCMT_0n-PmDbg"/>
+        </children>
+        <children>
+          <emfPageIdentifier href="papyrusRefactoring-0.9.notation#_6Xlc0Ot5EeCGSbsQKN6UYQ"/>
+        </children>
+        <children>
+          <emfPageIdentifier href="papyrusRefactoring-0.9.notation#_iRwZgPsVEeCJHfZ767zc0Q"/>
+        </children>
+        <children>
+          <emfPageIdentifier href="papyrusRefactoring-0.9.notation#_-rxCgPSzEeCQ4s2W2w_p6A"/>
         </children>
       </children>
     </windows>
