@@ -28,6 +28,9 @@
     <availablePage>
       <emfPageIdentifier href="papyrusRefactoring-0.9.notation#_iRwZgPsVEeCJHfZ767zc0Q"/>
     </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="papyrusRefactoring-0.9.notation#_gKCNIPsXEeCJHfZ767zc0Q"/>
+    </availablePage>
   </pageList>
   <sashModel currentSelection="//@sashModel/@windows.0/@children.0">
     <windows>
