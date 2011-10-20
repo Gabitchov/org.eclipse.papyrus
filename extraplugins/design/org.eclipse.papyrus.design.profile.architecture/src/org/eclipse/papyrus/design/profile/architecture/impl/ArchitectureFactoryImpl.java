@@ -63,7 +63,8 @@ public class ArchitectureFactoryImpl extends EFactoryImpl implements Architectur
 			case ArchitecturePackage.LAYER: return createLayer();
 			case ArchitecturePackage.LAYER_DEPENDENCY: return createLayerDependency();
 			case ArchitecturePackage.PLUGIN: return createPlugin();
-			case ArchitecturePackage.PLUGIN_DEPENDENCY: return createPluginDependency();
+			case ArchitecturePackage.PROJECT: return createProject();
+			case ArchitecturePackage.PROJECT_DEPENDENCY: return createProjectDependency();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -104,9 +105,19 @@ public class ArchitectureFactoryImpl extends EFactoryImpl implements Architectur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PluginDependency createPluginDependency() {
-		PluginDependencyImpl pluginDependency = new PluginDependencyImpl();
-		return pluginDependency;
+	public Project createProject() {
+		ProjectImpl project = new ProjectImpl();
+		return project;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ProjectDependency createProjectDependency() {
+		ProjectDependencyImpl projectDependency = new ProjectDependencyImpl();
+		return projectDependency;
 	}
 
 	/**

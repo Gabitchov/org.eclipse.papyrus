@@ -14,26 +14,26 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.papyrus.design.profile.architecture.ArchitecturePackage;
-import org.eclipse.papyrus.design.profile.architecture.PluginDependency;
+import org.eclipse.papyrus.design.profile.architecture.ProjectDependency;
 
 import org.eclipse.uml2.uml.Dependency;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Plugin Dependency</b></em>'.
+ * An implementation of the model object '<em><b>Project Dependency</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.design.profile.architecture.impl.PluginDependencyImpl#getDeprecatedComment <em>Deprecated Comment</em>}</li>
- *   <li>{@link org.eclipse.papyrus.design.profile.architecture.impl.PluginDependencyImpl#isDeprecated <em>Is Deprecated</em>}</li>
- *   <li>{@link org.eclipse.papyrus.design.profile.architecture.impl.PluginDependencyImpl#getBase_Dependency <em>Base Dependency</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.design.profile.architecture.impl.ProjectDependencyImpl#getDeprecatedComment <em>Deprecated Comment</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.design.profile.architecture.impl.ProjectDependencyImpl#isDeprecated <em>Is Deprecated</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.design.profile.architecture.impl.ProjectDependencyImpl#getBase_Dependency <em>Base Dependency</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class PluginDependencyImpl extends ElementImpl implements PluginDependency {
+public class ProjectDependencyImpl extends ElementImpl implements ProjectDependency {
 	/**
 	 * The default value of the '{@link #getDeprecatedComment() <em>Deprecated Comment</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -89,7 +89,7 @@ public class PluginDependencyImpl extends ElementImpl implements PluginDependenc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected PluginDependencyImpl() {
+	protected ProjectDependencyImpl() {
 		super();
 	}
 
@@ -100,7 +100,7 @@ public class PluginDependencyImpl extends ElementImpl implements PluginDependenc
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return ArchitecturePackage.Literals.PLUGIN_DEPENDENCY;
+		return ArchitecturePackage.Literals.PROJECT_DEPENDENCY;
 	}
 
 	/**
@@ -121,7 +121,7 @@ public class PluginDependencyImpl extends ElementImpl implements PluginDependenc
 		String oldDeprecatedComment = deprecatedComment;
 		deprecatedComment = newDeprecatedComment;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ArchitecturePackage.PLUGIN_DEPENDENCY__DEPRECATED_COMMENT, oldDeprecatedComment, deprecatedComment));
+			eNotify(new ENotificationImpl(this, Notification.SET, ArchitecturePackage.PROJECT_DEPENDENCY__DEPRECATED_COMMENT, oldDeprecatedComment, deprecatedComment));
 	}
 
 	/**
@@ -142,7 +142,7 @@ public class PluginDependencyImpl extends ElementImpl implements PluginDependenc
 		boolean oldIsDeprecated = isDeprecated;
 		isDeprecated = newIsDeprecated;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ArchitecturePackage.PLUGIN_DEPENDENCY__IS_DEPRECATED, oldIsDeprecated, isDeprecated));
+			eNotify(new ENotificationImpl(this, Notification.SET, ArchitecturePackage.PROJECT_DEPENDENCY__IS_DEPRECATED, oldIsDeprecated, isDeprecated));
 	}
 
 	/**
@@ -156,7 +156,7 @@ public class PluginDependencyImpl extends ElementImpl implements PluginDependenc
 			base_Dependency = (Dependency)eResolveProxy(oldBase_Dependency);
 			if (base_Dependency != oldBase_Dependency) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ArchitecturePackage.PLUGIN_DEPENDENCY__BASE_DEPENDENCY, oldBase_Dependency, base_Dependency));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ArchitecturePackage.PROJECT_DEPENDENCY__BASE_DEPENDENCY, oldBase_Dependency, base_Dependency));
 			}
 		}
 		return base_Dependency;
@@ -180,7 +180,7 @@ public class PluginDependencyImpl extends ElementImpl implements PluginDependenc
 		Dependency oldBase_Dependency = base_Dependency;
 		base_Dependency = newBase_Dependency;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ArchitecturePackage.PLUGIN_DEPENDENCY__BASE_DEPENDENCY, oldBase_Dependency, base_Dependency));
+			eNotify(new ENotificationImpl(this, Notification.SET, ArchitecturePackage.PROJECT_DEPENDENCY__BASE_DEPENDENCY, oldBase_Dependency, base_Dependency));
 	}
 
 	/**
@@ -191,11 +191,11 @@ public class PluginDependencyImpl extends ElementImpl implements PluginDependenc
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ArchitecturePackage.PLUGIN_DEPENDENCY__DEPRECATED_COMMENT:
+			case ArchitecturePackage.PROJECT_DEPENDENCY__DEPRECATED_COMMENT:
 				return getDeprecatedComment();
-			case ArchitecturePackage.PLUGIN_DEPENDENCY__IS_DEPRECATED:
+			case ArchitecturePackage.PROJECT_DEPENDENCY__IS_DEPRECATED:
 				return isDeprecated();
-			case ArchitecturePackage.PLUGIN_DEPENDENCY__BASE_DEPENDENCY:
+			case ArchitecturePackage.PROJECT_DEPENDENCY__BASE_DEPENDENCY:
 				if (resolve) return getBase_Dependency();
 				return basicGetBase_Dependency();
 		}
@@ -210,13 +210,13 @@ public class PluginDependencyImpl extends ElementImpl implements PluginDependenc
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ArchitecturePackage.PLUGIN_DEPENDENCY__DEPRECATED_COMMENT:
+			case ArchitecturePackage.PROJECT_DEPENDENCY__DEPRECATED_COMMENT:
 				setDeprecatedComment((String)newValue);
 				return;
-			case ArchitecturePackage.PLUGIN_DEPENDENCY__IS_DEPRECATED:
+			case ArchitecturePackage.PROJECT_DEPENDENCY__IS_DEPRECATED:
 				setIsDeprecated((Boolean)newValue);
 				return;
-			case ArchitecturePackage.PLUGIN_DEPENDENCY__BASE_DEPENDENCY:
+			case ArchitecturePackage.PROJECT_DEPENDENCY__BASE_DEPENDENCY:
 				setBase_Dependency((Dependency)newValue);
 				return;
 		}
@@ -231,13 +231,13 @@ public class PluginDependencyImpl extends ElementImpl implements PluginDependenc
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ArchitecturePackage.PLUGIN_DEPENDENCY__DEPRECATED_COMMENT:
+			case ArchitecturePackage.PROJECT_DEPENDENCY__DEPRECATED_COMMENT:
 				setDeprecatedComment(DEPRECATED_COMMENT_EDEFAULT);
 				return;
-			case ArchitecturePackage.PLUGIN_DEPENDENCY__IS_DEPRECATED:
+			case ArchitecturePackage.PROJECT_DEPENDENCY__IS_DEPRECATED:
 				setIsDeprecated(IS_DEPRECATED_EDEFAULT);
 				return;
-			case ArchitecturePackage.PLUGIN_DEPENDENCY__BASE_DEPENDENCY:
+			case ArchitecturePackage.PROJECT_DEPENDENCY__BASE_DEPENDENCY:
 				setBase_Dependency((Dependency)null);
 				return;
 		}
@@ -252,11 +252,11 @@ public class PluginDependencyImpl extends ElementImpl implements PluginDependenc
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ArchitecturePackage.PLUGIN_DEPENDENCY__DEPRECATED_COMMENT:
+			case ArchitecturePackage.PROJECT_DEPENDENCY__DEPRECATED_COMMENT:
 				return DEPRECATED_COMMENT_EDEFAULT == null ? deprecatedComment != null : !DEPRECATED_COMMENT_EDEFAULT.equals(deprecatedComment);
-			case ArchitecturePackage.PLUGIN_DEPENDENCY__IS_DEPRECATED:
+			case ArchitecturePackage.PROJECT_DEPENDENCY__IS_DEPRECATED:
 				return isDeprecated != IS_DEPRECATED_EDEFAULT;
-			case ArchitecturePackage.PLUGIN_DEPENDENCY__BASE_DEPENDENCY:
+			case ArchitecturePackage.PROJECT_DEPENDENCY__BASE_DEPENDENCY:
 				return base_Dependency != null;
 		}
 		return super.eIsSet(featureID);
@@ -280,4 +280,4 @@ public class PluginDependencyImpl extends ElementImpl implements PluginDependenc
 		return result.toString();
 	}
 
-} //PluginDependencyImpl
+} //ProjectDependencyImpl

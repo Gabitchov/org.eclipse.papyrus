@@ -53,13 +53,22 @@ public interface ArchitectureFactory extends EFactory {
 	Plugin createPlugin();
 
 	/**
-	 * Returns a new object of class '<em>Plugin Dependency</em>'.
+	 * Returns a new object of class '<em>Project</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Plugin Dependency</em>'.
+	 * @return a new object of class '<em>Project</em>'.
 	 * @generated
 	 */
-	PluginDependency createPluginDependency();
+	Project createProject();
+
+	/**
+	 * Returns a new object of class '<em>Project Dependency</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Project Dependency</em>'.
+	 * @generated
+	 */
+	ProjectDependency createProjectDependency();
 
 	/**
 	 * Returns the package supported by this factory.

@@ -645,53 +645,11 @@
       </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Stereotype" xmi:id="_GbwbsPpUEeCbIZwHSJSkOQ" name="Plugin">
+      <ownedComment xmi:id="_d05VAPsHEeCAZfBv4HE2iw" annotatedElement="_GbwbsPpUEeCbIZwHSJSkOQ">
+        <body>A plugin project</body>
+      </ownedComment>
       <generalization xmi:id="_89YAQPpUEeCbIZwHSJSkOQ" general="_wXyNQPS4EeCQ4s2W2w_p6A"/>
-      <generalization xmi:id="_-dTFcPpVEeCbIZwHSJSkOQ" general="_wXyNQPS4EeCQ4s2W2w_p6A"/>
-      <ownedAttribute xmi:id="_Xk8KMfpUEeCbIZwHSJSkOQ" name="name">
-        <ownedComment xmi:id="_Xk8KMvpUEeCbIZwHSJSkOQ" annotatedElement="_Xk8KMfpUEeCbIZwHSJSkOQ">
-          <body>&lt;p>&#xD;
-    An alternative name to be used in place of the stereotyped element's name.&#xD;
-&lt;/p></body>
-        </ownedComment>
-        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
-      </ownedAttribute>
-      <ownedAttribute xmi:id="_Xk8xQ_pUEeCbIZwHSJSkOQ" name="parentFolder">
-        <ownedComment xmi:id="_Xk8xRPpUEeCbIZwHSJSkOQ" annotatedElement="_Xk8xQ_pUEeCbIZwHSJSkOQ">
-          <body>&lt;p>&#xD;
-    The name of the parent folder that will contain the layer, if any.&#xD;
-&lt;/p>&#xD;
-&lt;p>&#xD;
-    If no parent is specified, the layer is 'virtual' (no corresponding physical folder)&#xD;
-&lt;/p>&#xD;
-&lt;p>&#xD;
-    Ex: plugins&#xD;
-&lt;/p></body>
-        </ownedComment>
-        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
-      </ownedAttribute>
-      <ownedAttribute xmi:id="_jifhUPpUEeCbIZwHSJSkOQ" name="originalParentFolder">
-        <ownedComment xmi:id="_jifhUfpUEeCbIZwHSJSkOQ" annotatedElement="_jifhUPpUEeCbIZwHSJSkOQ">
-          <body>&lt;p>&#xD;
-    The name of the parent folder that was containing the layer before the refactoring, if any.&#xD;
-&lt;/p>&#xD;
-</body>
-        </ownedComment>
-        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
-      </ownedAttribute>
-      <ownedAttribute xmi:id="_Xk8KMPpUEeCbIZwHSJSkOQ" name="isDeprecated">
-        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
-      </ownedAttribute>
-      <ownedAttribute xmi:id="_Xk8xQPpUEeCbIZwHSJSkOQ" name="deprecatedComment">
-        <ownedComment xmi:id="_Xk8xQfpUEeCbIZwHSJSkOQ" annotatedElement="_Xk8xQPpUEeCbIZwHSJSkOQ">
-          <body>&lt;p>&#xD;
-    A comment associated to the isDeprecated=true&#xD;
-&lt;/p></body>
-        </ownedComment>
-        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
-      </ownedAttribute>
-      <ownedAttribute xmi:id="_Xk8xQvpUEeCbIZwHSJSkOQ" name="referent">
-        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
-      </ownedAttribute>
+      <generalization xmi:id="_-dTFcPpVEeCbIZwHSJSkOQ" general="_Np67MPsHEeCAZfBv4HE2iw"/>
       <ownedAttribute xmi:id="_GPu8cPpVEeCbIZwHSJSkOQ" name="base_Package" association="_GPvjgPpVEeCbIZwHSJSkOQ">
         <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Package"/>
       </ownedAttribute>
@@ -699,7 +657,7 @@
         <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Package"/>
       </ownedAttribute>
     </packagedElement>
-    <packagedElement xmi:type="uml:Stereotype" xmi:id="_SoO_oPpUEeCbIZwHSJSkOQ" name="PluginDependency">
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="_SoO_oPpUEeCbIZwHSJSkOQ" name="ProjectDependency">
       <generalization xmi:id="_90ZH0PpUEeCbIZwHSJSkOQ" general="_wXyNQPS4EeCQ4s2W2w_p6A"/>
       <generalization xmi:id="_9h1iwPpVEeCbIZwHSJSkOQ" general="_wXyNQPS4EeCQ4s2W2w_p6A"/>
       <ownedAttribute xmi:id="_dN_dYPpUEeCbIZwHSJSkOQ" name="deprecatedComment">
@@ -732,11 +690,68 @@
     <packagedElement xmi:type="uml:Extension" xmi:id="_AvSWMfpWEeCbIZwHSJSkOQ" name="E_LayerDependency_Dependency1" memberEnd="_AvSWMvpWEeCbIZwHSJSkOQ _AvSWMPpWEeCbIZwHSJSkOQ">
       <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_AvSWMvpWEeCbIZwHSJSkOQ" name="extension_LayerDependency" type="_BRgBAPapEeCMT_0n-PmDbg" aggregation="composite" association="_AvSWMfpWEeCbIZwHSJSkOQ"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Extension" xmi:id="_BO8GofpWEeCbIZwHSJSkOQ" name="E_PluginDependency_Dependency1" memberEnd="_BO8GovpWEeCbIZwHSJSkOQ _BO8GoPpWEeCbIZwHSJSkOQ">
-      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_BO8GovpWEeCbIZwHSJSkOQ" name="extension_PluginDependency" type="_SoO_oPpUEeCbIZwHSJSkOQ" aggregation="composite" association="_BO8GofpWEeCbIZwHSJSkOQ"/>
+    <packagedElement xmi:type="uml:Extension" xmi:id="_BO8GofpWEeCbIZwHSJSkOQ" name="E_ProjectDependency_Dependency0" memberEnd="_BO8GovpWEeCbIZwHSJSkOQ _BO8GoPpWEeCbIZwHSJSkOQ">
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_BO8GovpWEeCbIZwHSJSkOQ" name="extension_ProjectDependency" type="_SoO_oPpUEeCbIZwHSJSkOQ" aggregation="composite" association="_BO8GofpWEeCbIZwHSJSkOQ"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Extension" xmi:id="_HHhqoPpWEeCbIZwHSJSkOQ" name="E_Plugin_Package1" memberEnd="_HHhqofpWEeCbIZwHSJSkOQ _HHhDkPpWEeCbIZwHSJSkOQ">
       <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_HHhqofpWEeCbIZwHSJSkOQ" name="extension_Plugin" type="_GbwbsPpUEeCbIZwHSJSkOQ" aggregation="composite" association="_HHhqoPpWEeCbIZwHSJSkOQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="_Np67MPsHEeCAZfBv4HE2iw" name="Project">
+      <ownedComment xmi:id="_R-GtMPsHEeCAZfBv4HE2iw" annotatedElement="_Np67MPsHEeCAZfBv4HE2iw">
+        <body>A simple project with no type.</body>
+      </ownedComment>
+      <generalization xmi:id="_X4mVsPsHEeCAZfBv4HE2iw" general="_wXyNQPS4EeCQ4s2W2w_p6A"/>
+      <ownedAttribute xmi:id="_Xk8KMPpUEeCbIZwHSJSkOQ" name="isDeprecated">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_Xk8xQPpUEeCbIZwHSJSkOQ" name="deprecatedComment">
+        <ownedComment xmi:id="_Xk8xQfpUEeCbIZwHSJSkOQ" annotatedElement="_Xk8xQPpUEeCbIZwHSJSkOQ">
+          <body>&lt;p>&#xD;
+    A comment associated to the isDeprecated=true&#xD;
+&lt;/p></body>
+        </ownedComment>
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_Xk8KMfpUEeCbIZwHSJSkOQ" name="name">
+        <ownedComment xmi:id="_Xk8KMvpUEeCbIZwHSJSkOQ" annotatedElement="_Xk8KMfpUEeCbIZwHSJSkOQ">
+          <body>&lt;p>&#xD;
+    An alternative name to be used in place of the stereotyped element's name.&#xD;
+&lt;/p></body>
+        </ownedComment>
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_Xk8xQvpUEeCbIZwHSJSkOQ" name="referent">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_Xk8xQ_pUEeCbIZwHSJSkOQ" name="parentFolder">
+        <ownedComment xmi:id="_Xk8xRPpUEeCbIZwHSJSkOQ" annotatedElement="_Xk8xQ_pUEeCbIZwHSJSkOQ">
+          <body>&lt;p>&#xD;
+    The name of the parent folder that will contain the layer, if any.&#xD;
+&lt;/p>&#xD;
+&lt;p>&#xD;
+    If no parent is specified, the layer is 'virtual' (no corresponding physical folder)&#xD;
+&lt;/p>&#xD;
+&lt;p>&#xD;
+    Ex: plugins&#xD;
+&lt;/p></body>
+        </ownedComment>
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_jifhUPpUEeCbIZwHSJSkOQ" name="originalParentFolder">
+        <ownedComment xmi:id="_jifhUfpUEeCbIZwHSJSkOQ" annotatedElement="_jifhUPpUEeCbIZwHSJSkOQ">
+          <body>&lt;p>&#xD;
+    The name of the parent folder that was containing the layer before the refactoring, if any.&#xD;
+&lt;/p>&#xD;
+</body>
+        </ownedComment>
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_j01eMPsHEeCAZfBv4HE2iw" name="base_Package" association="_j02FQPsHEeCAZfBv4HE2iw">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Package"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Extension" xmi:id="_j02FQPsHEeCAZfBv4HE2iw" name="E_Project_Package0" memberEnd="_j02sUPsHEeCAZfBv4HE2iw _j01eMPsHEeCAZfBv4HE2iw">
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_j02sUPsHEeCAZfBv4HE2iw" name="extension_Project" type="_Np67MPsHEeCAZfBv4HE2iw" aggregation="composite" association="_j02FQPsHEeCAZfBv4HE2iw"/>
     </packagedElement>
     <profileApplication xmi:id="_s0-i8PS6EeCDBuWvZAIMYg">
       <eAnnotations xmi:id="_s13TwPS6EeCDBuWvZAIMYg" source="http://www.eclipse.org/uml2/2.0.0/UML">

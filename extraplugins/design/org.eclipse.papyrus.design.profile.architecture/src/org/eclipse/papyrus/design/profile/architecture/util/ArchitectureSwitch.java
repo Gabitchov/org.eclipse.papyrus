@@ -93,14 +93,22 @@ public class ArchitectureSwitch<T> extends Switch<T> {
 			case ArchitecturePackage.PLUGIN: {
 				Plugin plugin = (Plugin)theEObject;
 				T result = casePlugin(plugin);
+				if (result == null) result = caseProject(plugin);
 				if (result == null) result = caseElement(plugin);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ArchitecturePackage.PLUGIN_DEPENDENCY: {
-				PluginDependency pluginDependency = (PluginDependency)theEObject;
-				T result = casePluginDependency(pluginDependency);
-				if (result == null) result = caseElement(pluginDependency);
+			case ArchitecturePackage.PROJECT: {
+				Project project = (Project)theEObject;
+				T result = caseProject(project);
+				if (result == null) result = caseElement(project);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ArchitecturePackage.PROJECT_DEPENDENCY: {
+				ProjectDependency projectDependency = (ProjectDependency)theEObject;
+				T result = caseProjectDependency(projectDependency);
+				if (result == null) result = caseElement(projectDependency);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -169,17 +177,32 @@ public class ArchitectureSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Plugin Dependency</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Project</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Plugin Dependency</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Project</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T casePluginDependency(PluginDependency object) {
+	public T caseProject(Project object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Project Dependency</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Project Dependency</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseProjectDependency(ProjectDependency object) {
 		return null;
 	}
 

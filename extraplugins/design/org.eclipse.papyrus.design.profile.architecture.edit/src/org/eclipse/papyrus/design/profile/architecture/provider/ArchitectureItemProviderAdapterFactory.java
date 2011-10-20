@@ -145,26 +145,49 @@ public class ArchitectureItemProviderAdapterFactory extends ArchitectureAdapterF
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.design.profile.architecture.PluginDependency} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.design.profile.architecture.Project} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected PluginDependencyItemProvider pluginDependencyItemProvider;
+	protected ProjectItemProvider projectItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.papyrus.design.profile.architecture.PluginDependency}.
+	 * This creates an adapter for a {@link org.eclipse.papyrus.design.profile.architecture.Project}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createPluginDependencyAdapter() {
-		if (pluginDependencyItemProvider == null) {
-			pluginDependencyItemProvider = new PluginDependencyItemProvider(this);
+	public Adapter createProjectAdapter() {
+		if (projectItemProvider == null) {
+			projectItemProvider = new ProjectItemProvider(this);
 		}
 
-		return pluginDependencyItemProvider;
+		return projectItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.design.profile.architecture.ProjectDependency} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ProjectDependencyItemProvider projectDependencyItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.design.profile.architecture.ProjectDependency}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createProjectDependencyAdapter() {
+		if (projectDependencyItemProvider == null) {
+			projectDependencyItemProvider = new ProjectDependencyItemProvider(this);
+		}
+
+		return projectDependencyItemProvider;
 	}
 
 	/**
@@ -269,7 +292,8 @@ public class ArchitectureItemProviderAdapterFactory extends ArchitectureAdapterF
 		if (layerItemProvider != null) layerItemProvider.dispose();
 		if (layerDependencyItemProvider != null) layerDependencyItemProvider.dispose();
 		if (pluginItemProvider != null) pluginItemProvider.dispose();
-		if (pluginDependencyItemProvider != null) pluginDependencyItemProvider.dispose();
+		if (projectItemProvider != null) projectItemProvider.dispose();
+		if (projectDependencyItemProvider != null) projectDependencyItemProvider.dispose();
 	}
 
 }

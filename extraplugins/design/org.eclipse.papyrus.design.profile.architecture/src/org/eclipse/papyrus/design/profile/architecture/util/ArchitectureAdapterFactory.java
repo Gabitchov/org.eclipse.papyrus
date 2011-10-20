@@ -88,8 +88,12 @@ public class ArchitectureAdapterFactory extends AdapterFactoryImpl {
 				return createPluginAdapter();
 			}
 			@Override
-			public Adapter casePluginDependency(PluginDependency object) {
-				return createPluginDependencyAdapter();
+			public Adapter caseProject(Project object) {
+				return createProjectAdapter();
+			}
+			@Override
+			public Adapter caseProjectDependency(ProjectDependency object) {
+				return createProjectDependencyAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -168,16 +172,30 @@ public class ArchitectureAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.design.profile.architecture.PluginDependency <em>Plugin Dependency</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.design.profile.architecture.Project <em>Project</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.papyrus.design.profile.architecture.PluginDependency
+	 * @see org.eclipse.papyrus.design.profile.architecture.Project
 	 * @generated
 	 */
-	public Adapter createPluginDependencyAdapter() {
+	public Adapter createProjectAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.design.profile.architecture.ProjectDependency <em>Project Dependency</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.design.profile.architecture.ProjectDependency
+	 * @generated
+	 */
+	public Adapter createProjectDependencyAdapter() {
 		return null;
 	}
 

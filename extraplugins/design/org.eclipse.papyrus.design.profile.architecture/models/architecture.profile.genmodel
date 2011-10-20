@@ -45,21 +45,22 @@
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
           propertySortChoices="true" ecoreFeature="ecore:EReference architecture.ecore#//LayerDependency/base_Dependency"/>
     </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="architecture.ecore#//Plugin">
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute architecture.ecore#//Plugin/name"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute architecture.ecore#//Plugin/parentFolder"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute architecture.ecore#//Plugin/originalParentFolder"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute architecture.ecore#//Plugin/isDeprecated"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute architecture.ecore#//Plugin/deprecatedComment"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute architecture.ecore#//Plugin/referent"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="architecture.ecore#//Plugin"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="architecture.ecore#//Project">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute architecture.ecore#//Project/isDeprecated"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute architecture.ecore#//Project/deprecatedComment"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute architecture.ecore#//Project/name"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute architecture.ecore#//Project/referent"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute architecture.ecore#//Project/parentFolder"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute architecture.ecore#//Project/originalParentFolder"/>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference architecture.ecore#//Plugin/base_Package"/>
+          propertySortChoices="true" ecoreFeature="ecore:EReference architecture.ecore#//Project/base_Package"/>
     </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="architecture.ecore#//PluginDependency">
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute architecture.ecore#//PluginDependency/deprecatedComment"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute architecture.ecore#//PluginDependency/isDeprecated"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="architecture.ecore#//ProjectDependency">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute architecture.ecore#//ProjectDependency/deprecatedComment"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute architecture.ecore#//ProjectDependency/isDeprecated"/>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference architecture.ecore#//PluginDependency/base_Dependency"/>
+          propertySortChoices="true" ecoreFeature="ecore:EReference architecture.ecore#//ProjectDependency/base_Dependency"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

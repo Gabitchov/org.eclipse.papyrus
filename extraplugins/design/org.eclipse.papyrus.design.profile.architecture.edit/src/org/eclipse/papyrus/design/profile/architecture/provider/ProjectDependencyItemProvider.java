@@ -24,15 +24,15 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.eclipse.papyrus.design.profile.architecture.ArchitecturePackage;
-import org.eclipse.papyrus.design.profile.architecture.PluginDependency;
+import org.eclipse.papyrus.design.profile.architecture.ProjectDependency;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.papyrus.design.profile.architecture.PluginDependency} object.
+ * This is the item provider adapter for a {@link org.eclipse.papyrus.design.profile.architecture.ProjectDependency} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class PluginDependencyItemProvider
+public class ProjectDependencyItemProvider
 	extends ElementItemProvider
 	implements
 		IEditingDomainItemProvider,
@@ -46,7 +46,7 @@ public class PluginDependencyItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PluginDependencyItemProvider(AdapterFactory adapterFactory) {
+	public ProjectDependencyItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -79,9 +79,9 @@ public class PluginDependencyItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_PluginDependency_deprecatedComment_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_PluginDependency_deprecatedComment_feature", "_UI_PluginDependency_type"),
-				 ArchitecturePackage.Literals.PLUGIN_DEPENDENCY__DEPRECATED_COMMENT,
+				 getString("_UI_ProjectDependency_deprecatedComment_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ProjectDependency_deprecatedComment_feature", "_UI_ProjectDependency_type"),
+				 ArchitecturePackage.Literals.PROJECT_DEPENDENCY__DEPRECATED_COMMENT,
 				 true,
 				 false,
 				 false,
@@ -101,9 +101,9 @@ public class PluginDependencyItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_PluginDependency_isDeprecated_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_PluginDependency_isDeprecated_feature", "_UI_PluginDependency_type"),
-				 ArchitecturePackage.Literals.PLUGIN_DEPENDENCY__IS_DEPRECATED,
+				 getString("_UI_ProjectDependency_isDeprecated_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ProjectDependency_isDeprecated_feature", "_UI_ProjectDependency_type"),
+				 ArchitecturePackage.Literals.PROJECT_DEPENDENCY__IS_DEPRECATED,
 				 true,
 				 false,
 				 false,
@@ -123,9 +123,9 @@ public class PluginDependencyItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_PluginDependency_base_Dependency_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_PluginDependency_base_Dependency_feature", "_UI_PluginDependency_type"),
-				 ArchitecturePackage.Literals.PLUGIN_DEPENDENCY__BASE_DEPENDENCY,
+				 getString("_UI_ProjectDependency_base_Dependency_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ProjectDependency_base_Dependency_feature", "_UI_ProjectDependency_type"),
+				 ArchitecturePackage.Literals.PROJECT_DEPENDENCY__BASE_DEPENDENCY,
 				 true,
 				 false,
 				 true,
@@ -135,14 +135,14 @@ public class PluginDependencyItemProvider
 	}
 
 	/**
-	 * This returns PluginDependency.gif.
+	 * This returns ProjectDependency.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/PluginDependency"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ProjectDependency"));
 	}
 
 	/**
@@ -153,10 +153,10 @@ public class PluginDependencyItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((PluginDependency)object).getDocumentation();
+		String label = ((ProjectDependency)object).getDocumentation();
 		return label == null || label.length() == 0 ?
-			getString("_UI_PluginDependency_type") :
-			getString("_UI_PluginDependency_type") + " " + label;
+			getString("_UI_ProjectDependency_type") :
+			getString("_UI_ProjectDependency_type") + " " + label;
 	}
 
 	/**
@@ -170,9 +170,9 @@ public class PluginDependencyItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(PluginDependency.class)) {
-			case ArchitecturePackage.PLUGIN_DEPENDENCY__DEPRECATED_COMMENT:
-			case ArchitecturePackage.PLUGIN_DEPENDENCY__IS_DEPRECATED:
+		switch (notification.getFeatureID(ProjectDependency.class)) {
+			case ArchitecturePackage.PROJECT_DEPENDENCY__DEPRECATED_COMMENT:
+			case ArchitecturePackage.PROJECT_DEPENDENCY__IS_DEPRECATED:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

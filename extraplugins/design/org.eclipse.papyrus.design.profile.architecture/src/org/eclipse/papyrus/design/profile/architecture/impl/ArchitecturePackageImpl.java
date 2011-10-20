@@ -19,6 +19,8 @@ import org.eclipse.papyrus.design.profile.architecture.Element;
 import org.eclipse.papyrus.design.profile.architecture.Layer;
 import org.eclipse.papyrus.design.profile.architecture.LayerDependency;
 import org.eclipse.papyrus.design.profile.architecture.Plugin;
+import org.eclipse.papyrus.design.profile.architecture.Project;
+import org.eclipse.papyrus.design.profile.architecture.ProjectDependency;
 import org.eclipse.papyrus.design.profile.architecture.PluginDependency;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -62,7 +64,14 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass pluginDependencyEClass = null;
+	private EClass projectEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass projectDependencyEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -268,8 +277,8 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPlugin_Name() {
-		return (EAttribute)pluginEClass.getEStructuralFeatures().get(0);
+	public EClass getProject() {
+		return projectEClass;
 	}
 
 	/**
@@ -277,8 +286,8 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPlugin_ParentFolder() {
-		return (EAttribute)pluginEClass.getEStructuralFeatures().get(1);
+	public EAttribute getProject_IsDeprecated() {
+		return (EAttribute)projectEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -286,8 +295,8 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPlugin_OriginalParentFolder() {
-		return (EAttribute)pluginEClass.getEStructuralFeatures().get(2);
+	public EAttribute getProject_DeprecatedComment() {
+		return (EAttribute)projectEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -295,8 +304,8 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPlugin_IsDeprecated() {
-		return (EAttribute)pluginEClass.getEStructuralFeatures().get(3);
+	public EAttribute getProject_Name() {
+		return (EAttribute)projectEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -304,8 +313,8 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPlugin_DeprecatedComment() {
-		return (EAttribute)pluginEClass.getEStructuralFeatures().get(4);
+	public EAttribute getProject_Referent() {
+		return (EAttribute)projectEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -313,8 +322,8 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPlugin_Referent() {
-		return (EAttribute)pluginEClass.getEStructuralFeatures().get(5);
+	public EAttribute getProject_ParentFolder() {
+		return (EAttribute)projectEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -322,8 +331,8 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPlugin_Base_Package() {
-		return (EReference)pluginEClass.getEStructuralFeatures().get(6);
+	public EAttribute getProject_OriginalParentFolder() {
+		return (EAttribute)projectEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -331,8 +340,8 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getPluginDependency() {
-		return pluginDependencyEClass;
+	public EReference getProject_Base_Package() {
+		return (EReference)projectEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -340,8 +349,8 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPluginDependency_DeprecatedComment() {
-		return (EAttribute)pluginDependencyEClass.getEStructuralFeatures().get(0);
+	public EClass getProjectDependency() {
+		return projectDependencyEClass;
 	}
 
 	/**
@@ -349,8 +358,8 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPluginDependency_IsDeprecated() {
-		return (EAttribute)pluginDependencyEClass.getEStructuralFeatures().get(1);
+	public EAttribute getProjectDependency_DeprecatedComment() {
+		return (EAttribute)projectDependencyEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -358,8 +367,17 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPluginDependency_Base_Dependency() {
-		return (EReference)pluginDependencyEClass.getEStructuralFeatures().get(2);
+	public EAttribute getProjectDependency_IsDeprecated() {
+		return (EAttribute)projectDependencyEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getProjectDependency_Base_Dependency() {
+		return (EReference)projectDependencyEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -408,18 +426,20 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 		createEReference(layerDependencyEClass, LAYER_DEPENDENCY__BASE_DEPENDENCY);
 
 		pluginEClass = createEClass(PLUGIN);
-		createEAttribute(pluginEClass, PLUGIN__NAME);
-		createEAttribute(pluginEClass, PLUGIN__PARENT_FOLDER);
-		createEAttribute(pluginEClass, PLUGIN__ORIGINAL_PARENT_FOLDER);
-		createEAttribute(pluginEClass, PLUGIN__IS_DEPRECATED);
-		createEAttribute(pluginEClass, PLUGIN__DEPRECATED_COMMENT);
-		createEAttribute(pluginEClass, PLUGIN__REFERENT);
-		createEReference(pluginEClass, PLUGIN__BASE_PACKAGE);
 
-		pluginDependencyEClass = createEClass(PLUGIN_DEPENDENCY);
-		createEAttribute(pluginDependencyEClass, PLUGIN_DEPENDENCY__DEPRECATED_COMMENT);
-		createEAttribute(pluginDependencyEClass, PLUGIN_DEPENDENCY__IS_DEPRECATED);
-		createEReference(pluginDependencyEClass, PLUGIN_DEPENDENCY__BASE_DEPENDENCY);
+		projectEClass = createEClass(PROJECT);
+		createEAttribute(projectEClass, PROJECT__IS_DEPRECATED);
+		createEAttribute(projectEClass, PROJECT__DEPRECATED_COMMENT);
+		createEAttribute(projectEClass, PROJECT__NAME);
+		createEAttribute(projectEClass, PROJECT__REFERENT);
+		createEAttribute(projectEClass, PROJECT__PARENT_FOLDER);
+		createEAttribute(projectEClass, PROJECT__ORIGINAL_PARENT_FOLDER);
+		createEReference(projectEClass, PROJECT__BASE_PACKAGE);
+
+		projectDependencyEClass = createEClass(PROJECT_DEPENDENCY);
+		createEAttribute(projectDependencyEClass, PROJECT_DEPENDENCY__DEPRECATED_COMMENT);
+		createEAttribute(projectDependencyEClass, PROJECT_DEPENDENCY__IS_DEPRECATED);
+		createEReference(projectDependencyEClass, PROJECT_DEPENDENCY__BASE_DEPENDENCY);
 	}
 
 	/**
@@ -455,8 +475,10 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 		// Add supertypes to classes
 		layerEClass.getESuperTypes().add(this.getElement());
 		layerDependencyEClass.getESuperTypes().add(this.getElement());
+		pluginEClass.getESuperTypes().add(this.getProject());
 		pluginEClass.getESuperTypes().add(this.getElement());
-		pluginDependencyEClass.getESuperTypes().add(this.getElement());
+		projectEClass.getESuperTypes().add(this.getElement());
+		projectDependencyEClass.getESuperTypes().add(this.getElement());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(layerEClass, Layer.class, "Layer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -477,18 +499,20 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 		initEReference(getLayerDependency_Base_Dependency(), theUMLPackage.getDependency(), null, "base_Dependency", null, 1, 1, LayerDependency.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(pluginEClass, Plugin.class, "Plugin", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getPlugin_Name(), ecorePackage.getEString(), "name", null, 1, 1, Plugin.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getPlugin_ParentFolder(), ecorePackage.getEString(), "parentFolder", null, 1, 1, Plugin.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getPlugin_OriginalParentFolder(), ecorePackage.getEString(), "originalParentFolder", null, 1, 1, Plugin.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getPlugin_IsDeprecated(), ecorePackage.getEBoolean(), "isDeprecated", null, 1, 1, Plugin.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getPlugin_DeprecatedComment(), ecorePackage.getEString(), "deprecatedComment", null, 1, 1, Plugin.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getPlugin_Referent(), ecorePackage.getEString(), "referent", null, 1, 1, Plugin.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getPlugin_Base_Package(), theUMLPackage.getPackage(), null, "base_Package", null, 1, 1, Plugin.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
-		initEClass(pluginDependencyEClass, PluginDependency.class, "PluginDependency", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getPluginDependency_DeprecatedComment(), ecorePackage.getEString(), "deprecatedComment", null, 1, 1, PluginDependency.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getPluginDependency_IsDeprecated(), ecorePackage.getEBoolean(), "isDeprecated", null, 1, 1, PluginDependency.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getPluginDependency_Base_Dependency(), theUMLPackage.getDependency(), null, "base_Dependency", null, 1, 1, PluginDependency.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(projectEClass, Project.class, "Project", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getProject_IsDeprecated(), ecorePackage.getEBoolean(), "isDeprecated", null, 1, 1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getProject_DeprecatedComment(), ecorePackage.getEString(), "deprecatedComment", null, 1, 1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getProject_Name(), ecorePackage.getEString(), "name", null, 1, 1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getProject_Referent(), ecorePackage.getEString(), "referent", null, 1, 1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getProject_ParentFolder(), ecorePackage.getEString(), "parentFolder", null, 1, 1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getProject_OriginalParentFolder(), ecorePackage.getEString(), "originalParentFolder", null, 1, 1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getProject_Base_Package(), theUMLPackage.getPackage(), null, "base_Package", null, 1, 1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		initEClass(projectDependencyEClass, ProjectDependency.class, "ProjectDependency", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getProjectDependency_DeprecatedComment(), ecorePackage.getEString(), "deprecatedComment", null, 1, 1, ProjectDependency.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getProjectDependency_IsDeprecated(), ecorePackage.getEBoolean(), "isDeprecated", null, 1, 1, ProjectDependency.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getProjectDependency_Base_Dependency(), theUMLPackage.getDependency(), null, "base_Dependency", null, 1, 1, ProjectDependency.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

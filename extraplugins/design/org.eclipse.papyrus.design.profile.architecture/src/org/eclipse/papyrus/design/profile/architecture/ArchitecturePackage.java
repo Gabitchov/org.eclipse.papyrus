@@ -254,6 +254,106 @@ public interface ArchitecturePackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.design.profile.architecture.impl.ProjectImpl <em>Project</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.design.profile.architecture.impl.ProjectImpl
+	 * @see org.eclipse.papyrus.design.profile.architecture.impl.ArchitecturePackageImpl#getProject()
+	 * @generated
+	 */
+	int PROJECT = 4;
+
+	/**
+	 * The feature id for the '<em><b>Documentation</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROJECT__DOCUMENTATION = ELEMENT__DOCUMENTATION;
+
+	/**
+	 * The feature id for the '<em><b>Comment</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROJECT__COMMENT = ELEMENT__COMMENT;
+
+	/**
+	 * The feature id for the '<em><b>Is Deprecated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROJECT__IS_DEPRECATED = ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Deprecated Comment</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROJECT__DEPRECATED_COMMENT = ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROJECT__NAME = ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Referent</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROJECT__REFERENT = ELEMENT_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Parent Folder</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROJECT__PARENT_FOLDER = ELEMENT_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Original Parent Folder</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROJECT__ORIGINAL_PARENT_FOLDER = ELEMENT_FEATURE_COUNT + 5;
+
+	/**
+	 * The feature id for the '<em><b>Base Package</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROJECT__BASE_PACKAGE = ELEMENT_FEATURE_COUNT + 6;
+
+	/**
+	 * The number of structural features of the '<em>Project</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROJECT_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 7;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.design.profile.architecture.impl.PluginImpl <em>Plugin</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -270,7 +370,7 @@ public interface ArchitecturePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGIN__DOCUMENTATION = ELEMENT__DOCUMENTATION;
+	int PLUGIN__DOCUMENTATION = PROJECT__DOCUMENTATION;
 
 	/**
 	 * The feature id for the '<em><b>Comment</b></em>' attribute.
@@ -279,7 +379,25 @@ public interface ArchitecturePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGIN__COMMENT = ELEMENT__COMMENT;
+	int PLUGIN__COMMENT = PROJECT__COMMENT;
+
+	/**
+	 * The feature id for the '<em><b>Is Deprecated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PLUGIN__IS_DEPRECATED = PROJECT__IS_DEPRECATED;
+
+	/**
+	 * The feature id for the '<em><b>Deprecated Comment</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PLUGIN__DEPRECATED_COMMENT = PROJECT__DEPRECATED_COMMENT;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -288,43 +406,7 @@ public interface ArchitecturePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGIN__NAME = ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Parent Folder</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PLUGIN__PARENT_FOLDER = ELEMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Original Parent Folder</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PLUGIN__ORIGINAL_PARENT_FOLDER = ELEMENT_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Is Deprecated</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PLUGIN__IS_DEPRECATED = ELEMENT_FEATURE_COUNT + 3;
-
-	/**
-	 * The feature id for the '<em><b>Deprecated Comment</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PLUGIN__DEPRECATED_COMMENT = ELEMENT_FEATURE_COUNT + 4;
+	int PLUGIN__NAME = PROJECT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Referent</b></em>' attribute.
@@ -333,7 +415,25 @@ public interface ArchitecturePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGIN__REFERENT = ELEMENT_FEATURE_COUNT + 5;
+	int PLUGIN__REFERENT = PROJECT__REFERENT;
+
+	/**
+	 * The feature id for the '<em><b>Parent Folder</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PLUGIN__PARENT_FOLDER = PROJECT__PARENT_FOLDER;
+
+	/**
+	 * The feature id for the '<em><b>Original Parent Folder</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PLUGIN__ORIGINAL_PARENT_FOLDER = PROJECT__ORIGINAL_PARENT_FOLDER;
 
 	/**
 	 * The feature id for the '<em><b>Base Package</b></em>' reference.
@@ -342,7 +442,7 @@ public interface ArchitecturePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGIN__BASE_PACKAGE = ELEMENT_FEATURE_COUNT + 6;
+	int PLUGIN__BASE_PACKAGE = PROJECT__BASE_PACKAGE;
 
 	/**
 	 * The number of structural features of the '<em>Plugin</em>' class.
@@ -351,17 +451,17 @@ public interface ArchitecturePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGIN_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 7;
+	int PLUGIN_FEATURE_COUNT = PROJECT_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.design.profile.architecture.impl.PluginDependencyImpl <em>Plugin Dependency</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.design.profile.architecture.impl.ProjectDependencyImpl <em>Project Dependency</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.design.profile.architecture.impl.PluginDependencyImpl
-	 * @see org.eclipse.papyrus.design.profile.architecture.impl.ArchitecturePackageImpl#getPluginDependency()
+	 * @see org.eclipse.papyrus.design.profile.architecture.impl.ProjectDependencyImpl
+	 * @see org.eclipse.papyrus.design.profile.architecture.impl.ArchitecturePackageImpl#getProjectDependency()
 	 * @generated
 	 */
-	int PLUGIN_DEPENDENCY = 4;
+	int PROJECT_DEPENDENCY = 5;
 
 	/**
 	 * The feature id for the '<em><b>Documentation</b></em>' attribute.
@@ -370,7 +470,7 @@ public interface ArchitecturePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGIN_DEPENDENCY__DOCUMENTATION = ELEMENT__DOCUMENTATION;
+	int PROJECT_DEPENDENCY__DOCUMENTATION = ELEMENT__DOCUMENTATION;
 
 	/**
 	 * The feature id for the '<em><b>Comment</b></em>' attribute.
@@ -379,7 +479,7 @@ public interface ArchitecturePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGIN_DEPENDENCY__COMMENT = ELEMENT__COMMENT;
+	int PROJECT_DEPENDENCY__COMMENT = ELEMENT__COMMENT;
 
 	/**
 	 * The feature id for the '<em><b>Deprecated Comment</b></em>' attribute.
@@ -388,7 +488,7 @@ public interface ArchitecturePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGIN_DEPENDENCY__DEPRECATED_COMMENT = ELEMENT_FEATURE_COUNT + 0;
+	int PROJECT_DEPENDENCY__DEPRECATED_COMMENT = ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Is Deprecated</b></em>' attribute.
@@ -397,7 +497,7 @@ public interface ArchitecturePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGIN_DEPENDENCY__IS_DEPRECATED = ELEMENT_FEATURE_COUNT + 1;
+	int PROJECT_DEPENDENCY__IS_DEPRECATED = ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Base Dependency</b></em>' reference.
@@ -406,17 +506,16 @@ public interface ArchitecturePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGIN_DEPENDENCY__BASE_DEPENDENCY = ELEMENT_FEATURE_COUNT + 2;
+	int PROJECT_DEPENDENCY__BASE_DEPENDENCY = ELEMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The number of structural features of the '<em>Plugin Dependency</em>' class.
+	 * The number of structural features of the '<em>Project Dependency</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGIN_DEPENDENCY_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 3;
-
+	int PROJECT_DEPENDENCY_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.design.profile.architecture.Layer <em>Layer</em>}'.
@@ -580,124 +679,134 @@ public interface ArchitecturePackage extends EPackage {
 	EClass getPlugin();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.design.profile.architecture.Plugin#getName <em>Name</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.design.profile.architecture.Project <em>Project</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Project</em>'.
+	 * @see org.eclipse.papyrus.design.profile.architecture.Project
+	 * @generated
+	 */
+	EClass getProject();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.design.profile.architecture.Project#isDeprecated <em>Is Deprecated</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Is Deprecated</em>'.
+	 * @see org.eclipse.papyrus.design.profile.architecture.Project#isDeprecated()
+	 * @see #getProject()
+	 * @generated
+	 */
+	EAttribute getProject_IsDeprecated();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.design.profile.architecture.Project#getDeprecatedComment <em>Deprecated Comment</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Deprecated Comment</em>'.
+	 * @see org.eclipse.papyrus.design.profile.architecture.Project#getDeprecatedComment()
+	 * @see #getProject()
+	 * @generated
+	 */
+	EAttribute getProject_DeprecatedComment();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.design.profile.architecture.Project#getName <em>Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see org.eclipse.papyrus.design.profile.architecture.Plugin#getName()
-	 * @see #getPlugin()
+	 * @see org.eclipse.papyrus.design.profile.architecture.Project#getName()
+	 * @see #getProject()
 	 * @generated
 	 */
-	EAttribute getPlugin_Name();
+	EAttribute getProject_Name();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.design.profile.architecture.Plugin#getParentFolder <em>Parent Folder</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Parent Folder</em>'.
-	 * @see org.eclipse.papyrus.design.profile.architecture.Plugin#getParentFolder()
-	 * @see #getPlugin()
-	 * @generated
-	 */
-	EAttribute getPlugin_ParentFolder();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.design.profile.architecture.Plugin#getOriginalParentFolder <em>Original Parent Folder</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Original Parent Folder</em>'.
-	 * @see org.eclipse.papyrus.design.profile.architecture.Plugin#getOriginalParentFolder()
-	 * @see #getPlugin()
-	 * @generated
-	 */
-	EAttribute getPlugin_OriginalParentFolder();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.design.profile.architecture.Plugin#isDeprecated <em>Is Deprecated</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Is Deprecated</em>'.
-	 * @see org.eclipse.papyrus.design.profile.architecture.Plugin#isDeprecated()
-	 * @see #getPlugin()
-	 * @generated
-	 */
-	EAttribute getPlugin_IsDeprecated();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.design.profile.architecture.Plugin#getDeprecatedComment <em>Deprecated Comment</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Deprecated Comment</em>'.
-	 * @see org.eclipse.papyrus.design.profile.architecture.Plugin#getDeprecatedComment()
-	 * @see #getPlugin()
-	 * @generated
-	 */
-	EAttribute getPlugin_DeprecatedComment();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.design.profile.architecture.Plugin#getReferent <em>Referent</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.design.profile.architecture.Project#getReferent <em>Referent</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Referent</em>'.
-	 * @see org.eclipse.papyrus.design.profile.architecture.Plugin#getReferent()
-	 * @see #getPlugin()
+	 * @see org.eclipse.papyrus.design.profile.architecture.Project#getReferent()
+	 * @see #getProject()
 	 * @generated
 	 */
-	EAttribute getPlugin_Referent();
+	EAttribute getProject_Referent();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.design.profile.architecture.Plugin#getBase_Package <em>Base Package</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.design.profile.architecture.Project#getParentFolder <em>Parent Folder</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Parent Folder</em>'.
+	 * @see org.eclipse.papyrus.design.profile.architecture.Project#getParentFolder()
+	 * @see #getProject()
+	 * @generated
+	 */
+	EAttribute getProject_ParentFolder();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.design.profile.architecture.Project#getOriginalParentFolder <em>Original Parent Folder</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Original Parent Folder</em>'.
+	 * @see org.eclipse.papyrus.design.profile.architecture.Project#getOriginalParentFolder()
+	 * @see #getProject()
+	 * @generated
+	 */
+	EAttribute getProject_OriginalParentFolder();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.design.profile.architecture.Project#getBase_Package <em>Base Package</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Base Package</em>'.
-	 * @see org.eclipse.papyrus.design.profile.architecture.Plugin#getBase_Package()
-	 * @see #getPlugin()
+	 * @see org.eclipse.papyrus.design.profile.architecture.Project#getBase_Package()
+	 * @see #getProject()
 	 * @generated
 	 */
-	EReference getPlugin_Base_Package();
+	EReference getProject_Base_Package();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.design.profile.architecture.PluginDependency <em>Plugin Dependency</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.design.profile.architecture.ProjectDependency <em>Project Dependency</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Plugin Dependency</em>'.
-	 * @see org.eclipse.papyrus.design.profile.architecture.PluginDependency
+	 * @return the meta object for class '<em>Project Dependency</em>'.
+	 * @see org.eclipse.papyrus.design.profile.architecture.ProjectDependency
 	 * @generated
 	 */
-	EClass getPluginDependency();
+	EClass getProjectDependency();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.design.profile.architecture.PluginDependency#getDeprecatedComment <em>Deprecated Comment</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.design.profile.architecture.ProjectDependency#getDeprecatedComment <em>Deprecated Comment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Deprecated Comment</em>'.
-	 * @see org.eclipse.papyrus.design.profile.architecture.PluginDependency#getDeprecatedComment()
-	 * @see #getPluginDependency()
+	 * @see org.eclipse.papyrus.design.profile.architecture.ProjectDependency#getDeprecatedComment()
+	 * @see #getProjectDependency()
 	 * @generated
 	 */
-	EAttribute getPluginDependency_DeprecatedComment();
+	EAttribute getProjectDependency_DeprecatedComment();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.design.profile.architecture.PluginDependency#isDeprecated <em>Is Deprecated</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.design.profile.architecture.ProjectDependency#isDeprecated <em>Is Deprecated</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Is Deprecated</em>'.
-	 * @see org.eclipse.papyrus.design.profile.architecture.PluginDependency#isDeprecated()
-	 * @see #getPluginDependency()
+	 * @see org.eclipse.papyrus.design.profile.architecture.ProjectDependency#isDeprecated()
+	 * @see #getProjectDependency()
 	 * @generated
 	 */
-	EAttribute getPluginDependency_IsDeprecated();
+	EAttribute getProjectDependency_IsDeprecated();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.design.profile.architecture.PluginDependency#getBase_Dependency <em>Base Dependency</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.design.profile.architecture.ProjectDependency#getBase_Dependency <em>Base Dependency</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Base Dependency</em>'.
-	 * @see org.eclipse.papyrus.design.profile.architecture.PluginDependency#getBase_Dependency()
-	 * @see #getPluginDependency()
+	 * @see org.eclipse.papyrus.design.profile.architecture.ProjectDependency#getBase_Dependency()
+	 * @see #getProjectDependency()
 	 * @generated
 	 */
-	EReference getPluginDependency_Base_Dependency();
+	EReference getProjectDependency_Base_Dependency();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -850,28 +959,14 @@ public interface ArchitecturePackage extends EPackage {
 		EClass PLUGIN = eINSTANCE.getPlugin();
 
 		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.design.profile.architecture.impl.ProjectImpl <em>Project</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.design.profile.architecture.impl.ProjectImpl
+		 * @see org.eclipse.papyrus.design.profile.architecture.impl.ArchitecturePackageImpl#getProject()
 		 * @generated
 		 */
-		EAttribute PLUGIN__NAME = eINSTANCE.getPlugin_Name();
-
-		/**
-		 * The meta object literal for the '<em><b>Parent Folder</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute PLUGIN__PARENT_FOLDER = eINSTANCE.getPlugin_ParentFolder();
-
-		/**
-		 * The meta object literal for the '<em><b>Original Parent Folder</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute PLUGIN__ORIGINAL_PARENT_FOLDER = eINSTANCE.getPlugin_OriginalParentFolder();
+		EClass PROJECT = eINSTANCE.getProject();
 
 		/**
 		 * The meta object literal for the '<em><b>Is Deprecated</b></em>' attribute feature.
@@ -879,7 +974,7 @@ public interface ArchitecturePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute PLUGIN__IS_DEPRECATED = eINSTANCE.getPlugin_IsDeprecated();
+		EAttribute PROJECT__IS_DEPRECATED = eINSTANCE.getProject_IsDeprecated();
 
 		/**
 		 * The meta object literal for the '<em><b>Deprecated Comment</b></em>' attribute feature.
@@ -887,7 +982,15 @@ public interface ArchitecturePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute PLUGIN__DEPRECATED_COMMENT = eINSTANCE.getPlugin_DeprecatedComment();
+		EAttribute PROJECT__DEPRECATED_COMMENT = eINSTANCE.getProject_DeprecatedComment();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PROJECT__NAME = eINSTANCE.getProject_Name();
 
 		/**
 		 * The meta object literal for the '<em><b>Referent</b></em>' attribute feature.
@@ -895,7 +998,23 @@ public interface ArchitecturePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute PLUGIN__REFERENT = eINSTANCE.getPlugin_Referent();
+		EAttribute PROJECT__REFERENT = eINSTANCE.getProject_Referent();
+
+		/**
+		 * The meta object literal for the '<em><b>Parent Folder</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PROJECT__PARENT_FOLDER = eINSTANCE.getProject_ParentFolder();
+
+		/**
+		 * The meta object literal for the '<em><b>Original Parent Folder</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PROJECT__ORIGINAL_PARENT_FOLDER = eINSTANCE.getProject_OriginalParentFolder();
 
 		/**
 		 * The meta object literal for the '<em><b>Base Package</b></em>' reference feature.
@@ -903,17 +1022,17 @@ public interface ArchitecturePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference PLUGIN__BASE_PACKAGE = eINSTANCE.getPlugin_Base_Package();
+		EReference PROJECT__BASE_PACKAGE = eINSTANCE.getProject_Base_Package();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.design.profile.architecture.impl.PluginDependencyImpl <em>Plugin Dependency</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.design.profile.architecture.impl.ProjectDependencyImpl <em>Project Dependency</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.papyrus.design.profile.architecture.impl.PluginDependencyImpl
-		 * @see org.eclipse.papyrus.design.profile.architecture.impl.ArchitecturePackageImpl#getPluginDependency()
+		 * @see org.eclipse.papyrus.design.profile.architecture.impl.ProjectDependencyImpl
+		 * @see org.eclipse.papyrus.design.profile.architecture.impl.ArchitecturePackageImpl#getProjectDependency()
 		 * @generated
 		 */
-		EClass PLUGIN_DEPENDENCY = eINSTANCE.getPluginDependency();
+		EClass PROJECT_DEPENDENCY = eINSTANCE.getProjectDependency();
 
 		/**
 		 * The meta object literal for the '<em><b>Deprecated Comment</b></em>' attribute feature.
@@ -921,7 +1040,7 @@ public interface ArchitecturePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute PLUGIN_DEPENDENCY__DEPRECATED_COMMENT = eINSTANCE.getPluginDependency_DeprecatedComment();
+		EAttribute PROJECT_DEPENDENCY__DEPRECATED_COMMENT = eINSTANCE.getProjectDependency_DeprecatedComment();
 
 		/**
 		 * The meta object literal for the '<em><b>Is Deprecated</b></em>' attribute feature.
@@ -929,7 +1048,7 @@ public interface ArchitecturePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute PLUGIN_DEPENDENCY__IS_DEPRECATED = eINSTANCE.getPluginDependency_IsDeprecated();
+		EAttribute PROJECT_DEPENDENCY__IS_DEPRECATED = eINSTANCE.getProjectDependency_IsDeprecated();
 
 		/**
 		 * The meta object literal for the '<em><b>Base Dependency</b></em>' reference feature.
@@ -937,7 +1056,7 @@ public interface ArchitecturePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference PLUGIN_DEPENDENCY__BASE_DEPENDENCY = eINSTANCE.getPluginDependency_Base_Dependency();
+		EReference PROJECT_DEPENDENCY__BASE_DEPENDENCY = eINSTANCE.getProjectDependency_Base_Dependency();
 
 	}
 

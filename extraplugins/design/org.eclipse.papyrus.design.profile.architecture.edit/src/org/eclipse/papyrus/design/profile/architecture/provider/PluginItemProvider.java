@@ -33,7 +33,7 @@ import org.eclipse.papyrus.design.profile.architecture.Plugin;
  * @generated
  */
 public class PluginItemProvider
-	extends ElementItemProvider
+	extends ProjectItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -61,169 +61,8 @@ public class PluginItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addNamePropertyDescriptor(object);
-			addParentFolderPropertyDescriptor(object);
-			addOriginalParentFolderPropertyDescriptor(object);
-			addIsDeprecatedPropertyDescriptor(object);
-			addDeprecatedCommentPropertyDescriptor(object);
-			addReferentPropertyDescriptor(object);
-			addBase_PackagePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Name feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Plugin_name_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Plugin_name_feature", "_UI_Plugin_type"),
-				 ArchitecturePackage.Literals.PLUGIN__NAME,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Parent Folder feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addParentFolderPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Plugin_parentFolder_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Plugin_parentFolder_feature", "_UI_Plugin_type"),
-				 ArchitecturePackage.Literals.PLUGIN__PARENT_FOLDER,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Original Parent Folder feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addOriginalParentFolderPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Plugin_originalParentFolder_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Plugin_originalParentFolder_feature", "_UI_Plugin_type"),
-				 ArchitecturePackage.Literals.PLUGIN__ORIGINAL_PARENT_FOLDER,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Is Deprecated feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addIsDeprecatedPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Plugin_isDeprecated_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Plugin_isDeprecated_feature", "_UI_Plugin_type"),
-				 ArchitecturePackage.Literals.PLUGIN__IS_DEPRECATED,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Deprecated Comment feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addDeprecatedCommentPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Plugin_deprecatedComment_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Plugin_deprecatedComment_feature", "_UI_Plugin_type"),
-				 ArchitecturePackage.Literals.PLUGIN__DEPRECATED_COMMENT,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Referent feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addReferentPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Plugin_referent_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Plugin_referent_feature", "_UI_Plugin_type"),
-				 ArchitecturePackage.Literals.PLUGIN__REFERENT,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Base Package feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addBase_PackagePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Plugin_base_Package_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Plugin_base_Package_feature", "_UI_Plugin_type"),
-				 ArchitecturePackage.Literals.PLUGIN__BASE_PACKAGE,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
 	}
 
 	/**
@@ -261,17 +100,6 @@ public class PluginItemProvider
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-
-		switch (notification.getFeatureID(Plugin.class)) {
-			case ArchitecturePackage.PLUGIN__NAME:
-			case ArchitecturePackage.PLUGIN__PARENT_FOLDER:
-			case ArchitecturePackage.PLUGIN__ORIGINAL_PARENT_FOLDER:
-			case ArchitecturePackage.PLUGIN__IS_DEPRECATED:
-			case ArchitecturePackage.PLUGIN__DEPRECATED_COMMENT:
-			case ArchitecturePackage.PLUGIN__REFERENT:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-		}
 		super.notifyChanged(notification);
 	}
 
