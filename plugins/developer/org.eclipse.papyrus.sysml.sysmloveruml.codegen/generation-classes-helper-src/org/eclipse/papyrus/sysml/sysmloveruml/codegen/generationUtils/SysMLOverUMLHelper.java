@@ -356,6 +356,17 @@ public class SysMLOverUMLHelper {
 		return builder.toString().toUpperCase();
 	}
 
+	public static String getElementTypeCorrectLabel(String classifier) {
+		StringBuilder builder = new StringBuilder();
+		for(int i = 0; i < classifier.length(); i++) {
+			if(Character.isUpperCase(classifier.charAt(i)) && i > 0) {
+				builder.append(' ');
+			}
+			builder.append(classifier.charAt(i));
+		}
+		return builder.toString();
+	}
+
 	/**
 	 * Get the correct label name of an {@link EClass} as it is written in UMLPackage.litterals
 	 * Example:
@@ -367,6 +378,19 @@ public class SysMLOverUMLHelper {
 	 */
 	public static String getClassifierCorrectLabel(EClass eClass) {
 		return getClassifierCorrectLabel(eClass.getName());
+	}
+
+	/**
+	 * Get the correct label name of an {@link EClass} as it is written in plugins.properties to externalize strings
+	 * Example:
+	 * 
+	 * EClass ActivityEdge -> return Activity Edge
+	 * 
+	 * @param eClass
+	 * @return
+	 */
+	public static String getElementTypeCorrectLabel(EClass eClass) {
+		return getElementTypeCorrectLabel(eClass.getName());
 	}
 
 	/**

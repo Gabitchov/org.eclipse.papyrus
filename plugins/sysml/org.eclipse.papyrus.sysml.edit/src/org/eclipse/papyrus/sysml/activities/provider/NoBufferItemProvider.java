@@ -67,7 +67,7 @@ public class NoBufferItemProvider extends SysMLItemProviderAdapter implements IE
 	 * @generated
 	 */
 
-	private static Pattern OBJECT_NODE_PREFIX_PATTERN = Pattern.compile("ObjectNode");
+	private static Pattern OBJECT_NODE_PREFIX_PATTERN = Pattern.compile("Object Node");
 
 	/**
 	 * This constructs an instance from a factory and a notifier.

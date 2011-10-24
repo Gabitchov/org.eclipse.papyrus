@@ -77,7 +77,7 @@ public class <%=genClass.getProviderClassName()%>
 	 * @generated
 	 */
 	<%patternNameMap.put(basedClass,patternName);%>
-	private static Pattern <%=patternName%>= Pattern.compile("<%=basedClass.getName()%>");
+	private static Pattern <%=patternName%>= Pattern.compile("<%=SysMLOverUMLHelper.getElementTypeCorrectLabel(basedClass)%>");
   <%}%>
 
 <%if (genModel.hasCopyrightField()) {%>

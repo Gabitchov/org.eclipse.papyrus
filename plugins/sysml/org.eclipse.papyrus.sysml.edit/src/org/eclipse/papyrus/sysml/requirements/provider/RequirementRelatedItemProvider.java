@@ -67,7 +67,7 @@ public class RequirementRelatedItemProvider extends SysMLItemProviderAdapter imp
 	 * @generated
 	 */
 
-	private static Pattern NAMED_ELEMENT_PREFIX_PATTERN = Pattern.compile("NamedElement");
+	private static Pattern NAMED_ELEMENT_PREFIX_PATTERN = Pattern.compile("Named Element");
 
 	/**
 	 * This constructs an instance from a factory and a notifier.

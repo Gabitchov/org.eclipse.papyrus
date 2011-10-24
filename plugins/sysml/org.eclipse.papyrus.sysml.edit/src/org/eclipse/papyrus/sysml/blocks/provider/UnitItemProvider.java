@@ -67,7 +67,7 @@ public class UnitItemProvider extends SysMLItemProviderAdapter implements IEditi
 	 * @generated
 	 */
 
-	private static Pattern INSTANCE_SPECIFICATION_PREFIX_PATTERN = Pattern.compile("InstanceSpecification");
+	private static Pattern INSTANCE_SPECIFICATION_PREFIX_PATTERN = Pattern.compile("Instance Specification");
 
 	/**
 	 * This constructs an instance from a factory and a notifier.

@@ -67,7 +67,7 @@ public class NestedConnectorEndItemProvider extends SysMLItemProviderAdapter imp
 	 * @generated
 	 */
 
-	private static Pattern CONNECTOR_END_PREFIX_PATTERN = Pattern.compile("ConnectorEnd");
+	private static Pattern CONNECTOR_END_PREFIX_PATTERN = Pattern.compile("Connector End");
 
 	/**
 	 * This constructs an instance from a factory and a notifier.

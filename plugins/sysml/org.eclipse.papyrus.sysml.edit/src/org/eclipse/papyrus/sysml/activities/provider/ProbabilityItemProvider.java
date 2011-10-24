@@ -67,7 +67,7 @@ public class ProbabilityItemProvider extends SysMLItemProviderAdapter implements
 	 * @generated
 	 */
 
-	private static Pattern ACTIVITY_EDGE_PREFIX_PATTERN = Pattern.compile("ActivityEdge");
+	private static Pattern ACTIVITY_EDGE_PREFIX_PATTERN = Pattern.compile("Activity Edge");
 
 	/**
 	 * Get the prefix pattern of PARAMETER_SET_PREFIX_PATTERN
@@ -75,7 +75,7 @@ public class ProbabilityItemProvider extends SysMLItemProviderAdapter implements
 	 * @generated
 	 */
 
-	private static Pattern PARAMETER_SET_PREFIX_PATTERN = Pattern.compile("ParameterSet");
+	private static Pattern PARAMETER_SET_PREFIX_PATTERN = Pattern.compile("Parameter Set");
 
 	/**
 	 * This constructs an instance from a factory and a notifier.

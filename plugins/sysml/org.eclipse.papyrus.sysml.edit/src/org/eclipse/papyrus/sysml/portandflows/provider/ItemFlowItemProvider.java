@@ -67,7 +67,7 @@ public class ItemFlowItemProvider extends SysMLItemProviderAdapter implements IE
 	 * @generated
 	 */
 
-	private static Pattern INFORMATION_FLOW_PREFIX_PATTERN = Pattern.compile("InformationFlow");
+	private static Pattern INFORMATION_FLOW_PREFIX_PATTERN = Pattern.compile("Information Flow");
 
 	/**
 	 * This constructs an instance from a factory and a notifier.

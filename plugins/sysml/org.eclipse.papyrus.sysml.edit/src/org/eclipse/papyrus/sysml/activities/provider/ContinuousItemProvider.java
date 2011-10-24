@@ -71,7 +71,7 @@ public class ContinuousItemProvider extends RateItemProvider implements IEditing
 	 * @generated
 	 */
 
-	private static Pattern ACTIVITY_EDGE_PREFIX_PATTERN = Pattern.compile("ActivityEdge");
+	private static Pattern ACTIVITY_EDGE_PREFIX_PATTERN = Pattern.compile("Activity Edge");
 
 	/**
 	 * This constructs an instance from a factory and a notifier.

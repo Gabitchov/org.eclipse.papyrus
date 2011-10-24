@@ -67,7 +67,7 @@ public class ValueTypeItemProvider extends SysMLItemProviderAdapter implements I
 	 * @generated
 	 */
 
-	private static Pattern DATA_TYPE_PREFIX_PATTERN = Pattern.compile("DataType");
+	private static Pattern DATA_TYPE_PREFIX_PATTERN = Pattern.compile("Data Type");
 
 	/**
 	 * This constructs an instance from a factory and a notifier.

@@ -67,7 +67,7 @@ public class AllocateActivityPartitionItemProvider extends SysMLItemProviderAdap
 	 * @generated
 	 */
 
-	private static Pattern ACTIVITY_PARTITION_PREFIX_PATTERN = Pattern.compile("ActivityPartition");
+	private static Pattern ACTIVITY_PARTITION_PREFIX_PATTERN = Pattern.compile("Activity Partition");
 
 	/**
 	 * This constructs an instance from a factory and a notifier.
