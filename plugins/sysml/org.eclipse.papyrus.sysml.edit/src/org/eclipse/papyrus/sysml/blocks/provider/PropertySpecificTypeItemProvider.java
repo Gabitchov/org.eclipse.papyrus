@@ -36,7 +36,6 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.papyrus.sysml.blocks.BlocksPackage;
 import org.eclipse.papyrus.sysml.blocks.PropertySpecificType;
 import org.eclipse.papyrus.sysml.edit.provider.IComposableAdapterFactory;
-import org.eclipse.papyrus.sysml.edit.provider.IRootAdapterFactory;
 import org.eclipse.papyrus.sysml.edit.provider.SysMLItemProviderAdapter;
 import org.eclipse.papyrus.sysml.provider.SysmlEditPlugin;
 import org.eclipse.papyrus.sysml.util.SysmlResource;
@@ -48,11 +47,10 @@ import org.eclipse.uml2.uml.UMLPackage;
  * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.blocks.PropertySpecificType} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
-public class PropertySpecificTypeItemProvider extends SysMLItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
-
-{
+public class PropertySpecificTypeItemProvider extends SysMLItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 
 	/**
 	 * Pattern prefix of propertySpecificType
@@ -66,13 +64,13 @@ public class PropertySpecificTypeItemProvider extends SysMLItemProviderAdapter i
 	 * 
 	 * @generated
 	 */
-
 	private static Pattern CLASSIFIER_PREFIX_PATTERN = Pattern.compile("Classifier");
 
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public PropertySpecificTypeItemProvider(AdapterFactory adapterFactory) {
@@ -83,6 +81,7 @@ public class PropertySpecificTypeItemProvider extends SysMLItemProviderAdapter i
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -90,11 +89,9 @@ public class PropertySpecificTypeItemProvider extends SysMLItemProviderAdapter i
 		if(object instanceof PropertySpecificType) {
 			if(itemPropertyDescriptors == null) {
 				super.getPropertyDescriptors(object);
-
 				addBase_ClassifierPropertyDescriptor(object);
 			}
 		}
-
 		/**
 		 * Handle Classifier stereotyped by PropertySpecificType
 		 */
@@ -104,23 +101,17 @@ public class PropertySpecificTypeItemProvider extends SysMLItemProviderAdapter i
 			 * This is used to store all the property descriptors for a class stereotyped with a block.
 			 * Derived classes should add descriptors to this vector.
 			 */
-
 			List<IItemPropertyDescriptor> itemPropertyDescriptorsForclassifier = new ArrayList<IItemPropertyDescriptor>();
 			ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.CLASSIFIER);
 			final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
-
 			itemPropertyDescriptorsForclassifier.addAll(propertyDescriptors);
 			Stereotype ste = (element).getAppliedStereotype(SysmlResource.PROPERTY_SPECIFIC_TYPE_ID);
 			if(ste != null) {
 				EObject steApplication = (element).getStereotypeApplication(ste);
-
 				itemPropertyDescriptorsForclassifier.add(createBase_ClassifierPropertyDescriptorForClassifier(steApplication));
-
 			}
 			return itemPropertyDescriptorsForclassifier;
-
 		}
-
 		return itemPropertyDescriptors;
 	}
 
@@ -128,6 +119,7 @@ public class PropertySpecificTypeItemProvider extends SysMLItemProviderAdapter i
 	 * This adds a property descriptor for the Base Classifier feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addBase_ClassifierPropertyDescriptor(Object object) {
@@ -138,28 +130,18 @@ public class PropertySpecificTypeItemProvider extends SysMLItemProviderAdapter i
 	 * This adds a property descriptor for the Base Classifier feature for the UML element Classifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ItemPropertyDescriptorDecorator createBase_ClassifierPropertyDescriptorForClassifier(Object object) {
-
-		return new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_PropertySpecificType_base_Classifier_feature"),
-
-		getString("_UI_PropertyDescriptor_description", "_UI_PropertySpecificType_base_Classifier_feature", "_UI_PropertySpecificType_type"),
-
-		BlocksPackage.Literals.PROPERTY_SPECIFIC_TYPE__BASE_CLASSIFIER, true, false, true,
-
-		null,
-
-		null,
-
-		null));
-
+		return new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_PropertySpecificType_base_Classifier_feature"), getString("_UI_PropertyDescriptor_description", "_UI_PropertySpecificType_base_Classifier_feature", "_UI_PropertySpecificType_type"), BlocksPackage.Literals.PROPERTY_SPECIFIC_TYPE__BASE_CLASSIFIER, true, false, true, null, null, null));
 	}
 
 	/**
 	 * This returns PropertySpecificType.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -176,6 +158,7 @@ public class PropertySpecificTypeItemProvider extends SysMLItemProviderAdapter i
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -184,7 +167,6 @@ public class PropertySpecificTypeItemProvider extends SysMLItemProviderAdapter i
 		 * Handle Stereotype item and stereoted element
 		 */
 		PropertySpecificType propertySpecificType_ = null;
-
 		if(object instanceof org.eclipse.uml2.uml.Classifier) {
 			Stereotype ste = ((org.eclipse.uml2.uml.Classifier)object).getAppliedStereotype(SysmlResource.PROPERTY_SPECIFIC_TYPE_ID);
 			if(ste != null) {
@@ -193,13 +175,10 @@ public class PropertySpecificTypeItemProvider extends SysMLItemProviderAdapter i
 				result = PROPERTY_SPECIFIC_TYPE_PREFIX_PATTERN.matcher(result).replaceFirst("");
 				return CLASSIFIER_PREFIX_PATTERN.matcher(result).replaceFirst("PropertySpecificType");
 			}
-
 		}
-
 		if(propertySpecificType_ == null) {
 			propertySpecificType_ = (PropertySpecificType)object;
 		}
-
 		return getString("_UI_PropertySpecificType_type");
 	}
 
@@ -208,30 +187,25 @@ public class PropertySpecificTypeItemProvider extends SysMLItemProviderAdapter i
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-
 		/**
 		 * Notify UML element
 		 */
 		if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
-
 			/**
 			 * Handle Classifier stereotyped by PropertySpecificType
 			 */
-
 			if(notification.getFeatureID(org.eclipse.uml2.uml.Classifier.class) != Notification.NO_FEATURE_ID) {
 				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.CLASSIFIER);
 				ite.notifyChanged(notification);
 				return;
-
 			}
-
 		}
-
 		super.notifyChanged(notification);
 	}
 
@@ -240,6 +214,7 @@ public class PropertySpecificTypeItemProvider extends SysMLItemProviderAdapter i
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -251,6 +226,7 @@ public class PropertySpecificTypeItemProvider extends SysMLItemProviderAdapter i
 	 * Return the resource locator for this item provider's resources.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -260,6 +236,7 @@ public class PropertySpecificTypeItemProvider extends SysMLItemProviderAdapter i
 
 	/**
 	 * Override in order to handle has children for based class
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -272,7 +249,6 @@ public class PropertySpecificTypeItemProvider extends SysMLItemProviderAdapter i
 			 * Handle based elements type
 			 */
 			if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
-
 				/**
 				 * Handle Classifier stereotyped by PropertySpecificType
 				 */
@@ -281,7 +257,6 @@ public class PropertySpecificTypeItemProvider extends SysMLItemProviderAdapter i
 					result.addAll((Collection<Object>)ite.getChildren(object));
 					return result;
 				}
-
 			}
 		}
 		return result;
@@ -289,6 +264,7 @@ public class PropertySpecificTypeItemProvider extends SysMLItemProviderAdapter i
 
 	/**
 	 * Override in order to handle has children for based class
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -299,7 +275,6 @@ public class PropertySpecificTypeItemProvider extends SysMLItemProviderAdapter i
 			 * Handle based elements type
 			 */
 			if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
-
 				/**
 				 * Handle Classifier stereotyped by PropertySpecificType
 				 */
@@ -307,10 +282,8 @@ public class PropertySpecificTypeItemProvider extends SysMLItemProviderAdapter i
 					ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.CLASSIFIER);
 					return super.hasChildren(object) || ite.hasChildren(object);
 				}
-
 			}
 		}
 		return super.hasChildren(object);
 	}
-
 }

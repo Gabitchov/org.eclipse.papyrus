@@ -34,7 +34,6 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptorDecorator;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.papyrus.sysml.edit.provider.IComposableAdapterFactory;
-import org.eclipse.papyrus.sysml.edit.provider.IRootAdapterFactory;
 import org.eclipse.papyrus.sysml.edit.provider.SysMLItemProviderAdapter;
 import org.eclipse.papyrus.sysml.modelelements.Conform;
 import org.eclipse.papyrus.sysml.modelelements.ModelelementsPackage;
@@ -48,11 +47,10 @@ import org.eclipse.uml2.uml.UMLPackage;
  * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.modelelements.Conform} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
-public class ConformItemProvider extends SysMLItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
-
-{
+public class ConformItemProvider extends SysMLItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 
 	/**
 	 * Pattern prefix of conform
@@ -66,13 +64,13 @@ public class ConformItemProvider extends SysMLItemProviderAdapter implements IEd
 	 * 
 	 * @generated
 	 */
-
 	private static Pattern DEPENDENCY_PREFIX_PATTERN = Pattern.compile("Dependency");
 
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ConformItemProvider(AdapterFactory adapterFactory) {
@@ -83,6 +81,7 @@ public class ConformItemProvider extends SysMLItemProviderAdapter implements IEd
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -90,11 +89,9 @@ public class ConformItemProvider extends SysMLItemProviderAdapter implements IEd
 		if(object instanceof Conform) {
 			if(itemPropertyDescriptors == null) {
 				super.getPropertyDescriptors(object);
-
 				addBase_DependencyPropertyDescriptor(object);
 			}
 		}
-
 		/**
 		 * Handle Dependency stereotyped by Conform
 		 */
@@ -104,23 +101,17 @@ public class ConformItemProvider extends SysMLItemProviderAdapter implements IEd
 			 * This is used to store all the property descriptors for a class stereotyped with a block.
 			 * Derived classes should add descriptors to this vector.
 			 */
-
 			List<IItemPropertyDescriptor> itemPropertyDescriptorsFordependency = new ArrayList<IItemPropertyDescriptor>();
 			ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.DEPENDENCY);
 			final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
-
 			itemPropertyDescriptorsFordependency.addAll(propertyDescriptors);
 			Stereotype ste = (element).getAppliedStereotype(SysmlResource.CONFORM_ID);
 			if(ste != null) {
 				EObject steApplication = (element).getStereotypeApplication(ste);
-
 				itemPropertyDescriptorsFordependency.add(createBase_DependencyPropertyDescriptorForDependency(steApplication));
-
 			}
 			return itemPropertyDescriptorsFordependency;
-
 		}
-
 		return itemPropertyDescriptors;
 	}
 
@@ -128,6 +119,7 @@ public class ConformItemProvider extends SysMLItemProviderAdapter implements IEd
 	 * This adds a property descriptor for the Base Dependency feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addBase_DependencyPropertyDescriptor(Object object) {
@@ -138,28 +130,18 @@ public class ConformItemProvider extends SysMLItemProviderAdapter implements IEd
 	 * This adds a property descriptor for the Base Dependency feature for the UML element Dependency.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ItemPropertyDescriptorDecorator createBase_DependencyPropertyDescriptorForDependency(Object object) {
-
-		return new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Conform_base_Dependency_feature"),
-
-		getString("_UI_PropertyDescriptor_description", "_UI_Conform_base_Dependency_feature", "_UI_Conform_type"),
-
-		ModelelementsPackage.Literals.CONFORM__BASE_DEPENDENCY, true, false, true,
-
-		null,
-
-		null,
-
-		null));
-
+		return new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Conform_base_Dependency_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Conform_base_Dependency_feature", "_UI_Conform_type"), ModelelementsPackage.Literals.CONFORM__BASE_DEPENDENCY, true, false, true, null, null, null));
 	}
 
 	/**
 	 * This returns Conform.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -176,6 +158,7 @@ public class ConformItemProvider extends SysMLItemProviderAdapter implements IEd
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -184,7 +167,6 @@ public class ConformItemProvider extends SysMLItemProviderAdapter implements IEd
 		 * Handle Stereotype item and stereoted element
 		 */
 		Conform conform_ = null;
-
 		if(object instanceof org.eclipse.uml2.uml.Dependency) {
 			Stereotype ste = ((org.eclipse.uml2.uml.Dependency)object).getAppliedStereotype(SysmlResource.CONFORM_ID);
 			if(ste != null) {
@@ -193,13 +175,10 @@ public class ConformItemProvider extends SysMLItemProviderAdapter implements IEd
 				result = CONFORM_PREFIX_PATTERN.matcher(result).replaceFirst("");
 				return DEPENDENCY_PREFIX_PATTERN.matcher(result).replaceFirst("Conform");
 			}
-
 		}
-
 		if(conform_ == null) {
 			conform_ = (Conform)object;
 		}
-
 		return getString("_UI_Conform_type");
 	}
 
@@ -208,30 +187,25 @@ public class ConformItemProvider extends SysMLItemProviderAdapter implements IEd
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-
 		/**
 		 * Notify UML element
 		 */
 		if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
-
 			/**
 			 * Handle Dependency stereotyped by Conform
 			 */
-
 			if(notification.getFeatureID(org.eclipse.uml2.uml.Dependency.class) != Notification.NO_FEATURE_ID) {
 				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.DEPENDENCY);
 				ite.notifyChanged(notification);
 				return;
-
 			}
-
 		}
-
 		super.notifyChanged(notification);
 	}
 
@@ -240,6 +214,7 @@ public class ConformItemProvider extends SysMLItemProviderAdapter implements IEd
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -251,6 +226,7 @@ public class ConformItemProvider extends SysMLItemProviderAdapter implements IEd
 	 * Return the resource locator for this item provider's resources.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -260,6 +236,7 @@ public class ConformItemProvider extends SysMLItemProviderAdapter implements IEd
 
 	/**
 	 * Override in order to handle has children for based class
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -272,7 +249,6 @@ public class ConformItemProvider extends SysMLItemProviderAdapter implements IEd
 			 * Handle based elements type
 			 */
 			if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
-
 				/**
 				 * Handle Dependency stereotyped by Conform
 				 */
@@ -281,7 +257,6 @@ public class ConformItemProvider extends SysMLItemProviderAdapter implements IEd
 					result.addAll((Collection<Object>)ite.getChildren(object));
 					return result;
 				}
-
 			}
 		}
 		return result;
@@ -289,6 +264,7 @@ public class ConformItemProvider extends SysMLItemProviderAdapter implements IEd
 
 	/**
 	 * Override in order to handle has children for based class
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -299,7 +275,6 @@ public class ConformItemProvider extends SysMLItemProviderAdapter implements IEd
 			 * Handle based elements type
 			 */
 			if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
-
 				/**
 				 * Handle Dependency stereotyped by Conform
 				 */
@@ -307,10 +282,8 @@ public class ConformItemProvider extends SysMLItemProviderAdapter implements IEd
 					ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.DEPENDENCY);
 					return super.hasChildren(object) || ite.hasChildren(object);
 				}
-
 			}
 		}
 		return super.hasChildren(object);
 	}
-
 }

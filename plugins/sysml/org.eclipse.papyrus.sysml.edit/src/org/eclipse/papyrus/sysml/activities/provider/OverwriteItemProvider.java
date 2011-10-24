@@ -36,7 +36,6 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.papyrus.sysml.activities.ActivitiesPackage;
 import org.eclipse.papyrus.sysml.activities.Overwrite;
 import org.eclipse.papyrus.sysml.edit.provider.IComposableAdapterFactory;
-import org.eclipse.papyrus.sysml.edit.provider.IRootAdapterFactory;
 import org.eclipse.papyrus.sysml.edit.provider.SysMLItemProviderAdapter;
 import org.eclipse.papyrus.sysml.provider.SysmlEditPlugin;
 import org.eclipse.papyrus.sysml.util.SysmlResource;
@@ -48,11 +47,10 @@ import org.eclipse.uml2.uml.UMLPackage;
  * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.activities.Overwrite} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
-public class OverwriteItemProvider extends SysMLItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
-
-{
+public class OverwriteItemProvider extends SysMLItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 
 	/**
 	 * Pattern prefix of overwrite
@@ -66,13 +64,13 @@ public class OverwriteItemProvider extends SysMLItemProviderAdapter implements I
 	 * 
 	 * @generated
 	 */
-
-	private static Pattern OBJECT_NODE_PREFIX_PATTERN = Pattern.compile("ObjectNode");
+	private static Pattern OBJECT_NODE_PREFIX_PATTERN = Pattern.compile("Object Node");
 
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public OverwriteItemProvider(AdapterFactory adapterFactory) {
@@ -83,6 +81,7 @@ public class OverwriteItemProvider extends SysMLItemProviderAdapter implements I
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -90,11 +89,9 @@ public class OverwriteItemProvider extends SysMLItemProviderAdapter implements I
 		if(object instanceof Overwrite) {
 			if(itemPropertyDescriptors == null) {
 				super.getPropertyDescriptors(object);
-
 				addBase_ObjectNodePropertyDescriptor(object);
 			}
 		}
-
 		/**
 		 * Handle ObjectNode stereotyped by Overwrite
 		 */
@@ -104,23 +101,17 @@ public class OverwriteItemProvider extends SysMLItemProviderAdapter implements I
 			 * This is used to store all the property descriptors for a class stereotyped with a block.
 			 * Derived classes should add descriptors to this vector.
 			 */
-
 			List<IItemPropertyDescriptor> itemPropertyDescriptorsForobjectNode = new ArrayList<IItemPropertyDescriptor>();
 			ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.OBJECT_NODE);
 			final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
-
 			itemPropertyDescriptorsForobjectNode.addAll(propertyDescriptors);
 			Stereotype ste = (element).getAppliedStereotype(SysmlResource.OVERWRITE_ID);
 			if(ste != null) {
 				EObject steApplication = (element).getStereotypeApplication(ste);
-
 				itemPropertyDescriptorsForobjectNode.add(createBase_ObjectNodePropertyDescriptorForObjectNode(steApplication));
-
 			}
 			return itemPropertyDescriptorsForobjectNode;
-
 		}
-
 		return itemPropertyDescriptors;
 	}
 
@@ -128,6 +119,7 @@ public class OverwriteItemProvider extends SysMLItemProviderAdapter implements I
 	 * This adds a property descriptor for the Base Object Node feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addBase_ObjectNodePropertyDescriptor(Object object) {
@@ -138,28 +130,18 @@ public class OverwriteItemProvider extends SysMLItemProviderAdapter implements I
 	 * This adds a property descriptor for the Base Object Node feature for the UML element ObjectNode.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ItemPropertyDescriptorDecorator createBase_ObjectNodePropertyDescriptorForObjectNode(Object object) {
-
-		return new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Overwrite_base_ObjectNode_feature"),
-
-		getString("_UI_PropertyDescriptor_description", "_UI_Overwrite_base_ObjectNode_feature", "_UI_Overwrite_type"),
-
-		ActivitiesPackage.Literals.OVERWRITE__BASE_OBJECT_NODE, true, false, true,
-
-		null,
-
-		null,
-
-		null));
-
+		return new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Overwrite_base_ObjectNode_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Overwrite_base_ObjectNode_feature", "_UI_Overwrite_type"), ActivitiesPackage.Literals.OVERWRITE__BASE_OBJECT_NODE, true, false, true, null, null, null));
 	}
 
 	/**
 	 * This returns Overwrite.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -176,6 +158,7 @@ public class OverwriteItemProvider extends SysMLItemProviderAdapter implements I
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -184,7 +167,6 @@ public class OverwriteItemProvider extends SysMLItemProviderAdapter implements I
 		 * Handle Stereotype item and stereoted element
 		 */
 		Overwrite overwrite_ = null;
-
 		if(object instanceof org.eclipse.uml2.uml.ObjectNode) {
 			Stereotype ste = ((org.eclipse.uml2.uml.ObjectNode)object).getAppliedStereotype(SysmlResource.OVERWRITE_ID);
 			if(ste != null) {
@@ -193,13 +175,10 @@ public class OverwriteItemProvider extends SysMLItemProviderAdapter implements I
 				result = OVERWRITE_PREFIX_PATTERN.matcher(result).replaceFirst("");
 				return OBJECT_NODE_PREFIX_PATTERN.matcher(result).replaceFirst("Overwrite");
 			}
-
 		}
-
 		if(overwrite_ == null) {
 			overwrite_ = (Overwrite)object;
 		}
-
 		return getString("_UI_Overwrite_type");
 	}
 
@@ -208,30 +187,25 @@ public class OverwriteItemProvider extends SysMLItemProviderAdapter implements I
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-
 		/**
 		 * Notify UML element
 		 */
 		if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
-
 			/**
 			 * Handle ObjectNode stereotyped by Overwrite
 			 */
-
 			if(notification.getFeatureID(org.eclipse.uml2.uml.ObjectNode.class) != Notification.NO_FEATURE_ID) {
 				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.OBJECT_NODE);
 				ite.notifyChanged(notification);
 				return;
-
 			}
-
 		}
-
 		super.notifyChanged(notification);
 	}
 
@@ -240,6 +214,7 @@ public class OverwriteItemProvider extends SysMLItemProviderAdapter implements I
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -251,6 +226,7 @@ public class OverwriteItemProvider extends SysMLItemProviderAdapter implements I
 	 * Return the resource locator for this item provider's resources.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -260,6 +236,7 @@ public class OverwriteItemProvider extends SysMLItemProviderAdapter implements I
 
 	/**
 	 * Override in order to handle has children for based class
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -272,7 +249,6 @@ public class OverwriteItemProvider extends SysMLItemProviderAdapter implements I
 			 * Handle based elements type
 			 */
 			if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
-
 				/**
 				 * Handle ObjectNode stereotyped by Overwrite
 				 */
@@ -281,7 +257,6 @@ public class OverwriteItemProvider extends SysMLItemProviderAdapter implements I
 					result.addAll((Collection<Object>)ite.getChildren(object));
 					return result;
 				}
-
 			}
 		}
 		return result;
@@ -289,6 +264,7 @@ public class OverwriteItemProvider extends SysMLItemProviderAdapter implements I
 
 	/**
 	 * Override in order to handle has children for based class
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -299,7 +275,6 @@ public class OverwriteItemProvider extends SysMLItemProviderAdapter implements I
 			 * Handle based elements type
 			 */
 			if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
-
 				/**
 				 * Handle ObjectNode stereotyped by Overwrite
 				 */
@@ -307,10 +282,8 @@ public class OverwriteItemProvider extends SysMLItemProviderAdapter implements I
 					ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.OBJECT_NODE);
 					return super.hasChildren(object) || ite.hasChildren(object);
 				}
-
 			}
 		}
 		return super.hasChildren(object);
 	}
-
 }

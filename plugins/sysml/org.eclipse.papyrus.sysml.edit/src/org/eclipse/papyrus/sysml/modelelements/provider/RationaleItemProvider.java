@@ -34,7 +34,6 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptorDecorator;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.papyrus.sysml.edit.provider.IComposableAdapterFactory;
-import org.eclipse.papyrus.sysml.edit.provider.IRootAdapterFactory;
 import org.eclipse.papyrus.sysml.edit.provider.SysMLItemProviderAdapter;
 import org.eclipse.papyrus.sysml.modelelements.ModelelementsPackage;
 import org.eclipse.papyrus.sysml.modelelements.Rationale;
@@ -48,11 +47,10 @@ import org.eclipse.uml2.uml.UMLPackage;
  * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.modelelements.Rationale} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
-public class RationaleItemProvider extends SysMLItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
-
-{
+public class RationaleItemProvider extends SysMLItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 
 	/**
 	 * Pattern prefix of rationale
@@ -66,13 +64,13 @@ public class RationaleItemProvider extends SysMLItemProviderAdapter implements I
 	 * 
 	 * @generated
 	 */
-
 	private static Pattern COMMENT_PREFIX_PATTERN = Pattern.compile("Comment");
 
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public RationaleItemProvider(AdapterFactory adapterFactory) {
@@ -83,6 +81,7 @@ public class RationaleItemProvider extends SysMLItemProviderAdapter implements I
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -90,11 +89,9 @@ public class RationaleItemProvider extends SysMLItemProviderAdapter implements I
 		if(object instanceof Rationale) {
 			if(itemPropertyDescriptors == null) {
 				super.getPropertyDescriptors(object);
-
 				addBase_CommentPropertyDescriptor(object);
 			}
 		}
-
 		/**
 		 * Handle Comment stereotyped by Rationale
 		 */
@@ -104,23 +101,17 @@ public class RationaleItemProvider extends SysMLItemProviderAdapter implements I
 			 * This is used to store all the property descriptors for a class stereotyped with a block.
 			 * Derived classes should add descriptors to this vector.
 			 */
-
 			List<IItemPropertyDescriptor> itemPropertyDescriptorsForcomment = new ArrayList<IItemPropertyDescriptor>();
 			ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.COMMENT);
 			final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
-
 			itemPropertyDescriptorsForcomment.addAll(propertyDescriptors);
 			Stereotype ste = (element).getAppliedStereotype(SysmlResource.RATIONALE_ID);
 			if(ste != null) {
 				EObject steApplication = (element).getStereotypeApplication(ste);
-
 				itemPropertyDescriptorsForcomment.add(createBase_CommentPropertyDescriptorForComment(steApplication));
-
 			}
 			return itemPropertyDescriptorsForcomment;
-
 		}
-
 		return itemPropertyDescriptors;
 	}
 
@@ -128,6 +119,7 @@ public class RationaleItemProvider extends SysMLItemProviderAdapter implements I
 	 * This adds a property descriptor for the Base Comment feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addBase_CommentPropertyDescriptor(Object object) {
@@ -138,28 +130,18 @@ public class RationaleItemProvider extends SysMLItemProviderAdapter implements I
 	 * This adds a property descriptor for the Base Comment feature for the UML element Comment.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ItemPropertyDescriptorDecorator createBase_CommentPropertyDescriptorForComment(Object object) {
-
-		return new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Rationale_base_Comment_feature"),
-
-		getString("_UI_PropertyDescriptor_description", "_UI_Rationale_base_Comment_feature", "_UI_Rationale_type"),
-
-		ModelelementsPackage.Literals.RATIONALE__BASE_COMMENT, true, false, true,
-
-		null,
-
-		null,
-
-		null));
-
+		return new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Rationale_base_Comment_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Rationale_base_Comment_feature", "_UI_Rationale_type"), ModelelementsPackage.Literals.RATIONALE__BASE_COMMENT, true, false, true, null, null, null));
 	}
 
 	/**
 	 * This returns Rationale.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -176,6 +158,7 @@ public class RationaleItemProvider extends SysMLItemProviderAdapter implements I
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -184,7 +167,6 @@ public class RationaleItemProvider extends SysMLItemProviderAdapter implements I
 		 * Handle Stereotype item and stereoted element
 		 */
 		Rationale rationale_ = null;
-
 		if(object instanceof org.eclipse.uml2.uml.Comment) {
 			Stereotype ste = ((org.eclipse.uml2.uml.Comment)object).getAppliedStereotype(SysmlResource.RATIONALE_ID);
 			if(ste != null) {
@@ -193,13 +175,10 @@ public class RationaleItemProvider extends SysMLItemProviderAdapter implements I
 				result = RATIONALE_PREFIX_PATTERN.matcher(result).replaceFirst("");
 				return COMMENT_PREFIX_PATTERN.matcher(result).replaceFirst("Rationale");
 			}
-
 		}
-
 		if(rationale_ == null) {
 			rationale_ = (Rationale)object;
 		}
-
 		return getString("_UI_Rationale_type");
 	}
 
@@ -208,30 +187,25 @@ public class RationaleItemProvider extends SysMLItemProviderAdapter implements I
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-
 		/**
 		 * Notify UML element
 		 */
 		if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
-
 			/**
 			 * Handle Comment stereotyped by Rationale
 			 */
-
 			if(notification.getFeatureID(org.eclipse.uml2.uml.Comment.class) != Notification.NO_FEATURE_ID) {
 				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.COMMENT);
 				ite.notifyChanged(notification);
 				return;
-
 			}
-
 		}
-
 		super.notifyChanged(notification);
 	}
 
@@ -240,6 +214,7 @@ public class RationaleItemProvider extends SysMLItemProviderAdapter implements I
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -251,6 +226,7 @@ public class RationaleItemProvider extends SysMLItemProviderAdapter implements I
 	 * Return the resource locator for this item provider's resources.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -260,6 +236,7 @@ public class RationaleItemProvider extends SysMLItemProviderAdapter implements I
 
 	/**
 	 * Override in order to handle has children for based class
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -272,7 +249,6 @@ public class RationaleItemProvider extends SysMLItemProviderAdapter implements I
 			 * Handle based elements type
 			 */
 			if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
-
 				/**
 				 * Handle Comment stereotyped by Rationale
 				 */
@@ -281,7 +257,6 @@ public class RationaleItemProvider extends SysMLItemProviderAdapter implements I
 					result.addAll((Collection<Object>)ite.getChildren(object));
 					return result;
 				}
-
 			}
 		}
 		return result;
@@ -289,6 +264,7 @@ public class RationaleItemProvider extends SysMLItemProviderAdapter implements I
 
 	/**
 	 * Override in order to handle has children for based class
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -299,7 +275,6 @@ public class RationaleItemProvider extends SysMLItemProviderAdapter implements I
 			 * Handle based elements type
 			 */
 			if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
-
 				/**
 				 * Handle Comment stereotyped by Rationale
 				 */
@@ -307,10 +282,8 @@ public class RationaleItemProvider extends SysMLItemProviderAdapter implements I
 					ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.COMMENT);
 					return super.hasChildren(object) || ite.hasChildren(object);
 				}
-
 			}
 		}
 		return super.hasChildren(object);
 	}
-
 }

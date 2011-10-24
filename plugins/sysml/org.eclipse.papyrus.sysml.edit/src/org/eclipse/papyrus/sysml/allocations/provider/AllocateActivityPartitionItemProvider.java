@@ -36,7 +36,6 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.papyrus.sysml.allocations.AllocateActivityPartition;
 import org.eclipse.papyrus.sysml.allocations.AllocationsPackage;
 import org.eclipse.papyrus.sysml.edit.provider.IComposableAdapterFactory;
-import org.eclipse.papyrus.sysml.edit.provider.IRootAdapterFactory;
 import org.eclipse.papyrus.sysml.edit.provider.SysMLItemProviderAdapter;
 import org.eclipse.papyrus.sysml.provider.SysmlEditPlugin;
 import org.eclipse.papyrus.sysml.util.SysmlResource;
@@ -48,11 +47,10 @@ import org.eclipse.uml2.uml.UMLPackage;
  * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.allocations.AllocateActivityPartition} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
-public class AllocateActivityPartitionItemProvider extends SysMLItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
-
-{
+public class AllocateActivityPartitionItemProvider extends SysMLItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 
 	/**
 	 * Pattern prefix of allocateActivityPartition
@@ -66,13 +64,13 @@ public class AllocateActivityPartitionItemProvider extends SysMLItemProviderAdap
 	 * 
 	 * @generated
 	 */
-
-	private static Pattern ACTIVITY_PARTITION_PREFIX_PATTERN = Pattern.compile("ActivityPartition");
+	private static Pattern ACTIVITY_PARTITION_PREFIX_PATTERN = Pattern.compile("Activity Partition");
 
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public AllocateActivityPartitionItemProvider(AdapterFactory adapterFactory) {
@@ -83,6 +81,7 @@ public class AllocateActivityPartitionItemProvider extends SysMLItemProviderAdap
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -90,11 +89,9 @@ public class AllocateActivityPartitionItemProvider extends SysMLItemProviderAdap
 		if(object instanceof AllocateActivityPartition) {
 			if(itemPropertyDescriptors == null) {
 				super.getPropertyDescriptors(object);
-
 				addBase_ActivityPartitionPropertyDescriptor(object);
 			}
 		}
-
 		/**
 		 * Handle ActivityPartition stereotyped by AllocateActivityPartition
 		 */
@@ -104,23 +101,17 @@ public class AllocateActivityPartitionItemProvider extends SysMLItemProviderAdap
 			 * This is used to store all the property descriptors for a class stereotyped with a block.
 			 * Derived classes should add descriptors to this vector.
 			 */
-
 			List<IItemPropertyDescriptor> itemPropertyDescriptorsForactivityPartition = new ArrayList<IItemPropertyDescriptor>();
 			ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.ACTIVITY_PARTITION);
 			final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
-
 			itemPropertyDescriptorsForactivityPartition.addAll(propertyDescriptors);
 			Stereotype ste = (element).getAppliedStereotype(SysmlResource.ALLOCATE_ACTIVITY_PARTITION_ID);
 			if(ste != null) {
 				EObject steApplication = (element).getStereotypeApplication(ste);
-
 				itemPropertyDescriptorsForactivityPartition.add(createBase_ActivityPartitionPropertyDescriptorForActivityPartition(steApplication));
-
 			}
 			return itemPropertyDescriptorsForactivityPartition;
-
 		}
-
 		return itemPropertyDescriptors;
 	}
 
@@ -128,6 +119,7 @@ public class AllocateActivityPartitionItemProvider extends SysMLItemProviderAdap
 	 * This adds a property descriptor for the Base Activity Partition feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addBase_ActivityPartitionPropertyDescriptor(Object object) {
@@ -138,28 +130,18 @@ public class AllocateActivityPartitionItemProvider extends SysMLItemProviderAdap
 	 * This adds a property descriptor for the Base Activity Partition feature for the UML element ActivityPartition.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ItemPropertyDescriptorDecorator createBase_ActivityPartitionPropertyDescriptorForActivityPartition(Object object) {
-
-		return new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_AllocateActivityPartition_base_ActivityPartition_feature"),
-
-		getString("_UI_PropertyDescriptor_description", "_UI_AllocateActivityPartition_base_ActivityPartition_feature", "_UI_AllocateActivityPartition_type"),
-
-		AllocationsPackage.Literals.ALLOCATE_ACTIVITY_PARTITION__BASE_ACTIVITY_PARTITION, true, false, true,
-
-		null,
-
-		null,
-
-		null));
-
+		return new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_AllocateActivityPartition_base_ActivityPartition_feature"), getString("_UI_PropertyDescriptor_description", "_UI_AllocateActivityPartition_base_ActivityPartition_feature", "_UI_AllocateActivityPartition_type"), AllocationsPackage.Literals.ALLOCATE_ACTIVITY_PARTITION__BASE_ACTIVITY_PARTITION, true, false, true, null, null, null));
 	}
 
 	/**
 	 * This returns AllocateActivityPartition.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -176,6 +158,7 @@ public class AllocateActivityPartitionItemProvider extends SysMLItemProviderAdap
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -184,7 +167,6 @@ public class AllocateActivityPartitionItemProvider extends SysMLItemProviderAdap
 		 * Handle Stereotype item and stereoted element
 		 */
 		AllocateActivityPartition allocateActivityPartition_ = null;
-
 		if(object instanceof org.eclipse.uml2.uml.ActivityPartition) {
 			Stereotype ste = ((org.eclipse.uml2.uml.ActivityPartition)object).getAppliedStereotype(SysmlResource.ALLOCATE_ACTIVITY_PARTITION_ID);
 			if(ste != null) {
@@ -193,13 +175,10 @@ public class AllocateActivityPartitionItemProvider extends SysMLItemProviderAdap
 				result = ALLOCATE_ACTIVITY_PARTITION_PREFIX_PATTERN.matcher(result).replaceFirst("");
 				return ACTIVITY_PARTITION_PREFIX_PATTERN.matcher(result).replaceFirst("AllocateActivityPartition");
 			}
-
 		}
-
 		if(allocateActivityPartition_ == null) {
 			allocateActivityPartition_ = (AllocateActivityPartition)object;
 		}
-
 		return getString("_UI_AllocateActivityPartition_type");
 	}
 
@@ -208,30 +187,25 @@ public class AllocateActivityPartitionItemProvider extends SysMLItemProviderAdap
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-
 		/**
 		 * Notify UML element
 		 */
 		if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
-
 			/**
 			 * Handle ActivityPartition stereotyped by AllocateActivityPartition
 			 */
-
 			if(notification.getFeatureID(org.eclipse.uml2.uml.ActivityPartition.class) != Notification.NO_FEATURE_ID) {
 				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.ACTIVITY_PARTITION);
 				ite.notifyChanged(notification);
 				return;
-
 			}
-
 		}
-
 		super.notifyChanged(notification);
 	}
 
@@ -240,6 +214,7 @@ public class AllocateActivityPartitionItemProvider extends SysMLItemProviderAdap
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -251,6 +226,7 @@ public class AllocateActivityPartitionItemProvider extends SysMLItemProviderAdap
 	 * Return the resource locator for this item provider's resources.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -260,6 +236,7 @@ public class AllocateActivityPartitionItemProvider extends SysMLItemProviderAdap
 
 	/**
 	 * Override in order to handle has children for based class
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -272,7 +249,6 @@ public class AllocateActivityPartitionItemProvider extends SysMLItemProviderAdap
 			 * Handle based elements type
 			 */
 			if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
-
 				/**
 				 * Handle ActivityPartition stereotyped by AllocateActivityPartition
 				 */
@@ -281,7 +257,6 @@ public class AllocateActivityPartitionItemProvider extends SysMLItemProviderAdap
 					result.addAll((Collection<Object>)ite.getChildren(object));
 					return result;
 				}
-
 			}
 		}
 		return result;
@@ -289,6 +264,7 @@ public class AllocateActivityPartitionItemProvider extends SysMLItemProviderAdap
 
 	/**
 	 * Override in order to handle has children for based class
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -299,7 +275,6 @@ public class AllocateActivityPartitionItemProvider extends SysMLItemProviderAdap
 			 * Handle based elements type
 			 */
 			if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
-
 				/**
 				 * Handle ActivityPartition stereotyped by AllocateActivityPartition
 				 */
@@ -307,10 +282,8 @@ public class AllocateActivityPartitionItemProvider extends SysMLItemProviderAdap
 					ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.ACTIVITY_PARTITION);
 					return super.hasChildren(object) || ite.hasChildren(object);
 				}
-
 			}
 		}
 		return super.hasChildren(object);
 	}
-
 }

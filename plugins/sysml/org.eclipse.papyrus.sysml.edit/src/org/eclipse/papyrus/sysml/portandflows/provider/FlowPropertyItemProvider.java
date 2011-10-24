@@ -36,7 +36,6 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptorDecorator;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.eclipse.papyrus.sysml.edit.provider.IComposableAdapterFactory;
-import org.eclipse.papyrus.sysml.edit.provider.IRootAdapterFactory;
 import org.eclipse.papyrus.sysml.edit.provider.SysMLItemProviderAdapter;
 import org.eclipse.papyrus.sysml.portandflows.FlowDirection;
 import org.eclipse.papyrus.sysml.portandflows.FlowProperty;
@@ -51,11 +50,10 @@ import org.eclipse.uml2.uml.UMLPackage;
  * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.portandflows.FlowProperty} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
-public class FlowPropertyItemProvider extends SysMLItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
-
-{
+public class FlowPropertyItemProvider extends SysMLItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 
 	/**
 	 * Pattern prefix of flowProperty
@@ -69,13 +67,13 @@ public class FlowPropertyItemProvider extends SysMLItemProviderAdapter implement
 	 * 
 	 * @generated
 	 */
-
 	private static Pattern PROPERTY_PREFIX_PATTERN = Pattern.compile("Property");
 
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public FlowPropertyItemProvider(AdapterFactory adapterFactory) {
@@ -86,6 +84,7 @@ public class FlowPropertyItemProvider extends SysMLItemProviderAdapter implement
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -93,12 +92,10 @@ public class FlowPropertyItemProvider extends SysMLItemProviderAdapter implement
 		if(object instanceof FlowProperty) {
 			if(itemPropertyDescriptors == null) {
 				super.getPropertyDescriptors(object);
-
 				addBase_PropertyPropertyDescriptor(object);
 				addDirectionPropertyDescriptor(object);
 			}
 		}
-
 		/**
 		 * Handle Property stereotyped by FlowProperty
 		 */
@@ -108,25 +105,18 @@ public class FlowPropertyItemProvider extends SysMLItemProviderAdapter implement
 			 * This is used to store all the property descriptors for a class stereotyped with a block.
 			 * Derived classes should add descriptors to this vector.
 			 */
-
 			List<IItemPropertyDescriptor> itemPropertyDescriptorsForproperty = new ArrayList<IItemPropertyDescriptor>();
 			ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.PROPERTY);
 			final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
-
 			itemPropertyDescriptorsForproperty.addAll(propertyDescriptors);
 			Stereotype ste = (element).getAppliedStereotype(SysmlResource.FLOW_PROPERTY_ID);
 			if(ste != null) {
 				EObject steApplication = (element).getStereotypeApplication(ste);
-
 				itemPropertyDescriptorsForproperty.add(createBase_PropertyPropertyDescriptorForProperty(steApplication));
-
 				itemPropertyDescriptorsForproperty.add(createDirectionPropertyDescriptorForProperty(steApplication));
-
 			}
 			return itemPropertyDescriptorsForproperty;
-
 		}
-
 		return itemPropertyDescriptors;
 	}
 
@@ -134,6 +124,7 @@ public class FlowPropertyItemProvider extends SysMLItemProviderAdapter implement
 	 * This adds a property descriptor for the Base Property feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addBase_PropertyPropertyDescriptor(Object object) {
@@ -144,28 +135,18 @@ public class FlowPropertyItemProvider extends SysMLItemProviderAdapter implement
 	 * This adds a property descriptor for the Base Property feature for the UML element Property.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ItemPropertyDescriptorDecorator createBase_PropertyPropertyDescriptorForProperty(Object object) {
-
-		return new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_FlowProperty_base_Property_feature"),
-
-		getString("_UI_PropertyDescriptor_description", "_UI_FlowProperty_base_Property_feature", "_UI_FlowProperty_type"),
-
-		PortandflowsPackage.Literals.FLOW_PROPERTY__BASE_PROPERTY, true, false, true,
-
-		null,
-
-		null,
-
-		null));
-
+		return new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_FlowProperty_base_Property_feature"), getString("_UI_PropertyDescriptor_description", "_UI_FlowProperty_base_Property_feature", "_UI_FlowProperty_type"), PortandflowsPackage.Literals.FLOW_PROPERTY__BASE_PROPERTY, true, false, true, null, null, null));
 	}
 
 	/**
 	 * This adds a property descriptor for the Direction feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addDirectionPropertyDescriptor(Object object) {
@@ -176,28 +157,18 @@ public class FlowPropertyItemProvider extends SysMLItemProviderAdapter implement
 	 * This adds a property descriptor for the Direction feature for the UML element Property.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ItemPropertyDescriptorDecorator createDirectionPropertyDescriptorForProperty(Object object) {
-
-		return new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_FlowProperty_direction_feature"),
-
-		getString("_UI_PropertyDescriptor_description", "_UI_FlowProperty_direction_feature", "_UI_FlowProperty_type"),
-
-		PortandflowsPackage.Literals.FLOW_PROPERTY__DIRECTION, true, false, false,
-
-		ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-
-		null,
-
-		null));
-
+		return new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_FlowProperty_direction_feature"), getString("_UI_PropertyDescriptor_description", "_UI_FlowProperty_direction_feature", "_UI_FlowProperty_type"), PortandflowsPackage.Literals.FLOW_PROPERTY__DIRECTION, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
 	 * This returns FlowProperty.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -214,6 +185,7 @@ public class FlowPropertyItemProvider extends SysMLItemProviderAdapter implement
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -222,7 +194,6 @@ public class FlowPropertyItemProvider extends SysMLItemProviderAdapter implement
 		 * Handle Stereotype item and stereoted element
 		 */
 		FlowProperty flowProperty_ = null;
-
 		if(object instanceof org.eclipse.uml2.uml.Property) {
 			Stereotype ste = ((org.eclipse.uml2.uml.Property)object).getAppliedStereotype(SysmlResource.FLOW_PROPERTY_ID);
 			if(ste != null) {
@@ -231,13 +202,10 @@ public class FlowPropertyItemProvider extends SysMLItemProviderAdapter implement
 				result = FLOW_PROPERTY_PREFIX_PATTERN.matcher(result).replaceFirst("");
 				return PROPERTY_PREFIX_PATTERN.matcher(result).replaceFirst("FlowProperty");
 			}
-
 		}
-
 		if(flowProperty_ == null) {
 			flowProperty_ = (FlowProperty)object;
 		}
-
 		FlowDirection labelValue = ((FlowProperty)flowProperty_).getDirection();
 		String label = labelValue == null ? null : labelValue.toString();
 		return label == null || label.length() == 0 ? getString("_UI_FlowProperty_type") : getString("_UI_FlowProperty_type") + " " + label;
@@ -248,36 +216,30 @@ public class FlowPropertyItemProvider extends SysMLItemProviderAdapter implement
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-
 		switch(notification.getFeatureID(FlowProperty.class)) {
 		case PortandflowsPackage.FLOW_PROPERTY__DIRECTION:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		}
-
 		/**
 		 * Notify UML element
 		 */
 		if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
-
 			/**
 			 * Handle Property stereotyped by FlowProperty
 			 */
-
 			if(notification.getFeatureID(org.eclipse.uml2.uml.Property.class) != Notification.NO_FEATURE_ID) {
 				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.PROPERTY);
 				ite.notifyChanged(notification);
 				return;
-
 			}
-
 		}
-
 		super.notifyChanged(notification);
 	}
 
@@ -286,6 +248,7 @@ public class FlowPropertyItemProvider extends SysMLItemProviderAdapter implement
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -297,6 +260,7 @@ public class FlowPropertyItemProvider extends SysMLItemProviderAdapter implement
 	 * Return the resource locator for this item provider's resources.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -306,6 +270,7 @@ public class FlowPropertyItemProvider extends SysMLItemProviderAdapter implement
 
 	/**
 	 * Override in order to handle has children for based class
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -318,7 +283,6 @@ public class FlowPropertyItemProvider extends SysMLItemProviderAdapter implement
 			 * Handle based elements type
 			 */
 			if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
-
 				/**
 				 * Handle Property stereotyped by FlowProperty
 				 */
@@ -327,7 +291,6 @@ public class FlowPropertyItemProvider extends SysMLItemProviderAdapter implement
 					result.addAll((Collection<Object>)ite.getChildren(object));
 					return result;
 				}
-
 			}
 		}
 		return result;
@@ -335,6 +298,7 @@ public class FlowPropertyItemProvider extends SysMLItemProviderAdapter implement
 
 	/**
 	 * Override in order to handle has children for based class
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -345,7 +309,6 @@ public class FlowPropertyItemProvider extends SysMLItemProviderAdapter implement
 			 * Handle based elements type
 			 */
 			if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
-
 				/**
 				 * Handle Property stereotyped by FlowProperty
 				 */
@@ -353,10 +316,8 @@ public class FlowPropertyItemProvider extends SysMLItemProviderAdapter implement
 					ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.PROPERTY);
 					return super.hasChildren(object) || ite.hasChildren(object);
 				}
-
 			}
 		}
 		return super.hasChildren(object);
 	}
-
 }

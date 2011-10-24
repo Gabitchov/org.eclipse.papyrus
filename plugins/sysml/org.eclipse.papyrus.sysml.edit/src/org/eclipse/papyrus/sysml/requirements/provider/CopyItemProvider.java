@@ -32,9 +32,7 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.papyrus.sysml.edit.provider.IComposableAdapterFactory;
-import org.eclipse.papyrus.sysml.edit.provider.IRootAdapterFactory;
 import org.eclipse.papyrus.sysml.edit.provider.IVisibilityOverlayImage;
-import org.eclipse.papyrus.sysml.edit.provider.SysMLItemProviderAdapter;
 import org.eclipse.papyrus.sysml.provider.SysmlEditPlugin;
 import org.eclipse.papyrus.sysml.requirements.Copy;
 import org.eclipse.papyrus.sysml.util.SysmlResource;
@@ -48,11 +46,10 @@ import org.eclipse.uml2.uml.edit.UMLEditPlugin;
  * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.requirements.Copy} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
-public class CopyItemProvider extends TraceItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, IVisibilityOverlayImage
-
-{
+public class CopyItemProvider extends TraceItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, IVisibilityOverlayImage {
 
 	/**
 	 * Pattern prefix of copy
@@ -66,13 +63,13 @@ public class CopyItemProvider extends TraceItemProvider implements IEditingDomai
 	 * 
 	 * @generated
 	 */
-
 	private static Pattern ABSTRACTION_PREFIX_PATTERN = Pattern.compile("Abstraction");
 
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public CopyItemProvider(AdapterFactory adapterFactory) {
@@ -83,6 +80,7 @@ public class CopyItemProvider extends TraceItemProvider implements IEditingDomai
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -90,10 +88,8 @@ public class CopyItemProvider extends TraceItemProvider implements IEditingDomai
 		if(object instanceof Copy) {
 			if(itemPropertyDescriptors == null) {
 				super.getPropertyDescriptors(object);
-
 			}
 		}
-
 		/**
 		 * Handle Abstraction stereotyped by Copy
 		 */
@@ -103,21 +99,16 @@ public class CopyItemProvider extends TraceItemProvider implements IEditingDomai
 			 * This is used to store all the property descriptors for a class stereotyped with a block.
 			 * Derived classes should add descriptors to this vector.
 			 */
-
 			List<IItemPropertyDescriptor> itemPropertyDescriptorsForabstraction = new ArrayList<IItemPropertyDescriptor>();
 			ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.ABSTRACTION);
 			final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
-
 			itemPropertyDescriptorsForabstraction.addAll(propertyDescriptors);
 			Stereotype ste = (element).getAppliedStereotype(SysmlResource.COPY_ID);
 			if(ste != null) {
 				EObject steApplication = (element).getStereotypeApplication(ste);
-
 			}
 			return itemPropertyDescriptorsForabstraction;
-
 		}
-
 		return itemPropertyDescriptors;
 	}
 
@@ -125,6 +116,7 @@ public class CopyItemProvider extends TraceItemProvider implements IEditingDomai
 	 * This returns Copy.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -141,6 +133,7 @@ public class CopyItemProvider extends TraceItemProvider implements IEditingDomai
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -149,7 +142,6 @@ public class CopyItemProvider extends TraceItemProvider implements IEditingDomai
 		 * Handle Stereotype item and stereoted element
 		 */
 		Copy copy_ = null;
-
 		if(object instanceof org.eclipse.uml2.uml.Abstraction) {
 			Stereotype ste = ((org.eclipse.uml2.uml.Abstraction)object).getAppliedStereotype(SysmlResource.COPY_ID);
 			if(ste != null) {
@@ -158,13 +150,10 @@ public class CopyItemProvider extends TraceItemProvider implements IEditingDomai
 				result = COPY_PREFIX_PATTERN.matcher(result).replaceFirst("");
 				return ABSTRACTION_PREFIX_PATTERN.matcher(result).replaceFirst("Copy");
 			}
-
 		}
-
 		if(copy_ == null) {
 			copy_ = (Copy)object;
 		}
-
 		return getString("_UI_Copy_type");
 	}
 
@@ -173,30 +162,25 @@ public class CopyItemProvider extends TraceItemProvider implements IEditingDomai
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-
 		/**
 		 * Notify UML element
 		 */
 		if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
-
 			/**
 			 * Handle Abstraction stereotyped by Copy
 			 */
-
 			if(notification.getFeatureID(org.eclipse.uml2.uml.Abstraction.class) != Notification.NO_FEATURE_ID) {
 				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.ABSTRACTION);
 				ite.notifyChanged(notification);
 				return;
-
 			}
-
 		}
-
 		super.notifyChanged(notification);
 	}
 
@@ -205,6 +189,7 @@ public class CopyItemProvider extends TraceItemProvider implements IEditingDomai
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -216,6 +201,7 @@ public class CopyItemProvider extends TraceItemProvider implements IEditingDomai
 	 * Return the resource locator for this item provider's resources.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -233,17 +219,16 @@ public class CopyItemProvider extends TraceItemProvider implements IEditingDomai
 	 */
 	public ComposedImage composeVisibilityImage(Object object, ComposedImage composedImage) {
 		NamedElement namedElement = (NamedElement)object;
-
 		if(namedElement.isSetVisibility()) {
 			composedImage.getImages().add(UMLEditPlugin.INSTANCE.getImage("full/ovr16/VisibilityKind_" //$NON-NLS-1$
 				+ namedElement.getVisibility().getName()));
 		}
-
 		return composedImage;
 	}
 
 	/**
 	 * Override in order to handle has children for based class
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -256,7 +241,6 @@ public class CopyItemProvider extends TraceItemProvider implements IEditingDomai
 			 * Handle based elements type
 			 */
 			if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
-
 				/**
 				 * Handle Abstraction stereotyped by Copy
 				 */
@@ -265,7 +249,6 @@ public class CopyItemProvider extends TraceItemProvider implements IEditingDomai
 					result.addAll((Collection<Object>)ite.getChildren(object));
 					return result;
 				}
-
 			}
 		}
 		return result;
@@ -273,6 +256,7 @@ public class CopyItemProvider extends TraceItemProvider implements IEditingDomai
 
 	/**
 	 * Override in order to handle has children for based class
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -283,7 +267,6 @@ public class CopyItemProvider extends TraceItemProvider implements IEditingDomai
 			 * Handle based elements type
 			 */
 			if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
-
 				/**
 				 * Handle Abstraction stereotyped by Copy
 				 */
@@ -291,10 +274,8 @@ public class CopyItemProvider extends TraceItemProvider implements IEditingDomai
 					ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.ABSTRACTION);
 					return super.hasChildren(object) || ite.hasChildren(object);
 				}
-
 			}
 		}
 		return super.hasChildren(object);
 	}
-
 }

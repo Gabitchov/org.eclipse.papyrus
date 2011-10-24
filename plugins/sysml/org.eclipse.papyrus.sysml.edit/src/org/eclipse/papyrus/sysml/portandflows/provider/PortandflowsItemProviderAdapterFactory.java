@@ -33,7 +33,6 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.papyrus.sysml.edit.provider.IComposableAdapterFactory;
 import org.eclipse.papyrus.sysml.edit.provider.IRootAdapterFactory;
 import org.eclipse.papyrus.sysml.portandflows.util.PortandflowsAdapterFactory;
-import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * This is the factory that is used to provide the interfaces needed to support Viewers.
@@ -42,6 +41,7 @@ import org.eclipse.uml2.uml.UMLPackage;
  * Note that most of the adapters are shared among multiple instances.
  * <!-- begin-user-doc --> <!--
  * end-user-doc -->
+ * 
  * @generated
  */
 public class PortandflowsItemProviderAdapterFactory extends PortandflowsAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IComposableAdapterFactory, IDisposable {
@@ -94,6 +94,7 @@ public class PortandflowsItemProviderAdapterFactory extends PortandflowsAdapterF
 	/**
 	 * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected Collection<Object> supportedTypes = new ArrayList<Object>();
@@ -101,6 +102,7 @@ public class PortandflowsItemProviderAdapterFactory extends PortandflowsAdapterF
 	/**
 	 * This constructs an instance.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public PortandflowsItemProviderAdapterFactory() {
@@ -115,6 +117,7 @@ public class PortandflowsItemProviderAdapterFactory extends PortandflowsAdapterF
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.sysml.portandflows.FlowPort} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected FlowPortItemProvider flowPortItemProvider;
@@ -130,7 +133,6 @@ public class PortandflowsItemProviderAdapterFactory extends PortandflowsAdapterF
 		if(flowPortItemProvider == null) {
 			flowPortItemProvider = new FlowPortItemProvider(this);
 		}
-
 		return flowPortItemProvider;
 	}
 
@@ -138,6 +140,7 @@ public class PortandflowsItemProviderAdapterFactory extends PortandflowsAdapterF
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.sysml.portandflows.FlowProperty} instances.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected FlowPropertyItemProvider flowPropertyItemProvider;
@@ -145,6 +148,7 @@ public class PortandflowsItemProviderAdapterFactory extends PortandflowsAdapterF
 	/**
 	 * This creates an adapter for a {@link org.eclipse.papyrus.sysml.portandflows.FlowProperty}.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -152,7 +156,6 @@ public class PortandflowsItemProviderAdapterFactory extends PortandflowsAdapterF
 		if(flowPropertyItemProvider == null) {
 			flowPropertyItemProvider = new FlowPropertyItemProvider(this);
 		}
-
 		return flowPropertyItemProvider;
 	}
 
@@ -168,6 +171,7 @@ public class PortandflowsItemProviderAdapterFactory extends PortandflowsAdapterF
 	 * This creates an adapter for a {@link org.eclipse.papyrus.sysml.portandflows.FlowSpecification}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -175,7 +179,6 @@ public class PortandflowsItemProviderAdapterFactory extends PortandflowsAdapterF
 		if(flowSpecificationItemProvider == null) {
 			flowSpecificationItemProvider = new FlowSpecificationItemProvider(this);
 		}
-
 		return flowSpecificationItemProvider;
 	}
 
@@ -183,6 +186,7 @@ public class PortandflowsItemProviderAdapterFactory extends PortandflowsAdapterF
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.sysml.portandflows.ItemFlow} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ItemFlowItemProvider itemFlowItemProvider;
@@ -198,7 +202,6 @@ public class PortandflowsItemProviderAdapterFactory extends PortandflowsAdapterF
 		if(itemFlowItemProvider == null) {
 			itemFlowItemProvider = new ItemFlowItemProvider(this);
 		}
-
 		return itemFlowItemProvider;
 	}
 
@@ -206,6 +209,7 @@ public class PortandflowsItemProviderAdapterFactory extends PortandflowsAdapterF
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ComposeableAdapterFactory getRootAdapterFactory() {
@@ -216,6 +220,7 @@ public class PortandflowsItemProviderAdapterFactory extends PortandflowsAdapterF
 	 * This sets the composed adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
@@ -224,6 +229,7 @@ public class PortandflowsItemProviderAdapterFactory extends PortandflowsAdapterF
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -244,6 +250,7 @@ public class PortandflowsItemProviderAdapterFactory extends PortandflowsAdapterF
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -254,13 +261,13 @@ public class PortandflowsItemProviderAdapterFactory extends PortandflowsAdapterF
 				return adapter;
 			}
 		}
-
 		return null;
 	}
 
 	/**
 	 * This adds a listener.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void addListener(INotifyChangedListener notifyChangedListener) {
@@ -270,6 +277,7 @@ public class PortandflowsItemProviderAdapterFactory extends PortandflowsAdapterF
 	/**
 	 * This removes a listener.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void removeListener(INotifyChangedListener notifyChangedListener) {
@@ -284,16 +292,16 @@ public class PortandflowsItemProviderAdapterFactory extends PortandflowsAdapterF
 	 */
 	public void fireNotifyChanged(Notification notification) {
 		changeNotifier.fireNotifyChanged(notification);
-
 		if(parentAdapterFactory != null) {
 			parentAdapterFactory.fireNotifyChanged(notification);
 		}
 	}
 
 	/**
-	 * This disposes all of the item providers created by this factory. 
+	 * This disposes all of the item providers created by this factory.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void dispose() {

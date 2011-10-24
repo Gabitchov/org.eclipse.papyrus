@@ -33,7 +33,6 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.papyrus.sysml.blocks.util.BlocksAdapterFactory;
 import org.eclipse.papyrus.sysml.edit.provider.IComposableAdapterFactory;
 import org.eclipse.papyrus.sysml.edit.provider.IRootAdapterFactory;
-import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * This is the factory that is used to provide the interfaces needed to support Viewers.
@@ -42,6 +41,7 @@ import org.eclipse.uml2.uml.UMLPackage;
  * Note that most of the adapters are shared among multiple instances.
  * <!-- begin-user-doc --> <!--
  * end-user-doc -->
+ * 
  * @generated
  */
 public class BlocksItemProviderAdapterFactory extends BlocksAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IComposableAdapterFactory, IDisposable {
@@ -94,6 +94,7 @@ public class BlocksItemProviderAdapterFactory extends BlocksAdapterFactory imple
 	/**
 	 * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected Collection<Object> supportedTypes = new ArrayList<Object>();
@@ -101,6 +102,7 @@ public class BlocksItemProviderAdapterFactory extends BlocksAdapterFactory imple
 	/**
 	 * This constructs an instance.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public BlocksItemProviderAdapterFactory() {
@@ -115,6 +117,7 @@ public class BlocksItemProviderAdapterFactory extends BlocksAdapterFactory imple
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.sysml.blocks.Block} instances.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected BlockItemProvider blockItemProvider;
@@ -130,7 +133,6 @@ public class BlocksItemProviderAdapterFactory extends BlocksAdapterFactory imple
 		if(blockItemProvider == null) {
 			blockItemProvider = new BlockItemProvider(this);
 		}
-
 		return blockItemProvider;
 	}
 
@@ -138,6 +140,7 @@ public class BlocksItemProviderAdapterFactory extends BlocksAdapterFactory imple
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.sysml.blocks.DistributedProperty} instances.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected DistributedPropertyItemProvider distributedPropertyItemProvider;
@@ -145,6 +148,7 @@ public class BlocksItemProviderAdapterFactory extends BlocksAdapterFactory imple
 	/**
 	 * This creates an adapter for a {@link org.eclipse.papyrus.sysml.blocks.DistributedProperty}.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -152,7 +156,6 @@ public class BlocksItemProviderAdapterFactory extends BlocksAdapterFactory imple
 		if(distributedPropertyItemProvider == null) {
 			distributedPropertyItemProvider = new DistributedPropertyItemProvider(this);
 		}
-
 		return distributedPropertyItemProvider;
 	}
 
@@ -160,6 +163,7 @@ public class BlocksItemProviderAdapterFactory extends BlocksAdapterFactory imple
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.sysml.blocks.Dimension} instances.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected DimensionItemProvider dimensionItemProvider;
@@ -175,7 +179,6 @@ public class BlocksItemProviderAdapterFactory extends BlocksAdapterFactory imple
 		if(dimensionItemProvider == null) {
 			dimensionItemProvider = new DimensionItemProvider(this);
 		}
-
 		return dimensionItemProvider;
 	}
 
@@ -183,6 +186,7 @@ public class BlocksItemProviderAdapterFactory extends BlocksAdapterFactory imple
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.sysml.blocks.Unit} instances.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected UnitItemProvider unitItemProvider;
@@ -198,7 +202,6 @@ public class BlocksItemProviderAdapterFactory extends BlocksAdapterFactory imple
 		if(unitItemProvider == null) {
 			unitItemProvider = new UnitItemProvider(this);
 		}
-
 		return unitItemProvider;
 	}
 
@@ -206,6 +209,7 @@ public class BlocksItemProviderAdapterFactory extends BlocksAdapterFactory imple
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.sysml.blocks.ValueType} instances.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ValueTypeItemProvider valueTypeItemProvider;
@@ -221,7 +225,6 @@ public class BlocksItemProviderAdapterFactory extends BlocksAdapterFactory imple
 		if(valueTypeItemProvider == null) {
 			valueTypeItemProvider = new ValueTypeItemProvider(this);
 		}
-
 		return valueTypeItemProvider;
 	}
 
@@ -229,6 +232,7 @@ public class BlocksItemProviderAdapterFactory extends BlocksAdapterFactory imple
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.sysml.blocks.NestedConnectorEnd} instances.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected NestedConnectorEndItemProvider nestedConnectorEndItemProvider;
@@ -236,6 +240,7 @@ public class BlocksItemProviderAdapterFactory extends BlocksAdapterFactory imple
 	/**
 	 * This creates an adapter for a {@link org.eclipse.papyrus.sysml.blocks.NestedConnectorEnd}.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -243,7 +248,6 @@ public class BlocksItemProviderAdapterFactory extends BlocksAdapterFactory imple
 		if(nestedConnectorEndItemProvider == null) {
 			nestedConnectorEndItemProvider = new NestedConnectorEndItemProvider(this);
 		}
-
 		return nestedConnectorEndItemProvider;
 	}
 
@@ -251,6 +255,7 @@ public class BlocksItemProviderAdapterFactory extends BlocksAdapterFactory imple
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.sysml.blocks.ParticipantProperty} instances.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ParticipantPropertyItemProvider participantPropertyItemProvider;
@@ -258,6 +263,7 @@ public class BlocksItemProviderAdapterFactory extends BlocksAdapterFactory imple
 	/**
 	 * This creates an adapter for a {@link org.eclipse.papyrus.sysml.blocks.ParticipantProperty}.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -265,7 +271,6 @@ public class BlocksItemProviderAdapterFactory extends BlocksAdapterFactory imple
 		if(participantPropertyItemProvider == null) {
 			participantPropertyItemProvider = new ParticipantPropertyItemProvider(this);
 		}
-
 		return participantPropertyItemProvider;
 	}
 
@@ -273,6 +278,7 @@ public class BlocksItemProviderAdapterFactory extends BlocksAdapterFactory imple
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.sysml.blocks.ConnectorProperty} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ConnectorPropertyItemProvider connectorPropertyItemProvider;
@@ -280,6 +286,7 @@ public class BlocksItemProviderAdapterFactory extends BlocksAdapterFactory imple
 	/**
 	 * This creates an adapter for a {@link org.eclipse.papyrus.sysml.blocks.ConnectorProperty}.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -287,7 +294,6 @@ public class BlocksItemProviderAdapterFactory extends BlocksAdapterFactory imple
 		if(connectorPropertyItemProvider == null) {
 			connectorPropertyItemProvider = new ConnectorPropertyItemProvider(this);
 		}
-
 		return connectorPropertyItemProvider;
 	}
 
@@ -295,6 +301,7 @@ public class BlocksItemProviderAdapterFactory extends BlocksAdapterFactory imple
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.sysml.blocks.BindingConnector} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected BindingConnectorItemProvider bindingConnectorItemProvider;
@@ -310,7 +317,6 @@ public class BlocksItemProviderAdapterFactory extends BlocksAdapterFactory imple
 		if(bindingConnectorItemProvider == null) {
 			bindingConnectorItemProvider = new BindingConnectorItemProvider(this);
 		}
-
 		return bindingConnectorItemProvider;
 	}
 
@@ -318,6 +324,7 @@ public class BlocksItemProviderAdapterFactory extends BlocksAdapterFactory imple
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.sysml.blocks.PropertySpecificType} instances.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected PropertySpecificTypeItemProvider propertySpecificTypeItemProvider;
@@ -325,6 +332,7 @@ public class BlocksItemProviderAdapterFactory extends BlocksAdapterFactory imple
 	/**
 	 * This creates an adapter for a {@link org.eclipse.papyrus.sysml.blocks.PropertySpecificType}.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -332,7 +340,6 @@ public class BlocksItemProviderAdapterFactory extends BlocksAdapterFactory imple
 		if(propertySpecificTypeItemProvider == null) {
 			propertySpecificTypeItemProvider = new PropertySpecificTypeItemProvider(this);
 		}
-
 		return propertySpecificTypeItemProvider;
 	}
 
@@ -340,6 +347,7 @@ public class BlocksItemProviderAdapterFactory extends BlocksAdapterFactory imple
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ComposeableAdapterFactory getRootAdapterFactory() {
@@ -350,6 +358,7 @@ public class BlocksItemProviderAdapterFactory extends BlocksAdapterFactory imple
 	 * This sets the composed adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
@@ -358,6 +367,7 @@ public class BlocksItemProviderAdapterFactory extends BlocksAdapterFactory imple
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -378,6 +388,7 @@ public class BlocksItemProviderAdapterFactory extends BlocksAdapterFactory imple
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -388,13 +399,13 @@ public class BlocksItemProviderAdapterFactory extends BlocksAdapterFactory imple
 				return adapter;
 			}
 		}
-
 		return null;
 	}
 
 	/**
 	 * This adds a listener.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void addListener(INotifyChangedListener notifyChangedListener) {
@@ -404,6 +415,7 @@ public class BlocksItemProviderAdapterFactory extends BlocksAdapterFactory imple
 	/**
 	 * This removes a listener.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void removeListener(INotifyChangedListener notifyChangedListener) {
@@ -418,16 +430,16 @@ public class BlocksItemProviderAdapterFactory extends BlocksAdapterFactory imple
 	 */
 	public void fireNotifyChanged(Notification notification) {
 		changeNotifier.fireNotifyChanged(notification);
-
 		if(parentAdapterFactory != null) {
 			parentAdapterFactory.fireNotifyChanged(notification);
 		}
 	}
 
 	/**
-	 * This disposes all of the item providers created by this factory. 
+	 * This disposes all of the item providers created by this factory.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void dispose() {

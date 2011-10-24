@@ -36,7 +36,6 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.papyrus.sysml.blocks.BlocksPackage;
 import org.eclipse.papyrus.sysml.blocks.Unit;
 import org.eclipse.papyrus.sysml.edit.provider.IComposableAdapterFactory;
-import org.eclipse.papyrus.sysml.edit.provider.IRootAdapterFactory;
 import org.eclipse.papyrus.sysml.edit.provider.SysMLItemProviderAdapter;
 import org.eclipse.papyrus.sysml.provider.SysmlEditPlugin;
 import org.eclipse.papyrus.sysml.util.SysmlResource;
@@ -48,11 +47,10 @@ import org.eclipse.uml2.uml.UMLPackage;
  * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.blocks.Unit} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
-public class UnitItemProvider extends SysMLItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
-
-{
+public class UnitItemProvider extends SysMLItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 
 	/**
 	 * Pattern prefix of unit
@@ -66,13 +64,13 @@ public class UnitItemProvider extends SysMLItemProviderAdapter implements IEditi
 	 * 
 	 * @generated
 	 */
-
-	private static Pattern INSTANCE_SPECIFICATION_PREFIX_PATTERN = Pattern.compile("InstanceSpecification");
+	private static Pattern INSTANCE_SPECIFICATION_PREFIX_PATTERN = Pattern.compile("Instance Specification");
 
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public UnitItemProvider(AdapterFactory adapterFactory) {
@@ -83,6 +81,7 @@ public class UnitItemProvider extends SysMLItemProviderAdapter implements IEditi
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -90,12 +89,10 @@ public class UnitItemProvider extends SysMLItemProviderAdapter implements IEditi
 		if(object instanceof Unit) {
 			if(itemPropertyDescriptors == null) {
 				super.getPropertyDescriptors(object);
-
 				addBase_InstanceSpecificationPropertyDescriptor(object);
 				addDimensionPropertyDescriptor(object);
 			}
 		}
-
 		/**
 		 * Handle InstanceSpecification stereotyped by Unit
 		 */
@@ -105,25 +102,18 @@ public class UnitItemProvider extends SysMLItemProviderAdapter implements IEditi
 			 * This is used to store all the property descriptors for a class stereotyped with a block.
 			 * Derived classes should add descriptors to this vector.
 			 */
-
 			List<IItemPropertyDescriptor> itemPropertyDescriptorsForinstanceSpecification = new ArrayList<IItemPropertyDescriptor>();
 			ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.INSTANCE_SPECIFICATION);
 			final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
-
 			itemPropertyDescriptorsForinstanceSpecification.addAll(propertyDescriptors);
 			Stereotype ste = (element).getAppliedStereotype(SysmlResource.UNIT_ID);
 			if(ste != null) {
 				EObject steApplication = (element).getStereotypeApplication(ste);
-
 				itemPropertyDescriptorsForinstanceSpecification.add(createBase_InstanceSpecificationPropertyDescriptorForInstanceSpecification(steApplication));
-
 				itemPropertyDescriptorsForinstanceSpecification.add(createDimensionPropertyDescriptorForInstanceSpecification(steApplication));
-
 			}
 			return itemPropertyDescriptorsForinstanceSpecification;
-
 		}
-
 		return itemPropertyDescriptors;
 	}
 
@@ -131,6 +121,7 @@ public class UnitItemProvider extends SysMLItemProviderAdapter implements IEditi
 	 * This adds a property descriptor for the Base Instance Specification feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addBase_InstanceSpecificationPropertyDescriptor(Object object) {
@@ -141,28 +132,18 @@ public class UnitItemProvider extends SysMLItemProviderAdapter implements IEditi
 	 * This adds a property descriptor for the Base Instance Specification feature for the UML element InstanceSpecification.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ItemPropertyDescriptorDecorator createBase_InstanceSpecificationPropertyDescriptorForInstanceSpecification(Object object) {
-
-		return new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Unit_base_InstanceSpecification_feature"),
-
-		getString("_UI_PropertyDescriptor_description", "_UI_Unit_base_InstanceSpecification_feature", "_UI_Unit_type"),
-
-		BlocksPackage.Literals.UNIT__BASE_INSTANCE_SPECIFICATION, true, false, true,
-
-		null,
-
-		null,
-
-		null));
-
+		return new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Unit_base_InstanceSpecification_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Unit_base_InstanceSpecification_feature", "_UI_Unit_type"), BlocksPackage.Literals.UNIT__BASE_INSTANCE_SPECIFICATION, true, false, true, null, null, null));
 	}
 
 	/**
 	 * This adds a property descriptor for the Dimension feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addDimensionPropertyDescriptor(Object object) {
@@ -173,28 +154,18 @@ public class UnitItemProvider extends SysMLItemProviderAdapter implements IEditi
 	 * This adds a property descriptor for the Dimension feature for the UML element InstanceSpecification.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ItemPropertyDescriptorDecorator createDimensionPropertyDescriptorForInstanceSpecification(Object object) {
-
-		return new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Unit_dimension_feature"),
-
-		getString("_UI_PropertyDescriptor_description", "_UI_Unit_dimension_feature", "_UI_Unit_type"),
-
-		BlocksPackage.Literals.UNIT__DIMENSION, true, false, true,
-
-		null,
-
-		null,
-
-		null));
-
+		return new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Unit_dimension_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Unit_dimension_feature", "_UI_Unit_type"), BlocksPackage.Literals.UNIT__DIMENSION, true, false, true, null, null, null));
 	}
 
 	/**
 	 * This returns Unit.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -211,6 +182,7 @@ public class UnitItemProvider extends SysMLItemProviderAdapter implements IEditi
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -219,7 +191,6 @@ public class UnitItemProvider extends SysMLItemProviderAdapter implements IEditi
 		 * Handle Stereotype item and stereoted element
 		 */
 		Unit unit_ = null;
-
 		if(object instanceof org.eclipse.uml2.uml.InstanceSpecification) {
 			Stereotype ste = ((org.eclipse.uml2.uml.InstanceSpecification)object).getAppliedStereotype(SysmlResource.UNIT_ID);
 			if(ste != null) {
@@ -228,13 +199,10 @@ public class UnitItemProvider extends SysMLItemProviderAdapter implements IEditi
 				result = UNIT_PREFIX_PATTERN.matcher(result).replaceFirst("");
 				return INSTANCE_SPECIFICATION_PREFIX_PATTERN.matcher(result).replaceFirst("Unit");
 			}
-
 		}
-
 		if(unit_ == null) {
 			unit_ = (Unit)object;
 		}
-
 		return getString("_UI_Unit_type");
 	}
 
@@ -243,30 +211,25 @@ public class UnitItemProvider extends SysMLItemProviderAdapter implements IEditi
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-
 		/**
 		 * Notify UML element
 		 */
 		if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
-
 			/**
 			 * Handle InstanceSpecification stereotyped by Unit
 			 */
-
 			if(notification.getFeatureID(org.eclipse.uml2.uml.InstanceSpecification.class) != Notification.NO_FEATURE_ID) {
 				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.INSTANCE_SPECIFICATION);
 				ite.notifyChanged(notification);
 				return;
-
 			}
-
 		}
-
 		super.notifyChanged(notification);
 	}
 
@@ -275,6 +238,7 @@ public class UnitItemProvider extends SysMLItemProviderAdapter implements IEditi
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -286,6 +250,7 @@ public class UnitItemProvider extends SysMLItemProviderAdapter implements IEditi
 	 * Return the resource locator for this item provider's resources.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -295,6 +260,7 @@ public class UnitItemProvider extends SysMLItemProviderAdapter implements IEditi
 
 	/**
 	 * Override in order to handle has children for based class
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -307,7 +273,6 @@ public class UnitItemProvider extends SysMLItemProviderAdapter implements IEditi
 			 * Handle based elements type
 			 */
 			if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
-
 				/**
 				 * Handle InstanceSpecification stereotyped by Unit
 				 */
@@ -316,7 +281,6 @@ public class UnitItemProvider extends SysMLItemProviderAdapter implements IEditi
 					result.addAll((Collection<Object>)ite.getChildren(object));
 					return result;
 				}
-
 			}
 		}
 		return result;
@@ -324,6 +288,7 @@ public class UnitItemProvider extends SysMLItemProviderAdapter implements IEditi
 
 	/**
 	 * Override in order to handle has children for based class
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -334,7 +299,6 @@ public class UnitItemProvider extends SysMLItemProviderAdapter implements IEditi
 			 * Handle based elements type
 			 */
 			if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
-
 				/**
 				 * Handle InstanceSpecification stereotyped by Unit
 				 */
@@ -342,10 +306,8 @@ public class UnitItemProvider extends SysMLItemProviderAdapter implements IEditi
 					ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.INSTANCE_SPECIFICATION);
 					return super.hasChildren(object) || ite.hasChildren(object);
 				}
-
 			}
 		}
 		return super.hasChildren(object);
 	}
-
 }

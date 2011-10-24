@@ -34,7 +34,6 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptorDecorator;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.papyrus.sysml.edit.provider.IComposableAdapterFactory;
-import org.eclipse.papyrus.sysml.edit.provider.IRootAdapterFactory;
 import org.eclipse.papyrus.sysml.edit.provider.SysMLItemProviderAdapter;
 import org.eclipse.papyrus.sysml.modelelements.ModelelementsPackage;
 import org.eclipse.papyrus.sysml.modelelements.View;
@@ -48,11 +47,10 @@ import org.eclipse.uml2.uml.UMLPackage;
  * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.modelelements.View} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
-public class ViewItemProvider extends SysMLItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
-
-{
+public class ViewItemProvider extends SysMLItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 
 	/**
 	 * Pattern prefix of view
@@ -66,13 +64,13 @@ public class ViewItemProvider extends SysMLItemProviderAdapter implements IEditi
 	 * 
 	 * @generated
 	 */
-
 	private static Pattern PACKAGE_PREFIX_PATTERN = Pattern.compile("Package");
 
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ViewItemProvider(AdapterFactory adapterFactory) {
@@ -83,6 +81,7 @@ public class ViewItemProvider extends SysMLItemProviderAdapter implements IEditi
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -90,12 +89,10 @@ public class ViewItemProvider extends SysMLItemProviderAdapter implements IEditi
 		if(object instanceof View) {
 			if(itemPropertyDescriptors == null) {
 				super.getPropertyDescriptors(object);
-
 				addViewPointPropertyDescriptor(object);
 				addBase_PackagePropertyDescriptor(object);
 			}
 		}
-
 		/**
 		 * Handle Package stereotyped by View
 		 */
@@ -105,25 +102,18 @@ public class ViewItemProvider extends SysMLItemProviderAdapter implements IEditi
 			 * This is used to store all the property descriptors for a class stereotyped with a block.
 			 * Derived classes should add descriptors to this vector.
 			 */
-
 			List<IItemPropertyDescriptor> itemPropertyDescriptorsForpackage = new ArrayList<IItemPropertyDescriptor>();
 			ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.PACKAGE);
 			final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
-
 			itemPropertyDescriptorsForpackage.addAll(propertyDescriptors);
 			Stereotype ste = (element).getAppliedStereotype(SysmlResource.VIEW_ID);
 			if(ste != null) {
 				EObject steApplication = (element).getStereotypeApplication(ste);
-
 				itemPropertyDescriptorsForpackage.add(createViewPointPropertyDescriptorForPackage(steApplication));
-
 				itemPropertyDescriptorsForpackage.add(createBase_PackagePropertyDescriptorForPackage(steApplication));
-
 			}
 			return itemPropertyDescriptorsForpackage;
-
 		}
-
 		return itemPropertyDescriptors;
 	}
 
@@ -131,6 +121,7 @@ public class ViewItemProvider extends SysMLItemProviderAdapter implements IEditi
 	 * This adds a property descriptor for the View Point feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addViewPointPropertyDescriptor(Object object) {
@@ -141,28 +132,18 @@ public class ViewItemProvider extends SysMLItemProviderAdapter implements IEditi
 	 * This adds a property descriptor for the View Point feature for the UML element Package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ItemPropertyDescriptorDecorator createViewPointPropertyDescriptorForPackage(Object object) {
-
-		return new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_View_viewPoint_feature"),
-
-		getString("_UI_PropertyDescriptor_description", "_UI_View_viewPoint_feature", "_UI_View_type"),
-
-		ModelelementsPackage.Literals.VIEW__VIEW_POINT, false, false, false,
-
-		null,
-
-		null,
-
-		null));
-
+		return new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_View_viewPoint_feature"), getString("_UI_PropertyDescriptor_description", "_UI_View_viewPoint_feature", "_UI_View_type"), ModelelementsPackage.Literals.VIEW__VIEW_POINT, false, false, false, null, null, null));
 	}
 
 	/**
 	 * This adds a property descriptor for the Base Package feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addBase_PackagePropertyDescriptor(Object object) {
@@ -173,28 +154,18 @@ public class ViewItemProvider extends SysMLItemProviderAdapter implements IEditi
 	 * This adds a property descriptor for the Base Package feature for the UML element Package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ItemPropertyDescriptorDecorator createBase_PackagePropertyDescriptorForPackage(Object object) {
-
-		return new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_View_base_Package_feature"),
-
-		getString("_UI_PropertyDescriptor_description", "_UI_View_base_Package_feature", "_UI_View_type"),
-
-		ModelelementsPackage.Literals.VIEW__BASE_PACKAGE, true, false, true,
-
-		null,
-
-		null,
-
-		null));
-
+		return new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_View_base_Package_feature"), getString("_UI_PropertyDescriptor_description", "_UI_View_base_Package_feature", "_UI_View_type"), ModelelementsPackage.Literals.VIEW__BASE_PACKAGE, true, false, true, null, null, null));
 	}
 
 	/**
 	 * This returns View.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -211,6 +182,7 @@ public class ViewItemProvider extends SysMLItemProviderAdapter implements IEditi
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -219,7 +191,6 @@ public class ViewItemProvider extends SysMLItemProviderAdapter implements IEditi
 		 * Handle Stereotype item and stereoted element
 		 */
 		View view_ = null;
-
 		if(object instanceof org.eclipse.uml2.uml.Package) {
 			Stereotype ste = ((org.eclipse.uml2.uml.Package)object).getAppliedStereotype(SysmlResource.VIEW_ID);
 			if(ste != null) {
@@ -228,13 +199,10 @@ public class ViewItemProvider extends SysMLItemProviderAdapter implements IEditi
 				result = VIEW_PREFIX_PATTERN.matcher(result).replaceFirst("");
 				return PACKAGE_PREFIX_PATTERN.matcher(result).replaceFirst("View");
 			}
-
 		}
-
 		if(view_ == null) {
 			view_ = (View)object;
 		}
-
 		return getString("_UI_View_type");
 	}
 
@@ -243,30 +211,25 @@ public class ViewItemProvider extends SysMLItemProviderAdapter implements IEditi
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-
 		/**
 		 * Notify UML element
 		 */
 		if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
-
 			/**
 			 * Handle Package stereotyped by View
 			 */
-
 			if(notification.getFeatureID(org.eclipse.uml2.uml.Package.class) != Notification.NO_FEATURE_ID) {
 				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.PACKAGE);
 				ite.notifyChanged(notification);
 				return;
-
 			}
-
 		}
-
 		super.notifyChanged(notification);
 	}
 
@@ -275,6 +238,7 @@ public class ViewItemProvider extends SysMLItemProviderAdapter implements IEditi
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -286,6 +250,7 @@ public class ViewItemProvider extends SysMLItemProviderAdapter implements IEditi
 	 * Return the resource locator for this item provider's resources.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -295,6 +260,7 @@ public class ViewItemProvider extends SysMLItemProviderAdapter implements IEditi
 
 	/**
 	 * Override in order to handle has children for based class
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -307,7 +273,6 @@ public class ViewItemProvider extends SysMLItemProviderAdapter implements IEditi
 			 * Handle based elements type
 			 */
 			if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
-
 				/**
 				 * Handle Package stereotyped by View
 				 */
@@ -316,7 +281,6 @@ public class ViewItemProvider extends SysMLItemProviderAdapter implements IEditi
 					result.addAll((Collection<Object>)ite.getChildren(object));
 					return result;
 				}
-
 			}
 		}
 		return result;
@@ -324,6 +288,7 @@ public class ViewItemProvider extends SysMLItemProviderAdapter implements IEditi
 
 	/**
 	 * Override in order to handle has children for based class
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -334,7 +299,6 @@ public class ViewItemProvider extends SysMLItemProviderAdapter implements IEditi
 			 * Handle based elements type
 			 */
 			if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
-
 				/**
 				 * Handle Package stereotyped by View
 				 */
@@ -342,10 +306,8 @@ public class ViewItemProvider extends SysMLItemProviderAdapter implements IEditi
 					ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.PACKAGE);
 					return super.hasChildren(object) || ite.hasChildren(object);
 				}
-
 			}
 		}
 		return super.hasChildren(object);
 	}
-
 }

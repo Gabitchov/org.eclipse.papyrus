@@ -36,7 +36,6 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.papyrus.sysml.constraints.ConstraintProperty;
 import org.eclipse.papyrus.sysml.constraints.ConstraintsPackage;
 import org.eclipse.papyrus.sysml.edit.provider.IComposableAdapterFactory;
-import org.eclipse.papyrus.sysml.edit.provider.IRootAdapterFactory;
 import org.eclipse.papyrus.sysml.edit.provider.SysMLItemProviderAdapter;
 import org.eclipse.papyrus.sysml.provider.SysmlEditPlugin;
 import org.eclipse.papyrus.sysml.util.SysmlResource;
@@ -48,11 +47,10 @@ import org.eclipse.uml2.uml.UMLPackage;
  * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.constraints.ConstraintProperty} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
-public class ConstraintPropertyItemProvider extends SysMLItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
-
-{
+public class ConstraintPropertyItemProvider extends SysMLItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 
 	/**
 	 * Pattern prefix of constraintProperty
@@ -66,13 +64,13 @@ public class ConstraintPropertyItemProvider extends SysMLItemProviderAdapter imp
 	 * 
 	 * @generated
 	 */
-
 	private static Pattern PROPERTY_PREFIX_PATTERN = Pattern.compile("Property");
 
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ConstraintPropertyItemProvider(AdapterFactory adapterFactory) {
@@ -83,6 +81,7 @@ public class ConstraintPropertyItemProvider extends SysMLItemProviderAdapter imp
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -90,11 +89,9 @@ public class ConstraintPropertyItemProvider extends SysMLItemProviderAdapter imp
 		if(object instanceof ConstraintProperty) {
 			if(itemPropertyDescriptors == null) {
 				super.getPropertyDescriptors(object);
-
 				addBase_PropertyPropertyDescriptor(object);
 			}
 		}
-
 		/**
 		 * Handle Property stereotyped by ConstraintProperty
 		 */
@@ -104,23 +101,17 @@ public class ConstraintPropertyItemProvider extends SysMLItemProviderAdapter imp
 			 * This is used to store all the property descriptors for a class stereotyped with a block.
 			 * Derived classes should add descriptors to this vector.
 			 */
-
 			List<IItemPropertyDescriptor> itemPropertyDescriptorsForproperty = new ArrayList<IItemPropertyDescriptor>();
 			ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.PROPERTY);
 			final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
-
 			itemPropertyDescriptorsForproperty.addAll(propertyDescriptors);
 			Stereotype ste = (element).getAppliedStereotype(SysmlResource.CONSTRAINT_PROPERTY_ID);
 			if(ste != null) {
 				EObject steApplication = (element).getStereotypeApplication(ste);
-
 				itemPropertyDescriptorsForproperty.add(createBase_PropertyPropertyDescriptorForProperty(steApplication));
-
 			}
 			return itemPropertyDescriptorsForproperty;
-
 		}
-
 		return itemPropertyDescriptors;
 	}
 
@@ -128,6 +119,7 @@ public class ConstraintPropertyItemProvider extends SysMLItemProviderAdapter imp
 	 * This adds a property descriptor for the Base Property feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addBase_PropertyPropertyDescriptor(Object object) {
@@ -138,28 +130,18 @@ public class ConstraintPropertyItemProvider extends SysMLItemProviderAdapter imp
 	 * This adds a property descriptor for the Base Property feature for the UML element Property.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ItemPropertyDescriptorDecorator createBase_PropertyPropertyDescriptorForProperty(Object object) {
-
-		return new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_ConstraintProperty_base_Property_feature"),
-
-		getString("_UI_PropertyDescriptor_description", "_UI_ConstraintProperty_base_Property_feature", "_UI_ConstraintProperty_type"),
-
-		ConstraintsPackage.Literals.CONSTRAINT_PROPERTY__BASE_PROPERTY, true, false, true,
-
-		null,
-
-		null,
-
-		null));
-
+		return new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_ConstraintProperty_base_Property_feature"), getString("_UI_PropertyDescriptor_description", "_UI_ConstraintProperty_base_Property_feature", "_UI_ConstraintProperty_type"), ConstraintsPackage.Literals.CONSTRAINT_PROPERTY__BASE_PROPERTY, true, false, true, null, null, null));
 	}
 
 	/**
 	 * This returns ConstraintProperty.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -176,6 +158,7 @@ public class ConstraintPropertyItemProvider extends SysMLItemProviderAdapter imp
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -184,7 +167,6 @@ public class ConstraintPropertyItemProvider extends SysMLItemProviderAdapter imp
 		 * Handle Stereotype item and stereoted element
 		 */
 		ConstraintProperty constraintProperty_ = null;
-
 		if(object instanceof org.eclipse.uml2.uml.Property) {
 			Stereotype ste = ((org.eclipse.uml2.uml.Property)object).getAppliedStereotype(SysmlResource.CONSTRAINT_PROPERTY_ID);
 			if(ste != null) {
@@ -193,13 +175,10 @@ public class ConstraintPropertyItemProvider extends SysMLItemProviderAdapter imp
 				result = CONSTRAINT_PROPERTY_PREFIX_PATTERN.matcher(result).replaceFirst("");
 				return PROPERTY_PREFIX_PATTERN.matcher(result).replaceFirst("ConstraintProperty");
 			}
-
 		}
-
 		if(constraintProperty_ == null) {
 			constraintProperty_ = (ConstraintProperty)object;
 		}
-
 		return getString("_UI_ConstraintProperty_type");
 	}
 
@@ -208,30 +187,25 @@ public class ConstraintPropertyItemProvider extends SysMLItemProviderAdapter imp
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-
 		/**
 		 * Notify UML element
 		 */
 		if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
-
 			/**
 			 * Handle Property stereotyped by ConstraintProperty
 			 */
-
 			if(notification.getFeatureID(org.eclipse.uml2.uml.Property.class) != Notification.NO_FEATURE_ID) {
 				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.PROPERTY);
 				ite.notifyChanged(notification);
 				return;
-
 			}
-
 		}
-
 		super.notifyChanged(notification);
 	}
 
@@ -240,6 +214,7 @@ public class ConstraintPropertyItemProvider extends SysMLItemProviderAdapter imp
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -251,6 +226,7 @@ public class ConstraintPropertyItemProvider extends SysMLItemProviderAdapter imp
 	 * Return the resource locator for this item provider's resources.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -260,6 +236,7 @@ public class ConstraintPropertyItemProvider extends SysMLItemProviderAdapter imp
 
 	/**
 	 * Override in order to handle has children for based class
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -272,7 +249,6 @@ public class ConstraintPropertyItemProvider extends SysMLItemProviderAdapter imp
 			 * Handle based elements type
 			 */
 			if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
-
 				/**
 				 * Handle Property stereotyped by ConstraintProperty
 				 */
@@ -281,7 +257,6 @@ public class ConstraintPropertyItemProvider extends SysMLItemProviderAdapter imp
 					result.addAll((Collection<Object>)ite.getChildren(object));
 					return result;
 				}
-
 			}
 		}
 		return result;
@@ -289,6 +264,7 @@ public class ConstraintPropertyItemProvider extends SysMLItemProviderAdapter imp
 
 	/**
 	 * Override in order to handle has children for based class
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -299,7 +275,6 @@ public class ConstraintPropertyItemProvider extends SysMLItemProviderAdapter imp
 			 * Handle based elements type
 			 */
 			if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
-
 				/**
 				 * Handle Property stereotyped by ConstraintProperty
 				 */
@@ -307,10 +282,8 @@ public class ConstraintPropertyItemProvider extends SysMLItemProviderAdapter imp
 					ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.PROPERTY);
 					return super.hasChildren(object) || ite.hasChildren(object);
 				}
-
 			}
 		}
 		return super.hasChildren(object);
 	}
-
 }

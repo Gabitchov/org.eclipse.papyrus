@@ -36,7 +36,6 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.papyrus.sysml.activities.ActivitiesPackage;
 import org.eclipse.papyrus.sysml.activities.Rate;
 import org.eclipse.papyrus.sysml.edit.provider.IComposableAdapterFactory;
-import org.eclipse.papyrus.sysml.edit.provider.IRootAdapterFactory;
 import org.eclipse.papyrus.sysml.edit.provider.SysMLItemProviderAdapter;
 import org.eclipse.papyrus.sysml.provider.SysmlEditPlugin;
 import org.eclipse.papyrus.sysml.util.SysmlResource;
@@ -48,11 +47,10 @@ import org.eclipse.uml2.uml.UMLPackage;
  * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.activities.Rate} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
-public class RateItemProvider extends SysMLItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
-
-{
+public class RateItemProvider extends SysMLItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 
 	/**
 	 * Pattern prefix of rate
@@ -66,7 +64,6 @@ public class RateItemProvider extends SysMLItemProviderAdapter implements IEditi
 	 * 
 	 * @generated
 	 */
-
 	private static Pattern PARAMETER_PREFIX_PATTERN = Pattern.compile("Parameter");
 
 	/**
@@ -74,13 +71,13 @@ public class RateItemProvider extends SysMLItemProviderAdapter implements IEditi
 	 * 
 	 * @generated
 	 */
-
-	private static Pattern ACTIVITY_EDGE_PREFIX_PATTERN = Pattern.compile("ActivityEdge");
+	private static Pattern ACTIVITY_EDGE_PREFIX_PATTERN = Pattern.compile("Activity Edge");
 
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public RateItemProvider(AdapterFactory adapterFactory) {
@@ -91,6 +88,7 @@ public class RateItemProvider extends SysMLItemProviderAdapter implements IEditi
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -98,13 +96,11 @@ public class RateItemProvider extends SysMLItemProviderAdapter implements IEditi
 		if(object instanceof Rate) {
 			if(itemPropertyDescriptors == null) {
 				super.getPropertyDescriptors(object);
-
 				addBase_ParameterPropertyDescriptor(object);
 				addBase_ActivityEdgePropertyDescriptor(object);
 				addRatePropertyDescriptor(object);
 			}
 		}
-
 		/**
 		 * Handle Parameter stereotyped by Rate
 		 */
@@ -114,33 +110,22 @@ public class RateItemProvider extends SysMLItemProviderAdapter implements IEditi
 			 * This is used to store all the property descriptors for a class stereotyped with a block.
 			 * Derived classes should add descriptors to this vector.
 			 */
-
 			List<IItemPropertyDescriptor> itemPropertyDescriptorsForparameter = new ArrayList<IItemPropertyDescriptor>();
 			ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.PARAMETER);
 			final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
-
 			itemPropertyDescriptorsForparameter.addAll(propertyDescriptors);
 			Stereotype ste = (element).getAppliedStereotype(SysmlResource.RATE_ID);
 			if(ste != null) {
 				EObject steApplication = (element).getStereotypeApplication(ste);
-
 				itemPropertyDescriptorsForparameter.add(createBase_ParameterPropertyDescriptorForParameter(steApplication));
-
 				itemPropertyDescriptorsForparameter.add(createBase_ParameterPropertyDescriptorForActivityEdge(steApplication));
-
 				itemPropertyDescriptorsForparameter.add(createBase_ActivityEdgePropertyDescriptorForParameter(steApplication));
-
 				itemPropertyDescriptorsForparameter.add(createBase_ActivityEdgePropertyDescriptorForActivityEdge(steApplication));
-
 				itemPropertyDescriptorsForparameter.add(createRatePropertyDescriptorForParameter(steApplication));
-
 				itemPropertyDescriptorsForparameter.add(createRatePropertyDescriptorForActivityEdge(steApplication));
-
 			}
 			return itemPropertyDescriptorsForparameter;
-
 		}
-
 		/**
 		 * Handle ActivityEdge stereotyped by Rate
 		 */
@@ -150,33 +135,22 @@ public class RateItemProvider extends SysMLItemProviderAdapter implements IEditi
 			 * This is used to store all the property descriptors for a class stereotyped with a block.
 			 * Derived classes should add descriptors to this vector.
 			 */
-
 			List<IItemPropertyDescriptor> itemPropertyDescriptorsForactivityEdge = new ArrayList<IItemPropertyDescriptor>();
 			ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.ACTIVITY_EDGE);
 			final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
-
 			itemPropertyDescriptorsForactivityEdge.addAll(propertyDescriptors);
 			Stereotype ste = (element).getAppliedStereotype(SysmlResource.RATE_ID);
 			if(ste != null) {
 				EObject steApplication = (element).getStereotypeApplication(ste);
-
 				itemPropertyDescriptorsForactivityEdge.add(createBase_ParameterPropertyDescriptorForParameter(steApplication));
-
 				itemPropertyDescriptorsForactivityEdge.add(createBase_ParameterPropertyDescriptorForActivityEdge(steApplication));
-
 				itemPropertyDescriptorsForactivityEdge.add(createBase_ActivityEdgePropertyDescriptorForParameter(steApplication));
-
 				itemPropertyDescriptorsForactivityEdge.add(createBase_ActivityEdgePropertyDescriptorForActivityEdge(steApplication));
-
 				itemPropertyDescriptorsForactivityEdge.add(createRatePropertyDescriptorForParameter(steApplication));
-
 				itemPropertyDescriptorsForactivityEdge.add(createRatePropertyDescriptorForActivityEdge(steApplication));
-
 			}
 			return itemPropertyDescriptorsForactivityEdge;
-
 		}
-
 		return itemPropertyDescriptors;
 	}
 
@@ -184,6 +158,7 @@ public class RateItemProvider extends SysMLItemProviderAdapter implements IEditi
 	 * This adds a property descriptor for the Base Parameter feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addBase_ParameterPropertyDescriptor(Object object) {
@@ -194,50 +169,29 @@ public class RateItemProvider extends SysMLItemProviderAdapter implements IEditi
 	 * This adds a property descriptor for the Base Parameter feature for the UML element Parameter.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ItemPropertyDescriptorDecorator createBase_ParameterPropertyDescriptorForParameter(Object object) {
-
-		return new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Rate_base_Parameter_feature"),
-
-		getString("_UI_PropertyDescriptor_description", "_UI_Rate_base_Parameter_feature", "_UI_Rate_type"),
-
-		ActivitiesPackage.Literals.RATE__BASE_PARAMETER, true, false, true,
-
-		null,
-
-		null,
-
-		null));
-
+		return new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Rate_base_Parameter_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Rate_base_Parameter_feature", "_UI_Rate_type"), ActivitiesPackage.Literals.RATE__BASE_PARAMETER, true, false, true, null, null, null));
 	}
 
 	/**
 	 * This adds a property descriptor for the Base Parameter feature for the UML element ActivityEdge.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ItemPropertyDescriptorDecorator createBase_ParameterPropertyDescriptorForActivityEdge(Object object) {
-
-		return new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Rate_base_Parameter_feature"),
-
-		getString("_UI_PropertyDescriptor_description", "_UI_Rate_base_Parameter_feature", "_UI_Rate_type"),
-
-		ActivitiesPackage.Literals.RATE__BASE_PARAMETER, true, false, true,
-
-		null,
-
-		null,
-
-		null));
-
+		return new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Rate_base_Parameter_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Rate_base_Parameter_feature", "_UI_Rate_type"), ActivitiesPackage.Literals.RATE__BASE_PARAMETER, true, false, true, null, null, null));
 	}
 
 	/**
 	 * This adds a property descriptor for the Base Activity Edge feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addBase_ActivityEdgePropertyDescriptor(Object object) {
@@ -248,50 +202,29 @@ public class RateItemProvider extends SysMLItemProviderAdapter implements IEditi
 	 * This adds a property descriptor for the Base Activity Edge feature for the UML element Parameter.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ItemPropertyDescriptorDecorator createBase_ActivityEdgePropertyDescriptorForParameter(Object object) {
-
-		return new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Rate_base_ActivityEdge_feature"),
-
-		getString("_UI_PropertyDescriptor_description", "_UI_Rate_base_ActivityEdge_feature", "_UI_Rate_type"),
-
-		ActivitiesPackage.Literals.RATE__BASE_ACTIVITY_EDGE, true, false, true,
-
-		null,
-
-		null,
-
-		null));
-
+		return new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Rate_base_ActivityEdge_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Rate_base_ActivityEdge_feature", "_UI_Rate_type"), ActivitiesPackage.Literals.RATE__BASE_ACTIVITY_EDGE, true, false, true, null, null, null));
 	}
 
 	/**
 	 * This adds a property descriptor for the Base Activity Edge feature for the UML element ActivityEdge.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ItemPropertyDescriptorDecorator createBase_ActivityEdgePropertyDescriptorForActivityEdge(Object object) {
-
-		return new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Rate_base_ActivityEdge_feature"),
-
-		getString("_UI_PropertyDescriptor_description", "_UI_Rate_base_ActivityEdge_feature", "_UI_Rate_type"),
-
-		ActivitiesPackage.Literals.RATE__BASE_ACTIVITY_EDGE, true, false, true,
-
-		null,
-
-		null,
-
-		null));
-
+		return new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Rate_base_ActivityEdge_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Rate_base_ActivityEdge_feature", "_UI_Rate_type"), ActivitiesPackage.Literals.RATE__BASE_ACTIVITY_EDGE, true, false, true, null, null, null));
 	}
 
 	/**
 	 * This adds a property descriptor for the Rate feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addRatePropertyDescriptor(Object object) {
@@ -302,50 +235,29 @@ public class RateItemProvider extends SysMLItemProviderAdapter implements IEditi
 	 * This adds a property descriptor for the Rate feature for the UML element Parameter.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ItemPropertyDescriptorDecorator createRatePropertyDescriptorForParameter(Object object) {
-
-		return new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Rate_rate_feature"),
-
-		getString("_UI_PropertyDescriptor_description", "_UI_Rate_rate_feature", "_UI_Rate_type"),
-
-		ActivitiesPackage.Literals.RATE__RATE, true, false, true,
-
-		null,
-
-		null,
-
-		null));
-
+		return new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Rate_rate_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Rate_rate_feature", "_UI_Rate_type"), ActivitiesPackage.Literals.RATE__RATE, true, false, true, null, null, null));
 	}
 
 	/**
 	 * This adds a property descriptor for the Rate feature for the UML element ActivityEdge.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ItemPropertyDescriptorDecorator createRatePropertyDescriptorForActivityEdge(Object object) {
-
-		return new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Rate_rate_feature"),
-
-		getString("_UI_PropertyDescriptor_description", "_UI_Rate_rate_feature", "_UI_Rate_type"),
-
-		ActivitiesPackage.Literals.RATE__RATE, true, false, true,
-
-		null,
-
-		null,
-
-		null));
-
+		return new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Rate_rate_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Rate_rate_feature", "_UI_Rate_type"), ActivitiesPackage.Literals.RATE__RATE, true, false, true, null, null, null));
 	}
 
 	/**
 	 * This returns Rate.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -362,6 +274,7 @@ public class RateItemProvider extends SysMLItemProviderAdapter implements IEditi
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -370,7 +283,6 @@ public class RateItemProvider extends SysMLItemProviderAdapter implements IEditi
 		 * Handle Stereotype item and stereoted element
 		 */
 		Rate rate_ = null;
-
 		if(object instanceof org.eclipse.uml2.uml.Parameter) {
 			Stereotype ste = ((org.eclipse.uml2.uml.Parameter)object).getAppliedStereotype(SysmlResource.RATE_ID);
 			if(ste != null) {
@@ -379,9 +291,7 @@ public class RateItemProvider extends SysMLItemProviderAdapter implements IEditi
 				result = RATE_PREFIX_PATTERN.matcher(result).replaceFirst("");
 				return PARAMETER_PREFIX_PATTERN.matcher(result).replaceFirst("Rate");
 			}
-
 		}
-
 		if(object instanceof org.eclipse.uml2.uml.ActivityEdge) {
 			Stereotype ste = ((org.eclipse.uml2.uml.ActivityEdge)object).getAppliedStereotype(SysmlResource.RATE_ID);
 			if(ste != null) {
@@ -390,13 +300,10 @@ public class RateItemProvider extends SysMLItemProviderAdapter implements IEditi
 				result = RATE_PREFIX_PATTERN.matcher(result).replaceFirst("");
 				return ACTIVITY_EDGE_PREFIX_PATTERN.matcher(result).replaceFirst("Rate");
 			}
-
 		}
-
 		if(rate_ == null) {
 			rate_ = (Rate)object;
 		}
-
 		return getString("_UI_Rate_type");
 	}
 
@@ -405,41 +312,33 @@ public class RateItemProvider extends SysMLItemProviderAdapter implements IEditi
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-
 		/**
 		 * Notify UML element
 		 */
 		if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
-
 			/**
 			 * Handle Parameter stereotyped by Rate
 			 */
-
 			if(notification.getFeatureID(org.eclipse.uml2.uml.Parameter.class) != Notification.NO_FEATURE_ID) {
 				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.PARAMETER);
 				ite.notifyChanged(notification);
 				return;
-
 			}
-
 			/**
 			 * Handle ActivityEdge stereotyped by Rate
 			 */
-
 			if(notification.getFeatureID(org.eclipse.uml2.uml.ActivityEdge.class) != Notification.NO_FEATURE_ID) {
 				ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.ACTIVITY_EDGE);
 				ite.notifyChanged(notification);
 				return;
-
 			}
-
 		}
-
 		super.notifyChanged(notification);
 	}
 
@@ -448,6 +347,7 @@ public class RateItemProvider extends SysMLItemProviderAdapter implements IEditi
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -459,6 +359,7 @@ public class RateItemProvider extends SysMLItemProviderAdapter implements IEditi
 	 * Return the resource locator for this item provider's resources.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -468,6 +369,7 @@ public class RateItemProvider extends SysMLItemProviderAdapter implements IEditi
 
 	/**
 	 * Override in order to handle has children for based class
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -480,7 +382,6 @@ public class RateItemProvider extends SysMLItemProviderAdapter implements IEditi
 			 * Handle based elements type
 			 */
 			if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
-
 				/**
 				 * Handle Parameter stereotyped by Rate
 				 */
@@ -489,7 +390,6 @@ public class RateItemProvider extends SysMLItemProviderAdapter implements IEditi
 					result.addAll((Collection<Object>)ite.getChildren(object));
 					return result;
 				}
-
 				/**
 				 * Handle ActivityEdge stereotyped by Rate
 				 */
@@ -498,7 +398,6 @@ public class RateItemProvider extends SysMLItemProviderAdapter implements IEditi
 					result.addAll((Collection<Object>)ite.getChildren(object));
 					return result;
 				}
-
 			}
 		}
 		return result;
@@ -506,6 +405,7 @@ public class RateItemProvider extends SysMLItemProviderAdapter implements IEditi
 
 	/**
 	 * Override in order to handle has children for based class
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -516,7 +416,6 @@ public class RateItemProvider extends SysMLItemProviderAdapter implements IEditi
 			 * Handle based elements type
 			 */
 			if(((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory() != null) {
-
 				/**
 				 * Handle Parameter stereotyped by Rate
 				 */
@@ -524,7 +423,6 @@ public class RateItemProvider extends SysMLItemProviderAdapter implements IEditi
 					ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.PARAMETER);
 					return super.hasChildren(object) || ite.hasChildren(object);
 				}
-
 				/**
 				 * Handle ActivityEdge stereotyped by Rate
 				 */
@@ -532,10 +430,8 @@ public class RateItemProvider extends SysMLItemProviderAdapter implements IEditi
 					ItemProviderAdapter ite = ((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.ACTIVITY_EDGE);
 					return super.hasChildren(object) || ite.hasChildren(object);
 				}
-
 			}
 		}
 		return super.hasChildren(object);
 	}
-
 }
