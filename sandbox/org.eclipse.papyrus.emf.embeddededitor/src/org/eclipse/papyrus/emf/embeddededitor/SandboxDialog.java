@@ -65,6 +65,8 @@ public class SandboxDialog extends TrayDialog {
 
 	public static int APPLY_ID = 50; //Avoid conflicts with IDialogConstants
 
+	private boolean refreshInProgress = false;
+
 	protected SandboxDialog(Shell shell) {
 		super(shell);
 	}
@@ -217,7 +219,7 @@ public class SandboxDialog extends TrayDialog {
 		//			resourceSet.getResource(URI.createPlatformResourceURI("org.eclipse.papyrus.newchild/Model/NewchildConfiguration.xmi", true), true);
 
 		//UML Editor with ExtendedType support
-		resourceSet.getResource(URI.createPlatformResourceURI("Test/PaletteConfiguration.xmi", true), true);
+		resourceSet.getResource(URI.createPlatformResourceURI("papyrus.test/model.uml", true), true);
 		TransactionalCommandStack commandStack = new TransactionalCommandStackImpl();
 		AdapterFactory adapterFactory = createAdapterFactory();
 		TransactionalEditingDomainImpl editingDomain = new TransactionalEditingDomainImpl(adapterFactory, commandStack, resourceSet);
@@ -245,6 +247,9 @@ public class SandboxDialog extends TrayDialog {
 		scrolled.setBackground(scrolled.getDisplay().getSystemColor(SWT.COLOR_WHITE));
 		scrolled.setBackgroundMode(SWT.INHERIT_DEFAULT);
 
+		scrolled.setExpandVertical(true);
+		scrolled.setExpandHorizontal(true);
+
 		GridData data = new GridData(SWT.FILL, SWT.FILL, true, true);
 		data.heightHint = 120;
 		scrolled.setLayoutData(data);
@@ -258,6 +263,18 @@ public class SandboxDialog extends TrayDialog {
 		properties.setLayoutData(data);
 
 		scrolled.setContent(properties);
+
+		properties.addControlListener(new ControlListener() {
+
+			public void controlMoved(ControlEvent e) {
+				//Nothing
+			}
+
+			public void controlResized(ControlEvent e) {
+				refreshDisplay(properties, scrolled);
+			}
+
+		});
 
 		editor.getViewer().addSelectionChangedListener(new ISelectionChangedListener() {
 
@@ -273,7 +290,7 @@ public class SandboxDialog extends TrayDialog {
 		scrolled.addControlListener(new ControlListener() {
 
 			public void controlMoved(ControlEvent e) {
-				//Nothing
+				System.out.println("moved");
 			}
 
 			public void controlResized(ControlEvent e) {
@@ -284,13 +301,20 @@ public class SandboxDialog extends TrayDialog {
 	}
 
 	private void refreshDisplay(Composite properties, Composite scrolled) {
-		Point size = properties.computeSize(SWT.DEFAULT, SWT.DEFAULT);
-		if(scrolled.getSize().x > 0) {
-			size.x = scrolled.getSize().x - 21;
+		if(refreshInProgress) {
+			return;
 		}
-		properties.setSize(size);
+		refreshInProgress = true;
+		Point size = properties.computeSize(SWT.DEFAULT, SWT.DEFAULT);
+		//		if(scrolled.getSize().x > 0) {
+		//			size.x = scrolled.getSize().x - 21;
+		//		}
+		//				properties.setSize(size);
+		((ScrolledComposite)scrolled).setMinHeight(size.y);
+		((ScrolledComposite)scrolled).setMinWidth(size.x);
 		properties.layout();
-		//		scrolled.layout();
+		scrolled.layout();
+		refreshInProgress = false;
 	}
 
 	@Override
