@@ -3423,7 +3423,7 @@
             <packagedElement xmi:type="uml:Dependency" xmi:id="_WC34IOt6EeCKeKm6CrRGNQ" name="org.eclipse.emf.facet.widgets.nattable.tableconfiguration" supplier="_V41LUOt6EeCKeKm6CrRGNQ" client="_WCmyYOt6EeCKeKm6CrRGNQ"/>
           </packagedElement>
         </packagedElement>
-        <packagedElement xmi:type="uml:Package" xmi:id="_MjTtcO9LEeCD8-qgvkyvwQ" name="xtext">
+        <packagedElement xmi:type="uml:Package" xmi:id="_MjTtcO9LEeCD8-qgvkyvwQ" name="textedit">
           <packagedElement xmi:type="uml:Package" xmi:id="_VGGt4Ot6EeCKeKm6CrRGNQ" name="org.eclipse.papyrus.common.editor.xtext" clientDependency="_VGJxMOt6EeCKeKm6CrRGNQ _VGLmYOt6EeCKeKm6CrRGNQ _VGNbkOt6EeCKeKm6CrRGNQ _VGP30Ot6EeCKeKm6CrRGNQ _VGRtAOt6EeCKeKm6CrRGNQ _VGTiMOt6EeCKeKm6CrRGNQ _VGVXYOt6EeCKeKm6CrRGNQ _VGYasOt6EeCKeKm6CrRGNQ _VGaP4Ot6EeCKeKm6CrRGNQ _VGcFEOt6EeCKeKm6CrRGNQ _VGd6QOt6EeCKeKm6CrRGNQ _VGfvcOt6EeCKeKm6CrRGNQ _VGiywOt6EeCKeKm6CrRGNQ _VGkn8Ot6EeCKeKm6CrRGNQ _VGnEMOt6EeCKeKm6CrRGNQ _VGo5YOt6EeCKeKm6CrRGNQ _VHnw0Ot6EeCKeKm6CrRGNQ _VHpmAOt6EeCKeKm6CrRGNQ">
             <packagedElement xmi:type="uml:Dependency" xmi:id="_VGJxMOt6EeCKeKm6CrRGNQ" name="org.eclipse.xtext" supplier="_P-R4cOt6EeCKeKm6CrRGNQ" client="_VGGt4Ot6EeCKeKm6CrRGNQ"/>
             <packagedElement xmi:type="uml:Dependency" xmi:id="_VGLmYOt6EeCKeKm6CrRGNQ" name="org.eclipse.xtext.generator" supplier="_U8NyEOt6EeCKeKm6CrRGNQ" client="_VGGt4Ot6EeCKeKm6CrRGNQ"/>
@@ -4154,8 +4154,8 @@
             <packagedElement xmi:type="uml:Dependency" xmi:id="_PKcAsOt6EeCKeKm6CrRGNQ" name="org.eclipse.core.runtime" supplier="_O8JGAOt6EeCKeKm6CrRGNQ" client="_PKQagOt6EeCKeKm6CrRGNQ"/>
           </packagedElement>
         </packagedElement>
-        <packagedElement xmi:type="uml:Package" xmi:id="_I_aFoPALEeCJwqXbPMSp2g" name="modelSet"/>
-        <packagedElement xmi:type="uml:Package" xmi:id="_MoSQ0PALEeCJwqXbPMSp2g" name="serviceRegistry"/>
+        <packagedElement xmi:type="uml:Package" xmi:id="_I_aFoPALEeCJwqXbPMSp2g" name="modelset"/>
+        <packagedElement xmi:type="uml:Package" xmi:id="_MoSQ0PALEeCJwqXbPMSp2g" name="serviceregistry"/>
         <packagedElement xmi:type="uml:Package" xmi:id="_vCYZYPTgEeCm_IWJByqtzA" name="services">
           <ownedComment xmi:id="_ylGSMPTgEeCm_IWJByqtzA" annotatedElement="_vCYZYPTgEeCm_IWJByqtzA">
             <body>&lt;p>&#xD;
@@ -4475,7 +4475,7 @@
       </packagedElement>
       <packagedElement xmi:type="uml:Package" xmi:id="_lISUYPZ4EeCvvoi7hupG1w" name="views" clientDependency="_j96dEPamEeCMT_0n-PmDbg">
         <packagedElement xmi:type="uml:Dependency" xmi:id="_j96dEPamEeCMT_0n-PmDbg" name="Dependency0" supplier="_avNEYOt6EeCKeKm6CrRGNQ" client="_lISUYPZ4EeCvvoi7hupG1w"/>
-        <packagedElement xmi:type="uml:Package" xmi:id="_F-NPwOt8EeCKeKm6CrRGNQ" name="modelExplorer">
+        <packagedElement xmi:type="uml:Package" xmi:id="_F-NPwOt8EeCKeKm6CrRGNQ" name="modelexplorer">
           <packagedElement xmi:type="uml:Package" xmi:id="_PyPAgOt6EeCKeKm6CrRGNQ" name="org.eclipse.papyrus.modelexplorer.widgets" clientDependency="_PyRcwOt6EeCKeKm6CrRGNQ _PyT5AOt6EeCKeKm6CrRGNQ _PyXjYOt6EeCKeKm6CrRGNQ _PythoOt6EeCKeKm6CrRGNQ _Pyv94Ot6EeCKeKm6CrRGNQ _PyyaIOt6EeCKeKm6CrRGNQ _Py0PUOt6EeCKeKm6CrRGNQ _Py2EgOt6EeCKeKm6CrRGNQ">
             <packagedElement xmi:type="uml:Dependency" xmi:id="_PyRcwOt6EeCKeKm6CrRGNQ" name="org.eclipse.ui" supplier="_PA5DIOt6EeCKeKm6CrRGNQ" client="_PyPAgOt6EeCKeKm6CrRGNQ"/>
             <packagedElement xmi:type="uml:Dependency" xmi:id="_PyT5AOt6EeCKeKm6CrRGNQ" name="org.eclipse.core.runtime" supplier="_O8JGAOt6EeCKeKm6CrRGNQ" client="_PyPAgOt6EeCKeKm6CrRGNQ"/>
@@ -4657,7 +4657,7 @@
       <packagedElement xmi:type="uml:Package" xmi:id="_T2H6IPamEeCMT_0n-PmDbg" name="others" clientDependency="_lOBaEPamEeCMT_0n-PmDbg">
         <packagedElement xmi:type="uml:Dependency" xmi:id="_lOBaEPamEeCMT_0n-PmDbg" name="Dependency0" supplier="_avNEYOt6EeCKeKm6CrRGNQ" client="_T2H6IPamEeCMT_0n-PmDbg"/>
       </packagedElement>
-      <packagedElement xmi:type="uml:Package" xmi:id="_N_sLUPsREeCJHfZ767zc0Q" name="layouttool">
+      <packagedElement xmi:type="uml:Package" xmi:id="_N_sLUPsREeCJHfZ767zc0Q" name="layout">
         <packagedElement xmi:type="uml:Package" xmi:id="_p70RQPsMEeCJHfZ767zc0Q" name="org.eclipse.papyrus.layouttool" clientDependency="_p737oPsMEeCJHfZ767zc0Q _p76-8PsMEeCJHfZ767zc0Q _p7-CQPsMEeCJHfZ767zc0Q _p8C6wPsMEeCJHfZ767zc0Q">
           <packagedElement xmi:type="uml:Dependency" xmi:id="_p737oPsMEeCJHfZ767zc0Q" name="org.eclipse.ui" supplier="_PA5DIOt6EeCKeKm6CrRGNQ" client="_p70RQPsMEeCJHfZ767zc0Q"/>
           <packagedElement xmi:type="uml:Dependency" xmi:id="_p76-8PsMEeCJHfZ767zc0Q" name="org.eclipse.core.runtime" supplier="_O8JGAOt6EeCKeKm6CrRGNQ" client="_p70RQPsMEeCJHfZ767zc0Q"/>
@@ -5297,7 +5297,6 @@
           <packagedElement xmi:type="uml:Dependency" xmi:id="_qE570PsMEeCJHfZ767zc0Q" name="org.eclipse.m2m.qvt.oml.common" supplier="_vCokMPalEeCMT_0n-PmDbg" client="_qEcBwPsMEeCJHfZ767zc0Q"/>
         </packagedElement>
       </packagedElement>
-      <packagedElement xmi:type="uml:Package" xmi:id="_8RZAwPsUEeCJHfZ767zc0Q" name="Package0"/>
     </packagedElement>
     <profileApplication xmi:id="_L-EyYOt6EeCKeKm6CrRGNQ">
       <eAnnotations xmi:id="_L-gQMOt6EeCKeKm6CrRGNQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
@@ -5896,5 +5895,4 @@
   <architecture:Layer xmi:id="_AoojQPsUEeCJHfZ767zc0Q" base_Package="_Aon8MPsUEeCJHfZ767zc0Q"/>
   <architecture:Layer xmi:id="_AtTn4PsUEeCJHfZ767zc0Q" base_Package="_AtTA0PsUEeCJHfZ767zc0Q"/>
   <architecture:Layer xmi:id="_Axs_sPsUEeCJHfZ767zc0Q" base_Package="_AxsYoPsUEeCJHfZ767zc0Q"/>
-  <architecture:Layer xmi:id="_8RZn0PsUEeCJHfZ767zc0Q" base_Package="_8RZAwPsUEeCJHfZ767zc0Q"/>
 </xmi:XMI>
