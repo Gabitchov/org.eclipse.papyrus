@@ -1,10 +1,14 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: %pluginName
-Bundle-Vendor: %providerName
-Bundle-Version: 0.9.0.qualifier
-Bundle-SymbolicName: org.eclipse.papyrus.common.editor.xtext; singleton:=true
-Bundle-ActivationPolicy: lazy
+Export-Package: org.eclipse.papyrus.common.editor.xtext,
+ org.eclipse.papyrus.common.editor.xtext.parseTreeConstruction,
+ org.eclipse.papyrus.common.editor.xtext.parser.antlr,
+ org.eclipse.papyrus.common.editor.xtext.parser.antlr.internal,
+ org.eclipse.papyrus.common.editor.xtext.scoping,
+ org.eclipse.papyrus.common.editor.xtext.services,
+ org.eclipse.papyrus.common.editor.xtext.umlCommon,
+ org.eclipse.papyrus.common.editor.xtext.umlCommon.impl,
+ org.eclipse.papyrus.common.editor.xtext.umlCommon.util,
+ org.eclipse.papyrus.common.editor.xtext.validation
 Require-Bundle: org.eclipse.xtext,
  org.eclipse.xtext.generator;resolution:=optional,
  org.apache.commons.logging;resolution:=optional,
@@ -21,18 +25,15 @@ Require-Bundle: org.eclipse.xtext,
  org.eclipse.uml2.uml;bundle-version="3.1.1",
  org.eclipse.jface,
  org.eclipse.ui.ide,
- org.eclipse.xtext.gmf.glue;bundle-version="0.8.0"
+ org.eclipse.xtext.gmf.glue;bundle-version="0.9.0"
+Bundle-Vendor: %providerName
+Bundle-ActivationPolicy: lazy
+Bundle-Version: 0.9.0.qualifier
+Bundle-Localization: plugin
+Bundle-Name: %pluginName
+Bundle-ManifestVersion: 2
 Import-Package: org.apache.log4j,
  org.eclipse.core.runtime
+Bundle-SymbolicName: org.eclipse.papyrus.common.editor.xtext;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: org.eclipse.papyrus.common.editor.xtext,
- org.eclipse.papyrus.common.editor.xtext.parseTreeConstruction,
- org.eclipse.papyrus.common.editor.xtext.parser.antlr,
- org.eclipse.papyrus.common.editor.xtext.parser.antlr.internal,
- org.eclipse.papyrus.common.editor.xtext.scoping,
- org.eclipse.papyrus.common.editor.xtext.services,
- org.eclipse.papyrus.common.editor.xtext.umlCommon,
- org.eclipse.papyrus.common.editor.xtext.umlCommon.impl,
- org.eclipse.papyrus.common.editor.xtext.umlCommon.util,
- org.eclipse.papyrus.common.editor.xtext.validation
-Bundle-Localization: plugin
+

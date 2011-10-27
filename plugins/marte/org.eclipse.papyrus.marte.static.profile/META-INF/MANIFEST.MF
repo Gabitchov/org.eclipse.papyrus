@@ -1,15 +1,9 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: %pluginName
-Bundle-SymbolicName: org.eclipse.papyrus.marte.static.profile;singleton:=true
-Bundle-Version: 0.9.0.qualifier
-Bundle-Vendor: %providerName
-Bundle-Localization: plugin
 Require-Bundle: org.eclipse.emf.ecore,
- org.eclipse.papyrus.extensionpoints.uml2;bundle-version="0.7.0",
+ org.eclipse.papyrus.extensionpoints.uml2;bundle-version="0.9.0",
  org.eclipse.uml2.uml;bundle-version="3.1.0",
- org.eclipse.papyrus.umlutils;bundle-version="0.7.0",
- org.eclipse.papyrus.diagram.common;bundle-version="0.7.2"
+ org.eclipse.papyrus.umlutils;bundle-version="0.9.0",
+ org.eclipse.papyrus.diagram.common;bundle-version="0.9.0"
 Export-Package: org.eclipse.papyrus.MARTE,
  org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.GQAM,
  org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.GQAM.impl,
@@ -108,6 +102,14 @@ Export-Package: org.eclipse.papyrus.MARTE,
  org.eclipse.papyrus.MARTE_Library.TimeLibrary.util,
  org.eclipse.papyrus.MARTE_Library.TimeTypesLibrary,
  org.eclipse.papyrus.MARTE_Library.TimeTypesLibrary.impl
+Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
+Bundle-Version: 0.9.0.qualifier
+Bundle-Name: %pluginName
+Bundle-Localization: plugin
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.papyrus.marte.static.profile;singleto
+ n:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
+

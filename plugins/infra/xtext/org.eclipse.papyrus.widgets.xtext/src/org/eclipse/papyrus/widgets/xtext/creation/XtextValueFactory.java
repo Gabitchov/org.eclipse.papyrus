@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -57,13 +57,14 @@ public class XtextValueFactory implements ReferenceValueFactory {
 		return true; //Unsupported yet (We need a Write Transaction)
 	}
 
-	public void edit(Control widget, Object object) {
+	public Object edit(Control widget, Object object) {
 		if(object instanceof EObject) {
 			XtextEditorDialog dialog = new XtextEditorDialog(widget.getShell(), adapter, (EObject)object);
 			dialog.open();
 		} else {
 			Activator.log.warn("The XtextValueFactory can only edit EObjects"); //$NON-NLS-1$
 		}
+		return object;
 	}
 
 	public boolean canCreateObject() {

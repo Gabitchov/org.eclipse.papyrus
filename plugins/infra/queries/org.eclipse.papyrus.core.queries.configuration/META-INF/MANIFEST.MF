@@ -1,20 +1,23 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: %pluginName
-Bundle-SymbolicName: org.eclipse.papyrus.core.queries.configuration;singleton:=true
-Bundle-Version: 0.9.0.qualifier
-Bundle-ClassPath: .
-Bundle-Activator: org.eclipse.papyrus.core.queries.configuration.plugin.Activator$Implementation
-Bundle-Vendor: %providerName
-Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.papyrus.core.queries.configuration,
  org.eclipse.papyrus.core.queries.configuration.impl,
  org.eclipse.papyrus.core.queries.configuration.plugin,
  org.eclipse.papyrus.core.queries.configuration.util
+Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: .
+Bundle-Name: %pluginName
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
  org.eclipse.emf.facet.infra.query;visibility:=reexport,
  org.eclipse.uml2.uml;visibility:=reexport
-Bundle-ActivationPolicy: lazy
+Bundle-Vendor: %providerName
+Bundle-Version: 0.9.0.qualifier
+Bundle-ManifestVersion: 2
+Bundle-Activator: org.eclipse.papyrus.core.queries.configuration.plugi
+ n.Activator$Implementation
+Bundle-SymbolicName: org.eclipse.papyrus.core.queries.configuration;si
+ ngleton:=true
+

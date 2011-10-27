@@ -1,15 +1,17 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: %pluginName
-Bundle-SymbolicName: org.eclipse.papyrus.markerlistener;singleton:=true
-Bundle-Version: 0.9.0.qualifier
-Bundle-Activator: org.eclipse.papyrus.markerlistener.Activator
-Bundle-Vendor: %providerName
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.eclipse.papyrus.core;bundle-version="0.8.0"
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-ActivationPolicy: lazy
+ org.eclipse.papyrus.core;bundle-version="0.9.0"
 Export-Package: org.eclipse.papyrus.markerlistener
+Bundle-Vendor: %providerName
+Bundle-ActivationPolicy: lazy
+Bundle-Version: 0.9.0.qualifier
+Bundle-Name: %pluginName
+Bundle-ManifestVersion: 2
+Bundle-Activator: org.eclipse.papyrus.markerlistener.Activator
+Bundle-SymbolicName: org.eclipse.papyrus.markerlistener;singleton:=tru
+ e
 Import-Package: org.eclipse.papyrus.decoration,
  org.eclipse.papyrus.diagram.common.util
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+

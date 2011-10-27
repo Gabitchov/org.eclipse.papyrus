@@ -1,9 +1,12 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
+Export-Package: org.eclipse.papyrus.diagram.component.edit.parts,
+ org.eclipse.papyrus.diagram.component.part,
+ org.eclipse.papyrus.diagram.component.providers
+Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: .
 Bundle-Name: %pluginName
-Bundle-SymbolicName: org.eclipse.papyrus.diagram.component; singleton:=true
-Bundle-Version: 0.9.0.qualifier
-Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.core.resources,
@@ -34,21 +37,20 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.emf.ecore.edit;visibility:=reexport,
  org.eclipse.ocl.ecore;visibility:=reexport,
  org.eclipse.gef;visibility:=reexport,
- org.eclipse.papyrus.diagram.common;resolution:=optional,
- org.eclipse.papyrus.preferences,
- org.eclipse.papyrus.extensionpoints.editors,
- org.eclipse.papyrus.editor,
- org.eclipse.papyrus.service.edit,
- org.eclipse.papyrus.widgets,
+ org.eclipse.papyrus.diagram.common;bundle-version="0.9.0";resolution:=optional,
+ org.eclipse.papyrus.preferences;bundle-version="0.9.0",
+ org.eclipse.papyrus.extensionpoints.editors;bundle-version="0.9.0",
+ org.eclipse.papyrus.editor;bundle-version="0.9.0",
+ org.eclipse.papyrus.service.edit;bundle-version="0.9.0",
+ org.eclipse.papyrus.widgets;bundle-version:="0.9.0",
  org.eclipse.emf.validation;visibility:=reexport
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-ActivationPolicy: lazy
-Bundle-ClassPath: .
-Bundle-Activator: org.eclipse.papyrus.diagram.component.part.UMLDiagramEditorPlugin
-Bundle-Localization: plugin
-Export-Package: org.eclipse.papyrus.diagram.component.edit.parts,
- org.eclipse.papyrus.diagram.component.part,
- org.eclipse.papyrus.diagram.component.providers
+Bundle-Vendor: %providerName
+Eclipse-LazyStart: true
+Bundle-Version: 0.9.0.qualifier
+Bundle-ManifestVersion: 2
+Bundle-Activator: org.eclipse.papyrus.diagram.component.part.UMLDiagra
+ mEditorPlugin
+Bundle-SymbolicName: org.eclipse.papyrus.diagram.component;singleton:=true
 Import-Package: org.eclipse.papyrus.core.adaptor.gmf,
  org.eclipse.papyrus.diagram.common.figure.node;resolution:=optional,
  org.eclipse.papyrus.diagram.component.part,
@@ -56,4 +58,4 @@ Import-Package: org.eclipse.papyrus.core.adaptor.gmf,
  org.eclipse.papyrus.service.edit.service,
  org.eclipse.papyrus.uml.service.types.element,
  org.eclipse.papyrus.widgets.editors
-Eclipse-LazyStart: true
+

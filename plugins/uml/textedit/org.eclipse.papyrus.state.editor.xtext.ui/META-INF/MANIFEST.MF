@@ -1,12 +1,11 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
+Export-Package: org.eclipse.papyrus.state.editor.xtext.ui.contentassis
+ t.antlr
+Bundle-ActivationPolicy: lazy
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
-Bundle-Vendor: %providerName
-Bundle-Version: 0.9.0.qualifier
-Bundle-SymbolicName: org.eclipse.papyrus.state.editor.xtext.ui; singleton:=true
-Bundle-ActivationPolicy: lazy
-Require-Bundle: org.eclipse.papyrus.state.editor.xtext;visibility:=reexport,
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Require-Bundle: org.eclipse.papyrus.state.editor.xtext;bundle-version="0.9.0";visibility:=reexport,
  org.eclipse.xtext.ui,
  org.eclipse.ui.editors;bundle-version="3.5.0",
  org.eclipse.ui.ide;bundle-version="3.5.0",
@@ -16,12 +15,17 @@ Require-Bundle: org.eclipse.papyrus.state.editor.xtext;visibility:=reexport,
  org.eclipse.xtext.builder,
  org.eclipse.uml2.uml;bundle-version="3.1.0",
  org.eclipse.core.expressions;bundle-version="3.4.200",
- org.eclipse.papyrus.extensionpoints.editors;bundle-version="0.8.0",
+ org.eclipse.papyrus.extensionpoints.editors;bundle-version="0.9.0",
  org.eclipse.gmf.runtime.diagram.ui;bundle-version="1.4.0",
- org.eclipse.papyrus.core;bundle-version="0.8.0",
- org.eclipse.papyrus.properties.runtime;bundle-version="0.8.0",
- org.eclipse.xtext.gmf.glue;bundle-version="0.8.0"
+ org.eclipse.papyrus.core;bundle-version="0.9.0",
+ org.eclipse.papyrus.properties.runtime;bundle-version="0.9.0",
+ org.eclipse.xtext.gmf.glue;bundle-version="0.9.0"
+Bundle-Vendor: %providerName
+Bundle-Version: 0.9.0.qualifier
+Bundle-ManifestVersion: 2
+Bundle-Activator: org.eclipse.papyrus.state.editor.xtext.ui.internal.U
+ mlStateActivator
+Bundle-SymbolicName: org.eclipse.papyrus.state.editor.xtext.ui;singlet
+ on:=true
 Import-Package: org.apache.log4j
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: org.eclipse.papyrus.state.editor.xtext.ui.contentassist.antlr
-Bundle-Activator: org.eclipse.papyrus.state.editor.xtext.ui.internal.UmlStateActivator
+

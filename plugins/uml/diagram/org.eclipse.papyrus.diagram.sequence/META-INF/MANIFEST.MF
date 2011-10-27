@@ -1,20 +1,23 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
+Export-Package: org.eclipse.papyrus.diagram.sequence.edit.parts,
+ org.eclipse.papyrus.diagram.sequence.part,
+ org.eclipse.papyrus.diagram.sequence.providers
+Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: .
 Bundle-Name: %pluginName
-Bundle-SymbolicName: org.eclipse.papyrus.diagram.sequence; singleton:=true
-Bundle-Version: 0.9.0.qualifier
-Bundle-Activator: org.eclipse.papyrus.diagram.sequence.part.UMLDiagramEditorPlugin
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: org.eclipse.core.expressions,
  org.eclipse.ui.navigator,
  org.eclipse.ui.navigator.resources,
  org.eclipse.gmf.runtime.diagram.ui.properties,
  org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide,
- org.eclipse.papyrus.preferences,
- org.eclipse.papyrus.extensionpoints.editors,
- org.eclipse.papyrus.diagram.common,
+ org.eclipse.papyrus.preferences;bundle-version="0.9.0",
+ org.eclipse.papyrus.extensionpoints.editors;bundle-version="0.9.0",
+ org.eclipse.papyrus.diagram.common;bundle-version="0.9.0",
  org.eclipse.ocl.ecore;visibility:=reexport,
  org.junit4,
- org.eclipse.papyrus.core.adaptor.gmf,
+ org.eclipse.papyrus.core.adaptor.gmf;bundle-version:="0.9.0",
  org.eclipse.core.runtime,
  org.eclipse.core.resources,
  org.eclipse.jface,
@@ -39,15 +42,14 @@ Require-Bundle: org.eclipse.core.expressions,
  org.eclipse.emf.ecore.edit;visibility:=reexport,
  org.eclipse.gef,
  org.eclipse.emf.validation;visibility:=reexport,
- org.eclipse.papyrus.ui.toolbox,
- org.eclipse.papyrus.service.edit,
+ org.eclipse.papyrus.ui.toolbox;bundle-version="0.9.0",
+ org.eclipse.papyrus.service.edit;bundle-version="0.9.0",
  org.eclipse.gmf.runtime.notation;visibility:=reexport
-Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-ClassPath: .
 Bundle-Vendor: %providerName
-Bundle-Localization: plugin
-Export-Package: org.eclipse.papyrus.diagram.sequence.edit.parts,
- org.eclipse.papyrus.diagram.sequence.part,
- org.eclipse.papyrus.diagram.sequence.providers
 Eclipse-LazyStart: true
+Bundle-Version: 0.9.0.qualifier
+Bundle-ManifestVersion: 2
+Bundle-Activator: org.eclipse.papyrus.diagram.sequence.part.UMLDiagram
+ EditorPlugin
+Bundle-SymbolicName: org.eclipse.papyrus.diagram.sequence;singleton:=true
+

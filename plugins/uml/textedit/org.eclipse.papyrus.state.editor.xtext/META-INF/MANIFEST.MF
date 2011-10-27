@@ -1,11 +1,14 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: %pluginName
-Bundle-Localization: plugin
-Bundle-Vendor: %providerName
-Bundle-Version: 0.9.0.qualifier
-Bundle-SymbolicName: org.eclipse.papyrus.state.editor.xtext; singleton:=true
-Bundle-ActivationPolicy: lazy
+Export-Package: org.eclipse.papyrus.state.editor.xtext,
+ org.eclipse.papyrus.state.editor.xtext.parseTreeConstruction,
+ org.eclipse.papyrus.state.editor.xtext.parser.antlr,
+ org.eclipse.papyrus.state.editor.xtext.parser.antlr.internal,
+ org.eclipse.papyrus.state.editor.xtext.scoping,
+ org.eclipse.papyrus.state.editor.xtext.services,
+ org.eclipse.papyrus.state.editor.xtext.umlState,
+ org.eclipse.papyrus.state.editor.xtext.umlState.impl,
+ org.eclipse.papyrus.state.editor.xtext.umlState.util,
+ org.eclipse.papyrus.state.editor.xtext.validation
 Require-Bundle: org.eclipse.xtext,
  org.eclipse.xtext.generator;resolution:=optional,
  org.apache.commons.logging;resolution:=optional,
@@ -20,16 +23,14 @@ Require-Bundle: org.eclipse.xtext,
  org.antlr.runtime,
  org.eclipse.uml2.uml;bundle-version="3.1.0",
  org.eclipse.uml2.codegen.ecore;bundle-version="1.6.0",
- org.eclipse.xtext.gmf.glue;bundle-version="0.8.0"
+ org.eclipse.xtext.gmf.glue;bundle-version="0.9.0"
+Bundle-Vendor: %providerName
+Bundle-ActivationPolicy: lazy
+Bundle-Version: 0.9.0.qualifier
+Bundle-Localization: plugin
+Bundle-Name: %pluginName
+Bundle-ManifestVersion: 2
 Import-Package: org.apache.log4j
+Bundle-SymbolicName: org.eclipse.papyrus.state.editor.xtext;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: org.eclipse.papyrus.state.editor.xtext,
- org.eclipse.papyrus.state.editor.xtext.parseTreeConstruction,
- org.eclipse.papyrus.state.editor.xtext.parser.antlr,
- org.eclipse.papyrus.state.editor.xtext.parser.antlr.internal,
- org.eclipse.papyrus.state.editor.xtext.scoping,
- org.eclipse.papyrus.state.editor.xtext.services,
- org.eclipse.papyrus.state.editor.xtext.umlState,
- org.eclipse.papyrus.state.editor.xtext.umlState.impl,
- org.eclipse.papyrus.state.editor.xtext.umlState.util,
- org.eclipse.papyrus.state.editor.xtext.validation
+

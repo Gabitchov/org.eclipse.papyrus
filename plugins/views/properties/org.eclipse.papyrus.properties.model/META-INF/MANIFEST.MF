@@ -1,12 +1,6 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: %pluginName
-Bundle-SymbolicName: org.eclipse.papyrus.properties.model;singleton:=true
-Bundle-Version: 0.9.0.qualifier
-Bundle-ClassPath: .
-Bundle-Vendor: %providerName
-Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.ecore;visibility:=reexport
 Export-Package: org.eclipse.papyrus.properties.contexts,
  org.eclipse.papyrus.properties.contexts.impl,
  org.eclipse.papyrus.properties.contexts.util,
@@ -16,6 +10,14 @@ Export-Package: org.eclipse.papyrus.properties.contexts,
  org.eclipse.papyrus.properties.ui,
  org.eclipse.papyrus.properties.ui.impl,
  org.eclipse.papyrus.properties.ui.util
-Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.emf.ecore;visibility:=reexport
+Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: .
+Bundle-Version: 0.9.0.qualifier
+Bundle-Localization: plugin
+Bundle-Name: %pluginName
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.papyrus.properties.model;singleton:=t
+ rue
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+

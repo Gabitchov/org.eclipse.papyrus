@@ -1,15 +1,6 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: %pluginName
-Bundle-SymbolicName: org.eclipse.papyrus.preferences;singleton:=true
-Bundle-Version: 0.9.0.qualifier
-Bundle-Activator: org.eclipse.papyrus.preferences.Activator
-Bundle-Vendor: %providerName
 Require-Bundle: org.eclipse.gmf.runtime.diagram.ui.properties,
- org.eclipse.papyrus.log;bundle-version="0.8.0"
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-ActivationPolicy: lazy
-Bundle-Localization: plugin
+ org.eclipse.papyrus.log;bundle-version="0.9.0"
 Export-Package: org.eclipse.papyrus.preferences,
  org.eclipse.papyrus.preferences.initializer,
  org.eclipse.papyrus.preferences.jface.preference;x-internal:=true,
@@ -20,3 +11,13 @@ Export-Package: org.eclipse.papyrus.preferences,
  org.eclipse.papyrus.preferences.ui.diagram,
  org.eclipse.papyrus.preferences.ui.editor,
  org.eclipse.papyrus.preferences.utils
+Bundle-Vendor: %providerName
+Bundle-ActivationPolicy: lazy
+Bundle-Version: 0.9.0.qualifier
+Bundle-Name: %pluginName
+Bundle-Localization: plugin
+Bundle-ManifestVersion: 2
+Bundle-Activator: org.eclipse.papyrus.preferences.Activator
+Bundle-SymbolicName: org.eclipse.papyrus.preferences;singleton:=true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+

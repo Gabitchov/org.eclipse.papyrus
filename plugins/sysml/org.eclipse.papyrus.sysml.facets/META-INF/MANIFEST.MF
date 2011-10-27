@@ -4,19 +4,20 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.facet.infra.query.core,
  org.eclipse.emf.ecore,
  org.eclipse.uml2.uml,
- org.eclipse.papyrus.sysml;bundle-version="0.8.0",
+ org.eclipse.papyrus.sysml;bundle-version="0.9.0",
  org.eclipse.emf.edit,
  org.eclipse.uml2.common.edit,
- org.eclipse.papyrus.core;bundle-version="0.8.0",
- org.eclipse.papyrus.service.edit,
- org.eclipse.papyrus.sysml.service.types,
- org.eclipse.papyrus.uml.standard,
- org.eclipse.papyrus.uml.service.types,
- org.eclipse.papyrus.sysml.diagram.common;bundle-version="0.8.1",
- org.eclipse.papyrus.ui.toolbox
+ org.eclipse.papyrus.core;bundle-version="0.9.0",
+ org.eclipse.papyrus.service.edit;bundle-version:="0.9.0",
+ org.eclipse.papyrus.sysml.service.types;bundle-version:="0.9.0",
+ org.eclipse.papyrus.uml.standard;bundle-version="0.9.0",
+ org.eclipse.papyrus.uml.service.types;bundle-version="0.9.0",
+ org.eclipse.papyrus.sysml.diagram.common;bundle-version="0.9.0",
+ org.eclipse.papyrus.ui.toolbox;bundle-version="0.9.0"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-ClassPath: .,bin
+Bundle-ClassPath: .,
+ bin
 Bundle-Version: 0.9.0.qualifier
 Bundle-Localization: plugin
 Bundle-Name: %pluginName

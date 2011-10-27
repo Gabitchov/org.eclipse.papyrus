@@ -1,10 +1,20 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
+Export-Package: org.eclipse.papyrus.sysml.diagram.parametric,
+ org.eclipse.papyrus.sysml.diagram.parametric.edit.commands,
+ org.eclipse.papyrus.sysml.diagram.parametric.edit.helpers,
+ org.eclipse.papyrus.sysml.diagram.parametric.edit.parts,
+ org.eclipse.papyrus.sysml.diagram.parametric.edit.policies,
+ org.eclipse.papyrus.sysml.diagram.parametric.navigator,
+ org.eclipse.papyrus.sysml.diagram.parametric.parsers,
+ org.eclipse.papyrus.sysml.diagram.parametric.part,
+ org.eclipse.papyrus.sysml.diagram.parametric.preferences,
+ org.eclipse.papyrus.sysml.diagram.parametric.providers,
+ org.eclipse.papyrus.sysml.diagram.parametric.sheet
+Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: .
 Bundle-Name: %pluginName
-Bundle-SymbolicName: org.eclipse.papyrus.sysml.diagram.parametric; singleton:=true
-Bundle-Version: 0.9.0.qualifier
-Bundle-Activator: org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlDiagramEditorPlugin
-Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.core.resources,
@@ -28,38 +38,30 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.gmf.runtime.diagram.ui.resources.editor,
  org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide,
  org.eclipse.draw2d;visibility:=reexport,
- org.eclipse.papyrus.sysml;visibility:=reexport,
- org.eclipse.papyrus.sysml.edit;visibility:=reexport,
+ org.eclipse.papyrus.sysml;bundle-version="0.9.0";visibility:=reexport,
+ org.eclipse.papyrus.sysml.edit;bundle-version="0.9.0";visibility:=reexport,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.emf.ecore.edit;visibility:=reexport,
  org.eclipse.uml2.uml;visibility:=reexport,
  org.eclipse.uml2.uml.edit;visibility:=reexport,
- org.eclipse.papyrus.resource;visibility:=reexport,
- org.eclipse.papyrus.resource.edit;visibility:=reexport,
+ org.eclipse.papyrus.resource;bundle-version:="0.9.0";visibility:=reexport,
+ org.eclipse.papyrus.resource.edit;bundle-version:="0.9.0";visibility:=reexport,
  org.eclipse.gef,
- org.eclipse.papyrus.preferences,
- org.eclipse.papyrus.extensionpoints.editors,
- org.eclipse.papyrus.diagram.common,
- org.eclipse.papyrus.core.adaptor.gmf,
- org.eclipse.papyrus.uml.standard;visibility:=reexport,
- org.eclipse.papyrus.uml.standard.edit;visibility:=reexport,
+ org.eclipse.papyrus.preferences;bundle-version="0.9.0",
+ org.eclipse.papyrus.extensionpoints.editors;bundle-version:="0.9.0",
+ org.eclipse.papyrus.diagram.common;bundle-version:="0.9.0",
+ org.eclipse.papyrus.core.adaptor.gmf;bundle-version="0.9.0",
+ org.eclipse.papyrus.uml.standard;bundle-version:="0.9.0";visibility:=reexport,
+ org.eclipse.papyrus.uml.standard.edit;bundle-version="0.9.0";visibility:=reexport,
  org.eclipse.gmf.runtime.draw2d.ui;visibility:=reexport,
- org.eclipse.papyrus.parsers,
+ org.eclipse.papyrus.parsers;bundle-version="0.9.0",
  org.eclipse.ocl.ecore;visibility:=reexport,
  org.eclipse.emf.validation;visibility:=reexport
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-ActivationPolicy: lazy
-Bundle-ClassPath: .
-Bundle-Localization: plugin
-Export-Package: org.eclipse.papyrus.sysml.diagram.parametric,
- org.eclipse.papyrus.sysml.diagram.parametric.edit.commands,
- org.eclipse.papyrus.sysml.diagram.parametric.edit.helpers,
- org.eclipse.papyrus.sysml.diagram.parametric.edit.parts,
- org.eclipse.papyrus.sysml.diagram.parametric.edit.policies,
- org.eclipse.papyrus.sysml.diagram.parametric.navigator,
- org.eclipse.papyrus.sysml.diagram.parametric.parsers,
- org.eclipse.papyrus.sysml.diagram.parametric.part,
- org.eclipse.papyrus.sysml.diagram.parametric.preferences,
- org.eclipse.papyrus.sysml.diagram.parametric.providers,
- org.eclipse.papyrus.sysml.diagram.parametric.sheet
+Bundle-Vendor: %providerName
 Eclipse-LazyStart: true
+Bundle-Version: 0.9.0.qualifier
+Bundle-ManifestVersion: 2
+Bundle-Activator: org.eclipse.papyrus.sysml.diagram.parametric.part.Sy
+ smlDiagramEditorPlugin
+Bundle-SymbolicName: org.eclipse.papyrus.sysml.diagram.parametric;singleton:=true
+

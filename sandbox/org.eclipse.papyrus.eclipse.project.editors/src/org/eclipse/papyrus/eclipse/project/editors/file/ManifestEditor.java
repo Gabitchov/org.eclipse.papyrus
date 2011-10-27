@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringReader;
 import java.util.Set;
+import java.util.jar.Attributes;
 import java.util.jar.Attributes.Name;
 import java.util.jar.Manifest;
 
@@ -24,9 +25,11 @@ import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.papyrus.eclipse.project.editors.Activator;
 import org.eclipse.papyrus.eclipse.project.editors.interfaces.IManifestEditor;
 import org.eclipse.papyrus.eclipse.project.editors.project.ProjectEditor;
+import org.eclipse.pde.internal.ui.editor.actions.FormatOperation;
 
 public class ManifestEditor extends ProjectEditor implements IManifestEditor {
 
@@ -133,7 +136,8 @@ public class ManifestEditor extends ProjectEditor implements IManifestEditor {
 	 *      {@inheritDoc}
 	 */
 	public void setValue(final String key, final String name, final String value) {
-		this.manifest.getAttributes(key).put(name, value);
+		this.manifest.getMainAttributes().putValue(key, value);
+		//		this.manifest.getAttributes(key).put(name, value);
 	}
 
 	/**
@@ -200,6 +204,9 @@ public class ManifestEditor extends ProjectEditor implements IManifestEditor {
 				return reader.read();
 			}
 		}, true, true, null);
+
+		//Use the PDE formatter for ManifestFiles
+		FormatOperation.format(this.manifestFile, new NullProgressMonitor());
 	}
 
 	@Override
@@ -351,5 +358,19 @@ public class ManifestEditor extends ProjectEditor implements IManifestEditor {
 				this.manifest.getMainAttributes().put(bundleVendor, vendor);
 			}
 		}
+	}
+
+	public String getValue(String key) {
+		if(this.manifest != null) {
+			String value = this.manifest.getMainAttributes().getValue(key);
+			if(value == null) {
+				Attributes attributes = this.manifest.getAttributes(key);
+				if(attributes != null) {
+					value = attributes.getValue(key);
+				}
+			}
+			return value;
+		}
+		return null;
 	}
 }

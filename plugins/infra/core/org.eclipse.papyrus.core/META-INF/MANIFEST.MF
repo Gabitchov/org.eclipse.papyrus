@@ -1,18 +1,10 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Localization: plugin
-Bundle-Name: %pluginName
-Bundle-SymbolicName: org.eclipse.papyrus.core;singleton:=true
-Bundle-Version: 0.9.0.qualifier
-Bundle-Activator: org.eclipse.papyrus.core.Activator
-Require-Bundle: org.eclipse.papyrus.sasheditor;bundle-version="0.8.0";visibility:=reexport,
- org.eclipse.papyrus.sasheditor.di;bundle-version="0.8.0";visibility:=reexport,
+Require-Bundle: org.eclipse.papyrus.sasheditor;bundle-version:="0.9.0";visibility:=reexport,
+ org.eclipse.papyrus.sasheditor.di;bundle-version="0.9.0";visibility:=reexport,
  org.eclipse.ui.ide;bundle-version="3.4.0";visibility:=reexport,
  org.eclipse.gmf.runtime.diagram.ui;bundle-version="1.1.0";visibility:=reexport,
  org.eclipse.emf.edit.ui;bundle-version="2.6.0";visibility:=reexport,
- org.eclipse.papyrus.commands;visibility:=reexport
-Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+ org.eclipse.papyrus.commands;bundle-version="0.9.0";visibility:=reexport
 Export-Package: org.eclipse.papyrus.core,
  org.eclipse.papyrus.core.contentoutline,
  org.eclipse.papyrus.core.editor,
@@ -33,3 +25,12 @@ Export-Package: org.eclipse.papyrus.core,
  org.eclipse.papyrus.resource.sasheditor,
  org.eclipse.papyrus.resource.uml
 Bundle-Vendor: %providerName
+Bundle-ActivationPolicy: lazy
+Bundle-Version: 0.9.0.qualifier
+Bundle-Localization: plugin
+Bundle-Name: %pluginName
+Bundle-ManifestVersion: 2
+Bundle-Activator: org.eclipse.papyrus.core.Activator
+Bundle-SymbolicName: org.eclipse.papyrus.core;singleton:=true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+

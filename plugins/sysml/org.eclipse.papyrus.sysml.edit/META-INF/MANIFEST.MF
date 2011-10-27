@@ -1,13 +1,4 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: %pluginName
-Bundle-SymbolicName: org.eclipse.papyrus.sysml.edit;singleton:=true
-Bundle-Version: 0.9.0.qualifier
-Bundle-ClassPath: .
-Bundle-Activator: org.eclipse.papyrus.sysml.provider.SysmlEditPlugin$Implementation
-Bundle-Vendor: %providerName
-Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.papyrus.sysml.activities.provider,
  org.eclipse.papyrus.sysml.allocations.provider,
  org.eclipse.papyrus.sysml.blocks.provider,
@@ -19,7 +10,18 @@ Export-Package: org.eclipse.papyrus.sysml.activities.provider,
  org.eclipse.papyrus.sysml.provider,
  org.eclipse.papyrus.sysml.registry,
  org.eclipse.papyrus.sysml.requirements.provider
-Require-Bundle: org.eclipse.papyrus.sysml;visibility:=reexport,
- org.eclipse.papyrus.uml.standard.edit;visibility:=reexport,
- org.eclipse.core.runtime;bundle-version="3.6.0"
 Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: .
+Bundle-Name: %pluginName
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Require-Bundle: org.eclipse.papyrus.sysml;bundle-version:="0.9.0";visibility:=reexport,
+ org.eclipse.papyrus.uml.standard.edit;bundle-version="0.9.0";visibility:=reexport,
+ org.eclipse.core.runtime;bundle-version:="3.6.0"
+Bundle-Vendor: %providerName
+Bundle-Version: 0.9.0.qualifier
+Bundle-ManifestVersion: 2
+Bundle-Activator: org.eclipse.papyrus.sysml.provider.SysmlEditPlugin$I
+ mplementation
+Bundle-SymbolicName: org.eclipse.papyrus.sysml.edit;singleton:=true
+

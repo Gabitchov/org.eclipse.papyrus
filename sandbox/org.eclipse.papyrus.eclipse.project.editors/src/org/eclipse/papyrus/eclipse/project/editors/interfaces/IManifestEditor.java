@@ -68,6 +68,8 @@ public interface IManifestEditor extends IProjectEditor, IFileEditor {
 	 */
 	public void setValue(final String key, final String value);
 
+	public String getValue(final String key);
+
 	/**
 	 * 
 	 * @param key

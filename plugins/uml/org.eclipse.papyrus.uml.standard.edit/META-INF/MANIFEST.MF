@@ -1,15 +1,18 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: %pluginName
-Bundle-SymbolicName: org.eclipse.papyrus.uml.standard.edit;singleton:=true
-Bundle-Version: 0.9.0.qualifier
+Export-Package: org.eclipse.papyrus.uml.standard.provider
+Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
-Bundle-Activator: org.eclipse.papyrus.uml.standard.provider.standardEditPlugin$Implementation
-Bundle-Vendor: %providerName
+Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: org.eclipse.papyrus.uml.standard.provider
-Require-Bundle: org.eclipse.papyrus.uml.standard;visibility:=reexport,
+Require-Bundle: org.eclipse.papyrus.uml.standard;bundle-version="0.9.0";visibility:=reexport,
  org.eclipse.uml2.uml.edit;visibility:=reexport,
  org.eclipse.core.runtime;bundle-version="3.6.0"
-Bundle-ActivationPolicy: lazy
+Bundle-Vendor: %providerName
+Bundle-Version: 0.9.0.qualifier
+Bundle-ManifestVersion: 2
+Bundle-Activator: org.eclipse.papyrus.uml.standard.provider.standardEd
+ itPlugin$Implementation
+Bundle-SymbolicName: org.eclipse.papyrus.uml.standard.edit;singleton:=
+ true
+

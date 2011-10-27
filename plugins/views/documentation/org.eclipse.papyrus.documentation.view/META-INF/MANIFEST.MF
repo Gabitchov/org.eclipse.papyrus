@@ -1,10 +1,9 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
+Export-Package: org.eclipse.papyrus.documentation.view
+Bundle-ActivationPolicy: lazy
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
-Bundle-SymbolicName: org.eclipse.papyrus.documentation.view;singleton:=true
-Bundle-Version: 0.9.0.qualifier
-Bundle-Activator: org.eclipse.papyrus.documentation.view.DocViewPlugin
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: org.eclipse.core.expressions;visibility:=reexport,
  org.eclipse.ui.editors;visibility:=reexport,
  org.eclipse.ui.ide;visibility:=reexport,
@@ -12,9 +11,12 @@ Require-Bundle: org.eclipse.core.expressions;visibility:=reexport,
  org.eclipse.jface.text,
  org.eclipse.core.resources,
  org.eclipse.epf.richtext,
- org.eclipse.papyrus.documentation;bundle-version="0.7.3";visibility:=reexport
-Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: org.eclipse.papyrus.documentation.view
-Import-Package: org.eclipse.ui.views.contentoutline
+ org.eclipse.papyrus.documentation;bundle-version="0.9.0";visibility:=reexport
 Bundle-Vendor: %providerName
+Bundle-Version: 0.9.0.qualifier
+Bundle-ManifestVersion: 2
+Bundle-Activator: org.eclipse.papyrus.documentation.view.DocViewPlugin
+Bundle-SymbolicName: org.eclipse.papyrus.documentation.view;singleton:
+ =true
+Import-Package: org.eclipse.ui.views.contentoutline
+
