@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?eclipse version="3.4"?>
+
+<plugin>
+   <extension point="org.eclipse.compare.structureMergeViewers">
+      <viewer class="org.eclipse.papyrus.uml.compare.ui.structure.viewer.UMLStructureMergeViewerCreator" extensions="uml" id="org.eclipse.papyrus.uml.compare.ui.structureviewer" label="My Structure Merge Viewer">
+      </viewer>
+      <contentTypeBinding contentTypeId="org.eclipse.papyrus.uml.compare.papyrus" structureMergeViewerId="org.eclipse.papyrus.uml.compare.ui.structureviewer">
+      </contentTypeBinding>
+   </extension>
+
+   <extension point="org.eclipse.emf.facet.infra.browser.custom.core.registration">
+      <browserCustomization file="resources/emfcompare.uiCustom"/>
+   </extension>
+   <extension
+         point="org.eclipse.core.contenttype.contentTypes">
+      <content-type
+            id="org.eclipse.papyrus.uml.compare.papyrus"
+            name="Papyrus type"
+            priority="normal">
+      </content-type>
+   </extension>
+   <extension
+         point="org.eclipse.compare.contentMergeViewers">
+      <viewer
+            class="org.eclipse.papyrus.uml.compare.ui.merge.viewer.PapyrusContentMergeViewerCreator"
+            extensions="uml"
+            id="org.eclipse.papyrus.uml.compare.ui.content.merge.viewer"
+            label="My Papyrus Content Merge Viewer">
+      </viewer>
+      <contentTypeBinding
+            contentMergeViewerId="org.eclipse.papyrus.uml.compare.ui.content.merge.viewer"
+            contentTypeId="org.eclipse.papyrus.uml.compare.papyrus"
+            structureMergeViewerId="org.eclipse.papyrus.uml.compare.ui.structureviewer">
+      </contentTypeBinding>
+   </extension>
+   <extension
+         point="org.eclipse.compare.contentMergeViewers">
+      <viewer
+            class="org.eclipse.papyrus.uml.compare.ui.transactional.merge.viewer.TransactionalContentMergeViewerCreator"
+            extensions="uml"
+            id="org.eclipse.papyrus.uml.compare.ui.content.transactional.merge.viewer"
+            label="Transactional Papyrus Content Merge Viewer">
+      </viewer>
+      <contentTypeBinding
+            contentMergeViewerId="org.eclipse.papyrus.uml.compare.ui.content.merge.viewer"
+            contentTypeId="org.eclipse.papyrus.uml.compare.papyrus"
+            structureMergeViewerId="org.eclipse.papyrus.uml.compare.ui.structureviewer">
+      </contentTypeBinding>
+   </extension>
+</plugin>

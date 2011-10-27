@@ -1,0 +1,25 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Papyrus UML Compare
+Bundle-SymbolicName: org.eclipse.papyrus.uml.compare.ui;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: org.eclipse.papyrus.uml.compare.ui.Activator
+Bundle-Vendor: Eclipse Modeling Project
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.compare,
+ org.eclipse.emf.compare.ui,
+ org.eclipse.emf.facet.infra.browser.custom,
+ org.eclipse.emf.facet.infra.browser.custom.core,
+ org.eclipse.emf.facet.infra.browser.uicore,
+ org.eclipse.emf.compare.diff,
+ org.eclipse.emf.edit.ui,
+ org.eclipse.emf.compare,
+ org.eclipse.emf.transaction,
+ org.eclipse.emf.workspace;bundle-version="1.5.1"
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-ActivationPolicy: lazy
+Export-Package: org.eclipse.papyrus.uml.compare.ui,
+ org.eclipse.papyrus.uml.compare.ui.merge.viewer,
+ org.eclipse.papyrus.uml.compare.ui.provider,
+ org.eclipse.papyrus.uml.compare.ui.structure.viewer
