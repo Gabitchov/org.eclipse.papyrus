@@ -1,0 +1,25 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: EMF-Compare With Command
+Bundle-SymbolicName: org.eclipse.papyrus.emf.compare.transactional.editor;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: org.eclipse.papyrus.emf.compare.transactional.editor.Activator
+Bundle-Vendor: Eclipse Modeling Project
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.emf.ecore;bundle-version="2.7.0",
+ org.eclipse.emf.compare;bundle-version="1.2.1",
+ org.eclipse.compare;bundle-version="3.5.201",
+ org.eclipse.emf.compare.diff;bundle-version="1.3.0",
+ org.eclipse.emf.compare.ui,
+ org.eclipse.emf.compare.match,
+ org.eclipse.core.resources,
+ org.eclipse.emf.transaction,
+ org.eclipse.sphinx.emf.compare.ui,
+ org.eclipse.sphinx.platform.ui,
+ org.eclipse.sphinx.emf,
+ org.eclipse.papyrus.log;bundle-version="0.8.2",
+ org.eclipse.papyrus.uml.compare.ui;bundle-version="1.0.0",
+ org.eclipse.pde;bundle-version="3.6.100"
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-ActivationPolicy: lazy

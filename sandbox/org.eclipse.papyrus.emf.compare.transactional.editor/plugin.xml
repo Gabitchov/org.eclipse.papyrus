@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="org.eclipse.papyrus.emf.compare.transactional.editor.PapyrusCompareEditor"
+            contributorClass="org.eclipse.papyrus.emf.compare.transactional.editor.PapyrusModelCompareActionBarContributor"
+            default="true"
+            id="org.eclipse.papyrus.emf.compare.editor"
+            name="EMF-Compare Editor With Command">
+         <contentTypeBinding
+               contentTypeId="org.eclipse.uml2.uml">
+         </contentTypeBinding>
+      </editor>
+      <editor
+            class="org.eclipse.papyrus.emf.compare.transactional.editor.v2.TransactionalCompareEditor"
+            contributorClass="org.eclipse.papyrus.emf.compare.transactional.editor.v2.TransactionalActionBarContributor"
+            default="true"
+            id="org.eclipse.papyrus.emf.compare.transactional.editor"
+            name="Transactional EMF-Compare Editor ">
+         <contentTypeBinding
+               contentTypeId="org.eclipse.uml2.uml">
+         </contentTypeBinding>
+      </editor>
+   </extension>
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            adaptable="false"
+            id="org.eclipse.papyrus.uml.compare.ui"
+            objectClass="org.eclipse.core.resources.IFile">
+         <action
+               class="org.eclipse.papyrus.emf.compare.transactional.editor.FileCompareAction"
+               enablesFor="2+"
+               id="PapyrusCompareWithEachOther"
+               label="Papyrus Compare"
+               menubarPath="compareWithMenu/compareWithGroup"
+               tooltip="Papyrus Compare">
+         </action>
+      </objectContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            adaptable="false"
+            id="org.eclipse.papyrus.emf.compare.transactional.editor.objectContribution1"
+            objectClass="org.eclipse.core.resources.IFile">
+         <action
+               class="org.eclipse.papyrus.emf.compare.transactional.editor.v2.PapyrusCompareAction"
+               enablesFor="2+"
+               id="org.eclipse.papyrus.emf.compare.transactional.editor.action1"
+               label="Papyrus Compare Action V2"
+               menubarPath="compareWithMenu/compareWithGroup"
+               tooltip="Papyrus Compare V2">
+         </action>
+      </objectContribution>
+   </extension>
+
+</plugin>
