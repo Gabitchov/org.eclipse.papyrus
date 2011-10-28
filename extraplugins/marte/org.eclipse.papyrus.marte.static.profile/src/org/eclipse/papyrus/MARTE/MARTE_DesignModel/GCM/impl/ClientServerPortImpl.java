@@ -200,12 +200,12 @@ public class ClientServerPortImpl extends EObjectImpl implements ClientServerPor
 		PortSpecificationKind portSpecKind = SPECIFICATION_KIND_EDEFAULT;
 		if(getBase_Port() != null) {
 			if(getBase_Port().getType() != null && getBase_Port().getType() instanceof Signal) {
-				if(getProvInterface() != null)
+				/*if(getProvInterface() != null)
 					getProvInterface().clear();
 				if(getReqInterface() != null)
 					getReqInterface().clear();
 				if(getFeaturesSpec() != null)
-					setFeaturesSpec(null);
+					setFeaturesSpec(null);*/
 				portSpecKind = PortSpecificationKind.ATOMIC;
 			}
 			else if(getBase_Port().getType() == null) {
