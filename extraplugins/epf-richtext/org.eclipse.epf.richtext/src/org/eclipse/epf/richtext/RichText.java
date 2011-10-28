@@ -49,6 +49,8 @@ import org.eclipse.swt.browser.LocationAdapter;
 import org.eclipse.swt.browser.LocationEvent;
 import org.eclipse.swt.browser.StatusTextEvent;
 import org.eclipse.swt.browser.StatusTextListener;
+import org.eclipse.swt.events.ControlAdapter;
+import org.eclipse.swt.events.ControlEvent;
 import org.eclipse.swt.events.DisposeEvent;
 import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.swt.events.HelpListener;
@@ -289,6 +291,18 @@ public class RichText implements IRichText {
 	protected void init(Composite parent, int style) throws Exception {
 		try {
 			addStatusTextListener();
+
+			// Bug 244838 : Enforce Browser resizing when its container is resized
+			editor.addControlListener(new ControlAdapter() {
+	            @Override
+	            public void controlResized(ControlEvent e) {
+	                if (!Platform.getOS().equals("win32")) { //$NON-NLS-1$
+	                    // Workaround Mozilla'a IFRAME height issue.
+	                    executeCommand(RichTextCommand.SET_HEIGHT, "" + editor.getBounds().height); //$NON-NLS-1$
+	                }
+	            }
+	        });
+            
 			if (debug) {
 				printDebugMessage("init", "added status text listener"); //$NON-NLS-1$ //$NON-NLS-2$
 			}
@@ -1129,10 +1143,10 @@ public class RichText implements IRichText {
 							if (Platform.getOS().equals("win32")) { //$NON-NLS-1$ 
 								// Workaround the drag and drop issue with DBCS
 								// characters.
-//								if (modified) {
-//									setText(getText());
-//									modified = true;
-//								}
+								if (modified) {
+									setText(getText());
+									modified = true;
+								}
 							}
 							checkModify();
 							break;
