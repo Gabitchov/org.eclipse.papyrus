@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.epf.richtext;singleton:=true
-Bundle-Version: 1.6.0.qualifier
+Bundle-Version: 1.6.1.qualifier
 Bundle-ClassPath: richtext.jar
 Bundle-Activator: org.eclipse.epf.richtext.RichTextPlugin
 Bundle-Vendor: %providerName
