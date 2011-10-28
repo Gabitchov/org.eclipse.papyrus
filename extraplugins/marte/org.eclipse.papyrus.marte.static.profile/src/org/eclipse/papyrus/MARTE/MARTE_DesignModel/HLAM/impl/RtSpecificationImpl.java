@@ -28,6 +28,7 @@ import org.eclipse.papyrus.MARTE.MARTE_Foundations.Time.TimedInstantObservation;
 
 import org.eclipse.uml2.uml.BehavioralFeature;
 import org.eclipse.uml2.uml.Comment;
+import org.eclipse.uml2.uml.Element;
 
 /**
  * <!-- begin-user-doc -->
@@ -509,24 +510,25 @@ public class RtSpecificationImpl extends EObjectImpl implements RtSpecification 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public BehavioralFeature basicGetContext() {
 		// TODO: implement this method to return the 'Context' reference
 		// -> do not perform proxy resolution
 		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		//throw new UnsupportedOperationException();
+		return null;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public void setContext(BehavioralFeature newContext) {
 		// TODO: implement this method to set the 'Context' reference
 		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		//throw new UnsupportedOperationException();
 	}
 
 	/**
