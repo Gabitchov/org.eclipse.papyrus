@@ -16,7 +16,7 @@
     <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/3.0.0/UML#//Boolean"/>
     <scope href="http://www.eclipse.org/uml2/3.0.0/UML#//Element"/>
   </queries>
-  <queries xsi:type="query:JavaModelQuery" name="getContainedDiagrams" description="Get the collection of all contained diagrams" upperBound="-1" implementationClassName="org.eclipse.papyrus.uml.modelexplorer.queries.GetContainedDiagrams">
+  <queries xsi:type="query:JavaModelQuery" name="GetContainedDiagrams" description="Get the collection of all contained diagrams" upperBound="-1" implementationClassName="org.eclipse.papyrus.uml.modelexplorer.queries.GetContainedDiagrams">
     <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//Diagram"/>
     <scope href="http://www.eclipse.org/uml2/3.0.0/UML#//Element"/>
   </queries>
