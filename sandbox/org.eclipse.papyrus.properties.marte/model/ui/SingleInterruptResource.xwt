@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Group xmlns:ppel="clr-namespace:org.eclipse.papyrus.properties.widgets.layout"
+	xmlns:x="http://www.eclipse.org/xwt" xmlns="http://www.eclipse.org/xwt/presentation"
+	xmlns:ppe="clr-namespace:org.eclipse.papyrus.properties.widgets"
+	xmlns:j="clr-namespace:java.lang" text="InterruptResource">
+	<Group.layout>
+		<ppel:PropertiesLayout></ppel:PropertiesLayout>
+	</Group.layout>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:StringEditor input="{Binding}"
+			property="MARTE:MARTE_DesignModel:SRM:SW_Concurrency:SwConcurrentResource:type"></ppe:StringEditor>
+		<ppe:StringEditor input="{Binding}"
+			property="MARTE:MARTE_Foundations:GRM:Resource:resMult"></ppe:StringEditor>
+	</Composite>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="2"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:BooleanRadio input="{Binding}"
+			property="MARTE:MARTE_DesignModel:SRM:SW_Concurrency:InterruptResource:isMaskable"></ppe:BooleanRadio>
+		<ppe:BooleanRadio input="{Binding}"
+			property="MARTE:MARTE_Foundations:GRM:Resource:isProtected"></ppe:BooleanRadio>
+		<ppe:BooleanRadio input="{Binding}"
+			property="MARTE:MARTE_Foundations:GRM:Resource:isActive"></ppe:BooleanRadio>
+	</Composite>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="2"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:IntegerEditor input="{Binding}"
+			property="MARTE:MARTE_DesignModel:SRM:SW_Concurrency:SwConcurrentResource:activationCapacity"></ppe:IntegerEditor>
+	</Composite>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="2"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:EnumCombo input="{Binding}"
+			property="MARTE:MARTE_DesignModel:SRM:SW_Concurrency:InterruptResource:kind"></ppe:EnumCombo>
+	</Composite>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="2"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:ReferenceDialog input="{Binding}"
+			property="MARTE:MARTE_DesignModel:SRM:SW_ResourceCore:SwResource:memorySizeFootprint"></ppe:ReferenceDialog>
+	</Composite>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="2"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:MultiReference input="{Binding}"
+			property="MARTE:MARTE_DesignModel:SRM:SW_ResourceCore:SwResource:initializeServices"></ppe:MultiReference>
+		<ppe:MultiReference input="{Binding}"
+			property="MARTE:MARTE_DesignModel:SRM:SW_ResourceCore:SwResource:deleteServices"></ppe:MultiReference>
+		<ppe:MultiReference input="{Binding}"
+			property="MARTE:MARTE_DesignModel:SRM:SW_ResourceCore:SwResource:identifierElements"></ppe:MultiReference>
+		<ppe:MultiReference input="{Binding}"
+			property="MARTE:MARTE_DesignModel:SRM:SW_ResourceCore:SwResource:createServices"></ppe:MultiReference>
+		<ppe:MultiReference input="{Binding}"
+			property="MARTE:MARTE_DesignModel:SRM:SW_ResourceCore:SwResource:stateElements"></ppe:MultiReference>
+		<ppe:MultiReference input="{Binding}"
+			property="MARTE:MARTE_DesignModel:SRM:SW_Concurrency:SwConcurrentResource:periodElements"></ppe:MultiReference>
+		<ppe:MultiReference input="{Binding}"
+			property="MARTE:MARTE_DesignModel:SRM:SW_Concurrency:SwConcurrentResource:entryPoints"></ppe:MultiReference>
+		<ppe:MultiReference input="{Binding}"
+			property="MARTE:MARTE_DesignModel:SRM:SW_Concurrency:SwConcurrentResource:terminateServices"></ppe:MultiReference>
+		<ppe:MultiReference input="{Binding}"
+			property="MARTE:MARTE_DesignModel:SRM:SW_Concurrency:SwConcurrentResource:heapSizeElements"></ppe:MultiReference>
+		<ppe:MultiReference input="{Binding}"
+			property="MARTE:MARTE_DesignModel:SRM:SW_Concurrency:SwConcurrentResource:shareDataResources"></ppe:MultiReference>
+		<ppe:MultiReference input="{Binding}"
+			property="MARTE:MARTE_DesignModel:SRM:SW_Concurrency:SwConcurrentResource:activateServices"></ppe:MultiReference>
+		<ppe:MultiReference input="{Binding}"
+			property="MARTE:MARTE_DesignModel:SRM:SW_Concurrency:SwConcurrentResource:priorityElements"></ppe:MultiReference>
+		<ppe:MultiReference input="{Binding}"
+			property="MARTE:MARTE_DesignModel:SRM:SW_Concurrency:SwConcurrentResource:stackSizeElements"></ppe:MultiReference>
+		<ppe:MultiReference input="{Binding}"
+			property="MARTE:MARTE_DesignModel:SRM:SW_Concurrency:SwConcurrentResource:notificationResources"></ppe:MultiReference>
+		<ppe:MultiReference input="{Binding}"
+			property="MARTE:MARTE_DesignModel:SRM:SW_Concurrency:SwConcurrentResource:resumeServices"></ppe:MultiReference>
+		<ppe:MultiReference input="{Binding}"
+			property="MARTE:MARTE_DesignModel:SRM:SW_Concurrency:SwConcurrentResource:disableConcurrencyServices"></ppe:MultiReference>
+		<ppe:MultiReference input="{Binding}"
+			property="MARTE:MARTE_DesignModel:SRM:SW_Concurrency:SwConcurrentResource:messageResources"></ppe:MultiReference>
+		<ppe:MultiReference input="{Binding}"
+			property="MARTE:MARTE_DesignModel:SRM:SW_Concurrency:SwConcurrentResource:enableConcurrencyServices"></ppe:MultiReference>
+		<ppe:MultiReference input="{Binding}"
+			property="MARTE:MARTE_DesignModel:SRM:SW_Concurrency:SwConcurrentResource:mutualExclusionResources"></ppe:MultiReference>
+		<ppe:MultiReference input="{Binding}"
+			property="MARTE:MARTE_DesignModel:SRM:SW_Concurrency:SwConcurrentResource:suspendServices"></ppe:MultiReference>
+		<ppe:MultiReference input="{Binding}"
+			property="MARTE:MARTE_DesignModel:SRM:SW_Concurrency:SwConcurrentResource:adressSpace"></ppe:MultiReference>
+		<ppe:MultiReference input="{Binding}"
+			property="MARTE:MARTE_DesignModel:SRM:SW_Concurrency:InterruptResource:vectorElements"></ppe:MultiReference>
+		<ppe:MultiReference input="{Binding}"
+			property="MARTE:MARTE_DesignModel:SRM:SW_Concurrency:InterruptResource:routineConnectServices"></ppe:MultiReference>
+		<ppe:MultiReference input="{Binding}"
+			property="MARTE:MARTE_DesignModel:SRM:SW_Concurrency:InterruptResource:routineDisconnectServices"></ppe:MultiReference>
+		<ppe:MultiReference input="{Binding}"
+			property="MARTE:MARTE_DesignModel:SRM:SW_Concurrency:InterruptResource:maskElements"></ppe:MultiReference>
+	</Composite>
+</Group>

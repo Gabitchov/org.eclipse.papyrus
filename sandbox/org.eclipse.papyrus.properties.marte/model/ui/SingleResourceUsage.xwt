@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Group xmlns:j="clr-namespace:java.lang"
+	xmlns:ppe="clr-namespace:org.eclipse.papyrus.properties.widgets"
+	xmlns:ppel="clr-namespace:org.eclipse.papyrus.properties.widgets.layout"
+	xmlns:x="http://www.eclipse.org/xwt" xmlns="http://www.eclipse.org/xwt/presentation"
+	text="ResourceUsage">
+	<Group.layout>
+		<ppel:PropertiesLayout></ppel:PropertiesLayout>
+	</Group.layout>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:MultiString input="{Binding}"
+			property="MARTE:MARTE_Foundations:GRM:ResourceUsage:allocatedMemory"></ppe:MultiString>
+		<ppe:MultiString input="{Binding}"
+			property="MARTE:MARTE_Foundations:GRM:ResourceUsage:msgSize"></ppe:MultiString>
+		<ppe:MultiString input="{Binding}"
+			property="MARTE:MARTE_Foundations:GRM:ResourceUsage:execTime"></ppe:MultiString>
+		<ppe:MultiString input="{Binding}"
+			property="MARTE:MARTE_Foundations:GRM:ResourceUsage:energy"></ppe:MultiString>
+		<ppe:MultiString input="{Binding}"
+			property="MARTE:MARTE_Foundations:GRM:ResourceUsage:powerPeak"></ppe:MultiString>
+		<ppe:MultiString input="{Binding}"
+			property="MARTE:MARTE_Foundations:GRM:ResourceUsage:usedMemory"></ppe:MultiString>
+	</Composite>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="2"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:MultiReference input="{Binding}"
+			property="MARTE:MARTE_Foundations:GRM:ResourceUsage:subUsage"></ppe:MultiReference>
+		<ppe:MultiReference input="{Binding}"
+			property="MARTE:MARTE_Foundations:GRM:ResourceUsage:usedResources"></ppe:MultiReference>
+	</Composite>
+</Group>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Group xmlns:j="clr-namespace:java.lang"
+	xmlns:ppel="clr-namespace:org.eclipse.papyrus.properties.widgets.layout"
+	xmlns="http://www.eclipse.org/xwt/presentation" xmlns:ppe="clr-namespace:org.eclipse.papyrus.properties.widgets"
+	xmlns:x="http://www.eclipse.org/xwt" text="PaRunTInstance">
+	<Group.layout>
+		<ppel:PropertiesLayout></ppel:PropertiesLayout>
+	</Group.layout>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="2"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:BooleanRadio input="{Binding}"
+			property="MARTE:MARTE_AnalysisModel:PAM:PaRunTInstance:unbddPool"></ppe:BooleanRadio>
+	</Composite>
+</Group>

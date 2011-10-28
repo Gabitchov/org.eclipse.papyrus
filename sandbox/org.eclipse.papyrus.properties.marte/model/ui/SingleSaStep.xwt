@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Group xmlns:j="clr-namespace:java.lang"
+	xmlns:ppe="clr-namespace:org.eclipse.papyrus.properties.widgets"
+	xmlns:ppel="clr-namespace:org.eclipse.papyrus.properties.widgets.layout"
+	xmlns="http://www.eclipse.org/xwt/presentation" xmlns:x="http://www.eclipse.org/xwt"
+	text="SaStep">
+	<Group.layout>
+		<ppel:PropertiesLayout></ppel:PropertiesLayout>
+	</Group.layout>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:StringEditor input="{Binding}"
+			property="MARTE:MARTE_AnalysisModel:SAM:SaStep:spareCap"></ppe:StringEditor>
+		<ppe:StringEditor input="{Binding}"
+			property="MARTE:MARTE_AnalysisModel:SAM:SaStep:numberSelfSuspensions"></ppe:StringEditor>
+		<ppe:StringEditor input="{Binding}"
+			property="MARTE:MARTE_AnalysisModel:SAM:SaStep:preemptT"></ppe:StringEditor>
+		<ppe:StringEditor input="{Binding}"
+			property="MARTE:MARTE_AnalysisModel:SAM:SaStep:nonpreemptionBlocking"></ppe:StringEditor>
+		<ppe:StringEditor input="{Binding}"
+			property="MARTE:MARTE_AnalysisModel:SAM:SaStep:deadline"></ppe:StringEditor>
+		<ppe:StringEditor input="{Binding}"
+			property="MARTE:MARTE_AnalysisModel:SAM:SaStep:schSlack"></ppe:StringEditor>
+		<ppe:StringEditor input="{Binding}"
+			property="MARTE:MARTE_AnalysisModel:SAM:SaStep:readyT"></ppe:StringEditor>
+		<ppe:StringEditor input="{Binding}"
+			property="MARTE:MARTE_AnalysisModel:SAM:SaStep:selfSuspensionBlocking"></ppe:StringEditor>
+	</Composite>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="2"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:MultiReference input="{Binding}"
+			property="MARTE:MARTE_AnalysisModel:SAM:SaStep:sharedRes"></ppe:MultiReference>
+	</Composite>
+</Group>

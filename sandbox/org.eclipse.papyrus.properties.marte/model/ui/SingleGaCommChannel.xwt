@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Group xmlns="http://www.eclipse.org/xwt/presentation" xmlns:x="http://www.eclipse.org/xwt"
+	xmlns:j="clr-namespace:java.lang" xmlns:ppe="clr-namespace:org.eclipse.papyrus.properties.widgets"
+	xmlns:ppel="clr-namespace:org.eclipse.papyrus.properties.widgets.layout"
+	text="GaCommChannel">
+	<Group.layout>
+		<ppel:PropertiesLayout></ppel:PropertiesLayout>
+	</Group.layout>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:StringEditor input="{Binding}"
+			property="MARTE:MARTE_AnalysisModel:GQAM:GaCommChannel:utilization"></ppe:StringEditor>
+		<ppe:StringEditor input="{Binding}"
+			property="MARTE:MARTE_AnalysisModel:GQAM:GaCommChannel:packetSize"></ppe:StringEditor>
+		<ppe:StringEditor input="{Binding}"
+			property="MARTE:MARTE_Foundations:GRM:Resource:resMult"></ppe:StringEditor>
+	</Composite>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="2"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:BooleanRadio input="{Binding}"
+			property="MARTE:MARTE_Foundations:GRM:Resource:isProtected"></ppe:BooleanRadio>
+		<ppe:BooleanRadio input="{Binding}"
+			property="MARTE:MARTE_Foundations:GRM:Resource:isActive"></ppe:BooleanRadio>
+	</Composite>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="2"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:ReferenceDialog input="{Binding}"
+			property="MARTE:MARTE_Foundations:GRM:SchedulableResource:host"></ppe:ReferenceDialog>
+		<ppe:ReferenceDialog input="{Binding}"
+			property="MARTE:MARTE_Foundations:GRM:SchedulableResource:dependentScheduler"></ppe:ReferenceDialog>
+	</Composite>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:MultiString input="{Binding}"
+			property="MARTE:MARTE_Foundations:GRM:SchedulableResource:schedParams"></ppe:MultiString>
+	</Composite>
+</Group>

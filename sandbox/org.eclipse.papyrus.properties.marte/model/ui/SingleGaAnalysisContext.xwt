@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Group xmlns:ppe="clr-namespace:org.eclipse.papyrus.properties.widgets"
+	xmlns:j="clr-namespace:java.lang" xmlns="http://www.eclipse.org/xwt/presentation"
+	xmlns:ppel="clr-namespace:org.eclipse.papyrus.properties.widgets.layout"
+	xmlns:x="http://www.eclipse.org/xwt" text="GaAnalysisContext">
+	<Group.layout>
+		<ppel:PropertiesLayout></ppel:PropertiesLayout>
+	</Group.layout>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:MultiString input="{Binding}"
+			property="MARTE:MARTE_AnalysisModel:GQAM:GaAnalysisContext:context"></ppe:MultiString>
+	</Composite>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="2"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:MultiReference input="{Binding}"
+			property="MARTE:MARTE_Foundations:CoreElements:Configuration:mode"></ppe:MultiReference>
+		<ppe:MultiReference input="{Binding}"
+			property="MARTE:MARTE_AnalysisModel:GQAM:GaAnalysisContext:workload"></ppe:MultiReference>
+		<ppe:MultiReference input="{Binding}"
+			property="MARTE:MARTE_AnalysisModel:GQAM:GaAnalysisContext:platform"></ppe:MultiReference>
+	</Composite>
+</Group>

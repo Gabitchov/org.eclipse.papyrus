@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Group xmlns:ppel="clr-namespace:org.eclipse.papyrus.properties.widgets.layout"
+	xmlns:ppe="clr-namespace:org.eclipse.papyrus.properties.widgets"
+	xmlns:x="http://www.eclipse.org/xwt" xmlns:j="clr-namespace:java.lang"
+	xmlns="http://www.eclipse.org/xwt/presentation" text="MemoryBroker">
+	<Group.layout>
+		<ppel:PropertiesLayout></ppel:PropertiesLayout>
+	</Group.layout>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:StringEditor input="{Binding}"
+			property="MARTE:MARTE_Foundations:GRM:Resource:resMult"></ppe:StringEditor>
+	</Composite>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="2"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:BooleanRadio input="{Binding}"
+			property="MARTE:MARTE_Foundations:GRM:Resource:isProtected"></ppe:BooleanRadio>
+		<ppe:BooleanRadio input="{Binding}"
+			property="MARTE:MARTE_Foundations:GRM:Resource:isActive"></ppe:BooleanRadio>
+	</Composite>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="2"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:EnumCombo input="{Binding}"
+			property="MARTE:MARTE_DesignModel:SRM:SW_Brokering:MemoryBroker:accessPolicy"></ppe:EnumCombo>
+	</Composite>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="2"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:ReferenceDialog input="{Binding}"
+			property="MARTE:MARTE_DesignModel:SRM:SW_ResourceCore:SwResource:memorySizeFootprint"></ppe:ReferenceDialog>
+	</Composite>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="2"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:MultiReference input="{Binding}"
+			property="MARTE:MARTE_DesignModel:SRM:SW_Brokering:MemoryBroker:unMapServices"></ppe:MultiReference>
+		<ppe:MultiReference input="{Binding}"
+			property="MARTE:MARTE_DesignModel:SRM:SW_Brokering:MemoryBroker:lockServices"></ppe:MultiReference>
+		<ppe:MultiReference input="{Binding}"
+			property="MARTE:MARTE_DesignModel:SRM:SW_Brokering:MemoryBroker:memories"></ppe:MultiReference>
+		<ppe:MultiReference input="{Binding}"
+			property="MARTE:MARTE_DesignModel:SRM:SW_Brokering:MemoryBroker:memoryBlockSizeElements"></ppe:MultiReference>
+		<ppe:MultiReference input="{Binding}"
+			property="MARTE:MARTE_DesignModel:SRM:SW_Brokering:MemoryBroker:memoryBlockAdressElements"></ppe:MultiReference>
+		<ppe:MultiReference input="{Binding}"
+			property="MARTE:MARTE_DesignModel:SRM:SW_Brokering:MemoryBroker:mapServices"></ppe:MultiReference>
+		<ppe:MultiReference input="{Binding}"
+			property="MARTE:MARTE_DesignModel:SRM:SW_Brokering:MemoryBroker:unlockServices"></ppe:MultiReference>
+		<ppe:MultiReference input="{Binding}"
+			property="MARTE:MARTE_DesignModel:SRM:SW_ResourceCore:SwResource:initializeServices"></ppe:MultiReference>
+		<ppe:MultiReference input="{Binding}"
+			property="MARTE:MARTE_DesignModel:SRM:SW_ResourceCore:SwResource:deleteServices"></ppe:MultiReference>
+		<ppe:MultiReference input="{Binding}"
+			property="MARTE:MARTE_DesignModel:SRM:SW_ResourceCore:SwResource:identifierElements"></ppe:MultiReference>
+		<ppe:MultiReference input="{Binding}"
+			property="MARTE:MARTE_DesignModel:SRM:SW_ResourceCore:SwResource:createServices"></ppe:MultiReference>
+		<ppe:MultiReference input="{Binding}"
+			property="MARTE:MARTE_DesignModel:SRM:SW_ResourceCore:SwResource:stateElements"></ppe:MultiReference>
+	</Composite>
+</Group>

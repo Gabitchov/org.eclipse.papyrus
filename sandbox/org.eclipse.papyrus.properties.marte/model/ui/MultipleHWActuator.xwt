@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Group xmlns:ppe="clr-namespace:org.eclipse.papyrus.properties.widgets"
+	xmlns:x="http://www.eclipse.org/xwt" xmlns:ppel="clr-namespace:org.eclipse.papyrus.properties.widgets.layout"
+	xmlns="http://www.eclipse.org/xwt/presentation" xmlns:j="clr-namespace:java.lang"
+	text="HWActuator">
+	<Group.layout>
+		<ppel:PropertiesLayout></ppel:PropertiesLayout>
+	</Group.layout>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="2"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:BooleanRadio input="{Binding}"
+			property="MARTE:MARTE_Foundations:GRM:Resource:isProtected"></ppe:BooleanRadio>
+		<ppe:BooleanRadio input="{Binding}"
+			property="MARTE:MARTE_Foundations:GRM:Resource:isActive"></ppe:BooleanRadio>
+	</Composite>
+</Group>

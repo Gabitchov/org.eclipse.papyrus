@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Group xmlns:ppe="clr-namespace:org.eclipse.papyrus.properties.widgets"
+	xmlns="http://www.eclipse.org/xwt/presentation" xmlns:ppel="clr-namespace:org.eclipse.papyrus.properties.widgets.layout"
+	xmlns:j="clr-namespace:java.lang" xmlns:x="http://www.eclipse.org/xwt"
+	text="SaCommHost">
+	<Group.layout>
+		<ppel:PropertiesLayout></ppel:PropertiesLayout>
+	</Group.layout>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="2"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:BooleanRadio input="{Binding}"
+			property="MARTE:MARTE_Foundations:GRM:Scheduler:isPreemptible"></ppe:BooleanRadio>
+		<ppe:BooleanRadio input="{Binding}"
+			property="MARTE:MARTE_Foundations:GRM:Resource:isProtected"></ppe:BooleanRadio>
+		<ppe:BooleanRadio input="{Binding}"
+			property="MARTE:MARTE_Foundations:GRM:Resource:isActive"></ppe:BooleanRadio>
+	</Composite>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="2"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:EnumCombo input="{Binding}"
+			property="MARTE:MARTE_Foundations:GRM:CommunicationMedia:transmMode"></ppe:EnumCombo>
+		<ppe:EnumCombo input="{Binding}"
+			property="MARTE:MARTE_Foundations:GRM:Scheduler:schedPolicy"></ppe:EnumCombo>
+	</Composite>
+</Group>

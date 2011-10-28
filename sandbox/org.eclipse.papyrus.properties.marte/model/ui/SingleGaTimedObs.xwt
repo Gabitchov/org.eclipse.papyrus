@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Group xmlns:ppe="clr-namespace:org.eclipse.papyrus.properties.widgets"
+	xmlns:j="clr-namespace:java.lang" xmlns:ppel="clr-namespace:org.eclipse.papyrus.properties.widgets.layout"
+	xmlns:x="http://www.eclipse.org/xwt" xmlns="http://www.eclipse.org/xwt/presentation"
+	text="GaTimedObs">
+	<Group.layout>
+		<ppel:PropertiesLayout></ppel:PropertiesLayout>
+	</Group.layout>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="2"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:EnumCombo input="{Binding}"
+			property="MARTE:MARTE_AnalysisModel:GQAM:GaTimedObs:laxity"></ppe:EnumCombo>
+		<ppe:EnumCombo input="{Binding}"
+			property="MARTE:MARTE_Foundations:NFPs:NfpConstraint:kind"></ppe:EnumCombo>
+	</Composite>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="2"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:MultiReference input="{Binding}"
+			property="MARTE:MARTE_AnalysisModel:GQAM:GaTimedObs:startObs"></ppe:MultiReference>
+		<ppe:MultiReference input="{Binding}"
+			property="MARTE:MARTE_AnalysisModel:GQAM:GaTimedObs:endObs"></ppe:MultiReference>
+		<ppe:MultiReference input="{Binding}"
+			property="MARTE:MARTE_Foundations:NFPs:NfpConstraint:mode"></ppe:MultiReference>
+	</Composite>
+</Group>

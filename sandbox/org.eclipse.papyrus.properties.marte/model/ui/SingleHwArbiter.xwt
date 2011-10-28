@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Group xmlns:ppe="clr-namespace:org.eclipse.papyrus.properties.widgets"
+	xmlns:x="http://www.eclipse.org/xwt" xmlns="http://www.eclipse.org/xwt/presentation"
+	xmlns:j="clr-namespace:java.lang" xmlns:ppel="clr-namespace:org.eclipse.papyrus.properties.widgets.layout"
+	text="HwArbiter">
+	<Group.layout>
+		<ppel:PropertiesLayout></ppel:PropertiesLayout>
+	</Group.layout>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:StringEditor input="{Binding}"
+			property="MARTE:MARTE_DesignModel:HRM:HwGeneral:HwResource:frequency"></ppe:StringEditor>
+		<ppe:StringEditor input="{Binding}"
+			property="MARTE:MARTE_DesignModel:HRM:HwGeneral:HwResource:description"></ppe:StringEditor>
+		<ppe:StringEditor input="{Binding}"
+			property="MARTE:MARTE_Foundations:GRM:Resource:resMult"></ppe:StringEditor>
+	</Composite>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="2"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:BooleanRadio input="{Binding}"
+			property="MARTE:MARTE_Foundations:GRM:Resource:isProtected"></ppe:BooleanRadio>
+		<ppe:BooleanRadio input="{Binding}"
+			property="MARTE:MARTE_Foundations:GRM:Resource:isActive"></ppe:BooleanRadio>
+	</Composite>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="2"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:MultiReference input="{Binding}"
+			property="MARTE:MARTE_DesignModel:HRM:HwLogical:HwCommunication:HwArbiter:controlledMedias"></ppe:MultiReference>
+		<ppe:MultiReference input="{Binding}"
+			property="MARTE:MARTE_DesignModel:HRM:HwGeneral:HwResource:endPoints"></ppe:MultiReference>
+		<ppe:MultiReference input="{Binding}"
+			property="MARTE:MARTE_DesignModel:HRM:HwGeneral:HwResource:r_HW_Services"></ppe:MultiReference>
+		<ppe:MultiReference input="{Binding}"
+			property="MARTE:MARTE_DesignModel:HRM:HwGeneral:HwResource:p_HW_Services"></ppe:MultiReference>
+		<ppe:MultiReference input="{Binding}"
+			property="MARTE:MARTE_DesignModel:HRM:HwGeneral:HwResource:ownedHW"></ppe:MultiReference>
+	</Composite>
+</Group>

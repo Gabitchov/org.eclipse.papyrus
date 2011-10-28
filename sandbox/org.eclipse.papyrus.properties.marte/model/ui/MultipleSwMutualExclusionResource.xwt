@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Group xmlns:j="clr-namespace:java.lang" xmlns:x="http://www.eclipse.org/xwt"
+	xmlns:ppe="clr-namespace:org.eclipse.papyrus.properties.widgets"
+	xmlns:ppel="clr-namespace:org.eclipse.papyrus.properties.widgets.layout"
+	xmlns="http://www.eclipse.org/xwt/presentation" text="SwMutualExclusionResource">
+	<Group.layout>
+		<ppel:PropertiesLayout></ppel:PropertiesLayout>
+	</Group.layout>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="2"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:BooleanRadio input="{Binding}"
+			property="MARTE:MARTE_DesignModel:SRM:SW_Interaction:SwInteractionResource:isIntraMemoryPartitionInteraction"></ppe:BooleanRadio>
+		<ppe:BooleanRadio input="{Binding}"
+			property="MARTE:MARTE_Foundations:GRM:Resource:isProtected"></ppe:BooleanRadio>
+		<ppe:BooleanRadio input="{Binding}"
+			property="MARTE:MARTE_Foundations:GRM:Resource:isActive"></ppe:BooleanRadio>
+	</Composite>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="2"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:IntegerEditor input="{Binding}"
+			property="MARTE:MARTE_DesignModel:SRM:SW_Interaction:SwInteractionResource:waitingQueueCapacity"></ppe:IntegerEditor>
+	</Composite>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="2"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:EnumCombo input="{Binding}"
+			property="MARTE:MARTE_Foundations:GRM:MutualExclusionResource:protectKind"></ppe:EnumCombo>
+		<ppe:EnumCombo input="{Binding}"
+			property="MARTE:MARTE_DesignModel:SRM:SW_Interaction:SwMutualExclusionResource:concurrentAccessProtocol"></ppe:EnumCombo>
+		<ppe:EnumCombo input="{Binding}"
+			property="MARTE:MARTE_DesignModel:SRM:SW_Interaction:SwMutualExclusionResource:mechanism"></ppe:EnumCombo>
+		<ppe:EnumCombo input="{Binding}"
+			property="MARTE:MARTE_DesignModel:SRM:SW_Interaction:SwInteractionResource:waitingQueuePolicy"></ppe:EnumCombo>
+	</Composite>
+</Group>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Group xmlns:j="clr-namespace:java.lang" xmlns="http://www.eclipse.org/xwt/presentation"
+	xmlns:ppe="clr-namespace:org.eclipse.papyrus.properties.widgets"
+	xmlns:ppel="clr-namespace:org.eclipse.papyrus.properties.widgets.layout"
+	xmlns:x="http://www.eclipse.org/xwt" text="RtService">
+	<Group.layout>
+		<ppel:PropertiesLayout></ppel:PropertiesLayout>
+	</Group.layout>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="2"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:BooleanRadio input="{Binding}"
+			property="MARTE:MARTE_DesignModel:HLAM:RtService:isAtomic"></ppe:BooleanRadio>
+	</Composite>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="2"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:EnumCombo input="{Binding}"
+			property="MARTE:MARTE_DesignModel:HLAM:RtService:concPolicy"></ppe:EnumCombo>
+		<ppe:EnumCombo input="{Binding}"
+			property="MARTE:MARTE_DesignModel:HLAM:RtService:exeKind"></ppe:EnumCombo>
+		<ppe:EnumCombo input="{Binding}"
+			property="MARTE:MARTE_DesignModel:HLAM:RtService:synchKind"></ppe:EnumCombo>
+	</Composite>
+</Group>

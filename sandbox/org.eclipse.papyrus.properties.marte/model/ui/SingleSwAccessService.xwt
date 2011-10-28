@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Group xmlns:x="http://www.eclipse.org/xwt" xmlns="http://www.eclipse.org/xwt/presentation"
+	xmlns:ppel="clr-namespace:org.eclipse.papyrus.properties.widgets.layout"
+	xmlns:ppe="clr-namespace:org.eclipse.papyrus.properties.widgets"
+	xmlns:j="clr-namespace:java.lang" text="SwAccessService">
+	<Group.layout>
+		<ppel:PropertiesLayout></ppel:PropertiesLayout>
+	</Group.layout>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="2"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:BooleanRadio input="{Binding}"
+			property="MARTE:MARTE_DesignModel:SRM:SW_ResourceCore:SwAccessService:isModifier"></ppe:BooleanRadio>
+	</Composite>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="2"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:ReferenceDialog input="{Binding}"
+			property="MARTE:MARTE_DesignModel:SRM:SW_ResourceCore:SwAccessService:accessedElement"></ppe:ReferenceDialog>
+		<ppe:ReferenceDialog input="{Binding}"
+			property="MARTE:MARTE_Foundations:GRM:GrService:owner"></ppe:ReferenceDialog>
+	</Composite>
+</Group>

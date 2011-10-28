@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Group xmlns:ppe="clr-namespace:org.eclipse.papyrus.properties.widgets"
+	xmlns:ppel="clr-namespace:org.eclipse.papyrus.properties.widgets.layout"
+	xmlns:j="clr-namespace:java.lang" xmlns="http://www.eclipse.org/xwt/presentation"
+	xmlns:x="http://www.eclipse.org/xwt" text="PaCommStep">
+	<Group.layout>
+		<ppel:PropertiesLayout></ppel:PropertiesLayout>
+	</Group.layout>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:StringEditor input="{Binding}"
+			property="MARTE:MARTE_AnalysisModel:GQAM:GaStep:blockT"></ppe:StringEditor>
+		<ppe:StringEditor input="{Binding}"
+			property="MARTE:MARTE_AnalysisModel:GQAM:GaStep:isAtomic"></ppe:StringEditor>
+		<ppe:StringEditor input="{Binding}"
+			property="MARTE:MARTE_AnalysisModel:GQAM:GaStep:priority"></ppe:StringEditor>
+		<ppe:StringEditor input="{Binding}"
+			property="MARTE:MARTE_AnalysisModel:GQAM:GaStep:selfDelay"></ppe:StringEditor>
+		<ppe:StringEditor input="{Binding}"
+			property="MARTE:MARTE_AnalysisModel:GQAM:GaStep:rep"></ppe:StringEditor>
+		<ppe:StringEditor input="{Binding}"
+			property="MARTE:MARTE_AnalysisModel:GQAM:GaStep:prob"></ppe:StringEditor>
+		<ppe:StringEditor input="{Binding}"
+			property="MARTE:MARTE_AnalysisModel:PAM:PaStep:noSync"></ppe:StringEditor>
+	</Composite>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="2"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:ReferenceDialog input="{Binding}"
+			property="MARTE:MARTE_AnalysisModel:GQAM:GaStep:host"></ppe:ReferenceDialog>
+		<ppe:ReferenceDialog input="{Binding}"
+			property="MARTE:MARTE_AnalysisModel:GQAM:GaStep:concurRes"></ppe:ReferenceDialog>
+		<ppe:ReferenceDialog input="{Binding}"
+			property="MARTE:MARTE_AnalysisModel:GQAM:GaStep:scenario"></ppe:ReferenceDialog>
+		<ppe:ReferenceDialog input="{Binding}"
+			property="MARTE:MARTE_AnalysisModel:GQAM:GaStep:childScenario"></ppe:ReferenceDialog>
+		<ppe:ReferenceDialog input="{Binding}"
+			property="MARTE:MARTE_Foundations:Time:TimedProcessing:start"></ppe:ReferenceDialog>
+		<ppe:ReferenceDialog input="{Binding}"
+			property="MARTE:MARTE_Foundations:Time:TimedProcessing:finish"></ppe:ReferenceDialog>
+		<ppe:ReferenceDialog input="{Binding}"
+			property="MARTE:MARTE_Foundations:Time:TimedProcessing:duration"></ppe:ReferenceDialog>
+		<ppe:ReferenceDialog input="{Binding}"
+			property="MARTE:MARTE_AnalysisModel:GQAM:GaScenario:root"></ppe:ReferenceDialog>
+		<ppe:ReferenceDialog input="{Binding}"
+			property="MARTE:MARTE_AnalysisModel:GQAM:GaScenario:cause"></ppe:ReferenceDialog>
+	</Composite>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:MultiString input="{Binding}"
+			property="MARTE:MARTE_AnalysisModel:GQAM:GaStep:servCount"></ppe:MultiString>
+		<ppe:MultiString input="{Binding}"
+			property="MARTE:MARTE_Foundations:GRM:ResourceUsage:allocatedMemory"></ppe:MultiString>
+		<ppe:MultiString input="{Binding}"
+			property="MARTE:MARTE_Foundations:GRM:ResourceUsage:msgSize"></ppe:MultiString>
+		<ppe:MultiString input="{Binding}"
+			property="MARTE:MARTE_Foundations:GRM:ResourceUsage:execTime"></ppe:MultiString>
+		<ppe:MultiString input="{Binding}"
+			property="MARTE:MARTE_Foundations:GRM:ResourceUsage:energy"></ppe:MultiString>
+		<ppe:MultiString input="{Binding}"
+			property="MARTE:MARTE_Foundations:GRM:ResourceUsage:powerPeak"></ppe:MultiString>
+		<ppe:MultiString input="{Binding}"
+			property="MARTE:MARTE_Foundations:GRM:ResourceUsage:usedMemory"></ppe:MultiString>
+		<ppe:MultiString input="{Binding}"
+			property="MARTE:MARTE_AnalysisModel:PAM:PaStep:extOpDemand"></ppe:MultiString>
+		<ppe:MultiString input="{Binding}"
+			property="MARTE:MARTE_AnalysisModel:PAM:PaStep:behavCount"></ppe:MultiString>
+		<ppe:MultiString input="{Binding}"
+			property="MARTE:MARTE_AnalysisModel:PAM:PaStep:extOpCount"></ppe:MultiString>
+		<ppe:MultiString input="{Binding}"
+			property="MARTE:MARTE_AnalysisModel:GQAM:GaScenario:respT"></ppe:MultiString>
+		<ppe:MultiString input="{Binding}"
+			property="MARTE:MARTE_AnalysisModel:GQAM:GaScenario:utilization"></ppe:MultiString>
+		<ppe:MultiString input="{Binding}"
+			property="MARTE:MARTE_AnalysisModel:GQAM:GaScenario:interOccT"></ppe:MultiString>
+		<ppe:MultiString input="{Binding}"
+			property="MARTE:MARTE_AnalysisModel:GQAM:GaScenario:hostDemand"></ppe:MultiString>
+		<ppe:MultiString input="{Binding}"
+			property="MARTE:MARTE_AnalysisModel:GQAM:GaScenario:utilizationOnHost"></ppe:MultiString>
+		<ppe:MultiString input="{Binding}"
+			property="MARTE:MARTE_AnalysisModel:GQAM:GaScenario:hostDemandOps"></ppe:MultiString>
+		<ppe:MultiString input="{Binding}"
+			property="MARTE:MARTE_AnalysisModel:GQAM:GaScenario:throughput"></ppe:MultiString>
+	</Composite>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="2"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:MultiReference input="{Binding}"
+			property="MARTE:MARTE_AnalysisModel:GQAM:GaStep:servDemand"></ppe:MultiReference>
+		<ppe:MultiReference input="{Binding}"
+			property="MARTE:MARTE_Foundations:GRM:ResourceUsage:subUsage"></ppe:MultiReference>
+		<ppe:MultiReference input="{Binding}"
+			property="MARTE:MARTE_Foundations:GRM:ResourceUsage:usedResources"></ppe:MultiReference>
+		<ppe:MultiReference input="{Binding}"
+			property="MARTE:MARTE_AnalysisModel:PAM:PaStep:behavDemand"></ppe:MultiReference>
+		<ppe:MultiReference input="{Binding}"
+			property="MARTE:MARTE_AnalysisModel:GQAM:GaScenario:timing"></ppe:MultiReference>
+		<ppe:MultiReference input="{Binding}"
+			property="MARTE:MARTE_AnalysisModel:GQAM:GaScenario:steps"></ppe:MultiReference>
+		<ppe:MultiReference input="{Binding}"
+			property="MARTE:MARTE_AnalysisModel:GQAM:GaScenario:parentStep"></ppe:MultiReference>
+	</Composite>
+</Group>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Group xmlns:ppe="clr-namespace:org.eclipse.papyrus.properties.widgets"
+	xmlns:x="http://www.eclipse.org/xwt" xmlns:ppel="clr-namespace:org.eclipse.papyrus.properties.widgets.layout"
+	xmlns="http://www.eclipse.org/xwt/presentation" xmlns:j="clr-namespace:java.lang"
+	text="ClockType">
+	<Group.layout>
+		<ppel:PropertiesLayout></ppel:PropertiesLayout>
+	</Group.layout>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="2"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:BooleanRadio input="{Binding}"
+			property="MARTE:MARTE_Foundations:Time:ClockType:isLogical"></ppe:BooleanRadio>
+	</Composite>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="2"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:EnumCombo input="{Binding}"
+			property="MARTE:MARTE_Foundations:Time:ClockType:nature"></ppe:EnumCombo>
+	</Composite>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="2"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:ReferenceDialog input="{Binding}"
+			property="MARTE:MARTE_Foundations:Time:ClockType:getTime"></ppe:ReferenceDialog>
+		<ppe:ReferenceDialog input="{Binding}"
+			property="MARTE:MARTE_Foundations:Time:ClockType:offsetAttr"></ppe:ReferenceDialog>
+		<ppe:ReferenceDialog input="{Binding}"
+			property="MARTE:MARTE_Foundations:Time:ClockType:indexToValue"></ppe:ReferenceDialog>
+		<ppe:ReferenceDialog input="{Binding}"
+			property="MARTE:MARTE_Foundations:Time:ClockType:maxValAttr"></ppe:ReferenceDialog>
+		<ppe:ReferenceDialog input="{Binding}"
+			property="MARTE:MARTE_Foundations:Time:ClockType:resolAttr"></ppe:ReferenceDialog>
+		<ppe:ReferenceDialog input="{Binding}"
+			property="MARTE:MARTE_Foundations:Time:ClockType:setTime"></ppe:ReferenceDialog>
+		<ppe:ReferenceDialog input="{Binding}"
+			property="MARTE:MARTE_Foundations:Time:ClockType:unitType"></ppe:ReferenceDialog>
+	</Composite>
+</Group>

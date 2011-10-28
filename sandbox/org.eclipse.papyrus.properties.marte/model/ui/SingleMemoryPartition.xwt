@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Group xmlns:ppel="clr-namespace:org.eclipse.papyrus.properties.widgets.layout"
+	xmlns="http://www.eclipse.org/xwt/presentation" xmlns:ppe="clr-namespace:org.eclipse.papyrus.properties.widgets"
+	xmlns:j="clr-namespace:java.lang" xmlns:x="http://www.eclipse.org/xwt"
+	text="MemoryPartition">
+	<Group.layout>
+		<ppel:PropertiesLayout></ppel:PropertiesLayout>
+	</Group.layout>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="2"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:MultiReference input="{Binding}"
+			property="MARTE:MARTE_DesignModel:SRM:SW_Concurrency:MemoryPartition:fork"></ppe:MultiReference>
+		<ppe:MultiReference input="{Binding}"
+			property="MARTE:MARTE_DesignModel:SRM:SW_Concurrency:MemoryPartition:memorySpaces"></ppe:MultiReference>
+		<ppe:MultiReference input="{Binding}"
+			property="MARTE:MARTE_DesignModel:SRM:SW_Concurrency:MemoryPartition:concurrentResources"></ppe:MultiReference>
+		<ppe:MultiReference input="{Binding}"
+			property="MARTE:MARTE_DesignModel:SRM:SW_Concurrency:MemoryPartition:exit"></ppe:MultiReference>
+	</Composite>
+</Group>
