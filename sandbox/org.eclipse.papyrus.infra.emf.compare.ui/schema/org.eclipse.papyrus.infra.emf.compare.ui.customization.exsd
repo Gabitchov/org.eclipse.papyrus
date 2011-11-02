@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="org.eclipse.papyrus.infra.compare.ui" xmlns="http://www.w3.org/2001/XMLSchema">
+<schema targetNamespace="org.eclipse.papyrus.infra.emf.compare.ui" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appinfo>
-         <meta.schema plugin="org.eclipse.papyrus.infra.compare.ui" id="org.eclipse.papyrus.infra.compare.ui.customization" name="org.eclipse.papyrus.infra.compare.ui.customization"/>
+         <meta.schema plugin="org.eclipse.papyrus.infra.emf.compare.ui" id="org.eclipse.papyrus.infra.emf.compare.ui.customization" name="org.eclipse.papyrus.infra.emf.compare.ui.customization"/>
       </appinfo>
       <documentation>
          [Enter description of this extension point.]
