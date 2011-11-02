@@ -13,6 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.service.types.helper;
 
+import java.util.Arrays;
+
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -66,7 +68,7 @@ public class FlowSpecificationEditHelperAdvice extends AbstractStereotypedElemen
 		
 		// [2] Every “ownedAttribute” of a FlowSpecification must be a FlowProperty.
 		if (UMLElementTypes.PROPERTY.getEClass().isSuperTypeOf(elementToCreate.getEClass())) {
-			if (elementToCreate != SysMLElementTypes.FLOW_PROPERTY) {
+			if ((elementToCreate != SysMLElementTypes.FLOW_PROPERTY) && !(Arrays.asList(elementToCreate.getAllSuperTypes()).contains(SysMLElementTypes.FLOW_PROPERTY))) {
 				return UnexecutableCommand.INSTANCE;
 			}
 		}
