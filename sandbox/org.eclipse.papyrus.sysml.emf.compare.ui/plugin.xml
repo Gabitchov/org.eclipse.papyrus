@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?eclipse version="3.4"?>
+
+<plugin>
+
+   <extension point="org.eclipse.emf.facet.infra.browser.custom.core.registration">
+      <browserCustomization
+            file="todo/dummySysML.uiCustom"
+            loadByDefault="true"/>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.emf.compare.ui.customization">
+      <compareCustomization
+            file="todo/dummySysML.uiCustom"
+            icon="icons/sysml.gif"
+            name="org.eclipse.papyrus.sysml.emf.compare.ui.sysml.customization"
+            tooltip="%compareCustomization.tooltip">
+      </compareCustomization>
+   </extension>
+</plugin>
