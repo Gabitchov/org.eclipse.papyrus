@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doc:Documentation xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:doc="http://www.eclipse.org/papyrus/documentation/plugin/documentation" description="This plugin provides elements to customize EMF-Compare for UML">
+  <implicitDependencies plugin="org.eclipse.papyrus.infra.emf.compare.ui" comment="This plugin uses the extension point org.eclipse.papyrus.infra.emf.compare.ui.customization and the action &quot;Find unused dependencies&quot; removes it!"/>
+  <referent firstName="Vincent" lastName="Lorenzo" eMail="vincent.lorenzo@cea.fr" currentCompany="CEA-LIST"/>
+</doc:Documentation>

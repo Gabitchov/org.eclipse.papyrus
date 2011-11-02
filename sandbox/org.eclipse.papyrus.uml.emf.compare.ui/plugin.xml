@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension point="org.eclipse.emf.facet.infra.browser.custom.core.registration">
+      <browserCustomization
+            file="todo/dummyUML.uiCustom"
+            loadByDefault="true"/>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.emf.compare.ui.customization">
+      <compareCustomization
+            file="todo/dummyUML.uiCustom"
+            icon="icons/uml_notation.gif"
+            name="org.eclipse.papyrus.uml.emf.compare.ui.uml.customization"
+            tooltip="%compareCustomization.tooltip">
+      </compareCustomization>
+   </extension>
+</plugin>
