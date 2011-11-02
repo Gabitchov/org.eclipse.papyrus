@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension-point id="org.eclipse.papyrus.infra.emf.compare.ui.customization" name="org.eclipse.papyrus.infra.emf.compare.ui.customization" schema="schema/org.eclipse.papyrus.infra.emf.compare.ui.customization.exsd"/>
+   <extension
+         point="org.eclipse.compare.contentMergeViewers">
+      <viewer
+            class="org.eclipse.papyrus.uml.compare.ui.transactional.merge.viewer.TransactionalContentMergeViewerCreator"
+            extensions="uml"
+            id="org.eclipse.papyrus.infra.compare.ui.papyrus.viewer"
+            label="Papyrus Viewer">
+      </viewer>
+   </extension>
+
+</plugin>
