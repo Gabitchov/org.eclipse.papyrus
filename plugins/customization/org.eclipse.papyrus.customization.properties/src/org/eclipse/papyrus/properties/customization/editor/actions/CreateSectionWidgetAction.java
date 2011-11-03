@@ -69,7 +69,7 @@ public class CreateSectionWidgetAction extends StaticSelectionCommandAction {
 		CompositeWidget newWidget = createWidget();
 
 		CompoundCommandActionDelegate createActionCommand = new CompoundCommandActionDelegate();
-		createActionCommand.setImage(Activator.getDefault().getImage("org.eclipse.papyrus.properties.model.edit", "icons/full/obj16/CompositeWidget.gif")); //$NON-NLS-1$//$NON-NLS-2$
+		createActionCommand.setImage(Activator.getDefault().getImage("org.eclipse.papyrus.views.properties.model.edit", "icons/full/obj16/CompositeWidget.gif")); //$NON-NLS-1$//$NON-NLS-2$
 		createActionCommand.append(getCreateResourceCommand(newWidget));
 		createActionCommand.append(getSetWidgetCommand(newWidget));
 

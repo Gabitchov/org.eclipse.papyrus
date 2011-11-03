@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="org.eclipse.papyrus.properties" xmlns="http://www.w3.org/2001/XMLSchema">
+<schema targetNamespace="org.eclipse.papyrus.views.properties" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appInfo>
-         <meta.schema plugin="org.eclipse.papyrus.properties" id="Environment" name="Environment"/>
+         <meta.schema plugin="org.eclipse.papyrus.views.properties" id="Environment" name="Environment"/>
       </appInfo>
       <documentation>
-         Extension point used to provide new Environment to the Papyrus Property View. An Environment is an EMF Model conforming to http://www.eclipse.org/papyrus/properties/environment (From org.eclipse.papyrus.properties.model), defining a set of element descriptors (Widgets, Factories, ...), which can be used by the different Contexts to define new property views.
+         Extension point used to provide new Environment to the Papyrus Property View. An Environment is an EMF Model conforming to http://www.eclipse.org/papyrus/properties/environment (From org.eclipse.papyrus.views.properties.model), defining a set of element descriptors (Widgets, Factories, ...), which can be used by the different Contexts to define new property views.
       </documentation>
    </annotation>
 

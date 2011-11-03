@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Require-Bundle: org.eclipse.papyrus.common.editor.xtext;bundle-version="0.9.0";visibility:=reexport,
+Require-Bundle: org.eclipse.papyrus.uml.textedit.common.xtext;bundle-version="0.9.0";visibility:=reexport,
  org.eclipse.xpand;visibility:=reexport,
  org.eclipse.xtend;visibility:=reexport,
  org.eclipse.xtext;visibility:=reexport,
@@ -12,7 +12,7 @@ Bundle-Version: 0.9.0.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.papyrus.common.editor.xtext.generator;singleton:=true
+Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.common.xtext.generator;singleton:=true
 Import-Package: org.apache.log4j
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

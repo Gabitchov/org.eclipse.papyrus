@@ -1,4 +1,4 @@
-module org.eclipse.papyrus.state.editor.xtext.UmlState
+module org.eclipse.papyrus.uml.textedit.state.xtext.UmlState
 
 import org.eclipse.emf.mwe.utils.*
 import org.eclipse.xtext.generator.*
@@ -6,7 +6,7 @@ import org.eclipse.xtext.ui.generator.*
 
 var grammarURI = "classpath:/org/eclipse/papyrus/state/editor/xtext/UmlState.xtext"
 var file.extensions = "umlstate"
-var projectName = "org.eclipse.papyrus.state.editor.xtext"
+var projectName = "org.eclipse.papyrus.uml.textedit.state.xtext"
 var runtimeProject = "../${projectName}"
 
 Workflow {
@@ -19,9 +19,9 @@ Workflow {
 		registerGeneratedEPackage = "org.eclipse.uml2.uml.UMLPackage"
 		registerGeneratedEPackage = "org.eclipse.uml2.codegen.ecore.genmodel.GenModelPackage"
 		uriMap = {from="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore" 
-				to="platform:/resource/org.eclipse.papyrus.state.editor.xtext/model/Ecore.ecore"}
+				to="platform:/resource/org.eclipse.papyrus.uml.textedit.state.xtext/model/Ecore.ecore"}
 		uriMap = {from="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel" 
-  				to="platform:/resource/org.eclipse.papyrus.state.editor.xtext/model/Ecore.genmodel"}
+  				to="platform:/resource/org.eclipse.papyrus.uml.textedit.state.xtext/model/Ecore.genmodel"}
 	}
 
 	component = DirectoryCleaner {
@@ -46,7 +46,7 @@ Workflow {
 
 			// generates Java API for the generated EPackages 
 			fragment = ecore.EcoreGeneratorFragment {
-				referencedGenModels = "platform:/resource/org.eclipse.papyrus.state.editor.xtext/model/UML.genmodel"
+				referencedGenModels = "platform:/resource/org.eclipse.papyrus.uml.textedit.state.xtext/model/UML.genmodel"
 			}
 
 			// the serialization component

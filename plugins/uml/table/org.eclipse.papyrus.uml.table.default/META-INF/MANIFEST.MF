@@ -14,6 +14,6 @@ Bundle-Version: 0.9.0.qualifier
 Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.table.defaultt.Activator
 Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.papyrus.table.default;singleton:=true
+Bundle-SymbolicName: org.eclipse.papyrus.uml.table.default;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

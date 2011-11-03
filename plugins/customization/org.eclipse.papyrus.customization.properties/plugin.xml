@@ -22,7 +22,7 @@
       </modelqueryset>
    </extension>
    <extension point="org.eclipse.ui.editors">
-      <editor class="org.eclipse.papyrus.properties.customization.editor.UIEditor" contributorClass="org.eclipse.papyrus.properties.customization.editor.ContextEditorActionBarContributor" default="true" extensions="ctx" icon="platform:/plugin/org.eclipse.papyrus.properties.model.edit/icons/full/obj16/Context.gif" id="org.eclipse.papyrus.property.customization.UIEditor" name="%editor.name">
+      <editor class="org.eclipse.papyrus.properties.customization.editor.UIEditor" contributorClass="org.eclipse.papyrus.properties.customization.editor.ContextEditorActionBarContributor" default="true" extensions="ctx" icon="platform:/plugin/org.eclipse.papyrus.views.properties.model.edit/icons/full/obj16/Context.gif" id="org.eclipse.papyrus.property.customization.UIEditor" name="%editor.name">
       </editor>
    </extension>
    <extension point="org.eclipse.emf.ecore.uri_mapping">

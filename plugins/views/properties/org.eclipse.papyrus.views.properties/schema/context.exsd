@@ -3,10 +3,10 @@
 <schema targetNamespace="org.eclipse.papyrus.properties" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appInfo>
-         <meta.schema plugin="org.eclipse.papyrus.properties" id="Context" name="Context"/>
+         <meta.schema plugin="org.eclipse.papyrus.views.properties" id="Context" name="Context"/>
       </appInfo>
       <documentation>
-         Extension point used to provide new Contexts to the Papyrus Property View. A Context is an EMF Model conforming to http://www.eclipse.org/papyrus/properties (From org.eclipse.papyrus.properties.model), defining a set of Constraint descriptors, and the view to display for each.
+         Extension point used to provide new Contexts to the Papyrus Property View. A Context is an EMF Model conforming to http://www.eclipse.org/papyrus/properties (From org.eclipse.papyrus.views.properties.model), defining a set of Constraint descriptors, and the view to display for each.
       </documentation>
    </annotation>
 

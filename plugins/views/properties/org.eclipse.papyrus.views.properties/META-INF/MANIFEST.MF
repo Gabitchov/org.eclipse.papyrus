@@ -22,7 +22,7 @@ Require-Bundle: com.ibm.icu,
  org.eclipse.emf;bundle-version="2.6.0",
  org.eclipse.emf.ecore;bundle-version="2.6.0",
  org.eclipse.emf.ecore.xmi;bundle-version="2.5.0",
- org.eclipse.emf.databinding;bundle-version:="1.2.0",
+ org.eclipse.emf.databinding;bundle-version="1.2.0",
  org.eclipse.equinox.common;bundle-version="3.6.0",
  org.eclipse.ui;bundle-version="3.6.0",
  org.eclipse.osgi;bundle-version="3.6.0",
@@ -33,20 +33,20 @@ Require-Bundle: com.ibm.icu,
  org.eclipse.jface.databinding,
  org.eclipse.core.databinding,
  org.eclipse.core.databinding.property;bundle-version="1.3.0",
- org.eclipse.e4.xwt;bundle-version:="0.9.1",
+ org.eclipse.e4.xwt;bundle-version="0.9.1",
  org.eclipse.e4.xwt.pde;bundle-version="0.9.1",
- org.eclipse.papyrus.properties.model;bundle-version="0.9.0",
+ org.eclipse.papyrus.views.properties.model;bundle-version="0.9.0",
  org.eclipse.papyrus.service.edit;bundle-version="0.9.0",
  org.eclipse.papyrus.widgets;bundle-version="0.9.0",
- org.eclipse.core.databinding.beans;bundle-version:="1.2.100",
- org.eclipse.emf.facet.infra.query;bundle-version:="0.1.0",
- org.eclipse.emf.facet.infra.query.core;bundle-version:="0.1.0",
+ org.eclipse.core.databinding.beans;bundle-version="1.2.100",
+ org.eclipse.emf.facet.infra.query;bundle-version="0.1.0",
+ org.eclipse.emf.facet.infra.query.core;bundle-version="0.1.0",
  org.eclipse.emf.facet.infra.common.core;bundle-version="0.1.0",
- org.eclipse.papyrus.modelexplorer.widgets;bundle-version="0.9.0"
+ org.eclipse.papyrus.views.modelexplorer.widgets;bundle-version="0.9.0"
 Bundle-Vendor: %Bundle-Vendor
 Bundle-Version: 0.9.0.qualifier
 Eclipse-BuddyPolicy: dependent
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.properties.Activator
-Bundle-SymbolicName: org.eclipse.papyrus.properties;singleton:=true
+Bundle-SymbolicName: org.eclipse.papyrus.views.properties;singleton:=true
 

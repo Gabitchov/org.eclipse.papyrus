@@ -10,7 +10,7 @@ import org.osgi.framework.BundleContext;
 public class Activator extends AbstractUIPlugin {
 
 	// The plug-in ID
-	public static final String PLUGIN_ID = "org.eclipse.papyrus.tabbedproperties.comments";
+	public static final String PLUGIN_ID = "org.eclipse.papyrus.uml.properties.tabbedproperties.comments";
 
 	// The shared instance
 	private static Activator plugin;

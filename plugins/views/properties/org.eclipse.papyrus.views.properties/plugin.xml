@@ -25,7 +25,7 @@
          point="org.eclipse.emf.ecore.uri_mapping">
       <mapping
             source="pathmap://PPEResources/"
-            target="platform:/plugin/org.eclipse.papyrus.properties/model/">
+            target="platform:/plugin/org.eclipse.papyrus.views.properties/model/">
       </mapping>
    </extension>
    <extension
@@ -33,7 +33,7 @@
       <page
             category="org.eclipse.papyrus.preferences.generalcategory"
             class="org.eclipse.papyrus.properties.preferences.Preferences"
-            id="org.eclipse.papyrus.properties.propertyview"
+            id="org.eclipse.papyrus.views.properties.propertyview"
             name="%page.name">
       </page>
    </extension>

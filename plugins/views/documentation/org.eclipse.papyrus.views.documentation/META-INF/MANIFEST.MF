@@ -11,6 +11,6 @@ Bundle-Localization: plugin
 Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.documentation.Activator
 Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.papyrus.documentation;singleton:=true
+Bundle-SymbolicName: org.eclipse.papyrus.views.documentation;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

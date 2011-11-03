@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="org.eclipse.papyrus.documentation" xmlns="http://www.w3.org/2001/XMLSchema">
+<schema targetNamespace="org.eclipse.papyrus.views.documentation" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appinfo>
-         <meta.schema plugin="org.eclipse.papyrus.documentation" id="modelDocumentationManager" name="modelDocumentationManager"/>
+         <meta.schema plugin="org.eclipse.papyrus.views.documentation" id="modelDocumentationManager" name="modelDocumentationManager"/>
       </appinfo>
       <documentation>
          This extension is used to provide a way to get and set a documentation for an element of a specific meta-model.

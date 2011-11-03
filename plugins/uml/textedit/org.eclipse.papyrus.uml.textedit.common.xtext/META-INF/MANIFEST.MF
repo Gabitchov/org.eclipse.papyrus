@@ -34,6 +34,6 @@ Bundle-Name: %pluginName
 Bundle-ManifestVersion: 2
 Import-Package: org.apache.log4j,
  org.eclipse.core.runtime
-Bundle-SymbolicName: org.eclipse.papyrus.common.editor.xtext;singleton:=true
+Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.common.xtext;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

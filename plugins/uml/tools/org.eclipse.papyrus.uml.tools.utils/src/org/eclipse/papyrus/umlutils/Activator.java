@@ -30,7 +30,7 @@ public class Activator extends Plugin {
 	/**
 	 * 
 	 */
-	public static final String PLUGIN_ID = "org.eclipse.papyrus.umlutils";
+	public static final String PLUGIN_ID = "org.eclipse.papyrus.uml.tools.utils";
 
 	// The shared instance
 	/**

@@ -12,11 +12,11 @@
  *
  *****************************************************************************/
 
-grammar org.eclipse.papyrus.state.editor.xtext.UmlState with org.eclipse.xtext.common.Terminals
+grammar org.eclipse.papyrus.uml.textedit.state.xtext.UmlState with org.eclipse.xtext.common.Terminals
 
 import "http://www.eclipse.org/uml2/3.0.0/UML" as uml
 
-generate umlState "http://www.eclipse.org/papyrus/state/editor/xtext/UmlState"
+generate umlState "http://www.eclipse.org/papyrus/uml/textedit/state/xtext/UmlState"
 
 StateRule :
 	name = ID 

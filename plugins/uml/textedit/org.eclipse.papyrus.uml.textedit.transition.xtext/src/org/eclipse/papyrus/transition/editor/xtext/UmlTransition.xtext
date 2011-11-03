@@ -1,9 +1,9 @@
-grammar org.eclipse.papyrus.transition.editor.xtext.UmlTransition
+grammar org.eclipse.papyrus.uml.textedit.transition.xtext.UmlTransition
 		with org.eclipse.xtext.common.Terminals
 		
 import "http://www.eclipse.org/uml2/3.0.0/UML" as uml
 
-generate umlTransition "http://www.eclipse.org/papyrus/transition/editor/xtext/UmlTransition"
+generate umlTransition "http://www.eclipse.org/papyrus/uml/textedit/transition/xtext/UmlTransition"
 
 TransitionRule:
 	(triggers+=EventRule (',' triggers+=EventRule)*)?

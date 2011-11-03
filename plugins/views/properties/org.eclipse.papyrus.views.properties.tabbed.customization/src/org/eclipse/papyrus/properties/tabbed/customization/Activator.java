@@ -20,7 +20,7 @@ import org.osgi.framework.BundleContext;
 public class Activator extends AbstractUIPlugin {
 
 	/** plugin ID */
-	public static final String ID = "org.eclipse.papyrus.properties.tabbed.customization"; //$NON-NLS-1$
+	public static final String ID = "org.eclipse.papyrus.views.properties.tabbed.customization"; //$NON-NLS-1$
 
 	/** singleton instance */
 	private static Activator plugin;

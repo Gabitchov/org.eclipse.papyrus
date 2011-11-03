@@ -13,7 +13,7 @@ Bundle-ActivationPolicy: lazy
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Require-Bundle: org.eclipse.papyrus.transition.editor.xtext;bundle-version="0.9.0";visibility:=reexport,
+Require-Bundle: org.eclipse.papyrus.uml.textedit.transition.xtext;bundle-version="0.9.0";visibility:=reexport,
  org.eclipse.xtext.ui,
  org.eclipse.ui.editors;bundle-version="3.5.0",
  org.eclipse.ui.ide;bundle-version="3.5.0",
@@ -25,7 +25,7 @@ Require-Bundle: org.eclipse.papyrus.transition.editor.xtext;bundle-version="0.9.
  org.eclipse.papyrus.extensionpoints.editors;bundle-version="0.9.0",
  org.eclipse.gmf.runtime.diagram.ui;bundle-version="1.4.0",
  org.eclipse.papyrus.core;bundle-version="0.9.0",
- org.eclipse.papyrus.properties.runtime;bundle-version="0.9.0",
+ org.eclipse.papyrus.views.properties.runtime;bundle-version="0.9.0",
  org.eclipse.core.expressions;bundle-version="3.4.200",
  org.eclipse.xtext.gmf.glue;bundle-version="0.9.0"
 Bundle-Vendor: %providerName
@@ -33,7 +33,6 @@ Bundle-Version: 0.9.0.qualifier
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.transition.editor.xtext.ui.inter
  nal.UmlTransitionActivator
-Bundle-SymbolicName: org.eclipse.papyrus.transition.editor.xtext.ui;si
- ngleton:=true
+Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.transition.xtext.ui;singleton:=true
 Import-Package: org.apache.log4j
 

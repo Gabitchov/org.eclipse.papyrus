@@ -1,10 +1,10 @@
-module org.eclipse.papyrus.property.editor.xtext.UmlProperty
+module org.eclipse.papyrus.uml.textedit.property.xtext.UmlProperty
 
 import org.eclipse.emf.mwe.utils.*
 import org.eclipse.xtext.generator.*
 import org.eclipse.xtext.ui.generator.*
 
-var grammarURI = "classpath:/org/eclipse/papyrus/property/editor/xtext/UmlProperty.xtext"
+var grammarURI = "classpath:/org/eclipse/papyrus/uml/textedit/property/xtext/UmlProperty.xtext"
 var file.extensions = "umlproperty"
 var projectName = "org.eclipse.papyrus.property.editor.xtext"
 var runtimeProject = "../${projectName}"

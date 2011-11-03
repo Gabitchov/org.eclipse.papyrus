@@ -9,7 +9,7 @@ import org.osgi.framework.BundleContext;
 public class Activator extends AbstractUIPlugin {
 
 	// The plug-in ID
-	public static final String PLUGIN_ID = "org.eclipse.papyrus.properties.view.uml"; //$NON-NLS-1$
+	public static final String PLUGIN_ID = "org.eclipse.papyrus.uml.properties.view"; //$NON-NLS-1$
 
 	// The shared instance
 	private static Activator plugin;

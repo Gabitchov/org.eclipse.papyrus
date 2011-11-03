@@ -1,5 +1,5 @@
 <!--UML Basic fragment-->
-<fragments pluginId="org.eclipse.papyrus.properties.tabbed.customization">
+<fragments pluginId="org.eclipse.papyrus.views.properties.tabbed.customization">
 	<fragment id="fragment_single_ExpandableContainerDescriptorState">
 		<context enablesFor="1">
 			<elementClass name="org.eclipse.papyrus.properties.runtime.view.content.ExpandableContainerDescriptor$ExpandableContainerDescriptorState"/>

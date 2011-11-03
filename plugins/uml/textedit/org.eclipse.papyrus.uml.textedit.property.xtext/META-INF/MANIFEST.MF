@@ -32,7 +32,6 @@ Bundle-Localization: plugin
 Bundle-Name: %pluginName
 Bundle-ManifestVersion: 2
 Import-Package: org.apache.log4j
-Bundle-SymbolicName: org.eclipse.papyrus.property.editor.xtext;singlet
- on:=true
+Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.property.xtext;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

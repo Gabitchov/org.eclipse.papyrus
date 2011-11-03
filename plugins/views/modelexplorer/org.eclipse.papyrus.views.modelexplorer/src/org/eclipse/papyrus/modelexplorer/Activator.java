@@ -50,7 +50,7 @@ import org.osgi.framework.BundleContext;
 public class Activator extends AbstractUIPlugin implements org.eclipse.ui.IStartup {
 
 	/** The plug-in ID */
-	public static final String PLUGIN_ID = "org.eclipse.papyrus.modelexplorer"; //$NON-NLS-1$
+	public static final String PLUGIN_ID = "org.eclipse.papyrus.views.modelexplorer"; //$NON-NLS-1$
 
 	/** The plug-in shared instance */
 	private static Activator plugin;

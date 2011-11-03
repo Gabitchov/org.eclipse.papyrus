@@ -13,7 +13,7 @@ import org.osgi.framework.BundleContext;
 public class Activator extends AbstractUIPlugin {
 
 	/** plugin ID */
-	public static final String ID = "org.eclipse.papyrus.properties.runtime";
+	public static final String ID = "org.eclipse.papyrus.views.properties.runtime";
 
 	/** shared instance */
 	private static Activator plugin;

@@ -10,7 +10,6 @@ Bundle-Localization: plugin
 Bundle-Name: %pluginName
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.tabbedproperties.core.Activator
-Bundle-SymbolicName: org.eclipse.papyrus.tabbedproperties.core;singlet
- on:=true
+Bundle-SymbolicName: org.eclipse.papyrus.views.properties.tabbedproperties.core;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 
