@@ -144,4 +144,8 @@ public class PluginEditor extends PluginProjectEditor implements IPluginProjectE
 	public void setBundleVendor(String vendor) {
 		manifest.setBundleVendor(vendor);
 	}
+
+	public String getValue(String key) {
+		return manifest.getValue(key);
+	}
 }
