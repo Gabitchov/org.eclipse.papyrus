@@ -16,6 +16,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.emf.facet.infra.browser.custom,
  org.eclipse.emf.facet.infra.browser.custom.core,
  org.eclipse.emf.edit.ui,
- org.eclipse.emf.compare
+ org.eclipse.emf.compare,
+ org.eclipse.emf.facet.infra.browser.custom.ui;bundle-version="0.1.1"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy

@@ -23,14 +23,18 @@ import org.eclipse.emf.compare.ui.viewer.content.ModelContentMergeViewer;
 import org.eclipse.emf.compare.ui.viewer.content.part.IModelContentMergeViewerTab;
 import org.eclipse.emf.compare.ui.viewer.content.part.ModelContentMergeTabFolder;
 import org.eclipse.jface.viewers.IContentProvider;
+import org.eclipse.papyrus.infra.emf.compare.ui.Activator;
 import org.eclipse.papyrus.infra.emf.compare.ui.provider.PapyrusLabelProvider;
 
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.emf.compare.util.AdapterUtils;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
+import org.eclipse.emf.facet.infra.browser.uicore.CustomizationManager;
 
 
 /**
@@ -61,9 +65,17 @@ public class TransactionalModelContentMergeTabFolder extends ModelContentMergeTa
 //		IModelContentMergeViewerTab tab = super.createModelContentMergeDiffTab(parent);
 		TransactionalModelContentMergeDiffTab diffTab = new TransactionalModelContentMergeDiffTab(parent, partSide, this);
 		diffTab.setContentProvider(createDiffTabContentProvider());
-		diffTab.setLabelProvider(new PapyrusLabelProvider());
+		IEditorPart activeEditor = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
+		CustomizationManager manager = Activator.getDefault().getCustomizationManager(activeEditor);
+		diffTab.setLabelProvider(new PapyrusLabelProvider(manager));
 		return diffTab;
 
+	}
+	
+	@Override
+	public void dispose() {
+//		Activator.getDefault().
+		super.dispose();
 	}
 //
 //	/* (non-Javadoc)

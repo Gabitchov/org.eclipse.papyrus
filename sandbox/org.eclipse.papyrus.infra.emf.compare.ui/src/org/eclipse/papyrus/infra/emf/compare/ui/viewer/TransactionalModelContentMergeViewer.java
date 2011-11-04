@@ -1,8 +1,11 @@
 package org.eclipse.papyrus.infra.emf.compare.ui.viewer;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.compare.CompareConfiguration;
 import org.eclipse.compare.contentmergeviewer.IMergeViewerContentProvider;
@@ -11,15 +14,19 @@ import org.eclipse.core.commands.operations.IUndoableOperation;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.IContributor;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
 import org.eclipse.emf.compare.ui.viewer.content.ModelContentMergeViewer;
 import org.eclipse.emf.compare.ui.viewer.content.part.ModelContentMergeTabFolder;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
@@ -64,9 +71,11 @@ public class TransactionalModelContentMergeViewer extends ModelContentMergeViewe
 
 	private Resource rightDiResource;
 
-	private static ImageDescriptor diagramSynchronizationImage;
-
 	private static final String SYNCHRONIZATION_IMAGE_PATH = "icons/PapyrusLogo16x16.gif";
+	
+	private static final ImageDescriptor diagramSynchronizationImage = Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID, SYNCHRONIZATION_IMAGE_PATH);
+	
+	private  Set<EPackage> metamodels ;
 
 	//duplicate code from tatiana
 	public TransactionalModelContentMergeViewer(Composite parent, CompareConfiguration config) {
@@ -75,10 +84,8 @@ public class TransactionalModelContentMergeViewer extends ModelContentMergeViewe
 		if(editor instanceof IEditingDomainProvider) {
 			domain = (TransactionalEditingDomain)((IEditingDomainProvider)editor).getEditingDomain();
 		}
-		if(diagramSynchronizationImage == null) {
-			this.diagramSynchronizationImage = Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID, SYNCHRONIZATION_IMAGE_PATH);
-		}
 	}
+
 
 	/**
 	 * {@inheritDoc}
@@ -90,6 +97,7 @@ public class TransactionalModelContentMergeViewer extends ModelContentMergeViewe
 	public void setInput(Object input) {
 		super.setInput(input);
 		initializeDiResource();
+		initizalizeMetamodels();
 	}
 
 	private void initializeDiResource() {
@@ -242,7 +250,7 @@ public class TransactionalModelContentMergeViewer extends ModelContentMergeViewe
 		tbm.insert(0, actionContributionItem);
 
 		//we add an action to change the applied cuztomization
-		IAction customizationAction = new CustomizationAction();
+		IAction customizationAction = new CustomizationAction(getMetamodels());
 		ActionContributionItem customizationContributionItem = new ActionContributionItem(customizationAction);
 		tbm.insert(1, customizationContributionItem);
 
@@ -258,13 +266,13 @@ public class TransactionalModelContentMergeViewer extends ModelContentMergeViewe
 	 */
 	private void addSpecificActionForCustomization(ToolBarManager tbm) {
 		//TODO create an extension point for that
-		IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor("org.eclipse.papyrus.infra.compare.ui.customization");
+		IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor("org.eclipse.papyrus.infra.emf.compare.ui.customization");
 
 
 		//	for(IConfigurationElement current : config){
 		for(int i = 0; i < config.length; i++) {
 			IConfigurationElement current = config[i];
-			String image = current.getAttribute("image");
+			String image = current.getAttribute("icon");
 			String fileName = current.getAttribute("file");
 			String tooltip = current.getAttribute("tooltip");
 			String text = current.getAttribute("name");
@@ -274,10 +282,19 @@ public class TransactionalModelContentMergeViewer extends ModelContentMergeViewe
 				fileName = fileName.substring(index + 1);
 			}
 			fileName = fileName.replace(".uiCustom", "");
+			IContributor contributor = current.getContributor();
+			String pluginContributorID = contributor.getName();
 			//			CustomizationsCatalog.getInstance().
+			
+			//TODO : test when the path begin with platform...
+			ImageDescriptor imDesc = Activator.imageDescriptorFromPlugin(pluginContributorID, image);
 			MetamodelView metamodelView = CustomizationsCatalog.getInstance().getCustomization(fileName);
-			Action customization = new ApplyCustomizationAction(image, text, tooltip, metamodelView);
+			if(metamodelView==null){
+//TODO add an error message
+			}
+			Action customization = new ApplyCustomizationAction(imDesc, text, tooltip, metamodelView);
 			ActionContributionItem customizationContributionItem = new ActionContributionItem(customization);
+			customization.setChecked(false);
 			tbm.insert(i + 2, customizationContributionItem); //TODO try to improve this i+2!
 			//			tbm.appendToGroup("mode",customizationContributionItem );
 		}
@@ -302,7 +319,25 @@ public class TransactionalModelContentMergeViewer extends ModelContentMergeViewe
 			}
 		}
 	}
+	
+	
+	private void initizalizeMetamodels(){
+		 EList<EObject> contents = leftUMLResource.getContents();
+		 contents.addAll(rightUMLResource.getContents());
+		for(EObject current : contents){
+			getMetamodels().add(current.eClass().getEPackage());
+		}
+	}
+	
+	private Set<EPackage> getMetamodels(){
+		if(this.metamodels==null){
+			this.metamodels = new HashSet<EPackage>();
+		}
+		return metamodels;
+	}
 
-	private String COMPARE_CUSTOMIZATION_ID = "org.eclipse.papyrus.compare.customization";
+//	private String COMPARE_CUSTOMIZATION_ID = "org.eclipse.papyrus.compare.customization";
 
+	
+	
 }

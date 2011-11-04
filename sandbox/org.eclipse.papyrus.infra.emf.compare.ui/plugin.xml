@@ -5,10 +5,10 @@
    <extension
          point="org.eclipse.compare.contentMergeViewers">
       <viewer
-            class="org.eclipse.papyrus.uml.compare.ui.transactional.merge.viewer.TransactionalContentMergeViewerCreator"
+            class="org.eclipse.papyrus.infra.emf.compare.ui.viewer.TransactionalContentMergeViewerCreator"
             extensions="uml"
-            id="org.eclipse.papyrus.infra.compare.ui.papyrus.viewer"
-            label="Papyrus Viewer">
+            id="org.eclipse.papyrus.infra.emf.compare.ui.papyrus.viewer"
+            label="INFRA Papyrus Viewer">
       </viewer>
    </extension>
 
