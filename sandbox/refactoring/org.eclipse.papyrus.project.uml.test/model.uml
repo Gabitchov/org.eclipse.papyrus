@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_pIbcAQa-EeGLTf5WTnj-wA" name="Model">
+  <packageImport xmi:id="_pIbcAga-EeGLTf5WTnj-wA">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Activity" xmi:id="_pLHjoAa-EeGLTf5WTnj-wA" name="Activity0"/>
+  <packagedElement xmi:type="uml:Interaction" xmi:id="_paT2MAa-EeGLTf5WTnj-wA" name="Interaction0"/>
+  <packagedElement xmi:type="uml:Interaction" xmi:id="_pk5Vkga-EeGLTf5WTnj-wA" name="Interaction1"/>
+  <packagedElement xmi:type="uml:StateMachine" xmi:id="_plfLcAa-EeGLTf5WTnj-wA" name="StateMachine0">
+    <region xmi:id="_plo8cAa-EeGLTf5WTnj-wA" name="Region0"/>
+  </packagedElement>
+</uml:Model>
