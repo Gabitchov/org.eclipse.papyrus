@@ -6,6 +6,6 @@ Bundle-Version: 0.9.0.qualifier
 Bundle-Localization: plugin
 Bundle-Name: %pluginName
 Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.papyrus.uml.profile;singleton:=true
+Bundle-SymbolicName: org.eclipse.papyrus.uml.documentation.profile;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

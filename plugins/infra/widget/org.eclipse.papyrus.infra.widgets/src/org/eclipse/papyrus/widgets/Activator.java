@@ -26,7 +26,7 @@ public class Activator extends AbstractUIPlugin {
 	/**
 	 * The plug-in ID
 	 */
-	public static final String PLUGIN_ID = "org.eclipse.papyrus.widgets"; //$NON-NLS-1$
+	public static final String PLUGIN_ID = "org.eclipse.papyrus.infra.widgets"; //$NON-NLS-1$
 
 	/**
 	 * The shared instance

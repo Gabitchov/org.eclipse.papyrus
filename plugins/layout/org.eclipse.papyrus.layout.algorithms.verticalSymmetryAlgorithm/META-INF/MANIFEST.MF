@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.eclipse.papyrus.layouttool;bundle-version="0.9.0",
+ org.eclipse.papyrus.layout;bundle-version="0.9.0",
  org.eclipse.zest.layouts
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
@@ -11,7 +11,6 @@ Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.layouttool.algorithms.verticalsy
  mmetryalgorithm.Activator
 Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.papyrus.layouttool.algorithms.vertica
- lSymmetryAlgorithm;singleton:=true
+Bundle-SymbolicName: org.eclipse.papyrus.layout.algorithms.verticalSymmetryAlgorithm;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

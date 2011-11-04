@@ -1,27 +1,25 @@
 Manifest-Version: 1.0
 Require-Bundle: org.eclipse.pde;bundle-version="3.6.0",
  org.eclipse.pde.ui;bundle-version="3.6.0",
- org.eclipse.papyrus.paletteconfiguration;bundle-version="0.9.0",
- org.eclipse.emf.facet.infra.browser;bundle-version:="0.1.0",
- org.eclipse.emf.facet.infra.browser.custom;bundle-version:="0.1.0",
- org.eclipse.emf.facet.infra.browser.uicore;bundle-version:="0.1.0",
+ org.eclipse.papyrus.uml.diagram.paletteconfiguration;bundle-version="0.9.0",
+ org.eclipse.emf.facet.infra.browser;bundle-version="0.1.0",
+ org.eclipse.emf.facet.infra.browser.custom;bundle-version="0.1.0",
+ org.eclipse.emf.facet.infra.browser.uicore;bundle-version="0.1.0",
  org.eclipse.emf.facet.infra.facet.core;bundle-version="0.1.0",
- org.eclipse.emf.facet.infra.browser.custom.core;bundle-version:="0.1.0",
- org.eclipse.papyrus.paletteconfiguration.customization;bundle-version:="0.9.0",
- org.eclipse.emf.facet.infra.common.core;bundle-version:="0.1.0"
+ org.eclipse.emf.facet.infra.browser.custom.core;bundle-version="0.1.0",
+ org.eclipse.papyrus.customization.paletteconfiguration;bundle-version="0.9.0",
+ org.eclipse.emf.facet.infra.common.core;bundle-version="0.1.0"
 Export-Package: org.eclipse.papyrus.diagram.common.palette.customization,
  org.eclipse.papyrus.diagram.common.palette.customization.dialog,
  org.eclipse.papyrus.diagram.common.palette.customization.proxies,
  org.eclipse.papyrus.diagram.common.part
 Bundle-Vendor: %providerName
-Fragment-Host: org.eclipse.papyrus.diagram.common;bundle-version="0.8.
- 0"
+Fragment-Host: org.eclipse.papyrus.uml.diagram.common;bundle-version="0.8.0"
 Eclipse-PatchFragment: true
 Bundle-ClassPath: .
 Bundle-Version: 0.9.0.qualifier
 Bundle-Name: %fragmentName
 Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.papyrus.diagram.common.palette.custom
- ization;singleton:=true
+Bundle-SymbolicName: org.eclipse.papyrus.customization.palette;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2008 CEA LIST.
  *
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -28,7 +28,7 @@ public class Activator extends AbstractUIPlugin {
 	/**
 	 * 
 	 */
-	public static final String PLUGIN_ID = "org.eclipse.papyrus.profile";
+	public static final String PLUGIN_ID = "org.eclipse.papyrus.uml.profile";
 
 	// The shared instance
 	/**
@@ -55,6 +55,7 @@ public class Activator extends AbstractUIPlugin {
 	 * 
 	 * @throws Exception
 	 */
+	@Override
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 	}
@@ -71,6 +72,7 @@ public class Activator extends AbstractUIPlugin {
 	 * 
 	 * @throws Exception
 	 */
+	@Override
 	public void stop(BundleContext context) throws Exception {
 		plugin = null;
 		super.stop(context);

@@ -1,14 +1,14 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
  *
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *	Amine EL KOUHEN (CEA LIST/LIFL) - Amine.Elkouhen@cea.fr 
+ *	Amine EL KOUHEN (CEA LIST/LIFL) - Amine.Elkouhen@cea.fr
  *****************************************************************************/
 package org.eclipse.papyrus.markerlistener;
 
@@ -24,7 +24,7 @@ public class Activator extends AbstractUIPlugin {
 
 	// The plug-in ID
 	/** The Constant PLUGIN_ID. */
-	public static final String PLUGIN_ID = "org.eclipse.papyrus.markerlistener"; //$NON-NLS-1$
+	public static final String PLUGIN_ID = "org.eclipse.papyrus.infra.services.markerlistener"; //$NON-NLS-1$
 
 	// The shared instance
 	/** The plugin. */

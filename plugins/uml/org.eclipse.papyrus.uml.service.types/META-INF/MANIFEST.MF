@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
-Require-Bundle: org.eclipse.papyrus.diagram.common;bundle-version="0.9.0",
- org.eclipse.papyrus.service.edit;bundle-version="0.9.0",
+Require-Bundle: org.eclipse.papyrus.uml.diagram.common;bundle-version="0.9.0",
+ org.eclipse.papyrus.infra.services.edit;bundle-version="0.9.0",
  org.eclipse.papyrus.uml.standard;bundle-version="0.9.0"
 Export-Package: org.eclipse.papyrus.uml.service.types,
  org.eclipse.papyrus.uml.service.types.command,

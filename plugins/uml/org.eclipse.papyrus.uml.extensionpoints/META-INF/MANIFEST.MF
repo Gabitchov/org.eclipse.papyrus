@@ -16,7 +16,6 @@ Bundle-Localization: plugin
 Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.extensionpoints.uml2.Activator
 Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.papyrus.extensionpoints.uml2;singleto
- n:=true
+Bundle-SymbolicName: org.eclipse.papyrus.uml.extensionpoints;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

@@ -27,7 +27,7 @@ public class Activator extends AbstractUIPlugin {
 	public static LogHelper log;
 
 	/** The plug-in ID */
-	public static final String PLUGIN_ID = "org.eclipse.papyrus.properties.generation"; //$NON-NLS-1$
+	public static final String PLUGIN_ID = "org.eclipse.papyrus.customization.properties.generation"; //$NON-NLS-1$
 
 	// The shared instance
 	private static Activator plugin;

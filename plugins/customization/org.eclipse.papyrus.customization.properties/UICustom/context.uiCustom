@@ -18,7 +18,7 @@
     </references>
     <references referenceName="views">
       <customizedFeatures customizedFeature="icon">
-        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="/org.eclipse.papyrus.properties.customization/icons/MultiView.gif"/>
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="/org.eclipse.papyrus.customization.properties/icons/MultiView.gif"/>
       </customizedFeatures>
       <customizedFeatures customizedFeature="label">
         <defaultValue xsi:type="uicustom:StaticFeatureValue" value="Views"/>
@@ -36,7 +36,7 @@
         </defaultValue>
       </customizedFeatures>
       <customizedFeatures customizedFeature="icon">
-        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="/org.eclipse.papyrus.properties.customization/icons/DataContexts.gif"/>
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="/org.eclipse.papyrus.customization.properties/icons/DataContexts.gif"/>
       </customizedFeatures>
       <customizedFeatures customizedFeature="label">
         <defaultValue xsi:type="uicustom:StaticFeatureValue" value="Data contexts"/>

@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
  *
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -48,7 +48,7 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	/**
 	 * @generated
 	 */
-	public static final String ID = "org.eclipse.papyrus.diagram.profile"; //$NON-NLS-1$
+	public static final String ID = "org.eclipse.papyrus.uml.diagram.profile"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -91,6 +91,7 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	/**
 	 * @generated
 	 */
+	@Override
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		instance = this;
@@ -103,6 +104,7 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	/**
 	 * @generated
 	 */
+	@Override
 	public void stop(BundleContext context) throws Exception {
 		adapterFactory.dispose();
 		adapterFactory = null;
@@ -122,6 +124,7 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	/**
 	 * @generated
 	 */
+	@Override
 	public IPreferenceStore getPreferenceStore() {
 		IPreferenceStore store = Activator.getDefault().getPreferenceStore();
 		return store;
@@ -178,7 +181,7 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 
 	/**
 	 * Respects images residing in any plug-in. If path is relative,
-	 * then this bundle is looked up for the image, otherwise, for absolute 
+	 * then this bundle is looked up for the image, otherwise, for absolute
 	 * path, first segment is taken as id of plug-in with image
 	 *
 	 * @generated

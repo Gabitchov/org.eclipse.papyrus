@@ -35,7 +35,7 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	/**
 	 * @generated
 	 */
-	public static final String ID = "org.eclipse.papyrus.diagram.statemachine"; //$NON-NLS-1$
+	public static final String ID = "org.eclipse.papyrus.uml.diagram.statemachine"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -220,6 +220,7 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	/**
 	 * @generated
 	 */
+	@Override
 	public IPreferenceStore getPreferenceStore() {
 		IPreferenceStore store = Activator.getDefault().getPreferenceStore();
 		return store;
@@ -278,6 +279,7 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	/**
 	 * @generated
 	 */
+	@Override
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		instance = this;
@@ -290,6 +292,7 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	/**
 	 * @generated
 	 */
+	@Override
 	public void stop(BundleContext context) throws Exception {
 		adapterFactory.dispose();
 		adapterFactory = null;

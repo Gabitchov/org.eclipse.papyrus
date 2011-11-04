@@ -9,6 +9,6 @@ Bundle-Localization: plugin
 Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.icons.uml.Activator
 Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.papyrus.icons.uml;singleton:=true
+Bundle-SymbolicName: org.eclipse.papyrus.uml.icons;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

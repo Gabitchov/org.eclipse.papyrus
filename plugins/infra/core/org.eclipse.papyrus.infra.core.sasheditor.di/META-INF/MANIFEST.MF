@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Require-Bundle: org.eclipse.swt;bundle-version="3.5.0";visibility:=reexport,
- org.eclipse.papyrus.sasheditor;bundle-version:="0.9.0";visibility:=reexport,
+ org.eclipse.papyrus.infra.sasheditor;bundle-version="0.9.0";visibility:=reexport,
  org.eclipse.ui;bundle-version="3.6.0",
  org.eclipse.core.runtime;bundle-version="3.6.0",
  org.eclipse.emf.ecore;visibility:=reexport,
@@ -21,6 +21,6 @@ Bundle-Version: 0.9.0.qualifier
 Bundle-Localization: plugin
 Bundle-Name: %pluginName
 Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.papyrus.sasheditor.di;singleton:=true
+Bundle-SymbolicName: org.eclipse.papyrus.infra.sasheditor.di;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

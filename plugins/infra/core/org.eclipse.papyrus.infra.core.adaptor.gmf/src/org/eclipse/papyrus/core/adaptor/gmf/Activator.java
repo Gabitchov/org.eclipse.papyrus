@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2008 CEA LIST.
  *
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -43,7 +43,7 @@ public class Activator extends AbstractUIPlugin {
 	/**
 	 * @generated
 	 */
-	public static final String ID = "org.eclipse.papyrus.gmf.multipages"; //$NON-NLS-1$
+	public static final String ID = "org.eclipse.papyrus.infra.core.adaptor.gmf"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -65,18 +65,19 @@ public class Activator extends AbstractUIPlugin {
 	 */
 	public Activator() {
 	}
-	
-	 /** Logging helper */
-    public static LogHelper log;
+
+	/** Logging helper */
+	public static LogHelper log;
 
 	/**
 	 * @generated
 	 */
+	@Override
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		instance = this;
 		// register the login helper
-        log = new LogHelper(this);
+		log = new LogHelper(this);
 		PreferencesHint.registerPreferenceStore(DIAGRAM_PREFERENCES_HINT, getPreferenceStore());
 		adapterFactory = createAdapterFactory();
 	}
@@ -84,6 +85,7 @@ public class Activator extends AbstractUIPlugin {
 	/**
 	 * @generated
 	 */
+	@Override
 	public void stop(BundleContext context) throws Exception {
 		adapterFactory.dispose();
 		adapterFactory = null;
@@ -173,7 +175,7 @@ public class Activator extends AbstractUIPlugin {
 		final IPath p = new Path(path);
 		if(p.isAbsolute() && p.segmentCount() > 1) {
 			return AbstractUIPlugin.imageDescriptorFromPlugin(p.segment(0), p.removeFirstSegments(1).makeAbsolute()
-					.toString());
+				.toString());
 		} else {
 			return getBundledImageDescriptor(p.makeAbsolute().toString());
 		}

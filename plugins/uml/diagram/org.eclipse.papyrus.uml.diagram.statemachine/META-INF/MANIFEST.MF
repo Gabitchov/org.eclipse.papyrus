@@ -32,10 +32,10 @@ Require-Bundle: org.eclipse.core.expressions,
  org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide,
  org.eclipse.ocl.ecore;visibility:=reexport,
  org.eclipse.ui.navigator.resources,
- org.eclipse.papyrus.core.adaptor.gmf;bundle-version="0.9.0",
- org.eclipse.papyrus.diagram.common;bundle-version="0.9.0",
- org.eclipse.papyrus.preferences;bundle-version:="0.9.0",
- org.eclipse.papyrus.extensionpoints.editors;bundle-version:="0.9.0",
+ org.eclipse.papyrus.infra.core.adaptor.gmf;bundle-version="0.9.0",
+ org.eclipse.papyrus.uml.diagram.common;bundle-version="0.9.0",
+ org.eclipse.papyrus.infra.gmfdiag.preferences;bundle-version="0.9.0",
+ org.eclipse.papyrus.extensionpoints.editors;bundle-version="0.9.0",
  org.eclipse.core.runtime,
  org.eclipse.core.resources,
  org.eclipse.jface,
@@ -58,8 +58,8 @@ Require-Bundle: org.eclipse.core.expressions,
  org.eclipse.emf.ecore.edit;visibility:=reexport,
  org.eclipse.emf.validation;visibility:=reexport,
  org.eclipse.gef;visibility:=reexport,
- org.eclipse.papyrus.ui.toolbox;bundle-version="0.9.0",
- org.eclipse.papyrus.navigation.uml;bundle-version:="0.9.0"
+ org.eclipse.papyrus.infra.widgets.toolbox;bundle-version="0.9.0",
+ org.eclipse.papyrus.uml.diagram.navigation;bundle-version="0.9.0"
 Bundle-Vendor: %providerName
 Ant-Version: Apache Ant 1.7.0
 Eclipse-LazyStart: true
@@ -67,6 +67,5 @@ Bundle-Version: 0.9.0.qualifier
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.diagram.statemachine.part.UMLDia
  gramEditorPlugin
-Bundle-SymbolicName: org.eclipse.papyrus.diagram.statemachine;singleto
- n:=true
+Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.statemachine;singleton:=true
 

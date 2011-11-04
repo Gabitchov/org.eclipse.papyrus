@@ -5,7 +5,7 @@ Require-Bundle: org.eclipse.papyrus.resource;bundle-version="0.9.0",
  org.eclipse.papyrus.views.modelexplorer;bundle-version="0.9.0",
  org.eclipse.core.expressions,
  org.eclipse.emf.facet.widgets.nattable.instance;bundle-version="0.1.0",
- org.eclipse.papyrus.table.instance;bundle-version="0.9.0",
+ org.eclipse.papyrus.infra.table.instance;bundle-version="0.9.0",
  org.eclipse.uml2.uml,
  org.eclipse.emf.facet.infra.query.core
 Export-Package: org.eclipse.papyrus.table.modelexplorer,
@@ -19,7 +19,6 @@ Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.table.modelexplorer.Activator
-Bundle-SymbolicName: org.eclipse.papyrus.table.modelexplorer;singleton
- :=true
+Bundle-SymbolicName: org.eclipse.papyrus.infra.table.modelexplorer;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

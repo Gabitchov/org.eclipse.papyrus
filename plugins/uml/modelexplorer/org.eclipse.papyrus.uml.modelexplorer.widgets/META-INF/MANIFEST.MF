@@ -3,7 +3,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.papyrus.views.modelexplorer.widgets;bundle-version="0.9.0";visibility:=reexport,
  org.eclipse.uml2.uml;bundle-version="3.2.0",
- org.eclipse.papyrus.service.edit;bundle-version="0.9.0"
+ org.eclipse.papyrus.infra.services.edit;bundle-version="0.9.0"
 Export-Package: org.eclipse.papyrus.uml.modelexplorer.widgets
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy

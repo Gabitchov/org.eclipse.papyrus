@@ -1,17 +1,17 @@
 Manifest-Version: 1.0
 Require-Bundle: org.eclipse.emf.facet.widgets.nattable.instance,
  org.eclipse.emf.facet.widgets.nattable,
- org.eclipse.papyrus.diagram.common;bundle-version:="0.9.0",
- org.eclipse.papyrus.widgets;bundle-version="0.9.0",
+ org.eclipse.papyrus.uml.diagram.common;bundle-version="0.9.0",
+ org.eclipse.papyrus.infra.widgets;bundle-version="0.9.0",
  org.eclipse.papyrus.views.properties;bundle-version="0.9.0",
  org.eclipse.emf.databinding;bundle-version="1.2.0",
- org.eclipse.papyrus.table.instance;bundle-version="0.9.0",
+ org.eclipse.papyrus.infra.table.instance;bundle-version="0.9.0",
  org.eclipse.emf.facet.infra.query.core;bundle-version="0.1.0",
  org.eclipse.emf.facet.infra.query.editor;bundle-version="0.1.0",
- org.eclipse.emf.facet.query.java;bundle-version:="0.1.0",
+ org.eclipse.emf.facet.query.java;bundle-version="0.1.0",
  org.eclipse.emf.facet.infra.common.core;bundle-version="0.1.0",
- org.eclipse.papyrus.service.edit;bundle-version="0.9.0",
- org.eclipse.papyrus.commands;bundle-version="0.9.0"
+ org.eclipse.papyrus.infra.services.edit;bundle-version="0.9.0",
+ org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="0.9.0"
 Export-Package: org.eclipse.papyrus.table.common,
  org.eclipse.papyrus.table.common.dialog,
  org.eclipse.papyrus.table.common.editor,
@@ -27,6 +27,6 @@ Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.table.common.Activator
-Bundle-SymbolicName: org.eclipse.papyrus.table.common;singleton:=true
+Bundle-SymbolicName: org.eclipse.papyrus.infra.table.common;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

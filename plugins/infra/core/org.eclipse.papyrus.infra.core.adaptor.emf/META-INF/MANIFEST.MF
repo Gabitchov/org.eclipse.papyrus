@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Require-Bundle: org.eclipse.papyrus.core;bundle-version="0.9.0"
+Require-Bundle: org.eclipse.papyrus.infra.core;bundle-version="0.9.0"
 Export-Package: org.eclipse.papyrus.core.adaptor.emf
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
@@ -8,7 +8,6 @@ Bundle-Localization: plugin
 Bundle-Name: %pluginName
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.core.adaptor.emf.Activator
-Bundle-SymbolicName: org.eclipse.papyrus.core.adaptor.emf;singleton:=t
- rue
+Bundle-SymbolicName: org.eclipse.papyrus.infra.core.adaptor.emf;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

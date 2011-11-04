@@ -49,18 +49,18 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.draw2d;visibility:=reexport,
  org.eclipse.gmf.runtime.draw2d.ui;visibility:=reexport,
  org.eclipse.gef;visibility:=reexport,
- org.eclipse.papyrus.core.adaptor.gmf;bundle-version="0.9.0",
- org.eclipse.papyrus.diagram.common;bundle-version="0.9.0",
- org.eclipse.papyrus.preferences;bundle-version:="0.9.0",
- org.eclipse.papyrus.ui.toolbox;bundle-version="0.9.0",
+ org.eclipse.papyrus.infra.core.adaptor.gmf;bundle-version="0.9.0",
+ org.eclipse.papyrus.uml.diagram.common;bundle-version="0.9.0",
+ org.eclipse.papyrus.infra.gmfdiag.preferences;bundle-version="0.9.0",
+ org.eclipse.papyrus.infra.widgets.toolbox;bundle-version="0.9.0",
  org.eclipse.papyrus.extensionpoints.editors;bundle-version="0.9.0",
  org.eclipse.emf.validation;visibility:=reexport,
- org.eclipse.papyrus.service.edit;bundle-version="0.9.0"
+ org.eclipse.papyrus.infra.services.edit;bundle-version="0.9.0"
 Bundle-Vendor: %providerName
 Eclipse-LazyStart: true
 Bundle-Version: 0.9.0.qualifier
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.diagram.usecase.part.UMLDiagramE
  ditorPlugin
-Bundle-SymbolicName: org.eclipse.papyrus.diagram.usecase;singleton:=true
+Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.usecase;singleton:=true
 

@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Require-Bundle: org.eclipse.gmf.runtime.diagram.ui.properties,
- org.eclipse.papyrus.log;bundle-version="0.9.0"
+ org.eclipse.papyrus.infra.log;bundle-version="0.9.0"
 Export-Package: org.eclipse.papyrus.preferences,
  org.eclipse.papyrus.preferences.initializer,
  org.eclipse.papyrus.preferences.jface.preference;x-internal:=true,
@@ -18,6 +18,6 @@ Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.preferences.Activator
-Bundle-SymbolicName: org.eclipse.papyrus.preferences;singleton:=true
+Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.preferences;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

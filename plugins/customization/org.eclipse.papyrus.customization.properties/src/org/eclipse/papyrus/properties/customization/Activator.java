@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -31,17 +31,17 @@ public class Activator extends AbstractUIPlugin {
 	/**
 	 * The plug-in ID
 	 */
-	public static final String PLUGIN_ID = "org.eclipse.papyrus.properties.customization"; //$NON-NLS-1$
+	public static final String PLUGIN_ID = "org.eclipse.papyrus.customization.properties"; //$NON-NLS-1$
 
 	/**
 	 * The Preview view ID
 	 */
-	public static final String PREVIEW_ID = "org.eclipse.papyrus.properties.customization.preview"; //$NON-NLS-1$
+	public static final String PREVIEW_ID = "org.eclipse.papyrus.customization.properties.preview"; //$NON-NLS-1$
 
 	/**
 	 * The Customization perspective ID
 	 */
-	public static final String CUSTOMIZATION_PERSPECTIVE_ID = "org.eclipse.papyrus.properties.customization.perspective"; //$NON-NLS-1$ 
+	public static final String CUSTOMIZATION_PERSPECTIVE_ID = "org.eclipse.papyrus.customization.properties.perspective"; //$NON-NLS-1$
 
 	// The shared instance
 	private static Activator plugin;

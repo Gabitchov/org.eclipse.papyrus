@@ -1,12 +1,12 @@
 Manifest-Version: 1.0
 Require-Bundle: org.eclipse.ui;bundle-version="3.7.0",
  org.eclipse.core.runtime;bundle-version="3.7.0",
- org.eclipse.papyrus.paletteconfiguration;bundle-version="0.9.0",
+ org.eclipse.papyrus.uml.diagram.paletteconfiguration;bundle-version="0.9.0",
  org.eclipse.uml2.uml;bundle-version="3.2.0",
  org.eclipse.emf.facet.infra.query.core;bundle-version="0.1.0",
  org.eclipse.gmf.runtime.emf.type.core;bundle-version="1.4.0",
- org.eclipse.papyrus.extendedtypes;bundle-version="0.9.0",
- org.eclipse.papyrus.paletteconfiguration.edit;bundle-version="0.9.0"
+ org.eclipse.papyrus.infra.extendedtypes;bundle-version="0.9.0",
+ org.eclipse.papyrus.uml.diagram.paletteconfiguration.edit;bundle-version="0.9.0"
 Export-Package: org.eclipse.papyrus.paletteconfiguration.customization,
  org.eclipse.papyrus.paletteconfiguration.customization.queries
 Bundle-Vendor: %Bundle-Vendor
@@ -16,7 +16,6 @@ Bundle-Name: %Bundle-Name
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.paletteconfiguration.customizati
  on.Activator
-Bundle-SymbolicName: org.eclipse.papyrus.paletteconfiguration.customiz
- ation;singleton:=true
+Bundle-SymbolicName: org.eclipse.papyrus.customization.paletteconfiguration;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

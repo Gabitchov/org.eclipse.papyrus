@@ -1,14 +1,14 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
  *
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *	Amine EL KOUHEN (CEA LIST/LIFL) - Amine.Elkouhen@cea.fr 
+ *	Amine EL KOUHEN (CEA LIST/LIFL) - Amine.Elkouhen@cea.fr
  *****************************************************************************/
 package org.eclipse.papyrus.decoration;
 
@@ -25,7 +25,7 @@ public class Activator extends AbstractUIPlugin {
 
 	// The plug-in ID
 	/** The Constant PLUGIN_ID. */
-	public static final String PLUGIN_ID = "org.eclipse.papyrus.decoration"; //$NON-NLS-1$
+	public static final String PLUGIN_ID = "org.eclipse.papyrus.infra.services.decoration"; //$NON-NLS-1$
 
 	// The Hierarchical Markers ID
 	/** The HIERARCHICA l_ markers. */
@@ -50,7 +50,7 @@ public class Activator extends AbstractUIPlugin {
 	 * @param context
 	 * @throws Exception
 	 */
-	
+
 	@Override
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
@@ -65,7 +65,7 @@ public class Activator extends AbstractUIPlugin {
 	 * @param context
 	 * @throws Exception
 	 */
-	
+
 	@Override
 	public void stop(BundleContext context) throws Exception {
 		plugin = null;

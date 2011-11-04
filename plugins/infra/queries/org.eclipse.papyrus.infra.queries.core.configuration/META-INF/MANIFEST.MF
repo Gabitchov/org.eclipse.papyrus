@@ -18,6 +18,5 @@ Bundle-Version: 0.9.0.qualifier
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.core.queries.configuration.plugi
  n.Activator$Implementation
-Bundle-SymbolicName: org.eclipse.papyrus.core.queries.configuration;si
- ngleton:=true
+Bundle-SymbolicName: org.eclipse.papyrus.infra.queries.core.configuration;singleton:=true
 

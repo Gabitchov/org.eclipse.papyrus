@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2009 Atos Origin.
  *
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -49,7 +49,7 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	/**
 	 * @generated
 	 */
-	public static final String ID = "org.eclipse.papyrus.diagram.usecase"; //$NON-NLS-1$
+	public static final String ID = "org.eclipse.papyrus.uml.diagram.usecase"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -95,6 +95,7 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	/**
 	 * @generated
 	 */
+	@Override
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		instance = this;
@@ -107,6 +108,7 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	/**
 	 * @generated
 	 */
+	@Override
 	public void stop(BundleContext context) throws Exception {
 		adapterFactory.dispose();
 		adapterFactory = null;
@@ -127,6 +129,7 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	/**
 	 * @generated
 	 */
+	@Override
 	public IPreferenceStore getPreferenceStore() {
 		IPreferenceStore store = Activator.getDefault().getPreferenceStore();
 		return store;

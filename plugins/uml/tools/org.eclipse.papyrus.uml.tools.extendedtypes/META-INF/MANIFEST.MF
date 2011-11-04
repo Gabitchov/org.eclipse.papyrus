@@ -11,11 +11,11 @@ Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
- org.eclipse.papyrus.core.queries.configuration;bundle-version="0.9.0";visibility:=reexport,
- org.eclipse.papyrus.extendedtypes;bundle-version="0.9.0";visibility:=reexport,
+ org.eclipse.papyrus.infra.queries.core.configuration;bundle-version="0.9.0";visibility:=reexport,
+ org.eclipse.papyrus.infra.extendedtypes;bundle-version="0.9.0";visibility:=reexport,
  org.eclipse.emf.facet.infra.query;visibility:=reexport,
  org.eclipse.uml2.uml;visibility:=reexport,
- org.eclipse.papyrus.log;bundle-version="0.9.0",
+ org.eclipse.papyrus.infra.log;bundle-version="0.9.0",
  org.eclipse.papyrus.uml.tools.utils;bundle-version="0.9.0"
 Bundle-Vendor: %providerName
 Bundle-Version: 0.9.0.qualifier

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>org.eclipse.papyrus.core.queries.configuration.edit</name>
+	<name>org.eclipse.papyrus.infra.queries.core.configuration.edit</name>
 	<comment></comment>
 	<projects>
 	</projects>

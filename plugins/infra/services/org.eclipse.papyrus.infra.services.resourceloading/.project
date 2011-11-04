@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>org.eclipse.papyrus.core.resourceloading</name>
+	<name>org.eclipse.papyrus.infra.services.resourceloading</name>
 	<comment></comment>
 	<projects>
 	</projects>

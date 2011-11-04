@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>org.eclipse.papyrus.extensionpoints.uml2</name>
+	<name>org.eclipse.papyrus.uml.extensionpoints</name>
 	<comment></comment>
 	<projects>
 	</projects>

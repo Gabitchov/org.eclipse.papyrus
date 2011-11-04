@@ -15,7 +15,7 @@
         <details key="body" value="return org.eclipse.papyrus.constraintwithvsl.editor.xtext.validation.ContextUtil.getContextElement(this) ;"/>
       </eAnnotations>
     </eOperations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="specification" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ConstraintWithVSLl.ecore#//ConstraintSpecification"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="specification" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.marte.textedit.constraintwithvsl.xtext/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ConstraintWithVSLl.ecore#//ConstraintSpecification"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ConstraintSpecification">

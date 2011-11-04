@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2008 CEA LIST.
  *
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,7 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *  
+ * 
  *****************************************************************************/
 package org.eclipse.papyrus.ui.toolbox;
 
@@ -25,7 +25,7 @@ import org.osgi.framework.BundleContext;
 public class Activator extends AbstractUIPlugin {
 
 	// The plug-in ID
-	public static final String PLUGIN_ID = "org.eclipse.papyrus.ui.toolbox";
+	public static final String PLUGIN_ID = "org.eclipse.papyrus.infra.widgets.toolbox";
 
 	// The shared instance
 	private static Activator plugin;
@@ -41,6 +41,7 @@ public class Activator extends AbstractUIPlugin {
 	 * 
 	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext)
 	 */
+	@Override
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		plugin = this;
@@ -51,6 +52,7 @@ public class Activator extends AbstractUIPlugin {
 	 * 
 	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext)
 	 */
+	@Override
 	public void stop(BundleContext context) throws Exception {
 		plugin = null;
 		super.stop(context);
@@ -78,7 +80,7 @@ public class Activator extends AbstractUIPlugin {
 	 * @return the Image
 	 */
 	public static Image getImage(String iconPath, String defaultPlugin) {
-		// see if the path is using platform:/... to get icon in the fragment, if it is in a fragment 
+		// see if the path is using platform:/... to get icon in the fragment, if it is in a fragment
 		String key = defaultPlugin + iconPath;
 		ImageRegistry registry = getDefault().getImageRegistry();
 		Image image = registry.get(key);

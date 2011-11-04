@@ -22,11 +22,11 @@
       </modelqueryset>
    </extension>
    <extension point="org.eclipse.ui.editors">
-      <editor class="org.eclipse.papyrus.properties.customization.editor.UIEditor" contributorClass="org.eclipse.papyrus.properties.customization.editor.ContextEditorActionBarContributor" default="true" extensions="ctx" icon="platform:/plugin/org.eclipse.papyrus.views.properties.model.edit/icons/full/obj16/Context.gif" id="org.eclipse.papyrus.property.customization.UIEditor" name="%editor.name">
+      <editor class="org.eclipse.papyrus.properties.customization.editor.UIEditor" contributorClass="org.eclipse.papyrus.properties.customization.editor.ContextEditorActionBarContributor" default="true" extensions="ctx" icon="platform:/plugin/org.eclipse.papyrus.views.properties.model.edit/icons/full/obj16/Context.gif" id="org.eclipse.papyrus.customization.properties.UIEditor" name="%editor.name">
       </editor>
    </extension>
    <extension point="org.eclipse.emf.ecore.uri_mapping">
-      <mapping source="pathmap://PPECustom/" target="platform:/plugin/org.eclipse.papyrus.properties.customization/Model/">
+      <mapping source="pathmap://PPECustom/" target="platform:/plugin/org.eclipse.papyrus.customization.properties/Model/">
       </mapping>
    </extension>
    <extension point="org.eclipse.papyrus.properties.environment">
@@ -48,7 +48,7 @@
             category="org.eclipse.papyrus.views.category"
             class="org.eclipse.papyrus.properties.customization.editor.preview.Preview"
             icon="icons/preview.png"
-            id="org.eclipse.papyrus.properties.customization.preview"
+            id="org.eclipse.papyrus.customization.properties.preview"
             name="%view.name"
             restorable="true">
       </view>
@@ -58,7 +58,7 @@
       <perspective
             class="org.eclipse.papyrus.properties.customization.perspective.CustomizationPerspectiveFactory"
             icon="icons/Customization.gif"
-            id="org.eclipse.papyrus.properties.customization.perspective"
+            id="org.eclipse.papyrus.customization.properties.perspective"
             name="%perspective.name">
       </perspective>
    </extension>
@@ -73,7 +73,7 @@
       <page
             category="org.eclipse.papyrus.preferences.generalcategory"
             class="org.eclipse.papyrus.properties.customization.preferences.CustomizationPreferencePage"
-            id="org.eclipse.papyrus.properties.customization.preferences"
+            id="org.eclipse.papyrus.customization.properties.preferences"
             name="%page.name">
       </page>
    </extension>
@@ -81,27 +81,27 @@
          point="org.eclipse.ui.handlers">
       <handler
             class="org.eclipse.papyrus.properties.customization.ui.OpenCustomization"
-            commandId="org.eclipse.papyrus.properties.customization.customize">
+            commandId="org.eclipse.papyrus.customization.properties.customize">
       </handler>
       <handler
             class="org.eclipse.papyrus.properties.customization.editor.actions.TogglePreviewAction"
-            commandId="org.eclipse.papyrus.properties.customization.TogglePreview">
+            commandId="org.eclipse.papyrus.customization.properties.TogglePreview">
       </handler>
       <handler
             class="org.eclipse.papyrus.properties.customization.editor.actions.ToggleDataContextAction"
-            commandId="org.eclipse.papyrus.properties.customization.ToggleDataContext">
+            commandId="org.eclipse.papyrus.customization.properties.ToggleDataContext">
       </handler>
    </extension>
    <extension
          point="org.eclipse.ui.commands">
       <command
             description="%command.description"
-            id="org.eclipse.papyrus.properties.customization.customize"
+            id="org.eclipse.papyrus.customization.properties.customize"
             name="%command.name">
       </command>
       <command
             description="%command.description.0"
-            id="org.eclipse.papyrus.properties.customization.TogglePreview"
+            id="org.eclipse.papyrus.customization.properties.TogglePreview"
             name="%command.name.0">
          <state
                class="org.eclipse.papyrus.properties.customization.editor.actions.TogglePreviewState"
@@ -110,11 +110,11 @@
       </command>
       <command
             description="%command.description.1"
-            id="org.eclipse.papyrus.properties.customization.ToggleDataContext"
+            id="org.eclipse.papyrus.customization.properties.ToggleDataContext"
             name="%command.name.1">
             <state
                class="org.eclipse.papyrus.properties.customization.editor.actions.ToggleDataContextState"
-               id="org.eclipse.papyrus.properties.customization.displayContextState">
+               id="org.eclipse.papyrus.customizatio.propertiesn.displayContextState">
          </state>
       </command>
    </extension>
@@ -124,9 +124,9 @@
             allPopups="false"
             locationURI="menu:org.eclipse.ui.views.PropertySheet">
          <command
-               commandId="org.eclipse.papyrus.properties.customization.customize"
+               commandId="org.eclipse.papyrus.customization.properties.customize"
                icon="icons/Customization.gif"
-               id="org.eclipse.papyrus.properties.customization.customizehandler"
+               id="org.eclipse.papyrus.customization.properties.customizehandler"
                label="%customize.command.label"
                mnemonic="%customize.command.mnemonic"
                mode="FORCE_TEXT"
@@ -141,12 +141,12 @@
             allPopups="false"
             locationURI="toolbar:org.eclipse.ui.main.toolbar">
          <toolbar
-               id="org.eclipes.papyrus.properties.customization"
+               id="org.eclipes.papyrus.customization.properties"
                label="%toolbar.label">
             <command
-                  commandId="org.eclipse.papyrus.properties.customization.TogglePreview"
+                  commandId="org.eclipse.papyrus.customization.properties.TogglePreview"
                   icon="icons/preview.png"
-                  id="org.eclipse.papyrus.properties.customization.togglePreview"
+                  id="org.eclipse.papyrus.customization.properties.togglePreview"
                   label="%command.label"
                   style="toggle"
                   tooltip="%command.tooltip">
@@ -154,15 +154,15 @@
                   <with
                         variable="activeEditorId">
                      <equals
-                           value="org.eclipse.papyrus.property.customization.UIEditor">
+                           value="org.eclipse.papyrus.customization.properties.UIEditor">
                      </equals>
                   </with>
                </visibleWhen>
             </command>
             <command
-                  commandId="org.eclipse.papyrus.properties.customization.ToggleDataContext"
+                  commandId="org.eclipse.papyrus.customization.properties.ToggleDataContext"
                   icon="icons/DataContexts.gif"
-                  id="org.eclipse.papyrus.properties.customization.toggleDataContext"
+                  id="org.eclipse.papyrus.customization.properties.toggleDataContext"
                   label="%command.label.0"
                   style="toggle"
                   tooltip="%command.tooltip.0">
@@ -170,7 +170,7 @@
                   <with
                         variable="activeEditorId">
                      <equals
-                           value="org.eclipse.papyrus.property.customization.UIEditor">
+                           value="org.eclipse.papyrus.customization.properties.UIEditor">
                      </equals>
                   </with>
                </visibleWhen>

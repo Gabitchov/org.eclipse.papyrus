@@ -29,7 +29,7 @@ public class Activator extends AbstractUIPlugin {
 	private static Activator plugin;
 
 	/** ID of the plugin */
-	public static final String PLUGIN_ID = "org.eclipse.papyrus.extensionpoints.uml2";
+	public static final String PLUGIN_ID = "org.eclipse.papyrus.uml.extensionpoints";
 
 	/** Resource Bundle */
 	private static final String RESOURCE_NAME = PLUGIN_ID + ".ViewPlugin";
@@ -154,7 +154,7 @@ public class Activator extends AbstractUIPlugin {
 	 */
 	public static void log(Exception e) {
 		getDefault().getLog().log(
-				new Status(IStatus.ERROR, Activator.PLUGIN_ID, IStatus.OK, e.getLocalizedMessage(), e));
+			new Status(IStatus.ERROR, Activator.PLUGIN_ID, IStatus.OK, e.getLocalizedMessage(), e));
 	}
 
 	/**

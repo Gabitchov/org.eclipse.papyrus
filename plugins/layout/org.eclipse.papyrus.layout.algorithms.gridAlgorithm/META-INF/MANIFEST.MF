@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.zest.layouts,
- org.eclipse.papyrus.layouttool;bundle-version="0.9.0"
+ org.eclipse.papyrus.layout;bundle-version="0.9.0"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 0.9.0.qualifier
@@ -11,7 +11,6 @@ Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.layouttool.algorithms.gridalgori
  thm.Activator
 Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.papyrus.layouttool.algorithms.gridAlg
- orithm;singleton:=true
+Bundle-SymbolicName: org.eclipse.papyrus.layout.algorithms.gridAlgorithm;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 
