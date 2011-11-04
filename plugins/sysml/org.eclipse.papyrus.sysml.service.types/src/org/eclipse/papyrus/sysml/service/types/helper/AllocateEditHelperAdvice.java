@@ -49,7 +49,7 @@ public class AllocateEditHelperAdvice extends AbstractStereotypedElementEditHelp
 
 					// Set default name
 					// Initialize the element name based on the created IElementType
-					String initializedName = NamedElementHelper.EINSTANCE.getNewUMLElementName(element.getOwner(), AllocationsPackage.eINSTANCE.getAllocate());
+					String initializedName = NamedElementHelper.getDefaultNameWithIncrementFromBase(AllocationsPackage.eINSTANCE.getAllocate().getName(), element.eContainer().eContents());
 					element.setName(initializedName);
 				}
 				return CommandResult.newOKCommandResult(element);

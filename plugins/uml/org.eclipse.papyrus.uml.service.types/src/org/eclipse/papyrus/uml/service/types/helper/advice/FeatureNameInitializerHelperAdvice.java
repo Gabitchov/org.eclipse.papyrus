@@ -51,7 +51,7 @@ public class FeatureNameInitializerHelperAdvice extends AbstractEditHelperAdvice
 				Feature element = (Feature)request.getElementToConfigure();
 
 				// Initialize the element name based on the created IElementType
-				String initializedName = NamedElementHelper.EINSTANCE.getNewUMLElementName(element.getOwner(), element.eClass().getName().toLowerCase());
+				String initializedName = NamedElementHelper.getDefaultNameWithIncrementFromBase(element.eClass().getName().toLowerCase(), element.eContainer().eContents());
 				element.setName(initializedName);
 
 				return CommandResult.newOKCommandResult(element);

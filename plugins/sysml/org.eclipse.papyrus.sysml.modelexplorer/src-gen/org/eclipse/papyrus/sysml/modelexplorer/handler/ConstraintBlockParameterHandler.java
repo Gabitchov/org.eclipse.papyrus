@@ -8,12 +8,12 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
-import org.eclipse.papyrus.diagram.common.helper.NamedElementHelper;
 import org.eclipse.papyrus.service.edit.commands.ConfigureFeatureCommandFactory;
 import org.eclipse.papyrus.service.edit.commands.IConfigureCommandFactory;
 import org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.service.edit.service.IElementEditService;
 import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
+import org.eclipse.papyrus.umlutils.NamedElementUtil;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -65,7 +65,8 @@ public class ConstraintBlockParameterHandler extends CreateCommandHandler implem
 		} else {
 			createRequest = new CreateElementRequest(container, getElementTypeToCreate(), reference);
 		}
-		String name = NamedElementHelper.EINSTANCE.getNewUMLElementName((Element)container, "parameter"); //$NON-NLS-1$
+		
+		String name = NamedElementUtil.getDefaultNameWithIncrementFromBase("parameter", ((Element)container).eContents()); //$NON-NLS-1$
 		createRequest.setParameter(IConfigureCommandFactory.CONFIGURE_COMMAND_FACTORY_ID, new ConfigureFeatureCommandFactory(UMLPackage.eINSTANCE.getNamedElement_Name(), name));
 
 		// Retrieve create command from the Element Edit service

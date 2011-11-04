@@ -52,7 +52,7 @@ public class SatisfyEditHelperAdvice extends AbstractStereotypedElementEditHelpe
 
 					// Set default name
 					// Initialize the element name based on the created IElementType
-					String initializedName = NamedElementHelper.EINSTANCE.getNewUMLElementName(element.getOwner(), RequirementsPackage.eINSTANCE.getSatisfy());
+					String initializedName = NamedElementHelper.getDefaultNameWithIncrementFromBase(RequirementsPackage.eINSTANCE.getSatisfy().getName(), element.eContainer().eContents());
 					element.setName(initializedName);
 				}
 				return CommandResult.newOKCommandResult(element);

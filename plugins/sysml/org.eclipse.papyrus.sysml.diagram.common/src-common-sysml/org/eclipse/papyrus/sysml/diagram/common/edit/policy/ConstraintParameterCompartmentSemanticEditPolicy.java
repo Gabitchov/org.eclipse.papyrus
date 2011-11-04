@@ -15,13 +15,12 @@ package org.eclipse.papyrus.sysml.diagram.common.edit.policy;
 
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
-import org.eclipse.papyrus.diagram.common.helper.NamedElementHelper;
 import org.eclipse.papyrus.gmf.diagram.common.edit.policy.CompartmentSemanticEditPolicy;
 import org.eclipse.papyrus.service.edit.commands.ConfigureFeatureCommandFactory;
 import org.eclipse.papyrus.service.edit.commands.IConfigureCommandFactory;
 import org.eclipse.papyrus.sysml.constraints.ConstraintBlock;
 import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
-import org.eclipse.uml2.uml.Element;
+import org.eclipse.papyrus.umlutils.NamedElementUtil;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
@@ -36,7 +35,7 @@ public class ConstraintParameterCompartmentSemanticEditPolicy extends Compartmen
 	protected Command getCreateCommand(CreateElementRequest req) {
 
 		if(UMLElementTypes.PROPERTY == req.getElementType()) {
-			String name = NamedElementHelper.EINSTANCE.getNewUMLElementName((Element)req.getContainer(), "parameter"); //$NON-NLS-1$
+			String name = NamedElementUtil.getDefaultNameWithIncrementFromBase("parameter", req.getContainer().eContents()); //$NON-NLS-1$
 			req.setParameter(IConfigureCommandFactory.CONFIGURE_COMMAND_FACTORY_ID, new ConfigureFeatureCommandFactory(UMLPackage.eINSTANCE.getNamedElement_Name(), name));
 		}
 

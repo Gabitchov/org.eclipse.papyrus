@@ -49,7 +49,7 @@ public class ItemFlowEditHelperAdvice extends AbstractStereotypedElementEditHelp
 
 					// Set default name
 					// Initialize the element name based on the created IElementType
-					String initializedName = NamedElementHelper.EINSTANCE.getNewUMLElementName(element.getOwner(), PortandflowsPackage.eINSTANCE.getItemFlow());
+					String initializedName = NamedElementHelper.getDefaultNameWithIncrementFromBase(PortandflowsPackage.eINSTANCE.getItemFlow().getName(), element.eContainer().eContents());
 					element.setName(initializedName);
 				}
 				return CommandResult.newOKCommandResult(element);

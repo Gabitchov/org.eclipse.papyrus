@@ -76,9 +76,9 @@ public class ValuePropertyEditHelperAdvice extends AbstractEditHelperAdvice {
 				if(element != null) {
 
 					// Set default name
-					String initializedName = NamedElementHelper.EINSTANCE.getNewUMLElementName(element.getOwner(), "value"); //$NON-NLS-1$
+					String initializedName = NamedElementHelper.getDefaultNameWithIncrementFromBase("value", element.eContainer().eContents());
 					element.setName(initializedName);
-					
+
 					// Initialize the aggregation to composite.
 					element.setAggregation(AggregationKind.COMPOSITE_LITERAL);
 				}

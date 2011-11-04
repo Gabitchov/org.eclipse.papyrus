@@ -13,17 +13,16 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.common.helper;
 
-import java.util.Iterator;
-
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.papyrus.umlutils.NamedElementUtil;
 import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.NamedElement;
 
 /**
  * This singleton is used to find a new name of element
  * 
- * 
+ * @deprecated use {@link NamedElementUtil} instead.
  */
+@Deprecated
 public class NamedElementHelper {
 
 	public static NamedElementHelper EINSTANCE = new NamedElementHelper();
@@ -31,8 +30,9 @@ public class NamedElementHelper {
 	private String baseString = "default";
 
 	/**
-	 * {@inheritDoc}
+	 * @deprecated should not be used
 	 */
+	@Deprecated
 	public String getBaseString() {
 		return baseString;
 	}
@@ -46,7 +46,9 @@ public class NamedElementHelper {
 	 *        the eclass of the element to name
 	 * 
 	 * @return a distinguisable name within the namespace of the umlParent
+	 * @deprecated
 	 */
+	@Deprecated
 	public String getNewUMLElementName(Element umlParent, EClass eclass) {
 		return getNewUMLElementName(umlParent, eclass.getName());
 	}
@@ -59,32 +61,35 @@ public class NamedElementHelper {
 	 * @param baseString
 	 *        the base string for the new element name
 	 * 
-	 * @return a distinguisable name within the namespace of the umlParent
+	 * @return a distinguishable name within the namespace of the umlParent
+	 * 
+	 * @deprecated use {@link NamedElementUtil#getDefaultNameWithIncrementFromBase(String, java.util.Collection)} directly.
 	 */
+	@Deprecated
 	public String getNewUMLElementName(Element umlParent, String baseString) {
-
-		this.setBaseString(baseString);
-		String name = ""; //$NON-NLS-1$
-
-		boolean found = false;
-		// i <10000: avoid infinite loops
-		for(int i = 0; i < 10001; i++) {
-			found = false;
-			name = getBaseString() + i;
-			Iterator it = umlParent.getOwnedElements().iterator();
-			while(it.hasNext() && !found) {
-				Object o = it.next();
-				if(o instanceof NamedElement) {
-					if(name.equals(((NamedElement)o).getName())) {
-						found = true;
-					}
-				}
-			}
-			if(!found) {
-				return name;
-			}
-		}
-		return getBaseString() + "X"; //$NON-NLS-1$
+		return NamedElementUtil.getDefaultNameWithIncrementFromBase(baseString, umlParent.eContents());
+		//		this.setBaseString(baseString);
+		//		String name = ""; //$NON-NLS-1$
+		//
+		//		boolean found = false;
+		//		// i <10000: avoid infinite loops
+		//		for(int i = 0; i < 10001; i++) {
+		//			found = false;
+		//			name = getBaseString() + i;
+		//			Iterator it = umlParent.getOwnedElements().iterator();
+		//			while(it.hasNext() && !found) {
+		//				Object o = it.next();
+		//				if(o instanceof NamedElement) {
+		//					if(name.equals(((NamedElement)o).getName())) {
+		//						found = true;
+		//					}
+		//				}
+		//			}
+		//			if(!found) {
+		//				return name;
+		//			}
+		//		}
+		//		return getBaseString() + "X"; //$NON-NLS-1$
 	}
 
 	/**
@@ -92,7 +97,9 @@ public class NamedElementHelper {
 	 * 
 	 * @param baseString
 	 *        a string that is the prefix
+	 * @deprecated should not be used
 	 */
+	@Deprecated
 	public void setBaseString(String baseString) {
 		this.baseString = baseString;
 	}

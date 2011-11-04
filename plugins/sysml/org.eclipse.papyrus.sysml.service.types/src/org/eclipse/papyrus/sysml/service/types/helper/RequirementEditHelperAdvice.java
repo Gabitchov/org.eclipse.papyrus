@@ -90,7 +90,7 @@ public class RequirementEditHelperAdvice extends AbstractStereotypedElementEditH
 
 					// Set default name
 					// Initialize the element name based on the created IElementType
-					String initializedName = NamedElementHelper.EINSTANCE.getNewUMLElementName(element.getOwner(), RequirementsPackage.eINSTANCE.getRequirement());
+					String initializedName = NamedElementHelper.getDefaultNameWithIncrementFromBase(RequirementsPackage.eINSTANCE.getRequirement().getName(), element.eContainer().eContents());
 					element.setName(initializedName);
 				}
 				return CommandResult.newOKCommandResult(element);

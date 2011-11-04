@@ -27,13 +27,13 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.window.Window;
-import org.eclipse.papyrus.diagram.common.helper.NamedElementHelper;
 import org.eclipse.papyrus.service.edit.commands.ConfigureFeatureCommandFactory;
 import org.eclipse.papyrus.service.edit.commands.IConfigureCommandFactory;
 import org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.service.edit.service.IElementEditService;
 import org.eclipse.papyrus.sysml.diagram.common.Activator;
 import org.eclipse.papyrus.sysml.diagram.common.messages.Messages;
+import org.eclipse.papyrus.umlutils.NamedElementUtil;
 import org.eclipse.papyrus.widgets.editors.TreeSelectorDialog;
 import org.eclipse.papyrus.widgets.providers.EncapsulatedContentProvider;
 import org.eclipse.swt.SWT;
@@ -55,7 +55,6 @@ import org.eclipse.ui.forms.IManagedForm;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.ScrolledForm;
 import org.eclipse.ui.forms.widgets.Section;
-import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -435,9 +434,9 @@ public class CreateOrSelectTypeDialog extends FormDialog {
 	protected void setNewTypeName(String text) {
 		String name = text;
 		if(text == null) {
-			name = NamedElementHelper.EINSTANCE.getNewUMLElementName((Element)newTypeContainer, elementType.getEClass());
+			name = NamedElementUtil.getDefaultNameWithIncrementFromBase(elementType.getEClass().getName(), newTypeContainer.eContents());
 			if(elementEClass != null) {
-				name = NamedElementHelper.EINSTANCE.getNewUMLElementName((Element)newTypeContainer, elementEClass);
+				name = NamedElementUtil.getDefaultNameWithIncrementFromBase(elementEClass.getName(), newTypeContainer.eContents());
 			}
 			newTypeNameText.setText(name);
 

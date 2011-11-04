@@ -52,7 +52,7 @@ public class VerifyEditHelperAdvice extends AbstractStereotypedElementEditHelper
 
 					// Set default name
 					// Initialize the element name based on the created IElementType
-					String initializedName = NamedElementHelper.EINSTANCE.getNewUMLElementName(element.getOwner(), RequirementsPackage.eINSTANCE.getVerify());
+					String initializedName = NamedElementHelper.getDefaultNameWithIncrementFromBase(RequirementsPackage.eINSTANCE.getVerify().getName(), element.eContainer().eContents());
 					element.setName(initializedName);
 				}
 				return CommandResult.newOKCommandResult(element);

@@ -55,27 +55,27 @@ public class FlowSpecificationEditHelperAdvice extends AbstractStereotypedElemen
 	 */
 	@Override
 	protected ICommand getBeforeCreateCommand(CreateElementRequest request) {
-		
+
 		IElementType elementToCreate = request.getElementType();
-		
+
 		// [1] Flow specifications cannot own operations or receptions (they can only own FlowProperties).
-		if (elementToCreate == UMLElementTypes.OPERATION) {
+		if(elementToCreate == UMLElementTypes.OPERATION) {
 			return UnexecutableCommand.INSTANCE;
 		}
-		if (elementToCreate == UMLElementTypes.RECEPTION) {
+		if(elementToCreate == UMLElementTypes.RECEPTION) {
 			return UnexecutableCommand.INSTANCE;
 		}
-		
+
 		// [2] Every “ownedAttribute” of a FlowSpecification must be a FlowProperty.
-		if (UMLElementTypes.PROPERTY.getEClass().isSuperTypeOf(elementToCreate.getEClass())) {
-			if ((elementToCreate != SysMLElementTypes.FLOW_PROPERTY) && !(Arrays.asList(elementToCreate.getAllSuperTypes()).contains(SysMLElementTypes.FLOW_PROPERTY))) {
+		if(UMLElementTypes.PROPERTY.getEClass().isSuperTypeOf(elementToCreate.getEClass())) {
+			if((elementToCreate != SysMLElementTypes.FLOW_PROPERTY) && !(Arrays.asList(elementToCreate.getAllSuperTypes()).contains(SysMLElementTypes.FLOW_PROPERTY))) {
 				return UnexecutableCommand.INSTANCE;
 			}
 		}
-		
+
 		return super.getBeforeCreateCommand(request);
 	}
-	
+
 	/**
 	 * Check if the creation context is allowed.
 	 * 
@@ -132,7 +132,7 @@ public class FlowSpecificationEditHelperAdvice extends AbstractStereotypedElemen
 
 					// Set default name
 					// Initialize the element name based on the created IElementType
-					String initializedName = NamedElementHelper.EINSTANCE.getNewUMLElementName(element.getOwner(), PortandflowsPackage.eINSTANCE.getFlowSpecification());
+					String initializedName = NamedElementHelper.getDefaultNameWithIncrementFromBase(PortandflowsPackage.eINSTANCE.getFlowSpecification().getName(), element.eContainer().eContents());
 					element.setName(initializedName);
 				}
 				return CommandResult.newOKCommandResult(element);

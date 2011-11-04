@@ -50,7 +50,7 @@ public class ViewEditHelperAdvice extends AbstractStereotypedElementEditHelperAd
 
 					// Set default name
 					// Initialize the element name based on the created IElementType
-					String initializedName = NamedElementHelper.EINSTANCE.getNewUMLElementName(element.getOwner(), ModelelementsPackage.eINSTANCE.getView());
+					String initializedName = NamedElementHelper.getDefaultNameWithIncrementFromBase(ModelelementsPackage.eINSTANCE.getView().getName(), element.eContainer().eContents());
 					element.setName(initializedName);
 				}
 				return CommandResult.newOKCommandResult(element);

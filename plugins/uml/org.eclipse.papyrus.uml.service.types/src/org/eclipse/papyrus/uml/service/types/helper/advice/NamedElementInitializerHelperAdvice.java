@@ -49,7 +49,7 @@ public class NamedElementInitializerHelperAdvice extends AbstractEditHelperAdvic
 				NamedElement element = (NamedElement)request.getElementToConfigure();
 
 				// Initialize the element name based on the created IElementType
-				String initializedName = NamedElementHelper.EINSTANCE.getNewUMLElementName(element.getOwner(), element.eClass());
+				String initializedName = NamedElementHelper.getDefaultNameWithIncrementFromBase(element.eClass().getName(), element.eContainer().eContents());
 				element.setName(initializedName);
 
 				return CommandResult.newOKCommandResult(element);

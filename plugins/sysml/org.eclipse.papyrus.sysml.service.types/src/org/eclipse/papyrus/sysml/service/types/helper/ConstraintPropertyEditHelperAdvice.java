@@ -55,31 +55,30 @@ public class ConstraintPropertyEditHelperAdvice extends AbstractStereotypedEleme
 
 					// Set default name
 					// Initialize the element name based on the created IElementType
-					String initializedName = NamedElementHelper.EINSTANCE.getNewUMLElementName(element.getOwner(), ConstraintsPackage.eINSTANCE.getConstraintProperty().getName().toLowerCase());
+					String initializedName = NamedElementHelper.getDefaultNameWithIncrementFromBase(ConstraintsPackage.eINSTANCE.getConstraintProperty().getName().toLowerCase(), element.eContainer().eContents());
 					element.setName(initializedName);
 				}
 				return CommandResult.newOKCommandResult(element);
 			}
 		};
 	}
-	
-	/** 
-	 * Restrict allowed types to 
-	 * 		{@link ConstraintBlock} 
+
+	/**
+	 * Restrict allowed types to {@link ConstraintBlock}
 	 */
 	@Override
 	protected ICommand getBeforeSetCommand(SetRequest request) {
-		
+
 		// Only allow ConstraintBlock or null as new type
 		if(UMLPackage.eINSTANCE.getTypedElement_Type().equals(request.getFeature())) {
-			if (request.getValue() != null) {
-				
-				if (! (request.getValue() instanceof Element)) {
+			if(request.getValue() != null) {
+
+				if(!(request.getValue() instanceof Element)) {
 					return UnexecutableCommand.INSTANCE;
 				}
-				
-				ConstraintBlock constraint = ElementUtil.getStereotypeApplication((Element) request.getValue(), ConstraintBlock.class);
-				if (constraint == null) {
+
+				ConstraintBlock constraint = ElementUtil.getStereotypeApplication((Element)request.getValue(), ConstraintBlock.class);
+				if(constraint == null) {
 					return UnexecutableCommand.INSTANCE;
 				}
 			}

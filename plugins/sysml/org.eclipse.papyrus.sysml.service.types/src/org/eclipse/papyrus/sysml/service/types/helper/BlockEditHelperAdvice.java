@@ -97,7 +97,7 @@ public class BlockEditHelperAdvice extends AbstractStereotypedElementEditHelperA
 
 					// Set default name
 					// Initialize the element name based on the created IElementType
-					String initializedName = NamedElementHelper.EINSTANCE.getNewUMLElementName(element.getOwner(), BlocksPackage.eINSTANCE.getBlock());
+					String initializedName = NamedElementHelper.getDefaultNameWithIncrementFromBase(BlocksPackage.eINSTANCE.getBlock().getName(), element.eContainer().eContents());
 					element.setName(initializedName);
 				}
 				return CommandResult.newOKCommandResult(element);
