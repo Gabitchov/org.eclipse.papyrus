@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="org.eclipse.papyrus.diagram.common.groups" xmlns="http://www.w3.org/2001/XMLSchema">
+<schema targetNamespace="org.eclipse.papyrus.uml.diagram.common.groups" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appinfo>
-         <meta.schema plugin="org.eclipse.papyrus.diagram.common.groups" id="org.eclipse.papyrus.diagram.common.groups.groupcontainment" name="group containment"/>
+         <meta.schema plugin="org.eclipse.papyrus.uml.diagram.common.groups" id="org.eclipse.papyrus.uml.diagram.common.groups.groupcontainment" name="group containment"/>
       </appinfo>
       <documentation>
          This extension point allows to register group types and their relationship with contained objects, in order to let the group framework handle the graphical parent reassignation.
@@ -13,7 +13,7 @@ This can be achieved calling the code :
 		//configure group framework
 		EditingDomainRegisteringService.addGroupFrameworkForEditingDomain(getEditingDomain(), getDiagramEditPart());
 at the end of the initializeGraphicalViewer() method,
-in the class org.eclipse.papyrus.diagram.***.Uml***DiagramForMultiEditor extending org.eclipse.papyrus.diagram.***.part.UMLDiagramEditor, which itself extends org.eclipse.papyrus.diagram.common.part.UmlGmfDiagramEditor.
+in the class org.eclipse.papyrus.diagram.***.Uml***DiagramForMultiEditor extending org.eclipse.papyrus.diagram.***.part.UMLDiagramEditor, which itself extends org.eclipse.papyrus.uml.diagram.common.part.UmlGmfDiagramEditor.
 
       </documentation>
    </annotation>
@@ -86,10 +86,10 @@ Declaring them in this extension will let the groups framework handle conflicts 
             <annotation>
                <documentation>
                   The class describing the group type and how it is related to its contained children.
-This class must implement org.eclipse.papyrus.diagram.common.groups.groupcontainment.IContainerNodeDescriptor
+This class must implement org.eclipse.papyrus.uml.diagram.common.groups.groupcontainment.IContainerNodeDescriptor
                </documentation>
                <appinfo>
-                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.diagram.common.groups.groupcontainment.IContainerNodeDescriptor"/>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.uml.diagram.common.groups.groupcontainment.IContainerNodeDescriptor"/>
                </appinfo>
             </annotation>
          </attribute>
@@ -117,10 +117,10 @@ This class must implement org.eclipse.papyrus.diagram.common.groups.groupcontain
             <annotation>
                <documentation>
                   The class describing the group type and how it is related to its contained children.
-This class must implement org.eclipse.papyrus.diagram.common.groups.groupcontainment.IContainerNodeDescriptor
+This class must implement org.eclipse.papyrus.uml.diagram.common.groups.groupcontainment.IContainerNodeDescriptor
                </documentation>
                <appinfo>
-                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.diagram.common.groups.groupcontainment.IContainerNodeDescriptor"/>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.uml.diagram.common.groups.groupcontainment.IContainerNodeDescriptor"/>
                </appinfo>
             </annotation>
          </attribute>
@@ -142,7 +142,7 @@ This class must implement org.eclipse.papyrus.diagram.common.groups.groupcontain
       </appinfo>
       <documentation>
          &lt;extension
-    point=&quot;org.eclipse.papyrus.diagram.common.groups.groupcontainment&quot;
+    point=&quot;org.eclipse.papyrus.uml.diagram.common.groups.groupcontainment&quot;
     name=&quot;ActivityGroup&quot;
     id=&quot;org.eclipse.papyrus.diagram.activity.activitygroup&quot;&gt;
     &lt;modelContainer editPartType=&quot;org.eclipse.papyrus.diagram.activity.edit.parts.StructuredActivityNodeStructuredActivityNodeContentCompartmentEditPart&quot; descriptor=&quot;org.eclipse.papyrus.diagram.activity.groupcontainment.StructuredActivityNodeContainment&quot;/&gt;
@@ -165,7 +165,7 @@ This class must implement org.eclipse.papyrus.diagram.common.groups.groupcontain
          <meta.section type="apiinfo"/>
       </appinfo>
       <documentation>
-         The interface  org.eclipse.papyrus.diagram.common.groups.groupcontainment.IContainerNodeDescriptor must be implemented by classes used in the extensions.
+         The interface  org.eclipse.papyrus.uml.diagram.common.groups.groupcontainment.IContainerNodeDescriptor must be implemented by classes used in the extensions.
 The interface org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart is used as it is supposed to be implemented by all edit parts in Papyrus.
       </documentation>
    </annotation>

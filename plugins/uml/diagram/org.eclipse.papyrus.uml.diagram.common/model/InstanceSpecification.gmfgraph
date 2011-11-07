@@ -10,7 +10,7 @@
       <actualFigure
           xsi:type="gmfgraph:CustomFigure"
           name="InstancespecificationFigure"
-          qualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.CEnumeration">
+          qualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.CEnumeration">
         <foregroundColor
             xsi:type="gmfgraph:RGBColor"
             red="255"

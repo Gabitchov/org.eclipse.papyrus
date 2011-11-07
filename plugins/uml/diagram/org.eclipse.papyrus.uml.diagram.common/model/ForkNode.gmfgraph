@@ -10,7 +10,7 @@
       <actualFigure
           xsi:type="gmfgraph:CustomFigure"
           name="ForkNodeFigure"
-          qualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.ForkNode"/>
+          qualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.ForkNode"/>
     </descriptors>
   </figures>
   <nodes

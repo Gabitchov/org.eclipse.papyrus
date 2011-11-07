@@ -10,7 +10,7 @@
       <actualFigure
           xsi:type="gmfgraph:CustomConnection"
           name="CAssociationFigure"
-          qualifiedClassName="org.eclipse.papyrus.diagram.common.figure.edge.CAssociationFigure">
+          qualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.edge.CAssociationFigure">
         <foregroundColor
             xsi:type="gmfgraph:ConstantColor"
             value="black"/>
@@ -87,7 +87,7 @@
       <actualFigure
           xsi:type="gmfgraph:CustomConnection"
           name="CAssociationBranchFigure"
-          qualifiedClassName="org.eclipse.papyrus.diagram.common.figure.edge.CAssociationBranchFigure">
+          qualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.edge.CAssociationBranchFigure">
         <foregroundColor
             xsi:type="gmfgraph:ConstantColor"
             value="black"/>

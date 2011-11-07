@@ -16,7 +16,7 @@
    <extension
          point="org.eclipse.ui.handlers">
       <handler
-            class="org.eclipse.papyrus.diagram.communication.CreateCommunicationDiagramWithNavigationHandler"
+            class="org.eclipse.papyrus.uml.diagram.communication.CreateCommunicationDiagramWithNavigationHandler"
             commandId="org.eclipse.papyrus.diagram.communication.CreateCommunicationDiagramCommand">
          <activeWhen>
             <or>
@@ -42,7 +42,7 @@
 			style="push"
 			tooltip="Create a new Communication Diagram">
 			<visibleWhen>
-				<reference definitionId="org.eclipse.papyrus.diagram.common.IsPapyrusActiveWithUMLModel"/>
+				<reference definitionId="org.eclipse.papyrus.uml.diagram.common.IsPapyrusActiveWithUMLModel"/>
 			</visibleWhen>
 		</command>
 	</toolbar>
@@ -57,20 +57,20 @@
 			style="push"
 			tooltip="Create a new Communication Diagram">
 			<visibleWhen>
-				<reference definitionId="org.eclipse.papyrus.diagram.common.IsPapyrusActiveWithUMLModel"/>
+				<reference definitionId="org.eclipse.papyrus.uml.diagram.common.IsPapyrusActiveWithUMLModel"/>
 			</visibleWhen>
 		</command>
 	</menu>
 	</menuContribution>
 
-	<menuContribution locationURI="popup:org.eclipse.papyrus.modelexplorer.popupmenu.creatediagram">
+	<menuContribution locationURI="popup:org.eclipse.papyrus.views.modelexplorer.popupmenu.creatediagram">
 		<command commandId="org.eclipse.papyrus.diagram.communication.CreateCommunicationDiagramCommand"
 			icon="icons/obj16/Diagram_Communication.gif"
 			label="Create a new Communication Diagram"
 			style="push"
 			tooltip="Create a new Communication Diagram">
 			<visibleWhen>
-				<reference definitionId="org.eclipse.papyrus.diagram.common.IsPapyrusActiveWithUMLModel"/>
+				<reference definitionId="org.eclipse.papyrus.uml.diagram.common.IsPapyrusActiveWithUMLModel"/>
 			</visibleWhen>
 		</command>
 	</menuContribution>
@@ -80,12 +80,12 @@
    <extension
          point="org.eclipse.papyrus.core.papyrusDiagram">
       <editorDiagram
-            factoryClass="org.eclipse.papyrus.diagram.communication.CommunicationDiagramEditorFactory"
+            factoryClass="org.eclipse.papyrus.uml.diagram.communication.CommunicationDiagramEditorFactory"
             icon="icons/obj16/Diagram_Communication.gif">
       </editorDiagram>
       <creationCommand
-            creationCommandClass="org.eclipse.papyrus.diagram.communication.CreateCommunicationDiagramCommand"
-            creationCondition="org.eclipse.papyrus.diagram.communication.CommunicationDiagramCreationCondition"
+            creationCommandClass="org.eclipse.papyrus.uml.diagram.communication.CreateCommunicationDiagramCommand"
+            creationCondition="org.eclipse.papyrus.uml.diagram.communication.CommunicationDiagramCreationCondition"
             icon="icons/obj16/Diagram_Communication.gif"
             id="org.eclipse.papyrus.diagram.communication.CreateCommunicationDiagramCommand"
             label="UML Communication Diagram"
@@ -96,7 +96,7 @@
 
 <extension point="org.eclipse.gmf.runtime.common.ui.services.markerNavigationProviders" id="markers-navigation">
       <?gmfgen generated="true"?>
-      <MarkerNavigationProvider class="org.eclipse.papyrus.diagram.communication.providers.UMLMarkerNavigationProvider">
+      <MarkerNavigationProvider class="org.eclipse.papyrus.uml.diagram.communication.providers.UMLMarkerNavigationProvider">
          <MarkerType name="org.eclipse.papyrus.diagram.communication.diagnostic"/>
          <Priority name="Lowest"/>
       </MarkerNavigationProvider>
@@ -116,7 +116,7 @@
 		<paletteProvider class="org.eclipse.gmf.runtime.diagram.ui.providers.DefaultPaletteProvider">
 			<Priority name="Lowest"/>
       		<contribution
-            	factoryClass="org.eclipse.papyrus.diagram.communication.part.UMLPaletteFactory">
+            	factoryClass="org.eclipse.papyrus.uml.diagram.communication.part.UMLPaletteFactory">
      			<predefinedEntry id="standardGroup/noteStack/noteTool" remove="true"/> 
 				<predefinedEntry id="standardGroup/noteStack/textTool" remove="true"/> 
 				<predefinedEntry id="standardGroup/noteStack/noteattachmentTool" remove="true"/>
@@ -205,7 +205,7 @@
 		<paletteProvider class="org.eclipse.gmf.runtime.diagram.ui.providers.DefaultPaletteProvider">
 			<Priority name="Low"/>
       		<contribution
-            	factoryClass="org.eclipse.papyrus.diagram.communication.part.UMLPaletteFactory">
+            	factoryClass="org.eclipse.papyrus.uml.diagram.communication.part.UMLPaletteFactory">
      			<predefinedEntry id="standardGroup/noteStack/noteTool" remove="true"/> 
 				<predefinedEntry id="standardGroup/noteStack/textTool" remove="true"/> 
 				<predefinedEntry id="standardGroup/noteStack/noteattachmentTool" remove="true"/>
@@ -278,49 +278,49 @@
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLCommunicationDiagram"
-			class="org.eclipse.papyrus.diagram.communication.preferences.InteractionPreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.communication.preferences.InteractionPreferencePage"
             id="org.eclipse.papyrus.diagram.communication.preferences.InteractionPreferencePage"
             name="Interaction Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLCommunicationDiagram"
-			class="org.eclipse.papyrus.diagram.communication.preferences.TimeObservationPreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.communication.preferences.TimeObservationPreferencePage"
             id="org.eclipse.papyrus.diagram.communication.preferences.TimeObservationPreferencePage"
             name="TimeObservation Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLCommunicationDiagram"
-			class="org.eclipse.papyrus.diagram.communication.preferences.ShortCutDiagramPreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.communication.preferences.ShortCutDiagramPreferencePage"
             id="org.eclipse.papyrus.diagram.communication.preferences.ShortCutDiagramPreferencePage"
             name="ShortCutDiagram Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLCommunicationDiagram"
-			class="org.eclipse.papyrus.diagram.communication.preferences.CommentPreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.communication.preferences.CommentPreferencePage"
             id="org.eclipse.papyrus.diagram.communication.preferences.CommentPreferencePage"
             name="Comment Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLCommunicationDiagram"
-			class="org.eclipse.papyrus.diagram.communication.preferences.ConstraintPreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.communication.preferences.ConstraintPreferencePage"
             id="org.eclipse.papyrus.diagram.communication.preferences.ConstraintPreferencePage"
             name="Constraint Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLCommunicationDiagram"
-			class="org.eclipse.papyrus.diagram.communication.preferences.LifelinePreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.communication.preferences.LifelinePreferencePage"
             id="org.eclipse.papyrus.diagram.communication.preferences.LifelinePreferencePage"
             name="Lifeline Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLCommunicationDiagram"
-			class="org.eclipse.papyrus.diagram.communication.preferences.DurationObservationPreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.communication.preferences.DurationObservationPreferencePage"
             id="org.eclipse.papyrus.diagram.communication.preferences.DurationObservationPreferencePage"
             name="DurationObservation Node" />
 	
@@ -330,7 +330,7 @@
 
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLCommunicationDiagram"
-			class="org.eclipse.papyrus.diagram.communication.preferences.MessagePreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.communication.preferences.MessagePreferencePage"
             id="org.eclipse.papyrus.diagram.communication.preferences.MessagePreferencePage"
             name="Message Link" />
 		
@@ -341,7 +341,7 @@
 
 <extension point="org.eclipse.core.runtime.preferences">
 		<?gmfgen generated="true"?>
-		<initializer class="org.eclipse.papyrus.diagram.communication.preferences.DiagramPreferenceInitializer"/>
+		<initializer class="org.eclipse.papyrus.uml.diagram.communication.preferences.DiagramPreferenceInitializer"/>
 	</extension>
 
 <extension point="org.eclipse.gmf.runtime.diagram.core.viewProviders" id="view-provider">
@@ -379,7 +379,7 @@
 
 <extension point="org.eclipse.gmf.runtime.emf.ui.modelingAssistantProviders" id="modelassist-provider">
       <?gmfgen generated="true"?>
-      <modelingAssistantProvider class="org.eclipse.papyrus.diagram.communication.providers.UMLModelingAssistantProvider">
+      <modelingAssistantProvider class="org.eclipse.papyrus.uml.diagram.communication.providers.UMLModelingAssistantProvider">
          <Priority name="Lowest"/>
          <object class="org.eclipse.papyrus.diagram.communication.edit.parts.ModelEditPart" id="Package_1000"/>
          <object class="org.eclipse.papyrus.diagram.communication.edit.parts.InteractionEditPart" id="Interaction_8002"/>
@@ -390,14 +390,14 @@
 
 <extension point="org.eclipse.gmf.runtime.common.ui.services.iconProviders" id="icon-provider">
       <?gmfgen generated="true"?>
-      <IconProvider class="org.eclipse.papyrus.diagram.communication.providers.UMLIconProvider">
+      <IconProvider class="org.eclipse.papyrus.uml.diagram.communication.providers.UMLIconProvider">
          <Priority name="Lowest"/>
       </IconProvider>
    </extension>
 
 <extension point="org.eclipse.gmf.runtime.common.ui.services.parserProviders" id="parser-provider">
       <?gmfgen generated="true"?>
-      <ParserProvider class="org.eclipse.papyrus.diagram.communication.providers.UMLParserProvider">
+      <ParserProvider class="org.eclipse.papyrus.uml.diagram.communication.providers.UMLParserProvider">
          <Priority name="Lowest"/>
       </ParserProvider>
    </extension>
@@ -410,7 +410,7 @@
                name="%metatype.name.Package_1000"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Package"
-               edithelper="org.eclipse.papyrus.diagram.communication.edit.helpers.PackageEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.communication.edit.helpers.PackageEditHelper">
             <param name="semanticHint" value="1000"/>
          </metamodelType>
       </metamodel>
@@ -420,7 +420,7 @@
                name="%metatype.name.Interaction_8002"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Interaction"
-               edithelper="org.eclipse.papyrus.diagram.communication.edit.helpers.InteractionEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.communication.edit.helpers.InteractionEditHelper">
             <param name="semanticHint" value="8002"/>
          </metamodelType>
       </metamodel>
@@ -430,7 +430,7 @@
                name="%metatype.name.Diagram_8016"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Diagram"
-               edithelper="org.eclipse.papyrus.diagram.communication.edit.helpers.ShortCutDiagramEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.communication.edit.helpers.ShortCutDiagramEditHelper">
             <param name="semanticHint" value="8016"/>
          </metamodelType>
       </metamodel>
@@ -440,7 +440,7 @@
                name="%metatype.name.Lifeline_8001"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Lifeline"
-               edithelper="org.eclipse.papyrus.diagram.communication.edit.helpers.LifelineEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.communication.edit.helpers.LifelineEditHelper">
             <param name="semanticHint" value="8001"/>
          </metamodelType>
       </metamodel>
@@ -450,7 +450,7 @@
                name="%metatype.name.Constraint_8004"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Constraint"
-               edithelper="org.eclipse.papyrus.diagram.communication.edit.helpers.ConstraintEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.communication.edit.helpers.ConstraintEditHelper">
             <param name="semanticHint" value="8004"/>
          </metamodelType>
       </metamodel>
@@ -460,7 +460,7 @@
                name="%metatype.name.Comment_8005"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Comment"
-               edithelper="org.eclipse.papyrus.diagram.communication.edit.helpers.CommentEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.communication.edit.helpers.CommentEditHelper">
             <param name="semanticHint" value="8005"/>
          </metamodelType>
       </metamodel>
@@ -470,7 +470,7 @@
                name="%metatype.name.TimeObservation_8006"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="TimeObservation"
-               edithelper="org.eclipse.papyrus.diagram.communication.edit.helpers.TimeObservationEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.communication.edit.helpers.TimeObservationEditHelper">
             <param name="semanticHint" value="8006"/>
          </metamodelType>
       </metamodel>
@@ -480,7 +480,7 @@
                name="%metatype.name.DurationObservation_8007"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="DurationObservation"
-               edithelper="org.eclipse.papyrus.diagram.communication.edit.helpers.DurationObservationEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.communication.edit.helpers.DurationObservationEditHelper">
             <param name="semanticHint" value="8007"/>
          </metamodelType>
       </metamodel>
@@ -490,7 +490,7 @@
                name="%metatype.name.Message_8009"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Message"
-               edithelper="org.eclipse.papyrus.diagram.communication.edit.helpers.MessageEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.communication.edit.helpers.MessageEditHelper">
             <param name="semanticHint" value="8009"/>
          </metamodelType>
       </metamodel>
@@ -566,7 +566,7 @@
            type="org.eclipse.emf.common.ui.URIEditorInput"
            namespace="org.eclipse.papyrus.diagram.communication"
            properties="isURIEditorInput"
-           class="org.eclipse.papyrus.diagram.communication.part.UMLUriEditorInputTester">
+           class="org.eclipse.papyrus.uml.diagram.communication.part.UMLUriEditorInputTester">
        </propertyTester>
    </extension>
 
@@ -592,8 +592,8 @@
             id="org.eclipse.papyrus.diagram.communication.resourceContent" 
             name="%navigatorContentName" 
             priority="normal" 
-            contentProvider="org.eclipse.papyrus.diagram.communication.navigator.UMLNavigatorContentProvider" 
-            labelProvider="org.eclipse.papyrus.diagram.communication.navigator.UMLNavigatorLabelProvider"
+            contentProvider="org.eclipse.papyrus.uml.diagram.communication.navigator.UMLNavigatorContentProvider" 
+            labelProvider="org.eclipse.papyrus.uml.diagram.communication.navigator.UMLNavigatorLabelProvider"
             icon="icons/obj16/UMLDiagramFile.gif"
             activeByDefault="true">
          <triggerPoints>
@@ -602,24 +602,24 @@
     	          <instanceof value="org.eclipse.core.resources.IFile"/>
         	      <test property="org.eclipse.core.resources.extension" value="PapyrusUMLCommunication_diagram"/>
                </and>
-               <instanceof value="org.eclipse.papyrus.diagram.communication.navigator.UMLAbstractNavigatorItem"/>
+               <instanceof value="org.eclipse.papyrus.uml.diagram.communication.navigator.UMLAbstractNavigatorItem"/>
             </or>
          </triggerPoints>
          <possibleChildren>
             <or>
-         	   <instanceof value="org.eclipse.papyrus.diagram.communication.navigator.UMLAbstractNavigatorItem"/>
+         	   <instanceof value="org.eclipse.papyrus.uml.diagram.communication.navigator.UMLAbstractNavigatorItem"/>
             </or>
          </possibleChildren>
          <commonSorter 
                id="org.eclipse.papyrus.diagram.communication.navigatorSorter" 
-               class="org.eclipse.papyrus.diagram.communication.navigator.UMLNavigatorSorter">
+               class="org.eclipse.papyrus.uml.diagram.communication.navigator.UMLNavigatorSorter">
             <parentExpression>
                <or>
 	              <and>
     	             <instanceof value="org.eclipse.core.resources.IFile"/>
         	         <test property="org.eclipse.core.resources.extension" value="PapyrusUMLCommunication_diagram"/>
                   </and>
-                  <instanceof value="org.eclipse.papyrus.diagram.communication.navigator.UMLAbstractNavigatorItem"/>
+                  <instanceof value="org.eclipse.papyrus.uml.diagram.communication.navigator.UMLAbstractNavigatorItem"/>
                </or>
             </parentExpression>
          </commonSorter>
@@ -628,8 +628,8 @@
             id="org.eclipse.papyrus.diagram.communication.domainResourceContent" 
             name="%domainNavigatorContentName" 
             priority="normal" 
-            contentProvider="org.eclipse.papyrus.diagram.communication.navigator.UMLDomainNavigatorContentProvider" 
-            labelProvider="org.eclipse.papyrus.diagram.communication.navigator.UMLDomainNavigatorLabelProvider"
+            contentProvider="org.eclipse.papyrus.uml.diagram.communication.navigator.UMLDomainNavigatorContentProvider" 
+            labelProvider="org.eclipse.papyrus.uml.diagram.communication.navigator.UMLDomainNavigatorLabelProvider"
             icon="icons/obj16/UMLDiagramFile.gif"
             activeByDefault="true">
          <triggerPoints>
@@ -638,19 +638,19 @@
     	          <instanceof value="org.eclipse.core.resources.IFile"/>
         	      <test property="org.eclipse.core.resources.extension" value="PapyrusUMLCommunication"/>
                </and>
-               <instanceof value="org.eclipse.papyrus.diagram.communication.navigator.UMLDomainNavigatorItem"/>
+               <instanceof value="org.eclipse.papyrus.uml.diagram.communication.navigator.UMLDomainNavigatorItem"/>
             </or>
          </triggerPoints>
          <possibleChildren>
-            <instanceof value="org.eclipse.papyrus.diagram.communication.navigator.UMLDomainNavigatorItem"/>
+            <instanceof value="org.eclipse.papyrus.uml.diagram.communication.navigator.UMLDomainNavigatorItem"/>
          </possibleChildren>
       </navigatorContent>
       <actionProvider
             id="org.eclipse.papyrus.diagram.communication.navigatorActionProvider"
-            class="org.eclipse.papyrus.diagram.communication.navigator.UMLNavigatorActionProvider">
+            class="org.eclipse.papyrus.uml.diagram.communication.navigator.UMLNavigatorActionProvider">
          <enablement>
             <or>
-               <instanceof value="org.eclipse.papyrus.diagram.communication.navigator.UMLAbstractNavigatorItem"/>
+               <instanceof value="org.eclipse.papyrus.uml.diagram.communication.navigator.UMLAbstractNavigatorItem"/>
             </or>
          </enablement>
       </actionProvider>
@@ -660,7 +660,7 @@
       <?gmfgen generated="true"?>
       <linkHelper
             id="org.eclipse.papyrus.diagram.communication.navigatorLinkHelper"
-            class="org.eclipse.papyrus.diagram.communication.navigator.UMLNavigatorLinkHelper">
+            class="org.eclipse.papyrus.uml.diagram.communication.navigator.UMLNavigatorLinkHelper">
          <editorInputEnablement>
             <and>
                <instanceof value="org.eclipse.emf.common.ui.URIEditorInput"/>
@@ -668,7 +668,7 @@
             </and>
          </editorInputEnablement>
          <selectionEnablement>
-            <instanceof value="org.eclipse.papyrus.diagram.communication.navigator.UMLAbstractNavigatorItem"/>
+            <instanceof value="org.eclipse.papyrus.uml.diagram.communication.navigator.UMLAbstractNavigatorItem"/>
          </selectionEnablement>
       </linkHelper>
    </extension>
@@ -677,7 +677,7 @@
       <?gmfgen generated="true"?>
       <command
          categoryId="org.eclipse.ui.category.edit"
-         defaultHandler="org.eclipse.papyrus.diagram.communication.part.UMLDiagramUpdateCommand"
+         defaultHandler="org.eclipse.papyrus.uml.diagram.communication.part.UMLDiagramUpdateCommand"
          description="%update.diagram.description"
          id="org.eclipse.papyrus.diagram.communication.updateDiagram"
          name="%update.diagram.name"/>
@@ -698,7 +698,7 @@
             id="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLCommunicationDiagram"
             name="PapyrusUMLCommunicationDiagram Diagram"
             category="org.eclipse.papyrus.preferences.diagrams"
-            class="org.eclipse.papyrus.diagram.communication.preferences.DiagramGeneralPreferencePage">
+            class="org.eclipse.papyrus.uml.diagram.communication.preferences.DiagramGeneralPreferencePage">
       </page>
       
 
@@ -707,14 +707,14 @@
             id="org.eclipse.papyrus.diagram.communication.preferences.DiagramPrintingPreferencePage"
             name="%prefpage.org.eclipse.uml2.uml.diagram.printing"
             category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLCommunicationDiagram"
-            class="org.eclipse.papyrus.diagram.communication.preferences.DiagramPrintingPreferencePage">
+            class="org.eclipse.papyrus.uml.diagram.communication.preferences.DiagramPrintingPreferencePage">
       </page>
 
       <page
             id="org.eclipse.papyrus.diagram.communication.preferences.DiagramRulersAndGridPreferencePage"
             name="%prefpage.org.eclipse.uml2.uml.diagram.rulersAndGrid"
             category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLCommunicationDiagram"
-            class="org.eclipse.papyrus.diagram.communication.preferences.DiagramRulersAndGridPreferencePage">
+            class="org.eclipse.papyrus.uml.diagram.communication.preferences.DiagramRulersAndGridPreferencePage">
       </page>
 
    </extension>
@@ -759,9 +759,9 @@
    <objectContribution
          adaptable="false"
          id="org.eclipse.papyrus.diagram.communication.objectContribution.messageLabelReorient"
-         objectClass="org.eclipse.papyrus.diagram.communication.edit.parts.MessageNameEditPart">
+         objectClass="org.eclipse.papyrus.uml.diagram.communication.edit.parts.MessageNameEditPart">
       <action
-            class="org.eclipse.papyrus.diagram.communication.custom.commands.MessageLabelInverseOrientation"
+            class="org.eclipse.papyrus.uml.diagram.communication.custom.commands.MessageLabelInverseOrientation"
             definitionId="org.eclipse.papyrus.diagram.communication.messagelabelreorientID"
             enablesFor="1"
             icon="icons/arrow-rotate.gif"
@@ -820,13 +820,13 @@
    <metamodel
          nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
       <adviceBinding
-            class="org.eclipse.papyrus.diagram.communication.custom.advices.DestroyMessageAdvice"
+            class="org.eclipse.papyrus.uml.diagram.communication.custom.advices.DestroyMessageAdvice"
             id="org.eclipse.papyrus.uml.diagram.communication.DestroyMessageAdvice"
             inheritance="all"
             typeId="org.eclipse.papyrus.uml.Message">
       </adviceBinding>
       <adviceBinding
-            class="org.eclipse.papyrus.diagram.communication.custom.advices.MessageHelperAdvice"
+            class="org.eclipse.papyrus.uml.diagram.communication.custom.advices.MessageHelperAdvice"
             id="org.eclipse.papyrus.uml.diagram.communication.MessageHelperAdvice"
             inheritance="all"
             typeId="org.eclipse.papyrus.uml.Message">
@@ -836,7 +836,7 @@
 </extension>
 <extension id="validationDecoratorProvider" name="ValidationDecorations" point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders">
       <?gmfgen generated="true"?>
-      <decoratorProvider class="org.eclipse.papyrus.diagram.communication.providers.UMLValidationDecoratorProvider">
+      <decoratorProvider class="org.eclipse.papyrus.uml.diagram.communication.providers.UMLValidationDecoratorProvider">
          <Priority name="Lowest"/>
          <object class="org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart(org.eclipse.gmf.runtime.diagram.ui)" id="PRIMARY_VIEW"/>
          <context decoratorTargets="PRIMARY_VIEW"/>

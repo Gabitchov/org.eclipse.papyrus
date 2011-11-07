@@ -3,12 +3,12 @@
 <plugin>
    <extension-point id="AspectPredefinedTool" name="Aspect Predefined Tool" schema="schema/AspectPredefinedTool.exsd"/>
    <extension
-         point="org.eclipse.papyrus.diagram.common.aspectToolProvider">
+         point="org.eclipse.papyrus.uml.diagram.common.aspectToolProvider">
       <aspectToolProvider
-            class="org.eclipse.papyrus.diagram.common.palette.customaction.providers.ToolAspectActionProvider"
+            class="org.eclipse.papyrus.uml.diagram.common.palette.customaction.providers.ToolAspectActionProvider"
             description="Create Objects in a predefined way"
             icon="resources/wiz.gif"
-            id="org.eclipse.papyrus.diagram.common.palette.wizards.WizardaspectToolProvider"
+            id="org.eclipse.papyrus.uml.diagram.common.palette.wizards.WizardaspectToolProvider"
             name="Predefined Creation">
          <Priority
                name="Lowest">

@@ -33,7 +33,7 @@
       point="org.eclipse.papyrus.core.modelListener">
    <listener
          name="StereotypeApplicationListener"
-         realization="org.eclipse.papyrus.diagram.common.editparts.PapyrusStereotypeListener">
+         realization="org.eclipse.papyrus.uml.diagram.common.editparts.PapyrusStereotypeListener">
    </listener>
 </extension>
 
@@ -69,7 +69,7 @@
 	<propertySections contributorId="TreeOutlinePage">
 		<propertySection
 			afterSection=""
-	   		class="org.eclipse.papyrus.diagram.common.sheet.UMLPropertySection"
+	   		class="org.eclipse.papyrus.uml.diagram.common.sheet.UMLPropertySection"
 	  		id="AdvancedProperty"
 	   		tab="advanced">
 	   		<input type="java.lang.Object"/>
@@ -111,13 +111,13 @@
       point="org.eclipse.ui.commands">
    <command
          categoryId="org.eclipse.papyrus.editor.category"
-         defaultHandler="org.eclipse.papyrus.diagram.common.actions.LoadResourceAction"
+         defaultHandler="org.eclipse.papyrus.uml.diagram.common.actions.LoadResourceAction"
          id="org.eclipse.papyrus.diagram.commands.LoadResourceAction"
          name="Load Resource">
    </command>
    <command
          categoryId="org.eclipse.papyrus.editor.category"
-         defaultHandler="org.eclipse.papyrus.diagram.common.handlers.PasteWithModelHandler"
+         defaultHandler="org.eclipse.papyrus.uml.diagram.common.handlers.PasteWithModelHandler"
          description="Paste content in a diagram (graphic+ semantic)"
          id="org.eclipse.papyrus.diagram.common.commands.PasteWithModelCommand"
          name="PasteWithModel">
@@ -130,7 +130,7 @@
          id="org.eclipse.papyrus.diagram.clazz.objectContribution.dependencybranchdeletion"
          objectClass="org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart">
       <action
-            class="org.eclipse.papyrus.diagram.common.commands.CleanDiagram"
+            class="org.eclipse.papyrus.uml.diagram.common.commands.CleanDiagram"
             definitionId="org.eclipse.papyrus.common.cleandiagram"
             enablesFor="1"
             id="org.eclipse.papyrus.common.cleandiagram"
@@ -143,7 +143,7 @@
          id="org.eclipse.papyrus.diagram.common.pastewithmodelaction"
          objectClass="org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart">
       <action
-            class="org.eclipse.papyrus.diagram.common.actions.PasteWithModelAction"
+            class="org.eclipse.papyrus.uml.diagram.common.actions.PasteWithModelAction"
             definitionId="org.eclipse.papyrus.common.pasteWithModel"
             enablesFor="1"
             icon="icons/paste_edit.gif"
@@ -158,27 +158,27 @@
    <listener
          description="This listener listens for profile (un)applications to update the palette"
          name="PaletteProfileApplicationListener"
-         realization="org.eclipse.papyrus.diagram.common.service.PaletteProfileApplicationListener">
+         realization="org.eclipse.papyrus.uml.diagram.common.service.PaletteProfileApplicationListener">
    </listener>
 </extension>
 <extension
       point="org.eclipse.papyrus.core.modelListener">
    <listener
          name="org.eclipse.papyrus.diagram.common.listener1"
-         realization="org.eclipse.papyrus.diagram.common.listeners.RemoveStereotypeApplicationListener">
+         realization="org.eclipse.papyrus.uml.diagram.common.listeners.RemoveStereotypeApplicationListener">
    </listener>
 </extension>
 <extension
       point="org.eclipse.papyrus.core.papyrusDiagram">
    <actionBarContributor
          id="org.eclipse.papyrus.diagram.common.part.UMLDiagramActionBarContributor"
-         implementingClass="org.eclipse.papyrus.diagram.common.part.UMLDiagramActionBarContributor">
+         implementingClass="org.eclipse.papyrus.uml.diagram.common.part.UMLDiagramActionBarContributor">
    </actionBarContributor>
 </extension>
 <extension
       point="org.eclipse.papyrus.diagram.common.aspectToolProvider">
    <aspectToolProvider
-         class="org.eclipse.papyrus.diagram.common.service.palette.AssociationEndAspectActionProvider"
+         class="org.eclipse.papyrus.uml.diagram.common.service.palette.AssociationEndAspectActionProvider"
          description="This Provider handles actions taken after association creation. It modifies the 2 properties, member ends of the created association."
          icon="icons/obj16/Association_composite.gif"
          id="org.eclipse.papyrus.postaction.associationendactionprovider"
@@ -191,7 +191,7 @@
 <extension
       point="org.eclipse.papyrus.diagram.common.aspectToolProvider">
    <aspectToolProvider
-         class="org.eclipse.papyrus.diagram.common.service.palette.ChangeStereotypeDisplayAspectActionProvider"
+         class="org.eclipse.papyrus.uml.diagram.common.service.palette.ChangeStereotypeDisplayAspectActionProvider"
          description="This changes the way stereotypes are displayed in the created element. (Vertical or horizontal display, icon or text, etc.)"
          icon="icons/stereotype_display.gif"
          id="org.eclipse.papyrus.postaction.changeStereotypeDisplayProvider"
@@ -204,7 +204,7 @@
 <extension
       point="org.eclipse.papyrus.diagram.common.aspectToolProvider">
    <aspectToolProvider
-         class="org.eclipse.papyrus.diagram.common.service.palette.StereotypeAspectActionProvider"
+         class="org.eclipse.papyrus.uml.diagram.common.service.palette.StereotypeAspectActionProvider"
          description="This provider creates action that applies a list of stereotypes to the given element."
          icon="icons/stereotype.gif"
          id="org.eclipse.papyrus.applystereotypeactionprovider"
@@ -217,7 +217,7 @@
 <extension
       point="org.eclipse.papyrus.diagram.common.aspectToolProvider">
    <aspectToolProvider
-         class="org.eclipse.papyrus.diagram.common.service.palette.SemanticAspectActionProvider"
+         class="org.eclipse.papyrus.uml.diagram.common.service.palette.SemanticAspectActionProvider"
          description="The actions provided by this extension modify a semantic element, giving static-defined values to some of his attributes"
          icon="icons/stack.gif"
          id="org.eclipse.papyrus.postaction.semanticactionprovider"
@@ -231,7 +231,7 @@
 <extension
       point="org.eclipse.papyrus.diagram.common.aspectToolProvider">
    <aspectToolProvider
-         class="org.eclipse.papyrus.diagram.common.service.palette.DisplayAppliedStereotypeAspectActionProvider"
+         class="org.eclipse.papyrus.uml.diagram.common.service.palette.DisplayAppliedStereotypeAspectActionProvider"
          description="This action modifies the list of stereotype that will be displayed for the specified element, and if they are displayed using qualified name or simple name"
          icon="icons/stereotype_display.gif"
          id="org.eclipse.papyrus.postaction.displayAppliedStereotypeactionprovider"
@@ -272,7 +272,7 @@
    <extension
          point="org.eclipse.papyrus.core.papyrusDiagram">
       <diagramCategory
-            class="org.eclipse.papyrus.diagram.common.commands.CreateUMLModelCommand"
+            class="org.eclipse.papyrus.uml.diagram.common.commands.CreateUMLModelCommand"
             description="Create Unified Modeling Language diagrams"
             icon="icons/category_uml.gif"
             id="uml"
@@ -284,7 +284,7 @@
 <extension
 		point="org.eclipse.core.expressions.propertyTesters">
 	<propertyTester
-		class="org.eclipse.papyrus.diagram.common.util.UMLSelectionTester"
+		class="org.eclipse.papyrus.uml.diagram.common.util.UMLSelectionTester"
 		id="org.eclipse.papyrus.UMLSelectionTester"
 		namespace="org.eclipse.papyrus.UMLSelectionTester"
 		properties="isUMLModel, isUMLProfile"
@@ -461,7 +461,7 @@
 	
 	<command
 		categoryId="org.eclipse.papyrus.editor.category"
-		defaultHandler="org.eclipse.papyrus.diagram.common.handlers.DeleteFromModelCommandHandler"
+		defaultHandler="org.eclipse.papyrus.uml.diagram.common.handlers.DeleteFromModelCommandHandler"
 		description="Delete the selection from model"
 		id="org.eclipse.papyrus.diagram.common.commands.DeleteFromModel"
 		name="Delete From Model Command">
@@ -469,21 +469,21 @@
 	
 	<command
 		categoryId="org.eclipse.papyrus.editor.category"
-		defaultHandler="org.eclipse.papyrus.diagram.common.handlers.DeleteFromDiagramCommandHandler"
+		defaultHandler="org.eclipse.papyrus.uml.diagram.common.handlers.DeleteFromDiagramCommandHandler"
 		description="Delete the selection from diagram"
 		id="org.eclipse.papyrus.diagram.common.commands.DeleteFromDiagram"
 		name="Delete From Diagram Command">
 	</command>
 	<command
 		categoryId="org.eclipse.papyrus.editor.category"
-		defaultHandler="org.eclipse.papyrus.diagram.common.handlers.LoadHandler"
+		defaultHandler="org.eclipse.papyrus.uml.diagram.common.handlers.LoadHandler"
 		description="Load the corresponding submodel"
 		id="org.eclipse.papyrus.diagram.common.commands.Load"
 		name="Load">
 	</command>
 	<command
 		categoryId="org.eclipse.papyrus.editor.category"
-		defaultHandler="org.eclipse.papyrus.diagram.common.handlers.UnloadHandler"
+		defaultHandler="org.eclipse.papyrus.uml.diagram.common.handlers.UnloadHandler"
 		description="Unload the corresponding submodel"
 		id="org.eclipse.papyrus.diagram.common.commands.Unload"
 		name="Unload">
@@ -493,7 +493,7 @@
 <extension
       point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders">
    <decoratorProvider
-         class="org.eclipse.papyrus.diagram.common.service.InheritedDecoratorProvider">
+         class="org.eclipse.papyrus.uml.diagram.common.service.InheritedDecoratorProvider">
       <Priority
             name="Lowest">
       </Priority>
@@ -509,7 +509,7 @@
 <extension
       point="org.eclipse.ui.services">
    <sourceProvider
-         provider="org.eclipse.papyrus.diagram.common.providers.ActionStateSourceProvider">
+         provider="org.eclipse.papyrus.uml.diagram.common.providers.ActionStateSourceProvider">
       <variable
             name="deleteInDiagram"
             priorityLevel="workbench">
@@ -523,7 +523,7 @@
 <extension
       point="org.eclipse.ui.handlers">
    <handler
-         class="org.eclipse.papyrus.diagram.common.handlers.DeleteFromModelCommandHandler"
+         class="org.eclipse.papyrus.uml.diagram.common.handlers.DeleteFromModelCommandHandler"
          commandId="org.eclipse.ui.edit.delete">
       <activeWhen>
          <and>
@@ -553,7 +553,7 @@
       </activeWhen>
    </handler>
    <handler
-         class="org.eclipse.papyrus.diagram.common.handlers.RenamedElementHandler"
+         class="org.eclipse.papyrus.uml.diagram.common.handlers.RenamedElementHandler"
          commandId="org.eclipse.ui.edit.rename">
       <activeWhen>
          <and>
@@ -570,7 +570,7 @@
 <extension
          point="org.eclipse.papyrus.core.service">
  		<service
-            classname="org.eclipse.papyrus.diagram.common.resourceupdate.ResourceUpdateService"
+            classname="org.eclipse.papyrus.uml.diagram.common.resourceupdate.ResourceUpdateService"
             description="Service used to update resources that have changed on disk"
             id="org.eclipse.papyrus.diagram.common.resourceupdate"
             priority="1"
@@ -590,7 +590,7 @@
 <extension
       point="org.eclipse.core.expressions.propertyTesters">
    <propertyTester
-         class="org.eclipse.papyrus.diagram.common.util.DiagramTester"
+         class="org.eclipse.papyrus.uml.diagram.common.util.DiagramTester"
          id="org.eclipse.papyrus.diagram.common.diagram.tester"
          namespace="org.eclipse.papyrus.diagram.common.diagram.tester"
          properties="diagramType"
@@ -619,7 +619,7 @@
       </ViewId>
    </GlobalActionHandlerProvider>
    <GlobalActionHandlerProvider
-         class="org.eclipse.papyrus.diagram.common.providers.PapyrusGlobalActionHandlerProvider"
+         class="org.eclipse.papyrus.uml.diagram.common.providers.PapyrusGlobalActionHandlerProvider"
          id="PapyrusDiagramActionHandlerProvider">
       <Priority
             name="Low">

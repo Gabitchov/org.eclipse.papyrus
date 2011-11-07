@@ -10,7 +10,7 @@
       <actualFigure
           xsi:type="gmfgraph:CustomConnection"
           name="CInterfaceRealization"
-          qualifiedClassName="org.eclipse.papyrus.diagram.common.figure.edge.CInterfaceRealizationFigure">
+          qualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.edge.CInterfaceRealizationFigure">
         <foregroundColor
             xsi:type="gmfgraph:ConstantColor"
             value="black"/>

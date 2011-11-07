@@ -10,7 +10,7 @@
       <actualFigure
           xsi:type="gmfgraph:CustomConnection"
           name="DashedEdgeFigure"
-          qualifiedClassName="org.eclipse.papyrus.diagram.common.figure.edge.DashedEdgeFigure">
+          qualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.edge.DashedEdgeFigure">
         <foregroundColor
             xsi:type="gmfgraph:ConstantColor"
             value="black"/>

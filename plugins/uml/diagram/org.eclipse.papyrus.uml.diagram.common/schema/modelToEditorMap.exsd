@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="org.eclipse.papyrus.diagram.common">
+<schema targetNamespace="org.eclipse.papyrus.uml.diagram.common">
 <annotation>
       <appInfo>
-         <meta.schema plugin="org.eclipse.papyrus.diagram.common" id="modelToEditorMap" name="ModelToEditorMap"/>
+         <meta.schema plugin="org.eclipse.papyrus.uml.diagram.common" id="modelToEditorMap" name="ModelToEditorMap"/>
       </appInfo>
       <documentation>
          Maps model ID to editor ID.

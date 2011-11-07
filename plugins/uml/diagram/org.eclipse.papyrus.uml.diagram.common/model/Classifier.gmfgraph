@@ -32,7 +32,7 @@
       <actualFigure
           xsi:type="gmfgraph:CustomFigure"
           name="ClassifierFigure"
-          qualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.CClassifierFigure">
+          qualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.CClassifierFigure">
         <foregroundColor
             xsi:type="gmfgraph:RGBColor"
             red="177"

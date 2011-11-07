@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="org.eclipse.papyrus.diagram.common" xmlns="http://www.w3.org/2001/XMLSchema">
+<schema targetNamespace="org.eclipse.papyrus.uml.diagram.common" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appInfo>
-         <meta.schema plugin="org.eclipse.papyrus.diagram.common" id="editorAssistantProvider" name="editorAssistantProvider"/>
+         <meta.schema plugin="org.eclipse.papyrus.uml.diagram.common" id="editorAssistantProvider" name="editorAssistantProvider"/>
       </appInfo>
       <documentation>
          [Enter description of this extension point.]

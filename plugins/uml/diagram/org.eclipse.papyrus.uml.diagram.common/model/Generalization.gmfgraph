@@ -10,7 +10,7 @@
       <actualFigure
           xsi:type="gmfgraph:CustomConnection"
           name="CGeneralizationFigure"
-          qualifiedClassName="org.eclipse.papyrus.diagram.common.figure.edge.CGeneralizationFigure">
+          qualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.edge.CGeneralizationFigure">
         <foregroundColor
             xsi:type="gmfgraph:ConstantColor"
             value="black"/>
