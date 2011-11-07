@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.papyrus.diagram.common.figure.node.ClassifierFigure;
 import org.eclipse.papyrus.sysml.diagram.common.edit.part.BlockConstraintCompartmentEditPart;
 import org.eclipse.papyrus.sysml.diagram.common.edit.part.BlockPropertyCompartmentEditPart;
 import org.eclipse.papyrus.sysml.diagram.common.edit.part.FlowPortCompartmentEditPart;
@@ -26,6 +25,7 @@ import org.eclipse.papyrus.sysml.diagram.common.edit.part.ReferencePropertyCompa
 import org.eclipse.papyrus.sysml.diagram.common.edit.part.ValuePropertyCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.OperationCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.PortCompartmentEditPart;
+import org.eclipse.papyrus.uml.diagram.common.figure.node.ClassifierFigure;
 
 public class BlockFigure extends ClassifierFigure {
 

@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.common.figure;
 
-import org.eclipse.papyrus.diagram.common.figure.node.AffixedNamedElementFigure;
+import org.eclipse.papyrus.uml.diagram.common.figure.node.AffixedNamedElementFigure;
 import org.eclipse.swt.graphics.Image;
 
 

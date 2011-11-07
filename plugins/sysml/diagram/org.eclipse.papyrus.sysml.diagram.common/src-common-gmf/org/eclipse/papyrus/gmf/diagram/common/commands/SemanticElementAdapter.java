@@ -16,7 +16,7 @@ package org.eclipse.papyrus.gmf.diagram.common.commands;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.common.commands.SemanticAdapter;
+import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
 
 /**
  * An adapter for {@link IElementType}, {@link EObject} or {@link View}.

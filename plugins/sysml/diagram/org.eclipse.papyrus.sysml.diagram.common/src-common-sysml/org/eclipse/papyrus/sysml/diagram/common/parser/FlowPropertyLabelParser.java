@@ -26,7 +26,7 @@ import org.eclipse.papyrus.sysml.portandflows.FlowDirection;
 import org.eclipse.papyrus.sysml.portandflows.FlowProperty;
 import org.eclipse.papyrus.sysml.portandflows.PortandflowsPackage;
 import org.eclipse.papyrus.uml.diagram.common.parser.PropertyLabelParser;
-import org.eclipse.papyrus.umlutils.ElementUtil;
+import org.eclipse.papyrus.uml.tools.utils.ElementUtil;
 import org.eclipse.uml2.uml.Property;
 
 /**

@@ -27,7 +27,7 @@ import org.eclipse.papyrus.sysml.blocks.Dimension;
 import org.eclipse.papyrus.sysml.blocks.Unit;
 import org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants;
 import org.eclipse.papyrus.uml.diagram.common.parser.NamedElementLabelParser;
-import org.eclipse.papyrus.umlutils.ElementUtil;
+import org.eclipse.papyrus.uml.tools.utils.ElementUtil;
 import org.eclipse.uml2.uml.InstanceSpecification;
 
 /**

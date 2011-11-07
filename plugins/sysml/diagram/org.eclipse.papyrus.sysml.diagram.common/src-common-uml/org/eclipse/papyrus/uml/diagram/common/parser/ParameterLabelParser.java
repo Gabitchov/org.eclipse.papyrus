@@ -23,7 +23,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants;
-import org.eclipse.papyrus.umlutils.ValueSpecificationUtil;
+import org.eclipse.papyrus.uml.tools.utils.ValueSpecificationUtil;
 import org.eclipse.uml2.uml.InstanceValue;
 import org.eclipse.uml2.uml.Parameter;
 import org.eclipse.uml2.uml.ParameterDirectionKind;

@@ -36,52 +36,52 @@ public class BlockDefinitionDiagramEditPolicyProvider extends AbstractProvider i
 			return false;
 		}
 
-		if(gep instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.ModelEditPartTN) {
+		if(gep instanceof org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ModelEditPartTN) {
 			return true;
 		}
-		if(gep instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.ModelPackageableElementCompartmentEditPartTN) {
+		if(gep instanceof org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ModelPackageableElementCompartmentEditPartTN) {
 			return true;
 		}
-		if(gep instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.ModelEditPartCN) {
+		if(gep instanceof org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ModelEditPartCN) {
 			return true;
 		}
-		if(gep instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.ModelPackageableElementCompartmentEditPartCN) {
+		if(gep instanceof org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ModelPackageableElementCompartmentEditPartCN) {
 			return true;
 		}
-		if(gep instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.PackageEditPart) {
+		if(gep instanceof org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PackageEditPart) {
 			return true;
 		}
-		if(gep instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.PackagePackageableElementCompartmentEditPart) {
+		if(gep instanceof org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PackagePackageableElementCompartmentEditPart) {
 			return true;
 		}
-		if(gep instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.PackageEditPartCN) {
+		if(gep instanceof org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PackageEditPartCN) {
 			return true;
 		}
-		if(gep instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.PackagePackageableElementCompartmentEditPartCN) {
+		if(gep instanceof org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PackagePackageableElementCompartmentEditPartCN) {
 			return true;
 		}
-		if(gep instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.InstanceSpecificationEditPart) {
+		if(gep instanceof org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InstanceSpecificationEditPart) {
 			return true;
 		}
-		if(gep instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.InstanceSpecificationSlotCompartmentEditPart) {
+		if(gep instanceof org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InstanceSpecificationSlotCompartmentEditPart) {
 			return true;
 		}
-		if(gep instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.InstanceSpecificationEditPartCN) {
+		if(gep instanceof org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InstanceSpecificationEditPartCN) {
 			return true;
 		}
-		if(gep instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.InstanceSpecificationSlotCompartmentEditPartCN) {
+		if(gep instanceof org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InstanceSpecificationSlotCompartmentEditPartCN) {
 			return true;
 		}
-		if(gep instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.ConstraintEditPart) {
+		if(gep instanceof org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ConstraintEditPart) {
 			return true;
 		}
-		if(gep instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.ConstraintEditPartCN) {
+		if(gep instanceof org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ConstraintEditPartCN) {
 			return true;
 		}
-		if(gep instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.CommentEditPart) {
+		if(gep instanceof org.eclipse.papyrus.uml.diagram.clazz.edit.parts.CommentEditPart) {
 			return true;
 		}
-		if(gep instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.CommentEditPartCN) {
+		if(gep instanceof org.eclipse.papyrus.uml.diagram.clazz.edit.parts.CommentEditPartCN) {
 			return true;
 		}
 

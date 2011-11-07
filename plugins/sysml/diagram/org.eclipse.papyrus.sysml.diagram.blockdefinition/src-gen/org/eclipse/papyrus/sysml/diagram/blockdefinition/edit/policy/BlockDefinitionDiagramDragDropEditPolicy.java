@@ -15,9 +15,9 @@ package org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.policy;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.clazz.custom.policies.ClassDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.gmf.diagram.common.provider.IGraphicalTypeRegistry;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.GraphicalTypeRegistry;
+import org.eclipse.papyrus.uml.diagram.clazz.custom.policies.ClassDiagramDragDropEditPolicy;
 
 /** 
  * Customization of the DND edit policy for the BlockDefinition Diagram

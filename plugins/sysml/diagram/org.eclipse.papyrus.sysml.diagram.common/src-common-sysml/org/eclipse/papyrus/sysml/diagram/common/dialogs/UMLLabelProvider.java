@@ -14,8 +14,8 @@ package org.eclipse.papyrus.sysml.diagram.common.dialogs;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
-import org.eclipse.papyrus.diagram.common.providers.EditorLabelProvider;
-import org.eclipse.papyrus.modelexplorer.MoDiscoLabelProvider;
+import org.eclipse.papyrus.uml.diagram.common.providers.EditorLabelProvider;
+import org.eclipse.papyrus.views.modelexplorer.MoDiscoLabelProvider;
 import org.eclipse.papyrus.widgets.providers.IDetailLabelProvider;
 import org.eclipse.swt.graphics.Image;
 

@@ -25,11 +25,11 @@ import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.notation.Bounds;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Shape;
-import org.eclipse.papyrus.diagram.common.locator.PortPositionLocatorUtils;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.Activator;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.ElementTypes;
 import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLGraphicalTypes;
+import org.eclipse.papyrus.uml.diagram.common.locator.PortPositionLocatorUtils;
 import org.eclipse.papyrus.uml.diagram.common.utils.UMLGraphicalTypes;
 
 /**

@@ -13,8 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.internalblock.handler;
 
-import org.eclipse.papyrus.diagram.common.actions.handlers.AbstractShowHideHandler;
-import org.eclipse.papyrus.diagram.common.editpolicies.ShowHideRelatedContentsEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.actions.handlers.AbstractShowHideHandler;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideRelatedContentsEditPolicy;
 
 /**
  * Handler for the {@link ShowHideRelatedContentsAction}

@@ -17,10 +17,10 @@ import java.util.Collection;
 import java.util.Collections;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.papyrus.diagram.common.helper.ILinkMappingHelper;
-import org.eclipse.papyrus.diagram.common.helper.LinkMappingHelper;
-import org.eclipse.papyrus.diagram.common.helper.LinkMappingHelper.CommonSourceUMLSwitch;
-import org.eclipse.papyrus.diagram.common.helper.LinkMappingHelper.CommonTargetUMLSwitch;
+import org.eclipse.papyrus.uml.diagram.common.helper.ILinkMappingHelper;
+import org.eclipse.papyrus.uml.diagram.common.helper.LinkMappingHelper;
+import org.eclipse.papyrus.uml.diagram.common.helper.LinkMappingHelper.CommonSourceUMLSwitch;
+import org.eclipse.papyrus.uml.diagram.common.helper.LinkMappingHelper.CommonTargetUMLSwitch;
 import org.eclipse.uml2.uml.ConnectorEnd;
 import org.eclipse.uml2.uml.Element;
 

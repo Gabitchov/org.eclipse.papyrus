@@ -20,7 +20,7 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.papyrus.sysml.portandflows.FlowPort;
-import org.eclipse.papyrus.umlutils.ElementUtil;
+import org.eclipse.papyrus.uml.tools.utils.ElementUtil;
 import org.eclipse.uml2.uml.Element;
 
 /**

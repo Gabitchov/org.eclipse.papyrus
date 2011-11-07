@@ -20,11 +20,6 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ResizableCompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.CreateEditPoliciesOperation;
-import org.eclipse.papyrus.diagram.common.editpolicies.NavigationEditPolicy;
-import org.eclipse.papyrus.diagram.composite.edit.parts.CommentEditPart;
-import org.eclipse.papyrus.diagram.composite.edit.parts.CommentEditPartCN;
-import org.eclipse.papyrus.diagram.composite.edit.parts.ConstraintEditPart;
-import org.eclipse.papyrus.diagram.composite.edit.parts.ConstraintEditPartCN;
 import org.eclipse.papyrus.gmf.diagram.common.edit.policy.DefaultCreationEditPolicy;
 import org.eclipse.papyrus.gmf.diagram.common.edit.policy.DefaultGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.common.edit.part.BlockCompositeEditPart;
@@ -47,6 +42,11 @@ import org.eclipse.papyrus.uml.diagram.common.edit.part.AbstractElementLinkEditP
 import org.eclipse.papyrus.uml.diagram.common.edit.part.ConnectorEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.DependencyEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.PortAffixedNodeEditPart;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.NavigationEditPolicy;
+import org.eclipse.papyrus.uml.diagram.composite.edit.parts.CommentEditPart;
+import org.eclipse.papyrus.uml.diagram.composite.edit.parts.CommentEditPartCN;
+import org.eclipse.papyrus.uml.diagram.composite.edit.parts.ConstraintEditPart;
+import org.eclipse.papyrus.uml.diagram.composite.edit.parts.ConstraintEditPartCN;
 
 /**
  * Custom edit policy provider.

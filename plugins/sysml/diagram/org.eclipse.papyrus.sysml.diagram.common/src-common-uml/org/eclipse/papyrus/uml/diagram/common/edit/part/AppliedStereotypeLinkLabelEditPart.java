@@ -16,8 +16,8 @@ package org.eclipse.papyrus.uml.diagram.common.edit.part;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserOptions;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition;
 import org.eclipse.papyrus.gmf.diagram.common.edit.policy.LinkLabelDragEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition;
 
 /**
  * Abstract non-diagram specific edit part for link label representing applied stereotypes.

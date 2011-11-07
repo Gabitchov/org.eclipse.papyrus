@@ -53,7 +53,7 @@
           name="PropertyFigure">
         <layout
             xsi:type="gmfgraph:CustomLayout"
-            qualifiedClassName="org.eclipse.papyrus.diagram.common.draw2d.CenterLayout"/>
+            qualifiedClassName="org.eclipse.papyrus.uml.diagram.common.draw2d.CenterLayout"/>
         <minimumSize
             dx="100"
             dy="40"/>

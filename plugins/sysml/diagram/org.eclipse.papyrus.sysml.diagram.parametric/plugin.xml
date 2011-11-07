@@ -533,7 +533,7 @@
 	</menuContribution>
 
 	<menuContribution
-		locationURI="popup:org.eclipse.papyrus.modelexplorer.popupmenu.creatediagram">
+		locationURI="popup:org.eclipse.papyrus.views.modelexplorer.popupmenu.creatediagram">
 	    <command commandId="org.eclipse.papyrus.sysml.diagram.parametric.CreateParametricDiagramCommand"
 			icon="icons/obj16/Diagram_Parametric.gif"
 			label="Create a new Parametric Diagram"

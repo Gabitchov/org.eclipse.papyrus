@@ -17,7 +17,7 @@ import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.tools.CellEditorLocator;
 import org.eclipse.jface.viewers.CellEditor;
-import org.eclipse.papyrus.diagram.common.figure.node.IMultilineEditableFigure;
+import org.eclipse.papyrus.uml.diagram.common.figure.node.IMultilineEditableFigure;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Text;
 

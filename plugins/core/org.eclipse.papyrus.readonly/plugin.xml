@@ -48,7 +48,7 @@
 
 	<menuContribution
        allPopups="false"
-       locationURI="popup:org.eclipse.papyrus.modelexplorer.modelexplorer.popup?after=org.eclipse.papyrus.modelexplorer.resourceloading.UnloadResource">
+       locationURI="popup:org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup?after=org.eclipse.papyrus.views.modelexplorer.resourceloading.UnloadResource">
         <command commandId="org.eclipse.papyrus.readonly.EnableWriteCommand"
 			icon="icons/enable_write.png"
 			label="Enable write"

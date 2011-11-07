@@ -23,7 +23,7 @@ import org.eclipse.papyrus.gmf.diagram.common.edit.policy.ILinkMappingHelper;
 import org.eclipse.uml2.uml.util.UMLSwitch;
 
 /**
- * Original class {@link org.eclipse.papyrus.diagram.common.helper.LinkMappingHelper} slightly
+ * Original class {@link org.eclipse.papyrus.uml.diagram.common.helper.LinkMappingHelper} slightly
  * modified to use EObject instead of UML Element in its interface.
  */
 public class LinkMappingHelper implements ILinkMappingHelper {

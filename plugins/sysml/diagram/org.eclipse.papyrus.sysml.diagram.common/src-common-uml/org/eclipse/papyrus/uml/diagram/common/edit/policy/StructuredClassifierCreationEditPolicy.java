@@ -36,9 +36,9 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.common.locator.PortPositionLocator;
 import org.eclipse.papyrus.gmf.diagram.common.commands.CreateViewCommand;
 import org.eclipse.papyrus.gmf.diagram.common.edit.policy.DefaultCreationEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.locator.PortPositionLocator;
 
 /**
  * Replaces the {@link DefaultCreationEditPolicy} in order to manage Affixed Port position on creation or on drop.

@@ -27,12 +27,12 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.NonResizableLabelEditPolicy;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.common.editpolicies.DuplicatePasteEditPolicy;
-import org.eclipse.papyrus.diagram.common.providers.ViewInfo;
-import org.eclipse.papyrus.diagram.common.util.MDTUtil;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.policies.CustomDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.policies.ParametricItemSemanticEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlVisualIDRegistry;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.DuplicatePasteEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.providers.ViewInfo;
+import org.eclipse.papyrus.uml.diagram.common.util.MDTUtil;
 
 /**
  * @generated

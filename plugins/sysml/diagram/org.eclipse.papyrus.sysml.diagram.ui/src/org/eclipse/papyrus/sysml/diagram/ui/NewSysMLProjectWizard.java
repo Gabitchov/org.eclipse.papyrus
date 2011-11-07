@@ -15,8 +15,8 @@ package org.eclipse.papyrus.sysml.diagram.ui;
 
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.sysml.diagram.common.commands.CreateSysMLModelCommand;
-import org.eclipse.papyrus.wizards.NewPapyrusProjectWizard;
-import org.eclipse.papyrus.wizards.pages.SelectDiagramCategoryPage;
+import org.eclipse.papyrus.uml.diagram.wizards.NewPapyrusProjectWizard;
+import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectDiagramCategoryPage;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.dialogs.WizardNewProjectCreationPage;
 

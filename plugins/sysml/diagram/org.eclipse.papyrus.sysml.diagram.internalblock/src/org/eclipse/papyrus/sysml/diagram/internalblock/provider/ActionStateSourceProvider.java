@@ -13,8 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.internalblock.provider;
 
-import org.eclipse.papyrus.diagram.common.providers.AbstractActionStateSourceProvider;
-import org.eclipse.papyrus.diagram.composite.custom.actions.ShowHideRelatedContentsHandler;
+import org.eclipse.papyrus.uml.diagram.common.providers.AbstractActionStateSourceProvider;
+import org.eclipse.papyrus.uml.diagram.composite.custom.actions.ShowHideRelatedContentsHandler;
 import org.eclipse.ui.ISources;
 
 /**
@@ -81,7 +81,7 @@ public class ActionStateSourceProvider extends AbstractActionStateSourceProvider
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.diagram.common.providers.AbstractActionStateSourceProvider#refreshActions()
+	 * @see org.eclipse.papyrus.uml.diagram.common.providers.AbstractActionStateSourceProvider#refreshActions()
 	 * 
 	 */
 	@Override

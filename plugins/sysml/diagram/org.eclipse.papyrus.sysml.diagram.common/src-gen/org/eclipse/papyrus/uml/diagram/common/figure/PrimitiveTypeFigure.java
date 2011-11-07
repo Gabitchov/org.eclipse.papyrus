@@ -16,7 +16,7 @@ package org.eclipse.papyrus.uml.diagram.common.figure;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.papyrus.diagram.common.figure.node.ClassifierFigure;
+import org.eclipse.papyrus.uml.diagram.common.figure.node.ClassifierFigure;
 
 public class PrimitiveTypeFigure extends ClassifierFigure {
 

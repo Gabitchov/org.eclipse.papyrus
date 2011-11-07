@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.figure;
 
-import org.eclipse.papyrus.diagram.common.figure.edge.UMLEdgeFigure;
+import org.eclipse.papyrus.uml.diagram.common.figure.edge.UMLEdgeFigure;
 
 /**
  * Figure for UML Generalization Edges.

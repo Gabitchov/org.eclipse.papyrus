@@ -17,8 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.papyrus.diagram.common.figure.node.ClassifierFigure;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.EnumerationLiteralCompartmentEditPart;
+import org.eclipse.papyrus.uml.diagram.common.figure.node.ClassifierFigure;
 
 public class EnumerationFigure extends ClassifierFigure {
 

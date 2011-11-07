@@ -36,16 +36,16 @@ public class InternalBlockDiagramEditPolicyProvider extends AbstractProvider imp
 			return false;
 		}
 
-		if(gep instanceof org.eclipse.papyrus.diagram.composite.edit.parts.CommentEditPart) {
+		if(gep instanceof org.eclipse.papyrus.uml.diagram.composite.edit.parts.CommentEditPart) {
 			return true;
 		}
-		if(gep instanceof org.eclipse.papyrus.diagram.composite.edit.parts.CommentEditPartCN) {
+		if(gep instanceof org.eclipse.papyrus.uml.diagram.composite.edit.parts.CommentEditPartCN) {
 			return true;
 		}
-		if(gep instanceof org.eclipse.papyrus.diagram.composite.edit.parts.ConstraintEditPart) {
+		if(gep instanceof org.eclipse.papyrus.uml.diagram.composite.edit.parts.ConstraintEditPart) {
 			return true;
 		}
-		if(gep instanceof org.eclipse.papyrus.diagram.composite.edit.parts.ConstraintEditPartCN) {
+		if(gep instanceof org.eclipse.papyrus.uml.diagram.composite.edit.parts.ConstraintEditPartCN) {
 			return true;
 		}
 

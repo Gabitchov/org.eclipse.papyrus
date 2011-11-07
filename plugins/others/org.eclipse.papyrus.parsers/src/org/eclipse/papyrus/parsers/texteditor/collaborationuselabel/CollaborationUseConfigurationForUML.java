@@ -19,7 +19,7 @@ import org.eclipse.jface.dialogs.IInputValidator;
 import org.eclipse.jface.text.source.SourceViewerConfiguration;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.DefaultDirectEditorConfiguration;
 import org.eclipse.papyrus.parsers.modelgenerator.CollaborationUseGenerator;
-import org.eclipse.papyrus.umlutils.CollaborationUseUtil;
+import org.eclipse.papyrus.uml.tools.utils.CollaborationUseUtil;
 import org.eclipse.uml2.uml.CollaborationUse;
 
 /**

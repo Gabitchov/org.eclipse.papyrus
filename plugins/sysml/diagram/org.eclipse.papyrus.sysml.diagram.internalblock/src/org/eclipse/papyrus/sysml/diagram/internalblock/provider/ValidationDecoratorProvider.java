@@ -24,9 +24,9 @@ import org.eclipse.gmf.runtime.diagram.ui.services.decorator.IDecoratorProvider;
 import org.eclipse.gmf.runtime.diagram.ui.services.decorator.IDecoratorTarget;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.common.part.UmlGmfDiagramEditor;
+import org.eclipse.papyrus.uml.diagram.common.part.UmlGmfDiagramEditor;
 
-public class ValidationDecoratorProvider extends org.eclipse.papyrus.diagram.common.providers.ValidationDecoratorProvider implements IDecoratorProvider {
+public class ValidationDecoratorProvider extends org.eclipse.papyrus.uml.diagram.common.providers.ValidationDecoratorProvider implements IDecoratorProvider {
 
 	public void createDecorators(IDecoratorTarget decoratorTarget) {
 		EditPart editPart = (EditPart)decoratorTarget.getAdapter(EditPart.class);

@@ -15,7 +15,7 @@ import org.eclipse.papyrus.parsers.util.MultiplicityException;
 import org.eclipse.papyrus.parsers.util.TypeRecognitionException;
 import org.eclipse.papyrus.parsers.util.UnboundTemplateRecognitionException;
 import org.eclipse.papyrus.parsers.util.Messages;
-import org.eclipse.papyrus.umlutils.PackageUtil;
+import org.eclipse.papyrus.uml.tools.utils.PackageUtil;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Collaboration;

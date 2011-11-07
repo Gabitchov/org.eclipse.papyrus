@@ -23,9 +23,9 @@ import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.papyrus.sysml.diagram.common.Activator;
-import org.eclipse.papyrus.umlutils.ui.helper.NameLabelIconHelper;
+import org.eclipse.papyrus.uml.diagram.common.util.DiagramEditPartsUtil;
+import org.eclipse.papyrus.uml.tools.utils.ui.helper.NameLabelIconHelper;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.uml2.uml.NamedElement;
 

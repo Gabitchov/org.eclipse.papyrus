@@ -19,11 +19,11 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.common.actions.AbstractShowHideAction;
-import org.eclipse.papyrus.diagram.common.actions.ShowHideContentsAction;
-import org.eclipse.papyrus.diagram.common.editpolicies.ShowHideRelatedContentsEditPolicy;
-import org.eclipse.papyrus.diagram.common.providers.EditorLabelProvider;
 import org.eclipse.papyrus.sysml.diagram.internalblock.messages.Messages;
+import org.eclipse.papyrus.uml.diagram.common.actions.AbstractShowHideAction;
+import org.eclipse.papyrus.uml.diagram.common.actions.ShowHideContentsAction;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideRelatedContentsEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.providers.EditorLabelProvider;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Type;
@@ -36,7 +36,7 @@ public class ShowHideRelatedContentsAction extends ShowHideContentsAction {
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.diagram.common.actions.AbstractShowHideAction#initAction()
+	 * @see org.eclipse.papyrus.uml.diagram.common.actions.AbstractShowHideAction#initAction()
 	 */
 	@Override
 	protected void initAction() {

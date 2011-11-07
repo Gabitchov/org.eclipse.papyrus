@@ -20,7 +20,7 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants;
-import org.eclipse.papyrus.umlutils.ValueSpecificationUtil;
+import org.eclipse.papyrus.uml.tools.utils.ValueSpecificationUtil;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.InstanceValue;
 import org.eclipse.uml2.uml.Property;

@@ -19,9 +19,9 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramCommandStack;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.common.actions.AbstractAction;
 import org.eclipse.papyrus.sysml.diagram.parametric.command.RestoreRelatedLinksCommand;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ParametricEditPart;
+import org.eclipse.papyrus.uml.diagram.common.actions.AbstractAction;
 
 /**
  * Restore related links to selected element

@@ -38,11 +38,11 @@ import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.common.util.CommandUtil;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ParametricEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlDiagramUpdater;
 import org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlLinkDescriptor;
 import org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlVisualIDRegistry;
+import org.eclipse.papyrus.uml.diagram.common.util.CommandUtil;
 
 /**
  * Restore related links to selected element

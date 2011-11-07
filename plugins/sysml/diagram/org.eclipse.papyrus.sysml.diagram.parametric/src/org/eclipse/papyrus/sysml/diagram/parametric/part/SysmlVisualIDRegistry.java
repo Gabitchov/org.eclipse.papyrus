@@ -18,8 +18,6 @@ import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.common.providers.BaseViewInfo;
-import org.eclipse.papyrus.diagram.common.providers.ViewInfo;
 import org.eclipse.papyrus.resource.Resource;
 import org.eclipse.papyrus.sysml.constraints.ConstraintsPackage;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConnectorEditPart;
@@ -32,6 +30,8 @@ import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.Property2EditPart
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.PropertyEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.PropertyName2EditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.PropertyNameEditPart;
+import org.eclipse.papyrus.uml.diagram.common.providers.BaseViewInfo;
+import org.eclipse.papyrus.uml.diagram.common.providers.ViewInfo;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**

@@ -21,7 +21,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants;
 import org.eclipse.papyrus.sysml.requirements.Requirement;
 import org.eclipse.papyrus.uml.diagram.common.parser.NamedElementLabelParser;
-import org.eclipse.papyrus.umlutils.ElementUtil;
+import org.eclipse.papyrus.uml.tools.utils.ElementUtil;
 import org.eclipse.uml2.uml.Class;
 
 /**

@@ -18,7 +18,7 @@ import org.eclipse.jface.dialogs.IInputValidator;
 import org.eclipse.jface.text.source.SourceViewerConfiguration;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.DefaultDirectEditorConfiguration;
 import org.eclipse.papyrus.parsers.modelgenerator.PropertyGenerator;
-import org.eclipse.papyrus.umlutils.PropertyUtil;
+import org.eclipse.papyrus.uml.tools.utils.PropertyUtil;
 import org.eclipse.uml2.uml.Property;
 
 /**

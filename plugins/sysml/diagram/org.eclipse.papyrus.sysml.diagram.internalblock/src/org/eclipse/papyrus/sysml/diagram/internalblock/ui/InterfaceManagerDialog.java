@@ -46,16 +46,16 @@ import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.utils.ServiceUtils;
-import org.eclipse.papyrus.diagram.common.Activator;
-import org.eclipse.papyrus.diagram.common.providers.EditorLabelProvider;
-import org.eclipse.papyrus.diagram.common.util.Util;
-import org.eclipse.papyrus.diagram.common.util.Visitor;
 import org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.service.edit.service.IElementEditService;
 import org.eclipse.papyrus.sysml.diagram.internalblock.messages.Messages;
 import org.eclipse.papyrus.sysml.portandflows.FlowSpecification;
+import org.eclipse.papyrus.uml.diagram.common.Activator;
+import org.eclipse.papyrus.uml.diagram.common.providers.EditorLabelProvider;
+import org.eclipse.papyrus.uml.diagram.common.util.Util;
+import org.eclipse.papyrus.uml.diagram.common.util.Visitor;
 import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
-import org.eclipse.papyrus.umlutils.ElementUtil;
+import org.eclipse.papyrus.uml.tools.utils.ElementUtil;
 import org.eclipse.papyrus.widgets.editors.IElementSelector;
 import org.eclipse.papyrus.widgets.editors.SelectionEditor;
 import org.eclipse.papyrus.widgets.providers.IStaticContentProvider;
@@ -716,7 +716,7 @@ public class InterfaceManagerDialog extends SelectionDialog {
 
 		/**
 		 * 
-		 * @see org.eclipse.papyrus.diagram.common.providers.EditorLabelProvider#getText(java.lang.Object)
+		 * @see org.eclipse.papyrus.uml.diagram.common.providers.EditorLabelProvider#getText(java.lang.Object)
 		 * 
 		 * @param element
 		 * @return
@@ -737,7 +737,7 @@ public class InterfaceManagerDialog extends SelectionDialog {
 
 		/**
 		 * 
-		 * @see org.eclipse.papyrus.diagram.common.providers.EditorLabelProvider#getImage(java.lang.Object)
+		 * @see org.eclipse.papyrus.uml.diagram.common.providers.EditorLabelProvider#getImage(java.lang.Object)
 		 * 
 		 * @param element
 		 * @return
@@ -754,7 +754,7 @@ public class InterfaceManagerDialog extends SelectionDialog {
 
 		/**
 		 * 
-		 * @see org.eclipse.papyrus.diagram.common.providers.EditorLabelProvider#getText(java.lang.Object)
+		 * @see org.eclipse.papyrus.uml.diagram.common.providers.EditorLabelProvider#getText(java.lang.Object)
 		 * 
 		 * @param element
 		 * @return

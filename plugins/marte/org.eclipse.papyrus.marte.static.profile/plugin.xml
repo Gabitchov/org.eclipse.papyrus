@@ -478,10 +478,10 @@
       </package>
    </extension>
    <extension
-         point="org.eclipse.papyrus.diagram.common.paletteDefinition">
+         point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition">
       <paletteDefinition
             ID="ClassDiagram-NFPs-Palette"
-            class="org.eclipse.papyrus.diagram.common.service.PluginPaletteProvider"
+            class="org.eclipse.papyrus.uml.diagram.common.service.PluginPaletteProvider"
             icon="/resources/icons/MARTE_16x16.gif"
             name="ClassDiagram-NFPs-Palette"
             path="/palettes/ClassDiag-NFPs.Palette.xml">
@@ -494,10 +494,10 @@
       </paletteDefinition>
    </extension>
    <extension
-         point="org.eclipse.papyrus.diagram.common.paletteDefinition">
+         point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition">
       <paletteDefinition
             ID="ClassDiagram-Alloc-Palette"
-            class="org.eclipse.papyrus.diagram.common.service.PluginPaletteProvider"
+            class="org.eclipse.papyrus.uml.diagram.common.service.PluginPaletteProvider"
             icon="resources/icons/MARTE_16x16.gif"
             name="ClassDiagram-Alloc-Palette"
             path="/palettes/ClassDiag-Alloc.Palette.xml">
@@ -510,10 +510,10 @@
       </paletteDefinition>
    </extension>
    <extension
-         point="org.eclipse.papyrus.diagram.common.paletteDefinition">
+         point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition">
       <paletteDefinition
             ID="ClassDiagram-Time-Palette"
-            class="org.eclipse.papyrus.diagram.common.service.PluginPaletteProvider"
+            class="org.eclipse.papyrus.uml.diagram.common.service.PluginPaletteProvider"
             icon="resources/icons/MARTE_16x16.gif"
             name="ClassDiagram-Time-Palette"
             path="/palettes/ClassDiag-Time.Palette.xml">
@@ -526,10 +526,10 @@
       </paletteDefinition>
    </extension>
    <extension
-         point="org.eclipse.papyrus.diagram.common.paletteDefinition">
+         point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition">
       <paletteDefinition
             ID="ClassDiagram-GRM-Palette"
-            class="org.eclipse.papyrus.diagram.common.service.PluginPaletteProvider"
+            class="org.eclipse.papyrus.uml.diagram.common.service.PluginPaletteProvider"
             icon="resources/icons/MARTE_16x16.gif"
             name="ClassDiagram-GRM-Palette"
             path="/palettes/ClassDiag-GRM.Palette.xml">
@@ -542,10 +542,10 @@
       </paletteDefinition>
    </extension>
    <extension
-         point="org.eclipse.papyrus.diagram.common.paletteDefinition">
+         point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition">
       <paletteDefinition
             ID="ClassDiagram-GCM-Palette"
-            class="org.eclipse.papyrus.diagram.common.service.PluginPaletteProvider"
+            class="org.eclipse.papyrus.uml.diagram.common.service.PluginPaletteProvider"
             icon="resources/icons/MARTE_16x16.gif"
             name="ClassDiagram-GCM-Palette"
             path="/palettes/ClassDiag-GCM.Palette.xml">
@@ -558,10 +558,10 @@
       </paletteDefinition>
    </extension>
    <extension
-         point="org.eclipse.papyrus.diagram.common.paletteDefinition">
+         point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition">
       <paletteDefinition
             ID="ClassDiagram-HLAM-Palette"
-            class="org.eclipse.papyrus.diagram.common.service.PluginPaletteProvider"
+            class="org.eclipse.papyrus.uml.diagram.common.service.PluginPaletteProvider"
             icon="resources/icons/MARTE_16x16.gif"
             name="ClassDiagram-HLAM-Palette"
             path="/palettes/ClassDiag-HLAM.Palette.xml">
@@ -574,10 +574,10 @@
       </paletteDefinition>
    </extension>
    <extension
-         point="org.eclipse.papyrus.diagram.common.paletteDefinition">
+         point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition">
       <paletteDefinition
             ID="ClassDiagram-HRM-Palette"
-            class="org.eclipse.papyrus.diagram.common.service.PluginPaletteProvider"
+            class="org.eclipse.papyrus.uml.diagram.common.service.PluginPaletteProvider"
             icon="resources/icons/MARTE_16x16.gif"
             name="ClassDiagram-HRM-Palette"
             path="/palettes/ClassDiag-HRM.Palette.xml">
@@ -590,10 +590,10 @@
       </paletteDefinition>
    </extension>
    <extension
-         point="org.eclipse.papyrus.diagram.common.paletteDefinition">
+         point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition">
       <paletteDefinition
             ID="ClassDiagram-SRM-Palette"
-            class="org.eclipse.papyrus.diagram.common.service.PluginPaletteProvider"
+            class="org.eclipse.papyrus.uml.diagram.common.service.PluginPaletteProvider"
             icon="resources/icons/MARTE_16x16.gif"
             name="ClassDiagram-SRM-Palette"
             path="/palettes/ClassDiag-SRM.Palette.xml">
@@ -606,10 +606,10 @@
       </paletteDefinition>
    </extension>
    <extension
-         point="org.eclipse.papyrus.diagram.common.paletteDefinition">
+         point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition">
       <paletteDefinition
             ID="ClassDiagram-GQAM-Palette"
-            class="org.eclipse.papyrus.diagram.common.service.PluginPaletteProvider"
+            class="org.eclipse.papyrus.uml.diagram.common.service.PluginPaletteProvider"
             icon="resources/icons/MARTE_16x16.gif"
             name="ClassDiagram-GQAM-Palette"
             path="/palettes/ClassDiag-GQAM.Palette.xml">
@@ -622,10 +622,10 @@
       </paletteDefinition>
    </extension>
    <extension
-         point="org.eclipse.papyrus.diagram.common.paletteDefinition">
+         point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition">
       <paletteDefinition
             ID="ActivityDiagram-GCM-Palette"
-            class="org.eclipse.papyrus.diagram.common.service.PluginPaletteProvider"
+            class="org.eclipse.papyrus.uml.diagram.common.service.PluginPaletteProvider"
             icon="resources/icons/MARTE_16x16.gif"
             name="ActivityDiagram-GCM-Palette"
             path="/palettes/ActivityDiag-GCM.Palette.xml">
@@ -638,10 +638,10 @@
       </paletteDefinition>
    </extension>
    <extension
-         point="org.eclipse.papyrus.diagram.common.paletteDefinition">
+         point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition">
       <paletteDefinition
             ID="ActivityDiagram-HLAM-Palette"
-            class="org.eclipse.papyrus.diagram.common.service.PluginPaletteProvider"
+            class="org.eclipse.papyrus.uml.diagram.common.service.PluginPaletteProvider"
             icon="resources/icons/MARTE_16x16.gif"
             name="ActivityDiagram-HLAM-Palette"
             path="/palettes/ActivityDiag-HLAM.Palette.xml">
@@ -653,10 +653,10 @@
       </paletteDefinition>
    </extension>
    <extension
-         point="org.eclipse.papyrus.diagram.common.paletteDefinition">
+         point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition">
       <paletteDefinition
             ID="ActivityDiagram-GQAM-Palette"
-            class="org.eclipse.papyrus.diagram.common.service.PluginPaletteProvider"
+            class="org.eclipse.papyrus.uml.diagram.common.service.PluginPaletteProvider"
             icon="resources/icons/MARTE_16x16.gif"
             name="ActivityDiagram-GQAM-Palette"
             path="/palettes/ActivityDiag-GQAM.Palette.xml">
@@ -668,10 +668,10 @@
       </paletteDefinition>
    </extension>
    <extension
-         point="org.eclipse.papyrus.diagram.common.paletteDefinition">
+         point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition">
       <paletteDefinition
             ID="ActivityDiagram-NFPs-Palette"
-            class="org.eclipse.papyrus.diagram.common.service.PluginPaletteProvider"
+            class="org.eclipse.papyrus.uml.diagram.common.service.PluginPaletteProvider"
             icon="resources/icons/MARTE_16x16.gif"
             name="ActivityDiagram-NFPs-Palette"
             path="/palettes/ActivityDiag-NFPs.Palette.xml">
@@ -684,10 +684,10 @@
       </paletteDefinition>
    </extension>
    <extension
-         point="org.eclipse.papyrus.diagram.common.paletteDefinition">
+         point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition">
       <paletteDefinition
             ID="ActivityDiagram-PAM-Palette"
-            class="org.eclipse.papyrus.diagram.common.service.PluginPaletteProvider"
+            class="org.eclipse.papyrus.uml.diagram.common.service.PluginPaletteProvider"
             icon="resources/icons/MARTE_16x16.gif"
             name="ActivityDiagram-PAM-Palette"
             path="/palettes/ActivityDiag-PAM.Palette.xml">
@@ -700,10 +700,10 @@
       </paletteDefinition>
    </extension>
    <extension
-         point="org.eclipse.papyrus.diagram.common.paletteDefinition">
+         point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition">
       <paletteDefinition
             ID="ActivityDiagram-SAM-Palette"
-            class="org.eclipse.papyrus.diagram.common.service.PluginPaletteProvider"
+            class="org.eclipse.papyrus.uml.diagram.common.service.PluginPaletteProvider"
             icon="resources/icons/MARTE_16x16.gif"
             name="ActivityDiagram-SAM-Palette"
             path="/palettes/ActivityDiag-SAM.Palette.xml">
@@ -716,10 +716,10 @@
       </paletteDefinition>
    </extension>
    <extension
-         point="org.eclipse.papyrus.diagram.common.paletteDefinition">
+         point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition">
       <paletteDefinition
             ID="ActivityDiagram-Time-Palette"
-            class="org.eclipse.papyrus.diagram.common.service.PluginPaletteProvider"
+            class="org.eclipse.papyrus.uml.diagram.common.service.PluginPaletteProvider"
             icon="resources/icons/MARTE_16x16.gif"
             name="ActivityDiagram-Time-Palette"
             path="/palettes/ActivityDiag-Time.Palette.xml">
@@ -732,10 +732,10 @@
       </paletteDefinition>
    </extension>
    <extension
-         point="org.eclipse.papyrus.diagram.common.paletteDefinition">
+         point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition">
       <paletteDefinition
             ID="CompositeDiagram-Alloc-Palette"
-            class="org.eclipse.papyrus.diagram.common.service.PluginPaletteProvider"
+            class="org.eclipse.papyrus.uml.diagram.common.service.PluginPaletteProvider"
             icon="resources/icons/MARTE_16x16.gif"
             name="CompositeDiagram-Alloc-Palette"
             path="/palettes/CompositeDiag-Alloc.Palette.xml">
@@ -748,10 +748,10 @@
       </paletteDefinition>
    </extension>
    <extension
-         point="org.eclipse.papyrus.diagram.common.paletteDefinition">
+         point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition">
       <paletteDefinition
             ID="CompositeDiagram-CoreElements-Palette"
-            class="org.eclipse.papyrus.diagram.common.service.PluginPaletteProvider"
+            class="org.eclipse.papyrus.uml.diagram.common.service.PluginPaletteProvider"
             icon="resources/icons/MARTE_16x16.gif"
             name="CompositeDiagram-CoreElements-Palette"
             path="/palettes/CompositeDiag-CoreElements.Palette.xml">
@@ -764,10 +764,10 @@
       </paletteDefinition>
    </extension>
    <extension
-         point="org.eclipse.papyrus.diagram.common.paletteDefinition">
+         point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition">
       <paletteDefinition
             ID="CompositeDiagram-GCM-Palette"
-            class="org.eclipse.papyrus.diagram.common.service.PluginPaletteProvider"
+            class="org.eclipse.papyrus.uml.diagram.common.service.PluginPaletteProvider"
             icon="resources/icons/MARTE_16x16.gif"
             name="CompositeDiagram-GCM-Palette"
             path="/palettes/CompositeDiag-GCM.Palette.xml">
@@ -780,10 +780,10 @@
       </paletteDefinition>
    </extension>
    <extension
-         point="org.eclipse.papyrus.diagram.common.paletteDefinition">
+         point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition">
       <paletteDefinition
             ID="CompositeDiagram-GRM-Palette"
-            class="org.eclipse.papyrus.diagram.common.service.PluginPaletteProvider"
+            class="org.eclipse.papyrus.uml.diagram.common.service.PluginPaletteProvider"
             icon="resources/icons/MARTE_16x16.gif"
             name="CompositeDiagram-GRM-Palette"
             path="/palettes/CompositeDiag-GRM.Palette.xml">
@@ -796,10 +796,10 @@
       </paletteDefinition>
    </extension>
    <extension
-         point="org.eclipse.papyrus.diagram.common.paletteDefinition">
+         point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition">
       <paletteDefinition
             ID="CompositeDiagram-HLAM-Palette"
-            class="org.eclipse.papyrus.diagram.common.service.PluginPaletteProvider"
+            class="org.eclipse.papyrus.uml.diagram.common.service.PluginPaletteProvider"
             icon="resources/icons/MARTE_16x16.gif"
             name="CompositeDiagram-HLAM-Palette"
             path="/palettes/CompositeDiag-HLAM.Palette.xml">
@@ -812,10 +812,10 @@
       </paletteDefinition>
    </extension>
    <extension
-         point="org.eclipse.papyrus.diagram.common.paletteDefinition">
+         point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition">
       <paletteDefinition
             ID="CompositeDiagram-HRM-Palette"
-            class="org.eclipse.papyrus.diagram.common.service.PluginPaletteProvider"
+            class="org.eclipse.papyrus.uml.diagram.common.service.PluginPaletteProvider"
             icon="resources/icons/MARTE_16x16.gif"
             name="CompositeDiagram-HRM-Palette"
             path="/palettes/CompositeDiag-HRM.Palette.xml">
@@ -828,10 +828,10 @@
       </paletteDefinition>
    </extension>
    <extension
-         point="org.eclipse.papyrus.diagram.common.paletteDefinition">
+         point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition">
       <paletteDefinition
             ID="CompositeDiagram-NFPs-Palette"
-            class="org.eclipse.papyrus.diagram.common.service.PluginPaletteProvider"
+            class="org.eclipse.papyrus.uml.diagram.common.service.PluginPaletteProvider"
             icon="resources/icons/MARTE_16x16.gif"
             name="CompositeDiagram-NFPs-Palette"
             path="/palettes/CompositeDiag-NFPs.Palette.xml">
@@ -844,10 +844,10 @@
       </paletteDefinition>
    </extension>
    <extension
-         point="org.eclipse.papyrus.diagram.common.paletteDefinition">
+         point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition">
       <paletteDefinition
             ID="CompositeDiagram-PAM-Palette"
-            class="org.eclipse.papyrus.diagram.common.service.PluginPaletteProvider"
+            class="org.eclipse.papyrus.uml.diagram.common.service.PluginPaletteProvider"
             icon="resources/icons/MARTE_16x16.gif"
             name="CompositeDiagram-PAM-Palette"
             path="/palettes/CompositeDiag-PAM.Palette.xml">
@@ -860,10 +860,10 @@
       </paletteDefinition>
    </extension>
    <extension
-         point="org.eclipse.papyrus.diagram.common.paletteDefinition">
+         point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition">
       <paletteDefinition
             ID="CompositeDiagram-SAM-Palette"
-            class="org.eclipse.papyrus.diagram.common.service.PluginPaletteProvider"
+            class="org.eclipse.papyrus.uml.diagram.common.service.PluginPaletteProvider"
             icon="resources/icons/MARTE_16x16.gif"
             name="CompositeDiagram-SAM-Palette"
             path="/palettes/CompositeDiag-SAM.Palette.xml">
@@ -876,10 +876,10 @@
       </paletteDefinition>
    </extension>
    <extension
-         point="org.eclipse.papyrus.diagram.common.paletteDefinition">
+         point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition">
       <paletteDefinition
             ID="CompositeDiagram-SRM-Palette"
-            class="org.eclipse.papyrus.diagram.common.service.PluginPaletteProvider"
+            class="org.eclipse.papyrus.uml.diagram.common.service.PluginPaletteProvider"
             icon="resources/icons/MARTE_16x16.gif"
             name="CompositeDiagram-SRM-Palette"
             path="/palettes/CompositeDiag-SRM.Palette.xml">
@@ -892,10 +892,10 @@
       </paletteDefinition>
    </extension>
    <extension
-         point="org.eclipse.papyrus.diagram.common.paletteDefinition">
+         point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition">
       <paletteDefinition
             ID="CompositeDiagram-Time-Palette"
-            class="org.eclipse.papyrus.diagram.common.service.PluginPaletteProvider"
+            class="org.eclipse.papyrus.uml.diagram.common.service.PluginPaletteProvider"
             icon="resources/icons/MARTE_16x16.gif"
             name="CompositeDiagram-Time-Palette"
             path="/palettes/CompositeDiag-Time.Palette.xml">
@@ -908,10 +908,10 @@
       </paletteDefinition>
    </extension>
    <extension
-         point="org.eclipse.papyrus.diagram.common.paletteDefinition">
+         point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition">
       <paletteDefinition
             ID="StateMachineDiagram-CoreElements-Palette"
-            class="org.eclipse.papyrus.diagram.common.service.PluginPaletteProvider"
+            class="org.eclipse.papyrus.uml.diagram.common.service.PluginPaletteProvider"
             icon="resources/icons/MARTE_16x16.gif"
             name="StateMachineDiagram-CoreElements-Palette"
             path="/palettes/StateMachineDiag-CoreElements.Palette.xml">

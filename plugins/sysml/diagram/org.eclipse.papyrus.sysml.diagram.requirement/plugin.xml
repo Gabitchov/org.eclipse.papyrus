@@ -12,7 +12,7 @@
        label="SysML Requirement Diagram"
        language="sysml"/>
 	<editorDiagram
-		actionBarContributorId="org.eclipse.papyrus.diagram.common.part.UMLDiagramActionBarContributor"
+		actionBarContributorId="org.eclipse.papyrus.uml.diagram.common.part.UMLDiagramActionBarContributor"
 		factoryClass="org.eclipse.papyrus.sysml.diagram.requirement.RequirementDiagramEditorFactory"
 		icon="icons/obj16/Diagram_Requirement.gif"/>
 </extension>
@@ -64,7 +64,7 @@
 	</toolbar>
 	</menuContribution>
 	
-	<menuContribution locationURI="popup:org.eclipse.papyrus.modelexplorer.popupmenu.creatediagram">
+	<menuContribution locationURI="popup:org.eclipse.papyrus.views.modelexplorer.popupmenu.creatediagram">
 	    <command commandId="org.eclipse.papyrus.sysml.diagram.requirement.CreateCommand"
 			icon="icons/obj16/Diagram_Requirement.gif"
 			label="Create a new Requirement Diagram"
@@ -79,9 +79,9 @@
 </extension>
 
 <!-- Palette tool declaration (declares the real palette containment) -->
-<extension point="org.eclipse.papyrus.diagram.common.paletteDefinition">
+<extension point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition">
 	<paletteDefinition ID="SysML_Req"
-		class="org.eclipse.papyrus.diagram.common.service.PluginPaletteProvider"
+		class="org.eclipse.papyrus.uml.diagram.common.service.PluginPaletteProvider"
 		name="RequirementDiagram" icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
 		path="palette/requirement.palette.xml"
 		provider="CEA LIST">

@@ -17,11 +17,11 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.papyrus.diagram.common.util.StringComparator;
 import org.eclipse.papyrus.preferences.pages.AbstractPapyrusLinkPreferencePage;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ParametricEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlDiagramEditorPlugin;
+import org.eclipse.papyrus.uml.diagram.common.util.StringComparator;
 
 /**
  * @generated
@@ -63,7 +63,7 @@ public class ConnectorPreferencePage extends AbstractPapyrusLinkPreferencePage {
 	 */
 	private static TreeMap<String, String> getStaticLabelRole() {
 		TreeMap<String, String> map = new TreeMap<String, String>(new StringComparator());
-		map.put("Name", "platform:/plugin/org.eclipse.papyrus.diagram.common/icons/label_role/name.png");//$NON-NLS-1$ //$NON-NLS-2$
+		map.put("Name", "platform:/plugin/org.eclipse.papyrus.uml.diagram.common/icons/label_role/name.png");//$NON-NLS-1$ //$NON-NLS-2$
 		return map;
 	}
 

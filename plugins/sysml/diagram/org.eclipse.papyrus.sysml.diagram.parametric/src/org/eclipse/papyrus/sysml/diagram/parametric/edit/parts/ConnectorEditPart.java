@@ -19,9 +19,9 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.common.editparts.UMLConnectionNodeEditPart;
-import org.eclipse.papyrus.diagram.common.figure.edge.UMLEdgeFigure;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.policies.ConnectorItemSemanticEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.editparts.UMLConnectionNodeEditPart;
+import org.eclipse.papyrus.uml.diagram.common.figure.edge.UMLEdgeFigure;
 
 /**
  * @generated

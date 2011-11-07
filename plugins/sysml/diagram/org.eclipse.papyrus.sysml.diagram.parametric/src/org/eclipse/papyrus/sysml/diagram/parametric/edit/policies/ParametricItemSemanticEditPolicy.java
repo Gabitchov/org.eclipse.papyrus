@@ -19,10 +19,10 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DuplicateElementsRequest;
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.papyrus.diagram.common.commands.DuplicateNamedElementCommand;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.commands.ConstraintPropertyCreateCommand;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.commands.PropertyCreateCommand;
 import org.eclipse.papyrus.sysml.diagram.parametric.providers.SysmlElementTypes;
+import org.eclipse.papyrus.uml.diagram.common.commands.DuplicateNamedElementCommand;
 
 /**
  * @generated

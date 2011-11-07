@@ -17,7 +17,7 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
-import org.eclipse.papyrus.diagram.common.locator.AdvancedBorderItemLocator;
+import org.eclipse.papyrus.uml.diagram.common.locator.AdvancedBorderItemLocator;
 
 /**
  * The Class ParameterPositionLocator that manages position of property on constraint property

@@ -31,7 +31,7 @@ import org.eclipse.emf.ecore.util.BasicInternalEList;
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HLAM.HLAMPackage;
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HLAM.RtFeature;
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HLAM.RtSpecification;
-import org.eclipse.papyrus.umlutils.ElementUtil;
+import org.eclipse.papyrus.uml.tools.utils.ElementUtil;
 
 import org.eclipse.uml2.uml.BehavioralFeature;
 import org.eclipse.uml2.uml.Comment;

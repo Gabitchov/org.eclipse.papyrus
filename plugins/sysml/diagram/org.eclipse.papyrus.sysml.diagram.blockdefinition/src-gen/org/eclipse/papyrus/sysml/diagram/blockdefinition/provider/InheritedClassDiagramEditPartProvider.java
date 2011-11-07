@@ -19,7 +19,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpart.CreateGraphicEditPartOperation;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpart.IEditPartOperation;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.clazz.providers.UMLEditPartProvider;
+import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLEditPartProvider;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.SlotChildLabelEditPart;
 
 public class InheritedClassDiagramEditPartProvider extends UMLEditPartProvider {

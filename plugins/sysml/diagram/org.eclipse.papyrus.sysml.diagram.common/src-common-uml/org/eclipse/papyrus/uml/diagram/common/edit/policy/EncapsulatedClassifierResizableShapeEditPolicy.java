@@ -26,8 +26,8 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ResizableShapeEditPolicy;
 import org.eclipse.gmf.runtime.notation.Shape;
-import org.eclipse.papyrus.diagram.common.commands.FixPortLocationCommand;
-import org.eclipse.papyrus.diagram.common.commands.UpdatePortLocationCommand;
+import org.eclipse.papyrus.uml.diagram.common.commands.FixPortLocationCommand;
+import org.eclipse.papyrus.uml.diagram.common.commands.UpdatePortLocationCommand;
 
 /**
  * <pre>

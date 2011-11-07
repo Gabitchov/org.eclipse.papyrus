@@ -3,9 +3,9 @@ package org.eclipse.papyrus.sysml.diagram.requirement.edit.policy;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.clazz.custom.policies.ClassDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.requirement.provider.RequirementDiagramElementTypes;
 import org.eclipse.papyrus.sysml.util.SysmlResource;
+import org.eclipse.papyrus.uml.diagram.clazz.custom.policies.ClassDiagramDragDropEditPolicy;
 import org.eclipse.uml2.uml.Abstraction;
 
 public class CustomDragDropEditPolicy extends ClassDiagramDragDropEditPolicy {

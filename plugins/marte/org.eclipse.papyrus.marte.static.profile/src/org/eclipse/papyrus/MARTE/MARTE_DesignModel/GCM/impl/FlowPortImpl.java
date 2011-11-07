@@ -26,7 +26,7 @@ import org.eclipse.papyrus.MARTE.MARTE_DesignModel.GCM.FlowPort;
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.GCM.FlowSpecification;
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.GCM.GCMPackage;
 import org.eclipse.papyrus.MARTE.utils.MarteResource;
-import org.eclipse.papyrus.umlutils.ElementUtil;
+import org.eclipse.papyrus.uml.tools.utils.ElementUtil;
 
 import org.eclipse.uml2.uml.Image;
 import org.eclipse.uml2.uml.Port;

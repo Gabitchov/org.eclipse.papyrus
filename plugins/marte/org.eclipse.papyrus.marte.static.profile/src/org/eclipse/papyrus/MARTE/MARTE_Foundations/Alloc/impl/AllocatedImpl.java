@@ -32,7 +32,7 @@ import org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.AllocPackage;
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.Allocate;
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.Allocated;
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.AllocationEndKind;
-import org.eclipse.papyrus.umlutils.ElementUtil;
+import org.eclipse.papyrus.uml.tools.utils.ElementUtil;
 
 import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.DirectedRelationship;

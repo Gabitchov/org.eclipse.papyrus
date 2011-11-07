@@ -2,11 +2,11 @@
 <plugin>
 <extension point="org.eclipse.ui.newWizards">
 	<wizard
-         category="org.eclipse.papyrus.wizards.category"
+         category="org.eclipse.papyrus.uml.diagram.wizards.category"
          class="org.eclipse.papyrus.sysml.diagram.ui.NewSysMLProjectWizard"
          finalPerspective="org.eclipse.papyrus.core.perspective"
          icon="icons/papyrus/new_sysml_project.gif"
-         id="org.eclipse.papyrus.wizards.createsysmlproject"
+         id="org.eclipse.papyrus.uml.diagram.wizards.createsysmlproject"
          name="SysML Project"
          project="true">
       <description>
@@ -14,11 +14,11 @@
       </description>
 	</wizard>
     <wizard
-         category="org.eclipse.papyrus.wizards.category"
+         category="org.eclipse.papyrus.uml.diagram.wizards.category"
          class="org.eclipse.papyrus.sysml.diagram.ui.NewSysMLModelWizard"
          finalPerspective="org.eclipse.papyrus.core.perspective"
          icon="icons/papyrus/new_sysml_model.gif"
-         id="org.eclipse.papyrus.wizards.createsysmlmodel"
+         id="org.eclipse.papyrus.uml.diagram.wizards.createsysmlmodel"
          name="SysML Model">
       <selection
             class="org.eclipse.core.resources.IResource">

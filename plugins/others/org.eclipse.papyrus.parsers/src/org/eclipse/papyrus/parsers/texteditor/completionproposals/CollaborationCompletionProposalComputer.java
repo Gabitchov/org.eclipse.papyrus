@@ -22,8 +22,8 @@ import java.util.Vector;
 
 import org.eclipse.jface.text.contentassist.CompletionProposal;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
-import org.eclipse.papyrus.umlutils.PackageUtil;
-import org.eclipse.papyrus.umlutils.TypeUtil;
+import org.eclipse.papyrus.uml.tools.utils.PackageUtil;
+import org.eclipse.papyrus.uml.tools.utils.TypeUtil;
 import org.eclipse.uml2.uml.Collaboration;
 import org.eclipse.uml2.uml.Element;
 

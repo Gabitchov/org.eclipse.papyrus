@@ -19,8 +19,8 @@ import org.eclipse.jface.dialogs.IInputValidator;
 import org.eclipse.jface.text.source.SourceViewerConfiguration;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.DefaultDirectEditorConfiguration;
 import org.eclipse.papyrus.parsers.modelgenerator.ParameterGenerator;
-import org.eclipse.papyrus.umlutils.NamedElementUtil;
-import org.eclipse.papyrus.umlutils.ParameterUtil;
+import org.eclipse.papyrus.uml.tools.utils.NamedElementUtil;
+import org.eclipse.papyrus.uml.tools.utils.ParameterUtil;
 import org.eclipse.uml2.uml.Parameter;
 
 /**

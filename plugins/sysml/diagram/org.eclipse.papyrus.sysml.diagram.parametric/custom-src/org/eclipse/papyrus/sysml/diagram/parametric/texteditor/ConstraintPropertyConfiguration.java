@@ -23,7 +23,7 @@ import org.eclipse.papyrus.parsers.texteditor.propertylabel.IContext;
 import org.eclipse.papyrus.parsers.texteditor.propertylabel.PropertyConfigurationForUML;
 import org.eclipse.papyrus.parsers.texteditor.propertylabel.PropertyLabelSourceViewerConfiguration;
 import org.eclipse.papyrus.sysml.constraints.ConstraintProperty;
-import org.eclipse.papyrus.umlutils.PropertyUtil;
+import org.eclipse.papyrus.uml.tools.utils.PropertyUtil;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Property;
 
