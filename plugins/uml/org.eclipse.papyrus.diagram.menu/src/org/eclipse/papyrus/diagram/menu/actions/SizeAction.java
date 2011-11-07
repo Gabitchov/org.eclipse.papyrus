@@ -17,19 +17,18 @@ package org.eclipse.papyrus.diagram.menu.actions;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.commands.UnexecutableCommand;
+import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
-import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
-import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
-import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 
@@ -39,7 +38,6 @@ import org.eclipse.gmf.runtime.notation.View;
  * 
  */
 public class SizeAction {
-
 
 	/** parameter for the autosize action */
 	public static final String PARAMETER_AUTOSIZE = "parameter_autosize"; //$NON-NLS-1$
@@ -185,10 +183,38 @@ public class SizeAction {
 				primarySize = new Dimension(width.intValue(), height.intValue());
 
 			while(iter.hasNext()) {
+				
+				// For each figure in the selection (to be resize) a request is created for resize to new bounds in the south-east direction.
+				// The command for this resize is contributed by the edit part for the resize request.
+				
 				IGraphicalEditPart toResize = iter.next();
 				View resizeView = (View)toResize.getModel();
+				Integer previousWidth = (Integer)ViewUtil.getStructuralFeatureValue(resizeView, NotationPackage.eINSTANCE.getSize_Width());
+				Integer previousHeight = (Integer)ViewUtil.getStructuralFeatureValue(resizeView, NotationPackage.eINSTANCE.getSize_Height());
 
-				doResizeCmd.add(new ICommandProxy(new SetBoundsCommand(toResize.getEditingDomain(), "", new EObjectAdapter(resizeView), primarySize))); //$NON-NLS-1$
+				Dimension previousSize;
+				if(previousWidth.intValue() == -1 || previousHeight.intValue() == -1)
+					previousSize = toResize.getFigure().getSize().getCopy();
+				else
+					previousSize = new Dimension(previousWidth.intValue(), previousHeight.intValue());
+				
+				// Calculate delta resize
+				Dimension delta = new Dimension(primarySize.width - previousSize.width, primarySize.height - previousSize.height);
+				
+				// Prepare setBoundRequest
+				ChangeBoundsRequest bRequest = new ChangeBoundsRequest();
+				bRequest.setResizeDirection(PositionConstants.SOUTH_EAST);
+				bRequest.setSizeDelta(delta);
+				bRequest.setType(RequestConstants.REQ_RESIZE);
+				
+				Command resizeCommand = toResize.getCommand(bRequest);
+
+				// Previous implementation (following line) forced bounds on view instead of using resize command provided by the edit part.
+				//
+				// doResizeCmd.add(new ICommandProxy(new SetBoundsCommand(toResize.getEditingDomain(), "", new EObjectAdapter(resizeView), primarySize))); //$NON-NLS-1$
+				//
+				
+				doResizeCmd.add(resizeCommand); //$NON-NLS-1$
 			}
 
 			return doResizeCmd.unwrap();
@@ -225,14 +251,39 @@ public class SizeAction {
 				primarySize = new Dimension(width.intValue(), height.intValue());
 
 			while(iter.hasNext()) {
+				
+				// For each figure in the selection (to be resize) a request is created for resize to new bounds in the south-east direction.
+				// The command for this resize is contributed by the edit part for the resize request.
+				
 				IGraphicalEditPart toResize = iter.next();
 				View resizeView = (View)toResize.getModel();
+				Integer previousWidth = (Integer)ViewUtil.getStructuralFeatureValue(resizeView, NotationPackage.eINSTANCE.getSize_Width());
+				Integer previousHeight = (Integer)ViewUtil.getStructuralFeatureValue(resizeView, NotationPackage.eINSTANCE.getSize_Height());
 
-				// Make a copy of the primary view so the width doesn't change
-				Dimension size = primarySize.getCopy();
-				size.width = ((Integer)ViewUtil.getStructuralFeatureValue(resizeView, NotationPackage.eINSTANCE.getSize_Width())).intValue();
+				Dimension previousSize;
+				if(previousWidth.intValue() == -1 || previousHeight.intValue() == -1)
+					previousSize = toResize.getFigure().getSize().getCopy();
+				else
+					previousSize = new Dimension(previousWidth.intValue(), previousHeight.intValue());
+				
+				// Calculate delta resize
+				Dimension delta = new Dimension(0, primarySize.height - previousSize.height);
+				
+				// Prepare setBoundRequest
+				ChangeBoundsRequest bRequest = new ChangeBoundsRequest();
+				bRequest.setResizeDirection(PositionConstants.SOUTH);
+				bRequest.setSizeDelta(delta);
+				bRequest.setType(RequestConstants.REQ_RESIZE);
+				
+				Command resizeCommand = toResize.getCommand(bRequest);
 
-				doResizeCmd.add(new ICommandProxy(new SetBoundsCommand(toResize.getEditingDomain(), "", new EObjectAdapter(resizeView), size))); //$NON-NLS-1$
+				// Previous implementation (following line) forced bounds on view instead of using resize command provided by the edit part.
+				//
+				// size.width = ((Integer)ViewUtil.getStructuralFeatureValue(resizeView, NotationPackage.eINSTANCE.getSize_Width())).intValue();
+				// doResizeCmd.add(new ICommandProxy(new SetBoundsCommand(toResize.getEditingDomain(), "", new EObjectAdapter(resizeView), size))); //$NON-NLS-1$
+				//
+				
+				doResizeCmd.add(resizeCommand); //$NON-NLS-1$
 			}
 
 			return doResizeCmd.unwrap();
@@ -269,16 +320,39 @@ public class SizeAction {
 				primarySize = new Dimension(width.intValue(), height.intValue());
 
 			while(iter.hasNext()) {
+				
+				// For each figure in the selection (to be resize) a request is created for resize to new bounds in the south-east direction.
+				// The command for this resize is contributed by the edit part for the resize request.
+				
 				IGraphicalEditPart toResize = iter.next();
 				View resizeView = (View)toResize.getModel();
+				Integer previousWidth = (Integer)ViewUtil.getStructuralFeatureValue(resizeView, NotationPackage.eINSTANCE.getSize_Width());
+				Integer previousHeight = (Integer)ViewUtil.getStructuralFeatureValue(resizeView, NotationPackage.eINSTANCE.getSize_Height());
 
-				// Make a copy of the primary view so the width doesn't change
-				Dimension size = primarySize.getCopy();
-				size.height = ((Integer)ViewUtil.getStructuralFeatureValue(resizeView, NotationPackage.eINSTANCE.getSize_Height())).intValue();
+				Dimension previousSize;
+				if(previousWidth.intValue() == -1 || previousHeight.intValue() == -1)
+					previousSize = toResize.getFigure().getSize().getCopy();
+				else
+					previousSize = new Dimension(previousWidth.intValue(), previousHeight.intValue());
+				
+				// Calculate delta resize
+				Dimension delta = new Dimension(primarySize.width - previousSize.width, 0);
+				
+				// Prepare setBoundRequest
+				ChangeBoundsRequest bRequest = new ChangeBoundsRequest();
+				bRequest.setResizeDirection(PositionConstants.EAST);
+				bRequest.setSizeDelta(delta);
+				bRequest.setType(RequestConstants.REQ_RESIZE);
+				
+				Command resizeCommand = toResize.getCommand(bRequest);
 
-				doResizeCmd.add(new ICommandProxy(new SetBoundsCommand(toResize.getEditingDomain(), "", new EObjectAdapter(resizeView), size))); //$NON-NLS-1$
-
-
+				// Previous implementation (following line) forced bounds on view instead of using resize command provided by the edit part.
+				//
+				// size.height = ((Integer)ViewUtil.getStructuralFeatureValue(resizeView, NotationPackage.eINSTANCE.getSize_Height())).intValue();
+				// doResizeCmd.add(new ICommandProxy(new SetBoundsCommand(toResize.getEditingDomain(), "", new EObjectAdapter(resizeView), size))); //$NON-NLS-1$
+				//
+				
+				doResizeCmd.add(resizeCommand); //$NON-NLS-1$
 			}
 
 			return doResizeCmd.unwrap();
