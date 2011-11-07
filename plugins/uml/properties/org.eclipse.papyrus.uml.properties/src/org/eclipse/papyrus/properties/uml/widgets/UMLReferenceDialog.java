@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.papyrus.properties.uml.databinding.PapyrusObservableValue;
 import org.eclipse.papyrus.uml.modelexplorer.widgets.UMLTreeSelectorDialog;
-import org.eclipse.papyrus.umlutils.PackageUtil;
+import org.eclipse.papyrus.uml.tools.utils.PackageUtil;
 import org.eclipse.papyrus.widgets.editors.ReferenceDialog;
 import org.eclipse.papyrus.widgets.editors.TreeSelectorDialog;
 import org.eclipse.swt.widgets.Composite;

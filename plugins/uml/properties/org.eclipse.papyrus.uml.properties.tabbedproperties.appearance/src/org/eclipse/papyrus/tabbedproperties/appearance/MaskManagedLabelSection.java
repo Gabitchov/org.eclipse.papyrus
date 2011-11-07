@@ -20,7 +20,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.properties.sections.AbstractNotationPropertiesSection;
 import org.eclipse.jface.preference.PreferenceDialog;
 import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.papyrus.diagram.common.editpolicies.IMaskManagedLabelEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;

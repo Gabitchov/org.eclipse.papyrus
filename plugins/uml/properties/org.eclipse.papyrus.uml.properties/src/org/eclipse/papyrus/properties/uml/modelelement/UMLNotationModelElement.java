@@ -22,7 +22,7 @@ import org.eclipse.papyrus.properties.uml.databinding.ElementCustomizationObserv
 import org.eclipse.papyrus.properties.uml.databinding.ElementCustomizationObservableValue.Property;
 import org.eclipse.papyrus.properties.uml.messages.Messages;
 import org.eclipse.papyrus.properties.uml.util.UMLUtil;
-import org.eclipse.papyrus.umlutils.NamedElementUtil;
+import org.eclipse.papyrus.uml.tools.utils.NamedElementUtil;
 import org.eclipse.papyrus.widgets.providers.AbstractStaticContentProvider;
 import org.eclipse.papyrus.widgets.providers.IStaticContentProvider;
 import org.eclipse.uml2.uml.NamedElement;

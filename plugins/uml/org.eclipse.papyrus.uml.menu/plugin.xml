@@ -11,7 +11,7 @@
             <with
                   variable="activePart">
                <instanceof
-                     value="org.eclipse.papyrus.modelexplorer.ModelExplorerPageBookView">
+                     value="org.eclipse.papyrus.views.modelexplorer.ModelExplorerPageBookView">
                </instanceof>
             </with>
             <with
@@ -19,7 +19,7 @@
                   <!-- We add this test in order to refresh the Copy action in the menu edit -->
                <test
                      forcePluginActivation="true"
-                     property="org.eclipse.papyrus.modelexplorer.tester.isEObject"
+                     property="org.eclipse.papyrus.views.modelexplorer.tester.isEObject"
                      value="true">
                </test>
             </with>
@@ -34,14 +34,14 @@
              <with
                    variable="activePart">
                 <instanceof
-                      value="org.eclipse.papyrus.modelexplorer.ModelExplorerPageBookView">
+                      value="org.eclipse.papyrus.views.modelexplorer.ModelExplorerPageBookView">
                 </instanceof>
              </with>
              <with
                    variable="selection">
                 <test
                       forcePluginActivation="true"
-                      property="org.eclipse.papyrus.modelexplorer.tester.isEObject"
+                      property="org.eclipse.papyrus.views.modelexplorer.tester.isEObject"
                       value="true">
                 </test>
              </with>

@@ -22,7 +22,7 @@ import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.papyrus.core.editorsfactory.IPageIconsRegistryExtended;
-import org.eclipse.papyrus.modelexplorer.queries.AbstractGetEditorIconQuery;
+import org.eclipse.papyrus.views.modelexplorer.queries.AbstractGetEditorIconQuery;
 
 /** Return the path to the icon of the corresponding diagram */
 public class GetDiagramIcon extends AbstractGetEditorIconQuery implements IJavaModelQuery<Diagram, String> {

@@ -28,9 +28,9 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.properties.uml.Activator;
-import org.eclipse.papyrus.umlutils.ElementUtil;
-import org.eclipse.papyrus.umlutils.ui.VisualInformationPapyrusConstant;
-import org.eclipse.papyrus.umlutils.ui.helper.AppliedStereotypeHelper;
+import org.eclipse.papyrus.uml.tools.utils.ElementUtil;
+import org.eclipse.papyrus.uml.tools.utils.ui.VisualInformationPapyrusConstant;
+import org.eclipse.papyrus.uml.tools.utils.ui.helper.AppliedStereotypeHelper;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Stereotype;
 

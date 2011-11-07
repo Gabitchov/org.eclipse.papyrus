@@ -23,8 +23,8 @@ import org.eclipse.gmf.runtime.diagram.ui.properties.sections.AbstractModelerPro
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.papyrus.umlutils.ui.command.SetNameLabelIconCommand;
-import org.eclipse.papyrus.umlutils.ui.helper.NameLabelIconHelper;
+import org.eclipse.papyrus.uml.tools.utils.ui.command.SetNameLabelIconCommand;
+import org.eclipse.papyrus.uml.tools.utils.ui.helper.NameLabelIconHelper;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.events.SelectionEvent;

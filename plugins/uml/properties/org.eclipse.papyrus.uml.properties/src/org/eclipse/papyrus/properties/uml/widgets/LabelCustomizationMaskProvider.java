@@ -15,13 +15,13 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import org.eclipse.papyrus.diagram.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.properties.modelelement.CompositeModelElement;
 import org.eclipse.papyrus.properties.modelelement.DataSource;
 import org.eclipse.papyrus.properties.modelelement.ModelElement;
 import org.eclipse.papyrus.properties.providers.XWTCompliantMaskProvider;
 import org.eclipse.papyrus.properties.providers.XWTCompliantMaskProviderListener;
 import org.eclipse.papyrus.properties.uml.modelelement.UMLNotationModelElement;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.IMaskManagedLabelEditPolicy;
 
 
 /**

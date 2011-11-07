@@ -16,7 +16,7 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.jface.viewers.IFilter;
-import org.eclipse.papyrus.diagram.common.figure.node.CompartmentFigure;
+import org.eclipse.papyrus.uml.diagram.common.figure.node.CompartmentFigure;
 
 /**
  * Filter for the {@link MaskManagedLabelSection} section

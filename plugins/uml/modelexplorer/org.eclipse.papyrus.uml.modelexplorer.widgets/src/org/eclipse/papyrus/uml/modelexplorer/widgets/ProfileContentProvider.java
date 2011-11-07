@@ -21,11 +21,11 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.core.utils.EditorUtils;
-import org.eclipse.papyrus.modelexplorer.widgets.MetamodelContentProvider;
 import org.eclipse.papyrus.resource.ModelSet;
 import org.eclipse.papyrus.resource.ModelUtils;
 import org.eclipse.papyrus.resource.uml.UmlModel;
 import org.eclipse.papyrus.resource.uml.UmlUtils;
+import org.eclipse.papyrus.views.modelexplorer.widgets.MetamodelContentProvider;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Profile;
 

@@ -21,7 +21,7 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.core.services.ServiceException;
-import org.eclipse.papyrus.diagram.common.helper.BasicClassifierCompartmentLayoutHelper;
+import org.eclipse.papyrus.uml.diagram.common.helper.BasicClassifierCompartmentLayoutHelper;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CCombo;
 import org.eclipse.swt.custom.CLabel;

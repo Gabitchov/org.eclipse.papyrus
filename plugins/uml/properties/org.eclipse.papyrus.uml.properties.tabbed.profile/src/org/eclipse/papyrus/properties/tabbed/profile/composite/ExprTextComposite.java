@@ -17,7 +17,7 @@ package org.eclipse.papyrus.properties.tabbed.profile.composite;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.core.utils.EditorUtils;
-import org.eclipse.papyrus.umlutils.ImageUtil;
+import org.eclipse.papyrus.uml.tools.utils.ImageUtil;
 import org.eclipse.uml2.common.edit.command.ChangeCommand;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Image;

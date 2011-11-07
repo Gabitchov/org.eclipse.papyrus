@@ -14,7 +14,7 @@ package org.eclipse.papyrus.tabbedproperties.appearance;
 
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.jface.viewers.IFilter;
-import org.eclipse.papyrus.diagram.common.editpolicies.IMaskManagedLabelEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.IMaskManagedLabelEditPolicy;
 
 /**
  * Filter for the {@link MaskManagedLabelSection} section

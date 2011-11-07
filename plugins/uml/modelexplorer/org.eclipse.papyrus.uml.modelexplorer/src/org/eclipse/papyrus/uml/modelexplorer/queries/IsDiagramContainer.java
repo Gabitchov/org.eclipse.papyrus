@@ -23,8 +23,8 @@ import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.core.utils.EditorUtils;
-import org.eclipse.papyrus.modelexplorer.queries.AbstractEditorContainerQuery;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
+import org.eclipse.papyrus.views.modelexplorer.queries.AbstractEditorContainerQuery;
 
 public class IsDiagramContainer extends AbstractEditorContainerQuery implements IJavaModelQuery<EObject, Boolean> {
 

@@ -26,7 +26,7 @@ import org.eclipse.papyrus.properties.runtime.modelhandler.emf.IEMFModelHandler;
 import org.eclipse.papyrus.properties.runtime.propertyeditor.descriptor.IBoundedValuesPropertyEditorDescriptor;
 import org.eclipse.papyrus.properties.runtime.propertyeditor.descriptor.IPropertyEditorDescriptor;
 import org.eclipse.papyrus.properties.runtime.uml.Activator;
-import org.eclipse.papyrus.umlutils.MultiplicityElementUtil;
+import org.eclipse.papyrus.uml.tools.utils.MultiplicityElementUtil;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.uml2.uml.MultiplicityElement;

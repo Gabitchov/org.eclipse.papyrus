@@ -31,7 +31,7 @@ import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.papyrus.extensionpoints.uml2.profile.RegisteredProfile;
 import org.eclipse.papyrus.extensionpoints.uml2.utils.Util;
-import org.eclipse.papyrus.umlutils.PackageUtil;
+import org.eclipse.papyrus.uml.tools.utils.PackageUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;

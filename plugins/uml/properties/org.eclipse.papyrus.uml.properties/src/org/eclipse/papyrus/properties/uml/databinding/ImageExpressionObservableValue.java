@@ -14,7 +14,7 @@ package org.eclipse.papyrus.properties.uml.databinding;
 import org.eclipse.core.databinding.observable.value.AbstractObservableValue;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.papyrus.umlutils.ImageUtil;
+import org.eclipse.papyrus.uml.tools.utils.ImageUtil;
 import org.eclipse.uml2.common.edit.command.ChangeCommand;
 import org.eclipse.uml2.uml.Image;
 

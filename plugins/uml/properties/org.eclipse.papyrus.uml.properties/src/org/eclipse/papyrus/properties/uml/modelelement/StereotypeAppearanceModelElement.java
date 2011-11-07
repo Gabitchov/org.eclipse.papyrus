@@ -20,9 +20,9 @@ import static org.eclipse.papyrus.properties.uml.util.StereotypeAppearanceConsta
 import static org.eclipse.papyrus.properties.uml.util.StereotypeAppearanceConstants.TEXT_ALIGNMENT;
 import static org.eclipse.papyrus.properties.uml.util.StereotypeAppearanceConstants.TEXT_AND_ICON;
 import static org.eclipse.papyrus.properties.uml.util.StereotypeAppearanceConstants.VERTICAL;
-import static org.eclipse.papyrus.umlutils.ui.VisualInformationPapyrusConstant.STEREOTYPE_BRACE_LOCATION;
-import static org.eclipse.papyrus.umlutils.ui.VisualInformationPapyrusConstant.STEREOTYPE_COMMENT_LOCATION;
-import static org.eclipse.papyrus.umlutils.ui.VisualInformationPapyrusConstant.STEREOTYPE_COMPARTMENT_LOCATION;
+import static org.eclipse.papyrus.uml.tools.utils.ui.VisualInformationPapyrusConstant.STEREOTYPE_BRACE_LOCATION;
+import static org.eclipse.papyrus.uml.tools.utils.ui.VisualInformationPapyrusConstant.STEREOTYPE_COMMENT_LOCATION;
+import static org.eclipse.papyrus.uml.tools.utils.ui.VisualInformationPapyrusConstant.STEREOTYPE_COMPARTMENT_LOCATION;
 
 import org.eclipse.core.databinding.observable.IObservable;
 import org.eclipse.emf.ecore.EModelElement;

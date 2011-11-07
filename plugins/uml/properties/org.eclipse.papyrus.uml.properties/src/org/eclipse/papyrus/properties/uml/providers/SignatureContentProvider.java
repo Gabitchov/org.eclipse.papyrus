@@ -21,7 +21,7 @@ import java.util.Set;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.papyrus.properties.uml.util.UMLUtil;
-import org.eclipse.papyrus.umlutils.PackageUtil;
+import org.eclipse.papyrus.uml.tools.utils.PackageUtil;
 import org.eclipse.papyrus.widgets.providers.AbstractStaticContentProvider;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Message;

@@ -18,7 +18,7 @@ import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.papyrus.modelexplorer.widgets.HierarchicViewerFilter;
+import org.eclipse.papyrus.views.modelexplorer.widgets.HierarchicViewerFilter;
 import org.eclipse.papyrus.widgets.providers.IHierarchicContentProvider;
 import org.eclipse.uml2.uml.PackageImport;
 import org.eclipse.uml2.uml.UMLPackage;

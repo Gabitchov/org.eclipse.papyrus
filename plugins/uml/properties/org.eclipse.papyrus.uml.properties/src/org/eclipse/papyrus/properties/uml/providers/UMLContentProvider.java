@@ -21,7 +21,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.papyrus.properties.providers.EcoreEnumeratorContentProvider;
 import org.eclipse.papyrus.properties.providers.EcoreReferenceContentProvider;
 import org.eclipse.papyrus.uml.modelexplorer.widgets.ServiceEditFilteredUMLContentProvider;
-import org.eclipse.papyrus.umlutils.PackageUtil;
+import org.eclipse.papyrus.uml.tools.utils.PackageUtil;
 import org.eclipse.papyrus.widgets.providers.EmptyContentProvider;
 import org.eclipse.papyrus.widgets.providers.EncapsulatedContentProvider;
 import org.eclipse.papyrus.widgets.providers.IStaticContentProvider;

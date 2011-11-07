@@ -48,7 +48,7 @@ import org.eclipse.papyrus.properties.uml.providers.InstanceValueContentProvider
 import org.eclipse.papyrus.properties.uml.providers.SignatureContentProvider;
 import org.eclipse.papyrus.properties.uml.providers.UMLLabelProvider;
 import org.eclipse.papyrus.uml.modelexplorer.widgets.ServiceEditFilteredUMLContentProvider;
-import org.eclipse.papyrus.umlutils.PackageUtil;
+import org.eclipse.papyrus.uml.tools.utils.PackageUtil;
 import org.eclipse.papyrus.widgets.creation.ReferenceValueFactory;
 import org.eclipse.papyrus.widgets.providers.IStaticContentProvider;
 import org.eclipse.uml2.uml.Connector;

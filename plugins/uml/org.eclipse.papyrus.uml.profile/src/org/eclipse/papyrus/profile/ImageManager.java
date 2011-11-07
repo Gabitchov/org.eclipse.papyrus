@@ -16,7 +16,7 @@ package org.eclipse.papyrus.profile;
 
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
-import org.eclipse.papyrus.diagram.common.Activator;
+import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 

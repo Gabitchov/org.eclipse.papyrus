@@ -29,7 +29,7 @@ import org.eclipse.papyrus.extensionpoints.uml2.profile.FilteredRegisteredProfil
 import org.eclipse.papyrus.extensionpoints.uml2.profile.RegisteredProfile;
 import org.eclipse.papyrus.extensionpoints.uml2.utils.Util;
 import org.eclipse.papyrus.profile.ui.dialogs.ProfileTreeSelectionDialog;
-import org.eclipse.papyrus.umlutils.PackageUtil;
+import org.eclipse.papyrus.uml.tools.utils.PackageUtil;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.common.edit.command.ChangeCommand;

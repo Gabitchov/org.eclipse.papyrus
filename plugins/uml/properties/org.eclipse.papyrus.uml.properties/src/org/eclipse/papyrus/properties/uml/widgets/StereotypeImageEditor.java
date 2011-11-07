@@ -25,7 +25,7 @@ import org.eclipse.papyrus.properties.modelelement.ModelElement;
 import org.eclipse.papyrus.properties.uml.Activator;
 import org.eclipse.papyrus.properties.uml.modelelement.UMLModelElement;
 import org.eclipse.papyrus.properties.widgets.AbstractPropertyEditor;
-import org.eclipse.papyrus.umlutils.ImageUtil;
+import org.eclipse.papyrus.uml.tools.utils.ImageUtil;
 import org.eclipse.papyrus.widgets.editors.AbstractEditor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;

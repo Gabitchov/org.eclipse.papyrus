@@ -64,11 +64,11 @@ import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.core.utils.EditorUtils;
-import org.eclipse.papyrus.diagram.common.commands.CommonDeferredCreateConnectionViewCommand;
-import org.eclipse.papyrus.diagram.common.commands.SemanticAdapter;
-import org.eclipse.papyrus.diagram.common.parser.HTMLCleaner;
 import org.eclipse.papyrus.tabbedproperties.comments.Activator;
 import org.eclipse.papyrus.tabbedproperties.comments.Messages;
+import org.eclipse.papyrus.uml.diagram.common.commands.CommonDeferredCreateConnectionViewCommand;
+import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
+import org.eclipse.papyrus.uml.diagram.common.parser.HTMLCleaner;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseListener;
@@ -163,7 +163,7 @@ public class CommentedElementPropertySection extends AbstractPropertySection imp
 
 		// button to display a comment in the current diagram
 		displayCommentButton = getWidgetFactory().createButton(tableComposite, "", SWT.NONE); //$NON-NLS-1$
-		displayCommentButton.setImage(org.eclipse.papyrus.diagram.common.Activator.getPluginIconImage(org.eclipse.papyrus.tabbedproperties.comments.Activator.PLUGIN_ID, DISPLAY_ICON));
+		displayCommentButton.setImage(org.eclipse.papyrus.uml.diagram.common.Activator.getPluginIconImage(org.eclipse.papyrus.tabbedproperties.comments.Activator.PLUGIN_ID, DISPLAY_ICON));
 		displayCommentButton.setToolTipText(Messages.CommentedElementPropertySection_DisplayButtonTooltip);
 		displayCommentButton.addMouseListener(new DisplayCommentButtonMouseListener());
 
@@ -176,7 +176,7 @@ public class CommentedElementPropertySection extends AbstractPropertySection imp
 		table.setLayoutData(data);
 		viewer = new TableViewer(table);
 		viewer.setContentProvider(new CommentContentProvider());
-		CommentLabelProvider labelProvider = new CommentLabelProvider(org.eclipse.papyrus.diagram.common.Activator.getDefault().getItemProvidersAdapterFactory());
+		CommentLabelProvider labelProvider = new CommentLabelProvider(org.eclipse.papyrus.uml.diagram.common.Activator.getDefault().getItemProvidersAdapterFactory());
 		labelProvider.setFireLabelUpdateNotifications(true);
 		viewer.setLabelProvider(labelProvider);
 

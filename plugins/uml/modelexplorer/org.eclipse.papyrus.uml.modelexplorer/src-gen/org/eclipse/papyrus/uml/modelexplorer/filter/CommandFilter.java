@@ -17,8 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
-import org.eclipse.papyrus.modelexplorer.ICommandFilter;
 import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
+import org.eclipse.papyrus.views.modelexplorer.ICommandFilter;
 
 public class CommandFilter implements ICommandFilter {
 

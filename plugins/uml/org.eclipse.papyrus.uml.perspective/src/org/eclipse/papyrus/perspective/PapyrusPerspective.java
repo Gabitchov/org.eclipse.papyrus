@@ -13,8 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.perspective;
 
-import org.eclipse.papyrus.wizards.CreateModelWizard;
-import org.eclipse.papyrus.wizards.NewPapyrusProjectWizard;
+import org.eclipse.papyrus.uml.diagram.wizards.CreateModelWizard;
+import org.eclipse.papyrus.uml.diagram.wizards.NewPapyrusProjectWizard;
 import org.eclipse.ui.IFolderLayout;
 import org.eclipse.ui.IPageLayout;
 import org.eclipse.ui.IPerspectiveFactory;

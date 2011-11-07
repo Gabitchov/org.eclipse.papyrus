@@ -25,7 +25,7 @@ import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.properties.tabbed.profile.AbstractViewSection;
 import org.eclipse.papyrus.properties.tabbed.profile.Activator;
-import org.eclipse.papyrus.umlutils.ImageUtil;
+import org.eclipse.papyrus.uml.tools.utils.ImageUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.events.MouseEvent;

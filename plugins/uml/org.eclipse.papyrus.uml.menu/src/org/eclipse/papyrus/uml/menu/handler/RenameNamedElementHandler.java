@@ -25,9 +25,9 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.window.Window;
-import org.eclipse.papyrus.modelexplorer.handler.AbstractCommandHandler;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.properties.util.EMFHelper;
+import org.eclipse.papyrus.views.modelexplorer.handler.AbstractCommandHandler;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.NamedElement;
 /**
@@ -40,7 +40,7 @@ public class RenameNamedElementHandler extends AbstractCommandHandler {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.modelexplorer.handler.AbstractCommandHandler#getCommand()
+	 * @see org.eclipse.papyrus.views.modelexplorer.handler.AbstractCommandHandler#getCommand()
 	 * 
 	 * @return
 	 */

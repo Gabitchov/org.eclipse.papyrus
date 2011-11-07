@@ -17,7 +17,7 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.papyrus.modelexplorer.widgets.MetaclassContentProvider;
+import org.eclipse.papyrus.views.modelexplorer.widgets.MetaclassContentProvider;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.Stereotype;
 

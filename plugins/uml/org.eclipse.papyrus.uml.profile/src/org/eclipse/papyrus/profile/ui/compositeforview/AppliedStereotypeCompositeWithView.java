@@ -21,7 +21,7 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.papyrus.profile.tree.objects.AppliedStereotypePropertyTreeObject;
-import org.eclipse.papyrus.umlutils.ui.helper.AppliedStereotypeHelper;
+import org.eclipse.papyrus.uml.tools.utils.ui.helper.AppliedStereotypeHelper;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;

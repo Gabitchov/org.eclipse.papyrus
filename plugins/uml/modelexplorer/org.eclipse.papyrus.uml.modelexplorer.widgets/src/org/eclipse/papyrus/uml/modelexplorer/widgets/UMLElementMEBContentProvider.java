@@ -23,7 +23,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
-import org.eclipse.papyrus.modelexplorer.widgets.GraphicalModelExplorerBasedContentProvider;
+import org.eclipse.papyrus.views.modelexplorer.widgets.GraphicalModelExplorerBasedContentProvider;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -44,7 +44,7 @@ public class UMLElementMEBContentProvider extends GraphicalModelExplorerBasedCon
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.modelexplorer.widgets.EclassModelExplorerBasedContentProvider#isValidValue(java.lang.Object)
+	 * @see org.eclipse.papyrus.views.modelexplorer.widgets.EclassModelExplorerBasedContentProvider#isValidValue(java.lang.Object)
 	 * 
 	 */
 	@Override

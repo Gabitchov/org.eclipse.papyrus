@@ -13,7 +13,7 @@ package org.eclipse.papyrus.uml.modelexplorer.widgets;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.papyrus.modelexplorer.widgets.EditServiceValidator;
+import org.eclipse.papyrus.views.modelexplorer.widgets.EditServiceValidator;
 
 public class ServiceEditFilteredUMLContentProvider extends UMLElementMEBContentProvider {
 

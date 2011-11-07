@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.modelexplorer.widgets;
 
-import org.eclipse.papyrus.modelexplorer.widgets.MetaclassLabelProvider;
+import org.eclipse.papyrus.views.modelexplorer.widgets.MetaclassLabelProvider;
 import org.eclipse.uml2.uml.Stereotype;
 
 /**

@@ -15,7 +15,7 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.papyrus.modelexplorer.widgets.MetaclassViewerFilter;
+import org.eclipse.papyrus.views.modelexplorer.widgets.MetaclassViewerFilter;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Stereotype;
 

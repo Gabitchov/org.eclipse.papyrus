@@ -17,7 +17,7 @@ package org.eclipse.papyrus.profile.ui.compositeforview;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.jface.resource.JFaceColors;
-import org.eclipse.papyrus.umlutils.ui.helper.AppliedStereotypeHelper;
+import org.eclipse.papyrus.uml.tools.utils.ui.helper.AppliedStereotypeHelper;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;

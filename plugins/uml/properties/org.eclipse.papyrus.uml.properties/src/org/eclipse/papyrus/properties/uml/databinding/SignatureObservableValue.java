@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.properties.Activator;
-import org.eclipse.papyrus.umlutils.MessageUtil;
+import org.eclipse.papyrus.uml.tools.utils.MessageUtil;
 import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Signal;

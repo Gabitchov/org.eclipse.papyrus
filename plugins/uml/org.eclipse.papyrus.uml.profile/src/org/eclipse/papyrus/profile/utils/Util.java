@@ -31,7 +31,7 @@ import org.eclipse.papyrus.profile.Message;
 import org.eclipse.papyrus.profile.definition.IPapyrusVersionConstants;
 import org.eclipse.papyrus.profile.definition.PapyrusDefinitionAnnotation;
 import org.eclipse.papyrus.profile.definition.Version;
-import org.eclipse.papyrus.umlutils.PackageUtil;
+import org.eclipse.papyrus.uml.tools.utils.PackageUtil;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.DataType;
 import org.eclipse.uml2.uml.Element;

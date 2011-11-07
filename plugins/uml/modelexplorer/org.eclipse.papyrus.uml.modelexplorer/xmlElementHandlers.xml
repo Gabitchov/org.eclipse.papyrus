@@ -1417,7 +1417,7 @@
 <!-- UI Menu declaration for creation commands -->
 <extension point="org.eclipse.ui.menus">
 
-	<menuContribution locationURI="popup:org.eclipse.papyrus.modelexplorer.popupmenu.createchild" allPopups="false">
+	<menuContribution locationURI="popup:org.eclipse.papyrus.views.modelexplorer.popupmenu.createchild" allPopups="false">
 
 		<!-- Creation menu action for Abstraction -->
 		<command commandId="org.eclipse.papyrus.uml.modelexplorer.AbstractionCreateCommand"

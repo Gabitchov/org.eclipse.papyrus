@@ -17,7 +17,7 @@ import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.properties.tabbed.profile.AbstractViewSection;
-import org.eclipse.papyrus.umlutils.ImageUtil;
+import org.eclipse.papyrus.uml.tools.utils.ImageUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CCombo;
 import org.eclipse.swt.custom.CLabel;
