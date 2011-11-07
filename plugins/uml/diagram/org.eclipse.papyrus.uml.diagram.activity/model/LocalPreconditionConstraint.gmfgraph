@@ -10,7 +10,7 @@
       <actualFigure
           xsi:type="gmfgraph:CustomFigure"
           name="LocalPrecondtionConstraintFigure"
-          qualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.LocalPreconditionConstraintFigure">
+          qualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.LocalPreconditionConstraintFigure">
         <customChildren
             accessor="getNameLabel()">
           <typedFigure
@@ -22,7 +22,7 @@
           <typedFigure
               xsi:type="gmfgraph:CustomFigure"
               name="ConstraintFigure"
-              qualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.ConstraintFigure"/>
+              qualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.ConstraintFigure"/>
         </customChildren>
       </actualFigure>
       <accessors

@@ -13,10 +13,10 @@
    </extension>
    
    <extension point="org.eclipse.gmf.runtime.common.ui.services.action.contributionItemProviders">
-      <contributionItemProvider checkPluginLoaded="false" class="org.eclipse.papyrus.diagram.activity.providers.ActivityDiagramContributionItemProvider">
+      <contributionItemProvider checkPluginLoaded="false" class="org.eclipse.papyrus.uml.diagram.activity.providers.ActivityDiagramContributionItemProvider">
       <Priority name="Low"/>
          <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
-            <popupStructuredContributionCriteria objectClass="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart" policyClass="org.eclipse.papyrus.diagram.activity.providers.ActivityDiagramContributionPolicyClass"/>
+            <popupStructuredContributionCriteria objectClass="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart" policyClass="org.eclipse.papyrus.uml.diagram.activity.providers.ActivityDiagramContributionPolicyClass"/>
             <popupAction id="papyrus.restoreRelatedLinksAction" path="/navigateMenu/additions"/>
          </popupContribution>
       </contributionItemProvider>
@@ -35,7 +35,7 @@
    <extension
          point="org.eclipse.ui.handlers">
       <handler
-            class="org.eclipse.papyrus.diagram.activity.CreateActivityDiagramWithNavigationHandler"
+            class="org.eclipse.papyrus.uml.diagram.activity.CreateActivityDiagramWithNavigationHandler"
             commandId="org.eclipse.papyrus.diagram.activity.CreateActivityDiagramCommand">
          <activeWhen>
                <with variable="activeEditorId">
@@ -56,7 +56,7 @@
 			style="push"
 			tooltip="Create a new Activity Diagram">
 			<visibleWhen>
-				<reference definitionId="org.eclipse.papyrus.diagram.common.IsPapyrusActiveWithUMLModel"/>
+				<reference definitionId="org.eclipse.papyrus.uml.diagram.common.IsPapyrusActiveWithUMLModel"/>
 			</visibleWhen>
 		</command>
 	</toolbar>
@@ -71,20 +71,20 @@
 			style="push"
 			tooltip="Create a new Activity Diagram">
 			<visibleWhen>
-				<reference definitionId="org.eclipse.papyrus.diagram.common.IsPapyrusActiveWithUMLModel"/>
+				<reference definitionId="org.eclipse.papyrus.uml.diagram.common.IsPapyrusActiveWithUMLModel"/>
 			</visibleWhen> 				
 		</command>
 	</menu>
 	</menuContribution>
 
-	<menuContribution locationURI="popup:org.eclipse.papyrus.modelexplorer.popupmenu.creatediagram">
+	<menuContribution locationURI="popup:org.eclipse.papyrus.views.modelexplorer.popupmenu.creatediagram">
 		<command commandId="org.eclipse.papyrus.diagram.activity.CreateActivityDiagramCommand"
 			icon="icons/obj16/Diagram_Activity.gif"
 			label="Create a new Activity Diagram"
 			style="push"
 			tooltip="Create a new Activity Diagram">
 			<visibleWhen>
-				<reference definitionId="org.eclipse.papyrus.diagram.common.IsPapyrusActiveWithUMLModel"/>
+				<reference definitionId="org.eclipse.papyrus.uml.diagram.common.IsPapyrusActiveWithUMLModel"/>
 			</visibleWhen>
 		</command>
 	</menuContribution>
@@ -96,12 +96,12 @@
          point="org.eclipse.papyrus.core.papyrusDiagram">
       <editorDiagram
             contextId="com.cea.papyrus.gmf.editor.context"
-            factoryClass="org.eclipse.papyrus.diagram.activity.ActivityDiagramEditorFactory"
+            factoryClass="org.eclipse.papyrus.uml.diagram.activity.ActivityDiagramEditorFactory"
             icon="icons/obj16/Diagram_Activity.gif">
       </editorDiagram>
       <creationCommand
-            creationCommandClass="org.eclipse.papyrus.diagram.activity.CreateActivityDiagramCommand"
-            creationCondition="org.eclipse.papyrus.diagram.activity.ActivityDiagramCreationCondition"
+            creationCommandClass="org.eclipse.papyrus.uml.diagram.activity.CreateActivityDiagramCommand"
+            creationCondition="org.eclipse.papyrus.uml.diagram.activity.ActivityDiagramCreationCondition"
             icon="icons/obj16/Diagram_Activity.gif"
             language="uml"
             id="org.eclipse.papyrus.diagram.activity.CreateActivityDiagramCommand"
@@ -112,7 +112,7 @@
 
    <extension point="org.eclipse.gmf.runtime.emf.ui.modelingAssistantProviders">
 		<modelingAssistantProvider
-			class="org.eclipse.papyrus.diagram.activity.providers.UMLModelingAssistantProvider">
+			class="org.eclipse.papyrus.uml.diagram.activity.providers.UMLModelingAssistantProvider">
 			<Priority 
 				name="Lowest">
 			</Priority>
@@ -129,7 +129,7 @@
             id="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
             name="PapyrusUMLActivityDiagram Diagram"
             category="org.eclipse.papyrus.preferences.diagrams"
-            class="org.eclipse.papyrus.diagram.activity.preferences.DiagramGeneralPreferencePage">
+            class="org.eclipse.papyrus.uml.diagram.activity.preferences.DiagramGeneralPreferencePage">
       </page>
       
 
@@ -138,14 +138,14 @@
             id="org.eclipse.papyrus.diagram.activity.preferences.DiagramPrintingPreferencePage"
             name="%prefpage.org.eclipse.uml2.uml.diagram.printing"
             category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-            class="org.eclipse.papyrus.diagram.activity.preferences.DiagramPrintingPreferencePage">
+            class="org.eclipse.papyrus.uml.diagram.activity.preferences.DiagramPrintingPreferencePage">
       </page>
 
       <page
             id="org.eclipse.papyrus.diagram.activity.preferences.DiagramRulersAndGridPreferencePage"
             name="%prefpage.org.eclipse.uml2.uml.diagram.rulersAndGrid"
             category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-            class="org.eclipse.papyrus.diagram.activity.preferences.DiagramRulersAndGridPreferencePage">
+            class="org.eclipse.papyrus.uml.diagram.activity.preferences.DiagramRulersAndGridPreferencePage">
       </page>
 
    </extension>
@@ -154,7 +154,7 @@
       <?gmfgen generated="true"?>
       <propertyContributor
             contributorId="org.eclipse.papyrus.diagram.activity"
-            labelProvider="org.eclipse.papyrus.diagram.activity.sheet.UMLSheetLabelProvider">
+            labelProvider="org.eclipse.papyrus.uml.diagram.activity.sheet.UMLSheetLabelProvider">
          <propertyCategory category="domain"/>
          <propertyCategory category="visual"/>
          <propertyCategory category="extra"/>
@@ -205,10 +205,10 @@
          <propertySection
             id="property.section.domain" 
             tab="property.tab.domain"
-            class="org.eclipse.papyrus.diagram.activity.sheet.UMLPropertySection">
+            class="org.eclipse.papyrus.uml.diagram.activity.sheet.UMLPropertySection">
             <input type="org.eclipse.gmf.runtime.notation.View"/>
             <input type="org.eclipse.gef.EditPart"/>
-            <input type="org.eclipse.papyrus.diagram.activity.navigator.UMLAbstractNavigatorItem"/>
+            <input type="org.eclipse.papyrus.uml.diagram.activity.navigator.UMLAbstractNavigatorItem"/>
          </propertySection>
       </propertySections>
    </extension>
@@ -218,11 +218,11 @@
 
 	<extension point="org.eclipse.core.runtime.preferences">
 		<?gmfgen generated="true"?>
-		<initializer class="org.eclipse.papyrus.diagram.activity.preferences.DiagramPreferenceInitializer"/>
+		<initializer class="org.eclipse.papyrus.uml.diagram.activity.preferences.DiagramPreferenceInitializer"/>
 	</extension>
 	<extension point="org.eclipse.core.runtime.preferences">
 		<?gmfgen generated="false"?>
-		<initializer class="org.eclipse.papyrus.diagram.activity.preferences.DiagramSpecificPreferenceInitializer"/>
+		<initializer class="org.eclipse.papyrus.uml.diagram.activity.preferences.DiagramSpecificPreferenceInitializer"/>
 	</extension>
    <extension point="org.eclipse.gmf.runtime.diagram.core.viewProviders" id="view-provider">
       <?gmfgen generated="true"?>
@@ -259,7 +259,7 @@
 
    <extension point="org.eclipse.gmf.runtime.emf.ui.modelingAssistantProviders" id="modelassist-provider">
       <?gmfgen generated="true"?>
-      <modelingAssistantProvider class="org.eclipse.papyrus.diagram.activity.providers.UMLModelingAssistantProvider">
+      <modelingAssistantProvider class="org.eclipse.papyrus.uml.diagram.activity.providers.UMLModelingAssistantProvider">
          <Priority name="Lowest"/>
          <object class="org.eclipse.papyrus.diagram.activity.edit.parts.ActivityDiagramEditPart" id="Package_1000"/>
          <object class="org.eclipse.papyrus.diagram.activity.edit.parts.ActivityEditPart" id="Activity_2001"/>
@@ -269,14 +269,14 @@
 
    <extension point="org.eclipse.gmf.runtime.common.ui.services.iconProviders" id="icon-provider">
       <?gmfgen generated="true"?>
-      <IconProvider class="org.eclipse.papyrus.diagram.activity.providers.UMLIconProvider">
+      <IconProvider class="org.eclipse.papyrus.uml.diagram.activity.providers.UMLIconProvider">
          <Priority name="Low"/>
       </IconProvider>
    </extension>
 
    <extension point="org.eclipse.gmf.runtime.common.ui.services.parserProviders" id="parser-provider">
       <?gmfgen generated="true"?>
-      <ParserProvider class="org.eclipse.papyrus.diagram.activity.providers.UMLParserProvider">
+      <ParserProvider class="org.eclipse.papyrus.uml.diagram.activity.providers.UMLParserProvider">
          <Priority name="Lowest"/>
       </ParserProvider>
    </extension>
@@ -289,7 +289,7 @@
                name="%metatype.name.Package_1000"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Package"
-               edithelper="org.eclipse.papyrus.diagram.activity.edit.helpers.PackageEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.PackageEditHelper">
             <param name="semanticHint" value="1000"/>
          </metamodelType>
       </metamodel>
@@ -299,7 +299,7 @@
                name="%metatype.name.Activity_2001"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Activity"
-               edithelper="org.eclipse.papyrus.diagram.activity.edit.helpers.ActivityEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.ActivityEditHelper">
             <param name="semanticHint" value="2001"/>
          </metamodelType>
       </metamodel>
@@ -309,7 +309,7 @@
                name="%metatype.name.Parameter_3001"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Parameter"
-               edithelper="org.eclipse.papyrus.diagram.activity.edit.helpers.ParameterEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.ParameterEditHelper">
             <param name="semanticHint" value="3001"/>
          </metamodelType>
       </metamodel>
@@ -319,7 +319,7 @@
                name="%metatype.name.Constraint_3002"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Constraint"
-               edithelper="org.eclipse.papyrus.diagram.activity.edit.helpers.ConstraintEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.ConstraintEditHelper">
             <param name="semanticHint" value="3002"/>
          </metamodelType>
       </metamodel>
@@ -338,7 +338,7 @@
                name="%metatype.name.InitialNode_3004"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="InitialNode"
-               edithelper="org.eclipse.papyrus.diagram.activity.edit.helpers.InitialNodeEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.InitialNodeEditHelper">
             <param name="semanticHint" value="3004"/>
          </metamodelType>
       </metamodel>
@@ -348,7 +348,7 @@
                name="%metatype.name.ActivityFinalNode_3005"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="ActivityFinalNode"
-               edithelper="org.eclipse.papyrus.diagram.activity.edit.helpers.ActivityFinalNodeEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.ActivityFinalNodeEditHelper">
             <param name="semanticHint" value="3005"/>
          </metamodelType>
       </metamodel>
@@ -358,7 +358,7 @@
                name="%metatype.name.FlowFinalNode_3006"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="FlowFinalNode"
-               edithelper="org.eclipse.papyrus.diagram.activity.edit.helpers.FlowFinalNodeEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.FlowFinalNodeEditHelper">
             <param name="semanticHint" value="3006"/>
          </metamodelType>
       </metamodel>
@@ -368,7 +368,7 @@
                name="%metatype.name.OpaqueAction_3007"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="OpaqueAction"
-               edithelper="org.eclipse.papyrus.diagram.activity.edit.helpers.OpaqueActionEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.OpaqueActionEditHelper">
             <param name="semanticHint" value="3007"/>
          </metamodelType>
       </metamodel>
@@ -378,7 +378,7 @@
                name="%metatype.name.ValuePin_3015"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="ValuePin"
-               edithelper="org.eclipse.papyrus.diagram.activity.edit.helpers.ValuePinEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.ValuePinEditHelper">
             <param name="semanticHint" value="3015"/>
          </metamodelType>
       </metamodel>
@@ -388,7 +388,7 @@
                name="%metatype.name.ActionInputPin_3016"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="ActionInputPin"
-               edithelper="org.eclipse.papyrus.diagram.activity.edit.helpers.ActionInputPinEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.ActionInputPinEditHelper">
             <param name="semanticHint" value="3016"/>
          </metamodelType>
       </metamodel>
@@ -398,7 +398,7 @@
                name="%metatype.name.InputPin_3013"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="InputPin"
-               edithelper="org.eclipse.papyrus.diagram.activity.edit.helpers.InputPinEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.InputPinEditHelper">
             <param name="semanticHint" value="3013"/>
          </metamodelType>
       </metamodel>
@@ -408,7 +408,7 @@
                name="%metatype.name.OutputPin_3014"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="OutputPin"
-               edithelper="org.eclipse.papyrus.diagram.activity.edit.helpers.OutputPinEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.OutputPinEditHelper">
             <param name="semanticHint" value="3014"/>
          </metamodelType>
       </metamodel>
@@ -418,7 +418,7 @@
                name="%metatype.name.CallBehaviorAction_3008"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="CallBehaviorAction"
-               edithelper="org.eclipse.papyrus.diagram.activity.edit.helpers.CallBehaviorActionEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.CallBehaviorActionEditHelper">
             <param name="semanticHint" value="3008"/>
          </metamodelType>
       </metamodel>
@@ -464,7 +464,7 @@
                name="%metatype.name.CallOperationAction_3010"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="CallOperationAction"
-               edithelper="org.eclipse.papyrus.diagram.activity.edit.helpers.CallOperationActionEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.CallOperationActionEditHelper">
             <param name="semanticHint" value="3010"/>
          </metamodelType>
       </metamodel>
@@ -537,7 +537,7 @@
                name="%metatype.name.DurationConstraint_3034"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="DurationConstraint"
-               edithelper="org.eclipse.papyrus.diagram.activity.edit.helpers.DurationConstraintEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.DurationConstraintEditHelper">
             <param name="semanticHint" value="3034"/>
          </metamodelType>
       </metamodel>
@@ -556,7 +556,7 @@
                name="%metatype.name.TimeConstraint_3036"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="TimeConstraint"
-               edithelper="org.eclipse.papyrus.diagram.activity.edit.helpers.TimeConstraintEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.TimeConstraintEditHelper">
             <param name="semanticHint" value="3036"/>
          </metamodelType>
       </metamodel>
@@ -575,7 +575,7 @@
                name="%metatype.name.IntervalConstraint_3032"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="IntervalConstraint"
-               edithelper="org.eclipse.papyrus.diagram.activity.edit.helpers.IntervalConstraintEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.IntervalConstraintEditHelper">
             <param name="semanticHint" value="3032"/>
          </metamodelType>
       </metamodel>
@@ -612,7 +612,7 @@
                name="%metatype.name.DecisionNode_3038"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="DecisionNode"
-               edithelper="org.eclipse.papyrus.diagram.activity.edit.helpers.DecisionNodeEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.DecisionNodeEditHelper">
             <param name="semanticHint" value="3038"/>
          </metamodelType>
       </metamodel>
@@ -622,7 +622,7 @@
                name="%metatype.name.MergeNode_3039"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="MergeNode"
-               edithelper="org.eclipse.papyrus.diagram.activity.edit.helpers.MergeNodeEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.MergeNodeEditHelper">
             <param name="semanticHint" value="3039"/>
          </metamodelType>
       </metamodel>
@@ -632,7 +632,7 @@
                name="%metatype.name.ForkNode_3040"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="ForkNode"
-               edithelper="org.eclipse.papyrus.diagram.activity.edit.helpers.ForkNodeEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.ForkNodeEditHelper">
             <param name="semanticHint" value="3040"/>
          </metamodelType>
       </metamodel>
@@ -642,7 +642,7 @@
                name="%metatype.name.JoinNode_3041"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="JoinNode"
-               edithelper="org.eclipse.papyrus.diagram.activity.edit.helpers.JoinNodeEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.JoinNodeEditHelper">
             <param name="semanticHint" value="3041"/>
          </metamodelType>
       </metamodel>
@@ -652,7 +652,7 @@
                name="%metatype.name.DataStoreNode_3078"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="DataStoreNode"
-               edithelper="org.eclipse.papyrus.diagram.activity.edit.helpers.DataStoreNodeEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.DataStoreNodeEditHelper">
             <param name="semanticHint" value="3078"/>
          </metamodelType>
       </metamodel>
@@ -662,7 +662,7 @@
                name="%metatype.name.SendObjectAction_3042"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="SendObjectAction"
-               edithelper="org.eclipse.papyrus.diagram.activity.edit.helpers.SendObjectActionEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.SendObjectActionEditHelper">
             <param name="semanticHint" value="3042"/>
          </metamodelType>
       </metamodel>
@@ -726,7 +726,7 @@
                name="%metatype.name.SendSignalAction_3052"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="SendSignalAction"
-               edithelper="org.eclipse.papyrus.diagram.activity.edit.helpers.SendSignalActionEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.SendSignalActionEditHelper">
             <param name="semanticHint" value="3052"/>
          </metamodelType>
       </metamodel>
@@ -790,7 +790,7 @@
                name="%metatype.name.ActivityParameterNode_3059"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="ActivityParameterNode"
-               edithelper="org.eclipse.papyrus.diagram.activity.edit.helpers.ActivityParameterNodeEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.ActivityParameterNodeEditHelper">
             <param name="semanticHint" value="3059"/>
          </metamodelType>
       </metamodel>
@@ -800,7 +800,7 @@
                name="%metatype.name.AcceptEventAction_3063"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="AcceptEventAction"
-               edithelper="org.eclipse.papyrus.diagram.activity.edit.helpers.AcceptEventActionEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.AcceptEventActionEditHelper">
             <param name="semanticHint" value="3063"/>
          </metamodelType>
       </metamodel>
@@ -819,7 +819,7 @@
                name="%metatype.name.ValueSpecificationAction_3076"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="ValueSpecificationAction"
-               edithelper="org.eclipse.papyrus.diagram.activity.edit.helpers.ValueSpecificationActionEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.ValueSpecificationActionEditHelper">
             <param name="semanticHint" value="3076"/>
          </metamodelType>
       </metamodel>
@@ -838,7 +838,7 @@
                name="%metatype.name.ConditionalNode_3069"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="ConditionalNode"
-               edithelper="org.eclipse.papyrus.diagram.activity.edit.helpers.ConditionalNodeEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.ConditionalNodeEditHelper">
             <param name="semanticHint" value="3069"/>
          </metamodelType>
       </metamodel>
@@ -848,7 +848,7 @@
                name="%metatype.name.ExpansionRegion_3070"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="ExpansionRegion"
-               edithelper="org.eclipse.papyrus.diagram.activity.edit.helpers.ExpansionRegionEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.ExpansionRegionEditHelper">
             <param name="semanticHint" value="3070"/>
          </metamodelType>
       </metamodel>
@@ -858,7 +858,7 @@
                name="%metatype.name.ExpansionNode_3074"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="ExpansionNode"
-               edithelper="org.eclipse.papyrus.diagram.activity.edit.helpers.ExpansionNodeEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.ExpansionNodeEditHelper">
             <param name="semanticHint" value="3074"/>
          </metamodelType>
       </metamodel>
@@ -877,7 +877,7 @@
                name="%metatype.name.LoopNode_3071"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="LoopNode"
-               edithelper="org.eclipse.papyrus.diagram.activity.edit.helpers.LoopNodeEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.LoopNodeEditHelper">
             <param name="semanticHint" value="3071"/>
          </metamodelType>
       </metamodel>
@@ -887,7 +887,7 @@
                name="%metatype.name.SequenceNode_3073"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="SequenceNode"
-               edithelper="org.eclipse.papyrus.diagram.activity.edit.helpers.SequenceNodeEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.SequenceNodeEditHelper">
             <param name="semanticHint" value="3073"/>
          </metamodelType>
       </metamodel>
@@ -897,7 +897,7 @@
                name="%metatype.name.StructuredActivityNode_3065"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="StructuredActivityNode"
-               edithelper="org.eclipse.papyrus.diagram.activity.edit.helpers.StructuredActivityNodeEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.StructuredActivityNodeEditHelper">
             <param name="semanticHint" value="3065"/>
          </metamodelType>
       </metamodel>
@@ -907,7 +907,7 @@
                name="%metatype.name.ActivityPartition_3067"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="ActivityPartition"
-               edithelper="org.eclipse.papyrus.diagram.activity.edit.helpers.ActivityPartitionEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.ActivityPartitionEditHelper">
             <param name="semanticHint" value="3067"/>
          </metamodelType>
       </metamodel>
@@ -917,7 +917,7 @@
                name="%metatype.name.InterruptibleActivityRegion_3068"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="InterruptibleActivityRegion"
-               edithelper="org.eclipse.papyrus.diagram.activity.edit.helpers.InterruptibleActivityRegionEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.InterruptibleActivityRegionEditHelper">
             <param name="semanticHint" value="3068"/>
          </metamodelType>
       </metamodel>
@@ -927,7 +927,7 @@
                name="%metatype.name.Comment_3080"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Comment"
-               edithelper="org.eclipse.papyrus.diagram.activity.edit.helpers.CommentEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.CommentEditHelper">
             <param name="semanticHint" value="3080"/>
          </metamodelType>
       </metamodel>
@@ -937,7 +937,7 @@
                name="%metatype.name.ReadSelfAction_3081"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="ReadSelfAction"
-               edithelper="org.eclipse.papyrus.diagram.activity.edit.helpers.ReadSelfActionEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.ReadSelfActionEditHelper">
             <param name="semanticHint" value="3081"/>
          </metamodelType>
       </metamodel>
@@ -965,7 +965,7 @@
                name="%metatype.name.CreateObjectAction_3086"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="CreateObjectAction"
-               edithelper="org.eclipse.papyrus.diagram.activity.edit.helpers.CreateObjectActionEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.CreateObjectActionEditHelper">
             <param name="semanticHint" value="3086"/>
          </metamodelType>
       </metamodel>
@@ -984,7 +984,7 @@
                name="%metatype.name.NamedElement_3085"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="NamedElement"
-               edithelper="org.eclipse.papyrus.diagram.activity.edit.helpers.ShapeNamedElementEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.ShapeNamedElementEditHelper">
             <param name="semanticHint" value="3085"/>
          </metamodelType>
       </metamodel>
@@ -994,7 +994,7 @@
                name="%metatype.name.ReadStructuralFeatureAction_3088"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="ReadStructuralFeatureAction"
-               edithelper="org.eclipse.papyrus.diagram.activity.edit.helpers.ReadStructuralFeatureActionEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.ReadStructuralFeatureActionEditHelper">
             <param name="semanticHint" value="3088"/>
          </metamodelType>
       </metamodel>
@@ -1022,7 +1022,7 @@
                name="%metatype.name.AddStructuralFeatureValueAction_3091"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="AddStructuralFeatureValueAction"
-               edithelper="org.eclipse.papyrus.diagram.activity.edit.helpers.AddStructuralFeatureValueActionEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.AddStructuralFeatureValueActionEditHelper">
             <param name="semanticHint" value="3091"/>
          </metamodelType>
       </metamodel>
@@ -1059,7 +1059,7 @@
                name="%metatype.name.DestroyObjectAction_3095"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="DestroyObjectAction"
-               edithelper="org.eclipse.papyrus.diagram.activity.edit.helpers.DestroyObjectActionEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.DestroyObjectActionEditHelper">
             <param name="semanticHint" value="3095"/>
          </metamodelType>
       </metamodel>
@@ -1078,7 +1078,7 @@
                name="%metatype.name.ReadVariableAction_3097"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="ReadVariableAction"
-               edithelper="org.eclipse.papyrus.diagram.activity.edit.helpers.ReadVariableActionEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.ReadVariableActionEditHelper">
             <param name="semanticHint" value="3097"/>
          </metamodelType>
       </metamodel>
@@ -1097,7 +1097,7 @@
                name="%metatype.name.AddVariableValueAction_3099"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="AddVariableValueAction"
-               edithelper="org.eclipse.papyrus.diagram.activity.edit.helpers.AddVariableValueActionEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.AddVariableValueActionEditHelper">
             <param name="semanticHint" value="3099"/>
          </metamodelType>
       </metamodel>
@@ -1125,7 +1125,7 @@
                name="%metatype.name.BroadcastSignalAction_3102"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="BroadcastSignalAction"
-               edithelper="org.eclipse.papyrus.diagram.activity.edit.helpers.BroadcastSignalActionEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.BroadcastSignalActionEditHelper">
             <param name="semanticHint" value="3102"/>
          </metamodelType>
       </metamodel>
@@ -1144,7 +1144,7 @@
                name="%metatype.name.CentralBufferNode_3104"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="CentralBufferNode"
-               edithelper="org.eclipse.papyrus.diagram.activity.edit.helpers.CentralBufferNodeEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.CentralBufferNodeEditHelper">
             <param name="semanticHint" value="3104"/>
          </metamodelType>
       </metamodel>
@@ -1172,7 +1172,7 @@
                name="%metatype.name.ObjectFlow_4003"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="ObjectFlow"
-               edithelper="org.eclipse.papyrus.diagram.activity.edit.helpers.ObjectFlowEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.ObjectFlowEditHelper">
             <param name="semanticHint" value="4003"/>
          </metamodelType>
       </metamodel>
@@ -1182,7 +1182,7 @@
                name="%metatype.name.ControlFlow_4004"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="ControlFlow"
-               edithelper="org.eclipse.papyrus.diagram.activity.edit.helpers.ControlFlowEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.ControlFlowEditHelper">
             <param name="semanticHint" value="4004"/>
          </metamodelType>
       </metamodel>
@@ -1192,7 +1192,7 @@
                name="%metatype.name.ExceptionHandler_4005"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="ExceptionHandler"
-               edithelper="org.eclipse.papyrus.diagram.activity.edit.helpers.ExceptionHandlerEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.ExceptionHandlerEditHelper">
             <param name="semanticHint" value="4005"/>
          </metamodelType>
       </metamodel>
@@ -1324,7 +1324,7 @@
            type="org.eclipse.emf.common.ui.URIEditorInput"
            namespace="org.eclipse.papyrus.diagram.activity"
            properties="isURIEditorInput"
-           class="org.eclipse.papyrus.diagram.activity.part.UMLUriEditorInputTester">
+           class="org.eclipse.papyrus.uml.diagram.activity.part.UMLUriEditorInputTester">
        </propertyTester>
    </extension>
 
@@ -1350,8 +1350,8 @@
             id="org.eclipse.papyrus.diagram.activity.resourceContent" 
             name="%navigatorContentName" 
             priority="normal" 
-            contentProvider="org.eclipse.papyrus.diagram.activity.navigator.UMLNavigatorContentProvider" 
-            labelProvider="org.eclipse.papyrus.diagram.activity.navigator.UMLNavigatorLabelProvider"
+            contentProvider="org.eclipse.papyrus.uml.diagram.activity.navigator.UMLNavigatorContentProvider" 
+            labelProvider="org.eclipse.papyrus.uml.diagram.activity.navigator.UMLNavigatorLabelProvider"
             icon="icons/obj16/UMLDiagramFile.gif"
             activeByDefault="true">
          <triggerPoints>
@@ -1360,24 +1360,24 @@
     	          <instanceof value="org.eclipse.core.resources.IFile"/>
         	      <test property="org.eclipse.core.resources.extension" value="PapyrusUMLActivity_diagram"/>
                </and>
-               <instanceof value="org.eclipse.papyrus.diagram.activity.navigator.UMLAbstractNavigatorItem"/>
+               <instanceof value="org.eclipse.papyrus.uml.diagram.activity.navigator.UMLAbstractNavigatorItem"/>
             </or>
          </triggerPoints>
          <possibleChildren>
             <or>
-         	   <instanceof value="org.eclipse.papyrus.diagram.activity.navigator.UMLAbstractNavigatorItem"/>
+         	   <instanceof value="org.eclipse.papyrus.uml.diagram.activity.navigator.UMLAbstractNavigatorItem"/>
             </or>
          </possibleChildren>
          <commonSorter 
                id="org.eclipse.papyrus.diagram.activity.navigatorSorter" 
-               class="org.eclipse.papyrus.diagram.activity.navigator.UMLNavigatorSorter">
+               class="org.eclipse.papyrus.uml.diagram.activity.navigator.UMLNavigatorSorter">
             <parentExpression>
                <or>
 	              <and>
     	             <instanceof value="org.eclipse.core.resources.IFile"/>
         	         <test property="org.eclipse.core.resources.extension" value="PapyrusUMLActivity_diagram"/>
                   </and>
-                  <instanceof value="org.eclipse.papyrus.diagram.activity.navigator.UMLAbstractNavigatorItem"/>
+                  <instanceof value="org.eclipse.papyrus.uml.diagram.activity.navigator.UMLAbstractNavigatorItem"/>
                </or>
             </parentExpression>
          </commonSorter>
@@ -1386,8 +1386,8 @@
             id="org.eclipse.papyrus.diagram.activity.domainResourceContent" 
             name="%domainNavigatorContentName" 
             priority="normal" 
-            contentProvider="org.eclipse.papyrus.diagram.activity.navigator.UMLDomainNavigatorContentProvider" 
-            labelProvider="org.eclipse.papyrus.diagram.activity.navigator.UMLDomainNavigatorLabelProvider"
+            contentProvider="org.eclipse.papyrus.uml.diagram.activity.navigator.UMLDomainNavigatorContentProvider" 
+            labelProvider="org.eclipse.papyrus.uml.diagram.activity.navigator.UMLDomainNavigatorLabelProvider"
             icon="icons/obj16/UMLDiagramFile.gif"
             activeByDefault="true">
          <triggerPoints>
@@ -1396,19 +1396,19 @@
     	          <instanceof value="org.eclipse.core.resources.IFile"/>
         	      <test property="org.eclipse.core.resources.extension" value="PapyrusUMLActivity"/>
                </and>
-               <instanceof value="org.eclipse.papyrus.diagram.activity.navigator.UMLDomainNavigatorItem"/>
+               <instanceof value="org.eclipse.papyrus.uml.diagram.activity.navigator.UMLDomainNavigatorItem"/>
             </or>
          </triggerPoints>
          <possibleChildren>
-            <instanceof value="org.eclipse.papyrus.diagram.activity.navigator.UMLDomainNavigatorItem"/>
+            <instanceof value="org.eclipse.papyrus.uml.diagram.activity.navigator.UMLDomainNavigatorItem"/>
          </possibleChildren>
       </navigatorContent>
       <actionProvider
             id="org.eclipse.papyrus.diagram.activity.navigatorActionProvider"
-            class="org.eclipse.papyrus.diagram.activity.navigator.UMLNavigatorActionProvider">
+            class="org.eclipse.papyrus.uml.diagram.activity.navigator.UMLNavigatorActionProvider">
          <enablement>
             <or>
-               <instanceof value="org.eclipse.papyrus.diagram.activity.navigator.UMLAbstractNavigatorItem"/>
+               <instanceof value="org.eclipse.papyrus.uml.diagram.activity.navigator.UMLAbstractNavigatorItem"/>
             </or>
          </enablement>
       </actionProvider>
@@ -1418,7 +1418,7 @@
       <?gmfgen generated="true"?>
       <linkHelper
             id="org.eclipse.papyrus.diagram.activity.navigatorLinkHelper"
-            class="org.eclipse.papyrus.diagram.activity.navigator.UMLNavigatorLinkHelper">
+            class="org.eclipse.papyrus.uml.diagram.activity.navigator.UMLNavigatorLinkHelper">
          <editorInputEnablement>
             <and>
                <instanceof value="org.eclipse.emf.common.ui.URIEditorInput"/>
@@ -1426,7 +1426,7 @@
             </and>
          </editorInputEnablement>
          <selectionEnablement>
-            <instanceof value="org.eclipse.papyrus.diagram.activity.navigator.UMLAbstractNavigatorItem"/>
+            <instanceof value="org.eclipse.papyrus.uml.diagram.activity.navigator.UMLAbstractNavigatorItem"/>
          </selectionEnablement>
       </linkHelper>
    </extension>
@@ -1434,7 +1434,7 @@
       <?gmfgen generated="true"?>
       <command
          categoryId="org.eclipse.ui.category.edit"
-         defaultHandler="org.eclipse.papyrus.diagram.activity.part.UMLDiagramUpdateCommand"
+         defaultHandler="org.eclipse.papyrus.uml.diagram.activity.part.UMLDiagramUpdateCommand"
          description="%update.diagram.description"
          id="org.eclipse.papyrus.diagram.activity.updateDiagram"
          name="%update.diagram.name"/>
@@ -1461,7 +1461,7 @@
                <and>
                   <with variable="activePartId"><equals value="org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorID"/></with>
                   <with variable="selection"><iterate ifEmpty="false"> 
-                     <instanceof value="org.eclipse.papyrus.diagram.activity.edit.parts.ActivityDiagramEditPart"/>
+                     <instanceof value="org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActivityDiagramEditPart"/>
                   </iterate></with>
                </and>
             </visibleWhen>
@@ -1475,7 +1475,7 @@
       <command id="org.eclipse.papyrus.diagram.activity.LoadResourceAction"
          name="Load Resource"
          categoryId="org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorID"
-         defaultHandler="org.eclipse.papyrus.diagram.activity.part.LoadResourceAction"/>
+         defaultHandler="org.eclipse.papyrus.uml.diagram.activity.part.LoadResourceAction"/>
    </extension>
 
    <extension point="org.eclipse.ui.handlers" id="menu-handlers">
@@ -1483,7 +1483,7 @@
    </extension>
 <extension point="org.eclipse.gmf.runtime.common.ui.services.markerNavigationProviders" id="markers-navigation">
       <?gmfgen generated="true"?>
-      <MarkerNavigationProvider class="org.eclipse.papyrus.diagram.activity.providers.UMLMarkerNavigationProvider">
+      <MarkerNavigationProvider class="org.eclipse.papyrus.uml.diagram.activity.providers.UMLMarkerNavigationProvider">
          <MarkerType name="org.eclipse.papyrus.diagram.activity.diagnostic"/>
          <Priority name="Lowest"/>
       </MarkerNavigationProvider>
@@ -1696,7 +1696,7 @@ true
             <target class="uml.ObjectNode"/>
          </constraint>
                   <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateObjectNode_validateInputOutputParameter"
-            lang="Java" class="org.eclipse.papyrus.diagram.activity.providers.UMLValidationProvider$Adapter7"
+            lang="Java" class="org.eclipse.papyrus.uml.diagram.activity.providers.UMLValidationProvider$Adapter7"
             name="validateInputOutputParameter"
             mode="Batch"
             severity="ERROR" statusCode="200">
@@ -1771,7 +1771,7 @@ and self.fromAction.output->forAll(incoming->isEmpty() and outgoing->isEmpty()))
                   </constraints>
          <constraints categories="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateValuePin">
                   <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateValuePin_validateCompatibleType"
-            lang="Java" class="org.eclipse.papyrus.diagram.activity.providers.UMLValidationProvider$Adapter13"
+            lang="Java" class="org.eclipse.papyrus.uml.diagram.activity.providers.UMLValidationProvider$Adapter13"
             name="validateCompatibleType"
             mode="Live"
             severity="ERROR" statusCode="200">
@@ -1805,7 +1805,7 @@ and self.fromAction.output->forAll(incoming->isEmpty() and outgoing->isEmpty()))
                   </constraints>
          <constraints categories="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateActivityEdge">
                   <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateActivityEdge_validateSourceAndTarget"
-            lang="Java" class="org.eclipse.papyrus.diagram.activity.providers.UMLValidationProvider$Adapter16"
+            lang="Java" class="org.eclipse.papyrus.uml.diagram.activity.providers.UMLValidationProvider$Adapter16"
             name="validateSourceAndTarget"
             mode="Live"
             severity="ERROR" statusCode="200">
@@ -1862,7 +1862,7 @@ and (self.target.oclIsUndefined() or not self.target.oclIsKindOf(Action))]]>
             <target class="uml.ObjectFlow"/>
          </constraint>
                   <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateObjectFlow_validateCompatibleTypes"
-            lang="Java" class="org.eclipse.papyrus.diagram.activity.providers.UMLValidationProvider$Adapter21"
+            lang="Java" class="org.eclipse.papyrus.uml.diagram.activity.providers.UMLValidationProvider$Adapter21"
             name="validateCompatibleTypes"
             mode="Live"
             severity="ERROR" statusCode="200">
@@ -1872,7 +1872,7 @@ and (self.target.oclIsUndefined() or not self.target.oclIsKindOf(Action))]]>
             <target class="uml.ObjectFlow"/>
          </constraint>
                   <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateObjectFlow_validateSameUpperBounds"
-            lang="Java" class="org.eclipse.papyrus.diagram.activity.providers.UMLValidationProvider$Adapter22"
+            lang="Java" class="org.eclipse.papyrus.uml.diagram.activity.providers.UMLValidationProvider$Adapter22"
             name="validateSameUpperBounds"
             mode="Live"
             severity="ERROR" statusCode="200">
@@ -1882,7 +1882,7 @@ and (self.target.oclIsUndefined() or not self.target.oclIsKindOf(Action))]]>
             <target class="uml.ObjectFlow"/>
          </constraint>
                   <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateObjectFlow_validateTarget"
-            lang="Java" class="org.eclipse.papyrus.diagram.activity.providers.UMLValidationProvider$Adapter23"
+            lang="Java" class="org.eclipse.papyrus.uml.diagram.activity.providers.UMLValidationProvider$Adapter23"
             name="validateTarget"
             mode="Live"
             severity="ERROR" statusCode="200">
@@ -1892,7 +1892,7 @@ and (self.target.oclIsUndefined() or not self.target.oclIsKindOf(Action))]]>
             <target class="uml.ObjectFlow"/>
          </constraint>
                   <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateObjectFlow_validateTransformationBehaviour"
-            lang="Java" class="org.eclipse.papyrus.diagram.activity.providers.UMLValidationProvider$Adapter24"
+            lang="Java" class="org.eclipse.papyrus.uml.diagram.activity.providers.UMLValidationProvider$Adapter24"
             name="validateTransformationBehaviour"
             mode="Live"
             severity="ERROR" statusCode="200">
@@ -1912,7 +1912,7 @@ and (self.target.oclIsUndefined() or not self.target.oclIsKindOf(Action))]]>
             <target class="uml.ObjectFlow"/>
          </constraint>
                   <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateObjectFlow_validateInputAndOutputParameter"
-            lang="Java" class="org.eclipse.papyrus.diagram.activity.providers.UMLValidationProvider$Adapter26"
+            lang="Java" class="org.eclipse.papyrus.uml.diagram.activity.providers.UMLValidationProvider$Adapter26"
             name="validateInputAndOutputParameter"
             mode="Live"
             severity="ERROR" statusCode="200">
@@ -2021,7 +2021,7 @@ and self.decisionInput.ownedParameter->select(
             <target class="uml.DecisionNode"/>
          </constraint>
                   <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateDecisionNode_validateIncomingObjectOneInputParameter"
-            lang="Java" class="org.eclipse.papyrus.diagram.activity.providers.UMLValidationProvider$Adapter34"
+            lang="Java" class="org.eclipse.papyrus.uml.diagram.activity.providers.UMLValidationProvider$Adapter34"
             name="validateIncomingObjectOneInputParameter"
             mode="Batch"
             severity="ERROR" statusCode="200">
@@ -2031,7 +2031,7 @@ and self.decisionInput.ownedParameter->select(
             <target class="uml.DecisionNode"/>
          </constraint>
                   <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateDecisionNode_validateIncomingControlOneInputParameter"
-            lang="Java" class="org.eclipse.papyrus.diagram.activity.providers.UMLValidationProvider$Adapter35"
+            lang="Java" class="org.eclipse.papyrus.uml.diagram.activity.providers.UMLValidationProvider$Adapter35"
             name="validateIncomingControlOneInputParameter"
             mode="Batch"
             severity="ERROR" statusCode="200">
@@ -2041,7 +2041,7 @@ and self.decisionInput.ownedParameter->select(
             <target class="uml.DecisionNode"/>
          </constraint>
                   <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateDecisionNode_validateTwoInputParameters"
-            lang="Java" class="org.eclipse.papyrus.diagram.activity.providers.UMLValidationProvider$Adapter36"
+            lang="Java" class="org.eclipse.papyrus.uml.diagram.activity.providers.UMLValidationProvider$Adapter36"
             name="validateTwoInputParameters"
             mode="Batch"
             severity="ERROR" statusCode="200">
@@ -2346,7 +2346,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 <extension point="org.eclipse.emf.validation.constraintBindings">
       <?gmfgen generated="true"?>
       <clientContext default="false" id="org.eclipse.papyrus.diagram.activityDefaultCtx">
-         <selector class="org.eclipse.papyrus.diagram.activity.providers.UMLValidationProvider$DefaultCtx"/>
+         <selector class="org.eclipse.papyrus.uml.diagram.activity.providers.UMLValidationProvider$DefaultCtx"/>
       </clientContext>
       <binding context="org.eclipse.papyrus.diagram.activityDefaultCtx">
                   <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateInitialNode_validateNoIncomingEdges"/>
@@ -2425,7 +2425,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
                   <constraint id="org.eclipse.papyrus.diagram.activity.helper.PinAndParameterSynchronizer"
             lang="Java"
             name="PinAndParameterSynchronizer"
-            class="org.eclipse.papyrus.diagram.activity.helper.PinAndParameterSynchronizer"
+            class="org.eclipse.papyrus.uml.diagram.activity.helper.PinAndParameterSynchronizer"
             mode="Live"
             severity="ERROR" statusCode="200">
             <description><![CDATA[Action's Pins and invoked object's Parameters are synchronized]]></description>
@@ -2450,7 +2450,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 	<extension point="org.eclipse.emf.validation.constraintBindings">
       <?gmfgen generated="false"?>
       <clientContext default="false" id="org.eclipse.papyrus.diagram.activityDefaultCtx">
-         <selector class="org.eclipse.papyrus.diagram.activity.providers.UMLValidationProvider$DefaultCtx"/>
+         <selector class="org.eclipse.papyrus.uml.diagram.activity.providers.UMLValidationProvider$DefaultCtx"/>
       </clientContext>
       <binding context="org.eclipse.papyrus.diagram.activityDefaultCtx">
                   <constraint ref="org.eclipse.papyrus.diagram.activity.helper.PinAndParameterSynchronizer"/>
@@ -2469,7 +2469,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
                   <constraint id="org.eclipse.papyrus.diagram.activity.helper.ActivityParameterAndParameterSynchronizer"
             lang="Java"
             name="ActivityParameterAndParameterSynchronizer"
-            class="org.eclipse.papyrus.diagram.activity.helper.ActivityParameterAndParameterSynchronizer"
+            class="org.eclipse.papyrus.uml.diagram.activity.helper.ActivityParameterAndParameterSynchronizer"
             mode="Live"
             severity="ERROR" statusCode="200">
             <description><![CDATA[Validate that Activity Parameter Node and corresponding Parameter type are correctly synchronized]]></description>
@@ -2485,7 +2485,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 	<extension point="org.eclipse.emf.validation.constraintBindings">
       <?gmfgen generated="false"?>
       <clientContext default="false" id="org.eclipse.papyrus.diagram.activityDefaultCtx">
-         <selector class="org.eclipse.papyrus.diagram.activity.providers.UMLValidationProvider$DefaultCtx"/>
+         <selector class="org.eclipse.papyrus.uml.diagram.activity.providers.UMLValidationProvider$DefaultCtx"/>
       </clientContext>
       <binding context="org.eclipse.papyrus.diagram.activityDefaultCtx">
                   <constraint ref="org.eclipse.papyrus.diagram.activity.helper.ActivityParameterAndParameterSynchronizer"/>
@@ -2498,15 +2498,15 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
       <propertySections
             contributorId="TreeOutlinePage">
          <propertySection
-               class="org.eclipse.papyrus.diagram.activity.tabbedproperties.appearance.SwitchSegmentDirectionSection"
-               filter="org.eclipse.papyrus.diagram.activity.tabbedproperties.appearance.SwitchSegmentDirectionSectionFilter"
+               class="org.eclipse.papyrus.uml.diagram.activity.tabbedproperties.appearance.SwitchSegmentDirectionSection"
+               filter="org.eclipse.papyrus.uml.diagram.activity.tabbedproperties.appearance.SwitchSegmentDirectionSectionFilter"
                id="org.eclipse.papyrus.tabbedproperties.appearance.switchSegmentDirectionSection"
                tab="org.eclipse.papyrus.tabbedproperties.appearance.appearancetab">
          </propertySection>
       </propertySections>
    </extension>
    <extension
-         point="org.eclipse.papyrus.diagram.common.groups.groupcontainment"
+         point="org.eclipse.papyrus.uml.diagram.common.groups.groupcontainment"
          name="ActivityGroup"
          id="org.eclipse.papyrus.diagram.activity.activitygroup">
          <modelContainer editPartType="org.eclipse.papyrus.diagram.activity.edit.parts.StructuredActivityNodeStructuredActivityNodeContentCompartmentEditPart"
@@ -2536,7 +2536,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
    </extension>
 <extension id="validationDecoratorProvider" name="ValidationDecorations" point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders">
       <?gmfgen generated="true"?>
-      <decoratorProvider class="org.eclipse.papyrus.diagram.activity.providers.UMLValidationDecoratorProvider">
+      <decoratorProvider class="org.eclipse.papyrus.uml.diagram.activity.providers.UMLValidationDecoratorProvider">
          <Priority name="Lowest"/>
          <object class="org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart(org.eclipse.gmf.runtime.diagram.ui)" id="PRIMARY_VIEW"/>
          <context decoratorTargets="PRIMARY_VIEW"/>
@@ -2555,315 +2555,315 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-			class="org.eclipse.papyrus.diagram.activity.preferences.ShapeNamedElementPreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.activity.preferences.ShapeNamedElementPreferencePage"
             id="org.eclipse.papyrus.diagram.activity.preferences.ShapeNamedElementPreferencePage"
             name="ShapeNamedElement Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-			class="org.eclipse.papyrus.diagram.activity.preferences.TimeConstraintPreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.activity.preferences.TimeConstraintPreferencePage"
             id="org.eclipse.papyrus.diagram.activity.preferences.TimeConstraintPreferencePage"
             name="TimeConstraint Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-			class="org.eclipse.papyrus.diagram.activity.preferences.ExpansionNodePreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.activity.preferences.ExpansionNodePreferencePage"
             id="org.eclipse.papyrus.diagram.activity.preferences.ExpansionNodePreferencePage"
             name="ExpansionNode Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-			class="org.eclipse.papyrus.diagram.activity.preferences.ValuePinPreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.activity.preferences.ValuePinPreferencePage"
             id="org.eclipse.papyrus.diagram.activity.preferences.ValuePinPreferencePage"
             name="ValuePin Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-			class="org.eclipse.papyrus.diagram.activity.preferences.CentralBufferNodePreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.activity.preferences.CentralBufferNodePreferencePage"
             id="org.eclipse.papyrus.diagram.activity.preferences.CentralBufferNodePreferencePage"
             name="CentralBufferNode Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-			class="org.eclipse.papyrus.diagram.activity.preferences.ReadStructuralFeatureActionPreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.activity.preferences.ReadStructuralFeatureActionPreferencePage"
             id="org.eclipse.papyrus.diagram.activity.preferences.ReadStructuralFeatureActionPreferencePage"
             name="ReadStructuralFeatureAction Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-			class="org.eclipse.papyrus.diagram.activity.preferences.LoopNodePreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.activity.preferences.LoopNodePreferencePage"
             id="org.eclipse.papyrus.diagram.activity.preferences.LoopNodePreferencePage"
             name="LoopNode Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-			class="org.eclipse.papyrus.diagram.activity.preferences.MergeNodePreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.activity.preferences.MergeNodePreferencePage"
             id="org.eclipse.papyrus.diagram.activity.preferences.MergeNodePreferencePage"
             name="MergeNode Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-			class="org.eclipse.papyrus.diagram.activity.preferences.ActionInputPinPreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.activity.preferences.ActionInputPinPreferencePage"
             id="org.eclipse.papyrus.diagram.activity.preferences.ActionInputPinPreferencePage"
             name="ActionInputPin Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-			class="org.eclipse.papyrus.diagram.activity.preferences.CreateObjectActionPreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.activity.preferences.CreateObjectActionPreferencePage"
             id="org.eclipse.papyrus.diagram.activity.preferences.CreateObjectActionPreferencePage"
             name="CreateObjectAction Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-			class="org.eclipse.papyrus.diagram.activity.preferences.CallOperationActionPreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.activity.preferences.CallOperationActionPreferencePage"
             id="org.eclipse.papyrus.diagram.activity.preferences.CallOperationActionPreferencePage"
             name="CallOperationAction Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-			class="org.eclipse.papyrus.diagram.activity.preferences.CallBehaviorActionPreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.activity.preferences.CallBehaviorActionPreferencePage"
             id="org.eclipse.papyrus.diagram.activity.preferences.CallBehaviorActionPreferencePage"
             name="CallBehaviorAction Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-			class="org.eclipse.papyrus.diagram.activity.preferences.BroadcastSignalActionPreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.activity.preferences.BroadcastSignalActionPreferencePage"
             id="org.eclipse.papyrus.diagram.activity.preferences.BroadcastSignalActionPreferencePage"
             name="BroadcastSignalAction Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-			class="org.eclipse.papyrus.diagram.activity.preferences.ActivityPartitionPreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.activity.preferences.ActivityPartitionPreferencePage"
             id="org.eclipse.papyrus.diagram.activity.preferences.ActivityPartitionPreferencePage"
             name="ActivityPartition Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-			class="org.eclipse.papyrus.diagram.activity.preferences.InputPinPreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.activity.preferences.InputPinPreferencePage"
             id="org.eclipse.papyrus.diagram.activity.preferences.InputPinPreferencePage"
             name="InputPin Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-			class="org.eclipse.papyrus.diagram.activity.preferences.SendObjectActionPreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.activity.preferences.SendObjectActionPreferencePage"
             id="org.eclipse.papyrus.diagram.activity.preferences.SendObjectActionPreferencePage"
             name="SendObjectAction Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-			class="org.eclipse.papyrus.diagram.activity.preferences.InitialNodePreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.activity.preferences.InitialNodePreferencePage"
             id="org.eclipse.papyrus.diagram.activity.preferences.InitialNodePreferencePage"
             name="InitialNode Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-			class="org.eclipse.papyrus.diagram.activity.preferences.OutputPinPreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.activity.preferences.OutputPinPreferencePage"
             id="org.eclipse.papyrus.diagram.activity.preferences.OutputPinPreferencePage"
             name="OutputPin Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-			class="org.eclipse.papyrus.diagram.activity.preferences.AddVariableValueActionPreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.activity.preferences.AddVariableValueActionPreferencePage"
             id="org.eclipse.papyrus.diagram.activity.preferences.AddVariableValueActionPreferencePage"
             name="AddVariableValueAction Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-			class="org.eclipse.papyrus.diagram.activity.preferences.CommentPreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.activity.preferences.CommentPreferencePage"
             id="org.eclipse.papyrus.diagram.activity.preferences.CommentPreferencePage"
             name="Comment Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-			class="org.eclipse.papyrus.diagram.activity.preferences.DurationConstraintPreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.activity.preferences.DurationConstraintPreferencePage"
             id="org.eclipse.papyrus.diagram.activity.preferences.DurationConstraintPreferencePage"
             name="DurationConstraint Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-			class="org.eclipse.papyrus.diagram.activity.preferences.StructuredActivityNodePreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.activity.preferences.StructuredActivityNodePreferencePage"
             id="org.eclipse.papyrus.diagram.activity.preferences.StructuredActivityNodePreferencePage"
             name="StructuredActivityNode Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-			class="org.eclipse.papyrus.diagram.activity.preferences.SequenceNodePreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.activity.preferences.SequenceNodePreferencePage"
             id="org.eclipse.papyrus.diagram.activity.preferences.SequenceNodePreferencePage"
             name="SequenceNode Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-			class="org.eclipse.papyrus.diagram.activity.preferences.ActivityParameterNodePreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.activity.preferences.ActivityParameterNodePreferencePage"
             id="org.eclipse.papyrus.diagram.activity.preferences.ActivityParameterNodePreferencePage"
             name="ActivityParameterNode Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-			class="org.eclipse.papyrus.diagram.activity.preferences.ActivityPreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.activity.preferences.ActivityPreferencePage"
             id="org.eclipse.papyrus.diagram.activity.preferences.ActivityPreferencePage"
             name="Activity Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-			class="org.eclipse.papyrus.diagram.activity.preferences.OpaqueActionPreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.activity.preferences.OpaqueActionPreferencePage"
             id="org.eclipse.papyrus.diagram.activity.preferences.OpaqueActionPreferencePage"
             name="OpaqueAction Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-			class="org.eclipse.papyrus.diagram.activity.preferences.DecisionNodePreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.activity.preferences.DecisionNodePreferencePage"
             id="org.eclipse.papyrus.diagram.activity.preferences.DecisionNodePreferencePage"
             name="DecisionNode Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-			class="org.eclipse.papyrus.diagram.activity.preferences.ValueSpecificationActionPreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.activity.preferences.ValueSpecificationActionPreferencePage"
             id="org.eclipse.papyrus.diagram.activity.preferences.ValueSpecificationActionPreferencePage"
             name="ValueSpecificationAction Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-			class="org.eclipse.papyrus.diagram.activity.preferences.JoinNodePreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.activity.preferences.JoinNodePreferencePage"
             id="org.eclipse.papyrus.diagram.activity.preferences.JoinNodePreferencePage"
             name="JoinNode Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-			class="org.eclipse.papyrus.diagram.activity.preferences.ConstraintPreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.activity.preferences.ConstraintPreferencePage"
             id="org.eclipse.papyrus.diagram.activity.preferences.ConstraintPreferencePage"
             name="Constraint Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-			class="org.eclipse.papyrus.diagram.activity.preferences.SendSignalActionPreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.activity.preferences.SendSignalActionPreferencePage"
             id="org.eclipse.papyrus.diagram.activity.preferences.SendSignalActionPreferencePage"
             name="SendSignalAction Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-			class="org.eclipse.papyrus.diagram.activity.preferences.FlowFinalNodePreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.activity.preferences.FlowFinalNodePreferencePage"
             id="org.eclipse.papyrus.diagram.activity.preferences.FlowFinalNodePreferencePage"
             name="FlowFinalNode Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-			class="org.eclipse.papyrus.diagram.activity.preferences.InterruptibleActivityRegionPreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.activity.preferences.InterruptibleActivityRegionPreferencePage"
             id="org.eclipse.papyrus.diagram.activity.preferences.InterruptibleActivityRegionPreferencePage"
             name="InterruptibleActivityRegion Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-			class="org.eclipse.papyrus.diagram.activity.preferences.IntervalConstraintPreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.activity.preferences.IntervalConstraintPreferencePage"
             id="org.eclipse.papyrus.diagram.activity.preferences.IntervalConstraintPreferencePage"
             name="IntervalConstraint Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-			class="org.eclipse.papyrus.diagram.activity.preferences.ReadSelfActionPreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.activity.preferences.ReadSelfActionPreferencePage"
             id="org.eclipse.papyrus.diagram.activity.preferences.ReadSelfActionPreferencePage"
             name="ReadSelfAction Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-			class="org.eclipse.papyrus.diagram.activity.preferences.DataStoreNodePreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.activity.preferences.DataStoreNodePreferencePage"
             id="org.eclipse.papyrus.diagram.activity.preferences.DataStoreNodePreferencePage"
             name="DataStoreNode Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-			class="org.eclipse.papyrus.diagram.activity.preferences.ActivityFinalNodePreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.activity.preferences.ActivityFinalNodePreferencePage"
             id="org.eclipse.papyrus.diagram.activity.preferences.ActivityFinalNodePreferencePage"
             name="ActivityFinalNode Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-			class="org.eclipse.papyrus.diagram.activity.preferences.ReadVariableActionPreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.activity.preferences.ReadVariableActionPreferencePage"
             id="org.eclipse.papyrus.diagram.activity.preferences.ReadVariableActionPreferencePage"
             name="ReadVariableAction Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-			class="org.eclipse.papyrus.diagram.activity.preferences.ParameterPreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.activity.preferences.ParameterPreferencePage"
             id="org.eclipse.papyrus.diagram.activity.preferences.ParameterPreferencePage"
             name="Parameter Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-			class="org.eclipse.papyrus.diagram.activity.preferences.ExpansionRegionPreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.activity.preferences.ExpansionRegionPreferencePage"
             id="org.eclipse.papyrus.diagram.activity.preferences.ExpansionRegionPreferencePage"
             name="ExpansionRegion Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-			class="org.eclipse.papyrus.diagram.activity.preferences.AcceptEventActionPreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.activity.preferences.AcceptEventActionPreferencePage"
             id="org.eclipse.papyrus.diagram.activity.preferences.AcceptEventActionPreferencePage"
             name="AcceptEventAction Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-			class="org.eclipse.papyrus.diagram.activity.preferences.DestroyObjectActionPreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.activity.preferences.DestroyObjectActionPreferencePage"
             id="org.eclipse.papyrus.diagram.activity.preferences.DestroyObjectActionPreferencePage"
             name="DestroyObjectAction Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-			class="org.eclipse.papyrus.diagram.activity.preferences.AddStructuralFeatureValueActionPreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.activity.preferences.AddStructuralFeatureValueActionPreferencePage"
             id="org.eclipse.papyrus.diagram.activity.preferences.AddStructuralFeatureValueActionPreferencePage"
             name="AddStructuralFeatureValueAction Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-			class="org.eclipse.papyrus.diagram.activity.preferences.ForkNodePreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.activity.preferences.ForkNodePreferencePage"
             id="org.eclipse.papyrus.diagram.activity.preferences.ForkNodePreferencePage"
             name="ForkNode Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-			class="org.eclipse.papyrus.diagram.activity.preferences.ConditionalNodePreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.activity.preferences.ConditionalNodePreferencePage"
             id="org.eclipse.papyrus.diagram.activity.preferences.ConditionalNodePreferencePage"
             name="ConditionalNode Node" />
 	
@@ -2873,7 +2873,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-			class="org.eclipse.papyrus.diagram.activity.preferences.ControlFlowPreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.activity.preferences.ControlFlowPreferencePage"
             id="org.eclipse.papyrus.diagram.activity.preferences.ControlFlowPreferencePage"
             name="ControlFlow Link" />
 		
@@ -2883,7 +2883,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-			class="org.eclipse.papyrus.diagram.activity.preferences.ExceptionHandlerPreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.activity.preferences.ExceptionHandlerPreferencePage"
             id="org.eclipse.papyrus.diagram.activity.preferences.ExceptionHandlerPreferencePage"
             name="ExceptionHandler Link" />
 		
@@ -2891,7 +2891,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-			class="org.eclipse.papyrus.diagram.activity.preferences.ObjectFlowPreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.activity.preferences.ObjectFlowPreferencePage"
             id="org.eclipse.papyrus.diagram.activity.preferences.ObjectFlowPreferencePage"
             name="ObjectFlow Link" />
 		
@@ -2906,7 +2906,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 		<paletteProvider class="org.eclipse.gmf.runtime.diagram.ui.providers.DefaultPaletteProvider">
 			<Priority name="Lowest"/>
       		<contribution
-            	factoryClass="org.eclipse.papyrus.diagram.activity.part.UMLPaletteFactory">
+            	factoryClass="org.eclipse.papyrus.uml.diagram.activity.part.UMLPaletteFactory">
      			<predefinedEntry id="standardGroup/noteStack/noteTool" remove="true"/> 
 				<predefinedEntry id="standardGroup/noteStack/textTool" remove="true"/> 
 				<predefinedEntry id="standardGroup/noteStack/noteattachmentTool" remove="true"/>
@@ -3445,7 +3445,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 		<paletteProvider class="org.eclipse.gmf.runtime.diagram.ui.providers.DefaultPaletteProvider">
 			<Priority name="Low"/>
       		<contribution
-            	factoryClass="org.eclipse.papyrus.diagram.activity.part.UMLPaletteFactory">
+            	factoryClass="org.eclipse.papyrus.uml.diagram.activity.part.UMLPaletteFactory">
      			<predefinedEntry id="standardGroup/noteStack/noteTool" remove="true"/> 
 				<predefinedEntry id="standardGroup/noteStack/textTool" remove="true"/> 
 				<predefinedEntry id="standardGroup/noteStack/noteattachmentTool" remove="true"/>

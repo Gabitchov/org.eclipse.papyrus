@@ -5,7 +5,7 @@
     xmlns:gmfgraph="http://www.eclipse.org/gmf/2006/GraphicalDefinition" name="cnvActivities">
   <figures
       name="ActivitiesGallery"
-      implementationBundle="org.eclipse.papyrus.diagram.common">
+      implementationBundle="org.eclipse.papyrus.uml.diagram.common">
     <descriptors
         name="CustomActivityRectangleFigure">
       <actualFigure
@@ -183,7 +183,7 @@
       <actualFigure
           xsi:type="gmfgraph:CustomFigure"
           name="CommonLabel"
-          qualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.SimpleLabel"/>
+          qualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
     </descriptors>
     <descriptors
         name="InitialNodeFigure">
@@ -272,7 +272,7 @@
       <actualFigure
           xsi:type="gmfgraph:CustomFigure"
           name="AbstractActionFigure"
-          qualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.AbstractActionFigure">
+          qualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.AbstractActionFigure">
         <children
             xsi:type="gmfgraph:Polyline"
             name="RakeFigure"
@@ -291,11 +291,11 @@
               horizontalAlignment="FILL"/>
           <layout
               xsi:type="gmfgraph:CustomLayout"
-              qualifiedClassName="org.eclipse.papyrus.diagram.common.draw2d.CenterLayout"/>
+              qualifiedClassName="org.eclipse.papyrus.uml.diagram.common.draw2d.CenterLayout"/>
           <children
               xsi:type="gmfgraph:CustomFigure"
               name="ActionLabel"
-              qualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.CenteredWrappedLabel">
+              qualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.CenteredWrappedLabel">
             <insets
                 top="5"
                 left="5"
@@ -316,7 +316,7 @@
       <actualFigure
           xsi:type="gmfgraph:CustomFigure"
           name="CornerBentCustFigure"
-          qualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.CornerBentFigure">
+          qualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.CornerBentFigure">
         <backgroundColor
             xsi:type="gmfgraph:RGBColor"
             red="248"
@@ -325,7 +325,7 @@
         <children
             xsi:type="gmfgraph:CustomFigure"
             name="CornerBentContentLabel"
-            qualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.WrappedLabel"/>
+            qualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.WrappedLabel"/>
       </actualFigure>
       <accessors
           accessor="getCornerBentContent"
@@ -374,11 +374,11 @@
         <children
             xsi:type="gmfgraph:CustomFigure"
             name="ActivityEdgeName"
-            qualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.WrappedLabel"/>
+            qualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.WrappedLabel"/>
         <children
             xsi:type="gmfgraph:CustomFigure"
             name="ActivityEdgeWeight"
-            qualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.WrappedLabel"/>
+            qualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.WrappedLabel"/>
       </actualFigure>
       <accessors
           accessor="getEdgeName"
@@ -427,14 +427,14 @@
       <actualFigure
           xsi:type="gmfgraph:CustomFigure"
           name="MultilineLabel"
-          qualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.WrappedLabel"/>
+          qualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.WrappedLabel"/>
     </descriptors>
     <descriptors
         name="LinkAndCornerBentWithTextFigure">
       <actualFigure
           xsi:type="gmfgraph:CustomFigure"
           name="CornerBentCustFigure"
-          qualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.CornerBentFigure">
+          qualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.CornerBentFigure">
         <backgroundColor
             xsi:type="gmfgraph:RGBColor"
             red="248"
@@ -443,7 +443,7 @@
         <children
             xsi:type="gmfgraph:CustomFigure"
             name="CornerBentContentLabel"
-            qualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.WrappedLabel"/>
+            qualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.WrappedLabel"/>
         <children
             xsi:type="gmfgraph:Polyline"
             name="LinkToBehaviorProperty"
@@ -481,11 +481,11 @@
               horizontalAlignment="FILL"/>
           <layout
               xsi:type="gmfgraph:CustomLayout"
-              qualifiedClassName="org.eclipse.papyrus.diagram.common.draw2d.CenterLayout"/>
+              qualifiedClassName="org.eclipse.papyrus.uml.diagram.common.draw2d.CenterLayout"/>
           <children
               xsi:type="gmfgraph:CustomFigure"
               name="SendSignalActionLabel"
-              qualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.CenteredWrappedLabel">
+              qualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.CenteredWrappedLabel">
             <insets
                 top="5"
                 left="5"
@@ -532,11 +532,11 @@
               horizontalAlignment="FILL"/>
           <layout
               xsi:type="gmfgraph:CustomLayout"
-              qualifiedClassName="org.eclipse.papyrus.diagram.common.draw2d.CenterLayout"/>
+              qualifiedClassName="org.eclipse.papyrus.uml.diagram.common.draw2d.CenterLayout"/>
           <children
               xsi:type="gmfgraph:CustomFigure"
               name="ActivityParameterNodeLabel"
-              qualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.CenteredWrappedLabel">
+              qualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.CenteredWrappedLabel">
             <insets
                 top="5"
                 left="5"
@@ -574,11 +574,11 @@
               horizontalAlignment="FILL"/>
           <layout
               xsi:type="gmfgraph:CustomLayout"
-              qualifiedClassName="org.eclipse.papyrus.diagram.common.draw2d.CenterLayout"/>
+              qualifiedClassName="org.eclipse.papyrus.uml.diagram.common.draw2d.CenterLayout"/>
           <children
               xsi:type="gmfgraph:CustomFigure"
               name="AcceptEventActionLabel"
-              qualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.CenteredWrappedLabel">
+              qualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.CenteredWrappedLabel">
             <insets
                 top="5"
                 left="5"
@@ -607,7 +607,7 @@
       <actualFigure
           xsi:type="gmfgraph:CustomFigure"
           name="AppliedStereotypeWrappingLabel"
-          qualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.AppliedStereotypeWrappingLabelFigure"/>
+          qualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.AppliedStereotypeWrappingLabelFigure"/>
     </descriptors>
     <descriptors
         name="StructuredActivityNodeDescriptor">
@@ -619,7 +619,7 @@
           lineKind="LINE_DASH">
         <layout
             xsi:type="gmfgraph:CustomLayout"
-            qualifiedClassName="org.eclipse.papyrus.diagram.activity.draw2d.FlowLayoutAdvanced">
+            qualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.draw2d.FlowLayoutAdvanced">
           <attributes
               name="stretchMinorAxis"
               value="true"/>
@@ -641,7 +641,7 @@
         </layout>
         <border
             xsi:type="gmfgraph:CustomBorder"
-            qualifiedClassName="org.eclipse.papyrus.diagram.common.draw2d.RoundedRectangleDashedBorder">
+            qualifiedClassName="org.eclipse.papyrus.uml.diagram.common.draw2d.RoundedRectangleDashedBorder">
           <attributes
               name="arcWidth"
               value="8"/>
@@ -657,7 +657,7 @@
             lineWidth="0">
           <layoutData
               xsi:type="gmfgraph:CustomLayoutData"
-              qualifiedClassName="org.eclipse.papyrus.diagram.activity.draw2d.FlowLayoutAdvancedConstraint">
+              qualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.draw2d.FlowLayoutAdvancedConstraint">
             <attributes
                 name="hasMinsize"
                 value="true"/>
@@ -671,7 +671,7 @@
               qualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
             <layoutData
                 xsi:type="gmfgraph:CustomLayoutData"
-                qualifiedClassName="org.eclipse.papyrus.diagram.activity.draw2d.GravityConstrainedFlowLayoutConstraint">
+                qualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.draw2d.GravityConstrainedFlowLayoutConstraint">
               <attributes
                   name="align"
                   value="GravityConstrainedFlowLayout.ALIGN_TOPLEFT"/>
@@ -700,7 +700,7 @@
             lineWidth="0">
           <layoutData
               xsi:type="gmfgraph:CustomLayoutData"
-              qualifiedClassName="org.eclipse.papyrus.diagram.activity.draw2d.FlowLayoutAdvancedConstraint">
+              qualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.draw2d.FlowLayoutAdvancedConstraint">
             <attributes
                 name="full"
                 value="true"/>
@@ -722,7 +722,7 @@
       <actualFigure
           xsi:type="gmfgraph:CustomFigure"
           name="InterruptibleActivityRegionFigure"
-          qualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.InterruptibleActivityRegionFigure"/>
+          qualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.InterruptibleActivityRegionFigure"/>
     </descriptors>
     <descriptors
         name="ActivityPartitionDescriptor">
@@ -732,7 +732,7 @@
           outline="false">
         <layout
             xsi:type="gmfgraph:CustomLayout"
-            qualifiedClassName="org.eclipse.papyrus.diagram.activity.draw2d.FlowLayoutAdvanced">
+            qualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.draw2d.FlowLayoutAdvanced">
           <attributes
               name="stretchMinorAxis"
               value="true"/>
@@ -754,7 +754,7 @@
         </layout>
         <border
             xsi:type="gmfgraph:CustomBorder"
-            qualifiedClassName="org.eclipse.papyrus.diagram.common.draw2d.LinesBorder">
+            qualifiedClassName="org.eclipse.papyrus.uml.diagram.common.draw2d.LinesBorder">
           <attributes
               name="sides"
               value="PositionConstants.TOP | PositionConstants.LEFT | PositionConstants.RIGHT"/>
@@ -766,7 +766,7 @@
             lineWidth="0">
           <layoutData
               xsi:type="gmfgraph:CustomLayoutData"
-              qualifiedClassName="org.eclipse.papyrus.diagram.activity.draw2d.FlowLayoutAdvancedConstraint">
+              qualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.draw2d.FlowLayoutAdvancedConstraint">
             <attributes
                 name="hasMinsize"
                 value="true"/>
@@ -780,7 +780,7 @@
               minorSpacing="0"/>
           <border
               xsi:type="gmfgraph:CustomBorder"
-              qualifiedClassName="org.eclipse.papyrus.diagram.common.draw2d.LinesBorder">
+              qualifiedClassName="org.eclipse.papyrus.uml.diagram.common.draw2d.LinesBorder">
             <attributes
                 name="sides"
                 value="PositionConstants.BOTTOM"/>
@@ -800,7 +800,7 @@
           <children
               xsi:type="gmfgraph:CustomFigure"
               name="ActivityPartitionLabel"
-              qualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.CenteredWrappedLabel"/>
+              qualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.CenteredWrappedLabel"/>
         </children>
         <children
             xsi:type="gmfgraph:Rectangle"
@@ -810,7 +810,7 @@
             lineWidth="0">
           <layoutData
               xsi:type="gmfgraph:CustomLayoutData"
-              qualifiedClassName="org.eclipse.papyrus.diagram.activity.draw2d.FlowLayoutAdvancedConstraint">
+              qualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.draw2d.FlowLayoutAdvancedConstraint">
             <attributes
                 name="fill"
                 value="true"/>
@@ -888,7 +888,7 @@
       <actualFigure
           xsi:type="gmfgraph:CustomFigure"
           name="NodeNamedElementFigure"
-          qualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.NodeNamedElementFigure">
+          qualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.NodeNamedElementFigure">
         <children
             xsi:type="gmfgraph:CustomFigure"
             name="fakeObjectNodeLabel"
@@ -909,7 +909,7 @@
       <actualFigure
           xsi:type="gmfgraph:CustomFigure"
           name="CallBehaviorActionNodeFigure"
-          qualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.CallBehaviorActionFigure">
+          qualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.CallBehaviorActionFigure">
         <customChildren
             accessor="getNameLabel()">
           <typedFigure
@@ -926,14 +926,14 @@
       <actualFigure
           xsi:type="gmfgraph:CustomConnection"
           name="CommentLinkFigure"
-          qualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.LinkFigure"/>
+          qualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.LinkFigure"/>
     </descriptors>
     <descriptors
         name="StereotypedCustomizedFigureDescriptor">
       <actualFigure
           xsi:type="gmfgraph:CustomFigure"
           name="StereotypedCustomizedFigure"
-          qualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.ShapeNamedElementFigure"/>
+          qualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.ShapeNamedElementFigure"/>
     </descriptors>
   </figures>
   <nodes
@@ -1269,6 +1269,6 @@
       elementIcon="false"
       accessor="//@figures.0/@descriptors.24/@accessors.0">
     <figure
-        href="../../org.eclipse.papyrus.diagram.common/model/Action.gmfgraph#ActionFigureDescriptor"/>
+        href="../../org.eclipse.papyrus.uml.diagram.common/model/Action.gmfgraph#ActionFigureDescriptor"/>
   </labels>
 </gmfgraph:Canvas>

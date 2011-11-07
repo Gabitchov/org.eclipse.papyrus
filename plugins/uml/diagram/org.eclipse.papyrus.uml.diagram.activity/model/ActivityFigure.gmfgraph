@@ -10,7 +10,7 @@
       <actualFigure
           xsi:type="gmfgraph:CustomFigure"
           name="ActivityFigure"
-          qualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.ActivityFigure">
+          qualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.ActivityFigure">
         <customChildren
             accessor="getNameLabel()">
           <typedFigure
