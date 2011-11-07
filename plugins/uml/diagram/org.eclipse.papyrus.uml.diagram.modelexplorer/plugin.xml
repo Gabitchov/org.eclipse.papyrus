@@ -5,10 +5,10 @@
 <extension point="org.eclipse.ui.navigator.navigatorContent">
       <navigatorContent
             activeByDefault="false"
-            contentProvider="org.eclipse.papyrus.diagram.modelexplorer.DiagramContentProvider"
+            contentProvider="org.eclipse.papyrus.uml.diagram.modelexplorer.DiagramContentProvider"
             icon="icon/diagrams.gif"
-            id="org.eclipse.papyrus.modelexplorer.DiagramNavigatorContent"
-            labelProvider="org.eclipse.papyrus.diagram.modelexplorer.DiagramLabelProvider"
+            id="org.eclipse.papyrus.views.modelexplorer.DiagramNavigatorContent"
+            labelProvider="org.eclipse.papyrus.uml.diagram.modelexplorer.DiagramLabelProvider"
             name="Diagram Model Contents"
             priority="lower">
          <triggerPoints>
@@ -35,9 +35,9 @@
       point="org.eclipse.ui.menus">
    <menuContribution
          allPopups="false"
-         locationURI="toolbar:org.eclipse.papyrus.modelexplorer.modelexplorer">
+         locationURI="toolbar:org.eclipse.papyrus.views.modelexplorer.modelexplorer">
       <command
-            commandId="org.eclipse.papyrus.modelexplorer.diagramviewcommand"
+            commandId="org.eclipse.papyrus.views.modelexplorer.diagramviewcommand"
             icon="icon/diagrams.gif"
             label="Diagram view"
             style="toggle">
@@ -45,10 +45,10 @@
    </menuContribution>
 </extension>
 <extension point="org.eclipse.ui.commands">
-<command id="org.eclipse.papyrus.modelexplorer.diagramviewcommand"
+<command id="org.eclipse.papyrus.views.modelexplorer.diagramviewcommand"
 		name="DiagramView" description="go to the diagram view"
 		categoryId="org.eclipse.papyrus.editor.category"
-		defaultHandler="org.eclipse.papyrus.diagram.modelexplorer.handler.DiagramViewHandler">
+		defaultHandler="org.eclipse.papyrus.uml.diagram.modelexplorer.handler.DiagramViewHandler">
 	</command>
 	</extension>
 </plugin>

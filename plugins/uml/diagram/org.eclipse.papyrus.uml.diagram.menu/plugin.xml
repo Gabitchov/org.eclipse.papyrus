@@ -107,7 +107,7 @@
       point="org.eclipse.gmf.runtime.common.ui.services.action.contributionItemProviders">
    <contributionItemProvider
          checkPluginLoaded="false"
-         class="org.eclipse.papyrus.diagram.menu.actions.gmf.CustomContributionItemProvider">
+         class="org.eclipse.papyrus.uml.diagram.menu.actions.gmf.CustomContributionItemProvider">
       <Priority
             name="High">
       </Priority>
@@ -1165,7 +1165,7 @@
             </visibleWhen>
          </command>
                   <dynamic
-               class="org.eclipse.papyrus.diagram.menu.toolbar.ZoomToolbar"
+               class="org.eclipse.papyrus.uml.diagram.menu.toolbar.ZoomToolbar"
                id="zoomToolBar">
             <visibleWhen
                   checkEnabled="true">
@@ -2884,13 +2884,13 @@
       point="org.eclipse.ui.commands">
    <command
          categoryId="org.eclipse.papyrus.editor.category"
-         defaultHandler="org.eclipse.papyrus.diagram.menu.actions.handlers.DropDownToolBarHandler"
+         defaultHandler="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.DropDownToolBarHandler"
          id="org.eclipse.papyrus.diagram.menu.toolbar.command"
          name="Command for the toolbar actions">
    </command>
    <command
          categoryId="org.eclipse.papyrus.editor.category"
-         defaultHandler="org.eclipse.papyrus.diagram.menu.actions.handlers.DropDownToolBarSameSizeHandler"
+         defaultHandler="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.DropDownToolBarSameSizeHandler"
          id="org.eclipse.papyrus.diagram.menu.toolbar.same.size.command"
          name="Command for the Make Same Size Toolbar actions">
    </command>
@@ -2900,7 +2900,7 @@
          id="org.eclipse.papyrus.diagram.menu.command.routing.left"
          name="Routing By Left Command">
       <defaultHandler
-            class="org.eclipse.papyrus.diagram.menu.actions.handlers.RoutingHandler">
+            class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.RoutingHandler">
          <parameter
                name="org.eclipse.papyrus.diagram.menu.commandRoutingParameter"
                value="parameter_left">
@@ -2913,7 +2913,7 @@
          id="org.eclipse.papyrus.diagram.menu.command.routing.right"
          name="Routing By Righ Command">
       <defaultHandler
-            class="org.eclipse.papyrus.diagram.menu.actions.handlers.RoutingHandler">
+            class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.RoutingHandler">
          <parameter
                name="org.eclipse.papyrus.diagram.menu.commandRoutingParameter"
                value="parameter_right">
@@ -2926,7 +2926,7 @@
          id="org.eclipse.papyrus.diagram.menu.command.routing.top"
          name="Routing By Top Command">
       <defaultHandler
-            class="org.eclipse.papyrus.diagram.menu.actions.handlers.RoutingHandler">
+            class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.RoutingHandler">
          <parameter
                name="org.eclipse.papyrus.diagram.menu.commandRoutingParameter"
                value="parameter_top">
@@ -2939,7 +2939,7 @@
          id="org.eclipse.papyrus.diagram.menu.command.routing.bottom"
          name="Routing By Bottom Command">
       <defaultHandler
-            class="org.eclipse.papyrus.diagram.menu.actions.handlers.RoutingHandler">
+            class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.RoutingHandler">
          <parameter
                name="org.eclipse.papyrus.diagram.menu.commandRoutingParameter"
                value="parameter_bottom">
@@ -2952,7 +2952,7 @@
          id="org.eclipse.papyrus.diagram.menu.command.distribute.horizontally"
          name="Distribute Nodes/Links horizontally">
       <defaultHandler
-            class="org.eclipse.papyrus.diagram.menu.actions.handlers.DistributionHandler">
+            class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.DistributionHandler">
          <parameter
                name="org.eclipse.papyrus.diagram.menu.commandDistributionParameter"
                value="parameter_horizontally">
@@ -2965,7 +2965,7 @@
          id="org.eclipse.papyrus.diagram.menu.command.distribute.horizontally_between_nodesly"
          name="Distribute Nodes/Links Horizontally Between 2 Nodes">
       <defaultHandler
-            class="org.eclipse.papyrus.diagram.menu.actions.handlers.DistributionHandler">
+            class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.DistributionHandler">
          <parameter
                name="org.eclipse.papyrus.diagram.menu.commandDistributionParameter"
                value="parameter_horizontally_between_nodes">
@@ -2978,7 +2978,7 @@
          id="org.eclipse.papyrus.diagram.menu.command.distribute.vertically"
          name="Distribute Nodes/Links Vertically">
       <defaultHandler
-            class="org.eclipse.papyrus.diagram.menu.actions.handlers.DistributionHandler">
+            class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.DistributionHandler">
          <parameter
                name="org.eclipse.papyrus.diagram.menu.commandDistributionParameter"
                value="parameter_vertically">
@@ -2991,7 +2991,7 @@
          id="org.eclipse.papyrus.diagram.menu.command.distribute.vertically_between_nodes"
          name="Distribute Nodes/Links Vertically Between 2 Nodes">
       <defaultHandler
-            class="org.eclipse.papyrus.diagram.menu.actions.handlers.DistributionHandler">
+            class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.DistributionHandler">
          <parameter
                name="org.eclipse.papyrus.diagram.menu.commandDistributionParameter"
                value="parameter_vertically_between_nodes">
@@ -3004,7 +3004,7 @@
          id="org.eclipse.papyrus.diagram.menu.command.alignment.left"
          name="Align Left Command">
       <defaultHandler
-            class="org.eclipse.papyrus.diagram.menu.actions.handlers.AlignementHandler">
+            class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.AlignementHandler">
          <parameter
                name="org.eclipse.papyrus.diagram.menu.commandAlignmentParameter"
                value="parameter_left">
@@ -3017,7 +3017,7 @@
          id="org.eclipse.papyrus.diagram.menu.command.alignment.center"
          name="Align Center Command">
       <defaultHandler
-            class="org.eclipse.papyrus.diagram.menu.actions.handlers.AlignementHandler">
+            class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.AlignementHandler">
          <parameter
                name="org.eclipse.papyrus.diagram.menu.commandAlignmentParameter"
                value="parameter_center">
@@ -3030,7 +3030,7 @@
          id="org.eclipse.papyrus.diagram.menu.command.alignment.right"
          name="Align Right Command">
       <defaultHandler
-            class="org.eclipse.papyrus.diagram.menu.actions.handlers.AlignementHandler">
+            class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.AlignementHandler">
          <parameter
                name="org.eclipse.papyrus.diagram.menu.commandAlignmentParameter"
                value="parameter_right">
@@ -3043,7 +3043,7 @@
          id="org.eclipse.papyrus.diagram.menu.command.alignment.bottom"
          name="Align Bottom Command">
       <defaultHandler
-            class="org.eclipse.papyrus.diagram.menu.actions.handlers.AlignementHandler">
+            class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.AlignementHandler">
          <parameter
                name="org.eclipse.papyrus.diagram.menu.commandAlignmentParameter"
                value="parameter_bottom">
@@ -3056,7 +3056,7 @@
          id="org.eclipse.papyrus.diagram.menu.command.alignment.middle"
          name="Align Middle Command">
       <defaultHandler
-            class="org.eclipse.papyrus.diagram.menu.actions.handlers.AlignementHandler">
+            class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.AlignementHandler">
          <parameter
                name="org.eclipse.papyrus.diagram.menu.commandAlignmentParameter"
                value="parameter_middle">
@@ -3069,7 +3069,7 @@
          id="org.eclipse.papyrus.diagram.menu.command.alignment.top"
          name="Align Top Command">
       <defaultHandler
-            class="org.eclipse.papyrus.diagram.menu.actions.handlers.AlignementHandler">
+            class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.AlignementHandler">
          <parameter
                name="org.eclipse.papyrus.diagram.menu.commandAlignmentParameter"
                value="parameter_top">
@@ -3082,7 +3082,7 @@
          id="org.eclipse.papyrus.diagram.menu.command.sameSize.both"
          name="Make Same Size Both">
       <defaultHandler
-            class="org.eclipse.papyrus.diagram.menu.actions.handlers.SizeHandler">
+            class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.SizeHandler">
          <parameter
                name="org.eclipse.papyrus.diagram.menu.commandSizeParameter"
                value="parameter_both">
@@ -3095,7 +3095,7 @@
          id="org.eclipse.papyrus.diagram.menu.command.sameSize.height"
          name="Make Same Height">
       <defaultHandler
-            class="org.eclipse.papyrus.diagram.menu.actions.handlers.SizeHandler">
+            class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.SizeHandler">
          <parameter
                name="org.eclipse.papyrus.diagram.menu.commandSizeParameter"
                value="parameter_height">
@@ -3108,7 +3108,7 @@
          id="org.eclipse.papyrus.diagram.menu.command.sameSize.width"
          name="Make Same Width Both">
       <defaultHandler
-            class="org.eclipse.papyrus.diagram.menu.actions.handlers.SizeHandler">
+            class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.SizeHandler">
          <parameter
                name="org.eclipse.papyrus.diagram.menu.commandSizeParameter"
                value="parameter_width">
@@ -3209,7 +3209,7 @@
          id="org.eclipse.papyrus.diagram.menu.commands.SnapToGridCommand"
          name="Snap To Grid Command">
       <state
-            class="org.eclipse.papyrus.diagram.menu.providers.InitTrueToggleState"
+            class="org.eclipse.papyrus.uml.diagram.menu.providers.InitTrueToggleState"
             id="org.eclipse.ui.commands.toggleState">
       </state>
    </command>
@@ -3330,7 +3330,7 @@
          id="org.eclipse.papyrus.diagram.menu.commands.line.style.rectilinear"
          name="Rectilinear Style Routing Command">
       <state
-            class="org.eclipse.papyrus.diagram.menu.providers.RectilinearToggleState"
+            class="org.eclipse.papyrus.uml.diagram.menu.providers.RectilinearToggleState"
             id="org.eclipse.ui.commands.toggleState">
       </state>
    </command>
@@ -3340,7 +3340,7 @@
          id="org.eclipse.papyrus.diagram.menu.commands.line.style.oblique"
          name="Oblique Style Routing Command">
       <state
-            class="org.eclipse.papyrus.diagram.menu.providers.ObliqueToggleState"
+            class="org.eclipse.papyrus.uml.diagram.menu.providers.ObliqueToggleState"
             id="org.eclipse.ui.commands.toggleState">
       </state>
    </command>
@@ -3350,7 +3350,7 @@
          id="org.eclipse.papyrus.diagram.menu.commands.line.style.tree"
          name="Tree Style Routing Command">
       <state
-            class="org.eclipse.papyrus.diagram.menu.providers.TreeToggleState"
+            class="org.eclipse.papyrus.uml.diagram.menu.providers.TreeToggleState"
             id="org.eclipse.ui.commands.toggleState">
       </state>
    </command>
@@ -3365,7 +3365,7 @@
       id="viewHandlers"
       point="org.eclipse.ui.handlers">
    <handler
-         class="org.eclipse.papyrus.diagram.menu.actions.handlers.ViewGridHandler"
+         class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.ViewGridHandler"
          commandId="org.eclipse.papyrus.diagram.menu.commands.ViewGridCommand">
       <activeWhen>
          <and>
@@ -3379,7 +3379,7 @@
       </activeWhen>
    </handler>
    <handler
-         class="org.eclipse.papyrus.diagram.menu.actions.handlers.RecalculatePageBreaksHandler"
+         class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.RecalculatePageBreaksHandler"
          commandId="org.eclipse.papyrus.diagram.menu.commands.RecalculatePageBreaksCommand">
       <activeWhen>
          <and>
@@ -3393,7 +3393,7 @@
       </activeWhen>
    </handler>
    <handler
-         class="org.eclipse.papyrus.diagram.menu.actions.handlers.SnapToGridHandler"
+         class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.SnapToGridHandler"
          commandId="org.eclipse.papyrus.diagram.menu.commands.SnapToGridCommand">
       <activeWhen>
          <and>
@@ -3407,7 +3407,7 @@
       </activeWhen>
    </handler>
    <handler
-         class="org.eclipse.papyrus.diagram.menu.actions.handlers.ViewPageBreaksHandler"
+         class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.ViewPageBreaksHandler"
          commandId="org.eclipse.papyrus.diagram.menu.commands.ViewPageBreaksCommand">
       <activeWhen>
          <and>
@@ -3421,7 +3421,7 @@
       </activeWhen>
    </handler>
    <handler
-         class="org.eclipse.papyrus.diagram.menu.actions.handlers.ViewRulersHandler"
+         class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.ViewRulersHandler"
          commandId="org.eclipse.papyrus.diagram.menu.commands.ViewRulersCommand">
       <activeWhen>
          <and>
@@ -3435,7 +3435,7 @@
       </activeWhen>
    </handler>
    <handler
-         class="org.eclipse.papyrus.diagram.menu.actions.handlers.SortFilterCompartmentItemsHandler"
+         class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.SortFilterCompartmentItemsHandler"
          commandId="org.eclipse.papyrus.diagram.menu.commands.SortFilterCompartmentItemsCommand">
       <activeWhen>
          <and>
@@ -3461,7 +3461,7 @@
          </and>
       </activeWhen>
       <class
-            class="org.eclipse.papyrus.diagram.menu.actions.handlers.ZoomHandler">
+            class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.ZoomHandler">
          <parameter
                name="org.eclipse.papyrus.diagram.menu.commandZoomParameter"
                value="parameter_zoom_in">
@@ -3481,7 +3481,7 @@
          </and>
       </activeWhen>
       <class
-            class="org.eclipse.papyrus.diagram.menu.actions.handlers.ZoomHandler">
+            class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.ZoomHandler">
          <parameter
                name="org.eclipse.papyrus.diagram.menu.commandZoomParameter"
                value="parameter_zoom_out">
@@ -3501,7 +3501,7 @@
          </and>
       </activeWhen>
       <class
-            class="org.eclipse.papyrus.diagram.menu.actions.handlers.ZoomHandler">
+            class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.ZoomHandler">
          <parameter
                name="org.eclipse.papyrus.diagram.menu.commandZoomParameter"
                value="parameter_zoom_100">
@@ -3521,7 +3521,7 @@
          </and>
       </activeWhen>
       <class
-            class="org.eclipse.papyrus.diagram.menu.actions.handlers.ZoomHandler">
+            class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.ZoomHandler">
          <parameter
                name="org.eclipse.papyrus.diagram.menu.commandZoomParameter"
                value="parameter_zoom_fit">
@@ -3541,7 +3541,7 @@
          </and>
       </activeWhen>
       <class
-            class="org.eclipse.papyrus.diagram.menu.actions.handlers.ZoomHandler">
+            class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.ZoomHandler">
          <parameter
                name="org.eclipse.papyrus.diagram.menu.commandZoomParameter"
                value="parameter_zoom_width">
@@ -3561,7 +3561,7 @@
          </and>
       </activeWhen>
       <class
-            class="org.eclipse.papyrus.diagram.menu.actions.handlers.ZoomHandler">
+            class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.ZoomHandler">
          <parameter
                name="org.eclipse.papyrus.diagram.menu.commandZoomParameter"
                value="parameter_zoom_height">
@@ -3581,7 +3581,7 @@
          </and>
       </activeWhen>
       <class
-            class="org.eclipse.papyrus.diagram.menu.actions.handlers.ZoomHandler">
+            class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.ZoomHandler">
          <parameter
                name="org.eclipse.papyrus.diagram.menu.commandZoomParameter"
                value="parameter_zoom_selection">
@@ -3589,7 +3589,7 @@
       </class>
    </handler>
    <handler
-         class="org.eclipse.papyrus.diagram.menu.actions.handlers.SnapBackHandler"
+         class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.SnapBackHandler"
          commandId="org.eclipse.papyrus.diagram.menu.commands.SnapBack">
       <activeWhen>
          <and>
@@ -3689,12 +3689,12 @@
 <extension
       point="org.eclipse.ui.startup">
    <startup
-         class="org.eclipse.papyrus.diagram.menu.Activator"></startup>
+         class="org.eclipse.papyrus.uml.diagram.menu.Activator"></startup>
 </extension>
 <extension
       point="org.eclipse.ui.handlers">
    <handler
-         class="org.eclipse.papyrus.diagram.menu.actions.handlers.SizeHandler"
+         class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.SizeHandler"
          commandId="org.eclipse.papyrus.diagram.menu.command.autosize">
       <enabledWhen>
          <iterate>
@@ -3711,7 +3711,7 @@
          </iterate>
       </enabledWhen>
       <class
-            class="org.eclipse.papyrus.diagram.menu.actions.handlers.SizeHandler">
+            class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.SizeHandler">
          <parameter
                name="org.eclipse.papyrus.diagram.menu.commandSizeParameter"
                value="parameter_autosize">
@@ -3719,7 +3719,7 @@
       </class>
    </handler>
    <handler
-         class="org.eclipse.papyrus.diagram.menu.actions.handlers.ShowHideContentsHandler"
+         class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.ShowHideContentsHandler"
          commandId="org.eclipse.papyrus.diagram.menu.commands.ShowHideContentsCommand">
       <activeWhen>
          <and>
@@ -3733,7 +3733,7 @@
       </activeWhen>
    </handler>
    <handler
-         class="org.eclipse.papyrus.diagram.menu.actions.handlers.ShowHideCompartmentHandler"
+         class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.ShowHideCompartmentHandler"
          commandId="org.eclipse.papyrus.diagram.menu.commands.ShowHideCompartmentCommand">
       <activeWhen>
          <and>
@@ -3747,7 +3747,7 @@
       </activeWhen>
    </handler>
    <handler
-         class="org.eclipse.papyrus.diagram.menu.actions.handlers.CopyAppearancePropertiesHandler"
+         class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.CopyAppearancePropertiesHandler"
          commandId="org.eclipse.papyrus.diagram.menu.commands.CopyAppearancePropertiesCommand">
       <activeWhen>
          <and>
@@ -3763,7 +3763,7 @@
    <handler
          commandId="org.eclipse.papyrus.diagram.menu.commands.ArrangeAllCommand">
       <class
-            class="org.eclipse.papyrus.diagram.menu.actions.handlers.ArrangeHandler">
+            class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.ArrangeHandler">
          <parameter
                name="arrange_parameter"
                value="arrangeAll">
@@ -3783,7 +3783,7 @@
    <handler
          commandId="org.eclipse.papyrus.diagram.menu.commands.ArrangeSelectionCommand">
       <class
-            class="org.eclipse.papyrus.diagram.menu.actions.handlers.ArrangeHandler">
+            class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.ArrangeHandler">
          <parameter
                name="arrange_parameter"
                value="arrangeSelection">
@@ -3803,7 +3803,7 @@
    <handler
          commandId="org.eclipse.papyrus.diagram.menu.commands.BringToFrontCommand">
       <class
-            class="org.eclipse.papyrus.diagram.menu.actions.handlers.ZOrderHandler">
+            class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.ZOrderHandler">
          <parameter
                name="order_parameter"
                value="bringToFront">
@@ -3833,7 +3833,7 @@
          </and>
       </activeWhen>
       <class
-            class="org.eclipse.papyrus.diagram.menu.actions.handlers.ZOrderHandler">
+            class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.ZOrderHandler">
          <parameter
                name="order_parameter"
                value="sendToBack">
@@ -3843,7 +3843,7 @@
    <handler
          commandId="org.eclipse.papyrus.diagram.menu.commands.BringForwardCommand">
       <class
-            class="org.eclipse.papyrus.diagram.menu.actions.handlers.ZOrderHandler">
+            class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.ZOrderHandler">
          <parameter
                name="order_parameter"
                value="bringForward">
@@ -3873,7 +3873,7 @@
          </and>
       </activeWhen>
       <class
-            class="org.eclipse.papyrus.diagram.menu.actions.handlers.ZOrderHandler">
+            class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.ZOrderHandler">
          <parameter
                name="order_parameter"
                value="sendBackward">
@@ -3883,7 +3883,7 @@
    <handler
          commandId="org.eclipse.papyrus.diagram.menu.commands.SelectAllCommand">
       <class
-            class="org.eclipse.papyrus.diagram.menu.actions.handlers.SelectHandler">
+            class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.SelectHandler">
          <parameter
                name="select_parameter"
                value="selectAll">
@@ -3902,7 +3902,7 @@
    <handler
          commandId="org.eclipse.papyrus.diagram.menu.commands.SelectAllShapesCommand">
       <class
-            class="org.eclipse.papyrus.diagram.menu.actions.handlers.SelectHandler">
+            class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.SelectHandler">
          <parameter
                name="select_parameter"
                value="selectAllShapes">
@@ -3922,7 +3922,7 @@
    <handler
          commandId="org.eclipse.papyrus.diagram.menu.commands.SelectAllConnectorsCommand">
       <class
-            class="org.eclipse.papyrus.diagram.menu.actions.handlers.SelectHandler">
+            class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.SelectHandler">
          <parameter
                name="select_parameter"
                value="selectAllConnectors">
@@ -3940,7 +3940,7 @@
       </activeWhen>
    </handler>
    <handler
-         class="org.eclipse.papyrus.diagram.menu.actions.handlers.FontHandler"
+         class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.FontHandler"
          commandId="org.eclipse.papyrus.diagram.menu.commands.FontCommand">
       <activeWhen>
          <and>
@@ -3956,7 +3956,7 @@
    <handler
          commandId="org.eclipse.papyrus.diagram.menu.commands.line.style.rectilinear">
       <class
-            class="org.eclipse.papyrus.diagram.menu.actions.handlers.LineStyleHandler">
+            class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.LineStyleHandler">
          <parameter
                name="line_style_parameter"
                value="rectilinear">
@@ -3976,7 +3976,7 @@
    <handler
          commandId="org.eclipse.papyrus.diagram.menu.commands.line.style.oblique">
       <class
-            class="org.eclipse.papyrus.diagram.menu.actions.handlers.LineStyleHandler">
+            class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.LineStyleHandler">
          <parameter
                name="line_style_parameter"
                value="oblique">
@@ -3996,7 +3996,7 @@
    <handler
          commandId="org.eclipse.papyrus.diagram.menu.commands.line.style.tree">
       <class
-            class="org.eclipse.papyrus.diagram.menu.actions.handlers.LineStyleHandler">
+            class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.LineStyleHandler">
          <parameter
                name="line_style_parameter"
                value="tree">
@@ -4016,7 +4016,7 @@
    <handler
          commandId="org.eclipse.papyrus.diagram.menu.commands.line.style.removebendpoint">
       <class
-            class="org.eclipse.papyrus.diagram.menu.actions.handlers.LineStyleHandler">
+            class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.LineStyleHandler">
          <parameter
                name="line_style_parameter"
                value="remove_benpoints">
@@ -4036,7 +4036,7 @@
    <handler
          commandId="org.eclipse.papyrus.diagram.menu.commands.link.label.hide.all">
       <class
-            class="org.eclipse.papyrus.diagram.menu.actions.handlers.ShowHideLabelsHandler">
+            class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.ShowHideLabelsHandler">
          <parameter
                name="show_hide_link_label_parameter"
                value="hide">
@@ -4054,7 +4054,7 @@
    <handler
          commandId="org.eclipse.papyrus.diagram.menu.commands.link.label.show.all">
       <class
-            class="org.eclipse.papyrus.diagram.menu.actions.handlers.ShowHideLabelsHandler">
+            class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.ShowHideLabelsHandler">
          <parameter
                name="show_hide_link_label_parameter"
                value="show">
@@ -4071,7 +4071,7 @@
    <handler
          commandId="org.eclipse.papyrus.diagram.menu.commands.link.label.manager">
       <class
-            class="org.eclipse.papyrus.diagram.menu.actions.handlers.ShowHideLabelsHandler">
+            class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.ShowHideLabelsHandler">
          <parameter
                name="show_hide_link_label_parameter"
                value="manage">
@@ -4089,7 +4089,7 @@
 <extension
       point="org.eclipse.ui.services">
    <sourceProvider
-         provider="org.eclipse.papyrus.diagram.menu.providers.HandlerStateSourceProvider">
+         provider="org.eclipse.papyrus.uml.diagram.menu.providers.HandlerStateSourceProvider">
       <variable
             name="showHideContents"
             priorityLevel="workbench">
@@ -4290,7 +4290,7 @@
    <handler
          commandId="org.eclipse.papyrus.diagram.menu.fill.color.white.command">
       <class
-            class="org.eclipse.papyrus.diagram.menu.actions.handlers.FillColorHandler">
+            class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.FillColorHandler">
          <parameter
                name="color_parameter"
                value="White">
@@ -4310,7 +4310,7 @@
    <handler
          commandId="org.eclipse.papyrus.diagram.menu.fill.color.black.command">
       <class
-            class="org.eclipse.papyrus.diagram.menu.actions.handlers.FillColorHandler">
+            class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.FillColorHandler">
          <parameter
                name="color_parameter"
                value="Black">
@@ -4330,7 +4330,7 @@
    <handler
          commandId="org.eclipse.papyrus.diagram.menu.fill.color.lightgray.command">
       <class
-            class="org.eclipse.papyrus.diagram.menu.actions.handlers.FillColorHandler">
+            class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.FillColorHandler">
          <parameter
                name="color_parameter"
                value="Light Gray">
@@ -4350,7 +4350,7 @@
    <handler
          commandId="org.eclipse.papyrus.diagram.menu.fill.color.gray.command">
       <class
-            class="org.eclipse.papyrus.diagram.menu.actions.handlers.FillColorHandler">
+            class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.FillColorHandler">
          <parameter
                name="color_parameter"
                value="Gray">
@@ -4370,7 +4370,7 @@
    <handler
          commandId="org.eclipse.papyrus.diagram.menu.fill.color.darkgray.command">
       <class
-            class="org.eclipse.papyrus.diagram.menu.actions.handlers.FillColorHandler">
+            class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.FillColorHandler">
          <parameter
                name="color_parameter"
                value="Dark Gray">
@@ -4390,7 +4390,7 @@
    <handler
          commandId="org.eclipse.papyrus.diagram.menu.fill.color.red.command">
       <class
-            class="org.eclipse.papyrus.diagram.menu.actions.handlers.FillColorHandler">
+            class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.FillColorHandler">
          <parameter
                name="color_parameter"
                value="Red">
@@ -4410,7 +4410,7 @@
    <handler
          commandId="org.eclipse.papyrus.diagram.menu.fill.color.green.command">
       <class
-            class="org.eclipse.papyrus.diagram.menu.actions.handlers.FillColorHandler">
+            class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.FillColorHandler">
          <parameter
                name="color_parameter"
                value="Green">
@@ -4430,7 +4430,7 @@
    <handler
          commandId="org.eclipse.papyrus.diagram.menu.fill.color.blue.command">
       <class
-            class="org.eclipse.papyrus.diagram.menu.actions.handlers.FillColorHandler">
+            class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.FillColorHandler">
          <parameter
                name="color_parameter"
                value="Blue">
@@ -4450,7 +4450,7 @@
    <handler
          commandId="org.eclipse.papyrus.diagram.menu.fill.color.yellow.command">
       <class
-            class="org.eclipse.papyrus.diagram.menu.actions.handlers.FillColorHandler">
+            class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.FillColorHandler">
          <parameter
                name="color_parameter"
                value="Yellow">
@@ -4470,7 +4470,7 @@
    <handler
          commandId="org.eclipse.papyrus.diagram.menu.fill.color.magenta.command">
       <class
-            class="org.eclipse.papyrus.diagram.menu.actions.handlers.FillColorHandler">
+            class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.FillColorHandler">
          <parameter
                name="color_parameter"
                value="Magenta">
@@ -4490,7 +4490,7 @@
    <handler
          commandId="org.eclipse.papyrus.diagram.menu.fill.color.cyan.command">
       <class
-            class="org.eclipse.papyrus.diagram.menu.actions.handlers.FillColorHandler">
+            class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.FillColorHandler">
          <parameter
                name="color_parameter"
                value="Cyan">
@@ -4510,7 +4510,7 @@
    <handler
          commandId="org.eclipse.papyrus.diagram.menu.fill.color.pink.command">
       <class
-            class="org.eclipse.papyrus.diagram.menu.actions.handlers.FillColorHandler">
+            class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.FillColorHandler">
          <parameter
                name="color_parameter"
                value="Pink">
@@ -4530,7 +4530,7 @@
    <handler
          commandId="org.eclipse.papyrus.diagram.menu.fill.color.orange.command">
       <class
-            class="org.eclipse.papyrus.diagram.menu.actions.handlers.FillColorHandler">
+            class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.FillColorHandler">
          <parameter
                name="color_parameter"
                value="Orange">
@@ -4550,7 +4550,7 @@
    <handler
          commandId="org.eclipse.papyrus.diagram.menu.fill.color.defaultcolor.command">
       <class
-            class="org.eclipse.papyrus.diagram.menu.actions.handlers.FillColorHandler">
+            class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.FillColorHandler">
          <parameter
                name="color_parameter"
                value="default_color">
@@ -4570,7 +4570,7 @@
    <handler
          commandId="org.eclipse.papyrus.diagram.menu.fill.color.morecolors.command">
       <class
-            class="org.eclipse.papyrus.diagram.menu.actions.handlers.FillColorHandler">
+            class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.FillColorHandler">
          <parameter
                name="color_parameter"
                value="more_colors">
@@ -4690,7 +4690,7 @@
    <handler
          commandId="org.eclipse.papyrus.diagram.menu.line.color.white.command">
       <class
-            class="org.eclipse.papyrus.diagram.menu.actions.handlers.LineColorHandler">
+            class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.LineColorHandler">
          <parameter
                name="color_parameter"
                value="White">
@@ -4710,7 +4710,7 @@
    <handler
          commandId="org.eclipse.papyrus.diagram.menu.line.color.black.command">
       <class
-            class="org.eclipse.papyrus.diagram.menu.actions.handlers.LineColorHandler">
+            class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.LineColorHandler">
          <parameter
                name="color_parameter"
                value="Black">
@@ -4730,7 +4730,7 @@
    <handler
          commandId="org.eclipse.papyrus.diagram.menu.line.color.lightgray.command">
       <class
-            class="org.eclipse.papyrus.diagram.menu.actions.handlers.LineColorHandler">
+            class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.LineColorHandler">
          <parameter
                name="color_parameter"
                value="Light Gray">
@@ -4750,7 +4750,7 @@
    <handler
          commandId="org.eclipse.papyrus.diagram.menu.line.color.gray.command">
       <class
-            class="org.eclipse.papyrus.diagram.menu.actions.handlers.LineColorHandler">
+            class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.LineColorHandler">
          <parameter
                name="color_parameter"
                value="Gray">
@@ -4770,7 +4770,7 @@
    <handler
          commandId="org.eclipse.papyrus.diagram.menu.line.color.darkgray.command">
       <class
-            class="org.eclipse.papyrus.diagram.menu.actions.handlers.LineColorHandler">
+            class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.LineColorHandler">
          <parameter
                name="color_parameter"
                value="Dark Gray">
@@ -4790,7 +4790,7 @@
    <handler
          commandId="org.eclipse.papyrus.diagram.menu.line.color.red.command">
       <class
-            class="org.eclipse.papyrus.diagram.menu.actions.handlers.LineColorHandler">
+            class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.LineColorHandler">
          <parameter
                name="color_parameter"
                value="Red">
@@ -4810,7 +4810,7 @@
    <handler
          commandId="org.eclipse.papyrus.diagram.menu.line.color.green.command">
       <class
-            class="org.eclipse.papyrus.diagram.menu.actions.handlers.LineColorHandler">
+            class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.LineColorHandler">
          <parameter
                name="color_parameter"
                value="Green">
@@ -4830,7 +4830,7 @@
    <handler
          commandId="org.eclipse.papyrus.diagram.menu.line.color.blue.command">
       <class
-            class="org.eclipse.papyrus.diagram.menu.actions.handlers.LineColorHandler">
+            class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.LineColorHandler">
          <parameter
                name="color_parameter"
                value="Blue">
@@ -4850,7 +4850,7 @@
    <handler
          commandId="org.eclipse.papyrus.diagram.menu.line.color.yellow.command">
       <class
-            class="org.eclipse.papyrus.diagram.menu.actions.handlers.LineColorHandler">
+            class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.LineColorHandler">
          <parameter
                name="color_parameter"
                value="Yellow">
@@ -4870,7 +4870,7 @@
    <handler
          commandId="org.eclipse.papyrus.diagram.menu.line.color.magenta.command">
       <class
-            class="org.eclipse.papyrus.diagram.menu.actions.handlers.LineColorHandler">
+            class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.LineColorHandler">
          <parameter
                name="color_parameter"
                value="Magenta">
@@ -4890,7 +4890,7 @@
    <handler
          commandId="org.eclipse.papyrus.diagram.menu.line.color.cyan.command">
       <class
-            class="org.eclipse.papyrus.diagram.menu.actions.handlers.LineColorHandler">
+            class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.LineColorHandler">
          <parameter
                name="color_parameter"
                value="Cyan">
@@ -4910,7 +4910,7 @@
    <handler
          commandId="org.eclipse.papyrus.diagram.menu.line.color.pink.command">
       <class
-            class="org.eclipse.papyrus.diagram.menu.actions.handlers.LineColorHandler">
+            class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.LineColorHandler">
          <parameter
                name="color_parameter"
                value="Pink">
@@ -4930,7 +4930,7 @@
    <handler
          commandId="org.eclipse.papyrus.diagram.menu.line.color.orange.command">
       <class
-            class="org.eclipse.papyrus.diagram.menu.actions.handlers.LineColorHandler">
+            class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.LineColorHandler">
          <parameter
                name="color_parameter"
                value="Orange">
@@ -4950,7 +4950,7 @@
    <handler
          commandId="org.eclipse.papyrus.diagram.menu.line.color.defaultcolor.command">
       <class
-            class="org.eclipse.papyrus.diagram.menu.actions.handlers.LineColorHandler">
+            class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.LineColorHandler">
          <parameter
                name="color_parameter"
                value="default_color">
@@ -4970,7 +4970,7 @@
    <handler
          commandId="org.eclipse.papyrus.diagram.menu.line.color.morecolors.command">
       <class
-            class="org.eclipse.papyrus.diagram.menu.actions.handlers.LineColorHandler">
+            class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.LineColorHandler">
          <parameter
                name="color_parameter"
                value="more_colors">
@@ -5034,14 +5034,14 @@
    </extension>
     <extension point="org.eclipse.gmf.runtime.common.ui.services.action.contributionItemProviders">
 
-      <contributionItemProvider checkPluginLoaded="false" class="org.eclipse.papyrus.diagram.menu.selection.SelectionContributionItemProvider">
+      <contributionItemProvider checkPluginLoaded="false" class="org.eclipse.papyrus.uml.diagram.menu.selection.SelectionContributionItemProvider">
 
       <Priority name="Low"/>
 
          <popupContribution
                class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
 
-            <popupStructuredContributionCriteria objectClass="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart" policyClass="org.eclipse.papyrus.diagram.menu.selection.PolicyClass"/>
+            <popupStructuredContributionCriteria objectClass="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart" policyClass="org.eclipse.papyrus.uml.diagram.menu.selection.PolicyClass"/>
 
             <popupAction id="papyrus.selectType" path="/editMenu/additions"></popupAction>
                </popupContribution>
@@ -5052,7 +5052,7 @@
       <extension
             point="org.eclipse.core.expressions.propertyTesters">
          <propertyTester
-               class="org.eclipse.papyrus.diagram.menu.selection.SelectByTypePropertyTester"
+               class="org.eclipse.papyrus.uml.diagram.menu.selection.SelectByTypePropertyTester"
                id="org.eclipse.papyrus.diagram.menu.selection.selectByTyePropertyTester"
                namespace="org.eclipse.papyrus.diagram.menu"
                properties="isEnabled"
@@ -5062,7 +5062,7 @@
       <extension
             point="org.eclipse.ui.commands">
          <command
-               defaultHandler="org.eclipse.papyrus.diagram.menu.selection.SelectByTypeHandler"
+               defaultHandler="org.eclipse.papyrus.uml.diagram.menu.selection.SelectByTypeHandler"
                id="org.eclipse.papyrus.diagram.menu.selection.commands.selectByType"
                name="selectSa&amp;meType">
          </command>
@@ -5079,7 +5079,7 @@
       <extension
             point="org.eclipse.core.expressions.propertyTesters">
          <propertyTester
-               class="org.eclipse.papyrus.diagram.menu.providers.DiagramPropertyTester"
+               class="org.eclipse.papyrus.uml.diagram.menu.providers.DiagramPropertyTester"
                id="org.eclipse.papyrus.diagram.menu.tester"
                namespace="org.eclipse.papyrus.diagram.menu.tester"
                properties="isDiagram"

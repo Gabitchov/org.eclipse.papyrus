@@ -4,21 +4,21 @@
    <extension
          point="org.eclipse.papyrus.navigation.navigationRules">
       <navigationRule
-            rule="org.eclipse.papyrus.navigation.uml.BehavioredClassifierRule"></navigationRule>
+            rule="org.eclipse.papyrus.uml.diagram.navigation.BehavioredClassifierRule"></navigationRule>
       <navigationRule
-            rule="org.eclipse.papyrus.navigation.uml.CBARule">
+            rule="org.eclipse.papyrus.uml.diagram.navigation.CBARule">
       </navigationRule>
       <navigationRule
-            rule="org.eclipse.papyrus.navigation.uml.OperationRule">
+            rule="org.eclipse.papyrus.uml.diagram.navigation.OperationRule">
       </navigationRule>
       <navigationRule
-            rule="org.eclipse.papyrus.navigation.uml.PackageRule">
+            rule="org.eclipse.papyrus.uml.diagram.navigation.PackageRule">
       </navigationRule>
       <navigationRule
-            rule="org.eclipse.papyrus.navigation.uml.StateRule">
+            rule="org.eclipse.papyrus.uml.diagram.navigation.StateRule">
       </navigationRule>
       <navigationRule
-            rule="org.eclipse.papyrus.navigation.uml.TransitionRule"></navigationRule>
+            rule="org.eclipse.papyrus.uml.diagram.navigation.TransitionRule"></navigationRule>
    </extension>
    <extension
          point="org.eclipse.papyrus.navigation.navigationDecoratorRules">
@@ -38,7 +38,7 @@
    <extension
          point="org.eclipse.papyrus.navigation.navigationColorProviders">
       <navigationColorProvider
-            provider="org.eclipse.papyrus.navigation.uml.UMLNavigationColorProvider">
+            provider="org.eclipse.papyrus.uml.diagram.navigation.UMLNavigationColorProvider">
       </navigationColorProvider>
    </extension>
 
