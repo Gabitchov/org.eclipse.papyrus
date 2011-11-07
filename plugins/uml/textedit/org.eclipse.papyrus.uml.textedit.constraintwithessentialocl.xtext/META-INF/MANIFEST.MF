@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.constraintwithessentialocl.xtext;singleton:=true
 Bundle-Version: 3.1.0.qualifier
-Bundle-Activator: org.eclipse.ocl.examples.xtext.papyrus.EssentialOCLPopupPlugin
+Bundle-Activator: org.eclipse.papyrus.uml.textedit.constraintwithessentialocl.xtext.EssentialOCLPopupPlugin
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.papyrus.extensionpoints.editors,

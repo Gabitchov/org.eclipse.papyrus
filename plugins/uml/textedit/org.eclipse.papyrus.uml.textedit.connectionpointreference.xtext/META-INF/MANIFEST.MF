@@ -1,13 +1,13 @@
 Manifest-Version: 1.0
-Export-Package: org.eclipse.papyrus.connectionpointreference.editor.xtext,
- org.eclipse.papyrus.connectionpointreference.editor.xtext.parseTreeConstruction,
- org.eclipse.papyrus.connectionpointreference.editor.xtext.parser.antlr,
- org.eclipse.papyrus.connectionpointreference.editor.xtext.parser.antlr.internal,
- org.eclipse.papyrus.connectionpointreference.editor.xtext.services,
- org.eclipse.papyrus.connectionpointreference.editor.xtext.uMLConnectionPointReference,
- org.eclipse.papyrus.connectionpointreference.editor.xtext.uMLConnectionPointReference.impl,
- org.eclipse.papyrus.connectionpointreference.editor.xtext.uMLConnectionPointReference.util,
- org.eclipse.papyrus.connectionpointreference.editor.xtext.validation
+Export-Package: org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext,
+ org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.parseTreeConstruction,
+ org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.parser.antlr,
+ org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.parser.antlr.internal,
+ org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.services,
+ org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.uMLConnectionPointReference,
+ org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.uMLConnectionPointReference.impl,
+ org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.uMLConnectionPointReference.util,
+ org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.validation
 Require-Bundle: org.eclipse.xtext,
  org.eclipse.xtext.generator;resolution:=optional,
  org.apache.commons.logging;resolution:=optional,

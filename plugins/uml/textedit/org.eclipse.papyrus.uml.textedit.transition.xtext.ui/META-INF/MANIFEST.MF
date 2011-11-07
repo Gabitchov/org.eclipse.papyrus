@@ -1,14 +1,14 @@
 Manifest-Version: 1.0
-Export-Package: org.eclipse.papyrus.transition.editor.xtext.ui,
- org.eclipse.papyrus.transition.editor.xtext.ui.contentassist,
- org.eclipse.papyrus.transition.editor.xtext.ui.contentassist.antlr,
- org.eclipse.papyrus.transition.editor.xtext.ui.contentassist.antlr.internal,
- org.eclipse.papyrus.transition.editor.xtext.ui.contributions,
- org.eclipse.papyrus.transition.editor.xtext.ui.editor,
- org.eclipse.papyrus.transition.editor.xtext.ui.internal,
- org.eclipse.papyrus.transition.editor.xtext.ui.labeling,
- org.eclipse.papyrus.transition.editor.xtext.ui.outline,
- org.eclipse.papyrus.transition.editor.xtext.ui.quickfix
+Export-Package: org.eclipse.papyrus.uml.textedit.transition.xtext.ui,
+ org.eclipse.papyrus.uml.textedit.transition.xtext.ui.contentassist,
+ org.eclipse.papyrus.uml.textedit.transition.xtext.ui.contentassist.antlr,
+ org.eclipse.papyrus.uml.textedit.transition.xtext.ui.contentassist.antlr.internal,
+ org.eclipse.papyrus.uml.textedit.transition.xtext.ui.contributions,
+ org.eclipse.papyrus.uml.textedit.transition.xtext.ui.editor,
+ org.eclipse.papyrus.uml.textedit.transition.xtext.ui.internal,
+ org.eclipse.papyrus.uml.textedit.transition.xtext.ui.labeling,
+ org.eclipse.papyrus.uml.textedit.transition.xtext.ui.outline,
+ org.eclipse.papyrus.uml.textedit.transition.xtext.ui.quickfix
 Bundle-ActivationPolicy: lazy
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
@@ -31,7 +31,7 @@ Require-Bundle: org.eclipse.papyrus.uml.textedit.transition.xtext;bundle-version
 Bundle-Vendor: %providerName
 Bundle-Version: 0.9.0.qualifier
 Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.transition.editor.xtext.ui.inter
+Bundle-Activator: org.eclipse.papyrus.uml.textedit.transition.xtext.ui.inter
  nal.UmlTransitionActivator
 Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.transition.xtext.ui;singleton:=true
 Import-Package: org.apache.log4j

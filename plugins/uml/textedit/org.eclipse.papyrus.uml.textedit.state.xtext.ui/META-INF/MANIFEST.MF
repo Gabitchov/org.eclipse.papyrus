@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Export-Package: org.eclipse.papyrus.state.editor.xtext.ui.contentassis
+Export-Package: org.eclipse.papyrus.uml.textedit.state.xtext.ui.contentassis
  t.antlr
 Bundle-ActivationPolicy: lazy
 Bundle-Name: %pluginName
@@ -23,7 +23,7 @@ Require-Bundle: org.eclipse.papyrus.uml.textedit.state.xtext;bundle-version="0.9
 Bundle-Vendor: %providerName
 Bundle-Version: 0.9.0.qualifier
 Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.state.editor.xtext.ui.internal.U
+Bundle-Activator: org.eclipse.papyrus.uml.textedit.state.xtext.ui.internal.U
  mlStateActivator
 Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.state.xtext.ui;singleton:=true
 Import-Package: org.apache.log4j

@@ -6,42 +6,42 @@
     <extension
             point="org.eclipse.ui.editors">
         <editor
-            class="org.eclipse.papyrus.connectionpointreference.editor.xtext.ui.UMLConnectionPointReferenceExecutableExtensionFactory:org.eclipse.xtext.ui.editor.XtextEditor"
+            class="org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui.UMLConnectionPointReferenceExecutableExtensionFactory:org.eclipse.xtext.ui.editor.XtextEditor"
             contributorClass="org.eclipse.ui.editors.text.TextEditorActionContributor"
             default="true"
             extensions="conncectionpointreference"
-            id="org.eclipse.papyrus.connectionpointreference.editor.xtext.UMLConnectionPointReference"
+            id="org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.UMLConnectionPointReference"
             name="UMLConnectionPointReference Editor">
         </editor>
     </extension>
     <extension
         point="org.eclipse.ui.handlers">
         <handler
-            class="org.eclipse.papyrus.connectionpointreference.editor.xtext.ui.UMLConnectionPointReferenceExecutableExtensionFactory:org.eclipse.xtext.ui.editor.hyperlinking.OpenDeclarationHandler"
+            class="org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui.UMLConnectionPointReferenceExecutableExtensionFactory:org.eclipse.xtext.ui.editor.hyperlinking.OpenDeclarationHandler"
             commandId="org.eclipse.xtext.ui.editor.hyperlinking.OpenDeclaration">
             <activeWhen>
                 <reference
-                    definitionId="org.eclipse.papyrus.connectionpointreference.editor.xtext.UMLConnectionPointReference.Editor.opened">
+                    definitionId="org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.UMLConnectionPointReference.Editor.opened">
                 </reference>
             </activeWhen>
         </handler>
         <handler
-            class="org.eclipse.papyrus.connectionpointreference.editor.xtext.ui.UMLConnectionPointReferenceExecutableExtensionFactory:org.eclipse.xtext.ui.editor.handler.ValidateActionHandler"
-            commandId="org.eclipse.papyrus.connectionpointreference.editor.xtext.UMLConnectionPointReference.validate">
+            class="org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui.UMLConnectionPointReferenceExecutableExtensionFactory:org.eclipse.xtext.ui.editor.handler.ValidateActionHandler"
+            commandId="org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.UMLConnectionPointReference.validate">
          <activeWhen>
             <reference
-                    definitionId="org.eclipse.papyrus.connectionpointreference.editor.xtext.UMLConnectionPointReference.Editor.opened">
+                    definitionId="org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.UMLConnectionPointReference.Editor.opened">
             </reference>
          </activeWhen>
       </handler>
     </extension>
     <extension point="org.eclipse.core.expressions.definitions">
-        <definition id="org.eclipse.papyrus.connectionpointreference.editor.xtext.UMLConnectionPointReference.Editor.opened">
+        <definition id="org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.UMLConnectionPointReference.Editor.opened">
             <and>
                 <reference definitionId="isActiveEditorAnInstanceOfXtextEditor"/>
                 <with variable="activeEditor">
                     <test property="org.eclipse.xtext.ui.editor.XtextEditor.languageName" 
-                        value="org.eclipse.papyrus.connectionpointreference.editor.xtext.UMLConnectionPointReference" 
+                        value="org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.UMLConnectionPointReference" 
                         forcePluginActivation="true"/>
                 </with>        
             </and>
@@ -50,37 +50,37 @@
     <extension
             point="org.eclipse.ui.preferencePages">
         <page
-            class="org.eclipse.papyrus.connectionpointreference.editor.xtext.ui.UMLConnectionPointReferenceExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
-            id="org.eclipse.papyrus.connectionpointreference.editor.xtext.UMLConnectionPointReference"
+            class="org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui.UMLConnectionPointReferenceExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
+            id="org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.UMLConnectionPointReference"
             name="UMLConnectionPointReference">
-            <keywordReference id="org.eclipse.papyrus.connectionpointreference.editor.xtext.ui.keyword_UMLConnectionPointReference"/>
+            <keywordReference id="org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui.keyword_UMLConnectionPointReference"/>
         </page>
         <page
-            category="org.eclipse.papyrus.connectionpointreference.editor.xtext.UMLConnectionPointReference"
-            class="org.eclipse.papyrus.connectionpointreference.editor.xtext.ui.UMLConnectionPointReferenceExecutableExtensionFactory:org.eclipse.xtext.ui.editor.syntaxcoloring.SyntaxColoringPreferencePage"
-            id="org.eclipse.papyrus.connectionpointreference.editor.xtext.UMLConnectionPointReference.coloring"
+            category="org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.UMLConnectionPointReference"
+            class="org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui.UMLConnectionPointReferenceExecutableExtensionFactory:org.eclipse.xtext.ui.editor.syntaxcoloring.SyntaxColoringPreferencePage"
+            id="org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.UMLConnectionPointReference.coloring"
             name="Syntax Coloring">
-            <keywordReference id="org.eclipse.papyrus.connectionpointreference.editor.xtext.ui.keyword_UMLConnectionPointReference"/>
+            <keywordReference id="org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui.keyword_UMLConnectionPointReference"/>
         </page>
         <page
-            category="org.eclipse.papyrus.connectionpointreference.editor.xtext.UMLConnectionPointReference"
-            class="org.eclipse.papyrus.connectionpointreference.editor.xtext.ui.UMLConnectionPointReferenceExecutableExtensionFactory:org.eclipse.xtext.ui.editor.templates.XtextTemplatePreferencePage"
-            id="org.eclipse.papyrus.connectionpointreference.editor.xtext.UMLConnectionPointReference.templates"
+            category="org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.UMLConnectionPointReference"
+            class="org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui.UMLConnectionPointReferenceExecutableExtensionFactory:org.eclipse.xtext.ui.editor.templates.XtextTemplatePreferencePage"
+            id="org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.UMLConnectionPointReference.templates"
             name="Templates">
-            <keywordReference id="org.eclipse.papyrus.connectionpointreference.editor.xtext.ui.keyword_UMLConnectionPointReference"/>
+            <keywordReference id="org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui.keyword_UMLConnectionPointReference"/>
         </page>
     </extension>
     <extension
         point="org.eclipse.ui.keywords">
         <keyword
-            id="org.eclipse.papyrus.connectionpointreference.editor.xtext.ui.keyword_UMLConnectionPointReference"
+            id="org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui.keyword_UMLConnectionPointReference"
             label="UMLConnectionPointReference"/>
     </extension>
     <extension
          point="org.eclipse.ui.commands">
       <command
             description="Trigger expensive validation"
-            id="org.eclipse.papyrus.connectionpointreference.editor.xtext.UMLConnectionPointReference.validate"
+            id="org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.UMLConnectionPointReference.validate"
             name="Validate">
       </command>
     </extension>
@@ -88,12 +88,12 @@
         <menuContribution
             locationURI="popup:#TextEditorContext?after=group.edit">
              <command
-                 commandId="org.eclipse.papyrus.connectionpointreference.editor.xtext.UMLConnectionPointReference.validate"
+                 commandId="org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.UMLConnectionPointReference.validate"
                  style="push"
                  tooltip="Trigger expensive validation">
             <visibleWhen checkEnabled="false">
                 <reference
-                    definitionId="org.eclipse.papyrus.connectionpointreference.editor.xtext.UMLConnectionPointReference.Editor.opened">
+                    definitionId="org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.UMLConnectionPointReference.Editor.opened">
                 </reference>
             </visibleWhen>
          </command>  
@@ -103,7 +103,7 @@
 		<menuContribution locationURI="popup:#TextEditorContext?endof=group.find">
 			<command commandId="org.eclipse.xtext.ui.editor.FindReferences">
 				<visibleWhen checkEnabled="false">
-                	<reference definitionId="org.eclipse.papyrus.connectionpointreference.editor.xtext.UMLConnectionPointReference.Editor.opened">
+                	<reference definitionId="org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.UMLConnectionPointReference.Editor.opened">
                 	</reference>
             	</visibleWhen>
 			</command>
@@ -111,11 +111,11 @@
 	</extension>
 	<extension point="org.eclipse.ui.handlers">
 	    <handler
-            class="org.eclipse.papyrus.connectionpointreference.editor.xtext.ui.UMLConnectionPointReferenceExecutableExtensionFactory:org.eclipse.xtext.ui.editor.findrefs.FindReferencesHandler"
+            class="org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui.UMLConnectionPointReferenceExecutableExtensionFactory:org.eclipse.xtext.ui.editor.findrefs.FindReferencesHandler"
             commandId="org.eclipse.xtext.ui.editor.FindReferences">
             <activeWhen>
                 <reference
-                    definitionId="org.eclipse.papyrus.connectionpointreference.editor.xtext.UMLConnectionPointReference.Editor.opened">
+                    definitionId="org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.UMLConnectionPointReference.Editor.opened">
                 </reference>
             </activeWhen>
         </handler>
@@ -126,13 +126,13 @@
 	<extension
 		point="org.eclipse.emf.ecore.extension_parser">
 		<parser
-			class="org.eclipse.papyrus.connectionpointreference.editor.xtext.ui.UMLConnectionPointReferenceExecutableExtensionFactory:org.eclipse.xtext.resource.IResourceFactory"
+			class="org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui.UMLConnectionPointReferenceExecutableExtensionFactory:org.eclipse.xtext.resource.IResourceFactory"
 			type="conncectionpointreference">
 		</parser>
 	</extension>
 	<extension point="org.eclipse.xtext.extension_resourceServiceProvider">
         <resourceServiceProvider
-            class="org.eclipse.papyrus.connectionpointreference.editor.xtext.ui.UMLConnectionPointReferenceExecutableExtensionFactory:org.eclipse.xtext.ui.resource.IResourceUIServiceProvider"
+            class="org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui.UMLConnectionPointReferenceExecutableExtensionFactory:org.eclipse.xtext.ui.resource.IResourceUIServiceProvider"
             uriExtension="conncectionpointreference">
         </resourceServiceProvider>
     </extension>
@@ -143,11 +143,11 @@
 	<extension
 		point="org.eclipse.ui.handlers">
 		<handler 
-			class="org.eclipse.papyrus.connectionpointreference.editor.xtext.ui.UMLConnectionPointReferenceExecutableExtensionFactory:org.eclipse.xtext.ui.editor.outline.quickoutline.ShowQuickOutlineActionHandler"
+			class="org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui.UMLConnectionPointReferenceExecutableExtensionFactory:org.eclipse.xtext.ui.editor.outline.quickoutline.ShowQuickOutlineActionHandler"
 			commandId="org.eclipse.xtext.ui.editor.outline.QuickOutline">
 			<activeWhen>
 				<reference
-					definitionId="org.eclipse.papyrus.connectionpointreference.editor.xtext.UMLConnectionPointReference.Editor.opened">
+					definitionId="org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.UMLConnectionPointReference.Editor.opened">
 				</reference>
 			</activeWhen>
 		</handler>
@@ -167,7 +167,7 @@
 				style="push"
 				tooltip="Open Quick Outline">
 				<visibleWhen checkEnabled="false">
-					<reference definitionId="org.eclipse.papyrus.connectionpointreference.editor.xtext.UMLConnectionPointReference.Editor.opened"/>
+					<reference definitionId="org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.UMLConnectionPointReference.Editor.opened"/>
 				</visibleWhen>
 			</command>
 		</menuContribution>
@@ -176,14 +176,14 @@
    <extension
          point="org.eclipse.ui.ide.markerResolution">
       <markerResolutionGenerator
-            class="org.eclipse.papyrus.connectionpointreference.editor.xtext.ui.UMLConnectionPointReferenceExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator">
+            class="org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui.UMLConnectionPointReferenceExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator">
       </markerResolutionGenerator>
    </extension>
    <!-- quickfix marker resolution generator -->
    <extension
          point="org.eclipse.ui.ide.markerResolution">
       <markerResolutionGenerator
-            class="org.eclipse.papyrus.connectionpointreference.editor.xtext.ui.UMLConnectionPointReferenceExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator">
+            class="org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui.UMLConnectionPointReferenceExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator">
       </markerResolutionGenerator>
    </extension>
 

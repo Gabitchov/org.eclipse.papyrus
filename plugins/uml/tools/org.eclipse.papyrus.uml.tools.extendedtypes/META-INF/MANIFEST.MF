@@ -1,8 +1,8 @@
 Manifest-Version: 1.0
-Export-Package: org.eclipse.papyrus.extendedtypes.uml,
- org.eclipse.papyrus.extendedtypes.uml.applystereotypeactionconfiguration,
- org.eclipse.papyrus.extendedtypes.uml.applystereotypeactionconfiguration.impl,
- org.eclipse.papyrus.extendedtypes.uml.applystereotypeactionconfiguration.util
+Export-Package: org.eclipse.papyrus.uml.tools.extendedtypes,
+ org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration,
+ org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.impl,
+ org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.util
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
 Bundle-Name: %pluginName
@@ -20,7 +20,6 @@ Require-Bundle: org.eclipse.core.runtime,
 Bundle-Vendor: %providerName
 Bundle-Version: 0.9.0.qualifier
 Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.extendedtypes.uml.Activator$Impl
- ementation
+Bundle-Activator: org.eclipse.papyrus.uml.tools.extendedtypes.Activator$Implementation
 Bundle-SymbolicName: org.eclipse.papyrus.uml.tools.extendedtypes;singleton:=true
 

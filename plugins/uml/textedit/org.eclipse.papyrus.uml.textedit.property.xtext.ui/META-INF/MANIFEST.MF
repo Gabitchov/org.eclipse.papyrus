@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
-Export-Package: org.eclipse.papyrus.property.editor.xtext.ui.contentassist.antlr,
- org.eclipse.papyrus.property.editor.xtext.ui.contributions,
- org.eclipse.papyrus.property.editor.xtext.ui.internal
+Export-Package: org.eclipse.papyrus.uml.textedit.property.xtext.ui.contentassist.antlr,
+ org.eclipse.papyrus.uml.textedit.property.xtext.ui.contributions,
+ org.eclipse.papyrus.uml.textedit.property.xtext.ui.internal
 Bundle-ActivationPolicy: lazy
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
@@ -26,7 +26,7 @@ Require-Bundle: org.eclipse.papyrus.uml.textedit.property.xtext;bundle-version="
 Bundle-Vendor: %providerName
 Bundle-Version: 0.9.0.qualifier
 Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.property.editor.xtext.ui.interna
+Bundle-Activator: org.eclipse.papyrus.uml.textedit.property.xtext.ui.interna
  l.UmlPropertyActivator
 Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.property.xtext.ui;singleton:=true
 Import-Package: org.apache.log4j

@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Export-Package: org.eclipse.papyrus.parameter.editor.xtext.ui.contenta
+Export-Package: org.eclipse.papyrus.uml.textedit.parameter.xtext.ui.contenta
  ssist.antlr
 Bundle-ActivationPolicy: lazy
 Bundle-Name: %pluginName
@@ -24,7 +24,7 @@ Require-Bundle: org.eclipse.papyrus.uml.textedit.parameter.xtext;bundle-version=
 Bundle-Vendor: %providerName
 Bundle-Version: 0.9.0.qualifier
 Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.parameter.editor.xtext.ui.intern
+Bundle-Activator: org.eclipse.papyrus.uml.textedit.parameter.xtext.ui.intern
  al.UmlParameterActivator
 Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.parameter.xtext.ui;singleton:=true
 Import-Package: org.apache.log4j,

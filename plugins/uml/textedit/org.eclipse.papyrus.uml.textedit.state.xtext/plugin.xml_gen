@@ -6,7 +6,7 @@
   <extension point="org.eclipse.emf.ecore.generated_package">
     <package 
        uri = "http://www.eclipse.org/papyrus/state/editor/xtext/UmlState" 
-       class = "org.eclipse.papyrus.state.editor.xtext.umlState.UmlStatePackage"
+       class = "org.eclipse.papyrus.uml.textedit.state.xtext.umlState.UmlStatePackage"
        genModel = "org/eclipse/papyrus/state/editor/xtext/UmlState.genmodel" /> 
 	
   </extension>

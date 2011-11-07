@@ -6,7 +6,7 @@
   <extension point="org.eclipse.emf.ecore.generated_package">
     <package 
        uri = "http://www.eclipse.org/papyrus/property/editor/xtext/UmlProperty" 
-       class = "org.eclipse.papyrus.property.editor.xtext.umlProperty.UmlPropertyPackage"
+       class = "org.eclipse.papyrus.uml.textedit.property.xtext.umlProperty.UmlPropertyPackage"
        genModel = "org/eclipse/papyrus/property/editor/xtext/UmlProperty.genmodel" /> 
 	
   </extension>
