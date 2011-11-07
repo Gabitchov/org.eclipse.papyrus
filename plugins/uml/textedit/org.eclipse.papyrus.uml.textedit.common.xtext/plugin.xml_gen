@@ -6,7 +6,7 @@
   <extension point="org.eclipse.emf.ecore.generated_package">
     <package 
        uri = "http://www.eclipse.org/papyrus/common/editor/xtext/UmlCommon" 
-       class = "org.eclipse.papyrus.common.editor.xtext.umlCommon.UmlCommonPackage"
+       class = "org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon.UmlCommonPackage"
        genModel = "org/eclipse/papyrus/common/editor/xtext/UmlCommon.genmodel" /> 
 	
   </extension>

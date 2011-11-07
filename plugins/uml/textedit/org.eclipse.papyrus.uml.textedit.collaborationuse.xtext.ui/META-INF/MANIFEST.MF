@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Export-Package: org.eclipse.papyrus.collaborationuse.editor.xtext.ui.c
+Export-Package: org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui.c
  ontentassist.antlr
 Bundle-ActivationPolicy: lazy
 Bundle-Name: %pluginName
@@ -27,7 +27,7 @@ Require-Bundle: org.eclipse.papyrus.uml.textedit.collaborationuse.xtext;bundle-v
 Bundle-Vendor: %providerName
 Bundle-Version: 0.9.0.qualifier
 Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.collaborationuse.editor.xtext.ui
+Bundle-Activator: org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui
  .internal.UmlCollaborationUseActivator
 Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui;singleton:=true
 Import-Package: org.apache.log4j

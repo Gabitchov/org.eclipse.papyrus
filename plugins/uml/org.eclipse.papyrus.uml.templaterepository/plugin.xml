@@ -2,7 +2,7 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension
-         point="org.eclipse.papyrus.wizards.templates">
+         point="org.eclipse.papyrus.uml.diagram.wizards.templates">
       <template
             file="resource/ModelWithBasicTypes.uml"
             id="org.eclipse.papyrus.templaterepository.ModelWithBasicType"

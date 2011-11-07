@@ -17,17 +17,17 @@ Require-Bundle: org.eclipse.xtext,
  org.eclipse.papyrus.views.properties.runtime;bundle-version="0.9.0",
  org.eclipse.papyrus.uml.textedit.common.xtext;bundle-version="0.9.0";visibility:=reexport,
  org.eclipse.xtext.gmf.glue;bundle-version="0.8.0"
-Export-Package: org.eclipse.papyrus.collaborationuse.editor.xtext,
- org.eclipse.papyrus.collaborationuse.editor.xtext.formatting,
- org.eclipse.papyrus.collaborationuse.editor.xtext.parseTreeConstruction,
- org.eclipse.papyrus.collaborationuse.editor.xtext.parser.antlr,
- org.eclipse.papyrus.collaborationuse.editor.xtext.parser.antlr.internal,
- org.eclipse.papyrus.collaborationuse.editor.xtext.scoping,
- org.eclipse.papyrus.collaborationuse.editor.xtext.services,
- org.eclipse.papyrus.collaborationuse.editor.xtext.umlCollaborationUse,
- org.eclipse.papyrus.collaborationuse.editor.xtext.umlCollaborationUse.impl,
- org.eclipse.papyrus.collaborationuse.editor.xtext.umlCollaborationUse.util,
- org.eclipse.papyrus.collaborationuse.editor.xtext.validation
+Export-Package: org.eclipse.papyrus.uml.textedit.collaborationuse.xtext,
+ org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.formatting,
+ org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.parseTreeConstruction,
+ org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.parser.antlr,
+ org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.parser.antlr.internal,
+ org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.scoping,
+ org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.services,
+ org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.umlCollaborationUse,
+ org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.umlCollaborationUse.impl,
+ org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.umlCollaborationUse.util,
+ org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.validation
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 0.9.0.qualifier

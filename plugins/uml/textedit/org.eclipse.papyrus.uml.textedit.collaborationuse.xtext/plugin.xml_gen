@@ -6,7 +6,7 @@
   <extension point="org.eclipse.emf.ecore.generated_package">
     <package 
        uri = "http://www.eclipse.org/papyrus/collaborationuse/editor/xtext/UmlCollaborationUse" 
-       class = "org.eclipse.papyrus.collaborationuse.editor.xtext.umlCollaborationUse.UmlCollaborationUsePackage"
+       class = "org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.umlCollaborationUse.UmlCollaborationUsePackage"
        genModel = "org/eclipse/papyrus/collaborationuse/editor/xtext/UmlCollaborationUse.genmodel" /> 
 	
   </extension>

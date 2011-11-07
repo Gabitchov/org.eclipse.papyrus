@@ -31,7 +31,7 @@ import org.eclipse.papyrus.uml.service.types.command.MessageFoundReorientCommand
 import org.eclipse.papyrus.uml.service.types.command.MessageLostReorientCommand;
 import org.eclipse.papyrus.uml.service.types.command.MessageReplyReorientCommand;
 import org.eclipse.papyrus.uml.service.types.command.MessageSyncReorientCommand;
-import org.eclipse.papyrus.umlutils.ExecutionSpecificationUtil;
+import org.eclipse.papyrus.uml.tools.utils.ExecutionSpecificationUtil;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.Gate;
