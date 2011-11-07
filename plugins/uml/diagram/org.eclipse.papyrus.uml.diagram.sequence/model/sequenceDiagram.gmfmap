@@ -524,19 +524,19 @@
               xsi:type="gmfmap:FeatureLabelMapping"
               editPattern="">
             <diagramLabel
-                href="../../org.eclipse.papyrus.diagram.common/model/Constraint.gmfgraph#ConstraintNameDiagramLabel"/>
+                href="../../org.eclipse.papyrus.uml.diagram.common/model/Constraint.gmfgraph#ConstraintNameDiagramLabel"/>
             <features
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
           </labelMappings>
           <labelMappings>
             <diagramLabel
-                href="../../org.eclipse.papyrus.diagram.common/model/Constraint.gmfgraph#ConstraintBodyDiagramLabel"/>
+                href="../../org.eclipse.papyrus.uml.diagram.common/model/Constraint.gmfgraph#ConstraintBodyDiagramLabel"/>
           </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"
               href="sequenceDiagram.gmftool#//@palette/@tools.0/@tools.9"/>
           <diagramNode
-              href="../../org.eclipse.papyrus.diagram.common/model/Constraint.gmfgraph#ConstraintNode"/>
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/Constraint.gmfgraph#ConstraintNode"/>
         </ownedChild>
       </children>
       <children
@@ -561,7 +561,7 @@
               xsi:type="gmfmap:FeatureLabelMapping"
               editPattern="">
             <diagramLabel
-                href="../../org.eclipse.papyrus.diagram.common/model/Comment.gmfgraph#CornerBentContentDiagramLabel"/>
+                href="../../org.eclipse.papyrus.uml.diagram.common/model/Comment.gmfgraph#CornerBentContentDiagramLabel"/>
             <features
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Comment/body"/>
           </labelMappings>
@@ -569,7 +569,7 @@
               xsi:type="gmftool:CreationTool"
               href="sequenceDiagram.gmftool#//@palette/@tools.0/@tools.8"/>
           <diagramNode
-              href="../../org.eclipse.papyrus.diagram.common/model/Comment.gmfgraph#CornerBentNode"/>
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/Comment.gmfgraph#CornerBentNode"/>
         </ownedChild>
       </children>
       <children>
@@ -948,7 +948,7 @@
         xsi:type="gmftool:CreationTool"
         href="sequenceDiagram.gmftool#//@palette/@tools.1/@tools.8"/>
     <diagramLink
-        href="../../org.eclipse.papyrus.diagram.common/model/Comment.gmfgraph#CommentLinkConnection"/>
+        href="../../org.eclipse.papyrus.uml.diagram.common/model/Comment.gmfgraph#CommentLinkConnection"/>
     <linkMetaFeature
         xsi:type="ecore:EReference"
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Comment/annotatedElement"/>
@@ -959,7 +959,7 @@
         xsi:type="gmftool:CreationTool"
         href="sequenceDiagram.gmftool#//@palette/@tools.1/@tools.9"/>
     <diagramLink
-        href="../../org.eclipse.papyrus.diagram.common/model/Constraint.gmfgraph#ConstraintLinkConnection"/>
+        href="../../org.eclipse.papyrus.uml.diagram.common/model/Constraint.gmfgraph#ConstraintLinkConnection"/>
     <linkMetaFeature
         xsi:type="ecore:EReference"
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Constraint/constrainedElement"/>
@@ -1014,7 +1014,7 @@
       name="validateUMLModel"
       description="Validate the UML model">
     <childContainers
-        id="org.eclipse.papyrus.diagram.sequence.validation.FragmentOrderingKeeper"
+        id="org.eclipse.papyrus.uml.diagram.sequence.validation.FragmentOrderingKeeper"
         name="fragmentsOrder"
         description="Fragments order">
       <audits

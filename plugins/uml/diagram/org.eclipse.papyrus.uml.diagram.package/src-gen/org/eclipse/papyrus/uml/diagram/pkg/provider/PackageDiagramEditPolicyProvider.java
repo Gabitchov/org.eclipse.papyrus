@@ -36,22 +36,22 @@ public class PackageDiagramEditPolicyProvider extends AbstractProvider implement
 			return false;
 		}
 
-		if(gep instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.PackageEditPart) {
+		if(gep instanceof org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PackageEditPart) {
 			return true;
 		}
-		if(gep instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.PackagePackageableElementCompartmentEditPart) {
+		if(gep instanceof org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PackagePackageableElementCompartmentEditPart) {
 			return true;
 		}
-		if(gep instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.PackageEditPartCN) {
+		if(gep instanceof org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PackageEditPartCN) {
 			return true;
 		}
-		if(gep instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.PackagePackageableElementCompartmentEditPartCN) {
+		if(gep instanceof org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PackagePackageableElementCompartmentEditPartCN) {
 			return true;
 		}
-		if(gep instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.CommentEditPart) {
+		if(gep instanceof org.eclipse.papyrus.uml.diagram.clazz.edit.parts.CommentEditPart) {
 			return true;
 		}
-		if(gep instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.CommentEditPartCN) {
+		if(gep instanceof org.eclipse.papyrus.uml.diagram.clazz.edit.parts.CommentEditPartCN) {
 			return true;
 		}
 

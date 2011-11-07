@@ -13,6 +13,6 @@ Bundle-Version: 0.9.0.qualifier
 Bundle-Name: %pluginName
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.uml.diagram.pkg.Activator
-Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.package;singleton:=true
+Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.pkg;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

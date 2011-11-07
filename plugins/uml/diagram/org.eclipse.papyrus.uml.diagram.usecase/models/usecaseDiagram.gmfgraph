@@ -54,7 +54,7 @@
       <actualFigure
           xsi:type="gmfgraph:CustomFigure"
           name="ActorFigure"
-          qualifiedClassName="org.eclipse.papyrus.diagram.usecase.draw2d.StickMan"/>
+          qualifiedClassName="org.eclipse.papyrus.uml.diagram.usecase.draw2d.StickMan"/>
     </descriptors>
     <descriptors
         name="UseCaseFigure">
@@ -63,7 +63,7 @@
           name="UseCaseFigure">
         <layout
             xsi:type="gmfgraph:CustomLayout"
-            qualifiedClassName="org.eclipse.papyrus.diagram.common.draw2d.SplitEllipseLayout"/>
+            qualifiedClassName="org.eclipse.papyrus.uml.diagram.common.draw2d.SplitEllipseLayout"/>
         <foregroundColor
             xsi:type="gmfgraph:RGBColor"
             red="177"
@@ -97,7 +97,7 @@
               alignment="FILL"/>
           <border
               xsi:type="gmfgraph:CustomBorder"
-              qualifiedClassName="org.eclipse.papyrus.diagram.common.draw2d.OneLineDashedBorder"/>
+              qualifiedClassName="org.eclipse.papyrus.uml.diagram.common.draw2d.OneLineDashedBorder"/>
         </children>
       </actualFigure>
       <accessors
@@ -149,7 +149,7 @@
               outline="false">
             <layout
                 xsi:type="gmfgraph:CustomLayout"
-                qualifiedClassName="org.eclipse.papyrus.diagram.common.draw2d.CenterLayout"/>
+                qualifiedClassName="org.eclipse.papyrus.uml.diagram.common.draw2d.CenterLayout"/>
             <children
                 xsi:type="gmfgraph:Label"
                 name="UseCaseAsClassFigure_name">
@@ -201,7 +201,7 @@
             fill="false">
           <layout
               xsi:type="gmfgraph:CustomLayout"
-              qualifiedClassName="org.eclipse.papyrus.diagram.common.draw2d.CenterLayout"/>
+              qualifiedClassName="org.eclipse.papyrus.uml.diagram.common.draw2d.CenterLayout"/>
           <children
               xsi:type="gmfgraph:Label"
               name="ActorAsRectangleFigure_name"/>
@@ -218,7 +218,7 @@
           name="UseCaseSubjectFigure">
         <layout
             xsi:type="gmfgraph:CustomLayout"
-            qualifiedClassName="org.eclipse.papyrus.diagram.common.draw2d.PileLayout">
+            qualifiedClassName="org.eclipse.papyrus.uml.diagram.common.draw2d.PileLayout">
           <attributes
               name="stretchBottom"
               value="true"/>
@@ -233,7 +233,7 @@
             name="UseCaseSubjectFigure_header">
           <layout
               xsi:type="gmfgraph:CustomLayout"
-              qualifiedClassName="org.eclipse.papyrus.diagram.common.draw2d.CenterLayout"/>
+              qualifiedClassName="org.eclipse.papyrus.uml.diagram.common.draw2d.CenterLayout"/>
           <children
               xsi:type="gmfgraph:Label"
               name="UseCaseSubjectFigure_name">
@@ -270,7 +270,7 @@
       <actualFigure
           xsi:type="gmfgraph:CustomFigure"
           name="AppliedStereotypeWrappingLabel"
-          qualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.AppliedStereotypeWrappingLabelFigure"/>
+          qualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.AppliedStereotypeWrappingLabelFigure"/>
     </descriptors>
   </figures>
   <nodes

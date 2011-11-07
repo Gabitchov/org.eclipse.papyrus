@@ -23,8 +23,8 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.papyrus.documentation.IDocumentationChangedListener;
 import org.eclipse.papyrus.uml.profile.IUMLDocumentationConstants;
+import org.eclipse.papyrus.views.documentation.IDocumentationChangedListener;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
@@ -53,7 +53,7 @@ public class UMLChangeDocumentationCommand extends AbstractCommand {
 	private Set<IDocumentationChangedListener> documentationChangedListeners;
 
 	public UMLChangeDocumentationCommand(Element element, String newDocumentation, Set<IDocumentationChangedListener> documentationChangedListeners) {
-		super(org.eclipse.papyrus.documentation.Messages.ChangeDocCommandLabel);
+		super(org.eclipse.papyrus.views.documentation.Messages.ChangeDocCommandLabel);
 		this.element = element;
 		this.newComment = newDocumentation;
 		this.documentationChangedListeners = documentationChangedListeners;

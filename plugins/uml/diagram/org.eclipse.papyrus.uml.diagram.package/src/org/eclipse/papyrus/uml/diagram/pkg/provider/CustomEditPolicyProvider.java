@@ -14,7 +14,7 @@
 package org.eclipse.papyrus.uml.diagram.pkg.provider;
 
 import org.eclipse.gef.EditPart;
-import org.eclipse.papyrus.diagram.common.editpolicies.NavigationEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.NavigationEditPolicy;
 
 public class CustomEditPolicyProvider extends PackageDiagramEditPolicyProvider {
 

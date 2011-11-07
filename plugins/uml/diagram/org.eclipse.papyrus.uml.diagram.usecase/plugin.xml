@@ -25,7 +25,7 @@
    <extension
          point="org.eclipse.ui.handlers">
       <handler
-            class="org.eclipse.papyrus.diagram.usecase.CreateUseCaseDiagramWithNavigationHandler"
+            class="org.eclipse.papyrus.uml.diagram.usecase.CreateUseCaseDiagramWithNavigationHandler"
             commandId="org.eclipse.papyrus.diagram.usecase.CreateUseCaseDiagramCommand">
          <activeWhen>
             <or>
@@ -54,7 +54,7 @@
                   style="push"
                   tooltip="Create a new UseCase Diagram">
                   <visibleWhen>
-                  	<reference definitionId="org.eclipse.papyrus.diagram.common.IsPapyrusActiveWithUMLModel"/>
+                  	<reference definitionId="org.eclipse.papyrus.uml.diagram.common.IsPapyrusActiveWithUMLModel"/>
                   </visibleWhen>
             </command>
          </toolbar>
@@ -72,20 +72,20 @@
                   style="push"
                   tooltip="Create a new UseCase Diagram">
                   <visibleWhen>
-                  	<reference definitionId="org.eclipse.papyrus.diagram.common.IsPapyrusActiveWithUMLModel"/>
+                  	<reference definitionId="org.eclipse.papyrus.uml.diagram.common.IsPapyrusActiveWithUMLModel"/>
                   </visibleWhen>                  
             </command>
          </menu>
       </menuContribution>
       
-	<menuContribution locationURI="popup:org.eclipse.papyrus.modelexplorer.popupmenu.creatediagram">
+	<menuContribution locationURI="popup:org.eclipse.papyrus.views.modelexplorer.popupmenu.creatediagram">
 		<command commandId="org.eclipse.papyrus.diagram.usecase.CreateUseCaseDiagramCommand"
 			icon="icons/obj16/Diagram_UseCase.gif"
 			label="Create a new UseCase Diagram"
 			style="push"
 			tooltip="Create a new UseCase Diagram">
 			<visibleWhen>
-				<reference definitionId="org.eclipse.papyrus.diagram.common.IsPapyrusActiveWithUMLModel"/>
+				<reference definitionId="org.eclipse.papyrus.uml.diagram.common.IsPapyrusActiveWithUMLModel"/>
 			</visibleWhen>
 		</command>
 	</menuContribution>      
@@ -95,14 +95,14 @@
    <extension
          point="org.eclipse.papyrus.core.papyrusDiagram">
       <editorDiagram
-            actionBarContributorId="org.eclipse.papyrus.diagram.common.part.UMLDiagramActionBarContributor"
+            actionBarContributorId="org.eclipse.papyrus.uml.diagram.common.part.UMLDiagramActionBarContributor"
             contextId="com.cea.papyrus.gmf.editor.context"
-            factoryClass="org.eclipse.papyrus.diagram.usecase.UseCaseDiagramEditorFactory"
+            factoryClass="org.eclipse.papyrus.uml.diagram.usecase.UseCaseDiagramEditorFactory"
             icon="icons/obj16/Diagram_UseCase.gif">
       </editorDiagram>
       <creationCommand
-            creationCommandClass="org.eclipse.papyrus.diagram.usecase.CreateUseCaseDiagramCommand"
-            creationCondition="org.eclipse.papyrus.diagram.usecase.UseCaseDiagramCreationCondition"
+            creationCommandClass="org.eclipse.papyrus.uml.diagram.usecase.CreateUseCaseDiagramCommand"
+            creationCondition="org.eclipse.papyrus.uml.diagram.usecase.UseCaseDiagramCreationCondition"
             icon="icons/obj16/Diagram_UseCase.gif"
             id="org.eclipse.papyrus.diagram.usecase.CreateUseCaseDiagramCommand"
             label="UML UseCase Diagram"
@@ -119,7 +119,7 @@
       <?gmfgen generated="true"?>
       <propertyContributor
             contributorId="org.eclipse.papyrus.diagram.usecase"
-            labelProvider="org.eclipse.papyrus.diagram.usecase.sheet.UMLSheetLabelProvider">
+            labelProvider="org.eclipse.papyrus.uml.diagram.usecase.sheet.UMLSheetLabelProvider">
          <propertyCategory category="domain"/>
          <propertyCategory category="visual"/>
          <propertyCategory category="extra"/>
@@ -170,10 +170,10 @@
          <propertySection
             id="property.section.domain" 
             tab="property.tab.domain"
-            class="org.eclipse.papyrus.diagram.usecase.sheet.UMLPropertySection">
+            class="org.eclipse.papyrus.uml.diagram.usecase.sheet.UMLPropertySection">
             <input type="org.eclipse.gmf.runtime.notation.View"/>
             <input type="org.eclipse.gef.EditPart"/>
-            <input type="org.eclipse.papyrus.diagram.usecase.navigator.UMLAbstractNavigatorItem"/>
+            <input type="org.eclipse.papyrus.uml.diagram.usecase.navigator.UMLAbstractNavigatorItem"/>
          </propertySection>
       </propertySections>
    </extension>
@@ -213,7 +213,7 @@
 
    <extension point="org.eclipse.gmf.runtime.emf.ui.modelingAssistantProviders" id="modelassist-provider">
       <?gmfgen generated="true"?>
-      <modelingAssistantProvider class="org.eclipse.papyrus.diagram.usecase.providers.UMLModelingAssistantProvider">
+      <modelingAssistantProvider class="org.eclipse.papyrus.uml.diagram.usecase.providers.UMLModelingAssistantProvider">
          <Priority name="Lowest"/>
          <object class="org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseDiagramEditPart" id="Package_1000"/>
          <object class="org.eclipse.papyrus.diagram.usecase.edit.parts.ActorEditPartTN" id="Actor_2011"/>
@@ -231,14 +231,14 @@
 
    <extension point="org.eclipse.gmf.runtime.common.ui.services.iconProviders" id="icon-provider">
       <?gmfgen generated="true"?>
-      <IconProvider class="org.eclipse.papyrus.diagram.usecase.providers.UMLIconProvider">
+      <IconProvider class="org.eclipse.papyrus.uml.diagram.usecase.providers.UMLIconProvider">
          <Priority name="Low"/>
       </IconProvider>
    </extension>
 
    <extension point="org.eclipse.gmf.runtime.common.ui.services.parserProviders" id="parser-provider">
       <?gmfgen generated="true"?>
-      <ParserProvider class="org.eclipse.papyrus.diagram.usecase.providers.UMLParserProvider">
+      <ParserProvider class="org.eclipse.papyrus.uml.diagram.usecase.providers.UMLParserProvider">
          <Priority name="Lowest"/>
       </ParserProvider>
    </extension>
@@ -251,7 +251,7 @@
                name="%metatype.name.Package_1000"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Package"
-               edithelper="org.eclipse.papyrus.diagram.usecase.edit.helpers.PackageEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.usecase.edit.helpers.PackageEditHelper">
             <param name="semanticHint" value="1000"/>
          </metamodelType>
       </metamodel>
@@ -261,7 +261,7 @@
                name="%metatype.name.Actor_2011"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Actor"
-               edithelper="org.eclipse.papyrus.diagram.usecase.edit.helpers.ActorEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.usecase.edit.helpers.ActorEditHelper">
             <param name="semanticHint" value="2011"/>
          </metamodelType>
       </metamodel>
@@ -280,7 +280,7 @@
                name="%metatype.name.UseCase_2013"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="UseCase"
-               edithelper="org.eclipse.papyrus.diagram.usecase.edit.helpers.UseCaseEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.usecase.edit.helpers.UseCaseEditHelper">
             <param name="semanticHint" value="2013"/>
          </metamodelType>
       </metamodel>
@@ -299,7 +299,7 @@
                name="%metatype.name.Component_2015"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Component"
-               edithelper="org.eclipse.papyrus.diagram.usecase.edit.helpers.ComponentEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.usecase.edit.helpers.ComponentEditHelper">
             <param name="semanticHint" value="2015"/>
          </metamodelType>
       </metamodel>
@@ -336,7 +336,7 @@
                name="%metatype.name.Diagram_2019"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Diagram"
-               edithelper="org.eclipse.papyrus.diagram.usecase.edit.helpers.ShortCutDiagramEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.usecase.edit.helpers.ShortCutDiagramEditHelper">
             <param name="semanticHint" value="2019"/>
          </metamodelType>
       </metamodel>
@@ -346,7 +346,7 @@
                name="%metatype.name.ExtensionPoint_3007"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="ExtensionPoint"
-               edithelper="org.eclipse.papyrus.diagram.usecase.edit.helpers.ExtensionPointEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.usecase.edit.helpers.ExtensionPointEditHelper">
             <param name="semanticHint" value="3007"/>
          </metamodelType>
       </metamodel>
@@ -383,7 +383,7 @@
                name="%metatype.name.Comment_3015"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Comment"
-               edithelper="org.eclipse.papyrus.diagram.usecase.edit.helpers.CommentEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.usecase.edit.helpers.CommentEditHelper">
             <param name="semanticHint" value="3015"/>
          </metamodelType>
       </metamodel>
@@ -393,7 +393,7 @@
                name="%metatype.name.Constraint_3017"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Constraint"
-               edithelper="org.eclipse.papyrus.diagram.usecase.edit.helpers.ConstraintEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.usecase.edit.helpers.ConstraintEditHelper">
             <param name="semanticHint" value="3017"/>
          </metamodelType>
       </metamodel>
@@ -457,7 +457,7 @@
                name="%metatype.name.Include_4008"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Include"
-               edithelper="org.eclipse.papyrus.diagram.usecase.edit.helpers.IncludeEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.usecase.edit.helpers.IncludeEditHelper">
             <param name="semanticHint" value="4008"/>
          </metamodelType>
       </metamodel>
@@ -467,7 +467,7 @@
                name="%metatype.name.Extend_4009"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Extend"
-               edithelper="org.eclipse.papyrus.diagram.usecase.edit.helpers.ExtendEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.usecase.edit.helpers.ExtendEditHelper">
             <param name="semanticHint" value="4009"/>
          </metamodelType>
       </metamodel>
@@ -477,7 +477,7 @@
                name="%metatype.name.Generalization_4010"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Generalization"
-               edithelper="org.eclipse.papyrus.diagram.usecase.edit.helpers.GeneralizationEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.usecase.edit.helpers.GeneralizationEditHelper">
             <param name="semanticHint" value="4010"/>
          </metamodelType>
       </metamodel>
@@ -487,7 +487,7 @@
                name="%metatype.name.Association_4011"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Association"
-               edithelper="org.eclipse.papyrus.diagram.usecase.edit.helpers.AssociationEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.usecase.edit.helpers.AssociationEditHelper">
             <param name="semanticHint" value="4011"/>
          </metamodelType>
       </metamodel>
@@ -506,7 +506,7 @@
                name="%metatype.name.Dependency_4013"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Dependency"
-               edithelper="org.eclipse.papyrus.diagram.usecase.edit.helpers.DependencyEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.usecase.edit.helpers.DependencyEditHelper">
             <param name="semanticHint" value="4013"/>
          </metamodelType>
       </metamodel>
@@ -525,7 +525,7 @@
                name="%metatype.name.Abstraction_4015"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Abstraction"
-               edithelper="org.eclipse.papyrus.diagram.usecase.edit.helpers.AbstractionEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.usecase.edit.helpers.AbstractionEditHelper">
             <param name="semanticHint" value="4015"/>
          </metamodelType>
       </metamodel>
@@ -535,7 +535,7 @@
                name="%metatype.name.Usage_4016"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Usage"
-               edithelper="org.eclipse.papyrus.diagram.usecase.edit.helpers.UsageEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.usecase.edit.helpers.UsageEditHelper">
             <param name="semanticHint" value="4016"/>
          </metamodelType>
       </metamodel>
@@ -545,7 +545,7 @@
                name="%metatype.name.Realization_4017"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Realization"
-               edithelper="org.eclipse.papyrus.diagram.usecase.edit.helpers.RealizationEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.usecase.edit.helpers.RealizationEditHelper">
             <param name="semanticHint" value="4017"/>
          </metamodelType>
       </metamodel>
@@ -555,7 +555,7 @@
                name="%metatype.name.PackageMerge_4018"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="PackageMerge"
-               edithelper="org.eclipse.papyrus.diagram.usecase.edit.helpers.PackageMergeEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.usecase.edit.helpers.PackageMergeEditHelper">
             <param name="semanticHint" value="4018"/>
          </metamodelType>
       </metamodel>
@@ -565,7 +565,7 @@
                name="%metatype.name.PackageImport_4019"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="PackageImport"
-               edithelper="org.eclipse.papyrus.diagram.usecase.edit.helpers.PackageImportEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.usecase.edit.helpers.PackageImportEditHelper">
             <param name="semanticHint" value="4019"/>
          </metamodelType>
       </metamodel>
@@ -625,7 +625,7 @@
            type="org.eclipse.emf.common.ui.URIEditorInput"
            namespace="org.eclipse.papyrus.diagram.usecase"
            properties="isURIEditorInput"
-           class="org.eclipse.papyrus.diagram.usecase.part.UMLUriEditorInputTester">
+           class="org.eclipse.papyrus.uml.diagram.usecase.part.UMLUriEditorInputTester">
        </propertyTester>
    </extension>
 
@@ -652,8 +652,8 @@
             id="org.eclipse.papyrus.diagram.usecase.resourceContent" 
             name="%navigatorContentName" 
             priority="normal" 
-            contentProvider="org.eclipse.papyrus.diagram.usecase.navigator.UMLNavigatorContentProvider" 
-            labelProvider="org.eclipse.papyrus.diagram.usecase.navigator.UMLNavigatorLabelProvider"
+            contentProvider="org.eclipse.papyrus.uml.diagram.usecase.navigator.UMLNavigatorContentProvider" 
+            labelProvider="org.eclipse.papyrus.uml.diagram.usecase.navigator.UMLNavigatorLabelProvider"
             icon="icons/obj16/UMLDiagramFile.gif"
             activeByDefault="true">
          <triggerPoints>
@@ -662,24 +662,24 @@
     	          <instanceof value="org.eclipse.core.resources.IFile"/>
         	      <test property="org.eclipse.core.resources.extension" value="PapyrusUMLUsecase_diagram"/>
                </and>
-               <instanceof value="org.eclipse.papyrus.diagram.usecase.navigator.UMLAbstractNavigatorItem"/>
+               <instanceof value="org.eclipse.papyrus.uml.diagram.usecase.navigator.UMLAbstractNavigatorItem"/>
             </or>
          </triggerPoints>
          <possibleChildren>
             <or>
-         	   <instanceof value="org.eclipse.papyrus.diagram.usecase.navigator.UMLAbstractNavigatorItem"/>
+         	   <instanceof value="org.eclipse.papyrus.uml.diagram.usecase.navigator.UMLAbstractNavigatorItem"/>
             </or>
          </possibleChildren>
          <commonSorter 
                id="org.eclipse.papyrus.diagram.usecase.navigatorSorter" 
-               class="org.eclipse.papyrus.diagram.usecase.navigator.UMLNavigatorSorter">
+               class="org.eclipse.papyrus.uml.diagram.usecase.navigator.UMLNavigatorSorter">
             <parentExpression>
                <or>
 	              <and>
     	             <instanceof value="org.eclipse.core.resources.IFile"/>
         	         <test property="org.eclipse.core.resources.extension" value="PapyrusUMLUsecase_diagram"/>
                   </and>
-                  <instanceof value="org.eclipse.papyrus.diagram.usecase.navigator.UMLAbstractNavigatorItem"/>
+                  <instanceof value="org.eclipse.papyrus.uml.diagram.usecase.navigator.UMLAbstractNavigatorItem"/>
                </or>
             </parentExpression>
          </commonSorter>
@@ -688,8 +688,8 @@
             id="org.eclipse.papyrus.diagram.usecase.domainResourceContent" 
             name="%domainNavigatorContentName" 
             priority="normal" 
-            contentProvider="org.eclipse.papyrus.diagram.usecase.navigator.UMLDomainNavigatorContentProvider" 
-            labelProvider="org.eclipse.papyrus.diagram.usecase.navigator.UMLDomainNavigatorLabelProvider"
+            contentProvider="org.eclipse.papyrus.uml.diagram.usecase.navigator.UMLDomainNavigatorContentProvider" 
+            labelProvider="org.eclipse.papyrus.uml.diagram.usecase.navigator.UMLDomainNavigatorLabelProvider"
             icon="icons/obj16/UMLDiagramFile.gif"
             activeByDefault="true">
          <triggerPoints>
@@ -698,19 +698,19 @@
     	          <instanceof value="org.eclipse.core.resources.IFile"/>
         	      <test property="org.eclipse.core.resources.extension" value="PapyrusUMLUsecase"/>
                </and>
-               <instanceof value="org.eclipse.papyrus.diagram.usecase.navigator.UMLDomainNavigatorItem"/>
+               <instanceof value="org.eclipse.papyrus.uml.diagram.usecase.navigator.UMLDomainNavigatorItem"/>
             </or>
          </triggerPoints>
          <possibleChildren>
-            <instanceof value="org.eclipse.papyrus.diagram.usecase.navigator.UMLDomainNavigatorItem"/>
+            <instanceof value="org.eclipse.papyrus.uml.diagram.usecase.navigator.UMLDomainNavigatorItem"/>
          </possibleChildren>
       </navigatorContent>
       <actionProvider
             id="org.eclipse.papyrus.diagram.usecase.navigatorActionProvider"
-            class="org.eclipse.papyrus.diagram.usecase.navigator.UMLNavigatorActionProvider">
+            class="org.eclipse.papyrus.uml.diagram.usecase.navigator.UMLNavigatorActionProvider">
          <enablement>
             <or>
-               <instanceof value="org.eclipse.papyrus.diagram.usecase.navigator.UMLAbstractNavigatorItem"/>
+               <instanceof value="org.eclipse.papyrus.uml.diagram.usecase.navigator.UMLAbstractNavigatorItem"/>
             </or>
          </enablement>
       </actionProvider>
@@ -720,7 +720,7 @@
       <?gmfgen generated="true"?>
       <linkHelper
             id="org.eclipse.papyrus.diagram.usecase.navigatorLinkHelper"
-            class="org.eclipse.papyrus.diagram.usecase.navigator.UMLNavigatorLinkHelper">
+            class="org.eclipse.papyrus.uml.diagram.usecase.navigator.UMLNavigatorLinkHelper">
          <editorInputEnablement>
             <and>
                <instanceof value="org.eclipse.emf.common.ui.URIEditorInput"/>
@@ -728,7 +728,7 @@
             </and>
          </editorInputEnablement>
          <selectionEnablement>
-            <instanceof value="org.eclipse.papyrus.diagram.usecase.navigator.UMLAbstractNavigatorItem"/>
+            <instanceof value="org.eclipse.papyrus.uml.diagram.usecase.navigator.UMLAbstractNavigatorItem"/>
          </selectionEnablement>
       </linkHelper>
    </extension>
@@ -736,7 +736,7 @@
       <?gmfgen generated="true"?>
       <command
          categoryId="org.eclipse.ui.category.edit"
-         defaultHandler="org.eclipse.papyrus.diagram.usecase.part.UMLDiagramUpdateCommand"
+         defaultHandler="org.eclipse.papyrus.uml.diagram.usecase.part.UMLDiagramUpdateCommand"
          description="%update.diagram.description"
          id="org.eclipse.papyrus.diagram.usecase.updateDiagram"
          name="%update.diagram.name"/>
@@ -752,7 +752,7 @@
    </extension>
   <extension point="org.eclipse.core.runtime.preferences">
 		<?gmfgen generated="true"?>
-		<initializer class="org.eclipse.papyrus.diagram.usecase.preferences.DiagramPreferenceInitializer"/>
+		<initializer class="org.eclipse.papyrus.uml.diagram.usecase.preferences.DiagramPreferenceInitializer"/>
 	</extension>
 
 
@@ -768,7 +768,7 @@
                <and>
                   <with variable="activePartId"><equals value="org.eclipse.papyrus.diagram.usecase.part.UMLDiagramEditorID"/></with>
                   <with variable="selection"><iterate ifEmpty="false"> 
-                     <instanceof value="org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseDiagramEditPart"/>
+                     <instanceof value="org.eclipse.papyrus.uml.diagram.usecase.edit.parts.UseCaseDiagramEditPart"/>
                   </iterate></with>
                </and>
             </visibleWhen>
@@ -782,7 +782,7 @@
       <command id="org.eclipse.papyrus.diagram.usecase.LoadResourceAction"
          name="Load Resource"
          categoryId="org.eclipse.papyrus.diagram.usecase.part.UMLDiagramEditorID"
-         defaultHandler="org.eclipse.papyrus.diagram.usecase.part.LoadResourceAction"/>
+         defaultHandler="org.eclipse.papyrus.uml.diagram.usecase.part.LoadResourceAction"/>
    </extension>
 
 <extension point="org.eclipse.ui.handlers" id="menu-handlers">
@@ -794,7 +794,7 @@
             id="org.eclipse.papyrus.preferences.diagrams.UseCase"
             name="UseCase Diagram"
             category="org.eclipse.papyrus.preferences.diagrams"
-            class="org.eclipse.papyrus.diagram.usecase.preferences.DiagramGeneralPreferencePage">
+            class="org.eclipse.papyrus.uml.diagram.usecase.preferences.DiagramGeneralPreferencePage">
       </page>
       
 
@@ -803,14 +803,14 @@
             id="org.eclipse.papyrus.diagram.usecase.preferences.DiagramPrintingPreferencePage"
             name="%prefpage.org.eclipse.uml2.uml.diagram.printing"
             category="org.eclipse.papyrus.preferences.diagrams.UseCase"
-            class="org.eclipse.papyrus.diagram.usecase.preferences.DiagramPrintingPreferencePage">
+            class="org.eclipse.papyrus.uml.diagram.usecase.preferences.DiagramPrintingPreferencePage">
       </page>
 
       <page
             id="org.eclipse.papyrus.diagram.usecase.preferences.DiagramRulersAndGridPreferencePage"
             name="%prefpage.org.eclipse.uml2.uml.diagram.rulersAndGrid"
             category="org.eclipse.papyrus.preferences.diagrams.UseCase"
-            class="org.eclipse.papyrus.diagram.usecase.preferences.DiagramRulersAndGridPreferencePage">
+            class="org.eclipse.papyrus.uml.diagram.usecase.preferences.DiagramRulersAndGridPreferencePage">
       </page>
 
    </extension>
@@ -821,56 +821,56 @@
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.UseCase"
-			class="org.eclipse.papyrus.diagram.usecase.preferences.UseCasePreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.usecase.preferences.UseCasePreferencePage"
             id="org.eclipse.papyrus.diagram.usecase.preferences.UseCasePreferencePage"
             name="UseCase Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.UseCase"
-			class="org.eclipse.papyrus.diagram.usecase.preferences.ShortCutDiagramPreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.usecase.preferences.ShortCutDiagramPreferencePage"
             id="org.eclipse.papyrus.diagram.usecase.preferences.ShortCutDiagramPreferencePage"
             name="ShortCutDiagram Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.UseCase"
-			class="org.eclipse.papyrus.diagram.usecase.preferences.CommentPreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.usecase.preferences.CommentPreferencePage"
             id="org.eclipse.papyrus.diagram.usecase.preferences.CommentPreferencePage"
             name="Comment Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.UseCase"
-			class="org.eclipse.papyrus.diagram.usecase.preferences.ConstraintPreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.usecase.preferences.ConstraintPreferencePage"
             id="org.eclipse.papyrus.diagram.usecase.preferences.ConstraintPreferencePage"
             name="Constraint Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.UseCase"
-			class="org.eclipse.papyrus.diagram.usecase.preferences.ActorPreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.usecase.preferences.ActorPreferencePage"
             id="org.eclipse.papyrus.diagram.usecase.preferences.ActorPreferencePage"
             name="Actor Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.UseCase"
-			class="org.eclipse.papyrus.diagram.usecase.preferences.ExtensionPointPreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.usecase.preferences.ExtensionPointPreferencePage"
             id="org.eclipse.papyrus.diagram.usecase.preferences.ExtensionPointPreferencePage"
             name="ExtensionPoint Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.UseCase"
-			class="org.eclipse.papyrus.diagram.usecase.preferences.PackagePreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.usecase.preferences.PackagePreferencePage"
             id="org.eclipse.papyrus.diagram.usecase.preferences.PackagePreferencePage"
             name="Package Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.UseCase"
-			class="org.eclipse.papyrus.diagram.usecase.preferences.ComponentPreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.usecase.preferences.ComponentPreferencePage"
             id="org.eclipse.papyrus.diagram.usecase.preferences.ComponentPreferencePage"
             name="Component Node" />
 	
@@ -880,7 +880,7 @@
 
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.UseCase"
-			class="org.eclipse.papyrus.diagram.usecase.preferences.ExtendPreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.usecase.preferences.ExtendPreferencePage"
             id="org.eclipse.papyrus.diagram.usecase.preferences.ExtendPreferencePage"
             name="Extend Link" />
 		
@@ -888,7 +888,7 @@
 
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.UseCase"
-			class="org.eclipse.papyrus.diagram.usecase.preferences.PackageMergePreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.usecase.preferences.PackageMergePreferencePage"
             id="org.eclipse.papyrus.diagram.usecase.preferences.PackageMergePreferencePage"
             name="PackageMerge Link" />
 		
@@ -896,7 +896,7 @@
 
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.UseCase"
-			class="org.eclipse.papyrus.diagram.usecase.preferences.AbstractionPreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.usecase.preferences.AbstractionPreferencePage"
             id="org.eclipse.papyrus.diagram.usecase.preferences.AbstractionPreferencePage"
             name="Abstraction Link" />
 		
@@ -904,7 +904,7 @@
 
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.UseCase"
-			class="org.eclipse.papyrus.diagram.usecase.preferences.AssociationPreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.usecase.preferences.AssociationPreferencePage"
             id="org.eclipse.papyrus.diagram.usecase.preferences.AssociationPreferencePage"
             name="Association Link" />
 		
@@ -912,7 +912,7 @@
 
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.UseCase"
-			class="org.eclipse.papyrus.diagram.usecase.preferences.GeneralizationPreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.usecase.preferences.GeneralizationPreferencePage"
             id="org.eclipse.papyrus.diagram.usecase.preferences.GeneralizationPreferencePage"
             name="Generalization Link" />
 		
@@ -920,7 +920,7 @@
 
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.UseCase"
-			class="org.eclipse.papyrus.diagram.usecase.preferences.RealizationPreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.usecase.preferences.RealizationPreferencePage"
             id="org.eclipse.papyrus.diagram.usecase.preferences.RealizationPreferencePage"
             name="Realization Link" />
 		
@@ -928,7 +928,7 @@
 
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.UseCase"
-			class="org.eclipse.papyrus.diagram.usecase.preferences.DependencyPreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.usecase.preferences.DependencyPreferencePage"
             id="org.eclipse.papyrus.diagram.usecase.preferences.DependencyPreferencePage"
             name="Dependency Link" />
 		
@@ -936,7 +936,7 @@
 
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.UseCase"
-			class="org.eclipse.papyrus.diagram.usecase.preferences.UsagePreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.usecase.preferences.UsagePreferencePage"
             id="org.eclipse.papyrus.diagram.usecase.preferences.UsagePreferencePage"
             name="Usage Link" />
 		
@@ -944,7 +944,7 @@
 
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.UseCase"
-			class="org.eclipse.papyrus.diagram.usecase.preferences.PackageImportPreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.usecase.preferences.PackageImportPreferencePage"
             id="org.eclipse.papyrus.diagram.usecase.preferences.PackageImportPreferencePage"
             name="PackageImport Link" />
 		
@@ -952,7 +952,7 @@
 
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.UseCase"
-			class="org.eclipse.papyrus.diagram.usecase.preferences.IncludePreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.usecase.preferences.IncludePreferencePage"
             id="org.eclipse.papyrus.diagram.usecase.preferences.IncludePreferencePage"
             name="Include Link" />
 		
@@ -969,7 +969,7 @@
 		<paletteProvider class="org.eclipse.gmf.runtime.diagram.ui.providers.DefaultPaletteProvider">
 			<Priority name="Lowest"/>
       		<contribution
-            	factoryClass="org.eclipse.papyrus.diagram.usecase.part.UMLPaletteFactory">
+            	factoryClass="org.eclipse.papyrus.uml.diagram.usecase.part.UMLPaletteFactory">
      			<predefinedEntry id="standardGroup/noteStack/noteTool" remove="true"/> 
 				<predefinedEntry id="standardGroup/noteStack/textTool" remove="true"/> 
 				<predefinedEntry id="standardGroup/noteStack/noteattachmentTool" remove="true"/>
@@ -1178,7 +1178,7 @@
 		<paletteProvider class="org.eclipse.gmf.runtime.diagram.ui.providers.DefaultPaletteProvider">
 			<Priority name="Low"/>
       		<contribution
-            	factoryClass="org.eclipse.papyrus.diagram.usecase.part.UMLPaletteFactory">
+            	factoryClass="org.eclipse.papyrus.uml.diagram.usecase.part.UMLPaletteFactory">
      			<predefinedEntry id="standardGroup/noteStack/noteTool" remove="true"/> 
 				<predefinedEntry id="standardGroup/noteStack/textTool" remove="true"/> 
 				<predefinedEntry id="standardGroup/noteStack/noteattachmentTool" remove="true"/>
@@ -1308,7 +1308,7 @@
 	</extension>
 <extension point="org.eclipse.gmf.runtime.common.ui.services.markerNavigationProviders" id="markers-navigation">
       <?gmfgen generated="true"?>
-      <MarkerNavigationProvider class="org.eclipse.papyrus.diagram.usecase.providers.UMLMarkerNavigationProvider">
+      <MarkerNavigationProvider class="org.eclipse.papyrus.uml.diagram.usecase.providers.UMLMarkerNavigationProvider">
          <MarkerType name="org.eclipse.papyrus.diagram.usecase.diagnostic"/>
          <Priority name="Lowest"/>
       </MarkerNavigationProvider>
@@ -1321,7 +1321,7 @@
       <persistent value="true"/>
    </extension><extension id="validationDecoratorProvider" name="ValidationDecorations" point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders">
       <?gmfgen generated="true"?>
-      <decoratorProvider class="org.eclipse.papyrus.diagram.usecase.providers.UMLValidationDecoratorProvider">
+      <decoratorProvider class="org.eclipse.papyrus.uml.diagram.usecase.providers.UMLValidationDecoratorProvider">
          <Priority name="Lowest"/>
          <object class="org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart(org.eclipse.gmf.runtime.diagram.ui)" id="PRIMARY_VIEW"/>
          <context decoratorTargets="PRIMARY_VIEW"/>

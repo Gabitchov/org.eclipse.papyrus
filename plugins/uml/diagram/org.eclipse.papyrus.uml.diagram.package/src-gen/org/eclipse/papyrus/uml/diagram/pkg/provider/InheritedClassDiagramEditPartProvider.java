@@ -18,7 +18,7 @@ import org.eclipse.gmf.runtime.common.core.service.IOperation;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpart.CreateGraphicEditPartOperation;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpart.IEditPartOperation;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.clazz.providers.UMLEditPartProvider;
+import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLEditPartProvider;
 
 public class InheritedClassDiagramEditPartProvider extends UMLEditPartProvider {
 

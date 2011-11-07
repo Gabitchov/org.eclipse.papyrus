@@ -19,8 +19,8 @@ import java.util.Set;
 import org.eclipse.emf.common.command.AbstractCommand;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.papyrus.documentation.IDocumentationChangedListener;
 import org.eclipse.papyrus.uml.profile.IUMLDocumentationConstants;
+import org.eclipse.papyrus.views.documentation.IDocumentationChangedListener;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Stereotype;
@@ -41,7 +41,7 @@ public class UMLAddOrRemoveAssociatedResourceCommand extends AbstractCommand {
 	private String resourceURIString;
 
 	public UMLAddOrRemoveAssociatedResourceCommand(boolean remove, Element element, URI resourceURI, Set<IDocumentationChangedListener> documentationChangedListeners) {
-		super(org.eclipse.papyrus.documentation.Messages.AddOrRemoveAssociatedResourceCommandLabel);
+		super(org.eclipse.papyrus.views.documentation.Messages.AddOrRemoveAssociatedResourceCommandLabel);
 		this.remove = remove;
 		this.element = element;
 		this.resourceURIString = resourceURI.toString();

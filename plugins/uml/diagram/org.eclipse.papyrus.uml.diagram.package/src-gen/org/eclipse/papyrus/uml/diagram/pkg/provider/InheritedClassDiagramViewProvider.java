@@ -27,7 +27,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.clazz.providers.UMLViewProvider;
+import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLViewProvider;
 
 public class InheritedClassDiagramViewProvider extends UMLViewProvider {
 

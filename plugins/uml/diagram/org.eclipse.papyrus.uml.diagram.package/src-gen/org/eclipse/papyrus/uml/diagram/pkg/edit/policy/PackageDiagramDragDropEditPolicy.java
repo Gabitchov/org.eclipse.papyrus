@@ -15,7 +15,7 @@ package org.eclipse.papyrus.uml.diagram.pkg.edit.policy;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.clazz.custom.policies.ClassDiagramDragDropEditPolicy;
+import org.eclipse.papyrus.uml.diagram.clazz.custom.policies.ClassDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.uml.diagram.pkg.provider.GraphicalTypeRegistry;
 import org.eclipse.papyrus.uml.diagram.pkg.provider.IGraphicalTypeRegistry;
 

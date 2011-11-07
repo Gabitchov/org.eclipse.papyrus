@@ -25,7 +25,7 @@
 		<paletteProvider class="org.eclipse.gmf.runtime.diagram.ui.providers.DefaultPaletteProvider">
 			<Priority name="Lowest"/>
       		<contribution
-            	factoryClass="org.eclipse.papyrus.diagram.profile.part.UMLPaletteFactory">
+            	factoryClass="org.eclipse.papyrus.uml.diagram.profile.part.UMLPaletteFactory">
      			<predefinedEntry id="standardGroup/noteStack/noteTool" remove="true"/> 
 				<predefinedEntry id="standardGroup/noteStack/textTool" remove="true"/> 
 				<predefinedEntry id="standardGroup/noteStack/noteattachmentTool" remove="true"/>
@@ -215,7 +215,7 @@
 		<paletteProvider class="org.eclipse.gmf.runtime.diagram.ui.providers.DefaultPaletteProvider">
 			<Priority name="Low"/>
       		<contribution
-            	factoryClass="org.eclipse.papyrus.diagram.profile.part.UMLPaletteFactory">
+            	factoryClass="org.eclipse.papyrus.uml.diagram.profile.part.UMLPaletteFactory">
      			<predefinedEntry id="standardGroup/noteStack/noteTool" remove="true"/> 
 				<predefinedEntry id="standardGroup/noteStack/textTool" remove="true"/> 
 				<predefinedEntry id="standardGroup/noteStack/noteattachmentTool" remove="true"/>
@@ -356,7 +356,7 @@
 
 	<extension point="org.eclipse.core.runtime.preferences">
 		<?gmfgen generated="true"?>
-		<initializer class="org.eclipse.papyrus.diagram.profile.preferences.DiagramPreferenceInitializer"/>
+		<initializer class="org.eclipse.papyrus.uml.diagram.profile.preferences.DiagramPreferenceInitializer"/>
 	</extension>
 
    <extension point="org.eclipse.gmf.runtime.diagram.core.viewProviders" id="view-provider">
@@ -447,7 +447,7 @@
 
    <extension point="org.eclipse.gmf.runtime.emf.ui.modelingAssistantProviders" id="modelassist-provider">
       <?gmfgen generated="true"?>
-      <modelingAssistantProvider class="org.eclipse.papyrus.diagram.profile.providers.UMLModelingAssistantProvider">
+      <modelingAssistantProvider class="org.eclipse.papyrus.uml.diagram.profile.providers.UMLModelingAssistantProvider">
          <Priority name="Lowest"/>
          <object class="org.eclipse.papyrus.diagram.profile.edit.parts.ProfileDiagramEditPart" id="Profile_1000"/>
          <object class="org.eclipse.papyrus.diagram.profile.edit.parts.DependencyNodeEditPart" id="Dependency_2014"/>
@@ -469,7 +469,7 @@
 
    <extension point="org.eclipse.gmf.runtime.common.ui.services.iconProviders" id="icon-provider">
       <?gmfgen generated="true"?>
-      <IconProvider class="org.eclipse.papyrus.diagram.profile.providers.UMLIconProvider">
+      <IconProvider class="org.eclipse.papyrus.uml.diagram.profile.providers.UMLIconProvider">
          <Priority name="Lowest"/>
       </IconProvider>
    </extension>
@@ -482,7 +482,7 @@
                name="%metatype.name.Profile_1000"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Profile"
-               edithelper="org.eclipse.papyrus.diagram.profile.edit.helpers.ProfileDiagramEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.profile.edit.helpers.ProfileDiagramEditHelper">
             <param name="semanticHint" value="1000"/>
          </metamodelType>
       </metamodel>
@@ -492,7 +492,7 @@
                name="%metatype.name.Dependency_2014"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Dependency"
-               edithelper="org.eclipse.papyrus.diagram.profile.edit.helpers.DependencyEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.profile.edit.helpers.DependencyEditHelper">
             <param name="semanticHint" value="2014"/>
          </metamodelType>
       </metamodel>
@@ -502,7 +502,7 @@
                name="%metatype.name.Association_2015"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Association"
-               edithelper="org.eclipse.papyrus.diagram.profile.edit.helpers.AssociationEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.profile.edit.helpers.AssociationEditHelper">
             <param name="semanticHint" value="2015"/>
          </metamodelType>
       </metamodel>
@@ -512,7 +512,7 @@
                name="%metatype.name.Stereotype_1026"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Stereotype"
-               edithelper="org.eclipse.papyrus.diagram.profile.edit.helpers.StereotypeEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.profile.edit.helpers.StereotypeEditHelper">
             <param name="semanticHint" value="1026"/>
          </metamodelType>
       </metamodel>
@@ -531,7 +531,7 @@
                name="%metatype.name.Comment_1002"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Comment"
-               edithelper="org.eclipse.papyrus.diagram.profile.edit.helpers.CommentEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.profile.edit.helpers.CommentEditHelper">
             <param name="semanticHint" value="1002"/>
          </metamodelType>
       </metamodel>
@@ -541,7 +541,7 @@
                name="%metatype.name.Constraint_1014"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Constraint"
-               edithelper="org.eclipse.papyrus.diagram.profile.edit.helpers.ConstraintEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.profile.edit.helpers.ConstraintEditHelper">
             <param name="semanticHint" value="1014"/>
          </metamodelType>
       </metamodel>
@@ -551,7 +551,7 @@
                name="%metatype.name.Model_2005"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Model"
-               edithelper="org.eclipse.papyrus.diagram.profile.edit.helpers.ModelEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.profile.edit.helpers.ModelEditHelper">
             <param name="semanticHint" value="2005"/>
          </metamodelType>
       </metamodel>
@@ -561,7 +561,7 @@
                name="%metatype.name.Profile_1030"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Profile"
-               edithelper="org.eclipse.papyrus.diagram.profile.edit.helpers.ProfileEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.profile.edit.helpers.ProfileEditHelper">
             <param name="semanticHint" value="1030"/>
          </metamodelType>
       </metamodel>
@@ -571,7 +571,7 @@
                name="%metatype.name.Package_2007"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Package"
-               edithelper="org.eclipse.papyrus.diagram.profile.edit.helpers.PackageEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.profile.edit.helpers.PackageEditHelper">
             <param name="semanticHint" value="2007"/>
          </metamodelType>
       </metamodel>
@@ -581,7 +581,7 @@
                name="%metatype.name.Enumeration_2006"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Enumeration"
-               edithelper="org.eclipse.papyrus.diagram.profile.edit.helpers.EnumerationEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.profile.edit.helpers.EnumerationEditHelper">
             <param name="semanticHint" value="2006"/>
          </metamodelType>
       </metamodel>
@@ -600,7 +600,7 @@
                name="%metatype.name.DataType_2010"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="DataType"
-               edithelper="org.eclipse.papyrus.diagram.profile.edit.helpers.DataTypeEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.profile.edit.helpers.DataTypeEditHelper">
             <param name="semanticHint" value="2010"/>
          </metamodelType>
       </metamodel>
@@ -610,7 +610,7 @@
                name="%metatype.name.Diagram_2016"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Diagram"
-               edithelper="org.eclipse.papyrus.diagram.profile.edit.helpers.ShortCutDiagramEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.profile.edit.helpers.ShortCutDiagramEditHelper">
             <param name="semanticHint" value="2016"/>
          </metamodelType>
       </metamodel>
@@ -620,7 +620,7 @@
                name="%metatype.name.PrimitiveType_3026"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="PrimitiveType"
-               edithelper="org.eclipse.papyrus.diagram.profile.edit.helpers.PrimitiveTypeEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.profile.edit.helpers.PrimitiveTypeEditHelper">
             <param name="semanticHint" value="3026"/>
          </metamodelType>
       </metamodel>
@@ -630,7 +630,7 @@
                name="%metatype.name.Operation_3019"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Operation"
-               edithelper="org.eclipse.papyrus.diagram.profile.edit.helpers.DataTypeOperationEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.profile.edit.helpers.DataTypeOperationEditHelper">
             <param name="semanticHint" value="3019"/>
          </metamodelType>
       </metamodel>
@@ -640,7 +640,7 @@
                name="%metatype.name.EnumerationLiteral_1037"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="EnumerationLiteral"
-               edithelper="org.eclipse.papyrus.diagram.profile.edit.helpers.EnumerationLiteralEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.profile.edit.helpers.EnumerationLiteralEditHelper">
             <param name="semanticHint" value="1037"/>
          </metamodelType>
       </metamodel>
@@ -650,7 +650,7 @@
                name="%metatype.name.Property_3018"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Property"
-               edithelper="org.eclipse.papyrus.diagram.profile.edit.helpers.DataTypePropertyEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.profile.edit.helpers.DataTypePropertyEditHelper">
             <param name="semanticHint" value="3018"/>
          </metamodelType>
       </metamodel>
@@ -660,7 +660,7 @@
                name="%metatype.name.Property_3002"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Property"
-               edithelper="org.eclipse.papyrus.diagram.profile.edit.helpers.ClassPropertyEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.profile.edit.helpers.ClassPropertyEditHelper">
             <param name="semanticHint" value="3002"/>
          </metamodelType>
       </metamodel>
@@ -670,7 +670,7 @@
                name="%metatype.name.Operation_3020"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Operation"
-               edithelper="org.eclipse.papyrus.diagram.profile.edit.helpers.ClassOperationEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.profile.edit.helpers.ClassOperationEditHelper">
             <param name="semanticHint" value="3020"/>
          </metamodelType>
       </metamodel>
@@ -680,7 +680,7 @@
                name="%metatype.name.Stereotype_1023"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Stereotype"
-               edithelper="org.eclipse.papyrus.diagram.profile.edit.helpers.StereotypeEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.profile.edit.helpers.StereotypeEditHelper">
             <param name="semanticHint" value="1023"/>
          </metamodelType>
       </metamodel>
@@ -690,7 +690,7 @@
                name="%metatype.name.Class_3028"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Class"
-               edithelper="org.eclipse.papyrus.diagram.profile.edit.helpers.MetaclassEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.profile.edit.helpers.MetaclassEditHelper">
             <param name="semanticHint" value="3028"/>
          </metamodelType>
       </metamodel>
@@ -700,7 +700,7 @@
                name="%metatype.name.Comment_1007"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Comment"
-               edithelper="org.eclipse.papyrus.diagram.profile.edit.helpers.CommentEditHelperCN">
+               edithelper="org.eclipse.papyrus.uml.diagram.profile.edit.helpers.CommentEditHelperCN">
             <param name="semanticHint" value="1007"/>
          </metamodelType>
       </metamodel>
@@ -728,7 +728,7 @@
                name="%metatype.name.Package_1012"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Package"
-               edithelper="org.eclipse.papyrus.diagram.profile.edit.helpers.PackageEditHelperCN">
+               edithelper="org.eclipse.papyrus.uml.diagram.profile.edit.helpers.PackageEditHelperCN">
             <param name="semanticHint" value="1012"/>
          </metamodelType>
       </metamodel>
@@ -738,7 +738,7 @@
                name="%metatype.name.Constraint_1028"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Constraint"
-               edithelper="org.eclipse.papyrus.diagram.profile.edit.helpers.ConstraintEditHelperCN">
+               edithelper="org.eclipse.papyrus.uml.diagram.profile.edit.helpers.ConstraintEditHelperCN">
             <param name="semanticHint" value="1028"/>
          </metamodelType>
       </metamodel>
@@ -766,7 +766,7 @@
                name="%metatype.name.Extension_1013"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Extension"
-               edithelper="org.eclipse.papyrus.diagram.profile.edit.helpers.ExtensionEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.profile.edit.helpers.ExtensionEditHelper">
             <param name="semanticHint" value="1013"/>
          </metamodelType>
       </metamodel>
@@ -785,7 +785,7 @@
                name="%metatype.name.ProfileApplication_1045"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="ProfileApplication"
-               edithelper="org.eclipse.papyrus.diagram.profile.edit.helpers.ProfileApplicationEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.profile.edit.helpers.ProfileApplicationEditHelper">
             <param name="semanticHint" value="1045"/>
          </metamodelType>
       </metamodel>
@@ -804,7 +804,7 @@
                name="%metatype.name.Generalization_4002"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Generalization"
-               edithelper="org.eclipse.papyrus.diagram.profile.edit.helpers.GeneralizationEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.profile.edit.helpers.GeneralizationEditHelper">
             <param name="semanticHint" value="4002"/>
          </metamodelType>
       </metamodel>
@@ -832,7 +832,7 @@
                name="%metatype.name.ElementImport_1064"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="ElementImport"
-               edithelper="org.eclipse.papyrus.diagram.profile.edit.helpers.ElementImportEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.profile.edit.helpers.ElementImportEditHelper">
             <param name="semanticHint" value="1064"/>
          </metamodelType>
       </metamodel>
@@ -842,7 +842,7 @@
                name="%metatype.name.PackageImport_1065"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="PackageImport"
-               edithelper="org.eclipse.papyrus.diagram.profile.edit.helpers.PackageImportEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.profile.edit.helpers.PackageImportEditHelper">
             <param name="semanticHint" value="1065"/>
          </metamodelType>
       </metamodel>
@@ -923,7 +923,7 @@
       <?gmfgen generated="true"?>
       <command
          categoryId="org.eclipse.ui.category.edit"
-         defaultHandler="org.eclipse.papyrus.diagram.profile.part.UMLDiagramUpdateCommand"
+         defaultHandler="org.eclipse.papyrus.uml.diagram.profile.part.UMLDiagramUpdateCommand"
          description="%update.diagram.description"
          id="org.eclipse.papyrus.diagram.profile.updateDiagram"
          name="%update.diagram.name"/>
@@ -949,7 +949,7 @@
 			style="push"
 			tooltip="Create a new Profile Diagram">
 			<visibleWhen>
-				<reference definitionId="org.eclipse.papyrus.diagram.common.IsPapyrusActiveWithUMLProfile"/>
+				<reference definitionId="org.eclipse.papyrus.uml.diagram.common.IsPapyrusActiveWithUMLProfile"/>
 			</visibleWhen> 
 		</command>
 	</toolbar>
@@ -964,20 +964,20 @@
 			style="push"
 			tooltip="Create a new Profile Diagram">
 			<visibleWhen>
-				<reference definitionId="org.eclipse.papyrus.diagram.common.IsPapyrusActiveWithUMLProfile"/>
+				<reference definitionId="org.eclipse.papyrus.uml.diagram.common.IsPapyrusActiveWithUMLProfile"/>
 			</visibleWhen>                 
 		</command>
 	</menu>
 	</menuContribution>
 
-	<menuContribution locationURI="popup:org.eclipse.papyrus.modelexplorer.popupmenu.creatediagram">
+	<menuContribution locationURI="popup:org.eclipse.papyrus.views.modelexplorer.popupmenu.creatediagram">
 		<command commandId="org.eclipse.papyrus.diagram.profile.CreateProfileDiagramCommand"
 			icon="icons/obj16/Diagram_Profile.gif"
 			label="Create a new Profile Diagram"
 			style="push"
 			tooltip="Create a new Profile Diagram">
 			<visibleWhen>
-				<reference definitionId="org.eclipse.papyrus.diagram.common.IsPapyrusActiveWithUMLProfile"/>
+				<reference definitionId="org.eclipse.papyrus.uml.diagram.common.IsPapyrusActiveWithUMLProfile"/>
 			</visibleWhen>
 		</command>
 	</menuContribution>
@@ -996,7 +996,7 @@
                <and>
                   <with variable="activePartId"><equals value="org.eclipse.papyrus.diagram.profile.part.UMLDiagramEditorID"/></with>
                   <with variable="selection"><iterate ifEmpty="false"> 
-                     <instanceof value="org.eclipse.papyrus.diagram.profile.edit.parts.ProfileDiagramEditPart"/>
+                     <instanceof value="org.eclipse.papyrus.uml.diagram.profile.edit.parts.ProfileDiagramEditPart"/>
                   </iterate></with>
                </and>
             </visibleWhen>
@@ -1006,13 +1006,13 @@
    <extension
          point="org.eclipse.papyrus.core.papyrusDiagram">
       <editorDiagram
-            actionBarContributorId="org.eclipse.papyrus.diagram.common.part.UMLDiagramActionBarContributor"
-            factoryClass="org.eclipse.papyrus.diagram.profile.ProfileDiagramEditorFactory"
+            actionBarContributorId="org.eclipse.papyrus.uml.diagram.common.part.UMLDiagramActionBarContributor"
+            factoryClass="org.eclipse.papyrus.uml.diagram.profile.ProfileDiagramEditorFactory"
             icon="icons/obj16/Diagram_Profile.gif">
       </editorDiagram>
       <creationCommand
-            creationCommandClass="org.eclipse.papyrus.diagram.profile.CreateProfileDiagramCommand"
-            creationCondition="org.eclipse.papyrus.diagram.profile.ProfileDiagramCreationCondition"
+            creationCommandClass="org.eclipse.papyrus.uml.diagram.profile.CreateProfileDiagramCommand"
+            creationCondition="org.eclipse.papyrus.uml.diagram.profile.ProfileDiagramCreationCondition"
             icon="icons/obj16/Diagram_Profile.gif"
             id="org.eclipse.papyrus.diagram.profile.CreateProfileDiagramCommand"
             language="profile"
@@ -1023,7 +1023,7 @@
       <?gmfgen generated="true"?>
       <propertyContributor
             contributorId="org.eclipse.papyrus.diagram.profile"
-            labelProvider="org.eclipse.papyrus.diagram.profile.sheet.UMLSheetLabelProvider">
+            labelProvider="org.eclipse.papyrus.uml.diagram.profile.sheet.UMLSheetLabelProvider">
          <propertyCategory category="domain"/>
          <propertyCategory category="visual"/>
          <propertyCategory category="extra"/>
@@ -1055,10 +1055,10 @@
          <propertySection
             id="property.section.domain" 
             tab="property.tab.domain"
-            class="org.eclipse.papyrus.diagram.profile.sheet.UMLPropertySection">
+            class="org.eclipse.papyrus.uml.diagram.profile.sheet.UMLPropertySection">
             <input type="org.eclipse.gmf.runtime.notation.View"/>
             <input type="org.eclipse.gef.EditPart"/>
-            <input type="org.eclipse.papyrus.diagram.profile.navigator.UMLAbstractNavigatorItem"/>
+            <input type="org.eclipse.papyrus.uml.diagram.profile.navigator.UMLAbstractNavigatorItem"/>
          </propertySection>
       </propertySections>
    </extension>
@@ -1069,7 +1069,7 @@
       <command id="org.eclipse.papyrus.diagram.profile.LoadResourceAction"
          name="Load Resource"
          categoryId="org.eclipse.papyrus.diagram.profile.part.UMLDiagramEditorID"
-         defaultHandler="org.eclipse.papyrus.diagram.profile.part.LoadResourceAction"/>
+         defaultHandler="org.eclipse.papyrus.uml.diagram.profile.part.LoadResourceAction"/>
    </extension>
 
 <extension point="org.eclipse.ui.handlers" id="menu-handlers">
@@ -1078,7 +1078,7 @@
 <extension
       point="org.eclipse.papyrus.core.service">
    <service
-         classname="org.eclipse.papyrus.diagram.profile.service.ProfileService"
+         classname="org.eclipse.papyrus.uml.diagram.profile.service.ProfileService"
          priority="1"
          startKind="startup"
          useClassTypeAsKey="true">
@@ -1090,7 +1090,7 @@
             id="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
             name="PapyrusUMLProfileDiagram Diagram"
             category="org.eclipse.papyrus.preferences.diagrams"
-            class="org.eclipse.papyrus.diagram.profile.preferences.DiagramGeneralPreferencePage">
+            class="org.eclipse.papyrus.uml.diagram.profile.preferences.DiagramGeneralPreferencePage">
       </page>
       
 
@@ -1099,14 +1099,14 @@
             id="org.eclipse.papyrus.diagram.profile.preferences.DiagramPrintingPreferencePage"
             name="%prefpage.org.eclipse.uml2.uml.diagram.printing"
             category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
-            class="org.eclipse.papyrus.diagram.profile.preferences.DiagramPrintingPreferencePage">
+            class="org.eclipse.papyrus.uml.diagram.profile.preferences.DiagramPrintingPreferencePage">
       </page>
 
       <page
             id="org.eclipse.papyrus.diagram.profile.preferences.DiagramRulersAndGridPreferencePage"
             name="%prefpage.org.eclipse.uml2.uml.diagram.rulersAndGrid"
             category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
-            class="org.eclipse.papyrus.diagram.profile.preferences.DiagramRulersAndGridPreferencePage">
+            class="org.eclipse.papyrus.uml.diagram.profile.preferences.DiagramRulersAndGridPreferencePage">
       </page>
 
 
@@ -1119,7 +1119,7 @@
            type="org.eclipse.emf.common.ui.URIEditorInput"
            namespace="org.eclipse.papyrus.diagram.profile"
            properties="isURIEditorInput"
-           class="org.eclipse.papyrus.diagram.profile.part.UMLUriEditorInputTester">
+           class="org.eclipse.papyrus.uml.diagram.profile.part.UMLUriEditorInputTester">
        </propertyTester>
    </extension>
 
@@ -1145,8 +1145,8 @@
             id="org.eclipse.papyrus.diagram.profile.resourceContent" 
             name="%navigatorContentName" 
             priority="normal" 
-            contentProvider="org.eclipse.papyrus.diagram.profile.navigator.UMLNavigatorContentProvider" 
-            labelProvider="org.eclipse.papyrus.diagram.profile.navigator.UMLNavigatorLabelProvider"
+            contentProvider="org.eclipse.papyrus.uml.diagram.profile.navigator.UMLNavigatorContentProvider" 
+            labelProvider="org.eclipse.papyrus.uml.diagram.profile.navigator.UMLNavigatorLabelProvider"
             icon="icons/obj16/UMLDiagramFile.gif"
             activeByDefault="true">
          <triggerPoints>
@@ -1155,24 +1155,24 @@
     	          <instanceof value="org.eclipse.core.resources.IFile"/>
         	      <test property="org.eclipse.core.resources.extension" value="PapyrusUMLProfile_diagram"/>
                </and>
-               <instanceof value="org.eclipse.papyrus.diagram.profile.navigator.UMLAbstractNavigatorItem"/>
+               <instanceof value="org.eclipse.papyrus.uml.diagram.profile.navigator.UMLAbstractNavigatorItem"/>
             </or>
          </triggerPoints>
          <possibleChildren>
             <or>
-         	   <instanceof value="org.eclipse.papyrus.diagram.profile.navigator.UMLAbstractNavigatorItem"/>
+         	   <instanceof value="org.eclipse.papyrus.uml.diagram.profile.navigator.UMLAbstractNavigatorItem"/>
             </or>
          </possibleChildren>
          <commonSorter 
                id="org.eclipse.papyrus.diagram.profile.navigatorSorter" 
-               class="org.eclipse.papyrus.diagram.profile.navigator.UMLNavigatorSorter">
+               class="org.eclipse.papyrus.uml.diagram.profile.navigator.UMLNavigatorSorter">
             <parentExpression>
                <or>
 	              <and>
     	             <instanceof value="org.eclipse.core.resources.IFile"/>
         	         <test property="org.eclipse.core.resources.extension" value="PapyrusUMLProfile_diagram"/>
                   </and>
-                  <instanceof value="org.eclipse.papyrus.diagram.profile.navigator.UMLAbstractNavigatorItem"/>
+                  <instanceof value="org.eclipse.papyrus.uml.diagram.profile.navigator.UMLAbstractNavigatorItem"/>
                </or>
             </parentExpression>
          </commonSorter>
@@ -1181,8 +1181,8 @@
             id="org.eclipse.papyrus.diagram.profile.domainResourceContent" 
             name="%domainNavigatorContentName" 
             priority="normal" 
-            contentProvider="org.eclipse.papyrus.diagram.profile.navigator.UMLDomainNavigatorContentProvider" 
-            labelProvider="org.eclipse.papyrus.diagram.profile.navigator.UMLDomainNavigatorLabelProvider"
+            contentProvider="org.eclipse.papyrus.uml.diagram.profile.navigator.UMLDomainNavigatorContentProvider" 
+            labelProvider="org.eclipse.papyrus.uml.diagram.profile.navigator.UMLDomainNavigatorLabelProvider"
             icon="icons/obj16/UMLDiagramFile.gif"
             activeByDefault="true">
          <triggerPoints>
@@ -1191,19 +1191,19 @@
     	          <instanceof value="org.eclipse.core.resources.IFile"/>
         	      <test property="org.eclipse.core.resources.extension" value="PapyrusUMLProfile"/>
                </and>
-               <instanceof value="org.eclipse.papyrus.diagram.profile.navigator.UMLDomainNavigatorItem"/>
+               <instanceof value="org.eclipse.papyrus.uml.diagram.profile.navigator.UMLDomainNavigatorItem"/>
             </or>
          </triggerPoints>
          <possibleChildren>
-            <instanceof value="org.eclipse.papyrus.diagram.profile.navigator.UMLDomainNavigatorItem"/>
+            <instanceof value="org.eclipse.papyrus.uml.diagram.profile.navigator.UMLDomainNavigatorItem"/>
          </possibleChildren>
       </navigatorContent>
       <actionProvider
             id="org.eclipse.papyrus.diagram.profile.navigatorActionProvider"
-            class="org.eclipse.papyrus.diagram.profile.navigator.UMLNavigatorActionProvider">
+            class="org.eclipse.papyrus.uml.diagram.profile.navigator.UMLNavigatorActionProvider">
          <enablement>
             <or>
-               <instanceof value="org.eclipse.papyrus.diagram.profile.navigator.UMLAbstractNavigatorItem"/>
+               <instanceof value="org.eclipse.papyrus.uml.diagram.profile.navigator.UMLAbstractNavigatorItem"/>
             </or>
          </enablement>
       </actionProvider>
@@ -1213,7 +1213,7 @@
       <?gmfgen generated="true"?>
       <linkHelper
             id="org.eclipse.papyrus.diagram.profile.navigatorLinkHelper"
-            class="org.eclipse.papyrus.diagram.profile.navigator.UMLNavigatorLinkHelper">
+            class="org.eclipse.papyrus.uml.diagram.profile.navigator.UMLNavigatorLinkHelper">
          <editorInputEnablement>
             <and>
                <instanceof value="org.eclipse.emf.common.ui.URIEditorInput"/>
@@ -1221,7 +1221,7 @@
             </and>
          </editorInputEnablement>
          <selectionEnablement>
-            <instanceof value="org.eclipse.papyrus.diagram.profile.navigator.UMLAbstractNavigatorItem"/>
+            <instanceof value="org.eclipse.papyrus.uml.diagram.profile.navigator.UMLAbstractNavigatorItem"/>
          </selectionEnablement>
       </linkHelper>
    </extension>
@@ -1237,7 +1237,7 @@
 <extension
 	point="org.eclipse.ui.handlers">
 	<handler
-		class="org.eclipse.papyrus.diagram.profile.CreateProfileDiagramWithNavigationHandler"
+		class="org.eclipse.papyrus.uml.diagram.profile.CreateProfileDiagramWithNavigationHandler"
 		commandId="org.eclipse.papyrus.diagram.profile.CreateProfileDiagramCommand">
 		<activeWhen>
 		<with
@@ -1253,7 +1253,7 @@
 <extension
 	point="org.eclipse.papyrus.core.papyrusDiagram">
 	<diagramCategory
-       class="org.eclipse.papyrus.diagram.profile.CreateProfileModelCommand"
+       class="org.eclipse.papyrus.uml.diagram.profile.CreateProfileModelCommand"
        description="Profile diagram"
        extensionPrefix="profile"
        icon="icons/wizban/category_profile.gif"
@@ -1267,112 +1267,112 @@
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
-			class="org.eclipse.papyrus.diagram.profile.preferences.PropertyPreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.profile.preferences.PropertyPreferencePage"
             id="org.eclipse.papyrus.diagram.profile.preferences.PropertyPreferencePage"
             name="Property Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
-			class="org.eclipse.papyrus.diagram.profile.preferences.DataTypePreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.profile.preferences.DataTypePreferencePage"
             id="org.eclipse.papyrus.diagram.profile.preferences.DataTypePreferencePage"
             name="DataType Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
-			class="org.eclipse.papyrus.diagram.profile.preferences.CommentPreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.profile.preferences.CommentPreferencePage"
             id="org.eclipse.papyrus.diagram.profile.preferences.CommentPreferencePage"
             name="Comment Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
-			class="org.eclipse.papyrus.diagram.profile.preferences.EnumerationLiteralPreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.profile.preferences.EnumerationLiteralPreferencePage"
             id="org.eclipse.papyrus.diagram.profile.preferences.EnumerationLiteralPreferencePage"
             name="EnumerationLiteral Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
-			class="org.eclipse.papyrus.diagram.profile.preferences.PackagePreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.profile.preferences.PackagePreferencePage"
             id="org.eclipse.papyrus.diagram.profile.preferences.PackagePreferencePage"
             name="Package Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
-			class="org.eclipse.papyrus.diagram.profile.preferences.ShortCutDiagramPreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.profile.preferences.ShortCutDiagramPreferencePage"
             id="org.eclipse.papyrus.diagram.profile.preferences.ShortCutDiagramPreferencePage"
             name="ShortCutDiagram Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
-			class="org.eclipse.papyrus.diagram.profile.preferences.DependencyPreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.profile.preferences.DependencyPreferencePage"
             id="org.eclipse.papyrus.diagram.profile.preferences.DependencyPreferencePage"
             name="Dependency Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
-			class="org.eclipse.papyrus.diagram.profile.preferences.PrimitiveTypePreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.profile.preferences.PrimitiveTypePreferencePage"
             id="org.eclipse.papyrus.diagram.profile.preferences.PrimitiveTypePreferencePage"
             name="PrimitiveType Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
-			class="org.eclipse.papyrus.diagram.profile.preferences.EnumerationPreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.profile.preferences.EnumerationPreferencePage"
             id="org.eclipse.papyrus.diagram.profile.preferences.EnumerationPreferencePage"
             name="Enumeration Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
-			class="org.eclipse.papyrus.diagram.profile.preferences.ConstraintPreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.profile.preferences.ConstraintPreferencePage"
             id="org.eclipse.papyrus.diagram.profile.preferences.ConstraintPreferencePage"
             name="Constraint Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
-			class="org.eclipse.papyrus.diagram.profile.preferences.OperationPreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.profile.preferences.OperationPreferencePage"
             id="org.eclipse.papyrus.diagram.profile.preferences.OperationPreferencePage"
             name="Operation Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
-			class="org.eclipse.papyrus.diagram.profile.preferences.ProfilePreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.profile.preferences.ProfilePreferencePage"
             id="org.eclipse.papyrus.diagram.profile.preferences.ProfilePreferencePage"
             name="Profile Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
-			class="org.eclipse.papyrus.diagram.profile.preferences.ModelPreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.profile.preferences.ModelPreferencePage"
             id="org.eclipse.papyrus.diagram.profile.preferences.ModelPreferencePage"
             name="Model Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
-			class="org.eclipse.papyrus.diagram.profile.preferences.MetaclassPreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.profile.preferences.MetaclassPreferencePage"
             id="org.eclipse.papyrus.diagram.profile.preferences.MetaclassPreferencePage"
             name="Metaclass Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
-			class="org.eclipse.papyrus.diagram.profile.preferences.StereotypePreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.profile.preferences.StereotypePreferencePage"
             id="org.eclipse.papyrus.diagram.profile.preferences.StereotypePreferencePage"
             name="Stereotype Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
-			class="org.eclipse.papyrus.diagram.profile.preferences.AssociationNodePreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.profile.preferences.AssociationNodePreferencePage"
             id="org.eclipse.papyrus.diagram.profile.preferences.AssociationNodePreferencePage"
             name="AssociationNode Node" />
 	
@@ -1382,7 +1382,7 @@
 
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
-			class="org.eclipse.papyrus.diagram.profile.preferences.PackageImportPreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.profile.preferences.PackageImportPreferencePage"
             id="org.eclipse.papyrus.diagram.profile.preferences.PackageImportPreferencePage"
             name="PackageImport Link" />
 		
@@ -1390,7 +1390,7 @@
 
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
-			class="org.eclipse.papyrus.diagram.profile.preferences.ExtensionPreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.profile.preferences.ExtensionPreferencePage"
             id="org.eclipse.papyrus.diagram.profile.preferences.ExtensionPreferencePage"
             name="Extension Link" />
 		
@@ -1398,7 +1398,7 @@
 
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
-			class="org.eclipse.papyrus.diagram.profile.preferences.ElementImportPreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.profile.preferences.ElementImportPreferencePage"
             id="org.eclipse.papyrus.diagram.profile.preferences.ElementImportPreferencePage"
             name="ElementImport Link" />
 		
@@ -1406,7 +1406,7 @@
 
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
-			class="org.eclipse.papyrus.diagram.profile.preferences.DependencyPreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.profile.preferences.DependencyPreferencePage"
             id="org.eclipse.papyrus.diagram.profile.preferences.DependencyPreferencePage"
             name="Dependency Link" />
 		
@@ -1414,7 +1414,7 @@
 
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
-			class="org.eclipse.papyrus.diagram.profile.preferences.GeneralizationPreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.profile.preferences.GeneralizationPreferencePage"
             id="org.eclipse.papyrus.diagram.profile.preferences.GeneralizationPreferencePage"
             name="Generalization Link" />
 		
@@ -1422,7 +1422,7 @@
 
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
-			class="org.eclipse.papyrus.diagram.profile.preferences.ProfileApplicationPreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.profile.preferences.ProfileApplicationPreferencePage"
             id="org.eclipse.papyrus.diagram.profile.preferences.ProfileApplicationPreferencePage"
             name="ProfileApplication Link" />
 		
@@ -1432,7 +1432,7 @@
 
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
-			class="org.eclipse.papyrus.diagram.profile.preferences.AssociationBranchPreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.profile.preferences.AssociationBranchPreferencePage"
             id="org.eclipse.papyrus.diagram.profile.preferences.AssociationBranchPreferencePage"
             name="AssociationBranch Link" />
 		
@@ -1440,7 +1440,7 @@
 
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
-			class="org.eclipse.papyrus.diagram.profile.preferences.AssociationPreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.profile.preferences.AssociationPreferencePage"
             id="org.eclipse.papyrus.diagram.profile.preferences.AssociationPreferencePage"
             name="Association Link" />
 		
@@ -1448,13 +1448,13 @@
 </extension>
 <extension point="org.eclipse.gmf.runtime.common.ui.services.parserProviders" id="parser-provider">
       <?gmfgen generated="true"?>
-      <ParserProvider class="org.eclipse.papyrus.diagram.profile.providers.UMLParserProvider">
+      <ParserProvider class="org.eclipse.papyrus.uml.diagram.profile.providers.UMLParserProvider">
          <Priority name="Lowest"/>
       </ParserProvider>
    </extension>
 <extension point="org.eclipse.gmf.runtime.common.ui.services.markerNavigationProviders" id="markers-navigation">
       <?gmfgen generated="true"?>
-      <MarkerNavigationProvider class="org.eclipse.papyrus.diagram.profile.providers.UMLMarkerNavigationProvider">
+      <MarkerNavigationProvider class="org.eclipse.papyrus.uml.diagram.profile.providers.UMLMarkerNavigationProvider">
          <MarkerType name="org.eclipse.papyrus.diagram.profile.diagnostic"/>
          <Priority name="Lowest"/>
       </MarkerNavigationProvider>
@@ -1467,7 +1467,7 @@
       <persistent value="true"/>
    </extension><extension id="validationDecoratorProvider" name="ValidationDecorations" point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders">
       <?gmfgen generated="true"?>
-      <decoratorProvider class="org.eclipse.papyrus.diagram.profile.providers.UMLValidationDecoratorProvider">
+      <decoratorProvider class="org.eclipse.papyrus.uml.diagram.profile.providers.UMLValidationDecoratorProvider">
          <Priority name="Lowest"/>
          <object class="org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart(org.eclipse.gmf.runtime.diagram.ui)" id="PRIMARY_VIEW"/>
          <context decoratorTargets="PRIMARY_VIEW"/>

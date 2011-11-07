@@ -5,7 +5,7 @@
       
    <extension point="org.eclipse.gmf.runtime.common.ui.services.markerNavigationProviders" id="markers-navigation">
       <?gmfgen generated="true"?>
-      <MarkerNavigationProvider class="org.eclipse.papyrus.diagram.statemachine.providers.UMLMarkerNavigationProvider">
+      <MarkerNavigationProvider class="org.eclipse.papyrus.uml.diagram.statemachine.providers.UMLMarkerNavigationProvider">
          <MarkerType name="org.eclipse.papyrus.diagram.statemachine.diagnostic"/>
          <Priority name="Lowest"/>
       </MarkerNavigationProvider>
@@ -20,7 +20,7 @@
 
    <extension point="org.eclipse.core.runtime.preferences">
 		<?gmfgen generated="true"?>
-		<initializer class="org.eclipse.papyrus.diagram.statemachine.preferences.DiagramPreferenceInitializer"/>
+		<initializer class="org.eclipse.papyrus.uml.diagram.statemachine.preferences.DiagramPreferenceInitializer"/>
 	</extension>
 
    <extension point="org.eclipse.ui.preferencePages" id="prefpages">
@@ -29,7 +29,7 @@
             id="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLStateMachineDiagram"
             name="PapyrusUMLStateMachineDiagram Diagram"
             category="org.eclipse.papyrus.preferences.diagrams"
-            class="org.eclipse.papyrus.diagram.statemachine.preferences.DiagramGeneralPreferencePage">
+            class="org.eclipse.papyrus.uml.diagram.statemachine.preferences.DiagramGeneralPreferencePage">
       </page>
       
 
@@ -38,14 +38,14 @@
             id="org.eclipse.papyrus.diagram.statemachine.preferences.DiagramPrintingPreferencePage"
             name="%prefpage.org.eclipse.uml2.uml.diagram.printing"
             category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLStateMachineDiagram"
-            class="org.eclipse.papyrus.diagram.statemachine.preferences.DiagramPrintingPreferencePage">
+            class="org.eclipse.papyrus.uml.diagram.statemachine.preferences.DiagramPrintingPreferencePage">
       </page>
 
       <page
             id="org.eclipse.papyrus.diagram.statemachine.preferences.DiagramRulersAndGridPreferencePage"
             name="%prefpage.org.eclipse.uml2.uml.diagram.rulersAndGrid"
             category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLStateMachineDiagram"
-            class="org.eclipse.papyrus.diagram.statemachine.preferences.DiagramRulersAndGridPreferencePage">
+            class="org.eclipse.papyrus.uml.diagram.statemachine.preferences.DiagramRulersAndGridPreferencePage">
       </page>
 
 
@@ -55,7 +55,7 @@
       <?gmfgen generated="true"?>
       <propertyContributor
             contributorId="org.eclipse.papyrus.diagram.statemachine"
-            labelProvider="org.eclipse.papyrus.diagram.statemachine.sheet.UMLSheetLabelProvider">
+            labelProvider="org.eclipse.papyrus.uml.diagram.statemachine.sheet.UMLSheetLabelProvider">
          <propertyCategory category="domain"/>
          <propertyCategory category="visual"/>
          <propertyCategory category="extra"/>
@@ -114,26 +114,26 @@
          <propertySection
             id="property.section.domain" 
             tab="property.tab.domain"
-            class="org.eclipse.papyrus.diagram.statemachine.sheet.UMLPropertySection">
+            class="org.eclipse.papyrus.uml.diagram.statemachine.sheet.UMLPropertySection">
             <input type="org.eclipse.gmf.runtime.notation.View"/>
             <input type="org.eclipse.gef.EditPart"/>
-            <input type="org.eclipse.papyrus.diagram.statemachine.navigator.UMLAbstractNavigatorItem"/>
+            <input type="org.eclipse.papyrus.uml.diagram.statemachine.navigator.UMLAbstractNavigatorItem"/>
          </propertySection>
          <propertySection
             id="property.section.domain" 
             tab="property.tab.domain"
-            class="org.eclipse.papyrus.diagram.statemachine.sheet.UMLPropertySection">
+            class="org.eclipse.papyrus.uml.diagram.statemachine.sheet.UMLPropertySection">
             <input type="org.eclipse.gmf.runtime.notation.View"/>
             <input type="org.eclipse.gef.EditPart"/>
-            <input type="org.eclipse.papyrus.diagram.statemachine.navigator.UMLAbstractNavigatorItem"/>
+            <input type="org.eclipse.papyrus.uml.diagram.statemachine.navigator.UMLAbstractNavigatorItem"/>
          </propertySection>
          <propertySection
             id="property.section.domain" 
             tab="property.tab.domain"
-            class="org.eclipse.papyrus.diagram.statemachine.sheet.UMLPropertySection">
+            class="org.eclipse.papyrus.uml.diagram.statemachine.sheet.UMLPropertySection">
             <input type="org.eclipse.gmf.runtime.notation.View"/>
             <input type="org.eclipse.gef.EditPart"/>
-            <input type="org.eclipse.papyrus.diagram.statemachine.navigator.UMLAbstractNavigatorItem"/>
+            <input type="org.eclipse.papyrus.uml.diagram.statemachine.navigator.UMLAbstractNavigatorItem"/>
          </propertySection>
       </propertySections>
    </extension>
@@ -177,7 +177,7 @@
 
    <extension point="org.eclipse.gmf.runtime.emf.ui.modelingAssistantProviders" id="modelassist-provider">
       <?gmfgen generated="true"?>
-      <modelingAssistantProvider class="org.eclipse.papyrus.diagram.statemachine.providers.UMLModelingAssistantProvider">
+      <modelingAssistantProvider class="org.eclipse.papyrus.uml.diagram.statemachine.providers.UMLModelingAssistantProvider">
          <Priority name="Lowest"/>
          <object class="org.eclipse.papyrus.diagram.statemachine.edit.parts.PackageEditPart" id="Package_1000"/>
          <object class="org.eclipse.papyrus.diagram.statemachine.edit.parts.StateMachineEditPart" id="StateMachine_2000"/>
@@ -187,14 +187,14 @@
 
    <extension point="org.eclipse.gmf.runtime.common.ui.services.iconProviders" id="icon-provider">
       <?gmfgen generated="true"?>
-      <IconProvider class="org.eclipse.papyrus.diagram.statemachine.providers.UMLIconProvider">
+      <IconProvider class="org.eclipse.papyrus.uml.diagram.statemachine.providers.UMLIconProvider">
          <Priority name="Low"/>
       </IconProvider>
    </extension>
 
    <extension point="org.eclipse.gmf.runtime.common.ui.services.parserProviders" id="parser-provider">
       <?gmfgen generated="true"?>
-      <ParserProvider class="org.eclipse.papyrus.diagram.statemachine.providers.UMLParserProvider">
+      <ParserProvider class="org.eclipse.papyrus.uml.diagram.statemachine.providers.UMLParserProvider">
          <Priority name="Lowest"/>
       </ParserProvider>
    </extension>
@@ -207,7 +207,7 @@
                name="%metatype.name.Package_1000"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Package"
-               edithelper="org.eclipse.papyrus.diagram.statemachine.edit.helpers.PackageEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.statemachine.edit.helpers.PackageEditHelper">
             <param name="semanticHint" value="1000"/>
          </metamodelType>
       </metamodel>
@@ -217,7 +217,7 @@
                name="%metatype.name.StateMachine_2000"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="StateMachine"
-               edithelper="org.eclipse.papyrus.diagram.statemachine.edit.helpers.StateMachineEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.statemachine.edit.helpers.StateMachineEditHelper">
             <param name="semanticHint" value="2000"/>
          </metamodelType>
       </metamodel>
@@ -227,7 +227,7 @@
                name="%metatype.name.Region_3000"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Region"
-               edithelper="org.eclipse.papyrus.diagram.statemachine.edit.helpers.RegionEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.statemachine.edit.helpers.RegionEditHelper">
             <param name="semanticHint" value="3000"/>
          </metamodelType>
       </metamodel>
@@ -237,7 +237,7 @@
                name="%metatype.name.FinalState_5000"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="FinalState"
-               edithelper="org.eclipse.papyrus.diagram.statemachine.edit.helpers.FinalStateEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.statemachine.edit.helpers.FinalStateEditHelper">
             <param name="semanticHint" value="5000"/>
          </metamodelType>
       </metamodel>
@@ -247,7 +247,7 @@
                name="%metatype.name.State_6000"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="State"
-               edithelper="org.eclipse.papyrus.diagram.statemachine.edit.helpers.StateEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.statemachine.edit.helpers.StateEditHelper">
             <param name="semanticHint" value="6000"/>
          </metamodelType>
       </metamodel>
@@ -257,7 +257,7 @@
                name="%metatype.name.Pseudostate_8000"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Pseudostate"
-               edithelper="org.eclipse.papyrus.diagram.statemachine.edit.helpers.PseudostateEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.statemachine.edit.helpers.PseudostateEditHelper">
             <param name="semanticHint" value="8000"/>
          </metamodelType>
       </metamodel>
@@ -267,7 +267,7 @@
                name="%metatype.name.Pseudostate_9000"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Pseudostate"
-               edithelper="org.eclipse.papyrus.diagram.statemachine.edit.helpers.PseudostateEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.statemachine.edit.helpers.PseudostateEditHelper">
             <param name="semanticHint" value="9000"/>
          </metamodelType>
       </metamodel>
@@ -277,7 +277,7 @@
                name="%metatype.name.Pseudostate_10000"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Pseudostate"
-               edithelper="org.eclipse.papyrus.diagram.statemachine.edit.helpers.PseudostateEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.statemachine.edit.helpers.PseudostateEditHelper">
             <param name="semanticHint" value="10000"/>
          </metamodelType>
       </metamodel>
@@ -287,7 +287,7 @@
                name="%metatype.name.Pseudostate_11000"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Pseudostate"
-               edithelper="org.eclipse.papyrus.diagram.statemachine.edit.helpers.PseudostateEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.statemachine.edit.helpers.PseudostateEditHelper">
             <param name="semanticHint" value="11000"/>
          </metamodelType>
       </metamodel>
@@ -297,7 +297,7 @@
                name="%metatype.name.Pseudostate_12000"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Pseudostate"
-               edithelper="org.eclipse.papyrus.diagram.statemachine.edit.helpers.PseudostateEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.statemachine.edit.helpers.PseudostateEditHelper">
             <param name="semanticHint" value="12000"/>
          </metamodelType>
       </metamodel>
@@ -307,7 +307,7 @@
                name="%metatype.name.Pseudostate_13000"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Pseudostate"
-               edithelper="org.eclipse.papyrus.diagram.statemachine.edit.helpers.PseudostateEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.statemachine.edit.helpers.PseudostateEditHelper">
             <param name="semanticHint" value="13000"/>
          </metamodelType>
       </metamodel>
@@ -317,7 +317,7 @@
                name="%metatype.name.Pseudostate_14000"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Pseudostate"
-               edithelper="org.eclipse.papyrus.diagram.statemachine.edit.helpers.PseudostateEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.statemachine.edit.helpers.PseudostateEditHelper">
             <param name="semanticHint" value="14000"/>
          </metamodelType>
       </metamodel>
@@ -327,7 +327,7 @@
                name="%metatype.name.Pseudostate_15000"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Pseudostate"
-               edithelper="org.eclipse.papyrus.diagram.statemachine.edit.helpers.PseudostateEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.statemachine.edit.helpers.PseudostateEditHelper">
             <param name="semanticHint" value="15000"/>
          </metamodelType>
       </metamodel>
@@ -337,7 +337,7 @@
                name="%metatype.name.Pseudostate_16000"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Pseudostate"
-               edithelper="org.eclipse.papyrus.diagram.statemachine.edit.helpers.PseudostateEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.statemachine.edit.helpers.PseudostateEditHelper">
             <param name="semanticHint" value="16000"/>
          </metamodelType>
       </metamodel>
@@ -347,7 +347,7 @@
                name="%metatype.name.Pseudostate_17000"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Pseudostate"
-               edithelper="org.eclipse.papyrus.diagram.statemachine.edit.helpers.PseudostateEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.statemachine.edit.helpers.PseudostateEditHelper">
             <param name="semanticHint" value="17000"/>
          </metamodelType>
       </metamodel>
@@ -357,7 +357,7 @@
                name="%metatype.name.ConnectionPointReference_18000"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="ConnectionPointReference"
-               edithelper="org.eclipse.papyrus.diagram.statemachine.edit.helpers.ConnectionPointReferenceEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.statemachine.edit.helpers.ConnectionPointReferenceEditHelper">
             <param name="semanticHint" value="18000"/>
          </metamodelType>
       </metamodel>
@@ -367,7 +367,7 @@
                name="%metatype.name.Transition_7000"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Transition"
-               edithelper="org.eclipse.papyrus.diagram.statemachine.edit.helpers.TransitionEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.statemachine.edit.helpers.TransitionEditHelper">
             <param name="semanticHint" value="7000"/>
          </metamodelType>
       </metamodel>
@@ -377,7 +377,7 @@
                name="%metatype.name.Generalization_19000"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Generalization"
-               edithelper="org.eclipse.papyrus.diagram.statemachine.edit.helpers.GeneralizationEditHelper">
+               edithelper="org.eclipse.papyrus.uml.diagram.statemachine.edit.helpers.GeneralizationEditHelper">
             <param name="semanticHint" value="19000"/>
          </metamodelType>
       </metamodel>
@@ -421,7 +421,7 @@
            type="org.eclipse.emf.common.ui.URIEditorInput"
            namespace="org.eclipse.papyrus.diagram.statemachine"
            properties="isURIEditorInput"
-           class="org.eclipse.papyrus.diagram.statemachine.part.UMLUriEditorInputTester">
+           class="org.eclipse.papyrus.uml.diagram.statemachine.part.UMLUriEditorInputTester">
        </propertyTester>
    </extension>
 
@@ -447,8 +447,8 @@
             id="org.eclipse.papyrus.diagram.statemachine.resourceContent" 
             name="%navigatorContentName" 
             priority="normal" 
-            contentProvider="org.eclipse.papyrus.diagram.statemachine.navigator.UMLNavigatorContentProvider" 
-            labelProvider="org.eclipse.papyrus.diagram.statemachine.navigator.UMLNavigatorLabelProvider"
+            contentProvider="org.eclipse.papyrus.uml.diagram.statemachine.navigator.UMLNavigatorContentProvider" 
+            labelProvider="org.eclipse.papyrus.uml.diagram.statemachine.navigator.UMLNavigatorLabelProvider"
             icon="icons/UMLDiagramFile.gif"
             activeByDefault="true">
          <triggerPoints>
@@ -457,24 +457,24 @@
     	          <instanceof value="org.eclipse.core.resources.IFile"/>
         	      <test property="org.eclipse.core.resources.extension" value="PapyrusUMLStateMachine_diagram"/>
                </and>
-               <instanceof value="org.eclipse.papyrus.diagram.statemachine.navigator.UMLAbstractNavigatorItem"/>
+               <instanceof value="org.eclipse.papyrus.uml.diagram.statemachine.navigator.UMLAbstractNavigatorItem"/>
             </or>
          </triggerPoints>
          <possibleChildren>
             <or>
-         	   <instanceof value="org.eclipse.papyrus.diagram.statemachine.navigator.UMLAbstractNavigatorItem"/>
+         	   <instanceof value="org.eclipse.papyrus.uml.diagram.statemachine.navigator.UMLAbstractNavigatorItem"/>
             </or>
          </possibleChildren>
          <commonSorter 
                id="org.eclipse.papyrus.diagram.statemachine.navigatorSorter" 
-               class="org.eclipse.papyrus.diagram.statemachine.navigator.UMLNavigatorSorter">
+               class="org.eclipse.papyrus.uml.diagram.statemachine.navigator.UMLNavigatorSorter">
             <parentExpression>
                <or>
 	              <and>
     	             <instanceof value="org.eclipse.core.resources.IFile"/>
         	         <test property="org.eclipse.core.resources.extension" value="PapyrusUMLStateMachine_diagram"/>
                   </and>
-                  <instanceof value="org.eclipse.papyrus.diagram.statemachine.navigator.UMLAbstractNavigatorItem"/>
+                  <instanceof value="org.eclipse.papyrus.uml.diagram.statemachine.navigator.UMLAbstractNavigatorItem"/>
                </or>
             </parentExpression>
          </commonSorter>
@@ -483,8 +483,8 @@
             id="org.eclipse.papyrus.diagram.statemachine.domainResourceContent" 
             name="%domainNavigatorContentName" 
             priority="normal" 
-            contentProvider="org.eclipse.papyrus.diagram.statemachine.navigator.UMLDomainNavigatorContentProvider" 
-            labelProvider="org.eclipse.papyrus.diagram.statemachine.navigator.UMLDomainNavigatorLabelProvider"
+            contentProvider="org.eclipse.papyrus.uml.diagram.statemachine.navigator.UMLDomainNavigatorContentProvider" 
+            labelProvider="org.eclipse.papyrus.uml.diagram.statemachine.navigator.UMLDomainNavigatorLabelProvider"
             icon="icons/UMLDiagramFile.gif"
             activeByDefault="true">
          <triggerPoints>
@@ -493,19 +493,19 @@
     	          <instanceof value="org.eclipse.core.resources.IFile"/>
         	      <test property="org.eclipse.core.resources.extension" value="PapyrusUMLStateMachine"/>
                </and>
-               <instanceof value="org.eclipse.papyrus.diagram.statemachine.navigator.UMLDomainNavigatorItem"/>
+               <instanceof value="org.eclipse.papyrus.uml.diagram.statemachine.navigator.UMLDomainNavigatorItem"/>
             </or>
          </triggerPoints>
          <possibleChildren>
-            <instanceof value="org.eclipse.papyrus.diagram.statemachine.navigator.UMLDomainNavigatorItem"/>
+            <instanceof value="org.eclipse.papyrus.uml.diagram.statemachine.navigator.UMLDomainNavigatorItem"/>
          </possibleChildren>
       </navigatorContent>
       <actionProvider
             id="org.eclipse.papyrus.diagram.statemachine.navigatorActionProvider"
-            class="org.eclipse.papyrus.diagram.statemachine.navigator.UMLNavigatorActionProvider">
+            class="org.eclipse.papyrus.uml.diagram.statemachine.navigator.UMLNavigatorActionProvider">
          <enablement>
             <or>
-               <instanceof value="org.eclipse.papyrus.diagram.statemachine.navigator.UMLAbstractNavigatorItem"/>
+               <instanceof value="org.eclipse.papyrus.uml.diagram.statemachine.navigator.UMLAbstractNavigatorItem"/>
             </or>
          </enablement>
       </actionProvider>
@@ -515,7 +515,7 @@
       <?gmfgen generated="true"?>
       <linkHelper
             id="org.eclipse.papyrus.diagram.statemachine.navigatorLinkHelper"
-            class="org.eclipse.papyrus.diagram.statemachine.navigator.UMLNavigatorLinkHelper">
+            class="org.eclipse.papyrus.uml.diagram.statemachine.navigator.UMLNavigatorLinkHelper">
          <editorInputEnablement>
             <and>
                <instanceof value="org.eclipse.emf.common.ui.URIEditorInput"/>
@@ -523,7 +523,7 @@
             </and>
          </editorInputEnablement>
          <selectionEnablement>
-            <instanceof value="org.eclipse.papyrus.diagram.statemachine.navigator.UMLAbstractNavigatorItem"/>
+            <instanceof value="org.eclipse.papyrus.uml.diagram.statemachine.navigator.UMLAbstractNavigatorItem"/>
          </selectionEnablement>
       </linkHelper>
    </extension>
@@ -531,7 +531,7 @@
       <?gmfgen generated="true"?>
       <command
          categoryId="org.eclipse.ui.category.edit"
-         defaultHandler="org.eclipse.papyrus.diagram.statemachine.part.UMLDiagramUpdateCommand"
+         defaultHandler="org.eclipse.papyrus.uml.diagram.statemachine.part.UMLDiagramUpdateCommand"
          description="%update.diagram.description"
          id="org.eclipse.papyrus.diagram.statemachine.updateDiagram"
          name="%update.diagram.name"/>
@@ -558,7 +558,7 @@
                <and>
                   <with variable="activePartId"><equals value="org.eclipse.papyrus.diagram.statemachine.part.UMLDiagramEditorID"/></with>
                   <with variable="selection"><iterate ifEmpty="false"> 
-                     <instanceof value="org.eclipse.papyrus.diagram.statemachine.edit.parts.PackageEditPart"/>
+                     <instanceof value="org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.PackageEditPart"/>
                   </iterate></with>
                </and>
             </visibleWhen>
@@ -572,7 +572,7 @@
       <command id="org.eclipse.papyrus.diagram.statemachine.LoadResourceAction"
          name="Load Resource"
          categoryId="org.eclipse.papyrus.diagram.statemachine.part.UMLDiagramEditorID"
-         defaultHandler="org.eclipse.papyrus.diagram.statemachine.part.LoadResourceAction"/>
+         defaultHandler="org.eclipse.papyrus.uml.diagram.statemachine.part.LoadResourceAction"/>
    </extension>
 
 <!-- Diagram creation command and handler -->
@@ -585,7 +585,7 @@
 
    <extension point="org.eclipse.ui.handlers">
 	<handler
-		class="org.eclipse.papyrus.diagram.statemachine.CreateStateMachineDiagramWithNavigationHandler"
+		class="org.eclipse.papyrus.uml.diagram.statemachine.CreateStateMachineDiagramWithNavigationHandler"
 		commandId="org.eclipse.papyrus.diagram.statemachine.CreationCommand">
 		<activeWhen>
 			<with variable="activeEditorId">
@@ -604,7 +604,7 @@
 			icon="icons/obj16/Diagram_StateMachine.gif" label="Create a new StateMachine Diagram"
 			style="push" tooltip="Create a new StateMachine Diagram">
 			<visibleWhen>
-				<reference definitionId="org.eclipse.papyrus.diagram.common.IsPapyrusActiveWithUMLModel"/>
+				<reference definitionId="org.eclipse.papyrus.uml.diagram.common.IsPapyrusActiveWithUMLModel"/>
 			</visibleWhen> 
 		</command>
 	</menu>
@@ -616,20 +616,20 @@
 			icon="icons/obj16/Diagram_StateMachine.gif" label="Create a new StateMachine Diagram"
 			style="push" tooltip="Create a new StateMachine Diagram">
 			<visibleWhen>
-				<reference definitionId="org.eclipse.papyrus.diagram.common.IsPapyrusActiveWithUMLModel"/>
+				<reference definitionId="org.eclipse.papyrus.uml.diagram.common.IsPapyrusActiveWithUMLModel"/>
 			</visibleWhen> 
 		</command>
 	</toolbar>
 	</menuContribution>
 
-	<menuContribution locationURI="popup:org.eclipse.papyrus.modelexplorer.popupmenu.creatediagram">
+	<menuContribution locationURI="popup:org.eclipse.papyrus.views.modelexplorer.popupmenu.creatediagram">
 		<command commandId="org.eclipse.papyrus.diagram.statemachine.CreationCommand"
 			icon="icons/obj16/Diagram_StateMachine.gif"
 			label="Create a new StateMachine Diagram"
 			style="push"
 			tooltip="Create a new StateMachine Diagram">
 			<visibleWhen>
-				<reference definitionId="org.eclipse.papyrus.diagram.common.IsPapyrusActiveWithUMLModel"/>
+				<reference definitionId="org.eclipse.papyrus.uml.diagram.common.IsPapyrusActiveWithUMLModel"/>
 			</visibleWhen>
 		</command>
 	</menuContribution>	
@@ -639,13 +639,13 @@
    <extension
          point="org.eclipse.papyrus.core.papyrusDiagram">
       <editorDiagram
-            actionBarContributorId="org.eclipse.papyrus.diagram.common.part.UMLDiagramActionBarContributor"
-            factoryClass="org.eclipse.papyrus.diagram.statemachine.StateMachineDiagramEditorFactory"
+            actionBarContributorId="org.eclipse.papyrus.uml.diagram.common.part.UMLDiagramActionBarContributor"
+            factoryClass="org.eclipse.papyrus.uml.diagram.statemachine.StateMachineDiagramEditorFactory"
             icon="icons/obj16/Diagram_StateMachine.gif">
       </editorDiagram>
       <creationCommand
-            creationCommandClass="org.eclipse.papyrus.diagram.statemachine.CreateStateMachineDiagramCommand"
-            creationCondition="org.eclipse.papyrus.diagram.statemachine.StateMachineDiagramCreationCondition"
+            creationCommandClass="org.eclipse.papyrus.uml.diagram.statemachine.CreateStateMachineDiagramCommand"
+            creationCondition="org.eclipse.papyrus.uml.diagram.statemachine.StateMachineDiagramCreationCondition"
             icon="icons/obj16/Diagram_StateMachine.gif"
             id="org.eclipse.papyrus.diagram.statemachine.CreationCommand"
             language="uml"
@@ -712,42 +712,42 @@
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLStateMachineDiagram"
-			class="org.eclipse.papyrus.diagram.statemachine.preferences.PseudostatePreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.statemachine.preferences.PseudostatePreferencePage"
             id="org.eclipse.papyrus.diagram.statemachine.preferences.PseudostatePreferencePage"
             name="Pseudostate Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLStateMachineDiagram"
-			class="org.eclipse.papyrus.diagram.statemachine.preferences.ConnectionPointReferencePreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.statemachine.preferences.ConnectionPointReferencePreferencePage"
             id="org.eclipse.papyrus.diagram.statemachine.preferences.ConnectionPointReferencePreferencePage"
             name="ConnectionPointReference Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLStateMachineDiagram"
-			class="org.eclipse.papyrus.diagram.statemachine.preferences.RegionPreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.statemachine.preferences.RegionPreferencePage"
             id="org.eclipse.papyrus.diagram.statemachine.preferences.RegionPreferencePage"
             name="Region Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLStateMachineDiagram"
-			class="org.eclipse.papyrus.diagram.statemachine.preferences.StatePreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.statemachine.preferences.StatePreferencePage"
             id="org.eclipse.papyrus.diagram.statemachine.preferences.StatePreferencePage"
             name="State Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLStateMachineDiagram"
-			class="org.eclipse.papyrus.diagram.statemachine.preferences.FinalStatePreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.statemachine.preferences.FinalStatePreferencePage"
             id="org.eclipse.papyrus.diagram.statemachine.preferences.FinalStatePreferencePage"
             name="FinalState Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLStateMachineDiagram"
-			class="org.eclipse.papyrus.diagram.statemachine.preferences.StateMachinePreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.statemachine.preferences.StateMachinePreferencePage"
             id="org.eclipse.papyrus.diagram.statemachine.preferences.StateMachinePreferencePage"
             name="StateMachine Node" />
 	
@@ -757,7 +757,7 @@
 
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLStateMachineDiagram"
-			class="org.eclipse.papyrus.diagram.statemachine.preferences.GeneralizationPreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.statemachine.preferences.GeneralizationPreferencePage"
             id="org.eclipse.papyrus.diagram.statemachine.preferences.GeneralizationPreferencePage"
             name="Generalization Link" />
 		
@@ -765,7 +765,7 @@
 
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLStateMachineDiagram"
-			class="org.eclipse.papyrus.diagram.statemachine.preferences.TransitionPreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.statemachine.preferences.TransitionPreferencePage"
             id="org.eclipse.papyrus.diagram.statemachine.preferences.TransitionPreferencePage"
             name="Transition Link" />
 		
@@ -780,7 +780,7 @@
 		<paletteProvider class="org.eclipse.gmf.runtime.diagram.ui.providers.DefaultPaletteProvider">
 			<Priority name="Lowest"/>
       		<contribution
-            	factoryClass="org.eclipse.papyrus.diagram.statemachine.part.UMLPaletteFactory">
+            	factoryClass="org.eclipse.papyrus.uml.diagram.statemachine.part.UMLPaletteFactory">
      			<predefinedEntry id="standardGroup/noteStack/noteTool" remove="true"/> 
 				<predefinedEntry id="standardGroup/noteStack/textTool" remove="true"/> 
 				<predefinedEntry id="standardGroup/noteStack/noteattachmentTool" remove="true"/>
@@ -962,7 +962,7 @@
 		<paletteProvider class="org.eclipse.gmf.runtime.diagram.ui.providers.DefaultPaletteProvider">
 			<Priority name="Low"/>
       		<contribution
-            	factoryClass="org.eclipse.papyrus.diagram.statemachine.part.UMLPaletteFactory">
+            	factoryClass="org.eclipse.papyrus.uml.diagram.statemachine.part.UMLPaletteFactory">
      			<predefinedEntry id="standardGroup/noteStack/noteTool" remove="true"/> 
 				<predefinedEntry id="standardGroup/noteStack/textTool" remove="true"/> 
 				<predefinedEntry id="standardGroup/noteStack/noteattachmentTool" remove="true"/>
@@ -1062,7 +1062,7 @@
 	</extension>
 <extension id="validationDecoratorProvider" name="ValidationDecorations" point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders">
       <?gmfgen generated="true"?>
-      <decoratorProvider class="org.eclipse.papyrus.diagram.statemachine.providers.UMLValidationDecoratorProvider">
+      <decoratorProvider class="org.eclipse.papyrus.uml.diagram.statemachine.providers.UMLValidationDecoratorProvider">
          <Priority name="Lowest"/>
          <object class="org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart(org.eclipse.gmf.runtime.diagram.ui)" id="PRIMARY_VIEW"/>
          <context decoratorTargets="PRIMARY_VIEW"/>

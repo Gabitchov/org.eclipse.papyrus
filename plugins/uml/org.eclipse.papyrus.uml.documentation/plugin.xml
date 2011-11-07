@@ -2,19 +2,19 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension
-         point="org.eclipse.papyrus.documentation.documentationManager">
+         point="org.eclipse.papyrus.views.documentation.documentationManager">
       <documentationManager
-            managerClass="org.eclipse.papyrus.documentation.uml.UMLDocumentationManager"
+            managerClass="org.eclipse.papyrus.views.documentation.uml.UMLDocumentationManager"
             modelNsURI="http://www.eclipse.org/uml2/3.0.0/UML"
             priority="Lowest">
       </documentationManager>
       <documentationManager
-            managerClass="org.eclipse.papyrus.documentation.uml.UMLDocumentationManager"
+            managerClass="org.eclipse.papyrus.views.documentation.uml.UMLDocumentationManager"
             modelNsURI="http://www.eclipse.org/uml2/2.1.0/UML"
             priority="Lowest">
       </documentationManager>
       <documentationManager
-            managerClass="org.eclipse.papyrus.documentation.uml.UMLDocumentationManager"
+            managerClass="org.eclipse.papyrus.views.documentation.uml.UMLDocumentationManager"
             modelNsURI="http://www.eclipse.org/uml2/2.0.0/UML"
             priority="Lowest">
       </documentationManager>

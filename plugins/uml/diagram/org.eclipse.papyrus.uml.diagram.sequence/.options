@@ -1,7 +1,7 @@
-# Tracing options for the org.eclipse.papyrus.diagram.sequence plug-in
+# Tracing options for the org.eclipse.papyrus.uml.diagram.sequence plug-in
 
 # Common issues
-org.eclipse.papyrus.diagram.sequence/debug=false
+org.eclipse.papyrus.uml.diagram.sequence/debug=false
 
 # Visual IDs
-org.eclipse.papyrus.diagram.sequence/debug/visualID=false
+org.eclipse.papyrus.uml.diagram.sequence/debug/visualID=false

@@ -325,20 +325,20 @@
           xsi:type="gmfmap:FeatureLabelMapping"
           editPattern="">
         <diagramLabel
-            href="../../org.eclipse.papyrus.diagram.common/model/PackageElement.gmfgraph#PackageNameDiagramLabel"/>
+            href="../../org.eclipse.papyrus.uml.diagram.common/model/PackageElement.gmfgraph#PackageNameDiagramLabel"/>
         <features
             href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
       </labelMappings>
       <labelMappings
           readOnly="true">
         <diagramLabel
-            href="../../org.eclipse.papyrus.diagram.common/model/PackageElement.gmfgraph#PackageStereotypesDiagramLabel"/>
+            href="../../org.eclipse.papyrus.uml.diagram.common/model/PackageElement.gmfgraph#PackageStereotypesDiagramLabel"/>
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
           href="usecaseDiagram.gmftool#//@palette/@tools.0/@tools.3"/>
       <diagramNode
-          href="../../org.eclipse.papyrus.diagram.common/model/PackageElement.gmfgraph#PackageNode"/>
+          href="../../org.eclipse.papyrus.uml.diagram.common/model/PackageElement.gmfgraph#PackageNode"/>
       <children
           compartment="//@nodes.5/@ownedChild/@compartments.0"
           referencedChild="//@nodes.6/@ownedChild">
@@ -390,7 +390,7 @@
       <compartments
           children="//@nodes.5/@ownedChild/@children.1 //@nodes.5/@ownedChild/@children.2 //@nodes.5/@ownedChild/@children.3 //@nodes.5/@ownedChild/@children.0 //@nodes.5/@ownedChild/@children.4 //@nodes.5/@ownedChild/@children.5">
         <compartment
-            href="../../org.eclipse.papyrus.diagram.common/model/PackageElement.gmfgraph#PackageableElementCompartment"/>
+            href="../../org.eclipse.papyrus.uml.diagram.common/model/PackageElement.gmfgraph#PackageableElementCompartment"/>
       </compartments>
     </ownedChild>
   </nodes>
@@ -425,7 +425,7 @@
           xsi:type="gmfmap:FeatureLabelMapping"
           editPattern="">
         <diagramLabel
-            href="../../org.eclipse.papyrus.diagram.common/model/Comment.gmfgraph#CornerBentContentDiagramLabel"/>
+            href="../../org.eclipse.papyrus.uml.diagram.common/model/Comment.gmfgraph#CornerBentContentDiagramLabel"/>
         <features
             href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
       </labelMappings>
@@ -433,7 +433,7 @@
           xsi:type="gmftool:CreationTool"
           href="usecaseDiagram.gmftool#//@palette/@tools.0/@tools.4"/>
       <diagramNode
-          href="../../org.eclipse.papyrus.diagram.common/model/Comment.gmfgraph#CornerBentNode"/>
+          href="../../org.eclipse.papyrus.uml.diagram.common/model/Comment.gmfgraph#CornerBentNode"/>
     </ownedChild>
   </nodes>
   <nodes>
@@ -458,7 +458,7 @@
           xsi:type="gmfmap:FeatureLabelMapping"
           editPattern="">
         <diagramLabel
-            href="../../org.eclipse.papyrus.diagram.common/model/Comment.gmfgraph#CornerBentContentDiagramLabel"/>
+            href="../../org.eclipse.papyrus.uml.diagram.common/model/Comment.gmfgraph#CornerBentContentDiagramLabel"/>
         <features
             href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Comment/body"/>
       </labelMappings>
@@ -466,7 +466,7 @@
           xsi:type="gmftool:CreationTool"
           href="usecaseDiagram.gmftool#//@palette/@tools.0/@tools.5"/>
       <diagramNode
-          href="../../org.eclipse.papyrus.diagram.common/model/Comment.gmfgraph#CornerBentNode"/>
+          href="../../org.eclipse.papyrus.uml.diagram.common/model/Comment.gmfgraph#CornerBentNode"/>
     </ownedChild>
   </nodes>
   <links>
@@ -529,7 +529,7 @@
     <labelMappings
         readOnly="true">
       <diagramLabel
-          href="../../org.eclipse.papyrus.diagram.common/model/Generalization.gmfgraph#GeneralizationAppliedStereotypeDiagramLabel"/>
+          href="../../org.eclipse.papyrus.uml.diagram.common/model/Generalization.gmfgraph#GeneralizationAppliedStereotypeDiagramLabel"/>
     </labelMappings>
     <containmentFeature
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Classifier/generalization"/>
@@ -570,14 +570,14 @@
     <labelMappings
         xsi:type="gmfmap:FeatureLabelMapping">
       <diagramLabel
-          href="../../org.eclipse.papyrus.diagram.common/model/Association.gmfgraph#AssociationNameDiagramLabel"/>
+          href="../../org.eclipse.papyrus.uml.diagram.common/model/Association.gmfgraph#AssociationNameDiagramLabel"/>
       <features
           href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
     </labelMappings>
     <labelMappings
         readOnly="true">
       <diagramLabel
-          href="../../org.eclipse.papyrus.diagram.common/model/Association.gmfgraph#AppliedStereotypeAssociationDiagramLabel"/>
+          href="../../org.eclipse.papyrus.uml.diagram.common/model/Association.gmfgraph#AppliedStereotypeAssociationDiagramLabel"/>
     </labelMappings>
     <containmentFeature
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Package/packagedElement"/>
@@ -585,7 +585,7 @@
         xsi:type="gmftool:CreationTool"
         href="usecaseDiagram.gmftool#//@palette/@tools.2/@tools.0"/>
     <diagramLink
-        href="../../org.eclipse.papyrus.diagram.common/model/Association.gmfgraph#AssociationConnection"/>
+        href="../../org.eclipse.papyrus.uml.diagram.common/model/Association.gmfgraph#AssociationConnection"/>
     <sourceMetaFeature
         xsi:type="ecore:EReference"
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Association/endType"/>
@@ -630,14 +630,14 @@
     <labelMappings
         xsi:type="gmfmap:FeatureLabelMapping">
       <diagramLabel
-          href="../../org.eclipse.papyrus.diagram.common/model/Dependency.gmfgraph#DependencyNameDiagramLabel"/>
+          href="../../org.eclipse.papyrus.uml.diagram.common/model/Dependency.gmfgraph#DependencyNameDiagramLabel"/>
       <features
           href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
     </labelMappings>
     <labelMappings
         readOnly="true">
       <diagramLabel
-          href="../../org.eclipse.papyrus.diagram.common/model/Dependency.gmfgraph#DependencyAppliedStereotypeDiagramLabel"/>
+          href="../../org.eclipse.papyrus.uml.diagram.common/model/Dependency.gmfgraph#DependencyAppliedStereotypeDiagramLabel"/>
     </labelMappings>
     <containmentFeature
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Package/packagedElement"/>
@@ -645,7 +645,7 @@
         xsi:type="gmftool:CreationTool"
         href="usecaseDiagram.gmftool#//@palette/@tools.2/@tools.5"/>
     <diagramLink
-        href="../../org.eclipse.papyrus.diagram.common/model/Dependency.gmfgraph#DependencyConnection"/>
+        href="../../org.eclipse.papyrus.uml.diagram.common/model/Dependency.gmfgraph#DependencyConnection"/>
     <sourceMetaFeature
         xsi:type="ecore:EReference"
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Dependency/client"/>
@@ -663,7 +663,7 @@
         xsi:type="gmftool:CreationTool"
         href="usecaseDiagram.gmftool#//@palette/@tools.2/@tools.6"/>
     <diagramLink
-        href="../../org.eclipse.papyrus.diagram.common/model/Comment.gmfgraph#CommentLinkConnection"/>
+        href="../../org.eclipse.papyrus.uml.diagram.common/model/Comment.gmfgraph#CommentLinkConnection"/>
     <linkMetaFeature
         xsi:type="ecore:EReference"
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Comment/annotatedElement"/>
@@ -689,7 +689,7 @@
     <labelMappings
         xsi:type="gmfmap:FeatureLabelMapping">
       <diagramLabel
-          href="../../org.eclipse.papyrus.diagram.common/model/Dependency.gmfgraph#DependencyNameDiagramLabel"/>
+          href="../../org.eclipse.papyrus.uml.diagram.common/model/Dependency.gmfgraph#DependencyNameDiagramLabel"/>
       <features
           href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
     </labelMappings>
@@ -700,14 +700,14 @@
         editorPattern="&lt;&lt;{0}>>"
         editPattern="&lt;&lt;{0}>>">
       <diagramLabel
-          href="../../org.eclipse.papyrus.diagram.common/model/Dependency.gmfgraph#DependencyAppliedStereotypeDiagramLabel"/>
+          href="../../org.eclipse.papyrus.uml.diagram.common/model/Dependency.gmfgraph#DependencyAppliedStereotypeDiagramLabel"/>
       <features
           href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
     </labelMappings>
     <labelMappings
         readOnly="true">
       <diagramLabel
-          href="../../org.eclipse.papyrus.diagram.common/model/Dependency.gmfgraph#DependencyAppliedStereotypeDiagramLabel"/>
+          href="../../org.eclipse.papyrus.uml.diagram.common/model/Dependency.gmfgraph#DependencyAppliedStereotypeDiagramLabel"/>
     </labelMappings>
     <containmentFeature
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Package/packagedElement"/>
@@ -715,7 +715,7 @@
         xsi:type="gmftool:CreationTool"
         href="usecaseDiagram.gmftool#//@palette/@tools.2/@tools.7"/>
     <diagramLink
-        href="../../org.eclipse.papyrus.diagram.common/model/Dependency.gmfgraph#DependencyConnection"/>
+        href="../../org.eclipse.papyrus.uml.diagram.common/model/Dependency.gmfgraph#DependencyConnection"/>
     <sourceMetaFeature
         xsi:type="ecore:EReference"
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Dependency/client"/>
@@ -744,7 +744,7 @@
     <labelMappings
         xsi:type="gmfmap:FeatureLabelMapping">
       <diagramLabel
-          href="../../org.eclipse.papyrus.diagram.common/model/Dependency.gmfgraph#DependencyNameDiagramLabel"/>
+          href="../../org.eclipse.papyrus.uml.diagram.common/model/Dependency.gmfgraph#DependencyNameDiagramLabel"/>
       <features
           href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
     </labelMappings>
@@ -755,14 +755,14 @@
         editorPattern="&lt;&lt;{0}>>"
         editPattern="&lt;&lt;{0}>>">
       <diagramLabel
-          href="../../org.eclipse.papyrus.diagram.common/model/Dependency.gmfgraph#DependencyAppliedStereotypeDiagramLabel"/>
+          href="../../org.eclipse.papyrus.uml.diagram.common/model/Dependency.gmfgraph#DependencyAppliedStereotypeDiagramLabel"/>
       <features
           href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
     </labelMappings>
     <labelMappings
         readOnly="true">
       <diagramLabel
-          href="../../org.eclipse.papyrus.diagram.common/model/Dependency.gmfgraph#DependencyAppliedStereotypeDiagramLabel"/>
+          href="../../org.eclipse.papyrus.uml.diagram.common/model/Dependency.gmfgraph#DependencyAppliedStereotypeDiagramLabel"/>
     </labelMappings>
     <containmentFeature
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Package/packagedElement"/>
@@ -770,7 +770,7 @@
         xsi:type="gmftool:CreationTool"
         href="usecaseDiagram.gmftool#//@palette/@tools.2/@tools.9"/>
     <diagramLink
-        href="../../org.eclipse.papyrus.diagram.common/model/Dependency.gmfgraph#DependencyConnection"/>
+        href="../../org.eclipse.papyrus.uml.diagram.common/model/Dependency.gmfgraph#DependencyConnection"/>
     <sourceMetaFeature
         xsi:type="ecore:EReference"
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Dependency/client"/>
@@ -799,7 +799,7 @@
     <labelMappings
         xsi:type="gmfmap:FeatureLabelMapping">
       <diagramLabel
-          href="../../org.eclipse.papyrus.diagram.common/model/InterfaceRealization.gmfgraph#InterfaceRealizationNameDiagramLabel"/>
+          href="../../org.eclipse.papyrus.uml.diagram.common/model/InterfaceRealization.gmfgraph#InterfaceRealizationNameDiagramLabel"/>
       <features
           href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
     </labelMappings>
@@ -810,14 +810,14 @@
         editorPattern="&lt;&lt;{0}>>"
         editPattern="&lt;&lt;{0}>>">
       <diagramLabel
-          href="../../org.eclipse.papyrus.diagram.common/model/InterfaceRealization.gmfgraph#InterfaceRealizationAppliedStereotypeDiagramLabel"/>
+          href="../../org.eclipse.papyrus.uml.diagram.common/model/InterfaceRealization.gmfgraph#InterfaceRealizationAppliedStereotypeDiagramLabel"/>
       <features
           href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
     </labelMappings>
     <labelMappings
         readOnly="true">
       <diagramLabel
-          href="../../org.eclipse.papyrus.diagram.common/model/InterfaceRealization.gmfgraph#InterfaceRealizationAppliedStereotypeDiagramLabel"/>
+          href="../../org.eclipse.papyrus.uml.diagram.common/model/InterfaceRealization.gmfgraph#InterfaceRealizationAppliedStereotypeDiagramLabel"/>
     </labelMappings>
     <containmentFeature
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Package/packagedElement"/>
@@ -825,7 +825,7 @@
         xsi:type="gmftool:CreationTool"
         href="usecaseDiagram.gmftool#//@palette/@tools.2/@tools.8"/>
     <diagramLink
-        href="../../org.eclipse.papyrus.diagram.common/model/InterfaceRealization.gmfgraph#InterfaceRealizationConnection"/>
+        href="../../org.eclipse.papyrus.uml.diagram.common/model/InterfaceRealization.gmfgraph#InterfaceRealizationConnection"/>
     <sourceMetaFeature
         xsi:type="ecore:EReference"
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Dependency/client"/>
@@ -843,7 +843,7 @@
         xsi:type="gmftool:CreationTool"
         href="usecaseDiagram.gmftool#//@palette/@tools.2/@tools.11"/>
     <diagramLink
-        href="../../org.eclipse.papyrus.diagram.common/model/Dependency.gmfgraph#DependencyConnection"/>
+        href="../../org.eclipse.papyrus.uml.diagram.common/model/Dependency.gmfgraph#DependencyConnection"/>
     <sourceMetaFeature
         xsi:type="ecore:EReference"
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//PackageMerge/receivingPackage"/>
@@ -862,14 +862,14 @@
         editorPattern="&lt;&lt;{0}>>"
         editPattern="&lt;&lt;{0}>>">
       <diagramLabel
-          href="../../org.eclipse.papyrus.diagram.common/model/Dependency.gmfgraph#DependencyAppliedStereotypeDiagramLabel"/>
+          href="../../org.eclipse.papyrus.uml.diagram.common/model/Dependency.gmfgraph#DependencyAppliedStereotypeDiagramLabel"/>
       <features
           href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//PackageImport/visibility"/>
     </labelMappings>
     <labelMappings
         readOnly="true">
       <diagramLabel
-          href="../../org.eclipse.papyrus.diagram.common/model/Dependency.gmfgraph#DependencyAppliedStereotypeDiagramLabel"/>
+          href="../../org.eclipse.papyrus.uml.diagram.common/model/Dependency.gmfgraph#DependencyAppliedStereotypeDiagramLabel"/>
     </labelMappings>
     <containmentFeature
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Namespace/packageImport"/>
@@ -877,7 +877,7 @@
         xsi:type="gmftool:CreationTool"
         href="usecaseDiagram.gmftool#//@palette/@tools.2/@tools.10"/>
     <diagramLink
-        href="../../org.eclipse.papyrus.diagram.common/model/Dependency.gmfgraph#DependencyConnection"/>
+        href="../../org.eclipse.papyrus.uml.diagram.common/model/Dependency.gmfgraph#DependencyConnection"/>
     <linkMetaFeature
         xsi:type="ecore:EReference"
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//PackageImport/importedPackage"/>

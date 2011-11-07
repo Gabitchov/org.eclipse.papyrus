@@ -5,11 +5,11 @@
     xmlns:gmfgraph="http://www.eclipse.org/gmf/2006/GraphicalDefinition" name="uml">
   <figures
       name="Sequence Gallery"
-      implementationBundle="org.eclipse.papyrus.diagram.common">
+      implementationBundle="org.eclipse.papyrus.uml.diagram.common">
     <figures
         xsi:type="gmfgraph:CustomDecoration"
         name="RoundedArrow"
-        qualifiedClassName="org.eclipse.papyrus.diagram.sequence.figures.EllipseDecoration">
+        qualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.figures.EllipseDecoration">
       <attributes
           name="alwaysFill"
           value="true"/>
@@ -56,7 +56,7 @@
       <actualFigure
           xsi:type="gmfgraph:CustomFigure"
           name="CustomInteractionRectangleFigure"
-          qualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.InteractionRectangleFigure">
+          qualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.InteractionRectangleFigure">
         <customChildren
             accessor="getHeaderLabel()">
           <typedFigure
@@ -82,7 +82,7 @@
       <actualFigure
           xsi:type="gmfgraph:CustomFigure"
           name="LifelineFigure"
-          qualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.NodeNamedElementFigure">
+          qualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.NodeNamedElementFigure">
         <layout
             xsi:type="gmfgraph:BorderLayout"/>
         <maximumSize
@@ -130,7 +130,7 @@
           <children
               xsi:type="gmfgraph:CustomFigure"
               name="LifelineDotLineFigure"
-              qualifiedClassName="org.eclipse.papyrus.diagram.sequence.figures.LifelineDotLineCustomFigure"/>
+              qualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.figures.LifelineDotLineCustomFigure"/>
         </children>
       </actualFigure>
       <accessors
@@ -162,7 +162,7 @@
       <actualFigure
           xsi:type="gmfgraph:CustomFigure"
           name="CustomInteractionUseFigure"
-          qualifiedClassName="org.eclipse.papyrus.diagram.sequence.figures.InteractionUseRectangleFigure">
+          qualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.figures.InteractionUseRectangleFigure">
         <customChildren
             accessor="getCenterLabel()">
           <typedFigure
@@ -182,7 +182,7 @@
       <actualFigure
           xsi:type="gmfgraph:CustomFigure"
           name="CustomCombinedFragmentFigure"
-          qualifiedClassName="org.eclipse.papyrus.diagram.sequence.figures.CombinedFragmentFigure">
+          qualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.figures.CombinedFragmentFigure">
         <customChildren
             accessor="getCompartmentFigure()">
           <typedFigure
@@ -201,7 +201,7 @@
       <actualFigure
           xsi:type="gmfgraph:CustomFigure"
           name="CustomInteractionOperandFigure"
-          qualifiedClassName="org.eclipse.papyrus.diagram.sequence.figures.InteractionOperandFigure">
+          qualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.figures.InteractionOperandFigure">
         <layout
             xsi:type="gmfgraph:XYLayout"/>
         <children
@@ -409,11 +409,11 @@
           cornerHeight="50">
         <layout
             xsi:type="gmfgraph:CustomLayout"
-            qualifiedClassName="org.eclipse.papyrus.diagram.common.draw2d.CenterLayout"/>
+            qualifiedClassName="org.eclipse.papyrus.uml.diagram.common.draw2d.CenterLayout"/>
         <children
             xsi:type="gmfgraph:CustomFigure"
             name="ContinuationNameLabel"
-            qualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.CenteredWrappedLabel"/>
+            qualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.CenteredWrappedLabel"/>
       </actualFigure>
       <accessors
           figure="//@figures.0/@descriptors.13/@actualFigure/@children.0"/>
@@ -423,7 +423,7 @@
       <actualFigure
           xsi:type="gmfgraph:CustomFigure"
           name="CustomCoregionFigure"
-          qualifiedClassName="org.eclipse.papyrus.diagram.sequence.figures.CoRegionCombinedFragmentFigure"/>
+          qualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.figures.CoRegionCombinedFragmentFigure"/>
     </descriptors>
     <descriptors
         name="DurationObservationConstraint">
@@ -468,13 +468,13 @@
           fill="false">
         <layout
             xsi:type="gmfgraph:CustomLayout"
-            qualifiedClassName="org.eclipse.papyrus.diagram.common.draw2d.CenterLayout"/>
+            qualifiedClassName="org.eclipse.papyrus.uml.diagram.common.draw2d.CenterLayout"/>
         <preferredSize
             dx="40"
             dy="-1"/>
         <border
             xsi:type="gmfgraph:CustomBorder"
-            qualifiedClassName="org.eclipse.papyrus.diagram.common.draw2d.LinesBorder">
+            qualifiedClassName="org.eclipse.papyrus.uml.diagram.common.draw2d.LinesBorder">
           <attributes
               name="sides"
               value="PositionConstants.TOP | PositionConstants.BOTTOM"/>
@@ -496,7 +496,7 @@
       <actualFigure
           xsi:type="gmfgraph:CustomFigure"
           name="DestructionEventFigure"
-          qualifiedClassName="org.eclipse.papyrus.diagram.sequence.figures.DestructionEventFigure"/>
+          qualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.figures.DestructionEventFigure"/>
     </descriptors>
     <descriptors
         name="MultilineLabelFigure">
@@ -526,7 +526,7 @@
       <actualFigure
           xsi:type="gmfgraph:CustomFigure"
           name="AppliedStereotypeWrappingLabel"
-          qualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.AppliedStereotypeWrappingLabelFigure"/>
+          qualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.AppliedStereotypeWrappingLabelFigure"/>
     </descriptors>
     <descriptors
         name="GeneralOrderingDescriptor">
