@@ -262,7 +262,7 @@
 <!-- UI Menu declaration for creation commands -->
 <extension point="org.eclipse.ui.menus">
 
-	<menuContribution locationURI="popup:org.eclipse.papyrus.modelexplorer.popupmenu.createsysmlchild" allPopups="false">
+	<menuContribution locationURI="popup:org.eclipse.papyrus.views.modelexplorer.popupmenu.createsysmlchild" allPopups="false">
 
 		<!-- Creation menu action for Allocate -->
 		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.AllocateCreateCommand"

@@ -30,9 +30,9 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.utils.BusinessModelResolver;
 import org.eclipse.papyrus.core.utils.ServiceUtilsForActionHandlers;
-import org.eclipse.papyrus.modelexplorer.CommandContext;
-import org.eclipse.papyrus.modelexplorer.ICommandContext;
 import org.eclipse.papyrus.sysml.modelexplorer.Activator;
+import org.eclipse.papyrus.views.modelexplorer.CommandContext;
+import org.eclipse.papyrus.views.modelexplorer.ICommandContext;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 

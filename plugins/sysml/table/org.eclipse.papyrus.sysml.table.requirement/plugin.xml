@@ -16,7 +16,7 @@
             </visibleWhen>
          </command>
       </menuContribution>
-      <menuContribution allPopups="false" locationURI="popup:org.eclipse.papyrus.modelexplorer.popupmenu.createtable">
+      <menuContribution allPopups="false" locationURI="popup:org.eclipse.papyrus.views.modelexplorer.popupmenu.createtable">
          <command commandId="org.eclipse.papyrus.sysml.table.requirement.create.table.command" icon="icons/table_SysML_Requirement.gif" style="push" tooltip="Create a New SysML Requirement Table">
             <visibleWhen>
                <reference

@@ -27,14 +27,14 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
-import org.eclipse.papyrus.modelexplorer.ICommandContext;
-import org.eclipse.papyrus.modelexplorer.ICommandFilter;
-import org.eclipse.papyrus.modelexplorer.ModelExplorerPageBookView;
-import org.eclipse.papyrus.modelexplorer.ModelExplorerView;
-import org.eclipse.papyrus.modelexplorer.NavigatorUtils;
 import org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.service.edit.service.IElementEditService;
 import org.eclipse.papyrus.sysml.modelexplorer.filter.CommandFilter;
+import org.eclipse.papyrus.views.modelexplorer.ICommandContext;
+import org.eclipse.papyrus.views.modelexplorer.ICommandFilter;
+import org.eclipse.papyrus.views.modelexplorer.ModelExplorerPageBookView;
+import org.eclipse.papyrus.views.modelexplorer.ModelExplorerView;
+import org.eclipse.papyrus.views.modelexplorer.NavigatorUtils;
 
 /**
  * Default handler for Create command used in the ModelExplorer contextual ("Create new child") menu.
@@ -131,7 +131,7 @@ public abstract class CreateCommandHandler extends AbstractCommandHandler {
 		// Retrieve model explorer
 		ModelExplorerView modelExplorerView = null;
 
-		ModelExplorerPageBookView bookViewPart = (ModelExplorerPageBookView)NavigatorUtils.findViewPart("org.eclipse.papyrus.modelexplorer.modelexplorer"); //$NON-NLS-0$
+		ModelExplorerPageBookView bookViewPart = (ModelExplorerPageBookView)NavigatorUtils.findViewPart("org.eclipse.papyrus.views.modelexplorer.modelexplorer"); //$NON-NLS-0$
 		if(bookViewPart != null) {
 			modelExplorerView = (ModelExplorerView)((ModelExplorerPageBookView)bookViewPart).getActiveView();
 		}

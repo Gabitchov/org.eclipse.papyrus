@@ -297,14 +297,14 @@
 <extension point="org.eclipse.ui.menus">
 
 	<!-- Sub-menu declaration -->	 
-	<menuContribution locationURI="popup:org.eclipse.papyrus.modelexplorer.modelexplorer.popup" allPopups="false">
-		<menu id="org.eclipse.papyrus.modelexplorer.popupmenu.createsysmlchild"
+	<menuContribution locationURI="popup:org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup" allPopups="false">
+		<menu id="org.eclipse.papyrus.views.modelexplorer.popupmenu.createsysmlchild"
 			label="New SysML Child">
 		</menu>
 	</menuContribution>
 	
 	<!-- Create SysML element menu content -->
-	<menuContribution locationURI="popup:org.eclipse.papyrus.modelexplorer.popupmenu.createsysmlchild" allPopups="false">
+	<menuContribution locationURI="popup:org.eclipse.papyrus.views.modelexplorer.popupmenu.createsysmlchild" allPopups="false">
 
 		<!-- Creation menu action for Allocate -->
 		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.AllocateCreateCommand"

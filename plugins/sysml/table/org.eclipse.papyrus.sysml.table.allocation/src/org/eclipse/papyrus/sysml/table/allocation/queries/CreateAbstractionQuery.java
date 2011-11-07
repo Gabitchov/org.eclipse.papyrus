@@ -54,7 +54,7 @@ public class CreateAbstractionQuery implements IJavaModelQuery<Package, Abstract
 			if(context != null) {
 				Abstraction abstraction = UMLFactory.eINSTANCE.createAbstraction();
 
-				String name = org.eclipse.papyrus.diagram.common.helper.NamedElementHelper.EINSTANCE.getNewUMLElementName(context, abstraction.eClass());
+				String name = org.eclipse.papyrus.uml.diagram.common.helper.NamedElementHelper.EINSTANCE.getNewUMLElementName(context, abstraction.eClass());
 				abstraction.setName(name);
 				Command command = commandFactory.createAddCommand(editingDomain, context, UMLPackage.eINSTANCE.getPackage_PackagedElement(), abstraction);
 
