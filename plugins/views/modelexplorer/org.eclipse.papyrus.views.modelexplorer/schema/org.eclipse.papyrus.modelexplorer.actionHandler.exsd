@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="org.eclipse.papyrus.modelexplorer" xmlns="http://www.w3.org/2001/XMLSchema">
+<schema targetNamespace="org.eclipse.papyrus.views.modelexplorer" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appinfo>
-         <meta.schema plugin="org.eclipse.papyrus.modelexplorer" id="org.eclipse.papyrus.modelexplorer.actionHandler" name="ActionHandler"/>
+         <meta.schema plugin="org.eclipse.papyrus.views.modelexplorer" id="org.eclipse.papyrus.views.modelexplorer.actionHandler" name="ActionHandler"/>
       </appinfo>
       <documentation>
          This extension point allows adding action in the contextual menu of the model explorer

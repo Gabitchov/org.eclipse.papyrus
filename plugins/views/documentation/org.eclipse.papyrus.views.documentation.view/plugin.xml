@@ -7,9 +7,9 @@
       <view
             allowMultiple="false"
             category="org.eclipse.papyrus.views.category"
-            class="org.eclipse.papyrus.documentation.view.DocView"
+            class="org.eclipse.papyrus.views.documentation.view.DocView"
             icon="icons/documentation.gif"
-            id="org.eclipse.papyrus.documentation.view.DocView"
+            id="org.eclipse.papyrus.views.documentation.view.DocView"
             name="Documentation"
             restorable="true">
       </view>

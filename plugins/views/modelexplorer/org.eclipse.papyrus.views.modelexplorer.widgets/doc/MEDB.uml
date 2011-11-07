@@ -107,7 +107,7 @@
       </ownedEnd>
     </packagedElement>
   </packagedElement>
-  <packagedElement xmi:type="uml:Package" xmi:id="_FXRS4EsbEeCsdNjiLCckhw" name="org.eclipse.papyrus.modelexplorer">
+  <packagedElement xmi:type="uml:Package" xmi:id="_FXRS4EsbEeCsdNjiLCckhw" name="org.eclipse.papyrus.views.modelexplorer">
     <packagedElement xmi:type="uml:Class" xmi:id="_Gpqu4EsbEeCsdNjiLCckhw" name="MoDiscoContentProvider"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Package" xmi:id="__0mr0EsrEeCT26UdVsfwqQ" name="Eclipse">

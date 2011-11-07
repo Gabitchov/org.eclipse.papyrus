@@ -63,7 +63,7 @@ A generic implementation using EAnnotation on EModelElement is used if no other 
                   The implementation for the specified meta-model.
                </documentation>
                <appinfo>
-                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.documentation.registry.IDocumentationManager"/>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.views.documentation.registry.IDocumentationManager"/>
                </appinfo>
             </annotation>
          </attribute>

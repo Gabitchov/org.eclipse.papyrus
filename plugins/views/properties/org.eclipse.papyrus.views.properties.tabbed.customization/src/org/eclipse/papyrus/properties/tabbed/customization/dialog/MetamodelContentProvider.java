@@ -32,7 +32,7 @@ import org.eclipse.papyrus.properties.runtime.view.constraints.IConstraintDescri
 import org.eclipse.papyrus.properties.runtime.view.constraints.ObjectTypeConstraintDescriptor;
 import org.eclipse.papyrus.properties.tabbed.core.view.SectionSetDescriptorState;
 import org.eclipse.papyrus.properties.tabbed.customization.Activator;
-import org.eclipse.papyrus.umlutils.StereotypeUtil;
+import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.Stereotype;
 

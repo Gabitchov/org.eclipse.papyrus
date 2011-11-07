@@ -15,8 +15,8 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.papyrus.modelexplorer.widgets.GraphicalModelExplorerBasedContentProvider;
 import org.eclipse.papyrus.properties.util.EMFHelper;
+import org.eclipse.papyrus.views.modelexplorer.widgets.GraphicalModelExplorerBasedContentProvider;
 
 
 

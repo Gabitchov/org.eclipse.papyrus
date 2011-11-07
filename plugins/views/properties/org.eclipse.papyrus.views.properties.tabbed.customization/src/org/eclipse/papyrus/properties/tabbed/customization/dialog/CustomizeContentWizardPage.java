@@ -90,8 +90,8 @@ import org.eclipse.papyrus.properties.tabbed.customization.dialog.actions.Sectio
 import org.eclipse.papyrus.properties.tabbed.customization.dialog.actions.SectionSetMenuCreator;
 import org.eclipse.papyrus.properties.tabbed.customization.dialog.actions.StereotypeMenuCreator;
 import org.eclipse.papyrus.properties.tabbed.customization.state.StatePropertyTabViewProviderParser;
-import org.eclipse.papyrus.umlutils.PackageUtil;
-import org.eclipse.papyrus.umlutils.StereotypeUtil;
+import org.eclipse.papyrus.uml.tools.utils.PackageUtil;
+import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CCombo;
 import org.eclipse.swt.custom.SashForm;
