@@ -1,7 +1,7 @@
-# Tracing options for the org.eclipse.papyrus.diagram.component plug-in
+# Tracing options for the org.eclipse.papyrus.uml.diagram.component plug-in
 
 # Common issues
-org.eclipse.papyrus.diagram.component/debug=false
+org.eclipse.papyrus.uml.diagram.component/debug=false
 
 # Visual IDs
-org.eclipse.papyrus.diagram.component/debug/visualID=false
+org.eclipse.papyrus.uml.diagram.component/debug/visualID=false

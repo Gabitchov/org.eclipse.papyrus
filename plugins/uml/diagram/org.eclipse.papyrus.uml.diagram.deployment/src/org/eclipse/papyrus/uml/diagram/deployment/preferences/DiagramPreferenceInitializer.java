@@ -1,0 +1,86 @@
+/*****************************************************************************
+ * Copyright (c) 2011 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *	Amine EL KOUHEN (CEA LIST/LIFL) - Amine.El-Kouhen@lifl.fr 
+ *****************************************************************************/
+/*****************************************************************************
+ * Copyright (c) 2011 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *	Amine EL KOUHEN (CEA LIST/LIFL) - Amine.El-Kouhen@lifl.fr 
+ *****************************************************************************/
+package org.eclipse.papyrus.uml.diagram.deployment.preferences;
+
+import org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer;
+import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.papyrus.uml.diagram.deployment.part.UMLDiagramEditorPlugin;
+import org.eclipse.papyrus.uml.diagram.deployment.preferences.ArtifactPreferencePage;
+import org.eclipse.papyrus.uml.diagram.deployment.preferences.CommentAnnotatedElementPreferencePage;
+import org.eclipse.papyrus.uml.diagram.deployment.preferences.CommentPreferencePage;
+import org.eclipse.papyrus.uml.diagram.deployment.preferences.ConstraintConstrainedElementPreferencePage;
+import org.eclipse.papyrus.uml.diagram.deployment.preferences.ConstraintPreferencePage;
+import org.eclipse.papyrus.uml.diagram.deployment.preferences.DependencyPreferencePage;
+import org.eclipse.papyrus.uml.diagram.deployment.preferences.DeploymentPreferencePage;
+import org.eclipse.papyrus.uml.diagram.deployment.preferences.DevicePreferencePage;
+import org.eclipse.papyrus.uml.diagram.deployment.preferences.ExecutionEnvironmentPreferencePage;
+import org.eclipse.papyrus.uml.diagram.deployment.preferences.GeneralizationPreferencePage;
+import org.eclipse.papyrus.uml.diagram.deployment.preferences.ManifestationPreferencePage;
+import org.eclipse.papyrus.uml.diagram.deployment.preferences.NodePreferencePage;
+
+/**
+ * @generated
+ */
+public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer {
+
+	/**
+	 * @generated
+	 */
+	public void initializeDefaultPreferences() {
+		IPreferenceStore store = getPreferenceStore();
+
+		ExecutionEnvironmentPreferencePage.initDefaults(store);
+
+		ArtifactPreferencePage.initDefaults(store);
+
+		DevicePreferencePage.initDefaults(store);
+
+		NodePreferencePage.initDefaults(store);
+
+		ConstraintPreferencePage.initDefaults(store);
+
+		CommentPreferencePage.initDefaults(store);
+
+		ConstraintConstrainedElementPreferencePage.initDefaults(store);
+
+		CommentAnnotatedElementPreferencePage.initDefaults(store);
+
+		GeneralizationPreferencePage.initDefaults(store);
+
+		ManifestationPreferencePage.initDefaults(store);
+
+		DependencyPreferencePage.initDefaults(store);
+
+		DeploymentPreferencePage.initDefaults(store);
+
+	}
+
+	/**
+	 * @generated
+	 */
+	protected IPreferenceStore getPreferenceStore() {
+		return UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
+	}
+}
