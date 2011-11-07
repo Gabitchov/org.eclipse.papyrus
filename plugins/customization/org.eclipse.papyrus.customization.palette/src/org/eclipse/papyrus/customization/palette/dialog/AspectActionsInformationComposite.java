@@ -9,7 +9,7 @@
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.diagram.common.palette.customization.dialog;
+package org.eclipse.papyrus.customization.palette.dialog;
 
 import java.util.Collections;
 import java.util.List;
@@ -24,13 +24,13 @@ import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.papyrus.diagram.common.Activator;
-import org.eclipse.papyrus.diagram.common.Messages;
-import org.eclipse.papyrus.diagram.common.service.palette.AspectToolService;
-import org.eclipse.papyrus.diagram.common.service.palette.IAspectAction;
-import org.eclipse.papyrus.diagram.common.service.palette.IAspectActionProvider;
-import org.eclipse.papyrus.diagram.common.service.palette.IPostAction;
-import org.eclipse.papyrus.diagram.common.service.palette.IPreAction;
+import org.eclipse.papyrus.uml.diagram.common.Activator;
+import org.eclipse.papyrus.uml.diagram.common.Messages;
+import org.eclipse.papyrus.uml.diagram.common.service.palette.AspectToolService;
+import org.eclipse.papyrus.uml.diagram.common.service.palette.IAspectAction;
+import org.eclipse.papyrus.uml.diagram.common.service.palette.IAspectActionProvider;
+import org.eclipse.papyrus.uml.diagram.common.service.palette.IPostAction;
+import org.eclipse.papyrus.uml.diagram.common.service.palette.IPreAction;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseListener;

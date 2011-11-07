@@ -9,13 +9,13 @@
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.diagram.common.palette.customization.dialog;
+package org.eclipse.papyrus.customization.palette.dialog;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
 import org.eclipse.gef.palette.PaletteContainer;
-import org.eclipse.papyrus.diagram.common.Activator;
+import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.swt.graphics.Image;
 
 /**

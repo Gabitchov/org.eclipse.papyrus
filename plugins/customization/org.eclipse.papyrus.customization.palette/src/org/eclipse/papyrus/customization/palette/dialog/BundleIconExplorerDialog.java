@@ -10,7 +10,7 @@
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Bug fix
  *****************************************************************************/
-package org.eclipse.papyrus.diagram.common.palette.customization.dialog;
+package org.eclipse.papyrus.customization.palette.dialog;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -24,8 +24,8 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.viewers.LabelProvider;
-import org.eclipse.papyrus.diagram.common.Activator;
-import org.eclipse.papyrus.diagram.common.palette.customization.Messages;
+import org.eclipse.papyrus.customization.palette.Messages;
+import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.pde.core.plugin.IPluginModel;
 import org.eclipse.pde.core.plugin.PluginRegistry;
 import org.eclipse.swt.SWT;
@@ -435,7 +435,7 @@ public class BundleIconExplorerDialog extends SelectionStatusDialog {
 		public ImageProxy(URL url) {
 			localPath = url.getPath();
 			path = PLUGIN_PROTOCOL + getCurrentBundleName() + localPath;
-			image = org.eclipse.papyrus.diagram.common.Activator.getImage(path, ""); //$NON-NLS-1$
+			image = org.eclipse.papyrus.uml.diagram.common.Activator.getImage(path, ""); //$NON-NLS-1$
 			int index = localPath.lastIndexOf('/');
 			if(index > 0 && index < localPath.length()) {
 				fileName = localPath.substring(index + 1, localPath.length() - GIF_EXTENSION_LENGTH);

@@ -36,7 +36,7 @@ public class DuplicateTableHandler extends AbstractTableModelExplorerHandler {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.modelexplorer.handler.AbstractCommandHandler#getCommand()
+	 * @see org.eclipse.papyrus.views.modelexplorer.handler.AbstractCommandHandler#getCommand()
 	 * 
 	 * @return
 	 */

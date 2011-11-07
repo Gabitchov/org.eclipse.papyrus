@@ -11,23 +11,23 @@
  *
  *****************************************************************************/
 
-package org.eclipse.papyrus.diagram.common.palette.customization.proxies;
+package org.eclipse.papyrus.customization.palette.proxies;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.gef.palette.PaletteEntry;
-import org.eclipse.papyrus.diagram.common.Activator;
-import org.eclipse.papyrus.diagram.common.palette.customization.dialog.PaletteAspectToolEntryProxy;
-import org.eclipse.papyrus.diagram.common.palette.customization.dialog.PaletteContainerProxy;
-import org.eclipse.papyrus.diagram.common.palette.customization.dialog.PaletteEntryProxy;
-import org.eclipse.papyrus.diagram.common.palette.customization.dialog.PaletteLocalDrawerProxy;
-import org.eclipse.papyrus.diagram.common.palette.customization.dialog.PaletteLocalSeparatorProxy;
-import org.eclipse.papyrus.diagram.common.palette.customization.dialog.PaletteLocalStackProxy;
-import org.eclipse.papyrus.diagram.common.service.AbstractXMLDefinitionPaletteFactory;
-import org.eclipse.papyrus.diagram.common.service.AspectCreationEntry;
-import org.eclipse.papyrus.diagram.common.service.IPapyrusPaletteConstant;
-import org.eclipse.papyrus.diagram.common.service.palette.IPaletteEntryProxy;
+import org.eclipse.papyrus.uml.diagram.common.Activator;
+import org.eclipse.papyrus.customization.palette.dialog.PaletteAspectToolEntryProxy;
+import org.eclipse.papyrus.customization.palette.dialog.PaletteContainerProxy;
+import org.eclipse.papyrus.customization.palette.dialog.PaletteEntryProxy;
+import org.eclipse.papyrus.customization.palette.dialog.PaletteLocalDrawerProxy;
+import org.eclipse.papyrus.customization.palette.dialog.PaletteLocalSeparatorProxy;
+import org.eclipse.papyrus.customization.palette.dialog.PaletteLocalStackProxy;
+import org.eclipse.papyrus.uml.diagram.common.service.AbstractXMLDefinitionPaletteFactory;
+import org.eclipse.papyrus.uml.diagram.common.service.AspectCreationEntry;
+import org.eclipse.papyrus.uml.diagram.common.service.IPapyrusPaletteConstant;
+import org.eclipse.papyrus.uml.diagram.common.service.palette.IPaletteEntryProxy;
 import org.w3c.dom.Node;
 
 /**

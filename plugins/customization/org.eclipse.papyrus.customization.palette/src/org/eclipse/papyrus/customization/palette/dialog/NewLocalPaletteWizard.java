@@ -11,11 +11,11 @@
  *
  *****************************************************************************/
 
-package org.eclipse.papyrus.diagram.common.palette.customization.dialog;
+package org.eclipse.papyrus.customization.palette.dialog;
 
 import org.eclipse.gef.ui.palette.PaletteCustomizer;
 import org.eclipse.jface.wizard.Wizard;
-import org.eclipse.papyrus.diagram.common.part.PapyrusPalettePreferences;
+import org.eclipse.papyrus.uml.diagram.common.part.PapyrusPalettePreferences;
 import org.eclipse.ui.IEditorPart;
 
 /**

@@ -9,18 +9,14 @@
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.diagram.common.palette.customization.dialog;
+package org.eclipse.papyrus.customization.palette.dialog;
 
 import java.util.List;
 
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.gef.palette.CombinedTemplateCreationEntry;
-import org.eclipse.gef.palette.PaletteEntry;
 import org.eclipse.jface.dialogs.Dialog;
-import org.eclipse.papyrus.diagram.common.Activator;
-import org.eclipse.papyrus.diagram.common.Messages;
-import org.eclipse.papyrus.diagram.common.palette.customization.dialog.LocalPaletteContentPage.EntryType;
-import org.eclipse.papyrus.diagram.common.part.PaletteUtil;
+import org.eclipse.papyrus.uml.diagram.common.Activator;
+import org.eclipse.papyrus.uml.diagram.common.Messages;
+import org.eclipse.papyrus.uml.diagram.common.service.palette.Configuration;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.FocusListener;
@@ -38,10 +34,10 @@ import org.eclipse.uml2.uml.Profile;
 /**
  * Class in charge of the composite in the {@link LocalPaletteContentPage}
  */
-public class PaletteEntryProxyInformationComposite {
+public class ConfigurationInformationComposite {
 
 	/** current selected entry proxy */
-	protected PaletteEntryProxy selectedEntryProxy;
+	protected Configuration selectedConfiguration;
 
 	/** proxy name text */
 	protected Text nameText;
@@ -58,7 +54,11 @@ public class PaletteEntryProxyInformationComposite {
 	/** list of applied profiles */
 	protected List<Profile> appliedProfiles;
 
+	/** button for icon selection */
 	protected Button iconButton;
+
+	/** protocol for platform plugin URLs */
+	protected static final String PLUGIN_PROTOCOL = "platform:/plugin/"; //$NON-NLS-1$
 
 	/**
 	 * Creates the content of the information composite
@@ -143,11 +143,10 @@ public class PaletteEntryProxyInformationComposite {
 						Activator.log.error("Waiting one icon path, but found " + values.length, null);
 					} else {
 						iconText.setText(values[0].toString());
-						selectedEntryProxy.getEntry().setSmallIcon(Activator.getImageDescriptor(iconText.getText().trim()));
-						selectedEntryProxy.getEntry().setLargeIcon(Activator.getImageDescriptor(iconText.getText().trim()));
-						if(selectedEntryProxy instanceof PaletteAspectToolEntryProxy) {
-							((PaletteAspectToolEntryProxy)selectedEntryProxy).setIcon(iconText.getText().trim());
-						}
+
+						String bundleId = dialog.getCurrentBundleName();
+						String iconPath = dialog.getIconPath();
+						updateIconInConfiguration(bundleId, iconPath);
 					}
 				}
 			}
@@ -168,47 +167,41 @@ public class PaletteEntryProxyInformationComposite {
 		return composite;
 	}
 
+
+	private void updateIconInConfiguration(String bundleId, String iconPath) {
+		if(selectedConfiguration != null) {
+			IconDescriptor descriptor = PaletteconfigurationFactory.eINSTANCE.createIconDescriptor();
+			if(bundleId != null && iconPath != null) {
+				descriptor.setPluginID(bundleId);
+				descriptor.setIconPath(iconPath);
+			}
+			selectedConfiguration.setIcon(descriptor);
+		}
+	}
+
 	/**
 	 * Updates the name field in the information area
 	 */
 	protected void updateNameEntryField() {
-		EntryType type = selectedEntryProxy.getType();
-		switch(type) {
-		case STACK:
-		case SEPARATOR:
+		if(selectedConfiguration != null) {
+			nameText.setText((selectedConfiguration.getLabel() != null) ? selectedConfiguration.getLabel() : "");
+			nameText.setEnabled(true);
+		} else {
 			nameText.setText("");
 			nameText.setEnabled(false);
-			break;
-		case DRAWER:
-		case TOOL:
-		case ASPECT_TOOL:
-			// the fields describing information about entry should be updated
-			String name = selectedEntryProxy.getLabel();
-			nameText.setText((name != null) ? name : "");
-			nameText.setEnabled(true);
-			break;
 		}
+
 	}
 
 	/**
 	 * Updates the reference field in the information area
 	 */
 	protected void updateReferencedEntryField() {
-		if(selectedEntryProxy instanceof PaletteAspectToolEntryProxy) {
-			CombinedTemplateCreationEntry entry = ((PaletteAspectToolEntryProxy)selectedEntryProxy).getEntry().getReferencedEntry();
-			EClass eClass = PaletteUtil.getToolMetaclass(entry);
-			referencedText.setText((eClass != null) ? eClass.getInstanceTypeName() : "");
-		} else if(selectedEntryProxy instanceof PaletteEntryProxy) {
-			PaletteEntry entry = selectedEntryProxy.getEntry();
-			if(entry instanceof CombinedTemplateCreationEntry) {
-				EClass eClass = PaletteUtil.getToolMetaclass((CombinedTemplateCreationEntry)entry);
-				referencedText.setText((eClass != null) ? eClass.getInstanceTypeName() : "");
-			} else {
-				referencedText.setText("");
-			}
+		if(selectedConfiguration instanceof ToolConfiguration) {
+			ToolConfiguration configuration = ((ToolConfiguration)selectedConfiguration);
 		} else {
-			// should never happen
 			referencedText.setText("");
+			referencedText.setEnabled(false);
 		}
 	}
 
@@ -216,21 +209,12 @@ public class PaletteEntryProxyInformationComposite {
 	 * Updates the description field in the information area
 	 */
 	protected void updateDescriptionEntryField() {
-		EntryType type = selectedEntryProxy.getType();
-		switch(type) {
-		case STACK:
-		case SEPARATOR:
-		case DRAWER:
+		if(selectedConfiguration != null) {
+			descriptionText.setText((selectedConfiguration.getDescription() != null) ? selectedConfiguration.getDescription() : "");
+			descriptionText.setEnabled(true);
+		} else {
 			descriptionText.setText("");
 			descriptionText.setEnabled(false);
-			break;
-		case TOOL:
-		case ASPECT_TOOL:
-			// the fields describing information about entry should be updated
-			String name = selectedEntryProxy.getDescription();
-			descriptionText.setText((name != null) ? name : "");
-			descriptionText.setEnabled(true);
-			break;
 		}
 	}
 
@@ -238,39 +222,30 @@ public class PaletteEntryProxyInformationComposite {
 	 * Updates the icon field in the information area
 	 */
 	protected void updateIconEntryField() {
-		EntryType type = selectedEntryProxy.getType();
-		switch(type) {
-		case STACK:
-		case SEPARATOR:
-		case TOOL:
-			iconText.setText("");
-			iconText.setEnabled(false);
-			iconButton.setEnabled(false);
-			break;
-		case DRAWER:
-			String drawerIcon = selectedEntryProxy.getImagePath();
-			iconText.setText((drawerIcon != null) ? drawerIcon : "");
-			iconText.setEnabled(false);
-			iconButton.setEnabled(false);
-			break;
-		case ASPECT_TOOL:
-			String icon = selectedEntryProxy.getImagePath();
-			iconText.setText((icon != null) ? icon : "");
+		if(selectedConfiguration != null) {
+			IconDescriptor descriptor = selectedConfiguration.getIcon();
+			if(descriptor != null) {
+				String iconPath = descriptor.getIconPath();
+				String bundleId = descriptor.getPluginID();
+				if(iconPath != null && bundleId != null) {
+					iconText.setText(PLUGIN_PROTOCOL + bundleId + iconPath);
+				}
+			}
 			iconText.setEnabled(true);
-			iconButton.setEnabled(true);
-			break;
+		} else {
+			iconText.setText("");
+			iconText.setEnabled(true);
 		}
 	}
-
 
 	/**
 	 * Sets the new Selected entry
 	 * 
-	 * @param selectedEntryProxy
-	 *        the selectedEntryProxy to set
+	 * @param configuration
+	 *        the selectedConfiguration to set
 	 */
-	public void setSelectedEntryProxy(PaletteEntryProxy selectedEntryProxy) {
-		this.selectedEntryProxy = selectedEntryProxy;
+	public void setSelectedConfiguration(Configuration configuration) {
+		this.selectedConfiguration = configuration;
 
 		updateNameEntryField();
 		updateIconEntryField();
@@ -293,8 +268,8 @@ public class PaletteEntryProxyInformationComposite {
 		 * @{inheritDoc
 		 */
 		public void focusLost(FocusEvent e) {
-			if(selectedEntryProxy != null) {
-				selectedEntryProxy.setLabel(nameText.getText().trim());
+			if(selectedConfiguration != null) {
+				selectedConfiguration.setLabel(nameText.getText().trim());
 			}
 		}
 
@@ -315,8 +290,8 @@ public class PaletteEntryProxyInformationComposite {
 		 * @{inheritDoc
 		 */
 		public void focusLost(FocusEvent e) {
-			if(selectedEntryProxy != null && selectedEntryProxy.getEntry() != null) {
-				selectedEntryProxy.setDescription(descriptionText.getText().trim());
+			if(selectedConfiguration != null) {
+				selectedConfiguration.setDescription(descriptionText.getText().trim());
 			}
 		}
 	}
@@ -336,12 +311,24 @@ public class PaletteEntryProxyInformationComposite {
 		 * @{inheritDoc
 		 */
 		public void focusLost(FocusEvent e) {
-			if(selectedEntryProxy != null && iconText.getText() != null && !iconText.getText().equals("")) {
-				selectedEntryProxy.getEntry().setSmallIcon(Activator.getImageDescriptor(iconText.getText().trim()));
-				selectedEntryProxy.getEntry().setLargeIcon(Activator.getImageDescriptor(iconText.getText().trim()));
-				if(selectedEntryProxy instanceof PaletteAspectToolEntryProxy) {
-					((PaletteAspectToolEntryProxy)selectedEntryProxy).setIcon(iconText.getText().trim());
+			String text = iconText.getText();
+			if(selectedConfiguration != null && text != null && !text.equals("")) {
+
+				// parse the text.... 
+				if(!text.startsWith(PLUGIN_PROTOCOL)) {
+					return;
 				}
+
+				text = text.substring(PLUGIN_PROTOCOL.length(), text.length());
+
+				int i = text.indexOf("/");
+				if(i < 1) {
+					return;
+				}
+				String bundlePath = text.substring(0, i);
+				String iconPath = text.substring(bundlePath.length(), text.length());
+
+				updateIconInConfiguration(bundlePath, iconPath);
 			}
 		}
 	}

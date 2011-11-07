@@ -9,7 +9,7 @@
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.diagram.common.palette.customization;
+package org.eclipse.papyrus.customization.palette;
 
 import org.eclipse.osgi.util.NLS;
 
@@ -18,7 +18,7 @@ import org.eclipse.osgi.util.NLS;
  */
 public class Messages extends NLS {
 
-	private static final String BUNDLE_NAME = "org.eclipse.papyrus.diagram.common.palette.customization.messages"; //$NON-NLS-1$
+	private static final String BUNDLE_NAME = "org.eclipse.papyrus.customization.palette.messages"; //$NON-NLS-1$
 
 	public static String BundleIconExplorerDialog_Message;
 

@@ -16,7 +16,7 @@ package org.eclipse.papyrus.paletteconfiguration.customization.queries;
 import org.eclipse.emf.facet.infra.query.core.exception.ModelQueryExecutionException;
 import org.eclipse.emf.facet.infra.query.core.java.IJavaModelQuery;
 import org.eclipse.emf.facet.infra.query.core.java.ParameterValueList;
-import org.eclipse.papyrus.paletteconfiguration.ToolConfiguration;
+import org.eclipse.papyrus.uml.diagram.paletteconfiguration.ToolConfiguration;
 
 /** Returns the Label for a tool. */
 public class GetToolLabelQuery implements IJavaModelQuery<ToolConfiguration, String> {

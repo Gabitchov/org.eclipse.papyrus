@@ -10,7 +10,7 @@
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.diagram.common.palette.customization.dialog;
+package org.eclipse.papyrus.customization.palette.dialog;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -71,17 +71,17 @@ import org.eclipse.jface.viewers.ViewerComparator;
 import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.jface.wizard.WizardPage;
-import org.eclipse.papyrus.diagram.common.Activator;
-import org.eclipse.papyrus.diagram.common.Messages;
-import org.eclipse.papyrus.diagram.common.palette.customization.proxies.XMLDefinitionPaletteProxyFactory;
-import org.eclipse.papyrus.diagram.common.part.PaletteUtil;
-import org.eclipse.papyrus.diagram.common.part.PapyrusPalettePreferences;
-import org.eclipse.papyrus.diagram.common.service.AspectCreationEntry;
-import org.eclipse.papyrus.diagram.common.service.IPapyrusPaletteConstant;
-import org.eclipse.papyrus.diagram.common.service.PapyrusPaletteService;
-import org.eclipse.papyrus.diagram.common.service.XMLDefinitionPaletteParser;
-import org.eclipse.papyrus.diagram.common.service.palette.IAspectAction;
-import org.eclipse.papyrus.diagram.common.service.palette.StereotypeAspectActionProvider;
+import org.eclipse.papyrus.customization.palette.proxies.XMLDefinitionPaletteProxyFactory;
+import org.eclipse.papyrus.uml.diagram.common.Activator;
+import org.eclipse.papyrus.uml.diagram.common.Messages;
+import org.eclipse.papyrus.uml.diagram.common.part.PaletteUtil;
+import org.eclipse.papyrus.uml.diagram.common.part.PapyrusPalettePreferences;
+import org.eclipse.papyrus.uml.diagram.common.service.AspectCreationEntry;
+import org.eclipse.papyrus.uml.diagram.common.service.IPapyrusPaletteConstant;
+import org.eclipse.papyrus.uml.diagram.common.service.PapyrusPaletteService;
+import org.eclipse.papyrus.uml.diagram.common.service.XMLDefinitionPaletteParser;
+import org.eclipse.papyrus.uml.diagram.common.service.palette.IAspectAction;
+import org.eclipse.papyrus.uml.diagram.common.service.palette.StereotypeAspectActionProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.DragSourceAdapter;

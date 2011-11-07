@@ -21,8 +21,8 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.papyrus.modelexplorer.handler.AbstractCommandHandler;
 import org.eclipse.papyrus.table.instance.papyrustableinstance.PapyrusTableInstance;
+import org.eclipse.papyrus.views.modelexplorer.handler.AbstractCommandHandler;
 import org.eclipse.ui.PlatformUI;
 
 

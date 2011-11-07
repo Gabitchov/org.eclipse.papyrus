@@ -11,21 +11,21 @@
  *
  *****************************************************************************/
 
-package org.eclipse.papyrus.diagram.common.palette.customization.dialog;
+package org.eclipse.papyrus.customization.palette.dialog;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.papyrus.diagram.common.Activator;
-import org.eclipse.papyrus.diagram.common.service.AspectCreationEntry;
-import org.eclipse.papyrus.diagram.common.service.IPapyrusPaletteConstant;
-import org.eclipse.papyrus.diagram.common.service.palette.AspectToolService;
-import org.eclipse.papyrus.diagram.common.service.palette.IAspectAction;
-import org.eclipse.papyrus.diagram.common.service.palette.IAspectActionProvider;
-import org.eclipse.papyrus.diagram.common.service.palette.IPaletteAspectToolEntryProxy;
-import org.eclipse.papyrus.diagram.common.service.palette.IPostAction;
-import org.eclipse.papyrus.diagram.common.service.palette.IPreAction;
-import org.eclipse.papyrus.diagram.common.service.palette.StereotypePostAction;
+import org.eclipse.papyrus.uml.diagram.common.Activator;
+import org.eclipse.papyrus.uml.diagram.common.service.AspectCreationEntry;
+import org.eclipse.papyrus.uml.diagram.common.service.IPapyrusPaletteConstant;
+import org.eclipse.papyrus.uml.diagram.common.service.palette.AspectToolService;
+import org.eclipse.papyrus.uml.diagram.common.service.palette.IAspectAction;
+import org.eclipse.papyrus.uml.diagram.common.service.palette.IAspectActionProvider;
+import org.eclipse.papyrus.uml.diagram.common.service.palette.IPaletteAspectToolEntryProxy;
+import org.eclipse.papyrus.uml.diagram.common.service.palette.IPostAction;
+import org.eclipse.papyrus.uml.diagram.common.service.palette.IPreAction;
+import org.eclipse.papyrus.uml.diagram.common.service.palette.StereotypePostAction;
 import org.eclipse.swt.graphics.Image;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;

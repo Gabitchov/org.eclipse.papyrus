@@ -13,8 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.table.modelexplorer.providers;
 
-import org.eclipse.papyrus.modelexplorer.MoDiscoLabelProvider;
 import org.eclipse.papyrus.table.instance.papyrustableinstance.PapyrusTableInstance;
+import org.eclipse.papyrus.views.modelexplorer.MoDiscoLabelProvider;
 import org.eclipse.swt.graphics.Image;
 
 /**

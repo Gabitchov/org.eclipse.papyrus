@@ -9,7 +9,7 @@
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.diagram.common.palette.customization.dialog;
+package org.eclipse.papyrus.customization.palette.dialog;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -20,10 +20,10 @@ import org.eclipse.gef.palette.PaletteEntry;
 import org.eclipse.gef.palette.PaletteSeparator;
 import org.eclipse.gef.palette.PaletteStack;
 import org.eclipse.gef.palette.ToolEntry;
-import org.eclipse.papyrus.diagram.common.Activator;
-import org.eclipse.papyrus.diagram.common.palette.customization.dialog.LocalPaletteContentPage.EntryType;
-import org.eclipse.papyrus.diagram.common.service.AspectCreationEntry;
-import org.eclipse.papyrus.diagram.common.service.palette.IPaletteEntryProxy;
+import org.eclipse.papyrus.customization.palette.dialog.LocalPaletteContentPage.EntryType;
+import org.eclipse.papyrus.uml.diagram.common.Activator;
+import org.eclipse.papyrus.uml.diagram.common.service.AspectCreationEntry;
+import org.eclipse.papyrus.uml.diagram.common.service.palette.IPaletteEntryProxy;
 import org.eclipse.swt.graphics.Image;
 
 /**

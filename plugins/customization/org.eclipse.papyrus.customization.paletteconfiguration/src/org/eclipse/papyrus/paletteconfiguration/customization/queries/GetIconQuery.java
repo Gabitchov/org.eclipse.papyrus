@@ -3,8 +3,8 @@ package org.eclipse.papyrus.paletteconfiguration.customization.queries;
 import org.eclipse.emf.facet.infra.query.core.exception.ModelQueryExecutionException;
 import org.eclipse.emf.facet.infra.query.core.java.IJavaModelQuery;
 import org.eclipse.emf.facet.infra.query.core.java.ParameterValueList;
-import org.eclipse.papyrus.paletteconfiguration.Configuration;
-import org.eclipse.papyrus.paletteconfiguration.IconDescriptor;
+import org.eclipse.papyrus.uml.diagram.paletteconfiguration.Configuration;
+import org.eclipse.papyrus.uml.diagram.paletteconfiguration.IconDescriptor;
 
 /** Gets the icon for a configuration element in the palette configuration model */
 public class GetIconQuery implements IJavaModelQuery<Configuration, String> {

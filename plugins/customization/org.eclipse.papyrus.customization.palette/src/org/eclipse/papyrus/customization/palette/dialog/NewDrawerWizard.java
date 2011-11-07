@@ -11,14 +11,14 @@
  *
  *****************************************************************************/
 
-package org.eclipse.papyrus.diagram.common.palette.customization.dialog;
+package org.eclipse.papyrus.customization.palette.dialog;
 
 import org.eclipse.jface.wizard.Wizard;
 
 /**
  * Wizard to create a new Drawer from scratch
  */
-public class UpdateLocalDrawerWizard extends Wizard {
+public class NewDrawerWizard extends Wizard {
 
 	/** info page */
 	protected DrawerInformationPage infoPage;
@@ -26,18 +26,14 @@ public class UpdateLocalDrawerWizard extends Wizard {
 	/** the element where to add the new drawer */
 	protected PaletteContainerProxy paletteContainerProxy;
 
-	/** drawer to edit */
-	protected PaletteLocalDrawerProxy drawerProxy;
-
 	/**
 	 * Creates a NewDrawerWizard.
 	 * 
 	 * @param paletteContainerProxy
 	 *        the element where to add the new drawer
 	 */
-	public UpdateLocalDrawerWizard(PaletteContainerProxy paletteContainerProxy, PaletteLocalDrawerProxy drawerProxy) {
+	public NewDrawerWizard(PaletteContainerProxy paletteContainerProxy) {
 		this.paletteContainerProxy = paletteContainerProxy;
-		this.drawerProxy = drawerProxy;
 	}
 
 	/**
@@ -47,7 +43,7 @@ public class UpdateLocalDrawerWizard extends Wizard {
 	public void addPages() {
 		super.addPages();
 
-		infoPage = new DrawerInformationPage(drawerProxy);
+		infoPage = new DrawerInformationPage();
 		addPage(infoPage);
 	}
 
@@ -56,9 +52,7 @@ public class UpdateLocalDrawerWizard extends Wizard {
 	 */
 	@Override
 	public boolean performFinish() {
-		drawerProxy.setLabel(infoPage.getDrawerName());
-		drawerProxy.setId(infoPage.getDrawerID());
-		drawerProxy.setImagePath(infoPage.getImageDescriptorPath());
+		paletteContainerProxy.addChild(new PaletteLocalDrawerProxy(infoPage.getDrawerName(), infoPage.getDrawerID(), infoPage.getImageDescriptorPath(), infoPage.getDescription()));
 		return true;
 	}
 }

@@ -9,13 +9,13 @@
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.diagram.common.palette.customization.dialog;
+package org.eclipse.papyrus.customization.palette.dialog;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.gef.palette.PaletteContainer;
-import org.eclipse.papyrus.diagram.common.palette.customization.dialog.LocalPaletteContentPage.EntryType;
+import org.eclipse.papyrus.customization.palette.dialog.LocalPaletteContentPage.EntryType;
 
 /**
  * Proxy class for container entries

@@ -11,7 +11,7 @@
  *
  *****************************************************************************/
 
-package org.eclipse.papyrus.diagram.common.palette.customization.dialog;
+package org.eclipse.papyrus.customization.palette.dialog;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -45,15 +45,15 @@ import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.wizard.WizardDialog;
-import org.eclipse.papyrus.diagram.common.Activator;
-import org.eclipse.papyrus.diagram.common.Messages;
-import org.eclipse.papyrus.diagram.common.part.PaletteUtil;
-import org.eclipse.papyrus.diagram.common.part.PapyrusPaletteCustomizer;
-import org.eclipse.papyrus.diagram.common.part.PapyrusPalettePreferences;
-import org.eclipse.papyrus.diagram.common.service.PapyrusPaletteService;
-import org.eclipse.papyrus.diagram.common.service.PapyrusPaletteService.ExtendedProviderDescriptor;
-import org.eclipse.papyrus.diagram.common.service.PapyrusPaletteService.LocalProviderDescriptor;
 import org.eclipse.papyrus.sasheditor.editor.ISashWindowsContainer;
+import org.eclipse.papyrus.uml.diagram.common.Activator;
+import org.eclipse.papyrus.uml.diagram.common.Messages;
+import org.eclipse.papyrus.uml.diagram.common.part.PaletteUtil;
+import org.eclipse.papyrus.uml.diagram.common.part.PapyrusPaletteCustomizer;
+import org.eclipse.papyrus.uml.diagram.common.part.PapyrusPalettePreferences;
+import org.eclipse.papyrus.uml.diagram.common.service.PapyrusPaletteService;
+import org.eclipse.papyrus.uml.diagram.common.service.PapyrusPaletteService.ExtendedProviderDescriptor;
+import org.eclipse.papyrus.uml.diagram.common.service.PapyrusPaletteService.LocalProviderDescriptor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseListener;

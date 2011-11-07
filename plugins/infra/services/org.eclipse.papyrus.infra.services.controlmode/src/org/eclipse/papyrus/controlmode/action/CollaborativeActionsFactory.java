@@ -23,8 +23,8 @@ import org.eclipse.jface.action.Action;
 import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
-import org.eclipse.papyrus.modelexplorer.NavigatorUtils;
-import org.eclipse.papyrus.modelexplorer.factory.IActionHandlerFactory;
+import org.eclipse.papyrus.views.modelexplorer.NavigatorUtils;
+import org.eclipse.papyrus.views.modelexplorer.factory.IActionHandlerFactory;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.navigator.CommonNavigator;
 
