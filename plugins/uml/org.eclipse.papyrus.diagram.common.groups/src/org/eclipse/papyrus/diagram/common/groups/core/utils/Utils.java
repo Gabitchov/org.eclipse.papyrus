@@ -414,16 +414,19 @@ public class Utils {
 			for(Object view : views) {
 				if(view instanceof View) {
 					View childView = (View)view;
-					EClass childEclass = (childView.getElement().eClass());
-					Object editpart = anyPart.getViewer().getEditPartRegistry().get(childView);
-					if(editpart instanceof IGraphicalEditPart) {
-						IGraphicalEditPart part = (IGraphicalEditPart)editpart;
-						if(isMainEditPart(part)) {
-							for(EClass possibleChild : possibleChildrenEClass) {
-								if(possibleChild.isSuperTypeOf(childEclass)) {
-									if(isItVisualyContained(parentsBounds, part)) {
-										childsToComplete.add(part);
-										break;
+					EObject element = childView.getElement();
+					if (element != null){						
+						EClass childEclass = (element.eClass());
+						Object editpart = anyPart.getViewer().getEditPartRegistry().get(childView);
+						if(editpart instanceof IGraphicalEditPart) {
+							IGraphicalEditPart part = (IGraphicalEditPart)editpart;
+							if(isMainEditPart(part)) {
+								for(EClass possibleChild : possibleChildrenEClass) {
+									if(possibleChild.isSuperTypeOf(childEclass)) {
+										if(isItVisualyContained(parentsBounds, part)) {
+											childsToComplete.add(part);
+											break;
+										}
 									}
 								}
 							}
