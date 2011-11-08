@@ -23,6 +23,8 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
@@ -58,12 +60,14 @@ public abstract class DirectedRelationshipEditHelper extends ElementEditHelper {
 	/**
 	 * Test if the relationship creation is allowed.
 	 * 
-	 * @param source the relationship source can be null
-	 * @param target the relationship target can be null
+	 * @param source
+	 *        the relationship source can be null
+	 * @param target
+	 *        the relationship target can be null
 	 * @return true if the creation is allowed
 	 */
 	protected abstract boolean canCreate(EObject source, EObject target);
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -89,9 +93,29 @@ public abstract class DirectedRelationshipEditHelper extends ElementEditHelper {
 		
 		// Propose a container if none is set in request.
 		EObject proposedContainer = EMFCoreUtil.getLeastCommonContainer(Arrays.asList(new EObject[]{source, target}), UMLPackage.eINSTANCE.getPackage());
+
+		// If no common container is found try source nearest package
+		EObject sourcePackage = EMFCoreUtil.getContainer(source, UMLPackage.eINSTANCE.getPackage());
+		if ((proposedContainer == null) && !(isReadOnly(sourcePackage))) {
+			proposedContainer = sourcePackage;
+		}
+
+		// If no common container is found try target nearest package
+		EObject targetPackage = EMFCoreUtil.getContainer(target, UMLPackage.eINSTANCE.getPackage());
+		if ((proposedContainer == null) && !(isReadOnly(targetPackage))) {
+			proposedContainer = targetPackage;
+		}
+		
 		req.setContainer(proposedContainer);
 		
 		return new CreateRelationshipCommand(req);
+	}
+
+	private boolean isReadOnly(EObject eObject) {
+		EditingDomain editingDomain = AdapterFactoryEditingDomain.getEditingDomainFor(eObject);
+		boolean isReadOnly = (eObject.eResource() != null) && (editingDomain.isReadOnly(eObject.eResource()));
+		
+		return isReadOnly;
 	}
 
 	/**
