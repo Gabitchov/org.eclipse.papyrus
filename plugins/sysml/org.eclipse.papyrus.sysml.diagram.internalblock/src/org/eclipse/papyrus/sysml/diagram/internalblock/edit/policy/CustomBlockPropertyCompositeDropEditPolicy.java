@@ -15,17 +15,24 @@ package org.eclipse.papyrus.sysml.diagram.internalblock.edit.policy;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.diagram.ui.commands.CommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.papyrus.gmf.diagram.common.commands.SelectAndExecuteCommand;
+import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLGraphicalTypes;
 import org.eclipse.papyrus.sysml.diagram.internalblock.utils.PortDropHelper;
 import org.eclipse.papyrus.sysml.diagram.internalblock.utils.TypeDropHelper;
 import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
+import org.eclipse.papyrus.uml.diagram.common.utils.UMLGraphicalTypes;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.uml2.uml.Port;
 
 /** 
  * <pre>
@@ -40,6 +47,33 @@ public class CustomBlockPropertyCompositeDropEditPolicy extends CustomDragDropEd
 		super();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected Set<String> getSpecificDropBehaviorTypes() {
+		Set<String> specificDropBehaviorTypes = super.getSpecificDropBehaviorTypes();
+		
+		specificDropBehaviorTypes.add(UMLGraphicalTypes.SHAPE_UML_PORT_AS_AFFIXED_ID);
+		specificDropBehaviorTypes.add(SysMLGraphicalTypes.SHAPE_SYSML_FLOWPORT_AS_AFFIXED_ID);
+
+		return specificDropBehaviorTypes;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected ICommand getSpecificDropCommand(DropObjectsRequest dropRequest, EObject droppedEObject, String nodeType, String edgeType) {
+		if ((UMLGraphicalTypes.SHAPE_UML_PORT_AS_AFFIXED_ID.equals(nodeType)) || (SysMLGraphicalTypes.SHAPE_SYSML_FLOWPORT_AS_AFFIXED_ID.equals(nodeType))) {
+			PortDropHelper portDropHelper = new PortDropHelper(getEditingDomain());
+			Command portDropCommand =  portDropHelper.getDropPortOnPart((Port) droppedEObject, dropRequest.getLocation().getCopy(), (GraphicalEditPart)getHost());
+			return new CommandProxy(portDropCommand);
+		}
+		
+		return super.getSpecificDropCommand(dropRequest, droppedEObject, nodeType, edgeType);
+	}
+	
 	/**
 	 * {@inheritedDoc}.
 	 */
@@ -79,12 +113,13 @@ public class CustomBlockPropertyCompositeDropEditPolicy extends CustomDragDropEd
 				commandChoice.add(dropAsTypedFlowPort_InOut);
 			}
 			
-			// 4. Build command to drop Port and FlowPort
-			PortDropHelper portDropHelper = new PortDropHelper(getEditingDomain());
-			Command dropPortOnPart = portDropHelper.getDropPortOnPart(dropRequest, (GraphicalEditPart)getHost());
-			if ((dropPortOnPart != null) && (dropPortOnPart.canExecute())) {
-				commandChoice.add(dropPortOnPart);
-			}
+//			Same behavior for 4 & 5
+//			// 4. Build command to drop Port and FlowPort
+//			PortDropHelper portDropHelper = new PortDropHelper(getEditingDomain());
+//			Command dropPortOnPart = portDropHelper.getDropPortOnPart(dropRequest, (GraphicalEditPart)getHost());
+//			if ((dropPortOnPart != null) && (dropPortOnPart.canExecute())) {
+//				commandChoice.add(dropPortOnPart);
+//			}
 			
 			// 5. Build default drop command (show view of the dropped object)
 			Command defaultDropCommand = super.getDropObjectsCommand(dropRequest);

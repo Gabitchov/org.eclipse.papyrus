@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.internalblock.utils;
 
+import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.commands.Command;
@@ -50,17 +51,27 @@ public class PortDropHelper extends ElementHelper {
 			return UnexecutableCommand.INSTANCE;
 		}
 		
+		return getDropPortOnPart((Port)droppedEObject, request.getLocation().getCopy(), host);
+	}
+	
+
+	public Command getDropPortOnPart(Port droppedPort, Point location, GraphicalEditPart host) {
+		
+		if (! isValidPort(droppedPort, getHostEObject(host))) {
+			return UnexecutableCommand.INSTANCE;
+		}
+		
 		// Prepare a command for the FlowPort creation and the drop in diagram
 		
 		String graphicalType = UMLGraphicalTypes.SHAPE_UML_PORT_AS_AFFIXED_ID;
-		if (((ISpecializationType)SysMLElementTypes.FLOW_PORT).getMatcher().matches((EObject) droppedEObject)) {
+		if (((ISpecializationType)SysMLElementTypes.FLOW_PORT).getMatcher().matches((EObject) droppedPort)) {
 			graphicalType = SysMLGraphicalTypes.SHAPE_SYSML_FLOWPORT_AS_AFFIXED_ID;
 		}
 					
 		// Prepare the view creation command
-		ViewDescriptor descriptor = new ViewDescriptor(new SemanticAdapter((EObject)droppedEObject, null), Node.class, graphicalType, ViewUtil.APPEND, true, host.getDiagramPreferencesHint());
+		ViewDescriptor descriptor = new ViewDescriptor(new SemanticAdapter((EObject)droppedPort, null), Node.class, graphicalType, ViewUtil.APPEND, true, host.getDiagramPreferencesHint());
 		CreateViewRequest createViewRequest = new CreateViewRequest(descriptor);
-		createViewRequest.setLocation(request.getLocation().getCopy());		
+		createViewRequest.setLocation(location);		
 		Command viewCreateCommand = host.getCommand(createViewRequest);
 		
 		return viewCreateCommand;
