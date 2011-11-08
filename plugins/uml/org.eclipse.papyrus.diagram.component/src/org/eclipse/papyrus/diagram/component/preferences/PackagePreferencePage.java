@@ -14,6 +14,7 @@ package org.eclipse.papyrus.diagram.component.preferences;
 
 import java.util.Map;
 import java.util.TreeMap;
+
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.diagram.component.edit.parts.ComponentDiagramEditPart;
 import org.eclipse.papyrus.diagram.component.part.UMLDiagramEditorPlugin;
