@@ -34,7 +34,19 @@
   </rm:searchPath>
   <rm:searchPath name="sources">
     <rm:provider componentTypes="osgi.bundle" readerType="svn">
-      <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/extraplugins/marte/{1}?moduleAfterTag&amp;moduleAfterBranch">
+      <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/plugins/core/{1}?moduleAfterTag&amp;moduleAfterBranch">
+        <bc:propertyRef key="svn.repository"/>
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
+    <rm:provider componentTypes="osgi.bundle" readerType="svn">
+      <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/plugins/developer/{1}?moduleAfterTag&amp;moduleAfterBranch">
+        <bc:propertyRef key="svn.repository"/>
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
+    <rm:provider componentTypes="osgi.bundle" readerType="svn">
+      <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/plugins/others/{1}?moduleAfterTag&amp;moduleAfterBranch">
         <bc:propertyRef key="svn.repository"/>
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
@@ -139,13 +151,6 @@
     </rm:provider>
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
         mutable="false">
-      <!--rm:uri format="{0}/modeling/emft/mwe/updates/milestones"--> 
-      <rm:uri format="{0}/modeling/emft/mwe/updates/releases/R201108020506/mwe">
-        <bc:propertyRef key="eclipse.downloads"/>
-      </rm:uri>
-    </rm:provider>
-    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
-        mutable="false">
       <rm:uri format="{0}/modeling/m2m/qvtoml/updates/3.1.0/milestones/">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
@@ -205,25 +210,6 @@
     </rm:provider>
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
         mutable="false">
-      <rm:uri format="{0}/modeling/tmf/updates/">
-        <bc:propertyRef key="eclipse.downloads"/>
-      </rm:uri>
-    </rm:provider>
-    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
-        mutable="false">
-      <rm:uri format="{0}/modeling/m2t/xpand/updates/releases/R201108020519">
-        <bc:propertyRef key="eclipse.downloads"/>
-      </rm:uri>
-    </rm:provider>
-    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
-        mutable="false">
-      <!--rm:uri format="{0}/modeling/tmf/xtext/updates/milestones"-->
-      <rm:uri format="{0}/modeling/tmf/xtext/updates/releases/head/R201108020636">
-        <bc:propertyRef key="eclipse.downloads"/>
-      </rm:uri>
-    </rm:provider>
-    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
-        mutable="false">
       <rm:uri format="{0}/modeling/emf/updates/releases/"> 
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
@@ -240,13 +226,6 @@
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
-    <!--
-    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
-      <rm:uri format="{0}/modeling/mdt/papyrus/extra/updates/richtext/">
-        <bc:propertyRef key="eclipse.downloads"/>
-      </rm:uri>
-    </rm:provider>
-    -->
      <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
         mutable="false">
       <!--rm:uri format="{0}/e4/downloads/drops/S-0.11M5-201101282000/repository"-->
