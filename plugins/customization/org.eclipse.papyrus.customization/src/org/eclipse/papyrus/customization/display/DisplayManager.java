@@ -1,7 +1,7 @@
 package org.eclipse.papyrus.customization.display;
 
-import org.eclipse.papyrus.properties.runtime.ConfigurationManager;
-import org.eclipse.papyrus.properties.runtime.ConstraintEngine;
+import org.eclipse.papyrus.views.properties.runtime.ConfigurationManager;
+import org.eclipse.papyrus.views.properties.runtime.ConstraintEngine;
 
 
 public class DisplayManager {

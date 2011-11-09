@@ -20,14 +20,14 @@ import org.eclipse.papyrus.customization.plugin.PluginEditor;
 public class EnvironmentExtensionFactory extends FileBasedExtensionFactory {
 
 	public EnvironmentExtensionFactory() {
-		super(Messages.EnvironmentExtensionFactory_PropertyViewEnvironment, "org.eclipse.papyrus.properties.Environment", "environmentModel", "environment", true); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ 
+		super(Messages.EnvironmentExtensionFactory_PropertyViewEnvironment, "org.eclipse.papyrus.views.properties.Environment", "environmentModel", "environment", true); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ 
 	}
 
 	@Override
 	public void addElement(CustomizableElement element, PluginEditor editor) {
 		super.addElement(element, editor);
 
-		editor.getManifestEditor().addDependency("org.eclipse.papyrus.properties"); //$NON-NLS-1$
+		editor.getManifestEditor().addDependency("org.eclipse.papyrus.views.properties"); //$NON-NLS-1$
 	}
 
 	@Override

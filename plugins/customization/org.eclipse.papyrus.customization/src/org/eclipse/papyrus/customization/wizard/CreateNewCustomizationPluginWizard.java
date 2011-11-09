@@ -38,7 +38,7 @@ public class CreateNewCustomizationPluginWizard extends NewPluginProjectWizard {
 
 	public CreateNewCustomizationPluginWizard() {
 		super();
-		setDefaultPageImageDescriptor(org.eclipse.papyrus.widgets.Activator.getDefault().getImageDescriptor(Activator.PLUGIN_ID, "/icons/wizban-config.png"));
+		setDefaultPageImageDescriptor(org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImageDescriptor(Activator.PLUGIN_ID, "/icons/wizban-config.png"));
 		setWindowTitle(Messages.CreateNewCustomizationPluginWizard_CustomizationPlugin);
 		current = this;
 	}

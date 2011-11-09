@@ -7,7 +7,7 @@ import org.eclipse.papyrus.customization.model.customization.CustomizationPackag
 import org.eclipse.papyrus.customization.model.customization.Profile;
 import org.eclipse.papyrus.customization.model.customization.UMLModel;
 import org.eclipse.papyrus.customization.wizard.CreateNewCustomizationPluginWizard;
-import org.eclipse.papyrus.properties.creation.EcorePropertyEditorFactory;
+import org.eclipse.papyrus.views.properties.creation.EcorePropertyEditorFactory;
 import org.eclipse.swt.widgets.Control;
 
 

@@ -22,7 +22,7 @@ import org.eclipse.papyrus.customization.Activator;
 import org.eclipse.papyrus.customization.model.customization.CustomizableElement;
 import org.eclipse.papyrus.customization.model.customization.FileBasedCustomizableElement;
 import org.eclipse.papyrus.customization.plugin.PluginEditor;
-import org.eclipse.papyrus.widgets.util.FileUtil;
+import org.eclipse.papyrus.infra.widgets.util.FileUtil;
 import org.w3c.dom.Element;
 
 

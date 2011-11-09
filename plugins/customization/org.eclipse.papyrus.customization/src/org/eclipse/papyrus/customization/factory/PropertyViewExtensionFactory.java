@@ -32,9 +32,9 @@ import org.eclipse.papyrus.customization.messages.Messages;
 import org.eclipse.papyrus.customization.model.customization.CustomizableElement;
 import org.eclipse.papyrus.customization.model.customization.FileBasedCustomizableElement;
 import org.eclipse.papyrus.customization.plugin.PluginEditor;
-import org.eclipse.papyrus.properties.contexts.Context;
-import org.eclipse.papyrus.properties.util.EMFHelper;
-import org.eclipse.papyrus.widgets.util.FileUtil;
+import org.eclipse.papyrus.infra.widgets.util.FileUtil;
+import org.eclipse.papyrus.views.properties.contexts.Context;
+import org.eclipse.papyrus.views.properties.util.EMFHelper;
 import org.eclipse.swt.widgets.Display;
 import org.w3c.dom.Element;
 
@@ -44,14 +44,14 @@ public class PropertyViewExtensionFactory extends FileBasedExtensionFactory {
 	protected IStatus result;
 
 	public PropertyViewExtensionFactory() {
-		super(Messages.PropertyViewExtensionFactory_PropertyView, "org.eclipse.papyrus.properties.Context", "contextModel", "context", true); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		super(Messages.PropertyViewExtensionFactory_PropertyView, "org.eclipse.papyrus.views.properties.Context", "contextModel", "context", true); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 	}
 
 	@Override
 	public void addElement(CustomizableElement element, PluginEditor editor) {
 		super.addElement(element, editor);
 
-		editor.getManifestEditor().addDependency("org.eclipse.papyrus.properties"); //$NON-NLS-1$
+		editor.getManifestEditor().addDependency("org.eclipse.papyrus.views.properties"); //$NON-NLS-1$
 	}
 
 	@Override

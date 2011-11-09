@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 import org.eclipse.core.resources.IProject;
-import org.eclipse.papyrus.widgets.util.FileUtil;
+import org.eclipse.papyrus.infra.widgets.util.FileUtil;
 
 public class BuildEditor {
 

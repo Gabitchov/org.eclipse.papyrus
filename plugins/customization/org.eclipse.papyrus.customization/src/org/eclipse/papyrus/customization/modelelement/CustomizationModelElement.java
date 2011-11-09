@@ -6,8 +6,8 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.papyrus.customization.creation.CustomizationElementCreationFactory;
 import org.eclipse.papyrus.customization.model.customization.CustomizationPackage;
-import org.eclipse.papyrus.properties.modelelement.EMFModelElement;
-import org.eclipse.papyrus.widgets.creation.ReferenceValueFactory;
+import org.eclipse.papyrus.infra.widgets.creation.ReferenceValueFactory;
+import org.eclipse.papyrus.views.properties.modelelement.EMFModelElement;
 
 
 public class CustomizationModelElement extends EMFModelElement {
