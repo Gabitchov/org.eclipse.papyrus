@@ -146,13 +146,6 @@
     </rm:provider>
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
         mutable="false">
-      <!--rm:uri format="{0}/modeling/emft/mwe/updates/milestones"--> 
-      <rm:uri format="{0}/modeling/emft/mwe/updates/releases/R201108020506/mwe">
-        <bc:propertyRef key="eclipse.downloads"/>
-      </rm:uri>
-    </rm:provider>
-    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
-        mutable="false">
       <rm:uri format="{0}/modeling/m2m/qvtoml/updates/3.1.0/milestones/">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
@@ -212,18 +205,6 @@
     </rm:provider>
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
         mutable="false">
-      <rm:uri format="{0}/modeling/tmf/updates/">
-        <bc:propertyRef key="eclipse.downloads"/>
-      </rm:uri>
-    </rm:provider>
-    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
-        mutable="false">
-      <rm:uri format="{0}/modeling/m2t/xpand/updates/releases/R201108020519">
-        <bc:propertyRef key="eclipse.downloads"/>
-      </rm:uri>
-    </rm:provider>
-    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
-        mutable="false">
       <rm:uri format="{0}/modeling/emf/updates/releases/"> 
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
@@ -247,11 +228,6 @@
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
-<!--    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
-      <rm:uri format="{0}/modeling/tmf/xtext/updates/composite/releases/">
-        <bc:propertyRef key="eclipse.downloads"/>
-      </rm:uri>
-    </rm:provider> -->
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
         mutable="false">
       <rm:uri format="{0}/modeling/gmp/updates/milestones">
