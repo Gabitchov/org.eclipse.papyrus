@@ -4,40 +4,40 @@
    <extension
          point="org.eclipse.ui.preferencePages">
       <page
-            class="org.eclipse.papyrus.preferences.pages.internal.PapyrusUML2PreferencePage"
-            id="org.eclipse.papyrus.preferences.generalcategory"
+            class="org.eclipse.papyrus.infra.gmfdiag.preferences.pages.internal.PapyrusUML2PreferencePage"
+            id="org.eclipse.papyrus.infra.gmfdiag.preferences.generalcategory"
             name="Papyrus">
       </page>
       <page
-            category="org.eclipse.papyrus.preferences.generalcategory"
-            class="org.eclipse.papyrus.preferences.pages.PapyrusAllDiagramsPreferencePage"
-            id="org.eclipse.papyrus.preferences.diagrams"
+            category="org.eclipse.papyrus.infra.gmfdiag.preferences.generalcategory"
+            class="org.eclipse.papyrus.infra.gmfdiag.preferences.pages.PapyrusAllDiagramsPreferencePage"
+            id="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams"
             name="Diagrams">
       </page>
       <page
-            category="org.eclipse.papyrus.preferences.generalcategory"
-            class="org.eclipse.papyrus.preferences.pages.internal.PapyrusRulersAndGridPreferencePage"
-            id="org.eclipse.papyrus.preferences.rulersandgrid"
+            category="org.eclipse.papyrus.infra.gmfdiag.preferences.generalcategory"
+            class="org.eclipse.papyrus.infra.gmfdiag.preferences.pages.internal.PapyrusRulersAndGridPreferencePage"
+            id="org.eclipse.papyrus.infra.gmfdiag.preferences.rulersandgrid"
             name="Rulers And Grid">
       </page>
       <page
-            category="org.eclipse.papyrus.preferences.generalcategory"
-            class="org.eclipse.papyrus.preferences.pages.internal.PapyrusPrintingPreferencePage"
-            id="org.eclipse.papyrus.preferences.printing"
+            category="org.eclipse.papyrus.infra.gmfdiag.preferences.generalcategory"
+            class="org.eclipse.papyrus.infra.gmfdiag.preferences.pages.internal.PapyrusPrintingPreferencePage"
+            id="org.eclipse.papyrus.infra.gmfdiag.preferences.printing"
             name="Printing">
       </page>
       <page
-            category="org.eclipse.papyrus.preferences.generalcategory"
-            class="org.eclipse.papyrus.preferences.pages.internal.PapyrusPathmapsPreferencePage"
-            id="org.eclipse.papyrus.preferences.pathmaps"
+            category="org.eclipse.papyrus.infra.gmfdiag.preferences.generalcategory"
+            class="org.eclipse.papyrus.infra.gmfdiag.preferences.pages.internal.PapyrusPathmapsPreferencePage"
+            id="org.eclipse.papyrus.infra.gmfdiag.preferences.pathmaps"
             name="Pathmaps">
       </page>
    </extension>
    <extension
          point="org.eclipse.ui.propertyPages">
       <page
-            class="org.eclipse.papyrus.preferences.pages.internal.PapyrusUML2PreferencePage"
-            id="org.eclipse.papyrus.preferences.properties.generalcategory"
+            class="org.eclipse.papyrus.infra.gmfdiag.preferences.pages.internal.PapyrusUML2PreferencePage"
+            id="org.eclipse.papyrus.infra.gmfdiag.preferences.properties.generalcategory"
             name="Papyrus">
          <enabledWhen>
             <adapt
@@ -46,9 +46,9 @@
          </enabledWhen>
       </page>
       <page
-            category="org.eclipse.papyrus.preferences.properties.generalcategory"
-            class="org.eclipse.papyrus.preferences.pages.internal.PapyrusDiagramsPreferencePage"
-            id="org.eclipse.papyrus.preferences.pages.internal.PapyrusAllDiagramsPreferencePage"
+            category="org.eclipse.papyrus.infra.gmfdiag.preferences.properties.generalcategory"
+            class="org.eclipse.papyrus.infra.gmfdiag.preferences.pages.internal.PapyrusDiagramsPreferencePage"
+            id="org.eclipse.papyrus.infra.gmfdiag.preferences.pages.internal.PapyrusAllDiagramsPreferencePage"
             name="Diagrams">
          <enabledWhen>
             <adapt
@@ -57,9 +57,9 @@
          </enabledWhen>
       </page>
       <page
-            category="org.eclipse.papyrus.preferences.properties.generalcategory"
-            class="org.eclipse.papyrus.preferences.pages.internal.PapyrusRulersAndGridPreferencePage"
-            id="org.eclipse.papyrus.preferences.properties.rulersandgrid"
+            category="org.eclipse.papyrus.infra.gmfdiag.preferences.properties.generalcategory"
+            class="org.eclipse.papyrus.infra.gmfdiag.preferences.pages.internal.PapyrusRulersAndGridPreferencePage"
+            id="org.eclipse.papyrus.infra.gmfdiag.preferences.properties.rulersandgrid"
             name="Rulers And Grid">
          <enabledWhen>
             <adapt
@@ -68,9 +68,9 @@
          </enabledWhen>
       </page>
       <page
-            category="org.eclipse.papyrus.preferences.properties.generalcategory"
-            class="org.eclipse.papyrus.preferences.pages.internal.PapyrusPrintingPreferencePage"
-            id="org.eclipse.papyrus.preferences.properties.printing"
+            category="org.eclipse.papyrus.infra.gmfdiag.preferences.properties.generalcategory"
+            class="org.eclipse.papyrus.infra.gmfdiag.preferences.pages.internal.PapyrusPrintingPreferencePage"
+            id="org.eclipse.papyrus.infra.gmfdiag.preferences.properties.printing"
             name="Printing">
          <enabledWhen>
             <adapt
@@ -79,9 +79,9 @@
          </enabledWhen>
       </page>
       <page
-            category="org.eclipse.papyrus.preferences.properties.generalcategory"
-            class="org.eclipse.papyrus.preferences.pages.internal.PapyrusPathmapsPreferencePage"
-            id="org.eclipse.papyrus.preferences.properties.pathmaps"
+            category="org.eclipse.papyrus.infra.gmfdiag.preferences.properties.generalcategory"
+            class="org.eclipse.papyrus.infra.gmfdiag.preferences.pages.internal.PapyrusPathmapsPreferencePage"
+            id="org.eclipse.papyrus.infra.gmfdiag.preferences.properties.pathmaps"
             name="Pathmaps">
          <enabledWhen>
             <adapt
@@ -93,7 +93,7 @@
    <extension
          point="org.eclipse.core.runtime.preferences">
       <initializer
-            class="org.eclipse.papyrus.preferences.PapyrusPreferenceInitializer">
+            class="org.eclipse.papyrus.infra.gmfdiag.preferences.PapyrusPreferenceInitializer">
       </initializer>
    </extension>
 

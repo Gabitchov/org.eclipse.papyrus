@@ -13,7 +13,7 @@ Bundle-ActivationPolicy: lazy
 Bundle-Version: 0.9.0.qualifier
 Bundle-Name: %Bundle-Name
 Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.widgets.gmf.Activator
+Bundle-Activator: org.eclipse.papyrus.infra.gmfdiag.widgets.Activator
 Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.widgets;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Composite xmlns:ppe="clr-namespace:org.eclipse.papyrus.properties.widgets"
-	xmlns:j="clr-namespace:java.lang" xmlns:ppel="clr-namespace:org.eclipse.papyrus.properties.widgets.layout"
-	xmlns:gmf="clr-namespace:org.eclipse.papyrus.widgets.gmf.editors"
+<Composite xmlns:ppe="clr-namespace:org.eclipse.papyrus.views.properties.widgets"
+	xmlns:j="clr-namespace:java.lang" xmlns:ppel="clr-namespace:org.eclipse.papyrus.views.properties.widgets.layout"
+	xmlns:gmf="clr-namespace:org.eclipse.papyrus.infra.gmfdiag.widgets.editors"
 	xmlns="http://www.eclipse.org/xwt/presentation" xmlns:x="http://www.eclipse.org/xwt"
 	text="Fill">
 	<Composite.layout>

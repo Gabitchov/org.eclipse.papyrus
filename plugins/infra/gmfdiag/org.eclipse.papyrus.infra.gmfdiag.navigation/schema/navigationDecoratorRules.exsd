@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="org.eclipse.papyrus.navigation" xmlns="http://www.w3.org/2001/XMLSchema">
+<schema targetNamespace="org.eclipse.papyrus.infra.gmfdiag.navigation" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appinfo>
-         <meta.schema plugin="org.eclipse.papyrus.navigation" id="navigationDecoratorRules" name="navigationDecoratorRules"/>
+         <meta.schema plugin="org.eclipse.papyrus.infra.gmfdiag.navigation" id="navigationDecoratorRules" name="navigationDecoratorRules"/>
       </appinfo>
       <documentation>
          Allow to specify classes where the navigation decorator should be used.

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Composite xmlns:x="http://www.eclipse.org/xwt"
-	xmlns:ppe="clr-namespace:org.eclipse.papyrus.properties.widgets"
+	xmlns:ppe="clr-namespace:org.eclipse.papyrus.views.properties.widgets"
 	xmlns:j="clr-namespace:java.lang" xmlns="http://www.eclipse.org/xwt/presentation"
-	xmlns:ppel="clr-namespace:org.eclipse.papyrus.properties.widgets.layout"
-	xmlns:gmf="clr-namespace:org.eclipse.papyrus.widgets.gmf.editors">
+	xmlns:ppel="clr-namespace:org.eclipse.papyrus.views.properties.widgets.layout"
+	xmlns:gmf="clr-namespace:org.eclipse.papyrus.infra.gmfdiag.widgets.editors">
 	<Composite.layout>
 		<GridLayout></GridLayout>
 	</Composite.layout>

@@ -1,23 +1,23 @@
 Manifest-Version: 1.0
 Require-Bundle: org.eclipse.gmf.runtime.diagram.ui.properties,
  org.eclipse.papyrus.infra.core.log;bundle-version="0.9.0"
-Export-Package: org.eclipse.papyrus.preferences,
- org.eclipse.papyrus.preferences.initializer,
- org.eclipse.papyrus.preferences.jface.preference;x-internal:=true,
- org.eclipse.papyrus.preferences.jface.preference.dialogs,
- org.eclipse.papyrus.preferences.pages,
- org.eclipse.papyrus.preferences.pages.internal;x-internal:=true,
- org.eclipse.papyrus.preferences.ui,
- org.eclipse.papyrus.preferences.ui.diagram,
- org.eclipse.papyrus.preferences.ui.editor,
- org.eclipse.papyrus.preferences.utils
+Export-Package: org.eclipse.papyrus.infra.gmfdiag.preferences,
+ org.eclipse.papyrus.infra.gmfdiag.preferences.initializer,
+ org.eclipse.papyrus.infra.gmfdiag.preferences.jface.preference;x-internal:=true,
+ org.eclipse.papyrus.infra.gmfdiag.preferences.jface.preference.dialogs,
+ org.eclipse.papyrus.infra.gmfdiag.preferences.pages,
+ org.eclipse.papyrus.infra.gmfdiag.preferences.pages.internal;x-internal:=true,
+ org.eclipse.papyrus.infra.gmfdiag.preferences.ui,
+ org.eclipse.papyrus.infra.gmfdiag.preferences.ui.diagram,
+ org.eclipse.papyrus.infra.gmfdiag.preferences.ui.editor,
+ org.eclipse.papyrus.infra.gmfdiag.preferences.utils
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 0.9.0.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.preferences.Activator
+Bundle-Activator: org.eclipse.papyrus.infra.gmfdiag.preferences.Activator
 Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.preferences;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

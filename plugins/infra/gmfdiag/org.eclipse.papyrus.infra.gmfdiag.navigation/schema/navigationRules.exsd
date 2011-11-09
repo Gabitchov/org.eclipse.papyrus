@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="org.eclipse.papyrus.navigation" xmlns="http://www.w3.org/2001/XMLSchema">
+<schema targetNamespace="org.eclipse.papyrus.infra.gmfdiag.navigation" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appinfo>
-         <meta.schema plugin="org.eclipse.papyrus.navigation" id="navigationRules" name="navigationRules"/>
+         <meta.schema plugin="org.eclipse.papyrus.infra.gmfdiag.navigation" id="navigationRules" name="navigationRules"/>
       </appinfo>
       <documentation>
          This extension point allows to register navigation rules so they can be used by the navigation handler.
@@ -61,7 +61,7 @@ see INavigationRule for more informations.
                   
                </documentation>
                <appinfo>
-                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.navigation.INavigationRule"/>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.infra.gmfdiag.navigation.INavigationRule"/>
                </appinfo>
             </annotation>
          </attribute>

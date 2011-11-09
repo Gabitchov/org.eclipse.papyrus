@@ -2,14 +2,13 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension
-         point="org.eclipse.papyrus.properties.context">
+         point="org.eclipse.papyrus.views.properties.context">
       <context
-            contextModel="model/notation.ctx"
-            loadDefault="true">
+            contextModel="model/notation.ctx">
       </context>
    </extension>
    <extension
-         point="org.eclipse.papyrus.properties.environment">
+         point="org.eclipse.papyrus.views.properties.environment">
       <environment
             environmentModel="model/Environment.xmi">
       </environment>

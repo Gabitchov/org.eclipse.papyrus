@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Group xmlns:ppel="clr-namespace:org.eclipse.papyrus.properties.widgets.layout"
-	xmlns:gmf="clr-namespace:org.eclipse.papyrus.widgets.gmf.editors"
-	xmlns:ppe="clr-namespace:org.eclipse.papyrus.properties.widgets"
+<Group xmlns:ppel="clr-namespace:org.eclipse.papyrus.views.properties.widgets.layout"
+	xmlns:gmf="clr-namespace:org.eclipse.papyrus.infra.gmfdiag.widgets.editors"
+	xmlns:ppe="clr-namespace:org.eclipse.papyrus.views.properties.widgets"
 	xmlns:j="clr-namespace:java.lang" xmlns="http://www.eclipse.org/xwt/presentation"
 	xmlns:x="http://www.eclipse.org/xwt" text="Font">
 	<Group.layout>

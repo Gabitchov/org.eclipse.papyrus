@@ -7,8 +7,8 @@
    <extension
          point="org.eclipse.ui.preferencePages">
       <page
-            category="org.eclipse.papyrus.preferences.generalcategory"
-            class="org.eclipse.papyrus.navigation.preference.NavigationPreferencePage"
+            category="org.eclipse.papyrus.infra.gmfdiag.preferences.generalcategory"
+            class="org.eclipse.papyrus.infra.gmfdiag.navigation.preference.NavigationPreferencePage"
             id="org.eclipse.papyrus.navigation"
             name="Navigation">
       </page>
@@ -16,13 +16,13 @@
    <extension
          point="org.eclipse.core.runtime.preferences">
       <initializer
-            class="org.eclipse.papyrus.navigation.preference.NavigationPreferenceInitializer">
+            class="org.eclipse.papyrus.infra.gmfdiag.navigation.preference.NavigationPreferenceInitializer">
       </initializer>
    </extension>
    <extension
          point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders">
       <decoratorProvider
-            class="org.eclipse.papyrus.navigation.decorator.NavigationDecoratorProvider">
+            class="org.eclipse.papyrus.infra.gmfdiag.navigation.decorator.NavigationDecoratorProvider">
          <Priority
                name="Medium">
          </Priority>
@@ -60,7 +60,7 @@
          point="org.eclipse.ui.handlers">
       <handler
             commandId="org.eclipse.papyrus.navigation.commands.backNavigationCommand"
-            class="org.eclipse.papyrus.navigation.handlers.BackNavigateHandler">
+            class="org.eclipse.papyrus.infra.gmfdiag.navigation.handlers.BackNavigateHandler">
          <enabledWhen>
          	<with
                 variable="selection">
@@ -72,7 +72,7 @@
          </enabledWhen>
       </handler>
       <handler
-            class="org.eclipse.papyrus.navigation.handlers.NextNavigateHandler"
+            class="org.eclipse.papyrus.infra.gmfdiag.navigation.handlers.NextNavigateHandler"
             commandId="org.eclipse.papyrus.navigation.commands.nextNavigationCommand">
             <enabledWhen>
          	<with
@@ -85,7 +85,7 @@
          </enabledWhen>
       </handler>
       <handler
-            class="org.eclipse.papyrus.navigation.handlers.UpNavigateHandler"
+            class="org.eclipse.papyrus.infra.gmfdiag.navigation.handlers.UpNavigateHandler"
             commandId="org.eclipse.papyrus.navigation.commands.upNavigationCommand">
             <enabledWhen>
          	<with
@@ -98,7 +98,7 @@
          </enabledWhen>
       </handler>
       <handler
-            class="org.eclipse.papyrus.navigation.handlers.TopNavigateHandler"
+            class="org.eclipse.papyrus.infra.gmfdiag.navigation.handlers.TopNavigateHandler"
             commandId="org.eclipse.papyrus.navigation.commands.topNavigationCommand">
             <enabledWhen>
          	<with
@@ -127,7 +127,7 @@
                <visibleWhen>
                   <or>
                      <reference
-                           definitionId="org.eclipse.papyrus.diagram.common.IsPapyrusActiveWithUMLModel">
+                           definitionId="org.eclipse.papyrus.uml.diagram.common.IsPapyrusActiveWithUMLModel">
                      </reference>
                      <reference
                            definitionId="org.eclipse.papyrus.sysml.diagram.common.IsPapyrusActiveWithSysML">
@@ -144,7 +144,7 @@
                <visibleWhen>
                   <or>
                      <reference
-                           definitionId="org.eclipse.papyrus.diagram.common.IsPapyrusActiveWithUMLModel">
+                           definitionId="org.eclipse.papyrus.uml.diagram.common.IsPapyrusActiveWithUMLModel">
                      </reference>
                      <reference
                            definitionId="org.eclipse.papyrus.sysml.diagram.common.IsPapyrusActiveWithSysML">
@@ -161,7 +161,7 @@
                <visibleWhen>
                   <or>
                      <reference
-                           definitionId="org.eclipse.papyrus.diagram.common.IsPapyrusActiveWithUMLModel">
+                           definitionId="org.eclipse.papyrus.uml.diagram.common.IsPapyrusActiveWithUMLModel">
                      </reference>
                      <reference
                            definitionId="org.eclipse.papyrus.sysml.diagram.common.IsPapyrusActiveWithSysML">
@@ -178,7 +178,7 @@
                <visibleWhen>
                <or>
                   <reference
-                        definitionId="org.eclipse.papyrus.diagram.common.IsPapyrusActiveWithUMLModel">
+                        definitionId="org.eclipse.papyrus.uml.diagram.common.IsPapyrusActiveWithUMLModel">
                   </reference>
                   <reference
                         definitionId="org.eclipse.papyrus.sysml.diagram.common.IsPapyrusActiveWithSysML">
@@ -192,28 +192,28 @@
    <extension
          point="org.eclipse.core.expressions.propertyTesters">
       <propertyTester
-            class="org.eclipse.papyrus.navigation.utils.PropertyTester"
+            class="org.eclipse.papyrus.infra.gmfdiag.navigation.utils.PropertyTester"
             id="org.eclipse.papyrus.navigation.PropertyTester"
             namespace="org.eclipse.papyrus.navigation"
             properties="isNextCommandPossible"
             type="org.eclipse.jface.viewers.ISelection">
       </propertyTester>
       <propertyTester
-            class="org.eclipse.papyrus.navigation.utils.PropertyTester"
+            class="org.eclipse.papyrus.infra.gmfdiag.navigation.utils.PropertyTester"
             id="org.eclipse.papyrus.navigation.PropertyTester"
             namespace="org.eclipse.papyrus.navigation"
             properties="isBackCommandPossible"
             type="org.eclipse.jface.viewers.ISelection">
       </propertyTester>
       <propertyTester
-            class="org.eclipse.papyrus.navigation.utils.PropertyTester"
+            class="org.eclipse.papyrus.infra.gmfdiag.navigation.utils.PropertyTester"
             id="org.eclipse.papyrus.navigation.PropertyTester"
             namespace="org.eclipse.papyrus.navigation"
             properties="isUpCommandPossible"
             type="org.eclipse.jface.viewers.ISelection">
       </propertyTester>
       <propertyTester
-            class="org.eclipse.papyrus.navigation.utils.PropertyTester"
+            class="org.eclipse.papyrus.infra.gmfdiag.navigation.utils.PropertyTester"
             id="org.eclipse.papyrus.navigation.PropertyTester"
             namespace="org.eclipse.papyrus.navigation"
             properties="isTopCommandPossible"
@@ -221,9 +221,9 @@
       </propertyTester>
    </extension>
    <extension
-         point="org.eclipse.papyrus.ui.perspectiveconfiguration">
+         point="org.eclipse.papyrus.editor.perspectiveconfiguration">
       <configuration
-            perspectiveID="org.eclipse.papyrus.core.perspective">
+            perspectiveID="org.eclipse.papyrus.infra.core.perspective">
          <toolbar
                toolbarID="org.eclipse.papyrus.navigation.toolbars.navigationToolbar">
          </toolbar>

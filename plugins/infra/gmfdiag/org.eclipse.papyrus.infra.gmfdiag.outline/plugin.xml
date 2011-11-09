@@ -15,9 +15,9 @@
 -->
 <plugin>
    <extension
-         point="org.eclipse.papyrus.core.papyrusContentOutline">
+         point="org.eclipse.papyrus.infra.core.papyrusContentOutline">
       <contentoutline
-            class="org.eclipse.papyrus.outline.DiagramOutline"
+            class="org.eclipse.papyrus.infra.gmfdiag.outline.DiagramOutline"
             priority="2">
       </contentoutline>
    </extension>
