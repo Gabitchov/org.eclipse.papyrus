@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package org.eclipse.papyrus.sashwindows.di.impl;
+package org.eclipse.papyrus.infra.core.sashwindows.di.impl;
 
 import java.util.Collection;
 import java.util.List;
@@ -22,10 +22,10 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import org.eclipse.papyrus.sashwindows.di.AbstractNode;
-import org.eclipse.papyrus.sashwindows.di.AbstractPanel;
-import org.eclipse.papyrus.sashwindows.di.DiPackage;
-import org.eclipse.papyrus.sashwindows.di.SashPanel;
+import org.eclipse.papyrus.infra.core.sashwindows.di.AbstractNode;
+import org.eclipse.papyrus.infra.core.sashwindows.di.AbstractPanel;
+import org.eclipse.papyrus.infra.core.sashwindows.di.DiPackage;
+import org.eclipse.papyrus.infra.core.sashwindows.di.SashPanel;
 
 /**
  * <!-- begin-user-doc -->
@@ -34,9 +34,9 @@ import org.eclipse.papyrus.sashwindows.di.SashPanel;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.sashwindows.di.impl.SashPanelImpl#getChildren <em>Children</em>}</li>
- *   <li>{@link org.eclipse.papyrus.sashwindows.di.impl.SashPanelImpl#getSashPosition <em>Sash Position</em>}</li>
- *   <li>{@link org.eclipse.papyrus.sashwindows.di.impl.SashPanelImpl#getDirection <em>Direction</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.impl.SashPanelImpl#getChildren <em>Children</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.impl.SashPanelImpl#getSashPosition <em>Sash Position</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.impl.SashPanelImpl#getDirection <em>Direction</em>}</li>
  * </ul>
  * </p>
  *

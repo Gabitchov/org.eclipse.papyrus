@@ -12,9 +12,9 @@
       <menuContribution
             locationURI="toolbar:org.eclipse.ui.main.toolbar">
          <toolbar
-               id="org.eclipse.papyrus.diagram.ui.toolbar">
+               id="org.eclipse.papyrus.uml.diagram.ui.toolbar">
             <command
-                  commandId="org.eclipse.papyrus.core.commands.dropdowncommand"
+                  commandId="org.eclipse.papyrus.infra.core.commands.dropdowncommand"
                   icon="icons/papyrus/Papyrus_16x16.gif"
                   label="Close Diagrams"
                   style="pulldown"
@@ -23,7 +23,7 @@
                   <with
                         variable="activeEditorId">
                      <equals
-                           value="org.eclipse.papyrus.core.papyrusEditor">
+                           value="org.eclipse.papyrus.infra.core.papyrusEditor">
                      </equals>
                   </with>
                </visibleWhen>
@@ -31,12 +31,12 @@
          </toolbar>
       </menuContribution>
       <menuContribution
-            locationURI="toolbar:org.eclipse.papyrus.diagram.ui.toolbar">
+            locationURI="toolbar:org.eclipse.papyrus.uml.diagram.ui.toolbar">
       </menuContribution>
       <menuContribution
-            locationURI="popup:org.eclipse.papyrus.core.editor.ui.tabmenu?endof=tabcommands">
+            locationURI="popup:org.eclipse.papyrus.infra.core.editor.ui.tabmenu?endof=tabcommands">
          <command
-               commandId="org.eclipse.papyrus.core.commands.closediagram"
+               commandId="org.eclipse.papyrus.infra.core.commands.closediagram"
                label="Close Diagram"
                style="push"
                tooltip="Close Currently Selected Diagram">
@@ -44,13 +44,13 @@
                <with
                      variable="activeEditorId">
                   <equals
-                        value="org.eclipse.papyrus.core.papyrusEditor">
+                        value="org.eclipse.papyrus.infra.core.papyrusEditor">
                   </equals>
                </with>
             </visibleWhen>
          </command>
          <command
-               commandId="org.eclipse.papyrus.core.commands.closealldiagram"
+               commandId="org.eclipse.papyrus.infra.core.commands.closealldiagram"
                label="Close All Diagrams"
                style="push"
                tooltip="Close All Opened Diagrams">
@@ -58,13 +58,13 @@
                <with
                      variable="activeEditorId">
                   <equals
-                        value="org.eclipse.papyrus.core.papyrusEditor">
+                        value="org.eclipse.papyrus.infra.core.papyrusEditor">
                   </equals>
                </with>
             </visibleWhen>
          </command>
          <command
-               commandId="org.eclipse.papyrus.core.commands.closeothersdiagrams"
+               commandId="org.eclipse.papyrus.infra.core.commands.closeothersdiagrams"
                label="Close Others Diagrams"
                style="push"
                tooltip="Close All Diagrams except the selected one">
@@ -72,7 +72,7 @@
                <with
                      variable="activeEditorId">
                   <equals
-                        value="org.eclipse.papyrus.core.papyrusEditor">
+                        value="org.eclipse.papyrus.infra.core.papyrusEditor">
                   </equals>
                </with>
             </visibleWhen>
@@ -80,22 +80,22 @@
       </menuContribution>
       <menuContribution
             allPopups="false"
-            locationURI="menu:org.eclipse.papyrus.core.commands.dropdowncommand">
+            locationURI="menu:org.eclipse.papyrus.infra.core.commands.dropdowncommand">
          <command
-               commandId="org.eclipse.papyrus.core.commands.closediagram"
+               commandId="org.eclipse.papyrus.infra.core.commands.closediagram"
                style="push"
                tooltip="Close Currently Selected Diagram">
             <visibleWhen>
                <with
                      variable="activeEditorId">
                   <equals
-                        value="org.eclipse.papyrus.core.papyrusEditor">
+                        value="org.eclipse.papyrus.infra.core.papyrusEditor">
                   </equals>
                </with>
             </visibleWhen>
          </command>
          <command
-               commandId="org.eclipse.papyrus.core.commands.closealldiagram"
+               commandId="org.eclipse.papyrus.infra.core.commands.closealldiagram"
                label="Close All Diagrams"
                style="push"
                tooltip="Close All Opened Diagrams">
@@ -103,13 +103,13 @@
                <with
                      variable="activeEditorId">
                   <equals
-                        value="org.eclipse.papyrus.core.papyrusEditor">
+                        value="org.eclipse.papyrus.infra.core.papyrusEditor">
                   </equals>
                </with>
             </visibleWhen>
          </command>
          <command
-               commandId="org.eclipse.papyrus.core.commands.closeothersdiagrams"
+               commandId="org.eclipse.papyrus.infra.core.commands.closeothersdiagrams"
                label="Close Others Diagrams"
                style="push"
                tooltip="Close All Diagrams except the selected one">
@@ -117,7 +117,7 @@
                <with
                      variable="activeEditorId">
                   <equals
-                        value="org.eclipse.papyrus.core.papyrusEditor">
+                        value="org.eclipse.papyrus.infra.core.papyrusEditor">
                   </equals>
                </with>
             </visibleWhen>
@@ -127,74 +127,74 @@
    <extension
          point="org.eclipse.ui.commands">
       <command
-            id="org.eclipse.papyrus.core.commands.closealldiagram"
+            id="org.eclipse.papyrus.infra.core.commands.closealldiagram"
             name="Close All Diagrams">
       </command>
       <command
-            id="org.eclipse.papyrus.core.commands.closediagram"
+            id="org.eclipse.papyrus.infra.core.commands.closediagram"
             name="Close Diagram">
       </command>
       <command
-            id="org.eclipse.papyrus.core.commands.closeothersdiagrams"
+            id="org.eclipse.papyrus.infra.core.commands.closeothersdiagrams"
             name="Close Others Diagrams">
       </command>
       <command
-            defaultHandler="org.eclipse.papyrus.sasheditor.contentprovider.di.commands.CloseDiagramCommand"
-            id="org.eclipse.papyrus.core.commands.dropdowncommand"
+            defaultHandler="org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.commands.CloseDiagramCommand"
+            id="org.eclipse.papyrus.infra.core.commands.dropdowncommand"
             name="dropdown tool">
       </command>
    </extension>
    <extension
          point="org.eclipse.ui.handlers">
       <handler
-            class="org.eclipse.papyrus.sasheditor.contentprovider.di.commands.CloseDiagramCommand"
-            commandId="org.eclipse.papyrus.core.commands.closediagram">
+            class="org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.commands.CloseDiagramCommand"
+            commandId="org.eclipse.papyrus.infra.core.commands.closediagram">
       </handler>
       <handler
-            class="org.eclipse.papyrus.sasheditor.contentprovider.di.commands.CloseAllDiagramsCommand"
-            commandId="org.eclipse.papyrus.core.commands.closealldiagram">
+            class="org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.commands.CloseAllDiagramsCommand"
+            commandId="org.eclipse.papyrus.infra.core.commands.closealldiagram">
       </handler>
       <handler
-            class="org.eclipse.papyrus.sasheditor.contentprovider.di.commands.CloseOtherDiagramsCommand"
-            commandId="org.eclipse.papyrus.core.commands.closeothersdiagrams">
+            class="org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.commands.CloseOtherDiagramsCommand"
+            commandId="org.eclipse.papyrus.infra.core.commands.closeothersdiagrams">
       </handler>
    </extension>
    <extension
-         point="org.eclipse.papyrus.core.model">
+         point="org.eclipse.papyrus.infra.core.model">
       <model
-            classname="org.eclipse.papyrus.resource.uml.ExtendedUmlModel"
+            classname="org.eclipse.papyrus.infra.core.resource.uml.ExtendedUmlModel"
             description="Model for UML">
          <modelSnippet
-               classname="org.eclipse.papyrus.resource.uml.UmlSnippet"
+               classname="org.eclipse.papyrus.infra.core.resource.uml.UmlSnippet"
                description="Complete the UML model.">
          </modelSnippet>
       </model>
       <model
-            classname="org.eclipse.papyrus.resource.notation.NotationModel"
+            classname="org.eclipse.papyrus.infra.core.resource.notation.NotationModel"
             description="Model for natation">
       </model>
       <model
-            classname="org.eclipse.papyrus.resource.sasheditor.SashModel"
+            classname="org.eclipse.papyrus.infra.core.resource.sasheditor.SashModel"
             description="Model for sash system">
       </model>
       <modelSetSnippet
-            classname="org.eclipse.papyrus.core.modelsetquery.impl.ModelSetQueryInitializer"
+            classname="org.eclipse.papyrus.infra.core.modelsetquery.impl.ModelSetQueryInitializer"
             description="Adapter attached to the ModelSet (aka ResourceSet)">
       </modelSetSnippet>
    </extension>
    <extension
-         point="org.eclipse.papyrus.core.service">
+         point="org.eclipse.papyrus.infra.core.service">
       <serviceFactory
-            classname="org.eclipse.papyrus.core.editor.ModelSetServiceFactory"
+            classname="org.eclipse.papyrus.infra.core.editor.ModelSetServiceFactory"
             description="The service loading Models"
             id="org.eclipse.papyrus.resource.ModelSet"
             priority="1"
             startKind="startup">
       </serviceFactory>
       <serviceFactory
-            classname="org.eclipse.papyrus.core.editor.DiResourceSetServiceFactory"
+            classname="org.eclipse.papyrus.infra.core.editor.DiResourceSetServiceFactory"
             description="An alias to ModelSet"
-            id="org.eclipse.papyrus.core.utils.DiResourceSet"
+            id="org.eclipse.papyrus.infra.core.utils.DiResourceSet"
             priority="1"
             startKind="startup">
          <dependsOn
@@ -202,7 +202,7 @@
          </dependsOn>
       </serviceFactory>
       <serviceFactory
-            classname="org.eclipse.papyrus.resource.EditingDomainServiceFactory"
+            classname="org.eclipse.papyrus.infra.core.resource.EditingDomainServiceFactory"
             description="TransactionalEditing Domain"
             id="org.eclipse.emf.transaction.TransactionalEditingDomain"
             priority="1"
@@ -212,15 +212,15 @@
          </dependsOn>
       </serviceFactory>
       <serviceFactory
-            classname="org.eclipse.papyrus.core.editor.PageIconRegistryServiceFactory"
-            id="org.eclipse.papyrus.core.editorsfactory.IPageIconsRegistry"
+            classname="org.eclipse.papyrus.infra.core.editor.PageIconRegistryServiceFactory"
+            id="org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistry"
             priority="1"
             startKind="startup">
       </serviceFactory>
       <serviceFactory
-            classname="org.eclipse.papyrus.core.editor.DiSashModelMngrServiceFactory"
+            classname="org.eclipse.papyrus.infra.core.editor.DiSashModelMngrServiceFactory"
             description="The concrete implementation of SashContentProviderr and IPageMngr"
-            id="org.eclipse.papyrus.sasheditor.contentprovider.di.DiSashModelMngr"
+            id="org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.DiSashModelMngr"
             priority="1"
             startKind="startup">
          <dependsOn
@@ -231,29 +231,29 @@
          </dependsOn>
       </serviceFactory>
       <serviceFactory
-            classname="org.eclipse.papyrus.core.editor.PageMngrServiceFactory"
+            classname="org.eclipse.papyrus.infra.core.editor.PageMngrServiceFactory"
             description="IPageMngr allows to add and remove pages to the editor."
-            id="org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr"
+            id="org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr"
             priority="1"
             startKind="startup">
          <dependsOn
-               serviceKeyRef="org.eclipse.papyrus.sasheditor.contentprovider.di.DiSashModelMngr">
+               serviceKeyRef="org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.DiSashModelMngr">
          </dependsOn>
       </serviceFactory>
       <serviceFactory
-            classname="org.eclipse.papyrus.core.editor.ContentProviderServiceFactory"
+            classname="org.eclipse.papyrus.infra.core.editor.ContentProviderServiceFactory"
             description="The SashContentProvider maintain the structure of pages of the editor."
-            id="org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider"
+            id="org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ISashWindowsContentProvider"
             priority="1"
             startKind="startup">
          <dependsOn
-               serviceKeyRef="org.eclipse.papyrus.sasheditor.contentprovider.di.DiSashModelMngr">
+               serviceKeyRef="org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.DiSashModelMngr">
          </dependsOn>
       </serviceFactory>
       <service
-            classname="org.eclipse.papyrus.core.lifecycleevents.SaveAndDirtyService"
+            classname="org.eclipse.papyrus.infra.core.lifecycleevents.SaveAndDirtyService"
             description="Service used to maintain the dirty state, and to perform save and saveAs"
-            id="org.eclipse.papyrus.core.lifecycleevents.ISaveAndDirtyService"
+            id="org.eclipse.papyrus.infra.core.lifecycleevents.ISaveAndDirtyService"
             priority="1"
             startKind="startup">
          <dependsOn
@@ -264,20 +264,20 @@
          </dependsOn>
       </service>
       <serviceFactory
-            classname="org.eclipse.papyrus.core.lifecycleevents.LifeCycleEventsProviderServiceFactory"
+            classname="org.eclipse.papyrus.infra.core.lifecycleevents.LifeCycleEventsProviderServiceFactory"
             description="Service allowing to listen on save events."
-            id="org.eclipse.papyrus.core.lifecycleevents.ILifeCycleEventsProvider"
+            id="org.eclipse.papyrus.infra.core.lifecycleevents.ILifeCycleEventsProvider"
             priority="1"
             startKind="startup">
          <dependsOn
-               serviceKeyRef=" org.eclipse.papyrus.core.lifecycleevents.ISaveAndDirtyService">
+               serviceKeyRef=" org.eclipse.papyrus.infra.core.lifecycleevents.ISaveAndDirtyService">
          </dependsOn>
       </serviceFactory>
    </extension>
    <extension
          point="org.eclipse.ui.exportWizards">
       <category
-            id="org.eclipse.papyrus.core.exportcategory"
+            id="org.eclipse.papyrus.infra.core.exportcategory"
             name="Papyrus">
       </category>
    </extension>

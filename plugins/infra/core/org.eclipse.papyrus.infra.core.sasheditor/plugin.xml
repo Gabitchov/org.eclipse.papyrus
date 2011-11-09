@@ -9,14 +9,14 @@
    <extension
          point="org.eclipse.core.runtime.preferences">
       <initializer
-            class="org.eclipse.papyrus.sasheditor.internal.preferences.TabTooltipPreferenceInitializer">
+            class="org.eclipse.papyrus.infra.core.sasheditor.internal.preferences.TabTooltipPreferenceInitializer">
       </initializer>
    </extension>
    <extension
          point="org.eclipse.ui.preferencePages">
       <page
-            category="org.eclipse.papyrus.preferences.generalcategory"
-            class="org.eclipse.papyrus.sasheditor.internal.preferences.TabTooltipPreferencePage"
+            category="org.eclipse.papyrus.infra.gmfdiag.preferences.generalcategory"
+            class="org.eclipse.papyrus.infra.core.sasheditor.internal.preferences.TabTooltipPreferencePage"
             id="org.eclipse.papyrus.sasheditor.preferences.tabtooltip"
             name="SashWindows Tab Tooltips">
       </page>

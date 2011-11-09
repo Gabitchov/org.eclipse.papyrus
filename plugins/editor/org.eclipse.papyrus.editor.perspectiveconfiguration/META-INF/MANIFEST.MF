@@ -8,8 +8,7 @@ Bundle-Version: 0.9.0.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.ui.perspectiveconfiguration.Acti
- vator
+Bundle-Activator: org.eclipse.papyrus.editor.perspectiveconfiguration.Activator
 Bundle-SymbolicName: org.eclipse.papyrus.editor.perspectiveconfiguration;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="org.eclipse.papyrus.extendedtypes" xmlns="http://www.w3.org/2001/XMLSchema">
+<schema targetNamespace="org.eclipse.papyrus.infra.extendedtypes" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appInfo>
-         <meta.schema plugin="org.eclipse.papyrus.extendedtypes" id="extendedTypesSetConfiguration" name="extendedTypesSetConfiguration"/>
+         <meta.schema plugin="org.eclipse.papyrus.infra.extendedtypes" id="extendedTypesSetConfiguration" name="extendedTypesSetConfiguration"/>
       </appInfo>
       <documentation>
          This extension point is used to registered new extended element types for creation of semantic elements with specific post/pre actions and validation.

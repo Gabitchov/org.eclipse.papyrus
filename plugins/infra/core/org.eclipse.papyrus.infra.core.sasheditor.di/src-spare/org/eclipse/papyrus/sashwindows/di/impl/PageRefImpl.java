@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package org.eclipse.papyrus.sashwindows.di.impl;
+package org.eclipse.papyrus.infra.core.sashwindows.di.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -18,9 +18,9 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
-import org.eclipse.papyrus.sashwindows.di.DiPackage;
-import org.eclipse.papyrus.sashwindows.di.PageRef;
-import org.eclipse.papyrus.sashwindows.di.TabFolder;
+import org.eclipse.papyrus.infra.core.sashwindows.di.DiPackage;
+import org.eclipse.papyrus.infra.core.sashwindows.di.PageRef;
+import org.eclipse.papyrus.infra.core.sashwindows.di.TabFolder;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,8 +29,8 @@ import org.eclipse.papyrus.sashwindows.di.TabFolder;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.sashwindows.di.impl.PageRefImpl#getPageIdentifier <em>Page Identifier</em>}</li>
- *   <li>{@link org.eclipse.papyrus.sashwindows.di.impl.PageRefImpl#getParent <em>Parent</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.impl.PageRefImpl#getPageIdentifier <em>Page Identifier</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.impl.PageRefImpl#getParent <em>Parent</em>}</li>
  * </ul>
  * </p>
  *

@@ -4,7 +4,7 @@
 
 	<property name="srcdir" value="src" />
 	<property name="sparedir" value="src-spare" />
-	<property name="plugin.default.name" value="org.eclipse.papyrus.sasheditor.di" />
+	<property name="plugin.default.name" value="org.eclipse.papyrus.infra.core.sasheditor.di" />
 	<property name="plugin.dir" value="../${plugin.default.name}" />
 	<property name="edit.plugin.dir" value="../${plugin.default.name}.edit" />
 	<property name="editor.plugin.dir" value="../${plugin.default.name}.editor" />

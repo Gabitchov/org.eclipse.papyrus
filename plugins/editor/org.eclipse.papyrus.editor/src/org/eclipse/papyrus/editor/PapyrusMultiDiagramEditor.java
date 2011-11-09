@@ -14,7 +14,7 @@
 
 package org.eclipse.papyrus.editor;
 
-import org.eclipse.papyrus.core.editor.CoreMultiDiagramEditor;
+import org.eclipse.papyrus.infra.core.editor.CoreMultiDiagramEditor;
 
 
 /**

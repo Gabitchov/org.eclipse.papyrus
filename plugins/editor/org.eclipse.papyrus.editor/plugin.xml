@@ -8,7 +8,7 @@
             default="true"
             extensions="di"
             icon="icons/papyrus/Papyrus_16x16.gif"
-            id="org.eclipse.papyrus.core.papyrusEditor"
+            id="org.eclipse.papyrus.infra.core.papyrusEditor"
             matchingStrategy="org.eclipse.papyrus.editor.PapyrusMatchingStrategy"
             name="Papyrus Editor Core">
       </editor>
@@ -25,7 +25,7 @@
                <with
                      variable="activeEditorId">
                   <equals
-                        value="org.eclipse.papyrus.core.papyrusEditor">
+                        value="org.eclipse.papyrus.infra.core.papyrusEditor">
                   </equals>
                </with>
             </visibleWhen>

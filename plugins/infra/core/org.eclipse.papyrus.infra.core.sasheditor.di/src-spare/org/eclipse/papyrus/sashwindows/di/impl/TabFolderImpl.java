@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package org.eclipse.papyrus.sashwindows.di.impl;
+package org.eclipse.papyrus.infra.core.sashwindows.di.impl;
 
 import java.util.Collection;
 
@@ -14,10 +14,10 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.papyrus.sashwindows.di.DiFactory;
-import org.eclipse.papyrus.sashwindows.di.DiPackage;
-import org.eclipse.papyrus.sashwindows.di.PageRef;
-import org.eclipse.papyrus.sashwindows.di.TabFolder;
+import org.eclipse.papyrus.infra.core.sashwindows.di.DiFactory;
+import org.eclipse.papyrus.infra.core.sashwindows.di.DiPackage;
+import org.eclipse.papyrus.infra.core.sashwindows.di.PageRef;
+import org.eclipse.papyrus.infra.core.sashwindows.di.TabFolder;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,7 +26,7 @@ import org.eclipse.papyrus.sashwindows.di.TabFolder;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.sashwindows.di.impl.TabFolderImpl#getChildren <em>Children</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.impl.TabFolderImpl#getChildren <em>Children</em>}</li>
  * </ul>
  * </p>
  *
@@ -56,7 +56,7 @@ public class TabFolderImpl extends AbstractPanelImpl implements TabFolder {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.sashwindows.di.TabFolder#movePage(int, int)
+	 * @see org.eclipse.papyrus.infra.core.sashwindows.di.TabFolder#movePage(int, int)
 	 *
 	 * @param oldIndex
 	 * @param newIndex

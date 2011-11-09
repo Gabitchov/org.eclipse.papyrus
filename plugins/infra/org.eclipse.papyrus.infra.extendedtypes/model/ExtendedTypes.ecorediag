@@ -96,7 +96,7 @@
       <styles xmi:type="notation:FilteringStyle" xmi:id="_W1kXi-A4Ed-0CYOJPs0ewQ"/>
     </children>
     <styles xmi:type="notation:ShapeStyle" xmi:id="_W1kXgeA4Ed-0CYOJPs0ewQ" fontColor="4210752" fontHeight="10" fillColor="13761016" lineColor="8421504"/>
-    <element xmi:type="ecore:EClass" href="platform:/plugin/org.eclipse.papyrus.core.queries.configuration/model/Configuration.ecore#//QueryConfiguration"/>
+    <element xmi:type="ecore:EClass" href="platform:/plugin/org.eclipse.papyrus.infra.queries.core.configuration/model/Configuration.ecore#//QueryConfiguration"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_W1kXguA4Ed-0CYOJPs0ewQ" x="985" y="155" width="205"/>
   </children>
   <children xmi:type="notation:Node" xmi:id="_enajMOA4Ed-0CYOJPs0ewQ" type="1001">

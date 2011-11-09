@@ -4,7 +4,7 @@
    <extension
          point="org.eclipse.ltk.core.refactoring.renameParticipants">
       <renameParticipant
-            class="org.eclipse.papyrus.ui.resources.refactoring.RenameModelParticipant"
+            class="org.eclipse.papyrus.infra.ui.resources.refactoring.RenameModelParticipant"
             id="org.eclipse.papyrus.ui.resources.renameParticipant"
             name="%renameParticipant.name">
          <enablement>
@@ -20,7 +20,7 @@
    <extension
          point="org.eclipse.ltk.core.refactoring.deleteParticipants">
       <deleteParticipant
-            class="org.eclipse.papyrus.ui.resources.refactoring.DeleteModelParticipant"
+            class="org.eclipse.papyrus.infra.ui.resources.refactoring.DeleteModelParticipant"
             id="org.eclipse.papyrus.ui.resources.deleteParticipant"
             name="%deleteParticipant.name">
          <enablement>
@@ -35,7 +35,7 @@
    <extension
          point="org.eclipse.ltk.core.refactoring.moveParticipants">
       <moveParticipant
-            class="org.eclipse.papyrus.ui.resources.refactoring.MoveModelParticipant"
+            class="org.eclipse.papyrus.infra.ui.resources.refactoring.MoveModelParticipant"
             id="org.eclipse.papyrus.ui.resources.moveParticipant"
             name="%moveParticipant.name">
          <enablement>

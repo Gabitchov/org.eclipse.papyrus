@@ -12,15 +12,15 @@
  *
   *****************************************************************************/
 
-package org.eclipse.papyrus.sashwindows.di.util;
+package org.eclipse.papyrus.infra.core.sashwindows.di.util;
 
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.papyrus.sashwindows.di.DiFactory;
-import org.eclipse.papyrus.sashwindows.di.PageList;
-import org.eclipse.papyrus.sashwindows.di.SashModel;
-import org.eclipse.papyrus.sashwindows.di.SashWindowsMngr;
-import org.eclipse.papyrus.sashwindows.di.TabFolder;
-import org.eclipse.papyrus.sashwindows.di.Window;
+import org.eclipse.papyrus.infra.core.sashwindows.di.DiFactory;
+import org.eclipse.papyrus.infra.core.sashwindows.di.PageList;
+import org.eclipse.papyrus.infra.core.sashwindows.di.SashModel;
+import org.eclipse.papyrus.infra.core.sashwindows.di.SashWindowsMngr;
+import org.eclipse.papyrus.infra.core.sashwindows.di.TabFolder;
+import org.eclipse.papyrus.infra.core.sashwindows.di.Window;
 
 
 /**

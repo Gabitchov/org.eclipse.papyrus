@@ -5,7 +5,7 @@
     nsURI="http://www.eclipse.org/papyrus/diagram/types/modifysemanticvaluesactionconfiguration/0.8"
     nsPrefix="modifysemanticvaluesactionconfiguration">
   <eClassifiers xsi:type="ecore:EClass" name="ModifySemanticValuesActionConfiguration"
-      eSuperTypes="platform:/plugin/org.eclipse.papyrus.extendedtypes/model/ExtendedTypes.ecore#//PostActionConfiguration">
+      eSuperTypes="platform:/plugin/org.eclipse.papyrus.infra.extendedtypes/model/ExtendedTypes.ecore#//PostActionConfiguration">
     <eStructuralFeatures xsi:type="ecore:EReference" name="featuresToSet" upperBound="-1"
         eType="#//FeatureToSet" containment="true"/>
   </eClassifiers>
@@ -26,6 +26,6 @@
         eType="#//FeatureValue"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="QueryExecutionValue" eSuperTypes="#//FeatureValue">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="configuration" eType="ecore:EClass platform:/plugin/org.eclipse.papyrus.core.queries.configuration/model/Configuration.ecore#//QueryConfiguration"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="configuration" eType="ecore:EClass platform:/plugin/org.eclipse.papyrus.infra.queries.core.configuration/model/Configuration.ecore#//QueryConfiguration"/>
   </eClassifiers>
 </ecore:EPackage>

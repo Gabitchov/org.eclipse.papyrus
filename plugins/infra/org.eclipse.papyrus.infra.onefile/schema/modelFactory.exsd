@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="org.eclipse.papyrus.onefile" xmlns="http://www.w3.org/2001/XMLSchema">
+<schema targetNamespace="org.eclipse.papyrus.infra.onefile" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appinfo>
-         <meta.schema plugin="org.eclipse.papyrus.onefile" id="modelFactory" name="Model Factory"/>
+         <meta.schema plugin="org.eclipse.papyrus.infra.onefile" id="modelFactory" name="Model Factory"/>
       </appinfo>
       <documentation>
          This extension point allows developer to change implementation of logical navigator model.
@@ -55,7 +55,7 @@
                   the instance of the factory
                </documentation>
                <appinfo>
-                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.onefile.model.IPapyrusModelFactory"/>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.infra.onefile.model.IPapyrusModelFactory"/>
                </appinfo>
             </annotation>
          </attribute>

@@ -1,11 +1,11 @@
 Manifest-Version: 1.0
-Export-Package: org.eclipse.papyrus.sasheditor,
- org.eclipse.papyrus.sasheditor.contentprovider,
- org.eclipse.papyrus.sasheditor.contentprovider.simple,
- org.eclipse.papyrus.sasheditor.editor,
- org.eclipse.papyrus.sasheditor.editor.actionbarcontributor,
- org.eclipse.papyrus.sasheditor.editor.gef,
- org.eclipse.papyrus.sasheditor.multipage.editor
+Export-Package: org.eclipse.papyrus.infra.core.sasheditor,
+ org.eclipse.papyrus.infra.core.sasheditor.contentprovider,
+ org.eclipse.papyrus.infra.core.sasheditor.contentprovider.simple,
+ org.eclipse.papyrus.infra.core.sasheditor.editor,
+ org.eclipse.papyrus.infra.core.sasheditor.editor.actionbarcontributor,
+ org.eclipse.papyrus.infra.core.sasheditor.editor.gef,
+ org.eclipse.papyrus.infra.core.sasheditor.multipage.editor
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
 Bundle-Name: %pluginName
@@ -19,6 +19,6 @@ Require-Bundle: org.eclipse.ui,
 Bundle-Vendor: %providerName
 Bundle-Version: 0.9.0.qualifier
 Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.sasheditor.Activator
-Bundle-SymbolicName: org.eclipse.papyrus.infra.sasheditor;singleton:=true
+Bundle-Activator: org.eclipse.papyrus.infra.core.sasheditor.Activator
+Bundle-SymbolicName: org.eclipse.papyrus.infra.core.sasheditor;singleton:=true
 

@@ -1,13 +1,13 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="org.eclipse.papyrus.core" xmlns="http://www.w3.org/2001/XMLSchema">
+<schema targetNamespace="org.eclipse.papyrus.infra.core" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appInfo>
-         <meta.schema plugin="org.eclipse.papyrus.core" id="papyrusDiagram" name="Papyrus Diagram Editor"/>
+         <meta.schema plugin="org.eclipse.papyrus.infra.core" id="papyrusDiagram" name="Papyrus Diagram Editor"/>
       </appInfo>
       <documentation>
          &lt;p&gt;
-The &lt;code&gt;org.eclipse.papyrus.core.papyrusDiagram&lt;/code&gt; extension point is used to register a new diagram editor within Papyrus. Once diagram editor is registered it can be used in the Papyrus multi-page diagram editor. The editor can have its own icon, label, a button for the creation action in the toolbar, and the possibility to be created using new Papyrus Model wizard.
+The &lt;code&gt;org.eclipse.papyrus.infra.core.papyrusDiagram&lt;/code&gt; extension point is used to register a new diagram editor within Papyrus. Once diagram editor is registered it can be used in the Papyrus multi-page diagram editor. The editor can have its own icon, label, a button for the creation action in the toolbar, and the possibility to be created using new Papyrus Model wizard.
 &lt;/p&gt;
 
 &lt;p&gt;Papyrus uses the term &quot;&lt;b&gt;Diagram Category&lt;/b&gt;&quot; to categorize domain models and the term &quot;&lt;b&gt;Diagram Kind&lt;/b&gt;&quot; to specialize a diagram editor for a domain model. Each Diagram Kind belongs to exactly one Diagram Category, Diagram Category can contains many Diagram Kinds. Papyrus supports &lt;b&gt;UML&lt;/b&gt;, &lt;b&gt;Profile&lt;/b&gt; and &lt;b&gt;SysML&lt;/b&gt; diagram categories. 
@@ -71,10 +71,10 @@ The &lt;code&gt;org.eclipse.papyrus.core.papyrusDiagram&lt;/code&gt; extension p
          <attribute name="factoryClass" type="string" use="required">
             <annotation>
                <documentation>
-                  a name of the fully qualified class that implements &lt;samp&gt; org.eclipse.papyrus.sasheditor.extension.IEditorFactory&lt;/samp&gt;. It is used to create an instance of the editor.
+                  a name of the fully qualified class that implements &lt;samp&gt; org.eclipse.papyrus.infra.core.sasheditor.extension.IEditorFactory&lt;/samp&gt;. It is used to create an instance of the editor.
                </documentation>
                <appInfo>
-                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.core.extension.diagrameditor.IPluggableEditorFactory"/>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.infra.core.extension.diagrameditor.IPluggableEditorFactory"/>
                </appInfo>
             </annotation>
          </attribute>
@@ -152,10 +152,10 @@ The &lt;code&gt;org.eclipse.papyrus.core.papyrusDiagram&lt;/code&gt; extension p
          <attribute name="creationCommandClass" type="string" use="required">
             <annotation>
                <documentation>
-                  a name of the fully qualified class that implements &lt;samp&gt;org.eclipse.papyrus.core.extension.commands.ICreationCommand&lt;/samp&gt;.
+                  a name of the fully qualified class that implements &lt;samp&gt;org.eclipse.papyrus.infra.core.extension.commands.ICreationCommand&lt;/samp&gt;.
                </documentation>
                <appInfo>
-                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.core.extension.commands.ICreationCommand"/>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.infra.core.extension.commands.ICreationCommand"/>
                </appInfo>
             </annotation>
          </attribute>
@@ -175,7 +175,7 @@ The &lt;code&gt;org.eclipse.papyrus.core.papyrusDiagram&lt;/code&gt; extension p
                   the action in the diagram creation menu is disabled if this condition is evaluated to false.
                </documentation>
                <appInfo>
-                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.core.extension.commands.ICreationCondition"/>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.infra.core.extension.commands.ICreationCondition"/>
                </appInfo>
             </annotation>
          </attribute>
@@ -185,7 +185,7 @@ The &lt;code&gt;org.eclipse.papyrus.core.papyrusDiagram&lt;/code&gt; extension p
                   the id of a diagramCategory the creation command belongs to.
                </documentation>
                <appInfo>
-                  <meta.attribute kind="identifier" basedOn="org.eclipse.papyrus.core.papyrusDiagram/@id"/>
+                  <meta.attribute kind="identifier" basedOn="org.eclipse.papyrus.infra.core.papyrusDiagram/@id"/>
                </appInfo>
             </annotation>
          </attribute>
@@ -209,10 +209,10 @@ The &lt;code&gt;org.eclipse.papyrus.core.papyrusDiagram&lt;/code&gt; extension p
          <attribute name="class" type="string" use="required">
             <annotation>
                <documentation>
-                  a name of the fully qualified class that implements &lt;samp&gt;org.eclipse.papyrus.core.extension.commands.IModelCreationCommand&lt;/samp&gt;.
+                  a name of the fully qualified class that implements &lt;samp&gt;org.eclipse.papyrus.infra.core.extension.commands.IModelCreationCommand&lt;/samp&gt;.
                </documentation>
                <appInfo>
-                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.core.extension.commands.IModelCreationCommand"/>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.infra.core.extension.commands.IModelCreationCommand"/>
                </appInfo>
             </annotation>
          </attribute>
@@ -265,7 +265,7 @@ The &lt;code&gt;org.eclipse.papyrus.core.papyrusDiagram&lt;/code&gt; extension p
       </appInfo>
       <documentation>
          &lt;pre&gt;
-&lt;extension point=&quot;org.eclipse.papyrus.core.papyrusDiagram&quot;&gt;
+&lt;extension point=&quot;org.eclipse.papyrus.infra.core.papyrusDiagram&quot;&gt;
  &lt;diagramCategory
         id=&quot;sysml&quot;
      class=&quot;org.eclipse.papyrus.sysml.diagram.common.commands.CreateSysMLModelCommand&quot;
@@ -275,7 +275,7 @@ The &lt;code&gt;org.eclipse.papyrus.core.papyrusDiagram&lt;/code&gt; extension p
  &lt;/diagramCategory&gt; 
 
  &lt;editorDiagram
-     actionBarContributorId=&quot;org.eclipse.papyrus.diagram.common.part.UMLDiagramActionBarContributor&quot;
+     actionBarContributorId=&quot;org.eclipse.papyrus.uml.diagram.common.part.UMLDiagramActionBarContributor&quot;
         factoryClass=&quot;org.eclipse.papyrus.sysml.diagram.requirement.RequirementDiagramEditorFactory&quot;
         icon=&quot;icons/obj16/Diagram_Requirement.gif&quot;&gt;
  &lt;/editorDiagram&gt;
@@ -300,19 +300,19 @@ As Requirement diagram belongs to SysML category it will be created with a SysML
          <meta.section type="apiInfo"/>
       </appInfo>
       <documentation>
-         &lt;p&gt;The value of the &lt;code&gt;class&lt;/code&gt; attribute of &lt;code&gt;diagramCategory&lt;/code&gt; must represent a class that implements the &lt;code&gt;org.eclipse.papyrus.core.extension.commands.IModelCreationCommand&lt;/code&gt; interface. There are a few default implementations of &lt;code&gt;IModelCreationCommand&lt;/code&gt; that may be useful to users of this extension point: 
+         &lt;p&gt;The value of the &lt;code&gt;class&lt;/code&gt; attribute of &lt;code&gt;diagramCategory&lt;/code&gt; must represent a class that implements the &lt;code&gt;org.eclipse.papyrus.infra.core.extension.commands.IModelCreationCommand&lt;/code&gt; interface. There are a few default implementations of &lt;code&gt;IModelCreationCommand&lt;/code&gt; that may be useful to users of this extension point: 
 &lt;ul&gt;
-&lt;li&gt;&lt;code&gt;org.eclipse.papyrus.core.extension.commands.ModelCreationCommandBase&lt;/code&gt; - an abstract implementation of a basic &lt;code&gt;IModelCreationCommand&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;org.eclipse.papyrus.diagram.common.commands.CreateUMLModelCommand&lt;/code&gt;&lt;/li&gt; - implementation of IModelCreationCommand that creates a UML model.
-&lt;li&gt;&lt;code&gt;org.eclipse.papyrus.diagram.profile.CreateProfileModelCommand&lt;/code&gt; - a subclass of CreateUMLModelCommand which creates Profile as a root element&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;org.eclipse.papyrus.infra.core.extension.commands.ModelCreationCommandBase&lt;/code&gt; - an abstract implementation of a basic &lt;code&gt;IModelCreationCommand&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;org.eclipse.papyrus.uml.diagram.common.commands.CreateUMLModelCommand&lt;/code&gt;&lt;/li&gt; - implementation of IModelCreationCommand that creates a UML model.
+&lt;li&gt;&lt;code&gt;org.eclipse.papyrus.uml.diagram.profile.CreateProfileModelCommand&lt;/code&gt; - a subclass of CreateUMLModelCommand which creates Profile as a root element&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;org.eclipse.papyrus.sysml.diagram.common.commands.CreateSysMLModelCommand&lt;/code&gt; - a subclass of CreateUMLModelCommand which applies SysML profile to the root element&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/p&gt;
 
 &lt;p&gt;The value of the &lt;code&gt;creationCommandClass&lt;/code&gt; attribute of &lt;code&gt;creationCommand&lt;/code&gt;
- must represent a class that implements the &lt;code&gt;org.eclipse.papyrus.core.extension.commands.ICreationCommand&lt;/code&gt; interface.
+ must represent a class that implements the &lt;code&gt;org.eclipse.papyrus.infra.core.extension.commands.ICreationCommand&lt;/code&gt; interface.
 &lt;ul&gt;
-&lt;li&gt;&lt;code&gt;org.eclipse.papyrus.core.adaptor.gmf.AbstractPapyrusGmfCreateDiagramCommandHandler&lt;/code&gt; - an abstract implementation of a basic &lt;code&gt;ICreationCommand&lt;/code&gt; for GMF diagrams. All CreationCommands for Papyrus diagrams extend this class.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;org.eclipse.papyrus.infra.core.adaptor.gmf.AbstractPapyrusGmfCreateDiagramCommandHandler&lt;/code&gt; - an abstract implementation of a basic &lt;code&gt;ICreationCommand&lt;/code&gt; for GMF diagrams. All CreationCommands for Papyrus diagrams extend this class.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/p&gt;
       </documentation>

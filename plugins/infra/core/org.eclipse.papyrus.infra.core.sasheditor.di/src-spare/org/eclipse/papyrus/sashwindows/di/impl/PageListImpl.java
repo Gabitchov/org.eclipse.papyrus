@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package org.eclipse.papyrus.sashwindows.di.impl;
+package org.eclipse.papyrus.infra.core.sashwindows.di.impl;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -22,10 +22,10 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import org.eclipse.papyrus.sashwindows.di.DiFactory;
-import org.eclipse.papyrus.sashwindows.di.DiPackage;
-import org.eclipse.papyrus.sashwindows.di.PageList;
-import org.eclipse.papyrus.sashwindows.di.PageRef;
+import org.eclipse.papyrus.infra.core.sashwindows.di.DiFactory;
+import org.eclipse.papyrus.infra.core.sashwindows.di.DiPackage;
+import org.eclipse.papyrus.infra.core.sashwindows.di.PageList;
+import org.eclipse.papyrus.infra.core.sashwindows.di.PageRef;
 
 /**
  * <!-- begin-user-doc -->
@@ -34,7 +34,7 @@ import org.eclipse.papyrus.sashwindows.di.PageRef;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.sashwindows.di.impl.PageListImpl#getAvailablePage <em>Available Page</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.impl.PageListImpl#getAvailablePage <em>Available Page</em>}</li>
  * </ul>
  * </p>
  *

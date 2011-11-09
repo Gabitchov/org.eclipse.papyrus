@@ -528,7 +528,7 @@ Used to insert a new SashPanel.</body>
       <appliedProfile href="pathmap://UML_PROFILES/Ecore.profile.uml#_0"/>
     </profileApplication>
   </uml:Model>
-  <Ecore:EPackage xmi:id="_zLIxUEJfEd6kIY39uis5Uw" nsPrefix="di2" nsURI="http://www.eclipse.org/papyrus/0.7.0/sashdi" basePackage="org.eclipse.papyrus.sashwindows.di"/>
+  <Ecore:EPackage xmi:id="_zLIxUEJfEd6kIY39uis5Uw" nsPrefix="di2" nsURI="http://www.eclipse.org/papyrus/0.7.0/sashdi" basePackage="org.eclipse.papyrus.infra.core.sashwindows.di"/>
   <Ecore_1:EPackage xmi:id="_mo48QEJgEd6kIY39uis5Uw" base_Package="_NuHhwEJVEd6kIY39uis5Uw" nsPrefix="di" nsURI="http://www.eclipse.org/papyrus/0.7.0/sashdi" basePackage="org.eclipse.papyrus.sashwindows" prefix="Di">
     <annotation>resource=XMI</annotation>
   </Ecore_1:EPackage>

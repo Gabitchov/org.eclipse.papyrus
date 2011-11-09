@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package org.eclipse.papyrus.sashwindows.di.impl;
+package org.eclipse.papyrus.infra.core.sashwindows.di.impl;
 
 import java.util.Collection;
 import java.util.List;
@@ -18,16 +18,16 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.papyrus.sashwindows.di.AbstractNode;
-import org.eclipse.papyrus.sashwindows.di.AbstractPanel;
-import org.eclipse.papyrus.sashwindows.di.DiFactory;
-import org.eclipse.papyrus.sashwindows.di.DiPackage;
-import org.eclipse.papyrus.sashwindows.di.PageRef;
-import org.eclipse.papyrus.sashwindows.di.SashModel;
-import org.eclipse.papyrus.sashwindows.di.SashPanel;
-import org.eclipse.papyrus.sashwindows.di.TabFolder;
-import org.eclipse.papyrus.sashwindows.di.Window;
-import org.eclipse.papyrus.sashwindows.di.util.DiSwitch;
+import org.eclipse.papyrus.infra.core.sashwindows.di.AbstractNode;
+import org.eclipse.papyrus.infra.core.sashwindows.di.AbstractPanel;
+import org.eclipse.papyrus.infra.core.sashwindows.di.DiFactory;
+import org.eclipse.papyrus.infra.core.sashwindows.di.DiPackage;
+import org.eclipse.papyrus.infra.core.sashwindows.di.PageRef;
+import org.eclipse.papyrus.infra.core.sashwindows.di.SashModel;
+import org.eclipse.papyrus.infra.core.sashwindows.di.SashPanel;
+import org.eclipse.papyrus.infra.core.sashwindows.di.TabFolder;
+import org.eclipse.papyrus.infra.core.sashwindows.di.Window;
+import org.eclipse.papyrus.infra.core.sashwindows.di.util.DiSwitch;
 import org.eclipse.swt.SWT;
 
 /**
@@ -37,8 +37,8 @@ import org.eclipse.swt.SWT;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.sashwindows.di.impl.SashModelImpl#getWindows <em>Windows</em>}</li>
- *   <li>{@link org.eclipse.papyrus.sashwindows.di.impl.SashModelImpl#getCurrentSelection <em>Current Selection</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.impl.SashModelImpl#getWindows <em>Windows</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.impl.SashModelImpl#getCurrentSelection <em>Current Selection</em>}</li>
  * </ul>
  * </p>
  *
@@ -80,7 +80,7 @@ public class SashModelImpl extends EObjectImpl implements SashModel {
 			
 			/**
 			 * Iterate over windows
-			 * @see org.eclipse.papyrus.sashwindows.di.util.DiSwitch#caseSashModel(org.eclipse.papyrus.sashwindows.di.SashModel)
+			 * @see org.eclipse.papyrus.infra.core.sashwindows.di.util.DiSwitch#caseSashModel(org.eclipse.papyrus.infra.core.sashwindows.di.SashModel)
 			 *
 			 * @param object
 			 * @return
@@ -99,7 +99,7 @@ public class SashModelImpl extends EObjectImpl implements SashModel {
 			
 			/**
 			 * Iterate over children
-			 * @see org.eclipse.papyrus.sashwindows.di.util.DiSwitch#caseSashPanel(org.eclipse.papyrus.sashwindows.di.SashPanel)
+			 * @see org.eclipse.papyrus.infra.core.sashwindows.di.util.DiSwitch#caseSashPanel(org.eclipse.papyrus.infra.core.sashwindows.di.SashPanel)
 			 *
 			 * @param object
 			 * @return
@@ -118,7 +118,7 @@ public class SashModelImpl extends EObjectImpl implements SashModel {
 			
 			/**
 			 * Iterate over PageRef
-			 * @see org.eclipse.papyrus.sashwindows.di.util.DiSwitch#caseTabFolder(org.eclipse.papyrus.sashwindows.di.TabFolder)
+			 * @see org.eclipse.papyrus.infra.core.sashwindows.di.util.DiSwitch#caseTabFolder(org.eclipse.papyrus.infra.core.sashwindows.di.TabFolder)
 			 *
 			 * @param object
 			 * @return

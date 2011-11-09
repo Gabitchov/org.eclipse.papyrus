@@ -5,8 +5,8 @@
    <extension
          point="org.eclipse.core.runtime.adapters">
       <factory
-            adaptableType="org.eclipse.papyrus.onefile.model.IPapyrusFile"
-           	 class="org.eclipse.papyrus.onefile.model.adapters.ModelAdapterFactory">
+            adaptableType="org.eclipse.papyrus.infra.onefile.model.IPapyrusFile"
+           	 class="org.eclipse.papyrus.infra.onefile.model.adapters.ModelAdapterFactory">
 	        <adapter type="org.eclipse.core.resources.mapping.ResourceMapping" />
 	        <adapter type="java.util.Collection" />
          <adapter
@@ -14,8 +14,8 @@
          </adapter>
       </factory>
       <factory
-            adaptableType="org.eclipse.papyrus.onefile.model.ISubResourceFile"
-            class="org.eclipse.papyrus.onefile.model.adapters.SubResourceAdapterFactory">
+            adaptableType="org.eclipse.papyrus.infra.onefile.model.ISubResourceFile"
+            class="org.eclipse.papyrus.infra.onefile.model.adapters.SubResourceAdapterFactory">
          <adapter
                type="org.eclipse.core.resources.mapping.ResourceMapping">
          </adapter>
@@ -38,33 +38,33 @@
          name="One File Model Provider"
          point="org.eclipse.core.resources.modelProviders">
       <modelProvider
-            class="org.eclipse.papyrus.onefile.providers.OneFileModelProvider"/>
+            class="org.eclipse.papyrus.infra.onefile.providers.OneFileModelProvider"/>
       <extends-model id="org.eclipse.core.resources.modelProvider"/>
    </extension>
    <extension
          point="org.eclipse.ui.navigator.navigatorContent">
       <commonFilter
             activeByDefault="true"
-            class="org.eclipse.papyrus.onefile.matcher.OnlyDiFilter"
+            class="org.eclipse.papyrus.infra.onefile.matcher.OnlyDiFilter"
             description="All the files related to di files are agregated bellow a common parent"
-            id="org.eclipse.papyrus.onefile.onlyDiFilter"
+            id="org.eclipse.papyrus.infra.onefile.onlyDiFilter"
             name="Di view"
             visibleInUI="true">
       </commonFilter>
       <navigatorContent
             activeByDefault="true"
-            contentProvider="org.eclipse.papyrus.onefile.providers.PapyrusContentProvider"
-            id="org.eclipse.papyrus.onefile.DiContent"
-            labelProvider="org.eclipse.papyrus.onefile.providers.PapyrusLabelProvider"
+            contentProvider="org.eclipse.papyrus.infra.onefile.providers.PapyrusContentProvider"
+            id="org.eclipse.papyrus.infra.onefile.DiContent"
+            labelProvider="org.eclipse.papyrus.infra.onefile.providers.PapyrusLabelProvider"
             name="Papyrus Content"
             priority="high">
          <enablement>
             <or>
                <instanceof
-                     value="org.eclipse.papyrus.onefile.model.IPapyrusFile">
+                     value="org.eclipse.papyrus.infra.onefile.model.IPapyrusFile">
                </instanceof>
                <instanceof
-                     value="org.eclipse.papyrus.onefile.providers.OneFileModelProvider">
+                     value="org.eclipse.papyrus.infra.onefile.providers.OneFileModelProvider">
                </instanceof>
                <instanceof
                      value="org.eclipse.core.resources.IResource">
@@ -81,26 +81,26 @@
             </or>
          </enablement>
          <actionProvider
-		         class="org.eclipse.papyrus.onefile.providers.PapyrusModelActionProvider"
-		         id="org.eclipse.papyrus.onefile.DiContent.OpenActions"
+		         class="org.eclipse.papyrus.infra.onefile.providers.PapyrusModelActionProvider"
+		         id="org.eclipse.papyrus.infra.onefile.DiContent.OpenActions"
 		         overrides="org.eclipse.ui.navigator.resources.OpenActions">
             <enablement>
                <instanceof
-                     value="org.eclipse.papyrus.onefile.model.IPapyrusFile">
+                     value="org.eclipse.papyrus.infra.onefile.model.IPapyrusFile">
                </instanceof>
             </enablement> 
          </actionProvider>
          <dropAssistant
-               class="org.eclipse.papyrus.onefile.model.adapters.PapyrusCommonDropAdapterAssistant"
-               id="org.eclipse.papyrus.onefile.PapyrusDropAssistant">
+               class="org.eclipse.papyrus.infra.onefile.model.adapters.PapyrusCommonDropAdapterAssistant"
+               id="org.eclipse.papyrus.infra.onefile.PapyrusDropAssistant">
             <possibleDropTargets>
                <instanceof
                      value="org.eclipse.core.resources.IContainer">
                </instanceof></possibleDropTargets>
          </dropAssistant>
          <commonSorter
-               class="org.eclipse.papyrus.onefile.providers.PapyrusViewerSorter"
-               id="org.eclipse.papyrus.onefile.sorter">
+               class="org.eclipse.papyrus.infra.onefile.providers.PapyrusViewerSorter"
+               id="org.eclipse.papyrus.infra.onefile.sorter">
          </commonSorter>
          <triggerPoints>
             <or>
@@ -108,19 +108,19 @@
                   value="org.eclipse.core.resources.IResource">
             	</instanceof>
              <instanceof
-                   value="org.eclipse.papyrus.onefile.model.IPapyrusFile">
+                   value="org.eclipse.papyrus.infra.onefile.model.IPapyrusFile">
              </instanceof>
              <instanceof
-                   value="org.eclipse.papyrus.onefile.model.ISubResourceFile">
+                   value="org.eclipse.papyrus.infra.onefile.model.ISubResourceFile">
              </instanceof>
             </or>
          </triggerPoints>
          <actionProvider
-               class="org.eclipse.papyrus.onefile.providers.ISubresourceFileActionProvider"
-               id="org.eclipse.papyrus.onefile.DiContent.EditActions">
+               class="org.eclipse.papyrus.infra.onefile.providers.ISubresourceFileActionProvider"
+               id="org.eclipse.papyrus.infra.onefile.DiContent.EditActions">
             <enablement>
                <instanceof
-                     value="org.eclipse.papyrus.onefile.model.ISubResourceFile">
+                     value="org.eclipse.papyrus.infra.onefile.model.ISubResourceFile">
                </instanceof>
             </enablement>
          </actionProvider>
@@ -130,20 +130,20 @@
       <viewerContentBinding viewerId="org.eclipse.team.ui.navigatorViewer">
          <includes>
             <contentExtension
-                  pattern="org.eclipse.papyrus.onefile.DiContent"/>
+                  pattern="org.eclipse.papyrus.infra.onefile.DiContent"/>
          </includes>
       </viewerContentBinding>
       <viewerContentBinding
             viewerId="org.eclipse.jdt.ui.PackageExplorer">
          <includes>
             <contentExtension 
-                  pattern="org.eclipse.papyrus.onefile.onlyDiFilter">
+                  pattern="org.eclipse.papyrus.infra.onefile.onlyDiFilter">
             </contentExtension>
             <contentExtension 
-                  pattern="org.eclipse.papyrus.onefile.DiContent">
+                  pattern="org.eclipse.papyrus.infra.onefile.DiContent">
             </contentExtension>
             <contentExtension
-                  pattern="org.eclipse.papyrus.onefile.oneFileLinkHelper">
+                  pattern="org.eclipse.papyrus.infra.onefile.oneFileLinkHelper">
             </contentExtension>
             <contentExtension 
 			    pattern="org.eclipse.ui.navigator.resourceContent" />                     
@@ -155,13 +155,13 @@
             viewerId="org.eclipse.ui.navigator.ProjectExplorer">
          <includes>
             <contentExtension 
-                  pattern="org.eclipse.papyrus.onefile.onlyDiFilter">
+                  pattern="org.eclipse.papyrus.infra.onefile.onlyDiFilter">
             </contentExtension>
             <contentExtension 
-                  pattern="org.eclipse.papyrus.onefile.DiContent">
+                  pattern="org.eclipse.papyrus.infra.onefile.DiContent">
             </contentExtension>
             <contentExtension
-                  pattern="org.eclipse.papyrus.onefile.oneFileLinkHelper">
+                  pattern="org.eclipse.papyrus.infra.onefile.oneFileLinkHelper">
             </contentExtension>
             <contentExtension 
 			    pattern="org.eclipse.ui.navigator.resourceContent" />                     
@@ -173,10 +173,10 @@
             viewerId="org.eclipse.team.ui.navigatorViewer">
          <includes>
             <contentExtension 
-                  pattern="org.eclipse.papyrus.onefile.onlyDiFilter">
+                  pattern="org.eclipse.papyrus.infra.onefile.onlyDiFilter">
             </contentExtension>
             <contentExtension 
-                  pattern="org.eclipse.papyrus.onefile.DiContent">
+                  pattern="org.eclipse.papyrus.infra.onefile.DiContent">
             </contentExtension>
          </includes>
       </viewerContentBinding>
@@ -184,10 +184,10 @@
 	            viewerId="org.eclipse.team.svn.ui.workspaceSynchronization">
 	         <includes>
 	            <contentExtension 
-	                  pattern="org.eclipse.papyrus.onefile.onlyDiFilter">
+	                  pattern="org.eclipse.papyrus.infra.onefile.onlyDiFilter">
 	            </contentExtension>
 	            <contentExtension 
-	                  pattern="org.eclipse.papyrus.onefile.DiContent">
+	                  pattern="org.eclipse.papyrus.infra.onefile.DiContent">
 	            </contentExtension>
 	         </includes>
 	      </viewerContentBinding>
@@ -195,15 +195,15 @@
 	            viewerId="org.eclipse.team.cvs.ui.workspaceSynchronization">
 	         <includes>
 	            <contentExtension 
-	                  pattern="org.eclipse.papyrus.onefile.onlyDiFilter">
+	                  pattern="org.eclipse.papyrus.infra.onefile.onlyDiFilter">
 	            </contentExtension>
 	            <contentExtension 
-	                  pattern="org.eclipse.papyrus.onefile.DiContent">
+	                  pattern="org.eclipse.papyrus.infra.onefile.DiContent">
 	            </contentExtension>
 	         </includes>
 	      </viewerContentBinding>
         <viewerContentBinding
-              viewerId="org.eclipse.papyrus.onefile.DiContent">
+              viewerId="org.eclipse.papyrus.infra.onefile.DiContent">
            <includes>
               <contentExtension
                     pattern="org.eclipse.jdt.java.ui.javaContent">
@@ -215,8 +215,8 @@
    <extension
          point="org.eclipse.ui.navigator.linkHelper">
       <linkHelper
-            class="org.eclipse.papyrus.onefile.model.adapters.PapyrusLinkHelper"
-            id="org.eclipse.papyrus.onefile.oneFileLinkHelper">
+            class="org.eclipse.papyrus.infra.onefile.model.adapters.PapyrusLinkHelper"
+            id="org.eclipse.papyrus.infra.onefile.oneFileLinkHelper">
          <editorInputEnablement>
             <and>
                <instanceof
@@ -234,7 +234,7 @@
          <selectionEnablement>
             <or>
                <instanceof
-                     value="org.eclipse.papyrus.onefile.model.IPapyrusFile">
+                     value="org.eclipse.papyrus.infra.onefile.model.IPapyrusFile">
                </instanceof>
                <and>
                   <instanceof
@@ -251,9 +251,9 @@
       </linkHelper>
    </extension>
    <extension
-         point="org.eclipse.papyrus.onefile.modelFactory">
+         point="org.eclipse.papyrus.infra.onefile.modelFactory">
       <factory
-            instance="org.eclipse.papyrus.onefile.model.impl.PapyrusModelFactory"
+            instance="org.eclipse.papyrus.infra.onefile.model.impl.PapyrusModelFactory"
             priority="1">
       </factory>
    </extension>
@@ -261,14 +261,14 @@
          point="org.eclipse.ui.decorators">
       <decorator
             adaptable="true"
-            class="org.eclipse.papyrus.onefile.providers.OneFileDecorator"
-            id="org.eclipse.papyrus.onefile.onefiledecorator"
+            class="org.eclipse.papyrus.infra.onefile.providers.OneFileDecorator"
+            id="org.eclipse.papyrus.infra.onefile.onefiledecorator"
             label="One File Decorator"
             lightweight="true"
             state="true">
          <enablement>
             <objectClass
-                  name="org.eclipse.papyrus.onefile.model.IPapyrusFile">
+                  name="org.eclipse.papyrus.infra.onefile.model.IPapyrusFile">
             </objectClass>
          </enablement>
       </decorator>

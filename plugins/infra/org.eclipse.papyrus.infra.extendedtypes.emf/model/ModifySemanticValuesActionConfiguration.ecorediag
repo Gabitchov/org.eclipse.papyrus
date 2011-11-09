@@ -16,7 +16,7 @@
       <styles xmi:type="notation:FilteringStyle" xmi:id="_mWK7iFSgEeC-0syXieMmHA"/>
     </children>
     <styles xmi:type="notation:ShapeStyle" xmi:id="_mVuPkVSgEeC-0syXieMmHA" fontColor="4210752" fontHeight="10" fillColor="12560536" lineColor="8421504"/>
-    <element xmi:type="ecore:EClass" href="platform:/plugin/org.eclipse.papyrus.extendedtypes/model/ExtendedTypes.ecore#//PostActionConfiguration"/>
+    <element xmi:type="ecore:EClass" href="platform:/plugin/org.eclipse.papyrus.infra.extendedtypes/model/ExtendedTypes.ecore#//PostActionConfiguration"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_mVuPklSgEeC-0syXieMmHA" x="110" y="200" width="193"/>
   </children>
   <children xmi:type="notation:Node" xmi:id="_omszsFSgEeC-0syXieMmHA" type="1001">
@@ -151,7 +151,7 @@
       <styles xmi:type="notation:FilteringStyle" xmi:id="_5j_FGFVtEeCZTbk4eXVjvg"/>
     </children>
     <styles xmi:type="notation:ShapeStyle" xmi:id="_5jsKIVVtEeCZTbk4eXVjvg" fontColor="4210752" fontHeight="10" fillColor="12560536" lineColor="8421504"/>
-    <element xmi:type="ecore:EClass" href="platform:/plugin/org.eclipse.papyrus.core.queries.configuration/model/Configuration.ecore#//QueryConfiguration"/>
+    <element xmi:type="ecore:EClass" href="platform:/plugin/org.eclipse.papyrus.infra.queries.core.configuration/model/Configuration.ecore#//QueryConfiguration"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_5jsKIlVtEeCZTbk4eXVjvg" x="665" y="610" width="183" height="73"/>
   </children>
   <children xmi:type="notation:Node" xmi:id="_CjJ_gFVuEeCZTbk4eXVjvg" type="1001">

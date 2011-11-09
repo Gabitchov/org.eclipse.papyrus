@@ -16,8 +16,8 @@ package org.eclipse.papyrus.editor;
 
 import org.eclipse.jface.action.IMenuListener;
 import org.eclipse.jface.action.IMenuManager;
-import org.eclipse.papyrus.core.editor.BackboneException;
-import org.eclipse.papyrus.core.multidiagram.actionbarcontributor.CoreComposedActionBarContributor;
+import org.eclipse.papyrus.infra.core.editor.BackboneException;
+import org.eclipse.papyrus.infra.core.multidiagram.actionbarcontributor.CoreComposedActionBarContributor;
 import org.eclipse.ui.IEditorActionBarContributor;
 
 
