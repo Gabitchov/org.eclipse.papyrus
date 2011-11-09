@@ -2,7 +2,7 @@
 <?eclipse version="3.4"?>
 <plugin>
  	<extension point="org.eclipse.emf.ecore.extension_parser">
-      <parser class="org.eclipse.papyrus.properties.model.xwt.resource.XWTModelFactory" type="xwt">
+      <parser class="org.eclipse.papyrus.customization.properties.model.xwt.resource.XWTModelFactory" type="xwt">
       </parser>
    </extension>
 </plugin>

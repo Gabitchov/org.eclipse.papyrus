@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
-Export-Package: org.eclipse.papyrus.properties.generation,
- org.eclipse.papyrus.properties.generation.generators,
- org.eclipse.papyrus.properties.generation.layout,
- org.eclipse.papyrus.properties.generation.wizard,
- org.eclipse.papyrus.properties.generation.wizard.widget
+Export-Package: org.eclipse.papyrus.customization.properties.generation,
+ org.eclipse.papyrus.customization.properties.generation.generators,
+ org.eclipse.papyrus.customization.properties.generation.layout,
+ org.eclipse.papyrus.customization.properties.generation.wizard,
+ org.eclipse.papyrus.customization.properties.generation.wizard.widget
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .,
  bin
@@ -29,6 +29,6 @@ Bundle-Vendor: %Bundle-Vendor
 Bundle-Version: 0.9.0.qualifier
 Eclipse-BuddyPolicy: dependent
 Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.properties.generation.Activator
+Bundle-Activator: org.eclipse.papyrus.customization.properties.generation.Activator
 Bundle-SymbolicName: org.eclipse.papyrus.customization.properties.generation;singleton:=true
 

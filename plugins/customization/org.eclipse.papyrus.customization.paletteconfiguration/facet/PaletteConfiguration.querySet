@@ -3,19 +3,19 @@
   <associatedMetamodels href="http://www.eclipse.org/papyrus/diagram/paletteconfiguration/0.7#/"/>
   <associatedMetamodels href="http://www.eclipse.org/emf/2002/Ecore#/"/>
   <associatedMetamodels href="http://www.eclipse.org/uml2/3.0.0/UML#/"/>
-  <queries xsi:type="query:JavaModelQuery" name="getIcon" description="Gets the icon for a configuration element in the palette configuration model" implementationClassName="org.eclipse.papyrus.uml.diagram.paletteconfiguration.customization.queries.GetIconQuery">
+  <queries xsi:type="query:JavaModelQuery" name="getIcon" description="Gets the icon for a configuration element in the palette configuration model" implementationClassName="org.eclipse.papyrus.customization.paletteconfiguration.queries.GetIconQuery">
     <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/3.0.0/UML#//String"/>
     <scope href="http://www.eclipse.org/papyrus/diagram/paletteconfiguration/0.7#//Configuration"/>
   </queries>
-  <queries xsi:type="query:JavaModelQuery" name="hasIcon" description="Returns &lt;code>true&lt;/code> if the element has a specific icon to display" implementationClassName="org.eclipse.papyrus.uml.diagram.paletteconfiguration.customization.queries.HasIconQuery">
+  <queries xsi:type="query:JavaModelQuery" name="hasIcon" description="Returns &lt;code>true&lt;/code> if the element has a specific icon to display" implementationClassName="org.eclipse.papyrus.customization.paletteconfiguration.queries.HasIconQuery">
     <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/3.0.0/UML#//Boolean"/>
     <scope href="http://www.eclipse.org/papyrus/diagram/paletteconfiguration/0.7#//Configuration"/>
   </queries>
-  <queries xsi:type="query:JavaModelQuery" name="getToolLabel" description="Returns the Label for a tool." implementationClassName="org.eclipse.papyrus.uml.diagram.paletteconfiguration.customization.queries.GetToolLabelQuery">
+  <queries xsi:type="query:JavaModelQuery" name="getToolLabel" description="Returns the Label for a tool." implementationClassName="org.eclipse.papyrus.customization.paletteconfiguration.queries.GetToolLabelQuery">
     <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/3.0.0/UML#//String"/>
     <scope href="http://www.eclipse.org/papyrus/diagram/paletteconfiguration/0.7#//ToolConfiguration"/>
   </queries>
-  <queries xsi:type="query:JavaModelQuery" name="getDrawerLabel" description="Returns the label for a drawer" implementationClassName="org.eclipse.papyrus.uml.diagram.paletteconfiguration.customization.queries.GetDrawerLabelQuery">
+  <queries xsi:type="query:JavaModelQuery" name="getDrawerLabel" description="Returns the label for a drawer" implementationClassName="org.eclipse.papyrus.customization.paletteconfiguration.queries.GetDrawerLabelQuery">
     <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/3.0.0/UML#//String"/>
     <scope href="http://www.eclipse.org/papyrus/diagram/paletteconfiguration/0.7#//DrawerConfiguration"/>
   </queries>

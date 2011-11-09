@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <doc:Documentation xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:doc="http://www.eclipse.org/papyrus/documentation/plugin/documentation" description="This plug-in contains the tools for customizing the property view :&#xD;&#xA;&#xD;&#xA;- An editor for Property view configuration models, with a real-time preview&#xD;&#xA;- A Property view configuration for this editor">
-  <implicitDependencies plugin="org.eclipse.papyrus.properties.model.xwt" comment="This plug-in needs the XWT projectors to manipulate XWT Files as EMF Models"/>
+  <implicitDependencies plugin="org.eclipse.papyrus.customization.properties.model.xwt" comment="This plug-in needs the XWT projectors to manipulate XWT Files as EMF Models"/>
   <referent firstName="Camille" lastName="Letavernier" eMail="camille.letavernier@cea.fr" currentCompany="CEA LIST"/>
 </doc:Documentation>

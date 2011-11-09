@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <genmodel:GenModel xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
-    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.papyrus.properties.generation/src-gen"
-    editDirectory="/org.eclipse.papyrus.properties.generation.edit/src-gen" editorDirectory="/org.eclipse.papyrus.properties.generation.editor/src-gen"
-    modelPluginID="org.eclipse.papyrus.properties.generation" modelName="FieldSelection"
-    testsDirectory="/org.eclipse.papyrus.properties.generation.tests/src-gen" importerID="org.eclipse.emf.importer.ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.papyrus.customization.properties.generation/src-gen"
+    editDirectory="/org.eclipse.papyrus.customization.properties.generation.edit/src-gen" editorDirectory="/org.eclipse.papyrus.customization.properties.generation.editor/src-gen"
+    modelPluginID="org.eclipse.papyrus.customization.properties.generation" modelName="FieldSelection"
+    testsDirectory="/org.eclipse.papyrus.customization.properties.generation.tests/src-gen" importerID="org.eclipse.emf.importer.ecore"
     complianceLevel="5.0" copyrightFields="false">
   <foreignModel>FieldSelection.ecore</foreignModel>
-  <genPackages prefix="FieldSelection" basePackage="org.eclipse.papyrus.properties.generation"
+  <genPackages prefix="FieldSelection" basePackage="org.eclipse.papyrus.customization.properties.generation"
       disposableProviderFactory="true" ecorePackage="FieldSelection.ecore#/">
     <genDataTypes ecoreDataType="FieldSelection.ecore#//Value"/>
     <genClasses ecoreClass="FieldSelection.ecore#//FieldSelection">

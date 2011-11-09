@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ASCII"?>
 <environment:Environment xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:environment="http://www.eclipse.org/papyrus/properties/environment">
-  <modelElementFactories name="Generic Attribute" factoryClass="org.eclipse.papyrus.properties.customization.modelelement.GenericAttributeModelElementFactory"/>
-  <modelElementFactories name="Generic Property" factoryClass="org.eclipse.papyrus.properties.customization.modelelement.GenericPropertyModelElementFactory"/>
-  <modelElementFactories name="Customization Factory" factoryClass="org.eclipse.papyrus.properties.customization.modelelement.CustomizationModelElementFactory"/>
+  <modelElementFactories name="Generic Attribute" factoryClass="org.eclipse.papyrus.customization.properties.modelelement.GenericAttributeModelElementFactory"/>
+  <modelElementFactories name="Generic Property" factoryClass="org.eclipse.papyrus.customization.properties.modelelement.GenericPropertyModelElementFactory"/>
+  <modelElementFactories name="Customization Factory" factoryClass="org.eclipse.papyrus.customization.properties.modelelement.CustomizationModelElementFactory"/>
 </environment:Environment>

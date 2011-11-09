@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="org.eclipse.papyrus.properties.generation" xmlns="http://www.w3.org/2001/XMLSchema">
+<schema targetNamespace="org.eclipse.papyrus.customization.properties.generation" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appinfo>
-         <meta.schema plugin="org.eclipse.papyrus.properties.generation" id="org.eclipse.papyrus.properties.generation.layout" name="Property View layout generator"/>
+         <meta.schema plugin="org.eclipse.papyrus.customization.properties.generation" id="org.eclipse.papyrus.customization.properties.generation.layout" name="Property View layout generator"/>
       </appinfo>
       <documentation>
          [Enter description of this extension point.]
@@ -55,7 +55,7 @@
                   
                </documentation>
                <appinfo>
-                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.properties.generation.layout.LayoutGenerator"/>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.customization.properties.generation.layout.LayoutGenerator"/>
                </appinfo>
             </annotation>
          </attribute>

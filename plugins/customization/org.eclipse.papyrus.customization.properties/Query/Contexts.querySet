@@ -42,7 +42,7 @@
     <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <scope href="http://www.eclipse.org/papyrus/properties/contexts#//DataContextElement"/>
   </queries>
-  <queries xsi:type="query:JavaModelQuery" name="showDataContext-j" description="Tests if the data contexts should be displayed" lowerBound="1" implementationClassName="org.eclipse.papyrus.properties.customization.query.ShowContextQuery">
+  <queries xsi:type="query:JavaModelQuery" name="showDataContext-j" description="Tests if the data contexts should be displayed" lowerBound="1" implementationClassName="org.eclipse.papyrus.customization.properties.query.ShowContextQuery">
     <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <scope href="http://www.eclipse.org/papyrus/properties/contexts#//Context"/>
   </queries>
