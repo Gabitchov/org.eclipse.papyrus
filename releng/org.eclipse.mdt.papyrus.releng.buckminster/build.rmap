@@ -224,13 +224,6 @@
     </rm:provider>
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
         mutable="false">
-      <!--rm:uri format="{0}/modeling/tmf/xtext/updates/milestones"-->
-      <rm:uri format="{0}/modeling/tmf/xtext/updates/releases/head/R201108020636">
-        <bc:propertyRef key="eclipse.downloads"/>
-      </rm:uri>
-    </rm:provider>
-    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
-        mutable="false">
       <rm:uri format="{0}/modeling/emf/updates/releases/"> 
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
@@ -247,13 +240,6 @@
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
-    <!--
-    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
-      <rm:uri format="{0}/modeling/mdt/papyrus/extra/updates/richtext/">
-        <bc:propertyRef key="eclipse.downloads"/>
-      </rm:uri>
-    </rm:provider>
-    -->
      <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
         mutable="false">
       <!--rm:uri format="{0}/e4/downloads/drops/S-0.11M5-201101282000/repository"-->
@@ -261,11 +247,11 @@
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
-    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
+<!--    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
       <rm:uri format="{0}/modeling/tmf/xtext/updates/composite/releases/">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
-    </rm:provider>
+    </rm:provider> -->
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
         mutable="false">
       <rm:uri format="{0}/modeling/gmp/updates/milestones">
