@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
-Export-Package: org.eclipse.papyrus.controlmode.history,
- org.eclipse.papyrus.controlmode.history.utils,
- org.eclipse.papyrus.controlmode.mm.history,
- org.eclipse.papyrus.controlmode.mm.history.impl,
- org.eclipse.papyrus.controlmode.mm.history.util
+Export-Package: org.eclipse.papyrus.infra.services.controlmode.history,
+ org.eclipse.papyrus.infra.services.controlmode.history.utils,
+ org.eclipse.papyrus.infra.services.controlmode.mm.history,
+ org.eclipse.papyrus.infra.services.controlmode.mm.history.impl,
+ org.eclipse.papyrus.infra.services.controlmode.mm.history.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.papyrus.infra.core;bundle-version="0.9.0"

@@ -13,7 +13,7 @@
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <factory
             uri="http://www.eclipse.org/papyrus/core/queries/0.7"
-            class="org.eclipse.papyrus.core.queries.configuration.provider.ConfigurationItemProviderAdapterFactory"
+            class="org.eclipse.papyrus.infra.queries.core.configuration.provider.ConfigurationItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
                org.eclipse.emf.edit.provider.IStructuredItemContentProvider

@@ -5,32 +5,32 @@
    <extension
          point="org.eclipse.ui.preferencePages">
       <page
-            category="org.eclipse.papyrus.preferences.generalcategory"
-            class="org.eclipse.papyrus.validation.preferences.PreferencePage"
-            id="org.eclipse.papyrus.preferences.validation"
+            category="org.eclipse.papyrus.infra.gmfdiag.preferences.generalcategory"
+            class="org.eclipse.papyrus.infra.services.validation.preferences.PreferencePage"
+            id="org.eclipse.papyrus.infra.gmfdiag.preferences.validation"
             name="Validation preferences">
       </page>
    </extension>
    <extension
          point="org.eclipse.core.runtime.preferences">
       <initializer
-            class="org.eclipse.papyrus.validation.preferences.Initializer">
+            class="org.eclipse.papyrus.infra.services.validation.preferences.Initializer">
       </initializer>
    </extension>
    <extension
          point="org.eclipse.ui.menus">
       <menuContribution
             allPopups="false"
-            locationURI="popup:org.eclipse.papyrus.modelexplorer.modelexplorer.popup">
+            locationURI="popup:org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup">
          <menu
                icon="icons/etool16/validate.gif"
-               id="org.eclipse.papyrus.modelexplorer.popup.validation"
+               id="org.eclipse.papyrus.views.modelexplorer.popup.validation"
                label="Validation">
          </menu>
       </menuContribution>
       <menuContribution
             allPopups="true"
-            locationURI="popup:org.eclipse.papyrus.modelexplorer.popup.validation">
+            locationURI="popup:org.eclipse.papyrus.views.modelexplorer.popup.validation">
          <command
                commandId="org.eclipse.papyrus.validation.ValidateModelCommand"
                icon="icons/etool16/validate.gif"
@@ -75,42 +75,42 @@
          point="org.eclipse.ui.commands">
       <command
             categoryId="org.eclipse.papyrus.editor.category"
-            defaultHandler="org.eclipse.papyrus.validation.handler.ValidateModelHandler"
+            defaultHandler="org.eclipse.papyrus.infra.services.validation.handler.ValidateModelHandler"
             description="ValidateModel"
             id="org.eclipse.papyrus.validation.ValidateModelCommand"
             name="ValidateModel">
       </command>
       <command
             categoryId="org.eclipse.papyrus.editor.category"
-            defaultHandler="org.eclipse.papyrus.validation.handler.ValidateSubtreeHandler"
+            defaultHandler="org.eclipse.papyrus.infra.services.validation.handler.ValidateSubtreeHandler"
             description="ValidateSubtree"
             id="org.eclipse.papyrus.validation.ValidateSubtreeCommand"
             name="ValidateSubtree">
       </command>
       <command
             categoryId="org.eclipse.papyrus.editor.category"
-            defaultHandler="org.eclipse.papyrus.validation.handler.SelectAndValidateSubtreeHandler"
+            defaultHandler="org.eclipse.papyrus.infra.services.validation.handler.SelectAndValidateSubtreeHandler"
             description="SelectAndValidate"
             id="org.eclipse.papyrus.validation.SelectAndValidateSubtreeCommand"
             name="SelectAndValidate">
       </command>
       <command
             categoryId="org.eclipse.papyrus.editor.category"
-            defaultHandler="org.eclipse.papyrus.validation.handler.SelectAndValidateModelHandler"
+            defaultHandler="org.eclipse.papyrus.infra.services.validation.handler.SelectAndValidateModelHandler"
             description="SelectAndValidate"
             id="org.eclipse.papyrus.validation.SelectAndValidateModelCommand"
             name="SelectAndValidate">
       </command>
       <command
             categoryId="org.eclipse.papyrus.editor.category"
-            defaultHandler="org.eclipse.papyrus.validation.handler.ValidateDelMarkersFromModelHandler"
+            defaultHandler="org.eclipse.papyrus.infra.services.validation.handler.ValidateDelMarkersFromModelHandler"
             description="ValidateDelMarkersFromModel"
             id="org.eclipse.papyrus.validation.ValidateDelMarkersFromModelCommand"
             name="ValidateDelMarkersFromModel">
       </command>
       <command
             categoryId="org.eclipse.papyrus.editor.category"
-            defaultHandler="org.eclipse.papyrus.validation.handler.ValidateDelMarkersFromSubtreeHandler"
+            defaultHandler="org.eclipse.papyrus.infra.services.validation.handler.ValidateDelMarkersFromSubtreeHandler"
             description="ValidateDelMarkersFromSubtree"
             id="org.eclipse.papyrus.validation.ValidateDelMarkersFromSubtreeCommand"
             name="ValidateDelMarkersFromSubtree">

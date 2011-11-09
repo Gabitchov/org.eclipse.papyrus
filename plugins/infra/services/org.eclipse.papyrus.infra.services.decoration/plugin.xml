@@ -2,9 +2,9 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension
-         point="org.eclipse.papyrus.core.service">
+         point="org.eclipse.papyrus.infra.core.service">
       <service
-            classname="org.eclipse.papyrus.decoration.DecorationService"
+            classname="org.eclipse.papyrus.infra.services.decoration.DecorationService"
             priority="1"
             useClassTypeAsKey="true"
             startKind="lazy">

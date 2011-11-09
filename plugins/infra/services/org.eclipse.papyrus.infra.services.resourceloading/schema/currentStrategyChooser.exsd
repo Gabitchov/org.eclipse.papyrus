@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="org.eclipse.papyrus.core.resourceloading" xmlns="http://www.w3.org/2001/XMLSchema">
+<schema targetNamespace="org.eclipse.papyrus.infra.services.resourceloading" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appinfo>
-         <meta.schema plugin="org.eclipse.papyrus.core.resourceloading" id="currentStrategyChooser" name="Current Strategy Chooser"/>
+         <meta.schema plugin="org.eclipse.papyrus.infra.services.resourceloading" id="currentStrategyChooser" name="Current Strategy Chooser"/>
       </appinfo>
       <documentation>
          Extension point that provides the current loading strategy to the proxy manager.
@@ -56,7 +56,7 @@ Proxy manager load the resource if needed, according to the current strategy
                   
                </documentation>
                <appinfo>
-                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.core.resourceloading.IStrategyChooser"/>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.infra.services.resourceloading.IStrategyChooser"/>
                </appinfo>
             </annotation>
          </attribute>

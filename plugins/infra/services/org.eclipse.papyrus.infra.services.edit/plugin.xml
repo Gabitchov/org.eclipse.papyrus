@@ -8,8 +8,8 @@
 	     This context can only be used explicitely as its matcher always return false ( in order
 	     to avoid undesired activation and possible side effects)
 	  -->
-	<clientContext id="org.eclipse.papyrus.service.edit.TypeContext">
-		<matcher class="org.eclipse.papyrus.service.edit.matcher.NoContextEnablementMatcher"/>
+	<clientContext id="org.eclipse.papyrus.infra.services.edit.TypeContext">
+		<matcher class="org.eclipse.papyrus.infra.services.edit.matcher.NoContextEnablementMatcher"/>
 	</clientContext>
 
 </extension>
@@ -35,7 +35,7 @@
 <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
 
 	<!-- Bindings declaration -->
-	<binding context="org.eclipse.papyrus.service.edit.TypeContext">
+	<binding context="org.eclipse.papyrus.infra.services.edit.TypeContext">
 		
 		<!-- ElementType that deals with View deletion when their related model element is deleted -->
 		<elementType ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
@@ -46,11 +46,11 @@
 </extension>
 
 <!-- Declaration of the IElementEditServiceProvider (Papyrus wrapper to the Extensible type framework) -->
-<extension point="org.eclipse.papyrus.core.service">
+<extension point="org.eclipse.papyrus.infra.core.service">
 
 	<serviceFactory
-		id="org.eclipse.papyrus.service.edit.service.IElementEditServiceProvider"
-		classname="org.eclipse.papyrus.service.edit.internal.ElementEditServiceProviderFactory" 
+		id="org.eclipse.papyrus.infra.services.edit.service.IElementEditServiceProvider"
+		classname="org.eclipse.papyrus.infra.services.edit.internal.ElementEditServiceProviderFactory" 
 		priority="1" startKind="startup">
  	</serviceFactory>
 

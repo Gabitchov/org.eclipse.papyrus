@@ -2,15 +2,15 @@ Manifest-Version: 1.0
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.papyrus.infra.core;bundle-version="0.9.0"
-Export-Package: org.eclipse.papyrus.markerlistener
+Export-Package: org.eclipse.papyrus.infra.services.markerlistener
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 0.9.0.qualifier
 Bundle-Name: %pluginName
 Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.markerlistener.Activator
+Bundle-Activator: org.eclipse.papyrus.infra.services.markerlistener.Activator
 Bundle-SymbolicName: org.eclipse.papyrus.infra.services.markerlistener;singleton:=true
-Import-Package: org.eclipse.papyrus.decoration,
- org.eclipse.papyrus.diagram.common.util
+Import-Package: org.eclipse.papyrus.uml.diagram.common.util,
+ org.eclipse.papyrus.infra.services.decoration
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

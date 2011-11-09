@@ -2,9 +2,9 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension
-         point="org.eclipse.papyrus.core.service">
+         point="org.eclipse.papyrus.infra.core.service">
       <service
-            classname="org.eclipse.papyrus.markerlistener.MarkersMonitorService"
+            classname="org.eclipse.papyrus.infra.services.markerlistener.MarkersMonitorService"
             priority="1"
             startKind="startup">
       </service>

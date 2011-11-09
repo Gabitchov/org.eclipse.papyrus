@@ -13,13 +13,13 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
             uri="http://www.eclipse.org/papyrus/0.7.0/controlmode"
-            class="org.eclipse.papyrus.controlmode.mm.history.historyPackage"
+            class="org.eclipse.papyrus.infra.services.controlmode.mm.history.historyPackage"
             genModel="model/history.genmodel"/>
    </extension>
    <extension
-         point="org.eclipse.papyrus.core.model">
+         point="org.eclipse.papyrus.infra.core.model">
       <model
-            classname="org.eclipse.papyrus.controlmode.history.HistoryModel"
+            classname="org.eclipse.papyrus.infra.services.controlmode.history.HistoryModel"
             description="Model for History">
       </model>
    </extension>

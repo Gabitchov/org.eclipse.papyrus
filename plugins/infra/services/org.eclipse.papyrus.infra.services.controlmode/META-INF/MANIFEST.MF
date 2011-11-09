@@ -10,16 +10,16 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.infra.widgets.toolbox;bundle-version="0.9.0",
  org.eclipse.papyrus.infra.services.resourceloading;bundle-version="0.9.0",
  org.eclipse.papyrus.infra.services.resourceloading.preferences;bundle-version="0.9.0"
-Export-Package: org.eclipse.papyrus.controlmode,
- org.eclipse.papyrus.controlmode.action,
- org.eclipse.papyrus.controlmode.commands,
- org.eclipse.papyrus.controlmode.ui
+Export-Package: org.eclipse.papyrus.infra.services.controlmode,
+ org.eclipse.papyrus.infra.services.controlmode.action,
+ org.eclipse.papyrus.infra.services.controlmode.commands,
+ org.eclipse.papyrus.infra.services.controlmode.ui
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 0.9.0.qualifier
 Bundle-Name: %pluginName
 Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.controlmode.ControlModePlugin
+Bundle-Activator: org.eclipse.papyrus.infra.services.controlmode.ControlModePlugin
 Bundle-SymbolicName: org.eclipse.papyrus.infra.services.controlmode;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 
