@@ -13,12 +13,15 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.common.dragtracker;
 
+import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeCompartmentEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.figures.ShapeCompartmentFigure;
 import org.eclipse.gmf.runtime.diagram.ui.tools.DragEditPartsTrackerEx;
 /**
  * this tracker is used to prevent the move of a figure outdoor of its container
@@ -32,15 +35,20 @@ public class NoScrollDragEditPartsTrackerEx extends DragEditPartsTrackerEx{
 	
 	@Override
 	protected void updateTargetRequest() {
-		int BORDER=10;
+		int BORDER=5;
 		super.updateTargetRequest();
 		Dimension delta = getDragMoveDelta();
 		
 		if( getSourceEditPart() instanceof GraphicalEditPart){
 			Rectangle childRect=((GraphicalEditPart)getSourceEditPart()).getFigure().getBounds();
 			if( getSourceEditPart().getParent() instanceof GraphicalEditPart){
-				Rectangle parentRect= 	((GraphicalEditPart) getSourceEditPart().getParent()).getFigure().getBounds();
+				IFigure parentFigure=((GraphicalEditPart) getSourceEditPart().getParent()).getFigure();
 				
+				Rectangle parentRect= parentFigure.getBounds();
+				if( parentFigure instanceof ShapeCompartmentFigure){
+					parentRect=((ShapeCompartmentFigure)parentFigure).getContentPane().getBounds();
+				}
+				EditPart ParentEditPart=((GraphicalEditPart) getSourceEditPart().getParent());
 				//calculate the virtual position
 				Rectangle virtualPosition= childRect.getCopy();
 				virtualPosition.x=virtualPosition.x+delta.width;
@@ -56,8 +64,8 @@ public class NoScrollDragEditPartsTrackerEx extends DragEditPartsTrackerEx{
 					delta.width=parentRect.width-childRect.width-childRect.x-BORDER;
 				}
 				
-				if( virtualPosition.y+virtualPosition.height+2*BORDER>parentRect.height){
-					delta.height=parentRect.height-childRect.height-childRect.y-2*BORDER;
+				if( virtualPosition.y+virtualPosition.height+BORDER>parentRect.height){
+					delta.height=parentRect.height-childRect.height-childRect.y-BORDER;
 				}
 				ChangeBoundsRequest request = (ChangeBoundsRequest) getTargetRequest();
 				Point moveDelta = new Point(delta.width, delta.height);
