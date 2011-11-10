@@ -25,9 +25,9 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.facet.infra.facet.FacetReference;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.papyrus.infra.widgets.providers.AbstractTreeFilter;
+import org.eclipse.papyrus.infra.widgets.providers.IHierarchicContentProvider;
 import org.eclipse.papyrus.views.modelexplorer.SemanticFromModelExplorer;
-import org.eclipse.papyrus.widgets.providers.AbstractTreeFilter;
-import org.eclipse.papyrus.widgets.providers.IHierarchicContentProvider;
 
 /**
  * 

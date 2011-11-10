@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
  *
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -15,8 +15,7 @@ package org.eclipse.papyrus.views.modelexplorer.widgets;
 
 import java.util.List;
 
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.papyrus.widgets.providers.IHierarchicContentProvider;
+import org.eclipse.papyrus.infra.widgets.providers.IHierarchicContentProvider;
 
 
 /**
@@ -24,7 +23,7 @@ import org.eclipse.papyrus.widgets.providers.IHierarchicContentProvider;
  * So the method is valid has to take in account the list of metaclasses
  */
 public interface IMetaclassFilteredContentProvider extends
-		IHierarchicContentProvider {
+IHierarchicContentProvider {
 	/**
 	 * set the list of meta-classes that we do not want to display.
 	 *  It could be interesting to look for a kind of metaclasses without sub metaclasses.

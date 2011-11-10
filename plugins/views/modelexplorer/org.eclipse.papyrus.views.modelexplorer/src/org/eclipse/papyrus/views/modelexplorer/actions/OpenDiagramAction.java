@@ -16,7 +16,7 @@ package org.eclipse.papyrus.views.modelexplorer.actions;
 
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.action.Action;
-import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
+import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
 import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
 

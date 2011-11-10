@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="org.eclipse.papyrus.properties.runtime" xmlns="http://www.w3.org/2001/XMLSchema">
+<schema targetNamespace="org.eclipse.papyrus.views.properties.runtime" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appinfo>
-         <meta.schema plugin="org.eclipse.papyrus.properties.runtime" id="propertyEditorControllerProvider" name="propertyEditorControllerProvider"/>
+         <meta.schema plugin="org.eclipse.papyrus.views.properties.runtime" id="propertyEditorControllerProvider" name="propertyEditorControllerProvider"/>
       </appinfo>
       <documentation>
          [Enter description of this extension point.]
@@ -62,7 +62,7 @@
                   Class that implements this property editor controller
                </documentation>
                <appinfo>
-                  <meta.attribute kind="java" basedOn="org.eclipse.papyrus.properties.runtime.controller.PropertyEditorControllerProvider:"/>
+                  <meta.attribute kind="java" basedOn="org.eclipse.papyrus.views.properties.runtime.controller.PropertyEditorControllerProvider:"/>
                </appinfo>
             </annotation>
          </attribute>
@@ -123,7 +123,7 @@
                   class that implements this editor controller
                </documentation>
                <appinfo>
-                  <meta.attribute kind="java" basedOn="org.eclipse.papyrus.properties.runtime.controller.PropertyEditorController:"/>
+                  <meta.attribute kind="java" basedOn="org.eclipse.papyrus.views.properties.runtime.controller.PropertyEditorController:"/>
                </appinfo>
             </annotation>
          </attribute>
@@ -147,7 +147,7 @@
                   factory to create descriptors for property editor controllers. The descriptors contain the configuration specific to each controller.
                </documentation>
                <appinfo>
-                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.properties.runtime.controller.descriptor.IPropertyEditorControllerDescriptorFactory"/>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.views.properties.runtime.controller.descriptor.IPropertyEditorControllerDescriptorFactory"/>
                </appinfo>
             </annotation>
          </attribute>

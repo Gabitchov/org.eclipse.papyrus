@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
  *
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -39,7 +39,7 @@ import org.eclipse.emf.facet.infra.facet.FacetSet;
 import org.eclipse.emf.facet.infra.facet.core.FacetSetCatalog;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.papyrus.log.LogHelper;
+import org.eclipse.papyrus.infra.core.log.LogHelper;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
@@ -71,6 +71,7 @@ public class Activator extends AbstractUIPlugin implements org.eclipse.ui.IStart
 	 * org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext
 	 * )
 	 */
+	@Override
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		plugin = this;
@@ -103,6 +104,7 @@ public class Activator extends AbstractUIPlugin implements org.eclipse.ui.IStart
 	 * org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext
 	 * )
 	 */
+	@Override
 	public void stop(BundleContext context) throws Exception {
 		plugin = null;
 		super.stop(context);
@@ -159,11 +161,11 @@ public class Activator extends AbstractUIPlugin implements org.eclipse.ui.IStart
 	 *            the Customization Manager
 	 */
 	protected void loadFacetsForCustomizations(
-			final List<MetamodelView> customizations,
-			final CustomizationManager customizationManager) {
+		final List<MetamodelView> customizations,
+		final CustomizationManager customizationManager) {
 		final Set<Facet> referencedFacets = new HashSet<Facet>();
 		final Collection<FacetSet> facetSets = FacetSetCatalog.getSingleton()
-				.getAllFacetSets();
+			.getAllFacetSets();
 
 		for (MetamodelView customization : customizations) {
 			String metamodelURI = customization.getMetamodelURI();
@@ -186,18 +188,18 @@ public class Activator extends AbstractUIPlugin implements org.eclipse.ui.IStart
 			for (TypeView typeView : types) {
 				String metaclassName = typeView.getMetaclassName();
 				Facet facet = findFacetWithFullyQualifiedName(metaclassName,
-						customizedFacetSet);
+					customizedFacetSet);
 				if (facet != null) {
 					referencedFacets.add(facet);
 				} else {
 					Activator.log.warn(NLS
-									.bind(
-											Messages.BrowserActionBarContributor_missingRequiredFacet,
-											new Object[] {
-													metaclassName,
-													customizedFacetSet
-															.getName(),
-													customization.getName() }));
+						.bind(
+							Messages.BrowserActionBarContributor_missingRequiredFacet,
+							new Object[] {
+								metaclassName,
+								customizedFacetSet
+								.getName(),
+								customization.getName() }));
 				}
 			}
 
@@ -220,7 +222,7 @@ public class Activator extends AbstractUIPlugin implements org.eclipse.ui.IStart
 	 * @return
 	 */
 	private Facet findFacetWithFullyQualifiedName(final String metaclassName,
-			final FacetSet customizedFacetSet) {
+		final FacetSet customizedFacetSet) {
 		EList<Facet> facets = customizedFacetSet.getFacets();
 		for (Facet facet : facets) {
 			String facetName = getMetaclassQualifiedName(facet);

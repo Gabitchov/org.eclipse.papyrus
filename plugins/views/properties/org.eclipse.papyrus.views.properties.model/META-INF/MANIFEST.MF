@@ -1,15 +1,15 @@
 Manifest-Version: 1.0
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;bundle-version="2.7.0";visibility:=reexport
-Export-Package: org.eclipse.papyrus.properties.contexts,
- org.eclipse.papyrus.properties.contexts.impl,
- org.eclipse.papyrus.properties.contexts.util,
- org.eclipse.papyrus.properties.environment,
- org.eclipse.papyrus.properties.environment.impl,
- org.eclipse.papyrus.properties.environment.util,
- org.eclipse.papyrus.properties.ui,
- org.eclipse.papyrus.properties.ui.impl,
- org.eclipse.papyrus.properties.ui.util
+Export-Package: org.eclipse.papyrus.views.properties.contexts,
+ org.eclipse.papyrus.views.properties.contexts.impl,
+ org.eclipse.papyrus.views.properties.contexts.util,
+ org.eclipse.papyrus.views.properties.environment,
+ org.eclipse.papyrus.views.properties.environment.impl,
+ org.eclipse.papyrus.views.properties.environment.util,
+ org.eclipse.papyrus.views.properties.ui,
+ org.eclipse.papyrus.views.properties.ui.impl,
+ org.eclipse.papyrus.views.properties.ui.util
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .

@@ -15,7 +15,7 @@
 package org.eclipse.papyrus.views.modelexplorer.core.ui.pagebookview;
 
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
+import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.views.modelexplorer.Activator;
 import org.eclipse.ui.IMemento;
 import org.eclipse.ui.IViewPart;

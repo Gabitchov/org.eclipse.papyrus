@@ -6,7 +6,7 @@
     modelPluginID="org.eclipse.papyrus.uml.tools.extendedtypes" modelName="ApplyStereotypeActionConfiguration"
     modelPluginClass="org.eclipse.papyrus.uml.tools.extendedtypes.Activator" testsDirectory="/org.eclipse.papyrus.uml.tools.extendedtypes.tests/src-gen"
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
-    usedGenPackages="platform:/plugin/org.eclipse.papyrus.core.queries.configuration/model/Configuration.genmodel#//configuration platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore platform:/plugin/org.eclipse.papyrus.extendedtypes/model/ExtendedTypes.genmodel#//extendedtypes platform:/plugin/org.eclipse.emf.facet.infra.query/model/query.genmodel#//query platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml">
+    usedGenPackages="platform:/plugin/org.eclipse.papyrus.infra.queries.core.configuration/model/Configuration.genmodel#//configuration platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore platform:/plugin/org.eclipse.papyrus.infra.extendedtypes/model/ExtendedTypes.genmodel#//extendedtypes platform:/plugin/org.eclipse.emf.facet.infra.query/model/query.genmodel#//query platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml">
   <foreignModel>ApplyStereotypeActionConfiguration.ecore</foreignModel>
   <genPackages prefix="ApplyStereotypeActionConfiguration" basePackage="org.eclipse.papyrus.uml.tools.extendedtypes"
       resource="XML" disposableProviderFactory="true" ecorePackage="ApplyStereotypeActionConfiguration.ecore#/">

@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
  *
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -23,11 +23,10 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.papyrus.core.services.ServiceException;
-import org.eclipse.papyrus.core.utils.BusinessModelResolver;
-import org.eclipse.papyrus.core.utils.ServiceUtilsForActionHandlers;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.utils.BusinessModelResolver;
+import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.views.modelexplorer.Activator;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
@@ -48,7 +47,7 @@ public abstract class AbstractCommandHandler extends AbstractModelExplorerHandle
 	/**
 	 * <pre>
 	 * 
-	 * Returns the command to execute (to be implemented 
+	 * Returns the command to execute (to be implemented
 	 * in children implementing this class)
 	 * 
 	 * @return the command to execute
@@ -59,8 +58,8 @@ public abstract class AbstractCommandHandler extends AbstractModelExplorerHandle
 
 	/**
 	 * <pre>
-	 * Get the selected element, the first selected element if several are selected or null 
-	 * if no selection or the selection is not an {@link EObject}. 
+	 * Get the selected element, the first selected element if several are selected or null
+	 * if no selection or the selection is not an {@link EObject}.
 	 * 
 	 * @return selected {@link EObject} or null
 	 * </pre>
@@ -131,7 +130,7 @@ public abstract class AbstractCommandHandler extends AbstractModelExplorerHandle
 					}
 				}
 			} else { // Not a IStructuredSelection
-						// Adapt current selection to EObject
+				// Adapt current selection to EObject
 				EObject selectedElement = null;
 				if(selection instanceof IAdaptable) {
 					selectedElement = (EObject)((IAdaptable)selection).getAdapter(EObject.class);

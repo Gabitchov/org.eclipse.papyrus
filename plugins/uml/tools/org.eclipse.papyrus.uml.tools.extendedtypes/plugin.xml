@@ -23,7 +23,7 @@
             class="org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.util.ApplyStereotypeActionConfigurationResourceFactoryImpl"/>
    </extension>
    <extension
-         point="org.eclipse.papyrus.extendedtypes.extendedElementTypeActionProvider">
+         point="org.eclipse.papyrus.infra.extendedtypes.extendedElementTypeActionProvider">
       <extendedElementTypeActionProvider
             class="org.eclipse.papyrus.uml.tools.extendedtypes.providers.ApplyStereotypeActionProvider"
             configurationClass="org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.ApplyStereotypeActionConfiguration"

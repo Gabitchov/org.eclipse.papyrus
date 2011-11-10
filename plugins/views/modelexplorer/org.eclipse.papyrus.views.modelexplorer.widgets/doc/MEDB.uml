@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_oIVI8EsZEeCsdNjiLCckhw" name="model">
-  <packagedElement xmi:type="uml:Package" xmi:id="_yl3e0EsZEeCsdNjiLCckhw" name="org.eclipse.papyrus.modelexplorerbasedwidgets">
+  <packagedElement xmi:type="uml:Package" xmi:id="_yl3e0EsZEeCsdNjiLCckhw" name="org.eclipse.papyrus.views.modelexplorerbasedwidgets">
     <packagedElement xmi:type="uml:Class" xmi:id="_AMtvAEsaEeCsdNjiLCckhw" name="ModelExplorerBasedContentProvider" clientDependency="_kbJWcEsiEeCsdNjiLCckhw">
       <ownedComment xmi:id="_0yf00EshEeCsdNjiLCckhw">
         <body>this is an Encapsulated content provider based on the model explorer on which we can filter wanted meta-classes&#xD;
@@ -91,7 +91,7 @@
       <generalization xmi:id="_8GjBMFF3EeC_fOJUmwB69g" general="_1C5sgEsaEeCsdNjiLCckhw"/>
     </packagedElement>
   </packagedElement>
-  <packagedElement xmi:type="uml:Package" xmi:id="_o7LswEsaEeCsdNjiLCckhw" name="org.eclipse.papyrus.widgets">
+  <packagedElement xmi:type="uml:Package" xmi:id="_o7LswEsaEeCsdNjiLCckhw" name="org.eclipse.papyrus.infra.widgets">
     <packagedElement xmi:type="uml:Class" xmi:id="_fJ9qUEsaEeCsdNjiLCckhw" name="EncapsulatedContentProvider" clientDependency="_l4SjgEsaEeCsdNjiLCckhw">
       <interfaceRealization xmi:id="_l4SjgEsaEeCsdNjiLCckhw" name="InterfaceRealization0" supplier="_hjSSIEsaEeCsdNjiLCckhw" client="_fJ9qUEsaEeCsdNjiLCckhw" contract="_hjSSIEsaEeCsdNjiLCckhw"/>
     </packagedElement>

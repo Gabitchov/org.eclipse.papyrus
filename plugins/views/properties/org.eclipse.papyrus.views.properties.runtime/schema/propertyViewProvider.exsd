@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="org.eclipse.papyrus.properties.runtime" xmlns="http://www.w3.org/2001/XMLSchema">
+<schema targetNamespace="org.eclipse.papyrus.views.properties.runtime" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appinfo>
-         <meta.schema plugin="org.eclipse.papyrus.properties.runtime" id="propertyViewProvider" name="propertyViewProvider"/>
+         <meta.schema plugin="org.eclipse.papyrus.views.properties.runtime" id="propertyViewProvider" name="propertyViewProvider"/>
       </appinfo>
       <documentation>
          [Enter description of this extension point.]
@@ -93,7 +93,7 @@
                   Class that implements this property editor
                </documentation>
                <appinfo>
-                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.properties.runtime.view.IPropertyViewProvider"/>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.views.properties.runtime.view.IPropertyViewProvider"/>
                </appinfo>
             </annotation>
          </attribute>

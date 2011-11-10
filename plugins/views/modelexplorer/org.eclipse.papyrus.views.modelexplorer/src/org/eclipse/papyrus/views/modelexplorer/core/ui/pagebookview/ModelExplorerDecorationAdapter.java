@@ -1,21 +1,21 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
  *
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *	Amine EL KOUHEN (CEA LIST/LIFL) - Amine.Elkouhen@cea.fr 
+ *	Amine EL KOUHEN (CEA LIST/LIFL) - Amine.Elkouhen@cea.fr
  *****************************************************************************/
 package org.eclipse.papyrus.views.modelexplorer.core.ui.pagebookview;
 
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.DecorationOverlayIcon;
 import org.eclipse.jface.viewers.IDecoration;
-import org.eclipse.papyrus.decoration.util.Decoration.PreferedPosition;
+import org.eclipse.papyrus.infra.services.decoration.util.Decoration.PreferedPosition;
 import org.eclipse.papyrus.views.modelexplorer.Activator;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Point;
@@ -56,11 +56,13 @@ public class ModelExplorerDecorationAdapter {
 	 */
 	public Image getDecoratedImage() {
 
-		if(getDecoration() == null && getDecoratorTarget() != null)
+		if(getDecoration() == null && getDecoratorTarget() != null) {
 			return getDecoratorTarget();
+		}
 
-		if(getDecoration() == null && getDecoratorTarget() == null)
+		if(getDecoration() == null && getDecoratorTarget() == null) {
 			return null;
+		}
 
 		return getDecoratedImage(getDecoratorTarget(), getDecoration(), getDecorationPosition());
 	}
@@ -145,8 +147,9 @@ public class ModelExplorerDecorationAdapter {
 	 */
 	public void setDecoratedImage(Image baseImage, ImageDescriptor decoration, int decorationPosition) {
 
-		if(decoration == null || baseImage == null)
+		if(decoration == null || baseImage == null) {
 			return;
+		}
 
 		DecorationOverlayIcon decoratedImage = null;
 

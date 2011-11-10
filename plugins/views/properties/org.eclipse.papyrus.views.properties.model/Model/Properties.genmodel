@@ -12,7 +12,7 @@
   <foreignModel>Properties.ecore</foreignModel>
   <genPackages prefix="Properties" basePackage="org.eclipse.papyrus" disposableProviderFactory="true"
       ecorePackage="Properties.ecore#/">
-    <nestedGenPackages prefix="Environment" basePackage="org.eclipse.papyrus.properties"
+    <nestedGenPackages prefix="Environment" basePackage="org.eclipse.papyrus.views.properties"
         disposableProviderFactory="true" ecorePackage="Properties.ecore#//environment">
       <genEnums typeSafeEnumCompatible="false" ecoreEnum="Properties.ecore#//environment/Type">
         <genEnumLiterals ecoreEnumLiteral="Properties.ecore#//environment/Type/String"/>
@@ -64,7 +64,7 @@
             ecoreFeature="ecore:EReference Properties.ecore#//environment/MiscClass/namespace"/>
       </genClasses>
     </nestedGenPackages>
-    <nestedGenPackages prefix="Contexts" basePackage="org.eclipse.papyrus.properties"
+    <nestedGenPackages prefix="Contexts" basePackage="org.eclipse.papyrus.views.properties"
         disposableProviderFactory="true" ecorePackage="Properties.ecore#//contexts">
       <genClasses ecoreClass="Properties.ecore#//contexts/Context">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Properties.ecore#//contexts/Context/name"/>
@@ -156,7 +156,7 @@
             ecoreFeature="ecore:EReference Properties.ecore#//contexts/ReferenceProperty/value"/>
       </genClasses>
     </nestedGenPackages>
-    <nestedGenPackages prefix="Ui" basePackage="org.eclipse.papyrus.properties" disposableProviderFactory="true"
+    <nestedGenPackages prefix="Ui" basePackage="org.eclipse.papyrus.views.properties" disposableProviderFactory="true"
         ecorePackage="Properties.ecore#//ui">
       <genClasses ecoreClass="Properties.ecore#//ui/Element"/>
       <genClasses image="false" ecoreClass="Properties.ecore#//ui/UIComponent">

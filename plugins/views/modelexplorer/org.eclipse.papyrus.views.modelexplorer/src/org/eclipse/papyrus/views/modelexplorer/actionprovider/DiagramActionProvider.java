@@ -13,8 +13,8 @@ package org.eclipse.papyrus.views.modelexplorer.actionprovider;
 
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.action.IMenuManager;
-import org.eclipse.papyrus.core.utils.EditorUtils;
-import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
+import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
+import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.views.modelexplorer.actions.CloseAllDiagramsAction;
 import org.eclipse.papyrus.views.modelexplorer.actions.CloseDiagramAction;
 import org.eclipse.papyrus.views.modelexplorer.actions.DeleteDiagramAction;

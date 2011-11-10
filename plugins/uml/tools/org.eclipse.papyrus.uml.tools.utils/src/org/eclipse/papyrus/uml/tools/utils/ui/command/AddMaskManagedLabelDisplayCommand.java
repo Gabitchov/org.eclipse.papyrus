@@ -16,7 +16,7 @@ package org.eclipse.papyrus.uml.tools.utils.ui.command;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.papyrus.service.edit.Activator;
+import org.eclipse.papyrus.infra.services.edit.Activator;
 import org.eclipse.papyrus.uml.tools.utils.ui.VisualInformationPapyrusConstant;
 
 /**

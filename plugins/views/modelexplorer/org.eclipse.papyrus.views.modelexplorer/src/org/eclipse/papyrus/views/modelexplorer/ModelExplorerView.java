@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
  *
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -40,13 +40,13 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.window.ToolTip;
-import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
-import org.eclipse.papyrus.core.lifecycleevents.IEditorInputChangedListener;
-import org.eclipse.papyrus.core.lifecycleevents.ISaveAndDirtyService;
-import org.eclipse.papyrus.core.services.ServiceException;
-import org.eclipse.papyrus.core.ui.IRevealSemanticElement;
-import org.eclipse.papyrus.core.utils.EditorUtils;
-import org.eclipse.papyrus.core.utils.ServiceUtils;
+import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
+import org.eclipse.papyrus.infra.core.lifecycleevents.IEditorInputChangedListener;
+import org.eclipse.papyrus.infra.core.lifecycleevents.ISaveAndDirtyService;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.ui.IRevealSemanticElement;
+import org.eclipse.papyrus.infra.core.utils.EditorUtils;
+import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.views.modelexplorer.listener.DoubleClickListener;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
@@ -103,7 +103,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 		/**
 		 * This method is called when the editor input is changed from the ISaveAndDirtyService.
 		 * 
-		 * @see org.eclipse.papyrus.core.lifecycleevents.IEditorInputChangedListener#editorInputChanged(org.eclipse.ui.part.FileEditorInput)
+		 * @see org.eclipse.papyrus.infra.core.lifecycleevents.IEditorInputChangedListener#editorInputChanged(org.eclipse.ui.part.FileEditorInput)
 		 * 
 		 * @param fileEditorInput
 		 */
@@ -115,7 +115,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 		/**
 		 * The isDirty flag has changed, reflect its new value
 		 * 
-		 * @see org.eclipse.papyrus.core.lifecycleevents.IEditorInputChangedListener#isDirtyChanged()
+		 * @see org.eclipse.papyrus.infra.core.lifecycleevents.IEditorInputChangedListener#isDirtyChanged()
 		 * 
 		 */
 		public void isDirtyChanged() {
@@ -166,7 +166,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 					Iterator<?> selectionIterator = ((IStructuredSelection)selection).iterator();
 					ArrayList<Object> semanticElementList = new ArrayList<Object>();
 					while(selectionIterator.hasNext()) {
-						Object currentSelection = (Object)selectionIterator.next();
+						Object currentSelection = selectionIterator.next();
 						if(currentSelection instanceof IAdaptable) {
 							Object semanticElement = ((IAdaptable)currentSelection).getAdapter(EObject.class);
 							if(semanticElement != null) {
@@ -200,7 +200,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 		for(Object o : objects) {
 			// Search matches in this level
 			if(!(o instanceof Diagram) && o instanceof IAdaptable) {
-				if(eobject.equals((EObject)((IAdaptable)o).getAdapter(EObject.class))) {
+				if(eobject.equals(((IAdaptable)o).getAdapter(EObject.class))) {
 					path.add(o);
 					return path;
 				}
@@ -230,10 +230,10 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 					}
 				}
 
-				// if tmppath contains the wrapped eobject we have find the good path 
+				// if tmppath contains the wrapped eobject we have find the good path
 				if(tmppath.size() > 0) {
 					if(tmppath.get(tmppath.size() - 1) instanceof IAdaptable) {
-						if(eobject.equals((EObject)((IAdaptable)(tmppath.get(tmppath.size() - 1))).getAdapter(EObject.class))) {
+						if(eobject.equals(((IAdaptable)(tmppath.get(tmppath.size() - 1))).getAdapter(EObject.class))) {
 							path.add(o);
 							path.addAll(tmppath);
 							return path;
@@ -394,14 +394,16 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 	public void refresh() {
 		// Need to refresh, even if (temporarily) invisible
 		// (Better alternative?: store refresh event and execute once visible again)
-		if(getControl().isDisposed())
+		if(getControl().isDisposed()) {
 			return;
+		}
 
 		// avoid reentrant call
 		// Refresh only of we are not already refreshing.
 		if(isRefreshing.compareAndSet(false, true)) {
-			if(!getCommonViewer().isBusy())
+			if(!getCommonViewer().isBusy()) {
 				getCommonViewer().refresh();
+			}
 
 			isRefreshing.set(false);
 		}
@@ -444,7 +446,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 			// Listen to isDirty flag
 			saveAndDirtyService.addInputChangedListener(editorInputChangedListener);
 
-			// Hook 
+			// Hook
 			//			if(undoHandler != null){
 			//				IUndoContext undoContext = getUndoContext(part);
 			//				undoHandler.setContext(undoContext);
@@ -482,7 +484,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 			// Stop Listenning to isDirty flag
 			saveAndDirtyService.removeInputChangedListener(editorInputChangedListener);
 
-			// unhook 
+			// unhook
 			//			IUndoContext undoContext = getUndoContext(editorPart);
 			//			undoHandler.setContext(undoContext);
 			//			undoHandler.update();
@@ -530,6 +532,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 	/**
 	 * in order to see element if the property view
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public Object getAdapter(Class adapter) {
 		if(IPropertySheetPage.class.equals(adapter)) {
@@ -598,7 +601,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 		Iterator<?> elementListIterator = elementList.iterator();
 		ArrayList<Object> treeElementToSelect = new ArrayList<Object>();
 		while(elementListIterator.hasNext()) {
-			Object currentElement = (Object)elementListIterator.next();
+			Object currentElement = elementListIterator.next();
 			//test if the type is an EObject
 			if(currentElement instanceof EObject) {
 				EObject currentEObject = (EObject)currentElement;

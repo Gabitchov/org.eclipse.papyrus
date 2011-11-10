@@ -8,7 +8,7 @@ package org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfigu
 
 import org.eclipse.emf.common.util.EList;
 
-import org.eclipse.papyrus.extendedtypes.PostActionConfiguration;
+import org.eclipse.papyrus.infra.extendedtypes.PostActionConfiguration;
 
 /**
  * <!-- begin-user-doc -->

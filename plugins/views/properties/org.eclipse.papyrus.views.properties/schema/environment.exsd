@@ -77,7 +77,7 @@
       </appInfo>
       <documentation>
          &lt;extension
- point=&quot;org.eclipse.papyrus.properties.Environment&quot;&gt;
+ point=&quot;org.eclipse.papyrus.views.properties.Environment&quot;&gt;
  &lt;environment environmentModel=&quot;Model/Environment.xmi&quot;&gt;
  &lt;/environment&gt;
 &lt;/extension&gt;
@@ -99,7 +99,7 @@
       </appInfo>
       <documentation>
          Sample Implementation :
-org.eclipse.papyrus.properties
+org.eclipse.papyrus.views.properties
       </documentation>
    </annotation>
 

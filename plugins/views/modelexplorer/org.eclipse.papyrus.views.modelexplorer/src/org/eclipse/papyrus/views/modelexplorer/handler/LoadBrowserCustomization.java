@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
  *
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -15,7 +15,6 @@ package org.eclipse.papyrus.views.modelexplorer.handler;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -23,7 +22,6 @@ import java.util.Set;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.expressions.EvaluationContext;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -37,26 +35,20 @@ import org.eclipse.emf.facet.infra.browser.uicore.CustomizationManager;
 import org.eclipse.emf.facet.infra.facet.Facet;
 import org.eclipse.emf.facet.infra.facet.FacetSet;
 import org.eclipse.emf.facet.infra.facet.core.FacetSetCatalog;
-import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.window.Window;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.papyrus.core.services.ServiceException;
-import org.eclipse.papyrus.core.services.ServicesRegistry;
-import org.eclipse.papyrus.core.utils.DiResourceSet;
-import org.eclipse.papyrus.core.utils.EditorUtils;
-import org.eclipse.papyrus.core.utils.ServiceUtils;
-import org.eclipse.papyrus.core.utils.ServiceUtilsForActionHandlers;
-import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
+import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.core.utils.DiResourceSet;
+import org.eclipse.papyrus.infra.core.utils.EditorUtils;
+import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
+import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.views.modelexplorer.Activator;
-import org.eclipse.papyrus.views.modelexplorer.CustomCommonViewer;
 import org.eclipse.papyrus.views.modelexplorer.ModelExplorerPageBookView;
-import org.eclipse.papyrus.views.modelexplorer.ModelExplorerView;
-import org.eclipse.papyrus.views.modelexplorer.core.ui.pagebookview.MultiViewPageBookView;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.ui.IViewPart;
-import org.eclipse.ui.IWorkbenchPart;
-import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.navigator.CommonNavigator;
 
 /**
@@ -71,7 +63,7 @@ public class LoadBrowserCustomization extends AbstractHandler {
 	 * @return the common navigator
 	 */
 	protected CommonNavigator getCommonNavigator() {
-		IViewPart part = org.eclipse.papyrus.views.modelexplorer.NavigatorUtils.findViewPart(ModelExplorerPageBookView.VIEW_ID); 
+		IViewPart part = org.eclipse.papyrus.views.modelexplorer.NavigatorUtils.findViewPart(ModelExplorerPageBookView.VIEW_ID);
 		// the part is only a book, retrieving correct page
 		if (part instanceof ModelExplorerPageBookView) {
 			IViewPart page = ((ModelExplorerPageBookView)part).getActiveView();
@@ -89,28 +81,28 @@ public class LoadBrowserCustomization extends AbstractHandler {
 
 		if (Activator.getDefault().getCustomizationManager() != null) {
 			CustomizationManager customizationManager = Activator.getDefault()
-					.getCustomizationManager();
+				.getCustomizationManager();
 			final List<MetamodelView> registeredCustomizations = customizationManager
-					.getRegisteredCustomizations();
+				.getRegisteredCustomizations();
 
 			final LoadCustomizationsDialog loadCustomizationsDialog = new LoadCustomizationsDialog(new Shell(), registeredCustomizations, getMetamodels());
 			if (Window.OK == loadCustomizationsDialog.open() ) {
 				try {
 
-					 customizationManager.clearCustomizations();
+					customizationManager.clearCustomizations();
 					List<MetamodelView> selectedCustomizations = loadCustomizationsDialog
-							.getSelectedCustomizations();
+						.getSelectedCustomizations();
 					//before loading, clean all facet to prevent to let not interesting facets.
 					customizationManager.clearFacets();
 					if (loadCustomizationsDialog.isLoadRequiredFacetsSelected()) {
 						// load facets corresponding to customizations
-						
+
 						loadFacetsForCustomizations(selectedCustomizations,
-								customizationManager);
+							customizationManager);
 					}
 					for (MetamodelView metamodelView : selectedCustomizations) {
 						customizationManager
-								.registerCustomization(metamodelView);
+						.registerCustomization(metamodelView);
 					}
 					customizationManager.loadCustomizations();
 					if (getCommonNavigator() != null) {
@@ -133,7 +125,7 @@ public class LoadBrowserCustomization extends AbstractHandler {
 		return null;
 	}
 
-	
+
 	/**
 	 * 
 	 * @return the RessourceSet
@@ -151,11 +143,11 @@ public class LoadBrowserCustomization extends AbstractHandler {
 	 *            the Customization Manager
 	 */
 	protected void loadFacetsForCustomizations(
-			final List<MetamodelView> customizations,
-			final CustomizationManager customizationManager) {
+		final List<MetamodelView> customizations,
+		final CustomizationManager customizationManager) {
 		final Set<Facet> referencedFacets = new HashSet<Facet>();
 		final Collection<FacetSet> facetSets = FacetSetCatalog.getSingleton()
-				.getAllFacetSets();
+			.getAllFacetSets();
 
 		for (MetamodelView customization : customizations) {
 			String metamodelURI = customization.getMetamodelURI();
@@ -178,18 +170,18 @@ public class LoadBrowserCustomization extends AbstractHandler {
 			for (TypeView typeView : types) {
 				String metaclassName = typeView.getMetaclassName();
 				Facet facet = findFacetWithFullyQualifiedName(metaclassName,
-						customizedFacetSet);
+					customizedFacetSet);
 				if (facet != null) {
 					referencedFacets.add(facet);
 				} else {
 					Activator.log.warn(NLS
-									.bind(
-											Messages.BrowserActionBarContributor_missingRequiredFacet,
-											new Object[] {
-													metaclassName,
-													customizedFacetSet
-															.getName(),
-													customization.getName() }));
+						.bind(
+							Messages.BrowserActionBarContributor_missingRequiredFacet,
+							new Object[] {
+								metaclassName,
+								customizedFacetSet
+								.getName(),
+								customization.getName() }));
 				}
 			}
 
@@ -213,7 +205,7 @@ public class LoadBrowserCustomization extends AbstractHandler {
 	 * @return
 	 */
 	private Facet findFacetWithFullyQualifiedName(final String metaclassName,
-			final FacetSet customizedFacetSet) {
+		final FacetSet customizedFacetSet) {
 		EList<Facet> facets = customizedFacetSet.getFacets();
 		for (Facet facet : facets) {
 			String facetName = getMetaclassQualifiedName(facet);
@@ -251,7 +243,7 @@ public class LoadBrowserCustomization extends AbstractHandler {
 
 		try {
 			EList<EObject> contents = getDiResourceSet().getModelResource()
-					.getContents();
+				.getContents();
 			if (contents.size() > 0) {
 				EObject eObject = contents.get(0);
 				EClass eClass = eObject.eClass();
@@ -273,11 +265,11 @@ public class LoadBrowserCustomization extends AbstractHandler {
 		ServicesRegistry serviceRegistry = null;
 		try {
 			serviceRegistry = ServiceUtilsForActionHandlers.getInstance()
-					.getServiceRegistry();
+				.getServiceRegistry();
 		} catch (ServiceException e) {
 			Activator.log.error(e);
 		}
-		
+
 		/*we look for the current editors, because their are represented in the model explorer
 		using specific facet and uiCustom. (see bug 359692) */
 		IPageMngr pageMngr = null;
@@ -290,7 +282,7 @@ public class LoadBrowserCustomization extends AbstractHandler {
 		for (int i = 0; i < pages.size(); i++) {
 			if (pages.get(i) instanceof EObject) {
 				EPackage ePackage = ((EObject) pages.get(i)).eClass()
-						.getEPackage();
+					.getEPackage();
 				if (!ePackages.contains(ePackage)) {
 					ePackages.add(ePackage);
 				}
@@ -299,7 +291,7 @@ public class LoadBrowserCustomization extends AbstractHandler {
 
 		try {
 			EList<EObject> contents = getDiResourceSet().getModelResource()
-					.getContents();
+				.getContents();
 			if (contents.size() > 0) {
 				EObject eObject = contents.get(0);
 				EClass eClass = eObject.eClass();
@@ -310,7 +302,7 @@ public class LoadBrowserCustomization extends AbstractHandler {
 		} catch (Exception e) {
 			Activator.log.error(e);
 		}
-		return ePackages; 
+		return ePackages;
 	}
 
 }

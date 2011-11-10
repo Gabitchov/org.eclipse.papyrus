@@ -13,7 +13,7 @@
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <factory
             uri="http://www.eclipse.org/papyrus/properties/environment"
-            class="org.eclipse.papyrus.properties.environment.provider.EnvironmentItemProviderAdapterFactory"
+            class="org.eclipse.papyrus.views.properties.environment.provider.EnvironmentItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
                org.eclipse.emf.edit.provider.IStructuredItemContentProvider
@@ -25,7 +25,7 @@
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <factory
             uri="http://www.eclipse.org/papyrus/properties/contexts"
-            class="org.eclipse.papyrus.properties.contexts.provider.ContextsItemProviderAdapterFactory"
+            class="org.eclipse.papyrus.views.properties.contexts.provider.ContextsItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
                org.eclipse.emf.edit.provider.IStructuredItemContentProvider
@@ -37,7 +37,7 @@
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <factory
             uri="http://www.eclipse.org/papyrus/properties/ui"
-            class="org.eclipse.papyrus.properties.ui.provider.UiItemProviderAdapterFactory"
+            class="org.eclipse.papyrus.views.properties.ui.provider.UiItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
                org.eclipse.emf.edit.provider.IStructuredItemContentProvider

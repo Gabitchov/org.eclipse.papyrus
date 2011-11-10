@@ -19,7 +19,6 @@ import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.ui.IKeyBindingService;
 import org.eclipse.ui.IViewSite;
 import org.eclipse.ui.IWorkbenchPart;
-import org.eclipse.ui.part.IPageSite;
 import org.eclipse.ui.part.PageSite;
 
 

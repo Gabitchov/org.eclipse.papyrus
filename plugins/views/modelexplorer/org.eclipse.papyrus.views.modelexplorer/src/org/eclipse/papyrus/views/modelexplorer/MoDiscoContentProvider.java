@@ -14,18 +14,17 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.facet.infra.browser.uicore.CustomizableModelContentProvider;
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.papyrus.core.services.ServicesRegistry;
-import org.eclipse.papyrus.resource.ModelSet;
-import org.eclipse.papyrus.resource.ModelUtils;
-import org.eclipse.papyrus.resource.uml.UmlModel;
-import org.eclipse.papyrus.resource.uml.UmlUtils;
-import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
-import org.eclipse.papyrus.sasheditor.contentprovider.di.DiSashModelMngr;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
+import org.eclipse.papyrus.infra.core.resource.ModelUtils;
+import org.eclipse.papyrus.infra.core.resource.uml.UmlModel;
+import org.eclipse.papyrus.infra.core.resource.uml.UmlUtils;
+import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
+import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.DiSashModelMngr;
+import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 
 /**
  * the content provider that inherits of modisco properties
@@ -63,7 +62,7 @@ public class MoDiscoContentProvider extends CustomizableModelContentProvider {
 		/**
 		 * Refactoring with bug 358732
 		 */
-		//		
+		//
 		//		if (parentElement instanceof IAdaptable) {
 		//			EObject eObject = (EObject)((IAdaptable)parentElement).getAdapter(EObject.class);
 		//			if(eObject !=null) {
@@ -73,7 +72,7 @@ public class MoDiscoContentProvider extends CustomizableModelContentProvider {
 		//						result.add(iterator.next());
 		//					}
 		//			}
-		//			
+		//
 		//		}
 
 		return result.toArray();
@@ -141,14 +140,15 @@ public class MoDiscoContentProvider extends CustomizableModelContentProvider {
 	protected EObject[] getRootElements(ModelSet modelSet) {
 		UmlModel umlModel = (UmlUtils.getUmlModel(modelSet));
 
-		if(umlModel == null)
+		if(umlModel == null) {
 			return null;
+		}
 
 		EList<EObject> contents = umlModel.getResource().getContents();
 		ArrayList<EObject> result = new ArrayList<EObject>();
 		Iterator<EObject> iterator = contents.iterator();
 		while(iterator.hasNext()) {
-			EObject eObject = (EObject)iterator.next();
+			EObject eObject = iterator.next();
 			result.add(eObject);
 		}
 		return result.toArray(new EObject[result.size()]);

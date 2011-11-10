@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
  *
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -19,9 +19,9 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.papyrus.core.services.ServiceException;
-import org.eclipse.papyrus.core.utils.ServiceUtilsForActionHandlers;
-import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
+import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.views.modelexplorer.ModelExplorerPageBookView;
 import org.eclipse.papyrus.views.modelexplorer.NavigatorUtils;
 import org.eclipse.ui.IWorkbenchPart;
@@ -118,7 +118,7 @@ public class PropertyTester extends org.eclipse.core.expressions.PropertyTester 
 	protected IPageMngr getPageManager() {
 		IPageMngr pageMngr = null;
 		try {
-			ServiceUtilsForActionHandlers instance = org.eclipse.papyrus.core.utils.ServiceUtilsForActionHandlers.getInstance();
+			ServiceUtilsForActionHandlers instance = org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers.getInstance();
 			if(instance != null) {
 				pageMngr = instance.getIPageMngr();
 			}

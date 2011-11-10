@@ -25,7 +25,7 @@ import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.window.Window;
-import org.eclipse.papyrus.ui.toolbox.dialog.InformationDialog;
+import org.eclipse.papyrus.infra.widgets.toolbox.dialog.InformationDialog;
 import org.eclipse.papyrus.views.modelexplorer.Activator;
 import org.eclipse.papyrus.views.modelexplorer.preferences.INavigatorPreferenceConstants;
 import org.eclipse.swt.SWT;

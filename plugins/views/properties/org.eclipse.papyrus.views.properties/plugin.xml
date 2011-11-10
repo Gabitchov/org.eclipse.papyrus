@@ -16,7 +16,7 @@
    <extension
          point="org.eclipse.emf.ecore.generated_package">
       <package
-            class="org.eclipse.papyrus.properties.runtime.preferences.PreferencesPackage"
+            class="org.eclipse.papyrus.views.properties.runtime.preferences.PreferencesPackage"
             genModel="Model/Preferences.genmodel"
             uri="http://www.eclipse.org/papryus/properties/preferences">
       </package>
@@ -31,8 +31,8 @@
    <extension
          point="org.eclipse.ui.preferencePages">
       <page
-            category="org.eclipse.papyrus.preferences.generalcategory"
-            class="org.eclipse.papyrus.properties.preferences.Preferences"
+            category="org.eclipse.papyrus.infra.gmfdiag.preferences.generalcategory"
+            class="org.eclipse.papyrus.views.properties.preferences.Preferences"
             id="org.eclipse.papyrus.views.properties.propertyview"
             name="%page.name">
       </page>
@@ -40,13 +40,13 @@
    <extension
          point="org.eclipse.emf.ecore.generated_package">
       <package
-            class="org.eclipse.papyrus.properties.root.RootPackage"
+            class="org.eclipse.papyrus.views.properties.root.RootPackage"
             genModel="Model/PropertiesRoot.genmodel"
             uri="http://www.eclipse.org/papyrus/properties/root">
       </package>
    </extension>
    <extension
-         point="org.eclipse.papyrus.properties.environment">
+         point="org.eclipse.papyrus.views.properties.environment">
       <environment
             environmentModel="model/Environment.xmi">
       </environment>
@@ -54,14 +54,14 @@
    <extension
          point="org.eclipse.emf.ecore.protocol_parser">
       <parser
-            class="org.eclipse.papyrus.properties.catalog.PropertiesCatalog"
+            class="org.eclipse.papyrus.views.properties.catalog.PropertiesCatalog"
             protocolName="ppe">
       </parser>
    </extension>
    <extension
-         point="org.eclipse.papyrus.properties.labelprovider">
+         point="org.eclipse.papyrus.views.properties.labelprovider">
       <labelProvider
-            labelProvider="org.eclipse.papyrus.properties.providers.EMFObjectFilteredLabelProvider"
+            labelProvider="org.eclipse.papyrus.views.properties.providers.EMFObjectFilteredLabelProvider"
             priority="100">
       </labelProvider>
    </extension>

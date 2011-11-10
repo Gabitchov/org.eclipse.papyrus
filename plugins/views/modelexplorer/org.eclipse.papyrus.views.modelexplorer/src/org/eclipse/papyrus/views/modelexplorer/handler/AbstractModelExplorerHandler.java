@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
  *
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -23,8 +23,8 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.papyrus.core.services.ServiceException;
-import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
+import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.views.modelexplorer.NavigatorUtils;
 import org.eclipse.ui.PlatformUI;
 
@@ -45,7 +45,7 @@ public abstract class AbstractModelExplorerHandler extends AbstractHandler {
 	protected TransactionalEditingDomain getEditingDomain() {
 		TransactionalEditingDomain editingDomain = null;
 		try {
-			editingDomain = org.eclipse.papyrus.core.utils.ServiceUtilsForActionHandlers.getInstance().getTransactionalEditingDomain();
+			editingDomain = org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers.getInstance().getTransactionalEditingDomain();
 		} catch (ServiceException e) {
 			//we are closing the editor, so the model explorer has nothing to display
 			//			e.printStackTrace();
@@ -62,7 +62,7 @@ public abstract class AbstractModelExplorerHandler extends AbstractHandler {
 	protected IPageMngr getPageManager() {
 		IPageMngr pageMngr = null;
 		try {
-			pageMngr = org.eclipse.papyrus.core.utils.ServiceUtilsForActionHandlers.getInstance().getIPageMngr();
+			pageMngr = org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers.getInstance().getIPageMngr();
 		} catch (ServiceException e) {
 			//we are closing the editor, so the model explorer has nothing to display
 			//			e.printStackTrace();
@@ -94,7 +94,7 @@ public abstract class AbstractModelExplorerHandler extends AbstractHandler {
 				 * This getElement is used in order to use IAdaptabel mechanisme
 				 * For example for Facet Elements
 				 */
-				EObject diag = NavigatorUtils.getElement(current, EObject.class);	
+				EObject diag = NavigatorUtils.getElement(current, EObject.class);
 				if(diag instanceof Diagram) {
 					diagrams.add((Diagram)diag);
 				}

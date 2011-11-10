@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2010 LIFL & CEA LIST.
  *
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -15,7 +15,7 @@
 
 package org.eclipse.papyrus.views.modelexplorer;
 
-import static org.eclipse.papyrus.core.Activator.log;
+import static org.eclipse.papyrus.views.modelexplorer.Activator.log;
 
 import java.util.LinkedList;
 
@@ -51,7 +51,7 @@ public class ModelExplorerPageBookView extends MultiViewPageBookView implements 
 
 	/** ID of the view, as given in the plugin.xml file */
 	public static final String VIEW_ID = "org.eclipse.papyrus.views.modelexplorer.modelexplorer"; //$NON-NLS-1$
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -104,7 +104,7 @@ public class ModelExplorerPageBookView extends MultiViewPageBookView implements 
 	public Object findElementForEObject(TreeViewer treeViewer, EObject eObjectToFind) {
 		ITreeContentProvider contentProvider = (ITreeContentProvider) treeViewer.getContentProvider();
 		Object[] elements = contentProvider.getElements(treeViewer.getInput());
-			
+
 		LinkedList<Object> elementsToHandle = new LinkedList<Object>();
 		for (Object element : elements) {
 			elementsToHandle.add(element);
@@ -126,7 +126,7 @@ public class ModelExplorerPageBookView extends MultiViewPageBookView implements 
 		}
 		return null;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */

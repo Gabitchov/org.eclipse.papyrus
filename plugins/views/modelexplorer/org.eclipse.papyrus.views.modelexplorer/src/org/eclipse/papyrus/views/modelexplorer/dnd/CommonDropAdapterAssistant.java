@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
  *
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -44,16 +44,16 @@ import org.eclipse.jface.util.LocalSelectionTransfer;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.ViewerDropAdapter;
-import org.eclipse.papyrus.core.editor.BackboneException;
-import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
-import org.eclipse.papyrus.core.extension.commands.CreationCommandDescriptor;
-import org.eclipse.papyrus.core.extension.commands.CreationCommandRegistry;
-import org.eclipse.papyrus.core.extension.commands.ICreationCommand;
-import org.eclipse.papyrus.core.extension.commands.ICreationCommandRegistry;
-import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
-import org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils;
-import org.eclipse.papyrus.service.edit.service.IElementEditService;
+import org.eclipse.papyrus.infra.core.editor.BackboneException;
+import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
+import org.eclipse.papyrus.infra.core.extension.commands.CreationCommandDescriptor;
+import org.eclipse.papyrus.infra.core.extension.commands.CreationCommandRegistry;
+import org.eclipse.papyrus.infra.core.extension.commands.ICreationCommand;
+import org.eclipse.papyrus.infra.core.extension.commands.ICreationCommandRegistry;
+import org.eclipse.papyrus.infra.core.utils.EditorUtils;
+import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
+import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.views.modelexplorer.Activator;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.DropTargetEvent;
@@ -72,8 +72,8 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 
 	@Override
 	public IStatus handleDrop(CommonDropAdapter dropAdapter,
-			DropTargetEvent dropTargetEvent, Object dropTarget) {
-		Object targetElement = (Object) dropTarget;
+		DropTargetEvent dropTargetEvent, Object dropTarget) {
+		Object targetElement = dropTarget;
 		execute(getDrop(targetElement));
 		return null;
 	}
@@ -107,9 +107,9 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 	 * Get the creation command registry to test when diagrams can be created
 	 * @return instance
 	 */
-    private static ICreationCommandRegistry getCreationCommandRegistry() {
-        return CreationCommandRegistry.getInstance(org.eclipse.papyrus.core.Activator.PLUGIN_ID);
-    }
+	private static ICreationCommandRegistry getCreationCommandRegistry() {
+		return CreationCommandRegistry.getInstance(org.eclipse.papyrus.infra.core.Activator.PLUGIN_ID);
+	}
 
 	/**
 	 * get a list that contains command to move a diagram into a new element
@@ -184,7 +184,7 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 		//find the feature between childreen and owner
 		Iterator<EStructuralFeature> iterator= featureList.iterator();
 		while (iterator.hasNext()) {
-			EStructuralFeature eStructuralFeature = (EStructuralFeature) iterator.next();
+			EStructuralFeature eStructuralFeature = iterator.next();
 
 			if( eStructuralFeature instanceof EReference){
 				EReference ref= (EReference)eStructuralFeature;
@@ -202,8 +202,8 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 		//create the command
 		Iterator<EStructuralFeature> iteratorFeature= possibleEFeatures.iterator();
 		while (iteratorFeature.hasNext()) {
-			EStructuralFeature eStructuralFeature = (EStructuralFeature) iteratorFeature
-			.next();
+			EStructuralFeature eStructuralFeature = iteratorFeature
+				.next();
 			ArrayList<EObject> tmp=new ArrayList<EObject>();
 			if(targetOwner.eGet(eStructuralFeature) instanceof Collection<?>){
 				//get all element of this efeature
@@ -211,7 +211,7 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 
 				if(!newElement.equals(objectLocation)){
 					tmp.remove(newElement);
-					//normally tmp.indexOf(objectLocation)!= -1 
+					//normally tmp.indexOf(objectLocation)!= -1
 					//if this the case objectlocation=new element and
 					//it has been removed
 					int indexObject=tmp.indexOf(objectLocation);
@@ -250,13 +250,13 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 	protected boolean canDrop(List<Command> commandList){
 		Iterator<Command> iterator= commandList.iterator();
 		while (iterator.hasNext()) {
-			Command abstractCommand = (Command) iterator.next();
+			Command abstractCommand = iterator.next();
 			if(abstractCommand.canExecute()){
 				return true;
 			}
 		}
 		return false;
-	}  
+	}
 
 	/**
 	 * execute command for the drop
@@ -267,7 +267,7 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 	protected void execute(List<Command> commandList){
 		Iterator<Command> iterator= commandList.iterator();
 		while (iterator.hasNext()) {
-			Command abstractCommand = (Command) iterator.next();
+			Command abstractCommand = iterator.next();
 			if(abstractCommand.canExecute()){
 				getEditingDomain().getCommandStack().execute(abstractCommand);
 			}
@@ -326,7 +326,7 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 
 	@Override
 	public IStatus validateDrop(Object target, int operation,
-			TransferData transferType) {
+		TransferData transferType) {
 		List<Command> commandList=getDrop(target);
 		//List<Command> commandList=getDropCommand(target);
 		if(canDrop(commandList)){
@@ -336,7 +336,7 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 	}
 
 	/**
-	 * get the list of commands to drop an element 
+	 * get the list of commands to drop an element
 	 * @param target, can be null but do nothing
 	 * @param the role where there is a drop ( can be null)
 	 * @return the list of the commands
@@ -389,7 +389,7 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 	}
 
 	/**
-	 * get the list of commands to drop an element 
+	 * get the list of commands to drop an element
 	 * @param target, can be null but do nothing
 	 * @return the list of the commands
 	 */
@@ -443,7 +443,7 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 	 */
 	protected IMultiDiagramEditor getMultiDiagramEditor() {
 		IEditorPart editorPart = PlatformUI.getWorkbench()
-		.getActiveWorkbenchWindow().getActivePage().getActiveEditor();
+			.getActiveWorkbenchWindow().getActivePage().getActiveEditor();
 		if (editorPart instanceof IMultiDiagramEditor) {
 			return (IMultiDiagramEditor) editorPart;
 		}

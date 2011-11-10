@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="org.eclipse.papyrus.properties" xmlns="http://www.w3.org/2001/XMLSchema">
+<schema targetNamespace="org.eclipse.papyrus.views.properties" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appInfo>
          <meta.schema plugin="org.eclipse.papyrus.views.properties" id="Context" name="Context"/>
@@ -89,7 +89,7 @@ Default is true.
       </appInfo>
       <documentation>
          &lt;extension
- point=&quot;org.eclipse.papyrus.properties.Context&quot;&gt;
+ point=&quot;org.eclipse.papyrus.views.properties.Context&quot;&gt;
  &lt;context contextModel=&quot;Model/UML.xmi&quot;&gt;
  &lt;/context&gt;
 &lt;/extension&gt;
@@ -111,7 +111,7 @@ Default is true.
       </appInfo>
       <documentation>
          Sample Implementation :
-org.eclipse.papyrus.properties.uml
+org.eclipse.papyrus.views.properties.uml
       </documentation>
    </annotation>
 

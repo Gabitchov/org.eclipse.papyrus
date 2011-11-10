@@ -8,15 +8,13 @@ package org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfigu
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.papyrus.extendedtypes.ActionConfiguration;
-import org.eclipse.papyrus.extendedtypes.PostActionConfiguration;
-
-import org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.*;
+import org.eclipse.papyrus.infra.extendedtypes.ActionConfiguration;
+import org.eclipse.papyrus.infra.extendedtypes.PostActionConfiguration;
+import org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.ApplyStereotypeActionConfiguration;
+import org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.ApplyStereotypeActionConfigurationPackage;
+import org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.StereotypeToApply;
 
 /**
  * <!-- begin-user-doc -->
@@ -74,27 +72,27 @@ public class ApplyStereotypeActionConfigurationAdapterFactory extends AdapterFac
 	 */
 	protected ApplyStereotypeActionConfigurationSwitch<Adapter> modelSwitch =
 		new ApplyStereotypeActionConfigurationSwitch<Adapter>() {
-			@Override
-			public Adapter caseApplyStereotypeActionConfiguration(ApplyStereotypeActionConfiguration object) {
-				return createApplyStereotypeActionConfigurationAdapter();
-			}
-			@Override
-			public Adapter caseStereotypeToApply(StereotypeToApply object) {
-				return createStereotypeToApplyAdapter();
-			}
-			@Override
-			public Adapter caseActionConfiguration(ActionConfiguration object) {
-				return createActionConfigurationAdapter();
-			}
-			@Override
-			public Adapter casePostActionConfiguration(PostActionConfiguration object) {
-				return createPostActionConfigurationAdapter();
-			}
-			@Override
-			public Adapter defaultCase(EObject object) {
-				return createEObjectAdapter();
-			}
-		};
+		@Override
+		public Adapter caseApplyStereotypeActionConfiguration(ApplyStereotypeActionConfiguration object) {
+			return createApplyStereotypeActionConfigurationAdapter();
+		}
+		@Override
+		public Adapter caseStereotypeToApply(StereotypeToApply object) {
+			return createStereotypeToApplyAdapter();
+		}
+		@Override
+		public Adapter caseActionConfiguration(ActionConfiguration object) {
+			return createActionConfigurationAdapter();
+		}
+		@Override
+		public Adapter casePostActionConfiguration(PostActionConfiguration object) {
+			return createPostActionConfigurationAdapter();
+		}
+		@Override
+		public Adapter defaultCase(EObject object) {
+			return createEObjectAdapter();
+		}
+	};
 
 	/**
 	 * Creates an adapter for the <code>target</code>.

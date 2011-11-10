@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
-   <extension-point id="actionHandler" name="actionHandler" schema="schema/org.eclipse.papyrus.modelexplorer.actionHandler.exsd"/>
+   <extension-point id="actionHandler" name="actionHandler" schema="schema/org.eclipse.papyrus.views.modelexplorer.actionHandler.exsd"/>
    <extension
          point="org.eclipse.ui.views">
       <view
             category="org.eclipse.papyrus.views.category"
             class="org.eclipse.papyrus.views.modelexplorer.ModelExplorerPageBookView"
             icon="icons/ModelExplorer.gif"
-            id="org.eclipse.papyrus.modelexplorer.modelexplorer"
+            id="org.eclipse.papyrus.views.modelexplorer.modelexplorer"
             name="Model Explorer"
             restorable="true">
       </view>
@@ -16,20 +16,20 @@
    <extension
          point="org.eclipse.ui.navigator.viewer">
       <viewer
-            popupMenuId="org.eclipse.papyrus.modelexplorer.modelexplorer.popup"
-            viewerId="org.eclipse.papyrus.modelexplorer.modelexplorer">
+            popupMenuId="org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup"
+            viewerId="org.eclipse.papyrus.views.modelexplorer.modelexplorer">
       </viewer>
       <viewerContentBinding
-            viewerId="org.eclipse.papyrus.modelexplorer.modelexplorer">
+            viewerId="org.eclipse.papyrus.views.modelexplorer.modelexplorer">
          <includes>
             <contentExtension
-                  pattern="org.eclipse.papyrus.modelexplorer.*">
+                  pattern="org.eclipse.papyrus.views.modelexplorer.*">
             </contentExtension></includes>
       </viewerContentBinding>
       <!--We add a drag assistant in order support drag and drop between Model Explorer and Table Editor or other View/editors -->
       <dragAssistant
             class="org.eclipse.papyrus.views.modelexplorer.dnd.EObjectDragAdapterAssistant"
-            viewerId="org.eclipse.papyrus.modelexplorer.modelexplorer">
+            viewerId="org.eclipse.papyrus.views.modelexplorer.modelexplorer">
       </dragAssistant>
    </extension>
    <extension
@@ -37,7 +37,7 @@
       <navigatorContent
             activeByDefault="false"
             contentProvider="org.eclipse.papyrus.views.modelexplorer.MoDiscoContentProvider"
-            id="org.eclipse.papyrus.modelexplorer.navigatorContent"
+            id="org.eclipse.papyrus.views.modelexplorer.navigatorContent"
             labelProvider="org.eclipse.papyrus.views.modelexplorer.MoDiscoLabelProviderWTooltips"
             name="Model Contents"
             priority="lowest">
@@ -63,7 +63,7 @@
          </possibleChildren>
          <actionProvider
                class="org.eclipse.papyrus.views.modelexplorer.actionprovider.GenericTransformActionProvider"
-               id="org.eclipse.papyrus.modelexplorer.actionprovider.GenericTransformActionProvider">
+               id="org.eclipse.papyrus.views.modelexplorer.actionprovider.GenericTransformActionProvider">
             <enablement>
                <or>
                   <adapt
@@ -75,7 +75,7 @@
           
          <actionProvider
                class="org.eclipse.papyrus.views.modelexplorer.actionprovider.EditingDomainActionProvider"
-               id="org.eclipse.papyrus.modelexplorer.actionprovider.EditingDomainActionProvider">
+               id="org.eclipse.papyrus.views.modelexplorer.actionprovider.EditingDomainActionProvider">
                   <enablement>
                <and>
                   <not>
@@ -91,7 +91,7 @@
          </actionProvider>
          <dropAssistant
                class="org.eclipse.papyrus.views.modelexplorer.dnd.CommonDropAdapterAssistant"
-               id="org.eclipse.papyrus.modelexplorer.dnd.CommonDropAdapterAssistant">
+               id="org.eclipse.papyrus.views.modelexplorer.dnd.CommonDropAdapterAssistant">
             <possibleDropTargets>
                <or>
                   <instanceof
@@ -130,12 +130,12 @@
    </extension>
     <!--  
     <extension
-         point="org.eclipse.papyrus.modelexplorer.actionHandler">
+         point="org.eclipse.papyrus.views.modelexplorer.actionHandler">
 
       <customAction
-            actionHandler="org.eclipse.papyrus.modelexplorer.factory.DefaultEMFActionsFactory"
-            actionId="org.eclipse.papyrus.modelexplorer.factory.defaultEMFActions"
-            afterAction="org.eclipse.papyrus.modelexplorer.factory.renameAction"
+            actionHandler="org.eclipse.papyrus.views.modelexplorer.factory.DefaultEMFActionsFactory"
+            actionId="org.eclipse.papyrus.views.modelexplorer.factory.defaultEMFActions"
+            afterAction="org.eclipse.papyrus.views.modelexplorer.factory.renameAction"
             needSeparator="true">
       </customAction>
    </extension>
@@ -143,12 +143,12 @@
 <extension point="org.eclipse.ui.menus">
 
 	<!-- ModelExplorer toolbar -->
-	<menuContribution locationURI="toolbar:org.eclipse.papyrus.modelexplorer.modelexplorer"
+	<menuContribution locationURI="toolbar:org.eclipse.papyrus.views.modelexplorer.modelexplorer"
 			allPopups="false">
 
 		<!-- Load modisco browser customization command -->		
 		<command 
-			commandId="org.eclipse.papyrus.modelexplorer.LoadBrowserCustomization"
+			commandId="org.eclipse.papyrus.views.modelexplorer.LoadBrowserCustomization"
 			icon="icons/etool16/uiCustom.gif"
 			label="Load browser customization"
 			style="push">
@@ -156,7 +156,7 @@
 
 		<!-- Search element command -->	
 		<command
-			commandId="org.eclipse.papyrus.modelexplorer.searchelement"
+			commandId="org.eclipse.papyrus.views.modelexplorer.searchelement"
 			icon="icons/etool16/search.gif"
 			label="Search element"
 			style="push">
@@ -164,7 +164,7 @@
 		
 		<!-- Sort elements command -->	
 		<command
-	        commandId="org.eclipse.papyrus.modelexplorer.sortelement"
+	        commandId="org.eclipse.papyrus.views.modelexplorer.sortelement"
 	        icon="icons/etool16/sort.gif"
 	        label="sort"
 	        style="toggle">
@@ -172,13 +172,13 @@
 	</menuContribution>
  <menuContribution
        allPopups="false"
-       locationURI="popup:org.eclipse.papyrus.modelexplorer.modelexplorer.popup">
+       locationURI="popup:org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup">
     <menu
-          id="org.eclipse.papyrus.modelexplorer.popupmenu.createchild"
+          id="org.eclipse.papyrus.views.modelexplorer.popupmenu.createchild"
           label="New Child">
     </menu>
     <menu
-          id="org.eclipse.papyrus.modelexplorer.popupmenu.creatediagram"
+          id="org.eclipse.papyrus.views.modelexplorer.popupmenu.creatediagram"
           label="New Diagram">
     </menu>
     <command
@@ -203,13 +203,13 @@
        </visibleWhen>
     </command>
     <separator
-          name="popup:org.eclipse.papyrus.modelexplorer.modelexplorer.popup.separator0"
+          name="popup:org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup.separator0"
           visible="true">
     </separator>
     <command
           commandId="org.eclipse.ui.edit.rename"
           icon="icons/etool16/rename.gif"
-          id="org.eclipse.papyrus.modelexplorer.modelexplorer.popup.rename"
+          id="org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup.rename"
           label="&amp;Rename"
           style="push"
           tooltip="Rename the element">
@@ -218,29 +218,29 @@
        </visibleWhen>
     </command>
     <separator
-          name="popup:org.eclipse.papyrus.modelexplorer.modelexplorer.popup.separator1"
+          name="popup:org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup.separator1"
           visible="true">
     </separator>
     <command
           commandId="org.eclipse.ui.edit.undo"
-          id="org.eclipse.papyrus.modelexplorer.modelexplorer.popup.undo"
+          id="org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup.undo"
           label="&amp;Undo"
           style="push">
     </command>
     <command
           commandId="org.eclipse.ui.edit.redo"
-          id="org.eclipse.papyrus.modelexplorer.modelexplorer.popup.redo"
+          id="org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup.redo"
           label="&amp;Redo"
           style="push">
     </command>
     <separator
-          name="popup:org.eclipse.papyrus.modelexplorer.modelexplorer.popup.separator2"
+          name="popup:org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup.separator2"
           visible="true">
     </separator>
     <command
-          commandId="org.eclipse.papyrus.modelexplorer.popup.open.command"
+          commandId="org.eclipse.papyrus.views.modelexplorer.popup.open.command"
           icon="icons/etool16/forward.gif"
-          id="org.eclipse.papyrus.modelexplorer.modelexplorer.popup.open"
+          id="org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup.open"
           label="&amp;Open"
           style="push"
           tooltip="Open">
@@ -249,9 +249,9 @@
        </visibleWhen>
     </command>
     <command
-          commandId="org.eclipse.papyrus.modelexplorer.popup.open.new.command"
+          commandId="org.eclipse.papyrus.views.modelexplorer.popup.open.new.command"
           icon="icons/etool16/arrow_double.gif"
-          id="org.eclipse.papyrus.modelexplorer.modelexplorer.popup.open.new"
+          id="org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup.open.new"
           label="Open In &amp;New Table"
           style="push"
           tooltip="Open in new tab">
@@ -260,9 +260,9 @@
        </visibleWhen>
     </command>
     <command
-          commandId="org.eclipse.papyrus.modelexplorer.popup.close.command"
+          commandId="org.eclipse.papyrus.views.modelexplorer.popup.close.command"
           icon="icons/etool16/close.png"
-          id="org.eclipse.papyrus.modelexplorer.modelexplorer.popup.close"
+          id="org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup.close"
           label="&amp;Close"
           style="push"
           tooltip="Close">
@@ -271,9 +271,9 @@
        </visibleWhen>
     </command>
     <command
-          commandId="org.eclipse.papyrus.modelexplorer.close.all.command"
+          commandId="org.eclipse.papyrus.views.modelexplorer.close.all.command"
           icon="icons/etool16/closeAll.png"
-          id="org.eclipse.papyrus.modelexplorer.modelexplorer.popup.close.all"
+          id="org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup.close.all"
           label="Close &amp;All"
           style="push"
           tooltip="Close All">
@@ -282,9 +282,9 @@
        </visibleWhen>
     </command>
     <command
-          commandId="org.eclipse.papyrus.modelexplorer.duplicate.command"
+          commandId="org.eclipse.papyrus.views.modelexplorer.duplicate.command"
           icon="icons/etool16/duplicate.png"
-          id="org.eclipse.papyrus.modelexplorer.modelexplorer.popup.duplicate"
+          id="org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup.duplicate"
           label="&amp;Duplicate"
           style="push"
           tooltip="Duplicate the element">
@@ -293,12 +293,12 @@
        </visibleWhen>
     </command>
     <separator
-          name="popup:org.eclipse.papyrus.modelexplorer.modelexplorer.popup.separator3"
+          name="popup:org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup.separator3"
           visible="true">
     </separator>
     <command
           commandId="org.eclipse.ui.edit.cut"
-          id="org.eclipse.papyrus.modelexplorer.modelexplorer.popup.cut"
+          id="org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup.cut"
           label="Cu&amp;t"
           style="push">
        <visibleWhen
@@ -308,7 +308,7 @@
                 <!-- We add this test in order to refresh the Cut action in the menu edit -->
              <test
                    forcePluginActivation="true"
-                   property="org.eclipse.papyrus.modelexplorer.tester.isEObject"
+                   property="org.eclipse.papyrus.views.modelexplorer.tester.isEObject"
                    value="true">
              </test>
           </with>
@@ -316,7 +316,7 @@
     </command>
     <command
           commandId="org.eclipse.ui.edit.copy"
-          id="org.eclipse.papyrus.modelexplorer.modelexplorer.popup.copy"
+          id="org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup.copy"
           label="&amp;Copy"
           style="push">
        <visibleWhen
@@ -326,7 +326,7 @@
                 <!-- We add this test in order to refresh the Copy action in the menu edit -->
              <test
                    forcePluginActivation="true"
-                   property="org.eclipse.papyrus.modelexplorer.tester.isEObject"
+                   property="org.eclipse.papyrus.views.modelexplorer.tester.isEObject"
                    value="true">
              </test>
           </with>
@@ -334,7 +334,7 @@
     </command>
     <command
           commandId="org.eclipse.ui.edit.paste"
-          id="org.eclipse.papyrus.modelexplorer.modelexplorer.popup.paste"
+          id="org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup.paste"
           label="&amp;Paste"
           style="push">
        <visibleWhen
@@ -344,7 +344,7 @@
                 <!-- We add this test in order to refresh the Paste action in the menu edit -->
              <test
                    forcePluginActivation="true"
-                   property="org.eclipse.papyrus.modelexplorer.tester.isEObject"
+                   property="org.eclipse.papyrus.views.modelexplorer.tester.isEObject"
                    value="true">
              </test>
           </with>
@@ -359,21 +359,21 @@
 <extension point="org.eclipse.ui.commands">
 
 	<!-- Command declaration : Load modisco browser customization command -->			
-	<command id="org.eclipse.papyrus.modelexplorer.LoadBrowserCustomization"
+	<command id="org.eclipse.papyrus.views.modelexplorer.LoadBrowserCustomization"
 		name="loadBrowserCustomization" description="Load a customization for the papyrus browser"
 		categoryId="org.eclipse.papyrus.editor.category"
 		defaultHandler="org.eclipse.papyrus.views.modelexplorer.handler.LoadBrowserCustomization">
 	</command>
 	
 	<!-- Command declaration : Search element command -->			
-	<command id="org.eclipse.papyrus.modelexplorer.searchelement"
+	<command id="org.eclipse.papyrus.views.modelexplorer.searchelement"
 		name="searchelement" description="Search an element in the model explorer"
 		categoryId="org.eclipse.papyrus.editor.category"
 		defaultHandler="org.eclipse.papyrus.views.modelexplorer.handler.SearchElementHandler">
 	</command>
 	
 	<!-- Command declaration : Sort elements command -->			
-	<command id="org.eclipse.papyrus.modelexplorer.sortelement"
+	<command id="org.eclipse.papyrus.views.modelexplorer.sortelement"
 		name="SortElement" description="Sort elements"
 		categoryId="org.eclipse.papyrus.editor.category"
 		defaultHandler="org.eclipse.papyrus.views.modelexplorer.handler.SortElementHandler">
@@ -395,9 +395,9 @@
    <extension
          point="org.eclipse.ui.preferencePages">
       <page
-      		category="org.eclipse.papyrus.preferences.generalcategory"
+      		category="org.eclipse.papyrus.infra.gmfdiag.preferences.generalcategory"
             class="org.eclipse.papyrus.views.modelexplorer.preferences.NavigatorPreferencePage"
-            id="org.eclipse.papyrus.modelexplorer.preferences.NavigatorPreferencePage"
+            id="org.eclipse.papyrus.views.modelexplorer.preferences.NavigatorPreferencePage"
             name="Papyrus Model Explorer">
       </page>
    </extension>
@@ -413,7 +413,7 @@
       point="org.eclipse.ui.navigator.linkHelper">
    <linkHelper
          class="org.eclipse.papyrus.views.modelexplorer.LinkHelper"
-         id="org.eclipse.papyrus.modelexplorer.linkHelper">
+         id="org.eclipse.papyrus.views.modelexplorer.linkHelper">
        <selectionEnablement>
          <instanceof
                value="java.lang.Object">
@@ -452,31 +452,31 @@
    <command
          categoryId="org.eclipse.papyrus.editor.category"
          description="The command to open in a tab"
-         id="org.eclipse.papyrus.modelexplorer.popup.open.command"
+         id="org.eclipse.papyrus.views.modelexplorer.popup.open.command"
          name="Open Command">
    </command>
    <command
          categoryId="org.eclipse.papyrus.editor.category"
          description="The command to open in a new tab"
-         id="org.eclipse.papyrus.modelexplorer.popup.open.new.command"
+         id="org.eclipse.papyrus.views.modelexplorer.popup.open.new.command"
          name="Open In New Tab Command">
    </command>
    <command
          categoryId="org.eclipse.papyrus.editor.category"
          description="The command to close"
-         id="org.eclipse.papyrus.modelexplorer.popup.close.command"
+         id="org.eclipse.papyrus.views.modelexplorer.popup.close.command"
          name="Close Command">
    </command>
    <command
          categoryId="org.eclipse.papyrus.editor.category"
          description="The command to close all "
-         id="org.eclipse.papyrus.modelexplorer.close.all.command"
+         id="org.eclipse.papyrus.views.modelexplorer.close.all.command"
          name="Close All Command">
    </command>
    <command
          categoryId="org.eclipse.papyrus.editor.category"
          description="The Command to duplicate the selected element"
-         id="org.eclipse.papyrus.modelexplorer.duplicate.command"
+         id="org.eclipse.papyrus.views.modelexplorer.duplicate.command"
          name="Duplicate ">
    </command>
 </extension>
@@ -495,7 +495,7 @@
                <!-- We add this test in order to refresh the Rename action in the menu edit -->
                <test
                      forcePluginActivation="true"
-                     property="org.eclipse.papyrus.modelexplorer.tester.isDiagram"
+                     property="org.eclipse.papyrus.views.modelexplorer.tester.isDiagram"
                      value="true">
                </test>
             </and>
@@ -503,14 +503,14 @@
       </activeWhen>
    </handler>
    <handler
-         commandId="org.eclipse.papyrus.modelexplorer.popup.close.command">
+         commandId="org.eclipse.papyrus.views.modelexplorer.popup.close.command">
       <activeWhen>
          <with
                variable="selection">
             <and>
                <test
                      forcePluginActivation="true"
-                     property="org.eclipse.papyrus.modelexplorer.tester.isPage"
+                     property="org.eclipse.papyrus.views.modelexplorer.tester.isPage"
                      value="true">
                </test>
             </and>
@@ -525,7 +525,7 @@
       </class>
    </handler>
    <handler
-         commandId="org.eclipse.papyrus.modelexplorer.close.all.command">
+         commandId="org.eclipse.papyrus.views.modelexplorer.close.all.command">
       <class
             class="org.eclipse.papyrus.views.modelexplorer.handler.CloseHandler">
          <parameter
@@ -539,7 +539,7 @@
             <and>
                <test
                      forcePluginActivation="true"
-                     property="org.eclipse.papyrus.modelexplorer.tester.isPage"
+                     property="org.eclipse.papyrus.views.modelexplorer.tester.isPage"
                      value="true">
                </test>
             </and>
@@ -559,7 +559,7 @@
                   variable="selection">
                <test
                      forcePluginActivation="true"
-                     property="org.eclipse.papyrus.modelexplorer.tester.isDiagram"
+                     property="org.eclipse.papyrus.views.modelexplorer.tester.isDiagram"
                      value="true">
                </test>
             </with>
@@ -567,14 +567,14 @@
       </activeWhen>
    </handler>
    <handler
-         commandId="org.eclipse.papyrus.modelexplorer.popup.open.command">
+         commandId="org.eclipse.papyrus.views.modelexplorer.popup.open.command">
       <activeWhen>
          <with
                variable="selection">
             <and>
                <test
                      forcePluginActivation="true"
-                     property="org.eclipse.papyrus.modelexplorer.tester.isPage"
+                     property="org.eclipse.papyrus.views.modelexplorer.tester.isPage"
                      value="true">
                </test>
             </and>
@@ -589,14 +589,14 @@
       </class>
    </handler>
    <handler
-         commandId="org.eclipse.papyrus.modelexplorer.popup.open.new.command">
+         commandId="org.eclipse.papyrus.views.modelexplorer.popup.open.new.command">
       <activeWhen>
          <with
                variable="selection">
             <and>
                <test
                      forcePluginActivation="true"
-                     property="org.eclipse.papyrus.modelexplorer.tester.isPage"
+                     property="org.eclipse.papyrus.views.modelexplorer.tester.isPage"
                      value="true">
                </test>
             </and>
@@ -612,7 +612,7 @@
    </handler>
    <handler
          class="org.eclipse.papyrus.views.modelexplorer.handler.DuplicateDiagramHandler"
-         commandId="org.eclipse.papyrus.modelexplorer.duplicate.command">
+         commandId="org.eclipse.papyrus.views.modelexplorer.duplicate.command">
       <activeWhen>
       <and>
          <with
@@ -627,7 +627,7 @@
                variable="selection">
             <test
                   forcePluginActivation="true"
-                  property="org.eclipse.papyrus.modelexplorer.tester.isDiagram"
+                  property="org.eclipse.papyrus.views.modelexplorer.tester.isDiagram"
                   value="true">
             </test>
          </with>
@@ -650,7 +650,7 @@
                   <!-- We add this test in order to refresh the Cut action in the menu edit -->
                <test
                      forcePluginActivation="true"
-                     property="org.eclipse.papyrus.modelexplorer.tester.isEObject"
+                     property="org.eclipse.papyrus.views.modelexplorer.tester.isEObject"
                      value="true">
                </test>
             </with>
@@ -673,7 +673,7 @@
                   <!-- We add this test in order to refresh the Undo action in the menu file -->
                <test
                      forcePluginActivation="true"
-                     property="org.eclipse.papyrus.modelexplorer.tester.view.isModelExplorer"
+                     property="org.eclipse.papyrus.views.modelexplorer.tester.view.isModelExplorer"
                      value="true">
                </test>
             </with>
@@ -696,7 +696,7 @@
                   <!-- We add this test in order to refresh the Redo action in the menu edit -->
                <test
                      forcePluginActivation="true"
-                     property="org.eclipse.papyrus.modelexplorer.tester.view.isModelExplorer"
+                     property="org.eclipse.papyrus.views.modelexplorer.tester.view.isModelExplorer"
                      value="true">
                </test>
             </with>
@@ -709,15 +709,15 @@
       <!-- the property tester is used to enabled/disabled handler -->
    <propertyTester
          class="org.eclipse.papyrus.views.modelexplorer.provider.PropertyTester"
-         id="org.eclipse.papyrus.modelexplorer.tester"
-         namespace="org.eclipse.papyrus.modelexplorer.tester"
+         id="org.eclipse.papyrus.views.modelexplorer.tester"
+         namespace="org.eclipse.papyrus.views.modelexplorer.tester"
          properties="isDiagram, isEObject, isPage"
          type="org.eclipse.jface.viewers.IStructuredSelection">
    </propertyTester>
    <propertyTester
          class="org.eclipse.papyrus.views.modelexplorer.provider.PropertyTester"
-         id="org.eclipse.papyrus.modelexplorer.tester.view"
-         namespace="org.eclipse.papyrus.modelexplorer.tester.view"
+         id="org.eclipse.papyrus.views.modelexplorer.tester.view"
+         namespace="org.eclipse.papyrus.views.modelexplorer.tester.view"
          properties="isModelExplorer"
          type="org.eclipse.ui.IWorkbenchPart">
    </propertyTester>

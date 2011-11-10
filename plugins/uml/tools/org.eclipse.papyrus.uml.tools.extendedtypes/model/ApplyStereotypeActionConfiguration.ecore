@@ -5,7 +5,7 @@
     nsURI="http://www.eclipse.org/papyrus/diagram/types/applystereotypeactionconfiguration/0.7"
     nsPrefix="applystereotypeactionconfiguration">
   <eClassifiers xsi:type="ecore:EClass" name="ApplyStereotypeActionConfiguration"
-      eSuperTypes="platform:/plugin/org.eclipse.papyrus.extendedtypes/model/ExtendedTypes.ecore#//PostActionConfiguration">
+      eSuperTypes="platform:/plugin/org.eclipse.papyrus.infra.extendedtypes/model/ExtendedTypes.ecore#//PostActionConfiguration">
     <eStructuralFeatures xsi:type="ecore:EReference" name="stereotypesToApply" upperBound="-1"
         eType="#//StereotypeToApply" containment="true"/>
   </eClassifiers>

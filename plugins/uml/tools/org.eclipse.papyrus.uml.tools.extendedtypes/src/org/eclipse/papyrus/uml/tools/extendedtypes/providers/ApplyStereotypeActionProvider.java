@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -31,10 +31,10 @@ import org.eclipse.gmf.runtime.emf.type.core.IClientContext;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.AbstractEditCommandRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
-import org.eclipse.papyrus.extendedtypes.ActionConfiguration;
-import org.eclipse.papyrus.extendedtypes.providers.GetAllExtendedElementTypeActionProvidersOperation;
-import org.eclipse.papyrus.extendedtypes.providers.GetExtendedElementTypeActionProviderOperation;
-import org.eclipse.papyrus.extendedtypes.providers.IExtendedElementTypeActionProvider;
+import org.eclipse.papyrus.infra.extendedtypes.ActionConfiguration;
+import org.eclipse.papyrus.infra.extendedtypes.providers.GetAllExtendedElementTypeActionProvidersOperation;
+import org.eclipse.papyrus.infra.extendedtypes.providers.GetExtendedElementTypeActionProviderOperation;
+import org.eclipse.papyrus.infra.extendedtypes.providers.IExtendedElementTypeActionProvider;
 import org.eclipse.papyrus.uml.tools.extendedtypes.Activator;
 import org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.ApplyStereotypeActionConfiguration;
 import org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.StereotypeToApply;

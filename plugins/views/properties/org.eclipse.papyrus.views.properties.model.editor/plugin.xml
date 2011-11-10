@@ -15,9 +15,9 @@
             id="org.eclipse.emf.ecore.Wizard.category.ID"
             name="%_UI_Wizard_category"/>
       <wizard
-            id="org.eclipse.papyrus.properties.environment.presentation.EnvironmentModelWizardID"
+            id="org.eclipse.papyrus.views.properties.environment.presentation.EnvironmentModelWizardID"
             name="%_UI_EnvironmentModelWizard_label"
-            class="org.eclipse.papyrus.properties.environment.presentation.EnvironmentModelWizard"
+            class="org.eclipse.papyrus.views.properties.environment.presentation.EnvironmentModelWizard"
             category="org.eclipse.emf.ecore.Wizard.category.ID"
             icon="icons/full/obj16/EnvironmentModelFile.gif">
          <description>%_UI_EnvironmentModelWizard_description</description>
@@ -27,12 +27,12 @@
 
    <extension point="org.eclipse.ui.editors">
       <editor
-            id="org.eclipse.papyrus.properties.environment.presentation.EnvironmentEditorID"
+            id="org.eclipse.papyrus.views.properties.environment.presentation.EnvironmentEditorID"
             name="%_UI_EnvironmentEditor_label"
             icon="icons/full/obj16/EnvironmentModelFile.gif"
             extensions="environment"
-            class="org.eclipse.papyrus.properties.environment.presentation.EnvironmentEditor"
-            contributorClass="org.eclipse.papyrus.properties.environment.presentation.EnvironmentActionBarContributor">
+            class="org.eclipse.papyrus.views.properties.environment.presentation.EnvironmentEditor"
+            contributorClass="org.eclipse.papyrus.views.properties.environment.presentation.EnvironmentActionBarContributor">
       </editor>
    </extension>
 
@@ -41,9 +41,9 @@
             id="org.eclipse.emf.ecore.Wizard.category.ID"
             name="%_UI_Wizard_category"/>
       <wizard
-            id="org.eclipse.papyrus.properties.contexts.presentation.ContextsModelWizardID"
+            id="org.eclipse.papyrus.views.properties.contexts.presentation.ContextsModelWizardID"
             name="%_UI_ContextsModelWizard_label"
-            class="org.eclipse.papyrus.properties.contexts.presentation.ContextsModelWizard"
+            class="org.eclipse.papyrus.views.properties.contexts.presentation.ContextsModelWizard"
             category="org.eclipse.emf.ecore.Wizard.category.ID"
             icon="icons/full/obj16/ContextsModelFile.gif">
          <description>%_UI_ContextsModelWizard_description</description>
@@ -53,12 +53,12 @@
 
    <extension point="org.eclipse.ui.editors">
       <editor
-            id="org.eclipse.papyrus.properties.contexts.presentation.ContextsEditorID"
+            id="org.eclipse.papyrus.views.properties.contexts.presentation.ContextsEditorID"
             name="%_UI_ContextsEditor_label"
             icon="icons/full/obj16/ContextsModelFile.gif"
             extensions="contexts"
-            class="org.eclipse.papyrus.properties.contexts.presentation.ContextsEditor"
-            contributorClass="org.eclipse.papyrus.properties.contexts.presentation.ContextsActionBarContributor">
+            class="org.eclipse.papyrus.views.properties.contexts.presentation.ContextsEditor"
+            contributorClass="org.eclipse.papyrus.views.properties.contexts.presentation.ContextsActionBarContributor">
       </editor>
    </extension>
 
@@ -67,9 +67,9 @@
             id="org.eclipse.emf.ecore.Wizard.category.ID"
             name="%_UI_Wizard_category"/>
       <wizard
-            id="org.eclipse.papyrus.properties.ui.presentation.UiModelWizardID"
+            id="org.eclipse.papyrus.views.properties.ui.presentation.UiModelWizardID"
             name="%_UI_UiModelWizard_label"
-            class="org.eclipse.papyrus.properties.ui.presentation.UiModelWizard"
+            class="org.eclipse.papyrus.views.properties.ui.presentation.UiModelWizard"
             category="org.eclipse.emf.ecore.Wizard.category.ID"
             icon="icons/full/obj16/UiModelFile.gif">
          <description>%_UI_UiModelWizard_description</description>
@@ -79,12 +79,12 @@
 
    <extension point="org.eclipse.ui.editors">
       <editor
-            id="org.eclipse.papyrus.properties.ui.presentation.UiEditorID"
+            id="org.eclipse.papyrus.views.properties.ui.presentation.UiEditorID"
             name="%_UI_UiEditor_label"
             icon="icons/full/obj16/UiModelFile.gif"
             extensions="ui"
-            class="org.eclipse.papyrus.properties.ui.presentation.UiEditor"
-            contributorClass="org.eclipse.papyrus.properties.ui.presentation.UiActionBarContributor">
+            class="org.eclipse.papyrus.views.properties.ui.presentation.UiEditor"
+            contributorClass="org.eclipse.papyrus.views.properties.ui.presentation.UiActionBarContributor">
       </editor>
    </extension>
 

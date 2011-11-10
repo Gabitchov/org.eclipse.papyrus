@@ -36,7 +36,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.core.utils.PapyrusEcoreUtils;
+import org.eclipse.papyrus.infra.core.utils.PapyrusEcoreUtils;
 
 /**
  * The Class EObjectInheritanceCopyCommand. it takes an eobject in parameter and

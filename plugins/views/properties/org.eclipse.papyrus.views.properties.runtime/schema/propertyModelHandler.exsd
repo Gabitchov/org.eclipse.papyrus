@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="org.eclipse.papyrus.properties.runtime" xmlns="http://www.w3.org/2001/XMLSchema">
+<schema targetNamespace="org.eclipse.papyrus.views.properties.runtime" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appinfo>
-         <meta.schema plugin="org.eclipse.papyrus.properties.runtime" id="propertyModelHandler" name="propertyModelHandler"/>
+         <meta.schema plugin="org.eclipse.papyrus.views.properties.runtime" id="propertyModelHandler" name="propertyModelHandler"/>
       </appinfo>
       <documentation>
          This extension point describes the set of model handlers used to interact with the model
@@ -69,7 +69,7 @@
                   Implementation class for this model handler. This will provide a way to create this model handler.
                </documentation>
                <appinfo>
-                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.properties.runtime.modelhandler.IPropertyModelHandlerFactory"/>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.views.properties.runtime.modelhandler.IPropertyModelHandlerFactory"/>
                </appinfo>
             </annotation>
          </attribute>

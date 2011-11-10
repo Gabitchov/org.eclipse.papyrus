@@ -1,17 +1,17 @@
 Manifest-Version: 1.0
-Export-Package: org.eclipse.papyrus.properties.runtime,
- org.eclipse.papyrus.properties.runtime.controller,
- org.eclipse.papyrus.properties.runtime.controller.descriptor,
- org.eclipse.papyrus.properties.runtime.controller.predefined,
- org.eclipse.papyrus.properties.runtime.dialogs,
- org.eclipse.papyrus.properties.runtime.modelhandler,
- org.eclipse.papyrus.properties.runtime.modelhandler.emf,
- org.eclipse.papyrus.properties.runtime.propertyeditor,
- org.eclipse.papyrus.properties.runtime.propertyeditor.descriptor,
- org.eclipse.papyrus.properties.runtime.state,
- org.eclipse.papyrus.properties.runtime.view,
- org.eclipse.papyrus.properties.runtime.view.constraints,
- org.eclipse.papyrus.properties.runtime.view.content
+Export-Package: org.eclipse.papyrus.views.properties.runtime,
+ org.eclipse.papyrus.views.properties.runtime.controller,
+ org.eclipse.papyrus.views.properties.runtime.controller.descriptor,
+ org.eclipse.papyrus.views.properties.runtime.controller.predefined,
+ org.eclipse.papyrus.views.properties.runtime.dialogs,
+ org.eclipse.papyrus.views.properties.runtime.modelhandler,
+ org.eclipse.papyrus.views.properties.runtime.modelhandler.emf,
+ org.eclipse.papyrus.views.properties.runtime.propertyeditor,
+ org.eclipse.papyrus.views.properties.runtime.propertyeditor.descriptor,
+ org.eclipse.papyrus.views.properties.runtime.state,
+ org.eclipse.papyrus.views.properties.runtime.view,
+ org.eclipse.papyrus.views.properties.runtime.view.constraints,
+ org.eclipse.papyrus.views.properties.runtime.view.content
 Require-Bundle: org.eclipse.ui;bundle-version="3.5.1",
  org.eclipse.ui.views.properties.tabbed;bundle-version="3.5.0",
  org.eclipse.core.runtime;bundle-version="3.5.0",
@@ -34,7 +34,7 @@ Bundle-Version: 0.9.0.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.properties.runtime.Activator
+Bundle-Activator: org.eclipse.papyrus.views.properties.runtime.Activator
 Bundle-SymbolicName: org.eclipse.papyrus.views.properties.runtime;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

@@ -21,13 +21,13 @@ import org.eclipse.emf.facet.infra.browser.uicore.CustomizableModelLabelProvider
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.papyrus.core.editorsfactory.IPageIconsRegistry;
-import org.eclipse.papyrus.core.editorsfactory.PageIconsRegistry;
-import org.eclipse.papyrus.core.services.ServiceException;
-import org.eclipse.papyrus.core.utils.EditorUtils;
-import org.eclipse.papyrus.decoration.DecorationService;
-import org.eclipse.papyrus.decoration.util.Decoration.PreferedPosition;
-import org.eclipse.papyrus.decoration.util.IDecoration;
+import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistry;
+import org.eclipse.papyrus.infra.core.editorsfactory.PageIconsRegistry;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.utils.EditorUtils;
+import org.eclipse.papyrus.infra.services.decoration.DecorationService;
+import org.eclipse.papyrus.infra.services.decoration.util.Decoration.PreferedPosition;
+import org.eclipse.papyrus.infra.services.decoration.util.IDecoration;
 import org.eclipse.papyrus.views.modelexplorer.core.ui.pagebookview.ModelExplorerDecorationAdapter;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.ISharedImages;
@@ -88,10 +88,11 @@ public class MoDiscoLabelProvider extends CustomizableModelLabelProvider {
 		/**
 		 * Useless since EMF Facet integration with bug 358732
 		 */
-		if(element instanceof Diagram)
+		if(element instanceof Diagram) {
 			adapter.setDecoratorTarget(getEditorRegistry().getEditorIcon(element));
-		else
+		} else {
 			adapter.setDecoratorTarget(super.getImage(element));
+		}
 
 		//Set the decoration with default position
 		IDecoration decoration = decorationService.getDecoration(element, true);

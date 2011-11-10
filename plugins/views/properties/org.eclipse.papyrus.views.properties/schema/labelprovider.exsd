@@ -55,7 +55,7 @@
                   
                </documentation>
                <appInfo>
-                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.properties.providers.IFilteredLabelProvider"/>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.views.properties.providers.IFilteredLabelProvider"/>
                </appInfo>
             </annotation>
          </attribute>

@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
-Export-Package: org.eclipse.papyrus.properties.contexts.provider,
- org.eclipse.papyrus.properties.environment.provider,
- org.eclipse.papyrus.properties.ui.provider
+Export-Package: org.eclipse.papyrus.views.properties.contexts.provider,
+ org.eclipse.papyrus.views.properties.environment.provider,
+ org.eclipse.papyrus.views.properties.ui.provider
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
 Bundle-Name: %pluginName
@@ -14,7 +14,7 @@ Require-Bundle: org.eclipse.core.runtime,
 Bundle-Vendor: %providerName
 Bundle-Version: 0.9.0.qualifier
 Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.properties.environment.provider.
+Bundle-Activator: org.eclipse.papyrus.views.properties.environment.provider.
  PropertiesEditPlugin$Implementation
 Bundle-SymbolicName: org.eclipse.papyrus.views.properties.model.edit;singleton:=true
 

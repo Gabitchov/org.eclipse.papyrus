@@ -30,11 +30,11 @@ import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.StructuredViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
-import org.eclipse.papyrus.core.utils.EditorUtils;
+import org.eclipse.papyrus.infra.core.utils.EditorUtils;
+import org.eclipse.papyrus.infra.widgets.providers.IAdaptableContentProvider;
+import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
 import org.eclipse.papyrus.views.modelexplorer.MoDiscoContentProvider;
 import org.eclipse.papyrus.views.modelexplorer.SemanticFromModelExplorer;
-import org.eclipse.papyrus.widgets.providers.IAdaptableContentProvider;
-import org.eclipse.papyrus.widgets.providers.IStaticContentProvider;
 
 /**
  * This is a modisco content provider on which we can parameter the root element

@@ -10,11 +10,11 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.papyrus.extendedtypes.ActionConfiguration;
-import org.eclipse.papyrus.extendedtypes.PostActionConfiguration;
-
-import org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.*;
+import org.eclipse.papyrus.infra.extendedtypes.ActionConfiguration;
+import org.eclipse.papyrus.infra.extendedtypes.PostActionConfiguration;
+import org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.ApplyStereotypeActionConfiguration;
+import org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.ApplyStereotypeActionConfigurationPackage;
+import org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.StereotypeToApply;
 
 /**
  * <!-- begin-user-doc -->
@@ -77,7 +77,7 @@ public class ApplyStereotypeActionConfigurationSwitch<T> {
 			return
 				eSuperTypes.isEmpty() ?
 					defaultCase(theEObject) :
-					doSwitch(eSuperTypes.get(0), theEObject);
+						doSwitch(eSuperTypes.get(0), theEObject);
 		}
 	}
 
@@ -90,21 +90,29 @@ public class ApplyStereotypeActionConfigurationSwitch<T> {
 	 */
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case ApplyStereotypeActionConfigurationPackage.APPLY_STEREOTYPE_ACTION_CONFIGURATION: {
-				ApplyStereotypeActionConfiguration applyStereotypeActionConfiguration = (ApplyStereotypeActionConfiguration)theEObject;
-				T result = caseApplyStereotypeActionConfiguration(applyStereotypeActionConfiguration);
-				if (result == null) result = casePostActionConfiguration(applyStereotypeActionConfiguration);
-				if (result == null) result = caseActionConfiguration(applyStereotypeActionConfiguration);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
+		case ApplyStereotypeActionConfigurationPackage.APPLY_STEREOTYPE_ACTION_CONFIGURATION: {
+			ApplyStereotypeActionConfiguration applyStereotypeActionConfiguration = (ApplyStereotypeActionConfiguration)theEObject;
+			T result = caseApplyStereotypeActionConfiguration(applyStereotypeActionConfiguration);
+			if (result == null) {
+				result = casePostActionConfiguration(applyStereotypeActionConfiguration);
 			}
-			case ApplyStereotypeActionConfigurationPackage.STEREOTYPE_TO_APPLY: {
-				StereotypeToApply stereotypeToApply = (StereotypeToApply)theEObject;
-				T result = caseStereotypeToApply(stereotypeToApply);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
+			if (result == null) {
+				result = caseActionConfiguration(applyStereotypeActionConfiguration);
 			}
-			default: return defaultCase(theEObject);
+			if (result == null) {
+				result = defaultCase(theEObject);
+			}
+			return result;
+		}
+		case ApplyStereotypeActionConfigurationPackage.STEREOTYPE_TO_APPLY: {
+			StereotypeToApply stereotypeToApply = (StereotypeToApply)theEObject;
+			T result = caseStereotypeToApply(stereotypeToApply);
+			if (result == null) {
+				result = defaultCase(theEObject);
+			}
+			return result;
+		}
+		default: return defaultCase(theEObject);
 		}
 	}
 

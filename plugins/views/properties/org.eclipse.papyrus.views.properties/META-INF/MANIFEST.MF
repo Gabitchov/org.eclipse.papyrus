@@ -1,17 +1,17 @@
 Manifest-Version: 1.0
-Export-Package: org.eclipse.papyrus.properties,
- org.eclipse.papyrus.properties.catalog,
- org.eclipse.papyrus.properties.constraints,
- org.eclipse.papyrus.properties.creation,
- org.eclipse.papyrus.properties.databinding,
- org.eclipse.papyrus.properties.modelelement,
- org.eclipse.papyrus.properties.providers,
- org.eclipse.papyrus.properties.root,
- org.eclipse.papyrus.properties.runtime,
- org.eclipse.papyrus.properties.util,
- org.eclipse.papyrus.properties.widgets,
- org.eclipse.papyrus.properties.widgets.layout,
- org.eclipse.papyrus.properties.xwt
+Export-Package: org.eclipse.papyrus.views.properties,
+ org.eclipse.papyrus.views.properties.catalog,
+ org.eclipse.papyrus.views.properties.constraints,
+ org.eclipse.papyrus.views.properties.creation,
+ org.eclipse.papyrus.views.properties.databinding,
+ org.eclipse.papyrus.views.properties.modelelement,
+ org.eclipse.papyrus.views.properties.providers,
+ org.eclipse.papyrus.views.properties.root,
+ org.eclipse.papyrus.views.properties.runtime,
+ org.eclipse.papyrus.views.properties.util,
+ org.eclipse.papyrus.views.properties.widgets,
+ org.eclipse.papyrus.views.properties.widgets.layout,
+ org.eclipse.papyrus.views.properties.xwt
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .,
  bin
@@ -47,6 +47,6 @@ Bundle-Vendor: %Bundle-Vendor
 Bundle-Version: 0.9.0.qualifier
 Eclipse-BuddyPolicy: dependent
 Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.properties.Activator
+Bundle-Activator: org.eclipse.papyrus.views.properties.Activator
 Bundle-SymbolicName: org.eclipse.papyrus.views.properties;singleton:=true
 
