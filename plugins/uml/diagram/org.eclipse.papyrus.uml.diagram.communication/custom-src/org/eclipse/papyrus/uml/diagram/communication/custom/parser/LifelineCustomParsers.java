@@ -92,7 +92,7 @@ public class LifelineCustomParsers extends org.eclipse.papyrus.uml.diagram.commu
 	/**
 	 * Information identifying the lifeline displayed inside the rectangle
 	 * 
-	 * @see org.eclipse.papyrus.diagram.sequence.parsers.MessageFormatParser#getPrintString(org.eclipse.core.runtime.IAdaptable, int)
+	 * @see org.eclipse.papyrus.uml.diagram.sequence.parsers.MessageFormatParser#getPrintString(org.eclipse.core.runtime.IAdaptable, int)
 	 */
 	@Override
 	public String getPrintString(IAdaptable element, int flags) {

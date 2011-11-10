@@ -24,7 +24,6 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipReques
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.papyrus.uml.diagram.communication.custom.commands.CustomMessageReorientCommand;
 import org.eclipse.papyrus.uml.diagram.communication.edit.parts.LifelineEditPartCN;
 import org.eclipse.papyrus.uml.diagram.communication.edit.parts.MessageNameEditPart;
 import org.eclipse.ui.IObjectActionDelegate;

@@ -15,9 +15,9 @@ package org.eclipse.papyrus.uml.diagram.component.custom.preferences;
 
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
-import org.eclipse.papyrus.preferences.pages.AbstractPapyrusElementPreferencePage;
-import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
-import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
+import org.eclipse.papyrus.infra.gmfdiag.preferences.pages.AbstractPapyrusElementPreferencePage;
+import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceConverter;
+import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.papyrus.uml.diagram.component.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.tools.utils.ICustomAppearence;
 import org.eclipse.swt.SWT;
@@ -30,7 +30,6 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.ui.views.properties.tabbed.ITabbedPropertyConstants;
-import org.eclipse.uml2.uml.Property;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -39,7 +38,7 @@ import org.eclipse.uml2.uml.Property;
 public class PropertyPreferencePage extends AbstractPapyrusElementPreferencePage {
 
 	/** Preference page identifier. */
-	public static final String ID = "org.eclipse.papyrus.diagram.composite.custom.preferences.PropertyPreferencePage"; //$NON-NLS-1$
+	public static final String ID = "org.eclipse.papyrus.uml.diagram.composite.custom.preferences.PropertyPreferencePage"; //$NON-NLS-1$
 
 	/**
 	 * Listeners for the check buttons that select the display of the {@link Property}.

@@ -15,8 +15,7 @@
 
 package org.eclipse.papyrus.uml.diagram.communication;
 
-import org.eclipse.papyrus.core.adaptor.gmf.GmfEditorFactory;
-import org.eclipse.papyrus.uml.diagram.communication.UmlCommunicationDiagramForMultiEditor;
+import org.eclipse.papyrus.infra.core.adaptor.gmf.GmfEditorFactory;
 import org.eclipse.papyrus.uml.diagram.communication.edit.parts.ModelEditPart;
 
 /**

@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import java.util.List;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.command.DeleteCommand;

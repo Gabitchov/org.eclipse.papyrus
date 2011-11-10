@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.component;
 
-import org.eclipse.papyrus.navigation.CreateDiagramWithNavigationHandler;
+import org.eclipse.papyrus.infra.gmfdiag.navigation.CreateDiagramWithNavigationHandler;
 
 
 public class CreateComponentDiagramWithNavigationHandler extends CreateDiagramWithNavigationHandler {

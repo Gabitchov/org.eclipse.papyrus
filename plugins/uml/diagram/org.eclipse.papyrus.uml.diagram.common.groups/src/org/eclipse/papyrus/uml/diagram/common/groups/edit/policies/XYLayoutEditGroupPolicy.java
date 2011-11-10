@@ -24,7 +24,6 @@ import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
@@ -39,10 +38,10 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.XYLayoutEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.groups.commands.ChangeGraphicalParentCommand;
+import org.eclipse.papyrus.uml.diagram.common.groups.commands.ChangeGraphicalParentCommand.Mode;
 import org.eclipse.papyrus.uml.diagram.common.groups.commands.ChangeModelParentCommand;
 import org.eclipse.papyrus.uml.diagram.common.groups.commands.SetUpReferencesCommand;
 import org.eclipse.papyrus.uml.diagram.common.groups.commands.UpdateReferencesCommand;
-import org.eclipse.papyrus.uml.diagram.common.groups.commands.ChangeGraphicalParentCommand.Mode;
 import org.eclipse.papyrus.uml.diagram.common.groups.commands.utlis.CommandsUtils;
 import org.eclipse.papyrus.uml.diagram.common.groups.core.groupcontainment.GroupContainmentRegistry;
 import org.eclipse.papyrus.uml.diagram.common.groups.core.utils.DefaultModelParent;
@@ -53,8 +52,8 @@ import org.eclipse.papyrus.uml.diagram.common.util.DiagramEditPartsUtil;
 
 /**
  * This edit policy is used to handle node positioning inside a group after creation or after a {@link ChangeBoundsRequest} You can find example of
- * uses of this policy in {@link org.eclipse.papyrus.diagram.activity.edit.policies.CompartmentXYLayoutEditPolicy} or in
- * {@link org.eclipse.papyrus.diagram.activity.edit.parts.ActivityPartitionActivityPartitionContentCompartmentEditPart}
+ * uses of this policy in {@link org.eclipse.papyrus.uml.diagram.activity.edit.policies.CompartmentXYLayoutEditPolicy} or in
+ * {@link org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActivityPartitionActivityPartitionContentCompartmentEditPart}
  * 
  * @author arthur daussy
  */

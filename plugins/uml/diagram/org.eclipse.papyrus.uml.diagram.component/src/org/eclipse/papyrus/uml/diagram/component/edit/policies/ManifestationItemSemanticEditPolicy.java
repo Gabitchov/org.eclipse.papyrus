@@ -21,8 +21,8 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
-import org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils;
-import org.eclipse.papyrus.service.edit.service.IElementEditService;
+import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
+import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.uml.diagram.component.edit.commands.AbstractionCreateCommand;
 import org.eclipse.papyrus.uml.diagram.component.edit.commands.CommentAnnotatedElementCreateCommand;
 import org.eclipse.papyrus.uml.diagram.component.edit.commands.CommentAnnotatedElementReorientCommand;
@@ -43,7 +43,6 @@ import org.eclipse.papyrus.uml.diagram.component.edit.parts.InterfaceRealization
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ManifestationEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.SubstitutionEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.UsageEditPart;
-import org.eclipse.papyrus.uml.diagram.component.edit.policies.UMLBaseItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.component.providers.UMLElementTypes;
 
 // TODO: Auto-generated Javadoc

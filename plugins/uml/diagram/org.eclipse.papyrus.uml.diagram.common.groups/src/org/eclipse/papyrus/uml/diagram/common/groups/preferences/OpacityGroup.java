@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2011 Atos Origin.
  *
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -15,7 +15,7 @@ package org.eclipse.papyrus.uml.diagram.common.groups.preferences;
 
 import org.eclipse.jface.dialogs.DialogPage;
 import org.eclipse.jface.preference.ScaleFieldEditor;
-import org.eclipse.papyrus.preferences.ui.AbstractGroup;
+import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.AbstractGroup;
 import org.eclipse.papyrus.uml.diagram.common.ui.helper.HelpComponentFactory;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;

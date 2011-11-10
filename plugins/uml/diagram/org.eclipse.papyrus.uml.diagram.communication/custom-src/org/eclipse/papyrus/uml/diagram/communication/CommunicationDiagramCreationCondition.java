@@ -15,7 +15,7 @@
 package org.eclipse.papyrus.uml.diagram.communication;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.core.extension.commands.PerspectiveContextDependence;
+import org.eclipse.papyrus.infra.core.extension.commands.PerspectiveContextDependence;
 import org.eclipse.uml2.uml.Interaction;
 
 // TODO: Auto-generated Javadoc

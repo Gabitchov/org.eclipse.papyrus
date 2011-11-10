@@ -15,7 +15,6 @@
 package org.eclipse.papyrus.uml.diagram.communication.custom.figures;
 
 import org.eclipse.papyrus.uml.diagram.common.Activator;
-import org.eclipse.papyrus.uml.diagram.communication.custom.figures.AbstractObservationNodeFigure;
 import org.eclipse.swt.graphics.Image;
 
 /**

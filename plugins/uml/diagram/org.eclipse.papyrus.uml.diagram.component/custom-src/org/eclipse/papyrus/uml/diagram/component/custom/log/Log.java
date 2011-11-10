@@ -14,7 +14,7 @@
 package org.eclipse.papyrus.uml.diagram.component.custom.log;
 
 import org.eclipse.core.runtime.Plugin;
-import org.eclipse.papyrus.log.LogHelper;
+import org.eclipse.papyrus.infra.core.log.LogHelper;
 import org.eclipse.papyrus.uml.diagram.component.part.UMLDiagramEditorPlugin;
 
 // TODO: Auto-generated Javadoc

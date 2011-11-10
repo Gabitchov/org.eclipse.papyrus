@@ -39,7 +39,6 @@ import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.util.DiagramEditPartsUtil;
-import org.eclipse.papyrus.uml.diagram.communication.custom.helper.CommunicationUtil;
 import org.eclipse.papyrus.uml.diagram.communication.edit.parts.LifelineEditPartCN;
 import org.eclipse.uml2.common.util.CacheAdapter;
 import org.eclipse.uml2.uml.DestructionEvent;

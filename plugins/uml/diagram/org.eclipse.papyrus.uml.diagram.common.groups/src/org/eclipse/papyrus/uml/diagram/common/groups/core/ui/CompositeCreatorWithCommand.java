@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2010 Atos Origin.
  *
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -19,10 +19,9 @@ import java.util.Map;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
-import org.eclipse.papyrus.ui.toolbox.notification.ICompositeCreator;
-import org.eclipse.papyrus.ui.toolbox.notification.NotificationRunnable;
-import org.eclipse.papyrus.ui.toolbox.notification.builders.IContext;
-import org.eclipse.papyrus.uml.diagram.common.groups.core.PendingGroupNotificationsManager;
+import org.eclipse.papyrus.infra.widgets.toolbox.notification.ICompositeCreator;
+import org.eclipse.papyrus.infra.widgets.toolbox.notification.NotificationRunnable;
+import org.eclipse.papyrus.infra.widgets.toolbox.notification.builders.IContext;
 
 /**
  * The CompositeCreator with command is an abstract implementation of ICompositeCreator which take cares of storing a command which evolves with the

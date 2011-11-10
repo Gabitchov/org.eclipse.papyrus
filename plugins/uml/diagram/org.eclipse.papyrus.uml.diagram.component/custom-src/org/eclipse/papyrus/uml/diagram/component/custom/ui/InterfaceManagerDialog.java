@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
  *
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -43,11 +43,15 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
-import org.eclipse.papyrus.core.services.ServiceException;
-import org.eclipse.papyrus.core.utils.ServiceUtils;
-import org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils;
-import org.eclipse.papyrus.service.edit.service.IElementEditService;
+import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
+import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
+import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
+import org.eclipse.papyrus.infra.widgets.editors.IElementSelector;
+import org.eclipse.papyrus.infra.widgets.editors.SelectionEditor;
+import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
+import org.eclipse.papyrus.infra.widgets.selectors.ReferenceSelector;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.common.providers.EditorLabelProvider;
 import org.eclipse.papyrus.uml.diagram.common.util.Util;
@@ -55,10 +59,6 @@ import org.eclipse.papyrus.uml.diagram.common.util.Visitor;
 import org.eclipse.papyrus.uml.diagram.component.custom.messages.Messages;
 import org.eclipse.papyrus.uml.diagram.component.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
-import org.eclipse.papyrus.widgets.editors.IElementSelector;
-import org.eclipse.papyrus.widgets.editors.SelectionEditor;
-import org.eclipse.papyrus.widgets.providers.IStaticContentProvider;
-import org.eclipse.papyrus.widgets.selectors.ReferenceSelector;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.events.SelectionEvent;
@@ -670,9 +670,9 @@ public class InterfaceManagerDialog extends SelectionDialog {
 			IStatus status = new Status(IStatus.ERROR, UMLDiagramEditorPlugin.ID, Messages.NoSelectionFound);
 			if(selection.length >= 1) {
 				for(int i = 0; i < selection.length; i++) {
-					if(selection[i] instanceof Package || selection[i] instanceof Classifier || selection[i] instanceof NewElementRepresentation)
+					if(selection[i] instanceof Package || selection[i] instanceof Classifier || selection[i] instanceof NewElementRepresentation) {
 						status = new Status(IStatus.OK, UMLDiagramEditorPlugin.ID, Messages.SelectionValidated);
-					else {
+					} else {
 						status = new Status(IStatus.ERROR, UMLDiagramEditorPlugin.ID, Messages.InterfaceManagerDialog_SelectionHasToBeAPackageOrAClassifier);
 						break;
 					}

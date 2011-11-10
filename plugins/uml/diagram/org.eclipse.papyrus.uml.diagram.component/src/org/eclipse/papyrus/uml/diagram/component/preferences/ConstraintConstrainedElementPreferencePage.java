@@ -1,7 +1,7 @@
 package org.eclipse.papyrus.uml.diagram.component.preferences;
 
 import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.papyrus.preferences.pages.AbstractPapyrusLinkPreferencePage;
+import org.eclipse.papyrus.infra.gmfdiag.preferences.pages.AbstractPapyrusLinkPreferencePage;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ComponentDiagramEditPart;
 import org.eclipse.papyrus.uml.diagram.component.part.UMLDiagramEditorPlugin;
 

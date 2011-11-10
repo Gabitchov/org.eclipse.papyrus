@@ -1,14 +1,14 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
  *
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *	Amine EL KOUHEN (CEA LIST/LIFL) - Amine.El-Kouhen@lifl.fr 
+ *	Amine EL KOUHEN (CEA LIST/LIFL) - Amine.El-Kouhen@lifl.fr
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.component;
 
@@ -18,9 +18,9 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.papyrus.core.editor.BackboneException;
-import org.eclipse.papyrus.core.services.ServiceException;
-import org.eclipse.papyrus.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.core.editor.BackboneException;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.uml.diagram.component.part.UMLDiagramEditor;
 import org.eclipse.papyrus.uml.diagram.component.part.UMLDiagramEditorPlugin;
 import org.eclipse.swt.widgets.Composite;

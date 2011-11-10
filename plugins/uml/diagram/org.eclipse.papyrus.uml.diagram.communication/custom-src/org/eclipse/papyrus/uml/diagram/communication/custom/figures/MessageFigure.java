@@ -18,7 +18,6 @@ import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusUMLElementFigure;
-import org.eclipse.papyrus.uml.diagram.communication.custom.figures.CustomWrappingLabel;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.Image;

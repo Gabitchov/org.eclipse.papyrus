@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2011 AtoS.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -18,9 +18,9 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.jface.wizard.WizardDialog;
-import org.eclipse.papyrus.core.services.ServiceException;
-import org.eclipse.papyrus.core.utils.EditorUtils;
-import org.eclipse.papyrus.core.utils.ServiceUtils;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.utils.EditorUtils;
+import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.uml.diagram.common.palette.customaction.providers.ITool;
 import org.eclipse.swt.widgets.Display;
 
@@ -80,12 +80,12 @@ public abstract class AbstractToolWizard extends Wizard implements ITool {
 	public void run(EditPart editPart) {
 		try {
 			final TransactionalEditingDomain editingDomain = ServiceUtils
-					.getInstance().getTransactionalEditingDomain(
-							EditorUtils.getMultiDiagramEditor()
-									.getServicesRegistry());
+				.getInstance().getTransactionalEditingDomain(
+					EditorUtils.getMultiDiagramEditor()
+					.getServicesRegistry());
 			setTransactionalEditingDomain(editingDomain);
 			WizardDialog dialog = new WizardDialog(Display.getDefault()
-					.getActiveShell(), this);
+				.getActiveShell(), this);
 			if (dialog.open() == WizardDialog.OK) {
 				final RecordingCommand iCmd = getCommand();
 				if (iCmd.canExecute()) {
@@ -96,7 +96,7 @@ public abstract class AbstractToolWizard extends Wizard implements ITool {
 							Display.getCurrent().asyncExec(new Runnable() {
 								public void run() {
 									editingDomain.getCommandStack().execute(
-											iCmd);
+										iCmd);
 								}
 							});
 						}

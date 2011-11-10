@@ -30,7 +30,6 @@ import org.eclipse.gmf.runtime.notation.Connector;
 import org.eclipse.gmf.runtime.notation.DecorationNode;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.diagram.communication.custom.helper.InconsistentMessageViewsHelper;
 import org.eclipse.papyrus.uml.diagram.communication.edit.parts.ModelEditPart;
 import org.eclipse.uml2.uml.Message;
 

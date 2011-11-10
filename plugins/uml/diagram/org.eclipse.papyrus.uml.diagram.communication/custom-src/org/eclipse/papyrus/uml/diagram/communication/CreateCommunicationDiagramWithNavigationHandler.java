@@ -13,9 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.communication;
 
-import org.eclipse.papyrus.navigation.CreateDiagramWithNavigationHandler;
-import org.eclipse.papyrus.uml.diagram.communication.CommunicationDiagramCreationCondition;
-import org.eclipse.papyrus.uml.diagram.communication.CreateCommunicationDiagramCommand;
+import org.eclipse.papyrus.infra.gmfdiag.navigation.CreateDiagramWithNavigationHandler;
 
 
 public class CreateCommunicationDiagramWithNavigationHandler extends CreateDiagramWithNavigationHandler {

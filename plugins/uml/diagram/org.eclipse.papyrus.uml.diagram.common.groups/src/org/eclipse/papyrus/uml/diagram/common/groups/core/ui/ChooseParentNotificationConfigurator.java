@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2011 Atos Origin.
  *
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -22,10 +22,9 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
-import org.eclipse.gef.EditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
-import org.eclipse.papyrus.ui.toolbox.notification.builders.IContext;
+import org.eclipse.papyrus.infra.widgets.toolbox.notification.builders.IContext;
 import org.eclipse.papyrus.uml.diagram.common.groups.Messages;
 import org.eclipse.papyrus.uml.diagram.common.groups.commands.ChangeGraphicalParentCommand;
 import org.eclipse.papyrus.uml.diagram.common.groups.commands.ChangeModelParentCommand;

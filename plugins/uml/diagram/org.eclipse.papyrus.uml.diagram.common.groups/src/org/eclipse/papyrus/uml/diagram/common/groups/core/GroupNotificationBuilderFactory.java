@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2010 Atos Origin.
  *
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -14,8 +14,8 @@
 package org.eclipse.papyrus.uml.diagram.common.groups.core;
 
 import org.eclipse.emf.common.command.Command;
-import org.eclipse.papyrus.ui.toolbox.notification.Type;
-import org.eclipse.papyrus.ui.toolbox.notification.builders.NotificationBuilder;
+import org.eclipse.papyrus.infra.widgets.toolbox.notification.Type;
+import org.eclipse.papyrus.infra.widgets.toolbox.notification.builders.NotificationBuilder;
 import org.eclipse.papyrus.uml.diagram.common.groups.core.ui.CompositeCreatorWithCommand;
 
 /**

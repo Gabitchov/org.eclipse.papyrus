@@ -18,7 +18,6 @@ import org.eclipse.papyrus.uml.diagram.component.edit.commands.CommentCreateComm
 import org.eclipse.papyrus.uml.diagram.component.edit.commands.ComponentCreateCommandPCN;
 import org.eclipse.papyrus.uml.diagram.component.edit.commands.ConstraintCreateCommandPCN;
 import org.eclipse.papyrus.uml.diagram.component.edit.commands.InterfaceCreateCommandPCN;
-import org.eclipse.papyrus.uml.diagram.component.edit.policies.UMLBaseItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.component.providers.UMLElementTypes;
 
 // TODO: Auto-generated Javadoc

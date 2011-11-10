@@ -13,7 +13,7 @@ This can be achieved calling the code :
 		//configure group framework
 		EditingDomainRegisteringService.addGroupFrameworkForEditingDomain(getEditingDomain(), getDiagramEditPart());
 at the end of the initializeGraphicalViewer() method,
-in the class org.eclipse.papyrus.diagram.***.Uml***DiagramForMultiEditor extending org.eclipse.papyrus.diagram.***.part.UMLDiagramEditor, which itself extends org.eclipse.papyrus.uml.diagram.common.part.UmlGmfDiagramEditor.
+in the class org.eclipse.papyrus.uml.diagram.***.Uml***DiagramForMultiEditor extending org.eclipse.papyrus.uml.diagram.***.part.UMLDiagramEditor, which itself extends org.eclipse.papyrus.uml.diagram.common.part.UmlGmfDiagramEditor.
 
       </documentation>
    </annotation>
@@ -144,18 +144,18 @@ This class must implement org.eclipse.papyrus.uml.diagram.common.groups.groupcon
          &lt;extension
     point=&quot;org.eclipse.papyrus.uml.diagram.common.groups.groupcontainment&quot;
     name=&quot;ActivityGroup&quot;
-    id=&quot;org.eclipse.papyrus.diagram.activity.activitygroup&quot;&gt;
-    &lt;modelContainer editPartType=&quot;org.eclipse.papyrus.diagram.activity.edit.parts.StructuredActivityNodeStructuredActivityNodeContentCompartmentEditPart&quot; descriptor=&quot;org.eclipse.papyrus.diagram.activity.groupcontainment.StructuredActivityNodeContainment&quot;/&gt;
-    &lt;modelContainer descriptor=&quot;org.eclipse.papyrus.diagram.activity.groupcontainment.ConditionalNodeContainment&quot; editPartType=&quot;org.eclipse.papyrus.diagram.activity.edit.parts.ConditionalNodeStructuredActivityNodeContentCompartmentEditPart&quot;&gt;
+    id=&quot;org.eclipse.papyrus.uml.diagram.activity.activitygroup&quot;&gt;
+    &lt;modelContainer editPartType=&quot;org.eclipse.papyrus.uml.diagram.activity.edit.parts.StructuredActivityNodeStructuredActivityNodeContentCompartmentEditPart&quot; descriptor=&quot;org.eclipse.papyrus.uml.diagram.activity.groupcontainment.StructuredActivityNodeContainment&quot;/&gt;
+    &lt;modelContainer descriptor=&quot;org.eclipse.papyrus.uml.diagram.activity.groupcontainment.ConditionalNodeContainment&quot; editPartType=&quot;org.eclipse.papyrus.uml.diagram.activity.edit.parts.ConditionalNodeStructuredActivityNodeContentCompartmentEditPart&quot;&gt;
     &lt;/modelContainer&gt;
-    &lt;modelContainer descriptor=&quot;org.eclipse.papyrus.diagram.activity.groupcontainment.ExpansionRegionContainment&quot; editPartType=&quot;org.eclipse.papyrus.diagram.activity.edit.parts.ExpansionRegionStructuredActivityNodeContentCompartmentEditPart&quot;&gt;
+    &lt;modelContainer descriptor=&quot;org.eclipse.papyrus.uml.diagram.activity.groupcontainment.ExpansionRegionContainment&quot; editPartType=&quot;org.eclipse.papyrus.uml.diagram.activity.edit.parts.ExpansionRegionStructuredActivityNodeContentCompartmentEditPart&quot;&gt;
     &lt;/modelContainer&gt;
-    &lt;modelContainer descriptor=&quot;org.eclipse.papyrus.diagram.activity.groupcontainment.LoopNodeContainment&quot; editPartType=&quot;org.eclipse.papyrus.diagram.activity.edit.parts.LoopNodeStructuredActivityNodeContentCompartmentEditPart&quot;&gt;
+    &lt;modelContainer descriptor=&quot;org.eclipse.papyrus.uml.diagram.activity.groupcontainment.LoopNodeContainment&quot; editPartType=&quot;org.eclipse.papyrus.uml.diagram.activity.edit.parts.LoopNodeStructuredActivityNodeContentCompartmentEditPart&quot;&gt;
     &lt;/modelContainer&gt;
-    &lt;modelContainer descriptor=&quot;org.eclipse.papyrus.diagram.activity.groupcontainment.SequenceNodeContainment&quot; editPartType=&quot;org.eclipse.papyrus.diagram.activity.edit.parts.SequenceNodeStructuredActivityNodeContentCompartmentEditPart&quot;&gt;
+    &lt;modelContainer descriptor=&quot;org.eclipse.papyrus.uml.diagram.activity.groupcontainment.SequenceNodeContainment&quot; editPartType=&quot;org.eclipse.papyrus.uml.diagram.activity.edit.parts.SequenceNodeStructuredActivityNodeContentCompartmentEditPart&quot;&gt;
     &lt;/modelContainer&gt;
-    &lt;referenceContainer descriptor=&quot;org.eclipse.papyrus.diagram.activity.groupcontainment.InterruptibleActivityRegionContainment&quot; editPartType=&quot;org.eclipse.papyrus.diagram.activity.edit.parts.InterruptibleActivityRegionInterruptibleActivityRegionContentCompartmentEditPart&quot;/&gt;
-    &lt;referenceContainer descriptor=&quot;org.eclipse.papyrus.diagram.activity.groupcontainment.ActivityPartitionContainment&quot; editPartType=&quot;org.eclipse.papyrus.diagram.activity.edit.parts.ActivityPartitionActivityPartitionContentCompartmentEditPart&quot;/&gt;
+    &lt;referenceContainer descriptor=&quot;org.eclipse.papyrus.uml.diagram.activity.groupcontainment.InterruptibleActivityRegionContainment&quot; editPartType=&quot;org.eclipse.papyrus.uml.diagram.activity.edit.parts.InterruptibleActivityRegionInterruptibleActivityRegionContentCompartmentEditPart&quot;/&gt;
+    &lt;referenceContainer descriptor=&quot;org.eclipse.papyrus.uml.diagram.activity.groupcontainment.ActivityPartitionContainment&quot; editPartType=&quot;org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActivityPartitionActivityPartitionContentCompartmentEditPart&quot;/&gt;
 &lt;/extension&gt;
       </documentation>
    </annotation>
@@ -176,7 +176,7 @@ The interface org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart is
       </appinfo>
       <documentation>
          The activity diagram provides an extension for this extension point.
-Its usage is described in the example, taken from the org.eclipse.papyrus.diagram.activity plugin.
+Its usage is described in the example, taken from the org.eclipse.papyrus.uml.diagram.activity plugin.
 
 In this case, all ActivityGroup elements are described :
  - The StructuredActivityNode and inheriting classes are described by modelContainer nodes. For convenience, the descriptors inherit from a single one.
