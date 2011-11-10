@@ -2,24 +2,24 @@ Manifest-Version: 1.0
 Require-Bundle: org.eclipse.papyrus.infra.core;bundle-version="0.9.0",
  org.eclipse.core.runtime,
  org.eclipse.ui
-Export-Package: org.eclipse.papyrus.ui.toolbox,
- org.eclipse.papyrus.ui.toolbox.dialog,
- org.eclipse.papyrus.ui.toolbox.draw2d,
- org.eclipse.papyrus.ui.toolbox.notification,
- org.eclipse.papyrus.ui.toolbox.notification.builders,
- org.eclipse.papyrus.ui.toolbox.notification.dialogs,
- org.eclipse.papyrus.ui.toolbox.notification.exception,
- org.eclipse.papyrus.ui.toolbox.notification.popups,
- org.eclipse.papyrus.ui.toolbox.notification.utils,
- org.eclipse.papyrus.ui.toolbox.notification.view,
- org.eclipse.papyrus.ui.toolbox.utils
+Export-Package: org.eclipse.papyrus.infra.widgets.toolbox,
+ org.eclipse.papyrus.infra.widgets.toolbox.dialog,
+ org.eclipse.papyrus.infra.widgets.toolbox.draw2d,
+ org.eclipse.papyrus.infra.widgets.toolbox.notification,
+ org.eclipse.papyrus.infra.widgets.toolbox.notification.builders,
+ org.eclipse.papyrus.infra.widgets.toolbox.notification.dialogs,
+ org.eclipse.papyrus.infra.widgets.toolbox.notification.exception,
+ org.eclipse.papyrus.infra.widgets.toolbox.notification.popups,
+ org.eclipse.papyrus.infra.widgets.toolbox.notification.utils,
+ org.eclipse.papyrus.infra.widgets.toolbox.notification.view,
+ org.eclipse.papyrus.infra.widgets.toolbox.utils
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 0.9.0.qualifier
 Bundle-Localization: plugin
 Bundle-Name: %pluginName
 Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.ui.toolbox.Activator
+Bundle-Activator: org.eclipse.papyrus.infra.widgets.toolbox.Activator
 Bundle-SymbolicName: org.eclipse.papyrus.infra.widgets.toolbox;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

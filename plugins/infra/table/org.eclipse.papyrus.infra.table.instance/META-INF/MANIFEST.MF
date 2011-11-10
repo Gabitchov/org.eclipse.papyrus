@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
-Export-Package: org.eclipse.papyrus.table.instance,
- org.eclipse.papyrus.table.instance.papyrustableinstance;uses:="org.eclipse.emf.ecore,org.eclipse.emf.facet.widgets.nattable.instance.tableinstance",
- org.eclipse.papyrus.table.instance.papyrustableinstance.util;
+Export-Package: org.eclipse.papyrus.infra.table.instance,
+ org.eclipse.papyrus.infra.table.instance.papyrustableinstance;uses:="org.eclipse.emf.ecore,org.eclipse.emf.facet.widgets.nattable.instance.tableinstance",
+ org.eclipse.papyrus.infra.table.instance.papyrustableinstance.util;
   uses:="org.eclipse.emf.ecore.util,
    org.eclipse.emf.ecore,
    org.eclipse.emf.common.notify.impl,
@@ -18,6 +18,6 @@ Require-Bundle: org.eclipse.core.runtime,
 Bundle-Vendor: %providerName
 Bundle-Version: 0.9.0.qualifier
 Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.table.instance.Activator
+Bundle-Activator: org.eclipse.papyrus.infra.table.instance.Activator
 Bundle-SymbolicName: org.eclipse.papyrus.infra.table.instance;singleton:=true
 

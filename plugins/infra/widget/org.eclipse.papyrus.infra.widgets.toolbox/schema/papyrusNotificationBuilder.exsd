@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="org.eclipse.papyrus.ui.toolbox" xmlns="http://www.w3.org/2001/XMLSchema">
+<schema targetNamespace="org.eclipse.papyrus.infra.widgets.toolbox" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appInfo>
-         <meta.schema plugin="org.eclipse.papyrus.ui.toolbox" id="papyrusNotificationBuilder" name="Papyrus Notification Builder"/>
+         <meta.schema plugin="org.eclipse.papyrus.infra.widgets.toolbox" id="papyrusNotificationBuilder" name="Papyrus Notification Builder"/>
       </appInfo>
       <documentation>
          This extension point allows developers to define custom IBuilder instance to be managed by notification Builder.
@@ -57,7 +57,7 @@ Take care to not always return true in the method accept to avoid intercepting a
                   the builder instance. The implementation shall implement the methods to recognize and run a notification.
                </documentation>
                <appInfo>
-                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.ui.toolbox.notification.IBuilder"/>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.infra.widgets.toolbox.notification.IBuilder"/>
                </appInfo>
             </annotation>
          </attribute>

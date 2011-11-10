@@ -4,10 +4,10 @@
 <plugin>
 
 <!--We declare the model used for the Papyrus Table Editor  -->
-   <extension point="org.eclipse.papyrus.core.model">
-      <model classname="org.eclipse.papyrus.table.common.modelresource.EMFFacetNattableModel" description="Model for Papyrus Table editors">
+   <extension point="org.eclipse.papyrus.infra.core.model">
+      <model classname="org.eclipse.papyrus.infra.table.common.modelresource.EMFFacetNattableModel" description="Model for Papyrus Table editors">
       </model>
-      <model classname="org.eclipse.papyrus.table.common.modelresource.PapyrusNattableModel" description="Model for Papyrus Table editors">
+      <model classname="org.eclipse.papyrus.infra.table.common.modelresource.PapyrusNattableModel" description="Model for Papyrus Table editors">
       </model>
    </extension>
  <extension id="papyrus.table.menuspapyrus.table.menu" name="Papyrus Table Menus" point="org.eclipse.ui.menus">
@@ -15,11 +15,11 @@
          <menu icon="icons/table.gif" id="org.eclipse.papyrus.views.modelexplorer.popupmenu.createtable" label="New Table" mnemonic="&amp;T" tooltip="The table menu">
          </menu>
       </menuContribution>
-      <menuContribution allPopups="false" locationURI="menu:org.eclipse.papyrus.ui.menu?after=org.eclipse.papyrus.diagram.ui.menu.diagrams">
+      <menuContribution allPopups="false" locationURI="menu:org.eclipse.papyrus.ui.menu?after=org.eclipse.papyrus.uml.diagram.ui.menu.diagrams">
          <menu icon="icons/table.gif" id="org.eclipse.papyrus.table.ui.menu.tables" label="Tables" mnemonic="&amp;T" tooltip="The table menu">
          </menu>
       </menuContribution>
-      <menuContribution locationURI="toolbar:org.eclipse.ui.main.toolbar?endof=org.eclipse.papyrus.diagram.ui.toolbar">
+      <menuContribution locationURI="toolbar:org.eclipse.ui.main.toolbar?endof=org.eclipse.papyrus.uml.diagram.ui.toolbar">
          <toolbar id="org.eclipse.papyrus.table.ui.toolbar" label="Papyrus Table Toolbar">
          </toolbar>
       </menuContribution>
@@ -30,7 +30,7 @@
    <extension
          point="org.eclipse.emf.facet.widgets.celleditors.commandFactories">
       <commandFactory
-            class="org.eclipse.papyrus.table.common.factory.PapyrusCommandFactory">
+            class="org.eclipse.papyrus.infra.table.common.factory.PapyrusCommandFactory">
       </commandFactory>
    </extension>
 </plugin>

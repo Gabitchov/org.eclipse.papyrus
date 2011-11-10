@@ -5,23 +5,23 @@
          point="org.eclipse.ui.commands">
       <command
             categoryId="org.eclipse.emf.facet.widgets.nattable.command.category"
-            defaultHandler="org.eclipse.papyrus.table.menu.handler.CommonColumnHandler"
+            defaultHandler="org.eclipse.papyrus.infra.table.menu.handler.CommonColumnHandler"
             description="Show only the common columns"
             id="org.eclipse.emf.facet.widget.nattable.common.columns.command"
             name="Common Columns Command">
          <state
-               class="org.eclipse.papyrus.table.menu.handler.states.OnlyCommonColumnsState"
+               class="org.eclipse.papyrus.infra.table.menu.handler.states.OnlyCommonColumnsState"
                id="org.eclipse.ui.commands.toggleState">
          </state>
       </command>
       <command
             categoryId="org.eclipse.emf.facet.widgets.nattable.command.category"
-            defaultHandler="org.eclipse.papyrus.table.menu.handler.HideEmptyColumnsHandler"
+            defaultHandler="org.eclipse.papyrus.infra.table.menu.handler.HideEmptyColumnsHandler"
             description="This command hides the empty columns"
             id="org.eclipse.emf.facet.widget.nattable.empty.columns.command"
             name="Hide Empty Columns Command">
          <state
-               class="org.eclipse.papyrus.table.menu.handler.states.HideEmptyColumnState"
+               class="org.eclipse.papyrus.infra.table.menu.handler.states.HideEmptyColumnState"
                id="org.eclipse.ui.commands.toggleState">
          </state>
       </command>
@@ -167,7 +167,7 @@
                      <with
                            variable="activeEditor">
                         <instanceof
-                              value="org.eclipse.papyrus.core.editor.CoreMultiDiagramEditor">
+                              value="org.eclipse.papyrus.infra.core.editor.CoreMultiDiagramEditor">
                         </instanceof>
                      </with>
                   </and>
@@ -194,7 +194,7 @@
                      <with
                            variable="activeEditor">
                         <instanceof
-                              value="org.eclipse.papyrus.core.editor.CoreMultiDiagramEditor">
+                              value="org.eclipse.papyrus.infra.core.editor.CoreMultiDiagramEditor">
                         </instanceof>
                      </with>
                   </and>
@@ -204,7 +204,7 @@
                <with
                      variable="activeEditorId">
                   <equals
-                        value="org.eclipse.papyrus.core.papyrusEditor">
+                        value="org.eclipse.papyrus.infra.core.papyrusEditor">
                   </equals>
                </with>
             </visibleWhen>
@@ -238,7 +238,7 @@
                      <with
                            variable="activeEditor">
                         <instanceof
-                              value="org.eclipse.papyrus.core.editor.CoreMultiDiagramEditor">
+                              value="org.eclipse.papyrus.infra.core.editor.CoreMultiDiagramEditor">
                         </instanceof>
                      </with>
                      <with
@@ -273,7 +273,7 @@
                      <with
                            variable="activeEditor">
                         <instanceof
-                              value="org.eclipse.papyrus.core.editor.CoreMultiDiagramEditor">
+                              value="org.eclipse.papyrus.infra.core.editor.CoreMultiDiagramEditor">
                         </instanceof>
                      </with>
                      <with
@@ -290,19 +290,19 @@
       </menuContribution>
       <menuContribution
             allPopups="true"
-            class="org.eclipse.papyrus.table.menu.handler.CreateNewElementInPopupContributionItem"
+            class="org.eclipse.papyrus.infra.table.menu.handler.CreateNewElementInPopupContributionItem"
             locationURI="popup:org.eclipse.ui.popup.any">
       </menuContribution>
       <menuContribution
             allPopups="false"
-            class="org.eclipse.papyrus.table.menu.handler.CreateNewElementInTableMenuContributionItem"
+            class="org.eclipse.papyrus.infra.table.menu.handler.CreateNewElementInTableMenuContributionItem"
             locationURI="menu:org.eclipse.papyrus.table.menu?before=org.eclipse.papyrus.table.menu.load.customization">
       </menuContribution>
    </extension>
    <extension
          point="org.eclipse.core.expressions.propertyTesters">
       <propertyTester
-            class="org.eclipse.papyrus.table.menu.providers.TableTester"
+            class="org.eclipse.papyrus.infra.table.menu.providers.TableTester"
             id="org.eclipse.papyrus.table.menu.providers.TableTester"
             namespace="org.eclipse.papyrus.table.menu.providers.TableTester"
             properties="isTable"

@@ -4,7 +4,7 @@
 <plugin>
  <!-- we provide a new navigator content for the tables. To be called, this navigator content should have an id beginning with org.eclipse.papyrus.views.modelexplorer.* -->
    <extension point="org.eclipse.ui.handlers">
-      <handler class="org.eclipse.papyrus.table.modelexplorer.handlers.DeleteTableHandler" commandId="org.eclipse.ui.edit.delete">
+      <handler class="org.eclipse.papyrus.infra.table.modelexplorer.handlers.DeleteTableHandler" commandId="org.eclipse.ui.edit.delete">
          <activeWhen>
             <or>
                <with variable="selection">
@@ -20,7 +20,7 @@
             </or>
          </activeWhen>
       </handler>
-         <handler class="org.eclipse.papyrus.table.modelexplorer.handlers.DuplicateTableHandler" commandId="org.eclipse.papyrus.views.modelexplorer.duplicate.command">
+         <handler class="org.eclipse.papyrus.infra.table.modelexplorer.handlers.DuplicateTableHandler" commandId="org.eclipse.papyrus.views.modelexplorer.duplicate.command">
          <activeWhen>
             <and>
                <with variable="selection">
@@ -38,7 +38,7 @@
             </and>
          </activeWhen>
       </handler>
-            <handler class="org.eclipse.papyrus.table.modelexplorer.handlers.RenameTableHandler" commandId="org.eclipse.ui.edit.rename">
+            <handler class="org.eclipse.papyrus.infra.table.modelexplorer.handlers.RenameTableHandler" commandId="org.eclipse.ui.edit.rename">
          <activeWhen>
             <or>
                <with variable="selection">
@@ -56,7 +56,7 @@
       </handler>
    </extension>
    <extension point="org.eclipse.core.expressions.propertyTesters">
-      <propertyTester class="org.eclipse.papyrus.table.modelexplorer.providers.TablePropertyTester" id="org.eclipse.papyrus.table.modelexplorer.tester" namespace="org.eclipse.papyrus.table.modelexplorer.tester" properties="isTable" type="org.eclipse.jface.viewers.IStructuredSelection">
+      <propertyTester class="org.eclipse.papyrus.infra.table.modelexplorer.providers.TablePropertyTester" id="org.eclipse.papyrus.table.modelexplorer.tester" namespace="org.eclipse.papyrus.table.modelexplorer.tester" properties="isTable" type="org.eclipse.jface.viewers.IStructuredSelection">
       </propertyTester>
    </extension>
    <extension point="org.eclipse.emf.facet.infra.facet.registration">
