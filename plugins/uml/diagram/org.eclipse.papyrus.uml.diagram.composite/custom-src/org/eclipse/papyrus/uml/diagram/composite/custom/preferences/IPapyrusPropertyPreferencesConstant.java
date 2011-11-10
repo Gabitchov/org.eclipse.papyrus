@@ -13,7 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.composite.custom.preferences;
 
-import org.eclipse.uml2.uml.Property;
 
 /**
  * Constants for {@link Property} preferences.

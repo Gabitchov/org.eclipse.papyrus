@@ -5,7 +5,6 @@ import org.eclipse.gef.Request;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.dragtracker.NoScrollDragEditPartsTrackerEx;
-import org.eclipse.papyrus.uml.diagram.common.editparts.NamedElementEditPart;
 
 
 public abstract class ConstrainedShapeNodeEditPart extends ShapeNodeEditPart {

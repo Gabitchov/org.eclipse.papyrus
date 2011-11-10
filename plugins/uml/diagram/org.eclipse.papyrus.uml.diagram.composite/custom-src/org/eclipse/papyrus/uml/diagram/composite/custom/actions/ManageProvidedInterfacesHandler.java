@@ -29,7 +29,6 @@ import org.eclipse.papyrus.uml.diagram.composite.custom.messages.Messages;
 import org.eclipse.papyrus.uml.diagram.composite.custom.ui.InterfaceManagerDialog;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.PortEditPart;
 import org.eclipse.uml2.uml.Classifier;
-import org.eclipse.uml2.uml.Interface;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Type;
 

@@ -14,7 +14,7 @@
 package org.eclipse.papyrus.uml.diagram.composite.custom.log;
 
 import org.eclipse.core.runtime.Plugin;
-import org.eclipse.papyrus.log.LogHelper;
+import org.eclipse.papyrus.infra.core.log.LogHelper;
 import org.eclipse.papyrus.uml.diagram.composite.part.UMLDiagramEditorPlugin;
 
 /** Log singleton class for CSD */

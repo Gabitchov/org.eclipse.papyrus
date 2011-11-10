@@ -23,7 +23,6 @@ import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.DurationObservationNameEditPart;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.DurationObservationStereotypeLabelEditPart;
-import org.eclipse.papyrus.uml.diagram.composite.edit.parts.TimeObservationEditPart;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.TimeObservationNameEditPart;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.TimeObservationStereotypeLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.composite.part.UMLVisualIDRegistry;

@@ -26,7 +26,6 @@ import org.eclipse.papyrus.uml.diagram.common.helper.StereotypedElementLabelHelp
 import org.eclipse.papyrus.uml.tools.utils.CollaborationUseUtil;
 import org.eclipse.papyrus.uml.tools.utils.ICustomAppearence;
 import org.eclipse.uml2.uml.CollaborationUse;
-import org.eclipse.uml2.uml.Property;
 
 /**
  * Helper for labels displaying {@link CollaborationUse} in Composite Diagram

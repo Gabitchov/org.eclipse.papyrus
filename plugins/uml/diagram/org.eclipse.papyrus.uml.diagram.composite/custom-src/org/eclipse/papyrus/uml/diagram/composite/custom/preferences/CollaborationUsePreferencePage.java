@@ -15,9 +15,9 @@ package org.eclipse.papyrus.uml.diagram.composite.custom.preferences;
 
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
-import org.eclipse.papyrus.preferences.pages.AbstractPapyrusElementPreferencePage;
-import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
-import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
+import org.eclipse.papyrus.infra.gmfdiag.preferences.pages.AbstractPapyrusElementPreferencePage;
+import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceConverter;
+import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.papyrus.uml.diagram.composite.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.tools.utils.ICustomAppearence;
 import org.eclipse.swt.SWT;
@@ -29,7 +29,6 @@ import org.eclipse.swt.layout.FormLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
-import org.eclipse.uml2.uml.CollaborationUse;
 
 /**
  * Specific {@link CollaborationUse} preference page for label management.
