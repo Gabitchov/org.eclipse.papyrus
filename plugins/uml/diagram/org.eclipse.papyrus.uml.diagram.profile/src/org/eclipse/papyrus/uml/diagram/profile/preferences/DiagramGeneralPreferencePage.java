@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.profile.preferences;
 
-import org.eclipse.papyrus.preferences.pages.DiagramPreferencePage;
+import org.eclipse.papyrus.infra.gmfdiag.preferences.pages.DiagramPreferencePage;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ProfileDiagramEditPart;
 import org.eclipse.papyrus.uml.diagram.profile.part.UMLDiagramEditorPlugin;
 

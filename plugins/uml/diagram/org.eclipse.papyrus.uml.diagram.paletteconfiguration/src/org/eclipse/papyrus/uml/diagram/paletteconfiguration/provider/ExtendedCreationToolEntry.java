@@ -16,11 +16,10 @@ package org.eclipse.papyrus.uml.diagram.paletteconfiguration.provider;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.gef.palette.CombinedTemplateCreationEntry;
 import org.eclipse.gmf.runtime.diagram.ui.internal.services.palette.PaletteToolEntry;
 import org.eclipse.gmf.runtime.diagram.ui.services.palette.PaletteFactory;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
-import org.eclipse.papyrus.extendedtypes.ExtendedTypesRegistry;
+import org.eclipse.papyrus.infra.extendedtypes.ExtendedTypesRegistry;
 import org.eclipse.papyrus.uml.diagram.paletteconfiguration.ElementDescriptor;
 
 

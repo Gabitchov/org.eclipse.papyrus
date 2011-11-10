@@ -26,7 +26,6 @@ import org.eclipse.papyrus.uml.diagram.paletteconfiguration.Paletteconfiguration
 import org.eclipse.papyrus.uml.diagram.paletteconfiguration.SeparatorConfiguration;
 import org.eclipse.papyrus.uml.diagram.paletteconfiguration.StackConfiguration;
 import org.eclipse.papyrus.uml.diagram.paletteconfiguration.ToolConfiguration;
-import org.eclipse.papyrus.uml.diagram.paletteconfiguration.util.PaletteconfigurationSwitch;
 
 
 /**

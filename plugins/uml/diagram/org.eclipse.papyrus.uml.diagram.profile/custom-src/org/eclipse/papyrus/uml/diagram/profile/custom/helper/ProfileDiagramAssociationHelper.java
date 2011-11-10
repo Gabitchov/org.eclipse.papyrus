@@ -13,7 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.profile.custom.helper;
 
-import java.awt.Container;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
@@ -21,7 +20,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
-import org.eclipse.papyrus.ui.toolbox.LookForElement;
+import org.eclipse.papyrus.infra.widgets.toolbox.LookForElement;
 import org.eclipse.papyrus.uml.diagram.common.helper.NamedElementHelper;
 import org.eclipse.papyrus.uml.diagram.profile.custom.commands.PropertyCommandForAssociation;
 import org.eclipse.papyrus.uml.diagram.profile.providers.ElementInitializers;

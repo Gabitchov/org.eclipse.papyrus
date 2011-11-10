@@ -11,7 +11,7 @@
 package org.eclipse.papyrus.uml.diagram.pkg;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.core.extension.commands.PerspectiveContextDependence;
+import org.eclipse.papyrus.infra.core.extension.commands.PerspectiveContextDependence;
 
 /**
  * PackageDiagramCreationCondition class allows to check if a Class diagram can be added to the

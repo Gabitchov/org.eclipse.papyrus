@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
  *
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -26,8 +26,8 @@ import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.core.listenerservice.IPapyrusListener;
-import org.eclipse.papyrus.core.utils.EditorUtils;
+import org.eclipse.papyrus.infra.core.listenerservice.IPapyrusListener;
+import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.profile.custom.helper.ExtensionHelper;
 import org.eclipse.swt.widgets.Display;
@@ -152,7 +152,7 @@ public class ExtensionCustomNameEditPolicy extends AbstractEditPolicy implements
 										String newExtensionName = ExtensionHelper.getExtensionName((Element)hostSemanticElement, ((Extension)hostSemanticElement).getStereotype(), ((Extension)hostSemanticElement).getMetaclass());
 										if(systemExtensionName.equals(((Extension)hostSemanticElement).getName())) {
 											SetRequest setRequestExt = new SetRequest(domain, ext, UMLPackage.eINSTANCE.getNamedElement_Name(), newExtensionName);
-											org.eclipse.papyrus.service.edit.service.IElementEditService provider = org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils.getCommandProvider(ext);
+											org.eclipse.papyrus.infra.services.edit.service.IElementEditService provider = org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils.getCommandProvider(ext);
 											if(provider != null) {
 												ICommand editCommand = null;
 												editCommand = provider.getEditCommand(setRequestExt);
@@ -163,12 +163,12 @@ public class ExtensionCustomNameEditPolicy extends AbstractEditPolicy implements
 											systemExtensionName = newExtensionName;
 											systemExtensionName = newExtensionName;
 										}
-										//command to change the ExtensionEnd's name 
+										//command to change the ExtensionEnd's name
 
 										//There is only ONE ExtensionEnd
 										ExtensionEnd extEnd = (ExtensionEnd)((Extension)hostSemanticElement).getOwnedEnds().get(0);
 										SetRequest setRequestExtEnd = new SetRequest(domain, extEnd, UMLPackage.eINSTANCE.getNamedElement_Name(), newExtEndName.replaceFirst("E", "e")); //$NON-NLS-1$ //$NON-NLS-2$
-										org.eclipse.papyrus.service.edit.service.IElementEditService provider = org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils.getCommandProvider(extEnd);
+										org.eclipse.papyrus.infra.services.edit.service.IElementEditService provider = org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils.getCommandProvider(extEnd);
 										if(provider != null) {
 											ICommand editCommand = null;
 											editCommand = provider.getEditCommand(setRequestExtEnd);

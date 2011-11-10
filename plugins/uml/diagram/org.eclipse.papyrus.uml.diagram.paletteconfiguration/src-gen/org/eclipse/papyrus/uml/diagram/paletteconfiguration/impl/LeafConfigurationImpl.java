@@ -7,7 +7,6 @@
 package org.eclipse.papyrus.uml.diagram.paletteconfiguration.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.papyrus.uml.diagram.paletteconfiguration.LeafConfiguration;
 import org.eclipse.papyrus.uml.diagram.paletteconfiguration.PaletteconfigurationPackage;
 

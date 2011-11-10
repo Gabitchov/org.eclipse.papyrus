@@ -10,12 +10,18 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.eclipse.papyrus.uml.diagram.paletteconfiguration.*;
+import org.eclipse.papyrus.uml.diagram.paletteconfiguration.DrawerConfiguration;
+import org.eclipse.papyrus.uml.diagram.paletteconfiguration.ElementDescriptor;
+import org.eclipse.papyrus.uml.diagram.paletteconfiguration.IconDescriptor;
+import org.eclipse.papyrus.uml.diagram.paletteconfiguration.PaletteConfiguration;
+import org.eclipse.papyrus.uml.diagram.paletteconfiguration.PaletteconfigurationFactory;
+import org.eclipse.papyrus.uml.diagram.paletteconfiguration.PaletteconfigurationPackage;
+import org.eclipse.papyrus.uml.diagram.paletteconfiguration.SeparatorConfiguration;
+import org.eclipse.papyrus.uml.diagram.paletteconfiguration.StackConfiguration;
+import org.eclipse.papyrus.uml.diagram.paletteconfiguration.ToolConfiguration;
+import org.eclipse.papyrus.uml.diagram.paletteconfiguration.ToolKind;
 
 /**
  * <!-- begin-user-doc -->

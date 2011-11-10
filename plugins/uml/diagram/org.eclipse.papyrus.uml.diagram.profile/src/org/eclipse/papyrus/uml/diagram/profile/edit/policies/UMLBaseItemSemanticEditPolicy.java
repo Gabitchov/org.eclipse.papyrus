@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
  *
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -44,14 +44,14 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelations
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.extendedtypes.types.IExtendedHintedElementType;
-import org.eclipse.papyrus.profile.utils.Util;
-import org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils;
-import org.eclipse.papyrus.service.edit.service.IElementEditService;
+import org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType;
+import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
+import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.uml.diagram.common.helper.UMLBaseEditHelper;
 import org.eclipse.papyrus.uml.diagram.profile.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.profile.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.profile.providers.UMLElementTypes;
+import org.eclipse.papyrus.uml.profile.utils.Util;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
@@ -115,6 +115,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 * 
 	 * @generated
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	public Command getCommand(Request request) {
 		if(request instanceof ReconnectRequest) {
@@ -122,7 +123,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			if(view instanceof View) {
 				Integer id = new Integer(UMLVisualIDRegistry.getVisualID((View)view));
 				request.getExtendedData().put(VISUAL_ID_KEY, id);
-				request.getExtendedData().put(GRAPHICAL_RECONNECTED_EDGE, (View)view);
+				request.getExtendedData().put(GRAPHICAL_RECONNECTED_EDGE, view);
 			}
 		}
 		return super.getCommand(request);
@@ -141,6 +142,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected Command getSemanticCommand(IEditCommandRequest request) {
 		IEditCommandRequest completedRequest = completeRequest(request);
 		Command semanticCommand = getSemanticCommandSwitch(completedRequest);
@@ -452,7 +454,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			if(source != null) {
 				if(source.getAnnotatedElements().contains(target)
 
-				) {
+					) {
 					return false;
 				}
 			}
@@ -468,7 +470,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			if(source != null) {
 				if(source.getConstrainedElements().contains(target)
 
-				) {
+					) {
 					return false;
 				}
 			}
@@ -506,7 +508,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		public boolean canExistAssociation_4001(Package container, Association linkInstance, Type source, Type target) {
 			try {
 				//AssociationSource
-				if((source instanceof Type) && Util.isMetaclass((Type)source)) {
+				if((source instanceof Type) && Util.isMetaclass(source)) {
 					return false;
 				}
 				if(source instanceof Extension) {
@@ -538,7 +540,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		public boolean canExistAssociation_4019(Package container, Association linkInstance, Type source, Type target) {
 			try {
 				//AssociationSource
-				if((source instanceof Type) && Util.isMetaclass((Type)source)) {
+				if((source instanceof Type) && Util.isMetaclass(source)) {
 					return false;
 				}
 				if(source instanceof Extension) {
@@ -603,7 +605,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 				if(source instanceof Extension) {
 					return false;
 				}
-				//DependencyTarget 
+				//DependencyTarget
 				if(target != null) {
 					if(target instanceof Extension) {
 						return false;
@@ -628,7 +630,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 				if(source instanceof Extension) {
 					return false;
 				}
-				//DependencyTarget 
+				//DependencyTarget
 				if(target != null) {
 					if(target instanceof Extension) {
 						return false;

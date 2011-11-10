@@ -3502,37 +3502,37 @@
             body="org.eclipse.uml2.uml.LiteralString literalString=org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createLiteralString();&#xD;&#xA;literalString.setValue(&quot;&quot;);&#xD;&#xA;return literalString;"/>
         <expressions
             xsi:type="gmfgen:GenConstraint"
-            body="//GeneralizationSource&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;if(!(source instanceof org.eclipse.uml2.uml.Classifier)) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;return false;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;if(org.eclipse.papyrus.profile.utils.Util.isMetaclass(source)) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;return false;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;if(source instanceof org.eclipse.uml2.uml.Extension){&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;return false; //meaningless&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;}"/>
+            body="//GeneralizationSource&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;if(!(source instanceof org.eclipse.uml2.uml.Classifier)) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;return false;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;if(org.eclipse.papyrus.uml.profile.utils.Util.isMetaclass(source)) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;return false;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;if(source instanceof org.eclipse.uml2.uml.Extension){&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;return false; //meaningless&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;}"/>
         <expressions
             xsi:type="gmfgen:GenConstraint"
             body="//GeneralizationTarget&#xD;&#xA;if(target != null) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;if(!(target instanceof org.eclipse.uml2.uml.Classifier)) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;return false;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;if(Util.isMetaclass(target)) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;return false;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;if(target instanceof org.eclipse.uml2.uml.Extension){&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;return false;//meaningless&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;}"/>
         <expressions
             xsi:type="gmfgen:GenConstraint"
-            body="//AssociationSource&#xD;&#xA;if((source instanceof org.eclipse.uml2.uml.Type) &amp;&amp; org.eclipse.papyrus.profile.utils.Util.isMetaclass((org.eclipse.uml2.uml.Type)source)) {&#xD;&#xA;&#x9;return false;&#xD;&#xA;}&#xD;&#xA;if(source instanceof org.eclipse.uml2.uml.Extension){&#xD;&#xA;&#x9;return false;&#xD;&#xA;}"/>
+            body="//AssociationSource&#xD;&#xA;if((source instanceof org.eclipse.uml2.uml.Type) &amp;&amp; org.eclipse.papyrus.uml.profile.utils.Util.isMetaclass((org.eclipse.uml2.uml.Type)source)) {&#xD;&#xA;&#x9;return false;&#xD;&#xA;}&#xD;&#xA;if(source instanceof org.eclipse.uml2.uml.Extension){&#xD;&#xA;&#x9;return false;&#xD;&#xA;}"/>
         <expressions
             xsi:type="gmfgen:GenConstraint"
             body="//AssociationTarget&#xD;&#xA;if(target!=null){&#xD;&#xA;&#x9;if(target instanceof org.eclipse.uml2.uml.Extension){&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;&#x9;}&#xD;&#xA;}"/>
         <expressions
             xsi:type="gmfgen:GenConstraint"
-            body="//DependencySource&#xD;&#xA;if((source instanceof org.eclipse.uml2.uml.Type) &amp;&amp; org.eclipse.papyrus.profile.utils.Util.isMetaclass((org.eclipse.uml2.uml.Type)source)) {&#xD;&#xA;&#x9;return false;&#xD;&#xA;}&#xD;&#xA;if(source instanceof org.eclipse.uml2.uml.Extension){&#xD;&#xA;&#x9;return false;&#xD;&#xA;}"/>
+            body="//DependencySource&#xD;&#xA;if((source instanceof org.eclipse.uml2.uml.Type) &amp;&amp; org.eclipse.papyrus.uml.profile.utils.Util.isMetaclass((org.eclipse.uml2.uml.Type)source)) {&#xD;&#xA;&#x9;return false;&#xD;&#xA;}&#xD;&#xA;if(source instanceof org.eclipse.uml2.uml.Extension){&#xD;&#xA;&#x9;return false;&#xD;&#xA;}"/>
         <expressions
             xsi:type="gmfgen:GenConstraint"
             body="//DependencyTarget &#xD;&#xA;if(target!=null){&#xD;&#xA;&#x9;if(target instanceof org.eclipse.uml2.uml.Extension){&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;&#x9;}&#xD;&#xA;}"/>
         <expressions
             xsi:type="gmfgen:GenConstraint"
-            body="//ElementImportSource&#xD;&#xA;if((source instanceof org.eclipse.uml2.uml.Type) &amp;&amp; org.eclipse.papyrus.profile.utils.Util.isMetaclass((org.eclipse.uml2.uml.Type)source)) {&#xD;&#xA;&#x9;return false;&#xD;&#xA;}&#xD;&#xA;if(source instanceof  org.eclipse.uml2.uml.Extension){&#xD;&#xA;&#x9;return false;&#xD;&#xA;}"/>
+            body="//ElementImportSource&#xD;&#xA;if((source instanceof org.eclipse.uml2.uml.Type) &amp;&amp; org.eclipse.papyrus.uml.profile.utils.Util.isMetaclass((org.eclipse.uml2.uml.Type)source)) {&#xD;&#xA;&#x9;return false;&#xD;&#xA;}&#xD;&#xA;if(source instanceof  org.eclipse.uml2.uml.Extension){&#xD;&#xA;&#x9;return false;&#xD;&#xA;}"/>
         <expressions
             xsi:type="gmfgen:GenConstraint"
             body="//ElementImportTarget&#xD;&#xA;if(target!=null){&#xD;&#xA;&#x9;if(target instanceof  org.eclipse.uml2.uml.Extension){&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;&#x9;}&#xD;&#xA;}"/>
         <expressions
             xsi:type="gmfgen:GenConstraint"
-            body="//PackageImportSource&#xD;&#xA;if((source instanceof org.eclipse.uml2.uml.Type) &amp;&amp; org.eclipse.papyrus.profile.utils.Util.isMetaclass((org.eclipse.uml2.uml.Type)source)) {&#xD;&#xA;&#x9;return false;&#xD;&#xA;}&#xD;&#xA;if(source instanceof org.eclipse.uml2.uml.Extension){&#xD;&#xA;&#x9;return false;&#xD;&#xA;}"/>
+            body="//PackageImportSource&#xD;&#xA;if((source instanceof org.eclipse.uml2.uml.Type) &amp;&amp; org.eclipse.papyrus.uml.profile.utils.Util.isMetaclass((org.eclipse.uml2.uml.Type)source)) {&#xD;&#xA;&#x9;return false;&#xD;&#xA;}&#xD;&#xA;if(source instanceof org.eclipse.uml2.uml.Extension){&#xD;&#xA;&#x9;return false;&#xD;&#xA;}"/>
         <expressions
             xsi:type="gmfgen:GenConstraint"
-            body="//AnnotatedElementLink target&#xD;&#xA;if((target instanceof org.eclipse.uml2.uml.Type) &amp;&amp; org.eclipse.papyrus.profile.utils.Util.isMetaclass((org.eclipse.uml2.uml.Type)target)) {&#xD;&#xA;&#x9;return false;&#xD;&#xA;}"/>
+            body="//AnnotatedElementLink target&#xD;&#xA;if((target instanceof org.eclipse.uml2.uml.Type) &amp;&amp; org.eclipse.papyrus.uml.profile.utils.Util.isMetaclass((org.eclipse.uml2.uml.Type)target)) {&#xD;&#xA;&#x9;return false;&#xD;&#xA;}"/>
         <expressions
             xsi:type="gmfgen:GenConstraint"
-            body="//ConstraintedElementLink&#xD;&#xA;if((target instanceof org.eclipse.uml2.uml.Type) &amp;&amp; org.eclipse.papyrus.profile.utils.Util.isMetaclass((org.eclipse.uml2.uml.Type)target)) {&#xD;&#xA;&#x9;return false;&#xD;&#xA;}"/>
+            body="//ConstraintedElementLink&#xD;&#xA;if((target instanceof org.eclipse.uml2.uml.Type) &amp;&amp; org.eclipse.papyrus.uml.profile.utils.Util.isMetaclass((org.eclipse.uml2.uml.Type)target)) {&#xD;&#xA;&#x9;return false;&#xD;&#xA;}"/>
       </providers>
     </expressionProviders>
     <labelParsers

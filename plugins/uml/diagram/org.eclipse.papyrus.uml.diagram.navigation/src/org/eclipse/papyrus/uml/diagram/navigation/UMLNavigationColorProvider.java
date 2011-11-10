@@ -15,7 +15,7 @@ package org.eclipse.papyrus.uml.diagram.navigation;
 
 import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.jface.viewers.IColorProvider;
-import org.eclipse.papyrus.navigation.NavigableElement;
+import org.eclipse.papyrus.infra.gmfdiag.navigation.NavigableElement;
 import org.eclipse.swt.graphics.Color;
 
 public class UMLNavigationColorProvider implements IColorProvider {

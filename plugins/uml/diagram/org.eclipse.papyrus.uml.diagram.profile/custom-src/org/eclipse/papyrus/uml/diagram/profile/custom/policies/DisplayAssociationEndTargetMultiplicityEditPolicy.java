@@ -23,7 +23,7 @@ public class DisplayAssociationEndTargetMultiplicityEditPolicy extends DisplayAs
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.diagram.clazz.custom.policies.DisplayAssociationEndEditPolicy#getDefaultDisplayValue()
+	 * @see org.eclipse.papyrus.uml.diagram.clazz.custom.policies.DisplayAssociationEndEditPolicy#getDefaultDisplayValue()
 	 * 
 	 */
 	@Override

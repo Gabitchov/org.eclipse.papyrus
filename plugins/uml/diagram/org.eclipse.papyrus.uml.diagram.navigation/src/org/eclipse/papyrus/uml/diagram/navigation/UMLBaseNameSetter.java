@@ -17,7 +17,7 @@ import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.navigation.IBaseNameSetter;
+import org.eclipse.papyrus.infra.gmfdiag.navigation.IBaseNameSetter;
 import org.eclipse.papyrus.uml.tools.utils.NamedElementUtil;
 import org.eclipse.uml2.uml.NamedElement;
 

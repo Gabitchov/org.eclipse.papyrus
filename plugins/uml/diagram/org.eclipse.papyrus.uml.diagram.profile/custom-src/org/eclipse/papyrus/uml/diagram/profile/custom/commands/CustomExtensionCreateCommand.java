@@ -49,7 +49,7 @@ import org.eclipse.uml2.uml.UMLFactory;
  * </pre>
  */
 /**
- * This class looks like org.eclipse.papyrus.diagram.composite.custom.edit.commandConnectorCreateCommand
+ * This class looks like org.eclipse.papyrus.uml.diagram.composite.custom.edit.commandConnectorCreateCommand
  */
 public class CustomExtensionCreateCommand extends ExtensionCreateCommand {
 

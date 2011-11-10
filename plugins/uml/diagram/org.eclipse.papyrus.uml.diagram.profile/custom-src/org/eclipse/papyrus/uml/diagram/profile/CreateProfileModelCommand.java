@@ -14,7 +14,7 @@
 package org.eclipse.papyrus.uml.diagram.profile;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.core.extension.commands.ModelCreationCommandBase;
+import org.eclipse.papyrus.infra.core.extension.commands.ModelCreationCommandBase;
 import org.eclipse.uml2.uml.UMLFactory;
 
 
@@ -26,7 +26,7 @@ public class CreateProfileModelCommand extends ModelCreationCommandBase {
 	public static final String COMMAND_ID = "profile"; 
 
 	/**
-	 * @see org.eclipse.papyrus.core.extension.commands.ModelCreationCommandBase#createRootElement()
+	 * @see org.eclipse.papyrus.infra.core.extension.commands.ModelCreationCommandBase#createRootElement()
 	 * 
 	 * @return
 	 */
@@ -37,7 +37,7 @@ public class CreateProfileModelCommand extends ModelCreationCommandBase {
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.core.extension.commands.ModelCreationCommandBase#initializeModel(org.eclipse.emf.ecore.EObject)
+	 * @see org.eclipse.papyrus.infra.core.extension.commands.ModelCreationCommandBase#initializeModel(org.eclipse.emf.ecore.EObject)
 	 * 
 	 * @param owner
 	 */

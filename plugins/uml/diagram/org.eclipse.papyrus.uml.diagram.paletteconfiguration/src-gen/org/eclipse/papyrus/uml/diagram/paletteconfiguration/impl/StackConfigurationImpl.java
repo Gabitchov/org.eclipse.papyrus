@@ -9,15 +9,11 @@ package org.eclipse.papyrus.uml.diagram.paletteconfiguration.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
 import org.eclipse.papyrus.uml.diagram.paletteconfiguration.LeafConfiguration;
 import org.eclipse.papyrus.uml.diagram.paletteconfiguration.PaletteconfigurationPackage;
 import org.eclipse.papyrus.uml.diagram.paletteconfiguration.StackConfiguration;

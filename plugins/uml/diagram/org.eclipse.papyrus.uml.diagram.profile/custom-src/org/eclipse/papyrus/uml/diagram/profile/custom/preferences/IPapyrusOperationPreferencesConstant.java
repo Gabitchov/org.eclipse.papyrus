@@ -13,7 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.profile.custom.preferences;
 
-import org.eclipse.uml2.uml.Operation;
 
 /**
  * Constants for {@link Operation} preferences.

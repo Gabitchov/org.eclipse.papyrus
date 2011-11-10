@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
  *
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -13,11 +13,10 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.profile.service;
 
-import org.eclipse.papyrus.core.lifecycleevents.ILifeCycleEventsProvider;
-import org.eclipse.papyrus.core.lifecycleevents.LifeCycleEventsProvider;
-import org.eclipse.papyrus.core.services.IService;
-import org.eclipse.papyrus.core.services.ServiceException;
-import org.eclipse.papyrus.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.core.lifecycleevents.ILifeCycleEventsProvider;
+import org.eclipse.papyrus.infra.core.services.IService;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 
 
 /**
@@ -57,7 +56,7 @@ public class ProfileService implements IService {
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.core.services.IService#disposeService()
+	 * @see org.eclipse.papyrus.infra.core.services.IService#disposeService()
 	 * 
 	 */
 	public void disposeService() {
@@ -70,7 +69,7 @@ public class ProfileService implements IService {
 	 * Initialize the service. Set the {@link ServicesRegistry} that can be used to retrieve other services.
 	 * This method is called after the object instanciation, and before the service start.
 	 * 
-	 * @see org.eclipse.papyrus.core.services.IService#init(org.eclipse.papyrus.core.services.ServicesRegistry)
+	 * @see org.eclipse.papyrus.infra.core.services.IService#init(org.eclipse.papyrus.infra.core.services.ServicesRegistry)
 	 * 
 	 * @param servicesRegistry
 	 */
@@ -80,7 +79,7 @@ public class ProfileService implements IService {
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.core.services.IService#startService()
+	 * @see org.eclipse.papyrus.infra.core.services.IService#startService()
 	 * 
 	 */
 	public void startService() {

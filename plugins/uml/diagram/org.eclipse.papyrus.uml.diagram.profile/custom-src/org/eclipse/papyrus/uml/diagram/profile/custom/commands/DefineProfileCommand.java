@@ -30,8 +30,8 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.profile.definition.PapyrusDefinitionAnnotation;
-import org.eclipse.papyrus.profile.definition.ProfileRedefinition;
+import org.eclipse.papyrus.uml.profile.definition.PapyrusDefinitionAnnotation;
+import org.eclipse.papyrus.uml.profile.definition.ProfileRedefinition;
 import org.eclipse.papyrus.uml.tools.utils.PackageUtil;
 import org.eclipse.uml2.uml.Profile;
 

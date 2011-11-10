@@ -18,7 +18,7 @@ import java.util.Comparator;
 import java.util.Iterator;
 
 import org.eclipse.core.runtime.Assert;
-import org.eclipse.papyrus.profile.ui.dialogs.ElementList;
+import org.eclipse.papyrus.uml.profile.ui.dialogs.ElementList;
 
 /**
  * Creates a new ElementList with a special comparator. This comparator is used to modify the

@@ -12,11 +12,8 @@ import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
-import org.eclipse.papyrus.core.queries.configuration.ConfigurationPackage;
-
+import org.eclipse.papyrus.infra.queries.core.configuration.ConfigurationPackage;
 import org.eclipse.papyrus.uml.diagram.paletteconfiguration.ChildConfiguration;
 import org.eclipse.papyrus.uml.diagram.paletteconfiguration.Configuration;
 import org.eclipse.papyrus.uml.diagram.paletteconfiguration.DrawerConfiguration;

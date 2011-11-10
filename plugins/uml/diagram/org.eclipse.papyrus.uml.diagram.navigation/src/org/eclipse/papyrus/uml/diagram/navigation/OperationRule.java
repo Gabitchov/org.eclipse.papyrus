@@ -18,10 +18,10 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.papyrus.navigation.ExistingNavigableElement;
-import org.eclipse.papyrus.navigation.IModelLinker;
-import org.eclipse.papyrus.navigation.INavigationRule;
-import org.eclipse.papyrus.navigation.NavigableElement;
+import org.eclipse.papyrus.infra.gmfdiag.navigation.ExistingNavigableElement;
+import org.eclipse.papyrus.infra.gmfdiag.navigation.IModelLinker;
+import org.eclipse.papyrus.infra.gmfdiag.navigation.INavigationRule;
+import org.eclipse.papyrus.infra.gmfdiag.navigation.NavigableElement;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.UMLPackage;

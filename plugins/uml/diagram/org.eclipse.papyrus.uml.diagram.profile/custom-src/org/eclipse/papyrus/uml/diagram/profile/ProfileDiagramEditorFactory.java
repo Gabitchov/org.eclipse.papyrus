@@ -15,7 +15,7 @@
 
 package org.eclipse.papyrus.uml.diagram.profile;
 
-import org.eclipse.papyrus.core.adaptor.gmf.GmfEditorFactory;
+import org.eclipse.papyrus.infra.core.adaptor.gmf.GmfEditorFactory;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ProfileDiagramEditPart;
 
 /**

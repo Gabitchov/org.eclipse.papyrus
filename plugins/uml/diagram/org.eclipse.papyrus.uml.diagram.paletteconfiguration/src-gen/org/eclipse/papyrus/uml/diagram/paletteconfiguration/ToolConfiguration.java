@@ -7,8 +7,7 @@
 package org.eclipse.papyrus.uml.diagram.paletteconfiguration;
 
 import org.eclipse.emf.common.util.EList;
-
-import org.eclipse.papyrus.core.queries.configuration.QueryConfiguration;
+import org.eclipse.papyrus.infra.queries.core.configuration.QueryConfiguration;
 
 /**
  * <!-- begin-user-doc -->

@@ -16,7 +16,7 @@ package org.eclipse.papyrus.uml.diagram.navigation;
 import java.util.HashMap;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.papyrus.navigation.NavigableElement;
+import org.eclipse.papyrus.infra.gmfdiag.navigation.NavigableElement;
 import org.eclipse.uml2.uml.UMLPackage;
 
 

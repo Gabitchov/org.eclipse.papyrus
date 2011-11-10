@@ -8,12 +8,19 @@ package org.eclipse.papyrus.uml.diagram.paletteconfiguration.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.papyrus.uml.diagram.paletteconfiguration.*;
+import org.eclipse.papyrus.uml.diagram.paletteconfiguration.ChildConfiguration;
+import org.eclipse.papyrus.uml.diagram.paletteconfiguration.Configuration;
+import org.eclipse.papyrus.uml.diagram.paletteconfiguration.DrawerConfiguration;
+import org.eclipse.papyrus.uml.diagram.paletteconfiguration.ElementDescriptor;
+import org.eclipse.papyrus.uml.diagram.paletteconfiguration.IconDescriptor;
+import org.eclipse.papyrus.uml.diagram.paletteconfiguration.LeafConfiguration;
+import org.eclipse.papyrus.uml.diagram.paletteconfiguration.PaletteConfiguration;
+import org.eclipse.papyrus.uml.diagram.paletteconfiguration.PaletteconfigurationPackage;
+import org.eclipse.papyrus.uml.diagram.paletteconfiguration.SeparatorConfiguration;
+import org.eclipse.papyrus.uml.diagram.paletteconfiguration.StackConfiguration;
+import org.eclipse.papyrus.uml.diagram.paletteconfiguration.ToolConfiguration;
 
 /**
  * <!-- begin-user-doc -->

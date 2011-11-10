@@ -125,7 +125,7 @@ public class DisplayAssociationEndEditPolicy extends AbstractMaskManagedEditPoli
 	}
 
 	public String getPreferencePageID() {
-		return "org.eclipse.papyrus.diagram.clazz.custom.preferences.PropertyPreferencePage"; //$NON-NLS-1$
+		return "org.eclipse.papyrus.uml.diagram.clazz.custom.preferences.PropertyPreferencePage"; //$NON-NLS-1$
 	}
 
 	/**
