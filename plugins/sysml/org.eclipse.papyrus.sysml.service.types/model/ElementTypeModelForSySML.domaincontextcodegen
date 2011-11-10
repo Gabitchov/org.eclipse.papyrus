@@ -97,7 +97,7 @@
   <advices adviceID="org.eclipse.papyrus.sysml.advice.ConstraintBlockPropertyHelperAdvice" advicePath="org.eclipse.papyrus.sysml.service.types.helper.ConstraintBlockPropertyEditHelperAdvice" inheritance="all">
     <ref xsi:type="domaincontextcodegen:MetaClassType" href="../../org.eclipse.papyrus.uml.service.types/model/ElementTypeModelForUML.domaincontextcodegen#//@elementTypes/@types.172"/>
   </advices>
-  <bindings clientContextID="org.eclipse.papyrus.service.edit.TypeContext">
+  <bindings clientContextID="org.eclipse.papyrus.infra.services.edit.TypeContext">
     <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.0"/>
     <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.1"/>
     <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.2"/>

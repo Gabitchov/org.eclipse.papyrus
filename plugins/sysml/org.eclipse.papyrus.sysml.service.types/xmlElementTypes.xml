@@ -382,7 +382,7 @@
 <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
 
 	<!-- Bindings declaration -->
-	<binding context="org.eclipse.papyrus.service.edit.TypeContext">
+	<binding context="org.eclipse.papyrus.infra.services.edit.TypeContext">
 	
 		<elementType ref="org.eclipse.papyrus.sysml.Allocate" />
 		<elementType ref="org.eclipse.papyrus.sysml.Association" />

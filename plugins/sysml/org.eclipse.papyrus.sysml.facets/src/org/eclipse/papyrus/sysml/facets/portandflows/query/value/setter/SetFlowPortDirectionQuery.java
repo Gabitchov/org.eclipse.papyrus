@@ -18,16 +18,16 @@ import org.eclipse.emf.facet.infra.query.core.exception.ModelQueryExecutionExcep
 import org.eclipse.emf.facet.infra.query.core.java.IJavaModelQueryWithEditingDomain;
 import org.eclipse.emf.facet.infra.query.core.java.ParameterValueList;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
-import org.eclipse.papyrus.core.utils.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.gmf.diagram.common.commands.IdentityCommandWithNotification;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
+import org.eclipse.papyrus.infra.widgets.toolbox.notification.Type;
 import org.eclipse.papyrus.sysml.facets.extendedsysml.extendedsysml.portandflows.NAFlowPortDirection;
 import org.eclipse.papyrus.sysml.facets.messages.Messages;
 import org.eclipse.papyrus.sysml.portandflows.FlowPort;
 import org.eclipse.papyrus.sysml.portandflows.PortandflowsPackage;
 import org.eclipse.papyrus.sysml.util.ElementUtil;
-import org.eclipse.papyrus.ui.toolbox.notification.Type;
 import org.eclipse.uml2.uml.Port;
 
 /** Query to qet the attribute "Direction" of the FlowPort */

@@ -20,15 +20,15 @@ import org.eclipse.emf.facet.infra.query.core.exception.ModelQueryExecutionExcep
 import org.eclipse.emf.facet.infra.query.core.java.IJavaModelQueryWithEditingDomain;
 import org.eclipse.emf.facet.infra.query.core.java.ParameterValueList;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
-import org.eclipse.papyrus.core.utils.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.gmf.diagram.common.commands.IdentityCommandWithNotification;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
+import org.eclipse.papyrus.infra.widgets.toolbox.notification.Type;
 import org.eclipse.papyrus.sysml.facets.messages.Messages;
 import org.eclipse.papyrus.sysml.requirements.Requirement;
 import org.eclipse.papyrus.sysml.requirements.RequirementsPackage;
 import org.eclipse.papyrus.sysml.util.ElementUtil;
-import org.eclipse.papyrus.ui.toolbox.notification.Type;
 import org.eclipse.uml2.uml.Class;
 
 /** Query to set the attribute "id" of the requirement */
