@@ -13,9 +13,9 @@ package org.eclipse.papyrus.navigator.filters;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
-import org.eclipse.papyrus.core.utils.DiResourceSet;
-import org.eclipse.papyrus.resource.notation.NotationModel;
-import org.eclipse.papyrus.resource.sasheditor.DiModel;
+import org.eclipse.papyrus.infra.core.resource.notation.NotationModel;
+import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModel;
+import org.eclipse.papyrus.infra.core.utils.DiResourceSet;
 
 /**
  * Filter that hides/shows the di/uml/notation.

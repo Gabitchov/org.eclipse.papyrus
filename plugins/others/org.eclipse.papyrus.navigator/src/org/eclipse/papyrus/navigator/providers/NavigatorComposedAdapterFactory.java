@@ -20,8 +20,8 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.ecore.provider.EcoreItemProviderAdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
-import org.eclipse.papyrus.core.Activator;
-import org.eclipse.papyrus.core.extension.ExtensionException;
+import org.eclipse.papyrus.infra.core.Activator;
+import org.eclipse.papyrus.infra.core.extension.ExtensionException;
 
 /**
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>

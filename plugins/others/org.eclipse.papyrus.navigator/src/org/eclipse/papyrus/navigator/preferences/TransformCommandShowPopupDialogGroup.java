@@ -15,7 +15,7 @@ package org.eclipse.papyrus.navigator.preferences;
 
 import org.eclipse.jface.dialogs.DialogPage;
 import org.eclipse.jface.preference.BooleanFieldEditor;
-import org.eclipse.papyrus.preferences.ui.AbstractGroup;
+import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.AbstractGroup;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;

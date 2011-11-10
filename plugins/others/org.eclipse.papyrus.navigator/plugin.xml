@@ -250,7 +250,7 @@
    <extension
          point="org.eclipse.ui.preferencePages">
       <page
-      		category="org.eclipse.papyrus.preferences.generalcategory"
+      		category="org.eclipse.papyrus.infra.gmfdiag.preferences.generalcategory"
             class="org.eclipse.papyrus.navigator.preferences.NavigatorPreferencePage"
             id="org.eclipse.papyrus.navigator.preferences.NavigatorPreferencePage"
             name="Model Explorer">
@@ -262,7 +262,7 @@
             allPopups="false"
             locationURI="popup:org.eclipse.papyrus.navigator.modelExplorer">
          <menu
-               id="org.eclipse.papyrus.modelexplorer.popupmenu.createchild"
+               id="org.eclipse.papyrus.views.modelexplorer.popupmenu.createchild"
                label="Create Child ...">
          </menu>
       </menuContribution>

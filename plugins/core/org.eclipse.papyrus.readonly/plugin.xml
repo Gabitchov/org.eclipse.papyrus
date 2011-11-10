@@ -17,7 +17,7 @@
          <enabledWhen>
             <and>
                <with variable="activeEditorId">
-                  <equals value="org.eclipse.papyrus.core.papyrusEditor"/>
+                  <equals value="org.eclipse.papyrus.infra.core.papyrusEditor"/>
                </with>
                <with
                      variable="selection">
@@ -55,7 +55,7 @@
 			style="push"
 			tooltip="Enable write">
 			<visibleWhen>
-				<reference definitionId="org.eclipse.papyrus.diagram.common.IsPapyrusActiveWithUMLModel"/>
+				<reference definitionId="org.eclipse.papyrus.uml.diagram.common.IsPapyrusActiveWithUMLModel"/>
 			</visibleWhen>
 		</command>
 	</menuContribution>
@@ -68,7 +68,7 @@
 			style="push"
 			tooltip="Enable write">
 			<visibleWhen>
-				<reference definitionId="org.eclipse.papyrus.diagram.common.IsPapyrusActiveWithUMLModel"/>
+				<reference definitionId="org.eclipse.papyrus.uml.diagram.common.IsPapyrusActiveWithUMLModel"/>
 			</visibleWhen>
 		</command>
 	</menuContribution>
@@ -81,14 +81,14 @@
 			style="push"
 			tooltip="Enable write">
 			<visibleWhen>
-				<reference definitionId="org.eclipse.papyrus.diagram.common.IsPapyrusActiveWithUMLModel"/>
+				<reference definitionId="org.eclipse.papyrus.uml.diagram.common.IsPapyrusActiveWithUMLModel"/>
 			</visibleWhen>
 		</command>
 	</toolbar>
 	</menuContribution>
    </extension>
 <extension
-      point="org.eclipse.papyrus.core.transactionalEditingDomainProvider">
+      point="org.eclipse.papyrus.infra.core.transactionalEditingDomainProvider">
    <transactionalEditingDomainProvider
          class="org.eclipse.papyrus.readonly.ReadOnlyTransactionalEditingDomainProvider"
          priority="10">
@@ -112,9 +112,9 @@
    </operationApprover>
 </extension>
    <extension
-         point="org.eclipse.papyrus.ui.perspectiveconfiguration">
+         point="org.eclipse.papyrus.editor.perspectiveconfiguration">
       <configuration
-            perspectiveID="org.eclipse.papyrus.core.perspective">
+            perspectiveID="org.eclipse.papyrus.infra.core.perspective">
          <toolbar
                toolbarID="org.eclipse.papyrus.readonly.toolbar">
          </toolbar>

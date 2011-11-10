@@ -30,9 +30,9 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.core.internal.command.ICommandWithSettableResult;
-import org.eclipse.papyrus.onefile.model.IPapyrusFile;
-import org.eclipse.papyrus.onefile.model.PapyrusModelHelper;
-import org.eclipse.papyrus.onefile.utils.OneFileUtils;
+import org.eclipse.papyrus.infra.onefile.model.IPapyrusFile;
+import org.eclipse.papyrus.infra.onefile.model.PapyrusModelHelper;
+import org.eclipse.papyrus.infra.onefile.utils.OneFileUtils;
 
 public class FSReadOnlyOneFileApprover implements IOperationApprover2 {
 

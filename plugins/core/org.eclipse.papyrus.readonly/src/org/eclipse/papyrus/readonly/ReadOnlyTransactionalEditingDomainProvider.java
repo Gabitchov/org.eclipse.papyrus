@@ -22,7 +22,7 @@ import org.eclipse.emf.workspace.IResourceUndoContextPolicy;
 import org.eclipse.emf.workspace.WorkspaceEditingDomainFactory;
 import org.eclipse.papyrus.commands.CheckedOperationHistory;
 import org.eclipse.papyrus.commands.NotifyingWorkspaceCommandStack;
-import org.eclipse.papyrus.resource.ITransactionalEditingDomainProvider;
+import org.eclipse.papyrus.infra.core.resource.ITransactionalEditingDomainProvider;
 
 public class ReadOnlyTransactionalEditingDomainProvider implements ITransactionalEditingDomainProvider {
 

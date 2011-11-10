@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.jface.viewers.ILabelProvider;
-import org.eclipse.papyrus.core.utils.DisplayUtils;
+import org.eclipse.papyrus.infra.core.utils.DisplayUtils;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Namespace;

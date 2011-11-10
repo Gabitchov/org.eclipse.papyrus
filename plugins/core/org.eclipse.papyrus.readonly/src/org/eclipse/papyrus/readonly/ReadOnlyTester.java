@@ -19,7 +19,7 @@ import org.eclipse.core.expressions.PropertyTester;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.papyrus.core.utils.BusinessModelResolver;
+import org.eclipse.papyrus.infra.core.utils.BusinessModelResolver;
 
 public class ReadOnlyTester extends PropertyTester {
 

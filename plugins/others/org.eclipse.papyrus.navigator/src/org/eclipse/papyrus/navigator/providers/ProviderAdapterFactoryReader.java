@@ -15,8 +15,8 @@ package org.eclipse.papyrus.navigator.providers;
 
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.emf.common.notify.AdapterFactory;
-import org.eclipse.papyrus.core.extension.ExtensionException;
-import org.eclipse.papyrus.core.extension.ExtensionUtils;
+import org.eclipse.papyrus.infra.core.extension.ExtensionException;
+import org.eclipse.papyrus.infra.core.extension.ExtensionUtils;
 
 public class ProviderAdapterFactoryReader extends ExtensionUtils {
 

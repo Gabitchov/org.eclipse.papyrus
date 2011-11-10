@@ -25,7 +25,7 @@ import java.util.Set;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.papyrus.eclipse.project.editors.Activator;
 import org.eclipse.papyrus.eclipse.project.editors.interfaces.IBuildEditor;
-import org.eclipse.papyrus.widgets.util.FileUtil;
+import org.eclipse.papyrus.infra.widgets.util.FileUtil;
 
 public class BuildEditor extends AbstractFileEditor implements IBuildEditor {
 

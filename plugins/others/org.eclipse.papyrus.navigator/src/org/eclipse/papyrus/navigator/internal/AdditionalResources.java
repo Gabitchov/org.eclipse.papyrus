@@ -16,7 +16,7 @@ package org.eclipse.papyrus.navigator.internal;
 import java.util.List;
 
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.papyrus.core.utils.DiResourceSet;
+import org.eclipse.papyrus.infra.core.utils.DiResourceSet;
 
 /**
  * This object computes all the loaded resources from a resource set. <br>
