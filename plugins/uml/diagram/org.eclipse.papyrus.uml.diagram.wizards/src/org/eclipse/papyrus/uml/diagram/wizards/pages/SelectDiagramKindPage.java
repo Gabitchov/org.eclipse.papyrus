@@ -25,10 +25,10 @@ import org.eclipse.jface.viewers.CheckboxTableViewer;
 import org.eclipse.jface.viewers.IBaseLabelProvider;
 import org.eclipse.jface.wizard.IWizard;
 import org.eclipse.jface.wizard.WizardPage;
-import org.eclipse.papyrus.core.extension.commands.CreationCommandDescriptor;
-import org.eclipse.papyrus.core.extension.commands.CreationCommandRegistry;
-import org.eclipse.papyrus.core.extension.commands.ICreationCommand;
-import org.eclipse.papyrus.core.extension.commands.ICreationCommandRegistry;
+import org.eclipse.papyrus.infra.core.extension.commands.CreationCommandDescriptor;
+import org.eclipse.papyrus.infra.core.extension.commands.CreationCommandRegistry;
+import org.eclipse.papyrus.infra.core.extension.commands.ICreationCommand;
+import org.eclipse.papyrus.infra.core.extension.commands.ICreationCommandRegistry;
 import org.eclipse.papyrus.uml.diagram.wizards.Messages;
 import org.eclipse.papyrus.uml.diagram.wizards.SettingsHelper;
 import org.eclipse.papyrus.uml.diagram.wizards.kind.DiagramKindContentProvider;
@@ -85,7 +85,7 @@ public class SelectDiagramKindPage extends WizardPage {
 	private final ICreationCommandRegistry myCreationCommandRegistry;
 
 	/** The Constant DEFAULT_CREATION_COMMAND_REGISTRY. */
-	public static final ICreationCommandRegistry DEFAULT_CREATION_COMMAND_REGISTRY = CreationCommandRegistry.getInstance(org.eclipse.papyrus.core.Activator.PLUGIN_ID);
+	public static final ICreationCommandRegistry DEFAULT_CREATION_COMMAND_REGISTRY = CreationCommandRegistry.getInstance(org.eclipse.papyrus.infra.core.Activator.PLUGIN_ID);
 
 	/**
 	 * Instantiates a new select diagram kind page.
@@ -134,7 +134,7 @@ public class SelectDiagramKindPage extends WizardPage {
 		diagramKindTableViewer.setInput(categories);
 
 		createModelTemplateComposite(plate);
-		
+
 		createRememberCurrentSelectionForm(plate);
 
 		fillInTables(categories);
@@ -202,7 +202,7 @@ public class SelectDiagramKindPage extends WizardPage {
 	public String getTemplatePath() {
 		return selectTemplateComposite.getTemplatePath();
 	}
-	
+
 	/**
 	 * Gets the notation model template path.
 	 *
@@ -505,7 +505,7 @@ public class SelectDiagramKindPage extends WizardPage {
 	 */
 	protected CreationCommandDescriptor[] getSelectedDiagramKindDescriptors() {
 		Object[] checked = diagramKindTableViewer.getCheckedElements();
-		// as Object is not a subclass of String we cannot cast Object[] to String[] 
+		// as Object is not a subclass of String we cannot cast Object[] to String[]
 		CreationCommandDescriptor[] result = Arrays.asList(checked).toArray(new CreationCommandDescriptor[checked.length]);
 		return result;
 	}
@@ -555,7 +555,7 @@ public class SelectDiagramKindPage extends WizardPage {
 		}
 		for(Object next : availableTemplates) {
 			ModelTemplateDescription desc = (ModelTemplateDescription)next;
-			
+
 			if(defaultTemplates.contains(desc.getUml_path())) {
 				selectTemplateComposite.selectElement(desc);
 				return;

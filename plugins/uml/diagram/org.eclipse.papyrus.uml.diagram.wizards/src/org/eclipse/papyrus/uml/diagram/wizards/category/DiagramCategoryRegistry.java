@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
  *
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -24,9 +24,9 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtension;
 import org.eclipse.core.runtime.IExtensionPoint;
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.papyrus.core.extension.BadClassNameException;
-import org.eclipse.papyrus.core.extension.ExtensionUtils;
-import org.eclipse.papyrus.core.extension.commands.IModelCreationCommand;
+import org.eclipse.papyrus.infra.core.extension.BadClassNameException;
+import org.eclipse.papyrus.infra.core.extension.ExtensionUtils;
+import org.eclipse.papyrus.infra.core.extension.commands.IModelCreationCommand;
 import org.eclipse.papyrus.uml.diagram.wizards.Messages;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
@@ -36,7 +36,7 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
 public class DiagramCategoryRegistry extends ExtensionUtils {
 
 	/** The Constant CATEGORY_EXTENSION_POINT_NAME. */
-	private static final String CATEGORY_EXTENSION_POINT_NAME = "org.eclipse.papyrus.core.papyrusDiagram"; //$NON-NLS-1$
+	private static final String CATEGORY_EXTENSION_POINT_NAME = "org.eclipse.papyrus.infra.core.papyrusDiagram"; //$NON-NLS-1$
 
 	/** ID of the editor extension (schema filename). */
 	public static final String CATEGORY_ELEMENT_NAME = "diagramCategory"; //$NON-NLS-1$

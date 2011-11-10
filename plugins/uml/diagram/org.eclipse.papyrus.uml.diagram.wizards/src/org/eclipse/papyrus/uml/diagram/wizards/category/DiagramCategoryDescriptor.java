@@ -14,9 +14,8 @@
 package org.eclipse.papyrus.uml.diagram.wizards.category;
 
 import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.papyrus.core.editor.BackboneException;
-import org.eclipse.papyrus.core.extension.commands.ICreationCommand;
-import org.eclipse.papyrus.core.extension.commands.IModelCreationCommand;
+import org.eclipse.papyrus.infra.core.editor.BackboneException;
+import org.eclipse.papyrus.infra.core.extension.commands.IModelCreationCommand;
 
 /**
  * The Class DiagramCategoryDescriptor.

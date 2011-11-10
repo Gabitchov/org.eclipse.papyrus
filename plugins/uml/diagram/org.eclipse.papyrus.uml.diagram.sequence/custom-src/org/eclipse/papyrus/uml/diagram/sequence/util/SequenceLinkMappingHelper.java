@@ -21,7 +21,6 @@ import org.eclipse.papyrus.uml.diagram.common.helper.ILinkMappingHelper;
 import org.eclipse.papyrus.uml.diagram.common.helper.LinkMappingHelper;
 import org.eclipse.papyrus.uml.diagram.common.helper.LinkMappingHelper.CommonSourceUMLSwitch;
 import org.eclipse.papyrus.uml.diagram.common.helper.LinkMappingHelper.CommonTargetUMLSwitch;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CustomDiagramDragDropEditPolicy;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Gate;
 import org.eclipse.uml2.uml.GeneralOrdering;

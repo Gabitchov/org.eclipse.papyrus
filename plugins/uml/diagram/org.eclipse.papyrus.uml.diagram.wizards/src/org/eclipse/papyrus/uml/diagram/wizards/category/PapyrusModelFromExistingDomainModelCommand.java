@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
  *
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -17,11 +17,11 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.papyrus.resource.IModel;
-import org.eclipse.papyrus.resource.ModelSet;
-import org.eclipse.papyrus.resource.notation.NotationModel;
-import org.eclipse.papyrus.resource.sasheditor.DiModel;
-import org.eclipse.papyrus.resource.uml.UmlModel;
+import org.eclipse.papyrus.infra.core.resource.IModel;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
+import org.eclipse.papyrus.infra.core.resource.notation.NotationModel;
+import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModel;
+import org.eclipse.papyrus.infra.core.resource.uml.UmlModel;
 import org.eclipse.papyrus.uml.diagram.wizards.CreateModelWizard.DiResourceSetExt;
 
 /**
@@ -63,9 +63,10 @@ public class PapyrusModelFromExistingDomainModelCommand extends RecordingCommand
 		model.createModel(myFileNameWithoutExtension);
 		model = myDiResourceSet.getModel(NotationModel.MODEL_ID);
 		model.createModel(myFileNameWithoutExtension);
-		// START OF WORKAROUND for #315083 
+		// START OF WORKAROUND for #315083
 		IModel umlModel = new UmlModel() {
 
+			@Override
 			public void createModel(IPath fullPath) {
 				try {
 					resourceURI = myRoot.eResource().getURI();
@@ -81,7 +82,7 @@ public class PapyrusModelFromExistingDomainModelCommand extends RecordingCommand
 
 		//					// call snippets to allow them to do their stuff
 		//					snippets.performStart(this);
-		// END OF WORKAROUND for #315083 
+		// END OF WORKAROUND for #315083
 	}
 
 }

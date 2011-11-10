@@ -15,8 +15,6 @@ package org.eclipse.papyrus.uml.diagram.wizards.template;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 import org.eclipse.core.runtime.IConfigurationElement;
@@ -26,7 +24,6 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.papyrus.core.extension.commands.CreationCommandDescriptor;
 
 /**
  * The Class ModelTemplatesContentProvider.

@@ -14,7 +14,7 @@
 
 package org.eclipse.papyrus.uml.diagram.statemachine;
 
-import org.eclipse.papyrus.core.adaptor.gmf.GmfEditorFactory;
+import org.eclipse.papyrus.infra.core.adaptor.gmf.GmfEditorFactory;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.PackageEditPart;
 
 /**

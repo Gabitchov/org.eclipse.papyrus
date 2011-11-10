@@ -20,7 +20,6 @@ import static org.junit.Assert.assertTrue;
 import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Rectangle;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.LifelineXYLayoutEditPolicy;
 import org.junit.Test;
 
 public class LifelineXYLayoutEditPolicyTest {

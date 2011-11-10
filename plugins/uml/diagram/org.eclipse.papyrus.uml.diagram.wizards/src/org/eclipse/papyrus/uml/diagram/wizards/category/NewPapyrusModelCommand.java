@@ -15,7 +15,7 @@ package org.eclipse.papyrus.uml.diagram.wizards.category;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.papyrus.resource.ModelSet;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
 
 /**
  * The Command to create a new Papyrus Model.

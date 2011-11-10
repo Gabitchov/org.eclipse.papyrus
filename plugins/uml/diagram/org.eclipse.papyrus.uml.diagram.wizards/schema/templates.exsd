@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="org.eclipse.papyrus.diagram.common" xmlns="http://www.w3.org/2001/XMLSchema">
+<schema targetNamespace="org.eclipse.papyrus.uml.diagram.common" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appinfo>
-         <meta.schema plugin="org.eclipse.papyrus.diagram.common" id="templates" name="UML2 Model Templates"/>
+         <meta.schema plugin="org.eclipse.papyrus.uml.diagram.common" id="templates" name="UML2 Model Templates"/>
       </appinfo>
       <documentation>
          This extension point registers UML2 model templates that can be selected when creating new diagrams using the MOSKitt-UML2 editor to initialize new files.
@@ -107,7 +107,7 @@
                   
                </documentation>
                <appinfo>
-                  <meta.attribute kind="identifier" basedOn="org.eclipse.papyrus.core.papyrusDiagram/@id"/>
+                  <meta.attribute kind="identifier" basedOn="org.eclipse.papyrus.infra.core.papyrusDiagram/@id"/>
                </appinfo>
             </annotation>
          </attribute>

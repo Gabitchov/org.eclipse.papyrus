@@ -16,7 +16,7 @@ package org.eclipse.papyrus.uml.diagram.wizards;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.papyrus.core.utils.DiResourceSet;
+import org.eclipse.papyrus.infra.core.utils.DiResourceSet;
 import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectDiagramCategoryPage;
 
 /**
