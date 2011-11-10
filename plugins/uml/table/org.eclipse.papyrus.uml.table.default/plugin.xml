@@ -2,7 +2,7 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension
-         point="org.eclipse.papyrus.core.papyrusDiagram">
+         point="org.eclipse.papyrus.infra.core.papyrusDiagram">
       <editorDiagram
             factoryClass="org.eclipse.papyrus.uml.table.defaultt.factory.NattableEditorFactory"
             icon="icons/table_UML_default.gif">
@@ -27,7 +27,7 @@
                <with
                      variable="activeEditorId">
                   <equals
-                        value="org.eclipse.papyrus.core.papyrusEditor">
+                        value="org.eclipse.papyrus.infra.core.papyrusEditor">
                   </equals>
                </with>
             </or>
@@ -52,7 +52,7 @@
                <with
                      variable="activeEditorId">
                   <equals
-                        value="org.eclipse.papyrus.core.papyrusEditor">
+                        value="org.eclipse.papyrus.infra.core.papyrusEditor">
                   </equals>
                </with>
             </visibleWhen>
@@ -72,7 +72,7 @@
                <with
                      variable="activeEditorId">
                   <equals
-                        value="org.eclipse.papyrus.core.papyrusEditor">
+                        value="org.eclipse.papyrus.infra.core.papyrusEditor">
                   </equals>
                </with>
             </visibleWhen>
@@ -92,7 +92,7 @@
                <with
                      variable="activeEditorId">
                   <equals
-                        value="org.eclipse.papyrus.core.papyrusEditor">
+                        value="org.eclipse.papyrus.infra.core.papyrusEditor">
                   </equals>
                </with>
             </visibleWhen>

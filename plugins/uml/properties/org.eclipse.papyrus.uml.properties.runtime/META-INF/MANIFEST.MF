@@ -13,7 +13,7 @@ Bundle-Version: 0.9.0.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.properties.runtime.uml.Activator
+Bundle-Activator: org.eclipse.papyrus.uml.properties.runtime.Activator
 Bundle-SymbolicName: org.eclipse.papyrus.uml.properties.runtime;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

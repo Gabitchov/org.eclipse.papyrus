@@ -14,20 +14,20 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.papyrus.uml.profile;bundle-version="0.9.0",
  org.eclipse.papyrus.uml.modelexplorer.widgets;bundle-version="0.9.0",
  org.eclipse.emf.facet.infra.query.core;bundle-version="0.1.0"
-Export-Package: org.eclipse.papyrus.properties.uml.constraints,
- org.eclipse.papyrus.properties.uml.creation,
- org.eclipse.papyrus.properties.uml.databinding,
- org.eclipse.papyrus.properties.uml.databinding.command,
- org.eclipse.papyrus.properties.uml.modelelement,
- org.eclipse.papyrus.properties.uml.providers,
- org.eclipse.papyrus.properties.uml.util
+Export-Package: org.eclipse.papyrus.uml.properties.constraints,
+ org.eclipse.papyrus.uml.properties.creation,
+ org.eclipse.papyrus.uml.properties.databinding,
+ org.eclipse.papyrus.uml.properties.databinding.command,
+ org.eclipse.papyrus.uml.properties.modelelement,
+ org.eclipse.papyrus.uml.properties.providers,
+ org.eclipse.papyrus.uml.properties.util
 Bundle-Vendor: %Bundle-Vendor
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 0.9.0.qualifier
 Bundle-Localization: plugin
 Bundle-Name: %Bundle-Name
 Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.properties.uml.Activator
+Bundle-Activator: org.eclipse.papyrus.uml.properties.Activator
 Bundle-SymbolicName: org.eclipse.papyrus.uml.properties;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

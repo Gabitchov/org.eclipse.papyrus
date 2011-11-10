@@ -14,7 +14,7 @@
 
 package org.eclipse.papyrus.uml.table.defaultt.factory;
 
-import org.eclipse.papyrus.table.common.factory.AbstractNattableEditorFactory;
+import org.eclipse.papyrus.infra.table.common.factory.AbstractNattableEditorFactory;
 import org.eclipse.papyrus.uml.table.defaultt.editor.DefaultNattableEditor;
 
 

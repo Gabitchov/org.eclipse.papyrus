@@ -1,0 +1,131 @@
+/*****************************************************************************
+ * Copyright (c) 2010 CEA LIST.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *****************************************************************************/
+package org.eclipse.papyrus.uml.properties.databinding;
+
+import org.eclipse.core.databinding.observable.IObservable;
+import org.eclipse.core.databinding.observable.Realm;
+import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.UnexecutableCommand;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
+import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
+import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
+import org.eclipse.papyrus.infra.widgets.databinding.AggregatedObservable;
+import org.eclipse.papyrus.views.properties.Activator;
+import org.eclipse.papyrus.views.properties.databinding.EMFObservableValue;
+import org.eclipse.papyrus.views.properties.util.EMFHelper;
+
+/**
+ * An ObservableValue used to edit EObject properties through
+ * Papyrus commands
+ * 
+ * @author Camille Letavernier
+ * 
+ */
+public class PapyrusObservableValue extends EMFObservableValue implements AggregatedObservable, CommandBasedObservableValue {
+
+	public static final String UML_BOOLEAN_DATATYPE = "Boolean"; //$NON-NLS-1$
+
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 * @param eObject
+	 *        The EObject to edit
+	 * @param eStructuralFeature
+	 *        The structural feature to edit
+	 * @param domain
+	 *        The editing domain on which the commands will be executed
+	 */
+	public PapyrusObservableValue(EObject eObject, EStructuralFeature eStructuralFeature, EditingDomain domain) {
+		this(Realm.getDefault(), eObject, eStructuralFeature, domain);
+	}
+
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 * @param realm
+	 * @param eObject
+	 *        The EObject to edit
+	 * @param eStructuralFeature
+	 *        The structural feature to edit
+	 * @param domain
+	 *        The editing domain on which the commands will be executed
+	 */
+	public PapyrusObservableValue(Realm realm, EObject eObject, EStructuralFeature eStructuralFeature, EditingDomain domain) {
+		super(eObject, eStructuralFeature, domain);
+	}
+
+	@Override
+	protected void doSetValue(Object value) {
+		Command emfCommand = getSetCommand(value);
+		domain.getCommandStack().execute(emfCommand);
+	}
+
+	public Command getCommand(Object value) {
+		EObject eObjectValue = EMFHelper.getEObject(value);
+		if(eObjectValue != null) {
+			value = eObjectValue;
+		}
+
+		try {
+			IElementEditService provider = ElementEditServiceUtils.getCommandProvider(getObserved());
+
+			if(provider != null) {
+				SetRequest request = new SetRequest((TransactionalEditingDomain)domain, eObject, eStructuralFeature, value);
+				ICommand createGMFCommand = provider.getEditCommand(request);
+
+				Command emfCommand = new GMFtoEMFCommandWrapper(createGMFCommand);
+
+				return emfCommand;
+			}
+		} catch (Exception ex) {
+			Activator.log.error(ex);
+		}
+
+		return UnexecutableCommand.INSTANCE;
+	}
+
+	/**
+	 * 
+	 * @return the {@link EStructuralFeature} observed by this object
+	 */
+	public EStructuralFeature getEStructuralFeature() {
+		return eStructuralFeature;
+	}
+
+	/**
+	 * 
+	 * @return the {@link EObject} observed by this object
+	 */
+	public EObject getEObject() {
+		return eObject;
+	}
+
+	public AggregatedObservable aggregate(IObservable observable) {
+		try {
+			return new AggregatedPapyrusObservableValue(domain, this, observable);
+		} catch (IllegalArgumentException ex) {
+			return null; //The observable cannot be aggregated
+		}
+	}
+
+	public boolean hasDifferentValues() {
+		return false; //The value is not aggregated yet
+	}
+}

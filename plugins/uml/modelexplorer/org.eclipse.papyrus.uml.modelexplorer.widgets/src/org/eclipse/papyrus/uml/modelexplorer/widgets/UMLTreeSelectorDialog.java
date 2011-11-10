@@ -25,12 +25,12 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jface.viewers.ViewerFilter;
-import org.eclipse.papyrus.core.services.ServicesRegistry;
-import org.eclipse.papyrus.core.utils.EditorUtils;
-import org.eclipse.papyrus.resource.ModelSet;
-import org.eclipse.papyrus.resource.ModelUtils;
-import org.eclipse.papyrus.resource.uml.UmlModel;
-import org.eclipse.papyrus.resource.uml.UmlUtils;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
+import org.eclipse.papyrus.infra.core.resource.ModelUtils;
+import org.eclipse.papyrus.infra.core.resource.uml.UmlModel;
+import org.eclipse.papyrus.infra.core.resource.uml.UmlUtils;
+import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.views.modelexplorer.widgets.AdvancedMETreeDialog;
 import org.eclipse.papyrus.views.modelexplorer.widgets.EclassComparator;
 import org.eclipse.papyrus.views.modelexplorer.widgets.MetaclassLabelProvider;
@@ -49,7 +49,7 @@ import org.eclipse.uml2.uml.UMLPackage;
  * this dialog box display a Tree dialog by using the model explorer and propose to filter by taking in account metaclasses of UML, or
  * stereotypes of applied profiles
  * 
- * @deprecated you should now use the generic {@link org.eclipse.papyrus.widgets.editors.TreeSelectorDialog}
+ * @deprecated you should now use the generic {@link org.eclipse.papyrus.infra.widgets.editors.TreeSelectorDialog}
  */
 @Deprecated
 public class UMLTreeSelectorDialog extends AdvancedMETreeDialog {

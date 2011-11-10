@@ -2,9 +2,9 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension
-      point="org.eclipse.papyrus.properties.runtime.propertyViewProvider">
+      point="org.eclipse.papyrus.views.properties.runtime.propertyViewProvider">
    <propertyViewProvider
-         class="org.eclipse.papyrus.properties.runtime.view.XMLPropertyViewProvider">
+         class="org.eclipse.papyrus.views.properties.runtime.view.XMLPropertyViewProvider">
       <Priority
             name="Lowest">
       </Priority>
@@ -18,14 +18,14 @@
    </propertyViewProvider>
 </extension>
 <extension
-      point="org.eclipse.papyrus.properties.runtime.propertyEditorControllerProvider">
+      point="org.eclipse.papyrus.views.properties.runtime.propertyEditorControllerProvider">
    <propertyEditorControllerProvider
-         class="org.eclipse.papyrus.properties.runtime.controller.predefined.PredefinedPropertyControllerProvider"
+         class="org.eclipse.papyrus.views.properties.runtime.controller.predefined.PredefinedPropertyControllerProvider"
          description="this is the basic provider for UML features"
-            id="org.eclipse.papyrus.properties.view.uml.structuralFeaturesEMFTPredefinedControllers">
+            id="org.eclipse.papyrus.uml.properties.view.structuralFeaturesEMFTPredefinedControllers">
       <Priority name="Lowest"/>
       <PredefinedControllers
-            id="org.eclipse.papyrus.properties.view.uml.structuralFeaturesEMFTPredefinedControllers"
+            id="org.eclipse.papyrus.uml.properties.view.structuralFeaturesEMFTPredefinedControllers"
             name="UML Predefined Controllers for Structural Features"
             path="resources/uml_predefined_controllers.xml">
       </PredefinedControllers>
@@ -33,9 +33,9 @@
    </propertyEditorControllerProvider>
 </extension>
 <extension
-      point="org.eclipse.papyrus.properties.runtime.propertyViewProvider">
+      point="org.eclipse.papyrus.views.properties.runtime.propertyViewProvider">
    <propertyViewProvider
-         class="org.eclipse.papyrus.properties.runtime.view.XMLPropertyViewProvider">
+         class="org.eclipse.papyrus.views.properties.runtime.view.XMLPropertyViewProvider">
       <Priority
             name="Lowest">
       </Priority>

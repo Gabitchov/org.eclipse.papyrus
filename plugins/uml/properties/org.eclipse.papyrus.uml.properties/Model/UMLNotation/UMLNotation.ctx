@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="ASCII"?>
 <contexts:Context xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:contexts="http://www.eclipse.org/papyrus/properties/contexts" name="UMLNotation">
-  <dependencies href="ppe:/context/org.eclipse.papyrus.properties.notation/model/notation.ctx#/"/>
+  <dependencies href="ppe:/context/org.eclipse.papyrus.infra.gmfdiag.properties/model/notation.ctx#/"/>
   <tabs label="Appearance" id="appearance" category="org.eclipse.papyrus" priority="75">
-    <afterTab href="ppe:/context/org.eclipse.papyrus.properties.uml/Model/UML/UML.ctx#//@tabs.1"/>
+    <afterTab href="ppe:/context/org.eclipse.papyrus.uml.properties/Model/UML/UML.ctx#//@tabs.1"/>
     <sections name="Label" sectionFile="ui/Label.xwt">
       <widget href="ui/Label.xwt#/"/>
     </sections>
@@ -18,17 +18,17 @@
   </tabs>
   <views name="Label" sections="//@tabs.0/@sections.0" elementMultiplicity="-1">
     <constraints xsi:type="contexts:SimpleConstraint" name="isLabel">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.properties.notation/model/Environment.xmi#//@constraintTypes.1"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.1"/>
       <properties xsi:type="contexts:ValueProperty" name="editPolicy" value="MaskManagedLabelPolicy"/>
     </constraints>
   </views>
   <views name="StereotypeDisplay" sections="//@tabs.0/@sections.1" elementMultiplicity="-1">
     <constraints xsi:type="contexts:CompositeConstraint" name="isElementWithEditPart" overrideable="false">
       <constraints name="isEditPart">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.properties.notation/model/Environment.xmi#//@constraintTypes.2"/>
+        <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.2"/>
       </constraints>
       <constraints name="isElement">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.properties.uml/Model/Environment.xmi#//@constraintTypes.0"/>
+        <constraintType href="ppe:/environment/org.eclipse.papyrus.uml.properties/Model/Environment.xmi#//@constraintTypes.0"/>
         <properties xsi:type="contexts:ValueProperty" name="umlClassName" value="Element"/>
       </constraints>
     </constraints>
@@ -36,10 +36,10 @@
   <views name="NamedElementDisplay" sections="//@tabs.0/@sections.3" elementMultiplicity="-1">
     <constraints xsi:type="contexts:CompositeConstraint" name="isNamedElementWithEditPart" overrideable="false">
       <constraints name="isEditPart">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.properties.notation/model/Environment.xmi#//@constraintTypes.2"/>
+        <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.2"/>
       </constraints>
       <constraints name="isElement">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.properties.uml/Model/Environment.xmi#//@constraintTypes.0"/>
+        <constraintType href="ppe:/environment/org.eclipse.papyrus.uml.properties/Model/Environment.xmi#//@constraintTypes.0"/>
         <properties xsi:type="contexts:ValueProperty" name="umlClassName" value="NamedElement"/>
       </constraints>
     </constraints>
@@ -54,7 +54,7 @@
       <properties name="shadow" label="Shadow" type="Boolean" description="Display a shadow in the Diagram"/>
       <properties name="qualifiedName" label="Qualified name depth" type="Enumeration" description="Choose the depth of the qualified name's display"/>
     </elements>
-    <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.properties.uml/Model/Environment.xmi#//@modelElementFactories.4"/>
+    <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.uml.properties/Model/Environment.xmi#//@modelElementFactories.4"/>
   </dataContexts>
   <dataContexts name="StereotypeAppearance" label="Stereotype Appearance">
     <elements name="StereotypeAppearance">
@@ -62,6 +62,6 @@
       <properties name="textAlignment" label="Text alignment" type="Enumeration"/>
       <properties name="displayPlace" label="Display place" type="Enumeration"/>
     </elements>
-    <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.properties.uml/Model/Environment.xmi#//@modelElementFactories.6"/>
+    <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.uml.properties/Model/Environment.xmi#//@modelElementFactories.6"/>
   </dataContexts>
 </contexts:Context>

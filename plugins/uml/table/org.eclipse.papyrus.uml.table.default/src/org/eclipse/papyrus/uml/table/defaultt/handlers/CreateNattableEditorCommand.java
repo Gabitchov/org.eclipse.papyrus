@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.facet.widgets.nattable.tableconfiguration2.TableConfiguration2;
-import org.eclipse.papyrus.table.common.handlers.AbstractCreateNattableEditorCommand;
+import org.eclipse.papyrus.infra.table.common.handlers.AbstractCreateNattableEditorCommand;
 import org.eclipse.papyrus.uml.table.defaultt.Activator;
 import org.eclipse.papyrus.uml.table.defaultt.editor.DefaultNattableEditor;
 

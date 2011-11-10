@@ -13,9 +13,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.table.defaultt.editor;
 
-import org.eclipse.papyrus.core.services.ServicesRegistry;
-import org.eclipse.papyrus.table.common.editor.AbstractNattableEditor;
-import org.eclipse.papyrus.table.instance.papyrustableinstance.PapyrusTableInstance;
+import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.table.common.editor.AbstractNattableEditor;
+import org.eclipse.papyrus.infra.table.instance.papyrustableinstance.PapyrusTableInstance;
 
 
 /**

@@ -6,14 +6,14 @@
       <propertySections
             contributorId="TreeOutlinePage">
          <propertySection
-               class="org.eclipse.papyrus.tabbedproperties.comments.propertysection.CommentPropertySection"
-               filter="org.eclipse.papyrus.tabbedproperties.comments.propertysection.CommentFilter"
+               class="org.eclipse.papyrus.uml.properties.tabbedproperties.comments.propertysection.CommentPropertySection"
+               filter="org.eclipse.papyrus.uml.properties.tabbedproperties.comments.propertysection.CommentFilter"
                id="org.eclipse.papyrus.tabbedproperties.comment.styledsection"
                tab="Base">
          </propertySection>
          <propertySection
-               class="org.eclipse.papyrus.tabbedproperties.comments.propertysection.CommentedElementPropertySection"
-               filter="org.eclipse.papyrus.tabbedproperties.comments.propertysection.CommentedElementPropertySection"
+               class="org.eclipse.papyrus.uml.properties.tabbedproperties.comments.propertysection.CommentedElementPropertySection"
+               filter="org.eclipse.papyrus.uml.properties.tabbedproperties.comments.propertysection.CommentedElementPropertySection"
                id="org.eclipse.papyrus.tabbedproperties.comment.umlelementsection"
                tab="Comments">
          </propertySection>
@@ -27,7 +27,7 @@
             language="Papyrus UML"
             objectToEdit="org.eclipse.uml2.uml.Comment">
          <advancededitor
-               editorConfiguration="org.eclipse.papyrus.tabbedproperties.comments.directeditor.HTMLCommentEditorDialogConfiguration">
+               editorConfiguration="org.eclipse.papyrus.uml.properties.tabbedproperties.comments.directeditor.HTMLCommentEditorDialogConfiguration">
          </advancededitor>
       </DirectEditor>
    </extension>
