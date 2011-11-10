@@ -3,7 +3,7 @@
 <plugin>
 
 <!-- Diagram declaration -->
-<extension point="org.eclipse.papyrus.core.papyrusDiagram">
+<extension point="org.eclipse.papyrus.infra.core.papyrusDiagram">
 	<creationCommand
        creationCommandClass="org.eclipse.papyrus.sysml.diagram.requirement.RequirementDiagramCreateCommand"
        creationCondition="org.eclipse.papyrus.sysml.diagram.requirement.RequirementDiagramCondition"
@@ -31,7 +31,7 @@
 		commandId="org.eclipse.papyrus.sysml.diagram.requirement.CreateCommand">
 		<activeWhen>
 			<with variable="activeEditorId">
-               <equals value="org.eclipse.papyrus.core.papyrusEditor"/>
+               <equals value="org.eclipse.papyrus.infra.core.papyrusEditor"/>
 			</with>
 		</activeWhen>
 	</handler>
@@ -41,7 +41,7 @@
 <extension point="org.eclipse.ui.menus">
       
 	<menuContribution locationURI="menu:org.eclipse.papyrus.ui.menu">
-	<menu id="org.eclipse.papyrus.diagram.ui.menu.diagrams" label="Diagrams">
+	<menu id="org.eclipse.papyrus.uml.diagram.ui.menu.diagrams" label="Diagrams">
 		<command commandId="org.eclipse.papyrus.sysml.diagram.requirement.CreateCommand"
 			icon="icons/obj16/Diagram_Requirement.gif" label="Create a new Requirement Diagram"
 			style="push" tooltip="Create a new Requirement Diagram">
@@ -53,7 +53,7 @@
 	</menuContribution>
 
 	<menuContribution locationURI="toolbar:org.eclipse.ui.main.toolbar">
-	<toolbar id="org.eclipse.papyrus.diagram.ui.toolbar">
+	<toolbar id="org.eclipse.papyrus.uml.diagram.ui.toolbar">
 		<command commandId="org.eclipse.papyrus.sysml.diagram.requirement.CreateCommand"
 			icon="icons/obj16/Diagram_Requirement.gif" label="Create a new Requirement Diagram"
 			style="push" tooltip="Create a new Requirement Diagram">
@@ -216,7 +216,7 @@
 	
 	<page id="org.eclipse.papyrus.sysml.diagram.requirement.preferences"
 		name="PapyrusSysMLRequirement Diagram"	
-		category="org.eclipse.papyrus.preferences.diagrams"
+		category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams"
 		class="org.eclipse.papyrus.sysml.diagram.requirement.preferences.RequirementDiagramGeneralPreferencePage">
 	</page>
       

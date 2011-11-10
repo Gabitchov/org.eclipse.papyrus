@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.parametric;
 
-import org.eclipse.papyrus.core.adaptor.gmf.GmfEditorFactory;
+import org.eclipse.papyrus.infra.core.adaptor.gmf.GmfEditorFactory;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ParametricEditPart;
 
 public class ParametricDiagramEditorFactory extends GmfEditorFactory {

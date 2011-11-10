@@ -3,7 +3,7 @@
 <plugin>
 
 <extension
-	point="org.eclipse.papyrus.core.papyrusDiagram">
+	point="org.eclipse.papyrus.infra.core.papyrusDiagram">
 	<diagramCategory
 		class="org.eclipse.papyrus.sysml.diagram.common.commands.CreateSysMLModelCommand"
 		description="SysML diagrams"
@@ -29,7 +29,7 @@
 	<definition id="org.eclipse.papyrus.sysml.diagram.common.IsPapyrusActiveWithSysML">
 		<and>
 			<with variable="activeEditorId">
-				<equals value="org.eclipse.papyrus.core.papyrusEditor"/>
+				<equals value="org.eclipse.papyrus.infra.core.papyrusEditor"/>
 			</with>
 			<with variable="selection">
 				<test

@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.blockdefinition.provider;
 
-import static org.eclipse.papyrus.core.Activator.log;
+import static org.eclipse.papyrus.infra.core.Activator.log;
 
 import org.eclipse.gmf.runtime.common.core.service.IOperation;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpart.AbstractEditPartProvider;

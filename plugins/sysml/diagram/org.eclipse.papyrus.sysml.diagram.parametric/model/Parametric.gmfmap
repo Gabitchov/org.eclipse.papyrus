@@ -7,7 +7,7 @@
     xmlns:gmftool="http://www.eclipse.org/gmf/2005/ToolDefinition">
   <nodes>
     <containmentFeature
-        href="../../../plugin/org.eclipse.papyrus.resource/model/resource.ecore#//Resource/eobjects"/>
+        href="../../../plugin/org.eclipse.papyrus.infra.core.resource/model/resource.ecore#//Resource/eobjects"/>
     <ownedChild>
       <domainMetaElement
           href="../../org.eclipse.papyrus.sysml.converted/model/sysml.ecore#//constraints/ConstraintProperty"/>
@@ -101,7 +101,7 @@
     <domainModel
         href="../../org.eclipse.papyrus.sysml.converted/model/sysml.ecore#//blocks"/>
     <domainMetaElement
-        href="../../../plugin/org.eclipse.papyrus.resource/model/resource.ecore#//Resource"/>
+        href="../../../plugin/org.eclipse.papyrus.infra.core.resource/model/resource.ecore#//Resource"/>
     <palette
         href="Parametric.gmftool#//@palette"/>
   </diagram>

@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.parametric.preferences;
 
-import org.eclipse.papyrus.preferences.pages.DiagramPreferencePage;
+import org.eclipse.papyrus.infra.gmfdiag.preferences.pages.DiagramPreferencePage;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ParametricEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlDiagramEditorPlugin;
 

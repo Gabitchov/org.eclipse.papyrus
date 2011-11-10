@@ -24,11 +24,11 @@ import org.eclipse.gmf.runtime.emf.type.core.ISpecializationType;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.gmf.diagram.common.commands.IdentityCommandWithNotification;
 import org.eclipse.papyrus.gmf.diagram.common.edit.policy.CommonDiagramDragDropEditPolicy;
+import org.eclipse.papyrus.infra.widgets.toolbox.notification.Type;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.dnd.helper.CustomLinkMappingHelper;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.messages.Messages;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.CustomGraphicalTypeRegistry;
 import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
-import org.eclipse.papyrus.ui.toolbox.notification.Type;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.AssociationClass;
 

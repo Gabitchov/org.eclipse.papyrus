@@ -296,7 +296,7 @@ public class AbstractElementChildLabelEditPart extends GraphicalEditPart impleme
 			return ParserOptions.NONE;
 		}
 
-		IPreferenceStore store = org.eclipse.papyrus.preferences.Activator.getDefault().getPreferenceStore();
+		IPreferenceStore store = org.eclipse.papyrus.infra.gmfdiag.preferences.Activator.getDefault().getPreferenceStore();
 		int displayOptions = store.getInt(LabelPreferenceHelper.getPreferenceConstant(getLabelPreferenceKey(), ILabelPreferenceConstants.LABEL_DISPLAY_PREFERENCE));
 		if(displayOptions == 0) {
 			return ParserOptions.NONE;

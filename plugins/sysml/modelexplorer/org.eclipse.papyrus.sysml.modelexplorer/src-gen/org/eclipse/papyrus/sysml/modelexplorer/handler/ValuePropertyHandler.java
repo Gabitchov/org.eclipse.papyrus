@@ -8,9 +8,9 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
-import org.eclipse.papyrus.service.edit.commands.IConfigureCommandFactory;
-import org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils;
-import org.eclipse.papyrus.service.edit.service.IElementEditService;
+import org.eclipse.papyrus.infra.services.edit.commands.IConfigureCommandFactory;
+import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
+import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.sysml.diagram.common.commands.CreateValueWithTypeConfigureCommandFactory;
 import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
 

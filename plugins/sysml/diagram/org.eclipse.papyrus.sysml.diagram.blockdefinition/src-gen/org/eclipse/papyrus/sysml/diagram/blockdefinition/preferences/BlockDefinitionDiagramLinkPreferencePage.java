@@ -18,8 +18,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.TreeMap;
 
-import org.eclipse.papyrus.preferences.pages.AbstractPapyrusLinkPreferencePage;
-import org.eclipse.papyrus.preferences.ui.OrderedLabelGroup;
+import org.eclipse.papyrus.infra.gmfdiag.preferences.pages.AbstractPapyrusLinkPreferencePage;
+import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.OrderedLabelGroup;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.Activator;
 import org.eclipse.swt.widgets.Composite;
 

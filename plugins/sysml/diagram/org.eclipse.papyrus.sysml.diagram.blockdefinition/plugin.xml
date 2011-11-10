@@ -3,7 +3,7 @@
 <plugin>
 
 <!-- Diagram declaration -->
-<extension point="org.eclipse.papyrus.core.papyrusDiagram">
+<extension point="org.eclipse.papyrus.infra.core.papyrusDiagram">
 	<creationCommand
        creationCommandClass="org.eclipse.papyrus.sysml.diagram.blockdefinition.BlockDefinitionDiagramCreateCommand"
        creationCondition="org.eclipse.papyrus.sysml.diagram.blockdefinition.BlockDefinitionDiagramCondition"
@@ -31,7 +31,7 @@
 		commandId="org.eclipse.papyrus.sysml.diagram.blockdefinition.CreateCommand">
 		<activeWhen>
 			<with variable="activeEditorId">
-				<equals value="org.eclipse.papyrus.core.papyrusEditor" />
+				<equals value="org.eclipse.papyrus.infra.core.papyrusEditor" />
 			</with>
 		</activeWhen>
 	</handler>
@@ -41,7 +41,7 @@
 <extension point="org.eclipse.ui.menus">
 
 	<menuContribution locationURI="menu:org.eclipse.papyrus.ui.menu">
-	<menu id="org.eclipse.papyrus.diagram.ui.menu.diagrams" label="Diagrams">
+	<menu id="org.eclipse.papyrus.uml.diagram.ui.menu.diagrams" label="Diagrams">
 		<command commandId="org.eclipse.papyrus.sysml.diagram.blockdefinition.CreateCommand"
 			icon="icons/obj16/Diagram_BlockDefinition.gif" label="Create a new Block Definition Diagram"
 			style="push" tooltip="Create a new Block Definition Diagram">
@@ -54,7 +54,7 @@
 	</menuContribution>
 	
 	<menuContribution locationURI="toolbar:org.eclipse.ui.main.toolbar">
-	<toolbar id="org.eclipse.papyrus.diagram.ui.toolbar">
+	<toolbar id="org.eclipse.papyrus.uml.diagram.ui.toolbar">
 		<command commandId="org.eclipse.papyrus.sysml.diagram.blockdefinition.CreateCommand"
 			icon="icons/obj16/Diagram_BlockDefinition.gif" label="Create a new Block Definition Diagram"
 			style="push" tooltip="Create a new Block Definition Diagram">
@@ -933,7 +933,7 @@
 	<page
 		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences"
 		name="BlockDefinition Diagram"
-		category="org.eclipse.papyrus.preferences.diagrams"
+		category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams"
 		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.BlockDefinitionDiagramGeneralPreferencePage">
 	</page>
 
@@ -1418,7 +1418,7 @@
 <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
 
 	<!-- Bindings declaration to shared IClientContext -->
-	<binding context="org.eclipse.papyrus.service.edit.TypeContext">
+	<binding context="org.eclipse.papyrus.infra.services.edit.TypeContext">
 		<elementType ref="org.eclipse.papyrus.sysml.diagram.blockdefinition.GeneralizationHelperAdvice"/>	
 		<elementType ref="org.eclipse.papyrus.sysml.diagram.blockdefinition.DeleteViewDuringMoveHelperAdvice"/>
 		<elementType ref="org.eclipse.papyrus.sysml.diagram.blockdefinition.DeleteViewDuringPartEditHelperAdvice"/>

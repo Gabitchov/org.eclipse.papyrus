@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.internalblock.provider;
 
-import static org.eclipse.papyrus.core.Activator.log;
+import static org.eclipse.papyrus.infra.core.Activator.log;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EAnnotation;

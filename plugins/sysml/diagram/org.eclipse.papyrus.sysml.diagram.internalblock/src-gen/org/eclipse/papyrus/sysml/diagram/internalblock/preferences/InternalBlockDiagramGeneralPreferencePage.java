@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.internalblock.preferences;
 
-import org.eclipse.papyrus.preferences.pages.DiagramPreferencePage;
+import org.eclipse.papyrus.infra.gmfdiag.preferences.pages.DiagramPreferencePage;
 import org.eclipse.papyrus.sysml.diagram.internalblock.Activator;
 
 public class InternalBlockDiagramGeneralPreferencePage extends DiagramPreferencePage {

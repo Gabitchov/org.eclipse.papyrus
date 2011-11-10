@@ -17,9 +17,9 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.gmf.runtime.common.core.command.AbstractCommand;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.util.StringStatics;
-import org.eclipse.papyrus.ui.toolbox.notification.Type;
-import org.eclipse.papyrus.ui.toolbox.notification.builders.CombinedPopupAndViewBuilder;
-import org.eclipse.papyrus.ui.toolbox.notification.builders.NotificationBuilder;
+import org.eclipse.papyrus.infra.widgets.toolbox.notification.Type;
+import org.eclipse.papyrus.infra.widgets.toolbox.notification.builders.CombinedPopupAndViewBuilder;
+import org.eclipse.papyrus.infra.widgets.toolbox.notification.builders.NotificationBuilder;
 
 /**
  * A command that is always executable, undoable and redoable, but does nothing.

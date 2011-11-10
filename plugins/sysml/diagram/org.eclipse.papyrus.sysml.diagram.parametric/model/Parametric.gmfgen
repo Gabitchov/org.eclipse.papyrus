@@ -108,7 +108,7 @@
           key="EditPolicyRoles.DRAG_DROP_ROLE"
           editPolicyQualifiedClassName="org.eclipse.papyrus.sysml.diagram.parametric.edit.policies.CustomDiagramDragDropEditPolicy"/>
       <domainDiagramElement
-          href="../../../plugin/org.eclipse.papyrus.resource/model/resource.genmodel#//resource/Resource"/>
+          href="../../../plugin/org.eclipse.papyrus.infra.core.resource/model/resource.genmodel#//resource/Resource"/>
       <childNodes
           xsi:type="gmfgen:GenChildSideAffixedNode"
           visualID="3002"
@@ -204,9 +204,9 @@
           <metaClass
               href="../../org.eclipse.papyrus.sysml/model/sysml.genmodel#//sysml/constraints/ConstraintProperty"/>
           <containmentMetaFeature
-              href="../../../plugin/org.eclipse.papyrus.resource/model/resource.genmodel#//resource/Resource/eobjects"/>
+              href="../../../plugin/org.eclipse.papyrus.infra.core.resource/model/resource.genmodel#//resource/Resource/eobjects"/>
           <childMetaFeature
-              href="../../../plugin/org.eclipse.papyrus.resource/model/resource.genmodel#//resource/Resource/eobjects"/>
+              href="../../../plugin/org.eclipse.papyrus.infra.core.resource/model/resource.genmodel#//resource/Resource/eobjects"/>
         </modelFacet>
         <labels
             visualID="5001"

@@ -14,7 +14,7 @@
 package org.eclipse.papyrus.sysml.diagram.blockdefinition;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.core.extension.commands.PerspectiveContextDependence;
+import org.eclipse.papyrus.infra.core.extension.commands.PerspectiveContextDependence;
 import org.eclipse.papyrus.sysml.util.SysmlResource;
 
 /**

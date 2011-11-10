@@ -16,7 +16,7 @@ import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory
 import org.eclipse.emf.edit.ui.provider.ExtendedImageRegistry;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.papyrus.log.LogHelper;
+import org.eclipse.papyrus.infra.core.log.LogHelper;
 import org.eclipse.papyrus.sysml.activities.provider.ActivitiesItemProviderAdapterFactory;
 import org.eclipse.papyrus.sysml.allocations.provider.AllocationsItemProviderAdapterFactory;
 import org.eclipse.papyrus.sysml.blocks.provider.BlocksItemProviderAdapterFactory;
@@ -109,7 +109,7 @@ public class Activator extends AbstractUIPlugin {
 	 */
 	@Override
 	public IPreferenceStore getPreferenceStore() {
-		IPreferenceStore store = org.eclipse.papyrus.preferences.Activator.getDefault().getPreferenceStore();
+		IPreferenceStore store = org.eclipse.papyrus.infra.gmfdiag.preferences.Activator.getDefault().getPreferenceStore();
 		return store;
 	}
 

@@ -18,7 +18,7 @@ import org.eclipse.gmf.runtime.common.ui.services.action.contributionitem.IPopup
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor;
 import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
+import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ParametricEditPart;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PlatformUI;

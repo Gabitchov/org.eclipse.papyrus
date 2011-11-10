@@ -4,7 +4,7 @@
 	<wizard
          category="org.eclipse.papyrus.uml.diagram.wizards.category"
          class="org.eclipse.papyrus.sysml.diagram.ui.NewSysMLProjectWizard"
-         finalPerspective="org.eclipse.papyrus.core.perspective"
+         finalPerspective="org.eclipse.papyrus.infra.core.perspective"
          icon="icons/papyrus/new_sysml_project.gif"
          id="org.eclipse.papyrus.uml.diagram.wizards.createsysmlproject"
          name="SysML Project"
@@ -16,7 +16,7 @@
     <wizard
          category="org.eclipse.papyrus.uml.diagram.wizards.category"
          class="org.eclipse.papyrus.sysml.diagram.ui.NewSysMLModelWizard"
-         finalPerspective="org.eclipse.papyrus.core.perspective"
+         finalPerspective="org.eclipse.papyrus.infra.core.perspective"
          icon="icons/papyrus/new_sysml_model.gif"
          id="org.eclipse.papyrus.uml.diagram.wizards.createsysmlmodel"
          name="SysML Model">

@@ -16,7 +16,7 @@ package org.eclipse.papyrus.sysml.diagram.internalblock;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.papyrus.log.LogHelper;
+import org.eclipse.papyrus.infra.core.log.LogHelper;
 import org.eclipse.papyrus.sysml.diagram.internalblock.preferences.CustomPreferenceInitializer;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
@@ -99,7 +99,7 @@ public class Activator extends AbstractUIPlugin {
 	 */
 	@Override
 	public IPreferenceStore getPreferenceStore() {
-		IPreferenceStore store = org.eclipse.papyrus.preferences.Activator.getDefault().getPreferenceStore();
+		IPreferenceStore store = org.eclipse.papyrus.infra.gmfdiag.preferences.Activator.getDefault().getPreferenceStore();
 		return store;
 	}
 }

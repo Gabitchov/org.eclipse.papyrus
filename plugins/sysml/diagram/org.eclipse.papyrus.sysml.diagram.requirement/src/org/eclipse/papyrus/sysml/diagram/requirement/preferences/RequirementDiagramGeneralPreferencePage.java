@@ -9,7 +9,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.requirement.preferences;
 
-import org.eclipse.papyrus.preferences.pages.DiagramPreferencePage;
+import org.eclipse.papyrus.infra.gmfdiag.preferences.pages.DiagramPreferencePage;
 import org.eclipse.papyrus.sysml.diagram.requirement.Activator;
 
 /**

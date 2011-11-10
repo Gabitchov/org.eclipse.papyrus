@@ -18,7 +18,7 @@ import java.util.Collections;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
-import org.eclipse.papyrus.service.edit.utils.ElementTypeValidator;
+import org.eclipse.papyrus.infra.services.edit.utils.ElementTypeValidator;
 import org.eclipse.papyrus.uml.modelexplorer.widgets.UMLElementMEBContentProvider;
 
 /**

@@ -68,7 +68,7 @@ import org.eclipse.papyrus.gmf.diagram.common.edit.policy.DefaultSnapBackEditPol
 import org.eclipse.papyrus.gmf.diagram.common.edit.policy.LabelDirectEditPolicy;
 import org.eclipse.papyrus.gmf.diagram.common.edit.policy.TextSelectionEditPolicy;
 import org.eclipse.papyrus.gmf.diagram.common.locator.TextCellEditorLocator;
-import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
+import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants;
 import org.eclipse.papyrus.sysml.diagram.common.preferences.LabelPreferenceHelper;
 import org.eclipse.papyrus.uml.diagram.common.directedit.MultilineLabelDirectEditManager;
@@ -289,7 +289,7 @@ public abstract class AbstractElementLabelEditPart extends LabelEditPart impleme
 			return ParserOptions.NONE;
 		}
 
-		IPreferenceStore store = org.eclipse.papyrus.preferences.Activator.getDefault().getPreferenceStore();
+		IPreferenceStore store = org.eclipse.papyrus.infra.gmfdiag.preferences.Activator.getDefault().getPreferenceStore();
 		int displayOptions = store.getInt(LabelPreferenceHelper.getPreferenceConstant(getLabelPreferenceKey(), ILabelPreferenceConstants.LABEL_DISPLAY_PREFERENCE));
 		if(displayOptions == 0) {
 			return ParserOptions.NONE;
@@ -628,7 +628,7 @@ public abstract class AbstractElementLabelEditPart extends LabelEditPart impleme
 
 	protected void addSnapBackLocation() {
 		// Use default view position as snap back position
-		IPreferenceStore store = org.eclipse.papyrus.preferences.Activator.getDefault().getPreferenceStore();
+		IPreferenceStore store = org.eclipse.papyrus.infra.gmfdiag.preferences.Activator.getDefault().getPreferenceStore();
 
 		String xKey = PreferenceConstantHelper.getElementConstant(getLabelPreferenceKey(), PreferenceConstantHelper.LOCATION_X);
 		String yKey = PreferenceConstantHelper.getElementConstant(getLabelPreferenceKey(), PreferenceConstantHelper.LOCATION_Y);

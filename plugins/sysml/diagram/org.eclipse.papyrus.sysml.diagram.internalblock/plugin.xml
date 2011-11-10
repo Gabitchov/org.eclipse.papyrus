@@ -3,7 +3,7 @@
 <plugin>
 
 <!-- Diagram declaration -->
-<extension point="org.eclipse.papyrus.core.papyrusDiagram">
+<extension point="org.eclipse.papyrus.infra.core.papyrusDiagram">
 	<creationCommand
        creationCommandClass="org.eclipse.papyrus.sysml.diagram.internalblock.InternalBlockDiagramCreateCommand"
        creationCondition="org.eclipse.papyrus.sysml.diagram.internalblock.InternalBlockDiagramCondition"
@@ -31,7 +31,7 @@
 		commandId="org.eclipse.papyrus.sysml.diagram.internalblock.CreateCommand">
 		<activeWhen>
 			<with variable="activeEditorId">
-				<equals value="org.eclipse.papyrus.core.papyrusEditor" />
+				<equals value="org.eclipse.papyrus.infra.core.papyrusEditor" />
 			</with>
 		</activeWhen>
 	</handler>
@@ -41,7 +41,7 @@
 <extension point="org.eclipse.ui.menus">
 
 	<menuContribution locationURI="menu:org.eclipse.papyrus.ui.menu">
-	<menu id="org.eclipse.papyrus.diagram.ui.menu.diagrams" label="Diagrams">
+	<menu id="org.eclipse.papyrus.uml.diagram.ui.menu.diagrams" label="Diagrams">
 		<command commandId="org.eclipse.papyrus.sysml.diagram.internalblock.CreateCommand"
 			icon="icons/obj16/Diagram_InternalBlock.gif" label="Create a new Internal Block Diagram"
 			style="push" tooltip="Create a new Internal Block Diagram">
@@ -53,7 +53,7 @@
 	</menuContribution>
 	
 	<menuContribution locationURI="toolbar:org.eclipse.ui.main.toolbar">
-	<toolbar id="org.eclipse.papyrus.diagram.ui.toolbar">
+	<toolbar id="org.eclipse.papyrus.uml.diagram.ui.toolbar">
 		<command commandId="org.eclipse.papyrus.sysml.diagram.internalblock.CreateCommand"
 			icon="icons/obj16/Diagram_InternalBlock.gif" label="Create a new Internal Block Diagram"
 			style="push" tooltip="Create a new Internal Block Diagram">
@@ -498,7 +498,7 @@
 	<page
 		id="org.eclipse.papyrus.sysml.diagram.internalblock.preferences"
 		name="Internal Block Diagram"
-		category="org.eclipse.papyrus.preferences.diagrams"
+		category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams"
 		class="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.InternalBlockDiagramGeneralPreferencePage">
 	</page>
 
@@ -652,7 +652,7 @@
 <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
 
 	<!-- Bindings declaration to shared IClientContext -->
-	<binding context="org.eclipse.papyrus.service.edit.TypeContext">	
+	<binding context="org.eclipse.papyrus.infra.services.edit.TypeContext">	
 		<elementType ref="org.eclipse.papyrus.sysml.diagram.internalblock.PropertyHelperAdvice"/>
 		<elementType ref="org.eclipse.papyrus.sysml.diagram.internalblock.DeleteViewDuringMoveHelperAdvice"/>				
 	</binding>
@@ -670,7 +670,7 @@
 <extension point="org.eclipse.ui.handlers">
 	<handler
 		class="org.eclipse.papyrus.sysml.diagram.internalblock.handler.ShowHideRelatedContentsHandler"
-		commandId="org.eclipse.papyrus.diagram.menu.commands.ShowHideContentsCommand">
+		commandId="org.eclipse.papyrus.uml.diagram.menu.commands.ShowHideContentsCommand">
 		<activeWhen>
 		<and>
 			<with variable="showHideRelatedContents">

@@ -134,9 +134,9 @@
    <extension point="org.eclipse.ui.preferencePages" id="prefpages">
       <?gmfgen generated="true"?>
       <page
-            id="org.eclipse.papyrus.preferences.diagrams.Parametric"
+            id="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.Parametric"
             name="Parametric Diagram"
-            category="org.eclipse.papyrus.preferences.diagrams"
+            category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams"
             class="org.eclipse.papyrus.sysml.diagram.parametric.preferences.DiagramGeneralPreferencePage">
       </page>
       
@@ -145,14 +145,14 @@
       <page
             id="org.eclipse.papyrus.sysml.diagram.parametric.preferences.DiagramPrintingPreferencePage"
             name="%prefpage.org.eclipse.papyrus.sysml.diagram.printing"
-            category="org.eclipse.papyrus.preferences.diagrams.Parametric"
+            category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.Parametric"
             class="org.eclipse.papyrus.sysml.diagram.parametric.preferences.DiagramPrintingPreferencePage">
       </page>
 
       <page
             id="org.eclipse.papyrus.sysml.diagram.parametric.preferences.DiagramRulersAndGridPreferencePage"
             name="%prefpage.org.eclipse.papyrus.sysml.diagram.rulersAndGrid"
-            category="org.eclipse.papyrus.preferences.diagrams.Parametric"
+            category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.Parametric"
             class="org.eclipse.papyrus.sysml.diagram.parametric.preferences.DiagramRulersAndGridPreferencePage">
       </page>
 
@@ -504,7 +504,7 @@
       
       
 	<menuContribution locationURI="menu:org.eclipse.papyrus.ui.menu">
-		<menu id="org.eclipse.papyrus.diagram.ui.menu.diagrams"
+		<menu id="org.eclipse.papyrus.uml.diagram.ui.menu.diagrams"
 			label="Diagrams">
 			<command commandId="org.eclipse.papyrus.sysml.diagram.parametric.CreateParametricDiagramCommand"
 				icon="icons/obj16/Diagram_Parametric.gif"
@@ -519,7 +519,7 @@
 	</menuContribution>
 	
 	<menuContribution locationURI="toolbar:org.eclipse.ui.main.toolbar">
-		<toolbar id="org.eclipse.papyrus.diagram.ui.toolbar">
+		<toolbar id="org.eclipse.papyrus.uml.diagram.ui.toolbar">
 			<command commandId="org.eclipse.papyrus.sysml.diagram.parametric.CreateParametricDiagramCommand"
 				icon="icons/obj16/Diagram_Parametric.gif"
 				label="Create a new Parametric Diagram"
@@ -569,7 +569,7 @@
 			commandId="org.eclipse.papyrus.sysml.diagram.parametric.CreateParametricDiagramCommand">
 			<activeWhen>
 					<with variable="activeEditorId">
-						<equals value="org.eclipse.papyrus.core.papyrusEditor"></equals>
+						<equals value="org.eclipse.papyrus.infra.core.papyrusEditor"></equals>
 					</with>
 			</activeWhen>
 		</handler>
@@ -577,7 +577,7 @@
 	
 	
    <extension
-         point="org.eclipse.papyrus.core.papyrusDiagram">
+         point="org.eclipse.papyrus.infra.core.papyrusDiagram">
       <editorDiagram
             factoryClass="org.eclipse.papyrus.sysml.diagram.parametric.ParametricDiagramEditorFactory"
             icon="icons/obj16/Diagram_Parametric.gif">
@@ -603,14 +603,14 @@
 
 		
 	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.Parametric"
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.Parametric"
 			class="org.eclipse.papyrus.sysml.diagram.parametric.preferences.ConstraintPropertyPreferencePage"
             id="org.eclipse.papyrus.sysml.diagram.parametric.preferences.ConstraintPropertyPreferencePage"
             name="ConstraintProperty Node" />
 	
 		
 	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.Parametric"
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.Parametric"
 			class="org.eclipse.papyrus.sysml.diagram.parametric.preferences.PropertyPreferencePage"
             id="org.eclipse.papyrus.sysml.diagram.parametric.preferences.PropertyPreferencePage"
             name="Property Node" />
@@ -620,7 +620,7 @@
 		
 
 	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.Parametric"
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.Parametric"
 			class="org.eclipse.papyrus.sysml.diagram.parametric.preferences.ConnectorPreferencePage"
             id="org.eclipse.papyrus.sysml.diagram.parametric.preferences.ConnectorPreferencePage"
             name="Connector Link" />

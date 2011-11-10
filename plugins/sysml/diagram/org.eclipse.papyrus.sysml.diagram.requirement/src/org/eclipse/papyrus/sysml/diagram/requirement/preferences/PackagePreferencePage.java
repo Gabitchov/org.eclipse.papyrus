@@ -1,7 +1,7 @@
 package org.eclipse.papyrus.sysml.diagram.requirement.preferences;
 
 import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
+import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.papyrus.sysml.diagram.requirement.edit.part.RequirementDiagramEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.part.Messages;
 
@@ -44,7 +44,7 @@ public class PackagePreferencePage extends RequirementDiagramNodePreferencePage 
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.preferences.pages.AbstractPapyrusNodePreferencePage#initializeCompartmentsList()
+	 * @see org.eclipse.papyrus.infra.gmfdiag.preferences.pages.AbstractPapyrusNodePreferencePage#initializeCompartmentsList()
 	 * 
 	 */
 	@Override

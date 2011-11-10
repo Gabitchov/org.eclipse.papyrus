@@ -9,7 +9,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.requirement;
 
-import org.eclipse.papyrus.core.adaptor.gmf.GmfEditorFactory;
+import org.eclipse.papyrus.infra.core.adaptor.gmf.GmfEditorFactory;
 import org.eclipse.papyrus.sysml.diagram.requirement.edit.part.RequirementDiagramEditPart;
 
 /**

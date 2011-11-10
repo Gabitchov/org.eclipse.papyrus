@@ -11,8 +11,8 @@ package org.eclipse.papyrus.sysml.diagram.requirement.part;
 
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.papyrus.core.services.ServiceException;
-import org.eclipse.papyrus.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.sysml.diagram.requirement.Activator;
 import org.eclipse.papyrus.uml.diagram.clazz.part.UMLDiagramEditor;
 

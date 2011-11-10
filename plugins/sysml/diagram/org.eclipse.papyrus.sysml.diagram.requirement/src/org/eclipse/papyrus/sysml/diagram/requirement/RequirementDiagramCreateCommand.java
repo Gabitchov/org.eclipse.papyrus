@@ -11,7 +11,7 @@ package org.eclipse.papyrus.sysml.diagram.requirement;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
-import org.eclipse.papyrus.core.adaptor.gmf.AbstractPapyrusGmfCreateDiagramCommandHandler;
+import org.eclipse.papyrus.infra.core.adaptor.gmf.AbstractPapyrusGmfCreateDiagramCommandHandler;
 import org.eclipse.papyrus.sysml.diagram.requirement.edit.part.RequirementDiagramEditPart;
 import org.eclipse.uml2.uml.UMLFactory;
 

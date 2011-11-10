@@ -36,7 +36,7 @@ import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
-import org.eclipse.papyrus.core.utils.EditorUtils;
+import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.sysml.constraints.ConstraintProperty;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConnectorEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConstraintPropertyEditPart;

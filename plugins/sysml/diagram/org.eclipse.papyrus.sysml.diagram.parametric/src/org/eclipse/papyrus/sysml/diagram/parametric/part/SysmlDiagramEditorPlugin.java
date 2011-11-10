@@ -30,7 +30,7 @@ import org.eclipse.emf.edit.ui.provider.ExtendedImageRegistry;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.papyrus.preferences.Activator;
+import org.eclipse.papyrus.infra.gmfdiag.preferences.Activator;
 import org.eclipse.papyrus.resource.provider.ResourceItemProviderAdapterFactory;
 import org.eclipse.papyrus.sysml.activities.provider.ActivitiesItemProviderAdapterFactory;
 import org.eclipse.papyrus.sysml.allocations.provider.AllocationsItemProviderAdapterFactory;
