@@ -27,18 +27,6 @@ package org.eclipse.papyrus.uml.diagram.deployment.preferences;
 import org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.uml.diagram.deployment.part.UMLDiagramEditorPlugin;
-import org.eclipse.papyrus.uml.diagram.deployment.preferences.ArtifactPreferencePage;
-import org.eclipse.papyrus.uml.diagram.deployment.preferences.CommentAnnotatedElementPreferencePage;
-import org.eclipse.papyrus.uml.diagram.deployment.preferences.CommentPreferencePage;
-import org.eclipse.papyrus.uml.diagram.deployment.preferences.ConstraintConstrainedElementPreferencePage;
-import org.eclipse.papyrus.uml.diagram.deployment.preferences.ConstraintPreferencePage;
-import org.eclipse.papyrus.uml.diagram.deployment.preferences.DependencyPreferencePage;
-import org.eclipse.papyrus.uml.diagram.deployment.preferences.DeploymentPreferencePage;
-import org.eclipse.papyrus.uml.diagram.deployment.preferences.DevicePreferencePage;
-import org.eclipse.papyrus.uml.diagram.deployment.preferences.ExecutionEnvironmentPreferencePage;
-import org.eclipse.papyrus.uml.diagram.deployment.preferences.GeneralizationPreferencePage;
-import org.eclipse.papyrus.uml.diagram.deployment.preferences.ManifestationPreferencePage;
-import org.eclipse.papyrus.uml.diagram.deployment.preferences.NodePreferencePage;
 
 /**
  * @generated

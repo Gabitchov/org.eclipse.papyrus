@@ -12,8 +12,8 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
-import org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils;
-import org.eclipse.papyrus.service.edit.service.IElementEditService;
+import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
+import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.commands.CommentAnnotatedElementCreateCommand;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.commands.CommentAnnotatedElementReorientCommand;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.commands.ConstraintConstrainedElementCreateCommand;
@@ -26,7 +26,6 @@ import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ConstraintConstrain
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DependencyEditPart;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DeploymentEditPart;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ManifestationEditPart;
-import org.eclipse.papyrus.uml.diagram.deployment.edit.policies.UMLBaseItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.deployment.providers.UMLElementTypes;
 
 /**

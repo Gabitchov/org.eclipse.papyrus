@@ -39,8 +39,8 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
-import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
-import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
+import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceConverter;
+import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.papyrus.uml.diagram.common.editparts.DeploymentNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
@@ -55,7 +55,8 @@ import org.eclipse.papyrus.uml.diagram.deployment.custom.edit.policies.RemoveOrp
 import org.eclipse.papyrus.uml.diagram.deployment.custom.figure.nodes.DeviceFigure;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.policies.DeviceItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.deployment.part.UMLDiagramEditorPlugin;
-import org.eclipse.papyrus.uml.diagram.deployment.part.UMLVisualIDRegistry;import org.eclipse.papyrus.uml.diagram.deployment.providers.UMLElementTypes;
+import org.eclipse.papyrus.uml.diagram.deployment.part.UMLVisualIDRegistry;
+import org.eclipse.papyrus.uml.diagram.deployment.providers.UMLElementTypes;
 import org.eclipse.swt.graphics.Color;
 
 /**

@@ -13,14 +13,14 @@ package org.eclipse.papyrus.uml.diagram.emftree;
 
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.papyrus.core.editor.BackboneException;
-import org.eclipse.papyrus.core.extension.diagrameditor.EditorDescriptor;
-import org.eclipse.papyrus.core.extension.diagrameditor.IPluggableEditorFactory;
-import org.eclipse.papyrus.core.multidiagram.actionbarcontributor.ActionBarContributorRegistry;
-import org.eclipse.papyrus.core.services.ServiceException;
-import org.eclipse.papyrus.core.services.ServicesRegistry;
-import org.eclipse.papyrus.sasheditor.contentprovider.IEditorModel;
-import org.eclipse.papyrus.sasheditor.contentprovider.IPageModel;
+import org.eclipse.papyrus.infra.core.editor.BackboneException;
+import org.eclipse.papyrus.infra.core.extension.diagrameditor.EditorDescriptor;
+import org.eclipse.papyrus.infra.core.extension.diagrameditor.IPluggableEditorFactory;
+import org.eclipse.papyrus.infra.core.multidiagram.actionbarcontributor.ActionBarContributorRegistry;
+import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IEditorModel;
+import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageModel;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PartInitException;
@@ -66,7 +66,7 @@ public class EmfTreeDiagramEditorFactory implements IPluggableEditorFactory {
 	/**
 	 * TODO Implements next methods
 	 * 
-	 * @see org.eclipse.papyrus.core.extension.diagrameditor.IPluggableEditorFactory#createIPageModel(java.lang.Object)
+	 * @see org.eclipse.papyrus.infra.core.extension.diagrameditor.IPluggableEditorFactory#createIPageModel(java.lang.Object)
 	 * @param pageIdentifier
 	 * @return
 	 * 
@@ -77,7 +77,7 @@ public class EmfTreeDiagramEditorFactory implements IPluggableEditorFactory {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.core.extension.diagrameditor.IPluggableEditorFactory#isPageModelFactoryFor(java.lang.Object)
+	 * @see org.eclipse.papyrus.infra.core.extension.diagrameditor.IPluggableEditorFactory#isPageModelFactoryFor(java.lang.Object)
 	 * @param pageIdentifier
 	 * @return
 	 * 
@@ -153,8 +153,8 @@ public class EmfTreeDiagramEditorFactory implements IPluggableEditorFactory {
 			// Get ServiceRegistry
 			ActionBarContributorRegistry registry;
 			try {
-				registry = (ActionBarContributorRegistry)servicesRegistry
-						.getService(ActionBarContributorRegistry.class);
+				registry = servicesRegistry
+					.getService(ActionBarContributorRegistry.class);
 			} catch (ServiceException e) {
 				// Service not found
 				// TODO Log the error
@@ -189,8 +189,9 @@ public class EmfTreeDiagramEditorFactory implements IPluggableEditorFactory {
 		 */
 		public Image getTabIcon() {
 			ImageDescriptor imageDescriptor = editorDescriptor.getIcon();
-			if(imageDescriptor == null)
+			if(imageDescriptor == null) {
 				return null;
+			}
 
 			return imageDescriptor.createImage();
 		}

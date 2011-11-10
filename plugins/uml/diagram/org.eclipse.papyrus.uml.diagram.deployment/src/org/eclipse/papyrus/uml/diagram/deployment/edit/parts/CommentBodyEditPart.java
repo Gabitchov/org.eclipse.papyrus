@@ -64,7 +64,8 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.IMaskManagedLabelEdit
 import org.eclipse.papyrus.uml.diagram.common.figure.node.HTMLCornerBentFigure;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.ILabelFigure;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.policies.UMLTextSelectionEditPolicy;
-import org.eclipse.papyrus.uml.diagram.deployment.part.UMLVisualIDRegistry;import org.eclipse.papyrus.uml.diagram.deployment.providers.UMLElementTypes;
+import org.eclipse.papyrus.uml.diagram.deployment.part.UMLVisualIDRegistry;
+import org.eclipse.papyrus.uml.diagram.deployment.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.deployment.providers.UMLParserProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.accessibility.AccessibleEvent;

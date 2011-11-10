@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2008 CEA LIST.
  *
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -28,9 +28,9 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.action.IMenuListener;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionProvider;
-import org.eclipse.papyrus.core.editor.BackboneException;
-import org.eclipse.papyrus.core.services.ServiceException;
-import org.eclipse.papyrus.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.core.editor.BackboneException;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
@@ -44,7 +44,7 @@ import org.eclipse.ui.views.properties.IPropertySheetPage;
  * @generated
  */
 public class UMLEditor extends org.eclipse.uml2.uml.editor.presentation.UMLEditor implements IEditingDomainProvider,
-		ISelectionProvider, IMenuListener, IViewerProvider, IGotoMarker {
+ISelectionProvider, IMenuListener, IViewerProvider, IGotoMarker {
 
 	/**
 	 * ServiceRegistry used to retrieve needed services. This registry is provided by the multieditor.
@@ -65,13 +65,13 @@ public class UMLEditor extends org.eclipse.uml2.uml.editor.presentation.UMLEdito
 	 * Init the editor from the specified context.
 	 * 
 	 * @param editorContext
-	 * @throws ServiceException 
+	 * @throws ServiceException
 	 */
 	private void initEditor() throws ServiceException {
-		
+
 		TransactionalEditingDomain papyrusEditingDomain = servicesRegistry.getService(TransactionalEditingDomain.class);
 		CommandStack commandStack = papyrusEditingDomain.getCommandStack();
-		
+
 		// Add a listener to set the most recent command's affected objects to be the selection of
 		// the viewer with focus.
 		//

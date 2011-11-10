@@ -1,7 +1,7 @@
 package org.eclipse.papyrus.uml.diagram.deployment.preferences;
 
 import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.papyrus.preferences.pages.AbstractPapyrusLinkPreferencePage;
+import org.eclipse.papyrus.infra.gmfdiag.preferences.pages.AbstractPapyrusLinkPreferencePage;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DeploymentDiagramEditPart;
 import org.eclipse.papyrus.uml.diagram.deployment.part.UMLDiagramEditorPlugin;
 

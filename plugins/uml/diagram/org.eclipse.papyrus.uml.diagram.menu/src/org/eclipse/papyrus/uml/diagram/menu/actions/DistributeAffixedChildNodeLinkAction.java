@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2009-2010 CEA LIST.
  *
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -40,7 +40,7 @@ import org.eclipse.papyrus.uml.diagram.common.layout.DistributionConstants;
 import org.eclipse.papyrus.uml.diagram.common.layout.LayoutUtils;
 import org.eclipse.papyrus.uml.diagram.common.layout.LinkRepresentationForLayoutAction;
 import org.eclipse.papyrus.uml.diagram.common.util.Util;
-import org.eclipse.papyrus.uml.diagram.wizards.Activator;
+import org.eclipse.papyrus.uml.diagram.menu.Activator;
 
 /**
  * This class provides the action to distribute links and ports on a side of a node
@@ -91,7 +91,7 @@ public class DistributeAffixedChildNodeLinkAction extends AbstractDistributeActi
 	@Override
 	protected void buildAction(List<?> list) {
 		this.commonParentRepresentations = new ArrayList<DistributeAffixedChildNodeLinkAction.NodeRepresentation>();
-		// we sort the list to get this order: 
+		// we sort the list to get this order:
 		// 1: possible parents EditPart
 		// 2: Affixed Child Node
 		// 3: ConnectionEditPart
@@ -240,7 +240,7 @@ public class DistributeAffixedChildNodeLinkAction extends AbstractDistributeActi
 	//Replaced by a new method in util.Util
 	//	/**
 	//	 * Test if the EditPart is an Affixed Child Node.
-	//	 * 
+	//	 *
 	//	 * @param ep
 	//	 *        an EditPart
 	//	 * @return true, if is affixed child node <code>true</code> if the {@link EditPart} is an affixed child node and <code>false</code> if not
@@ -325,7 +325,7 @@ public class DistributeAffixedChildNodeLinkAction extends AbstractDistributeActi
 			double[] hSpaceAndvSpace = calculatesSpaceBetweenNodes(boundsArea, this.elementsToDistribute, representedNode);
 
 
-			//variable containing the new position for the editpart (x or y following the distribution) 
+			//variable containing the new position for the editpart (x or y following the distribution)
 			double newPosition = 0;
 			//we determine the location for the first editpart
 			switch(distribution) {
@@ -649,7 +649,7 @@ public class DistributeAffixedChildNodeLinkAction extends AbstractDistributeActi
 			}
 
 
-			//we determine the divisor 
+			//we determine the divisor
 			double divisor;
 			if(distribution == DistributionConstants.DISTRIBUTE_H_CONTAINER_INT || distribution == DistributionConstants.DISTRIBUTE_V_CONTAINER_INT) {
 				divisor = nbPort + 1;
@@ -733,7 +733,7 @@ public class DistributeAffixedChildNodeLinkAction extends AbstractDistributeActi
 				} else {
 					return 1;
 				}
-			} else { //vertical distribution 
+			} else { //vertical distribution
 				if(location1.y < location2.y) {
 					return -1;
 				} else if(location1.y == location2.y) {

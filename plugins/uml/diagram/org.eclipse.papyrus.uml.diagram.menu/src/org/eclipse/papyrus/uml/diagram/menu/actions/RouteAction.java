@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
  *
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -35,7 +35,7 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.papyrus.uml.diagram.common.layout.DistributionConstants;
 import org.eclipse.papyrus.uml.diagram.common.layout.LayoutUtils;
 import org.eclipse.papyrus.uml.diagram.common.layout.LinkRepresentationForLayoutAction;
-import org.eclipse.papyrus.uml.diagram.wizards.Activator;
+import org.eclipse.papyrus.uml.diagram.menu.Activator;
 
 /**
  * 

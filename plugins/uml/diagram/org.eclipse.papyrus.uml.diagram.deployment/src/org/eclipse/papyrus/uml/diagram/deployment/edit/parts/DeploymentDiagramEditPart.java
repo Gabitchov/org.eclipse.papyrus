@@ -32,7 +32,7 @@ import org.eclipse.papyrus.uml.diagram.common.util.MDTUtil;
 import org.eclipse.papyrus.uml.diagram.deployment.custom.edit.policies.CustomDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.uml.diagram.deployment.custom.edit.policies.RemoveOrphanViewPolicy;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.policies.DeploymentDiagramItemSemanticEditPolicy;
-import org.eclipse.papyrus.uml.diagram.deployment.part.UMLVisualIDRegistry;import org.eclipse.papyrus.uml.diagram.deployment.providers.UMLElementTypes;
+import org.eclipse.papyrus.uml.diagram.deployment.part.UMLVisualIDRegistry;
 
 /**
  * @generated

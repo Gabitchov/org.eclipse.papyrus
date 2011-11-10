@@ -12,7 +12,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.deployment;
 
-import org.eclipse.papyrus.core.adaptor.gmf.GmfEditorFactory;
+import org.eclipse.papyrus.infra.core.adaptor.gmf.GmfEditorFactory;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DeploymentDiagramEditPart;
 
 // TODO: Auto-generated Javadoc

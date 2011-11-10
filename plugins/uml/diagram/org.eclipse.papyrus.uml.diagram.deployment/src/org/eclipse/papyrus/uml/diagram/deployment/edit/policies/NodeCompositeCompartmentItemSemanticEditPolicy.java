@@ -9,7 +9,6 @@ import org.eclipse.papyrus.uml.diagram.deployment.edit.commands.ArtifactCreateCo
 import org.eclipse.papyrus.uml.diagram.deployment.edit.commands.DeviceCreateCommandCN;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.commands.ExecutionEnvironmentCreateCommandCN;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.commands.NodeCreateCommandCN;
-import org.eclipse.papyrus.uml.diagram.deployment.edit.policies.UMLBaseItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.deployment.providers.UMLElementTypes;
 
 /**

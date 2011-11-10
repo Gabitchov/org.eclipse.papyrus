@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.deployment;
 
-import org.eclipse.papyrus.navigation.CreateDiagramWithNavigationHandler;
+import org.eclipse.papyrus.infra.gmfdiag.navigation.CreateDiagramWithNavigationHandler;
 
 public class CreateDeploymentDiagramWithNavigationHandler extends CreateDiagramWithNavigationHandler {
 

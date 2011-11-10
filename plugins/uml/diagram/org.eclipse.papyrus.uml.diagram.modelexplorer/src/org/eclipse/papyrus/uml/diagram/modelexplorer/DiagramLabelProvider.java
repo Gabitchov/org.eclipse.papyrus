@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
  *
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -14,22 +14,12 @@
 package org.eclipse.papyrus.uml.diagram.modelexplorer;
 
 
-import java.text.MessageFormat;
-
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.jface.resource.JFaceResources;
-import org.eclipse.jface.viewers.DelegatingStyledCellLabelProvider.IStyledLabelProvider;
-import org.eclipse.jface.viewers.StyledString;
-import org.eclipse.jface.viewers.StyledString.Styler;
-import org.eclipse.papyrus.core.editorsfactory.IPageIconsRegistry;
-import org.eclipse.papyrus.core.editorsfactory.PageIconsRegistry;
-import org.eclipse.papyrus.core.services.ServiceException;
-import org.eclipse.papyrus.core.utils.EditorUtils;
-import org.eclipse.papyrus.core.utils.ServiceUtils;
+import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistry;
+import org.eclipse.papyrus.infra.core.editorsfactory.PageIconsRegistry;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.views.modelexplorer.MoDiscoLabelProvider;
-import org.eclipse.swt.graphics.Font;
-import org.eclipse.swt.graphics.FontData;
-import org.eclipse.swt.graphics.TextStyle;
 import org.eclipse.uml2.uml.NamedElement;
 
 /**
@@ -37,14 +27,14 @@ import org.eclipse.uml2.uml.NamedElement;
  * 
  */
 public class DiagramLabelProvider extends MoDiscoLabelProvider  {
-	
+
 	protected static final String SEPARATOR = ": ";
 	protected static final String PAPYRUS_UML = "PapyrusUML";
 	/** icon registry */
 	private IPageIconsRegistry editorRegistry=null;
-	
+
 	/**
-	
+
 	/**
 	 * Get the EditorRegistry used to create editor instances. This default
 	 * implementation return the singleton eINSTANCE. This method can be
@@ -53,6 +43,7 @@ public class DiagramLabelProvider extends MoDiscoLabelProvider  {
 	 * @return the singleton eINSTANCE of editor registry
 	 * @throws ServiceException
 	 */
+	@Override
 	protected IPageIconsRegistry getEditorRegistry() {
 		if(editorRegistry == null) {
 			editorRegistry = createEditorRegistry();
@@ -68,6 +59,7 @@ public class DiagramLabelProvider extends MoDiscoLabelProvider  {
 	 * @return the EditorRegistry for nested editor descriptors
 	 * @throws ServiceException
 	 */
+	@Override
 	protected IPageIconsRegistry createEditorRegistry() {
 		try {
 			return EditorUtils.getServiceRegistry().getService(IPageIconsRegistry.class);
@@ -86,9 +78,9 @@ public class DiagramLabelProvider extends MoDiscoLabelProvider  {
 		if(element instanceof Diagram) {
 			Diagram diagram = (Diagram)element;
 			if(diagram.getElement() instanceof NamedElement){
-			text = text +" [" +((NamedElement)diagram.getElement()).getQualifiedName()+"]";
+				text = text +" [" +((NamedElement)diagram.getElement()).getQualifiedName()+"]";
 			}
-		} 
+		}
 		return text;
 	}
 

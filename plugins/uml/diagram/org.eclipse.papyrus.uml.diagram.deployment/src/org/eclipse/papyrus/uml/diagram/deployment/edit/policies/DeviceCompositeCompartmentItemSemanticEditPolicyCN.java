@@ -8,7 +8,6 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.commands.DeviceCreateCommandCN;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.commands.ExecutionEnvironmentCreateCommandCN;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.commands.NodeCreateCommandCN;
-import org.eclipse.papyrus.uml.diagram.deployment.edit.policies.UMLBaseItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.deployment.providers.UMLElementTypes;
 
 /**

@@ -24,7 +24,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.deployment.preferences;
 
-import org.eclipse.papyrus.preferences.pages.DiagramPreferencePage;
+import org.eclipse.papyrus.infra.gmfdiag.preferences.pages.DiagramPreferencePage;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DeploymentDiagramEditPart;
 import org.eclipse.papyrus.uml.diagram.deployment.part.UMLDiagramEditorPlugin;
 

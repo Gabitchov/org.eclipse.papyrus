@@ -24,7 +24,7 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.IMultilineEditableFigure;
-import org.eclipse.papyrus.uml.diagram.deployment.part.UMLVisualIDRegistry;import org.eclipse.papyrus.uml.diagram.deployment.providers.UMLElementTypes;
+import org.eclipse.papyrus.uml.diagram.deployment.part.UMLVisualIDRegistry;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Text;
 

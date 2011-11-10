@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
  *
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -21,15 +21,14 @@ import org.eclipse.gef.editparts.ZoomListener;
 import org.eclipse.gef.editparts.ZoomManager;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.internal.actions.ZoomContributionItem;
 import org.eclipse.gmf.runtime.diagram.ui.internal.util.IUIConstants;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart;
 import org.eclipse.jface.action.ContributionItem;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.papyrus.core.editor.CoreMultiDiagramEditor;
-import org.eclipse.papyrus.sasheditor.editor.IPage;
-import org.eclipse.papyrus.sasheditor.editor.ISashWindowsContainer;
+import org.eclipse.papyrus.infra.core.editor.CoreMultiDiagramEditor;
+import org.eclipse.papyrus.infra.core.sasheditor.editor.IPage;
+import org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.menu.actions.ZoomAction;
 import org.eclipse.papyrus.uml.diagram.menu.messages.Messages;
@@ -54,7 +53,7 @@ import org.eclipse.ui.PlatformUI;
  * A part of this code comes from {@link ZoomContributionItem}
  */
 @SuppressWarnings("restriction")
-public class ZoomToolbar extends ContributionItem implements ZoomListener, Listener, org.eclipse.papyrus.sasheditor.editor.IPageChangedListener {
+public class ZoomToolbar extends ContributionItem implements ZoomListener, Listener, org.eclipse.papyrus.infra.core.sasheditor.editor.IPageChangedListener {
 
 	/** the combo box */
 	protected Combo combo = null;

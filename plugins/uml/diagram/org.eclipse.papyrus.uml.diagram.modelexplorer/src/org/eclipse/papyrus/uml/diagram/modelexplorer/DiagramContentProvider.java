@@ -18,10 +18,10 @@ import java.util.ArrayList;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.papyrus.core.services.ServicesRegistry;
-import org.eclipse.papyrus.resource.ModelUtils;
-import org.eclipse.papyrus.resource.notation.NotationUtils;
-import org.eclipse.papyrus.sasheditor.contentprovider.di.DiSashModelMngr;
+import org.eclipse.papyrus.infra.core.resource.ModelUtils;
+import org.eclipse.papyrus.infra.core.resource.notation.NotationUtils;
+import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.DiSashModelMngr;
+import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.views.modelexplorer.Activator;
 import org.eclipse.papyrus.views.modelexplorer.MoDiscoContentProvider;
 

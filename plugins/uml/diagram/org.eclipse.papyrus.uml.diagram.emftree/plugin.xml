@@ -18,7 +18,7 @@
             <with
                   variable="activeEditorId">
                <equals
-                     value="org.eclipse.papyrus.core.papyrusEditor">
+                     value="org.eclipse.papyrus.infra.core.papyrusEditor">
                </equals>
             </with>
          </enabledWhen>
@@ -26,7 +26,7 @@
    </extension>
   
    <extension
-         point="org.eclipse.papyrus.core.papyrusDiagram">
+         point="org.eclipse.papyrus.infra.core.papyrusDiagram">
       <editorDiagram
             actionBarContributorId="DiActionBarContributor"
             contextId="defaultContext"
@@ -38,7 +38,7 @@
       <menuContribution
             locationURI="menu:org.eclipse.papyrus.ui.menu">
          <menu
-               id="org.eclipse.papyrus.diagram.ui.menu.diagrams"
+               id="org.eclipse.papyrus.uml.diagram.ui.menu.diagrams"
                label="Diagrams">
             <command
                   commandId="com.cea.papyrus.ui.emftree.createTree"
@@ -52,7 +52,7 @@
       <menuContribution
             locationURI="toolbar:org.eclipse.ui.main.toolbar">
          <toolbar
-               id="org.eclipse.papyrus.diagram.ui.toolbar">
+               id="org.eclipse.papyrus.uml.diagram.ui.toolbar">
             <command
                   commandId="com.cea.papyrus.ui.emftree.createTree"
                   icon="icons/EmfTree.gif"
