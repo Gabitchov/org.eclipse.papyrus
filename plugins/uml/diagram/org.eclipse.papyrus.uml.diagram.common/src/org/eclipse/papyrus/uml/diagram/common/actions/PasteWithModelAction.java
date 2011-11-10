@@ -10,8 +10,8 @@ import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
-import org.eclipse.papyrus.pastemanager.service.PasteCommandService;
 import org.eclipse.papyrus.uml.diagram.common.helper.CleanDiagramHelper;
+import org.eclipse.papyrus.uml.pastemanager.service.PasteCommandService;
 import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
 

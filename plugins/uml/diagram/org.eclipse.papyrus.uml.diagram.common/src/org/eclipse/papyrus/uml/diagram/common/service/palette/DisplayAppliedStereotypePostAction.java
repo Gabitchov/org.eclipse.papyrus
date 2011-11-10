@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -162,7 +162,7 @@ public class DisplayAppliedStereotypePostAction extends GraphicalPostAction {
 
 		final CompositeCommand compositeCommand = new CompositeCommand("Modify Stereotype Display");
 		View view = (View)editPart.getModel();
-		TransactionalEditingDomain editingDomain = org.eclipse.papyrus.core.utils.EditorUtils.getTransactionalEditingDomain();
+		TransactionalEditingDomain editingDomain = org.eclipse.papyrus.infra.core.utils.EditorUtils.getTransactionalEditingDomain();
 
 		// creates the commands to display simple stereotypes name
 		for(String stereotypeName : stereotypesToDisplay) {
@@ -209,6 +209,7 @@ public class DisplayAppliedStereotypePostAction extends GraphicalPostAction {
 
 			AbstractEMFOperation operation = new AbstractEMFOperation(((IGraphicalEditPart)editPart).getEditingDomain(), StringStatics.BLANK, options) {
 
+				@Override
 				protected IStatus doExecute(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 					compositeCommand.execute(monitor, info);

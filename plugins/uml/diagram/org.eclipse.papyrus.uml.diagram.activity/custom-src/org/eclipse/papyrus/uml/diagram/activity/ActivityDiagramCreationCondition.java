@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2009 Atos Origin.
  *
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
 package org.eclipse.papyrus.uml.diagram.activity;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.core.extension.commands.PerspectiveContextDependence;
+import org.eclipse.papyrus.infra.core.extension.commands.PerspectiveContextDependence;
 import org.eclipse.uml2.uml.Activity;
 
 /**
@@ -23,6 +23,7 @@ public class ActivityDiagramCreationCondition extends PerspectiveContextDependen
 	/**
 	 * @return whether the diagram can be created.
 	 */
+	@Override
 	public boolean create(EObject selectedElement) {
 		if(super.create(selectedElement)) {
 			return selectedElement instanceof Activity;

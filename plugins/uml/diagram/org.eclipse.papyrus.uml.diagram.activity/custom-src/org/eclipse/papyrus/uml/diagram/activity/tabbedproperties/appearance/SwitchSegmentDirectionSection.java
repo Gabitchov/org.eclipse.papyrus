@@ -34,7 +34,7 @@ import org.eclipse.gmf.runtime.diagram.ui.properties.sections.AbstractNotationPr
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.core.utils.EditorUtils;
+import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ForkNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.JoinNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.part.Messages;

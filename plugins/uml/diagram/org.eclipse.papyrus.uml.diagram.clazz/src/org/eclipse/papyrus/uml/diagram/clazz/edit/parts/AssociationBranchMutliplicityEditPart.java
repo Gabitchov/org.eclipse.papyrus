@@ -60,7 +60,6 @@ import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
 import org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil;
 import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.policies.DisplayAssociationBranchEndMultiplicityEditPolicy;
-import org.eclipse.papyrus.uml.diagram.clazz.custom.policies.DisplayAssociationEndTargetMultiplicityEditPolicy;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.policies.UMLTextSelectionEditPolicy;
 import org.eclipse.papyrus.uml.diagram.clazz.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;

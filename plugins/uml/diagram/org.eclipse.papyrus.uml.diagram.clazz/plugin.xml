@@ -6,7 +6,7 @@
       <?gmfgen generated="true"?>
       <context
          description="%context.description"
-         id="org.eclipse.papyrus.diagram.clazz.ui.diagramContext"
+         id="org.eclipse.papyrus.uml.diagram.clazz.ui.diagramContext"
          name="%context.name"
          parentId="org.eclipse.gmf.runtime.diagram.ui.diagramContext">
       </context>
@@ -19,7 +19,7 @@
 <extension point="org.eclipse.ui.views.properties.tabbed.propertyContributor" id="prop-contrib">
       <?gmfgen generated="true"?>
       <propertyContributor
-            contributorId="org.eclipse.papyrus.diagram.clazz"
+            contributorId="org.eclipse.papyrus.uml.diagram.clazz"
             labelProvider="org.eclipse.papyrus.uml.diagram.clazz.sheet.UMLSheetLabelProvider">
          <propertyCategory category="domain"/>
          <propertyCategory category="visual"/>
@@ -28,7 +28,7 @@
    </extension>
 <extension point="org.eclipse.ui.views.properties.tabbed.propertyTabs" id="proptabs">
       <?gmfgen generated="true"?>   
-      <propertyTabs contributorId="org.eclipse.papyrus.diagram.clazz">
+      <propertyTabs contributorId="org.eclipse.papyrus.uml.diagram.clazz">
          <propertyTab
              category="visual"
              id="property.tab.AppearancePropertySection"
@@ -45,7 +45,7 @@
    </extension>
 <extension point="org.eclipse.ui.views.properties.tabbed.propertySections" id="propsections">
       <?gmfgen generated="true"?>   
-      <propertySections contributorId="org.eclipse.papyrus.diagram.clazz">
+      <propertySections contributorId="org.eclipse.papyrus.uml.diagram.clazz">
          <propertySection id="property.section.ConnectorAppearancePropertySection" 
             filter="org.eclipse.gmf.runtime.diagram.ui.properties.filters.ConnectionEditPartPropertySectionFilter" 
             class="org.eclipse.gmf.runtime.diagram.ui.properties.sections.appearance.ConnectionAppearancePropertySection" 
@@ -78,7 +78,7 @@
    </extension>
 <extension point="org.eclipse.gmf.runtime.diagram.core.viewProviders" id="view-provider">
       <?gmfgen generated="true"?>
-      <viewProvider class="org.eclipse.papyrus.diagram.clazz.providers.UMLViewProvider">
+      <viewProvider class="org.eclipse.papyrus.uml.diagram.clazz.providers.UMLViewProvider">
          <Priority name="Lowest"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="PapyrusUMLClassDiagram"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2014,2013,2015,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2016,2095,2096,2097,2098,3012,3002,3005,3006,3018,3014,3004,3008,3013,3003,3007,3019,3034,3035,3031,3016,3017,3011,3030,3015,3032,3033,3020,3021,3022,3023,3024,3025,3009,3010,3026,3027,3028,3029"/>
@@ -87,7 +87,7 @@
    </extension>
 <extension point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders" id="ep-provider">
       <?gmfgen generated="true"?>
-      <editpartProvider class="org.eclipse.papyrus.diagram.clazz.providers.UMLEditPartProvider">
+      <editpartProvider class="org.eclipse.papyrus.uml.diagram.clazz.providers.UMLEditPartProvider">
          <Priority name="Lowest"/>
          <object class="org.eclipse.gmf.runtime.notation.Diagram" id="generated-diagram">
             <method name="getType()" value="PapyrusUMLClassDiagram"/>
@@ -111,27 +111,27 @@
       <?gmfgen generated="true"?>
       <modelingAssistantProvider class="org.eclipse.papyrus.uml.diagram.clazz.providers.UMLModelingAssistantProvider">
          <Priority name="Lowest"/>
-         <object class="org.eclipse.papyrus.diagram.clazz.edit.parts.ModelEditPart" id="Package_1000"/>
-         <object class="org.eclipse.papyrus.diagram.clazz.edit.parts.DependencyNodeEditPart" id="Dependency_2014"/>
-         <object class="org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassEditPart" id="AssociationClass_2013"/>
-         <object class="org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationNodeEditPart" id="Association_2015"/>
-         <object class="org.eclipse.papyrus.diagram.clazz.edit.parts.InstanceSpecificationEditPart" id="InstanceSpecification_2001"/>
-         <object class="org.eclipse.papyrus.diagram.clazz.edit.parts.ComponentEditPart" id="Component_2002"/>
-         <object class="org.eclipse.papyrus.diagram.clazz.edit.parts.SignalEditPart" id="Signal_2003"/>
-         <object class="org.eclipse.papyrus.diagram.clazz.edit.parts.InterfaceEditPart" id="Interface_2004"/>
-         <object class="org.eclipse.papyrus.diagram.clazz.edit.parts.ModelEditPartTN" id="Model_2005"/>
-         <object class="org.eclipse.papyrus.diagram.clazz.edit.parts.EnumerationEditPart" id="Enumeration_2006"/>
-         <object class="org.eclipse.papyrus.diagram.clazz.edit.parts.PackageEditPart" id="Package_2007"/>
-         <object class="org.eclipse.papyrus.diagram.clazz.edit.parts.ClassEditPart" id="Class_2008"/>
-         <object class="org.eclipse.papyrus.diagram.clazz.edit.parts.PrimitiveTypeEditPart" id="PrimitiveType_2009"/>
-         <object class="org.eclipse.papyrus.diagram.clazz.edit.parts.DataTypeEditPart" id="DataType_2010"/>
-         <object class="org.eclipse.papyrus.diagram.clazz.edit.parts.ConstraintEditPart" id="Constraint_2011"/>
-         <object class="org.eclipse.papyrus.diagram.clazz.edit.parts.CommentEditPart" id="Comment_2012"/>
-         <object class="org.eclipse.papyrus.diagram.clazz.edit.parts.ShortCutDiagramEditPart" id="Diagram_2016"/>
-         <object class="org.eclipse.papyrus.diagram.clazz.edit.parts.DurationObservationEditPart" id="DurationObservation_2095"/>
-         <object class="org.eclipse.papyrus.diagram.clazz.edit.parts.TimeObservationEditPart" id="TimeObservation_2096"/>
-         <object class="org.eclipse.papyrus.diagram.clazz.edit.parts.DefaultNamedElementEditPart" id="NamedElement_2097"/>
-         <object class="org.eclipse.papyrus.diagram.clazz.edit.parts.ShapeNamedElementEditPart" id="NamedElement_2098"/>
+         <object class="org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ModelEditPart" id="Package_1000"/>
+         <object class="org.eclipse.papyrus.uml.diagram.clazz.edit.parts.DependencyNodeEditPart" id="Dependency_2014"/>
+         <object class="org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AssociationClassEditPart" id="AssociationClass_2013"/>
+         <object class="org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AssociationNodeEditPart" id="Association_2015"/>
+         <object class="org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InstanceSpecificationEditPart" id="InstanceSpecification_2001"/>
+         <object class="org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ComponentEditPart" id="Component_2002"/>
+         <object class="org.eclipse.papyrus.uml.diagram.clazz.edit.parts.SignalEditPart" id="Signal_2003"/>
+         <object class="org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InterfaceEditPart" id="Interface_2004"/>
+         <object class="org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ModelEditPartTN" id="Model_2005"/>
+         <object class="org.eclipse.papyrus.uml.diagram.clazz.edit.parts.EnumerationEditPart" id="Enumeration_2006"/>
+         <object class="org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PackageEditPart" id="Package_2007"/>
+         <object class="org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ClassEditPart" id="Class_2008"/>
+         <object class="org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PrimitiveTypeEditPart" id="PrimitiveType_2009"/>
+         <object class="org.eclipse.papyrus.uml.diagram.clazz.edit.parts.DataTypeEditPart" id="DataType_2010"/>
+         <object class="org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ConstraintEditPart" id="Constraint_2011"/>
+         <object class="org.eclipse.papyrus.uml.diagram.clazz.edit.parts.CommentEditPart" id="Comment_2012"/>
+         <object class="org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ShortCutDiagramEditPart" id="Diagram_2016"/>
+         <object class="org.eclipse.papyrus.uml.diagram.clazz.edit.parts.DurationObservationEditPart" id="DurationObservation_2095"/>
+         <object class="org.eclipse.papyrus.uml.diagram.clazz.edit.parts.TimeObservationEditPart" id="TimeObservation_2096"/>
+         <object class="org.eclipse.papyrus.uml.diagram.clazz.edit.parts.DefaultNamedElementEditPart" id="NamedElement_2097"/>
+         <object class="org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ShapeNamedElementEditPart" id="NamedElement_2098"/>
          <context elements="Package_1000,Dependency_2014,AssociationClass_2013,Association_2015,InstanceSpecification_2001,Component_2002,Signal_2003,Interface_2004,Model_2005,Enumeration_2006,Package_2007,Class_2008,PrimitiveType_2009,DataType_2010,Constraint_2011,Comment_2012,Diagram_2016,DurationObservation_2095,TimeObservation_2096,NamedElement_2097,NamedElement_2098"/>
       </modelingAssistantProvider>
    </extension>
@@ -151,7 +151,7 @@
       <?gmfgen generated="true"?>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <metamodelType
-               id="org.eclipse.papyrus.diagram.clazz.Package_1000"
+               id="org.eclipse.papyrus.uml.diagram.clazz.Package_1000"
                name="%metatype.name.Package_1000"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Package"
@@ -161,7 +161,7 @@
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <metamodelType
-               id="org.eclipse.papyrus.diagram.clazz.Dependency_2014"
+               id="org.eclipse.papyrus.uml.diagram.clazz.Dependency_2014"
                name="%metatype.name.Dependency_2014"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Dependency"
@@ -171,7 +171,7 @@
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <metamodelType
-               id="org.eclipse.papyrus.diagram.clazz.AssociationClass_2013"
+               id="org.eclipse.papyrus.uml.diagram.clazz.AssociationClass_2013"
                name="%metatype.name.AssociationClass_2013"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="AssociationClass"
@@ -181,7 +181,7 @@
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <metamodelType
-               id="org.eclipse.papyrus.diagram.clazz.Association_2015"
+               id="org.eclipse.papyrus.uml.diagram.clazz.Association_2015"
                name="%metatype.name.Association_2015"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Association"
@@ -191,7 +191,7 @@
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <metamodelType
-               id="org.eclipse.papyrus.diagram.clazz.InstanceSpecification_2001"
+               id="org.eclipse.papyrus.uml.diagram.clazz.InstanceSpecification_2001"
                name="%metatype.name.InstanceSpecification_2001"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="InstanceSpecification"
@@ -201,7 +201,7 @@
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <metamodelType
-               id="org.eclipse.papyrus.diagram.clazz.Component_2002"
+               id="org.eclipse.papyrus.uml.diagram.clazz.Component_2002"
                name="%metatype.name.Component_2002"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Component"
@@ -211,7 +211,7 @@
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <metamodelType
-               id="org.eclipse.papyrus.diagram.clazz.Signal_2003"
+               id="org.eclipse.papyrus.uml.diagram.clazz.Signal_2003"
                name="%metatype.name.Signal_2003"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Signal"
@@ -221,7 +221,7 @@
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <metamodelType
-               id="org.eclipse.papyrus.diagram.clazz.Interface_2004"
+               id="org.eclipse.papyrus.uml.diagram.clazz.Interface_2004"
                name="%metatype.name.Interface_2004"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Interface"
@@ -231,7 +231,7 @@
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <metamodelType
-               id="org.eclipse.papyrus.diagram.clazz.Model_2005"
+               id="org.eclipse.papyrus.uml.diagram.clazz.Model_2005"
                name="%metatype.name.Model_2005"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Model"
@@ -241,70 +241,70 @@
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <specializationType
-               id="org.eclipse.papyrus.diagram.clazz.Enumeration_2006"
+               id="org.eclipse.papyrus.uml.diagram.clazz.Enumeration_2006"
                name="%metatype.name.Enumeration_2006"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.diagram.clazz.Enumeration_3025"/>
+            <specializes id="org.eclipse.papyrus.uml.diagram.clazz.Enumeration_3025"/>
             <param name="semanticHint" value="2006"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <specializationType
-               id="org.eclipse.papyrus.diagram.clazz.Package_2007"
+               id="org.eclipse.papyrus.uml.diagram.clazz.Package_2007"
                name="%metatype.name.Package_2007"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.diagram.clazz.Package_1000"/>
+            <specializes id="org.eclipse.papyrus.uml.diagram.clazz.Package_1000"/>
             <param name="semanticHint" value="2007"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <specializationType
-               id="org.eclipse.papyrus.diagram.clazz.Class_2008"
+               id="org.eclipse.papyrus.uml.diagram.clazz.Class_2008"
                name="%metatype.name.Class_2008"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.diagram.clazz.Class_3004"/>
+            <specializes id="org.eclipse.papyrus.uml.diagram.clazz.Class_3004"/>
             <param name="semanticHint" value="2008"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <specializationType
-               id="org.eclipse.papyrus.diagram.clazz.PrimitiveType_2009"
+               id="org.eclipse.papyrus.uml.diagram.clazz.PrimitiveType_2009"
                name="%metatype.name.PrimitiveType_2009"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.diagram.clazz.PrimitiveType_3026"/>
+            <specializes id="org.eclipse.papyrus.uml.diagram.clazz.PrimitiveType_3026"/>
             <param name="semanticHint" value="2009"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <specializationType
-               id="org.eclipse.papyrus.diagram.clazz.DataType_2010"
+               id="org.eclipse.papyrus.uml.diagram.clazz.DataType_2010"
                name="%metatype.name.DataType_2010"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.diagram.clazz.DataType_3027"/>
+            <specializes id="org.eclipse.papyrus.uml.diagram.clazz.DataType_3027"/>
             <param name="semanticHint" value="2010"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <specializationType
-               id="org.eclipse.papyrus.diagram.clazz.Constraint_2011"
+               id="org.eclipse.papyrus.uml.diagram.clazz.Constraint_2011"
                name="%metatype.name.Constraint_2011"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.diagram.clazz.Constraint_3029"/>
+            <specializes id="org.eclipse.papyrus.uml.diagram.clazz.Constraint_3029"/>
             <param name="semanticHint" value="2011"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <specializationType
-               id="org.eclipse.papyrus.diagram.clazz.Comment_2012"
+               id="org.eclipse.papyrus.uml.diagram.clazz.Comment_2012"
                name="%metatype.name.Comment_2012"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.diagram.clazz.Comment_3028"/>
+            <specializes id="org.eclipse.papyrus.uml.diagram.clazz.Comment_3028"/>
             <param name="semanticHint" value="2012"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/gmf/runtime/1.0.2/notation">
          <metamodelType
-               id="org.eclipse.papyrus.diagram.clazz.Diagram_2016"
+               id="org.eclipse.papyrus.uml.diagram.clazz.Diagram_2016"
                name="%metatype.name.Diagram_2016"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Diagram"
@@ -314,7 +314,7 @@
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <metamodelType
-               id="org.eclipse.papyrus.diagram.clazz.DurationObservation_2095"
+               id="org.eclipse.papyrus.uml.diagram.clazz.DurationObservation_2095"
                name="%metatype.name.DurationObservation_2095"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="DurationObservation"
@@ -324,7 +324,7 @@
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <metamodelType
-               id="org.eclipse.papyrus.diagram.clazz.TimeObservation_2096"
+               id="org.eclipse.papyrus.uml.diagram.clazz.TimeObservation_2096"
                name="%metatype.name.TimeObservation_2096"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="TimeObservation"
@@ -334,7 +334,7 @@
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <metamodelType
-               id="org.eclipse.papyrus.diagram.clazz.NamedElement_2097"
+               id="org.eclipse.papyrus.uml.diagram.clazz.NamedElement_2097"
                name="%metatype.name.NamedElement_2097"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="NamedElement"
@@ -344,7 +344,7 @@
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <metamodelType
-               id="org.eclipse.papyrus.diagram.clazz.NamedElement_2098"
+               id="org.eclipse.papyrus.uml.diagram.clazz.NamedElement_2098"
                name="%metatype.name.NamedElement_2098"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="NamedElement"
@@ -354,16 +354,16 @@
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <specializationType
-               id="org.eclipse.papyrus.diagram.clazz.Property_3012"
+               id="org.eclipse.papyrus.uml.diagram.clazz.Property_3012"
                name="%metatype.name.Property_3012"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.diagram.clazz.Property_3002"/>
+            <specializes id="org.eclipse.papyrus.uml.diagram.clazz.Property_3002"/>
             <param name="semanticHint" value="3012"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <metamodelType
-               id="org.eclipse.papyrus.diagram.clazz.Property_3002"
+               id="org.eclipse.papyrus.uml.diagram.clazz.Property_3002"
                name="%metatype.name.Property_3002"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Property"
@@ -373,43 +373,43 @@
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <specializationType
-               id="org.eclipse.papyrus.diagram.clazz.Property_3005"
+               id="org.eclipse.papyrus.uml.diagram.clazz.Property_3005"
                name="%metatype.name.Property_3005"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.diagram.clazz.Property_3002"/>
+            <specializes id="org.eclipse.papyrus.uml.diagram.clazz.Property_3002"/>
             <param name="semanticHint" value="3005"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <specializationType
-               id="org.eclipse.papyrus.diagram.clazz.Property_3006"
+               id="org.eclipse.papyrus.uml.diagram.clazz.Property_3006"
                name="%metatype.name.Property_3006"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.diagram.clazz.Property_3002"/>
+            <specializes id="org.eclipse.papyrus.uml.diagram.clazz.Property_3002"/>
             <param name="semanticHint" value="3006"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <specializationType
-               id="org.eclipse.papyrus.diagram.clazz.Property_3018"
+               id="org.eclipse.papyrus.uml.diagram.clazz.Property_3018"
                name="%metatype.name.Property_3018"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.diagram.clazz.Property_3002"/>
+            <specializes id="org.eclipse.papyrus.uml.diagram.clazz.Property_3002"/>
             <param name="semanticHint" value="3018"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <specializationType
-               id="org.eclipse.papyrus.diagram.clazz.Class_3014"
+               id="org.eclipse.papyrus.uml.diagram.clazz.Class_3014"
                name="%metatype.name.Class_3014"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.diagram.clazz.Class_3004"/>
+            <specializes id="org.eclipse.papyrus.uml.diagram.clazz.Class_3004"/>
             <param name="semanticHint" value="3014"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <metamodelType
-               id="org.eclipse.papyrus.diagram.clazz.Class_3004"
+               id="org.eclipse.papyrus.uml.diagram.clazz.Class_3004"
                name="%metatype.name.Class_3004"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Class"
@@ -419,25 +419,25 @@
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <specializationType
-               id="org.eclipse.papyrus.diagram.clazz.Class_3008"
+               id="org.eclipse.papyrus.uml.diagram.clazz.Class_3008"
                name="%metatype.name.Class_3008"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.diagram.clazz.Class_3004"/>
+            <specializes id="org.eclipse.papyrus.uml.diagram.clazz.Class_3004"/>
             <param name="semanticHint" value="3008"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <specializationType
-               id="org.eclipse.papyrus.diagram.clazz.Operation_3013"
+               id="org.eclipse.papyrus.uml.diagram.clazz.Operation_3013"
                name="%metatype.name.Operation_3013"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.diagram.clazz.Operation_3003"/>
+            <specializes id="org.eclipse.papyrus.uml.diagram.clazz.Operation_3003"/>
             <param name="semanticHint" value="3013"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <metamodelType
-               id="org.eclipse.papyrus.diagram.clazz.Operation_3003"
+               id="org.eclipse.papyrus.uml.diagram.clazz.Operation_3003"
                name="%metatype.name.Operation_3003"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Operation"
@@ -447,25 +447,25 @@
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <specializationType
-               id="org.eclipse.papyrus.diagram.clazz.Operation_3007"
+               id="org.eclipse.papyrus.uml.diagram.clazz.Operation_3007"
                name="%metatype.name.Operation_3007"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.diagram.clazz.Operation_3003"/>
+            <specializes id="org.eclipse.papyrus.uml.diagram.clazz.Operation_3003"/>
             <param name="semanticHint" value="3007"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <specializationType
-               id="org.eclipse.papyrus.diagram.clazz.Operation_3019"
+               id="org.eclipse.papyrus.uml.diagram.clazz.Operation_3019"
                name="%metatype.name.Operation_3019"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.diagram.clazz.Operation_3003"/>
+            <specializes id="org.eclipse.papyrus.uml.diagram.clazz.Operation_3003"/>
             <param name="semanticHint" value="3019"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <metamodelType
-               id="org.eclipse.papyrus.diagram.clazz.ConnectableElementTemplateParameter_3034"
+               id="org.eclipse.papyrus.uml.diagram.clazz.ConnectableElementTemplateParameter_3034"
                name="%metatype.name.ConnectableElementTemplateParameter_3034"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="ConnectableElementTemplateParameter"
@@ -475,7 +475,7 @@
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <metamodelType
-               id="org.eclipse.papyrus.diagram.clazz.OperationTemplateParameter_3035"
+               id="org.eclipse.papyrus.uml.diagram.clazz.OperationTemplateParameter_3035"
                name="%metatype.name.OperationTemplateParameter_3035"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="OperationTemplateParameter"
@@ -485,7 +485,7 @@
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <metamodelType
-               id="org.eclipse.papyrus.diagram.clazz.ClassifierTemplateParameter_3031"
+               id="org.eclipse.papyrus.uml.diagram.clazz.ClassifierTemplateParameter_3031"
                name="%metatype.name.ClassifierTemplateParameter_3031"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="ClassifierTemplateParameter"
@@ -495,7 +495,7 @@
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <metamodelType
-               id="org.eclipse.papyrus.diagram.clazz.TemplateParameter_3016"
+               id="org.eclipse.papyrus.uml.diagram.clazz.TemplateParameter_3016"
                name="%metatype.name.TemplateParameter_3016"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="TemplateParameter"
@@ -505,7 +505,7 @@
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <metamodelType
-               id="org.eclipse.papyrus.diagram.clazz.EnumerationLiteral_3017"
+               id="org.eclipse.papyrus.uml.diagram.clazz.EnumerationLiteral_3017"
                name="%metatype.name.EnumerationLiteral_3017"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="EnumerationLiteral"
@@ -515,7 +515,7 @@
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <metamodelType
-               id="org.eclipse.papyrus.diagram.clazz.Reception_3011"
+               id="org.eclipse.papyrus.uml.diagram.clazz.Reception_3011"
                name="%metatype.name.Reception_3011"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Reception"
@@ -525,7 +525,7 @@
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <metamodelType
-               id="org.eclipse.papyrus.diagram.clazz.Slot_3030"
+               id="org.eclipse.papyrus.uml.diagram.clazz.Slot_3030"
                name="%metatype.name.Slot_3030"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Slot"
@@ -535,7 +535,7 @@
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <metamodelType
-               id="org.eclipse.papyrus.diagram.clazz.RedefinableTemplateSignature_3015"
+               id="org.eclipse.papyrus.uml.diagram.clazz.RedefinableTemplateSignature_3015"
                name="%metatype.name.RedefinableTemplateSignature_3015"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="RedefinableTemplateSignature"
@@ -544,7 +544,7 @@
          </metamodelType>
       </metamodel>
       <specializationType
-            id="org.eclipse.papyrus.diagram.clazz.ContainmentCircle_3032"
+            id="org.eclipse.papyrus.uml.diagram.clazz.ContainmentCircle_3032"
             name="%metatype.name.Node_3032"
             kind="org.eclipse.gmf.runtime.diagram.ui.util.INotationType">
          <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
@@ -552,7 +552,7 @@
       </specializationType>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <metamodelType
-               id="org.eclipse.papyrus.diagram.clazz.TemplateSignature_3033"
+               id="org.eclipse.papyrus.uml.diagram.clazz.TemplateSignature_3033"
                name="%metatype.name.TemplateSignature_3033"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="TemplateSignature"
@@ -562,52 +562,52 @@
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <specializationType
-               id="org.eclipse.papyrus.diagram.clazz.InstanceSpecification_3020"
+               id="org.eclipse.papyrus.uml.diagram.clazz.InstanceSpecification_3020"
                name="%metatype.name.InstanceSpecification_3020"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.diagram.clazz.InstanceSpecification_2001"/>
+            <specializes id="org.eclipse.papyrus.uml.diagram.clazz.InstanceSpecification_2001"/>
             <param name="semanticHint" value="3020"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <specializationType
-               id="org.eclipse.papyrus.diagram.clazz.Component_3021"
+               id="org.eclipse.papyrus.uml.diagram.clazz.Component_3021"
                name="%metatype.name.Component_3021"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.diagram.clazz.Component_2002"/>
+            <specializes id="org.eclipse.papyrus.uml.diagram.clazz.Component_2002"/>
             <param name="semanticHint" value="3021"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <specializationType
-               id="org.eclipse.papyrus.diagram.clazz.Signal_3022"
+               id="org.eclipse.papyrus.uml.diagram.clazz.Signal_3022"
                name="%metatype.name.Signal_3022"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.diagram.clazz.Signal_2003"/>
+            <specializes id="org.eclipse.papyrus.uml.diagram.clazz.Signal_2003"/>
             <param name="semanticHint" value="3022"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <specializationType
-               id="org.eclipse.papyrus.diagram.clazz.Interface_3023"
+               id="org.eclipse.papyrus.uml.diagram.clazz.Interface_3023"
                name="%metatype.name.Interface_3023"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.diagram.clazz.Interface_2004"/>
+            <specializes id="org.eclipse.papyrus.uml.diagram.clazz.Interface_2004"/>
             <param name="semanticHint" value="3023"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <specializationType
-               id="org.eclipse.papyrus.diagram.clazz.Model_3024"
+               id="org.eclipse.papyrus.uml.diagram.clazz.Model_3024"
                name="%metatype.name.Model_3024"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.diagram.clazz.Model_2005"/>
+            <specializes id="org.eclipse.papyrus.uml.diagram.clazz.Model_2005"/>
             <param name="semanticHint" value="3024"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <metamodelType
-               id="org.eclipse.papyrus.diagram.clazz.Enumeration_3025"
+               id="org.eclipse.papyrus.uml.diagram.clazz.Enumeration_3025"
                name="%metatype.name.Enumeration_3025"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Enumeration"
@@ -617,25 +617,25 @@
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <specializationType
-               id="org.eclipse.papyrus.diagram.clazz.Package_3009"
+               id="org.eclipse.papyrus.uml.diagram.clazz.Package_3009"
                name="%metatype.name.Package_3009"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.diagram.clazz.Package_1000"/>
+            <specializes id="org.eclipse.papyrus.uml.diagram.clazz.Package_1000"/>
             <param name="semanticHint" value="3009"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <specializationType
-               id="org.eclipse.papyrus.diagram.clazz.Class_3010"
+               id="org.eclipse.papyrus.uml.diagram.clazz.Class_3010"
                name="%metatype.name.Class_3010"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.diagram.clazz.Class_3004"/>
+            <specializes id="org.eclipse.papyrus.uml.diagram.clazz.Class_3004"/>
             <param name="semanticHint" value="3010"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <metamodelType
-               id="org.eclipse.papyrus.diagram.clazz.PrimitiveType_3026"
+               id="org.eclipse.papyrus.uml.diagram.clazz.PrimitiveType_3026"
                name="%metatype.name.PrimitiveType_3026"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="PrimitiveType"
@@ -645,7 +645,7 @@
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <metamodelType
-               id="org.eclipse.papyrus.diagram.clazz.DataType_3027"
+               id="org.eclipse.papyrus.uml.diagram.clazz.DataType_3027"
                name="%metatype.name.DataType_3027"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="DataType"
@@ -655,7 +655,7 @@
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <metamodelType
-               id="org.eclipse.papyrus.diagram.clazz.Comment_3028"
+               id="org.eclipse.papyrus.uml.diagram.clazz.Comment_3028"
                name="%metatype.name.Comment_3028"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Comment"
@@ -665,7 +665,7 @@
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <metamodelType
-               id="org.eclipse.papyrus.diagram.clazz.Constraint_3029"
+               id="org.eclipse.papyrus.uml.diagram.clazz.Constraint_3029"
                name="%metatype.name.Constraint_3029"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Constraint"
@@ -674,7 +674,7 @@
          </metamodelType>
       </metamodel>
       <specializationType
-            id="org.eclipse.papyrus.diagram.clazz.Link_4016"
+            id="org.eclipse.papyrus.uml.diagram.clazz.Link_4016"
             name="%metatype.name.Link_4016"
             kind="org.eclipse.gmf.runtime.diagram.ui.util.INotationType">
          <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
@@ -682,34 +682,34 @@
       </specializationType>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <specializationType
-               id="org.eclipse.papyrus.diagram.clazz.AssociationClass_4017"
+               id="org.eclipse.papyrus.uml.diagram.clazz.AssociationClass_4017"
                name="%metatype.name.AssociationClass_4017"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.diagram.clazz.AssociationClass_2013"/>
+            <specializes id="org.eclipse.papyrus.uml.diagram.clazz.AssociationClass_2013"/>
             <param name="semanticHint" value="4017"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <specializationType
-               id="org.eclipse.papyrus.diagram.clazz.Association_4001"
+               id="org.eclipse.papyrus.uml.diagram.clazz.Association_4001"
                name="%metatype.name.Association_4001"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.diagram.clazz.Association_2015"/>
+            <specializes id="org.eclipse.papyrus.uml.diagram.clazz.Association_2015"/>
             <param name="semanticHint" value="4001"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <specializationType
-               id="org.eclipse.papyrus.diagram.clazz.Association_4019"
+               id="org.eclipse.papyrus.uml.diagram.clazz.Association_4019"
                name="%metatype.name.Association_4019"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.diagram.clazz.Association_2015"/>
+            <specializes id="org.eclipse.papyrus.uml.diagram.clazz.Association_2015"/>
             <param name="semanticHint" value="4019"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <metamodelType
-               id="org.eclipse.papyrus.diagram.clazz.Generalization_4002"
+               id="org.eclipse.papyrus.uml.diagram.clazz.Generalization_4002"
                name="%metatype.name.Generalization_4002"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Generalization"
@@ -719,7 +719,7 @@
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <metamodelType
-               id="org.eclipse.papyrus.diagram.clazz.InterfaceRealization_4003"
+               id="org.eclipse.papyrus.uml.diagram.clazz.InterfaceRealization_4003"
                name="%metatype.name.InterfaceRealization_4003"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="InterfaceRealization"
@@ -729,7 +729,7 @@
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <metamodelType
-               id="org.eclipse.papyrus.diagram.clazz.Substitution_4004"
+               id="org.eclipse.papyrus.uml.diagram.clazz.Substitution_4004"
                name="%metatype.name.Substitution_4004"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Substitution"
@@ -739,7 +739,7 @@
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <metamodelType
-               id="org.eclipse.papyrus.diagram.clazz.Realization_4005"
+               id="org.eclipse.papyrus.uml.diagram.clazz.Realization_4005"
                name="%metatype.name.Realization_4005"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Realization"
@@ -749,7 +749,7 @@
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <metamodelType
-               id="org.eclipse.papyrus.diagram.clazz.Abstraction_4006"
+               id="org.eclipse.papyrus.uml.diagram.clazz.Abstraction_4006"
                name="%metatype.name.Abstraction_4006"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Abstraction"
@@ -759,7 +759,7 @@
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <metamodelType
-               id="org.eclipse.papyrus.diagram.clazz.Usage_4007"
+               id="org.eclipse.papyrus.uml.diagram.clazz.Usage_4007"
                name="%metatype.name.Usage_4007"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Usage"
@@ -769,25 +769,25 @@
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <specializationType
-               id="org.eclipse.papyrus.diagram.clazz.Dependency_4008"
+               id="org.eclipse.papyrus.uml.diagram.clazz.Dependency_4008"
                name="%metatype.name.Dependency_4008"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.diagram.clazz.Dependency_2014"/>
+            <specializes id="org.eclipse.papyrus.uml.diagram.clazz.Dependency_2014"/>
             <param name="semanticHint" value="4008"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <specializationType
-               id="org.eclipse.papyrus.diagram.clazz.Dependency_4018"
+               id="org.eclipse.papyrus.uml.diagram.clazz.Dependency_4018"
                name="%metatype.name.Dependency_4018"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.diagram.clazz.Dependency_2014"/>
+            <specializes id="org.eclipse.papyrus.uml.diagram.clazz.Dependency_2014"/>
             <param name="semanticHint" value="4018"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <metamodelType
-               id="org.eclipse.papyrus.diagram.clazz.ElementImport_4009"
+               id="org.eclipse.papyrus.uml.diagram.clazz.ElementImport_4009"
                name="%metatype.name.ElementImport_4009"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="ElementImport"
@@ -797,7 +797,7 @@
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <metamodelType
-               id="org.eclipse.papyrus.diagram.clazz.PackageImport_4010"
+               id="org.eclipse.papyrus.uml.diagram.clazz.PackageImport_4010"
                name="%metatype.name.PackageImport_4010"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="PackageImport"
@@ -807,7 +807,7 @@
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <metamodelType
-               id="org.eclipse.papyrus.diagram.clazz.PackageMerge_4011"
+               id="org.eclipse.papyrus.uml.diagram.clazz.PackageMerge_4011"
                name="%metatype.name.PackageMerge_4011"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="PackageMerge"
@@ -817,7 +817,7 @@
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <metamodelType
-               id="org.eclipse.papyrus.diagram.clazz.ProfileApplication_4012"
+               id="org.eclipse.papyrus.uml.diagram.clazz.ProfileApplication_4012"
                name="%metatype.name.ProfileApplication_4012"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="ProfileApplication"
@@ -827,7 +827,7 @@
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <specializationType
-               id="org.eclipse.papyrus.diagram.clazz.CommentAnnotatedElement_4013"
+               id="org.eclipse.papyrus.uml.diagram.clazz.CommentAnnotatedElement_4013"
                name="%metatype.name.CommentAnnotatedElement_4013"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
             <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
@@ -836,7 +836,7 @@
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <specializationType
-               id="org.eclipse.papyrus.diagram.clazz.ConstraintConstrainedElement_4014"
+               id="org.eclipse.papyrus.uml.diagram.clazz.ConstraintConstrainedElement_4014"
                name="%metatype.name.ConstraintConstrainedElement_4014"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
             <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
@@ -845,7 +845,7 @@
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <metamodelType
-               id="org.eclipse.papyrus.diagram.clazz.TemplateBinding_4015"
+               id="org.eclipse.papyrus.uml.diagram.clazz.TemplateBinding_4015"
                name="%metatype.name.TemplateBinding_4015"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="TemplateBinding"
@@ -855,7 +855,7 @@
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <metamodelType
-               id="org.eclipse.papyrus.diagram.clazz.GeneralizationSet_4020"
+               id="org.eclipse.papyrus.uml.diagram.clazz.GeneralizationSet_4020"
                name="%metatype.name.GeneralizationSet_4020"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="GeneralizationSet"
@@ -865,7 +865,7 @@
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <metamodelType
-               id="org.eclipse.papyrus.diagram.clazz.InstanceSpecificationLink_4021"
+               id="org.eclipse.papyrus.uml.diagram.clazz.InstanceSpecificationLink_4021"
                name="%metatype.name.InstanceSpecification_4021"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="InstanceSpecification"
@@ -874,14 +874,14 @@
          </metamodelType>
       </metamodel>
       <specializationType
-            id="org.eclipse.papyrus.diagram.clazz.AddedLink_4022"
+            id="org.eclipse.papyrus.uml.diagram.clazz.AddedLink_4022"
             name="%metatype.name.Link_4022"
             kind="org.eclipse.gmf.runtime.diagram.ui.util.INotationType">
          <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
          <param name="semanticHint" value="4022"/>
       </specializationType>
       <specializationType
-            id="org.eclipse.papyrus.diagram.clazz.ContainmentLink_4023"
+            id="org.eclipse.papyrus.uml.diagram.clazz.ContainmentLink_4023"
             name="%metatype.name.Link_4023"
             kind="org.eclipse.gmf.runtime.diagram.ui.util.INotationType">
          <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
@@ -889,7 +889,7 @@
       </specializationType>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <specializationType
-               id="org.eclipse.papyrus.diagram.clazz.TimeObservationEvent_4024"
+               id="org.eclipse.papyrus.uml.diagram.clazz.TimeObservationEvent_4024"
                name="%metatype.name.TimeObservationEvent_4024"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
             <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
@@ -898,7 +898,7 @@
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <specializationType
-               id="org.eclipse.papyrus.diagram.clazz.DurationObservationEvent_4025"
+               id="org.eclipse.papyrus.uml.diagram.clazz.DurationObservationEvent_4025"
                name="%metatype.name.DurationObservationEvent_4025"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
             <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
@@ -908,103 +908,103 @@
    </extension>
 <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings" id="element-types-bindings">
       <?gmfgen generated="true"?>
-      <clientContext id="org.eclipse.papyrus.diagram.clazz.TypeContext">
+      <clientContext id="org.eclipse.papyrus.uml.diagram.clazz.TypeContext">
          <enablement>
             <test
                property="org.eclipse.gmf.runtime.emf.core.editingDomain"
-               value="org.eclipse.papyrus.diagram.clazz.EditingDomain"/>
+               value="org.eclipse.papyrus.uml.diagram.clazz.EditingDomain"/>
          </enablement>
       </clientContext> 
-      <binding context="org.eclipse.papyrus.diagram.clazz.TypeContext">
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.Package_1000"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.Dependency_2014"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.AssociationClass_2013"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.Association_2015"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.InstanceSpecification_2001"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.Component_2002"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.Signal_2003"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.Interface_2004"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.Model_2005"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.Enumeration_2006"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.Package_2007"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.Class_2008"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.PrimitiveType_2009"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.DataType_2010"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.Constraint_2011"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.Comment_2012"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.Diagram_2016"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.DurationObservation_2095"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.TimeObservation_2096"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.NamedElement_2097"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.NamedElement_2098"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.Property_3012"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.Property_3002"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.Property_3005"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.Property_3006"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.Property_3018"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.Class_3014"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.Class_3004"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.Class_3008"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.Operation_3013"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.Operation_3003"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.Operation_3007"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.Operation_3019"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.ConnectableElementTemplateParameter_3034"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.OperationTemplateParameter_3035"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.ClassifierTemplateParameter_3031"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.TemplateParameter_3016"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.EnumerationLiteral_3017"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.Reception_3011"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.Slot_3030"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.RedefinableTemplateSignature_3015"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.ContainmentCircle_3032"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.TemplateSignature_3033"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.InstanceSpecification_3020"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.Component_3021"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.Signal_3022"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.Interface_3023"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.Model_3024"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.Enumeration_3025"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.Package_3009"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.Class_3010"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.PrimitiveType_3026"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.DataType_3027"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.Comment_3028"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.Constraint_3029"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.Link_4016"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.AssociationClass_4017"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.Association_4001"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.Association_4019"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.Generalization_4002"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.InterfaceRealization_4003"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.Substitution_4004"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.Realization_4005"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.Abstraction_4006"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.Usage_4007"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.Dependency_4008"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.Dependency_4018"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.ElementImport_4009"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.PackageImport_4010"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.PackageMerge_4011"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.ProfileApplication_4012"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.CommentAnnotatedElement_4013"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.ConstraintConstrainedElement_4014"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.TemplateBinding_4015"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.GeneralizationSet_4020"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.InstanceSpecificationLink_4021"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.AddedLink_4022"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.ContainmentLink_4023"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.TimeObservationEvent_4024"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.DurationObservationEvent_4025"/>
+      <binding context="org.eclipse.papyrus.uml.diagram.clazz.TypeContext">
+         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.Package_1000"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.Dependency_2014"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.AssociationClass_2013"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.Association_2015"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.InstanceSpecification_2001"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.Component_2002"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.Signal_2003"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.Interface_2004"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.Model_2005"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.Enumeration_2006"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.Package_2007"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.Class_2008"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.PrimitiveType_2009"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.DataType_2010"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.Constraint_2011"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.Comment_2012"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.Diagram_2016"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.DurationObservation_2095"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.TimeObservation_2096"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.NamedElement_2097"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.NamedElement_2098"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.Property_3012"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.Property_3002"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.Property_3005"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.Property_3006"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.Property_3018"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.Class_3014"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.Class_3004"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.Class_3008"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.Operation_3013"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.Operation_3003"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.Operation_3007"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.Operation_3019"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.ConnectableElementTemplateParameter_3034"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.OperationTemplateParameter_3035"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.ClassifierTemplateParameter_3031"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.TemplateParameter_3016"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.EnumerationLiteral_3017"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.Reception_3011"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.Slot_3030"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.RedefinableTemplateSignature_3015"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.ContainmentCircle_3032"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.TemplateSignature_3033"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.InstanceSpecification_3020"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.Component_3021"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.Signal_3022"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.Interface_3023"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.Model_3024"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.Enumeration_3025"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.Package_3009"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.Class_3010"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.PrimitiveType_3026"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.DataType_3027"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.Comment_3028"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.Constraint_3029"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.Link_4016"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.AssociationClass_4017"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.Association_4001"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.Association_4019"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.Generalization_4002"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.InterfaceRealization_4003"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.Substitution_4004"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.Realization_4005"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.Abstraction_4006"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.Usage_4007"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.Dependency_4008"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.Dependency_4018"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.ElementImport_4009"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.PackageImport_4010"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.PackageMerge_4011"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.ProfileApplication_4012"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.CommentAnnotatedElement_4013"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.ConstraintConstrainedElement_4014"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.TemplateBinding_4015"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.GeneralizationSet_4020"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.InstanceSpecificationLink_4021"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.AddedLink_4022"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.ContainmentLink_4023"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.TimeObservationEvent_4024"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.DurationObservationEvent_4025"/>
          <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
       </binding>
    </extension>
 <extension point="org.eclipse.core.expressions.propertyTesters" id="navigator-proptest.isURIEditorInput">
       <?gmfgen generated="true"?>
        <propertyTester
-           id="org.eclipse.papyrus.diagram.clazz.URIEditorInputPropertyTester"
+           id="org.eclipse.papyrus.uml.diagram.clazz.URIEditorInputPropertyTester"
            type="org.eclipse.emf.common.ui.URIEditorInput"
-           namespace="org.eclipse.papyrus.diagram.clazz"
+           namespace="org.eclipse.papyrus.uml.diagram.clazz"
            properties="isURIEditorInput"
            class="org.eclipse.papyrus.uml.diagram.clazz.part.UMLUriEditorInputTester">
        </propertyTester>
@@ -1013,21 +1013,21 @@
       <?gmfgen generated="true"?>
       <viewerContentBinding viewerId="org.eclipse.ui.navigator.ProjectExplorer">
          <includes>
-            <contentExtension pattern="org.eclipse.papyrus.diagram.clazz.resourceContent"/>
-			<contentExtension pattern="org.eclipse.papyrus.diagram.clazz.domainResourceContent"/>
-            <contentExtension pattern="org.eclipse.papyrus.diagram.clazz.navigatorLinkHelper"/>
+            <contentExtension pattern="org.eclipse.papyrus.uml.diagram.clazz.resourceContent"/>
+			<contentExtension pattern="org.eclipse.papyrus.uml.diagram.clazz.domainResourceContent"/>
+            <contentExtension pattern="org.eclipse.papyrus.uml.diagram.clazz.navigatorLinkHelper"/>
          </includes>
       </viewerContentBinding>
       <viewerActionBinding viewerId="org.eclipse.ui.navigator.ProjectExplorer">
          <includes>
-            <actionExtension pattern="org.eclipse.papyrus.diagram.clazz.navigatorActionProvider"/>
+            <actionExtension pattern="org.eclipse.papyrus.uml.diagram.clazz.navigatorActionProvider"/>
          </includes>
       </viewerActionBinding>
    </extension>
 <extension point="org.eclipse.ui.navigator.navigatorContent" id="navigator-content">
       <?gmfgen generated="true"?>
       <navigatorContent
-            id="org.eclipse.papyrus.diagram.clazz.resourceContent" 
+            id="org.eclipse.papyrus.uml.diagram.clazz.resourceContent" 
             name="%navigatorContentName" 
             priority="normal" 
             contentProvider="org.eclipse.papyrus.uml.diagram.clazz.navigator.UMLNavigatorContentProvider" 
@@ -1049,7 +1049,7 @@
             </or>
          </possibleChildren>
          <commonSorter 
-               id="org.eclipse.papyrus.diagram.clazz.navigatorSorter" 
+               id="org.eclipse.papyrus.uml.diagram.clazz.navigatorSorter" 
                class="org.eclipse.papyrus.uml.diagram.clazz.navigator.UMLNavigatorSorter">
             <parentExpression>
                <or>
@@ -1063,7 +1063,7 @@
          </commonSorter>
       </navigatorContent>
       <navigatorContent
-            id="org.eclipse.papyrus.diagram.clazz.domainResourceContent" 
+            id="org.eclipse.papyrus.uml.diagram.clazz.domainResourceContent" 
             name="%domainNavigatorContentName" 
             priority="normal" 
             contentProvider="org.eclipse.papyrus.uml.diagram.clazz.navigator.UMLDomainNavigatorContentProvider" 
@@ -1084,7 +1084,7 @@
          </possibleChildren>
       </navigatorContent>
       <actionProvider
-            id="org.eclipse.papyrus.diagram.clazz.navigatorActionProvider"
+            id="org.eclipse.papyrus.uml.diagram.clazz.navigatorActionProvider"
             class="org.eclipse.papyrus.uml.diagram.clazz.navigator.UMLNavigatorActionProvider">
          <enablement>
             <or>
@@ -1096,12 +1096,12 @@
 <extension point="org.eclipse.ui.navigator.linkHelper" id="navigator-linkhelper">
       <?gmfgen generated="true"?>
       <linkHelper
-            id="org.eclipse.papyrus.diagram.clazz.navigatorLinkHelper"
+            id="org.eclipse.papyrus.uml.diagram.clazz.navigatorLinkHelper"
             class="org.eclipse.papyrus.uml.diagram.clazz.navigator.UMLNavigatorLinkHelper">
          <editorInputEnablement>
             <and>
                <instanceof value="org.eclipse.emf.common.ui.URIEditorInput"/>
-               <test property="org.eclipse.papyrus.diagram.clazz.isURIEditorInput"/>
+               <test property="org.eclipse.papyrus.uml.diagram.clazz.isURIEditorInput"/>
             </and>
          </editorInputEnablement>
          <selectionEnablement>
@@ -1115,14 +1115,14 @@
          categoryId="org.eclipse.ui.category.edit"
          defaultHandler="org.eclipse.papyrus.uml.diagram.clazz.part.UMLDiagramUpdateCommand"
          description="%update.diagram.description"
-         id="org.eclipse.papyrus.diagram.clazz.updateDiagram"
+         id="org.eclipse.papyrus.uml.diagram.clazz.updateDiagram"
          name="%update.diagram.name"/>
    </extension>
 <extension point="org.eclipse.ui.bindings" id="update-cmd-binding">
       <?gmfgen generated="true"?>
       <key 
-         commandId="org.eclipse.papyrus.diagram.clazz.updateDiagram"
-         contextId="org.eclipse.papyrus.diagram.clazz.ui.diagramContext"
+         commandId="org.eclipse.papyrus.uml.diagram.clazz.updateDiagram"
+         contextId="org.eclipse.papyrus.uml.diagram.clazz.ui.diagramContext"
          schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
          sequence="F5"/>
    </extension>
@@ -1131,7 +1131,7 @@
 	<command
             categoryId="org.eclipse.papyrus.editor.category"
             description="Create a new Class Diagram"
-            id="org.eclipse.papyrus.diagram.clazz.CreateClassDiagramCommand"
+            id="org.eclipse.papyrus.uml.diagram.clazz.CreateClassDiagramCommand"
             name="Create a new Class Diagram">
 	</command>
 </extension>
@@ -1139,10 +1139,10 @@
 <extension point="org.eclipse.ui.handlers">
 	<handler
 		class="org.eclipse.papyrus.uml.diagram.clazz.CreateClassDiagramWithNavigationHandler"
-		commandId="org.eclipse.papyrus.diagram.clazz.CreateClassDiagramCommand">
+		commandId="org.eclipse.papyrus.uml.diagram.clazz.CreateClassDiagramCommand">
 		<activeWhen>
 			<with variable="activeEditorId">
-				<equals value="org.eclipse.papyrus.core.papyrusEditor"/>
+				<equals value="org.eclipse.papyrus.infra.core.papyrusEditor"/>
 			</with>
 		</activeWhen>
 	</handler>
@@ -1151,9 +1151,9 @@
 <extension point="org.eclipse.ui.menus">
 	
 	<menuContribution locationURI="menu:org.eclipse.papyrus.ui.menu">
-	<menu id="org.eclipse.papyrus.diagram.ui.menu.diagrams"
+	<menu id="org.eclipse.papyrus.uml.diagram.ui.menu.diagrams"
 		label="Diagrams">
-		<command commandId="org.eclipse.papyrus.diagram.clazz.CreateClassDiagramCommand"
+		<command commandId="org.eclipse.papyrus.uml.diagram.clazz.CreateClassDiagramCommand"
 			icon="icons/obj16/Diagram_Class.gif"
 			label="Create a new Class Diagram"
 			style="push"
@@ -1166,8 +1166,8 @@
 	</menuContribution>
 
 	<menuContribution locationURI="toolbar:org.eclipse.ui.main.toolbar">
-	<toolbar id="org.eclipse.papyrus.diagram.ui.toolbar">
-		<command commandId="org.eclipse.papyrus.diagram.clazz.CreateClassDiagramCommand"
+	<toolbar id="org.eclipse.papyrus.uml.diagram.ui.toolbar">
+		<command commandId="org.eclipse.papyrus.uml.diagram.clazz.CreateClassDiagramCommand"
 			icon="icons/obj16/Diagram_Class.gif"
 			label="Create a new Class Diagram"
 			style="push"
@@ -1180,7 +1180,7 @@
 	</menuContribution>
 
 	<menuContribution locationURI="popup:org.eclipse.papyrus.views.modelexplorer.popupmenu.creatediagram">
-		<command commandId="org.eclipse.papyrus.diagram.clazz.CreateClassDiagramCommand"
+		<command commandId="org.eclipse.papyrus.uml.diagram.clazz.CreateClassDiagramCommand"
 			icon="icons/obj16/Diagram_Class.gif"
 			label="Create a new Class Diagram"
 			style="push"
@@ -1196,7 +1196,7 @@
 
 
    <extension
-         point="org.eclipse.papyrus.core.papyrusDiagram">
+         point="org.eclipse.papyrus.infra.core.papyrusDiagram">
       <editorDiagram
             actionBarContributorId="org.eclipse.papyrus.uml.diagram.common.part.UMLDiagramActionBarContributor"
             contextId="com.cea.papyrus.gmf.editor.context"
@@ -1207,7 +1207,7 @@
             creationCommandClass="org.eclipse.papyrus.uml.diagram.clazz.CreateClassDiagramCommand"
             creationCondition="org.eclipse.papyrus.uml.diagram.clazz.ClassDiagramCreationCondition"
             icon="icons/obj16/Diagram_Class.gif"
-            id="org.eclipse.papyrus.diagram.clazz.CreateClassDiagramCommand"
+            id="org.eclipse.papyrus.uml.diagram.clazz.CreateClassDiagramCommand"
             language="uml"
             label="UML Class Diagram">
       </creationCommand>      
@@ -1215,7 +1215,7 @@
    <!--extension
          point="org.eclipse.gmf.runtime.diagram.ui.editpolicyProviders">
       <editpolicyProvider
-            class="org.eclipse.papyrus.diagram.clazz.custom.providers.CustomEditPolicyProvider">
+            class="org.eclipse.papyrus.uml.diagram.clazz.custom.providers.CustomEditPolicyProvider">
          <Priority
                name="Highest">
          </Priority>
@@ -1223,49 +1223,49 @@
    </extension-->   <extension point="org.eclipse.ui.popupMenus">
       <objectContribution
             adaptable="false"
-            id="org.eclipse.papyrus.diagram.clazz.objectContribution.dependencybranchdeletion"
+            id="org.eclipse.papyrus.uml.diagram.clazz.objectContribution.dependencybranchdeletion"
             objectClass="org.eclipse.papyrus.uml.diagram.clazz.edit.parts.DependencyBranchEditPart">
     
          <action
                class="org.eclipse.papyrus.uml.diagram.clazz.custom.command.DependencyBranchDeletion"
-               definitionId="org.eclipse.papyrus.diagram.clazz.dependencybranchdeletionID"
+               definitionId="org.eclipse.papyrus.uml.diagram.clazz.dependencybranchdeletionID"
                enablesFor="1"
                icon="icons/Delete_16x16.gif"
-               id="org.eclipse.papyrus.diagram.clazz.dependencybranchdeletionActionID"
+               id="org.eclipse.papyrus.uml.diagram.clazz.dependencybranchdeletionActionID"
                label="Delete dependency branch  from  model"
                menubarPath="editGroup">
          </action>
       </objectContribution>
       <objectContribution
             adaptable="false"
-            id="org.eclipse.papyrus.diagram.clazz.objectContribution.associationbranchdeletion"
+            id="org.eclipse.papyrus.uml.diagram.clazz.objectContribution.associationbranchdeletion"
             objectClass="org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AssociationBranchEditPart">
          <action
                class="org.eclipse.papyrus.uml.diagram.clazz.custom.command.AssociationBranchDeletion"
-               definitionId="org.eclipse.papyrus.diagram.clazz.associationbranchdeletionID"
+               definitionId="org.eclipse.papyrus.uml.diagram.clazz.associationbranchdeletionID"
                enablesFor="1"
                icon="icons/Delete_16x16.gif"
-               id="org.eclipse.papyrus.diagram.clazz.AssociationbranchdeletionActionID"
+               id="org.eclipse.papyrus.uml.diagram.clazz.AssociationbranchdeletionActionID"
                label=" Delete association branch from model"
                menubarPath="editGroup">
          </action>
       </objectContribution>
       <objectContribution
             adaptable="false"
-            id="org.eclipse.papyrus.diagram.clazz.objectContribution.displayAllAssociationBranch"
+            id="org.eclipse.papyrus.uml.diagram.clazz.objectContribution.displayAllAssociationBranch"
             objectClass="org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AssociationNodeEditPart">
          <action
                class="org.eclipse.papyrus.uml.diagram.clazz.custom.command.DisplayAllAssociationBranchCommand"
-               definitionId="org.eclipse.papyrus.diagram.clazz.DisplayAllAssociationBranchesID"
+               definitionId="org.eclipse.papyrus.uml.diagram.clazz.DisplayAllAssociationBranchesID"
                enablesFor="1"
-               id="org.eclipse.papyrus.diagram.clazz.DisplayAllAssociationBranchesActionID"
+               id="org.eclipse.papyrus.uml.diagram.clazz.DisplayAllAssociationBranchesActionID"
                label="Display all association branches"
                menubarPath="editGroup">
          </action>
       </objectContribution>
       <objectContribution
             adaptable="true"
-            id="org.eclipse.papyrus.diagram.clazz.papyrusmenu"
+            id="org.eclipse.papyrus.uml.diagram.clazz.papyrusmenu"
             objectClass="org.eclipse.gmf.runtime.diagram.ui.editparts.LabelEditPart">
          <visibility>
             <or>
@@ -1285,7 +1285,7 @@
          </visibility>
          <menu
                icon="icons/obj16/native_lib_path_attrib.png"
-               id="org.eclipse.papyrus.diagram.clazz.popupmenu.associationend"
+               id="org.eclipse.papyrus.uml.diagram.clazz.popupmenu.associationend"
                label="Association End"
                path="additions">
             <separator
@@ -1298,22 +1298,22 @@
          <action
                class="org.eclipse.papyrus.uml.diagram.clazz.custom.action.SetClassifierPropertyOwnerAction"
                enablesFor="1"
-               id="org.eclipse.papyrus.diagram.clazz.setclassifierpropertyowner"
+               id="org.eclipse.papyrus.uml.diagram.clazz.setclassifierpropertyowner"
                label="owned by the classifier"
-               menubarPath="org.eclipse.papyrus.diagram.clazz.popupmenu.associationend/group1">
+               menubarPath="org.eclipse.papyrus.uml.diagram.clazz.popupmenu.associationend/group1">
          </action>
          <action
                class="org.eclipse.papyrus.uml.diagram.clazz.custom.action.SetAssociationPropertyOwnerAction"
                enablesFor="1"
-               id="org.eclipse.papyrus.diagram.clazz.setassociationpropertyowneraction"
+               id="org.eclipse.papyrus.uml.diagram.clazz.setassociationpropertyowneraction"
                label="owned by the association"
-               menubarPath="org.eclipse.papyrus.diagram.clazz.popupmenu.associationend/group1">
+               menubarPath="org.eclipse.papyrus.uml.diagram.clazz.popupmenu.associationend/group1">
          </action>
          <menu
                icon="icons/obj16/css_propertyvalue_function.gif"
-               id="org.eclipse.papyrus.diagram.clazz.popupmenu.associationnavigation"
+               id="org.eclipse.papyrus.uml.diagram.clazz.popupmenu.associationnavigation"
                label="navigation"
-               path="org.eclipse.papyrus.diagram.clazz.popupmenu.associationend">
+               path="org.eclipse.papyrus.uml.diagram.clazz.popupmenu.associationend">
             <separator
                   name="group3">
             </separator>
@@ -1321,22 +1321,22 @@
          <action
                class="org.eclipse.papyrus.uml.diagram.clazz.custom.action.SetNavigablePropertyAction"
                enablesFor="1"
-               id="org.eclipse.papyrus.diagram.clazz.setnavigablepropertyaction"
+               id="org.eclipse.papyrus.uml.diagram.clazz.setnavigablepropertyaction"
                label="set navigable"
-               menubarPath="org.eclipse.papyrus.diagram.clazz.popupmenu.associationnavigation/group3">
+               menubarPath="org.eclipse.papyrus.uml.diagram.clazz.popupmenu.associationnavigation/group3">
          </action>
          <action
                class="org.eclipse.papyrus.uml.diagram.clazz.custom.action.SetNonNavigablePropertyAction"
                enablesFor="1"
-               id="org.eclipse.papyrus.diagram.clazz.setnonnavigablepropertyaction"
+               id="org.eclipse.papyrus.uml.diagram.clazz.setnonnavigablepropertyaction"
                label="set non navigable"
-               menubarPath="org.eclipse.papyrus.diagram.clazz.popupmenu.associationnavigation/group3">
+               menubarPath="org.eclipse.papyrus.uml.diagram.clazz.popupmenu.associationnavigation/group3">
          </action>
          <menu
                icon="icons/obj16/Association_composite.gif"
-               id="org.eclipse.papyrus.diagram.clazz.popupmenu.associationaggregation"
+               id="org.eclipse.papyrus.uml.diagram.clazz.popupmenu.associationaggregation"
                label="aggregation"
-               path="org.eclipse.papyrus.diagram.clazz.popupmenu.associationend">
+               path="org.eclipse.papyrus.uml.diagram.clazz.popupmenu.associationend">
             <separator
                   name="group4">
             </separator>
@@ -1345,50 +1345,50 @@
                class="org.eclipse.papyrus.uml.diagram.clazz.custom.action.SetNoneAggregationPropertyAction"
                enablesFor="1"
                icon="icons/obj16/Association_none.gif"
-               id="org.eclipse.papyrus.diagram.clazz.SetNoneAggregationPropertyAction"
+               id="org.eclipse.papyrus.uml.diagram.clazz.SetNoneAggregationPropertyAction"
                label="none"
-               menubarPath="org.eclipse.papyrus.diagram.clazz.popupmenu.associationaggregation/group4">
+               menubarPath="org.eclipse.papyrus.uml.diagram.clazz.popupmenu.associationaggregation/group4">
          </action>
          <action
                class="org.eclipse.papyrus.uml.diagram.clazz.custom.action.SetCompositePropertyAction"
                enablesFor="1"
                icon="icons/obj16/Association_composite.gif"
-               id="org.eclipse.papyrus.diagram.clazz.SetCompositePropertyAction"
+               id="org.eclipse.papyrus.uml.diagram.clazz.SetCompositePropertyAction"
                label="composite"
-               menubarPath="org.eclipse.papyrus.diagram.clazz.popupmenu.associationaggregation/group4">
+               menubarPath="org.eclipse.papyrus.uml.diagram.clazz.popupmenu.associationaggregation/group4">
          </action>
          <action
                class="org.eclipse.papyrus.uml.diagram.clazz.custom.action.SetSharedPropertyAction"
                enablesFor="1"
                icon="icons/obj16/Association_shared.gif"
-               id="org.eclipse.papyrus.diagram.clazz.SetSharedPropertyAction"
+               id="org.eclipse.papyrus.uml.diagram.clazz.SetSharedPropertyAction"
                label="shared"
-               menubarPath="org.eclipse.papyrus.diagram.clazz.popupmenu.associationaggregation/group4">
+               menubarPath="org.eclipse.papyrus.uml.diagram.clazz.popupmenu.associationaggregation/group4">
          </action>
       </objectContribution>
 </extension>
 <extension point="org.eclipse.ui.preferencePages" id="prefpages">
       <?gmfgen generated="true"?>
       <page
-            id="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+            id="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLClassDiagram"
             name="PapyrusUMLClassDiagram Diagram"
-            category="org.eclipse.papyrus.preferences.diagrams"
+            category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams"
             class="org.eclipse.papyrus.uml.diagram.clazz.preferences.DiagramGeneralPreferencePage">
       </page>
       
 
 
       <page
-            id="org.eclipse.papyrus.diagram.clazz.preferences.DiagramPrintingPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.clazz.preferences.DiagramPrintingPreferencePage"
             name="%prefpage.org.eclipse.uml2.uml.diagram.printing"
-            category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+            category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLClassDiagram"
             class="org.eclipse.papyrus.uml.diagram.clazz.preferences.DiagramPrintingPreferencePage">
       </page>
 
       <page
-            id="org.eclipse.papyrus.diagram.clazz.preferences.DiagramRulersAndGridPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.clazz.preferences.DiagramRulersAndGridPreferencePage"
             name="%prefpage.org.eclipse.uml2.uml.diagram.rulersAndGrid"
-            category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+            category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLClassDiagram"
             class="org.eclipse.papyrus.uml.diagram.clazz.preferences.DiagramRulersAndGridPreferencePage">
       </page>
 
@@ -1402,10 +1402,10 @@
       <menuContribution locationURI="toolbar:org.eclipse.ui.main.toolbar?after=">
       </menuContribution -->
       <menuContribution locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu">
-         <command commandId="org.eclipse.papyrus.diagram.clazz.LoadResourceAction">
+         <command commandId="org.eclipse.papyrus.uml.diagram.clazz.LoadResourceAction">
             <visibleWhen>
                <and>
-                  <with variable="activePartId"><equals value="org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditorID"/></with>
+                  <with variable="activePartId"><equals value="org.eclipse.papyrus.uml.diagram.clazz.part.UMLDiagramEditorID"/></with>
                   <with variable="selection"><iterate ifEmpty="false"> 
                      <instanceof value="org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ModelEditPart"/>
                   </iterate></with>
@@ -1417,10 +1417,10 @@
 
 <extension point="org.eclipse.ui.commands" id="menu-commands">
       <?gmfgen generated="true"?>
-      <category id="org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditorID" name="%cmdcategory.name" description="%cmdcategory.desc"/>
-      <command id="org.eclipse.papyrus.diagram.clazz.LoadResourceAction"
+      <category id="org.eclipse.papyrus.uml.diagram.clazz.part.UMLDiagramEditorID" name="%cmdcategory.name" description="%cmdcategory.desc"/>
+      <command id="org.eclipse.papyrus.uml.diagram.clazz.LoadResourceAction"
          name="Load Resource"
-         categoryId="org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditorID"
+         categoryId="org.eclipse.papyrus.uml.diagram.clazz.part.UMLDiagramEditorID"
          defaultHandler="org.eclipse.papyrus.uml.diagram.clazz.part.LoadResourceAction"/>
    </extension>
 
@@ -1430,7 +1430,7 @@
 <extension point="org.eclipse.gmf.runtime.common.ui.services.markerNavigationProviders" id="markers-navigation">
       <?gmfgen generated="true"?>
       <MarkerNavigationProvider class="org.eclipse.papyrus.uml.diagram.clazz.providers.UMLMarkerNavigationProvider">
-         <MarkerType name="org.eclipse.papyrus.diagram.clazz.diagnostic"/>
+         <MarkerType name="org.eclipse.papyrus.uml.diagram.clazz.diagnostic"/>
          <Priority name="Lowest"/>
       </MarkerNavigationProvider>
    </extension>
@@ -1445,226 +1445,226 @@
 
 		
 	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.uml.diagram.clazz.preferences.PropertyPreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.PropertyPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.clazz.preferences.PropertyPreferencePage"
             name="Property Node" />
 	
 		
 	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.uml.diagram.clazz.preferences.DataTypePreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.DataTypePreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.clazz.preferences.DataTypePreferencePage"
             name="DataType Node" />
 	
 		
 	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.uml.diagram.clazz.preferences.CommentPreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.CommentPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.clazz.preferences.CommentPreferencePage"
             name="Comment Node" />
 	
 		
 	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.uml.diagram.clazz.preferences.ClassifierTemplateParameterPreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.ClassifierTemplateParameterPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.clazz.preferences.ClassifierTemplateParameterPreferencePage"
             name="ClassifierTemplateParameter Node" />
 	
 		
 	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.uml.diagram.clazz.preferences.ClassPreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.ClassPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.clazz.preferences.ClassPreferencePage"
             name="Class Node" />
 	
 		
 	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.uml.diagram.clazz.preferences.EnumerationLiteralPreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.EnumerationLiteralPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.clazz.preferences.EnumerationLiteralPreferencePage"
             name="EnumerationLiteral Node" />
 	
 		
 	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.uml.diagram.clazz.preferences.PackagePreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.PackagePreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.clazz.preferences.PackagePreferencePage"
             name="Package Node" />
 	
 		
 	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.uml.diagram.clazz.preferences.ConnectableElementTemplateParameterPreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.ConnectableElementTemplateParameterPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.clazz.preferences.ConnectableElementTemplateParameterPreferencePage"
             name="ConnectableElementTemplateParameter Node" />
 	
 		
 	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.uml.diagram.clazz.preferences.InterfacePreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.InterfacePreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.clazz.preferences.InterfacePreferencePage"
             name="Interface Node" />
 	
 		
 	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.uml.diagram.clazz.preferences.ShortCutDiagramPreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.ShortCutDiagramPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.clazz.preferences.ShortCutDiagramPreferencePage"
             name="ShortCutDiagram Node" />
 	
 		
 	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.uml.diagram.clazz.preferences.PrimitiveTypePreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.PrimitiveTypePreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.clazz.preferences.PrimitiveTypePreferencePage"
             name="PrimitiveType Node" />
 	
 		
 	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.uml.diagram.clazz.preferences.SlotPreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.SlotPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.clazz.preferences.SlotPreferencePage"
             name="Slot Node" />
 	
 		
 	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.uml.diagram.clazz.preferences.InstanceSpecificationPreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.InstanceSpecificationPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.clazz.preferences.InstanceSpecificationPreferencePage"
             name="InstanceSpecification Node" />
 	
 		
 	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.uml.diagram.clazz.preferences.TemplateSignaturePreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.TemplateSignaturePreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.clazz.preferences.TemplateSignaturePreferencePage"
             name="TemplateSignature Node" />
 	
 		
 	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.uml.diagram.clazz.preferences.AssociationClassPreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.AssociationClassPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.clazz.preferences.AssociationClassPreferencePage"
             name="AssociationClass Node" />
 	
 		
 	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.uml.diagram.clazz.preferences.OperationPreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.OperationPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.clazz.preferences.OperationPreferencePage"
             name="Operation Node" />
 	
 		
 	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.uml.diagram.clazz.preferences.ModelPreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.ModelPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.clazz.preferences.ModelPreferencePage"
             name="Model Node" />
 	
 		
 	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.uml.diagram.clazz.preferences.ShapeNamedElementPreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.ShapeNamedElementPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.clazz.preferences.ShapeNamedElementPreferencePage"
             name="ShapeNamedElement Node" />
 	
 		
 	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.uml.diagram.clazz.preferences.AssociationNodePreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.AssociationNodePreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.clazz.preferences.AssociationNodePreferencePage"
             name="AssociationNode Node" />
 	
 		
 	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.uml.diagram.clazz.preferences.TimeObservationPreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.TimeObservationPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.clazz.preferences.TimeObservationPreferencePage"
             name="TimeObservation Node" />
 	
 		
 	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.uml.diagram.clazz.preferences.OperationTemplateParameterPreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.OperationTemplateParameterPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.clazz.preferences.OperationTemplateParameterPreferencePage"
             name="OperationTemplateParameter Node" />
 	
 		
 	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.uml.diagram.clazz.preferences.ComponentPreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.ComponentPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.clazz.preferences.ComponentPreferencePage"
             name="Component Node" />
 	
 		
 	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.uml.diagram.clazz.preferences.DurationObservationPreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.DurationObservationPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.clazz.preferences.DurationObservationPreferencePage"
             name="DurationObservation Node" />
 	
 		
 	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.uml.diagram.clazz.preferences.SignalPreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.SignalPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.clazz.preferences.SignalPreferencePage"
             name="Signal Node" />
 	
 		
 	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.uml.diagram.clazz.preferences.ReceptionPreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.ReceptionPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.clazz.preferences.ReceptionPreferencePage"
             name="Reception Node" />
 	
 		
 	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.uml.diagram.clazz.preferences.TemplateParameterPreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.TemplateParameterPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.clazz.preferences.TemplateParameterPreferencePage"
             name="TemplateParameter Node" />
 	
 		
 	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.uml.diagram.clazz.preferences.EnumerationPreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.EnumerationPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.clazz.preferences.EnumerationPreferencePage"
             name="Enumeration Node" />
 	
 		
 	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.uml.diagram.clazz.preferences.ConstraintPreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.ConstraintPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.clazz.preferences.ConstraintPreferencePage"
             name="Constraint Node" />
 	
 		
 	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.uml.diagram.clazz.preferences.DefaultNamedElementPreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.DefaultNamedElementPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.clazz.preferences.DefaultNamedElementPreferencePage"
             name="DefaultNamedElement Node" />
 	
 		
 	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.uml.diagram.clazz.preferences.RedefinableTemplateSignaturePreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.RedefinableTemplateSignaturePreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.clazz.preferences.RedefinableTemplateSignaturePreferencePage"
             name="RedefinableTemplateSignature Node" />
 	
 		
 	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.uml.diagram.clazz.preferences.ContainmentCirclePreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.ContainmentCirclePreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.clazz.preferences.ContainmentCirclePreferencePage"
             name="ContainmentCircle Node" />
 	
 		
 	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.uml.diagram.clazz.preferences.DependencyNodePreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.DependencyNodePreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.clazz.preferences.DependencyNodePreferencePage"
             name="DependencyNode Node" />
 	
 
@@ -1672,145 +1672,145 @@
 		
 
 	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.uml.diagram.clazz.preferences.AssociationClassDashedLinkPreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.AssociationClassDashedLinkPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.clazz.preferences.AssociationClassDashedLinkPreferencePage"
             name="AssociationClassDashedLink Link" />
 		
 		
 
 	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.uml.diagram.clazz.preferences.DependencyLinkPreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.DependencyLinkPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.clazz.preferences.DependencyLinkPreferencePage"
             name="DependencyLink Link" />
 		
 		
 
 	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.uml.diagram.clazz.preferences.TemplateBindingPreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.TemplateBindingPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.clazz.preferences.TemplateBindingPreferencePage"
             name="TemplateBinding Link" />
 		
 		
 
 	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.uml.diagram.clazz.preferences.PackageImportPreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.PackageImportPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.clazz.preferences.PackageImportPreferencePage"
             name="PackageImport Link" />
 		
 		
 
 	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.uml.diagram.clazz.preferences.PackageMergePreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.PackageMergePreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.clazz.preferences.PackageMergePreferencePage"
             name="PackageMerge Link" />
 		
 		
 
 	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.uml.diagram.clazz.preferences.AbstractionPreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.AbstractionPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.clazz.preferences.AbstractionPreferencePage"
             name="Abstraction Link" />
 		
 		
 
 	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.uml.diagram.clazz.preferences.ProfileApplicationPreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.ProfileApplicationPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.clazz.preferences.ProfileApplicationPreferencePage"
             name="ProfileApplication Link" />
 		
 		
 
 	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.uml.diagram.clazz.preferences.RealizationPreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.RealizationPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.clazz.preferences.RealizationPreferencePage"
             name="Realization Link" />
 		
 		
 
 	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.uml.diagram.clazz.preferences.ContainmentSubLinkPreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.ContainmentSubLinkPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.clazz.preferences.ContainmentSubLinkPreferencePage"
             name="ContainmentSubLink Link" />
 		
 		
 
 	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.uml.diagram.clazz.preferences.GeneralizationPreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.GeneralizationPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.clazz.preferences.GeneralizationPreferencePage"
             name="Generalization Link" />
 		
 		
 
 	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.uml.diagram.clazz.preferences.DependencyBranchLinkPreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.DependencyBranchLinkPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.clazz.preferences.DependencyBranchLinkPreferencePage"
             name="DependencyBranchLink Link" />
 		
 		
 
 	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.uml.diagram.clazz.preferences.UsagePreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.UsagePreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.clazz.preferences.UsagePreferencePage"
             name="Usage Link" />
 		
 		
 
 	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.uml.diagram.clazz.preferences.InstanceSpecificationLinkPreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.InstanceSpecificationLinkPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.clazz.preferences.InstanceSpecificationLinkPreferencePage"
             name="InstanceSpecificationLink Link" />
 		
 		
 
 	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.uml.diagram.clazz.preferences.SubstitutionPreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.SubstitutionPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.clazz.preferences.SubstitutionPreferencePage"
             name="Substitution Link" />
 		
 		
 
 	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.uml.diagram.clazz.preferences.ContainmentLinkPreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.ContainmentLinkPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.clazz.preferences.ContainmentLinkPreferencePage"
             name="ContainmentLink Link" />
 		
 		
 
 	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.uml.diagram.clazz.preferences.ElementImportPreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.ElementImportPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.clazz.preferences.ElementImportPreferencePage"
             name="ElementImport Link" />
 		
 		
 
 	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.uml.diagram.clazz.preferences.AssociationLinkPreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.AssociationLinkPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.clazz.preferences.AssociationLinkPreferencePage"
             name="AssociationLink Link" />
 		
 		
 
 	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.uml.diagram.clazz.preferences.GeneralizationSetPreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.GeneralizationSetPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.clazz.preferences.GeneralizationSetPreferencePage"
             name="GeneralizationSet Link" />
 		
 		
@@ -1818,25 +1818,25 @@
 		
 
 	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.uml.diagram.clazz.preferences.InterfaceRealizationPreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.InterfaceRealizationPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.clazz.preferences.InterfaceRealizationPreferencePage"
             name="InterfaceRealization Link" />
 		
 		
 
 	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.uml.diagram.clazz.preferences.AssociationBranchLinkPreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.AssociationBranchLinkPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.clazz.preferences.AssociationBranchLinkPreferencePage"
             name="AssociationBranchLink Link" />
 		
 		
 
 	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.uml.diagram.clazz.preferences.AssociationClassLinkPreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.AssociationClassLinkPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.clazz.preferences.AssociationClassLinkPreferencePage"
             name="AssociationClassLink Link" />
 		
 
@@ -1847,20 +1847,20 @@
 <!-- added by Remi Schnekenburger-->
 <extension point="org.eclipse.ui.preferencePages">
 	<?gmfgen generated="false"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.uml.diagram.clazz.custom.preferences.PropertyPreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.custom.preferences.PropertyPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.clazz.custom.preferences.PropertyPreferencePage"
             name="Property" />
  <page
-       category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+       category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLClassDiagram"
        class="org.eclipse.papyrus.uml.diagram.clazz.custom.preferences.OperationPreferencePage"
-       id="org.eclipse.papyrus.diagram.clazz.custom.preferences.OperationPreferencePage"
+       id="org.eclipse.papyrus.uml.diagram.clazz.custom.preferences.OperationPreferencePage"
        name="Operation">
  </page>
  <page
-       category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+       category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLClassDiagram"
        class="org.eclipse.papyrus.uml.diagram.clazz.custom.preferences.InstanceSpecificationPreferencePage"
-       id="org.eclipse.papyrus.diagram.clazz.custom.preferences.InstanceSpecificationPreferencePage"
+       id="org.eclipse.papyrus.uml.diagram.clazz.custom.preferences.InstanceSpecificationPreferencePage"
        name="InstanceSpecification">
  </page>	
 </extension>
@@ -1877,7 +1877,7 @@
       id="ep-provider"
       point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders">
    <editpartProvider
-         class="org.eclipse.papyrus.diagram.clazz.custom.providers.CUMLEditPartProvider">
+         class="org.eclipse.papyrus.uml.diagram.clazz.custom.providers.CUMLEditPartProvider">
       <Priority
             name="Highest">
       </Priority>
@@ -2618,7 +2618,7 @@
 
 
 			</contribution>
-			<editor id="org.eclipse.papyrus.diagram.clazz"/>
+			<editor id="org.eclipse.papyrus.uml.diagram.clazz"/>
 		</paletteProvider>	
 			
 	</extension>
@@ -2649,7 +2649,7 @@
 <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
 
 	<!-- Bindings declaration to shared IClientContext -->
-	<binding context="org.eclipse.papyrus.service.edit.TypeContext">	
+	<binding context="org.eclipse.papyrus.infra.services.edit.TypeContext">	
 		<elementType ref="org.eclipse.papyrus.uml.diagram.class.GeneralizationHelperAdvice"/>
 	</binding>
 		
@@ -2657,7 +2657,7 @@
 <extension
       point="org.eclipse.gmf.runtime.diagram.ui.editpolicyProviders">
    <editpolicyProvider
-         class="org.eclipse.papyrus.diagram.clazz.custom.providers.CustomEditPolicyProvider">
+         class="org.eclipse.papyrus.uml.diagram.clazz.custom.providers.CustomEditPolicyProvider">
       <Priority
             name="Lowest">
       </Priority>

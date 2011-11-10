@@ -34,10 +34,10 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
-import org.eclipse.papyrus.core.editorsfactory.IPageIconsRegistry;
-import org.eclipse.papyrus.core.editorsfactory.PageIconsRegistry;
-import org.eclipse.papyrus.core.services.ServiceException;
-import org.eclipse.papyrus.core.utils.ServiceUtilsForActionHandlers;
+import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistry;
+import org.eclipse.papyrus.infra.core.editorsfactory.PageIconsRegistry;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.tools.utils.ImageUtil;
 import org.eclipse.swt.graphics.Image;
@@ -236,7 +236,7 @@ public class EditorLabelProvider implements ILabelProvider {
 		// }
 
 		if(element instanceof EObject && UMLUtil.getBaseElement((EObject)element) != null) { // Stereotype
-																								// Application
+			// Application
 			// We return the label of the Stereotyped element, not of the
 			// Stereotype itself
 			return getText(UMLUtil.getBaseElement((EObject)element));
@@ -278,7 +278,7 @@ public class EditorLabelProvider implements ILabelProvider {
 			}
 		} else if(element instanceof NamedElement) {
 			if(element instanceof ValueSpecification) { // Format :
-														// [name=]value
+				// [name=]value
 				String value = null;
 				if(element instanceof InstanceValue) {
 					InstanceSpecification specification = ((InstanceValue)element).getInstance();
@@ -326,7 +326,7 @@ public class EditorLabelProvider implements ILabelProvider {
 		} else if(element instanceof Diagram) {
 			return ((Diagram)element).getName();
 		} else if(element instanceof View) { // maybe it is a view of a
-												// compartment
+			// compartment
 			EditPart dummyEP = EditPartService.getInstance().createGraphicEditPart((View)element);
 			if(dummyEP instanceof ResizableCompartmentEditPart) {
 				return ((ResizableCompartmentEditPart)dummyEP).getCompartmentName();

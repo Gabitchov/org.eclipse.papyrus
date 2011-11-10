@@ -2,11 +2,11 @@ package org.eclipse.papyrus.uml.diagram.common.util;
 
 import org.eclipse.core.expressions.PropertyTester;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.core.services.ServiceException;
-import org.eclipse.papyrus.core.utils.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.editor.PapyrusMultiDiagramEditor;
-import org.eclipse.papyrus.resource.NotFoundException;
-import org.eclipse.papyrus.resource.uml.UmlModel;
+import org.eclipse.papyrus.infra.core.resource.NotFoundException;
+import org.eclipse.papyrus.infra.core.resource.uml.UmlModel;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PlatformUI;
@@ -22,10 +22,10 @@ import org.eclipse.uml2.uml.Profile;
 public class UMLSelectionTester extends PropertyTester {
 
 	/** Tester ID for UML Model nature */
-	public final static String IS_UML_MODEL = "isUMLModel"; //$NON-NLS-N$
+	public final static String IS_UML_MODEL = "isUMLModel";
 
 	/** Tester ID for UML Profile nature */
-	public final static String IS_UML_PROFILE = "isUMLProfile"; //$NON-NLS-N$
+	public final static String IS_UML_PROFILE = "isUMLProfile";
 
 	/** Default constructor */
 	public UMLSelectionTester() {
@@ -54,12 +54,12 @@ public class UMLSelectionTester extends PropertyTester {
 
 	/** True if root object is a UML Model */
 	protected boolean testUMLModelNature(Object receiver) {
-        EObject root = getRoot();
-        /*
-         * For controlled resources, it is very important to consider root of UML model can be a Package. Of course, we
-         * can still exclude Profile, which should be dedicated to profile diagrams.
-         */
-        return root instanceof Package && !(root instanceof Profile);
+		EObject root = getRoot();
+		/*
+		 * For controlled resources, it is very important to consider root of UML model can be a Package. Of course, we
+		 * can still exclude Profile, which should be dedicated to profile diagrams.
+		 */
+		return root instanceof Package && !(root instanceof Profile);
 	}
 
 	/** True if root object is a UML Profile */

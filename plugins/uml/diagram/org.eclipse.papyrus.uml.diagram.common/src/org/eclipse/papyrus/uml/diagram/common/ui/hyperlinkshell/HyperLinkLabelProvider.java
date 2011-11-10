@@ -15,7 +15,7 @@ package org.eclipse.papyrus.uml.diagram.common.ui.hyperlinkshell;
 
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
-import org.eclipse.papyrus.core.editorsfactory.IPageIconsRegistry;
+import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistry;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 

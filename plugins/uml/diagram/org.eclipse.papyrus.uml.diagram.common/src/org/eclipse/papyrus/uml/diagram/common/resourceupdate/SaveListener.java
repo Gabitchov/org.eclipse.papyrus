@@ -14,8 +14,8 @@
 
 package org.eclipse.papyrus.uml.diagram.common.resourceupdate;
 
-import org.eclipse.papyrus.core.lifecycleevents.DoSaveEvent;
-import org.eclipse.papyrus.core.lifecycleevents.ISaveEventListener;
+import org.eclipse.papyrus.infra.core.lifecycleevents.DoSaveEvent;
+import org.eclipse.papyrus.infra.core.lifecycleevents.ISaveEventListener;
 import org.eclipse.swt.widgets.Display;
 
 /**

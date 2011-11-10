@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2010 Atos Origin.
  *
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -28,17 +28,17 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.OpenEditPolicy;
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.papyrus.core.adaptor.gmf.DiagramsUtil;
-import org.eclipse.papyrus.core.editorsfactory.IPageIconsRegistry;
-import org.eclipse.papyrus.core.editorsfactory.PageIconsRegistry;
-import org.eclipse.papyrus.core.extension.commands.CreationCommandDescriptor;
-import org.eclipse.papyrus.core.services.ServiceException;
-import org.eclipse.papyrus.core.utils.EditorUtils;
-import org.eclipse.papyrus.navigation.ExistingNavigableElement;
-import org.eclipse.papyrus.navigation.NavigableElement;
-import org.eclipse.papyrus.navigation.NavigationHelper;
-import org.eclipse.papyrus.navigation.preference.INavigationPreferenceConstant;
-import org.eclipse.papyrus.preferences.Activator;
+import org.eclipse.papyrus.infra.core.adaptor.gmf.DiagramsUtil;
+import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistry;
+import org.eclipse.papyrus.infra.core.editorsfactory.PageIconsRegistry;
+import org.eclipse.papyrus.infra.core.extension.commands.CreationCommandDescriptor;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.utils.EditorUtils;
+import org.eclipse.papyrus.infra.gmfdiag.navigation.ExistingNavigableElement;
+import org.eclipse.papyrus.infra.gmfdiag.navigation.NavigableElement;
+import org.eclipse.papyrus.infra.gmfdiag.navigation.NavigationHelper;
+import org.eclipse.papyrus.infra.gmfdiag.navigation.preference.INavigationPreferenceConstant;
+import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.common.dialogs.DiagramNavigationDialog;
 import org.eclipse.papyrus.uml.diagram.common.helper.AbstractHyperLinkHelper;
 import org.eclipse.papyrus.uml.diagram.common.helper.DiagramHyperLinkHelper;
@@ -64,7 +64,7 @@ public class NavigationEditPolicy extends OpenEditPolicy {
 	public NavigationEditPolicy() {
 	}
 
-	/** 
+	/**
 	 * 
 	 * @param element a UML element
 	 * @return the top package of the given element
@@ -81,18 +81,19 @@ public class NavigationEditPolicy extends OpenEditPolicy {
 	 * @param request
 	 * @return get the command to open a new diagram
 	 */
+	@Override
 	protected Command getOpenCommand(Request request) {
 		final IGraphicalEditPart gep;
-		
+
 		// in order to obtain the list of default diagram we need to fin the
 		// edit part that refers to default diagram
-	
+
 		// if this a label of a compartment, the good editpart is the parent
 		if((IGraphicalEditPart)getHost() instanceof CompartmentEditPart ){
 			gep=(IGraphicalEditPart)getHost().getParent();
 		}
 		else{
-			
+
 			gep=(IGraphicalEditPart)getHost();
 		}
 		final EObject semanticElement=gep.resolveSemanticElement();
@@ -115,7 +116,7 @@ public class NavigationEditPolicy extends OpenEditPolicy {
 		hyperLinkHelpers.add(new DiagramHyperLinkHelper());
 		hyperLinkHelpers.add(new DocumentHyperLinkHelper());
 		hyperLinkHelpers.add(new WebHyperLinkHelper());
-		
+
 		final HyperlinkHelperFactory hyperlinkHelperFactory= new HyperlinkHelperFactory(hyperLinkHelpers);
 
 		try{
@@ -124,7 +125,7 @@ public class NavigationEditPolicy extends OpenEditPolicy {
 
 			Iterator<HyperlinkObject> iterator= hyperLinkObjectList.iterator();
 			while(iterator.hasNext()) {
-				HyperlinkObject hyperlinkObject = (HyperlinkObject)iterator.next();
+				HyperlinkObject hyperlinkObject = iterator.next();
 				if( hyperlinkObject.getIsDefault()){
 
 					defaultHyperLinkObject.add(hyperlinkObject);
@@ -163,11 +164,11 @@ public class NavigationEditPolicy extends OpenEditPolicy {
 
 				Iterator<List<Diagram>> iter=existingDiagrams.values().iterator();
 				while(iter.hasNext()) {
-					List<Diagram> list = (List<Diagram>)iter.next();
+					List<Diagram> list = iter.next();
 					Iterator<Diagram> iterDiagram=list.iterator();
 					while(iterDiagram.hasNext()) {
-						Diagram diagram = (Diagram)iterDiagram.next();
-						HyperLinkDiagram hyperLinkDiagram= new HyperLinkDiagram(); 
+						Diagram diagram = iterDiagram.next();
+						HyperLinkDiagram hyperLinkDiagram= new HyperLinkDiagram();
 						hyperLinkDiagram.setDiagram(diagram);
 						hyperLinkDiagram.setTooltipText(diagram.getName()+" (found by heuristic)");
 						// look for if a hyperlink already exists
@@ -184,7 +185,7 @@ public class NavigationEditPolicy extends OpenEditPolicy {
 						}
 					}
 				}
-			}	
+			}
 			if(defaultHyperLinkObject.size()==0){
 				Command command= new Command() {
 					@Override
@@ -220,7 +221,7 @@ public class NavigationEditPolicy extends OpenEditPolicy {
 
 						Iterator<HyperlinkObject> iter= hList.iterator();
 						while(iter.hasNext()) {
-							HyperlinkObject hyperlinkObject = (HyperlinkObject)iter.next();
+							HyperlinkObject hyperlinkObject = iter.next();
 							hyperlinkObject.executeSelectPressed();
 						}
 					}

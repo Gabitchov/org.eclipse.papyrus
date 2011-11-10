@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -158,7 +158,7 @@ public class ChangeStereotypeDisplayPostAction extends GraphicalPostAction {
 		// View view = (View)editPart.getModel();
 
 		final EModelElement view = (EModelElement)((GraphicalEditPart)editPart).getModel();
-		final TransactionalEditingDomain editingDomain = org.eclipse.papyrus.core.utils.EditorUtils.getTransactionalEditingDomain();
+		final TransactionalEditingDomain editingDomain = org.eclipse.papyrus.infra.core.utils.EditorUtils.getTransactionalEditingDomain();
 		try {
 			editingDomain.runExclusive(new Runnable() {
 

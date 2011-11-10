@@ -25,9 +25,9 @@ import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.core.resourceloading.util.LoadingUtils;
-import org.eclipse.papyrus.resource.ModelSet;
-import org.eclipse.papyrus.resource.notation.NotationUtils;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
+import org.eclipse.papyrus.infra.core.resource.notation.NotationUtils;
+import org.eclipse.papyrus.infra.services.resourceloading.util.LoadingUtils;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
@@ -41,7 +41,7 @@ import org.eclipse.ui.PlatformUI;
 public class UnloadHandler extends GraphicalCommandHandler {
 
 	/**
-	 * @see org.eclipse.papyrus.modelexplorer.handler.AbstractCommandHandler#getCommand()
+	 * @see org.eclipse.papyrus.views.modelexplorer.handler.AbstractCommandHandler#getCommand()
 	 * @return the command
 	 */
 	@Override

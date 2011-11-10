@@ -33,7 +33,7 @@ import org.eclipse.emf.validation.service.ValidationEvent;
 import org.eclipse.gmf.runtime.emf.core.util.EMFCoreUtil;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.papyrus.resource.ModelSet;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActivityDiagramEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.helper.SafeDialogOpenerDuringValidation;
 import org.eclipse.papyrus.uml.diagram.activity.helper.UMLValidationHelper;

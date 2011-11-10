@@ -39,7 +39,7 @@ import org.eclipse.gmf.runtime.diagram.ui.services.palette.IPaletteProvider;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.SpecializationType;
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.papyrus.core.utils.PapyrusTrace;
+import org.eclipse.papyrus.infra.core.utils.PapyrusTrace;
 import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeConnectionTool;
 import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeCreationTool;
 import org.eclipse.papyrus.uml.diagram.common.service.IPapyrusPaletteConstant;

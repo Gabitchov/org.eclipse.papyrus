@@ -43,7 +43,6 @@ import org.eclipse.papyrus.uml.diagram.activity.edit.commands.SendSignalActionCr
 import org.eclipse.papyrus.uml.diagram.activity.edit.commands.SequenceNodeCreateCommand;
 import org.eclipse.papyrus.uml.diagram.activity.edit.commands.StructuredActivityNodeCreateCommand;
 import org.eclipse.papyrus.uml.diagram.activity.edit.commands.ValueSpecificationActionCreateCommand;
-import org.eclipse.papyrus.uml.diagram.activity.edit.policies.CreateActionLocalConditionEditPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
 
 /**

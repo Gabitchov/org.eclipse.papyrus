@@ -1,14 +1,14 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
  *
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *	Amine EL KOUHEN (CEA LIST/LIFL) - Amine.Elkouhen@cea.fr 
+ *	Amine EL KOUHEN (CEA LIST/LIFL) - Amine.Elkouhen@cea.fr
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.providers;
 
@@ -22,7 +22,7 @@ import org.eclipse.gmf.runtime.diagram.ui.services.decorator.IDecoratorTarget.Di
 import org.eclipse.gmf.runtime.draw2d.ui.mapmode.MapModeUtil;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.decoration.util.Decoration.PreferedPosition;
+import org.eclipse.papyrus.infra.services.decoration.util.Decoration.PreferedPosition;
 import org.eclipse.swt.graphics.Image;
 
 
@@ -164,7 +164,7 @@ public class DiagramDecorationAdapter {
 	 * @param isVolatile the is volatile
 	 * @return the i decoration
 	 */
-	public IDecoration setDecoration(org.eclipse.papyrus.decoration.util.IDecoration idecoration, int percentageFromSource, int margin, boolean isVolatile) {
+	public IDecoration setDecoration(org.eclipse.papyrus.infra.services.decoration.util.IDecoration idecoration, int percentageFromSource, int margin, boolean isVolatile) {
 
 		this.decorationImage = (idecoration.getDecorationImage() != null) ? idecoration.getDecorationImage().createImage() : null;
 		this.decoration = getDecoration(getDecoratorTarget(), getDecorationImage(), idecoration.getPosition(), percentageFromSource, margin, isVolatile);

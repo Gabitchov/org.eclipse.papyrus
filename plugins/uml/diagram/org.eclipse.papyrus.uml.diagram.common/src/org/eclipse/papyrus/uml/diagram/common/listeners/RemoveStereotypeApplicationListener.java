@@ -21,7 +21,7 @@ import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.impl.DynamicEObjectImpl;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.papyrus.core.listenerservice.IPapyrusListener;
+import org.eclipse.papyrus.infra.core.listenerservice.IPapyrusListener;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
@@ -38,7 +38,7 @@ public class RemoveStereotypeApplicationListener implements IPapyrusListener {
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.core.listenerservice.IPapyrusListener#notifyChanged(org.eclipse.emf.common.notify.Notification)
+	 * @see org.eclipse.papyrus.infra.core.listenerservice.IPapyrusListener#notifyChanged(org.eclipse.emf.common.notify.Notification)
 	 * 
 	 * @param notification
 	 */

@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
  *
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -15,7 +15,7 @@
 
 package org.eclipse.papyrus.uml.diagram.common.resourceupdate;
 
-import static org.eclipse.papyrus.core.Activator.log;
+import static org.eclipse.papyrus.uml.diagram.common.Activator.log;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -35,10 +35,10 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
-import org.eclipse.papyrus.core.resourceloading.util.LoadingUtils;
-import org.eclipse.papyrus.core.utils.EditorUtils;
-import org.eclipse.papyrus.resource.ModelSet;
+import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
+import org.eclipse.papyrus.infra.core.utils.EditorUtils;
+import org.eclipse.papyrus.infra.services.resourceloading.util.LoadingUtils;
 import org.eclipse.papyrus.uml.diagram.common.Messages;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
@@ -59,7 +59,7 @@ import org.eclipse.ui.PlatformUI;
  * @author Ansgar Radermacher (CEA LIST)
  */
 public class PartActivationListener implements IPartListener {
-	
+
 	/**
 	 * This class is a simple pair storing a resource delta and whether this delta causes conflict with editor's resource
 	 * 
@@ -98,6 +98,7 @@ public class PartActivationListener implements IPartListener {
 	 * @return true, when a resource for the underlying editor's main model has been updated
 	 * @deprecated use {@link #isMainModelModified()} instead
 	 */
+	@Deprecated
 	public boolean isModied() {
 		return isMainModelModified();
 	}
@@ -131,6 +132,7 @@ public class PartActivationListener implements IPartListener {
 	 *        additional information about the change
 	 * @deprecated use {@link #setModificationData(IPath, IResourceDelta, boolean)} instead
 	 */
+	@Deprecated
 	public void setModificationData(String changedResourcePath, IResourceDelta delta) {
 		IPath path = Path.fromPortableString(changedResourcePath);
 		setModificationData(path, delta, true, true);
@@ -172,7 +174,7 @@ public class PartActivationListener implements IPartListener {
 		// (e.g. model explorer or property)
 		// of an active editor may actually be selected
 		IMultiDiagramEditor activeEditor = EditorUtils.getMultiDiagramEditor();
-		
+
 		if((editor == activeEditor) && !resourceModifications.isEmpty()) {
 			// the byte union of all kinds of delta met for main resource
 			int mainDeltaKinds = 0;

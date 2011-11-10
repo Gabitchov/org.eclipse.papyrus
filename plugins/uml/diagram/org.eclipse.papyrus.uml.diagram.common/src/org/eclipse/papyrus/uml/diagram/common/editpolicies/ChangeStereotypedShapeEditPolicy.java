@@ -32,7 +32,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.core.listenerservice.IPapyrusListener;
+import org.eclipse.papyrus.infra.core.listenerservice.IPapyrusListener;
 import org.eclipse.papyrus.uml.diagram.common.editparts.AbstractShapeEditPart;
 import org.eclipse.papyrus.uml.tools.utils.ui.VisualInformationPapyrusConstant;
 import org.eclipse.papyrus.uml.tools.utils.ui.helper.AppliedStereotypeHelper;

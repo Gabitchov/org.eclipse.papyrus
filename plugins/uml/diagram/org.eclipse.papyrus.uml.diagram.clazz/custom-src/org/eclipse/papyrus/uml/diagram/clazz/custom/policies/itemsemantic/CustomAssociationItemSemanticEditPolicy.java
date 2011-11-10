@@ -24,6 +24,7 @@ import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalC
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
+import org.eclipse.papyrus.commands.wrappers.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.command.BranchDependenctReorientCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.command.CAssociationClassCreateCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.command.CAssociationReorientCommand;
@@ -31,7 +32,6 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AssociationClassLinkEdit
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AssociationEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.DependencyBranchEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
-import org.eclipse.papyrus.commands.wrappers.EMFtoGMFCommandWrapper;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Property;
 

@@ -24,7 +24,6 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.IMaskManagedLabelEdit
 import org.eclipse.papyrus.uml.tools.utils.ICustomAppearence;
 import org.eclipse.papyrus.uml.tools.utils.OperationUtil;
 import org.eclipse.uml2.uml.Operation;
-import org.eclipse.uml2.uml.Property;
 
 /**
  * Helper for labels displaying {@link Property}

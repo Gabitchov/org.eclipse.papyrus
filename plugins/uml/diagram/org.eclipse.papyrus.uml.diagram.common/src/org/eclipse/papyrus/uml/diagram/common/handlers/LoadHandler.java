@@ -29,8 +29,8 @@ import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.core.resourceloading.util.LoadingUtils;
-import org.eclipse.papyrus.resource.ModelSet;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
+import org.eclipse.papyrus.infra.services.resourceloading.util.LoadingUtils;
 
 /**
  * Handler for the load resource action. This actions load a resource in the

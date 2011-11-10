@@ -46,8 +46,8 @@ import org.eclipse.gmf.runtime.emf.clipboard.core.ClipboardSupportUtil;
 import org.eclipse.gmf.runtime.emf.core.util.EMFCoreUtil;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DuplicateElementsRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.pastemanager.request.PasteRequest;
 import org.eclipse.papyrus.uml.diagram.common.commands.PapyrusDuplicateViewsCommand;
+import org.eclipse.papyrus.uml.pastemanager.request.PasteRequest;
 import org.eclipse.uml2.uml.Element;
 
 /**

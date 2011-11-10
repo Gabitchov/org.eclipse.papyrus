@@ -15,8 +15,6 @@ package org.eclipse.papyrus.uml.diagram.common.editpolicies;
 import java.util.Collection;
 import java.util.Map;
 
-import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
-
 /**
  * Interface for all edit policies that manage the label of a {@link GraphicalEditPart}. The label must be controlled by a system of mask,
  * i.e. the label shows or not some part of the string.

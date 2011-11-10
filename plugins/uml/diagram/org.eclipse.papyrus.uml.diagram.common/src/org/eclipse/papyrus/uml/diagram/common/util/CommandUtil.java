@@ -27,7 +27,7 @@ import org.eclipse.gmf.runtime.common.core.util.StringStatics;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramGraphicalViewer;
 import org.eclipse.gmf.runtime.diagram.ui.util.EditPartUtil;
-import org.eclipse.papyrus.core.utils.PapyrusTrace;
+import org.eclipse.papyrus.infra.core.utils.PapyrusTrace;
 
 /**
  * Utility to execute command inside an action.

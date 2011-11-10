@@ -27,7 +27,7 @@ import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
-import org.eclipse.papyrus.log.LogHelper;
+import org.eclipse.papyrus.infra.core.log.LogHelper;
 import org.eclipse.papyrus.uml.diagram.common.providers.AlternativeUMLItemProviderAdapterFactory;
 import org.eclipse.papyrus.uml.diagram.common.util.ColorManager;
 import org.eclipse.papyrus.uml.diagram.common.util.FontManager;

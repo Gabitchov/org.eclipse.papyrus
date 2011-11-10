@@ -16,7 +16,6 @@ package org.eclipse.papyrus.uml.diagram.common.service;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.ImageFigure;
 import org.eclipse.draw2d.Locator;
-import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;

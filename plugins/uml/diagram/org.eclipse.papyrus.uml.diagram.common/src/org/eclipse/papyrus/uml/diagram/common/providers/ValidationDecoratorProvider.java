@@ -15,7 +15,7 @@
  */
 package org.eclipse.papyrus.uml.diagram.common.providers;
 
-import static org.eclipse.papyrus.core.Activator.log;
+import static org.eclipse.papyrus.uml.diagram.common.Activator.log;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -39,8 +39,8 @@ import org.eclipse.gmf.runtime.draw2d.ui.mapmode.MapModeUtil;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.papyrus.core.services.ServicesRegistry;
-import org.eclipse.papyrus.decoration.DecorationService;
+import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.services.decoration.DecorationService;
 import org.eclipse.papyrus.uml.diagram.common.util.ServiceUtilsForGMF;
 import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
@@ -151,7 +151,7 @@ public abstract class ValidationDecoratorProvider extends AbstractProvider imple
 					}
 				});
 			} catch (Exception e) {
-				log.error("ViewID access failure", e); //$NON-NLS-1$			
+				log.error("ViewID access failure", e); //$NON-NLS-1$
 			}
 		}
 
@@ -173,7 +173,7 @@ public abstract class ValidationDecoratorProvider extends AbstractProvider imple
 			}
 			// add decoration
 			IDecoration deco = null;
-			org.eclipse.papyrus.decoration.util.IDecoration decoration = null;
+			org.eclipse.papyrus.infra.services.decoration.util.IDecoration decoration = null;
 			if(editPart instanceof org.eclipse.gef.GraphicalEditPart) {
 				decoration = decorationService.getDecoration(view.getElement(), false);
 				decoration.setDecorationImage(getImageDescriptor(decoration.getSeverity()));

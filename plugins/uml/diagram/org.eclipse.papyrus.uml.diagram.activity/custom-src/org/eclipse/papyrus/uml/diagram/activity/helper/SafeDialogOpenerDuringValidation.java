@@ -16,7 +16,6 @@ package org.eclipse.papyrus.uml.diagram.activity.helper;
 import org.eclipse.core.commands.operations.IOperationApprover2;
 import org.eclipse.core.commands.operations.IOperationHistory;
 import org.eclipse.core.commands.operations.IUndoableOperation;
-import org.eclipse.core.commands.operations.OperationHistoryFactory;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.validation.internal.service.ResourceStatus;

@@ -15,7 +15,6 @@ package org.eclipse.papyrus.uml.diagram.activity.edit.policies;
 
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.gef.GraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editpolicies.XYLayoutEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.groups.edit.policies.XYLayoutEditGroupPolicy;
 
 /**

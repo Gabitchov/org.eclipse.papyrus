@@ -20,8 +20,8 @@ import java.util.Iterator;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.papyrus.core.utils.EditorUtils;
-import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
+import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
+import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 
 /**
  * The Class CustomAdapterFactoryContentProvider to display uml element +

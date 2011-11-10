@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2009 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -44,8 +44,8 @@ import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.core.services.ServiceException;
-import org.eclipse.papyrus.core.utils.EditorUtils;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.common.service.palette.AspectToolService;
 import org.eclipse.papyrus.uml.diagram.common.service.palette.IAspectAction;
@@ -67,7 +67,7 @@ public class AspectUnspecifiedTypeCreationTool extends UnspecifiedTypeCreationTo
 	protected List<IAspectAction> postActions = new ArrayList<IAspectAction>();
 
 	private static String ID_ASPECT_ACTION = "palette_aspect_actions" ;
-	
+
 	/**
 	 * Creates an AspectUnspecifiedTypeCreationTool
 	 * 
@@ -211,13 +211,13 @@ public class AspectUnspecifiedTypeCreationTool extends UnspecifiedTypeCreationTo
 	{
 		return (List<IAspectAction>) (request == null ? Collections.emptyList() :  getAspectActions(request.getExtendedData()));
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public static List<IAspectAction> getAspectActions(Map map)
 	{
 		return (List<IAspectAction>) (map == null ? Collections.emptyList() : map.get(ID_ASPECT_ACTION));
 	}
-	
+
 	public String createPrePostActionRepresentation ()
 	{
 		StringBuffer buffer = new StringBuffer();
@@ -260,6 +260,7 @@ public class AspectUnspecifiedTypeCreationTool extends UnspecifiedTypeCreationTo
 		 * Creates a <code>CreateViewRequest</code> or <code>CreateViewAndElementRequest</code> for each creation hint and
 		 * adds it to the map of requests.
 		 */
+		@Override
 		protected void createRequests() {
 			for(Iterator<IElementType> iter = elementTypes.iterator(); iter.hasNext();) {
 				IElementType elementType = iter.next();
@@ -292,7 +293,7 @@ public class AspectUnspecifiedTypeCreationTool extends UnspecifiedTypeCreationTo
 		 * @return
 		 */
 		protected String getGraphicalHint(IHintedType elementType) {
-			String hint = ((IHintedType)elementType).getSemanticHint();
+			String hint = elementType.getSemanticHint();
 			return hint;
 		}
 

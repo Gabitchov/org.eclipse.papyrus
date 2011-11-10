@@ -20,7 +20,7 @@ import java.util.Set;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.papyrus.core.modelsetquery.ModelSetQuery;
+import org.eclipse.papyrus.infra.core.modelsetquery.ModelSetQuery;
 import org.eclipse.papyrus.uml.diagram.activity.part.Messages;
 import org.eclipse.papyrus.uml.diagram.activity.preferences.IActivityPreferenceConstants;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;

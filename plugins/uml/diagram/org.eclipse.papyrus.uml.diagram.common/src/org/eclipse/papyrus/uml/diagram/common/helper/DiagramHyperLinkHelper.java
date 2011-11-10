@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
  *
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -25,10 +25,10 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
-import org.eclipse.papyrus.core.editorsfactory.IPageIconsRegistry;
-import org.eclipse.papyrus.core.services.ServiceException;
-import org.eclipse.papyrus.core.utils.EditorUtils;
+import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
+import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistry;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.uml.diagram.common.commands.CreateHyperLinkDiagramCommand;
 import org.eclipse.papyrus.uml.diagram.common.ui.hyperlinkshell.EditorHyperlinkDiagramShell;
 import org.eclipse.papyrus.uml.diagram.common.ui.hyperlinkshell.HyperLinkDiagram;
@@ -37,7 +37,7 @@ import org.eclipse.papyrus.uml.tools.utils.ui.VisualInformationPapyrusConstant;
 import org.eclipse.uml2.uml.Package;
 
 /**
- * this is an helper to manager hyperlink Diagram 
+ * this is an helper to manager hyperlink Diagram
  */
 public class DiagramHyperLinkHelper extends AbstractHyperLinkHelper {
 
@@ -98,7 +98,7 @@ public class DiagramHyperLinkHelper extends AbstractHyperLinkHelper {
 		ArrayList<HyperlinkObject> result= new ArrayList<HyperlinkObject>();
 		Iterator<HyperlinkObject> iterator= hyperlinkObjects.iterator();
 		while(iterator.hasNext()) {
-			HyperlinkObject hyperlinkObject = (HyperlinkObject)iterator.next();
+			HyperlinkObject hyperlinkObject = iterator.next();
 			if(hyperlinkObject instanceof HyperLinkDiagram){
 				result.add(hyperlinkObject);
 			}

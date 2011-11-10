@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
  *
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -23,15 +23,15 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
-import org.eclipse.papyrus.core.editor.BackboneException;
-import org.eclipse.papyrus.core.extension.commands.CreationCommandDescriptor;
-import org.eclipse.papyrus.core.extension.commands.CreationCommandRegistry;
-import org.eclipse.papyrus.core.extension.commands.ICreationCommandRegistry;
-import org.eclipse.papyrus.core.utils.DiResourceSet;
-import org.eclipse.papyrus.core.utils.EditorUtils;
-import org.eclipse.papyrus.navigation.CreatedNavigableElement;
-import org.eclipse.papyrus.navigation.NavigableElement;
-import org.eclipse.papyrus.navigation.NavigationHelper;
+import org.eclipse.papyrus.infra.core.editor.BackboneException;
+import org.eclipse.papyrus.infra.core.extension.commands.CreationCommandDescriptor;
+import org.eclipse.papyrus.infra.core.extension.commands.CreationCommandRegistry;
+import org.eclipse.papyrus.infra.core.extension.commands.ICreationCommandRegistry;
+import org.eclipse.papyrus.infra.core.utils.DiResourceSet;
+import org.eclipse.papyrus.infra.core.utils.EditorUtils;
+import org.eclipse.papyrus.infra.gmfdiag.navigation.CreatedNavigableElement;
+import org.eclipse.papyrus.infra.gmfdiag.navigation.NavigableElement;
+import org.eclipse.papyrus.infra.gmfdiag.navigation.NavigationHelper;
 import org.eclipse.papyrus.uml.diagram.navigation.UMLNavigationHelper;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CCombo;
@@ -50,7 +50,7 @@ import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
 
 /**
- * this is the tab in charge to display the hyperlink diagram created by using heuristic for the property default 
+ * this is the tab in charge to display the hyperlink diagram created by using heuristic for the property default
  * the code was extract from {@link NavigationCreateDiagramDialog}
  *
  */
@@ -84,10 +84,12 @@ public class LocalDefaultLinkDiagramTab {
 
 		public EStructuralFeature feature = null;
 
+		@Override
 		public int hashCode() {
 			return 0;
 		}
 
+		@Override
 		public boolean equals(Object obj) {
 			if(obj instanceof NavigableGroupKey) {
 				NavigableGroupKey grpKey = (NavigableGroupKey)obj;
@@ -99,8 +101,8 @@ public class LocalDefaultLinkDiagramTab {
 	private Composite defaultHyperlinkComposite;
 
 
-	/** 
-	 * @return the composite that contains the table 
+	/**
+	 * @return the composite that contains the table
 	 * **/
 	public Composite getDefaultHyperlinkComposite() {
 		return defaultHyperlinkComposite;
@@ -280,7 +282,7 @@ public class LocalDefaultLinkDiagramTab {
 
 	/**
 	 * this method is used to construct descriptors of heuristic to construct diagrams.
-	 *  These descriptors will be displayed in the table. 
+	 *  These descriptors will be displayed in the table.
 	 */
 	protected void initLocalNavigableElement(){
 		List<NavigableElement> navElements = NavigationHelper.getInstance().getAllNavigableElements(semanticElement);
@@ -305,7 +307,7 @@ public class LocalDefaultLinkDiagramTab {
 	 * @return the creation command registry
 	 */
 	protected static ICreationCommandRegistry getCreationCommandRegistry() {
-		return CreationCommandRegistry.getInstance(org.eclipse.papyrus.core.Activator.PLUGIN_ID);
+		return CreationCommandRegistry.getInstance(org.eclipse.papyrus.infra.core.Activator.PLUGIN_ID);
 	}
 
 }

@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2009 CEA LIST.
  *
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -37,11 +37,11 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DiagramAssistantEditPolic
 import org.eclipse.gmf.runtime.diagram.ui.internal.l10n.DiagramUIPluginImages;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramGraphicalViewer;
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.papyrus.core.editorsfactory.IPageIconsRegistry;
-import org.eclipse.papyrus.core.editorsfactory.PageIconsRegistry;
-import org.eclipse.papyrus.core.services.ServiceException;
-import org.eclipse.papyrus.core.utils.EditorUtils;
-import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
+import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistry;
+import org.eclipse.papyrus.infra.core.editorsfactory.PageIconsRegistry;
+import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.uml.diagram.common.helper.AbstractHyperLinkHelper;
 import org.eclipse.papyrus.uml.diagram.common.helper.DiagramHyperLinkHelper;
 import org.eclipse.papyrus.uml.diagram.common.helper.DocumentHyperLinkHelper;
@@ -62,7 +62,7 @@ import org.eclipse.uml2.uml.Package;
  * shortcuts on sub-diagrams or to associate hyper-link of files
  */
 public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
-	
+
 	public static Package topPackage(Element element) {
 		if(element.getOwner() == null) {
 			return (Package)element;
@@ -372,25 +372,25 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 	/** The POPUPBA r_ mov e_ figure. */
 	// @unused
 	static private int POPUPBAR_MOVE_FIGURE = 0x02; /*
-													 * Ignore the first
-													 * figureMoved event when
-													 * creating elements inside
-													 * a shape via a popup bar
-													 */
+	 * Ignore the first
+	 * figureMoved event when
+	 * creating elements inside
+	 * a shape via a popup bar
+	 */
 
 	/** The POPUPBA r_ ondiagramactivated. */
 	// @unused
 	static private int POPUPBAR_ONDIAGRAMACTIVATED = 0x10; /*
-															 * For popup bars on
-															 * diagram and
-															 * machine edit
-															 * parts, where we
-															 * POPUPBAR_DISPLAYATMOUSEHOVERLOCATION
-															 * , don't display
-															 * popup bar until
-															 * user clicks on
-															 * surface
-															 */
+	 * For popup bars on
+	 * diagram and
+	 * machine edit
+	 * parts, where we
+	 * POPUPBAR_DISPLAYATMOUSEHOVERLOCATION
+	 * , don't display
+	 * popup bar until
+	 * user clicks on
+	 * surface
+	 */
 
 	/** The editor registry. */
 	private IPageIconsRegistry editorRegistry;
@@ -444,7 +444,7 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 			PopupBarLabelHandle handle=null;
 			HyperLinkLabelProvider hyperLinkLabelProvider= new HyperLinkLabelProvider(getEditorRegistry());
 			handle= new PopupBarLabelHandle(hyperLinkObjectList.get(i), hyperLinkLabelProvider.getImage(objectList.get(i)));
-			
+
 			Rectangle r1 = new Rectangle();
 			r1.setLocation(positonwidth, 5);
 			positonwidth += 20;

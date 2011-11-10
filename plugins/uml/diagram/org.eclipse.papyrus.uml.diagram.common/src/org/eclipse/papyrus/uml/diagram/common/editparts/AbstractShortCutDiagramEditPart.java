@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2009 CEA LIST.
  *
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -28,11 +28,11 @@ import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramEditDomain;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.core.editorsfactory.IPageIconsRegistry;
-import org.eclipse.papyrus.core.editorsfactory.PageIconsRegistry;
-import org.eclipse.papyrus.core.services.ServiceException;
-import org.eclipse.papyrus.core.services.ServicesRegistry;
-import org.eclipse.papyrus.core.utils.EditorUtils;
+import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistry;
+import org.eclipse.papyrus.infra.core.editorsfactory.PageIconsRegistry;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.DiagramNodeFigure;
 import org.eclipse.papyrus.uml.diagram.common.part.UmlGmfDiagramEditor;
 import org.eclipse.ui.IWorkbenchPart;
@@ -136,6 +136,7 @@ public abstract class AbstractShortCutDiagramEditPart extends AbstractBorderedSh
 	 * 
 	 * {@inheritDoc}
 	 */
+	@Override
 	public void refresh() {
 
 		refreshIcons();
@@ -153,6 +154,7 @@ public abstract class AbstractShortCutDiagramEditPart extends AbstractBorderedSh
 	 * 
 	 * {@inheritDoc}
 	 */
+	@Override
 	protected void refreshBounds() {
 		int width = 34;
 		int height = 20;
@@ -168,7 +170,7 @@ public abstract class AbstractShortCutDiagramEditPart extends AbstractBorderedSh
 	 */
 	private void refreshIcons() {
 		if(resolveSemanticElement() instanceof Diagram && resolveSemanticElement().eResource() != null) {
-			getPrimaryShape().setIcon(getEditorRegistry().getEditorIcon((Diagram)resolveSemanticElement()));
+			getPrimaryShape().setIcon(getEditorRegistry().getEditorIcon(resolveSemanticElement()));
 		} else {
 			getPrimaryShape().setIcon(org.eclipse.papyrus.uml.diagram.common.Activator.getPluginIconImage(org.eclipse.papyrus.uml.diagram.common.Activator.ID, DELETE_ICON));
 		}

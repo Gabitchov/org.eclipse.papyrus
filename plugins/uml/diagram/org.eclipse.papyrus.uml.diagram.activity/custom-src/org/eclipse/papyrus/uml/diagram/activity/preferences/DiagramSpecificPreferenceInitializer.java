@@ -16,7 +16,6 @@ package org.eclipse.papyrus.uml.diagram.activity.preferences;
 import org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLDiagramEditorPlugin;
-import org.eclipse.papyrus.uml.diagram.activity.preferences.DiagramGeneralPreferencePage;
 
 /**
  * This preference initializer initializes diagram preferences specific to the activity diagram.

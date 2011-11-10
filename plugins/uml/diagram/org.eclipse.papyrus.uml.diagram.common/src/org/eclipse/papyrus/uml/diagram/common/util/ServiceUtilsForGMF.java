@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2010 LIFL & CEA LIST.
  *
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -16,10 +16,10 @@ package org.eclipse.papyrus.uml.diagram.common.util;
 
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditDomain;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramEditDomain;
-import org.eclipse.papyrus.core.services.ServiceException;
-import org.eclipse.papyrus.core.services.ServiceNotFoundException;
-import org.eclipse.papyrus.core.services.ServicesRegistry;
-import org.eclipse.papyrus.core.utils.AbstractServiceUtils;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.services.ServiceNotFoundException;
+import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.core.utils.AbstractServiceUtils;
 import org.eclipse.papyrus.uml.diagram.common.part.UmlGmfDiagramEditor;
 import org.eclipse.ui.IWorkbenchPart;
 
@@ -36,7 +36,7 @@ public class ServiceUtilsForGMF extends AbstractServiceUtils<IDiagramEditDomain>
 	private final static ServiceUtilsForGMF instance = new ServiceUtilsForGMF();
 
 	/**
-	 * Get the singleton instance of the class. 
+	 * Get the singleton instance of the class.
 	 * 
 	 * @return
 	 */
@@ -55,7 +55,7 @@ public class ServiceUtilsForGMF extends AbstractServiceUtils<IDiagramEditDomain>
 	 * <li>from EditPolicies - policy.getHost().getDiagramEditDomain()</li>
 	 * </ul>
 	 * 
-	 * @see org.eclipse.papyrus.core.utils.AbstractServiceUtils#getServiceRegistry(java.lang.Object)
+	 * @see org.eclipse.papyrus.infra.core.utils.AbstractServiceUtils#getServiceRegistry(java.lang.Object)
 	 * 
 	 * @param domain
 	 *        The domain associated to an EditPart.

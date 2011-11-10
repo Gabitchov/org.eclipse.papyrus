@@ -23,7 +23,6 @@ import org.eclipse.uml2.uml.ElementImport;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.PackageImport;
-import org.eclipse.uml2.uml.Type;
 
 /**
  * 

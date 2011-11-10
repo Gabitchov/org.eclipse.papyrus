@@ -30,7 +30,7 @@
    
 </extension>
 <extension
-      point="org.eclipse.papyrus.core.modelListener">
+      point="org.eclipse.papyrus.infra.core.modelListener">
    <listener
          name="StereotypeApplicationListener"
          realization="org.eclipse.papyrus.uml.diagram.common.editparts.PapyrusStereotypeListener">
@@ -59,7 +59,7 @@
          </predefinedEntry>
       </contribution>
       <editor
-            class="org.eclipse.papyrus.diagram.common.part.UmlGmfDiagramEditor(org.eclipse.papyrus.diagram.common)">
+            class="org.eclipse.papyrus.uml.diagram.common.part.UmlGmfDiagramEditor(org.eclipse.papyrus.uml.diagram.common)">
       </editor>
    </paletteProvider>
 </extension>
@@ -80,7 +80,7 @@
 <extension
       point="org.eclipse.ui.startup">
    <startup
-         class="org.eclipse.papyrus.diagram.common.Startup"></startup>
+         class="org.eclipse.papyrus.uml.diagram.common.Startup"></startup>
 </extension>
 -->
 <extension
@@ -91,7 +91,7 @@
    <!--menuContribution
          locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContribution"-->
       <command
-            commandId="org.eclipse.papyrus.diagram.commands.LoadResourceAction"
+            commandId="org.eclipse.papyrus.uml.diagram.commands.LoadResourceAction"
             label="Load resource..."
             style="push">
          <visibleWhen>
@@ -99,7 +99,7 @@
                <with
                      variable="activePartId">
                   <equals
-                        value="org.eclipse.papyrus.core.papyrusEditor">
+                        value="org.eclipse.papyrus.infra.core.papyrusEditor">
                   </equals>
                </with>
             </or>
@@ -112,14 +112,14 @@
    <command
          categoryId="org.eclipse.papyrus.editor.category"
          defaultHandler="org.eclipse.papyrus.uml.diagram.common.actions.LoadResourceAction"
-         id="org.eclipse.papyrus.diagram.commands.LoadResourceAction"
+         id="org.eclipse.papyrus.uml.diagram.commands.LoadResourceAction"
          name="Load Resource">
    </command>
    <command
          categoryId="org.eclipse.papyrus.editor.category"
          defaultHandler="org.eclipse.papyrus.uml.diagram.common.handlers.PasteWithModelHandler"
          description="Paste content in a diagram (graphic+ semantic)"
-         id="org.eclipse.papyrus.diagram.common.commands.PasteWithModelCommand"
+         id="org.eclipse.papyrus.uml.diagram.common.commands.PasteWithModelCommand"
          name="PasteWithModel">
    </command>
 </extension>
@@ -127,7 +127,7 @@
       point="org.eclipse.ui.popupMenus">
    <objectContribution
          adaptable="false"
-         id="org.eclipse.papyrus.diagram.clazz.objectContribution.dependencybranchdeletion"
+         id="org.eclipse.papyrus.uml.diagram.clazz.objectContribution.dependencybranchdeletion"
          objectClass="org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart">
       <action
             class="org.eclipse.papyrus.uml.diagram.common.commands.CleanDiagram"
@@ -140,21 +140,21 @@
    </objectContribution>
    <objectContribution
          adaptable="false"
-         id="org.eclipse.papyrus.diagram.common.pastewithmodelaction"
+         id="org.eclipse.papyrus.uml.diagram.common.pastewithmodelaction"
          objectClass="org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart">
       <action
             class="org.eclipse.papyrus.uml.diagram.common.actions.PasteWithModelAction"
             definitionId="org.eclipse.papyrus.common.pasteWithModel"
             enablesFor="1"
             icon="icons/paste_edit.gif"
-            id="org.eclipse.papyrus.diagram.common.objectContribution.pastewithmodelaction"
+            id="org.eclipse.papyrus.uml.diagram.common.objectContribution.pastewithmodelaction"
             label="Paste with model"
             menubarPath="editMenu/editGroup">
       </action>
    </objectContribution>
 </extension>
 <extension
-      point="org.eclipse.papyrus.core.modelListener">
+      point="org.eclipse.papyrus.infra.core.modelListener">
    <listener
          description="This listener listens for profile (un)applications to update the palette"
          name="PaletteProfileApplicationListener"
@@ -162,21 +162,21 @@
    </listener>
 </extension>
 <extension
-      point="org.eclipse.papyrus.core.modelListener">
+      point="org.eclipse.papyrus.infra.core.modelListener">
    <listener
-         name="org.eclipse.papyrus.diagram.common.listener1"
+         name="org.eclipse.papyrus.uml.diagram.common.listener1"
          realization="org.eclipse.papyrus.uml.diagram.common.listeners.RemoveStereotypeApplicationListener">
    </listener>
 </extension>
 <extension
-      point="org.eclipse.papyrus.core.papyrusDiagram">
+      point="org.eclipse.papyrus.infra.core.papyrusDiagram">
    <actionBarContributor
-         id="org.eclipse.papyrus.diagram.common.part.UMLDiagramActionBarContributor"
+         id="org.eclipse.papyrus.uml.diagram.common.part.UMLDiagramActionBarContributor"
          implementingClass="org.eclipse.papyrus.uml.diagram.common.part.UMLDiagramActionBarContributor">
    </actionBarContributor>
 </extension>
 <extension
-      point="org.eclipse.papyrus.diagram.common.aspectToolProvider">
+      point="org.eclipse.papyrus.uml.diagram.common.aspectToolProvider">
    <aspectToolProvider
          class="org.eclipse.papyrus.uml.diagram.common.service.palette.AssociationEndAspectActionProvider"
          description="This Provider handles actions taken after association creation. It modifies the 2 properties, member ends of the created association."
@@ -189,7 +189,7 @@
    </aspectToolProvider>
 </extension>
 <extension
-      point="org.eclipse.papyrus.diagram.common.aspectToolProvider">
+      point="org.eclipse.papyrus.uml.diagram.common.aspectToolProvider">
    <aspectToolProvider
          class="org.eclipse.papyrus.uml.diagram.common.service.palette.ChangeStereotypeDisplayAspectActionProvider"
          description="This changes the way stereotypes are displayed in the created element. (Vertical or horizontal display, icon or text, etc.)"
@@ -202,7 +202,7 @@
    </aspectToolProvider>
 </extension>
 <extension
-      point="org.eclipse.papyrus.diagram.common.aspectToolProvider">
+      point="org.eclipse.papyrus.uml.diagram.common.aspectToolProvider">
    <aspectToolProvider
          class="org.eclipse.papyrus.uml.diagram.common.service.palette.StereotypeAspectActionProvider"
          description="This provider creates action that applies a list of stereotypes to the given element."
@@ -215,7 +215,7 @@
    </aspectToolProvider>
 </extension>
 <extension
-      point="org.eclipse.papyrus.diagram.common.aspectToolProvider">
+      point="org.eclipse.papyrus.uml.diagram.common.aspectToolProvider">
    <aspectToolProvider
          class="org.eclipse.papyrus.uml.diagram.common.service.palette.SemanticAspectActionProvider"
          description="The actions provided by this extension modify a semantic element, giving static-defined values to some of his attributes"
@@ -229,7 +229,7 @@
 </extension>
 
 <extension
-      point="org.eclipse.papyrus.diagram.common.aspectToolProvider">
+      point="org.eclipse.papyrus.uml.diagram.common.aspectToolProvider">
    <aspectToolProvider
          class="org.eclipse.papyrus.uml.diagram.common.service.palette.DisplayAppliedStereotypeAspectActionProvider"
          description="This action modifies the list of stereotype that will be displayed for the specified element, and if they are displayed using qualified name or simple name"
@@ -242,22 +242,22 @@
    </aspectToolProvider>
 </extension>
 <extension
-      point="org.eclipse.papyrus.pastemanager.pasteCommandProvider">
+      point="org.eclipse.papyrus.uml.pastemanager.pasteCommandProvider">
    <PasteCommandProvider
          priority="Lowest"
-         realization="org.eclipse.papyrus.pastemanager.service.DefaultPasteCommandProvider">
+         realization="org.eclipse.papyrus.uml.pastemanager.service.DefaultPasteCommandProvider">
    </PasteCommandProvider>
 </extension>
 <extension
       id="update-cmd-binding"
       point="org.eclipse.ui.bindings">
    <key
-         commandId="org.eclipse.papyrus.diagram.common.commands.PasteWithModelCommand"
+         commandId="org.eclipse.papyrus.uml.diagram.common.commands.PasteWithModelCommand"
          schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
          sequence="CTRL+SHIFT+V">
    </key>
    <key
-         commandId="org.eclipse.papyrus.diagram.common.commands.DeleteFromDiagram"
+         commandId="org.eclipse.papyrus.uml.diagram.common.commands.DeleteFromDiagram"
          contextId="org.eclipse.gmf.runtime.diagram.ui.diagramContext"
          schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
          sequence="DEL">
@@ -270,7 +270,7 @@
    </key>
 </extension>
    <extension
-         point="org.eclipse.papyrus.core.papyrusDiagram">
+         point="org.eclipse.papyrus.infra.core.papyrusDiagram">
       <diagramCategory
             class="org.eclipse.papyrus.uml.diagram.common.commands.CreateUMLModelCommand"
             description="Create Unified Modeling Language diagrams"
@@ -299,11 +299,11 @@
 <extension
 		point="org.eclipse.core.expressions.definitions">
 	
-	<definition id="org.eclipse.papyrus.diagram.common.IsPapyrusActiveWithUMLModel">
+	<definition id="org.eclipse.papyrus.uml.diagram.common.IsPapyrusActiveWithUMLModel">
 		<and>
 		
 		<with variable="activeEditorId">
-			<equals value="org.eclipse.papyrus.core.papyrusEditor"/>
+			<equals value="org.eclipse.papyrus.infra.core.papyrusEditor"/>
 		</with>
 
 		<with variable="selection">
@@ -314,11 +314,11 @@
 		</and>
 	</definition>
 	
-	<definition id="org.eclipse.papyrus.diagram.common.IsPapyrusActiveWithUMLProfile">
+	<definition id="org.eclipse.papyrus.uml.diagram.common.IsPapyrusActiveWithUMLProfile">
 		<and>
 		
 		<with variable="activeEditorId">
-			<equals value="org.eclipse.papyrus.core.papyrusEditor"/>
+			<equals value="org.eclipse.papyrus.infra.core.papyrusEditor"/>
 		</with>
 
 		<with variable="selection">
@@ -349,7 +349,7 @@
            <with
                  variable="activeEditorId">
               <equals
-                    value="org.eclipse.papyrus.core.papyrusEditor">
+                    value="org.eclipse.papyrus.infra.core.papyrusEditor">
               </equals>
            </with>
            <with
@@ -366,14 +366,14 @@
      </visibleWhen>
   </command>
 
-		<command commandId="org.eclipse.papyrus.diagram.common.commands.DeleteFromDiagram"
+		<command commandId="org.eclipse.papyrus.uml.diagram.common.commands.DeleteFromDiagram"
 			icon="icons/obj16/eraser.gif"
 			label="Hide Selected Element"
 			style="push">
 			<visibleWhen>
 				<and>
 					<with variable="activeEditorId">
-                        <equals value="org.eclipse.papyrus.core.papyrusEditor"/>
+                        <equals value="org.eclipse.papyrus.infra.core.papyrusEditor"/>
 					</with>
 					<with variable="selection">
 						<iterate
@@ -387,10 +387,10 @@
 		</command>
 		
   <separator
-        name="org.eclipse.papyrus.diagram.common.commands.LoadSeparator">
+        name="org.eclipse.papyrus.uml.diagram.common.commands.LoadSeparator">
   </separator>
   <command
-        commandId="org.eclipse.papyrus.diagram.common.commands.Load"
+        commandId="org.eclipse.papyrus.uml.diagram.common.commands.Load"
         icon="icons/obj16/LoadResource.gif"
         label="Load"
         style="push">
@@ -399,7 +399,7 @@
            <with
                  variable="activeEditorId">
               <equals
-                    value="org.eclipse.papyrus.core.papyrusEditor">
+                    value="org.eclipse.papyrus.infra.core.papyrusEditor">
               </equals>
            </with>
            <with
@@ -414,7 +414,7 @@
                   </iterate>
                   <test
                         forcePluginActivation="true"
-                        property="org.eclipse.papyrus.core.resourceloading.tester.isAllNotLoaded"
+                        property="org.eclipse.papyrus.infra.services.resourceloading.tester.isAllNotLoaded"
                         value="true" />
               </and>
            </with>
@@ -422,7 +422,7 @@
      </visibleWhen>
   </command>
   <command
-        commandId="org.eclipse.papyrus.diagram.common.commands.Unload"
+        commandId="org.eclipse.papyrus.uml.diagram.common.commands.Unload"
         icon="icons/obj16/UnloadResource.gif"
         label="Unload"
         style="push">
@@ -431,7 +431,7 @@
            <with
                  variable="activeEditorId">
               <equals
-                    value="org.eclipse.papyrus.core.papyrusEditor">
+                    value="org.eclipse.papyrus.infra.core.papyrusEditor">
               </equals>
            </with>
            <with
@@ -446,7 +446,7 @@
                   </iterate>
                   <test
                         forcePluginActivation="true"
-                        property="org.eclipse.papyrus.core.resourceloading.tester.isAllLoaded"
+                        property="org.eclipse.papyrus.infra.services.resourceloading.tester.isAllLoaded"
                         value="true" />
               </and>
            </with>
@@ -463,7 +463,7 @@
 		categoryId="org.eclipse.papyrus.editor.category"
 		defaultHandler="org.eclipse.papyrus.uml.diagram.common.handlers.DeleteFromModelCommandHandler"
 		description="Delete the selection from model"
-		id="org.eclipse.papyrus.diagram.common.commands.DeleteFromModel"
+		id="org.eclipse.papyrus.uml.diagram.common.commands.DeleteFromModel"
 		name="Delete From Model Command">
 	</command>
 	
@@ -471,21 +471,21 @@
 		categoryId="org.eclipse.papyrus.editor.category"
 		defaultHandler="org.eclipse.papyrus.uml.diagram.common.handlers.DeleteFromDiagramCommandHandler"
 		description="Delete the selection from diagram"
-		id="org.eclipse.papyrus.diagram.common.commands.DeleteFromDiagram"
+		id="org.eclipse.papyrus.uml.diagram.common.commands.DeleteFromDiagram"
 		name="Delete From Diagram Command">
 	</command>
 	<command
 		categoryId="org.eclipse.papyrus.editor.category"
 		defaultHandler="org.eclipse.papyrus.uml.diagram.common.handlers.LoadHandler"
 		description="Load the corresponding submodel"
-		id="org.eclipse.papyrus.diagram.common.commands.Load"
+		id="org.eclipse.papyrus.uml.diagram.common.commands.Load"
 		name="Load">
 	</command>
 	<command
 		categoryId="org.eclipse.papyrus.editor.category"
 		defaultHandler="org.eclipse.papyrus.uml.diagram.common.handlers.UnloadHandler"
 		description="Unload the corresponding submodel"
-		id="org.eclipse.papyrus.diagram.common.commands.Unload"
+		id="org.eclipse.papyrus.uml.diagram.common.commands.Unload"
 		name="Unload">
 	</command>
 </extension>
@@ -536,7 +536,7 @@
             <with
                   variable="activeEditorId">
                <equals
-                     value="org.eclipse.papyrus.core.papyrusEditor">
+                     value="org.eclipse.papyrus.infra.core.papyrusEditor">
                </equals>
             </with>
             <with
@@ -568,21 +568,21 @@
    </handler>
 </extension>
 <extension
-         point="org.eclipse.papyrus.core.service">
+         point="org.eclipse.papyrus.infra.core.service">
  		<service
             classname="org.eclipse.papyrus.uml.diagram.common.resourceupdate.ResourceUpdateService"
             description="Service used to update resources that have changed on disk"
-            id="org.eclipse.papyrus.diagram.common.resourceupdate"
+            id="org.eclipse.papyrus.uml.diagram.common.resourceupdate"
             priority="1"
             startKind="startup">
          <dependsOn
-               serviceKeyRef="org.eclipse.papyrus.core.lifecycleevents.ILifeCycleEventsProvider">
+               serviceKeyRef="org.eclipse.papyrus.infra.core.lifecycleevents.ILifeCycleEventsProvider">
          </dependsOn>
          <dependsOn
-               serviceKeyRef="org.eclipse.papyrus.core.editor.IMultiDiagramEditor">
+               serviceKeyRef="org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor">
          </dependsOn>
          <dependsOn
-               serviceKeyRef="org.eclipse.papyrus.resource.ModelSet">
+               serviceKeyRef="org.eclipse.papyrus.infra.core.resource.ModelSet">
          </dependsOn>
  		</service>
 </extension>
@@ -591,8 +591,8 @@
       point="org.eclipse.core.expressions.propertyTesters">
    <propertyTester
          class="org.eclipse.papyrus.uml.diagram.common.util.DiagramTester"
-         id="org.eclipse.papyrus.diagram.common.diagram.tester"
-         namespace="org.eclipse.papyrus.diagram.common.diagram.tester"
+         id="org.eclipse.papyrus.uml.diagram.common.diagram.tester"
+         namespace="org.eclipse.papyrus.uml.diagram.common.diagram.tester"
          properties="diagramType"
          type="org.eclipse.ui.IEditorPart">
    </propertyTester>
@@ -606,7 +606,7 @@
             name="Low">
       </Priority>
       <ViewId
-            id="org.eclipse.papyrus.core.papyrusEditor">
+            id="org.eclipse.papyrus.infra.core.papyrusEditor">
          <ElementType
                class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
             <GlobalActionId
@@ -625,7 +625,7 @@
             name="Low">
       </Priority>
       <ViewId
-            id="org.eclipse.papyrus.core.papyrusEditor">
+            id="org.eclipse.papyrus.infra.core.papyrusEditor">
          <ElementType
                class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
             <GlobalActionId
@@ -650,7 +650,7 @@
             name="Low">
       </Priority>
       <ViewId
-            id="org.eclipse.papyrus.core.papyrusEditor">
+            id="org.eclipse.papyrus.infra.core.papyrusEditor">
          <ElementType
                class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
             <GlobalActionId

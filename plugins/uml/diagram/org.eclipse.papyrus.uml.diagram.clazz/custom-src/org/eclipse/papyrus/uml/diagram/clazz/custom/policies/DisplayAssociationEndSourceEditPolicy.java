@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.uml.diagram.clazz.custom.policies;
 
 import org.eclipse.papyrus.uml.diagram.clazz.custom.helper.AssociationEndSourceLabelHelper;
-import org.eclipse.papyrus.uml.tools.utils.ICustomAppearence;
 
 /**
  * Mask Managed label edit policy for association ends (source role)

@@ -54,7 +54,7 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.window.Window;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.papyrus.core.utils.EditorUtils;
+import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.uml.diagram.activity.edit.dialogs.ConfirmPinAndParameterSyncDialog;
 import org.eclipse.papyrus.uml.diagram.activity.edit.dialogs.WarningAndCreateAttributeDialog;
 import org.eclipse.papyrus.uml.diagram.activity.edit.dialogs.WarningAndCreateParameterDialog;

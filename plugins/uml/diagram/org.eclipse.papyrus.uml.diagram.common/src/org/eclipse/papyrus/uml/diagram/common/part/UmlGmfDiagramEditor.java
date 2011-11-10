@@ -9,10 +9,10 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.gef.KeyHandler;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
-import org.eclipse.papyrus.core.adaptor.gmf.SynchronizableGmfDiagramEditor;
-import org.eclipse.papyrus.core.lifecycleevents.ISaveAndDirtyService;
-import org.eclipse.papyrus.core.services.ServiceException;
-import org.eclipse.papyrus.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.core.adaptor.gmf.SynchronizableGmfDiagramEditor;
+import org.eclipse.papyrus.infra.core.lifecycleevents.ISaveAndDirtyService;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 
 /**
  * Common ancestor of GMF based editors for UML. This class allows to declare
@@ -176,8 +176,9 @@ public class UmlGmfDiagramEditor extends SynchronizableGmfDiagramEditor {
 		 */
 		public void setDiagram(Diagram diagram) {
 			// Remove from old diagram, if any
-			if(this.diagram != null)
+			if(this.diagram != null) {
 				diagram.eAdapters().remove(diagramNameListener);
+			}
 
 			// Set new Diagram
 			this.diagram = diagram;

@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
  *
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -18,10 +18,10 @@ import java.util.Iterator;
 
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TableViewer;
-import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
-import org.eclipse.papyrus.core.editorsfactory.IPageIconsRegistry;
-import org.eclipse.papyrus.core.services.ServiceException;
-import org.eclipse.papyrus.core.utils.EditorUtils;
+import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
+import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistry;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CTabFolder;
 import org.eclipse.swt.custom.CTabItem;
@@ -35,7 +35,7 @@ import org.eclipse.swt.widgets.Table;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 /**
- * this is the tab in charge to display the hyperlink dor the property defaut 
+ * this is the tab in charge to display the hyperlink dor the property defaut
  *
  */
 public class DefaultHyperLinkTab {
@@ -49,8 +49,8 @@ public class DefaultHyperLinkTab {
 	protected ArrayList<HyperlinkObject> defaultHyperLinkObject= new ArrayList<HyperlinkObject>();
 	protected ArrayList<HyperlinkObject> availableHyperLinkObject=new ArrayList<HyperlinkObject>();
 	protected Composite defaultHyperlinkComposite;
-	
-	
+
+
 	/**
 	 * 
 	 * @return get the list of hyperlink that are to be as default hyperlinks
@@ -70,7 +70,7 @@ public class DefaultHyperLinkTab {
 		CTabItem tbtmDefaultsHyperlinks = new CTabItem(tabFolder, SWT.NONE);
 		tbtmDefaultsHyperlinks.setText("Defaults HyperLinks");
 		defaultHyperlinkComposite = new Composite(tabFolder, SWT.NONE);
-		
+
 		defaultHyperlinkComposite.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
 		tbtmDefaultsHyperlinks.setControl(defaultHyperlinkComposite);
 
@@ -90,7 +90,7 @@ public class DefaultHyperLinkTab {
 
 
 		defaultHRight = new Button(defaultHyperlinkComposite, SWT.NONE);
-		defaultHRight.setBounds(availableHyperLink.getBounds().x+availableHyperLink.getBounds().width+20, 
+		defaultHRight.setBounds(availableHyperLink.getBounds().x+availableHyperLink.getBounds().width+20,
 			availableHyperLink.getBounds().y+availableHyperLink.getBounds().height/2-30, 30, 23);
 		defaultHRight.addMouseListener(new MouseListener() {
 			public void mouseUp(MouseEvent e) {
@@ -115,7 +115,7 @@ public class DefaultHyperLinkTab {
 		});
 
 		defaultHleft = new Button(defaultHyperlinkComposite, SWT.NONE);
-		defaultHleft.setBounds(availableHyperLink.getBounds().x+availableHyperLink.getBounds().width+20, 
+		defaultHleft.setBounds(availableHyperLink.getBounds().x+availableHyperLink.getBounds().width+20,
 			availableHyperLink.getBounds().y+availableHyperLink.getBounds().height/2, 30, 23);
 		defaultHleft.addMouseListener(new MouseListener() {
 			public void mouseUp(MouseEvent e) {
@@ -175,7 +175,7 @@ public class DefaultHyperLinkTab {
 		});
 
 		defaultHdown = new Button(defaultHyperlinkComposite, SWT.NONE);
-		defaultHdown.setBounds(defaultHyperLink.getBounds().x+defaultHyperLink.getBounds().width+20, 
+		defaultHdown.setBounds(defaultHyperLink.getBounds().x+defaultHyperLink.getBounds().width+20,
 			defaultHyperLink.getBounds().y+defaultHyperLink.getBounds().height/2, 34, 23);
 
 		defaultHdown.addMouseListener(new MouseListener() {
@@ -233,7 +233,7 @@ public class DefaultHyperLinkTab {
 
 	}
 
-	/** 
+	/**
 	 * 
 	 * @return the composite that manage all widgets in the this tab
 	 */
@@ -251,19 +251,19 @@ public class DefaultHyperLinkTab {
 
 
 
-/**
- * input of this tab
- * 	--> fill all available hyperlinks
- *  --> fill all default hyperlinks
- * @param hyperLinkObjectList the list of hyperlinks
- */
+	/**
+	 * input of this tab
+	 * 	--> fill all available hyperlinks
+	 *  --> fill all default hyperlinks
+	 * @param hyperLinkObjectList the list of hyperlinks
+	 */
 	public void setInput(ArrayList<HyperlinkObject> hyperLinkObjectList) {
 		defaultHyperLinkObject.clear();
 		availableHyperLinkObject.clear();
 		//filter between default and not default
 		Iterator<HyperlinkObject> iterator= hyperLinkObjectList.iterator();
 		while(iterator.hasNext()) {
-			HyperlinkObject hyperlinkObject = (HyperlinkObject)iterator.next();
+			HyperlinkObject hyperlinkObject = iterator.next();
 			if( hyperlinkObject.getIsDefault()){
 				defaultHyperLinkObject.add(hyperlinkObject);
 			}

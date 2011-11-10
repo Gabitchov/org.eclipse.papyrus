@@ -20,7 +20,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
-import org.eclipse.papyrus.ui.toolbox.LookForElement;
+import org.eclipse.papyrus.infra.widgets.toolbox.LookForElement;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.command.PropertyCommandForAssociation;
 import org.eclipse.papyrus.uml.diagram.clazz.providers.ElementInitializers;
 import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;

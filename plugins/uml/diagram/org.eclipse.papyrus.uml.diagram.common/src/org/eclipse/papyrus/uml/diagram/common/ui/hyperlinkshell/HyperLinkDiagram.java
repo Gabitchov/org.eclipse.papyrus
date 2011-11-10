@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2009 CEA LIST.
  *
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -16,13 +16,13 @@ package org.eclipse.papyrus.uml.diagram.common.ui.hyperlinkshell;
 import java.util.List;
 
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
-import org.eclipse.papyrus.core.editorsfactory.IPageIconsRegistry;
-import org.eclipse.papyrus.core.services.ServiceException;
-import org.eclipse.papyrus.core.utils.EditorUtils;
-import org.eclipse.papyrus.core.utils.OpenDiagramCommand;
-import org.eclipse.papyrus.core.utils.ServiceUtils;
-import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
+import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
+import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistry;
+import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.utils.EditorUtils;
+import org.eclipse.papyrus.infra.core.utils.OpenDiagramCommand;
+import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.uml2.uml.Package;
 
 /**
@@ -70,9 +70,9 @@ public class HyperLinkDiagram extends HyperlinkObject {
 		}
 	}
 
-/**
- * 
- */
+	/**
+	 * 
+	 */
 	@Override
 	public void executeEditMousePressed(List<HyperlinkObject> list, Package amodel) {
 		IPageIconsRegistry editorRegistry=null;

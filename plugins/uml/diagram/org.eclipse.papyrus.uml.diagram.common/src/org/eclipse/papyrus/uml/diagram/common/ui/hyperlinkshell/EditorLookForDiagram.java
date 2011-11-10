@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2009 CEA LIST.
  *
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -29,18 +29,18 @@ import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.papyrus.core.editor.BackboneException;
-import org.eclipse.papyrus.core.editorsfactory.IPageIconsRegistry;
-import org.eclipse.papyrus.core.extension.NotFoundException;
-import org.eclipse.papyrus.core.extension.commands.CreationCommandDescriptor;
-import org.eclipse.papyrus.core.extension.commands.CreationCommandRegistry;
-import org.eclipse.papyrus.core.extension.commands.ICreationCommand;
-import org.eclipse.papyrus.core.extension.commands.ICreationCommandRegistry;
-import org.eclipse.papyrus.core.services.ServiceException;
-import org.eclipse.papyrus.core.services.ServicesRegistry;
-import org.eclipse.papyrus.core.utils.DiResourceSet;
-import org.eclipse.papyrus.core.utils.EditorUtils;
-import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
+import org.eclipse.papyrus.infra.core.editor.BackboneException;
+import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistry;
+import org.eclipse.papyrus.infra.core.extension.NotFoundException;
+import org.eclipse.papyrus.infra.core.extension.commands.CreationCommandDescriptor;
+import org.eclipse.papyrus.infra.core.extension.commands.CreationCommandRegistry;
+import org.eclipse.papyrus.infra.core.extension.commands.ICreationCommand;
+import org.eclipse.papyrus.infra.core.extension.commands.ICreationCommandRegistry;
+import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.core.utils.DiResourceSet;
+import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -313,22 +313,22 @@ public class EditorLookForDiagram extends AbstractLookForDiagramShell {
 				List<Object> res = new ArrayList<Object>();
 				for(Object current : result) {
 					if(current != null && current instanceof Diagram) { // if
-																		// the
-																		// model
-																		// is
-																		// a
-																		// little
-																		// bit
-																		// corrupted,
-																		// we
-																		// can
-																		// have
-																		// a
-																		// null
-																		// element
-																		// in
-																		// the
-																		// list
+						// the
+						// model
+						// is
+						// a
+						// little
+						// bit
+						// corrupted,
+						// we
+						// can
+						// have
+						// a
+						// null
+						// element
+						// in
+						// the
+						// list
 						res.add(current);
 					}
 				}
@@ -397,7 +397,7 @@ public class EditorLookForDiagram extends AbstractLookForDiagramShell {
 		// add listner on the new button to display menu for each diagram
 		diagramMenuButton = new Menu(getNewDiagrambutton());
 		getNewDiagrambutton().setMenu(diagramMenuButton);
-		CreationCommandRegistry commandRegistry = CreationCommandRegistry.getInstance(org.eclipse.papyrus.core.Activator.PLUGIN_ID);
+		CreationCommandRegistry commandRegistry = CreationCommandRegistry.getInstance(org.eclipse.papyrus.infra.core.Activator.PLUGIN_ID);
 		for(CreationCommandDescriptor desc : commandRegistry.getCommandDescriptors()) {
 			MenuItem menuItem = new MenuItem(diagramMenuButton, SWT.PUSH);
 			menuItem.addSelectionListener(new DiagramCreateListener(desc, null, commandRegistry));

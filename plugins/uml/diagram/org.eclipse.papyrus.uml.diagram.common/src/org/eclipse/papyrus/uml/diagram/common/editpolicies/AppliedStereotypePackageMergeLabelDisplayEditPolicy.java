@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.uml.diagram.common.editpolicies;
 
 import org.eclipse.papyrus.uml.diagram.common.Messages;
-import org.eclipse.uml2.uml.PackageMerge;
 
 /**
  * Edit Policy for Applied Stereotype Label for {@link PackageMerge}.

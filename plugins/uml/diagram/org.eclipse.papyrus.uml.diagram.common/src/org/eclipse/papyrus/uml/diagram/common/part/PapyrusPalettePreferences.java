@@ -25,7 +25,7 @@ import java.util.StringTokenizer;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.gmf.runtime.common.core.service.ProviderPriority;
 import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.papyrus.core.utils.PapyrusTrace;
+import org.eclipse.papyrus.infra.core.utils.PapyrusTrace;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.common.service.IPapyrusPaletteConstant;
 import org.eclipse.papyrus.uml.diagram.common.service.PapyrusPaletteService.ExtendedProviderDescriptor;

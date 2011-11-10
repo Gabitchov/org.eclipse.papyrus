@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2009 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,7 +8,7 @@
  *
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
- *  Vincent Lorenzo (CEA LIST) 
+ *  Vincent Lorenzo (CEA LIST)
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.common.service;
@@ -53,8 +53,8 @@ import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.Connector;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.core.services.ServiceException;
-import org.eclipse.papyrus.core.utils.EditorUtils;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.common.layout.LayoutUtils;
 import org.eclipse.papyrus.uml.diagram.common.service.palette.AspectToolService;
@@ -102,6 +102,7 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 	/**
 	 * @see org.eclipse.gef.tools.AbstractTool#handleButtonUp(int)
 	 */
+	@Override
 	protected boolean handleButtonUp(int button) {
 		setCtrlKeyDown(getCurrentInput().isControlKeyDown());
 
@@ -146,7 +147,7 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 					}
 				}
 
-				CreateConnectionRequest connectionRequest = (CreateConnectionRequest)createTargetRequest();
+				CreateConnectionRequest connectionRequest = createTargetRequest();
 				// get the anchors locations
 				Point[] newLocation = LayoutUtils.getLinkAnchor(sourceEditPart, targetEditPart);
 				connectionRequest.setTargetEditPart(sourceEditPart);
@@ -436,6 +437,7 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 		 * @param relationshipType
 		 * @return the <code>CreateRequest</code>
 		 */
+		@Override
 		public CreateRequest getRequestForType(IElementType relationshipType) {
 			if(requests != null) {
 				return (CreateConnectionRequest)requests.get(relationshipType);
@@ -443,6 +445,7 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 			return null;
 		}
 
+		@Override
 		public void addRequest(IElementType relationshipType, Request request) {
 			if(requests != null) {
 				requests.put(relationshipType, request);
@@ -454,6 +457,7 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 		 * 
 		 * @return the requests
 		 */
+		@Override
 		public List getAllRequests() {
 			if(requests != null) {
 				return new ArrayList(requests.values());
@@ -473,6 +477,7 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 		/**
 		 * @see org.eclipse.gef.requests.CreateConnectionRequest#setSourceEditPart(org.eclipse.gef.EditPart)
 		 */
+		@Override
 		public void setSourceEditPart(EditPart part) {
 			if(requests != null) {
 				for(Iterator iter = requests.values().iterator(); iter.hasNext();) {
@@ -486,6 +491,7 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 		/**
 		 * @see org.eclipse.gef.requests.TargetRequest#setTargetEditPart(org.eclipse.gef.EditPart)
 		 */
+		@Override
 		public void setTargetEditPart(EditPart part) {
 			if(requests != null) {
 				for(Iterator iter = requests.values().iterator(); iter.hasNext();) {
@@ -499,6 +505,7 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 		/**
 		 * @see org.eclipse.gef.requests.CreateRequest#setLocation(org.eclipse.draw2d.geometry.Point)
 		 */
+		@Override
 		public void setLocation(Point location) {
 			if(requests != null) {
 				for(Iterator iter = requests.values().iterator(); iter.hasNext();) {
@@ -512,6 +519,7 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 		/**
 		 * @see org.eclipse.gef.Request#setType(java.lang.Object)
 		 */
+		@Override
 		public void setType(Object type) {
 			if(requests != null) {
 				for(Iterator iter = requests.values().iterator(); iter.hasNext();) {
@@ -528,6 +536,7 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 		 * 
 		 * @return Returns the directionReversed.
 		 */
+		@Override
 		public boolean isDirectionReversed() {
 			return directionReversed;
 		}
@@ -538,6 +547,7 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 		 * @param directionReversed
 		 *        The directionReversed to set.
 		 */
+		@Override
 		public void setDirectionReversed(boolean directionReversed) {
 			this.directionReversed = directionReversed;
 		}
@@ -549,6 +559,7 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 		 *         to find the types when the other end of the connection is
 		 *         known.
 		 */
+		@Override
 		public boolean useModelingAssistantService() {
 			return useModelingAssistantService;
 		}
@@ -561,6 +572,7 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 		 * 
 		 * @return the preferences hint
 		 */
+		@Override
 		protected PreferencesHint getPreferencesHint() {
 			return preferencesHint;
 		}

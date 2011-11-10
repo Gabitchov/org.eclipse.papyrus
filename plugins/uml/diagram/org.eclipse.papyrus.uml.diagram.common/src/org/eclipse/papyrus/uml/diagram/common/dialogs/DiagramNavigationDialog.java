@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
  *
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -16,10 +16,10 @@ import java.util.ArrayList;
 
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.viewers.TableViewer;
-import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
-import org.eclipse.papyrus.core.editorsfactory.IPageIconsRegistry;
-import org.eclipse.papyrus.core.services.ServiceException;
-import org.eclipse.papyrus.core.utils.EditorUtils;
+import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
+import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistry;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.uml.diagram.common.ui.hyperlinkshell.HyperLinkContentProvider;
 import org.eclipse.papyrus.uml.diagram.common.ui.hyperlinkshell.HyperLinkLabelProvider;
 import org.eclipse.papyrus.uml.diagram.common.ui.hyperlinkshell.HyperlinkObject;
@@ -42,13 +42,13 @@ public class DiagramNavigationDialog extends Dialog {
 	// prefered dimension
 	protected int width=350;
 	protected int height=150;
-	
+
 	protected ArrayList<HyperlinkObject> hyperlinkObjects;
 	protected HyperLinkContentProvider contentProvider;
 	private TableViewer tableViewer;
-	
+
 	protected Table availableHyperLink;
-	
+
 	protected ArrayList<HyperlinkObject> hyperlinkResult= new ArrayList<HyperlinkObject>();
 
 	/**
@@ -68,10 +68,10 @@ public class DiagramNavigationDialog extends Dialog {
 	}
 	@Override
 	protected Control createContents(Composite parent) {
-		
+
 		parent.setBounds(parent.getBounds().x, parent.getBounds().y, width+50, height+120);
 		Composite defaultHyperlinkComposite = new Composite(parent, SWT.NONE);
-		
+
 		Label lblHyperlinks = new Label(defaultHyperlinkComposite, SWT.NONE);
 		lblHyperlinks.setForeground(Display.getCurrent().getSystemColor(SWT.COLOR_BLACK));
 		lblHyperlinks.setBounds(23, 10,width , 13);
@@ -99,22 +99,23 @@ public class DiagramNavigationDialog extends Dialog {
 
 		return defaultHyperlinkComposite;
 	}
-	
+
 	/**
 	 * get the list of selected hyperlinks
 	 * @return the list
 	 */
 	public ArrayList<HyperlinkObject> getSelectedHyperlinks(){
 		return hyperlinkResult;
-		
+
 	}
 	/**
 	 * 
 	 * @see org.eclipse.jface.dialogs.Dialog#okPressed()
 	 *
 	 */
+	@Override
 	protected void okPressed() {
-	
+
 		hyperlinkResult= new ArrayList<HyperlinkObject>();
 		TableItem[] tableItems=availableHyperLink.getItems();
 		for(int i=0;i<tableItems.length;i++){
@@ -122,7 +123,7 @@ public class DiagramNavigationDialog extends Dialog {
 				hyperlinkResult.add((HyperlinkObject)tableItems[i].getData());
 			}
 		}
-		
+
 		super.okPressed();
 	}
 }

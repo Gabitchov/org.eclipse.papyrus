@@ -15,7 +15,7 @@
 package org.eclipse.papyrus.uml.diagram.clazz;
 
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
-import org.eclipse.papyrus.core.adaptor.gmf.AbstractPapyrusGmfCreateDiagramCommandHandler;
+import org.eclipse.papyrus.infra.core.adaptor.gmf.AbstractPapyrusGmfCreateDiagramCommandHandler;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ModelEditPart;
 
 /**

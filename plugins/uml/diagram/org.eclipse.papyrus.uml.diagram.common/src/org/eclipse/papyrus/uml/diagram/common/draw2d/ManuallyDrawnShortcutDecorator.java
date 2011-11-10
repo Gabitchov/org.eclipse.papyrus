@@ -16,7 +16,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.services.decorator.AbstractDecorator;
 import org.eclipse.gmf.runtime.diagram.ui.services.decorator.IDecoratorTarget;
-import org.eclipse.papyrus.ui.toolbox.draw2d.ManuallyDrawnShortcutDecorationFigure;
+import org.eclipse.papyrus.infra.widgets.toolbox.draw2d.ManuallyDrawnShortcutDecorationFigure;
 
 /**
  * Workaround for #214160 and #209802 -- in some cases SWT fails to paint Images

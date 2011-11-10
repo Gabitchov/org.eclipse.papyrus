@@ -27,7 +27,7 @@ import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.Node;
-import org.eclipse.papyrus.core.utils.EditorUtils;
+import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.uml.diagram.activity.edit.commands.ConstraintAsLocalPostcondCreateCommand;
 import org.eclipse.papyrus.uml.diagram.activity.edit.commands.ConstraintAsLocalPrecondCreateCommand;
 import org.eclipse.papyrus.uml.diagram.activity.edit.commands.DurationConstraintAsLocalPostcondCreateCommand;

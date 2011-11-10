@@ -50,8 +50,7 @@ import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramGraphicalViewer;
 import org.eclipse.gmf.runtime.diagram.ui.util.EditPartUtil;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.core.listenerservice.IPapyrusListener;
-import org.eclipse.uml2.uml.Comment;
+import org.eclipse.papyrus.infra.core.listenerservice.IPapyrusListener;
 
 /**
  * Edit Policy in charge of the removal of views that are not linked to semantic

@@ -15,7 +15,7 @@ package org.eclipse.papyrus.uml.diagram.common.service;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gmf.runtime.common.core.service.ProviderChangeEvent;
-import org.eclipse.papyrus.core.listenerservice.IPapyrusListener;
+import org.eclipse.papyrus.infra.core.listenerservice.IPapyrusListener;
 import org.eclipse.uml2.uml.ProfileApplication;
 
 /**

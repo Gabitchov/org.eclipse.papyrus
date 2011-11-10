@@ -67,7 +67,7 @@ public class PinParser extends MessageFormatParser implements ISemanticParser {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.eclipse.papyrus.diagram.sequence.parsers.AbstractParser#isAffectingEvent(java.lang.Object
+	 * org.eclipse.papyrus.uml.diagram.sequence.parsers.AbstractParser#isAffectingEvent(java.lang.Object
 	 * , int)
 	 */
 	public boolean isAffectingEvent(Object event, int flags) {
@@ -80,7 +80,7 @@ public class PinParser extends MessageFormatParser implements ISemanticParser {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.eclipse.papyrus.diagram.sequence.parsers.MessageFormatParser#getPrintString(org.eclipse
+	 * org.eclipse.papyrus.uml.diagram.sequence.parsers.MessageFormatParser#getPrintString(org.eclipse
 	 * .core.runtime.IAdaptable, int)
 	 */
 	public String getPrintString(IAdaptable element, int flags) {

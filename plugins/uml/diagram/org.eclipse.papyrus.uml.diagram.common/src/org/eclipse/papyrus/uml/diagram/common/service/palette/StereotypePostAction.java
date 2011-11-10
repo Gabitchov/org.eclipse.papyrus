@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -305,7 +305,7 @@ public class StereotypePostAction extends ModelPostAction {
 			defineRuntimeProperties(config);
 		}
 
-		final TransactionalEditingDomain editingDomain = org.eclipse.papyrus.core.utils.EditorUtils.getTransactionalEditingDomain();
+		final TransactionalEditingDomain editingDomain = org.eclipse.papyrus.infra.core.utils.EditorUtils.getTransactionalEditingDomain();
 
 		// -----------------create a composite command
 		CompositeCommand cmd = new CompositeCommand("Apply values for properties");
@@ -563,8 +563,8 @@ public class StereotypePostAction extends ModelPostAction {
 				} else if(e.character == SWT.DEL) {
 					performRemoveAction(stereotypesViewer);
 				} else if(e.stateMask == SWT.CTRL && e.keyCode == 110) {// e.character=='N'
-																		// doesn't
-																		// work
+					// doesn't
+					// work
 					performCTRL_N_Action(e, stereotypesViewer);
 				}
 				selectionHasChange();
@@ -586,11 +586,11 @@ public class StereotypePostAction extends ModelPostAction {
 			public void mouseDoubleClick(MouseEvent e) {
 				if(stereotypeColumn != null) {
 					if(e.x < stereotypeColumn.getColumn().getWidth()) {// we
-																		// are
-																		// on
-																		// the
-																		// stereotype
-																		// column
+						// are
+						// on
+						// the
+						// stereotype
+						// column
 						performDoubleClickAction(stereotypesViewer);
 					} else {// change the property value
 						ViewerCell cell = runtimeColumn.getViewer().getCell(new Point(e.x, e.y));
@@ -673,8 +673,8 @@ public class StereotypePostAction extends ModelPostAction {
 				if(prop.getUpperMultiplicity() != 1) {
 					editMe(prop, null);// we add a value
 				} else if(!prop.getValues().isEmpty()) { // mono-valued
-															// property and the
-															// valu exists
+					// property and the
+					// valu exists
 					editMe(prop, prop.getValues().get(0));
 				} else {// monovalued property, the value doesn't exist
 					editMe(prop, null);
@@ -1003,12 +1003,12 @@ public class StereotypePostAction extends ModelPostAction {
 				addButton.setEnabled(true);
 			} else
 
-			if(selection.getFirstElement() instanceof Value) {
-				removeButton.setEnabled(true);
-				upButton.setEnabled(false);
-				downButton.setEnabled(false);
-				addButton.setEnabled(false);
-			}
+				if(selection.getFirstElement() instanceof Value) {
+					removeButton.setEnabled(true);
+					upButton.setEnabled(false);
+					downButton.setEnabled(false);
+					addButton.setEnabled(false);
+				}
 		}
 	}
 
@@ -1919,7 +1919,7 @@ public class StereotypePostAction extends ModelPostAction {
 			composite.setLayout(layout);
 			if(message != null) {
 				Label titleLabel = new Label(composite, SWT.WRAP);
-				titleLabel.setText(message); //$NON-NLS-1$
+				titleLabel.setText(message);
 				GridData data = new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1);
 				titleLabel.setLayoutData(data);
 			}
@@ -2036,11 +2036,11 @@ public class StereotypePostAction extends ModelPostAction {
 					} else if(e.character == SWT.DEL) {
 						performRemoveAction(tree);
 					} else if(e.stateMask == SWT.CTRL && e.keyCode == 110) {// e.character=='N'
-																			// doesn't
-																			// work
-																			// on
-																			// my
-																			// computer
+						// doesn't
+						// work
+						// on
+						// my
+						// computer
 						performCTRL_N_Action(e, tree);
 					}
 					runtimeSelectionHasChange();
@@ -2181,12 +2181,12 @@ public class StereotypePostAction extends ModelPostAction {
 					addButton.setEnabled(true);
 				} else
 
-				if(selection.getFirstElement() instanceof Value) {
-					removeButton.setEnabled(true);
-					upButton.setEnabled(false);
-					downButton.setEnabled(false);
-					addButton.setEnabled(false);
-				}
+					if(selection.getFirstElement() instanceof Value) {
+						removeButton.setEnabled(true);
+						upButton.setEnabled(false);
+						downButton.setEnabled(false);
+						addButton.setEnabled(false);
+					}
 			}
 		}
 	}

@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2010 LIFL & CEA LIST.
  *
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -14,15 +14,13 @@
 
 package org.eclipse.papyrus.uml.diagram.common.util;
 
-import static org.eclipse.papyrus.core.Activator.log;
-
-import javax.imageio.spi.ServiceRegistry;
+import static org.eclipse.papyrus.uml.diagram.common.Activator.log;
 
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditDomain;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramEditDomain;
-import org.eclipse.papyrus.core.services.ServiceException;
-import org.eclipse.papyrus.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.uml.diagram.common.part.UmlGmfDiagramEditor;
 import org.eclipse.ui.IWorkbenchPart;
 
@@ -33,6 +31,7 @@ import org.eclipse.ui.IWorkbenchPart;
  * @author cedric dumoulin
  * @deprecated Use {@link ServiceUtilsForGMF}
  */
+@Deprecated
 public class DiagramCoreServiceUtils {
 
 	/**
@@ -77,13 +76,13 @@ public class DiagramCoreServiceUtils {
 
 		return ServiceUtilsForGMF.getInstance().getServiceRegistry(domain);
 
-//		if(domain instanceof DiagramEditDomain) {
-//			IWorkbenchPart part = ((DiagramEditDomain)domain).getEditorPart().getEditorSite().getPart();
-//			if(part instanceof UmlGmfDiagramEditor) {
-//				return ((UmlGmfDiagramEditor)part).getServicesRegistry();
-//			}
-//		}
-//		throw new ServiceNotFoundException("Can't get the ServiceRegistry.");
+		//		if(domain instanceof DiagramEditDomain) {
+		//			IWorkbenchPart part = ((DiagramEditDomain)domain).getEditorPart().getEditorSite().getPart();
+		//			if(part instanceof UmlGmfDiagramEditor) {
+		//				return ((UmlGmfDiagramEditor)part).getServicesRegistry();
+		//			}
+		//		}
+		//		throw new ServiceNotFoundException("Can't get the ServiceRegistry.");
 
 	}
 

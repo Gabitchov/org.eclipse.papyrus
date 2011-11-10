@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
  *
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.LabelEditPart;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.core.Activator;
+import org.eclipse.papyrus.uml.diagram.common.Activator;
 
 /**
  * this edit part has in charge to display the name of a diagram for a short cut
@@ -37,6 +37,7 @@ public abstract class AbstractShortcutDiagramNameEditPart extends LabelEditPart 
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#activate()
 	 * 
 	 */
+	@Override
 	public void activate() {
 		// TODO Auto-generated method stub
 		super.activate();
@@ -62,6 +63,7 @@ public abstract class AbstractShortcutDiagramNameEditPart extends LabelEditPart 
 	 * 
 	 * @param notification
 	 */
+	@Override
 	public void notifyChanged(Notification notification) {
 		// TODO Auto-generated method stub
 		super.notifyChanged(notification);
@@ -73,6 +75,7 @@ public abstract class AbstractShortcutDiagramNameEditPart extends LabelEditPart 
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#deactivate()
 	 * 
 	 */
+	@Override
 	public void deactivate() {
 		// TODO Auto-generated method stub
 		super.deactivate();

@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2009 Atos Origin.
  *
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -26,9 +26,9 @@ import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.util.LocalSelectionTransfer;
-import org.eclipse.papyrus.core.editor.BackboneException;
-import org.eclipse.papyrus.core.services.ServiceException;
-import org.eclipse.papyrus.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.core.editor.BackboneException;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLDiagramEditor;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
@@ -119,7 +119,7 @@ public class UmlActivityDiagramForMultiEditor extends UMLDiagramEditor {
 	//     * Creates a ScrollingGraphicalViewer without the drop adapter which
 	//     * excludes drag and drop functionality from other defined views (XML)
 	//     * Subclasses must override this method to include the DnD functionality
-	//     * 
+	//     *
 	//     * @return ScrollingGraphicalViewer
 	//     */
 	//	@Override
