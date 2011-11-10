@@ -2,10 +2,10 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension
-         point="org.eclipse.papyrus.core.resourceloading.loadingStrategyExtender">
+         point="org.eclipse.papyrus.infra.services.resourceloading.loadingStrategyExtender">
       <strategyExtender
             description="extend loading strategy to manage UML profile"
-            strategyExtension="org.eclipse.papyrus.resourceloading.umlprofile.UMLProfileStrategyExtension">
+            strategyExtension="org.eclipse.papyrus.uml.resourceloading.profile.UMLProfileStrategyExtension">
       </strategyExtender>
    </extension>
 

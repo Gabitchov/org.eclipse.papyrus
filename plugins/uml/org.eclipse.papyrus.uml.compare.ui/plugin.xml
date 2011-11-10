@@ -5,9 +5,9 @@
    <extension
          point="org.eclipse.compare.contentMergeViewers">
       <viewer
-            class="org.eclipse.papyrus.compare.ui.viewer.content.UMLModelContentMergeViewerCreator"
+            class="org.eclipse.papyrus.uml.compare.ui.viewer.content.UMLModelContentMergeViewerCreator"
             extensions="uml"
-            id="org.eclipse.papyrus.compare.ui.viewer.content.UMLModelContentMergeViewer"
+            id="org.eclipse.papyrus.uml.compare.ui.viewer.content.UMLModelContentMergeViewer"
             label="Papyrus UML"/>
    </extension>
    
@@ -23,9 +23,9 @@
             </separator>
          </menu>
          <action
-               class="org.eclipse.papyrus.compare.ui.action.CompareTwoElementsAction"
+               class="org.eclipse.papyrus.uml.compare.ui.action.CompareTwoElementsAction"
                enablesFor="2"
-               id="org.eclipse.papyrus.compare.action.CompareTwoElementsAction"
+               id="org.eclipse.papyrus.uml.compare.action.CompareTwoElementsAction"
                icon="icons/export_as_html.gif"
                label="Each Other"
                menubarPath="UMLCompare/compareTwoElements"/>

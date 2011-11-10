@@ -67,7 +67,7 @@
                    <!-- we add these test to force the refresh of the Menu + to avoid handlers conflit   -->
                    <test
                          forcePluginActivation="true"
-                         property="org.eclipse.papyrus.diagram.menu.tester.isDiagram"
+                         property="org.eclipse.papyrus.uml.diagram.menu.tester.isDiagram"
                          value="false">
                    </test>
                     <test

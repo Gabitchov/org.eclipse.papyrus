@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="org.eclipse.papyrus.extensionpoints.uml2">
+<schema targetNamespace="org.eclipse.papyrus.uml.extensionpoints">
 <annotation>
       <appInfo>
-         <meta.schema plugin="org.eclipse.papyrus.extensionpoints.uml2" id="UMLMetamodel" name="New UML metamodel to register in Papyrus"/>
+         <meta.schema plugin="org.eclipse.papyrus.uml.extensionpoints" id="UMLMetamodel" name="New UML metamodel to register in Papyrus"/>
       </appInfo>
       <documentation>
          With this extension point it is possible to make UML Metamodels accessible for every model in Papyrus.

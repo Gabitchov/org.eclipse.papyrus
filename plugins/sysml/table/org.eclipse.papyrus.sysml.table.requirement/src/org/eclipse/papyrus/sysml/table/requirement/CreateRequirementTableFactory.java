@@ -15,7 +15,7 @@ package org.eclipse.papyrus.sysml.table.requirement;
 
 import org.eclipse.papyrus.sysml.table.requirement.editor.RequirementTableEditor;
 
-public class CreateRequirementTableFactory extends org.eclipse.papyrus.table.common.factory.AbstractNattableEditorFactory {
+public class CreateRequirementTableFactory extends org.eclipse.papyrus.infra.table.common.factory.AbstractNattableEditorFactory {
 
 	/**
 	 * Constructor.

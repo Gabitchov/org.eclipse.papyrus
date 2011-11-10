@@ -13,8 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.table.allocation;
 
+import org.eclipse.papyrus.infra.table.common.factory.AbstractNattableEditorFactory;
 import org.eclipse.papyrus.sysml.table.allocation.editor.AllocationTableEditor;
-import org.eclipse.papyrus.table.common.factory.AbstractNattableEditorFactory;
 
 /**
  * the factory for the AllocationTable

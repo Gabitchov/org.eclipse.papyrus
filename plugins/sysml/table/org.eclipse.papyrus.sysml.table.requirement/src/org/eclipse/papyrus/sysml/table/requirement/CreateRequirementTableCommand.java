@@ -23,9 +23,9 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.facet.widgets.nattable.internal.Messages;
 import org.eclipse.emf.facet.widgets.nattable.tableconfiguration2.TableConfiguration2;
+import org.eclipse.papyrus.infra.table.common.handlers.AbstractCreateNattableEditorCommand;
 import org.eclipse.papyrus.sysml.table.requirement.editor.RequirementTableEditor;
 import org.eclipse.papyrus.sysml.util.SysmlResource;
-import org.eclipse.papyrus.table.common.handlers.AbstractCreateNattableEditorCommand;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Package;
 
@@ -50,7 +50,7 @@ public class CreateRequirementTableCommand extends AbstractCreateNattableEditorC
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.table.common.handlers.AbstractCreateNattableEditorCommand#getTableConfiguration()
+	 * @see org.eclipse.papyrus.infra.table.common.handlers.AbstractCreateNattableEditorCommand#getTableConfiguration()
 	 * 
 	 * @return
 	 */
@@ -71,7 +71,7 @@ public class CreateRequirementTableCommand extends AbstractCreateNattableEditorC
 	}
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.table.common.handlers.AbstractCreateNattableEditorCommand#isEnabled()
+	 * @see org.eclipse.papyrus.infra.table.common.handlers.AbstractCreateNattableEditorCommand#isEnabled()
 	 * 
 	 * @return
 	 */

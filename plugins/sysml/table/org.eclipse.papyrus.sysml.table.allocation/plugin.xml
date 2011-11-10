@@ -2,7 +2,7 @@
 <?eclipse version="3.4"?>
 
 <plugin>
-   <extension point="org.eclipse.papyrus.core.papyrusDiagram">
+   <extension point="org.eclipse.papyrus.infra.core.papyrusDiagram">
       <editorDiagram factoryClass="org.eclipse.papyrus.sysml.table.allocation.CreateAllocationTableFactory" icon="icons/table_SysML_Allocation.gif">
       </editorDiagram>
    </extension>

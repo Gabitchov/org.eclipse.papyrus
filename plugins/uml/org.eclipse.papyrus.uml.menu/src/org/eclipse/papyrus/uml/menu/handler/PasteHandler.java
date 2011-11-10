@@ -19,8 +19,8 @@ import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.papyrus.properties.util.EMFHelper;
 import org.eclipse.papyrus.uml.menu.command.PasteElementCommand;
+import org.eclipse.papyrus.views.properties.util.EMFHelper;
 
 /**
  * Handler for the Paste Action

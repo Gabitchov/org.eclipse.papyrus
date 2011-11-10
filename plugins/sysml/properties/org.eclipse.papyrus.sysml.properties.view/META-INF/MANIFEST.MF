@@ -8,7 +8,7 @@ Bundle-ActivationPolicy: lazy
 Bundle-Version: 0.9.0.qualifier
 Bundle-Name: %pluginName
 Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.properties.view.sysml.Activator
+Bundle-Activator: org.eclipse.papyrus.sysml.properties.view.Activator
 Bundle-SymbolicName: org.eclipse.papyrus.sysml.properties.view;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

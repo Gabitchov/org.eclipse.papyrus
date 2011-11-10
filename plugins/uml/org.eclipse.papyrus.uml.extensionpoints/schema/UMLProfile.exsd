@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="org.eclipse.papyrus.extensionpoints.uml2">
+<schema targetNamespace="org.eclipse.papyrus.uml.extensionpoints">
 <annotation>
       <appInfo>
-         <meta.schema plugin="org.eclipse.papyrus.extensionpoints.uml2" id="UMLProfile" name="New UML profile to register in PAPYRUS"/>
+         <meta.schema plugin="org.eclipse.papyrus.uml.extensionpoints" id="UMLProfile" name="New UML profile to register in PAPYRUS"/>
       </appInfo>
       <documentation>
          This extension point is used to registered UML profiles packaged as plugins into Papyrus modeling tool.
@@ -118,7 +118,7 @@ Updated in version 1.9.0:
       </appInfo>
       <documentation>
           &lt;extension
-         point=&quot;org.eclipse.papyrus.extensionpoints.uml2.UMLProfile&quot;&gt;
+         point=&quot;org.eclipse.papyrus.uml.extensionpoints.UMLProfile&quot;&gt;
       &lt;profile
             description=&quot;Ecore profile&quot;
             path=&quot;pathmap://UML_PROFILES/Ecore.profile.uml&quot;

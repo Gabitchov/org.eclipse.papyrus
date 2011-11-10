@@ -5,7 +5,7 @@
   <extension
          point="org.eclipse.emf.compare.match.engine">
       <matchengine
-            engineClass="org.eclipse.papyrus.compare.match.PapyrusMatchEngine"
+            engineClass="org.eclipse.papyrus.uml.compare.match.PapyrusMatchEngine"
             fileExtension="uml"
             label="Papyrus Matching Engine"
             priority="highest"/>
@@ -14,7 +14,7 @@
   <extension
          point="org.eclipse.emf.compare.diff.engine">
       <diffengine
-            engineClass="org.eclipse.papyrus.compare.diff.PapyrusDiffEngine"
+            engineClass="org.eclipse.papyrus.uml.compare.diff.PapyrusDiffEngine"
             priority="highest"
             icon="icons/DiffEngine.gif"
             label="Papyrus Differencing Engine"/>

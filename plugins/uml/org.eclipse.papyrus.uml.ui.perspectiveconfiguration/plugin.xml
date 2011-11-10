@@ -2,9 +2,9 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension
-         point="org.eclipse.papyrus.ui.perspectiveconfiguration">
+         point="org.eclipse.papyrus.editor.perspectiveconfiguration">
       <configuration
-            perspectiveID="org.eclipse.papyrus.core.perspective">
+            perspectiveID="org.eclipse.papyrus.infra.core.perspective">
          <menu
                menuID="file">
          </menu>
@@ -21,10 +21,10 @@
                menuID="help">
          </menu>
          <toolbar
-               toolbarID="org.eclipse.papyrus.diagram.ui.toolbar">
+               toolbarID="org.eclipse.papyrus.uml.diagram.ui.toolbar">
          </toolbar>
          <preferencePage
-               preferencepageID="org.eclipse.papyrus.preferences.generalcategory">
+               preferencepageID="org.eclipse.papyrus.infra.gmfdiag.preferences.generalcategory">
          </preferencePage>
          <category
                categoryID="org.eclipse.ui.category.file">
@@ -39,7 +39,7 @@
                categoryID="org.eclipse.papyrus.editor.category">
          </category>
          <menu
-               menuID="org.eclipse.papyrus.diagram.ui.menu">
+               menuID="org.eclipse.papyrus.uml.diagram.ui.menu">
          </menu>
          <toolbar
                toolbarID="org.eclipes.papyrus.menu.toolbar">

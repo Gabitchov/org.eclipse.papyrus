@@ -5,7 +5,7 @@
          point="org.eclipse.emf.ecore.uri_mapping">
       <mapping
             source="pathmap://Papyrus.profile.uml"
-            target="platform:/plugin/org.eclipse.papyrus.uml.profile/model/Papyrus.profile.uml">
+            target="platform:/plugin/org.eclipse.papyrus.uml.documentation.profile/model/Papyrus.profile.uml">
       </mapping>
    </extension>
 

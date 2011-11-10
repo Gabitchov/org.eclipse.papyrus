@@ -14,7 +14,7 @@
 package org.eclipse.papyrus.uml.service.types;
 
 import org.eclipse.core.runtime.Plugin;
-import org.eclipse.papyrus.log.LogHelper;
+import org.eclipse.papyrus.infra.core.log.LogHelper;
 import org.osgi.framework.BundleContext;
 
 /**

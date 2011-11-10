@@ -4,9 +4,9 @@
    <extension
          point="org.eclipse.ui.perspectives">
       <perspective
-            class="org.eclipse.papyrus.perspective.PapyrusPerspective"
+            class="org.eclipse.papyrus.uml.perspective.PapyrusPerspective"
             icon="icons/Papyrus_16x16.gif"
-            id="org.eclipse.papyrus.core.perspective"
+            id="org.eclipse.papyrus.infra.core.perspective"
             name="Papyrus">
       </perspective>
    </extension>

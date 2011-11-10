@@ -5,13 +5,13 @@
          point="org.eclipse.papyrus.uml.diagram.wizards.templates">
       <template
             file="resource/ModelWithBasicTypes.uml"
-            id="org.eclipse.papyrus.templaterepository.ModelWithBasicType"
+            id="org.eclipse.papyrus.uml.templaterepository.ModelWithBasicType"
             language="uml"
             name="A UML model with basic primitive types">
       </template>
       <template
             file="resource/ProfileWithBasicTypes.profile.uml"
-            id="org.eclipse.papyrus.templaterepository.ProfileWithBasicTypes.profile.uml"
+            id="org.eclipse.papyrus.uml.templaterepository.ProfileWithBasicTypes.profile.uml"
             language="profile"
             name="A UML profile with basic primitive types">
       </template>
