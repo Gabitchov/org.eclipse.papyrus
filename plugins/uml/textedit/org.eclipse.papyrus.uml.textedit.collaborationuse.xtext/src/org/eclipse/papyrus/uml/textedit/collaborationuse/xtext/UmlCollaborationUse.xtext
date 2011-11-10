@@ -3,7 +3,7 @@ grammar org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.UmlCollaboration
 
 import "http://www.eclipse.org/uml2/3.0.0/UML" as uml
 
-generate umlCollaborationUse "http://www.eclipse.org/papyrus/collaborationuse/editor/xtext/UmlCollaborationUse"
+generate umlCollaborationUse "http://www.eclipse.org/papyrus/uml/textedit/collaborationuse/xtext/UmlCollaborationUse"
 
 CollaborationUseRule:
 	visibility = VisibilityKind

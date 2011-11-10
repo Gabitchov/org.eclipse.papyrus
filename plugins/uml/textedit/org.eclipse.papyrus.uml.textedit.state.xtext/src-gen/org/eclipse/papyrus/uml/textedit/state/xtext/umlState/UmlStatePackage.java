@@ -43,7 +43,7 @@ public interface UmlStatePackage extends EPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  String eNS_URI = "http://www.eclipse.org/papyrus/state/editor/xtext/UmlState";
+  String eNS_URI = "http://www.eclipse.org/papyrus/uml/textedit/state/xtext/UmlState";
 
   /**
    * The package namespace name.

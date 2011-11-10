@@ -52,7 +52,7 @@ public class InternalUmlMessageParser extends AbstractInternalAntlrParser {
         
 
     public String[] getTokenNames() { return InternalUmlMessageParser.tokenNames; }
-    public String getGrammarFileName() { return "../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/message/editor/xtext/parser/antlr/internal/InternalUmlMessage.g"; }
+    public String getGrammarFileName() { return "../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/parser/antlr/internal/InternalUmlMessage.g"; }
 
 
 
@@ -77,7 +77,7 @@ public class InternalUmlMessageParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleMessageRule"
-    // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/message/editor/xtext/parser/antlr/internal/InternalUmlMessage.g:67:1: entryRuleMessageRule returns [EObject current=null] : iv_ruleMessageRule= ruleMessageRule EOF ;
+    // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/parser/antlr/internal/InternalUmlMessage.g:67:1: entryRuleMessageRule returns [EObject current=null] : iv_ruleMessageRule= ruleMessageRule EOF ;
     public final EObject entryRuleMessageRule() throws RecognitionException {
         EObject current = null;
 
@@ -85,8 +85,8 @@ public class InternalUmlMessageParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/message/editor/xtext/parser/antlr/internal/InternalUmlMessage.g:68:2: (iv_ruleMessageRule= ruleMessageRule EOF )
-            // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/message/editor/xtext/parser/antlr/internal/InternalUmlMessage.g:69:2: iv_ruleMessageRule= ruleMessageRule EOF
+            // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/parser/antlr/internal/InternalUmlMessage.g:68:2: (iv_ruleMessageRule= ruleMessageRule EOF )
+            // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/parser/antlr/internal/InternalUmlMessage.g:69:2: iv_ruleMessageRule= ruleMessageRule EOF
             {
              newCompositeNode(grammarAccess.getMessageRuleRule()); 
             pushFollow(FOLLOW_ruleMessageRule_in_entryRuleMessageRule75);
@@ -113,7 +113,7 @@ public class InternalUmlMessageParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleMessageRule"
-    // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/message/editor/xtext/parser/antlr/internal/InternalUmlMessage.g:76:1: ruleMessageRule returns [EObject current=null] : ( ( (lv_sequenceTerm_0_0= ruleSequenceTermRule ) ) (otherlv_1= '.' ( (lv_sequenceTerm_2_0= ruleSequenceTermRule ) ) )* otherlv_3= ':' ( (lv_name_4_0= RULE_NAMERULE ) ) ) ;
+    // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/parser/antlr/internal/InternalUmlMessage.g:76:1: ruleMessageRule returns [EObject current=null] : ( ( (lv_sequenceTerm_0_0= ruleSequenceTermRule ) ) (otherlv_1= '.' ( (lv_sequenceTerm_2_0= ruleSequenceTermRule ) ) )* otherlv_3= ':' ( (lv_name_4_0= RULE_NAMERULE ) ) ) ;
     public final EObject ruleMessageRule() throws RecognitionException {
         EObject current = null;
 
@@ -128,17 +128,17 @@ public class InternalUmlMessageParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/message/editor/xtext/parser/antlr/internal/InternalUmlMessage.g:79:28: ( ( ( (lv_sequenceTerm_0_0= ruleSequenceTermRule ) ) (otherlv_1= '.' ( (lv_sequenceTerm_2_0= ruleSequenceTermRule ) ) )* otherlv_3= ':' ( (lv_name_4_0= RULE_NAMERULE ) ) ) )
-            // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/message/editor/xtext/parser/antlr/internal/InternalUmlMessage.g:80:1: ( ( (lv_sequenceTerm_0_0= ruleSequenceTermRule ) ) (otherlv_1= '.' ( (lv_sequenceTerm_2_0= ruleSequenceTermRule ) ) )* otherlv_3= ':' ( (lv_name_4_0= RULE_NAMERULE ) ) )
+            // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/parser/antlr/internal/InternalUmlMessage.g:79:28: ( ( ( (lv_sequenceTerm_0_0= ruleSequenceTermRule ) ) (otherlv_1= '.' ( (lv_sequenceTerm_2_0= ruleSequenceTermRule ) ) )* otherlv_3= ':' ( (lv_name_4_0= RULE_NAMERULE ) ) ) )
+            // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/parser/antlr/internal/InternalUmlMessage.g:80:1: ( ( (lv_sequenceTerm_0_0= ruleSequenceTermRule ) ) (otherlv_1= '.' ( (lv_sequenceTerm_2_0= ruleSequenceTermRule ) ) )* otherlv_3= ':' ( (lv_name_4_0= RULE_NAMERULE ) ) )
             {
-            // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/message/editor/xtext/parser/antlr/internal/InternalUmlMessage.g:80:1: ( ( (lv_sequenceTerm_0_0= ruleSequenceTermRule ) ) (otherlv_1= '.' ( (lv_sequenceTerm_2_0= ruleSequenceTermRule ) ) )* otherlv_3= ':' ( (lv_name_4_0= RULE_NAMERULE ) ) )
-            // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/message/editor/xtext/parser/antlr/internal/InternalUmlMessage.g:80:2: ( (lv_sequenceTerm_0_0= ruleSequenceTermRule ) ) (otherlv_1= '.' ( (lv_sequenceTerm_2_0= ruleSequenceTermRule ) ) )* otherlv_3= ':' ( (lv_name_4_0= RULE_NAMERULE ) )
+            // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/parser/antlr/internal/InternalUmlMessage.g:80:1: ( ( (lv_sequenceTerm_0_0= ruleSequenceTermRule ) ) (otherlv_1= '.' ( (lv_sequenceTerm_2_0= ruleSequenceTermRule ) ) )* otherlv_3= ':' ( (lv_name_4_0= RULE_NAMERULE ) ) )
+            // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/parser/antlr/internal/InternalUmlMessage.g:80:2: ( (lv_sequenceTerm_0_0= ruleSequenceTermRule ) ) (otherlv_1= '.' ( (lv_sequenceTerm_2_0= ruleSequenceTermRule ) ) )* otherlv_3= ':' ( (lv_name_4_0= RULE_NAMERULE ) )
             {
-            // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/message/editor/xtext/parser/antlr/internal/InternalUmlMessage.g:80:2: ( (lv_sequenceTerm_0_0= ruleSequenceTermRule ) )
-            // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/message/editor/xtext/parser/antlr/internal/InternalUmlMessage.g:81:1: (lv_sequenceTerm_0_0= ruleSequenceTermRule )
+            // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/parser/antlr/internal/InternalUmlMessage.g:80:2: ( (lv_sequenceTerm_0_0= ruleSequenceTermRule ) )
+            // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/parser/antlr/internal/InternalUmlMessage.g:81:1: (lv_sequenceTerm_0_0= ruleSequenceTermRule )
             {
-            // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/message/editor/xtext/parser/antlr/internal/InternalUmlMessage.g:81:1: (lv_sequenceTerm_0_0= ruleSequenceTermRule )
-            // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/message/editor/xtext/parser/antlr/internal/InternalUmlMessage.g:82:3: lv_sequenceTerm_0_0= ruleSequenceTermRule
+            // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/parser/antlr/internal/InternalUmlMessage.g:81:1: (lv_sequenceTerm_0_0= ruleSequenceTermRule )
+            // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/parser/antlr/internal/InternalUmlMessage.g:82:3: lv_sequenceTerm_0_0= ruleSequenceTermRule
             {
              
             	        newCompositeNode(grammarAccess.getMessageRuleAccess().getSequenceTermSequenceTermRuleParserRuleCall_0_0()); 
@@ -165,7 +165,7 @@ public class InternalUmlMessageParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/message/editor/xtext/parser/antlr/internal/InternalUmlMessage.g:98:2: (otherlv_1= '.' ( (lv_sequenceTerm_2_0= ruleSequenceTermRule ) ) )*
+            // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/parser/antlr/internal/InternalUmlMessage.g:98:2: (otherlv_1= '.' ( (lv_sequenceTerm_2_0= ruleSequenceTermRule ) ) )*
             loop1:
             do {
                 int alt1=2;
@@ -178,17 +178,17 @@ public class InternalUmlMessageParser extends AbstractInternalAntlrParser {
 
                 switch (alt1) {
             	case 1 :
-            	    // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/message/editor/xtext/parser/antlr/internal/InternalUmlMessage.g:98:4: otherlv_1= '.' ( (lv_sequenceTerm_2_0= ruleSequenceTermRule ) )
+            	    // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/parser/antlr/internal/InternalUmlMessage.g:98:4: otherlv_1= '.' ( (lv_sequenceTerm_2_0= ruleSequenceTermRule ) )
             	    {
             	    otherlv_1=(Token)match(input,12,FOLLOW_12_in_ruleMessageRule144); 
 
             	        	newLeafNode(otherlv_1, grammarAccess.getMessageRuleAccess().getFullStopKeyword_1_0());
             	        
-            	    // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/message/editor/xtext/parser/antlr/internal/InternalUmlMessage.g:102:1: ( (lv_sequenceTerm_2_0= ruleSequenceTermRule ) )
-            	    // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/message/editor/xtext/parser/antlr/internal/InternalUmlMessage.g:103:1: (lv_sequenceTerm_2_0= ruleSequenceTermRule )
+            	    // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/parser/antlr/internal/InternalUmlMessage.g:102:1: ( (lv_sequenceTerm_2_0= ruleSequenceTermRule ) )
+            	    // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/parser/antlr/internal/InternalUmlMessage.g:103:1: (lv_sequenceTerm_2_0= ruleSequenceTermRule )
             	    {
-            	    // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/message/editor/xtext/parser/antlr/internal/InternalUmlMessage.g:103:1: (lv_sequenceTerm_2_0= ruleSequenceTermRule )
-            	    // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/message/editor/xtext/parser/antlr/internal/InternalUmlMessage.g:104:3: lv_sequenceTerm_2_0= ruleSequenceTermRule
+            	    // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/parser/antlr/internal/InternalUmlMessage.g:103:1: (lv_sequenceTerm_2_0= ruleSequenceTermRule )
+            	    // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/parser/antlr/internal/InternalUmlMessage.g:104:3: lv_sequenceTerm_2_0= ruleSequenceTermRule
             	    {
             	     
             	    	        newCompositeNode(grammarAccess.getMessageRuleAccess().getSequenceTermSequenceTermRuleParserRuleCall_1_1_0()); 
@@ -228,11 +228,11 @@ public class InternalUmlMessageParser extends AbstractInternalAntlrParser {
 
                 	newLeafNode(otherlv_3, grammarAccess.getMessageRuleAccess().getColonKeyword_2());
                 
-            // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/message/editor/xtext/parser/antlr/internal/InternalUmlMessage.g:124:1: ( (lv_name_4_0= RULE_NAMERULE ) )
-            // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/message/editor/xtext/parser/antlr/internal/InternalUmlMessage.g:125:1: (lv_name_4_0= RULE_NAMERULE )
+            // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/parser/antlr/internal/InternalUmlMessage.g:124:1: ( (lv_name_4_0= RULE_NAMERULE ) )
+            // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/parser/antlr/internal/InternalUmlMessage.g:125:1: (lv_name_4_0= RULE_NAMERULE )
             {
-            // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/message/editor/xtext/parser/antlr/internal/InternalUmlMessage.g:125:1: (lv_name_4_0= RULE_NAMERULE )
-            // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/message/editor/xtext/parser/antlr/internal/InternalUmlMessage.g:126:3: lv_name_4_0= RULE_NAMERULE
+            // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/parser/antlr/internal/InternalUmlMessage.g:125:1: (lv_name_4_0= RULE_NAMERULE )
+            // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/parser/antlr/internal/InternalUmlMessage.g:126:3: lv_name_4_0= RULE_NAMERULE
             {
             lv_name_4_0=(Token)match(input,RULE_NAMERULE,FOLLOW_RULE_NAMERULE_in_ruleMessageRule196); 
 
@@ -275,7 +275,7 @@ public class InternalUmlMessageParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleSequenceTermRule"
-    // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/message/editor/xtext/parser/antlr/internal/InternalUmlMessage.g:150:1: entryRuleSequenceTermRule returns [EObject current=null] : iv_ruleSequenceTermRule= ruleSequenceTermRule EOF ;
+    // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/parser/antlr/internal/InternalUmlMessage.g:150:1: entryRuleSequenceTermRule returns [EObject current=null] : iv_ruleSequenceTermRule= ruleSequenceTermRule EOF ;
     public final EObject entryRuleSequenceTermRule() throws RecognitionException {
         EObject current = null;
 
@@ -283,8 +283,8 @@ public class InternalUmlMessageParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/message/editor/xtext/parser/antlr/internal/InternalUmlMessage.g:151:2: (iv_ruleSequenceTermRule= ruleSequenceTermRule EOF )
-            // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/message/editor/xtext/parser/antlr/internal/InternalUmlMessage.g:152:2: iv_ruleSequenceTermRule= ruleSequenceTermRule EOF
+            // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/parser/antlr/internal/InternalUmlMessage.g:151:2: (iv_ruleSequenceTermRule= ruleSequenceTermRule EOF )
+            // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/parser/antlr/internal/InternalUmlMessage.g:152:2: iv_ruleSequenceTermRule= ruleSequenceTermRule EOF
             {
              newCompositeNode(grammarAccess.getSequenceTermRuleRule()); 
             pushFollow(FOLLOW_ruleSequenceTermRule_in_entryRuleSequenceTermRule237);
@@ -311,7 +311,7 @@ public class InternalUmlMessageParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleSequenceTermRule"
-    // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/message/editor/xtext/parser/antlr/internal/InternalUmlMessage.g:159:1: ruleSequenceTermRule returns [EObject current=null] : ( ( (lv_sequencialOrder_0_0= RULE_INT ) ) ( (lv_sequenceName_1_0= RULE_ID ) )? ( (lv_recurrence_2_0= ruleRecurrenceRule ) )? ) ;
+    // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/parser/antlr/internal/InternalUmlMessage.g:159:1: ruleSequenceTermRule returns [EObject current=null] : ( ( (lv_sequencialOrder_0_0= RULE_INT ) ) ( (lv_sequenceName_1_0= RULE_ID ) )? ( (lv_recurrence_2_0= ruleRecurrenceRule ) )? ) ;
     public final EObject ruleSequenceTermRule() throws RecognitionException {
         EObject current = null;
 
@@ -323,17 +323,17 @@ public class InternalUmlMessageParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/message/editor/xtext/parser/antlr/internal/InternalUmlMessage.g:162:28: ( ( ( (lv_sequencialOrder_0_0= RULE_INT ) ) ( (lv_sequenceName_1_0= RULE_ID ) )? ( (lv_recurrence_2_0= ruleRecurrenceRule ) )? ) )
-            // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/message/editor/xtext/parser/antlr/internal/InternalUmlMessage.g:163:1: ( ( (lv_sequencialOrder_0_0= RULE_INT ) ) ( (lv_sequenceName_1_0= RULE_ID ) )? ( (lv_recurrence_2_0= ruleRecurrenceRule ) )? )
+            // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/parser/antlr/internal/InternalUmlMessage.g:162:28: ( ( ( (lv_sequencialOrder_0_0= RULE_INT ) ) ( (lv_sequenceName_1_0= RULE_ID ) )? ( (lv_recurrence_2_0= ruleRecurrenceRule ) )? ) )
+            // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/parser/antlr/internal/InternalUmlMessage.g:163:1: ( ( (lv_sequencialOrder_0_0= RULE_INT ) ) ( (lv_sequenceName_1_0= RULE_ID ) )? ( (lv_recurrence_2_0= ruleRecurrenceRule ) )? )
             {
-            // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/message/editor/xtext/parser/antlr/internal/InternalUmlMessage.g:163:1: ( ( (lv_sequencialOrder_0_0= RULE_INT ) ) ( (lv_sequenceName_1_0= RULE_ID ) )? ( (lv_recurrence_2_0= ruleRecurrenceRule ) )? )
-            // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/message/editor/xtext/parser/antlr/internal/InternalUmlMessage.g:163:2: ( (lv_sequencialOrder_0_0= RULE_INT ) ) ( (lv_sequenceName_1_0= RULE_ID ) )? ( (lv_recurrence_2_0= ruleRecurrenceRule ) )?
+            // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/parser/antlr/internal/InternalUmlMessage.g:163:1: ( ( (lv_sequencialOrder_0_0= RULE_INT ) ) ( (lv_sequenceName_1_0= RULE_ID ) )? ( (lv_recurrence_2_0= ruleRecurrenceRule ) )? )
+            // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/parser/antlr/internal/InternalUmlMessage.g:163:2: ( (lv_sequencialOrder_0_0= RULE_INT ) ) ( (lv_sequenceName_1_0= RULE_ID ) )? ( (lv_recurrence_2_0= ruleRecurrenceRule ) )?
             {
-            // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/message/editor/xtext/parser/antlr/internal/InternalUmlMessage.g:163:2: ( (lv_sequencialOrder_0_0= RULE_INT ) )
-            // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/message/editor/xtext/parser/antlr/internal/InternalUmlMessage.g:164:1: (lv_sequencialOrder_0_0= RULE_INT )
+            // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/parser/antlr/internal/InternalUmlMessage.g:163:2: ( (lv_sequencialOrder_0_0= RULE_INT ) )
+            // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/parser/antlr/internal/InternalUmlMessage.g:164:1: (lv_sequencialOrder_0_0= RULE_INT )
             {
-            // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/message/editor/xtext/parser/antlr/internal/InternalUmlMessage.g:164:1: (lv_sequencialOrder_0_0= RULE_INT )
-            // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/message/editor/xtext/parser/antlr/internal/InternalUmlMessage.g:165:3: lv_sequencialOrder_0_0= RULE_INT
+            // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/parser/antlr/internal/InternalUmlMessage.g:164:1: (lv_sequencialOrder_0_0= RULE_INT )
+            // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/parser/antlr/internal/InternalUmlMessage.g:165:3: lv_sequencialOrder_0_0= RULE_INT
             {
             lv_sequencialOrder_0_0=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_ruleSequenceTermRule289); 
 
@@ -355,7 +355,7 @@ public class InternalUmlMessageParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/message/editor/xtext/parser/antlr/internal/InternalUmlMessage.g:181:2: ( (lv_sequenceName_1_0= RULE_ID ) )?
+            // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/parser/antlr/internal/InternalUmlMessage.g:181:2: ( (lv_sequenceName_1_0= RULE_ID ) )?
             int alt2=2;
             int LA2_0 = input.LA(1);
 
@@ -364,10 +364,10 @@ public class InternalUmlMessageParser extends AbstractInternalAntlrParser {
             }
             switch (alt2) {
                 case 1 :
-                    // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/message/editor/xtext/parser/antlr/internal/InternalUmlMessage.g:182:1: (lv_sequenceName_1_0= RULE_ID )
+                    // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/parser/antlr/internal/InternalUmlMessage.g:182:1: (lv_sequenceName_1_0= RULE_ID )
                     {
-                    // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/message/editor/xtext/parser/antlr/internal/InternalUmlMessage.g:182:1: (lv_sequenceName_1_0= RULE_ID )
-                    // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/message/editor/xtext/parser/antlr/internal/InternalUmlMessage.g:183:3: lv_sequenceName_1_0= RULE_ID
+                    // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/parser/antlr/internal/InternalUmlMessage.g:182:1: (lv_sequenceName_1_0= RULE_ID )
+                    // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/parser/antlr/internal/InternalUmlMessage.g:183:3: lv_sequenceName_1_0= RULE_ID
                     {
                     lv_sequenceName_1_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleSequenceTermRule311); 
 
@@ -392,7 +392,7 @@ public class InternalUmlMessageParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/message/editor/xtext/parser/antlr/internal/InternalUmlMessage.g:199:3: ( (lv_recurrence_2_0= ruleRecurrenceRule ) )?
+            // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/parser/antlr/internal/InternalUmlMessage.g:199:3: ( (lv_recurrence_2_0= ruleRecurrenceRule ) )?
             int alt3=2;
             int LA3_0 = input.LA(1);
 
@@ -401,10 +401,10 @@ public class InternalUmlMessageParser extends AbstractInternalAntlrParser {
             }
             switch (alt3) {
                 case 1 :
-                    // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/message/editor/xtext/parser/antlr/internal/InternalUmlMessage.g:200:1: (lv_recurrence_2_0= ruleRecurrenceRule )
+                    // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/parser/antlr/internal/InternalUmlMessage.g:200:1: (lv_recurrence_2_0= ruleRecurrenceRule )
                     {
-                    // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/message/editor/xtext/parser/antlr/internal/InternalUmlMessage.g:200:1: (lv_recurrence_2_0= ruleRecurrenceRule )
-                    // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/message/editor/xtext/parser/antlr/internal/InternalUmlMessage.g:201:3: lv_recurrence_2_0= ruleRecurrenceRule
+                    // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/parser/antlr/internal/InternalUmlMessage.g:200:1: (lv_recurrence_2_0= ruleRecurrenceRule )
+                    // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/parser/antlr/internal/InternalUmlMessage.g:201:3: lv_recurrence_2_0= ruleRecurrenceRule
                     {
                      
                     	        newCompositeNode(grammarAccess.getSequenceTermRuleAccess().getRecurrenceRecurrenceRuleParserRuleCall_2_0()); 
@@ -455,7 +455,7 @@ public class InternalUmlMessageParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleRecurrenceRule"
-    // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/message/editor/xtext/parser/antlr/internal/InternalUmlMessage.g:225:1: entryRuleRecurrenceRule returns [String current=null] : iv_ruleRecurrenceRule= ruleRecurrenceRule EOF ;
+    // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/parser/antlr/internal/InternalUmlMessage.g:225:1: entryRuleRecurrenceRule returns [String current=null] : iv_ruleRecurrenceRule= ruleRecurrenceRule EOF ;
     public final String entryRuleRecurrenceRule() throws RecognitionException {
         String current = null;
 
@@ -463,8 +463,8 @@ public class InternalUmlMessageParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/message/editor/xtext/parser/antlr/internal/InternalUmlMessage.g:226:2: (iv_ruleRecurrenceRule= ruleRecurrenceRule EOF )
-            // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/message/editor/xtext/parser/antlr/internal/InternalUmlMessage.g:227:2: iv_ruleRecurrenceRule= ruleRecurrenceRule EOF
+            // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/parser/antlr/internal/InternalUmlMessage.g:226:2: (iv_ruleRecurrenceRule= ruleRecurrenceRule EOF )
+            // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/parser/antlr/internal/InternalUmlMessage.g:227:2: iv_ruleRecurrenceRule= ruleRecurrenceRule EOF
             {
              newCompositeNode(grammarAccess.getRecurrenceRuleRule()); 
             pushFollow(FOLLOW_ruleRecurrenceRule_in_entryRuleRecurrenceRule376);
@@ -491,7 +491,7 @@ public class InternalUmlMessageParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleRecurrenceRule"
-    // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/message/editor/xtext/parser/antlr/internal/InternalUmlMessage.g:234:1: ruleRecurrenceRule returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : ( (kw= '*' kw= '[' this_STRING_2= RULE_STRING kw= ']' ) | (kw= '[' this_STRING_5= RULE_STRING kw= ']' ) ) ;
+    // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/parser/antlr/internal/InternalUmlMessage.g:234:1: ruleRecurrenceRule returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : ( (kw= '*' kw= '[' this_STRING_2= RULE_STRING kw= ']' ) | (kw= '[' this_STRING_5= RULE_STRING kw= ']' ) ) ;
     public final AntlrDatatypeRuleToken ruleRecurrenceRule() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -502,10 +502,10 @@ public class InternalUmlMessageParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/message/editor/xtext/parser/antlr/internal/InternalUmlMessage.g:237:28: ( ( (kw= '*' kw= '[' this_STRING_2= RULE_STRING kw= ']' ) | (kw= '[' this_STRING_5= RULE_STRING kw= ']' ) ) )
-            // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/message/editor/xtext/parser/antlr/internal/InternalUmlMessage.g:238:1: ( (kw= '*' kw= '[' this_STRING_2= RULE_STRING kw= ']' ) | (kw= '[' this_STRING_5= RULE_STRING kw= ']' ) )
+            // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/parser/antlr/internal/InternalUmlMessage.g:237:28: ( ( (kw= '*' kw= '[' this_STRING_2= RULE_STRING kw= ']' ) | (kw= '[' this_STRING_5= RULE_STRING kw= ']' ) ) )
+            // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/parser/antlr/internal/InternalUmlMessage.g:238:1: ( (kw= '*' kw= '[' this_STRING_2= RULE_STRING kw= ']' ) | (kw= '[' this_STRING_5= RULE_STRING kw= ']' ) )
             {
-            // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/message/editor/xtext/parser/antlr/internal/InternalUmlMessage.g:238:1: ( (kw= '*' kw= '[' this_STRING_2= RULE_STRING kw= ']' ) | (kw= '[' this_STRING_5= RULE_STRING kw= ']' ) )
+            // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/parser/antlr/internal/InternalUmlMessage.g:238:1: ( (kw= '*' kw= '[' this_STRING_2= RULE_STRING kw= ']' ) | (kw= '[' this_STRING_5= RULE_STRING kw= ']' ) )
             int alt4=2;
             int LA4_0 = input.LA(1);
 
@@ -523,10 +523,10 @@ public class InternalUmlMessageParser extends AbstractInternalAntlrParser {
             }
             switch (alt4) {
                 case 1 :
-                    // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/message/editor/xtext/parser/antlr/internal/InternalUmlMessage.g:238:2: (kw= '*' kw= '[' this_STRING_2= RULE_STRING kw= ']' )
+                    // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/parser/antlr/internal/InternalUmlMessage.g:238:2: (kw= '*' kw= '[' this_STRING_2= RULE_STRING kw= ']' )
                     {
-                    // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/message/editor/xtext/parser/antlr/internal/InternalUmlMessage.g:238:2: (kw= '*' kw= '[' this_STRING_2= RULE_STRING kw= ']' )
-                    // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/message/editor/xtext/parser/antlr/internal/InternalUmlMessage.g:239:2: kw= '*' kw= '[' this_STRING_2= RULE_STRING kw= ']'
+                    // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/parser/antlr/internal/InternalUmlMessage.g:238:2: (kw= '*' kw= '[' this_STRING_2= RULE_STRING kw= ']' )
+                    // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/parser/antlr/internal/InternalUmlMessage.g:239:2: kw= '*' kw= '[' this_STRING_2= RULE_STRING kw= ']'
                     {
                     kw=(Token)match(input,14,FOLLOW_14_in_ruleRecurrenceRule426); 
 
@@ -557,10 +557,10 @@ public class InternalUmlMessageParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/message/editor/xtext/parser/antlr/internal/InternalUmlMessage.g:264:6: (kw= '[' this_STRING_5= RULE_STRING kw= ']' )
+                    // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/parser/antlr/internal/InternalUmlMessage.g:264:6: (kw= '[' this_STRING_5= RULE_STRING kw= ']' )
                     {
-                    // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/message/editor/xtext/parser/antlr/internal/InternalUmlMessage.g:264:6: (kw= '[' this_STRING_5= RULE_STRING kw= ']' )
-                    // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/message/editor/xtext/parser/antlr/internal/InternalUmlMessage.g:265:2: kw= '[' this_STRING_5= RULE_STRING kw= ']'
+                    // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/parser/antlr/internal/InternalUmlMessage.g:264:6: (kw= '[' this_STRING_5= RULE_STRING kw= ']' )
+                    // ../org.eclipse.papyrus.uml.textedit.message.xtext/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/parser/antlr/internal/InternalUmlMessage.g:265:2: kw= '[' this_STRING_5= RULE_STRING kw= ']'
                     {
                     kw=(Token)match(input,15,FOLLOW_15_in_ruleRecurrenceRule493); 
 

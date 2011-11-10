@@ -35,7 +35,7 @@ public class UmlParameterFactoryImpl extends EFactoryImpl implements UmlParamete
   {
     try
     {
-      UmlParameterFactory theUmlParameterFactory = (UmlParameterFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/parameter/editor/xtext/UmlParameter"); 
+      UmlParameterFactory theUmlParameterFactory = (UmlParameterFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/uml/textedit/parameter/xtext/UmlParameter"); 
       if (theUmlParameterFactory != null)
       {
         return theUmlParameterFactory;

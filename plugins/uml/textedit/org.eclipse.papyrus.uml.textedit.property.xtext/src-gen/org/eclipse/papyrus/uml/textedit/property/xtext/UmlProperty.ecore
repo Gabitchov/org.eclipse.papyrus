@@ -2,18 +2,18 @@
 <ecore:EPackage xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="umlProperty"
-    nsURI="http://www.eclipse.org/papyrus/property/editor/xtext/UmlProperty" nsPrefix="umlProperty">
+    nsURI="http://www.eclipse.org/papyrus/uml/textedit/property/xtext/UmlProperty" nsPrefix="umlProperty">
   <eClassifiers xsi:type="ecore:EClass" name="PropertyRule">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="visibility" eType="ecore:EEnum platform:/resource/org.eclipse.papyrus.uml.textedit.property.xtext/src-gen/org/eclipse/papyrus/property/editor/xtext/UmlProperty.ecore#//VisibilityKind"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="visibility" eType="ecore:EEnum platform:/resource/org.eclipse.papyrus.uml.textedit.property.xtext/src-gen/org/eclipse/papyrus/uml/textedit/property/xtext/UmlProperty.ecore#//VisibilityKind"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isDerived" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.uml.textedit.property.xtext/src-gen/org/eclipse/papyrus/property/editor/xtext/UmlProperty.ecore#//TypeRule"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.uml.textedit.property.xtext/src-gen/org/eclipse/papyrus/uml/textedit/property/xtext/UmlProperty.ecore#//TypeRule"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="multiplicity" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.uml.textedit.property.xtext/src-gen/org/eclipse/papyrus/property/editor/xtext/UmlProperty.ecore#//MultiplicityRule"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="multiplicity" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.uml.textedit.property.xtext/src-gen/org/eclipse/papyrus/uml/textedit/property/xtext/UmlProperty.ecore#//MultiplicityRule"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="modifiers" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.uml.textedit.property.xtext/src-gen/org/eclipse/papyrus/property/editor/xtext/UmlProperty.ecore#//ModifiersRule"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="modifiers" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.uml.textedit.property.xtext/src-gen/org/eclipse/papyrus/uml/textedit/property/xtext/UmlProperty.ecore#//ModifiersRule"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="default" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.uml.textedit.property.xtext/src-gen/org/eclipse/papyrus/property/editor/xtext/UmlProperty.ecore#//DefaultValueRule"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="default" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.uml.textedit.property.xtext/src-gen/org/eclipse/papyrus/uml/textedit/property/xtext/UmlProperty.ecore#//DefaultValueRule"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="VisibilityKind">
@@ -23,18 +23,18 @@
     <eLiterals name="package" value="3" literal="~"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TypeRule">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="path" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.uml.textedit.property.xtext/src-gen/org/eclipse/papyrus/property/editor/xtext/UmlProperty.ecore#//QualifiedName"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="path" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.uml.textedit.property.xtext/src-gen/org/eclipse/papyrus/uml/textedit/property/xtext/UmlProperty.ecore#//QualifiedName"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.uml.textedit.property.xtext/model/UML.ecore#//Classifier"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="QualifiedName">
     <eStructuralFeatures xsi:type="ecore:EReference" name="path" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.uml.textedit.property.xtext/model/UML.ecore#//Namespace"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="remaining" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.uml.textedit.property.xtext/src-gen/org/eclipse/papyrus/property/editor/xtext/UmlProperty.ecore#//QualifiedName"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="remaining" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.uml.textedit.property.xtext/src-gen/org/eclipse/papyrus/uml/textedit/property/xtext/UmlProperty.ecore#//QualifiedName"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MultiplicityRule">
     <eStructuralFeatures xsi:type="ecore:EReference" name="bounds" upperBound="-1"
-        eType="ecore:EClass platform:/resource/org.eclipse.papyrus.uml.textedit.property.xtext/src-gen/org/eclipse/papyrus/property/editor/xtext/UmlProperty.ecore#//BoundSpecification"
+        eType="ecore:EClass platform:/resource/org.eclipse.papyrus.uml.textedit.property.xtext/src-gen/org/eclipse/papyrus/uml/textedit/property/xtext/UmlProperty.ecore#//BoundSpecification"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BoundSpecification">
@@ -42,14 +42,14 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ModifiersRule">
     <eStructuralFeatures xsi:type="ecore:EReference" name="values" upperBound="-1"
-        eType="ecore:EClass platform:/resource/org.eclipse.papyrus.uml.textedit.property.xtext/src-gen/org/eclipse/papyrus/property/editor/xtext/UmlProperty.ecore#//ModifierSpecification"
+        eType="ecore:EClass platform:/resource/org.eclipse.papyrus.uml.textedit.property.xtext/src-gen/org/eclipse/papyrus/uml/textedit/property/xtext/UmlProperty.ecore#//ModifierSpecification"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ModifierSpecification">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EEnum platform:/resource/org.eclipse.papyrus.uml.textedit.property.xtext/src-gen/org/eclipse/papyrus/property/editor/xtext/UmlProperty.ecore#//ModifierKind"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="redefines" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.uml.textedit.property.xtext/src-gen/org/eclipse/papyrus/property/editor/xtext/UmlProperty.ecore#//RedefinesRule"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EEnum platform:/resource/org.eclipse.papyrus.uml.textedit.property.xtext/src-gen/org/eclipse/papyrus/uml/textedit/property/xtext/UmlProperty.ecore#//ModifierKind"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="redefines" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.uml.textedit.property.xtext/src-gen/org/eclipse/papyrus/uml/textedit/property/xtext/UmlProperty.ecore#//RedefinesRule"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="subsets" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.uml.textedit.property.xtext/src-gen/org/eclipse/papyrus/property/editor/xtext/UmlProperty.ecore#//SubsetsRule"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subsets" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.uml.textedit.property.xtext/src-gen/org/eclipse/papyrus/uml/textedit/property/xtext/UmlProperty.ecore#//SubsetsRule"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="ModifierKind">

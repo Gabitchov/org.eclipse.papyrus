@@ -10,6 +10,6 @@ public class UMLConnectionPointReferenceAntlrTokenFileProvider implements IAntlr
 	
 	public InputStream getAntlrTokenFile() {
 		ClassLoader classLoader = getClass().getClassLoader();
-    	return classLoader.getResourceAsStream("org/eclipse/papyrus/connectionpointreference/editor/xtext/parser/antlr/internal/InternalUMLConnectionPointReference.tokens");
+    	return classLoader.getResourceAsStream("org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/parser/antlr/internal/InternalUMLConnectionPointReference.tokens");
 	}
 }

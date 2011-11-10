@@ -35,7 +35,7 @@ public class UmlCommonFactoryImpl extends EFactoryImpl implements UmlCommonFacto
   {
     try
     {
-      UmlCommonFactory theUmlCommonFactory = (UmlCommonFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/common/editor/xtext/UmlCommon"); 
+      UmlCommonFactory theUmlCommonFactory = (UmlCommonFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/uml/textedit/common/xtext/UmlCommon"); 
       if (theUmlCommonFactory != null)
       {
         return theUmlCommonFactory;

@@ -34,28 +34,28 @@ T35 : '[' ;
 T36 : ']' ;
 T37 : '..' ;
 
-// $ANTLR src "../org.eclipse.papyrus.uml.textedit.parameter.xtext.ui/src-gen/org/eclipse/papyrus/parameter/editor/xtext/ui/contentassist/antlr/internal/InternalUmlParameter.g" 1732
+// $ANTLR src "../org.eclipse.papyrus.uml.textedit.parameter.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/ui/contentassist/antlr/internal/InternalUmlParameter.g" 1732
 RULE_UNLIMITEDLITERAL : ('0'..'9' ('0'..'9')*|'*');
 
-// $ANTLR src "../org.eclipse.papyrus.uml.textedit.parameter.xtext.ui/src-gen/org/eclipse/papyrus/parameter/editor/xtext/ui/contentassist/antlr/internal/InternalUmlParameter.g" 1734
+// $ANTLR src "../org.eclipse.papyrus.uml.textedit.parameter.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/ui/contentassist/antlr/internal/InternalUmlParameter.g" 1734
 RULE_ID : '^'? ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
 
-// $ANTLR src "../org.eclipse.papyrus.uml.textedit.parameter.xtext.ui/src-gen/org/eclipse/papyrus/parameter/editor/xtext/ui/contentassist/antlr/internal/InternalUmlParameter.g" 1736
+// $ANTLR src "../org.eclipse.papyrus.uml.textedit.parameter.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/ui/contentassist/antlr/internal/InternalUmlParameter.g" 1736
 RULE_INT : ('0'..'9')+;
 
-// $ANTLR src "../org.eclipse.papyrus.uml.textedit.parameter.xtext.ui/src-gen/org/eclipse/papyrus/parameter/editor/xtext/ui/contentassist/antlr/internal/InternalUmlParameter.g" 1738
+// $ANTLR src "../org.eclipse.papyrus.uml.textedit.parameter.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/ui/contentassist/antlr/internal/InternalUmlParameter.g" 1738
 RULE_STRING : ('"' ('\\' ('b'|'t'|'n'|'f'|'r'|'"'|'\''|'\\')|~(('\\'|'"')))* '"'|'\'' ('\\' ('b'|'t'|'n'|'f'|'r'|'"'|'\''|'\\')|~(('\\'|'\'')))* '\'');
 
-// $ANTLR src "../org.eclipse.papyrus.uml.textedit.parameter.xtext.ui/src-gen/org/eclipse/papyrus/parameter/editor/xtext/ui/contentassist/antlr/internal/InternalUmlParameter.g" 1740
+// $ANTLR src "../org.eclipse.papyrus.uml.textedit.parameter.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/ui/contentassist/antlr/internal/InternalUmlParameter.g" 1740
 RULE_ML_COMMENT : '/*' ( options {greedy=false;} : . )*'*/';
 
-// $ANTLR src "../org.eclipse.papyrus.uml.textedit.parameter.xtext.ui/src-gen/org/eclipse/papyrus/parameter/editor/xtext/ui/contentassist/antlr/internal/InternalUmlParameter.g" 1742
+// $ANTLR src "../org.eclipse.papyrus.uml.textedit.parameter.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/ui/contentassist/antlr/internal/InternalUmlParameter.g" 1742
 RULE_SL_COMMENT : '//' ~(('\n'|'\r'))* ('\r'? '\n')?;
 
-// $ANTLR src "../org.eclipse.papyrus.uml.textedit.parameter.xtext.ui/src-gen/org/eclipse/papyrus/parameter/editor/xtext/ui/contentassist/antlr/internal/InternalUmlParameter.g" 1744
+// $ANTLR src "../org.eclipse.papyrus.uml.textedit.parameter.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/ui/contentassist/antlr/internal/InternalUmlParameter.g" 1744
 RULE_WS : (' '|'\t'|'\r'|'\n')+;
 
-// $ANTLR src "../org.eclipse.papyrus.uml.textedit.parameter.xtext.ui/src-gen/org/eclipse/papyrus/parameter/editor/xtext/ui/contentassist/antlr/internal/InternalUmlParameter.g" 1746
+// $ANTLR src "../org.eclipse.papyrus.uml.textedit.parameter.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/ui/contentassist/antlr/internal/InternalUmlParameter.g" 1746
 RULE_ANY_OTHER : .;
 
 

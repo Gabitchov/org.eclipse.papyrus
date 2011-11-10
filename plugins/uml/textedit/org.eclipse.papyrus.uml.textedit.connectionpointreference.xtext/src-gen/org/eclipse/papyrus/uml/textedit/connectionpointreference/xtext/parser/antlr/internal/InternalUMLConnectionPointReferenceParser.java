@@ -49,7 +49,7 @@ public class InternalUMLConnectionPointReferenceParser extends AbstractInternalA
         
 
     public String[] getTokenNames() { return InternalUMLConnectionPointReferenceParser.tokenNames; }
-    public String getGrammarFileName() { return "../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext/src-gen/org/eclipse/papyrus/connectionpointreference/editor/xtext/parser/antlr/internal/InternalUMLConnectionPointReference.g"; }
+    public String getGrammarFileName() { return "../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/parser/antlr/internal/InternalUMLConnectionPointReference.g"; }
 
 
 
@@ -74,7 +74,7 @@ public class InternalUMLConnectionPointReferenceParser extends AbstractInternalA
 
 
     // $ANTLR start "entryRuleConnectionPointReferenceRule"
-    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext/src-gen/org/eclipse/papyrus/connectionpointreference/editor/xtext/parser/antlr/internal/InternalUMLConnectionPointReference.g:67:1: entryRuleConnectionPointReferenceRule returns [EObject current=null] : iv_ruleConnectionPointReferenceRule= ruleConnectionPointReferenceRule EOF ;
+    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/parser/antlr/internal/InternalUMLConnectionPointReference.g:67:1: entryRuleConnectionPointReferenceRule returns [EObject current=null] : iv_ruleConnectionPointReferenceRule= ruleConnectionPointReferenceRule EOF ;
     public final EObject entryRuleConnectionPointReferenceRule() throws RecognitionException {
         EObject current = null;
 
@@ -82,8 +82,8 @@ public class InternalUMLConnectionPointReferenceParser extends AbstractInternalA
 
 
         try {
-            // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext/src-gen/org/eclipse/papyrus/connectionpointreference/editor/xtext/parser/antlr/internal/InternalUMLConnectionPointReference.g:68:2: (iv_ruleConnectionPointReferenceRule= ruleConnectionPointReferenceRule EOF )
-            // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext/src-gen/org/eclipse/papyrus/connectionpointreference/editor/xtext/parser/antlr/internal/InternalUMLConnectionPointReference.g:69:2: iv_ruleConnectionPointReferenceRule= ruleConnectionPointReferenceRule EOF
+            // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/parser/antlr/internal/InternalUMLConnectionPointReference.g:68:2: (iv_ruleConnectionPointReferenceRule= ruleConnectionPointReferenceRule EOF )
+            // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/parser/antlr/internal/InternalUMLConnectionPointReference.g:69:2: iv_ruleConnectionPointReferenceRule= ruleConnectionPointReferenceRule EOF
             {
              newCompositeNode(grammarAccess.getConnectionPointReferenceRuleRule()); 
             pushFollow(FOLLOW_ruleConnectionPointReferenceRule_in_entryRuleConnectionPointReferenceRule75);
@@ -110,7 +110,7 @@ public class InternalUMLConnectionPointReferenceParser extends AbstractInternalA
 
 
     // $ANTLR start "ruleConnectionPointReferenceRule"
-    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext/src-gen/org/eclipse/papyrus/connectionpointreference/editor/xtext/parser/antlr/internal/InternalUMLConnectionPointReference.g:76:1: ruleConnectionPointReferenceRule returns [EObject current=null] : ( (otherlv_0= 'entry' ( (otherlv_1= RULE_ID ) ) (otherlv_2= ',' ( (otherlv_3= RULE_ID ) ) )* ) | (otherlv_4= 'exit' ( (otherlv_5= RULE_ID ) ) (otherlv_6= ',' ( (otherlv_7= RULE_ID ) ) )* ) )? ;
+    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/parser/antlr/internal/InternalUMLConnectionPointReference.g:76:1: ruleConnectionPointReferenceRule returns [EObject current=null] : ( (otherlv_0= 'entry' ( (otherlv_1= RULE_ID ) ) (otherlv_2= ',' ( (otherlv_3= RULE_ID ) ) )* ) | (otherlv_4= 'exit' ( (otherlv_5= RULE_ID ) ) (otherlv_6= ',' ( (otherlv_7= RULE_ID ) ) )* ) )? ;
     public final EObject ruleConnectionPointReferenceRule() throws RecognitionException {
         EObject current = null;
 
@@ -126,10 +126,10 @@ public class InternalUMLConnectionPointReferenceParser extends AbstractInternalA
          enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext/src-gen/org/eclipse/papyrus/connectionpointreference/editor/xtext/parser/antlr/internal/InternalUMLConnectionPointReference.g:79:28: ( ( (otherlv_0= 'entry' ( (otherlv_1= RULE_ID ) ) (otherlv_2= ',' ( (otherlv_3= RULE_ID ) ) )* ) | (otherlv_4= 'exit' ( (otherlv_5= RULE_ID ) ) (otherlv_6= ',' ( (otherlv_7= RULE_ID ) ) )* ) )? )
-            // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext/src-gen/org/eclipse/papyrus/connectionpointreference/editor/xtext/parser/antlr/internal/InternalUMLConnectionPointReference.g:80:1: ( (otherlv_0= 'entry' ( (otherlv_1= RULE_ID ) ) (otherlv_2= ',' ( (otherlv_3= RULE_ID ) ) )* ) | (otherlv_4= 'exit' ( (otherlv_5= RULE_ID ) ) (otherlv_6= ',' ( (otherlv_7= RULE_ID ) ) )* ) )?
+            // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/parser/antlr/internal/InternalUMLConnectionPointReference.g:79:28: ( ( (otherlv_0= 'entry' ( (otherlv_1= RULE_ID ) ) (otherlv_2= ',' ( (otherlv_3= RULE_ID ) ) )* ) | (otherlv_4= 'exit' ( (otherlv_5= RULE_ID ) ) (otherlv_6= ',' ( (otherlv_7= RULE_ID ) ) )* ) )? )
+            // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/parser/antlr/internal/InternalUMLConnectionPointReference.g:80:1: ( (otherlv_0= 'entry' ( (otherlv_1= RULE_ID ) ) (otherlv_2= ',' ( (otherlv_3= RULE_ID ) ) )* ) | (otherlv_4= 'exit' ( (otherlv_5= RULE_ID ) ) (otherlv_6= ',' ( (otherlv_7= RULE_ID ) ) )* ) )?
             {
-            // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext/src-gen/org/eclipse/papyrus/connectionpointreference/editor/xtext/parser/antlr/internal/InternalUMLConnectionPointReference.g:80:1: ( (otherlv_0= 'entry' ( (otherlv_1= RULE_ID ) ) (otherlv_2= ',' ( (otherlv_3= RULE_ID ) ) )* ) | (otherlv_4= 'exit' ( (otherlv_5= RULE_ID ) ) (otherlv_6= ',' ( (otherlv_7= RULE_ID ) ) )* ) )?
+            // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/parser/antlr/internal/InternalUMLConnectionPointReference.g:80:1: ( (otherlv_0= 'entry' ( (otherlv_1= RULE_ID ) ) (otherlv_2= ',' ( (otherlv_3= RULE_ID ) ) )* ) | (otherlv_4= 'exit' ( (otherlv_5= RULE_ID ) ) (otherlv_6= ',' ( (otherlv_7= RULE_ID ) ) )* ) )?
             int alt3=3;
             int LA3_0 = input.LA(1);
 
@@ -141,20 +141,20 @@ public class InternalUMLConnectionPointReferenceParser extends AbstractInternalA
             }
             switch (alt3) {
                 case 1 :
-                    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext/src-gen/org/eclipse/papyrus/connectionpointreference/editor/xtext/parser/antlr/internal/InternalUMLConnectionPointReference.g:80:2: (otherlv_0= 'entry' ( (otherlv_1= RULE_ID ) ) (otherlv_2= ',' ( (otherlv_3= RULE_ID ) ) )* )
+                    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/parser/antlr/internal/InternalUMLConnectionPointReference.g:80:2: (otherlv_0= 'entry' ( (otherlv_1= RULE_ID ) ) (otherlv_2= ',' ( (otherlv_3= RULE_ID ) ) )* )
                     {
-                    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext/src-gen/org/eclipse/papyrus/connectionpointreference/editor/xtext/parser/antlr/internal/InternalUMLConnectionPointReference.g:80:2: (otherlv_0= 'entry' ( (otherlv_1= RULE_ID ) ) (otherlv_2= ',' ( (otherlv_3= RULE_ID ) ) )* )
-                    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext/src-gen/org/eclipse/papyrus/connectionpointreference/editor/xtext/parser/antlr/internal/InternalUMLConnectionPointReference.g:80:4: otherlv_0= 'entry' ( (otherlv_1= RULE_ID ) ) (otherlv_2= ',' ( (otherlv_3= RULE_ID ) ) )*
+                    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/parser/antlr/internal/InternalUMLConnectionPointReference.g:80:2: (otherlv_0= 'entry' ( (otherlv_1= RULE_ID ) ) (otherlv_2= ',' ( (otherlv_3= RULE_ID ) ) )* )
+                    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/parser/antlr/internal/InternalUMLConnectionPointReference.g:80:4: otherlv_0= 'entry' ( (otherlv_1= RULE_ID ) ) (otherlv_2= ',' ( (otherlv_3= RULE_ID ) ) )*
                     {
                     otherlv_0=(Token)match(input,11,FOLLOW_11_in_ruleConnectionPointReferenceRule123); 
 
                         	newLeafNode(otherlv_0, grammarAccess.getConnectionPointReferenceRuleAccess().getEntryKeyword_0_0());
                         
-                    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext/src-gen/org/eclipse/papyrus/connectionpointreference/editor/xtext/parser/antlr/internal/InternalUMLConnectionPointReference.g:84:1: ( (otherlv_1= RULE_ID ) )
-                    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext/src-gen/org/eclipse/papyrus/connectionpointreference/editor/xtext/parser/antlr/internal/InternalUMLConnectionPointReference.g:85:1: (otherlv_1= RULE_ID )
+                    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/parser/antlr/internal/InternalUMLConnectionPointReference.g:84:1: ( (otherlv_1= RULE_ID ) )
+                    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/parser/antlr/internal/InternalUMLConnectionPointReference.g:85:1: (otherlv_1= RULE_ID )
                     {
-                    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext/src-gen/org/eclipse/papyrus/connectionpointreference/editor/xtext/parser/antlr/internal/InternalUMLConnectionPointReference.g:85:1: (otherlv_1= RULE_ID )
-                    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext/src-gen/org/eclipse/papyrus/connectionpointreference/editor/xtext/parser/antlr/internal/InternalUMLConnectionPointReference.g:86:3: otherlv_1= RULE_ID
+                    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/parser/antlr/internal/InternalUMLConnectionPointReference.g:85:1: (otherlv_1= RULE_ID )
+                    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/parser/antlr/internal/InternalUMLConnectionPointReference.g:86:3: otherlv_1= RULE_ID
                     {
 
                     			if (current==null) {
@@ -171,7 +171,7 @@ public class InternalUMLConnectionPointReferenceParser extends AbstractInternalA
 
                     }
 
-                    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext/src-gen/org/eclipse/papyrus/connectionpointreference/editor/xtext/parser/antlr/internal/InternalUMLConnectionPointReference.g:97:2: (otherlv_2= ',' ( (otherlv_3= RULE_ID ) ) )*
+                    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/parser/antlr/internal/InternalUMLConnectionPointReference.g:97:2: (otherlv_2= ',' ( (otherlv_3= RULE_ID ) ) )*
                     loop1:
                     do {
                         int alt1=2;
@@ -184,17 +184,17 @@ public class InternalUMLConnectionPointReferenceParser extends AbstractInternalA
 
                         switch (alt1) {
                     	case 1 :
-                    	    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext/src-gen/org/eclipse/papyrus/connectionpointreference/editor/xtext/parser/antlr/internal/InternalUMLConnectionPointReference.g:97:4: otherlv_2= ',' ( (otherlv_3= RULE_ID ) )
+                    	    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/parser/antlr/internal/InternalUMLConnectionPointReference.g:97:4: otherlv_2= ',' ( (otherlv_3= RULE_ID ) )
                     	    {
                     	    otherlv_2=(Token)match(input,12,FOLLOW_12_in_ruleConnectionPointReferenceRule156); 
 
                     	        	newLeafNode(otherlv_2, grammarAccess.getConnectionPointReferenceRuleAccess().getCommaKeyword_0_2_0());
                     	        
-                    	    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext/src-gen/org/eclipse/papyrus/connectionpointreference/editor/xtext/parser/antlr/internal/InternalUMLConnectionPointReference.g:101:1: ( (otherlv_3= RULE_ID ) )
-                    	    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext/src-gen/org/eclipse/papyrus/connectionpointreference/editor/xtext/parser/antlr/internal/InternalUMLConnectionPointReference.g:102:1: (otherlv_3= RULE_ID )
+                    	    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/parser/antlr/internal/InternalUMLConnectionPointReference.g:101:1: ( (otherlv_3= RULE_ID ) )
+                    	    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/parser/antlr/internal/InternalUMLConnectionPointReference.g:102:1: (otherlv_3= RULE_ID )
                     	    {
-                    	    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext/src-gen/org/eclipse/papyrus/connectionpointreference/editor/xtext/parser/antlr/internal/InternalUMLConnectionPointReference.g:102:1: (otherlv_3= RULE_ID )
-                    	    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext/src-gen/org/eclipse/papyrus/connectionpointreference/editor/xtext/parser/antlr/internal/InternalUMLConnectionPointReference.g:103:3: otherlv_3= RULE_ID
+                    	    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/parser/antlr/internal/InternalUMLConnectionPointReference.g:102:1: (otherlv_3= RULE_ID )
+                    	    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/parser/antlr/internal/InternalUMLConnectionPointReference.g:103:3: otherlv_3= RULE_ID
                     	    {
 
                     	    			if (current==null) {
@@ -227,20 +227,20 @@ public class InternalUMLConnectionPointReferenceParser extends AbstractInternalA
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext/src-gen/org/eclipse/papyrus/connectionpointreference/editor/xtext/parser/antlr/internal/InternalUMLConnectionPointReference.g:115:6: (otherlv_4= 'exit' ( (otherlv_5= RULE_ID ) ) (otherlv_6= ',' ( (otherlv_7= RULE_ID ) ) )* )
+                    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/parser/antlr/internal/InternalUMLConnectionPointReference.g:115:6: (otherlv_4= 'exit' ( (otherlv_5= RULE_ID ) ) (otherlv_6= ',' ( (otherlv_7= RULE_ID ) ) )* )
                     {
-                    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext/src-gen/org/eclipse/papyrus/connectionpointreference/editor/xtext/parser/antlr/internal/InternalUMLConnectionPointReference.g:115:6: (otherlv_4= 'exit' ( (otherlv_5= RULE_ID ) ) (otherlv_6= ',' ( (otherlv_7= RULE_ID ) ) )* )
-                    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext/src-gen/org/eclipse/papyrus/connectionpointreference/editor/xtext/parser/antlr/internal/InternalUMLConnectionPointReference.g:115:8: otherlv_4= 'exit' ( (otherlv_5= RULE_ID ) ) (otherlv_6= ',' ( (otherlv_7= RULE_ID ) ) )*
+                    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/parser/antlr/internal/InternalUMLConnectionPointReference.g:115:6: (otherlv_4= 'exit' ( (otherlv_5= RULE_ID ) ) (otherlv_6= ',' ( (otherlv_7= RULE_ID ) ) )* )
+                    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/parser/antlr/internal/InternalUMLConnectionPointReference.g:115:8: otherlv_4= 'exit' ( (otherlv_5= RULE_ID ) ) (otherlv_6= ',' ( (otherlv_7= RULE_ID ) ) )*
                     {
                     otherlv_4=(Token)match(input,13,FOLLOW_13_in_ruleConnectionPointReferenceRule198); 
 
                         	newLeafNode(otherlv_4, grammarAccess.getConnectionPointReferenceRuleAccess().getExitKeyword_1_0());
                         
-                    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext/src-gen/org/eclipse/papyrus/connectionpointreference/editor/xtext/parser/antlr/internal/InternalUMLConnectionPointReference.g:119:1: ( (otherlv_5= RULE_ID ) )
-                    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext/src-gen/org/eclipse/papyrus/connectionpointreference/editor/xtext/parser/antlr/internal/InternalUMLConnectionPointReference.g:120:1: (otherlv_5= RULE_ID )
+                    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/parser/antlr/internal/InternalUMLConnectionPointReference.g:119:1: ( (otherlv_5= RULE_ID ) )
+                    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/parser/antlr/internal/InternalUMLConnectionPointReference.g:120:1: (otherlv_5= RULE_ID )
                     {
-                    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext/src-gen/org/eclipse/papyrus/connectionpointreference/editor/xtext/parser/antlr/internal/InternalUMLConnectionPointReference.g:120:1: (otherlv_5= RULE_ID )
-                    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext/src-gen/org/eclipse/papyrus/connectionpointreference/editor/xtext/parser/antlr/internal/InternalUMLConnectionPointReference.g:121:3: otherlv_5= RULE_ID
+                    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/parser/antlr/internal/InternalUMLConnectionPointReference.g:120:1: (otherlv_5= RULE_ID )
+                    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/parser/antlr/internal/InternalUMLConnectionPointReference.g:121:3: otherlv_5= RULE_ID
                     {
 
                     			if (current==null) {
@@ -257,7 +257,7 @@ public class InternalUMLConnectionPointReferenceParser extends AbstractInternalA
 
                     }
 
-                    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext/src-gen/org/eclipse/papyrus/connectionpointreference/editor/xtext/parser/antlr/internal/InternalUMLConnectionPointReference.g:132:2: (otherlv_6= ',' ( (otherlv_7= RULE_ID ) ) )*
+                    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/parser/antlr/internal/InternalUMLConnectionPointReference.g:132:2: (otherlv_6= ',' ( (otherlv_7= RULE_ID ) ) )*
                     loop2:
                     do {
                         int alt2=2;
@@ -270,17 +270,17 @@ public class InternalUMLConnectionPointReferenceParser extends AbstractInternalA
 
                         switch (alt2) {
                     	case 1 :
-                    	    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext/src-gen/org/eclipse/papyrus/connectionpointreference/editor/xtext/parser/antlr/internal/InternalUMLConnectionPointReference.g:132:4: otherlv_6= ',' ( (otherlv_7= RULE_ID ) )
+                    	    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/parser/antlr/internal/InternalUMLConnectionPointReference.g:132:4: otherlv_6= ',' ( (otherlv_7= RULE_ID ) )
                     	    {
                     	    otherlv_6=(Token)match(input,12,FOLLOW_12_in_ruleConnectionPointReferenceRule231); 
 
                     	        	newLeafNode(otherlv_6, grammarAccess.getConnectionPointReferenceRuleAccess().getCommaKeyword_1_2_0());
                     	        
-                    	    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext/src-gen/org/eclipse/papyrus/connectionpointreference/editor/xtext/parser/antlr/internal/InternalUMLConnectionPointReference.g:136:1: ( (otherlv_7= RULE_ID ) )
-                    	    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext/src-gen/org/eclipse/papyrus/connectionpointreference/editor/xtext/parser/antlr/internal/InternalUMLConnectionPointReference.g:137:1: (otherlv_7= RULE_ID )
+                    	    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/parser/antlr/internal/InternalUMLConnectionPointReference.g:136:1: ( (otherlv_7= RULE_ID ) )
+                    	    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/parser/antlr/internal/InternalUMLConnectionPointReference.g:137:1: (otherlv_7= RULE_ID )
                     	    {
-                    	    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext/src-gen/org/eclipse/papyrus/connectionpointreference/editor/xtext/parser/antlr/internal/InternalUMLConnectionPointReference.g:137:1: (otherlv_7= RULE_ID )
-                    	    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext/src-gen/org/eclipse/papyrus/connectionpointreference/editor/xtext/parser/antlr/internal/InternalUMLConnectionPointReference.g:138:3: otherlv_7= RULE_ID
+                    	    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/parser/antlr/internal/InternalUMLConnectionPointReference.g:137:1: (otherlv_7= RULE_ID )
+                    	    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/parser/antlr/internal/InternalUMLConnectionPointReference.g:138:3: otherlv_7= RULE_ID
                     	    {
 
                     	    			if (current==null) {

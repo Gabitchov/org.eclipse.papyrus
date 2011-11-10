@@ -42,7 +42,7 @@ public interface UmlMessagePackage extends EPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  String eNS_URI = "http://www.eclipse.org/papyrus/message/editor/xtext/UmlMessage";
+  String eNS_URI = "http://www.eclipse.org/papyrus/uml/textedit/message/xtext/UmlMessage";
 
   /**
    * The package namespace name.

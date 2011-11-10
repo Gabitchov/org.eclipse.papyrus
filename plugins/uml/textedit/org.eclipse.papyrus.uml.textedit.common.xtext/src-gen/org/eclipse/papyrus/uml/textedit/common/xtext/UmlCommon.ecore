@@ -2,14 +2,14 @@
 <ecore:EPackage xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="umlCommon"
-    nsURI="http://www.eclipse.org/papyrus/common/editor/xtext/UmlCommon" nsPrefix="umlCommon">
+    nsURI="http://www.eclipse.org/papyrus/uml/textedit/common/xtext/UmlCommon" nsPrefix="umlCommon">
   <eClassifiers xsi:type="ecore:EClass" name="QualifiedName">
     <eStructuralFeatures xsi:type="ecore:EReference" name="path" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.uml.textedit.common.xtext/model/UML.ecore#//Namespace"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="remaining" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.uml.textedit.common.xtext/src-gen/org/eclipse/papyrus/common/editor/xtext/UmlCommon.ecore#//QualifiedName"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="remaining" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.uml.textedit.common.xtext/src-gen/org/eclipse/papyrus/uml/textedit/common/xtext/UmlCommon.ecore#//QualifiedName"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TypeRule">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="path" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.uml.textedit.common.xtext/src-gen/org/eclipse/papyrus/common/editor/xtext/UmlCommon.ecore#//QualifiedName"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="path" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.uml.textedit.common.xtext/src-gen/org/eclipse/papyrus/uml/textedit/common/xtext/UmlCommon.ecore#//QualifiedName"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="ecore:EClass platform:/resource/org.eclipse.papyrus.uml.textedit.common.xtext/model/UML.ecore#//Type"/>
   </eClassifiers>
@@ -21,7 +21,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MultiplicityRule">
     <eStructuralFeatures xsi:type="ecore:EReference" name="bounds" upperBound="-1"
-        eType="ecore:EClass platform:/resource/org.eclipse.papyrus.uml.textedit.common.xtext/src-gen/org/eclipse/papyrus/common/editor/xtext/UmlCommon.ecore#//BoundSpecification"
+        eType="ecore:EClass platform:/resource/org.eclipse.papyrus.uml.textedit.common.xtext/src-gen/org/eclipse/papyrus/uml/textedit/common/xtext/UmlCommon.ecore#//BoundSpecification"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BoundSpecification">

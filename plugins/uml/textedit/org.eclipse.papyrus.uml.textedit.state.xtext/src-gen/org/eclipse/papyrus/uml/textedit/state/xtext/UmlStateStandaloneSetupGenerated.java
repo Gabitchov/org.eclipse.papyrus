@@ -27,8 +27,8 @@ public class UmlStateStandaloneSetupGenerated implements ISetup {
 	}
 	
 	public void register(Injector injector) {
-	if (!EPackage.Registry.INSTANCE.containsKey("http://www.eclipse.org/papyrus/state/editor/xtext/UmlState")) {
-		EPackage.Registry.INSTANCE.put("http://www.eclipse.org/papyrus/state/editor/xtext/UmlState", org.eclipse.papyrus.uml.textedit.state.xtext.umlState.UmlStatePackage.eINSTANCE);
+	if (!EPackage.Registry.INSTANCE.containsKey("http://www.eclipse.org/papyrus/uml/textedit/state/xtext/UmlState")) {
+		EPackage.Registry.INSTANCE.put("http://www.eclipse.org/papyrus/uml/textedit/state/xtext/UmlState", org.eclipse.papyrus.uml.textedit.state.xtext.umlState.UmlStatePackage.eINSTANCE);
 	}
 
 		org.eclipse.xtext.resource.IResourceFactory resourceFactory = injector.getInstance(org.eclipse.xtext.resource.IResourceFactory.class);

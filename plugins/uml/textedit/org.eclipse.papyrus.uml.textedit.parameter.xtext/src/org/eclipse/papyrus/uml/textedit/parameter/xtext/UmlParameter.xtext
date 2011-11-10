@@ -5,7 +5,7 @@ with org.eclipse.papyrus.uml.textedit.common.xtext.UmlCommon
 import "http://www.eclipse.org/uml2/3.0.0/UML" as uml
 //import "org.eclipse.papyrus.uml.textedit.common.xtext/UmlCommon.ecore" as common
 
-generate umlParameter "http://www.eclipse.org/papyrus/parameter/editor/xtext/UmlParameter"
+generate umlParameter "http://www.eclipse.org/papyrus/uml/textedit/parameter/xtext/UmlParameter"
 
 ParameterRule:
 	visibility = VisibilityKind

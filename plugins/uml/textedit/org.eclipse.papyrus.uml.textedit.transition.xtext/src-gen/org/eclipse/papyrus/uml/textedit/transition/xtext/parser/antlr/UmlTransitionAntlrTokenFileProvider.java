@@ -10,6 +10,6 @@ public class UmlTransitionAntlrTokenFileProvider implements IAntlrTokenFileProvi
 	
 	public InputStream getAntlrTokenFile() {
 		ClassLoader classLoader = getClass().getClassLoader();
-    	return classLoader.getResourceAsStream("org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.tokens");
+    	return classLoader.getResourceAsStream("org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.tokens");
 	}
 }

@@ -10,6 +10,6 @@ public class UmlCollaborationUseAntlrTokenFileProvider implements IAntlrTokenFil
 	
 	public InputStream getAntlrTokenFile() {
 		ClassLoader classLoader = getClass().getClassLoader();
-    	return classLoader.getResourceAsStream("org/eclipse/papyrus/collaborationuse/editor/xtext/parser/antlr/internal/InternalUmlCollaborationUse.tokens");
+    	return classLoader.getResourceAsStream("org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.tokens");
 	}
 }

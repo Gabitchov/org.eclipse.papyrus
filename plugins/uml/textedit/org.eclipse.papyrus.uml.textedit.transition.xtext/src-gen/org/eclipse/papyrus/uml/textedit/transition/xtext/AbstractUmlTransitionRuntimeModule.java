@@ -21,7 +21,7 @@ public abstract class AbstractUmlTransitionRuntimeModule extends DefaultRuntimeM
 
 	@Override
 	public void configure(Binder binder) {
-		properties = tryBindProperties(binder, "org/eclipse/papyrus/transition/editor/xtext/UmlTransition.properties");
+		properties = tryBindProperties(binder, "org/eclipse/papyrus/uml/textedit/transition/xtext/UmlTransition.properties");
 		super.configure(binder);
 	}
 	

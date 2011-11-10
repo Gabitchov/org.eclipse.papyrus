@@ -4,7 +4,7 @@ import org.eclipse.emf.mwe.utils.*
 import org.eclipse.xtext.generator.*
 import org.eclipse.xtext.ui.generator.*
 
-var grammarURI = "classpath:/org/eclipse/papyrus/parameter/editor/xtext/UmlParameter.xtext"
+var grammarURI = "classpath:/org/eclipse/papyrus/uml/textedit/parameter/xtext/UmlParameter.xtext"
 var file.extensions = "umlparameter"
 var projectName = "org.eclipse.papyrus.uml.textedit.parameter.xtext"
 var runtimeProject = "../${projectName}"
@@ -45,7 +45,7 @@ Workflow {
 			referencedGenModels = "platform:/resource/org.eclipse.papyrus.uml.textedit.parameter.xtext/model/UML.genmodel"
 			
 			referencedGenModels = 
-					"platform:/resource/org.eclipse.papyrus.uml.textedit.common.xtext/src-gen/org/eclipse/papyrus/common/editor/xtext/UMLCommon.genmodel"
+					"platform:/resource/org.eclipse.papyrus.uml.textedit.common.xtext/src-gen/org/eclipse/papyrus/uml/textedit/common/xtext/UMLCommon.genmodel"
 			
 			}
 

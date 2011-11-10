@@ -34,7 +34,7 @@ public class UmlCollaborationUseFactoryImpl extends EFactoryImpl implements UmlC
   {
     try
     {
-      UmlCollaborationUseFactory theUmlCollaborationUseFactory = (UmlCollaborationUseFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/collaborationuse/editor/xtext/UmlCollaborationUse"); 
+      UmlCollaborationUseFactory theUmlCollaborationUseFactory = (UmlCollaborationUseFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/uml/textedit/collaborationuse/xtext/UmlCollaborationUse"); 
       if (theUmlCollaborationUseFactory != null)
       {
         return theUmlCollaborationUseFactory;

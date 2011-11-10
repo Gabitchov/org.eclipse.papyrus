@@ -5,11 +5,11 @@
       <ePackage href="http://www.eclipse.org/uml2/3.0.0/UML#/"/>
     </metamodelDeclarations>
     <metamodelDeclarations xsi:type="xtext:GeneratedMetamodel" name="umlMessage">
-      <ePackage href="http://www.eclipse.org/papyrus/message/editor/xtext/UmlMessage#/"/>
+      <ePackage href="http://www.eclipse.org/papyrus/uml/textedit/message/xtext/UmlMessage#/"/>
     </metamodelDeclarations>
     <rules xsi:type="xtext:ParserRule" name="MessageRule">
       <type metamodel="/0/@metamodelDeclarations.1">
-        <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/message/editor/xtext/UmlMessage#//MessageRule"/>
+        <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/uml/textedit/message/xtext/UmlMessage#//MessageRule"/>
       </type>
       <alternatives xsi:type="xtext:Group">
         <elements xsi:type="xtext:Assignment" feature="sequenceTerm" operator="+=">
@@ -29,7 +29,7 @@
     </rules>
     <rules xsi:type="xtext:ParserRule" name="SequenceTermRule">
       <type metamodel="/0/@metamodelDeclarations.1">
-        <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/message/editor/xtext/UmlMessage#//SequenceTermRule"/>
+        <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/uml/textedit/message/xtext/UmlMessage#//SequenceTermRule"/>
       </type>
       <alternatives xsi:type="xtext:Group">
         <elements xsi:type="xtext:Assignment" feature="sequencialOrder" operator="=">

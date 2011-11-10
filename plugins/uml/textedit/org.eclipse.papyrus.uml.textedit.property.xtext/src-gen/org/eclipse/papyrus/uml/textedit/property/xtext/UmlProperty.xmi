@@ -5,11 +5,11 @@
       <ePackage href="http://www.eclipse.org/uml2/3.0.0/UML#/"/>
     </metamodelDeclarations>
     <metamodelDeclarations xsi:type="xtext:GeneratedMetamodel" name="umlProperty">
-      <ePackage href="http://www.eclipse.org/papyrus/property/editor/xtext/UmlProperty#/"/>
+      <ePackage href="http://www.eclipse.org/papyrus/uml/textedit/property/xtext/UmlProperty#/"/>
     </metamodelDeclarations>
     <rules xsi:type="xtext:ParserRule" name="PropertyRule">
       <type metamodel="/0/@metamodelDeclarations.1">
-        <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/property/editor/xtext/UmlProperty#//PropertyRule"/>
+        <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/uml/textedit/property/xtext/UmlProperty#//PropertyRule"/>
       </type>
       <alternatives xsi:type="xtext:Group">
         <elements xsi:type="xtext:Assignment" feature="visibility" operator="=">
@@ -41,30 +41,30 @@
     </rules>
     <rules xsi:type="xtext:EnumRule" name="VisibilityKind">
       <type metamodel="/0/@metamodelDeclarations.1">
-        <classifier xsi:type="ecore:EEnum" href="http://www.eclipse.org/papyrus/property/editor/xtext/UmlProperty#//VisibilityKind"/>
+        <classifier xsi:type="ecore:EEnum" href="http://www.eclipse.org/papyrus/uml/textedit/property/xtext/UmlProperty#//VisibilityKind"/>
       </type>
       <alternatives xsi:type="xtext:Alternatives">
         <elements xsi:type="xtext:EnumLiteralDeclaration">
-          <enumLiteral href="http://www.eclipse.org/papyrus/property/editor/xtext/UmlProperty#//VisibilityKind/public"/>
+          <enumLiteral href="http://www.eclipse.org/papyrus/uml/textedit/property/xtext/UmlProperty#//VisibilityKind/public"/>
           <literal value="+"/>
         </elements>
         <elements xsi:type="xtext:EnumLiteralDeclaration">
-          <enumLiteral href="http://www.eclipse.org/papyrus/property/editor/xtext/UmlProperty#//VisibilityKind/private"/>
+          <enumLiteral href="http://www.eclipse.org/papyrus/uml/textedit/property/xtext/UmlProperty#//VisibilityKind/private"/>
           <literal value="-"/>
         </elements>
         <elements xsi:type="xtext:EnumLiteralDeclaration">
-          <enumLiteral href="http://www.eclipse.org/papyrus/property/editor/xtext/UmlProperty#//VisibilityKind/protected"/>
+          <enumLiteral href="http://www.eclipse.org/papyrus/uml/textedit/property/xtext/UmlProperty#//VisibilityKind/protected"/>
           <literal value="#"/>
         </elements>
         <elements xsi:type="xtext:EnumLiteralDeclaration">
-          <enumLiteral href="http://www.eclipse.org/papyrus/property/editor/xtext/UmlProperty#//VisibilityKind/package"/>
+          <enumLiteral href="http://www.eclipse.org/papyrus/uml/textedit/property/xtext/UmlProperty#//VisibilityKind/package"/>
           <literal value="~"/>
         </elements>
       </alternatives>
     </rules>
     <rules xsi:type="xtext:ParserRule" name="TypeRule">
       <type metamodel="/0/@metamodelDeclarations.1">
-        <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/property/editor/xtext/UmlProperty#//TypeRule"/>
+        <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/uml/textedit/property/xtext/UmlProperty#//TypeRule"/>
       </type>
       <alternatives xsi:type="xtext:Group">
         <elements xsi:type="xtext:Assignment" cardinality="?" feature="path" operator="=">
@@ -82,7 +82,7 @@
     </rules>
     <rules xsi:type="xtext:ParserRule" name="QualifiedName">
       <type metamodel="/0/@metamodelDeclarations.1">
-        <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/property/editor/xtext/UmlProperty#//QualifiedName"/>
+        <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/uml/textedit/property/xtext/UmlProperty#//QualifiedName"/>
       </type>
       <alternatives xsi:type="xtext:Group">
         <elements xsi:type="xtext:Assignment" feature="path" operator="=">
@@ -101,7 +101,7 @@
     </rules>
     <rules xsi:type="xtext:ParserRule" name="MultiplicityRule">
       <type metamodel="/0/@metamodelDeclarations.1">
-        <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/property/editor/xtext/UmlProperty#//MultiplicityRule"/>
+        <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/uml/textedit/property/xtext/UmlProperty#//MultiplicityRule"/>
       </type>
       <alternatives xsi:type="xtext:Group">
         <elements xsi:type="xtext:Keyword" value="["/>
@@ -119,7 +119,7 @@
     </rules>
     <rules xsi:type="xtext:ParserRule" name="BoundSpecification">
       <type metamodel="/0/@metamodelDeclarations.1">
-        <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/property/editor/xtext/UmlProperty#//BoundSpecification"/>
+        <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/uml/textedit/property/xtext/UmlProperty#//BoundSpecification"/>
       </type>
       <alternatives xsi:type="xtext:Assignment" feature="value" operator="=">
         <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.6"/>
@@ -145,7 +145,7 @@
     </rules>
     <rules xsi:type="xtext:ParserRule" name="ModifiersRule">
       <type metamodel="/0/@metamodelDeclarations.1">
-        <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/property/editor/xtext/UmlProperty#//ModifiersRule"/>
+        <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/uml/textedit/property/xtext/UmlProperty#//ModifiersRule"/>
       </type>
       <alternatives xsi:type="xtext:Group">
         <elements xsi:type="xtext:Keyword" value="{"/>
@@ -163,7 +163,7 @@
     </rules>
     <rules xsi:type="xtext:ParserRule" name="ModifierSpecification">
       <type metamodel="/0/@metamodelDeclarations.1">
-        <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/property/editor/xtext/UmlProperty#//ModifierSpecification"/>
+        <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/uml/textedit/property/xtext/UmlProperty#//ModifierSpecification"/>
       </type>
       <alternatives xsi:type="xtext:Alternatives">
         <elements xsi:type="xtext:Assignment" feature="value" operator="=">
@@ -179,30 +179,30 @@
     </rules>
     <rules xsi:type="xtext:EnumRule" name="ModifierKind">
       <type metamodel="/0/@metamodelDeclarations.1">
-        <classifier xsi:type="ecore:EEnum" href="http://www.eclipse.org/papyrus/property/editor/xtext/UmlProperty#//ModifierKind"/>
+        <classifier xsi:type="ecore:EEnum" href="http://www.eclipse.org/papyrus/uml/textedit/property/xtext/UmlProperty#//ModifierKind"/>
       </type>
       <alternatives xsi:type="xtext:Alternatives">
         <elements xsi:type="xtext:EnumLiteralDeclaration">
-          <enumLiteral href="http://www.eclipse.org/papyrus/property/editor/xtext/UmlProperty#//ModifierKind/readOnly"/>
+          <enumLiteral href="http://www.eclipse.org/papyrus/uml/textedit/property/xtext/UmlProperty#//ModifierKind/readOnly"/>
           <literal value="readOnly"/>
         </elements>
         <elements xsi:type="xtext:EnumLiteralDeclaration">
-          <enumLiteral href="http://www.eclipse.org/papyrus/property/editor/xtext/UmlProperty#//ModifierKind/union"/>
+          <enumLiteral href="http://www.eclipse.org/papyrus/uml/textedit/property/xtext/UmlProperty#//ModifierKind/union"/>
           <literal value="union"/>
         </elements>
         <elements xsi:type="xtext:EnumLiteralDeclaration">
-          <enumLiteral href="http://www.eclipse.org/papyrus/property/editor/xtext/UmlProperty#//ModifierKind/ordered"/>
+          <enumLiteral href="http://www.eclipse.org/papyrus/uml/textedit/property/xtext/UmlProperty#//ModifierKind/ordered"/>
           <literal value="ordered"/>
         </elements>
         <elements xsi:type="xtext:EnumLiteralDeclaration">
-          <enumLiteral href="http://www.eclipse.org/papyrus/property/editor/xtext/UmlProperty#//ModifierKind/unique"/>
+          <enumLiteral href="http://www.eclipse.org/papyrus/uml/textedit/property/xtext/UmlProperty#//ModifierKind/unique"/>
           <literal value="unique"/>
         </elements>
       </alternatives>
     </rules>
     <rules xsi:type="xtext:ParserRule" name="RedefinesRule">
       <type metamodel="/0/@metamodelDeclarations.1">
-        <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/property/editor/xtext/UmlProperty#//RedefinesRule"/>
+        <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/uml/textedit/property/xtext/UmlProperty#//RedefinesRule"/>
       </type>
       <alternatives xsi:type="xtext:Group">
         <elements xsi:type="xtext:Keyword" value="redefines"/>
@@ -218,7 +218,7 @@
     </rules>
     <rules xsi:type="xtext:ParserRule" name="SubsetsRule">
       <type metamodel="/0/@metamodelDeclarations.1">
-        <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/property/editor/xtext/UmlProperty#//SubsetsRule"/>
+        <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/uml/textedit/property/xtext/UmlProperty#//SubsetsRule"/>
       </type>
       <alternatives xsi:type="xtext:Group">
         <elements xsi:type="xtext:Keyword" value="subsets"/>
@@ -234,7 +234,7 @@
     </rules>
     <rules xsi:type="xtext:ParserRule" name="DefaultValueRule">
       <type metamodel="/0/@metamodelDeclarations.1">
-        <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/property/editor/xtext/UmlProperty#//DefaultValueRule"/>
+        <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/uml/textedit/property/xtext/UmlProperty#//DefaultValueRule"/>
       </type>
       <alternatives xsi:type="xtext:Group">
         <elements xsi:type="xtext:Keyword" value="="/>

@@ -41,7 +41,7 @@ public interface UMLConnectionPointReferencePackage extends EPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  String eNS_URI = "http://www.eclipse.org/papyrus/connectionpointreference/editor/xtext/UMLConnectionPointReference";
+  String eNS_URI = "http://www.eclipse.org/papyrus/uml/textedit/connectionpointreference/xtext/UMLConnectionPointReference";
 
   /**
    * The package namespace name.

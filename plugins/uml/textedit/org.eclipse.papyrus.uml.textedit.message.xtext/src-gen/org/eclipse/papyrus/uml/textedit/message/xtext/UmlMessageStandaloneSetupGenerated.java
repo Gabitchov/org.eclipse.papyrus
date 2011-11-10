@@ -27,8 +27,8 @@ public class UmlMessageStandaloneSetupGenerated implements ISetup {
 	}
 	
 	public void register(Injector injector) {
-	if (!EPackage.Registry.INSTANCE.containsKey("http://www.eclipse.org/papyrus/message/editor/xtext/UmlMessage")) {
-		EPackage.Registry.INSTANCE.put("http://www.eclipse.org/papyrus/message/editor/xtext/UmlMessage", org.eclipse.papyrus.uml.textedit.message.xtext.umlMessage.UmlMessagePackage.eINSTANCE);
+	if (!EPackage.Registry.INSTANCE.containsKey("http://www.eclipse.org/papyrus/uml/textedit/message/xtext/UmlMessage")) {
+		EPackage.Registry.INSTANCE.put("http://www.eclipse.org/papyrus/uml/textedit/message/xtext/UmlMessage", org.eclipse.papyrus.uml.textedit.message.xtext.umlMessage.UmlMessagePackage.eINSTANCE);
 	}
 
 		org.eclipse.xtext.resource.IResourceFactory resourceFactory = injector.getInstance(org.eclipse.xtext.resource.IResourceFactory.class);

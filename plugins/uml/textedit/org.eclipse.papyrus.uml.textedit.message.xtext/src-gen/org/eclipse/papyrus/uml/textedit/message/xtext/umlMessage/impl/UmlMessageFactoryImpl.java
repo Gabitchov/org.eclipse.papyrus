@@ -34,7 +34,7 @@ public class UmlMessageFactoryImpl extends EFactoryImpl implements UmlMessageFac
   {
     try
     {
-      UmlMessageFactory theUmlMessageFactory = (UmlMessageFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/message/editor/xtext/UmlMessage"); 
+      UmlMessageFactory theUmlMessageFactory = (UmlMessageFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/uml/textedit/message/xtext/UmlMessage"); 
       if (theUmlMessageFactory != null)
       {
         return theUmlMessageFactory;

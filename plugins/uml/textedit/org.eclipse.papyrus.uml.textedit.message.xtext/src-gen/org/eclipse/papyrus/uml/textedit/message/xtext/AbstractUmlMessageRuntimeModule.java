@@ -21,7 +21,7 @@ public abstract class AbstractUmlMessageRuntimeModule extends DefaultRuntimeModu
 
 	@Override
 	public void configure(Binder binder) {
-		properties = tryBindProperties(binder, "org/eclipse/papyrus/message/editor/xtext/UmlMessage.properties");
+		properties = tryBindProperties(binder, "org/eclipse/papyrus/uml/textedit/message/xtext/UmlMessage.properties");
 		super.configure(binder);
 	}
 	

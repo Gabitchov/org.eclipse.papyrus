@@ -21,7 +21,7 @@ public abstract class AbstractUMLConnectionPointReferenceRuntimeModule extends D
 
 	@Override
 	public void configure(Binder binder) {
-		properties = tryBindProperties(binder, "org/eclipse/papyrus/connectionpointreference/editor/xtext/UMLConnectionPointReference.properties");
+		properties = tryBindProperties(binder, "org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/UMLConnectionPointReference.properties");
 		super.configure(binder);
 	}
 	

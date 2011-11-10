@@ -5,11 +5,11 @@
       <ePackage href="http://www.eclipse.org/uml2/3.0.0/UML#/"/>
     </metamodelDeclarations>
     <metamodelDeclarations xsi:type="xtext:GeneratedMetamodel" name="umlCommon">
-      <ePackage href="http://www.eclipse.org/papyrus/common/editor/xtext/UmlCommon#/"/>
+      <ePackage href="http://www.eclipse.org/papyrus/uml/textedit/common/xtext/UmlCommon#/"/>
     </metamodelDeclarations>
     <rules xsi:type="xtext:ParserRule" name="QualifiedName">
       <type metamodel="/0/@metamodelDeclarations.1">
-        <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/common/editor/xtext/UmlCommon#//QualifiedName"/>
+        <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/uml/textedit/common/xtext/UmlCommon#//QualifiedName"/>
       </type>
       <alternatives xsi:type="xtext:Group">
         <elements xsi:type="xtext:Assignment" feature="path" operator="=">
@@ -28,7 +28,7 @@
     </rules>
     <rules xsi:type="xtext:ParserRule" name="TypeRule">
       <type metamodel="/0/@metamodelDeclarations.1">
-        <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/common/editor/xtext/UmlCommon#//TypeRule"/>
+        <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/uml/textedit/common/xtext/UmlCommon#//TypeRule"/>
       </type>
       <alternatives xsi:type="xtext:Group">
         <elements xsi:type="xtext:Assignment" cardinality="?" feature="path" operator="=">
@@ -46,30 +46,30 @@
     </rules>
     <rules xsi:type="xtext:EnumRule" name="VisibilityKind">
       <type metamodel="/0/@metamodelDeclarations.1">
-        <classifier xsi:type="ecore:EEnum" href="http://www.eclipse.org/papyrus/common/editor/xtext/UmlCommon#//VisibilityKind"/>
+        <classifier xsi:type="ecore:EEnum" href="http://www.eclipse.org/papyrus/uml/textedit/common/xtext/UmlCommon#//VisibilityKind"/>
       </type>
       <alternatives xsi:type="xtext:Alternatives">
         <elements xsi:type="xtext:EnumLiteralDeclaration">
-          <enumLiteral href="http://www.eclipse.org/papyrus/common/editor/xtext/UmlCommon#//VisibilityKind/public"/>
+          <enumLiteral href="http://www.eclipse.org/papyrus/uml/textedit/common/xtext/UmlCommon#//VisibilityKind/public"/>
           <literal value="+"/>
         </elements>
         <elements xsi:type="xtext:EnumLiteralDeclaration">
-          <enumLiteral href="http://www.eclipse.org/papyrus/common/editor/xtext/UmlCommon#//VisibilityKind/private"/>
+          <enumLiteral href="http://www.eclipse.org/papyrus/uml/textedit/common/xtext/UmlCommon#//VisibilityKind/private"/>
           <literal value="-"/>
         </elements>
         <elements xsi:type="xtext:EnumLiteralDeclaration">
-          <enumLiteral href="http://www.eclipse.org/papyrus/common/editor/xtext/UmlCommon#//VisibilityKind/protected"/>
+          <enumLiteral href="http://www.eclipse.org/papyrus/uml/textedit/common/xtext/UmlCommon#//VisibilityKind/protected"/>
           <literal value="#"/>
         </elements>
         <elements xsi:type="xtext:EnumLiteralDeclaration">
-          <enumLiteral href="http://www.eclipse.org/papyrus/common/editor/xtext/UmlCommon#//VisibilityKind/package"/>
+          <enumLiteral href="http://www.eclipse.org/papyrus/uml/textedit/common/xtext/UmlCommon#//VisibilityKind/package"/>
           <literal value="~"/>
         </elements>
       </alternatives>
     </rules>
     <rules xsi:type="xtext:ParserRule" name="MultiplicityRule">
       <type metamodel="/0/@metamodelDeclarations.1">
-        <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/common/editor/xtext/UmlCommon#//MultiplicityRule"/>
+        <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/uml/textedit/common/xtext/UmlCommon#//MultiplicityRule"/>
       </type>
       <alternatives xsi:type="xtext:Group">
         <elements xsi:type="xtext:Keyword" value="["/>
@@ -87,7 +87,7 @@
     </rules>
     <rules xsi:type="xtext:ParserRule" name="BoundSpecification">
       <type metamodel="/0/@metamodelDeclarations.1">
-        <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/common/editor/xtext/UmlCommon#//BoundSpecification"/>
+        <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/uml/textedit/common/xtext/UmlCommon#//BoundSpecification"/>
       </type>
       <alternatives xsi:type="xtext:Assignment" feature="value" operator="=">
         <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.5"/>
@@ -113,23 +113,23 @@
     </rules>
     <rules xsi:type="xtext:EnumRule" name="Direction">
       <type metamodel="/0/@metamodelDeclarations.1">
-        <classifier xsi:type="ecore:EEnum" href="http://www.eclipse.org/papyrus/common/editor/xtext/UmlCommon#//Direction"/>
+        <classifier xsi:type="ecore:EEnum" href="http://www.eclipse.org/papyrus/uml/textedit/common/xtext/UmlCommon#//Direction"/>
       </type>
       <alternatives xsi:type="xtext:Alternatives">
         <elements xsi:type="xtext:EnumLiteralDeclaration">
-          <enumLiteral href="http://www.eclipse.org/papyrus/common/editor/xtext/UmlCommon#//Direction/IN"/>
+          <enumLiteral href="http://www.eclipse.org/papyrus/uml/textedit/common/xtext/UmlCommon#//Direction/IN"/>
           <literal value="in"/>
         </elements>
         <elements xsi:type="xtext:EnumLiteralDeclaration">
-          <enumLiteral href="http://www.eclipse.org/papyrus/common/editor/xtext/UmlCommon#//Direction/OUT"/>
+          <enumLiteral href="http://www.eclipse.org/papyrus/uml/textedit/common/xtext/UmlCommon#//Direction/OUT"/>
           <literal value="out"/>
         </elements>
         <elements xsi:type="xtext:EnumLiteralDeclaration">
-          <enumLiteral href="http://www.eclipse.org/papyrus/common/editor/xtext/UmlCommon#//Direction/INOUT"/>
+          <enumLiteral href="http://www.eclipse.org/papyrus/uml/textedit/common/xtext/UmlCommon#//Direction/INOUT"/>
           <literal value="inout"/>
         </elements>
         <elements xsi:type="xtext:EnumLiteralDeclaration">
-          <enumLiteral href="http://www.eclipse.org/papyrus/common/editor/xtext/UmlCommon#//Direction/RETURN"/>
+          <enumLiteral href="http://www.eclipse.org/papyrus/uml/textedit/common/xtext/UmlCommon#//Direction/RETURN"/>
           <literal value="return"/>
         </elements>
       </alternatives>

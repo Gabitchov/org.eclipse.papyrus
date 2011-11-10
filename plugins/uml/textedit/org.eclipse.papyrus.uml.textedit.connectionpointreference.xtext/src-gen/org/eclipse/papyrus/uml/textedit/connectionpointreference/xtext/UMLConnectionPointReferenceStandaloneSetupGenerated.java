@@ -27,8 +27,8 @@ public class UMLConnectionPointReferenceStandaloneSetupGenerated implements ISet
 	}
 	
 	public void register(Injector injector) {
-	if (!EPackage.Registry.INSTANCE.containsKey("http://www.eclipse.org/papyrus/connectionpointreference/editor/xtext/UMLConnectionPointReference")) {
-		EPackage.Registry.INSTANCE.put("http://www.eclipse.org/papyrus/connectionpointreference/editor/xtext/UMLConnectionPointReference", org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.uMLConnectionPointReference.UMLConnectionPointReferencePackage.eINSTANCE);
+	if (!EPackage.Registry.INSTANCE.containsKey("http://www.eclipse.org/papyrus/uml/textedit/connectionpointreference/xtext/UMLConnectionPointReference")) {
+		EPackage.Registry.INSTANCE.put("http://www.eclipse.org/papyrus/uml/textedit/connectionpointreference/xtext/UMLConnectionPointReference", org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.uMLConnectionPointReference.UMLConnectionPointReferencePackage.eINSTANCE);
 	}
 
 		org.eclipse.xtext.resource.IResourceFactory resourceFactory = injector.getInstance(org.eclipse.xtext.resource.IResourceFactory.class);

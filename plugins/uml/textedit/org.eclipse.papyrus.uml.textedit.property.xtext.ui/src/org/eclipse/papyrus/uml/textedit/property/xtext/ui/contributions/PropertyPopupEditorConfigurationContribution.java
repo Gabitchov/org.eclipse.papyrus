@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
  *
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -23,12 +23,12 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
-import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
-import org.eclipse.papyrus.properties.runtime.modelhandler.emf.EMFUtils;
-import org.eclipse.papyrus.properties.runtime.modelhandler.emf.TransactionUtil;
-import org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils;
-import org.eclipse.papyrus.service.edit.service.IElementEditService;
+import org.eclipse.papyrus.infra.core.utils.EditorUtils;
+import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
+import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
+import org.eclipse.papyrus.views.properties.runtime.modelhandler.emf.EMFUtils;
+import org.eclipse.papyrus.views.properties.runtime.modelhandler.emf.TransactionUtil;
 import org.eclipse.papyrus.uml.textedit.property.xtext.ui.internal.UmlPropertyActivator;
 import org.eclipse.papyrus.uml.textedit.property.xtext.umlProperty.ModifierSpecification;
 import org.eclipse.papyrus.uml.textedit.property.xtext.umlProperty.PropertyRule;
@@ -68,7 +68,7 @@ public class PropertyPopupEditorConfigurationContribution extends PopupEditorCon
 	private int newLowerBound;
 
 	private int newUpperBound;
-	
+
 	private String newDefault ;
 
 	private String newName;
@@ -76,9 +76,9 @@ public class PropertyPopupEditorConfigurationContribution extends PopupEditorCon
 	private Classifier newType;
 
 	private org.eclipse.uml2.uml.VisibilityKind newVisibility;
-	
+
 	private List<Property> newRedefines = new ArrayList<Property>() ;
-	
+
 	private List<Property> newSubsets = new ArrayList<Property>() ;
 
 	/**
@@ -99,11 +99,13 @@ public class PropertyPopupEditorConfigurationContribution extends PopupEditorCon
 
 		// resolves the edit part, and the associated semantic element
 		IGraphicalEditPart graphicalEditPart = null;
-		if(!(editPart instanceof IGraphicalEditPart))
+		if(!(editPart instanceof IGraphicalEditPart)) {
 			return null;
+		}
 		graphicalEditPart = (IGraphicalEditPart)editPart;
-		if(!(graphicalEditPart.resolveSemanticElement() instanceof Property))
+		if(!(graphicalEditPart.resolveSemanticElement() instanceof Property)) {
 			return null;
+		}
 		property = (Property)graphicalEditPart.resolveSemanticElement();
 
 		UmlPropertyJavaValidator.init(property);
@@ -123,13 +125,15 @@ public class PropertyPopupEditorConfigurationContribution extends PopupEditorCon
 			public void reconcile(EObject modelObject, EObject xtextObject) {
 				// first: retrieves / determines if the xtextObject is a PropertyRule object
 				EObject modifiedObject = xtextObject;
-				if(!(modelObject instanceof Property))
+				if(!(modelObject instanceof Property)) {
 					return;
+				}
 				while(xtextObject != null && !(xtextObject instanceof PropertyRule)) {
 					modifiedObject = modifiedObject.eContainer();
 				}
-				if(modifiedObject == null)
+				if(modifiedObject == null) {
 					return;
+				}
 				PropertyRule propertyRuleObject = (PropertyRule)xtextObject;
 
 				// Retrieves the information to be populated in modelObject
@@ -142,7 +146,7 @@ public class PropertyPopupEditorConfigurationContribution extends PopupEditorCon
 				newSubsets = new ArrayList<Property>() ;
 				if(propertyRuleObject.getModifiers() != null) {
 					for(ModifierSpecification modifier : propertyRuleObject.getModifiers().getValues()) {
-						if (modifier.getRedefines() == null && modifier.getSubsets()==null)
+						if (modifier.getRedefines() == null && modifier.getSubsets()==null) {
 							switch(modifier.getValue()) {
 							case ORDERED:
 								newIsOrdered = true;
@@ -159,12 +163,14 @@ public class PropertyPopupEditorConfigurationContribution extends PopupEditorCon
 							default:
 								break;
 							}
+						}
 					}
 					for (ModifierSpecification modifier : propertyRuleObject.getModifiers().getValues()) {
-						if (modifier.getRedefines() != null)
+						if (modifier.getRedefines() != null) {
 							newRedefines.add(modifier.getRedefines().getProperty()) ;
-						else if (modifier.getSubsets() != null)
+						} else if (modifier.getSubsets() != null) {
 							newSubsets.add(modifier.getSubsets().getProperty()) ;
+						}
 					}
 				}
 				newLowerBound = 1;
@@ -197,14 +203,15 @@ public class PropertyPopupEditorConfigurationContribution extends PopupEditorCon
 				else {
 					newDefault = null ;
 				}
-				
+
 				newName = "" + propertyRuleObject.getName();
 
 				TypeRule typeRule = propertyRuleObject.getType();
-				if(typeRule == null)
+				if(typeRule == null) {
 					newType = null;
-				else
+				} else {
 					newType = typeRule.getType();
+				}
 
 				newVisibility = org.eclipse.uml2.uml.VisibilityKind.PUBLIC_LITERAL;
 
@@ -287,15 +294,15 @@ public class PropertyPopupEditorConfigurationContribution extends PopupEditorCon
 		SetRequest setDefaultValueRequest = new SetRequest (editedObject, UMLPackage.eINSTANCE.getProperty_Default(), newDefault) ;
 		ICommand setDefaultValueCommand = provider.getEditCommand(setDefaultValueRequest) ;
 		updateCommand.add(setDefaultValueCommand) ;
-		
+
 		SetRequest setRedefinedPropertiesRequest = new SetRequest (editedObject, UMLPackage.eINSTANCE.getProperty_RedefinedProperty(), newRedefines) ;
 		ICommand setRedefinedPropertiesCommand = provider.getEditCommand(setRedefinedPropertiesRequest) ;
 		updateCommand.add(setRedefinedPropertiesCommand) ;
-		
+
 		SetRequest setSubsettedPropertiesRequest = new SetRequest (editedObject, UMLPackage.eINSTANCE.getProperty_SubsettedProperty(), newSubsets) ;
 		ICommand setSubsettedPropertiesCommand = provider.getEditCommand(setSubsettedPropertiesRequest) ;
 		updateCommand.add(setSubsettedPropertiesCommand) ;
-		
+
 		return updateCommand;
 	}
 

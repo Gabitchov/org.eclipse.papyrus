@@ -30,9 +30,9 @@ Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.message.xtext.ui;singleton
 Import-Package: org.apache.log4j,
  org.eclipse.gmf.runtime.diagram.ui.editparts,
  org.eclipse.gmf.runtime.emf.commands.core.command,
- org.eclipse.papyrus.core.utils,
- org.eclipse.papyrus.log,
- org.eclipse.papyrus.properties.runtime,
+ org.eclipse.papyrus.infra.core.utils,
+ org.eclipse.papyrus.infra.core.log,
+ org.eclipse.papyrus.views.properties.runtime,
  org.eclipse.xtext.gmf.glue,
  org.eclipse.xtext.gmf.glue.edit.part
 

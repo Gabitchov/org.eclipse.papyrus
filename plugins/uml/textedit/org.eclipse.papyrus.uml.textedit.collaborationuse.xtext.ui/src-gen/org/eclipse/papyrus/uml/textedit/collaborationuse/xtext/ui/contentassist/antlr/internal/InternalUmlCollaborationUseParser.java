@@ -56,7 +56,7 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalContentAs
         
 
     public String[] getTokenNames() { return InternalUmlCollaborationUseParser.tokenNames; }
-    public String getGrammarFileName() { return "../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g"; }
+    public String getGrammarFileName() { return "../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g"; }
 
 
      
@@ -80,11 +80,11 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalContentAs
 
 
     // $ANTLR start "entryRuleCollaborationUseRule"
-    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:61:1: entryRuleCollaborationUseRule : ruleCollaborationUseRule EOF ;
+    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:61:1: entryRuleCollaborationUseRule : ruleCollaborationUseRule EOF ;
     public final void entryRuleCollaborationUseRule() throws RecognitionException {
         try {
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:62:1: ( ruleCollaborationUseRule EOF )
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:63:1: ruleCollaborationUseRule EOF
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:62:1: ( ruleCollaborationUseRule EOF )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:63:1: ruleCollaborationUseRule EOF
             {
              before(grammarAccess.getCollaborationUseRuleRule()); 
             pushFollow(FOLLOW_ruleCollaborationUseRule_in_entryRuleCollaborationUseRule61);
@@ -110,21 +110,21 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalContentAs
 
 
     // $ANTLR start "ruleCollaborationUseRule"
-    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:70:1: ruleCollaborationUseRule : ( ( rule__CollaborationUseRule__Group__0 ) ) ;
+    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:70:1: ruleCollaborationUseRule : ( ( rule__CollaborationUseRule__Group__0 ) ) ;
     public final void ruleCollaborationUseRule() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:74:2: ( ( ( rule__CollaborationUseRule__Group__0 ) ) )
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:75:1: ( ( rule__CollaborationUseRule__Group__0 ) )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:74:2: ( ( ( rule__CollaborationUseRule__Group__0 ) ) )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:75:1: ( ( rule__CollaborationUseRule__Group__0 ) )
             {
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:75:1: ( ( rule__CollaborationUseRule__Group__0 ) )
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:76:1: ( rule__CollaborationUseRule__Group__0 )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:75:1: ( ( rule__CollaborationUseRule__Group__0 ) )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:76:1: ( rule__CollaborationUseRule__Group__0 )
             {
              before(grammarAccess.getCollaborationUseRuleAccess().getGroup()); 
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:77:1: ( rule__CollaborationUseRule__Group__0 )
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:77:2: rule__CollaborationUseRule__Group__0
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:77:1: ( rule__CollaborationUseRule__Group__0 )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:77:2: rule__CollaborationUseRule__Group__0
             {
             pushFollow(FOLLOW_rule__CollaborationUseRule__Group__0_in_ruleCollaborationUseRule94);
             rule__CollaborationUseRule__Group__0();
@@ -157,11 +157,11 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalContentAs
 
 
     // $ANTLR start "entryRuleTypeRule"
-    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:89:1: entryRuleTypeRule : ruleTypeRule EOF ;
+    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:89:1: entryRuleTypeRule : ruleTypeRule EOF ;
     public final void entryRuleTypeRule() throws RecognitionException {
         try {
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:90:1: ( ruleTypeRule EOF )
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:91:1: ruleTypeRule EOF
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:90:1: ( ruleTypeRule EOF )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:91:1: ruleTypeRule EOF
             {
              before(grammarAccess.getTypeRuleRule()); 
             pushFollow(FOLLOW_ruleTypeRule_in_entryRuleTypeRule121);
@@ -187,21 +187,21 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalContentAs
 
 
     // $ANTLR start "ruleTypeRule"
-    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:98:1: ruleTypeRule : ( ( rule__TypeRule__Group__0 ) ) ;
+    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:98:1: ruleTypeRule : ( ( rule__TypeRule__Group__0 ) ) ;
     public final void ruleTypeRule() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:102:2: ( ( ( rule__TypeRule__Group__0 ) ) )
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:103:1: ( ( rule__TypeRule__Group__0 ) )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:102:2: ( ( ( rule__TypeRule__Group__0 ) ) )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:103:1: ( ( rule__TypeRule__Group__0 ) )
             {
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:103:1: ( ( rule__TypeRule__Group__0 ) )
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:104:1: ( rule__TypeRule__Group__0 )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:103:1: ( ( rule__TypeRule__Group__0 ) )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:104:1: ( rule__TypeRule__Group__0 )
             {
              before(grammarAccess.getTypeRuleAccess().getGroup()); 
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:105:1: ( rule__TypeRule__Group__0 )
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:105:2: rule__TypeRule__Group__0
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:105:1: ( rule__TypeRule__Group__0 )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:105:2: rule__TypeRule__Group__0
             {
             pushFollow(FOLLOW_rule__TypeRule__Group__0_in_ruleTypeRule154);
             rule__TypeRule__Group__0();
@@ -234,11 +234,11 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalContentAs
 
 
     // $ANTLR start "entryRuleQualifiedName"
-    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:117:1: entryRuleQualifiedName : ruleQualifiedName EOF ;
+    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:117:1: entryRuleQualifiedName : ruleQualifiedName EOF ;
     public final void entryRuleQualifiedName() throws RecognitionException {
         try {
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:118:1: ( ruleQualifiedName EOF )
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:119:1: ruleQualifiedName EOF
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:118:1: ( ruleQualifiedName EOF )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:119:1: ruleQualifiedName EOF
             {
              before(grammarAccess.getQualifiedNameRule()); 
             pushFollow(FOLLOW_ruleQualifiedName_in_entryRuleQualifiedName181);
@@ -264,21 +264,21 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalContentAs
 
 
     // $ANTLR start "ruleQualifiedName"
-    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:126:1: ruleQualifiedName : ( ( rule__QualifiedName__Group__0 ) ) ;
+    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:126:1: ruleQualifiedName : ( ( rule__QualifiedName__Group__0 ) ) ;
     public final void ruleQualifiedName() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:130:2: ( ( ( rule__QualifiedName__Group__0 ) ) )
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:131:1: ( ( rule__QualifiedName__Group__0 ) )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:130:2: ( ( ( rule__QualifiedName__Group__0 ) ) )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:131:1: ( ( rule__QualifiedName__Group__0 ) )
             {
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:131:1: ( ( rule__QualifiedName__Group__0 ) )
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:132:1: ( rule__QualifiedName__Group__0 )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:131:1: ( ( rule__QualifiedName__Group__0 ) )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:132:1: ( rule__QualifiedName__Group__0 )
             {
              before(grammarAccess.getQualifiedNameAccess().getGroup()); 
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:133:1: ( rule__QualifiedName__Group__0 )
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:133:2: rule__QualifiedName__Group__0
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:133:1: ( rule__QualifiedName__Group__0 )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:133:2: rule__QualifiedName__Group__0
             {
             pushFollow(FOLLOW_rule__QualifiedName__Group__0_in_ruleQualifiedName214);
             rule__QualifiedName__Group__0();
@@ -311,11 +311,11 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalContentAs
 
 
     // $ANTLR start "entryRuleBoundSpecification"
-    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:147:1: entryRuleBoundSpecification : ruleBoundSpecification EOF ;
+    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:147:1: entryRuleBoundSpecification : ruleBoundSpecification EOF ;
     public final void entryRuleBoundSpecification() throws RecognitionException {
         try {
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:148:1: ( ruleBoundSpecification EOF )
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:149:1: ruleBoundSpecification EOF
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:148:1: ( ruleBoundSpecification EOF )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:149:1: ruleBoundSpecification EOF
             {
              before(grammarAccess.getBoundSpecificationRule()); 
             pushFollow(FOLLOW_ruleBoundSpecification_in_entryRuleBoundSpecification243);
@@ -341,21 +341,21 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalContentAs
 
 
     // $ANTLR start "ruleBoundSpecification"
-    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:156:1: ruleBoundSpecification : ( ( rule__BoundSpecification__ValueAssignment ) ) ;
+    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:156:1: ruleBoundSpecification : ( ( rule__BoundSpecification__ValueAssignment ) ) ;
     public final void ruleBoundSpecification() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:160:2: ( ( ( rule__BoundSpecification__ValueAssignment ) ) )
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:161:1: ( ( rule__BoundSpecification__ValueAssignment ) )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:160:2: ( ( ( rule__BoundSpecification__ValueAssignment ) ) )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:161:1: ( ( rule__BoundSpecification__ValueAssignment ) )
             {
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:161:1: ( ( rule__BoundSpecification__ValueAssignment ) )
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:162:1: ( rule__BoundSpecification__ValueAssignment )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:161:1: ( ( rule__BoundSpecification__ValueAssignment ) )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:162:1: ( rule__BoundSpecification__ValueAssignment )
             {
              before(grammarAccess.getBoundSpecificationAccess().getValueAssignment()); 
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:163:1: ( rule__BoundSpecification__ValueAssignment )
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:163:2: rule__BoundSpecification__ValueAssignment
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:163:1: ( rule__BoundSpecification__ValueAssignment )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:163:2: rule__BoundSpecification__ValueAssignment
             {
             pushFollow(FOLLOW_rule__BoundSpecification__ValueAssignment_in_ruleBoundSpecification276);
             rule__BoundSpecification__ValueAssignment();
@@ -388,21 +388,21 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalContentAs
 
 
     // $ANTLR start "ruleVisibilityKind"
-    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:176:1: ruleVisibilityKind : ( ( rule__VisibilityKind__Alternatives ) ) ;
+    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:176:1: ruleVisibilityKind : ( ( rule__VisibilityKind__Alternatives ) ) ;
     public final void ruleVisibilityKind() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:180:1: ( ( ( rule__VisibilityKind__Alternatives ) ) )
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:181:1: ( ( rule__VisibilityKind__Alternatives ) )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:180:1: ( ( ( rule__VisibilityKind__Alternatives ) ) )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:181:1: ( ( rule__VisibilityKind__Alternatives ) )
             {
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:181:1: ( ( rule__VisibilityKind__Alternatives ) )
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:182:1: ( rule__VisibilityKind__Alternatives )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:181:1: ( ( rule__VisibilityKind__Alternatives ) )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:182:1: ( rule__VisibilityKind__Alternatives )
             {
              before(grammarAccess.getVisibilityKindAccess().getAlternatives()); 
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:183:1: ( rule__VisibilityKind__Alternatives )
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:183:2: rule__VisibilityKind__Alternatives
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:183:1: ( rule__VisibilityKind__Alternatives )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:183:2: rule__VisibilityKind__Alternatives
             {
             pushFollow(FOLLOW_rule__VisibilityKind__Alternatives_in_ruleVisibilityKind313);
             rule__VisibilityKind__Alternatives();
@@ -435,13 +435,13 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalContentAs
 
 
     // $ANTLR start "rule__CollaborationUseRule__Alternatives_3"
-    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:196:1: rule__CollaborationUseRule__Alternatives_3 : ( ( ( rule__CollaborationUseRule__TypeAssignment_3_0 ) ) | ( '<Undefined>' ) );
+    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:196:1: rule__CollaborationUseRule__Alternatives_3 : ( ( ( rule__CollaborationUseRule__TypeAssignment_3_0 ) ) | ( '<Undefined>' ) );
     public final void rule__CollaborationUseRule__Alternatives_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:200:1: ( ( ( rule__CollaborationUseRule__TypeAssignment_3_0 ) ) | ( '<Undefined>' ) )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:200:1: ( ( ( rule__CollaborationUseRule__TypeAssignment_3_0 ) ) | ( '<Undefined>' ) )
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -459,14 +459,14 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalContentAs
             }
             switch (alt1) {
                 case 1 :
-                    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:201:1: ( ( rule__CollaborationUseRule__TypeAssignment_3_0 ) )
+                    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:201:1: ( ( rule__CollaborationUseRule__TypeAssignment_3_0 ) )
                     {
-                    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:201:1: ( ( rule__CollaborationUseRule__TypeAssignment_3_0 ) )
-                    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:202:1: ( rule__CollaborationUseRule__TypeAssignment_3_0 )
+                    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:201:1: ( ( rule__CollaborationUseRule__TypeAssignment_3_0 ) )
+                    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:202:1: ( rule__CollaborationUseRule__TypeAssignment_3_0 )
                     {
                      before(grammarAccess.getCollaborationUseRuleAccess().getTypeAssignment_3_0()); 
-                    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:203:1: ( rule__CollaborationUseRule__TypeAssignment_3_0 )
-                    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:203:2: rule__CollaborationUseRule__TypeAssignment_3_0
+                    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:203:1: ( rule__CollaborationUseRule__TypeAssignment_3_0 )
+                    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:203:2: rule__CollaborationUseRule__TypeAssignment_3_0
                     {
                     pushFollow(FOLLOW_rule__CollaborationUseRule__TypeAssignment_3_0_in_rule__CollaborationUseRule__Alternatives_3350);
                     rule__CollaborationUseRule__TypeAssignment_3_0();
@@ -484,10 +484,10 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalContentAs
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:207:6: ( '<Undefined>' )
+                    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:207:6: ( '<Undefined>' )
                     {
-                    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:207:6: ( '<Undefined>' )
-                    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:208:1: '<Undefined>'
+                    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:207:6: ( '<Undefined>' )
+                    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:208:1: '<Undefined>'
                     {
                      before(grammarAccess.getCollaborationUseRuleAccess().getUndefinedKeyword_3_1()); 
                     match(input,12,FOLLOW_12_in_rule__CollaborationUseRule__Alternatives_3369); 
@@ -516,13 +516,13 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalContentAs
 
 
     // $ANTLR start "rule__VisibilityKind__Alternatives"
-    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:220:1: rule__VisibilityKind__Alternatives : ( ( ( '+' ) ) | ( ( '-' ) ) | ( ( '#' ) ) | ( ( '~' ) ) );
+    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:220:1: rule__VisibilityKind__Alternatives : ( ( ( '+' ) ) | ( ( '-' ) ) | ( ( '#' ) ) | ( ( '~' ) ) );
     public final void rule__VisibilityKind__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:224:1: ( ( ( '+' ) ) | ( ( '-' ) ) | ( ( '#' ) ) | ( ( '~' ) ) )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:224:1: ( ( ( '+' ) ) | ( ( '-' ) ) | ( ( '#' ) ) | ( ( '~' ) ) )
             int alt2=4;
             switch ( input.LA(1) ) {
             case 13:
@@ -554,14 +554,14 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalContentAs
 
             switch (alt2) {
                 case 1 :
-                    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:225:1: ( ( '+' ) )
+                    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:225:1: ( ( '+' ) )
                     {
-                    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:225:1: ( ( '+' ) )
-                    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:226:1: ( '+' )
+                    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:225:1: ( ( '+' ) )
+                    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:226:1: ( '+' )
                     {
                      before(grammarAccess.getVisibilityKindAccess().getPublicEnumLiteralDeclaration_0()); 
-                    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:227:1: ( '+' )
-                    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:227:3: '+'
+                    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:227:1: ( '+' )
+                    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:227:3: '+'
                     {
                     match(input,13,FOLLOW_13_in_rule__VisibilityKind__Alternatives404); 
 
@@ -575,14 +575,14 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalContentAs
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:232:6: ( ( '-' ) )
+                    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:232:6: ( ( '-' ) )
                     {
-                    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:232:6: ( ( '-' ) )
-                    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:233:1: ( '-' )
+                    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:232:6: ( ( '-' ) )
+                    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:233:1: ( '-' )
                     {
                      before(grammarAccess.getVisibilityKindAccess().getPrivateEnumLiteralDeclaration_1()); 
-                    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:234:1: ( '-' )
-                    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:234:3: '-'
+                    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:234:1: ( '-' )
+                    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:234:3: '-'
                     {
                     match(input,14,FOLLOW_14_in_rule__VisibilityKind__Alternatives425); 
 
@@ -596,14 +596,14 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalContentAs
                     }
                     break;
                 case 3 :
-                    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:239:6: ( ( '#' ) )
+                    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:239:6: ( ( '#' ) )
                     {
-                    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:239:6: ( ( '#' ) )
-                    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:240:1: ( '#' )
+                    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:239:6: ( ( '#' ) )
+                    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:240:1: ( '#' )
                     {
                      before(grammarAccess.getVisibilityKindAccess().getProtectedEnumLiteralDeclaration_2()); 
-                    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:241:1: ( '#' )
-                    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:241:3: '#'
+                    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:241:1: ( '#' )
+                    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:241:3: '#'
                     {
                     match(input,15,FOLLOW_15_in_rule__VisibilityKind__Alternatives446); 
 
@@ -617,14 +617,14 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalContentAs
                     }
                     break;
                 case 4 :
-                    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:246:6: ( ( '~' ) )
+                    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:246:6: ( ( '~' ) )
                     {
-                    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:246:6: ( ( '~' ) )
-                    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:247:1: ( '~' )
+                    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:246:6: ( ( '~' ) )
+                    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:247:1: ( '~' )
                     {
                      before(grammarAccess.getVisibilityKindAccess().getPackageEnumLiteralDeclaration_3()); 
-                    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:248:1: ( '~' )
-                    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:248:3: '~'
+                    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:248:1: ( '~' )
+                    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:248:3: '~'
                     {
                     match(input,16,FOLLOW_16_in_rule__VisibilityKind__Alternatives467); 
 
@@ -655,14 +655,14 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalContentAs
 
 
     // $ANTLR start "rule__CollaborationUseRule__Group__0"
-    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:261:1: rule__CollaborationUseRule__Group__0 : rule__CollaborationUseRule__Group__0__Impl rule__CollaborationUseRule__Group__1 ;
+    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:261:1: rule__CollaborationUseRule__Group__0 : rule__CollaborationUseRule__Group__0__Impl rule__CollaborationUseRule__Group__1 ;
     public final void rule__CollaborationUseRule__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:265:1: ( rule__CollaborationUseRule__Group__0__Impl rule__CollaborationUseRule__Group__1 )
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:266:2: rule__CollaborationUseRule__Group__0__Impl rule__CollaborationUseRule__Group__1
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:265:1: ( rule__CollaborationUseRule__Group__0__Impl rule__CollaborationUseRule__Group__1 )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:266:2: rule__CollaborationUseRule__Group__0__Impl rule__CollaborationUseRule__Group__1
             {
             pushFollow(FOLLOW_rule__CollaborationUseRule__Group__0__Impl_in_rule__CollaborationUseRule__Group__0501);
             rule__CollaborationUseRule__Group__0__Impl();
@@ -693,21 +693,21 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalContentAs
 
 
     // $ANTLR start "rule__CollaborationUseRule__Group__0__Impl"
-    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:273:1: rule__CollaborationUseRule__Group__0__Impl : ( ( rule__CollaborationUseRule__VisibilityAssignment_0 ) ) ;
+    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:273:1: rule__CollaborationUseRule__Group__0__Impl : ( ( rule__CollaborationUseRule__VisibilityAssignment_0 ) ) ;
     public final void rule__CollaborationUseRule__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:277:1: ( ( ( rule__CollaborationUseRule__VisibilityAssignment_0 ) ) )
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:278:1: ( ( rule__CollaborationUseRule__VisibilityAssignment_0 ) )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:277:1: ( ( ( rule__CollaborationUseRule__VisibilityAssignment_0 ) ) )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:278:1: ( ( rule__CollaborationUseRule__VisibilityAssignment_0 ) )
             {
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:278:1: ( ( rule__CollaborationUseRule__VisibilityAssignment_0 ) )
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:279:1: ( rule__CollaborationUseRule__VisibilityAssignment_0 )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:278:1: ( ( rule__CollaborationUseRule__VisibilityAssignment_0 ) )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:279:1: ( rule__CollaborationUseRule__VisibilityAssignment_0 )
             {
              before(grammarAccess.getCollaborationUseRuleAccess().getVisibilityAssignment_0()); 
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:280:1: ( rule__CollaborationUseRule__VisibilityAssignment_0 )
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:280:2: rule__CollaborationUseRule__VisibilityAssignment_0
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:280:1: ( rule__CollaborationUseRule__VisibilityAssignment_0 )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:280:2: rule__CollaborationUseRule__VisibilityAssignment_0
             {
             pushFollow(FOLLOW_rule__CollaborationUseRule__VisibilityAssignment_0_in_rule__CollaborationUseRule__Group__0__Impl531);
             rule__CollaborationUseRule__VisibilityAssignment_0();
@@ -740,14 +740,14 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalContentAs
 
 
     // $ANTLR start "rule__CollaborationUseRule__Group__1"
-    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:290:1: rule__CollaborationUseRule__Group__1 : rule__CollaborationUseRule__Group__1__Impl rule__CollaborationUseRule__Group__2 ;
+    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:290:1: rule__CollaborationUseRule__Group__1 : rule__CollaborationUseRule__Group__1__Impl rule__CollaborationUseRule__Group__2 ;
     public final void rule__CollaborationUseRule__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:294:1: ( rule__CollaborationUseRule__Group__1__Impl rule__CollaborationUseRule__Group__2 )
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:295:2: rule__CollaborationUseRule__Group__1__Impl rule__CollaborationUseRule__Group__2
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:294:1: ( rule__CollaborationUseRule__Group__1__Impl rule__CollaborationUseRule__Group__2 )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:295:2: rule__CollaborationUseRule__Group__1__Impl rule__CollaborationUseRule__Group__2
             {
             pushFollow(FOLLOW_rule__CollaborationUseRule__Group__1__Impl_in_rule__CollaborationUseRule__Group__1561);
             rule__CollaborationUseRule__Group__1__Impl();
@@ -778,21 +778,21 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalContentAs
 
 
     // $ANTLR start "rule__CollaborationUseRule__Group__1__Impl"
-    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:302:1: rule__CollaborationUseRule__Group__1__Impl : ( ( rule__CollaborationUseRule__NameAssignment_1 ) ) ;
+    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:302:1: rule__CollaborationUseRule__Group__1__Impl : ( ( rule__CollaborationUseRule__NameAssignment_1 ) ) ;
     public final void rule__CollaborationUseRule__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:306:1: ( ( ( rule__CollaborationUseRule__NameAssignment_1 ) ) )
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:307:1: ( ( rule__CollaborationUseRule__NameAssignment_1 ) )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:306:1: ( ( ( rule__CollaborationUseRule__NameAssignment_1 ) ) )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:307:1: ( ( rule__CollaborationUseRule__NameAssignment_1 ) )
             {
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:307:1: ( ( rule__CollaborationUseRule__NameAssignment_1 ) )
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:308:1: ( rule__CollaborationUseRule__NameAssignment_1 )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:307:1: ( ( rule__CollaborationUseRule__NameAssignment_1 ) )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:308:1: ( rule__CollaborationUseRule__NameAssignment_1 )
             {
              before(grammarAccess.getCollaborationUseRuleAccess().getNameAssignment_1()); 
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:309:1: ( rule__CollaborationUseRule__NameAssignment_1 )
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:309:2: rule__CollaborationUseRule__NameAssignment_1
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:309:1: ( rule__CollaborationUseRule__NameAssignment_1 )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:309:2: rule__CollaborationUseRule__NameAssignment_1
             {
             pushFollow(FOLLOW_rule__CollaborationUseRule__NameAssignment_1_in_rule__CollaborationUseRule__Group__1__Impl591);
             rule__CollaborationUseRule__NameAssignment_1();
@@ -825,14 +825,14 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalContentAs
 
 
     // $ANTLR start "rule__CollaborationUseRule__Group__2"
-    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:319:1: rule__CollaborationUseRule__Group__2 : rule__CollaborationUseRule__Group__2__Impl rule__CollaborationUseRule__Group__3 ;
+    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:319:1: rule__CollaborationUseRule__Group__2 : rule__CollaborationUseRule__Group__2__Impl rule__CollaborationUseRule__Group__3 ;
     public final void rule__CollaborationUseRule__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:323:1: ( rule__CollaborationUseRule__Group__2__Impl rule__CollaborationUseRule__Group__3 )
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:324:2: rule__CollaborationUseRule__Group__2__Impl rule__CollaborationUseRule__Group__3
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:323:1: ( rule__CollaborationUseRule__Group__2__Impl rule__CollaborationUseRule__Group__3 )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:324:2: rule__CollaborationUseRule__Group__2__Impl rule__CollaborationUseRule__Group__3
             {
             pushFollow(FOLLOW_rule__CollaborationUseRule__Group__2__Impl_in_rule__CollaborationUseRule__Group__2621);
             rule__CollaborationUseRule__Group__2__Impl();
@@ -863,17 +863,17 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalContentAs
 
 
     // $ANTLR start "rule__CollaborationUseRule__Group__2__Impl"
-    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:331:1: rule__CollaborationUseRule__Group__2__Impl : ( ':' ) ;
+    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:331:1: rule__CollaborationUseRule__Group__2__Impl : ( ':' ) ;
     public final void rule__CollaborationUseRule__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:335:1: ( ( ':' ) )
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:336:1: ( ':' )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:335:1: ( ( ':' ) )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:336:1: ( ':' )
             {
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:336:1: ( ':' )
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:337:1: ':'
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:336:1: ( ':' )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:337:1: ':'
             {
              before(grammarAccess.getCollaborationUseRuleAccess().getColonKeyword_2()); 
             match(input,17,FOLLOW_17_in_rule__CollaborationUseRule__Group__2__Impl652); 
@@ -900,14 +900,14 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalContentAs
 
 
     // $ANTLR start "rule__CollaborationUseRule__Group__3"
-    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:350:1: rule__CollaborationUseRule__Group__3 : rule__CollaborationUseRule__Group__3__Impl ;
+    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:350:1: rule__CollaborationUseRule__Group__3 : rule__CollaborationUseRule__Group__3__Impl ;
     public final void rule__CollaborationUseRule__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:354:1: ( rule__CollaborationUseRule__Group__3__Impl )
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:355:2: rule__CollaborationUseRule__Group__3__Impl
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:354:1: ( rule__CollaborationUseRule__Group__3__Impl )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:355:2: rule__CollaborationUseRule__Group__3__Impl
             {
             pushFollow(FOLLOW_rule__CollaborationUseRule__Group__3__Impl_in_rule__CollaborationUseRule__Group__3683);
             rule__CollaborationUseRule__Group__3__Impl();
@@ -933,21 +933,21 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalContentAs
 
 
     // $ANTLR start "rule__CollaborationUseRule__Group__3__Impl"
-    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:361:1: rule__CollaborationUseRule__Group__3__Impl : ( ( rule__CollaborationUseRule__Alternatives_3 ) ) ;
+    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:361:1: rule__CollaborationUseRule__Group__3__Impl : ( ( rule__CollaborationUseRule__Alternatives_3 ) ) ;
     public final void rule__CollaborationUseRule__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:365:1: ( ( ( rule__CollaborationUseRule__Alternatives_3 ) ) )
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:366:1: ( ( rule__CollaborationUseRule__Alternatives_3 ) )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:365:1: ( ( ( rule__CollaborationUseRule__Alternatives_3 ) ) )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:366:1: ( ( rule__CollaborationUseRule__Alternatives_3 ) )
             {
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:366:1: ( ( rule__CollaborationUseRule__Alternatives_3 ) )
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:367:1: ( rule__CollaborationUseRule__Alternatives_3 )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:366:1: ( ( rule__CollaborationUseRule__Alternatives_3 ) )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:367:1: ( rule__CollaborationUseRule__Alternatives_3 )
             {
              before(grammarAccess.getCollaborationUseRuleAccess().getAlternatives_3()); 
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:368:1: ( rule__CollaborationUseRule__Alternatives_3 )
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:368:2: rule__CollaborationUseRule__Alternatives_3
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:368:1: ( rule__CollaborationUseRule__Alternatives_3 )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:368:2: rule__CollaborationUseRule__Alternatives_3
             {
             pushFollow(FOLLOW_rule__CollaborationUseRule__Alternatives_3_in_rule__CollaborationUseRule__Group__3__Impl710);
             rule__CollaborationUseRule__Alternatives_3();
@@ -980,14 +980,14 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalContentAs
 
 
     // $ANTLR start "rule__TypeRule__Group__0"
-    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:386:1: rule__TypeRule__Group__0 : rule__TypeRule__Group__0__Impl rule__TypeRule__Group__1 ;
+    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:386:1: rule__TypeRule__Group__0 : rule__TypeRule__Group__0__Impl rule__TypeRule__Group__1 ;
     public final void rule__TypeRule__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:390:1: ( rule__TypeRule__Group__0__Impl rule__TypeRule__Group__1 )
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:391:2: rule__TypeRule__Group__0__Impl rule__TypeRule__Group__1
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:390:1: ( rule__TypeRule__Group__0__Impl rule__TypeRule__Group__1 )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:391:2: rule__TypeRule__Group__0__Impl rule__TypeRule__Group__1
             {
             pushFollow(FOLLOW_rule__TypeRule__Group__0__Impl_in_rule__TypeRule__Group__0748);
             rule__TypeRule__Group__0__Impl();
@@ -1018,20 +1018,20 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalContentAs
 
 
     // $ANTLR start "rule__TypeRule__Group__0__Impl"
-    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:398:1: rule__TypeRule__Group__0__Impl : ( ( rule__TypeRule__PathAssignment_0 )? ) ;
+    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:398:1: rule__TypeRule__Group__0__Impl : ( ( rule__TypeRule__PathAssignment_0 )? ) ;
     public final void rule__TypeRule__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:402:1: ( ( ( rule__TypeRule__PathAssignment_0 )? ) )
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:403:1: ( ( rule__TypeRule__PathAssignment_0 )? )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:402:1: ( ( ( rule__TypeRule__PathAssignment_0 )? ) )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:403:1: ( ( rule__TypeRule__PathAssignment_0 )? )
             {
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:403:1: ( ( rule__TypeRule__PathAssignment_0 )? )
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:404:1: ( rule__TypeRule__PathAssignment_0 )?
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:403:1: ( ( rule__TypeRule__PathAssignment_0 )? )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:404:1: ( rule__TypeRule__PathAssignment_0 )?
             {
              before(grammarAccess.getTypeRuleAccess().getPathAssignment_0()); 
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:405:1: ( rule__TypeRule__PathAssignment_0 )?
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:405:1: ( rule__TypeRule__PathAssignment_0 )?
             int alt3=2;
             int LA3_0 = input.LA(1);
 
@@ -1044,7 +1044,7 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalContentAs
             }
             switch (alt3) {
                 case 1 :
-                    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:405:2: rule__TypeRule__PathAssignment_0
+                    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:405:2: rule__TypeRule__PathAssignment_0
                     {
                     pushFollow(FOLLOW_rule__TypeRule__PathAssignment_0_in_rule__TypeRule__Group__0__Impl778);
                     rule__TypeRule__PathAssignment_0();
@@ -1080,14 +1080,14 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalContentAs
 
 
     // $ANTLR start "rule__TypeRule__Group__1"
-    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:415:1: rule__TypeRule__Group__1 : rule__TypeRule__Group__1__Impl ;
+    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:415:1: rule__TypeRule__Group__1 : rule__TypeRule__Group__1__Impl ;
     public final void rule__TypeRule__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:419:1: ( rule__TypeRule__Group__1__Impl )
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:420:2: rule__TypeRule__Group__1__Impl
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:419:1: ( rule__TypeRule__Group__1__Impl )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:420:2: rule__TypeRule__Group__1__Impl
             {
             pushFollow(FOLLOW_rule__TypeRule__Group__1__Impl_in_rule__TypeRule__Group__1809);
             rule__TypeRule__Group__1__Impl();
@@ -1113,21 +1113,21 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalContentAs
 
 
     // $ANTLR start "rule__TypeRule__Group__1__Impl"
-    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:426:1: rule__TypeRule__Group__1__Impl : ( ( rule__TypeRule__TypeAssignment_1 ) ) ;
+    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:426:1: rule__TypeRule__Group__1__Impl : ( ( rule__TypeRule__TypeAssignment_1 ) ) ;
     public final void rule__TypeRule__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:430:1: ( ( ( rule__TypeRule__TypeAssignment_1 ) ) )
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:431:1: ( ( rule__TypeRule__TypeAssignment_1 ) )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:430:1: ( ( ( rule__TypeRule__TypeAssignment_1 ) ) )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:431:1: ( ( rule__TypeRule__TypeAssignment_1 ) )
             {
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:431:1: ( ( rule__TypeRule__TypeAssignment_1 ) )
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:432:1: ( rule__TypeRule__TypeAssignment_1 )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:431:1: ( ( rule__TypeRule__TypeAssignment_1 ) )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:432:1: ( rule__TypeRule__TypeAssignment_1 )
             {
              before(grammarAccess.getTypeRuleAccess().getTypeAssignment_1()); 
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:433:1: ( rule__TypeRule__TypeAssignment_1 )
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:433:2: rule__TypeRule__TypeAssignment_1
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:433:1: ( rule__TypeRule__TypeAssignment_1 )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:433:2: rule__TypeRule__TypeAssignment_1
             {
             pushFollow(FOLLOW_rule__TypeRule__TypeAssignment_1_in_rule__TypeRule__Group__1__Impl836);
             rule__TypeRule__TypeAssignment_1();
@@ -1160,14 +1160,14 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalContentAs
 
 
     // $ANTLR start "rule__QualifiedName__Group__0"
-    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:447:1: rule__QualifiedName__Group__0 : rule__QualifiedName__Group__0__Impl rule__QualifiedName__Group__1 ;
+    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:447:1: rule__QualifiedName__Group__0 : rule__QualifiedName__Group__0__Impl rule__QualifiedName__Group__1 ;
     public final void rule__QualifiedName__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:451:1: ( rule__QualifiedName__Group__0__Impl rule__QualifiedName__Group__1 )
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:452:2: rule__QualifiedName__Group__0__Impl rule__QualifiedName__Group__1
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:451:1: ( rule__QualifiedName__Group__0__Impl rule__QualifiedName__Group__1 )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:452:2: rule__QualifiedName__Group__0__Impl rule__QualifiedName__Group__1
             {
             pushFollow(FOLLOW_rule__QualifiedName__Group__0__Impl_in_rule__QualifiedName__Group__0870);
             rule__QualifiedName__Group__0__Impl();
@@ -1198,21 +1198,21 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalContentAs
 
 
     // $ANTLR start "rule__QualifiedName__Group__0__Impl"
-    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:459:1: rule__QualifiedName__Group__0__Impl : ( ( rule__QualifiedName__PathAssignment_0 ) ) ;
+    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:459:1: rule__QualifiedName__Group__0__Impl : ( ( rule__QualifiedName__PathAssignment_0 ) ) ;
     public final void rule__QualifiedName__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:463:1: ( ( ( rule__QualifiedName__PathAssignment_0 ) ) )
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:464:1: ( ( rule__QualifiedName__PathAssignment_0 ) )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:463:1: ( ( ( rule__QualifiedName__PathAssignment_0 ) ) )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:464:1: ( ( rule__QualifiedName__PathAssignment_0 ) )
             {
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:464:1: ( ( rule__QualifiedName__PathAssignment_0 ) )
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:465:1: ( rule__QualifiedName__PathAssignment_0 )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:464:1: ( ( rule__QualifiedName__PathAssignment_0 ) )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:465:1: ( rule__QualifiedName__PathAssignment_0 )
             {
              before(grammarAccess.getQualifiedNameAccess().getPathAssignment_0()); 
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:466:1: ( rule__QualifiedName__PathAssignment_0 )
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:466:2: rule__QualifiedName__PathAssignment_0
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:466:1: ( rule__QualifiedName__PathAssignment_0 )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:466:2: rule__QualifiedName__PathAssignment_0
             {
             pushFollow(FOLLOW_rule__QualifiedName__PathAssignment_0_in_rule__QualifiedName__Group__0__Impl900);
             rule__QualifiedName__PathAssignment_0();
@@ -1245,14 +1245,14 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalContentAs
 
 
     // $ANTLR start "rule__QualifiedName__Group__1"
-    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:476:1: rule__QualifiedName__Group__1 : rule__QualifiedName__Group__1__Impl rule__QualifiedName__Group__2 ;
+    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:476:1: rule__QualifiedName__Group__1 : rule__QualifiedName__Group__1__Impl rule__QualifiedName__Group__2 ;
     public final void rule__QualifiedName__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:480:1: ( rule__QualifiedName__Group__1__Impl rule__QualifiedName__Group__2 )
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:481:2: rule__QualifiedName__Group__1__Impl rule__QualifiedName__Group__2
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:480:1: ( rule__QualifiedName__Group__1__Impl rule__QualifiedName__Group__2 )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:481:2: rule__QualifiedName__Group__1__Impl rule__QualifiedName__Group__2
             {
             pushFollow(FOLLOW_rule__QualifiedName__Group__1__Impl_in_rule__QualifiedName__Group__1930);
             rule__QualifiedName__Group__1__Impl();
@@ -1283,17 +1283,17 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalContentAs
 
 
     // $ANTLR start "rule__QualifiedName__Group__1__Impl"
-    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:488:1: rule__QualifiedName__Group__1__Impl : ( '::' ) ;
+    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:488:1: rule__QualifiedName__Group__1__Impl : ( '::' ) ;
     public final void rule__QualifiedName__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:492:1: ( ( '::' ) )
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:493:1: ( '::' )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:492:1: ( ( '::' ) )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:493:1: ( '::' )
             {
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:493:1: ( '::' )
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:494:1: '::'
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:493:1: ( '::' )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:494:1: '::'
             {
              before(grammarAccess.getQualifiedNameAccess().getColonColonKeyword_1()); 
             match(input,18,FOLLOW_18_in_rule__QualifiedName__Group__1__Impl961); 
@@ -1320,14 +1320,14 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalContentAs
 
 
     // $ANTLR start "rule__QualifiedName__Group__2"
-    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:507:1: rule__QualifiedName__Group__2 : rule__QualifiedName__Group__2__Impl ;
+    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:507:1: rule__QualifiedName__Group__2 : rule__QualifiedName__Group__2__Impl ;
     public final void rule__QualifiedName__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:511:1: ( rule__QualifiedName__Group__2__Impl )
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:512:2: rule__QualifiedName__Group__2__Impl
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:511:1: ( rule__QualifiedName__Group__2__Impl )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:512:2: rule__QualifiedName__Group__2__Impl
             {
             pushFollow(FOLLOW_rule__QualifiedName__Group__2__Impl_in_rule__QualifiedName__Group__2992);
             rule__QualifiedName__Group__2__Impl();
@@ -1353,20 +1353,20 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalContentAs
 
 
     // $ANTLR start "rule__QualifiedName__Group__2__Impl"
-    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:518:1: rule__QualifiedName__Group__2__Impl : ( ( rule__QualifiedName__RemainingAssignment_2 )? ) ;
+    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:518:1: rule__QualifiedName__Group__2__Impl : ( ( rule__QualifiedName__RemainingAssignment_2 )? ) ;
     public final void rule__QualifiedName__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:522:1: ( ( ( rule__QualifiedName__RemainingAssignment_2 )? ) )
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:523:1: ( ( rule__QualifiedName__RemainingAssignment_2 )? )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:522:1: ( ( ( rule__QualifiedName__RemainingAssignment_2 )? ) )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:523:1: ( ( rule__QualifiedName__RemainingAssignment_2 )? )
             {
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:523:1: ( ( rule__QualifiedName__RemainingAssignment_2 )? )
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:524:1: ( rule__QualifiedName__RemainingAssignment_2 )?
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:523:1: ( ( rule__QualifiedName__RemainingAssignment_2 )? )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:524:1: ( rule__QualifiedName__RemainingAssignment_2 )?
             {
              before(grammarAccess.getQualifiedNameAccess().getRemainingAssignment_2()); 
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:525:1: ( rule__QualifiedName__RemainingAssignment_2 )?
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:525:1: ( rule__QualifiedName__RemainingAssignment_2 )?
             int alt4=2;
             int LA4_0 = input.LA(1);
 
@@ -1379,7 +1379,7 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalContentAs
             }
             switch (alt4) {
                 case 1 :
-                    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:525:2: rule__QualifiedName__RemainingAssignment_2
+                    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:525:2: rule__QualifiedName__RemainingAssignment_2
                     {
                     pushFollow(FOLLOW_rule__QualifiedName__RemainingAssignment_2_in_rule__QualifiedName__Group__2__Impl1019);
                     rule__QualifiedName__RemainingAssignment_2();
@@ -1415,17 +1415,17 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalContentAs
 
 
     // $ANTLR start "rule__CollaborationUseRule__VisibilityAssignment_0"
-    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:544:1: rule__CollaborationUseRule__VisibilityAssignment_0 : ( ruleVisibilityKind ) ;
+    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:544:1: rule__CollaborationUseRule__VisibilityAssignment_0 : ( ruleVisibilityKind ) ;
     public final void rule__CollaborationUseRule__VisibilityAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:548:1: ( ( ruleVisibilityKind ) )
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:549:1: ( ruleVisibilityKind )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:548:1: ( ( ruleVisibilityKind ) )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:549:1: ( ruleVisibilityKind )
             {
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:549:1: ( ruleVisibilityKind )
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:550:1: ruleVisibilityKind
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:549:1: ( ruleVisibilityKind )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:550:1: ruleVisibilityKind
             {
              before(grammarAccess.getCollaborationUseRuleAccess().getVisibilityVisibilityKindEnumRuleCall_0_0()); 
             pushFollow(FOLLOW_ruleVisibilityKind_in_rule__CollaborationUseRule__VisibilityAssignment_01063);
@@ -1456,17 +1456,17 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalContentAs
 
 
     // $ANTLR start "rule__CollaborationUseRule__NameAssignment_1"
-    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:559:1: rule__CollaborationUseRule__NameAssignment_1 : ( RULE_ID ) ;
+    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:559:1: rule__CollaborationUseRule__NameAssignment_1 : ( RULE_ID ) ;
     public final void rule__CollaborationUseRule__NameAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:563:1: ( ( RULE_ID ) )
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:564:1: ( RULE_ID )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:563:1: ( ( RULE_ID ) )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:564:1: ( RULE_ID )
             {
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:564:1: ( RULE_ID )
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:565:1: RULE_ID
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:564:1: ( RULE_ID )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:565:1: RULE_ID
             {
              before(grammarAccess.getCollaborationUseRuleAccess().getNameIDTerminalRuleCall_1_0()); 
             match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__CollaborationUseRule__NameAssignment_11094); 
@@ -1493,17 +1493,17 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalContentAs
 
 
     // $ANTLR start "rule__CollaborationUseRule__TypeAssignment_3_0"
-    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:574:1: rule__CollaborationUseRule__TypeAssignment_3_0 : ( ruleTypeRule ) ;
+    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:574:1: rule__CollaborationUseRule__TypeAssignment_3_0 : ( ruleTypeRule ) ;
     public final void rule__CollaborationUseRule__TypeAssignment_3_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:578:1: ( ( ruleTypeRule ) )
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:579:1: ( ruleTypeRule )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:578:1: ( ( ruleTypeRule ) )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:579:1: ( ruleTypeRule )
             {
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:579:1: ( ruleTypeRule )
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:580:1: ruleTypeRule
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:579:1: ( ruleTypeRule )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:580:1: ruleTypeRule
             {
              before(grammarAccess.getCollaborationUseRuleAccess().getTypeTypeRuleParserRuleCall_3_0_0()); 
             pushFollow(FOLLOW_ruleTypeRule_in_rule__CollaborationUseRule__TypeAssignment_3_01125);
@@ -1534,17 +1534,17 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalContentAs
 
 
     // $ANTLR start "rule__TypeRule__PathAssignment_0"
-    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:589:1: rule__TypeRule__PathAssignment_0 : ( ruleQualifiedName ) ;
+    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:589:1: rule__TypeRule__PathAssignment_0 : ( ruleQualifiedName ) ;
     public final void rule__TypeRule__PathAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:593:1: ( ( ruleQualifiedName ) )
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:594:1: ( ruleQualifiedName )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:593:1: ( ( ruleQualifiedName ) )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:594:1: ( ruleQualifiedName )
             {
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:594:1: ( ruleQualifiedName )
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:595:1: ruleQualifiedName
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:594:1: ( ruleQualifiedName )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:595:1: ruleQualifiedName
             {
              before(grammarAccess.getTypeRuleAccess().getPathQualifiedNameParserRuleCall_0_0()); 
             pushFollow(FOLLOW_ruleQualifiedName_in_rule__TypeRule__PathAssignment_01156);
@@ -1575,21 +1575,21 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalContentAs
 
 
     // $ANTLR start "rule__TypeRule__TypeAssignment_1"
-    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:604:1: rule__TypeRule__TypeAssignment_1 : ( ( RULE_ID ) ) ;
+    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:604:1: rule__TypeRule__TypeAssignment_1 : ( ( RULE_ID ) ) ;
     public final void rule__TypeRule__TypeAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:608:1: ( ( ( RULE_ID ) ) )
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:609:1: ( ( RULE_ID ) )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:608:1: ( ( ( RULE_ID ) ) )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:609:1: ( ( RULE_ID ) )
             {
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:609:1: ( ( RULE_ID ) )
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:610:1: ( RULE_ID )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:609:1: ( ( RULE_ID ) )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:610:1: ( RULE_ID )
             {
              before(grammarAccess.getTypeRuleAccess().getTypeCollaborationCrossReference_1_0()); 
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:611:1: ( RULE_ID )
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:612:1: RULE_ID
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:611:1: ( RULE_ID )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:612:1: RULE_ID
             {
              before(grammarAccess.getTypeRuleAccess().getTypeCollaborationIDTerminalRuleCall_1_0_1()); 
             match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__TypeRule__TypeAssignment_11191); 
@@ -1620,21 +1620,21 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalContentAs
 
 
     // $ANTLR start "rule__QualifiedName__PathAssignment_0"
-    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:623:1: rule__QualifiedName__PathAssignment_0 : ( ( RULE_ID ) ) ;
+    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:623:1: rule__QualifiedName__PathAssignment_0 : ( ( RULE_ID ) ) ;
     public final void rule__QualifiedName__PathAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:627:1: ( ( ( RULE_ID ) ) )
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:628:1: ( ( RULE_ID ) )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:627:1: ( ( ( RULE_ID ) ) )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:628:1: ( ( RULE_ID ) )
             {
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:628:1: ( ( RULE_ID ) )
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:629:1: ( RULE_ID )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:628:1: ( ( RULE_ID ) )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:629:1: ( RULE_ID )
             {
              before(grammarAccess.getQualifiedNameAccess().getPathNamespaceCrossReference_0_0()); 
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:630:1: ( RULE_ID )
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:631:1: RULE_ID
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:630:1: ( RULE_ID )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:631:1: RULE_ID
             {
              before(grammarAccess.getQualifiedNameAccess().getPathNamespaceIDTerminalRuleCall_0_0_1()); 
             match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__QualifiedName__PathAssignment_01230); 
@@ -1665,17 +1665,17 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalContentAs
 
 
     // $ANTLR start "rule__QualifiedName__RemainingAssignment_2"
-    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:642:1: rule__QualifiedName__RemainingAssignment_2 : ( ruleQualifiedName ) ;
+    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:642:1: rule__QualifiedName__RemainingAssignment_2 : ( ruleQualifiedName ) ;
     public final void rule__QualifiedName__RemainingAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:646:1: ( ( ruleQualifiedName ) )
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:647:1: ( ruleQualifiedName )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:646:1: ( ( ruleQualifiedName ) )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:647:1: ( ruleQualifiedName )
             {
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:647:1: ( ruleQualifiedName )
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:648:1: ruleQualifiedName
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:647:1: ( ruleQualifiedName )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:648:1: ruleQualifiedName
             {
              before(grammarAccess.getQualifiedNameAccess().getRemainingQualifiedNameParserRuleCall_2_0()); 
             pushFollow(FOLLOW_ruleQualifiedName_in_rule__QualifiedName__RemainingAssignment_21265);
@@ -1706,17 +1706,17 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalContentAs
 
 
     // $ANTLR start "rule__BoundSpecification__ValueAssignment"
-    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:659:1: rule__BoundSpecification__ValueAssignment : ( RULE_UNLIMITEDLITERAL ) ;
+    // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:659:1: rule__BoundSpecification__ValueAssignment : ( RULE_UNLIMITEDLITERAL ) ;
     public final void rule__BoundSpecification__ValueAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:663:1: ( ( RULE_UNLIMITEDLITERAL ) )
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:664:1: ( RULE_UNLIMITEDLITERAL )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:663:1: ( ( RULE_UNLIMITEDLITERAL ) )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:664:1: ( RULE_UNLIMITEDLITERAL )
             {
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:664:1: ( RULE_UNLIMITEDLITERAL )
-            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/collaborationuse/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:665:1: RULE_UNLIMITEDLITERAL
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:664:1: ( RULE_UNLIMITEDLITERAL )
+            // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/ui/contentassist/antlr/internal/InternalUmlCollaborationUse.g:665:1: RULE_UNLIMITEDLITERAL
             {
              before(grammarAccess.getBoundSpecificationAccess().getValueUnlimitedLiteralTerminalRuleCall_0()); 
             match(input,RULE_UNLIMITEDLITERAL,FOLLOW_RULE_UNLIMITEDLITERAL_in_rule__BoundSpecification__ValueAssignment1298); 

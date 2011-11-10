@@ -43,7 +43,7 @@ public interface UmlTransitionPackage extends EPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  String eNS_URI = "http://www.eclipse.org/papyrus/transition/editor/xtext/UmlTransition";
+  String eNS_URI = "http://www.eclipse.org/papyrus/uml/textedit/transition/xtext/UmlTransition";
 
   /**
    * The package namespace name.

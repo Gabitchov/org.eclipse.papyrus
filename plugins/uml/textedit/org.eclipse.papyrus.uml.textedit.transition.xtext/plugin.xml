@@ -5,9 +5,9 @@
 
   <extension point="org.eclipse.emf.ecore.generated_package">
     <package 
-       uri = "http://www.eclipse.org/papyrus/transition/editor/xtext/UmlTransition" 
+       uri = "http://www.eclipse.org/papyrus/uml/textedit/transition/xtext/UmlTransition" 
        class = "org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.UmlTransitionPackage"
-       genModel = "org/eclipse/papyrus/transition/editor/xtext/UmlTransition.genmodel" /> 
+       genModel = "org/eclipse/papyrus/uml/textedit/transition/xtext/UmlTransition.genmodel" /> 
 	
   </extension>
 

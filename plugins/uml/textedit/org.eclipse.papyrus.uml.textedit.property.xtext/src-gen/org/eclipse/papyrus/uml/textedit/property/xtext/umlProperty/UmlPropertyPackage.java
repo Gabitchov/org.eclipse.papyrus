@@ -43,7 +43,7 @@ public interface UmlPropertyPackage extends EPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  String eNS_URI = "http://www.eclipse.org/papyrus/property/editor/xtext/UmlProperty";
+  String eNS_URI = "http://www.eclipse.org/papyrus/uml/textedit/property/xtext/UmlProperty";
 
   /**
    * The package namespace name.

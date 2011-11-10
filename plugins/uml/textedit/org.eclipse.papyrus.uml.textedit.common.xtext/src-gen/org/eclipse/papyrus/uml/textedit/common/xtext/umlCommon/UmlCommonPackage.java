@@ -43,7 +43,7 @@ public interface UmlCommonPackage extends EPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  String eNS_URI = "http://www.eclipse.org/papyrus/common/editor/xtext/UmlCommon";
+  String eNS_URI = "http://www.eclipse.org/papyrus/uml/textedit/common/xtext/UmlCommon";
 
   /**
    * The package namespace name.

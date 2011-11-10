@@ -16,25 +16,25 @@ T16 : 'Activity' ;
 T17 : 'StateMachine' ;
 T18 : 'OpaqueBehavior' ;
 
-// $ANTLR src "../org.eclipse.papyrus.uml.textedit.state.xtext/src-gen/org/eclipse/papyrus/state/editor/xtext/parser/antlr/internal/InternalUmlState.g" 654
+// $ANTLR src "../org.eclipse.papyrus.uml.textedit.state.xtext/src-gen/org/eclipse/papyrus/uml/textedit/state/xtext/parser/antlr/internal/InternalUmlState.g" 654
 RULE_ID : '^'? ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
 
-// $ANTLR src "../org.eclipse.papyrus.uml.textedit.state.xtext/src-gen/org/eclipse/papyrus/state/editor/xtext/parser/antlr/internal/InternalUmlState.g" 656
+// $ANTLR src "../org.eclipse.papyrus.uml.textedit.state.xtext/src-gen/org/eclipse/papyrus/uml/textedit/state/xtext/parser/antlr/internal/InternalUmlState.g" 656
 RULE_INT : ('0'..'9')+;
 
-// $ANTLR src "../org.eclipse.papyrus.uml.textedit.state.xtext/src-gen/org/eclipse/papyrus/state/editor/xtext/parser/antlr/internal/InternalUmlState.g" 658
+// $ANTLR src "../org.eclipse.papyrus.uml.textedit.state.xtext/src-gen/org/eclipse/papyrus/uml/textedit/state/xtext/parser/antlr/internal/InternalUmlState.g" 658
 RULE_STRING : ('"' ('\\' ('b'|'t'|'n'|'f'|'r'|'"'|'\''|'\\')|~(('\\'|'"')))* '"'|'\'' ('\\' ('b'|'t'|'n'|'f'|'r'|'"'|'\''|'\\')|~(('\\'|'\'')))* '\'');
 
-// $ANTLR src "../org.eclipse.papyrus.uml.textedit.state.xtext/src-gen/org/eclipse/papyrus/state/editor/xtext/parser/antlr/internal/InternalUmlState.g" 660
+// $ANTLR src "../org.eclipse.papyrus.uml.textedit.state.xtext/src-gen/org/eclipse/papyrus/uml/textedit/state/xtext/parser/antlr/internal/InternalUmlState.g" 660
 RULE_ML_COMMENT : '/*' ( options {greedy=false;} : . )*'*/';
 
-// $ANTLR src "../org.eclipse.papyrus.uml.textedit.state.xtext/src-gen/org/eclipse/papyrus/state/editor/xtext/parser/antlr/internal/InternalUmlState.g" 662
+// $ANTLR src "../org.eclipse.papyrus.uml.textedit.state.xtext/src-gen/org/eclipse/papyrus/uml/textedit/state/xtext/parser/antlr/internal/InternalUmlState.g" 662
 RULE_SL_COMMENT : '//' ~(('\n'|'\r'))* ('\r'? '\n')?;
 
-// $ANTLR src "../org.eclipse.papyrus.uml.textedit.state.xtext/src-gen/org/eclipse/papyrus/state/editor/xtext/parser/antlr/internal/InternalUmlState.g" 664
+// $ANTLR src "../org.eclipse.papyrus.uml.textedit.state.xtext/src-gen/org/eclipse/papyrus/uml/textedit/state/xtext/parser/antlr/internal/InternalUmlState.g" 664
 RULE_WS : (' '|'\t'|'\r'|'\n')+;
 
-// $ANTLR src "../org.eclipse.papyrus.uml.textedit.state.xtext/src-gen/org/eclipse/papyrus/state/editor/xtext/parser/antlr/internal/InternalUmlState.g" 666
+// $ANTLR src "../org.eclipse.papyrus.uml.textedit.state.xtext/src-gen/org/eclipse/papyrus/uml/textedit/state/xtext/parser/antlr/internal/InternalUmlState.g" 666
 RULE_ANY_OTHER : .;
 
 

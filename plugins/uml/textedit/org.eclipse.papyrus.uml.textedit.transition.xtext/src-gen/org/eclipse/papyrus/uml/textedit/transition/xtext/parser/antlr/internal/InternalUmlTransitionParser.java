@@ -58,7 +58,7 @@ public class InternalUmlTransitionParser extends AbstractInternalAntlrParser {
         
 
     public String[] getTokenNames() { return InternalUmlTransitionParser.tokenNames; }
-    public String getGrammarFileName() { return "../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g"; }
+    public String getGrammarFileName() { return "../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g"; }
 
 
 
@@ -83,7 +83,7 @@ public class InternalUmlTransitionParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleTransitionRule"
-    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:68:1: entryRuleTransitionRule returns [EObject current=null] : iv_ruleTransitionRule= ruleTransitionRule EOF ;
+    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:68:1: entryRuleTransitionRule returns [EObject current=null] : iv_ruleTransitionRule= ruleTransitionRule EOF ;
     public final EObject entryRuleTransitionRule() throws RecognitionException {
         EObject current = null;
 
@@ -91,8 +91,8 @@ public class InternalUmlTransitionParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:69:2: (iv_ruleTransitionRule= ruleTransitionRule EOF )
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:70:2: iv_ruleTransitionRule= ruleTransitionRule EOF
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:69:2: (iv_ruleTransitionRule= ruleTransitionRule EOF )
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:70:2: iv_ruleTransitionRule= ruleTransitionRule EOF
             {
              newCompositeNode(grammarAccess.getTransitionRuleRule()); 
             pushFollow(FOLLOW_ruleTransitionRule_in_entryRuleTransitionRule75);
@@ -119,7 +119,7 @@ public class InternalUmlTransitionParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleTransitionRule"
-    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:77:1: ruleTransitionRule returns [EObject current=null] : ( ( ( (lv_triggers_0_0= ruleEventRule ) ) (otherlv_1= ',' ( (lv_triggers_2_0= ruleEventRule ) ) )* )? ( (lv_guard_3_0= ruleGuardRule ) )? ( (lv_effect_4_0= ruleEffectRule ) )? ) ;
+    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:77:1: ruleTransitionRule returns [EObject current=null] : ( ( ( (lv_triggers_0_0= ruleEventRule ) ) (otherlv_1= ',' ( (lv_triggers_2_0= ruleEventRule ) ) )* )? ( (lv_guard_3_0= ruleGuardRule ) )? ( (lv_effect_4_0= ruleEffectRule ) )? ) ;
     public final EObject ruleTransitionRule() throws RecognitionException {
         EObject current = null;
 
@@ -136,13 +136,13 @@ public class InternalUmlTransitionParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:80:28: ( ( ( ( (lv_triggers_0_0= ruleEventRule ) ) (otherlv_1= ',' ( (lv_triggers_2_0= ruleEventRule ) ) )* )? ( (lv_guard_3_0= ruleGuardRule ) )? ( (lv_effect_4_0= ruleEffectRule ) )? ) )
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:81:1: ( ( ( (lv_triggers_0_0= ruleEventRule ) ) (otherlv_1= ',' ( (lv_triggers_2_0= ruleEventRule ) ) )* )? ( (lv_guard_3_0= ruleGuardRule ) )? ( (lv_effect_4_0= ruleEffectRule ) )? )
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:80:28: ( ( ( ( (lv_triggers_0_0= ruleEventRule ) ) (otherlv_1= ',' ( (lv_triggers_2_0= ruleEventRule ) ) )* )? ( (lv_guard_3_0= ruleGuardRule ) )? ( (lv_effect_4_0= ruleEffectRule ) )? ) )
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:81:1: ( ( ( (lv_triggers_0_0= ruleEventRule ) ) (otherlv_1= ',' ( (lv_triggers_2_0= ruleEventRule ) ) )* )? ( (lv_guard_3_0= ruleGuardRule ) )? ( (lv_effect_4_0= ruleEffectRule ) )? )
             {
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:81:1: ( ( ( (lv_triggers_0_0= ruleEventRule ) ) (otherlv_1= ',' ( (lv_triggers_2_0= ruleEventRule ) ) )* )? ( (lv_guard_3_0= ruleGuardRule ) )? ( (lv_effect_4_0= ruleEffectRule ) )? )
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:81:2: ( ( (lv_triggers_0_0= ruleEventRule ) ) (otherlv_1= ',' ( (lv_triggers_2_0= ruleEventRule ) ) )* )? ( (lv_guard_3_0= ruleGuardRule ) )? ( (lv_effect_4_0= ruleEffectRule ) )?
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:81:1: ( ( ( (lv_triggers_0_0= ruleEventRule ) ) (otherlv_1= ',' ( (lv_triggers_2_0= ruleEventRule ) ) )* )? ( (lv_guard_3_0= ruleGuardRule ) )? ( (lv_effect_4_0= ruleEffectRule ) )? )
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:81:2: ( ( (lv_triggers_0_0= ruleEventRule ) ) (otherlv_1= ',' ( (lv_triggers_2_0= ruleEventRule ) ) )* )? ( (lv_guard_3_0= ruleGuardRule ) )? ( (lv_effect_4_0= ruleEffectRule ) )?
             {
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:81:2: ( ( (lv_triggers_0_0= ruleEventRule ) ) (otherlv_1= ',' ( (lv_triggers_2_0= ruleEventRule ) ) )* )?
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:81:2: ( ( (lv_triggers_0_0= ruleEventRule ) ) (otherlv_1= ',' ( (lv_triggers_2_0= ruleEventRule ) ) )* )?
             int alt2=2;
             int LA2_0 = input.LA(1);
 
@@ -151,13 +151,13 @@ public class InternalUmlTransitionParser extends AbstractInternalAntlrParser {
             }
             switch (alt2) {
                 case 1 :
-                    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:81:3: ( (lv_triggers_0_0= ruleEventRule ) ) (otherlv_1= ',' ( (lv_triggers_2_0= ruleEventRule ) ) )*
+                    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:81:3: ( (lv_triggers_0_0= ruleEventRule ) ) (otherlv_1= ',' ( (lv_triggers_2_0= ruleEventRule ) ) )*
                     {
-                    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:81:3: ( (lv_triggers_0_0= ruleEventRule ) )
-                    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:82:1: (lv_triggers_0_0= ruleEventRule )
+                    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:81:3: ( (lv_triggers_0_0= ruleEventRule ) )
+                    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:82:1: (lv_triggers_0_0= ruleEventRule )
                     {
-                    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:82:1: (lv_triggers_0_0= ruleEventRule )
-                    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:83:3: lv_triggers_0_0= ruleEventRule
+                    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:82:1: (lv_triggers_0_0= ruleEventRule )
+                    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:83:3: lv_triggers_0_0= ruleEventRule
                     {
                      
                     	        newCompositeNode(grammarAccess.getTransitionRuleAccess().getTriggersEventRuleParserRuleCall_0_0_0()); 
@@ -184,7 +184,7 @@ public class InternalUmlTransitionParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:99:2: (otherlv_1= ',' ( (lv_triggers_2_0= ruleEventRule ) ) )*
+                    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:99:2: (otherlv_1= ',' ( (lv_triggers_2_0= ruleEventRule ) ) )*
                     loop1:
                     do {
                         int alt1=2;
@@ -197,17 +197,17 @@ public class InternalUmlTransitionParser extends AbstractInternalAntlrParser {
 
                         switch (alt1) {
                     	case 1 :
-                    	    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:99:4: otherlv_1= ',' ( (lv_triggers_2_0= ruleEventRule ) )
+                    	    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:99:4: otherlv_1= ',' ( (lv_triggers_2_0= ruleEventRule ) )
                     	    {
                     	    otherlv_1=(Token)match(input,11,FOLLOW_11_in_ruleTransitionRule145); 
 
                     	        	newLeafNode(otherlv_1, grammarAccess.getTransitionRuleAccess().getCommaKeyword_0_1_0());
                     	        
-                    	    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:103:1: ( (lv_triggers_2_0= ruleEventRule ) )
-                    	    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:104:1: (lv_triggers_2_0= ruleEventRule )
+                    	    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:103:1: ( (lv_triggers_2_0= ruleEventRule ) )
+                    	    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:104:1: (lv_triggers_2_0= ruleEventRule )
                     	    {
-                    	    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:104:1: (lv_triggers_2_0= ruleEventRule )
-                    	    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:105:3: lv_triggers_2_0= ruleEventRule
+                    	    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:104:1: (lv_triggers_2_0= ruleEventRule )
+                    	    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:105:3: lv_triggers_2_0= ruleEventRule
                     	    {
                     	     
                     	    	        newCompositeNode(grammarAccess.getTransitionRuleAccess().getTriggersEventRuleParserRuleCall_0_1_1_0()); 
@@ -249,7 +249,7 @@ public class InternalUmlTransitionParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:121:6: ( (lv_guard_3_0= ruleGuardRule ) )?
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:121:6: ( (lv_guard_3_0= ruleGuardRule ) )?
             int alt3=2;
             int LA3_0 = input.LA(1);
 
@@ -258,10 +258,10 @@ public class InternalUmlTransitionParser extends AbstractInternalAntlrParser {
             }
             switch (alt3) {
                 case 1 :
-                    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:122:1: (lv_guard_3_0= ruleGuardRule )
+                    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:122:1: (lv_guard_3_0= ruleGuardRule )
                     {
-                    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:122:1: (lv_guard_3_0= ruleGuardRule )
-                    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:123:3: lv_guard_3_0= ruleGuardRule
+                    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:122:1: (lv_guard_3_0= ruleGuardRule )
+                    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:123:3: lv_guard_3_0= ruleGuardRule
                     {
                      
                     	        newCompositeNode(grammarAccess.getTransitionRuleAccess().getGuardGuardRuleParserRuleCall_1_0()); 
@@ -291,7 +291,7 @@ public class InternalUmlTransitionParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:139:3: ( (lv_effect_4_0= ruleEffectRule ) )?
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:139:3: ( (lv_effect_4_0= ruleEffectRule ) )?
             int alt4=2;
             int LA4_0 = input.LA(1);
 
@@ -300,10 +300,10 @@ public class InternalUmlTransitionParser extends AbstractInternalAntlrParser {
             }
             switch (alt4) {
                 case 1 :
-                    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:140:1: (lv_effect_4_0= ruleEffectRule )
+                    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:140:1: (lv_effect_4_0= ruleEffectRule )
                     {
-                    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:140:1: (lv_effect_4_0= ruleEffectRule )
-                    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:141:3: lv_effect_4_0= ruleEffectRule
+                    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:140:1: (lv_effect_4_0= ruleEffectRule )
+                    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:141:3: lv_effect_4_0= ruleEffectRule
                     {
                      
                     	        newCompositeNode(grammarAccess.getTransitionRuleAccess().getEffectEffectRuleParserRuleCall_2_0()); 
@@ -354,7 +354,7 @@ public class InternalUmlTransitionParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleEventRule"
-    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:165:1: entryRuleEventRule returns [EObject current=null] : iv_ruleEventRule= ruleEventRule EOF ;
+    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:165:1: entryRuleEventRule returns [EObject current=null] : iv_ruleEventRule= ruleEventRule EOF ;
     public final EObject entryRuleEventRule() throws RecognitionException {
         EObject current = null;
 
@@ -362,8 +362,8 @@ public class InternalUmlTransitionParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:166:2: (iv_ruleEventRule= ruleEventRule EOF )
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:167:2: iv_ruleEventRule= ruleEventRule EOF
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:166:2: (iv_ruleEventRule= ruleEventRule EOF )
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:167:2: iv_ruleEventRule= ruleEventRule EOF
             {
              newCompositeNode(grammarAccess.getEventRuleRule()); 
             pushFollow(FOLLOW_ruleEventRule_in_entryRuleEventRule250);
@@ -390,7 +390,7 @@ public class InternalUmlTransitionParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleEventRule"
-    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:174:1: ruleEventRule returns [EObject current=null] : (this_CallOrSignalEventRule_0= ruleCallOrSignalEventRule | this_AnyReceiveEventRule_1= ruleAnyReceiveEventRule | this_TimeEventRule_2= ruleTimeEventRule | this_ChangeEventRule_3= ruleChangeEventRule ) ;
+    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:174:1: ruleEventRule returns [EObject current=null] : (this_CallOrSignalEventRule_0= ruleCallOrSignalEventRule | this_AnyReceiveEventRule_1= ruleAnyReceiveEventRule | this_TimeEventRule_2= ruleTimeEventRule | this_ChangeEventRule_3= ruleChangeEventRule ) ;
     public final EObject ruleEventRule() throws RecognitionException {
         EObject current = null;
 
@@ -406,10 +406,10 @@ public class InternalUmlTransitionParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:177:28: ( (this_CallOrSignalEventRule_0= ruleCallOrSignalEventRule | this_AnyReceiveEventRule_1= ruleAnyReceiveEventRule | this_TimeEventRule_2= ruleTimeEventRule | this_ChangeEventRule_3= ruleChangeEventRule ) )
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:178:1: (this_CallOrSignalEventRule_0= ruleCallOrSignalEventRule | this_AnyReceiveEventRule_1= ruleAnyReceiveEventRule | this_TimeEventRule_2= ruleTimeEventRule | this_ChangeEventRule_3= ruleChangeEventRule )
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:177:28: ( (this_CallOrSignalEventRule_0= ruleCallOrSignalEventRule | this_AnyReceiveEventRule_1= ruleAnyReceiveEventRule | this_TimeEventRule_2= ruleTimeEventRule | this_ChangeEventRule_3= ruleChangeEventRule ) )
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:178:1: (this_CallOrSignalEventRule_0= ruleCallOrSignalEventRule | this_AnyReceiveEventRule_1= ruleAnyReceiveEventRule | this_TimeEventRule_2= ruleTimeEventRule | this_ChangeEventRule_3= ruleChangeEventRule )
             {
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:178:1: (this_CallOrSignalEventRule_0= ruleCallOrSignalEventRule | this_AnyReceiveEventRule_1= ruleAnyReceiveEventRule | this_TimeEventRule_2= ruleTimeEventRule | this_ChangeEventRule_3= ruleChangeEventRule )
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:178:1: (this_CallOrSignalEventRule_0= ruleCallOrSignalEventRule | this_AnyReceiveEventRule_1= ruleAnyReceiveEventRule | this_TimeEventRule_2= ruleTimeEventRule | this_ChangeEventRule_3= ruleChangeEventRule )
             int alt5=4;
             switch ( input.LA(1) ) {
             case RULE_ID:
@@ -442,7 +442,7 @@ public class InternalUmlTransitionParser extends AbstractInternalAntlrParser {
 
             switch (alt5) {
                 case 1 :
-                    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:179:5: this_CallOrSignalEventRule_0= ruleCallOrSignalEventRule
+                    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:179:5: this_CallOrSignalEventRule_0= ruleCallOrSignalEventRule
                     {
                      
                             newCompositeNode(grammarAccess.getEventRuleAccess().getCallOrSignalEventRuleParserRuleCall_0()); 
@@ -460,7 +460,7 @@ public class InternalUmlTransitionParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:189:5: this_AnyReceiveEventRule_1= ruleAnyReceiveEventRule
+                    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:189:5: this_AnyReceiveEventRule_1= ruleAnyReceiveEventRule
                     {
                      
                             newCompositeNode(grammarAccess.getEventRuleAccess().getAnyReceiveEventRuleParserRuleCall_1()); 
@@ -478,7 +478,7 @@ public class InternalUmlTransitionParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:199:5: this_TimeEventRule_2= ruleTimeEventRule
+                    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:199:5: this_TimeEventRule_2= ruleTimeEventRule
                     {
                      
                             newCompositeNode(grammarAccess.getEventRuleAccess().getTimeEventRuleParserRuleCall_2()); 
@@ -496,7 +496,7 @@ public class InternalUmlTransitionParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 4 :
-                    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:209:5: this_ChangeEventRule_3= ruleChangeEventRule
+                    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:209:5: this_ChangeEventRule_3= ruleChangeEventRule
                     {
                      
                             newCompositeNode(grammarAccess.getEventRuleAccess().getChangeEventRuleParserRuleCall_3()); 
@@ -534,7 +534,7 @@ public class InternalUmlTransitionParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleCallOrSignalEventRule"
-    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:225:1: entryRuleCallOrSignalEventRule returns [EObject current=null] : iv_ruleCallOrSignalEventRule= ruleCallOrSignalEventRule EOF ;
+    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:225:1: entryRuleCallOrSignalEventRule returns [EObject current=null] : iv_ruleCallOrSignalEventRule= ruleCallOrSignalEventRule EOF ;
     public final EObject entryRuleCallOrSignalEventRule() throws RecognitionException {
         EObject current = null;
 
@@ -542,8 +542,8 @@ public class InternalUmlTransitionParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:226:2: (iv_ruleCallOrSignalEventRule= ruleCallOrSignalEventRule EOF )
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:227:2: iv_ruleCallOrSignalEventRule= ruleCallOrSignalEventRule EOF
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:226:2: (iv_ruleCallOrSignalEventRule= ruleCallOrSignalEventRule EOF )
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:227:2: iv_ruleCallOrSignalEventRule= ruleCallOrSignalEventRule EOF
             {
              newCompositeNode(grammarAccess.getCallOrSignalEventRuleRule()); 
             pushFollow(FOLLOW_ruleCallOrSignalEventRule_in_entryRuleCallOrSignalEventRule423);
@@ -570,7 +570,7 @@ public class InternalUmlTransitionParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleCallOrSignalEventRule"
-    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:234:1: ruleCallOrSignalEventRule returns [EObject current=null] : ( (otherlv_0= RULE_ID ) ) ;
+    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:234:1: ruleCallOrSignalEventRule returns [EObject current=null] : ( (otherlv_0= RULE_ID ) ) ;
     public final EObject ruleCallOrSignalEventRule() throws RecognitionException {
         EObject current = null;
 
@@ -579,14 +579,14 @@ public class InternalUmlTransitionParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:237:28: ( ( (otherlv_0= RULE_ID ) ) )
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:238:1: ( (otherlv_0= RULE_ID ) )
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:237:28: ( ( (otherlv_0= RULE_ID ) ) )
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:238:1: ( (otherlv_0= RULE_ID ) )
             {
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:238:1: ( (otherlv_0= RULE_ID ) )
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:239:1: (otherlv_0= RULE_ID )
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:238:1: ( (otherlv_0= RULE_ID ) )
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:239:1: (otherlv_0= RULE_ID )
             {
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:239:1: (otherlv_0= RULE_ID )
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:240:3: otherlv_0= RULE_ID
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:239:1: (otherlv_0= RULE_ID )
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:240:3: otherlv_0= RULE_ID
             {
 
             			if (current==null) {
@@ -621,7 +621,7 @@ public class InternalUmlTransitionParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleAnyReceiveEventRule"
-    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:259:1: entryRuleAnyReceiveEventRule returns [EObject current=null] : iv_ruleAnyReceiveEventRule= ruleAnyReceiveEventRule EOF ;
+    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:259:1: entryRuleAnyReceiveEventRule returns [EObject current=null] : iv_ruleAnyReceiveEventRule= ruleAnyReceiveEventRule EOF ;
     public final EObject entryRuleAnyReceiveEventRule() throws RecognitionException {
         EObject current = null;
 
@@ -629,8 +629,8 @@ public class InternalUmlTransitionParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:260:2: (iv_ruleAnyReceiveEventRule= ruleAnyReceiveEventRule EOF )
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:261:2: iv_ruleAnyReceiveEventRule= ruleAnyReceiveEventRule EOF
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:260:2: (iv_ruleAnyReceiveEventRule= ruleAnyReceiveEventRule EOF )
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:261:2: iv_ruleAnyReceiveEventRule= ruleAnyReceiveEventRule EOF
             {
              newCompositeNode(grammarAccess.getAnyReceiveEventRuleRule()); 
             pushFollow(FOLLOW_ruleAnyReceiveEventRule_in_entryRuleAnyReceiveEventRule512);
@@ -657,7 +657,7 @@ public class InternalUmlTransitionParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleAnyReceiveEventRule"
-    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:268:1: ruleAnyReceiveEventRule returns [EObject current=null] : ( (lv_isAReceiveEvent_0_0= 'all' ) ) ;
+    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:268:1: ruleAnyReceiveEventRule returns [EObject current=null] : ( (lv_isAReceiveEvent_0_0= 'all' ) ) ;
     public final EObject ruleAnyReceiveEventRule() throws RecognitionException {
         EObject current = null;
 
@@ -666,14 +666,14 @@ public class InternalUmlTransitionParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:271:28: ( ( (lv_isAReceiveEvent_0_0= 'all' ) ) )
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:272:1: ( (lv_isAReceiveEvent_0_0= 'all' ) )
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:271:28: ( ( (lv_isAReceiveEvent_0_0= 'all' ) ) )
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:272:1: ( (lv_isAReceiveEvent_0_0= 'all' ) )
             {
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:272:1: ( (lv_isAReceiveEvent_0_0= 'all' ) )
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:273:1: (lv_isAReceiveEvent_0_0= 'all' )
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:272:1: ( (lv_isAReceiveEvent_0_0= 'all' ) )
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:273:1: (lv_isAReceiveEvent_0_0= 'all' )
             {
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:273:1: (lv_isAReceiveEvent_0_0= 'all' )
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:274:3: lv_isAReceiveEvent_0_0= 'all'
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:273:1: (lv_isAReceiveEvent_0_0= 'all' )
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:274:3: lv_isAReceiveEvent_0_0= 'all'
             {
             lv_isAReceiveEvent_0_0=(Token)match(input,12,FOLLOW_12_in_ruleAnyReceiveEventRule564); 
 
@@ -709,7 +709,7 @@ public class InternalUmlTransitionParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleTimeEventRule"
-    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:295:1: entryRuleTimeEventRule returns [EObject current=null] : iv_ruleTimeEventRule= ruleTimeEventRule EOF ;
+    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:295:1: entryRuleTimeEventRule returns [EObject current=null] : iv_ruleTimeEventRule= ruleTimeEventRule EOF ;
     public final EObject entryRuleTimeEventRule() throws RecognitionException {
         EObject current = null;
 
@@ -717,8 +717,8 @@ public class InternalUmlTransitionParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:296:2: (iv_ruleTimeEventRule= ruleTimeEventRule EOF )
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:297:2: iv_ruleTimeEventRule= ruleTimeEventRule EOF
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:296:2: (iv_ruleTimeEventRule= ruleTimeEventRule EOF )
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:297:2: iv_ruleTimeEventRule= ruleTimeEventRule EOF
             {
              newCompositeNode(grammarAccess.getTimeEventRuleRule()); 
             pushFollow(FOLLOW_ruleTimeEventRule_in_entryRuleTimeEventRule612);
@@ -745,7 +745,7 @@ public class InternalUmlTransitionParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleTimeEventRule"
-    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:304:1: ruleTimeEventRule returns [EObject current=null] : (this_RelativeTimeEventRule_0= ruleRelativeTimeEventRule | this_AbsoluteTimeEventRule_1= ruleAbsoluteTimeEventRule ) ;
+    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:304:1: ruleTimeEventRule returns [EObject current=null] : (this_RelativeTimeEventRule_0= ruleRelativeTimeEventRule | this_AbsoluteTimeEventRule_1= ruleAbsoluteTimeEventRule ) ;
     public final EObject ruleTimeEventRule() throws RecognitionException {
         EObject current = null;
 
@@ -757,10 +757,10 @@ public class InternalUmlTransitionParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:307:28: ( (this_RelativeTimeEventRule_0= ruleRelativeTimeEventRule | this_AbsoluteTimeEventRule_1= ruleAbsoluteTimeEventRule ) )
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:308:1: (this_RelativeTimeEventRule_0= ruleRelativeTimeEventRule | this_AbsoluteTimeEventRule_1= ruleAbsoluteTimeEventRule )
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:307:28: ( (this_RelativeTimeEventRule_0= ruleRelativeTimeEventRule | this_AbsoluteTimeEventRule_1= ruleAbsoluteTimeEventRule ) )
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:308:1: (this_RelativeTimeEventRule_0= ruleRelativeTimeEventRule | this_AbsoluteTimeEventRule_1= ruleAbsoluteTimeEventRule )
             {
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:308:1: (this_RelativeTimeEventRule_0= ruleRelativeTimeEventRule | this_AbsoluteTimeEventRule_1= ruleAbsoluteTimeEventRule )
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:308:1: (this_RelativeTimeEventRule_0= ruleRelativeTimeEventRule | this_AbsoluteTimeEventRule_1= ruleAbsoluteTimeEventRule )
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -778,7 +778,7 @@ public class InternalUmlTransitionParser extends AbstractInternalAntlrParser {
             }
             switch (alt6) {
                 case 1 :
-                    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:309:5: this_RelativeTimeEventRule_0= ruleRelativeTimeEventRule
+                    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:309:5: this_RelativeTimeEventRule_0= ruleRelativeTimeEventRule
                     {
                      
                             newCompositeNode(grammarAccess.getTimeEventRuleAccess().getRelativeTimeEventRuleParserRuleCall_0()); 
@@ -796,7 +796,7 @@ public class InternalUmlTransitionParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:319:5: this_AbsoluteTimeEventRule_1= ruleAbsoluteTimeEventRule
+                    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:319:5: this_AbsoluteTimeEventRule_1= ruleAbsoluteTimeEventRule
                     {
                      
                             newCompositeNode(grammarAccess.getTimeEventRuleAccess().getAbsoluteTimeEventRuleParserRuleCall_1()); 
@@ -834,7 +834,7 @@ public class InternalUmlTransitionParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleRelativeTimeEventRule"
-    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:335:1: entryRuleRelativeTimeEventRule returns [EObject current=null] : iv_ruleRelativeTimeEventRule= ruleRelativeTimeEventRule EOF ;
+    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:335:1: entryRuleRelativeTimeEventRule returns [EObject current=null] : iv_ruleRelativeTimeEventRule= ruleRelativeTimeEventRule EOF ;
     public final EObject entryRuleRelativeTimeEventRule() throws RecognitionException {
         EObject current = null;
 
@@ -842,8 +842,8 @@ public class InternalUmlTransitionParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:336:2: (iv_ruleRelativeTimeEventRule= ruleRelativeTimeEventRule EOF )
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:337:2: iv_ruleRelativeTimeEventRule= ruleRelativeTimeEventRule EOF
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:336:2: (iv_ruleRelativeTimeEventRule= ruleRelativeTimeEventRule EOF )
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:337:2: iv_ruleRelativeTimeEventRule= ruleRelativeTimeEventRule EOF
             {
              newCompositeNode(grammarAccess.getRelativeTimeEventRuleRule()); 
             pushFollow(FOLLOW_ruleRelativeTimeEventRule_in_entryRuleRelativeTimeEventRule731);
@@ -870,7 +870,7 @@ public class InternalUmlTransitionParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleRelativeTimeEventRule"
-    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:344:1: ruleRelativeTimeEventRule returns [EObject current=null] : (otherlv_0= 'after' ( (lv_expr_1_0= RULE_STRING ) ) ) ;
+    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:344:1: ruleRelativeTimeEventRule returns [EObject current=null] : (otherlv_0= 'after' ( (lv_expr_1_0= RULE_STRING ) ) ) ;
     public final EObject ruleRelativeTimeEventRule() throws RecognitionException {
         EObject current = null;
 
@@ -880,21 +880,21 @@ public class InternalUmlTransitionParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:347:28: ( (otherlv_0= 'after' ( (lv_expr_1_0= RULE_STRING ) ) ) )
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:348:1: (otherlv_0= 'after' ( (lv_expr_1_0= RULE_STRING ) ) )
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:347:28: ( (otherlv_0= 'after' ( (lv_expr_1_0= RULE_STRING ) ) ) )
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:348:1: (otherlv_0= 'after' ( (lv_expr_1_0= RULE_STRING ) ) )
             {
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:348:1: (otherlv_0= 'after' ( (lv_expr_1_0= RULE_STRING ) ) )
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:348:3: otherlv_0= 'after' ( (lv_expr_1_0= RULE_STRING ) )
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:348:1: (otherlv_0= 'after' ( (lv_expr_1_0= RULE_STRING ) ) )
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:348:3: otherlv_0= 'after' ( (lv_expr_1_0= RULE_STRING ) )
             {
             otherlv_0=(Token)match(input,13,FOLLOW_13_in_ruleRelativeTimeEventRule778); 
 
                 	newLeafNode(otherlv_0, grammarAccess.getRelativeTimeEventRuleAccess().getAfterKeyword_0());
                 
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:352:1: ( (lv_expr_1_0= RULE_STRING ) )
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:353:1: (lv_expr_1_0= RULE_STRING )
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:352:1: ( (lv_expr_1_0= RULE_STRING ) )
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:353:1: (lv_expr_1_0= RULE_STRING )
             {
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:353:1: (lv_expr_1_0= RULE_STRING )
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:354:3: lv_expr_1_0= RULE_STRING
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:353:1: (lv_expr_1_0= RULE_STRING )
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:354:3: lv_expr_1_0= RULE_STRING
             {
             lv_expr_1_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleRelativeTimeEventRule795); 
 
@@ -937,7 +937,7 @@ public class InternalUmlTransitionParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleAbsoluteTimeEventRule"
-    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:378:1: entryRuleAbsoluteTimeEventRule returns [EObject current=null] : iv_ruleAbsoluteTimeEventRule= ruleAbsoluteTimeEventRule EOF ;
+    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:378:1: entryRuleAbsoluteTimeEventRule returns [EObject current=null] : iv_ruleAbsoluteTimeEventRule= ruleAbsoluteTimeEventRule EOF ;
     public final EObject entryRuleAbsoluteTimeEventRule() throws RecognitionException {
         EObject current = null;
 
@@ -945,8 +945,8 @@ public class InternalUmlTransitionParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:379:2: (iv_ruleAbsoluteTimeEventRule= ruleAbsoluteTimeEventRule EOF )
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:380:2: iv_ruleAbsoluteTimeEventRule= ruleAbsoluteTimeEventRule EOF
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:379:2: (iv_ruleAbsoluteTimeEventRule= ruleAbsoluteTimeEventRule EOF )
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:380:2: iv_ruleAbsoluteTimeEventRule= ruleAbsoluteTimeEventRule EOF
             {
              newCompositeNode(grammarAccess.getAbsoluteTimeEventRuleRule()); 
             pushFollow(FOLLOW_ruleAbsoluteTimeEventRule_in_entryRuleAbsoluteTimeEventRule836);
@@ -973,7 +973,7 @@ public class InternalUmlTransitionParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleAbsoluteTimeEventRule"
-    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:387:1: ruleAbsoluteTimeEventRule returns [EObject current=null] : (otherlv_0= 'at' ( (lv_expr_1_0= RULE_STRING ) ) ) ;
+    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:387:1: ruleAbsoluteTimeEventRule returns [EObject current=null] : (otherlv_0= 'at' ( (lv_expr_1_0= RULE_STRING ) ) ) ;
     public final EObject ruleAbsoluteTimeEventRule() throws RecognitionException {
         EObject current = null;
 
@@ -983,21 +983,21 @@ public class InternalUmlTransitionParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:390:28: ( (otherlv_0= 'at' ( (lv_expr_1_0= RULE_STRING ) ) ) )
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:391:1: (otherlv_0= 'at' ( (lv_expr_1_0= RULE_STRING ) ) )
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:390:28: ( (otherlv_0= 'at' ( (lv_expr_1_0= RULE_STRING ) ) ) )
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:391:1: (otherlv_0= 'at' ( (lv_expr_1_0= RULE_STRING ) ) )
             {
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:391:1: (otherlv_0= 'at' ( (lv_expr_1_0= RULE_STRING ) ) )
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:391:3: otherlv_0= 'at' ( (lv_expr_1_0= RULE_STRING ) )
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:391:1: (otherlv_0= 'at' ( (lv_expr_1_0= RULE_STRING ) ) )
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:391:3: otherlv_0= 'at' ( (lv_expr_1_0= RULE_STRING ) )
             {
             otherlv_0=(Token)match(input,14,FOLLOW_14_in_ruleAbsoluteTimeEventRule883); 
 
                 	newLeafNode(otherlv_0, grammarAccess.getAbsoluteTimeEventRuleAccess().getAtKeyword_0());
                 
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:395:1: ( (lv_expr_1_0= RULE_STRING ) )
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:396:1: (lv_expr_1_0= RULE_STRING )
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:395:1: ( (lv_expr_1_0= RULE_STRING ) )
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:396:1: (lv_expr_1_0= RULE_STRING )
             {
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:396:1: (lv_expr_1_0= RULE_STRING )
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:397:3: lv_expr_1_0= RULE_STRING
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:396:1: (lv_expr_1_0= RULE_STRING )
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:397:3: lv_expr_1_0= RULE_STRING
             {
             lv_expr_1_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleAbsoluteTimeEventRule900); 
 
@@ -1040,7 +1040,7 @@ public class InternalUmlTransitionParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleChangeEventRule"
-    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:421:1: entryRuleChangeEventRule returns [EObject current=null] : iv_ruleChangeEventRule= ruleChangeEventRule EOF ;
+    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:421:1: entryRuleChangeEventRule returns [EObject current=null] : iv_ruleChangeEventRule= ruleChangeEventRule EOF ;
     public final EObject entryRuleChangeEventRule() throws RecognitionException {
         EObject current = null;
 
@@ -1048,8 +1048,8 @@ public class InternalUmlTransitionParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:422:2: (iv_ruleChangeEventRule= ruleChangeEventRule EOF )
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:423:2: iv_ruleChangeEventRule= ruleChangeEventRule EOF
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:422:2: (iv_ruleChangeEventRule= ruleChangeEventRule EOF )
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:423:2: iv_ruleChangeEventRule= ruleChangeEventRule EOF
             {
              newCompositeNode(grammarAccess.getChangeEventRuleRule()); 
             pushFollow(FOLLOW_ruleChangeEventRule_in_entryRuleChangeEventRule941);
@@ -1076,7 +1076,7 @@ public class InternalUmlTransitionParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleChangeEventRule"
-    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:430:1: ruleChangeEventRule returns [EObject current=null] : (otherlv_0= 'when' ( (lv_exp_1_0= RULE_STRING ) ) ) ;
+    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:430:1: ruleChangeEventRule returns [EObject current=null] : (otherlv_0= 'when' ( (lv_exp_1_0= RULE_STRING ) ) ) ;
     public final EObject ruleChangeEventRule() throws RecognitionException {
         EObject current = null;
 
@@ -1086,21 +1086,21 @@ public class InternalUmlTransitionParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:433:28: ( (otherlv_0= 'when' ( (lv_exp_1_0= RULE_STRING ) ) ) )
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:434:1: (otherlv_0= 'when' ( (lv_exp_1_0= RULE_STRING ) ) )
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:433:28: ( (otherlv_0= 'when' ( (lv_exp_1_0= RULE_STRING ) ) ) )
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:434:1: (otherlv_0= 'when' ( (lv_exp_1_0= RULE_STRING ) ) )
             {
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:434:1: (otherlv_0= 'when' ( (lv_exp_1_0= RULE_STRING ) ) )
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:434:3: otherlv_0= 'when' ( (lv_exp_1_0= RULE_STRING ) )
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:434:1: (otherlv_0= 'when' ( (lv_exp_1_0= RULE_STRING ) ) )
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:434:3: otherlv_0= 'when' ( (lv_exp_1_0= RULE_STRING ) )
             {
             otherlv_0=(Token)match(input,15,FOLLOW_15_in_ruleChangeEventRule988); 
 
                 	newLeafNode(otherlv_0, grammarAccess.getChangeEventRuleAccess().getWhenKeyword_0());
                 
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:438:1: ( (lv_exp_1_0= RULE_STRING ) )
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:439:1: (lv_exp_1_0= RULE_STRING )
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:438:1: ( (lv_exp_1_0= RULE_STRING ) )
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:439:1: (lv_exp_1_0= RULE_STRING )
             {
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:439:1: (lv_exp_1_0= RULE_STRING )
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:440:3: lv_exp_1_0= RULE_STRING
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:439:1: (lv_exp_1_0= RULE_STRING )
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:440:3: lv_exp_1_0= RULE_STRING
             {
             lv_exp_1_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleChangeEventRule1005); 
 
@@ -1143,7 +1143,7 @@ public class InternalUmlTransitionParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleGuardRule"
-    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:464:1: entryRuleGuardRule returns [EObject current=null] : iv_ruleGuardRule= ruleGuardRule EOF ;
+    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:464:1: entryRuleGuardRule returns [EObject current=null] : iv_ruleGuardRule= ruleGuardRule EOF ;
     public final EObject entryRuleGuardRule() throws RecognitionException {
         EObject current = null;
 
@@ -1151,8 +1151,8 @@ public class InternalUmlTransitionParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:465:2: (iv_ruleGuardRule= ruleGuardRule EOF )
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:466:2: iv_ruleGuardRule= ruleGuardRule EOF
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:465:2: (iv_ruleGuardRule= ruleGuardRule EOF )
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:466:2: iv_ruleGuardRule= ruleGuardRule EOF
             {
              newCompositeNode(grammarAccess.getGuardRuleRule()); 
             pushFollow(FOLLOW_ruleGuardRule_in_entryRuleGuardRule1046);
@@ -1179,7 +1179,7 @@ public class InternalUmlTransitionParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleGuardRule"
-    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:473:1: ruleGuardRule returns [EObject current=null] : (otherlv_0= '[' ( (lv_constraint_1_0= RULE_STRING ) ) otherlv_2= ']' ) ;
+    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:473:1: ruleGuardRule returns [EObject current=null] : (otherlv_0= '[' ( (lv_constraint_1_0= RULE_STRING ) ) otherlv_2= ']' ) ;
     public final EObject ruleGuardRule() throws RecognitionException {
         EObject current = null;
 
@@ -1190,21 +1190,21 @@ public class InternalUmlTransitionParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:476:28: ( (otherlv_0= '[' ( (lv_constraint_1_0= RULE_STRING ) ) otherlv_2= ']' ) )
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:477:1: (otherlv_0= '[' ( (lv_constraint_1_0= RULE_STRING ) ) otherlv_2= ']' )
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:476:28: ( (otherlv_0= '[' ( (lv_constraint_1_0= RULE_STRING ) ) otherlv_2= ']' ) )
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:477:1: (otherlv_0= '[' ( (lv_constraint_1_0= RULE_STRING ) ) otherlv_2= ']' )
             {
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:477:1: (otherlv_0= '[' ( (lv_constraint_1_0= RULE_STRING ) ) otherlv_2= ']' )
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:477:3: otherlv_0= '[' ( (lv_constraint_1_0= RULE_STRING ) ) otherlv_2= ']'
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:477:1: (otherlv_0= '[' ( (lv_constraint_1_0= RULE_STRING ) ) otherlv_2= ']' )
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:477:3: otherlv_0= '[' ( (lv_constraint_1_0= RULE_STRING ) ) otherlv_2= ']'
             {
             otherlv_0=(Token)match(input,16,FOLLOW_16_in_ruleGuardRule1093); 
 
                 	newLeafNode(otherlv_0, grammarAccess.getGuardRuleAccess().getLeftSquareBracketKeyword_0());
                 
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:481:1: ( (lv_constraint_1_0= RULE_STRING ) )
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:482:1: (lv_constraint_1_0= RULE_STRING )
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:481:1: ( (lv_constraint_1_0= RULE_STRING ) )
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:482:1: (lv_constraint_1_0= RULE_STRING )
             {
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:482:1: (lv_constraint_1_0= RULE_STRING )
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:483:3: lv_constraint_1_0= RULE_STRING
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:482:1: (lv_constraint_1_0= RULE_STRING )
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:483:3: lv_constraint_1_0= RULE_STRING
             {
             lv_constraint_1_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleGuardRule1110); 
 
@@ -1251,7 +1251,7 @@ public class InternalUmlTransitionParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleEffectRule"
-    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:511:1: entryRuleEffectRule returns [EObject current=null] : iv_ruleEffectRule= ruleEffectRule EOF ;
+    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:511:1: entryRuleEffectRule returns [EObject current=null] : iv_ruleEffectRule= ruleEffectRule EOF ;
     public final EObject entryRuleEffectRule() throws RecognitionException {
         EObject current = null;
 
@@ -1259,8 +1259,8 @@ public class InternalUmlTransitionParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:512:2: (iv_ruleEffectRule= ruleEffectRule EOF )
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:513:2: iv_ruleEffectRule= ruleEffectRule EOF
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:512:2: (iv_ruleEffectRule= ruleEffectRule EOF )
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:513:2: iv_ruleEffectRule= ruleEffectRule EOF
             {
              newCompositeNode(grammarAccess.getEffectRuleRule()); 
             pushFollow(FOLLOW_ruleEffectRule_in_entryRuleEffectRule1163);
@@ -1287,7 +1287,7 @@ public class InternalUmlTransitionParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleEffectRule"
-    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:520:1: ruleEffectRule returns [EObject current=null] : (otherlv_0= '/' ( (lv_kind_1_0= ruleBehaviorKind ) ) ( (lv_behaviorName_2_0= RULE_ID ) ) ) ;
+    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:520:1: ruleEffectRule returns [EObject current=null] : (otherlv_0= '/' ( (lv_kind_1_0= ruleBehaviorKind ) ) ( (lv_behaviorName_2_0= RULE_ID ) ) ) ;
     public final EObject ruleEffectRule() throws RecognitionException {
         EObject current = null;
 
@@ -1299,21 +1299,21 @@ public class InternalUmlTransitionParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:523:28: ( (otherlv_0= '/' ( (lv_kind_1_0= ruleBehaviorKind ) ) ( (lv_behaviorName_2_0= RULE_ID ) ) ) )
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:524:1: (otherlv_0= '/' ( (lv_kind_1_0= ruleBehaviorKind ) ) ( (lv_behaviorName_2_0= RULE_ID ) ) )
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:523:28: ( (otherlv_0= '/' ( (lv_kind_1_0= ruleBehaviorKind ) ) ( (lv_behaviorName_2_0= RULE_ID ) ) ) )
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:524:1: (otherlv_0= '/' ( (lv_kind_1_0= ruleBehaviorKind ) ) ( (lv_behaviorName_2_0= RULE_ID ) ) )
             {
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:524:1: (otherlv_0= '/' ( (lv_kind_1_0= ruleBehaviorKind ) ) ( (lv_behaviorName_2_0= RULE_ID ) ) )
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:524:3: otherlv_0= '/' ( (lv_kind_1_0= ruleBehaviorKind ) ) ( (lv_behaviorName_2_0= RULE_ID ) )
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:524:1: (otherlv_0= '/' ( (lv_kind_1_0= ruleBehaviorKind ) ) ( (lv_behaviorName_2_0= RULE_ID ) ) )
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:524:3: otherlv_0= '/' ( (lv_kind_1_0= ruleBehaviorKind ) ) ( (lv_behaviorName_2_0= RULE_ID ) )
             {
             otherlv_0=(Token)match(input,18,FOLLOW_18_in_ruleEffectRule1210); 
 
                 	newLeafNode(otherlv_0, grammarAccess.getEffectRuleAccess().getSolidusKeyword_0());
                 
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:528:1: ( (lv_kind_1_0= ruleBehaviorKind ) )
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:529:1: (lv_kind_1_0= ruleBehaviorKind )
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:528:1: ( (lv_kind_1_0= ruleBehaviorKind ) )
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:529:1: (lv_kind_1_0= ruleBehaviorKind )
             {
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:529:1: (lv_kind_1_0= ruleBehaviorKind )
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:530:3: lv_kind_1_0= ruleBehaviorKind
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:529:1: (lv_kind_1_0= ruleBehaviorKind )
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:530:3: lv_kind_1_0= ruleBehaviorKind
             {
              
             	        newCompositeNode(grammarAccess.getEffectRuleAccess().getKindBehaviorKindEnumRuleCall_1_0()); 
@@ -1340,11 +1340,11 @@ public class InternalUmlTransitionParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:546:2: ( (lv_behaviorName_2_0= RULE_ID ) )
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:547:1: (lv_behaviorName_2_0= RULE_ID )
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:546:2: ( (lv_behaviorName_2_0= RULE_ID ) )
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:547:1: (lv_behaviorName_2_0= RULE_ID )
             {
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:547:1: (lv_behaviorName_2_0= RULE_ID )
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:548:3: lv_behaviorName_2_0= RULE_ID
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:547:1: (lv_behaviorName_2_0= RULE_ID )
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:548:3: lv_behaviorName_2_0= RULE_ID
             {
             lv_behaviorName_2_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleEffectRule1248); 
 
@@ -1387,7 +1387,7 @@ public class InternalUmlTransitionParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleBehaviorKind"
-    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:572:1: ruleBehaviorKind returns [Enumerator current=null] : ( (enumLiteral_0= 'Activity' ) | (enumLiteral_1= 'StateMachine' ) | (enumLiteral_2= 'OpaqueBehavior' ) ) ;
+    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:572:1: ruleBehaviorKind returns [Enumerator current=null] : ( (enumLiteral_0= 'Activity' ) | (enumLiteral_1= 'StateMachine' ) | (enumLiteral_2= 'OpaqueBehavior' ) ) ;
     public final Enumerator ruleBehaviorKind() throws RecognitionException {
         Enumerator current = null;
 
@@ -1397,10 +1397,10 @@ public class InternalUmlTransitionParser extends AbstractInternalAntlrParser {
 
          enterRule(); 
         try {
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:574:28: ( ( (enumLiteral_0= 'Activity' ) | (enumLiteral_1= 'StateMachine' ) | (enumLiteral_2= 'OpaqueBehavior' ) ) )
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:575:1: ( (enumLiteral_0= 'Activity' ) | (enumLiteral_1= 'StateMachine' ) | (enumLiteral_2= 'OpaqueBehavior' ) )
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:574:28: ( ( (enumLiteral_0= 'Activity' ) | (enumLiteral_1= 'StateMachine' ) | (enumLiteral_2= 'OpaqueBehavior' ) ) )
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:575:1: ( (enumLiteral_0= 'Activity' ) | (enumLiteral_1= 'StateMachine' ) | (enumLiteral_2= 'OpaqueBehavior' ) )
             {
-            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:575:1: ( (enumLiteral_0= 'Activity' ) | (enumLiteral_1= 'StateMachine' ) | (enumLiteral_2= 'OpaqueBehavior' ) )
+            // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:575:1: ( (enumLiteral_0= 'Activity' ) | (enumLiteral_1= 'StateMachine' ) | (enumLiteral_2= 'OpaqueBehavior' ) )
             int alt7=3;
             switch ( input.LA(1) ) {
             case 19:
@@ -1427,10 +1427,10 @@ public class InternalUmlTransitionParser extends AbstractInternalAntlrParser {
 
             switch (alt7) {
                 case 1 :
-                    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:575:2: (enumLiteral_0= 'Activity' )
+                    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:575:2: (enumLiteral_0= 'Activity' )
                     {
-                    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:575:2: (enumLiteral_0= 'Activity' )
-                    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:575:4: enumLiteral_0= 'Activity'
+                    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:575:2: (enumLiteral_0= 'Activity' )
+                    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:575:4: enumLiteral_0= 'Activity'
                     {
                     enumLiteral_0=(Token)match(input,19,FOLLOW_19_in_ruleBehaviorKind1303); 
 
@@ -1444,10 +1444,10 @@ public class InternalUmlTransitionParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:581:6: (enumLiteral_1= 'StateMachine' )
+                    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:581:6: (enumLiteral_1= 'StateMachine' )
                     {
-                    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:581:6: (enumLiteral_1= 'StateMachine' )
-                    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:581:8: enumLiteral_1= 'StateMachine'
+                    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:581:6: (enumLiteral_1= 'StateMachine' )
+                    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:581:8: enumLiteral_1= 'StateMachine'
                     {
                     enumLiteral_1=(Token)match(input,20,FOLLOW_20_in_ruleBehaviorKind1320); 
 
@@ -1461,10 +1461,10 @@ public class InternalUmlTransitionParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:587:6: (enumLiteral_2= 'OpaqueBehavior' )
+                    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:587:6: (enumLiteral_2= 'OpaqueBehavior' )
                     {
-                    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:587:6: (enumLiteral_2= 'OpaqueBehavior' )
-                    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/parser/antlr/internal/InternalUmlTransition.g:587:8: enumLiteral_2= 'OpaqueBehavior'
+                    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:587:6: (enumLiteral_2= 'OpaqueBehavior' )
+                    // ../org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/parser/antlr/internal/InternalUmlTransition.g:587:8: enumLiteral_2= 'OpaqueBehavior'
                     {
                     enumLiteral_2=(Token)match(input,21,FOLLOW_21_in_ruleBehaviorKind1337); 
 

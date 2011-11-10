@@ -35,7 +35,7 @@ public class UmlPropertyFactoryImpl extends EFactoryImpl implements UmlPropertyF
   {
     try
     {
-      UmlPropertyFactory theUmlPropertyFactory = (UmlPropertyFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/property/editor/xtext/UmlProperty"); 
+      UmlPropertyFactory theUmlPropertyFactory = (UmlPropertyFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/uml/textedit/property/xtext/UmlProperty"); 
       if (theUmlPropertyFactory != null)
       {
         return theUmlPropertyFactory;

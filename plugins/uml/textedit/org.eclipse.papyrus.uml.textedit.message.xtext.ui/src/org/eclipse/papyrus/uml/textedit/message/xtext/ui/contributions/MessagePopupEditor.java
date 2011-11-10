@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
  *
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -24,8 +24,8 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
-import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
+import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.uml.textedit.message.xtext.ui.internal.UmlMessageActivator;
 import org.eclipse.papyrus.uml.textedit.message.xtext.umlMessage.MessageRule;
 import org.eclipse.uml2.uml.Interaction;
@@ -70,7 +70,7 @@ public class MessagePopupEditor extends PopupEditorConfiguration {
 	 * @param editedObject
 	 * @return the text to edit
 	 */
-	
+
 	@SuppressWarnings("rawtypes")
 	@Override
 	public String getTextToEdit(Object editedObject) {
@@ -86,11 +86,11 @@ public class MessagePopupEditor extends PopupEditorConfiguration {
 				sequencenumber++;
 				Message childElement = (Message)it.next();
 				if(childElement.equals(editedObject)) {
-					if(((int)texttoedit.charAt(0) >= 48) && ((int)texttoedit.charAt(0) <= 57))
-
+					if((texttoedit.charAt(0) >= 48) && (texttoedit.charAt(0) <= 57)) {
 						return texttoedit;
-					else
+					} else {
 						return texttoedit = sequencenumber + ":" + texttoedit;
+					}
 				}
 			}
 		}
@@ -105,21 +105,22 @@ public class MessagePopupEditor extends PopupEditorConfiguration {
 	 * @param editPart
 	 * @return the popup editor helper
 	 */
-	
+
 	@Override
 	public IPopupEditorHelper createPopupEditorHelper(Object editPart) {
 		// resolves the edit part, and the associated semantic element
 		IGraphicalEditPart graphicalEditPart = null;
-		if(!(editPart instanceof IGraphicalEditPart))
+		if(!(editPart instanceof IGraphicalEditPart)) {
 			return null;
+		}
 		graphicalEditPart = (IGraphicalEditPart)editPart;
 		if(!(graphicalEditPart.getTopGraphicEditPart().resolveSemanticElement() instanceof Message)) {
 			return null;
-		} 
+		}
 		message = (Message)graphicalEditPart.getTopGraphicEditPart().resolveSemanticElement();
 		// retrieves the XText injector
 		Injector injector = UmlMessageActivator.getInstance().getInjector("org.eclipse.papyrus.uml.textedit.message.xtext.UmlMessage");
-		
+
 		// builds the text content and extension for a temporary file, to be edited by the xtext editor
 		String textToEdit = "" + this.getTextToEdit(message);
 		String fileExtension = "" + ".umlmessage";
@@ -132,37 +133,42 @@ public class MessagePopupEditor extends PopupEditorConfiguration {
 			public void reconcile(EObject modelObject, EObject xtextObject) {
 				// first: retrieves / determines if the xtextObject is a MessageRule object
 				EObject modifiedObject = xtextObject;
-				if(!(modelObject instanceof Message))
+				if(!(modelObject instanceof Message)) {
 					return;
+				}
 				while(xtextObject != null && !(xtextObject instanceof MessageRule)) {
 					modifiedObject = modifiedObject.eContainer();
 				}
-				if(modifiedObject == null)
+				if(modifiedObject == null) {
 					return;
+				}
 				MessageRule messageRuleObject = (MessageRule)xtextObject;
-				
+
 				// Retrieves the information to be populated in modelObject
 				newName = "" + messageRuleObject.getName();
 
-				
+
 				int ocnumber = messageRuleObject.getSequenceTerm().get(0).getSequencialOrder();
-				
-			
+
+
 				String ocname = "";
 
 				newSequenceTermList = "";
 				int i = 0;
 				String recurrence;
 				for(i = 0; i < messageRuleObject.getSequenceTerm().size(); i++) {
-					if(messageRuleObject.getSequenceTerm().get(i).getSequenceName() != null)
+					if(messageRuleObject.getSequenceTerm().get(i).getSequenceName() != null) {
 						ocname = messageRuleObject.getSequenceTerm().get(i).getSequenceName().toString();
+					}
 					ocnumber = messageRuleObject.getSequenceTerm().get(i).getSequencialOrder();
-					if(messageRuleObject.getSequenceTerm().get(i).getRecurrence() != null)
+					if(messageRuleObject.getSequenceTerm().get(i).getRecurrence() != null) {
 						recurrence = messageRuleObject.getSequenceTerm().get(i).getRecurrence().trim();
-					if((i == 0))
+					}
+					if((i == 0)) {
 						newSequenceTermList = newSequenceTermList + ocnumber + ocname;
-					else
+					} else {
 						newSequenceTermList = newSequenceTermList + '.' + ocnumber + ocname;
+					}
 				}
 
 				// Creates and executes the update command
@@ -176,12 +182,12 @@ public class MessagePopupEditor extends PopupEditorConfiguration {
 
 
 		};
-		return super.createPopupEditorHelper(graphicalEditPart, 
-											injector, 
-											reconciler, 
-											textToEdit, 
-											fileExtension,
-											new DefaultXtextSemanticValidator());
+		return super.createPopupEditorHelper(graphicalEditPart,
+			injector,
+			reconciler,
+			textToEdit,
+			fileExtension,
+			new DefaultXtextSemanticValidator());
 	}
 
 	/**
@@ -207,7 +213,7 @@ public class MessagePopupEditor extends PopupEditorConfiguration {
 		 * @return
 		 * @throws ExecutionException
 		 */
-		
+
 		@Override
 		protected CommandResult doExecuteWithResult(IProgressMonitor arg0, IAdaptable arg1) throws ExecutionException {
 

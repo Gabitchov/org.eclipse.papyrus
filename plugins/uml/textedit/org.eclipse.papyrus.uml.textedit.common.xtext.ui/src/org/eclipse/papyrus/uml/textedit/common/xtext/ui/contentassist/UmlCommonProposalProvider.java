@@ -15,7 +15,7 @@ import org.eclipse.jface.text.contentassist.ICompletionProposal;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.papyrus.core.utils.DisplayUtils;
+import org.eclipse.papyrus.infra.core.utils.DisplayUtils;
 import org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon.MultiplicityRule;
 import org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon.QualifiedName;
 import org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon.TypeRule;
@@ -25,7 +25,6 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.Package;
-import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.xtext.Assignment;
 import org.eclipse.xtext.RuleCall;
@@ -162,8 +161,9 @@ public class UmlCommonProposalProvider extends AbstractUmlCommonProposalProvider
 	 */
 	@Override
 	public void completeMultiplicityRule_Bounds(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		if(!(model instanceof MultiplicityRule))
+		if(!(model instanceof MultiplicityRule)) {
 			return;
+		}
 
 		MultiplicityRule multiplicityRule = (MultiplicityRule)model;
 
@@ -270,8 +270,9 @@ public class UmlCommonProposalProvider extends AbstractUmlCommonProposalProvider
 	@Override
 	public void completeTypeRule_Path(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		Namespace root = getModel();
-		if(root == null)
+		if(root == null) {
 			return;
+		}
 
 		// first accept the root Model
 		String completionString = root.getName() + "::"; //$NON-NLS-1$
@@ -353,15 +354,15 @@ public class UmlCommonProposalProvider extends AbstractUmlCommonProposalProvider
 	protected ICompletionProposal createCompletionProposal(NamedElement namedElement, String completionString, String displayString, ContentAssistContext context) {
 		String additionalProposalInfo = "" + namedElement.getQualifiedName() + "\n" + '(' + namedElement.eClass().getName() + ')'; //$NON-NLS-1$ //$NON-NLS-2$
 
-		ICompletionProposal completionProposal = new CompletionProposal(completionString, // String to be inserted 
-		context.getOffset(), // Offset
-		context.getSelectedText().length(), // Replacement length
-		completionString.length(), // cursorPosition
-		labelProvider.getImage(namedElement), // image
-		" " + displayString, // displayString //$NON-NLS-1$
-		null, // contextInformation
-		additionalProposalInfo // additionalProposalInfo
-		);
+		ICompletionProposal completionProposal = new CompletionProposal(completionString, // String to be inserted
+			context.getOffset(), // Offset
+			context.getSelectedText().length(), // Replacement length
+			completionString.length(), // cursorPosition
+			labelProvider.getImage(namedElement), // image
+			" " + displayString, // displayString //$NON-NLS-1$
+			null, // contextInformation
+			additionalProposalInfo // additionalProposalInfo
+			);
 		return completionProposal;
 	}
 
@@ -378,15 +379,15 @@ public class UmlCommonProposalProvider extends AbstractUmlCommonProposalProvider
 	 */
 	protected ICompletionProposal createCompletionProposal(String completionString, String displayString, ContentAssistContext context) {
 
-		ICompletionProposal completionProposal = new CompletionProposal(completionString, // String to be inserted 
-		context.getOffset(), // Offset
-		context.getSelectedText().length(), // Replacement length
-		completionString.length(), // cursorPosition
-		null, // image
-		" " + displayString, // displayString //$NON-NLS-1$
-		null, // contextInformation
-		null // additionalProposalInfo
-		);
+		ICompletionProposal completionProposal = new CompletionProposal(completionString, // String to be inserted
+			context.getOffset(), // Offset
+			context.getSelectedText().length(), // Replacement length
+			completionString.length(), // cursorPosition
+			null, // image
+			" " + displayString, // displayString //$NON-NLS-1$
+			null, // contextInformation
+			null // additionalProposalInfo
+			);
 		return completionProposal;
 	}
 
@@ -407,15 +408,15 @@ public class UmlCommonProposalProvider extends AbstractUmlCommonProposalProvider
 	protected ICompletionProposal createCompletionProposalWithReplacementOfPrefix(NamedElement namedElement, String completionString, String displayString, ContentAssistContext context) {
 		String additionalProposalInfo = "" + namedElement.getQualifiedName() + "\n" + '(' + namedElement.eClass().getName() + ')'; //$NON-NLS-1$ //$NON-NLS-2$
 
-		ICompletionProposal completionProposal = new CompletionProposal(completionString, // String to be inserted 
-		context.getOffset() - context.getPrefix().length(), // Offset
-		context.getPrefix().length(), // Replacement length
-		completionString.length(), // cursorPosition
-		labelProvider.getImage(namedElement), // image
-		" " + displayString, // displayString //$NON-NLS-1$
-		null, // contextInformation
-		additionalProposalInfo // additionalProposalInfo
-		);
+		ICompletionProposal completionProposal = new CompletionProposal(completionString, // String to be inserted
+			context.getOffset() - context.getPrefix().length(), // Offset
+			context.getPrefix().length(), // Replacement length
+			completionString.length(), // cursorPosition
+			labelProvider.getImage(namedElement), // image
+			" " + displayString, // displayString //$NON-NLS-1$
+			null, // contextInformation
+			additionalProposalInfo // additionalProposalInfo
+			);
 		return completionProposal;
 	}
 

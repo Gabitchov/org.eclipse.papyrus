@@ -4,7 +4,7 @@ import org.eclipse.emf.mwe.utils.*
 import org.eclipse.xtext.generator.*
 import org.eclipse.xtext.ui.generator.*
 
-var grammarURI = "classpath:/org/eclipse/papyrus/collaborationuse/editor/xtext/UmlCollaborationUse.xtext"
+var grammarURI = "classpath:/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/UmlCollaborationUse.xtext"
 var file.extensions = "umlcollaborationuse"
 var projectName = "org.eclipse.papyrus.uml.textedit.collaborationuse.xtext"
 var runtimeProject = "../${projectName}"
@@ -44,7 +44,7 @@ Workflow {
 			// generates Java API for the generated EPackages 
 			fragment = ecore.EcoreGeneratorFragment {
 			referencedGenModels = "platform:/resource/org.eclipse.papyrus.property.editor.xtext/model/UML.genmodel"
-			referencedGenModels = "platform:/resource/org.eclipse.papyrus.uml.textedit.common.xtext/src-gen/org/eclipse/papyrus/common/editor/xtext/UMLCommon.genmodel"
+			referencedGenModels = "platform:/resource/org.eclipse.papyrus.uml.textedit.common.xtext/src-gen/org/eclipse/papyrus/uml/textedit/common/xtext/UMLCommon.genmodel"
 			
 			}
 

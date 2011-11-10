@@ -21,7 +21,7 @@ public abstract class AbstractUmlCommonRuntimeModule extends DefaultRuntimeModul
 
 	@Override
 	public void configure(Binder binder) {
-		properties = tryBindProperties(binder, "org/eclipse/papyrus/common/editor/xtext/UmlCommon.properties");
+		properties = tryBindProperties(binder, "org/eclipse/papyrus/uml/textedit/common/xtext/UmlCommon.properties");
 		super.configure(binder);
 	}
 	

@@ -5,9 +5,9 @@
 
   <extension point="org.eclipse.emf.ecore.generated_package">
     <package 
-       uri = "http://www.eclipse.org/papyrus/parameter/editor/xtext/UmlParameter" 
+       uri = "http://www.eclipse.org/papyrus/uml/textedit/parameter/xtext/UmlParameter" 
        class = "org.eclipse.papyrus.uml.textedit.parameter.xtext.umlParameter.UmlParameterPackage"
-       genModel = "org/eclipse/papyrus/parameter/editor/xtext/UmlParameter.genmodel" /> 
+       genModel = "org/eclipse/papyrus/uml/textedit/parameter/xtext/UmlParameter.genmodel" /> 
 	
   </extension>
 

@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
  *
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -17,19 +17,9 @@ package org.eclipse.papyrus.uml.textedit.property.xtext.ui.contentassist;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.core.runtime.Assert;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.jface.text.BadLocationException;
-import org.eclipse.jface.text.IDocument;
-import org.eclipse.jface.text.contentassist.CompletionProposal;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
-import org.eclipse.jface.text.contentassist.ICompletionProposalExtension;
-import org.eclipse.jface.text.contentassist.ICompletionProposalExtension2;
-import org.eclipse.jface.text.contentassist.IContextInformation;
-import org.eclipse.jface.viewers.ILabelProvider;
-import org.eclipse.papyrus.core.utils.DisplayUtils;
 import org.eclipse.papyrus.uml.textedit.property.xtext.scoping.UmlPropertyScopeProvider;
-import org.eclipse.papyrus.uml.textedit.property.xtext.ui.contentassist.AbstractUmlPropertyProposalProvider;
 import org.eclipse.papyrus.uml.textedit.property.xtext.ui.contributions.UMLPropertyEditorPropertyUtil;
 import org.eclipse.papyrus.uml.textedit.property.xtext.umlProperty.ModifierSpecification;
 import org.eclipse.papyrus.uml.textedit.property.xtext.umlProperty.ModifiersRule;
@@ -38,13 +28,11 @@ import org.eclipse.papyrus.uml.textedit.property.xtext.umlProperty.PropertyRule;
 import org.eclipse.papyrus.uml.textedit.property.xtext.umlProperty.QualifiedName;
 import org.eclipse.papyrus.uml.textedit.property.xtext.umlProperty.TypeRule;
 import org.eclipse.papyrus.uml.textedit.property.xtext.validation.UmlPropertyJavaValidator;
-import org.eclipse.swt.graphics.Image;
-import org.eclipse.swt.graphics.Point;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Namespace;
-import org.eclipse.uml2.uml.Package ;
+import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.xtext.Assignment;
 import org.eclipse.xtext.Keyword;
@@ -64,15 +52,15 @@ import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor;
 public class UmlPropertyProposalProvider extends AbstractUmlPropertyProposalProvider {
 
 
-	
-	/** 
+
+	/**
 	 * Provides custom completion for the specifying the type of a property
 	 * 
 	 * @see org.eclipse.papyrus.uml.textedit.property.xtext.ui.contentassist.AbstractUmlPropertyProposalProvider#completePropertyRule_Type(org.eclipse.emf.ecore.EObject, org.eclipse.xtext.Assignment, org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext, org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor)
 	 */
 	@Override
 	public void completePropertyRule_Type(EObject model, Assignment assignment,
-			ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		List<Classifier> allClassifiers = new ArrayList<Classifier>() ;
 		allClassifiers.addAll(getRecursivelyOwnedClassifiers(UmlPropertyJavaValidator.getModel())) ;
 		allClassifiers.addAll(getRecursivelyImportedClassifiers(UmlPropertyJavaValidator.getModel())) ;
@@ -93,19 +81,20 @@ public class UmlPropertyProposalProvider extends AbstractUmlPropertyProposalProv
 	 */
 	@Override
 	public void completeTypeRule_Path(EObject model, Assignment assignment,
-			ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		Namespace root = UmlPropertyJavaValidator.getModel() ;
-		
-		if (root == null)
+
+		if (root == null) {
 			return ;
-		
+		}
+
 		// first accept the root Model
 		String completionString = root.getName() + "::";
 		String displayString = root.getName() + "::";
 		//String displayString = c.getName() ;
 		CustomCompletionProposal completionProposal = CompletionProposalUtils.createCompletionProposalWithReplacementOfPrefix(root, completionString, displayString, context) ;
 		acceptor.accept(completionProposal) ;
-		
+
 		// then accepts all packages imported by Model
 		List<Package> importedPackages = root.getImportedPackages() ;
 		for (Package p : importedPackages) {
@@ -117,18 +106,18 @@ public class UmlPropertyProposalProvider extends AbstractUmlPropertyProposalProv
 				acceptor.accept(completionProposal) ;
 			}
 		}
-		
+
 	}
 
-	/** 
+	/**
 	 * Provides custom completion for specifying the type of a property, taking into account the path if the name is qualified
 	 * 
 	 * @see org.eclipse.papyrus.uml.textedit.property.xtext.ui.contentassist.AbstractUmlPropertyProposalProvider#completeTypeRule_Type(org.eclipse.emf.ecore.EObject, org.eclipse.xtext.Assignment, org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext, org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor)
 	 */
 	@Override
 	public void completeTypeRule_Type(EObject model, Assignment assignment,
-			ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-			
+		ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+
 		Namespace namespace = ((Property)UmlPropertyJavaValidator.getContextElement()).getNamespace() ;
 		if (model instanceof TypeRule) {
 			TypeRule typeRule = (TypeRule)model ;
@@ -136,10 +125,11 @@ public class UmlPropertyProposalProvider extends AbstractUmlPropertyProposalProv
 			while (path.getRemaining() != null) {
 				path = path.getRemaining() ;
 			}
-			namespace = (Namespace)path.getPath() ;
+			namespace = path.getPath() ;
 		}
-		else if (! (model instanceof PropertyRule))
+		else if (! (model instanceof PropertyRule)) {
 			return ;
+		}
 		for (NamedElement n : namespace.getOwnedMembers()) {
 			if (n instanceof Classifier) {
 				if (n.getName().toLowerCase().contains(context.getPrefix().toLowerCase())) {
@@ -153,8 +143,8 @@ public class UmlPropertyProposalProvider extends AbstractUmlPropertyProposalProv
 
 	}
 
-	
-	
+
+
 	/**
 	 * Provides custom completion for a path in a qualified name
 	 * 
@@ -162,8 +152,8 @@ public class UmlPropertyProposalProvider extends AbstractUmlPropertyProposalProv
 	 */
 	@Override
 	public void completeQualifiedName_Path(EObject model,
-			Assignment assignment, ContentAssistContext context,
-			ICompletionProposalAcceptor acceptor) {
+		Assignment assignment, ContentAssistContext context,
+		ICompletionProposalAcceptor acceptor) {
 		//The customization consists in proposing nothing. Proposals are already handled by other methods
 	}
 
@@ -174,8 +164,8 @@ public class UmlPropertyProposalProvider extends AbstractUmlPropertyProposalProv
 	 */
 	@Override
 	public void completeQualifiedName_Remaining(EObject model,
-			Assignment assignment, ContentAssistContext context,
-			ICompletionProposalAcceptor acceptor) {
+		Assignment assignment, ContentAssistContext context,
+		ICompletionProposalAcceptor acceptor) {
 		QualifiedName path = (QualifiedName) model ;
 		for (NamedElement n : path.getPath().getOwnedMembers()) {
 			if (n instanceof Package) {
@@ -196,11 +186,11 @@ public class UmlPropertyProposalProvider extends AbstractUmlPropertyProposalProv
 			}
 		}
 	}
-	
+
 	@Override
 	public void completeRedefinesRule_Property(EObject model,
-			Assignment assignment, ContentAssistContext context,
-			ICompletionProposalAcceptor acceptor) {
+		Assignment assignment, ContentAssistContext context,
+		ICompletionProposalAcceptor acceptor) {
 		for (Property inherited : UmlPropertyScopeProvider.retrieveInheritedProperties()) {
 			if (inherited.getName().toLowerCase().contains(context.getPrefix().toLowerCase())) {
 				String completionString = inherited.getName() ;
@@ -213,8 +203,8 @@ public class UmlPropertyProposalProvider extends AbstractUmlPropertyProposalProv
 
 	@Override
 	public void completeSubsetsRule_Property(EObject model,
-			Assignment assignment, ContentAssistContext context,
-			ICompletionProposalAcceptor acceptor) {
+		Assignment assignment, ContentAssistContext context,
+		ICompletionProposalAcceptor acceptor) {
 		for (Property inherited : UmlPropertyScopeProvider.retrieveInheritedProperties()) {
 			if (inherited.getName().toLowerCase().contains(context.getPrefix().toLowerCase())) {
 				String completionString = inherited.getName() ;
@@ -232,8 +222,8 @@ public class UmlPropertyProposalProvider extends AbstractUmlPropertyProposalProv
 	 */
 	@Override
 	public void completeKeyword(Keyword keyword,
-			ContentAssistContext contentAssistContext,
-			ICompletionProposalAcceptor acceptor) {
+		ContentAssistContext contentAssistContext,
+		ICompletionProposalAcceptor acceptor) {
 		EObject model = contentAssistContext.getCurrentModel() ;
 		if (! (model instanceof ModifiersRule)) {
 			super.completeKeyword(keyword, contentAssistContext, acceptor);
@@ -266,71 +256,76 @@ public class UmlPropertyProposalProvider extends AbstractUmlPropertyProposalProv
 		}
 		String value = keyword.getValue() ;
 		if (value.equals("ordered")) {
-			if (!isOrdered)
+			if (!isOrdered) {
 				super.completeKeyword(keyword, contentAssistContext, acceptor);
+			}
 		}
 		else if (value.equals("readOnly")) {
-			if (!isReadOnly)
+			if (!isReadOnly) {
 				super.completeKeyword(keyword, contentAssistContext, acceptor);
+			}
 		}
 		else if (value.equals("unique")) {
-			if (!isUnique)
+			if (!isUnique) {
 				super.completeKeyword(keyword, contentAssistContext, acceptor);
+			}
 		}
 		else if (value.equals("union")) {
-			if (!isUnion)
+			if (!isUnion) {
 				super.completeKeyword(keyword, contentAssistContext, acceptor);
-		}
-		else
+			}
+		} else {
 			super.completeKeyword(keyword, contentAssistContext, acceptor);
+		}
 	}
-	
+
 	@Override
 	public void complete_MultiplicityRule(EObject model, RuleCall ruleCall,
-			ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		String zero_one = "[0..1]" ;
 		String one = "[1]" ;
 		String one_star = "[1..*]" ;
 		String star = "[*]" ;
-		
+
 		String completionString = "" ;
 		String displayString = "";
 		ICompletionProposal completionProposal = null ;
-		
+
 		completionString = "" + zero_one.substring(context.getPrefix().length()) ;
 		displayString = "" + zero_one ;
 		completionProposal = CompletionProposalUtils.createCompletionProposal(completionString, displayString, context) ;
 		acceptor.accept(completionProposal) ;
-		
+
 		completionString = "" + one.substring(context.getPrefix().length()) ;
 		displayString = "" + one ;
 		completionProposal = CompletionProposalUtils.createCompletionProposal(completionString, displayString, context) ;
 		acceptor.accept(completionProposal) ;
-		
+
 		completionString = "" + one_star.substring(context.getPrefix().length()) ;
 		displayString = "" + one_star + "     ";
 		completionProposal = CompletionProposalUtils.createCompletionProposal(completionString, displayString, context) ;
 		acceptor.accept(completionProposal) ;
-		
+
 		completionString = "" + star.substring(context.getPrefix().length()) ;
 		displayString = "" + star ;
 		completionProposal = CompletionProposalUtils.createCompletionProposal(completionString, displayString, context) ;
 		acceptor.accept(completionProposal) ;
 	}
-	
+
 	@Override
 	public void completeMultiplicityRule_Bounds(EObject model,
-			Assignment assignment, ContentAssistContext context,
-			ICompletionProposalAcceptor acceptor) {
-		
-		if (!(model instanceof MultiplicityRule))
+		Assignment assignment, ContentAssistContext context,
+		ICompletionProposalAcceptor acceptor) {
+
+		if (!(model instanceof MultiplicityRule)) {
 			return ;
-		
+		}
+
 		MultiplicityRule multiplicityRule = (MultiplicityRule)model ;
-		
+
 		if (multiplicityRule.getBounds().size() == 2) {
 			String value = multiplicityRule.getBounds().get(1).getValue() ;
-			try {	
+			try {
 				Integer.valueOf(value) ;
 			}
 			catch(Exception e) {
@@ -343,11 +338,11 @@ public class UmlPropertyProposalProvider extends AbstractUmlPropertyProposalProv
 			}
 		}
 	}
-	
+
 	/* ******************************************************************************
 	 * Utility methods
 	 ********************************************************************************/
-	
+
 	/**
 	 * Utility methods wich returns the list of classifiers that are directly or indirectly owned by a context namespace
 	 * 
@@ -356,18 +351,20 @@ public class UmlPropertyProposalProvider extends AbstractUmlPropertyProposalProv
 	 */
 	private List<Classifier> getRecursivelyOwnedClassifiers(Namespace context) {
 		List<Classifier> recursivelyOwnedClassifiers = new ArrayList<Classifier>();
-		
+
 		List<Element> allOwnedElements = context.getOwnedElements() ;
 		for (Element e : allOwnedElements) {
-			if (e instanceof Classifier)
+			if (e instanceof Classifier) {
 				recursivelyOwnedClassifiers.add((Classifier)e) ;
-			if (e instanceof Namespace)
+			}
+			if (e instanceof Namespace) {
 				recursivelyOwnedClassifiers.addAll(getRecursivelyOwnedClassifiers((Namespace)e)) ;
+			}
 		}
-		
+
 		return recursivelyOwnedClassifiers ;
 	}
-	
+
 	/**
 	 * Utility methods which returns the list of classifiers that are directly or indirectly owned by the namespaces imported by a context namespace
 	 * 
@@ -376,13 +373,13 @@ public class UmlPropertyProposalProvider extends AbstractUmlPropertyProposalProv
 	 */
 	private List<Classifier> getRecursivelyImportedClassifiers(Namespace context) {
 		List<Classifier> recursivelyImportedClassifiers = new ArrayList<Classifier>() ;
-		
+
 		List<Package> importedPackages = context.getImportedPackages() ;
 		for (Package p : importedPackages) {
 			recursivelyImportedClassifiers.addAll(getRecursivelyOwnedClassifiers(p)) ;
 		}
-		
+
 		return recursivelyImportedClassifiers ;
 	}
-	
+
 }

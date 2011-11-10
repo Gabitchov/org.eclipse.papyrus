@@ -10,10 +10,10 @@
     editorPluginID="org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.editor"
     usedGenPackages="platform:/resource/org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext/model/UML.genmodel#//uml">
   <genPackages prefix="UMLConnectionPointReference" basePackage="org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext"
-      resource="XML" disposableProviderFactory="true" ecorePackage="platform:/resource/org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext/src-gen/org/eclipse/papyrus/connectionpointreference/editor/xtext/UMLConnectionPointReference.ecore#/">
-    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext/src-gen/org/eclipse/papyrus/connectionpointreference/editor/xtext/UMLConnectionPointReference.ecore#//ConnectionPointReferenceRule">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext/src-gen/org/eclipse/papyrus/connectionpointreference/editor/xtext/UMLConnectionPointReference.ecore#//ConnectionPointReferenceRule/entry"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext/src-gen/org/eclipse/papyrus/connectionpointreference/editor/xtext/UMLConnectionPointReference.ecore#//ConnectionPointReferenceRule/exit"/>
+      resource="XML" disposableProviderFactory="true" ecorePackage="platform:/resource/org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/UMLConnectionPointReference.ecore#/">
+    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/UMLConnectionPointReference.ecore#//ConnectionPointReferenceRule">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/UMLConnectionPointReference.ecore#//ConnectionPointReferenceRule/entry"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/UMLConnectionPointReference.ecore#//ConnectionPointReferenceRule/exit"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

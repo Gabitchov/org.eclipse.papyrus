@@ -5,9 +5,9 @@
 
   <extension point="org.eclipse.emf.ecore.generated_package">
     <package 
-       uri = "http://www.eclipse.org/papyrus/connectionpointreference/editor/xtext/UMLConnectionPointReference" 
+       uri = "http://www.eclipse.org/papyrus/uml/textedit/connectionpointreference/xtext/UMLConnectionPointReference" 
        class = "org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.uMLConnectionPointReference.UMLConnectionPointReferencePackage"
-       genModel = "org/eclipse/papyrus/connectionpointreference/editor/xtext/UMLConnectionPointReference.genmodel" /> 
+       genModel = "org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/UMLConnectionPointReference.genmodel" /> 
 	
   </extension>
 

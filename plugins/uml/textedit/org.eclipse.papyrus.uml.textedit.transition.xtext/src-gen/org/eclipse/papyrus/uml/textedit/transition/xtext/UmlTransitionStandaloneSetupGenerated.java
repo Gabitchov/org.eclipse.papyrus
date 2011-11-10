@@ -27,8 +27,8 @@ public class UmlTransitionStandaloneSetupGenerated implements ISetup {
 	}
 	
 	public void register(Injector injector) {
-	if (!EPackage.Registry.INSTANCE.containsKey("http://www.eclipse.org/papyrus/transition/editor/xtext/UmlTransition")) {
-		EPackage.Registry.INSTANCE.put("http://www.eclipse.org/papyrus/transition/editor/xtext/UmlTransition", org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.UmlTransitionPackage.eINSTANCE);
+	if (!EPackage.Registry.INSTANCE.containsKey("http://www.eclipse.org/papyrus/uml/textedit/transition/xtext/UmlTransition")) {
+		EPackage.Registry.INSTANCE.put("http://www.eclipse.org/papyrus/uml/textedit/transition/xtext/UmlTransition", org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.UmlTransitionPackage.eINSTANCE);
 	}
 
 		org.eclipse.xtext.resource.IResourceFactory resourceFactory = injector.getInstance(org.eclipse.xtext.resource.IResourceFactory.class);

@@ -43,7 +43,7 @@ public interface UmlParameterPackage extends EPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  String eNS_URI = "http://www.eclipse.org/papyrus/parameter/editor/xtext/UmlParameter";
+  String eNS_URI = "http://www.eclipse.org/papyrus/uml/textedit/parameter/xtext/UmlParameter";
 
   /**
    * The package namespace name.

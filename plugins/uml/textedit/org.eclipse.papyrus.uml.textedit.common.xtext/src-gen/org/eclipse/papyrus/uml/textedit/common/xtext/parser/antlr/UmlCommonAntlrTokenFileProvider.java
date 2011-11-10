@@ -10,6 +10,6 @@ public class UmlCommonAntlrTokenFileProvider implements IAntlrTokenFileProvider 
 	
 	public InputStream getAntlrTokenFile() {
 		ClassLoader classLoader = getClass().getClassLoader();
-    	return classLoader.getResourceAsStream("org/eclipse/papyrus/common/editor/xtext/parser/antlr/internal/InternalUmlCommon.tokens");
+    	return classLoader.getResourceAsStream("org/eclipse/papyrus/uml/textedit/common/xtext/parser/antlr/internal/InternalUmlCommon.tokens");
 	}
 }

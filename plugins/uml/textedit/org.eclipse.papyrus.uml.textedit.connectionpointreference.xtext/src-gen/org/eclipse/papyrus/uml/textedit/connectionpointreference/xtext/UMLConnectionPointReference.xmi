@@ -5,11 +5,11 @@
       <ePackage href="http://www.eclipse.org/uml2/3.0.0/UML#/"/>
     </metamodelDeclarations>
     <metamodelDeclarations xsi:type="xtext:GeneratedMetamodel" name="uMLConnectionPointReference">
-      <ePackage href="http://www.eclipse.org/papyrus/connectionpointreference/editor/xtext/UMLConnectionPointReference#/"/>
+      <ePackage href="http://www.eclipse.org/papyrus/uml/textedit/connectionpointreference/xtext/UMLConnectionPointReference#/"/>
     </metamodelDeclarations>
     <rules xsi:type="xtext:ParserRule" name="ConnectionPointReferenceRule">
       <type metamodel="/0/@metamodelDeclarations.1">
-        <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/connectionpointreference/editor/xtext/UMLConnectionPointReference#//ConnectionPointReferenceRule"/>
+        <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/uml/textedit/connectionpointreference/xtext/UMLConnectionPointReference#//ConnectionPointReferenceRule"/>
       </type>
       <alternatives xsi:type="xtext:Alternatives" cardinality="?">
         <elements xsi:type="xtext:Group">

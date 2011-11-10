@@ -50,7 +50,7 @@ public class InternalUmlCommonParser extends AbstractInternalContentAssistParser
         
 
     public String[] getTokenNames() { return InternalUmlCommonParser.tokenNames; }
-    public String getGrammarFileName() { return "../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/common/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g"; }
+    public String getGrammarFileName() { return "../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/common/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g"; }
 
 
      
@@ -74,11 +74,11 @@ public class InternalUmlCommonParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "entryRuleQualifiedName"
-    // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/common/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:61:1: entryRuleQualifiedName : ruleQualifiedName EOF ;
+    // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/common/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:61:1: entryRuleQualifiedName : ruleQualifiedName EOF ;
     public final void entryRuleQualifiedName() throws RecognitionException {
         try {
-            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/common/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:62:1: ( ruleQualifiedName EOF )
-            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/common/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:63:1: ruleQualifiedName EOF
+            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/common/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:62:1: ( ruleQualifiedName EOF )
+            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/common/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:63:1: ruleQualifiedName EOF
             {
              before(grammarAccess.getQualifiedNameRule()); 
             pushFollow(FOLLOW_ruleQualifiedName_in_entryRuleQualifiedName61);
@@ -104,21 +104,21 @@ public class InternalUmlCommonParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "ruleQualifiedName"
-    // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/common/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:70:1: ruleQualifiedName : ( ( rule__QualifiedName__Group__0 ) ) ;
+    // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/common/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:70:1: ruleQualifiedName : ( ( rule__QualifiedName__Group__0 ) ) ;
     public final void ruleQualifiedName() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/common/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:74:2: ( ( ( rule__QualifiedName__Group__0 ) ) )
-            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/common/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:75:1: ( ( rule__QualifiedName__Group__0 ) )
+            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/common/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:74:2: ( ( ( rule__QualifiedName__Group__0 ) ) )
+            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/common/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:75:1: ( ( rule__QualifiedName__Group__0 ) )
             {
-            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/common/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:75:1: ( ( rule__QualifiedName__Group__0 ) )
-            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/common/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:76:1: ( rule__QualifiedName__Group__0 )
+            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/common/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:75:1: ( ( rule__QualifiedName__Group__0 ) )
+            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/common/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:76:1: ( rule__QualifiedName__Group__0 )
             {
              before(grammarAccess.getQualifiedNameAccess().getGroup()); 
-            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/common/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:77:1: ( rule__QualifiedName__Group__0 )
-            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/common/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:77:2: rule__QualifiedName__Group__0
+            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/common/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:77:1: ( rule__QualifiedName__Group__0 )
+            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/common/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:77:2: rule__QualifiedName__Group__0
             {
             pushFollow(FOLLOW_rule__QualifiedName__Group__0_in_ruleQualifiedName94);
             rule__QualifiedName__Group__0();
@@ -151,11 +151,11 @@ public class InternalUmlCommonParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "entryRuleBoundSpecification"
-    // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/common/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:93:1: entryRuleBoundSpecification : ruleBoundSpecification EOF ;
+    // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/common/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:93:1: entryRuleBoundSpecification : ruleBoundSpecification EOF ;
     public final void entryRuleBoundSpecification() throws RecognitionException {
         try {
-            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/common/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:94:1: ( ruleBoundSpecification EOF )
-            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/common/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:95:1: ruleBoundSpecification EOF
+            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/common/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:94:1: ( ruleBoundSpecification EOF )
+            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/common/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:95:1: ruleBoundSpecification EOF
             {
              before(grammarAccess.getBoundSpecificationRule()); 
             pushFollow(FOLLOW_ruleBoundSpecification_in_entryRuleBoundSpecification125);
@@ -181,21 +181,21 @@ public class InternalUmlCommonParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "ruleBoundSpecification"
-    // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/common/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:102:1: ruleBoundSpecification : ( ( rule__BoundSpecification__ValueAssignment ) ) ;
+    // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/common/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:102:1: ruleBoundSpecification : ( ( rule__BoundSpecification__ValueAssignment ) ) ;
     public final void ruleBoundSpecification() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/common/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:106:2: ( ( ( rule__BoundSpecification__ValueAssignment ) ) )
-            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/common/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:107:1: ( ( rule__BoundSpecification__ValueAssignment ) )
+            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/common/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:106:2: ( ( ( rule__BoundSpecification__ValueAssignment ) ) )
+            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/common/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:107:1: ( ( rule__BoundSpecification__ValueAssignment ) )
             {
-            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/common/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:107:1: ( ( rule__BoundSpecification__ValueAssignment ) )
-            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/common/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:108:1: ( rule__BoundSpecification__ValueAssignment )
+            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/common/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:107:1: ( ( rule__BoundSpecification__ValueAssignment ) )
+            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/common/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:108:1: ( rule__BoundSpecification__ValueAssignment )
             {
              before(grammarAccess.getBoundSpecificationAccess().getValueAssignment()); 
-            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/common/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:109:1: ( rule__BoundSpecification__ValueAssignment )
-            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/common/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:109:2: rule__BoundSpecification__ValueAssignment
+            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/common/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:109:1: ( rule__BoundSpecification__ValueAssignment )
+            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/common/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:109:2: rule__BoundSpecification__ValueAssignment
             {
             pushFollow(FOLLOW_rule__BoundSpecification__ValueAssignment_in_ruleBoundSpecification158);
             rule__BoundSpecification__ValueAssignment();
@@ -228,14 +228,14 @@ public class InternalUmlCommonParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__QualifiedName__Group__0"
-    // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/common/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:129:1: rule__QualifiedName__Group__0 : rule__QualifiedName__Group__0__Impl rule__QualifiedName__Group__1 ;
+    // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/common/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:129:1: rule__QualifiedName__Group__0 : rule__QualifiedName__Group__0__Impl rule__QualifiedName__Group__1 ;
     public final void rule__QualifiedName__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/common/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:133:1: ( rule__QualifiedName__Group__0__Impl rule__QualifiedName__Group__1 )
-            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/common/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:134:2: rule__QualifiedName__Group__0__Impl rule__QualifiedName__Group__1
+            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/common/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:133:1: ( rule__QualifiedName__Group__0__Impl rule__QualifiedName__Group__1 )
+            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/common/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:134:2: rule__QualifiedName__Group__0__Impl rule__QualifiedName__Group__1
             {
             pushFollow(FOLLOW_rule__QualifiedName__Group__0__Impl_in_rule__QualifiedName__Group__0198);
             rule__QualifiedName__Group__0__Impl();
@@ -266,21 +266,21 @@ public class InternalUmlCommonParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__QualifiedName__Group__0__Impl"
-    // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/common/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:141:1: rule__QualifiedName__Group__0__Impl : ( ( rule__QualifiedName__PathAssignment_0 ) ) ;
+    // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/common/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:141:1: rule__QualifiedName__Group__0__Impl : ( ( rule__QualifiedName__PathAssignment_0 ) ) ;
     public final void rule__QualifiedName__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/common/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:145:1: ( ( ( rule__QualifiedName__PathAssignment_0 ) ) )
-            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/common/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:146:1: ( ( rule__QualifiedName__PathAssignment_0 ) )
+            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/common/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:145:1: ( ( ( rule__QualifiedName__PathAssignment_0 ) ) )
+            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/common/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:146:1: ( ( rule__QualifiedName__PathAssignment_0 ) )
             {
-            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/common/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:146:1: ( ( rule__QualifiedName__PathAssignment_0 ) )
-            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/common/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:147:1: ( rule__QualifiedName__PathAssignment_0 )
+            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/common/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:146:1: ( ( rule__QualifiedName__PathAssignment_0 ) )
+            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/common/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:147:1: ( rule__QualifiedName__PathAssignment_0 )
             {
              before(grammarAccess.getQualifiedNameAccess().getPathAssignment_0()); 
-            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/common/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:148:1: ( rule__QualifiedName__PathAssignment_0 )
-            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/common/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:148:2: rule__QualifiedName__PathAssignment_0
+            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/common/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:148:1: ( rule__QualifiedName__PathAssignment_0 )
+            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/common/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:148:2: rule__QualifiedName__PathAssignment_0
             {
             pushFollow(FOLLOW_rule__QualifiedName__PathAssignment_0_in_rule__QualifiedName__Group__0__Impl228);
             rule__QualifiedName__PathAssignment_0();
@@ -313,14 +313,14 @@ public class InternalUmlCommonParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__QualifiedName__Group__1"
-    // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/common/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:158:1: rule__QualifiedName__Group__1 : rule__QualifiedName__Group__1__Impl rule__QualifiedName__Group__2 ;
+    // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/common/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:158:1: rule__QualifiedName__Group__1 : rule__QualifiedName__Group__1__Impl rule__QualifiedName__Group__2 ;
     public final void rule__QualifiedName__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/common/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:162:1: ( rule__QualifiedName__Group__1__Impl rule__QualifiedName__Group__2 )
-            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/common/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:163:2: rule__QualifiedName__Group__1__Impl rule__QualifiedName__Group__2
+            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/common/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:162:1: ( rule__QualifiedName__Group__1__Impl rule__QualifiedName__Group__2 )
+            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/common/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:163:2: rule__QualifiedName__Group__1__Impl rule__QualifiedName__Group__2
             {
             pushFollow(FOLLOW_rule__QualifiedName__Group__1__Impl_in_rule__QualifiedName__Group__1258);
             rule__QualifiedName__Group__1__Impl();
@@ -351,17 +351,17 @@ public class InternalUmlCommonParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__QualifiedName__Group__1__Impl"
-    // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/common/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:170:1: rule__QualifiedName__Group__1__Impl : ( '::' ) ;
+    // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/common/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:170:1: rule__QualifiedName__Group__1__Impl : ( '::' ) ;
     public final void rule__QualifiedName__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/common/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:174:1: ( ( '::' ) )
-            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/common/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:175:1: ( '::' )
+            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/common/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:174:1: ( ( '::' ) )
+            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/common/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:175:1: ( '::' )
             {
-            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/common/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:175:1: ( '::' )
-            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/common/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:176:1: '::'
+            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/common/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:175:1: ( '::' )
+            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/common/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:176:1: '::'
             {
              before(grammarAccess.getQualifiedNameAccess().getColonColonKeyword_1()); 
             match(input,12,FOLLOW_12_in_rule__QualifiedName__Group__1__Impl289); 
@@ -388,14 +388,14 @@ public class InternalUmlCommonParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__QualifiedName__Group__2"
-    // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/common/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:189:1: rule__QualifiedName__Group__2 : rule__QualifiedName__Group__2__Impl ;
+    // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/common/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:189:1: rule__QualifiedName__Group__2 : rule__QualifiedName__Group__2__Impl ;
     public final void rule__QualifiedName__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/common/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:193:1: ( rule__QualifiedName__Group__2__Impl )
-            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/common/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:194:2: rule__QualifiedName__Group__2__Impl
+            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/common/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:193:1: ( rule__QualifiedName__Group__2__Impl )
+            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/common/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:194:2: rule__QualifiedName__Group__2__Impl
             {
             pushFollow(FOLLOW_rule__QualifiedName__Group__2__Impl_in_rule__QualifiedName__Group__2320);
             rule__QualifiedName__Group__2__Impl();
@@ -421,20 +421,20 @@ public class InternalUmlCommonParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__QualifiedName__Group__2__Impl"
-    // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/common/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:200:1: rule__QualifiedName__Group__2__Impl : ( ( rule__QualifiedName__RemainingAssignment_2 )? ) ;
+    // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/common/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:200:1: rule__QualifiedName__Group__2__Impl : ( ( rule__QualifiedName__RemainingAssignment_2 )? ) ;
     public final void rule__QualifiedName__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/common/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:204:1: ( ( ( rule__QualifiedName__RemainingAssignment_2 )? ) )
-            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/common/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:205:1: ( ( rule__QualifiedName__RemainingAssignment_2 )? )
+            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/common/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:204:1: ( ( ( rule__QualifiedName__RemainingAssignment_2 )? ) )
+            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/common/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:205:1: ( ( rule__QualifiedName__RemainingAssignment_2 )? )
             {
-            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/common/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:205:1: ( ( rule__QualifiedName__RemainingAssignment_2 )? )
-            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/common/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:206:1: ( rule__QualifiedName__RemainingAssignment_2 )?
+            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/common/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:205:1: ( ( rule__QualifiedName__RemainingAssignment_2 )? )
+            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/common/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:206:1: ( rule__QualifiedName__RemainingAssignment_2 )?
             {
              before(grammarAccess.getQualifiedNameAccess().getRemainingAssignment_2()); 
-            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/common/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:207:1: ( rule__QualifiedName__RemainingAssignment_2 )?
+            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/common/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:207:1: ( rule__QualifiedName__RemainingAssignment_2 )?
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -443,7 +443,7 @@ public class InternalUmlCommonParser extends AbstractInternalContentAssistParser
             }
             switch (alt1) {
                 case 1 :
-                    // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/common/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:207:2: rule__QualifiedName__RemainingAssignment_2
+                    // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/common/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:207:2: rule__QualifiedName__RemainingAssignment_2
                     {
                     pushFollow(FOLLOW_rule__QualifiedName__RemainingAssignment_2_in_rule__QualifiedName__Group__2__Impl347);
                     rule__QualifiedName__RemainingAssignment_2();
@@ -479,21 +479,21 @@ public class InternalUmlCommonParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__QualifiedName__PathAssignment_0"
-    // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/common/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:227:1: rule__QualifiedName__PathAssignment_0 : ( ( RULE_ID ) ) ;
+    // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/common/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:227:1: rule__QualifiedName__PathAssignment_0 : ( ( RULE_ID ) ) ;
     public final void rule__QualifiedName__PathAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/common/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:231:1: ( ( ( RULE_ID ) ) )
-            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/common/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:232:1: ( ( RULE_ID ) )
+            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/common/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:231:1: ( ( ( RULE_ID ) ) )
+            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/common/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:232:1: ( ( RULE_ID ) )
             {
-            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/common/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:232:1: ( ( RULE_ID ) )
-            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/common/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:233:1: ( RULE_ID )
+            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/common/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:232:1: ( ( RULE_ID ) )
+            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/common/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:233:1: ( RULE_ID )
             {
              before(grammarAccess.getQualifiedNameAccess().getPathNamespaceCrossReference_0_0()); 
-            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/common/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:234:1: ( RULE_ID )
-            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/common/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:235:1: RULE_ID
+            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/common/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:234:1: ( RULE_ID )
+            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/common/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:235:1: RULE_ID
             {
              before(grammarAccess.getQualifiedNameAccess().getPathNamespaceIDTerminalRuleCall_0_0_1()); 
             match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__QualifiedName__PathAssignment_0396); 
@@ -524,17 +524,17 @@ public class InternalUmlCommonParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__QualifiedName__RemainingAssignment_2"
-    // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/common/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:246:1: rule__QualifiedName__RemainingAssignment_2 : ( ruleQualifiedName ) ;
+    // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/common/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:246:1: rule__QualifiedName__RemainingAssignment_2 : ( ruleQualifiedName ) ;
     public final void rule__QualifiedName__RemainingAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/common/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:250:1: ( ( ruleQualifiedName ) )
-            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/common/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:251:1: ( ruleQualifiedName )
+            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/common/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:250:1: ( ( ruleQualifiedName ) )
+            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/common/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:251:1: ( ruleQualifiedName )
             {
-            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/common/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:251:1: ( ruleQualifiedName )
-            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/common/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:252:1: ruleQualifiedName
+            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/common/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:251:1: ( ruleQualifiedName )
+            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/common/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:252:1: ruleQualifiedName
             {
              before(grammarAccess.getQualifiedNameAccess().getRemainingQualifiedNameParserRuleCall_2_0()); 
             pushFollow(FOLLOW_ruleQualifiedName_in_rule__QualifiedName__RemainingAssignment_2431);
@@ -565,17 +565,17 @@ public class InternalUmlCommonParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__BoundSpecification__ValueAssignment"
-    // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/common/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:265:1: rule__BoundSpecification__ValueAssignment : ( RULE_UNLIMITEDLITERAL ) ;
+    // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/common/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:265:1: rule__BoundSpecification__ValueAssignment : ( RULE_UNLIMITEDLITERAL ) ;
     public final void rule__BoundSpecification__ValueAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/common/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:269:1: ( ( RULE_UNLIMITEDLITERAL ) )
-            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/common/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:270:1: ( RULE_UNLIMITEDLITERAL )
+            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/common/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:269:1: ( ( RULE_UNLIMITEDLITERAL ) )
+            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/common/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:270:1: ( RULE_UNLIMITEDLITERAL )
             {
-            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/common/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:270:1: ( RULE_UNLIMITEDLITERAL )
-            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/common/editor/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:271:1: RULE_UNLIMITEDLITERAL
+            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/common/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:270:1: ( RULE_UNLIMITEDLITERAL )
+            // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/common/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:271:1: RULE_UNLIMITEDLITERAL
             {
              before(grammarAccess.getBoundSpecificationAccess().getValueUnlimitedLiteralTerminalRuleCall_0()); 
             match(input,RULE_UNLIMITEDLITERAL,FOLLOW_RULE_UNLIMITEDLITERAL_in_rule__BoundSpecification__ValueAssignment466); 

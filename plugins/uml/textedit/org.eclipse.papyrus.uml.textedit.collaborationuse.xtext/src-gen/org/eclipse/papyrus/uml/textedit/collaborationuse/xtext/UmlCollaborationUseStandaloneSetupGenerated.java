@@ -27,8 +27,8 @@ public class UmlCollaborationUseStandaloneSetupGenerated implements ISetup {
 	}
 	
 	public void register(Injector injector) {
-	if (!EPackage.Registry.INSTANCE.containsKey("http://www.eclipse.org/papyrus/collaborationuse/editor/xtext/UmlCollaborationUse")) {
-		EPackage.Registry.INSTANCE.put("http://www.eclipse.org/papyrus/collaborationuse/editor/xtext/UmlCollaborationUse", org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.umlCollaborationUse.UmlCollaborationUsePackage.eINSTANCE);
+	if (!EPackage.Registry.INSTANCE.containsKey("http://www.eclipse.org/papyrus/uml/textedit/collaborationuse/xtext/UmlCollaborationUse")) {
+		EPackage.Registry.INSTANCE.put("http://www.eclipse.org/papyrus/uml/textedit/collaborationuse/xtext/UmlCollaborationUse", org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.umlCollaborationUse.UmlCollaborationUsePackage.eINSTANCE);
 	}
 
 		org.eclipse.xtext.resource.IResourceFactory resourceFactory = injector.getInstance(org.eclipse.xtext.resource.IResourceFactory.class);

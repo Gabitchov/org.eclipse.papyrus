@@ -74,7 +74,7 @@ public class InternalUmlParameterParser extends AbstractInternalAntlrParser {
         
 
     public String[] getTokenNames() { return InternalUmlParameterParser.tokenNames; }
-    public String getGrammarFileName() { return "../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g"; }
+    public String getGrammarFileName() { return "../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g"; }
 
 
 
@@ -99,7 +99,7 @@ public class InternalUmlParameterParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleParameterRule"
-    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:68:1: entryRuleParameterRule returns [EObject current=null] : iv_ruleParameterRule= ruleParameterRule EOF ;
+    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:68:1: entryRuleParameterRule returns [EObject current=null] : iv_ruleParameterRule= ruleParameterRule EOF ;
     public final EObject entryRuleParameterRule() throws RecognitionException {
         EObject current = null;
 
@@ -107,8 +107,8 @@ public class InternalUmlParameterParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:69:2: (iv_ruleParameterRule= ruleParameterRule EOF )
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:70:2: iv_ruleParameterRule= ruleParameterRule EOF
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:69:2: (iv_ruleParameterRule= ruleParameterRule EOF )
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:70:2: iv_ruleParameterRule= ruleParameterRule EOF
             {
              newCompositeNode(grammarAccess.getParameterRuleRule()); 
             pushFollow(FOLLOW_ruleParameterRule_in_entryRuleParameterRule75);
@@ -135,7 +135,7 @@ public class InternalUmlParameterParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleParameterRule"
-    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:77:1: ruleParameterRule returns [EObject current=null] : ( ( (lv_visibility_0_0= ruleVisibilityKind ) ) ( (lv_direction_1_0= ruleDirection ) ) ( (lv_name_2_0= RULE_ID ) ) otherlv_3= ':' ( ( (lv_type_4_0= ruleTypeRule ) ) | otherlv_5= '<Undefined>' ) ( (lv_multiplicity_6_0= ruleMultiplicityRule ) )? ( (lv_modifiers_7_0= ruleModifiersRule ) )? ( (lv_effect_8_0= ruleEffectRule ) ) ) ;
+    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:77:1: ruleParameterRule returns [EObject current=null] : ( ( (lv_visibility_0_0= ruleVisibilityKind ) ) ( (lv_direction_1_0= ruleDirection ) ) ( (lv_name_2_0= RULE_ID ) ) otherlv_3= ':' ( ( (lv_type_4_0= ruleTypeRule ) ) | otherlv_5= '<Undefined>' ) ( (lv_multiplicity_6_0= ruleMultiplicityRule ) )? ( (lv_modifiers_7_0= ruleModifiersRule ) )? ( (lv_effect_8_0= ruleEffectRule ) ) ) ;
     public final EObject ruleParameterRule() throws RecognitionException {
         EObject current = null;
 
@@ -158,17 +158,17 @@ public class InternalUmlParameterParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:80:28: ( ( ( (lv_visibility_0_0= ruleVisibilityKind ) ) ( (lv_direction_1_0= ruleDirection ) ) ( (lv_name_2_0= RULE_ID ) ) otherlv_3= ':' ( ( (lv_type_4_0= ruleTypeRule ) ) | otherlv_5= '<Undefined>' ) ( (lv_multiplicity_6_0= ruleMultiplicityRule ) )? ( (lv_modifiers_7_0= ruleModifiersRule ) )? ( (lv_effect_8_0= ruleEffectRule ) ) ) )
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:81:1: ( ( (lv_visibility_0_0= ruleVisibilityKind ) ) ( (lv_direction_1_0= ruleDirection ) ) ( (lv_name_2_0= RULE_ID ) ) otherlv_3= ':' ( ( (lv_type_4_0= ruleTypeRule ) ) | otherlv_5= '<Undefined>' ) ( (lv_multiplicity_6_0= ruleMultiplicityRule ) )? ( (lv_modifiers_7_0= ruleModifiersRule ) )? ( (lv_effect_8_0= ruleEffectRule ) ) )
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:80:28: ( ( ( (lv_visibility_0_0= ruleVisibilityKind ) ) ( (lv_direction_1_0= ruleDirection ) ) ( (lv_name_2_0= RULE_ID ) ) otherlv_3= ':' ( ( (lv_type_4_0= ruleTypeRule ) ) | otherlv_5= '<Undefined>' ) ( (lv_multiplicity_6_0= ruleMultiplicityRule ) )? ( (lv_modifiers_7_0= ruleModifiersRule ) )? ( (lv_effect_8_0= ruleEffectRule ) ) ) )
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:81:1: ( ( (lv_visibility_0_0= ruleVisibilityKind ) ) ( (lv_direction_1_0= ruleDirection ) ) ( (lv_name_2_0= RULE_ID ) ) otherlv_3= ':' ( ( (lv_type_4_0= ruleTypeRule ) ) | otherlv_5= '<Undefined>' ) ( (lv_multiplicity_6_0= ruleMultiplicityRule ) )? ( (lv_modifiers_7_0= ruleModifiersRule ) )? ( (lv_effect_8_0= ruleEffectRule ) ) )
             {
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:81:1: ( ( (lv_visibility_0_0= ruleVisibilityKind ) ) ( (lv_direction_1_0= ruleDirection ) ) ( (lv_name_2_0= RULE_ID ) ) otherlv_3= ':' ( ( (lv_type_4_0= ruleTypeRule ) ) | otherlv_5= '<Undefined>' ) ( (lv_multiplicity_6_0= ruleMultiplicityRule ) )? ( (lv_modifiers_7_0= ruleModifiersRule ) )? ( (lv_effect_8_0= ruleEffectRule ) ) )
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:81:2: ( (lv_visibility_0_0= ruleVisibilityKind ) ) ( (lv_direction_1_0= ruleDirection ) ) ( (lv_name_2_0= RULE_ID ) ) otherlv_3= ':' ( ( (lv_type_4_0= ruleTypeRule ) ) | otherlv_5= '<Undefined>' ) ( (lv_multiplicity_6_0= ruleMultiplicityRule ) )? ( (lv_modifiers_7_0= ruleModifiersRule ) )? ( (lv_effect_8_0= ruleEffectRule ) )
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:81:1: ( ( (lv_visibility_0_0= ruleVisibilityKind ) ) ( (lv_direction_1_0= ruleDirection ) ) ( (lv_name_2_0= RULE_ID ) ) otherlv_3= ':' ( ( (lv_type_4_0= ruleTypeRule ) ) | otherlv_5= '<Undefined>' ) ( (lv_multiplicity_6_0= ruleMultiplicityRule ) )? ( (lv_modifiers_7_0= ruleModifiersRule ) )? ( (lv_effect_8_0= ruleEffectRule ) ) )
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:81:2: ( (lv_visibility_0_0= ruleVisibilityKind ) ) ( (lv_direction_1_0= ruleDirection ) ) ( (lv_name_2_0= RULE_ID ) ) otherlv_3= ':' ( ( (lv_type_4_0= ruleTypeRule ) ) | otherlv_5= '<Undefined>' ) ( (lv_multiplicity_6_0= ruleMultiplicityRule ) )? ( (lv_modifiers_7_0= ruleModifiersRule ) )? ( (lv_effect_8_0= ruleEffectRule ) )
             {
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:81:2: ( (lv_visibility_0_0= ruleVisibilityKind ) )
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:82:1: (lv_visibility_0_0= ruleVisibilityKind )
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:81:2: ( (lv_visibility_0_0= ruleVisibilityKind ) )
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:82:1: (lv_visibility_0_0= ruleVisibilityKind )
             {
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:82:1: (lv_visibility_0_0= ruleVisibilityKind )
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:83:3: lv_visibility_0_0= ruleVisibilityKind
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:82:1: (lv_visibility_0_0= ruleVisibilityKind )
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:83:3: lv_visibility_0_0= ruleVisibilityKind
             {
              
             	        newCompositeNode(grammarAccess.getParameterRuleAccess().getVisibilityVisibilityKindEnumRuleCall_0_0()); 
@@ -195,11 +195,11 @@ public class InternalUmlParameterParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:99:2: ( (lv_direction_1_0= ruleDirection ) )
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:100:1: (lv_direction_1_0= ruleDirection )
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:99:2: ( (lv_direction_1_0= ruleDirection ) )
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:100:1: (lv_direction_1_0= ruleDirection )
             {
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:100:1: (lv_direction_1_0= ruleDirection )
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:101:3: lv_direction_1_0= ruleDirection
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:100:1: (lv_direction_1_0= ruleDirection )
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:101:3: lv_direction_1_0= ruleDirection
             {
              
             	        newCompositeNode(grammarAccess.getParameterRuleAccess().getDirectionDirectionEnumRuleCall_1_0()); 
@@ -226,11 +226,11 @@ public class InternalUmlParameterParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:117:2: ( (lv_name_2_0= RULE_ID ) )
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:118:1: (lv_name_2_0= RULE_ID )
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:117:2: ( (lv_name_2_0= RULE_ID ) )
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:118:1: (lv_name_2_0= RULE_ID )
             {
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:118:1: (lv_name_2_0= RULE_ID )
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:119:3: lv_name_2_0= RULE_ID
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:118:1: (lv_name_2_0= RULE_ID )
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:119:3: lv_name_2_0= RULE_ID
             {
             lv_name_2_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleParameterRule169); 
 
@@ -256,7 +256,7 @@ public class InternalUmlParameterParser extends AbstractInternalAntlrParser {
 
                 	newLeafNode(otherlv_3, grammarAccess.getParameterRuleAccess().getColonKeyword_3());
                 
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:139:1: ( ( (lv_type_4_0= ruleTypeRule ) ) | otherlv_5= '<Undefined>' )
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:139:1: ( ( (lv_type_4_0= ruleTypeRule ) ) | otherlv_5= '<Undefined>' )
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -274,13 +274,13 @@ public class InternalUmlParameterParser extends AbstractInternalAntlrParser {
             }
             switch (alt1) {
                 case 1 :
-                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:139:2: ( (lv_type_4_0= ruleTypeRule ) )
+                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:139:2: ( (lv_type_4_0= ruleTypeRule ) )
                     {
-                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:139:2: ( (lv_type_4_0= ruleTypeRule ) )
-                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:140:1: (lv_type_4_0= ruleTypeRule )
+                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:139:2: ( (lv_type_4_0= ruleTypeRule ) )
+                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:140:1: (lv_type_4_0= ruleTypeRule )
                     {
-                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:140:1: (lv_type_4_0= ruleTypeRule )
-                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:141:3: lv_type_4_0= ruleTypeRule
+                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:140:1: (lv_type_4_0= ruleTypeRule )
+                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:141:3: lv_type_4_0= ruleTypeRule
                     {
                      
                     	        newCompositeNode(grammarAccess.getParameterRuleAccess().getTypeTypeRuleParserRuleCall_4_0_0()); 
@@ -311,7 +311,7 @@ public class InternalUmlParameterParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:158:7: otherlv_5= '<Undefined>'
+                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:158:7: otherlv_5= '<Undefined>'
                     {
                     otherlv_5=(Token)match(input,13,FOLLOW_13_in_ruleParameterRule226); 
 
@@ -323,7 +323,7 @@ public class InternalUmlParameterParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:162:2: ( (lv_multiplicity_6_0= ruleMultiplicityRule ) )?
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:162:2: ( (lv_multiplicity_6_0= ruleMultiplicityRule ) )?
             int alt2=2;
             int LA2_0 = input.LA(1);
 
@@ -332,10 +332,10 @@ public class InternalUmlParameterParser extends AbstractInternalAntlrParser {
             }
             switch (alt2) {
                 case 1 :
-                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:163:1: (lv_multiplicity_6_0= ruleMultiplicityRule )
+                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:163:1: (lv_multiplicity_6_0= ruleMultiplicityRule )
                     {
-                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:163:1: (lv_multiplicity_6_0= ruleMultiplicityRule )
-                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:164:3: lv_multiplicity_6_0= ruleMultiplicityRule
+                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:163:1: (lv_multiplicity_6_0= ruleMultiplicityRule )
+                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:164:3: lv_multiplicity_6_0= ruleMultiplicityRule
                     {
                      
                     	        newCompositeNode(grammarAccess.getParameterRuleAccess().getMultiplicityMultiplicityRuleParserRuleCall_5_0()); 
@@ -365,7 +365,7 @@ public class InternalUmlParameterParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:180:3: ( (lv_modifiers_7_0= ruleModifiersRule ) )?
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:180:3: ( (lv_modifiers_7_0= ruleModifiersRule ) )?
             int alt3=2;
             int LA3_0 = input.LA(1);
 
@@ -378,10 +378,10 @@ public class InternalUmlParameterParser extends AbstractInternalAntlrParser {
             }
             switch (alt3) {
                 case 1 :
-                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:181:1: (lv_modifiers_7_0= ruleModifiersRule )
+                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:181:1: (lv_modifiers_7_0= ruleModifiersRule )
                     {
-                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:181:1: (lv_modifiers_7_0= ruleModifiersRule )
-                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:182:3: lv_modifiers_7_0= ruleModifiersRule
+                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:181:1: (lv_modifiers_7_0= ruleModifiersRule )
+                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:182:3: lv_modifiers_7_0= ruleModifiersRule
                     {
                      
                     	        newCompositeNode(grammarAccess.getParameterRuleAccess().getModifiersModifiersRuleParserRuleCall_6_0()); 
@@ -411,11 +411,11 @@ public class InternalUmlParameterParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:198:3: ( (lv_effect_8_0= ruleEffectRule ) )
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:199:1: (lv_effect_8_0= ruleEffectRule )
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:198:3: ( (lv_effect_8_0= ruleEffectRule ) )
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:199:1: (lv_effect_8_0= ruleEffectRule )
             {
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:199:1: (lv_effect_8_0= ruleEffectRule )
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:200:3: lv_effect_8_0= ruleEffectRule
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:199:1: (lv_effect_8_0= ruleEffectRule )
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:200:3: lv_effect_8_0= ruleEffectRule
             {
              
             	        newCompositeNode(grammarAccess.getParameterRuleAccess().getEffectEffectRuleParserRuleCall_7_0()); 
@@ -463,7 +463,7 @@ public class InternalUmlParameterParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleModifiersRule"
-    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:224:1: entryRuleModifiersRule returns [EObject current=null] : iv_ruleModifiersRule= ruleModifiersRule EOF ;
+    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:224:1: entryRuleModifiersRule returns [EObject current=null] : iv_ruleModifiersRule= ruleModifiersRule EOF ;
     public final EObject entryRuleModifiersRule() throws RecognitionException {
         EObject current = null;
 
@@ -471,8 +471,8 @@ public class InternalUmlParameterParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:225:2: (iv_ruleModifiersRule= ruleModifiersRule EOF )
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:226:2: iv_ruleModifiersRule= ruleModifiersRule EOF
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:225:2: (iv_ruleModifiersRule= ruleModifiersRule EOF )
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:226:2: iv_ruleModifiersRule= ruleModifiersRule EOF
             {
              newCompositeNode(grammarAccess.getModifiersRuleRule()); 
             pushFollow(FOLLOW_ruleModifiersRule_in_entryRuleModifiersRule328);
@@ -499,7 +499,7 @@ public class InternalUmlParameterParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleModifiersRule"
-    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:233:1: ruleModifiersRule returns [EObject current=null] : (otherlv_0= '{' ( (lv_values_1_0= ruleModifierSpecification ) ) (otherlv_2= ',' ( (lv_values_3_0= ruleModifierSpecification ) ) )* otherlv_4= '}' ) ;
+    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:233:1: ruleModifiersRule returns [EObject current=null] : (otherlv_0= '{' ( (lv_values_1_0= ruleModifierSpecification ) ) (otherlv_2= ',' ( (lv_values_3_0= ruleModifierSpecification ) ) )* otherlv_4= '}' ) ;
     public final EObject ruleModifiersRule() throws RecognitionException {
         EObject current = null;
 
@@ -514,21 +514,21 @@ public class InternalUmlParameterParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:236:28: ( (otherlv_0= '{' ( (lv_values_1_0= ruleModifierSpecification ) ) (otherlv_2= ',' ( (lv_values_3_0= ruleModifierSpecification ) ) )* otherlv_4= '}' ) )
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:237:1: (otherlv_0= '{' ( (lv_values_1_0= ruleModifierSpecification ) ) (otherlv_2= ',' ( (lv_values_3_0= ruleModifierSpecification ) ) )* otherlv_4= '}' )
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:236:28: ( (otherlv_0= '{' ( (lv_values_1_0= ruleModifierSpecification ) ) (otherlv_2= ',' ( (lv_values_3_0= ruleModifierSpecification ) ) )* otherlv_4= '}' ) )
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:237:1: (otherlv_0= '{' ( (lv_values_1_0= ruleModifierSpecification ) ) (otherlv_2= ',' ( (lv_values_3_0= ruleModifierSpecification ) ) )* otherlv_4= '}' )
             {
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:237:1: (otherlv_0= '{' ( (lv_values_1_0= ruleModifierSpecification ) ) (otherlv_2= ',' ( (lv_values_3_0= ruleModifierSpecification ) ) )* otherlv_4= '}' )
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:237:3: otherlv_0= '{' ( (lv_values_1_0= ruleModifierSpecification ) ) (otherlv_2= ',' ( (lv_values_3_0= ruleModifierSpecification ) ) )* otherlv_4= '}'
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:237:1: (otherlv_0= '{' ( (lv_values_1_0= ruleModifierSpecification ) ) (otherlv_2= ',' ( (lv_values_3_0= ruleModifierSpecification ) ) )* otherlv_4= '}' )
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:237:3: otherlv_0= '{' ( (lv_values_1_0= ruleModifierSpecification ) ) (otherlv_2= ',' ( (lv_values_3_0= ruleModifierSpecification ) ) )* otherlv_4= '}'
             {
             otherlv_0=(Token)match(input,14,FOLLOW_14_in_ruleModifiersRule375); 
 
                 	newLeafNode(otherlv_0, grammarAccess.getModifiersRuleAccess().getLeftCurlyBracketKeyword_0());
                 
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:241:1: ( (lv_values_1_0= ruleModifierSpecification ) )
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:242:1: (lv_values_1_0= ruleModifierSpecification )
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:241:1: ( (lv_values_1_0= ruleModifierSpecification ) )
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:242:1: (lv_values_1_0= ruleModifierSpecification )
             {
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:242:1: (lv_values_1_0= ruleModifierSpecification )
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:243:3: lv_values_1_0= ruleModifierSpecification
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:242:1: (lv_values_1_0= ruleModifierSpecification )
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:243:3: lv_values_1_0= ruleModifierSpecification
             {
              
             	        newCompositeNode(grammarAccess.getModifiersRuleAccess().getValuesModifierSpecificationParserRuleCall_1_0()); 
@@ -555,7 +555,7 @@ public class InternalUmlParameterParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:259:2: (otherlv_2= ',' ( (lv_values_3_0= ruleModifierSpecification ) ) )*
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:259:2: (otherlv_2= ',' ( (lv_values_3_0= ruleModifierSpecification ) ) )*
             loop4:
             do {
                 int alt4=2;
@@ -568,17 +568,17 @@ public class InternalUmlParameterParser extends AbstractInternalAntlrParser {
 
                 switch (alt4) {
             	case 1 :
-            	    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:259:4: otherlv_2= ',' ( (lv_values_3_0= ruleModifierSpecification ) )
+            	    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:259:4: otherlv_2= ',' ( (lv_values_3_0= ruleModifierSpecification ) )
             	    {
             	    otherlv_2=(Token)match(input,15,FOLLOW_15_in_ruleModifiersRule409); 
 
             	        	newLeafNode(otherlv_2, grammarAccess.getModifiersRuleAccess().getCommaKeyword_2_0());
             	        
-            	    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:263:1: ( (lv_values_3_0= ruleModifierSpecification ) )
-            	    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:264:1: (lv_values_3_0= ruleModifierSpecification )
+            	    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:263:1: ( (lv_values_3_0= ruleModifierSpecification ) )
+            	    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:264:1: (lv_values_3_0= ruleModifierSpecification )
             	    {
-            	    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:264:1: (lv_values_3_0= ruleModifierSpecification )
-            	    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:265:3: lv_values_3_0= ruleModifierSpecification
+            	    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:264:1: (lv_values_3_0= ruleModifierSpecification )
+            	    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:265:3: lv_values_3_0= ruleModifierSpecification
             	    {
             	     
             	    	        newCompositeNode(grammarAccess.getModifiersRuleAccess().getValuesModifierSpecificationParserRuleCall_2_1_0()); 
@@ -639,7 +639,7 @@ public class InternalUmlParameterParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleModifierSpecification"
-    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:293:1: entryRuleModifierSpecification returns [EObject current=null] : iv_ruleModifierSpecification= ruleModifierSpecification EOF ;
+    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:293:1: entryRuleModifierSpecification returns [EObject current=null] : iv_ruleModifierSpecification= ruleModifierSpecification EOF ;
     public final EObject entryRuleModifierSpecification() throws RecognitionException {
         EObject current = null;
 
@@ -647,8 +647,8 @@ public class InternalUmlParameterParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:294:2: (iv_ruleModifierSpecification= ruleModifierSpecification EOF )
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:295:2: iv_ruleModifierSpecification= ruleModifierSpecification EOF
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:294:2: (iv_ruleModifierSpecification= ruleModifierSpecification EOF )
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:295:2: iv_ruleModifierSpecification= ruleModifierSpecification EOF
             {
              newCompositeNode(grammarAccess.getModifierSpecificationRule()); 
             pushFollow(FOLLOW_ruleModifierSpecification_in_entryRuleModifierSpecification480);
@@ -675,7 +675,7 @@ public class InternalUmlParameterParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleModifierSpecification"
-    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:302:1: ruleModifierSpecification returns [EObject current=null] : ( (lv_value_0_0= ruleModifierKind ) ) ;
+    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:302:1: ruleModifierSpecification returns [EObject current=null] : ( (lv_value_0_0= ruleModifierKind ) ) ;
     public final EObject ruleModifierSpecification() throws RecognitionException {
         EObject current = null;
 
@@ -685,14 +685,14 @@ public class InternalUmlParameterParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:305:28: ( ( (lv_value_0_0= ruleModifierKind ) ) )
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:306:1: ( (lv_value_0_0= ruleModifierKind ) )
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:305:28: ( ( (lv_value_0_0= ruleModifierKind ) ) )
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:306:1: ( (lv_value_0_0= ruleModifierKind ) )
             {
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:306:1: ( (lv_value_0_0= ruleModifierKind ) )
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:307:1: (lv_value_0_0= ruleModifierKind )
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:306:1: ( (lv_value_0_0= ruleModifierKind ) )
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:307:1: (lv_value_0_0= ruleModifierKind )
             {
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:307:1: (lv_value_0_0= ruleModifierKind )
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:308:3: lv_value_0_0= ruleModifierKind
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:307:1: (lv_value_0_0= ruleModifierKind )
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:308:3: lv_value_0_0= ruleModifierKind
             {
              
             	        newCompositeNode(grammarAccess.getModifierSpecificationAccess().getValueModifierKindEnumRuleCall_0()); 
@@ -737,7 +737,7 @@ public class InternalUmlParameterParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleEffectRule"
-    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:332:1: entryRuleEffectRule returns [EObject current=null] : iv_ruleEffectRule= ruleEffectRule EOF ;
+    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:332:1: entryRuleEffectRule returns [EObject current=null] : iv_ruleEffectRule= ruleEffectRule EOF ;
     public final EObject entryRuleEffectRule() throws RecognitionException {
         EObject current = null;
 
@@ -745,8 +745,8 @@ public class InternalUmlParameterParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:333:2: (iv_ruleEffectRule= ruleEffectRule EOF )
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:334:2: iv_ruleEffectRule= ruleEffectRule EOF
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:333:2: (iv_ruleEffectRule= ruleEffectRule EOF )
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:334:2: iv_ruleEffectRule= ruleEffectRule EOF
             {
              newCompositeNode(grammarAccess.getEffectRuleRule()); 
             pushFollow(FOLLOW_ruleEffectRule_in_entryRuleEffectRule570);
@@ -773,7 +773,7 @@ public class InternalUmlParameterParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleEffectRule"
-    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:341:1: ruleEffectRule returns [EObject current=null] : (otherlv_0= '{' otherlv_1= 'effect: ' ( (lv_effectKind_2_0= ruleEffectKind ) ) otherlv_3= '}' ) ;
+    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:341:1: ruleEffectRule returns [EObject current=null] : (otherlv_0= '{' otherlv_1= 'effect: ' ( (lv_effectKind_2_0= ruleEffectKind ) ) otherlv_3= '}' ) ;
     public final EObject ruleEffectRule() throws RecognitionException {
         EObject current = null;
 
@@ -786,11 +786,11 @@ public class InternalUmlParameterParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:344:28: ( (otherlv_0= '{' otherlv_1= 'effect: ' ( (lv_effectKind_2_0= ruleEffectKind ) ) otherlv_3= '}' ) )
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:345:1: (otherlv_0= '{' otherlv_1= 'effect: ' ( (lv_effectKind_2_0= ruleEffectKind ) ) otherlv_3= '}' )
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:344:28: ( (otherlv_0= '{' otherlv_1= 'effect: ' ( (lv_effectKind_2_0= ruleEffectKind ) ) otherlv_3= '}' ) )
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:345:1: (otherlv_0= '{' otherlv_1= 'effect: ' ( (lv_effectKind_2_0= ruleEffectKind ) ) otherlv_3= '}' )
             {
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:345:1: (otherlv_0= '{' otherlv_1= 'effect: ' ( (lv_effectKind_2_0= ruleEffectKind ) ) otherlv_3= '}' )
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:345:3: otherlv_0= '{' otherlv_1= 'effect: ' ( (lv_effectKind_2_0= ruleEffectKind ) ) otherlv_3= '}'
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:345:1: (otherlv_0= '{' otherlv_1= 'effect: ' ( (lv_effectKind_2_0= ruleEffectKind ) ) otherlv_3= '}' )
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:345:3: otherlv_0= '{' otherlv_1= 'effect: ' ( (lv_effectKind_2_0= ruleEffectKind ) ) otherlv_3= '}'
             {
             otherlv_0=(Token)match(input,14,FOLLOW_14_in_ruleEffectRule617); 
 
@@ -800,11 +800,11 @@ public class InternalUmlParameterParser extends AbstractInternalAntlrParser {
 
                 	newLeafNode(otherlv_1, grammarAccess.getEffectRuleAccess().getEffectKeyword_1());
                 
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:353:1: ( (lv_effectKind_2_0= ruleEffectKind ) )
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:354:1: (lv_effectKind_2_0= ruleEffectKind )
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:353:1: ( (lv_effectKind_2_0= ruleEffectKind ) )
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:354:1: (lv_effectKind_2_0= ruleEffectKind )
             {
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:354:1: (lv_effectKind_2_0= ruleEffectKind )
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:355:3: lv_effectKind_2_0= ruleEffectKind
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:354:1: (lv_effectKind_2_0= ruleEffectKind )
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:355:3: lv_effectKind_2_0= ruleEffectKind
             {
              
             	        newCompositeNode(grammarAccess.getEffectRuleAccess().getEffectKindEffectKindEnumRuleCall_2_0()); 
@@ -856,7 +856,7 @@ public class InternalUmlParameterParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleQualifiedName"
-    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:383:1: entryRuleQualifiedName returns [EObject current=null] : iv_ruleQualifiedName= ruleQualifiedName EOF ;
+    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:383:1: entryRuleQualifiedName returns [EObject current=null] : iv_ruleQualifiedName= ruleQualifiedName EOF ;
     public final EObject entryRuleQualifiedName() throws RecognitionException {
         EObject current = null;
 
@@ -864,8 +864,8 @@ public class InternalUmlParameterParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:384:2: (iv_ruleQualifiedName= ruleQualifiedName EOF )
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:385:2: iv_ruleQualifiedName= ruleQualifiedName EOF
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:384:2: (iv_ruleQualifiedName= ruleQualifiedName EOF )
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:385:2: iv_ruleQualifiedName= ruleQualifiedName EOF
             {
              newCompositeNode(grammarAccess.getQualifiedNameRule()); 
             pushFollow(FOLLOW_ruleQualifiedName_in_entryRuleQualifiedName698);
@@ -892,7 +892,7 @@ public class InternalUmlParameterParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleQualifiedName"
-    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:392:1: ruleQualifiedName returns [EObject current=null] : ( ( (otherlv_0= RULE_ID ) ) otherlv_1= '::' ( (lv_remaining_2_0= ruleQualifiedName ) )? ) ;
+    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:392:1: ruleQualifiedName returns [EObject current=null] : ( ( (otherlv_0= RULE_ID ) ) otherlv_1= '::' ( (lv_remaining_2_0= ruleQualifiedName ) )? ) ;
     public final EObject ruleQualifiedName() throws RecognitionException {
         EObject current = null;
 
@@ -904,17 +904,17 @@ public class InternalUmlParameterParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:395:28: ( ( ( (otherlv_0= RULE_ID ) ) otherlv_1= '::' ( (lv_remaining_2_0= ruleQualifiedName ) )? ) )
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:396:1: ( ( (otherlv_0= RULE_ID ) ) otherlv_1= '::' ( (lv_remaining_2_0= ruleQualifiedName ) )? )
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:395:28: ( ( ( (otherlv_0= RULE_ID ) ) otherlv_1= '::' ( (lv_remaining_2_0= ruleQualifiedName ) )? ) )
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:396:1: ( ( (otherlv_0= RULE_ID ) ) otherlv_1= '::' ( (lv_remaining_2_0= ruleQualifiedName ) )? )
             {
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:396:1: ( ( (otherlv_0= RULE_ID ) ) otherlv_1= '::' ( (lv_remaining_2_0= ruleQualifiedName ) )? )
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:396:2: ( (otherlv_0= RULE_ID ) ) otherlv_1= '::' ( (lv_remaining_2_0= ruleQualifiedName ) )?
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:396:1: ( ( (otherlv_0= RULE_ID ) ) otherlv_1= '::' ( (lv_remaining_2_0= ruleQualifiedName ) )? )
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:396:2: ( (otherlv_0= RULE_ID ) ) otherlv_1= '::' ( (lv_remaining_2_0= ruleQualifiedName ) )?
             {
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:396:2: ( (otherlv_0= RULE_ID ) )
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:397:1: (otherlv_0= RULE_ID )
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:396:2: ( (otherlv_0= RULE_ID ) )
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:397:1: (otherlv_0= RULE_ID )
             {
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:397:1: (otherlv_0= RULE_ID )
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:398:3: otherlv_0= RULE_ID
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:397:1: (otherlv_0= RULE_ID )
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:398:3: otherlv_0= RULE_ID
             {
 
             			if (current==null) {
@@ -935,7 +935,7 @@ public class InternalUmlParameterParser extends AbstractInternalAntlrParser {
 
                 	newLeafNode(otherlv_1, grammarAccess.getQualifiedNameAccess().getColonColonKeyword_1());
                 
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:413:1: ( (lv_remaining_2_0= ruleQualifiedName ) )?
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:413:1: ( (lv_remaining_2_0= ruleQualifiedName ) )?
             int alt5=2;
             int LA5_0 = input.LA(1);
 
@@ -948,10 +948,10 @@ public class InternalUmlParameterParser extends AbstractInternalAntlrParser {
             }
             switch (alt5) {
                 case 1 :
-                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:414:1: (lv_remaining_2_0= ruleQualifiedName )
+                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:414:1: (lv_remaining_2_0= ruleQualifiedName )
                     {
-                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:414:1: (lv_remaining_2_0= ruleQualifiedName )
-                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:415:3: lv_remaining_2_0= ruleQualifiedName
+                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:414:1: (lv_remaining_2_0= ruleQualifiedName )
+                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:415:3: lv_remaining_2_0= ruleQualifiedName
                     {
                      
                     	        newCompositeNode(grammarAccess.getQualifiedNameAccess().getRemainingQualifiedNameParserRuleCall_2_0()); 
@@ -1002,7 +1002,7 @@ public class InternalUmlParameterParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleTypeRule"
-    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:439:1: entryRuleTypeRule returns [EObject current=null] : iv_ruleTypeRule= ruleTypeRule EOF ;
+    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:439:1: entryRuleTypeRule returns [EObject current=null] : iv_ruleTypeRule= ruleTypeRule EOF ;
     public final EObject entryRuleTypeRule() throws RecognitionException {
         EObject current = null;
 
@@ -1010,8 +1010,8 @@ public class InternalUmlParameterParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:440:2: (iv_ruleTypeRule= ruleTypeRule EOF )
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:441:2: iv_ruleTypeRule= ruleTypeRule EOF
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:440:2: (iv_ruleTypeRule= ruleTypeRule EOF )
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:441:2: iv_ruleTypeRule= ruleTypeRule EOF
             {
              newCompositeNode(grammarAccess.getTypeRuleRule()); 
             pushFollow(FOLLOW_ruleTypeRule_in_entryRuleTypeRule823);
@@ -1038,7 +1038,7 @@ public class InternalUmlParameterParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleTypeRule"
-    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:448:1: ruleTypeRule returns [EObject current=null] : ( ( (lv_path_0_0= ruleQualifiedName ) )? ( (otherlv_1= RULE_ID ) ) ) ;
+    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:448:1: ruleTypeRule returns [EObject current=null] : ( ( (lv_path_0_0= ruleQualifiedName ) )? ( (otherlv_1= RULE_ID ) ) ) ;
     public final EObject ruleTypeRule() throws RecognitionException {
         EObject current = null;
 
@@ -1049,13 +1049,13 @@ public class InternalUmlParameterParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:451:28: ( ( ( (lv_path_0_0= ruleQualifiedName ) )? ( (otherlv_1= RULE_ID ) ) ) )
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:452:1: ( ( (lv_path_0_0= ruleQualifiedName ) )? ( (otherlv_1= RULE_ID ) ) )
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:451:28: ( ( ( (lv_path_0_0= ruleQualifiedName ) )? ( (otherlv_1= RULE_ID ) ) ) )
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:452:1: ( ( (lv_path_0_0= ruleQualifiedName ) )? ( (otherlv_1= RULE_ID ) ) )
             {
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:452:1: ( ( (lv_path_0_0= ruleQualifiedName ) )? ( (otherlv_1= RULE_ID ) ) )
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:452:2: ( (lv_path_0_0= ruleQualifiedName ) )? ( (otherlv_1= RULE_ID ) )
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:452:1: ( ( (lv_path_0_0= ruleQualifiedName ) )? ( (otherlv_1= RULE_ID ) ) )
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:452:2: ( (lv_path_0_0= ruleQualifiedName ) )? ( (otherlv_1= RULE_ID ) )
             {
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:452:2: ( (lv_path_0_0= ruleQualifiedName ) )?
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:452:2: ( (lv_path_0_0= ruleQualifiedName ) )?
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -1068,10 +1068,10 @@ public class InternalUmlParameterParser extends AbstractInternalAntlrParser {
             }
             switch (alt6) {
                 case 1 :
-                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:453:1: (lv_path_0_0= ruleQualifiedName )
+                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:453:1: (lv_path_0_0= ruleQualifiedName )
                     {
-                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:453:1: (lv_path_0_0= ruleQualifiedName )
-                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:454:3: lv_path_0_0= ruleQualifiedName
+                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:453:1: (lv_path_0_0= ruleQualifiedName )
+                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:454:3: lv_path_0_0= ruleQualifiedName
                     {
                      
                     	        newCompositeNode(grammarAccess.getTypeRuleAccess().getPathQualifiedNameParserRuleCall_0_0()); 
@@ -1101,11 +1101,11 @@ public class InternalUmlParameterParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:470:3: ( (otherlv_1= RULE_ID ) )
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:471:1: (otherlv_1= RULE_ID )
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:470:3: ( (otherlv_1= RULE_ID ) )
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:471:1: (otherlv_1= RULE_ID )
             {
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:471:1: (otherlv_1= RULE_ID )
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:472:3: otherlv_1= RULE_ID
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:471:1: (otherlv_1= RULE_ID )
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:472:3: otherlv_1= RULE_ID
             {
 
             			if (current==null) {
@@ -1143,7 +1143,7 @@ public class InternalUmlParameterParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleMultiplicityRule"
-    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:491:1: entryRuleMultiplicityRule returns [EObject current=null] : iv_ruleMultiplicityRule= ruleMultiplicityRule EOF ;
+    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:491:1: entryRuleMultiplicityRule returns [EObject current=null] : iv_ruleMultiplicityRule= ruleMultiplicityRule EOF ;
     public final EObject entryRuleMultiplicityRule() throws RecognitionException {
         EObject current = null;
 
@@ -1151,8 +1151,8 @@ public class InternalUmlParameterParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:492:2: (iv_ruleMultiplicityRule= ruleMultiplicityRule EOF )
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:493:2: iv_ruleMultiplicityRule= ruleMultiplicityRule EOF
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:492:2: (iv_ruleMultiplicityRule= ruleMultiplicityRule EOF )
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:493:2: iv_ruleMultiplicityRule= ruleMultiplicityRule EOF
             {
              newCompositeNode(grammarAccess.getMultiplicityRuleRule()); 
             pushFollow(FOLLOW_ruleMultiplicityRule_in_entryRuleMultiplicityRule936);
@@ -1179,7 +1179,7 @@ public class InternalUmlParameterParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleMultiplicityRule"
-    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:500:1: ruleMultiplicityRule returns [EObject current=null] : (otherlv_0= '[' ( (lv_bounds_1_0= ruleBoundSpecification ) ) (otherlv_2= '..' ( (lv_bounds_3_0= ruleBoundSpecification ) ) )? otherlv_4= ']' ) ;
+    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:500:1: ruleMultiplicityRule returns [EObject current=null] : (otherlv_0= '[' ( (lv_bounds_1_0= ruleBoundSpecification ) ) (otherlv_2= '..' ( (lv_bounds_3_0= ruleBoundSpecification ) ) )? otherlv_4= ']' ) ;
     public final EObject ruleMultiplicityRule() throws RecognitionException {
         EObject current = null;
 
@@ -1194,21 +1194,21 @@ public class InternalUmlParameterParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:503:28: ( (otherlv_0= '[' ( (lv_bounds_1_0= ruleBoundSpecification ) ) (otherlv_2= '..' ( (lv_bounds_3_0= ruleBoundSpecification ) ) )? otherlv_4= ']' ) )
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:504:1: (otherlv_0= '[' ( (lv_bounds_1_0= ruleBoundSpecification ) ) (otherlv_2= '..' ( (lv_bounds_3_0= ruleBoundSpecification ) ) )? otherlv_4= ']' )
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:503:28: ( (otherlv_0= '[' ( (lv_bounds_1_0= ruleBoundSpecification ) ) (otherlv_2= '..' ( (lv_bounds_3_0= ruleBoundSpecification ) ) )? otherlv_4= ']' ) )
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:504:1: (otherlv_0= '[' ( (lv_bounds_1_0= ruleBoundSpecification ) ) (otherlv_2= '..' ( (lv_bounds_3_0= ruleBoundSpecification ) ) )? otherlv_4= ']' )
             {
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:504:1: (otherlv_0= '[' ( (lv_bounds_1_0= ruleBoundSpecification ) ) (otherlv_2= '..' ( (lv_bounds_3_0= ruleBoundSpecification ) ) )? otherlv_4= ']' )
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:504:3: otherlv_0= '[' ( (lv_bounds_1_0= ruleBoundSpecification ) ) (otherlv_2= '..' ( (lv_bounds_3_0= ruleBoundSpecification ) ) )? otherlv_4= ']'
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:504:1: (otherlv_0= '[' ( (lv_bounds_1_0= ruleBoundSpecification ) ) (otherlv_2= '..' ( (lv_bounds_3_0= ruleBoundSpecification ) ) )? otherlv_4= ']' )
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:504:3: otherlv_0= '[' ( (lv_bounds_1_0= ruleBoundSpecification ) ) (otherlv_2= '..' ( (lv_bounds_3_0= ruleBoundSpecification ) ) )? otherlv_4= ']'
             {
             otherlv_0=(Token)match(input,19,FOLLOW_19_in_ruleMultiplicityRule983); 
 
                 	newLeafNode(otherlv_0, grammarAccess.getMultiplicityRuleAccess().getLeftSquareBracketKeyword_0());
                 
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:508:1: ( (lv_bounds_1_0= ruleBoundSpecification ) )
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:509:1: (lv_bounds_1_0= ruleBoundSpecification )
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:508:1: ( (lv_bounds_1_0= ruleBoundSpecification ) )
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:509:1: (lv_bounds_1_0= ruleBoundSpecification )
             {
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:509:1: (lv_bounds_1_0= ruleBoundSpecification )
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:510:3: lv_bounds_1_0= ruleBoundSpecification
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:509:1: (lv_bounds_1_0= ruleBoundSpecification )
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:510:3: lv_bounds_1_0= ruleBoundSpecification
             {
              
             	        newCompositeNode(grammarAccess.getMultiplicityRuleAccess().getBoundsBoundSpecificationParserRuleCall_1_0()); 
@@ -1235,7 +1235,7 @@ public class InternalUmlParameterParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:526:2: (otherlv_2= '..' ( (lv_bounds_3_0= ruleBoundSpecification ) ) )?
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:526:2: (otherlv_2= '..' ( (lv_bounds_3_0= ruleBoundSpecification ) ) )?
             int alt7=2;
             int LA7_0 = input.LA(1);
 
@@ -1244,17 +1244,17 @@ public class InternalUmlParameterParser extends AbstractInternalAntlrParser {
             }
             switch (alt7) {
                 case 1 :
-                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:526:4: otherlv_2= '..' ( (lv_bounds_3_0= ruleBoundSpecification ) )
+                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:526:4: otherlv_2= '..' ( (lv_bounds_3_0= ruleBoundSpecification ) )
                     {
                     otherlv_2=(Token)match(input,20,FOLLOW_20_in_ruleMultiplicityRule1017); 
 
                         	newLeafNode(otherlv_2, grammarAccess.getMultiplicityRuleAccess().getFullStopFullStopKeyword_2_0());
                         
-                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:530:1: ( (lv_bounds_3_0= ruleBoundSpecification ) )
-                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:531:1: (lv_bounds_3_0= ruleBoundSpecification )
+                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:530:1: ( (lv_bounds_3_0= ruleBoundSpecification ) )
+                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:531:1: (lv_bounds_3_0= ruleBoundSpecification )
                     {
-                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:531:1: (lv_bounds_3_0= ruleBoundSpecification )
-                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:532:3: lv_bounds_3_0= ruleBoundSpecification
+                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:531:1: (lv_bounds_3_0= ruleBoundSpecification )
+                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:532:3: lv_bounds_3_0= ruleBoundSpecification
                     {
                      
                     	        newCompositeNode(grammarAccess.getMultiplicityRuleAccess().getBoundsBoundSpecificationParserRuleCall_2_1_0()); 
@@ -1312,7 +1312,7 @@ public class InternalUmlParameterParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleBoundSpecification"
-    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:560:1: entryRuleBoundSpecification returns [EObject current=null] : iv_ruleBoundSpecification= ruleBoundSpecification EOF ;
+    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:560:1: entryRuleBoundSpecification returns [EObject current=null] : iv_ruleBoundSpecification= ruleBoundSpecification EOF ;
     public final EObject entryRuleBoundSpecification() throws RecognitionException {
         EObject current = null;
 
@@ -1320,8 +1320,8 @@ public class InternalUmlParameterParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:561:2: (iv_ruleBoundSpecification= ruleBoundSpecification EOF )
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:562:2: iv_ruleBoundSpecification= ruleBoundSpecification EOF
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:561:2: (iv_ruleBoundSpecification= ruleBoundSpecification EOF )
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:562:2: iv_ruleBoundSpecification= ruleBoundSpecification EOF
             {
              newCompositeNode(grammarAccess.getBoundSpecificationRule()); 
             pushFollow(FOLLOW_ruleBoundSpecification_in_entryRuleBoundSpecification1088);
@@ -1348,7 +1348,7 @@ public class InternalUmlParameterParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleBoundSpecification"
-    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:569:1: ruleBoundSpecification returns [EObject current=null] : ( (lv_value_0_0= RULE_UNLIMITEDLITERAL ) ) ;
+    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:569:1: ruleBoundSpecification returns [EObject current=null] : ( (lv_value_0_0= RULE_UNLIMITEDLITERAL ) ) ;
     public final EObject ruleBoundSpecification() throws RecognitionException {
         EObject current = null;
 
@@ -1357,14 +1357,14 @@ public class InternalUmlParameterParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:572:28: ( ( (lv_value_0_0= RULE_UNLIMITEDLITERAL ) ) )
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:573:1: ( (lv_value_0_0= RULE_UNLIMITEDLITERAL ) )
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:572:28: ( ( (lv_value_0_0= RULE_UNLIMITEDLITERAL ) ) )
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:573:1: ( (lv_value_0_0= RULE_UNLIMITEDLITERAL ) )
             {
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:573:1: ( (lv_value_0_0= RULE_UNLIMITEDLITERAL ) )
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:574:1: (lv_value_0_0= RULE_UNLIMITEDLITERAL )
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:573:1: ( (lv_value_0_0= RULE_UNLIMITEDLITERAL ) )
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:574:1: (lv_value_0_0= RULE_UNLIMITEDLITERAL )
             {
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:574:1: (lv_value_0_0= RULE_UNLIMITEDLITERAL )
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:575:3: lv_value_0_0= RULE_UNLIMITEDLITERAL
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:574:1: (lv_value_0_0= RULE_UNLIMITEDLITERAL )
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:575:3: lv_value_0_0= RULE_UNLIMITEDLITERAL
             {
             lv_value_0_0=(Token)match(input,RULE_UNLIMITEDLITERAL,FOLLOW_RULE_UNLIMITEDLITERAL_in_ruleBoundSpecification1139); 
 
@@ -1404,7 +1404,7 @@ public class InternalUmlParameterParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleModifierKind"
-    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:599:1: ruleModifierKind returns [Enumerator current=null] : ( (enumLiteral_0= 'exception' ) | (enumLiteral_1= 'stream' ) | (enumLiteral_2= 'ordered' ) | (enumLiteral_3= 'unique' ) ) ;
+    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:599:1: ruleModifierKind returns [Enumerator current=null] : ( (enumLiteral_0= 'exception' ) | (enumLiteral_1= 'stream' ) | (enumLiteral_2= 'ordered' ) | (enumLiteral_3= 'unique' ) ) ;
     public final Enumerator ruleModifierKind() throws RecognitionException {
         Enumerator current = null;
 
@@ -1415,10 +1415,10 @@ public class InternalUmlParameterParser extends AbstractInternalAntlrParser {
 
          enterRule(); 
         try {
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:601:28: ( ( (enumLiteral_0= 'exception' ) | (enumLiteral_1= 'stream' ) | (enumLiteral_2= 'ordered' ) | (enumLiteral_3= 'unique' ) ) )
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:602:1: ( (enumLiteral_0= 'exception' ) | (enumLiteral_1= 'stream' ) | (enumLiteral_2= 'ordered' ) | (enumLiteral_3= 'unique' ) )
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:601:28: ( ( (enumLiteral_0= 'exception' ) | (enumLiteral_1= 'stream' ) | (enumLiteral_2= 'ordered' ) | (enumLiteral_3= 'unique' ) ) )
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:602:1: ( (enumLiteral_0= 'exception' ) | (enumLiteral_1= 'stream' ) | (enumLiteral_2= 'ordered' ) | (enumLiteral_3= 'unique' ) )
             {
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:602:1: ( (enumLiteral_0= 'exception' ) | (enumLiteral_1= 'stream' ) | (enumLiteral_2= 'ordered' ) | (enumLiteral_3= 'unique' ) )
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:602:1: ( (enumLiteral_0= 'exception' ) | (enumLiteral_1= 'stream' ) | (enumLiteral_2= 'ordered' ) | (enumLiteral_3= 'unique' ) )
             int alt8=4;
             switch ( input.LA(1) ) {
             case 22:
@@ -1450,10 +1450,10 @@ public class InternalUmlParameterParser extends AbstractInternalAntlrParser {
 
             switch (alt8) {
                 case 1 :
-                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:602:2: (enumLiteral_0= 'exception' )
+                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:602:2: (enumLiteral_0= 'exception' )
                     {
-                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:602:2: (enumLiteral_0= 'exception' )
-                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:602:4: enumLiteral_0= 'exception'
+                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:602:2: (enumLiteral_0= 'exception' )
+                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:602:4: enumLiteral_0= 'exception'
                     {
                     enumLiteral_0=(Token)match(input,22,FOLLOW_22_in_ruleModifierKind1193); 
 
@@ -1467,10 +1467,10 @@ public class InternalUmlParameterParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:608:6: (enumLiteral_1= 'stream' )
+                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:608:6: (enumLiteral_1= 'stream' )
                     {
-                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:608:6: (enumLiteral_1= 'stream' )
-                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:608:8: enumLiteral_1= 'stream'
+                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:608:6: (enumLiteral_1= 'stream' )
+                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:608:8: enumLiteral_1= 'stream'
                     {
                     enumLiteral_1=(Token)match(input,23,FOLLOW_23_in_ruleModifierKind1210); 
 
@@ -1484,10 +1484,10 @@ public class InternalUmlParameterParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:614:6: (enumLiteral_2= 'ordered' )
+                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:614:6: (enumLiteral_2= 'ordered' )
                     {
-                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:614:6: (enumLiteral_2= 'ordered' )
-                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:614:8: enumLiteral_2= 'ordered'
+                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:614:6: (enumLiteral_2= 'ordered' )
+                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:614:8: enumLiteral_2= 'ordered'
                     {
                     enumLiteral_2=(Token)match(input,24,FOLLOW_24_in_ruleModifierKind1227); 
 
@@ -1501,10 +1501,10 @@ public class InternalUmlParameterParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 4 :
-                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:620:6: (enumLiteral_3= 'unique' )
+                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:620:6: (enumLiteral_3= 'unique' )
                     {
-                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:620:6: (enumLiteral_3= 'unique' )
-                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:620:8: enumLiteral_3= 'unique'
+                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:620:6: (enumLiteral_3= 'unique' )
+                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:620:8: enumLiteral_3= 'unique'
                     {
                     enumLiteral_3=(Token)match(input,25,FOLLOW_25_in_ruleModifierKind1244); 
 
@@ -1538,7 +1538,7 @@ public class InternalUmlParameterParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleEffectKind"
-    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:630:1: ruleEffectKind returns [Enumerator current=null] : ( (enumLiteral_0= 'create' ) | (enumLiteral_1= 'read' ) | (enumLiteral_2= 'update' ) | (enumLiteral_3= 'delete' ) ) ;
+    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:630:1: ruleEffectKind returns [Enumerator current=null] : ( (enumLiteral_0= 'create' ) | (enumLiteral_1= 'read' ) | (enumLiteral_2= 'update' ) | (enumLiteral_3= 'delete' ) ) ;
     public final Enumerator ruleEffectKind() throws RecognitionException {
         Enumerator current = null;
 
@@ -1549,10 +1549,10 @@ public class InternalUmlParameterParser extends AbstractInternalAntlrParser {
 
          enterRule(); 
         try {
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:632:28: ( ( (enumLiteral_0= 'create' ) | (enumLiteral_1= 'read' ) | (enumLiteral_2= 'update' ) | (enumLiteral_3= 'delete' ) ) )
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:633:1: ( (enumLiteral_0= 'create' ) | (enumLiteral_1= 'read' ) | (enumLiteral_2= 'update' ) | (enumLiteral_3= 'delete' ) )
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:632:28: ( ( (enumLiteral_0= 'create' ) | (enumLiteral_1= 'read' ) | (enumLiteral_2= 'update' ) | (enumLiteral_3= 'delete' ) ) )
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:633:1: ( (enumLiteral_0= 'create' ) | (enumLiteral_1= 'read' ) | (enumLiteral_2= 'update' ) | (enumLiteral_3= 'delete' ) )
             {
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:633:1: ( (enumLiteral_0= 'create' ) | (enumLiteral_1= 'read' ) | (enumLiteral_2= 'update' ) | (enumLiteral_3= 'delete' ) )
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:633:1: ( (enumLiteral_0= 'create' ) | (enumLiteral_1= 'read' ) | (enumLiteral_2= 'update' ) | (enumLiteral_3= 'delete' ) )
             int alt9=4;
             switch ( input.LA(1) ) {
             case 26:
@@ -1584,10 +1584,10 @@ public class InternalUmlParameterParser extends AbstractInternalAntlrParser {
 
             switch (alt9) {
                 case 1 :
-                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:633:2: (enumLiteral_0= 'create' )
+                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:633:2: (enumLiteral_0= 'create' )
                     {
-                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:633:2: (enumLiteral_0= 'create' )
-                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:633:4: enumLiteral_0= 'create'
+                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:633:2: (enumLiteral_0= 'create' )
+                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:633:4: enumLiteral_0= 'create'
                     {
                     enumLiteral_0=(Token)match(input,26,FOLLOW_26_in_ruleEffectKind1289); 
 
@@ -1601,10 +1601,10 @@ public class InternalUmlParameterParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:639:6: (enumLiteral_1= 'read' )
+                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:639:6: (enumLiteral_1= 'read' )
                     {
-                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:639:6: (enumLiteral_1= 'read' )
-                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:639:8: enumLiteral_1= 'read'
+                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:639:6: (enumLiteral_1= 'read' )
+                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:639:8: enumLiteral_1= 'read'
                     {
                     enumLiteral_1=(Token)match(input,27,FOLLOW_27_in_ruleEffectKind1306); 
 
@@ -1618,10 +1618,10 @@ public class InternalUmlParameterParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:645:6: (enumLiteral_2= 'update' )
+                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:645:6: (enumLiteral_2= 'update' )
                     {
-                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:645:6: (enumLiteral_2= 'update' )
-                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:645:8: enumLiteral_2= 'update'
+                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:645:6: (enumLiteral_2= 'update' )
+                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:645:8: enumLiteral_2= 'update'
                     {
                     enumLiteral_2=(Token)match(input,28,FOLLOW_28_in_ruleEffectKind1323); 
 
@@ -1635,10 +1635,10 @@ public class InternalUmlParameterParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 4 :
-                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:651:6: (enumLiteral_3= 'delete' )
+                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:651:6: (enumLiteral_3= 'delete' )
                     {
-                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:651:6: (enumLiteral_3= 'delete' )
-                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:651:8: enumLiteral_3= 'delete'
+                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:651:6: (enumLiteral_3= 'delete' )
+                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:651:8: enumLiteral_3= 'delete'
                     {
                     enumLiteral_3=(Token)match(input,29,FOLLOW_29_in_ruleEffectKind1340); 
 
@@ -1672,7 +1672,7 @@ public class InternalUmlParameterParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleVisibilityKind"
-    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:661:1: ruleVisibilityKind returns [Enumerator current=null] : ( (enumLiteral_0= '+' ) | (enumLiteral_1= '-' ) | (enumLiteral_2= '#' ) | (enumLiteral_3= '~' ) ) ;
+    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:661:1: ruleVisibilityKind returns [Enumerator current=null] : ( (enumLiteral_0= '+' ) | (enumLiteral_1= '-' ) | (enumLiteral_2= '#' ) | (enumLiteral_3= '~' ) ) ;
     public final Enumerator ruleVisibilityKind() throws RecognitionException {
         Enumerator current = null;
 
@@ -1683,10 +1683,10 @@ public class InternalUmlParameterParser extends AbstractInternalAntlrParser {
 
          enterRule(); 
         try {
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:663:28: ( ( (enumLiteral_0= '+' ) | (enumLiteral_1= '-' ) | (enumLiteral_2= '#' ) | (enumLiteral_3= '~' ) ) )
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:664:1: ( (enumLiteral_0= '+' ) | (enumLiteral_1= '-' ) | (enumLiteral_2= '#' ) | (enumLiteral_3= '~' ) )
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:663:28: ( ( (enumLiteral_0= '+' ) | (enumLiteral_1= '-' ) | (enumLiteral_2= '#' ) | (enumLiteral_3= '~' ) ) )
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:664:1: ( (enumLiteral_0= '+' ) | (enumLiteral_1= '-' ) | (enumLiteral_2= '#' ) | (enumLiteral_3= '~' ) )
             {
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:664:1: ( (enumLiteral_0= '+' ) | (enumLiteral_1= '-' ) | (enumLiteral_2= '#' ) | (enumLiteral_3= '~' ) )
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:664:1: ( (enumLiteral_0= '+' ) | (enumLiteral_1= '-' ) | (enumLiteral_2= '#' ) | (enumLiteral_3= '~' ) )
             int alt10=4;
             switch ( input.LA(1) ) {
             case 30:
@@ -1718,10 +1718,10 @@ public class InternalUmlParameterParser extends AbstractInternalAntlrParser {
 
             switch (alt10) {
                 case 1 :
-                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:664:2: (enumLiteral_0= '+' )
+                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:664:2: (enumLiteral_0= '+' )
                     {
-                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:664:2: (enumLiteral_0= '+' )
-                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:664:4: enumLiteral_0= '+'
+                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:664:2: (enumLiteral_0= '+' )
+                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:664:4: enumLiteral_0= '+'
                     {
                     enumLiteral_0=(Token)match(input,30,FOLLOW_30_in_ruleVisibilityKind1385); 
 
@@ -1735,10 +1735,10 @@ public class InternalUmlParameterParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:670:6: (enumLiteral_1= '-' )
+                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:670:6: (enumLiteral_1= '-' )
                     {
-                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:670:6: (enumLiteral_1= '-' )
-                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:670:8: enumLiteral_1= '-'
+                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:670:6: (enumLiteral_1= '-' )
+                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:670:8: enumLiteral_1= '-'
                     {
                     enumLiteral_1=(Token)match(input,31,FOLLOW_31_in_ruleVisibilityKind1402); 
 
@@ -1752,10 +1752,10 @@ public class InternalUmlParameterParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:676:6: (enumLiteral_2= '#' )
+                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:676:6: (enumLiteral_2= '#' )
                     {
-                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:676:6: (enumLiteral_2= '#' )
-                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:676:8: enumLiteral_2= '#'
+                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:676:6: (enumLiteral_2= '#' )
+                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:676:8: enumLiteral_2= '#'
                     {
                     enumLiteral_2=(Token)match(input,32,FOLLOW_32_in_ruleVisibilityKind1419); 
 
@@ -1769,10 +1769,10 @@ public class InternalUmlParameterParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 4 :
-                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:682:6: (enumLiteral_3= '~' )
+                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:682:6: (enumLiteral_3= '~' )
                     {
-                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:682:6: (enumLiteral_3= '~' )
-                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:682:8: enumLiteral_3= '~'
+                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:682:6: (enumLiteral_3= '~' )
+                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:682:8: enumLiteral_3= '~'
                     {
                     enumLiteral_3=(Token)match(input,33,FOLLOW_33_in_ruleVisibilityKind1436); 
 
@@ -1806,7 +1806,7 @@ public class InternalUmlParameterParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleDirection"
-    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:692:1: ruleDirection returns [Enumerator current=null] : ( (enumLiteral_0= 'in' ) | (enumLiteral_1= 'out' ) | (enumLiteral_2= 'inout' ) | (enumLiteral_3= 'return' ) ) ;
+    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:692:1: ruleDirection returns [Enumerator current=null] : ( (enumLiteral_0= 'in' ) | (enumLiteral_1= 'out' ) | (enumLiteral_2= 'inout' ) | (enumLiteral_3= 'return' ) ) ;
     public final Enumerator ruleDirection() throws RecognitionException {
         Enumerator current = null;
 
@@ -1817,10 +1817,10 @@ public class InternalUmlParameterParser extends AbstractInternalAntlrParser {
 
          enterRule(); 
         try {
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:694:28: ( ( (enumLiteral_0= 'in' ) | (enumLiteral_1= 'out' ) | (enumLiteral_2= 'inout' ) | (enumLiteral_3= 'return' ) ) )
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:695:1: ( (enumLiteral_0= 'in' ) | (enumLiteral_1= 'out' ) | (enumLiteral_2= 'inout' ) | (enumLiteral_3= 'return' ) )
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:694:28: ( ( (enumLiteral_0= 'in' ) | (enumLiteral_1= 'out' ) | (enumLiteral_2= 'inout' ) | (enumLiteral_3= 'return' ) ) )
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:695:1: ( (enumLiteral_0= 'in' ) | (enumLiteral_1= 'out' ) | (enumLiteral_2= 'inout' ) | (enumLiteral_3= 'return' ) )
             {
-            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:695:1: ( (enumLiteral_0= 'in' ) | (enumLiteral_1= 'out' ) | (enumLiteral_2= 'inout' ) | (enumLiteral_3= 'return' ) )
+            // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:695:1: ( (enumLiteral_0= 'in' ) | (enumLiteral_1= 'out' ) | (enumLiteral_2= 'inout' ) | (enumLiteral_3= 'return' ) )
             int alt11=4;
             switch ( input.LA(1) ) {
             case 34:
@@ -1852,10 +1852,10 @@ public class InternalUmlParameterParser extends AbstractInternalAntlrParser {
 
             switch (alt11) {
                 case 1 :
-                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:695:2: (enumLiteral_0= 'in' )
+                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:695:2: (enumLiteral_0= 'in' )
                     {
-                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:695:2: (enumLiteral_0= 'in' )
-                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:695:4: enumLiteral_0= 'in'
+                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:695:2: (enumLiteral_0= 'in' )
+                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:695:4: enumLiteral_0= 'in'
                     {
                     enumLiteral_0=(Token)match(input,34,FOLLOW_34_in_ruleDirection1481); 
 
@@ -1869,10 +1869,10 @@ public class InternalUmlParameterParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:701:6: (enumLiteral_1= 'out' )
+                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:701:6: (enumLiteral_1= 'out' )
                     {
-                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:701:6: (enumLiteral_1= 'out' )
-                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:701:8: enumLiteral_1= 'out'
+                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:701:6: (enumLiteral_1= 'out' )
+                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:701:8: enumLiteral_1= 'out'
                     {
                     enumLiteral_1=(Token)match(input,35,FOLLOW_35_in_ruleDirection1498); 
 
@@ -1886,10 +1886,10 @@ public class InternalUmlParameterParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:707:6: (enumLiteral_2= 'inout' )
+                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:707:6: (enumLiteral_2= 'inout' )
                     {
-                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:707:6: (enumLiteral_2= 'inout' )
-                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:707:8: enumLiteral_2= 'inout'
+                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:707:6: (enumLiteral_2= 'inout' )
+                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:707:8: enumLiteral_2= 'inout'
                     {
                     enumLiteral_2=(Token)match(input,36,FOLLOW_36_in_ruleDirection1515); 
 
@@ -1903,10 +1903,10 @@ public class InternalUmlParameterParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 4 :
-                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:713:6: (enumLiteral_3= 'return' )
+                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:713:6: (enumLiteral_3= 'return' )
                     {
-                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:713:6: (enumLiteral_3= 'return' )
-                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/parameter/editor/xtext/parser/antlr/internal/InternalUmlParameter.g:713:8: enumLiteral_3= 'return'
+                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:713:6: (enumLiteral_3= 'return' )
+                    // ../org.eclipse.papyrus.uml.textedit.parameter.xtext/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/parser/antlr/internal/InternalUmlParameter.g:713:8: enumLiteral_3= 'return'
                     {
                     enumLiteral_3=(Token)match(input,37,FOLLOW_37_in_ruleDirection1532); 
 

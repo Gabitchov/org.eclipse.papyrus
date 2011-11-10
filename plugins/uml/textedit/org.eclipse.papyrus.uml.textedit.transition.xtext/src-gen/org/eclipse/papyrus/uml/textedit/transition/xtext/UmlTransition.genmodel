@@ -8,38 +8,38 @@
     complianceLevel="5.0" copyrightFields="false" editPluginID="org.eclipse.papyrus.uml.textedit.transition.xtext.edit"
     editorPluginID="org.eclipse.papyrus.uml.textedit.transition.xtext.editor" usedGenPackages="platform:/resource/org.eclipse.papyrus.uml.textedit.transition.xtext/model/UML.genmodel#//uml">
   <genPackages prefix="UmlTransition" basePackage="org.eclipse.papyrus.uml.textedit.transition.xtext"
-      resource="XML" disposableProviderFactory="true" ecorePackage="platform:/resource/org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/UmlTransition.ecore#/">
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="platform:/resource/org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/UmlTransition.ecore#//BehaviorKind">
-      <genEnumLiterals ecoreEnumLiteral="platform:/resource/org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/UmlTransition.ecore#//BehaviorKind/ACTIVITY"/>
-      <genEnumLiterals ecoreEnumLiteral="platform:/resource/org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/UmlTransition.ecore#//BehaviorKind/STATE_MACHINE"/>
-      <genEnumLiterals ecoreEnumLiteral="platform:/resource/org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/UmlTransition.ecore#//BehaviorKind/OPAQUE_BEHAVIOR"/>
+      resource="XML" disposableProviderFactory="true" ecorePackage="platform:/resource/org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/UmlTransition.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="platform:/resource/org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/UmlTransition.ecore#//BehaviorKind">
+      <genEnumLiterals ecoreEnumLiteral="platform:/resource/org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/UmlTransition.ecore#//BehaviorKind/ACTIVITY"/>
+      <genEnumLiterals ecoreEnumLiteral="platform:/resource/org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/UmlTransition.ecore#//BehaviorKind/STATE_MACHINE"/>
+      <genEnumLiterals ecoreEnumLiteral="platform:/resource/org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/UmlTransition.ecore#//BehaviorKind/OPAQUE_BEHAVIOR"/>
     </genEnums>
-    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/UmlTransition.ecore#//TransitionRule">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/UmlTransition.ecore#//TransitionRule/triggers"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/UmlTransition.ecore#//TransitionRule/guard"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/UmlTransition.ecore#//TransitionRule/effect"/>
+    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/UmlTransition.ecore#//TransitionRule">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/UmlTransition.ecore#//TransitionRule/triggers"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/UmlTransition.ecore#//TransitionRule/guard"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/UmlTransition.ecore#//TransitionRule/effect"/>
     </genClasses>
-    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/UmlTransition.ecore#//EventRule"/>
-    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/UmlTransition.ecore#//CallOrSignalEventRule">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/UmlTransition.ecore#//CallOrSignalEventRule/operationOrSignal"/>
+    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/UmlTransition.ecore#//EventRule"/>
+    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/UmlTransition.ecore#//CallOrSignalEventRule">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/UmlTransition.ecore#//CallOrSignalEventRule/operationOrSignal"/>
     </genClasses>
-    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/UmlTransition.ecore#//AnyReceiveEventRule">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/UmlTransition.ecore#//AnyReceiveEventRule/isAReceiveEvent"/>
+    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/UmlTransition.ecore#//AnyReceiveEventRule">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/UmlTransition.ecore#//AnyReceiveEventRule/isAReceiveEvent"/>
     </genClasses>
-    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/UmlTransition.ecore#//TimeEventRule">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/UmlTransition.ecore#//TimeEventRule/expr"/>
+    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/UmlTransition.ecore#//TimeEventRule">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/UmlTransition.ecore#//TimeEventRule/expr"/>
     </genClasses>
-    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/UmlTransition.ecore#//RelativeTimeEventRule"/>
-    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/UmlTransition.ecore#//AbsoluteTimeEventRule"/>
-    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/UmlTransition.ecore#//ChangeEventRule">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/UmlTransition.ecore#//ChangeEventRule/exp"/>
+    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/UmlTransition.ecore#//RelativeTimeEventRule"/>
+    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/UmlTransition.ecore#//AbsoluteTimeEventRule"/>
+    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/UmlTransition.ecore#//ChangeEventRule">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/UmlTransition.ecore#//ChangeEventRule/exp"/>
     </genClasses>
-    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/UmlTransition.ecore#//GuardRule">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/UmlTransition.ecore#//GuardRule/constraint"/>
+    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/UmlTransition.ecore#//GuardRule">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/UmlTransition.ecore#//GuardRule/constraint"/>
     </genClasses>
-    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/UmlTransition.ecore#//EffectRule">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/UmlTransition.ecore#//EffectRule/kind"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/transition/editor/xtext/UmlTransition.ecore#//EffectRule/behaviorName"/>
+    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/UmlTransition.ecore#//EffectRule">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/UmlTransition.ecore#//EffectRule/kind"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/org.eclipse.papyrus.uml.textedit.transition.xtext/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/UmlTransition.ecore#//EffectRule/behaviorName"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

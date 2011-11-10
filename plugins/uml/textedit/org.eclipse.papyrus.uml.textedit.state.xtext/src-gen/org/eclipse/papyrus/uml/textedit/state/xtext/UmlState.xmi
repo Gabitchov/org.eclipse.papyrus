@@ -5,11 +5,11 @@
       <ePackage href="http://www.eclipse.org/uml2/3.0.0/UML#/"/>
     </metamodelDeclarations>
     <metamodelDeclarations xsi:type="xtext:GeneratedMetamodel" name="umlState">
-      <ePackage href="http://www.eclipse.org/papyrus/state/editor/xtext/UmlState#/"/>
+      <ePackage href="http://www.eclipse.org/papyrus/uml/textedit/state/xtext/UmlState#/"/>
     </metamodelDeclarations>
     <rules xsi:type="xtext:ParserRule" name="StateRule">
       <type metamodel="/0/@metamodelDeclarations.1">
-        <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/state/editor/xtext/UmlState#//StateRule"/>
+        <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/uml/textedit/state/xtext/UmlState#//StateRule"/>
       </type>
       <alternatives xsi:type="xtext:Group">
         <elements xsi:type="xtext:Assignment" feature="name" operator="=">
@@ -36,7 +36,7 @@
     </rules>
     <rules xsi:type="xtext:ParserRule" name="SubmachineRule">
       <type metamodel="/0/@metamodelDeclarations.1">
-        <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/state/editor/xtext/UmlState#//SubmachineRule"/>
+        <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/uml/textedit/state/xtext/UmlState#//SubmachineRule"/>
       </type>
       <alternatives xsi:type="xtext:Group">
         <elements xsi:type="xtext:Assignment" cardinality="?" feature="path" operator="=">
@@ -54,7 +54,7 @@
     </rules>
     <rules xsi:type="xtext:ParserRule" name="QualifiedName">
       <type metamodel="/0/@metamodelDeclarations.1">
-        <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/state/editor/xtext/UmlState#//QualifiedName"/>
+        <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/uml/textedit/state/xtext/UmlState#//QualifiedName"/>
       </type>
       <alternatives xsi:type="xtext:Group">
         <elements xsi:type="xtext:Assignment" feature="path" operator="=">
@@ -73,7 +73,7 @@
     </rules>
     <rules xsi:type="xtext:ParserRule" name="EntryRule">
       <type metamodel="/0/@metamodelDeclarations.1">
-        <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/state/editor/xtext/UmlState#//EntryRule"/>
+        <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/uml/textedit/state/xtext/UmlState#//EntryRule"/>
       </type>
       <alternatives xsi:type="xtext:Group">
         <elements xsi:type="xtext:Keyword" value="entry"/>
@@ -87,7 +87,7 @@
     </rules>
     <rules xsi:type="xtext:ParserRule" name="DoRule">
       <type metamodel="/0/@metamodelDeclarations.1">
-        <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/state/editor/xtext/UmlState#//DoRule"/>
+        <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/uml/textedit/state/xtext/UmlState#//DoRule"/>
       </type>
       <alternatives xsi:type="xtext:Group">
         <elements xsi:type="xtext:Keyword" value="do"/>
@@ -101,7 +101,7 @@
     </rules>
     <rules xsi:type="xtext:ParserRule" name="ExitRule">
       <type metamodel="/0/@metamodelDeclarations.1">
-        <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/state/editor/xtext/UmlState#//ExitRule"/>
+        <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/uml/textedit/state/xtext/UmlState#//ExitRule"/>
       </type>
       <alternatives xsi:type="xtext:Group">
         <elements xsi:type="xtext:Keyword" value="exit"/>
@@ -115,19 +115,19 @@
     </rules>
     <rules xsi:type="xtext:EnumRule" name="BehaviorKind">
       <type metamodel="/0/@metamodelDeclarations.1">
-        <classifier xsi:type="ecore:EEnum" href="http://www.eclipse.org/papyrus/state/editor/xtext/UmlState#//BehaviorKind"/>
+        <classifier xsi:type="ecore:EEnum" href="http://www.eclipse.org/papyrus/uml/textedit/state/xtext/UmlState#//BehaviorKind"/>
       </type>
       <alternatives xsi:type="xtext:Alternatives">
         <elements xsi:type="xtext:EnumLiteralDeclaration">
-          <enumLiteral href="http://www.eclipse.org/papyrus/state/editor/xtext/UmlState#//BehaviorKind/ACTIVITY"/>
+          <enumLiteral href="http://www.eclipse.org/papyrus/uml/textedit/state/xtext/UmlState#//BehaviorKind/ACTIVITY"/>
           <literal value="Activity"/>
         </elements>
         <elements xsi:type="xtext:EnumLiteralDeclaration">
-          <enumLiteral href="http://www.eclipse.org/papyrus/state/editor/xtext/UmlState#//BehaviorKind/STATE_MACHINE"/>
+          <enumLiteral href="http://www.eclipse.org/papyrus/uml/textedit/state/xtext/UmlState#//BehaviorKind/STATE_MACHINE"/>
           <literal value="StateMachine"/>
         </elements>
         <elements xsi:type="xtext:EnumLiteralDeclaration">
-          <enumLiteral href="http://www.eclipse.org/papyrus/state/editor/xtext/UmlState#//BehaviorKind/OPAQUE_BEHAVIOR"/>
+          <enumLiteral href="http://www.eclipse.org/papyrus/uml/textedit/state/xtext/UmlState#//BehaviorKind/OPAQUE_BEHAVIOR"/>
           <literal value="OpaqueBehavior"/>
         </elements>
       </alternatives>

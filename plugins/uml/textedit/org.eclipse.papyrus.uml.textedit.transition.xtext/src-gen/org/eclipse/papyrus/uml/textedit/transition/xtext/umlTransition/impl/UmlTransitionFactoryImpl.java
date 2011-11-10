@@ -35,7 +35,7 @@ public class UmlTransitionFactoryImpl extends EFactoryImpl implements UmlTransit
   {
     try
     {
-      UmlTransitionFactory theUmlTransitionFactory = (UmlTransitionFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/transition/editor/xtext/UmlTransition"); 
+      UmlTransitionFactory theUmlTransitionFactory = (UmlTransitionFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/uml/textedit/transition/xtext/UmlTransition"); 
       if (theUmlTransitionFactory != null)
       {
         return theUmlTransitionFactory;

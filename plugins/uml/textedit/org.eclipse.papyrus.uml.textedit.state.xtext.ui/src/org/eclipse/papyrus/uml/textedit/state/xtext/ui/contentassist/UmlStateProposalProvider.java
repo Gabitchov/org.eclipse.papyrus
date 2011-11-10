@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
  *
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -20,19 +20,16 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.text.contentassist.CompletionProposal;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
 import org.eclipse.jface.viewers.ILabelProvider;
-import org.eclipse.papyrus.core.utils.DisplayUtils;
-import org.eclipse.papyrus.uml.textedit.state.xtext.ui.contentassist.AbstractUmlStateProposalProvider;
+import org.eclipse.papyrus.infra.core.utils.DisplayUtils;
 import org.eclipse.papyrus.uml.textedit.state.xtext.umlState.QualifiedName;
 import org.eclipse.papyrus.uml.textedit.state.xtext.umlState.StateRule;
 import org.eclipse.papyrus.uml.textedit.state.xtext.umlState.SubmachineRule;
 import org.eclipse.papyrus.uml.textedit.state.xtext.validation.UmlStateJavaValidator;
-import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.StateMachine;
-import org.eclipse.uml2.uml.Type;
 import org.eclipse.xtext.Assignment;
 import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext;
 import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor;
@@ -42,15 +39,15 @@ import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor;
 public class UmlStateProposalProvider extends AbstractUmlStateProposalProvider {
 
 	private ILabelProvider labelProvider = DisplayUtils.getLabelProvider() ;
-	
-	/** 
+
+	/**
 	 * Provides custom completion for the specifying the submachine of submachine state
 	 * 
 	 * @see org.eclipse.papyrus.property.editor.xtext.ui.contentassist.AbstractUmlPropertyProposalProvider#completePropertyRule_Type(org.eclipse.emf.ecore.EObject, org.eclipse.xtext.Assignment, org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext, org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor)
 	 */
 	@Override
 	public void completeStateRule_Submachine(EObject model, Assignment assignment,
-			ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		// the customization consists in proposing nothing. Proposals are handled by other methods.
 		List<StateMachine> allStateMachines = new ArrayList<StateMachine>() ;
 		allStateMachines.addAll(getRecursivelyOwnedStatemachines(UmlStateJavaValidator.getModel())) ;
@@ -64,7 +61,7 @@ public class UmlStateProposalProvider extends AbstractUmlStateProposalProvider {
 			}
 		}
 	}
-	
+
 	/**
 	 * Provides custom completion for the root element in a qualified name
 	 * 
@@ -72,20 +69,21 @@ public class UmlStateProposalProvider extends AbstractUmlStateProposalProvider {
 	 */
 	@Override
 	public void completeSubmachineRule_Path(EObject model, Assignment assignment,
-			ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		// TODO Auto-generated method stub
 		Namespace root = UmlStateJavaValidator.getModel() ;
-		
-		if (root == null)
+
+		if (root == null) {
 			return ;
-		
+		}
+
 		// first accept the root Model
 		String completionString = root.getName() + "::";
 		String displayString = root.getName() + "::";
 		//String displayString = c.getName() ;
 		ICompletionProposal completionProposal = createCompletionProposalWithReplacementOfPrefix(root, completionString, displayString, context) ;
 		acceptor.accept(completionProposal) ;
-		
+
 		// then accepts all packages imported by Model
 		List<Package> importedPackages = root.getImportedPackages() ;
 		for (Package p : importedPackages) {
@@ -97,19 +95,19 @@ public class UmlStateProposalProvider extends AbstractUmlStateProposalProvider {
 				acceptor.accept(completionProposal) ;
 			}
 		}
-		
+
 	}
 
-	/** 
+	/**
 	 * Provides custom completion for specifying the submachine of a submachine state, taking into account the path if the name is qualified
 	 * 
 	 * @see org.eclipse.papyrus.property.editor.xtext.ui.contentassist.AbstractUmlPropertyProposalProvider#completeTypeRule_Type(org.eclipse.emf.ecore.EObject, org.eclipse.xtext.Assignment, org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext, org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor)
 	 */
 	@Override
 	public void completeSubmachineRule_Submachine(EObject model, Assignment assignment,
-			ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		// TODO Auto-generated method stub
-			
+
 		Namespace namespace = UmlStateJavaValidator.getContextElement().getNearestPackage() ;
 		if (model instanceof SubmachineRule) {
 			SubmachineRule typeRule = (SubmachineRule)model ;
@@ -119,8 +117,9 @@ public class UmlStateProposalProvider extends AbstractUmlStateProposalProvider {
 			}
 			namespace = path.getPath() ;
 		}
-		else if (! (model instanceof StateRule))
+		else if (! (model instanceof StateRule)) {
 			return ;
+		}
 		for (NamedElement n : namespace.getOwnedMembers()) {
 			if (n instanceof StateMachine) {
 				if (n.getName().startsWith(context.getPrefix())) {
@@ -132,12 +131,12 @@ public class UmlStateProposalProvider extends AbstractUmlStateProposalProvider {
 				}
 			}
 		}
-		
+
 		//super.completeTypeRule_Type(model, assignment, context, acceptor) ;
 	}
 
-	
-	
+
+
 	/**
 	 * Provides custom completion for a path in a qualified name
 	 * 
@@ -145,8 +144,8 @@ public class UmlStateProposalProvider extends AbstractUmlStateProposalProvider {
 	 */
 	@Override
 	public void completeQualifiedName_Path(EObject model,
-			Assignment assignment, ContentAssistContext context,
-			ICompletionProposalAcceptor acceptor) {
+		Assignment assignment, ContentAssistContext context,
+		ICompletionProposalAcceptor acceptor) {
 		//The customization consists in proposing nothing. Proposals are already handled by other methods
 	}
 
@@ -157,8 +156,8 @@ public class UmlStateProposalProvider extends AbstractUmlStateProposalProvider {
 	 */
 	@Override
 	public void completeQualifiedName_Remaining(EObject model,
-			Assignment assignment, ContentAssistContext context,
-			ICompletionProposalAcceptor acceptor) {
+		Assignment assignment, ContentAssistContext context,
+		ICompletionProposalAcceptor acceptor) {
 		// TODO Auto-generated method stub
 		QualifiedName path = (QualifiedName) model ;
 		for (NamedElement n : path.getPath().getOwnedMembers()) {
@@ -182,22 +181,22 @@ public class UmlStateProposalProvider extends AbstractUmlStateProposalProvider {
 			}
 		}
 	}
-	
+
 	/* ******************************************************************************
 	 * Utility methods
 	 ********************************************************************************/
 
 	public static String getSubmachineLabel(StateMachine statemachine) {
 		String label = "" ;
-		
+
 		Namespace model = UmlStateJavaValidator.getModel() ;
 		List<Package> importedPackages = new ArrayList<Package>(model.getImportedPackages()) ;
-		
+
 		List<Namespace> visitedNamespaces = new ArrayList<Namespace>() ;
 		Namespace currentNamespace = statemachine.getNamespace() ;
-		
+
 		boolean rootFound = false ;
-		
+
 		while (currentNamespace != null && !rootFound) {
 			visitedNamespaces.add(currentNamespace) ;
 			if (importedPackages.contains(currentNamespace) || currentNamespace == model) {
@@ -206,14 +205,14 @@ public class UmlStateProposalProvider extends AbstractUmlStateProposalProvider {
 			Element owner = currentNamespace.getOwner() ;
 			currentNamespace = owner != null ? (Namespace)owner : null ;
 		}
-		
+
 		for (int i = visitedNamespaces.size() - 1 ; i >= 0 ; i--) {
-			label += visitedNamespaces.get(i).getName() + "::" ; 
+			label += visitedNamespaces.get(i).getName() + "::" ;
 		}
-		
+
 		return label + statemachine.getName() ;
 	}
-	
+
 	/**
 	 * Private Utility method for creating a completion proposal
 	 * 
@@ -223,24 +222,24 @@ public class UmlStateProposalProvider extends AbstractUmlStateProposalProvider {
 	 * @param context Some information related to the context of the completion
 	 * @return
 	 */
-	protected ICompletionProposal createCompletionProposal(NamedElement namedElement, 
-														String completionString, 
-														String displayString, 
-														ContentAssistContext context) {
+	protected ICompletionProposal createCompletionProposal(NamedElement namedElement,
+		String completionString,
+		String displayString,
+		ContentAssistContext context) {
 		String additionalProposalInfo = "" + namedElement.getQualifiedName() + "\n" + '(' + namedElement.eClass().getName() + ')' ;
-		
-		ICompletionProposal completionProposal = new CompletionProposal(completionString, 	// String to be inserted 
-				context.getOffset(),  							// Offset
-				context.getSelectedText().length(),				// Replacement length
-				completionString.length(),						// cursorPosition
-				labelProvider.getImage(namedElement)	,	// image
-				" " + displayString,									// displayString
-				null							,				// contextInformation
-				additionalProposalInfo							// additionalProposalInfo
-				);
+
+		ICompletionProposal completionProposal = new CompletionProposal(completionString, 	// String to be inserted
+			context.getOffset(),  							// Offset
+			context.getSelectedText().length(),				// Replacement length
+			completionString.length(),						// cursorPosition
+			labelProvider.getImage(namedElement)	,	// image
+			" " + displayString,									// displayString
+			null							,				// contextInformation
+			additionalProposalInfo							// additionalProposalInfo
+			);
 		return completionProposal ;
 	}
-	
+
 	/**
 	 * Private Utility method for creating a completion proposal with replacement of prefix
 	 * 
@@ -250,24 +249,24 @@ public class UmlStateProposalProvider extends AbstractUmlStateProposalProvider {
 	 * @param context Some information related to the context of the completion
 	 * @return
 	 */
-	protected ICompletionProposal createCompletionProposalWithReplacementOfPrefix(NamedElement namedElement, 
-														String completionString, 
-														String displayString, 
-														ContentAssistContext context) {
+	protected ICompletionProposal createCompletionProposalWithReplacementOfPrefix(NamedElement namedElement,
+		String completionString,
+		String displayString,
+		ContentAssistContext context) {
 		String additionalProposalInfo = "" + namedElement.getQualifiedName() + "\n" + '(' + namedElement.eClass().getName() + ')' ;
-		
-		ICompletionProposal completionProposal = new CompletionProposal(completionString, 	// String to be inserted 
-				context.getOffset() - context.getPrefix().length(),  							// Offset
-				context.getPrefix().length(),				// Replacement length
-				completionString.length(),						// cursorPosition
-				labelProvider.getImage(namedElement)	,	// image
-				" " + displayString,									// displayString
-				null							,				// contextInformation
-				additionalProposalInfo							// additionalProposalInfo
-				);
+
+		ICompletionProposal completionProposal = new CompletionProposal(completionString, 	// String to be inserted
+			context.getOffset() - context.getPrefix().length(),  							// Offset
+			context.getPrefix().length(),				// Replacement length
+			completionString.length(),						// cursorPosition
+			labelProvider.getImage(namedElement)	,	// image
+			" " + displayString,									// displayString
+			null							,				// contextInformation
+			additionalProposalInfo							// additionalProposalInfo
+			);
 		return completionProposal ;
 	}
-	
+
 	/**
 	 * Private Utility method for creating a completion proposal
 	 * 
@@ -276,22 +275,22 @@ public class UmlStateProposalProvider extends AbstractUmlStateProposalProvider {
 	 * @param context Some information related to the context of the completion
 	 * @return
 	 */
-	protected ICompletionProposal createCompletionProposal(String completionString, 
-														String displayString, 
-														ContentAssistContext context) {
-		
-		ICompletionProposal completionProposal = new CompletionProposal(completionString, 	// String to be inserted 
-				context.getOffset(),  							// Offset
-				context.getSelectedText().length(),				// Replacement length
-				completionString.length(),						// cursorPosition
-				null	,										// image
-				" " + displayString,							// displayString
-				null							,				// contextInformation
-				null											// additionalProposalInfo
-				);
+	protected ICompletionProposal createCompletionProposal(String completionString,
+		String displayString,
+		ContentAssistContext context) {
+
+		ICompletionProposal completionProposal = new CompletionProposal(completionString, 	// String to be inserted
+			context.getOffset(),  							// Offset
+			context.getSelectedText().length(),				// Replacement length
+			completionString.length(),						// cursorPosition
+			null	,										// image
+			" " + displayString,							// displayString
+			null							,				// contextInformation
+			null											// additionalProposalInfo
+			);
 		return completionProposal ;
 	}
-	
+
 	/**
 	 * Utility methods wich returns the list of statemachines that are directly or indirectly owned by a context statemachine
 	 * 
@@ -300,18 +299,19 @@ public class UmlStateProposalProvider extends AbstractUmlStateProposalProvider {
 	 */
 	private List<StateMachine> getRecursivelyOwnedStatemachines(Namespace context) {
 		List<StateMachine> recursivelyOwnedStatemachines = new ArrayList<StateMachine>();
-		
+
 		List<Element> allOwnedElements = context.getOwnedElements() ;
 		for (Element e : allOwnedElements) {
-			if (e instanceof StateMachine)
+			if (e instanceof StateMachine) {
 				recursivelyOwnedStatemachines.add((StateMachine)e) ;
-			else if (e instanceof Namespace)
+			} else if (e instanceof Namespace) {
 				recursivelyOwnedStatemachines.addAll(getRecursivelyOwnedStatemachines((Namespace)e)) ;
+			}
 		}
-		
+
 		return recursivelyOwnedStatemachines ;
 	}
-	
+
 	/**
 	 * Utility methods which returns the list of statemachines that are directly or indirectly owned by the namespaces imported by a context namespace
 	 * 
@@ -320,12 +320,12 @@ public class UmlStateProposalProvider extends AbstractUmlStateProposalProvider {
 	 */
 	private List<StateMachine> getRecursivelyImportedStatemachines (Namespace context) {
 		List<StateMachine> recursivelyImportedStateMachines = new ArrayList<StateMachine>() ;
-		
+
 		List<Package> importedPackages = context.getImportedPackages() ;
 		for (Package p : importedPackages) {
 			recursivelyImportedStateMachines.addAll(getRecursivelyOwnedStatemachines(p)) ;
 		}
-		
+
 		return recursivelyImportedStateMachines ;
 	}
 }

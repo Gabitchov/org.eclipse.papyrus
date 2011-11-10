@@ -10,6 +10,6 @@ public class UmlPropertyAntlrTokenFileProvider implements IAntlrTokenFileProvide
 	
 	public InputStream getAntlrTokenFile() {
 		ClassLoader classLoader = getClass().getClassLoader();
-    	return classLoader.getResourceAsStream("org/eclipse/papyrus/property/editor/xtext/parser/antlr/internal/InternalUmlProperty.tokens");
+    	return classLoader.getResourceAsStream("org/eclipse/papyrus/uml/textedit/property/xtext/parser/antlr/internal/InternalUmlProperty.tokens");
 	}
 }

@@ -44,7 +44,7 @@ public interface UmlCollaborationUsePackage extends EPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  String eNS_URI = "http://www.eclipse.org/papyrus/collaborationuse/editor/xtext/UmlCollaborationUse";
+  String eNS_URI = "http://www.eclipse.org/papyrus/uml/textedit/collaborationuse/xtext/UmlCollaborationUse";
 
   /**
    * The package namespace name.

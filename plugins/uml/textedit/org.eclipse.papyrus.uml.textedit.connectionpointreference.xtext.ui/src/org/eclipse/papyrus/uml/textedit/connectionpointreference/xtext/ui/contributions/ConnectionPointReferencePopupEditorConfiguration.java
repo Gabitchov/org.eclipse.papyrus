@@ -12,8 +12,8 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
-import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
+import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.uMLConnectionPointReference.ConnectionPointReferenceRule;
 import org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui.internal.UMLConnectionPointReferenceActivator;
 import org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.validation.UMLConnectionPointReferenceJavaValidator;
@@ -31,7 +31,7 @@ public class ConnectionPointReferencePopupEditorConfiguration extends PopupEdito
 
 	private List<Pseudostate> newEntries = new ArrayList<Pseudostate>() ;
 	private List<Pseudostate> newExits = new ArrayList<Pseudostate>() ;
-	
+
 	public ConnectionPointReferencePopupEditorConfiguration() {
 		super() ;
 	}
@@ -76,15 +76,17 @@ public class ConnectionPointReferencePopupEditorConfiguration extends PopupEdito
 	public IPopupEditorHelper createPopupEditorHelper(Object editPart) {
 		// resolves the edit part, and the associated semantic element
 		IGraphicalEditPart graphicalEditPart = null;
-		if(!(editPart instanceof IGraphicalEditPart))
+		if(!(editPart instanceof IGraphicalEditPart)) {
 			return null;
+		}
 		graphicalEditPart = (IGraphicalEditPart)editPart;
-		if(!(graphicalEditPart.resolveSemanticElement() instanceof ConnectionPointReference))
+		if(!(graphicalEditPart.resolveSemanticElement() instanceof ConnectionPointReference)) {
 			return null;
+		}
 		connectionPoint = (ConnectionPointReference)graphicalEditPart.resolveSemanticElement();
 
 		UMLConnectionPointReferenceJavaValidator.init(connectionPoint) ;
-		
+
 		// retrieves the XText injector
 		Injector injector = UMLConnectionPointReferenceActivator.getInstance().getInjector("org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.UMLConnectionPointReference");
 
@@ -98,10 +100,10 @@ public class ConnectionPointReferencePopupEditorConfiguration extends PopupEdito
 		IXtextEMFReconciler reconciler = new IXtextEMFReconciler() {
 
 			public void reconcile(EObject modelObject, EObject xtextObject) {
-				
+
 				newEntries = new ArrayList<Pseudostate>() ;
 				newExits = new ArrayList<Pseudostate>() ;
-				
+
 				ConnectionPointReferenceRule rule = (ConnectionPointReferenceRule)xtextObject ;
 				if (! rule.getEntry().isEmpty()) {
 					newEntries.addAll(rule.getEntry()) ;
@@ -109,17 +111,17 @@ public class ConnectionPointReferencePopupEditorConfiguration extends PopupEdito
 				else if (! rule.getExit().isEmpty()) {
 					newExits.addAll(rule.getExit()) ;
 				}
-				
+
 				// Creates and executes the update command
 				UpdateConnectionPointReferenceCommand updateCommand = new UpdateConnectionPointReferenceCommand(connectionPoint);
-				
+
 				TransactionalEditingDomain dom = EditorUtils.getTransactionalEditingDomain();
 				dom.getCommandStack().execute(new GMFtoEMFCommandWrapper(updateCommand));
 			}
 		};
 		return super.createPopupEditorHelper(graphicalEditPart, injector, reconciler, textToEdit, fileExtension, new DefaultXtextSemanticValidator());
 	}
-	
+
 	/**
 	 * @author CEA LIST
 	 *
@@ -128,28 +130,28 @@ public class ConnectionPointReferencePopupEditorConfiguration extends PopupEdito
 	protected class UpdateConnectionPointReferenceCommand extends AbstractTransactionalCommand {
 
 		private ConnectionPointReference connectionPointReference ;
-		
+
 		/* (non-Javadoc)
 		 * @see org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand#doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor, org.eclipse.core.runtime.IAdaptable)
 		 */
 		@Override
 		protected CommandResult doExecuteWithResult(IProgressMonitor arg0,
-				IAdaptable arg1) throws ExecutionException {
-			
+			IAdaptable arg1) throws ExecutionException {
+
 			connectionPointReference.getEntries().clear() ;
 			connectionPointReference.getExits().clear() ;
-			
+
 			connectionPointReference.getEntries().addAll(newEntries) ;
 			connectionPointReference.getExits().addAll(newExits) ;
-			
+
 			return CommandResult.newOKCommandResult(connectionPointReference);
 		}
-		
+
 		public UpdateConnectionPointReferenceCommand(ConnectionPointReference connectionPointReference) {
-			super(EditorUtils.getTransactionalEditingDomain(), 
-					"ConnectionPointReference Update", 
-					getWorkspaceFiles(connectionPointReference));
+			super(EditorUtils.getTransactionalEditingDomain(),
+				"ConnectionPointReference Update",
+				getWorkspaceFiles(connectionPointReference));
 			this.connectionPointReference = connectionPointReference ;
-		}	
+		}
 	}
 }

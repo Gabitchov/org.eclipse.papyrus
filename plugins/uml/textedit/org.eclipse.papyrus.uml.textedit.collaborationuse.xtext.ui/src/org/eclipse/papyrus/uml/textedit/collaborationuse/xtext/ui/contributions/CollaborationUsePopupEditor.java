@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
  *
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -68,12 +68,14 @@ public class CollaborationUsePopupEditor extends org.eclipse.xtext.gmf.glue.Popu
 
 		// resolves the edit part, and the associated semantic element
 		IGraphicalEditPart graphicalEditPart = null;
-		if(!(editPart instanceof IGraphicalEditPart))
+		if(!(editPart instanceof IGraphicalEditPart)) {
 			return null;
+		}
 		graphicalEditPart = (IGraphicalEditPart)editPart;
 
-		if(!(graphicalEditPart.resolveSemanticElement() instanceof CollaborationUse))
+		if(!(graphicalEditPart.resolveSemanticElement() instanceof CollaborationUse)) {
 			return null;
+		}
 		collaborationUse = (CollaborationUse)graphicalEditPart.resolveSemanticElement();
 
 		// retrieves the XText injector
@@ -91,13 +93,15 @@ public class CollaborationUsePopupEditor extends org.eclipse.xtext.gmf.glue.Popu
 			public void reconcile(EObject modelObject, EObject xtextObject) {
 				// first: retrieves / determines if the xtextObject is a CollaborationUseRule object
 				EObject modifiedObject = xtextObject;
-				if(!(modelObject instanceof CollaborationUse))
+				if(!(modelObject instanceof CollaborationUse)) {
 					return;
+				}
 				while(xtextObject != null && !(xtextObject instanceof CollaborationUseRule)) {
 					modifiedObject = modifiedObject.eContainer();
 				}
-				if(modifiedObject == null)
+				if(modifiedObject == null) {
 					return;
+				}
 				CollaborationUseRule propertyRuleObject = (CollaborationUseRule)xtextObject;
 
 				// Retrieves the information to be populated in modelObject
@@ -106,10 +110,11 @@ public class CollaborationUsePopupEditor extends org.eclipse.xtext.gmf.glue.Popu
 				newName = "" + propertyRuleObject.getName(); //$NON-NLS-1$
 
 				TypeRule typeRule = propertyRuleObject.getType();
-				if(typeRule == null)
+				if(typeRule == null) {
 					newType = null;
-				else
+				} else {
 					newType = (Collaboration)typeRule.getType();
+				}
 
 				newVisibility = org.eclipse.uml2.uml.VisibilityKind.PUBLIC_LITERAL;
 
@@ -135,7 +140,7 @@ public class CollaborationUsePopupEditor extends org.eclipse.xtext.gmf.glue.Popu
 				try {
 					CheckedOperationHistory.getInstance().execute(updateCommand, new NullProgressMonitor(), null);
 				} catch (ExecutionException e) {
-					org.eclipse.papyrus.properties.runtime.Activator.log.error(e);
+					org.eclipse.papyrus.views.properties.runtime.Activator.log.error(e);
 				}
 			}
 		};
@@ -164,7 +169,7 @@ public class CollaborationUsePopupEditor extends org.eclipse.xtext.gmf.glue.Popu
 	 */
 	protected IUndoableOperation getUpdateCommand() {
 		CompositeCommand cc = new CompositeCommand("Set values for CollaborationUse"); //$NON-NLS-1$
-		org.eclipse.papyrus.service.edit.service.IElementEditService provider = org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils.getCommandProvider(collaborationUse);
+		org.eclipse.papyrus.infra.services.edit.service.IElementEditService provider = org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils.getCommandProvider(collaborationUse);
 		if(provider != null) {
 
 			ICommand editCommand = null;

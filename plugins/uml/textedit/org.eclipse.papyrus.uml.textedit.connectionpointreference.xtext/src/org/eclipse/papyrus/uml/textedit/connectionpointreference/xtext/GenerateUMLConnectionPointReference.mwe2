@@ -4,7 +4,7 @@ import org.eclipse.emf.mwe.utils.*
 import org.eclipse.xtext.generator.*
 import org.eclipse.xtext.ui.generator.*
 
-var grammarURI = "classpath:/org/eclipse/papyrus/connectionpointreference/editor/xtext/UMLConnectionPointReference.xtext"
+var grammarURI = "classpath:/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/UMLConnectionPointReference.xtext"
 var file.extensions = "conncectionpointreference"
 var projectName = "org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext"
 var runtimeProject = "../${projectName}"

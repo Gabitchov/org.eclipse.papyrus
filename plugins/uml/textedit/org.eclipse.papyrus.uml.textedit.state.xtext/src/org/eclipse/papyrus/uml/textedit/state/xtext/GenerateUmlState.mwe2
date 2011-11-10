@@ -4,7 +4,7 @@ import org.eclipse.emf.mwe.utils.*
 import org.eclipse.xtext.generator.*
 import org.eclipse.xtext.ui.generator.*
 
-var grammarURI = "classpath:/org/eclipse/papyrus/state/editor/xtext/UmlState.xtext"
+var grammarURI = "classpath:/org/eclipse/papyrus/uml/textedit/state/xtext/UmlState.xtext"
 var file.extensions = "umlstate"
 var projectName = "org.eclipse.papyrus.uml.textedit.state.xtext"
 var runtimeProject = "../${projectName}"

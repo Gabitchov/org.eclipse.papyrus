@@ -21,7 +21,7 @@ public abstract class AbstractUmlCollaborationUseRuntimeModule extends DefaultRu
 
 	@Override
 	public void configure(Binder binder) {
-		properties = tryBindProperties(binder, "org/eclipse/papyrus/collaborationuse/editor/xtext/UmlCollaborationUse.properties");
+		properties = tryBindProperties(binder, "org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/UmlCollaborationUse.properties");
 		super.configure(binder);
 	}
 	

@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
  *
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -94,12 +94,14 @@ public class ParameterPopupEditor extends org.eclipse.xtext.gmf.glue.PopupEditor
 	public IPopupEditorHelper createPopupEditorHelper(Object editPart) {
 		// resolves the edit part, and the associated semantic element
 		IGraphicalEditPart graphicalEditPart = null;
-		if(!(editPart instanceof IGraphicalEditPart))
+		if(!(editPart instanceof IGraphicalEditPart)) {
 			return null;
+		}
 		graphicalEditPart = (IGraphicalEditPart)editPart;
 
-		if(!(graphicalEditPart.resolveSemanticElement() instanceof Parameter))
+		if(!(graphicalEditPart.resolveSemanticElement() instanceof Parameter)) {
 			return null;
+		}
 		parameter = (Parameter)graphicalEditPart.resolveSemanticElement();
 
 		// retrieves the XText injector
@@ -117,13 +119,15 @@ public class ParameterPopupEditor extends org.eclipse.xtext.gmf.glue.PopupEditor
 			public void reconcile(EObject modelObject, EObject xtextObject) {
 				// first: retrieves / determines if the xtextObject is a CollaborationUseRule object
 				EObject modifiedObject = xtextObject;
-				if(!(modelObject instanceof Parameter))
+				if(!(modelObject instanceof Parameter)) {
 					return;
+				}
 				while(xtextObject != null && !(xtextObject instanceof ParameterRule)) {
 					modifiedObject = modifiedObject.eContainer();
 				}
-				if(modifiedObject == null)
+				if(modifiedObject == null) {
 					return;
+				}
 				ParameterRule parameterRuleObject = (ParameterRule)xtextObject;
 
 				// Retrieves the information to be populated in modelObject
@@ -168,7 +172,7 @@ public class ParameterPopupEditor extends org.eclipse.xtext.gmf.glue.PopupEditor
 							newUpperBound = new Integer(tempBound).intValue();
 						}
 					}
-				} else {//reset to the default value : 
+				} else {//reset to the default value :
 					newLowerBound = 1;
 					newUpperBound = 1;
 				}
@@ -237,7 +241,7 @@ public class ParameterPopupEditor extends org.eclipse.xtext.gmf.glue.PopupEditor
 				try {
 					CheckedOperationHistory.getInstance().execute(updateCommand, new NullProgressMonitor(), null);
 				} catch (ExecutionException e) {
-					org.eclipse.papyrus.properties.runtime.Activator.log.error(e);
+					org.eclipse.papyrus.views.properties.runtime.Activator.log.error(e);
 				}
 			}
 		};
@@ -289,7 +293,7 @@ public class ParameterPopupEditor extends org.eclipse.xtext.gmf.glue.PopupEditor
 	 */
 	protected IUndoableOperation getUpdateCommand() {
 		CompositeCommand cc = new CompositeCommand("Set values for Parameter"); //$NON-NLS-1$
-		org.eclipse.papyrus.service.edit.service.IElementEditService provider = org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils.getCommandProvider(parameter);
+		org.eclipse.papyrus.infra.services.edit.service.IElementEditService provider = org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils.getCommandProvider(parameter);
 		if(provider != null) {
 
 			ICommand editCommand = null;

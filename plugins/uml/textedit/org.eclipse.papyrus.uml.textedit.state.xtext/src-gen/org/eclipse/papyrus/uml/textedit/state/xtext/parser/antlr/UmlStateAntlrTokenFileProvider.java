@@ -10,6 +10,6 @@ public class UmlStateAntlrTokenFileProvider implements IAntlrTokenFileProvider {
 	
 	public InputStream getAntlrTokenFile() {
 		ClassLoader classLoader = getClass().getClassLoader();
-    	return classLoader.getResourceAsStream("org/eclipse/papyrus/state/editor/xtext/parser/antlr/internal/InternalUmlState.tokens");
+    	return classLoader.getResourceAsStream("org/eclipse/papyrus/uml/textedit/state/xtext/parser/antlr/internal/InternalUmlState.tokens");
 	}
 }

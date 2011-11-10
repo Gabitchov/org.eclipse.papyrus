@@ -35,7 +35,7 @@ public class UmlStateFactoryImpl extends EFactoryImpl implements UmlStateFactory
   {
     try
     {
-      UmlStateFactory theUmlStateFactory = (UmlStateFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/state/editor/xtext/UmlState"); 
+      UmlStateFactory theUmlStateFactory = (UmlStateFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/uml/textedit/state/xtext/UmlState"); 
       if (theUmlStateFactory != null)
       {
         return theUmlStateFactory;

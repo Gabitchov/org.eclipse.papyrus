@@ -34,7 +34,7 @@ public class UMLConnectionPointReferenceFactoryImpl extends EFactoryImpl impleme
   {
     try
     {
-      UMLConnectionPointReferenceFactory theUMLConnectionPointReferenceFactory = (UMLConnectionPointReferenceFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/connectionpointreference/editor/xtext/UMLConnectionPointReference"); 
+      UMLConnectionPointReferenceFactory theUMLConnectionPointReferenceFactory = (UMLConnectionPointReferenceFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/uml/textedit/connectionpointreference/xtext/UMLConnectionPointReference"); 
       if (theUMLConnectionPointReferenceFactory != null)
       {
         return theUMLConnectionPointReferenceFactory;

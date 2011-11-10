@@ -27,8 +27,8 @@ public class UmlCommonStandaloneSetupGenerated implements ISetup {
 	}
 	
 	public void register(Injector injector) {
-	if (!EPackage.Registry.INSTANCE.containsKey("http://www.eclipse.org/papyrus/common/editor/xtext/UmlCommon")) {
-		EPackage.Registry.INSTANCE.put("http://www.eclipse.org/papyrus/common/editor/xtext/UmlCommon", org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon.UmlCommonPackage.eINSTANCE);
+	if (!EPackage.Registry.INSTANCE.containsKey("http://www.eclipse.org/papyrus/uml/textedit/common/xtext/UmlCommon")) {
+		EPackage.Registry.INSTANCE.put("http://www.eclipse.org/papyrus/uml/textedit/common/xtext/UmlCommon", org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon.UmlCommonPackage.eINSTANCE);
 	}
 
 		org.eclipse.xtext.resource.IResourceFactory resourceFactory = injector.getInstance(org.eclipse.xtext.resource.IResourceFactory.class);
