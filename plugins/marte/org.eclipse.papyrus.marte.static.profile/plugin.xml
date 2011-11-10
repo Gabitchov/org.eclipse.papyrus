@@ -12,7 +12,7 @@
             target="platform:/plugin/org.eclipse.papyrus.marte.static.profile/resources/"/>
    </extension>
    <extension
-         point="org.eclipse.papyrus.extensionpoints.uml2.UMLLibrary">
+         point="org.eclipse.papyrus.uml.extensionpoints.UMLLibrary">
       <library
             description="MARTE Library (v1.1)"
             iconpath="resources/icons/MARTE_16x16.gif"
@@ -22,7 +22,7 @@
       </library>
    </extension>
    <extension
-         point="org.eclipse.papyrus.extensionpoints.uml2.UMLProfile">
+         point="org.eclipse.papyrus.uml.extensionpoints.UMLProfile">
       <profile
             description="UML profile for MARTE (v1.1)"
             iconpath="resources/icons/MARTE_16x16.gif"
@@ -489,7 +489,7 @@
                name="Highest">
          </Priority>
          <editor
-               id="org.eclipse.papyrus.diagram.clazz">
+               id="org.eclipse.papyrus.uml.diagram.clazz">
          </editor>
       </paletteDefinition>
    </extension>
@@ -505,7 +505,7 @@
                name="Highest">
          </Priority>
          <editor
-               id="org.eclipse.papyrus.diagram.clazz">
+               id="org.eclipse.papyrus.uml.diagram.clazz">
          </editor>
       </paletteDefinition>
    </extension>
@@ -521,7 +521,7 @@
                name="Highest">
          </Priority>
          <editor
-               id="org.eclipse.papyrus.diagram.clazz">
+               id="org.eclipse.papyrus.uml.diagram.clazz">
          </editor>
       </paletteDefinition>
    </extension>
@@ -537,7 +537,7 @@
                name="Highest">
          </Priority>
          <editor
-               id="org.eclipse.papyrus.diagram.clazz">
+               id="org.eclipse.papyrus.uml.diagram.clazz">
          </editor>
       </paletteDefinition>
    </extension>
@@ -553,7 +553,7 @@
                name="Highest">
          </Priority>
          <editor
-               id="org.eclipse.papyrus.diagram.clazz">
+               id="org.eclipse.papyrus.uml.diagram.clazz">
          </editor>
       </paletteDefinition>
    </extension>
@@ -569,7 +569,7 @@
                name="Highest">
          </Priority>
          <editor
-               id="org.eclipse.papyrus.diagram.clazz">
+               id="org.eclipse.papyrus.uml.diagram.clazz">
          </editor>
       </paletteDefinition>
    </extension>
@@ -585,7 +585,7 @@
                name="Highest">
          </Priority>
          <editor
-               id="org.eclipse.papyrus.diagram.clazz">
+               id="org.eclipse.papyrus.uml.diagram.clazz">
          </editor>
       </paletteDefinition>
    </extension>
@@ -601,7 +601,7 @@
                name="Highest">
          </Priority>
          <editor
-               id="org.eclipse.papyrus.diagram.clazz">
+               id="org.eclipse.papyrus.uml.diagram.clazz">
          </editor>
       </paletteDefinition>
    </extension>
@@ -617,7 +617,7 @@
                name="Highest">
          </Priority>
          <editor
-               id="org.eclipse.papyrus.diagram.clazz">
+               id="org.eclipse.papyrus.uml.diagram.clazz">
          </editor>
       </paletteDefinition>
    </extension>
@@ -633,7 +633,7 @@
                name="Highest">
          </Priority>
          <editor
-               id="org.eclipse.papyrus.diagram.activity">
+               id="org.eclipse.papyrus.uml.diagram.activity">
          </editor>
       </paletteDefinition>
    </extension>
@@ -649,7 +649,7 @@
                name="Highest">
          </Priority>
          <editor
-               id="org.eclipse.papyrus.diagram.activity"></editor>
+               id="org.eclipse.papyrus.uml.diagram.activity"></editor>
       </paletteDefinition>
    </extension>
    <extension
@@ -664,7 +664,7 @@
                name="Highest">
          </Priority>
          <editor
-               id="org.eclipse.papyrus.diagram.activity"></editor>
+               id="org.eclipse.papyrus.uml.diagram.activity"></editor>
       </paletteDefinition>
    </extension>
    <extension
@@ -679,7 +679,7 @@
                name="Highest">
          </Priority>
          <editor
-               id="org.eclipse.papyrus.diagram.activity">
+               id="org.eclipse.papyrus.uml.diagram.activity">
          </editor>
       </paletteDefinition>
    </extension>
@@ -695,7 +695,7 @@
                name="Highest">
          </Priority>
          <editor
-               id="org.eclipse.papyrus.diagram.activity">
+               id="org.eclipse.papyrus.uml.diagram.activity">
          </editor>
       </paletteDefinition>
    </extension>
@@ -711,7 +711,7 @@
                name="Highest">
          </Priority>
          <editor
-               id="org.eclipse.papyrus.diagram.activity">
+               id="org.eclipse.papyrus.uml.diagram.activity">
          </editor>
       </paletteDefinition>
    </extension>
@@ -727,7 +727,7 @@
                name="Highest">
          </Priority>
          <editor
-               id="org.eclipse.papyrus.diagram.activity">
+               id="org.eclipse.papyrus.uml.diagram.activity">
          </editor>
       </paletteDefinition>
    </extension>
@@ -743,7 +743,7 @@
                name="Highest">
          </Priority>
          <editor
-               id="org.eclipse.papyrus.diagram.composite">
+               id="org.eclipse.papyrus.uml.diagram.composite">
          </editor>
       </paletteDefinition>
    </extension>
@@ -759,7 +759,7 @@
                name="Highest">
          </Priority>
          <editor
-               id="org.eclipse.papyrus.diagram.composite">
+               id="org.eclipse.papyrus.uml.diagram.composite">
          </editor>
       </paletteDefinition>
    </extension>
@@ -775,7 +775,7 @@
                name="Highest">
          </Priority>
          <editor
-               id="org.eclipse.papyrus.diagram.composite">
+               id="org.eclipse.papyrus.uml.diagram.composite">
          </editor>
       </paletteDefinition>
    </extension>
@@ -791,7 +791,7 @@
                name="Highest">
          </Priority>
          <editor
-               id="org.eclipse.papyrus.diagram.composite">
+               id="org.eclipse.papyrus.uml.diagram.composite">
          </editor>
       </paletteDefinition>
    </extension>
@@ -807,7 +807,7 @@
                name="Highest">
          </Priority>
          <editor
-               id="org.eclipse.papyrus.diagram.composite">
+               id="org.eclipse.papyrus.uml.diagram.composite">
          </editor>
       </paletteDefinition>
    </extension>
@@ -823,7 +823,7 @@
                name="Highest">
          </Priority>
          <editor
-               id="org.eclipse.papyrus.diagram.composite">
+               id="org.eclipse.papyrus.uml.diagram.composite">
          </editor>
       </paletteDefinition>
    </extension>
@@ -839,7 +839,7 @@
                name="Highest">
          </Priority>
          <editor
-               id="org.eclipse.papyrus.diagram.composite">
+               id="org.eclipse.papyrus.uml.diagram.composite">
          </editor>
       </paletteDefinition>
    </extension>
@@ -855,7 +855,7 @@
                name="Highest">
          </Priority>
          <editor
-               id="org.eclipse.papyrus.diagram.composite">
+               id="org.eclipse.papyrus.uml.diagram.composite">
          </editor>
       </paletteDefinition>
    </extension>
@@ -871,7 +871,7 @@
                name="Highest">
          </Priority>
          <editor
-               id="org.eclipse.papyrus.diagram.composite">
+               id="org.eclipse.papyrus.uml.diagram.composite">
          </editor>
       </paletteDefinition>
    </extension>
@@ -887,7 +887,7 @@
                name="Highest">
          </Priority>
          <editor
-               id="org.eclipse.papyrus.diagram.composite">
+               id="org.eclipse.papyrus.uml.diagram.composite">
          </editor>
       </paletteDefinition>
    </extension>
@@ -903,7 +903,7 @@
                name="Highest">
          </Priority>
          <editor
-               id="org.eclipse.papyrus.diagram.composite">
+               id="org.eclipse.papyrus.uml.diagram.composite">
          </editor>
       </paletteDefinition>
    </extension>
@@ -919,7 +919,7 @@
                name="Highest">
          </Priority>
          <editor
-               id="org.eclipse.papyrus.diagram.statemachine">
+               id="org.eclipse.papyrus.uml.diagram.statemachine">
          </editor>
       </paletteDefinition>
    </extension>

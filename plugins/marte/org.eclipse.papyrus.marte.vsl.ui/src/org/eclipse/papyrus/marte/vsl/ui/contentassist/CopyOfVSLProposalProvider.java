@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.text.contentassist.CompletionProposal;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
 import org.eclipse.jface.viewers.ILabelProvider;
-import org.eclipse.papyrus.core.utils.DisplayUtils;
+import org.eclipse.papyrus.infra.core.utils.DisplayUtils;
 import org.eclipse.papyrus.marte.vsl.extensions.VSLContextUtil;
 import org.eclipse.papyrus.marte.vsl.extensions.VSLTypeInferenceUtil;
 import org.eclipse.papyrus.marte.vsl.ui.contentassist.AbstractVSLProposalProvider;

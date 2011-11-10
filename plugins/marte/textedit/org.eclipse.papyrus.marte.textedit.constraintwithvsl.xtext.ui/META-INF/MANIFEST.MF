@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Export-Package: org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui.
+Export-Package: org.eclipse.papyrus.marte.textedit.constraintwithvsl.xtext.ui.
  contentassist.antlr
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
@@ -26,7 +26,7 @@ Require-Bundle: org.eclipse.papyrus.marte.textedit.constraintwithvsl.xtext;bundl
 Bundle-Vendor: %providerName
 Bundle-Version: 0.9.0.qualifier
 Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.constraintwithvsl.editor.xtext.u
+Bundle-Activator: org.eclipse.papyrus.marte.textedit.constraintwithvsl.xtext.u
  i.internal.ConstraintWithVSLlActivator
 Bundle-SymbolicName: org.eclipse.papyrus.marte.textedit.constraintwithvsl.xtext.ui;singleton:=true
 Import-Package: org.apache.log4j

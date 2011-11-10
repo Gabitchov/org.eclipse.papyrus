@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.papyrus.marte.textedit.constraintwithvsl.xtext/src-gen"
+    editDirectory="/org.eclipse.papyrus.marte.textedit.constraintwithvsl.xtext.edit/src" editorDirectory="/org.eclipse.papyrus.marte.textedit.constraintwithvsl.xtext.editor/src"
+    modelPluginID="org.eclipse.papyrus.marte.textedit.constraintwithvsl.xtext" forceOverwrite="true"
+    modelName="ConstraintWithVSLl" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    complianceLevel="5.0" copyrightFields="false" editPluginID="org.eclipse.papyrus.marte.textedit.constraintwithvsl.xtext.edit"
+    editorPluginID="org.eclipse.papyrus.marte.textedit.constraintwithvsl.xtext.editor" usedGenPackages="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.genmodel#//vSL">
+  <genPackages prefix="ConstraintWithVSLl" basePackage="org.eclipse.papyrus.marte.textedit.constraintwithvsl.xtext"
+      resource="XML" disposableProviderFactory="true" ecorePackage="platform:/resource/org.eclipse.papyrus.marte.textedit.constraintwithvsl.xtext/src-gen/org/eclipse/papyrus/marte/textedit/constraintwithvsl/xtext/ConstraintWithVSLl.ecore#/">
+    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.marte.textedit.constraintwithvsl.xtext/src-gen/org/eclipse/papyrus/marte/textedit/constraintwithvsl/xtext/ConstraintWithVSLl.ecore#//ConstraintRule">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.marte.textedit.constraintwithvsl.xtext/src-gen/org/eclipse/papyrus/marte/textedit/constraintwithvsl/xtext/ConstraintWithVSLl.ecore#//ConstraintRule/specification"/>
+      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.textedit.constraintwithvsl.xtext/src-gen/org/eclipse/papyrus/marte/textedit/constraintwithvsl/xtext/ConstraintWithVSLl.ecore#//ConstraintRule/getExpectedType"/>
+      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.textedit.constraintwithvsl.xtext/src-gen/org/eclipse/papyrus/marte/textedit/constraintwithvsl/xtext/ConstraintWithVSLl.ecore#//ConstraintRule/getContextElement"/>
+    </genClasses>
+    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.marte.textedit.constraintwithvsl.xtext/src-gen/org/eclipse/papyrus/marte/textedit/constraintwithvsl/xtext/ConstraintWithVSLl.ecore#//ConstraintSpecification">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.marte.textedit.constraintwithvsl.xtext/src-gen/org/eclipse/papyrus/marte/textedit/constraintwithvsl/xtext/ConstraintWithVSLl.ecore#//ConstraintSpecification/expression"/>
+      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.textedit.constraintwithvsl.xtext/src-gen/org/eclipse/papyrus/marte/textedit/constraintwithvsl/xtext/ConstraintWithVSLl.ecore#//ConstraintSpecification/getExpectedType"/>
+      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.textedit.constraintwithvsl.xtext/src-gen/org/eclipse/papyrus/marte/textedit/constraintwithvsl/xtext/ConstraintWithVSLl.ecore#//ConstraintSpecification/getContextElement"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

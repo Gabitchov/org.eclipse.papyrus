@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<propertyTabView pluginId="org.eclipse.papyrus.properties.tabbed.marte">
+<propertyTabView pluginId="org.eclipse.papyrus.marte.properties.tabbed">
 	<tab category="MARTE" id="basicTabMARTE" label="MARTE"/>
 	<sectionSet name="sectionSet_Single_Unit">
 		<context enablesFor="1">

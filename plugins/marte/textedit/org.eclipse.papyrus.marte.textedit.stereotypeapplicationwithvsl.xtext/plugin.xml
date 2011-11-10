@@ -5,9 +5,9 @@
 
   <extension point="org.eclipse.emf.ecore.generated_package">
     <package 
-       uri = "http://www.eclipse.org/papyrus/stereotypeapplicationwithvsl/editor/xtext/StereotypeApplicationWithVSL" 
-       class = "org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext.stereotypeApplicationWithVSL.StereotypeApplicationWithVSLPackage"
-       genModel = "org/eclipse/papyrus/stereotypeapplicationwithvsl/editor/xtext/StereotypeApplicationWithVSL.genmodel" /> 
+       uri = "http://www.eclipse.org/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/StereotypeApplicationWithVSL" 
+       class = "org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.stereotypeApplicationWithVSL.StereotypeApplicationWithVSLPackage"
+       genModel = "org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/StereotypeApplicationWithVSL.genmodel" /> 
 	
   </extension>
 

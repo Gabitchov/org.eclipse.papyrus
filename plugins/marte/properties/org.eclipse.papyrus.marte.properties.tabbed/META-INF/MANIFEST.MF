@@ -10,8 +10,7 @@ Bundle-ActivationPolicy: lazy
 Bundle-Version: 0.9.0.qualifier
 Bundle-Name: MARTE tabbed properties
 Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.properties.tabbed.marte.Activato
- r
+Bundle-Activator: org.eclipse.papyrus.marte.properties.tabbed.Activator
 Bundle-SymbolicName: org.eclipse.papyrus.marte.properties.tabbed;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

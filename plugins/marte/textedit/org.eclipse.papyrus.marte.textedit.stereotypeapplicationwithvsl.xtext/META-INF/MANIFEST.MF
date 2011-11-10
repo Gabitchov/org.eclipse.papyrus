@@ -15,16 +15,16 @@ Require-Bundle: org.eclipse.xtext,
  org.eclipse.uml2.codegen.ecore;bundle-version="1.6.0",
  org.eclipse.papyrus.marte.vsl;bundle-version="0.9.0",
  org.eclipse.xtext.gmf.glue;bundle-version="0.9.0"
-Export-Package: org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext,
- org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext.parseTreeConstruction,
- org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext.parser.antlr,
- org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext.parser.antlr.internal,
- org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext.scoping,
- org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext.services,
- org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext.stereotypeApplicationWithVSL,
- org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext.stereotypeApplicationWithVSL.impl,
- org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext.stereotypeApplicationWithVSL.util,
- org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext.validation
+Export-Package: org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext,
+ org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.parseTreeConstruction,
+ org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.parser.antlr,
+ org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.parser.antlr.internal,
+ org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.scoping,
+ org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.services,
+ org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.stereotypeApplicationWithVSL,
+ org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.stereotypeApplicationWithVSL.impl,
+ org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.stereotypeApplicationWithVSL.util,
+ org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.validation
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .

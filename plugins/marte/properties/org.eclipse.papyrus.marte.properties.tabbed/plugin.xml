@@ -5,16 +5,16 @@
          point="org.eclipse.ui.views.properties.tabbed.propertyContributor">
       <propertyContributor
             contributorId="TreeOutlinePage"
-            labelProvider="org.eclipse.papyrus.properties.tabbed.core.provider.EMFObjectLabelProvider"
-            tabDescriptorProvider="org.eclipse.papyrus.properties.tabbed.core.provider.XMLBasedTabDescriptorProvider">
+            labelProvider="org.eclipse.papyrus.views.properties.tabbed.core.provider.EMFObjectLabelProvider"
+            tabDescriptorProvider="org.eclipse.papyrus.views.properties.tabbed.core.provider.XMLBasedTabDescriptorProvider">
          <propertyCategory
                category="org.eclipse.papyrus"></propertyCategory>
       </propertyContributor>
    </extension>
    <extension
-         point="org.eclipse.papyrus.properties.runtime.propertyViewProvider">
+         point="org.eclipse.papyrus.views.properties.runtime.propertyViewProvider">
       <propertyViewProvider
-            class="org.eclipse.papyrus.properties.tabbed.core.view.XMLPropertyTabViewProvider">
+            class="org.eclipse.papyrus.views.properties.tabbed.core.view.XMLPropertyTabViewProvider">
          <Priority
                name="Lowest">
          </Priority>
@@ -28,17 +28,17 @@
       </propertyViewProvider>
    </extension>
    <extension
-         point="org.eclipse.papyrus.properties.runtime.propertyEditorControllerProvider">
+         point="org.eclipse.papyrus.views.properties.runtime.propertyEditorControllerProvider">
       <propertyEditorControllerProvider
-            class="org.eclipse.papyrus.properties.runtime.controller.predefined.PredefinedPropertyControllerProvider"
+            class="org.eclipse.papyrus.views.properties.runtime.controller.predefined.PredefinedPropertyControllerProvider"
             description="this is the basic provider for MARTE features"
-            id="org.eclipse.papyrus.properties.view.marte.structuralFeaturesEMFTPredefinedControllers">
+            id="org.eclipse.papyrus.views.properties.view.marte.structuralFeaturesEMFTPredefinedControllers">
          <Priority
                name="Lowest">
          </Priority>
          <PredefinedControllers
-               id="org.eclipse.papyrus.properties.view.marte.PredefinedControllers"
-               name="org.eclipse.papyrus.properties.view.marte.PredefinedControllers"
+               id="org.eclipse.papyrus.views.properties.view.marte.PredefinedControllers"
+               name="org.eclipse.papyrus.views.properties.view.marte.PredefinedControllers"
                path="resources/predefined.xml">
          </PredefinedControllers>
       </propertyEditorControllerProvider>

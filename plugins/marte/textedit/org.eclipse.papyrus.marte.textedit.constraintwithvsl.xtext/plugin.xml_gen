@@ -5,9 +5,9 @@
 
   <extension point="org.eclipse.emf.ecore.generated_package">
     <package 
-       uri = "http://www.eclipse.org/papyrus/constraintwithvsl/editor/xtext/ConstraintWithVSLl" 
-       class = "org.eclipse.papyrus.constraintwithvsl.editor.xtext.constraintWithVSLl.ConstraintWithVSLlPackage"
-       genModel = "org/eclipse/papyrus/constraintwithvsl/editor/xtext/ConstraintWithVSLl.genmodel" /> 
+       uri = "http://www.eclipse.org/papyrus/marte/textedit/constraintwithvsl/xtext/ConstraintWithVSLl" 
+       class = "org.eclipse.papyrus.marte.textedit.constraintwithvsl.xtext.constraintWithVSLl.ConstraintWithVSLlPackage"
+       genModel = "org/eclipse/papyrus/marte/textedit/constraintwithvsl/xtext/ConstraintWithVSLl.genmodel" /> 
 	
   </extension>
 
