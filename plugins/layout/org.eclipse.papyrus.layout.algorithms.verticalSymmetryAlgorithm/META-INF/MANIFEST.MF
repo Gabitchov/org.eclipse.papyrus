@@ -8,7 +8,7 @@ Bundle-ActivationPolicy: lazy
 Bundle-Version: 0.9.0.qualifier
 Bundle-Localization: plugin
 Bundle-Name: %pluginName
-Bundle-Activator: org.eclipse.papyrus.layouttool.algorithms.verticalsy
+Bundle-Activator: org.eclipse.papyrus.layout.algorithms.verticalsy
  mmetryalgorithm.Activator
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.layout.algorithms.verticalSymmetryAlgorithm;singleton:=true

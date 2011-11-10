@@ -8,7 +8,7 @@ Bundle-ActivationPolicy: lazy
 Bundle-Version: 0.9.0.qualifier
 Bundle-Localization: plugin
 Bundle-Name: %pluginName
-Bundle-Activator: org.eclipse.papyrus.layouttool.algorithms.gridalgori
+Bundle-Activator: org.eclipse.papyrus.layout.algorithms.gridalgori
  thm.Activator
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.layout.algorithms.gridAlgorithm;singleton:=true

@@ -8,7 +8,7 @@ Bundle-ActivationPolicy: lazy
 Bundle-Version: 0.9.0.qualifier
 Bundle-Localization: plugin
 Bundle-Name: %pluginName
-Bundle-Activator: org.eclipse.papyrus.layouttool.algorithms.treealgori
+Bundle-Activator: org.eclipse.papyrus.layout.algorithms.treealgori
  thm.Activator
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.layout.algorithms.treeAlgorithm;singleton:=true

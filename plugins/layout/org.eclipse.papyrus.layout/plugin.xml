@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.2"?>
 <plugin>
-   <extension-point id="org.eclipse.papyrus.layouttool" name="layouttool" schema="schema/org.eclipse.papyrus.layouttool.exsd"/>
-   <extension-point id="org.eclipse.papyrus.layouttool.algorithms" name="algorithms" schema="schema/org.eclipse.papyrus.layouttool.algorithms.exsd"/>
+   <extension-point id="org.eclipse.papyrus.layout" name="layouttool" schema="schema/org.eclipse.papyrus.layouttool.exsd"/>
+   <extension-point id="org.eclipse.papyrus.layout.algorithms" name="algorithms" schema="schema/org.eclipse.papyrus.layouttool.algorithms.exsd"/>
 
       <extension
             point="org.eclipse.ui.menus">
@@ -11,7 +11,7 @@
             <toolbar
                   id="org.eclipse.papyrus.layouttool.toolbarlayout">
                <dynamic
-                     class="org.eclipse.papyrus.layouttool.LayoutToolToolbar"
+                     class="org.eclipse.papyrus.layout.LayoutToolToolbar"
                      id="org.eclipse.papyrus.layouttool.dynamic3">
                   <visibleWhen
                         checkEnabled="false">
@@ -30,7 +30,7 @@
       <extension
             point="org.eclipse.core.expressions.propertyTesters">
          <propertyTester
-               class="org.eclipse.papyrus.layouttool.EditorPropertyTester"
+               class="org.eclipse.papyrus.layout.EditorPropertyTester"
                id="org.eclipse.papyrus.layouttool.propertyTester"
                namespace="org.eclipse.papyrus.layouttool"
                properties="isCorrectEditor"
@@ -38,9 +38,9 @@
          </propertyTester>
       </extension>
       <extension
-            point="org.eclipse.papyrus.ui.perspectiveconfiguration">
+            point="org.eclipse.papyrus.editor.perspectiveconfiguration">
          <configuration
-               perspectiveID="org.eclipse.papyrus.core.perspective">
+               perspectiveID="org.eclipse.papyrus.infra.core.perspective">
             <toolbar
                   toolbarID="org.eclipse.papyrus.layouttool.toolbarlayout">
             </toolbar>

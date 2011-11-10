@@ -2,11 +2,11 @@
 <?eclipse version="3.2"?>
 <plugin>
    <extension
-         point="org.eclipse.papyrus.layouttool">
+         point="org.eclipse.papyrus.layout">
       <client
             editor="org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor"
-            interface="org.eclipse.papyrus.layouttool.subeditor.gmf.GMFSubEditor"
-            interfaceLayoutArea="org.eclipse.papyrus.layouttool.subeditor.gmf.GMFLayoutAreaCreator">
+            interface="org.eclipse.papyrus.layout.subeditor.gmf.GMFSubEditor"
+            interfaceLayoutArea="org.eclipse.papyrus.layout.subeditor.gmf.GMFLayoutAreaCreator">
       </client>
    </extension>
 
