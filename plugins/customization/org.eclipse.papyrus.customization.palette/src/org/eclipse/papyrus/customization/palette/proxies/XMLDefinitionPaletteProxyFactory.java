@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2009 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -17,13 +17,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.gef.palette.PaletteEntry;
-import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.customization.palette.dialog.PaletteAspectToolEntryProxy;
 import org.eclipse.papyrus.customization.palette.dialog.PaletteContainerProxy;
 import org.eclipse.papyrus.customization.palette.dialog.PaletteEntryProxy;
 import org.eclipse.papyrus.customization.palette.dialog.PaletteLocalDrawerProxy;
 import org.eclipse.papyrus.customization.palette.dialog.PaletteLocalSeparatorProxy;
 import org.eclipse.papyrus.customization.palette.dialog.PaletteLocalStackProxy;
+import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.common.service.AbstractXMLDefinitionPaletteFactory;
 import org.eclipse.papyrus.uml.diagram.common.service.AspectCreationEntry;
 import org.eclipse.papyrus.uml.diagram.common.service.IPapyrusPaletteConstant;

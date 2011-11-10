@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2009 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -276,7 +276,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		// create Palette Group
 		createPalettePreviewGroup();
 
-		// create tool description group (custom name, description, and perhaphs icon.... Just under this group, another one with aspect actions) 
+		// create tool description group (custom name, description, and perhaphs icon.... Just under this group, another one with aspect actions)
 		createToolDescriptionGroup();
 
 		// just under, creates a new line of composites...
@@ -472,7 +472,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 				// get the elements from the drag listener (either a palette entry or a palette
 				// entry proxy)
 				IStructuredSelection transferedSelection = (IStructuredSelection)LocalSelectionTransfer.getTransfer().nativeToJava(event.currentDataType);
-				Object entry = ((IStructuredSelection)transferedSelection).getFirstElement();
+				Object entry = transferedSelection.getFirstElement();
 
 				// creates the proxy for the element to be dropped
 				PaletteEntryProxy entryProxy = createNodeFromEntry(entry);
@@ -492,8 +492,8 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 					if(entryProxy.getParent() != null) {
 						entryProxy.getParent().removeChild(entryProxy);
 					}
-					((PaletteEntryProxy)target).getParent().addChild(entryProxy, ((PaletteEntryProxy)target));
-					paletteTreeViewer.expandToLevel(((PaletteEntryProxy)target).getParent(), 1);
+					target.getParent().addChild(entryProxy, target);
+					paletteTreeViewer.expandToLevel(target.getParent(), 1);
 				} else {
 					// add to parent...
 					target.getParent().addChild(entryProxy);
@@ -566,7 +566,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 	 */
 	protected void checkSelectionForDrop(IStructuredSelection transferedSelection, TreeItem item, DropTargetEvent event) {
 		event.detail = DND.DROP_NONE;
-		Object entry = ((IStructuredSelection)transferedSelection).getFirstElement();
+		Object entry = transferedSelection.getFirstElement();
 		// handle only first selected element
 		if(item == null) {
 			// adding to the root, should only be a drawer
@@ -2025,6 +2025,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public int compare(Viewer testViewer, Object e1, Object e2) {
 			String label1 = "";
 			String label2 = "";
@@ -2040,10 +2041,12 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 				label2 = ((Stereotype)e2).getName();
 			}
 
-			if(label1 == null)
+			if(label1 == null) {
 				return 1;
-			if(label2 == null)
+			}
+			if(label2 == null) {
 				return -1;
+			}
 
 			return label1.compareTo(label2);
 		}
@@ -2159,7 +2162,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 										HashMap properties = new HashMap();
 										properties.put(IPapyrusPaletteConstant.ASPECT_ACTION_KEY, StereotypeAspectActionProvider.createConfigurationNode(stereotype.getQualifiedName()));
 										AspectCreationEntry aspectEntry = new AspectCreationEntry(stereotype.getName() + " (" + entry.getLabel() + ")", "Create an element with a stereotype", entry.getId() + "_" + System.currentTimeMillis(), entry.getSmallIcon(), (CombinedTemplateCreationEntry)entry, properties);
-										entries.add((PaletteEntry)aspectEntry);
+										entries.add(aspectEntry);
 									}
 								}
 
@@ -2168,8 +2171,9 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 					}
 				}
 				return entries.toArray();
-			} else
+			} else {
 				return new Object[0];
+			}
 		}
 
 		/**
@@ -2272,7 +2276,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 										HashMap properties = new HashMap();
 										ArrayList<String> stereotypesQNToApply = new ArrayList<String>();
 										properties.put(IPapyrusPaletteConstant.ASPECT_ACTION_KEY, StereotypeAspectActionProvider.createConfigurationNode(stereotype.getQualifiedName()));
-										AspectCreationEntry aspectEntry = new AspectCreationEntry(stereotype.getName() + " (" + entry.getLabel() + ")", "Create an element with a stereotype", entry.getId() + "_" + System.currentTimeMillis(), entry.getSmallIcon(), (CombinedTemplateCreationEntry)entry, properties);
+										AspectCreationEntry aspectEntry = new AspectCreationEntry(stereotype.getName() + " (" + entry.getLabel() + ")", "Create an element with a stereotype", entry.getId() + "_" + System.currentTimeMillis(), entry.getSmallIcon(), entry, properties);
 										entries.add(aspectEntry);
 									}
 								}
@@ -2282,8 +2286,9 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 					}
 				}
 				return entries.toArray();
-			} else
+			} else {
 				return new Object[0];
+			}
 		}
 
 		/**

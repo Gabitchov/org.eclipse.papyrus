@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -16,7 +16,10 @@ import java.util.List;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.common.Messages;
-import org.eclipse.papyrus.uml.diagram.common.service.palette.Configuration;
+import org.eclipse.papyrus.uml.diagram.paletteconfiguration.Configuration;
+import org.eclipse.papyrus.uml.diagram.paletteconfiguration.IconDescriptor;
+import org.eclipse.papyrus.uml.diagram.paletteconfiguration.PaletteconfigurationFactory;
+import org.eclipse.papyrus.uml.diagram.paletteconfiguration.ToolConfiguration;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.FocusListener;
@@ -314,7 +317,7 @@ public class ConfigurationInformationComposite {
 			String text = iconText.getText();
 			if(selectedConfiguration != null && text != null && !text.equals("")) {
 
-				// parse the text.... 
+				// parse the text....
 				if(!text.startsWith(PLUGIN_PROTOCOL)) {
 					return;
 				}

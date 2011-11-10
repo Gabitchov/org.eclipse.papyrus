@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2009 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -71,8 +71,17 @@ import org.eclipse.papyrus.uml.diagram.common.part.PapyrusPalettePreferences;
 import org.eclipse.papyrus.uml.diagram.common.service.AspectCreationEntry;
 import org.eclipse.papyrus.uml.diagram.common.service.IPapyrusPaletteConstant;
 import org.eclipse.papyrus.uml.diagram.common.service.PapyrusPaletteService;
-import org.eclipse.papyrus.uml.diagram.common.service.palette.Configuration;
 import org.eclipse.papyrus.uml.diagram.common.service.palette.StereotypeAspectActionProvider;
+import org.eclipse.papyrus.uml.diagram.paletteconfiguration.Configuration;
+import org.eclipse.papyrus.uml.diagram.paletteconfiguration.DrawerConfiguration;
+import org.eclipse.papyrus.uml.diagram.paletteconfiguration.LeafConfiguration;
+import org.eclipse.papyrus.uml.diagram.paletteconfiguration.PaletteConfiguration;
+import org.eclipse.papyrus.uml.diagram.paletteconfiguration.PaletteconfigurationPackage;
+import org.eclipse.papyrus.uml.diagram.paletteconfiguration.SeparatorConfiguration;
+import org.eclipse.papyrus.uml.diagram.paletteconfiguration.StackConfiguration;
+import org.eclipse.papyrus.uml.diagram.paletteconfiguration.ToolConfiguration;
+import org.eclipse.papyrus.uml.diagram.paletteconfiguration.util.PaletteConfigurationUtils;
+import org.eclipse.papyrus.uml.diagram.paletteconfiguration.util.PaletteconfigurationSwitch;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.DragSourceAdapter;
@@ -307,7 +316,7 @@ public class ExtendedPaletteContentPage extends WizardPage implements Listener {
 		// create Palette Group
 		createPalettePreviewGroup();
 
-		// create tool description group (custom name, description, and perhaphs icon.... Just under this group, another one with aspect actions) 
+		// create tool description group (custom name, description, and perhaphs icon.... Just under this group, another one with aspect actions)
 		createToolDescriptionGroup();
 
 		// just under, creates a new line of composites...
@@ -489,7 +498,7 @@ public class ExtendedPaletteContentPage extends WizardPage implements Listener {
 			public void drop(DropTargetEvent event) {
 				super.drop(event);
 				IStructuredSelection transferedSelection = (IStructuredSelection)LocalSelectionTransfer.getTransfer().nativeToJava(event.currentDataType);
-				Object objectToTransfer = ((IStructuredSelection)transferedSelection).getFirstElement();
+				Object objectToTransfer = transferedSelection.getFirstElement();
 				if(!(objectToTransfer instanceof IAdaptable)) {
 					return;
 				}
@@ -644,7 +653,7 @@ public class ExtendedPaletteContentPage extends WizardPage implements Listener {
 	 */
 	protected void checkSelectionForDrop(IStructuredSelection transferedSelection, TreeItem item, final DropTargetEvent event) {
 		event.detail = DND.DROP_NONE;
-		final Object objectToTransfer = ((IStructuredSelection)transferedSelection).getFirstElement();
+		final Object objectToTransfer = transferedSelection.getFirstElement();
 		if(!(objectToTransfer instanceof IAdaptable)) {
 			return;
 		}
@@ -1150,7 +1159,7 @@ public class ExtendedPaletteContentPage extends WizardPage implements Listener {
 
 	//	/**
 	//	 * Creates a node in the xml document from the given entry
-	//	 * 
+	//	 *
 	//	 * @param entry
 	//	 *        the palette entry from which to create the node
 	//	 * @param parentNode
@@ -1820,7 +1829,7 @@ public class ExtendedPaletteContentPage extends WizardPage implements Listener {
 	//
 	//	/**
 	//	 * Saves the xml document into file
-	//	 * 
+	//	 *
 	//	 * @param document
 	//	 *        the document to save
 	//	 * @param path
@@ -1851,7 +1860,7 @@ public class ExtendedPaletteContentPage extends WizardPage implements Listener {
 	//
 	//	/**
 	//	 * Creates the document from the palette preview
-	//	 * 
+	//	 *
 	//	 * @return the dom structure of the document
 	//	 */
 	//	protected Document createXMLDocumentFromPalettePreview() {
@@ -1876,7 +1885,7 @@ public class ExtendedPaletteContentPage extends WizardPage implements Listener {
 	//
 	//	/**
 	//	 * Generates the xml content for the palette
-	//	 * 
+	//	 *
 	//	 * @param document
 	//	 *        the document to fill
 	//	 * @param contentElement
@@ -1891,7 +1900,7 @@ public class ExtendedPaletteContentPage extends WizardPage implements Listener {
 	//
 	//	/**
 	//	 * Generates the xml content for the given container
-	//	 * 
+	//	 *
 	//	 * @param document
 	//	 *        the document to fill
 	//	 * @param containerProxy
@@ -1976,6 +1985,7 @@ public class ExtendedPaletteContentPage extends WizardPage implements Listener {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public int compare(Viewer testViewer, Object e1, Object e2) {
 			String label1 = "";
 			String label2 = "";
@@ -1991,10 +2001,12 @@ public class ExtendedPaletteContentPage extends WizardPage implements Listener {
 				label2 = ((Stereotype)e2).getName();
 			}
 
-			if(label1 == null)
+			if(label1 == null) {
 				return 1;
-			if(label2 == null)
+			}
+			if(label2 == null) {
 				return -1;
+			}
 
 			return label1.compareTo(label2);
 		}
@@ -2110,7 +2122,7 @@ public class ExtendedPaletteContentPage extends WizardPage implements Listener {
 										HashMap properties = new HashMap();
 										properties.put(IPapyrusPaletteConstant.ASPECT_ACTION_KEY, StereotypeAspectActionProvider.createConfigurationNode(stereotype.getQualifiedName()));
 										AspectCreationEntry aspectEntry = new AspectCreationEntry(stereotype.getName() + " (" + entry.getLabel() + ")", "Create an element with a stereotype", entry.getId() + "_" + System.currentTimeMillis(), entry.getSmallIcon(), (CombinedTemplateCreationEntry)entry, properties);
-										entries.add((PaletteEntry)aspectEntry);
+										entries.add(aspectEntry);
 									}
 								}
 
@@ -2119,8 +2131,9 @@ public class ExtendedPaletteContentPage extends WizardPage implements Listener {
 					}
 				}
 				return entries.toArray();
-			} else
+			} else {
 				return new Object[0];
+			}
 		}
 
 		/**
@@ -2223,7 +2236,7 @@ public class ExtendedPaletteContentPage extends WizardPage implements Listener {
 										HashMap properties = new HashMap();
 										ArrayList<String> stereotypesQNToApply = new ArrayList<String>();
 										properties.put(IPapyrusPaletteConstant.ASPECT_ACTION_KEY, StereotypeAspectActionProvider.createConfigurationNode(stereotype.getQualifiedName()));
-										AspectCreationEntry aspectEntry = new AspectCreationEntry(stereotype.getName() + " (" + entry.getLabel() + ")", "Create an element with a stereotype", entry.getId() + "_" + System.currentTimeMillis(), entry.getSmallIcon(), (CombinedTemplateCreationEntry)entry, properties);
+										AspectCreationEntry aspectEntry = new AspectCreationEntry(stereotype.getName() + " (" + entry.getLabel() + ")", "Create an element with a stereotype", entry.getId() + "_" + System.currentTimeMillis(), entry.getSmallIcon(), entry, properties);
 										entries.add(aspectEntry);
 									}
 								}
@@ -2233,8 +2246,9 @@ public class ExtendedPaletteContentPage extends WizardPage implements Listener {
 					}
 				}
 				return entries.toArray();
-			} else
+			} else {
 				return new Object[0];
+			}
 		}
 
 		/**

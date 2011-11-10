@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -33,7 +33,7 @@ import org.eclipse.ui.dialogs.FilteredItemsSelectionDialog;
  */
 public class BundleExplorerDialog extends FilteredItemsSelectionDialog {
 
-	private static final String DIALOG_SETTINGS = "org.eclipse.papyrus.ui.toolbox.BundleExplorerDialog";
+	private static final String DIALOG_SETTINGS = "org.eclipse.papyrus.infra.widgets.toolbox.BundleExplorerDialog";
 
 	private IPluginModelBase[] fModels;
 
@@ -126,10 +126,12 @@ public class BundleExplorerDialog extends FilteredItemsSelectionDialog {
 
 	private class PluginSearchItemsFilter extends ItemsFilter {
 
+		@Override
 		public boolean isConsistentItem(Object item) {
 			return true;
 		}
 
+		@Override
 		public boolean matchItem(Object item) {
 			String id = null;
 			if(item instanceof IPluginModelBase) {
@@ -140,6 +142,7 @@ public class BundleExplorerDialog extends FilteredItemsSelectionDialog {
 			return (matches(id));
 		}
 
+		@Override
 		protected boolean matches(String text) {
 			String pattern = patternMatcher.getPattern();
 			if(pattern.indexOf("*") != 0 & pattern.indexOf("?") != 0 & pattern.indexOf(".") != 0) {//$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
@@ -156,8 +159,9 @@ public class BundleExplorerDialog extends FilteredItemsSelectionDialog {
 			int id1 = getId(o1);
 			int id2 = getId(o2);
 
-			if(id1 != id2)
+			if(id1 != id2) {
 				return id1 - id2;
+			}
 			return compareSimilarObjects(o1, o2);
 		}
 

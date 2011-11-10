@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -244,7 +244,7 @@ public class BundleIconExplorerDialog extends SelectionStatusDialog {
 	 * Handles action when user press the Manage bundle button in the combo area
 	 */
 	protected void handleManageBundlesButtonPressed() {
-		// open a dialog 
+		// open a dialog
 		BundleExplorerDialog dialog = new BundleExplorerDialog(getParentShell(), false, PluginRegistry.getActiveModels(true));
 		if(Dialog.OK == dialog.open()) {
 			text.setText(((IPluginModel)dialog.getFirstResult()).getPlugin().getId());

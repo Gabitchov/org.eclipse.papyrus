@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -396,7 +396,7 @@ public class AspectActionsInformationComposite {
 			// select first action
 			handleActionListSelectionChanged(null);
 
-			// select first post action 
+			// select first post action
 			if(selectedEntryProxy instanceof PaletteAspectToolEntryProxy && ((PaletteAspectToolEntryProxy)selectedEntryProxy).getPostActions().size() > 0) {
 				viewer.setSelection(new StructuredSelection(((PaletteAspectToolEntryProxy)selectedEntryProxy).getPostActions().get(0)), true);
 			}
