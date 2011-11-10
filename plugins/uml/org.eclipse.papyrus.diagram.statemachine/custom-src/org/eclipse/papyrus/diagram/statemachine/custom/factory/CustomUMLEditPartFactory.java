@@ -13,7 +13,6 @@ import org.eclipse.papyrus.diagram.statemachine.custom.edit.part.CustomStateMach
 import org.eclipse.papyrus.diagram.statemachine.custom.edit.part.CustomStateMachineEditPart;
 import org.eclipse.papyrus.diagram.statemachine.custom.edit.part.CustomStateMachineNameEditPart;
 import org.eclipse.papyrus.diagram.statemachine.custom.edit.part.CustomStateNameEditPart;
-import org.eclipse.papyrus.diagram.statemachine.custom.edit.part.CustomTransitionGuardEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.ConnectionPointReferenceNameEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.FinalStateEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PackageEditPart;
@@ -57,7 +56,7 @@ public class CustomUMLEditPartFactory extends UMLEditPartFactory {
 			case StateCompartmentEditPart.VISUAL_ID:
 				return new CustomStateCompartmentEditPart(view);
 			case TransitionGuardEditPart.VISUAL_ID:
-				return new CustomTransitionGuardEditPart(view);
+				return new TransitionGuardEditPart(view);
 			case ConnectionPointReferenceNameEditPart.VISUAL_ID:
 				return new CustomConnectionPointReferenceNameEditPart(view);
 

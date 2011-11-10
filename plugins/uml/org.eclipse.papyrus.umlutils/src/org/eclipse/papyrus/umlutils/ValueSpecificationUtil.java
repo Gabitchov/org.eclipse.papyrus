@@ -16,6 +16,7 @@ package org.eclipse.papyrus.umlutils;
 
 import java.util.Collection;
 
+import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Duration;
 import org.eclipse.uml2.uml.Expression;
 import org.eclipse.uml2.uml.InstanceValue;
@@ -125,6 +126,22 @@ public class ValueSpecificationUtil {
 			{
 				break;
 			}
+			}
+		}
+		return value;
+	}
+	
+	/**
+	 * Get a string representing of a Constraint
+	 * 
+	 * @param Constraint
+	 */
+	public static String getConstraintnValue(Constraint specification) {
+		String value = ""; //$NON-NLS-1$
+		if ( specification != null){
+			ValueSpecification spe = specification.getSpecification();
+			if ( spe != null){
+				value = getSpecificationValue(spe);
 			}
 		}
 		return value;
