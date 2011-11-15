@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2009 CEA LIST.
  *
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -28,9 +28,9 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequestFactory;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.EnumerationEnumerationLiteralCompartmentEditPart;
-import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
-import org.eclipse.papyrus.diagram.common.command.wrappers.GEFtoEMFCommandWrapper;
+import org.eclipse.papyrus.commands.wrappers.GEFtoEMFCommandWrapper;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.EnumerationEnumerationLiteralCompartmentEditPart;
+import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.Element;
 import org.junit.Test;
 
@@ -42,13 +42,13 @@ import org.junit.Test;
  */
 
 public  class TestDropfunction extends TestChildLabel {
-public static int MAX=20;
-@Test
-public void testDropWithOrder(){
-	testToCreateATopNode(UMLElementTypes.Enumeration_2006);
-	testToCreateSetOfNode(UMLElementTypes.EnumerationLiteral_3017, EnumerationEnumerationLiteralCompartmentEditPart.VISUAL_ID);
-	testSetOfDrop(UMLElementTypes.EnumerationLiteral_3017, EnumerationEnumerationLiteralCompartmentEditPart.VISUAL_ID);
-}
+	public static int MAX=20;
+	@Test
+	public void testDropWithOrder(){
+		testToCreateATopNode(UMLElementTypes.Enumeration_2006);
+		testToCreateSetOfNode(UMLElementTypes.EnumerationLiteral_3017, EnumerationEnumerationLiteralCompartmentEditPart.VISUAL_ID);
+		testSetOfDrop(UMLElementTypes.EnumerationLiteral_3017, EnumerationEnumerationLiteralCompartmentEditPart.VISUAL_ID);
+	}
 
 	protected void testToCreateSetOfNode(IElementType type,int containerType) {
 		ListCompartmentEditPart compartment=null;
@@ -64,7 +64,7 @@ public void testDropWithOrder(){
 		assertTrue(CREATION +INITIALIZATION_TEST,compartment.getChildren().size()==0);
 		assertTrue(CREATION +INITIALIZATION_TEST,getRootSemanticModel().getOwnedElements().size()==0);
 
-		
+
 		for(int i=0; i<MAX;i++){
 			CreateViewRequest requestcreation=CreateViewRequestFactory.getCreateShapeRequest(type, getDiagramEditPart().getDiagramPreferencesHint());
 			Command command=compartment.getCommand(requestcreation);
@@ -101,8 +101,8 @@ public void testDropWithOrder(){
 		//DROP
 		assertTrue(DROP +INITIALIZATION_TEST,compartment.getChildren().size()==0);
 		assertTrue(DROP +INITIALIZATION_TEST,((Element)((View)getTopEditPart().getModel()).getElement()).getOwnedElements().size()==MAX);
-		
-		
+
+
 		DropObjectsRequest dropObjectsRequest= new DropObjectsRequest();
 		ArrayList<Element> list = new ArrayList<Element>();
 		for(int i=0; i<MAX;i++){
@@ -117,13 +117,13 @@ public void testDropWithOrder(){
 		diagramEditor.getEditingDomain().getCommandStack().execute(new GEFtoEMFCommandWrapper(command));
 		assertTrue(DROP +TEST_THE_EXECUTION,compartment.getChildren().size()==MAX);
 		assertTrue(DROP +TEST_THE_EXECUTION,((Element)((View)getTopEditPart().getModel()).getElement()).getOwnedElements().size()==MAX);
-		
+
 		for(int i=0; i<MAX;i++){
 			assertEquals(getRootSemanticModel().getOwnedElements().get(i),((GraphicalEditPart) compartment.getChildren().get(i)).resolveSemanticElement());
-		}	
-	
+		}
+
 	}
-	
+
 
 
 }

@@ -7,15 +7,10 @@
 package org.eclipse.papyrus.core.queries.configuration.presentation;
 
 import org.eclipse.emf.common.EMFPlugin;
-
 import org.eclipse.emf.common.ui.EclipseUIPlugin;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
-
 import org.eclipse.emf.facet.infra.query.edit.provider.QueryEditPlugin;
-
 import org.eclipse.uml2.uml.edit.UMLEditPlugin;
 
 /**

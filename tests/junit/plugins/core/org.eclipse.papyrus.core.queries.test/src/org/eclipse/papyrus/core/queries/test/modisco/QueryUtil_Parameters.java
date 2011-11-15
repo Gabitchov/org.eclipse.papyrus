@@ -21,7 +21,7 @@ import java.util.List;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.facet.infra.query.ModelQuery;
-import org.eclipse.papyrus.core.queries.modisco.QueryUtil;
+import org.eclipse.papyrus.infra.queries.core.modisco.QueryUtil;
 import org.eclipse.uml2.uml.VisibilityKind;
 import org.junit.BeforeClass;
 import org.junit.Test;

@@ -21,7 +21,7 @@ import java.util.Map;
 import org.eclipse.gmf.runtime.diagram.ui.internal.services.palette.PaletteToolEntry;
 import org.eclipse.gmf.runtime.gef.ui.internal.palette.PaletteDrawer;
 import org.eclipse.gmf.runtime.gef.ui.internal.palette.PaletteStack;
-import org.eclipse.papyrus.paletteconfiguration.provider.ExtendedPluginPaletteProvider;
+import org.eclipse.papyrus.uml.diagram.paletteconfiguration.provider.ExtendedPluginPaletteProvider;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;

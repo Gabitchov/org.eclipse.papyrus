@@ -21,8 +21,8 @@ import java.io.IOException;
 import java.util.Collection;
 
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.papyrus.paletteconfiguration.PaletteConfiguration;
-import org.eclipse.papyrus.paletteconfiguration.provider.ExtendedPluginPaletteProvider;
+import org.eclipse.papyrus.uml.diagram.paletteconfiguration.PaletteConfiguration;
+import org.eclipse.papyrus.uml.diagram.paletteconfiguration.provider.ExtendedPluginPaletteProvider;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;

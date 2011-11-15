@@ -15,10 +15,11 @@ package org.eclipse.papyrus.core.queries.test.modisco.queries;
 
 import java.util.Arrays;
 import java.util.Collection;
-import org.eclipse.uml2.uml.Element;
+
 import org.eclipse.emf.facet.infra.query.core.exception.ModelQueryExecutionException;
 import org.eclipse.emf.facet.infra.query.core.java.IJavaModelQuery;
 import org.eclipse.emf.facet.infra.query.core.java.ParameterValueList;
+import org.eclipse.uml2.uml.Element;
 
 /** test - boolean return multiple values - no parameters */
 public class BooleanMultipleTest_NoParameters implements IJavaModelQuery<Element, Collection<Boolean>> {

@@ -12,16 +12,15 @@
 package org.eclipse.papyrus.core.queries.test.modisco;
 
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.facet.infra.query.ModelQuery;
 import org.eclipse.emf.facet.infra.query.runtime.ModelQueryParameterValue;
-import org.eclipse.papyrus.core.queries.modisco.QueryUtil;
-import org.eclipse.papyrus.core.queries.test.modisco.queries.BooleanTest_NoParameters;
+import org.eclipse.papyrus.infra.queries.core.modisco.QueryUtil;
 import org.junit.BeforeClass;
 import org.junit.Test;
 

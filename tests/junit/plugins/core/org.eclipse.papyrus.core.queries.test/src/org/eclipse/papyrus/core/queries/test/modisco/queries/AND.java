@@ -1,8 +1,8 @@
 package org.eclipse.papyrus.core.queries.test.modisco.queries;
-import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.emf.facet.infra.query.core.exception.ModelQueryExecutionException;
 import org.eclipse.emf.facet.infra.query.core.java.IJavaModelQuery;
 import org.eclipse.emf.facet.infra.query.core.java.ParameterValueList;
+import org.eclipse.uml2.uml.NamedElement;
 
 /** test - AND query */
 public class AND implements IJavaModelQuery<NamedElement, Boolean> {

@@ -15,7 +15,7 @@ package org.eclipse.papyrus.diagram.common.tests.parser;
 
 import junit.framework.TestCase;
 
-import org.eclipse.papyrus.diagram.common.parser.HTMLCleaner;
+import org.eclipse.papyrus.uml.diagram.common.parser.HTMLCleaner;
 import org.junit.Before;
 import org.junit.Test;
 

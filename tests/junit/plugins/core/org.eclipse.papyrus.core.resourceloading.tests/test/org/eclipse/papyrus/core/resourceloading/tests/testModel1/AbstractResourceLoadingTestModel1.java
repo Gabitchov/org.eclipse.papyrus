@@ -13,9 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.core.resourceloading.tests.testModel1;
 
-import java.io.File;
-import java.net.URL;
-
 import junit.framework.TestCase;
 
 import org.eclipse.core.resources.IFile;
@@ -24,20 +21,16 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.papyrus.core.Activator;
-import org.eclipse.papyrus.core.resourceloading.OnDemandLoadingModelSetServiceFactory;
-import org.eclipse.papyrus.core.resourceloading.preferences.StrategyChooser;
 import org.eclipse.papyrus.core.resourceloading.tests.testModel2.ITestConstants;
-import org.eclipse.papyrus.resource.ModelSet;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
+import org.eclipse.papyrus.infra.services.resourceloading.OnDemandLoadingModelSetServiceFactory;
+import org.eclipse.papyrus.infra.services.resourceloading.preferences.StrategyChooser;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Type;
 

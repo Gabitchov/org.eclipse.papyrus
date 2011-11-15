@@ -6,9 +6,9 @@ Bundle-Version: 0.9.0.qualifier
 Bundle-Activator: thousandcreation.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.eclipse.papyrus.modelexplorer;bundle-version="0.8.0",
+ org.eclipse.papyrus.views.modelexplorer;bundle-version="0.9.0",
  org.eclipse.uml2.uml;bundle-version="3.1.0",
- org.eclipse.papyrus.core;bundle-version="0.8.0"
+ org.eclipse.papyrus.infra.core;bundle-version="0.9.0"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Vendor: %providerName

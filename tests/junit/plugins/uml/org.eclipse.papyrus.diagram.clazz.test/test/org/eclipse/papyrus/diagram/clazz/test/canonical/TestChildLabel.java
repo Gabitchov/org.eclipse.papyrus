@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2009 CEA LIST.
  *
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -32,7 +32,7 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.EditCommandRequestWrapper;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.common.command.wrappers.GEFtoEMFCommandWrapper;
+import org.eclipse.papyrus.commands.wrappers.GEFtoEMFCommandWrapper;
 import org.eclipse.uml2.uml.Element;
 
 
@@ -42,47 +42,47 @@ import org.eclipse.uml2.uml.Element;
  * The Class TestChildLabel.
  */
 public abstract class TestChildLabel extends AbstractPapyrusTestCase {
-	
-	
+
+
 	/** The Constant CREATION. */
 	protected static final String CREATION = "CREATION:";
-	
+
 	/** The Constant CONTAINER_CREATION. */
 	protected static final String CONTAINER_CREATION = "CONTAINER CREATION: ";
-	
+
 	/** The Constant DROP. */
 	protected static final String DROP = "DROP: ";
-	
+
 	/** The Constant DESTROY_DELETION. */
 	protected static final String DESTROY_DELETION = "DESTROY DELETION: ";
-	
+
 	/** The Constant COMMAND_NULL. */
 	protected static final String COMMAND_NULL = " command null";
-	
+
 	/** The Constant VIEW_DELETION. */
 	protected static final String VIEW_DELETION = "VIEW DELETION: ";
-	
+
 	/** The Constant TEST_THE_REDO. */
 	protected static final String TEST_THE_REDO = "test the redo";
-	
+
 	/** The Constant TEST_THE_UNDO. */
 	protected static final String TEST_THE_UNDO = "test the undo";
-	
+
 	/** The Constant TEST_THE_EXECUTION. */
 	protected static final String TEST_THE_EXECUTION = "test the execution";
-	
+
 	/** The Constant TEST_IF_THE_COMMAND_CAN_BE_EXECUTED. */
 	protected static final String TEST_IF_THE_COMMAND_CAN_BE_EXECUTED = "test if the command can be executed";
-	
+
 	/** The Constant TEST_IF_THE_COMMAND_IS_CREATED. */
 	protected static final String TEST_IF_THE_COMMAND_IS_CREATED = "test if the command is created";
 
 	/** The Constant INITIALIZATION_TEST. */
 	protected static final String INITIALIZATION_TEST = "Intitial State";
-	
+
 	/** The Constant CHANGE_CONTAINER. */
 	protected static final String CHANGE_CONTAINER = "CHANGE CONTAINER";
-	
+
 	/** The top node. */
 	protected GraphicalEditPart topNode;
 
@@ -93,7 +93,7 @@ public abstract class TestChildLabel extends AbstractPapyrusTestCase {
 	 * @param containerType the container type
 	 */
 	public void testViewDeletion(IElementType type,int containerType) {
-		
+
 		ListCompartmentEditPart compartment=null;
 		int index=0;
 		while (compartment==null && index <getTopEditPart().getChildren().size()){
@@ -106,7 +106,7 @@ public abstract class TestChildLabel extends AbstractPapyrusTestCase {
 		//DELETION OF THE VIEW
 		assertTrue(VIEW_DELETION +INITIALIZATION_TEST,compartment.getChildren().size()==1);
 		assertTrue(VIEW_DELETION +INITIALIZATION_TEST,((Element)((View)getTopEditPart().getModel()).getElement()).getOwnedElements().size()==1);
-		
+
 		Request deleteViewRequest = new GroupRequest(RequestConstants.REQ_DELETE);
 		Command command = ((GraphicalEditPart)compartment.getChildren().get(0)).getCommand(deleteViewRequest);
 		assertNotNull(VIEW_DELETION +COMMAND_NULL,command);
@@ -115,18 +115,18 @@ public abstract class TestChildLabel extends AbstractPapyrusTestCase {
 		diagramEditor.getEditingDomain().getCommandStack().execute(new GEFtoEMFCommandWrapper(command));
 		assertTrue(VIEW_DELETION +TEST_THE_EXECUTION,compartment.getChildren().size()==0);
 		assertTrue(VIEW_DELETION +TEST_THE_EXECUTION,((Element)((View)getTopEditPart().getModel()).getElement()).getOwnedElements().size()==1);
-		
+
 		diagramEditor.getEditingDomain().getCommandStack().undo();
 		assertTrue(VIEW_DELETION +TEST_THE_UNDO,compartment.getChildren().size()==1);
 		assertTrue(VIEW_DELETION +TEST_THE_UNDO,((Element)((View)getTopEditPart().getModel()).getElement()).getOwnedElements().size()==1);
-		
+
 		diagramEditor.getEditingDomain().getCommandStack().redo();
 		assertTrue(VIEW_DELETION +TEST_THE_REDO,compartment.getChildren().size()==0);
 		assertTrue(VIEW_DELETION +TEST_THE_REDO,((Element)((View)getTopEditPart().getModel()).getElement()).getOwnedElements().size()==1);
-		
-		
+
+
 	}
-	
+
 	/**
 	 * Test destroy.
 	 * 
@@ -146,7 +146,7 @@ public abstract class TestChildLabel extends AbstractPapyrusTestCase {
 		//DESTROY SEMANTIC+ VIEW
 		assertTrue(DESTROY_DELETION +INITIALIZATION_TEST,compartment.getChildren().size()==1);
 		assertTrue(DESTROY_DELETION +INITIALIZATION_TEST,((Element)((View)getTopEditPart().getModel()).getElement()).getOwnedElements().size()==1);
-		
+
 		Request deleteViewRequest =	new EditCommandRequestWrapper( new DestroyElementRequest(false));
 		Command command = ((GraphicalEditPart)compartment.getChildren().get(0)).getCommand(deleteViewRequest);
 		assertNotNull(DESTROY_DELETION +COMMAND_NULL,command);
@@ -162,8 +162,8 @@ public abstract class TestChildLabel extends AbstractPapyrusTestCase {
 		assertTrue(DESTROY_DELETION +TEST_THE_REDO,compartment.getChildren().size()==0);
 		assertTrue(DESTROY_DELETION +TEST_THE_REDO,((Element)((View)getTopEditPart().getModel()).getElement()).getOwnedElements().size()==0);
 	}
-	
-	
+
+
 	/**
 	 * Test drop.
 	 * 
@@ -183,8 +183,8 @@ public abstract class TestChildLabel extends AbstractPapyrusTestCase {
 		//DROP
 		assertTrue(DROP +INITIALIZATION_TEST,compartment.getChildren().size()==0);
 		assertTrue(DROP +INITIALIZATION_TEST,((Element)((View)getTopEditPart().getModel()).getElement()).getOwnedElements().size()==1);
-		
-		
+
+
 		DropObjectsRequest dropObjectsRequest= new DropObjectsRequest();
 		ArrayList<Element> list = new ArrayList<Element>();
 		list.add(getRootSemanticModel().getOwnedElements().get(0));
@@ -203,9 +203,9 @@ public abstract class TestChildLabel extends AbstractPapyrusTestCase {
 		diagramEditor.getEditingDomain().getCommandStack().redo();
 		assertTrue(DROP+TEST_THE_REDO,compartment.getChildren().size()!=0);
 		assertTrue(DROP+TEST_THE_REDO,((Element)((View)getTopEditPart().getModel()).getElement()).getOwnedElements().size()!=0);
-		}
-	
-	
+	}
+
+
 	/**
 	 * Test change container.
 	 * 
@@ -223,12 +223,12 @@ public abstract class TestChildLabel extends AbstractPapyrusTestCase {
 			index++;
 		}
 		assertTrue("Container not found", compartment!=null);
-		
+
 		//CHANGE CONTAINER
 		assertTrue(CHANGE_CONTAINER +INITIALIZATION_TEST,compartment.getChildren().size()==1);
 		assertTrue(CHANGE_CONTAINER +INITIALIZATION_TEST,((Element)((View)getTopEditPart().getModel()).getElement()).getOwnedElements().size()==1);
-		
-		
+
+
 		Request requestcreation=CreateViewRequestFactory.getCreateShapeRequest(topNodeType, getDiagramEditPart().getDiagramPreferencesHint());
 		Command command=getDiagramEditPart().getCommand(requestcreation);
 		assertNotNull(CONTAINER_CREATION+COMMAND_NULL,command);
@@ -249,8 +249,8 @@ public abstract class TestChildLabel extends AbstractPapyrusTestCase {
 			index++;
 		}
 		assertTrue("NewContainer not found", newCompartment!=null);
-		
-		
+
+
 		command=newCompartment.getCommand(changeBoundsRequest);
 		assertNotNull(CHANGE_CONTAINER,command);
 		assertTrue(CHANGE_CONTAINER+TEST_IF_THE_COMMAND_IS_CREATED,command!=UnexecutableCommand.INSTANCE);
@@ -267,9 +267,9 @@ public abstract class TestChildLabel extends AbstractPapyrusTestCase {
 		assertTrue(CHANGE_CONTAINER+TEST_THE_REDO,compartment.getChildren().size()==0);
 		assertTrue(CHANGE_CONTAINER+TEST_THE_REDO,((Element)((View)getTopEditPart().getModel()).getElement()).getOwnedElements().size()==0);
 		assertTrue(CHANGE_CONTAINER+TEST_THE_EXECUTION,newCompartment.getChildren().size()==1);
-		
-		}
-	
+
+	}
+
 	/**
 	 * Test to create a node.
 	 * 
@@ -289,7 +289,7 @@ public abstract class TestChildLabel extends AbstractPapyrusTestCase {
 		//CREATION
 		assertTrue(CREATION +INITIALIZATION_TEST,compartment.getChildren().size()==0);
 		assertTrue(CREATION +INITIALIZATION_TEST,getRootSemanticModel().getOwnedElements().size()==0);
-		
+
 		CreateViewRequest requestcreation=CreateViewRequestFactory.getCreateShapeRequest(type, getDiagramEditPart().getDiagramPreferencesHint());
 		Command command=compartment.getCommand(requestcreation);
 		assertNotNull(CREATION+COMMAND_NULL,command);
@@ -302,20 +302,20 @@ public abstract class TestChildLabel extends AbstractPapyrusTestCase {
 		assertTrue(CREATION+TEST_THE_UNDO,((Element)((View)getTopEditPart().getModel()).getElement()).getOwnedElements().size()==0);
 		diagramEditor.getEditingDomain().getCommandStack().redo();
 		assertTrue("CREATION: "+TEST_THE_REDO,compartment.getChildren().size()==1);
-						
+
 	}
-	
+
 	/**
 	 * Test to create a top node.
 	 * 
 	 * @param type the type
 	 */
 	public void testToCreateATopNode(IElementType type) {
-		
+
 		//CREATION
 		assertTrue(CREATION +INITIALIZATION_TEST,getDiagramEditPart().getChildren().size()==0);
 		assertTrue(CREATION +INITIALIZATION_TEST,((Element)((View)getDiagramEditPart().getModel()).getElement()).getOwnedElements().size()==0);
-		
+
 		CreateViewRequest requestcreation=CreateViewRequestFactory.getCreateShapeRequest(type, getDiagramEditPart().getDiagramPreferencesHint());
 		Command command=getDiagramEditPart().getCommand(requestcreation);
 		assertNotNull(CREATION+COMMAND_NULL,command);
@@ -325,7 +325,7 @@ public abstract class TestChildLabel extends AbstractPapyrusTestCase {
 		assertTrue(CREATION+TEST_THE_EXECUTION,getRootView().getChildren().size()==1);
 		topNode = (GraphicalEditPart)getDiagramEditPart().getChildren().get(0);
 	}
-	
+
 	/**
 	 * Gets the top edit part.
 	 * 
@@ -334,19 +334,19 @@ public abstract class TestChildLabel extends AbstractPapyrusTestCase {
 	public GraphicalEditPart getTopEditPart(){
 		return topNode;
 	}
-	
+
 	/**
 	 * @see org.eclipse.papyrus.diagram.clazz.test.canonical.AbstractPapyrusTestCase#getRootSemanticModel()
 	 *
 	 * @return
 	 */
-	
+
 	@Override
 	protected Element getRootSemanticModel() {
 		// TODO Auto-generated method stub
 		return (Element)((View)getTopEditPart().getModel()).getElement();
 	}
-	
+
 	/**
 	 * Test to manage top node.
 	 * 
@@ -364,6 +364,6 @@ public abstract class TestChildLabel extends AbstractPapyrusTestCase {
 		testDrop(type,containerType);
 		testChangeContainer(topNodeType,type, containerType);
 	}
-	
-	
+
+
 }

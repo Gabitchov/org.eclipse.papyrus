@@ -18,9 +18,9 @@ import static org.junit.Assert.assertTrue;
 
 import org.eclipse.emf.facet.infra.query.ModelQuery;
 import org.eclipse.emf.facet.infra.query.core.ModelQuerySetCatalog;
-import org.eclipse.papyrus.core.queries.modisco.ModelQueryNotFoundException;
-import org.eclipse.papyrus.core.queries.modisco.ModelQuerySetNotFoundException;
-import org.eclipse.papyrus.core.queries.modisco.QueryUtil;
+import org.eclipse.papyrus.infra.queries.core.modisco.ModelQueryNotFoundException;
+import org.eclipse.papyrus.infra.queries.core.modisco.ModelQuerySetNotFoundException;
+import org.eclipse.papyrus.infra.queries.core.modisco.QueryUtil;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Assert;

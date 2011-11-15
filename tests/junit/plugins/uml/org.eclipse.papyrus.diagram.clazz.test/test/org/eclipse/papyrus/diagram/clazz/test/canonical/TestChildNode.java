@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2009 CEA LIST.
  *
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -33,8 +33,8 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.EditCommandRequestWrapper;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
-import org.eclipse.papyrus.diagram.common.command.wrappers.GEFtoEMFCommandWrapper;
+import org.eclipse.papyrus.commands.wrappers.GEFtoEMFCommandWrapper;
+import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.Element;
 
 
@@ -44,10 +44,10 @@ import org.eclipse.uml2.uml.Element;
  * The Class TestChildNode.
  */
 public class TestChildNode extends AbstractPapyrusTestCase {
-	
-	
-	
-	
+
+
+
+
 	/** The root compartment. */
 	protected ShapeCompartmentEditPart rootCompartment=null;
 
@@ -60,7 +60,7 @@ public class TestChildNode extends AbstractPapyrusTestCase {
 		//DELETION OF THE VIEW
 		assertTrue(VIEW_DELETION +INITIALIZATION_TEST,getRootCompartment().getChildren().size()==1);
 		assertTrue(VIEW_DELETION +INITIALIZATION_TEST,getRootSemanticModel().getOwnedElements().size()==1);
-		
+
 		Request deleteViewRequest = new GroupRequest(RequestConstants.REQ_DELETE);
 		Command command = ((GraphicalEditPart)getRootCompartment().getChildren().get(0)).getCommand(deleteViewRequest);
 		assertNotNull(VIEW_DELETION +COMMAND_NULL,command);
@@ -75,9 +75,9 @@ public class TestChildNode extends AbstractPapyrusTestCase {
 		diagramEditor.getEditingDomain().getCommandStack().redo();
 		assertTrue(VIEW_DELETION +TEST_THE_REDO,getRootCompartment().getChildren().size()==0);
 		assertTrue(VIEW_DELETION +TEST_THE_REDO,getRootSemanticModel().getOwnedElements().size()==1);
-		
+
 	}
-	
+
 	/**
 	 * Gets the root compartment.
 	 * 
@@ -87,7 +87,7 @@ public class TestChildNode extends AbstractPapyrusTestCase {
 		assertNotNull(rootCompartment);
 		return rootCompartment;
 	}
-	
+
 	/**
 	 * Test destroy.
 	 * 
@@ -97,7 +97,7 @@ public class TestChildNode extends AbstractPapyrusTestCase {
 		//DESTROY SEMANTIC+ VIEW
 		assertTrue(DESTROY_DELETION +INITIALIZATION_TEST,getRootCompartment().getChildren().size()==1);
 		assertTrue(DESTROY_DELETION +INITIALIZATION_TEST,getRootSemanticModel().getOwnedElements().size()==1);
-		
+
 		Request deleteViewRequest =	new EditCommandRequestWrapper( new DestroyElementRequest(false));
 		Command command = ((GraphicalEditPart)getRootCompartment().getChildren().get(0)).getCommand(deleteViewRequest);
 		assertNotNull(DESTROY_DELETION +COMMAND_NULL,command);
@@ -113,8 +113,8 @@ public class TestChildNode extends AbstractPapyrusTestCase {
 		assertTrue(DESTROY_DELETION +TEST_THE_REDO,getRootCompartment().getChildren().size()==0);
 		assertTrue(DESTROY_DELETION +TEST_THE_REDO,getRootSemanticModel().getOwnedElements().size()==0);
 	}
-	
-	
+
+
 	/**
 	 * Test drop.
 	 * 
@@ -124,8 +124,8 @@ public class TestChildNode extends AbstractPapyrusTestCase {
 		//DROP
 		assertTrue(DROP +INITIALIZATION_TEST,getRootCompartment().getChildren().size()==0);
 		assertTrue(DROP +INITIALIZATION_TEST,getRootSemanticModel().getOwnedElements().size()==1);
-		
-		
+
+
 		DropObjectsRequest dropObjectsRequest= new DropObjectsRequest();
 		ArrayList<Element> list = new ArrayList<Element>();
 		list.add(getRootSemanticModel().getOwnedElements().get(0));
@@ -144,9 +144,9 @@ public class TestChildNode extends AbstractPapyrusTestCase {
 		diagramEditor.getEditingDomain().getCommandStack().redo();
 		assertTrue(DROP+TEST_THE_REDO,getRootCompartment().getChildren().size()!=0);
 		assertTrue(DROP+TEST_THE_REDO,getRootSemanticModel().getOwnedElements().size()!=0);
-		}
-	
-	
+	}
+
+
 	/**
 	 * Test change container.
 	 * 
@@ -157,8 +157,8 @@ public class TestChildNode extends AbstractPapyrusTestCase {
 		//CHANGE CONTAINER
 		assertTrue(CHANGE_CONTAINER +INITIALIZATION_TEST,getRootCompartment().getChildren().size()==1);
 		assertTrue(CHANGE_CONTAINER +INITIALIZATION_TEST,getRootSemanticModel().getOwnedElements().size()==1);
-		
-		
+
+
 		Request requestcreation=CreateViewRequestFactory.getCreateShapeRequest(containerType, getRootCompartment().getDiagramPreferencesHint());
 		Command command=getRootCompartment().getCommand(requestcreation);
 		assertNotNull(CONTAINER_CREATION+COMMAND_NULL,command);
@@ -179,8 +179,8 @@ public class TestChildNode extends AbstractPapyrusTestCase {
 			index++;
 		}
 		assertTrue("Container not found", compartment!=null);
-		
-		
+
+
 		command=compartment.getCommand(changeBoundsRequest);
 		assertNotNull(CHANGE_CONTAINER,command);
 		assertTrue(CHANGE_CONTAINER+TEST_IF_THE_COMMAND_IS_CREATED,command!=UnexecutableCommand.INSTANCE);
@@ -197,20 +197,20 @@ public class TestChildNode extends AbstractPapyrusTestCase {
 		assertTrue(CHANGE_CONTAINER+TEST_THE_REDO,getRootView().getChildren().size()==1);
 		assertTrue(CHANGE_CONTAINER+TEST_THE_REDO,getRootSemanticModel().getOwnedElements().size()==1);
 		assertTrue(CHANGE_CONTAINER+TEST_THE_EXECUTION,compartment.getChildren().size()==1);
-		
-		}
-	
+
+	}
+
 	/**
 	 * Test to create a node.
 	 * 
 	 * @param type the type
 	 */
 	public void testToCreateANode(IElementType type) {
-		
+
 		//CREATION
 		assertTrue(CREATION +INITIALIZATION_TEST,getRootCompartment().getChildren().size()==0);
 		assertTrue(CREATION +INITIALIZATION_TEST,getRootSemanticModel().getOwnedElements().size()==0);
-		
+
 		CreateViewRequest requestcreation=CreateViewRequestFactory.getCreateShapeRequest(type, getRootCompartment().getDiagramPreferencesHint());
 		Command command=getRootCompartment().getCommand(requestcreation);
 		assertNotNull(CREATION+COMMAND_NULL,command);
@@ -223,15 +223,15 @@ public class TestChildNode extends AbstractPapyrusTestCase {
 		assertTrue(CREATION+TEST_THE_UNDO,getRootSemanticModel().getOwnedElements().size()==0);
 		diagramEditor.getEditingDomain().getCommandStack().redo();
 		assertTrue("CREATION: "+TEST_THE_REDO,getRootCompartment().getChildren().size()==1);
-						
+
 	}
-	
+
 	/**
 	 * @see org.eclipse.papyrus.diagram.clazz.test.canonical.AbstractPapyrusTestCase#setUp()
 	 *
 	 * @throws Exception
 	 */
-	
+
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
@@ -252,20 +252,20 @@ public class TestChildNode extends AbstractPapyrusTestCase {
 			}
 			index++;
 		}
-		
+
 	}
-	
+
 	/**
 	 * @see org.eclipse.papyrus.diagram.clazz.test.canonical.AbstractPapyrusTestCase#getRootView()
 	 *
 	 * @return
 	 */
-	
+
 	@Override
 	protected View getRootView() {
 		return (View)getRootCompartment().getModel();
 	}
-	
+
 	/**
 	 * Test to manage child node.
 	 * 
@@ -285,6 +285,6 @@ public class TestChildNode extends AbstractPapyrusTestCase {
 		// the node and element are present
 		testChangeContainer(type, containerType);
 	}
-	
-	
+
+
 }

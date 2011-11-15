@@ -1,6 +1,6 @@
 package org.eclipse.papyrus.diagram.clazz.test.canonical;
 
-import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
+import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
 import org.junit.Test;
 
 public class TestMutliLink extends AbstractTestMultiLink {

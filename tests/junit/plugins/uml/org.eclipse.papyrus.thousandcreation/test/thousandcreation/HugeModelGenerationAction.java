@@ -19,12 +19,9 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.action.IAction;
-import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.window.Window;
-import org.eclipse.papyrus.core.utils.EditorUtils;
-import org.eclipse.swt.widgets.Display;
+import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.ui.IActionDelegate;
 import org.eclipse.uml2.uml.Package;
 

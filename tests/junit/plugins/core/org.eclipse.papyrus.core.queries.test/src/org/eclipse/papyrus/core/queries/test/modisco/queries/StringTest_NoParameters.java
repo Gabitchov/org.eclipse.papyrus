@@ -12,10 +12,10 @@
  *
  *****************************************************************************/
 package org.eclipse.papyrus.core.queries.test.modisco.queries;
-import org.eclipse.uml2.uml.Element;
 import org.eclipse.emf.facet.infra.query.core.exception.ModelQueryExecutionException;
 import org.eclipse.emf.facet.infra.query.core.java.IJavaModelQuery;
 import org.eclipse.emf.facet.infra.query.core.java.ParameterValueList;
+import org.eclipse.uml2.uml.Element;
 
 /** test - string return value - no parameters */
 public class StringTest_NoParameters implements IJavaModelQuery<Element, String> {

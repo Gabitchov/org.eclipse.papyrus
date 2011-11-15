@@ -1,10 +1,10 @@
 package org.eclipse.papyrus.core.queries.test.modisco.queries;
 
-import org.eclipse.uml2.uml.LiteralString;
-import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.emf.facet.infra.query.core.exception.ModelQueryExecutionException;
 import org.eclipse.emf.facet.infra.query.core.java.IJavaModelQuery;
 import org.eclipse.emf.facet.infra.query.core.java.ParameterValueList;
+import org.eclipse.uml2.uml.LiteralString;
+import org.eclipse.uml2.uml.NamedElement;
 
 /** test - test if the name of the element is equal to the specified name */
 public class CopyOfIsNamed implements IJavaModelQuery<NamedElement, Boolean> {

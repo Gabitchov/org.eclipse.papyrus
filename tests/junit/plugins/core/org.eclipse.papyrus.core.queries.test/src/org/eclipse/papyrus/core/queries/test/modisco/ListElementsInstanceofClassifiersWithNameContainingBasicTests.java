@@ -11,15 +11,16 @@
  *****************************************************************************/
 package org.eclipse.papyrus.core.queries.test.modisco;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.util.List;
 
 import org.eclipse.emf.facet.infra.query.ModelQuery;
-import org.eclipse.papyrus.core.queries.configuration.ModiscoQueryConfiguration;
-import org.eclipse.papyrus.core.queries.modisco.QueryUtil;
 import org.eclipse.papyrus.core.queries.test.Activator;
-import org.eclipse.papyrus.core.queries.test.modisco.queries.ListElementsInstanceofClassifiers;
+import org.eclipse.papyrus.infra.queries.core.configuration.ModiscoQueryConfiguration;
+import org.eclipse.papyrus.infra.queries.core.modisco.QueryUtil;
 import org.junit.BeforeClass;
 import org.junit.Test;
 

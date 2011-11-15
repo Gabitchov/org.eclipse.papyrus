@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -16,7 +16,6 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.papyrus.sysml.tests.SysmlAllTests;
 import org.eclipse.papyrus.tests.launcher.FragmentTestSuiteClass;
 import org.eclipse.papyrus.tests.launcher.ITestSuiteClass;
@@ -24,7 +23,6 @@ import org.eclipse.papyrus.tests.launcher.PluginTestSuiteClass;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.model.InitializationError;
-import org.osgi.framework.Bundle;
 
 
 /**
@@ -36,25 +34,25 @@ public class AllTests {
 	/** list of classes to launch */
 	public static final List<ITestSuiteClass> suiteClasses = Arrays.asList(
 
-	/* **************** plugins *********************** */
-	/* core */
-	// {oep}.core
-	new FragmentTestSuiteClass(org.eclipse.papyrus.core.Activator.PLUGIN_ID, "org.eclipse.papyrus.core.tests.AllTests"),
-	// {oep}.sasheditor.tests
-	new FragmentTestSuiteClass(org.eclipse.papyrus.sasheditor.Activator.PLUGIN_ID, "org.eclipse.papyrus.sasheditor.tests.AllTests"),
-	// {oep}.core.resourceloading.tests
-	new FragmentTestSuiteClass(org.eclipse.papyrus.core.resourceloading.Activator.PLUGIN_ID, "org.eclipse.papyrus.core.resourceloading.tests.AllTests"),
+		/* **************** plugins *********************** */
+		/* core */
+		// {oep}.core
+		new FragmentTestSuiteClass(org.eclipse.papyrus.infra.core.Activator.PLUGIN_ID, "org.eclipse.papyrus.core.tests.AllTests"),
+		// {oep}.sasheditor.tests
+		new FragmentTestSuiteClass(org.eclipse.papyrus.infra.core.sasheditor.Activator.PLUGIN_ID, "org.eclipse.papyrus.sasheditor.tests.AllTests"),
+		// {oep}.core.resourceloading.tests
+		new FragmentTestSuiteClass(org.eclipse.papyrus.infra.services.resourceloading.Activator.PLUGIN_ID, "org.eclipse.papyrus.core.resourceloading.tests.AllTests"),
 
-	/* uml */
-	// {oep}.diagram.common.tests
-	new FragmentTestSuiteClass(org.eclipse.papyrus.diagram.common.Activator.ID, "org.eclipse.papyrus.diagram.common.tests.AllTests"),
-	// {oep}.diagram.clazz.tests
-	new PluginTestSuiteClass(org.eclipse.papyrus.diagram.clazz.test.AllTests.class),
-	// {oep}.sysml.tests
-	new PluginTestSuiteClass(SysmlAllTests.class)
-	
-	//end
-	);
+		/* uml */
+		// {oep}.diagram.common.tests
+		new FragmentTestSuiteClass(org.eclipse.papyrus.uml.diagram.common.Activator.ID, "org.eclipse.papyrus.diagram.common.tests.AllTests"),
+		// {oep}.diagram.clazz.tests
+		new PluginTestSuiteClass(org.eclipse.papyrus.diagram.clazz.test.AllTests.class),
+		// {oep}.sysml.tests
+		new PluginTestSuiteClass(SysmlAllTests.class)
+
+		//end
+		);
 
 
 

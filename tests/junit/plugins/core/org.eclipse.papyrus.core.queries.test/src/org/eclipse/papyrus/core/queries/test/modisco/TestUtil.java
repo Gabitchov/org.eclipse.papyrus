@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.papyrus.core.queries.configuration.ModiscoQueryConfiguration;
+import org.eclipse.papyrus.infra.queries.core.configuration.ModiscoQueryConfiguration;
 
 
 /**

@@ -1,8 +1,8 @@
 package org.eclipse.papyrus.core.queries.test.modisco.queries;
-import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.emf.facet.infra.query.core.exception.ModelQueryExecutionException;
 import org.eclipse.emf.facet.infra.query.core.java.IJavaModelQuery;
 import org.eclipse.emf.facet.infra.query.core.java.ParameterValueList;
+import org.eclipse.uml2.uml.NamedElement;
 
 /** test - check if the element's name is longer than the specified number. The booelan indicates if it is tru when length is equal. */
 public class IsNameLongerThan implements IJavaModelQuery<NamedElement, Boolean> {

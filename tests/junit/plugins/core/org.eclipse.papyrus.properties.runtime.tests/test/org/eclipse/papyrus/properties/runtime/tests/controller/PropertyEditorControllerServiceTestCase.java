@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -19,7 +19,7 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 
 import org.eclipse.gmf.runtime.common.core.service.Service;
-import org.eclipse.papyrus.properties.runtime.controller.PropertyEditorControllerService;
+import org.eclipse.papyrus.views.properties.runtime.controller.PropertyEditorControllerService;
 import org.junit.Test;
 
 
@@ -56,7 +56,7 @@ public class PropertyEditorControllerServiceTestCase extends PropertyEditorContr
 
 		// get the name of the 2 providers
 		for(Object object : providersList) {
-			assertTrue("object is a " + object.getClass().getName(), (object instanceof org.eclipse.papyrus.properties.runtime.controller.PropertyEditorControllerService.ProviderDescriptor));
+			assertTrue("object is a " + object.getClass().getName(), (object instanceof org.eclipse.papyrus.views.properties.runtime.controller.PropertyEditorControllerService.ProviderDescriptor));
 		}
 
 	}

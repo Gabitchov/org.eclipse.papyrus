@@ -17,9 +17,9 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import org.eclipse.emf.facet.infra.query.ModelQuery;
-import org.eclipse.papyrus.core.queries.configuration.ModiscoQueryConfiguration;
-import org.eclipse.papyrus.core.queries.modisco.QueryUtil;
 import org.eclipse.papyrus.core.queries.test.Activator;
+import org.eclipse.papyrus.infra.queries.core.configuration.ModiscoQueryConfiguration;
+import org.eclipse.papyrus.infra.queries.core.modisco.QueryUtil;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
