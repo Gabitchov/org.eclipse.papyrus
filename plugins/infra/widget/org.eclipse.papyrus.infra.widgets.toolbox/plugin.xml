@@ -27,7 +27,7 @@
       </view>
    </extension>
    <extension
-         point="org.eclipse.papyrus.ui.toolbox.papyrusNotificationBuilder">
+         point="org.eclipse.papyrus.infra.widgets.toolbox.papyrusNotificationBuilder">
       <BuilderInstance
             builder="org.eclipse.papyrus.infra.widgets.toolbox.notification.builders.PopupBuilder">
       </BuilderInstance>

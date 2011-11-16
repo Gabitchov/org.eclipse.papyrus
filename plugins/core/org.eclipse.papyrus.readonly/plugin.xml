@@ -105,7 +105,7 @@
    </propertyTester>
 </extension>
 <extension
-      point="org.eclipse.papyrus.commands.operationApprover">
+      point="org.eclipse.papyrus.infra.gmfdiag.commands.operationApprover">
    <operationApprover
          class="org.eclipse.papyrus.readonly.FSReadOnlyOneFileApprover"
          priority="10">

@@ -4,10 +4,10 @@
    <extension
          id="org.eclipse.papyrus.paletteconfiguration.tests.test1"
          name="Test PaletteConfiguration provider with file Test1.paletteConfiguration"
-         point="org.eclipse.papyrus.diagram.common.paletteDefinition">
+         point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition">
       <paletteDefinition
             ID="org.eclipse.papyrus.paletteconfiguration.tests.test1"
-            class="org.eclipse.papyrus.paletteconfiguration.provider.ExtendedPluginPaletteProvider"
+            class="org.eclipse.papyrus.uml.diagram.paletteconfiguration.provider.ExtendedPluginPaletteProvider"
             icon="icons/debug.gif"
             name="Test PaletteConfiguration provider with file Test1.paletteConfiguration"
             path="/model/Test1.paletteConfiguration"
@@ -16,12 +16,12 @@
                name="Lowest">
          </Priority>
          <editor
-               id="org.eclipse.papyrus.diagram.clazz">
+               id="org.eclipse.papyrus.uml.diagram.clazz">
          </editor>
       </paletteDefinition>
    </extension>
 <extension
-         point="org.eclipse.papyrus.extendedtypes.extendedTypesSetConfiguration">
+         point="org.eclipse.papyrus.infra.extendedtypes.extendedTypesSetConfiguration">
       <configuration
             description="Test - extended types for UML"
             icon="icons/debug.gif"

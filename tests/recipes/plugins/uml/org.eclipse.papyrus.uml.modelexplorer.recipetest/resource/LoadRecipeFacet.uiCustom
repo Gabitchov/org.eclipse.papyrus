@@ -6,7 +6,7 @@
         <defaultValue xsi:type="uicustom:StaticFeatureValue" value="(255,128,0)"/>
       </customizedFeatures>
       <customizedFeatures customizedFeature="icon">
-        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="/org.eclipse.papyrus.icons.uml/resource/gif/Port.gif"/>
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="/org.eclipse.papyrus.uml.icons/resource/gif/Port.gif"/>
       </customizedFeatures>
       <customizedFeatures customizedFeature="bold">
         <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
@@ -25,7 +25,7 @@
         <defaultValue xsi:type="uicustom:StaticFeatureValue" value="(0,255,0)"/>
       </customizedFeatures>
       <customizedFeatures customizedFeature="icon">
-        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="/org.eclipse.papyrus.icons.uml/resource/gif/Dependency.gif"/>
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="/org.eclipse.papyrus.uml.icons/resource/gif/Dependency.gif"/>
       </customizedFeatures>
       <customizedFeatures customizedFeature="bold">
         <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>

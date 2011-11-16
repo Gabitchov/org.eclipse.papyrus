@@ -6,7 +6,7 @@
     </customizedFeatures>
     <references referenceName="packagedElement">
       <customizedFeatures customizedFeature="icon">
-        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="/org.eclipse.papyrus.icons.uml/resource/gif/Actor.gif"/>
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="/org.eclipse.papyrus.uml.icons/resource/gif/Actor.gif"/>
       </customizedFeatures>
     </references>
   </types>
