@@ -38,7 +38,6 @@ import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.jface.util.SafeRunnable;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.umlutils.ValueSpecificationUtil;
-import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.CallEvent;
 import org.eclipse.uml2.uml.ChangeEvent;
@@ -46,15 +45,12 @@ import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Event;
 import org.eclipse.uml2.uml.NamedElement;
-import org.eclipse.uml2.uml.OpaqueBehavior;
 import org.eclipse.uml2.uml.OpaqueExpression;
 import org.eclipse.uml2.uml.SignalEvent;
-import org.eclipse.uml2.uml.StateMachine;
 import org.eclipse.uml2.uml.TimeEvent;
 import org.eclipse.uml2.uml.Transition;
 import org.eclipse.uml2.uml.Trigger;
 import org.eclipse.uml2.uml.UMLFactory;
-import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.ValueSpecification;
 
 public class TransitionPropertiesParser implements IParser, ISemanticParser {
@@ -242,7 +238,6 @@ public class TransitionPropertiesParser implements IParser, ISemanticParser {
 		return new ParserEditStatus(org.eclipse.papyrus.diagram.statemachine.part.UMLDiagramEditorPlugin.ID, IParserEditStatus.OK, ""); //$NON-NLS-1$
 	}
 
-	@Override
 	public List getSemanticElementsBeingParsed(EObject element) {
 		Element umlElement = (Element)element;
 		List<EObject> result = new LinkedList<EObject>();
@@ -286,7 +281,6 @@ public class TransitionPropertiesParser implements IParser, ISemanticParser {
 		return result;
 	}
 
-	@Override
 	public boolean areSemanticElementsAffected(EObject listener, Object notification) {
 		return true;
 	}
