@@ -176,8 +176,11 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 				refreshDisplay();
 			}
 		}
-		// the value of a property of stereotype has changed
-		if(notification.getNotifier() instanceof DynamicEObjectImpl) {
+				
+		// The value of a property of stereotype (dynamic profile) has changed
+		// To avoid refresh to be called during stereotype removal (stereotype#base_xxx set to null in particular) a complementary test is 
+		// added here to ensure the stereotype is still applied (the notifier is a stereotype application of the semantic element).
+		if((notification.getNotifier() instanceof DynamicEObjectImpl) && (hostSemanticElement != null) && (hostSemanticElement.getStereotypeApplications().contains(notification.getNotifier()))) {
 			refreshDisplay();
 		}
 	}
