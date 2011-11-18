@@ -35,6 +35,7 @@ import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.papyrus.uml.diagram.common.editparts.CompositeEditPart;
+import org.eclipse.papyrus.uml.diagram.common.editparts.IPapyrusEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AffixedNodeAlignmentEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
@@ -56,11 +57,11 @@ import org.eclipse.papyrus.uml.diagram.component.providers.UMLElementTypes;
 import org.eclipse.swt.graphics.Color;
 
 /**
- * @generated
+ * @generated NOT in order to implement {@link IPapyrusEditPart}
  */
 public class ComponentEditPart extends
 
-CompositeEditPart {
+CompositeEditPart implements IPapyrusEditPart {
 
 	/**
 	 * @generated
