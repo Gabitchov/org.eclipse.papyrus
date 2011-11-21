@@ -14,7 +14,9 @@ package org.eclipse.papyrus.uml.service.types.helper.advice;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
@@ -24,9 +26,11 @@ import org.eclipse.gmf.runtime.emf.core.util.EMFCoreUtil;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyDependentsRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.service.edit.service.IElementEditService;
+import org.eclipse.papyrus.uml.service.types.utils.RequestParameterConstants;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.ConnectableElement;
 import org.eclipse.uml2.uml.ConnectorEnd;
@@ -40,7 +44,7 @@ import org.eclipse.uml2.uml.UMLPackage;
  * <pre>
  * This HelperAdvice completes {@link Property} edit commands with:
  * 		- the deletion of any ConnectorEnd related to the Property.
- * 		- the deletion of any {@link Association} related to the Property when less than 2 ends remains. 
+ * 		- the deletion of any {@link Association} related to the Property when less than 2 ends remains.
  * </pre>
  */
 public class PropertyHelperAdvice extends AbstractEditHelperAdvice {
@@ -96,7 +100,7 @@ public class PropertyHelperAdvice extends AbstractEditHelperAdvice {
 
 		return null;
 	}
-	
+
 	/**
 	 * <pre>
 	 * {@inheritDoc}
@@ -150,6 +154,38 @@ public class PropertyHelperAdvice extends AbstractEditHelperAdvice {
 					gmfCommand = CompositeCommand.compose(gmfCommand, deleteCommand);
 				}
 			}
+
+			// Setting new type can be related to an association re-orient (or trigger the association re-orient)
+			// Retrieve elements already under re-factor.
+			List<EObject> currentlyRefactoredElements = (request.getParameter(RequestParameterConstants.ASSOCIATION_REFACTORED_ELEMENTS) != null) ? (List<EObject>)request.getParameter(RequestParameterConstants.ASSOCIATION_REFACTORED_ELEMENTS) : new ArrayList<EObject>();
+			if(!currentlyRefactoredElements.contains(propertyToEdit)) {
+				currentlyRefactoredElements.add(propertyToEdit);
+				request.getParameters().put(RequestParameterConstants.ASSOCIATION_REFACTORED_ELEMENTS, currentlyRefactoredElements);
+
+				// Find and parse Associations related to the modified Property
+				for(Association associationToReorient : getRelatedAssociations(propertyToEdit)) {
+
+					// Current association already under re-factor ?
+					if(currentlyRefactoredElements.contains(associationToReorient)) {
+						continue;
+					}
+
+					// Re-orient the related association (do not use edit service to avoid infinite loop here)
+					int direction = ReorientRelationshipRequest.REORIENT_TARGET;
+					if(propertyToEdit == ((Association)associationToReorient).getMemberEnds().get(1)) {
+						direction = ReorientRelationshipRequest.REORIENT_SOURCE;
+					}
+
+					ReorientRelationshipRequest reorientRequest = new ReorientRelationshipRequest(associationToReorient, propertyToEdit.getType(), (Type)request.getValue(), direction);
+					reorientRequest.addParameters(request.getParameters());
+
+					provider = ElementEditServiceUtils.getCommandProvider(associationToReorient);
+					if(provider != null) {
+						ICommand reorientCommand = provider.getEditCommand(reorientRequest);
+						gmfCommand = CompositeCommand.compose(gmfCommand, reorientCommand);
+					}
+				}
+			}
 		}
 
 		if(gmfCommand != null) {
@@ -157,5 +193,24 @@ public class PropertyHelperAdvice extends AbstractEditHelperAdvice {
 		}
 
 		return gmfCommand;
+	}
+
+	/**
+	 * Get association that reference the property as member end.
+	 * 
+	 * @param property
+	 *        the referenced property
+	 * @return related associations
+	 */
+	private Set<Association> getRelatedAssociations(Property property) {
+		Set<Association> relatedAssociations = new HashSet<Association>();
+
+		// Find all related Associations
+		EReference[] refs = new EReference[]{ UMLPackage.eINSTANCE.getAssociation_MemberEnd() };
+		@SuppressWarnings("unchecked")
+		Collection<Association> associations = EMFCoreUtil.getReferencers(property, refs);
+		relatedAssociations.addAll(associations);
+
+		return relatedAssociations;
 	}
 }

@@ -33,6 +33,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyDependentsRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.MoveRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils;
@@ -47,6 +48,7 @@ import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLFactory;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * Association edit helper advice.
@@ -252,27 +254,64 @@ public class AssociationEditHelperAdvice extends AbstractEditHelperAdvice {
 		ICommand gmfCommand = super.getBeforeReorientRelationshipCommand(request);
 
 		MoveRequest moveRequest = null;
+		SetRequest setTypeRequest = null;
+
+		// Retrieve re-oriented association and add it to the list of re-factored elements
 		Association association = (Association)request.getRelationship();
+		List<EObject> currentlyRefactoredElements = (request.getParameter(RequestParameterConstants.ASSOCIATION_REFACTORED_ELEMENTS) != null) ? (List<EObject>)request.getParameter(RequestParameterConstants.ASSOCIATION_REFACTORED_ELEMENTS) : new ArrayList<EObject>();
+
+		if(currentlyRefactoredElements.contains(association)) {
+			// Abort - already treated 
+			return null;
+
+		} else {
+			currentlyRefactoredElements.add(association);
+			request.getParameters().put(RequestParameterConstants.ASSOCIATION_REFACTORED_ELEMENTS, currentlyRefactoredElements);
+		}
+
+		// Retrieve property ends of the Association (assumed to be binary)
+		Property semanticSource = association.getMemberEnds().get(0);
+		Property semanticTarget = association.getMemberEnds().get(1);
+
+		EObject modifiedPropertyType = null;
 
 		if(request.getDirection() == ReorientRelationshipRequest.REORIENT_SOURCE) {
-			Property semanticSource = association.getMemberEnds().get(0);
 			if(!association.getOwnedEnds().contains(semanticSource)) {
 				moveRequest = new MoveRequest(request.getNewRelationshipEnd(), semanticSource);
 			}
+
+			modifiedPropertyType = semanticTarget;
+			setTypeRequest = new SetRequest(modifiedPropertyType, UMLPackage.eINSTANCE.getTypedElement_Type(), request.getNewRelationshipEnd());
 		}
 
 		if(request.getDirection() == ReorientRelationshipRequest.REORIENT_TARGET) {
-			Property semanticTarget = association.getMemberEnds().get(1);
 			if(!association.getOwnedEnds().contains(semanticTarget)) {
 				moveRequest = new MoveRequest(request.getNewRelationshipEnd(), semanticTarget);
 			}
+
+			modifiedPropertyType = semanticSource;
+			setTypeRequest = new SetRequest(modifiedPropertyType, UMLPackage.eINSTANCE.getTypedElement_Type(), request.getNewRelationshipEnd());
 		}
 
 		if(moveRequest != null) {
+			// Propagate parameters to the move request
+			moveRequest.addParameters(request.getParameters());
+
 			IElementEditService provider = ElementEditServiceUtils.getCommandProvider(request.getNewRelationshipEnd());
 			if(provider != null) {
 				ICommand moveCommand = provider.getEditCommand(moveRequest);
 				gmfCommand = CompositeCommand.compose(gmfCommand, moveCommand);
+			}
+		}
+
+		if(setTypeRequest != null) {
+			// Propagate parameters to the set request
+			setTypeRequest.addParameters(request.getParameters());
+
+			IElementEditService provider = ElementEditServiceUtils.getCommandProvider(modifiedPropertyType);
+			if(provider != null) {
+				ICommand setTypeCommand = provider.getEditCommand(setTypeRequest);
+				gmfCommand = CompositeCommand.compose(gmfCommand, setTypeCommand);
 			}
 		}
 
