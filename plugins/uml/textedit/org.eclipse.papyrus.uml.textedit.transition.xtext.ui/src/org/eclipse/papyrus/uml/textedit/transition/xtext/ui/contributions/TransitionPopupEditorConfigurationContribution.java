@@ -25,17 +25,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
-import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
-import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
-import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.uml.textedit.transition.xtext.ui.internal.UmlTransitionActivator;
-import org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.BehaviorKind;
-import org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.CallOrSignalEventRule;
-import org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.ChangeEventRule;
-import org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.EventRule;
-import org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.RelativeTimeEventRule;
-import org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.TimeEventRule;
-import org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.TransitionRule;
 import org.eclipse.uml2.common.util.UML2Util;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.Behavior;
@@ -58,9 +48,7 @@ import org.eclipse.uml2.uml.Transition;
 import org.eclipse.uml2.uml.Trigger;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.ValueSpecification;
-import org.eclipse.xtext.gmf.glue.PopupEditorConfiguration;
-import org.eclipse.xtext.gmf.glue.edit.part.DefaultXtextSemanticValidator;
-import org.eclipse.xtext.gmf.glue.edit.part.IXtextEMFReconciler;
+import org.eclipse.xtext.ui.editor.utils.EditorUtils;
 
 import com.google.inject.Injector;
 
@@ -260,7 +248,7 @@ public class TransitionPopupEditorConfigurationContribution extends PopupEditorC
 			for(Trigger t : transition.getTriggers()) {
 				Event e = t.getEvent();
 				t.setEvent(null);
-				if (UML2Util.getNonNavigableInverseReferences(e).size() == 0) {
+				if(UML2Util.getNonNavigableInverseReferences(e).size() == 0) {
 					// no trigger is referencing the event any more, delete call event
 					e.destroy();
 				}
@@ -306,21 +294,21 @@ public class TransitionPopupEditorConfigurationContribution extends PopupEditorC
 
 		/**
 		 * put events in a sub-directory of the nearest package
-		 *
+		 * 
 		 * @return the resulting package
 		 */
-		protected Package getEventPackage () {
+		protected Package getEventPackage() {
 			Package np = transition.getNearestPackage();
-			for (int i=0;; i++) {
+			for(int i = 0;; i++) {
 				String name = EVENTS;
-				if (i>0) {
+				if(i > 0) {
 					name += i;
 				}
 				PackageableElement ep = np.getPackagedElement(name);
-				if (ep instanceof Package) {
-					return (Package) ep;
+				if(ep instanceof Package) {
+					return (Package)ep;
 				}
-				else if (ep == null) {
+				else if(ep == null) {
 					// does not exist, create
 					return np.createNestedPackage(name);
 				}
@@ -330,18 +318,19 @@ public class TransitionPopupEditorConfigurationContribution extends PopupEditorC
 
 		/**
 		 * Create a new call event (or get an existing call event) for an operation
+		 * 
 		 * @param operation
 		 * @return
 		 */
-		private CallEvent getOrCreateCallEvent (Operation operation) {
+		private CallEvent getOrCreateCallEvent(Operation operation) {
 			String name = "CE - " + operation.getClass_().getName() + " - " + operation.getName();
 			Package eventPkg = getEventPackage();
-			for (PackageableElement existingPE : eventPkg.getPackagedElements()) {
-				if (existingPE instanceof CallEvent) {
+			for(PackageableElement existingPE : eventPkg.getPackagedElements()) {
+				if(existingPE instanceof CallEvent) {
 					// Call event with this operation exists already
-					if (((CallEvent) existingPE).getOperation() == operation) {
-						((CallEvent) existingPE).setName(name);
-						return (CallEvent) existingPE;
+					if(((CallEvent)existingPE).getOperation() == operation) {
+						((CallEvent)existingPE).setName(name);
+						return (CallEvent)existingPE;
 					}
 				}
 			}
@@ -354,18 +343,19 @@ public class TransitionPopupEditorConfigurationContribution extends PopupEditorC
 
 		/**
 		 * Create a new signal event (or get an existing) for a signal
+		 * 
 		 * @param operation
 		 * @return
 		 */
-		private SignalEvent getOrCreateSignalEvent (Signal signal) {
+		private SignalEvent getOrCreateSignalEvent(Signal signal) {
 			Package eventPkg = getEventPackage();
 			String name = "SE - " + signal.getName();
-			for (PackageableElement existingPE : eventPkg.getPackagedElements()) {
-				if (existingPE instanceof CallEvent) {
+			for(PackageableElement existingPE : eventPkg.getPackagedElements()) {
+				if(existingPE instanceof SignalEvent) {
 					// Call event with this operation exists already
-					if (((SignalEvent) existingPE).getSignal() == signal) {
-						((SignalEvent) existingPE).setName(name);
-						return (SignalEvent) existingPE;
+					if(((SignalEvent)existingPE).getSignal() == signal) {
+						((SignalEvent)existingPE).setName(name);
+						return (SignalEvent)existingPE;
 					}
 				}
 			}
@@ -378,21 +368,22 @@ public class TransitionPopupEditorConfigurationContribution extends PopupEditorC
 
 		/**
 		 * Create a new change event (or get an existing) for an opaque change expression
+		 * 
 		 * @param operation
 		 * @return
 		 */
-		private ChangeEvent getOrCreateChangeEvent (String opaqueChangeExpr) {
+		private ChangeEvent getOrCreateChangeEvent(String opaqueChangeExpr) {
 			Package eventPkg = getEventPackage();
 			String name = "CE - " + opaqueChangeExpr;
-			for (PackageableElement existingPE : eventPkg.getPackagedElements()) {
-				if (existingPE instanceof ChangeEvent) {
+			for(PackageableElement existingPE : eventPkg.getPackagedElements()) {
+				if(existingPE instanceof ChangeEvent) {
 					// Call event with this operation exists already
-					ValueSpecification vs = ((ChangeEvent) existingPE).getChangeExpression();
-					if (vs instanceof OpaqueExpression) {
-						EList<String> bodies = ((OpaqueExpression) vs).getBodies();
-						if ((bodies.size()>0) && bodies.get(0).equals(opaqueChangeExpr)) {
-							((ChangeEvent) existingPE).setName(name);
-							return (ChangeEvent) existingPE;
+					ValueSpecification vs = ((ChangeEvent)existingPE).getChangeExpression();
+					if(vs instanceof OpaqueExpression) {
+						EList<String> bodies = ((OpaqueExpression)vs).getBodies();
+						if((bodies.size() > 0) && bodies.get(0).equals(opaqueChangeExpr)) {
+							((ChangeEvent)existingPE).setName(name);
+							return (ChangeEvent)existingPE;
 						}
 					}
 				}
@@ -409,21 +400,22 @@ public class TransitionPopupEditorConfigurationContribution extends PopupEditorC
 
 		/**
 		 * Create a new time event (or get an existing) for an opaque time expression
+		 * 
 		 * @param operation
 		 * @return
 		 */
-		private TimeEvent getOrCreateTimeEvent (String opaqueWhen, boolean isRelative) {
+		private TimeEvent getOrCreateTimeEvent(String opaqueWhen, boolean isRelative) {
 			Package eventPkg = getEventPackage();
 			String name = "TE - " + opaqueWhen;
-			for (PackageableElement existingPE : eventPkg.getPackagedElements()) {
-				if (existingPE instanceof TimeEvent) {
+			for(PackageableElement existingPE : eventPkg.getPackagedElements()) {
+				if(existingPE instanceof TimeEvent) {
 					// Call event with this operation exists already
-					ValueSpecification vs = ((TimeEvent) existingPE).getWhen().getExpr();
-					if (vs instanceof OpaqueExpression) {
-						EList<String> bodies = ((OpaqueExpression) vs).getBodies();
-						if ((bodies.size()>0) && bodies.get(0).equals(opaqueWhen)) {
-							((TimeEvent) existingPE).setName(name);
-							return (TimeEvent) existingPE;
+					ValueSpecification vs = ((TimeEvent)existingPE).getWhen().getExpr();
+					if(vs instanceof OpaqueExpression) {
+						EList<String> bodies = ((OpaqueExpression)vs).getBodies();
+						if((bodies.size() > 0) && bodies.get(0).equals(opaqueWhen)) {
+							((TimeEvent)existingPE).setName(name);
+							return (TimeEvent)existingPE;
 						}
 					}
 				}
@@ -450,9 +442,9 @@ public class TransitionPopupEditorConfigurationContribution extends PopupEditorC
 				if(callOrSignalEventRule.getOperationOrSignal() != null) {
 					NamedElement operationOrSignal = callOrSignalEventRule.getOperationOrSignal();
 					if(operationOrSignal instanceof Operation) {
-						e = getOrCreateCallEvent((Operation) operationOrSignal);
+						e = getOrCreateCallEvent((Operation)operationOrSignal);
 					} else { // instanceof Signal
-						e = getOrCreateSignalEvent((Signal) operationOrSignal);
+						e = getOrCreateSignalEvent((Signal)operationOrSignal);
 					}
 				}
 			} else if(eventRule instanceof ChangeEventRule) {
