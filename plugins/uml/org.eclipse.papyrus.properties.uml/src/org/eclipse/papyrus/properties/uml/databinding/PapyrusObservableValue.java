@@ -38,8 +38,6 @@ import org.eclipse.papyrus.widgets.databinding.AggregatedObservable;
  */
 public class PapyrusObservableValue extends EMFObservableValue implements AggregatedObservable, CommandBasedObservableValue {
 
-	public static final String UML_BOOLEAN_DATATYPE = "Boolean"; //$NON-NLS-1$
-
 	/**
 	 * 
 	 * Constructor.
@@ -73,10 +71,13 @@ public class PapyrusObservableValue extends EMFObservableValue implements Aggreg
 
 	@Override
 	protected void doSetValue(Object value) {
-		Command emfCommand = getSetCommand(value);
+		Command emfCommand = getCommand(value);
 		domain.getCommandStack().execute(emfCommand);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public Command getCommand(Object value) {
 		EObject eObjectValue = EMFHelper.getEObject(value);
 		if(eObjectValue != null) {
