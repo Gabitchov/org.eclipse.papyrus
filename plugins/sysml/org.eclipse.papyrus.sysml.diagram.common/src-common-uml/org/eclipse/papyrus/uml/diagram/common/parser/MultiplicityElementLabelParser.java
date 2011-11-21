@@ -88,10 +88,9 @@ public class MultiplicityElementLabelParser implements IMaskManagedSemanticParse
 
 				// If multiplicity is [1] (SysML default), only show when explicitly asked.
 				// TODO : add a case for default with multiplicity not set.
-				if(((flags & ILabelPreferenceConstants.DISP_DEFAULT_MULTIPLICITY) == ILabelPreferenceConstants.DISP_DEFAULT_MULTIPLICITY) || (multElt.getLower() != 1 || multElt.getUpper() != 1)) {
-
-					String lower = ValueSpecificationUtil.getSpecificationValue(multElt.getLowerValue());
-					String upper = ValueSpecificationUtil.getSpecificationValue(multElt.getUpperValue());
+				String lower = ValueSpecificationUtil.getSpecificationValue(multElt.getLowerValue());
+				String upper = ValueSpecificationUtil.getSpecificationValue(multElt.getUpperValue());
+				if(((flags & ILabelPreferenceConstants.DISP_DEFAULT_MULTIPLICITY) == ILabelPreferenceConstants.DISP_DEFAULT_MULTIPLICITY) || !("1".equals(lower) && "1".equals(upper))) {
 
 					if(lower.equals(upper)) {
 						result = String.format(MULTIPLICITY_FORMAT_ALT, lower, upper);

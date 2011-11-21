@@ -112,9 +112,9 @@ public class ParameterLabelParser extends NamedElementLabelParser {
 				}
 
 				// manage multiplicity
-				if(((flags & ILabelPreferenceConstants.DISP_PARAM_MULTIPLICITY) == ILabelPreferenceConstants.DISP_PARAM_MULTIPLICITY) && (parameter.getLower() != 1 || parameter.getUpper() != 1)) {
-					String lower = ValueSpecificationUtil.getSpecificationValue(parameter.getLowerValue());
-					String upper = ValueSpecificationUtil.getSpecificationValue(parameter.getUpperValue());
+				String lower = ValueSpecificationUtil.getSpecificationValue(parameter.getLowerValue());
+				String upper = ValueSpecificationUtil.getSpecificationValue(parameter.getUpperValue());
+				if(((flags & ILabelPreferenceConstants.DISP_PARAM_MULTIPLICITY) == ILabelPreferenceConstants.DISP_PARAM_MULTIPLICITY) && !("1".equals(lower) && "1".equals(upper))) {
 					result = String.format(MULTIPLICITY_FORMAT, result, lower, upper);
 				}
 
