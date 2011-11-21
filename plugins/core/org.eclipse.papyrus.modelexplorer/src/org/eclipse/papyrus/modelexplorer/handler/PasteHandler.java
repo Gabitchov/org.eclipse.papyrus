@@ -24,8 +24,9 @@ import org.eclipse.emf.edit.command.PasteFromClipboardCommand;
  * Handler for the Paste Action
  * 
  * 
- * 
+ * @deprecated use org.eclipse.papyrus.uml.menu.handler.PasteHandler
  */
+@Deprecated
 public class PasteHandler extends AbstractCommandHandler {
 
 	/**

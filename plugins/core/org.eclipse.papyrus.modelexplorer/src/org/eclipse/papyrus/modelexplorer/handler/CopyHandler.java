@@ -23,8 +23,9 @@ import org.eclipse.emf.edit.command.CopyToClipboardCommand;
  * Handler for the Copy Action
  * 
  * 
- * 
+ * @deprecated use org.eclipse.papyrus.uml.menu.handler.PasteHandler
  */
+@Deprecated
 public class CopyHandler extends AbstractCommandHandler {
 
 	/**
