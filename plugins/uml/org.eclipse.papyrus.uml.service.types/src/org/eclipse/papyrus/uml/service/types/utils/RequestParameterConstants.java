@@ -62,4 +62,8 @@ public interface RequestParameterConstants {
 	 */
 	public static final String EDGE_REORIENT_REQUEST_END_VIEW = "RECONNECT_END_VIEW"; //$NON-NLS-1$
 	
+	/**
+	 * The ID to store the list of element under re-factoring.
+	 */
+	public static final String ASSOCIATION_REFACTORED_ELEMENTS = "ASSOCIATION_REFACTORED_ELEMENTS"; //$NON-NLS-1$
 }

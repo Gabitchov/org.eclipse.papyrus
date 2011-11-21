@@ -24,18 +24,17 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.core.util.EMFCoreUtil;
-import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyDependentsRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.MoveRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
-import org.eclipse.gmf.runtime.notation.NotationPackage;
-import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.service.types.command.AssociationReorientCommand;
+import org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils;
+import org.eclipse.papyrus.service.edit.service.IElementEditService;
 import org.eclipse.papyrus.uml.service.types.utils.RequestParameterConstants;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Classifier;
+import org.eclipse.uml2.uml.ConnectorEnd;
 import org.eclipse.uml2.uml.Generalization;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Property;
@@ -96,6 +95,7 @@ public class ClassifierHelperAdvice extends AbstractEditHelperAdvice {
 	 * 
 	 * While moving a {@link Property} to a Classifier:
 	 * - re-orient Association possibly related to the moved Property
+	 * - remove deprecated connectorEnd
 	 * 
 	 * </pre>
 	 */
@@ -104,45 +104,84 @@ public class ClassifierHelperAdvice extends AbstractEditHelperAdvice {
 
 		ICommand gmfCommand = super.getBeforeMoveCommand(request);
 
-		// In case the move is called by the association re-orient, the re-orient parameter is propagated.
-		// In such a case the association re-orient is already managed.
-		View graphicallyReorientedView = (View)request.getParameter(RequestParameterConstants.GRAPHICAL_RECONNECTED_EDGE);
-		if(graphicallyReorientedView == null) {
 
-			// Find Associations related to any moved Property
-			for(Object movedObject : request.getElementsToMove().keySet()) {
+		// Find any ConnectorEnd that would become invalid after the Property move
+		for(Object movedObject : request.getElementsToMove().keySet()) {
 
-				// Select Property (excluding Port) in the list of moved elements
-				if(!(movedObject instanceof Property) || (movedObject instanceof Port)) {
+			// Select Property (excluding Port) in the list of moved elements
+			if(!(movedObject instanceof Property) || (movedObject instanceof Port)) {
+				continue;
+			}
+
+			// Find ConnectorEnd referencing the edited Property as partWithPort or role
+			Property movedProperty = (Property)movedObject;
+			EReference[] refs = new EReference[]{ UMLPackage.eINSTANCE.getConnectorEnd_PartWithPort(), UMLPackage.eINSTANCE.getConnectorEnd_Role() };
+			@SuppressWarnings("unchecked")
+			Collection<ConnectorEnd> referencers = EMFCoreUtil.getReferencers(movedProperty, refs);
+
+			IElementEditService provider = ElementEditServiceUtils.getCommandProvider(movedProperty);
+			if(provider != null) {
+				for(ConnectorEnd end : referencers) {
+					// General case, delete the ConnectorEnd
+					DestroyElementRequest req = new DestroyElementRequest(end, false);
+					ICommand deleteCommand = provider.getEditCommand(req);
+
+					// Add current EObject destroy command to the global command
+					gmfCommand = CompositeCommand.compose(gmfCommand, deleteCommand);
+				}
+			}
+		}
+
+
+		// Treat related associations that required a re-factor action
+		// Retrieve elements already under re-factor.
+		List<EObject> currentlyRefactoredElements = (request.getParameter(RequestParameterConstants.ASSOCIATION_REFACTORED_ELEMENTS) != null) ? (List<EObject>)request.getParameter(RequestParameterConstants.ASSOCIATION_REFACTORED_ELEMENTS) : new ArrayList<EObject>();
+
+		// Find Associations related to any moved Property
+		for(Object movedObject : request.getElementsToMove().keySet()) {
+
+			// Select Property (excluding Port) in the list of moved elements
+			if(!(movedObject instanceof Property) || (movedObject instanceof Port)) {
+				continue;
+			}
+
+			// Moved element already under re-factor ?
+			if(currentlyRefactoredElements.contains(movedObject)) {
+				continue;
+
+			} else {
+				currentlyRefactoredElements.add((EObject)movedObject);
+				request.getParameters().put(RequestParameterConstants.ASSOCIATION_REFACTORED_ELEMENTS, currentlyRefactoredElements);
+			}
+
+			Property movedProperty = (Property)movedObject;
+
+			// Make sure the target differs from current container
+			if((movedProperty.eContainer() == request.getTargetContainer()) && (movedProperty.eContainingFeature() == request.getTargetFeature(movedProperty))) {
+				continue;
+			}
+
+			// Parse associations related to the moved property
+			for(Association associationToReorient : getRelatedAssociations(movedProperty)) {
+
+				// Current association already under re-factor ?
+				if(currentlyRefactoredElements.contains(associationToReorient)) {
 					continue;
 				}
 
-				Property movedProperty = (Property)movedObject;
-
-				// Make sure the target differs from current container
-				if((movedProperty.eContainer() == request.getTargetContainer()) && (movedProperty.eContainingFeature() == request.getTargetFeature(movedProperty))) {
-					continue;
+				// Re-orient the related association (do not use edit service to avoid infinite loop here)
+				int direction = ReorientRelationshipRequest.REORIENT_TARGET;
+				if(movedProperty == ((Association)associationToReorient).getMemberEnds().get(0)) {
+					direction = ReorientRelationshipRequest.REORIENT_SOURCE;
 				}
 
-				// Parse associations related to the moved property
-				for(Association associationToReorient : getRelatedAssociations(movedProperty)) {
+				ReorientRelationshipRequest reorientRequest = new ReorientRelationshipRequest(associationToReorient, request.getTargetContainer(), movedProperty.eContainer(), direction);
+				reorientRequest.addParameters(request.getParameters());
 
-					// Re-orient the related association (do not use edit service to avoid infinite loop here)
-					int direction = ReorientRelationshipRequest.REORIENT_TARGET;
-					if(movedProperty == ((Association)associationToReorient).getMemberEnds().get(0)) {
-						direction = ReorientRelationshipRequest.REORIENT_SOURCE;
-					}
-
-					ReorientRelationshipRequest reorientRequest = new ReorientRelationshipRequest(associationToReorient, request.getTargetContainer(), movedProperty.eContainer(), direction);
-					ICommand reorientCommand = new AssociationReorientCommand(reorientRequest);
+				IElementEditService provider = ElementEditServiceUtils.getCommandProvider(associationToReorient);
+				if(provider != null) {
+					ICommand reorientCommand = provider.getEditCommand(reorientRequest);
 					gmfCommand = CompositeCommand.compose(gmfCommand, reorientCommand);
-
-					// Clean inconsistent views representing the related association
-					for(View view : getRelatedAssociationViews(associationToReorient)) {
-						DestroyElementRequest destroyViewRequest = new DestroyElementRequest(view, false);
-						DestroyElementCommand destroyViewCommand = new DestroyElementCommand(destroyViewRequest);
-						gmfCommand = CompositeCommand.compose(gmfCommand, destroyViewCommand);
-					}
 				}
 			}
 		}
@@ -156,7 +195,9 @@ public class ClassifierHelperAdvice extends AbstractEditHelperAdvice {
 
 	/**
 	 * Get association that reference the property as member end.
-	 * @param property the referenced property
+	 * 
+	 * @param property
+	 *        the referenced property
 	 * @return related associations
 	 */
 	private Set<Association> getRelatedAssociations(Property property) {
@@ -169,22 +210,5 @@ public class ClassifierHelperAdvice extends AbstractEditHelperAdvice {
 		relatedAssociations.addAll(associations);
 
 		return relatedAssociations;
-	}
-
-	/**
-	 * Get views that represent the association.
-	 * @param association the referenced association 
-	 * @return related views
-	 */
-	private Set<View> getRelatedAssociationViews(Association association) {
-		Set<View> viewsToDestroy = new HashSet<View>();
-
-		// Find all views representing the Associations
-		EReference[] refs = new EReference[]{ NotationPackage.eINSTANCE.getView_Element() };
-		@SuppressWarnings("unchecked")
-		Collection<View> associationViews = EMFCoreUtil.getReferencers(association, refs);
-		viewsToDestroy.addAll(associationViews);
-
-		return viewsToDestroy;
 	}
 }

@@ -165,7 +165,8 @@ public class AssociationReorientCommand extends EditElementCommand {
 	protected CommandResult reorientSource() throws ExecutionException {
 		// The re-orient of the graphical source of the link results in the
 		// modification of the semantic target of the association.
-		reorientEnd(getSemanticTarget(), (Classifier)getNewSource());
+		// Let the advice do the property move via edit service
+		//reorientEnd(getSemanticTarget(), (Classifier)getNewSource());
 
 		// The re-orient of the graphical source of the link also results in the
 		// modification of the semantic source of the association (if not owned by the association)
@@ -181,7 +182,8 @@ public class AssociationReorientCommand extends EditElementCommand {
 	protected CommandResult reorientTarget() throws ExecutionException {
 		// The re-orient of the graphical target of the link results in the
 		// modification of the semantic source of the association.		
-		reorientEnd(getSemanticSource(), (Classifier)getNewTarget());
+		// Let the advice do the property move via edit service
+		//reorientEnd(getSemanticSource(), (Classifier)getNewTarget());
 
 		// The re-orient of the graphical target of the link also results in the
 		// modification of the semantic target of the association (if not owned by the association)
@@ -194,6 +196,7 @@ public class AssociationReorientCommand extends EditElementCommand {
 		return CommandResult.newOKCommandResult(getLink());
 	}
 
+	@Deprecated
 	private void reorientEnd(Property end, Classifier newEndType) throws ExecutionException {
 		end.setType(newEndType);
 	}
