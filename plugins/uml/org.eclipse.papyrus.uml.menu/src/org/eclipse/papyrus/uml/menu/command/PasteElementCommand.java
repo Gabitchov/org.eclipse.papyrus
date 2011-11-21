@@ -23,80 +23,112 @@ import org.eclipse.emf.common.command.AbstractCommand;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.MoveRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.service.edit.service.IElementEditService;
+import org.eclipse.papyrus.umlutils.NamedElementUtil;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.util.UMLUtil;
+
+;
 
 /**
  * this handler has in charge to exexute the paste of UML element with their applied stereotypes
- *
+ * 
  */
 public class PasteElementCommand extends AbstractCommand {
 
-	protected ArrayList<EObject> eobjectTopaste=null;
-	protected ArrayList<EObject> stereotypeApplicationTopaste=null;
+	protected ArrayList<EObject> eobjectTopaste = null;
+
+	protected ArrayList<EObject> stereotypeApplicationTopaste = null;
+
 	protected EObject targetOwner;
+
 	protected ICommand command;
+
+	//the prefix for the duplicated object
+	protected String COPY_OF = "CopyOf";
 
 	/**
 	 * get the command do the paste on the target owner
-	 * @param domain the editing owner
-	 * @param targetOwner the element where the paste will be done
+	 * 
+	 * @param domain
+	 *        the editing owner
+	 * @param targetOwner
+	 *        the element where the paste will be done
 	 */
 	public PasteElementCommand(EditingDomain domain, EObject targetOwner) {
 		super();
-		
-		if(domain.getClipboard()!=null){
+
+		if(domain.getClipboard() != null) {
 			//1. get Data from the clipboard
-			Collection<Object> rawData=domain.getClipboard();
-			
+			Collection<Object> rawData = domain.getClipboard();
+
 			//2. filter only EObject
-			ArrayList<EObject> eobjectsTopaste=new ArrayList<EObject>();
-			Iterator<Object> iterData= rawData.iterator();
-			while (iterData.hasNext()) {
-				Object object = (Object) iterData.next();
-				if(object instanceof EObject){
+			ArrayList<EObject> eobjectsTopaste = new ArrayList<EObject>();
+			Iterator<Object> iterData = rawData.iterator();
+			while(iterData.hasNext()) {
+				Object object = (Object)iterData.next();
+				if(object instanceof EObject) {
 					eobjectsTopaste.add((EObject)object);
 				}
 			}
 
 			//3. Copy all eObjects (inspired from PasteFromClipboardCommand)
-			Collection<EObject> duplicatedObject= EcoreUtil.copyAll(eobjectsTopaste);
+			Collection<EObject> duplicatedObject = EcoreUtil.copyAll(eobjectsTopaste);
 
 			//4. filter eobject that are UML elements and application of stereotypes
-			Iterator<EObject>iter=duplicatedObject.iterator();
-			eobjectTopaste= new ArrayList<EObject>();
-			stereotypeApplicationTopaste= new ArrayList<EObject>();
-			while (iter.hasNext()) {
-				EObject eObject = (EObject) iter.next();
-				boolean isaUMLElement=false;
-				if (eObject instanceof Element){
-					isaUMLElement=true;
+			Iterator<EObject> iter = duplicatedObject.iterator();
+			eobjectTopaste = new ArrayList<EObject>();
+			stereotypeApplicationTopaste = new ArrayList<EObject>();
+			while(iter.hasNext()) {
+				EObject eObject = (EObject)iter.next();
+				boolean isaUMLElement = false;
+				if(eObject instanceof Element) {
+					isaUMLElement = true;
 				}
 				//functionality that comes from UML2 plugins
-				if((UMLUtil.getStereotype(eObject) == null)&& isaUMLElement) {
+				if((UMLUtil.getStereotype(eObject) == null) && isaUMLElement) {
 					eobjectTopaste.add(eObject);
-				}
-				else{
+				} else {
 					stereotypeApplicationTopaste.add(eObject);
 				}
 			}
 			this.targetOwner = targetOwner;
-			
+
 			//5. prepare the move command to move UML element to their new owner
-			MoveRequest moveRequest= new MoveRequest(targetOwner, eobjectTopaste);
+			MoveRequest moveRequest = new MoveRequest(targetOwner, eobjectTopaste);
 			IElementEditService provider = ElementEditServiceUtils.getCommandProvider(targetOwner);
 			if(provider != null) {
-				command = provider.getEditCommand(moveRequest);
+				command = new CompositeCommand("Copy Object");
+				command.compose(provider.getEditCommand(moveRequest));
+			}
+
+			//5 bis. Rename the duplicated object
+			for(int i = 0; i < eobjectTopaste.size(); i++) {
+				EObject element = eobjectTopaste.get(i);
+				if(element instanceof NamedElement && domain instanceof TransactionalEditingDomain) {
+					String newName = NLS.bind(COPY_OF + "_{0}_", ((NamedElement)element).getName());
+					String incrementedName = NamedElementUtil.getDefaultNameWithIncrementFromBase(newName, targetOwner.eContents());
+					SetRequest renameRequest = new SetRequest((TransactionalEditingDomain)domain, element, UMLFactory.eINSTANCE.getUMLPackage().getNamedElement_Name(), incrementedName);
+					if(provider != null && command != null) {
+						command.compose(provider.getEditCommand(renameRequest));
+					}
+				}
 			}
 		}
 	}
-/**
- * {@inheritDoc}
- */
+
+	/**
+	 * {@inheritDoc}
+	 */
 	public void execute() {
 		// for steps 1. 2. 3. 4. 5. see constructor
 		//6. execute the move command for UML element
@@ -108,9 +140,9 @@ public class PasteElementCommand extends AbstractCommand {
 			}
 		}
 		//7. move stereotypes applications into the resource
-		Iterator<EObject> stereoApplIter= stereotypeApplicationTopaste.iterator();
-		while (stereoApplIter.hasNext()) {
-			EObject eObject = (EObject) stereoApplIter.next();
+		Iterator<EObject> stereoApplIter = stereotypeApplicationTopaste.iterator();
+		while(stereoApplIter.hasNext()) {
+			EObject eObject = (EObject)stereoApplIter.next();
 			targetOwner.eResource().getContents().add(eObject);
 
 
@@ -123,11 +155,12 @@ public class PasteElementCommand extends AbstractCommand {
 	 */
 	@Override
 	public boolean canExecute() {
-		if( command==null){
+		if(command == null) {
 			return false;
 		}
 		return command.canExecute();
 	}
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -142,15 +175,16 @@ public class PasteElementCommand extends AbstractCommand {
 			}
 		}
 		//7. move stereotype application into the resource 
-		Iterator<EObject> stereoApplIter= stereotypeApplicationTopaste.iterator();
-		while (stereoApplIter.hasNext()) {
-			EObject eObject = (EObject) stereoApplIter.next();
+		Iterator<EObject> stereoApplIter = stereotypeApplicationTopaste.iterator();
+		while(stereoApplIter.hasNext()) {
+			EObject eObject = (EObject)stereoApplIter.next();
 			targetOwner.eResource().getContents().add(eObject);
 
 
 		}
 
 	}
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -164,9 +198,9 @@ public class PasteElementCommand extends AbstractCommand {
 
 		}
 		//7. remove stereotype application from the resource
-		Iterator<EObject> stereoApplIter= stereotypeApplicationTopaste.iterator();
-		while (stereoApplIter.hasNext()) {
-			EObject eObject = (EObject) stereoApplIter.next();
+		Iterator<EObject> stereoApplIter = stereotypeApplicationTopaste.iterator();
+		while(stereoApplIter.hasNext()) {
+			EObject eObject = (EObject)stereoApplIter.next();
 			targetOwner.eResource().getContents().remove(eObject);
 		}
 	}
