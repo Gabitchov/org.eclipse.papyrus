@@ -24,6 +24,7 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
@@ -240,38 +241,8 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 		return commandList;
 	}
 
-
-	/**
-	 * verify from a list of command if it can be dropped
-	 * @param commandList, cannot be null but can be an empty list
-	 * 
-	 * @return true or false
-	 */
-	protected boolean canDrop(List<Command> commandList){
-		Iterator<Command> iterator= commandList.iterator();
-		while (iterator.hasNext()) {
-			Command abstractCommand = iterator.next();
-			if(abstractCommand.canExecute()){
-				return true;
-			}
-		}
-		return false;
-	}
-
-	/**
-	 * execute command for the drop
-	 * @param commandList
-	 * 
-	 * @return true or false
-	 */
-	protected void execute(List<Command> commandList){
-		Iterator<Command> iterator= commandList.iterator();
-		while (iterator.hasNext()) {
-			Command abstractCommand = iterator.next();
-			if(abstractCommand.canExecute()){
-				getEditingDomain().getCommandStack().execute(abstractCommand);
-			}
-		}
+	protected void execute(Command dropCommand){
+		getEditingDomain().getCommandStack().execute(dropCommand);
 	}
 
 	/**
@@ -279,7 +250,7 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 	 * @param target the target object of the drop
 	 * @return the list of command
 	 */
-	public List<Command> getDrop (Object target) {
+	public CompoundCommand getDrop (Object target) {
 		CommonDropAdapter dropAdapter =getCommonDropAdapter();
 		List<Command> commandList=new ArrayList<Command>();
 		switch (dropAdapter.getCurrentOperation()) {
@@ -305,7 +276,7 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 			}
 			break;
 		}
-		return commandList;
+		return new CompoundCommand(commandList);
 	}
 	/**
 	 *  Test if a possibleSub eclass is a sub eclass
@@ -326,10 +297,9 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 
 	@Override
 	public IStatus validateDrop(Object target, int operation,
-		TransferData transferType) {
-		List<Command> commandList=getDrop(target);
-		//List<Command> commandList=getDropCommand(target);
-		if(canDrop(commandList)){
+			TransferData transferType) {
+		Command dropCommand = getDrop(target);
+		if(dropCommand.canExecute()){
 			return Status.OK_STATUS;
 		}
 		return Status.CANCEL_STATUS;
