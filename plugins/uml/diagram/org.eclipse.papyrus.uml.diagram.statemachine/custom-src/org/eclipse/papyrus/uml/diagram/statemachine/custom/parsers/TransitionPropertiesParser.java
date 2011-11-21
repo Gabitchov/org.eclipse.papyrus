@@ -1,6 +1,21 @@
+/*****************************************************************************
+ * Copyright (c) 2010-2011 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ * 
+ * 		Arthur daussy (Atos) arthur.daussy@atos.net - Bug 361643: [StateMachine Diagram] Display of Guards doesn't work.
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.statemachine.custom.parsers;
 
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -8,6 +23,8 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
@@ -16,18 +33,33 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
+import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.jface.util.SafeRunnable;
 import org.eclipse.papyrus.infra.core.utils.EditorUtils;
+import org.eclipse.papyrus.uml.tools.utils.ValueSpecificationUtil;
+import org.eclipse.uml2.uml.Behavior;
+import org.eclipse.uml2.uml.CallEvent;
+import org.eclipse.uml2.uml.ChangeEvent;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Event;
 import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.OpaqueExpression;
+import org.eclipse.uml2.uml.SignalEvent;
+import org.eclipse.uml2.uml.TimeEvent;
 import org.eclipse.uml2.uml.Transition;
+import org.eclipse.uml2.uml.Trigger;
 import org.eclipse.uml2.uml.UMLFactory;
+import org.eclipse.uml2.uml.ValueSpecification;
 
-public class TransitionPropertiesParser implements IParser {
+public class TransitionPropertiesParser implements IParser, ISemanticParser {
 
+	private static final String ONE_SPACE_STRING = " "; //$NON-NLS-1$
+	
 	protected Constraint guardConstraint = null;
+
+	private static String EMPTY_STRING = ""; //$NON-NLS-1$
 
 	public IContentAssistProcessor getCompletionProcessor(IAdaptable element) {
 		return null;
@@ -37,14 +69,14 @@ public class TransitionPropertiesParser implements IParser {
 		if(element instanceof EObjectAdapter) {
 			final Transition transition = ((Transition)((EObjectAdapter)element).getRealObject());
 		}
-		return "";
+		return EMPTY_STRING;
 	}
 
 	public ICommand getParseCommand(IAdaptable element, String newString, int flags) {
 		final Transition transition = ((Transition)((EObjectAdapter)element).getRealObject());
 		final String result = newString;
 
-		AbstractTransactionalCommand tc = new AbstractTransactionalCommand(EditorUtils.getTransactionalEditingDomain(), "Edit Transition Properties", (List)null) {
+		AbstractTransactionalCommand tc = new AbstractTransactionalCommand(EditorUtils.getTransactionalEditingDomain(), "Edit Transition Properties", (List)null) {//$NON-NLS-1$
 
 			@Override
 			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
@@ -88,20 +120,17 @@ public class TransitionPropertiesParser implements IParser {
 	}
 
 	public String getPrintString(IAdaptable element, int flags) {
-		String guardConstraintDisplay = "";
-		if(guardConstraint != null) {
-			guardConstraintDisplay = "/< " + guardConstraint.getName() + " >";
-			guardConstraint = null;
-			return guardConstraintDisplay;
+		String label = getValueString(element, flags);
+		if(label == null || label.length() == 0) {
+			label = ONE_SPACE_STRING;
 		}
-		return guardConstraintDisplay;
-
+		return label;
 	}
 
 	public boolean isAffectingEvent(Object event, int flags) {
 		if(event instanceof Notification) {
 			int notificationType = ((Notification)event).getEventType();
-			if(4 == notificationType) {
+			if(Notification.SET == notificationType) {
 				if(((Notification)event).getNewValue() instanceof Constraint)
 					guardConstraint = (Constraint)((Notification)event).getNewValue();
 				/*
@@ -110,15 +139,176 @@ public class TransitionPropertiesParser implements IParser {
 				 * event).getNotifier()); getPrintString((EObjectAdapter)
 				 * ((Notification) event).getNotifier(),flags);
 				 */
+				return true;
 
 			}
 		}
 		return false;
 	}
+	
+		/**
+		 * Get the unformatted registered string value which shall be displayed
+		 */
+		private String getValueString(IAdaptable element, int flags) {
+			Object obj = element.getAdapter(EObject.class);
+			if(obj instanceof Transition) {
+				Transition trans = (Transition)obj;
+				StringBuilder result = new StringBuilder();
+				String textForTrigger = getTextForTrigger(trans);
+				if ( textForTrigger != null && !EMPTY_STRING.equals(textForTrigger)){
+					result.append(textForTrigger).append(ONE_SPACE_STRING);
+				}
+				result.append(getTextForGuard(trans));
+				String textForEffect = getTextForEffect(trans);
+				if ( textForEffect != null && !EMPTY_STRING.equals(textForEffect)){				
+					result.append("/ ").append(textForEffect); //$NON-NLS-1$
+				}
+				return result.toString();
+			}
+			return EMPTY_STRING;
+		}
+		/**
+		 * get the text concerning guard
+		 * @param trans
+		 * @return
+		 */
+		protected String getTextForGuard (Transition trans){
+			Constraint valueSpec = trans.getGuard();
+			if(valueSpec != null) {
+				String value = ValueSpecificationUtil.getConstraintnValue(valueSpec);
+				if(value != null) {
+					return String.format("[%s]", value); //$NON-NLS-1$
+				}
+			}
+			return EMPTY_STRING;
+		}
+		/**
+		 * get the text concerning Effects
+		 * @param trans
+		 * @return
+		 */
+		protected String getTextForEffect (Transition trans){
+			StringBuilder result = new StringBuilder();
+			Behavior effect = trans.getEffect();
+			if ( effect != null){
+				EClass eClass = effect.eClass();
+				if ( eClass != null){
+					result.append(eClass.getName()).append(" :").append(effect.getName()); //$NON-NLS-1$
+				}
+			}
+			return result.toString();
+		}
+		/**
+		 * Get the text concerning Trigger
+		 * @param trans
+		 * @return
+		 */
+		protected String getTextForTrigger (Transition trans){
+			StringBuilder result = new StringBuilder();
+			boolean isFirstTrigger = true;
+			for ( Trigger t : trans.getTriggers()){
+				if ( t != null){
+					if(!isFirstTrigger)
+						result.append(", "); //$NON-NLS-1$
+					else
+						isFirstTrigger = false;
+					Event e = t.getEvent();
+					if(e instanceof CallEvent) {
+						if(((CallEvent)e).getOperation() != null)
+							result.append(((CallEvent)e).getOperation().getName());
+						else
+							result.append(((CallEvent)e).getName());
+	
+					} else if(e instanceof SignalEvent) {
+						if(((SignalEvent)e).getSignal() != null)
+							result.append(((SignalEvent)e).getSignal().getName());
+						else
+							result.append(((SignalEvent)e).getName());
+					} else if(e instanceof ChangeEvent) {
+						result.append("when ").append("\"").append(retrieveBody((OpaqueExpression)((ChangeEvent)e).getChangeExpression(), "Natural language")).append("\""); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+					} else if(e instanceof TimeEvent) {
+						//absRelPrefix
+						result.append((((TimeEvent)e).isRelative() ? "after " : "at ")); //$NON-NLS-1$ //$NON-NLS-2$
+						// body
+						result.append("\"").append(retrieveBody((OpaqueExpression)((TimeEvent)e).getWhen().getExpr(), "Natural language")).append("\""); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+					} else { // any receive event
+						result.append("all"); //$NON-NLS-1$
+					}
+				}
+			}
+			return result.toString();
+		}
+	
 
 	public IParserEditStatus isValidEditString(IAdaptable element, String editString) {
 
-		return new ParserEditStatus(org.eclipse.papyrus.uml.diagram.statemachine.part.UMLDiagramEditorPlugin.ID, IParserEditStatus.OK, "");
+		return new ParserEditStatus(org.eclipse.papyrus.uml.diagram.statemachine.part.UMLDiagramEditorPlugin.ID, IParserEditStatus.OK, "");//$NON-NLS-1$
 	}
+	
+
+		public List getSemanticElementsBeingParsed(EObject element) {
+			Element umlElement = (Element)element;
+			List<EObject> result = new LinkedList<EObject>();
+			if(umlElement instanceof Transition) {
+				Transition trans = (Transition)umlElement;
+				if(trans != null){
+					result.add(trans);
+					/**
+					 * Listen constraint modification
+					 */
+					Constraint constraint = trans.getGuard();
+					if ( constraint != null){
+						result.add(constraint);
+						ValueSpecification specification = constraint.getSpecification();
+						if(specification != null){
+							result.add(specification);
+						}
+					}
+					/**
+					 * Listen trigger modification
+				 */
+					for (Trigger t : trans.getTriggers()){
+						if (t != null){
+							result.add(t);
+						}
+					}
+					/**
+					 * Listen effect modification
+					 */
+					Behavior effect = trans.getEffect();
+					if (effect != null){
+						result.add(effect);
+					}
+				}
+				
+	//			if(constraint.getSpecification() != null) {
+	//				ValueSpecification value = constraint.getSpecification();
+	//				result.add(value);
+	//			}
+			}
+			return result;
+		}
+
+	
+		public boolean areSemanticElementsAffected(EObject listener, Object notification) {
+			return true;
+		}
+		
+		private String retrieveBody(OpaqueExpression exp, String languageName) {
+			String body = EMPTY_STRING;
+			if(exp == null)
+				return body;
+			int index = 0;
+			for(String _languageName : exp.getLanguages()) {
+				if(_languageName.equals(languageName)) {
+					if(index < exp.getBodies().size())
+						return exp.getBodies().get(index);
+					else
+						return EMPTY_STRING;
+				}
+				index++;
+			}
+			return body;
+	 	}
 
 }
