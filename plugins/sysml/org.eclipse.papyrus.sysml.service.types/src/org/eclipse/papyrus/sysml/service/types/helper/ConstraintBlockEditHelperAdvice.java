@@ -38,34 +38,33 @@ public class ConstraintBlockEditHelperAdvice extends AbstractStereotypedElementE
 		requiredProfileIDs.add(SysmlResource.CONSTRAINTS_ID);
 	}
 
-	/** 
-	 * Restriction on ConstraintBlock owned Structural and Behavioral features. 
+	/**
+	 * Restriction on ConstraintBlock owned Structural and Behavioral features.
 	 * 
-	 * {@inheritDoc} 
+	 * {@inheritDoc}
 	 */
 	@Override
 	protected ICommand getBeforeCreateCommand(CreateElementRequest request) {
 
 		IElementType elementToCreate = request.getElementType();
-		
-		if (UMLElementTypes.STRUCTURAL_FEATURE.getEClass().isSuperTypeOf(elementToCreate.getEClass())) {
-			if (elementToCreate != SysMLElementTypes.CONSTRAINT_PROPERTY
-				&& elementToCreate != UMLElementTypes.PROPERTY) {
+
+		if(UMLElementTypes.STRUCTURAL_FEATURE.getEClass().isSuperTypeOf(elementToCreate.getEClass())) {
+			if(elementToCreate != SysMLElementTypes.CONSTRAINT_PROPERTY && elementToCreate != UMLElementTypes.PROPERTY) {
 				return UnexecutableCommand.INSTANCE;
 			}
 		}
-		
-		if (UMLElementTypes.BEHAVIORAL_FEATURE.getEClass().isSuperTypeOf(elementToCreate.getEClass())) {
-				return UnexecutableCommand.INSTANCE;
+
+		if(UMLElementTypes.BEHAVIORAL_FEATURE.getEClass().isSuperTypeOf(elementToCreate.getEClass())) {
+			return UnexecutableCommand.INSTANCE;
 		}
-		
-		return super.getBeforeCreateCommand(request);	
+
+		return super.getBeforeCreateCommand(request);
 	}
-	
-	/** 
+
+	/**
 	 * Complete creation process by applying the expected stereotype
-	 *  
-	 * {@inheritDoc} 
+	 * 
+	 * {@inheritDoc}
 	 */
 	@Override
 	protected ICommand getBeforeConfigureCommand(final ConfigureRequest request) {
@@ -82,7 +81,7 @@ public class ConstraintBlockEditHelperAdvice extends AbstractStereotypedElementE
 
 					// Set default name
 					// Initialize the element name based on the created IElementType
-					String initializedName = NamedElementHelper.EINSTANCE.getNewUMLElementName(element.getOwner(), ConstraintsPackage.eINSTANCE.getConstraintBlock());
+					String initializedName = NamedElementHelper.getDefaultNameWithIncrementFromBase(ConstraintsPackage.eINSTANCE.getConstraintBlock().getName(), element.eContainer().eContents());
 					element.setName(initializedName);
 				}
 				return CommandResult.newOKCommandResult(element);

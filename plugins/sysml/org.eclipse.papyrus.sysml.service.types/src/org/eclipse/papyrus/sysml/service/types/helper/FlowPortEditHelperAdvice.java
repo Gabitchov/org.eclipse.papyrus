@@ -100,7 +100,7 @@ public class FlowPortEditHelperAdvice extends AbstractStereotypedElementEditHelp
 
 					// Set default name
 					// Initialize the element name based on the created IElementType
-					String initializedName = NamedElementHelper.EINSTANCE.getNewUMLElementName(port.getOwner(), PortandflowsPackage.eINSTANCE.getFlowPort().getName().toLowerCase());
+					String initializedName = NamedElementHelper.getDefaultNameWithIncrementFromBase(PortandflowsPackage.eINSTANCE.getFlowPort().getName().toLowerCase(), port.eContainer().eContents());
 					port.setName(initializedName);
 				}
 
@@ -108,35 +108,34 @@ public class FlowPortEditHelperAdvice extends AbstractStereotypedElementEditHelp
 			}
 		};
 	}
-	
-	/** 
-	 * Restrict allowed types to 
-	 * 		{@link Block}, {@link Signal}, {@link DataType}, {@link ValueType}, {@link FlowSpecification}
+
+	/**
+	 * Restrict allowed types to {@link Block}, {@link Signal}, {@link DataType}, {@link ValueType}, {@link FlowSpecification}
 	 */
 	@Override
 	protected ICommand getBeforeSetCommand(SetRequest request) {
-		
+
 		// Only allow null, Block, Signal, DataType or ValueType as the new type
 		if(UMLPackage.eINSTANCE.getTypedElement_Type().equals(request.getFeature())) {
-			if (request.getValue() != null) {
-				
-				if (! (request.getValue() instanceof Element)) {
+			if(request.getValue() != null) {
+
+				if(!(request.getValue() instanceof Element)) {
 					return UnexecutableCommand.INSTANCE; // Should not happen
 				}
-				
-				Element value = (Element) request.getValue();
-				if ((value instanceof DataType) || (value instanceof Signal)) {
+
+				Element value = (Element)request.getValue();
+				if((value instanceof DataType) || (value instanceof Signal)) {
 					return null; // accept these types
 				}
-				
+
 				ValueType valueType = ElementUtil.getStereotypeApplication(value, ValueType.class);
 				Block block = ElementUtil.getStereotypeApplication(value, Block.class);
 				FlowSpecification flowspecification = ElementUtil.getStereotypeApplication(value, FlowSpecification.class);
 
-				if ((block != null) || (valueType != null) || (flowspecification != null)) {
+				if((block != null) || (valueType != null) || (flowspecification != null)) {
 					return null; // accept these types
 				}
-				
+
 				return UnexecutableCommand.INSTANCE; // forbid other types
 			}
 		}

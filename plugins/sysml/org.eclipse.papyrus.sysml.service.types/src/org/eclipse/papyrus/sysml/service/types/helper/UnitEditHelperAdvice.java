@@ -49,7 +49,7 @@ public class UnitEditHelperAdvice extends AbstractStereotypedElementEditHelperAd
 
 					// Set default name
 					// Initialize the element name based on the created IElementType
-					String initializedName = NamedElementHelper.EINSTANCE.getNewUMLElementName(element.getOwner(), BlocksPackage.eINSTANCE.getUnit());
+					String initializedName = NamedElementHelper.getDefaultNameWithIncrementFromBase(BlocksPackage.eINSTANCE.getUnit().getName(), element.eContainer().eContents());
 					element.setName(initializedName);
 				}
 				return CommandResult.newOKCommandResult(element);

@@ -49,7 +49,7 @@ public class ValueTypeEditHelperAdvice extends AbstractStereotypedElementEditHel
 
 					// Set default name
 					// Initialize the element name based on the created IElementType
-					String initializedName = NamedElementHelper.EINSTANCE.getNewUMLElementName(element.getOwner(), BlocksPackage.eINSTANCE.getValueType());
+					String initializedName = NamedElementHelper.getDefaultNameWithIncrementFromBase(BlocksPackage.eINSTANCE.getValueType().getName(), element.eContainer().eContents());
 					element.setName(initializedName);
 				}
 				return CommandResult.newOKCommandResult(element);

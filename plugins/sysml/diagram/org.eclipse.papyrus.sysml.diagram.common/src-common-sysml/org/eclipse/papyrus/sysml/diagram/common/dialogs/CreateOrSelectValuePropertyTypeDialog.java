@@ -29,6 +29,7 @@ import org.eclipse.papyrus.sysml.diagram.common.messages.Messages;
 import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.common.helper.NamedElementHelper;
 import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
+import org.eclipse.papyrus.uml.tools.utils.NamedElementUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
@@ -41,7 +42,6 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.ScrolledForm;
 import org.eclipse.ui.forms.widgets.Section;
-import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -171,9 +171,9 @@ public class CreateOrSelectValuePropertyTypeDialog extends CreateOrSelectTypeDia
 	protected void setNewTypeName(String text) {
 		String name = text;
 		if(text == null) {
-			name = NamedElementHelper.EINSTANCE.getNewUMLElementName((Element)newTypeContainer, newTypeKind.getEClass());
+			name = NamedElementUtil.getDefaultNameWithIncrementFromBase(newTypeKind.getEClass().getName(), newTypeContainer.eContents());
 			if(newTypeKind == SysMLElementTypes.VALUE_TYPE) {
-				name = NamedElementHelper.EINSTANCE.getNewUMLElementName((Element)newTypeContainer, BlocksPackage.eINSTANCE.getValueType());
+				name = NamedElementUtil.getDefaultNameWithIncrementFromBase(BlocksPackage.eINSTANCE.getValueType().getName(), newTypeContainer.eContents());
 			}
 			newTypeNameText.setText(name);
 

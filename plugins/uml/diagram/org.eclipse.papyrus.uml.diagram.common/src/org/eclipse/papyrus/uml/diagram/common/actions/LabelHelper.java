@@ -11,6 +11,7 @@
  ******************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.actions;
 
+import java.util.Collection;
 import java.util.Iterator;
 
 import org.eclipse.emf.common.util.EList;
@@ -18,6 +19,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.papyrus.uml.tools.utils.NamedElementUtil;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -29,7 +31,10 @@ import org.eclipse.uml2.uml.UMLPackage;
  * 
  * @author <a href="mailto:gmerin@prodevelop.es">Gabriel Merin</a>
  * @author <a href="mailto:fjcano@prodevleop.es">Francisco Javier Cano Muñoz</a>
+ * 
+ * @deprecated prefer {@link NamedElementUtil}
  */
+@Deprecated
 public class LabelHelper {
 
 	/** The singleton. */
@@ -42,8 +47,11 @@ public class LabelHelper {
 	 *        the parent EObject to start searching
 	 * @param childEObject
 	 *        the child EObject whose name should be initialized
+	 * 
+	 * @deprecated should not be used.
 	 */
 	// @unused
+	@Deprecated
 	public void initName(EObject parentEObject, EObject childEObject) {
 		if((childEObject != null) && (childEObject instanceof NamedElement)) {
 			String name = findName(parentEObject, (NamedElement)childEObject);
@@ -67,7 +75,10 @@ public class LabelHelper {
 	 *        the new EObject to add
 	 * 
 	 * @return the name
+	 * 
+	 * @deprecated
 	 */
+	@Deprecated
 	public String findName(EObject parentEObject, NamedElement childEObject) {
 		return findName(parentEObject, childEObject.eClass());
 	}
@@ -81,13 +92,17 @@ public class LabelHelper {
 	 *        the new EObject to add
 	 * 
 	 * @return the name
+	 * 
+	 * @deprecated use {@link NamedElementUtil#getDefaultNameWithIncrementFromBase(String, Collection)} instead.
 	 */
+	@Deprecated
 	public String findName(EObject parentEObject, EClass childEClass) {
-		int cpt = 1;
-		while(!isNameAvailable(parentEObject, childEClass, cpt)) {
-			cpt++;
-		}
-		return childEClass.getName() + cpt;
+		return NamedElementUtil.getDefaultNameWithIncrementFromBase(childEClass.getName(), parentEObject.eContents());
+		//		int cpt = 1;
+		//		while(!isNameAvailable(parentEObject, childEClass, cpt)) {
+		//			cpt++;
+		//		}
+		//		return childEClass.getName() + cpt;
 	}
 
 	/**
@@ -101,11 +116,15 @@ public class LabelHelper {
 	 *        the current cpt
 	 * 
 	 * @return true if the name is available
+	 * 
+	 * @deprecated should not be used.
 	 */
+	// @unused
+	@Deprecated
 	private boolean isNameAvailable(EObject parentEObject, EClass childEClass, int currentCpt) {
-		EList list = parentEObject.eContents();
-		for(Iterator i = list.iterator(); i.hasNext();) {
-			EObject child = (EObject)i.next();
+		EList<EObject> list = parentEObject.eContents();
+		for(Iterator<EObject> i = list.iterator(); i.hasNext();) {
+			EObject child = i.next();
 
 			// check if the current child is the same type of the childEObject
 			if(childEClass.getName().equals(child.eClass().getName())) {

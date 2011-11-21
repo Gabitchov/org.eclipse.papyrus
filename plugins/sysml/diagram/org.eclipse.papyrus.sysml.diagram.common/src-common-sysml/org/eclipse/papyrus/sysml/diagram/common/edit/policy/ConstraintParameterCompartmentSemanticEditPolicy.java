@@ -21,7 +21,7 @@ import org.eclipse.papyrus.infra.services.edit.commands.IConfigureCommandFactory
 import org.eclipse.papyrus.sysml.constraints.ConstraintBlock;
 import org.eclipse.papyrus.uml.diagram.common.helper.NamedElementHelper;
 import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
-import org.eclipse.uml2.uml.Element;
+import org.eclipse.papyrus.uml.tools.utils.NamedElementUtil;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
@@ -36,7 +36,7 @@ public class ConstraintParameterCompartmentSemanticEditPolicy extends Compartmen
 	protected Command getCreateCommand(CreateElementRequest req) {
 
 		if(UMLElementTypes.PROPERTY == req.getElementType()) {
-			String name = NamedElementHelper.EINSTANCE.getNewUMLElementName((Element)req.getContainer(), "parameter"); //$NON-NLS-1$
+			String name = NamedElementUtil.getDefaultNameWithIncrementFromBase("parameter", req.getContainer().eContents()); //$NON-NLS-1$
 			req.setParameter(IConfigureCommandFactory.CONFIGURE_COMMAND_FACTORY_ID, new ConfigureFeatureCommandFactory(UMLPackage.eINSTANCE.getNamedElement_Name(), name));
 		}
 

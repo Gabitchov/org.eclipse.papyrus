@@ -48,7 +48,7 @@ public class TraceEditHelperAdvice extends AbstractStereotypedElementEditHelperA
 
 					// Set default name
 					// Initialize the element name based on the created IElementType
-					String initializedName = NamedElementHelper.EINSTANCE.getNewUMLElementName(element.getOwner(), StandardPackage.eINSTANCE.getTrace());
+					String initializedName = NamedElementHelper.getDefaultNameWithIncrementFromBase(StandardPackage.eINSTANCE.getTrace().getName(), element.eContainer().eContents());
 					element.setName(initializedName);
 				}
 				return CommandResult.newOKCommandResult(element);

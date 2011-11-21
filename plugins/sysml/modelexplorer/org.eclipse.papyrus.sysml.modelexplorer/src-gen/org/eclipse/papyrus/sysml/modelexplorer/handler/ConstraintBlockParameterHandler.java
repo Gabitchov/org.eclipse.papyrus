@@ -14,6 +14,7 @@ import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.uml.diagram.common.helper.NamedElementHelper;
 import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
+import org.eclipse.papyrus.uml.tools.utils.NamedElementUtil;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -65,7 +66,8 @@ public class ConstraintBlockParameterHandler extends CreateCommandHandler implem
 		} else {
 			createRequest = new CreateElementRequest(container, getElementTypeToCreate(), reference);
 		}
-		String name = NamedElementHelper.EINSTANCE.getNewUMLElementName((Element)container, "parameter"); //$NON-NLS-1$
+		
+		String name = NamedElementUtil.getDefaultNameWithIncrementFromBase("parameter", ((Element)container).eContents()); //$NON-NLS-1$
 		createRequest.setParameter(IConfigureCommandFactory.CONFIGURE_COMMAND_FACTORY_ID, new ConfigureFeatureCommandFactory(UMLPackage.eINSTANCE.getNamedElement_Name(), name));
 
 		// Retrieve create command from the Element Edit service

@@ -82,16 +82,17 @@ public class ReferencePropertyEditHelperAdvice extends AbstractEditHelperAdvice 
 				if(element != null) {
 
 					// Set default name
-					String initializedName = NamedElementHelper.EINSTANCE.getNewUMLElementName(element.getOwner(), "reference"); //$NON-NLS-1$
+					String initializedName = NamedElementHelper.getDefaultNameWithIncrementFromBase("reference", element.eContainer().eContents());
 					element.setName(initializedName);
 				}
 				return CommandResult.newOKCommandResult(element);
 			}
 		};
 	}
-	
-	/** Complete creation process by adding the related association.
-	 *  This assumes the part type has been set at this point.
+
+	/**
+	 * Complete creation process by adding the related association.
+	 * This assumes the part type has been set at this point.
 	 */
 	@Override
 	protected ICommand getAfterConfigureCommand(final ConfigureRequest request) {
@@ -106,23 +107,23 @@ public class ReferencePropertyEditHelperAdvice extends AbstractEditHelperAdvice 
 					Type sourceType = sourcePart.getClass_();
 					//Type targetType = sourcePart.getType();
 					Package associationContainer = sourceType.getNearestPackage();
-					
+
 					// Create targetProperty
 					Property targetProperty = UMLFactory.eINSTANCE.createProperty();
 					targetProperty.setType(sourceType);
 					targetProperty.setName("");
-					
+
 					Association association = UMLFactory.eINSTANCE.createAssociation();
 					association.getMemberEnds().add(sourcePart);
 					association.getOwnedEnds().add(targetProperty);
 					association.getMemberEnds().add(targetProperty);
-					
-					String associationName = NamedElementHelper.EINSTANCE.getNewUMLElementName(associationContainer, "Association"); //$NON-NLS-1$
+
+					String associationName = NamedElementHelper.getDefaultNameWithIncrementFromBase("Association", associationContainer.eContents());
 					association.setName(associationName);
-					
+
 					// Add SysML Nature on the new Association
 					ElementUtil.addNature(association, SysMLElementTypes.SYSML_NATURE);
-					
+
 					association.setPackage(associationContainer);
 				}
 				return CommandResult.newOKCommandResult(sourcePart);

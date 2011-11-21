@@ -42,14 +42,14 @@ public class ViewPointEditHelperAdvice extends AbstractStereotypedElementEditHel
 			protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
 				NamedElement element = (NamedElement)request.getElementToConfigure();
 				if(element != null) {
-					Stereotype stereotypeToApply = element.getApplicableStereotype(SysmlResource.VIEWPOINT_ID);
+					Stereotype stereotypeToApply = element.getApplicableStereotype(SysmlResource.VIEW_POINT_ID);
 					if(stereotypeToApply != null) {
 						element.applyStereotype(stereotypeToApply);
 					}
 
 					// Set default name
 					// Initialize the element name based on the created IElementType
-					String initializedName = NamedElementHelper.EINSTANCE.getNewUMLElementName(element.getOwner(), ModelelementsPackage.eINSTANCE.getViewPoint());
+					String initializedName = NamedElementHelper.getDefaultNameWithIncrementFromBase(ModelelementsPackage.eINSTANCE.getViewPoint().getName(), element.eContainer().eContents());
 					element.setName(initializedName);
 				}
 				return CommandResult.newOKCommandResult(element);

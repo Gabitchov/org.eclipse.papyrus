@@ -16,6 +16,7 @@ package org.eclipse.papyrus.uml.tools.utils;
 import java.util.Collection;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.gmf.runtime.emf.core.util.EMFCoreUtil;
 import org.eclipse.uml2.uml.NamedElement;
 
 /**
@@ -81,24 +82,24 @@ public class NamedElementUtil {
 	}
 
 	@SuppressWarnings("rawtypes")
-	public static String getDefaultNameWithIncrement(String base, EObject newElement, Collection contents) {
-		if (base == null) {
-			base = "";
+	public static String getDefaultNameWithIncrement(String prefix, EObject newElement, Collection contents) {
+		if (prefix == null) {
+			prefix = "";
 		}
 
-		return getDefaultNameWithIncrementFromBase(base + newElement.eClass().getName(), contents);
+		return getDefaultNameWithIncrementFromBase(prefix + newElement.eClass().getName(), contents);
 	}
 	
 	@SuppressWarnings("rawtypes")
 	public static String getDefaultNameWithIncrementFromBase(String base, Collection contents) {
-		int nextNumber = 0;
+		int nextNumber = 1;
 
 		for(Object o : contents) {
-			if(o instanceof NamedElement) {
-				String name = ((NamedElement)o).getName();
+			if(o instanceof EObject) {
+				String name = EMFCoreUtil.getName((EObject)o);
 				if(name != null && name.startsWith(base)) {
 					String end = name.substring(base.length());
-					int nextNumberTmp = 0;
+					int nextNumberTmp = 1;
 
 					try {
 						nextNumberTmp = Integer.parseInt(end) + 1;

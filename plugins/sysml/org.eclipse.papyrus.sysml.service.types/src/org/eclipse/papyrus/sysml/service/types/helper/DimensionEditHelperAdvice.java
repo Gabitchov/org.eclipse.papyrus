@@ -50,7 +50,7 @@ public class DimensionEditHelperAdvice extends AbstractStereotypedElementEditHel
 
 					// Set default name
 					// Initialize the element name based on the created IElementType
-					String initializedName = NamedElementHelper.EINSTANCE.getNewUMLElementName(element.getOwner(), BlocksPackage.eINSTANCE.getDimension());
+					String initializedName = NamedElementHelper.getDefaultNameWithIncrementFromBase(BlocksPackage.eINSTANCE.getDimension().getName(), element.eContainer().eContents());
 					element.setName(initializedName);
 				}
 				return CommandResult.newOKCommandResult(element);

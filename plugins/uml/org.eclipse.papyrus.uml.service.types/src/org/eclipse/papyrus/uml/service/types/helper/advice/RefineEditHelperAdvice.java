@@ -48,7 +48,7 @@ public class RefineEditHelperAdvice extends AbstractStereotypedElementEditHelper
 
 					// Set default name
 					// Initialize the element name based on the created IElementType
-					String initializedName = NamedElementHelper.EINSTANCE.getNewUMLElementName(element.getOwner(), StandardPackage.eINSTANCE.getRefine());
+					String initializedName = NamedElementHelper.getDefaultNameWithIncrementFromBase(StandardPackage.eINSTANCE.getRefine().getName(), element.eContainer().eContents());
 					element.setName(initializedName);
 				}
 				return CommandResult.newOKCommandResult(element);

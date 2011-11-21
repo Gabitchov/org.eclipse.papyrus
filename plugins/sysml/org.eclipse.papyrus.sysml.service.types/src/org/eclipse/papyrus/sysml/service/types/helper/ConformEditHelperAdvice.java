@@ -49,7 +49,7 @@ public class ConformEditHelperAdvice extends AbstractStereotypedElementEditHelpe
 
 					// Set default name
 					// Initialize the element name based on the created IElementType
-					String initializedName = NamedElementHelper.EINSTANCE.getNewUMLElementName(element.getOwner(), ModelelementsPackage.eINSTANCE.getConform());
+					String initializedName = NamedElementHelper.getDefaultNameWithIncrementFromBase(ModelelementsPackage.eINSTANCE.getConform().getName(), element.eContainer().eContents());
 					element.setName(initializedName);
 				}
 				return CommandResult.newOKCommandResult(element);
