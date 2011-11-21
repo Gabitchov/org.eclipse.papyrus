@@ -129,10 +129,9 @@ public class PropertyLabelParser extends NamedElementLabelParser {
 
 				// If multiplicity is [1] (SysML default), only show when explicitly asked.
 				// TODO : add a case for default with multiplicity not set.
-				if(((flags & ILabelPreferenceConstants.DISP_DEFAULT_MULTIPLICITY) == ILabelPreferenceConstants.DISP_DEFAULT_MULTIPLICITY) || (property.getLower() != 1 || property.getUpper() != 1)) {
-
-					String lower = ValueSpecificationUtil.getSpecificationValue(property.getLowerValue());
-					String upper = ValueSpecificationUtil.getSpecificationValue(property.getUpperValue());
+				String lower = ValueSpecificationUtil.getSpecificationValue(property.getLowerValue());
+				String upper = ValueSpecificationUtil.getSpecificationValue(property.getUpperValue());
+				if(((flags & ILabelPreferenceConstants.DISP_DEFAULT_MULTIPLICITY) == ILabelPreferenceConstants.DISP_DEFAULT_MULTIPLICITY) || !("1".equals(lower) && "1".equals(upper))) {
 
 					if(lower.equals(upper)) {
 						result = String.format(MULTIPLICITY_FORMAT_ALT, result, lower, upper);
@@ -188,7 +187,7 @@ public class PropertyLabelParser extends NamedElementLabelParser {
 		if(event instanceof Notification) {
 			Object feature = ((Notification)event).getFeature();
 
-			if(feature instanceof EStructuralFeature) {
+			if(feature instanceof EStructuralFeature) { // UMLPackage.eINSTANCE.getLiteralString_Value().equals(feature) || 
 				return UMLPackage.eINSTANCE.getTypedElement_Type().equals(feature) || UMLPackage.eINSTANCE.getInstanceValue_Instance().equals(feature) || UMLPackage.eINSTANCE.getMultiplicityElement_IsOrdered().equals(feature) || UMLPackage.eINSTANCE.getMultiplicityElement_IsUnique().equals(feature) || UMLPackage.eINSTANCE.getMultiplicityElement_LowerValue().equals(feature) || UMLPackage.eINSTANCE.getMultiplicityElement_UpperValue().equals(feature) || UMLPackage.eINSTANCE.getStructuralFeature_IsReadOnly().equals(feature) || UMLPackage.eINSTANCE.getFeature_IsStatic().equals(feature) || UMLPackage.eINSTANCE.getProperty_IsDerived().equals(feature) || UMLPackage.eINSTANCE.getProperty_IsDerivedUnion().equals(feature) || UMLPackage.eINSTANCE.getProperty_RedefinedProperty().equals(feature) || super.isAffectingEvent(event, flags);
 			}
 		}

@@ -111,11 +111,9 @@ public class AssociationEndLabelParser extends PropertyLabelParser {
 			if(((flags & ILabelPreferenceConstants.DISP_MULTIPLICITY) == ILabelPreferenceConstants.DISP_MULTIPLICITY)) {
 
 				// If multiplicity is [1] (SysML default), only show when explicitly asked.
-
-				if(((flags & ILabelPreferenceConstants.DISP_DEFAULT_MULTIPLICITY) == ILabelPreferenceConstants.DISP_DEFAULT_MULTIPLICITY) || (property.getLower() != 1 || property.getUpper() != 1)) {
-
-					String lower = ValueSpecificationUtil.getSpecificationValue(property.getLowerValue());
-					String upper = ValueSpecificationUtil.getSpecificationValue(property.getUpperValue());
+				String lower = ValueSpecificationUtil.getSpecificationValue(property.getLowerValue());
+				String upper = ValueSpecificationUtil.getSpecificationValue(property.getUpperValue());
+				if(((flags & ILabelPreferenceConstants.DISP_DEFAULT_MULTIPLICITY) == ILabelPreferenceConstants.DISP_DEFAULT_MULTIPLICITY) || !("1".equals(lower) && "1".equals(upper))) {
 
 					if(lower.equals(upper)) {
 						result = String.format(MULTIPLICITY_FORMAT_ALT, result, lower, upper);
