@@ -26,6 +26,7 @@ Export-Package: org.eclipse.papyrus.properties.uml.constraints,
  org.eclipse.papyrus.properties.uml.creation,
  org.eclipse.papyrus.properties.uml.databinding,
  org.eclipse.papyrus.properties.uml.databinding.command,
+ org.eclipse.papyrus.properties.uml.datatype,
  org.eclipse.papyrus.properties.uml.modelelement,
  org.eclipse.papyrus.properties.uml.providers,
  org.eclipse.papyrus.properties.uml.util

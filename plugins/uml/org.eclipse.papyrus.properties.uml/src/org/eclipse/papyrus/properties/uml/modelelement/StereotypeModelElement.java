@@ -18,6 +18,7 @@ import org.eclipse.emf.databinding.EMFProperties;
 import org.eclipse.emf.databinding.FeaturePath;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -27,6 +28,8 @@ import org.eclipse.papyrus.diagram.common.providers.EditorLabelProvider;
 import org.eclipse.papyrus.properties.modelelement.EMFModelElement;
 import org.eclipse.papyrus.properties.uml.databinding.PapyrusObservableList;
 import org.eclipse.papyrus.properties.uml.databinding.PapyrusObservableValue;
+import org.eclipse.papyrus.properties.uml.datatype.DataTypeProvider;
+import org.eclipse.papyrus.properties.uml.datatype.StructuredDataTypeObservableValue;
 import org.eclipse.papyrus.properties.util.EMFHelper;
 import org.eclipse.papyrus.uml.modelexplorer.widgets.ServiceEditFilteredUMLContentProvider;
 import org.eclipse.papyrus.umlutils.PackageUtil;
@@ -65,6 +68,17 @@ public class StereotypeModelElement extends EMFModelElement {
 	public IObservable doGetObservable(String propertyPath) {
 		FeaturePath featurePath = getFeaturePath(propertyPath);
 		EStructuralFeature feature = getFeature(featurePath);
+
+		if(feature.getEType() instanceof EDataType && !(feature.getEType() instanceof EEnum)) {
+			if(feature.getUpperBound() == 1) {
+				//Single-valued DataType
+				if(DataTypeProvider.instance.canHandle((EDataType)feature.getEType())) {
+					return new StructuredDataTypeObservableValue(source, feature, domain, (EDataType)feature.getEType());
+				}
+				//TODO : Multi-valued DataTypes
+			}
+		}
+
 		if(feature.getUpperBound() != 1) {
 			return new PapyrusObservableList(EMFProperties.list(featurePath).observe(source), domain, getSource(featurePath), feature);
 		}
