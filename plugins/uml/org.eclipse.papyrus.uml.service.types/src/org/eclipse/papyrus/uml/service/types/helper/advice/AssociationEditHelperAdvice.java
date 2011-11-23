@@ -31,6 +31,8 @@ import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyDependentsRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.MoveRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
@@ -238,6 +240,39 @@ public class AssociationEditHelperAdvice extends AbstractEditHelperAdvice {
 		}
 
 		return super.getBeforeDestroyDependentsCommand(req);
+	}
+
+	/**
+	 * <pre>
+	 * {@inheritDoc}
+	 * 
+	 * Add a command to destroy {@link Association} when only 1 end remains.
+	 * 
+	 * </pre>
+	 */
+	@Override
+	protected ICommand getBeforeDestroyReferenceCommand(DestroyReferenceRequest request) {
+		ICommand gmfCommand = super.getBeforeDestroyReferenceCommand(request);
+
+		Association association = (Association)request.getContainer();
+		if((request.getContainingFeature() == UMLPackage.eINSTANCE.getAssociation_MemberEnd()) && (association.getMemberEnds().contains(request.getReferencedObject()))) {
+			Set<Property> ends = new HashSet<Property>();
+			ends.addAll(association.getMemberEnds());
+			ends.remove(request.getReferencedObject());
+
+			if(ends.size() <= 2) {
+
+				DestroyElementRequest destroyRequest = new DestroyElementRequest(association, false);
+				IElementEditService provider = ElementEditServiceUtils.getCommandProvider(association);
+				if(provider != null) {
+					ICommand destroyCommand = provider.getEditCommand(destroyRequest);
+					gmfCommand = CompositeCommand.compose(gmfCommand, destroyCommand);
+				}
+
+			}
+		}
+
+		return gmfCommand;
 	}
 
 	/**

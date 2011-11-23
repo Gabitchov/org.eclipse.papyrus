@@ -29,6 +29,8 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.ConfigureElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyDependentsRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.MoveRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
@@ -45,6 +47,39 @@ import org.eclipse.uml2.uml.UMLPackage;
 
 /** Association edit helper advice */
 public class AssociationEditHelperAdvice extends AbstractEditHelperAdvice {
+
+	/**
+	 * <pre>
+	 * {@inheritDoc}
+	 * 
+	 * Add a command to destroy {@link Association} when only 1 end remains.
+	 * 
+	 * </pre>
+	 */
+	@Override
+	protected ICommand getBeforeDestroyReferenceCommand(DestroyReferenceRequest request) {
+		ICommand gmfCommand = super.getBeforeDestroyReferenceCommand(request);
+
+		Association association = (Association)request.getContainer();
+		if((request.getContainingFeature() == UMLPackage.eINSTANCE.getAssociation_MemberEnd()) && (association.getMemberEnds().contains(request.getReferencedObject()))) {
+			Set<Property> ends = new HashSet<Property>();
+			ends.addAll(association.getMemberEnds());
+			ends.remove(request.getReferencedObject());
+
+			if(ends.size() <= 2) {
+
+				DestroyElementRequest destroyRequest = new DestroyElementRequest(association, false);
+				IElementEditService provider = ElementEditServiceUtils.getCommandProvider(association);
+				if(provider != null) {
+					ICommand destroyCommand = provider.getEditCommand(destroyRequest);
+					gmfCommand = CompositeCommand.compose(gmfCommand, destroyCommand);
+				}
+
+			}
+		}
+
+		return gmfCommand;
+	}
 
 	/**
 	 * <pre>
@@ -112,15 +147,15 @@ public class AssociationEditHelperAdvice extends AbstractEditHelperAdvice {
 
 		MoveRequest moveRequest = null;
 		SetRequest setTypeRequest = null;
-		
+
 		// Retrieve re-oriented association and add it to the list of re-factored elements
 		Association association = (Association)request.getRelationship();
-		List<EObject> currentlyRefactoredElements = (request.getParameter(RequestParameterConstants.ASSOCIATION_REFACTORED_ELEMENTS) != null) ? (List<EObject>) request.getParameter(RequestParameterConstants.ASSOCIATION_REFACTORED_ELEMENTS) : new ArrayList<EObject>();
-		
-		if (currentlyRefactoredElements.contains(association)) {
+		List<EObject> currentlyRefactoredElements = (request.getParameter(RequestParameterConstants.ASSOCIATION_REFACTORED_ELEMENTS) != null) ? (List<EObject>)request.getParameter(RequestParameterConstants.ASSOCIATION_REFACTORED_ELEMENTS) : new ArrayList<EObject>();
+
+		if(currentlyRefactoredElements.contains(association)) {
 			// Abort - already treated 
 			return null;
-			
+
 		} else {
 			currentlyRefactoredElements.add(association);
 			request.getParameters().put(RequestParameterConstants.ASSOCIATION_REFACTORED_ELEMENTS, currentlyRefactoredElements);
@@ -131,13 +166,13 @@ public class AssociationEditHelperAdvice extends AbstractEditHelperAdvice {
 		Property semanticTarget = association.getMemberEnds().get(1);
 
 		EObject modifiedPropertyType = null;
-		
-		
+
+
 		if(request.getDirection() == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			if(!association.getOwnedEnds().contains(semanticSource)) {
 				moveRequest = new MoveRequest(request.getNewRelationshipEnd(), semanticSource);
 			}
-			
+
 			modifiedPropertyType = semanticTarget;
 			setTypeRequest = new SetRequest(modifiedPropertyType, UMLPackage.eINSTANCE.getTypedElement_Type(), request.getNewRelationshipEnd());
 		}
@@ -146,7 +181,7 @@ public class AssociationEditHelperAdvice extends AbstractEditHelperAdvice {
 			if(!association.getOwnedEnds().contains(semanticTarget)) {
 				moveRequest = new MoveRequest(request.getNewRelationshipEnd(), semanticTarget);
 			}
-			
+
 			modifiedPropertyType = semanticSource;
 			setTypeRequest = new SetRequest(modifiedPropertyType, UMLPackage.eINSTANCE.getTypedElement_Type(), request.getNewRelationshipEnd());
 		}
@@ -160,11 +195,11 @@ public class AssociationEditHelperAdvice extends AbstractEditHelperAdvice {
 				gmfCommand = CompositeCommand.compose(gmfCommand, moveCommand);
 			}
 		}
-		
-		if(setTypeRequest != null) {		
+
+		if(setTypeRequest != null) {
 			// Propagate parameters to the set request
 			setTypeRequest.addParameters(request.getParameters());
-			
+
 			IElementEditService provider = ElementEditServiceUtils.getCommandProvider(modifiedPropertyType);
 			if(provider != null) {
 				ICommand setTypeCommand = provider.getEditCommand(setTypeRequest);
