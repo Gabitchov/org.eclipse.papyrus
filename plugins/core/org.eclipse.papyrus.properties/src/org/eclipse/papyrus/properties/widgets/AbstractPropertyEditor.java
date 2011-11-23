@@ -346,7 +346,9 @@ public abstract class AbstractPropertyEditor implements IChangeListener {
 	 */
 	public void setReadOnly(boolean readOnly) {
 		this.readOnly = readOnly;
-		getEditor().setReadOnly(getReadOnly());
+		if(getEditor() != null) {
+			getEditor().setReadOnly(getReadOnly());
+		}
 	}
 
 	/**

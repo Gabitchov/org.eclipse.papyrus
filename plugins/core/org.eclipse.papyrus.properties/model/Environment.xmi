@@ -17,20 +17,21 @@
   <propertyEditorTypes label="BooleanCombo" widgetClass="BooleanCombo" namespace="//@namespaces.3" type="Boolean"/>
   <propertyEditorTypes label="BooleanCheckbox" widgetClass="BooleanCheckbox" namespace="//@namespaces.3" type="Boolean"/>
   <propertyEditorTypes label="BooleanRadio" widgetClass="BooleanRadio" namespace="//@namespaces.3" type="Boolean"/>
-  <propertyEditorTypes label="BooleanToggle" widgetClass="BooleanToggle" namespace="//@namespaces.3"/>
+  <propertyEditorTypes label="BooleanToggle" widgetClass="BooleanToggle" namespace="//@namespaces.3" type="Boolean"/>
   <propertyEditorTypes label="IntegerEditor" widgetClass="IntegerEditor" namespace="//@namespaces.3" type="Integer"/>
   <propertyEditorTypes label="IntegerSpinner" widgetClass="IntegerSpinner" namespace="//@namespaces.3" type="Integer"/>
   <propertyEditorTypes label="EnumCombo" widgetClass="EnumCombo" namespace="//@namespaces.3" type="Enumeration"/>
-  <propertyEditorTypes label="EnumRadio (No preview)" widgetClass="EnumRadio" namespace="//@namespaces.3"/>
+  <propertyEditorTypes label="EnumRadio (No preview)" widgetClass="EnumRadio" namespace="//@namespaces.3" type="Enumeration"/>
   <propertyEditorTypes label="ReferenceCombo" widgetClass="ReferenceCombo" namespace="//@namespaces.3" type="Reference"/>
   <propertyEditorTypes label="ReferenceDialog" widgetClass="ReferenceDialog" namespace="//@namespaces.3" type="Reference"/>
   <propertyEditorTypes label="ViewEditor" widgetClass="ViewEditor" namespace="//@namespaces.3" type="Reference" multiplicity="-1"/>
-  <propertyEditorTypes label="ReferenceLabel (Read-only)" widgetClass="ReferenceLabel" namespace="//@namespaces.3"/>
+  <propertyEditorTypes label="ReferenceLabel (Read-only)" widgetClass="ReferenceLabel" namespace="//@namespaces.3" type="Reference"/>
   <propertyEditorTypes label="MultiReference" widgetClass="MultiReference" namespace="//@namespaces.3" type="Reference" multiplicity="-1"/>
-  <propertyEditorTypes label="MultiReferenceWithPropertyView" widgetClass="MultiReferencePropertyEditorWithPropertyView" namespace="//@namespaces.3"/>
+  <propertyEditorTypes label="MultiReferenceWithPropertyView" widgetClass="MultiReferencePropertyEditorWithPropertyView" namespace="//@namespaces.3" type="Reference" multiplicity="-1"/>
   <propertyEditorTypes label="MultiString" widgetClass="MultiString" namespace="//@namespaces.3" multiplicity="-1"/>
   <propertyEditorTypes label="MultiInteger" widgetClass="MultiInteger" namespace="//@namespaces.3" type="Integer" multiplicity="-1"/>
   <propertyEditorTypes label="InvalidWidget" widgetClass="InvalidWidget" namespace="//@namespaces.3"/>
+  <propertyEditorTypes label="MultipleFileEditor" widgetClass="MultiStringFile" namespace="//@namespaces.3" multiplicity="-1"/>
   <compositeWidgetTypes label="Composite" widgetClass="Composite"/>
   <compositeWidgetTypes label="Group" widgetClass="Group"/>
   <layoutTypes label="GridLayout" widgetClass="GridLayout"/>
