@@ -23,14 +23,19 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.core.util.EMFCoreUtil;
+import org.eclipse.gmf.runtime.emf.type.core.commands.SetValueCommand;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyDependentsRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
+import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
+import org.eclipse.papyrus.uml.service.types.utils.ElementUtil;
 import org.eclipse.papyrus.uml.service.types.utils.RequestParameterConstants;
+import org.eclipse.uml2.uml.AggregationKind;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.ConnectableElement;
 import org.eclipse.uml2.uml.ConnectorEnd;
@@ -107,15 +112,51 @@ public class PropertyHelperAdvice extends AbstractEditHelperAdvice {
 	 * 
 	 * While setting {@link Property} (excluding {@link Port}) type:
 	 * - remove related {@link ConnectorEnd} if they become inconsistent due to the new {@link Type}.
+	 * - add possibly required (UML) association re-factor command when needed.
 	 * 
 	 * </pre>
 	 */
 	@Override
 	protected ICommand getBeforeSetCommand(SetRequest request) {
-		ICommand gmfCommand = null;
+		ICommand gmfCommand = super.getBeforeSetCommand(request);;
 
-		Type newType = null;
 		EObject elementToEdit = request.getElementToEdit();
+
+		// Two member ends of an association cannot be set to composite at the same time. To avoid
+		// such a situation this helper turns other ends into aggregation none before changing the property aggregation.
+		if((elementToEdit instanceof Property) && !(elementToEdit instanceof Port) && (request.getFeature() == UMLPackage.eINSTANCE.getProperty_Aggregation()) && (request.getValue() == AggregationKind.COMPOSITE_LITERAL)) {
+			Property propertyToEdit = (Property)elementToEdit;
+			Association relatedAssociation = propertyToEdit.getAssociation();
+
+			Set<Property> members = new HashSet<Property>();
+			members.addAll(relatedAssociation.getMemberEnds());
+			members.remove(propertyToEdit);
+
+			for(Property member : members) {
+				if(member.getAggregation() == AggregationKind.COMPOSITE_LITERAL) {
+					SetRequest setRequest = new SetRequest(member, UMLPackage.eINSTANCE.getProperty_Aggregation(), AggregationKind.NONE_LITERAL);
+					SetValueCommand setAggregationCommand = new SetValueCommand(setRequest);
+					gmfCommand = CompositeCommand.compose(gmfCommand, setAggregationCommand);
+				}
+			}
+		}
+
+		// Type set to null implies the property should be removed from association member ends (if related to an Association)
+		if((elementToEdit instanceof Property) && !(elementToEdit instanceof Port) && (request.getFeature() == UMLPackage.eINSTANCE.getTypedElement_Type()) && (request.getValue() == null)) {
+			Property propertyToEdit = (Property)elementToEdit;
+			Association relatedAssociation = propertyToEdit.getAssociation();
+
+			if(relatedAssociation != null) {
+				// General case, delete the ConnectorEnd
+				DestroyReferenceRequest destroyRefRequest = new DestroyReferenceRequest(relatedAssociation, UMLPackage.eINSTANCE.getAssociation_MemberEnd(), propertyToEdit, false);
+				IElementEditService provider = ElementEditServiceUtils.getCommandProvider(relatedAssociation);
+				if(provider != null) {
+					// Add current EObject destroy reference command to the global command
+					ICommand destroyMemberRefCommand = provider.getEditCommand(destroyRefRequest);
+					gmfCommand = CompositeCommand.compose(gmfCommand, destroyMemberRefCommand);
+				}
+			}
+		}
 
 		if((elementToEdit instanceof Property) && !(elementToEdit instanceof Port) && (request.getFeature() == UMLPackage.eINSTANCE.getTypedElement_Type()) && (request.getValue() instanceof Type)) {
 
@@ -129,7 +170,7 @@ public class PropertyHelperAdvice extends AbstractEditHelperAdvice {
 			IElementEditService provider = ElementEditServiceUtils.getCommandProvider(propertyToEdit);
 			if(provider != null) {
 				for(ConnectorEnd end : referencers) {
-					newType = (Type)request.getValue();
+					Type newType = (Type)request.getValue();
 
 					// End role should be a Port
 					ConnectableElement cElt = end.getRole();
@@ -157,34 +198,25 @@ public class PropertyHelperAdvice extends AbstractEditHelperAdvice {
 
 			// Setting new type can be related to an association re-orient (or trigger the association re-orient)
 			// Retrieve elements already under re-factor.
+			Association relatedAssociation = propertyToEdit.getAssociation();
+
+			// The edited property has to be related to a UML association
+			if((relatedAssociation == null) || !(ElementUtil.hasNature(relatedAssociation, UMLElementTypes.UML_NATURE))) {
+				return gmfCommand;
+			}
+
 			List<EObject> currentlyRefactoredElements = (request.getParameter(RequestParameterConstants.ASSOCIATION_REFACTORED_ELEMENTS) != null) ? (List<EObject>)request.getParameter(RequestParameterConstants.ASSOCIATION_REFACTORED_ELEMENTS) : new ArrayList<EObject>();
 			if(!currentlyRefactoredElements.contains(propertyToEdit)) {
 				currentlyRefactoredElements.add(propertyToEdit);
 				request.getParameters().put(RequestParameterConstants.ASSOCIATION_REFACTORED_ELEMENTS, currentlyRefactoredElements);
 
-				// Find and parse Associations related to the modified Property
-				for(Association associationToReorient : getRelatedAssociations(propertyToEdit)) {
-
-					// Current association already under re-factor ?
-					if(currentlyRefactoredElements.contains(associationToReorient)) {
-						continue;
-					}
-
-					// Re-orient the related association (do not use edit service to avoid infinite loop here)
-					int direction = ReorientRelationshipRequest.REORIENT_TARGET;
-					if(propertyToEdit == ((Association)associationToReorient).getMemberEnds().get(1)) {
-						direction = ReorientRelationshipRequest.REORIENT_SOURCE;
-					}
-
-					ReorientRelationshipRequest reorientRequest = new ReorientRelationshipRequest(associationToReorient, propertyToEdit.getType(), (Type)request.getValue(), direction);
-					reorientRequest.addParameters(request.getParameters());
-
-					provider = ElementEditServiceUtils.getCommandProvider(associationToReorient);
-					if(provider != null) {
-						ICommand reorientCommand = provider.getEditCommand(reorientRequest);
-						gmfCommand = CompositeCommand.compose(gmfCommand, reorientCommand);
-					}
+				// Current association already under re-factor ?
+				if(currentlyRefactoredElements.contains(relatedAssociation)) {
+					return gmfCommand;
 				}
+
+				ICommand refactorCommand = getAssociationRefactoringCommand(propertyToEdit, relatedAssociation, request);
+				gmfCommand = CompositeCommand.compose(gmfCommand, refactorCommand);
 			}
 		}
 
@@ -196,21 +228,34 @@ public class PropertyHelperAdvice extends AbstractEditHelperAdvice {
 	}
 
 	/**
-	 * Get association that reference the property as member end.
+	 * Create a re-factoring command related to a Property move.
 	 * 
-	 * @param property
-	 *        the referenced property
-	 * @return related associations
+	 * @param setProperty
+	 *        the property which type is set
+	 * @param associationToRefactor
+	 *        the association to re-factor (re-orient action)
+	 * @param request
+	 *        the original set request
+	 * @return the re-factoring command
 	 */
-	private Set<Association> getRelatedAssociations(Property property) {
-		Set<Association> relatedAssociations = new HashSet<Association>();
+	private ICommand getAssociationRefactoringCommand(Property setProperty, Association associationToRefactor, SetRequest request) {
 
-		// Find all related Associations
-		EReference[] refs = new EReference[]{ UMLPackage.eINSTANCE.getAssociation_MemberEnd() };
-		@SuppressWarnings("unchecked")
-		Collection<Association> associations = EMFCoreUtil.getReferencers(property, refs);
-		relatedAssociations.addAll(associations);
+		Association relatedAssociation = setProperty.getAssociation(); // Should not be null, test before calling method.
 
-		return relatedAssociations;
+		// Re-orient the related association (do not use edit service to avoid infinite loop here)
+		int direction = ReorientRelationshipRequest.REORIENT_TARGET;
+		if(setProperty == associationToRefactor.getMemberEnds().get(1)) {
+			direction = ReorientRelationshipRequest.REORIENT_SOURCE;
+		}
+
+		ReorientRelationshipRequest reorientRequest = new ReorientRelationshipRequest(relatedAssociation, (Type)request.getValue(), setProperty.eContainer(), direction);
+		reorientRequest.addParameters(request.getParameters());
+
+		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(relatedAssociation);
+		if(provider != null) {
+			return provider.getEditCommand(reorientRequest);
+		}
+
+		return null;
 	}
 }

@@ -385,6 +385,18 @@
 		inheritance="all" typeId="org.eclipse.papyrus.uml.Property">
 	</adviceBinding>
 	
+	<!-- Helper advice for Classifier (Manage SysML association refactor during move) -->
+	<adviceBinding id="org.eclipse.papyrus.sysml.advice.Classifier"
+		class="org.eclipse.papyrus.sysml.service.types.helper.advice.ClassifierEditHelperAdvice"
+		inheritance="all" typeId="org.eclipse.papyrus.uml.Classifier">
+	</adviceBinding>
+	
+	<!-- Helper advice for Property (Manage SysML association refactor during set type) -->
+	<adviceBinding id="org.eclipse.papyrus.sysml.advice.Property"
+		class="org.eclipse.papyrus.sysml.service.types.helper.advice.PropertyEditHelperAdvice"
+		inheritance="all" typeId="org.eclipse.papyrus.uml.Property">
+	</adviceBinding>
+	
 	</metamodel>
 </extension>
 
@@ -432,6 +444,8 @@
 		<elementType ref="org.eclipse.papyrus.sysml.View" />
 		<elementType ref="org.eclipse.papyrus.sysml.ViewPoint" />
 		<advice ref="org.eclipse.papyrus.sysml.advice.ConstraintBlockPropertyHelperAdvice" />
+		<advice ref="org.eclipse.papyrus.sysml.advice.Classifier" />
+		<advice ref="org.eclipse.papyrus.sysml.advice.Property" />
 
 	</binding>
 	

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010-2011 CEA LIST.
+ * Copyright (c) 2011 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -11,95 +11,44 @@
  *		Yann Tanguy (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.uml.service.types.helper.advice;
+package org.eclipse.papyrus.sysml.service.types.helper.advice;
 
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
-import org.eclipse.gmf.runtime.emf.core.util.EMFCoreUtil;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
-import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyDependentsRequest;
-import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.MoveRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
-import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
+import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
 import org.eclipse.papyrus.uml.service.types.utils.ElementUtil;
 import org.eclipse.papyrus.uml.service.types.utils.RequestParameterConstants;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Classifier;
-import org.eclipse.uml2.uml.ConnectorEnd;
-import org.eclipse.uml2.uml.Generalization;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * <pre>
- * This HelperAdvice completes {@link Classifier} edit commands with the deletion of :
- * - any Generalization related to the Classifier (source or target).
- * - any Association related to the Classifier (source or target type).
- * 
- * This helper also add Association re-factor command when an Association member end is
- * moved.
- * 
+ * This HelperAdvice completes {@link Classifier} edit commands with :
+ * 		- possibly required (sysML) association re-factor command.
  * </pre>
  */
-public class ClassifierHelperAdvice extends AbstractEditHelperAdvice {
-
-	/**
-	 * <pre>
-	 * {@inheritDoc}
-	 * 
-	 * While deleting a Classifier:
-	 * - remove {@link Generalization} in which this Classifier is involved
-	 * - remove {@link Association} in which this Classifier is involved
-	 * 
-	 * </pre>
-	 */
-	@Override
-	protected ICommand getBeforeDestroyDependentsCommand(DestroyDependentsRequest request) {
-
-		List<EObject> dependents = new ArrayList<EObject>();
-		if(request.getElementToDestroy() instanceof Classifier) {
-
-			Classifier classifierToDelete = (Classifier)request.getElementToDestroy();
-
-			// Get related generalizations
-			dependents.addAll(classifierToDelete.getSourceDirectedRelationships(UMLPackage.eINSTANCE.getGeneralization()));
-			dependents.addAll(classifierToDelete.getTargetDirectedRelationships(UMLPackage.eINSTANCE.getGeneralization()));
-
-			// Get related association for this classifier, then delete member ends for which this classifier is the type.
-			for(Association association : classifierToDelete.getAssociations()) {
-				for(Property end : association.getMemberEnds()) {
-					if(end.getType() == classifierToDelete) {
-						dependents.add(association);
-					}
-				}
-			}
-		}
-
-		// Return the command to destroy all these dependent elements
-		if(!dependents.isEmpty()) {
-			return request.getDestroyDependentsCommand(dependents);
-		}
-
-		return null;
-	}
+public class ClassifierEditHelperAdvice extends AbstractEditHelperAdvice {
 
 	/**
 	 * <pre>
 	 * {@inheritDoc}
 	 * 
 	 * While moving a {@link Property} to a Classifier:
-	 * - re-orient Association possibly related to the moved Property
-	 * - remove deprecated connectorEnd
+	 * - add possibly required (sysML) association re-factor command when needed.
 	 * 
 	 * </pre>
 	 */
@@ -107,35 +56,6 @@ public class ClassifierHelperAdvice extends AbstractEditHelperAdvice {
 	protected ICommand getBeforeMoveCommand(MoveRequest request) {
 
 		ICommand gmfCommand = super.getBeforeMoveCommand(request);
-
-
-		// Find any ConnectorEnd that would become invalid after the Property move
-		for(Object movedObject : request.getElementsToMove().keySet()) {
-
-			// Select Property (excluding Port) in the list of moved elements
-			if(!(movedObject instanceof Property) || (movedObject instanceof Port)) {
-				continue;
-			}
-
-			// Find ConnectorEnd referencing the edited Property as partWithPort or role
-			Property movedProperty = (Property)movedObject;
-			EReference[] refs = new EReference[]{ UMLPackage.eINSTANCE.getConnectorEnd_PartWithPort(), UMLPackage.eINSTANCE.getConnectorEnd_Role() };
-			@SuppressWarnings("unchecked")
-			Collection<ConnectorEnd> referencers = EMFCoreUtil.getReferencers(movedProperty, refs);
-
-			IElementEditService provider = ElementEditServiceUtils.getCommandProvider(movedProperty);
-			if(provider != null) {
-				for(ConnectorEnd end : referencers) {
-					// General case, delete the ConnectorEnd
-					DestroyElementRequest req = new DestroyElementRequest(end, false);
-					ICommand deleteCommand = provider.getEditCommand(req);
-
-					// Add current EObject destroy command to the global command
-					gmfCommand = CompositeCommand.compose(gmfCommand, deleteCommand);
-				}
-			}
-		}
-
 
 		// Treat related associations that required a re-factor action
 		// Retrieve elements already under re-factor.
@@ -152,14 +72,22 @@ public class ClassifierHelperAdvice extends AbstractEditHelperAdvice {
 			Property movedProperty = (Property)movedObject;
 			Association relatedAssociation = movedProperty.getAssociation();
 
-			// The moved property has to be related to a UML association
-			if((movedProperty.getAssociation() == null) || !(ElementUtil.hasNature(movedProperty.getAssociation(), UMLElementTypes.UML_NATURE))) {
+			// The moved property has to be related to a SysML association
+			if((relatedAssociation == null) || !(ElementUtil.hasNature(relatedAssociation, SysMLElementTypes.SYSML_NATURE))) {
 				continue;
 			}
 
 			// Make sure the target differs from current container
 			if((movedProperty.eContainer() == request.getTargetContainer()) && (movedProperty.eContainingFeature() == request.getTargetFeature(movedProperty))) {
 				continue;
+			}
+
+			// Make sure the target differs from related association (this move does not imply a re-factor, but simply an ownership change of an association end)
+			if((relatedAssociation == request.getTargetContainer()) && ((request.getTargetFeature(movedProperty) == null) || (UMLPackage.eINSTANCE.getAssociation_OwnedEnd() == request.getTargetFeature(movedProperty)))) {
+				continue; // This is a SysML Property#isNavigable update which does not require an Association refactoring action 
+			}
+			if((getOppositeAssociationEnd(movedProperty).getType() == request.getTargetContainer())) {
+				continue; // This is a SysML Property#isNavigable update which does not require an Association refactoring action 
 			}
 
 			// Moved element already under re-factor ?
@@ -212,5 +140,26 @@ public class ClassifierHelperAdvice extends AbstractEditHelperAdvice {
 		}
 
 		return null;
+	}
+
+	/**
+	 * Get the opposite end of an AssociationEnd (binary association assumed).
+	 * 
+	 * @param associationEnd
+	 *        the association end
+	 * @return the opposite association end or null
+	 */
+	private Property getOppositeAssociationEnd(Property associationEnd) {
+		Property oppositeEnd = null;
+
+		if(associationEnd.getAssociation() != null) {
+			Association association = associationEnd.getAssociation();
+			Set<Property> ends = new HashSet<Property>();
+			ends.addAll(association.getMemberEnds());
+			ends.remove(associationEnd);
+
+			oppositeEnd = (ends.size() > 0) ? ends.iterator().next() : null;
+		}
+		return oppositeEnd;
 	}
 }
