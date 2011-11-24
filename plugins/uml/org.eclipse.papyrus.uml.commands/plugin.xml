@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+<extension
+      point="org.eclipse.ui.handlers">
+    <handler
+         class="org.eclipse.papyrus.uml.commands.handler.CopyHandler"
+         commandId="org.eclipse.ui.edit.copy">
+      <activeWhen>
+         <and>
+            <with
+                  variable="activePart">
+               <instanceof
+                     value="org.eclipse.papyrus.views.modelexplorer.ModelExplorerPageBookView">
+               </instanceof>
+            </with>
+            <with
+                  variable="selection">
+                  <!-- We add this test in order to refresh the Copy action in the menu edit -->
+               <test
+                     forcePluginActivation="true"
+                     property="org.eclipse.papyrus.views.modelexplorer.tester.isEObject"
+                     value="true">
+               </test>
+            </with>
+         </and>
+      </activeWhen>
+   </handler>
+    <handler
+          class="org.eclipse.papyrus.uml.commands.handler.PasteHandler"
+          commandId="org.eclipse.ui.edit.paste">
+       <activeWhen>
+          <and>
+             <with
+                   variable="activePart">
+                <instanceof
+                      value="org.eclipse.papyrus.views.modelexplorer.ModelExplorerPageBookView">
+                </instanceof>
+             </with>
+             <with
+                   variable="selection">
+                <test
+                      forcePluginActivation="true"
+                      property="org.eclipse.papyrus.views.modelexplorer.tester.isEObject"
+                      value="true">
+                </test>
+             </with>
+          </and>
+       </activeWhen>
+    </handler>
+    <handler
+          class="org.eclipse.papyrus.uml.commands.handler.RenameNamedElementHandler"
+          commandId="org.eclipse.ui.edit.rename">
+       <activeWhen>
+          <or>
+             <with
+                   variable="selection">
+                <and>
+                   <count
+                         value="1">
+                   </count>
+                   <iterate>
+                      <adapt
+                            type="org.eclipse.uml2.uml.NamedElement">
+                      </adapt>
+                   </iterate>
+                   <!-- we add these test to force the refresh of the Menu + to avoid handlers conflit   -->
+                   <test
+                         forcePluginActivation="true"
+                         property="org.eclipse.papyrus.uml.diagram.menu.tester.isDiagram"
+                         value="false">
+                   </test>
+                    <test
+                          forcePluginActivation="true"
+                          property="org.eclipse.papyrus.table.menu.providers.TableTester.isTable"
+                          value="false">
+                    </test>
+                    <test
+                          forcePluginActivation="true"
+                          property="org.eclipse.papyrus.uml.commands.tester.isNamedElement"
+                          value="true">
+                    </test>
+                </and>
+             </with>
+          </or>
+       </activeWhen>
+    </handler>
+</extension>
+<extension
+      point="org.eclipse.ui.startup">
+   <startup
+         class="org.eclipse.papyrus.uml.commands.Activator">
+   </startup>
+</extension>
+<extension
+      point="org.eclipse.core.expressions.propertyTesters">
+   <propertyTester
+         class="org.eclipse.papyrus.uml.commands.handler.tester.UMLPropertyTester"
+         id="org.eclipse.papyrus.uml.commands.tester"
+         namespace="org.eclipse.papyrus.uml.commands.tester"
+         properties="isNamedElement"
+         type="org.eclipse.jface.viewers.IStructuredSelection">
+   </propertyTester>
+</extension>
+</plugin>
