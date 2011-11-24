@@ -120,7 +120,7 @@
 <project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml/org.eclipse.papyrus.uml.extensionpoints,org.eclipse.papyrus.uml.extensionpoints"/>
 <project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml/org.eclipse.papyrus.uml.icons,org.eclipse.papyrus.uml.icons"/>
 <project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml/org.eclipse.papyrus.uml.import,org.eclipse.papyrus.uml.import"/>
-<project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml/org.eclipse.papyrus.uml.menu,org.eclipse.papyrus.uml.menu"/>
+<project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml/org.eclipse.papyrus.uml.commands,org.eclipse.papyrus.uml.commands"/>
 <project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml/modelexplorer/org.eclipse.papyrus.uml.modelexplorer,org.eclipse.papyrus.uml.modelexplorer"/>
 <project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml/modelexplorer/org.eclipse.papyrus.uml.modelexplorer.widgets,org.eclipse.papyrus.uml.modelexplorer.widgets"/>
 <project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml/org.eclipse.papyrus.uml.pastemanager,org.eclipse.papyrus.uml.pastemanager"/>
@@ -327,7 +327,7 @@
 <item elementID="=org.eclipse.papyrus.uml.service.types" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.uml.profile" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.uml.controlmode.profile" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=org.eclipse.papyrus.uml.menu" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.papyrus.uml.commands" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.uml.ui.perspectiveconfiguration" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.uml.import" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.uml.compare" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
