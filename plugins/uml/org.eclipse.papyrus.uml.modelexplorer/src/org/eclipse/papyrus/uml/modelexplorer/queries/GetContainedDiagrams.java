@@ -45,7 +45,8 @@ public class GetContainedDiagrams extends AbstractEditorContainerQuery implement
 
 			}
 		} catch (ServiceException e) {
-			throw new ModelQueryExecutionException("Enable to find the Services Registry"); //$NON-NLS-1$
+			//When the customization is not loaded in a Papyrus context, it simply evaluates to false
+			//nothing to do
 		}
 		return diagrams;
 	}
