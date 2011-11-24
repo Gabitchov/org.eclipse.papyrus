@@ -21,10 +21,6 @@ public class Messages extends NLS {
 
 	public static String DuplicateTableHandler_CopyOf;
 
-	public static String GetContainedTables_EnableToFindTheServiceRegistry;
-
-	public static String IsTableContainer_EnableToFindTheServiceRegistry;
-
 	public static String RenameTableHandler_NewNameMessage;
 
 	public static String RenameTableHandler_RenameAnExistingTable_Title;
