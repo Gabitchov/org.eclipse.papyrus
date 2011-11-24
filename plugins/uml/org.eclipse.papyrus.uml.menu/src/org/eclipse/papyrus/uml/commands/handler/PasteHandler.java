@@ -11,7 +11,7 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.uml.menu.handler;
+package org.eclipse.papyrus.uml.commands.handler;
 
 import java.util.List;
 
@@ -19,7 +19,7 @@ import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.papyrus.uml.menu.command.PasteElementCommand;
+import org.eclipse.papyrus.uml.commands.command.PasteElementCommand;
 import org.eclipse.papyrus.views.properties.util.EMFHelper;
 
 /**

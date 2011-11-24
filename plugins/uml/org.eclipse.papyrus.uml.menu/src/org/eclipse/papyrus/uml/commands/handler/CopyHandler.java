@@ -11,7 +11,7 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.uml.menu.handler;
+package org.eclipse.papyrus.uml.commands.handler;
 
 import java.util.ArrayList;
 import java.util.Iterator;

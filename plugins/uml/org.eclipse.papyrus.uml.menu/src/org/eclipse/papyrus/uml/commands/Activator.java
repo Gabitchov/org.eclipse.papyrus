@@ -1,4 +1,4 @@
-package org.eclipse.papyrus.uml.menu;
+package org.eclipse.papyrus.uml.commands;
 
 import org.eclipse.papyrus.infra.core.log.LogHelper;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
@@ -10,7 +10,7 @@ import org.osgi.framework.BundleContext;
 public class Activator extends AbstractUIPlugin implements org.eclipse.ui.IStartup {
 
 	// The plug-in ID
-	public static final String PLUGIN_ID = "org.eclipse.papyrus.uml.menu"; //$NON-NLS-1$
+	public static final String PLUGIN_ID = "org.eclipse.papyrus.uml.commands"; //$NON-NLS-1$
 
 	// The shared instance
 	private static Activator plugin;

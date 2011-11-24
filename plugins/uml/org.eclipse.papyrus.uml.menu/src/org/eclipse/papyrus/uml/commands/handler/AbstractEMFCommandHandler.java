@@ -12,7 +12,7 @@
  * 		Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.uml.menu.handler;
+package org.eclipse.papyrus.uml.commands.handler;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +29,7 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.utils.BusinessModelResolver;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
-import org.eclipse.papyrus.uml.menu.Activator;
+import org.eclipse.papyrus.uml.commands.Activator;
 import org.eclipse.ui.PlatformUI;
 
 /**

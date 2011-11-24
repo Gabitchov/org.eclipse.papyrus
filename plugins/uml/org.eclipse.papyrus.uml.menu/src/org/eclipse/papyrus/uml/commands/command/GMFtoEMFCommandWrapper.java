@@ -11,7 +11,7 @@
  *  Patrick Tessier (CEA LIST) patrick.tessier@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.uml.menu.command;
+package org.eclipse.papyrus.uml.commands.command;
 
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 
