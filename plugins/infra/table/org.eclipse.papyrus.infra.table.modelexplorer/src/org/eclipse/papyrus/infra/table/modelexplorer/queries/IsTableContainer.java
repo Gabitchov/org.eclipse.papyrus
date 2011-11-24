@@ -19,7 +19,6 @@ import org.eclipse.emf.facet.infra.query.core.java.IJavaModelQuery;
 import org.eclipse.emf.facet.infra.query.core.java.ParameterValueList;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.table.instance.papyrustableinstance.PapyrusTableInstance;
-import org.eclipse.papyrus.infra.table.modelexplorer.messages.Messages;
 import org.eclipse.papyrus.views.modelexplorer.queries.AbstractEditorContainerQuery;
 
 /** Returns true if the element contains a Table */
@@ -35,16 +34,16 @@ public class IsTableContainer extends AbstractEditorContainerQuery implements IJ
 				if(!(page instanceof PapyrusTableInstance)) {
 					continue;
 				}
-				// We have a GMF Diagram
+				// We have a Papyrus Table Instance
 				PapyrusTableInstance papyrusTableInstance = (PapyrusTableInstance)page;
 				if(context.equals(papyrusTableInstance.getTable().getContext())) {
-					return true;
+					return Boolean.TRUE;
 				}
-
 			}
 		} catch (ServiceException e) {
-			throw new ModelQueryExecutionException(Messages.IsTableContainer_EnableToFindTheServiceRegistry);
+			////When the customization is not loaded in a Papyrus context, it simply evaluates to false
+			//nothing to do
 		}
-		return false;
+		return Boolean.FALSE;
 	}
 }

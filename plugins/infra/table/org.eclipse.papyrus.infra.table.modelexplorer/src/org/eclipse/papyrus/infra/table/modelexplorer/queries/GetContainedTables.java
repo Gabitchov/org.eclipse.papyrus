@@ -23,7 +23,6 @@ import org.eclipse.emf.facet.infra.query.core.java.IJavaModelQuery;
 import org.eclipse.emf.facet.infra.query.core.java.ParameterValueList;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.table.instance.papyrustableinstance.PapyrusTableInstance;
-import org.eclipse.papyrus.infra.table.modelexplorer.messages.Messages;
 import org.eclipse.papyrus.views.modelexplorer.queries.AbstractEditorContainerQuery;
 
 /** Get the collection of all contained tables */
@@ -33,7 +32,7 @@ public class GetContainedTables extends AbstractEditorContainerQuery implements 
 	 * {@inheritDoc}
 	 */
 	public Collection<PapyrusTableInstance> evaluate(final EObject context, final ParameterValueList parameterValues) throws ModelQueryExecutionException {
-		Collection<PapyrusTableInstance> diagrams = new ArrayList<PapyrusTableInstance>();
+		Collection<PapyrusTableInstance> tables = new ArrayList<PapyrusTableInstance>();
 
 		try {
 			for(Object page : getPageMngr().allPages()) {
@@ -43,14 +42,15 @@ public class GetContainedTables extends AbstractEditorContainerQuery implements 
 				// We have a GMF Diagram
 				PapyrusTableInstance diagram = (PapyrusTableInstance)page;
 				if(context.equals(diagram.getTable().getContext())) {
-					diagrams.add(diagram);
+					tables.add(diagram);
 				}
 
 			}
 		} catch (ServiceException e) {
-			throw new ModelQueryExecutionException(Messages.GetContainedTables_EnableToFindTheServiceRegistry);
+			//When the customization is not loaded in a Papyrus context, it simply evaluates to false
+			//nothing to do
 		}
-		return diagrams;
+		return tables;
 	}
 
 }
