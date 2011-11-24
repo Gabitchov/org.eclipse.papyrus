@@ -11,15 +11,14 @@
  *****************************************************************************/
 package org.eclipse.papyrus.widgets.editors;
 
+import java.io.File;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.widgets.Activator;
 import org.eclipse.papyrus.widgets.selectors.NullSelector;
@@ -31,7 +30,12 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.ui.dialogs.ResourceSelectionDialog;
 
-
+/**
+ * A Widget for editing multi-valued Strings with File paths
+ * The file paths may be absolute (FileSystem paths) or relative to the workspace (Workspace paths)
+ * 
+ * @author Camille Letavernier
+ */
 public class MultipleStringFileEditor extends MultipleValueEditor {
 
 	protected boolean allowBrowseWorkspace = true;
@@ -116,7 +120,11 @@ public class MultipleStringFileEditor extends MultipleValueEditor {
 		dialog.open();
 		List<String> filePathList = new ArrayList<String>(modelProperty.size() + dialog.getFileNames().length);
 		filePathList.addAll(modelProperty);
-		filePathList.addAll(Arrays.asList(dialog.getFileNames()));
+
+		for(String fileName : dialog.getFileNames()) {
+			filePathList.add(dialog.getFilterPath() + File.separator + fileName);
+		}
+
 		modelProperty.clear();
 		modelProperty.addAll(filePathList);
 		commit();
@@ -127,19 +135,19 @@ public class MultipleStringFileEditor extends MultipleValueEditor {
 
 		ResourceSelectionDialog dialog = new ResourceSelectionDialog(getShell(), workspace, ""); //$NON-NLS-1$
 
-		IStructuredSelection currentSelection = (IStructuredSelection)this.treeViewer.getSelection();
-		if(!currentSelection.isEmpty()) {
-			List<IFile> selectedFiles = new LinkedList<IFile>();
-			for(Object selection : currentSelection.toArray()) {
-				if(selection instanceof String) {
-					IFile currentFile = FileUtil.getIFile((String)selection);
-					if(currentFile != null) {
-						selectedFiles.add(currentFile);
-					}
-				}
-			}
-			dialog.setInitialSelections(selectedFiles.toArray(new IFile[selectedFiles.size()]));
-		}
+		//		IStructuredSelection currentSelection = (IStructuredSelection)this.treeViewer.getSelection();
+		//		if(!currentSelection.isEmpty()) {
+		//			List<IFile> selectedFiles = new LinkedList<IFile>();
+		//			for(Object selection : currentSelection.toArray()) {
+		//				if(selection instanceof String) {
+		//					IFile currentFile = FileUtil.getIFile((String)selection);
+		//					if(currentFile != null) {
+		//						selectedFiles.add(currentFile);
+		//					}
+		//				}
+		//			}
+		//			dialog.setInitialSelections(selectedFiles.toArray(new IFile[selectedFiles.size()]));
+		//		}
 
 		int code = dialog.open();
 		if(code == Window.OK) {
