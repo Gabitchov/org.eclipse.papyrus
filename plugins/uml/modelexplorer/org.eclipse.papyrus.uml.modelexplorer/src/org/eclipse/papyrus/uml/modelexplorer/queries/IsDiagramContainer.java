@@ -38,13 +38,14 @@ public class IsDiagramContainer extends AbstractEditorContainerQuery implements 
 				Diagram diagram = (Diagram)page;
 				if(context.equals(diagram.getElement())) {
 					diagrams.add(diagram);
-					return true;
+					return Boolean.TRUE;
 				}
 
 			}
 		} catch (ServiceException e) {
-			throw new ModelQueryExecutionException("Enable to find the Services Registry"); //$NON-NLS-1$
+			//When the customization is not loaded in a Papyrus context, it simply evaluates to false
+			//nothing to do
 		}
-		return false;
+		return Boolean.FALSE;
 	}
 }
