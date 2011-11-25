@@ -77,7 +77,7 @@ public class ShowHideClassifierContentsEditPolicy extends AbstractEditPolicy {
 	protected Command getCreateViewCommand(View container, EObject semanticElement, Point location) {
 
 		// creation of the node
-		ViewDescriptor viewDescriptor = new ViewDescriptor(new EObjectAdapter(semanticElement), Node.class, null, ViewUtil.APPEND, false, ((IGraphicalEditPart)this.getHost()).getDiagramPreferencesHint());
+		ViewDescriptor viewDescriptor = new ViewDescriptor(new EObjectAdapter(semanticElement), Node.class, null, ViewUtil.APPEND, true, ((IGraphicalEditPart)this.getHost()).getDiagramPreferencesHint());
 		CompoundCommand compositeCmd = new CompoundCommand("Create View");//$NON-NLS-1$
 		CreateCommand cmd = new CreateCommand(getEditingDomain(), viewDescriptor, container);
 		if(cmd.canExecute()) {
