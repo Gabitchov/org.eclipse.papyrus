@@ -29,15 +29,19 @@ import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
+import org.eclipse.gef.commands.UnexecutableCommand;
+import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DiagramDragDropEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.requests.ArrangeRequest;
@@ -58,6 +62,8 @@ import org.eclipse.papyrus.gmf.diagram.common.provider.IGraphicalTypeRegistry;
 import org.eclipse.papyrus.uml.diagram.common.commands.CommonDeferredCreateConnectionViewCommand;
 import org.eclipse.papyrus.uml.diagram.common.commands.DeferredCreateCommand;
 import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
+import org.eclipse.papyrus.uml.diagram.common.edit.part.AbstractElementBorderEditPart;
+import org.eclipse.papyrus.uml.diagram.common.edit.part.AbstractElementLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.common.listeners.DropTargetListener;
 import org.eclipse.swt.dnd.DND;
 
@@ -89,6 +95,31 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 	}
 
 	protected abstract Set<String> getSpecificDropBehaviorTypes();
+
+	/**
+	 * <pre>
+	 * {@inheritedDoc}.
+	 * 
+	 * Overridden method to fix some exception occurring while moving affixed element (nodes or labels)
+	 * (https://bugs.eclipse.org/bugs/show_bug.cgi?id=350680).
+	 * </pre>
+	 */
+	@Override
+	protected Command getDropCommand(ChangeBoundsRequest request) {
+
+		Iterator<?> iter = request.getEditParts().iterator();
+		EObject graphicalParentObject = ((GraphicalEditPart)getHost()).resolveSemanticElement();
+		while((graphicalParentObject != null) && (iter.hasNext())) {
+			EditPart droppedEditPart = (EditPart)iter.next();
+			if(droppedEditPart instanceof AbstractElementBorderEditPart) {
+				return UnexecutableCommand.INSTANCE;
+			}
+			if(droppedEditPart instanceof AbstractElementLabelEditPart) {
+				return UnexecutableCommand.INSTANCE;
+			}
+		}
+		return super.getDropCommand(request);
+	}
 
 	/**
 	 * {@inheritedDoc}.
@@ -254,7 +285,7 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 	protected ICommand getDefaultDropNodeCommand(String droppedObjectGraphicalType, Point absoluteLocation, EObject droppedObject) {
 		return getDefaultDropNodeCommand(droppedObjectGraphicalType, absoluteLocation, droppedObject, null);
 	}
-	
+
 	protected ICommand getDefaultDropNodeCommand(String droppedObjectGraphicalType, Point absoluteLocation, EObject droppedObject, DropObjectsRequest request) {
 
 		IAdaptable elementAdapter = new EObjectAdapter(droppedObject);
@@ -277,7 +308,7 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 		return new CommandProxyWithResult(command, descriptor);
 
 	}
-	
+
 	/**
 	 * Check if the ctrl key event is activate
 	 * 
