@@ -50,6 +50,10 @@ public class MultipleStringFileEditor extends MultipleValueEditor {
 
 	protected final List<String> filterExtensions;
 
+	public static final String browseWorkspaceIcon = "icons/browse-workspace_12x12.png"; //$NON-NLS-1$
+
+	public static final String browseFileSystemIcon = "icons/browse-filesystem_12x12.png"; //$NON-NLS-1$
+
 	public MultipleStringFileEditor(Composite parent, int style) {
 		super(parent, style, NullSelector.instance);
 		setDirectCreation(true);
@@ -64,8 +68,8 @@ public class MultipleStringFileEditor extends MultipleValueEditor {
 		add.dispose();
 		edit.dispose();
 
-		browseFileSystem = createButton(Activator.getDefault().getImageFromPlugin("icons/browse_12x12.gif"), "Browse file system");
-		browseWorkspace = createButton(Activator.getDefault().getImageFromPlugin("icons/browse_12x12.gif"), "Browse workspace");
+		browseFileSystem = createButton(Activator.getDefault().getImageFromPlugin(browseFileSystemIcon), "Browse file system");
+		browseWorkspace = createButton(Activator.getDefault().getImageFromPlugin(browseWorkspaceIcon), "Browse workspace");
 
 		browseWorkspace.moveAbove(remove);
 		browseFileSystem.moveAbove(remove);
