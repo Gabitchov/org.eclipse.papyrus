@@ -426,6 +426,7 @@ public class StateNameEditPart extends CompartmentEditPart implements ITextAware
 			}
 		}
 
+
 		super.handleNotificationEvent(event);
 	}
 

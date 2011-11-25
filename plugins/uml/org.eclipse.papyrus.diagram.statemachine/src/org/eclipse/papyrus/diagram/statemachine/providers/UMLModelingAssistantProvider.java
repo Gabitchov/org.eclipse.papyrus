@@ -17,7 +17,9 @@ import org.eclipse.gmf.runtime.emf.ui.services.modelingassistant.ModelingAssista
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.window.Window;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.CommentEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.ConnectionPointReferenceEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.ConstraintEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.FinalStateEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateChoiceEditPart;
@@ -31,6 +33,7 @@ import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateJunctionEd
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateShallowHistoryEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateTerminateEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.RegionCompartmentEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.RegionEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateCompartmentEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateMachineCompartmentEditPart;
@@ -93,6 +96,12 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(sourceEditPart instanceof ConnectionPointReferenceEditPart) {
 			return ((ConnectionPointReferenceEditPart)sourceEditPart).getMARelTypesOnSource();
 		}
+		if(sourceEditPart instanceof CommentEditPart) {
+			return ((CommentEditPart)sourceEditPart).getMARelTypesOnSource();
+		}
+		if(sourceEditPart instanceof ConstraintEditPart) {
+			return ((ConstraintEditPart)sourceEditPart).getMARelTypesOnSource();
+		}
 		return Collections.EMPTY_LIST;
 	}
 
@@ -144,6 +153,12 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(sourceEditPart instanceof ConnectionPointReferenceEditPart) {
 			return ((ConnectionPointReferenceEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
+		if(sourceEditPart instanceof CommentEditPart) {
+			return ((CommentEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
+		}
+		if(sourceEditPart instanceof ConstraintEditPart) {
+			return ((ConstraintEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
+		}
 		return Collections.EMPTY_LIST;
 	}
 
@@ -154,6 +169,9 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		IGraphicalEditPart targetEditPart = (IGraphicalEditPart)target.getAdapter(IGraphicalEditPart.class);
 		if(targetEditPart instanceof StateMachineEditPart) {
 			return ((StateMachineEditPart)targetEditPart).getMARelTypesOnTarget();
+		}
+		if(targetEditPart instanceof RegionEditPart) {
+			return ((RegionEditPart)targetEditPart).getMARelTypesOnTarget();
 		}
 		if(targetEditPart instanceof FinalStateEditPart) {
 			return ((FinalStateEditPart)targetEditPart).getMARelTypesOnTarget();
@@ -194,6 +212,12 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(targetEditPart instanceof ConnectionPointReferenceEditPart) {
 			return ((ConnectionPointReferenceEditPart)targetEditPart).getMARelTypesOnTarget();
 		}
+		if(targetEditPart instanceof CommentEditPart) {
+			return ((CommentEditPart)targetEditPart).getMARelTypesOnTarget();
+		}
+		if(targetEditPart instanceof ConstraintEditPart) {
+			return ((ConstraintEditPart)targetEditPart).getMARelTypesOnTarget();
+		}
 		return Collections.EMPTY_LIST;
 	}
 
@@ -222,7 +246,7 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			return types;
 		}
 		if(editPart instanceof RegionCompartmentEditPart) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(12);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(14);
 			types.add(UMLElementTypes.Pseudostate_8000);
 			types.add(UMLElementTypes.Pseudostate_9000);
 			types.add(UMLElementTypes.Pseudostate_10000);
@@ -235,6 +259,8 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			types.add(UMLElementTypes.State_6000);
 			types.add(UMLElementTypes.Pseudostate_16000);
 			types.add(UMLElementTypes.Pseudostate_17000);
+			types.add(UMLElementTypes.Comment_666);
+			types.add(UMLElementTypes.Constraint_668);
 			return types;
 		}
 		if(editPart instanceof StateMachineCompartmentEditPart) {
@@ -260,6 +286,9 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		IGraphicalEditPart targetEditPart = (IGraphicalEditPart)target.getAdapter(IGraphicalEditPart.class);
 		if(targetEditPart instanceof StateMachineEditPart) {
 			return ((StateMachineEditPart)targetEditPart).getMATypesForSource(relationshipType);
+		}
+		if(targetEditPart instanceof RegionEditPart) {
+			return ((RegionEditPart)targetEditPart).getMATypesForSource(relationshipType);
 		}
 		if(targetEditPart instanceof FinalStateEditPart) {
 			return ((FinalStateEditPart)targetEditPart).getMATypesForSource(relationshipType);
@@ -299,6 +328,12 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		}
 		if(targetEditPart instanceof ConnectionPointReferenceEditPart) {
 			return ((ConnectionPointReferenceEditPart)targetEditPart).getMATypesForSource(relationshipType);
+		}
+		if(targetEditPart instanceof CommentEditPart) {
+			return ((CommentEditPart)targetEditPart).getMATypesForSource(relationshipType);
+		}
+		if(targetEditPart instanceof ConstraintEditPart) {
+			return ((ConstraintEditPart)targetEditPart).getMATypesForSource(relationshipType);
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -349,6 +384,12 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		}
 		if(sourceEditPart instanceof ConnectionPointReferenceEditPart) {
 			return ((ConnectionPointReferenceEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
+		}
+		if(sourceEditPart instanceof CommentEditPart) {
+			return ((CommentEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
+		}
+		if(sourceEditPart instanceof ConstraintEditPart) {
+			return ((ConstraintEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
 		}
 		return Collections.EMPTY_LIST;
 	}

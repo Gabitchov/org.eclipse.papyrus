@@ -296,6 +296,21 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case ConnectionPointReferenceStereotypeEditPart.VISUAL_ID:
 				return new ConnectionPointReferenceStereotypeEditPart(view);
 
+			case CommentEditPart.VISUAL_ID:
+				return new CommentEditPart(view);
+
+			case CommentBodyEditPart.VISUAL_ID:
+				return new CommentBodyEditPart(view);
+
+			case ConstraintEditPart.VISUAL_ID:
+				return new ConstraintEditPart(view);
+
+			case ConstraintNameLabelEditPart.VISUAL_ID:
+				return new ConstraintNameLabelEditPart(view);
+
+			case ConstraintBodyEditPart.VISUAL_ID:
+				return new ConstraintBodyEditPart(view);
+
 			case RegionCompartmentEditPart.VISUAL_ID:
 				return new RegionCompartmentEditPart(view);
 
@@ -317,11 +332,20 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case TransitionStereotypeEditPart.VISUAL_ID:
 				return new TransitionStereotypeEditPart(view);
 
+
 			case GeneralizationEditPart.VISUAL_ID:
 				return new GeneralizationEditPart(view);
 
 			case GeneralizationStereotypeEditPart.VISUAL_ID:
 				return new GeneralizationStereotypeEditPart(view);
+
+
+			case CommentAnnotatedElementEditPart.VISUAL_ID:
+				return new CommentAnnotatedElementEditPart(view);
+
+
+			case ConstraintConstrainedElementEditPart.VISUAL_ID:
+				return new ConstraintConstrainedElementEditPart(view);
 
 			}
 		}

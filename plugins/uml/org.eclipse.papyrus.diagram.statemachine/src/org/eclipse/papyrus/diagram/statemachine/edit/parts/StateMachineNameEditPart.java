@@ -413,6 +413,7 @@ public class StateMachineNameEditPart extends CompartmentEditPart implements ITe
 			}
 		}
 
+
 		super.handleNotificationEvent(event);
 	}
 

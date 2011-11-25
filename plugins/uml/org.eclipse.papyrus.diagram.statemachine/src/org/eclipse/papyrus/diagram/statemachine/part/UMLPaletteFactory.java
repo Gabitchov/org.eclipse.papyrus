@@ -88,7 +88,22 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
+	private final static String CREATESTATEMACHINECOMMENTCREATIONTOOL = "createStateMachineCommentCreationTool"; //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	private final static String CREATECONSTRAINTCREATIONTOOL = "createConstraintCreationTool"; //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
 	private final static String CREATETRANSITIONCREATIONTOOL = "createTransitionCreationTool"; //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	private final static String CREATECOMMENTLINKCREATIONTOOL = "createCommentlinkCreationTool"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -114,6 +129,28 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	private Tool createConnectionPointReferenceCreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.ConnectionPointReference_18000);
+
+		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
+		return tool;
+	}
+
+	/**
+	 * @generated
+	 */
+	private Tool createStateMachineCommentCreationTool() {
+		List<IElementType> types = new ArrayList<IElementType>(1);
+		types.add(UMLElementTypes.Comment_666);
+
+		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
+		return tool;
+	}
+
+	/**
+	 * @generated
+	 */
+	private Tool createConstraintCreationTool() {
+		List<IElementType> types = new ArrayList<IElementType>(1);
+		types.add(UMLElementTypes.Constraint_668);
 
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
 		return tool;
@@ -297,8 +334,17 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		if(toolId.equals(CREATECONNECTIONPOINTREFERENCECREATIONTOOL)) {
 			return createConnectionPointReferenceCreationTool();
 		}
+		if(toolId.equals(CREATESTATEMACHINECOMMENTCREATIONTOOL)) {
+			return createStateMachineCommentCreationTool();
+		}
+		if(toolId.equals(CREATECONSTRAINTCREATIONTOOL)) {
+			return createConstraintCreationTool();
+		}
 		if(toolId.equals(CREATETRANSITIONCREATIONTOOL)) {
 			return createTransitionCreationTool();
+		}
+		if(toolId.equals(CREATECOMMENTLINKCREATIONTOOL)) {
+			return createCommentlinkCreationTool();
 		}
 
 		// default return: null
@@ -311,6 +357,18 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	private Tool createTransitionCreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.Transition_7000);
+
+		Tool tool = new AspectUnspecifiedTypeConnectionTool(types);
+		return tool;
+	}
+
+	/**
+	 * @generated
+	 */
+	private Tool createCommentlinkCreationTool() {
+		List<IElementType> types = new ArrayList<IElementType>(2);
+		types.add(UMLElementTypes.CommentAnnotatedElement_667);
+		types.add(UMLElementTypes.ConstraintConstrainedElement_670);
 
 		Tool tool = new AspectUnspecifiedTypeConnectionTool(types);
 		return tool;

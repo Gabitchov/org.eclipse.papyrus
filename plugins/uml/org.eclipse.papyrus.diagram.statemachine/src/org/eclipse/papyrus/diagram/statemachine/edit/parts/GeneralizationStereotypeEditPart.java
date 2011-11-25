@@ -391,6 +391,9 @@ public class GeneralizationStereotypeEditPart extends LabelEditPart implements I
 			}
 		}
 
+
+
+
 		super.handleNotificationEvent(event);
 	}
 

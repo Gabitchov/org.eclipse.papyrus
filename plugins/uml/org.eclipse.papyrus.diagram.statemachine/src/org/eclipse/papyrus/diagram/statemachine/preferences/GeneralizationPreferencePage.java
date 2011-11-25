@@ -15,6 +15,7 @@ public class GeneralizationPreferencePage extends AbstractPapyrusLinkPreferenceP
 	 */
 	public static void initDefaults(IPreferenceStore store) {
 
+
 	}
 
 	/**

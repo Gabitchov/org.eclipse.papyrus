@@ -28,6 +28,7 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
+import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
@@ -249,8 +250,10 @@ UMLNodeEditPart {
 	 * @generated
 	 */
 	public List<IElementType> getMARelTypesOnTarget() {
-		ArrayList<IElementType> types = new ArrayList<IElementType>(1);
+		ArrayList<IElementType> types = new ArrayList<IElementType>(3);
 		types.add(UMLElementTypes.Transition_7000);
+		types.add(UMLElementTypes.CommentAnnotatedElement_667);
+		types.add(UMLElementTypes.ConstraintConstrainedElement_670);
 		return types;
 	}
 
@@ -273,6 +276,10 @@ UMLNodeEditPart {
 			types.add(UMLElementTypes.Pseudostate_16000);
 			types.add(UMLElementTypes.Pseudostate_17000);
 			types.add(UMLElementTypes.ConnectionPointReference_18000);
+		} else if(relationshipType == UMLElementTypes.CommentAnnotatedElement_667) {
+			types.add(UMLElementTypes.Comment_666);
+		} else if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_670) {
+			types.add(UMLElementTypes.Constraint_668);
 		}
 		return types;
 	}
@@ -354,6 +361,19 @@ UMLNodeEditPart {
 	 * @generated
 	 **/
 	protected void handleNotificationEvent(Notification event) {
+		/*
+		 * when a node have external node labels, the methods refreshChildren() remove the EditPart corresponding to the Label from the EditPart
+		 * Registry. After that, we can't reset the visibility to true (using the Show/Hide Label Action)!
+		 */
+		if(NotationPackage.eINSTANCE.getView_Visible().equals(event.getFeature())) {
+			Object notifier = event.getNotifier();
+			List<?> modelChildren = ((View)getModel()).getChildren();
+			if(!(notifier instanceof Edge)) {
+				if(modelChildren.contains(event.getNotifier())) {
+					return;
+				}
+			}
+		}
 		super.handleNotificationEvent(event);
 
 	}

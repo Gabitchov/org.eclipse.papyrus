@@ -32,6 +32,8 @@ import org.eclipse.gmf.runtime.notation.Location;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.Size;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.CommentEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.ConstraintEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.FinalStateEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateChoiceEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateDeepHistoryEditPart;
@@ -79,6 +81,8 @@ public class RegionCompartmentCanonicalEditPolicy extends CanonicalEditPolicy {
 			myFeaturesToSynchronize = new HashSet<EStructuralFeature>();
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getRegion_Subvertex());
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getStateMachine_ConnectionPoint());
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getElement_OwnedComment());
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getNamespace_OwnedRule());
 		}
 		return myFeaturesToSynchronize;
 	}
@@ -115,6 +119,8 @@ public class RegionCompartmentCanonicalEditPolicy extends CanonicalEditPolicy {
 		case StateEditPart.VISUAL_ID:
 		case PseudostateEntryPointEditPart.VISUAL_ID:
 		case PseudostateExitPointEditPart.VISUAL_ID:
+		case CommentEditPart.VISUAL_ID:
+		case ConstraintEditPart.VISUAL_ID:
 			return true;
 		}
 		return false;

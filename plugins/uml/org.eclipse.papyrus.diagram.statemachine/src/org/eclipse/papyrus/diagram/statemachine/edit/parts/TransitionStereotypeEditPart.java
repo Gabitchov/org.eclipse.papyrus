@@ -391,6 +391,9 @@ public class TransitionStereotypeEditPart extends LabelEditPart implements IText
 			}
 		}
 
+
+
+
 		super.handleNotificationEvent(event);
 	}
 

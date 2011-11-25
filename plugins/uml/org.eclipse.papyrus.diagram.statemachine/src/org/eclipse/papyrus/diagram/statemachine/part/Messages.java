@@ -387,12 +387,42 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String createStateMachineCommentCreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createStateMachineCommentCreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String createConstraintCreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createConstraintCreationTool_desc;
+
+	/**
+	 * @generated
+	 */
 	public static String createTransitionCreationTool_title;
 
 	/**
 	 * @generated
 	 */
 	public static String createTransitionCreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String createCommentlinkCreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createCommentlinkCreationTool_desc;
 
 	/**
 	 * @generated

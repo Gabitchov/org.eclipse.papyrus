@@ -103,12 +103,17 @@ NamedElementEditPart {
 			return true;
 		}
 
+
 		if(childEditPart instanceof StateCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getStateCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.add(((StateCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
+
+
+
+
 
 		//Papyrus Gencode :Affixed EntryExitPoints ConnectionPointReferences Locator
 		if(childEditPart instanceof PseudostateEntryPointEditPart) {
@@ -117,6 +122,10 @@ NamedElementEditPart {
 			return true;
 		}
 
+
+
+
+
 		//Papyrus Gencode :Affixed EntryExitPoints ConnectionPointReferences Locator
 		if(childEditPart instanceof PseudostateExitPointEditPart) {
 			IBorderItemLocator locator = new CustomEntryExitPointPositionLocator(getMainFigure(), PositionConstants.NONE);
@@ -124,12 +133,19 @@ NamedElementEditPart {
 			return true;
 		}
 
+
+
+
+
 		//Papyrus Gencode :Affixed EntryExitPoints ConnectionPointReferences Locator
 		if(childEditPart instanceof ConnectionPointReferenceEditPart) {
 			IBorderItemLocator locator = new CustomEntryExitPointPositionLocator(getMainFigure(), PositionConstants.NONE);
 			getBorderedFigure().getBorderItemContainer().add(((ConnectionPointReferenceEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
+
+
+
 
 		return false;
 	}
@@ -142,6 +158,7 @@ NamedElementEditPart {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new StateItemSemanticEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
+
 
 		//in Papyrus diagrams are not strongly synchronised
 		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.diagram.statemachine.edit.policies.StateCanonicalEditPolicy());
@@ -314,8 +331,10 @@ NamedElementEditPart {
 	 * @generated
 	 */
 	public List<IElementType> getMARelTypesOnTarget() {
-		ArrayList<IElementType> types = new ArrayList<IElementType>(1);
+		ArrayList<IElementType> types = new ArrayList<IElementType>(3);
 		types.add(UMLElementTypes.Transition_7000);
+		types.add(UMLElementTypes.CommentAnnotatedElement_667);
+		types.add(UMLElementTypes.ConstraintConstrainedElement_670);
 		return types;
 	}
 
@@ -338,6 +357,10 @@ NamedElementEditPart {
 			types.add(UMLElementTypes.Pseudostate_16000);
 			types.add(UMLElementTypes.Pseudostate_17000);
 			types.add(UMLElementTypes.ConnectionPointReference_18000);
+		} else if(relationshipType == UMLElementTypes.CommentAnnotatedElement_667) {
+			types.add(UMLElementTypes.Comment_666);
+		} else if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_670) {
+			types.add(UMLElementTypes.Constraint_668);
 		}
 		return types;
 	}

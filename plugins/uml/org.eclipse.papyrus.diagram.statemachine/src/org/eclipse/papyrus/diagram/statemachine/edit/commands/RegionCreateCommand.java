@@ -60,7 +60,10 @@ public class RegionCreateCommand extends EditElementCommand {
 	 */
 	public boolean canExecute() {
 
+
 		return true;
+
+
 
 	}
 
@@ -83,10 +86,13 @@ public class RegionCreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
+
+
 		Region newElement = UMLFactory.eINSTANCE.createRegion();
 
 		StateMachine owner = (StateMachine)getElementToEdit();
 		owner.getRegions().add(newElement);
+
 
 		ElementInitializers.getInstance().init_Region_3000(newElement);
 
@@ -102,6 +108,7 @@ public class RegionCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected EObject getElementToEdit() {
+
 
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {

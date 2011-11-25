@@ -12,10 +12,15 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.ParserService;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ParserHintAdapter;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.common.parser.CommentParser;
+import org.eclipse.papyrus.diagram.common.parser.ConstraintParser;
 import org.eclipse.papyrus.diagram.common.parser.stereotype.AppliedStereotypeParser;
 import org.eclipse.papyrus.diagram.statemachine.custom.parsers.TransitionPropertiesParser;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.CommentBodyEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.ConnectionPointReferenceNameEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.ConnectionPointReferenceStereotypeEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.ConstraintBodyEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.ConstraintNameLabelEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.FinalStateNameEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.FinalStateStereotypeEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.GeneralizationStereotypeEditPart;
@@ -267,6 +272,53 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
+	private CommentParser commentBody_6666Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getCommentBody_6666Parser() {
+		if(commentBody_6666Parser == null) {
+			commentBody_6666Parser = new CommentParser();
+		}
+		return commentBody_6666Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser constraintName_6668Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getConstraintName_6668Parser() {
+		if(constraintName_6668Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			constraintName_6668Parser = parser;
+		}
+		return constraintName_6668Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private ConstraintParser constraintSpecification_6669Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getConstraintSpecification_6669Parser() {
+		if(constraintSpecification_6669Parser == null) {
+			constraintSpecification_6669Parser = new ConstraintParser();
+		}
+		return constraintSpecification_6669Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private IParser getFinalStateName_5001Parser() {
 		if(finalStateName_5001Parser == null) {
 			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
@@ -373,6 +425,12 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getConnectionPointReferenceName_18001Parser();
 		case ConnectionPointReferenceStereotypeEditPart.VISUAL_ID:
 			return getConnectionPointReferenceName_18002Parser();
+		case CommentBodyEditPart.VISUAL_ID:
+			return getCommentBody_6666Parser();
+		case ConstraintNameLabelEditPart.VISUAL_ID:
+			return getConstraintName_6668Parser();
+		case ConstraintBodyEditPart.VISUAL_ID:
+			return getConstraintSpecification_6669Parser();
 		case TransitionNameEditPart.VISUAL_ID:
 			return getTransitionName_7001Parser();
 		case TransitionGuardEditPart.VISUAL_ID:

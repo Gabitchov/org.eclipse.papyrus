@@ -13,7 +13,11 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.part.ICustomDiagramUpdater;
 import org.eclipse.papyrus.diagram.statemachine.custom.parts.RegionCompartmentDiagramUpdater;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.CommentAnnotatedElementEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.CommentEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.ConnectionPointReferenceEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.ConstraintConstrainedElementEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.ConstraintEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.FinalStateEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.GeneralizationEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PackageEditPart;
@@ -36,7 +40,10 @@ import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateMachineEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.TransitionEditPart;
 import org.eclipse.papyrus.diagram.statemachine.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.Classifier;
+import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.ConnectionPointReference;
+import org.eclipse.uml2.uml.Constraint;
+import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.FinalState;
 import org.eclipse.uml2.uml.Generalization;
 import org.eclipse.uml2.uml.Package;
@@ -64,11 +71,57 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
+	public static List<UMLLinkDescriptor> getComment_666ContainedLinks(View view) {
+		Comment modelElement = (Comment)view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		result.addAll(getOutgoingFeatureModelFacetLinks_Comment_AnnotatedElement_667(modelElement));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<UMLLinkDescriptor> getConstraint_668ContainedLinks(View view) {
+		Constraint modelElement = (Constraint)view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_670(modelElement));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
 	public static List<UMLLinkDescriptor> getConnectionPointReference_18000IncomingLinks(View view) {
 		ConnectionPointReference modelElement = (ConnectionPointReference)view.getElement();
 		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_Transition_7000(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_667(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_670(modelElement, crossReferences));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<UMLLinkDescriptor> getComment_666IncomingLinks(View view) {
+		Comment modelElement = (Comment)view.getElement();
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_667(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_670(modelElement, crossReferences));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<UMLLinkDescriptor> getConstraint_668IncomingLinks(View view) {
+		Constraint modelElement = (Constraint)view.getElement();
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_667(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_670(modelElement, crossReferences));
 		return result;
 	}
 
@@ -79,6 +132,26 @@ public class UMLDiagramUpdater {
 		ConnectionPointReference modelElement = (ConnectionPointReference)view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_Transition_7000(modelElement));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<UMLLinkDescriptor> getComment_666OutgoingLinks(View view) {
+		Comment modelElement = (Comment)view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		result.addAll(getOutgoingFeatureModelFacetLinks_Comment_AnnotatedElement_667(modelElement));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<UMLLinkDescriptor> getConstraint_668OutgoingLinks(View view) {
+		Constraint modelElement = (Constraint)view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_670(modelElement));
 		return result;
 	}
 
@@ -119,6 +192,10 @@ public class UMLDiagramUpdater {
 			return getPseudostate_17000ContainedLinks(view);
 		case ConnectionPointReferenceEditPart.VISUAL_ID:
 			return getConnectionPointReference_18000ContainedLinks(view);
+		case CommentEditPart.VISUAL_ID:
+			return getComment_666ContainedLinks(view);
+		case ConstraintEditPart.VISUAL_ID:
+			return getConstraint_668ContainedLinks(view);
 		case TransitionEditPart.VISUAL_ID:
 			return getTransition_7000ContainedLinks(view);
 		case GeneralizationEditPart.VISUAL_ID:
@@ -142,8 +219,13 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 
+
+
+
+
 			Classifier dst = link.getGeneral();
 			result.add(new UMLLinkDescriptor(container, dst, link, UMLElementTypes.Generalization_19000, GeneralizationEditPart.VISUAL_ID));
+
 
 		}
 		return result;
@@ -164,9 +246,14 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 
+
+
+
+
 			Vertex dst = link.getTarget();
 			Vertex src = link.getSource();
 			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Transition_7000, TransitionEditPart.VISUAL_ID));
+
 
 		}
 		return result;
@@ -187,6 +274,8 @@ public class UMLDiagramUpdater {
 		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_Transition_7000(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_667(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_670(modelElement, crossReferences));
 		return result;
 	}
 
@@ -211,7 +300,12 @@ public class UMLDiagramUpdater {
 	 * @generated
 	 */
 	public static List<UMLLinkDescriptor> getGeneralization_19000IncomingLinks(View view) {
-		return Collections.emptyList();
+		Generalization modelElement = (Generalization)view.getElement();
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_667(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_670(modelElement, crossReferences));
+		return result;
 	}
 
 	/**
@@ -256,6 +350,10 @@ public class UMLDiagramUpdater {
 			return getPseudostate_17000IncomingLinks(view);
 		case ConnectionPointReferenceEditPart.VISUAL_ID:
 			return getConnectionPointReference_18000IncomingLinks(view);
+		case CommentEditPart.VISUAL_ID:
+			return getComment_666IncomingLinks(view);
+		case ConstraintEditPart.VISUAL_ID:
+			return getConstraint_668IncomingLinks(view);
 		case TransitionEditPart.VISUAL_ID:
 			return getTransition_7000IncomingLinks(view);
 		case GeneralizationEditPart.VISUAL_ID:
@@ -284,6 +382,34 @@ public class UMLDiagramUpdater {
 			Classifier container = (Classifier)link.eContainer();
 			result.add(new UMLLinkDescriptor(container, target, link, UMLElementTypes.Generalization_19000, GeneralizationEditPart.VISUAL_ID));
 
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	private static Collection<UMLLinkDescriptor> getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_667(Element target, Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		Collection<EStructuralFeature.Setting> settings = crossReferences.get(target);
+		for(EStructuralFeature.Setting setting : settings) {
+			if(setting.getEStructuralFeature() == UMLPackage.eINSTANCE.getComment_AnnotatedElement()) {
+				result.add(new UMLLinkDescriptor(setting.getEObject(), target, UMLElementTypes.CommentAnnotatedElement_667, CommentAnnotatedElementEditPart.VISUAL_ID));
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	private static Collection<UMLLinkDescriptor> getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_670(Element target, Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		Collection<EStructuralFeature.Setting> settings = crossReferences.get(target);
+		for(EStructuralFeature.Setting setting : settings) {
+			if(setting.getEStructuralFeature() == UMLPackage.eINSTANCE.getConstraint_ConstrainedElement()) {
+				result.add(new UMLLinkDescriptor(setting.getEObject(), target, UMLElementTypes.ConstraintConstrainedElement_670, ConstraintConstrainedElementEditPart.VISUAL_ID));
+			}
 		}
 		return result;
 	}
@@ -343,6 +469,10 @@ public class UMLDiagramUpdater {
 			return getPseudostate_17000OutgoingLinks(view);
 		case ConnectionPointReferenceEditPart.VISUAL_ID:
 			return getConnectionPointReference_18000OutgoingLinks(view);
+		case CommentEditPart.VISUAL_ID:
+			return getComment_666OutgoingLinks(view);
+		case ConstraintEditPart.VISUAL_ID:
+			return getConstraint_668OutgoingLinks(view);
 		case TransitionEditPart.VISUAL_ID:
 			return getTransition_7000OutgoingLinks(view);
 		case GeneralizationEditPart.VISUAL_ID:
@@ -378,6 +508,10 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 
+
+
+
+
 			Vertex dst = link.getTarget();
 			Vertex src = link.getSource();
 			if(src != source) {
@@ -385,6 +519,31 @@ public class UMLDiagramUpdater {
 			}
 			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Transition_7000, TransitionEditPart.VISUAL_ID));
 
+
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	private static Collection<UMLLinkDescriptor> getOutgoingFeatureModelFacetLinks_Comment_AnnotatedElement_667(Comment source) {
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		for(Iterator<?> destinations = source.getAnnotatedElements().iterator(); destinations.hasNext();) {
+			Element destination = (Element)destinations.next();
+			result.add(new UMLLinkDescriptor(source, destination, UMLElementTypes.CommentAnnotatedElement_667, CommentAnnotatedElementEditPart.VISUAL_ID));
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	private static Collection<UMLLinkDescriptor> getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_670(Constraint source) {
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		for(Iterator<?> destinations = source.getConstrainedElements().iterator(); destinations.hasNext();) {
+			Element destination = (Element)destinations.next();
+			result.add(new UMLLinkDescriptor(source, destination, UMLElementTypes.ConstraintConstrainedElement_670, ConstraintConstrainedElementEditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -431,6 +590,8 @@ public class UMLDiagramUpdater {
 		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_Transition_7000(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_667(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_670(modelElement, crossReferences));
 		return result;
 	}
 
@@ -459,6 +620,8 @@ public class UMLDiagramUpdater {
 		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_Transition_7000(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_667(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_670(modelElement, crossReferences));
 		return result;
 	}
 
@@ -487,6 +650,8 @@ public class UMLDiagramUpdater {
 		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_Transition_7000(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_667(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_670(modelElement, crossReferences));
 		return result;
 	}
 
@@ -515,6 +680,8 @@ public class UMLDiagramUpdater {
 		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_Transition_7000(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_667(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_670(modelElement, crossReferences));
 		return result;
 	}
 
@@ -543,6 +710,8 @@ public class UMLDiagramUpdater {
 		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_Transition_7000(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_667(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_670(modelElement, crossReferences));
 		return result;
 	}
 
@@ -571,6 +740,8 @@ public class UMLDiagramUpdater {
 		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_Transition_7000(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_667(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_670(modelElement, crossReferences));
 		return result;
 	}
 
@@ -599,6 +770,8 @@ public class UMLDiagramUpdater {
 		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_Transition_7000(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_667(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_670(modelElement, crossReferences));
 		return result;
 	}
 
@@ -627,6 +800,8 @@ public class UMLDiagramUpdater {
 		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_Transition_7000(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_667(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_670(modelElement, crossReferences));
 		return result;
 	}
 
@@ -655,6 +830,8 @@ public class UMLDiagramUpdater {
 		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_Transition_7000(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_667(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_670(modelElement, crossReferences));
 		return result;
 	}
 
@@ -683,6 +860,8 @@ public class UMLDiagramUpdater {
 		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_Transition_7000(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_667(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_670(modelElement, crossReferences));
 		return result;
 	}
 
@@ -710,7 +889,12 @@ public class UMLDiagramUpdater {
 	 * @generated
 	 */
 	public static List<UMLLinkDescriptor> getRegion_3000IncomingLinks(View view) {
-		return Collections.emptyList();
+		Region modelElement = (Region)view.getElement();
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_667(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_670(modelElement, crossReferences));
+		return result;
 	}
 
 	/**
@@ -764,6 +948,8 @@ public class UMLDiagramUpdater {
 		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_Transition_7000(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_667(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_670(modelElement, crossReferences));
 		return result;
 	}
 
@@ -835,6 +1021,8 @@ public class UMLDiagramUpdater {
 		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_19000(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_667(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_670(modelElement, crossReferences));
 		return result;
 	}
 
@@ -951,7 +1139,12 @@ public class UMLDiagramUpdater {
 	 * @generated
 	 */
 	public static List<UMLLinkDescriptor> getTransition_7000IncomingLinks(View view) {
-		return Collections.emptyList();
+		Transition modelElement = (Transition)view.getElement();
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_667(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_670(modelElement, crossReferences));
+		return result;
 	}
 
 	/**

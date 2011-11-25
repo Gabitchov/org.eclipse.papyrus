@@ -60,7 +60,10 @@ public class ConnectionPointReferenceCreateCommand extends EditElementCommand {
 	 */
 	public boolean canExecute() {
 
+
 		return true;
+
+
 
 	}
 
@@ -83,10 +86,13 @@ public class ConnectionPointReferenceCreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
+
+
 		ConnectionPointReference newElement = UMLFactory.eINSTANCE.createConnectionPointReference();
 
 		State owner = (State)getElementToEdit();
 		owner.getConnections().add(newElement);
+
 
 		ElementInitializers.getInstance().init_ConnectionPointReference_18000(newElement);
 
@@ -102,6 +108,7 @@ public class ConnectionPointReferenceCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected EObject getElementToEdit() {
+
 
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {

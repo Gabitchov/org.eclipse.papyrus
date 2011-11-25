@@ -60,7 +60,10 @@ public class PseudostateShallowHistoryCreateCommand extends EditElementCommand {
 	 */
 	public boolean canExecute() {
 
+
 		return true;
+
+
 
 	}
 
@@ -83,10 +86,13 @@ public class PseudostateShallowHistoryCreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
+
+
 		Pseudostate newElement = UMLFactory.eINSTANCE.createPseudostate();
 
 		Region owner = (Region)getElementToEdit();
 		owner.getSubvertices().add(newElement);
+
 
 		ElementInitializers.getInstance().init_Pseudostate_13000(newElement);
 
@@ -102,6 +108,7 @@ public class PseudostateShallowHistoryCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected EObject getElementToEdit() {
+
 
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {

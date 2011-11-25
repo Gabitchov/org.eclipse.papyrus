@@ -408,6 +408,9 @@ public class TransitionGuardEditPart extends LabelEditPart implements ITextAware
 			}
 		}
 
+
+
+
 		super.handleNotificationEvent(event);
 	}
 

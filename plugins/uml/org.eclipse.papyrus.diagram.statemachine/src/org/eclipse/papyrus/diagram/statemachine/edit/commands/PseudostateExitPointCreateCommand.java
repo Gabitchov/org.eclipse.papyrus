@@ -60,7 +60,10 @@ public class PseudostateExitPointCreateCommand extends EditElementCommand {
 	 */
 	public boolean canExecute() {
 
+
 		return true;
+
+
 
 	}
 
@@ -83,10 +86,13 @@ public class PseudostateExitPointCreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
+
+
 		Pseudostate newElement = UMLFactory.eINSTANCE.createPseudostate();
 
 		StateMachine owner = (StateMachine)getElementToEdit();
 		owner.getConnectionPoints().add(newElement);
+
 
 		ElementInitializers.getInstance().init_Pseudostate_17000(newElement);
 
@@ -102,6 +108,7 @@ public class PseudostateExitPointCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected EObject getElementToEdit() {
+
 
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {

@@ -100,12 +100,17 @@ NamedElementEditPart {
 			return true;
 		}
 
+
 		if(childEditPart instanceof StateMachineCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getStateMachineCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.add(((StateMachineCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
+
+
+
+
 
 		//Papyrus Gencode :Affixed EntryExitPoints ConnectionPointReferences Locator
 		if(childEditPart instanceof PseudostateEntryPointEditPart) {
@@ -114,12 +119,19 @@ NamedElementEditPart {
 			return true;
 		}
 
+
+
+
+
 		//Papyrus Gencode :Affixed EntryExitPoints ConnectionPointReferences Locator
 		if(childEditPart instanceof PseudostateExitPointEditPart) {
 			IBorderItemLocator locator = new CustomEntryExitPointPositionLocator(getMainFigure(), PositionConstants.NONE);
 			getBorderedFigure().getBorderItemContainer().add(((PseudostateExitPointEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
+
+
+
 
 		return false;
 	}
@@ -132,6 +144,7 @@ NamedElementEditPart {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new StateMachineItemSemanticEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
+
 
 		//in Papyrus diagrams are not strongly synchronised
 		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.diagram.statemachine.edit.policies.StateMachineCanonicalEditPolicy());
@@ -264,8 +277,10 @@ NamedElementEditPart {
 	 * @generated
 	 */
 	public List<IElementType> getMARelTypesOnTarget() {
-		ArrayList<IElementType> types = new ArrayList<IElementType>(1);
+		ArrayList<IElementType> types = new ArrayList<IElementType>(3);
 		types.add(UMLElementTypes.Generalization_19000);
+		types.add(UMLElementTypes.CommentAnnotatedElement_667);
+		types.add(UMLElementTypes.ConstraintConstrainedElement_670);
 		return types;
 	}
 
@@ -276,6 +291,10 @@ NamedElementEditPart {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
 		if(relationshipType == UMLElementTypes.Generalization_19000) {
 			types.add(UMLElementTypes.StateMachine_2000);
+		} else if(relationshipType == UMLElementTypes.CommentAnnotatedElement_667) {
+			types.add(UMLElementTypes.Comment_666);
+		} else if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_670) {
+			types.add(UMLElementTypes.Constraint_668);
 		}
 		return types;
 	}

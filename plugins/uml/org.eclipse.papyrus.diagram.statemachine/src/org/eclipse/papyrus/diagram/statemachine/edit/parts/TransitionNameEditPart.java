@@ -408,6 +408,9 @@ public class TransitionNameEditPart extends LabelEditPart implements ITextAwareE
 			}
 		}
 
+
+
+
 		super.handleNotificationEvent(event);
 	}
 

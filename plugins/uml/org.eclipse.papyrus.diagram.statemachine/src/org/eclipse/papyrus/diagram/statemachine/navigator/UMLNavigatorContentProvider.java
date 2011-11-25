@@ -155,7 +155,6 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 			URI fileURI = URI.createPlatformResourceURI(file.getFullPath().toString(), true);
 			Resource resource = myEditingDomain.getResourceSet().getResource(fileURI, true);
 			Collection result = new ArrayList();
-			result.addAll(createNavigatorItems(selectViewsByType(resource.getContents(), PackageEditPart.MODEL_ID), file, false));
 			return result.toArray();
 		}
 
@@ -277,8 +276,11 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 	private Object[] getViewChildren(View view, Object parentElement) {
 		switch(UMLVisualIDRegistry.getVisualID(view)) {
 
+
+
 		case StateMachineEditPart.VISUAL_ID:
 		{
+
 
 			//modification of the template to avoid mistake of 65kb.
 			return getViewChildrenForStateMachineEditPart(view, parentElement);
@@ -287,6 +289,7 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 
 		case PackageEditPart.VISUAL_ID:
 		{
+
 
 			//modification of the template to avoid mistake of 65kb.
 			return getViewChildrenForPackageEditPart(view, parentElement);

@@ -40,9 +40,16 @@ import org.eclipse.gmf.runtime.notation.datatype.RelativeBendpoint;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.CommentAnnotatedElementEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.CommentBodyEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.CommentEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.ConnectionPointReferenceEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.ConnectionPointReferenceNameEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.ConnectionPointReferenceStereotypeEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.ConstraintBodyEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.ConstraintConstrainedElementEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.ConstraintEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.ConstraintNameLabelEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.FinalStateEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.FinalStateNameEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.FinalStateStereotypeEditPart;
@@ -145,9 +152,13 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 
+
 		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node, prefStore, "ConnectionPointReference");
 
+
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ConnectionPointReference");
+
+
 
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "ConnectionPointReference");
 
@@ -163,6 +174,65 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location18002 = (Location)label18002.getLayoutConstraint();
 		location18002.setX(25);
 		location18002.setY(-10);
+
+
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createComment_666(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+		Shape node = NotationFactory.eINSTANCE.createShape();
+		node.getStyles().add(NotationFactory.eINSTANCE.createHintedDiagramLinkStyle());
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(UMLVisualIDRegistry.getType(CommentEditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
+
+
+		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node, prefStore, "Comment");
+
+
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Comment");
+
+
+
+		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "Comment");
+
+		Node label6666 = createLabel(node, UMLVisualIDRegistry.getType(CommentBodyEditPart.VISUAL_ID));
+
+
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createConstraint_668(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+		Shape node = NotationFactory.eINSTANCE.createShape();
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(UMLVisualIDRegistry.getType(ConstraintEditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
+
+
+		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node, prefStore, "Constraint");
+
+
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Constraint");
+
+
+
+		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "Constraint");
+
+		Node label6668 = createLabel(node, UMLVisualIDRegistry.getType(ConstraintNameLabelEditPart.VISUAL_ID));
+		Node label6669 = createLabel(node, UMLVisualIDRegistry.getType(ConstraintBodyEditPart.VISUAL_ID));
+
 
 		return node;
 	}
@@ -190,6 +260,10 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 			return createTransition_7000(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
 		case GeneralizationEditPart.VISUAL_ID:
 			return createGeneralization_19000(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
+		case CommentAnnotatedElementEditPart.VISUAL_ID:
+			return createCommentAnnotatedElement_667(containerView, index, persisted, preferencesHint);
+		case ConstraintConstrainedElementEditPart.VISUAL_ID:
+			return createConstraintConstrainedElement_670(containerView, index, persisted, preferencesHint);
 		}
 		// can never happen, provided #provides(CreateEdgeViewOperation) is correct
 		return null;
@@ -207,9 +281,13 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 
+
 		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node, prefStore, "FinalState");
 
+
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "FinalState");
+
+
 
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "FinalState");
 
@@ -225,6 +303,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location5002 = (Location)label5002.getLayoutConstraint();
 		location5002.setX(25);
 		location5002.setY(-10);
+
 
 		return node;
 	}
@@ -247,7 +326,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// initializePreferences
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 
+
 		PreferenceInitializerForElementHelper.initForegroundFromPrefs(edge, prefStore, "Generalization");
+
 
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(edge, prefStore, "Generalization");
 
@@ -256,6 +337,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		//	org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
 		//}
 
+
 		PreferenceInitializerForElementHelper.initRountingFromPrefs(edge, prefStore, "Generalization");
 
 		Node label19002 = createLabel(edge, UMLVisualIDRegistry.getType(GeneralizationStereotypeEditPart.VISUAL_ID));
@@ -263,6 +345,82 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location19002 = (Location)label19002.getLayoutConstraint();
 		location19002.setX(0);
 		location19002.setY(40);
+
+
+		return edge;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Edge createCommentAnnotatedElement_667(View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+		Connector edge = NotationFactory.eINSTANCE.createConnector();
+		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
+		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE.createRelativeBendpoints();
+		ArrayList<RelativeBendpoint> points = new ArrayList<RelativeBendpoint>(2);
+		points.add(new RelativeBendpoint());
+		points.add(new RelativeBendpoint());
+		bendpoints.setPoints(points);
+		edge.setBendpoints(bendpoints);
+		ViewUtil.insertChildView(containerView, edge, index, persisted);
+		edge.setType(UMLVisualIDRegistry.getType(CommentAnnotatedElementEditPart.VISUAL_ID));
+		edge.setElement(null);
+		// initializePreferences
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
+
+
+		PreferenceInitializerForElementHelper.initForegroundFromPrefs(edge, prefStore, "Undefined");
+
+
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(edge, prefStore, "Undefined");
+
+		//org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
+		//if (routing != null) {
+		//	org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
+		//}
+
+
+		PreferenceInitializerForElementHelper.initRountingFromPrefs(edge, prefStore, "Undefined");
+
+
+
+		return edge;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Edge createConstraintConstrainedElement_670(View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+		Connector edge = NotationFactory.eINSTANCE.createConnector();
+		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
+		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE.createRelativeBendpoints();
+		ArrayList<RelativeBendpoint> points = new ArrayList<RelativeBendpoint>(2);
+		points.add(new RelativeBendpoint());
+		points.add(new RelativeBendpoint());
+		bendpoints.setPoints(points);
+		edge.setBendpoints(bendpoints);
+		ViewUtil.insertChildView(containerView, edge, index, persisted);
+		edge.setType(UMLVisualIDRegistry.getType(ConstraintConstrainedElementEditPart.VISUAL_ID));
+		edge.setElement(null);
+		// initializePreferences
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
+
+
+		PreferenceInitializerForElementHelper.initForegroundFromPrefs(edge, prefStore, "Undefined");
+
+
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(edge, prefStore, "Undefined");
+
+		//org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
+		//if (routing != null) {
+		//	org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
+		//}
+
+
+		PreferenceInitializerForElementHelper.initRountingFromPrefs(edge, prefStore, "Undefined");
+
+
+
 		return edge;
 	}
 
@@ -318,6 +476,10 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 			return createPseudostate_17000(domainElement, containerView, index, persisted, preferencesHint);
 		case ConnectionPointReferenceEditPart.VISUAL_ID:
 			return createConnectionPointReference_18000(domainElement, containerView, index, persisted, preferencesHint);
+		case CommentEditPart.VISUAL_ID:
+			return createComment_666(domainElement, containerView, index, persisted, preferencesHint);
+		case ConstraintEditPart.VISUAL_ID:
+			return createConstraint_668(domainElement, containerView, index, persisted, preferencesHint);
 		}
 		// can't happen, provided #provides(CreateNodeViewOperation) is correct
 		return null;
@@ -335,9 +497,13 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 
+
 		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node, prefStore, "Pseudostate");
 
+
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Pseudostate");
+
+
 
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "Pseudostate");
 
@@ -354,6 +520,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		location10002.setX(25);
 		location10002.setY(-10);
 
+
 		return node;
 	}
 
@@ -369,9 +536,13 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 
+
 		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node, prefStore, "Pseudostate");
 
+
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Pseudostate");
+
+
 
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "Pseudostate");
 
@@ -388,6 +559,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		location11002.setX(25);
 		location11002.setY(-10);
 
+
 		return node;
 	}
 
@@ -403,9 +575,13 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 
+
 		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node, prefStore, "Pseudostate");
 
+
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Pseudostate");
+
+
 
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "Pseudostate");
 
@@ -422,6 +598,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		location12002.setX(25);
 		location12002.setY(-10);
 
+
 		return node;
 	}
 
@@ -437,9 +614,13 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 
+
 		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node, prefStore, "Pseudostate");
 
+
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Pseudostate");
+
+
 
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "Pseudostate");
 
@@ -456,6 +637,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		location13002.setX(25);
 		location13002.setY(-10);
 
+
 		return node;
 	}
 
@@ -471,9 +653,13 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 
+
 		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node, prefStore, "Pseudostate");
 
+
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Pseudostate");
+
+
 
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "Pseudostate");
 
@@ -490,6 +676,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		location14002.setX(25);
 		location14002.setY(-10);
 
+
 		return node;
 	}
 
@@ -505,9 +692,13 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 
+
 		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node, prefStore, "Pseudostate");
 
+
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Pseudostate");
+
+
 
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "Pseudostate");
 
@@ -524,6 +715,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		location15002.setX(25);
 		location15002.setY(-10);
 
+
 		return node;
 	}
 
@@ -539,9 +731,13 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 
+
 		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node, prefStore, "Pseudostate");
 
+
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Pseudostate");
+
+
 
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "Pseudostate");
 
@@ -558,6 +754,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		location16002.setX(25);
 		location16002.setY(-10);
 
+
 		return node;
 	}
 
@@ -573,9 +770,13 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 
+
 		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node, prefStore, "Pseudostate");
 
+
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Pseudostate");
+
+
 
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "Pseudostate");
 
@@ -592,6 +793,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		location17002.setX(25);
 		location17002.setY(-10);
 
+
 		return node;
 	}
 
@@ -607,9 +809,13 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 
+
 		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node, prefStore, "Pseudostate");
 
+
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Pseudostate");
+
+
 
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "Pseudostate");
 
@@ -626,6 +832,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		location8002.setX(25);
 		location8002.setY(-10);
 
+
 		return node;
 	}
 
@@ -641,9 +848,13 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 
+
 		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node, prefStore, "Pseudostate");
 
+
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Pseudostate");
+
+
 
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "Pseudostate");
 
@@ -660,6 +871,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		location9002.setX(25);
 		location9002.setY(-10);
 
+
 		return node;
 	}
 
@@ -675,9 +887,13 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 
+
 		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node, prefStore, "Region");
 
+
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Region");
+
+
 
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "Region");
 
@@ -700,9 +916,13 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 
+
 		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node, prefStore, "State");
 
+
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "State");
+
+
 
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "State");
 
@@ -727,9 +947,13 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 
+
 		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node, prefStore, "StateMachine");
 
+
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "StateMachine");
+
+
 
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "StateMachine");
 
@@ -759,7 +983,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// initializePreferences
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 
+
 		PreferenceInitializerForElementHelper.initForegroundFromPrefs(edge, prefStore, "Transition");
+
 
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(edge, prefStore, "Transition");
 
@@ -767,6 +993,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		//if (routing != null) {
 		//	org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
 		//}
+
 
 		PreferenceInitializerForElementHelper.initRountingFromPrefs(edge, prefStore, "Transition");
 
@@ -779,6 +1006,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location7003 = (Location)label7003.getLayoutConstraint();
 		location7003.setX(0);
 		location7003.setY(60);
+
+
 		return edge;
 	}
 
@@ -814,8 +1043,10 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		String gradientColorConstant = PreferenceConstantHelper.getElementConstant(elementName, PreferenceConstantHelper.COLOR_GRADIENT);
 		String gradientPolicyConstant = PreferenceConstantHelper.getElementConstant(elementName, PreferenceConstantHelper.GRADIENT_POLICY);
 
+
 		org.eclipse.swt.graphics.RGB fillRGB = PreferenceConverter.getColor(store, fillColorConstant);
 		ViewUtil.setStructuralFeatureValue(view, NotationPackage.eINSTANCE.getFillStyle_FillColor(), FigureUtilities.RGBToInteger(fillRGB));
+
 
 		FillStyle fillStyle = (FillStyle)view.getStyle(NotationPackage.Literals.FILL_STYLE);
 		fillStyle.setFillColor(FigureUtilities.RGBToInteger(fillRGB).intValue());
@@ -935,6 +1166,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				case PseudostateEntryPointEditPart.VISUAL_ID:
 				case PseudostateExitPointEditPart.VISUAL_ID:
 				case ConnectionPointReferenceEditPart.VISUAL_ID:
+				case CommentEditPart.VISUAL_ID:
+				case ConstraintEditPart.VISUAL_ID:
 					if(domainElement == null || visualID != UMLVisualIDRegistry.getNodeVisualID(op.getContainerView(), domainElement)) {
 						return false; // visual id in semantic hint should match visual id for domain element
 					}
@@ -944,7 +1177,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				}
 			}
 		}
-		return StateMachineEditPart.VISUAL_ID == visualID || RegionEditPart.VISUAL_ID == visualID || FinalStateEditPart.VISUAL_ID == visualID || StateEditPart.VISUAL_ID == visualID || PseudostateInitialEditPart.VISUAL_ID == visualID || PseudostateJoinEditPart.VISUAL_ID == visualID || PseudostateForkEditPart.VISUAL_ID == visualID || PseudostateChoiceEditPart.VISUAL_ID == visualID || PseudostateJunctionEditPart.VISUAL_ID == visualID || PseudostateShallowHistoryEditPart.VISUAL_ID == visualID || PseudostateDeepHistoryEditPart.VISUAL_ID == visualID || PseudostateTerminateEditPart.VISUAL_ID == visualID || PseudostateEntryPointEditPart.VISUAL_ID == visualID || PseudostateExitPointEditPart.VISUAL_ID == visualID || ConnectionPointReferenceEditPart.VISUAL_ID == visualID;
+		return StateMachineEditPart.VISUAL_ID == visualID || RegionEditPart.VISUAL_ID == visualID || FinalStateEditPart.VISUAL_ID == visualID || StateEditPart.VISUAL_ID == visualID || PseudostateInitialEditPart.VISUAL_ID == visualID || PseudostateJoinEditPart.VISUAL_ID == visualID || PseudostateForkEditPart.VISUAL_ID == visualID || PseudostateChoiceEditPart.VISUAL_ID == visualID || PseudostateJunctionEditPart.VISUAL_ID == visualID || PseudostateShallowHistoryEditPart.VISUAL_ID == visualID || PseudostateDeepHistoryEditPart.VISUAL_ID == visualID || PseudostateTerminateEditPart.VISUAL_ID == visualID || PseudostateEntryPointEditPart.VISUAL_ID == visualID || PseudostateExitPointEditPart.VISUAL_ID == visualID || ConnectionPointReferenceEditPart.VISUAL_ID == visualID || CommentEditPart.VISUAL_ID == visualID || ConstraintEditPart.VISUAL_ID == visualID;
 	}
 
 	/**
@@ -957,7 +1190,34 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		 * if (op.getViewKind() == Edge.class)
 		 * return getEdgeViewClass(op.getSemanticAdapter(), op.getContainerView(), op.getSemanticHint()) != null;
 		 */
+
+		// check Diagram Type should be the class diagram
+		String modelID = UMLVisualIDRegistry.getModelID(op.getContainerView());
+		if(!getDiagramProvidedId().equals(modelID)) {
+			return false;
+		}
+
+		int visualID = UMLVisualIDRegistry.getVisualID(op.getSemanticHint());
+		if(Node.class.isAssignableFrom(op.getViewKind())) {
+			return UMLVisualIDRegistry.canCreateNode(op.getContainerView(), visualID);
+		}
+
 		return true;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected String getDiagramProvidedId() {
+		/*
+		 * Indicates for which diagram this provider works for.
+		 * <p>
+		 * This method can be overloaded when diagram editor inherits from another one, but should never be <code>null</code>
+		 * </p>
+		 * 
+		 * @return the unique identifier of the diagram for which views are provided.
+		 */
+		return PackageEditPart.MODEL_ID;
 	}
 
 	/**

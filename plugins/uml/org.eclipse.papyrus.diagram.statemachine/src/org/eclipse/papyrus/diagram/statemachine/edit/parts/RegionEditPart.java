@@ -1,5 +1,9 @@
 package org.eclipse.papyrus.diagram.statemachine.edit.parts;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
@@ -16,6 +20,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
@@ -30,6 +35,7 @@ import org.eclipse.papyrus.diagram.statemachine.custom.policies.CustomRegionComp
 import org.eclipse.papyrus.diagram.statemachine.custom.policies.CustomRegionItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.statemachine.edit.policies.RegionItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.statemachine.part.UMLDiagramEditorPlugin;
+import org.eclipse.papyrus.diagram.statemachine.providers.UMLElementTypes;
 import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.swt.graphics.Color;
@@ -77,6 +83,7 @@ NamedElementEditPart {
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
+
 
 		if(childEditPart instanceof RegionCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getRegionCompartmentFigure();
@@ -274,6 +281,29 @@ NamedElementEditPart {
 		if(primaryShape instanceof Shape) {
 			((Shape)primaryShape).setLineStyle(style);
 		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public List<IElementType> getMARelTypesOnTarget() {
+		ArrayList<IElementType> types = new ArrayList<IElementType>(2);
+		types.add(UMLElementTypes.CommentAnnotatedElement_667);
+		types.add(UMLElementTypes.ConstraintConstrainedElement_670);
+		return types;
+	}
+
+	/**
+	 * @generated
+	 */
+	public List<IElementType> getMATypesForSource(IElementType relationshipType) {
+		LinkedList<IElementType> types = new LinkedList<IElementType>();
+		if(relationshipType == UMLElementTypes.CommentAnnotatedElement_667) {
+			types.add(UMLElementTypes.Comment_666);
+		} else if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_670) {
+			types.add(UMLElementTypes.Constraint_668);
+		}
+		return types;
 	}
 
 	/**

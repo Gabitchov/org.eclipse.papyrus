@@ -7,9 +7,14 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.providers.BaseViewInfo;
 import org.eclipse.papyrus.diagram.common.providers.ViewInfo;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.CommentBodyEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.CommentEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.ConnectionPointReferenceEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.ConnectionPointReferenceNameEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.ConnectionPointReferenceStereotypeEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.ConstraintBodyEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.ConstraintEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.ConstraintNameLabelEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.FinalStateEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.FinalStateNameEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.FinalStateStereotypeEditPart;
@@ -241,6 +246,19 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			break;
+		case CommentEditPart.VISUAL_ID:
+			if(CommentBodyEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case ConstraintEditPart.VISUAL_ID:
+			if(ConstraintNameLabelEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ConstraintBodyEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
 		case RegionCompartmentEditPart.VISUAL_ID:
 			if(PseudostateInitialEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
@@ -276,6 +294,12 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			if(PseudostateExitPointEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(CommentEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ConstraintEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -351,10 +375,14 @@ public class UMLVisualIDRegistry {
 		}
 		if(UMLPackage.eINSTANCE.getTransition().isSuperTypeOf(domainElement.eClass())
 
+
+
 		) {
 			return TransitionEditPart.VISUAL_ID;
 		}
 		if(UMLPackage.eINSTANCE.getGeneralization().isSuperTypeOf(domainElement.eClass())
+
+
 
 		) {
 			return GeneralizationEditPart.VISUAL_ID;
@@ -473,6 +501,16 @@ public class UMLVisualIDRegistry {
 			if(UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass()) && isPseudostate_17000(containerView, (Pseudostate)domainElement)) {
 				return PseudostateExitPointEditPart.VISUAL_ID;
 			}
+			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return CommentEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return ConstraintEditPart.VISUAL_ID;
+			}
 			break;
 		case StateMachineCompartmentEditPart.VISUAL_ID:
 			if(UMLPackage.eINSTANCE.getRegion().isSuperTypeOf(domainElement.eClass())
@@ -517,20 +555,34 @@ public class UMLVisualIDRegistry {
 		viewInfo = new BaseViewInfo(7000, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
+
 		labelInfo = new BaseViewInfo(7001, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
+
 
 		labelInfo = new BaseViewInfo(7002, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
 
+
 		labelInfo = new BaseViewInfo(7003, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
+
 
 		viewInfo = new BaseViewInfo(19000, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
+
 		labelInfo = new BaseViewInfo(19002, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
+
+
+		viewInfo = new BaseViewInfo(667, ViewInfo.Edge, "");
+		root.addNode(1000, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(670, ViewInfo.Edge, "");
+		root.addNode(1000, viewInfo);
+
 
 		viewInfo = new BaseViewInfo(3000, ViewInfo.Node, "Region");
 
@@ -540,45 +592,56 @@ public class UMLVisualIDRegistry {
 
 		root.addNode(6000, viewInfo);
 
+
 		viewInfo = new BaseViewInfo(5000, ViewInfo.Node, "FinalState");
 
 		root.addNode(3002, viewInfo);
+
 
 		viewInfo = new BaseViewInfo(6000, ViewInfo.Node, "State");
 
 		root.addNode(3002, viewInfo);
 
+
 		viewInfo = new BaseViewInfo(8000, ViewInfo.Node, "Pseudostate");
 
 		root.addNode(3002, viewInfo);
+
 
 		viewInfo = new BaseViewInfo(9000, ViewInfo.Node, "Pseudostate");
 
 		root.addNode(3002, viewInfo);
 
+
 		viewInfo = new BaseViewInfo(10000, ViewInfo.Node, "Pseudostate");
 
 		root.addNode(3002, viewInfo);
+
 
 		viewInfo = new BaseViewInfo(11000, ViewInfo.Node, "Pseudostate");
 
 		root.addNode(3002, viewInfo);
 
+
 		viewInfo = new BaseViewInfo(12000, ViewInfo.Node, "Pseudostate");
 
 		root.addNode(3002, viewInfo);
+
 
 		viewInfo = new BaseViewInfo(13000, ViewInfo.Node, "Pseudostate");
 
 		root.addNode(3002, viewInfo);
 
+
 		viewInfo = new BaseViewInfo(14000, ViewInfo.Node, "Pseudostate");
 
 		root.addNode(3002, viewInfo);
 
+
 		viewInfo = new BaseViewInfo(15000, ViewInfo.Node, "Pseudostate");
 
 		root.addNode(3002, viewInfo);
+
 
 		viewInfo = new BaseViewInfo(16000, ViewInfo.Node, "Pseudostate");
 
@@ -590,6 +653,7 @@ public class UMLVisualIDRegistry {
 
 		root.addNode(6000, viewInfo);
 
+
 		viewInfo = new BaseViewInfo(17000, ViewInfo.Node, "Pseudostate");
 
 		root.addNode(3002, viewInfo);
@@ -600,11 +664,22 @@ public class UMLVisualIDRegistry {
 
 		root.addNode(6000, viewInfo);
 
+
 		viewInfo = new BaseViewInfo(18000, ViewInfo.Node, "ConnectionPointReference");
 
 		root.addNode(6000, viewInfo);
 
 		root.addNode(6002, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(666, ViewInfo.Node, "Comment");
+
+		root.addNode(3002, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(668, ViewInfo.Node, "Constraint");
+
+		root.addNode(3002, viewInfo);
 
 		return root;
 	}

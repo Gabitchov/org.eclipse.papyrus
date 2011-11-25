@@ -15,6 +15,7 @@ public class TransitionPreferencePage extends AbstractPapyrusLinkPreferencePage 
 	 */
 	public static void initDefaults(IPreferenceStore store) {
 
+
 	}
 
 	/**
