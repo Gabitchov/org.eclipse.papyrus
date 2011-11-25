@@ -16,7 +16,6 @@ package org.eclipse.papyrus.modelexplorer.dnd;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 
@@ -202,7 +201,7 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 			EStructuralFeature eStructuralFeature = (EStructuralFeature) iteratorFeature
 				.next();
 			ArrayList<EObject> tmp=new ArrayList<EObject>();
-		
+
 			tmp.add(newElement);
 			setRequest= new SetRequest(targetOwner, eStructuralFeature, tmp);
 			IElementEditService provider = ElementEditServiceUtils.getCommandProvider(targetOwner);
@@ -358,12 +357,15 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 	 */
 	@SuppressWarnings("unchecked")
 	protected List<Command> getOrderChangeCommand(final Object target, boolean before) {
-		ArrayList<Command> result= new ArrayList<Command>();
+		ArrayList<Command> result= new ArrayList<Command>();//resulted commands
 		CompoundCommand cc= new CompoundCommand();
+		ArrayList<EObject> objectToMove= new ArrayList<EObject>(); //object to move
+		boolean moveNeeded=false; // if this not the same owner the move command is needed
+
 		//init
 		ArrayList<SetRequest> monoRequestList= new ArrayList<SetRequest>();
-		EObject objectLocation=null;
-		EObject objectOwner=null;
+		EObject objectLocation=null; 
+		EObject objectOwner=null; //next container
 
 		//target is an EObject?
 		if(target instanceof IAdaptable){
@@ -381,71 +383,74 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 			Iterator<?> it=selectedElements.iterator();
 			while (it.hasNext()) {
 				Object object =  it.next();
+
 				if (object instanceof IAdaptable) {
 					EObject eObjectchild = (EObject) ((IAdaptable) object).getAdapter(EObject.class);
 					//test if object is an eobject
 					if(eObjectchild!=null&& objectOwner!=null){
+						if(!eObjectchild.eContainer().equals(objectOwner)){
+							moveNeeded=true;
+						}
+						objectToMove.add(eObjectchild);
 
-						monoRequestList.add(getOrderChangeCommand(getEditingDomain(), objectOwner, objectLocation, eObjectchild, before));
 					}
 				}
 			}
 		}
-		
-		//analyse the request in order to construct command by grouping feature
-		//count the request with different  Feature
-		HashSet<EStructuralFeature> featureHashSet=new HashSet<EStructuralFeature>();
-		Iterator<SetRequest> iterRequest= monoRequestList.iterator();
-		while(iterRequest.hasNext()) {
-			SetRequest setRequest = (SetRequest)iterRequest.next();
-			featureHashSet.add(setRequest.getFeature());
-		}
-		Iterator<EStructuralFeature> iterFeature=featureHashSet.iterator();
-		//for each feature construct a request to move a set of element with the same feature
-		while(iterFeature.hasNext()) {
-			EStructuralFeature feature = (EStructuralFeature)iterFeature.next();
-			iterRequest= monoRequestList.iterator();
-			SetRequest groupRequest = null;
-			
-			//construct the collection that wille be affected to the setCommand
-			ArrayList<EObject> values= new ArrayList<EObject>();
-			int nextIndex=1;
-			while(iterRequest.hasNext()) {
-				SetRequest setRequest = (SetRequest)iterRequest.next();
-				if(groupRequest==null){
-					groupRequest=setRequest;
-					if(objectOwner.eGet(feature) instanceof Collection<?>){
-						//get all element of this efeature
-						values.addAll((Collection<EObject>)objectOwner.eGet(feature));
-					}
-				}
 
-				if(setRequest.getValue() instanceof List){
-					values.remove(((List<? extends EObject>)setRequest.getValue()).get(0));
+		SetRequest monoRequest=getOrderChangeCommand(getEditingDomain(), objectOwner, objectLocation, objectToMove.get(0), before);
+		if( monoRequest!=null){
+			monoRequestList.add(monoRequest);
+
+
+			if( moveNeeded){
+				MoveRequest moveRequest= new MoveRequest(objectOwner, objectToMove);
+				IElementEditService provider = ElementEditServiceUtils.getCommandProvider(moveRequest.getTargetContainer());
+				if(provider != null) {
+					// Retrieve delete command from the Element Edit service
+					ICommand command = provider.getEditCommand(moveRequest);
+					cc.append(new GMFtoEMFCommandWrapper(command));
+				}
+			}
+
+			ArrayList<EObject>values= new ArrayList<EObject>();
+			if(objectOwner.eGet(monoRequest.getFeature()) instanceof Collection<?>){
+				//get all element of this efeature
+				values.addAll((Collection<EObject>)objectOwner.eGet(monoRequest.getFeature()));
+			}
+			Iterator<EObject>itetToMove= objectToMove.iterator();
+			int nextIndex=1;
+			while(itetToMove.hasNext()) {
+				EObject currentObject = (EObject)itetToMove.next();
+
+				if(objectToMove instanceof List){
+					values.remove(currentObject);
 					if( values.indexOf(objectLocation)==-1||(values.indexOf(objectLocation)+nextIndex)>values.size()){
-						values.add(((List<? extends EObject>)setRequest.getValue()).get(0));
+						values.add(currentObject);
 					}
 					else if (before){
-						values.add(values.indexOf(objectLocation), ((List<? extends EObject>)setRequest.getValue()).get(0));
+						values.add(values.indexOf(objectLocation), currentObject);
 					}
 					else{
-						values.add(values.indexOf(objectLocation)+nextIndex, ((List<? extends EObject>)setRequest.getValue()).get(0));
+						values.add(values.indexOf(objectLocation)+nextIndex, currentObject);
 						nextIndex++;
 					}
 
 				}
 			}
+
 			//the request is ready to be constructed
-			groupRequest= new SetRequest(groupRequest.getElementToEdit(), groupRequest.getFeature(), values);
-			IElementEditService provider = ElementEditServiceUtils.getCommandProvider(groupRequest.getElementToEdit());
+			monoRequest= new SetRequest(monoRequest.getElementToEdit(), monoRequest.getFeature(), values);
+			IElementEditService provider = ElementEditServiceUtils.getCommandProvider(monoRequest.getElementToEdit());
 			if(provider != null) {
 				// Retrieve delete command from the Element Edit service
-				ICommand command = provider.getEditCommand(groupRequest);
+				ICommand command = provider.getEditCommand(monoRequest);
 				cc.append(new GMFtoEMFCommandWrapper(command));
 			}
-		}
 
-		result.add(cc);
+
+			result.add(cc);
+		}
 		return result;
 	}
 
