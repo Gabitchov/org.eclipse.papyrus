@@ -56,11 +56,15 @@ public class DuplicateNamedElementCommand extends DuplicateEObjectsCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
 		super.doExecuteWithResult(progressMonitor, info);
 		ArrayList<EObject> processedData = new ArrayList<EObject>();
-		Iterator iterator = getAllDuplicatedObjectsMap().values().iterator();
 		NamedElement namedElement = null;
-		while(iterator.hasNext()) {
-			Object currentObject = iterator.next();
 
+		// for all selected object, will get the duplicate one and change its name (if valid)
+		Iterator iterator = getObjectsToBeDuplicated().iterator();
+
+		while(iterator.hasNext()) {
+			Object o = iterator.next();
+			// get Duplicated object for this
+			Object currentObject = getAllDuplicatedObjectsMap().get(o);
 			if(currentObject instanceof View) {
 				if(((View)currentObject).getElement() != null && ((View)currentObject).getElement() instanceof NamedElement) {
 					namedElement = ((NamedElement)((View)currentObject).getElement());
