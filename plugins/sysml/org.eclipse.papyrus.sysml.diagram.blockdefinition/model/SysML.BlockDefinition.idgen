@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <idgen:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gmfgen="http://www.eclipse.org/gmf/2009/GenModel" xmlns:idgen="http://www.eclipse.org/papyrus/0.7.0/idgen" name="BlockDefinition" type="BlockDefinition" icon="icons/obj16/Diagram_BlockDefinition.gif" label="SysML Block Definition Diagram" language="sysml" javaPackagePrefix="org.eclipse.papyrus.sysml.diagram.blockdefinition" javaClassPrefix="BlockDefinitionDiagram" createCommandLabel="Create a new Block Definition Diagram">
   <diagramEditPart name="Diagram edit part">
-    <behaviors javaClassQualifiedName="org.eclipse.papyrus.diagram.common.editpolicies.DuplicatePasteEditPolicy" key="DuplicatePasteEditPolicy.PASTE_ROLE"/>
+    <behaviors javaClassQualifiedName="org.eclipse.papyrus.diagram.common.editpolicies.DuplicatePasteEditPolicy" key="DuplicatePasteEditPolicy.CONTAINER_ROLE"/>
     <behaviors javaClassQualifiedName="org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.policy.CustomDiagramDragDropEditPolicy" key="EditPolicyRoles.DRAG_DROP_ROLE"/>
   </diagramEditPart>
   <inheritedDiagrams name="ClassDiagram" viewProviderClassQualifiedName="" editPartProviderClassQualifiedName="" dndEditPolicyClassQualifiedName="org.eclipse.papyrus.diagram.clazz.custom.policies.ClassDiagramDragDropEditPolicy">

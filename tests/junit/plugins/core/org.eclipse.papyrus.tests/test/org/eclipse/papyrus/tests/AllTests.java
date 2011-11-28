@@ -16,7 +16,6 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.papyrus.sysml.tests.SysmlAllTests;
 import org.eclipse.papyrus.tests.launcher.FragmentTestSuiteClass;
 import org.eclipse.papyrus.tests.launcher.ITestSuiteClass;
@@ -24,7 +23,6 @@ import org.eclipse.papyrus.tests.launcher.PluginTestSuiteClass;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.model.InitializationError;
-import org.osgi.framework.Bundle;
 
 
 /**
@@ -41,7 +39,7 @@ public class AllTests {
 	// {oep}.core
 	new FragmentTestSuiteClass(org.eclipse.papyrus.core.Activator.PLUGIN_ID, "org.eclipse.papyrus.core.tests.AllTests"),
 	// {oep}.sasheditor.tests
-	new FragmentTestSuiteClass(org.eclipse.papyrus.sasheditor.Activator.PLUGIN_ID, "org.eclipse.papyrus.sasheditor.tests.AllTests"),
+	//new FragmentTestSuiteClass(org.eclipse.papyrus.sasheditor.Activator.PLUGIN_ID, "org.eclipse.papyrus.sasheditor.tests.AllTests"),
 	// {oep}.core.resourceloading.tests
 	new FragmentTestSuiteClass(org.eclipse.papyrus.core.resourceloading.Activator.PLUGIN_ID, "org.eclipse.papyrus.core.resourceloading.tests.AllTests"),
 

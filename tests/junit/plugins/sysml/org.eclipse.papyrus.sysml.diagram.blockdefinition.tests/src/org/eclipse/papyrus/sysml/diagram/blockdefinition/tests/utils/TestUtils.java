@@ -10,7 +10,9 @@ import static org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.utils.Test
 import static org.junit.Assert.fail;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import org.eclipse.core.commands.ParameterizedCommand;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
@@ -19,15 +21,26 @@ import org.eclipse.gef.RequestConstants;
 import org.eclipse.gef.Tool;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.requests.GroupRequest;
+import org.eclipse.gmf.runtime.common.ui.action.global.GlobalAction;
+import org.eclipse.gmf.runtime.common.ui.action.internal.actions.global.GlobalCopyAction;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.EditCommandRequestWrapper;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.jface.commands.ActionHandler;
+import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.papyrus.diagram.common.service.AspectUnspecifiedTypeConnectionTool;
 import org.eclipse.papyrus.diagram.common.service.AspectUnspecifiedTypeConnectionTool.CreateAspectUnspecifiedTypeConnectionRequest;
 import org.eclipse.papyrus.diagram.common.service.AspectUnspecifiedTypeCreationTool;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.Activator;
+import org.eclipse.ui.IWorkbenchCommandConstants;
+import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.commands.ICommandService;
+import org.eclipse.ui.handlers.IHandlerService;
+import org.junit.Assert;
 
 
 public class TestUtils {
@@ -307,5 +320,113 @@ public class TestUtils {
 			}			
 			
 		}
+	}
+
+	/**
+	 * Copy the list of objects into the Clipboard
+	 * 
+	 * @param objectsToCopy
+	 *        the list of objects to copy. should not be <code>null</code>, at least an empty list
+	 * @throws Exception
+	 *         exception thrown in case of problems
+	 */
+	public static void copyEditParts(List<Object> objectsToCopy) throws Exception {
+		// select elements to copy
+		PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().activate(EditorUtils.getEditor());
+		PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().bringToTop(EditorUtils.getEditor());
+		EditorUtils.getDiagramEditor().getEditorSite().getSelectionProvider().setSelection(new StructuredSelection(objectsToCopy));
+
+		ISelection selection = EditorUtils.getEditor().getSite().getSelectionProvider().getSelection();
+		Assert.assertEquals("Selection size should be " + objectsToCopy.size(), objectsToCopy.size(), ((IStructuredSelection)selection).size());
+
+		// retrieve the command for copy
+		ICommandService commandService = (ICommandService)PlatformUI.getWorkbench().getService(ICommandService.class);
+		commandService.refreshElements(IWorkbenchCommandConstants.EDIT_COPY, null);
+		org.eclipse.core.commands.Command copyCommand = commandService.getCommand(IWorkbenchCommandConstants.EDIT_COPY);
+		((GlobalCopyAction)((ActionHandler)copyCommand.getHandler()).getAction()).setEnabled(true);
+		Assert.assertNotNull("Impossible to find copy command", copyCommand);
+
+		//EditorUtils.getDiagramEditor().getEditingDomain().setClipboard(objectsToCopy);
+		
+		// retrieve handler service for the copy command
+		IHandlerService handlerService = (IHandlerService)PlatformUI.getWorkbench().getService(IHandlerService.class);
+		Assert.assertNotNull("Impossible to find handler service", handlerService);
+
+		final ParameterizedCommand parameterizedCommand = new ParameterizedCommand(copyCommand, null);
+
+		// retrieve the command and set some parameters on it
+		copyCommand.setEnabled(handlerService.getCurrentState());
+		final boolean commandEnabled = copyCommand.isEnabled();
+		Assert.assertTrue("Command should be enabled", commandEnabled);
+
+		// execute the copy command
+		handlerService.executeCommand(parameterizedCommand, null);
+	}
+
+	/**
+	 * paste the list of objects into the Clipboard into the current diagram
+	 * 
+	 * @param target
+	 *        object on which content of the clipboard should be added
+	 * @param executable
+	 *        indicates if the paste command should be executable.
+	 * 
+	 * @throws Exception
+	 *         exception thrown in case of problems
+	 */
+	public static void pasteEditParts(Object target, boolean executable) throws Exception {
+		PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().activate(EditorUtils.getEditor());
+		EditorUtils.getDiagramEditor().getEditorSite().getSelectionProvider().setSelection(new StructuredSelection(target));
+
+		// retrieve the command for copy
+		ICommandService commandService = (ICommandService)PlatformUI.getWorkbench().getService(ICommandService.class);
+		commandService.refreshElements(IWorkbenchCommandConstants.EDIT_PASTE, null);
+		org.eclipse.core.commands.Command pasteCommand = commandService.getCommand(IWorkbenchCommandConstants.EDIT_PASTE);
+		Assert.assertNotNull("Impossible to find paste command", pasteCommand);
+		((GlobalAction)((ActionHandler)pasteCommand.getHandler()).getAction()).refresh();
+
+		IHandlerService handlerService = (IHandlerService)PlatformUI.getWorkbench().getService(IHandlerService.class);
+		Assert.assertNotNull("Impossible to find handler service", handlerService);
+		final ParameterizedCommand parameterizedCommand = new ParameterizedCommand(pasteCommand, null);
+		Assert.assertEquals("Command is not executable as expected", pasteCommand.isEnabled(), executable);
+
+		if(executable) {
+			// execute the copy command
+			handlerService.executeCommand(parameterizedCommand, null);
+		}
+	}
+
+	/**
+	 * paste with model element the list of objects into the Clipboard into the current diagram
+	 * 
+	 * @param target
+	 *        object on which content of the clipboard should be added
+	 * @param executable
+	 *        indicates if the paste command should be executable.
+	 * 
+	 * @throws Exception
+	 *         exception thrown in case of problems
+	 */
+	public static void pasteWithModelEditParts(Object target, boolean executable) throws Exception {
+		PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().activate(EditorUtils.getEditor());
+		EditorUtils.getDiagramEditor().getEditorSite().getSelectionProvider().setSelection(new StructuredSelection(target));
+
+		// retrieve the command for copy
+		ICommandService commandService = (ICommandService)PlatformUI.getWorkbench().getService(ICommandService.class);
+		commandService.refreshElements(IWorkbenchCommandConstants.EDIT_PASTE, null);
+		org.eclipse.core.commands.Command pasteWithModelCommand = commandService.getCommand("org.eclipse.papyrus.diagram.common.commands.PasteWithModelCommand");
+		Assert.assertNotNull("Impossible to find paste command", pasteWithModelCommand);
+		// ((GlobalAction)((AbstractHandlerWithState)pasteWithModelCommand.getHandler()).getAction()).refresh();
+
+		IHandlerService handlerService = (IHandlerService)PlatformUI.getWorkbench().getService(IHandlerService.class);
+		Assert.assertNotNull("Impossible to find handler service", handlerService);
+		final ParameterizedCommand parameterizedCommand = new ParameterizedCommand(pasteWithModelCommand, null);
+		Assert.assertEquals("Command is not executable as expected", pasteWithModelCommand.isEnabled(), executable);
+
+		if(executable) {
+			// execute the copy command
+			handlerService.executeCommand(parameterizedCommand, null);
+		}
+
 	}
 }

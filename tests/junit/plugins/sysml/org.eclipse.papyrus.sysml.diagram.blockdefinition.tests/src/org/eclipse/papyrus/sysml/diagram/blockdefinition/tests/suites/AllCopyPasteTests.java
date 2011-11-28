@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
+ * Copyright (c) 2011 CEA LIST.
  *    
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -10,22 +10,20 @@
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
+package org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.suites;
 
-package org.eclipse.papyrus.diagram.common.tests;
-
-import org.eclipse.papyrus.diagram.common.tests.commands.AllCommandTests;
-import org.eclipse.papyrus.diagram.common.tests.parser.AllParsersTests;
+import org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.copypaste.TestCopyGraphicallyPasteBlock;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 
 /**
- * All tests together
+ * Test suite for Copy/Paste/PasteWithModel actions
  */
 @RunWith(Suite.class)
-@SuiteClasses({ AllParsersTests.class, AllCommandTests.class })
-public class AllTests {
-
-
+@SuiteClasses({ 
+ TestCopyGraphicallyPasteBlock.class,
+})
+public class AllCopyPasteTests {
 }

@@ -8,6 +8,7 @@ import org.eclipse.papyrus.sysml.diagram.blockdefinition.Activator;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.intro.IIntroPart;
 import org.eclipse.ui.part.FileEditorInput;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -25,7 +26,8 @@ public abstract class AbstractTest {
 
 	@BeforeClass
 	public static void openPapyrusWithAnEmptyProject() throws Exception {
-
+		IIntroPart introPart = PlatformUI.getWorkbench().getIntroManager().getIntro();
+		PlatformUI.getWorkbench().getIntroManager().closeIntro(introPart);
 		// Prepare new project for tests
 		IProject testProject = ResourcesPlugin.getWorkspace().getRoot().getProject("TestProject");
 		if(!testProject.exists()) {
@@ -41,6 +43,8 @@ public abstract class AbstractTest {
 		IFile emptyModel_no = testProject.getFile("ModelWithBDD.notation");
 		IFile emptyModel_uml = testProject.getFile("ModelWithBDD.uml");
 
+		// isInitialized = isInitialized || emptyModel_di.exists();
+
 		if(!isInitialized) {
 			isInitialized = true;
 			emptyModel_di.create(Activator.getInstance().getBundle().getResource("/model/ModelWithBDD.di").openStream(), true, new NullProgressMonitor());
@@ -51,7 +55,6 @@ public abstract class AbstractTest {
 		// Open the EmptyModel.di file with Papyrus (assumed to be the default editor for "di" files here).
 		IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 		editor = page.openEditor(new FileEditorInput(emptyModel_di), editorID);
-
 	}
 
 	@AfterClass

@@ -1,5 +1,7 @@
 Manifest-Version: 1.0
-Export-Package: org.eclipse.papyrus.diagram.common.tests.parser
+Export-Package: org.eclipse.papyrus.diagram.common.tests,
+ org.eclipse.papyrus.diagram.common.tests.commands,
+ org.eclipse.papyrus.diagram.common.tests.parser
 Require-Bundle: org.eclipse.core.runtime,org.junit4
 Bundle-Vendor: %providerName
 Fragment-Host: org.eclipse.papyrus.diagram.common;bundle-version="0.8.
