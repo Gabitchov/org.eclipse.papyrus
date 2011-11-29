@@ -344,11 +344,11 @@ public class NavigatorUtils {
 	 */
 	public static <T> Collection<T> findFilterAndApply (EObject toFind, Predicate<Setting> predicate, Function<Setting,T> function)
 	{
-		ResourceSet resourceSet = toFind.eResource().getResourceSet();
-		if (toFind == null || toFind.eResource() == null || resourceSet == null)
+		if (toFind == null || toFind.eResource() == null || toFind.eResource().getResourceSet() == null)
 		{
 			return Collections.emptyList();
 		}
+		ResourceSet resourceSet = toFind.eResource().getResourceSet();
 		ECrossReferenceAdapter adapter = ECrossReferenceAdapter.getCrossReferenceAdapter(resourceSet);
 		if (adapter == null)
 		{
