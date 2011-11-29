@@ -15,36 +15,42 @@ package org.eclipse.papyrus.uml.modelexplorer.queries;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EStructuralFeature.Setting;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
 import org.eclipse.emf.facet.infra.query.core.exception.ModelQueryExecutionException;
 import org.eclipse.emf.facet.infra.query.core.java.IJavaModelQuery;
 import org.eclipse.emf.facet.infra.query.core.java.ParameterValueList;
+import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableInstance;
+import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableinstancePackage;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.table.modelexplorer.queries.PapyrusTableInstance;
+import org.eclipse.papyrus.views.modelexplorer.NavigatorUtils;
 import org.eclipse.papyrus.views.modelexplorer.queries.AbstractEditorContainerQuery;
 import org.eclipse.uml2.uml.Element;
+
+import com.google.common.base.Function;
+import com.google.common.base.Predicate;
+import com.google.common.collect.Iterables;
 
 /** Get the collection of all contained diagrams */
 public class GetContainedDiagrams extends AbstractEditorContainerQuery implements IJavaModelQuery<Element, Collection<org.eclipse.gmf.runtime.notation.Diagram>> {
 
 	public Collection<org.eclipse.gmf.runtime.notation.Diagram> evaluate(final Element context, final ParameterValueList parameterValues) throws ModelQueryExecutionException {
-		Collection<Diagram> diagrams = new ArrayList<Diagram>();
-
-		try {
-			for(Object page : getPageMngr().allPages()) {
-				if(!(page instanceof Diagram)) {
-					continue;
-				}
-				// We have a GMF Diagram
-				Diagram diagram = (Diagram)page;
-				if(context.equals(diagram.getElement())) {
-					diagrams.add(diagram);
-				}
-
+		Predicate<EStructuralFeature.Setting> p = new Predicate<EStructuralFeature.Setting>() {
+			public boolean apply(EStructuralFeature.Setting arg0) {
+				return arg0.getEObject() instanceof Diagram ;
 			}
-		} catch (ServiceException e) {
-			//When the customization is not loaded in a Papyrus context, it simply evaluates to false
-			//nothing to do
-		}
-		return diagrams;
+		};
+		Function<EStructuralFeature.Setting, Diagram> f = new Function<EStructuralFeature.Setting, Diagram>() {
+
+			public Diagram apply(EStructuralFeature.Setting arg0) {
+				return (Diagram)arg0.getEObject();
+			}
+			
+		};
+		return NavigatorUtils.findFilterAndApply(context, p, f);
 	}
 }

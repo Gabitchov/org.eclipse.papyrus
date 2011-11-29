@@ -44,4 +44,6 @@ Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.views.modelexplorer.Activator
 Bundle-SymbolicName: org.eclipse.papyrus.views.modelexplorer;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Import-Package: com.google.common.base,
+ com.google.common.collect
 

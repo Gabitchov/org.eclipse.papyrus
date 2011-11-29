@@ -14,12 +14,18 @@
 package org.eclipse.papyrus.infra.table.modelexplorer.queries;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.facet.infra.query.core.exception.ModelQueryExecutionException;
 import org.eclipse.emf.facet.infra.query.core.java.IJavaModelQuery;
 import org.eclipse.emf.facet.infra.query.core.java.ParameterValueList;
+import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableInstance;
+import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableinstancePackage;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.table.instance.papyrustableinstance.PapyrusTableInstance;
+import org.eclipse.papyrus.views.modelexplorer.NavigatorUtils;
 import org.eclipse.papyrus.views.modelexplorer.queries.AbstractEditorContainerQuery;
+
+import com.google.common.base.Predicate;
 
 /** Returns true if the element contains a Table */
 public class IsTableContainer extends AbstractEditorContainerQuery implements IJavaModelQuery<EObject, Boolean> {
@@ -28,22 +34,12 @@ public class IsTableContainer extends AbstractEditorContainerQuery implements IJ
 	 * {@inheritDoc}
 	 */
 	public Boolean evaluate(EObject context, ParameterValueList parameterValues) throws ModelQueryExecutionException {
-		// Walk on page references
-		try {
-			for(Object page : getPageMngr().allPages()) {
-				if(!(page instanceof PapyrusTableInstance)) {
-					continue;
-				}
-				// We have a Papyrus Table Instance
-				PapyrusTableInstance papyrusTableInstance = (PapyrusTableInstance)page;
-				if(context.equals(papyrusTableInstance.getTable().getContext())) {
-					return Boolean.TRUE;
-				}
+		Predicate<Setting> p = new Predicate<Setting>() {
+
+			public boolean apply(Setting arg0) {
+				return arg0.getEObject() instanceof TableInstance && arg0.getEStructuralFeature() == TableinstancePackage.Literals.TABLE_INSTANCE__CONTEXT;
 			}
-		} catch (ServiceException e) {
-			////When the customization is not loaded in a Papyrus context, it simply evaluates to false
-			//nothing to do
-		}
-		return Boolean.FALSE;
+		};
+		return NavigatorUtils.find(context, p);
 	}
 }
