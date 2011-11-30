@@ -34,6 +34,7 @@ import org.eclipse.emf.ecore.EObject;
 public interface Namespace extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Prefix</b></em>' attribute.
+	 * The default value is <code>"clr-namespace"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Prefix</em>' attribute isn't clear,
@@ -43,7 +44,7 @@ public interface Namespace extends EObject {
 	 * @return the value of the '<em>Prefix</em>' attribute.
 	 * @see #setPrefix(String)
 	 * @see org.eclipse.papyrus.properties.environment.EnvironmentPackage#getNamespace_Prefix()
-	 * @model
+	 * @model default="clr-namespace"
 	 * @generated
 	 */
 	String getPrefix();

@@ -45,7 +45,7 @@ public class NamespaceImpl extends EObjectImpl implements Namespace {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String PREFIX_EDEFAULT = null;
+	protected static final String PREFIX_EDEFAULT = "clr-namespace";
 
 	/**
 	 * The cached value of the '{@link #getPrefix() <em>Prefix</em>}' attribute.

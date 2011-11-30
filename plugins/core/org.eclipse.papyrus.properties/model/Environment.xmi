@@ -39,7 +39,7 @@
   <layoutTypes label="RowLayout" widgetClass="RowLayout"/>
   <layoutTypes label="PropertiesLayout" widgetClass="PropertiesLayout" namespace="//@namespaces.4"/>
   <namespaces prefix="" name="" value="http://www.eclipse.org/xwt/presentation"/>
-  <namespaces name="x" value="http://www.eclipse.org/xwt"/>
+  <namespaces prefix="" name="x" value="http://www.eclipse.org/xwt"/>
   <namespaces prefix="clr-namespace" name="j" value="java.lang"/>
   <namespaces prefix="clr-namespace" name="ppe" value="org.eclipse.papyrus.properties.widgets"/>
   <namespaces prefix="clr-namespace" name="ppel" value="org.eclipse.papyrus.properties.widgets.layout"/>

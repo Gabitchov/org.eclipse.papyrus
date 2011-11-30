@@ -36,7 +36,7 @@ import org.eclipse.swt.widgets.Control;
  * 
  * @author Camille Letavernier
  */
-public abstract class AbstractPropertyEditor implements IChangeListener {
+public abstract class AbstractPropertyEditor implements IChangeListener, CustomizablePropertyEditor {
 
 	/**
 	 * The qualified propertyPath. Represents the property edited by this widget

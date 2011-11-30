@@ -13,8 +13,6 @@ package org.eclipse.papyrus.properties.modelelement;
 
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -51,8 +49,6 @@ import org.eclipse.papyrus.widgets.providers.IStaticContentProvider;
 public class DataSource implements IChangeListener {
 
 	private Set<IChangeListener> changeListeners = new HashSet<IChangeListener>();
-
-	private List<IObservable> observed = new LinkedList<IObservable>();
 
 	private View view;
 
@@ -104,6 +100,9 @@ public class DataSource implements IChangeListener {
 	 * Returns an IObservable corresponding to the given property path
 	 * The observable may be either an IObservableValue or an IObservableList
 	 * The call to this method is delegated to the corresponding ModelElement
+	 * The IObservable objects returned by this method may be shared by
+	 * many instances, which means they should not be disposed directly.
+	 * They will be disposed when this DataSource is disposed.
 	 * 
 	 * @param propertyPath
 	 *        The property path for which we want to retrieve an ObservableValue
@@ -121,7 +120,6 @@ public class DataSource implements IChangeListener {
 		IObservable observable = element.getObservable(localPropertyPath);
 		if(observable != null) {
 			observable.addChangeListener(this);
-			observed.add(observable);
 		}
 
 		return observable;
@@ -193,7 +191,10 @@ public class DataSource implements IChangeListener {
 	}
 
 	public void handleChange(ChangeEvent event) {
-		for(IChangeListener listener : changeListeners) {
+		//The set of listeners may change during the update.
+		Set<IChangeListener> listeners = new HashSet<IChangeListener>(changeListeners);
+
+		for(IChangeListener listener : listeners) {
 			listener.handleChange(event);
 		}
 	}

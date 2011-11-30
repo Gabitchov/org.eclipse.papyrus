@@ -156,7 +156,13 @@ public class DefaultDisplayEngine implements DisplayEngine {
 			control.dispose();
 		}
 
-		createSection(parent, section, loadXWTFile(section), source);
+		Control control = createSection(parent, section, loadXWTFile(section), source);
+
+		displayedSections.add(section.getName());
+
+		if(control != null) {
+			controls.add(control);
+		}
 	}
 
 	public Control createSection(Composite parent, Section section, URL sectionFile, DataSource source) {

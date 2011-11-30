@@ -164,6 +164,7 @@ import org.eclipse.emf.edit.ui.view.ExtendedPropertySheetPage;
 
 import org.eclipse.papyrus.properties.contexts.provider.ContextsItemProviderAdapterFactory;
 
+import org.eclipse.emf.ecore.provider.EcoreItemProviderAdapterFactory;
 import org.eclipse.papyrus.properties.environment.presentation.PropertiesEditorPlugin;
 
 import org.eclipse.papyrus.properties.environment.provider.EnvironmentItemProviderAdapterFactory;
@@ -708,6 +709,7 @@ public class ContextsEditor
 		adapterFactory.addAdapterFactory(new EnvironmentItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new ContextsItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new UiItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new EcoreItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
 
 		// Create the command stack that will notify this editor as commands are executed.

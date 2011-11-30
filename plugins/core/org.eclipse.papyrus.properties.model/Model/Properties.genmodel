@@ -70,9 +70,6 @@
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Properties.ecore#//contexts/Context/tabs"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Properties.ecore#//contexts/Context/views"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Properties.ecore#//contexts/Context/dataContexts"/>
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Properties.ecore#//contexts/Context/author"/>
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Properties.ecore#//contexts/Context/description"/>
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Properties.ecore#//contexts/Context/version"/>
       </genClasses>
       <genClasses image="false" ecoreClass="Properties.ecore#//contexts/DisplayUnit">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Properties.ecore#//contexts/DisplayUnit/constraints"/>
