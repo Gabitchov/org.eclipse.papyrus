@@ -245,7 +245,7 @@ public abstract class AbstractElementNodeLabelEditPart extends GraphicalEditPart
 		List<View> views = DiagramEditPartsUtil.findViews(parserElement, getViewer());
 		for(View view : views) {
 			if(NameLabelIconHelper.showLabelIcon(view)) {
-				return org.eclipse.papyrus.sysml.diagram.common.Activator.getInstance().getImage(parserElement.eClass());
+				return org.eclipse.papyrus.sysml.diagram.common.Activator.getInstance().getLabelProvider().getImage(parserElement);
 			}
 		}
 		return null;

@@ -16,11 +16,13 @@ import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory
 import org.eclipse.emf.edit.ui.provider.ExtendedImageRegistry;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.papyrus.log.LogHelper;
 import org.eclipse.papyrus.sysml.activities.provider.ActivitiesItemProviderAdapterFactory;
 import org.eclipse.papyrus.sysml.allocations.provider.AllocationsItemProviderAdapterFactory;
 import org.eclipse.papyrus.sysml.blocks.provider.BlocksItemProviderAdapterFactory;
 import org.eclipse.papyrus.sysml.constraints.provider.ConstraintsItemProviderAdapterFactory;
+import org.eclipse.papyrus.sysml.diagram.common.dialogs.UMLLabelProvider;
 import org.eclipse.papyrus.sysml.modelelements.provider.ModelelementsItemProviderAdapterFactory;
 import org.eclipse.papyrus.sysml.portandflows.FlowDirection;
 import org.eclipse.papyrus.sysml.portandflows.FlowPort;
@@ -48,6 +50,9 @@ public class Activator extends AbstractUIPlugin {
 	/** The composed adapter factory */
 	private ComposedAdapterFactory adapterFactory;
 
+	/** generic label provider based on EMF facet */
+	private UMLLabelProvider labelProvider;
+
 	/** Default constructor */
 	public Activator() {
 	}
@@ -66,6 +71,9 @@ public class Activator extends AbstractUIPlugin {
 
 		// prepare the composed adapter factory
 		adapterFactory = createAdapterFactory();
+
+		// add a generic label provider for sysml elements
+		labelProvider = new UMLLabelProvider();
 	}
 
 	/*
@@ -76,6 +84,8 @@ public class Activator extends AbstractUIPlugin {
 	public void stop(BundleContext context) throws Exception {
 		adapterFactory.dispose();
 		adapterFactory = null;
+		labelProvider.dispose();
+		labelProvider = null;
 		plugin = null;
 		super.stop(context);
 	}
@@ -231,6 +241,15 @@ public class Activator extends AbstractUIPlugin {
 		}
 
 		return image;
+	}
+
+	/**
+	 * Returns a label provider supported by EMF Facet
+	 * 
+	 * @return a label provider supported by EMF Facet
+	 */
+	public LabelProvider getLabelProvider() {
+		return labelProvider;
 	}
 
 	/**

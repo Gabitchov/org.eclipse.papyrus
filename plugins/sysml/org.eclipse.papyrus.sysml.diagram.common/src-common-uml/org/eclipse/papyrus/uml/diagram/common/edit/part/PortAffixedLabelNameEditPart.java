@@ -84,7 +84,7 @@ public class PortAffixedLabelNameEditPart extends AbstractElementLabelEditPart i
 		List<View> views = DiagramEditPartsUtil.findViews(parserElement, getViewer());
 		for(View view : views) {
 			if(NameLabelIconHelper.showLabelIcon(view)) {
-				return Activator.getInstance().getImage(parserElement.eClass());
+				return Activator.getInstance().getLabelProvider().getImage(parserElement);
 			}
 		}
 		return null;
