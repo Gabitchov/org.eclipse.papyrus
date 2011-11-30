@@ -96,7 +96,7 @@ public class NavigationEditPolicy extends OpenEditPolicy {
 
 			gep = (IGraphicalEditPart)getHost();
 		}
-		final EObject semanticElement = gep.resolveSemanticElement();
+		final EObject semanticElement = ((IGraphicalEditPart)getHost()).resolveSemanticElement();
 
 		// navigable element by using heuristic
 		List<NavigableElement> navElements = null;
