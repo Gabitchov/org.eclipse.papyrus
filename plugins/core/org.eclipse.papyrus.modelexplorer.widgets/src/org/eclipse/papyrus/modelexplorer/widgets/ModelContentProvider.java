@@ -25,6 +25,7 @@ import java.util.Set;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.facet.infra.browser.uicore.internal.model.BigListItem;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.StructuredViewer;
@@ -134,7 +135,7 @@ public class ModelContentProvider extends MoDiscoContentProvider implements ISta
 				continue;
 			}
 
-			if (!(semanticElement instanceof EReference)) {
+			if(!(semanticElement instanceof EReference)) {
 				// Don't mark references themselves as visited, as they are meta-level singletons that should always be re-visited.
 				visitedElements.add(semanticElement);
 			}
@@ -151,21 +152,25 @@ public class ModelContentProvider extends MoDiscoContentProvider implements ISta
 				}
 			}
 
-			// Find childs only for feature container
+			// Find childs only for feature container and BigListItems
+			//FIXME : Actually, we currently browse all references. We should only browse containment references
+			//and a few specific references (To be determined by implementers, such as importPackage for UML)
 			Object[] children = getChildren(wrapper);
 			for(Object treeItem : children) {
 				List<Object> tmppath = new ArrayList<Object>();
-				//can  be change into IADAPTER by using new API of modisco
-				Object element = semanticGetter.getSemanticElement(treeItem);
-				if(element != null) {
-					if(element instanceof EReference) {
-						List<Object> childs = new ArrayList<Object>();
-						childs.add(treeItem);
-						tmppath = searchPath(lookFor, childs, visitedElements);
-					}
-
-					else {
-						if(element instanceof EObject) {
+				if(treeItem instanceof BigListItem) {
+					List<Object> childs = new ArrayList<Object>();
+					childs.add(treeItem);
+					tmppath = searchPath(lookFor, childs, visitedElements);
+				} else {
+					//can  be change into IADAPTER by using new API of modisco
+					Object element = semanticGetter.getSemanticElement(treeItem);
+					if(element != null) {
+						if(element instanceof EReference) {
+							List<Object> childs = new ArrayList<Object>();
+							childs.add(treeItem);
+							tmppath = searchPath(lookFor, childs, visitedElements);
+						} else if(element instanceof EObject) {
 							List<Object> childs = new ArrayList<Object>();
 							childs.add(treeItem);
 							tmppath = searchPath(lookFor, childs, visitedElements);
