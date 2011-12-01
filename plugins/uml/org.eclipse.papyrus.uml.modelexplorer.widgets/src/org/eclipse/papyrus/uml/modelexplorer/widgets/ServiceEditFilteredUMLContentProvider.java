@@ -14,23 +14,15 @@ package org.eclipse.papyrus.uml.modelexplorer.widgets;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.papyrus.modelexplorer.widgets.EditServiceValidator;
+import org.eclipse.papyrus.uml.modelexplorer.widgets.util.HistoryUtil;
 
 public class ServiceEditFilteredUMLContentProvider extends UMLElementMEBContentProvider {
 
 	private EditServiceValidator validator;
 
 	public ServiceEditFilteredUMLContentProvider(EObject editedObject, EStructuralFeature feature, EObject semanticRoot) {
-		super(semanticRoot, getHistoryID(editedObject, feature, semanticRoot));
+		super(semanticRoot, HistoryUtil.getHistoryID(editedObject, feature, semanticRoot));
 		validator = new EditServiceValidator(editedObject, feature);
-	}
-
-	private static String getHistoryID(EObject editedObject, EStructuralFeature feature, EObject semanticRoot) {
-		//		return String.format("history_%s:%s:%s", feature.getEType().getEPackage().getName(), feature.getEType().getName(), feature.getName()); //$NON-NLS-1$
-		if(editedObject.eResource() == null) {
-			return String.format("history_%s:%s:%s", feature.getEType().getEPackage().getName(), feature.getEType().getName(), feature.getName());
-		}
-
-		return String.format("history_%s:%s:%s:%s", editedObject.eResource().getURI(), feature.getEType().getEPackage().getName(), feature.getEType().getName(), feature.getName());
 	}
 
 	@Override

@@ -29,7 +29,6 @@ import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.properties.databinding.EMFObservableList;
 import org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.service.edit.service.IElementEditService;
-import org.eclipse.papyrus.widgets.editors.ICommitListener;
 
 /**
  * An ObservableList used to edit collections of EObjects through
@@ -39,7 +38,7 @@ import org.eclipse.papyrus.widgets.editors.ICommitListener;
  * 
  */
 @SuppressWarnings("unchecked")
-public class PapyrusObservableList extends EMFObservableList implements ICommitListener {
+public class PapyrusObservableList extends EMFObservableList {
 
 	/**
 	 * 

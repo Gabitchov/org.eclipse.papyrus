@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -14,7 +14,12 @@ package org.eclipse.papyrus.properties.uml.widgets;
 import org.eclipse.papyrus.properties.widgets.AbstractPropertyEditor;
 import org.eclipse.swt.widgets.Composite;
 
-
+/**
+ * 
+ * @author admin
+ * @Deprecated You should use the standard ReferenceDialog instead
+ */
+@Deprecated
 public class TypeReferenceDialog extends AbstractPropertyEditor {
 
 	protected UMLReferenceDialog editor;

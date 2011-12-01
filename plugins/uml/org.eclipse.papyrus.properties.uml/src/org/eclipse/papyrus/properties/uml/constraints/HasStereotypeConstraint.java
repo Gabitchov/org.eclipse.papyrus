@@ -59,7 +59,11 @@ public class HasStereotypeConstraint extends AbstractConstraint {
 			HasStereotypeConstraint stereotypeConstraint = (HasStereotypeConstraint)constraint;
 			if(!stereotypeName.equals(stereotypeConstraint.stereotypeName)) {
 				Stereotype thisStereotype = umlElement.getApplicableStereotype(stereotypeName);
-				Stereotype otherStereotype = umlElement.getApplicableStereotype(stereotypeConstraint.stereotypeName);
+
+				//The otherStereotype can match the constraint without being applicable (e.g. abstract stereotype...)
+				//We can't rely on "getApplicableStereotype"
+				Stereotype otherStereotype = UMLUtil.findStereotype(umlElement, stereotypeConstraint.stereotypeName);
+				//Stereotype otherStereotype = umlElement.getApplicableStereotype(stereotypeConstraint.stereotypeName);
 				if(UMLUtil.getAllSuperStereotypes(thisStereotype).contains(otherStereotype)) {
 					overrides = true;
 				}

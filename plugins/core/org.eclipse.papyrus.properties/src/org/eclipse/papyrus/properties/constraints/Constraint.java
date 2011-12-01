@@ -11,6 +11,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.constraints;
 
+import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.properties.contexts.ConstraintDescriptor;
 import org.eclipse.papyrus.properties.contexts.View;
 
@@ -45,6 +46,16 @@ public interface Constraint {
 	 *         True if this constraint matches the given object
 	 */
 	public boolean match(Object selection);
+
+	/**
+	 * Tests if this constraint matches the given selection
+	 * 
+	 * @param selection
+	 *        The selection to be tested against this constraint
+	 * @return
+	 *         True if this constraint matches the given selection
+	 */
+	public boolean match(IStructuredSelection selection);
 
 	/**
 	 * Returns the view associated to this constraint, or null if the constraint is associated to another

@@ -43,11 +43,15 @@ import org.eclipse.papyrus.properties.uml.creation.UMLPropertyEditorFactory;
 import org.eclipse.papyrus.properties.uml.databinding.ExtensionRequiredObservableValue;
 import org.eclipse.papyrus.properties.uml.databinding.PapyrusObservableList;
 import org.eclipse.papyrus.properties.uml.databinding.PapyrusObservableValue;
+import org.eclipse.papyrus.properties.uml.databinding.ProvidedInterfaceObservableList;
+import org.eclipse.papyrus.properties.uml.databinding.RequiredInterfaceObservableList;
 import org.eclipse.papyrus.properties.uml.databinding.SignatureObservableValue;
 import org.eclipse.papyrus.properties.uml.providers.InstanceValueContentProvider;
 import org.eclipse.papyrus.properties.uml.providers.SignatureContentProvider;
 import org.eclipse.papyrus.properties.uml.providers.UMLLabelProvider;
 import org.eclipse.papyrus.uml.modelexplorer.widgets.ServiceEditFilteredUMLContentProvider;
+import org.eclipse.papyrus.uml.modelexplorer.widgets.UMLElementMEBContentProvider;
+import org.eclipse.papyrus.uml.modelexplorer.widgets.util.HistoryUtil;
 import org.eclipse.papyrus.umlutils.PackageUtil;
 import org.eclipse.papyrus.widgets.creation.ReferenceValueFactory;
 import org.eclipse.papyrus.widgets.providers.IStaticContentProvider;
@@ -58,6 +62,7 @@ import org.eclipse.uml2.uml.InstanceValue;
 import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.ParameterDirectionKind;
+import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
@@ -105,6 +110,18 @@ public class UMLModelElement extends EMFModelElement {
 			return new ExtensionRequiredObservableValue((Extension)source, domain);
 		}
 
+		if(feature == UMLPackage.eINSTANCE.getPort_Provided()) {
+			//TODO : Currently, this is read-only
+			//See #isEditable(String)
+			return new ProvidedInterfaceObservableList((Port)source, domain);
+		}
+
+		if(feature == UMLPackage.eINSTANCE.getPort_Required()) {
+			//TODO : Currently, this is read-only
+			//See #isEditable(String)
+			return new RequiredInterfaceObservableList((Port)source, domain);
+		}
+
 		if(feature == null) {
 			return null;
 		}
@@ -127,6 +144,14 @@ public class UMLModelElement extends EMFModelElement {
 		if(feature == UMLPackage.eINSTANCE.getExtension_IsRequired()) {
 			return true;
 		}
+		if(feature == UMLPackage.eINSTANCE.getPort_Provided()) {
+			return false;
+			//return true; //TODO : Unsupported yet
+		}
+		if(feature == UMLPackage.eINSTANCE.getPort_Required()) {
+			return false;
+			//return true; //TODO : Unsupported yet
+		}
 		return super.isEditable(propertyPath);
 	}
 
@@ -135,6 +160,18 @@ public class UMLModelElement extends EMFModelElement {
 		EStructuralFeature feature = getFeature(propertyPath);
 		if(feature == UMLPackage.eINSTANCE.getMessage_Signature() || feature == UMLPackage.eINSTANCE.getSendOperationEvent_Operation() || feature == UMLPackage.eINSTANCE.getReceiveOperationEvent_Operation()) {
 			return new SignatureContentProvider(source);
+		}
+
+		if(feature == UMLPackage.eINSTANCE.getPort_Provided() || feature == UMLPackage.eINSTANCE.getPort_Required()) {
+			Package root = null;
+			if(((Element)source).getNearestPackage() != null) {
+				root = PackageUtil.getRootPackage((Element)source);
+			}
+
+			String historyId = HistoryUtil.getHistoryID(source, feature, root);
+			UMLElementMEBContentProvider contentProvider = new UMLElementMEBContentProvider(root, historyId);
+			contentProvider.setMetaClassWanted(feature.getEType());
+			return contentProvider;
 		}
 
 		if(feature instanceof EReference) {

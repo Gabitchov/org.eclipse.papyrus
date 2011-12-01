@@ -13,7 +13,6 @@ package org.eclipse.papyrus.properties.runtime;
 
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -75,27 +74,8 @@ public class DefaultConstraintEngine implements ConstraintEngine {
 		}
 
 		for(Constraint c : constraints) {
-			int elementMultiplicity = c.getView().getElementMultiplicity();
-			int selectionSize = selection.size();
-			if(elementMultiplicity == 1) {
-				if(selectionSize == 1) {
-					if(c.match(selection.getFirstElement())) {
-						matchedConstraints.add(c);
-					}
-				}
-			} else if(elementMultiplicity == selectionSize || elementMultiplicity < 0) {
-				boolean allMatch = true;
-				Iterator<?> selectionIterator = selection.iterator();
-				while(selectionIterator.hasNext()) {
-					Object selectedItem = selectionIterator.next();
-					if(!c.match(selectedItem)) {
-						allMatch = false;
-						break;
-					}
-				}
-				if(allMatch) {
-					matchedConstraints.add(c);
-				}
+			if(c.match(selection)) {
+				matchedConstraints.add(c);
 			}
 		}
 

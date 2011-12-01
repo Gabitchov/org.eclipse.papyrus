@@ -18,6 +18,7 @@ import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
+import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.papyrus.properties.contexts.View;
 import org.eclipse.papyrus.properties.runtime.ConfigurationManager;
 import org.eclipse.papyrus.properties.runtime.EmbeddedDisplayEngine;
@@ -100,7 +101,9 @@ public class MultiReferenceEditorWithPropertyView extends AbstractListEditor imp
 	@Override
 	public void setModelObservable(IObservableList modelObservable) {
 		multiReferenceEditor.setModelObservable(modelObservable);
-		//TODO : Set the initial selection (first element) to the editor
+		if(!modelObservable.isEmpty()) {
+			multiReferenceEditor.getViewer().setSelection(new StructuredSelection(modelObservable.get(0)));
+		}
 	}
 
 	@Override
@@ -122,7 +125,7 @@ public class MultiReferenceEditorWithPropertyView extends AbstractListEditor imp
 		getParent().layout(); //This one works in the embedded editor
 
 		// In the Eclipse Tabbed Property View, we need to go this far...
-		//		getParent().getParent().getParent().getParent().layout();
+		getParent().getParent().getParent().getParent().layout();
 	}
 
 	public void setFactory(ReferenceValueFactory valueFactory) {

@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -27,7 +27,12 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Package;
 
-
+/**
+ * 
+ * @author admin
+ * @deprecated You should use the generic ReferenceDialog instead
+ */
+@Deprecated
 public class UMLReferenceDialog extends ReferenceDialog {
 
 	public UMLReferenceDialog(final Composite parent, final int style) {
