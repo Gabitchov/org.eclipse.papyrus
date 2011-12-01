@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
-   <extension-point id="org.eclipse.papyrus.views.properties.generation.generator" name="%extension-point.generator" schema="schema/org.eclipse.papyrus.views.properties.generation.generator.exsd"/>
-   <extension-point id="org.eclipse.papyrus.views.properties.generation.layout" name="%extension-point.layoutgenerator" schema="schema/org.eclipse.papyrus.views.properties.generation.layout.exsd"/>
+   <extension-point id="org.eclipse.papyrus.customization.properties.generation.generator" name="%extension-point.generator" schema="schema/org.eclipse.papyrus.customization.properties.generation.generator.exsd"/>
+   <extension-point id="org.eclipse.papyrus.customization.properties.generation.layout" name="%extension-point.layoutgenerator" schema="schema/org.eclipse.papyrus.customization.properties.generation.layout.exsd"/>
    <extension
          point="org.eclipse.ui.newWizards">
       <wizard
             category="org.eclipse.papyrus.wizards.category"
             class="org.eclipse.papyrus.customization.properties.generation.wizard.CreateContextWizard"
             icon="icons/new_customization.png"
-            id="org.eclipse.papyrus.views.properties.generation.wizard"
+            id="org.eclipse.papyrus.customization.properties.generation.wizard"
             name="%generation.wizard.name">
       </wizard>
    </extension>
    <extension
          point="org.eclipse.emf.ecore.generated_package">
       <package
-            class="org.eclipse.papyrus.views.properties.customization.generation.fieldselection.FieldSelectionPackage"
+            class="org.eclipse.papyrus.customization.properties.generation.fieldselection.FieldSelectionPackage"
             genModel="Model/Properties.genmodel"
             uri="http://www.eclipse.org/papyrus/properties/fieldSelection">
       </package>
    </extension>
    <extension
-         point="org.eclipse.papyrus.views.properties.generation.generator">
+         point="org.eclipse.papyrus.customization.properties.generation.generator">
       <generator
             generator="org.eclipse.papyrus.customization.properties.generation.generators.EcoreGenerator">
       </generator>
@@ -31,7 +31,7 @@
       </generator>
    </extension>
    <extension
-         point="org.eclipse.papyrus.views.properties.generation.layout">
+         point="org.eclipse.papyrus.customization.properties.generation.layout">
       <generator
             generator="org.eclipse.papyrus.customization.properties.generation.layout.StandardLayoutGenerator">
       </generator>
