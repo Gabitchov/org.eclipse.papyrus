@@ -58,6 +58,7 @@ import org.eclipse.swt.graphics.Color;
  */
 public class InteractionConstraintEditPart extends
 
+
 AbstractConstraintEditPart {
 
 	/**
@@ -94,6 +95,9 @@ AbstractConstraintEditPart {
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
+
+
+
 	/**
 	 * Papyrus codeGen
 	 * 
@@ -103,6 +107,10 @@ AbstractConstraintEditPart {
 		super.handleNotificationEvent(event);
 
 	}
+
+
+
+
 
 	/**
 	 * @generated
@@ -156,8 +164,10 @@ AbstractConstraintEditPart {
 			return true;
 		}
 
+
 		return false;
 	}
+
 
 	/**
 	 * @generated
@@ -199,6 +209,7 @@ AbstractConstraintEditPart {
 		return getContentPane();
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -211,6 +222,7 @@ AbstractConstraintEditPart {
 
 		return result;
 	}
+
 
 	/**
 	 * Creates figure for this edit part.
@@ -5422,6 +5434,10 @@ AbstractConstraintEditPart {
 		}
 		return types;
 	}
+
+
+
+
 
 	/**
 	 * @generated

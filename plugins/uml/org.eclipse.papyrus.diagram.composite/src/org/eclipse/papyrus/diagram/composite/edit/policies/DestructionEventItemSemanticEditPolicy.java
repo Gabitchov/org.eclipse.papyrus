@@ -73,6 +73,9 @@ public class DestructionEventItemSemanticEditPolicy extends UMLBaseItemSemanticE
 		super(UMLElementTypes.DestructionEvent_2091);
 	}
 
+
+
+
 	/**
 	 * @generated
 	 */
@@ -89,6 +92,7 @@ public class DestructionEventItemSemanticEditPolicy extends UMLBaseItemSemanticE
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
+
 
 	/**
 	 * @generated

@@ -73,6 +73,10 @@ public class DeploymentItemSemanticEditPolicy extends UMLBaseItemSemanticEditPol
 		super(UMLElementTypes.Deployment_4009);
 	}
 
+
+
+
+
 	/**
 	 * @generated
 	 */

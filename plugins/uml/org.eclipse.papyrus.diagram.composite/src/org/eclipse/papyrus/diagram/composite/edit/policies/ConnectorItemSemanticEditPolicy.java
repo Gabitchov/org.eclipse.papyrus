@@ -73,6 +73,10 @@ public class ConnectorItemSemanticEditPolicy extends UMLBaseItemSemanticEditPoli
 		super(UMLElementTypes.Connector_4013);
 	}
 
+
+
+
+
 	/**
 	 * @generated
 	 */

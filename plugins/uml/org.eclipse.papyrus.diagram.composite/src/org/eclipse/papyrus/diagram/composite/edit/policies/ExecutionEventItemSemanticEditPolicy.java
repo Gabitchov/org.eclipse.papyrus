@@ -73,6 +73,9 @@ public class ExecutionEventItemSemanticEditPolicy extends UMLBaseItemSemanticEdi
 		super(UMLElementTypes.ExecutionEvent_2092);
 	}
 
+
+
+
 	/**
 	 * @generated
 	 */
@@ -89,6 +92,7 @@ public class ExecutionEventItemSemanticEditPolicy extends UMLBaseItemSemanticEdi
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
+
 
 	/**
 	 * @generated

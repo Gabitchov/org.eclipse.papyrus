@@ -80,6 +80,7 @@ public class EnumerationItemSemanticEditPolicyCN extends UMLBaseItemSemanticEdit
 		super(UMLElementTypes.Enumeration_3079);
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -89,6 +90,8 @@ public class EnumerationItemSemanticEditPolicyCN extends UMLBaseItemSemanticEdit
 		}
 		return super.getCreateCommand(req);
 	}
+
+
 
 	/**
 	 * @generated
@@ -106,6 +109,7 @@ public class EnumerationItemSemanticEditPolicyCN extends UMLBaseItemSemanticEdit
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
+
 
 	/**
 	 * @generated

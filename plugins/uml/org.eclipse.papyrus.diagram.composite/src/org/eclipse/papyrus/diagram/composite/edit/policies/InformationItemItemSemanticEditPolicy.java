@@ -78,6 +78,9 @@ public class InformationItemItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 		super(UMLElementTypes.InformationItem_2080);
 	}
 
+
+
+
 	/**
 	 * @generated
 	 */
@@ -94,6 +97,7 @@ public class InformationItemItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
+
 
 	/**
 	 * @generated

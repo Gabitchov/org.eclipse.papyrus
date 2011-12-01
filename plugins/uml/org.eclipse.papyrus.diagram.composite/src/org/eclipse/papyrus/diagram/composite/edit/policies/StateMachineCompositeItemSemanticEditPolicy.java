@@ -81,6 +81,7 @@ public class StateMachineCompositeItemSemanticEditPolicy extends UMLBaseItemSema
 		super(UMLElementTypes.StateMachine_2063);
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -93,6 +94,8 @@ public class StateMachineCompositeItemSemanticEditPolicy extends UMLBaseItemSema
 		}
 		return super.getCreateCommand(req);
 	}
+
+
 
 	/**
 	 * @generated
@@ -110,6 +113,7 @@ public class StateMachineCompositeItemSemanticEditPolicy extends UMLBaseItemSema
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
+
 
 	/**
 	 * @generated

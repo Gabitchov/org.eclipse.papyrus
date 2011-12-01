@@ -110,6 +110,8 @@ public class ConnectorMultiplicitySourceEditPart extends LabelEditPart implement
 	 */
 	private String defaultText;
 
+
+
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
 	 * 
@@ -123,6 +125,8 @@ public class ConnectorMultiplicitySourceEditPart extends LabelEditPart implement
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
+
+
 
 	/**
 	 * @generated
@@ -589,6 +593,8 @@ public class ConnectorMultiplicitySourceEditPart extends LabelEditPart implement
 		return getPrimaryView();
 	}
 
+
+
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
@@ -684,6 +690,8 @@ public class ConnectorMultiplicitySourceEditPart extends LabelEditPart implement
 		}
 	}
 
+
+
 	/**
 	 * @generated
 	 */
@@ -714,6 +722,9 @@ public class ConnectorMultiplicitySourceEditPart extends LabelEditPart implement
 			}
 		}
 
+
+
+
 		super.handleNotificationEvent(event);
 	}
 
@@ -724,6 +735,9 @@ public class ConnectorMultiplicitySourceEditPart extends LabelEditPart implement
 		// Parent should assign one using setLabel() method
 		return null;
 	}
+
+
+
 
 	/**
 	 * @generated
@@ -738,5 +752,6 @@ public class ConnectorMultiplicitySourceEditPart extends LabelEditPart implement
 	public String getIconPathRole() {
 		return "";//$NON-NLS-1$
 	}
+
 
 }

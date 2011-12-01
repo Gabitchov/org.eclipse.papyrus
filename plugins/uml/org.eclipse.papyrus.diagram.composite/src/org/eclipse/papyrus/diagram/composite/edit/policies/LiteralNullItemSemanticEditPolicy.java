@@ -73,6 +73,9 @@ public class LiteralNullItemSemanticEditPolicy extends UMLBaseItemSemanticEditPo
 		super(UMLElementTypes.LiteralNull_2097);
 	}
 
+
+
+
 	/**
 	 * @generated
 	 */
@@ -89,6 +92,7 @@ public class LiteralNullItemSemanticEditPolicy extends UMLBaseItemSemanticEditPo
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
+
 
 	/**
 	 * @generated

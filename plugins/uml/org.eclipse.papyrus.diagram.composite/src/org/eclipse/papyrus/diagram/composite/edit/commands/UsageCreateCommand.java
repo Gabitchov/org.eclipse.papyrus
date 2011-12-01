@@ -46,6 +46,7 @@ public class UsageCreateCommand extends EditElementCommand {
 	 */
 	protected final EObject target;
 
+
 	/**
 	 * @generated
 	 */
@@ -84,6 +85,7 @@ public class UsageCreateCommand extends EditElementCommand {
 		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateUsage_4008(getContainer(), getSource(), getTarget());
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -102,6 +104,7 @@ public class UsageCreateCommand extends EditElementCommand {
 		return CommandResult.newOKCommandResult(newElement);
 
 	}
+
 
 	/**
 	 * @generated

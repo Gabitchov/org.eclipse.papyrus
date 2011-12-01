@@ -73,6 +73,9 @@ public class IntervalConstraintItemSemanticEditPolicy extends UMLBaseItemSemanti
 		super(UMLElementTypes.IntervalConstraint_2112);
 	}
 
+
+
+
 	/**
 	 * @generated
 	 */
@@ -89,6 +92,7 @@ public class IntervalConstraintItemSemanticEditPolicy extends UMLBaseItemSemanti
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
+
 
 	/**
 	 * @generated

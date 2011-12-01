@@ -75,6 +75,7 @@ public class ExecutionEnvironmentCompositeCreateCommand extends EditElementComma
 	 */
 	protected EObject getElementToEdit() {
 
+
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -104,10 +105,13 @@ public class ExecutionEnvironmentCompositeCreateCommand extends EditElementComma
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
+
+
 		ExecutionEnvironment newElement = UMLFactory.eINSTANCE.createExecutionEnvironment();
 
 		Package owner = (Package)getElementToEdit();
 		owner.getPackagedElements().add(newElement);
+
 
 		ElementInitializers.getInstance().init_ExecutionEnvironment_2071(newElement);
 
@@ -116,6 +120,9 @@ public class ExecutionEnvironmentCompositeCreateCommand extends EditElementComma
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
+
+
+
 
 	/**
 	 * @generated

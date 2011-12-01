@@ -81,6 +81,7 @@ public class FunctionBehaviorCompositeItemSemanticEditPolicy extends UMLBaseItem
 		super(UMLElementTypes.FunctionBehavior_2064);
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -93,6 +94,8 @@ public class FunctionBehaviorCompositeItemSemanticEditPolicy extends UMLBaseItem
 		}
 		return super.getCreateCommand(req);
 	}
+
+
 
 	/**
 	 * @generated
@@ -110,6 +113,7 @@ public class FunctionBehaviorCompositeItemSemanticEditPolicy extends UMLBaseItem
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
+
 
 	/**
 	 * @generated

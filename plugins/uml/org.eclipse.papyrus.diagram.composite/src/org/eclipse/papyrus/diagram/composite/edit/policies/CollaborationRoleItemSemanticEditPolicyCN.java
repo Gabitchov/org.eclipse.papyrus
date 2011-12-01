@@ -73,6 +73,9 @@ public class CollaborationRoleItemSemanticEditPolicyCN extends UMLBaseItemSemant
 		super(UMLElementTypes.ConnectableElement_3115);
 	}
 
+
+
+
 	/**
 	 * @generated
 	 */
@@ -89,6 +92,7 @@ public class CollaborationRoleItemSemanticEditPolicyCN extends UMLBaseItemSemant
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
+
 
 	/**
 	 * @generated

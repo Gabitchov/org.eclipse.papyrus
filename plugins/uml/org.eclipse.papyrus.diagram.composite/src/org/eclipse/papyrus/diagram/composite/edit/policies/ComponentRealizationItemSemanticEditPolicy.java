@@ -73,6 +73,10 @@ public class ComponentRealizationItemSemanticEditPolicy extends UMLBaseItemSeman
 		super(UMLElementTypes.ComponentRealization_4004);
 	}
 
+
+
+
+
 	/**
 	 * @generated
 	 */

@@ -58,6 +58,7 @@ import org.eclipse.swt.graphics.Color;
  */
 public class CommentEditPart extends
 
+
 AbstractCommentEditPart {
 
 	/**
@@ -94,6 +95,9 @@ AbstractCommentEditPart {
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
+
+
+
 	/**
 	 * Papyrus codeGen
 	 * 
@@ -103,6 +107,10 @@ AbstractCommentEditPart {
 		super.handleNotificationEvent(event);
 
 	}
+
+
+
+
 
 	/**
 	 * @generated
@@ -152,8 +160,10 @@ AbstractCommentEditPart {
 			return true;
 		}
 
+
 		return false;
 	}
+
 
 	/**
 	 * @generated
@@ -192,6 +202,7 @@ AbstractCommentEditPart {
 		return getContentPane();
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -204,6 +215,7 @@ AbstractCommentEditPart {
 
 		return result;
 	}
+
 
 	/**
 	 * Creates figure for this edit part.
@@ -690,6 +702,10 @@ AbstractCommentEditPart {
 		}
 		return types;
 	}
+
+
+
+
 
 	/**
 	 * @generated

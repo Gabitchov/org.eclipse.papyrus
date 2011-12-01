@@ -58,6 +58,7 @@ public class ConnectorPreferencePage extends AbstractPapyrusLinkPreferencePage {
 
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -77,9 +78,12 @@ public class ConnectorPreferencePage extends AbstractPapyrusLinkPreferencePage {
 		TreeMap<String, Boolean> map = new TreeMap<String, Boolean>();
 		map.put("Stereotype", Boolean.TRUE);
 
+
 		map.put("Name", Boolean.FALSE);//$NON-NLS-1$
 
+
 		map.put("SourceMultiplicity", Boolean.FALSE);//$NON-NLS-1$
+
 
 		map.put("TargetMultiplicity", Boolean.FALSE);//$NON-NLS-1$
 
@@ -92,5 +96,6 @@ public class ConnectorPreferencePage extends AbstractPapyrusLinkPreferencePage {
 	protected TreeMap<String, String> getLabelRole() {
 		return getStaticLabelRole();
 	}
+
 
 }

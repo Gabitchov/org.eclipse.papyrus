@@ -33,6 +33,8 @@ public class Messages extends NLS {
 	private Messages() {
 	}
 
+
+
 	/**
 	 * @generated
 	 */
@@ -718,6 +720,7 @@ public class Messages extends NLS {
 	 */
 	public static String PropertyPartCompartmentEditPartCN_title;
 
+
 	/**
 	 * @generated
 	 */
@@ -737,6 +740,7 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String AbstractParser_UnknownLiteral;
+
 
 	/**
 	 * @generated

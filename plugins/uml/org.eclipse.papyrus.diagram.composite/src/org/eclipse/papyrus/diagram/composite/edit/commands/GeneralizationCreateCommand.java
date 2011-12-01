@@ -44,6 +44,7 @@ public class GeneralizationCreateCommand extends EditElementCommand {
 	 */
 	protected final EObject target;
 
+
 	/**
 	 * @generated
 	 */
@@ -82,6 +83,7 @@ public class GeneralizationCreateCommand extends EditElementCommand {
 		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateGeneralization_4015(getContainer(), getSource(), getTarget());
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -99,6 +101,7 @@ public class GeneralizationCreateCommand extends EditElementCommand {
 		return CommandResult.newOKCommandResult(newElement);
 
 	}
+
 
 	/**
 	 * @generated

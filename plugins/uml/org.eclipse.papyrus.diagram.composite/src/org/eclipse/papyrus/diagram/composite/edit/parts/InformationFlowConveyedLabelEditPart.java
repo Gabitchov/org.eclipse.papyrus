@@ -112,6 +112,8 @@ public class InformationFlowConveyedLabelEditPart extends LabelEditPart implemen
 	 */
 	private String defaultText;
 
+
+
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
 	 * 
@@ -125,6 +127,8 @@ public class InformationFlowConveyedLabelEditPart extends LabelEditPart implemen
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
+
+
 
 	/**
 	 * @generated
@@ -594,6 +598,8 @@ public class InformationFlowConveyedLabelEditPart extends LabelEditPart implemen
 		return getPrimaryView();
 	}
 
+
+
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
@@ -697,6 +703,8 @@ public class InformationFlowConveyedLabelEditPart extends LabelEditPart implemen
 		}
 	}
 
+
+
 	/**
 	 * @generated
 	 */
@@ -727,6 +735,9 @@ public class InformationFlowConveyedLabelEditPart extends LabelEditPart implemen
 			}
 		}
 
+
+
+
 		super.handleNotificationEvent(event);
 	}
 
@@ -737,6 +748,9 @@ public class InformationFlowConveyedLabelEditPart extends LabelEditPart implemen
 		// Parent should assign one using setLabel() method
 		return null;
 	}
+
+
+
 
 	/**
 	 * @generated
@@ -751,5 +765,6 @@ public class InformationFlowConveyedLabelEditPart extends LabelEditPart implemen
 	public String getIconPathRole() {
 		return "";//$NON-NLS-1$
 	}
+
 
 }

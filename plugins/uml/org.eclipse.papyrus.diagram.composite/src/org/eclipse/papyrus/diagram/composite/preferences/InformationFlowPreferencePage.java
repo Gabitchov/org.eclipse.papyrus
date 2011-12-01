@@ -58,6 +58,7 @@ public class InformationFlowPreferencePage extends AbstractPapyrusLinkPreference
 
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -86,5 +87,6 @@ public class InformationFlowPreferencePage extends AbstractPapyrusLinkPreference
 	protected TreeMap<String, String> getLabelRole() {
 		return getStaticLabelRole();
 	}
+
 
 }

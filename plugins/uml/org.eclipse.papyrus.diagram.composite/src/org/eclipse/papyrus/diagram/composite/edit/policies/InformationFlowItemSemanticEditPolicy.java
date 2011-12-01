@@ -73,6 +73,10 @@ public class InformationFlowItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 		super(UMLElementTypes.InformationFlow_4021);
 	}
 
+
+
+
+
 	/**
 	 * @generated
 	 */

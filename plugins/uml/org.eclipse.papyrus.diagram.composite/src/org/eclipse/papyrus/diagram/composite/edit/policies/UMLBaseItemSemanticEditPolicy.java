@@ -265,13 +265,11 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			if(provider == null) {
 				return UnexecutableCommand.INSTANCE;
 			}
-
 			// Retrieve create command from the Element Edit service
 			ICommand createGMFCommand = provider.getEditCommand(req);
 
 			return getGEFWrapper(createGMFCommand);
 		}
-
 		return null;
 	}
 
@@ -315,7 +313,9 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 */
 	protected Command getMoveCommand(MoveRequest req) {
 
+
 		return getGEFWrapper(new MoveElementsCommand(req));
+
 
 	}
 
@@ -365,6 +365,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		}
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -375,6 +376,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		}
 		return cached;
 	}
+
 
 	/**
 	 * @generated
@@ -388,6 +390,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			// use static method #getLinkConstraints() to access instance
 		}
 
+
 		/**
 		 * @generated
 		 */
@@ -395,14 +398,13 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			return canExistLink_4001();
 		}
 
+
 		/**
 		 * @generated
 		 */
 		public boolean canCreateCommentAnnotatedElement_4002(Comment source, Element target) {
 			if(source != null) {
-				if(source.getAnnotatedElements().contains(target)
-
-				) {
+				if(source.getAnnotatedElements().contains(target)) {
 					return false;
 				}
 			}
@@ -410,20 +412,20 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			return canExistCommentAnnotatedElement_4002(source, target);
 		}
 
+
 		/**
 		 * @generated
 		 */
 		public boolean canCreateConstraintConstrainedElement_4003(Constraint source, Element target) {
 			if(source != null) {
-				if(source.getConstrainedElements().contains(target)
-
-				) {
+				if(source.getConstrainedElements().contains(target)) {
 					return false;
 				}
 			}
 
 			return canExistConstraintConstrainedElement_4003(source, target);
 		}
+
 
 		/**
 		 * @generated
@@ -432,12 +434,14 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			return canExistComponentRealization_4004(container, null, source, target);
 		}
 
+
 		/**
 		 * @generated
 		 */
 		public boolean canCreateInterfaceRealization_4005(Package container, NamedElement source, NamedElement target) {
 			return canExistInterfaceRealization_4005(container, null, source, target);
 		}
+
 
 		/**
 		 * @generated
@@ -446,12 +450,14 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			return canExistSubstitution_4011(container, null, source, target);
 		}
 
+
 		/**
 		 * @generated
 		 */
 		public boolean canCreateRealization_4006(Package container, NamedElement source, NamedElement target) {
 			return canExistRealization_4006(container, null, source, target);
 		}
+
 
 		/**
 		 * @generated
@@ -460,12 +466,14 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			return canExistManifestation_4012(container, null, source, target);
 		}
 
+
 		/**
 		 * @generated
 		 */
 		public boolean canCreateAbstraction_4007(Package container, NamedElement source, NamedElement target) {
 			return canExistAbstraction_4007(container, null, source, target);
 		}
+
 
 		/**
 		 * @generated
@@ -474,12 +482,14 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			return canExistUsage_4008(container, null, source, target);
 		}
 
+
 		/**
 		 * @generated
 		 */
 		public boolean canCreateDeployment_4009(Package container, NamedElement source, NamedElement target) {
 			return canExistDeployment_4009(container, null, source, target);
 		}
+
 
 		/**
 		 * @generated
@@ -488,12 +498,14 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			return canExistDependency_4017(container, null, source, target);
 		}
 
+
 		/**
 		 * @generated
 		 */
 		public boolean canCreateDependency_4010(Package container, NamedElement source, NamedElement target) {
 			return canExistDependency_4010(container, null, source, target);
 		}
+
 
 		/**
 		 * @generated
@@ -502,6 +514,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			return canExistConnector_4013(container, null, source, target);
 		}
 
+
 		/**
 		 * @generated
 		 */
@@ -509,14 +522,13 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			return canExistGeneralization_4015(container, null, source, target);
 		}
 
+
 		/**
 		 * @generated
 		 */
 		public boolean canCreateTimeObservationEvent_4018(TimeObservation source, NamedElement target) {
 			if(source != null) {
-				if(source.getEvent() != null
-
-				) {
+				if(source.getEvent() != null) {
 					return false;
 				}
 			}
@@ -524,14 +536,13 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			return canExistTimeObservationEvent_4018(source, target);
 		}
 
+
 		/**
 		 * @generated
 		 */
 		public boolean canCreateDurationObservationEvent_4019(DurationObservation source, NamedElement target) {
 			if(source != null) {
-				if(source.getEvents().size() >= 2 || source.getEvents().contains(target)
-
-				) {
+				if(source.getEvents().size() >= 2 || source.getEvents().contains(target)) {
 					return false;
 				}
 			}
@@ -539,14 +550,13 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			return canExistDurationObservationEvent_4019(source, target);
 		}
 
+
 		/**
 		 * @generated
 		 */
 		public boolean canCreateInformationItemRepresented_4020(InformationItem source, Classifier target) {
 			if(source != null) {
-				if(source.getRepresenteds().contains(target)
-
-				) {
+				if(source.getRepresenteds().contains(target)) {
 					return false;
 				}
 			}
@@ -554,12 +564,14 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			return canExistInformationItemRepresented_4020(source, target);
 		}
 
+
 		/**
 		 * @generated
 		 */
 		public boolean canCreateInformationFlow_4021(Package container, NamedElement source, NamedElement target) {
 			return canExistInformationFlow_4021(container, null, source, target);
 		}
+
 
 		/**
 		 * @generated

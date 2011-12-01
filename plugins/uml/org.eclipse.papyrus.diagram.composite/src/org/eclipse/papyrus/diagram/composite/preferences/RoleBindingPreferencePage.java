@@ -58,6 +58,7 @@ public class RoleBindingPreferencePage extends AbstractPapyrusLinkPreferencePage
 
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -86,5 +87,6 @@ public class RoleBindingPreferencePage extends AbstractPapyrusLinkPreferencePage
 	protected TreeMap<String, String> getLabelRole() {
 		return getStaticLabelRole();
 	}
+
 
 }

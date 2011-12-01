@@ -58,6 +58,7 @@ public class SubstitutionPreferencePage extends AbstractPapyrusLinkPreferencePag
 
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -86,5 +87,6 @@ public class SubstitutionPreferencePage extends AbstractPapyrusLinkPreferencePag
 	protected TreeMap<String, String> getLabelRole() {
 		return getStaticLabelRole();
 	}
+
 
 }

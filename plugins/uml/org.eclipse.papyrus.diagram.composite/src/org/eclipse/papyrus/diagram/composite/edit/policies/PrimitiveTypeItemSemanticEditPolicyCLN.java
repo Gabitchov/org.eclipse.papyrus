@@ -38,6 +38,9 @@ public class PrimitiveTypeItemSemanticEditPolicyCLN extends UMLBaseItemSemanticE
 		super(UMLElementTypes.PrimitiveType_3112);
 	}
 
+
+
+
 	/**
 	 * @generated
 	 */
@@ -60,5 +63,6 @@ public class PrimitiveTypeItemSemanticEditPolicyCLN extends UMLBaseItemSemanticE
 		}
 		return getGEFWrapper(cmd.reduce());
 	}
+
 
 }

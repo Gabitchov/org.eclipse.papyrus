@@ -38,6 +38,9 @@ public class DataTypeItemSemanticEditPolicyCLN extends UMLBaseItemSemanticEditPo
 		super(UMLElementTypes.DataType_3113);
 	}
 
+
+
+
 	/**
 	 * @generated
 	 */
@@ -60,5 +63,6 @@ public class DataTypeItemSemanticEditPolicyCLN extends UMLBaseItemSemanticEditPo
 		}
 		return getGEFWrapper(cmd.reduce());
 	}
+
 
 }

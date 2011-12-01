@@ -134,6 +134,8 @@ public class UMLDiagramEditorUtil {
 		return filePath.lastSegment();
 	}
 
+
+
 	/**
 	 * Runs the wizard in a dialog.
 	 * 
@@ -196,6 +198,7 @@ public class UMLDiagramEditorUtil {
 		return diagramResource;
 	}
 
+
 	/**
 	 * Create a new instance of domain element associated with canvas.
 	 * <!-- begin-user-doc -->
@@ -207,6 +210,7 @@ public class UMLDiagramEditorUtil {
 		return UMLFactory.eINSTANCE.createPackage();
 	}
 
+
 	/**
 	 * Store model element in the resource.
 	 * <!-- begin-user-doc -->
@@ -217,6 +221,10 @@ public class UMLDiagramEditorUtil {
 	private static void attachModelToResource(Package model, Resource resource) {
 		resource.getContents().add(model);
 	}
+
+
+
+
 
 	/**
 	 * @generated
@@ -236,6 +244,7 @@ public class UMLDiagramEditorUtil {
 			diagramPart.getDiagramGraphicalViewer().reveal(firstPrimary != null ? firstPrimary : (EditPart)editParts.get(0));
 		}
 	}
+
 
 	/**
 	 * @generated
@@ -277,6 +286,7 @@ public class UMLDiagramEditorUtil {
 		}
 		return editPartCollector.size() - intialNumOfEditParts;
 	}
+
 
 	/**
 	 * @generated
@@ -377,5 +387,7 @@ public class UMLDiagramEditorUtil {
 			return complete;
 		}
 	} //LazyElement2ViewMap	
+
+
 
 }

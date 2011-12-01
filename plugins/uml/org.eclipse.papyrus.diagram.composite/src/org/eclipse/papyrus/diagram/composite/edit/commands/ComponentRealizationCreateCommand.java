@@ -46,6 +46,7 @@ public class ComponentRealizationCreateCommand extends EditElementCommand {
 	 */
 	protected final EObject target;
 
+
 	/**
 	 * @generated
 	 */
@@ -84,6 +85,7 @@ public class ComponentRealizationCreateCommand extends EditElementCommand {
 		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateComponentRealization_4004(getContainer(), getSource(), getTarget());
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -102,6 +104,7 @@ public class ComponentRealizationCreateCommand extends EditElementCommand {
 		return CommandResult.newOKCommandResult(newElement);
 
 	}
+
 
 	/**
 	 * @generated

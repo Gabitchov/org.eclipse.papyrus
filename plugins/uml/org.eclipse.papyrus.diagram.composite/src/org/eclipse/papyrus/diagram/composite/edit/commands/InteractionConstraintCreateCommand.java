@@ -76,6 +76,7 @@ public class InteractionConstraintCreateCommand extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
+
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -105,10 +106,13 @@ public class InteractionConstraintCreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
+
+
 		InteractionConstraint newElement = UMLFactory.eINSTANCE.createInteractionConstraint();
 
 		Namespace owner = (Namespace)getElementToEdit();
 		owner.getOwnedRules().add(newElement);
+
 
 		ElementInitializers.getInstance().init_InteractionConstraint_2113(newElement);
 
@@ -117,6 +121,9 @@ public class InteractionConstraintCreateCommand extends EditElementCommand {
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
+
+
+
 
 	/**
 	 * @generated

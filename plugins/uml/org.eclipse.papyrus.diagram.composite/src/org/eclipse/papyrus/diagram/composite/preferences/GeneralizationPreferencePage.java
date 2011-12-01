@@ -58,6 +58,7 @@ public class GeneralizationPreferencePage extends AbstractPapyrusLinkPreferenceP
 
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -83,5 +84,6 @@ public class GeneralizationPreferencePage extends AbstractPapyrusLinkPreferenceP
 	protected TreeMap<String, String> getLabelRole() {
 		return getStaticLabelRole();
 	}
+
 
 }

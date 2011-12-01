@@ -38,6 +38,9 @@ public class OperationItemSemanticEditPolicyCLN extends UMLBaseItemSemanticEditP
 		super(UMLElementTypes.Operation_3102);
 	}
 
+
+
+
 	/**
 	 * @generated
 	 */
@@ -60,5 +63,6 @@ public class OperationItemSemanticEditPolicyCLN extends UMLBaseItemSemanticEditP
 		}
 		return getGEFWrapper(cmd.reduce());
 	}
+
 
 }

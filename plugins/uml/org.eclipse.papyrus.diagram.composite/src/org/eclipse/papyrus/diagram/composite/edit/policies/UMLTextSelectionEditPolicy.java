@@ -29,6 +29,7 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
  */
 public class UMLTextSelectionEditPolicy extends SelectionEditPolicy {
 
+
 	/**
 	 * @generated
 	 */

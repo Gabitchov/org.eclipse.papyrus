@@ -27,7 +27,6 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ResizableCompartmentEditP
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.common.editparts.NoScrollBarShapeCompartmentEditPart;
 import org.eclipse.papyrus.diagram.common.editpolicies.CustomContainerEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.DuplicatePasteEditPolicy;
 import org.eclipse.papyrus.diagram.composite.custom.edit.policies.CustomDiagramDragDropEditPolicy;
@@ -41,7 +40,9 @@ import org.eclipse.papyrus.diagram.composite.part.Messages;
  */
 public class PropertyPartCompartmentEditPartCN
 
-extends NoScrollBarShapeCompartmentEditPart
+
+
+extends ShapeCompartmentEditPart
 
 {
 
@@ -57,12 +58,14 @@ extends NoScrollBarShapeCompartmentEditPart
 		super(view);
 	}
 
+
 	/**
 	 * @generated
 	 */
 	public String getCompartmentName() {
 		return Messages.PropertyPartCompartmentEditPartCN_title;
 	}
+
 
 	/**
 	 * @generated
@@ -81,6 +84,9 @@ extends NoScrollBarShapeCompartmentEditPart
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new PortInCompartmentCreationEditPolicy());
 	}
 
+
+
+
 	/**
 	 * @generated
 	 */
@@ -89,6 +95,8 @@ extends NoScrollBarShapeCompartmentEditPart
 			super.setRatio(ratio);
 		}
 	}
+
+
 
 	/**
 	 * @generated

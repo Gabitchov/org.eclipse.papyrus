@@ -73,6 +73,9 @@ public class InstanceValueItemSemanticEditPolicy extends UMLBaseItemSemanticEdit
 		super(UMLElementTypes.InstanceValue_2108);
 	}
 
+
+
+
 	/**
 	 * @generated
 	 */
@@ -89,6 +92,7 @@ public class InstanceValueItemSemanticEditPolicy extends UMLBaseItemSemanticEdit
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
+
 
 	/**
 	 * @generated

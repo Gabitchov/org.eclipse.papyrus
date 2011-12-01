@@ -73,6 +73,9 @@ public class AnyReceiveEventItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 		super(UMLElementTypes.AnyReceiveEvent_2085);
 	}
 
+
+
+
 	/**
 	 * @generated
 	 */
@@ -89,6 +92,7 @@ public class AnyReceiveEventItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
+
 
 	/**
 	 * @generated

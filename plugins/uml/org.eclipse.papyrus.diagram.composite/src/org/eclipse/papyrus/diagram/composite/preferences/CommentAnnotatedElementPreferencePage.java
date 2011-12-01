@@ -44,6 +44,10 @@ public class CommentAnnotatedElementPreferencePage extends AbstractPapyrusLinkPr
 	 */
 	public static void initDefaults(IPreferenceStore store) {
 
+
 	}
+
+
+
 
 }

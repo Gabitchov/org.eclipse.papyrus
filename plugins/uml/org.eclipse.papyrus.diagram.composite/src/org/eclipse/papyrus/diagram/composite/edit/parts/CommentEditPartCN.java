@@ -45,7 +45,6 @@ import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDis
 import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.common.figure.node.HTMLCornerBentFigure;
 import org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper;
-import org.eclipse.papyrus.diagram.composite.custom.edit.policies.NoScrollClassifierResizableShapeEditPolicy;
 import org.eclipse.papyrus.diagram.composite.edit.policies.CommentItemSemanticEditPolicyCN;
 import org.eclipse.papyrus.diagram.composite.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.composite.part.UMLVisualIDRegistry;
@@ -58,6 +57,7 @@ import org.eclipse.swt.graphics.Color;
  * @generated
  */
 public class CommentEditPartCN extends
+
 
 AbstractCommentEditPart {
 
@@ -91,10 +91,12 @@ AbstractCommentEditPart {
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CommentItemSemanticEditPolicyCN());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
-		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new NoScrollClassifierResizableShapeEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
+
+
+
 
 	/**
 	 * Papyrus codeGen
@@ -105,6 +107,10 @@ AbstractCommentEditPart {
 		super.handleNotificationEvent(event);
 
 	}
+
+
+
+
 
 	/**
 	 * @generated
@@ -154,8 +160,10 @@ AbstractCommentEditPart {
 			return true;
 		}
 
+
 		return false;
 	}
+
 
 	/**
 	 * @generated
@@ -194,6 +202,7 @@ AbstractCommentEditPart {
 		return getContentPane();
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -206,6 +215,7 @@ AbstractCommentEditPart {
 
 		return result;
 	}
+
 
 	/**
 	 * Creates figure for this edit part.
@@ -692,6 +702,10 @@ AbstractCommentEditPart {
 		}
 		return types;
 	}
+
+
+
+
 
 	/**
 	 * @generated

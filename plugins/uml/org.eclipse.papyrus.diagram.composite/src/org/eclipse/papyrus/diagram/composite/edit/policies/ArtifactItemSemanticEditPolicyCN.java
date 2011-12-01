@@ -78,6 +78,9 @@ public class ArtifactItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPol
 		super(UMLElementTypes.Artifact_3093);
 	}
 
+
+
+
 	/**
 	 * @generated
 	 */
@@ -94,6 +97,7 @@ public class ArtifactItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPol
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
+
 
 	/**
 	 * @generated

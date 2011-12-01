@@ -80,6 +80,7 @@ public class NodeCompositeItemSemanticEditPolicycN extends UMLBaseItemSemanticEd
 		super(UMLElementTypes.Node_3084);
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -89,6 +90,8 @@ public class NodeCompositeItemSemanticEditPolicycN extends UMLBaseItemSemanticEd
 		}
 		return super.getCreateCommand(req);
 	}
+
+
 
 	/**
 	 * @generated
@@ -106,6 +109,7 @@ public class NodeCompositeItemSemanticEditPolicycN extends UMLBaseItemSemanticEd
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
+
 
 	/**
 	 * @generated

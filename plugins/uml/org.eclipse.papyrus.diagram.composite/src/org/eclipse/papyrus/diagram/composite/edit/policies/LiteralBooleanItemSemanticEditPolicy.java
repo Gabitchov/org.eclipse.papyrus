@@ -73,6 +73,9 @@ public class LiteralBooleanItemSemanticEditPolicy extends UMLBaseItemSemanticEdi
 		super(UMLElementTypes.LiteralBoolean_2095);
 	}
 
+
+
+
 	/**
 	 * @generated
 	 */
@@ -89,6 +92,7 @@ public class LiteralBooleanItemSemanticEditPolicy extends UMLBaseItemSemanticEdi
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
+
 
 	/**
 	 * @generated

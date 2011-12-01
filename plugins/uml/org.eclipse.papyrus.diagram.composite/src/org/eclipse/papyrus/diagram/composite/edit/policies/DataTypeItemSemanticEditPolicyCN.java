@@ -78,6 +78,9 @@ public class DataTypeItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPol
 		super(UMLElementTypes.DataType_3080);
 	}
 
+
+
+
 	/**
 	 * @generated
 	 */
@@ -94,6 +97,7 @@ public class DataTypeItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPol
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
+
 
 	/**
 	 * @generated

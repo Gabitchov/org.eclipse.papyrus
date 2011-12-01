@@ -38,6 +38,9 @@ public class FunctionBehaviorItemSemanticEditPolicyCLN extends UMLBaseItemSemant
 		super(UMLElementTypes.FunctionBehavior_3107);
 	}
 
+
+
+
 	/**
 	 * @generated
 	 */
@@ -60,5 +63,6 @@ public class FunctionBehaviorItemSemanticEditPolicyCLN extends UMLBaseItemSemant
 		}
 		return getGEFWrapper(cmd.reduce());
 	}
+
 
 }

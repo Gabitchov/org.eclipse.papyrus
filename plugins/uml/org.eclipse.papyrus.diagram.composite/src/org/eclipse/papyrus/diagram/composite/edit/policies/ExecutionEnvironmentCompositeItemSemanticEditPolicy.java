@@ -80,6 +80,7 @@ public class ExecutionEnvironmentCompositeItemSemanticEditPolicy extends UMLBase
 		super(UMLElementTypes.ExecutionEnvironment_2071);
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -89,6 +90,8 @@ public class ExecutionEnvironmentCompositeItemSemanticEditPolicy extends UMLBase
 		}
 		return super.getCreateCommand(req);
 	}
+
+
 
 	/**
 	 * @generated
@@ -106,6 +109,7 @@ public class ExecutionEnvironmentCompositeItemSemanticEditPolicy extends UMLBase
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
+
 
 	/**
 	 * @generated

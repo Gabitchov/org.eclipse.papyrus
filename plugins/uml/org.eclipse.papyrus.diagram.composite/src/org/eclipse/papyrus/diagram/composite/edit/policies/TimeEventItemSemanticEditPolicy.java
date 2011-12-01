@@ -73,6 +73,9 @@ public class TimeEventItemSemanticEditPolicy extends UMLBaseItemSemanticEditPoli
 		super(UMLElementTypes.TimeEvent_2089);
 	}
 
+
+
+
 	/**
 	 * @generated
 	 */
@@ -89,6 +92,7 @@ public class TimeEventItemSemanticEditPolicy extends UMLBaseItemSemanticEditPoli
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
+
 
 	/**
 	 * @generated

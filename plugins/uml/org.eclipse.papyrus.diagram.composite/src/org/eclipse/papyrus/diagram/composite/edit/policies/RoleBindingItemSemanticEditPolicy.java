@@ -73,6 +73,10 @@ public class RoleBindingItemSemanticEditPolicy extends UMLBaseItemSemanticEditPo
 		super(UMLElementTypes.Dependency_4017);
 	}
 
+
+
+
+
 	/**
 	 * @generated
 	 */

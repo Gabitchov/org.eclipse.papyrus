@@ -78,6 +78,9 @@ public class SignalItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPolic
 		super(UMLElementTypes.Signal_3095);
 	}
 
+
+
+
 	/**
 	 * @generated
 	 */
@@ -94,6 +97,7 @@ public class SignalItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPolic
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
+
 
 	/**
 	 * @generated

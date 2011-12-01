@@ -105,6 +105,8 @@ public class TimeConstraintSpecificationEditPartCN extends CompartmentEditPart i
 	 */
 	private String defaultText;
 
+
+
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
 	 * 
@@ -118,6 +120,8 @@ public class TimeConstraintSpecificationEditPartCN extends CompartmentEditPart i
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
+
+
 
 	/**
 	 * @generated
@@ -570,6 +574,8 @@ public class TimeConstraintSpecificationEditPartCN extends CompartmentEditPart i
 		return getPrimaryView();
 	}
 
+
+
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
@@ -673,6 +679,8 @@ public class TimeConstraintSpecificationEditPartCN extends CompartmentEditPart i
 		}
 	}
 
+
+
 	/**
 	 * @generated
 	 */
@@ -688,6 +696,7 @@ public class TimeConstraintSpecificationEditPartCN extends CompartmentEditPart i
 		super.removeNotationalListeners();
 		removeListenerFilter("PrimaryView"); //$NON-NLS-1$
 	}
+
 
 	/**
 	 * @generated
@@ -720,6 +729,7 @@ public class TimeConstraintSpecificationEditPartCN extends CompartmentEditPart i
 			}
 		}
 
+
 		super.handleNotificationEvent(event);
 	}
 
@@ -731,10 +741,13 @@ public class TimeConstraintSpecificationEditPartCN extends CompartmentEditPart i
 		return null;
 	}
 
+
+
 	/**
 	 * @generated
 	 */
 	private static final String ADD_PARENT_MODEL = "AddParentModel";
+
 
 	/**
 	 * @generated
@@ -761,6 +774,7 @@ public class TimeConstraintSpecificationEditPartCN extends CompartmentEditPart i
 
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -768,5 +782,6 @@ public class TimeConstraintSpecificationEditPartCN extends CompartmentEditPart i
 		removeListenerFilter(ADD_PARENT_MODEL);
 
 	}
+
 
 }

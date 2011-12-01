@@ -108,6 +108,8 @@ public class SignalNameEditPart extends CompartmentEditPart implements ITextAwar
 	 */
 	private String defaultText;
 
+
+
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
 	 * 
@@ -121,6 +123,8 @@ public class SignalNameEditPart extends CompartmentEditPart implements ITextAwar
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
+
+
 
 	/**
 	 * @generated
@@ -585,6 +589,8 @@ public class SignalNameEditPart extends CompartmentEditPart implements ITextAwar
 		return (View)getModel();
 	}
 
+
+
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
@@ -688,6 +694,8 @@ public class SignalNameEditPart extends CompartmentEditPart implements ITextAwar
 		}
 	}
 
+
+
 	/**
 	 * @generated
 	 */
@@ -703,6 +711,7 @@ public class SignalNameEditPart extends CompartmentEditPart implements ITextAwar
 		super.removeNotationalListeners();
 		removeListenerFilter("PrimaryView"); //$NON-NLS-1$
 	}
+
 
 	/**
 	 * @generated
@@ -750,10 +759,13 @@ public class SignalNameEditPart extends CompartmentEditPart implements ITextAwar
 		return null;
 	}
 
+
+
 	/**
 	 * @generated
 	 */
 	private static final String ADD_PARENT_MODEL = "AddParentModel";
+
 
 	/**
 	 * @generated
@@ -780,6 +792,7 @@ public class SignalNameEditPart extends CompartmentEditPart implements ITextAwar
 
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -787,5 +800,6 @@ public class SignalNameEditPart extends CompartmentEditPart implements ITextAwar
 		removeListenerFilter(ADD_PARENT_MODEL);
 
 	}
+
 
 }

@@ -81,6 +81,7 @@ public class InteractionCompositeItemSemanticEditPolicy extends UMLBaseItemSeman
 		super(UMLElementTypes.Interaction_2061);
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -93,6 +94,8 @@ public class InteractionCompositeItemSemanticEditPolicy extends UMLBaseItemSeman
 		}
 		return super.getCreateCommand(req);
 	}
+
+
 
 	/**
 	 * @generated
@@ -110,6 +113,7 @@ public class InteractionCompositeItemSemanticEditPolicy extends UMLBaseItemSeman
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
+
 
 	/**
 	 * @generated

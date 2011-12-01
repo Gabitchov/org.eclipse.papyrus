@@ -78,6 +78,9 @@ public class InterfaceItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPo
 		super(UMLElementTypes.Interface_3087);
 	}
 
+
+
+
 	/**
 	 * @generated
 	 */
@@ -94,6 +97,7 @@ public class InterfaceItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPo
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
+
 
 	/**
 	 * @generated

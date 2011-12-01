@@ -73,6 +73,10 @@ public class UsageItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 		super(UMLElementTypes.Usage_4008);
 	}
 
+
+
+
+
 	/**
 	 * @generated
 	 */

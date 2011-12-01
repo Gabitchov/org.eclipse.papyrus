@@ -44,6 +44,10 @@ public class DurationObservationEventPreferencePage extends AbstractPapyrusLinkP
 	 */
 	public static void initDefaults(IPreferenceStore store) {
 
+
 	}
+
+
+
 
 }

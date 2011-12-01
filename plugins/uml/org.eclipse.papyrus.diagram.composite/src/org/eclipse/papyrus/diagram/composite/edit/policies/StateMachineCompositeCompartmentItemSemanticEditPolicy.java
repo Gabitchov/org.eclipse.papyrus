@@ -61,6 +61,7 @@ public class StateMachineCompositeCompartmentItemSemanticEditPolicy extends UMLB
 		super(UMLElementTypes.StateMachine_2063);
 	}
 
+
 	/**
 	 * @generated
 	 */

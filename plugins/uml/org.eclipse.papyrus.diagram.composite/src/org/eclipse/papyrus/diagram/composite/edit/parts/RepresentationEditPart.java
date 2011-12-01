@@ -60,6 +60,7 @@ UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 		return false;
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -69,6 +70,7 @@ UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 		}
 		super.addChildVisual(childEditPart, -1);
 	}
+
 
 	/**
 	 * @generated
@@ -80,6 +82,7 @@ UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 		return false;
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -89,6 +92,7 @@ UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 		}
 		super.removeChildVisual(childEditPart);
 	}
+
 
 	/**
 	 * Creates figure for this edit part.

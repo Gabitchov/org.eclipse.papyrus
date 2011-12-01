@@ -38,6 +38,8 @@ import org.eclipse.papyrus.diagram.composite.part.Messages;
  */
 public class DataTypeOperationCompartmentEditPartCN
 
+
+
 extends ListCompartmentEditPart
 
 {
@@ -68,6 +70,7 @@ extends ListCompartmentEditPart
 		return Messages.DataTypeOperationCompartmentEditPartCN_title;
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -82,6 +85,9 @@ extends ListCompartmentEditPart
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
 	}
 
+
+
+
 	/**
 	 * @generated
 	 */
@@ -90,6 +96,8 @@ extends ListCompartmentEditPart
 			super.setRatio(ratio);
 		}
 	}
+
+
 
 	/**
 	 * @generated

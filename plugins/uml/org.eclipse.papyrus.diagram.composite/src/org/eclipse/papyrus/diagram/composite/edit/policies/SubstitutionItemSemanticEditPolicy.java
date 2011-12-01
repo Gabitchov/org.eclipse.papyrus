@@ -73,6 +73,10 @@ public class SubstitutionItemSemanticEditPolicy extends UMLBaseItemSemanticEditP
 		super(UMLElementTypes.Substitution_4011);
 	}
 
+
+
+
+
 	/**
 	 * @generated
 	 */

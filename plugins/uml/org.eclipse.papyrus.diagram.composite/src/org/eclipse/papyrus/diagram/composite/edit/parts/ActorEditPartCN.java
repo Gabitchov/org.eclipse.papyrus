@@ -22,7 +22,6 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
@@ -49,9 +48,7 @@ import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeNodeLabe
 import org.eclipse.papyrus.diagram.common.editpolicies.HyperLinkPopupBarEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.QualifiedNameDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper;
-import org.eclipse.papyrus.diagram.composite.custom.edit.parts.ConstrainedShapeNodeEditPart;
 import org.eclipse.papyrus.diagram.composite.custom.edit.policies.GraphicalNodeEditPolicy;
-import org.eclipse.papyrus.diagram.composite.custom.edit.policies.NoScrollClassifierResizableShapeEditPolicy;
 import org.eclipse.papyrus.diagram.composite.edit.policies.ActorItemSemanticEditPolicyCN;
 import org.eclipse.papyrus.diagram.composite.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.composite.part.UMLVisualIDRegistry;
@@ -68,7 +65,7 @@ import org.eclipse.swt.widgets.Display;
  */
 public class ActorEditPartCN extends
 
-ConstrainedShapeNodeEditPart {
+ShapeNodeEditPart {
 
 	/**
 	 * @generated
@@ -103,20 +100,13 @@ ConstrainedShapeNodeEditPart {
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
 		installEditPolicy(EditPolicyRoles.POPUPBAR_ROLE, new HyperLinkPopupBarEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new GraphicalNodeEditPolicy());
-		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new NoScrollClassifierResizableShapeEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
-	/**
-	 * Papyrus codeGen
-	 * 
-	 * @generated
-	 **/
-	protected void handleNotificationEvent(Notification event) {
-		super.handleNotificationEvent(event);
 
-	}
+
+
 
 	/**
 	 * @generated
@@ -166,8 +156,10 @@ ConstrainedShapeNodeEditPart {
 			return true;
 		}
 
+
 		return false;
 	}
+
 
 	/**
 	 * @generated
@@ -206,6 +198,7 @@ ConstrainedShapeNodeEditPart {
 		return getContentPane();
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -218,6 +211,7 @@ ConstrainedShapeNodeEditPart {
 
 		return result;
 	}
+
 
 	/**
 	 * Creates figure for this edit part.
@@ -5308,15 +5302,21 @@ ConstrainedShapeNodeEditPart {
 		return types;
 	}
 
+
+
+
+
 	/**
 	 * @generated
 	 */
 	public class NamedElementDescriptor extends RectangleFigure {
 
+
 		/**
 		 * @generated
 		 */
 		private WrappingLabel fNamedElementNameLabel;
+
 
 		/**
 		 * @generated
@@ -5332,15 +5332,22 @@ ConstrainedShapeNodeEditPart {
 		 */
 		private void createContents() {
 
+
 			fNamedElementNameLabel = new WrappingLabel();
 			fNamedElementNameLabel.setText("");
 			fNamedElementNameLabel.setForegroundColor(ColorConstants.black);
 
 			fNamedElementNameLabel.setFont(FNAMEDELEMENTNAMELABEL_FONT);
 
+
+
 			this.add(fNamedElementNameLabel);
 
+
 		}
+
+
+
 
 		/**
 		 * @generated
@@ -5361,6 +5368,8 @@ ConstrainedShapeNodeEditPart {
 			myUseLocalCoordinates = useLocalCoordinates;
 		}
 
+
+
 		/**
 		 * @generated
 		 */
@@ -5368,12 +5377,16 @@ ConstrainedShapeNodeEditPart {
 			return fNamedElementNameLabel;
 		}
 
+
 	}
 
 	/**
 	 * @generated
 	 */
 	static final Font FNAMEDELEMENTNAMELABEL_FONT = new Font(Display.getCurrent(), "Arial", 10, SWT.BOLD);
+
+
+
 
 	/**
 	 * @generated

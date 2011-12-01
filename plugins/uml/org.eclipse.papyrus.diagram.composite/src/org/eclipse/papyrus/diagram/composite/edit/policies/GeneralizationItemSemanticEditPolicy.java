@@ -43,6 +43,10 @@ public class GeneralizationItemSemanticEditPolicy extends UMLBaseItemSemanticEdi
 		super(UMLElementTypes.Generalization_4015);
 	}
 
+
+
+
+
 	/**
 	 * @generated
 	 */

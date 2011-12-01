@@ -58,6 +58,7 @@ public class ComponentRealizationPreferencePage extends AbstractPapyrusLinkPrefe
 
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -86,5 +87,6 @@ public class ComponentRealizationPreferencePage extends AbstractPapyrusLinkPrefe
 	protected TreeMap<String, String> getLabelRole() {
 		return getStaticLabelRole();
 	}
+
 
 }

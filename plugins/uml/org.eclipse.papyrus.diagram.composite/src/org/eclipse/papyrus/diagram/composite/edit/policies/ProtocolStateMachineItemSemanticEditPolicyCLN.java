@@ -38,6 +38,9 @@ public class ProtocolStateMachineItemSemanticEditPolicyCLN extends UMLBaseItemSe
 		super(UMLElementTypes.ProtocolStateMachine_3105);
 	}
 
+
+
+
 	/**
 	 * @generated
 	 */
@@ -60,5 +63,6 @@ public class ProtocolStateMachineItemSemanticEditPolicyCLN extends UMLBaseItemSe
 		}
 		return getGEFWrapper(cmd.reduce());
 	}
+
 
 }

@@ -114,6 +114,8 @@ public class ConnectorNameEditPart extends LabelEditPart implements ITextAwareEd
 	 */
 	private String defaultText;
 
+
+
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
 	 * 
@@ -127,6 +129,8 @@ public class ConnectorNameEditPart extends LabelEditPart implements ITextAwareEd
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
+
+
 
 	/**
 	 * @generated
@@ -605,6 +609,8 @@ public class ConnectorNameEditPart extends LabelEditPart implements ITextAwareEd
 		return getPrimaryView();
 	}
 
+
+
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
@@ -708,6 +714,8 @@ public class ConnectorNameEditPart extends LabelEditPart implements ITextAwareEd
 		}
 	}
 
+
+
 	/**
 	 * @generated
 	 */
@@ -738,9 +746,11 @@ public class ConnectorNameEditPart extends LabelEditPart implements ITextAwareEd
 			}
 		}
 
+
 		if(event.getNewValue() instanceof EAnnotation && VisualInformationPapyrusConstant.DISPLAY_NAMELABELICON.equals(((EAnnotation)event.getNewValue()).getSource())) {
 			refreshLabel();
 		}
+
 
 		super.handleNotificationEvent(event);
 	}
@@ -752,6 +762,9 @@ public class ConnectorNameEditPart extends LabelEditPart implements ITextAwareEd
 		// Parent should assign one using setLabel() method
 		return null;
 	}
+
+
+
 
 	/**
 	 * @generated
@@ -766,5 +779,6 @@ public class ConnectorNameEditPart extends LabelEditPart implements ITextAwareEd
 	public String getIconPathRole() {
 		return "";//$NON-NLS-1$
 	}
+
 
 }

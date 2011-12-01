@@ -73,6 +73,10 @@ public class ManifestationItemSemanticEditPolicy extends UMLBaseItemSemanticEdit
 		super(UMLElementTypes.Manifestation_4012);
 	}
 
+
+
+
+
 	/**
 	 * @generated
 	 */

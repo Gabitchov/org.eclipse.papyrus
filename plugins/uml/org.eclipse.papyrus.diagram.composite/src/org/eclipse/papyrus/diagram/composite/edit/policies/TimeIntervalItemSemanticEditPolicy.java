@@ -73,6 +73,9 @@ public class TimeIntervalItemSemanticEditPolicy extends UMLBaseItemSemanticEditP
 		super(UMLElementTypes.TimeInterval_2105);
 	}
 
+
+
+
 	/**
 	 * @generated
 	 */
@@ -89,6 +92,7 @@ public class TimeIntervalItemSemanticEditPolicy extends UMLBaseItemSemanticEditP
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
+
 
 	/**
 	 * @generated

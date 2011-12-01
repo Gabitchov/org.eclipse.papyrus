@@ -75,6 +75,7 @@ public class FunctionBehaviorCompositeCreateCommandCN extends EditElementCommand
 	 */
 	protected EObject getElementToEdit() {
 
+
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -90,7 +91,10 @@ public class FunctionBehaviorCompositeCreateCommandCN extends EditElementCommand
 	 */
 	public boolean canExecute() {
 
+
 		return true;
+
+
 
 	}
 
@@ -99,10 +103,13 @@ public class FunctionBehaviorCompositeCreateCommandCN extends EditElementCommand
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
+
+
 		FunctionBehavior newElement = UMLFactory.eINSTANCE.createFunctionBehavior();
 
 		Class owner = (Class)getElementToEdit();
 		owner.getNestedClassifiers().add(newElement);
+
 
 		ElementInitializers.getInstance().init_FunctionBehavior_3076(newElement);
 
@@ -111,6 +118,9 @@ public class FunctionBehaviorCompositeCreateCommandCN extends EditElementCommand
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
+
+
+
 
 	/**
 	 * @generated

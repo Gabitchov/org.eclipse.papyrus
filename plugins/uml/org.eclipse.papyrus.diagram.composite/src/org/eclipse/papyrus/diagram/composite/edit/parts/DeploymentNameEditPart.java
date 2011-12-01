@@ -110,6 +110,8 @@ public class DeploymentNameEditPart extends LabelEditPart implements ITextAwareE
 	 */
 	private String defaultText;
 
+
+
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
 	 * 
@@ -123,6 +125,8 @@ public class DeploymentNameEditPart extends LabelEditPart implements ITextAwareE
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
+
+
 
 	/**
 	 * @generated
@@ -589,6 +593,8 @@ public class DeploymentNameEditPart extends LabelEditPart implements ITextAwareE
 		return getPrimaryView();
 	}
 
+
+
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
@@ -692,6 +698,8 @@ public class DeploymentNameEditPart extends LabelEditPart implements ITextAwareE
 		}
 	}
 
+
+
 	/**
 	 * @generated
 	 */
@@ -722,6 +730,9 @@ public class DeploymentNameEditPart extends LabelEditPart implements ITextAwareE
 			}
 		}
 
+
+
+
 		super.handleNotificationEvent(event);
 	}
 
@@ -732,6 +743,9 @@ public class DeploymentNameEditPart extends LabelEditPart implements ITextAwareE
 		// Parent should assign one using setLabel() method
 		return null;
 	}
+
+
+
 
 	/**
 	 * @generated
@@ -746,5 +760,6 @@ public class DeploymentNameEditPart extends LabelEditPart implements ITextAwareE
 	public String getIconPathRole() {
 		return "";//$NON-NLS-1$
 	}
+
 
 }

@@ -73,6 +73,10 @@ public class AbstractionItemSemanticEditPolicy extends UMLBaseItemSemanticEditPo
 		super(UMLElementTypes.Abstraction_4007);
 	}
 
+
+
+
+
 	/**
 	 * @generated
 	 */

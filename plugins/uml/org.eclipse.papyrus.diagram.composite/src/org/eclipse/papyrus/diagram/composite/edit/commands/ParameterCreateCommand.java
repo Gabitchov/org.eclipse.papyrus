@@ -75,6 +75,7 @@ public class ParameterCreateCommand extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
+
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -90,7 +91,10 @@ public class ParameterCreateCommand extends EditElementCommand {
 	 */
 	public boolean canExecute() {
 
+
 		return true;
+
+
 
 	}
 
@@ -99,10 +103,13 @@ public class ParameterCreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
+
+
 		Parameter newElement = UMLFactory.eINSTANCE.createParameter();
 
 		Behavior owner = (Behavior)getElementToEdit();
 		owner.getOwnedParameters().add(newElement);
+
 
 		ElementInitializers.getInstance().init_Parameter_3088(newElement);
 
@@ -111,6 +118,9 @@ public class ParameterCreateCommand extends EditElementCommand {
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
+
+
+
 
 	/**
 	 * @generated
