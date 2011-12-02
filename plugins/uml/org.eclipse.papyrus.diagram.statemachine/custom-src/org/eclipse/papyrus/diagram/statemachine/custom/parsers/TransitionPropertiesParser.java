@@ -58,7 +58,7 @@ public class TransitionPropertiesParser implements IParser, ISemanticParser {
 	private static final String ONE_SPACE_STRING = " "; //$NON-NLS-1$
 
 	protected Constraint guardConstraint = null;
-	
+
 	private static String EMPTY_STRING = ""; //$NON-NLS-1$
 
 	public IContentAssistProcessor getCompletionProcessor(IAdaptable element) {
@@ -66,9 +66,6 @@ public class TransitionPropertiesParser implements IParser, ISemanticParser {
 	}
 
 	public String getEditString(IAdaptable element, int flags) {
-		if(element instanceof EObjectAdapter) {
-			final Transition transition = ((Transition)((EObjectAdapter)element).getRealObject());
-		}
 		return EMPTY_STRING;
 	}
 
@@ -123,7 +120,7 @@ public class TransitionPropertiesParser implements IParser, ISemanticParser {
 		String label = getValueString(element, flags);
 		if(label == null || label.length() == 0) {
 			label = ONE_SPACE_STRING;
-		} 
+		}
 		return label;
 	}
 
@@ -143,30 +140,32 @@ public class TransitionPropertiesParser implements IParser, ISemanticParser {
 	/**
 	 * Get the unformatted registered string value which shall be displayed
 	 */
-	private String getValueString(IAdaptable element, int flags) {
+	protected String getValueString(IAdaptable element, int flags) {
 		Object obj = element.getAdapter(EObject.class);
 		if(obj instanceof Transition) {
 			Transition trans = (Transition)obj;
 			StringBuilder result = new StringBuilder();
 			String textForTrigger = getTextForTrigger(trans);
-			if ( textForTrigger != null && !EMPTY_STRING.equals(textForTrigger)){
+			if(textForTrigger != null && !EMPTY_STRING.equals(textForTrigger)) {
 				result.append(textForTrigger).append(ONE_SPACE_STRING);
 			}
 			result.append(getTextForGuard(trans));
 			String textForEffect = getTextForEffect(trans);
-			if ( textForEffect != null && !EMPTY_STRING.equals(textForEffect)){				
+			if(textForEffect != null && !EMPTY_STRING.equals(textForEffect)) {
 				result.append("/ ").append(textForEffect); //$NON-NLS-1$
 			}
 			return result.toString();
 		}
 		return EMPTY_STRING;
 	}
+
 	/**
 	 * get the text concerning guard
+	 * 
 	 * @param trans
 	 * @return
 	 */
-	protected String getTextForGuard (Transition trans){
+	protected String getTextForGuard(Transition trans) {
 		Constraint valueSpec = trans.getGuard();
 		if(valueSpec != null) {
 			String value = ValueSpecificationUtil.getConstraintnValue(valueSpec);
@@ -176,32 +175,36 @@ public class TransitionPropertiesParser implements IParser, ISemanticParser {
 		}
 		return EMPTY_STRING;
 	}
+
 	/**
 	 * get the text concerning Effects
+	 * 
 	 * @param trans
 	 * @return
 	 */
-	protected String getTextForEffect (Transition trans){
+	protected String getTextForEffect(Transition trans) {
 		StringBuilder result = new StringBuilder();
 		Behavior effect = trans.getEffect();
-		if ( effect != null){
+		if(effect != null) {
 			EClass eClass = effect.eClass();
-			if ( eClass != null){
+			if(eClass != null) {
 				result.append(eClass.getName()).append(" :").append(effect.getName()); //$NON-NLS-1$
 			}
 		}
 		return result.toString();
 	}
+
 	/**
 	 * Get the text concerning Trigger
+	 * 
 	 * @param trans
 	 * @return
 	 */
-	protected String getTextForTrigger (Transition trans){
+	protected String getTextForTrigger(Transition trans) {
 		StringBuilder result = new StringBuilder();
 		boolean isFirstTrigger = true;
-		for ( Trigger t : trans.getTriggers()){
-			if ( t != null){
+		for(Trigger t : trans.getTriggers()) {
+			if(t != null) {
 				if(!isFirstTrigger)
 					result.append(", "); //$NON-NLS-1$
 				else
@@ -243,24 +246,24 @@ public class TransitionPropertiesParser implements IParser, ISemanticParser {
 		List<EObject> result = new LinkedList<EObject>();
 		if(umlElement instanceof Transition) {
 			Transition trans = (Transition)umlElement;
-			if(trans != null){
+			if(trans != null) {
 				result.add(trans);
 				/**
 				 * Listen constraint modification
 				 */
 				Constraint constraint = trans.getGuard();
-				if ( constraint != null){
+				if(constraint != null) {
 					result.add(constraint);
 					ValueSpecification specification = constraint.getSpecification();
-					if(specification != null){
+					if(specification != null) {
 						result.add(specification);
 					}
 				}
 				/**
 				 * Listen trigger modification
 				 */
-				for (Trigger t : trans.getTriggers()){
-					if (t != null){
+				for(Trigger t : trans.getTriggers()) {
+					if(t != null) {
 						result.add(t);
 					}
 				}
@@ -268,15 +271,15 @@ public class TransitionPropertiesParser implements IParser, ISemanticParser {
 				 * Listen effect modification
 				 */
 				Behavior effect = trans.getEffect();
-				if (effect != null){
+				if(effect != null) {
 					result.add(effect);
 				}
 			}
-			
-//			if(constraint.getSpecification() != null) {
-//				ValueSpecification value = constraint.getSpecification();
-//				result.add(value);
-//			}
+
+			//			if(constraint.getSpecification() != null) {
+			//				ValueSpecification value = constraint.getSpecification();
+			//				result.add(value);
+			//			}
 		}
 		return result;
 	}
@@ -284,7 +287,7 @@ public class TransitionPropertiesParser implements IParser, ISemanticParser {
 	public boolean areSemanticElementsAffected(EObject listener, Object notification) {
 		return true;
 	}
-	
+
 	private String retrieveBody(OpaqueExpression exp, String languageName) {
 		String body = EMPTY_STRING;
 		if(exp == null)

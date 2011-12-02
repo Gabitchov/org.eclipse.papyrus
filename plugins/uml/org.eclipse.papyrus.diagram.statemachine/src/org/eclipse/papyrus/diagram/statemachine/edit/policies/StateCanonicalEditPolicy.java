@@ -33,6 +33,10 @@ import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.Size;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.ConnectionPointReferenceEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.DoActivityStateBehaviorStateEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.EntryStateBehaviorEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.ExitStateBehaviorEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.InternalTransitionEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateEntryPointEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateExitPointEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.RegionEditPart;
@@ -69,6 +73,10 @@ public class StateCanonicalEditPolicy extends CanonicalEditPolicy {
 	protected Set getFeaturesToSynchronize() {
 		if(myFeaturesToSynchronize == null) {
 			myFeaturesToSynchronize = new HashSet<EStructuralFeature>();
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getState_Entry());
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getState_DoActivity());
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getState_Exit());
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getVertex_Incoming());
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getStateMachine_Region());
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getStateMachine_ConnectionPoint());
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getState_Connection());
@@ -96,6 +104,10 @@ public class StateCanonicalEditPolicy extends CanonicalEditPolicy {
 	private boolean isMyDiagramElement(View view) {
 		int visualID = UMLVisualIDRegistry.getVisualID(view);
 		switch(visualID) {
+		case EntryStateBehaviorEditPart.VISUAL_ID:
+		case DoActivityStateBehaviorStateEditPart.VISUAL_ID:
+		case ExitStateBehaviorEditPart.VISUAL_ID:
+		case InternalTransitionEditPart.VISUAL_ID:
 		case RegionEditPart.VISUAL_ID:
 		case PseudostateEntryPointEditPart.VISUAL_ID:
 		case PseudostateExitPointEditPart.VISUAL_ID:

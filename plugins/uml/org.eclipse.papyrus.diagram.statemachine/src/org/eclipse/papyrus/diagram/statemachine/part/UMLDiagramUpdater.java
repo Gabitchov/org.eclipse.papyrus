@@ -18,8 +18,12 @@ import org.eclipse.papyrus.diagram.statemachine.edit.parts.CommentEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.ConnectionPointReferenceEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.ConstraintConstrainedElementEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.ConstraintEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.DoActivityStateBehaviorStateEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.EntryStateBehaviorEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.ExitStateBehaviorEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.FinalStateEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.GeneralizationEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.InternalTransitionEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateChoiceEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateDeepHistoryEditPart;
@@ -39,6 +43,7 @@ import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateMachineCompartme
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateMachineEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.TransitionEditPart;
 import org.eclipse.papyrus.diagram.statemachine.providers.UMLElementTypes;
+import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.ConnectionPointReference;
@@ -91,6 +96,43 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
+	public static List<UMLLinkDescriptor> getTransition_680ContainedLinks(View view) {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<UMLLinkDescriptor> getBehavior_690ContainedLinks(View view) {
+		Behavior modelElement = (Behavior)view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		result.addAll(getContainedTypeModelFacetLinks_Generalization_19000(modelElement));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<UMLLinkDescriptor> getBehavior_691ContainedLinks(View view) {
+		Behavior modelElement = (Behavior)view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		result.addAll(getContainedTypeModelFacetLinks_Generalization_19000(modelElement));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<UMLLinkDescriptor> getBehavior_692ContainedLinks(View view) {
+		Behavior modelElement = (Behavior)view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		result.addAll(getContainedTypeModelFacetLinks_Generalization_19000(modelElement));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
 	public static List<UMLLinkDescriptor> getConnectionPointReference_18000IncomingLinks(View view) {
 		ConnectionPointReference modelElement = (ConnectionPointReference)view.getElement();
 		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
@@ -128,6 +170,34 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
+	public static List<UMLLinkDescriptor> getTransition_680IncomingLinks(View view) {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<UMLLinkDescriptor> getBehavior_690IncomingLinks(View view) {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<UMLLinkDescriptor> getBehavior_691IncomingLinks(View view) {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<UMLLinkDescriptor> getBehavior_692IncomingLinks(View view) {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @generated
+	 */
 	public static List<UMLLinkDescriptor> getConnectionPointReference_18000OutgoingLinks(View view) {
 		ConnectionPointReference modelElement = (ConnectionPointReference)view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
@@ -153,6 +223,34 @@ public class UMLDiagramUpdater {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_670(modelElement));
 		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<UMLLinkDescriptor> getTransition_680OutgoingLinks(View view) {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<UMLLinkDescriptor> getBehavior_690OutgoingLinks(View view) {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<UMLLinkDescriptor> getBehavior_691OutgoingLinks(View view) {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<UMLLinkDescriptor> getBehavior_692OutgoingLinks(View view) {
+		return Collections.emptyList();
 	}
 
 	/**
@@ -196,6 +294,14 @@ public class UMLDiagramUpdater {
 			return getComment_666ContainedLinks(view);
 		case ConstraintEditPart.VISUAL_ID:
 			return getConstraint_668ContainedLinks(view);
+		case InternalTransitionEditPart.VISUAL_ID:
+			return getTransition_680ContainedLinks(view);
+		case EntryStateBehaviorEditPart.VISUAL_ID:
+			return getBehavior_690ContainedLinks(view);
+		case DoActivityStateBehaviorStateEditPart.VISUAL_ID:
+			return getBehavior_691ContainedLinks(view);
+		case ExitStateBehaviorEditPart.VISUAL_ID:
+			return getBehavior_692ContainedLinks(view);
 		case TransitionEditPart.VISUAL_ID:
 			return getTransition_7000ContainedLinks(view);
 		case GeneralizationEditPart.VISUAL_ID:
@@ -354,6 +460,14 @@ public class UMLDiagramUpdater {
 			return getComment_666IncomingLinks(view);
 		case ConstraintEditPart.VISUAL_ID:
 			return getConstraint_668IncomingLinks(view);
+		case InternalTransitionEditPart.VISUAL_ID:
+			return getTransition_680IncomingLinks(view);
+		case EntryStateBehaviorEditPart.VISUAL_ID:
+			return getBehavior_690IncomingLinks(view);
+		case DoActivityStateBehaviorStateEditPart.VISUAL_ID:
+			return getBehavior_691IncomingLinks(view);
+		case ExitStateBehaviorEditPart.VISUAL_ID:
+			return getBehavior_692IncomingLinks(view);
 		case TransitionEditPart.VISUAL_ID:
 			return getTransition_7000IncomingLinks(view);
 		case GeneralizationEditPart.VISUAL_ID:
@@ -473,6 +587,14 @@ public class UMLDiagramUpdater {
 			return getComment_666OutgoingLinks(view);
 		case ConstraintEditPart.VISUAL_ID:
 			return getConstraint_668OutgoingLinks(view);
+		case InternalTransitionEditPart.VISUAL_ID:
+			return getTransition_680OutgoingLinks(view);
+		case EntryStateBehaviorEditPart.VISUAL_ID:
+			return getBehavior_690OutgoingLinks(view);
+		case DoActivityStateBehaviorStateEditPart.VISUAL_ID:
+			return getBehavior_691OutgoingLinks(view);
+		case ExitStateBehaviorEditPart.VISUAL_ID:
+			return getBehavior_692OutgoingLinks(view);
 		case TransitionEditPart.VISUAL_ID:
 			return getTransition_7000OutgoingLinks(view);
 		case GeneralizationEditPart.VISUAL_ID:
@@ -972,6 +1094,35 @@ public class UMLDiagramUpdater {
 		}
 		State modelElement = (State)view.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
+		{
+			Behavior childElement = modelElement.getEntry();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == EntryStateBehaviorEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+			}
+		}
+		{
+			Behavior childElement = modelElement.getDoActivity();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == DoActivityStateBehaviorStateEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+			}
+		}
+		{
+			Behavior childElement = modelElement.getExit();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == ExitStateBehaviorEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+			}
+		}
+		for(Iterator<?> it = modelElement.getIncomings().iterator(); it.hasNext();) {
+			Transition childElement = (Transition)it.next();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == InternalTransitionEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
 		for(Iterator<?> it = modelElement.getRegions().iterator(); it.hasNext();) {
 			Region childElement = (Region)it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);

@@ -15,15 +15,23 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.parser.CommentParser;
 import org.eclipse.papyrus.diagram.common.parser.ConstraintParser;
 import org.eclipse.papyrus.diagram.common.parser.stereotype.AppliedStereotypeParser;
+import org.eclipse.papyrus.diagram.statemachine.custom.parsers.DoActivityStateBehaviorParser;
+import org.eclipse.papyrus.diagram.statemachine.custom.parsers.EntryStateBehaviorParser;
+import org.eclipse.papyrus.diagram.statemachine.custom.parsers.ExitStateBehaviorParser;
+import org.eclipse.papyrus.diagram.statemachine.custom.parsers.InternalTransitionParser;
 import org.eclipse.papyrus.diagram.statemachine.custom.parsers.TransitionPropertiesParser;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.CommentBodyEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.ConnectionPointReferenceNameEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.ConnectionPointReferenceStereotypeEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.ConstraintBodyEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.ConstraintNameLabelEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.DoActivityStateBehaviorStateEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.EntryStateBehaviorEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.ExitStateBehaviorEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.FinalStateNameEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.FinalStateStereotypeEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.GeneralizationStereotypeEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.InternalTransitionEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateChoiceNameEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateChoiceStereotypeEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateDeepHistoryNameEditPart;
@@ -319,6 +327,66 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
+	private InternalTransitionParser transition_680Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getTransition_680Parser() {
+		if(transition_680Parser == null) {
+			transition_680Parser = new InternalTransitionParser();
+		}
+		return transition_680Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private EntryStateBehaviorParser behavior_690Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getBehavior_690Parser() {
+		if(behavior_690Parser == null) {
+			behavior_690Parser = new EntryStateBehaviorParser();
+		}
+		return behavior_690Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private DoActivityStateBehaviorParser behavior_691Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getBehavior_691Parser() {
+		if(behavior_691Parser == null) {
+			behavior_691Parser = new DoActivityStateBehaviorParser();
+		}
+		return behavior_691Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private ExitStateBehaviorParser behavior_692Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getBehavior_692Parser() {
+		if(behavior_692Parser == null) {
+			behavior_692Parser = new ExitStateBehaviorParser();
+		}
+		return behavior_692Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private IParser getFinalStateName_5001Parser() {
 		if(finalStateName_5001Parser == null) {
 			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
@@ -431,6 +499,14 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getConstraintName_6668Parser();
 		case ConstraintBodyEditPart.VISUAL_ID:
 			return getConstraintSpecification_6669Parser();
+		case InternalTransitionEditPart.VISUAL_ID:
+			return getTransition_680Parser();
+		case EntryStateBehaviorEditPart.VISUAL_ID:
+			return getBehavior_690Parser();
+		case DoActivityStateBehaviorStateEditPart.VISUAL_ID:
+			return getBehavior_691Parser();
+		case ExitStateBehaviorEditPart.VISUAL_ID:
+			return getBehavior_692Parser();
 		case TransitionNameEditPart.VISUAL_ID:
 			return getTransitionName_7001Parser();
 		case TransitionGuardEditPart.VISUAL_ID:

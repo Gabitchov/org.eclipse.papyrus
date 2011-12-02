@@ -285,6 +285,18 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
+	public void init_Transition_680(Transition instance) {
+		try {
+			Object value_0 = name_Transition_680(instance);
+			instance.setName((java.lang.String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
 	public void init_Transition_7000(Transition instance) {
 		try {
 			Object value_0 = name_Transition_7000(instance);
@@ -964,6 +976,42 @@ public class ElementInitializers {
 		LiteralString literalString = UMLFactory.eINSTANCE.createLiteralString();
 		literalString.setValue("");
 		return literalString;
+	}
+
+	/**
+	 * @generated
+	 */
+	private java.lang.String name_Transition_680(Transition self) {
+		//provides a new name taking into account the pseudostatekind if any
+		String baseString = self.eClass().getName();
+		if(self instanceof Pseudostate) {
+			baseString = ((Pseudostate)self).getKind().getLiteral();
+			baseString = baseString.substring(0, 1).toUpperCase() + baseString.substring(1);
+		}
+		String name = ""; //$NON-NLS-1$
+
+		Element umlParent = self.getOwner();
+
+		boolean found = false;
+		// i <10000: avoid infinite loops
+		for(int i = 0; i < 10001; i++) {
+			found = false;
+			name = baseString + i;
+			Iterator it = umlParent.getOwnedElements().iterator();
+			while(it.hasNext() && !found) {
+				Object o = it.next();
+				if(o instanceof NamedElement) {
+					if(name.equals(((NamedElement)o).getName())) {
+						found = true;
+					}
+				}
+			}
+			if(!found) {
+				return name;
+			}
+		}
+		return baseString + "X"; //$NON-NLS-1$
+
 	}
 
 	/**

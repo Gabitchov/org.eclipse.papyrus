@@ -18,6 +18,7 @@ import org.eclipse.emf.edit.ui.provider.ExtendedImageRegistry;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.papyrus.diagram.statemachine.custom.expressions.UMLOCLFactory;
 import org.eclipse.papyrus.diagram.statemachine.edit.policies.UMLBaseItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.statemachine.preferences.DiagramPreferenceInitializer;
 import org.eclipse.papyrus.diagram.statemachine.providers.ElementInitializers;
@@ -115,6 +116,11 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	 * @generated
 	 */
 	private ElementInitializers initializers;
+
+	/**
+	 * @generated
+	 */
+	private UMLOCLFactory oclFactory;
 
 	/**
 	 * @generated
@@ -271,6 +277,20 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	/**
 	 * @generated
 	 */
+	public UMLOCLFactory getUMLOCLFactory() {
+		return oclFactory;
+	}
+
+	/**
+	 * @generated
+	 */
+	public void setUMLOCLFactory(UMLOCLFactory f) {
+		this.oclFactory = f;
+	}
+
+	/**
+	 * @generated
+	 */
 	public void setLinkConstraints(UMLBaseItemSemanticEditPolicy.LinkConstraints lc) {
 		this.linkConstraints = lc;
 	}
@@ -295,6 +315,7 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 		adapterFactory = null;
 		linkConstraints = null;
 		initializers = null;
+		oclFactory = null;
 		instance = null;
 		super.stop(context);
 	}

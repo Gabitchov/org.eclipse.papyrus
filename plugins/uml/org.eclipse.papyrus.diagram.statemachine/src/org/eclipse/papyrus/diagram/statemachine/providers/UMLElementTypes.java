@@ -19,8 +19,12 @@ import org.eclipse.papyrus.diagram.statemachine.edit.parts.CommentEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.ConnectionPointReferenceEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.ConstraintConstrainedElementEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.ConstraintEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.DoActivityStateBehaviorStateEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.EntryStateBehaviorEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.ExitStateBehaviorEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.FinalStateEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.GeneralizationEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.InternalTransitionEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateChoiceEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateDeepHistoryEditPart;
@@ -153,6 +157,26 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
+	public static final IElementType Transition_680 = getElementType("org.eclipse.papyrus.diagram.statemachine.InternalTransition_680"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType Behavior_690 = getElementType("org.eclipse.papyrus.diagram.statemachine.EntryStateBehavior_690"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType Behavior_691 = getElementType("org.eclipse.papyrus.diagram.statemachine.DoActivityStateBehavior_691"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType Behavior_692 = getElementType("org.eclipse.papyrus.diagram.statemachine.ExitStateBehavior_692"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
 	public static final IElementType Transition_7000 = getElementType("org.eclipse.papyrus.diagram.statemachine.Transition_7000"); //$NON-NLS-1$
 
 	/**
@@ -234,6 +258,18 @@ public class UMLElementTypes {
 			elements.put(Constraint_668, UMLPackage.eINSTANCE.getConstraint());
 
 
+			elements.put(Transition_680, UMLPackage.eINSTANCE.getTransition());
+
+
+			elements.put(Behavior_690, UMLPackage.eINSTANCE.getBehavior());
+
+
+			elements.put(Behavior_691, UMLPackage.eINSTANCE.getBehavior());
+
+
+			elements.put(Behavior_692, UMLPackage.eINSTANCE.getBehavior());
+
+
 			elements.put(Transition_7000, UMLPackage.eINSTANCE.getTransition());
 
 
@@ -287,6 +323,14 @@ public class UMLElementTypes {
 			return Comment_666;
 		case ConstraintEditPart.VISUAL_ID:
 			return Constraint_668;
+		case InternalTransitionEditPart.VISUAL_ID:
+			return Transition_680;
+		case EntryStateBehaviorEditPart.VISUAL_ID:
+			return Behavior_690;
+		case DoActivityStateBehaviorStateEditPart.VISUAL_ID:
+			return Behavior_691;
+		case ExitStateBehaviorEditPart.VISUAL_ID:
+			return Behavior_692;
 		case TransitionEditPart.VISUAL_ID:
 			return Transition_7000;
 		case GeneralizationEditPart.VISUAL_ID:
@@ -426,6 +470,10 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(ConnectionPointReference_18000);
 			KNOWN_ELEMENT_TYPES.add(Comment_666);
 			KNOWN_ELEMENT_TYPES.add(Constraint_668);
+			KNOWN_ELEMENT_TYPES.add(Transition_680);
+			KNOWN_ELEMENT_TYPES.add(Behavior_690);
+			KNOWN_ELEMENT_TYPES.add(Behavior_691);
+			KNOWN_ELEMENT_TYPES.add(Behavior_692);
 			KNOWN_ELEMENT_TYPES.add(Transition_7000);
 			KNOWN_ELEMENT_TYPES.add(Generalization_19000);
 			KNOWN_ELEMENT_TYPES.add(CommentAnnotatedElement_667);

@@ -1,6 +1,7 @@
 package org.eclipse.papyrus.diagram.statemachine.providers;
 
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.validation.model.IClientSelector;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.diagram.statemachine.part.UMLDiagramEditorPlugin;
@@ -27,6 +28,19 @@ public class UMLValidationProvider {
 			return constraintsActive && PackageEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID((View)object));
 		}
 		return true;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static class DefaultCtx implements IClientSelector {
+
+		/**
+		 * @generated
+		 */
+		public boolean selects(Object object) {
+			return isInDefaultEditorContext(object);
+		}
 	}
 
 	/**

@@ -238,7 +238,11 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			return types;
 		}
 		if(editPart instanceof StateEditPart) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(4);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(8);
+			types.add(UMLElementTypes.Behavior_690);
+			types.add(UMLElementTypes.Behavior_691);
+			types.add(UMLElementTypes.Behavior_692);
+			types.add(UMLElementTypes.Transition_680);
 			types.add(UMLElementTypes.Region_3000);
 			types.add(UMLElementTypes.Pseudostate_16000);
 			types.add(UMLElementTypes.Pseudostate_17000);

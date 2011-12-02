@@ -50,11 +50,15 @@ import org.eclipse.papyrus.diagram.statemachine.edit.parts.ConstraintBodyEditPar
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.ConstraintConstrainedElementEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.ConstraintEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.ConstraintNameLabelEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.DoActivityStateBehaviorStateEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.EntryStateBehaviorEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.ExitStateBehaviorEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.FinalStateEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.FinalStateNameEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.FinalStateStereotypeEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.GeneralizationEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.GeneralizationStereotypeEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.InternalTransitionEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateChoiceEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateChoiceNameEditPart;
@@ -233,6 +237,86 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Node label6668 = createLabel(node, UMLVisualIDRegistry.getType(ConstraintNameLabelEditPart.VISUAL_ID));
 		Node label6669 = createLabel(node, UMLVisualIDRegistry.getType(ConstraintBodyEditPart.VISUAL_ID));
 
+
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createTransition_680(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+		Node node = NotationFactory.eINSTANCE.createShape();
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		node.setType(UMLVisualIDRegistry.getType(InternalTransitionEditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
+
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "InternalTransition");
+
+
+		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node, prefStore, "InternalTransition");
+
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createBehavior_690(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+		Node node = NotationFactory.eINSTANCE.createShape();
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		node.setType(UMLVisualIDRegistry.getType(EntryStateBehaviorEditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
+
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "EntryStateBehavior");
+
+
+		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node, prefStore, "EntryStateBehavior");
+
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createBehavior_691(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+		Node node = NotationFactory.eINSTANCE.createShape();
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		node.setType(UMLVisualIDRegistry.getType(DoActivityStateBehaviorStateEditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
+
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "DoActivityStateBehavior");
+
+
+		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node, prefStore, "DoActivityStateBehavior");
+
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createBehavior_692(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+		Node node = NotationFactory.eINSTANCE.createShape();
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		node.setType(UMLVisualIDRegistry.getType(ExitStateBehaviorEditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
+
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ExitStateBehavior");
+
+
+		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node, prefStore, "ExitStateBehavior");
 
 		return node;
 	}
@@ -480,6 +564,14 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 			return createComment_666(domainElement, containerView, index, persisted, preferencesHint);
 		case ConstraintEditPart.VISUAL_ID:
 			return createConstraint_668(domainElement, containerView, index, persisted, preferencesHint);
+		case InternalTransitionEditPart.VISUAL_ID:
+			return createTransition_680(domainElement, containerView, index, persisted, preferencesHint);
+		case EntryStateBehaviorEditPart.VISUAL_ID:
+			return createBehavior_690(domainElement, containerView, index, persisted, preferencesHint);
+		case DoActivityStateBehaviorStateEditPart.VISUAL_ID:
+			return createBehavior_691(domainElement, containerView, index, persisted, preferencesHint);
+		case ExitStateBehaviorEditPart.VISUAL_ID:
+			return createBehavior_692(domainElement, containerView, index, persisted, preferencesHint);
 		}
 		// can't happen, provided #provides(CreateNodeViewOperation) is correct
 		return null;
@@ -1168,6 +1260,10 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				case ConnectionPointReferenceEditPart.VISUAL_ID:
 				case CommentEditPart.VISUAL_ID:
 				case ConstraintEditPart.VISUAL_ID:
+				case EntryStateBehaviorEditPart.VISUAL_ID:
+				case DoActivityStateBehaviorStateEditPart.VISUAL_ID:
+				case ExitStateBehaviorEditPart.VISUAL_ID:
+				case InternalTransitionEditPart.VISUAL_ID:
 					if(domainElement == null || visualID != UMLVisualIDRegistry.getNodeVisualID(op.getContainerView(), domainElement)) {
 						return false; // visual id in semantic hint should match visual id for domain element
 					}
@@ -1177,7 +1273,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				}
 			}
 		}
-		return StateMachineEditPart.VISUAL_ID == visualID || RegionEditPart.VISUAL_ID == visualID || FinalStateEditPart.VISUAL_ID == visualID || StateEditPart.VISUAL_ID == visualID || PseudostateInitialEditPart.VISUAL_ID == visualID || PseudostateJoinEditPart.VISUAL_ID == visualID || PseudostateForkEditPart.VISUAL_ID == visualID || PseudostateChoiceEditPart.VISUAL_ID == visualID || PseudostateJunctionEditPart.VISUAL_ID == visualID || PseudostateShallowHistoryEditPart.VISUAL_ID == visualID || PseudostateDeepHistoryEditPart.VISUAL_ID == visualID || PseudostateTerminateEditPart.VISUAL_ID == visualID || PseudostateEntryPointEditPart.VISUAL_ID == visualID || PseudostateExitPointEditPart.VISUAL_ID == visualID || ConnectionPointReferenceEditPart.VISUAL_ID == visualID || CommentEditPart.VISUAL_ID == visualID || ConstraintEditPart.VISUAL_ID == visualID;
+		return StateMachineEditPart.VISUAL_ID == visualID || RegionEditPart.VISUAL_ID == visualID || FinalStateEditPart.VISUAL_ID == visualID || StateEditPart.VISUAL_ID == visualID || PseudostateInitialEditPart.VISUAL_ID == visualID || PseudostateJoinEditPart.VISUAL_ID == visualID || PseudostateForkEditPart.VISUAL_ID == visualID || PseudostateChoiceEditPart.VISUAL_ID == visualID || PseudostateJunctionEditPart.VISUAL_ID == visualID || PseudostateShallowHistoryEditPart.VISUAL_ID == visualID || PseudostateDeepHistoryEditPart.VISUAL_ID == visualID || PseudostateTerminateEditPart.VISUAL_ID == visualID || PseudostateEntryPointEditPart.VISUAL_ID == visualID || PseudostateExitPointEditPart.VISUAL_ID == visualID || ConnectionPointReferenceEditPart.VISUAL_ID == visualID || CommentEditPart.VISUAL_ID == visualID || ConstraintEditPart.VISUAL_ID == visualID || InternalTransitionEditPart.VISUAL_ID == visualID || EntryStateBehaviorEditPart.VISUAL_ID == visualID || DoActivityStateBehaviorStateEditPart.VISUAL_ID == visualID || ExitStateBehaviorEditPart.VISUAL_ID == visualID;
 	}
 
 	/**

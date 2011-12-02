@@ -86,6 +86,7 @@ import org.eclipse.uml2.uml.Region;
 import org.eclipse.uml2.uml.State;
 import org.eclipse.uml2.uml.StateMachine;
 import org.eclipse.uml2.uml.Transition;
+import org.eclipse.uml2.uml.TransitionKind;
 import org.eclipse.uml2.uml.Vertex;
 
 public class CustomStateMachineDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEditPolicy {
@@ -414,6 +415,10 @@ public class CustomStateMachineDiagramDragDropEditPolicy extends OldCommonDiagra
 		GraphicalEditPart graphicalParentEditPart = (GraphicalEditPart)getHost();
 		EObject graphicalParentObject = graphicalParentEditPart.resolveSemanticElement();
 		if(!(graphicalParentObject instanceof Region) || !((Region)graphicalParentObject).getTransitions().contains(droppedElement)) {
+			// if it's not over the owing region then the transition might be a internal transition in dropping in the Internal compartment region
+			if(TransitionKind.INTERNAL == droppedElement.getKind().getValue()) {
+				return dropInternalTransition(dropRequest, droppedElement, getNodeVisualID(((IGraphicalEditPart)getHost()).getNotationView(), droppedElement));
+			}
 			return UnexecutableCommand.INSTANCE;
 		}
 		Vertex source = droppedElement.getSource();
@@ -464,6 +469,27 @@ public class CustomStateMachineDiagramDragDropEditPolicy extends OldCommonDiagra
 	}
 
 
+	/**
+	 * handle drop of transition with kindTransition set as internal
+	 * 
+	 * @param dropRequest
+	 * @param droppedElement
+	 * @param nodeVisualID
+	 * @return
+	 */
+	protected Command dropInternalTransition(DropObjectsRequest dropRequest, Transition droppedElement, int nodeVisualID) {
+		if(nodeVisualID != -1) {
+			CompositeCommand cc = getDefaultDropNodeCommand(nodeVisualID, dropRequest.getLocation().getCopy(), droppedElement, dropRequest);
+			if(cc != null) {
+				cc.reduce();
+				if(!cc.isEmpty() && cc.canExecute()) {
+					return new ICommandProxy(cc);
+				}
+			}
+		}
+		return UnexecutableCommand.INSTANCE;
+
+	}
 
 	/**
 	 * the method provides command to create the binary link into the diagram. If the source and the
@@ -606,6 +632,7 @@ public class CustomStateMachineDiagramDragDropEditPolicy extends OldCommonDiagra
 		droppableElementsVisualId.add(PseudostateExitPointEditPart.VISUAL_ID);
 		droppableElementsVisualId.add(ConnectionPointReferenceEditPart.VISUAL_ID);
 		droppableElementsVisualId.add(TransitionEditPart.VISUAL_ID);
+		//		droppableElementsVisualId.add(EntryStateBehaviorEditPart.VISUAL_ID);
 		return droppableElementsVisualId;
 	}
 
@@ -640,8 +667,6 @@ public class CustomStateMachineDiagramDragDropEditPolicy extends OldCommonDiagra
 
 		// Retrieve drop location
 		Point location = dropRequest.getLocation().getCopy();
-
-		// Switch test over linkVisualID
 		switch(linkVISUALID) {
 		case TransitionEditPart.VISUAL_ID:
 			return dropTransition(dropRequest, (Transition)semanticElement, linkVISUALID);
@@ -664,6 +689,7 @@ public class CustomStateMachineDiagramDragDropEditPolicy extends OldCommonDiagra
 			}
 		}
 	}
+
 
 	@Override
 	public IElementType getUMLElementType(int elementID) {
@@ -786,6 +812,8 @@ public class CustomStateMachineDiagramDragDropEditPolicy extends OldCommonDiagra
 			}
 		}
 	}
+
+
 
 
 }

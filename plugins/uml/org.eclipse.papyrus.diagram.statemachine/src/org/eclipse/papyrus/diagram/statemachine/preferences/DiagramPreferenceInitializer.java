@@ -22,6 +22,15 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 	public void initializeDefaultPreferences() {
 		IPreferenceStore store = getPreferenceStore();
 
+		ExitStateBehaviorPreferencePage.initDefaults(store);
+
+
+		EntryStateBehaviorPreferencePage.initDefaults(store);
+
+
+		DoActivityStateBehaviorPreferencePage.initDefaults(store);
+
+
 		ConstraintPreferencePage.initDefaults(store);
 
 
@@ -44,6 +53,9 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 
 
 		StateMachinePreferencePage.initDefaults(store);
+
+
+		InternalTransitionPreferencePage.initDefaults(store);
 
 
 

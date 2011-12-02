@@ -11,6 +11,31 @@
       domainFileExtension="PapyrusUMLStateMachine"
       dynamicTemplates="true"
       templateDirectory="/org.eclipse.papyrus.def/dynamic-templates3.5/codegen">
+    <audits>
+      <categories
+          id="org.eclipse.uml2.uml.util.UMLValidator.validateInternalTransition"
+          name="validateInternalTransition"
+          description="Validate internal transition"
+          path="/0/@audits/@categories.0"
+          audits="/0/@audits/@rules.0"/>
+      <rules
+          name="validateInternalTransitionEnd"
+          description="Validate that internal transition has the same state for source and target"
+          id="org.eclipse.uml2.uml.util.UMLValidator.validateInternalTransition_sameTargetAndSrouce"
+          rule="/0/@expressionProviders/@providers.2/@expressions.0"
+          message="Validate that internal transition has the same state for source and target"
+          useInLiveMode="true"
+          category="/0/@audits/@categories.0">
+        <target
+            xsi:type="gmfgen:GenDomainElementTarget"
+            contextSelector="/0/@audits/@clientContexts.0">
+          <element
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Transition"/>
+        </target>
+      </rules>
+      <clientContexts
+          ruleTargets="/0/@audits/@rules.0/@target"/>
+    </audits>
     <diagram
         visualID="1000"
         editPartClassName="PackageEditPart"
@@ -196,7 +221,7 @@
           editPartClassName="StateEditPart"
           itemSemanticEditPolicyClassName="StateItemSemanticEditPolicy"
           canonicalEditPolicyClassName="StateCanonicalEditPolicy"
-          childNodes="/0/@diagram/@childNodes.0 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13"
+          childNodes="/0/@diagram/@childNodes.17 /0/@diagram/@childNodes.18 /0/@diagram/@childNodes.19 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.0 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13"
           compartments="/0/@diagram/@compartments.2"
           graphicalNodeEditPolicyClassName="StateGraphicalNodeEditPolicy"
           createCommandClassName="StateCreateCommand"
@@ -1599,6 +1624,211 @@
           </modelFacet>
         </labels>
       </childNodes>
+      <childNodes
+          xsi:type="gmfgen:GenChildLabelNode"
+          visualID="680"
+          editPartClassName="InternalTransitionEditPart"
+          itemSemanticEditPolicyClassName="InternalTransitionItemSemanticEditPolicy"
+          canonicalEditPolicyClassName="InternalTransitionCanonicalEditPolicy"
+          graphicalNodeEditPolicyClassName="InternalTransitionGraphicalNodeEditPolicy"
+          createCommandClassName="InternalTransitionCreateCommand"
+          containers="/0/@diagram/@childNodes.2"
+          labelReadOnly="true">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <elementType
+            xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.diagram.statemachine.InternalTransition_680"
+            displayName="InternalTransition"
+            metamodelType="/0/@diagram/@links.0/@elementType"/>
+        <viewmap
+            xsi:type="gmfgen:InnerClassViewmap"
+            className="PropertyFigureDescriptor"
+            classBody="&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;public class PropertyFigureDescriptor extends org.eclipse.papyrus.diagram.common.figure.node.CenteredWrappedLabel {&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public PropertyFigureDescriptor() {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;this.setText(&quot;&quot;);&#xD;&#xA;&#xD;&#xA;this.setFont(THIS_FONT);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;static final org.eclipse.swt.graphics.Font THIS_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 10, org.eclipse.swt.SWT.NORMAL);&#xD;&#xA;&#xD;&#xA;">
+          <attributes
+              xsi:type="gmfgen:StyleAttributes"
+              fixedFont="true"/>
+          <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
+        </viewmap>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.NavigationEditPolicy.NAVIGATION_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.NavigationEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.QualifiedNameDisplayEditPolicy.QUALIFIED_NAME_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.QualifiedNameDisplayEditPolicy"/>
+        <modelFacet>
+          <metaClass
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Transition"/>
+          <containmentMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Vertex/incoming"/>
+          <childMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Vertex/incoming"/>
+          <modelElementInitializer
+              xsi:type="gmfgen:GenFeatureSeqInitializer">
+            <initializers
+                xsi:type="gmfgen:GenFeatureValueSpec"
+                value="/0/@expressionProviders/@providers.0/@expressions.0">
+              <feature
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+            </initializers>
+          </modelElementInitializer>
+        </modelFacet>
+        <labelModelFacet
+            xsi:type="gmfgen:FeatureLabelModelFacet"
+            parser="/0/@labelParsers/@implementations.5">
+          <metaFeatures
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Transition/guard"/>
+        </labelModelFacet>
+      </childNodes>
+      <childNodes
+          xsi:type="gmfgen:GenChildLabelNode"
+          visualID="690"
+          editPartClassName="EntryStateBehaviorEditPart"
+          itemSemanticEditPolicyClassName="EntryStateBehaviorItemSemanticEditPolicy"
+          canonicalEditPolicyClassName="EntryStateBehaviorCanonicalEditPolicy"
+          graphicalNodeEditPolicyClassName="EntryStateBehaviorGraphicalNodeEditPolicy"
+          createCommandClassName="EntryStateBehaviorCreateCommand"
+          containers="/0/@diagram/@childNodes.2">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <elementType
+            xsi:type="gmfgen:MetamodelType"
+            uniqueIdentifier="org.eclipse.papyrus.diagram.statemachine.EntryStateBehavior_690"
+            displayName="EntryStateBehavior"
+            editHelperClassName="EntryStateBehaviorEditHelper"/>
+        <viewmap
+            xsi:type="gmfgen:InnerClassViewmap"
+            className="PropertyFigureDescriptor"
+            classBody="&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;public class PropertyFigureDescriptor extends org.eclipse.papyrus.diagram.common.figure.node.CenteredWrappedLabel {&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public PropertyFigureDescriptor() {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;this.setText(&quot;&quot;);&#xD;&#xA;&#xD;&#xA;this.setFont(THIS_FONT);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;static final org.eclipse.swt.graphics.Font THIS_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 10, org.eclipse.swt.SWT.NORMAL);&#xD;&#xA;&#xD;&#xA;">
+          <attributes
+              xsi:type="gmfgen:StyleAttributes"
+              fixedFont="true"/>
+          <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
+        </viewmap>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.NavigationEditPolicy.NAVIGATION_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.NavigationEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.QualifiedNameDisplayEditPolicy.QUALIFIED_NAME_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.QualifiedNameDisplayEditPolicy"/>
+        <modelFacet
+            modelElementSelector="/0/@expressionProviders/@providers.2/@expressions.2">
+          <metaClass
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Behavior"/>
+          <containmentMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/State/entry"/>
+          <childMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/State/entry"/>
+        </modelFacet>
+        <labelModelFacet
+            xsi:type="gmfgen:FeatureLabelModelFacet"
+            parser="/0/@labelParsers/@implementations.6">
+          <metaFeatures
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/State/entry"/>
+        </labelModelFacet>
+      </childNodes>
+      <childNodes
+          xsi:type="gmfgen:GenChildLabelNode"
+          visualID="691"
+          editPartClassName="DoActivityStateBehaviorStateEditPart"
+          itemSemanticEditPolicyClassName="DoActivityStateBehaviorStateItemSemanticEditPolicy"
+          canonicalEditPolicyClassName="DoActivityStateBehaviorCanonicalEditPolicy"
+          graphicalNodeEditPolicyClassName="DoActivityStateBehaviorStateGraphicalNodeEditPolicy"
+          createCommandClassName="DoActivityStateBehaviorStateCreateCommand"
+          containers="/0/@diagram/@childNodes.2">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <elementType
+            xsi:type="gmfgen:MetamodelType"
+            uniqueIdentifier="org.eclipse.papyrus.diagram.statemachine.DoActivityStateBehavior_691"
+            displayName="DoActivityStateBehavior"
+            editHelperClassName="DoActivityStateBehaviorEditHelper"/>
+        <viewmap
+            xsi:type="gmfgen:InnerClassViewmap"
+            className="PropertyFigureDescriptor"
+            classBody="&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;public class PropertyFigureDescriptor extends org.eclipse.papyrus.diagram.common.figure.node.CenteredWrappedLabel {&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public PropertyFigureDescriptor() {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;this.setText(&quot;&quot;);&#xD;&#xA;&#xD;&#xA;this.setFont(THIS_FONT);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;static final org.eclipse.swt.graphics.Font THIS_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 10, org.eclipse.swt.SWT.NORMAL);&#xD;&#xA;&#xD;&#xA;">
+          <attributes
+              xsi:type="gmfgen:StyleAttributes"
+              fixedFont="true"/>
+          <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
+        </viewmap>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.NavigationEditPolicy.NAVIGATION_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.NavigationEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.QualifiedNameDisplayEditPolicy.QUALIFIED_NAME_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.QualifiedNameDisplayEditPolicy"/>
+        <modelFacet
+            modelElementSelector="/0/@expressionProviders/@providers.2/@expressions.3">
+          <metaClass
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Behavior"/>
+          <containmentMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/State/doActivity"/>
+          <childMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/State/doActivity"/>
+        </modelFacet>
+        <labelModelFacet
+            xsi:type="gmfgen:FeatureLabelModelFacet"
+            parser="/0/@labelParsers/@implementations.7">
+          <metaFeatures
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/State/doActivity"/>
+        </labelModelFacet>
+      </childNodes>
+      <childNodes
+          xsi:type="gmfgen:GenChildLabelNode"
+          visualID="692"
+          editPartClassName="ExitStateBehaviorEditPart"
+          itemSemanticEditPolicyClassName="ExitStateBehaviorItemSemanticEditPolicy"
+          canonicalEditPolicyClassName="ExitStateBehaviorCanonicalEditPolicy"
+          graphicalNodeEditPolicyClassName="ExitStateBehaviorGraphicalNodeEditPolicy"
+          createCommandClassName="ExitStateBehaviorCreateCommand"
+          containers="/0/@diagram/@childNodes.2">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <elementType
+            xsi:type="gmfgen:MetamodelType"
+            uniqueIdentifier="org.eclipse.papyrus.diagram.statemachine.ExitStateBehavior_692"
+            displayName="ExitStateBehavior"
+            editHelperClassName="ExitStateBehaviorEditHelper"/>
+        <viewmap
+            xsi:type="gmfgen:InnerClassViewmap"
+            className="PropertyFigureDescriptor"
+            classBody="&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;public class PropertyFigureDescriptor extends org.eclipse.papyrus.diagram.common.figure.node.CenteredWrappedLabel {&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public PropertyFigureDescriptor() {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;this.setText(&quot;&quot;);&#xD;&#xA;&#xD;&#xA;this.setFont(THIS_FONT);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;static final org.eclipse.swt.graphics.Font THIS_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 10, org.eclipse.swt.SWT.NORMAL);&#xD;&#xA;&#xD;&#xA;">
+          <attributes
+              xsi:type="gmfgen:StyleAttributes"
+              fixedFont="true"/>
+          <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
+        </viewmap>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.NavigationEditPolicy.NAVIGATION_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.NavigationEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.QualifiedNameDisplayEditPolicy.QUALIFIED_NAME_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.QualifiedNameDisplayEditPolicy"/>
+        <modelFacet
+            modelElementSelector="/0/@expressionProviders/@providers.2/@expressions.1">
+          <metaClass
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Behavior"/>
+          <containmentMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/State/exit"/>
+          <childMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/State/exit"/>
+        </modelFacet>
+        <labelModelFacet
+            xsi:type="gmfgen:FeatureLabelModelFacet"
+            parser="/0/@labelParsers/@implementations.8">
+          <metaFeatures
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/State/exit"/>
+        </labelModelFacet>
+      </childNodes>
       <topLevelNodes
           visualID="2000"
           editPartClassName="StateMachineEditPart"
@@ -2325,6 +2555,21 @@
         <expressions
             body="' '"/>
       </providers>
+      <providers
+          xsi:type="gmfgen:GenExpressionInterpreter">
+        <expressions
+            xsi:type="gmfgen:GenConstraint"
+            body="(kind = TransitionKind::internal) implies (source.oclIsKindOf (State) and source = target)"/>
+        <expressions
+            xsi:type="gmfgen:GenConstraint"
+            body="if self.owner.oclIsKindOf(State)&#xD;&#xA;then self.owner.oclAsType(State).exit->includes(self)&#xD;&#xA;else false endif"/>
+        <expressions
+            xsi:type="gmfgen:GenConstraint"
+            body="if self.owner.oclIsKindOf(State)&#xD;&#xA;then self.owner.oclAsType(State).entry->includes(self)&#xD;&#xA;else false endif"/>
+        <expressions
+            xsi:type="gmfgen:GenConstraint"
+            body="if self.owner.oclIsKindOf(State)&#xD;&#xA;then self.owner.oclAsType(State).doActivity->includes(self)&#xD;&#xA;else false endif"/>
+      </providers>
     </expressionProviders>
     <labelParsers
         extensibleViaService="true">
@@ -2347,6 +2592,22 @@
           xsi:type="gmfgen:CustomParser"
           uses="/0/@diagram/@childNodes.15/@labels.1/@modelFacet"
           qualifiedName="org.eclipse.papyrus.diagram.common.parser.ConstraintParser"/>
+      <implementations
+          xsi:type="gmfgen:CustomParser"
+          uses="/0/@diagram/@childNodes.16/@labelModelFacet"
+          qualifiedName="org.eclipse.papyrus.diagram.statemachine.custom.parsers.InternalTransitionParser"/>
+      <implementations
+          xsi:type="gmfgen:CustomParser"
+          uses="/0/@diagram/@childNodes.17/@labelModelFacet"
+          qualifiedName="org.eclipse.papyrus.diagram.statemachine.custom.parsers.EntryStateBehaviorParser"/>
+      <implementations
+          xsi:type="gmfgen:CustomParser"
+          uses="/0/@diagram/@childNodes.18/@labelModelFacet"
+          qualifiedName="org.eclipse.papyrus.diagram.statemachine.custom.parsers.DoActivityStateBehaviorParser"/>
+      <implementations
+          xsi:type="gmfgen:CustomParser"
+          uses="/0/@diagram/@childNodes.19/@labelModelFacet"
+          qualifiedName="org.eclipse.papyrus.diagram.statemachine.custom.parsers.ExitStateBehaviorParser"/>
     </labelParsers>
     <contextMenus
         context="/0/@diagram">

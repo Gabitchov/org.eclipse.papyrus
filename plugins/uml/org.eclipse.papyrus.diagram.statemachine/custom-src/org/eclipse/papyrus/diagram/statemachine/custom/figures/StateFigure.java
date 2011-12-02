@@ -1,3 +1,17 @@
+/*****************************************************************************
+ * Copyright (c) 2010-2011 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ * 
+ * 		Arthur daussy (Atos) arthur.daussy@atos.net - Bug : 365405: [State Machine Diagram] Behaviours (Entry,exit,do) on states should have their own mechanisms
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.statemachine.custom.figures;
 
 import java.util.ArrayList;
@@ -39,11 +53,15 @@ public class StateFigure extends CompartmentFigure {
 	/** The State Compartment */
 	private final static String STATE_COMPARTMENT = "stateCompartment";
 
+	/** The State Internal Transition Compartment */
+	private final static String INTERNAL_LABEL_COMPARTMENT = "internalLabelCompartment";
+
 	/** The List of Compartment */
 	private final static List<String> COMPARTMENT = new ArrayList<String>() {
 
 		private static final long serialVersionUID = 1L;
 		{
+			//			add(INTERNAL_LABEL_COMPARTMENT);
 			add(STATE_COMPARTMENT);
 		}
 	};
@@ -149,6 +167,17 @@ public class StateFigure extends CompartmentFigure {
 	public RectangleFigure getStateCompartmentFigure() {
 		return getCompartment(STATE_COMPARTMENT);
 	}
+
+	/**
+	 * Get the IOnternal State compartment figure
+	 * 
+	 * @return
+	 */
+	public RectangleFigure getInternalLabelCompartmentFigure() {
+		return getCompartment(INTERNAL_LABEL_COMPARTMENT);
+	}
+
+
 
 	public boolean hasInformationChanged() {
 		return informationHasChanged;

@@ -7,6 +7,7 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.providers.BaseViewInfo;
 import org.eclipse.papyrus.diagram.common.providers.ViewInfo;
+import org.eclipse.papyrus.diagram.statemachine.custom.expressions.UMLOCLFactory;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.CommentBodyEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.CommentEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.ConnectionPointReferenceEditPart;
@@ -15,11 +16,15 @@ import org.eclipse.papyrus.diagram.statemachine.edit.parts.ConnectionPointRefere
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.ConstraintBodyEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.ConstraintEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.ConstraintNameLabelEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.DoActivityStateBehaviorStateEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.EntryStateBehaviorEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.ExitStateBehaviorEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.FinalStateEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.FinalStateNameEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.FinalStateStereotypeEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.GeneralizationEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.GeneralizationStereotypeEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.InternalTransitionEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateChoiceEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateChoiceNameEditPart;
@@ -63,6 +68,7 @@ import org.eclipse.papyrus.diagram.statemachine.edit.parts.TransitionEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.TransitionGuardEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.TransitionNameEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.TransitionStereotypeEditPart;
+import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Pseudostate;
 import org.eclipse.uml2.uml.PseudostateKind;
@@ -143,6 +149,18 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			if(StateCompartmentEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(EntryStateBehaviorEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(DoActivityStateBehaviorStateEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ExitStateBehaviorEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(InternalTransitionEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			if(RegionEditPart.VISUAL_ID == nodeVisualID) {
@@ -443,6 +461,20 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case StateEditPart.VISUAL_ID:
+			if(UMLPackage.eINSTANCE.getBehavior().isSuperTypeOf(domainElement.eClass()) && isBehavior_690(containerView, (Behavior)domainElement)) {
+				return EntryStateBehaviorEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getBehavior().isSuperTypeOf(domainElement.eClass()) && isBehavior_691(containerView, (Behavior)domainElement)) {
+				return DoActivityStateBehaviorStateEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getBehavior().isSuperTypeOf(domainElement.eClass()) && isBehavior_692(containerView, (Behavior)domainElement)) {
+				return ExitStateBehaviorEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getTransition().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return InternalTransitionEditPart.VISUAL_ID;
+			}
 			if(UMLPackage.eINSTANCE.getRegion().isSuperTypeOf(domainElement.eClass())
 
 			) {
@@ -681,6 +713,26 @@ public class UMLVisualIDRegistry {
 
 		root.addNode(3002, viewInfo);
 
+
+		viewInfo = new BaseViewInfo(680, ViewInfo.Node, "Transition");
+
+		root.addNode(6000, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(690, ViewInfo.Node, "Behavior");
+
+		root.addNode(6000, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(691, ViewInfo.Node, "Behavior");
+
+		root.addNode(6000, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(692, ViewInfo.Node, "Behavior");
+
+		root.addNode(6000, viewInfo);
+
 		return root;
 	}
 
@@ -847,6 +899,31 @@ public class UMLVisualIDRegistry {
 				return true;
 		}
 		return false;
+	}
+
+	/**
+	 * 
+	 * @generated not cf http://www.eclipse.org/forums/index.php/m/759914/#msg_759914
+	 */
+	private static boolean isBehavior_690(View containerView, Behavior domainElement) {
+		Object result = UMLOCLFactory.getExpression(2, UMLPackage.eINSTANCE.getBehavior(), null).evaluate(domainElement);
+		return result instanceof Boolean && ((Boolean)result).booleanValue();
+	}
+
+	/**
+	 * @generated not cf http://www.eclipse.org/forums/index.php/m/759914/#msg_759914
+	 */
+	private static boolean isBehavior_691(View containerView, Behavior domainElement) {
+		Object result = UMLOCLFactory.getExpression(3, UMLPackage.eINSTANCE.getBehavior(), null).evaluate(domainElement);
+		return result instanceof Boolean && ((Boolean)result).booleanValue();
+	}
+
+	/**
+	 * @generated not cf http://www.eclipse.org/forums/index.php/m/759914/#msg_759914
+	 */
+	private static boolean isBehavior_692(View containerView, Behavior domainElement) {
+		Object result = UMLOCLFactory.getExpression(1, UMLPackage.eINSTANCE.getBehavior(), null).evaluate(domainElement);
+		return result instanceof Boolean && ((Boolean)result).booleanValue();
 	}
 
 	/**
