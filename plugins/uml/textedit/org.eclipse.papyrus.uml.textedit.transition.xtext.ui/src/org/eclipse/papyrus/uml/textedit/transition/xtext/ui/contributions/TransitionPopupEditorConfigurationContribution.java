@@ -25,7 +25,19 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
+import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
+import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.uml.textedit.transition.xtext.ui.internal.UmlTransitionActivator;
+import org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.BehaviorKind;
+import org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.CallOrSignalEventRule;
+import org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.ChangeEventRule;
+import org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.EventRule;
+import org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.RelativeTimeEventRule;
+import org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.TimeEventRule;
+import org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.TransitionRule;
+import org.eclipse.ui.IEditorPart;
 import org.eclipse.uml2.common.util.UML2Util;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.Behavior;
@@ -48,6 +60,9 @@ import org.eclipse.uml2.uml.Transition;
 import org.eclipse.uml2.uml.Trigger;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.ValueSpecification;
+import org.eclipse.xtext.gmf.glue.PopupEditorConfiguration;
+import org.eclipse.xtext.gmf.glue.edit.part.DefaultXtextSemanticValidator;
+import org.eclipse.xtext.gmf.glue.edit.part.IXtextEMFReconciler;
 import org.eclipse.xtext.ui.editor.utils.EditorUtils;
 
 import com.google.inject.Injector;
@@ -77,11 +92,10 @@ public class TransitionPopupEditorConfigurationContribution extends PopupEditorC
 	public IPopupEditorHelper createPopupEditorHelper(Object editPart) {
 
 		// resolves the edit part, and the associated semantic element
-		IGraphicalEditPart graphicalEditPart = null;
 		if(!(editPart instanceof IGraphicalEditPart)) {
 			return null;
 		}
-		graphicalEditPart = (IGraphicalEditPart)editPart;
+		final IGraphicalEditPart graphicalEditPart = (IGraphicalEditPart)editPart;
 
 		if(!(graphicalEditPart.resolveSemanticElement() instanceof Transition)) {
 			return null;
@@ -118,9 +132,8 @@ public class TransitionPopupEditorConfigurationContribution extends PopupEditorC
 				transitionRuleObject = (TransitionRule)xtextObject;
 
 				// Creates and executes the update command
-				UpdateUMLTransitionCommand updateCommand = new UpdateUMLTransitionCommand(transition);
-
-				TransactionalEditingDomain dom = EditorUtils.getTransactionalEditingDomain();
+				TransactionalEditingDomain dom = graphicalEditPart.getEditingDomain();
+				UpdateUMLTransitionCommand updateCommand = new UpdateUMLTransitionCommand(dom,transition);
 				dom.getCommandStack().execute(new GMFtoEMFCommandWrapper(updateCommand));
 			}
 		};
@@ -498,8 +511,8 @@ public class TransitionPopupEditorConfigurationContribution extends PopupEditorC
 			return behavior;
 		}
 
-		public UpdateUMLTransitionCommand(Transition transition) {
-			super(EditorUtils.getTransactionalEditingDomain(), "Transition Update", getWorkspaceFiles(transition));
+		public UpdateUMLTransitionCommand(TransactionalEditingDomain domain, Transition transition) {
+			super(domain, "Transition Update", getWorkspaceFiles(transition));
 			this.transition = transition;
 		}
 	}
