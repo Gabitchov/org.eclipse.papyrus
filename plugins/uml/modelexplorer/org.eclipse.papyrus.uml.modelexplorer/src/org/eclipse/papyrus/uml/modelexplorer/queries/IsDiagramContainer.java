@@ -12,17 +12,12 @@
  */
 package org.eclipse.papyrus.uml.modelexplorer.queries;
 
-import java.util.ArrayList;
-
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.facet.infra.query.core.exception.ModelQueryExecutionException;
 import org.eclipse.emf.facet.infra.query.core.java.IJavaModelQuery;
 import org.eclipse.emf.facet.infra.query.core.java.ParameterValueList;
-import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableInstance;
-import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableinstancePackage;
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.views.modelexplorer.NavigatorUtils;
 import org.eclipse.papyrus.views.modelexplorer.queries.AbstractEditorContainerQuery;
 
