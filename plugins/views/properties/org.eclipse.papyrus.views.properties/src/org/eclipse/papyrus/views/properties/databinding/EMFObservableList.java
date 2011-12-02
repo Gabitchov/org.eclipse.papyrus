@@ -18,6 +18,7 @@ import java.util.List;
 import org.eclipse.core.databinding.observable.list.ObservableList;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
+import org.eclipse.emf.common.command.StrictCompoundCommand;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.command.AddCommand;
@@ -97,7 +98,7 @@ public class EMFObservableList extends ObservableList implements ICommitListener
 			return;
 		}
 
-		CompoundCommand compoundCommand = new CompoundCommand() {
+		CompoundCommand compoundCommand = new StrictCompoundCommand() {
 
 			@Override
 			public void execute() {
@@ -116,25 +117,6 @@ public class EMFObservableList extends ObservableList implements ICommitListener
 				super.redo();
 				refreshCacheList();
 			}
-
-			/**
-			 * We have a sequential execution : the method canExecute() in
-			 * the command n+1 depends on the result of the command n. We can't
-			 * check every command's canExecute() method here, so we only
-			 * check the first one.
-			 * 
-			 */
-			@Override
-			public boolean canExecute() {
-				return commandList.isEmpty() ? false : commandList.get(0).canExecute();
-			}
-
-			//TODO : edit the execute() method to call the remaining canExecute() checks
-			//during the execution
-			//(n).canExecute()
-			//(n).execute()
-			//(n+1).canExecute()
-			//(n+1).execute()
 		};
 
 		for(Command cmd : commands) {

@@ -28,7 +28,6 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
-import org.eclipse.papyrus.infra.widgets.editors.ICommitListener;
 import org.eclipse.papyrus.views.properties.databinding.EMFObservableList;
 
 /**
@@ -39,7 +38,7 @@ import org.eclipse.papyrus.views.properties.databinding.EMFObservableList;
  * 
  */
 @SuppressWarnings("unchecked")
-public class PapyrusObservableList extends EMFObservableList implements ICommitListener {
+public class PapyrusObservableList extends EMFObservableList {
 
 	/**
 	 * 

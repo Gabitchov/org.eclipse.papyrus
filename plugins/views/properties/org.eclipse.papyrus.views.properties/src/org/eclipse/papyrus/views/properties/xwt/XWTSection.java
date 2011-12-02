@@ -11,7 +11,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.views.properties.xwt;
 
-import java.util.Iterator;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.eclipse.core.databinding.observable.ChangeEvent;
 import org.eclipse.core.databinding.observable.IChangeListener;
@@ -52,6 +53,8 @@ public class XWTSection extends AbstractPropertySection implements IChangeListen
 	private Composite self;
 
 	private DisplayEngine display;
+
+	private Set<Constraint> constraints;
 
 	/**
 	 * Constructor.
@@ -166,38 +169,35 @@ public class XWTSection extends AbstractPropertySection implements IChangeListen
 	 *         True if the section should be displayed
 	 */
 	protected boolean isApplied() {
-		if(section.getConstraints().isEmpty()) {
+		if(getConstraints().isEmpty()) {
 			return true;
 		}
 
 		ISelection selection = getSelection();
 
-		//Return true only if at least one constraint matches all elements
+		//Return true only if at least one constraint matches the selection
 
-		//Constraint loop
-		boolean oneConstraintMatch = false;
-		for(ConstraintDescriptor constraintDescriptor : section.getConstraints()) {
-			Constraint constraint = ConstraintFactory.getInstance().createFromModel(constraintDescriptor);
-
-			Iterator<?> it = ((IStructuredSelection)selection).iterator();
-
-			//Selection loop
-			boolean allObjectsMatch = true;
-			while(it.hasNext()) {
-				Object element = it.next();
-				if(! constraint.match(element)) {
-					allObjectsMatch = false;
-					break;
-				}
-			}
-
-			if (allObjectsMatch){
-				oneConstraintMatch = true;
-				break;
+		for(Constraint constraint : getConstraints()) {
+			if(constraint.match((IStructuredSelection)selection)) {
+				return true;
 			}
 		}
 
-		return oneConstraintMatch;
+		return false;
+	}
+
+	protected Set<Constraint> getConstraints() {
+		if(constraints == null) {
+			constraints = new HashSet<Constraint>();
+			for(ConstraintDescriptor constraintDescriptor : section.getConstraints()) {
+				Constraint constraint = ConstraintFactory.getInstance().createFromModel(constraintDescriptor);
+				if(constraint != null) {
+					constraints.add(constraint);
+				}
+			}
+		}
+
+		return constraints;
 	}
 
 	@Override

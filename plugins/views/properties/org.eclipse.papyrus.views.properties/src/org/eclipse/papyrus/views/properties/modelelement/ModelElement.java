@@ -30,6 +30,9 @@ public interface ModelElement {
 	/**
 	 * Returns an IObservable for the given propertyPath. The IObservable
 	 * may be either an IObservableValue or an IObservableList.
+	 * The IObservable objects returned by this method may be shared by
+	 * many instances, which means they should not be disposed directly.
+	 * They will be disposed when this ModelElement is disposed.
 	 * 
 	 * @param propertyPath
 	 *        The property for which we need an IObservable

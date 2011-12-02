@@ -30,9 +30,6 @@ import org.eclipse.papyrus.views.properties.util.Util;
  * 
  * @author Camille Letavernier
  */
-// FIXME : sources is never cleared (Memory leak)
-// TODO : The DataSource probably don't need a factory. Most methods are related
-// to ModelElement.
 public class DataSourceFactory {
 
 	/**
@@ -236,5 +233,8 @@ public class DataSourceFactory {
 	 * 
 	 * The cache is cleaned when the sections are disposed.
 	 */
+	//TODO : More than one view can be displayed at the same time. The cache should only
+	//rely on a selection ; not on a selection-view pair.
+	//We may use a (ISelection, Context) key : the DataSource must be associated to a single context
 	private Map<SelectionEntry, DataSource> sources = new HashMap<SelectionEntry, DataSource>();
 }

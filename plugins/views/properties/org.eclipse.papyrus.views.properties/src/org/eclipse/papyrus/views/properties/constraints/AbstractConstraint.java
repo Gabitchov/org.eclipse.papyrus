@@ -11,6 +11,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.views.properties.constraints;
 
+import java.util.Iterator;
+
+import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.views.properties.Activator;
 import org.eclipse.papyrus.views.properties.contexts.ConfigProperty;
 import org.eclipse.papyrus.views.properties.contexts.ConstraintDescriptor;
@@ -179,6 +182,50 @@ public abstract class AbstractConstraint implements Constraint {
 	 */
 	protected void setDescriptor(SimpleConstraint descriptor) {
 		//Implementors may override
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * The default implementation matches a selection iff the constraint matches
+	 * each object of the selection.
+	 */
+	public boolean match(IStructuredSelection selection) {
+		if(selection.isEmpty()) {
+			return false;
+		}
+
+
+		int elementMultiplicity;
+
+		if(display instanceof View) {
+			elementMultiplicity = ((View)display).getElementMultiplicity();
+		} else {
+			//FIXME : The dynamic sections were initially not supposed to be used on multi-selection
+			//Thus, they don't have an elementMultiplicity criteria.
+			elementMultiplicity = -1; //Arbitrary number of elements for Sections
+		}
+
+		int selectionSize = selection.size();
+		if(elementMultiplicity == 1) {
+			if(selectionSize == 1) {
+				if(match(selection.getFirstElement())) {
+					return true;
+				}
+			}
+		} else if(elementMultiplicity == selectionSize || elementMultiplicity < 0) {
+			Iterator<?> selectionIterator = selection.iterator();
+			while(selectionIterator.hasNext()) {
+				Object selectedItem = selectionIterator.next();
+				if(!match(selectedItem)) {
+					return false;
+				}
+			}
+
+			return true;
+		}
+
+		return false;
 	}
 
 }

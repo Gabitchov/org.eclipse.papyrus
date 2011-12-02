@@ -156,8 +156,8 @@
             ecoreFeature="ecore:EReference Properties.ecore#//contexts/ReferenceProperty/value"/>
       </genClasses>
     </nestedGenPackages>
-    <nestedGenPackages prefix="Ui" basePackage="org.eclipse.papyrus.views.properties" disposableProviderFactory="true"
-        ecorePackage="Properties.ecore#//ui">
+    <nestedGenPackages prefix="Ui" basePackage="org.eclipse.papyrus.views.properties"
+        disposableProviderFactory="true" ecorePackage="Properties.ecore#//ui">
       <genClasses ecoreClass="Properties.ecore#//ui/Element"/>
       <genClasses image="false" ecoreClass="Properties.ecore#//ui/UIComponent">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Properties.ecore#//ui/UIComponent/attributes"/>

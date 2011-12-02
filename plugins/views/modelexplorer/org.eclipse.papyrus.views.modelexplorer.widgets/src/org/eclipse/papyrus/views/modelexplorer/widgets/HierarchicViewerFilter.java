@@ -22,6 +22,7 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.facet.infra.browser.uicore.internal.model.BigListItem;
 import org.eclipse.emf.facet.infra.facet.FacetReference;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
@@ -70,7 +71,14 @@ public class HierarchicViewerFilter extends AbstractTreeFilter {
 				semanticObject = (EObject)element;
 			}
 
-			if(semanticObject != null) {//it contains nothing
+			if(element instanceof BigListItem) {
+				Object[] children = contentProvider.getChildren(element);
+				for(Object child : children) {
+					if(isVisible(viewer, element, child) || hasOneVisibleChild(viewer, child, contentProvider, visitedElements)) {
+						result = true;
+					}
+				}
+			} else if(semanticObject != null) {//it contains nothing
 				if(semanticObject instanceof EReference) {
 					//Do not display references that are not containment kind
 					EReference eReference = (EReference)semanticObject;

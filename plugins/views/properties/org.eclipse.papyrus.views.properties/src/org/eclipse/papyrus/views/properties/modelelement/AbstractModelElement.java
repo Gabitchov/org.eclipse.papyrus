@@ -11,8 +11,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.views.properties.modelelement;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.eclipse.core.databinding.observable.IObservable;
 import org.eclipse.jface.viewers.ILabelProvider;
@@ -36,7 +36,7 @@ public abstract class AbstractModelElement implements ModelElement {
 	 */
 	protected DataSource dataSource;
 
-	private final List<IObservable> observables = new LinkedList<IObservable>();
+	private final Map<String, IObservable> observables = new HashMap<String, IObservable>();
 
 	/**
 	 * Constructor.
@@ -107,11 +107,11 @@ public abstract class AbstractModelElement implements ModelElement {
 	}
 
 	public final IObservable getObservable(String propertyPath) {
-		IObservable observable = doGetObservable(propertyPath);
-		if(observable != null) {
-			observables.add(observable);
+		if(!observables.containsKey(propertyPath)) {
+			IObservable observable = doGetObservable(propertyPath);
+			observables.put(propertyPath, observable);
 		}
-		return observable;
+		return observables.get(propertyPath);
 	}
 
 	/**
@@ -125,7 +125,7 @@ public abstract class AbstractModelElement implements ModelElement {
 	protected abstract IObservable doGetObservable(String propertyPath);
 
 	public void dispose() {
-		for(IObservable observable : observables) {
+		for(IObservable observable : observables.values()) {
 			observable.dispose();
 		}
 		observables.clear();

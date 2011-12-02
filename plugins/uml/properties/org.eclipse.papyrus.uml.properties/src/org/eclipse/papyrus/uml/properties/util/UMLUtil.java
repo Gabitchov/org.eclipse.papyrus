@@ -154,19 +154,7 @@ public class UMLUtil {
 		//The parent stereotype is not always applicable...
 		//stereotype = umlElement.getApplicableStereotype(stereotypeName);
 
-		org.eclipse.uml2.uml.Package umlPackage = umlElement.getNearestPackage();
-		if(umlPackage == null) {
-			stereotype = umlElement.getApplicableStereotype(stereotypeName);
-		} else {
-			outerLoop: for(Profile profile : umlPackage.getAllAppliedProfiles()) {
-				for(Stereotype ownedStereotype : profile.getOwnedStereotypes()) {
-					if(ownedStereotype.getQualifiedName().equals(stereotypeName)) {
-						stereotype = ownedStereotype;
-						break outerLoop;
-					}
-				}
-			}
-		}
+		stereotype = findStereotype(umlElement, stereotypeName);
 
 		//stereotype = umlElement.getApplicableStereotype(stereotypeName);
 		if(stereotype == null) {
@@ -195,6 +183,33 @@ public class UMLUtil {
 		//		}
 		//
 		//		return null;
+	}
+
+	/**
+	 * Finds the Stereotype matching the given name.
+	 * The search is done in the context of the given UML Element
+	 * (i.e. the Profiles applied on the Element's nearest package)
+	 * 
+	 * @param umlElement
+	 * @param stereotypeName
+	 * @return
+	 */
+	public static Stereotype findStereotype(Element umlElement, String stereotypeName) {
+		Stereotype stereotype = null;
+		org.eclipse.uml2.uml.Package umlPackage = umlElement.getNearestPackage();
+		if(umlPackage == null) {
+			stereotype = umlElement.getApplicableStereotype(stereotypeName);
+		} else {
+			outerLoop: for(Profile profile : umlPackage.getAllAppliedProfiles()) {
+				for(Stereotype ownedStereotype : profile.getOwnedStereotypes()) {
+					if(ownedStereotype.getQualifiedName().equals(stereotypeName)) {
+						stereotype = ownedStereotype;
+						break outerLoop;
+					}
+				}
+			}
+		}
+		return stereotype;
 	}
 
 	/**

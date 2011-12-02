@@ -9,6 +9,7 @@
   <modelElementFactories name="Stereotype Appearance Factory" factoryClass="org.eclipse.papyrus.uml.properties.modelelement.StereotypeAppearanceFactory"/>
   <constraintTypes label="UML Instance Of" constraintClass="org.eclipse.papyrus.uml.properties.constraints.UmlInstanceOfConstraint"/>
   <constraintTypes label="Has Stereotype" constraintClass="org.eclipse.papyrus.uml.properties.constraints.HasStereotypeConstraint"/>
+  <constraintTypes label="IsDataType" constraintClass="org.eclipse.papyrus.uml.properties.datatype.IsDataTypeConstraint"/>
   <propertyEditorTypes label="ExpressionEditor" widgetClass="ExpressionEditor" namespace="//@namespaces.0" multiplicity="-1"/>
   <propertyEditorTypes label="Profile Application Editor" widgetClass="ProfileApplicationPropertyEditor" namespace="//@namespaces.0" type="Reference" multiplicity="-1"/>
   <propertyEditorTypes label="StereotypeDisplayEditor" widgetClass="StereotypeDisplay" namespace="//@namespaces.0" type="Reference"/>

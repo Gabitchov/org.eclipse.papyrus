@@ -207,6 +207,7 @@ public class ViewEditor extends AbstractPropertyEditor {
 	 */
 	protected void updateControls() {
 		for(Control container : self.getChildren()) {
+			//TODO : Browse recursively ?
 			if(container instanceof Composite) {
 				for(Control control : ((Composite)container).getChildren()) {
 					if(control instanceof AbstractEditor) {

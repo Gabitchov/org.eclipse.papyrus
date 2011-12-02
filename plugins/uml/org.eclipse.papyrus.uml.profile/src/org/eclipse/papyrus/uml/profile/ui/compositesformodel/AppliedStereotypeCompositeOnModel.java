@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2008 CEA LIST.
  *
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -121,7 +121,7 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 				// --> remove it from new list
 				Iterator<Stereotype> it = oldStereotypeList.iterator();
 				while(it.hasNext()) {
-					Stereotype currentStOld = (Stereotype)it.next();
+					Stereotype currentStOld = it.next();
 					if(newStereotypeList.contains(currentStOld)) {
 						newStereotypeList.remove(currentStOld);
 					} else {
@@ -133,7 +133,7 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 				// apply others
 				Iterator<Stereotype> newApplyStereotypes = newStereotypeList.iterator();
 				while(newApplyStereotypes.hasNext()) {
-					Stereotype currentStereotype = (Stereotype)newApplyStereotypes.next();
+					Stereotype currentStereotype = newApplyStereotypes.next();
 					applyStereotype(element, currentStereotype);
 				}
 
@@ -167,6 +167,9 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 	public Composite createContent(Composite parent, TabbedPropertySheetWidgetFactory factory) {
 		super.createContent(parent, factory);
 		createStereotypesTree();
+
+		removeButton.setToolTipText("Remove stereotype");
+		addButton.setToolTipText("Apply stereotype");
 
 		return this;
 	}
@@ -272,7 +275,7 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 	public void refreshTreeViewer () {
 		treeViewer.refresh ();
 	}
-	
+
 	/**
 	 * Refresh the content of applied the applied stereotype tree.
 	 */
@@ -368,10 +371,11 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 				sTO.removeMe();
 			}
 		}
-		if(appliedStereotypePanel != null)
+		if(appliedStereotypePanel != null) {
 			appliedStereotypePanel.refresh();
-		else
+		} else {
 			refresh();
+		}
 	}
 
 	/**
@@ -407,10 +411,11 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 				this.reorderStereotypeApplications(element, stereotypes);
 			}
 		}
-		if(appliedStereotypePanel != null)
+		if(appliedStereotypePanel != null) {
 			appliedStereotypePanel.refresh();
-		else
+		} else {
 			refresh();
+		}
 	}
 
 	/**
@@ -433,6 +438,7 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 						public void run() {
 							getDomain().getCommandStack().execute(new RecordingCommand(getDomain()) {
 
+								@Override
 								protected void doExecute() {
 									elt.applyStereotype(st);
 									refresh();
@@ -470,6 +476,7 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 						public void run() {
 							getDomain().getCommandStack().execute(new RecordingCommand(getDomain()) {
 
+								@Override
 								protected void doExecute() {
 									elt.unapplyStereotype(st);
 									elt.eNotify(new NotificationImpl(Notification.SET, true, true, true));
@@ -507,6 +514,7 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 						public void run() {
 							getDomain().getCommandStack().execute(new RecordingCommand(getDomain()) {
 
+								@Override
 								protected void doExecute() {
 									Util.reorderStereotypeApplications(element, stereotypes);
 									refresh();

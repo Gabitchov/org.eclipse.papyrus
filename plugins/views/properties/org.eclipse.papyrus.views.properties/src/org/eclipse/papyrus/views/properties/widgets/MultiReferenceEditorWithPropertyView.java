@@ -18,6 +18,7 @@ import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
+import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.papyrus.infra.widgets.creation.ReferenceValueFactory;
 import org.eclipse.papyrus.infra.widgets.editors.AbstractListEditor;
 import org.eclipse.papyrus.infra.widgets.editors.ICommitListener;
@@ -31,8 +32,8 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 
-
-public class MultiReferenceEditorWithPropertyView extends AbstractListEditor implements ISelectionChangedListener {
+public class MultiReferenceEditorWithPropertyView extends AbstractListEditor
+		implements ISelectionChangedListener {
 
 	protected MultipleReferenceEditor multiReferenceEditor;
 
@@ -42,16 +43,18 @@ public class MultiReferenceEditorWithPropertyView extends AbstractListEditor imp
 
 	public MultiReferenceEditorWithPropertyView(Composite parent, int style) {
 		super(parent, style);
-		//		parent.setBackground(getDisplay().getSystemColor(SWT.COLOR_RED));
-		((GridLayout)getLayout()).numColumns++;
+		// parent.setBackground(getDisplay().getSystemColor(SWT.COLOR_RED));
+		((GridLayout) getLayout()).numColumns++;
 
 		multiReferenceEditor = new MultipleReferenceEditor(this, style);
 		multiReferenceEditor.addSelectionChangedListener(this);
-		multiReferenceEditor.setLayoutData(new GridData(SWT.BEGINNING, SWT.FILL, false, true));
+		multiReferenceEditor.setLayoutData(new GridData(SWT.BEGINNING,
+				SWT.FILL, false, true));
 
 		propertiesComposite = new Composite(this, style);
 		propertiesComposite.setLayout(new FillLayout());
-		propertiesComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+		propertiesComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL,
+				true, true));
 	}
 
 	@Override
@@ -100,7 +103,9 @@ public class MultiReferenceEditorWithPropertyView extends AbstractListEditor imp
 	@Override
 	public void setModelObservable(IObservableList modelObservable) {
 		multiReferenceEditor.setModelObservable(modelObservable);
-		//TODO : Set the initial selection (first element) to the editor
+		if (!modelObservable.isEmpty()) {
+			multiReferenceEditor.getViewer().setSelection(new StructuredSelection(modelObservable.get(0)));
+		}
 	}
 
 	@Override
@@ -112,17 +117,18 @@ public class MultiReferenceEditorWithPropertyView extends AbstractListEditor imp
 	public void selectionChanged(SelectionChangedEvent event) {
 		ISelection selection = event.getSelection();
 
-		Set<View> views = ConfigurationManager.instance.constraintEngine.getViews(selection);
+		Set<View> views = ConfigurationManager.instance.constraintEngine
+				.getViews(selection);
 		displayEngine.display(views, propertiesComposite, selection, SWT.NONE);
 		this.layout();
 		propertiesComposite.layout();
 
-		//TODO : How can we force the property view layout ?
-		//In the tabbed property view, we need to go up to the 4th parent
-		getParent().layout(); //This one works in the embedded editor
+		// TODO : How can we force the property view layout ?
+		// In the tabbed property view, we need to go up to the 4th parent
+		getParent().layout(); // This one works in the embedded editor
 
 		// In the Eclipse Tabbed Property View, we need to go this far...
-		//		getParent().getParent().getParent().getParent().layout();
+		getParent().getParent().getParent().getParent().layout();
 	}
 
 	public void setFactory(ReferenceValueFactory valueFactory) {

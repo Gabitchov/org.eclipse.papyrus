@@ -170,6 +170,7 @@ import org.eclipse.papyrus.views.properties.environment.presentation.PropertiesE
 import org.eclipse.papyrus.views.properties.environment.provider.EnvironmentItemProviderAdapterFactory;
 import org.eclipse.papyrus.views.properties.ui.provider.UiItemProviderAdapterFactory;
 
+import org.eclipse.emf.ecore.provider.EcoreItemProviderAdapterFactory;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
 
 
@@ -708,6 +709,7 @@ public class UiEditor
 		adapterFactory.addAdapterFactory(new EnvironmentItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new ContextsItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new UiItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new EcoreItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
 
 		// Create the command stack that will notify this editor as commands are executed.
