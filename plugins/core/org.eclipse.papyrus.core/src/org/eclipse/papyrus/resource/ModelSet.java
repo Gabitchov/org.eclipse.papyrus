@@ -57,6 +57,10 @@ import org.eclipse.papyrus.resource.additional.AdditionalResourcesModel;
  * 
  */
 public class ModelSet extends ResourceSetImpl {
+	/**
+	 * Id use to register the EditinDomain into the registry
+	 */
+	public static final String PAPYRUS_EDITING_DOMAIN_ID = "org.eclipse.papyrus.SharedEditingDomainID";
 
 	/** The associated IModels. */
 	private Map<String, IModel> models = new HashMap<String, IModel>();
@@ -151,8 +155,9 @@ public class ModelSet extends ResourceSetImpl {
 
 		if(transactionalEditingDomain == null) {
 			transactionalEditingDomain = TransactionalEditingDomainManager.createTransactionalEditingDomain(this);
-			// What for?
-			transactionalEditingDomain.setID("SharedEditingDomain"); //$NON-NLS-1$
+			// register the id for lifecyle events the id is set by the registry
+			TransactionalEditingDomain.Registry.INSTANCE.add(PAPYRUS_EDITING_DOMAIN_ID, transactionalEditingDomain);
+//			transactionalEditingDomain.setID("SharedEditingDomain"); //$NON-NLS-1$
 		}
 		return transactionalEditingDomain;
 	}
