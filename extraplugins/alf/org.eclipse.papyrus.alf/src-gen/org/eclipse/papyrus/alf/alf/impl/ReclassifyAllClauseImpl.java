@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id$
+
  */
 package org.eclipse.papyrus.alf.alf.impl;
 
@@ -22,24 +22,27 @@ import org.eclipse.papyrus.alf.alf.ReclassifyAllClause;
  *
  * @generated
  */
-public class ReclassifyAllClauseImpl extends MinimalEObjectImpl.Container implements ReclassifyAllClause {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ReclassifyAllClauseImpl() {
-		super();
-	}
+public class ReclassifyAllClauseImpl extends MinimalEObjectImpl.Container implements ReclassifyAllClause
+{
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected ReclassifyAllClauseImpl()
+  {
+    super();
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EClass eStaticClass() {
-		return AlfPackage.Literals.RECLASSIFY_ALL_CLAUSE;
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  protected EClass eStaticClass()
+  {
+    return AlfPackage.Literals.RECLASSIFY_ALL_CLAUSE;
+  }
 
 } //ReclassifyAllClauseImpl

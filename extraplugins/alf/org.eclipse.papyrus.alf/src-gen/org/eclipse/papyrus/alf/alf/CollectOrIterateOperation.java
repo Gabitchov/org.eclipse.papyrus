@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id$
+
  */
 package org.eclipse.papyrus.alf.alf;
 
@@ -23,34 +23,35 @@ package org.eclipse.papyrus.alf.alf;
  * @model
  * @generated
  */
-public interface CollectOrIterateOperation extends SequenceExpansionExpression {
-	/**
-	 * Returns the value of the '<em><b>Op</b></em>' attribute.
-	 * The literals are from the enumeration {@link org.eclipse.papyrus.alf.alf.CollectOrIterateOperator}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Op</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Op</em>' attribute.
-	 * @see org.eclipse.papyrus.alf.alf.CollectOrIterateOperator
-	 * @see #setOp(CollectOrIterateOperator)
-	 * @see org.eclipse.papyrus.alf.alf.AlfPackage#getCollectOrIterateOperation_Op()
-	 * @model
-	 * @generated
-	 */
-	CollectOrIterateOperator getOp();
+public interface CollectOrIterateOperation extends SequenceExpansionExpression
+{
+  /**
+   * Returns the value of the '<em><b>Op</b></em>' attribute.
+   * The literals are from the enumeration {@link org.eclipse.papyrus.alf.alf.CollectOrIterateOperator}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Op</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Op</em>' attribute.
+   * @see org.eclipse.papyrus.alf.alf.CollectOrIterateOperator
+   * @see #setOp(CollectOrIterateOperator)
+   * @see org.eclipse.papyrus.alf.alf.AlfPackage#getCollectOrIterateOperation_Op()
+   * @model
+   * @generated
+   */
+  CollectOrIterateOperator getOp();
 
-	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.alf.alf.CollectOrIterateOperation#getOp <em>Op</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Op</em>' attribute.
-	 * @see org.eclipse.papyrus.alf.alf.CollectOrIterateOperator
-	 * @see #getOp()
-	 * @generated
-	 */
-	void setOp(CollectOrIterateOperator value);
+  /**
+   * Sets the value of the '{@link org.eclipse.papyrus.alf.alf.CollectOrIterateOperation#getOp <em>Op</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Op</em>' attribute.
+   * @see org.eclipse.papyrus.alf.alf.CollectOrIterateOperator
+   * @see #getOp()
+   * @generated
+   */
+  void setOp(CollectOrIterateOperator value);
 
 } // CollectOrIterateOperation

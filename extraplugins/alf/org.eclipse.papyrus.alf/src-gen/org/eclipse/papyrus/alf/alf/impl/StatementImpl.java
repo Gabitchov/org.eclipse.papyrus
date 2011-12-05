@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id$
+
  */
 package org.eclipse.papyrus.alf.alf.impl;
 
@@ -22,24 +22,27 @@ import org.eclipse.papyrus.alf.alf.Statement;
  *
  * @generated
  */
-public class StatementImpl extends MinimalEObjectImpl.Container implements Statement {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected StatementImpl() {
-		super();
-	}
+public class StatementImpl extends MinimalEObjectImpl.Container implements Statement
+{
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected StatementImpl()
+  {
+    super();
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EClass eStaticClass() {
-		return AlfPackage.Literals.STATEMENT;
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  protected EClass eStaticClass()
+  {
+    return AlfPackage.Literals.STATEMENT;
+  }
 
 } //StatementImpl

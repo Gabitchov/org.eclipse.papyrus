@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id$
+
  */
 package org.eclipse.papyrus.alf.alf.impl;
 
@@ -20,24 +20,27 @@ import org.eclipse.papyrus.alf.alf.EmptyStatement;
  *
  * @generated
  */
-public class EmptyStatementImpl extends StatementImpl implements EmptyStatement {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected EmptyStatementImpl() {
-		super();
-	}
+public class EmptyStatementImpl extends StatementImpl implements EmptyStatement
+{
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected EmptyStatementImpl()
+  {
+    super();
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EClass eStaticClass() {
-		return AlfPackage.Literals.EMPTY_STATEMENT;
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  protected EClass eStaticClass()
+  {
+    return AlfPackage.Literals.EMPTY_STATEMENT;
+  }
 
 } //EmptyStatementImpl

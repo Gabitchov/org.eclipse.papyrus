@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id$
+
  */
 package org.eclipse.papyrus.alf.alf.impl;
 
@@ -20,24 +20,27 @@ import org.eclipse.papyrus.alf.alf.BreakStatement;
  *
  * @generated
  */
-public class BreakStatementImpl extends StatementImpl implements BreakStatement {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected BreakStatementImpl() {
-		super();
-	}
+public class BreakStatementImpl extends StatementImpl implements BreakStatement
+{
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected BreakStatementImpl()
+  {
+    super();
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EClass eStaticClass() {
-		return AlfPackage.Literals.BREAK_STATEMENT;
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  protected EClass eStaticClass()
+  {
+    return AlfPackage.Literals.BREAK_STATEMENT;
+  }
 
 } //BreakStatementImpl

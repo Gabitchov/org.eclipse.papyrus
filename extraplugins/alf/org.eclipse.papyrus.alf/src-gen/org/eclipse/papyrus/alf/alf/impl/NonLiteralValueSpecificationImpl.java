@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id$
+
  */
 package org.eclipse.papyrus.alf.alf.impl;
 
@@ -22,24 +22,27 @@ import org.eclipse.papyrus.alf.alf.NonLiteralValueSpecification;
  *
  * @generated
  */
-public class NonLiteralValueSpecificationImpl extends MinimalEObjectImpl.Container implements NonLiteralValueSpecification {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected NonLiteralValueSpecificationImpl() {
-		super();
-	}
+public class NonLiteralValueSpecificationImpl extends MinimalEObjectImpl.Container implements NonLiteralValueSpecification
+{
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected NonLiteralValueSpecificationImpl()
+  {
+    super();
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EClass eStaticClass() {
-		return AlfPackage.Literals.NON_LITERAL_VALUE_SPECIFICATION;
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  protected EClass eStaticClass()
+  {
+    return AlfPackage.Literals.NON_LITERAL_VALUE_SPECIFICATION;
+  }
 
 } //NonLiteralValueSpecificationImpl

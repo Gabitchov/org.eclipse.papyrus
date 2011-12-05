@@ -523,7 +523,6 @@ public class TypeUtils {
 	}
 	
 	public TypeExpression getTypeOfInstanceCreationExpression(InstanceCreationExpression exp) {
-		TypeExpression typeOfExpression = null ;
 		if (exp.getTuple() != null) {
 			// first try to determine if the expression directly refers to a Class or a DataType
 			try {
@@ -550,9 +549,6 @@ public class TypeUtils {
 				return TypeExpressionFactory.eInstance.createTypeExpression(error) ;
 			}
 		}
-		else if (exp.getSequenceConstuctionCompletion() != null) {
-			//TODO
-		}
 		else {
 			ErrorTypeFacade error = TypeFacadeFactory.eInstance.createErrorTypeFacade(
 					"An instance creation or sequence creation is expected", 
@@ -560,77 +556,13 @@ public class TypeUtils {
 					AlfPackage.eINSTANCE.getInstanceCreationExpression_Constructor()) ;
 			return TypeExpressionFactory.eInstance.createTypeExpression(error) ;
 		}
-		return typeOfExpression ;
 	}
 	
 	public TypeExpression getTypeOfSuperInvocationExpression(SuperInvocationExpression exp) {
-		if (exp.getOperationCall() != null) {
-			TypeExpression typeOfOperationCall = null ;
-			int found = 0 ;
-			for (Iterator<Classifier> i = AlfJavaValidator.getContextClassifier().getGenerals().iterator() ; i.hasNext() && found <= 1; ) {
-				TypeExpression contextType = TypeExpressionFactory.eInstance.createTypeExpression(i.next()) ;
-				typeOfOperationCall = getTypeOfOperationCallExpression(exp.getOperationCall(), contextType) ;
-				if (! (typeOfOperationCall.getTypeFacade() instanceof ErrorTypeFacade)) {
-					found++ ;
-				}
-			}
-			if (found == 0) {
-				ErrorTypeFacade error = TypeFacadeFactory.eInstance.createErrorTypeFacade(
-						"Could not resolve operation " + exp.getOperationCall().getOperationName() , 
-						exp, 
-						AlfPackage.eINSTANCE.getSuperInvocationExpression_OperationCall()) ;
-				return TypeExpressionFactory.eInstance.createTypeExpression(error) ;
-			}
-			else if (found > 1) {
-				ErrorTypeFacade error = TypeFacadeFactory.eInstance.createErrorTypeFacade(
-						exp.getOperationCall().getOperationName() + " resolves to multiple operations", 
-						exp, 
-						AlfPackage.eINSTANCE.getSuperInvocationExpression_OperationCall()) ;
-				return TypeExpressionFactory.eInstance.createTypeExpression(error) ;
-			}
-			else
-				return typeOfOperationCall ;
-		}
-		else if (exp.getOperationCallWithoutDot() != null) {
-			if (exp.getClassName() == null || exp.getClassName().length() == 0) {
-				ErrorTypeFacade error = TypeFacadeFactory.eInstance.createErrorTypeFacade(
-						"Classifier name is missing", 
-						exp, 
-						AlfPackage.eINSTANCE.getSuperInvocationExpression_ClassName()) ;
-				return TypeExpressionFactory.eInstance.createTypeExpression(error) ;
-			}
-			int found = 0 ;
-			String superClassName = exp.getClassName() ;
-			Classifier superClass = null ;
-			for (Iterator<Classifier> i = AlfJavaValidator.getContextClassifier().getGenerals().iterator() ; i.hasNext() ; ) {
-				Classifier c = i.next() ;
-				if (c.getName().equals(superClassName)) {
-					found = 1 ;
-					superClass = c ;
-				}
-			}
-			if (found > 1) {
-				ErrorTypeFacade error = TypeFacadeFactory.eInstance.createErrorTypeFacade(
-						superClassName + " resolves to multiple classifiers", 
-						exp, 
-						AlfPackage.eINSTANCE.getSuperInvocationExpression_ClassName()) ;
-				return TypeExpressionFactory.eInstance.createTypeExpression(error) ;
-			}
-			else if (found == 0) {
-				ErrorTypeFacade error = TypeFacadeFactory.eInstance.createErrorTypeFacade(
-						"Could not resolve " + superClassName + " as a super classifier of " + AlfJavaValidator.getContextClassifier().getName(), 
-						exp, 
-						AlfPackage.eINSTANCE.getSuperInvocationExpression_ClassName()) ;
-				return TypeExpressionFactory.eInstance.createTypeExpression(error) ;
-			}
-			else {
-				return getTypeOfOperationCallWithoutDotExpression(exp.getOperationCallWithoutDot(), superClass) ;
-			}
-		}
 		ErrorTypeFacade error = TypeFacadeFactory.eInstance.createErrorTypeFacade(
-									"Operation call is missing", 
+									"SuperInvocationExpression are not supported in this version of the Alf editor", 
 									exp, 
-									AlfPackage.eINSTANCE.getSuperInvocationExpression_OperationCall()) ;
+									AlfPackage.eINSTANCE.getSuperInvocationExpression_OperationName()) ;
 		return TypeExpressionFactory.eInstance.createTypeExpression(error) ;
 	}
 	
@@ -658,9 +590,6 @@ public class TypeUtils {
 			t = _integer ;
 		else if (exp instanceof UNLIMITED_LITERAL)
 			t = _unlimited ;
-		if (exp.getSuffix() != null && exp.getSuffix() != suffixToBeIgnored) {
-			return getTypeOfSuffixExpression(exp.getSuffix(), TypeExpressionFactory.eInstance.createTypeExpression(t)) ;
-		}
 		return TypeExpressionFactory.eInstance.createTypeExpression(t) ;
 	}
 	
@@ -1413,86 +1342,6 @@ public class TypeUtils {
 						argumentsAreCompatible, 
 						exp, 
 						AlfPackage.eINSTANCE.getOperationCallExpression_OperationName()) ;
-				return TypeExpressionFactory.eInstance.createTypeExpression(error);
-			}
-			typeOfSuffix = operationSignature.getReturnType() ;
-		}
-		if (exp.getSuffix() != null && exp.getSuffix() != suffixToBeIgnored)
-			return getTypeOfSuffixExpression(exp.getSuffix(), typeOfSuffix) ;
-		else
-			return typeOfSuffix ;
-	}
-	
-	public TypeExpression getTypeOfOperationCallWithoutDotExpression(OperationCallExpressionWithoutDot exp, Classifier contextClassifier) {
-		EObject source = exp.eContainer() ;
-		EStructuralFeature containtFeature = exp.eContainingFeature() ;
-		List<TypeExpression> arguments = new ArrayList<TypeExpression>() ;
-		for (TupleElement e : exp.getTuple().getTupleElements()) {
-			TypeExpression argType = getTypeOfExpression(e.getArgument()) ;
-			if (argType.getTypeFacade() != null && argType.getTypeFacade() instanceof ErrorTypeFacade)
-				return argType ;
-			arguments.add(argType) ;
-		}
-		List<EObject> matchingOperations = AlfScopeProvider.scopingTool.getVisibleOperationsOrBehaviors(contextClassifier).resolveByName(exp.getOperationName()) ;
-		TypeExpression typeOfSuffix ;
-		if (matchingOperations.size() == 0) {
-			String errorMessage = "Could not resolve operation " + exp.getOperationName() + " for classifier " + contextClassifier.getName() ;
-			ErrorTypeFacade error = 
-				TypeFacadeFactory.eInstance.createErrorTypeFacade(errorMessage, source, containtFeature) ;
-			return TypeExpressionFactory.eInstance.createTypeExpression(error) ;
-		}
-		else if (matchingOperations.size() > 1) {
-			List<SignatureFacade> availableSignatures = new ArrayList<SignatureFacade>() ;
-			for (EObject operation : matchingOperations) {
-				availableSignatures.add(new SignatureFacade(operation)) ;
-			}
-			List<SignatureFacade> selectedSignatures = SignatureFacade.findNearestSignature(arguments, availableSignatures) ;
-			if (selectedSignatures.size() > 1) { // could not infer the actual operations even with type of arguments
-				ErrorTypeFacade error = TypeFacadeFactory.eInstance.createErrorTypeFacade(
-						exp.getOperationName() + " resolves to multiple elements", 
-						exp, 
-						AlfPackage.eINSTANCE.getOperationCallExpressionWithoutDot_OperationName()) ;
-				return TypeExpressionFactory.eInstance.createTypeExpression(error);
-			}
-			else if (selectedSignatures.size() == 0) {
-				String errorMessage = exp.getOperationName() + " does not apply to arguments (" ;
-				boolean first = true ;
-				for (TypeExpression argType : arguments) {
-					if (!first)
-						errorMessage += ", " ;
-					else
-						first = false ;
-					errorMessage += argType.getLabel() ;
-				}
-				errorMessage += ")" ;
-				ErrorTypeFacade error = TypeFacadeFactory.eInstance.createErrorTypeFacade(
-						errorMessage, 
-						exp, 
-						AlfPackage.eINSTANCE.getOperationCallExpressionWithoutDot_OperationName()) ;
-				return TypeExpressionFactory.eInstance.createTypeExpression(error) ;
-			}
-			else {
-				SignatureFacade operationSignature = selectedSignatures.get(0) ;
-				String argumentsAreCompatible = operationSignature.isCompatibleWithMe(arguments, true) ;
-				if (! (argumentsAreCompatible.length() == 0)) {
-					ErrorTypeFacade error = TypeFacadeFactory.eInstance.createErrorTypeFacade(
-							argumentsAreCompatible, 
-							exp, 
-							AlfPackage.eINSTANCE.getOperationCallExpression_OperationName()) ;
-					return TypeExpressionFactory.eInstance.createTypeExpression(error);
-				}
-				typeOfSuffix = selectedSignatures.get(0).getReturnType() ;
-			}
-		}
-		else { // exactly one operation is matched
-			typeOfSuffix = TypeExpressionFactory.eInstance.createTypeExpression(matchingOperations.get(0)) ;
-			SignatureFacade operationSignature = new SignatureFacade(matchingOperations.get(0)) ;
-			String argumentsAreCompatible = operationSignature.isCompatibleWithMe(arguments, true) ;
-			if (! (argumentsAreCompatible.length() == 0)) {
-				ErrorTypeFacade error = TypeFacadeFactory.eInstance.createErrorTypeFacade(
-						argumentsAreCompatible, 
-						exp, 
-						AlfPackage.eINSTANCE.getOperationCallExpressionWithoutDot_OperationName()) ;
 				return TypeExpressionFactory.eInstance.createTypeExpression(error);
 			}
 			typeOfSuffix = operationSignature.getReturnType() ;

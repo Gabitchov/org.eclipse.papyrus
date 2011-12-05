@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id$
+
  */
 package org.eclipse.papyrus.operation.editor.xtext.operation;
 
@@ -17,5 +17,6 @@ package org.eclipse.papyrus.operation.editor.xtext.operation;
  * @model
  * @generated
  */
-public interface UNLIMITED_LITERAL_WITHOUT_SUFFIX extends NUMBER_LITERAL_WITHOUT_SUFFIX {
+public interface UNLIMITED_LITERAL_WITHOUT_SUFFIX extends NUMBER_LITERAL_WITHOUT_SUFFIX
+{
 } // UNLIMITED_LITERAL_WITHOUT_SUFFIX

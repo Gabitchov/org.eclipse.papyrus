@@ -38,7 +38,7 @@ LITERAL:
 ;
 
 BOOLEAN_LITERAL :
-	value = BooleanValue (suffix = SuffixExpression) ? ;
+	value = BooleanValue ; // (suffix = SuffixExpression) ? ;
 	
 enum BooleanValue : 
 	TRUE = 'true' | 
@@ -48,10 +48,10 @@ NUMBER_LITERAL :
 	INTEGER_LITERAL | UNLIMITED_LITERAL ;
 
 INTEGER_LITERAL :
-	value = IntegerValue (suffix = SuffixExpression) ? ;
+	value = IntegerValue ; // (suffix = SuffixExpression) ? ;
 
 UNLIMITED_LITERAL :
-	value = '*' (suffix = SuffixExpression) ? ;
+	value = '*' ; // (suffix = SuffixExpression) ? ;
 
 terminal IntegerValue :
 	('0' | '1'..'9' (('_')? '0'..'9')*) | //DECIMAL 
@@ -61,7 +61,7 @@ terminal IntegerValue :
 ; 
 
 STRING_LITERAL :
-	value = STRING (suffix = SuffixExpression) ?;
+	value = STRING ; // (suffix = SuffixExpression) ?;
 
 NameExpression : 
 	(((prefixOp = ('++'|'--') (path=QualifiedNamePath)? id = ID)) 
@@ -215,9 +215,9 @@ OperationCallExpression :
 	'.' operationName = ID tuple = Tuple (suffix = SuffixExpression)?
 ;
 
-OperationCallExpressionWithoutDot :
-	operationName = ID tuple = Tuple (suffix = SuffixExpression)?
-;
+// OperationCallExpressionWithoutDot :
+// 	operationName = ID tuple = Tuple (suffix = SuffixExpression)?
+// ;
 
 PropertyCallExpression :
 	'.' propertyName = ID ('[' index=Expression ']')? (suffix = SuffixExpression)?
@@ -318,14 +318,25 @@ ThisExpression :
 	{ThisExpression}'this' (suffix = SuffixExpression)?
 ;
 
+// SuperInvocationExpression :
+//	//{SuperInvocationExpression} 'super' ('.' qualifiedNameRoot = ID '::' qualifiedNameRemaining = NameExpression)? //(suffix = SuffixExpression) ?
+//	'super' ('.' className = ID '::' operationCallWithoutDot = OperationCallExpressionWithoutDot | operationCall = OperationCallExpression) 
+//;
+
 SuperInvocationExpression :
 	//{SuperInvocationExpression} 'super' ('.' qualifiedNameRoot = ID '::' qualifiedNameRemaining = NameExpression)? //(suffix = SuffixExpression) ?
-	'super' ('.' className = ID '::' operationCallWithoutDot = OperationCallExpressionWithoutDot | operationCall = OperationCallExpression) 
+	//'super' ('.' className = ID '::' operationCallWithoutDot = OperationCallExpressionWithoutDot | operationCall = OperationCallExpression)
+	//'super' ((tuple = Tuple) |
+	//		 ('.' (path = QualifiedNamePath) operation = ID tuple = Tuple))
+	'super' ((tuple = Tuple) |
+			 ('.' operationName = QualifiedNameWithBinding tuple = Tuple))
 ;
 
 InstanceCreationExpression :
+	//'new' constructor=QualifiedNameWithBinding 
+	//	(tuple = Tuple | sequenceConstuctionCompletion = SequenceConstructionCompletion) (suffix = SuffixExpression) ?
 	'new' constructor=QualifiedNameWithBinding 
-		(tuple = Tuple | sequenceConstuctionCompletion = SequenceConstructionCompletion) (suffix = SuffixExpression) ?
+		tuple = Tuple (suffix = SuffixExpression) ?
 ;
 
 SequenceConstructionOrAccessCompletion :
@@ -341,9 +352,9 @@ PartialSequenceConstructionCompletion :
 	']' expression = SequenceConstructionExpression
 ;
 
-SequenceConstructionCompletion :
-	(multiplicityIndicator ?= '['']')? expression = SequenceConstructionExpression
-;
+//SequenceConstructionCompletion :
+//	(multiplicityIndicator ?= '['']')? expression = SequenceConstructionExpression
+//;
 
 SequenceConstructionExpression :
 	'{'sequenceElement+=SequenceElement 

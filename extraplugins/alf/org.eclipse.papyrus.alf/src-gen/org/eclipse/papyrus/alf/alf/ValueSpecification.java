@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id$
+
  */
 package org.eclipse.papyrus.alf.alf;
 
@@ -18,5 +18,6 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface ValueSpecification extends EObject {
+public interface ValueSpecification extends EObject
+{
 } // ValueSpecification

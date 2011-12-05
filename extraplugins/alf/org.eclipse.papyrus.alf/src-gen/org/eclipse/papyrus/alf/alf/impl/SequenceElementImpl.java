@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id$
+
  */
 package org.eclipse.papyrus.alf.alf.impl;
 
@@ -22,24 +22,27 @@ import org.eclipse.papyrus.alf.alf.SequenceElement;
  *
  * @generated
  */
-public class SequenceElementImpl extends MinimalEObjectImpl.Container implements SequenceElement {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected SequenceElementImpl() {
-		super();
-	}
+public class SequenceElementImpl extends MinimalEObjectImpl.Container implements SequenceElement
+{
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected SequenceElementImpl()
+  {
+    super();
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EClass eStaticClass() {
-		return AlfPackage.Literals.SEQUENCE_ELEMENT;
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  protected EClass eStaticClass()
+  {
+    return AlfPackage.Literals.SEQUENCE_ELEMENT;
+  }
 
 } //SequenceElementImpl

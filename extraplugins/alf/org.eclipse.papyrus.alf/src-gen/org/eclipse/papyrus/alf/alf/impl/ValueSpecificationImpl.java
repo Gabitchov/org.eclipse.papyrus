@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id$
+
  */
 package org.eclipse.papyrus.alf.alf.impl;
 
@@ -22,24 +22,27 @@ import org.eclipse.papyrus.alf.alf.ValueSpecification;
  *
  * @generated
  */
-public class ValueSpecificationImpl extends MinimalEObjectImpl.Container implements ValueSpecification {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ValueSpecificationImpl() {
-		super();
-	}
+public class ValueSpecificationImpl extends MinimalEObjectImpl.Container implements ValueSpecification
+{
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected ValueSpecificationImpl()
+  {
+    super();
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EClass eStaticClass() {
-		return AlfPackage.Literals.VALUE_SPECIFICATION;
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  protected EClass eStaticClass()
+  {
+    return AlfPackage.Literals.VALUE_SPECIFICATION;
+  }
 
 } //ValueSpecificationImpl

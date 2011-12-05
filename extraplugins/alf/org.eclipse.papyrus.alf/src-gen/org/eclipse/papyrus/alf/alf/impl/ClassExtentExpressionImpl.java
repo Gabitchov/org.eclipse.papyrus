@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id$
+
  */
 package org.eclipse.papyrus.alf.alf.impl;
 
@@ -20,24 +20,27 @@ import org.eclipse.papyrus.alf.alf.ClassExtentExpression;
  *
  * @generated
  */
-public class ClassExtentExpressionImpl extends SuffixExpressionImpl implements ClassExtentExpression {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ClassExtentExpressionImpl() {
-		super();
-	}
+public class ClassExtentExpressionImpl extends SuffixExpressionImpl implements ClassExtentExpression
+{
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected ClassExtentExpressionImpl()
+  {
+    super();
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EClass eStaticClass() {
-		return AlfPackage.Literals.CLASS_EXTENT_EXPRESSION;
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  protected EClass eStaticClass()
+  {
+    return AlfPackage.Literals.CLASS_EXTENT_EXPRESSION;
+  }
 
 } //ClassExtentExpressionImpl

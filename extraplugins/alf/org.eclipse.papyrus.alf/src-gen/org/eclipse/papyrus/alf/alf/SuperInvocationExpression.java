@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id$
+
  */
 package org.eclipse.papyrus.alf.alf;
 
@@ -15,9 +15,8 @@ package org.eclipse.papyrus.alf.alf;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.alf.alf.SuperInvocationExpression#getClassName <em>Class Name</em>}</li>
- *   <li>{@link org.eclipse.papyrus.alf.alf.SuperInvocationExpression#getOperationCallWithoutDot <em>Operation Call Without Dot</em>}</li>
- *   <li>{@link org.eclipse.papyrus.alf.alf.SuperInvocationExpression#getOperationCall <em>Operation Call</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.alf.alf.SuperInvocationExpression#getTuple <em>Tuple</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.alf.alf.SuperInvocationExpression#getOperationName <em>Operation Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -25,83 +24,58 @@ package org.eclipse.papyrus.alf.alf;
  * @model
  * @generated
  */
-public interface SuperInvocationExpression extends ValueSpecification, NonLiteralValueSpecification {
-	/**
-	 * Returns the value of the '<em><b>Class Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Class Name</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Class Name</em>' attribute.
-	 * @see #setClassName(String)
-	 * @see org.eclipse.papyrus.alf.alf.AlfPackage#getSuperInvocationExpression_ClassName()
-	 * @model
-	 * @generated
-	 */
-	String getClassName();
+public interface SuperInvocationExpression extends ValueSpecification, NonLiteralValueSpecification
+{
+  /**
+   * Returns the value of the '<em><b>Tuple</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Tuple</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Tuple</em>' containment reference.
+   * @see #setTuple(Tuple)
+   * @see org.eclipse.papyrus.alf.alf.AlfPackage#getSuperInvocationExpression_Tuple()
+   * @model containment="true"
+   * @generated
+   */
+  Tuple getTuple();
 
-	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.alf.alf.SuperInvocationExpression#getClassName <em>Class Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Class Name</em>' attribute.
-	 * @see #getClassName()
-	 * @generated
-	 */
-	void setClassName(String value);
+  /**
+   * Sets the value of the '{@link org.eclipse.papyrus.alf.alf.SuperInvocationExpression#getTuple <em>Tuple</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Tuple</em>' containment reference.
+   * @see #getTuple()
+   * @generated
+   */
+  void setTuple(Tuple value);
 
-	/**
-	 * Returns the value of the '<em><b>Operation Call Without Dot</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Operation Call Without Dot</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Operation Call Without Dot</em>' containment reference.
-	 * @see #setOperationCallWithoutDot(OperationCallExpressionWithoutDot)
-	 * @see org.eclipse.papyrus.alf.alf.AlfPackage#getSuperInvocationExpression_OperationCallWithoutDot()
-	 * @model containment="true"
-	 * @generated
-	 */
-	OperationCallExpressionWithoutDot getOperationCallWithoutDot();
+  /**
+   * Returns the value of the '<em><b>Operation Name</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Operation Name</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Operation Name</em>' containment reference.
+   * @see #setOperationName(QualifiedNameWithBinding)
+   * @see org.eclipse.papyrus.alf.alf.AlfPackage#getSuperInvocationExpression_OperationName()
+   * @model containment="true"
+   * @generated
+   */
+  QualifiedNameWithBinding getOperationName();
 
-	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.alf.alf.SuperInvocationExpression#getOperationCallWithoutDot <em>Operation Call Without Dot</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Operation Call Without Dot</em>' containment reference.
-	 * @see #getOperationCallWithoutDot()
-	 * @generated
-	 */
-	void setOperationCallWithoutDot(OperationCallExpressionWithoutDot value);
-
-	/**
-	 * Returns the value of the '<em><b>Operation Call</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Operation Call</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Operation Call</em>' containment reference.
-	 * @see #setOperationCall(OperationCallExpression)
-	 * @see org.eclipse.papyrus.alf.alf.AlfPackage#getSuperInvocationExpression_OperationCall()
-	 * @model containment="true"
-	 * @generated
-	 */
-	OperationCallExpression getOperationCall();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.alf.alf.SuperInvocationExpression#getOperationCall <em>Operation Call</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Operation Call</em>' containment reference.
-	 * @see #getOperationCall()
-	 * @generated
-	 */
-	void setOperationCall(OperationCallExpression value);
+  /**
+   * Sets the value of the '{@link org.eclipse.papyrus.alf.alf.SuperInvocationExpression#getOperationName <em>Operation Name</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Operation Name</em>' containment reference.
+   * @see #getOperationName()
+   * @generated
+   */
+  void setOperationName(QualifiedNameWithBinding value);
 
 } // SuperInvocationExpression

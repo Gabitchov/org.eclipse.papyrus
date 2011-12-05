@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id$
+
  */
 package org.eclipse.papyrus.alf.alf;
 
@@ -26,21 +26,22 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface AndExpression extends EObject {
-	/**
-	 * Returns the value of the '<em><b>Exp</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.papyrus.alf.alf.EqualityExpression}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Exp</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Exp</em>' containment reference list.
-	 * @see org.eclipse.papyrus.alf.alf.AlfPackage#getAndExpression_Exp()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<EqualityExpression> getExp();
+public interface AndExpression extends EObject
+{
+  /**
+   * Returns the value of the '<em><b>Exp</b></em>' containment reference list.
+   * The list contents are of type {@link org.eclipse.papyrus.alf.alf.EqualityExpression}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Exp</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Exp</em>' containment reference list.
+   * @see org.eclipse.papyrus.alf.alf.AlfPackage#getAndExpression_Exp()
+   * @model containment="true"
+   * @generated
+   */
+  EList<EqualityExpression> getExp();
 
 } // AndExpression

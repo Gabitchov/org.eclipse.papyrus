@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id$
+
  */
 package org.eclipse.papyrus.operation.editor.xtext.operation;
 
@@ -27,57 +27,58 @@ import org.eclipse.papyrus.alf.alf.Block;
  * @model
  * @generated
  */
-public interface OperationDefinitionOrStub extends EObject {
-	/**
-	 * Returns the value of the '<em><b>Declaration</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Declaration</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Declaration</em>' containment reference.
-	 * @see #setDeclaration(OperationDeclaration)
-	 * @see org.eclipse.papyrus.operation.editor.xtext.operation.OperationPackage#getOperationDefinitionOrStub_Declaration()
-	 * @model containment="true"
-	 * @generated
-	 */
-	OperationDeclaration getDeclaration();
+public interface OperationDefinitionOrStub extends EObject
+{
+  /**
+   * Returns the value of the '<em><b>Declaration</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Declaration</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Declaration</em>' containment reference.
+   * @see #setDeclaration(OperationDeclaration)
+   * @see org.eclipse.papyrus.operation.editor.xtext.operation.OperationPackage#getOperationDefinitionOrStub_Declaration()
+   * @model containment="true"
+   * @generated
+   */
+  OperationDeclaration getDeclaration();
 
-	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.operation.editor.xtext.operation.OperationDefinitionOrStub#getDeclaration <em>Declaration</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Declaration</em>' containment reference.
-	 * @see #getDeclaration()
-	 * @generated
-	 */
-	void setDeclaration(OperationDeclaration value);
+  /**
+   * Sets the value of the '{@link org.eclipse.papyrus.operation.editor.xtext.operation.OperationDefinitionOrStub#getDeclaration <em>Declaration</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Declaration</em>' containment reference.
+   * @see #getDeclaration()
+   * @generated
+   */
+  void setDeclaration(OperationDeclaration value);
 
-	/**
-	 * Returns the value of the '<em><b>Body</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Body</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Body</em>' containment reference.
-	 * @see #setBody(Block)
-	 * @see org.eclipse.papyrus.operation.editor.xtext.operation.OperationPackage#getOperationDefinitionOrStub_Body()
-	 * @model containment="true"
-	 * @generated
-	 */
-	Block getBody();
+  /**
+   * Returns the value of the '<em><b>Body</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Body</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Body</em>' containment reference.
+   * @see #setBody(Block)
+   * @see org.eclipse.papyrus.operation.editor.xtext.operation.OperationPackage#getOperationDefinitionOrStub_Body()
+   * @model containment="true"
+   * @generated
+   */
+  Block getBody();
 
-	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.operation.editor.xtext.operation.OperationDefinitionOrStub#getBody <em>Body</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Body</em>' containment reference.
-	 * @see #getBody()
-	 * @generated
-	 */
-	void setBody(Block value);
+  /**
+   * Sets the value of the '{@link org.eclipse.papyrus.operation.editor.xtext.operation.OperationDefinitionOrStub#getBody <em>Body</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Body</em>' containment reference.
+   * @see #getBody()
+   * @generated
+   */
+  void setBody(Block value);
 
 } // OperationDefinitionOrStub

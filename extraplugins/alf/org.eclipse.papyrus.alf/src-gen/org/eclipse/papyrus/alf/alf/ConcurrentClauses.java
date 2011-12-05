@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id$
+
  */
 package org.eclipse.papyrus.alf.alf;
 
@@ -26,21 +26,22 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface ConcurrentClauses extends EObject {
-	/**
-	 * Returns the value of the '<em><b>Non Final Clause</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.papyrus.alf.alf.NonFinalClause}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Non Final Clause</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Non Final Clause</em>' containment reference list.
-	 * @see org.eclipse.papyrus.alf.alf.AlfPackage#getConcurrentClauses_NonFinalClause()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<NonFinalClause> getNonFinalClause();
+public interface ConcurrentClauses extends EObject
+{
+  /**
+   * Returns the value of the '<em><b>Non Final Clause</b></em>' containment reference list.
+   * The list contents are of type {@link org.eclipse.papyrus.alf.alf.NonFinalClause}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Non Final Clause</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Non Final Clause</em>' containment reference list.
+   * @see org.eclipse.papyrus.alf.alf.AlfPackage#getConcurrentClauses_NonFinalClause()
+   * @model containment="true"
+   * @generated
+   */
+  EList<NonFinalClause> getNonFinalClause();
 
 } // ConcurrentClauses

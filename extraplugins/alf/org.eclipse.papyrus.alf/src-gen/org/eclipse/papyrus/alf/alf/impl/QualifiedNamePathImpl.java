@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id$
+
  */
 package org.eclipse.papyrus.alf.alf.impl;
 
@@ -37,120 +37,135 @@ import org.eclipse.papyrus.alf.alf.UnqualifiedName;
  *
  * @generated
  */
-public class QualifiedNamePathImpl extends MinimalEObjectImpl.Container implements QualifiedNamePath {
-	/**
-	 * The cached value of the '{@link #getNamespace() <em>Namespace</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getNamespace()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<UnqualifiedName> namespace;
+public class QualifiedNamePathImpl extends MinimalEObjectImpl.Container implements QualifiedNamePath
+{
+  /**
+   * The cached value of the '{@link #getNamespace() <em>Namespace</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getNamespace()
+   * @generated
+   * @ordered
+   */
+  protected EList<UnqualifiedName> namespace;
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected QualifiedNamePathImpl() {
-		super();
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected QualifiedNamePathImpl()
+  {
+    super();
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EClass eStaticClass() {
-		return AlfPackage.Literals.QUALIFIED_NAME_PATH;
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  protected EClass eStaticClass()
+  {
+    return AlfPackage.Literals.QUALIFIED_NAME_PATH;
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<UnqualifiedName> getNamespace() {
-		if (namespace == null) {
-			namespace = new EObjectContainmentEList<UnqualifiedName>(UnqualifiedName.class, this, AlfPackage.QUALIFIED_NAME_PATH__NAMESPACE);
-		}
-		return namespace;
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EList<UnqualifiedName> getNamespace()
+  {
+    if (namespace == null)
+    {
+      namespace = new EObjectContainmentEList<UnqualifiedName>(UnqualifiedName.class, this, AlfPackage.QUALIFIED_NAME_PATH__NAMESPACE);
+    }
+    return namespace;
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case AlfPackage.QUALIFIED_NAME_PATH__NAMESPACE:
-				return ((InternalEList<?>)getNamespace()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case AlfPackage.QUALIFIED_NAME_PATH__NAMESPACE:
+        return ((InternalEList<?>)getNamespace()).basicRemove(otherEnd, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case AlfPackage.QUALIFIED_NAME_PATH__NAMESPACE:
-				return getNamespace();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Object eGet(int featureID, boolean resolve, boolean coreType)
+  {
+    switch (featureID)
+    {
+      case AlfPackage.QUALIFIED_NAME_PATH__NAMESPACE:
+        return getNamespace();
+    }
+    return super.eGet(featureID, resolve, coreType);
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case AlfPackage.QUALIFIED_NAME_PATH__NAMESPACE:
-				getNamespace().clear();
-				getNamespace().addAll((Collection<? extends UnqualifiedName>)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @SuppressWarnings("unchecked")
+  @Override
+  public void eSet(int featureID, Object newValue)
+  {
+    switch (featureID)
+    {
+      case AlfPackage.QUALIFIED_NAME_PATH__NAMESPACE:
+        getNamespace().clear();
+        getNamespace().addAll((Collection<? extends UnqualifiedName>)newValue);
+        return;
+    }
+    super.eSet(featureID, newValue);
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void eUnset(int featureID) {
-		switch (featureID) {
-			case AlfPackage.QUALIFIED_NAME_PATH__NAMESPACE:
-				getNamespace().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void eUnset(int featureID)
+  {
+    switch (featureID)
+    {
+      case AlfPackage.QUALIFIED_NAME_PATH__NAMESPACE:
+        getNamespace().clear();
+        return;
+    }
+    super.eUnset(featureID);
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case AlfPackage.QUALIFIED_NAME_PATH__NAMESPACE:
-				return namespace != null && !namespace.isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public boolean eIsSet(int featureID)
+  {
+    switch (featureID)
+    {
+      case AlfPackage.QUALIFIED_NAME_PATH__NAMESPACE:
+        return namespace != null && !namespace.isEmpty();
+    }
+    return super.eIsSet(featureID);
+  }
 
 } //QualifiedNamePathImpl

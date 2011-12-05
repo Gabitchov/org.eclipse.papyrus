@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id$
+
  */
 package org.eclipse.papyrus.alf.alf;
 
@@ -26,83 +26,84 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface LinkOperationTupleElement extends EObject {
-	/**
-	 * Returns the value of the '<em><b>Object Or Role</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Object Or Role</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Object Or Role</em>' attribute.
-	 * @see #setObjectOrRole(String)
-	 * @see org.eclipse.papyrus.alf.alf.AlfPackage#getLinkOperationTupleElement_ObjectOrRole()
-	 * @model
-	 * @generated
-	 */
-	String getObjectOrRole();
+public interface LinkOperationTupleElement extends EObject
+{
+  /**
+   * Returns the value of the '<em><b>Object Or Role</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Object Or Role</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Object Or Role</em>' attribute.
+   * @see #setObjectOrRole(String)
+   * @see org.eclipse.papyrus.alf.alf.AlfPackage#getLinkOperationTupleElement_ObjectOrRole()
+   * @model
+   * @generated
+   */
+  String getObjectOrRole();
 
-	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.alf.alf.LinkOperationTupleElement#getObjectOrRole <em>Object Or Role</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Object Or Role</em>' attribute.
-	 * @see #getObjectOrRole()
-	 * @generated
-	 */
-	void setObjectOrRole(String value);
+  /**
+   * Sets the value of the '{@link org.eclipse.papyrus.alf.alf.LinkOperationTupleElement#getObjectOrRole <em>Object Or Role</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Object Or Role</em>' attribute.
+   * @see #getObjectOrRole()
+   * @generated
+   */
+  void setObjectOrRole(String value);
 
-	/**
-	 * Returns the value of the '<em><b>Role Index</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Role Index</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Role Index</em>' containment reference.
-	 * @see #setRoleIndex(Expression)
-	 * @see org.eclipse.papyrus.alf.alf.AlfPackage#getLinkOperationTupleElement_RoleIndex()
-	 * @model containment="true"
-	 * @generated
-	 */
-	Expression getRoleIndex();
+  /**
+   * Returns the value of the '<em><b>Role Index</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Role Index</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Role Index</em>' containment reference.
+   * @see #setRoleIndex(Expression)
+   * @see org.eclipse.papyrus.alf.alf.AlfPackage#getLinkOperationTupleElement_RoleIndex()
+   * @model containment="true"
+   * @generated
+   */
+  Expression getRoleIndex();
 
-	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.alf.alf.LinkOperationTupleElement#getRoleIndex <em>Role Index</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Role Index</em>' containment reference.
-	 * @see #getRoleIndex()
-	 * @generated
-	 */
-	void setRoleIndex(Expression value);
+  /**
+   * Sets the value of the '{@link org.eclipse.papyrus.alf.alf.LinkOperationTupleElement#getRoleIndex <em>Role Index</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Role Index</em>' containment reference.
+   * @see #getRoleIndex()
+   * @generated
+   */
+  void setRoleIndex(Expression value);
 
-	/**
-	 * Returns the value of the '<em><b>Object</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Object</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Object</em>' attribute.
-	 * @see #setObject(String)
-	 * @see org.eclipse.papyrus.alf.alf.AlfPackage#getLinkOperationTupleElement_Object()
-	 * @model
-	 * @generated
-	 */
-	String getObject();
+  /**
+   * Returns the value of the '<em><b>Object</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Object</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Object</em>' attribute.
+   * @see #setObject(String)
+   * @see org.eclipse.papyrus.alf.alf.AlfPackage#getLinkOperationTupleElement_Object()
+   * @model
+   * @generated
+   */
+  String getObject();
 
-	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.alf.alf.LinkOperationTupleElement#getObject <em>Object</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Object</em>' attribute.
-	 * @see #getObject()
-	 * @generated
-	 */
-	void setObject(String value);
+  /**
+   * Sets the value of the '{@link org.eclipse.papyrus.alf.alf.LinkOperationTupleElement#getObject <em>Object</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Object</em>' attribute.
+   * @see #getObject()
+   * @generated
+   */
+  void setObject(String value);
 
 } // LinkOperationTupleElement

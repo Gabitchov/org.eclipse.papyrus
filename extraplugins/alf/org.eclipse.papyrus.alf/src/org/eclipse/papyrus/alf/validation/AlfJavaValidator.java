@@ -1175,7 +1175,6 @@ public class AlfJavaValidator extends AbstractAlfJavaValidator {
 	 * 
 	 * Checks the following rule:
 	 * 1. The associated SuperInvocationExpression must be valid
-	 * 2. If a suffix is specified, the last suffix must be an invocation
 	 */
 	@Check
 	public void checkSuperInvocationStatement(SuperInvocationStatement statement) {
@@ -1184,33 +1183,6 @@ public class AlfJavaValidator extends AbstractAlfJavaValidator {
 			ErrorTypeFacade error = (ErrorTypeFacade)typeOfSuperInvocationExp.getTypeFacade() ;
 			error(error.getLabel(), error.getErrorSource(), error.getStructuralFeature(), INSIGNIFICANT_INDEX) ;
 			return ;
-		}
-		SuffixExpression suffix = null ;
-		if (statement.get_super().getOperationCall() != null && statement.get_super().getOperationCall().getSuffix() != null)
-			suffix = statement.get_super().getOperationCall().getSuffix() ;
-		else if (statement.get_super().getOperationCallWithoutDot() != null && statement.get_super().getOperationCallWithoutDot().getSuffix() != null)
-			suffix = statement.get_super().getOperationCallWithoutDot().getSuffix() ;
-		if (suffix != null) {
-			// The last suffix must be an invocation
-			SuffixExpression lastSuffix = suffix ;
-			boolean suffixHasASuffix = false ;
-			do {
-				suffixHasASuffix = false ;
-				for (Iterator<EObject> content = suffix.eContents().iterator() ; content.hasNext() && !suffixHasASuffix ; ) {
-					EObject cddSuffix = content.next() ;
-					if (cddSuffix instanceof SuffixExpression) {
-						lastSuffix = (SuffixExpression)cddSuffix ;
-						suffixHasASuffix = true ;
-					}
-				}
-				if (suffixHasASuffix)
-					suffix = lastSuffix ;
-			} while (suffixHasASuffix) ;
-			if (lastSuffix instanceof PropertyCallExpression) {
-				error("An invocation is expected", 
-						AlfPackage.eINSTANCE.getSuperInvocationStatement__super()) ;
-				return ;
-			}
 		}
 	}
 	

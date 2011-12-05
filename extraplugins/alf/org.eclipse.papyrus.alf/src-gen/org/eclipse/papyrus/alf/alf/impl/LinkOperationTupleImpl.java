@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id$
+
  */
 package org.eclipse.papyrus.alf.alf.impl;
 
@@ -37,120 +37,135 @@ import org.eclipse.papyrus.alf.alf.LinkOperationTupleElement;
  *
  * @generated
  */
-public class LinkOperationTupleImpl extends MinimalEObjectImpl.Container implements LinkOperationTuple {
-	/**
-	 * The cached value of the '{@link #getLinkOperationTupleElement() <em>Link Operation Tuple Element</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getLinkOperationTupleElement()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<LinkOperationTupleElement> linkOperationTupleElement;
+public class LinkOperationTupleImpl extends MinimalEObjectImpl.Container implements LinkOperationTuple
+{
+  /**
+   * The cached value of the '{@link #getLinkOperationTupleElement() <em>Link Operation Tuple Element</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getLinkOperationTupleElement()
+   * @generated
+   * @ordered
+   */
+  protected EList<LinkOperationTupleElement> linkOperationTupleElement;
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected LinkOperationTupleImpl() {
-		super();
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected LinkOperationTupleImpl()
+  {
+    super();
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EClass eStaticClass() {
-		return AlfPackage.Literals.LINK_OPERATION_TUPLE;
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  protected EClass eStaticClass()
+  {
+    return AlfPackage.Literals.LINK_OPERATION_TUPLE;
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<LinkOperationTupleElement> getLinkOperationTupleElement() {
-		if (linkOperationTupleElement == null) {
-			linkOperationTupleElement = new EObjectContainmentEList<LinkOperationTupleElement>(LinkOperationTupleElement.class, this, AlfPackage.LINK_OPERATION_TUPLE__LINK_OPERATION_TUPLE_ELEMENT);
-		}
-		return linkOperationTupleElement;
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EList<LinkOperationTupleElement> getLinkOperationTupleElement()
+  {
+    if (linkOperationTupleElement == null)
+    {
+      linkOperationTupleElement = new EObjectContainmentEList<LinkOperationTupleElement>(LinkOperationTupleElement.class, this, AlfPackage.LINK_OPERATION_TUPLE__LINK_OPERATION_TUPLE_ELEMENT);
+    }
+    return linkOperationTupleElement;
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case AlfPackage.LINK_OPERATION_TUPLE__LINK_OPERATION_TUPLE_ELEMENT:
-				return ((InternalEList<?>)getLinkOperationTupleElement()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case AlfPackage.LINK_OPERATION_TUPLE__LINK_OPERATION_TUPLE_ELEMENT:
+        return ((InternalEList<?>)getLinkOperationTupleElement()).basicRemove(otherEnd, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case AlfPackage.LINK_OPERATION_TUPLE__LINK_OPERATION_TUPLE_ELEMENT:
-				return getLinkOperationTupleElement();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Object eGet(int featureID, boolean resolve, boolean coreType)
+  {
+    switch (featureID)
+    {
+      case AlfPackage.LINK_OPERATION_TUPLE__LINK_OPERATION_TUPLE_ELEMENT:
+        return getLinkOperationTupleElement();
+    }
+    return super.eGet(featureID, resolve, coreType);
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case AlfPackage.LINK_OPERATION_TUPLE__LINK_OPERATION_TUPLE_ELEMENT:
-				getLinkOperationTupleElement().clear();
-				getLinkOperationTupleElement().addAll((Collection<? extends LinkOperationTupleElement>)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @SuppressWarnings("unchecked")
+  @Override
+  public void eSet(int featureID, Object newValue)
+  {
+    switch (featureID)
+    {
+      case AlfPackage.LINK_OPERATION_TUPLE__LINK_OPERATION_TUPLE_ELEMENT:
+        getLinkOperationTupleElement().clear();
+        getLinkOperationTupleElement().addAll((Collection<? extends LinkOperationTupleElement>)newValue);
+        return;
+    }
+    super.eSet(featureID, newValue);
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void eUnset(int featureID) {
-		switch (featureID) {
-			case AlfPackage.LINK_OPERATION_TUPLE__LINK_OPERATION_TUPLE_ELEMENT:
-				getLinkOperationTupleElement().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void eUnset(int featureID)
+  {
+    switch (featureID)
+    {
+      case AlfPackage.LINK_OPERATION_TUPLE__LINK_OPERATION_TUPLE_ELEMENT:
+        getLinkOperationTupleElement().clear();
+        return;
+    }
+    super.eUnset(featureID);
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case AlfPackage.LINK_OPERATION_TUPLE__LINK_OPERATION_TUPLE_ELEMENT:
-				return linkOperationTupleElement != null && !linkOperationTupleElement.isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public boolean eIsSet(int featureID)
+  {
+    switch (featureID)
+    {
+      case AlfPackage.LINK_OPERATION_TUPLE__LINK_OPERATION_TUPLE_ELEMENT:
+        return linkOperationTupleElement != null && !linkOperationTupleElement.isEmpty();
+    }
+    return super.eIsSet(featureID);
+  }
 
 } //LinkOperationTupleImpl

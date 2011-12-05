@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id$
+
  */
 package org.eclipse.papyrus.alf.alf;
 
@@ -24,31 +24,32 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface Block extends EObject {
-	/**
-	 * Returns the value of the '<em><b>Sequence</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Sequence</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Sequence</em>' containment reference.
-	 * @see #setSequence(StatementSequence)
-	 * @see org.eclipse.papyrus.alf.alf.AlfPackage#getBlock_Sequence()
-	 * @model containment="true"
-	 * @generated
-	 */
-	StatementSequence getSequence();
+public interface Block extends EObject
+{
+  /**
+   * Returns the value of the '<em><b>Sequence</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Sequence</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Sequence</em>' containment reference.
+   * @see #setSequence(StatementSequence)
+   * @see org.eclipse.papyrus.alf.alf.AlfPackage#getBlock_Sequence()
+   * @model containment="true"
+   * @generated
+   */
+  StatementSequence getSequence();
 
-	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.alf.alf.Block#getSequence <em>Sequence</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Sequence</em>' containment reference.
-	 * @see #getSequence()
-	 * @generated
-	 */
-	void setSequence(StatementSequence value);
+  /**
+   * Sets the value of the '{@link org.eclipse.papyrus.alf.alf.Block#getSequence <em>Sequence</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Sequence</em>' containment reference.
+   * @see #getSequence()
+   * @generated
+   */
+  void setSequence(StatementSequence value);
 
 } // Block

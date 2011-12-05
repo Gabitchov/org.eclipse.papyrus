@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id$
+
  */
 package org.eclipse.papyrus.alf.alf.impl;
 
@@ -20,24 +20,27 @@ import org.eclipse.papyrus.alf.alf.UNLIMITED_LITERAL;
  *
  * @generated
  */
-public class UNLIMITED_LITERALImpl extends NUMBER_LITERALImpl implements UNLIMITED_LITERAL {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected UNLIMITED_LITERALImpl() {
-		super();
-	}
+public class UNLIMITED_LITERALImpl extends NUMBER_LITERALImpl implements UNLIMITED_LITERAL
+{
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected UNLIMITED_LITERALImpl()
+  {
+    super();
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EClass eStaticClass() {
-		return AlfPackage.Literals.UNLIMITED_LITERAL;
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  protected EClass eStaticClass()
+  {
+    return AlfPackage.Literals.UNLIMITED_LITERAL;
+  }
 
 } //UNLIMITED_LITERALImpl

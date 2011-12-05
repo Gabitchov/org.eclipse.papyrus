@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id$
+
  */
 package org.eclipse.papyrus.alf.alf;
 
@@ -17,5 +17,6 @@ package org.eclipse.papyrus.alf.alf;
  * @model
  * @generated
  */
-public interface Expression extends SequenceElement {
+public interface Expression extends SequenceElement
+{
 } // Expression
