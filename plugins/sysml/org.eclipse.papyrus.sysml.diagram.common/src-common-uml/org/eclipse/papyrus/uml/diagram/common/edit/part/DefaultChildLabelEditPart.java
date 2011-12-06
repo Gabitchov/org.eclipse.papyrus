@@ -13,7 +13,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.edit.part;
 
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.gmf.diagram.common.edit.policy.DefaultSemanticEditPolicy;
 
 /**
  * Default implementation for child label node.
@@ -25,4 +27,9 @@ public class DefaultChildLabelEditPart extends AbstractElementChildLabelEditPart
 		super(view);
 	}
 
+	@Override
+	protected void createDefaultEditPolicies() {
+		super.createDefaultEditPolicies();
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
+	}
 }

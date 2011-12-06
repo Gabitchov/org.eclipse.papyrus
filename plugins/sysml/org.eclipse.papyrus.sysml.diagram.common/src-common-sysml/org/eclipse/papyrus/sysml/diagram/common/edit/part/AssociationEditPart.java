@@ -114,7 +114,10 @@ public class AssociationEditPart extends AbstractElementLinkEditPart {
 
 			Property source = AssociationViewUtils.getSourceSemanticEnd(getNotationView());
 			Property target = AssociationViewUtils.getTargetSemanticEnd(getNotationView());
-
+			if(source == null || target == null) {
+				return;
+			}
+			
 			// Get the association
 			Element umlElement = getUMLElement();
 			if(umlElement instanceof Association) {
