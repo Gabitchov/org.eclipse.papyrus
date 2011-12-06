@@ -30,6 +30,16 @@ public class Activator extends AbstractUIPlugin {
 	 */
 	public static final String PLUGIN_ID = "org.eclipse.papyrus.properties"; //$NON-NLS-1$
 
+	/**
+	 * The Context model extension point
+	 */
+	public static final String CONTEXT_EXTENSION = "org.eclipse.papyrus.properties.context"; //$NON-NLS-1$
+
+	/**
+	 * The Environment model extension point
+	 */
+	public static final String ENVIRONMENT_EXTENSION = "org.eclipse.papyrus.properties.environment"; //$NON-NLS-1$
+
 	// The shared instance
 	private static Activator plugin;
 

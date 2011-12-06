@@ -36,8 +36,8 @@ public interface ExtensionFactory {
 			factories.put(CustomizationPackage.eINSTANCE.getPropertyView(), new PropertyViewExtensionFactory());
 			factories.put(CustomizationPackage.eINSTANCE.getModelTemplate(), new ModelTemplateExtensionFactory());
 			factories.put(CustomizationPackage.eINSTANCE.getUICustom(), new UICustomExtensionFactory());
+			factories.put(CustomizationPackage.eINSTANCE.getEnvironment(), new EnvironmentExtensionFactory());
 			//factoryMap.put("Palette", new Factory("oep.p", "file", "test", true));
-			//factoryMap.put("PropertyView", ...);
 			factories.put(CustomizationPackage.eINSTANCE.getProfile(), new ProfileExtensionFactory());
 			factories.put(CustomizationPackage.eINSTANCE.getUMLModel(), new UMLModelExtensionFactory());
 		}

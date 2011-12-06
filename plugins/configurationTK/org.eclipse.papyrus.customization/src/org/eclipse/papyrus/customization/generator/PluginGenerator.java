@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -14,6 +14,7 @@ package org.eclipse.papyrus.customization.generator;
 import java.io.IOException;
 import java.util.Collections;
 
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -38,6 +39,7 @@ public class PluginGenerator {
 		editor = new ProjectEditor(project);
 
 		editor.addNature(PLUGIN_NATURE_ID);
+		editor.getManifestEditor().setSingleton(true); //We will define extensions in this editor
 
 		for(CustomizableElement element : configuration.getElements()) {
 			ExtensionFactory factory = getFactory(element);
@@ -46,6 +48,11 @@ public class PluginGenerator {
 			} else {
 				Activator.log.warn(Messages.PluginGenerator_factoryNotFound + element.eClass());
 			}
+		}
+
+		IFile plugin = project.getFile("plugin.xml"); //$NON-NLS-1$
+		if(plugin.exists()) {
+			editor.getBuildEditor().addToBuild("plugin.xml");
 		}
 
 		try {

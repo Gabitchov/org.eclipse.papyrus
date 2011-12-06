@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="ASCII"?>
-<custom:CustomizationConfiguration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:custom="http://www.eclipse.org/papyrus/customization" xsi:schemaLocation="http://www.eclipse.org/papyrus/customization Customization.ecore" plugin="org.eclipse.papyrus.customizationtest">
-  <elements xsi:type="custom:FileBasedCustomizableElement" file="sampleUiCustom.xmi"/>
-  <elements xsi:type="custom:FileBasedCustomizableElement" file="samplePalette.xmi" type="Palette"/>
-  <elements xsi:type="custom:FileBasedCustomizableElement" file="samplePalette2.xmi" type="Palette"/>
-</custom:CustomizationConfiguration>

@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -20,14 +20,14 @@ import org.eclipse.papyrus.customization.plugin.ProjectEditor;
 public class EnvironmentExtensionFactory extends FileBasedExtensionFactory {
 
 	public EnvironmentExtensionFactory() {
-		super(Messages.EnvironmentExtensionFactory_PropertyViewEnvironment, "org.eclipse.papyrus.properties.Environment", "environmentModel", "environment", true); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ 
+		super(Messages.EnvironmentExtensionFactory_PropertyViewEnvironment, org.eclipse.papyrus.properties.Activator.ENVIRONMENT_EXTENSION, "environmentModel", "environment", true); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	@Override
 	public void addElement(CustomizableElement element, ProjectEditor editor) {
 		super.addElement(element, editor);
 
-		editor.getManifestEditor().addDependency("org.eclipse.papyrus.properties"); //$NON-NLS-1$
+		editor.getManifestEditor().addDependency(org.eclipse.papyrus.properties.Activator.PLUGIN_ID);
 	}
 
 	@Override

@@ -21,4 +21,3 @@ Bundle-Version: 0.8.2.qualifier
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.customization.Activator
 Bundle-SymbolicName: org.eclipse.papyrus.customization;singleton:=true
-

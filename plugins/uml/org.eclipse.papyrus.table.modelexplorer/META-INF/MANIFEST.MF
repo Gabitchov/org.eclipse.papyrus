@@ -11,7 +11,7 @@ Require-Bundle: org.eclipse.papyrus.resource,
  org.eclipse.papyrus.table.instance,
  org.eclipse.emf.ecore,
  org.eclipse.emf.facet.infra.query.core,
- org.eclipse.uml2.uml;bundle-version="3.2.100"
+ org.eclipse.uml2.uml
 Bundle-Vendor: %pluginProvider
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 0.8.2.qualifier

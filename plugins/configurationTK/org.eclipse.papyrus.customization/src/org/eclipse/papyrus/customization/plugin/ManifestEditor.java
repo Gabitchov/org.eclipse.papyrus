@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -47,8 +47,8 @@ public class ManifestEditor {
 
 		//TODO : Improve the detection of existing dependency
 		//If a.b.c exists, then a.b cannot be added (Because it is already contained)
-		//Moreover, the Manifest allows newlines anywhere (Including in the 
-		//middle of a word) : check if these newlines appear in this map, 
+		//Moreover, the Manifest allows newlines anywhere (Including in the
+		//middle of a word) : check if these newlines appear in this map,
 		//or if they have already been parsed. If the manifest value is copied as-is in the map,
 		//then we need to take care of newlines when parsing it
 
@@ -69,6 +69,31 @@ public class ManifestEditor {
 
 	public void setValue(String key, String value) {
 		setValue(key, "", value); //$NON-NLS-1$
+	}
+
+	public void setSingleton(boolean singleton) {
+		String value = manifest.getMainAttributes().getValue("bundle-symbolicName");
+		String[] directives = value.split(";");
+
+		if(directives.length == 0) {
+			return; //This should not happen if the Manifest is well-formed
+		} else {
+			value = directives[0];
+			boolean isDefined = false;
+			for(int i = 1; i < directives.length; i++) {
+				String directive = directives[i];
+				if(directive.startsWith("singleton:=")) {
+					directive = "singleton:=" + singleton;
+					isDefined = true;
+				}
+				value += ";" + directive;
+			}
+			if(!isDefined) {
+				value += ";singleton:=" + singleton;
+			}
+		}
+
+		manifest.getMainAttributes().putValue("bundle-symbolicName", value);
 	}
 
 	public void setValue(String key, String name, String value) {

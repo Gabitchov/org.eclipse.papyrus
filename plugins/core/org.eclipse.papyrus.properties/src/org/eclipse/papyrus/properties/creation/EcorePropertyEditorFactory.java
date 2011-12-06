@@ -257,8 +257,16 @@ public class EcorePropertyEditorFactory extends PropertyEditorFactory {
 			return availableClasses.get(0);
 		}
 
+		EClass eClass = openSelectionMenu(widget, availableClasses);
+		if(eClass != null) {
+			className = eClass.getName();
+		}
+		return eClass;
+	}
+
+	protected EClass openSelectionMenu(Control widget, Collection<EClass> eClasses) {
 		final Menu menu = new Menu(widget);
-		for(EClass eClass : availableClasses) {
+		for(EClass eClass : eClasses) {
 			final MenuItem item = new MenuItem(menu, SWT.NONE);
 			item.setText(eClass.getName());
 			item.setData("eClass", eClass); //$NON-NLS-1$
@@ -293,11 +301,7 @@ public class EcorePropertyEditorFactory extends PropertyEditorFactory {
 		}
 
 		EClass eClass = this.eClass;
-		if(eClass != null) {
-			className = eClass.getName();
-		}
 		this.eClass = null;
-
 		return eClass;
 	}
 

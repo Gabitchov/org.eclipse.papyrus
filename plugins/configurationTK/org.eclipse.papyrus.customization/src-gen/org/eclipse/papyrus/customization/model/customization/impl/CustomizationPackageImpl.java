@@ -15,6 +15,7 @@ import org.eclipse.papyrus.customization.model.customization.CustomizableElement
 import org.eclipse.papyrus.customization.model.customization.CustomizationConfiguration;
 import org.eclipse.papyrus.customization.model.customization.CustomizationFactory;
 import org.eclipse.papyrus.customization.model.customization.CustomizationPackage;
+import org.eclipse.papyrus.customization.model.customization.Environment;
 import org.eclipse.papyrus.customization.model.customization.FileBasedCustomizableElement;
 import org.eclipse.papyrus.customization.model.customization.ModelTemplate;
 import org.eclipse.papyrus.customization.model.customization.Palette;
@@ -93,6 +94,13 @@ public class CustomizationPackageImpl extends EPackageImpl implements Customizat
 	 * @generated
 	 */
 	private EClass umlModelEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass environmentEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -383,6 +391,15 @@ public class CustomizationPackageImpl extends EPackageImpl implements Customizat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getEnvironment() {
+		return environmentEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public CustomizationFactory getCustomizationFactory() {
 		return (CustomizationFactory)getEFactoryInstance();
 	}
@@ -439,6 +456,8 @@ public class CustomizationPackageImpl extends EPackageImpl implements Customizat
 		createEAttribute(umlModelEClass, UML_MODEL__ICONPATH);
 		createEAttribute(umlModelEClass, UML_MODEL__DESCRIPTION);
 		createEAttribute(umlModelEClass, UML_MODEL__PROVIDER);
+
+		environmentEClass = createEClass(ENVIRONMENT);
 	}
 
 	/**
@@ -476,6 +495,7 @@ public class CustomizationPackageImpl extends EPackageImpl implements Customizat
 		paletteEClass.getESuperTypes().add(this.getFileBasedCustomizableElement());
 		profileEClass.getESuperTypes().add(this.getFileBasedCustomizableElement());
 		umlModelEClass.getESuperTypes().add(this.getFileBasedCustomizableElement());
+		environmentEClass.getESuperTypes().add(this.getFileBasedCustomizableElement());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(customizationConfigurationEClass, CustomizationConfiguration.class, "CustomizationConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -511,6 +531,8 @@ public class CustomizationPackageImpl extends EPackageImpl implements Customizat
 		initEAttribute(getUMLModel_Iconpath(), ecorePackage.getEString(), "iconpath", null, 0, 1, UMLModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getUMLModel_Description(), ecorePackage.getEString(), "description", null, 0, 1, UMLModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getUMLModel_Provider(), ecorePackage.getEString(), "provider", null, 0, 1, UMLModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(environmentEClass, Environment.class, "Environment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

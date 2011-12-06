@@ -430,6 +430,35 @@ public interface CustomizationPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.customization.model.customization.impl.EnvironmentImpl <em>Environment</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.customization.model.customization.impl.EnvironmentImpl
+	 * @see org.eclipse.papyrus.customization.model.customization.impl.CustomizationPackageImpl#getEnvironment()
+	 * @generated
+	 */
+	int ENVIRONMENT = 9;
+
+	/**
+	 * The feature id for the '<em><b>File</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENVIRONMENT__FILE = FILE_BASED_CUSTOMIZABLE_ELEMENT__FILE;
+
+	/**
+	 * The number of structural features of the '<em>Environment</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENVIRONMENT_FEATURE_COUNT = FILE_BASED_CUSTOMIZABLE_ELEMENT_FEATURE_COUNT + 0;
+
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.customization.model.customization.CustomizationConfiguration <em>Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -696,6 +725,16 @@ public interface CustomizationPackage extends EPackage {
 	EAttribute getUMLModel_Provider();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.customization.model.customization.Environment <em>Environment</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Environment</em>'.
+	 * @see org.eclipse.papyrus.customization.model.customization.Environment
+	 * @generated
+	 */
+	EClass getEnvironment();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -934,6 +973,16 @@ public interface CustomizationPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute UML_MODEL__PROVIDER = eINSTANCE.getUMLModel_Provider();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.customization.model.customization.impl.EnvironmentImpl <em>Environment</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.customization.model.customization.impl.EnvironmentImpl
+		 * @see org.eclipse.papyrus.customization.model.customization.impl.CustomizationPackageImpl#getEnvironment()
+		 * @generated
+		 */
+		EClass ENVIRONMENT = eINSTANCE.getEnvironment();
 
 	}
 

@@ -27,22 +27,20 @@ import org.eclipse.papyrus.properties.runtime.ConfigurationManager;
  */
 public class ContextExtensionPoint {
 
-	private final String EXTENSION_ID = "org.eclipse.papyrus.properties.context"; //$NON-NLS-1$
-
 	/**
 	 * Constructor
 	 */
 	public ContextExtensionPoint() {
-		IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(EXTENSION_ID);
+		IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(Activator.CONTEXT_EXTENSION);
 
 		for(IConfigurationElement e : config) {
 			final String contextResource = e.getAttribute("contextModel"); //$NON-NLS-1$
-			URI uri = URI.createURI("ppe:/context/" + e.getContributor().getName() + "/" + contextResource); //$NON-NLS-1$ //$NON-NLS-2$
-			//URI uri = URI.createPlatformPluginURI(e.getContributor().getName() + "/" + contextResource, true); //$NON-NLS-1$
+			String uriString = String.format("ppe:/context/%s/%s", e.getContributor().getName(), contextResource);//$NON-NLS-1$
+			URI uri = URI.createURI(uriString);
 			try {
 				ConfigurationManager.instance.addContext(uri);
 			} catch (IOException ex) {
-				Activator.log.error("The plugin " + e.getContributor() + " contributed an invalid extension for " + EXTENSION_ID, ex); //$NON-NLS-1$//$NON-NLS-2$
+				Activator.log.error(String.format("The plugin %s contributed an invalid extension for %s", e.getContributor(), Activator.CONTEXT_EXTENSION), ex); //$NON-NLS-1$
 			}
 		}
 	}

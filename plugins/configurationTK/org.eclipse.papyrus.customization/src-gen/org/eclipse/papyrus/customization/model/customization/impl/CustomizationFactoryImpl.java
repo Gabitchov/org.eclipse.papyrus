@@ -67,6 +67,7 @@ public class CustomizationFactoryImpl extends EFactoryImpl implements Customizat
 			case CustomizationPackage.PALETTE: return createPalette();
 			case CustomizationPackage.PROFILE: return createProfile();
 			case CustomizationPackage.UML_MODEL: return createUMLModel();
+			case CustomizationPackage.ENVIRONMENT: return createEnvironment();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -140,6 +141,16 @@ public class CustomizationFactoryImpl extends EFactoryImpl implements Customizat
 	public UMLModel createUMLModel() {
 		UMLModelImpl umlModel = new UMLModelImpl();
 		return umlModel;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Environment createEnvironment() {
+		EnvironmentImpl environment = new EnvironmentImpl();
+		return environment;
 	}
 
 	/**
