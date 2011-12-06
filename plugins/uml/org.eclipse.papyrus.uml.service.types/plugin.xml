@@ -1910,7 +1910,7 @@
 	<!-- Bindings declaration -->
 	<binding context="org.eclipse.papyrus.infra.services.edit.TypeContext">
 	
-		<elementType pattern="org\.eclipse\.papyrus\.uml\..*" />
+		<elementType pattern="org\.eclipse\.papyrus\.uml\.([^d]|$|d([^i]|$)|di([^a]|$)|dia([^g]|$)|diag([^r]|$)|diagr([^a]|$)|diagra([^m]|$))" />
 		<advice ref="org.eclipse.papyrus.uml.advice.Classifier" />
 		<advice ref="org.eclipse.papyrus.uml.advice.Collaboration" />
 		<advice ref="org.eclipse.papyrus.uml.advice.CollaborationUse" />
