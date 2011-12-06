@@ -238,20 +238,6 @@ public class AllocPackageImpl extends EPackageImpl implements AllocPackage {
 	private EEnum allocationKindEEnum = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EEnum assignmentKindEEnum = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EEnum assignmentNatureEEnum = null;
-
-	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
 	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
@@ -661,24 +647,6 @@ public class AllocPackageImpl extends EPackageImpl implements AllocPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EEnum getAssignmentKind() {
-		return assignmentKindEEnum;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EEnum getAssignmentNature() {
-		return assignmentNatureEEnum;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public AllocFactory getAllocFactory() {
 		return (AllocFactory)getEFactoryInstance();
 	}
@@ -734,8 +702,6 @@ public class AllocPackageImpl extends EPackageImpl implements AllocPackage {
 		allocationEndKindEEnum = createEEnum(ALLOCATION_END_KIND);
 		allocationNatureEEnum = createEEnum(ALLOCATION_NATURE);
 		allocationKindEEnum = createEEnum(ALLOCATION_KIND);
-		assignmentKindEEnum = createEEnum(ASSIGNMENT_KIND);
-		assignmentNatureEEnum = createEEnum(ASSIGNMENT_NATURE);
 	}
 
 	/**
@@ -788,8 +754,8 @@ public class AllocPackageImpl extends EPackageImpl implements AllocPackage {
 		initEReference(getNfpRefine_Constraint(), theNFPsPackage.getNfpConstraint(), null, "constraint", null, 0, -1, NfpRefine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(assignEClass, Assign.class, "Assign", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getAssign_Kind(), this.getAssignmentKind(), "kind", null, 1, 1, Assign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getAssign_Nature(), this.getAssignmentNature(), "nature", null, 1, 1, Assign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getAssign_Kind(), this.getAllocationKind(), "kind", null, 1, 1, Assign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getAssign_Nature(), this.getAllocationNature(), "nature", null, 1, 1, Assign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getAssign_ImpliedConstraint(), theNFPsPackage.getNfpConstraint(), null, "impliedConstraint", null, 0, -1, Assign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getAssign_From(), theUMLPackage.getElement(), null, "from", null, 1, -1, Assign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getAssign_To(), theUMLPackage.getElement(), null, "to", null, 1, -1, Assign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -816,15 +782,6 @@ public class AllocPackageImpl extends EPackageImpl implements AllocPackage {
 		addEEnumLiteral(allocationKindEEnum, AllocationKind.STRUCTURAL);
 		addEEnumLiteral(allocationKindEEnum, AllocationKind.BEHAVIORAL);
 		addEEnumLiteral(allocationKindEEnum, AllocationKind.HYBRID);
-
-		initEEnum(assignmentKindEEnum, AssignmentKind.class, "AssignmentKind");
-		addEEnumLiteral(assignmentKindEEnum, AssignmentKind.STRUCTURAL);
-		addEEnumLiteral(assignmentKindEEnum, AssignmentKind.BEHAVIORAL);
-		addEEnumLiteral(assignmentKindEEnum, AssignmentKind.HYBRID);
-
-		initEEnum(assignmentNatureEEnum, AssignmentNature.class, "AssignmentNature");
-		addEEnumLiteral(assignmentNatureEEnum, AssignmentNature.SPATIAL_DISTRIBUTION);
-		addEEnumLiteral(assignmentNatureEEnum, AssignmentNature.TIME_SCHEDULING);
 	}
 
 } //AllocPackageImpl

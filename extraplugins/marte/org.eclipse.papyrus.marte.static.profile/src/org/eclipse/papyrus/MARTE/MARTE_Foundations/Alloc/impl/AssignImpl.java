@@ -28,6 +28,8 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.AllocPackage;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.AllocationKind;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.AllocationNature;
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.Assign;
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.AssignmentKind;
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.AssignmentNature;
@@ -64,7 +66,7 @@ public class AssignImpl extends EObjectImpl implements Assign {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final AssignmentKind KIND_EDEFAULT = AssignmentKind.STRUCTURAL;
+	protected static final AllocationKind KIND_EDEFAULT = AllocationKind.STRUCTURAL;
 
 	/**
 	 * The cached value of the '{@link #getKind() <em>Kind</em>}' attribute.
@@ -74,7 +76,7 @@ public class AssignImpl extends EObjectImpl implements Assign {
 	 * @generated
 	 * @ordered
 	 */
-	protected AssignmentKind kind = KIND_EDEFAULT;
+	protected AllocationKind kind = KIND_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getNature() <em>Nature</em>}' attribute.
@@ -84,7 +86,7 @@ public class AssignImpl extends EObjectImpl implements Assign {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final AssignmentNature NATURE_EDEFAULT = AssignmentNature.SPATIAL_DISTRIBUTION;
+	protected static final AllocationNature NATURE_EDEFAULT = AllocationNature.SPATIAL_DISTRIBUTION;
 
 	/**
 	 * The cached value of the '{@link #getNature() <em>Nature</em>}' attribute.
@@ -94,7 +96,7 @@ public class AssignImpl extends EObjectImpl implements Assign {
 	 * @generated
 	 * @ordered
 	 */
-	protected AssignmentNature nature = NATURE_EDEFAULT;
+	protected AllocationNature nature = NATURE_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getImpliedConstraint() <em>Implied Constraint</em>}' reference list.
@@ -160,7 +162,7 @@ public class AssignImpl extends EObjectImpl implements Assign {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AssignmentKind getKind() {
+	public AllocationKind getKind() {
 		return kind;
 	}
 
@@ -169,8 +171,8 @@ public class AssignImpl extends EObjectImpl implements Assign {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setKind(AssignmentKind newKind) {
-		AssignmentKind oldKind = kind;
+	public void setKind(AllocationKind newKind) {
+		AllocationKind oldKind = kind;
 		kind = newKind == null ? KIND_EDEFAULT : newKind;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, AllocPackage.ASSIGN__KIND, oldKind, kind));
@@ -181,7 +183,7 @@ public class AssignImpl extends EObjectImpl implements Assign {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AssignmentNature getNature() {
+	public AllocationNature getNature() {
 		return nature;
 	}
 
@@ -190,8 +192,8 @@ public class AssignImpl extends EObjectImpl implements Assign {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setNature(AssignmentNature newNature) {
-		AssignmentNature oldNature = nature;
+	public void setNature(AllocationNature newNature) {
+		AllocationNature oldNature = nature;
 		nature = newNature == null ? NATURE_EDEFAULT : newNature;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, AllocPackage.ASSIGN__NATURE, oldNature, nature));
@@ -306,10 +308,10 @@ public class AssignImpl extends EObjectImpl implements Assign {
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case AllocPackage.ASSIGN__KIND:
-				setKind((AssignmentKind)newValue);
+				setKind((AllocationKind)newValue);
 				return;
 			case AllocPackage.ASSIGN__NATURE:
-				setNature((AssignmentNature)newValue);
+				setNature((AllocationNature)newValue);
 				return;
 			case AllocPackage.ASSIGN__IMPLIED_CONSTRAINT:
 				getImpliedConstraint().clear();

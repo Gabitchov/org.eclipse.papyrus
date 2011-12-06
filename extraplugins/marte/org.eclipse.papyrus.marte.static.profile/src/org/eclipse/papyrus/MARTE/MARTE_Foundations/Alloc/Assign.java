@@ -46,7 +46,7 @@ import org.eclipse.uml2.uml.Element;
 public interface Assign extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Kind</b></em>' attribute.
-	 * The literals are from the enumeration {@link org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.AssignmentKind}.
+	 * The literals are from the enumeration {@link org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.AllocationKind}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Kind</em>' attribute isn't clear,
@@ -54,28 +54,28 @@ public interface Assign extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Kind</em>' attribute.
-	 * @see org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.AssignmentKind
-	 * @see #setKind(AssignmentKind)
+	 * @see org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.AllocationKind
+	 * @see #setKind(AllocationKind)
 	 * @see org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.AllocPackage#getAssign_Kind()
 	 * @model unique="false" required="true" ordered="false"
 	 * @generated
 	 */
-	AssignmentKind getKind();
+	AllocationKind getKind();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.Assign#getKind <em>Kind</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Kind</em>' attribute.
-	 * @see org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.AssignmentKind
+	 * @see org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.AllocationKind
 	 * @see #getKind()
 	 * @generated
 	 */
-	void setKind(AssignmentKind value);
+	void setKind(AllocationKind value);
 
 	/**
 	 * Returns the value of the '<em><b>Nature</b></em>' attribute.
-	 * The literals are from the enumeration {@link org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.AssignmentNature}.
+	 * The literals are from the enumeration {@link org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.AllocationNature}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Nature</em>' attribute isn't clear,
@@ -83,24 +83,24 @@ public interface Assign extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Nature</em>' attribute.
-	 * @see org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.AssignmentNature
-	 * @see #setNature(AssignmentNature)
+	 * @see org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.AllocationNature
+	 * @see #setNature(AllocationNature)
 	 * @see org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.AllocPackage#getAssign_Nature()
 	 * @model unique="false" required="true" ordered="false"
 	 * @generated
 	 */
-	AssignmentNature getNature();
+	AllocationNature getNature();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.Assign#getNature <em>Nature</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Nature</em>' attribute.
-	 * @see org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.AssignmentNature
+	 * @see org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.AllocationNature
 	 * @see #getNature()
 	 * @generated
 	 */
-	void setNature(AssignmentNature value);
+	void setNature(AllocationNature value);
 
 	/**
 	 * Returns the value of the '<em><b>Implied Constraint</b></em>' reference list.

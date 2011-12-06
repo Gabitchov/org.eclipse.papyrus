@@ -125,9 +125,9 @@
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="Assign">
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="kind" ordered="false"
-            unique="false" lowerBound="1" eType="#//MARTE_Foundations/Alloc/AssignmentKind"/>
+            unique="false" lowerBound="1" eType="#//MARTE_Foundations/Alloc/AllocationKind"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="nature" ordered="false"
-            unique="false" lowerBound="1" eType="#//MARTE_Foundations/Alloc/AssignmentNature"/>
+            unique="false" lowerBound="1" eType="#//MARTE_Foundations/Alloc/AllocationNature"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="impliedConstraint"
             ordered="false" unique="false" upperBound="-1" eType="#//MARTE_Foundations/NFPs/NfpConstraint"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="from" ordered="false"
@@ -136,15 +136,6 @@
             unique="false" lowerBound="1" upperBound="-1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Element"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="base_Comment" ordered="false"
             unique="false" lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Comment"/>
-      </eClassifiers>
-      <eClassifiers xsi:type="ecore:EEnum" name="AssignmentKind">
-        <eLiterals name="structural"/>
-        <eLiterals name="behavioral" value="1"/>
-        <eLiterals name="hybrid" value="2"/>
-      </eClassifiers>
-      <eClassifiers xsi:type="ecore:EEnum" name="AssignmentNature">
-        <eLiterals name="spatialDistribution"/>
-        <eLiterals name="timeScheduling" value="1"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="Allocate">
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="kind" ordered="false"

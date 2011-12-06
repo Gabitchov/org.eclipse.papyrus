@@ -2321,13 +2321,13 @@
               </eStructuralFeatures>
             </eClassifiers>
             <eClassifiers xmi:type="ecore:EEnum" xmi:id="_b7sgk7G3Ed-tmN4hwNCxXQ" name="AssignmentKind">
-              <eAnnotations xmi:id="_b7sglLG3Ed-tmN4hwNCxXQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_FeC-YECnEd6UTJZnztgOLw"/>
+              <eAnnotations xmi:id="_b7sglLG3Ed-tmN4hwNCxXQ" source="http://www.eclipse.org/uml2/2.0.0/UML"/>
               <eLiterals xmi:id="_b7sglbG3Ed-tmN4hwNCxXQ" name="structural"/>
               <eLiterals xmi:id="_b7sglrG3Ed-tmN4hwNCxXQ" name="behavioral" value="1"/>
               <eLiterals xmi:id="_b7sgl7G3Ed-tmN4hwNCxXQ" name="hybrid" value="2"/>
             </eClassifiers>
             <eClassifiers xmi:type="ecore:EEnum" xmi:id="_b7sgmLG3Ed-tmN4hwNCxXQ" name="AssignmentNature">
-              <eAnnotations xmi:id="_b7sgmbG3Ed-tmN4hwNCxXQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_9MtaUECmEd6UTJZnztgOLw"/>
+              <eAnnotations xmi:id="_b7sgmbG3Ed-tmN4hwNCxXQ" source="http://www.eclipse.org/uml2/2.0.0/UML"/>
               <eLiterals xmi:id="_b7sgmrG3Ed-tmN4hwNCxXQ" name="spatialDistribution"/>
               <eLiterals xmi:id="_b7sgm7G3Ed-tmN4hwNCxXQ" name="timeScheduling" value="1"/>
             </eClassifiers>
@@ -2452,14 +2452,14 @@
           <ownedLiteral xmi:id="_axmpEDJMEd211cMdxu944g" name="both"/>
         </packagedElement>
         <packagedElement xmi:type="uml:Stereotype" xmi:id="_455hUECmEd6UTJZnztgOLw" name="Assign">
-          <ownedAttribute xmi:id="_6JoD0ECmEd6UTJZnztgOLw" name="kind" visibility="public" type="_FeC-YECnEd6UTJZnztgOLw" isUnique="false">
+          <ownedAttribute xmi:id="_6JoD0ECmEd6UTJZnztgOLw" name="kind" visibility="public" type="_VxKdYBHbEdyWC5IKDhzksw" isUnique="false">
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_owDTcECnEd6UTJZnztgOLw" value="1"/>
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ov3GMECnEd6UTJZnztgOLw" value="1"/>
             <defaultValue xmi:type="uml:LiteralString" xmi:id="_owKBIECnEd6UTJZnztgOLw">
               <value xsi:nil="true"/>
             </defaultValue>
           </ownedAttribute>
-          <ownedAttribute xmi:id="_6N2cgECmEd6UTJZnztgOLw" name="nature" visibility="public" type="_9MtaUECmEd6UTJZnztgOLw" isUnique="false">
+          <ownedAttribute xmi:id="_6N2cgECmEd6UTJZnztgOLw" name="nature" visibility="public" type="_VYSDUBHbEdyWC5IKDhzksw" isUnique="false">
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_skLsYECnEd6UTJZnztgOLw" value="1"/>
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_skDJgECnEd6UTJZnztgOLw" value="1"/>
             <defaultValue xmi:type="uml:LiteralString" xmi:id="_skVdYECnEd6UTJZnztgOLw">
@@ -2483,15 +2483,6 @@
           <ownedAttribute xmi:id="_8-rv8ECnEd6UTJZnztgOLw" name="base_Comment" isUnique="false" association="_87_BQECnEd6UTJZnztgOLw">
             <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Comment"/>
           </ownedAttribute>
-        </packagedElement>
-        <packagedElement xmi:type="uml:Enumeration" xmi:id="_9MtaUECmEd6UTJZnztgOLw" name="AssignmentNature">
-          <ownedLiteral xmi:id="_AOnsIECnEd6UTJZnztgOLw" name="spatialDistribution"/>
-          <ownedLiteral xmi:id="_AXRR0ECnEd6UTJZnztgOLw" name="timeScheduling"/>
-        </packagedElement>
-        <packagedElement xmi:type="uml:Enumeration" xmi:id="_FeC-YECnEd6UTJZnztgOLw" name="AssignmentKind">
-          <ownedLiteral xmi:id="_JnRdkECnEd6UTJZnztgOLw" name="structural"/>
-          <ownedLiteral xmi:id="_JuBl0ECnEd6UTJZnztgOLw" name="behavioral"/>
-          <ownedLiteral xmi:id="_J0FxkECnEd6UTJZnztgOLw" name="hybrid"/>
         </packagedElement>
         <packagedElement xmi:type="uml:Association" xmi:id="_tuSIAECnEd6UTJZnztgOLw" name="A_Assign_NfpConstraint" memberEnd="_txAr4ECnEd6UTJZnztgOLw _txnI0ECnEd6UTJZnztgOLw">
           <ownedEnd xmi:id="_txnI0ECnEd6UTJZnztgOLw" name="assign" type="_455hUECmEd6UTJZnztgOLw" isUnique="false" association="_tuSIAECnEd6UTJZnztgOLw">

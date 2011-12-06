@@ -355,27 +355,6 @@ public interface AllocPackage extends EPackage {
 	int ALLOCATION_KIND = 7;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.AssignmentKind <em>Assignment Kind</em>}' enum.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.AssignmentKind
-	 * @see org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.impl.AllocPackageImpl#getAssignmentKind()
-	 * @generated
-	 */
-	int ASSIGNMENT_KIND = 8;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.AssignmentNature <em>Assignment Nature</em>}' enum.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.AssignmentNature
-	 * @see org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.impl.AllocPackageImpl#getAssignmentNature()
-	 * @generated
-	 */
-	int ASSIGNMENT_NATURE = 9;
-
-
-	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.Allocated <em>Allocated</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -654,26 +633,6 @@ public interface AllocPackage extends EPackage {
 	EEnum getAllocationKind();
 
 	/**
-	 * Returns the meta object for enum '{@link org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.AssignmentKind <em>Assignment Kind</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Assignment Kind</em>'.
-	 * @see org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.AssignmentKind
-	 * @generated
-	 */
-	EEnum getAssignmentKind();
-
-	/**
-	 * Returns the meta object for enum '{@link org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.AssignmentNature <em>Assignment Nature</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Assignment Nature</em>'.
-	 * @see org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.AssignmentNature
-	 * @generated
-	 */
-	EEnum getAssignmentNature();
-
-	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -918,26 +877,6 @@ public interface AllocPackage extends EPackage {
 		 * @generated
 		 */
 		EEnum ALLOCATION_KIND = eINSTANCE.getAllocationKind();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.AssignmentKind <em>Assignment Kind</em>}' enum.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.AssignmentKind
-		 * @see org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.impl.AllocPackageImpl#getAssignmentKind()
-		 * @generated
-		 */
-		EEnum ASSIGNMENT_KIND = eINSTANCE.getAssignmentKind();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.AssignmentNature <em>Assignment Nature</em>}' enum.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.AssignmentNature
-		 * @see org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.impl.AllocPackageImpl#getAssignmentNature()
-		 * @generated
-		 */
-		EEnum ASSIGNMENT_NATURE = eINSTANCE.getAssignmentNature();
 
 	}
 

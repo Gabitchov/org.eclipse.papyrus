@@ -92,10 +92,6 @@ public class AllocFactoryImpl extends EFactoryImpl implements AllocFactory {
 				return createAllocationNatureFromString(eDataType, initialValue);
 			case AllocPackage.ALLOCATION_KIND:
 				return createAllocationKindFromString(eDataType, initialValue);
-			case AllocPackage.ASSIGNMENT_KIND:
-				return createAssignmentKindFromString(eDataType, initialValue);
-			case AllocPackage.ASSIGNMENT_NATURE:
-				return createAssignmentNatureFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -115,10 +111,6 @@ public class AllocFactoryImpl extends EFactoryImpl implements AllocFactory {
 				return convertAllocationNatureToString(eDataType, instanceValue);
 			case AllocPackage.ALLOCATION_KIND:
 				return convertAllocationKindToString(eDataType, instanceValue);
-			case AllocPackage.ASSIGNMENT_KIND:
-				return convertAssignmentKindToString(eDataType, instanceValue);
-			case AllocPackage.ASSIGNMENT_NATURE:
-				return convertAssignmentNatureToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -231,46 +223,6 @@ public class AllocFactoryImpl extends EFactoryImpl implements AllocFactory {
 	 * @generated
 	 */
 	public String convertAllocationKindToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public AssignmentKind createAssignmentKindFromString(EDataType eDataType, String initialValue) {
-		AssignmentKind result = AssignmentKind.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertAssignmentKindToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public AssignmentNature createAssignmentNatureFromString(EDataType eDataType, String initialValue) {
-		AssignmentNature result = AssignmentNature.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertAssignmentNatureToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
