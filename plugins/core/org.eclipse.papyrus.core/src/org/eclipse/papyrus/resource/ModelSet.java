@@ -32,6 +32,9 @@ import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.transaction.impl.EditingDomainManager;
+import org.eclipse.emf.transaction.impl.TransactionalEditingDomainImpl;
+import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.emf.workspace.WorkspaceEditingDomainFactory;
 import org.eclipse.papyrus.resource.additional.AdditionalResourcesModel;
 
@@ -156,8 +159,7 @@ public class ModelSet extends ResourceSetImpl {
 		if(transactionalEditingDomain == null) {
 			transactionalEditingDomain = TransactionalEditingDomainManager.createTransactionalEditingDomain(this);
 			// register the id for lifecyle events the id is set by the registry
-			TransactionalEditingDomain.Registry.INSTANCE.add(PAPYRUS_EDITING_DOMAIN_ID, transactionalEditingDomain);
-//			transactionalEditingDomain.setID("SharedEditingDomain"); //$NON-NLS-1$
+			EditingDomainManager.getInstance().configureListeners(PAPYRUS_EDITING_DOMAIN_ID, transactionalEditingDomain);
 		}
 		return transactionalEditingDomain;
 	}
