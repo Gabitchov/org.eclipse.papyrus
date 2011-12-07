@@ -19,7 +19,12 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistryExtended;
 import org.eclipse.papyrus.views.modelexplorer.queries.AbstractGetEditorIconQuery;
 
-/** Return the path to the icon of the corresponding diagram */
+/**
+ * Return the path to the icon of the corresponding diagram * FIXME : delete this class when the bug EMF-Facet 365744 will be corrected!
+ * 
+ * @Deprecated : use oep.infra.gmfdiag.modelexplorer#queries.GetDiagramIcon
+ */
+@Deprecated
 public class GetDiagramIcon extends AbstractGetEditorIconQuery implements IJavaModelQuery<Diagram, String> {
 
 	public String evaluate(final Diagram context, final ParameterValueList parameterValues) throws ModelQueryExecutionException {

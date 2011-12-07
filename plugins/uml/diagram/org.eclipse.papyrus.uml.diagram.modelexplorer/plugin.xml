@@ -5,10 +5,10 @@
 <extension point="org.eclipse.ui.navigator.navigatorContent">
       <navigatorContent
             activeByDefault="false"
-            contentProvider="org.eclipse.papyrus.uml.diagram.modelexplorer.DiagramContentProvider"
+            contentProvider="org.eclipse.papyrus.uml.diagram.modelexplorer.provider.DiagramContentProvider"
             icon="icon/diagrams.gif"
             id="org.eclipse.papyrus.views.modelexplorer.DiagramNavigatorContent"
-            labelProvider="org.eclipse.papyrus.uml.diagram.modelexplorer.DiagramLabelProvider"
+            labelProvider="org.eclipse.papyrus.uml.diagram.modelexplorer.provider.DiagramLabelProvider"
             name="Diagram Model Contents"
             priority="lower">
          <triggerPoints>

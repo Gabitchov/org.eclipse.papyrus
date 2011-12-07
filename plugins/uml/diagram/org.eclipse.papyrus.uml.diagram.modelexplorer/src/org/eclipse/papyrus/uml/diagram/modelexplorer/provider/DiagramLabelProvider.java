@@ -11,7 +11,7 @@
  *  Ansgar Radermacher (CEA LIST) ansgar.radermacher@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.uml.diagram.modelexplorer;
+package org.eclipse.papyrus.uml.diagram.modelexplorer.provider;
 
 
 import org.eclipse.gmf.runtime.notation.Diagram;
@@ -28,8 +28,6 @@ import org.eclipse.uml2.uml.NamedElement;
  */
 public class DiagramLabelProvider extends MoDiscoLabelProvider  {
 
-	protected static final String SEPARATOR = ": ";
-	protected static final String PAPYRUS_UML = "PapyrusUML";
 	/** icon registry */
 	private IPageIconsRegistry editorRegistry=null;
 
@@ -78,7 +76,7 @@ public class DiagramLabelProvider extends MoDiscoLabelProvider  {
 		if(element instanceof Diagram) {
 			Diagram diagram = (Diagram)element;
 			if(diagram.getElement() instanceof NamedElement){
-				text = text +" [" +((NamedElement)diagram.getElement()).getQualifiedName()+"]";
+				text = text +" [" +((NamedElement)diagram.getElement()).getQualifiedName()+"]"; //$NON-NLS-1$ //$NON-NLS-2$
 			}
 		}
 		return text;

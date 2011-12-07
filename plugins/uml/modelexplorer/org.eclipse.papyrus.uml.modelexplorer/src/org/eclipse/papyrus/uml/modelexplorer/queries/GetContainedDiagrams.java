@@ -26,7 +26,13 @@ import org.eclipse.uml2.uml.Element;
 import com.google.common.base.Function;
 import com.google.common.base.Predicate;
 
-/** Get the collection of all contained diagrams */
+/**
+ * Get the collection of all contained diagrams
+ * FIXME : delete this class when the bug EMF-Facet 365744 will be corrected!
+ * 
+ * @Deprecated : use oep.infra.gmfdiag.modelexplorer#queries.GetContainedDiagrams
+ */
+@Deprecated
 public class GetContainedDiagrams extends AbstractEditorContainerQuery implements IJavaModelQuery<Element, Collection<org.eclipse.gmf.runtime.notation.Diagram>> {
 
 	public Collection<org.eclipse.gmf.runtime.notation.Diagram> evaluate(final Element context, final ParameterValueList parameterValues) throws ModelQueryExecutionException {

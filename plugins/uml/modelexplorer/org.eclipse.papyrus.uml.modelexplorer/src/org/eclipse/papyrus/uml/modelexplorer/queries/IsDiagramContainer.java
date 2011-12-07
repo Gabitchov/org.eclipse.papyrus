@@ -23,6 +23,12 @@ import org.eclipse.papyrus.views.modelexplorer.queries.AbstractEditorContainerQu
 
 import com.google.common.base.Predicate;
 
+/**
+ * FIXME : delete this class when the bug EMF-Facet 365744 will be corrected!
+ * 
+ * @Deprecated : use oep.infra.gmfdiag.modelexplorer#queries.IsDiagramContainer
+ */
+@Deprecated
 public class IsDiagramContainer extends AbstractEditorContainerQuery implements IJavaModelQuery<EObject, Boolean> {
 
 

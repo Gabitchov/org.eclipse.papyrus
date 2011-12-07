@@ -11,7 +11,7 @@
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.uml.diagram.modelexplorer;
+package org.eclipse.papyrus.uml.diagram.modelexplorer.provider;
 
 import java.util.ArrayList;
 
@@ -22,7 +22,7 @@ import org.eclipse.papyrus.infra.core.resource.ModelUtils;
 import org.eclipse.papyrus.infra.core.resource.notation.NotationUtils;
 import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.DiSashModelMngr;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
-import org.eclipse.papyrus.views.modelexplorer.Activator;
+import org.eclipse.papyrus.uml.diagram.modelexplorer.Activator;
 import org.eclipse.papyrus.views.modelexplorer.MoDiscoContentProvider;
 
 /**
