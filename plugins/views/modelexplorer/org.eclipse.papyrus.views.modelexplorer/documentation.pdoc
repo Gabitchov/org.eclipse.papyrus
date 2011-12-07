@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doc:Documentation xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:doc="http://www.eclipse.org/papyrus/documentation/plugin/documentation" description="This plugin provides the ModelExplorer View to discover the model">
+  <referent firstName="Patrick" lastName="Tessier" eMail="patrick.tessier@cea.fr" currentCompany="CEA-LIST"/>
+  <referent firstName="Vincent" lastName="Lorenzo" eMail="vincent.lorenzo@cea.fr" currentCompany="CEA-LIST"/>
+  <additionalComments title="forbidden dependencies" contents="This plugin should not depend on Diagram, Table, UML"/>
+</doc:Documentation>
