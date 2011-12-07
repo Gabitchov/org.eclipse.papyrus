@@ -26,6 +26,7 @@
 <project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/infra/gmfdiag/org.eclipse.papyrus.infra.gmfdiag.preferences,org.eclipse.papyrus.infra.gmfdiag.preferences"/>
 <project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/infra/gmfdiag/org.eclipse.papyrus.infra.gmfdiag.properties,org.eclipse.papyrus.infra.gmfdiag.properties"/>
 <project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/infra/gmfdiag/org.eclipse.papyrus.infra.gmfdiag.widgets,org.eclipse.papyrus.infra.gmfdiag.widgets"/>
+<project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/infra/gmfdiag/org.eclipse.papyrus.infra.gmfdiag.modelexplorer,org.eclipse.papyrus.infra.gmfdiag.modelexplorer"/>
 <project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/infra/org.eclipse.papyrus.infra.onefile,org.eclipse.papyrus.infra.onefile"/>
 <project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/infra/queries/org.eclipse.papyrus.infra.queries.core,org.eclipse.papyrus.infra.queries.core"/>
 <project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/infra/queries/org.eclipse.papyrus.infra.queries.core.configuration,org.eclipse.papyrus.infra.queries.core.configuration"/>
@@ -216,6 +217,7 @@
 <item elementID="=org.eclipse.papyrus.infra.gmfdiag.navigation" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.infra.gmfdiag.widgets" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.infra.gmfdiag.preferences" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.papyrus.infra.gmfdiag.modelexplorer" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 </workingSets>
 <workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1319612473694_56" label="infra.queries" name="infra.queries">
 <item elementID="=org.eclipse.papyrus.infra.queries.core.configuration.edit" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
