@@ -39,6 +39,7 @@ public class Activator extends AbstractUIPlugin {
 	/** the customization manager */
 	private CustomizationManager fCustomizationManager;
 
+	//FIXME : this plugin doesn't provide a LogHelper
 	/**
 	 * The constructor
 	 */

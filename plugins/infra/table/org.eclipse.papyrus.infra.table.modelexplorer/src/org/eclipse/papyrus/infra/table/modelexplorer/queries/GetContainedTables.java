@@ -36,6 +36,7 @@ import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
 
 /** Get the collection of all contained tables */
+//FIXME this query is declared using Element in the querySet -> change into EObject when the EMF-Facet bug will be corrected 365744
 public class GetContainedTables extends AbstractEditorContainerQuery implements IJavaModelQuery<EObject, Collection<PapyrusTableInstance>> {
 
 	/**
