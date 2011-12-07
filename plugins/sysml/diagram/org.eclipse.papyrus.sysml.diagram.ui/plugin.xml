@@ -2,7 +2,7 @@
 <plugin>
 <extension point="org.eclipse.ui.newWizards">
 	<wizard
-         category="org.eclipse.papyrus.uml.diagram.wizards.category"
+         category="org.eclipse.papyrus.wizards.category"
          class="org.eclipse.papyrus.sysml.diagram.ui.NewSysMLProjectWizard"
          finalPerspective="org.eclipse.papyrus.infra.core.perspective"
          icon="icons/papyrus/new_sysml_project.gif"
@@ -14,7 +14,7 @@
       </description>
 	</wizard>
     <wizard
-         category="org.eclipse.papyrus.uml.diagram.wizards.category"
+         category="org.eclipse.papyrus.wizards.category"
          class="org.eclipse.papyrus.sysml.diagram.ui.NewSysMLModelWizard"
          finalPerspective="org.eclipse.papyrus.infra.core.perspective"
          icon="icons/papyrus/new_sysml_model.gif"
