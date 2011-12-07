@@ -1284,6 +1284,12 @@
             id="org.eclipse.papyrus.SharedEditingDomainID">
       </editingDomain>
    </listener>
+   <listener
+         class="org.eclipse.papyrus.diagram.statemachine.custom.listeners.InternalStateListener">
+      <editingDomain
+            id="org.eclipse.papyrus.SharedEditingDomainID">
+      </editingDomain>
+   </listener>
 </extension>
 
 
