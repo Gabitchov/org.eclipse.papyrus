@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.modelexplorer;singleton:=true
+Bundle-Version: 0.9.0.qualifier
+Bundle-Activator: org.eclipse.papyrus.infra.gmfdiag.modelexplorer.Activator
+Bundle-Vendor: %providerName
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ com.google.collect,
+ org.eclipse.papyrus.views.modelexplorer,
+ org.eclipse.emf.facet.infra.query.core,
+ org.eclipse.emf.facet.infra.browser.custom.core,
+ org.eclipse.emf.facet.infra.facet.core
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-ActivationPolicy: lazy
+Bundle-Localization: plugin
