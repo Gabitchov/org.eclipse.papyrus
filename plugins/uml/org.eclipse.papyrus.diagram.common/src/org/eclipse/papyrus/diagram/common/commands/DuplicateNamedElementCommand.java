@@ -120,13 +120,13 @@ public class DuplicateNamedElementCommand extends DuplicateEObjectsCommand {
 		int lowIndex = (baseName.startsWith(COPY_OF) ? COPY_OF.length() : 0);
 		int tmp = baseName.lastIndexOf("_");
 		int maxIndex = baseName.length();
-		if(tmp < maxIndex && tmp > 0) {
+		if(tmp < maxIndex && tmp > 0 && tmp >= lowIndex) {
 			maxIndex = tmp;
 		}
 
-		if(maxIndex < lowIndex) { // check we are in the valid bounds of the upcoming substring method
-			maxIndex = lowIndex;
-		}
+		//		if(maxIndex < lowIndex) { // check we are in the valid bounds of the upcoming substring method
+		//			maxIndex = lowIndex;
+		//		}
 
 		String base = COPY_OF + baseName.substring(lowIndex, maxIndex) + "_";
 

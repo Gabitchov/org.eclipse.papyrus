@@ -323,7 +323,7 @@ public class TestCopyGraphicallyPasteBlock extends AbstractTest {
 		Assert.assertTrue("Model element should be stereotyped", addedBlock.getAppliedStereotype("SysML::Blocks::Block") != null);
 
 		// check name
-		String expectedName = "Copy_Of_Block1";
+		String expectedName = "Copy_Of_Block1_1";
 		Assert.assertEquals("Name of the element is not " + expectedName, expectedName, addedBlock.getName());
 
 		// test undo
@@ -419,7 +419,7 @@ public class TestCopyGraphicallyPasteBlock extends AbstractTest {
 		Assert.assertTrue("Model element should be stereotyped", addedBlock1.getAppliedStereotype("SysML::Blocks::Block") != null);
 
 		// check name
-		String expectedName = "Copy_Of_Block"; // Warning: this name already exists...
+		String expectedName = "Copy_Of_Block_1"; // Warning: this name already exists...
 		Assert.assertEquals("Name of the element is not " + expectedName, expectedName, addedBlock1.getName());
 
 		//Retrieve added model element and check name
@@ -429,7 +429,7 @@ public class TestCopyGraphicallyPasteBlock extends AbstractTest {
 		Assert.assertTrue("Model element should be stereotyped", addedBlock2.getAppliedStereotype("SysML::Blocks::Block") != null);
 
 		// check name
-		expectedName = "Copy_Of_Block1"; // Warning: this name already exists...
+		expectedName = "Copy_Of_Block1_1"; // Warning: this name already exists...
 		Assert.assertEquals("Name of the element is not " + expectedName, expectedName, addedBlock2.getName());
 
 		// test undo

@@ -49,7 +49,9 @@ public class TestDuplicateNamedElementCommand {
 		siblings.add(createEClass(rootpackage, ""));
 		siblings.add(createEClass(rootpackage, "_"));
 		siblings.add(createEClass(rootpackage, "_1"));
+		siblings.add(createEClass(rootpackage, "Class"));
 		siblings.add(createEClass(rootpackage, "Class1"));
+		siblings.add(createEClass(rootpackage, "Copy_Of_Class"));
 		siblings.add(createEClass(rootpackage, "Copy_Of_Class1"));
 		siblings.add(createEClass(rootpackage, "Copy_Of_Class1_1"));
 		siblings.add(createEClass(rootpackage, "Copy_Of_Class1_"));
@@ -163,6 +165,21 @@ public class TestDuplicateNamedElementCommand {
 	 */
 	@Test
 	public void testcomputeNewName_StandardBase() throws Exception {
+		String base = "Class";
+		assertEquals("Class", DuplicateNamedElementCommand.computeNewName(base, nullSiblings));
+		assertEquals("Copy_Of_Class_1", DuplicateNamedElementCommand.computeNewName(base, emptySiblings));
+		assertEquals("Copy_Of_Class_2", DuplicateNamedElementCommand.computeNewName(base, siblings)); // already exists..
+	}
+
+
+	/**
+	 * Test the method {@link DuplicateNamedElementCommand}#computeNewName( String, List<EObject>))}
+	 * 
+	 * @throws Exception
+	 *         exception thrown in case of problems
+	 */
+	@Test
+	public void testcomputeNewName_StandardBaseWithNumber() throws Exception {
 		String base = "Class1";
 		assertEquals("Class1", DuplicateNamedElementCommand.computeNewName(base, nullSiblings));
 		assertEquals("Copy_Of_Class1_1", DuplicateNamedElementCommand.computeNewName(base, emptySiblings));
@@ -191,11 +208,26 @@ public class TestDuplicateNamedElementCommand {
 	 */
 	@Test
 	public void testcomputeNewName_CopyOf_StandardBase() throws Exception {
+		String base = DuplicateNamedElementCommand.COPY_OF + "Class";
+		assertEquals(DuplicateNamedElementCommand.COPY_OF + "Class", DuplicateNamedElementCommand.computeNewName(base, nullSiblings));
+		assertEquals("Copy_Of_Class_1", DuplicateNamedElementCommand.computeNewName(base, emptySiblings));
+		assertEquals("Copy_Of_Class_2", DuplicateNamedElementCommand.computeNewName(base, siblings));
+	}
+
+	/**
+	 * Test the method {@link DuplicateNamedElementCommand}#computeNewName( String, List<EObject>))}
+	 * 
+	 * @throws Exception
+	 *         exception thrown in case of problems
+	 */
+	@Test
+	public void testcomputeNewName_CopyOf_StandardBaseWithNumber() throws Exception {
 		String base = DuplicateNamedElementCommand.COPY_OF + "Class1";
 		assertEquals(DuplicateNamedElementCommand.COPY_OF + "Class1", DuplicateNamedElementCommand.computeNewName(base, nullSiblings));
-		assertEquals("Copy_Of__1", DuplicateNamedElementCommand.computeNewName(base, emptySiblings));
-		assertEquals("Copy_Of__1", DuplicateNamedElementCommand.computeNewName(base, siblings));
+		assertEquals("Copy_Of_Class1_1", DuplicateNamedElementCommand.computeNewName(base, emptySiblings));
+		assertEquals("Copy_Of_Class1_2", DuplicateNamedElementCommand.computeNewName(base, siblings));
 	}
+
 
 	/**
 	 * Test the method {@link DuplicateNamedElementCommand}#computeNewName( String, List<EObject>))}
