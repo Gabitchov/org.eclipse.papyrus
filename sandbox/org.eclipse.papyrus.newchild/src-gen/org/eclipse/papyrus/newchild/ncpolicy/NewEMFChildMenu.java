@@ -7,6 +7,7 @@
 package org.eclipse.papyrus.newchild.ncpolicy;
 
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.papyrus.newchild.Menu;
 import org.eclipse.papyrus.newchild.MenuGroup;
 

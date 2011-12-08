@@ -20,13 +20,13 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.papyrus.core.utils.GMFtoEMFCommandWrapper;
-import org.eclipse.papyrus.extendedtypes.ExtendedEditHelperAdvice;
-import org.eclipse.papyrus.extendedtypes.ExtendedElementTypeConfiguration;
-import org.eclipse.papyrus.extendedtypes.ExtendedSemanticTypeDescriptor;
-import org.eclipse.papyrus.extendedtypes.types.ExtendedHintedTypeFactory;
-import org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils;
-import org.eclipse.papyrus.service.edit.service.IElementEditService;
+import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.infra.extendedtypes.ExtendedEditHelperAdvice;
+import org.eclipse.papyrus.infra.extendedtypes.ExtendedElementTypeConfiguration;
+import org.eclipse.papyrus.infra.extendedtypes.ExtendedSemanticTypeDescriptor;
+import org.eclipse.papyrus.infra.extendedtypes.types.ExtendedHintedTypeFactory;
+import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
+import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 
 
 public class ExtendedTypeAction extends Action {

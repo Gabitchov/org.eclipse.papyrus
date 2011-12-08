@@ -10,7 +10,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="newChildPolicies" upperBound="-1"
         eType="#//ncpolicy/NewChildPolicySet" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="MenuRoot" eSuperTypes="#//MenuContainer ../../org.eclipse.papyrus.constraints/Model/Constraints.ecore#//DisplayUnit">
+  <eClassifiers xsi:type="ecore:EClass" name="MenuRoot" eSuperTypes="#//MenuContainer platform:/plugin/org.eclipse.papyrus.constraints/Model/Constraints.ecore#//DisplayUnit">
     <eStructuralFeatures xsi:type="ecore:EReference" name="groups" upperBound="-1"
         eType="#//MenuGroup" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
@@ -28,7 +28,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MenuAction" eSuperTypes="#//MenuItem">
     <eStructuralFeatures xsi:type="ecore:EReference" name="elementType" lowerBound="1"
-        eType="ecore:EClass platform:/plugin/org.eclipse.papyrus.extendedtypes/model/ExtendedTypes.ecore#//ExtendedElementTypeConfiguration"/>
+        eType="ecore:EClass platform:/plugin/org.eclipse.papyrus.infra.extendedtypes/model/ExtendedTypes.ecore#//ExtendedElementTypeConfiguration"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Separator" eSuperTypes="#//MenuItem"/>
   <eClassifiers xsi:type="ecore:EClass" name="MenuGroup" eSuperTypes="#//MenuContainer">
@@ -64,7 +64,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="groups" upperBound="-1"
           eType="#//MenuGroup" containment="true"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="NewChildPolicySet" eSuperTypes="../../org.eclipse.papyrus.constraints/Model/Constraints.ecore#//DisplayUnit">
+    <eClassifiers xsi:type="ecore:EClass" name="NewChildPolicySet" eSuperTypes="platform:/plugin/org.eclipse.papyrus.constraints/Model/Constraints.ecore#//DisplayUnit">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1"
           eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="policies" upperBound="-1"

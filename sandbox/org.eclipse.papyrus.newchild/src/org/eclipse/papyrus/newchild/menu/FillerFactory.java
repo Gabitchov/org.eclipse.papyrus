@@ -11,7 +11,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.newchild.menu;
 
-import org.eclipse.papyrus.extendedtypes.Activator;
+import org.eclipse.papyrus.newchild.Activator;
 import org.eclipse.papyrus.newchild.CustomFiller;
 import org.eclipse.papyrus.newchild.Menu;
 import org.eclipse.papyrus.newchild.MenuAction;

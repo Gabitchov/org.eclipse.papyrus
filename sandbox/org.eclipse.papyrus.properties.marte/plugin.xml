@@ -2,10 +2,9 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension
-         point="org.eclipse.papyrus.properties.context">
+         point="org.eclipse.papyrus.views.properties.context">
       <context
-            contextModel="model/MARTE.ctx"
-            loadDefault="true">
+            contextModel="model/MARTE.ctx">
       </context>
    </extension>
 

@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.eclipse.papyrus.constraints.ConstraintsPackage;
 
-import org.eclipse.papyrus.extendedtypes.ExtendedtypesPackage;
+import org.eclipse.papyrus.infra.extendedtypes.ExtendedtypesPackage;
 
 import org.eclipse.papyrus.newchild.CustomFiller;
 import org.eclipse.papyrus.newchild.Menu;

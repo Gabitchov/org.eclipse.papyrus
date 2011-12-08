@@ -13,7 +13,7 @@ package org.eclipse.papyrus.emf.embeddededitor.providers;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.properties.providers.EMFObjectLabelProvider;
+import org.eclipse.papyrus.views.properties.providers.EMFObjectLabelProvider;
 
 
 public class ModiscoLabelProvider extends EMFObjectLabelProvider {

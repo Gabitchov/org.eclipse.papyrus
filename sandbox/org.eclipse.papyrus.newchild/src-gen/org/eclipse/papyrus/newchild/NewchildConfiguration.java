@@ -9,6 +9,7 @@ package org.eclipse.papyrus.newchild;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
+
 import org.eclipse.papyrus.newchild.ncpolicy.NewChildPolicySet;
 
 /**

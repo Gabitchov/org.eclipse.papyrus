@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.papyrus.newchild.MenuRoot;
 import org.eclipse.papyrus.newchild.NewchildConfiguration;
 import org.eclipse.papyrus.newchild.NewchildPackage;
+
 import org.eclipse.papyrus.newchild.ncpolicy.NewChildPolicySet;
 
 /**

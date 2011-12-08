@@ -5,7 +5,7 @@
     editDirectory="/org.eclipse.papyrus.newchild.edit/src-gen" editorDirectory="/org.eclipse.papyrus.newchild.editor/src-gen"
     modelPluginID="org.eclipse.papyrus.newchild" modelName="NewChild" testsDirectory="/org.eclipse.papyrus.newchild.tests/src-gen"
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
-    usedGenPackages="platform:/plugin/org.eclipse.papyrus.core.queries.configuration/model/Configuration.genmodel#//configuration ../../org.eclipse.papyrus.constraints/Model/Constraints.genmodel#//constraints platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore platform:/plugin/org.eclipse.papyrus.extendedtypes/model/ExtendedTypes.genmodel#//extendedtypes platform:/plugin/org.eclipse.emf.facet.infra.query/model/query.genmodel#//query platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml">
+    usedGenPackages="platform:/plugin/org.eclipse.papyrus.infra.queries.core.configuration/model/Configuration.genmodel#//configuration platform:/plugin/org.eclipse.papyrus.constraints/Model/Constraints.genmodel#//constraints platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore platform:/plugin/org.eclipse.papyrus.infra.extendedtypes/model/ExtendedTypes.genmodel#//extendedtypes platform:/plugin/org.eclipse.emf.facet.infra.query/model/query.genmodel#//query platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml">
   <foreignModel>NewChild.ecore</foreignModel>
   <genPackages prefix="Newchild" basePackage="org.eclipse.papyrus" resource="XML"
       disposableProviderFactory="true" ecorePackage="NewChild.ecore#/">

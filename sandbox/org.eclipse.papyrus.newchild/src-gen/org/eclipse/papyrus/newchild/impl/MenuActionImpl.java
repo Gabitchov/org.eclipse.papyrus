@@ -13,12 +13,10 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.eclipse.papyrus.extendedtypes.ExtendedElementTypeConfiguration;
+import org.eclipse.papyrus.infra.extendedtypes.ExtendedElementTypeConfiguration;
 
 import org.eclipse.papyrus.newchild.MenuAction;
 import org.eclipse.papyrus.newchild.NewchildPackage;
-
-import org.eclipse.papyrus.newchild.ncpolicy.CreateIn;
 
 /**
  * <!-- begin-user-doc -->

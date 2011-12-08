@@ -6,9 +6,7 @@
  */
 package org.eclipse.papyrus.newchild;
 
-import org.eclipse.papyrus.extendedtypes.ExtendedElementTypeConfiguration;
-
-import org.eclipse.papyrus.newchild.ncpolicy.CreateIn;
+import org.eclipse.papyrus.infra.extendedtypes.ExtendedElementTypeConfiguration;
 
 /**
  * <!-- begin-user-doc -->
