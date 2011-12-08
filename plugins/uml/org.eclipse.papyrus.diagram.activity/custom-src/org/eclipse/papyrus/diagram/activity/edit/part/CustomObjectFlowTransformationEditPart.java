@@ -193,8 +193,22 @@ public class CustomObjectFlowTransformationEditPart extends ObjectFlowTransforma
 		}
 
 		/**
-		 * @generated NOT do not add link in this figure
+		 * Customization cause to Bug 354622 - [ActivityDiagram] Object Flows selection prevent selecting other close elements
+		 * @see org.eclipse.draw2d.Figure#containsPoint(int, int)
+		 *
+		 * @param x
+		 * @param y
+		 * @return
 		 */
+		@Override
+		public boolean containsPoint(int x, int y) {
+			if (isVisible()){
+				return super.containsPoint(x, y);				
+			}
+			return false;
+		}
+
+		
 		private void createContents() {
 			fCornerBentContent = new WrappedLabel();
 			this.add(fCornerBentContent);
@@ -212,7 +226,7 @@ public class CustomObjectFlowTransformationEditPart extends ObjectFlowTransforma
 
 		/**
 		 * @see org.eclipse.draw2d.Figure#setVisible(boolean)
-		 * @generated report visibility on the link
+		 * report visibility on the link
 		 */
 		@Override
 		public void setVisible(boolean visible) {
@@ -223,7 +237,7 @@ public class CustomObjectFlowTransformationEditPart extends ObjectFlowTransforma
 		/**
 		 * Refresh the link between parent figure and this one
 		 * 
-		 * @generated
+		 * 
 		 */
 		private void refreshLinkToBehaviorProperty() {
 			if(getLinkToBehaviorProperty().getParent() == null) {
@@ -243,14 +257,14 @@ public class CustomObjectFlowTransformationEditPart extends ObjectFlowTransforma
 		}
 
 		/**
-		 * @generated
+		 * 
 		 */
 		public WrappedLabel getCornerBentContent() {
 			return fCornerBentContent;
 		}
 
 		/**
-		 * @generated
+		 *
 		 */
 		public PolylineShape getLinkToBehaviorProperty() {
 			return fLinkToBehaviorProperty;

@@ -186,6 +186,26 @@ public class CustomObjectFlowSelectionEditPart extends ObjectFlowSelectionEditPa
 			this.setBackgroundColor(THIS_BACK);
 			createContents();
 		}
+		
+		
+
+		/**
+		 * Customization cause to Bug 354622 - [ActivityDiagram] Object Flows selection prevent selecting other close elements
+		 * @see org.eclipse.draw2d.Figure#containsPoint(int, int)
+		 *
+		 * @param x
+		 * @param y
+		 * @return
+		 */
+		@Override
+		public boolean containsPoint(int x, int y) {
+			if (isVisible()){
+				return super.containsPoint(x, y);				
+			}
+			return false;
+		}
+
+
 
 
 		private void createContents() {
