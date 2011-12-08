@@ -212,7 +212,7 @@
          </propertySection>
       </propertySections>
    </extension>
-
+
 
 <?gmfgen generated="true"?>
 
@@ -3708,6 +3708,55 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
             name="Lowest">
       </Priority>
    </editpolicyProvider>
+</extension>
+
+<extension
+      point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders">
+   <editpartProvider
+         class="org.eclipse.papyrus.diagram.activity.providers.CustomUMLEditPartProvider">
+      <Priority
+            name="Highest">
+      </Priority>
+      <object
+            class="org.eclipse.gmf.runtime.notation.Diagram"
+            id="generated-diagram">
+         <method
+               name="getType()"
+               value="PapyrusUMLActivityDiagram">
+         </method>
+      </object>
+      <object
+            class="org.eclipse.gmf.runtime.notation.Node"
+            id="generated-nodes">
+         <method
+               name="getType()">
+         </method>
+      </object>
+      <object
+            class="org.eclipse.gmf.runtime.notation.Edge"
+            id="generated-links">
+         <method
+               name="getType()">
+         </method>
+      </object>
+      <object
+            class="org.eclipse.gmf.runtime.notation.Node"
+            id="generated-labels">
+         <method
+               name="getType()">
+         </method>
+      </object>
+      <object
+            class="org.eclipse.gmf.runtime.notation.Node"
+            id="generated-compartments">
+         <method
+               name="getType()">
+         </method>
+      </object>
+      <context
+            views="generated-diagram,generated-nodes,generated-links,generated-labels,generated-compartments">
+      </context>
+   </editpartProvider>
 </extension>
 
 

@@ -14,19 +14,14 @@
 package org.eclipse.papyrus.diagram.activity.edit.parts;
 
 import org.eclipse.draw2d.Connection;
-import org.eclipse.draw2d.PolylineDecoration;
-import org.eclipse.draw2d.RotatableDecoration;
-import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.activity.edit.policies.ControlFlowItemSemanticEditPolicy;
-import org.eclipse.papyrus.diagram.activity.figures.WrappedLabel;
+import org.eclipse.papyrus.diagram.activity.figures.ActivityEdgeFigure;
 import org.eclipse.papyrus.diagram.common.editparts.UMLConnectionNodeEditPart;
 import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy;
-import org.eclipse.papyrus.diagram.common.figure.edge.UMLEdgeFigure;
 
 /**
  * @generated
@@ -104,87 +99,13 @@ public class ControlFlowEditPart extends UMLConnectionNodeEditPart implements IT
 	 * @generated
 	 */
 	protected Connection createConnectionFigure() {
-		return new ActivityEdgeDescriptor();
+		return new ActivityEdgeFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public ActivityEdgeDescriptor getPrimaryShape() {
-		return (ActivityEdgeDescriptor)getFigure();
-	}
-
-	/**
-	 * @generated inherits from UMLEdgeFigure to manage stereotype label
-	 */
-	public class ActivityEdgeDescriptor extends UMLEdgeFigure {
-
-		/**
-		 * @generated
-		 */
-		private WrappedLabel fEdgeName;
-
-		/**
-		 * @generated
-		 */
-		private WrappedLabel fEdgeWeight;
-
-		/**
-		 * @generated
-		 */
-		private WrappedLabel fAppliedStereotypeLabel;
-
-		/**
-		 * @generated call the super constructor
-		 */
-		public ActivityEdgeDescriptor() {
-			super();
-			this.setLineWidth(1);
-			setTargetDecoration(createTargetDecoration());
-		}
-
-		/**
-		 * @generated
-		 */
-		protected void createContents() {
-			super.createContents();
-		}
-
-		/**
-		 * @generated scale changed from default 7:3 to 5:2 to make a
-		 *            smaller arrow
-		 */
-		private RotatableDecoration createTargetDecoration() {
-			PolylineDecoration df = new PolylineDecoration();
-			df.setLineWidth(1);
-			PointList pl = new PointList();
-			pl.addPoint(getMapMode().DPtoLP(-2), getMapMode().DPtoLP(2));
-			pl.addPoint(getMapMode().DPtoLP(0), getMapMode().DPtoLP(0));
-			pl.addPoint(getMapMode().DPtoLP(-2), getMapMode().DPtoLP(-2));
-			df.setTemplate(pl);
-			df.setScale(getMapMode().DPtoLP(5), getMapMode().DPtoLP(2));
-			return df;
-		}
-
-		/**
-		 * @generated
-		 */
-		public WrappedLabel getEdgeName() {
-			return fEdgeName;
-		}
-
-		/**
-		 * @generated
-		 */
-		public WrappedLabel getEdgeWeight() {
-			return fEdgeWeight;
-		}
-
-		/**
-		 * @generated get the stereotype label of super class
-		 */
-		public WrappingLabel getAppliedStereotypeLabel() {
-			return super.getAppliedStereotypeLabel();
-		}
+	public ActivityEdgeFigure getPrimaryShape() {
+		return (ActivityEdgeFigure)getFigure();
 	}
 }

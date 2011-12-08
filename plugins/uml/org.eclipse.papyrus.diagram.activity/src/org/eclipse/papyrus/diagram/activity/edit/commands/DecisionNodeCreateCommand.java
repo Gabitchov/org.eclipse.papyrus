@@ -27,7 +27,6 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.activity.edit.commands.util.CreateCommandUtil;
 import org.eclipse.papyrus.diagram.activity.providers.ElementInitializers;
-import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.DecisionNode;
 import org.eclipse.uml2.uml.UMLFactory;
 

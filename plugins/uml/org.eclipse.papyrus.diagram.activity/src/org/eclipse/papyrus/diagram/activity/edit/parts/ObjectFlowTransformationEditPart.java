@@ -17,13 +17,11 @@ import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.draw2d.ConnectionLocator;
-import org.eclipse.draw2d.FigureListener;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.PolylineShape;
 import org.eclipse.draw2d.geometry.Point;
-import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
@@ -55,7 +53,6 @@ import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.jface.viewers.ICellEditorValidator;
 import org.eclipse.jface.window.Window;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ObjectFlowEditPart.ActivityEdgeDescriptor;
 import org.eclipse.papyrus.diagram.activity.edit.policies.BehaviorPropertyNodeEditPolicy;
 import org.eclipse.papyrus.diagram.activity.edit.policies.UMLTextSelectionEditPolicy;
 import org.eclipse.papyrus.diagram.activity.figures.WrappedLabel;
@@ -83,8 +80,6 @@ import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.uml2.uml.Behavior;
-import org.eclipse.uml2.uml.ObjectFlow;
 
 /**
  * @generated
@@ -154,52 +149,46 @@ public class ObjectFlowTransformationEditPart extends LabelEditPart implements I
 	}
 
 	/**
-	 * @generated NOT handle LinkAndCornerBentWithTextFigure
+	 * @generated
 	 */
 	protected String getLabelTextHelper(IFigure figure) {
 		if(figure instanceof WrappingLabel) {
 			return ((WrappingLabel)figure).getText();
 		} else if(figure instanceof ILabelFigure) {
 			return ((ILabelFigure)figure).getText();
-		} else if(figure instanceof LinkAndCornerBentWithTextFigure) {
-			return ((LinkAndCornerBentWithTextFigure)figure).getCornerBentContent().getText();
 		} else {
 			return ((Label)figure).getText();
 		}
 	}
 
 	/**
-	 * @generated NOT handle LinkAndCornerBentWithTextFigure
+	 * @generated
 	 */
 	protected void setLabelTextHelper(IFigure figure, String text) {
 		if(figure instanceof WrappingLabel) {
 			((WrappingLabel)figure).setText(text);
 		} else if(figure instanceof ILabelFigure) {
 			((ILabelFigure)figure).setText(text);
-		} else if(figure instanceof LinkAndCornerBentWithTextFigure) {
-			((LinkAndCornerBentWithTextFigure)figure).getCornerBentContent().setText(text);
 		} else {
 			((Label)figure).setText(text);
 		}
 	}
 
 	/**
-	 * @generated NOT handle LinkAndCornerBentWithTextFigure
+	 * @generated
 	 */
 	protected Image getLabelIconHelper(IFigure figure) {
 		if(figure instanceof WrappingLabel) {
 			return ((WrappingLabel)figure).getIcon();
 		} else if(figure instanceof ILabelFigure) {
 			return ((ILabelFigure)figure).getIcon();
-		} else if(figure instanceof LinkAndCornerBentWithTextFigure) {
-			return ((LinkAndCornerBentWithTextFigure)figure).getCornerBentContent().getIcon();
 		} else {
 			return ((Label)figure).getIcon();
 		}
 	}
 
 	/**
-	 * @generated NOT handle LinkAndCornerBentWithTextFigure
+	 * @generated handle LinkAndCornerBentWithTextFigure
 	 */
 	protected void setLabelIconHelper(IFigure figure, Image icon) {
 		if(figure instanceof WrappingLabel) {
@@ -484,24 +473,6 @@ public class ObjectFlowTransformationEditPart extends LabelEditPart implements I
 	}
 
 	/**
-	 * sets the visibility of this edit part
-	 * 
-	 * @param vis
-	 *        the new value of the visibility
-	 * @generated NOT
-	 */
-	protected void setVisibility(boolean vis) {
-		EObject element = resolveSemanticElement();
-		if(element instanceof ObjectFlow) {
-			Behavior transformation = ((ObjectFlow)element).getTransformation();
-			if(transformation == null) {
-				vis = false;
-			}
-		}
-		super.setVisibility(vis);
-	}
-
-	/**
 	 * @generated
 	 */
 	protected void refreshLabel() {
@@ -709,7 +680,7 @@ public class ObjectFlowTransformationEditPart extends LabelEditPart implements I
 	}
 
 	/**
-	 * @generated NOT refresh the visibility in case the transformation
+	 * @generated refresh the visibility in case the transformation
 	 *            assignment changed
 	 */
 	protected void handleNotificationEvent(Notification event) {
@@ -759,7 +730,9 @@ public class ObjectFlowTransformationEditPart extends LabelEditPart implements I
 	protected IFigure createFigurePrim() {
 		return new LinkAndCornerBentWithTextFigure();
 	}
-
+	/*
+	 * This inner class is no more use see CustomObjectFlowTransformationEditPart
+	 */
 	/**
 	 * @generated
 	 */
@@ -784,53 +757,14 @@ public class ObjectFlowTransformationEditPart extends LabelEditPart implements I
 		}
 
 		/**
-		 * @generated NOT do not add link in this figure
+		 * @generated
 		 */
 		private void createContents() {
 			fCornerBentContent = new WrappedLabel();
 			this.add(fCornerBentContent);
 			fLinkToBehaviorProperty = new PolylineShape();
-			fLinkToBehaviorProperty.setLineWidth(1);
 			fLinkToBehaviorProperty.setLineStyle(Graphics.LINE_DASH);
-			// do not add link in this figure but refresh it when figure moves
-			addFigureListener(new FigureListener() {
-
-				public void figureMoved(IFigure source) {
-					refreshLinkToBehaviorProperty();
-				}
-			});
-		}
-
-		/**
-		 * @see org.eclipse.draw2d.Figure#setVisible(boolean)
-		 * @generated NOT report visibility on the link
-		 */
-		@Override
-		public void setVisible(boolean visible) {
-			super.setVisible(visible);
-			getLinkToBehaviorProperty().setVisible(visible);
-		}
-
-		/**
-		 * Refresh the link between parent figure and this one
-		 * 
-		 * @generated NOT
-		 */
-		private void refreshLinkToBehaviorProperty() {
-			if(getLinkToBehaviorProperty().getParent() == null) {
-				// add in appropriate figure
-				getParent().add(getLinkToBehaviorProperty());
-			}
-			if(getParent() != null && getParent() instanceof ActivityEdgeDescriptor) {
-				Point parentCenter = getReferencePoint();
-				Rectangle currentBounds = getBounds();
-				Point end = BehaviorPropertyNodeEditPolicy.getAppropriateBorderPoint(parentCenter, currentBounds);
-				// adapt ends to bounds
-				Rectangle linkBounds = new Rectangle(parentCenter, end);
-				getLinkToBehaviorProperty().setStart(parentCenter.translate(linkBounds.getLocation().getNegated()));
-				getLinkToBehaviorProperty().setEnd(end.translate(linkBounds.getLocation().getNegated()));
-				getLinkToBehaviorProperty().setBounds(linkBounds);
-			}
+			this.add(fLinkToBehaviorProperty);
 		}
 
 		/**
