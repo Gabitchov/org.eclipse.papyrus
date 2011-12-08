@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="org.eclipse.papyrus.sysml.propertie"
+      id="org.eclipse.papyrus.sysml.properties.feature"
       label="Papyrus SysML properties (Incubation)"
       version="0.9.0.qualifier"
       provider-name="Eclipse Modeling Project">
