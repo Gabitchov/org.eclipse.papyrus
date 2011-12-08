@@ -92,7 +92,6 @@ public class ReadStructuralFeatureActionItemSemanticEditPolicy extends UMLBaseIt
 		View view = (View)getHost().getModel();
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
 		cmd.setTransactionNestingEnabled(true);
-
 		EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
 		if(annotation == null) {
 			// there are indirectly referenced children, need extra commands: false
@@ -118,7 +117,6 @@ public class ReadStructuralFeatureActionItemSemanticEditPolicy extends UMLBaseIt
 			Node node = (Node)nit.next();
 			switch(UMLVisualIDRegistry.getVisualID(node)) {
 			case InputPinInReadStructuralFeatureAsObjectEditPart.VISUAL_ID:
-
 				for(Iterator<?> it = node.getTargetEdges().iterator(); it.hasNext();) {
 					Edge incomingLink = (Edge)it.next();
 					switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -136,7 +134,6 @@ public class ReadStructuralFeatureActionItemSemanticEditPolicy extends UMLBaseIt
 						break;
 					}
 				}
-
 				for(Iterator<?> it = node.getSourceEdges().iterator(); it.hasNext();) {
 					Edge outgoingLink = (Edge)it.next();
 					switch(UMLVisualIDRegistry.getVisualID(outgoingLink)) {
@@ -153,7 +150,6 @@ public class ReadStructuralFeatureActionItemSemanticEditPolicy extends UMLBaseIt
 				// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), node));
 				break;
 			case OutputPinInReadStructuralFeatureAsResultEditPart.VISUAL_ID:
-
 				for(Iterator<?> it = node.getTargetEdges().iterator(); it.hasNext();) {
 					Edge incomingLink = (Edge)it.next();
 					switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -171,7 +167,6 @@ public class ReadStructuralFeatureActionItemSemanticEditPolicy extends UMLBaseIt
 						break;
 					}
 				}
-
 				for(Iterator<?> it = node.getSourceEdges().iterator(); it.hasNext();) {
 					Edge outgoingLink = (Edge)it.next();
 					switch(UMLVisualIDRegistry.getVisualID(outgoingLink)) {
@@ -284,5 +279,4 @@ public class ReadStructuralFeatureActionItemSemanticEditPolicy extends UMLBaseIt
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}
-
 }

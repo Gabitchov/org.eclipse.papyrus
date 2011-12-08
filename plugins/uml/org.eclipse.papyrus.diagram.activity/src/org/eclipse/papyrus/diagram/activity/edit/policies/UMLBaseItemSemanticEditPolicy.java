@@ -273,13 +273,10 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			if(provider == null) {
 				return UnexecutableCommand.INSTANCE;
 			}
-
 			// Retrieve create command from the Element Edit service
 			ICommand createGMFCommand = provider.getEditCommand(req);
-
 			return getGEFWrapper(createGMFCommand);
 		}
-
 		return null;
 	}
 
@@ -322,9 +319,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 * @generated
 	 */
 	protected Command getMoveCommand(MoveRequest req) {
-
 		return getGEFWrapper(new MoveElementsCommand(req));
-
 	}
 
 	/**
@@ -401,16 +396,13 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 */
 		public boolean canCreateActionLocalPrecondition_4001(Action source, Constraint target) {
 			if(source != null) {
-				if(source.getLocalPreconditions().contains(target)
-
-				) {
+				if(source.getLocalPreconditions().contains(target)) {
 					return false;
 				}
 				if(source == target) {
 					return false;
 				}
 			}
-
 			return canExistActionLocalPrecondition_4001(source, target);
 		}
 
@@ -419,16 +411,13 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 */
 		public boolean canCreateActionLocalPostcondition_4002(Action source, Constraint target) {
 			if(source != null) {
-				if(source.getLocalPostconditions().contains(target)
-
-				) {
+				if(source.getLocalPostconditions().contains(target)) {
 					return false;
 				}
 				if(source == target) {
 					return false;
 				}
 			}
-
 			return canExistActionLocalPostcondition_4002(source, target);
 		}
 
@@ -458,13 +447,10 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 */
 		public boolean canCreateCommentAnnotatedElement_4006(Comment source, Element target) {
 			if(source != null) {
-				if(source.getAnnotatedElements().contains(target)
-
-				) {
+				if(source.getAnnotatedElements().contains(target)) {
 					return false;
 				}
 			}
-
 			return canExistCommentAnnotatedElement_4006(source, target);
 		}
 
@@ -561,7 +547,6 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 						return false;
 					}
 				}
-
 				if(target instanceof Action) {
 					// rule validateObjectFlow_validateNoActions
 					// rule workaround by addition of pins in case of Action
@@ -643,7 +628,6 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 						return false;
 					}
 				}
-
 				return true;
 			} catch (Exception e) {
 				UMLDiagramEditorPlugin.getInstance().logError("Link constraint evaluation error", e); //$NON-NLS-1$

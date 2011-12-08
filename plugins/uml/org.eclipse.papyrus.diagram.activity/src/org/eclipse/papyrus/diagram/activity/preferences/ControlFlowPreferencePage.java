@@ -49,14 +49,12 @@ public class ControlFlowPreferencePage extends AbstractPapyrusLinkPreferencePage
 	 * @generated
 	 */
 	public static void initDefaults(IPreferenceStore store) {
-
 		String key = ActivityDiagramEditPart.MODEL_ID + "_ControlFlow";
 		Map<String, Boolean> map = getStaticLabelVisibilityPreferences();
 		for(String role : map.keySet()) {
 			String preferenceName = PreferenceConstantHelper.getLabelElementConstant(key, role, PreferenceConstantHelper.LABEL_VISIBILITY);
 			store.setDefault(preferenceName, map.get(role));
 		}
-
 	}
 
 	/**
@@ -76,15 +74,10 @@ public class ControlFlowPreferencePage extends AbstractPapyrusLinkPreferencePage
 	 */
 	private static TreeMap<String, Boolean> getStaticLabelVisibilityPreferences() {
 		TreeMap<String, Boolean> map = new TreeMap<String, Boolean>();
-
 		map.put("Name", Boolean.FALSE);//$NON-NLS-1$
-
 		map.put("Weight", Boolean.FALSE);//$NON-NLS-1$
-
 		map.put("Guard", Boolean.TRUE);
-
 		map.put("Stereotype", Boolean.TRUE);
-
 		return map;
 	}
 
@@ -106,10 +99,8 @@ public class ControlFlowPreferencePage extends AbstractPapyrusLinkPreferencePage
 	@Override
 	protected void createPageContents(Composite parent) {
 		super.createPageContents(parent);
-
 		// label visibility
 		ActivityEdgeLabelVisibilityGroup connectionGroupComposite = new ActivityEdgeLabelVisibilityGroup(parent, getTitle(), this);
 		addAbstractGroup(connectionGroupComposite);
 	}
-
 }

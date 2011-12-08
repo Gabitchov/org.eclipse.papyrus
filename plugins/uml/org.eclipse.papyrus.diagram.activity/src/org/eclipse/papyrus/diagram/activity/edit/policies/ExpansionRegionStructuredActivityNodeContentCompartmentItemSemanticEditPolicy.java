@@ -189,5 +189,4 @@ public class ExpansionRegionStructuredActivityNodeContentCompartmentItemSemantic
 		}
 		return super.getCreateCommand(req);
 	}
-
 }

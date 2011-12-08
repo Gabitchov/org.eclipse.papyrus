@@ -91,7 +91,6 @@ public class ControlFlowCreateCommand extends EditElementCommand {
 		if(!canExecute()) {
 			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 		}
-
 		ControlFlow newElement = UMLFactory.eINSTANCE.createControlFlow();
 		getContainer().getEdges().add(newElement);
 		newElement.setSource(getSource());
@@ -100,7 +99,6 @@ public class ControlFlowCreateCommand extends EditElementCommand {
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
-
 	}
 
 	/**
@@ -164,5 +162,4 @@ public class ControlFlowCreateCommand extends EditElementCommand {
 		}
 		return null;
 	}
-
 }

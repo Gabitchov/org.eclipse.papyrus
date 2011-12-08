@@ -89,9 +89,7 @@ import org.eclipse.uml2.uml.ObjectFlow;
 /**
  * @generated
  */
-public class ObjectFlowTransformationEditPart extends LabelEditPart
-
-implements ITextAwareEditPart, ILabelRoleProvider {
+public class ObjectFlowTransformationEditPart extends LabelEditPart implements ITextAwareEditPart, ILabelRoleProvider {
 
 	/**
 	 * @generated
@@ -123,7 +121,6 @@ implements ITextAwareEditPart, ILabelRoleProvider {
 
 	/** configuration from a registered edit dialog */
 	protected IDirectEditorConfiguration configuration;
-
 	/**
 	 * @generated
 	 */
@@ -325,7 +322,6 @@ implements ITextAwareEditPart, ILabelRoleProvider {
 						ie.printStackTrace();
 					}
 				}
-
 				// shouldn't get here
 				return null;
 			}
@@ -407,9 +403,7 @@ implements ITextAwareEditPart, ILabelRoleProvider {
 	 * @generated
 	 */
 	protected void performDirectEditRequest(Request request) {
-
 		final Request theRequest = request;
-
 		if(IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
 			directEditionMode = getDirectEditionType();
 		}
@@ -436,7 +430,6 @@ implements ITextAwareEditPart, ILabelRoleProvider {
 					return;
 				}
 				final Dialog finalDialog = dialog;
-
 				if(Window.OK == dialog.open()) {
 					TransactionalEditingDomain domain = getEditingDomain();
 					RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
@@ -444,7 +437,6 @@ implements ITextAwareEditPart, ILabelRoleProvider {
 						@Override
 						protected void doExecute() {
 							configuration.postEditAction(resolveSemanticElement(), ((ILabelEditorDialog)finalDialog).getValue());
-
 						}
 					};
 					domain.getCommandStack().execute(command);
@@ -452,7 +444,6 @@ implements ITextAwareEditPart, ILabelRoleProvider {
 			}
 			break;
 		case IDirectEdition.DEFAULT_DIRECT_EDITOR:
-
 			// initialize the direct edit manager
 			try {
 				getEditingDomain().runExclusive(new Runnable() {
@@ -632,7 +623,6 @@ implements ITextAwareEditPart, ILabelRoleProvider {
 		if(checkDefaultEdition()) {
 			return IDirectEdition.DEFAULT_DIRECT_EDITOR;
 		}
-
 		// not a named element. no specific editor => do nothing
 		return IDirectEdition.NO_DIRECT_EDITION;
 	}
@@ -751,7 +741,6 @@ implements ITextAwareEditPart, ILabelRoleProvider {
 				}
 			}
 		}
-
 		super.handleNotificationEvent(event);
 	}
 
@@ -790,7 +779,6 @@ implements ITextAwareEditPart, ILabelRoleProvider {
 		 * @generated
 		 */
 		public LinkAndCornerBentWithTextFigure() {
-
 			this.setBackgroundColor(THIS_BACK);
 			createContents();
 		}
@@ -799,15 +787,11 @@ implements ITextAwareEditPart, ILabelRoleProvider {
 		 * @generated NOT do not add link in this figure
 		 */
 		private void createContents() {
-
 			fCornerBentContent = new WrappedLabel();
-
 			this.add(fCornerBentContent);
-
 			fLinkToBehaviorProperty = new PolylineShape();
 			fLinkToBehaviorProperty.setLineWidth(1);
 			fLinkToBehaviorProperty.setLineStyle(Graphics.LINE_DASH);
-
 			// do not add link in this figure but refresh it when figure moves
 			addFigureListener(new FigureListener() {
 
@@ -815,7 +799,6 @@ implements ITextAwareEditPart, ILabelRoleProvider {
 					refreshLinkToBehaviorProperty();
 				}
 			});
-
 		}
 
 		/**
@@ -838,7 +821,6 @@ implements ITextAwareEditPart, ILabelRoleProvider {
 				// add in appropriate figure
 				getParent().add(getLinkToBehaviorProperty());
 			}
-
 			if(getParent() != null && getParent() instanceof ActivityEdgeDescriptor) {
 				Point parentCenter = getReferencePoint();
 				Rectangle currentBounds = getBounds();
@@ -864,7 +846,6 @@ implements ITextAwareEditPart, ILabelRoleProvider {
 		public PolylineShape getLinkToBehaviorProperty() {
 			return fLinkToBehaviorProperty;
 		}
-
 	}
 
 	/**
@@ -885,5 +866,4 @@ implements ITextAwareEditPart, ILabelRoleProvider {
 	public String getIconPathRole() {
 		return "";//$NON-NLS-1$
 	}
-
 }

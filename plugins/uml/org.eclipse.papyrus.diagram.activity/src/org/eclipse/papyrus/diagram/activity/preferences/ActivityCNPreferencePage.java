@@ -14,9 +14,7 @@ public class ActivityCNPreferencePage extends AbstractPapyrusNodePreferencePage 
 	/**
 	 * @generated
 	 */
-	public static final String compartments[] = { "ActivityFigureContentCompartment", "ActivityFigureParameterCompartment", "ActivityFigurePreconditionCompartment", "ActivityFigurePostCondtionCompartment"
-
-	};
+	public static final String compartments[] = { "ActivityFigureContentCompartment", "ActivityFigureParameterCompartment", "ActivityFigurePreconditionCompartment", "ActivityFigurePostCondtionCompartment" };
 
 	/**
 	 * @generated
@@ -38,16 +36,13 @@ public class ActivityCNPreferencePage extends AbstractPapyrusNodePreferencePage 
 	 * @generated
 	 */
 	public static void initDefaults(IPreferenceStore store) {
-
 		String key = ActivityDiagramEditPart.MODEL_ID + "_ActivityCN";
 		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.WIDTH), 200);
 		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.HEIGHT), 100);
-
 		for(String name : compartments) {
 			String preferenceName = PreferenceConstantHelper.getCompartmentElementConstant(key, name, PreferenceConstantHelper.COMPARTMENT_VISIBILITY);
 			store.setDefault(preferenceName, true);
 		}
-
 		// org.eclipse.jface.preference.PreferenceConverter.setDefault(store,
 		// org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName,
 		// org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_FILL),
@@ -56,7 +51,6 @@ public class ActivityCNPreferencePage extends AbstractPapyrusNodePreferencePage 
 		// org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName,
 		// org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_LINE),
 		// new org.eclipse.swt.graphics.RGB(0, 0, 0));
-
 		// Set the default for the gradient
 		// store.setDefault(org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName,
 		// org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.GRADIENT_POLICY),false);
@@ -68,7 +62,6 @@ public class ActivityCNPreferencePage extends AbstractPapyrusNodePreferencePage 
 		// store.setDefault(org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName,
 		// org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_GRADIENT),
 		// gradientPreferenceConverter.getPreferenceValue());
-
 	}
 
 	/**
@@ -80,5 +73,4 @@ public class ActivityCNPreferencePage extends AbstractPapyrusNodePreferencePage 
 			this.compartmentsList.add(name);
 		}
 	}
-
 }

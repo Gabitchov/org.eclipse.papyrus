@@ -67,9 +67,7 @@ import org.eclipse.swt.graphics.Image;
 /**
  * @generated NOT implements IPapyrusEditPart
  */
-public class ActivityParameterNodeEditPart extends
-
-BorderNamedElementEditPart implements IPapyrusEditPart {
+public class ActivityParameterNodeEditPart extends BorderNamedElementEditPart implements IPapyrusEditPart {
 
 	/**
 	 * @generated
@@ -114,7 +112,6 @@ BorderNamedElementEditPart implements IPapyrusEditPart {
 	 **/
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
-
 	}
 
 	/**
@@ -164,7 +161,6 @@ BorderNamedElementEditPart implements IPapyrusEditPart {
 			((ParameterNodeNameEditPart)childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
-
 		return false;
 	}
 
@@ -214,7 +210,6 @@ BorderNamedElementEditPart implements IPapyrusEditPart {
 		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
 		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
-
 		//FIXME: workaround for #154536
 		result.getBounds().setSize(result.getPreferredSize());
 		return result;
@@ -1110,7 +1105,6 @@ BorderNamedElementEditPart implements IPapyrusEditPart {
 	public Object getPreferredValue(EStructuralFeature feature) {
 		IPreferenceStore preferenceStore = (IPreferenceStore)getDiagramPreferencesHint().getPreferenceStore();
 		Object result = null;
-
 		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 			String prefColor = null;
 			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
@@ -1130,7 +1124,6 @@ BorderNamedElementEditPart implements IPapyrusEditPart {
 				result = gradientPreferenceConverter.getGradientData();
 			}
 		}
-
 		if(result == null) {
 			result = getStructuralFeatureValue(feature);
 		}
@@ -1149,12 +1142,10 @@ BorderNamedElementEditPart implements IPapyrusEditPart {
 		 * @generated NOT use StereotypeFigureHelper
 		 */
 		public ActivityParameterNodeDescriptor() {
-
 			GridLayout layoutThis = new GridLayout();
 			layoutThis.numColumns = 1;
 			layoutThis.makeColumnsEqualWidth = true;
 			this.setLayoutManager(layoutThis);
-
 			this.setLineWidth(1);
 			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(100), getMapMode().DPtoLP(50)));
 			// use StereotypeFigureHelper
@@ -1234,6 +1225,5 @@ BorderNamedElementEditPart implements IPapyrusEditPart {
 		public Label getStereotypesLabel() {
 			return null;// fActionStereotypeLabel;
 		}
-
 	}
 }

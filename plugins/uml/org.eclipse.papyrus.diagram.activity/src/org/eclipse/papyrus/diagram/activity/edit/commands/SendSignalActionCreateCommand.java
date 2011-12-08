@@ -79,7 +79,6 @@ public class SendSignalActionCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected EObject getElementToEdit() {
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -102,7 +101,6 @@ public class SendSignalActionCreateCommand extends EditElementCommand {
 	 * @generated NOT use the initialization popup, set appropriate parents
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-
 		// get the activity containing the new element
 		Activity parentActivity = null;
 		EObject parent = getElementToEdit();
@@ -112,9 +110,7 @@ public class SendSignalActionCreateCommand extends EditElementCommand {
 			}
 			parent = parent.eContainer();
 		}
-
 		SendSignalAction newElement = UMLFactory.eINSTANCE.createSendSignalAction();
-
 		CreateSendSignalActionDialog dialog = new CreateSendSignalActionDialog(Display.getDefault().getActiveShell(), parentActivity);
 		if(IDialogConstants.OK_ID == dialog.open()) {
 			// initialize the invoked element (no need to use a command, since
@@ -128,21 +124,17 @@ public class SendSignalActionCreateCommand extends EditElementCommand {
 		} else {
 			return CommandResult.newCancelledCommandResult();
 		}
-
 		// set appropriate parents
 		if(!CreateCommandUtil.setNodeParents(newElement, getRequest(), getElementToEdit())) {
 			return CommandResult.newCancelledCommandResult();
 		}
 		// Activity owner = (Activity)getElementToEdit();
 		// owner.getNodes().add(newElement);
-
 		if(newElement.getName() == null || newElement.getName().length() == 0) {
 			// initialize name if it is not yet
 			ElementInitializers.getInstance().init_SendSignalAction_3052(newElement);
 		}
-
 		doConfigure(newElement, monitor, info);
-
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
@@ -160,5 +152,4 @@ public class SendSignalActionCreateCommand extends EditElementCommand {
 			configureCommand.execute(monitor, info);
 		}
 	}
-
 }

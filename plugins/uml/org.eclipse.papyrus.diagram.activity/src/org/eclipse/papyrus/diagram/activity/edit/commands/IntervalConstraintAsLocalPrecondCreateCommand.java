@@ -74,7 +74,6 @@ public class IntervalConstraintAsLocalPrecondCreateCommand extends EditElementCo
 	 * @generated
 	 */
 	protected EObject getElementToEdit() {
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -89,25 +88,18 @@ public class IntervalConstraintAsLocalPrecondCreateCommand extends EditElementCo
 	 * @generated
 	 */
 	public boolean canExecute() {
-
 		return true;
-
 	}
 
 	/**
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-
 		IntervalConstraint newElement = UMLFactory.eINSTANCE.createIntervalConstraint();
-
 		Action owner = (Action)getElementToEdit();
 		owner.getLocalPreconditions().add(newElement);
-
 		ElementInitializers.getInstance().init_IntervalConstraint_3032(newElement);
-
 		doConfigure(newElement, monitor, info);
-
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
@@ -125,5 +117,4 @@ public class IntervalConstraintAsLocalPrecondCreateCommand extends EditElementCo
 			configureCommand.execute(monitor, info);
 		}
 	}
-
 }

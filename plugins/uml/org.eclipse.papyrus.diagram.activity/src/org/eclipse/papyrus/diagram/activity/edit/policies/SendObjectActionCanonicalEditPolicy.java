@@ -182,7 +182,6 @@ public class SendObjectActionCanonicalEditPolicy extends CanonicalEditPolicy {
 			IAdaptable elementAdapter = new CanonicalElementAdapter(next.getModelElement(), hint);
 			CreateViewRequest.ViewDescriptor descriptor = new CreateViewRequest.ViewDescriptor(elementAdapter, Node.class, hint, ViewUtil.APPEND, false, host().getDiagramPreferencesHint());
 			viewDescriptors.add(descriptor);
-
 			LinkedList<View> possibleMatches = potentialViews.get(next);
 			if(possibleMatches != null) {
 				// from potential matches, leave those that were not eventually used for some other NodeDescriptor (i.e. those left as orphaned)
@@ -206,7 +205,6 @@ public class SendObjectActionCanonicalEditPolicy extends CanonicalEditPolicy {
 				}
 			}
 		}
-
 		boolean changed = deleteViews(orphaned.iterator());
 		//
 		CreateViewRequest request = getCreateViewRequest(viewDescriptors);
@@ -229,7 +227,6 @@ public class SendObjectActionCanonicalEditPolicy extends CanonicalEditPolicy {
 			DeferredLayoutCommand layoutCmd = new DeferredLayoutCommand(host().getEditingDomain(), createdViews, host());
 			executeCommand(new ICommandProxy(layoutCmd));
 		}
-
 		makeViewsImmutable(createdViews);
 	}
 
@@ -257,7 +254,6 @@ public class SendObjectActionCanonicalEditPolicy extends CanonicalEditPolicy {
 	protected String getFactoryHint(IAdaptable elementAdapter) {
 		InputPin targetPin = ((SendObjectAction)getSemanticHost()).getTarget();
 		InputPin requestPin = ((SendObjectAction)getSemanticHost()).getRequest();
-
 		Object element = elementAdapter.getAdapter(EObject.class);
 		if(element instanceof ValuePin) {
 			if(element.equals(targetPin)) {
@@ -280,5 +276,4 @@ public class SendObjectActionCanonicalEditPolicy extends CanonicalEditPolicy {
 		}
 		return null;
 	}
-
 }

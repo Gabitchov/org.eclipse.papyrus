@@ -78,9 +78,7 @@ import org.eclipse.swt.graphics.Image;
 /**
  * @generated NOT Implements IPapyrusEditPart
  */
-public class ConditionalNodeEditPart extends
-
-ShapeNodeEditPart implements IPapyrusEditPart {
+public class ConditionalNodeEditPart extends ShapeNodeEditPart implements IPapyrusEditPart {
 
 	/**
 	 * @generated
@@ -170,14 +168,12 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 			((ConditionalNodeKeywordEditPart)childEditPart).setLabel(getPrimaryShape().getKeyword());
 			return true;
 		}
-
 		if(childEditPart instanceof ConditionalNodeStructuredActivityNodeContentCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getStructuredActivityNodeCompartment();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.add(((ConditionalNodeStructuredActivityNodeContentCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
-
 		return false;
 	}
 
@@ -236,7 +232,6 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
 		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
-
 		return result;
 	}
 
@@ -1395,29 +1390,19 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 		 * @generated NOT Instanciate stereotypeHelper
 		 */
 		public StructuredActivityNodeDescriptor() {
-
 			FlowLayoutAdvanced layoutThis = new FlowLayoutAdvanced();
-
 			layoutThis.setStretchMinorAxis(true);
-
 			layoutThis.setMinorAlignment(FlowLayout.ALIGN_CENTER);
-
 			layoutThis.setMajorAlignment(FlowLayout.ALIGN_TOPLEFT);
-
 			layoutThis.setMajorSpacing(0);
-
 			layoutThis.setMinorSpacing(0);
-
 			layoutThis.setHorizontal(false);
-
 			this.setLayoutManager(layoutThis);
-
 			this.setCornerDimensions(new Dimension(getMapMode().DPtoLP(8), getMapMode().DPtoLP(8)));
 			this.setLineWidth(0);
 			this.setOutline(false);
 			this.setBorder(createBorder0());
 			this.setFill(true);
-
 			createContents();
 			// Initialize the opacity preferences
 			OpacityFactoryHelper.initOpacityPreferences(IActivityPreferenceConstants.PREF_CONDITIONAL_NODE_ALPHA, store, this);
@@ -1449,51 +1434,32 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 		 * @generated
 		 */
 		private void createContents() {
-
 			fFigureCompartmentLabelStructuredActivityNode = new RoundedRectangle();
 			fFigureCompartmentLabelStructuredActivityNode.setCornerDimensions(new Dimension(getMapMode().DPtoLP(8), getMapMode().DPtoLP(8)));
 			fFigureCompartmentLabelStructuredActivityNode.setFill(false);
 			fFigureCompartmentLabelStructuredActivityNode.setOutline(false);
 			fFigureCompartmentLabelStructuredActivityNode.setLineWidth(0);
-
 			FlowLayoutAdvancedConstraint constraintFFigureCompartmentLabelStructuredActivityNode = new FlowLayoutAdvancedConstraint();
-
 			constraintFFigureCompartmentLabelStructuredActivityNode.setHasMinsize(true);
-
 			this.add(fFigureCompartmentLabelStructuredActivityNode, constraintFFigureCompartmentLabelStructuredActivityNode);
-
 			GravityConstrainedFlowLayout layoutFFigureCompartmentLabelStructuredActivityNode = new GravityConstrainedFlowLayout();
-
 			fFigureCompartmentLabelStructuredActivityNode.setLayoutManager(layoutFFigureCompartmentLabelStructuredActivityNode);
-
 			fKeyword = new WrappingLabel();
-
 			fKeyword.setTextJustification(SWT.LEFT);
-
 			fKeyword.setTextAlignment(PositionConstants.LEFT);
-
 			fKeyword.setTextWrap(true);
-
 			fKeyword.setBorder(new MarginBorder(getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5)));
-
 			GravityConstrainedFlowLayoutConstraint constraintFKeyword = new GravityConstrainedFlowLayoutConstraint();
-
 			constraintFKeyword.setAlign(GravityConstrainedFlowLayout.ALIGN_TOPLEFT);
-
 			fFigureCompartmentLabelStructuredActivityNode.add(fKeyword, constraintFKeyword);
-
 			fStructuredActivityNodeCompartment = new RoundedRectangle();
 			fStructuredActivityNodeCompartment.setCornerDimensions(new Dimension(getMapMode().DPtoLP(8), getMapMode().DPtoLP(8)));
 			fStructuredActivityNodeCompartment.setFill(false);
 			fStructuredActivityNodeCompartment.setOutline(false);
 			fStructuredActivityNodeCompartment.setLineWidth(0);
-
 			FlowLayoutAdvancedConstraint constraintFStructuredActivityNodeCompartment = new FlowLayoutAdvancedConstraint();
-
 			constraintFStructuredActivityNodeCompartment.setFull(true);
-
 			this.add(fStructuredActivityNodeCompartment, constraintFStructuredActivityNodeCompartment);
-
 		}
 
 		/**
@@ -1560,10 +1526,8 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 		 */
 		@Deprecated
 		public Label getStereotypesLabel() {
-
 			return null;
 		}
-
 	}
 
 	/**
@@ -1573,7 +1537,6 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 	public Object getPreferredValue(EStructuralFeature feature) {
 		IPreferenceStore preferenceStore = (IPreferenceStore)getDiagramPreferencesHint().getPreferenceStore();
 		Object result = null;
-
 		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 			String prefColor = null;
 			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
@@ -1593,7 +1556,6 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 				result = gradientPreferenceConverter.getGradientData();
 			}
 		}
-
 		if(result == null) {
 			result = getStructuralFeatureValue(feature);
 		}

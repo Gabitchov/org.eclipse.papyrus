@@ -189,5 +189,4 @@ public class InterruptibleActivityRegionInterruptibleActivityRegionContentCompar
 		}
 		return super.getCreateCommand(req);
 	}
-
 }

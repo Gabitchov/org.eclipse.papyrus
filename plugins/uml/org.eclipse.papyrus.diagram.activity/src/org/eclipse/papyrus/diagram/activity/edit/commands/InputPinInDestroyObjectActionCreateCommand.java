@@ -74,7 +74,6 @@ public class InputPinInDestroyObjectActionCreateCommand extends EditElementComma
 	 * @generated
 	 */
 	protected EObject getElementToEdit() {
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -93,25 +92,18 @@ public class InputPinInDestroyObjectActionCreateCommand extends EditElementComma
 		if(container.getTarget() != null) {
 			return false;
 		}
-
 		return true;
-
 	}
 
 	/**
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-
 		InputPin newElement = UMLFactory.eINSTANCE.createInputPin();
-
 		DestroyObjectAction owner = (DestroyObjectAction)getElementToEdit();
 		owner.setTarget(newElement);
-
 		ElementInitializers.getInstance().init_InputPin_3096(newElement);
-
 		doConfigure(newElement, monitor, info);
-
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
@@ -129,5 +121,4 @@ public class InputPinInDestroyObjectActionCreateCommand extends EditElementComma
 			configureCommand.execute(monitor, info);
 		}
 	}
-
 }

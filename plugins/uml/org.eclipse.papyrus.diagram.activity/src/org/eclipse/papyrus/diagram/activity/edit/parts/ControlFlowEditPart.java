@@ -31,9 +31,7 @@ import org.eclipse.papyrus.diagram.common.figure.edge.UMLEdgeFigure;
 /**
  * @generated
  */
-public class ControlFlowEditPart extends UMLConnectionNodeEditPart
-
-implements ITreeBranchEditPart {
+public class ControlFlowEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -105,7 +103,6 @@ implements ITreeBranchEditPart {
 	 * 
 	 * @generated
 	 */
-
 	protected Connection createConnectionFigure() {
 		return new ActivityEdgeDescriptor();
 	}
@@ -118,7 +115,7 @@ implements ITreeBranchEditPart {
 	}
 
 	/**
-	 * @generated NOT inherits from UMLEdgeFigure to manage stereotype label
+	 * @generated inherits from UMLEdgeFigure to manage stereotype label
 	 */
 	public class ActivityEdgeDescriptor extends UMLEdgeFigure {
 
@@ -138,7 +135,7 @@ implements ITreeBranchEditPart {
 		private WrappedLabel fAppliedStereotypeLabel;
 
 		/**
-		 * @generated NOT call the super constructor
+		 * @generated call the super constructor
 		 */
 		public ActivityEdgeDescriptor() {
 			super();
@@ -147,20 +144,14 @@ implements ITreeBranchEditPart {
 		}
 
 		/**
-		 * @generated NOT
+		 * @generated
 		 */
 		protected void createContents() {
 			super.createContents();
-
-			// fAppliedStereotypeLabel = new WrappingLabel();
-			// fAppliedStereotypeLabel.setText("");
-
-			// this.add(fAppliedStereotypeLabel);
-
 		}
 
 		/**
-		 * @generated NOT scale changed from default 7:3 to 5:2 to make a
+		 * @generated scale changed from default 7:3 to 5:2 to make a
 		 *            smaller arrow
 		 */
 		private RotatableDecoration createTargetDecoration() {
@@ -190,12 +181,10 @@ implements ITreeBranchEditPart {
 		}
 
 		/**
-		 * @generated NOT get the stereotype label of super class
+		 * @generated get the stereotype label of super class
 		 */
 		public WrappingLabel getAppliedStereotypeLabel() {
 			return super.getAppliedStereotypeLabel();
 		}
-
 	}
-
 }

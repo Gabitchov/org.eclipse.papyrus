@@ -80,11 +80,7 @@ import org.eclipse.ui.PlatformUI;
 /**
  * @generated
  */
-public class ShapeNamedElementNameEditPart
-
-extends LabelEditPart
-
-implements ITextAwareEditPart, IBorderItemEditPart, ILabelRoleProvider {
+public class ShapeNamedElementNameEditPart extends LabelEditPart implements ITextAwareEditPart, IBorderItemEditPart, ILabelRoleProvider {
 
 	/**
 	 * @generated
@@ -124,7 +120,6 @@ implements ITextAwareEditPart, IBorderItemEditPart, ILabelRoleProvider {
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
-
 	/**
 	 * @generated
 	 */
@@ -332,7 +327,6 @@ implements ITextAwareEditPart, IBorderItemEditPart, ILabelRoleProvider {
 						ie.printStackTrace();
 					}
 				}
-
 				// shouldn't get here
 				return null;
 			}
@@ -414,9 +408,7 @@ implements ITextAwareEditPart, IBorderItemEditPart, ILabelRoleProvider {
 	 * @generated
 	 */
 	protected void performDirectEditRequest(Request request) {
-
 		final Request theRequest = request;
-
 		if(IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
 			directEditionMode = getDirectEditionType();
 		}
@@ -443,7 +435,6 @@ implements ITextAwareEditPart, IBorderItemEditPart, ILabelRoleProvider {
 					return;
 				}
 				final Dialog finalDialog = dialog;
-
 				if(Window.OK == dialog.open()) {
 					TransactionalEditingDomain domain = getEditingDomain();
 					RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
@@ -451,7 +442,6 @@ implements ITextAwareEditPart, IBorderItemEditPart, ILabelRoleProvider {
 						@Override
 						protected void doExecute() {
 							configuration.postEditAction(resolveSemanticElement(), ((ILabelEditorDialog)finalDialog).getValue());
-
 						}
 					};
 					domain.getCommandStack().execute(command);
@@ -459,7 +449,6 @@ implements ITextAwareEditPart, IBorderItemEditPart, ILabelRoleProvider {
 			}
 			break;
 		case IDirectEdition.DEFAULT_DIRECT_EDITOR:
-
 			// initialize the direct edit manager
 			try {
 				getEditingDomain().runExclusive(new Runnable() {
@@ -621,7 +610,6 @@ implements ITextAwareEditPart, IBorderItemEditPart, ILabelRoleProvider {
 		if(checkDefaultEdition()) {
 			return IDirectEdition.DEFAULT_DIRECT_EDITOR;
 		}
-
 		// not a named element. no specific editor => do nothing
 		return IDirectEdition.NO_DIRECT_EDITION;
 	}
@@ -771,5 +759,4 @@ implements ITextAwareEditPart, IBorderItemEditPart, ILabelRoleProvider {
 	public String getIconPathRole() {
 		return "platform:/plugin/org.eclipse.papyrus.diagram.common/icons/label_role/name.png";//$NON-NLS-1$
 	}
-
 }

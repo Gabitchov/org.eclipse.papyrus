@@ -51,9 +51,7 @@ import org.eclipse.swt.graphics.Color;
 /**
  * @generated
  */
-public class CentralBufferNodeEditPart extends
-
-AbstractBorderedShapeEditPart {
+public class CentralBufferNodeEditPart extends AbstractBorderedShapeEditPart {
 
 	/**
 	 * @generated
@@ -142,7 +140,6 @@ AbstractBorderedShapeEditPart {
 			((CentralBufferNodeLabelEditPart)childEditPart).setLabel(getPrimaryShape().getObjectNodeLabel());
 			return true;
 		}
-
 		return false;
 	}
 
@@ -209,7 +206,6 @@ AbstractBorderedShapeEditPart {
 		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
 		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
-
 		return result;
 	}
 
@@ -1119,13 +1115,11 @@ AbstractBorderedShapeEditPart {
 		 * @generated NOT use super figure name label instead
 		 */
 		private void createContents() {
-
 			// use super figure name label instead
 			getNameLabel().setTextJustification(WrappingLabel.CENTER);
 			getNameLabel().setAlignment(WrappingLabel.CENTER);
 			getNameLabel().setTextWrap(true);
 			getNameLabel().setBorder(new MarginBorder(getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5)));
-
 			// fObjectNodeLabel = new WrappingLabel();
 			//
 			//
@@ -1145,7 +1139,6 @@ AbstractBorderedShapeEditPart {
 			return getNameLabel();
 			// return fObjectNodeLabel;
 		}
-
 	}
 
 	/**
@@ -1155,7 +1148,6 @@ AbstractBorderedShapeEditPart {
 	public Object getPreferredValue(EStructuralFeature feature) {
 		IPreferenceStore preferenceStore = (IPreferenceStore)getDiagramPreferencesHint().getPreferenceStore();
 		Object result = null;
-
 		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 			String prefColor = null;
 			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
@@ -1175,7 +1167,6 @@ AbstractBorderedShapeEditPart {
 				result = gradientPreferenceConverter.getGradientData();
 			}
 		}
-
 		if(result == null) {
 			result = getStructuralFeatureValue(feature);
 		}

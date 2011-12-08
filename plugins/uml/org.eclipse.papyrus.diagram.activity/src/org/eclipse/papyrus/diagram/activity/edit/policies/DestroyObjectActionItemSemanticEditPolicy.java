@@ -87,7 +87,6 @@ public class DestroyObjectActionItemSemanticEditPolicy extends UMLBaseItemSemant
 		View view = (View)getHost().getModel();
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
 		cmd.setTransactionNestingEnabled(true);
-
 		EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
 		if(annotation == null) {
 			// there are indirectly referenced children, need extra commands: false
@@ -113,7 +112,6 @@ public class DestroyObjectActionItemSemanticEditPolicy extends UMLBaseItemSemant
 			Node node = (Node)nit.next();
 			switch(UMLVisualIDRegistry.getVisualID(node)) {
 			case InputPinInDestroyObjectActionEditPart.VISUAL_ID:
-
 				for(Iterator<?> it = node.getTargetEdges().iterator(); it.hasNext();) {
 					Edge incomingLink = (Edge)it.next();
 					switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -131,7 +129,6 @@ public class DestroyObjectActionItemSemanticEditPolicy extends UMLBaseItemSemant
 						break;
 					}
 				}
-
 				for(Iterator<?> it = node.getSourceEdges().iterator(); it.hasNext();) {
 					Edge outgoingLink = (Edge)it.next();
 					switch(UMLVisualIDRegistry.getVisualID(outgoingLink)) {
@@ -244,5 +241,4 @@ public class DestroyObjectActionItemSemanticEditPolicy extends UMLBaseItemSemant
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}
-
 }

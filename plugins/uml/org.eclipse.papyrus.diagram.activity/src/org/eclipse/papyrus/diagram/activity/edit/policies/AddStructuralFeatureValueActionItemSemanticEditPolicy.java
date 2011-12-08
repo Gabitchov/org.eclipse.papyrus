@@ -84,7 +84,6 @@ public class AddStructuralFeatureValueActionItemSemanticEditPolicy extends UMLBa
 		View view = (View)getHost().getModel();
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
 		cmd.setTransactionNestingEnabled(true);
-
 		EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
 		if(annotation == null) {
 			// there are indirectly referenced children, need extra commands: false
@@ -110,7 +109,6 @@ public class AddStructuralFeatureValueActionItemSemanticEditPolicy extends UMLBa
 			Node node = (Node)nit.next();
 			switch(UMLVisualIDRegistry.getVisualID(node)) {
 			case InputPinInAddStructuralFeatureValueActionAsObjectEditPart.VISUAL_ID:
-
 				for(Iterator<?> it = node.getTargetEdges().iterator(); it.hasNext();) {
 					Edge incomingLink = (Edge)it.next();
 					switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -128,7 +126,6 @@ public class AddStructuralFeatureValueActionItemSemanticEditPolicy extends UMLBa
 						break;
 					}
 				}
-
 				for(Iterator<?> it = node.getSourceEdges().iterator(); it.hasNext();) {
 					Edge outgoingLink = (Edge)it.next();
 					switch(UMLVisualIDRegistry.getVisualID(outgoingLink)) {
@@ -145,7 +142,6 @@ public class AddStructuralFeatureValueActionItemSemanticEditPolicy extends UMLBa
 				// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), node));
 				break;
 			case InputPinInAddStructuralFeatureValueActionAsValueEditPart.VISUAL_ID:
-
 				for(Iterator<?> it = node.getTargetEdges().iterator(); it.hasNext();) {
 					Edge incomingLink = (Edge)it.next();
 					switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -163,7 +159,6 @@ public class AddStructuralFeatureValueActionItemSemanticEditPolicy extends UMLBa
 						break;
 					}
 				}
-
 				for(Iterator<?> it = node.getSourceEdges().iterator(); it.hasNext();) {
 					Edge outgoingLink = (Edge)it.next();
 					switch(UMLVisualIDRegistry.getVisualID(outgoingLink)) {
@@ -180,7 +175,6 @@ public class AddStructuralFeatureValueActionItemSemanticEditPolicy extends UMLBa
 				// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), node));
 				break;
 			case OutputPinInAddStructuralFeatureValueActionAsResultEditPart.VISUAL_ID:
-
 				for(Iterator<?> it = node.getTargetEdges().iterator(); it.hasNext();) {
 					Edge incomingLink = (Edge)it.next();
 					switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -198,7 +192,6 @@ public class AddStructuralFeatureValueActionItemSemanticEditPolicy extends UMLBa
 						break;
 					}
 				}
-
 				for(Iterator<?> it = node.getSourceEdges().iterator(); it.hasNext();) {
 					Edge outgoingLink = (Edge)it.next();
 					switch(UMLVisualIDRegistry.getVisualID(outgoingLink)) {
@@ -311,5 +304,4 @@ public class AddStructuralFeatureValueActionItemSemanticEditPolicy extends UMLBa
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}
-
 }

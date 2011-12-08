@@ -25,9 +25,7 @@ import org.eclipse.papyrus.diagram.activity.edit.policies.ActionLocalPostconditi
 /**
  * @generated
  */
-public class ActionLocalPostconditionEditPart extends ConnectionNodeEditPart
-
-implements ITreeBranchEditPart {
+public class ActionLocalPostconditionEditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -57,7 +55,6 @@ implements ITreeBranchEditPart {
 	 * 
 	 * @generated
 	 */
-
 	protected Connection createConnectionFigure() {
 		return new DashedLinkDescriptor();
 	}
@@ -79,9 +76,6 @@ implements ITreeBranchEditPart {
 		 */
 		public DashedLinkDescriptor() {
 			this.setLineStyle(Graphics.LINE_DASH);
-
 		}
-
 	}
-
 }

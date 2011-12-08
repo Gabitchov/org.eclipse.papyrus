@@ -61,7 +61,6 @@ public class CreateObjectActionCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected EObject getElementToEdit() {
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -76,25 +75,18 @@ public class CreateObjectActionCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
-
 		return true;
-
 	}
 
 	/**
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-
 		CreateObjectAction newElement = UMLFactory.eINSTANCE.createCreateObjectAction();
-
 		Activity owner = (Activity)getElementToEdit();
 		owner.getNodes().add(newElement);
-
 		ElementInitializers.getInstance().init_CreateObjectAction_3086(newElement);
-
 		doConfigure(newElement, monitor, info);
-
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
@@ -112,5 +104,4 @@ public class CreateObjectActionCreateCommand extends EditElementCommand {
 			configureCommand.execute(monitor, info);
 		}
 	}
-
 }

@@ -189,5 +189,4 @@ public class ConditionalNodeStructuredActivityNodeContentCompartmentItemSemantic
 		}
 		return super.getCreateCommand(req);
 	}
-
 }

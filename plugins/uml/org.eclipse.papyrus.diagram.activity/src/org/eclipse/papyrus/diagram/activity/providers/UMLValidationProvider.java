@@ -367,5 +367,4 @@ public class UMLValidationProvider {
 	static String formatElement(EObject object) {
 		return EMFCoreUtil.getQualifiedName(object, true);
 	}
-
 }

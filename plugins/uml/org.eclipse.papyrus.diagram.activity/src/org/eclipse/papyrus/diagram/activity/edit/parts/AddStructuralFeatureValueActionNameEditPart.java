@@ -295,7 +295,6 @@ public class AddStructuralFeatureValueActionNameEditPart extends CompartmentEdit
 						ie.printStackTrace();
 					}
 				}
-
 				// shouldn't get here
 				return null;
 			}
@@ -377,9 +376,7 @@ public class AddStructuralFeatureValueActionNameEditPart extends CompartmentEdit
 	 * @generated
 	 */
 	protected void performDirectEditRequest(Request request) {
-
 		final Request theRequest = request;
-
 		if(IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
 			directEditionMode = getDirectEditionType();
 		}
@@ -406,7 +403,6 @@ public class AddStructuralFeatureValueActionNameEditPart extends CompartmentEdit
 					return;
 				}
 				final Dialog finalDialog = dialog;
-
 				if(Window.OK == dialog.open()) {
 					TransactionalEditingDomain domain = getEditingDomain();
 					RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
@@ -414,7 +410,6 @@ public class AddStructuralFeatureValueActionNameEditPart extends CompartmentEdit
 						@Override
 						protected void doExecute() {
 							configuration.postEditAction(resolveSemanticElement(), ((ILabelEditorDialog)finalDialog).getValue());
-
 						}
 					};
 					domain.getCommandStack().execute(command);
@@ -422,7 +417,6 @@ public class AddStructuralFeatureValueActionNameEditPart extends CompartmentEdit
 			}
 			break;
 		case IDirectEdition.DEFAULT_DIRECT_EDITOR:
-
 			// initialize the direct edit manager
 			try {
 				getEditingDomain().runExclusive(new Runnable() {
@@ -584,7 +578,6 @@ public class AddStructuralFeatureValueActionNameEditPart extends CompartmentEdit
 		if(checkDefaultEdition()) {
 			return IDirectEdition.DEFAULT_DIRECT_EDITOR;
 		}
-
 		// not a named element. no specific editor => do nothing
 		return IDirectEdition.NO_DIRECT_EDITION;
 	}
@@ -719,7 +712,6 @@ public class AddStructuralFeatureValueActionNameEditPart extends CompartmentEdit
 				}
 			}
 		}
-
 		super.handleNotificationEvent(event);
 	}
 
@@ -749,7 +741,6 @@ public class AddStructuralFeatureValueActionNameEditPart extends CompartmentEdit
 	 */
 	protected void addOwnerElementListeners() {
 		addListenerFilter(ADD_PARENT_MODEL, this, ((View)getParent().getModel())); //$NON-NLS-1$
-
 	}
 
 	/**
@@ -758,7 +749,6 @@ public class AddStructuralFeatureValueActionNameEditPart extends CompartmentEdit
 	public void deactivate() {
 		removeOwnerElementListeners();
 		super.deactivate();
-
 	}
 
 	/**
@@ -766,7 +756,5 @@ public class AddStructuralFeatureValueActionNameEditPart extends CompartmentEdit
 	 */
 	protected void removeOwnerElementListeners() {
 		removeListenerFilter(ADD_PARENT_MODEL);
-
 	}
-
 }

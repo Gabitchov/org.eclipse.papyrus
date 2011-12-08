@@ -296,7 +296,6 @@ public class ConstraintAsLocalPrecondBodyEditPart extends CompartmentEditPart im
 						ie.printStackTrace();
 					}
 				}
-
 				// shouldn't get here
 				return null;
 			}
@@ -378,9 +377,7 @@ public class ConstraintAsLocalPrecondBodyEditPart extends CompartmentEditPart im
 	 * @generated
 	 */
 	protected void performDirectEditRequest(Request request) {
-
 		final Request theRequest = request;
-
 		if(IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
 			directEditionMode = getDirectEditionType();
 		}
@@ -407,7 +404,6 @@ public class ConstraintAsLocalPrecondBodyEditPart extends CompartmentEditPart im
 					return;
 				}
 				final Dialog finalDialog = dialog;
-
 				if(Window.OK == dialog.open()) {
 					TransactionalEditingDomain domain = getEditingDomain();
 					RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
@@ -415,7 +411,6 @@ public class ConstraintAsLocalPrecondBodyEditPart extends CompartmentEditPart im
 						@Override
 						protected void doExecute() {
 							configuration.postEditAction(resolveSemanticElement(), ((ILabelEditorDialog)finalDialog).getValue());
-
 						}
 					};
 					domain.getCommandStack().execute(command);
@@ -423,7 +418,6 @@ public class ConstraintAsLocalPrecondBodyEditPart extends CompartmentEditPart im
 			}
 			break;
 		case IDirectEdition.DEFAULT_DIRECT_EDITOR:
-
 			// initialize the direct edit manager
 			try {
 				getEditingDomain().runExclusive(new Runnable() {
@@ -585,7 +579,6 @@ public class ConstraintAsLocalPrecondBodyEditPart extends CompartmentEditPart im
 		if(checkDefaultEdition()) {
 			return IDirectEdition.DEFAULT_DIRECT_EDITOR;
 		}
-
 		// not a named element. no specific editor => do nothing
 		return IDirectEdition.NO_DIRECT_EDITION;
 	}
@@ -720,7 +713,6 @@ public class ConstraintAsLocalPrecondBodyEditPart extends CompartmentEditPart im
 				}
 			}
 		}
-
 		super.handleNotificationEvent(event);
 	}
 
@@ -750,7 +742,6 @@ public class ConstraintAsLocalPrecondBodyEditPart extends CompartmentEditPart im
 	 */
 	protected void addOwnerElementListeners() {
 		addListenerFilter(ADD_PARENT_MODEL, this, ((View)getParent().getModel())); //$NON-NLS-1$
-
 	}
 
 	/**
@@ -759,7 +750,6 @@ public class ConstraintAsLocalPrecondBodyEditPart extends CompartmentEditPart im
 	public void deactivate() {
 		removeOwnerElementListeners();
 		super.deactivate();
-
 	}
 
 	/**
@@ -767,7 +757,5 @@ public class ConstraintAsLocalPrecondBodyEditPart extends CompartmentEditPart im
 	 */
 	protected void removeOwnerElementListeners() {
 		removeListenerFilter(ADD_PARENT_MODEL);
-
 	}
-
 }

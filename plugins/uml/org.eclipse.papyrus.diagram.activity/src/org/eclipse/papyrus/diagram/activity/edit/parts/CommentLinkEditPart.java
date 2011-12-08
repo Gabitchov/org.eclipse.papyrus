@@ -23,9 +23,7 @@ import org.eclipse.papyrus.diagram.activity.figures.LinkFigure;
 /**
  * @generated
  */
-public class CommentLinkEditPart extends ConnectionNodeEditPart
-
-implements ITreeBranchEditPart {
+public class CommentLinkEditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -65,5 +63,4 @@ implements ITreeBranchEditPart {
 	public LinkFigure getPrimaryShape() {
 		return (LinkFigure)getFigure();
 	}
-
 }

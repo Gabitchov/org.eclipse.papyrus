@@ -75,7 +75,6 @@ public class ConstraintInActivityAsPostcondCreateCommand extends EditElementComm
 	 * @generated
 	 */
 	protected EObject getElementToEdit() {
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -90,27 +89,20 @@ public class ConstraintInActivityAsPostcondCreateCommand extends EditElementComm
 	 * @generated
 	 */
 	public boolean canExecute() {
-
 		return true;
-
 	}
 
 	/**
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-
 		Constraint newElement = UMLFactory.eINSTANCE.createConstraint();
-
 		Namespace owner = (Namespace)getElementToEdit();
 		owner.getOwnedRules().add(newElement);
 		Behavior childHolder = (Behavior)getElementToEdit();
 		childHolder.getPostconditions().add(newElement);
-
 		ElementInitializers.getInstance().init_Constraint_3003(newElement);
-
 		doConfigure(newElement, monitor, info);
-
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
@@ -128,5 +120,4 @@ public class ConstraintInActivityAsPostcondCreateCommand extends EditElementComm
 			configureCommand.execute(monitor, info);
 		}
 	}
-
 }

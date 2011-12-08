@@ -39,5 +39,4 @@ public class ActivityActivityPostConditionsCompartmentItemSemanticEditPolicy ext
 		}
 		return super.getCreateCommand(req);
 	}
-
 }

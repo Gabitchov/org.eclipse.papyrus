@@ -26,5 +26,4 @@ public class ActivityCNParametersCompartmentItemSemanticEditPolicy extends UMLBa
 		}
 		return super.getCreateCommand(req);
 	}
-
 }

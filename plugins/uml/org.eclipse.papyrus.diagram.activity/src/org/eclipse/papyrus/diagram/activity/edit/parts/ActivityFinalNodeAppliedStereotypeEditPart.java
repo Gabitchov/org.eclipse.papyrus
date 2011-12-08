@@ -58,6 +58,7 @@ import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.activity.providers.UMLParserProvider;
 import org.eclipse.papyrus.diagram.common.directedit.MultilineLabelDirectEditManager;
+import org.eclipse.papyrus.diagram.common.editparts.ILabelRoleProvider;
 import org.eclipse.papyrus.diagram.common.editparts.IPapyrusEditPart;
 import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeExternalNodeEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
@@ -86,9 +87,7 @@ import org.eclipse.ui.PlatformUI;
 /**
  * @generated NOT implements IPapyrusEditPart
  */
-public class ActivityFinalNodeAppliedStereotypeEditPart
-
-extends LabelEditPart implements ITextAwareEditPart, IBorderItemEditPart, IPapyrusEditPart {
+public class ActivityFinalNodeAppliedStereotypeEditPart extends LabelEditPart implements ITextAwareEditPart, IBorderItemEditPart, IPapyrusEditPart {
 
 	/**
 	 * @generated
@@ -120,7 +119,6 @@ extends LabelEditPart implements ITextAwareEditPart, IBorderItemEditPart, IPapyr
 
 	/** configuration from a registered edit dialog */
 	protected IDirectEditorConfiguration configuration;
-
 	/**
 	 * @generated
 	 */
@@ -261,7 +259,6 @@ extends LabelEditPart implements ITextAwareEditPart, IBorderItemEditPart, IPapyr
 		if(parserElement == null) {
 			return null;
 		}
-
 		List<View> views = DiagramEditPartsUtil.findViews(parserElement, getViewer());
 		for(View view : views) {
 			if(NameLabelIconHelper.showLabelIcon(view)) {
@@ -269,7 +266,6 @@ extends LabelEditPart implements ITextAwareEditPart, IBorderItemEditPart, IPapyr
 			}
 		}
 		return null;
-
 	}
 
 	/**
@@ -341,7 +337,6 @@ extends LabelEditPart implements ITextAwareEditPart, IBorderItemEditPart, IPapyr
 						ie.printStackTrace();
 					}
 				}
-
 				// shouldn't get here
 				return null;
 			}
@@ -423,9 +418,7 @@ extends LabelEditPart implements ITextAwareEditPart, IBorderItemEditPart, IPapyr
 	 * @generated
 	 */
 	protected void performDirectEditRequest(Request request) {
-
 		final Request theRequest = request;
-
 		if(IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
 			directEditionMode = getDirectEditionType();
 		}
@@ -452,7 +445,6 @@ extends LabelEditPart implements ITextAwareEditPart, IBorderItemEditPart, IPapyr
 					return;
 				}
 				final Dialog finalDialog = dialog;
-
 				if(Window.OK == dialog.open()) {
 					TransactionalEditingDomain domain = getEditingDomain();
 					RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
@@ -460,7 +452,6 @@ extends LabelEditPart implements ITextAwareEditPart, IBorderItemEditPart, IPapyr
 						@Override
 						protected void doExecute() {
 							configuration.postEditAction(resolveSemanticElement(), ((ILabelEditorDialog)finalDialog).getValue());
-
 						}
 					};
 					domain.getCommandStack().execute(command);
@@ -468,7 +459,6 @@ extends LabelEditPart implements ITextAwareEditPart, IBorderItemEditPart, IPapyr
 			}
 			break;
 		case IDirectEdition.DEFAULT_DIRECT_EDITOR:
-
 			// initialize the direct edit manager
 			try {
 				getEditingDomain().runExclusive(new Runnable() {
@@ -776,5 +766,4 @@ extends LabelEditPart implements ITextAwareEditPart, IBorderItemEditPart, IPapyr
 	public IFigure getPrimaryShape() {
 		return getFigure();
 	}
-
 }

@@ -78,7 +78,6 @@ public class ActivityParameterNodeCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected EObject getElementToEdit() {
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -93,19 +92,15 @@ public class ActivityParameterNodeCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
-
 		return true;
-
 	}
 
 	/**
 	 * @generated NOT
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-
 		ActivityParameterNode newElement = UMLFactory.eINSTANCE.createActivityParameterNode();
 		Activity owner = (Activity)getElementToEdit();
-
 		CreateActivityParameterNodeDialog dialog = new CreateActivityParameterNodeDialog(Display.getDefault().getActiveShell(), owner);
 		if(IDialogConstants.OK_ID == dialog.open()) {
 			// initialize the invoked element (no need to use a command, since
@@ -121,14 +116,11 @@ public class ActivityParameterNodeCreateCommand extends EditElementCommand {
 		}
 		newElement.setIsControlType(true);
 		owner.getNodes().add(newElement);
-
 		if(newElement.getName() == null || newElement.getName().length() == 0) {
 			// initialize name if it is not yet
 			ElementInitializers.getInstance().init_ActivityParameterNode_3059(newElement);
 		}
-
 		doConfigure(newElement, monitor, info);
-
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
@@ -146,5 +138,4 @@ public class ActivityParameterNodeCreateCommand extends EditElementCommand {
 			configureCommand.execute(monitor, info);
 		}
 	}
-
 }

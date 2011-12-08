@@ -310,7 +310,6 @@ public class ConstraintInActivityAsPrecondEditPart extends CompartmentEditPart i
 						ie.printStackTrace();
 					}
 				}
-
 				// shouldn't get here
 				return null;
 			}
@@ -392,9 +391,7 @@ public class ConstraintInActivityAsPrecondEditPart extends CompartmentEditPart i
 	 * @generated
 	 */
 	protected void performDirectEditRequest(Request request) {
-
 		final Request theRequest = request;
-
 		if(IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
 			directEditionMode = getDirectEditionType();
 		}
@@ -421,7 +418,6 @@ public class ConstraintInActivityAsPrecondEditPart extends CompartmentEditPart i
 					return;
 				}
 				final Dialog finalDialog = dialog;
-
 				if(Window.OK == dialog.open()) {
 					TransactionalEditingDomain domain = getEditingDomain();
 					RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
@@ -429,7 +425,6 @@ public class ConstraintInActivityAsPrecondEditPart extends CompartmentEditPart i
 						@Override
 						protected void doExecute() {
 							configuration.postEditAction(resolveSemanticElement(), ((ILabelEditorDialog)finalDialog).getValue());
-
 						}
 					};
 					domain.getCommandStack().execute(command);
@@ -437,7 +432,6 @@ public class ConstraintInActivityAsPrecondEditPart extends CompartmentEditPart i
 			}
 			break;
 		case IDirectEdition.DEFAULT_DIRECT_EDITOR:
-
 			// initialize the direct edit manager
 			try {
 				getEditingDomain().runExclusive(new Runnable() {
@@ -599,7 +593,6 @@ public class ConstraintInActivityAsPrecondEditPart extends CompartmentEditPart i
 		if(checkDefaultEdition()) {
 			return IDirectEdition.DEFAULT_DIRECT_EDITOR;
 		}
-
 		// not a named element. no specific editor => do nothing
 		return IDirectEdition.NO_DIRECT_EDITION;
 	}
@@ -748,5 +741,4 @@ public class ConstraintInActivityAsPrecondEditPart extends CompartmentEditPart i
 	protected IFigure createFigurePrim() {
 		return new SimpleLabel();
 	}
-
 }

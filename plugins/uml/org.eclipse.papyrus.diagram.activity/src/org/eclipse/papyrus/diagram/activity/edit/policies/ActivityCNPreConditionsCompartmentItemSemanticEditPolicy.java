@@ -26,5 +26,4 @@ public class ActivityCNPreConditionsCompartmentItemSemanticEditPolicy extends UM
 		}
 		return super.getCreateCommand(req);
 	}
-
 }

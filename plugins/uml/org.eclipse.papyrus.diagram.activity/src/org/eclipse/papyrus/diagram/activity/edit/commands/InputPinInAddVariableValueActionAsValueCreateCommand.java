@@ -74,7 +74,6 @@ public class InputPinInAddVariableValueActionAsValueCreateCommand extends EditEl
 	 * @generated
 	 */
 	protected EObject getElementToEdit() {
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -93,25 +92,18 @@ public class InputPinInAddVariableValueActionAsValueCreateCommand extends EditEl
 		if(container.getValue() != null) {
 			return false;
 		}
-
 		return true;
-
 	}
 
 	/**
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-
 		InputPin newElement = UMLFactory.eINSTANCE.createInputPin();
-
 		WriteVariableAction owner = (WriteVariableAction)getElementToEdit();
 		owner.setValue(newElement);
-
 		ElementInitializers.getInstance().init_InputPin_3101(newElement);
-
 		doConfigure(newElement, monitor, info);
-
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
@@ -129,5 +121,4 @@ public class InputPinInAddVariableValueActionAsValueCreateCommand extends EditEl
 			configureCommand.execute(monitor, info);
 		}
 	}
-
 }

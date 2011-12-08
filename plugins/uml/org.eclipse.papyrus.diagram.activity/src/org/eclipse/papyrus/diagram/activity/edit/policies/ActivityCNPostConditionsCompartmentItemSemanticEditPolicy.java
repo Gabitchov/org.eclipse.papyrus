@@ -26,5 +26,4 @@ public class ActivityCNPostConditionsCompartmentItemSemanticEditPolicy extends U
 		}
 		return super.getCreateCommand(req);
 	}
-
 }

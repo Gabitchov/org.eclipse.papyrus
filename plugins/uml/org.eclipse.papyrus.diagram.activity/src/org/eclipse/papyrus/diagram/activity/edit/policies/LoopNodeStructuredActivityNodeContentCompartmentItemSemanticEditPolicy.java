@@ -189,5 +189,4 @@ public class LoopNodeStructuredActivityNodeContentCompartmentItemSemanticEditPol
 		}
 		return super.getCreateCommand(req);
 	}
-
 }

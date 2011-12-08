@@ -87,9 +87,7 @@ import org.eclipse.ui.PlatformUI;
 /**
  * @generated
  */
-public class ParameterEditPart extends
-
-CompartmentEditPart implements ITextAwareEditPart, IPrimaryEditPart {
+public class ParameterEditPart extends CompartmentEditPart implements ITextAwareEditPart, IPrimaryEditPart {
 
 	/**
 	 * @generated
@@ -312,7 +310,6 @@ CompartmentEditPart implements ITextAwareEditPart, IPrimaryEditPart {
 						ie.printStackTrace();
 					}
 				}
-
 				// shouldn't get here
 				return null;
 			}
@@ -394,9 +391,7 @@ CompartmentEditPart implements ITextAwareEditPart, IPrimaryEditPart {
 	 * @generated
 	 */
 	protected void performDirectEditRequest(Request request) {
-
 		final Request theRequest = request;
-
 		if(IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
 			directEditionMode = getDirectEditionType();
 		}
@@ -423,7 +418,6 @@ CompartmentEditPart implements ITextAwareEditPart, IPrimaryEditPart {
 					return;
 				}
 				final Dialog finalDialog = dialog;
-
 				if(Window.OK == dialog.open()) {
 					TransactionalEditingDomain domain = getEditingDomain();
 					RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
@@ -431,7 +425,6 @@ CompartmentEditPart implements ITextAwareEditPart, IPrimaryEditPart {
 						@Override
 						protected void doExecute() {
 							configuration.postEditAction(resolveSemanticElement(), ((ILabelEditorDialog)finalDialog).getValue());
-
 						}
 					};
 					domain.getCommandStack().execute(command);
@@ -439,7 +432,6 @@ CompartmentEditPart implements ITextAwareEditPart, IPrimaryEditPart {
 			}
 			break;
 		case IDirectEdition.DEFAULT_DIRECT_EDITOR:
-
 			// initialize the direct edit manager
 			try {
 				getEditingDomain().runExclusive(new Runnable() {
@@ -601,7 +593,6 @@ CompartmentEditPart implements ITextAwareEditPart, IPrimaryEditPart {
 		if(checkDefaultEdition()) {
 			return IDirectEdition.DEFAULT_DIRECT_EDITOR;
 		}
-
 		// not a named element. no specific editor => do nothing
 		return IDirectEdition.NO_DIRECT_EDITION;
 	}

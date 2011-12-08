@@ -40,11 +40,7 @@ import org.eclipse.papyrus.diagram.common.groups.edit.policies.XYLayoutEditGroup
 /**
  * @generated
  */
-public class ActivityPartitionActivityPartitionContentCompartmentEditPart
-
-extends ShapeCompartmentEditPart
-
-{
+public class ActivityPartitionActivityPartitionContentCompartmentEditPart extends ShapeCompartmentEditPart {
 
 	/**
 	 * @generated
@@ -79,7 +75,6 @@ extends ShapeCompartmentEditPart
 		result.getScrollPane().setVerticalScrollBar(null);
 		result.getScrollPane().setScrollBarVisibility(ScrollPane.NEVER);
 		// result.getScrollPane().getViewport().setContentsTracksHeight(true);
-
 		return result;
 	}
 
@@ -92,10 +87,8 @@ extends ShapeCompartmentEditPart
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CreationEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 		installEditPolicy(DuplicatePasteEditPolicy.PASTE_ROLE, new DuplicatePasteEditPolicy());
-
 		//in Papyrus diagrams are not strongly synchronised
 		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.diagram.activity.edit.policies.ActivityPartitionActivityPartitionContentCompartmentCanonicalEditPolicy());
-
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CreateInGroupEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
 		installEditPolicy("RemoveOrphanView", new RemoveOrphanViewPolicy()); //$NON-NLS-1$

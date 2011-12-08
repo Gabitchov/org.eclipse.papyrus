@@ -39,5 +39,4 @@ public class ActivityActivityParametersCompartmentItemSemanticEditPolicy extends
 		}
 		return super.getCreateCommand(req);
 	}
-
 }

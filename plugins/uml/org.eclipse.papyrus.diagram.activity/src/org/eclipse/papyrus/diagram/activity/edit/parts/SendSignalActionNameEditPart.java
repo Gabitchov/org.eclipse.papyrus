@@ -288,7 +288,6 @@ public class SendSignalActionNameEditPart extends CompartmentEditPart implements
 						ie.printStackTrace();
 					}
 				}
-
 				// shouldn't get here
 				return null;
 			}
@@ -370,9 +369,7 @@ public class SendSignalActionNameEditPart extends CompartmentEditPart implements
 	 * @generated
 	 */
 	protected void performDirectEditRequest(Request request) {
-
 		final Request theRequest = request;
-
 		if(IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
 			directEditionMode = getDirectEditionType();
 		}
@@ -399,7 +396,6 @@ public class SendSignalActionNameEditPart extends CompartmentEditPart implements
 					return;
 				}
 				final Dialog finalDialog = dialog;
-
 				if(Window.OK == dialog.open()) {
 					TransactionalEditingDomain domain = getEditingDomain();
 					RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
@@ -407,7 +403,6 @@ public class SendSignalActionNameEditPart extends CompartmentEditPart implements
 						@Override
 						protected void doExecute() {
 							configuration.postEditAction(resolveSemanticElement(), ((ILabelEditorDialog)finalDialog).getValue());
-
 						}
 					};
 					domain.getCommandStack().execute(command);
@@ -415,7 +410,6 @@ public class SendSignalActionNameEditPart extends CompartmentEditPart implements
 			}
 			break;
 		case IDirectEdition.DEFAULT_DIRECT_EDITOR:
-
 			// initialize the direct edit manager
 			try {
 				getEditingDomain().runExclusive(new Runnable() {
@@ -577,7 +571,6 @@ public class SendSignalActionNameEditPart extends CompartmentEditPart implements
 		if(checkDefaultEdition()) {
 			return IDirectEdition.DEFAULT_DIRECT_EDITOR;
 		}
-
 		// not a named element. no specific editor => do nothing
 		return IDirectEdition.NO_DIRECT_EDITION;
 	}
@@ -709,7 +702,6 @@ public class SendSignalActionNameEditPart extends CompartmentEditPart implements
 				}
 			}
 		}
-
 		super.handleNotificationEvent(event);
 	}
 
@@ -736,7 +728,6 @@ public class SendSignalActionNameEditPart extends CompartmentEditPart implements
 	 */
 	protected void addOwnerElementListeners() {
 		addListenerFilter(ADD_PARENT_MODEL, this, ((View)getParent().getModel())); //$NON-NLS-1$
-
 	}
 
 	/**
@@ -745,7 +736,6 @@ public class SendSignalActionNameEditPart extends CompartmentEditPart implements
 	public void deactivate() {
 		removeOwnerElementListeners();
 		super.deactivate();
-
 	}
 
 	/**
@@ -753,7 +743,5 @@ public class SendSignalActionNameEditPart extends CompartmentEditPart implements
 	 */
 	protected void removeOwnerElementListeners() {
 		removeListenerFilter(ADD_PARENT_MODEL);
-
 	}
-
 }

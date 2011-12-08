@@ -23,11 +23,7 @@ import org.eclipse.papyrus.diagram.common.editpolicies.DuplicatePasteEditPolicy;
 /**
  * @generated
  */
-public class ActivityCNPostConditionsCompartmentEditPart
-
-extends ListCompartmentEditPart
-
-{
+public class ActivityCNPostConditionsCompartmentEditPart extends ListCompartmentEditPart {
 
 	/**
 	 * @generated
@@ -74,10 +70,8 @@ extends ListCompartmentEditPart
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CreationEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 		installEditPolicy(DuplicatePasteEditPolicy.PASTE_ROLE, new DuplicatePasteEditPolicy());
-
 		//in Papyrus diagrams are not strongly synchronised
 		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.diagram.activity.edit.policies.ActivityCNPostConditionsCompartmentCanonicalEditPolicy());
-
 		installEditPolicy(EditPolicyRoles.CANONICAL_ROLE, new ActivityActivityPostConditionsCompartmentCanonicalEditPolicy());
 		installEditPolicy("RemoveOrphanView", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
 	}

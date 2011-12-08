@@ -74,7 +74,6 @@ public class ValuePinInSendSigActAsTargetCreateCommand extends EditElementComman
 	 * @generated
 	 */
 	protected EObject getElementToEdit() {
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -93,25 +92,18 @@ public class ValuePinInSendSigActAsTargetCreateCommand extends EditElementComman
 		if(container.getTarget() != null) {
 			return false;
 		}
-
 		return true;
-
 	}
 
 	/**
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-
 		ValuePin newElement = UMLFactory.eINSTANCE.createValuePin();
-
 		SendSignalAction owner = (SendSignalAction)getElementToEdit();
 		owner.setTarget(newElement);
-
 		ElementInitializers.getInstance().init_ValuePin_3060(newElement);
-
 		doConfigure(newElement, monitor, info);
-
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
@@ -129,5 +121,4 @@ public class ValuePinInSendSigActAsTargetCreateCommand extends EditElementComman
 			configureCommand.execute(monitor, info);
 		}
 	}
-
 }

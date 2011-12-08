@@ -283,7 +283,6 @@ public class ActivityIsSingleExecutionCNEditPart extends CompartmentEditPart imp
 						ie.printStackTrace();
 					}
 				}
-
 				// shouldn't get here
 				return null;
 			}
@@ -365,9 +364,7 @@ public class ActivityIsSingleExecutionCNEditPart extends CompartmentEditPart imp
 	 * @generated
 	 */
 	protected void performDirectEditRequest(Request request) {
-
 		final Request theRequest = request;
-
 		if(IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
 			directEditionMode = getDirectEditionType();
 		}
@@ -394,7 +391,6 @@ public class ActivityIsSingleExecutionCNEditPart extends CompartmentEditPart imp
 					return;
 				}
 				final Dialog finalDialog = dialog;
-
 				if(Window.OK == dialog.open()) {
 					TransactionalEditingDomain domain = getEditingDomain();
 					RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
@@ -402,7 +398,6 @@ public class ActivityIsSingleExecutionCNEditPart extends CompartmentEditPart imp
 						@Override
 						protected void doExecute() {
 							configuration.postEditAction(resolveSemanticElement(), ((ILabelEditorDialog)finalDialog).getValue());
-
 						}
 					};
 					domain.getCommandStack().execute(command);
@@ -410,7 +405,6 @@ public class ActivityIsSingleExecutionCNEditPart extends CompartmentEditPart imp
 			}
 			break;
 		case IDirectEdition.DEFAULT_DIRECT_EDITOR:
-
 			// initialize the direct edit manager
 			try {
 				getEditingDomain().runExclusive(new Runnable() {
@@ -699,7 +693,6 @@ public class ActivityIsSingleExecutionCNEditPart extends CompartmentEditPart imp
 				}
 			}
 		}
-
 		super.handleNotificationEvent(event);
 	}
 
@@ -729,7 +722,6 @@ public class ActivityIsSingleExecutionCNEditPart extends CompartmentEditPart imp
 	 */
 	protected void addOwnerElementListeners() {
 		addListenerFilter(ADD_PARENT_MODEL, this, ((View)getParent().getModel())); //$NON-NLS-1$
-
 	}
 
 	/**
@@ -738,7 +730,6 @@ public class ActivityIsSingleExecutionCNEditPart extends CompartmentEditPart imp
 	public void deactivate() {
 		removeOwnerElementListeners();
 		super.deactivate();
-
 	}
 
 	/**
@@ -746,7 +737,5 @@ public class ActivityIsSingleExecutionCNEditPart extends CompartmentEditPart imp
 	 */
 	protected void removeOwnerElementListeners() {
 		removeListenerFilter(ADD_PARENT_MODEL);
-
 	}
-
 }

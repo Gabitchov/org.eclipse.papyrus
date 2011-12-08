@@ -61,7 +61,6 @@ public class OutputPinInCreateObjectActionAsResultCreateCommand extends EditElem
 	 * @generated
 	 */
 	protected EObject getElementToEdit() {
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -80,25 +79,18 @@ public class OutputPinInCreateObjectActionAsResultCreateCommand extends EditElem
 		if(container.getResult() != null) {
 			return false;
 		}
-
 		return true;
-
 	}
 
 	/**
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-
 		OutputPin newElement = UMLFactory.eINSTANCE.createOutputPin();
-
 		CreateObjectAction owner = (CreateObjectAction)getElementToEdit();
 		owner.setResult(newElement);
-
 		ElementInitializers.getInstance().init_OutputPin_3087(newElement);
-
 		doConfigure(newElement, monitor, info);
-
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
@@ -116,5 +108,4 @@ public class OutputPinInCreateObjectActionAsResultCreateCommand extends EditElem
 			configureCommand.execute(monitor, info);
 		}
 	}
-
 }

@@ -15,25 +15,30 @@ package org.eclipse.papyrus.diagram.activity.edit.parts;
 
 import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.PolylineDecoration;
+import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.RotatableDecoration;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
+import org.eclipse.gmf.runtime.draw2d.ui.render.figures.ScalableImageFigure;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.papyrus.diagram.activity.edit.policies.ObjectFlowItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.activity.figures.WrappedLabel;
+import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.common.editparts.UMLConnectionNodeEditPart;
 import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.common.figure.edge.UMLEdgeFigure;
+import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.graphics.ImageData;
+import org.eclipse.swt.widgets.Display;
 
 /**
  * @generated
  */
-public class ObjectFlowEditPart extends UMLConnectionNodeEditPart
-
-implements ITreeBranchEditPart {
+public class ObjectFlowEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -105,7 +110,6 @@ implements ITreeBranchEditPart {
 	 * 
 	 * @generated
 	 */
-
 	protected Connection createConnectionFigure() {
 		return new ActivityEdgeDescriptor();
 	}
@@ -151,12 +155,9 @@ implements ITreeBranchEditPart {
 		 */
 		protected void createContents() {
 			super.createContents();
-
 			// fAppliedStereotypeLabel = new WrappingLabel();
 			// fAppliedStereotypeLabel.setText("");
-
 			// this.add(fAppliedStereotypeLabel);
-
 		}
 
 		/**
@@ -195,7 +196,5 @@ implements ITreeBranchEditPart {
 		public WrappingLabel getAppliedStereotypeLabel() {
 			return super.getAppliedStereotypeLabel();
 		}
-
 	}
-
 }

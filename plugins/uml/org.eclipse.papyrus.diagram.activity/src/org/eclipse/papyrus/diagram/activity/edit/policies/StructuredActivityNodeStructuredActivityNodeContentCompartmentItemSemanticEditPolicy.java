@@ -189,5 +189,4 @@ public class StructuredActivityNodeStructuredActivityNodeContentCompartmentItemS
 		}
 		return super.getCreateCommand(req);
 	}
-
 }

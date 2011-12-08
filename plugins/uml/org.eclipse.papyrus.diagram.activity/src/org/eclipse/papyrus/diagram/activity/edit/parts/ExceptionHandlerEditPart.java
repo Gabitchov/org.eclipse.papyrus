@@ -28,9 +28,7 @@ import org.eclipse.papyrus.diagram.activity.edit.policies.ExceptionHandlerItemSe
 /**
  * @generated
  */
-public class ExceptionHandlerEditPart extends ConnectionNodeEditPart
-
-implements ITreeBranchEditPart {
+public class ExceptionHandlerEditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -94,7 +92,6 @@ implements ITreeBranchEditPart {
 	 * 
 	 * @generated
 	 */
-
 	protected Connection createConnectionFigure() {
 		return new ExceptionHandlerDescriptor();
 	}
@@ -115,7 +112,6 @@ implements ITreeBranchEditPart {
 		 * @generated
 		 */
 		public ExceptionHandlerDescriptor() {
-
 			setTargetDecoration(createTargetDecoration());
 		}
 
@@ -132,7 +128,5 @@ implements ITreeBranchEditPart {
 			df.setScale(getMapMode().DPtoLP(7), getMapMode().DPtoLP(3));
 			return df;
 		}
-
 	}
-
 }
