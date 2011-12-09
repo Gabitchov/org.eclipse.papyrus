@@ -141,14 +141,7 @@ public class MultiPageEditorSite implements IEditorSite, INestable {
 //				if(control != null && !control.isDisposed()) {
 //					((PartSite)getMainEditorSite()).getPane().doHide();
 //				}
-				
-				//FIXME : NEW code for Juno
-				final Control control = ((WorkbenchPartReference)((PartSite)getMainEditorSite()).getPartReference()).getPane().getControl();
-				if(control != null && !control.isDisposed()) {
-					PartPane pane = ((WorkbenchPartReference)((PartSite)getMainEditorSite()).getPartReference()).getPane();
-					//FIXME : I think it is not the correct solution. Need to be tested
-					pane.getControl().dispose();
-				}
+				//FIXME : I don't know how to migrate this code?
 			}
 		});
 
