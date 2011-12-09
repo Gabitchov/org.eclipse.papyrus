@@ -14,11 +14,7 @@
 package org.eclipse.papyrus.infra.core.extension.commands;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.infra.core.extension.commands.ICreationCondition;
-import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.internal.Perspective;
-import org.eclipse.ui.internal.WorkbenchPage;
-
+//FIXME  Refactoring Juno : I don't know how to migrate this code
 public class PerspectiveContextDependence implements ICreationCondition {
 
 	protected String commandID = null;
@@ -31,13 +27,14 @@ public class PerspectiveContextDependence implements ICreationCondition {
 	 * {@inheritDoc}
 	 */
 	public boolean create(EObject selectedElement) {
-		// Get the perspective
-		Perspective perspective = ((WorkbenchPage)PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()).getActivePerspective();
-		// look for the perspective
-		// verify if the commannd has to be displayed
-		if(perspective.getHiddenMenuItems().contains(commandID) && perspective.getHiddenToolbarItems().contains(commandID)) {
-			return false;
-		}
+		//FIXME Refactoring Juno : I don't know how to migrate this code
+//		// Get the perspective
+//		Perspective perspective = ((WorkbenchPage)PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()).getActivePerspective();
+//		// look for the perspective
+//		// verify if the commannd has to be displayed
+//		if(perspective.getHiddenMenuItems().contains(commandID) && perspective.getHiddenToolbarItems().contains(commandID)) {
+//			return false;
+//		}
 		return true;
 	}
 
