@@ -5726,32 +5726,31 @@ public class UMLDiagramUpdater {
 			/*
 			 * Select the correct sources
 			 * Old implementation:
-			 * 	Object theSource = sources.size() >= 1 ? sources.get(0) : null;
-			 * 	=> If sources.get(0) = target then this method return a UMLLinkDescriptor with Taget = sources
+			 * Object theSource = sources.size() >= 1 ? sources.get(0) : null;
+			 * => If sources.get(0) = target then this method return a UMLLinkDescriptor with Taget = sources
 			 * FIXME
 			 * Should only return 1 association when calling both:
 			 * getIncomingTypeModelFacetLinks_Association_4001
-			 * or 
+			 * or
 			 * getOutgoingTypeModelFacetLinks_Association_4001
 			 * 
 			 * OR should return the same UMLLinkDescriptor with same target and same source
 			 * 
 			 * has to be discussed on the dev list
 			 */
-			
+
 			/*
 			 * Temporary fix
 			 * If the first object of the list sources is the target this means that this association is an outgoing link
 			 * FIXME This has to be discussed on the dev list and corrected.(correctly generated for all element with same behavior)
 			 */
 			Object first = sources.get(0);
-			if (sources.size() >= 2){
-				if( first.equals(target)){
+			if(sources.size() >= 2) {
+				if(first.equals(target)) {
 					continue;
 				}
 			}
-				Object theSource = sources.size() >= 1 ? first : null;
-
+			Object theSource = sources.size() >= 1 ? first : null;
 
 			if(false == theSource instanceof Type) {
 				continue;
@@ -5761,18 +5760,22 @@ public class UMLDiagramUpdater {
 		}
 		return result;
 	}
+
 	/**
 	 * Get the correct source of the element.
-	 * @param target Specified target
-	 * @param sources Available soruces
+	 * 
+	 * @param target
+	 *        Specified target
+	 * @param sources
+	 *        Available soruces
 	 * @param first
 	 * @return
 	 */
 	private static Object getCorrectSource(Type target, List sources) {
 		Object first = sources.get(0);
 		Object theSource;
-		if (sources.size() >= 2){
-			if( first.equals(target)){
+		if(sources.size() >= 2) {
+			if(first.equals(target)) {
 				theSource = sources.get(1);
 			} else {
 				theSource = first;
@@ -5782,7 +5785,6 @@ public class UMLDiagramUpdater {
 		}
 		return theSource;
 	}
-	
 
 	/**
 	 * @generated

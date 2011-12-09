@@ -89,7 +89,6 @@ AbstractBorderItemEditPart {
 	 * 
 	 * @generated
 	 **/
-	@Override
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
 

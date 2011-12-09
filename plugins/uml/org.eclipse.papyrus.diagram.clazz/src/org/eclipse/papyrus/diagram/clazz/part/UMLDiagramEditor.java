@@ -158,6 +158,7 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 	/**
 	 * @generated
 	 */
+	@SuppressWarnings("rawtypes")
 	public Object getAdapter(Class type) {
 		if(type == IShowInTargetList.class) {
 			return new IShowInTargetList() {

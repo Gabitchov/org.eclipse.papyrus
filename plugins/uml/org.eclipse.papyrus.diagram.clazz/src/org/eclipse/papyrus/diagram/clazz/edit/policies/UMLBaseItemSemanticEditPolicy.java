@@ -493,7 +493,9 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 */
 		public boolean canCreateCommentAnnotatedElement_4013(Comment source, Element target) {
 			if(source != null) {
-				if(source.getAnnotatedElements().contains(target)) {
+				if(source.getAnnotatedElements().contains(target)
+
+				) {
 					return false;
 				}
 			}
@@ -506,7 +508,9 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 */
 		public boolean canCreateConstraintConstrainedElement_4014(Constraint source, Element target) {
 			if(source != null) {
-				if(source.getConstrainedElements().contains(target)) {
+				if(source.getConstrainedElements().contains(target)
+
+				) {
 					return false;
 				}
 			}
@@ -554,7 +558,9 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 */
 		public boolean canCreateTimeObservationEvent_4024(TimeObservation source, NamedElement target) {
 			if(source != null) {
-				if(source.getEvent() != null) {
+				if(source.getEvent() != null
+
+				) {
 					return false;
 				}
 			}
@@ -567,7 +573,9 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 */
 		public boolean canCreateDurationObservationEvent_4025(DurationObservation source, NamedElement target) {
 			if(source != null) {
-				if(source.getEvents().size() >= 2 || source.getEvents().contains(target)) {
+				if(source.getEvents().size() >= 2 || source.getEvents().contains(target)
+
+				) {
 					return false;
 				}
 			}
