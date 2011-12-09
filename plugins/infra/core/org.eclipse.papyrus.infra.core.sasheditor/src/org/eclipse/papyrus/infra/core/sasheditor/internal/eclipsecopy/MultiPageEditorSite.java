@@ -29,8 +29,10 @@ import org.eclipse.ui.IKeyBindingService;
 import org.eclipse.ui.INestableKeyBindingService;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
+import org.eclipse.ui.IWorkbenchPartReference;
 import org.eclipse.ui.IWorkbenchPartSite;
 import org.eclipse.ui.IWorkbenchWindow;
+import org.eclipse.ui.internal.PartPane;
 import org.eclipse.ui.internal.PartSite;
 import org.eclipse.ui.internal.PopupMenuExtender;
 import org.eclipse.ui.internal.WorkbenchPlugin;
@@ -43,6 +45,7 @@ import org.eclipse.ui.part.EditorActionBarContributor;
 import org.eclipse.ui.services.IDisposable;
 import org.eclipse.ui.services.IServiceLocator;
 import org.eclipse.ui.services.IServiceScopes;
+import org.eclipse.ui.internal.WorkbenchPartReference;
 
 /**
  * Site for a nested editor within a multi-page editor. Selection is handled by
@@ -133,9 +136,18 @@ public class MultiPageEditorSite implements IEditorSite, INestable {
 		this.serviceLocator = (ServiceLocator)slc.createServiceLocator(mainEditorSite, null, new IDisposable() {
 
 			public void dispose() {
-				final Control control = ((PartSite)getMainEditorSite()).getPane().getControl();
+				//old code on Indigo : 
+//				final Control control = ((PartSite)getMainEditorSite()).getPane().getControl();
+//				if(control != null && !control.isDisposed()) {
+//					((PartSite)getMainEditorSite()).getPane().doHide();
+//				}
+				
+				//FIXME : NEW code for Juno
+				final Control control = ((WorkbenchPartReference)((PartSite)getMainEditorSite()).getPartReference()).getPane().getControl();
 				if(control != null && !control.isDisposed()) {
-					((PartSite)getMainEditorSite()).getPane().doHide();
+					PartPane pane = ((WorkbenchPartReference)((PartSite)getMainEditorSite()).getPartReference()).getPane();
+					//FIXME : I think it is not the correct solution. Need to be tested
+					pane.getControl().dispose();
 				}
 			}
 		});
