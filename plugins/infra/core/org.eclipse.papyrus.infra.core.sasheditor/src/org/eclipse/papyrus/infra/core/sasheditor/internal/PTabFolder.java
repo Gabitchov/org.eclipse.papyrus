@@ -17,6 +17,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.eclipse.jface.util.Geometry;
+import org.eclipse.papyrus.infra.core.sasheditor.internal.eclipsecopy.PresentationUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CTabFolder;
 import org.eclipse.swt.custom.CTabFolder2Adapter;
@@ -35,7 +36,6 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.ui.internal.dnd.DragUtil;
-import org.eclipse.ui.presentations.PresentationUtil;
 
 /**
  * Papyrus wrapper for CTabFolder. Provides miscelaneous methods for dragging.
