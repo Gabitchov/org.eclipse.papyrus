@@ -13,11 +13,14 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.edit.part;
 
+import java.util.List;
+
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
@@ -27,6 +30,7 @@ import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
+import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
@@ -83,6 +87,33 @@ public abstract class AbstractElementBorderEditPart extends AbstractBorderEditPa
 			return (IBorderItemLocator)constraint;
 		}
 		return null;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected void handleNotificationEvent(Notification event) {
+		// When a node has external node labels, the methods refreshChildren() removes the label's
+		// edit part from the registry. Once removed from the registry the visibility cannot be set back to visible.
+
+		// Copied from generated code for Affixed nodes to fix:
+		//		366504: [SysML Block Definition Diagram] Cannot make masked labels of border items (Port) visible
+		//		https://bugs.eclipse.org/bugs/show_bug.cgi?id=366504
+		//		366503: [SysML Internal Block Diagram] Cannot make masked labels of border items (Port) visible
+		//		https://bugs.eclipse.org/bugs/show_bug.cgi?id=366503
+
+		// (this sounds strange as the "Show all labels" manages to get labels back without trouble...).
+		if(NotationPackage.eINSTANCE.getView_Visible().equals(event.getFeature())) {
+			Object notifier = event.getNotifier();
+			List<?> modelChildren = ((View)getModel()).getChildren();
+			if(!(notifier instanceof Edge)) {
+				if(modelChildren.contains(event.getNotifier())) {
+					return;
+				}
+			}
+		}
+		super.handleNotificationEvent(event);
 	}
 
 	/**
