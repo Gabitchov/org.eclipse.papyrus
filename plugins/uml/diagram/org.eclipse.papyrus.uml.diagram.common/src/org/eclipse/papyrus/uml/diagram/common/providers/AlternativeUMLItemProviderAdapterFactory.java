@@ -1556,22 +1556,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 		return outputPinItemProvider;
 	}
 
-	@Override
-	public Adapter createPinAdapter() {
-		if(pinItemProvider == null) {
-			pinItemProvider = new PinItemProvider(this) {
-
-				@Override
-				public Object getImage(Object object) {
-					if(useAlternativeIcons(object)) {
-						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/Pin.gif"), null)); //$NON-NLS-1$
-					}
-					return super.getImage(object);
-				}
-			};
-		}
-		return pinItemProvider;
-	}
+	
 
 	@Override
 	public Adapter createInputPinAdapter() {
@@ -1675,22 +1660,8 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 		return executionOccurrenceSpecificationItemProvider;
 	}
 
-	@Override
-	public Adapter createExecutionEventAdapter() {
-		if(executionEventItemProvider == null) {
-			executionEventItemProvider = new ExecutionEventItemProvider(this) {
-
-				@Override
-				public Object getImage(Object object) {
-					if(useAlternativeIcons(object)) {
-						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/ExecutionEvent.gif"), null)); //$NON-NLS-1$
-					}
-					return super.getImage(object);
-				}
-			};
-		}
-		return executionEventItemProvider;
-	}
+	
+	
 
 	@Override
 	public Adapter createStateInvariantAdapter() {
@@ -1743,73 +1714,9 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 		return behaviorExecutionSpecificationItemProvider;
 	}
 
-	@Override
-	public Adapter createCreationEventAdapter() {
-		if(creationEventItemProvider == null) {
-			creationEventItemProvider = new CreationEventItemProvider(this) {
+	
 
-				@Override
-				public Object getImage(Object object) {
-					if(useAlternativeIcons(object)) {
-						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/CreationEvent.gif"), null)); //$NON-NLS-1$
-					}
-					return super.getImage(object);
-				}
-			};
-		}
-		return creationEventItemProvider;
-	}
-
-	@Override
-	public Adapter createDestructionEventAdapter() {
-		if(destructionEventItemProvider == null) {
-			destructionEventItemProvider = new DestructionEventItemProvider(this) {
-
-				@Override
-				public Object getImage(Object object) {
-					if(useAlternativeIcons(object)) {
-						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/DestructionEvent.gif"), null)); //$NON-NLS-1$
-					}
-					return super.getImage(object);
-				}
-			};
-		}
-		return destructionEventItemProvider;
-	}
-
-	@Override
-	public Adapter createSendOperationEventAdapter() {
-		if(sendOperationEventItemProvider == null) {
-			sendOperationEventItemProvider = new SendOperationEventItemProvider(this) {
-
-				@Override
-				public Object getImage(Object object) {
-					if(useAlternativeIcons(object)) {
-						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/SendOperationEvent.gif"), null)); //$NON-NLS-1$
-					}
-					return super.getImage(object);
-				}
-			};
-		}
-		return sendOperationEventItemProvider;
-	}
-
-	@Override
-	public Adapter createSendSignalEventAdapter() {
-		if(sendSignalEventItemProvider == null) {
-			sendSignalEventItemProvider = new SendSignalEventItemProvider(this) {
-
-				@Override
-				public Object getImage(Object object) {
-					if(useAlternativeIcons(object)) {
-						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/SendSignalEvent.gif"), null)); //$NON-NLS-1$
-					}
-					return super.getImage(object);
-				}
-			};
-		}
-		return sendSignalEventItemProvider;
-	}
+	
 
 	@Override
 	public Adapter createMessageOccurrenceSpecificationAdapter() {
@@ -1828,40 +1735,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 		return messageOccurrenceSpecificationItemProvider;
 	}
 
-	@Override
-	public Adapter createReceiveOperationEventAdapter() {
-		if(receiveOperationEventItemProvider == null) {
-			receiveOperationEventItemProvider = new ReceiveOperationEventItemProvider(this) {
-
-				@Override
-				public Object getImage(Object object) {
-					if(useAlternativeIcons(object)) {
-						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/ReceiveOperationEvent.gif"), null)); //$NON-NLS-1$
-					}
-					return super.getImage(object);
-				}
-			};
-		}
-		return receiveOperationEventItemProvider;
-	}
-
-	@Override
-	public Adapter createReceiveSignalEventAdapter() {
-		if(receiveSignalEventItemProvider == null) {
-			receiveSignalEventItemProvider = new ReceiveSignalEventItemProvider(this) {
-
-				@Override
-				public Object getImage(Object object) {
-					if(useAlternativeIcons(object)) {
-						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/ReceiveSignalEvent.gif"), null)); //$NON-NLS-1$
-					}
-					return super.getImage(object);
-				}
-			};
-		}
-		return receiveSignalEventItemProvider;
-	}
-
+	
 	@Override
 	public Adapter createCombinedFragmentAdapter() {
 		if(combinedFragmentItemProvider == null) {
