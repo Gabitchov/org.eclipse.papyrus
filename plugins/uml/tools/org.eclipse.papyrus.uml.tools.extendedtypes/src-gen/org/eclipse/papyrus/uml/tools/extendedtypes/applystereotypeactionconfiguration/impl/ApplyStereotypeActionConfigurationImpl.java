@@ -9,12 +9,17 @@ package org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfigu
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+
 import org.eclipse.papyrus.infra.extendedtypes.impl.PostActionConfigurationImpl;
+
 import org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.ApplyStereotypeActionConfiguration;
 import org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.ApplyStereotypeActionConfigurationPackage;
 import org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.StereotypeToApply;
@@ -82,8 +87,8 @@ public class ApplyStereotypeActionConfigurationImpl extends PostActionConfigurat
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case ApplyStereotypeActionConfigurationPackage.APPLY_STEREOTYPE_ACTION_CONFIGURATION__STEREOTYPES_TO_APPLY:
-			return ((InternalEList<?>)getStereotypesToApply()).basicRemove(otherEnd, msgs);
+			case ApplyStereotypeActionConfigurationPackage.APPLY_STEREOTYPE_ACTION_CONFIGURATION__STEREOTYPES_TO_APPLY:
+				return ((InternalEList<?>)getStereotypesToApply()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -96,8 +101,8 @@ public class ApplyStereotypeActionConfigurationImpl extends PostActionConfigurat
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case ApplyStereotypeActionConfigurationPackage.APPLY_STEREOTYPE_ACTION_CONFIGURATION__STEREOTYPES_TO_APPLY:
-			return getStereotypesToApply();
+			case ApplyStereotypeActionConfigurationPackage.APPLY_STEREOTYPE_ACTION_CONFIGURATION__STEREOTYPES_TO_APPLY:
+				return getStereotypesToApply();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -111,10 +116,10 @@ public class ApplyStereotypeActionConfigurationImpl extends PostActionConfigurat
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case ApplyStereotypeActionConfigurationPackage.APPLY_STEREOTYPE_ACTION_CONFIGURATION__STEREOTYPES_TO_APPLY:
-			getStereotypesToApply().clear();
-			getStereotypesToApply().addAll((Collection<? extends StereotypeToApply>)newValue);
-			return;
+			case ApplyStereotypeActionConfigurationPackage.APPLY_STEREOTYPE_ACTION_CONFIGURATION__STEREOTYPES_TO_APPLY:
+				getStereotypesToApply().clear();
+				getStereotypesToApply().addAll((Collection<? extends StereotypeToApply>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -127,9 +132,9 @@ public class ApplyStereotypeActionConfigurationImpl extends PostActionConfigurat
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case ApplyStereotypeActionConfigurationPackage.APPLY_STEREOTYPE_ACTION_CONFIGURATION__STEREOTYPES_TO_APPLY:
-			getStereotypesToApply().clear();
-			return;
+			case ApplyStereotypeActionConfigurationPackage.APPLY_STEREOTYPE_ACTION_CONFIGURATION__STEREOTYPES_TO_APPLY:
+				getStereotypesToApply().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -142,8 +147,8 @@ public class ApplyStereotypeActionConfigurationImpl extends PostActionConfigurat
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case ApplyStereotypeActionConfigurationPackage.APPLY_STEREOTYPE_ACTION_CONFIGURATION__STEREOTYPES_TO_APPLY:
-			return stereotypesToApply != null && !stereotypesToApply.isEmpty();
+			case ApplyStereotypeActionConfigurationPackage.APPLY_STEREOTYPE_ACTION_CONFIGURATION__STEREOTYPES_TO_APPLY:
+				return stereotypesToApply != null && !stereotypesToApply.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

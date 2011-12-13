@@ -9,7 +9,7 @@
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
     usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore platform:/plugin/org.eclipse.emf.facet.infra.query/model/query.genmodel#//query platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml">
   <foreignModel>Configuration.ecore</foreignModel>
-  <genPackages prefix="Configuration" basePackage="org.eclipse.papyrus.infra.core.queries"
+  <genPackages prefix="Configuration" basePackage="org.eclipse.papyrus.infra.queries.core"
       resource="XML" disposableProviderFactory="true" ecorePackage="Configuration.ecore#/">
     <genClasses image="false" ecoreClass="Configuration.ecore#//QueryConfiguration">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Configuration.ecore#//QueryConfiguration/name"/>

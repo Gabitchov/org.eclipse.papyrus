@@ -7,7 +7,7 @@
     testsDirectory="/org.eclipse.papyrus.infra.extendedtypes.tests/src-gen" importerID="org.eclipse.emf.importer.ecore"
     complianceLevel="5.0" copyrightFields="false" usedGenPackages="platform:/plugin/org.eclipse.papyrus.infra.queries.core.configuration/model/Configuration.genmodel#//configuration platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore platform:/plugin/org.eclipse.emf.facet.infra.query/model/query.genmodel#//query platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml">
   <foreignModel>ExtendedTypes.ecore</foreignModel>
-  <genPackages prefix="Extendedtypes" basePackage="org.eclipse.papyrus" resource="XML"
+  <genPackages prefix="Extendedtypes" basePackage="org.eclipse.papyrus.infra" resource="XML"
       disposableProviderFactory="true" ecorePackage="ExtendedTypes.ecore#/">
     <genClasses ecoreClass="ExtendedTypes.ecore#//ExtendedElementTypeSet">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ExtendedTypes.ecore#//ExtendedElementTypeSet/elementType"/>

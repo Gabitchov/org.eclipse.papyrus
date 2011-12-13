@@ -8,13 +8,15 @@ package org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfigu
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
+
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
+
 import org.eclipse.emf.ecore.EObject;
+
 import org.eclipse.papyrus.infra.extendedtypes.ActionConfiguration;
 import org.eclipse.papyrus.infra.extendedtypes.PostActionConfiguration;
-import org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.ApplyStereotypeActionConfiguration;
-import org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.ApplyStereotypeActionConfigurationPackage;
-import org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.StereotypeToApply;
+
+import org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.*;
 
 /**
  * <!-- begin-user-doc -->
@@ -72,27 +74,27 @@ public class ApplyStereotypeActionConfigurationAdapterFactory extends AdapterFac
 	 */
 	protected ApplyStereotypeActionConfigurationSwitch<Adapter> modelSwitch =
 		new ApplyStereotypeActionConfigurationSwitch<Adapter>() {
-		@Override
-		public Adapter caseApplyStereotypeActionConfiguration(ApplyStereotypeActionConfiguration object) {
-			return createApplyStereotypeActionConfigurationAdapter();
-		}
-		@Override
-		public Adapter caseStereotypeToApply(StereotypeToApply object) {
-			return createStereotypeToApplyAdapter();
-		}
-		@Override
-		public Adapter caseActionConfiguration(ActionConfiguration object) {
-			return createActionConfigurationAdapter();
-		}
-		@Override
-		public Adapter casePostActionConfiguration(PostActionConfiguration object) {
-			return createPostActionConfigurationAdapter();
-		}
-		@Override
-		public Adapter defaultCase(EObject object) {
-			return createEObjectAdapter();
-		}
-	};
+			@Override
+			public Adapter caseApplyStereotypeActionConfiguration(ApplyStereotypeActionConfiguration object) {
+				return createApplyStereotypeActionConfigurationAdapter();
+			}
+			@Override
+			public Adapter caseStereotypeToApply(StereotypeToApply object) {
+				return createStereotypeToApplyAdapter();
+			}
+			@Override
+			public Adapter caseActionConfiguration(ActionConfiguration object) {
+				return createActionConfigurationAdapter();
+			}
+			@Override
+			public Adapter casePostActionConfiguration(PostActionConfiguration object) {
+				return createPostActionConfigurationAdapter();
+			}
+			@Override
+			public Adapter defaultCase(EObject object) {
+				return createEObjectAdapter();
+			}
+		};
 
 	/**
 	 * Creates an adapter for the <code>target</code>.
@@ -137,13 +139,13 @@ public class ApplyStereotypeActionConfigurationAdapterFactory extends AdapterFac
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.extendedtypes.ActionConfiguration <em>Action Configuration</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.extendedtypes.ActionConfiguration <em>Action Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.papyrus.extendedtypes.ActionConfiguration
+	 * @see org.eclipse.papyrus.infra.extendedtypes.ActionConfiguration
 	 * @generated
 	 */
 	public Adapter createActionConfigurationAdapter() {
@@ -151,13 +153,13 @@ public class ApplyStereotypeActionConfigurationAdapterFactory extends AdapterFac
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.extendedtypes.PostActionConfiguration <em>Post Action Configuration</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.extendedtypes.PostActionConfiguration <em>Post Action Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.papyrus.extendedtypes.PostActionConfiguration
+	 * @see org.eclipse.papyrus.infra.extendedtypes.PostActionConfiguration
 	 * @generated
 	 */
 	public Adapter createPostActionConfigurationAdapter() {

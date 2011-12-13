@@ -29,7 +29,7 @@
             configurationClass="org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.ApplyStereotypeActionConfiguration"
             description="Post action to apply stereotype on created element"
             icon="icons/Stereotype.gif"
-            id="org.eclipse.papyrus.extendedtypes.uml.applyStereotypeAction"
+            id="org.eclipse.papyrus.uml.tools.extendedtypes.applyStereotypeAction"
             name="Extended Element Type Apply Stereotype Post Action">
          <Priority
                name="Lowest">

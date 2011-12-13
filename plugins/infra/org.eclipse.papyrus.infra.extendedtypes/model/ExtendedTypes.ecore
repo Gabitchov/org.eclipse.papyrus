@@ -20,7 +20,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="specializedTypesID" lowerBound="1"
         upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="preValidation" upperBound="-1"
-        eType="ecore:EClass ../../org.eclipse.papyrus.infra.queries.core.configuration/model/Configuration.ecore#//QueryConfiguration"/>
+        eType="ecore:EClass platform:/plugin/org.eclipse.papyrus.infra.queries.core.configuration/model/Configuration.ecore#//QueryConfiguration"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="preAction" upperBound="-1"
         eType="#//PreActionConfiguration" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="postAction" upperBound="-1"

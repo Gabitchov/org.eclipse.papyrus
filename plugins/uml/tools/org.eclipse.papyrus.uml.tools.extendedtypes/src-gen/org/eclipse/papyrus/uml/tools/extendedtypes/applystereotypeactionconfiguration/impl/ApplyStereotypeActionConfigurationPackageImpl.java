@@ -11,12 +11,16 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
+
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+
 import org.eclipse.papyrus.infra.extendedtypes.ExtendedtypesPackage;
+
 import org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.ApplyStereotypeActionConfiguration;
 import org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.ApplyStereotypeActionConfigurationFactory;
 import org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.ApplyStereotypeActionConfigurationPackage;
 import org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.StereotypeToApply;
+
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
@@ -79,9 +83,7 @@ public class ApplyStereotypeActionConfigurationPackageImpl extends EPackageImpl 
 	 * @generated
 	 */
 	public static ApplyStereotypeActionConfigurationPackage init() {
-		if (isInited) {
-			return (ApplyStereotypeActionConfigurationPackage)EPackage.Registry.INSTANCE.getEPackage(ApplyStereotypeActionConfigurationPackage.eNS_URI);
-		}
+		if (isInited) return (ApplyStereotypeActionConfigurationPackage)EPackage.Registry.INSTANCE.getEPackage(ApplyStereotypeActionConfigurationPackage.eNS_URI);
 
 		// Obtain or create and register package
 		ApplyStereotypeActionConfigurationPackageImpl theApplyStereotypeActionConfigurationPackage = (ApplyStereotypeActionConfigurationPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof ApplyStereotypeActionConfigurationPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new ApplyStereotypeActionConfigurationPackageImpl());
@@ -100,7 +102,7 @@ public class ApplyStereotypeActionConfigurationPackageImpl extends EPackageImpl 
 		// Mark meta-data to indicate it can't be changed
 		theApplyStereotypeActionConfigurationPackage.freeze();
 
-
+  
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(ApplyStereotypeActionConfigurationPackage.eNS_URI, theApplyStereotypeActionConfigurationPackage);
 		return theApplyStereotypeActionConfigurationPackage;
@@ -184,9 +186,7 @@ public class ApplyStereotypeActionConfigurationPackageImpl extends EPackageImpl 
 	 * @generated
 	 */
 	public void createPackageContents() {
-		if (isCreated) {
-			return;
-		}
+		if (isCreated) return;
 		isCreated = true;
 
 		// Create classes and their features
@@ -214,9 +214,7 @@ public class ApplyStereotypeActionConfigurationPackageImpl extends EPackageImpl 
 	 * @generated
 	 */
 	public void initializePackageContents() {
-		if (isInitialized) {
-			return;
-		}
+		if (isInitialized) return;
 		isInitialized = true;
 
 		// Initialize package
