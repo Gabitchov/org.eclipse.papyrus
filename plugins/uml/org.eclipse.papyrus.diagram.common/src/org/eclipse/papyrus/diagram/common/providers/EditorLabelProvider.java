@@ -66,7 +66,7 @@ public class EditorLabelProvider implements ILabelProvider {
 	 * We store the next index for the UML Element, which are not NamedElement
 	 * Key is a String representing the type of Element
 	 */
-	private Map<String, Integer> index = new HashMap<String, Integer>();
+	private final Map<String, Integer> index = new HashMap<String, Integer>();
 
 	/** the plugin where owning the icons for the UML Element */
 	public static final String pluginID = "org.eclipse.uml2.uml.edit"; //$NON-NLS-1$
@@ -201,8 +201,13 @@ public class EditorLabelProvider implements ILabelProvider {
 					itemLabelProvider = (IItemLabelProvider)adapterFactory.adapt(eObject, IItemLabelProvider.class);
 				}
 			}
-			Object imageObject = itemLabelProvider.getImage(eObject);
-			return ExtendedImageRegistry.getInstance().getImage(imageObject);
+
+			if(itemLabelProvider != null) {
+				Object imageObject = itemLabelProvider.getImage(eObject);
+				return ExtendedImageRegistry.getInstance().getImage(imageObject);
+			}
+
+			return null;
 		}
 
 		return null;
