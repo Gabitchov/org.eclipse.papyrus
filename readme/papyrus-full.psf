@@ -21,6 +21,7 @@
 <project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/infra/org.eclipse.papyrus.infra.extendedtypes,org.eclipse.papyrus.infra.extendedtypes"/>
 <project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/infra/org.eclipse.papyrus.infra.extendedtypes.emf,org.eclipse.papyrus.infra.extendedtypes.emf"/>
 <project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/infra/gmfdiag/org.eclipse.papyrus.infra.gmfdiag.commands,org.eclipse.papyrus.infra.gmfdiag.commands"/>
+<project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/infra/gmfdiag/org.eclipse.papyrus.infra.gmfdiag.common,org.eclipse.papyrus.infra.gmfdiag.common"/>
 <project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/infra/gmfdiag/org.eclipse.papyrus.infra.gmfdiag.navigation,org.eclipse.papyrus.infra.gmfdiag.navigation"/>
 <project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/infra/gmfdiag/org.eclipse.papyrus.infra.gmfdiag.outline,org.eclipse.papyrus.infra.gmfdiag.outline"/>
 <project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/infra/gmfdiag/org.eclipse.papyrus.infra.gmfdiag.preferences,org.eclipse.papyrus.infra.gmfdiag.preferences"/>
@@ -213,6 +214,7 @@
 <workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1319612506287_62" label="infra.gmfdiag" name="infra.gmfdiag">
 <item elementID="=org.eclipse.papyrus.infra.gmfdiag.outline" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.infra.gmfdiag.commands" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.papyrus.infra.gmfdiag.common" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.infra.gmfdiag.properties" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.infra.gmfdiag.navigation" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.infra.gmfdiag.widgets" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
