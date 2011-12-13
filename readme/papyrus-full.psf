@@ -13,7 +13,6 @@
 <project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/core/org.eclipse.papyrus.extensionpoints.editors,org.eclipse.papyrus.extensionpoints.editors"/>
 <project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/infra/core/org.eclipse.papyrus.infra.core,org.eclipse.papyrus.infra.core"/>
 <project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/infra/core/org.eclipse.papyrus.infra.core.adaptor.emf,org.eclipse.papyrus.infra.core.adaptor.emf"/>
-<project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/infra/core/org.eclipse.papyrus.infra.core.adaptor.gmf,org.eclipse.papyrus.infra.core.adaptor.gmf"/>
 <project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/infra/core/org.eclipse.papyrus.infra.core.log,org.eclipse.papyrus.infra.core.log"/>
 <project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/infra/core/org.eclipse.papyrus.infra.core.sasheditor,org.eclipse.papyrus.infra.core.sasheditor"/>
 <project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/infra/core/org.eclipse.papyrus.infra.core.sasheditor.di,org.eclipse.papyrus.infra.core.sasheditor.di"/>
@@ -204,7 +203,6 @@
 <item elementID="=org.eclipse.papyrus.infra.ui.resources" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 </workingSets>
 <workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1319612477881_57" label="infra.core" name="infra.core">
-<item elementID="=org.eclipse.papyrus.infra.core.adaptor.gmf" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.infra.core.sasheditor" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.infra.core.sasheditor.di" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.infra.core.log" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
