@@ -223,7 +223,7 @@
 		<initializer class="org.eclipse.papyrus.views.modelexplorer.preferences.NavigatorPreferenceInitializer"/>
    </extension>
    <extension point="org.eclipse.ui.preferencePages">
-      <page category="org.eclipse.papyrus.infra.gmfdiag.preferences.generalcategory" class="org.eclipse.papyrus.views.modelexplorer.preferences.NavigatorPreferencePage" id="org.eclipse.papyrus.views.modelexplorer.preferences.NavigatorPreferencePage" name="Papyrus Model Explorer">
+      <page category="org.eclipse.papyrus.infra.core.sasheditor.preferences.generalcategory" class="org.eclipse.papyrus.views.modelexplorer.preferences.NavigatorPreferencePage" id="org.eclipse.papyrus.views.modelexplorer.preferences.NavigatorPreferencePage" name="Papyrus Model Explorer">
       </page>
    </extension>
 

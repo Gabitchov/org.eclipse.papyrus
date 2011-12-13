@@ -24,7 +24,7 @@
                toolbarID="org.eclipse.papyrus.uml.diagram.ui.toolbar">
          </toolbar>
          <preferencePage
-               preferencepageID="org.eclipse.papyrus.infra.gmfdiag.preferences.generalcategory">
+               preferencepageID="org.eclipse.papyrus.infra.core.sasheditor.preferences.generalcategory">
          </preferencePage>
          <category
                categoryID="org.eclipse.ui.category.file">

@@ -250,7 +250,7 @@
    <extension
          point="org.eclipse.ui.preferencePages">
       <page
-      		category="org.eclipse.papyrus.infra.gmfdiag.preferences.generalcategory"
+      		category="org.eclipse.papyrus.infra.core.sasheditor.preferences.generalcategory"
             class="org.eclipse.papyrus.navigator.preferences.NavigatorPreferencePage"
             id="org.eclipse.papyrus.navigator.preferences.NavigatorPreferencePage"
             name="Model Explorer">

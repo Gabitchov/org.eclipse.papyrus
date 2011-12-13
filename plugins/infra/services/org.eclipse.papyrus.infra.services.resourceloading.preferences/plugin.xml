@@ -10,7 +10,7 @@
    <extension
          point="org.eclipse.ui.preferencePages">
       <page
-      		category="org.eclipse.papyrus.infra.gmfdiag.preferences.generalcategory"
+      		category="org.eclipse.papyrus.infra.core.sasheditor.preferences.generalcategory"
             class="org.eclipse.papyrus.infra.services.resourceloading.preferences.LoadingStrategyPreferencePage"
             id="org.eclipse.papyrus.infra.services.resourceloading.preferences.ModelLoadingPreferencePage"
             name="Model loading">

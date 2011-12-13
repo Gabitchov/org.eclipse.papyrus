@@ -31,7 +31,7 @@
    <extension
          point="org.eclipse.ui.preferencePages">
       <page
-            category="org.eclipse.papyrus.infra.gmfdiag.preferences.generalcategory"
+            category="org.eclipse.papyrus.infra.core.sasheditor.preferences.generalcategory"
             class="org.eclipse.papyrus.views.properties.preferences.Preferences"
             id="org.eclipse.papyrus.views.properties.propertyview"
             name="%page.name">

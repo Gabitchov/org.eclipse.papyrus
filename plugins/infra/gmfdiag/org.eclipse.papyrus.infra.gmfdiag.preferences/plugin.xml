@@ -5,29 +5,29 @@
          point="org.eclipse.ui.preferencePages">
       <page
             class="org.eclipse.papyrus.infra.gmfdiag.preferences.pages.internal.PapyrusUML2PreferencePage"
-            id="org.eclipse.papyrus.infra.gmfdiag.preferences.generalcategory"
+            id="org.eclipse.papyrus.infra.core.sasheditor.preferences.generalcategory"
             name="Papyrus">
       </page>
       <page
-            category="org.eclipse.papyrus.infra.gmfdiag.preferences.generalcategory"
+            category="org.eclipse.papyrus.infra.core.sasheditor.preferences.generalcategory"
             class="org.eclipse.papyrus.infra.gmfdiag.preferences.pages.PapyrusAllDiagramsPreferencePage"
             id="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams"
             name="Diagrams">
       </page>
       <page
-            category="org.eclipse.papyrus.infra.gmfdiag.preferences.generalcategory"
+            category="org.eclipse.papyrus.infra.core.sasheditor.preferences.generalcategory"
             class="org.eclipse.papyrus.infra.gmfdiag.preferences.pages.internal.PapyrusRulersAndGridPreferencePage"
             id="org.eclipse.papyrus.infra.gmfdiag.preferences.rulersandgrid"
             name="Rulers And Grid">
       </page>
       <page
-            category="org.eclipse.papyrus.infra.gmfdiag.preferences.generalcategory"
+            category="org.eclipse.papyrus.infra.core.sasheditor.preferences.generalcategory"
             class="org.eclipse.papyrus.infra.gmfdiag.preferences.pages.internal.PapyrusPrintingPreferencePage"
             id="org.eclipse.papyrus.infra.gmfdiag.preferences.printing"
             name="Printing">
       </page>
       <page
-            category="org.eclipse.papyrus.infra.gmfdiag.preferences.generalcategory"
+            category="org.eclipse.papyrus.infra.core.sasheditor.preferences.generalcategory"
             class="org.eclipse.papyrus.infra.gmfdiag.preferences.pages.internal.PapyrusPathmapsPreferencePage"
             id="org.eclipse.papyrus.infra.gmfdiag.preferences.pathmaps"
             name="Pathmaps">

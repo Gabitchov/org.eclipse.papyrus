@@ -42,7 +42,7 @@
    <extension
          point="org.eclipse.ui.preferencePages">
       <page
-            category="org.eclipse.papyrus.infra.gmfdiag.preferences.generalcategory"
+            category="org.eclipse.papyrus.infra.core.sasheditor.preferences.generalcategory"
             class="org.eclipse.papyrus.extensionpoints.editors.preferences.PapyrusEmbeddedEditorsPreferencePage"
             id="org.eclipse.papyrus.embeddededitors"
             name="Embedded Editors">
