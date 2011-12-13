@@ -43,7 +43,7 @@ public class Activator extends AbstractUIPlugin {
 	/**
 	 * @generated
 	 */
-	public static final String ID = "org.eclipse.papyrus.infra.core.adaptor.gmf"; //$NON-NLS-1$
+	public static final String ID = "org.eclipse.papyrus.infra.gmfdiag.common"; //$NON-NLS-1$
 
 	/**
 	 * @generated
