@@ -11,7 +11,7 @@
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.infra.core.adaptor.gmf;
+package org.eclipse.papyrus.infra.gmfdiag.common;
 
 import java.io.IOException;
 import java.net.URISyntaxException;

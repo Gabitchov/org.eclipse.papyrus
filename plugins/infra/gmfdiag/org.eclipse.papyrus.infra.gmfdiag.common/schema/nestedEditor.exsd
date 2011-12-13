@@ -62,10 +62,10 @@ Define a nested editor descriptor. This descriptor is used to add instance of th
             <annotation>
                <documentation>
                   The factory used to create an instance of the editor.
-The factory must implements org.eclipse.papyrus.infra.core.adaptor.gmf.extension.IEditorFactory
+The factory must implements org.eclipse.papyrus.infra.gmfdiag.common.extension.IEditorFactory
                </documentation>
                <appinfo>
-                  <meta.attribute kind="java" basedOn="org.eclipse.papyrus.infra.core.adaptor.gmf.extension.IEditorFactory"/>
+                  <meta.attribute kind="java" basedOn="org.eclipse.papyrus.infra.gmfdiag.common.extension.IEditorFactory"/>
                </appinfo>
             </annotation>
          </attribute>
@@ -129,7 +129,7 @@ The factory must implements org.eclipse.papyrus.infra.core.adaptor.gmf.extension
                   The action class implementing the creation of the root object.
                </documentation>
                <appinfo>
-                  <meta.attribute kind="java" basedOn="org.eclipse.papyrus.infra.core.adaptor.gmf.extension.ICreateDiagramAction"/>
+                  <meta.attribute kind="java" basedOn="org.eclipse.papyrus.infra.gmfdiag.common.extension.ICreateDiagramAction"/>
                </appinfo>
             </annotation>
          </attribute>

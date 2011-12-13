@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence;
 
-import org.eclipse.papyrus.infra.core.adaptor.gmf.GmfEditorFactory;
+import org.eclipse.papyrus.infra.gmfdiag.common.GmfEditorFactory;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.PackageEditPart;
 
 /**

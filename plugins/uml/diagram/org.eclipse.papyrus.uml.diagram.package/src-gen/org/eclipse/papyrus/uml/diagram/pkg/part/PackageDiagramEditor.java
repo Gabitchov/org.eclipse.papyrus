@@ -44,10 +44,10 @@ import org.eclipse.papyrus.uml.diagram.common.part.PapyrusPaletteContextMenuProv
 import org.eclipse.papyrus.uml.diagram.common.part.PapyrusPaletteViewer;
 import org.eclipse.papyrus.uml.diagram.common.part.UmlGmfDiagramEditor;
 import org.eclipse.papyrus.uml.diagram.common.service.PapyrusPaletteService;
-import org.eclipse.papyrus.infra.core.adaptor.gmf.GmfMultiDiagramDocumentProvider;
 import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.gmfdiag.common.GmfMultiDiagramDocumentProvider;
 import org.eclipse.papyrus.uml.diagram.pkg.Activator;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.dnd.TransferData;

@@ -9,10 +9,10 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.gef.KeyHandler;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
-import org.eclipse.papyrus.infra.core.adaptor.gmf.SynchronizableGmfDiagramEditor;
 import org.eclipse.papyrus.infra.core.lifecycleevents.ISaveAndDirtyService;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.gmfdiag.common.SynchronizableGmfDiagramEditor;
 
 /**
  * Common ancestor of GMF based editors for UML. This class allows to declare

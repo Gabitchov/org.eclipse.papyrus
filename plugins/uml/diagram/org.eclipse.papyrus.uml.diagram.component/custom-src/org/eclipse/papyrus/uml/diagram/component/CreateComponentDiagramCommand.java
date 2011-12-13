@@ -13,7 +13,7 @@
 package org.eclipse.papyrus.uml.diagram.component;
 
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
-import org.eclipse.papyrus.infra.core.adaptor.gmf.AbstractPapyrusGmfCreateDiagramCommandHandler;
+import org.eclipse.papyrus.infra.gmfdiag.common.AbstractPapyrusGmfCreateDiagramCommandHandler;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ComponentDiagramEditPart;
 
 
@@ -27,7 +27,7 @@ public class CreateComponentDiagramCommand extends AbstractPapyrusGmfCreateDiagr
 	 * Gets the default diagram name.
 	 * 
 	 * @return the default diagram name
-	 * @see org.eclipse.papyrus.infra.core.adaptor.gmf.AbstractPapyrusGmfCreateDiagramCommandHandler#getDefaultDiagramName()
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.AbstractPapyrusGmfCreateDiagramCommandHandler#getDefaultDiagramName()
 	 */
 
 	@Override
@@ -40,7 +40,7 @@ public class CreateComponentDiagramCommand extends AbstractPapyrusGmfCreateDiagr
 	 * Gets the diagram notation id.
 	 * 
 	 * @return the diagram notation id
-	 * @see org.eclipse.papyrus.infra.core.adaptor.gmf.AbstractPapyrusGmfCreateDiagramCommandHandler#getDiagramNotationID()
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.AbstractPapyrusGmfCreateDiagramCommandHandler#getDiagramNotationID()
 	 */
 
 	@Override
@@ -52,7 +52,7 @@ public class CreateComponentDiagramCommand extends AbstractPapyrusGmfCreateDiagr
 	 * Gets the preference hint.
 	 * 
 	 * @return the preference hint
-	 * @see org.eclipse.papyrus.infra.core.adaptor.gmf.AbstractPapyrusGmfCreateDiagramCommandHandler#getPreferenceHint()
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.AbstractPapyrusGmfCreateDiagramCommandHandler#getPreferenceHint()
 	 */
 
 	@Override

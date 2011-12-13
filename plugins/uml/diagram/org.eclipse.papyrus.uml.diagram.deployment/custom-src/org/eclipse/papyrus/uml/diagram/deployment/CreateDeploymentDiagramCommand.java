@@ -13,7 +13,7 @@
 package org.eclipse.papyrus.uml.diagram.deployment;
 
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
-import org.eclipse.papyrus.infra.core.adaptor.gmf.AbstractPapyrusGmfCreateDiagramCommandHandler;
+import org.eclipse.papyrus.infra.gmfdiag.common.AbstractPapyrusGmfCreateDiagramCommandHandler;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DeploymentDiagramEditPart;
 
 // TODO: Auto-generated Javadoc
@@ -26,7 +26,7 @@ public class CreateDeploymentDiagramCommand extends AbstractPapyrusGmfCreateDiag
 	 * Gets the default diagram name.
 	 * 
 	 * @return the default diagram name
-	 * @see org.eclipse.papyrus.infra.core.adaptor.gmf.AbstractPapyrusGmfCreateDiagramCommandHandler#getDefaultDiagramName()
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.AbstractPapyrusGmfCreateDiagramCommandHandler#getDefaultDiagramName()
 	 */
 
 	@Override
@@ -38,7 +38,7 @@ public class CreateDeploymentDiagramCommand extends AbstractPapyrusGmfCreateDiag
 	 * Gets the diagram notation id.
 	 * 
 	 * @return the diagram notation id
-	 * @see org.eclipse.papyrus.infra.core.adaptor.gmf.AbstractPapyrusGmfCreateDiagramCommandHandler#getDiagramNotationID()
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.AbstractPapyrusGmfCreateDiagramCommandHandler#getDiagramNotationID()
 	 */
 
 	@Override
@@ -50,7 +50,7 @@ public class CreateDeploymentDiagramCommand extends AbstractPapyrusGmfCreateDiag
 	 * Gets the preference hint.
 	 * 
 	 * @return the preference hint
-	 * @see org.eclipse.papyrus.infra.core.adaptor.gmf.AbstractPapyrusGmfCreateDiagramCommandHandler#getPreferenceHint()
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.AbstractPapyrusGmfCreateDiagramCommandHandler#getPreferenceHint()
 	 */
 
 	@Override

@@ -14,7 +14,7 @@
 
 package org.eclipse.papyrus.uml.diagram.clazz;
 
-import org.eclipse.papyrus.infra.core.adaptor.gmf.GmfEditorFactory;
+import org.eclipse.papyrus.infra.gmfdiag.common.GmfEditorFactory;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ModelEditPart;
 
 /**

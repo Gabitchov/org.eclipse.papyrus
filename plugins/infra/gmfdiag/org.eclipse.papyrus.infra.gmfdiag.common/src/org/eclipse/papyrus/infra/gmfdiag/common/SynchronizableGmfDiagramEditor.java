@@ -11,7 +11,7 @@
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.infra.core.adaptor.gmf;
+package org.eclipse.papyrus.infra.gmfdiag.common;
 
 import java.util.Iterator;
 import java.util.List;

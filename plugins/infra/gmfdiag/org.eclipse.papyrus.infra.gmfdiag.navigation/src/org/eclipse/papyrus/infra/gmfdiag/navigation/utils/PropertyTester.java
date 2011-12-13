@@ -11,12 +11,12 @@
 package org.eclipse.papyrus.infra.gmfdiag.navigation.utils;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.infra.core.adaptor.gmf.DiagramsUtil;
 import org.eclipse.papyrus.infra.core.editor.CoreMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.EditorUtils;
+import org.eclipse.papyrus.infra.gmfdiag.common.DiagramsUtil;
 import org.eclipse.papyrus.infra.gmfdiag.navigation.Activator;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPage;

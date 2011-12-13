@@ -24,7 +24,7 @@
 <extension
       point="org.eclipse.papyrus.infra.core.papyrusDiagram">
    <editorContext
-         contextClass="org.eclipse.papyrus.infra.core.adaptor.gmf.GmfEditorContext"
+         contextClass="org.eclipse.papyrus.infra.gmfdiag.common.GmfEditorContext"
          id="com.cea.papyrus.gmf.editor.context">
    </editorContext>
    </extension>

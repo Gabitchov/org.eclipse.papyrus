@@ -11,7 +11,7 @@
  *  Mathieu Velten (Atos Origin) mathieu.velten@atosorigin.com - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.infra.core.adaptor.gmf;
+package org.eclipse.papyrus.infra.gmfdiag.common;
 
 import java.util.Collections;
 import java.util.LinkedList;

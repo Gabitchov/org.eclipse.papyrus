@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.pkg;
 
-import org.eclipse.papyrus.infra.core.adaptor.gmf.GmfEditorFactory;
+import org.eclipse.papyrus.infra.gmfdiag.common.GmfEditorFactory;
 import org.eclipse.papyrus.uml.diagram.pkg.provider.ElementTypes;
 
 public class PackageDiagramEditorFactory extends GmfEditorFactory {

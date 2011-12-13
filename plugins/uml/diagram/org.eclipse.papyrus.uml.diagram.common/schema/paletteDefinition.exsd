@@ -10,7 +10,7 @@
       </documentation>
    </annotation>
 
-   <include schemaLocation="schema://org.eclipse.papyrus.infra.core.adaptor.gmf/schema/nestedEditor.exsd"/>
+   <include schemaLocation="schema://org.eclipse.papyrus.infra.gmfdiag.common/schema/nestedEditor.exsd"/>
 
    <element name="extension">
       <annotation>
