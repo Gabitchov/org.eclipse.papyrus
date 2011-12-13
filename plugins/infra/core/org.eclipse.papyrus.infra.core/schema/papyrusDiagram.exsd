@@ -312,7 +312,7 @@ As Requirement diagram belongs to SysML category it will be created with a SysML
 &lt;p&gt;The value of the &lt;code&gt;creationCommandClass&lt;/code&gt; attribute of &lt;code&gt;creationCommand&lt;/code&gt;
  must represent a class that implements the &lt;code&gt;org.eclipse.papyrus.infra.core.extension.commands.ICreationCommand&lt;/code&gt; interface.
 &lt;ul&gt;
-&lt;li&gt;&lt;code&gt;org.eclipse.papyrus.infra.core.adaptor.gmf.AbstractPapyrusGmfCreateDiagramCommandHandler&lt;/code&gt; - an abstract implementation of a basic &lt;code&gt;ICreationCommand&lt;/code&gt; for GMF diagrams. All CreationCommands for Papyrus diagrams extend this class.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;org.eclipse.papyrus.infra.gmfdiag.common.AbstractPapyrusGmfCreateDiagramCommandHandler&lt;/code&gt; - an abstract implementation of a basic &lt;code&gt;ICreationCommand&lt;/code&gt; for GMF diagrams. All CreationCommands for Papyrus diagrams extend this class.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/p&gt;
       </documentation>
