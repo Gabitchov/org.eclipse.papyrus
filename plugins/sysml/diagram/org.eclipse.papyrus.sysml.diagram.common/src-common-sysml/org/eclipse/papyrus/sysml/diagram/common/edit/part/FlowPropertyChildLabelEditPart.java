@@ -13,16 +13,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.common.edit.part;
 
-import java.util.List;
-
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.sysml.diagram.common.Activator;
 import org.eclipse.papyrus.sysml.portandflows.FlowProperty;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.AbstractElementChildLabelEditPart;
-import org.eclipse.papyrus.uml.diagram.common.util.DiagramEditPartsUtil;
-import org.eclipse.papyrus.uml.tools.utils.ui.helper.NameLabelIconHelper;
-import org.eclipse.swt.graphics.Image;
 
 /**
  * Edit part for {@link FlowProperty} used as Child label node.
@@ -42,23 +35,23 @@ public class FlowPropertyChildLabelEditPart extends AbstractElementChildLabelEdi
 		super.createDefaultEditPolicies();
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	protected Image getLabelIcon() {
-		EObject parserElement = getParserElement();
-		if(parserElement == null) {
-			return null;
-		}
-
-		List<View> views = DiagramEditPartsUtil.findViews(parserElement, getViewer());
-		for(View view : views) {
-			if(NameLabelIconHelper.showLabelIcon(view)) {
-				return Activator.getInstance().getImage(org.eclipse.papyrus.sysml.portandflows.PortandflowsPackage.eINSTANCE.getFlowProperty());
-			}
-		}
-
-		return null;
-	}
+	//	/**
+	//	 * {@inheritDoc}
+	//	 */
+	//	@Override
+	//	protected Image getLabelIcon() {
+	//		EObject parserElement = getParserElement();
+	//		if(parserElement == null) {
+	//			return null;
+	//		}
+	//
+	//		List<View> views = DiagramEditPartsUtil.findViews(parserElement, getViewer());
+	//		for(View view : views) {
+	//			if(NameLabelIconHelper.showLabelIcon(view)) {
+	//				return labelProvider.getImage(parserElement);
+	//			}
+	//		}
+	//
+	//		return null;
+	//	}
 }

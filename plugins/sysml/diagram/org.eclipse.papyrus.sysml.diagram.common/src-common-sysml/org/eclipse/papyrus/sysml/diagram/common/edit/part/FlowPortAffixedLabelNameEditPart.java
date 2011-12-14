@@ -23,6 +23,7 @@ import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.papyrus.sysml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.AbstractElementLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.common.util.DiagramEditPartsUtil;
@@ -34,10 +35,14 @@ import org.eclipse.swt.graphics.Image;
  */
 public class FlowPortAffixedLabelNameEditPart extends AbstractElementLabelEditPart implements IBorderItemEditPart {
 
+	/** label provider for icons */
+	private final LabelProvider labelProvider;
+
 	/** Constructor */
 	public FlowPortAffixedLabelNameEditPart(View view) {
 		super(view);
 		addSnapBackLocation();
+		labelProvider = Activator.getInstance().getLabelProvider();
 	}
 
 	/**
@@ -84,7 +89,7 @@ public class FlowPortAffixedLabelNameEditPart extends AbstractElementLabelEditPa
 		List<View> views = DiagramEditPartsUtil.findViews(parserElement, getViewer());
 		for(View view : views) {
 			if(NameLabelIconHelper.showLabelIcon(view)) {
-				return Activator.getInstance().getImage(org.eclipse.papyrus.sysml.portandflows.PortandflowsPackage.eINSTANCE.getFlowPort());
+				return labelProvider.getImage(parserElement);
 			}
 		}
 

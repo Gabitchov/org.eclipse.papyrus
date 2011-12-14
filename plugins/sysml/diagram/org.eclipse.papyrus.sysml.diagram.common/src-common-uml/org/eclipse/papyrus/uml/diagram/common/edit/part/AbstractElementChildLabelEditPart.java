@@ -199,7 +199,7 @@ public class AbstractElementChildLabelEditPart extends GraphicalEditPart impleme
 		List<View> views = DiagramEditPartsUtil.findViews(parserElement, getViewer());
 		for(View view : views) {
 			if(NameLabelIconHelper.showLabelIcon(view)) {
-				return Activator.getInstance().getImage(parserElement.eClass());
+				return Activator.getInstance().getLabelProvider().getImage(parserElement);
 			}
 		}
 		return null;
