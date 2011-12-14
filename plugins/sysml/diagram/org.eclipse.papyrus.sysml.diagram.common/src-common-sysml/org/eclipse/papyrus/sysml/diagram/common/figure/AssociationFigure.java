@@ -1,14 +1,14 @@
 /*****************************************************************************
  * Copyright (c) 2009-2011 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- * 
+ *
  * 	Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  * 	CEA LIST - Adaptation for SysML purpose.
  *
@@ -16,8 +16,8 @@
 package org.eclipse.papyrus.sysml.diagram.common.figure;
 
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
-import org.eclipse.papyrus.diagram.common.figure.node.PapyrusWrappingLabel;
 import org.eclipse.papyrus.uml.diagram.common.figure.NamedElementEdgeFigure;
+import org.eclipse.papyrus.uml.diagram.common.figure.node.PapyrusWrappingLabel;
 import org.eclipse.uml2.uml.Association;
 
 /**
@@ -48,6 +48,7 @@ public class AssociationFigure extends NamedElementEdgeFigure {
 	/**
 	 * Creates the contents.
 	 */
+	@Override
 	protected void createContents() {
 		super.createContents();
 
@@ -75,16 +76,17 @@ public class AssociationFigure extends NamedElementEdgeFigure {
 
 	/**
 	 * Gets the applied stereotype association label.
-	 * 
+	 *
 	 * @return the applied stereotype association label
 	 */
+	@Override
 	public WrappingLabel getAppliedStereotypeLabel() {
 		return appliedStereotypeLabel;
 	}
 
 	/**
 	 * Gets the multiplicity source label.
-	 * 
+	 *
 	 * @return the multiplicity source label
 	 */
 	public WrappingLabel getSourceMultiplicityLabel() {
@@ -93,7 +95,7 @@ public class AssociationFigure extends NamedElementEdgeFigure {
 
 	/**
 	 * Gets the multiplicity target label.
-	 * 
+	 *
 	 * @return the multiplicity target label
 	 */
 	public WrappingLabel getTargetMultiplicityLabel() {
@@ -102,7 +104,7 @@ public class AssociationFigure extends NamedElementEdgeFigure {
 
 	/**
 	 * Gets the role source label.
-	 * 
+	 *
 	 * @return the role source label
 	 */
 	public WrappingLabel getSourceRoleLabel() {
@@ -111,7 +113,7 @@ public class AssociationFigure extends NamedElementEdgeFigure {
 
 	/**
 	 * Gets the role target label.
-	 * 
+	 *
 	 * @return the role target label
 	 */
 	public WrappingLabel getTargetRoleLabel() {
