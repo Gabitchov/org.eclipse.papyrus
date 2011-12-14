@@ -15,7 +15,7 @@ http://www.eclipse.org/legal/epl-v10.html
    </copyright>
 
    <license url="license.html">
-     Eclipse Foundation Software User Agreement
+      Eclipse Foundation Software User Agreement
 March 17, 2005
 
 Usage Of Content
@@ -57,13 +57,6 @@ Java and all Java-based trademarks are trademarks of Sun Microsystems, Inc. in t
 
    <plugin
          id="org.eclipse.papyrus.editor"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.papyrus.editor.perspectiveconfiguration"
          download-size="0"
          install-size="0"
          version="0.0.0"

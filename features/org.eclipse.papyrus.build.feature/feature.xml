@@ -136,10 +136,6 @@ Java and all Java-based trademarks are trademarks of Sun Microsystems, Inc. in t
          version="0.0.0"/>
 
    <includes
-         id="org.eclipse.papyrus.uml.textedit.feature"
-         version="0.0.0"/>
-
-   <includes
          id="org.eclipse.papyrus.uml.tools.feature"
          version="0.0.0"/>
 

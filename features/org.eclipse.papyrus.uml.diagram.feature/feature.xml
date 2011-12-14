@@ -23,13 +23,6 @@ http://www.eclipse.org/legal/epl-v10.html
    </license>
 
    <plugin
-         id="org.eclipse.papyrus.uml.diagram.activity"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
          id="org.eclipse.papyrus.uml.diagram.clazz"
          download-size="0"
          install-size="0"
@@ -58,21 +51,7 @@ http://www.eclipse.org/legal/epl-v10.html
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.papyrus.uml.diagram.communication"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
          id="org.eclipse.papyrus.uml.diagram.component"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.papyrus.uml.diagram.composite"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -143,13 +122,6 @@ http://www.eclipse.org/legal/epl-v10.html
 
    <plugin
          id="org.eclipse.papyrus.uml.diagram.profile"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.papyrus.uml.diagram.sequence"
          download-size="0"
          install-size="0"
          version="0.0.0"
