@@ -102,10 +102,6 @@
          version="0.0.0"/>
 
    <includes
-         id="org.eclipse.papyrus.views.documentation.feature"
-         version="0.0.0"/>
-
-   <includes
          id="org.eclipse.papyrus.views.modelexplorer.feature"
          version="0.0.0"/>
 
@@ -141,12 +137,6 @@
 
    <plugin
          id="org.eclipse.e4.xwt.tools.ui"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"/>
-
-   <plugin
-         id="org.eclipse.epf.richtext"
          download-size="0"
          install-size="0"
          version="0.0.0"/>
