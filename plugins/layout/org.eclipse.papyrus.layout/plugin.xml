@@ -37,7 +37,8 @@
                type="org.eclipse.ui.IWorkbenchPart">
          </propertyTester>
       </extension>
-      <extension
+      <!--  commented for papyrus M4 build-->
+     <!-- <extension
             point="org.eclipse.papyrus.editor.perspectiveconfiguration">
          <configuration
                perspectiveID="org.eclipse.papyrus.infra.core.perspective">
@@ -46,6 +47,6 @@
             </toolbar>
          </configuration>
       </extension>
-     	 
+     	--> 
 
 </plugin>

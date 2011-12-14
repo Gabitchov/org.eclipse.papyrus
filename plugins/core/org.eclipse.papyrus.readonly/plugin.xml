@@ -111,7 +111,8 @@
          priority="10">
    </operationApprover>
 </extension>
-   <extension
+<!-- commented for Papyrus M4 build -->
+<!--   <extension
          point="org.eclipse.papyrus.editor.perspectiveconfiguration">
       <configuration
             perspectiveID="org.eclipse.papyrus.infra.core.perspective">
@@ -123,4 +124,5 @@
          </command>
       </configuration>
    </extension>
+   -->
 </plugin>
