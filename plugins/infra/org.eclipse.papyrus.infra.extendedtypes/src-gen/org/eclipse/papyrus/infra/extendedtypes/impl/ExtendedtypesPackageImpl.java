@@ -10,11 +10,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EcorePackage;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
-
 import org.eclipse.papyrus.infra.extendedtypes.ActionConfiguration;
 import org.eclipse.papyrus.infra.extendedtypes.ExtendedElementTypeConfiguration;
 import org.eclipse.papyrus.infra.extendedtypes.ExtendedElementTypeSet;
@@ -24,6 +20,8 @@ import org.eclipse.papyrus.infra.extendedtypes.IconEntry;
 import org.eclipse.papyrus.infra.extendedtypes.PostActionConfiguration;
 import org.eclipse.papyrus.infra.extendedtypes.PreActionConfiguration;
 import org.eclipse.papyrus.infra.queries.core.configuration.ConfigurationPackage;
+import org.eclipse.uml2.types.TypesPackage;
+import org.eclipse.uml2.types.internal.impl.TypesPackageImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -123,11 +121,16 @@ public class ExtendedtypesPackageImpl extends EPackageImpl implements Extendedty
 		// Initialize simple dependencies
 		ConfigurationPackage.eINSTANCE.eClass();
 
+		// Obtain or create and register interdependencies
+		TypesPackageImpl theTypesPackage = (TypesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI) instanceof TypesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI) : TypesPackage.eINSTANCE);
+
 		// Create package meta-data objects
 		theExtendedtypesPackage.createPackageContents();
+		theTypesPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theExtendedtypesPackage.initializePackageContents();
+		theTypesPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theExtendedtypesPackage.freeze();

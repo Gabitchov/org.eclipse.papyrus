@@ -9,12 +9,13 @@ package org.eclipse.papyrus.infra.extendedtypes.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.eclipse.papyrus.infra.extendedtypes.*;
+import org.eclipse.papyrus.infra.extendedtypes.ExtendedElementTypeConfiguration;
+import org.eclipse.papyrus.infra.extendedtypes.ExtendedElementTypeSet;
+import org.eclipse.papyrus.infra.extendedtypes.ExtendedtypesFactory;
+import org.eclipse.papyrus.infra.extendedtypes.ExtendedtypesPackage;
+import org.eclipse.papyrus.infra.extendedtypes.IconEntry;
 
 /**
  * <!-- begin-user-doc -->

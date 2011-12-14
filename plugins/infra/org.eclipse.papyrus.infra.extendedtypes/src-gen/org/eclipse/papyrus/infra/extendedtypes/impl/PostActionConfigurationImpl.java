@@ -7,7 +7,6 @@
 package org.eclipse.papyrus.infra.extendedtypes.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.papyrus.infra.extendedtypes.ExtendedtypesPackage;
 import org.eclipse.papyrus.infra.extendedtypes.PostActionConfiguration;
 

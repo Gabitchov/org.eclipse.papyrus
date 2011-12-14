@@ -8,13 +8,12 @@ package org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfigu
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.util.Switch;
-
 import org.eclipse.papyrus.infra.extendedtypes.ActionConfiguration;
 import org.eclipse.papyrus.infra.extendedtypes.PostActionConfiguration;
-
-import org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.*;
+import org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.ApplyStereotypeActionConfiguration;
+import org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.ApplyStereotypeActionConfigurationPackage;
+import org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.StereotypeToApply;
 
 /**
  * <!-- begin-user-doc -->

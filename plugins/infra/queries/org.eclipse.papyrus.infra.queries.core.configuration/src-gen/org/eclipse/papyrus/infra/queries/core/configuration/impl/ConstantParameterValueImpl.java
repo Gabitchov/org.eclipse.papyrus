@@ -8,15 +8,11 @@ package org.eclipse.papyrus.infra.queries.core.configuration.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.papyrus.infra.queries.core.configuration.ConfigurationPackage;
 import org.eclipse.papyrus.infra.queries.core.configuration.ConstantParameterValue;
-
 import org.eclipse.uml2.uml.ValueSpecification;
 
 /**

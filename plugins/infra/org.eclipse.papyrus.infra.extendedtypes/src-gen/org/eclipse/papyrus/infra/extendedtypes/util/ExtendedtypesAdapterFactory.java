@@ -8,12 +8,15 @@ package org.eclipse.papyrus.infra.extendedtypes.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.papyrus.infra.extendedtypes.*;
+import org.eclipse.papyrus.infra.extendedtypes.ActionConfiguration;
+import org.eclipse.papyrus.infra.extendedtypes.ExtendedElementTypeConfiguration;
+import org.eclipse.papyrus.infra.extendedtypes.ExtendedElementTypeSet;
+import org.eclipse.papyrus.infra.extendedtypes.ExtendedtypesPackage;
+import org.eclipse.papyrus.infra.extendedtypes.IconEntry;
+import org.eclipse.papyrus.infra.extendedtypes.PostActionConfiguration;
+import org.eclipse.papyrus.infra.extendedtypes.PreActionConfiguration;
 
 /**
  * <!-- begin-user-doc -->

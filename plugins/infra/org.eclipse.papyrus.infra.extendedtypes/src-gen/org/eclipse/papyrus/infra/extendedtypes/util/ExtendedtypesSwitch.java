@@ -6,14 +6,16 @@
  */
 package org.eclipse.papyrus.infra.extendedtypes.util;
 
-import java.util.List;
-
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
-import org.eclipse.papyrus.infra.extendedtypes.*;
+import org.eclipse.papyrus.infra.extendedtypes.ActionConfiguration;
+import org.eclipse.papyrus.infra.extendedtypes.ExtendedElementTypeConfiguration;
+import org.eclipse.papyrus.infra.extendedtypes.ExtendedElementTypeSet;
+import org.eclipse.papyrus.infra.extendedtypes.ExtendedtypesPackage;
+import org.eclipse.papyrus.infra.extendedtypes.IconEntry;
+import org.eclipse.papyrus.infra.extendedtypes.PostActionConfiguration;
+import org.eclipse.papyrus.infra.extendedtypes.PreActionConfiguration;
 
 /**
  * <!-- begin-user-doc -->

@@ -7,9 +7,7 @@
 package org.eclipse.papyrus.infra.extendedtypes;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.papyrus.infra.queries.core.configuration.QueryConfiguration;
 
 /**

@@ -9,12 +9,14 @@ package org.eclipse.papyrus.infra.queries.core.configuration.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.eclipse.papyrus.infra.queries.core.configuration.*;
+import org.eclipse.papyrus.infra.queries.core.configuration.ConfigurationFactory;
+import org.eclipse.papyrus.infra.queries.core.configuration.ConfigurationPackage;
+import org.eclipse.papyrus.infra.queries.core.configuration.ConstantParameterValue;
+import org.eclipse.papyrus.infra.queries.core.configuration.ListParameterValue;
+import org.eclipse.papyrus.infra.queries.core.configuration.ModiscoQueryConfiguration;
+import org.eclipse.papyrus.infra.queries.core.configuration.QueryExecutionValue;
 
 /**
  * <!-- begin-user-doc -->

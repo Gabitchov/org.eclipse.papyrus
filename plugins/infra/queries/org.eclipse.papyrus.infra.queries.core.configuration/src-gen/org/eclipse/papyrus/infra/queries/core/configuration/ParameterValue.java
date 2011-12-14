@@ -7,7 +7,6 @@
 package org.eclipse.papyrus.infra.queries.core.configuration;
 
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.emf.facet.infra.query.ModelQueryParameter;
 
 /**

@@ -8,12 +8,15 @@ package org.eclipse.papyrus.infra.queries.core.configuration.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.papyrus.infra.queries.core.configuration.*;
+import org.eclipse.papyrus.infra.queries.core.configuration.ConfigurationPackage;
+import org.eclipse.papyrus.infra.queries.core.configuration.ConstantParameterValue;
+import org.eclipse.papyrus.infra.queries.core.configuration.ListParameterValue;
+import org.eclipse.papyrus.infra.queries.core.configuration.ModiscoQueryConfiguration;
+import org.eclipse.papyrus.infra.queries.core.configuration.ParameterValue;
+import org.eclipse.papyrus.infra.queries.core.configuration.QueryConfiguration;
+import org.eclipse.papyrus.infra.queries.core.configuration.QueryExecutionValue;
 
 /**
  * <!-- begin-user-doc -->

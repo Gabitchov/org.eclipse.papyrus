@@ -8,15 +8,13 @@ package org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfigu
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.papyrus.infra.extendedtypes.ActionConfiguration;
 import org.eclipse.papyrus.infra.extendedtypes.PostActionConfiguration;
-
-import org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.*;
+import org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.ApplyStereotypeActionConfiguration;
+import org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.ApplyStereotypeActionConfigurationPackage;
+import org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.StereotypeToApply;
 
 /**
  * <!-- begin-user-doc -->

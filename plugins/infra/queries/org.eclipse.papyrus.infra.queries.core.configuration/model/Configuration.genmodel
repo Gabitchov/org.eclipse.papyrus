@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<genmodel:GenModel xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.papyrus.infra.queries.core.configuration/src-gen"
-    editDirectory="/org.eclipse.papyrus.infra.queries.core.configuration.edit/src-gen" editorDirectory="/org.eclipse.papyrus.infra.queries.core.configuration.editor/src-gen"
+    editDirectory="/org.eclipse.papyrus.infra.queries.core.configuration.edit/src-gen"
+    editorDirectory="/org.eclipse.papyrus.infra.queries.core.configuration.editor/src-gen"
     modelPluginID="org.eclipse.papyrus.infra.queries.core.configuration" modelName="Configuration"
     modelPluginClass="org.eclipse.papyrus.infra.queries.core.configuration.plugin.Activator"
     testsDirectory="/org.eclipse.papyrus.infra.queries.core.configuration.tests/src-gen"
@@ -30,5 +30,12 @@
     <genClasses ecoreClass="Configuration.ecore#//ListParameterValue">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Configuration.ecore#//ListParameterValue/values"/>
     </genClasses>
+  </genPackages>
+  <genPackages prefix="Types" ecorePackage="http://www.eclipse.org/uml2/4.0.0/Types#/">
+    <genDataTypes ecoreDataType="http://www.eclipse.org/uml2/4.0.0/Types#//Boolean"/>
+    <genDataTypes ecoreDataType="http://www.eclipse.org/uml2/4.0.0/Types#//Integer"/>
+    <genDataTypes ecoreDataType="http://www.eclipse.org/uml2/4.0.0/Types#//Real"/>
+    <genDataTypes ecoreDataType="http://www.eclipse.org/uml2/4.0.0/Types#//String"/>
+    <genDataTypes ecoreDataType="http://www.eclipse.org/uml2/4.0.0/Types#//UnlimitedNatural"/>
   </genPackages>
 </genmodel:GenModel>

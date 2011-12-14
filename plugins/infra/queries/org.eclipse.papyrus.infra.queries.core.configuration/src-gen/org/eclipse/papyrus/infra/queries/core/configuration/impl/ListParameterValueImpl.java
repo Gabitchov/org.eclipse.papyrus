@@ -9,11 +9,8 @@ package org.eclipse.papyrus.infra.queries.core.configuration.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-
 import org.eclipse.papyrus.infra.queries.core.configuration.ConfigurationPackage;
 import org.eclipse.papyrus.infra.queries.core.configuration.ListParameterValue;
 import org.eclipse.papyrus.infra.queries.core.configuration.ParameterValue;

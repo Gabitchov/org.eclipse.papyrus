@@ -7,7 +7,6 @@
 package org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -40,7 +39,7 @@ public interface StereotypeToApply extends EObject {
 	 * @return the value of the '<em>Stereotype Qualified Name</em>' attribute.
 	 * @see #setStereotypeQualifiedName(String)
 	 * @see org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.ApplyStereotypeActionConfigurationPackage#getStereotypeToApply_StereotypeQualifiedName()
-	 * @model dataType="org.eclipse.uml2.uml.String"
+	 * @model dataType="types.String"
 	 * @generated
 	 */
 	String getStereotypeQualifiedName();
@@ -66,7 +65,7 @@ public interface StereotypeToApply extends EObject {
 	 * @return the value of the '<em>Update Name</em>' attribute.
 	 * @see #setUpdateName(boolean)
 	 * @see org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.ApplyStereotypeActionConfigurationPackage#getStereotypeToApply_UpdateName()
-	 * @model dataType="org.eclipse.uml2.uml.Boolean"
+	 * @model dataType="types.Boolean"
 	 * @generated
 	 */
 	boolean isUpdateName();

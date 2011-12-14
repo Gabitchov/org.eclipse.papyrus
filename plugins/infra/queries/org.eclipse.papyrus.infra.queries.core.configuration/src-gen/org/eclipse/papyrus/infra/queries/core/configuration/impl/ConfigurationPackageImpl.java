@@ -10,12 +10,8 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EcorePackage;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
 import org.eclipse.emf.facet.infra.query.QueryPackage;
-
 import org.eclipse.papyrus.infra.queries.core.configuration.ConfigurationFactory;
 import org.eclipse.papyrus.infra.queries.core.configuration.ConfigurationPackage;
 import org.eclipse.papyrus.infra.queries.core.configuration.ConstantParameterValue;
@@ -24,7 +20,8 @@ import org.eclipse.papyrus.infra.queries.core.configuration.ModiscoQueryConfigur
 import org.eclipse.papyrus.infra.queries.core.configuration.ParameterValue;
 import org.eclipse.papyrus.infra.queries.core.configuration.QueryConfiguration;
 import org.eclipse.papyrus.infra.queries.core.configuration.QueryExecutionValue;
-
+import org.eclipse.uml2.types.TypesPackage;
+import org.eclipse.uml2.types.internal.impl.TypesPackageImpl;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
@@ -126,11 +123,16 @@ public class ConfigurationPackageImpl extends EPackageImpl implements Configurat
 		QueryPackage.eINSTANCE.eClass();
 		UMLPackage.eINSTANCE.eClass();
 
+		// Obtain or create and register interdependencies
+		TypesPackageImpl theTypesPackage = (TypesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI) instanceof TypesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI) : TypesPackage.eINSTANCE);
+
 		// Create package meta-data objects
 		theConfigurationPackage.createPackageContents();
+		theTypesPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theConfigurationPackage.initializePackageContents();
+		theTypesPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theConfigurationPackage.freeze();
