@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.uml.service.types.command;
 
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
-import org.eclipse.uml2.uml.DestructionEvent;
 import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.Lifeline;
 
@@ -41,11 +40,11 @@ public class MessageDeleteReorientCommand extends MessageAbstractReorientCommand
 	 */
 	@Override
 	protected boolean canReorientTarget() {
-
-		// Verify possible type of new target
-		if(!((getNewTarget() instanceof DestructionEvent) || (getNewTarget() instanceof Lifeline))) {
-			return false;
-		}
+//FIXME : change for UML 2.4
+//		// Verify possible type of new target
+//		if(!((getNewTarget() instanceof DestructionEvent) || (getNewTarget() instanceof Lifeline))) {
+//			return false;
+//		}
 
 		// Ensure the message owner is an interaction
 		if(!(getLink().eContainer() instanceof Interaction)) {

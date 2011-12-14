@@ -49,29 +49,30 @@ public class OccurrenceSpecificationHelperAdvice extends AbstractEditHelperAdvic
 	 */
 	@Override
 	protected ICommand getBeforeDestroyDependentsCommand(DestroyDependentsRequest request) {
-		List<EObject> dependentsToDestroy = new ArrayList<EObject>();
-
-		OccurrenceSpecification os = (OccurrenceSpecification)request.getElementToDestroy();
-		Event event = os.getEvent();
-
-		// Delete referenced event if it is not referenced itself by another element.
-		if((event != null) && (PapyrusEcoreUtils.isOnlyUsage(event, os))) {
-			dependentsToDestroy.add(event);
-		}
-
-		// delete linked time elements
-		dependentsToDestroy.addAll(TimeObservationHelper.getTimeObservations(os));
-		dependentsToDestroy.addAll(TimeConstraintHelper.getTimeConstraintsOn(os));
-		dependentsToDestroy.addAll(DurationObservationHelper.getDurationObservationsOn(os));
-		dependentsToDestroy.addAll(DurationConstraintHelper.getDurationConstraintsOn(os));
-
-		// delete linked general ordering
-		dependentsToDestroy.addAll(os.getToBefores());
-		dependentsToDestroy.addAll(os.getToAfters());
-
-		if(!dependentsToDestroy.isEmpty()) {
-			return request.getDestroyDependentsCommand(dependentsToDestroy);
-		}
+		//FIXME : change for UML 2.4
+//		List<EObject> dependentsToDestroy = new ArrayList<EObject>();
+//
+//		OccurrenceSpecification os = (OccurrenceSpecification)request.getElementToDestroy();
+//		Event event = os.getEvent();
+//
+//		// Delete referenced event if it is not referenced itself by another element.
+//		if((event != null) && (PapyrusEcoreUtils.isOnlyUsage(event, os))) {
+//			dependentsToDestroy.add(event);
+//		}
+//
+//		// delete linked time elements
+//		dependentsToDestroy.addAll(TimeObservationHelper.getTimeObservations(os));
+//		dependentsToDestroy.addAll(TimeConstraintHelper.getTimeConstraintsOn(os));
+//		dependentsToDestroy.addAll(DurationObservationHelper.getDurationObservationsOn(os));
+//		dependentsToDestroy.addAll(DurationConstraintHelper.getDurationConstraintsOn(os));
+//
+//		// delete linked general ordering
+//		dependentsToDestroy.addAll(os.getToBefores());
+//		dependentsToDestroy.addAll(os.getToAfters());
+//
+//		if(!dependentsToDestroy.isEmpty()) {
+//			return request.getDestroyDependentsCommand(dependentsToDestroy);
+//		}
 
 		return null;
 	}
