@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr
  *****************************************************************************/
 package org.eclipse.papyrus.uml.properties.providers;
 
@@ -31,14 +32,14 @@ import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
- * 
+ *
  * A content provider for UML
- * 
+ *
  */
 public class UMLContentProvider extends EncapsulatedContentProvider implements IStaticContentProvider {
 
 	/**
-	 * 
+	 *
 	 * Constructor.
 	 *
 	 * @param source
@@ -46,12 +47,11 @@ public class UMLContentProvider extends EncapsulatedContentProvider implements I
 	 */
 	public UMLContentProvider(final Element source, final EStructuralFeature feature) {
 		IStaticContentProvider localProvider;
-		if(feature == UMLPackage.eINSTANCE.getMessage_Signature() || feature == UMLPackage.eINSTANCE.getSendOperationEvent_Operation() || feature == UMLPackage.eINSTANCE.getReceiveOperationEvent_Operation()) {
-			localProvider = new SignatureContentProvider(source);
-		} else if(feature instanceof EReference) {
+
+		if(feature instanceof EReference) {
 			Package root = null;
-			if(((Element)source).getNearestPackage() != null) {
-				root = PackageUtil.getRootPackage((Element)source);
+			if(source.getNearestPackage() != null) {
+				root = PackageUtil.getRootPackage(source);
 			}
 
 			ServiceEditFilteredUMLContentProvider contentProvider;

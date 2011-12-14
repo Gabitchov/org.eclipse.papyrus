@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -46,9 +46,7 @@ import org.eclipse.papyrus.uml.properties.databinding.PapyrusObservableList;
 import org.eclipse.papyrus.uml.properties.databinding.PapyrusObservableValue;
 import org.eclipse.papyrus.uml.properties.databinding.ProvidedInterfaceObservableList;
 import org.eclipse.papyrus.uml.properties.databinding.RequiredInterfaceObservableList;
-import org.eclipse.papyrus.uml.properties.databinding.SignatureObservableValue;
 import org.eclipse.papyrus.uml.properties.providers.InstanceValueContentProvider;
-import org.eclipse.papyrus.uml.properties.providers.SignatureContentProvider;
 import org.eclipse.papyrus.uml.properties.providers.UMLLabelProvider;
 import org.eclipse.papyrus.uml.tools.utils.PackageUtil;
 import org.eclipse.papyrus.views.properties.modelelement.EMFModelElement;
@@ -68,16 +66,16 @@ import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * A ModelElement representing a UML Element
- * 
+ *
  * @author Camille Letavernier
- * 
+ *
  */
 public class UMLModelElement extends EMFModelElement {
 
 	/**
-	 * 
+	 *
 	 * Constructor.
-	 * 
+	 *
 	 * @param source
 	 *        The EObject represented by this ModelElement
 	 */
@@ -86,9 +84,9 @@ public class UMLModelElement extends EMFModelElement {
 	}
 
 	/**
-	 * 
+	 *
 	 * Constructor.
-	 * 
+	 *
 	 * @param source
 	 *        The EObject represented by this ModelElement
 	 * @param domain
@@ -102,10 +100,6 @@ public class UMLModelElement extends EMFModelElement {
 	public IObservable doGetObservable(String propertyPath) {
 		FeaturePath featurePath = getFeaturePath(propertyPath);
 		EStructuralFeature feature = getFeature(propertyPath);
-
-		if(feature == UMLPackage.eINSTANCE.getMessage_Signature()) {
-			return new SignatureObservableValue(source, domain);
-		}
 
 		if(feature == UMLPackage.eINSTANCE.getExtension_IsRequired()) {
 			return new ExtensionRequiredObservableValue((Extension)source, domain);
@@ -159,9 +153,6 @@ public class UMLModelElement extends EMFModelElement {
 	@Override
 	public IStaticContentProvider getContentProvider(String propertyPath) {
 		EStructuralFeature feature = getFeature(propertyPath);
-		if(feature == UMLPackage.eINSTANCE.getMessage_Signature() || feature == UMLPackage.eINSTANCE.getSendOperationEvent_Operation() || feature == UMLPackage.eINSTANCE.getReceiveOperationEvent_Operation()) {
-			return new SignatureContentProvider(source);
-		}
 
 		if(feature == UMLPackage.eINSTANCE.getPort_Provided() || feature == UMLPackage.eINSTANCE.getPort_Required()) {
 			Package root = null;
