@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.uml.diagram.common.figure;
 
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
+import org.eclipse.papyrus.diagram.common.figure.node.PapyrusWrappingLabel;
 import org.eclipse.uml2.uml.Connector;
 
 /**
@@ -41,12 +42,12 @@ public class ConnectorEdgeFigure extends NamedElementEdgeFigure {
 	protected void createContents() {
 		super.createContents();
 
-		fSourceMultiplicityLabel = new WrappingLabel();
+		fSourceMultiplicityLabel = new PapyrusWrappingLabel();
 		fSourceMultiplicityLabel.setText("");
 
 		this.add(fSourceMultiplicityLabel);
 
-		fTargetMultiplicityLabel = new WrappingLabel();
+		fTargetMultiplicityLabel = new PapyrusWrappingLabel();
 		fTargetMultiplicityLabel.setText("");
 
 		this.add(fTargetMultiplicityLabel);

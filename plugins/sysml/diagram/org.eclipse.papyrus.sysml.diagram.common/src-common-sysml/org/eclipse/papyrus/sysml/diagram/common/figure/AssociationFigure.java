@@ -16,6 +16,7 @@
 package org.eclipse.papyrus.sysml.diagram.common.figure;
 
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
+import org.eclipse.papyrus.diagram.common.figure.node.PapyrusWrappingLabel;
 import org.eclipse.papyrus.uml.diagram.common.figure.NamedElementEdgeFigure;
 import org.eclipse.uml2.uml.Association;
 
@@ -50,22 +51,22 @@ public class AssociationFigure extends NamedElementEdgeFigure {
 	protected void createContents() {
 		super.createContents();
 
-		fSourceRoleLabel = new WrappingLabel();
+		fSourceRoleLabel = new PapyrusWrappingLabel();
 		fSourceRoleLabel.setText("");
 
 		this.add(fSourceRoleLabel);
 
-		fSourceMultiplicityLabel = new WrappingLabel();
+		fSourceMultiplicityLabel = new PapyrusWrappingLabel();
 		fSourceMultiplicityLabel.setText("");
 
 		this.add(fSourceMultiplicityLabel);
 
-		fTargetRoleLabel = new WrappingLabel();
+		fTargetRoleLabel = new PapyrusWrappingLabel();
 		fTargetRoleLabel.setText("");
 
 		this.add(fTargetRoleLabel);
 
-		fTargetMultiplicityLabel = new WrappingLabel();
+		fTargetMultiplicityLabel = new PapyrusWrappingLabel();
 		fTargetMultiplicityLabel.setText("");
 
 		this.add(fTargetMultiplicityLabel);

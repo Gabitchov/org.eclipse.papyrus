@@ -15,6 +15,7 @@ package org.eclipse.papyrus.uml.diagram.common.figure;
 
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.papyrus.uml.diagram.common.figure.edge.UMLEdgeFigure;
+import org.eclipse.papyrus.diagram.common.figure.node.PapyrusWrappingLabel;
 
 /**
  * <pre>
@@ -55,7 +56,7 @@ public class NamedElementEdgeFigure extends UMLEdgeFigure {
 	@Override
 	protected void createContents() {
 		super.createContents();
-		nameLabel = new WrappingLabel();
+		nameLabel = new PapyrusWrappingLabel();
 		nameLabel.setText("");
 
 		this.add(nameLabel);

@@ -20,10 +20,10 @@ import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.sysml.diagram.common.Activator;
+import org.eclipse.papyrus.uml.diagram.common.figure.node.PapyrusWrappingLabel;
 import org.eclipse.papyrus.uml.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.papyrus.uml.tools.utils.ui.helper.NameLabelIconHelper;
 import org.eclipse.swt.graphics.Image;
@@ -67,9 +67,9 @@ public class NamedElementAffixedLabelNameEditPart extends AbstractElementLabelEd
 		// Update locator constraint
 		IBorderItemLocator locator = getBorderItemLocator();
 		locator.setConstraint(new Rectangle(x, y, width, height));
-		
+
 		// Set new constraint on parent figure
-		getFigure().getParent().setConstraint(getFigure(), locator);	
+		getFigure().getParent().setConstraint(getFigure(), locator);
 	}
 
 	/**
@@ -103,7 +103,7 @@ public class NamedElementAffixedLabelNameEditPart extends AbstractElementLabelEd
 	}
 
 	protected IFigure createFigurePrim() {
-		return new WrappingLabel();
+		return new PapyrusWrappingLabel();
 	}
 
 	/**
