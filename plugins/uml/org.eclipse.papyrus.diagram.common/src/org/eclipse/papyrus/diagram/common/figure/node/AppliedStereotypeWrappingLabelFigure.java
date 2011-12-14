@@ -14,13 +14,12 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.common.figure.node;
 
-import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.swt.graphics.Image;
 
 /**
- * This a wrappingLebel that can display applied stereotypes
+ * This a WrappingLabel that can display applied stereotypes
  */
-public class AppliedStereotypeWrappingLabelFigure extends WrappingLabel implements IPapyrusUMLElementFigure {
+public class AppliedStereotypeWrappingLabelFigure extends PapyrusWrappingLabel implements IPapyrusUMLElementFigure {
 
 	public void setStereotypeDisplay(String stereotypes, Image image) {
 		setText(stereotypes);

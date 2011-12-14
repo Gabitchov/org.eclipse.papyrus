@@ -20,9 +20,9 @@ import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.common.figure.node.PapyrusWrappingLabel;
 import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.papyrus.sysml.diagram.common.Activator;
 import org.eclipse.papyrus.umlutils.ui.helper.NameLabelIconHelper;
@@ -102,7 +102,7 @@ public class PortAffixedLabelNameEditPart extends AbstractElementLabelEditPart i
 	}
 
 	protected IFigure createFigurePrim() {
-		return new WrappingLabel();
+		return new PapyrusWrappingLabel();
 	}
 
 	/**
