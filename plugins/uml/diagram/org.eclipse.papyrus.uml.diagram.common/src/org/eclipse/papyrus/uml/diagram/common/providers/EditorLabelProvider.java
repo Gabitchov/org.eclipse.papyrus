@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
  *
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -58,7 +58,7 @@ import org.eclipse.uml2.uml.util.UMLUtil;
 /**
  * The Class EditorLabelProvider. This class provides Label and Image for UML
  * Element
- * 
+ *
  */
 public class EditorLabelProvider implements ILabelProvider {
 
@@ -66,7 +66,7 @@ public class EditorLabelProvider implements ILabelProvider {
 	 * We store the next index for the UML Element, which are not NamedElement
 	 * Key is a String representing the type of Element
 	 */
-	private Map<String, Integer> index = new HashMap<String, Integer>();
+	private final Map<String, Integer> index = new HashMap<String, Integer>();
 
 	/** the plugin where owning the icons for the UML Element */
 	public static final String pluginID = "org.eclipse.uml2.uml.edit"; //$NON-NLS-1$
@@ -84,9 +84,9 @@ public class EditorLabelProvider implements ILabelProvider {
 	public static final String ICON_COMPARTMENT = "/icons/none_comp_vis.gif"; //$NON-NLS-1$
 
 	/**
-	 * 
+	 *
 	 * @see org.eclipse.jface.viewers.IBaseLabelProvider#addListener(org.eclipse.jface.viewers.ILabelProviderListener)
-	 * 
+	 *
 	 * @param listener
 	 */
 	public void addListener(ILabelProviderListener listener) {
@@ -94,9 +94,9 @@ public class EditorLabelProvider implements ILabelProvider {
 	}
 
 	/**
-	 * 
+	 *
 	 * @see org.eclipse.jface.viewers.IBaseLabelProvider#isLabelProperty(java.lang.Object, java.lang.String)
-	 * 
+	 *
 	 * @param element
 	 * @param property
 	 * @return
@@ -107,9 +107,9 @@ public class EditorLabelProvider implements ILabelProvider {
 	}
 
 	/**
-	 * 
+	 *
 	 * @see org.eclipse.jface.viewers.IBaseLabelProvider#removeListener(org.eclipse.jface.viewers.ILabelProviderListener)
-	 * 
+	 *
 	 * @param listener
 	 */
 	public void removeListener(ILabelProviderListener listener) {
@@ -117,9 +117,9 @@ public class EditorLabelProvider implements ILabelProvider {
 	}
 
 	/**
-	 * 
+	 *
 	 * @see org.eclipse.jface.viewers.ILabelProvider#getImage(java.lang.Object)
-	 * 
+	 *
 	 * @param element
 	 * @return <ul>
 	 *         <li>if stereotypes are applied on the elements : return the image corresponding to the first applied stereotype</li>
@@ -201,17 +201,20 @@ public class EditorLabelProvider implements ILabelProvider {
 					itemLabelProvider = (IItemLabelProvider)adapterFactory.adapt(eObject, IItemLabelProvider.class);
 				}
 			}
-			Object imageObject = itemLabelProvider.getImage(eObject);
-			return ExtendedImageRegistry.getInstance().getImage(imageObject);
+
+			if (itemLabelProvider != null){
+				Object imageObject = itemLabelProvider.getImage(eObject);
+				return ExtendedImageRegistry.getInstance().getImage(imageObject);
+			}
 		}
 
 		return null;
 	}
 
 	/**
-	 * 
+	 *
 	 * @see org.eclipse.jface.viewers.ILabelProvider#getText(java.lang.Object)
-	 * 
+	 *
 	 * @param element
 	 * @return <ul>
 	 *         <li>if element is a {@link NamedElement}, we return its name</li>
@@ -343,9 +346,9 @@ public class EditorLabelProvider implements ILabelProvider {
 	}
 
 	/**
-	 * 
+	 *
 	 * @see org.eclipse.jface.viewers.IBaseLabelProvider#dispose()
-	 * 
+	 *
 	 */
 	public void dispose() {
 		// TODO

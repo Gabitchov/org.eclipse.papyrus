@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -26,12 +26,12 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.infra.widgets.providers.EmptyContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
-import org.eclipse.papyrus.uml.diagram.common.providers.EditorLabelProvider;
 import org.eclipse.papyrus.uml.modelexplorer.widgets.ServiceEditFilteredUMLContentProvider;
 import org.eclipse.papyrus.uml.properties.databinding.PapyrusObservableList;
 import org.eclipse.papyrus.uml.properties.databinding.PapyrusObservableValue;
 import org.eclipse.papyrus.uml.properties.datatype.DataTypeProvider;
 import org.eclipse.papyrus.uml.properties.datatype.StructuredDataTypeObservableValue;
+import org.eclipse.papyrus.uml.properties.providers.UMLLabelProvider;
 import org.eclipse.papyrus.uml.tools.utils.PackageUtil;
 import org.eclipse.papyrus.views.properties.modelelement.EMFModelElement;
 import org.eclipse.papyrus.views.properties.util.EMFHelper;
@@ -43,19 +43,19 @@ import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * A Model Element for manipulating Stereotype properties
- * 
+ *
  * @author Camille Letavernier
  */
 public class StereotypeModelElement extends EMFModelElement {
 
 	/**
 	 * Constructor.
-	 * 
+	 *
 	 * @param source
 	 *        The StereotypeApplication being edited
 	 * @param domain
 	 *        The Editing domain on which the commands will be called
-	 * 
+	 *
 	 */
 	public StereotypeModelElement(EObject source, EditingDomain domain) {
 		super(source, domain);
@@ -68,7 +68,7 @@ public class StereotypeModelElement extends EMFModelElement {
 	public IObservable doGetObservable(String propertyPath) {
 		FeaturePath featurePath = getFeaturePath(propertyPath);
 		EStructuralFeature feature = getFeature(featurePath);
-		
+
 		if(feature.getEType() instanceof EDataType && !(feature.getEType() instanceof EEnum)) {
 			if(feature.getUpperBound() == 1) {
 				//Single-valued DataType
@@ -78,7 +78,7 @@ public class StereotypeModelElement extends EMFModelElement {
 				//TODO : Multi-valued DataTypes
 			}
 		}
-		
+
 		if(feature.getUpperBound() != 1) {
 			return new PapyrusObservableList(EMFProperties.list(featurePath).observe(source), domain, getSource(featurePath), feature);
 		}
@@ -95,7 +95,7 @@ public class StereotypeModelElement extends EMFModelElement {
 		if(feature.getEType() instanceof EEnum) {
 			return super.getLabelProvider(propertyPath);
 		}
-		return new EditorLabelProvider();
+		return new UMLLabelProvider();
 	}
 
 	/**
@@ -132,7 +132,7 @@ public class StereotypeModelElement extends EMFModelElement {
 	/**
 	 * Returns the content provider for reference properties typed
 	 * by a stereotype
-	 * 
+	 *
 	 * @param propertyPath
 	 *        The name of the property being edited
 	 * @return
