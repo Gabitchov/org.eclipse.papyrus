@@ -1,32 +1,40 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<rm:rmap
-    xmlns:bc="http://www.eclipse.org/buckminster/Common-1.0" xmlns:psf="http://www.eclipse.org/buckminster/PSFProvider-1.0"
-    xmlns:rm="http://www.eclipse.org/buckminster/RMap-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<rm:rmap xmlns:rm="http://www.eclipse.org/buckminster/RMap-1.0" xmlns:bc="http://www.eclipse.org/buckminster/Common-1.0" xmlns:psf="http://www.eclipse.org/buckminster/PSFProvider-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <rm:property key="build.type" mutable="true" value="N"/>
   <rm:locator pattern="^org\.eclipse\.mdt\.papyrus\.releng.*" searchPathRef="releng"/>
-  <!--rm:locator pattern="^org\.eclipse\.emf\.facet(\..*)?" searchPathRef="org.eclipse.emf.facet" failOnError="true" /-->
+  <rm:locator failOnError="true" pattern="^org\.eclipse\.papyrus\..*" searchPathRef="sources"/>
+  <rm:locator failOnError="true" pattern="^org\.eclipse\.xtext\.gmf\.glue.*" searchPathRef="sources"/>
+  <rm:locator failOnError="false" searchPathRef="orbit"/>
+  <rm:locator failOnError="true" searchPathRef="platform.binaries"/>
   
-  <rm:locator pattern="^org\.eclipse\.papyrus\.build.*" searchPathRef="releng"/>
-  <rm:locator pattern="^org\.eclipse\.papyrus.*" searchPathRef="sources"/>
-  <rm:locator pattern="^org\.eclipse\.xtext\.gmf\.glue.*" searchPathRef="sources"/>
-  <rm:locator searchPathRef="orbit" failOnError="false"/>
-  <rm:locator searchPathRef="platform.binaries"/>
-  
+  <!-- Papyrus Releng projects -->
   <rm:searchPath name="releng">
+  	<!-- FIXME -->
+    <rm:provider componentTypes="buckminster" readerType="local">
+      <rm:uri format="file:/home/data/users/nbros/papyrusBuild/org.eclipse.mdt.papyrus.releng.buckminster"/>
+    </rm:provider>
+  
+    <!--
     <rm:provider componentTypes="buckminster,osgi.bundle" readerType="svn">
       <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/releng/{1}">
         <bc:propertyRef key="svn.repository"/>
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
     </rm:provider>
-    <rm:provider componentTypes="eclipse.feature" readerType="svn">
-      <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/releng/{1}-feature">
-        <bc:propertyRef key="svn.repository"/>
-        <bc:propertyRef key="buckminster.component"/>
-      </rm:uri>
-    </rm:provider>
+    -->
   </rm:searchPath>
+  
+  <!-- Papyrus sources -->
   <rm:searchPath name="sources">
+  
+  	<!-- FIXME -->
+  	<!-- 
+    <rm:provider componentTypes="eclipse.feature" readerType="local">
+      <rm:uri format="file:/home/data/users/nbros/papyrusBuild/org.eclipse.papyrus.build.feature"/>
+    </rm:provider>
+     -->
+  
+  
     <rm:provider componentTypes="osgi.bundle" readerType="svn">
       <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/plugins/core/{1}">
         <bc:propertyRef key="svn.repository"/>
@@ -34,7 +42,115 @@
       </rm:uri>
     </rm:provider>
     <rm:provider componentTypes="osgi.bundle" readerType="svn">
+      <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/plugins/customization/{1}">
+        <bc:propertyRef key="svn.repository"/>
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
+    <rm:provider componentTypes="osgi.bundle" readerType="svn">
       <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/plugins/developer/{1}">
+        <bc:propertyRef key="svn.repository"/>
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
+    <rm:provider componentTypes="osgi.bundle" readerType="svn">
+      <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/plugins/editor/{1}">
+        <bc:propertyRef key="svn.repository"/>
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
+    
+    <!--  INFRA -->
+    
+    <rm:provider componentTypes="osgi.bundle" readerType="svn">
+      <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/plugins/infra/{1}">
+        <bc:propertyRef key="svn.repository"/>
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
+    <rm:provider componentTypes="osgi.bundle" readerType="svn">
+      <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/plugins/infra/core/{1}">
+        <bc:propertyRef key="svn.repository"/>
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
+    <rm:provider componentTypes="osgi.bundle" readerType="svn">
+      <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/plugins/infra/gmfdiag/{1}">
+        <bc:propertyRef key="svn.repository"/>
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
+    <rm:provider componentTypes="osgi.bundle" readerType="svn">
+      <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/plugins/infra/modelset/{1}">
+        <bc:propertyRef key="svn.repository"/>
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
+    <rm:provider componentTypes="osgi.bundle" readerType="svn">
+      <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/plugins/infra/queries/{1}">
+        <bc:propertyRef key="svn.repository"/>
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
+    <rm:provider componentTypes="osgi.bundle" readerType="svn">
+      <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/plugins/infra/serviceregistry/{1}">
+        <bc:propertyRef key="svn.repository"/>
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
+    <rm:provider componentTypes="osgi.bundle" readerType="svn">
+      <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/plugins/infra/services/{1}">
+        <bc:propertyRef key="svn.repository"/>
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
+    <rm:provider componentTypes="osgi.bundle" readerType="svn">
+      <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/plugins/infra/table/{1}">
+        <bc:propertyRef key="svn.repository"/>
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
+    <rm:provider componentTypes="osgi.bundle" readerType="svn">
+      <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/plugins/infra/widget/{1}">
+        <bc:propertyRef key="svn.repository"/>
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
+    <rm:provider componentTypes="osgi.bundle" readerType="svn">
+      <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/plugins/infra/xtext/{1}">
+        <bc:propertyRef key="svn.repository"/>
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
+    
+    <!-- /INFRA -->
+    
+    <rm:provider componentTypes="osgi.bundle" readerType="svn">
+      <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/plugins/layout/{1}">
+        <bc:propertyRef key="svn.repository"/>
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
+    <rm:provider componentTypes="osgi.bundle" readerType="svn">
+      <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/plugins/marte/{1}">
+        <bc:propertyRef key="svn.repository"/>
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
+    <rm:provider componentTypes="osgi.bundle" readerType="svn">
+      <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/plugins/marte/properties/{1}">
+        <bc:propertyRef key="svn.repository"/>
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
+    <rm:provider componentTypes="osgi.bundle" readerType="svn">
+      <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/plugins/marte/textedit/{1}">
+        <bc:propertyRef key="svn.repository"/>
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
+    <rm:provider componentTypes="osgi.bundle" readerType="svn">
+      <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/plugins/ocl/{1}">
         <bc:propertyRef key="svn.repository"/>
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
@@ -58,17 +174,103 @@
       </rm:uri>
     </rm:provider>
     <rm:provider componentTypes="osgi.bundle" readerType="svn">
+      <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/plugins/sysml/diagram/{1}">
+        <bc:propertyRef key="svn.repository"/>
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
+    <rm:provider componentTypes="osgi.bundle" readerType="svn">
+      <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/plugins/sysml/modelexplorer/{1}">
+        <bc:propertyRef key="svn.repository"/>
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
+    <rm:provider componentTypes="osgi.bundle" readerType="svn">
+      <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/plugins/sysml/properties/{1}">
+        <bc:propertyRef key="svn.repository"/>
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
+    <rm:provider componentTypes="osgi.bundle" readerType="svn">
+      <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/plugins/sysml/table/{1}">
+        <bc:propertyRef key="svn.repository"/>
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
+    
+    <!-- UML -->
+    
+    <rm:provider componentTypes="osgi.bundle" readerType="svn">
       <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml/{1}">
         <bc:propertyRef key="svn.repository"/>
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
     </rm:provider>
     <rm:provider componentTypes="osgi.bundle" readerType="svn">
-      <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/extraplugins/autolayout/{1}">
+      <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml/diagram/{1}">
         <bc:propertyRef key="svn.repository"/>
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
     </rm:provider>
+    <rm:provider componentTypes="osgi.bundle" readerType="svn">
+      <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml/modelexplorer/{1}">
+        <bc:propertyRef key="svn.repository"/>
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
+    <rm:provider componentTypes="osgi.bundle" readerType="svn">
+      <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml/properties/{1}">
+        <bc:propertyRef key="svn.repository"/>
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
+    <rm:provider componentTypes="osgi.bundle" readerType="svn">
+      <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml/table/{1}">
+        <bc:propertyRef key="svn.repository"/>
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
+    <rm:provider componentTypes="osgi.bundle" readerType="svn">
+      <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml/textedit/{1}">
+        <bc:propertyRef key="svn.repository"/>
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
+    <rm:provider componentTypes="osgi.bundle" readerType="svn">
+      <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml/tools/{1}">
+        <bc:propertyRef key="svn.repository"/>
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
+    
+    <!-- /UML -->
+    
+    <rm:provider componentTypes="osgi.bundle" readerType="svn">
+      <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/plugins/views/{1}">
+        <bc:propertyRef key="svn.repository"/>
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
+    <rm:provider componentTypes="osgi.bundle" readerType="svn">
+      <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/plugins/views/documentation/{1}">
+        <bc:propertyRef key="svn.repository"/>
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
+    <rm:provider componentTypes="osgi.bundle" readerType="svn">
+      <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/plugins/views/modelexplorer/{1}">
+        <bc:propertyRef key="svn.repository"/>
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
+    <rm:provider componentTypes="osgi.bundle" readerType="svn">
+      <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/plugins/views/properties/{1}">
+        <bc:propertyRef key="svn.repository"/>
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
+
+
     <rm:provider componentTypes="osgi.bundle" readerType="svn">
       <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/tests/junit/plugins/core/{1}">
         <bc:propertyRef key="svn.repository"/>
@@ -106,179 +308,250 @@
       </rm:uri>
     </rm:provider>
     <rm:provider componentTypes="eclipse.feature" readerType="svn">
-      <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/features/{1}-feature">
+      <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/features/{1}">
         <bc:propertyRef key="svn.repository"/>
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
     </rm:provider>
+
+	<!-- are sandbox plug-ins supposed to be part of the build? -->
+    <rm:provider componentTypes="osgi.bundle" readerType="svn">
+      <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/sandbox/{1}">
+        <bc:propertyRef key="svn.repository"/>
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
+
   </rm:searchPath>
+  
+  
+  <!-- **************************************** UPDATE SITES **************************************** -->
+
+  <!-- Orbit bundles -->
   <rm:searchPath name="orbit">
-    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
-        mutable="false">
- 
-      <!--rm:uri format="{0}/tools/orbit/downloads/drops/S20110515001817/repository/"-->
-            <rm:uri format="{0}/tools/orbit/downloads/drops/R20110523182458/repository/">
-      
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
+      <rm:uri format="{0}/tools/orbit/downloads/drops/S20111201180206/repository/">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
   </rm:searchPath>
+  
+  <!-- Everything else : all other Papyrus dependencies -->
   <rm:searchPath name="platform.binaries">
-    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
-        mutable="false">
-      <rm:uri format="{0}/birt/update-site/4.0-interim/">
+    
+    <!-- Birt -->
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
+      <!-- updateFrom("BIRT",0) -->
+      <rm:uri format="{0}/birt/update-site/3.7/">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
-    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
-        mutable="false">
-      <rm:uri format="{0}/modeling/emf/cdo/updates/releases/4.0">
+    
+    <!-- CDO -->
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
+      <!-- updateFrom("EMF CDO",0) -->
+      <rm:uri format="{0}/modeling/emf/cdo/drops/S20111214-0118">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
-    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
-        mutable="false">
-      <rm:uri format="{0}/modeling/m2m/atl/updates/milestones/3.2/">
+    
+    <!-- M2M ATL -->
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
+      <!-- updateFrom("M2M ATL",0) -->
+      <rm:uri format="{0}/modeling/m2m/atl/updates/milestones/3.3/">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
-    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
-        mutable="false">
-      <rm:uri format="{0}/modeling/emft/mwe/updates/milestones">
+    
+    <!-- EMFT MWE -->
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
+      <!-- updateFrom("EMFT MWE",0) -->
+      <rm:uri format="{0}/modeling/emft/mwe/updates/releases/R201112070431/mwe">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
-    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
-        mutable="false">
+   
+    <!-- M2M QVT-OML -->
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
+      <!-- updateFrom("M2M QVTO 3.1.0",0) -->
       <rm:uri format="{0}/modeling/m2m/qvtoml/updates/3.1.0/milestones/">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
-    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
-        mutable="false">
-      <rm:uri format="{0}/modeling/m2t/updates/milestones">
-        <bc:propertyRef key="eclipse.downloads"/>
-      </rm:uri>
-    </rm:provider>
-    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
-        mutable="false">
-      <rm:uri format="{0}/modeling/m2t/acceleo/updates/milestones/3.1">
-        <bc:propertyRef key="eclipse.downloads"/>
-      </rm:uri>
-    </rm:provider>
-    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
-        mutable="false">
-      <rm:uri format="{0}/modeling/mdt/ocl/updates/milestones/3.1.0">
+    
+    <!-- M2T (Jet) -->
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
+      <!-- updateFrom("M2T JET",0) -->
+      <rm:uri format="{0}/modeling/m2t/updates/milestones/">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
     
-    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
-        mutable="false">
-      <rm:uri format="{0}/modeling/mdt/papyrus/extra/updates/richtext">
+    <!-- M2T Acceleo -->
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
+      <!-- updateFrom("M2T ACCELEO",0) -->
+      <rm:uri format="{0}/modeling/m2t/acceleo/updates/milestones/3.3">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
     
-    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
-        mutable="false">
-      <rm:uri format="{0}/facet/updates/milestones/0.1">
+    <!-- MDT OCL -->
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
+      <!-- updateFrom("MDT OCL 4.0",0) -->
+      <rm:uri format="{0}/modeling/mdt/ocl/updates/milestones/4.0.0">
+        <bc:propertyRef key="eclipse.downloads"/>
+      </rm:uri>
+    </rm:provider>
+    
+    <!-- EMF Facet -->
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
+      <!-- updateFrom("EMF Facet",0) -->
+      <rm:uri format="{0}/facet/updates/milestones/0.2/M4">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>    
     
-    <!--
-    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
-        mutable="false">
-      <rm:uri format="{0}/modeling/mdt/modisco/updates/milestones/0.9">
+    <!-- MoDisco -->
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
+      <!-- updateFrom("MoDisco",0) -->
+      <rm:uri format="{0}/modeling/mdt/modisco/updates/milestones/0.10/M3">
+        <bc:propertyRef key="eclipse.downloads"/>
+      </rm:uri>
+    </rm:provider>    
+    
+    <!-- MDT UML2 -->
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
+      <!-- updateFrom("MDT UML2",0) -->
+      <rm:uri format="{0}/modeling/mdt/uml2/updates/4.0milestones/">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
-    -->
-    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
-        mutable="false">
-      <rm:uri format="{0}/modeling/mdt/updates/milestones/">
+    
+    <!-- Mylyn -->
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
+      <!-- updateFrom("Mylyn",0) -->
+      <rm:uri format="{0}/mylyn/snapshots/juno">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
-    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
-        mutable="false">
-      <rm:uri format="{0}/mylyn/snapshots/indigo/">
+    
+    <!-- M2T Xpand -->
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
+      <!-- updateFrom("M2T XPAND",0) -->
+      <rm:uri format="{0}/modeling/m2t/xpand/updates/milestones">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
-    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
-        mutable="false">
-      <rm:uri format="{0}/modeling/tmf/updates/">
+    
+    <!-- TMF Xtext -->
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
+      <!-- updateFrom("TMF XTEXT",0) -->
+      <rm:uri format="{0}/modeling/tmf/xtext/updates/releases/head/R201112130541">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
-    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
-        mutable="false">
-      <rm:uri format="{0}/modeling/m2t/xpand/updates/releases/R201108020519">
+    
+    <!-- EMF -->
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
+      <!-- updateFrom("EMF (Core)",0) -->
+      <rm:uri format="{0}/modeling/emf/emf/updates/2.8milestones">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
-    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
-        mutable="false">
-      <rm:uri format="{0}/modeling/tmf/xtext/updates/releases/head/R201108020636">
+
+    <!-- EMF Compare -->
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
+      <!-- updateFrom("EMF COMPARE",0) -->
+      <rm:uri format="{0}/modeling/emf/compare/updates/milestones/1.3">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
-    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
-        mutable="false">
-      <rm:uri format="{0}/modeling/emf/updates/releases/">
+
+    <!-- EMF Transaction, EMF Validation -->
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
+      <!-- updateFrom("EMF TRANSACTION",0) -->
+      <rm:uri format="{0}/modeling/emf/updates/milestones/">
+        <bc:propertyRef key="eclipse.downloads"/>
+      </rm:uri>
+      <!-- updateFrom("EMF VALIDATION",0) -->
+      <rm:uri format="{0}/modeling/emf/updates/milestones/">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
-    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
-        mutable="false">
-      <rm:uri format="{0}/modeling/emf/emf/updates/2.7milestones">
-        <bc:propertyRef key="eclipse.downloads"/>
-      </rm:uri>
-    </rm:provider>
-    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
-        mutable="false">
+    
+    <!-- GEF -->
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
+      <!-- updateFrom("GEF",0) -->
       <rm:uri format="{0}/tools/gef/updates/milestones">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
-    <!--
-    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
-      <rm:uri format="{0}/modeling/mdt/papyrus/extra/updates/richtext/">
-        <bc:propertyRef key="eclipse.downloads"/>
-      </rm:uri>
-    </rm:provider>
-    -->
-     <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
-        mutable="false">
-      <!--rm:uri format="{0}/e4/downloads/drops/S-0.11M5-201101282000/repository"-->
-      <rm:uri format="{0}/e4/updates/0.11/R-0.11-201106201631"> 
-        <bc:propertyRef key="eclipse.downloads"/>
-      </rm:uri>
-    </rm:provider>
-    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
-        mutable="false">
+
+    <!-- GMP -->
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
+      <!-- updateFrom("GMF Runtime",0) -->
       <rm:uri format="{0}/modeling/gmp/updates/milestones">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
-		<rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
-			<!--rm:uri format="{0}/eclipse/updates/3.7milestones/S-3.7RC3-I201105261708"-->
-			<rm:uri format="{0}/eclipse/updates/3.7milestones/S-3.7RC4-201106030909">
-				<bc:propertyRef key="eclipse.downloads"/>
-			</rm:uri>
-		</rm:provider>
-		<rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
-			<rm:uri format="{0}/eclipse/updates/3.7milestones" >
-				<bc:propertyRef key="eclipse.downloads"/>
-			</rm:uri>
-		</rm:provider>
-	<rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
-        mutable="false">
+
+    <!-- Subversive -->
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
+      <!-- updateFrom("Subversive",0) -->
+      <rm:uri format="{0}/technology/subversive/0.7/juno-site/">
+        <bc:propertyRef key="eclipse.downloads"/>
+      </rm:uri>
+    </rm:provider>
+      
+    <!-- WST -->
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
+      <!-- updateFrom("WebTools",0) -->
+      <rm:uri format="{0}/webtools/downloads/drops/R3.4.0/S-3.4.0M4-20111212171647/repository/">
+        <bc:propertyRef key="eclipse.downloads"/>
+      </rm:uri>
+    </rm:provider>
+      
+    <!-- Eclipse Platform Milestones -->
+	<rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
+		<!-- updateFrom("Eclipse",0) -->
+		<rm:uri format="{0}/eclipse/updates/4.2milestones/S-4.2M4-201112092100">
+			<bc:propertyRef key="eclipse.downloads"/>
+		</rm:uri>
+	</rm:provider>
+
+    <!-- E4 (XWT) -->
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
+      <rm:uri format="{0}/e4/updates/0.12-I-builds/I20111209-2100/"> 
+        <bc:propertyRef key="eclipse.downloads"/>
+      </rm:uri>
+    </rm:provider>
+
+    <!-- FIXME !!!!! for EMF workspace which is not currently in Juno !!!!! -->
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
+      <rm:uri format="{0}/modeling/emf/updates/">
+        <bc:propertyRef key="eclipse.downloads"/>
+      </rm:uri>
+    </rm:provider>
+
+		
+	<!-- Eclipse Indigo (fallback?) -->
+	<!-- 
+	<rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
       <rm:uri format="{0}/releases/indigo">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
+     -->
+
+
+    <!-- Papyrus Richtext -->
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
+      <rm:uri format="{0}/modeling/mdt/papyrus/extra/updates/richtext">
+        <bc:propertyRef key="eclipse.downloads"/>
+      </rm:uri>
+    </rm:provider>
+   
+
   </rm:searchPath>
+
 </rm:rmap>
