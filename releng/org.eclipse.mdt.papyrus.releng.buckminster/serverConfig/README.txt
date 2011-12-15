@@ -1,0 +1,1 @@
+All these files should be copied into /shared/modeling/mdt/papyrus
