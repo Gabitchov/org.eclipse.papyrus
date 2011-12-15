@@ -1,4 +1,4 @@
-modeltype UML uses "http://www.eclipse.org/uml2/3.0.0/UML";
+modeltype UML uses "http://www.eclipse.org/uml2/4.0.0/UML";
 modeltype PropertyContext uses "http://www.eclipse.org/papyrus/properties/contexts";
 modeltype PropertyEnvironment uses "http://www.eclipse.org/papyrus/properties/environment";
 modeltype PRoot uses "http://www.eclipse.org/papyrus/properties/root";

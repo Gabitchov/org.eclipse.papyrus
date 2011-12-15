@@ -13,6 +13,7 @@ package org.eclipse.papyrus.uml.properties.providers;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.facet.infra.browser.uicore.CustomizableModelLabelProvider;
 import org.eclipse.emf.facet.infra.browser.uicore.internal.model.ITreeElement;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.viewers.ILabelProvider;
@@ -20,7 +21,7 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IDetailLabelProvider;
 import org.eclipse.papyrus.uml.diagram.common.providers.EditorLabelProvider;
-import org.eclipse.papyrus.views.modelexplorer.MoDiscoLabelProvider;
+import org.eclipse.papyrus.views.modelexplorer.Activator;
 import org.eclipse.papyrus.views.properties.providers.IFilteredLabelProvider;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.uml2.uml.Element;
@@ -46,8 +47,8 @@ public class UMLLabelProvider extends LabelProvider implements IDetailLabelProvi
 	 * 
 	 */
 	public UMLLabelProvider() {
-		modiscoLabelProvider = new MoDiscoLabelProvider();
-		//		modiscoLabelProvider = new CustomizableModelLabelProvider(Activator.getDefault().getCustomizationManager());
+		//		modiscoLabelProvider = new MoDiscoLabelProvider();
+		modiscoLabelProvider = new CustomizableModelLabelProvider(Activator.getDefault().getCustomizationManager());
 		eObjectLabelProvider = new EditorLabelProvider();
 	}
 

@@ -47,6 +47,7 @@ import org.eclipse.papyrus.customization.properties.model.xwt.format.XMLFormatte
 import org.eclipse.papyrus.views.properties.contexts.Context;
 import org.eclipse.papyrus.views.properties.runtime.ConfigurationManager;
 import org.eclipse.papyrus.views.properties.ui.CompositeWidget;
+import org.eclipse.papyrus.views.properties.ui.UiPackage;
 import org.eclipse.papyrus.views.properties.util.Util;
 
 /**
@@ -154,7 +155,7 @@ public class XWTResource extends ResourceImpl {
 	}
 
 	private CompositeWidget xmlToUISection(Root genericXMLRoot) {
-		URI transformationURI = URI.createURI("platform:/plugin/org.eclipse.papyrus.customization.properties.model.xwt/Transformation/XMLToUI.qvto"); //$NON-NLS-1$
+		URI transformationURI = URI.createPlatformPluginURI(Activator.PLUGIN_ID + "/Transformation/XMLToUI.qvto", true); //$NON-NLS-1$
 		TransformationExecutor executor = new TransformationExecutor(transformationURI);
 
 		List<Context> contexts = new LinkedList<Context>(findContexts());
@@ -208,7 +209,7 @@ public class XWTResource extends ResourceImpl {
 	}
 
 	private Root uiSectionToXML(CompositeWidget widget) {
-		URI transformationURI = URI.createURI("platform:/plugin/org.eclipse.papyrus.customization.properties.model.xwt/Transformation/UIToXML.qvto"); //$NON-NLS-1$
+		URI transformationURI = URI.createPlatformPluginURI(Activator.PLUGIN_ID + "/Transformation/UIToXML.qvto", true); //$NON-NLS-1$
 		TransformationExecutor executor = new TransformationExecutor(transformationURI);
 
 		ModelExtent inWidget = getModelExtent(widget);

@@ -40,6 +40,7 @@ import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.Stereotype;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * An IGenerator for building Contexts from a UML Profile
@@ -88,7 +89,7 @@ public class ProfileGenerator extends AbstractQVTGenerator {
 			umlProfile = (Profile)loadEMFModel(profileURI);
 			ModelExtent inPackage = new BasicModelExtent(Collections.singletonList(umlProfile));
 
-			EPackage umlPackage = EPackage.Registry.INSTANCE.getEPackage("http://www.eclipse.org/uml2/3.0.0/UML"); //$NON-NLS-1$
+			EPackage umlPackage = UMLPackage.eINSTANCE;
 			ModelExtent inUml = new BasicModelExtent(Collections.singletonList(umlPackage));
 
 			PropertiesRoot root = ConfigurationManager.instance.getPropertiesRoot();

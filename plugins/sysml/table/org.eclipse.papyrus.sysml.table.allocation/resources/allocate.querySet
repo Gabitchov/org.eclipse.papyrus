@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ASCII"?>
 <query:ModelQuerySet xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:query="http://www.eclipse.org/EmfFacet/infra/query/0.8.incubation" name="allocate" description="Query Set for Allocation">
-  <associatedMetamodels href="http://www.eclipse.org/uml2/3.0.0/UML#/"/>
+  <associatedMetamodels href="http://www.eclipse.org/uml2/4.0.0/UML#/"/>
   <associatedMetamodels href="http://www.eclipse.org/papyrus/0.7.0/SysML#/"/>
   <associatedMetamodels href="http://www.eclipse.org/EmfFacet/infra/browser/custom/0.8#/"/>
   <associatedMetamodels href="http://www.eclipse.org/emf/2002/Ecore#/"/>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<uicustom:MetamodelView xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:query="http://www.eclipse.org/EmfFacet/infra/query/0.8.incubation" xmlns:uicustom="http://www.eclipse.org/EmfFacet/infra/browser/custom/0.8" metamodelURI="http://www.eclipse.org/uml2/3.0.0/UML">
+<uicustom:MetamodelView xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:query="http://www.eclipse.org/EmfFacet/infra/query/0.8.incubation" xmlns:uicustom="http://www.eclipse.org/EmfFacet/infra/browser/custom/0.8" metamodelURI="http://www.eclipse.org/uml2/4.0.0/UML">
   <types metaclassName="uml.Package">
     <references referenceName="packagedElement">
       <customizedFeatures customizedFeature="collapseLink">
@@ -5358,92 +5358,7 @@
       </customizedFeatures>
     </references>
   </types>
-  <types metaclassName="uml.ExecutionEvent">
-    <references referenceName="ownedElement">
-      <customizedFeatures>
-        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
-      </customizedFeatures>
-    </references>
-    <references referenceName="owner">
-      <customizedFeatures>
-        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
-      </customizedFeatures>
-    </references>
-    <references referenceName="namespace">
-      <customizedFeatures>
-        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
-      </customizedFeatures>
-    </references>
-  </types>
-  <types metaclassName="uml.CreationEvent">
-    <references referenceName="ownedElement">
-      <customizedFeatures>
-        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
-      </customizedFeatures>
-    </references>
-    <references referenceName="owner">
-      <customizedFeatures>
-        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
-      </customizedFeatures>
-    </references>
-    <references referenceName="namespace">
-      <customizedFeatures>
-        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
-      </customizedFeatures>
-    </references>
-  </types>
-  <types metaclassName="uml.DestructionEvent">
-    <references referenceName="ownedElement">
-      <customizedFeatures>
-        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
-      </customizedFeatures>
-    </references>
-    <references referenceName="owner">
-      <customizedFeatures>
-        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
-      </customizedFeatures>
-    </references>
-    <references referenceName="namespace">
-      <customizedFeatures>
-        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
-      </customizedFeatures>
-    </references>
-  </types>
-  <types metaclassName="uml.SendOperationEvent">
-    <references referenceName="ownedElement">
-      <customizedFeatures>
-        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
-      </customizedFeatures>
-    </references>
-    <references referenceName="owner">
-      <customizedFeatures>
-        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
-      </customizedFeatures>
-    </references>
-    <references referenceName="namespace">
-      <customizedFeatures>
-        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
-      </customizedFeatures>
-    </references>
-  </types>
   <types metaclassName="uml.MessageEvent">
-    <references referenceName="ownedElement">
-      <customizedFeatures>
-        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
-      </customizedFeatures>
-    </references>
-    <references referenceName="owner">
-      <customizedFeatures>
-        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
-      </customizedFeatures>
-    </references>
-    <references referenceName="namespace">
-      <customizedFeatures>
-        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
-      </customizedFeatures>
-    </references>
-  </types>
-  <types metaclassName="uml.SendSignalEvent">
     <references referenceName="ownedElement">
       <customizedFeatures>
         <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
@@ -5478,40 +5393,6 @@
     </references>
   </types>
   <types metaclassName="uml.ExecutionOccurrenceSpecification">
-    <references referenceName="ownedElement">
-      <customizedFeatures>
-        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
-      </customizedFeatures>
-    </references>
-    <references referenceName="owner">
-      <customizedFeatures>
-        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
-      </customizedFeatures>
-    </references>
-    <references referenceName="namespace">
-      <customizedFeatures>
-        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
-      </customizedFeatures>
-    </references>
-  </types>
-  <types metaclassName="uml.ReceiveOperationEvent">
-    <references referenceName="ownedElement">
-      <customizedFeatures>
-        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
-      </customizedFeatures>
-    </references>
-    <references referenceName="owner">
-      <customizedFeatures>
-        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
-      </customizedFeatures>
-    </references>
-    <references referenceName="namespace">
-      <customizedFeatures>
-        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
-      </customizedFeatures>
-    </references>
-  </types>
-  <types metaclassName="uml.ReceiveSignalEvent">
     <references referenceName="ownedElement">
       <customizedFeatures>
         <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>

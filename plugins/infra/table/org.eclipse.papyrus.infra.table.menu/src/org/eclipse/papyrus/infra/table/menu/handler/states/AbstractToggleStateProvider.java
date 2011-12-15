@@ -17,7 +17,9 @@ import org.eclipse.jface.commands.ToggleState;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.ui.ISelectionListener;
 import org.eclipse.ui.ISelectionService;
+import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPart;
+import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 
 /**
@@ -49,11 +51,14 @@ public abstract class AbstractToggleStateProvider extends ToggleState implements
 		PlatformUI.getWorkbench().getDisplay().asyncExec(new Runnable() {
 
 			public void run() {
-				// TODO Auto-generated method stub
-				serv = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService();
-				if(serv != null) {
-					//serv.addSelectionListener(this);
-					serv.addSelectionListener(AbstractToggleStateProvider.this);
+				IWorkbench workbench = PlatformUI.getWorkbench();
+				IWorkbenchWindow window = workbench.getActiveWorkbenchWindow();
+				if(window != null) {
+					serv = window.getSelectionService();
+					if(serv != null) {
+						//serv.addSelectionListener(this);
+						serv.addSelectionListener(AbstractToggleStateProvider.this);
+					}
 				}
 			}
 		});

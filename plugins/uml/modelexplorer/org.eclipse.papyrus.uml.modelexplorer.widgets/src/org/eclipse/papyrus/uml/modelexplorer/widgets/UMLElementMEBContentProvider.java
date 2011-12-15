@@ -36,8 +36,6 @@ import org.eclipse.uml2.uml.util.UMLUtil;
  */
 public class UMLElementMEBContentProvider extends GraphicalModelExplorerBasedContentProvider {
 
-	public static final String UML_URI = "http://www.eclipse.org/uml2/3.0.0/UML";
-
 	public UMLElementMEBContentProvider(EObject semanticRoot, String historyId) {
 		super(semanticRoot, historyId);
 	}
