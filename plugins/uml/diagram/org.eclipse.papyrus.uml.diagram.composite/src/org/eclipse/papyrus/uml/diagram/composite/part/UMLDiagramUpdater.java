@@ -46,12 +46,10 @@ import org.eclipse.uml2.uml.ConnectableElement;
 import org.eclipse.uml2.uml.Connector;
 import org.eclipse.uml2.uml.ConnectorEnd;
 import org.eclipse.uml2.uml.Constraint;
-import org.eclipse.uml2.uml.CreationEvent;
 import org.eclipse.uml2.uml.DataType;
 import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.Deployment;
 import org.eclipse.uml2.uml.DeploymentSpecification;
-import org.eclipse.uml2.uml.DestructionEvent;
 import org.eclipse.uml2.uml.Device;
 import org.eclipse.uml2.uml.Duration;
 import org.eclipse.uml2.uml.DurationConstraint;
@@ -61,7 +59,6 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Enumeration;
 import org.eclipse.uml2.uml.EnumerationLiteral;
 import org.eclipse.uml2.uml.ExecutionEnvironment;
-import org.eclipse.uml2.uml.ExecutionEvent;
 import org.eclipse.uml2.uml.Expression;
 import org.eclipse.uml2.uml.FunctionBehavior;
 import org.eclipse.uml2.uml.Generalization;
@@ -93,8 +90,6 @@ import org.eclipse.uml2.uml.PrimitiveType;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.ProtocolStateMachine;
 import org.eclipse.uml2.uml.Realization;
-import org.eclipse.uml2.uml.SendOperationEvent;
-import org.eclipse.uml2.uml.SendSignalEvent;
 import org.eclipse.uml2.uml.Signal;
 import org.eclipse.uml2.uml.SignalEvent;
 import org.eclipse.uml2.uml.StateMachine;
@@ -350,31 +345,11 @@ public class UMLDiagramUpdater {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(visualID == SendSignalEventEditPart.VISUAL_ID) {
-				result.add(new UMLNodeDescriptor(childElement, visualID));
-				continue;
-			}
-			if(visualID == SendOperationEventEditPart.VISUAL_ID) {
-				result.add(new UMLNodeDescriptor(childElement, visualID));
-				continue;
-			}
 			if(visualID == ChangeEventEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
 			if(visualID == TimeEventEditPart.VISUAL_ID) {
-				result.add(new UMLNodeDescriptor(childElement, visualID));
-				continue;
-			}
-			if(visualID == CreationEventEditPart.VISUAL_ID) {
-				result.add(new UMLNodeDescriptor(childElement, visualID));
-				continue;
-			}
-			if(visualID == DestructionEventEditPart.VISUAL_ID) {
-				result.add(new UMLNodeDescriptor(childElement, visualID));
-				continue;
-			}
-			if(visualID == ExecutionEventEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -5025,20 +5000,10 @@ public class UMLDiagramUpdater {
 			return getCallEvent_2084ContainedLinks(view);
 		case AnyReceiveEventEditPart.VISUAL_ID:
 			return getAnyReceiveEvent_2085ContainedLinks(view);
-		case SendSignalEventEditPart.VISUAL_ID:
-			return getSendSignalEvent_2086ContainedLinks(view);
-		case SendOperationEventEditPart.VISUAL_ID:
-			return getSendOperationEvent_2087ContainedLinks(view);
 		case ChangeEventEditPart.VISUAL_ID:
 			return getChangeEvent_2088ContainedLinks(view);
 		case TimeEventEditPart.VISUAL_ID:
 			return getTimeEvent_2089ContainedLinks(view);
-		case CreationEventEditPart.VISUAL_ID:
-			return getCreationEvent_2090ContainedLinks(view);
-		case DestructionEventEditPart.VISUAL_ID:
-			return getDestructionEvent_2091ContainedLinks(view);
-		case ExecutionEventEditPart.VISUAL_ID:
-			return getExecutionEvent_2092ContainedLinks(view);
 		case DurationObservationEditPart.VISUAL_ID:
 			return getDurationObservation_2093ContainedLinks(view);
 		case TimeObservationEditPart.VISUAL_ID:
@@ -5266,20 +5231,10 @@ public class UMLDiagramUpdater {
 			return getCallEvent_2084IncomingLinks(view);
 		case AnyReceiveEventEditPart.VISUAL_ID:
 			return getAnyReceiveEvent_2085IncomingLinks(view);
-		case SendSignalEventEditPart.VISUAL_ID:
-			return getSendSignalEvent_2086IncomingLinks(view);
-		case SendOperationEventEditPart.VISUAL_ID:
-			return getSendOperationEvent_2087IncomingLinks(view);
 		case ChangeEventEditPart.VISUAL_ID:
 			return getChangeEvent_2088IncomingLinks(view);
 		case TimeEventEditPart.VISUAL_ID:
 			return getTimeEvent_2089IncomingLinks(view);
-		case CreationEventEditPart.VISUAL_ID:
-			return getCreationEvent_2090IncomingLinks(view);
-		case DestructionEventEditPart.VISUAL_ID:
-			return getDestructionEvent_2091IncomingLinks(view);
-		case ExecutionEventEditPart.VISUAL_ID:
-			return getExecutionEvent_2092IncomingLinks(view);
 		case DurationObservationEditPart.VISUAL_ID:
 			return getDurationObservation_2093IncomingLinks(view);
 		case TimeObservationEditPart.VISUAL_ID:
@@ -5507,20 +5462,10 @@ public class UMLDiagramUpdater {
 			return getCallEvent_2084OutgoingLinks(view);
 		case AnyReceiveEventEditPart.VISUAL_ID:
 			return getAnyReceiveEvent_2085OutgoingLinks(view);
-		case SendSignalEventEditPart.VISUAL_ID:
-			return getSendSignalEvent_2086OutgoingLinks(view);
-		case SendOperationEventEditPart.VISUAL_ID:
-			return getSendOperationEvent_2087OutgoingLinks(view);
 		case ChangeEventEditPart.VISUAL_ID:
 			return getChangeEvent_2088OutgoingLinks(view);
 		case TimeEventEditPart.VISUAL_ID:
 			return getTimeEvent_2089OutgoingLinks(view);
-		case CreationEventEditPart.VISUAL_ID:
-			return getCreationEvent_2090OutgoingLinks(view);
-		case DestructionEventEditPart.VISUAL_ID:
-			return getDestructionEvent_2091OutgoingLinks(view);
-		case ExecutionEventEditPart.VISUAL_ID:
-			return getExecutionEvent_2092OutgoingLinks(view);
 		case DurationObservationEditPart.VISUAL_ID:
 			return getDurationObservation_2093OutgoingLinks(view);
 		case TimeObservationEditPart.VISUAL_ID:
@@ -5970,20 +5915,6 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<UMLLinkDescriptor> getSendSignalEvent_2086ContainedLinks(View view) {
-		return Collections.emptyList();
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<UMLLinkDescriptor> getSendOperationEvent_2087ContainedLinks(View view) {
-		return Collections.emptyList();
-	}
-
-	/**
-	 * @generated
-	 */
 	public static List<UMLLinkDescriptor> getChangeEvent_2088ContainedLinks(View view) {
 		return Collections.emptyList();
 	}
@@ -5992,27 +5923,6 @@ public class UMLDiagramUpdater {
 	 * @generated
 	 */
 	public static List<UMLLinkDescriptor> getTimeEvent_2089ContainedLinks(View view) {
-		return Collections.emptyList();
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<UMLLinkDescriptor> getCreationEvent_2090ContainedLinks(View view) {
-		return Collections.emptyList();
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<UMLLinkDescriptor> getDestructionEvent_2091ContainedLinks(View view) {
-		return Collections.emptyList();
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<UMLLinkDescriptor> getExecutionEvent_2092ContainedLinks(View view) {
 		return Collections.emptyList();
 	}
 
@@ -7441,56 +7351,6 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<UMLLinkDescriptor> getSendSignalEvent_2086IncomingLinks(View view) {
-		SendSignalEvent modelElement = (SendSignalEvent)view.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
-		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4002(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4003(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_ComponentRealization_4004(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_InterfaceRealization_4005(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Substitution_4011(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Realization_4006(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4012(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4007(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Usage_4008(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Deployment_4009(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4017(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4021(modelElement, crossReferences));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<UMLLinkDescriptor> getSendOperationEvent_2087IncomingLinks(View view) {
-		SendOperationEvent modelElement = (SendOperationEvent)view.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
-		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4002(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4003(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_ComponentRealization_4004(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_InterfaceRealization_4005(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Substitution_4011(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Realization_4006(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4012(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4007(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Usage_4008(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Deployment_4009(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4017(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4021(modelElement, crossReferences));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
 	public static List<UMLLinkDescriptor> getChangeEvent_2088IncomingLinks(View view) {
 		ChangeEvent modelElement = (ChangeEvent)view.getElement();
 		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
@@ -7518,81 +7378,6 @@ public class UMLDiagramUpdater {
 	 */
 	public static List<UMLLinkDescriptor> getTimeEvent_2089IncomingLinks(View view) {
 		TimeEvent modelElement = (TimeEvent)view.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
-		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4002(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4003(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_ComponentRealization_4004(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_InterfaceRealization_4005(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Substitution_4011(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Realization_4006(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4012(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4007(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Usage_4008(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Deployment_4009(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4017(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4021(modelElement, crossReferences));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<UMLLinkDescriptor> getCreationEvent_2090IncomingLinks(View view) {
-		CreationEvent modelElement = (CreationEvent)view.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
-		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4002(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4003(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_ComponentRealization_4004(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_InterfaceRealization_4005(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Substitution_4011(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Realization_4006(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4012(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4007(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Usage_4008(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Deployment_4009(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4017(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4021(modelElement, crossReferences));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<UMLLinkDescriptor> getDestructionEvent_2091IncomingLinks(View view) {
-		DestructionEvent modelElement = (DestructionEvent)view.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
-		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4002(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4003(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_ComponentRealization_4004(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_InterfaceRealization_4005(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Substitution_4011(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Realization_4006(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4012(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4007(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Usage_4008(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Deployment_4009(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4017(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4021(modelElement, crossReferences));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<UMLLinkDescriptor> getExecutionEvent_2092IncomingLinks(View view) {
-		ExecutionEvent modelElement = (ExecutionEvent)view.getElement();
 		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4002(modelElement, crossReferences));
@@ -9956,46 +9741,6 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<UMLLinkDescriptor> getSendSignalEvent_2086OutgoingLinks(View view) {
-		SendSignalEvent modelElement = (SendSignalEvent)view.getElement();
-		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_ComponentRealization_4004(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_InterfaceRealization_4005(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Substitution_4011(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Realization_4006(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4012(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Abstraction_4007(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Usage_4008(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Deployment_4009(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4017(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_InformationFlow_4021(modelElement));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<UMLLinkDescriptor> getSendOperationEvent_2087OutgoingLinks(View view) {
-		SendOperationEvent modelElement = (SendOperationEvent)view.getElement();
-		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_ComponentRealization_4004(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_InterfaceRealization_4005(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Substitution_4011(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Realization_4006(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4012(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Abstraction_4007(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Usage_4008(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Deployment_4009(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4017(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_InformationFlow_4021(modelElement));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
 	public static List<UMLLinkDescriptor> getChangeEvent_2088OutgoingLinks(View view) {
 		ChangeEvent modelElement = (ChangeEvent)view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
@@ -10018,66 +9763,6 @@ public class UMLDiagramUpdater {
 	 */
 	public static List<UMLLinkDescriptor> getTimeEvent_2089OutgoingLinks(View view) {
 		TimeEvent modelElement = (TimeEvent)view.getElement();
-		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_ComponentRealization_4004(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_InterfaceRealization_4005(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Substitution_4011(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Realization_4006(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4012(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Abstraction_4007(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Usage_4008(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Deployment_4009(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4017(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_InformationFlow_4021(modelElement));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<UMLLinkDescriptor> getCreationEvent_2090OutgoingLinks(View view) {
-		CreationEvent modelElement = (CreationEvent)view.getElement();
-		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_ComponentRealization_4004(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_InterfaceRealization_4005(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Substitution_4011(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Realization_4006(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4012(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Abstraction_4007(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Usage_4008(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Deployment_4009(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4017(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_InformationFlow_4021(modelElement));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<UMLLinkDescriptor> getDestructionEvent_2091OutgoingLinks(View view) {
-		DestructionEvent modelElement = (DestructionEvent)view.getElement();
-		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_ComponentRealization_4004(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_InterfaceRealization_4005(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Substitution_4011(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Realization_4006(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4012(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Abstraction_4007(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Usage_4008(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Deployment_4009(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4017(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_InformationFlow_4021(modelElement));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<UMLLinkDescriptor> getExecutionEvent_2092OutgoingLinks(View view) {
-		ExecutionEvent modelElement = (ExecutionEvent)view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ComponentRealization_4004(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_InterfaceRealization_4005(modelElement));

@@ -88,9 +88,7 @@ public class ParameterAppliedStereotypeEditPart
 
 extends LabelEditPart
 
-implements ITextAwareEditPart, IBorderItemEditPart
-
-, ILabelRoleProvider
+implements ITextAwareEditPart, IBorderItemEditPart, ILabelRoleProvider
 
 {
 

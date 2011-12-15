@@ -31,10 +31,8 @@ import org.eclipse.papyrus.uml.diagram.composite.edit.commands.CollaborationComp
 import org.eclipse.papyrus.uml.diagram.composite.edit.commands.CommentCreateCommand;
 import org.eclipse.papyrus.uml.diagram.composite.edit.commands.ComponentCompositeCreateCommand;
 import org.eclipse.papyrus.uml.diagram.composite.edit.commands.ConstraintCreateCommand;
-import org.eclipse.papyrus.uml.diagram.composite.edit.commands.CreationEventCreateCommand;
 import org.eclipse.papyrus.uml.diagram.composite.edit.commands.DataTypeCreateCommand;
 import org.eclipse.papyrus.uml.diagram.composite.edit.commands.DeploymentSpecificationCreateCommand;
-import org.eclipse.papyrus.uml.diagram.composite.edit.commands.DestructionEventCreateCommand;
 import org.eclipse.papyrus.uml.diagram.composite.edit.commands.DeviceCompositeCreateCommand;
 import org.eclipse.papyrus.uml.diagram.composite.edit.commands.DurationConstraintCreateCommand;
 import org.eclipse.papyrus.uml.diagram.composite.edit.commands.DurationCreateCommand;
@@ -42,7 +40,6 @@ import org.eclipse.papyrus.uml.diagram.composite.edit.commands.DurationIntervalC
 import org.eclipse.papyrus.uml.diagram.composite.edit.commands.DurationObservationCreateCommand;
 import org.eclipse.papyrus.uml.diagram.composite.edit.commands.EnumerationCreateCommand;
 import org.eclipse.papyrus.uml.diagram.composite.edit.commands.ExecutionEnvironmentCompositeCreateCommand;
-import org.eclipse.papyrus.uml.diagram.composite.edit.commands.ExecutionEventCreateCommand;
 import org.eclipse.papyrus.uml.diagram.composite.edit.commands.ExpressionCreateCommand;
 import org.eclipse.papyrus.uml.diagram.composite.edit.commands.FunctionBehaviorCompositeCreateCommand;
 import org.eclipse.papyrus.uml.diagram.composite.edit.commands.InformationItemCreateCommand;
@@ -62,8 +59,6 @@ import org.eclipse.papyrus.uml.diagram.composite.edit.commands.OpaqueBehaviorCom
 import org.eclipse.papyrus.uml.diagram.composite.edit.commands.OpaqueExpressionCreateCommand;
 import org.eclipse.papyrus.uml.diagram.composite.edit.commands.PrimitiveTypeCreateCommand;
 import org.eclipse.papyrus.uml.diagram.composite.edit.commands.ProtocolStateMachineCompositeCreateCommand;
-import org.eclipse.papyrus.uml.diagram.composite.edit.commands.SendOperationEventCreateCommand;
-import org.eclipse.papyrus.uml.diagram.composite.edit.commands.SendSignalEventCreateCommand;
 import org.eclipse.papyrus.uml.diagram.composite.edit.commands.SignalCreateCommand;
 import org.eclipse.papyrus.uml.diagram.composite.edit.commands.SignalEventCreateCommand;
 import org.eclipse.papyrus.uml.diagram.composite.edit.commands.StateMachineCompositeCreateCommand;
@@ -167,26 +162,11 @@ public class CompositeStructureDiagramItemSemanticEditPolicy extends UMLBaseItem
 		if(UMLElementTypes.AnyReceiveEvent_2085 == req.getElementType()) {
 			return getGEFWrapper(new AnyReceiveEventCreateCommand(req));
 		}
-		if(UMLElementTypes.SendSignalEvent_2086 == req.getElementType()) {
-			return getGEFWrapper(new SendSignalEventCreateCommand(req));
-		}
-		if(UMLElementTypes.SendOperationEvent_2087 == req.getElementType()) {
-			return getGEFWrapper(new SendOperationEventCreateCommand(req));
-		}
 		if(UMLElementTypes.ChangeEvent_2088 == req.getElementType()) {
 			return getGEFWrapper(new ChangeEventCreateCommand(req));
 		}
 		if(UMLElementTypes.TimeEvent_2089 == req.getElementType()) {
 			return getGEFWrapper(new TimeEventCreateCommand(req));
-		}
-		if(UMLElementTypes.CreationEvent_2090 == req.getElementType()) {
-			return getGEFWrapper(new CreationEventCreateCommand(req));
-		}
-		if(UMLElementTypes.DestructionEvent_2091 == req.getElementType()) {
-			return getGEFWrapper(new DestructionEventCreateCommand(req));
-		}
-		if(UMLElementTypes.ExecutionEvent_2092 == req.getElementType()) {
-			return getGEFWrapper(new ExecutionEventCreateCommand(req));
 		}
 		if(UMLElementTypes.DurationObservation_2093 == req.getElementType()) {
 			return getGEFWrapper(new DurationObservationCreateCommand(req));

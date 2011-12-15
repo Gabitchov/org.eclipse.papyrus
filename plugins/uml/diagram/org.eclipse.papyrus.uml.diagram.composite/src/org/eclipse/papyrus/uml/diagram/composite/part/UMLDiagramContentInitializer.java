@@ -360,24 +360,6 @@ public class UMLDiagramContentInitializer {
 	/**
 	 * @generated
 	 */
-	private void createSendSignalEvent_2086Children(View view) {
-		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.getSendSignalEvent_2086OutgoingLinks(view));
-
-	}
-
-	/**
-	 * @generated
-	 */
-	private void createSendOperationEvent_2087Children(View view) {
-		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.getSendOperationEvent_2087OutgoingLinks(view));
-
-	}
-
-	/**
-	 * @generated
-	 */
 	private void createChangeEvent_2088Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
 		myLinkDescriptors.addAll(UMLDiagramUpdater.getChangeEvent_2088OutgoingLinks(view));
@@ -390,33 +372,6 @@ public class UMLDiagramContentInitializer {
 	private void createTimeEvent_2089Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
 		myLinkDescriptors.addAll(UMLDiagramUpdater.getTimeEvent_2089OutgoingLinks(view));
-
-	}
-
-	/**
-	 * @generated
-	 */
-	private void createCreationEvent_2090Children(View view) {
-		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.getCreationEvent_2090OutgoingLinks(view));
-
-	}
-
-	/**
-	 * @generated
-	 */
-	private void createDestructionEvent_2091Children(View view) {
-		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.getDestructionEvent_2091OutgoingLinks(view));
-
-	}
-
-	/**
-	 * @generated
-	 */
-	private void createExecutionEvent_2092Children(View view) {
-		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.getExecutionEvent_2092OutgoingLinks(view));
 
 	}
 
@@ -1519,26 +1474,11 @@ public class UMLDiagramContentInitializer {
 		case AnyReceiveEventEditPart.VISUAL_ID:
 			createAnyReceiveEvent_2085Children(node);
 			return;
-		case SendSignalEventEditPart.VISUAL_ID:
-			createSendSignalEvent_2086Children(node);
-			return;
-		case SendOperationEventEditPart.VISUAL_ID:
-			createSendOperationEvent_2087Children(node);
-			return;
 		case ChangeEventEditPart.VISUAL_ID:
 			createChangeEvent_2088Children(node);
 			return;
 		case TimeEventEditPart.VISUAL_ID:
 			createTimeEvent_2089Children(node);
-			return;
-		case CreationEventEditPart.VISUAL_ID:
-			createCreationEvent_2090Children(node);
-			return;
-		case DestructionEventEditPart.VISUAL_ID:
-			createDestructionEvent_2091Children(node);
-			return;
-		case ExecutionEventEditPart.VISUAL_ID:
-			createExecutionEvent_2092Children(node);
 			return;
 		case DurationObservationEditPart.VISUAL_ID:
 			createDurationObservation_2093Children(node);

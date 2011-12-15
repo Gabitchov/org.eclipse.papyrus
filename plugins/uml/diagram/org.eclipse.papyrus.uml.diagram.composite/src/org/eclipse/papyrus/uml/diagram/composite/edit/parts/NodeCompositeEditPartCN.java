@@ -47,6 +47,7 @@ import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
+import org.eclipse.papyrus.uml.diagram.common.editparts.NamedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AffixedNodeAlignmentEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
@@ -56,10 +57,8 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.QualifiedNameDisplayE
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideClassifierContentsEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideCompartmentEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper;
-import org.eclipse.papyrus.uml.diagram.composite.custom.edit.parts.ConstrainedNamedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.composite.custom.edit.policies.CustomDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.uml.diagram.composite.custom.edit.policies.GraphicalNodeEditPolicy;
-import org.eclipse.papyrus.uml.diagram.composite.custom.edit.policies.NoScrollClassifierResizableShapeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.composite.custom.edit.policies.RemoveOrphanViewPolicy;
 import org.eclipse.papyrus.uml.diagram.composite.custom.edit.policies.StructuredClassifierLayoutEditPolicy;
 import org.eclipse.papyrus.uml.diagram.composite.custom.figures.NodeCompositeFigure;
@@ -75,7 +74,7 @@ import org.eclipse.swt.graphics.Color;
  */
 public class NodeCompositeEditPartCN extends
 
-ConstrainedNamedElementEditPart {
+NamedElementEditPart {
 
 	/**
 	 * @generated
@@ -118,7 +117,6 @@ ConstrainedNamedElementEditPart {
 		installEditPolicy(ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY, new ShowHideCompartmentEditPolicy());
 		installEditPolicy(AffixedNodeAlignmentEditPolicy.AFFIXED_CHILD_ALIGNMENT_ROLE, new AffixedNodeAlignmentEditPolicy());
 		installEditPolicy("REMOVE_ORPHAN_VIEW", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
-		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new NoScrollClassifierResizableShapeEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -449,25 +447,10 @@ ConstrainedNamedElementEditPart {
 		if(targetEditPart instanceof AnyReceiveEventEditPart) {
 			types.add(UMLElementTypes.ComponentRealization_4004);
 		}
-		if(targetEditPart instanceof SendSignalEventEditPart) {
-			types.add(UMLElementTypes.ComponentRealization_4004);
-		}
-		if(targetEditPart instanceof SendOperationEventEditPart) {
-			types.add(UMLElementTypes.ComponentRealization_4004);
-		}
 		if(targetEditPart instanceof ChangeEventEditPart) {
 			types.add(UMLElementTypes.ComponentRealization_4004);
 		}
 		if(targetEditPart instanceof TimeEventEditPart) {
-			types.add(UMLElementTypes.ComponentRealization_4004);
-		}
-		if(targetEditPart instanceof CreationEventEditPart) {
-			types.add(UMLElementTypes.ComponentRealization_4004);
-		}
-		if(targetEditPart instanceof DestructionEventEditPart) {
-			types.add(UMLElementTypes.ComponentRealization_4004);
-		}
-		if(targetEditPart instanceof ExecutionEventEditPart) {
 			types.add(UMLElementTypes.ComponentRealization_4004);
 		}
 		if(targetEditPart instanceof DurationObservationEditPart) {
@@ -704,25 +687,10 @@ ConstrainedNamedElementEditPart {
 		if(targetEditPart instanceof AnyReceiveEventEditPart) {
 			types.add(UMLElementTypes.InterfaceRealization_4005);
 		}
-		if(targetEditPart instanceof SendSignalEventEditPart) {
-			types.add(UMLElementTypes.InterfaceRealization_4005);
-		}
-		if(targetEditPart instanceof SendOperationEventEditPart) {
-			types.add(UMLElementTypes.InterfaceRealization_4005);
-		}
 		if(targetEditPart instanceof ChangeEventEditPart) {
 			types.add(UMLElementTypes.InterfaceRealization_4005);
 		}
 		if(targetEditPart instanceof TimeEventEditPart) {
-			types.add(UMLElementTypes.InterfaceRealization_4005);
-		}
-		if(targetEditPart instanceof CreationEventEditPart) {
-			types.add(UMLElementTypes.InterfaceRealization_4005);
-		}
-		if(targetEditPart instanceof DestructionEventEditPart) {
-			types.add(UMLElementTypes.InterfaceRealization_4005);
-		}
-		if(targetEditPart instanceof ExecutionEventEditPart) {
 			types.add(UMLElementTypes.InterfaceRealization_4005);
 		}
 		if(targetEditPart instanceof DurationObservationEditPart) {
@@ -959,25 +927,10 @@ ConstrainedNamedElementEditPart {
 		if(targetEditPart instanceof AnyReceiveEventEditPart) {
 			types.add(UMLElementTypes.Substitution_4011);
 		}
-		if(targetEditPart instanceof SendSignalEventEditPart) {
-			types.add(UMLElementTypes.Substitution_4011);
-		}
-		if(targetEditPart instanceof SendOperationEventEditPart) {
-			types.add(UMLElementTypes.Substitution_4011);
-		}
 		if(targetEditPart instanceof ChangeEventEditPart) {
 			types.add(UMLElementTypes.Substitution_4011);
 		}
 		if(targetEditPart instanceof TimeEventEditPart) {
-			types.add(UMLElementTypes.Substitution_4011);
-		}
-		if(targetEditPart instanceof CreationEventEditPart) {
-			types.add(UMLElementTypes.Substitution_4011);
-		}
-		if(targetEditPart instanceof DestructionEventEditPart) {
-			types.add(UMLElementTypes.Substitution_4011);
-		}
-		if(targetEditPart instanceof ExecutionEventEditPart) {
 			types.add(UMLElementTypes.Substitution_4011);
 		}
 		if(targetEditPart instanceof DurationObservationEditPart) {
@@ -1214,25 +1167,10 @@ ConstrainedNamedElementEditPart {
 		if(targetEditPart instanceof AnyReceiveEventEditPart) {
 			types.add(UMLElementTypes.Realization_4006);
 		}
-		if(targetEditPart instanceof SendSignalEventEditPart) {
-			types.add(UMLElementTypes.Realization_4006);
-		}
-		if(targetEditPart instanceof SendOperationEventEditPart) {
-			types.add(UMLElementTypes.Realization_4006);
-		}
 		if(targetEditPart instanceof ChangeEventEditPart) {
 			types.add(UMLElementTypes.Realization_4006);
 		}
 		if(targetEditPart instanceof TimeEventEditPart) {
-			types.add(UMLElementTypes.Realization_4006);
-		}
-		if(targetEditPart instanceof CreationEventEditPart) {
-			types.add(UMLElementTypes.Realization_4006);
-		}
-		if(targetEditPart instanceof DestructionEventEditPart) {
-			types.add(UMLElementTypes.Realization_4006);
-		}
-		if(targetEditPart instanceof ExecutionEventEditPart) {
 			types.add(UMLElementTypes.Realization_4006);
 		}
 		if(targetEditPart instanceof DurationObservationEditPart) {
@@ -1469,25 +1407,10 @@ ConstrainedNamedElementEditPart {
 		if(targetEditPart instanceof AnyReceiveEventEditPart) {
 			types.add(UMLElementTypes.Manifestation_4012);
 		}
-		if(targetEditPart instanceof SendSignalEventEditPart) {
-			types.add(UMLElementTypes.Manifestation_4012);
-		}
-		if(targetEditPart instanceof SendOperationEventEditPart) {
-			types.add(UMLElementTypes.Manifestation_4012);
-		}
 		if(targetEditPart instanceof ChangeEventEditPart) {
 			types.add(UMLElementTypes.Manifestation_4012);
 		}
 		if(targetEditPart instanceof TimeEventEditPart) {
-			types.add(UMLElementTypes.Manifestation_4012);
-		}
-		if(targetEditPart instanceof CreationEventEditPart) {
-			types.add(UMLElementTypes.Manifestation_4012);
-		}
-		if(targetEditPart instanceof DestructionEventEditPart) {
-			types.add(UMLElementTypes.Manifestation_4012);
-		}
-		if(targetEditPart instanceof ExecutionEventEditPart) {
 			types.add(UMLElementTypes.Manifestation_4012);
 		}
 		if(targetEditPart instanceof DurationObservationEditPart) {
@@ -1724,25 +1647,10 @@ ConstrainedNamedElementEditPart {
 		if(targetEditPart instanceof AnyReceiveEventEditPart) {
 			types.add(UMLElementTypes.Abstraction_4007);
 		}
-		if(targetEditPart instanceof SendSignalEventEditPart) {
-			types.add(UMLElementTypes.Abstraction_4007);
-		}
-		if(targetEditPart instanceof SendOperationEventEditPart) {
-			types.add(UMLElementTypes.Abstraction_4007);
-		}
 		if(targetEditPart instanceof ChangeEventEditPart) {
 			types.add(UMLElementTypes.Abstraction_4007);
 		}
 		if(targetEditPart instanceof TimeEventEditPart) {
-			types.add(UMLElementTypes.Abstraction_4007);
-		}
-		if(targetEditPart instanceof CreationEventEditPart) {
-			types.add(UMLElementTypes.Abstraction_4007);
-		}
-		if(targetEditPart instanceof DestructionEventEditPart) {
-			types.add(UMLElementTypes.Abstraction_4007);
-		}
-		if(targetEditPart instanceof ExecutionEventEditPart) {
 			types.add(UMLElementTypes.Abstraction_4007);
 		}
 		if(targetEditPart instanceof DurationObservationEditPart) {
@@ -1979,25 +1887,10 @@ ConstrainedNamedElementEditPart {
 		if(targetEditPart instanceof AnyReceiveEventEditPart) {
 			types.add(UMLElementTypes.Usage_4008);
 		}
-		if(targetEditPart instanceof SendSignalEventEditPart) {
-			types.add(UMLElementTypes.Usage_4008);
-		}
-		if(targetEditPart instanceof SendOperationEventEditPart) {
-			types.add(UMLElementTypes.Usage_4008);
-		}
 		if(targetEditPart instanceof ChangeEventEditPart) {
 			types.add(UMLElementTypes.Usage_4008);
 		}
 		if(targetEditPart instanceof TimeEventEditPart) {
-			types.add(UMLElementTypes.Usage_4008);
-		}
-		if(targetEditPart instanceof CreationEventEditPart) {
-			types.add(UMLElementTypes.Usage_4008);
-		}
-		if(targetEditPart instanceof DestructionEventEditPart) {
-			types.add(UMLElementTypes.Usage_4008);
-		}
-		if(targetEditPart instanceof ExecutionEventEditPart) {
 			types.add(UMLElementTypes.Usage_4008);
 		}
 		if(targetEditPart instanceof DurationObservationEditPart) {
@@ -2234,25 +2127,10 @@ ConstrainedNamedElementEditPart {
 		if(targetEditPart instanceof AnyReceiveEventEditPart) {
 			types.add(UMLElementTypes.Deployment_4009);
 		}
-		if(targetEditPart instanceof SendSignalEventEditPart) {
-			types.add(UMLElementTypes.Deployment_4009);
-		}
-		if(targetEditPart instanceof SendOperationEventEditPart) {
-			types.add(UMLElementTypes.Deployment_4009);
-		}
 		if(targetEditPart instanceof ChangeEventEditPart) {
 			types.add(UMLElementTypes.Deployment_4009);
 		}
 		if(targetEditPart instanceof TimeEventEditPart) {
-			types.add(UMLElementTypes.Deployment_4009);
-		}
-		if(targetEditPart instanceof CreationEventEditPart) {
-			types.add(UMLElementTypes.Deployment_4009);
-		}
-		if(targetEditPart instanceof DestructionEventEditPart) {
-			types.add(UMLElementTypes.Deployment_4009);
-		}
-		if(targetEditPart instanceof ExecutionEventEditPart) {
 			types.add(UMLElementTypes.Deployment_4009);
 		}
 		if(targetEditPart instanceof DurationObservationEditPart) {
@@ -2489,25 +2367,10 @@ ConstrainedNamedElementEditPart {
 		if(targetEditPart instanceof AnyReceiveEventEditPart) {
 			types.add(UMLElementTypes.Dependency_4017);
 		}
-		if(targetEditPart instanceof SendSignalEventEditPart) {
-			types.add(UMLElementTypes.Dependency_4017);
-		}
-		if(targetEditPart instanceof SendOperationEventEditPart) {
-			types.add(UMLElementTypes.Dependency_4017);
-		}
 		if(targetEditPart instanceof ChangeEventEditPart) {
 			types.add(UMLElementTypes.Dependency_4017);
 		}
 		if(targetEditPart instanceof TimeEventEditPart) {
-			types.add(UMLElementTypes.Dependency_4017);
-		}
-		if(targetEditPart instanceof CreationEventEditPart) {
-			types.add(UMLElementTypes.Dependency_4017);
-		}
-		if(targetEditPart instanceof DestructionEventEditPart) {
-			types.add(UMLElementTypes.Dependency_4017);
-		}
-		if(targetEditPart instanceof ExecutionEventEditPart) {
 			types.add(UMLElementTypes.Dependency_4017);
 		}
 		if(targetEditPart instanceof DurationObservationEditPart) {
@@ -2744,25 +2607,10 @@ ConstrainedNamedElementEditPart {
 		if(targetEditPart instanceof AnyReceiveEventEditPart) {
 			types.add(UMLElementTypes.Dependency_4010);
 		}
-		if(targetEditPart instanceof SendSignalEventEditPart) {
-			types.add(UMLElementTypes.Dependency_4010);
-		}
-		if(targetEditPart instanceof SendOperationEventEditPart) {
-			types.add(UMLElementTypes.Dependency_4010);
-		}
 		if(targetEditPart instanceof ChangeEventEditPart) {
 			types.add(UMLElementTypes.Dependency_4010);
 		}
 		if(targetEditPart instanceof TimeEventEditPart) {
-			types.add(UMLElementTypes.Dependency_4010);
-		}
-		if(targetEditPart instanceof CreationEventEditPart) {
-			types.add(UMLElementTypes.Dependency_4010);
-		}
-		if(targetEditPart instanceof DestructionEventEditPart) {
-			types.add(UMLElementTypes.Dependency_4010);
-		}
-		if(targetEditPart instanceof ExecutionEventEditPart) {
 			types.add(UMLElementTypes.Dependency_4010);
 		}
 		if(targetEditPart instanceof DurationObservationEditPart) {
@@ -3131,25 +2979,10 @@ ConstrainedNamedElementEditPart {
 		if(targetEditPart instanceof AnyReceiveEventEditPart) {
 			types.add(UMLElementTypes.InformationFlow_4021);
 		}
-		if(targetEditPart instanceof SendSignalEventEditPart) {
-			types.add(UMLElementTypes.InformationFlow_4021);
-		}
-		if(targetEditPart instanceof SendOperationEventEditPart) {
-			types.add(UMLElementTypes.InformationFlow_4021);
-		}
 		if(targetEditPart instanceof ChangeEventEditPart) {
 			types.add(UMLElementTypes.InformationFlow_4021);
 		}
 		if(targetEditPart instanceof TimeEventEditPart) {
-			types.add(UMLElementTypes.InformationFlow_4021);
-		}
-		if(targetEditPart instanceof CreationEventEditPart) {
-			types.add(UMLElementTypes.InformationFlow_4021);
-		}
-		if(targetEditPart instanceof DestructionEventEditPart) {
-			types.add(UMLElementTypes.InformationFlow_4021);
-		}
-		if(targetEditPart instanceof ExecutionEventEditPart) {
 			types.add(UMLElementTypes.InformationFlow_4021);
 		}
 		if(targetEditPart instanceof DurationObservationEditPart) {
@@ -3345,13 +3178,8 @@ ConstrainedNamedElementEditPart {
 			types.add(UMLElementTypes.SignalEvent_2083);
 			types.add(UMLElementTypes.CallEvent_2084);
 			types.add(UMLElementTypes.AnyReceiveEvent_2085);
-			types.add(UMLElementTypes.SendSignalEvent_2086);
-			types.add(UMLElementTypes.SendOperationEvent_2087);
 			types.add(UMLElementTypes.ChangeEvent_2088);
 			types.add(UMLElementTypes.TimeEvent_2089);
-			types.add(UMLElementTypes.CreationEvent_2090);
-			types.add(UMLElementTypes.DestructionEvent_2091);
-			types.add(UMLElementTypes.ExecutionEvent_2092);
 			types.add(UMLElementTypes.DurationObservation_2093);
 			types.add(UMLElementTypes.TimeObservation_2094);
 			types.add(UMLElementTypes.LiteralBoolean_2095);
@@ -3431,13 +3259,8 @@ ConstrainedNamedElementEditPart {
 			types.add(UMLElementTypes.SignalEvent_2083);
 			types.add(UMLElementTypes.CallEvent_2084);
 			types.add(UMLElementTypes.AnyReceiveEvent_2085);
-			types.add(UMLElementTypes.SendSignalEvent_2086);
-			types.add(UMLElementTypes.SendOperationEvent_2087);
 			types.add(UMLElementTypes.ChangeEvent_2088);
 			types.add(UMLElementTypes.TimeEvent_2089);
-			types.add(UMLElementTypes.CreationEvent_2090);
-			types.add(UMLElementTypes.DestructionEvent_2091);
-			types.add(UMLElementTypes.ExecutionEvent_2092);
 			types.add(UMLElementTypes.DurationObservation_2093);
 			types.add(UMLElementTypes.TimeObservation_2094);
 			types.add(UMLElementTypes.LiteralBoolean_2095);
@@ -3517,13 +3340,8 @@ ConstrainedNamedElementEditPart {
 			types.add(UMLElementTypes.SignalEvent_2083);
 			types.add(UMLElementTypes.CallEvent_2084);
 			types.add(UMLElementTypes.AnyReceiveEvent_2085);
-			types.add(UMLElementTypes.SendSignalEvent_2086);
-			types.add(UMLElementTypes.SendOperationEvent_2087);
 			types.add(UMLElementTypes.ChangeEvent_2088);
 			types.add(UMLElementTypes.TimeEvent_2089);
-			types.add(UMLElementTypes.CreationEvent_2090);
-			types.add(UMLElementTypes.DestructionEvent_2091);
-			types.add(UMLElementTypes.ExecutionEvent_2092);
 			types.add(UMLElementTypes.DurationObservation_2093);
 			types.add(UMLElementTypes.TimeObservation_2094);
 			types.add(UMLElementTypes.LiteralBoolean_2095);
@@ -3603,13 +3421,8 @@ ConstrainedNamedElementEditPart {
 			types.add(UMLElementTypes.SignalEvent_2083);
 			types.add(UMLElementTypes.CallEvent_2084);
 			types.add(UMLElementTypes.AnyReceiveEvent_2085);
-			types.add(UMLElementTypes.SendSignalEvent_2086);
-			types.add(UMLElementTypes.SendOperationEvent_2087);
 			types.add(UMLElementTypes.ChangeEvent_2088);
 			types.add(UMLElementTypes.TimeEvent_2089);
-			types.add(UMLElementTypes.CreationEvent_2090);
-			types.add(UMLElementTypes.DestructionEvent_2091);
-			types.add(UMLElementTypes.ExecutionEvent_2092);
 			types.add(UMLElementTypes.DurationObservation_2093);
 			types.add(UMLElementTypes.TimeObservation_2094);
 			types.add(UMLElementTypes.LiteralBoolean_2095);
@@ -3689,13 +3502,8 @@ ConstrainedNamedElementEditPart {
 			types.add(UMLElementTypes.SignalEvent_2083);
 			types.add(UMLElementTypes.CallEvent_2084);
 			types.add(UMLElementTypes.AnyReceiveEvent_2085);
-			types.add(UMLElementTypes.SendSignalEvent_2086);
-			types.add(UMLElementTypes.SendOperationEvent_2087);
 			types.add(UMLElementTypes.ChangeEvent_2088);
 			types.add(UMLElementTypes.TimeEvent_2089);
-			types.add(UMLElementTypes.CreationEvent_2090);
-			types.add(UMLElementTypes.DestructionEvent_2091);
-			types.add(UMLElementTypes.ExecutionEvent_2092);
 			types.add(UMLElementTypes.DurationObservation_2093);
 			types.add(UMLElementTypes.TimeObservation_2094);
 			types.add(UMLElementTypes.LiteralBoolean_2095);
@@ -3775,13 +3583,8 @@ ConstrainedNamedElementEditPart {
 			types.add(UMLElementTypes.SignalEvent_2083);
 			types.add(UMLElementTypes.CallEvent_2084);
 			types.add(UMLElementTypes.AnyReceiveEvent_2085);
-			types.add(UMLElementTypes.SendSignalEvent_2086);
-			types.add(UMLElementTypes.SendOperationEvent_2087);
 			types.add(UMLElementTypes.ChangeEvent_2088);
 			types.add(UMLElementTypes.TimeEvent_2089);
-			types.add(UMLElementTypes.CreationEvent_2090);
-			types.add(UMLElementTypes.DestructionEvent_2091);
-			types.add(UMLElementTypes.ExecutionEvent_2092);
 			types.add(UMLElementTypes.DurationObservation_2093);
 			types.add(UMLElementTypes.TimeObservation_2094);
 			types.add(UMLElementTypes.LiteralBoolean_2095);
@@ -3861,13 +3664,8 @@ ConstrainedNamedElementEditPart {
 			types.add(UMLElementTypes.SignalEvent_2083);
 			types.add(UMLElementTypes.CallEvent_2084);
 			types.add(UMLElementTypes.AnyReceiveEvent_2085);
-			types.add(UMLElementTypes.SendSignalEvent_2086);
-			types.add(UMLElementTypes.SendOperationEvent_2087);
 			types.add(UMLElementTypes.ChangeEvent_2088);
 			types.add(UMLElementTypes.TimeEvent_2089);
-			types.add(UMLElementTypes.CreationEvent_2090);
-			types.add(UMLElementTypes.DestructionEvent_2091);
-			types.add(UMLElementTypes.ExecutionEvent_2092);
 			types.add(UMLElementTypes.DurationObservation_2093);
 			types.add(UMLElementTypes.TimeObservation_2094);
 			types.add(UMLElementTypes.LiteralBoolean_2095);
@@ -3947,13 +3745,8 @@ ConstrainedNamedElementEditPart {
 			types.add(UMLElementTypes.SignalEvent_2083);
 			types.add(UMLElementTypes.CallEvent_2084);
 			types.add(UMLElementTypes.AnyReceiveEvent_2085);
-			types.add(UMLElementTypes.SendSignalEvent_2086);
-			types.add(UMLElementTypes.SendOperationEvent_2087);
 			types.add(UMLElementTypes.ChangeEvent_2088);
 			types.add(UMLElementTypes.TimeEvent_2089);
-			types.add(UMLElementTypes.CreationEvent_2090);
-			types.add(UMLElementTypes.DestructionEvent_2091);
-			types.add(UMLElementTypes.ExecutionEvent_2092);
 			types.add(UMLElementTypes.DurationObservation_2093);
 			types.add(UMLElementTypes.TimeObservation_2094);
 			types.add(UMLElementTypes.LiteralBoolean_2095);
@@ -4033,13 +3826,8 @@ ConstrainedNamedElementEditPart {
 			types.add(UMLElementTypes.SignalEvent_2083);
 			types.add(UMLElementTypes.CallEvent_2084);
 			types.add(UMLElementTypes.AnyReceiveEvent_2085);
-			types.add(UMLElementTypes.SendSignalEvent_2086);
-			types.add(UMLElementTypes.SendOperationEvent_2087);
 			types.add(UMLElementTypes.ChangeEvent_2088);
 			types.add(UMLElementTypes.TimeEvent_2089);
-			types.add(UMLElementTypes.CreationEvent_2090);
-			types.add(UMLElementTypes.DestructionEvent_2091);
-			types.add(UMLElementTypes.ExecutionEvent_2092);
 			types.add(UMLElementTypes.DurationObservation_2093);
 			types.add(UMLElementTypes.TimeObservation_2094);
 			types.add(UMLElementTypes.LiteralBoolean_2095);
@@ -4119,13 +3907,8 @@ ConstrainedNamedElementEditPart {
 			types.add(UMLElementTypes.SignalEvent_2083);
 			types.add(UMLElementTypes.CallEvent_2084);
 			types.add(UMLElementTypes.AnyReceiveEvent_2085);
-			types.add(UMLElementTypes.SendSignalEvent_2086);
-			types.add(UMLElementTypes.SendOperationEvent_2087);
 			types.add(UMLElementTypes.ChangeEvent_2088);
 			types.add(UMLElementTypes.TimeEvent_2089);
-			types.add(UMLElementTypes.CreationEvent_2090);
-			types.add(UMLElementTypes.DestructionEvent_2091);
-			types.add(UMLElementTypes.ExecutionEvent_2092);
 			types.add(UMLElementTypes.DurationObservation_2093);
 			types.add(UMLElementTypes.TimeObservation_2094);
 			types.add(UMLElementTypes.LiteralBoolean_2095);
@@ -4250,13 +4033,8 @@ ConstrainedNamedElementEditPart {
 			types.add(UMLElementTypes.SignalEvent_2083);
 			types.add(UMLElementTypes.CallEvent_2084);
 			types.add(UMLElementTypes.AnyReceiveEvent_2085);
-			types.add(UMLElementTypes.SendSignalEvent_2086);
-			types.add(UMLElementTypes.SendOperationEvent_2087);
 			types.add(UMLElementTypes.ChangeEvent_2088);
 			types.add(UMLElementTypes.TimeEvent_2089);
-			types.add(UMLElementTypes.CreationEvent_2090);
-			types.add(UMLElementTypes.DestructionEvent_2091);
-			types.add(UMLElementTypes.ExecutionEvent_2092);
 			types.add(UMLElementTypes.DurationObservation_2093);
 			types.add(UMLElementTypes.TimeObservation_2094);
 			types.add(UMLElementTypes.LiteralBoolean_2095);
@@ -4384,13 +4162,8 @@ ConstrainedNamedElementEditPart {
 			types.add(UMLElementTypes.SignalEvent_2083);
 			types.add(UMLElementTypes.CallEvent_2084);
 			types.add(UMLElementTypes.AnyReceiveEvent_2085);
-			types.add(UMLElementTypes.SendSignalEvent_2086);
-			types.add(UMLElementTypes.SendOperationEvent_2087);
 			types.add(UMLElementTypes.ChangeEvent_2088);
 			types.add(UMLElementTypes.TimeEvent_2089);
-			types.add(UMLElementTypes.CreationEvent_2090);
-			types.add(UMLElementTypes.DestructionEvent_2091);
-			types.add(UMLElementTypes.ExecutionEvent_2092);
 			types.add(UMLElementTypes.DurationObservation_2093);
 			types.add(UMLElementTypes.TimeObservation_2094);
 			types.add(UMLElementTypes.LiteralBoolean_2095);
@@ -4470,13 +4243,8 @@ ConstrainedNamedElementEditPart {
 			types.add(UMLElementTypes.SignalEvent_2083);
 			types.add(UMLElementTypes.CallEvent_2084);
 			types.add(UMLElementTypes.AnyReceiveEvent_2085);
-			types.add(UMLElementTypes.SendSignalEvent_2086);
-			types.add(UMLElementTypes.SendOperationEvent_2087);
 			types.add(UMLElementTypes.ChangeEvent_2088);
 			types.add(UMLElementTypes.TimeEvent_2089);
-			types.add(UMLElementTypes.CreationEvent_2090);
-			types.add(UMLElementTypes.DestructionEvent_2091);
-			types.add(UMLElementTypes.ExecutionEvent_2092);
 			types.add(UMLElementTypes.DurationObservation_2093);
 			types.add(UMLElementTypes.TimeObservation_2094);
 			types.add(UMLElementTypes.LiteralBoolean_2095);
@@ -4556,13 +4324,8 @@ ConstrainedNamedElementEditPart {
 			types.add(UMLElementTypes.SignalEvent_2083);
 			types.add(UMLElementTypes.CallEvent_2084);
 			types.add(UMLElementTypes.AnyReceiveEvent_2085);
-			types.add(UMLElementTypes.SendSignalEvent_2086);
-			types.add(UMLElementTypes.SendOperationEvent_2087);
 			types.add(UMLElementTypes.ChangeEvent_2088);
 			types.add(UMLElementTypes.TimeEvent_2089);
-			types.add(UMLElementTypes.CreationEvent_2090);
-			types.add(UMLElementTypes.DestructionEvent_2091);
-			types.add(UMLElementTypes.ExecutionEvent_2092);
 			types.add(UMLElementTypes.DurationObservation_2093);
 			types.add(UMLElementTypes.TimeObservation_2094);
 			types.add(UMLElementTypes.LiteralBoolean_2095);
@@ -4642,13 +4405,8 @@ ConstrainedNamedElementEditPart {
 			types.add(UMLElementTypes.SignalEvent_2083);
 			types.add(UMLElementTypes.CallEvent_2084);
 			types.add(UMLElementTypes.AnyReceiveEvent_2085);
-			types.add(UMLElementTypes.SendSignalEvent_2086);
-			types.add(UMLElementTypes.SendOperationEvent_2087);
 			types.add(UMLElementTypes.ChangeEvent_2088);
 			types.add(UMLElementTypes.TimeEvent_2089);
-			types.add(UMLElementTypes.CreationEvent_2090);
-			types.add(UMLElementTypes.DestructionEvent_2091);
-			types.add(UMLElementTypes.ExecutionEvent_2092);
 			types.add(UMLElementTypes.DurationObservation_2093);
 			types.add(UMLElementTypes.TimeObservation_2094);
 			types.add(UMLElementTypes.LiteralBoolean_2095);
@@ -4728,13 +4486,8 @@ ConstrainedNamedElementEditPart {
 			types.add(UMLElementTypes.SignalEvent_2083);
 			types.add(UMLElementTypes.CallEvent_2084);
 			types.add(UMLElementTypes.AnyReceiveEvent_2085);
-			types.add(UMLElementTypes.SendSignalEvent_2086);
-			types.add(UMLElementTypes.SendOperationEvent_2087);
 			types.add(UMLElementTypes.ChangeEvent_2088);
 			types.add(UMLElementTypes.TimeEvent_2089);
-			types.add(UMLElementTypes.CreationEvent_2090);
-			types.add(UMLElementTypes.DestructionEvent_2091);
-			types.add(UMLElementTypes.ExecutionEvent_2092);
 			types.add(UMLElementTypes.DurationObservation_2093);
 			types.add(UMLElementTypes.TimeObservation_2094);
 			types.add(UMLElementTypes.LiteralBoolean_2095);
@@ -4814,13 +4567,8 @@ ConstrainedNamedElementEditPart {
 			types.add(UMLElementTypes.SignalEvent_2083);
 			types.add(UMLElementTypes.CallEvent_2084);
 			types.add(UMLElementTypes.AnyReceiveEvent_2085);
-			types.add(UMLElementTypes.SendSignalEvent_2086);
-			types.add(UMLElementTypes.SendOperationEvent_2087);
 			types.add(UMLElementTypes.ChangeEvent_2088);
 			types.add(UMLElementTypes.TimeEvent_2089);
-			types.add(UMLElementTypes.CreationEvent_2090);
-			types.add(UMLElementTypes.DestructionEvent_2091);
-			types.add(UMLElementTypes.ExecutionEvent_2092);
 			types.add(UMLElementTypes.DurationObservation_2093);
 			types.add(UMLElementTypes.TimeObservation_2094);
 			types.add(UMLElementTypes.LiteralBoolean_2095);
@@ -4900,13 +4648,8 @@ ConstrainedNamedElementEditPart {
 			types.add(UMLElementTypes.SignalEvent_2083);
 			types.add(UMLElementTypes.CallEvent_2084);
 			types.add(UMLElementTypes.AnyReceiveEvent_2085);
-			types.add(UMLElementTypes.SendSignalEvent_2086);
-			types.add(UMLElementTypes.SendOperationEvent_2087);
 			types.add(UMLElementTypes.ChangeEvent_2088);
 			types.add(UMLElementTypes.TimeEvent_2089);
-			types.add(UMLElementTypes.CreationEvent_2090);
-			types.add(UMLElementTypes.DestructionEvent_2091);
-			types.add(UMLElementTypes.ExecutionEvent_2092);
 			types.add(UMLElementTypes.DurationObservation_2093);
 			types.add(UMLElementTypes.TimeObservation_2094);
 			types.add(UMLElementTypes.LiteralBoolean_2095);
@@ -4986,13 +4729,8 @@ ConstrainedNamedElementEditPart {
 			types.add(UMLElementTypes.SignalEvent_2083);
 			types.add(UMLElementTypes.CallEvent_2084);
 			types.add(UMLElementTypes.AnyReceiveEvent_2085);
-			types.add(UMLElementTypes.SendSignalEvent_2086);
-			types.add(UMLElementTypes.SendOperationEvent_2087);
 			types.add(UMLElementTypes.ChangeEvent_2088);
 			types.add(UMLElementTypes.TimeEvent_2089);
-			types.add(UMLElementTypes.CreationEvent_2090);
-			types.add(UMLElementTypes.DestructionEvent_2091);
-			types.add(UMLElementTypes.ExecutionEvent_2092);
 			types.add(UMLElementTypes.DurationObservation_2093);
 			types.add(UMLElementTypes.TimeObservation_2094);
 			types.add(UMLElementTypes.LiteralBoolean_2095);
@@ -5072,13 +4810,8 @@ ConstrainedNamedElementEditPart {
 			types.add(UMLElementTypes.SignalEvent_2083);
 			types.add(UMLElementTypes.CallEvent_2084);
 			types.add(UMLElementTypes.AnyReceiveEvent_2085);
-			types.add(UMLElementTypes.SendSignalEvent_2086);
-			types.add(UMLElementTypes.SendOperationEvent_2087);
 			types.add(UMLElementTypes.ChangeEvent_2088);
 			types.add(UMLElementTypes.TimeEvent_2089);
-			types.add(UMLElementTypes.CreationEvent_2090);
-			types.add(UMLElementTypes.DestructionEvent_2091);
-			types.add(UMLElementTypes.ExecutionEvent_2092);
 			types.add(UMLElementTypes.DurationObservation_2093);
 			types.add(UMLElementTypes.TimeObservation_2094);
 			types.add(UMLElementTypes.LiteralBoolean_2095);
@@ -5158,13 +4891,8 @@ ConstrainedNamedElementEditPart {
 			types.add(UMLElementTypes.SignalEvent_2083);
 			types.add(UMLElementTypes.CallEvent_2084);
 			types.add(UMLElementTypes.AnyReceiveEvent_2085);
-			types.add(UMLElementTypes.SendSignalEvent_2086);
-			types.add(UMLElementTypes.SendOperationEvent_2087);
 			types.add(UMLElementTypes.ChangeEvent_2088);
 			types.add(UMLElementTypes.TimeEvent_2089);
-			types.add(UMLElementTypes.CreationEvent_2090);
-			types.add(UMLElementTypes.DestructionEvent_2091);
-			types.add(UMLElementTypes.ExecutionEvent_2092);
 			types.add(UMLElementTypes.DurationObservation_2093);
 			types.add(UMLElementTypes.TimeObservation_2094);
 			types.add(UMLElementTypes.LiteralBoolean_2095);
@@ -5296,13 +5024,8 @@ ConstrainedNamedElementEditPart {
 			types.add(UMLElementTypes.SignalEvent_2083);
 			types.add(UMLElementTypes.CallEvent_2084);
 			types.add(UMLElementTypes.AnyReceiveEvent_2085);
-			types.add(UMLElementTypes.SendSignalEvent_2086);
-			types.add(UMLElementTypes.SendOperationEvent_2087);
 			types.add(UMLElementTypes.ChangeEvent_2088);
 			types.add(UMLElementTypes.TimeEvent_2089);
-			types.add(UMLElementTypes.CreationEvent_2090);
-			types.add(UMLElementTypes.DestructionEvent_2091);
-			types.add(UMLElementTypes.ExecutionEvent_2092);
 			types.add(UMLElementTypes.DurationObservation_2093);
 			types.add(UMLElementTypes.TimeObservation_2094);
 			types.add(UMLElementTypes.LiteralBoolean_2095);

@@ -195,18 +195,6 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case AnyReceiveEventNameEditPart.VISUAL_ID:
 				return new AnyReceiveEventNameEditPart(view);
 
-			case SendSignalEventEditPart.VISUAL_ID:
-				return new SendSignalEventEditPart(view);
-
-			case SendSignalEventNameEditPart.VISUAL_ID:
-				return new SendSignalEventNameEditPart(view);
-
-			case SendOperationEventEditPart.VISUAL_ID:
-				return new SendOperationEventEditPart(view);
-
-			case SendOperationEventNameEditPart.VISUAL_ID:
-				return new SendOperationEventNameEditPart(view);
-
 			case ChangeEventEditPart.VISUAL_ID:
 				return new ChangeEventEditPart(view);
 
@@ -218,24 +206,6 @@ public class UMLEditPartFactory implements EditPartFactory {
 
 			case TimeEventNameEditPart.VISUAL_ID:
 				return new TimeEventNameEditPart(view);
-
-			case CreationEventEditPart.VISUAL_ID:
-				return new CreationEventEditPart(view);
-
-			case CreationEventNameEditPart.VISUAL_ID:
-				return new CreationEventNameEditPart(view);
-
-			case DestructionEventEditPart.VISUAL_ID:
-				return new DestructionEventEditPart(view);
-
-			case DestructionEventNameEditPart.VISUAL_ID:
-				return new DestructionEventNameEditPart(view);
-
-			case ExecutionEventEditPart.VISUAL_ID:
-				return new ExecutionEventEditPart(view);
-
-			case ExecutionEventNameEditPart.VISUAL_ID:
-				return new ExecutionEventNameEditPart(view);
 
 			case DurationObservationEditPart.VISUAL_ID:
 				return new DurationObservationEditPart(view);

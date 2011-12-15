@@ -32,12 +32,10 @@ import org.eclipse.uml2.uml.ComponentRealization;
 import org.eclipse.uml2.uml.ConnectableElement;
 import org.eclipse.uml2.uml.Connector;
 import org.eclipse.uml2.uml.Constraint;
-import org.eclipse.uml2.uml.CreationEvent;
 import org.eclipse.uml2.uml.DataType;
 import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.Deployment;
 import org.eclipse.uml2.uml.DeploymentSpecification;
-import org.eclipse.uml2.uml.DestructionEvent;
 import org.eclipse.uml2.uml.Device;
 import org.eclipse.uml2.uml.Duration;
 import org.eclipse.uml2.uml.DurationConstraint;
@@ -46,7 +44,6 @@ import org.eclipse.uml2.uml.DurationObservation;
 import org.eclipse.uml2.uml.Enumeration;
 import org.eclipse.uml2.uml.EnumerationLiteral;
 import org.eclipse.uml2.uml.ExecutionEnvironment;
-import org.eclipse.uml2.uml.ExecutionEvent;
 import org.eclipse.uml2.uml.Expression;
 import org.eclipse.uml2.uml.FunctionBehavior;
 import org.eclipse.uml2.uml.InformationFlow;
@@ -75,8 +72,6 @@ import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.ProtocolStateMachine;
 import org.eclipse.uml2.uml.Realization;
 import org.eclipse.uml2.uml.Reception;
-import org.eclipse.uml2.uml.SendOperationEvent;
-import org.eclipse.uml2.uml.SendSignalEvent;
 import org.eclipse.uml2.uml.Signal;
 import org.eclipse.uml2.uml.SignalEvent;
 import org.eclipse.uml2.uml.StateMachine;
@@ -406,30 +401,6 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_SendSignalEvent_2086(SendSignalEvent instance) {
-		try {
-			Object value_0 = name_SendSignalEvent_2086(instance);
-			instance.setName((String)value_0);
-		} catch (RuntimeException e) {
-			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	public void init_SendOperationEvent_2087(SendOperationEvent instance) {
-		try {
-			Object value_0 = name_SendOperationEvent_2087(instance);
-			instance.setName((String)value_0);
-		} catch (RuntimeException e) {
-			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
-		}
-	}
-
-	/**
-	 * @generated
-	 */
 	public void init_ChangeEvent_2088(ChangeEvent instance) {
 		try {
 			Object value_0 = name_ChangeEvent_2088(instance);
@@ -445,42 +416,6 @@ public class ElementInitializers {
 	public void init_TimeEvent_2089(TimeEvent instance) {
 		try {
 			Object value_0 = name_TimeEvent_2089(instance);
-			instance.setName((String)value_0);
-		} catch (RuntimeException e) {
-			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	public void init_CreationEvent_2090(CreationEvent instance) {
-		try {
-			Object value_0 = name_CreationEvent_2090(instance);
-			instance.setName((String)value_0);
-		} catch (RuntimeException e) {
-			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	public void init_DestructionEvent_2091(DestructionEvent instance) {
-		try {
-			Object value_0 = name_DestructionEvent_2091(instance);
-			instance.setName((String)value_0);
-		} catch (RuntimeException e) {
-			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	public void init_ExecutionEvent_2092(ExecutionEvent instance) {
-		try {
-			Object value_0 = name_ExecutionEvent_2092(instance);
 			instance.setName((String)value_0);
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
@@ -1680,20 +1615,6 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	private String name_SendSignalEvent_2086(SendSignalEvent self) {
-		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_SendOperationEvent_2087(SendOperationEvent self) {
-		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
-	}
-
-	/**
-	 * @generated
-	 */
 	private String name_ChangeEvent_2088(ChangeEvent self) {
 		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
 	}
@@ -1702,27 +1623,6 @@ public class ElementInitializers {
 	 * @generated
 	 */
 	private String name_TimeEvent_2089(TimeEvent self) {
-		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_CreationEvent_2090(CreationEvent self) {
-		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_DestructionEvent_2091(DestructionEvent self) {
-		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ExecutionEvent_2092(ExecutionEvent self) {
 		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
 	}
 

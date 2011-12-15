@@ -73,7 +73,6 @@ import org.eclipse.papyrus.uml.diagram.composite.edit.parts.ComponentCompositeEd
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.ConnectorEditPart;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.ConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.ConstraintEditPartCN;
-import org.eclipse.papyrus.uml.diagram.composite.edit.parts.CreationEventEditPart;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.DataTypeEditPart;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.DependencyEditPart;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.DeploymentSpecificationEditPart;
@@ -85,7 +84,6 @@ import org.eclipse.papyrus.uml.diagram.composite.edit.parts.DurationObservationE
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.EnumerationEditPart;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.ExecutionEnvironmentCompositeEditPart;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.ExecutionEnvironmentCompositeEditPartCN;
-import org.eclipse.papyrus.uml.diagram.composite.edit.parts.ExecutionEventEditPart;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.ExpressionEditPart;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.FunctionBehaviorCompositeEditPart;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.FunctionBehaviorCompositeEditPartCN;
@@ -113,8 +111,6 @@ import org.eclipse.papyrus.uml.diagram.composite.edit.parts.PrimitiveTypeEditPar
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.ProtocolStateMachineCompositeEditPart;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.ProtocolStateMachineCompositeEditPartCN;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.RoleBindingEditPart;
-import org.eclipse.papyrus.uml.diagram.composite.edit.parts.SendOperationEventEditPart;
-import org.eclipse.papyrus.uml.diagram.composite.edit.parts.SendSignalEventEditPart;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.SignalEditPart;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.SignalEventEditPart;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.StateMachineCompositeEditPart;
@@ -192,12 +188,8 @@ public class CustomDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdi
 		droppableElementsVisualId.add(SignalEventEditPart.VISUAL_ID);
 		droppableElementsVisualId.add(CallEventEditPart.VISUAL_ID);
 		droppableElementsVisualId.add(AnyReceiveEventEditPart.VISUAL_ID);
-		droppableElementsVisualId.add(SendSignalEventEditPart.VISUAL_ID);
-		droppableElementsVisualId.add(SendOperationEventEditPart.VISUAL_ID);
 		droppableElementsVisualId.add(ChangeEventEditPart.VISUAL_ID);
 		droppableElementsVisualId.add(TimeEventEditPart.VISUAL_ID);
-		droppableElementsVisualId.add(CreationEventEditPart.VISUAL_ID);
-		droppableElementsVisualId.add(ExecutionEventEditPart.VISUAL_ID);
 		droppableElementsVisualId.add(LiteralBooleanEditPart.VISUAL_ID);
 		droppableElementsVisualId.add(LiteralIntegerEditPart.VISUAL_ID);
 		droppableElementsVisualId.add(LiteralNullEditPart.VISUAL_ID);
@@ -313,12 +305,8 @@ public class CustomDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdi
 			case SignalEventEditPart.VISUAL_ID:
 			case CallEventEditPart.VISUAL_ID:
 			case AnyReceiveEventEditPart.VISUAL_ID:
-			case SendSignalEventEditPart.VISUAL_ID:
-			case SendOperationEventEditPart.VISUAL_ID:
 			case ChangeEventEditPart.VISUAL_ID:
 			case TimeEventEditPart.VISUAL_ID:
-			case CreationEventEditPart.VISUAL_ID:
-			case ExecutionEventEditPart.VISUAL_ID:
 			case LiteralBooleanEditPart.VISUAL_ID:
 			case LiteralIntegerEditPart.VISUAL_ID:
 			case LiteralNullEditPart.VISUAL_ID:

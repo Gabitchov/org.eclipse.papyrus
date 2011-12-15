@@ -254,16 +254,6 @@ public class UMLVisualIDRegistry {
 			) {
 				return AnyReceiveEventEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getSendSignalEvent().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return SendSignalEventEditPart.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getSendOperationEvent().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return SendOperationEventEditPart.VISUAL_ID;
-			}
 			if(UMLPackage.eINSTANCE.getChangeEvent().isSuperTypeOf(domainElement.eClass())
 
 			) {
@@ -273,21 +263,6 @@ public class UMLVisualIDRegistry {
 
 			) {
 				return TimeEventEditPart.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getCreationEvent().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return CreationEventEditPart.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getDestructionEvent().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return DestructionEventEditPart.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getExecutionEvent().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return ExecutionEventEditPart.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getDurationObservation().isSuperTypeOf(domainElement.eClass())
 
@@ -4351,25 +4326,10 @@ public class UMLVisualIDRegistry {
 			if(AnyReceiveEventEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
-			if(SendSignalEventEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(SendOperationEventEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
 			if(ChangeEventEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			if(TimeEventEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(CreationEventEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(DestructionEventEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(ExecutionEventEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			if(DurationObservationEditPart.VISUAL_ID == nodeVisualID) {
@@ -4663,16 +4623,6 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			break;
-		case SendSignalEventEditPart.VISUAL_ID:
-			if(SendSignalEventNameEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			break;
-		case SendOperationEventEditPart.VISUAL_ID:
-			if(SendOperationEventNameEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			break;
 		case ChangeEventEditPart.VISUAL_ID:
 			if(ChangeEventNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
@@ -4680,21 +4630,6 @@ public class UMLVisualIDRegistry {
 			break;
 		case TimeEventEditPart.VISUAL_ID:
 			if(TimeEventNameEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			break;
-		case CreationEventEditPart.VISUAL_ID:
-			if(CreationEventNameEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			break;
-		case DestructionEventEditPart.VISUAL_ID:
-			if(DestructionEventNameEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			break;
-		case ExecutionEventEditPart.VISUAL_ID:
-			if(ExecutionEventNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -7702,25 +7637,10 @@ public class UMLVisualIDRegistry {
 		viewInfo = new BaseViewInfo(2085, ViewInfo.Node, "AnyReceiveEvent");
 		root.addNode(1000, viewInfo);
 
-		viewInfo = new BaseViewInfo(2086, ViewInfo.Node, "SendSignalEvent");
-		root.addNode(1000, viewInfo);
-
-		viewInfo = new BaseViewInfo(2087, ViewInfo.Node, "SendOperationEvent");
-		root.addNode(1000, viewInfo);
-
 		viewInfo = new BaseViewInfo(2088, ViewInfo.Node, "ChangeEvent");
 		root.addNode(1000, viewInfo);
 
 		viewInfo = new BaseViewInfo(2089, ViewInfo.Node, "TimeEvent");
-		root.addNode(1000, viewInfo);
-
-		viewInfo = new BaseViewInfo(2090, ViewInfo.Node, "CreationEvent");
-		root.addNode(1000, viewInfo);
-
-		viewInfo = new BaseViewInfo(2091, ViewInfo.Node, "DestructionEvent");
-		root.addNode(1000, viewInfo);
-
-		viewInfo = new BaseViewInfo(2092, ViewInfo.Node, "ExecutionEvent");
 		root.addNode(1000, viewInfo);
 
 		viewInfo = new BaseViewInfo(2093, ViewInfo.Node, "DurationObservation");

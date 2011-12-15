@@ -191,37 +191,12 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
-	public static final IElementType SendSignalEvent_2086 = getElementType("org.eclipse.papyrus.uml.diagram.composite.SendSignalEvent_2086"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType SendOperationEvent_2087 = getElementType("org.eclipse.papyrus.uml.diagram.composite.SendOperationEvent_2087"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
 	public static final IElementType ChangeEvent_2088 = getElementType("org.eclipse.papyrus.uml.diagram.composite.ChangeEvent_2088"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
 	public static final IElementType TimeEvent_2089 = getElementType("org.eclipse.papyrus.uml.diagram.composite.TimeEvent_2089"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType CreationEvent_2090 = getElementType("org.eclipse.papyrus.uml.diagram.composite.CreationEvent_2090"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType DestructionEvent_2091 = getElementType("org.eclipse.papyrus.uml.diagram.composite.DestructionEvent_2091"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType ExecutionEvent_2092 = getElementType("org.eclipse.papyrus.uml.diagram.composite.ExecutionEvent_2092"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -831,19 +806,9 @@ public class UMLElementTypes {
 
 			elements.put(AnyReceiveEvent_2085, UMLPackage.eINSTANCE.getAnyReceiveEvent());
 
-			elements.put(SendSignalEvent_2086, UMLPackage.eINSTANCE.getSendSignalEvent());
-
-			elements.put(SendOperationEvent_2087, UMLPackage.eINSTANCE.getSendOperationEvent());
-
 			elements.put(ChangeEvent_2088, UMLPackage.eINSTANCE.getChangeEvent());
 
 			elements.put(TimeEvent_2089, UMLPackage.eINSTANCE.getTimeEvent());
-
-			elements.put(CreationEvent_2090, UMLPackage.eINSTANCE.getCreationEvent());
-
-			elements.put(DestructionEvent_2091, UMLPackage.eINSTANCE.getDestructionEvent());
-
-			elements.put(ExecutionEvent_2092, UMLPackage.eINSTANCE.getExecutionEvent());
 
 			elements.put(DurationObservation_2093, UMLPackage.eINSTANCE.getDurationObservation());
 
@@ -1065,13 +1030,8 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(SignalEvent_2083);
 			KNOWN_ELEMENT_TYPES.add(CallEvent_2084);
 			KNOWN_ELEMENT_TYPES.add(AnyReceiveEvent_2085);
-			KNOWN_ELEMENT_TYPES.add(SendSignalEvent_2086);
-			KNOWN_ELEMENT_TYPES.add(SendOperationEvent_2087);
 			KNOWN_ELEMENT_TYPES.add(ChangeEvent_2088);
 			KNOWN_ELEMENT_TYPES.add(TimeEvent_2089);
-			KNOWN_ELEMENT_TYPES.add(CreationEvent_2090);
-			KNOWN_ELEMENT_TYPES.add(DestructionEvent_2091);
-			KNOWN_ELEMENT_TYPES.add(ExecutionEvent_2092);
 			KNOWN_ELEMENT_TYPES.add(DurationObservation_2093);
 			KNOWN_ELEMENT_TYPES.add(TimeObservation_2094);
 			KNOWN_ELEMENT_TYPES.add(LiteralBoolean_2095);
@@ -1223,20 +1183,10 @@ public class UMLElementTypes {
 			return CallEvent_2084;
 		case AnyReceiveEventEditPart.VISUAL_ID:
 			return AnyReceiveEvent_2085;
-		case SendSignalEventEditPart.VISUAL_ID:
-			return SendSignalEvent_2086;
-		case SendOperationEventEditPart.VISUAL_ID:
-			return SendOperationEvent_2087;
 		case ChangeEventEditPart.VISUAL_ID:
 			return ChangeEvent_2088;
 		case TimeEventEditPart.VISUAL_ID:
 			return TimeEvent_2089;
-		case CreationEventEditPart.VISUAL_ID:
-			return CreationEvent_2090;
-		case DestructionEventEditPart.VISUAL_ID:
-			return DestructionEvent_2091;
-		case ExecutionEventEditPart.VISUAL_ID:
-			return ExecutionEvent_2092;
 		case DurationObservationEditPart.VISUAL_ID:
 			return DurationObservation_2093;
 		case TimeObservationEditPart.VISUAL_ID:

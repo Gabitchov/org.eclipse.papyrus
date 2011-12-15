@@ -47,7 +47,6 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabe
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.HTMLCornerBentFigure;
 import org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper;
-import org.eclipse.papyrus.uml.diagram.composite.custom.edit.policies.NoScrollClassifierResizableShapeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.composite.edit.policies.CommentItemSemanticEditPolicyCN;
 import org.eclipse.papyrus.uml.diagram.composite.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.composite.part.UMLVisualIDRegistry;
@@ -91,7 +90,6 @@ AbstractCommentEditPart {
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CommentItemSemanticEditPolicyCN());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
-		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new NoScrollClassifierResizableShapeEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -374,25 +372,10 @@ AbstractCommentEditPart {
 		if(targetEditPart instanceof AnyReceiveEventEditPart) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4002);
 		}
-		if(targetEditPart instanceof SendSignalEventEditPart) {
-			types.add(UMLElementTypes.CommentAnnotatedElement_4002);
-		}
-		if(targetEditPart instanceof SendOperationEventEditPart) {
-			types.add(UMLElementTypes.CommentAnnotatedElement_4002);
-		}
 		if(targetEditPart instanceof ChangeEventEditPart) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4002);
 		}
 		if(targetEditPart instanceof TimeEventEditPart) {
-			types.add(UMLElementTypes.CommentAnnotatedElement_4002);
-		}
-		if(targetEditPart instanceof CreationEventEditPart) {
-			types.add(UMLElementTypes.CommentAnnotatedElement_4002);
-		}
-		if(targetEditPart instanceof DestructionEventEditPart) {
-			types.add(UMLElementTypes.CommentAnnotatedElement_4002);
-		}
-		if(targetEditPart instanceof ExecutionEventEditPart) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4002);
 		}
 		if(targetEditPart instanceof DurationObservationEditPart) {
@@ -594,13 +577,8 @@ AbstractCommentEditPart {
 			types.add(UMLElementTypes.SignalEvent_2083);
 			types.add(UMLElementTypes.CallEvent_2084);
 			types.add(UMLElementTypes.AnyReceiveEvent_2085);
-			types.add(UMLElementTypes.SendSignalEvent_2086);
-			types.add(UMLElementTypes.SendOperationEvent_2087);
 			types.add(UMLElementTypes.ChangeEvent_2088);
 			types.add(UMLElementTypes.TimeEvent_2089);
-			types.add(UMLElementTypes.CreationEvent_2090);
-			types.add(UMLElementTypes.DestructionEvent_2091);
-			types.add(UMLElementTypes.ExecutionEvent_2092);
 			types.add(UMLElementTypes.DurationObservation_2093);
 			types.add(UMLElementTypes.TimeObservation_2094);
 			types.add(UMLElementTypes.LiteralBoolean_2095);

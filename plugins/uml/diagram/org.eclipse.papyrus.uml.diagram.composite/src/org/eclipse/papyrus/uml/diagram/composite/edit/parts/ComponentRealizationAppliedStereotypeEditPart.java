@@ -79,9 +79,7 @@ import org.eclipse.ui.PlatformUI;
 /**
  * @generated
  */
-public class ComponentRealizationAppliedStereotypeEditPart extends LabelEditPart implements ITextAwareEditPart
-
-, ILabelRoleProvider
+public class ComponentRealizationAppliedStereotypeEditPart extends LabelEditPart implements ITextAwareEditPart, ILabelRoleProvider
 
 {
 

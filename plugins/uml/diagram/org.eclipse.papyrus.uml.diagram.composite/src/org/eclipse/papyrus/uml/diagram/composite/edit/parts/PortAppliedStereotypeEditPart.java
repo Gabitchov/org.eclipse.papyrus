@@ -88,9 +88,7 @@ public class PortAppliedStereotypeEditPart
 
 extends AbstractLabelEditPart
 
-implements ITextAwareEditPart, IBorderItemEditPart
-
-, ILabelRoleProvider
+implements ITextAwareEditPart, IBorderItemEditPart, ILabelRoleProvider
 
 {
 

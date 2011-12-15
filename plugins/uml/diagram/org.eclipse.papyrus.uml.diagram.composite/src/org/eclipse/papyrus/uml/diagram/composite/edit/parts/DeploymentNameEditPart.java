@@ -79,9 +79,7 @@ import org.eclipse.ui.PlatformUI;
 /**
  * @generated
  */
-public class DeploymentNameEditPart extends LabelEditPart implements ITextAwareEditPart
-
-, ILabelRoleProvider
+public class DeploymentNameEditPart extends LabelEditPart implements ITextAwareEditPart, ILabelRoleProvider
 
 {
 

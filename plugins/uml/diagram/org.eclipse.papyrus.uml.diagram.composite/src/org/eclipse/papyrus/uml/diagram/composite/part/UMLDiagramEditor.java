@@ -323,7 +323,6 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 			 * with a defaultTool that is the SelectToolEx that undestands how to handle the enter
 			 * key which will result in the creation of the shape also.
 			 */
-			@Override
 			protected void configurePaletteViewer(PaletteViewer viewer) {
 				super.configurePaletteViewer(viewer);
 
@@ -341,7 +340,6 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 				viewer.setCustomizer(createPaletteCustomizer());
 			}
 
-			@Override
 			public PaletteViewer createPaletteViewer(Composite parent) {
 				PaletteViewer pViewer = constructPaletteViewer();
 				pViewer.createControl(parent);
@@ -369,7 +367,6 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 						 *        the KeyEvent
 						 * @return <code>true</code> if KeyEvent was handled in some way
 						 */
-						@Override
 						public boolean keyReleased(KeyEvent event) {
 
 							if(event.keyCode == SWT.Selection) {

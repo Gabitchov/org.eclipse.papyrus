@@ -542,46 +542,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
-	private IParser sendSignalEventName_5169Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser getSendSignalEventName_5169Parser() {
-		if(sendSignalEventName_5169Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
-			MessageFormatParser parser = new MessageFormatParser(features);
-			parser.setViewPattern("{0}  "); //$NON-NLS-1$
-			parser.setEditorPattern("{0}"); //$NON-NLS-1$
-			parser.setEditPattern("{0}"); //$NON-NLS-1$
-			sendSignalEventName_5169Parser = parser;
-		}
-		return sendSignalEventName_5169Parser;
-	}
-
-	/**
-	 * @generated
-	 */
-	private IParser sendOperationEventName_5170Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser getSendOperationEventName_5170Parser() {
-		if(sendOperationEventName_5170Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
-			MessageFormatParser parser = new MessageFormatParser(features);
-			parser.setViewPattern("{0}  "); //$NON-NLS-1$
-			parser.setEditorPattern("{0}"); //$NON-NLS-1$
-			parser.setEditPattern("{0}"); //$NON-NLS-1$
-			sendOperationEventName_5170Parser = parser;
-		}
-		return sendOperationEventName_5170Parser;
-	}
-
-	/**
-	 * @generated
-	 */
 	private IParser changeEventName_5171Parser;
 
 	/**
@@ -617,66 +577,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			timeEventName_5172Parser = parser;
 		}
 		return timeEventName_5172Parser;
-	}
-
-	/**
-	 * @generated
-	 */
-	private IParser creationEventName_5173Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser getCreationEventName_5173Parser() {
-		if(creationEventName_5173Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
-			MessageFormatParser parser = new MessageFormatParser(features);
-			parser.setViewPattern("{0}  "); //$NON-NLS-1$
-			parser.setEditorPattern("{0}"); //$NON-NLS-1$
-			parser.setEditPattern("{0}"); //$NON-NLS-1$
-			creationEventName_5173Parser = parser;
-		}
-		return creationEventName_5173Parser;
-	}
-
-	/**
-	 * @generated
-	 */
-	private IParser destructionEventName_5174Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser getDestructionEventName_5174Parser() {
-		if(destructionEventName_5174Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
-			MessageFormatParser parser = new MessageFormatParser(features);
-			parser.setViewPattern("{0}  "); //$NON-NLS-1$
-			parser.setEditorPattern("{0}"); //$NON-NLS-1$
-			parser.setEditPattern("{0}"); //$NON-NLS-1$
-			destructionEventName_5174Parser = parser;
-		}
-		return destructionEventName_5174Parser;
-	}
-
-	/**
-	 * @generated
-	 */
-	private IParser executionEventName_5175Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser getExecutionEventName_5175Parser() {
-		if(executionEventName_5175Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
-			MessageFormatParser parser = new MessageFormatParser(features);
-			parser.setViewPattern("{0}  "); //$NON-NLS-1$
-			parser.setEditorPattern("{0}"); //$NON-NLS-1$
-			parser.setEditPattern("{0}"); //$NON-NLS-1$
-			executionEventName_5175Parser = parser;
-		}
-		return executionEventName_5175Parser;
 	}
 
 	/**
@@ -2726,20 +2626,10 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getCallEventName_5167Parser();
 		case AnyReceiveEventNameEditPart.VISUAL_ID:
 			return getAnyReceiveEventName_5168Parser();
-		case SendSignalEventNameEditPart.VISUAL_ID:
-			return getSendSignalEventName_5169Parser();
-		case SendOperationEventNameEditPart.VISUAL_ID:
-			return getSendOperationEventName_5170Parser();
 		case ChangeEventNameEditPart.VISUAL_ID:
 			return getChangeEventName_5171Parser();
 		case TimeEventNameEditPart.VISUAL_ID:
 			return getTimeEventName_5172Parser();
-		case CreationEventNameEditPart.VISUAL_ID:
-			return getCreationEventName_5173Parser();
-		case DestructionEventNameEditPart.VISUAL_ID:
-			return getDestructionEventName_5174Parser();
-		case ExecutionEventNameEditPart.VISUAL_ID:
-			return getExecutionEventName_5175Parser();
 		case DurationObservationNameEditPart.VISUAL_ID:
 			return getDurationObservationName_5151Parser();
 		case DurationObservationStereotypeLabelEditPart.VISUAL_ID:

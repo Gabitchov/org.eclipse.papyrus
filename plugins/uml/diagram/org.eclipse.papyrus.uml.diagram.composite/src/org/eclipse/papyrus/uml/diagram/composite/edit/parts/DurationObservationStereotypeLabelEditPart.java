@@ -88,9 +88,7 @@ public class DurationObservationStereotypeLabelEditPart
 
 extends AbstractLabelEditPart
 
-implements ITextAwareEditPart, IBorderItemEditPart
-
-, ILabelRoleProvider
+implements ITextAwareEditPart, IBorderItemEditPart, ILabelRoleProvider
 
 {
 

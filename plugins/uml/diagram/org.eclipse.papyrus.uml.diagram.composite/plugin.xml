@@ -113,7 +113,7 @@
       <viewProvider class="org.eclipse.papyrus.uml.diagram.composite.providers.UMLViewProvider">
          <Priority name="Lowest"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="CompositeStructure"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2060,2061,2062,2063,2064,2065,2069,2070,2071,2072,2073,2075,2076,2066,2067,2068,2077,2078,2079,2080,2081,2082,2083,2084,2085,2086,2087,2088,2089,2090,2091,2092,2093,2094,2095,2096,2097,2098,2099,2100,2101,2102,2103,2104,2105,2106,2107,2108,2109,2110,2111,2112,2113,2114,3069,3088,3070,3115,3071,3072,3073,3074,3075,3076,3077,3081,3082,3083,3084,3085,3086,3087,3078,3079,3080,3091,3092,3093,3094,3095,3096,3097,3116,3117,3118,3119,3120,3101,3102,3100,3066,3103,3104,3105,3106,3107,3108,3109,3110,3111,3112,3113,3114"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2060,2061,2062,2063,2064,2065,2069,2070,2071,2072,2073,2075,2076,2066,2067,2068,2077,2078,2079,2080,2081,2082,2083,2084,2085,2088,2089,2093,2094,2095,2096,2097,2098,2099,2100,2101,2102,2103,2104,2105,2106,2107,2108,2109,2110,2111,2112,2113,2114,3069,3088,3070,3115,3071,3072,3073,3074,3075,3076,3077,3081,3082,3083,3084,3085,3086,3087,3078,3079,3080,3091,3092,3093,3094,3095,3096,3097,3116,3117,3118,3119,3120,3101,3102,3100,3066,3103,3104,3105,3106,3107,3108,3109,3110,3111,3112,3113,3114"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4001,4002,4003,4004,4005,4011,4006,4012,4007,4008,4009,4017,4010,4013,4015,4018,4019,4020,4021"/>
       </viewProvider>
    </extension>
@@ -171,13 +171,8 @@
          <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.SignalEventEditPart" id="SignalEvent_2083"/>
          <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.CallEventEditPart" id="CallEvent_2084"/>
          <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.AnyReceiveEventEditPart" id="AnyReceiveEvent_2085"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.SendSignalEventEditPart" id="SendSignalEvent_2086"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.SendOperationEventEditPart" id="SendOperationEvent_2087"/>
          <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.ChangeEventEditPart" id="ChangeEvent_2088"/>
          <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.TimeEventEditPart" id="TimeEvent_2089"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.CreationEventEditPart" id="CreationEvent_2090"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.DestructionEventEditPart" id="DestructionEvent_2091"/>
-         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.ExecutionEventEditPart" id="ExecutionEvent_2092"/>
          <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.DurationObservationEditPart" id="DurationObservation_2093"/>
          <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.TimeObservationEditPart" id="TimeObservation_2094"/>
          <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.LiteralBooleanEditPart" id="LiteralBoolean_2095"/>
@@ -200,7 +195,56 @@
          <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.IntervalConstraintEditPart" id="IntervalConstraint_2112"/>
          <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.InteractionConstraintEditPart" id="InteractionConstraint_2113"/>
          <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.ConstraintEditPart" id="Constraint_2114"/>
-         <context elements="Package_1000,Activity_2060,Interaction_2061,ProtocolStateMachine_2062,StateMachine_2063,FunctionBehavior_2064,OpaqueBehavior_2065,Component_2069,Device_2070,ExecutionEnvironment_2071,Node_2072,Class_2073,Collaboration_2075,Interface_2076,PrimitiveType_2066,Enumeration_2067,DataType_2068,Actor_2077,DeploymentSpecification_2078,Artifact_2079,InformationItem_2080,Signal_2081,UseCase_2082,SignalEvent_2083,CallEvent_2084,AnyReceiveEvent_2085,SendSignalEvent_2086,SendOperationEvent_2087,ChangeEvent_2088,TimeEvent_2089,CreationEvent_2090,DestructionEvent_2091,ExecutionEvent_2092,DurationObservation_2093,TimeObservation_2094,LiteralBoolean_2095,LiteralInteger_2096,LiteralNull_2097,LiteralString_2098,LiteralUnlimitedNatural_2099,StringExpression_2100,OpaqueExpression_2101,TimeExpression_2102,Expression_2103,Duration_2104,TimeInterval_2105,DurationInterval_2106,Interval_2107,InstanceValue_2108,Comment_2109,DurationConstraint_2110,TimeConstraint_2111,IntervalConstraint_2112,InteractionConstraint_2113,Constraint_2114"/>
+         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.PortEditPart" id="Port_3069"/>
+         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.ParameterEditPart" id="Parameter_3088"/>
+         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.PropertyPartEditPartCN" id="Property_3070"/>
+         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.CollaborationRoleEditPartCN" id="ConnectableElement_3115"/>
+         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.CollaborationUseEditPartCN" id="CollaborationUse_3071"/>
+         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.ActivityCompositeEditPartCN" id="Activity_3072"/>
+         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.InteractionCompositeEditPartCN" id="Interaction_3073"/>
+         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.ProtocolStateMachineCompositeEditPartCN" id="ProtocolStateMachine_3074"/>
+         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.StateMachineCompositeEditPartCN" id="StateMachine_3075"/>
+         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.FunctionBehaviorCompositeEditPartCN" id="FunctionBehavior_3076"/>
+         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.OpaqueBehaviorCompositeEditPartCN" id="OpaqueBehavior_3077"/>
+         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.ComponentCompositeEditPartCN" id="Component_3081"/>
+         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.DeviceCompositeEditPartCN" id="Device_3082"/>
+         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.ExecutionEnvironmentCompositeEditPartCN" id="ExecutionEnvironment_3083"/>
+         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.NodeCompositeEditPartCN" id="Node_3084"/>
+         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.ClassCompositeEditPartCN" id="Class_3085"/>
+         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.CollaborationCompositeEditPartCN" id="Collaboration_3086"/>
+         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.InterfaceEditPartCN" id="Interface_3087"/>
+         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.PrimitiveTypeEditPartCN" id="PrimitiveType_3078"/>
+         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.EnumerationEditPartCN" id="Enumeration_3079"/>
+         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.DataTypeEditPartCN" id="DataType_3080"/>
+         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.ActorEditPartCN" id="Actor_3091"/>
+         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.DeploymentSpecificationEditPartCN" id="DeploymentSpecification_3092"/>
+         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.ArtifactEditPartCN" id="Artifact_3093"/>
+         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.InformationItemEditPartCN" id="InformationItem_3094"/>
+         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.SignalEditPartCN" id="Signal_3095"/>
+         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.UseCaseEditPartCN" id="UseCase_3096"/>
+         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.CommentEditPartCN" id="Comment_3097"/>
+         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.DurationConstraintEditPartCN" id="DurationConstraint_3116"/>
+         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.TimeConstraintEditPartCN" id="TimeConstraint_3117"/>
+         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.IntervalConstraintEditPartCN" id="IntervalConstraint_3118"/>
+         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.InteractionConstraintEditPartCN" id="InteractionConstraint_3119"/>
+         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.ConstraintEditPartCN" id="Constraint_3120"/>
+         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.PropertyEditPartCLN" id="Property_3101"/>
+         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.OperationEditPartCLN" id="Operation_3102"/>
+         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.ReceptionEditPartCLN" id="Reception_3100"/>
+         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.EnumerationLiteralEditPartCLN" id="EnumerationLiteral_3066"/>
+         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.ActivityEditPartCLN" id="Activity_3103"/>
+         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.InteractionEditPartCLN" id="Interaction_3104"/>
+         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.ProtocolStateMachineEditPartCLN" id="ProtocolStateMachine_3105"/>
+         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.StateMachineEditPartCLN" id="StateMachine_3106"/>
+         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.FunctionBehaviorEditPartCLN" id="FunctionBehavior_3107"/>
+         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.OpaqueBehaviorEditPartCLN" id="OpaqueBehavior_3108"/>
+         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.CollaborationEditPartCLN" id="Collaboration_3109"/>
+         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.InterfaceEditPartCLN" id="Interface_3110"/>
+         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.EnumerationEditPartCLN" id="Enumeration_3111"/>
+         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.PrimitiveTypeEditPartCLN" id="PrimitiveType_3112"/>
+         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.DataTypeEditPartCLN" id="DataType_3113"/>
+         <object class="org.eclipse.papyrus.uml.diagram.composite.edit.parts.ClassEditPartCLN" id="Class_3114"/>
+         <context elements="Package_1000,Activity_2060,Interaction_2061,ProtocolStateMachine_2062,StateMachine_2063,FunctionBehavior_2064,OpaqueBehavior_2065,Component_2069,Device_2070,ExecutionEnvironment_2071,Node_2072,Class_2073,Collaboration_2075,Interface_2076,PrimitiveType_2066,Enumeration_2067,DataType_2068,Actor_2077,DeploymentSpecification_2078,Artifact_2079,InformationItem_2080,Signal_2081,UseCase_2082,SignalEvent_2083,CallEvent_2084,AnyReceiveEvent_2085,ChangeEvent_2088,TimeEvent_2089,DurationObservation_2093,TimeObservation_2094,LiteralBoolean_2095,LiteralInteger_2096,LiteralNull_2097,LiteralString_2098,LiteralUnlimitedNatural_2099,StringExpression_2100,OpaqueExpression_2101,TimeExpression_2102,Expression_2103,Duration_2104,TimeInterval_2105,DurationInterval_2106,Interval_2107,InstanceValue_2108,Comment_2109,DurationConstraint_2110,TimeConstraint_2111,IntervalConstraint_2112,InteractionConstraint_2113,Constraint_2114,Port_3069,Parameter_3088,Property_3070,ConnectableElement_3115,CollaborationUse_3071,Activity_3072,Interaction_3073,ProtocolStateMachine_3074,StateMachine_3075,FunctionBehavior_3076,OpaqueBehavior_3077,Component_3081,Device_3082,ExecutionEnvironment_3083,Node_3084,Class_3085,Collaboration_3086,Interface_3087,PrimitiveType_3078,Enumeration_3079,DataType_3080,Actor_3091,DeploymentSpecification_3092,Artifact_3093,InformationItem_3094,Signal_3095,UseCase_3096,Comment_3097,DurationConstraint_3116,TimeConstraint_3117,IntervalConstraint_3118,InteractionConstraint_3119,Constraint_3120,Property_3101,Operation_3102,Reception_3100,EnumerationLiteral_3066,Activity_3103,Interaction_3104,ProtocolStateMachine_3105,StateMachine_3106,FunctionBehavior_3107,OpaqueBehavior_3108,Collaboration_3109,Interface_3110,Enumeration_3111,PrimitiveType_3112,DataType_3113,Class_3114"/>
       </modelingAssistantProvider>
    </extension>
 
@@ -220,7 +264,7 @@
 
    <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes" id="element-types">
       <?gmfgen generated="true"?>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.composite.Package_1000"
                name="%metatype.name.Package_1000"
@@ -230,7 +274,7 @@
             <param name="semanticHint" value="1000"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.composite.Activity_2060"
                name="%metatype.name.Activity_2060"
@@ -240,7 +284,7 @@
             <param name="semanticHint" value="2060"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.composite.Interaction_2061"
                name="%metatype.name.Interaction_2061"
@@ -250,7 +294,7 @@
             <param name="semanticHint" value="2061"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.composite.ProtocolStateMachine_2062"
                name="%metatype.name.ProtocolStateMachine_2062"
@@ -260,7 +304,7 @@
             <param name="semanticHint" value="2062"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.composite.StateMachine_2063"
                name="%metatype.name.StateMachine_2063"
@@ -270,7 +314,7 @@
             <param name="semanticHint" value="2063"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.composite.FunctionBehavior_2064"
                name="%metatype.name.FunctionBehavior_2064"
@@ -280,7 +324,7 @@
             <param name="semanticHint" value="2064"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.composite.OpaqueBehavior_2065"
                name="%metatype.name.OpaqueBehavior_2065"
@@ -290,7 +334,7 @@
             <param name="semanticHint" value="2065"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.composite.Component_2069"
                name="%metatype.name.Component_2069"
@@ -300,7 +344,7 @@
             <param name="semanticHint" value="2069"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.composite.Device_2070"
                name="%metatype.name.Device_2070"
@@ -310,7 +354,7 @@
             <param name="semanticHint" value="2070"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.composite.ExecutionEnvironment_2071"
                name="%metatype.name.ExecutionEnvironment_2071"
@@ -320,7 +364,7 @@
             <param name="semanticHint" value="2071"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.composite.Node_2072"
                name="%metatype.name.Node_2072"
@@ -330,7 +374,7 @@
             <param name="semanticHint" value="2072"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.composite.Class_2073"
                name="%metatype.name.Class_2073"
@@ -340,7 +384,7 @@
             <param name="semanticHint" value="2073"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.composite.Collaboration_2075"
                name="%metatype.name.Collaboration_2075"
@@ -349,7 +393,7 @@
             <param name="semanticHint" value="2075"/>
          </specializationType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.composite.Interface_2076"
                name="%metatype.name.Interface_2076"
@@ -358,7 +402,7 @@
             <param name="semanticHint" value="2076"/>
          </specializationType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.composite.PrimitiveType_2066"
                name="%metatype.name.PrimitiveType_2066"
@@ -368,7 +412,7 @@
             <param name="semanticHint" value="2066"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.composite.Enumeration_2067"
                name="%metatype.name.Enumeration_2067"
@@ -378,7 +422,7 @@
             <param name="semanticHint" value="2067"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.composite.DataType_2068"
                name="%metatype.name.DataType_2068"
@@ -388,7 +432,7 @@
             <param name="semanticHint" value="2068"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.composite.Actor_2077"
                name="%metatype.name.Actor_2077"
@@ -397,7 +441,7 @@
             <param name="semanticHint" value="2077"/>
          </specializationType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.composite.DeploymentSpecification_2078"
                name="%metatype.name.DeploymentSpecification_2078"
@@ -406,7 +450,7 @@
             <param name="semanticHint" value="2078"/>
          </specializationType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.composite.Artifact_2079"
                name="%metatype.name.Artifact_2079"
@@ -415,7 +459,7 @@
             <param name="semanticHint" value="2079"/>
          </specializationType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.composite.InformationItem_2080"
                name="%metatype.name.InformationItem_2080"
@@ -424,7 +468,7 @@
             <param name="semanticHint" value="2080"/>
          </specializationType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.composite.Signal_2081"
                name="%metatype.name.Signal_2081"
@@ -433,7 +477,7 @@
             <param name="semanticHint" value="2081"/>
          </specializationType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.composite.UseCase_2082"
                name="%metatype.name.UseCase_2082"
@@ -442,7 +486,7 @@
             <param name="semanticHint" value="2082"/>
          </specializationType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.composite.SignalEvent_2083"
                name="%metatype.name.SignalEvent_2083"
@@ -452,7 +496,7 @@
             <param name="semanticHint" value="2083"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.composite.CallEvent_2084"
                name="%metatype.name.CallEvent_2084"
@@ -462,7 +506,7 @@
             <param name="semanticHint" value="2084"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.composite.AnyReceiveEvent_2085"
                name="%metatype.name.AnyReceiveEvent_2085"
@@ -472,27 +516,7 @@
             <param name="semanticHint" value="2085"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.composite.SendSignalEvent_2086"
-               name="%metatype.name.SendSignalEvent_2086"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="SendSignalEvent"
-               edithelper="org.eclipse.papyrus.uml.diagram.composite.edit.helpers.SendSignalEventEditHelper">
-            <param name="semanticHint" value="2086"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.composite.SendOperationEvent_2087"
-               name="%metatype.name.SendOperationEvent_2087"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="SendOperationEvent"
-               edithelper="org.eclipse.papyrus.uml.diagram.composite.edit.helpers.SendOperationEventEditHelper">
-            <param name="semanticHint" value="2087"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.composite.ChangeEvent_2088"
                name="%metatype.name.ChangeEvent_2088"
@@ -502,7 +526,7 @@
             <param name="semanticHint" value="2088"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.composite.TimeEvent_2089"
                name="%metatype.name.TimeEvent_2089"
@@ -512,37 +536,7 @@
             <param name="semanticHint" value="2089"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.composite.CreationEvent_2090"
-               name="%metatype.name.CreationEvent_2090"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="CreationEvent"
-               edithelper="org.eclipse.papyrus.uml.diagram.composite.edit.helpers.CreationEventEditHelper">
-            <param name="semanticHint" value="2090"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.composite.DestructionEvent_2091"
-               name="%metatype.name.DestructionEvent_2091"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="DestructionEvent"
-               edithelper="org.eclipse.papyrus.uml.diagram.composite.edit.helpers.DestructionEventEditHelper">
-            <param name="semanticHint" value="2091"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.composite.ExecutionEvent_2092"
-               name="%metatype.name.ExecutionEvent_2092"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="ExecutionEvent"
-               edithelper="org.eclipse.papyrus.uml.diagram.composite.edit.helpers.ExecutionEventEditHelper">
-            <param name="semanticHint" value="2092"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.composite.DurationObservation_2093"
                name="%metatype.name.DurationObservation_2093"
@@ -552,7 +546,7 @@
             <param name="semanticHint" value="2093"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.composite.TimeObservation_2094"
                name="%metatype.name.TimeObservation_2094"
@@ -562,7 +556,7 @@
             <param name="semanticHint" value="2094"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.composite.LiteralBoolean_2095"
                name="%metatype.name.LiteralBoolean_2095"
@@ -572,7 +566,7 @@
             <param name="semanticHint" value="2095"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.composite.LiteralInteger_2096"
                name="%metatype.name.LiteralInteger_2096"
@@ -582,7 +576,7 @@
             <param name="semanticHint" value="2096"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.composite.LiteralNull_2097"
                name="%metatype.name.LiteralNull_2097"
@@ -592,7 +586,7 @@
             <param name="semanticHint" value="2097"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.composite.LiteralString_2098"
                name="%metatype.name.LiteralString_2098"
@@ -602,7 +596,7 @@
             <param name="semanticHint" value="2098"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.composite.LiteralUnlimitedNatural_2099"
                name="%metatype.name.LiteralUnlimitedNatural_2099"
@@ -612,7 +606,7 @@
             <param name="semanticHint" value="2099"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.composite.StringExpression_2100"
                name="%metatype.name.StringExpression_2100"
@@ -622,7 +616,7 @@
             <param name="semanticHint" value="2100"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.composite.OpaqueExpression_2101"
                name="%metatype.name.OpaqueExpression_2101"
@@ -632,7 +626,7 @@
             <param name="semanticHint" value="2101"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.composite.TimeExpression_2102"
                name="%metatype.name.TimeExpression_2102"
@@ -642,7 +636,7 @@
             <param name="semanticHint" value="2102"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.composite.Expression_2103"
                name="%metatype.name.Expression_2103"
@@ -652,7 +646,7 @@
             <param name="semanticHint" value="2103"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.composite.Duration_2104"
                name="%metatype.name.Duration_2104"
@@ -662,7 +656,7 @@
             <param name="semanticHint" value="2104"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.composite.TimeInterval_2105"
                name="%metatype.name.TimeInterval_2105"
@@ -672,7 +666,7 @@
             <param name="semanticHint" value="2105"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.composite.DurationInterval_2106"
                name="%metatype.name.DurationInterval_2106"
@@ -682,7 +676,7 @@
             <param name="semanticHint" value="2106"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.composite.Interval_2107"
                name="%metatype.name.Interval_2107"
@@ -692,7 +686,7 @@
             <param name="semanticHint" value="2107"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.composite.InstanceValue_2108"
                name="%metatype.name.InstanceValue_2108"
@@ -702,7 +696,7 @@
             <param name="semanticHint" value="2108"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.composite.Comment_2109"
                name="%metatype.name.Comment_2109"
@@ -718,7 +712,7 @@
             <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
             <param name="semanticHint" value="2110"/>
          </specializationType>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.composite.TimeConstraint_2111"
                name="%metatype.name.TimeConstraint_2111"
@@ -728,7 +722,7 @@
             <param name="semanticHint" value="2111"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.composite.IntervalConstraint_2112"
                name="%metatype.name.IntervalConstraint_2112"
@@ -738,7 +732,7 @@
             <param name="semanticHint" value="2112"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.composite.InteractionConstraint_2113"
                name="%metatype.name.InteractionConstraint_2113"
@@ -748,7 +742,7 @@
             <param name="semanticHint" value="2113"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.composite.Constraint_2114"
                name="%metatype.name.Constraint_2114"
@@ -758,7 +752,7 @@
             <param name="semanticHint" value="2114"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.composite.Port_3069"
                name="%metatype.name.Port_3069"
@@ -768,7 +762,7 @@
             <param name="semanticHint" value="3069"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.composite.Parameter_3088"
                name="%metatype.name.Parameter_3088"
@@ -778,7 +772,7 @@
             <param name="semanticHint" value="3088"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.composite.Property_3070"
                name="%metatype.name.Property_3070"
@@ -788,7 +782,7 @@
             <param name="semanticHint" value="3070"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.composite.prototype.CollaborationRole_3115"
                name="%metatype.name.ConnectableElement_3115"
@@ -798,7 +792,7 @@
             <param name="semanticHint" value="3115"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.composite.CollaborationUse_3071"
                name="%metatype.name.CollaborationUse_3071"
@@ -808,7 +802,7 @@
             <param name="semanticHint" value="3071"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.composite.Activity_3072"
                name="%metatype.name.Activity_3072"
@@ -817,7 +811,7 @@
             <param name="semanticHint" value="3072"/>
          </specializationType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.composite.Interaction_3073"
                name="%metatype.name.Interaction_3073"
@@ -826,7 +820,7 @@
             <param name="semanticHint" value="3073"/>
          </specializationType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.composite.ProtocolStateMachine_3074"
                name="%metatype.name.ProtocolStateMachine_3074"
@@ -835,7 +829,7 @@
             <param name="semanticHint" value="3074"/>
          </specializationType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.composite.StateMachine_3075"
                name="%metatype.name.StateMachine_3075"
@@ -844,7 +838,7 @@
             <param name="semanticHint" value="3075"/>
          </specializationType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.composite.FunctionBehavior_3076"
                name="%metatype.name.FunctionBehavior_3076"
@@ -853,7 +847,7 @@
             <param name="semanticHint" value="3076"/>
          </specializationType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.composite.OpaqueBehavior_3077"
                name="%metatype.name.OpaqueBehavior_3077"
@@ -862,7 +856,7 @@
             <param name="semanticHint" value="3077"/>
          </specializationType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.composite.Component_3081"
                name="%metatype.name.Component_3081"
@@ -871,7 +865,7 @@
             <param name="semanticHint" value="3081"/>
          </specializationType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.composite.Device_3082"
                name="%metatype.name.Device_3082"
@@ -880,7 +874,7 @@
             <param name="semanticHint" value="3082"/>
          </specializationType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.composite.ExecutionEnvironment_3083"
                name="%metatype.name.ExecutionEnvironment_3083"
@@ -889,7 +883,7 @@
             <param name="semanticHint" value="3083"/>
          </specializationType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.composite.Node_3084"
                name="%metatype.name.Node_3084"
@@ -898,7 +892,7 @@
             <param name="semanticHint" value="3084"/>
          </specializationType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.composite.Class_3085"
                name="%metatype.name.Class_3085"
@@ -907,7 +901,7 @@
             <param name="semanticHint" value="3085"/>
          </specializationType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.composite.Collaboration_3086"
                name="%metatype.name.Collaboration_3086"
@@ -917,7 +911,7 @@
             <param name="semanticHint" value="3086"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.composite.Interface_3087"
                name="%metatype.name.Interface_3087"
@@ -927,7 +921,7 @@
             <param name="semanticHint" value="3087"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.composite.PrimitiveType_3078"
                name="%metatype.name.PrimitiveType_3078"
@@ -936,7 +930,7 @@
             <param name="semanticHint" value="3078"/>
          </specializationType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.composite.Enumeration_3079"
                name="%metatype.name.Enumeration_3079"
@@ -945,7 +939,7 @@
             <param name="semanticHint" value="3079"/>
          </specializationType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.composite.DataType_3080"
                name="%metatype.name.DataType_3080"
@@ -954,7 +948,7 @@
             <param name="semanticHint" value="3080"/>
          </specializationType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.composite.Actor_3091"
                name="%metatype.name.Actor_3091"
@@ -964,7 +958,7 @@
             <param name="semanticHint" value="3091"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.composite.DeploymentSpecification_3092"
                name="%metatype.name.DeploymentSpecification_3092"
@@ -974,7 +968,7 @@
             <param name="semanticHint" value="3092"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.composite.Artifact_3093"
                name="%metatype.name.Artifact_3093"
@@ -984,7 +978,7 @@
             <param name="semanticHint" value="3093"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.composite.InformationItem_3094"
                name="%metatype.name.InformationItem_3094"
@@ -994,7 +988,7 @@
             <param name="semanticHint" value="3094"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.composite.Signal_3095"
                name="%metatype.name.Signal_3095"
@@ -1004,7 +998,7 @@
             <param name="semanticHint" value="3095"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.composite.UseCase_3096"
                name="%metatype.name.UseCase_3096"
@@ -1014,7 +1008,7 @@
             <param name="semanticHint" value="3096"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.composite.Comment_3097"
                name="%metatype.name.Comment_3097"
@@ -1073,7 +1067,7 @@
             <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
             <param name="semanticHint" value="3102"/>
          </specializationType>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.composite.Reception_3100"
                name="%metatype.name.Reception_3100"
@@ -1083,7 +1077,7 @@
             <param name="semanticHint" value="3100"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.composite.EnumerationLiteral_3066"
                name="%metatype.name.EnumerationLiteral_3066"
@@ -1093,7 +1087,7 @@
             <param name="semanticHint" value="3066"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.composite.Activity_3103"
                name="%metatype.name.Activity_3103"
@@ -1102,7 +1096,7 @@
             <param name="semanticHint" value="3103"/>
          </specializationType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.composite.Interaction_3104"
                name="%metatype.name.Interaction_3104"
@@ -1111,7 +1105,7 @@
             <param name="semanticHint" value="3104"/>
          </specializationType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.composite.ProtocolStateMachine_3105"
                name="%metatype.name.ProtocolStateMachine_3105"
@@ -1120,7 +1114,7 @@
             <param name="semanticHint" value="3105"/>
          </specializationType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.composite.StateMachine_3106"
                name="%metatype.name.StateMachine_3106"
@@ -1129,7 +1123,7 @@
             <param name="semanticHint" value="3106"/>
          </specializationType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.composite.FunctionBehavior_3107"
                name="%metatype.name.FunctionBehavior_3107"
@@ -1138,7 +1132,7 @@
             <param name="semanticHint" value="3107"/>
          </specializationType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.composite.OpaqueBehavior_3108"
                name="%metatype.name.OpaqueBehavior_3108"
@@ -1147,7 +1141,7 @@
             <param name="semanticHint" value="3108"/>
          </specializationType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.composite.Collaboration_3109"
                name="%metatype.name.Collaboration_3109"
@@ -1156,7 +1150,7 @@
             <param name="semanticHint" value="3109"/>
          </specializationType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.composite.Interface_3110"
                name="%metatype.name.Interface_3110"
@@ -1165,7 +1159,7 @@
             <param name="semanticHint" value="3110"/>
          </specializationType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.composite.Enumeration_3111"
                name="%metatype.name.Enumeration_3111"
@@ -1174,7 +1168,7 @@
             <param name="semanticHint" value="3111"/>
          </specializationType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.composite.PrimitiveType_3112"
                name="%metatype.name.PrimitiveType_3112"
@@ -1183,7 +1177,7 @@
             <param name="semanticHint" value="3112"/>
          </specializationType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.composite.DataType_3113"
                name="%metatype.name.DataType_3113"
@@ -1192,7 +1186,7 @@
             <param name="semanticHint" value="3113"/>
          </specializationType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.composite.Class_3114"
                name="%metatype.name.Class_3114"
@@ -1208,7 +1202,7 @@
          <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
          <param name="semanticHint" value="4001"/>
       </specializationType>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.composite.CommentAnnotatedElement_4002"
                name="%metatype.name.CommentAnnotatedElement_4002"
@@ -1217,7 +1211,7 @@
             <param name="semanticHint" value="4002"/>
          </specializationType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.composite.ConstraintConstrainedElement_4003"
                name="%metatype.name.ConstraintConstrainedElement_4003"
@@ -1226,7 +1220,7 @@
             <param name="semanticHint" value="4003"/>
          </specializationType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.composite.ComponentRealization_4004"
                name="%metatype.name.ComponentRealization_4004"
@@ -1236,7 +1230,7 @@
             <param name="semanticHint" value="4004"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.composite.InterfaceRealization_4005"
                name="%metatype.name.InterfaceRealization_4005"
@@ -1246,7 +1240,7 @@
             <param name="semanticHint" value="4005"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.composite.Substitution_4011"
                name="%metatype.name.Substitution_4011"
@@ -1256,7 +1250,7 @@
             <param name="semanticHint" value="4011"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.composite.Realization_4006"
                name="%metatype.name.Realization_4006"
@@ -1266,7 +1260,7 @@
             <param name="semanticHint" value="4006"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.composite.Manifestation_4012"
                name="%metatype.name.Manifestation_4012"
@@ -1276,7 +1270,7 @@
             <param name="semanticHint" value="4012"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.composite.Abstraction_4007"
                name="%metatype.name.Abstraction_4007"
@@ -1286,7 +1280,7 @@
             <param name="semanticHint" value="4007"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.composite.Usage_4008"
                name="%metatype.name.Usage_4008"
@@ -1296,7 +1290,7 @@
             <param name="semanticHint" value="4008"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.composite.Deployment_4009"
                name="%metatype.name.Deployment_4009"
@@ -1306,7 +1300,7 @@
             <param name="semanticHint" value="4009"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.composite.RoleBinding_4017"
                name="%metatype.name.Dependency_4017"
@@ -1316,7 +1310,7 @@
             <param name="semanticHint" value="4017"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.composite.Dependency_4010"
                name="%metatype.name.Dependency_4010"
@@ -1326,7 +1320,7 @@
             <param name="semanticHint" value="4010"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.composite.Connector_4013"
                name="%metatype.name.Connector_4013"
@@ -1336,7 +1330,7 @@
             <param name="semanticHint" value="4013"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.composite.Generalization_4015"
                name="%metatype.name.Generalization_4015"
@@ -1346,7 +1340,7 @@
             <param name="semanticHint" value="4015"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.composite.TimeObservationEvent_4018"
                name="%metatype.name.TimeObservationEvent_4018"
@@ -1355,7 +1349,7 @@
             <param name="semanticHint" value="4018"/>
          </specializationType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.composite.DurationObservationEvent_4019"
                name="%metatype.name.DurationObservationEvent_4019"
@@ -1364,7 +1358,7 @@
             <param name="semanticHint" value="4019"/>
          </specializationType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.composite.Representation_4020"
                name="%metatype.name.InformationItemRepresented_4020"
@@ -1373,7 +1367,7 @@
             <param name="semanticHint" value="4020"/>
          </specializationType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.composite.InformationFlow_4021"
                name="%metatype.name.InformationFlow_4021"
@@ -1421,13 +1415,8 @@
          <elementType ref="org.eclipse.papyrus.uml.diagram.composite.SignalEvent_2083"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.composite.CallEvent_2084"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.composite.AnyReceiveEvent_2085"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.SendSignalEvent_2086"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.SendOperationEvent_2087"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.composite.ChangeEvent_2088"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.composite.TimeEvent_2089"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.CreationEvent_2090"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.DestructionEvent_2091"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.ExecutionEvent_2092"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.composite.DurationObservation_2093"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.composite.TimeObservation_2094"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.composite.LiteralBoolean_2095"/>
@@ -1670,198 +1659,9 @@
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.PropertyPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.PropertyPreferencePage"
-            name="Property Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.InteractionConstraintPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.InteractionConstraintPreferencePage"
-            name="InteractionConstraint Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.CommentPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.CommentPreferencePage"
-            name="Comment Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.ClassPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.ClassPreferencePage"
-            name="Class Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.ActorPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.ActorPreferencePage"
-            name="Actor Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.TimeEventPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.TimeEventPreferencePage"
-            name="TimeEvent Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.StateMachinePreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.StateMachinePreferencePage"
-            name="StateMachine Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.ProtocolStateMachinePreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.ProtocolStateMachinePreferencePage"
-            name="ProtocolStateMachine Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.OpaqueBehaviorPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.OpaqueBehaviorPreferencePage"
-            name="OpaqueBehavior Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.TimeIntervalPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.TimeIntervalPreferencePage"
-            name="TimeInterval Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.TimeExpressionPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.TimeExpressionPreferencePage"
-            name="TimeExpression Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.LiteralStringPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.LiteralStringPreferencePage"
-            name="LiteralString Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.uml.diagram.composite.preferences.ExecutionEnvironmentPreferencePage"
             id="org.eclipse.papyrus.uml.diagram.composite.preferences.ExecutionEnvironmentPreferencePage"
             name="ExecutionEnvironment Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.LiteralNullPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.LiteralNullPreferencePage"
-            name="LiteralNull Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.ArtifactPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.ArtifactPreferencePage"
-            name="Artifact Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.DurationConstraintPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.DurationConstraintPreferencePage"
-            name="DurationConstraint Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.SignalPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.SignalPreferencePage"
-            name="Signal Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.AnyReceiveEventPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.AnyReceiveEventPreferencePage"
-            name="AnyReceiveEvent Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.ReceptionPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.ReceptionPreferencePage"
-            name="Reception Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.CollaborationUsePreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.CollaborationUsePreferencePage"
-            name="CollaborationUse Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.LiteralUnlimitedNaturalPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.LiteralUnlimitedNaturalPreferencePage"
-            name="LiteralUnlimitedNatural Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.StringExpressionPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.StringExpressionPreferencePage"
-            name="StringExpression Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.LiteralBooleanPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.LiteralBooleanPreferencePage"
-            name="LiteralBoolean Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.CollaborationRolePreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.CollaborationRolePreferencePage"
-            name="CollaborationRole Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.SendSignalEventPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.SendSignalEventPreferencePage"
-            name="SendSignalEvent Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.OpaqueExpressionPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.OpaqueExpressionPreferencePage"
-            name="OpaqueExpression Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.ParameterPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.ParameterPreferencePage"
-            name="Parameter Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.InformationItemPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.InformationItemPreferencePage"
-            name="InformationItem Node" />
 	
 		
 	<?gmfgen generated="true"?>
@@ -1873,16 +1673,16 @@
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.EnumerationLiteralPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.EnumerationLiteralPreferencePage"
-            name="EnumerationLiteral Node" />
+			class="org.eclipse.papyrus.uml.diagram.composite.preferences.InformationItemPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.composite.preferences.InformationItemPreferencePage"
+            name="InformationItem Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.ChangeEventPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.ChangeEventPreferencePage"
-            name="ChangeEvent Node" />
+			class="org.eclipse.papyrus.uml.diagram.composite.preferences.PropertyPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.composite.preferences.PropertyPreferencePage"
+            name="Property Node" />
 	
 		
 	<?gmfgen generated="true"?>
@@ -1894,107 +1694,23 @@
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.NodePreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.NodePreferencePage"
-            name="Node Node" />
+			class="org.eclipse.papyrus.uml.diagram.composite.preferences.OpaqueExpressionPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.composite.preferences.OpaqueExpressionPreferencePage"
+            name="OpaqueExpression Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.LiteralIntegerPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.LiteralIntegerPreferencePage"
-            name="LiteralInteger Node" />
+			class="org.eclipse.papyrus.uml.diagram.composite.preferences.SignalPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.composite.preferences.SignalPreferencePage"
+            name="Signal Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.InterfacePreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.InterfacePreferencePage"
-            name="Interface Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.SignalEventPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.SignalEventPreferencePage"
-            name="SignalEvent Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.PrimitiveTypePreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.PrimitiveTypePreferencePage"
-            name="PrimitiveType Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.OperationPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.OperationPreferencePage"
-            name="Operation Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.ActivityPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.ActivityPreferencePage"
-            name="Activity Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.InteractionPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.InteractionPreferencePage"
-            name="Interaction Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.IntervalPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.IntervalPreferencePage"
-            name="Interval Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.DurationPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.DurationPreferencePage"
-            name="Duration Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.IntervalConstraintPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.IntervalConstraintPreferencePage"
-            name="IntervalConstraint Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.TimeObservationPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.TimeObservationPreferencePage"
-            name="TimeObservation Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.CollaborationPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.CollaborationPreferencePage"
-            name="Collaboration Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.CallEventPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.CallEventPreferencePage"
-            name="CallEvent Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.ComponentPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.ComponentPreferencePage"
-            name="Component Node" />
+			class="org.eclipse.papyrus.uml.diagram.composite.preferences.CommentPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.composite.preferences.CommentPreferencePage"
+            name="Comment Node" />
 	
 		
 	<?gmfgen generated="true"?>
@@ -2006,6 +1722,34 @@
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
+			class="org.eclipse.papyrus.uml.diagram.composite.preferences.ActivityPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.composite.preferences.ActivityPreferencePage"
+            name="Activity Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
+			class="org.eclipse.papyrus.uml.diagram.composite.preferences.NodePreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.composite.preferences.NodePreferencePage"
+            name="Node Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
+			class="org.eclipse.papyrus.uml.diagram.composite.preferences.ClassPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.composite.preferences.ClassPreferencePage"
+            name="Class Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
+			class="org.eclipse.papyrus.uml.diagram.composite.preferences.LiteralStringPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.composite.preferences.LiteralStringPreferencePage"
+            name="LiteralString Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.uml.diagram.composite.preferences.FunctionBehaviorPreferencePage"
             id="org.eclipse.papyrus.uml.diagram.composite.preferences.FunctionBehaviorPreferencePage"
             name="FunctionBehavior Node" />
@@ -2013,16 +1757,9 @@
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.DeploymentSpecificationPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.DeploymentSpecificationPreferencePage"
-            name="DeploymentSpecification Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.DestructionEventPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.DestructionEventPreferencePage"
-            name="DestructionEvent Node" />
+			class="org.eclipse.papyrus.uml.diagram.composite.preferences.IntervalPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.composite.preferences.IntervalPreferencePage"
+            name="Interval Node" />
 	
 		
 	<?gmfgen generated="true"?>
@@ -2034,37 +1771,9 @@
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.DevicePreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.DevicePreferencePage"
-            name="Device Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.DurationObservationPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.DurationObservationPreferencePage"
-            name="DurationObservation Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.CreationEventPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.CreationEventPreferencePage"
-            name="CreationEvent Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.SendOperationEventPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.SendOperationEventPreferencePage"
-            name="SendOperationEvent Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.EnumerationPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.EnumerationPreferencePage"
-            name="Enumeration Node" />
+			class="org.eclipse.papyrus.uml.diagram.composite.preferences.ProtocolStateMachinePreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.composite.preferences.ProtocolStateMachinePreferencePage"
+            name="ProtocolStateMachine Node" />
 	
 		
 	<?gmfgen generated="true"?>
@@ -2076,9 +1785,30 @@
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.DurationIntervalPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.DurationIntervalPreferencePage"
-            name="DurationInterval Node" />
+			class="org.eclipse.papyrus.uml.diagram.composite.preferences.TimeIntervalPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.composite.preferences.TimeIntervalPreferencePage"
+            name="TimeInterval Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
+			class="org.eclipse.papyrus.uml.diagram.composite.preferences.OpaqueBehaviorPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.composite.preferences.OpaqueBehaviorPreferencePage"
+            name="OpaqueBehavior Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
+			class="org.eclipse.papyrus.uml.diagram.composite.preferences.PrimitiveTypePreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.composite.preferences.PrimitiveTypePreferencePage"
+            name="PrimitiveType Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
+			class="org.eclipse.papyrus.uml.diagram.composite.preferences.IntervalConstraintPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.composite.preferences.IntervalConstraintPreferencePage"
+            name="IntervalConstraint Node" />
 	
 		
 	<?gmfgen generated="true"?>
@@ -2090,6 +1820,48 @@
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
+			class="org.eclipse.papyrus.uml.diagram.composite.preferences.TimeEventPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.composite.preferences.TimeEventPreferencePage"
+            name="TimeEvent Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
+			class="org.eclipse.papyrus.uml.diagram.composite.preferences.ChangeEventPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.composite.preferences.ChangeEventPreferencePage"
+            name="ChangeEvent Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
+			class="org.eclipse.papyrus.uml.diagram.composite.preferences.DeploymentSpecificationPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.composite.preferences.DeploymentSpecificationPreferencePage"
+            name="DeploymentSpecification Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
+			class="org.eclipse.papyrus.uml.diagram.composite.preferences.ReceptionPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.composite.preferences.ReceptionPreferencePage"
+            name="Reception Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
+			class="org.eclipse.papyrus.uml.diagram.composite.preferences.SignalEventPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.composite.preferences.SignalEventPreferencePage"
+            name="SignalEvent Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
+			class="org.eclipse.papyrus.uml.diagram.composite.preferences.OperationPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.composite.preferences.OperationPreferencePage"
+            name="Operation Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.uml.diagram.composite.preferences.TimeConstraintPreferencePage"
             id="org.eclipse.papyrus.uml.diagram.composite.preferences.TimeConstraintPreferencePage"
             name="TimeConstraint Node" />
@@ -2097,12 +1869,210 @@
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.ExecutionEventPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.ExecutionEventPreferencePage"
-            name="ExecutionEvent Node" />
+			class="org.eclipse.papyrus.uml.diagram.composite.preferences.ActorPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.composite.preferences.ActorPreferencePage"
+            name="Actor Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
+			class="org.eclipse.papyrus.uml.diagram.composite.preferences.ComponentPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.composite.preferences.ComponentPreferencePage"
+            name="Component Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
+			class="org.eclipse.papyrus.uml.diagram.composite.preferences.LiteralBooleanPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.composite.preferences.LiteralBooleanPreferencePage"
+            name="LiteralBoolean Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
+			class="org.eclipse.papyrus.uml.diagram.composite.preferences.InteractionPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.composite.preferences.InteractionPreferencePage"
+            name="Interaction Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
+			class="org.eclipse.papyrus.uml.diagram.composite.preferences.LiteralIntegerPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.composite.preferences.LiteralIntegerPreferencePage"
+            name="LiteralInteger Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
+			class="org.eclipse.papyrus.uml.diagram.composite.preferences.CollaborationUsePreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.composite.preferences.CollaborationUsePreferencePage"
+            name="CollaborationUse Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
+			class="org.eclipse.papyrus.uml.diagram.composite.preferences.LiteralNullPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.composite.preferences.LiteralNullPreferencePage"
+            name="LiteralNull Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
+			class="org.eclipse.papyrus.uml.diagram.composite.preferences.DurationConstraintPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.composite.preferences.DurationConstraintPreferencePage"
+            name="DurationConstraint Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
+			class="org.eclipse.papyrus.uml.diagram.composite.preferences.DurationObservationPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.composite.preferences.DurationObservationPreferencePage"
+            name="DurationObservation Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
+			class="org.eclipse.papyrus.uml.diagram.composite.preferences.InterfacePreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.composite.preferences.InterfacePreferencePage"
+            name="Interface Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
+			class="org.eclipse.papyrus.uml.diagram.composite.preferences.ArtifactPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.composite.preferences.ArtifactPreferencePage"
+            name="Artifact Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
+			class="org.eclipse.papyrus.uml.diagram.composite.preferences.StateMachinePreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.composite.preferences.StateMachinePreferencePage"
+            name="StateMachine Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
+			class="org.eclipse.papyrus.uml.diagram.composite.preferences.CollaborationPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.composite.preferences.CollaborationPreferencePage"
+            name="Collaboration Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
+			class="org.eclipse.papyrus.uml.diagram.composite.preferences.StringExpressionPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.composite.preferences.StringExpressionPreferencePage"
+            name="StringExpression Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
+			class="org.eclipse.papyrus.uml.diagram.composite.preferences.TimeObservationPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.composite.preferences.TimeObservationPreferencePage"
+            name="TimeObservation Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
+			class="org.eclipse.papyrus.uml.diagram.composite.preferences.AnyReceiveEventPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.composite.preferences.AnyReceiveEventPreferencePage"
+            name="AnyReceiveEvent Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
+			class="org.eclipse.papyrus.uml.diagram.composite.preferences.DevicePreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.composite.preferences.DevicePreferencePage"
+            name="Device Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
+			class="org.eclipse.papyrus.uml.diagram.composite.preferences.CallEventPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.composite.preferences.CallEventPreferencePage"
+            name="CallEvent Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
+			class="org.eclipse.papyrus.uml.diagram.composite.preferences.EnumerationLiteralPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.composite.preferences.EnumerationLiteralPreferencePage"
+            name="EnumerationLiteral Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
+			class="org.eclipse.papyrus.uml.diagram.composite.preferences.InteractionConstraintPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.composite.preferences.InteractionConstraintPreferencePage"
+            name="InteractionConstraint Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
+			class="org.eclipse.papyrus.uml.diagram.composite.preferences.DurationPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.composite.preferences.DurationPreferencePage"
+            name="Duration Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
+			class="org.eclipse.papyrus.uml.diagram.composite.preferences.ParameterPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.composite.preferences.ParameterPreferencePage"
+            name="Parameter Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
+			class="org.eclipse.papyrus.uml.diagram.composite.preferences.DurationIntervalPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.composite.preferences.DurationIntervalPreferencePage"
+            name="DurationInterval Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
+			class="org.eclipse.papyrus.uml.diagram.composite.preferences.LiteralUnlimitedNaturalPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.composite.preferences.LiteralUnlimitedNaturalPreferencePage"
+            name="LiteralUnlimitedNatural Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
+			class="org.eclipse.papyrus.uml.diagram.composite.preferences.EnumerationPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.composite.preferences.EnumerationPreferencePage"
+            name="Enumeration Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
+			class="org.eclipse.papyrus.uml.diagram.composite.preferences.CollaborationRolePreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.composite.preferences.CollaborationRolePreferencePage"
+            name="CollaborationRole Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
+			class="org.eclipse.papyrus.uml.diagram.composite.preferences.TimeExpressionPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.composite.preferences.TimeExpressionPreferencePage"
+            name="TimeExpression Node" />
 	
 
 
+		
+
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
+			class="org.eclipse.papyrus.uml.diagram.composite.preferences.ConstraintConstrainedElementPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.composite.preferences.ConstraintConstrainedElementPreferencePage"
+            name="ConstraintConstrainedElement Link" />
+		
+		
+
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
+			class="org.eclipse.papyrus.uml.diagram.composite.preferences.AbstractionPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.composite.preferences.AbstractionPreferencePage"
+            name="Abstraction Link" />
+		
 		
 
 	<?gmfgen generated="true"?>
@@ -2115,9 +2085,9 @@
 
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.DependencyPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.DependencyPreferencePage"
-            name="Dependency Link" />
+			class="org.eclipse.papyrus.uml.diagram.composite.preferences.InformationFlowPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.composite.preferences.InformationFlowPreferencePage"
+            name="InformationFlow Link" />
 		
 		
 
@@ -2131,33 +2101,9 @@
 
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.ComponentRealizationPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.ComponentRealizationPreferencePage"
-            name="ComponentRealization Link" />
-		
-		
-
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.uml.diagram.composite.preferences.ConnectorPreferencePage"
             id="org.eclipse.papyrus.uml.diagram.composite.preferences.ConnectorPreferencePage"
             name="Connector Link" />
-		
-		
-
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.ConstraintConstrainedElementPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.ConstraintConstrainedElementPreferencePage"
-            name="ConstraintConstrainedElement Link" />
-		
-		
-
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.UsagePreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.UsagePreferencePage"
-            name="Usage Link" />
 		
 		
 
@@ -2179,43 +2125,9 @@
 
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.SubstitutionPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.SubstitutionPreferencePage"
-            name="Substitution Link" />
-		
-		
-
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.AbstractionPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.AbstractionPreferencePage"
-            name="Abstraction Link" />
-		
-		
-
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.DeploymentPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.DeploymentPreferencePage"
-            name="Deployment Link" />
-		
-		
-
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.CommentAnnotatedElementPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.CommentAnnotatedElementPreferencePage"
-            name="CommentAnnotatedElement Link" />
-		
-		
-		
-		
-
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.RoleBindingPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.RoleBindingPreferencePage"
-            name="RoleBinding Link" />
+			class="org.eclipse.papyrus.uml.diagram.composite.preferences.DependencyPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.composite.preferences.DependencyPreferencePage"
+            name="Dependency Link" />
 		
 		
 
@@ -2229,6 +2141,14 @@
 
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
+			class="org.eclipse.papyrus.uml.diagram.composite.preferences.UsagePreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.composite.preferences.UsagePreferencePage"
+            name="Usage Link" />
+		
+		
+
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.uml.diagram.composite.preferences.InterfaceRealizationPreferencePage"
             id="org.eclipse.papyrus.uml.diagram.composite.preferences.InterfaceRealizationPreferencePage"
             name="InterfaceRealization Link" />
@@ -2237,9 +2157,43 @@
 
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.uml.diagram.composite.preferences.InformationFlowPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.composite.preferences.InformationFlowPreferencePage"
-            name="InformationFlow Link" />
+			class="org.eclipse.papyrus.uml.diagram.composite.preferences.ComponentRealizationPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.composite.preferences.ComponentRealizationPreferencePage"
+            name="ComponentRealization Link" />
+		
+		
+
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
+			class="org.eclipse.papyrus.uml.diagram.composite.preferences.SubstitutionPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.composite.preferences.SubstitutionPreferencePage"
+            name="Substitution Link" />
+		
+		
+
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
+			class="org.eclipse.papyrus.uml.diagram.composite.preferences.CommentAnnotatedElementPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.composite.preferences.CommentAnnotatedElementPreferencePage"
+            name="CommentAnnotatedElement Link" />
+		
+		
+
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
+			class="org.eclipse.papyrus.uml.diagram.composite.preferences.RoleBindingPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.composite.preferences.RoleBindingPreferencePage"
+            name="RoleBinding Link" />
+		
+		
+		
+		
+
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
+			class="org.eclipse.papyrus.uml.diagram.composite.preferences.DeploymentPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.composite.preferences.DeploymentPreferencePage"
+            name="Deployment Link" />
 		
 
 </extension>

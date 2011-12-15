@@ -372,25 +372,10 @@ AbstractCommentEditPart {
 		if(targetEditPart instanceof AnyReceiveEventEditPart) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4002);
 		}
-		if(targetEditPart instanceof SendSignalEventEditPart) {
-			types.add(UMLElementTypes.CommentAnnotatedElement_4002);
-		}
-		if(targetEditPart instanceof SendOperationEventEditPart) {
-			types.add(UMLElementTypes.CommentAnnotatedElement_4002);
-		}
 		if(targetEditPart instanceof ChangeEventEditPart) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4002);
 		}
 		if(targetEditPart instanceof TimeEventEditPart) {
-			types.add(UMLElementTypes.CommentAnnotatedElement_4002);
-		}
-		if(targetEditPart instanceof CreationEventEditPart) {
-			types.add(UMLElementTypes.CommentAnnotatedElement_4002);
-		}
-		if(targetEditPart instanceof DestructionEventEditPart) {
-			types.add(UMLElementTypes.CommentAnnotatedElement_4002);
-		}
-		if(targetEditPart instanceof ExecutionEventEditPart) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4002);
 		}
 		if(targetEditPart instanceof DurationObservationEditPart) {
@@ -592,13 +577,8 @@ AbstractCommentEditPart {
 			types.add(UMLElementTypes.SignalEvent_2083);
 			types.add(UMLElementTypes.CallEvent_2084);
 			types.add(UMLElementTypes.AnyReceiveEvent_2085);
-			types.add(UMLElementTypes.SendSignalEvent_2086);
-			types.add(UMLElementTypes.SendOperationEvent_2087);
 			types.add(UMLElementTypes.ChangeEvent_2088);
 			types.add(UMLElementTypes.TimeEvent_2089);
-			types.add(UMLElementTypes.CreationEvent_2090);
-			types.add(UMLElementTypes.DestructionEvent_2091);
-			types.add(UMLElementTypes.ExecutionEvent_2092);
 			types.add(UMLElementTypes.DurationObservation_2093);
 			types.add(UMLElementTypes.TimeObservation_2094);
 			types.add(UMLElementTypes.LiteralBoolean_2095);

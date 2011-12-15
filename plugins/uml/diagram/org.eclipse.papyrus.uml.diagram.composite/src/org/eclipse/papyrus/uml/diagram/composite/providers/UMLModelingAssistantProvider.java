@@ -48,7 +48,7 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 	public List getTypesForPopupBar(IAdaptable host) {
 		IGraphicalEditPart editPart = (IGraphicalEditPart)host.getAdapter(IGraphicalEditPart.class);
 		if(editPart instanceof CompositeStructureDiagramEditPart) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(54);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(49);
 			types.add(UMLElementTypes.Activity_2060);
 			types.add(UMLElementTypes.Interaction_2061);
 			types.add(UMLElementTypes.ProtocolStateMachine_2062);
@@ -74,13 +74,8 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			types.add(UMLElementTypes.SignalEvent_2083);
 			types.add(UMLElementTypes.CallEvent_2084);
 			types.add(UMLElementTypes.AnyReceiveEvent_2085);
-			types.add(UMLElementTypes.SendSignalEvent_2086);
-			types.add(UMLElementTypes.SendOperationEvent_2087);
 			types.add(UMLElementTypes.ChangeEvent_2088);
 			types.add(UMLElementTypes.TimeEvent_2089);
-			types.add(UMLElementTypes.CreationEvent_2090);
-			types.add(UMLElementTypes.DestructionEvent_2091);
-			types.add(UMLElementTypes.ExecutionEvent_2092);
 			types.add(UMLElementTypes.DurationObservation_2093);
 			types.add(UMLElementTypes.TimeObservation_2094);
 			types.add(UMLElementTypes.LiteralBoolean_2095);
@@ -1152,26 +1147,11 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(sourceEditPart instanceof AnyReceiveEventEditPart) {
 			return ((AnyReceiveEventEditPart)sourceEditPart).getMARelTypesOnSource();
 		}
-		if(sourceEditPart instanceof SendSignalEventEditPart) {
-			return ((SendSignalEventEditPart)sourceEditPart).getMARelTypesOnSource();
-		}
-		if(sourceEditPart instanceof SendOperationEventEditPart) {
-			return ((SendOperationEventEditPart)sourceEditPart).getMARelTypesOnSource();
-		}
 		if(sourceEditPart instanceof ChangeEventEditPart) {
 			return ((ChangeEventEditPart)sourceEditPart).getMARelTypesOnSource();
 		}
 		if(sourceEditPart instanceof TimeEventEditPart) {
 			return ((TimeEventEditPart)sourceEditPart).getMARelTypesOnSource();
-		}
-		if(sourceEditPart instanceof CreationEventEditPart) {
-			return ((CreationEventEditPart)sourceEditPart).getMARelTypesOnSource();
-		}
-		if(sourceEditPart instanceof DestructionEventEditPart) {
-			return ((DestructionEventEditPart)sourceEditPart).getMARelTypesOnSource();
-		}
-		if(sourceEditPart instanceof ExecutionEventEditPart) {
-			return ((ExecutionEventEditPart)sourceEditPart).getMARelTypesOnSource();
 		}
 		if(sourceEditPart instanceof DurationObservationEditPart) {
 			return ((DurationObservationEditPart)sourceEditPart).getMARelTypesOnSource();
@@ -1421,26 +1401,11 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(targetEditPart instanceof AnyReceiveEventEditPart) {
 			return ((AnyReceiveEventEditPart)targetEditPart).getMARelTypesOnTarget();
 		}
-		if(targetEditPart instanceof SendSignalEventEditPart) {
-			return ((SendSignalEventEditPart)targetEditPart).getMARelTypesOnTarget();
-		}
-		if(targetEditPart instanceof SendOperationEventEditPart) {
-			return ((SendOperationEventEditPart)targetEditPart).getMARelTypesOnTarget();
-		}
 		if(targetEditPart instanceof ChangeEventEditPart) {
 			return ((ChangeEventEditPart)targetEditPart).getMARelTypesOnTarget();
 		}
 		if(targetEditPart instanceof TimeEventEditPart) {
 			return ((TimeEventEditPart)targetEditPart).getMARelTypesOnTarget();
-		}
-		if(targetEditPart instanceof CreationEventEditPart) {
-			return ((CreationEventEditPart)targetEditPart).getMARelTypesOnTarget();
-		}
-		if(targetEditPart instanceof DestructionEventEditPart) {
-			return ((DestructionEventEditPart)targetEditPart).getMARelTypesOnTarget();
-		}
-		if(targetEditPart instanceof ExecutionEventEditPart) {
-			return ((ExecutionEventEditPart)targetEditPart).getMARelTypesOnTarget();
 		}
 		if(targetEditPart instanceof DurationObservationEditPart) {
 			return ((DurationObservationEditPart)targetEditPart).getMARelTypesOnTarget();
@@ -1691,26 +1656,11 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(sourceEditPart instanceof AnyReceiveEventEditPart) {
 			return ((AnyReceiveEventEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
-		if(sourceEditPart instanceof SendSignalEventEditPart) {
-			return ((SendSignalEventEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
-		}
-		if(sourceEditPart instanceof SendOperationEventEditPart) {
-			return ((SendOperationEventEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
-		}
 		if(sourceEditPart instanceof ChangeEventEditPart) {
 			return ((ChangeEventEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
 		if(sourceEditPart instanceof TimeEventEditPart) {
 			return ((TimeEventEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
-		}
-		if(sourceEditPart instanceof CreationEventEditPart) {
-			return ((CreationEventEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
-		}
-		if(sourceEditPart instanceof DestructionEventEditPart) {
-			return ((DestructionEventEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
-		}
-		if(sourceEditPart instanceof ExecutionEventEditPart) {
-			return ((ExecutionEventEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
 		if(sourceEditPart instanceof DurationObservationEditPart) {
 			return ((DurationObservationEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
@@ -1960,26 +1910,11 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(targetEditPart instanceof AnyReceiveEventEditPart) {
 			return ((AnyReceiveEventEditPart)targetEditPart).getMATypesForSource(relationshipType);
 		}
-		if(targetEditPart instanceof SendSignalEventEditPart) {
-			return ((SendSignalEventEditPart)targetEditPart).getMATypesForSource(relationshipType);
-		}
-		if(targetEditPart instanceof SendOperationEventEditPart) {
-			return ((SendOperationEventEditPart)targetEditPart).getMATypesForSource(relationshipType);
-		}
 		if(targetEditPart instanceof ChangeEventEditPart) {
 			return ((ChangeEventEditPart)targetEditPart).getMATypesForSource(relationshipType);
 		}
 		if(targetEditPart instanceof TimeEventEditPart) {
 			return ((TimeEventEditPart)targetEditPart).getMATypesForSource(relationshipType);
-		}
-		if(targetEditPart instanceof CreationEventEditPart) {
-			return ((CreationEventEditPart)targetEditPart).getMATypesForSource(relationshipType);
-		}
-		if(targetEditPart instanceof DestructionEventEditPart) {
-			return ((DestructionEventEditPart)targetEditPart).getMATypesForSource(relationshipType);
-		}
-		if(targetEditPart instanceof ExecutionEventEditPart) {
-			return ((ExecutionEventEditPart)targetEditPart).getMATypesForSource(relationshipType);
 		}
 		if(targetEditPart instanceof DurationObservationEditPart) {
 			return ((DurationObservationEditPart)targetEditPart).getMATypesForSource(relationshipType);
@@ -2229,26 +2164,11 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(sourceEditPart instanceof AnyReceiveEventEditPart) {
 			return ((AnyReceiveEventEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
 		}
-		if(sourceEditPart instanceof SendSignalEventEditPart) {
-			return ((SendSignalEventEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
-		}
-		if(sourceEditPart instanceof SendOperationEventEditPart) {
-			return ((SendOperationEventEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
-		}
 		if(sourceEditPart instanceof ChangeEventEditPart) {
 			return ((ChangeEventEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
 		}
 		if(sourceEditPart instanceof TimeEventEditPart) {
 			return ((TimeEventEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
-		}
-		if(sourceEditPart instanceof CreationEventEditPart) {
-			return ((CreationEventEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
-		}
-		if(sourceEditPart instanceof DestructionEventEditPart) {
-			return ((DestructionEventEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
-		}
-		if(sourceEditPart instanceof ExecutionEventEditPart) {
-			return ((ExecutionEventEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
 		}
 		if(sourceEditPart instanceof DurationObservationEditPart) {
 			return ((DurationObservationEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
