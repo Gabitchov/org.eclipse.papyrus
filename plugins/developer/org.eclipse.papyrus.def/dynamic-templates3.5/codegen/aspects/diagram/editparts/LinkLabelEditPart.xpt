@@ -21,7 +21,7 @@
 	«targetDef.proceed()»
 	«REM»BEGIN: PapyrusGenCode«ENDREM»
 	«IF papyrusgmfgenextension::LabelVisibilityPreference.allInstances()->select(label : papyrusgmfgenextension::LabelVisibilityPreference | label.linkLabels->includes(self))->size()<>0-»
-	, org.eclipse.papyrus.diagram.common.editparts.ILabelRoleProvider
+	, org.eclipse.papyrus.uml.diagram.common.editparts.ILabelRoleProvider
 	«ENDIF-»
 	«REM»END: PapyrusGenCode«ENDREM»
 «ENDAROUND»

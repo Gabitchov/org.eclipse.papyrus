@@ -19,7 +19,7 @@ package «providersPackageName»;
 
 «EXPAND xpt::Common::generatedClassComment»
 public class «validationDecoratorProviderClassName»
-		extends org.eclipse.papyrus.diagram.common.providers.ValidationDecoratorProvider
+		extends org.eclipse.papyrus.uml.diagram.common.providers.ValidationDecoratorProvider
 		implements org.eclipse.gmf.runtime.diagram.ui.services.decorator.IDecoratorProvider {
 
 	«EXPAND xpt::Common::generatedMemberComment»

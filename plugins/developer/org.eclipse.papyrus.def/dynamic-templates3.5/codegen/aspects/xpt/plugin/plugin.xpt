@@ -74,10 +74,10 @@
    <extension point="org.eclipse.gmf.runtime.common.ui.services.action.globalActionHandlerProviders" id="global-actions">
       «EXPAND xpt::Common::xmlGeneratedTag»
       <GlobalActionHandlerProvider
-         class="org.eclipse.papyrus.diagram.common.providers.PapyrusGlobalActionHandlerProvider"
+         class="org.eclipse.papyrus.uml.diagram.common.providers.PapyrusGlobalActionHandlerProvider"
          id="«editorGen.modelID»Presentation">
          <Priority name="Highest"/>
-         <ViewId id="org.eclipse.papyrus.core.papyrusEditor">
+         <ViewId id="org.eclipse.papyrus.infra.core.papyrusEditor">
             <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
                <GlobalActionId actionId="delete"/>
             </ElementType>
@@ -91,7 +91,7 @@
          class="org.eclipse.gmf.runtime.diagram.ui.printing.render.providers.DiagramWithPrintGlobalActionHandlerProvider"
          id="«editorGen.modelID»PresentationPrint">
          <Priority name="Low"/>
-         <ViewId id="org.eclipse.papyrus.core.papyrusEditor">
+         <ViewId id="org.eclipse.papyrus.infra.core.papyrusEditor">
             <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
                <GlobalActionId actionId="print"/>
             </ElementType>
@@ -103,7 +103,7 @@
          class="org.eclipse.gmf.runtime.diagram.ui.providers.ide.providers.DiagramIDEGlobalActionHandlerProvider"
          id="«editorGen.modelID»PresentationIDE">
          <Priority name="Low"/>
-         <ViewId id="org.eclipse.papyrus.core.papyrusEditor">
+         <ViewId id="org.eclipse.papyrus.infra.core.papyrusEditor">
             <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
                <GlobalActionId actionId="bookmark"/>
             </ElementType>
@@ -111,10 +111,10 @@
       </GlobalActionHandlerProvider>
 «ENDIF-»
       <GlobalActionHandlerProvider
-            class="org.eclipse.papyrus.diagram.common.providers.PapyrusGlobalActionHandlerProvider"
+            class="org.eclipse.papyrus.uml.diagram.common.providers.PapyrusGlobalActionHandlerProvider"
             id="«editorGen.modelID»Render">
          <Priority name="Highest"/>
-         <ViewId id="org.eclipse.papyrus.core.papyrusEditor">
+         <ViewId id="org.eclipse.papyrus.infra.core.papyrusEditor">
             <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
                <GlobalActionId actionId="cut"/>
                <GlobalActionId actionId="copy"/>

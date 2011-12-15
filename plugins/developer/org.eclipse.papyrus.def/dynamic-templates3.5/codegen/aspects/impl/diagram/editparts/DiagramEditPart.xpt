@@ -30,7 +30,7 @@
 	
 «DEFINE createDefaultEditPoliciesBody FOR gmfgen::GenDiagram-»
 	super.createDefaultEditPolicies();
-	installEditPolicy(org.eclipse.papyrus.diagram.common.editpolicies.DuplicatePasteEditPolicy.PASTE_ROLE, new org.eclipse.papyrus.diagram.common.editpolicies.DuplicatePasteEditPolicy());
+	installEditPolicy(org.eclipse.papyrus.uml.diagram.common.editpolicies.DuplicatePasteEditPolicy.PASTE_ROLE, new org.eclipse.papyrus.uml.diagram.common.editpolicies.DuplicatePasteEditPolicy());
 	
 	«EXPAND xpt::diagram::editparts::Common::installSemanticEditPolicy-»
 	«EXPAND xpt::diagram::editparts::Common::installCanonicalEditPolicy-»
@@ -111,7 +111,7 @@
 «EXPAND xpt::Common::generatedMemberComment»
 	public Object getAdapter(Class adapter) {
 		«REM» [ViewInfo] return a ViewInfo with info about the views in this diagram «ENDREM»
-		if (adapter != null && adapter.equals(org.eclipse.papyrus.diagram.common.providers.ViewInfo.class)) {
+		if (adapter != null && adapter.equals(org.eclipse.papyrus.uml.diagram.common.providers.ViewInfo.class)) {
 			return «editorGen.editor.packageName».«visualIDRegistryClassName».getDiagramViewInfo();
 		}
 		return super.getAdapter(adapter);
@@ -133,9 +133,9 @@
 			org.eclipse.emf.ecore.EAnnotation eAnnotation = (org.eclipse.emf.ecore.EAnnotation) event.getNotifier();
 			if (eAnnotation.getSource() != null
 					&& eAnnotation.getSource().equals(
-							org.eclipse.papyrus.diagram.common.util.MDTUtil.FilterViewAndLabelsSource)) {
+							org.eclipse.papyrus.uml.diagram.common.util.MDTUtil.FilterViewAndLabelsSource)) {
 				//modification form MOSKitt approach, canonical policies are not called
-				org.eclipse.papyrus.diagram.common.util.MDTUtil.filterDiagramViews(this.getDiagramView());
+				org.eclipse.papyrus.uml.diagram.common.util.MDTUtil.filterDiagramViews(this.getDiagramView());
 			}
 		}
 	}

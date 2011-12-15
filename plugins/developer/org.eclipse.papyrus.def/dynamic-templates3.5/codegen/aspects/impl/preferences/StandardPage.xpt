@@ -34,7 +34,7 @@ public class «getClassName()»«EXPAND extendsList»«EXPAND implementsList» {
 
 «DEFINE extendsList FOR gmfgen::GenStandardPreferencePage-»
 «IF gmfgen::StandardPreferencePages::General = kind-»
- extends org.eclipse.papyrus.preferences.pages.DiagramPreferencePage«-»
+ extends org.eclipse.papyrus.infra.gmfdiag.preferences.pages.DiagramPreferencePage«-»
 «ELSEIF gmfgen::StandardPreferencePages::Appearance = kind-»
  extends org.eclipse.gmf.runtime.diagram.ui.preferences.AppearancePreferencePage«-»
 «ELSEIF gmfgen::StandardPreferencePages::Connections = kind-»

@@ -20,7 +20,7 @@
 package «packageName»;
 
 	«EXPAND xpt::Common::generatedClassComment»
-public class «className»  extends org.eclipse.papyrus.diagram.common.part.UmlGmfDiagramEditor«EXPAND implementsList FOR getEditorImplementsList(self)» {
+public class «className»  extends org.eclipse.papyrus.uml.diagram.common.part.UmlGmfDiagramEditor«EXPAND implementsList FOR getEditorImplementsList(self)» {
 
 	«EXPAND attributes-»
 	
@@ -97,17 +97,17 @@ public static final String CONTEXT_ID = "«contextID»"; «EXPAND xpt::Common::n
 
 «DEFINE _constructor FOR gmfgen::GenEditorView-»
 	«EXPAND xpt::Common::generatedMemberComment»
-	public «className»(org.eclipse.papyrus.core.services.ServicesRegistry servicesRegistry, org.eclipse.gmf.runtime.notation.Diagram diagram) throws org.eclipse.papyrus.core.services.ServiceException{
+	public «className»(org.eclipse.papyrus.infra.core.services.ServicesRegistry servicesRegistry, org.eclipse.gmf.runtime.notation.Diagram diagram) throws org.eclipse.papyrus.infra.core.services.ServiceException{
 	super(servicesRegistry, diagram);
 
 	«REM»Documentation. adds listener for papyrus palette service«ENDREM»
 	// adds a listener to the palette service, which reacts to palette customizations
-	org.eclipse.papyrus.diagram.common.service.PapyrusPaletteService.getInstance().addProviderChangeListener(this);
+	org.eclipse.papyrus.uml.diagram.common.service.PapyrusPaletteService.getInstance().addProviderChangeListener(this);
 	
 	«REM»Share the same editing domain«ENDREM»
 	// Share the same editing provider
 	editingDomain = servicesRegistry.getService(org.eclipse.emf.transaction.TransactionalEditingDomain.class);
-	documentProvider = new org.eclipse.papyrus.core.adaptor.gmf.GmfMultiDiagramDocumentProvider(editingDomain);
+	documentProvider = new org.eclipse.papyrus.infra.core.adaptor.gmf.GmfMultiDiagramDocumentProvider(editingDomain);
 
 	// overrides editing domain created by super constructor
 	setDocumentProvider(documentProvider);
@@ -121,9 +121,9 @@ public static final String CONTEXT_ID = "«contextID»"; «EXPAND xpt::Common::n
 	protected org.eclipse.gef.palette.PaletteRoot createPaletteRoot(org.eclipse.gef.palette.PaletteRoot existingPaletteRoot) {
 		org.eclipse.gef.palette.PaletteRoot paletteRoot;
 		if (existingPaletteRoot == null) {
-			paletteRoot = org.eclipse.papyrus.diagram.common.service.PapyrusPaletteService.getInstance().createPalette(this, getDefaultPaletteContent());
+			paletteRoot = org.eclipse.papyrus.uml.diagram.common.service.PapyrusPaletteService.getInstance().createPalette(this, getDefaultPaletteContent());
 		} else {
-			org.eclipse.papyrus.diagram.common.service.PapyrusPaletteService.getInstance().updatePalette(existingPaletteRoot, this, getDefaultPaletteContent());
+			org.eclipse.papyrus.uml.diagram.common.service.PapyrusPaletteService.getInstance().updatePalette(existingPaletteRoot, this, getDefaultPaletteContent());
 			paletteRoot = existingPaletteRoot;
 		}
 		applyCustomizationsToPalette(paletteRoot);
@@ -134,7 +134,7 @@ public static final String CONTEXT_ID = "«contextID»"; «EXPAND xpt::Common::n
 «DEFINE createPaletteCustomizer FOR gmfgen::GenEditorView-»
 	«EXPAND xpt::Common::generatedMemberComment»
 	protected org.eclipse.gef.ui.palette.PaletteCustomizer createPaletteCustomizer() {
-		return new org.eclipse.papyrus.diagram.common.part.PapyrusPaletteCustomizer(getPreferenceStore());
+		return new org.eclipse.papyrus.uml.diagram.common.part.PapyrusPaletteCustomizer(getPreferenceStore());
 	}
 «ENDDEFINE»
 
@@ -174,8 +174,8 @@ public static final String CONTEXT_ID = "«contextID»"; «EXPAND xpt::Common::n
 	«EXPAND xpt::Common::generatedMemberComment»
 	public void providerChanged(org.eclipse.gmf.runtime.common.core.service.ProviderChangeEvent event) {
 		// update the palette if the palette service has changed
-		if (org.eclipse.papyrus.diagram.common.service.PapyrusPaletteService.getInstance().equals(event.getSource())) {
-			org.eclipse.papyrus.diagram.common.service.PapyrusPaletteService.getInstance().updatePalette(getPaletteViewer().getPaletteRoot(), this,
+		if (org.eclipse.papyrus.uml.diagram.common.service.PapyrusPaletteService.getInstance().equals(event.getSource())) {
+			org.eclipse.papyrus.uml.diagram.common.service.PapyrusPaletteService.getInstance().updatePalette(getPaletteViewer().getPaletteRoot(), this,
 					getDefaultPaletteContent());
 		}
 	}
@@ -184,7 +184,7 @@ public static final String CONTEXT_ID = "«contextID»"; «EXPAND xpt::Common::n
 «DEFINE constructPaletteViewer FOR gmfgen::GenEditorView-»
 	«EXPAND xpt::Common::generatedMemberComment»
 	protected org.eclipse.gef.ui.palette.PaletteViewer constructPaletteViewer() {
-		return new org.eclipse.papyrus.diagram.common.part.PapyrusPaletteViewer();
+		return new org.eclipse.papyrus.uml.diagram.common.part.PapyrusPaletteViewer();
 	}
 «ENDDEFINE»
 
@@ -193,7 +193,7 @@ public static final String CONTEXT_ID = "«contextID»"; «EXPAND xpt::Common::n
 	public void dispose() {
 		// remove palette service listener
 		// remove preference listener
-		org.eclipse.papyrus.diagram.common.service.PapyrusPaletteService.getInstance().removeProviderChangeListener(this);
+		org.eclipse.papyrus.uml.diagram.common.service.PapyrusPaletteService.getInstance().removeProviderChangeListener(this);
 		
 		super.dispose();
 	}
@@ -230,7 +230,7 @@ protected org.eclipse.gef.ui.palette.PaletteViewerProvider createPaletteViewerPr
 				super.configurePaletteViewer(viewer);
 
 				// customize menu...
-				viewer.setContextMenu(new org.eclipse.papyrus.diagram.common.part.PapyrusPaletteContextMenuProvider(viewer));
+				viewer.setContextMenu(new org.eclipse.papyrus.uml.diagram.common.part.PapyrusPaletteContextMenuProvider(viewer));
 
 				viewer.getKeyHandler().setParent(getPaletteKeyHandler());
 				viewer.getControl().addMouseListener(getPaletteMouseListener());
@@ -444,7 +444,7 @@ protected void performSaveAs(org.eclipse.core.runtime.IProgressMonitor progressM
 
 		// Enable Drop
 		getDiagramGraphicalViewer().addDropTargetListener(
-				new org.eclipse.papyrus.diagram.common.listeners.DropTargetListener(getDiagramGraphicalViewer(), org.eclipse.jface.util.LocalSelectionTransfer.getTransfer()) {
+				new org.eclipse.papyrus.uml.diagram.common.listeners.DropTargetListener(getDiagramGraphicalViewer(), org.eclipse.jface.util.LocalSelectionTransfer.getTransfer()) {
 
 					@Override
 					protected Object getJavaObject(org.eclipse.swt.dnd.TransferData data) {
@@ -464,8 +464,8 @@ protected void performSaveAs(org.eclipse.core.runtime.IProgressMonitor progressM
 «EXPAND xpt::Common::generatedMemberComment»
 	@Override
 	public void selectionChanged(org.eclipse.ui.IWorkbenchPart part, org.eclipse.jface.viewers.ISelection selection) {
-		if (getSite().getPage().getActiveEditor() instanceof org.eclipse.papyrus.core.editor.IMultiDiagramEditor) {
-			org.eclipse.papyrus.core.editor.IMultiDiagramEditor editor = (org.eclipse.papyrus.core.editor.IMultiDiagramEditor) getSite().getPage().getActiveEditor();
+		if (getSite().getPage().getActiveEditor() instanceof org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor) {
+			org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor editor = (org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor) getSite().getPage().getActiveEditor();
 			// If not the active editor, ignore selection changed.
 			if (this.equals(editor.getActiveEditor())) {
 				updateActions(getSelectionActions());

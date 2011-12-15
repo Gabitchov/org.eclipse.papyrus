@@ -27,7 +27,7 @@ helper getDiagramPreferencePageFileName( diagramName: String) : String{
 }
  
 helper getDiagramPreferencePageCategory() : String{
-	return "org.eclipse.papyrus.preferences.diagrams"
+	return "org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams"
 }
  
 helper getPreferenceConstant() : String{

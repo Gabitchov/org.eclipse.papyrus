@@ -20,7 +20,7 @@
  «DEFINE getDestroyElementCommandByService FOR gmfgen::GenNode-»
  protected org.eclipse.gef.commands.Command getDestroyElementCommand(org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest req) {
  	org.eclipse.emf.ecore.EObject selectedEObject = req.getElementToDestroy();
-		org.eclipse.papyrus.service.edit.service.IElementEditService provider = org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils.getCommandProvider(selectedEObject);
+		org.eclipse.papyrus.infra.services.edit.service.IElementEditService provider =org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils.getCommandProvider(selectedEObject);
 		if(provider != null) {
 			// Retrieve delete command from the Element Edit service
 			org.eclipse.gmf.runtime.common.core.command.ICommand deleteCommand = provider.getEditCommand(req);
@@ -36,7 +36,7 @@
   «DEFINE getDestroyElementCommandByService FOR gmfgen::TypeLinkModelFacet-»
  protected org.eclipse.gef.commands.Command getDestroyElementCommand(org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest req) {
  	org.eclipse.emf.ecore.EObject selectedEObject = req.getElementToDestroy();
-		org.eclipse.papyrus.service.edit.service.IElementEditService provider = org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils.getCommandProvider(selectedEObject);
+		org.eclipse.papyrus.infra.services.edit.service.IElementEditService provider =org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils.getCommandProvider(selectedEObject);
 		if(provider != null) {
 			// Retrieve delete command from the Element Edit service
 			org.eclipse.gmf.runtime.common.core.command.ICommand deleteCommand = provider.getEditCommand(req);

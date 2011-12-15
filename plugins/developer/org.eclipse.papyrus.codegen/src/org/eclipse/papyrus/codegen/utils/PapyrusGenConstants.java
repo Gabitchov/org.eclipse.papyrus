@@ -26,7 +26,7 @@ public class PapyrusGenConstants {
 
 	public final static String DiagramPreferencePageJavaClassName = "DiagramPreferencePage";
 
-	public final static String DiagramPreferencePageCategory = "org.eclipse.papyrus.preferences.diagrams";
+	public final static String DiagramPreferencePageCategory = "org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams";
 
 	/**
 	 * Get the name of the papyrus preference constant class used to defined the preference

@@ -436,11 +436,11 @@ return -1;
 	
 	«REM» [ViewInfo] Diagram visual info for filtering dialog «ENDREM»
 	«EXPAND xpt::Common::generatedMemberComment»
-	private static org.eclipse.papyrus.diagram.common.providers.ViewInfo diagramViewInfo = null;
+	private static org.eclipse.papyrus.uml.diagram.common.providers.ViewInfo diagramViewInfo = null;
 
 	«REM» [ViewInfo] ViewInfo tree construction «ENDREM»
 	«EXPAND xpt::Common::generatedMemberComment»
-	public static org.eclipse.papyrus.diagram.common.providers.ViewInfo getDiagramViewInfo() {
+	public static org.eclipse.papyrus.uml.diagram.common.providers.ViewInfo getDiagramViewInfo() {
 		if (diagramViewInfo == null) {
 			diagramViewInfo = «diagramViewInfoGetterName(self)»();
 		}
@@ -454,10 +454,10 @@ return -1;
 «REM» [ViewInfo] Start point for all ViewInfo tree «ENDREM»
 «DEFINE getRootDiagramViewInfo FOR gmfgen::GenDiagram»
 	«EXPAND xpt::Common::generatedMemberComment»
-	protected static org.eclipse.papyrus.diagram.common.providers.ViewInfo «diagramViewInfoGetterName(self)»() {
-		org.eclipse.papyrus.diagram.common.providers.ViewInfo root = new org.eclipse.papyrus.diagram.common.providers.BaseViewInfo(«visualID», org.eclipse.papyrus.diagram.common.providers.ViewInfo.Head, "", null, null);
-		org.eclipse.papyrus.diagram.common.providers.ViewInfo viewInfo = null;
-		org.eclipse.papyrus.diagram.common.providers.ViewInfo labelInfo = null;
+	protected static org.eclipse.papyrus.uml.diagram.common.providers.ViewInfo «diagramViewInfoGetterName(self)»() {
+		org.eclipse.papyrus.uml.diagram.common.providers.ViewInfo root = new org.eclipse.papyrus.uml.diagram.common.providers.BaseViewInfo(«visualID», org.eclipse.papyrus.uml.diagram.common.providers.ViewInfo.Head, "", null, null);
+		org.eclipse.papyrus.uml.diagram.common.providers.ViewInfo viewInfo = null;
+		org.eclipse.papyrus.uml.diagram.common.providers.ViewInfo labelInfo = null;
 		«FOREACH topLevelNodes AS node-»
 			«EXPAND createNodeViewInfo FOR node-»
 		«ENDFOREACH-»
@@ -473,13 +473,13 @@ return -1;
 
 «REM» [ViewInfo] Create a node ViewInfo «ENDREM»
 «DEFINE createNodeViewInfo FOR gmfgen::GenTopLevelNode»
-	viewInfo = new org.eclipse.papyrus.diagram.common.providers.BaseViewInfo(«visualID», org.eclipse.papyrus.diagram.common.providers.ViewInfo.Node, "«modelFacet.metaClass.ecoreClass.name»");
+	viewInfo = new org.eclipse.papyrus.uml.diagram.common.providers.BaseViewInfo(«visualID», org.eclipse.papyrus.uml.diagram.common.providers.ViewInfo.Node, "«modelFacet.metaClass.ecoreClass.name»");
 	root.addNode(«diagram.visualID.toString()», viewInfo);
 «ENDDEFINE»
 
 «REM» [ViewInfo] Create a node ViewInfo «ENDREM»
 «DEFINE createNodeViewInfo FOR gmfgen::GenChildNode»
-	viewInfo = new org.eclipse.papyrus.diagram.common.providers.BaseViewInfo(«visualID», org.eclipse.papyrus.diagram.common.providers.ViewInfo.Node, "«modelFacet.metaClass.ecoreClass.name»");
+	viewInfo = new org.eclipse.papyrus.uml.diagram.common.providers.BaseViewInfo(«visualID», org.eclipse.papyrus.uml.diagram.common.providers.ViewInfo.Node, "«modelFacet.metaClass.ecoreClass.name»");
 	«FOREACH containers AS container»
 		root.addNode(«container.visualID.toString()», viewInfo);
 	«ENDFOREACH»
@@ -487,13 +487,13 @@ return -1;
 
 «REM» [ViewInfo] Create a node ViewInfo «ENDREM»
 «DEFINE createNodeViewInfo FOR gmfgen::GenCompartment»
-	viewInfo = new org.eclipse.papyrus.diagram.common.providers.BaseViewInfo(«visualID»,  org.eclipse.papyrus.diagram.common.providers.ViewInfo.Node, "«title»", null, parent);
+	viewInfo = new org.eclipse.papyrus.uml.diagram.common.providers.BaseViewInfo(«visualID»,  org.eclipse.papyrus.uml.diagram.common.providers.ViewInfo.Node, "«title»", null, parent);
 	viewInfos.add(viewInfo);
 «ENDDEFINE»
 
 «REM» [ViewInfo] Create a link ViewInfo «ENDREM»
 «DEFINE createLinkViewInfo FOR gmfgen::GenLink»
-	viewInfo = new org.eclipse.papyrus.diagram.common.providers.BaseViewInfo(«visualID»,  org.eclipse.papyrus.diagram.common.providers.ViewInfo.Edge, "«linkEClass(modelFacet)»");
+	viewInfo = new org.eclipse.papyrus.uml.diagram.common.providers.BaseViewInfo(«visualID»,  org.eclipse.papyrus.uml.diagram.common.providers.ViewInfo.Edge, "«linkEClass(modelFacet)»");
 	root.addNode(«diagram.visualID.toString()», viewInfo);
 	«FOREACH labels AS label»
 		«EXPAND createLabelViewInfo FOR label-»
@@ -503,7 +503,7 @@ return -1;
 «REM» [ViewInfo] Create a label ViewInfo «ENDREM»
 «REM»not used. may be used in the future«ENDREM»
 «DEFINE createLabelViewInfo FOR gmfgen::GenLabel»
-	labelInfo = new org.eclipse.papyrus.diagram.common.providers.BaseViewInfo(«visualID»,  org.eclipse.papyrus.diagram.common.providers.ViewInfo.Label, "«linkEClass(modelFacet)»", null, viewInfo);
+	labelInfo = new org.eclipse.papyrus.uml.diagram.common.providers.BaseViewInfo(«visualID»,  org.eclipse.papyrus.uml.diagram.common.providers.ViewInfo.Label, "«linkEClass(modelFacet)»", null, viewInfo);
 	viewInfo.getChildren().add(labelInfo);
 «ENDDEFINE»
 

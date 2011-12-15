@@ -218,8 +218,8 @@ protected org.eclipse.gef.commands.Command getCreateRelationshipCommand(org.ecli
  protected org.eclipse.gef.commands.Command getCreateCommand(org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest req) {
         // check if the type is an extended type, and then create directly the element...
         org.eclipse.gmf.runtime.emf.type.core.IElementType type = req.getElementType();
-        if(type instanceof org.eclipse.papyrus.extendedtypes.types.IExtendedHintedElementType) {
-              org.eclipse.papyrus.service.edit.service.IElementEditService provider = org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils.getCommandProvider(req.getContainer());
+        if(type instanceof org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType) {
+             org.eclipse.papyrus.infra.services.edit.service.IElementEditService provider =org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils.getCommandProvider(req.getContainer());
               if(provider == null) {
                     return org.eclipse.gef.commands.UnexecutableCommand.INSTANCE;
               }

@@ -39,11 +39,11 @@ public class «itemSemanticEditPolicyClassName» extends «getBaseItemSemanticEd
 	«EXPAND xpt::Common::generatedMemberComment»
 	protected org.eclipse.gef.commands.Command getCreateCommand(org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest req) {
 	«REM»fjcano:: we set a parameter in the request to pass the Diagram  «ENDREM»
-		org.eclipse.gmf.runtime.notation.Diagram diagram = org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil.findDiagramFromEditPart(getHost());
+		org.eclipse.gmf.runtime.notation.Diagram diagram = org.eclipse.papyrus.uml.diagram.common.util.DiagramEditPartsUtil.findDiagramFromEditPart(getHost());
 		if (diagram != null) {
 			req.getParameters().put(MultiDiagramUtil.BelongToDiagramSource, diagram);
 		}
-		org.eclipse.emf.ecore.EObject canvasElement = org.eclipse.papyrus.diagram.common.part.DiagramCanvasSwitch.getCanvasElement(this);
+		org.eclipse.emf.ecore.EObject canvasElement = org.eclipse.papyrus.uml.diagram.common.part.DiagramCanvasSwitch.getCanvasElement(this);
 		if (canvasElement == null) {
 			return null;
 		}
@@ -65,7 +65,7 @@ public class «itemSemanticEditPolicyClassName» extends «getBaseItemSemanticEd
 «REM» Mutating canvas Switch to create command «ENDREM»
 «DEFINE createMutatingSwitch FOR gmfgen::GenDiagram»
 	«EXPAND xpt::Common::generatedMemberComment»
-	static class EReferenceDiagramSwitch extends org.eclipse.papyrus.diagram.common.util.BasicEcoreSwitch<org.eclipse.emf.ecore.EReference, org.eclipse.gmf.runtime.emf.type.core.IElementType> {
+	static class EReferenceDiagramSwitch extends org.eclipse.papyrus.uml.diagram.common.util.BasicEcoreSwitch<org.eclipse.emf.ecore.EReference, org.eclipse.gmf.runtime.emf.type.core.IElementType> {
 		@Override
 		public org.eclipse.emf.ecore.EReference doSwitch(org.eclipse.emf.ecore.EObject modelElement) {
 			«REM»getInfo provides the View«ENDREM»
@@ -118,7 +118,7 @@ protected org.eclipse.gef.commands.Command getDuplicateCommand(org.eclipse.gmf.r
 «ENDDEFINE»
 «DEFINE DuplicateAnythingCommand FOR gmfgen::GenDiagram-»
 	«EXPAND xpt::Common::generatedClassComment»
-private static class DuplicateAnythingCommand extends org.eclipse.papyrus.diagram.common.commands.DuplicateNamedElementCommand {
+private static class DuplicateAnythingCommand extends org.eclipse.papyrus.uml.diagram.common.commands.DuplicateNamedElementCommand {
 «EXPAND xpt::Common::generatedMemberComment»
 private org.eclipse.gmf.runtime.notation.Diagram diagram;
 	«EXPAND DAC_constructor-»

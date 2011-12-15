@@ -11,7 +11,7 @@
  *    modified by Vincent Lorenzo (CEA LIST) - Vincent Lorenzo
  */
 «REM»We remove the dependance with DeleteElementAction. Now this action is added to the popup menu with the extension point org.eclipse.ui.popup 
-in org.eclipse.papyrus.diagram.common «ENDREM»
+in org.eclipse.papyrus.uml.diagram.common «ENDREM»
 «IMPORT 'http://www.eclipse.org/gmf/2009/GenModel'»
 
 «DEFINE className FOR gmfgen::GenDiagram»DiagramEditorContextMenuProvider«ENDDEFINE»

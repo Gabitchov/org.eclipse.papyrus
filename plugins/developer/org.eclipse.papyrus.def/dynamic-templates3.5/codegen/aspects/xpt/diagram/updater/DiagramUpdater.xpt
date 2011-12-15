@@ -55,7 +55,7 @@
 	«ELSEIF papyrusgmfgenextension::SpecificDiagramUpdater.allInstances()->select(updater: papyrusgmfgenextension::SpecificDiagramUpdater | (updater.genNode = self) and (updater.classpath <> null))->size()<>0»
 		«FOREACH papyrusgmfgenextension::SpecificDiagramUpdater.allInstances()->select(updater: papyrusgmfgenextension::SpecificDiagramUpdater | (updater.genNode = self) and (updater.classpath <> null)) AS updater»
 			public static java.util.List «EXPAND xpt::diagram::updater::DiagramUpdater::getSemanticChildrenMethodName»(org.eclipse.gmf.runtime.notation.View view) {
-				org.eclipse.papyrus.diagram.common.part.ICustomDiagramUpdater customUpdater = new «updater.classpath»();
+				org.eclipse.papyrus.uml.diagram.common.part.ICustomDiagramUpdater customUpdater = new «updater.classpath»();
 				return customUpdater.getSemanticChildren(view);
 			}
 		«ENDFOREACH»	

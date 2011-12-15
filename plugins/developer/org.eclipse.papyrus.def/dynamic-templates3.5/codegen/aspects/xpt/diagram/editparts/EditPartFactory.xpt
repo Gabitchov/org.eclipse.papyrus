@@ -49,9 +49,9 @@ public class «editPartFactoryClassName» implements org.eclipse.gef.EditPartFac
 	«EXPAND xpt::Common::generatedMemberComment»
 	public static org.eclipse.gef.tools.CellEditorLocator getTextCellEditorLocator(
 			org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart source) {
-         if (source.getFigure() instanceof org.eclipse.papyrus.diagram.common.figure.node.IMultilineEditableFigure)
+         if (source.getFigure() instanceof org.eclipse.papyrus.uml.diagram.common.figure.node.IMultilineEditableFigure)
 			return new MultilineCellEditorLocator(
-					(org.eclipse.papyrus.diagram.common.figure.node.IMultilineEditableFigure) source.getFigure());
+					(org.eclipse.papyrus.uml.diagram.common.figure.node.IMultilineEditableFigure) source.getFigure());
         else if (source.getFigure() instanceof org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel)
             return new TextCellEditorLocator((org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel) source.getFigure());
         else {
@@ -64,15 +64,15 @@ public class «editPartFactoryClassName» implements org.eclipse.gef.EditPartFac
     static private class MultilineCellEditorLocator implements org.eclipse.gef.tools.CellEditorLocator {
 
 		«EXPAND xpt::Common::generatedClassComment»
-		private org.eclipse.papyrus.diagram.common.figure.node.IMultilineEditableFigure multilineEditableFigure;
+		private org.eclipse.papyrus.uml.diagram.common.figure.node.IMultilineEditableFigure multilineEditableFigure;
 
 		«EXPAND xpt::Common::generatedClassComment»
-		public MultilineCellEditorLocator(org.eclipse.papyrus.diagram.common.figure.node.IMultilineEditableFigure figure) {
+		public MultilineCellEditorLocator(org.eclipse.papyrus.uml.diagram.common.figure.node.IMultilineEditableFigure figure) {
 			this.multilineEditableFigure = figure;
 		}
 
 		«EXPAND xpt::Common::generatedClassComment»
-		public org.eclipse.papyrus.diagram.common.figure.node.IMultilineEditableFigure getMultilineEditableFigure() {
+		public org.eclipse.papyrus.uml.diagram.common.figure.node.IMultilineEditableFigure getMultilineEditableFigure() {
 			return multilineEditableFigure;
 		}
 

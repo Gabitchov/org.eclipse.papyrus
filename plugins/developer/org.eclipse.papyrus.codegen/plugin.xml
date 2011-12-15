@@ -18,10 +18,10 @@
       </objectContribution>
    </extension>
        <extension point="org.eclipse.ui.navigator.viewer">
-        <viewerContentBinding viewerId="org.eclipse.papyrus.core.papyrusEditor">
+        <viewerContentBinding viewerId="org.eclipse.papyrus.infra.core.papyrusEditor">
             <includes>
-                <contentExtension pattern="org.eclipse.papyrus.core.modelOutline"/>
-                <!--contentExtension pattern="org.eclipse.papyrus.core.viewOutline"/-->
+                <contentExtension pattern="org.eclipse.papyrus.infra.core.modelOutline"/>
+                <!--contentExtension pattern="org.eclipse.papyrus.infra.core.viewOutline"/-->
             </includes>
         </viewerContentBinding>
     </extension>

@@ -110,8 +110,8 @@ new org.eclipse.gmf.runtime.diagram.ui.editpolicies.BorderItemSelectionEditPolic
 	protected org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure createNodePlate() {
 		String prefElementId="«elementType.displayName»";
 		org.eclipse.jface.preference.IPreferenceStore store =«getDiagram().editorGen.plugin.getActivatorQualifiedClassName()».getInstance().getPreferenceStore();
-		String preferenceConstantWitdh=org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId,  org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.WIDTH);
-		String preferenceConstantHeight=org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId,  org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.HEIGHT);
+		String preferenceConstantWitdh=org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId,  org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.WIDTH);
+		String preferenceConstantHeight=org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId,  org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.HEIGHT);
 		org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure result = new org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
 		
 		«EXPAND setupNodePlate-»
@@ -134,7 +134,7 @@ switch («EXPAND xpt::editor::VisualIDRegistry::getVisualIDMethodCall FOR getDia
 «ENDFOREACH-»
 	«REM»BEGIN PapyrusGenCode«ENDREM»
 	«REM»The puRprose is to add replace GMF edit prolicy by an new editPolicy that allows to resize BorderItem«ENDREM»
-	return new org.eclipse.papyrus.diagram.common.editpolicies.BorderItemResizableEditPolicy();
+	return new org.eclipse.papyrus.uml.diagram.common.editpolicies.BorderItemResizableEditPolicy();
 	«REM»END PapyrusGenCode«ENDREM»
 «ENDIF-»
 }
@@ -189,13 +189,13 @@ switch («EXPAND xpt::editor::VisualIDRegistry::getVisualIDMethodCall FOR getDia
 					.getFillStyle_FillColor()){
 			String prefColor = null;
 			if (feature == org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
-				prefColor = org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant("«elementType.displayName»", org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_LINE);
+				prefColor = org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.getElementConstant("«elementType.displayName»", org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.COLOR_LINE);
 			} else if (feature == org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE
 					.getFontStyle_FontColor()) {
-				prefColor = org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant("«elementType.displayName»", org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_FONT);
+				prefColor = org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.getElementConstant("«elementType.displayName»", org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.COLOR_FONT);
 			} else if (feature == org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE
 					.getFillStyle_FillColor()) {
-				prefColor = org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant("«elementType.displayName»", org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_FILL);
+				prefColor = org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.getElementConstant("«elementType.displayName»", org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.COLOR_FILL);
 			}
 			result = org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities
 						.RGBToInteger(org.eclipse.jface.preference.PreferenceConverter
@@ -204,8 +204,8 @@ switch («EXPAND xpt::editor::VisualIDRegistry::getVisualIDMethodCall FOR getDia
 		} else if (feature == org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE
 					.getFillStyle_Transparency() || feature == org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE
 					.getFillStyle_Gradient()) {
-			String prefGradient = org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant("«elementType.displayName»", org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_GRADIENT);
-			org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter gradientPreferenceConverter = new org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter(
+			String prefGradient = org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.getElementConstant("«elementType.displayName»", org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.COLOR_GRADIENT);
+			org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceConverter gradientPreferenceConverter = new org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceConverter(
 						preferenceStore.getString(prefGradient));
 			if(feature == org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE
 					.getFillStyle_Transparency()){
