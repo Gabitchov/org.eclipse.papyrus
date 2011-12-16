@@ -107,7 +107,7 @@ public static final String CONTEXT_ID = "«contextID»"; «EXPAND xpt::Common::n
 	«REM»Share the same editing domain«ENDREM»
 	// Share the same editing provider
 	editingDomain = servicesRegistry.getService(org.eclipse.emf.transaction.TransactionalEditingDomain.class);
-	documentProvider = new org.eclipse.papyrus.infra.core.adaptor.gmf.GmfMultiDiagramDocumentProvider(editingDomain);
+	documentProvider = new org.eclipse.papyrus.infra.gmfdiag.common.GmfMultiDiagramDocumentProvider(editingDomain);
 
 	// overrides editing domain created by super constructor
 	setDocumentProvider(documentProvider);
