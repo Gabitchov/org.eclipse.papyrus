@@ -167,6 +167,7 @@ public class CommunicationCommandHelper {
 			org.eclipse.papyrus.uml.diagram.communication.custom.providers.ElementInitializers.init_NamedElement(message);
 		} else {
 			message.setName(signature.getName());
+			message.setSignature(signature);
 		}
 
 		return message;
@@ -217,7 +218,7 @@ public class CommunicationCommandHelper {
 		os.getCovereds().add(lifeline);
 
 		// Set the event of the OccurrenceSpecification
-		os.setEvent(event);
+		//os.setEvent(event);
 
 	}
 

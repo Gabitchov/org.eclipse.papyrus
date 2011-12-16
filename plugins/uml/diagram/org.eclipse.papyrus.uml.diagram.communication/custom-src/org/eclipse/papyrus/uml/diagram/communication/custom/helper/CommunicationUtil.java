@@ -41,10 +41,9 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.papyrus.uml.diagram.communication.edit.parts.LifelineEditPartCN;
 import org.eclipse.uml2.common.util.CacheAdapter;
-import org.eclipse.uml2.uml.DestructionEvent;
+import org.eclipse.uml2.uml.DestructionOccurrenceSpecification;
 import org.eclipse.uml2.uml.DurationConstraint;
 import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.Event;
 import org.eclipse.uml2.uml.ExecutionOccurrenceSpecification;
 import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.Interaction;
@@ -122,7 +121,7 @@ public class CommunicationUtil {
 		if(model instanceof Node) {
 			EObject obj = ((Node)model).getElement();
 
-			if(obj instanceof DestructionEvent) {
+			if(obj instanceof DestructionOccurrenceSpecification) {
 				LifelineEditPartCN lifelinePart = getParentLifelinePart(destructionEventPart);
 				if(lifelinePart != null) {
 					for(Object lifelineChild : lifelinePart.getChildren()) {
@@ -162,11 +161,8 @@ public class CommunicationUtil {
 		}
 		// check whether one of the time occurrences correspond to a DestructionEvent
 		for(Element occurrence : occurrences) {
-			if(occurrence instanceof OccurrenceSpecification) {
-				Event event = ((OccurrenceSpecification)occurrence).getEvent();
-				if(event instanceof DestructionEvent) {
+			if(occurrence instanceof DestructionOccurrenceSpecification) {
 					return false;
-				}
 			}
 		}
 		return true;
