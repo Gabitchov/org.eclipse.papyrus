@@ -5,5 +5,5 @@
   <mspec:property key="target.os" value="*"/>
   <mspec:property key="target.ws" value="*"/>
   <mspec:property key="target.arch" value="*"/>
-  <mspec:mspecNode materializer="workspace" namePattern="" filter="(buckminster.source=true)"/>
+  <mspec:mspecNode materializer="workspace" namePattern=".*" filter="(buckminster.source=true)"/>
 </mspec:mspec>
