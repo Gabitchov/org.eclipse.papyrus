@@ -62,6 +62,7 @@ public class Activator extends AbstractUIPlugin {
 	 * 
 	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext)
 	 */
+	@Override
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		plugin = this;
@@ -71,9 +72,6 @@ public class Activator extends AbstractUIPlugin {
 
 		// prepare the composed adapter factory
 		adapterFactory = createAdapterFactory();
-
-		// add a generic label provider for sysml elements
-		labelProvider = new UMLLabelProvider();
 	}
 
 	/*
@@ -81,11 +79,14 @@ public class Activator extends AbstractUIPlugin {
 	 * 
 	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext)
 	 */
+	@Override
 	public void stop(BundleContext context) throws Exception {
 		adapterFactory.dispose();
 		adapterFactory = null;
-		labelProvider.dispose();
-		labelProvider = null;
+		if(labelProvider != null) {
+			labelProvider.dispose();
+			labelProvider = null;
+		}
 		plugin = null;
 		super.stop(context);
 	}
@@ -249,6 +250,10 @@ public class Activator extends AbstractUIPlugin {
 	 * @return a label provider supported by EMF Facet
 	 */
 	public LabelProvider getLabelProvider() {
+		if(labelProvider == null) {
+			// add a generic label provider for sysml elements
+			labelProvider = new UMLLabelProvider();
+		}
 		return labelProvider;
 	}
 
