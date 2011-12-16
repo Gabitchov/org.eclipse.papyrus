@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="2.0"
+<xmi:XMI
+    xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:gmfgen="http://www.eclipse.org/gmf/2009/GenModel"
@@ -945,12 +946,12 @@
       <childNodes
           xsi:type="gmfgen:GenChildSideAffixedNode"
           visualID="3022"
-          editPartClassName="DestructionEventEditPart"
-          itemSemanticEditPolicyClassName="DestructionEventItemSemanticEditPolicy"
+          editPartClassName="DestructionOccurrenceSpecificationEditPart"
+          itemSemanticEditPolicyClassName="DestructionOccurrenceSpecificationItemSemanticEditPolicy"
           notationViewFactoryClassName="DestructionEventViewFactory"
-          canonicalEditPolicyClassName="DestructionEventCanonicalEditPolicy"
-          graphicalNodeEditPolicyClassName="DestructionEventGraphicalNodeEditPolicy"
-          createCommandClassName="DestructionEventCreateCommand"
+          canonicalEditPolicyClassName="DestructionOccurrenceSpecificationCanonicalEditPolicy"
+          graphicalNodeEditPolicyClassName="DestructionOccurrenceSpecificationGraphicalNodeEditPolicy"
+          createCommandClassName="DestructionOccurrenceSpecificationCreateCommand"
           containers="/0/@diagram/@childNodes.5"
           preferredSideName="SOUTH">
         <diagramRunTimeClass
@@ -970,11 +971,9 @@
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.DestructionEventComponentEditPolicy"/>
         <modelFacet>
           <metaClass
-              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/DestructionEvent"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/DestructionOccurrenceSpecification"/>
           <containmentMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
-          <childMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/fragment"/>
           <modelElementInitializer
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
@@ -7354,7 +7353,7 @@
             body="self.oclIsKindOf(uml::InteractionFragment) or self.oclIsKindOf(uml::Lifeline)"/>
         <expressions
             xsi:type="gmfgen:GenConstraint"
-            body="self.oclIsKindOf(uml::DestructionEvent) or self.oclIsKindOf(uml::Lifeline)"/>
+            body="self.oclIsKindOf(uml::DestructionOccurrenceSpecification) or self.oclIsKindOf(uml::Lifeline)"/>
         <expressions
             xsi:type="gmfgen:GenConstraint"
             body="self.receiveEvent=null"/>

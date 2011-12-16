@@ -720,7 +720,6 @@ public class DurationConstraintInMessageLabelEditPart extends CompartmentEditPar
 			}
 		}
 
-
 		super.handleNotificationEvent(event);
 	}
 

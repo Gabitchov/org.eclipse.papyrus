@@ -76,7 +76,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.BehaviorExecutionSpec
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragment2EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ContinuationEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DestructionEventEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DestructionOccurrenceSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionUseEditPart;
@@ -86,10 +86,9 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.common.util.CacheAdapter;
 import org.eclipse.uml2.uml.CombinedFragment;
 import org.eclipse.uml2.uml.Continuation;
-import org.eclipse.uml2.uml.DestructionEvent;
+import org.eclipse.uml2.uml.DestructionOccurrenceSpecification;
 import org.eclipse.uml2.uml.DurationConstraint;
 import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.Event;
 import org.eclipse.uml2.uml.ExecutionOccurrenceSpecification;
 import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.Interaction;
@@ -262,12 +261,12 @@ public class SequenceUtil {
 			List<?> children = lifelineEditPart.getChildren();
 			for(Object child : children) {
 				// check destruction event
-				if(child instanceof DestructionEventEditPart) {
-					EObject destructionEvent = ((GraphicalEditPart)child).resolveSemanticElement();
+				if(child instanceof DestructionOccurrenceSpecificationEditPart) {
+					EObject destructionOccurence = ((GraphicalEditPart)child).resolveSemanticElement();
 					EObject lifeline = lifelineEditPart.resolveSemanticElement();
-					if(destructionEvent instanceof DestructionEvent && lifeline instanceof Lifeline && fragment instanceof OccurrenceSpecification) {
-						Event destEvent = ((OccurrenceSpecification)fragment).getEvent();
-						if(destEvent != null && destEvent.equals(destructionEvent)) {
+					if(destructionOccurence instanceof DestructionOccurrenceSpecification && lifeline instanceof Lifeline && fragment instanceof DestructionOccurrenceSpecification) {
+						DestructionOccurrenceSpecification destEvent = ((DestructionOccurrenceSpecification)fragment);
+						if(destEvent != null && destEvent.equals(destructionOccurence)) {
 							Rectangle bounds = getAbsoluteBounds((GraphicalEditPart)child);
 							return bounds.getCenter();
 						}
@@ -538,14 +537,14 @@ public class SequenceUtil {
 				}
 			}
 			// destruction event
-			if(child instanceof DestructionEventEditPart) {
-				EObject destructionEvent = ((GraphicalEditPart)child).resolveSemanticElement();
+			if(child instanceof DestructionOccurrenceSpecificationEditPart) {
+				EObject destructionOccurence = ((GraphicalEditPart)child).resolveSemanticElement();
 				EObject lifeline = lifelineEditPart.resolveSemanticElement();
-				if(destructionEvent instanceof DestructionEvent && lifeline instanceof Lifeline) {
+				if(destructionOccurence instanceof DestructionOccurrenceSpecification && lifeline instanceof Lifeline) {
 					for(InteractionFragment occurence : ((Lifeline)lifeline).getCoveredBys()) {
-						if(occurence instanceof OccurrenceSpecification) {
-							Event event = ((OccurrenceSpecification)occurence).getEvent();
-							if(destructionEvent.equals(event)) {
+						if(occurence instanceof DestructionOccurrenceSpecification) {
+							DestructionOccurrenceSpecification currentOccurence = ((DestructionOccurrenceSpecification)occurence);
+							if(destructionOccurence.equals(currentOccurence)) {
 								Rectangle bounds = getAbsoluteBounds((GraphicalEditPart)child);
 								if(!occurrences.containsKey(bounds.getCenter())) {
 									occurrences.put(bounds.getCenter(), new ArrayList<OccurrenceSpecification>(2));
@@ -759,9 +758,9 @@ public class SequenceUtil {
 		} else {
 			// get parts representing the destruction event linked with the event
 			for(Object lifelineChild : lifelinePart.getChildren()) {
-				if(lifelineChild instanceof DestructionEventEditPart) {
-					EObject destr = ((DestructionEventEditPart)lifelineChild).resolveSemanticElement();
-					if(destr instanceof DestructionEvent && destr.equals(event.getEvent())) {
+				if(lifelineChild instanceof DestructionOccurrenceSpecificationEditPart) {
+					EObject destr = ((DestructionOccurrenceSpecificationEditPart)lifelineChild).resolveSemanticElement();
+					if(destr instanceof DestructionOccurrenceSpecification && destr.equals(event)) {
 						return (EditPart)lifelineChild;
 					}
 				}

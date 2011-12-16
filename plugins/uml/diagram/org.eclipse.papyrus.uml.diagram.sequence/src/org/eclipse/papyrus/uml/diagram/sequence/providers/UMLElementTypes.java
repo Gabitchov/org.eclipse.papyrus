@@ -37,7 +37,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ConsiderIgnoreFragmen
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ConstraintConstrainedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ContinuationEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DestructionEventEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DestructionOccurrenceSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationConstraintInMessageEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationObservationEditPart;
@@ -135,7 +135,7 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
-	public static final IElementType DestructionEvent_3022 = getElementType("org.eclipse.papyrus.uml.diagram.sequence.DestructionEvent_3022"); //$NON-NLS-1$
+	public static final IElementType DestructionOccurrenceSpecification_3022 = getElementType("org.eclipse.papyrus.uml.diagram.sequence.DestructionOccurrenceSpecification_3022"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -345,88 +345,61 @@ public class UMLElementTypes {
 
 			elements.put(Package_1000, UMLPackage.eINSTANCE.getPackage());
 
-
 			elements.put(Interaction_2001, UMLPackage.eINSTANCE.getInteraction());
-
 
 			elements.put(ConsiderIgnoreFragment_3007, UMLPackage.eINSTANCE.getConsiderIgnoreFragment());
 
-
 			elements.put(CombinedFragment_3004, UMLPackage.eINSTANCE.getCombinedFragment());
-
 
 			elements.put(InteractionOperand_3005, UMLPackage.eINSTANCE.getInteractionOperand());
 
-
 			elements.put(InteractionUse_3002, UMLPackage.eINSTANCE.getInteractionUse());
-
 
 			elements.put(Continuation_3016, UMLPackage.eINSTANCE.getContinuation());
 
-
 			elements.put(Lifeline_3001, UMLPackage.eINSTANCE.getLifeline());
-
 
 			elements.put(ActionExecutionSpecification_3006, UMLPackage.eINSTANCE.getActionExecutionSpecification());
 
-
 			elements.put(BehaviorExecutionSpecification_3003, UMLPackage.eINSTANCE.getBehaviorExecutionSpecification());
-
 
 			elements.put(StateInvariant_3017, UMLPackage.eINSTANCE.getStateInvariant());
 
-
 			elements.put(CombinedFragment_3018, UMLPackage.eINSTANCE.getCombinedFragment());
-
 
 			elements.put(TimeConstraint_3019, UMLPackage.eINSTANCE.getTimeConstraint());
 
-
 			elements.put(TimeObservation_3020, UMLPackage.eINSTANCE.getTimeObservation());
-
 
 			elements.put(DurationConstraint_3021, UMLPackage.eINSTANCE.getDurationConstraint());
 
-
-			elements.put(DestructionEvent_3022, UMLPackage.eINSTANCE.getDestructionEvent());
-
+			elements.put(DestructionOccurrenceSpecification_3022, UMLPackage.eINSTANCE.getDestructionOccurrenceSpecification());
 
 			elements.put(Constraint_3008, UMLPackage.eINSTANCE.getConstraint());
 
-
 			elements.put(Comment_3009, UMLPackage.eINSTANCE.getComment());
-
 
 			elements.put(DurationConstraint_3023, UMLPackage.eINSTANCE.getDurationConstraint());
 
-
 			elements.put(DurationObservation_3024, UMLPackage.eINSTANCE.getDurationObservation());
-
 
 			elements.put(Message_4003, UMLPackage.eINSTANCE.getMessage());
 
-
 			elements.put(Message_4004, UMLPackage.eINSTANCE.getMessage());
-
 
 			elements.put(Message_4005, UMLPackage.eINSTANCE.getMessage());
 
-
 			elements.put(Message_4006, UMLPackage.eINSTANCE.getMessage());
-
 
 			elements.put(Message_4007, UMLPackage.eINSTANCE.getMessage());
 
-
 			elements.put(Message_4008, UMLPackage.eINSTANCE.getMessage());
-
 
 			elements.put(Message_4009, UMLPackage.eINSTANCE.getMessage());
 
 			elements.put(CommentAnnotatedElement_4010, UMLPackage.eINSTANCE.getComment_AnnotatedElement());
 
 			elements.put(ConstraintConstrainedElement_4011, UMLPackage.eINSTANCE.getConstraint_ConstrainedElement());
-
 
 			elements.put(GeneralOrdering_4012, UMLPackage.eINSTANCE.getGeneralOrdering());
 		}
@@ -461,7 +434,7 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(TimeConstraint_3019);
 			KNOWN_ELEMENT_TYPES.add(TimeObservation_3020);
 			KNOWN_ELEMENT_TYPES.add(DurationConstraint_3021);
-			KNOWN_ELEMENT_TYPES.add(DestructionEvent_3022);
+			KNOWN_ELEMENT_TYPES.add(DestructionOccurrenceSpecification_3022);
 			KNOWN_ELEMENT_TYPES.add(Constraint_3008);
 			KNOWN_ELEMENT_TYPES.add(Comment_3009);
 			KNOWN_ELEMENT_TYPES.add(DurationConstraint_3023);
@@ -515,8 +488,8 @@ public class UMLElementTypes {
 			return TimeObservation_3020;
 		case DurationConstraintEditPart.VISUAL_ID:
 			return DurationConstraint_3021;
-		case DestructionEventEditPart.VISUAL_ID:
-			return DestructionEvent_3022;
+		case DestructionOccurrenceSpecificationEditPart.VISUAL_ID:
+			return DestructionOccurrenceSpecification_3022;
 		case ConstraintEditPart.VISUAL_ID:
 			return Constraint_3008;
 		case CommentEditPart.VISUAL_ID:

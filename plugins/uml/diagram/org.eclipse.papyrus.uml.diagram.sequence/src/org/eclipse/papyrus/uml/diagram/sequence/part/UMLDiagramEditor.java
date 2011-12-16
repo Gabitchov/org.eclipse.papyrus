@@ -37,6 +37,7 @@ import org.eclipse.gmf.runtime.diagram.ui.actions.ActionIds;
 import org.eclipse.gmf.runtime.diagram.ui.internal.parts.PaletteToolTransferDragSourceListener;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocument;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDocumentProvider;
+import org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.util.LocalSelectionTransfer;
 import org.eclipse.jface.viewers.ISelection;
@@ -44,7 +45,6 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
-import org.eclipse.papyrus.infra.gmfdiag.common.GmfMultiDiagramDocumentProvider;
 import org.eclipse.papyrus.uml.diagram.common.listeners.DropTargetListener;
 import org.eclipse.papyrus.uml.diagram.common.part.PapyrusPaletteContextMenuProvider;
 import org.eclipse.papyrus.uml.diagram.common.part.PapyrusPaletteViewer;
@@ -108,18 +108,15 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 	public UMLDiagramEditor(ServicesRegistry servicesRegistry, Diagram diagram) throws ServiceException {
 		super(servicesRegistry, diagram);
 
-
 		// adds a listener to the palette service, which reacts to palette customizations
 		PapyrusPaletteService.getInstance().addProviderChangeListener(this);
 
-
 		// Share the same editing provider
 		editingDomain = servicesRegistry.getService(TransactionalEditingDomain.class);
-		documentProvider = new GmfMultiDiagramDocumentProvider(editingDomain);
+		documentProvider = new org.eclipse.papyrus.infra.gmfdiag.common.GmfMultiDiagramDocumentProvider(editingDomain);
 
 		// overrides editing domain created by super constructor
 		setDocumentProvider(documentProvider);
-
 
 	}
 
@@ -251,6 +248,9 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 			return StructuredSelection.EMPTY;
 		}
 		Diagram diagram = document.getDiagram();
+		if(diagram == null || diagram.eResource() == null) {
+			return StructuredSelection.EMPTY;
+		}
 		IFile file = WorkspaceSynchronizer.getFile(diagram.eResource());
 		if(file != null) {
 			UMLNavigatorItem item = new UMLNavigatorItem(diagram, file, false);
@@ -379,7 +379,6 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 			 * with a defaultTool that is the SelectToolEx that undestands how to handle the enter
 			 * key which will result in the creation of the shape also.
 			 */
-			@Override
 			protected void configurePaletteViewer(PaletteViewer viewer) {
 				super.configurePaletteViewer(viewer);
 
@@ -397,7 +396,6 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 				viewer.setCustomizer(createPaletteCustomizer());
 			}
 
-			@Override
 			public PaletteViewer createPaletteViewer(Composite parent) {
 				PaletteViewer pViewer = constructPaletteViewer();
 				pViewer.createControl(parent);
@@ -425,7 +423,6 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 						 *        the KeyEvent
 						 * @return <code>true</code> if KeyEvent was handled in some way
 						 */
-						@Override
 						public boolean keyReleased(KeyEvent event) {
 
 							if(event.keyCode == SWT.Selection) {

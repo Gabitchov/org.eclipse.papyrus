@@ -49,10 +49,9 @@ import org.eclipse.papyrus.uml.diagram.common.helper.InteractionFragmentHelper;
 import org.eclipse.papyrus.uml.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.uml2.common.util.CacheAdapter;
-import org.eclipse.uml2.uml.DestructionEvent;
+import org.eclipse.uml2.uml.DestructionOccurrenceSpecification;
 import org.eclipse.uml2.uml.DurationConstraint;
 import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.Event;
 import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.GeneralOrdering;
 import org.eclipse.uml2.uml.InteractionFragment;
@@ -994,11 +993,8 @@ public class OccurrenceSpecificationMoveHelper {
 		}
 		// check whether one of the time occurrences correspond to a DestructionEvent
 		for(Element occurrence : occurrences) {
-			if(occurrence instanceof OccurrenceSpecification) {
-				Event event = ((OccurrenceSpecification)occurrence).getEvent();
-				if(event instanceof DestructionEvent) {
-					return false;
-				}
+			if(occurrence instanceof DestructionOccurrenceSpecification) {
+				return false;
 			}
 		}
 		return true;

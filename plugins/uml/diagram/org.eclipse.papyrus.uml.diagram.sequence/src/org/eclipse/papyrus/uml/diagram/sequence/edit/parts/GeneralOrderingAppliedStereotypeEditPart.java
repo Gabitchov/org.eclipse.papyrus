@@ -96,8 +96,6 @@ public class GeneralOrderingAppliedStereotypeEditPart extends LabelEditPart impl
 	 */
 	private String defaultText;
 
-
-
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
 	 * 
@@ -111,8 +109,6 @@ public class GeneralOrderingAppliedStereotypeEditPart extends LabelEditPart impl
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
-
-
 
 	/**
 	 * @generated
@@ -591,8 +587,6 @@ public class GeneralOrderingAppliedStereotypeEditPart extends LabelEditPart impl
 		return (View)getModel();
 	}
 
-
-
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
@@ -600,15 +594,7 @@ public class GeneralOrderingAppliedStereotypeEditPart extends LabelEditPart impl
 	 * @generated
 	 */
 	public int getDirectEditionType() {
-		if(checkExtendedEditor()) {
-			initExtendedEditorConfiguration();
-			return IDirectEdition.EXTENDED_DIRECT_EDITOR;
-		}
-		if(checkDefaultEdition()) {
-			return IDirectEdition.DEFAULT_DIRECT_EDITOR;
-		}
-
-		// not a named element. no specific editor => do nothing
+		// The label is read-only (defined in GMFGen model)
 		return IDirectEdition.NO_DIRECT_EDITION;
 	}
 
@@ -696,8 +682,6 @@ public class GeneralOrderingAppliedStereotypeEditPart extends LabelEditPart impl
 		}
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -728,11 +712,9 @@ public class GeneralOrderingAppliedStereotypeEditPart extends LabelEditPart impl
 			}
 		}
 
-
 		if(event.getNewValue() instanceof EAnnotation && VisualInformationPapyrusConstant.DISPLAY_NAMELABELICON.equals(((EAnnotation)event.getNewValue()).getSource())) {
 			refreshLabel();
 		}
-
 
 		super.handleNotificationEvent(event);
 	}

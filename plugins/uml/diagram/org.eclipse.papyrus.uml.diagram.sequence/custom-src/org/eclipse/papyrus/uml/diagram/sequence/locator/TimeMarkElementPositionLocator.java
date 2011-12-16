@@ -28,7 +28,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.papyrus.uml.diagram.common.locator.AdvancedBorderItemLocator;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DestructionEventEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DestructionOccurrenceSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart.LifelineFigure;
@@ -36,10 +36,8 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeConstraintEditPar
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.LifelineDotLineCustomFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
-import org.eclipse.uml2.uml.DestructionEvent;
 import org.eclipse.uml2.uml.DurationConstraint;
 import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.Event;
 import org.eclipse.uml2.uml.IntervalConstraint;
 import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
@@ -201,8 +199,8 @@ public class TimeMarkElementPositionLocator extends AdvancedBorderItemLocator {
 		LifelineEditPart lifeline = SequenceUtil.getParentLifelinePart(editPart);
 		if(lifeline != null) {
 			for(Object child : lifeline.getChildren()) {
-				if(child instanceof DestructionEventEditPart) {
-					return ((DestructionEventEditPart)child).getFigure().getBounds().getCenter();
+				if(child instanceof DestructionOccurrenceSpecificationEditPart) {
+					return ((DestructionOccurrenceSpecificationEditPart)child).getFigure().getBounds().getCenter();
 				}
 			}
 		}
@@ -226,11 +224,8 @@ public class TimeMarkElementPositionLocator extends AdvancedBorderItemLocator {
 				occurrences = ((IntervalConstraint)element).getConstrainedElements();
 			}
 			for(Element occurrence : occurrences) {
-				if(occurrence instanceof OccurrenceSpecification) {
-					Event event = ((OccurrenceSpecification)occurrence).getEvent();
-					if(event instanceof DestructionEvent) {
-						return true;
-					}
+				if(occurrence instanceof DestructionOccurrenceSpecificationEditPart) {
+					return true;
 				}
 			}
 		}
@@ -278,7 +273,7 @@ public class TimeMarkElementPositionLocator extends AdvancedBorderItemLocator {
 						Rectangle parentBounds = getParentBorder();
 						int leftGap = execBounds.getLeft().x - parentBounds.getCenter().x;
 						int rightGap = execBounds.getRight().x - parentBounds.getCenter().x;
-						if(part instanceof DestructionEventEditPart) {
+						if(part instanceof DestructionOccurrenceSpecificationEditPart) {
 							// center of destruction event is considered
 							leftGap = 0;
 							rightGap = 0;

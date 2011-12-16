@@ -28,7 +28,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
 import org.eclipse.ui.IEditorPart;
-import org.eclipse.uml2.uml.DestructionEvent;
+import org.eclipse.uml2.uml.DestructionOccurrenceSpecification;
 import org.eclipse.uml2.uml.ExecutionOccurrenceSpecification;
 import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.GeneralOrdering;
@@ -519,9 +519,9 @@ public class FragmentOrderingKeeper {
 	 */
 	private boolean simulatenousEventsHappenInThisOrder(InteractionFragment firstFragment, InteractionFragment secondFragment) {
 		// DestructionEvent comes last
-		if(firstFragment instanceof OccurrenceSpecification && ((OccurrenceSpecification)firstFragment).getEvent() instanceof DestructionEvent) {
+		if(firstFragment instanceof DestructionOccurrenceSpecification) {
 			return false;
-		} else if(secondFragment instanceof OccurrenceSpecification && ((OccurrenceSpecification)secondFragment).getEvent() instanceof DestructionEvent) {
+		} else if(secondFragment instanceof DestructionOccurrenceSpecification) {
 			return true;
 		}
 		// a receiving message event should trigger any other event

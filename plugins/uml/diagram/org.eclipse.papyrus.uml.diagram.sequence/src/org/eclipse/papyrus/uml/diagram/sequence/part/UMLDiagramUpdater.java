@@ -38,7 +38,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ConsiderIgnoreFragmen
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ConstraintConstrainedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ContinuationEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DestructionEventEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DestructionOccurrenceSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationConstraintInMessageEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationObservationEditPart;
@@ -67,7 +67,7 @@ import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.ConsiderIgnoreFragment;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Continuation;
-import org.eclipse.uml2.uml.DestructionEvent;
+import org.eclipse.uml2.uml.DestructionOccurrenceSpecification;
 import org.eclipse.uml2.uml.DurationConstraint;
 import org.eclipse.uml2.uml.DurationObservation;
 import org.eclipse.uml2.uml.Element;
@@ -386,8 +386,8 @@ public class UMLDiagramUpdater {
 			return getTimeObservation_3020ContainedLinks(view);
 		case DurationConstraintEditPart.VISUAL_ID:
 			return getDurationConstraint_3021ContainedLinks(view);
-		case DestructionEventEditPart.VISUAL_ID:
-			return getDestructionEvent_3022ContainedLinks(view);
+		case DestructionOccurrenceSpecificationEditPart.VISUAL_ID:
+			return getDestructionOccurrenceSpecification_3022ContainedLinks(view);
 		case ConstraintEditPart.VISUAL_ID:
 			return getConstraint_3008ContainedLinks(view);
 		case CommentEditPart.VISUAL_ID:
@@ -449,8 +449,8 @@ public class UMLDiagramUpdater {
 			return getTimeObservation_3020IncomingLinks(view);
 		case DurationConstraintEditPart.VISUAL_ID:
 			return getDurationConstraint_3021IncomingLinks(view);
-		case DestructionEventEditPart.VISUAL_ID:
-			return getDestructionEvent_3022IncomingLinks(view);
+		case DestructionOccurrenceSpecificationEditPart.VISUAL_ID:
+			return getDestructionOccurrenceSpecification_3022IncomingLinks(view);
 		case ConstraintEditPart.VISUAL_ID:
 			return getConstraint_3008IncomingLinks(view);
 		case CommentEditPart.VISUAL_ID:
@@ -512,8 +512,8 @@ public class UMLDiagramUpdater {
 			return getTimeObservation_3020OutgoingLinks(view);
 		case DurationConstraintEditPart.VISUAL_ID:
 			return getDurationConstraint_3021OutgoingLinks(view);
-		case DestructionEventEditPart.VISUAL_ID:
-			return getDestructionEvent_3022OutgoingLinks(view);
+		case DestructionOccurrenceSpecificationEditPart.VISUAL_ID:
+			return getDestructionOccurrenceSpecification_3022OutgoingLinks(view);
 		case ConstraintEditPart.VISUAL_ID:
 			return getConstraint_3008OutgoingLinks(view);
 		case CommentEditPart.VISUAL_ID:
@@ -633,8 +633,11 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<UMLLinkDescriptor> getDestructionEvent_3022ContainedLinks(View view) {
-		return Collections.emptyList();
+	public static List<UMLLinkDescriptor> getDestructionOccurrenceSpecification_3022ContainedLinks(View view) {
+		DestructionOccurrenceSpecification modelElement = (DestructionOccurrenceSpecification)view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		result.addAll(getContainedTypeModelFacetLinks_GeneralOrdering_4012(modelElement));
+		return result;
 	}
 
 	/**
@@ -945,8 +948,8 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<UMLLinkDescriptor> getDestructionEvent_3022IncomingLinks(View view) {
-		DestructionEvent modelElement = (DestructionEvent)view.getElement();
+	public static List<UMLLinkDescriptor> getDestructionOccurrenceSpecification_3022IncomingLinks(View view) {
+		DestructionOccurrenceSpecification modelElement = (DestructionOccurrenceSpecification)view.getElement();
 		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_Message_4003(modelElement, crossReferences));
@@ -958,6 +961,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Message_4009(modelElement, crossReferences));
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4010(modelElement, crossReferences));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4011(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_GeneralOrdering_4012(modelElement, crossReferences));
 		return result;
 	}
 
@@ -1436,8 +1440,8 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<UMLLinkDescriptor> getDestructionEvent_3022OutgoingLinks(View view) {
-		DestructionEvent modelElement = (DestructionEvent)view.getElement();
+	public static List<UMLLinkDescriptor> getDestructionOccurrenceSpecification_3022OutgoingLinks(View view) {
+		DestructionOccurrenceSpecification modelElement = (DestructionOccurrenceSpecification)view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_Message_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Message_4004(modelElement));
@@ -1446,6 +1450,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getOutgoingTypeModelFacetLinks_Message_4007(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Message_4008(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Message_4009(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_GeneralOrdering_4012(modelElement));
 		return result;
 	}
 
@@ -1755,10 +1760,6 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 
-
-
-
-
 			List targets = link.getOwnedElements();
 			Object theTarget = targets.size() == 1 ? targets.get(0) : null;
 			if(false == theTarget instanceof Element) {
@@ -1767,7 +1768,6 @@ public class UMLDiagramUpdater {
 			Element dst = (Element)theTarget;
 			Element src = link.getOwner();
 			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Message_4003, MessageEditPart.VISUAL_ID));
-
 
 		}
 		return result;
@@ -1788,10 +1788,6 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 
-
-
-
-
 			List targets = link.getOwnedElements();
 			Object theTarget = targets.size() == 1 ? targets.get(0) : null;
 			if(false == theTarget instanceof Element) {
@@ -1800,7 +1796,6 @@ public class UMLDiagramUpdater {
 			Element dst = (Element)theTarget;
 			Element src = link.getOwner();
 			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Message_4004, Message2EditPart.VISUAL_ID));
-
 
 		}
 		return result;
@@ -1821,10 +1816,6 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 
-
-
-
-
 			List targets = link.getOwnedElements();
 			Object theTarget = targets.size() == 1 ? targets.get(0) : null;
 			if(false == theTarget instanceof Element) {
@@ -1833,7 +1824,6 @@ public class UMLDiagramUpdater {
 			Element dst = (Element)theTarget;
 			Element src = link.getOwner();
 			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Message_4005, Message3EditPart.VISUAL_ID));
-
 
 		}
 		return result;
@@ -1854,10 +1844,6 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 
-
-
-
-
 			List targets = link.getOwnedElements();
 			Object theTarget = targets.size() == 1 ? targets.get(0) : null;
 			if(false == theTarget instanceof Element) {
@@ -1866,7 +1852,6 @@ public class UMLDiagramUpdater {
 			Element dst = (Element)theTarget;
 			Element src = link.getOwner();
 			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Message_4006, Message4EditPart.VISUAL_ID));
-
 
 		}
 		return result;
@@ -1887,10 +1872,6 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 
-
-
-
-
 			List targets = link.getOwnedElements();
 			Object theTarget = targets.size() == 1 ? targets.get(0) : null;
 			if(false == theTarget instanceof Element) {
@@ -1899,7 +1880,6 @@ public class UMLDiagramUpdater {
 			Element dst = (Element)theTarget;
 			Element src = link.getOwner();
 			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Message_4007, Message5EditPart.VISUAL_ID));
-
 
 		}
 		return result;
@@ -1920,10 +1900,6 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 
-
-
-
-
 			List targets = link.getOwnedElements();
 			Object theTarget = targets.size() == 1 ? targets.get(0) : null;
 			if(false == theTarget instanceof Element) {
@@ -1932,7 +1908,6 @@ public class UMLDiagramUpdater {
 			Element dst = (Element)theTarget;
 			Element src = link.getOwner();
 			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Message_4008, Message6EditPart.VISUAL_ID));
-
 
 		}
 		return result;
@@ -1953,10 +1928,6 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 
-
-
-
-
 			List targets = link.getOwnedElements();
 			Object theTarget = targets.size() == 1 ? targets.get(0) : null;
 			if(false == theTarget instanceof Element) {
@@ -1965,7 +1936,6 @@ public class UMLDiagramUpdater {
 			Element dst = (Element)theTarget;
 			Element src = link.getOwner();
 			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Message_4009, Message7EditPart.VISUAL_ID));
-
 
 		}
 		return result;
@@ -1986,14 +1956,9 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 
-
-
-
-
 			OccurrenceSpecification dst = link.getAfter();
 			OccurrenceSpecification src = link.getBefore();
 			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.GeneralOrdering_4012, GeneralOrderingEditPart.VISUAL_ID));
-
 
 		}
 		return result;
@@ -2170,6 +2135,26 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
+	private static Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_GeneralOrdering_4012(OccurrenceSpecification target, Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		Collection<EStructuralFeature.Setting> settings = crossReferences.get(target);
+		for(EStructuralFeature.Setting setting : settings) {
+			if(setting.getEStructuralFeature() != UMLPackage.eINSTANCE.getGeneralOrdering_After() || false == setting.getEObject() instanceof GeneralOrdering) {
+				continue;
+			}
+			GeneralOrdering link = (GeneralOrdering)setting.getEObject();
+			if(GeneralOrderingEditPart.VISUAL_ID != UMLVisualIDRegistry.getLinkWithClassVisualID(link)) {
+				continue;
+			}
+			OccurrenceSpecification src = link.getBefore();
+			result.add(new UMLLinkDescriptor(src, target, link, UMLElementTypes.GeneralOrdering_4012, GeneralOrderingEditPart.VISUAL_ID));
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
 	private static Collection<UMLLinkDescriptor> getOutgoingTypeModelFacetLinks_Message_4003(Element source) {
 		Interaction container = null;
 		// Find container element for the link.
@@ -2194,10 +2179,6 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 
-
-
-
-
 			List targets = link.getOwnedElements();
 			Object theTarget = targets.size() == 1 ? targets.get(0) : null;
 			if(false == theTarget instanceof Element) {
@@ -2209,7 +2190,6 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Message_4003, MessageEditPart.VISUAL_ID));
-
 
 		}
 		return result;
@@ -2242,10 +2222,6 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 
-
-
-
-
 			List targets = link.getOwnedElements();
 			Object theTarget = targets.size() == 1 ? targets.get(0) : null;
 			if(false == theTarget instanceof Element) {
@@ -2257,7 +2233,6 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Message_4004, Message2EditPart.VISUAL_ID));
-
 
 		}
 		return result;
@@ -2290,10 +2265,6 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 
-
-
-
-
 			List targets = link.getOwnedElements();
 			Object theTarget = targets.size() == 1 ? targets.get(0) : null;
 			if(false == theTarget instanceof Element) {
@@ -2305,7 +2276,6 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Message_4005, Message3EditPart.VISUAL_ID));
-
 
 		}
 		return result;
@@ -2338,10 +2308,6 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 
-
-
-
-
 			List targets = link.getOwnedElements();
 			Object theTarget = targets.size() == 1 ? targets.get(0) : null;
 			if(false == theTarget instanceof Element) {
@@ -2353,7 +2319,6 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Message_4006, Message4EditPart.VISUAL_ID));
-
 
 		}
 		return result;
@@ -2386,10 +2351,6 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 
-
-
-
-
 			List targets = link.getOwnedElements();
 			Object theTarget = targets.size() == 1 ? targets.get(0) : null;
 			if(false == theTarget instanceof Element) {
@@ -2401,7 +2362,6 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Message_4007, Message5EditPart.VISUAL_ID));
-
 
 		}
 		return result;
@@ -2434,10 +2394,6 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 
-
-
-
-
 			List targets = link.getOwnedElements();
 			Object theTarget = targets.size() == 1 ? targets.get(0) : null;
 			if(false == theTarget instanceof Element) {
@@ -2449,7 +2405,6 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Message_4008, Message6EditPart.VISUAL_ID));
-
 
 		}
 		return result;
@@ -2482,10 +2437,6 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 
-
-
-
-
 			List targets = link.getOwnedElements();
 			Object theTarget = targets.size() == 1 ? targets.get(0) : null;
 			if(false == theTarget instanceof Element) {
@@ -2497,7 +2448,6 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Message_4009, Message7EditPart.VISUAL_ID));
-
 
 		}
 		return result;
@@ -2523,6 +2473,44 @@ public class UMLDiagramUpdater {
 		for(Iterator<?> destinations = source.getConstrainedElements().iterator(); destinations.hasNext();) {
 			Element destination = (Element)destinations.next();
 			result.add(new UMLLinkDescriptor(source, destination, UMLElementTypes.ConstraintConstrainedElement_4011, ConstraintConstrainedElementEditPart.VISUAL_ID));
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	private static Collection<UMLLinkDescriptor> getOutgoingTypeModelFacetLinks_GeneralOrdering_4012(OccurrenceSpecification source) {
+		InteractionFragment container = null;
+		// Find container element for the link.
+		// Climb up by containment hierarchy starting from the source
+		// and return the first element that is instance of the container class.
+		for(EObject element = source; element != null && container == null; element = element.eContainer()) {
+			if(element instanceof InteractionFragment) {
+				container = (InteractionFragment)element;
+			}
+		}
+		if(container == null) {
+			return Collections.emptyList();
+		}
+		Collection result = new LinkedList();
+		for(Iterator links = container.getGeneralOrderings().iterator(); links.hasNext();) {
+			EObject linkObject = (EObject)links.next();
+			if(false == linkObject instanceof GeneralOrdering) {
+				continue;
+			}
+			GeneralOrdering link = (GeneralOrdering)linkObject;
+			if(GeneralOrderingEditPart.VISUAL_ID != UMLVisualIDRegistry.getLinkWithClassVisualID(link)) {
+				continue;
+			}
+
+			OccurrenceSpecification dst = link.getAfter();
+			OccurrenceSpecification src = link.getBefore();
+			if(src != source) {
+				continue;
+			}
+			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.GeneralOrdering_4012, GeneralOrderingEditPart.VISUAL_ID));
+
 		}
 		return result;
 	}

@@ -123,8 +123,8 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case DurationConstraintAppliedStereotypeEditPart.VISUAL_ID:
 				return new DurationConstraintAppliedStereotypeEditPart(view);
 
-			case DestructionEventEditPart.VISUAL_ID:
-				return new DestructionEventEditPart(view);
+			case DestructionOccurrenceSpecificationEditPart.VISUAL_ID:
+				return new DestructionOccurrenceSpecificationEditPart(view);
 
 			case ConstraintEditPart.VISUAL_ID:
 				return new ConstraintEditPart(view);
@@ -174,7 +174,6 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case MessageSyncAppliedStereotypeEditPart.VISUAL_ID:
 				return new MessageSyncAppliedStereotypeEditPart(view);
 
-
 			case Message2EditPart.VISUAL_ID:
 				return new Message2EditPart(view);
 
@@ -183,7 +182,6 @@ public class UMLEditPartFactory implements EditPartFactory {
 
 			case MessageAsyncAppliedStereotypeEditPart.VISUAL_ID:
 				return new MessageAsyncAppliedStereotypeEditPart(view);
-
 
 			case Message3EditPart.VISUAL_ID:
 				return new Message3EditPart(view);
@@ -194,7 +192,6 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case MessageReplyAppliedStereotypeEditPart.VISUAL_ID:
 				return new MessageReplyAppliedStereotypeEditPart(view);
 
-
 			case Message4EditPart.VISUAL_ID:
 				return new Message4EditPart(view);
 
@@ -203,7 +200,6 @@ public class UMLEditPartFactory implements EditPartFactory {
 
 			case MessageCreateAppliedStereotypeEditPart.VISUAL_ID:
 				return new MessageCreateAppliedStereotypeEditPart(view);
-
 
 			case Message5EditPart.VISUAL_ID:
 				return new Message5EditPart(view);
@@ -214,7 +210,6 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case MessageDeleteAppliedStereotypeEditPart.VISUAL_ID:
 				return new MessageDeleteAppliedStereotypeEditPart(view);
 
-
 			case Message6EditPart.VISUAL_ID:
 				return new Message6EditPart(view);
 
@@ -223,7 +218,6 @@ public class UMLEditPartFactory implements EditPartFactory {
 
 			case MessageLostAppliedStereotypeEditPart.VISUAL_ID:
 				return new MessageLostAppliedStereotypeEditPart(view);
-
 
 			case Message7EditPart.VISUAL_ID:
 				return new Message7EditPart(view);
@@ -234,14 +228,11 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case MessageFoundAppliedStereotypeEditPart.VISUAL_ID:
 				return new MessageFoundAppliedStereotypeEditPart(view);
 
-
 			case CommentAnnotatedElementEditPart.VISUAL_ID:
 				return new CommentAnnotatedElementEditPart(view);
 
-
 			case ConstraintConstrainedElementEditPart.VISUAL_ID:
 				return new ConstraintConstrainedElementEditPart(view);
-
 
 			case GeneralOrderingEditPart.VISUAL_ID:
 				return new GeneralOrderingEditPart(view);

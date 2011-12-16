@@ -179,7 +179,6 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 
-
 		if(childEditPart instanceof CombinedFragmentCombinedFragmentCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
@@ -413,7 +412,7 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 		if(targetEditPart instanceof DurationConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4003);
 		}
-		if(targetEditPart instanceof DestructionEventEditPart) {
+		if(targetEditPart instanceof DestructionOccurrenceSpecificationEditPart) {
 			types.add(UMLElementTypes.Message_4003);
 		}
 		if(targetEditPart instanceof ConstraintEditPart) {
@@ -470,7 +469,7 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 		if(targetEditPart instanceof DurationConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4004);
 		}
-		if(targetEditPart instanceof DestructionEventEditPart) {
+		if(targetEditPart instanceof DestructionOccurrenceSpecificationEditPart) {
 			types.add(UMLElementTypes.Message_4004);
 		}
 		if(targetEditPart instanceof ConstraintEditPart) {
@@ -527,7 +526,7 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 		if(targetEditPart instanceof DurationConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4005);
 		}
-		if(targetEditPart instanceof DestructionEventEditPart) {
+		if(targetEditPart instanceof DestructionOccurrenceSpecificationEditPart) {
 			types.add(UMLElementTypes.Message_4005);
 		}
 		if(targetEditPart instanceof ConstraintEditPart) {
@@ -584,7 +583,7 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 		if(targetEditPart instanceof DurationConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4006);
 		}
-		if(targetEditPart instanceof DestructionEventEditPart) {
+		if(targetEditPart instanceof DestructionOccurrenceSpecificationEditPart) {
 			types.add(UMLElementTypes.Message_4006);
 		}
 		if(targetEditPart instanceof ConstraintEditPart) {
@@ -641,7 +640,7 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 		if(targetEditPart instanceof DurationConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4007);
 		}
-		if(targetEditPart instanceof DestructionEventEditPart) {
+		if(targetEditPart instanceof DestructionOccurrenceSpecificationEditPart) {
 			types.add(UMLElementTypes.Message_4007);
 		}
 		if(targetEditPart instanceof ConstraintEditPart) {
@@ -698,7 +697,7 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 		if(targetEditPart instanceof DurationConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4008);
 		}
-		if(targetEditPart instanceof DestructionEventEditPart) {
+		if(targetEditPart instanceof DestructionOccurrenceSpecificationEditPart) {
 			types.add(UMLElementTypes.Message_4008);
 		}
 		if(targetEditPart instanceof ConstraintEditPart) {
@@ -755,7 +754,7 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 		if(targetEditPart instanceof DurationConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4009);
 		}
-		if(targetEditPart instanceof DestructionEventEditPart) {
+		if(targetEditPart instanceof DestructionOccurrenceSpecificationEditPart) {
 			types.add(UMLElementTypes.Message_4009);
 		}
 		if(targetEditPart instanceof ConstraintEditPart) {
@@ -793,7 +792,7 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 			types.add(UMLElementTypes.TimeConstraint_3019);
 			types.add(UMLElementTypes.TimeObservation_3020);
 			types.add(UMLElementTypes.DurationConstraint_3021);
-			types.add(UMLElementTypes.DestructionEvent_3022);
+			types.add(UMLElementTypes.DestructionOccurrenceSpecification_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
 			types.add(UMLElementTypes.DurationConstraint_3023);
@@ -813,7 +812,7 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 			types.add(UMLElementTypes.TimeConstraint_3019);
 			types.add(UMLElementTypes.TimeObservation_3020);
 			types.add(UMLElementTypes.DurationConstraint_3021);
-			types.add(UMLElementTypes.DestructionEvent_3022);
+			types.add(UMLElementTypes.DestructionOccurrenceSpecification_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
 			types.add(UMLElementTypes.DurationConstraint_3023);
@@ -833,7 +832,7 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 			types.add(UMLElementTypes.TimeConstraint_3019);
 			types.add(UMLElementTypes.TimeObservation_3020);
 			types.add(UMLElementTypes.DurationConstraint_3021);
-			types.add(UMLElementTypes.DestructionEvent_3022);
+			types.add(UMLElementTypes.DestructionOccurrenceSpecification_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
 			types.add(UMLElementTypes.DurationConstraint_3023);
@@ -853,7 +852,7 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 			types.add(UMLElementTypes.TimeConstraint_3019);
 			types.add(UMLElementTypes.TimeObservation_3020);
 			types.add(UMLElementTypes.DurationConstraint_3021);
-			types.add(UMLElementTypes.DestructionEvent_3022);
+			types.add(UMLElementTypes.DestructionOccurrenceSpecification_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
 			types.add(UMLElementTypes.DurationConstraint_3023);
@@ -873,7 +872,7 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 			types.add(UMLElementTypes.TimeConstraint_3019);
 			types.add(UMLElementTypes.TimeObservation_3020);
 			types.add(UMLElementTypes.DurationConstraint_3021);
-			types.add(UMLElementTypes.DestructionEvent_3022);
+			types.add(UMLElementTypes.DestructionOccurrenceSpecification_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
 			types.add(UMLElementTypes.DurationConstraint_3023);
@@ -893,7 +892,7 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 			types.add(UMLElementTypes.TimeConstraint_3019);
 			types.add(UMLElementTypes.TimeObservation_3020);
 			types.add(UMLElementTypes.DurationConstraint_3021);
-			types.add(UMLElementTypes.DestructionEvent_3022);
+			types.add(UMLElementTypes.DestructionOccurrenceSpecification_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
 			types.add(UMLElementTypes.DurationConstraint_3023);
@@ -913,7 +912,7 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 			types.add(UMLElementTypes.TimeConstraint_3019);
 			types.add(UMLElementTypes.TimeObservation_3020);
 			types.add(UMLElementTypes.DurationConstraint_3021);
-			types.add(UMLElementTypes.DestructionEvent_3022);
+			types.add(UMLElementTypes.DestructionOccurrenceSpecification_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
 			types.add(UMLElementTypes.DurationConstraint_3023);
@@ -959,7 +958,7 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 			types.add(UMLElementTypes.TimeConstraint_3019);
 			types.add(UMLElementTypes.TimeObservation_3020);
 			types.add(UMLElementTypes.DurationConstraint_3021);
-			types.add(UMLElementTypes.DestructionEvent_3022);
+			types.add(UMLElementTypes.DestructionOccurrenceSpecification_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
 			types.add(UMLElementTypes.DurationConstraint_3023);
@@ -979,7 +978,7 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 			types.add(UMLElementTypes.TimeConstraint_3019);
 			types.add(UMLElementTypes.TimeObservation_3020);
 			types.add(UMLElementTypes.DurationConstraint_3021);
-			types.add(UMLElementTypes.DestructionEvent_3022);
+			types.add(UMLElementTypes.DestructionOccurrenceSpecification_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
 			types.add(UMLElementTypes.DurationConstraint_3023);
@@ -999,7 +998,7 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 			types.add(UMLElementTypes.TimeConstraint_3019);
 			types.add(UMLElementTypes.TimeObservation_3020);
 			types.add(UMLElementTypes.DurationConstraint_3021);
-			types.add(UMLElementTypes.DestructionEvent_3022);
+			types.add(UMLElementTypes.DestructionOccurrenceSpecification_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
 			types.add(UMLElementTypes.DurationConstraint_3023);
@@ -1019,7 +1018,7 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 			types.add(UMLElementTypes.TimeConstraint_3019);
 			types.add(UMLElementTypes.TimeObservation_3020);
 			types.add(UMLElementTypes.DurationConstraint_3021);
-			types.add(UMLElementTypes.DestructionEvent_3022);
+			types.add(UMLElementTypes.DestructionOccurrenceSpecification_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
 			types.add(UMLElementTypes.DurationConstraint_3023);
@@ -1039,7 +1038,7 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 			types.add(UMLElementTypes.TimeConstraint_3019);
 			types.add(UMLElementTypes.TimeObservation_3020);
 			types.add(UMLElementTypes.DurationConstraint_3021);
-			types.add(UMLElementTypes.DestructionEvent_3022);
+			types.add(UMLElementTypes.DestructionOccurrenceSpecification_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
 			types.add(UMLElementTypes.DurationConstraint_3023);
@@ -1059,7 +1058,7 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 			types.add(UMLElementTypes.TimeConstraint_3019);
 			types.add(UMLElementTypes.TimeObservation_3020);
 			types.add(UMLElementTypes.DurationConstraint_3021);
-			types.add(UMLElementTypes.DestructionEvent_3022);
+			types.add(UMLElementTypes.DestructionOccurrenceSpecification_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
 			types.add(UMLElementTypes.DurationConstraint_3023);
@@ -1079,7 +1078,7 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 			types.add(UMLElementTypes.TimeConstraint_3019);
 			types.add(UMLElementTypes.TimeObservation_3020);
 			types.add(UMLElementTypes.DurationConstraint_3021);
-			types.add(UMLElementTypes.DestructionEvent_3022);
+			types.add(UMLElementTypes.DestructionOccurrenceSpecification_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
 			types.add(UMLElementTypes.DurationConstraint_3023);
@@ -1113,10 +1112,10 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 		List<InteractionOperandEditPart> children = new LinkedList<InteractionOperandEditPart>();
 
 		IGraphicalEditPart compartment = getChildBySemanticHint(String.valueOf(CombinedFragmentCombinedFragmentCompartmentEditPart.VISUAL_ID));
-		if (compartment instanceof CombinedFragmentCombinedFragmentCompartmentEditPart) {
+		if(compartment instanceof CombinedFragmentCombinedFragmentCompartmentEditPart) {
 
-			for (Object ep : compartment.getChildren()) {
-				if (ep instanceof InteractionOperandEditPart) {
+			for(Object ep : compartment.getChildren()) {
+				if(ep instanceof InteractionOperandEditPart) {
 					children.add((InteractionOperandEditPart)ep);
 				}
 			}
@@ -1148,7 +1147,7 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 				return;
 			}
 			// update guards on enclosed operands
-			for (InteractionOperandEditPart ioep : getOperandChildrenEditParts()) {
+			for(InteractionOperandEditPart ioep : getOperandChildrenEditParts()) {
 				ioep.getPrimaryShape().updateConstraintLabel();
 			}
 		} else if(UMLPackage.eINSTANCE.getCombinedFragment_Operand().equals(feature)) {

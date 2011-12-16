@@ -1,43 +1,24 @@
-/*****************************************************************************
- * Copyright (c) 2010 CEA.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *   Atos Origin - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
-import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.editpolicies.ResizableEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
-import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
-import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeConnectionRequest;
-import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeRequest;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
@@ -48,10 +29,9 @@ import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
-import org.eclipse.papyrus.uml.diagram.common.draw2d.anchors.CenterAnchor;
 import org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.DestructionEventComponentEditPolicy;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.DestructionEventItemSemanticEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.DestructionOccurrenceSpecificationItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.DestructionEventFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
@@ -60,7 +40,7 @@ import org.eclipse.swt.graphics.Color;
 /**
  * @generated
  */
-public class DestructionEventEditPart extends
+public class DestructionOccurrenceSpecificationEditPart extends
 
 AbstractBorderItemEditPart {
 
@@ -82,7 +62,7 @@ AbstractBorderItemEditPart {
 	/**
 	 * @generated
 	 */
-	public DestructionEventEditPart(View view) {
+	public DestructionOccurrenceSpecificationEditPart(View view) {
 		super(view);
 	}
 
@@ -91,10 +71,10 @@ AbstractBorderItemEditPart {
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, getPrimaryDragEditPolicy());
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DestructionEventItemSemanticEditPolicy());
-		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		installEditPolicy(EditPolicy.COMPONENT_ROLE, new DestructionEventComponentEditPolicy());
+		installEditPolicy(org.eclipse.gef.EditPolicy.PRIMARY_DRAG_ROLE, getPrimaryDragEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DestructionOccurrenceSpecificationItemSemanticEditPolicy());
+		installEditPolicy(org.eclipse.gef.EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
+		installEditPolicy(org.eclipse.gef.EditPolicy.COMPONENT_ROLE, new DestructionEventComponentEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -105,8 +85,8 @@ AbstractBorderItemEditPart {
 	protected LayoutEditPolicy createLayoutEditPolicy() {
 		org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy lep = new org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy() {
 
-			protected EditPolicy createChildEditPolicy(EditPart child) {
-				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
+			protected org.eclipse.gef.EditPolicy createChildEditPolicy(EditPart child) {
+				org.eclipse.gef.EditPolicy result = child.getEditPolicy(org.eclipse.gef.EditPolicy.PRIMARY_DRAG_ROLE);
 				if(result == null) {
 					result = new NonResizableEditPolicy();
 				}
@@ -142,12 +122,11 @@ AbstractBorderItemEditPart {
 	 * @generated
 	 */
 	protected NodeFigure createNodePlate() {
-		String prefElementId = "DestructionEvent";
+		String prefElementId = "DestructionOccurrenceSpecification";
 		IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
 		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
 		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
-
 
 		//FIXME: workaround for #154536
 		result.getBounds().setSize(result.getPreferredSize());
@@ -157,8 +136,8 @@ AbstractBorderItemEditPart {
 	/**
 	 * @generated
 	 */
-	public EditPolicy getPrimaryDragEditPolicy() {
-		EditPolicy result = super.getPrimaryDragEditPolicy();
+	public org.eclipse.gef.EditPolicy getPrimaryDragEditPolicy() {
+		org.eclipse.gef.EditPolicy result = super.getPrimaryDragEditPolicy();
 		if(result instanceof ResizableEditPolicy) {
 			ResizableEditPolicy ep = (ResizableEditPolicy)result;
 			ep.setResizeDirections(PositionConstants.NONE);
@@ -236,7 +215,7 @@ AbstractBorderItemEditPart {
 	 * @generated
 	 */
 	public List<IElementType> getMARelTypesOnSource() {
-		ArrayList<IElementType> types = new ArrayList<IElementType>(7);
+		ArrayList<IElementType> types = new ArrayList<IElementType>(8);
 		types.add(UMLElementTypes.Message_4003);
 		types.add(UMLElementTypes.Message_4004);
 		types.add(UMLElementTypes.Message_4005);
@@ -244,6 +223,7 @@ AbstractBorderItemEditPart {
 		types.add(UMLElementTypes.Message_4007);
 		types.add(UMLElementTypes.Message_4008);
 		types.add(UMLElementTypes.Message_4009);
+		types.add(UMLElementTypes.GeneralOrdering_4012);
 		return types;
 	}
 
@@ -294,7 +274,7 @@ AbstractBorderItemEditPart {
 		if(targetEditPart instanceof DurationConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4003);
 		}
-		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DestructionEventEditPart) {
+		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DestructionOccurrenceSpecificationEditPart) {
 			types.add(UMLElementTypes.Message_4003);
 		}
 		if(targetEditPart instanceof ConstraintEditPart) {
@@ -351,7 +331,7 @@ AbstractBorderItemEditPart {
 		if(targetEditPart instanceof DurationConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4004);
 		}
-		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DestructionEventEditPart) {
+		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DestructionOccurrenceSpecificationEditPart) {
 			types.add(UMLElementTypes.Message_4004);
 		}
 		if(targetEditPart instanceof ConstraintEditPart) {
@@ -408,7 +388,7 @@ AbstractBorderItemEditPart {
 		if(targetEditPart instanceof DurationConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4005);
 		}
-		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DestructionEventEditPart) {
+		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DestructionOccurrenceSpecificationEditPart) {
 			types.add(UMLElementTypes.Message_4005);
 		}
 		if(targetEditPart instanceof ConstraintEditPart) {
@@ -465,7 +445,7 @@ AbstractBorderItemEditPart {
 		if(targetEditPart instanceof DurationConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4006);
 		}
-		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DestructionEventEditPart) {
+		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DestructionOccurrenceSpecificationEditPart) {
 			types.add(UMLElementTypes.Message_4006);
 		}
 		if(targetEditPart instanceof ConstraintEditPart) {
@@ -522,7 +502,7 @@ AbstractBorderItemEditPart {
 		if(targetEditPart instanceof DurationConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4007);
 		}
-		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DestructionEventEditPart) {
+		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DestructionOccurrenceSpecificationEditPart) {
 			types.add(UMLElementTypes.Message_4007);
 		}
 		if(targetEditPart instanceof ConstraintEditPart) {
@@ -579,7 +559,7 @@ AbstractBorderItemEditPart {
 		if(targetEditPart instanceof DurationConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4008);
 		}
-		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DestructionEventEditPart) {
+		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DestructionOccurrenceSpecificationEditPart) {
 			types.add(UMLElementTypes.Message_4008);
 		}
 		if(targetEditPart instanceof ConstraintEditPart) {
@@ -636,7 +616,7 @@ AbstractBorderItemEditPart {
 		if(targetEditPart instanceof DurationConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4009);
 		}
-		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DestructionEventEditPart) {
+		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DestructionOccurrenceSpecificationEditPart) {
 			types.add(UMLElementTypes.Message_4009);
 		}
 		if(targetEditPart instanceof ConstraintEditPart) {
@@ -650,6 +630,9 @@ AbstractBorderItemEditPart {
 		}
 		if(targetEditPart instanceof DurationObservationEditPart) {
 			types.add(UMLElementTypes.Message_4009);
+		}
+		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DestructionOccurrenceSpecificationEditPart) {
+			types.add(UMLElementTypes.GeneralOrdering_4012);
 		}
 		return types;
 	}
@@ -674,7 +657,7 @@ AbstractBorderItemEditPart {
 			types.add(UMLElementTypes.TimeConstraint_3019);
 			types.add(UMLElementTypes.TimeObservation_3020);
 			types.add(UMLElementTypes.DurationConstraint_3021);
-			types.add(UMLElementTypes.DestructionEvent_3022);
+			types.add(UMLElementTypes.DestructionOccurrenceSpecification_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
 			types.add(UMLElementTypes.DurationConstraint_3023);
@@ -694,7 +677,7 @@ AbstractBorderItemEditPart {
 			types.add(UMLElementTypes.TimeConstraint_3019);
 			types.add(UMLElementTypes.TimeObservation_3020);
 			types.add(UMLElementTypes.DurationConstraint_3021);
-			types.add(UMLElementTypes.DestructionEvent_3022);
+			types.add(UMLElementTypes.DestructionOccurrenceSpecification_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
 			types.add(UMLElementTypes.DurationConstraint_3023);
@@ -714,7 +697,7 @@ AbstractBorderItemEditPart {
 			types.add(UMLElementTypes.TimeConstraint_3019);
 			types.add(UMLElementTypes.TimeObservation_3020);
 			types.add(UMLElementTypes.DurationConstraint_3021);
-			types.add(UMLElementTypes.DestructionEvent_3022);
+			types.add(UMLElementTypes.DestructionOccurrenceSpecification_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
 			types.add(UMLElementTypes.DurationConstraint_3023);
@@ -734,7 +717,7 @@ AbstractBorderItemEditPart {
 			types.add(UMLElementTypes.TimeConstraint_3019);
 			types.add(UMLElementTypes.TimeObservation_3020);
 			types.add(UMLElementTypes.DurationConstraint_3021);
-			types.add(UMLElementTypes.DestructionEvent_3022);
+			types.add(UMLElementTypes.DestructionOccurrenceSpecification_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
 			types.add(UMLElementTypes.DurationConstraint_3023);
@@ -754,7 +737,7 @@ AbstractBorderItemEditPart {
 			types.add(UMLElementTypes.TimeConstraint_3019);
 			types.add(UMLElementTypes.TimeObservation_3020);
 			types.add(UMLElementTypes.DurationConstraint_3021);
-			types.add(UMLElementTypes.DestructionEvent_3022);
+			types.add(UMLElementTypes.DestructionOccurrenceSpecification_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
 			types.add(UMLElementTypes.DurationConstraint_3023);
@@ -774,7 +757,7 @@ AbstractBorderItemEditPart {
 			types.add(UMLElementTypes.TimeConstraint_3019);
 			types.add(UMLElementTypes.TimeObservation_3020);
 			types.add(UMLElementTypes.DurationConstraint_3021);
-			types.add(UMLElementTypes.DestructionEvent_3022);
+			types.add(UMLElementTypes.DestructionOccurrenceSpecification_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
 			types.add(UMLElementTypes.DurationConstraint_3023);
@@ -794,11 +777,13 @@ AbstractBorderItemEditPart {
 			types.add(UMLElementTypes.TimeConstraint_3019);
 			types.add(UMLElementTypes.TimeObservation_3020);
 			types.add(UMLElementTypes.DurationConstraint_3021);
-			types.add(UMLElementTypes.DestructionEvent_3022);
+			types.add(UMLElementTypes.DestructionOccurrenceSpecification_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
 			types.add(UMLElementTypes.DurationConstraint_3023);
 			types.add(UMLElementTypes.DurationObservation_3024);
+		} else if(relationshipType == UMLElementTypes.GeneralOrdering_4012) {
+			types.add(UMLElementTypes.DestructionOccurrenceSpecification_3022);
 		}
 		return types;
 	}
@@ -807,7 +792,7 @@ AbstractBorderItemEditPart {
 	 * @generated
 	 */
 	public List<IElementType> getMARelTypesOnTarget() {
-		ArrayList<IElementType> types = new ArrayList<IElementType>(9);
+		ArrayList<IElementType> types = new ArrayList<IElementType>(10);
 		types.add(UMLElementTypes.Message_4003);
 		types.add(UMLElementTypes.Message_4004);
 		types.add(UMLElementTypes.Message_4005);
@@ -817,6 +802,7 @@ AbstractBorderItemEditPart {
 		types.add(UMLElementTypes.Message_4009);
 		types.add(UMLElementTypes.CommentAnnotatedElement_4010);
 		types.add(UMLElementTypes.ConstraintConstrainedElement_4011);
+		types.add(UMLElementTypes.GeneralOrdering_4012);
 		return types;
 	}
 
@@ -840,7 +826,7 @@ AbstractBorderItemEditPart {
 			types.add(UMLElementTypes.TimeConstraint_3019);
 			types.add(UMLElementTypes.TimeObservation_3020);
 			types.add(UMLElementTypes.DurationConstraint_3021);
-			types.add(UMLElementTypes.DestructionEvent_3022);
+			types.add(UMLElementTypes.DestructionOccurrenceSpecification_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
 			types.add(UMLElementTypes.DurationConstraint_3023);
@@ -860,7 +846,7 @@ AbstractBorderItemEditPart {
 			types.add(UMLElementTypes.TimeConstraint_3019);
 			types.add(UMLElementTypes.TimeObservation_3020);
 			types.add(UMLElementTypes.DurationConstraint_3021);
-			types.add(UMLElementTypes.DestructionEvent_3022);
+			types.add(UMLElementTypes.DestructionOccurrenceSpecification_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
 			types.add(UMLElementTypes.DurationConstraint_3023);
@@ -880,7 +866,7 @@ AbstractBorderItemEditPart {
 			types.add(UMLElementTypes.TimeConstraint_3019);
 			types.add(UMLElementTypes.TimeObservation_3020);
 			types.add(UMLElementTypes.DurationConstraint_3021);
-			types.add(UMLElementTypes.DestructionEvent_3022);
+			types.add(UMLElementTypes.DestructionOccurrenceSpecification_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
 			types.add(UMLElementTypes.DurationConstraint_3023);
@@ -900,7 +886,7 @@ AbstractBorderItemEditPart {
 			types.add(UMLElementTypes.TimeConstraint_3019);
 			types.add(UMLElementTypes.TimeObservation_3020);
 			types.add(UMLElementTypes.DurationConstraint_3021);
-			types.add(UMLElementTypes.DestructionEvent_3022);
+			types.add(UMLElementTypes.DestructionOccurrenceSpecification_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
 			types.add(UMLElementTypes.DurationConstraint_3023);
@@ -920,7 +906,7 @@ AbstractBorderItemEditPart {
 			types.add(UMLElementTypes.TimeConstraint_3019);
 			types.add(UMLElementTypes.TimeObservation_3020);
 			types.add(UMLElementTypes.DurationConstraint_3021);
-			types.add(UMLElementTypes.DestructionEvent_3022);
+			types.add(UMLElementTypes.DestructionOccurrenceSpecification_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
 			types.add(UMLElementTypes.DurationConstraint_3023);
@@ -940,7 +926,7 @@ AbstractBorderItemEditPart {
 			types.add(UMLElementTypes.TimeConstraint_3019);
 			types.add(UMLElementTypes.TimeObservation_3020);
 			types.add(UMLElementTypes.DurationConstraint_3021);
-			types.add(UMLElementTypes.DestructionEvent_3022);
+			types.add(UMLElementTypes.DestructionOccurrenceSpecification_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
 			types.add(UMLElementTypes.DurationConstraint_3023);
@@ -960,7 +946,7 @@ AbstractBorderItemEditPart {
 			types.add(UMLElementTypes.TimeConstraint_3019);
 			types.add(UMLElementTypes.TimeObservation_3020);
 			types.add(UMLElementTypes.DurationConstraint_3021);
-			types.add(UMLElementTypes.DestructionEvent_3022);
+			types.add(UMLElementTypes.DestructionOccurrenceSpecification_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
 			types.add(UMLElementTypes.DurationConstraint_3023);
@@ -972,6 +958,8 @@ AbstractBorderItemEditPart {
 			types.add(UMLElementTypes.DurationConstraint_3021);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.DurationConstraint_3023);
+		} else if(relationshipType == UMLElementTypes.GeneralOrdering_4012) {
+			types.add(UMLElementTypes.DestructionOccurrenceSpecification_3022);
 		}
 		return types;
 	}
@@ -987,15 +975,15 @@ AbstractBorderItemEditPart {
 		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 			String prefColor = null;
 			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
-				prefColor = PreferenceConstantHelper.getElementConstant("DestructionEvent", PreferenceConstantHelper.COLOR_LINE);
+				prefColor = PreferenceConstantHelper.getElementConstant("DestructionOccurrenceSpecification", PreferenceConstantHelper.COLOR_LINE);
 			} else if(feature == NotationPackage.eINSTANCE.getFontStyle_FontColor()) {
-				prefColor = PreferenceConstantHelper.getElementConstant("DestructionEvent", PreferenceConstantHelper.COLOR_FONT);
+				prefColor = PreferenceConstantHelper.getElementConstant("DestructionOccurrenceSpecification", PreferenceConstantHelper.COLOR_FONT);
 			} else if(feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
-				prefColor = PreferenceConstantHelper.getElementConstant("DestructionEvent", PreferenceConstantHelper.COLOR_FILL);
+				prefColor = PreferenceConstantHelper.getElementConstant("DestructionOccurrenceSpecification", PreferenceConstantHelper.COLOR_FILL);
 			}
 			result = FigureUtilities.RGBToInteger(PreferenceConverter.getColor((IPreferenceStore)preferenceStore, prefColor));
 		} else if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency() || feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
-			String prefGradient = PreferenceConstantHelper.getElementConstant("DestructionEvent", PreferenceConstantHelper.COLOR_GRADIENT);
+			String prefGradient = PreferenceConstantHelper.getElementConstant("DestructionOccurrenceSpecification", PreferenceConstantHelper.COLOR_GRADIENT);
 			GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(preferenceStore.getString(prefGradient));
 			if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency()) {
 				result = new Integer(gradientPreferenceConverter.getTransparency());
@@ -1009,76 +997,4 @@ AbstractBorderItemEditPart {
 		}
 		return result;
 	}
-
-	/**
-	 * @generated NOT Override for redirecting creation request to the lifeline
-	 */
-	@Override
-	public Command getCommand(Request request) {
-		if(request instanceof CreateUnspecifiedTypeRequest) {
-			return getParent().getCommand(request);
-		}
-		return super.getCommand(request);
-	}
-
-	/**
-	 * @generated NOT Override for redirecting creation request to the lifeline
-	 */
-	@Override
-	public void showSourceFeedback(Request request) {
-		if(request instanceof CreateUnspecifiedTypeRequest) {
-			getParent().showSourceFeedback(request);
-		}
-		super.showSourceFeedback(request);
-	}
-
-	/**
-	 * @generated NOT Override for redirecting creation request to the lifeline
-	 */
-	@Override
-	public void eraseSourceFeedback(Request request) {
-		if(request instanceof CreateUnspecifiedTypeRequest) {
-			getParent().eraseSourceFeedback(request);
-		}
-		super.eraseSourceFeedback(request);
-	}
-
-	/**
-	 * Create specific anchor to handle connection on center of the DestructionEvent figure
-	 */
-	@Override
-	public ConnectionAnchor getTargetConnectionAnchor(Request request) {
-		if(request instanceof CreateUnspecifiedTypeConnectionRequest) {
-			CreateUnspecifiedTypeConnectionRequest createRequest = (CreateUnspecifiedTypeConnectionRequest)request;
-			List<?> relationshipTypes = createRequest.getElementTypes();
-			for(Object obj : relationshipTypes) {
-				if(UMLElementTypes.Message_4007.equals(obj)) {
-					// Delete Message
-					return new CenterAnchor(getPrimaryShape());
-				}
-			}
-		} else if(request instanceof ReconnectRequest) {
-			ReconnectRequest reconnectRequest = (ReconnectRequest)request;
-			ConnectionEditPart connectionEditPart = reconnectRequest.getConnectionEditPart();
-			if(connectionEditPart instanceof Message5EditPart) {
-				// Delete Message
-				return new CenterAnchor(getPrimaryShape());
-			}
-		}
-
-		return super.getTargetConnectionAnchor(request);
-	}
-
-	/**
-	 * Create specific anchor to handle connection on center of the DestructionEvent figure
-	 */
-	@Override
-	public ConnectionAnchor getTargetConnectionAnchor(ConnectionEditPart connEditPart) {
-		if(connEditPart instanceof Message5EditPart) {
-			return new CenterAnchor(getPrimaryShape());
-		}
-		return super.getTargetConnectionAnchor(connEditPart);
-
-	}
-
 }

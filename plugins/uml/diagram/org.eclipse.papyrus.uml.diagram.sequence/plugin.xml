@@ -225,7 +225,25 @@
          <Priority name="Lowest"/>
          <object class="org.eclipse.papyrus.uml.diagram.sequence.edit.parts.PackageEditPart" id="Package_1000"/>
          <object class="org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionEditPart" id="Interaction_2001"/>
-         <context elements="Package_1000,Interaction_2001"/>
+         <object class="org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ConsiderIgnoreFragmentEditPart" id="ConsiderIgnoreFragment_3007"/>
+         <object class="org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart" id="CombinedFragment_3004"/>
+         <object class="org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandEditPart" id="InteractionOperand_3005"/>
+         <object class="org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionUseEditPart" id="InteractionUse_3002"/>
+         <object class="org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ContinuationEditPart" id="Continuation_3016"/>
+         <object class="org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart" id="Lifeline_3001"/>
+         <object class="org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ActionExecutionSpecificationEditPart" id="ActionExecutionSpecification_3006"/>
+         <object class="org.eclipse.papyrus.uml.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart" id="BehaviorExecutionSpecification_3003"/>
+         <object class="org.eclipse.papyrus.uml.diagram.sequence.edit.parts.StateInvariantEditPart" id="StateInvariant_3017"/>
+         <object class="org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragment2EditPart" id="CombinedFragment_3018"/>
+         <object class="org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeConstraintEditPart" id="TimeConstraint_3019"/>
+         <object class="org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationEditPart" id="TimeObservation_3020"/>
+         <object class="org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationConstraintEditPart" id="DurationConstraint_3021"/>
+         <object class="org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DestructionOccurrenceSpecificationEditPart" id="DestructionOccurrenceSpecification_3022"/>
+         <object class="org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ConstraintEditPart" id="Constraint_3008"/>
+         <object class="org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CommentEditPart" id="Comment_3009"/>
+         <object class="org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationConstraintInMessageEditPart" id="DurationConstraint_3023"/>
+         <object class="org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationObservationEditPart" id="DurationObservation_3024"/>
+         <context elements="Package_1000,Interaction_2001,ConsiderIgnoreFragment_3007,CombinedFragment_3004,InteractionOperand_3005,InteractionUse_3002,Continuation_3016,Lifeline_3001,ActionExecutionSpecification_3006,BehaviorExecutionSpecification_3003,StateInvariant_3017,CombinedFragment_3018,TimeConstraint_3019,TimeObservation_3020,DurationConstraint_3021,DestructionOccurrenceSpecification_3022,Constraint_3008,Comment_3009,DurationConstraint_3023,DurationObservation_3024"/>
       </modelingAssistantProvider>
    </extension>
 
@@ -245,7 +263,7 @@
 
    <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes" id="element-types">
       <?gmfgen generated="true"?>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.sequence.Package_1000"
                name="%metatype.name.Package_1000"
@@ -255,7 +273,7 @@
             <param name="semanticHint" value="1000"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.sequence.Interaction_2001"
                name="%metatype.name.Interaction_2001"
@@ -265,7 +283,7 @@
             <param name="semanticHint" value="2001"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.sequence.ConsiderIgnoreFragment_3007"
                name="%metatype.name.ConsiderIgnoreFragment_3007"
@@ -275,7 +293,7 @@
             <param name="semanticHint" value="3007"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.sequence.CombinedFragment_3004"
                name="%metatype.name.CombinedFragment_3004"
@@ -285,7 +303,7 @@
             <param name="semanticHint" value="3004"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.sequence.InteractionOperand_3005"
                name="%metatype.name.InteractionOperand_3005"
@@ -295,7 +313,7 @@
             <param name="semanticHint" value="3005"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.sequence.InteractionUse_3002"
                name="%metatype.name.InteractionUse_3002"
@@ -305,7 +323,7 @@
             <param name="semanticHint" value="3002"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.sequence.Continuation_3016"
                name="%metatype.name.Continuation_3016"
@@ -315,7 +333,7 @@
             <param name="semanticHint" value="3016"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.sequence.Lifeline_3001"
                name="%metatype.name.Lifeline_3001"
@@ -325,7 +343,7 @@
             <param name="semanticHint" value="3001"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.sequence.ActionExecutionSpecification_3006"
                name="%metatype.name.ActionExecutionSpecification_3006"
@@ -335,7 +353,7 @@
             <param name="semanticHint" value="3006"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.sequence.BehaviorExecutionSpecification_3003"
                name="%metatype.name.BehaviorExecutionSpecification_3003"
@@ -345,7 +363,7 @@
             <param name="semanticHint" value="3003"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.sequence.StateInvariant_3017"
                name="%metatype.name.StateInvariant_3017"
@@ -355,7 +373,7 @@
             <param name="semanticHint" value="3017"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.sequence.CombinedFragment_3018"
                name="%metatype.name.CombinedFragment_3018"
@@ -364,7 +382,7 @@
             <param name="semanticHint" value="3018"/>
          </specializationType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.sequence.TimeConstraint_3019"
                name="%metatype.name.TimeConstraint_3019"
@@ -374,7 +392,7 @@
             <param name="semanticHint" value="3019"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.sequence.TimeObservation_3020"
                name="%metatype.name.TimeObservation_3020"
@@ -384,7 +402,7 @@
             <param name="semanticHint" value="3020"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.sequence.DurationConstraint_3021"
                name="%metatype.name.DurationConstraint_3021"
@@ -394,17 +412,17 @@
             <param name="semanticHint" value="3021"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.sequence.DestructionEvent_3022"
-               name="%metatype.name.DestructionEvent_3022"
+               id="org.eclipse.papyrus.uml.diagram.sequence.DestructionOccurrenceSpecification_3022"
+               name="%metatype.name.DestructionOccurrenceSpecification_3022"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="DestructionEvent"
+               eclass="DestructionOccurrenceSpecification"
                edithelper="org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.DestructionEventEditHelper">
             <param name="semanticHint" value="3022"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.sequence.Constraint_3008"
                name="%metatype.name.Constraint_3008"
@@ -414,7 +432,7 @@
             <param name="semanticHint" value="3008"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.sequence.Comment_3009"
                name="%metatype.name.Comment_3009"
@@ -424,7 +442,7 @@
             <param name="semanticHint" value="3009"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.sequence.DurationConstraint_3023"
                name="%metatype.name.DurationConstraint_3023"
@@ -433,7 +451,7 @@
             <param name="semanticHint" value="3023"/>
          </specializationType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.sequence.DurationObservation_3024"
                name="%metatype.name.DurationObservation_3024"
@@ -443,7 +461,7 @@
             <param name="semanticHint" value="3024"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.sequence.Message_4003"
                name="%metatype.name.Message_4003"
@@ -453,7 +471,7 @@
             <param name="semanticHint" value="4003"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.sequence.Message_4004"
                name="%metatype.name.Message_4004"
@@ -462,7 +480,7 @@
             <param name="semanticHint" value="4004"/>
          </specializationType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.sequence.Message_4005"
                name="%metatype.name.Message_4005"
@@ -471,7 +489,7 @@
             <param name="semanticHint" value="4005"/>
          </specializationType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.sequence.Message_4006"
                name="%metatype.name.Message_4006"
@@ -480,7 +498,7 @@
             <param name="semanticHint" value="4006"/>
          </specializationType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.sequence.Message_4007"
                name="%metatype.name.Message_4007"
@@ -489,7 +507,7 @@
             <param name="semanticHint" value="4007"/>
          </specializationType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.sequence.Message_4008"
                name="%metatype.name.Message_4008"
@@ -498,7 +516,7 @@
             <param name="semanticHint" value="4008"/>
          </specializationType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.sequence.Message_4009"
                name="%metatype.name.Message_4009"
@@ -507,7 +525,7 @@
             <param name="semanticHint" value="4009"/>
          </specializationType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.sequence.CommentAnnotatedElement_4010"
                name="%metatype.name.CommentAnnotatedElement_4010"
@@ -516,7 +534,7 @@
             <param name="semanticHint" value="4010"/>
          </specializationType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.sequence.ConstraintConstrainedElement_4011"
                name="%metatype.name.ConstraintConstrainedElement_4011"
@@ -525,7 +543,7 @@
             <param name="semanticHint" value="4011"/>
          </specializationType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.sequence.GeneralOrdering_4012"
                name="%metatype.name.GeneralOrdering_4012"
@@ -562,7 +580,7 @@
          <elementType ref="org.eclipse.papyrus.uml.diagram.sequence.TimeConstraint_3019"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.sequence.TimeObservation_3020"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.sequence.DurationConstraint_3021"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.sequence.DestructionEvent_3022"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.sequence.DestructionOccurrenceSpecification_3022"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.sequence.Constraint_3008"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.sequence.Comment_3009"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.sequence.DurationConstraint_3023"/>
@@ -778,6 +796,20 @@
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLSequenceDiagram"
+			class="org.eclipse.papyrus.uml.diagram.sequence.preferences.InteractionPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.sequence.preferences.InteractionPreferencePage"
+            name="Interaction Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLSequenceDiagram"
+			class="org.eclipse.papyrus.uml.diagram.sequence.preferences.TimeConstraintPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.sequence.preferences.TimeConstraintPreferencePage"
+            name="TimeConstraint Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLSequenceDiagram"
 			class="org.eclipse.papyrus.uml.diagram.sequence.preferences.TimeObservationPreferencePage"
             id="org.eclipse.papyrus.uml.diagram.sequence.preferences.TimeObservationPreferencePage"
             name="TimeObservation Node" />
@@ -792,9 +824,23 @@
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLSequenceDiagram"
-			class="org.eclipse.papyrus.uml.diagram.sequence.preferences.StateInvariantPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.sequence.preferences.StateInvariantPreferencePage"
-            name="StateInvariant Node" />
+			class="org.eclipse.papyrus.uml.diagram.sequence.preferences.ConstraintPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.sequence.preferences.ConstraintPreferencePage"
+            name="Constraint Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLSequenceDiagram"
+			class="org.eclipse.papyrus.uml.diagram.sequence.preferences.LifelinePreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.sequence.preferences.LifelinePreferencePage"
+            name="Lifeline Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLSequenceDiagram"
+			class="org.eclipse.papyrus.uml.diagram.sequence.preferences.InteractionUsePreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.sequence.preferences.InteractionUsePreferencePage"
+            name="InteractionUse Node" />
 	
 		
 	<?gmfgen generated="true"?>
@@ -806,9 +852,23 @@
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLSequenceDiagram"
-			class="org.eclipse.papyrus.uml.diagram.sequence.preferences.ConstraintPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.sequence.preferences.ConstraintPreferencePage"
-            name="Constraint Node" />
+			class="org.eclipse.papyrus.uml.diagram.sequence.preferences.DurationConstraintPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.sequence.preferences.DurationConstraintPreferencePage"
+            name="DurationConstraint Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLSequenceDiagram"
+			class="org.eclipse.papyrus.uml.diagram.sequence.preferences.BehaviorExecutionSpecificationPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.sequence.preferences.BehaviorExecutionSpecificationPreferencePage"
+            name="BehaviorExecutionSpecification Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLSequenceDiagram"
+			class="org.eclipse.papyrus.uml.diagram.sequence.preferences.DurationObservationPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.sequence.preferences.DurationObservationPreferencePage"
+            name="DurationObservation Node" />
 	
 		
 	<?gmfgen generated="true"?>
@@ -827,37 +887,23 @@
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLSequenceDiagram"
-			class="org.eclipse.papyrus.uml.diagram.sequence.preferences.DestructionEventPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.sequence.preferences.DestructionEventPreferencePage"
-            name="DestructionEvent Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLSequenceDiagram"
-			class="org.eclipse.papyrus.uml.diagram.sequence.preferences.InteractionPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.sequence.preferences.InteractionPreferencePage"
-            name="Interaction Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLSequenceDiagram"
-			class="org.eclipse.papyrus.uml.diagram.sequence.preferences.DurationConstraintPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.sequence.preferences.DurationConstraintPreferencePage"
-            name="DurationConstraint Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLSequenceDiagram"
-			class="org.eclipse.papyrus.uml.diagram.sequence.preferences.InteractionUsePreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.sequence.preferences.InteractionUsePreferencePage"
-            name="InteractionUse Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLSequenceDiagram"
 			class="org.eclipse.papyrus.uml.diagram.sequence.preferences.ContinuationPreferencePage"
             id="org.eclipse.papyrus.uml.diagram.sequence.preferences.ContinuationPreferencePage"
             name="Continuation Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLSequenceDiagram"
+			class="org.eclipse.papyrus.uml.diagram.sequence.preferences.StateInvariantPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.sequence.preferences.StateInvariantPreferencePage"
+            name="StateInvariant Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLSequenceDiagram"
+			class="org.eclipse.papyrus.uml.diagram.sequence.preferences.DestructionOccurrenceSpecificationPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.sequence.preferences.DestructionOccurrenceSpecificationPreferencePage"
+            name="DestructionOccurrenceSpecification Node" />
 	
 		
 	<?gmfgen generated="true"?>
@@ -866,38 +912,8 @@
             id="org.eclipse.papyrus.uml.diagram.sequence.preferences.ConsiderIgnoreFragmentPreferencePage"
             name="ConsiderIgnoreFragment Node" />
 	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLSequenceDiagram"
-			class="org.eclipse.papyrus.uml.diagram.sequence.preferences.DurationObservationPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.sequence.preferences.DurationObservationPreferencePage"
-            name="DurationObservation Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLSequenceDiagram"
-			class="org.eclipse.papyrus.uml.diagram.sequence.preferences.TimeConstraintPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.sequence.preferences.TimeConstraintPreferencePage"
-            name="TimeConstraint Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLSequenceDiagram"
-			class="org.eclipse.papyrus.uml.diagram.sequence.preferences.LifelinePreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.sequence.preferences.LifelinePreferencePage"
-            name="Lifeline Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLSequenceDiagram"
-			class="org.eclipse.papyrus.uml.diagram.sequence.preferences.BehaviorExecutionSpecificationPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.sequence.preferences.BehaviorExecutionSpecificationPreferencePage"
-            name="BehaviorExecutionSpecification Node" />
-	
 
 
-		
-		
 		
 
 	<?gmfgen generated="true"?>
@@ -913,6 +929,8 @@
 			class="org.eclipse.papyrus.uml.diagram.sequence.preferences.GeneralOrderingPreferencePage"
             id="org.eclipse.papyrus.uml.diagram.sequence.preferences.GeneralOrderingPreferencePage"
             name="GeneralOrdering Link" />
+		
+		
 		
 
 </extension>

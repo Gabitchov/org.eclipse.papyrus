@@ -32,7 +32,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.CommentAnnotatedEl
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.CommentAnnotatedElementReorientCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.ConstraintConstrainedElementCreateCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.ConstraintConstrainedElementReorientCommand;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.DestructionEventCreateCommand;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.DestructionOccurrenceSpecificationCreateCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.DurationConstraintCreateCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.DurationObservationCreateCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.GeneralOrderingCreateCommand;
@@ -109,8 +109,8 @@ public class LifelineItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 		if(UMLElementTypes.DurationConstraint_3021 == req.getElementType()) {
 			return getGEFWrapper(new DurationConstraintCreateCommand(req));
 		}
-		if(UMLElementTypes.DestructionEvent_3022 == req.getElementType()) {
-			return getGEFWrapper(new DestructionEventCreateCommand(req));
+		if(UMLElementTypes.DestructionOccurrenceSpecification_3022 == req.getElementType()) {
+			return getGEFWrapper(new DestructionOccurrenceSpecificationCreateCommand(req));
 		}
 		//add lifelines
 		if(UMLElementTypes.Lifeline_3001 == req.getElementType()) {

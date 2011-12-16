@@ -171,7 +171,6 @@ public class LifelineEditPart extends NamedElementEditPart {
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new LifelineItemSemanticEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 
-
 		//in Papyrus diagrams are not strongly synchronised
 		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.sequence.edit.policies.LifelineCanonicalEditPolicy());
 
@@ -199,7 +198,7 @@ public class LifelineEditPart extends NamedElementEditPart {
 				case TimeConstraintEditPart.VISUAL_ID:
 				case TimeObservationEditPart.VISUAL_ID:
 				case DurationConstraintEditPart.VISUAL_ID:
-				case DestructionEventEditPart.VISUAL_ID:
+				case DestructionOccurrenceSpecificationEditPart.VISUAL_ID:
 
 					return new BorderItemResizableEditPolicy();
 
@@ -273,9 +272,9 @@ public class LifelineEditPart extends NamedElementEditPart {
 		}
 
 		//Papyrus Gencode :Specific locator for the destructionEvent
-		if(childEditPart instanceof DestructionEventEditPart) {
+		if(childEditPart instanceof DestructionOccurrenceSpecificationEditPart) {
 			IBorderItemLocator locator = new CenterLocator(getMainFigure(), PositionConstants.SOUTH);
-			getBorderedFigure().getBorderItemContainer().add(((DestructionEventEditPart)childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer().add(((DestructionOccurrenceSpecificationEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
 
@@ -311,8 +310,8 @@ public class LifelineEditPart extends NamedElementEditPart {
 			getBorderedFigure().getBorderItemContainer().remove(((DurationConstraintEditPart)childEditPart).getFigure());
 			return true;
 		}
-		if(childEditPart instanceof DestructionEventEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((DestructionEventEditPart)childEditPart).getFigure());
+		if(childEditPart instanceof DestructionOccurrenceSpecificationEditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(((DestructionOccurrenceSpecificationEditPart)childEditPart).getFigure());
 			return true;
 		}
 		return false;
@@ -528,7 +527,7 @@ public class LifelineEditPart extends NamedElementEditPart {
 		if(targetEditPart instanceof DurationConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4003);
 		}
-		if(targetEditPart instanceof DestructionEventEditPart) {
+		if(targetEditPart instanceof DestructionOccurrenceSpecificationEditPart) {
 			types.add(UMLElementTypes.Message_4003);
 		}
 		if(targetEditPart instanceof ConstraintEditPart) {
@@ -585,7 +584,7 @@ public class LifelineEditPart extends NamedElementEditPart {
 		if(targetEditPart instanceof DurationConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4004);
 		}
-		if(targetEditPart instanceof DestructionEventEditPart) {
+		if(targetEditPart instanceof DestructionOccurrenceSpecificationEditPart) {
 			types.add(UMLElementTypes.Message_4004);
 		}
 		if(targetEditPart instanceof ConstraintEditPart) {
@@ -642,7 +641,7 @@ public class LifelineEditPart extends NamedElementEditPart {
 		if(targetEditPart instanceof DurationConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4005);
 		}
-		if(targetEditPart instanceof DestructionEventEditPart) {
+		if(targetEditPart instanceof DestructionOccurrenceSpecificationEditPart) {
 			types.add(UMLElementTypes.Message_4005);
 		}
 		if(targetEditPart instanceof ConstraintEditPart) {
@@ -699,7 +698,7 @@ public class LifelineEditPart extends NamedElementEditPart {
 		if(targetEditPart instanceof DurationConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4006);
 		}
-		if(targetEditPart instanceof DestructionEventEditPart) {
+		if(targetEditPart instanceof DestructionOccurrenceSpecificationEditPart) {
 			types.add(UMLElementTypes.Message_4006);
 		}
 		if(targetEditPart instanceof ConstraintEditPart) {
@@ -756,7 +755,7 @@ public class LifelineEditPart extends NamedElementEditPart {
 		if(targetEditPart instanceof DurationConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4007);
 		}
-		if(targetEditPart instanceof DestructionEventEditPart) {
+		if(targetEditPart instanceof DestructionOccurrenceSpecificationEditPart) {
 			types.add(UMLElementTypes.Message_4007);
 		}
 		if(targetEditPart instanceof ConstraintEditPart) {
@@ -813,7 +812,7 @@ public class LifelineEditPart extends NamedElementEditPart {
 		if(targetEditPart instanceof DurationConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4008);
 		}
-		if(targetEditPart instanceof DestructionEventEditPart) {
+		if(targetEditPart instanceof DestructionOccurrenceSpecificationEditPart) {
 			types.add(UMLElementTypes.Message_4008);
 		}
 		if(targetEditPart instanceof ConstraintEditPart) {
@@ -870,7 +869,7 @@ public class LifelineEditPart extends NamedElementEditPart {
 		if(targetEditPart instanceof DurationConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4009);
 		}
-		if(targetEditPart instanceof DestructionEventEditPart) {
+		if(targetEditPart instanceof DestructionOccurrenceSpecificationEditPart) {
 			types.add(UMLElementTypes.Message_4009);
 		}
 		if(targetEditPart instanceof ConstraintEditPart) {
@@ -908,7 +907,7 @@ public class LifelineEditPart extends NamedElementEditPart {
 			types.add(UMLElementTypes.TimeConstraint_3019);
 			types.add(UMLElementTypes.TimeObservation_3020);
 			types.add(UMLElementTypes.DurationConstraint_3021);
-			types.add(UMLElementTypes.DestructionEvent_3022);
+			types.add(UMLElementTypes.DestructionOccurrenceSpecification_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
 			types.add(UMLElementTypes.DurationConstraint_3023);
@@ -928,7 +927,7 @@ public class LifelineEditPart extends NamedElementEditPart {
 			types.add(UMLElementTypes.TimeConstraint_3019);
 			types.add(UMLElementTypes.TimeObservation_3020);
 			types.add(UMLElementTypes.DurationConstraint_3021);
-			types.add(UMLElementTypes.DestructionEvent_3022);
+			types.add(UMLElementTypes.DestructionOccurrenceSpecification_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
 			types.add(UMLElementTypes.DurationConstraint_3023);
@@ -948,7 +947,7 @@ public class LifelineEditPart extends NamedElementEditPart {
 			types.add(UMLElementTypes.TimeConstraint_3019);
 			types.add(UMLElementTypes.TimeObservation_3020);
 			types.add(UMLElementTypes.DurationConstraint_3021);
-			types.add(UMLElementTypes.DestructionEvent_3022);
+			types.add(UMLElementTypes.DestructionOccurrenceSpecification_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
 			types.add(UMLElementTypes.DurationConstraint_3023);
@@ -968,7 +967,7 @@ public class LifelineEditPart extends NamedElementEditPart {
 			types.add(UMLElementTypes.TimeConstraint_3019);
 			types.add(UMLElementTypes.TimeObservation_3020);
 			types.add(UMLElementTypes.DurationConstraint_3021);
-			types.add(UMLElementTypes.DestructionEvent_3022);
+			types.add(UMLElementTypes.DestructionOccurrenceSpecification_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
 			types.add(UMLElementTypes.DurationConstraint_3023);
@@ -988,7 +987,7 @@ public class LifelineEditPart extends NamedElementEditPart {
 			types.add(UMLElementTypes.TimeConstraint_3019);
 			types.add(UMLElementTypes.TimeObservation_3020);
 			types.add(UMLElementTypes.DurationConstraint_3021);
-			types.add(UMLElementTypes.DestructionEvent_3022);
+			types.add(UMLElementTypes.DestructionOccurrenceSpecification_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
 			types.add(UMLElementTypes.DurationConstraint_3023);
@@ -1008,7 +1007,7 @@ public class LifelineEditPart extends NamedElementEditPart {
 			types.add(UMLElementTypes.TimeConstraint_3019);
 			types.add(UMLElementTypes.TimeObservation_3020);
 			types.add(UMLElementTypes.DurationConstraint_3021);
-			types.add(UMLElementTypes.DestructionEvent_3022);
+			types.add(UMLElementTypes.DestructionOccurrenceSpecification_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
 			types.add(UMLElementTypes.DurationConstraint_3023);
@@ -1028,7 +1027,7 @@ public class LifelineEditPart extends NamedElementEditPart {
 			types.add(UMLElementTypes.TimeConstraint_3019);
 			types.add(UMLElementTypes.TimeObservation_3020);
 			types.add(UMLElementTypes.DurationConstraint_3021);
-			types.add(UMLElementTypes.DestructionEvent_3022);
+			types.add(UMLElementTypes.DestructionOccurrenceSpecification_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
 			types.add(UMLElementTypes.DurationConstraint_3023);
@@ -1074,7 +1073,7 @@ public class LifelineEditPart extends NamedElementEditPart {
 			types.add(UMLElementTypes.TimeConstraint_3019);
 			types.add(UMLElementTypes.TimeObservation_3020);
 			types.add(UMLElementTypes.DurationConstraint_3021);
-			types.add(UMLElementTypes.DestructionEvent_3022);
+			types.add(UMLElementTypes.DestructionOccurrenceSpecification_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
 			types.add(UMLElementTypes.DurationConstraint_3023);
@@ -1094,7 +1093,7 @@ public class LifelineEditPart extends NamedElementEditPart {
 			types.add(UMLElementTypes.TimeConstraint_3019);
 			types.add(UMLElementTypes.TimeObservation_3020);
 			types.add(UMLElementTypes.DurationConstraint_3021);
-			types.add(UMLElementTypes.DestructionEvent_3022);
+			types.add(UMLElementTypes.DestructionOccurrenceSpecification_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
 			types.add(UMLElementTypes.DurationConstraint_3023);
@@ -1114,7 +1113,7 @@ public class LifelineEditPart extends NamedElementEditPart {
 			types.add(UMLElementTypes.TimeConstraint_3019);
 			types.add(UMLElementTypes.TimeObservation_3020);
 			types.add(UMLElementTypes.DurationConstraint_3021);
-			types.add(UMLElementTypes.DestructionEvent_3022);
+			types.add(UMLElementTypes.DestructionOccurrenceSpecification_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
 			types.add(UMLElementTypes.DurationConstraint_3023);
@@ -1134,7 +1133,7 @@ public class LifelineEditPart extends NamedElementEditPart {
 			types.add(UMLElementTypes.TimeConstraint_3019);
 			types.add(UMLElementTypes.TimeObservation_3020);
 			types.add(UMLElementTypes.DurationConstraint_3021);
-			types.add(UMLElementTypes.DestructionEvent_3022);
+			types.add(UMLElementTypes.DestructionOccurrenceSpecification_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
 			types.add(UMLElementTypes.DurationConstraint_3023);
@@ -1154,7 +1153,7 @@ public class LifelineEditPart extends NamedElementEditPart {
 			types.add(UMLElementTypes.TimeConstraint_3019);
 			types.add(UMLElementTypes.TimeObservation_3020);
 			types.add(UMLElementTypes.DurationConstraint_3021);
-			types.add(UMLElementTypes.DestructionEvent_3022);
+			types.add(UMLElementTypes.DestructionOccurrenceSpecification_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
 			types.add(UMLElementTypes.DurationConstraint_3023);
@@ -1174,7 +1173,7 @@ public class LifelineEditPart extends NamedElementEditPart {
 			types.add(UMLElementTypes.TimeConstraint_3019);
 			types.add(UMLElementTypes.TimeObservation_3020);
 			types.add(UMLElementTypes.DurationConstraint_3021);
-			types.add(UMLElementTypes.DestructionEvent_3022);
+			types.add(UMLElementTypes.DestructionOccurrenceSpecification_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
 			types.add(UMLElementTypes.DurationConstraint_3023);
@@ -1194,7 +1193,7 @@ public class LifelineEditPart extends NamedElementEditPart {
 			types.add(UMLElementTypes.TimeConstraint_3019);
 			types.add(UMLElementTypes.TimeObservation_3020);
 			types.add(UMLElementTypes.DurationConstraint_3021);
-			types.add(UMLElementTypes.DestructionEvent_3022);
+			types.add(UMLElementTypes.DestructionOccurrenceSpecification_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
 			types.add(UMLElementTypes.DurationConstraint_3023);
@@ -1519,7 +1518,7 @@ public class LifelineEditPart extends NamedElementEditPart {
 				//					getPrimaryShape().repaint();
 				//				}
 			}
-		} else if(UMLPackage.eINSTANCE.getOccurrenceSpecification_Event().equals(feature)) {
+		} else if(UMLPackage.eINSTANCE.getOccurrenceSpecification().equals(feature)) {
 			//			// Handle destruction event
 			//			Object newValue = notification.getNewValue();
 			//			if(notification.getOldValue() instanceof DestructionEvent && newValue instanceof DestructionEvent == false) {

@@ -54,7 +54,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.command.CreateLocatedConnectionV
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ActionExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ConstraintEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DestructionEventEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DestructionOccurrenceSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationConstraintInMessageEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationObservationEditPart;
@@ -74,7 +74,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceLinkMappingHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
-import org.eclipse.uml2.uml.DestructionEvent;
+import org.eclipse.uml2.uml.DestructionOccurrenceSpecification;
 import org.eclipse.uml2.uml.DurationConstraint;
 import org.eclipse.uml2.uml.DurationObservation;
 import org.eclipse.uml2.uml.Element;
@@ -120,7 +120,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		elementsVisualId.add(Message7EditPart.VISUAL_ID);
 		elementsVisualId.add(Message6EditPart.VISUAL_ID);
 		elementsVisualId.add(GeneralOrderingEditPart.VISUAL_ID);
-		elementsVisualId.add(DestructionEventEditPart.VISUAL_ID);
+		elementsVisualId.add(DestructionOccurrenceSpecificationEditPart.VISUAL_ID);
 		elementsVisualId.add(StateInvariantEditPart.VISUAL_ID);
 		elementsVisualId.add(TimeConstraintEditPart.VISUAL_ID);
 		elementsVisualId.add(DurationConstraintEditPart.VISUAL_ID);
@@ -172,8 +172,8 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 			case BehaviorExecutionSpecificationEditPart.VISUAL_ID:
 			case ActionExecutionSpecificationEditPart.VISUAL_ID:
 				return dropExecutionSpecification((ExecutionSpecification)semanticLink, nodeVISUALID, location);
-			case DestructionEventEditPart.VISUAL_ID:
-				return dropDestructionEvent((DestructionEvent)semanticLink, nodeVISUALID, location);
+			case DestructionOccurrenceSpecificationEditPart.VISUAL_ID:
+				return dropDestructionOccurrence((DestructionOccurrenceSpecification)semanticLink, nodeVISUALID, location);
 			case StateInvariantEditPart.VISUAL_ID:
 				return dropStateInvariant((StateInvariant)semanticLink, nodeVISUALID, location);
 			case TimeConstraintEditPart.VISUAL_ID:
@@ -491,15 +491,15 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	/**
 	 * Drop a destructionEvent on a lifeline
 	 * 
-	 * @param destructionEvent
+	 * @param destructionOccurence
 	 *        the destructionEvent to drop
 	 * @param nodeVISUALID
 	 *        the node visualID
 	 * @return the command to drop the destructionEvent on a lifeline if allowed.
 	 */
-	private Command dropDestructionEvent(DestructionEvent destructionEvent, int nodeVISUALID, Point location) {
+	private Command dropDestructionOccurrence(DestructionOccurrenceSpecification destructionOccurence, int nodeVISUALID, Point location) {
 		// Get all the view of this destructionEvent.
-		List<View> existingViews = DiagramEditPartsUtil.findViews(destructionEvent, getViewer());
+		List<View> existingViews = DiagramEditPartsUtil.findViews(destructionOccurence, getViewer());
 		// Get the lifelines containing the graphical destructionEvent
 		List<Lifeline> lifelines = getLifelines(existingViews);
 
@@ -507,11 +507,11 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		if(!lifelines.contains(getHostObject())) {
 			Lifeline lifeline = (Lifeline)getHostObject();
 			for(InteractionFragment ift : lifeline.getCoveredBys()) {
-				if(ift instanceof OccurrenceSpecification) {
-					OccurrenceSpecification occurrenceSpecification = (OccurrenceSpecification)ift;
+				if(ift instanceof DestructionOccurrenceSpecification) {
+					DestructionOccurrenceSpecification occurrenceSpecification = (DestructionOccurrenceSpecification)ift;
 					// if the event of the occurrenceSpecification is the DestructionEvent, create the command
-					if(destructionEvent.equals(occurrenceSpecification.getEvent())) {
-						return new ICommandProxy(getDefaultDropNodeCommand(nodeVISUALID, location, destructionEvent));
+					if(destructionOccurence.equals(occurrenceSpecification)) {
+						return new ICommandProxy(getDefaultDropNodeCommand(nodeVISUALID, location, destructionOccurence));
 					}
 				}
 			}

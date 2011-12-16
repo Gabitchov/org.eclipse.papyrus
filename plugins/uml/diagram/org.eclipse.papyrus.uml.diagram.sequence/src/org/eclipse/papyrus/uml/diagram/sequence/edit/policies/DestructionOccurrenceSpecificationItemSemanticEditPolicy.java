@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2010 CEA.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *   Atos Origin - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.edit.policies;
 
 import org.eclipse.emf.ecore.EObject;
@@ -32,6 +19,8 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.CommentAnnotatedEl
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.CommentAnnotatedElementReorientCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.ConstraintConstrainedElementCreateCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.ConstraintConstrainedElementReorientCommand;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.GeneralOrderingCreateCommand;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.GeneralOrderingReorientCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.Message2CreateCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.Message2ReorientCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.Message3CreateCommand;
@@ -48,6 +37,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.MessageCreateComma
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.MessageReorientCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CommentAnnotatedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ConstraintConstrainedElementEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GeneralOrderingEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message2EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message3EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message4EditPart;
@@ -61,13 +51,13 @@ import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceDeleteHelper;
 /**
  * @generated
  */
-public class DestructionEventItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
+public class DestructionOccurrenceSpecificationItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
 	 */
-	public DestructionEventItemSemanticEditPolicy() {
-		super(UMLElementTypes.DestructionEvent_3022);
+	public DestructionOccurrenceSpecificationItemSemanticEditPolicy() {
+		super(UMLElementTypes.DestructionOccurrenceSpecification_3022);
 	}
 
 	/**
@@ -126,6 +116,9 @@ public class DestructionEventItemSemanticEditPolicy extends UMLBaseItemSemanticE
 		if(UMLElementTypes.ConstraintConstrainedElement_4011 == req.getElementType()) {
 			return null;
 		}
+		if(UMLElementTypes.GeneralOrdering_4012 == req.getElementType()) {
+			return getGEFWrapper(new GeneralOrderingCreateCommand(req, req.getSource(), req.getTarget()));
+		}
 		return null;
 	}
 
@@ -160,6 +153,9 @@ public class DestructionEventItemSemanticEditPolicy extends UMLBaseItemSemanticE
 		if(UMLElementTypes.ConstraintConstrainedElement_4011 == req.getElementType()) {
 			return getGEFWrapper(new ConstraintConstrainedElementCreateCommand(req, req.getSource(), req.getTarget()));
 		}
+		if(UMLElementTypes.GeneralOrdering_4012 == req.getElementType()) {
+			return getGEFWrapper(new GeneralOrderingCreateCommand(req, req.getSource(), req.getTarget()));
+		}
 		return null;
 	}
 
@@ -185,6 +181,8 @@ public class DestructionEventItemSemanticEditPolicy extends UMLBaseItemSemanticE
 			return getGEFWrapper(new Message6ReorientCommand(req));
 		case Message7EditPart.VISUAL_ID:
 			return getGEFWrapper(new Message7ReorientCommand(req));
+		case GeneralOrderingEditPart.VISUAL_ID:
+			return getGEFWrapper(new GeneralOrderingReorientCommand(req));
 		}
 		return super.getReorientRelationshipCommand(req);
 	}
@@ -205,6 +203,7 @@ public class DestructionEventItemSemanticEditPolicy extends UMLBaseItemSemanticE
 		return super.getReorientReferenceRelationshipCommand(req);
 	}
 
+
 	/**
 	 * This method has been overridden to also delete linked time/duration views
 	 * 
@@ -214,12 +213,11 @@ public class DestructionEventItemSemanticEditPolicy extends UMLBaseItemSemanticE
 		CompoundCommand deleteViewsCommand = new CompoundCommand();
 		Command deleteViewCommand = getGEFWrapper(new DeleteCommand(getEditingDomain(), (View)getHost().getModel()));
 		deleteViewsCommand.add(deleteViewCommand);
-		SequenceDeleteHelper.completeDeleteDestructionEventViewCommand(deleteViewsCommand, getEditingDomain(), getHost());
+		SequenceDeleteHelper.completeDeleteDestructionOccurenceViewCommand(deleteViewsCommand, getEditingDomain(), getHost());
 		if(mainCommand == null) {
 			return deleteViewsCommand;
 		} else {
 			return mainCommand.chain(deleteViewsCommand);
 		}
 	}
-
 }

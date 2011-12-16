@@ -92,7 +92,6 @@ public class UMLValidationProvider {
 		return true;
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -105,9 +104,6 @@ public class UMLValidationProvider {
 			return isInDefaultEditorContext(object);
 		}
 	}
-
-
-
 
 	/**
 	 * @generated
@@ -161,7 +157,6 @@ public class UMLValidationProvider {
 	public static ITraversalStrategy getNotationTraversalStrategy(IBatchValidator validator) {
 		return new CtxSwitchStrategy(validator);
 	}
-
 
 	/**
 	 * @generated
@@ -274,9 +269,6 @@ public class UMLValidationProvider {
 		}
 	}
 
-
-
-
 	/**
 	 * @generated
 	 */
@@ -326,7 +318,5 @@ public class UMLValidationProvider {
 	static String formatElement(EObject object) {
 		return EMFCoreUtil.getQualifiedName(object, true);
 	}
-
-
 
 }

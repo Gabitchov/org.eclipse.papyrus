@@ -591,15 +591,7 @@ public class MessageDeleteAppliedStereotypeEditPart extends LabelEditPart implem
 	 * @generated
 	 */
 	public int getDirectEditionType() {
-		if(checkExtendedEditor()) {
-			initExtendedEditorConfiguration();
-			return IDirectEdition.EXTENDED_DIRECT_EDITOR;
-		}
-		if(checkDefaultEdition()) {
-			return IDirectEdition.DEFAULT_DIRECT_EDITOR;
-		}
-
-		// not a named element. no specific editor => do nothing
+		// The label is read-only (defined in GMFGen model)
 		return IDirectEdition.NO_DIRECT_EDITION;
 	}
 
@@ -716,9 +708,6 @@ public class MessageDeleteAppliedStereotypeEditPart extends LabelEditPart implem
 				}
 			}
 		}
-
-
-
 
 		super.handleNotificationEvent(event);
 	}

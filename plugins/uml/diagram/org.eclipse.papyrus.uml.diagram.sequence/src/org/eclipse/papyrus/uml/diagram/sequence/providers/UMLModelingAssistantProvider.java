@@ -38,7 +38,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CommentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ConsiderIgnoreFragmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ContinuationEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DestructionEventEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DestructionOccurrenceSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationConstraintInMessageEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationObservationEditPart;
@@ -100,7 +100,7 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			types.add(UMLElementTypes.TimeConstraint_3019);
 			types.add(UMLElementTypes.TimeObservation_3020);
 			types.add(UMLElementTypes.DurationConstraint_3021);
-			types.add(UMLElementTypes.DestructionEvent_3022);
+			types.add(UMLElementTypes.DestructionOccurrenceSpecification_3022);
 			return types;
 		}
 		if(editPart instanceof InteractionInteractionCompartmentEditPart) {
@@ -163,8 +163,8 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(sourceEditPart instanceof DurationConstraintEditPart) {
 			return ((DurationConstraintEditPart)sourceEditPart).getMARelTypesOnSource();
 		}
-		if(sourceEditPart instanceof DestructionEventEditPart) {
-			return ((DestructionEventEditPart)sourceEditPart).getMARelTypesOnSource();
+		if(sourceEditPart instanceof DestructionOccurrenceSpecificationEditPart) {
+			return ((DestructionOccurrenceSpecificationEditPart)sourceEditPart).getMARelTypesOnSource();
 		}
 		if(sourceEditPart instanceof ConstraintEditPart) {
 			return ((ConstraintEditPart)sourceEditPart).getMARelTypesOnSource();
@@ -228,8 +228,8 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(targetEditPart instanceof DurationConstraintEditPart) {
 			return ((DurationConstraintEditPart)targetEditPart).getMARelTypesOnTarget();
 		}
-		if(targetEditPart instanceof DestructionEventEditPart) {
-			return ((DestructionEventEditPart)targetEditPart).getMARelTypesOnTarget();
+		if(targetEditPart instanceof DestructionOccurrenceSpecificationEditPart) {
+			return ((DestructionOccurrenceSpecificationEditPart)targetEditPart).getMARelTypesOnTarget();
 		}
 		if(targetEditPart instanceof ConstraintEditPart) {
 			return ((ConstraintEditPart)targetEditPart).getMARelTypesOnTarget();
@@ -294,8 +294,8 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(sourceEditPart instanceof DurationConstraintEditPart) {
 			return ((DurationConstraintEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
-		if(sourceEditPart instanceof DestructionEventEditPart) {
-			return ((DestructionEventEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
+		if(sourceEditPart instanceof DestructionOccurrenceSpecificationEditPart) {
+			return ((DestructionOccurrenceSpecificationEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
 		if(sourceEditPart instanceof ConstraintEditPart) {
 			return ((ConstraintEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
@@ -359,8 +359,8 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(targetEditPart instanceof DurationConstraintEditPart) {
 			return ((DurationConstraintEditPart)targetEditPart).getMATypesForSource(relationshipType);
 		}
-		if(targetEditPart instanceof DestructionEventEditPart) {
-			return ((DestructionEventEditPart)targetEditPart).getMATypesForSource(relationshipType);
+		if(targetEditPart instanceof DestructionOccurrenceSpecificationEditPart) {
+			return ((DestructionOccurrenceSpecificationEditPart)targetEditPart).getMATypesForSource(relationshipType);
 		}
 		if(targetEditPart instanceof ConstraintEditPart) {
 			return ((ConstraintEditPart)targetEditPart).getMATypesForSource(relationshipType);
@@ -424,8 +424,8 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(sourceEditPart instanceof DurationConstraintEditPart) {
 			return ((DurationConstraintEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
 		}
-		if(sourceEditPart instanceof DestructionEventEditPart) {
-			return ((DestructionEventEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
+		if(sourceEditPart instanceof DestructionOccurrenceSpecificationEditPart) {
+			return ((DestructionOccurrenceSpecificationEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
 		}
 		if(sourceEditPart instanceof ConstraintEditPart) {
 			return ((ConstraintEditPart)sourceEditPart).getMATypesForTarget(relationshipType);

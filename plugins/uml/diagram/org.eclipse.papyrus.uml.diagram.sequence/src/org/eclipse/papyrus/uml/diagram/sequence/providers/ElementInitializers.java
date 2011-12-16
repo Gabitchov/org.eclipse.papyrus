@@ -24,7 +24,7 @@ import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.ConsiderIgnoreFragment;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Continuation;
-import org.eclipse.uml2.uml.DestructionEvent;
+import org.eclipse.uml2.uml.DestructionOccurrenceSpecification;
 import org.eclipse.uml2.uml.Duration;
 import org.eclipse.uml2.uml.DurationConstraint;
 import org.eclipse.uml2.uml.DurationInterval;
@@ -202,6 +202,18 @@ public class ElementInitializers {
 	}
 
 	/**
+	 * @generated
+	 */
+	public void init_DestructionOccurrenceSpecification_3022(DestructionOccurrenceSpecification instance) {
+		try {
+			Object value_0 = name_DestructionOccurrenceSpecification_3022(instance);
+			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
 	 * Initialize a time interval
 	 * 
 	 * @param instance
@@ -257,18 +269,6 @@ public class ElementInitializers {
 
 		minDuration.setExpr(UMLFactory.eINSTANCE.createLiteralInteger());
 		maxDuration.setExpr(UMLFactory.eINSTANCE.createLiteralInteger());
-	}
-
-	/**
-	 * @generated
-	 */
-	public void init_DestructionEvent_3022(DestructionEvent instance) {
-		try {
-			Object value_0 = name_DestructionEvent_3022(instance);
-			instance.setName((String)value_0);
-		} catch (RuntimeException e) {
-			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
-		}
 	}
 
 	/**
@@ -436,7 +436,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	private String name_DestructionEvent_3022(DestructionEvent self) {
+	private String name_DestructionOccurrenceSpecification_3022(DestructionOccurrenceSpecification self) {
 		return getNamedElement(self, "", self.eClass().getName(), "");
 	}
 

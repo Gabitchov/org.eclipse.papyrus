@@ -49,10 +49,9 @@ import org.eclipse.uml2.uml.ActionExecutionSpecification;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.CombinedFragment;
 import org.eclipse.uml2.uml.ConnectableElement;
-import org.eclipse.uml2.uml.DestructionEvent;
+import org.eclipse.uml2.uml.DestructionOccurrenceSpecification;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Event;
-import org.eclipse.uml2.uml.ExecutionEvent;
 import org.eclipse.uml2.uml.ExecutionOccurrenceSpecification;
 import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.Gate;
@@ -136,6 +135,10 @@ public class CommandHelper {
 
 		ElementInitializers.init_NamedElement(message, prefix);
 
+		if(signature != null) {
+			message.setSignature(signature);
+		}
+
 		return message;
 	}
 
@@ -171,14 +174,14 @@ public class CommandHelper {
 	 *        the fragment enclosing this OccurenceSpecifcation. It must be an Interaction or an Operand.
 	 * @return the Execution Occurrence Specification
 	 */
-	public static ExecutionOccurrenceSpecification doCreateExecutionOccurenceSpecification(ExecutionSpecification es, ExecutionEvent event, InteractionFragment fragment, Lifeline lifeline) {
+	public static ExecutionOccurrenceSpecification doCreateExecutionOccurenceSpecification(ExecutionSpecification es, InteractionFragment fragment, Lifeline lifeline) {
 
 		// Create the ExecutionOccurrenceSpecification
 		ExecutionOccurrenceSpecification eos = UMLFactory.eINSTANCE.createExecutionOccurrenceSpecification();
 
 		// Configure the EOS. 
 		// The event is an ExecutionEvent
-		doConfigureOccurenceSpecification(eos, event, fragment, lifeline);
+		doConfigureOccurenceSpecification(eos, null, fragment, lifeline);
 
 		// Set the executionSpecification of the ExecutionOccurrenceSpecification
 		eos.setExecution(es);
@@ -211,7 +214,8 @@ public class CommandHelper {
 		os.getCovereds().add(lifeline);
 
 		// Set the event of the OccurrenceSpecification
-		os.setEvent(event);
+		//now it doesn't exist
+		//os.setEvent(event);
 
 	}
 
@@ -530,25 +534,54 @@ public class CommandHelper {
 	 *        the container of the occurrenceSpecification that will bound the lifeline and the destructionEvent.
 	 * @return
 	 */
-	public static DestructionEvent doCreateDestructionEvent(Lifeline lifeline, Object modelContainer) {
+	//	public static DestructionEvent doCreateDestructionEvent(Lifeline lifeline, Object modelContainer) {
+	//
+	//		// Get the nearest package
+	//		Package pack = lifeline.getNearestPackage();
+	//
+	//		EClass destructionEventEClass = UMLPackage.eINSTANCE.getDestructionEvent();
+	//		// Add the destructionEvent to the Package
+	//		DestructionEvent destructionEvent = (DestructionEvent)pack.createPackagedElement(ElementInitializers.getNextNumberedName(pack.getOwnedElements(), destructionEventEClass.getName()), destructionEventEClass);
+	//
+	//		// Create an occurrenceSpecification
+	//		Element element = createElement(modelContainer, UMLPackage.eINSTANCE.getOccurrenceSpecification());
+	//		OccurrenceSpecification os = null;
+	//		if(element instanceof OccurrenceSpecification) {
+	//			os = (OccurrenceSpecification)element;
+	//			doConfigureOccurenceSpecification(os, destructionEvent, (InteractionFragment)modelContainer, lifeline);
+	//		}
+	//
+	//		return destructionEvent;
+	//	}
+
+	/**
+	 * Create an DestructionOccurrenceSpecification bounds to the lifeline
+	 * 
+	 * @param lifeline
+	 *        the lifeline associated with the destructionEvent
+	 * @param modelContainer
+	 *        the container of the occurrenceSpecification that will bound the lifeline and the destructionEvent.
+	 * @return
+	 */
+	public static DestructionOccurrenceSpecification doCreateDestructionOccurrenceSpecification(Lifeline lifeline, Object modelContainer) {
 
 		// Get the nearest package
 		Package pack = lifeline.getNearestPackage();
 
-		EClass destructionEventEClass = UMLPackage.eINSTANCE.getDestructionEvent();
-		// Add the destructionEvent to the Package
-		DestructionEvent destructionEvent = (DestructionEvent)pack.createPackagedElement(ElementInitializers.getNextNumberedName(pack.getOwnedElements(), destructionEventEClass.getName()), destructionEventEClass);
-
 		// Create an occurrenceSpecification
-		Element element = createElement(modelContainer, UMLPackage.eINSTANCE.getOccurrenceSpecification());
-		OccurrenceSpecification os = null;
-		if(element instanceof OccurrenceSpecification) {
-			os = (OccurrenceSpecification)element;
-			doConfigureOccurenceSpecification(os, destructionEvent, (InteractionFragment)modelContainer, lifeline);
+		Element element = createElement(modelContainer, UMLPackage.eINSTANCE.getDestructionOccurrenceSpecification());
+		DestructionOccurrenceSpecification os = null;
+		if(element instanceof DestructionOccurrenceSpecification) {
+			os = (DestructionOccurrenceSpecification)element;
+			doConfigureOccurenceSpecification(os, null, (InteractionFragment)modelContainer, lifeline);
 		}
 
-		return destructionEvent;
+		return os;
 	}
+
+
+
+
 
 	/**
 	 * Create an StateInvariant
@@ -671,12 +704,12 @@ public class CommandHelper {
 		// Create events
 		org.eclipse.uml2.uml.Package eventContainer = interactionFragment.getNearestPackage();
 
-		ExecutionEvent startingExecutionEvent = EventHelper.doCreateExecutionEvent(eventContainer);
-		ExecutionEvent finishingExecutionEvent = EventHelper.doCreateExecutionEvent(eventContainer);
+		//	ExecutionEvent startingExecutionEvent = EventHelper.doCreateExecutionEvent(eventContainer);
+		//	ExecutionEvent finishingExecutionEvent = EventHelper.doCreateExecutionEvent(eventContainer);
 
 		// Create fragments in the correct order : start OccurenceSpecification, ExecutionSpecification, finish OccurenceSpecification
 		// start
-		ExecutionOccurrenceSpecification start = CommandHelper.doCreateExecutionOccurenceSpecification(null, startingExecutionEvent, interactionFragment, lifeline);
+		ExecutionOccurrenceSpecification start = CommandHelper.doCreateExecutionOccurenceSpecification(null, interactionFragment, lifeline);
 
 		// Create the ExecutionSpecification
 		if(modelContainer instanceof InteractionOperand) {
@@ -690,7 +723,7 @@ public class CommandHelper {
 		}
 
 		// finish
-		ExecutionOccurrenceSpecification finish = CommandHelper.doCreateExecutionOccurenceSpecification(es, finishingExecutionEvent, interactionFragment, lifeline);
+		ExecutionOccurrenceSpecification finish = CommandHelper.doCreateExecutionOccurenceSpecification(es, interactionFragment, lifeline);
 
 		// Get the covered lifeline
 		es.getCovereds().add(lifeline);

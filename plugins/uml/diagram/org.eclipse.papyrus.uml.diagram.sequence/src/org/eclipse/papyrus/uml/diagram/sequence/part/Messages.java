@@ -745,16 +745,6 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_DestructionEvent_3022_incominglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_DestructionEvent_3022_outgoinglinks;
-
-	/**
-	 * @generated
-	 */
 	public static String NavigatorGroupName_InteractionUse_3002_incominglinks;
 
 	/**
@@ -981,6 +971,16 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String NavigatorGroupName_CommentAnnotatedElement_4010_source;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_DestructionOccurrenceSpecification_3022_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_DestructionOccurrenceSpecification_3022_outgoinglinks;
 
 	/**
 	 * @generated

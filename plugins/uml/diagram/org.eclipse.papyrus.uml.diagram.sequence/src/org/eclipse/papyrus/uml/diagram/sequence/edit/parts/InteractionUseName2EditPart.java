@@ -569,15 +569,7 @@ public class InteractionUseName2EditPart extends CompartmentEditPart implements 
 	 * @generated
 	 */
 	public int getDirectEditionType() {
-		if(checkExtendedEditor()) {
-			initExtendedEditorConfiguration();
-			return IDirectEdition.EXTENDED_DIRECT_EDITOR;
-		}
-		if(checkDefaultEdition()) {
-			return IDirectEdition.DEFAULT_DIRECT_EDITOR;
-		}
-
-		// not a named element. no specific editor => do nothing
+		// The label is read-only (defined in GMFGen model)
 		return IDirectEdition.NO_DIRECT_EDITION;
 	}
 
@@ -708,7 +700,6 @@ public class InteractionUseName2EditPart extends CompartmentEditPart implements 
 				}
 			}
 		}
-
 
 		super.handleNotificationEvent(event);
 	}

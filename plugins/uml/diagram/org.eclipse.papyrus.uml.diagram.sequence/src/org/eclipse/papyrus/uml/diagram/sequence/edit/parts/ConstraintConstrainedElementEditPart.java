@@ -74,9 +74,6 @@ implements ITreeBranchEditPart {
 	 */
 	public class ConstraintLinkDescriptor extends PolylineConnectionEx {
 
-
-
-
 		/**
 		 * @generated
 		 */
@@ -84,9 +81,6 @@ implements ITreeBranchEditPart {
 			this.setLineStyle(Graphics.LINE_DASH);
 
 		}
-
-
-
 
 	}
 

@@ -433,7 +433,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 */
 	private Tool createDestructionEvent16CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
-		types.add(UMLElementTypes.DestructionEvent_3022);
+		types.add(UMLElementTypes.DestructionOccurrenceSpecification_3022);
 
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
 		return tool;

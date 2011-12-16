@@ -60,7 +60,6 @@ implements ITreeBranchEditPart {
 		return false;
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -70,7 +69,6 @@ implements ITreeBranchEditPart {
 		}
 		super.addChildVisual(childEditPart, -1);
 	}
-
 
 	/**
 	 * @generated
@@ -82,7 +80,6 @@ implements ITreeBranchEditPart {
 		return false;
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -92,7 +89,6 @@ implements ITreeBranchEditPart {
 		}
 		super.removeChildVisual(childEditPart);
 	}
-
 
 	/**
 	 * Creates figure for this edit part.
@@ -114,12 +110,10 @@ implements ITreeBranchEditPart {
 		return (GeneralOrderingDescriptor)getFigure();
 	}
 
-
 	/**
 	 * @generated NOT inherits from UMLEdgeFigure to manage stereotype label
 	 */
 	public class GeneralOrderingDescriptor extends UMLEdgeFigure {
-
 
 		/**
 		 * @generated
@@ -132,7 +126,6 @@ implements ITreeBranchEditPart {
 		 * @generated NOT
 		 */
 		private RotatableDecoration middleDecoration;
-
 
 		/**
 		 * @generated NOT call the super constructor, create super contents, set the middle decoration
@@ -168,7 +161,6 @@ implements ITreeBranchEditPart {
 			return df;
 		}
 
-
 		/**
 		 * @generated NOT get the stereotype label of super class
 		 */
@@ -198,7 +190,6 @@ implements ITreeBranchEditPart {
 				getMiddleDecoration().setForegroundColor(fg);
 			}
 		}
-
 
 		/**
 		 * Set the middle decoration
@@ -238,9 +229,6 @@ implements ITreeBranchEditPart {
 			}
 		}
 
-
 	}
-
-
 
 }

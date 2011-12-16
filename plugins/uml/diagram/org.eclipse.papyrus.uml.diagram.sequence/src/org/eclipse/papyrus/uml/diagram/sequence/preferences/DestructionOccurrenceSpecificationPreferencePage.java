@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2009 Atos Origin.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *   Atos Origin - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.preferences;
 
 import org.eclipse.jface.preference.IPreferenceStore;
@@ -22,14 +9,14 @@ import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 /**
  * @generated
  */
-public class BehaviorExecutionSpecificationPreferencePage extends AbstractPapyrusNodePreferencePage {
+public class DestructionOccurrenceSpecificationPreferencePage extends AbstractPapyrusNodePreferencePage {
 
 	/**
 	 * @generated
 	 */
-	public BehaviorExecutionSpecificationPreferencePage() {
+	public DestructionOccurrenceSpecificationPreferencePage() {
 		super();
-		setPreferenceKey(PackageEditPart.MODEL_ID + "_BehaviorExecutionSpecification");
+		setPreferenceKey(PackageEditPart.MODEL_ID + "_DestructionOccurrenceSpecification");
 	}
 
 	/**
@@ -45,9 +32,9 @@ public class BehaviorExecutionSpecificationPreferencePage extends AbstractPapyru
 	 */
 	public static void initDefaults(IPreferenceStore store) {
 
-		String key = PackageEditPart.MODEL_ID + "_BehaviorExecutionSpecification";
-		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.WIDTH), 16);
-		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.HEIGHT), 60);
+		String key = PackageEditPart.MODEL_ID + "_DestructionOccurrenceSpecification";
+		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.WIDTH), 40);
+		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.HEIGHT), 40);
 
 		//org.eclipse.jface.preference.PreferenceConverter.setDefault(store, org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.COLOR_FILL), new org.eclipse.swt.graphics.RGB(255, 255, 255));
 		//org.eclipse.jface.preference.PreferenceConverter.setDefault(store, org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.COLOR_LINE), new org.eclipse.swt.graphics.RGB(0, 0, 0));

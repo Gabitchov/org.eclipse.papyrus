@@ -720,7 +720,6 @@ public class DurationObservationLabelEditPart extends CompartmentEditPart implem
 			}
 		}
 
-
 		super.handleNotificationEvent(event);
 	}
 

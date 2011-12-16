@@ -191,7 +191,6 @@ AbstractBorderedShapeEditPart {
 			return true;
 		}
 
-
 		return false;
 	}
 
@@ -403,7 +402,7 @@ AbstractBorderedShapeEditPart {
 		if(targetEditPart instanceof DurationConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4003);
 		}
-		if(targetEditPart instanceof DestructionEventEditPart) {
+		if(targetEditPart instanceof DestructionOccurrenceSpecificationEditPart) {
 			types.add(UMLElementTypes.Message_4003);
 		}
 		if(targetEditPart instanceof ConstraintEditPart) {
@@ -460,7 +459,7 @@ AbstractBorderedShapeEditPart {
 		if(targetEditPart instanceof DurationConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4004);
 		}
-		if(targetEditPart instanceof DestructionEventEditPart) {
+		if(targetEditPart instanceof DestructionOccurrenceSpecificationEditPart) {
 			types.add(UMLElementTypes.Message_4004);
 		}
 		if(targetEditPart instanceof ConstraintEditPart) {
@@ -517,7 +516,7 @@ AbstractBorderedShapeEditPart {
 		if(targetEditPart instanceof DurationConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4005);
 		}
-		if(targetEditPart instanceof DestructionEventEditPart) {
+		if(targetEditPart instanceof DestructionOccurrenceSpecificationEditPart) {
 			types.add(UMLElementTypes.Message_4005);
 		}
 		if(targetEditPart instanceof ConstraintEditPart) {
@@ -574,7 +573,7 @@ AbstractBorderedShapeEditPart {
 		if(targetEditPart instanceof DurationConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4006);
 		}
-		if(targetEditPart instanceof DestructionEventEditPart) {
+		if(targetEditPart instanceof DestructionOccurrenceSpecificationEditPart) {
 			types.add(UMLElementTypes.Message_4006);
 		}
 		if(targetEditPart instanceof ConstraintEditPart) {
@@ -631,7 +630,7 @@ AbstractBorderedShapeEditPart {
 		if(targetEditPart instanceof DurationConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4007);
 		}
-		if(targetEditPart instanceof DestructionEventEditPart) {
+		if(targetEditPart instanceof DestructionOccurrenceSpecificationEditPart) {
 			types.add(UMLElementTypes.Message_4007);
 		}
 		if(targetEditPart instanceof ConstraintEditPart) {
@@ -688,7 +687,7 @@ AbstractBorderedShapeEditPart {
 		if(targetEditPart instanceof DurationConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4008);
 		}
-		if(targetEditPart instanceof DestructionEventEditPart) {
+		if(targetEditPart instanceof DestructionOccurrenceSpecificationEditPart) {
 			types.add(UMLElementTypes.Message_4008);
 		}
 		if(targetEditPart instanceof ConstraintEditPart) {
@@ -745,7 +744,7 @@ AbstractBorderedShapeEditPart {
 		if(targetEditPart instanceof DurationConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4009);
 		}
-		if(targetEditPart instanceof DestructionEventEditPart) {
+		if(targetEditPart instanceof DestructionOccurrenceSpecificationEditPart) {
 			types.add(UMLElementTypes.Message_4009);
 		}
 		if(targetEditPart instanceof ConstraintEditPart) {
@@ -783,7 +782,7 @@ AbstractBorderedShapeEditPart {
 			types.add(UMLElementTypes.TimeConstraint_3019);
 			types.add(UMLElementTypes.TimeObservation_3020);
 			types.add(UMLElementTypes.DurationConstraint_3021);
-			types.add(UMLElementTypes.DestructionEvent_3022);
+			types.add(UMLElementTypes.DestructionOccurrenceSpecification_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
 			types.add(UMLElementTypes.DurationConstraint_3023);
@@ -803,7 +802,7 @@ AbstractBorderedShapeEditPart {
 			types.add(UMLElementTypes.TimeConstraint_3019);
 			types.add(UMLElementTypes.TimeObservation_3020);
 			types.add(UMLElementTypes.DurationConstraint_3021);
-			types.add(UMLElementTypes.DestructionEvent_3022);
+			types.add(UMLElementTypes.DestructionOccurrenceSpecification_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
 			types.add(UMLElementTypes.DurationConstraint_3023);
@@ -823,7 +822,7 @@ AbstractBorderedShapeEditPart {
 			types.add(UMLElementTypes.TimeConstraint_3019);
 			types.add(UMLElementTypes.TimeObservation_3020);
 			types.add(UMLElementTypes.DurationConstraint_3021);
-			types.add(UMLElementTypes.DestructionEvent_3022);
+			types.add(UMLElementTypes.DestructionOccurrenceSpecification_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
 			types.add(UMLElementTypes.DurationConstraint_3023);
@@ -843,7 +842,7 @@ AbstractBorderedShapeEditPart {
 			types.add(UMLElementTypes.TimeConstraint_3019);
 			types.add(UMLElementTypes.TimeObservation_3020);
 			types.add(UMLElementTypes.DurationConstraint_3021);
-			types.add(UMLElementTypes.DestructionEvent_3022);
+			types.add(UMLElementTypes.DestructionOccurrenceSpecification_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
 			types.add(UMLElementTypes.DurationConstraint_3023);
@@ -863,7 +862,7 @@ AbstractBorderedShapeEditPart {
 			types.add(UMLElementTypes.TimeConstraint_3019);
 			types.add(UMLElementTypes.TimeObservation_3020);
 			types.add(UMLElementTypes.DurationConstraint_3021);
-			types.add(UMLElementTypes.DestructionEvent_3022);
+			types.add(UMLElementTypes.DestructionOccurrenceSpecification_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
 			types.add(UMLElementTypes.DurationConstraint_3023);
@@ -883,7 +882,7 @@ AbstractBorderedShapeEditPart {
 			types.add(UMLElementTypes.TimeConstraint_3019);
 			types.add(UMLElementTypes.TimeObservation_3020);
 			types.add(UMLElementTypes.DurationConstraint_3021);
-			types.add(UMLElementTypes.DestructionEvent_3022);
+			types.add(UMLElementTypes.DestructionOccurrenceSpecification_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
 			types.add(UMLElementTypes.DurationConstraint_3023);
@@ -903,7 +902,7 @@ AbstractBorderedShapeEditPart {
 			types.add(UMLElementTypes.TimeConstraint_3019);
 			types.add(UMLElementTypes.TimeObservation_3020);
 			types.add(UMLElementTypes.DurationConstraint_3021);
-			types.add(UMLElementTypes.DestructionEvent_3022);
+			types.add(UMLElementTypes.DestructionOccurrenceSpecification_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
 			types.add(UMLElementTypes.DurationConstraint_3023);
@@ -949,7 +948,7 @@ AbstractBorderedShapeEditPart {
 			types.add(UMLElementTypes.TimeConstraint_3019);
 			types.add(UMLElementTypes.TimeObservation_3020);
 			types.add(UMLElementTypes.DurationConstraint_3021);
-			types.add(UMLElementTypes.DestructionEvent_3022);
+			types.add(UMLElementTypes.DestructionOccurrenceSpecification_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
 			types.add(UMLElementTypes.DurationConstraint_3023);
@@ -969,7 +968,7 @@ AbstractBorderedShapeEditPart {
 			types.add(UMLElementTypes.TimeConstraint_3019);
 			types.add(UMLElementTypes.TimeObservation_3020);
 			types.add(UMLElementTypes.DurationConstraint_3021);
-			types.add(UMLElementTypes.DestructionEvent_3022);
+			types.add(UMLElementTypes.DestructionOccurrenceSpecification_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
 			types.add(UMLElementTypes.DurationConstraint_3023);
@@ -989,7 +988,7 @@ AbstractBorderedShapeEditPart {
 			types.add(UMLElementTypes.TimeConstraint_3019);
 			types.add(UMLElementTypes.TimeObservation_3020);
 			types.add(UMLElementTypes.DurationConstraint_3021);
-			types.add(UMLElementTypes.DestructionEvent_3022);
+			types.add(UMLElementTypes.DestructionOccurrenceSpecification_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
 			types.add(UMLElementTypes.DurationConstraint_3023);
@@ -1009,7 +1008,7 @@ AbstractBorderedShapeEditPart {
 			types.add(UMLElementTypes.TimeConstraint_3019);
 			types.add(UMLElementTypes.TimeObservation_3020);
 			types.add(UMLElementTypes.DurationConstraint_3021);
-			types.add(UMLElementTypes.DestructionEvent_3022);
+			types.add(UMLElementTypes.DestructionOccurrenceSpecification_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
 			types.add(UMLElementTypes.DurationConstraint_3023);
@@ -1029,7 +1028,7 @@ AbstractBorderedShapeEditPart {
 			types.add(UMLElementTypes.TimeConstraint_3019);
 			types.add(UMLElementTypes.TimeObservation_3020);
 			types.add(UMLElementTypes.DurationConstraint_3021);
-			types.add(UMLElementTypes.DestructionEvent_3022);
+			types.add(UMLElementTypes.DestructionOccurrenceSpecification_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
 			types.add(UMLElementTypes.DurationConstraint_3023);
@@ -1049,7 +1048,7 @@ AbstractBorderedShapeEditPart {
 			types.add(UMLElementTypes.TimeConstraint_3019);
 			types.add(UMLElementTypes.TimeObservation_3020);
 			types.add(UMLElementTypes.DurationConstraint_3021);
-			types.add(UMLElementTypes.DestructionEvent_3022);
+			types.add(UMLElementTypes.DestructionOccurrenceSpecification_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
 			types.add(UMLElementTypes.DurationConstraint_3023);
@@ -1069,7 +1068,7 @@ AbstractBorderedShapeEditPart {
 			types.add(UMLElementTypes.TimeConstraint_3019);
 			types.add(UMLElementTypes.TimeObservation_3020);
 			types.add(UMLElementTypes.DurationConstraint_3021);
-			types.add(UMLElementTypes.DestructionEvent_3022);
+			types.add(UMLElementTypes.DestructionOccurrenceSpecification_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
 			types.add(UMLElementTypes.DurationConstraint_3023);
@@ -1100,21 +1099,13 @@ AbstractBorderedShapeEditPart {
 		 */
 		public DurationObservationConstraint() {
 
-
-
-
 			this.setTextWrap(true);
 
-
-
-
 			this.setTextJustification(PositionConstants.CENTER);
-
 
 			this.setForegroundColor(ColorConstants.black);
 
 			this.setFont(THIS_FONT);
-
 
 		}
 

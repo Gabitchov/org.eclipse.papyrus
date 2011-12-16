@@ -37,7 +37,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ConstraintNameEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ContinuationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ContinuationNameEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DestructionEventEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DestructionOccurrenceSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationConstraintAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationConstraintInMessageAppliedStereotypeEditPart;
@@ -294,10 +294,10 @@ public class UMLVisualIDRegistry {
 					}
 				}
 			}
-			if(UMLPackage.eINSTANCE.getDestructionEvent().isSuperTypeOf(domainElement.eClass())
+			if(UMLPackage.eINSTANCE.getDestructionOccurrenceSpecification().isSuperTypeOf(domainElement.eClass())
 
 			) {
-				return DestructionEventEditPart.VISUAL_ID;
+				return DestructionOccurrenceSpecificationEditPart.VISUAL_ID;
 			}
 			// lifeline : add lifelines on lifeline
 			if(UMLPackage.eINSTANCE.getLifeline().isSuperTypeOf(domainElement.eClass())
@@ -459,7 +459,7 @@ public class UMLVisualIDRegistry {
 			if(DurationConstraintEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
-			if(DestructionEventEditPart.VISUAL_ID == nodeVisualID) {
+			if(DestructionOccurrenceSpecificationEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -669,8 +669,6 @@ public class UMLVisualIDRegistry {
 		}
 		if(UMLPackage.eINSTANCE.getGeneralOrdering().isSuperTypeOf(domainElement.eClass())
 
-
-
 		) {
 			return GeneralOrderingEditPart.VISUAL_ID;
 		}
@@ -774,102 +772,77 @@ public class UMLVisualIDRegistry {
 		viewInfo = new BaseViewInfo(4003, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
-
 		labelInfo = new BaseViewInfo(6001, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
-
 
 		labelInfo = new BaseViewInfo(6008, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
 
-
 		viewInfo = new BaseViewInfo(4004, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
-
 
 		labelInfo = new BaseViewInfo(6002, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
 
-
 		labelInfo = new BaseViewInfo(6009, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
-
 
 		viewInfo = new BaseViewInfo(4005, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
-
 		labelInfo = new BaseViewInfo(6003, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
-
 
 		labelInfo = new BaseViewInfo(6010, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
 
-
 		viewInfo = new BaseViewInfo(4006, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
-
 
 		labelInfo = new BaseViewInfo(6004, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
 
-
 		labelInfo = new BaseViewInfo(6011, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
-
 
 		viewInfo = new BaseViewInfo(4007, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
-
 		labelInfo = new BaseViewInfo(6005, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
-
 
 		labelInfo = new BaseViewInfo(6012, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
 
-
 		viewInfo = new BaseViewInfo(4008, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
-
 
 		labelInfo = new BaseViewInfo(6006, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
 
-
 		labelInfo = new BaseViewInfo(6013, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
-
 
 		viewInfo = new BaseViewInfo(4009, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
-
 		labelInfo = new BaseViewInfo(6007, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
-
 
 		labelInfo = new BaseViewInfo(6014, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
 
-
 		viewInfo = new BaseViewInfo(4010, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
-
 
 		viewInfo = new BaseViewInfo(4011, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
-
 		viewInfo = new BaseViewInfo(4012, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
-
 		labelInfo = new BaseViewInfo(6015, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
-
 
 		viewInfo = new BaseViewInfo(3007, ViewInfo.Node, "ConsiderIgnoreFragment");
 
@@ -877,18 +850,15 @@ public class UMLVisualIDRegistry {
 
 		root.addNode(3005, viewInfo);
 
-
 		viewInfo = new BaseViewInfo(3004, ViewInfo.Node, "CombinedFragment");
 
 		root.addNode(3005, viewInfo);
 
 		root.addNode(7001, viewInfo);
 
-
 		viewInfo = new BaseViewInfo(3005, ViewInfo.Node, "InteractionOperand");
 
 		root.addNode(7004, viewInfo);
-
 
 		viewInfo = new BaseViewInfo(3002, ViewInfo.Node, "InteractionUse");
 
@@ -896,71 +866,57 @@ public class UMLVisualIDRegistry {
 
 		root.addNode(7001, viewInfo);
 
-
 		viewInfo = new BaseViewInfo(3016, ViewInfo.Node, "Continuation");
 
 		root.addNode(3005, viewInfo);
-
 
 		viewInfo = new BaseViewInfo(3001, ViewInfo.Node, "Lifeline");
 
 		root.addNode(7001, viewInfo);
 
-
 		viewInfo = new BaseViewInfo(3006, ViewInfo.Node, "ActionExecutionSpecification");
 
 		root.addNode(3001, viewInfo);
-
 
 		viewInfo = new BaseViewInfo(3003, ViewInfo.Node, "BehaviorExecutionSpecification");
 
 		root.addNode(3001, viewInfo);
 
-
 		viewInfo = new BaseViewInfo(3017, ViewInfo.Node, "StateInvariant");
 
 		root.addNode(3001, viewInfo);
-
 
 		viewInfo = new BaseViewInfo(3018, ViewInfo.Node, "CombinedFragment");
 
 		root.addNode(3001, viewInfo);
 
-
 		viewInfo = new BaseViewInfo(3019, ViewInfo.Node, "TimeConstraint");
 
 		root.addNode(3001, viewInfo);
-
 
 		viewInfo = new BaseViewInfo(3020, ViewInfo.Node, "TimeObservation");
 
 		root.addNode(3001, viewInfo);
 
-
 		viewInfo = new BaseViewInfo(3021, ViewInfo.Node, "DurationConstraint");
 
 		root.addNode(3001, viewInfo);
 
-
-		viewInfo = new BaseViewInfo(3022, ViewInfo.Node, "DestructionEvent");
+		viewInfo = new BaseViewInfo(3022, ViewInfo.Node, "DestructionOccurrenceSpecification");
 
 		root.addNode(3001, viewInfo);
-
 
 		viewInfo = new BaseViewInfo(3008, ViewInfo.Node, "Constraint");
 
 		root.addNode(7001, viewInfo);
 
-
 		viewInfo = new BaseViewInfo(3009, ViewInfo.Node, "Comment");
 
 		root.addNode(7001, viewInfo);
 
-
 		viewInfo = new BaseViewInfo(3023, ViewInfo.Node, "DurationConstraint");
 
 		root.addNode(2001, viewInfo);
-
 
 		viewInfo = new BaseViewInfo(3024, ViewInfo.Node, "DurationObservation");
 

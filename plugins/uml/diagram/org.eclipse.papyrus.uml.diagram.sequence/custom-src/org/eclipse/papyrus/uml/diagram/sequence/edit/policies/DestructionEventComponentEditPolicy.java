@@ -36,7 +36,7 @@ public class DestructionEventComponentEditPolicy extends ComponentEditPolicy {
 		deleteViewsCommand.add(deleteViewCommand);
 		if(getHost() instanceof ShapeNodeEditPart) {
 			TransactionalEditingDomain editingDomain = ((ShapeNodeEditPart)getHost()).getEditingDomain();
-			SequenceDeleteHelper.completeDeleteDestructionEventViewCommand(deleteViewsCommand, editingDomain, getHost());
+			SequenceDeleteHelper.completeDeleteDestructionOccurenceViewCommand(deleteViewsCommand, editingDomain, getHost());
 		}
 		return deleteViewsCommand;
 	}

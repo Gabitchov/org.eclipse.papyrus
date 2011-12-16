@@ -77,7 +77,6 @@ public class BehaviorExecutionSpecificationCreateCommand extends EditElementComm
 	@Override
 	protected EObject getElementToEdit() {
 
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -94,10 +93,7 @@ public class BehaviorExecutionSpecificationCreateCommand extends EditElementComm
 	@Override
 	public boolean canExecute() {
 
-
 		return true;
-
-
 
 	}
 

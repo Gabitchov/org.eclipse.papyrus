@@ -38,7 +38,6 @@ public class GeneralOrderingCreateCommand extends EditElementCommand {
 	 */
 	protected final EObject target;
 
-
 	/**
 	 * @generated
 	 */
@@ -103,7 +102,6 @@ public class GeneralOrderingCreateCommand extends EditElementCommand {
 		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateGeneralOrdering_4012(getContainer(), getSource(), getTarget());
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -122,7 +120,6 @@ public class GeneralOrderingCreateCommand extends EditElementCommand {
 		return CommandResult.newOKCommandResult(newElement);
 
 	}
-
 
 	/**
 	 * @generated

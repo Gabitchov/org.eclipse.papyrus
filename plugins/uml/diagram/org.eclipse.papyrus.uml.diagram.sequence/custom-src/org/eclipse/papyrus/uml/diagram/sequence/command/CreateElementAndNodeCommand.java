@@ -94,7 +94,7 @@ public class CreateElementAndNodeCommand extends Command {
 	 * @return the view or null if not created/founded
 	 */
 	public View getCreatedView() {
-		if (createViewRequest != null) {
+		if(createViewRequest != null) {
 			List l = (List)createViewRequest.getNewObject();
 			if(!l.isEmpty() && l.get(0) instanceof ViewDescriptor) {
 				return (View)((ViewDescriptor)l.get(0)).getAdapter(View.class);

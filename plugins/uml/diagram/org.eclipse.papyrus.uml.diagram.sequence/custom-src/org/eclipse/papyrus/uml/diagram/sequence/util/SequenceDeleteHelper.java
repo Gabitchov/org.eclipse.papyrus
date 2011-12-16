@@ -30,7 +30,7 @@ import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalC
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
-import org.eclipse.uml2.uml.DestructionEvent;
+import org.eclipse.uml2.uml.DestructionOccurrenceSpecification;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.Message;
@@ -55,11 +55,11 @@ public class SequenceDeleteHelper {
 	 *        the execution specification edit part on which the request is called
 	 * @return the deletion command deleteViewsCmd for convenience
 	 */
-	public static CompoundCommand completeDeleteDestructionEventViewCommand(CompoundCommand deleteViewsCmd, TransactionalEditingDomain editingDomain, EditPart destructionEventPart) {
+	public static CompoundCommand completeDeleteDestructionOccurenceViewCommand(CompoundCommand deleteViewsCmd, TransactionalEditingDomain editingDomain, EditPart destructionEventPart) {
 		if(destructionEventPart instanceof IGraphicalEditPart) {
 			EObject obj = ((IGraphicalEditPart)destructionEventPart).resolveSemanticElement();
 
-			if(obj instanceof DestructionEvent) {
+			if(obj instanceof DestructionOccurrenceSpecification) {
 				LifelineEditPart lifelinePart = SequenceUtil.getParentLifelinePart(destructionEventPart);
 				if(lifelinePart != null) {
 					for(Object lifelineChild : lifelinePart.getChildren()) {

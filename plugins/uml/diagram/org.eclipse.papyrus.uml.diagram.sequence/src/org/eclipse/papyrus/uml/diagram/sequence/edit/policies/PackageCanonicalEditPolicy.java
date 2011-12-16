@@ -49,7 +49,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CommentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ConsiderIgnoreFragmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ContinuationEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DestructionEventEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DestructionOccurrenceSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationConstraintInMessageEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationObservationEditPart;
@@ -79,6 +79,18 @@ import org.eclipse.uml2.uml.UMLPackage;
  * @generated
  */
 public class PackageCanonicalEditPolicy extends CanonicalEditPolicy {
+
+	/**
+	 * @generated
+	 */
+	protected void refreshOnActivate() {
+		// Need to activate editpart children before invoking the canonical refresh for EditParts to add event listeners
+		List<?> c = getHost().getChildren();
+		for(int i = 0; i < c.size(); i++) {
+			((EditPart)c.get(i)).activate();
+		}
+		super.refreshOnActivate();
+	}
 
 	/**
 	 * @generated
@@ -396,10 +408,10 @@ public class PackageCanonicalEditPolicy extends CanonicalEditPolicy {
 			}
 			break;
 		}
-		case DestructionEventEditPart.VISUAL_ID:
+		case DestructionOccurrenceSpecificationEditPart.VISUAL_ID:
 		{
 			if(!domain2NotationMap.containsKey(view.getElement())) {
-				result.addAll(UMLDiagramUpdater.getDestructionEvent_3022ContainedLinks(view));
+				result.addAll(UMLDiagramUpdater.getDestructionOccurrenceSpecification_3022ContainedLinks(view));
 			}
 			if(!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
 				domain2NotationMap.put(view.getElement(), view);

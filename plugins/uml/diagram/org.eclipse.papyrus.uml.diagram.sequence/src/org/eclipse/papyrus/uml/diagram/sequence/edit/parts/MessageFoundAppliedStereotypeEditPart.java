@@ -607,15 +607,7 @@ public class MessageFoundAppliedStereotypeEditPart extends LabelEditPart impleme
 	 * @generated
 	 */
 	public int getDirectEditionType() {
-		if(checkExtendedEditor()) {
-			initExtendedEditorConfiguration();
-			return IDirectEdition.EXTENDED_DIRECT_EDITOR;
-		}
-		if(checkDefaultEdition()) {
-			return IDirectEdition.DEFAULT_DIRECT_EDITOR;
-		}
-
-		// not a named element. no specific editor => do nothing
+		// The label is read-only (defined in GMFGen model)
 		return IDirectEdition.NO_DIRECT_EDITION;
 	}
 
@@ -733,11 +725,9 @@ public class MessageFoundAppliedStereotypeEditPart extends LabelEditPart impleme
 			}
 		}
 
-
 		if(event.getNewValue() instanceof EAnnotation && VisualInformationPapyrusConstant.DISPLAY_NAMELABELICON.equals(((EAnnotation)event.getNewValue()).getSource())) {
 			refreshLabel();
 		}
-
 
 		super.handleNotificationEvent(event);
 	}

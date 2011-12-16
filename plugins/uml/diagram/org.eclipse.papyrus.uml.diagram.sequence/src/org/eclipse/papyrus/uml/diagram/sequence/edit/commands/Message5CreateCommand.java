@@ -32,7 +32,7 @@ import org.eclipse.papyrus.uml.diagram.common.commands.EObjectInheritanceCopyCom
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.UMLBaseItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.util.CommandHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceRequestConstant;
-import org.eclipse.uml2.uml.DestructionEvent;
+import org.eclipse.uml2.uml.DestructionOccurrenceSpecification;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.InteractionFragment;
@@ -123,7 +123,7 @@ public class Message5CreateCommand extends EditElementCommand {
 		// the Receive Message End
 		MessageOccurrenceSpecification receiveMessageEnd = null;
 
-		if(getTarget() instanceof DestructionEvent) {
+		if(getTarget() instanceof DestructionOccurrenceSpecification) {
 			receiveMessageEnd = getReceiveMessageEnd();
 			lifeline = receiveMessageEnd.getCovereds().get(0);
 		} else {
