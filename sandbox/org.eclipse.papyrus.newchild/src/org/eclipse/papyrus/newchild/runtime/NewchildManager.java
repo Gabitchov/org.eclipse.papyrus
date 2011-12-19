@@ -17,12 +17,12 @@ import java.util.Set;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.newchild.Activator;
 import org.eclipse.papyrus.newchild.MenuRoot;
 import org.eclipse.papyrus.newchild.NewchildConfiguration;
 import org.eclipse.papyrus.newchild.menu.FillElement;
 import org.eclipse.papyrus.newchild.menu.FillerFactory;
-import org.eclipse.papyrus.newchild.util.EMFHelper;
 
 /**
  * A singleton manager for customizable "New child" menu.

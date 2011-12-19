@@ -15,9 +15,9 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.action.IMenuManager;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.newchild.MenuAction;
 import org.eclipse.papyrus.newchild.action.ExtendedTypeAction;
-import org.eclipse.papyrus.newchild.util.EMFHelper;
 import org.eclipse.papyrus.newchild.util.MenuHelper;
 
 

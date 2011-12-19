@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.papyrus.constraints.Activator;
 import org.eclipse.papyrus.constraints.SimpleConstraint;
-import org.eclipse.papyrus.constraints.util.EMFHelper;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 
 /**
  * A constraint testing if a Selection is an EObject, instance of the given

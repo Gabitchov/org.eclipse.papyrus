@@ -17,9 +17,9 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.newchild.ncpolicy.NewChildPolicy;
 import org.eclipse.papyrus.newchild.ncpolicy.NewChildPolicySet;
-import org.eclipse.papyrus.newchild.util.EMFHelper;
 
 
 public class PolicyMatcher {

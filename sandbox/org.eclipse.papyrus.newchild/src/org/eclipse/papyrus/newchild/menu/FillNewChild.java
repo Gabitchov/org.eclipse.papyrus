@@ -33,6 +33,7 @@ import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.newchild.Activator;
 import org.eclipse.papyrus.newchild.MenuGroup;
 import org.eclipse.papyrus.newchild.NewchildConfiguration;
@@ -45,7 +46,6 @@ import org.eclipse.papyrus.newchild.policies.NewChildFillPolicy;
 import org.eclipse.papyrus.newchild.policies.PolicyManager;
 import org.eclipse.papyrus.newchild.policies.PolicyMatcher;
 import org.eclipse.papyrus.newchild.runtime.DisabledContributionItem;
-import org.eclipse.papyrus.newchild.util.EMFHelper;
 import org.eclipse.papyrus.newchild.util.MenuHelper;
 import org.eclipse.papyrus.newchild.util.Util;
 

@@ -23,7 +23,7 @@ import org.eclipse.papyrus.constraints.ConfigProperty;
 import org.eclipse.papyrus.constraints.ReferenceProperty;
 import org.eclipse.papyrus.constraints.SimpleConstraint;
 import org.eclipse.papyrus.constraints.ValueProperty;
-import org.eclipse.papyrus.constraints.util.EMFHelper;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 
 /**
  * A constraint applying an EMF Query on a selection. The Query should return
