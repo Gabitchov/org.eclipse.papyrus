@@ -34,6 +34,7 @@ import org.eclipse.papyrus.views.properties.contexts.DataContextElement;
 import org.eclipse.papyrus.views.properties.contexts.Property;
 import org.eclipse.papyrus.views.properties.root.PropertiesRoot;
 import org.eclipse.papyrus.views.properties.runtime.ConfigurationManager;
+import org.eclipse.papyrus.customization.properties.generation.Activator;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -219,7 +220,7 @@ public class EcoreGenerator extends AbstractQVTGenerator {
 
 	@Override
 	protected URI getTransformationURI() {
-		return URI.createPlatformPluginURI("org.eclipse.papyrus.customization.properties.generation/transforms/ecore2datacontext.qvto", true); //$NON-NLS-1$
+		return URI.createPlatformPluginURI(Activator.PLUGIN_ID+"/transforms/ecore2datacontext.qvto", true); //$NON-NLS-1$
 	}
 
 	@Override

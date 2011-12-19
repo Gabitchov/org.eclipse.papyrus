@@ -16,7 +16,7 @@ import org.eclipse.swt.widgets.Composite;
 
 /**
  * 
- * @author admin
+ * @author Camille Letavernier
  * @Deprecated You should use the standard ReferenceDialog instead
  */
 @Deprecated

@@ -54,10 +54,7 @@ public class MoDiscoLabelProvider extends CustomizableModelLabelProvider {
 			/* OR : decorationService = ServiceUtilsForActionHandlers.getInstance().getServiceRegistry().getService(DecorationService.class); */
 		} catch (ServiceException ex) {
 			Activator.log.error(ex);
-		} catch (Exception ex){
-			Activator.log.error(ex);
 		}
-
 	}
 
 	/**

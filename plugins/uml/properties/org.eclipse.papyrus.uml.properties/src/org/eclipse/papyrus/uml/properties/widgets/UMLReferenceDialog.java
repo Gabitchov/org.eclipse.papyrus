@@ -28,8 +28,7 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Package;
 
 /**
- * 
- * @author admin
+ * @author Camille Letavernier
  * @deprecated You should use the generic ReferenceDialog instead
  */
 @Deprecated

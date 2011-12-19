@@ -21,6 +21,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
@@ -34,6 +35,7 @@ import org.eclipse.core.runtime.SubProgressMonitor;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.emf.common.command.CommandStack;
 import org.eclipse.emf.common.notify.Notifier;
+import org.eclipse.emf.common.ui.dialogs.DiagnosticDialog;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
@@ -57,7 +59,6 @@ import org.eclipse.gmf.runtime.diagram.ui.image.ImageFileFormat;
 import org.eclipse.gmf.runtime.diagram.ui.render.util.CopyToImageUtil;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.emf.common.ui.dialogs.DiagnosticDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
@@ -179,7 +180,7 @@ public class ExportAllDiagrams {
 					return null;
 				}
 			};
-			
+
 			// bypass all the transaction/validate/notification mechanisms, it is a lot faster and it has no impact
 			// since we do not modify the model
 			CommandStack commandStack = editingDomain.getCommandStack();
@@ -274,7 +275,7 @@ public class ExportAllDiagrams {
 		Display.getDefault().syncExec(new Runnable() {
 
 			public void run() {
-				DiagnosticDialog.open(Activator.getActiveWorkbenchShell(), Messages.ExportAllDiagrams_27, "", diagnostic); //$NON-NLS-2$
+				DiagnosticDialog.open(Activator.getActiveWorkbenchShell(), Messages.ExportAllDiagrams_27, "", diagnostic); //$NON-NLS-1$
 			}
 		});
 
@@ -303,7 +304,7 @@ public class ExportAllDiagrams {
 						ComposedAdapterFactory composedAdapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 						composedAdapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
 						IItemLabelProvider itemLabelFactory = (IItemLabelProvider)composedAdapterFactory.adapt(diagram.getElement(), IItemLabelProvider.class);
-						label = itemLabelFactory.getText(diagram.getElement()).replace(Messages.ExportAllDiagrams_16, "") + "_"; //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$
+						label = itemLabelFactory.getText(diagram.getElement()).replace(Messages.ExportAllDiagrams_16, "") + "_"; //$NON-NLS-1$//$NON-NLS-2$ 
 					}
 					String uniqueFileName = encodeFileName(label + diagram.getName());
 					if(uniqueFileName.length() > 150) {

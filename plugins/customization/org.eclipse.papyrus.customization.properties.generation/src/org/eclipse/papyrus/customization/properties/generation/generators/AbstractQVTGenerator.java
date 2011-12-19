@@ -18,6 +18,7 @@ import java.util.Set;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.BasicDiagnostic;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -57,7 +58,13 @@ public abstract class AbstractQVTGenerator implements IGenerator, Listener {
 	public Context generate(URI targetURI) {
 
 		URI transformationURI = getTransformationURI();
+
 		TransformationExecutor executor = new TransformationExecutor(transformationURI);
+		Diagnostic diagnostic = executor.loadTransformation();
+		if(diagnostic.getSeverity() != Diagnostic.OK) {
+			Activator.log.warn("Cannot load the transformation : " + transformationURI);
+			return generatedContext = null;
+		}
 
 		List<ModelExtent> extents = getModelExtents();
 
@@ -81,7 +88,7 @@ public abstract class AbstractQVTGenerator implements IGenerator, Listener {
 			return generatedContext = getContext(outObjects);
 		} else {
 			IStatus status = BasicDiagnostic.toIStatus(result);
-			Activator.getDefault().getLog().log(status);
+			Activator.log.warn(String.format("%s : %s", status.getPlugin(), status.getMessage()));
 		}
 		return generatedContext = null;
 	}
