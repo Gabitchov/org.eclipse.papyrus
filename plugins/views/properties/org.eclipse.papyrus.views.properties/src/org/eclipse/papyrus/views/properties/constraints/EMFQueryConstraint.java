@@ -18,12 +18,12 @@ import org.eclipse.emf.facet.infra.query.QueryFactory;
 import org.eclipse.emf.facet.infra.query.core.AbstractModelQuery;
 import org.eclipse.emf.facet.infra.query.core.ModelQuerySetCatalog;
 import org.eclipse.emf.facet.infra.query.runtime.ModelQueryResult;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.views.properties.Activator;
 import org.eclipse.papyrus.views.properties.contexts.ConfigProperty;
 import org.eclipse.papyrus.views.properties.contexts.ReferenceProperty;
 import org.eclipse.papyrus.views.properties.contexts.SimpleConstraint;
 import org.eclipse.papyrus.views.properties.contexts.ValueProperty;
-import org.eclipse.papyrus.views.properties.util.EMFHelper;
 
 /**
  * A constraint applying an EMF Query on a selection. The Query should return

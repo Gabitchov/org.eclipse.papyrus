@@ -26,8 +26,10 @@ import org.eclipse.emf.facet.infra.query.ModelQuery;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.infra.widgets.providers.AbstractStaticContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
+import org.eclipse.papyrus.views.properties.contexts.ConfigProperty;
 import org.eclipse.papyrus.views.properties.modelelement.AbstractModelElement;
 import org.eclipse.papyrus.views.properties.providers.EMFObjectLabelProvider;
+import org.eclipse.papyrus.views.properties.ui.WidgetAttribute;
 
 /**
  * XWT relies a lot on reflectivity, as it is based on an XML syntax.

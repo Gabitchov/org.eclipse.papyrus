@@ -7,7 +7,6 @@
 package org.eclipse.papyrus.customization.model.customization.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.papyrus.customization.model.customization.CustomizationPackage;
 import org.eclipse.papyrus.customization.model.customization.PropertyView;
 

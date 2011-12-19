@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.papyrus.views.properties.util.EMFHelper;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 
 public class FeatureContentProvider implements CreateInFeatureContentProvider {
 

@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.widgets.creation.ReferenceValueFactory;
 import org.eclipse.papyrus.infra.widgets.providers.EmptyContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
@@ -35,7 +36,6 @@ import org.eclipse.papyrus.views.properties.databinding.EMFObservableValue;
 import org.eclipse.papyrus.views.properties.providers.EMFObjectLabelProvider;
 import org.eclipse.papyrus.views.properties.providers.EcoreEnumeratorContentProvider;
 import org.eclipse.papyrus.views.properties.providers.EcoreReferenceContentProvider;
-import org.eclipse.papyrus.views.properties.util.EMFHelper;
 
 /**
  * A ModelElement to manipulate EMF objects.

@@ -9,12 +9,17 @@ package org.eclipse.papyrus.customization.model.customization.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.eclipse.papyrus.customization.model.customization.*;
+import org.eclipse.papyrus.customization.model.customization.CustomizationConfiguration;
+import org.eclipse.papyrus.customization.model.customization.CustomizationFactory;
+import org.eclipse.papyrus.customization.model.customization.CustomizationPackage;
+import org.eclipse.papyrus.customization.model.customization.ModelTemplate;
+import org.eclipse.papyrus.customization.model.customization.Palette;
+import org.eclipse.papyrus.customization.model.customization.Profile;
+import org.eclipse.papyrus.customization.model.customization.PropertyView;
+import org.eclipse.papyrus.customization.model.customization.UICustom;
+import org.eclipse.papyrus.customization.model.customization.UMLModel;
 
 /**
  * <!-- begin-user-doc -->

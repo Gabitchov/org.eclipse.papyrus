@@ -11,11 +11,11 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.properties.constraints;
 
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.uml.properties.util.UMLUtil;
 import org.eclipse.papyrus.views.properties.constraints.AbstractConstraint;
 import org.eclipse.papyrus.views.properties.constraints.Constraint;
 import org.eclipse.papyrus.views.properties.contexts.SimpleConstraint;
-import org.eclipse.papyrus.views.properties.util.EMFHelper;
 import org.eclipse.uml2.uml.Element;
 
 /**

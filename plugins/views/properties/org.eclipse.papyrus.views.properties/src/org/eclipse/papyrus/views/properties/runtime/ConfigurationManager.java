@@ -32,6 +32,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.views.properties.Activator;
 import org.eclipse.papyrus.views.properties.contexts.Context;
 import org.eclipse.papyrus.views.properties.contexts.DataContextElement;
@@ -54,7 +55,6 @@ import org.eclipse.papyrus.views.properties.root.RootFactory;
 import org.eclipse.papyrus.views.properties.runtime.preferences.ContextDescriptor;
 import org.eclipse.papyrus.views.properties.runtime.preferences.Preferences;
 import org.eclipse.papyrus.views.properties.runtime.preferences.PreferencesFactory;
-import org.eclipse.papyrus.views.properties.util.EMFHelper;
 import org.eclipse.papyrus.views.properties.util.Util;
 
 /**

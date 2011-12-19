@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.papyrus.views.properties.util.EMFHelper;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 
 /**
  * An Observable value to edit EMF values through EMF commands.

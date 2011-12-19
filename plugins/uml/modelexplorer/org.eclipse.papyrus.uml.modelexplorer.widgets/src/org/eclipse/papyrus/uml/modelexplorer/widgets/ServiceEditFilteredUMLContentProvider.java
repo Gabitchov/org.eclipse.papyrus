@@ -29,5 +29,4 @@ public class ServiceEditFilteredUMLContentProvider extends UMLElementMEBContentP
 	public boolean isValidValue(Object element) {
 		return super.isValidValue(element) && validator.isValidValue(getAdaptedValue(element));
 	}
-
 }

@@ -23,13 +23,13 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.uml.properties.Activator;
 import org.eclipse.papyrus.uml.properties.languagepreferences.Editor;
 import org.eclipse.papyrus.uml.properties.languagepreferences.Language;
 import org.eclipse.papyrus.uml.properties.languagepreferences.Preferences;
 import org.eclipse.papyrus.uml.properties.languagepreferences.languagepreferencesFactory;
 import org.eclipse.papyrus.uml.properties.widgets.BodyEditor;
-import org.eclipse.papyrus.views.properties.util.EMFHelper;
 
 /**
  * A Registry to manage associations between a language and a language

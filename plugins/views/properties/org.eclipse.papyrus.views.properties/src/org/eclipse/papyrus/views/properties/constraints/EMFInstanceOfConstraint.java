@@ -14,9 +14,9 @@ package org.eclipse.papyrus.views.properties.constraints;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.services.edit.Activator;
 import org.eclipse.papyrus.views.properties.contexts.SimpleConstraint;
-import org.eclipse.papyrus.views.properties.util.EMFHelper;
 
 /**
  * A constraint testing if a Selection is an EObject, instance of the given

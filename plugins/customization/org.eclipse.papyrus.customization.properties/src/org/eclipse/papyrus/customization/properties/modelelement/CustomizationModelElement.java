@@ -27,6 +27,7 @@ import org.eclipse.papyrus.customization.properties.providers.EnvironmentContent
 import org.eclipse.papyrus.customization.properties.providers.PropertyContentProvider;
 import org.eclipse.papyrus.customization.properties.providers.PropertyEditorTypeContentProvider;
 import org.eclipse.papyrus.customization.properties.providers.TabContentProvider;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.widgets.creation.ReferenceValueFactory;
 import org.eclipse.papyrus.infra.widgets.providers.EmptyContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
@@ -38,9 +39,9 @@ import org.eclipse.papyrus.views.properties.environment.EnvironmentPackage;
 import org.eclipse.papyrus.views.properties.modelelement.AbstractModelElement;
 import org.eclipse.papyrus.views.properties.modelelement.DataSource;
 import org.eclipse.papyrus.views.properties.modelelement.EMFModelElement;
+import org.eclipse.papyrus.views.properties.modelelement.ModelElement;
 import org.eclipse.papyrus.views.properties.ui.PropertyEditor;
 import org.eclipse.papyrus.views.properties.ui.UiPackage;
-import org.eclipse.papyrus.views.properties.util.EMFHelper;
 
 /**
  * A {@link ModelElement} for customization specific properties

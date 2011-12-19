@@ -8,10 +8,17 @@ package org.eclipse.papyrus.customization.model.customization.util;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.util.Switch;
-
-import org.eclipse.papyrus.customization.model.customization.*;
+import org.eclipse.papyrus.customization.model.customization.CustomizableElement;
+import org.eclipse.papyrus.customization.model.customization.CustomizationConfiguration;
+import org.eclipse.papyrus.customization.model.customization.CustomizationPackage;
+import org.eclipse.papyrus.customization.model.customization.FileBasedCustomizableElement;
+import org.eclipse.papyrus.customization.model.customization.ModelTemplate;
+import org.eclipse.papyrus.customization.model.customization.Palette;
+import org.eclipse.papyrus.customization.model.customization.Profile;
+import org.eclipse.papyrus.customization.model.customization.PropertyView;
+import org.eclipse.papyrus.customization.model.customization.UICustom;
+import org.eclipse.papyrus.customization.model.customization.UMLModel;
 
 /**
  * <!-- begin-user-doc -->
