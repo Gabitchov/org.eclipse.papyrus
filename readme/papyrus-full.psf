@@ -47,7 +47,6 @@
 <project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/infra/org.eclipse.papyrus.infra.ui.resources,org.eclipse.papyrus.infra.ui.resources"/>
 <project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/infra/widget/org.eclipse.papyrus.infra.widgets,org.eclipse.papyrus.infra.widgets"/>
 <project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/infra/widget/org.eclipse.papyrus.infra.widgets.toolbox,org.eclipse.papyrus.infra.widgets.toolbox"/>
-<project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/infra/xtext/org.eclipse.papyrus.infra.xtext.widgets,org.eclipse.papyrus.infra.xtext.widgets"/>
 <project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/layout/org.eclipse.papyrus.layout,org.eclipse.papyrus.layout"/>
 <project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/layout/org.eclipse.papyrus.layout.algorithms.gridAlgorithm,org.eclipse.papyrus.layout.algorithms.gridAlgorithm"/>
 <project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/layout/org.eclipse.papyrus.layout.algorithms.horizontalAlgorithm,org.eclipse.papyrus.layout.algorithms.horizontalAlgorithm"/>
@@ -182,6 +181,7 @@
 <project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/views/properties/org.eclipse.papyrus.views.properties.tabbed.customization,org.eclipse.papyrus.views.properties.tabbed.customization"/>
 <project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/views/properties/org.eclipse.papyrus.views.properties.tabbedproperties.core,org.eclipse.papyrus.views.properties.tabbedproperties.core"/>
 <project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/core/org.eclipse.xtext.gmf.glue,org.eclipse.xtext.gmf.glue"/>
+<project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/infra/org.eclipse.papyrus.infra.emf,org.eclipse.papyrus.infra.emf"/>
 </provider>
 <workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1319612381461_39" label="customization" name="customization">
 <item elementID="=org.eclipse.papyrus.customization.paletteconfiguration" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
@@ -201,6 +201,7 @@
 <item elementID="=org.eclipse.papyrus.infra.extendedtypes" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.infra.onefile" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.infra.ui.resources" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.papyrus.infra.emf" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 </workingSets>
 <workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1319612477881_57" label="infra.core" name="infra.core">
 <item elementID="=org.eclipse.papyrus.infra.core.sasheditor" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
@@ -244,9 +245,6 @@
 <workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1319612502428_61" label="infra.widget" name="infra.widget">
 <item elementID="=org.eclipse.papyrus.infra.widgets.toolbox" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.infra.widgets" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-</workingSets>
-<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1319612470694_55" label="infra.xtext" name="infra.xtext">
-<item elementID="=org.eclipse.papyrus.infra.xtext.widgets" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 </workingSets>
 <workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1319612399633_43" label="layout" name="layout">
 <item elementID="=org.eclipse.papyrus.layout.algorithms.horizontalSymmetryAlgorithm" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
