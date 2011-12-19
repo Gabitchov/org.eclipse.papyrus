@@ -506,7 +506,7 @@
 
     <!-- E4 (XWT) -->
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
-      <rm:uri format="{0}/e4/updates/0.12-I-builds/I20111209-2100/"> 
+      <rm:uri format="{0}/e4/updates/0.12-I-builds/I20111216-1500/"> 
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
