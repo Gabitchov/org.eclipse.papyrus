@@ -126,17 +126,20 @@ public class PropertyHelperAdvice extends AbstractEditHelperAdvice {
 		// such a situation this helper turns other ends into aggregation none before changing the property aggregation.
 		if((elementToEdit instanceof Property) && !(elementToEdit instanceof Port) && (request.getFeature() == UMLPackage.eINSTANCE.getProperty_Aggregation()) && (request.getValue() == AggregationKind.COMPOSITE_LITERAL)) {
 			Property propertyToEdit = (Property)elementToEdit;
+			
+			// Only apply if the property is an association end.
 			Association relatedAssociation = propertyToEdit.getAssociation();
+			if(relatedAssociation != null) {
+				Set<Property> members = new HashSet<Property>();
+				members.addAll(relatedAssociation.getMemberEnds());
+				members.remove(propertyToEdit);
 
-			Set<Property> members = new HashSet<Property>();
-			members.addAll(relatedAssociation.getMemberEnds());
-			members.remove(propertyToEdit);
-
-			for(Property member : members) {
-				if(member.getAggregation() == AggregationKind.COMPOSITE_LITERAL) {
-					SetRequest setRequest = new SetRequest(member, UMLPackage.eINSTANCE.getProperty_Aggregation(), AggregationKind.NONE_LITERAL);
-					SetValueCommand setAggregationCommand = new SetValueCommand(setRequest);
-					gmfCommand = CompositeCommand.compose(gmfCommand, setAggregationCommand);
+				for(Property member : members) {
+					if(member.getAggregation() == AggregationKind.COMPOSITE_LITERAL) {
+						SetRequest setRequest = new SetRequest(member, UMLPackage.eINSTANCE.getProperty_Aggregation(), AggregationKind.NONE_LITERAL);
+						SetValueCommand setAggregationCommand = new SetValueCommand(setRequest);
+						gmfCommand = CompositeCommand.compose(gmfCommand, setAggregationCommand);
+					}
 				}
 			}
 		}
