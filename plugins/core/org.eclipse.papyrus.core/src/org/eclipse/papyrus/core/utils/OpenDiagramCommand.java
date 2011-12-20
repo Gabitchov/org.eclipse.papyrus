@@ -23,6 +23,7 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
+import org.eclipse.papyrus.sasheditor.contentprovider.di.DiSashModelMngr;
 
 /**
  * The Class OpenDiagramCommand.
@@ -68,14 +69,20 @@ public class OpenDiagramCommand extends AbstractTransactionalCommand {
 			}
 
 			if(diagramToOpen != null) {
-				IPageMngr pageMngr;
+				IPageMngr pageMngr = null;
 				final ServicesRegistry serviceRegistry = EditorUtils.getServiceRegistry();
 				if(serviceRegistry != null) {
-					pageMngr =serviceRegistry.getService(IPageMngr.class);
-				} else if(getEditingDomain().getResourceSet() instanceof DiResourceSet){
+					DiResourceSet resourceSet = serviceRegistry.getService(DiResourceSet.class);
+					if (resourceSet == getEditingDomain().getResourceSet()) {
+						pageMngr =serviceRegistry.getService(IPageMngr.class);
+					}
+				}
+				if(pageMngr == null && getEditingDomain().getResourceSet() instanceof DiResourceSet) {
 					DiResourceSet diResourceSet = (DiResourceSet)getEditingDomain().getResourceSet();
-					pageMngr = EditorUtils.getIPageMngr(diResourceSet.getDiResource());
-				} else {
+					pageMngr = DiSashModelMngr.createIPageMngr(diResourceSet.getDiResource());
+				}
+
+				if (pageMngr == null) {
 					throw new IllegalStateException("Enable to get the page manager");////$NON-NLS-1$
 				}
 
