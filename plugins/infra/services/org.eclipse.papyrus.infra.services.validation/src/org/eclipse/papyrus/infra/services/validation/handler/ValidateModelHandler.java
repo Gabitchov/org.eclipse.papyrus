@@ -15,7 +15,7 @@
 package org.eclipse.papyrus.infra.services.validation.handler;
 
 import org.eclipse.emf.common.command.Command;
-import org.eclipse.papyrus.infra.core.utils.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.services.validation.commands.ValidateModelCommand;
 
 /**

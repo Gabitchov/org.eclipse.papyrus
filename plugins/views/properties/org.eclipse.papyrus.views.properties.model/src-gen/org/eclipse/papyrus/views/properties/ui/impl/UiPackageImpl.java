@@ -1,28 +1,18 @@
-/*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
+/**
+ * <copyright>
+ * </copyright>
  *
- * Contributors:
- *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
- *****************************************************************************/
+ * $Id$
+ */
 package org.eclipse.papyrus.views.properties.ui.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
-
-
-
-
+import org.eclipse.papyrus.infra.constraints.ConstraintsPackage;
 import org.eclipse.papyrus.views.properties.contexts.ContextsPackage;
 import org.eclipse.papyrus.views.properties.contexts.impl.ContextsPackageImpl;
 import org.eclipse.papyrus.views.properties.environment.EnvironmentPackage;
@@ -95,6 +85,13 @@ public class UiPackageImpl extends EPackageImpl implements UiPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass unknownComponentEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass layoutEClass = null;
 
 	/**
@@ -117,13 +114,6 @@ public class UiPackageImpl extends EPackageImpl implements UiPackage {
 	 * @generated
 	 */
 	private EClass referenceAttributeEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass unknownComponentEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -172,6 +162,7 @@ public class UiPackageImpl extends EPackageImpl implements UiPackage {
 		isInited = true;
 
 		// Initialize simple dependencies
+		ConstraintsPackage.eINSTANCE.eClass();
 		EcorePackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
@@ -364,6 +355,24 @@ public class UiPackageImpl extends EPackageImpl implements UiPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getUnknownComponent() {
+		return unknownComponentEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getUnknownComponent_TypeName() {
+		return (EAttribute)unknownComponentEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getLayout() {
 		return layoutEClass;
 	}
@@ -429,24 +438,6 @@ public class UiPackageImpl extends EPackageImpl implements UiPackage {
 	 */
 	public EReference getReferenceAttribute_Value() {
 		return (EReference)referenceAttributeEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getUnknownComponent() {
-		return unknownComponentEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getUnknownComponent_TypeName() {
-		return (EAttribute)unknownComponentEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**

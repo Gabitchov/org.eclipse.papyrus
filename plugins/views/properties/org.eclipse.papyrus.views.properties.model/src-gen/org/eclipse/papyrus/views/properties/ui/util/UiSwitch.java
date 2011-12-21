@@ -1,24 +1,27 @@
-/*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
+/**
+ * <copyright>
+ * </copyright>
  *
- * Contributors:
- *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
- *****************************************************************************/
+ * $Id$
+ */
 package org.eclipse.papyrus.views.properties.ui.util;
 
-import java.util.List;
-
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
 import org.eclipse.papyrus.views.properties.ui.*;
+import org.eclipse.papyrus.views.properties.ui.CompositeWidget;
+import org.eclipse.papyrus.views.properties.ui.Element;
+import org.eclipse.papyrus.views.properties.ui.Layout;
+import org.eclipse.papyrus.views.properties.ui.PropertyEditor;
+import org.eclipse.papyrus.views.properties.ui.ReferenceAttribute;
+import org.eclipse.papyrus.views.properties.ui.StandardWidget;
+import org.eclipse.papyrus.views.properties.ui.UIComponent;
+import org.eclipse.papyrus.views.properties.ui.UiPackage;
+import org.eclipse.papyrus.views.properties.ui.UnknownComponent;
+import org.eclipse.papyrus.views.properties.ui.ValueAttribute;
+import org.eclipse.papyrus.views.properties.ui.Widget;
+import org.eclipse.papyrus.views.properties.ui.WidgetAttribute;
 
 /**
  * <!-- begin-user-doc -->
@@ -260,6 +263,21 @@ public class UiSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Unknown Component</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Unknown Component</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseUnknownComponent(UnknownComponent object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Layout</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -316,21 +334,6 @@ public class UiSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseReferenceAttribute(ReferenceAttribute object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Unknown Component</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Unknown Component</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseUnknownComponent(UnknownComponent object) {
 		return null;
 	}
 

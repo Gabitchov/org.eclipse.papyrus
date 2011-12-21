@@ -32,9 +32,8 @@ import org.eclipse.jface.fieldassist.SimpleContentProposalProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.infra.widgets.editors.ReferenceCombo;
 import org.eclipse.papyrus.infra.widgets.editors.TreeSelectorDialog;
-import org.eclipse.papyrus.infra.widgets.providers.EncapsulatedContentProvider;
-import org.eclipse.papyrus.uml.properties.providers.CopyOfUMLLabelProvider;
-import org.eclipse.papyrus.uml.properties.providers.UMLContentProvider;
+import org.eclipse.papyrus.uml.tools.providers.UMLContentProvider;
+import org.eclipse.papyrus.uml.tools.providers.UMLLabelProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.DisposeEvent;
 import org.eclipse.swt.events.DisposeListener;
@@ -55,7 +54,6 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
-import org.eclipse.uml2.uml.Element;
 
 public class UnaryReferencePapyrusCellEditorComposite extends AbstractCellEditorComposite<EObject> {
 
@@ -66,6 +64,7 @@ public class UnaryReferencePapyrusCellEditorComposite extends AbstractCellEditor
 	private final Combo combo;
 
 	private final ReferenceCombo referenceCombo;
+
 	private final Control parentControl;
 
 	private EObject source;
@@ -111,7 +110,7 @@ public class UnaryReferencePapyrusCellEditorComposite extends AbstractCellEditor
 
 		this.combo = new Combo(this, SWT.DROP_DOWN);
 		this.referenceCombo = null;
-		
+
 		// reduce the font so that the Combo fits in the cell
 		FontData[] fontData = Display.getDefault().getSystemFont().getFontData();
 		fontData[0].setHeight(fontData[0].getHeight()/* - 2 */);
@@ -151,8 +150,8 @@ public class UnaryReferencePapyrusCellEditorComposite extends AbstractCellEditor
 
 			@Override
 			public void widgetSelected(final SelectionEvent e) {
-				final EncapsulatedContentProvider provider = new UMLContentProvider((Element)source, feature);
-				ILabelProvider labelProvider = new CopyOfUMLLabelProvider(feature);
+				final UMLContentProvider provider = new UMLContentProvider(source, feature);
+				ILabelProvider labelProvider = new UMLLabelProvider();
 				TreeSelectorDialog dialog = new TreeSelectorDialog(Display.getCurrent().getActiveShell()) {
 
 					@Override
@@ -164,7 +163,7 @@ public class UnaryReferencePapyrusCellEditorComposite extends AbstractCellEditor
 							selectedElements[i] = adapted;
 						}
 						String selectedElementLabel = null;
-						
+
 						if(selectedElements.length > 0) {
 							Set<Entry<String, EObject>> entrySet = UnaryReferencePapyrusCellEditorComposite.this.getfElements().entrySet();
 							for(Entry<String, EObject> entry : entrySet) {
@@ -258,7 +257,8 @@ public class UnaryReferencePapyrusCellEditorComposite extends AbstractCellEditor
 
 	public void setValue(final EObject value) {
 		//
-		int d=0;d++;
+		int d = 0;
+		d++;
 	}
 
 	protected Button getButton() {

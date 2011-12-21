@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.papyrus.uml.properties.databinding.PapyrusObservableValue;
+import org.eclipse.papyrus.uml.tools.databinding.PapyrusObservableValue;
 
 /**
  * Allows the manipulation of a UML DataType from a static profile (Implemented by an EMF EDataType)

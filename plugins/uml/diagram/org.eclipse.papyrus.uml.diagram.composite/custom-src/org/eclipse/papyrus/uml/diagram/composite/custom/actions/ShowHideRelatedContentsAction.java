@@ -22,8 +22,8 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.actions.AbstractShowHideAction;
 import org.eclipse.papyrus.uml.diagram.common.actions.ShowHideContentsAction;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideRelatedContentsEditPolicy;
-import org.eclipse.papyrus.uml.diagram.common.providers.EditorLabelProvider;
 import org.eclipse.papyrus.uml.diagram.composite.custom.messages.Messages;
+import org.eclipse.papyrus.uml.tools.providers.UMLLabelProvider;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Type;
@@ -47,7 +47,7 @@ public class ShowHideRelatedContentsAction extends ShowHideContentsAction {
 	@Override
 	protected void initAction() {
 		super.initAction();
-		setEditorLabelProvider(new EditorLabelProvider());
+		setEditorLabelProvider(new UMLLabelProvider());
 		this.representations = new ArrayList<AbstractShowHideAction.EditPartRepresentation>();
 
 		for(EditPart current : this.selectedElements) {

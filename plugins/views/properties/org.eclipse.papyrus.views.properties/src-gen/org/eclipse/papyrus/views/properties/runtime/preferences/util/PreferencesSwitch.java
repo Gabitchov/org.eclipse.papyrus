@@ -10,8 +10,9 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.papyrus.views.properties.runtime.preferences.*;
+import org.eclipse.papyrus.views.properties.runtime.preferences.ContextDescriptor;
+import org.eclipse.papyrus.views.properties.runtime.preferences.Preferences;
+import org.eclipse.papyrus.views.properties.runtime.preferences.PreferencesPackage;
 
 /**
  * <!-- begin-user-doc -->

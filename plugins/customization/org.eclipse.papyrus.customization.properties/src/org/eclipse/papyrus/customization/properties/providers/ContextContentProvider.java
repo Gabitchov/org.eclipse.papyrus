@@ -20,7 +20,7 @@ import org.eclipse.emf.facet.infra.browser.uicore.CustomizableModelContentProvid
 import org.eclipse.emf.facet.infra.browser.uicore.CustomizationManager;
 import org.eclipse.papyrus.customization.properties.Activator;
 import org.eclipse.papyrus.views.properties.contexts.Context;
-import org.eclipse.papyrus.views.properties.util.Util;
+import org.eclipse.papyrus.views.properties.util.PropertiesUtil;
 
 /**
  * The customization editor's content provider. Based on the EMF Facet
@@ -66,7 +66,7 @@ public class ContextContentProvider extends CustomizableModelContentProvider {
 			Set<Context> allContexts = new LinkedHashSet<Context>();
 			for(EObject element : elements) {
 				if(element instanceof Context) {
-					allContexts.addAll(Util.getDependencies((Context)element));
+					allContexts.addAll(PropertiesUtil.getDependencies((Context)element));
 				}
 			}
 			elements.addAll(allContexts);

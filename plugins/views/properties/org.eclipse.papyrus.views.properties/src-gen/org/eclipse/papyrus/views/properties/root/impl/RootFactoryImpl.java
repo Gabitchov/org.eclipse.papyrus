@@ -9,18 +9,16 @@ package org.eclipse.papyrus.views.properties.root.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.eclipse.papyrus.views.properties.root.*;
+import org.eclipse.papyrus.views.properties.root.PropertiesRoot;
+import org.eclipse.papyrus.views.properties.root.RootFactory;
+import org.eclipse.papyrus.views.properties.root.RootPackage;
 
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Factory</b>.
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class RootFactoryImpl extends EFactoryImpl implements RootFactory {
@@ -29,16 +27,16 @@ public class RootFactoryImpl extends EFactoryImpl implements RootFactory {
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public static RootFactory init() {
 		try {
-			RootFactory theRootFactory = (RootFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/properties/root"); //$NON-NLS-1$
-			if(theRootFactory != null) {
+			RootFactory theRootFactory = (RootFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/properties/root"); 
+			if (theRootFactory != null) {
 				return theRootFactory;
 			}
-		} catch (Exception exception) {
+		}
+		catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new RootFactoryImpl();
@@ -48,7 +46,6 @@ public class RootFactoryImpl extends EFactoryImpl implements RootFactory {
 	 * Creates an instance of the factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public RootFactoryImpl() {
@@ -58,23 +55,20 @@ public class RootFactoryImpl extends EFactoryImpl implements RootFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public EObject create(EClass eClass) {
-		switch(eClass.getClassifierID()) {
-		case RootPackage.PROPERTIES_ROOT:
-			return createPropertiesRoot();
-		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
+		switch (eClass.getClassifierID()) {
+			case RootPackage.PROPERTIES_ROOT: return createPropertiesRoot();
+			default:
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public PropertiesRoot createPropertiesRoot() {
@@ -85,7 +79,6 @@ public class RootFactoryImpl extends EFactoryImpl implements RootFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public RootPackage getRootPackage() {
@@ -95,7 +88,6 @@ public class RootFactoryImpl extends EFactoryImpl implements RootFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @deprecated
 	 * @generated
 	 */

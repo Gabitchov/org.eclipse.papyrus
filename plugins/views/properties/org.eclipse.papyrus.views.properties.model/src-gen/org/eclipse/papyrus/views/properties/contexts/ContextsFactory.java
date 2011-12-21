@@ -1,14 +1,9 @@
-/*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
+/**
+ * <copyright>
+ * </copyright>
  *
- * Contributors:
- *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
- *****************************************************************************/
+ * $Id$
+ */
 package org.eclipse.papyrus.views.properties.contexts;
 
 import org.eclipse.emf.ecore.EFactory;
@@ -40,15 +35,6 @@ public interface ContextsFactory extends EFactory {
 	Context createContext();
 
 	/**
-	 * Returns a new object of class '<em>View</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>View</em>'.
-	 * @generated
-	 */
-	View createView();
-
-	/**
 	 * Returns a new object of class '<em>Tab</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -56,6 +42,15 @@ public interface ContextsFactory extends EFactory {
 	 * @generated
 	 */
 	Tab createTab();
+
+	/**
+	 * Returns a new object of class '<em>View</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>View</em>'.
+	 * @generated
+	 */
+	View createView();
 
 	/**
 	 * Returns a new object of class '<em>Section</em>'.
@@ -110,42 +105,6 @@ public interface ContextsFactory extends EFactory {
 	 * @generated
 	 */
 	DataContextRoot createDataContextRoot();
-
-	/**
-	 * Returns a new object of class '<em>Simple Constraint</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Simple Constraint</em>'.
-	 * @generated
-	 */
-	SimpleConstraint createSimpleConstraint();
-
-	/**
-	 * Returns a new object of class '<em>Composite Constraint</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Composite Constraint</em>'.
-	 * @generated
-	 */
-	CompositeConstraint createCompositeConstraint();
-
-	/**
-	 * Returns a new object of class '<em>Value Property</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Value Property</em>'.
-	 * @generated
-	 */
-	ValueProperty createValueProperty();
-
-	/**
-	 * Returns a new object of class '<em>Reference Property</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Reference Property</em>'.
-	 * @generated
-	 */
-	ReferenceProperty createReferenceProperty();
 
 	/**
 	 * Returns the package supported by this factory.

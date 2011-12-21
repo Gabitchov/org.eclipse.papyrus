@@ -1,14 +1,9 @@
-/*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
+/**
+ * <copyright>
+ * </copyright>
  *
- * Contributors:
- *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
- *****************************************************************************/
+ * $Id$
+ */
 package org.eclipse.papyrus.views.properties.contexts.impl;
 
 import java.util.Collection;
@@ -47,7 +42,6 @@ import org.eclipse.papyrus.views.properties.contexts.Tab;
  * @generated
  */
 public class TabImpl extends EObjectImpl implements Tab {
-
 	/**
 	 * The default value of the '{@link #getLabel() <em>Label</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -567,59 +561,6 @@ public class TabImpl extends EObjectImpl implements Tab {
 		result.append(priority);
 		result.append(')');
 		return result.toString();
-	}
-
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated NOT
-	 */
-	@Override
-	public boolean equals(Object other) {
-		if(other == null)
-			return false;
-		if(this == other)
-			return true;
-
-		if(other instanceof Tab) {
-			Tab tab = (Tab)other;
-			return compareString(tab.getCategory(), getCategory()) && compareString(tab.getId(), getId());
-		}
-
-		return false;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated NOT
-	 */
-	@Override
-	public int hashCode() {
-		if(getCategory() == null) {
-			if(getId() == null) {
-				return 0;
-			}
-			return getId().hashCode();
-		}
-
-		return 7 * getCategory().hashCode() + getId().hashCode();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated NOT
-	 */
-	private boolean compareString(String s1, String s2) {
-		if(s1 == null || s1.equals("")) {
-			return s2 == null || s2.equals("");
-		}
-		return s1.equals(s2);
 	}
 
 } //TabImpl

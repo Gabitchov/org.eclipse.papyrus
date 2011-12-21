@@ -260,26 +260,34 @@ public class Activator extends AbstractUIPlugin {
 		}
 	}
 
-	// @unused
-	public static Image getIconElement(Element elt) {
-		return getIconElement(elt, false);
+	/**
+	 * this method returns the icon image that represents the first applied
+	 * stereotype on the element.
+	 * 
+	 * @param element
+	 *        The element for which we will retrieve the stereotype icon
+	 * @return
+	 *         The element's first applied stereotype's Image
+	 */
+	public static Image getIconElement(Element element) {
+		return getIconElement(element, false);
 	}
 
 	/**
 	 * this method returns the icon image that represents the first applied
 	 * stereotype.
 	 * 
-	 * @param elt
+	 * @param element
 	 *        the stereotyped element
 	 * @return {@link image} of the icon
 	 */
-	public static Image getIconElement(Element elt, boolean withVisibilityDecorator) {
+	public static Image getIconElement(Element element, boolean withVisibilityDecorator) {
 
-		List<Stereotype> stereotypeList = elt.getAppliedStereotypes();
+		List<Stereotype> stereotypeList = element.getAppliedStereotypes();
 		if(stereotypeList == null || stereotypeList.isEmpty()) {
 			return null;
 		}
-		return getIconElement(elt, stereotypeList.get(0), withVisibilityDecorator);
+		return getIconElement(element, stereotypeList.get(0), withVisibilityDecorator);
 	}
 
 	/**
@@ -341,7 +349,7 @@ public class Activator extends AbstractUIPlugin {
 		}
 	}
 
-	/** get the imageassociated to a image uml element**/
+	/** get the imageassociated to a image uml element **/
 	public static Image getShape(Element elt, Stereotype stereotype, boolean withVisibilityDecorator) {
 
 		VisibilityKind vis = null;

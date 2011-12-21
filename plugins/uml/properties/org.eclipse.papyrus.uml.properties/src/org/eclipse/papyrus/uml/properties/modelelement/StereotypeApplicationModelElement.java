@@ -18,12 +18,11 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
-import org.eclipse.papyrus.uml.diagram.common.providers.EditorLabelProvider;
-import org.eclipse.papyrus.uml.properties.databinding.ProfileApplicationObservableList;
 import org.eclipse.papyrus.uml.properties.databinding.StereotypeApplicationObservableList;
 import org.eclipse.papyrus.uml.properties.providers.ApplicableStereotypeContentProvider;
-import org.eclipse.papyrus.uml.properties.providers.ProfileLabelProvider;
 import org.eclipse.papyrus.uml.properties.util.UMLUtil;
+import org.eclipse.papyrus.uml.tools.databinding.ProfileApplicationObservableList;
+import org.eclipse.papyrus.uml.tools.providers.UMLLabelProvider;
 import org.eclipse.papyrus.views.properties.modelelement.EMFModelElement;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Package;
@@ -98,10 +97,7 @@ public class StereotypeApplicationModelElement extends EMFModelElement {
 	@Override
 	public ILabelProvider getLabelProvider(String propertyPath) {
 		EStructuralFeature feature = getFeature(propertyPath);
-		if(feature == UMLPackage.eINSTANCE.getPackage_ProfileApplication()) {
-			return new ProfileLabelProvider((Package)source);
-		}
-		return new EditorLabelProvider();
+		return new UMLLabelProvider();
 	}
 
 	/**

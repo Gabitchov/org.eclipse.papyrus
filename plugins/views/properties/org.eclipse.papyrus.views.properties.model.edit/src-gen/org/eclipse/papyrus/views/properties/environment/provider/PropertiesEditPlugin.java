@@ -7,10 +7,9 @@
 package org.eclipse.papyrus.views.properties.environment.provider;
 
 import org.eclipse.emf.common.EMFPlugin;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
+import org.eclipse.papyrus.infra.constraints.provider.ConstraintsEditPlugin;
 
 /**
  * This is the central singleton for the Properties edit plugin.
@@ -44,6 +43,7 @@ public final class PropertiesEditPlugin extends EMFPlugin {
 	public PropertiesEditPlugin() {
 		super
 		  (new ResourceLocator [] {
+		     ConstraintsEditPlugin.INSTANCE,
 		     EcoreEditPlugin.INSTANCE,
 		   });
 	}

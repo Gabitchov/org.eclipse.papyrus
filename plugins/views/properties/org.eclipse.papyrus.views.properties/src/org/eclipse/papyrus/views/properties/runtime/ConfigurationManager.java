@@ -55,7 +55,7 @@ import org.eclipse.papyrus.views.properties.root.RootFactory;
 import org.eclipse.papyrus.views.properties.runtime.preferences.ContextDescriptor;
 import org.eclipse.papyrus.views.properties.runtime.preferences.Preferences;
 import org.eclipse.papyrus.views.properties.runtime.preferences.PreferencesFactory;
-import org.eclipse.papyrus.views.properties.util.Util;
+import org.eclipse.papyrus.views.properties.util.PropertiesUtil;
 
 /**
  * Central class of the Property View framework. It lists the available environments and contexts,
@@ -90,7 +90,7 @@ public class ConfigurationManager {
 	/**
 	 * The global constraint engine
 	 */
-	public ConstraintEngine constraintEngine;
+	public ViewConstraintEngine constraintEngine;
 
 	/**
 	 * The singleton instance
@@ -98,7 +98,7 @@ public class ConfigurationManager {
 	public final static ConfigurationManager instance = new ConfigurationManager();
 
 	private ConfigurationManager() {
-		constraintEngine = new DefaultConstraintEngine();
+		constraintEngine = new DefaultViewConstraintEngine();
 		enabledContexts = new HashSet<Context>();
 
 		root = RootFactory.eINSTANCE.createPropertiesRoot();
@@ -190,7 +190,7 @@ public class ConfigurationManager {
 			//Adds the new object corresponding to this context
 			try {
 				addContext(contextURI);
-				constraintEngine.contextChanged();
+				constraintEngine.refresh();
 			} catch (IOException ex) {
 				Activator.log.error(ex);
 			}
@@ -464,7 +464,7 @@ public class ConfigurationManager {
 
 	private <T extends WidgetType> T findWidgetTypeByClassName(Collection<T> types, String className, String namespacePrefix) {
 		for(T widgetType : types) {
-			if(widgetType.getWidgetClass().equals(className) && Util.namespaceEqualsByName(widgetType.getNamespace(), namespacePrefix)) {
+			if(widgetType.getWidgetClass().equals(className) && PropertiesUtil.namespaceEqualsByName(widgetType.getNamespace(), namespacePrefix)) {
 				return widgetType;
 			}
 		}
@@ -546,7 +546,7 @@ public class ConfigurationManager {
 	public Namespace getNamespaceByName(String name) {
 		for(Environment environment : root.getEnvironments()) {
 			for(Namespace namespace : environment.getNamespaces()) {
-				if(Util.namespaceEqualsByName(namespace, name)) {
+				if(PropertiesUtil.namespaceEqualsByName(namespace, name)) {
 					return namespace;
 				}
 			}
@@ -603,14 +603,14 @@ public class ConfigurationManager {
 		if(context == null) {
 			allContexts = getContexts();
 		} else {
-			allContexts = Util.getDependencies(context);
+			allContexts = PropertiesUtil.getDependencies(context);
 		}
 
 		for(Context ctx : allContexts) {
 			elements.addAll(ctx.getDataContexts());
 		}
 
-		DataContextElement element = Util.getContextElementByQualifiedName(elementName, elements);
+		DataContextElement element = PropertiesUtil.getContextElementByQualifiedName(elementName, elements);
 		if(element != null) {
 			for(Property property : element.getProperties()) {
 				if(property.getName().equals(propertyName)) {
@@ -627,7 +627,7 @@ public class ConfigurationManager {
 	 * activation
 	 */
 	public void update() {
-		constraintEngine.contextChanged();
+		constraintEngine.refresh();
 	}
 
 	/**

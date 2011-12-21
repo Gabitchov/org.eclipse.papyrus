@@ -16,9 +16,9 @@ package org.eclipse.papyrus.uml.diagram.modelexplorer.handler;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.papyrus.infra.emf.providers.internal.MoDiscoContentProvider;
 import org.eclipse.papyrus.uml.diagram.modelexplorer.provider.DiagramContentProvider;
 import org.eclipse.papyrus.uml.diagram.modelexplorer.provider.DiagramLabelProvider;
-import org.eclipse.papyrus.views.modelexplorer.MoDiscoContentProvider;
 import org.eclipse.papyrus.views.modelexplorer.MoDiscoLabelProviderWTooltips;
 import org.eclipse.papyrus.views.modelexplorer.ModelExplorerPageBookView;
 import org.eclipse.swt.widgets.Event;
@@ -38,9 +38,9 @@ public class DiagramViewHandler extends AbstractHandler {
 	 * @return the common navigator
 	 */
 	protected CommonNavigator getCommonNavigator() {
-		IViewPart part = org.eclipse.papyrus.views.modelexplorer.NavigatorUtils.findViewPart(ModelExplorerPageBookView.VIEW_ID); 
+		IViewPart part = org.eclipse.papyrus.views.modelexplorer.NavigatorUtils.findViewPart(ModelExplorerPageBookView.VIEW_ID);
 		// the part is only a book, retrieving correct page
-		if (part instanceof ModelExplorerPageBookView) {
+		if(part instanceof ModelExplorerPageBookView) {
 			IViewPart page = ((ModelExplorerPageBookView)part).getActiveView();
 			if(page instanceof CommonNavigator) {
 				return ((CommonNavigator)page);
@@ -54,11 +54,10 @@ public class DiagramViewHandler extends AbstractHandler {
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
-		if(((ToolItem)((Event)event.getTrigger()).widget).getSelection()){
+		if(((ToolItem)((Event)event.getTrigger()).widget).getSelection()) {
 			getCommonNavigator().getCommonViewer().setContentProvider(new DiagramContentProvider());
 			getCommonNavigator().getCommonViewer().setLabelProvider(new DiagramLabelProvider());
-		}
-		else{
+		} else {
 			getCommonNavigator().getCommonViewer().setContentProvider(new MoDiscoContentProvider());
 			getCommonNavigator().getCommonViewer().setLabelProvider(new MoDiscoLabelProviderWTooltips());
 		}

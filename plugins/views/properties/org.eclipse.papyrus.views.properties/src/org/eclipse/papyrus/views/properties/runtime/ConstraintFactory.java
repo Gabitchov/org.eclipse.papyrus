@@ -11,12 +11,13 @@
  *****************************************************************************/
 package org.eclipse.papyrus.views.properties.runtime;
 
+import org.eclipse.papyrus.infra.constraints.CompositeConstraint;
+import org.eclipse.papyrus.infra.constraints.ConstraintDescriptor;
+import org.eclipse.papyrus.infra.constraints.SimpleConstraint;
+import org.eclipse.papyrus.infra.constraints.constraints.CompoundConstraint;
+import org.eclipse.papyrus.infra.constraints.constraints.Constraint;
+import org.eclipse.papyrus.infra.tools.util.ClassLoaderHelper;
 import org.eclipse.papyrus.views.properties.Activator;
-import org.eclipse.papyrus.views.properties.constraints.CompoundConstraint;
-import org.eclipse.papyrus.views.properties.constraints.Constraint;
-import org.eclipse.papyrus.views.properties.contexts.CompositeConstraint;
-import org.eclipse.papyrus.views.properties.contexts.ConstraintDescriptor;
-import org.eclipse.papyrus.views.properties.contexts.SimpleConstraint;
 
 /**
  * A Singleton class for creating {@link Constraint}s from a {@link ConstraintDescriptor}
@@ -70,12 +71,12 @@ public class ConstraintFactory {
 			return null;
 		}
 
-		try {
-			constraint = (Constraint)Class.forName(className).newInstance();
-			constraint.setConstraintDescriptor(model);
-		} catch (Exception ex) {
-			Activator.log.error("Cannot load constraint " + model.getName(), ex); //$NON-NLS-1$
+		constraint = ClassLoaderHelper.newInstance(className, Constraint.class);
+		if(constraint == null) {
+			Activator.log.warn("Cannot load constraint " + model.getName()); //$NON-NLS-1$
+			return null;
 		}
+		constraint.setConstraintDescriptor(model);
 
 		return constraint;
 	}

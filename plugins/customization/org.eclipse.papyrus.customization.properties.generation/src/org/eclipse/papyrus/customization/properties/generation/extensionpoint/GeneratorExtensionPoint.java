@@ -15,6 +15,7 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.papyrus.customization.properties.generation.generators.IGenerator;
 import org.eclipse.papyrus.customization.properties.generation.wizard.CreateContextWizard;
+import org.eclipse.papyrus.infra.tools.util.ClassLoaderHelper;
 import org.eclipse.papyrus.views.properties.Activator;
 
 /**
@@ -36,13 +37,12 @@ public class GeneratorExtensionPoint {
 
 		for(IConfigurationElement e : config) {
 			String generatorClassName = e.getAttribute("generator"); //$NON-NLS-1$
-			try {
-				Class<? extends IGenerator> generatorClass = Class.forName(generatorClassName).asSubclass(IGenerator.class);
-				IGenerator generator = generatorClass.newInstance();
-				CreateContextWizard.addGenerator(generator);
-			} catch (Exception ex) {
-				Activator.log.error("Cannot instantiate the generator : " + generatorClassName, ex); //$NON-NLS-1$
+			IGenerator generator = ClassLoaderHelper.newInstance(generatorClassName, IGenerator.class);
+			if(generator == null) {
+				Activator.log.warn("Cannot instantiate the generator : " + generatorClassName); //$NON-NLS-1$
+				continue;
 			}
+			CreateContextWizard.addGenerator(generator);
 		}
 	}
 }

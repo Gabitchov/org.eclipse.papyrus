@@ -1,9 +1,7 @@
 Manifest-Version: 1.0
 Export-Package: org.eclipse.papyrus.views.properties,
  org.eclipse.papyrus.views.properties.catalog,
- org.eclipse.papyrus.views.properties.constraints,
  org.eclipse.papyrus.views.properties.creation,
- org.eclipse.papyrus.views.properties.databinding,
  org.eclipse.papyrus.views.properties.modelelement,
  org.eclipse.papyrus.views.properties.providers,
  org.eclipse.papyrus.views.properties.root,
@@ -44,11 +42,12 @@ Require-Bundle: com.ibm.icu,
  org.eclipse.emf.facet.infra.common.core;bundle-version="0.1.0",
  org.eclipse.papyrus.views.modelexplorer.widgets;bundle-version="0.9.0",
  org.eclipse.gmf.runtime.diagram.ui;bundle-version="1.5.0",
- org.eclipse.papyrus.infra.emf;bundle-version="0.9.0"
+ org.eclipse.papyrus.infra.emf;bundle-version="0.9.0",
+ org.eclipse.papyrus.infra.tools;bundle-version="0.9.0",
+ org.eclipse.papyrus.infra.constraints;bundle-version="0.9.0";visibility:=reexport
 Bundle-Vendor: %Bundle-Vendor
 Bundle-Version: 0.9.0.qualifier
-Eclipse-BuddyPolicy: dependent
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.views.properties.Activator
 Bundle-SymbolicName: org.eclipse.papyrus.views.properties;singleton:=true
-
+Eclipse-BuddyPolicy: dependent

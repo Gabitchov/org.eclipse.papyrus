@@ -1,14 +1,9 @@
-/*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
+/**
+ * <copyright>
+ * </copyright>
  *
- * Contributors:
- *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
- *****************************************************************************/
+ * $Id$
+ */
 package org.eclipse.papyrus.views.properties.environment.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
@@ -16,19 +11,12 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
-
-
-
-
+import org.eclipse.papyrus.infra.constraints.ConstraintsPackage;
 import org.eclipse.papyrus.views.properties.contexts.ContextsPackage;
 import org.eclipse.papyrus.views.properties.contexts.impl.ContextsPackageImpl;
 import org.eclipse.papyrus.views.properties.environment.CompositeWidgetType;
-import org.eclipse.papyrus.views.properties.environment.ConstraintType;
-import org.eclipse.papyrus.views.properties.environment.ContentProviderType;
 import org.eclipse.papyrus.views.properties.environment.Environment;
 import org.eclipse.papyrus.views.properties.environment.EnvironmentFactory;
 import org.eclipse.papyrus.views.properties.environment.EnvironmentPackage;
@@ -84,13 +72,6 @@ public class EnvironmentPackageImpl extends EPackageImpl implements EnvironmentP
 	 * @generated
 	 */
 	private EClass layoutTypeEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass constraintTypeEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -174,6 +155,7 @@ public class EnvironmentPackageImpl extends EPackageImpl implements EnvironmentP
 		isInited = true;
 
 		// Initialize simple dependencies
+		ConstraintsPackage.eINSTANCE.eClass();
 		EcorePackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
@@ -222,7 +204,7 @@ public class EnvironmentPackageImpl extends EPackageImpl implements EnvironmentP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getEnvironment_ConstraintTypes() {
+	public EReference getEnvironment_WidgetTypes() {
 		return (EReference)environmentEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -231,7 +213,7 @@ public class EnvironmentPackageImpl extends EPackageImpl implements EnvironmentP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getEnvironment_WidgetTypes() {
+	public EReference getEnvironment_PropertyEditorTypes() {
 		return (EReference)environmentEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -240,7 +222,7 @@ public class EnvironmentPackageImpl extends EPackageImpl implements EnvironmentP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getEnvironment_PropertyEditorTypes() {
+	public EReference getEnvironment_CompositeWidgetTypes() {
 		return (EReference)environmentEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -249,7 +231,7 @@ public class EnvironmentPackageImpl extends EPackageImpl implements EnvironmentP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getEnvironment_CompositeWidgetTypes() {
+	public EReference getEnvironment_LayoutTypes() {
 		return (EReference)environmentEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -258,7 +240,7 @@ public class EnvironmentPackageImpl extends EPackageImpl implements EnvironmentP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getEnvironment_LayoutTypes() {
+	public EReference getEnvironment_Namespaces() {
 		return (EReference)environmentEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -267,17 +249,8 @@ public class EnvironmentPackageImpl extends EPackageImpl implements EnvironmentP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getEnvironment_Namespaces() {
-		return (EReference)environmentEClass.getEStructuralFeatures().get(6);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getEnvironment_MiscClasses() {
-		return (EReference)environmentEClass.getEStructuralFeatures().get(7);
+		return (EReference)environmentEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -359,33 +332,6 @@ public class EnvironmentPackageImpl extends EPackageImpl implements EnvironmentP
 	 */
 	public EClass getLayoutType() {
 		return layoutTypeEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getConstraintType() {
-		return constraintTypeEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getConstraintType_Label() {
-		return (EAttribute)constraintTypeEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getConstraintType_ConstraintClass() {
-		return (EAttribute)constraintTypeEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -535,7 +481,6 @@ public class EnvironmentPackageImpl extends EPackageImpl implements EnvironmentP
 		// Create classes and their features
 		environmentEClass = createEClass(ENVIRONMENT);
 		createEReference(environmentEClass, ENVIRONMENT__MODEL_ELEMENT_FACTORIES);
-		createEReference(environmentEClass, ENVIRONMENT__CONSTRAINT_TYPES);
 		createEReference(environmentEClass, ENVIRONMENT__WIDGET_TYPES);
 		createEReference(environmentEClass, ENVIRONMENT__PROPERTY_EDITOR_TYPES);
 		createEReference(environmentEClass, ENVIRONMENT__COMPOSITE_WIDGET_TYPES);
@@ -555,10 +500,6 @@ public class EnvironmentPackageImpl extends EPackageImpl implements EnvironmentP
 		compositeWidgetTypeEClass = createEClass(COMPOSITE_WIDGET_TYPE);
 
 		layoutTypeEClass = createEClass(LAYOUT_TYPE);
-
-		constraintTypeEClass = createEClass(CONSTRAINT_TYPE);
-		createEAttribute(constraintTypeEClass, CONSTRAINT_TYPE__LABEL);
-		createEAttribute(constraintTypeEClass, CONSTRAINT_TYPE__CONSTRAINT_CLASS);
 
 		modelElementFactoryDescriptorEClass = createEClass(MODEL_ELEMENT_FACTORY_DESCRIPTOR);
 		createEAttribute(modelElementFactoryDescriptorEClass, MODEL_ELEMENT_FACTORY_DESCRIPTOR__NAME);
@@ -604,14 +545,14 @@ public class EnvironmentPackageImpl extends EPackageImpl implements EnvironmentP
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
+		org.eclipse.papyrus.infra.constraints.environment.EnvironmentPackage theEnvironmentPackage_1 = (org.eclipse.papyrus.infra.constraints.environment.EnvironmentPackage)EPackage.Registry.INSTANCE.getEPackage(org.eclipse.papyrus.infra.constraints.environment.EnvironmentPackage.eNS_URI);
 
 		// Create type parameters
 
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		environmentEClass.getESuperTypes().add(theEcorePackage.getEModelElement());
+		environmentEClass.getESuperTypes().add(theEnvironmentPackage_1.getConstraintEnvironment());
 		propertyEditorTypeEClass.getESuperTypes().add(this.getWidgetType());
 		compositeWidgetTypeEClass.getESuperTypes().add(this.getWidgetType());
 		layoutTypeEClass.getESuperTypes().add(this.getWidgetType());
@@ -620,7 +561,6 @@ public class EnvironmentPackageImpl extends EPackageImpl implements EnvironmentP
 		// Initialize classes and features; add operations and parameters
 		initEClass(environmentEClass, Environment.class, "Environment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getEnvironment_ModelElementFactories(), this.getModelElementFactoryDescriptor(), null, "modelElementFactories", null, 0, -1, Environment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getEnvironment_ConstraintTypes(), this.getConstraintType(), null, "constraintTypes", null, 0, -1, Environment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getEnvironment_WidgetTypes(), this.getStandardWidgetType(), null, "widgetTypes", null, 0, -1, Environment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getEnvironment_PropertyEditorTypes(), this.getPropertyEditorType(), null, "propertyEditorTypes", null, 0, -1, Environment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getEnvironment_CompositeWidgetTypes(), this.getCompositeWidgetType(), null, "compositeWidgetTypes", null, 0, -1, Environment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -640,10 +580,6 @@ public class EnvironmentPackageImpl extends EPackageImpl implements EnvironmentP
 		initEClass(compositeWidgetTypeEClass, CompositeWidgetType.class, "CompositeWidgetType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(layoutTypeEClass, LayoutType.class, "LayoutType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(constraintTypeEClass, ConstraintType.class, "ConstraintType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getConstraintType_Label(), ecorePackage.getEString(), "label", null, 1, 1, ConstraintType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getConstraintType_ConstraintClass(), ecorePackage.getEString(), "constraintClass", null, 1, 1, ConstraintType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(modelElementFactoryDescriptorEClass, ModelElementFactoryDescriptor.class, "ModelElementFactoryDescriptor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getModelElementFactoryDescriptor_Name(), ecorePackage.getEString(), "name", null, 1, 1, ModelElementFactoryDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -46,12 +46,13 @@ import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.common.Messages;
 import org.eclipse.papyrus.uml.diagram.common.commands.ShowHideElementsRequest;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideClassifierContentsEditPolicy;
-import org.eclipse.papyrus.uml.diagram.common.providers.EditorLabelProvider;
 import org.eclipse.papyrus.uml.diagram.common.util.Util;
+import org.eclipse.papyrus.uml.tools.providers.UMLLabelProvider;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IActionDelegate;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.IWorkbenchWindowActionDelegate;
+import org.eclipse.ui.dialogs.CheckedTreeSelectionDialog;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Type;
@@ -448,7 +449,7 @@ public class ShowHideContentsAction extends AbstractShowHideAction implements IA
 	 * EditorLabelProvider for the {@link CheckedTreeSelectionDialog}
 	 * 
 	 */
-	public class CustomEditorLabelProvider extends EditorLabelProvider {
+	public class CustomEditorLabelProvider extends UMLLabelProvider {
 
 		/**
 		 * 

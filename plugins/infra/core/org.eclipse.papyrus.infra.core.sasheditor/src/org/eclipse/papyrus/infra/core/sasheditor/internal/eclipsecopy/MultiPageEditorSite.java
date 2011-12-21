@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2000, 2007 IBM Corporation and others.
+ * Copyright (c) 2000, 2011 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -13,13 +13,14 @@ package org.eclipse.papyrus.infra.core.sasheditor.internal.eclipsecopy;
 import java.util.ArrayList;
 
 import org.eclipse.core.runtime.Assert;
+import org.eclipse.e4.core.contexts.ContextFunction;
+import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.viewers.ILabelDecorator;
 import org.eclipse.jface.viewers.IPostSelectionProvider;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
-import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IEditorActionBarContributor;
@@ -29,13 +30,17 @@ import org.eclipse.ui.IKeyBindingService;
 import org.eclipse.ui.INestableKeyBindingService;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
-import org.eclipse.ui.IWorkbenchPartReference;
 import org.eclipse.ui.IWorkbenchPartSite;
 import org.eclipse.ui.IWorkbenchWindow;
-import org.eclipse.ui.internal.PartPane;
+import org.eclipse.ui.contexts.IContextService;
+import org.eclipse.ui.handlers.IHandlerService;
 import org.eclipse.ui.internal.PartSite;
 import org.eclipse.ui.internal.PopupMenuExtender;
 import org.eclipse.ui.internal.WorkbenchPlugin;
+import org.eclipse.ui.internal.contexts.NestableContextService;
+import org.eclipse.ui.internal.expressions.ActivePartExpression;
+import org.eclipse.ui.internal.handlers.LegacyHandlerService;
+import org.eclipse.ui.internal.part.IMultiPageEditorSiteHolder;
 import org.eclipse.ui.internal.services.INestable;
 import org.eclipse.ui.internal.services.IServiceLocatorCreator;
 import org.eclipse.ui.internal.services.IWorkbenchLocationService;
@@ -43,9 +48,7 @@ import org.eclipse.ui.internal.services.ServiceLocator;
 import org.eclipse.ui.internal.services.WorkbenchLocationService;
 import org.eclipse.ui.part.EditorActionBarContributor;
 import org.eclipse.ui.services.IDisposable;
-import org.eclipse.ui.services.IServiceLocator;
 import org.eclipse.ui.services.IServiceScopes;
-import org.eclipse.ui.internal.WorkbenchPartReference;
 
 /**
  * Site for a nested editor within a multi-page editor. Selection is handled by
@@ -54,8 +57,6 @@ import org.eclipse.ui.internal.WorkbenchPartReference;
  * <p>
  * The base implementation of <code>MultiPageEditor.createSite</code> creates an instance of this class. This class may be instantiated or subclassed.
  * </p>
- * 
- * @see org.eclipse.ui.part.MultiPageEditorSite.class
  */
 public class MultiPageEditorSite implements IEditorSite, INestable {
 
@@ -113,16 +114,20 @@ public class MultiPageEditorSite implements IEditorSite, INestable {
 	 */
 	private final ServiceLocator serviceLocator;
 
+	private NestableContextService contextService;
+
+	private IEclipseContext context;
+
+	private boolean active = false;
+
 	/**
 	 * Creates a site for the given editor nested within the given multi-page
 	 * editor.
 	 * 
-	 * @param mainEditorSite
+	 * @param multiPageEditor
 	 *        the multi-page editor
 	 * @param editor
 	 *        the nested editor
-	 * @param editDomain
-	 *        The shared editDomain.
 	 */
 	public MultiPageEditorSite(IEditorSite mainEditorSite, IEditorPart editor, EditorActionBarContributor actionBarContributor) {
 		Assert.isNotNull(mainEditorSite);
@@ -131,19 +136,21 @@ public class MultiPageEditorSite implements IEditorSite, INestable {
 		this.editor = editor;
 		this.actionBarContributor = actionBarContributor;
 
-		final IServiceLocator parentServiceLocator = mainEditorSite;
-		IServiceLocatorCreator slc = (IServiceLocatorCreator)parentServiceLocator.getService(IServiceLocatorCreator.class);
-		this.serviceLocator = (ServiceLocator)slc.createServiceLocator(mainEditorSite, null, new IDisposable() {
+		PartSite site = (PartSite)mainEditorSite;
+
+		IServiceLocatorCreator slc = (IServiceLocatorCreator)site.getService(IServiceLocatorCreator.class);
+		this.serviceLocator = (ServiceLocator)slc.createServiceLocator(editor.getSite(), null, new IDisposable() {
 
 			public void dispose() {
-				//old code on Indigo : 
-//				final Control control = ((PartSite)getMainEditorSite()).getPane().getControl();
-//				if(control != null && !control.isDisposed()) {
-//					((PartSite)getMainEditorSite()).getPane().doHide();
-//				}
-				//FIXME : I don't know how to migrate this code?
+				//final Control control = getMainEditorSite().getPane().getControl();
+				//if(control != null && !control.isDisposed()) {
+				//	((PartSite)getMainEditorSite()).getPane().doHide();
+				//}
 			}
 		});
+
+		context = site.getModel().getContext().createChild("MultiPageEditorSite"); //$NON-NLS-1$
+		serviceLocator.setContext(context);
 
 		initializeDefaultServices();
 	}
@@ -172,6 +179,29 @@ public class MultiPageEditorSite implements IEditorSite, INestable {
 	 */
 	private void initializeDefaultServices() {
 		serviceLocator.registerService(IWorkbenchLocationService.class, new WorkbenchLocationService(IServiceScopes.MPESITE_SCOPE, getWorkbenchWindow().getWorkbench(), getWorkbenchWindow(), getMainEditorSite(), this, null, 3));
+		serviceLocator.registerService(IMultiPageEditorSiteHolder.class, new IMultiPageEditorSiteHolder() {
+
+			public org.eclipse.ui.part.MultiPageEditorSite getSite() {
+				return (org.eclipse.ui.part.MultiPageEditorSite)MultiPageEditorSite.this.getMainEditorSite();
+			}
+		});
+
+		context.set(IContextService.class.getName(), new ContextFunction() {
+
+			@Override
+			public Object compute(IEclipseContext ctxt) {
+				if(contextService == null) {
+					contextService = new NestableContextService(ctxt.getParent().get(IContextService.class), new ActivePartExpression(MultiPageEditorSite.this.getPart()));
+				}
+				return contextService;
+			}
+		});
+
+		// create a local handler service so that when this page
+		// activates/deactivates, its handlers will also be taken into/out of
+		// consideration during handler lookups
+		IHandlerService handlerService = new LegacyHandlerService(context);
+		context.set(IHandlerService.class, handlerService);
 	}
 
 	/**
@@ -181,7 +211,13 @@ public class MultiPageEditorSite implements IEditorSite, INestable {
 	 * @since 3.2
 	 */
 	public final void activate() {
+		active = true;
+		context.activate();
 		serviceLocator.activate();
+
+		if(contextService != null) {
+			contextService.activate();
+		}
 	}
 
 	/**
@@ -191,7 +227,13 @@ public class MultiPageEditorSite implements IEditorSite, INestable {
 	 * @since 3.2
 	 */
 	public final void deactivate() {
+		active = false;
+		if(contextService != null) {
+			contextService.deactivate();
+		}
+
 		serviceLocator.deactivate();
+		context.deactivate();
 	}
 
 	/**
@@ -207,51 +249,36 @@ public class MultiPageEditorSite implements IEditorSite, INestable {
 
 		// Remove myself from the list of nested key binding services.
 		if(service != null) {
-			// TODO : check original implem - use main editor site !
 			IKeyBindingService parentService = getEditor().getSite().getKeyBindingService();
 			if(parentService instanceof INestableKeyBindingService) {
 				INestableKeyBindingService nestableParent = (INestableKeyBindingService)parentService;
 				nestableParent.removeKeyBindingService(this);
 			}
-			// TODO : dispose service ?
+		}
 
-			service = null;
+		service = null;
+
+		if(contextService != null) {
+			contextService.dispose();
 		}
 
 		if(serviceLocator != null) {
 			serviceLocator.dispose();
 		}
+		context.dispose();
 	}
 
 	/**
-	 * The <code>MultiPageEditorSite</code> implementation of this <code>IEditorSite</code> method returns the EditorActionBarContributor
-	 * associated to the site if one is defined, or the
-	 * EditorActionBarContributor of the multiEditor.
+	 * The <code>MultiPageEditorSite</code> implementation of this <code>IEditorSite</code> method returns <code>null</code>, since nested
+	 * editors do not have their own action bar contributor.
 	 * 
 	 * @return <code>null</code>
 	 */
 	public IEditorActionBarContributor getActionBarContributor() {
-
-		// If we use an action bar contributor, look for a registered
-		// ActionBarContributor.
-		// TODO : enable next asap
-		// ActionBarContributor contributor =
-		// multiPageEditor.getEditorSite().getActionBarContributor();
-		// if(contributor instanceof ComposedActionBarContributor)
-		// {
-		// ComposedActionBarContributor composedContributor =
-		// (ComposedActionBarContributor)contributor;
-		// return composedContributor.getContributorFor(editor);
-		// }
-
-		// Return the main ActionBarContributor, usually
-		// ComposedActionBarContributor
-
 		if(actionBarContributor != null)
 			return actionBarContributor;
 		else
 			return getMainEditorEditorSite().getActionBarContributor();
-		// return null;
 	}
 
 	/**
@@ -280,6 +307,7 @@ public class MultiPageEditorSite implements IEditorSite, INestable {
 	 * @return The decorator from the workbench window.
 	 * @deprecated use IWorkbench.getDecoratorManager()
 	 */
+	@Deprecated
 	public ILabelDecorator getDecoratorManager() {
 		return getWorkbenchWindow().getWorkbench().getDecoratorManager().getLabelDecorator();
 	}
@@ -411,7 +439,12 @@ public class MultiPageEditorSite implements IEditorSite, INestable {
 	}
 
 	public final Object getService(final Class key) {
-		return serviceLocator.getService(key);
+		Object service = serviceLocator.getService(key);
+		if(active && service instanceof INestable) {
+			// services need to know that it is currently in an active state
+			((INestable)service).activate();
+		}
+		return service;
 	}
 
 	/**
@@ -446,8 +479,6 @@ public class MultiPageEditorSite implements IEditorSite, INestable {
 	 */
 	protected void handlePostSelectionChanged(SelectionChangedEvent event) {
 		ISelectionProvider parentProvider = getMainEditorSite().getSelectionProvider();
-
-		// TODO : use org.eclipse.ui.part.MultiPageSelectionProvider ?
 		if(parentProvider instanceof MultiPageSelectionProvider) {
 			SelectionChangedEvent newEvent = new SelectionChangedEvent(parentProvider, event.getSelection());
 			MultiPageSelectionProvider prov = (MultiPageSelectionProvider)parentProvider;
@@ -536,9 +567,6 @@ public class MultiPageEditorSite implements IEditorSite, INestable {
 		ISelectionProvider oldSelectionProvider = selectionProvider;
 		selectionProvider = provider;
 		if(oldSelectionProvider != null) {
-			// see code WindowSelectionService (line287)
-			// in some case as GraphicalView do not implement
-			// IPostSelectionProvider
 			oldSelectionProvider.removeSelectionChangedListener(getSelectionChangedListener());
 			if(oldSelectionProvider instanceof IPostSelectionProvider) {
 				((IPostSelectionProvider)oldSelectionProvider).removePostSelectionChangedListener(getPostSelectionChangedListener());
@@ -552,7 +580,6 @@ public class MultiPageEditorSite implements IEditorSite, INestable {
 				((IPostSelectionProvider)selectionProvider).addPostSelectionChangedListener(getPostSelectionChangedListener());
 			} else {
 				selectionProvider.addSelectionChangedListener(getPostSelectionChangedListener());
-
 			}
 		}
 	}

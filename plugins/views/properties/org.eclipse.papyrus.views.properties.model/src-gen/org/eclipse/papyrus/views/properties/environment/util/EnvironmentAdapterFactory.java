@@ -1,25 +1,27 @@
-/*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
+/**
+ * <copyright>
+ * </copyright>
  *
- * Contributors:
- *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
- *****************************************************************************/
+ * $Id$
+ */
 package org.eclipse.papyrus.views.properties.environment.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
-import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
-
+import org.eclipse.papyrus.infra.constraints.environment.ConstraintEnvironment;
 import org.eclipse.papyrus.views.properties.environment.*;
+import org.eclipse.papyrus.views.properties.environment.CompositeWidgetType;
+import org.eclipse.papyrus.views.properties.environment.Environment;
+import org.eclipse.papyrus.views.properties.environment.EnvironmentPackage;
+import org.eclipse.papyrus.views.properties.environment.LayoutType;
+import org.eclipse.papyrus.views.properties.environment.MiscClass;
+import org.eclipse.papyrus.views.properties.environment.ModelElementFactoryDescriptor;
+import org.eclipse.papyrus.views.properties.environment.Namespace;
+import org.eclipse.papyrus.views.properties.environment.PropertyEditorType;
+import org.eclipse.papyrus.views.properties.environment.StandardWidgetType;
+import org.eclipse.papyrus.views.properties.environment.WidgetType;
 
 /**
  * <!-- begin-user-doc -->
@@ -98,10 +100,6 @@ public class EnvironmentAdapterFactory extends AdapterFactoryImpl {
 				return createLayoutTypeAdapter();
 			}
 			@Override
-			public Adapter caseConstraintType(ConstraintType object) {
-				return createConstraintTypeAdapter();
-			}
-			@Override
 			public Adapter caseModelElementFactoryDescriptor(ModelElementFactoryDescriptor object) {
 				return createModelElementFactoryDescriptorAdapter();
 			}
@@ -118,8 +116,8 @@ public class EnvironmentAdapterFactory extends AdapterFactoryImpl {
 				return createMiscClassAdapter();
 			}
 			@Override
-			public Adapter caseEModelElement(EModelElement object) {
-				return createEModelElementAdapter();
+			public Adapter caseConstraintEnvironment(ConstraintEnvironment object) {
+				return createConstraintEnvironmentAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -212,20 +210,6 @@ public class EnvironmentAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.views.properties.environment.ConstraintType <em>Constraint Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.papyrus.views.properties.environment.ConstraintType
-	 * @generated
-	 */
-	public Adapter createConstraintTypeAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.views.properties.environment.ModelElementFactoryDescriptor <em>Model Element Factory Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -282,16 +266,16 @@ public class EnvironmentAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.ecore.EModelElement <em>EModel Element</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.constraints.environment.ConstraintEnvironment <em>Constraint Environment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.emf.ecore.EModelElement
+	 * @see org.eclipse.papyrus.infra.constraints.environment.ConstraintEnvironment
 	 * @generated
 	 */
-	public Adapter createEModelElementAdapter() {
+	public Adapter createConstraintEnvironmentAdapter() {
 		return null;
 	}
 

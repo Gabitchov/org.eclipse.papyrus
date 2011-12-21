@@ -21,8 +21,8 @@ import org.eclipse.papyrus.customization.messages.Messages;
 import org.eclipse.papyrus.customization.model.customization.CustomizationConfiguration;
 import org.eclipse.papyrus.customization.model.customization.CustomizationPackage;
 import org.eclipse.papyrus.views.properties.contexts.View;
-import org.eclipse.papyrus.views.properties.runtime.ConstraintEngine;
 import org.eclipse.papyrus.views.properties.runtime.EmbeddedDisplayEngine;
+import org.eclipse.papyrus.views.properties.runtime.ViewConstraintEngine;
 import org.eclipse.papyrus.views.properties.widgets.layout.PropertiesLayout;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FillLayout;
@@ -59,7 +59,7 @@ public class CustomizationPage extends WizardPage {
 
 		IStructuredSelection selection = new StructuredSelection(configuration);
 
-		ConstraintEngine constraintEngine = DisplayManager.instance.constraintEngine;
+		ViewConstraintEngine constraintEngine = DisplayManager.instance.constraintEngine;
 		Set<View> views = constraintEngine.getViews(selection);
 
 		Composite self = new Composite(container, SWT.BORDER);

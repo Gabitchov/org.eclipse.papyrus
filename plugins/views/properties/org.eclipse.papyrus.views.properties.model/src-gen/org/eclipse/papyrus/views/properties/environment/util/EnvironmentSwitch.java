@@ -1,25 +1,26 @@
-/*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
+/**
+ * <copyright>
+ * </copyright>
  *
- * Contributors:
- *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
- *****************************************************************************/
+ * $Id$
+ */
 package org.eclipse.papyrus.views.properties.environment.util;
 
-import org.eclipse.emf.ecore.EModelElement;
-import java.util.List;
-
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
+import org.eclipse.papyrus.infra.constraints.environment.ConstraintEnvironment;
 import org.eclipse.papyrus.views.properties.environment.*;
+import org.eclipse.papyrus.views.properties.environment.CompositeWidgetType;
+import org.eclipse.papyrus.views.properties.environment.Environment;
+import org.eclipse.papyrus.views.properties.environment.EnvironmentPackage;
+import org.eclipse.papyrus.views.properties.environment.LayoutType;
+import org.eclipse.papyrus.views.properties.environment.MiscClass;
+import org.eclipse.papyrus.views.properties.environment.ModelElementFactoryDescriptor;
+import org.eclipse.papyrus.views.properties.environment.Namespace;
+import org.eclipse.papyrus.views.properties.environment.PropertyEditorType;
+import org.eclipse.papyrus.views.properties.environment.StandardWidgetType;
+import org.eclipse.papyrus.views.properties.environment.WidgetType;
 
 /**
  * <!-- begin-user-doc -->
@@ -81,7 +82,7 @@ public class EnvironmentSwitch<T> extends Switch<T> {
 			case EnvironmentPackage.ENVIRONMENT: {
 				Environment environment = (Environment)theEObject;
 				T result = caseEnvironment(environment);
-				if (result == null) result = caseEModelElement(environment);
+				if (result == null) result = caseConstraintEnvironment(environment);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -109,12 +110,6 @@ public class EnvironmentSwitch<T> extends Switch<T> {
 				LayoutType layoutType = (LayoutType)theEObject;
 				T result = caseLayoutType(layoutType);
 				if (result == null) result = caseWidgetType(layoutType);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case EnvironmentPackage.CONSTRAINT_TYPE: {
-				ConstraintType constraintType = (ConstraintType)theEObject;
-				T result = caseConstraintType(constraintType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -223,21 +218,6 @@ public class EnvironmentSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Constraint Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Constraint Type</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseConstraintType(ConstraintType object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Model Element Factory Descriptor</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -298,17 +278,17 @@ public class EnvironmentSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>EModel Element</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Constraint Environment</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>EModel Element</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Constraint Environment</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseEModelElement(EModelElement object) {
+	public T caseConstraintEnvironment(ConstraintEnvironment object) {
 		return null;
 	}
 

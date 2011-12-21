@@ -16,9 +16,9 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.views.properties.contexts.ConstraintDescriptor;
+import org.eclipse.papyrus.infra.constraints.ConstraintDescriptor;
+import org.eclipse.papyrus.infra.constraints.DisplayUnit;
 import org.eclipse.papyrus.views.properties.contexts.Context;
-import org.eclipse.papyrus.views.properties.contexts.DisplayUnit;
 import org.eclipse.papyrus.views.properties.contexts.Section;
 import org.eclipse.papyrus.views.properties.contexts.Tab;
 import org.eclipse.papyrus.views.properties.contexts.View;

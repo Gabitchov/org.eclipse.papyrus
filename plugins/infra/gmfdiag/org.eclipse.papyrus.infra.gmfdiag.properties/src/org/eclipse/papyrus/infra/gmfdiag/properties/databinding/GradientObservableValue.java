@@ -15,7 +15,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.gmf.runtime.notation.datatype.GradientData;
-import org.eclipse.papyrus.uml.properties.databinding.PapyrusObservableValue;
+import org.eclipse.papyrus.uml.tools.databinding.PapyrusObservableValue;
 
 /**
  * An IObservableValue for a Gradient

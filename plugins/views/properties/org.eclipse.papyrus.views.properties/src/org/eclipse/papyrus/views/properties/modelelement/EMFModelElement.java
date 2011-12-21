@@ -25,17 +25,17 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.papyrus.infra.emf.databinding.EMFObservableList;
+import org.eclipse.papyrus.infra.emf.databinding.EMFObservableValue;
+import org.eclipse.papyrus.infra.emf.providers.EMFContentProvider;
+import org.eclipse.papyrus.infra.emf.providers.EMFLabelProvider;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.widgets.creation.ReferenceValueFactory;
 import org.eclipse.papyrus.infra.widgets.providers.EmptyContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
 import org.eclipse.papyrus.views.properties.Activator;
 import org.eclipse.papyrus.views.properties.creation.EcorePropertyEditorFactory;
-import org.eclipse.papyrus.views.properties.databinding.EMFObservableList;
-import org.eclipse.papyrus.views.properties.databinding.EMFObservableValue;
-import org.eclipse.papyrus.views.properties.providers.EMFObjectLabelProvider;
 import org.eclipse.papyrus.views.properties.providers.EcoreEnumeratorContentProvider;
-import org.eclipse.papyrus.views.properties.providers.EcoreReferenceContentProvider;
 
 /**
  * A ModelElement to manipulate EMF objects.
@@ -197,7 +197,7 @@ public class EMFModelElement extends AbstractModelElement {
 		if(type instanceof EEnum) {
 			return new EcoreEnumeratorContentProvider(feature);
 		} else if(type instanceof EClass) {
-			return new EcoreReferenceContentProvider(feature, getSource(featurePath));
+			return new EMFContentProvider(getSource(featurePath), feature);
 		}
 
 		return EmptyContentProvider.instance;
@@ -205,7 +205,7 @@ public class EMFModelElement extends AbstractModelElement {
 
 	@Override
 	public ILabelProvider getLabelProvider(String propertyPath) {
-		return new EMFObjectLabelProvider();
+		return new EMFLabelProvider();
 	}
 
 	@Override

@@ -11,4 +11,3 @@ Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.sysml.properties.Activator
 Bundle-SymbolicName: org.eclipse.papyrus.sysml.properties;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-

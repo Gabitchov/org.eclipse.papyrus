@@ -24,7 +24,7 @@ import org.eclipse.papyrus.views.properties.contexts.Context;
 import org.eclipse.papyrus.views.properties.contexts.Property;
 import org.eclipse.papyrus.views.properties.modelelement.DataSource;
 import org.eclipse.papyrus.views.properties.runtime.ConfigurationManager;
-import org.eclipse.papyrus.views.properties.util.Util;
+import org.eclipse.papyrus.views.properties.util.PropertiesUtil;
 import org.eclipse.swt.events.DisposeEvent;
 import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.swt.widgets.Control;
@@ -286,7 +286,7 @@ public abstract class AbstractPropertyEditor implements IChangeListener, Customi
 
 		Property property = getModelProperty();
 		if(property == null || property.getLabel() == null || property.getLabel().trim().equals("")) { //$NON-NLS-1$
-			return Util.getLabel(getLocalPropertyPath());
+			return PropertiesUtil.getLabel(getLocalPropertyPath());
 		}
 
 		return property.getLabel();
@@ -307,7 +307,7 @@ public abstract class AbstractPropertyEditor implements IChangeListener, Customi
 		if(description == null || description.trim().equals("")) { //$NON-NLS-1$
 			description = getLocalPropertyPath();
 		} else {
-			description = Util.resizeString(description, descriptionMaxCharPerLine);
+			description = PropertiesUtil.resizeString(description, descriptionMaxCharPerLine);
 			description = getLocalPropertyPath() + ": " + description;
 		}
 

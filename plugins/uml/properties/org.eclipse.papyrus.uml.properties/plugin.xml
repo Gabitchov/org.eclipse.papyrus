@@ -54,7 +54,7 @@
    <extension
          point="org.eclipse.papyrus.views.properties.labelprovider">
       <labelProvider
-            labelProvider="org.eclipse.papyrus.uml.properties.providers.UMLLabelProvider"
+            labelProvider="org.eclipse.papyrus.uml.properties.providers.UMLFilteredLabelProvider"
             priority="50">
       </labelProvider>
    </extension>

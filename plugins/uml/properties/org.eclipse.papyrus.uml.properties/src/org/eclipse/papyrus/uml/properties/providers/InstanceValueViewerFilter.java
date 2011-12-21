@@ -13,8 +13,8 @@ package org.eclipse.papyrus.uml.properties.providers;
 
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.papyrus.infra.widgets.providers.IHierarchicContentProvider;
-import org.eclipse.papyrus.uml.modelexplorer.widgets.UMLHierarchicViewerFilter;
 import org.eclipse.papyrus.uml.properties.util.UMLUtil;
+import org.eclipse.papyrus.uml.tools.providers.internal.UMLHierarchicViewerFilter;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Enumeration;
 import org.eclipse.uml2.uml.InstanceSpecification;

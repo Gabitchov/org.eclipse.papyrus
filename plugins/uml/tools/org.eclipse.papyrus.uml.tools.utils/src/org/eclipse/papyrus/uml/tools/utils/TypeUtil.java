@@ -17,6 +17,7 @@ import java.util.Iterator;
 
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Namespace;
+import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.Type;
 
 /**
@@ -49,5 +50,27 @@ public class TypeUtil {
 		}
 		buffer.append(tmp);
 		return buffer.toString();
+	}
+
+	/**
+	 * Check if a type is a metaclass.
+	 * 
+	 * @param type
+	 *        to check
+	 * 
+	 * @return true if type is metaclass, else false
+	 */
+	public static boolean isMetaclass(Type type) {
+		boolean isMetaclass = false;
+
+		if((type instanceof org.eclipse.uml2.uml.Class) && (type.getAppliedStereotypes() != null) && (type.getAppliedStereotypes().size() > 0)) {
+
+			Stereotype firstStereotype = type.getAppliedStereotypes().get(0);
+
+			if(firstStereotype.getName().equals("Metaclass")) {
+				isMetaclass = true;
+			}
+		}
+		return isMetaclass;
 	}
 }

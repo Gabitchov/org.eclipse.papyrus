@@ -1,45 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <query:ModelQuerySet xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:query="http://www.eclipse.org/EmfFacet/infra/query/0.8.incubation" name="custom">
-  <associatedMetamodels href="http://www.eclipse.org/papyrus/properties/contexts#/"/>
-  <associatedMetamodels href="http://www.eclipse.org/papyrus/properties/ui#/"/>
+  <associatedMetamodels href="http://www.eclipse.org/papyrus/properties/contexts/0.9#/"/>
+  <associatedMetamodels href="http://www.eclipse.org/papyrus/properties/ui/0.9#/"/>
+  <associatedMetamodels href="http://www.eclipse.org/papyrus/constraints/0.9#/"/>
   <queries xsi:type="query:OCLModelQuery" name="isGroup" lowerBound="1" query="widgetType.widgetClass = 'Group' and widgetType.namespace.oclIsUndefined()">
     <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <scope href="http://www.eclipse.org/papyrus/properties/ui#//CompositeWidget"/>
+    <scope href="http://www.eclipse.org/papyrus/properties/ui/0.9#//CompositeWidget"/>
   </queries>
   <queries xsi:type="query:OCLModelQuery" name="isUmlInstanceOf" description="" lowerBound="1" query="self.constraintType.constraintClass = 'org.eclipse.papyrus.views.properties.uml.constraints.UmlInstanceOfConstraint'">
     <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <scope href="http://www.eclipse.org/papyrus/properties/contexts#//ConstraintDescriptor"/>
+    <scope href="http://www.eclipse.org/papyrus/constraints/0.9#//ConstraintDescriptor"/>
   </queries>
   <queries xsi:type="query:OCLModelQuery" name="isEcoreInstanceOf" lowerBound="1" query="self.constraintType.constraintClass = 'org.eclipse.papyrus.views.properties.constraints.EMFInstanceOfConstraint'">
     <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <scope href="http://www.eclipse.org/papyrus/properties/contexts#//ConstraintDescriptor"/>
+    <scope href="http://www.eclipse.org/papyrus/constraints/0.9#//ConstraintDescriptor"/>
   </queries>
   <queries xsi:type="query:OCLModelQuery" name="isOclQuery" lowerBound="1" query="self.constraintType.constraintClass = 'org.eclipse.papyrus.views.properties.constraints.EMFQueryConstraint'">
     <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <scope href="http://www.eclipse.org/papyrus/properties/contexts#//ConstraintDescriptor"/>
+    <scope href="http://www.eclipse.org/papyrus/constraints/0.9#//ConstraintDescriptor"/>
   </queries>
   <queries xsi:type="query:OCLModelQuery" name="isStereotype" description="" lowerBound="1" query="self.constraintType.constraintClass = 'org.eclipse.papyrus.views.properties.uml.constraints.HasStereotypeConstraint'">
     <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <scope href="http://www.eclipse.org/papyrus/properties/contexts#//ConstraintDescriptor"/>
+    <scope href="http://www.eclipse.org/papyrus/constraints/0.9#//ConstraintDescriptor"/>
   </queries>
   <queries xsi:type="query:OCLModelQuery" name="isGridLayout" lowerBound="1" query="layoutType.widgetClass = 'GridLayout' or (layoutType.widgetClass = 'PropertiesLayout' and layoutType.namespace.name = 'ppel')">
     <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <scope href="http://www.eclipse.org/papyrus/properties/ui#//Layout"/>
+    <scope href="http://www.eclipse.org/papyrus/properties/ui/0.9#//Layout"/>
   </queries>
   <queries xsi:type="query:OCLModelQuery" name="isLabel" description="Tests if a standard widget is an SWT Label" lowerBound="1" query="self.widgetType.widgetClass = 'Label' and widgetType.namespace.oclIsUndefined()">
     <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <scope href="http://www.eclipse.org/papyrus/properties/ui#//StandardWidget"/>
+    <scope href="http://www.eclipse.org/papyrus/properties/ui/0.9#//StandardWidget"/>
   </queries>
   <queries xsi:type="query:OCLModelQuery" name="isToggleButton" description="Tests if the given PropertyEditor is a ToggleButton" lowerBound="1" query="widgetType.widgetClass = 'BooleanToggle' and widgetType.namespace.name = 'ppe'">
     <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <scope href="http://www.eclipse.org/papyrus/properties/ui#//PropertyEditor"/>
+    <scope href="http://www.eclipse.org/papyrus/properties/ui/0.9#//PropertyEditor"/>
   </queries>
   <queries xsi:type="query:OCLModelQuery" name="isFileSelector" description="Tests if a PropertyEditor is a File Selector" lowerBound="1" query="widgetType.widgetClass = 'StringFileSelector' and widgetType.namespace.name = 'ppe'">
     <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <scope href="http://www.eclipse.org/papyrus/properties/ui#//PropertyEditor"/>
+    <scope href="http://www.eclipse.org/papyrus/properties/ui/0.9#//PropertyEditor"/>
   </queries>
   <queries xsi:type="query:OCLModelQuery" name="isIntegerSpinner" description="Tests if a PropertyEditor is an IntegerSpinner" lowerBound="1" query="widgetType.widgetClass = 'IntegerSpinner' and widgetType.namespace.name = 'ppe'">
     <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <scope href="http://www.eclipse.org/papyrus/properties/ui#//PropertyEditor"/>
+    <scope href="http://www.eclipse.org/papyrus/properties/ui/0.9#//PropertyEditor"/>
   </queries>
 </query:ModelQuerySet>

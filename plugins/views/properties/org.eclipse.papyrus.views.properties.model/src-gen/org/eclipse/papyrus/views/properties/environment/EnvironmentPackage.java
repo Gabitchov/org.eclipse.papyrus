@@ -1,14 +1,9 @@
-/*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
+/**
+ * <copyright>
+ * </copyright>
  *
- * Contributors:
- *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
- *****************************************************************************/
+ * $Id$
+ */
 package org.eclipse.papyrus.views.properties.environment;
 
 import org.eclipse.emf.ecore.EAttribute;
@@ -16,17 +11,16 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EcorePackage;
 
 /**
  * <!-- begin-user-doc -->
  * The <b>Package</b> for the model.
  * It contains accessors for the meta objects to represent
  * <ul>
- *   <li>each class,</li>
- *   <li>each feature of each class,</li>
- *   <li>each enum,</li>
- *   <li>and each data type</li>
+ * <li>each class,</li>
+ * <li>each feature of each class,</li>
+ * <li>each enum,</li>
+ * <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
  * @see org.eclipse.papyrus.views.properties.environment.EnvironmentFactory
@@ -34,6 +28,7 @@ import org.eclipse.emf.ecore.EcorePackage;
  * @generated
  */
 public interface EnvironmentPackage extends EPackage {
+
 	/**
 	 * The package name.
 	 * <!-- begin-user-doc -->
@@ -48,7 +43,7 @@ public interface EnvironmentPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://www.eclipse.org/papyrus/properties/environment";
+	String eNS_URI = "http://www.eclipse.org/papyrus/properties/environment/0.9";
 
 	/**
 	 * The package namespace name.
@@ -77,13 +72,13 @@ public interface EnvironmentPackage extends EPackage {
 	int ENVIRONMENT = 0;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Constraint Types</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ENVIRONMENT__EANNOTATIONS = EcorePackage.EMODEL_ELEMENT__EANNOTATIONS;
+	int ENVIRONMENT__CONSTRAINT_TYPES = org.eclipse.papyrus.infra.constraints.environment.EnvironmentPackage.CONSTRAINT_ENVIRONMENT__CONSTRAINT_TYPES;
 
 	/**
 	 * The feature id for the '<em><b>Model Element Factories</b></em>' containment reference list.
@@ -92,16 +87,7 @@ public interface EnvironmentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ENVIRONMENT__MODEL_ELEMENT_FACTORIES = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Constraint Types</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ENVIRONMENT__CONSTRAINT_TYPES = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 1;
+	int ENVIRONMENT__MODEL_ELEMENT_FACTORIES = org.eclipse.papyrus.infra.constraints.environment.EnvironmentPackage.CONSTRAINT_ENVIRONMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Widget Types</b></em>' containment reference list.
@@ -110,7 +96,7 @@ public interface EnvironmentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ENVIRONMENT__WIDGET_TYPES = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 2;
+	int ENVIRONMENT__WIDGET_TYPES = org.eclipse.papyrus.infra.constraints.environment.EnvironmentPackage.CONSTRAINT_ENVIRONMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Property Editor Types</b></em>' containment reference list.
@@ -119,7 +105,7 @@ public interface EnvironmentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ENVIRONMENT__PROPERTY_EDITOR_TYPES = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 3;
+	int ENVIRONMENT__PROPERTY_EDITOR_TYPES = org.eclipse.papyrus.infra.constraints.environment.EnvironmentPackage.CONSTRAINT_ENVIRONMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Composite Widget Types</b></em>' containment reference list.
@@ -128,7 +114,7 @@ public interface EnvironmentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ENVIRONMENT__COMPOSITE_WIDGET_TYPES = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 4;
+	int ENVIRONMENT__COMPOSITE_WIDGET_TYPES = org.eclipse.papyrus.infra.constraints.environment.EnvironmentPackage.CONSTRAINT_ENVIRONMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Layout Types</b></em>' containment reference list.
@@ -137,7 +123,7 @@ public interface EnvironmentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ENVIRONMENT__LAYOUT_TYPES = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 5;
+	int ENVIRONMENT__LAYOUT_TYPES = org.eclipse.papyrus.infra.constraints.environment.EnvironmentPackage.CONSTRAINT_ENVIRONMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Namespaces</b></em>' containment reference list.
@@ -146,7 +132,7 @@ public interface EnvironmentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ENVIRONMENT__NAMESPACES = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 6;
+	int ENVIRONMENT__NAMESPACES = org.eclipse.papyrus.infra.constraints.environment.EnvironmentPackage.CONSTRAINT_ENVIRONMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Misc Classes</b></em>' containment reference list.
@@ -155,7 +141,7 @@ public interface EnvironmentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ENVIRONMENT__MISC_CLASSES = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 7;
+	int ENVIRONMENT__MISC_CLASSES = org.eclipse.papyrus.infra.constraints.environment.EnvironmentPackage.CONSTRAINT_ENVIRONMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The number of structural features of the '<em>Environment</em>' class.
@@ -164,7 +150,7 @@ public interface EnvironmentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ENVIRONMENT_FEATURE_COUNT = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 8;
+	int ENVIRONMENT_FEATURE_COUNT = org.eclipse.papyrus.infra.constraints.environment.EnvironmentPackage.CONSTRAINT_ENVIRONMENT_FEATURE_COUNT + 7;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.views.properties.environment.impl.WidgetTypeImpl <em>Widget Type</em>}' class.
@@ -369,43 +355,6 @@ public interface EnvironmentPackage extends EPackage {
 	int LAYOUT_TYPE_FEATURE_COUNT = WIDGET_TYPE_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.views.properties.environment.impl.ConstraintTypeImpl <em>Constraint Type</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.views.properties.environment.impl.ConstraintTypeImpl
-	 * @see org.eclipse.papyrus.views.properties.environment.impl.EnvironmentPackageImpl#getConstraintType()
-	 * @generated
-	 */
-	int CONSTRAINT_TYPE = 5;
-
-	/**
-	 * The feature id for the '<em><b>Label</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRAINT_TYPE__LABEL = 0;
-
-	/**
-	 * The feature id for the '<em><b>Constraint Class</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRAINT_TYPE__CONSTRAINT_CLASS = 1;
-
-	/**
-	 * The number of structural features of the '<em>Constraint Type</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRAINT_TYPE_FEATURE_COUNT = 2;
-
-	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.views.properties.environment.impl.ModelElementFactoryDescriptorImpl <em>Model Element Factory Descriptor</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -413,7 +362,7 @@ public interface EnvironmentPackage extends EPackage {
 	 * @see org.eclipse.papyrus.views.properties.environment.impl.EnvironmentPackageImpl#getModelElementFactoryDescriptor()
 	 * @generated
 	 */
-	int MODEL_ELEMENT_FACTORY_DESCRIPTOR = 6;
+	int MODEL_ELEMENT_FACTORY_DESCRIPTOR = 5;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -450,7 +399,7 @@ public interface EnvironmentPackage extends EPackage {
 	 * @see org.eclipse.papyrus.views.properties.environment.impl.EnvironmentPackageImpl#getStandardWidgetType()
 	 * @generated
 	 */
-	int STANDARD_WIDGET_TYPE = 7;
+	int STANDARD_WIDGET_TYPE = 6;
 
 	/**
 	 * The feature id for the '<em><b>Label</b></em>' attribute.
@@ -496,7 +445,7 @@ public interface EnvironmentPackage extends EPackage {
 	 * @see org.eclipse.papyrus.views.properties.environment.impl.EnvironmentPackageImpl#getNamespace()
 	 * @generated
 	 */
-	int NAMESPACE = 8;
+	int NAMESPACE = 7;
 
 	/**
 	 * The feature id for the '<em><b>Prefix</b></em>' attribute.
@@ -542,7 +491,7 @@ public interface EnvironmentPackage extends EPackage {
 	 * @see org.eclipse.papyrus.views.properties.environment.impl.EnvironmentPackageImpl#getMiscClass()
 	 * @generated
 	 */
-	int MISC_CLASS = 9;
+	int MISC_CLASS = 8;
 
 	/**
 	 * The feature id for the '<em><b>Label</b></em>' attribute.
@@ -588,7 +537,7 @@ public interface EnvironmentPackage extends EPackage {
 	 * @see org.eclipse.papyrus.views.properties.environment.impl.EnvironmentPackageImpl#getType()
 	 * @generated
 	 */
-	int TYPE = 10;
+	int TYPE = 9;
 
 
 	/**
@@ -611,17 +560,6 @@ public interface EnvironmentPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getEnvironment_ModelElementFactories();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.views.properties.environment.Environment#getConstraintTypes <em>Constraint Types</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Constraint Types</em>'.
-	 * @see org.eclipse.papyrus.views.properties.environment.Environment#getConstraintTypes()
-	 * @see #getEnvironment()
-	 * @generated
-	 */
-	EReference getEnvironment_ConstraintTypes();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.views.properties.environment.Environment#getWidgetTypes <em>Widget Types</em>}'.
@@ -785,38 +723,6 @@ public interface EnvironmentPackage extends EPackage {
 	EClass getLayoutType();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.views.properties.environment.ConstraintType <em>Constraint Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Constraint Type</em>'.
-	 * @see org.eclipse.papyrus.views.properties.environment.ConstraintType
-	 * @generated
-	 */
-	EClass getConstraintType();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.views.properties.environment.ConstraintType#getLabel <em>Label</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Label</em>'.
-	 * @see org.eclipse.papyrus.views.properties.environment.ConstraintType#getLabel()
-	 * @see #getConstraintType()
-	 * @generated
-	 */
-	EAttribute getConstraintType_Label();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.views.properties.environment.ConstraintType#getConstraintClass <em>Constraint Class</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Constraint Class</em>'.
-	 * @see org.eclipse.papyrus.views.properties.environment.ConstraintType#getConstraintClass()
-	 * @see #getConstraintType()
-	 * @generated
-	 */
-	EAttribute getConstraintType_ConstraintClass();
-
-	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.views.properties.environment.ModelElementFactoryDescriptor <em>Model Element Factory Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -967,15 +873,16 @@ public interface EnvironmentPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * Defines literals for the meta objects that represent
 	 * <ul>
-	 *   <li>each class,</li>
-	 *   <li>each feature of each class,</li>
-	 *   <li>each enum,</li>
-	 *   <li>and each data type</li>
+	 * <li>each class,</li>
+	 * <li>each feature of each class,</li>
+	 * <li>each enum,</li>
+	 * <li>and each data type</li>
 	 * </ul>
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	interface Literals {
+
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.views.properties.environment.impl.EnvironmentImpl <em>Environment</em>}' class.
 		 * <!-- begin-user-doc -->
@@ -993,14 +900,6 @@ public interface EnvironmentPackage extends EPackage {
 		 * @generated
 		 */
 		EReference ENVIRONMENT__MODEL_ELEMENT_FACTORIES = eINSTANCE.getEnvironment_ModelElementFactories();
-
-		/**
-		 * The meta object literal for the '<em><b>Constraint Types</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ENVIRONMENT__CONSTRAINT_TYPES = eINSTANCE.getEnvironment_ConstraintTypes();
 
 		/**
 		 * The meta object literal for the '<em><b>Widget Types</b></em>' containment reference list feature.
@@ -1129,32 +1028,6 @@ public interface EnvironmentPackage extends EPackage {
 		 * @generated
 		 */
 		EClass LAYOUT_TYPE = eINSTANCE.getLayoutType();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.views.properties.environment.impl.ConstraintTypeImpl <em>Constraint Type</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.papyrus.views.properties.environment.impl.ConstraintTypeImpl
-		 * @see org.eclipse.papyrus.views.properties.environment.impl.EnvironmentPackageImpl#getConstraintType()
-		 * @generated
-		 */
-		EClass CONSTRAINT_TYPE = eINSTANCE.getConstraintType();
-
-		/**
-		 * The meta object literal for the '<em><b>Label</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute CONSTRAINT_TYPE__LABEL = eINSTANCE.getConstraintType_Label();
-
-		/**
-		 * The meta object literal for the '<em><b>Constraint Class</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute CONSTRAINT_TYPE__CONSTRAINT_CLASS = eINSTANCE.getConstraintType_ConstraintClass();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.views.properties.environment.impl.ModelElementFactoryDescriptorImpl <em>Model Element Factory Descriptor</em>}' class.

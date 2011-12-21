@@ -61,7 +61,7 @@
    <extension
          point="org.eclipse.papyrus.views.properties.labelprovider">
       <labelProvider
-            labelProvider="org.eclipse.papyrus.views.properties.providers.EMFObjectFilteredLabelProvider"
+            labelProvider="org.eclipse.papyrus.views.properties.providers.EMFFilteredLabelProvider"
             priority="100">
       </labelProvider>
    </extension>

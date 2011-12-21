@@ -1,36 +1,21 @@
-/*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
+/**
+ * <copyright>
+ * </copyright>
  *
- * Contributors:
- *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
- *****************************************************************************/
+ * $Id$
+ */
 package org.eclipse.papyrus.views.properties.environment.impl;
 
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.EModelElementImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
-
-import org.eclipse.papyrus.views.properties.contexts.Context;
+import org.eclipse.papyrus.infra.constraints.environment.impl.ConstraintEnvironmentImpl;
 import org.eclipse.papyrus.views.properties.environment.CompositeWidgetType;
-import org.eclipse.papyrus.views.properties.environment.ConstraintType;
 import org.eclipse.papyrus.views.properties.environment.Environment;
 import org.eclipse.papyrus.views.properties.environment.EnvironmentPackage;
 import org.eclipse.papyrus.views.properties.environment.LayoutType;
@@ -48,7 +33,6 @@ import org.eclipse.papyrus.views.properties.environment.StandardWidgetType;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.papyrus.views.properties.environment.impl.EnvironmentImpl#getModelElementFactories <em>Model Element Factories</em>}</li>
- *   <li>{@link org.eclipse.papyrus.views.properties.environment.impl.EnvironmentImpl#getConstraintTypes <em>Constraint Types</em>}</li>
  *   <li>{@link org.eclipse.papyrus.views.properties.environment.impl.EnvironmentImpl#getWidgetTypes <em>Widget Types</em>}</li>
  *   <li>{@link org.eclipse.papyrus.views.properties.environment.impl.EnvironmentImpl#getPropertyEditorTypes <em>Property Editor Types</em>}</li>
  *   <li>{@link org.eclipse.papyrus.views.properties.environment.impl.EnvironmentImpl#getCompositeWidgetTypes <em>Composite Widget Types</em>}</li>
@@ -60,7 +44,7 @@ import org.eclipse.papyrus.views.properties.environment.StandardWidgetType;
  *
  * @generated
  */
-public class EnvironmentImpl extends EModelElementImpl implements Environment {
+public class EnvironmentImpl extends ConstraintEnvironmentImpl implements Environment {
 	/**
 	 * The cached value of the '{@link #getModelElementFactories() <em>Model Element Factories</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -70,16 +54,6 @@ public class EnvironmentImpl extends EModelElementImpl implements Environment {
 	 * @ordered
 	 */
 	protected EList<ModelElementFactoryDescriptor> modelElementFactories;
-
-	/**
-	 * The cached value of the '{@link #getConstraintTypes() <em>Constraint Types</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getConstraintTypes()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<ConstraintType> constraintTypes;
 
 	/**
 	 * The cached value of the '{@link #getWidgetTypes() <em>Widget Types</em>}' containment reference list.
@@ -177,18 +151,6 @@ public class EnvironmentImpl extends EModelElementImpl implements Environment {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ConstraintType> getConstraintTypes() {
-		if (constraintTypes == null) {
-			constraintTypes = new EObjectContainmentEList<ConstraintType>(ConstraintType.class, this, EnvironmentPackage.ENVIRONMENT__CONSTRAINT_TYPES);
-		}
-		return constraintTypes;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EList<StandardWidgetType> getWidgetTypes() {
 		if (widgetTypes == null) {
 			widgetTypes = new EObjectContainmentEList<StandardWidgetType>(StandardWidgetType.class, this, EnvironmentPackage.ENVIRONMENT__WIDGET_TYPES);
@@ -266,8 +228,6 @@ public class EnvironmentImpl extends EModelElementImpl implements Environment {
 		switch (featureID) {
 			case EnvironmentPackage.ENVIRONMENT__MODEL_ELEMENT_FACTORIES:
 				return ((InternalEList<?>)getModelElementFactories()).basicRemove(otherEnd, msgs);
-			case EnvironmentPackage.ENVIRONMENT__CONSTRAINT_TYPES:
-				return ((InternalEList<?>)getConstraintTypes()).basicRemove(otherEnd, msgs);
 			case EnvironmentPackage.ENVIRONMENT__WIDGET_TYPES:
 				return ((InternalEList<?>)getWidgetTypes()).basicRemove(otherEnd, msgs);
 			case EnvironmentPackage.ENVIRONMENT__PROPERTY_EDITOR_TYPES:
@@ -294,8 +254,6 @@ public class EnvironmentImpl extends EModelElementImpl implements Environment {
 		switch (featureID) {
 			case EnvironmentPackage.ENVIRONMENT__MODEL_ELEMENT_FACTORIES:
 				return getModelElementFactories();
-			case EnvironmentPackage.ENVIRONMENT__CONSTRAINT_TYPES:
-				return getConstraintTypes();
 			case EnvironmentPackage.ENVIRONMENT__WIDGET_TYPES:
 				return getWidgetTypes();
 			case EnvironmentPackage.ENVIRONMENT__PROPERTY_EDITOR_TYPES:
@@ -324,10 +282,6 @@ public class EnvironmentImpl extends EModelElementImpl implements Environment {
 			case EnvironmentPackage.ENVIRONMENT__MODEL_ELEMENT_FACTORIES:
 				getModelElementFactories().clear();
 				getModelElementFactories().addAll((Collection<? extends ModelElementFactoryDescriptor>)newValue);
-				return;
-			case EnvironmentPackage.ENVIRONMENT__CONSTRAINT_TYPES:
-				getConstraintTypes().clear();
-				getConstraintTypes().addAll((Collection<? extends ConstraintType>)newValue);
 				return;
 			case EnvironmentPackage.ENVIRONMENT__WIDGET_TYPES:
 				getWidgetTypes().clear();
@@ -368,9 +322,6 @@ public class EnvironmentImpl extends EModelElementImpl implements Environment {
 			case EnvironmentPackage.ENVIRONMENT__MODEL_ELEMENT_FACTORIES:
 				getModelElementFactories().clear();
 				return;
-			case EnvironmentPackage.ENVIRONMENT__CONSTRAINT_TYPES:
-				getConstraintTypes().clear();
-				return;
 			case EnvironmentPackage.ENVIRONMENT__WIDGET_TYPES:
 				getWidgetTypes().clear();
 				return;
@@ -403,8 +354,6 @@ public class EnvironmentImpl extends EModelElementImpl implements Environment {
 		switch (featureID) {
 			case EnvironmentPackage.ENVIRONMENT__MODEL_ELEMENT_FACTORIES:
 				return modelElementFactories != null && !modelElementFactories.isEmpty();
-			case EnvironmentPackage.ENVIRONMENT__CONSTRAINT_TYPES:
-				return constraintTypes != null && !constraintTypes.isEmpty();
 			case EnvironmentPackage.ENVIRONMENT__WIDGET_TYPES:
 				return widgetTypes != null && !widgetTypes.isEmpty();
 			case EnvironmentPackage.ENVIRONMENT__PROPERTY_EDITOR_TYPES:

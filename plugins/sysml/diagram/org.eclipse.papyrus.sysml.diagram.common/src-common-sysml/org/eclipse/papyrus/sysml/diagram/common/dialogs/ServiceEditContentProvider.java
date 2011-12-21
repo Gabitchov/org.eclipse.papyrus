@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.papyrus.infra.services.edit.utils.ElementTypeValidator;
-import org.eclipse.papyrus.uml.modelexplorer.widgets.UMLElementMEBContentProvider;
+import org.eclipse.papyrus.uml.tools.providers.internal.UMLElementMEBContentProvider;
 
 /**
  * A content provider that takes into account the nature of the searched element
@@ -38,6 +38,6 @@ public class ServiceEditContentProvider extends UMLElementMEBContentProvider {
 
 	@Override
 	public boolean isValidValue(Object element) {
-		return super.isValidValue(element) && validator.validate(new Object[]{getAdaptedValue(element)}).isOK();
+		return super.isValidValue(element) && validator.validate(new Object[]{ getAdaptedValue(element) }).isOK();
 	}
 }

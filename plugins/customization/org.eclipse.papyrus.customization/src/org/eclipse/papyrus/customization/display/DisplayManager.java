@@ -1,7 +1,7 @@
 package org.eclipse.papyrus.customization.display;
 
 import org.eclipse.papyrus.views.properties.runtime.ConfigurationManager;
-import org.eclipse.papyrus.views.properties.runtime.ConstraintEngine;
+import org.eclipse.papyrus.views.properties.runtime.ViewConstraintEngine;
 
 
 public class DisplayManager {
@@ -11,7 +11,7 @@ public class DisplayManager {
 		constraintEngine = ConfigurationManager.instance.constraintEngine;
 
 		//TODO : Add support for local constraint engines in the creation factories
-		//		constraintEngine = new DefaultConstraintEngine();
+		//		constraintEngine = new DefaultViewConstraintEngine();
 		//		ResourceSet resourceSet = new ResourceSetImpl();
 		//		URI uri = URI.createPlatformPluginURI(Activator.PLUGIN_ID + "/Model/Customization/Customization.ctx", true); //$NON-NLS-1$
 		//		try {
@@ -29,5 +29,5 @@ public class DisplayManager {
 
 	public static DisplayManager instance = new DisplayManager();
 
-	public ConstraintEngine constraintEngine;
+	public ViewConstraintEngine constraintEngine;
 }

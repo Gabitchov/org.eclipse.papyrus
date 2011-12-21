@@ -1,20 +1,13 @@
-/*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
+/**
+ * <copyright>
+ * </copyright>
  *
- * Contributors:
- *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
- *****************************************************************************/
+ * $Id$
+ */
 package org.eclipse.papyrus.views.properties.contexts;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EModelElement;
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -64,22 +57,20 @@ public interface Context extends EModelElement {
 	void setName(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Views</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.papyrus.views.properties.contexts.View}.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.views.properties.contexts.View#getContext <em>Context</em>}'.
+	 * Returns the value of the '<em><b>Dependencies</b></em>' reference list.
+	 * The list contents are of type {@link org.eclipse.papyrus.views.properties.contexts.Context}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Views</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Dependencies</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Views</em>' containment reference list.
-	 * @see org.eclipse.papyrus.views.properties.contexts.ContextsPackage#getContext_Views()
-	 * @see org.eclipse.papyrus.views.properties.contexts.View#getContext
-	 * @model opposite="context" containment="true"
+	 * @return the value of the '<em>Dependencies</em>' reference list.
+	 * @see org.eclipse.papyrus.views.properties.contexts.ContextsPackage#getContext_Dependencies()
+	 * @model ordered="false"
 	 * @generated
 	 */
-	EList<View> getViews();
+	EList<Context> getDependencies();
 
 	/**
 	 * Returns the value of the '<em><b>Tabs</b></em>' containment reference list.
@@ -98,6 +89,24 @@ public interface Context extends EModelElement {
 	EList<Tab> getTabs();
 
 	/**
+	 * Returns the value of the '<em><b>Views</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.papyrus.views.properties.contexts.View}.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.views.properties.contexts.View#getContext <em>Context</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Views</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Views</em>' containment reference list.
+	 * @see org.eclipse.papyrus.views.properties.contexts.ContextsPackage#getContext_Views()
+	 * @see org.eclipse.papyrus.views.properties.contexts.View#getContext
+	 * @model opposite="context" containment="true"
+	 * @generated
+	 */
+	EList<View> getViews();
+
+	/**
 	 * Returns the value of the '<em><b>Data Contexts</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.papyrus.views.properties.contexts.DataContextRoot}.
 	 * <!-- begin-user-doc -->
@@ -112,21 +121,5 @@ public interface Context extends EModelElement {
 	 * @generated
 	 */
 	EList<DataContextRoot> getDataContexts();
-
-	/**
-	 * Returns the value of the '<em><b>Dependencies</b></em>' reference list.
-	 * The list contents are of type {@link org.eclipse.papyrus.views.properties.contexts.Context}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Dependencies</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Dependencies</em>' reference list.
-	 * @see org.eclipse.papyrus.views.properties.contexts.ContextsPackage#getContext_Dependencies()
-	 * @model ordered="false"
-	 * @generated
-	 */
-	EList<Context> getDependencies();
 
 } // Context

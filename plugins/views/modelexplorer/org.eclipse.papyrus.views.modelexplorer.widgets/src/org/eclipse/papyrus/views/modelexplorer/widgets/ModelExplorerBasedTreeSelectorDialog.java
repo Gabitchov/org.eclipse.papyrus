@@ -22,10 +22,12 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.papyrus.infra.core.utils.EditorUtils;
+import org.eclipse.papyrus.infra.emf.providers.GraphicalModelExplorerBasedContentProvider;
+import org.eclipse.papyrus.infra.emf.providers.internal.HierarchicViewerFilter;
+import org.eclipse.papyrus.infra.emf.providers.internal.SemanticFromModelExplorer;
 import org.eclipse.papyrus.infra.widgets.editors.TreeSelectorDialog;
 import org.eclipse.papyrus.views.modelexplorer.Activator;
 import org.eclipse.papyrus.views.modelexplorer.MoDiscoLabelProviderWTooltips;
-import org.eclipse.papyrus.views.modelexplorer.SemanticFromModelExplorer;
 import org.eclipse.swt.widgets.Shell;
 
 /**

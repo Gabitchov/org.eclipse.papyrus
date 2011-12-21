@@ -1,25 +1,27 @@
-/*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
+/**
+ * <copyright>
+ * </copyright>
  *
- * Contributors:
- *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
- *****************************************************************************/
+ * $Id$
+ */
 package org.eclipse.papyrus.views.properties.ui.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
 import org.eclipse.papyrus.views.properties.ui.*;
+import org.eclipse.papyrus.views.properties.ui.CompositeWidget;
+import org.eclipse.papyrus.views.properties.ui.Element;
+import org.eclipse.papyrus.views.properties.ui.Layout;
+import org.eclipse.papyrus.views.properties.ui.PropertyEditor;
+import org.eclipse.papyrus.views.properties.ui.ReferenceAttribute;
+import org.eclipse.papyrus.views.properties.ui.StandardWidget;
+import org.eclipse.papyrus.views.properties.ui.UiFactory;
+import org.eclipse.papyrus.views.properties.ui.UiPackage;
+import org.eclipse.papyrus.views.properties.ui.UnknownComponent;
+import org.eclipse.papyrus.views.properties.ui.ValueAttribute;
 
 /**
  * <!-- begin-user-doc -->
@@ -36,7 +38,7 @@ public class UiFactoryImpl extends EFactoryImpl implements UiFactory {
 	 */
 	public static UiFactory init() {
 		try {
-			UiFactory theUiFactory = (UiFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/properties/ui"); 
+			UiFactory theUiFactory = (UiFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/properties/ui/0.9"); 
 			if (theUiFactory != null) {
 				return theUiFactory;
 			}
@@ -123,6 +125,16 @@ public class UiFactoryImpl extends EFactoryImpl implements UiFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public UnknownComponent createUnknownComponent() {
+		UnknownComponentImpl unknownComponent = new UnknownComponentImpl();
+		return unknownComponent;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Layout createLayout() {
 		LayoutImpl layout = new LayoutImpl();
 		return layout;
@@ -146,16 +158,6 @@ public class UiFactoryImpl extends EFactoryImpl implements UiFactory {
 	public ReferenceAttribute createReferenceAttribute() {
 		ReferenceAttributeImpl referenceAttribute = new ReferenceAttributeImpl();
 		return referenceAttribute;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public UnknownComponent createUnknownComponent() {
-		UnknownComponentImpl unknownComponent = new UnknownComponentImpl();
-		return unknownComponent;
 	}
 
 	/**

@@ -8,12 +8,11 @@ package org.eclipse.papyrus.views.properties.runtime.preferences.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.papyrus.views.properties.runtime.preferences.*;
+import org.eclipse.papyrus.views.properties.runtime.preferences.ContextDescriptor;
+import org.eclipse.papyrus.views.properties.runtime.preferences.Preferences;
+import org.eclipse.papyrus.views.properties.runtime.preferences.PreferencesPackage;
 
 /**
  * <!-- begin-user-doc -->

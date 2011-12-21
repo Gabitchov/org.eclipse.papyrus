@@ -14,7 +14,6 @@ package org.eclipse.papyrus.customization.properties.editor.actions;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.commands.State;
 import org.eclipse.papyrus.customization.properties.editor.UIEditor;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PlatformUI;
@@ -40,8 +39,8 @@ public class ToggleDataContextAction extends AbstractHandler {
 			uiEditor.getViewer().refresh();
 		}
 
-		State state = event.getCommand().getState("org.eclipse.papyrus.customization.properties.displayContextState"); //$NON-NLS-1$
-		state.setValue(showDataContext);
+		//		State state = event.getCommand().getState("org.eclipse.papyrus.customization.properties.displayContextState"); //$NON-NLS-1$
+		//		state.setValue(showDataContext);
 		return null;
 	}
 

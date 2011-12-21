@@ -1,22 +1,13 @@
-/*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
+/**
+ * <copyright>
+ * </copyright>
  *
- * Contributors:
- *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
- *****************************************************************************/
+ * $Id$
+ */
 package org.eclipse.papyrus.views.properties.environment;
 
 import org.eclipse.emf.common.util.EList;
-
-import org.eclipse.emf.ecore.EModelElement;
-import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.papyrus.views.properties.contexts.Context;
+import org.eclipse.papyrus.infra.constraints.environment.ConstraintEnvironment;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,7 +18,6 @@ import org.eclipse.papyrus.views.properties.contexts.Context;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.papyrus.views.properties.environment.Environment#getModelElementFactories <em>Model Element Factories</em>}</li>
- *   <li>{@link org.eclipse.papyrus.views.properties.environment.Environment#getConstraintTypes <em>Constraint Types</em>}</li>
  *   <li>{@link org.eclipse.papyrus.views.properties.environment.Environment#getWidgetTypes <em>Widget Types</em>}</li>
  *   <li>{@link org.eclipse.papyrus.views.properties.environment.Environment#getPropertyEditorTypes <em>Property Editor Types</em>}</li>
  *   <li>{@link org.eclipse.papyrus.views.properties.environment.Environment#getCompositeWidgetTypes <em>Composite Widget Types</em>}</li>
@@ -41,7 +31,7 @@ import org.eclipse.papyrus.views.properties.contexts.Context;
  * @model
  * @generated
  */
-public interface Environment extends EModelElement {
+public interface Environment extends ConstraintEnvironment {
 	/**
 	 * Returns the value of the '<em><b>Model Element Factories</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.papyrus.views.properties.environment.ModelElementFactoryDescriptor}.
@@ -57,22 +47,6 @@ public interface Environment extends EModelElement {
 	 * @generated
 	 */
 	EList<ModelElementFactoryDescriptor> getModelElementFactories();
-
-	/**
-	 * Returns the value of the '<em><b>Constraint Types</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.papyrus.views.properties.environment.ConstraintType}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Constraint Types</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Constraint Types</em>' containment reference list.
-	 * @see org.eclipse.papyrus.views.properties.environment.EnvironmentPackage#getEnvironment_ConstraintTypes()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<ConstraintType> getConstraintTypes();
 
 	/**
 	 * Returns the value of the '<em><b>Widget Types</b></em>' containment reference list.

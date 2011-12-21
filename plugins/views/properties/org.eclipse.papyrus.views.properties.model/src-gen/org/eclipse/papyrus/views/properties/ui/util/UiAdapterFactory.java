@@ -1,24 +1,28 @@
-/*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
+/**
+ * <copyright>
+ * </copyright>
  *
- * Contributors:
- *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
- *****************************************************************************/
+ * $Id$
+ */
 package org.eclipse.papyrus.views.properties.ui.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.papyrus.views.properties.ui.*;
+import org.eclipse.papyrus.views.properties.ui.CompositeWidget;
+import org.eclipse.papyrus.views.properties.ui.Element;
+import org.eclipse.papyrus.views.properties.ui.Layout;
+import org.eclipse.papyrus.views.properties.ui.PropertyEditor;
+import org.eclipse.papyrus.views.properties.ui.ReferenceAttribute;
+import org.eclipse.papyrus.views.properties.ui.StandardWidget;
+import org.eclipse.papyrus.views.properties.ui.UIComponent;
+import org.eclipse.papyrus.views.properties.ui.UiPackage;
+import org.eclipse.papyrus.views.properties.ui.UnknownComponent;
+import org.eclipse.papyrus.views.properties.ui.ValueAttribute;
+import org.eclipse.papyrus.views.properties.ui.Widget;
+import org.eclipse.papyrus.views.properties.ui.WidgetAttribute;
 
 /**
  * <!-- begin-user-doc -->
@@ -225,6 +229,20 @@ public class UiAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.views.properties.ui.UnknownComponent <em>Unknown Component</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.views.properties.ui.UnknownComponent
+	 * @generated
+	 */
+	public Adapter createUnknownComponentAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.views.properties.ui.Layout <em>Layout</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -277,20 +295,6 @@ public class UiAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createReferenceAttributeAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.views.properties.ui.UnknownComponent <em>Unknown Component</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.papyrus.views.properties.ui.UnknownComponent
-	 * @generated
-	 */
-	public Adapter createUnknownComponentAdapter() {
 		return null;
 	}
 

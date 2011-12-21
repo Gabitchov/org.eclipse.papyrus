@@ -32,26 +32,26 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.papyrus.infra.emf.providers.EMFLabelProvider;
 import org.eclipse.papyrus.infra.widgets.creation.ReferenceValueFactory;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
-import org.eclipse.papyrus.uml.modelexplorer.widgets.ServiceEditFilteredUMLContentProvider;
-import org.eclipse.papyrus.uml.modelexplorer.widgets.UMLElementMEBContentProvider;
-import org.eclipse.papyrus.uml.modelexplorer.widgets.util.HistoryUtil;
 import org.eclipse.papyrus.uml.properties.creation.ConnectorTypeEditorFactory;
 import org.eclipse.papyrus.uml.properties.creation.MessageValueSpecificationFactory;
 import org.eclipse.papyrus.uml.properties.creation.OwnedRuleCreationFactory;
 import org.eclipse.papyrus.uml.properties.creation.UMLPropertyEditorFactory;
-import org.eclipse.papyrus.uml.properties.databinding.ExtensionRequiredObservableValue;
-import org.eclipse.papyrus.uml.properties.databinding.PapyrusObservableList;
-import org.eclipse.papyrus.uml.properties.databinding.PapyrusObservableValue;
-import org.eclipse.papyrus.uml.properties.databinding.ProvidedInterfaceObservableList;
-import org.eclipse.papyrus.uml.properties.databinding.RequiredInterfaceObservableList;
 import org.eclipse.papyrus.uml.properties.providers.InstanceValueContentProvider;
-import org.eclipse.papyrus.uml.properties.providers.UMLLabelProvider;
+import org.eclipse.papyrus.uml.properties.providers.UMLFilteredLabelProvider;
+import org.eclipse.papyrus.uml.tools.databinding.ExtensionRequiredObservableValue;
+import org.eclipse.papyrus.uml.tools.databinding.PapyrusObservableList;
+import org.eclipse.papyrus.uml.tools.databinding.PapyrusObservableValue;
+import org.eclipse.papyrus.uml.tools.databinding.ProvidedInterfaceObservableList;
+import org.eclipse.papyrus.uml.tools.databinding.RequiredInterfaceObservableList;
+import org.eclipse.papyrus.uml.tools.helper.HistoryUtil;
+import org.eclipse.papyrus.uml.tools.providers.ServiceEditFilteredUMLContentProvider;
+import org.eclipse.papyrus.uml.tools.providers.internal.UMLElementMEBContentProvider;
 import org.eclipse.papyrus.uml.tools.utils.PackageUtil;
 import org.eclipse.papyrus.views.properties.modelelement.EMFModelElement;
 import org.eclipse.papyrus.views.properties.providers.ContainerContentProvider;
-import org.eclipse.papyrus.views.properties.providers.EMFObjectLabelProvider;
 import org.eclipse.papyrus.views.properties.providers.FeatureContentProvider;
 import org.eclipse.uml2.uml.Connector;
 import org.eclipse.uml2.uml.Element;
@@ -66,16 +66,16 @@ import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * A ModelElement representing a UML Element
- *
+ * 
  * @author Camille Letavernier
- *
+ * 
  */
 public class UMLModelElement extends EMFModelElement {
 
 	/**
-	 *
+	 * 
 	 * Constructor.
-	 *
+	 * 
 	 * @param source
 	 *        The EObject represented by this ModelElement
 	 */
@@ -84,9 +84,9 @@ public class UMLModelElement extends EMFModelElement {
 	}
 
 	/**
-	 *
+	 * 
 	 * Constructor.
-	 *
+	 * 
 	 * @param source
 	 *        The EObject represented by this ModelElement
 	 * @param domain
@@ -195,7 +195,7 @@ public class UMLModelElement extends EMFModelElement {
 		if(feature != null && feature.getEType() instanceof EEnum) {
 			return super.getLabelProvider(propertyPath);
 		}
-		return new UMLLabelProvider();
+		return new UMLFilteredLabelProvider();
 	}
 
 	@Override
@@ -249,8 +249,8 @@ public class UMLModelElement extends EMFModelElement {
 
 		EClass type = reference.getEReferenceType();
 
-		factory.setContainerLabelProvider(new UMLLabelProvider());
-		factory.setReferenceLabelProvider(new EMFObjectLabelProvider());
+		factory.setContainerLabelProvider(new UMLFilteredLabelProvider());
+		factory.setReferenceLabelProvider(new EMFLabelProvider());
 		IStaticContentProvider contentProvider = new ContainerContentProvider(type);
 		factory.setContainerContentProvider(contentProvider);
 		factory.setReferenceContentProvider(new FeatureContentProvider(type));

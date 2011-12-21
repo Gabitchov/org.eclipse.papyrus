@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Marte properties (Incubation)
-Bundle-SymbolicName: org.eclipse.papyrus.properties.marte;singleton:=true
+Bundle-SymbolicName: org.eclipse.papyrus.marte.properties;singleton:=true
 Bundle-Version: 0.9.0.qualifier
-Bundle-Activator: org.eclipse.papyrus.properties.marte.Activator
+Bundle-Activator: org.eclipse.papyrus.marte.properties.Activator
 Bundle-Vendor: Eclipse Modeling Project
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,

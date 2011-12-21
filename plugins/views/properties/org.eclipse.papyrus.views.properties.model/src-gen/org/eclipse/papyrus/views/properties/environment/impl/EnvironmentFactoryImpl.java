@@ -1,26 +1,29 @@
-/*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
+/**
+ * <copyright>
+ * </copyright>
  *
- * Contributors:
- *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
- *****************************************************************************/
+ * $Id$
+ */
 package org.eclipse.papyrus.views.properties.environment.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
 import org.eclipse.papyrus.views.properties.environment.*;
+import org.eclipse.papyrus.views.properties.environment.CompositeWidgetType;
+import org.eclipse.papyrus.views.properties.environment.Environment;
+import org.eclipse.papyrus.views.properties.environment.EnvironmentFactory;
+import org.eclipse.papyrus.views.properties.environment.EnvironmentPackage;
+import org.eclipse.papyrus.views.properties.environment.LayoutType;
+import org.eclipse.papyrus.views.properties.environment.MiscClass;
+import org.eclipse.papyrus.views.properties.environment.ModelElementFactoryDescriptor;
+import org.eclipse.papyrus.views.properties.environment.Namespace;
+import org.eclipse.papyrus.views.properties.environment.PropertyEditorType;
+import org.eclipse.papyrus.views.properties.environment.StandardWidgetType;
+import org.eclipse.papyrus.views.properties.environment.Type;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,6 +32,7 @@ import org.eclipse.papyrus.views.properties.environment.*;
  * @generated
  */
 public class EnvironmentFactoryImpl extends EFactoryImpl implements EnvironmentFactory {
+
 	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
@@ -37,7 +41,7 @@ public class EnvironmentFactoryImpl extends EFactoryImpl implements EnvironmentF
 	 */
 	public static EnvironmentFactory init() {
 		try {
-			EnvironmentFactory theEnvironmentFactory = (EnvironmentFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/properties/environment"); 
+			EnvironmentFactory theEnvironmentFactory = (EnvironmentFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/properties/environment/0.9"); 
 			if (theEnvironmentFactory != null) {
 				return theEnvironmentFactory;
 			}
@@ -70,7 +74,6 @@ public class EnvironmentFactoryImpl extends EFactoryImpl implements EnvironmentF
 			case EnvironmentPackage.PROPERTY_EDITOR_TYPE: return createPropertyEditorType();
 			case EnvironmentPackage.COMPOSITE_WIDGET_TYPE: return createCompositeWidgetType();
 			case EnvironmentPackage.LAYOUT_TYPE: return createLayoutType();
-			case EnvironmentPackage.CONSTRAINT_TYPE: return createConstraintType();
 			case EnvironmentPackage.MODEL_ELEMENT_FACTORY_DESCRIPTOR: return createModelElementFactoryDescriptor();
 			case EnvironmentPackage.STANDARD_WIDGET_TYPE: return createStandardWidgetType();
 			case EnvironmentPackage.NAMESPACE: return createNamespace();
@@ -148,16 +151,6 @@ public class EnvironmentFactoryImpl extends EFactoryImpl implements EnvironmentF
 	public LayoutType createLayoutType() {
 		LayoutTypeImpl layoutType = new LayoutTypeImpl();
 		return layoutType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ConstraintType createConstraintType() {
-		ConstraintTypeImpl constraintType = new ConstraintTypeImpl();
-		return constraintType;
 	}
 
 	/**

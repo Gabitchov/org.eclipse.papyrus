@@ -12,13 +12,13 @@
 package org.eclipse.papyrus.uml.properties.providers;
 
 import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.papyrus.infra.emf.providers.EMFLabelProvider;
 import org.eclipse.papyrus.uml.profile.utils.Util;
-import org.eclipse.papyrus.views.properties.providers.EMFObjectLabelProvider;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Profile;
 
-
-public class ProfileLabelProvider extends EMFObjectLabelProvider implements ILabelProvider {
+//TODO : To be refactored. Merge this class with UMLLabelProvider
+public class ProfileLabelProvider extends EMFLabelProvider implements ILabelProvider {
 
 	private Package umlPackage;
 

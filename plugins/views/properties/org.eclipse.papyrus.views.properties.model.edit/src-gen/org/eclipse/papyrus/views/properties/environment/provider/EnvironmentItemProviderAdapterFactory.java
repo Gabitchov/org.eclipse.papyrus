@@ -12,7 +12,6 @@ import java.util.Collection;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.edit.provider.ChangeNotifier;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -24,7 +23,6 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-
 import org.eclipse.papyrus.views.properties.environment.util.EnvironmentAdapterFactory;
 
 /**
@@ -165,29 +163,6 @@ public class EnvironmentItemProviderAdapterFactory extends EnvironmentAdapterFac
 		}
 
 		return layoutTypeItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.views.properties.environment.ConstraintType} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ConstraintTypeItemProvider constraintTypeItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.eclipse.papyrus.views.properties.environment.ConstraintType}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createConstraintTypeAdapter() {
-		if (constraintTypeItemProvider == null) {
-			constraintTypeItemProvider = new ConstraintTypeItemProvider(this);
-		}
-
-		return constraintTypeItemProvider;
 	}
 
 	/**
@@ -385,7 +360,6 @@ public class EnvironmentItemProviderAdapterFactory extends EnvironmentAdapterFac
 		if (propertyEditorTypeItemProvider != null) propertyEditorTypeItemProvider.dispose();
 		if (compositeWidgetTypeItemProvider != null) compositeWidgetTypeItemProvider.dispose();
 		if (layoutTypeItemProvider != null) layoutTypeItemProvider.dispose();
-		if (constraintTypeItemProvider != null) constraintTypeItemProvider.dispose();
 		if (modelElementFactoryDescriptorItemProvider != null) modelElementFactoryDescriptorItemProvider.dispose();
 		if (standardWidgetTypeItemProvider != null) standardWidgetTypeItemProvider.dispose();
 		if (namespaceItemProvider != null) namespaceItemProvider.dispose();

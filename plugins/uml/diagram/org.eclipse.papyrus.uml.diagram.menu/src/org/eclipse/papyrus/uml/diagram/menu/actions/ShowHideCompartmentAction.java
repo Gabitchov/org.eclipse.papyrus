@@ -40,13 +40,13 @@ import org.eclipse.papyrus.uml.diagram.common.actions.AbstractShowHideAction;
 import org.eclipse.papyrus.uml.diagram.common.commands.ShowHideCompartmentRequest;
 import org.eclipse.papyrus.uml.diagram.common.commands.ShowHideTitleOfCompartmentCommand;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideCompartmentEditPolicy;
-import org.eclipse.papyrus.uml.diagram.common.providers.EditorLabelProvider;
 import org.eclipse.papyrus.uml.diagram.common.util.CompartmentTitleRepresentation;
 import org.eclipse.papyrus.uml.diagram.common.util.CompartmentUtils;
 import org.eclipse.papyrus.uml.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.papyrus.uml.diagram.common.util.ViewServiceUtil;
 import org.eclipse.papyrus.uml.diagram.menu.dialogs.ShowHideCompartmentSelectionDialog;
 import org.eclipse.papyrus.uml.diagram.menu.messages.Messages;
+import org.eclipse.papyrus.uml.tools.providers.UMLLabelProvider;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.dialogs.SelectionDialog;
 import org.eclipse.uml2.uml.Element;
@@ -131,7 +131,7 @@ public class ShowHideCompartmentAction extends AbstractShowHideAction {
 	 */
 	@Override
 	protected SelectionDialog getSelectionDialog() {
-		ShowHideCompartmentSelectionDialog selectionDialog = new ShowHideCompartmentSelectionDialog(DisplayUtils.getDisplay().getActiveShell(), new EditorLabelProvider(), new ContentProvider());
+		ShowHideCompartmentSelectionDialog selectionDialog = new ShowHideCompartmentSelectionDialog(DisplayUtils.getDisplay().getActiveShell(), new UMLLabelProvider(), new ContentProvider());
 		selectionDialog.setTitle(Messages.ShowHideCompartmentAction_Title);
 		selectionDialog.setMessage(Messages.ShowHideCompartmentAction_Messages);
 		selectionDialog.setContainerMode(true);
@@ -205,7 +205,7 @@ public class ShowHideCompartmentAction extends AbstractShowHideAction {
 			return;
 		}
 		setContentProvider(new ContentProvider());
-		this.setEditorLabelProvider(new EditorLabelProvider());
+		this.setEditorLabelProvider(new UMLLabelProvider());
 		this.domain = ((IGraphicalEditPart)this.selectedElements.get(0)).getEditingDomain();
 		this.initialSelection = getInitialSelection();
 	}
@@ -266,21 +266,21 @@ public class ShowHideCompartmentAction extends AbstractShowHideAction {
 					completeCmd.add(tmp);
 				}
 			} else if(current instanceof CompartmentTitleRepresentation) {
-				CompartmentTitleRepresentation compartmentTitleRep = (CompartmentTitleRepresentation) current;
-				final View view = (View) compartmentTitleRep.getRealObject();
+				CompartmentTitleRepresentation compartmentTitleRep = (CompartmentTitleRepresentation)current;
+				final View view = (View)compartmentTitleRep.getRealObject();
 				Style style = view.getStyle(NotationPackage.eINSTANCE.getTitleStyle());
 				if(style == null) {
 					// style is not existing yet (true for models created with Papyrus 0.7.x) => create now
 					// See bug 351084
-					completeCmd.add(new ICommandProxy(
-							new AbstractTransactionalCommand(domain, "Create title style", Collections.EMPTY_LIST) {  //$NON-NLS-1$
+					completeCmd.add(new ICommandProxy(new AbstractTransactionalCommand(domain, "Create title style", Collections.EMPTY_LIST) { //$NON-NLS-1$
 
+						@Override
 						public CommandResult doExecuteWithResult(IProgressMonitor dummy, IAdaptable info) {
 							TitleStyle style = (TitleStyle)view.createStyle(NotationPackage.eINSTANCE.getTitleStyle());
 							style.setShowTitle(false);
 							return CommandResult.newOKCommandResult();
-                        }
-                  }));
+						}
+					}));
 				}
 				ShowHideTitleOfCompartmentCommand tmp = new ShowHideTitleOfCompartmentCommand(this.domain, view, true);
 				if(tmp != null && tmp.canExecute()) {

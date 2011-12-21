@@ -12,7 +12,6 @@ import java.util.Collection;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.edit.provider.ChangeNotifier;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -24,7 +23,6 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-
 import org.eclipse.papyrus.views.properties.contexts.util.ContextsAdapterFactory;
 
 /**
@@ -283,98 +281,6 @@ public class ContextsItemProviderAdapterFactory extends ContextsAdapterFactory i
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.views.properties.contexts.SimpleConstraint} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected SimpleConstraintItemProvider simpleConstraintItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.eclipse.papyrus.views.properties.contexts.SimpleConstraint}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createSimpleConstraintAdapter() {
-		if (simpleConstraintItemProvider == null) {
-			simpleConstraintItemProvider = new SimpleConstraintItemProvider(this);
-		}
-
-		return simpleConstraintItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.views.properties.contexts.CompositeConstraint} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected CompositeConstraintItemProvider compositeConstraintItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.eclipse.papyrus.views.properties.contexts.CompositeConstraint}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createCompositeConstraintAdapter() {
-		if (compositeConstraintItemProvider == null) {
-			compositeConstraintItemProvider = new CompositeConstraintItemProvider(this);
-		}
-
-		return compositeConstraintItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.views.properties.contexts.ValueProperty} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ValuePropertyItemProvider valuePropertyItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.eclipse.papyrus.views.properties.contexts.ValueProperty}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createValuePropertyAdapter() {
-		if (valuePropertyItemProvider == null) {
-			valuePropertyItemProvider = new ValuePropertyItemProvider(this);
-		}
-
-		return valuePropertyItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.views.properties.contexts.ReferenceProperty} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ReferencePropertyItemProvider referencePropertyItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.eclipse.papyrus.views.properties.contexts.ReferenceProperty}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createReferencePropertyAdapter() {
-		if (referencePropertyItemProvider == null) {
-			referencePropertyItemProvider = new ReferencePropertyItemProvider(this);
-		}
-
-		return referencePropertyItemProvider;
-	}
-
-	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -482,10 +388,6 @@ public class ContextsItemProviderAdapterFactory extends ContextsAdapterFactory i
 		if (unknownPropertyItemProvider != null) unknownPropertyItemProvider.dispose();
 		if (dataContextPackageItemProvider != null) dataContextPackageItemProvider.dispose();
 		if (dataContextRootItemProvider != null) dataContextRootItemProvider.dispose();
-		if (simpleConstraintItemProvider != null) simpleConstraintItemProvider.dispose();
-		if (compositeConstraintItemProvider != null) compositeConstraintItemProvider.dispose();
-		if (valuePropertyItemProvider != null) valuePropertyItemProvider.dispose();
-		if (referencePropertyItemProvider != null) referencePropertyItemProvider.dispose();
 	}
 
 }

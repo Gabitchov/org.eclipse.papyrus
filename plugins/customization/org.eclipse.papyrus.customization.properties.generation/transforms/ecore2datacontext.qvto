@@ -1,7 +1,8 @@
 modeltype Ecore uses "http://www.eclipse.org/emf/2002/Ecore";
-modeltype PropertyContext uses "http://www.eclipse.org/papyrus/properties/contexts";
-modeltype PropertyEnvironment uses "http://www.eclipse.org/papyrus/properties/environment";
+modeltype PropertyContext uses "http://www.eclipse.org/papyrus/properties/contexts/0.9";
+modeltype PropertyEnvironment uses "http://www.eclipse.org/papyrus/properties/environment/0.9";
 modeltype PRoot uses "http://www.eclipse.org/papyrus/properties/root";
+modeltype Constraints uses "http://www.eclipse.org/papyrus/constraints/0.9";
 
 transformation ecore2datacontext(in ecore : Ecore, in pRoot : PRoot, out context : PropertyContext);
 

@@ -18,9 +18,9 @@ import org.eclipse.core.databinding.observable.ChangeEvent;
 import org.eclipse.core.databinding.observable.IChangeListener;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.papyrus.infra.constraints.ConstraintDescriptor;
+import org.eclipse.papyrus.infra.constraints.constraints.Constraint;
 import org.eclipse.papyrus.views.properties.Activator;
-import org.eclipse.papyrus.views.properties.constraints.Constraint;
-import org.eclipse.papyrus.views.properties.contexts.ConstraintDescriptor;
 import org.eclipse.papyrus.views.properties.contexts.Section;
 import org.eclipse.papyrus.views.properties.contexts.View;
 import org.eclipse.papyrus.views.properties.modelelement.DataSource;
@@ -219,7 +219,7 @@ public class XWTSection extends AbstractPropertySection implements IChangeListen
 	}
 
 	@Override
-	public IStructuredSelection getSelection(){
+	public IStructuredSelection getSelection() {
 		return (IStructuredSelection)super.getSelection();
 	}
 

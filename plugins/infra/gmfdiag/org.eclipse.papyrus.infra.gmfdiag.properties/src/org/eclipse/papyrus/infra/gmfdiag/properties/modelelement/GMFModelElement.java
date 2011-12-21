@@ -23,8 +23,8 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.infra.gmfdiag.properties.databinding.GradientObservableValue;
 import org.eclipse.papyrus.infra.gmfdiag.properties.providers.GMFLabelProvider;
-import org.eclipse.papyrus.uml.properties.databinding.PapyrusObservableList;
-import org.eclipse.papyrus.uml.properties.databinding.PapyrusObservableValue;
+import org.eclipse.papyrus.uml.tools.databinding.PapyrusObservableList;
+import org.eclipse.papyrus.uml.tools.databinding.PapyrusObservableValue;
 import org.eclipse.papyrus.views.properties.modelelement.EMFModelElement;
 
 /**

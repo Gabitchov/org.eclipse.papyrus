@@ -1,7 +1,8 @@
 modeltype UML uses "http://www.eclipse.org/uml2/4.0.0/UML";
-modeltype PropertyContext uses "http://www.eclipse.org/papyrus/properties/contexts";
-modeltype PropertyEnvironment uses "http://www.eclipse.org/papyrus/properties/environment";
+modeltype PropertyContext uses "http://www.eclipse.org/papyrus/properties/contexts/0.9";
+modeltype PropertyEnvironment uses "http://www.eclipse.org/papyrus/properties/environment/0.9";
 modeltype PRoot uses "http://www.eclipse.org/papyrus/properties/root";
+modeltype Constraints uses "http://www.eclipse.org/papyrus/constraints/0.9";
 
 transformation stereotype2datacontext(in profile : UML, out context : PropertyContext, in uml : PropertyContext, in pRoot : PRoot);
 

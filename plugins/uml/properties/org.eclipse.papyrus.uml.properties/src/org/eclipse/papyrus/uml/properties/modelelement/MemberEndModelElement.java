@@ -11,12 +11,12 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.properties.modelelement;
 
-import static org.eclipse.papyrus.uml.properties.databinding.MultiplicityObservableValue.ANY;
-import static org.eclipse.papyrus.uml.properties.databinding.MultiplicityObservableValue.ONE;
-import static org.eclipse.papyrus.uml.properties.databinding.MultiplicityObservableValue.ONE_OR_MORE;
-import static org.eclipse.papyrus.uml.properties.databinding.MultiplicityObservableValue.OPTIONAL;
-import static org.eclipse.papyrus.uml.properties.databinding.OwnerObservableValue.ASSOCIATION;
-import static org.eclipse.papyrus.uml.properties.databinding.OwnerObservableValue.CLASSIFIER;
+import static org.eclipse.papyrus.uml.tools.databinding.MultiplicityObservableValue.ANY;
+import static org.eclipse.papyrus.uml.tools.databinding.MultiplicityObservableValue.ONE;
+import static org.eclipse.papyrus.uml.tools.databinding.MultiplicityObservableValue.ONE_OR_MORE;
+import static org.eclipse.papyrus.uml.tools.databinding.MultiplicityObservableValue.OPTIONAL;
+import static org.eclipse.papyrus.uml.tools.databinding.OwnerObservableValue.ASSOCIATION;
+import static org.eclipse.papyrus.uml.tools.databinding.OwnerObservableValue.CLASSIFIER;
 
 import java.util.List;
 
@@ -26,10 +26,10 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.StaticContentProvider;
 import org.eclipse.papyrus.uml.properties.Activator;
-import org.eclipse.papyrus.uml.properties.databinding.ExtensionEndMultiplicityObservableValue;
-import org.eclipse.papyrus.uml.properties.databinding.MultiplicityObservableValue;
-import org.eclipse.papyrus.uml.properties.databinding.NavigationObservableValue;
-import org.eclipse.papyrus.uml.properties.databinding.OwnerObservableValue;
+import org.eclipse.papyrus.uml.tools.databinding.ExtensionEndMultiplicityObservableValue;
+import org.eclipse.papyrus.uml.tools.databinding.MultiplicityObservableValue;
+import org.eclipse.papyrus.uml.tools.databinding.NavigationObservableValue;
+import org.eclipse.papyrus.uml.tools.databinding.OwnerObservableValue;
 import org.eclipse.papyrus.views.properties.modelelement.AbstractModelElement;
 import org.eclipse.uml2.uml.ExtensionEnd;
 import org.eclipse.uml2.uml.Property;

@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.papyrus.customization.model.customization.*;
 import org.eclipse.papyrus.customization.model.customization.CustomizationConfiguration;
 import org.eclipse.papyrus.customization.model.customization.CustomizationFactory;
 import org.eclipse.papyrus.customization.model.customization.CustomizationPackage;

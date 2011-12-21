@@ -1,14 +1,9 @@
-/*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
+/**
+ * <copyright>
+ * </copyright>
  *
- * Contributors:
- *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
- *****************************************************************************/
+ * $Id$
+ */
 package org.eclipse.papyrus.views.properties.environment;
 
 import org.eclipse.emf.ecore.EFactory;
@@ -65,15 +60,6 @@ public interface EnvironmentFactory extends EFactory {
 	 * @generated
 	 */
 	LayoutType createLayoutType();
-
-	/**
-	 * Returns a new object of class '<em>Constraint Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Constraint Type</em>'.
-	 * @generated
-	 */
-	ConstraintType createConstraintType();
 
 	/**
 	 * Returns a new object of class '<em>Model Element Factory Descriptor</em>'.

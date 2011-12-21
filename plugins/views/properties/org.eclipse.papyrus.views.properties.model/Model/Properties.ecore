@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ecore:EPackage xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="properties"
-    nsURI="http://www.eclipse.org/papyrus/properties" nsPrefix="properties">
-  <eSubpackages name="environment" nsURI="http://www.eclipse.org/papyrus/properties/environment"
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="properties" nsURI="http://www.eclipse.org/papyrus/properties/0.9.0"
+    nsPrefix="properties">
+  <eSubpackages name="environment" nsURI="http://www.eclipse.org/papyrus/properties/environment/0.9"
       nsPrefix="environment">
-    <eClassifiers xsi:type="ecore:EClass" name="Environment" eSuperTypes="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EModelElement">
+    <eClassifiers xsi:type="ecore:EClass" name="Environment" eSuperTypes="../../org.eclipse.papyrus.infra.constraints/Model/Constraints.ecore#//environment/ConstraintEnvironment">
       <eStructuralFeatures xsi:type="ecore:EReference" name="modelElementFactories"
           upperBound="-1" eType="#//environment/ModelElementFactoryDescriptor" containment="true"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="constraintTypes" upperBound="-1"
-          eType="#//environment/ConstraintType" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="widgetTypes" upperBound="-1"
           eType="#//environment/StandardWidgetType" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="propertyEditorTypes"
@@ -38,12 +35,6 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="CompositeWidgetType" eSuperTypes="#//environment/WidgetType"/>
     <eClassifiers xsi:type="ecore:EClass" name="LayoutType" eSuperTypes="#//environment/WidgetType"/>
-    <eClassifiers xsi:type="ecore:EClass" name="ConstraintType">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="label" lowerBound="1"
-          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="constraintClass" lowerBound="1"
-          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ModelElementFactoryDescriptor">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -72,7 +63,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="namespace" eType="#//environment/Namespace"/>
     </eClassifiers>
   </eSubpackages>
-  <eSubpackages name="contexts" nsURI="http://www.eclipse.org/papyrus/properties/contexts"
+  <eSubpackages name="contexts" nsURI="http://www.eclipse.org/papyrus/properties/contexts/0.9"
       nsPrefix="contexts">
     <eClassifiers xsi:type="ecore:EClass" name="Context" eSuperTypes="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EModelElement">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1"
@@ -85,10 +76,6 @@
           eType="#//contexts/View" containment="true" eOpposite="#//contexts/View/context"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="dataContexts" upperBound="-1"
           eType="#//contexts/DataContextRoot" containment="true"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="DisplayUnit" abstract="true">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="constraints" upperBound="-1"
-          eType="#//contexts/ConstraintDescriptor" containment="true" eOpposite="#//contexts/ConstraintDescriptor/display"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Tab">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="label" lowerBound="1"
@@ -104,14 +91,11 @@
           defaultValueLiteral="false"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="priority" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="View" eSuperTypes="#//contexts/DisplayUnit">
+    <eClassifiers xsi:type="ecore:EClass" name="View" eSuperTypes="../../org.eclipse.papyrus.infra.constraints/Model/Constraints.ecore#//DisplayUnit">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="sections" upperBound="-1"
           eType="#//contexts/Section"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="elementMultiplicity"
-          lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
-          defaultValueLiteral="1"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="context" lowerBound="1"
           eType="#//contexts/Context" eOpposite="#//contexts/Context/views"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="automaticContext" lowerBound="1"
@@ -119,7 +103,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="datacontexts" upperBound="-1"
           eType="#//contexts/DataContextElement"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Section" eSuperTypes="#//contexts/DisplayUnit">
+    <eClassifiers xsi:type="ecore:EClass" name="Section" eSuperTypes="../../org.eclipse.papyrus.infra.constraints/Model/Constraints.ecore#//DisplayUnit">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="tab" lowerBound="1" eType="#//contexts/Tab"
@@ -162,41 +146,9 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="modelElementFactory"
           lowerBound="1" eType="#//environment/ModelElementFactoryDescriptor"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ConstraintDescriptor" abstract="true">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1"
-          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="display" eType="#//contexts/DisplayUnit"
-          eOpposite="#//contexts/DisplayUnit/constraints"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="overrideable" lowerBound="1"
-          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
-          defaultValueLiteral="true"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="overriddenConstraints"
-          upperBound="-1" eType="#//contexts/SimpleConstraint"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="SimpleConstraint" eSuperTypes="#//contexts/ConstraintDescriptor">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="constraintType" lowerBound="1"
-          eType="#//environment/ConstraintType"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="properties" upperBound="-1"
-          eType="#//contexts/ConfigProperty" containment="true"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="CompositeConstraint" eSuperTypes="#//contexts/ConstraintDescriptor">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="constraints" upperBound="-1"
-          eType="#//contexts/SimpleConstraint" containment="true"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ConfigProperty" abstract="true">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1"
-          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ValueProperty" eSuperTypes="#//contexts/ConfigProperty">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1"
-          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ReferenceProperty" eSuperTypes="#//contexts/ConfigProperty">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1"
-          eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
-    </eClassifiers>
   </eSubpackages>
-  <eSubpackages name="ui" nsURI="http://www.eclipse.org/papyrus/properties/ui" nsPrefix="ui">
+  <eSubpackages name="ui" nsURI="http://www.eclipse.org/papyrus/properties/ui/0.9"
+      nsPrefix="ui">
     <eClassifiers xsi:type="ecore:EClass" name="Element"/>
     <eClassifiers xsi:type="ecore:EClass" name="UIComponent" abstract="true" eSuperTypes="#//ui/Element">
       <eStructuralFeatures xsi:type="ecore:EReference" name="attributes" upperBound="-1"

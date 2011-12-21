@@ -1,17 +1,13 @@
-/*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
+/**
+ * <copyright>
+ * </copyright>
  *
- * Contributors:
- *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
- *****************************************************************************/
+ * $Id$
+ */
 package org.eclipse.papyrus.views.properties.contexts;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.papyrus.infra.constraints.DisplayUnit;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,7 +19,6 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link org.eclipse.papyrus.views.properties.contexts.View#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.views.properties.contexts.View#getSections <em>Sections</em>}</li>
- *   <li>{@link org.eclipse.papyrus.views.properties.contexts.View#getElementMultiplicity <em>Element Multiplicity</em>}</li>
  *   <li>{@link org.eclipse.papyrus.views.properties.contexts.View#getContext <em>Context</em>}</li>
  *   <li>{@link org.eclipse.papyrus.views.properties.contexts.View#isAutomaticContext <em>Automatic Context</em>}</li>
  *   <li>{@link org.eclipse.papyrus.views.properties.contexts.View#getDatacontexts <em>Datacontexts</em>}</li>
@@ -76,33 +71,6 @@ public interface View extends DisplayUnit {
 	 * @generated
 	 */
 	EList<Section> getSections();
-
-	/**
-	 * Returns the value of the '<em><b>Element Multiplicity</b></em>' attribute.
-	 * The default value is <code>"1"</code>.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Element Multiplicity</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Element Multiplicity</em>' attribute.
-	 * @see #setElementMultiplicity(int)
-	 * @see org.eclipse.papyrus.views.properties.contexts.ContextsPackage#getView_ElementMultiplicity()
-	 * @model default="1" required="true"
-	 * @generated
-	 */
-	int getElementMultiplicity();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.views.properties.contexts.View#getElementMultiplicity <em>Element Multiplicity</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Element Multiplicity</em>' attribute.
-	 * @see #getElementMultiplicity()
-	 * @generated
-	 */
-	void setElementMultiplicity(int value);
 
 	/**
 	 * Returns the value of the '<em><b>Context</b></em>' container reference.

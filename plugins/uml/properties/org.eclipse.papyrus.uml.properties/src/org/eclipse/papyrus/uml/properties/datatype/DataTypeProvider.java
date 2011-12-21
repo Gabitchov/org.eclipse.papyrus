@@ -17,8 +17,8 @@ import java.util.Map;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.papyrus.infra.tools.util.ClassLoaderHelper;
 import org.eclipse.papyrus.uml.properties.Activator;
-import org.eclipse.papyrus.views.properties.util.ClassLoader;
 
 
 public class DataTypeProvider {
@@ -27,15 +27,14 @@ public class DataTypeProvider {
 
 	public static final String EXTENSION_ID = Activator.PLUGIN_ID + ".datatype"; //$NON-NLS-1$
 
-	private DataTypeProvider(){
+	private DataTypeProvider() {
 		IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(EXTENSION_ID);
 
 		for(IConfigurationElement e : config) {
 			String dataTypeName = e.getAttribute("dataType"); //$NON-NLS-1$
 			String observableClassName = e.getAttribute("observable"); //$NON-NLS-1$
 
-			ClassLoader loader = new ClassLoader();
-			Class<? extends DataTypeObservableValue> observableClass = loader.loadClass(observableClassName, DataTypeObservableValue.class);
+			Class<? extends DataTypeObservableValue> observableClass = ClassLoaderHelper.loadClass(observableClassName, DataTypeObservableValue.class);
 
 			if(observableClass != null) {
 				observableDataTypes.put(dataTypeName, observableClass);
@@ -44,10 +43,9 @@ public class DataTypeProvider {
 	}
 
 	public DataTypeObservableValue getObservableDataType(EDataType dataType) {
-		ClassLoader loader = new ClassLoader();
 		for(String key : observableDataTypes.keySet()) {
 			if(key.equals(dataType.getName())) {
-				return loader.newInstance(observableDataTypes.get(key));
+				return ClassLoaderHelper.newInstance(observableDataTypes.get(key));
 			}
 		}
 		return null;

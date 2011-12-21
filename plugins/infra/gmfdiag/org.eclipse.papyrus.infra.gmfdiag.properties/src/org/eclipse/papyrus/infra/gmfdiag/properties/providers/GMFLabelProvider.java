@@ -16,7 +16,7 @@ import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistry;
 import org.eclipse.papyrus.infra.core.editorsfactory.PageIconsRegistry;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.utils.EditorUtils;
-import org.eclipse.papyrus.views.properties.providers.EMFObjectLabelProvider;
+import org.eclipse.papyrus.infra.emf.providers.EMFLabelProvider;
 import org.eclipse.swt.graphics.Image;
 
 /**
@@ -25,7 +25,7 @@ import org.eclipse.swt.graphics.Image;
  * @author Camille Letavernier
  * 
  */
-public class GMFLabelProvider extends EMFObjectLabelProvider {
+public class GMFLabelProvider extends EMFLabelProvider {
 
 	protected IPageIconsRegistry editorRegistry;
 

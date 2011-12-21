@@ -6,7 +6,7 @@
          <meta.schema plugin="org.eclipse.papyrus.views.properties" id="Environment" name="Environment"/>
       </appInfo>
       <documentation>
-         Extension point used to provide new Environment to the Papyrus Property View. An Environment is an EMF Model conforming to http://www.eclipse.org/papyrus/properties/environment (From org.eclipse.papyrus.views.properties.model), defining a set of element descriptors (Widgets, Factories, ...), which can be used by the different Contexts to define new property views.
+         Extension point used to provide new Environment to the Papyrus Property View. An Environment is an EMF Model conforming to http://www.eclipse.org/papyrus/properties/environment/0.9 (From org.eclipse.papyrus.views.properties.model), defining a set of element descriptors (Widgets, Factories, ...), which can be used by the different Contexts to define new property views.
       </documentation>
    </annotation>
 

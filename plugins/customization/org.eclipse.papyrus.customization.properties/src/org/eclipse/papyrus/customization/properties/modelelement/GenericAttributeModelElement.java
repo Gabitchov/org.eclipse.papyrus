@@ -24,11 +24,11 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.facet.infra.query.ModelQuery;
 import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.papyrus.infra.constraints.ConfigProperty;
+import org.eclipse.papyrus.infra.emf.providers.EMFLabelProvider;
 import org.eclipse.papyrus.infra.widgets.providers.AbstractStaticContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
-import org.eclipse.papyrus.views.properties.contexts.ConfigProperty;
 import org.eclipse.papyrus.views.properties.modelelement.AbstractModelElement;
-import org.eclipse.papyrus.views.properties.providers.EMFObjectLabelProvider;
 import org.eclipse.papyrus.views.properties.ui.WidgetAttribute;
 
 /**
@@ -124,7 +124,7 @@ public class GenericAttributeModelElement extends AbstractModelElement {
 
 	@Override
 	public ILabelProvider getLabelProvider(String propertyPath) {
-		return new EMFObjectLabelProvider();
+		return new EMFLabelProvider();
 	}
 
 	@Override

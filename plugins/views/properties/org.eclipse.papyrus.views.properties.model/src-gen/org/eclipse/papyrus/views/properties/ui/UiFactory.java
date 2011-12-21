@@ -1,14 +1,9 @@
-/*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
+/**
+ * <copyright>
+ * </copyright>
  *
- * Contributors:
- *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
- *****************************************************************************/
+ * $Id$
+ */
 package org.eclipse.papyrus.views.properties.ui;
 
 import org.eclipse.emf.ecore.EFactory;
@@ -67,6 +62,15 @@ public interface UiFactory extends EFactory {
 	CompositeWidget createCompositeWidget();
 
 	/**
+	 * Returns a new object of class '<em>Unknown Component</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Unknown Component</em>'.
+	 * @generated
+	 */
+	UnknownComponent createUnknownComponent();
+
+	/**
 	 * Returns a new object of class '<em>Layout</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -92,15 +96,6 @@ public interface UiFactory extends EFactory {
 	 * @generated
 	 */
 	ReferenceAttribute createReferenceAttribute();
-
-	/**
-	 * Returns a new object of class '<em>Unknown Component</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Unknown Component</em>'.
-	 * @generated
-	 */
-	UnknownComponent createUnknownComponent();
 
 	/**
 	 * Returns the package supported by this factory.

@@ -27,9 +27,11 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.common.ui.util.DisplayUtils;
+import org.eclipse.gmf.runtime.diagram.ui.actions.internal.ShowConnectionLabelsAction;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ConnectionLabelsEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpart.EditPartService;
 import org.eclipse.gmf.runtime.notation.LayoutConstraint;
 import org.eclipse.gmf.runtime.notation.Location;
@@ -41,10 +43,10 @@ import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.papyrus.uml.diagram.common.commands.ShowHideLabelsRequest;
 import org.eclipse.papyrus.uml.diagram.common.editparts.ILabelRoleProvider;
-import org.eclipse.papyrus.uml.diagram.common.providers.EditorLabelProvider;
 import org.eclipse.papyrus.uml.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.papyrus.uml.diagram.menu.dialogs.ShowHideLabelSelectionDialog;
 import org.eclipse.papyrus.uml.diagram.menu.messages.Messages;
+import org.eclipse.papyrus.uml.tools.providers.UMLLabelProvider;
 
 /**
  * Adapted code from {@link ShowConnectionLabelsAction}
@@ -255,7 +257,7 @@ public class ShowHideLabelsAction extends AbstractGraphicalParametricAction {
 			CompoundCommand cmd = new CompoundCommand("Manage Conection Labels "); //$NON-NLS-1$
 
 			DiagramEditPart diagramEP = DiagramEditPartsUtil.getDiagramEditPart(editparts.get(0));
-			ShowHideLabelSelectionDialog selectionDialog = new ShowHideLabelSelectionDialog(DisplayUtils.getDisplay().getActiveShell(), new EditorLabelProvider(), new ContentProvider(diagramEP));
+			ShowHideLabelSelectionDialog selectionDialog = new ShowHideLabelSelectionDialog(DisplayUtils.getDisplay().getActiveShell(), new UMLLabelProvider(), new ContentProvider(diagramEP));
 			selectionDialog.setTitle(this.title);
 			selectionDialog.setMessage(this.message);
 			selectionDialog.setContainerMode(true);

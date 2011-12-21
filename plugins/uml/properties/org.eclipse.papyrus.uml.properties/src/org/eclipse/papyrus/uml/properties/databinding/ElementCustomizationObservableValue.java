@@ -20,6 +20,8 @@ import org.eclipse.papyrus.infra.widgets.databinding.AggregatedObservable;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.uml.properties.Activator;
 import org.eclipse.papyrus.uml.properties.util.UMLUtil;
+import org.eclipse.papyrus.uml.tools.databinding.AbstractUMLAggregatedObservableValue;
+import org.eclipse.papyrus.uml.tools.databinding.CommandBasedObservableValue;
 import org.eclipse.papyrus.uml.tools.utils.ui.command.AddMaskManagedLabelDisplayCommand;
 import org.eclipse.papyrus.uml.tools.utils.ui.command.SetNameLabelIconCommand;
 import org.eclipse.papyrus.uml.tools.utils.ui.command.SetQualifiedNameDepthCommand;

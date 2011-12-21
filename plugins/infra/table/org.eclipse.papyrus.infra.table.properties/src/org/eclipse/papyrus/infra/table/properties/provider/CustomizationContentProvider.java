@@ -21,15 +21,15 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.facet.infra.browser.custom.MetamodelView;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance2.TableInstance2;
+import org.eclipse.papyrus.infra.emf.providers.EMFContentProvider;
 import org.eclipse.papyrus.infra.table.properties.modelelement.PapyrusTableModelElement;
-import org.eclipse.papyrus.views.properties.providers.EcoreReferenceContentProvider;
 
 /**
  * 
  * The content provider for the MetamodelView
  * 
  */
-public class CustomizationContentProvider extends EcoreReferenceContentProvider {
+public class CustomizationContentProvider extends EMFContentProvider {
 
 	/**
 	 * the table instance
@@ -50,15 +50,15 @@ public class CustomizationContentProvider extends EcoreReferenceContentProvider 
 	 * @param eObject
 	 *        the eobject
 	 * @param pref
-	 *        the preference : it allows to display to choose how to display the local customization : 
-	 *        <ul> 
-	 *        <li> all customization</li>
-	 *        <li> one customization</li>
-	 *        <li> no customization</li>
+	 *        the preference : it allows to display to choose how to display the local customization :
+	 *        <ul>
+	 *        <li>all customization</li>
+	 *        <li>one customization</li>
+	 *        <li>no customization</li>
 	 *        </ul>
 	 */
 	public CustomizationContentProvider(final EStructuralFeature feature, final EObject eObject, final int pref) {
-		super(feature, eObject);
+		super(eObject, feature);
 		preference = pref;
 		Assert.isTrue(eObject instanceof TableInstance2);
 		source = (TableInstance2)eObject;

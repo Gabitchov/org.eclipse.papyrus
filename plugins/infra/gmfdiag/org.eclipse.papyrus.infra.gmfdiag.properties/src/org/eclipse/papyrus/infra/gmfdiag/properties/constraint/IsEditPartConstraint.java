@@ -12,8 +12,8 @@
 package org.eclipse.papyrus.infra.gmfdiag.properties.constraint;
 
 import org.eclipse.gef.EditPart;
-import org.eclipse.papyrus.views.properties.constraints.AbstractConstraint;
-import org.eclipse.papyrus.views.properties.constraints.Constraint;
+import org.eclipse.papyrus.infra.constraints.constraints.AbstractConstraint;
+import org.eclipse.papyrus.infra.constraints.constraints.Constraint;
 
 /**
  * Tests if the selection is an EditPart

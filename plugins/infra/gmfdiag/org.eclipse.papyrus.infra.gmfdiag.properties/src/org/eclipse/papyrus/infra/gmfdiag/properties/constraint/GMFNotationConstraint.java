@@ -14,8 +14,8 @@ package org.eclipse.papyrus.infra.gmfdiag.properties.constraint;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.constraints.constraints.EMFInstanceOfConstraint;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
-import org.eclipse.papyrus.views.properties.constraints.EMFInstanceOfConstraint;
 
 /**
  * A constraint for the GMF Notation metamodel

@@ -23,7 +23,6 @@ import org.eclipse.emf.ecore.EReference;
  * <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * 
  * @see org.eclipse.papyrus.customization.properties.generation.fieldselection.FieldSelectionFactory
  * @model kind="package"
  * @generated
@@ -34,7 +33,6 @@ public interface FieldSelectionPackage extends EPackage {
 	 * The package name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	String eNAME = "fieldselection";
@@ -43,7 +41,6 @@ public interface FieldSelectionPackage extends EPackage {
 	 * The package namespace URI.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	String eNS_URI = "http://www.eclipse.org/papyrus/properties/fieldSelection";
@@ -52,7 +49,6 @@ public interface FieldSelectionPackage extends EPackage {
 	 * The package namespace name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	String eNS_PREFIX = "fs";
@@ -61,17 +57,14 @@ public interface FieldSelectionPackage extends EPackage {
 	 * The singleton instance of the package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	FieldSelectionPackage eINSTANCE = org.eclipse.papyrus.customization.properties.generation.fieldselection.impl.FieldSelectionPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.customization.properties.generation.fieldselection.impl.FieldSelectionImpl <em>Field Selection</em>}'
-	 * class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.customization.properties.generation.fieldselection.impl.FieldSelectionImpl <em>Field Selection</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see org.eclipse.papyrus.customization.properties.generation.fieldselection.impl.FieldSelectionImpl
 	 * @see org.eclipse.papyrus.customization.properties.generation.fieldselection.impl.FieldSelectionPackageImpl#getFieldSelection()
 	 * @generated
@@ -82,7 +75,6 @@ public interface FieldSelectionPackage extends EPackage {
 	 * The feature id for the '<em><b>Fields</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -92,7 +84,6 @@ public interface FieldSelectionPackage extends EPackage {
 	 * The feature id for the '<em><b>Context Elements</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -102,18 +93,15 @@ public interface FieldSelectionPackage extends EPackage {
 	 * The number of structural features of the '<em>Field Selection</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int FIELD_SELECTION_FEATURE_COUNT = 2;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.customization.properties.generation.fieldselection.impl.PropertyDefinitionImpl
-	 * <em>Property Definition</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.customization.properties.generation.fieldselection.impl.PropertyDefinitionImpl <em>Property Definition</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see org.eclipse.papyrus.customization.properties.generation.fieldselection.impl.PropertyDefinitionImpl
 	 * @see org.eclipse.papyrus.customization.properties.generation.fieldselection.impl.FieldSelectionPackageImpl#getPropertyDefinition()
 	 * @generated
@@ -124,7 +112,6 @@ public interface FieldSelectionPackage extends EPackage {
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -134,7 +121,6 @@ public interface FieldSelectionPackage extends EPackage {
 	 * The feature id for the '<em><b>Value Single</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -144,7 +130,6 @@ public interface FieldSelectionPackage extends EPackage {
 	 * The feature id for the '<em><b>Value Multiple</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -154,18 +139,15 @@ public interface FieldSelectionPackage extends EPackage {
 	 * The number of structural features of the '<em>Property Definition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int PROPERTY_DEFINITION_FEATURE_COUNT = 3;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.customization.properties.generation.fieldselection.impl.ContextElementImpl <em>Context Element</em>}'
-	 * class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.customization.properties.generation.fieldselection.impl.ContextElementImpl <em>Context Element</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see org.eclipse.papyrus.customization.properties.generation.fieldselection.impl.ContextElementImpl
 	 * @see org.eclipse.papyrus.customization.properties.generation.fieldselection.impl.FieldSelectionPackageImpl#getContextElement()
 	 * @generated
@@ -176,7 +158,6 @@ public interface FieldSelectionPackage extends EPackage {
 	 * The feature id for the '<em><b>Elements</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -186,7 +167,6 @@ public interface FieldSelectionPackage extends EPackage {
 	 * The feature id for the '<em><b>Properties</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -196,7 +176,6 @@ public interface FieldSelectionPackage extends EPackage {
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -206,7 +185,6 @@ public interface FieldSelectionPackage extends EPackage {
 	 * The number of structural features of the '<em>Context Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -216,7 +194,6 @@ public interface FieldSelectionPackage extends EPackage {
 	 * The meta object id for the '<em>Value</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see org.eclipse.papyrus.customization.properties.generation.wizard.widget.TernaryButton.State
 	 * @see org.eclipse.papyrus.customization.properties.generation.fieldselection.impl.FieldSelectionPackageImpl#getValue()
 	 * @generated
@@ -228,7 +205,6 @@ public interface FieldSelectionPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.customization.properties.generation.fieldselection.FieldSelection <em>Field Selection</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for class '<em>Field Selection</em>'.
 	 * @see org.eclipse.papyrus.customization.properties.generation.fieldselection.FieldSelection
 	 * @generated
@@ -236,11 +212,9 @@ public interface FieldSelectionPackage extends EPackage {
 	EClass getFieldSelection();
 
 	/**
-	 * Returns the meta object for the containment reference list '
-	 * {@link org.eclipse.papyrus.customization.properties.generation.fieldselection.FieldSelection#getFields <em>Fields</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.customization.properties.generation.fieldselection.FieldSelection#getFields <em>Fields</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the containment reference list '<em>Fields</em>'.
 	 * @see org.eclipse.papyrus.customization.properties.generation.fieldselection.FieldSelection#getFields()
 	 * @see #getFieldSelection()
@@ -249,11 +223,9 @@ public interface FieldSelectionPackage extends EPackage {
 	EReference getFieldSelection_Fields();
 
 	/**
-	 * Returns the meta object for the containment reference list '
-	 * {@link org.eclipse.papyrus.customization.properties.generation.fieldselection.FieldSelection#getContextElements <em>Context Elements</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.customization.properties.generation.fieldselection.FieldSelection#getContextElements <em>Context Elements</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the containment reference list '<em>Context Elements</em>'.
 	 * @see org.eclipse.papyrus.customization.properties.generation.fieldselection.FieldSelection#getContextElements()
 	 * @see #getFieldSelection()
@@ -262,11 +234,9 @@ public interface FieldSelectionPackage extends EPackage {
 	EReference getFieldSelection_ContextElements();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.customization.properties.generation.fieldselection.PropertyDefinition
-	 * <em>Property Definition</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.customization.properties.generation.fieldselection.PropertyDefinition <em>Property Definition</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for class '<em>Property Definition</em>'.
 	 * @see org.eclipse.papyrus.customization.properties.generation.fieldselection.PropertyDefinition
 	 * @generated
@@ -274,11 +244,9 @@ public interface FieldSelectionPackage extends EPackage {
 	EClass getPropertyDefinition();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.customization.properties.generation.fieldselection.PropertyDefinition#getName
-	 * <em>Name</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.customization.properties.generation.fieldselection.PropertyDefinition#getName <em>Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the attribute '<em>Name</em>'.
 	 * @see org.eclipse.papyrus.customization.properties.generation.fieldselection.PropertyDefinition#getName()
 	 * @see #getPropertyDefinition()
@@ -287,11 +255,9 @@ public interface FieldSelectionPackage extends EPackage {
 	EAttribute getPropertyDefinition_Name();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.customization.properties.generation.fieldselection.PropertyDefinition#getValueSingle
-	 * <em>Value Single</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.customization.properties.generation.fieldselection.PropertyDefinition#getValueSingle <em>Value Single</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the attribute '<em>Value Single</em>'.
 	 * @see org.eclipse.papyrus.customization.properties.generation.fieldselection.PropertyDefinition#getValueSingle()
 	 * @see #getPropertyDefinition()
@@ -300,11 +266,9 @@ public interface FieldSelectionPackage extends EPackage {
 	EAttribute getPropertyDefinition_ValueSingle();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.customization.properties.generation.fieldselection.PropertyDefinition#getValueMultiple
-	 * <em>Value Multiple</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.customization.properties.generation.fieldselection.PropertyDefinition#getValueMultiple <em>Value Multiple</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the attribute '<em>Value Multiple</em>'.
 	 * @see org.eclipse.papyrus.customization.properties.generation.fieldselection.PropertyDefinition#getValueMultiple()
 	 * @see #getPropertyDefinition()
@@ -316,7 +280,6 @@ public interface FieldSelectionPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.customization.properties.generation.fieldselection.ContextElement <em>Context Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for class '<em>Context Element</em>'.
 	 * @see org.eclipse.papyrus.customization.properties.generation.fieldselection.ContextElement
 	 * @generated
@@ -324,11 +287,9 @@ public interface FieldSelectionPackage extends EPackage {
 	EClass getContextElement();
 
 	/**
-	 * Returns the meta object for the containment reference list '
-	 * {@link org.eclipse.papyrus.customization.properties.generation.fieldselection.ContextElement#getElements <em>Elements</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.customization.properties.generation.fieldselection.ContextElement#getElements <em>Elements</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the containment reference list '<em>Elements</em>'.
 	 * @see org.eclipse.papyrus.customization.properties.generation.fieldselection.ContextElement#getElements()
 	 * @see #getContextElement()
@@ -337,11 +298,9 @@ public interface FieldSelectionPackage extends EPackage {
 	EReference getContextElement_Elements();
 
 	/**
-	 * Returns the meta object for the containment reference list '
-	 * {@link org.eclipse.papyrus.customization.properties.generation.fieldselection.ContextElement#getProperties <em>Properties</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.customization.properties.generation.fieldselection.ContextElement#getProperties <em>Properties</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the containment reference list '<em>Properties</em>'.
 	 * @see org.eclipse.papyrus.customization.properties.generation.fieldselection.ContextElement#getProperties()
 	 * @see #getContextElement()
@@ -350,11 +309,9 @@ public interface FieldSelectionPackage extends EPackage {
 	EReference getContextElement_Properties();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.customization.properties.generation.fieldselection.ContextElement#getName
-	 * <em>Name</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.customization.properties.generation.fieldselection.ContextElement#getName <em>Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the attribute '<em>Name</em>'.
 	 * @see org.eclipse.papyrus.customization.properties.generation.fieldselection.ContextElement#getName()
 	 * @see #getContextElement()
@@ -366,7 +323,6 @@ public interface FieldSelectionPackage extends EPackage {
 	 * Returns the meta object for data type '{@link org.eclipse.papyrus.customization.properties.generation.wizard.widget.TernaryButton.State <em>Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for data type '<em>Value</em>'.
 	 * @see org.eclipse.papyrus.customization.properties.generation.wizard.widget.TernaryButton.State
 	 * @model instanceClass="org.eclipse.papyrus.customization.properties.generation.wizard.widget.TernaryButton.State"
@@ -378,7 +334,6 @@ public interface FieldSelectionPackage extends EPackage {
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the factory that creates the instances of the model.
 	 * @generated
 	 */
@@ -394,17 +349,14 @@ public interface FieldSelectionPackage extends EPackage {
 	 * <li>and each data type</li>
 	 * </ul>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	interface Literals {
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.customization.properties.generation.fieldselection.impl.FieldSelectionImpl
-		 * <em>Field Selection</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.customization.properties.generation.fieldselection.impl.FieldSelectionImpl <em>Field Selection</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @see org.eclipse.papyrus.customization.properties.generation.fieldselection.impl.FieldSelectionImpl
 		 * @see org.eclipse.papyrus.customization.properties.generation.fieldselection.impl.FieldSelectionPackageImpl#getFieldSelection()
 		 * @generated
@@ -415,7 +367,6 @@ public interface FieldSelectionPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Fields</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference FIELD_SELECTION__FIELDS = eINSTANCE.getFieldSelection_Fields();
@@ -424,17 +375,14 @@ public interface FieldSelectionPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Context Elements</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference FIELD_SELECTION__CONTEXT_ELEMENTS = eINSTANCE.getFieldSelection_ContextElements();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.customization.properties.generation.fieldselection.impl.PropertyDefinitionImpl
-		 * <em>Property Definition</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.customization.properties.generation.fieldselection.impl.PropertyDefinitionImpl <em>Property Definition</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @see org.eclipse.papyrus.customization.properties.generation.fieldselection.impl.PropertyDefinitionImpl
 		 * @see org.eclipse.papyrus.customization.properties.generation.fieldselection.impl.FieldSelectionPackageImpl#getPropertyDefinition()
 		 * @generated
@@ -445,7 +393,6 @@ public interface FieldSelectionPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute PROPERTY_DEFINITION__NAME = eINSTANCE.getPropertyDefinition_Name();
@@ -454,7 +401,6 @@ public interface FieldSelectionPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Value Single</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute PROPERTY_DEFINITION__VALUE_SINGLE = eINSTANCE.getPropertyDefinition_ValueSingle();
@@ -463,17 +409,14 @@ public interface FieldSelectionPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Value Multiple</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute PROPERTY_DEFINITION__VALUE_MULTIPLE = eINSTANCE.getPropertyDefinition_ValueMultiple();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.customization.properties.generation.fieldselection.impl.ContextElementImpl
-		 * <em>Context Element</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.customization.properties.generation.fieldselection.impl.ContextElementImpl <em>Context Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @see org.eclipse.papyrus.customization.properties.generation.fieldselection.impl.ContextElementImpl
 		 * @see org.eclipse.papyrus.customization.properties.generation.fieldselection.impl.FieldSelectionPackageImpl#getContextElement()
 		 * @generated
@@ -484,7 +427,6 @@ public interface FieldSelectionPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Elements</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference CONTEXT_ELEMENT__ELEMENTS = eINSTANCE.getContextElement_Elements();
@@ -493,7 +435,6 @@ public interface FieldSelectionPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Properties</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference CONTEXT_ELEMENT__PROPERTIES = eINSTANCE.getContextElement_Properties();
@@ -502,7 +443,6 @@ public interface FieldSelectionPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute CONTEXT_ELEMENT__NAME = eINSTANCE.getContextElement_Name();
@@ -511,7 +451,6 @@ public interface FieldSelectionPackage extends EPackage {
 		 * The meta object literal for the '<em>Value</em>' data type.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @see org.eclipse.papyrus.customization.properties.generation.wizard.widget.TernaryButton.State
 		 * @see org.eclipse.papyrus.customization.properties.generation.fieldselection.impl.FieldSelectionPackageImpl#getValue()
 		 * @generated

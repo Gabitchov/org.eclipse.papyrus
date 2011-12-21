@@ -48,13 +48,13 @@ import org.eclipse.papyrus.views.properties.contexts.Context;
 import org.eclipse.papyrus.views.properties.runtime.ConfigurationManager;
 import org.eclipse.papyrus.views.properties.ui.CompositeWidget;
 import org.eclipse.papyrus.views.properties.ui.UiPackage;
-import org.eclipse.papyrus.views.properties.util.Util;
+import org.eclipse.papyrus.views.properties.util.PropertiesUtil;
 
 /**
  * A Resource for representing XWT (XML Widget Toolkit) files
  * as EObjects.
  * Resulting EObjects are conform to the Papyrus property view UI Metamodel :
- * http://www.eclipse.org/papyrus/properties/ui
+ * http://www.eclipse.org/papyrus/properties/ui/0.9
  * 
  * The resource is based on MoDisco for reading and writing XML,
  * and on QVTO to go from XML to EMF and vice-versa.
@@ -148,7 +148,7 @@ public class XWTResource extends ResourceImpl {
 		Set<Context> allContexts = new HashSet<Context>();
 
 		for(Context context : rootContexts) {
-			allContexts.addAll(Util.getDependencies(context));
+			allContexts.addAll(PropertiesUtil.getDependencies(context));
 		}
 
 		return allContexts;

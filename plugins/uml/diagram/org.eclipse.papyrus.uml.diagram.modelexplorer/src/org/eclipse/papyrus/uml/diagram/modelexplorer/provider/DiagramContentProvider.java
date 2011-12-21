@@ -22,48 +22,51 @@ import org.eclipse.papyrus.infra.core.resource.ModelUtils;
 import org.eclipse.papyrus.infra.core.resource.notation.NotationUtils;
 import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.DiSashModelMngr;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.emf.providers.internal.MoDiscoContentProvider;
 import org.eclipse.papyrus.uml.diagram.modelexplorer.Activator;
-import org.eclipse.papyrus.views.modelexplorer.MoDiscoContentProvider;
 
 /**
  * 
  * this content provider is used to display diagrams and their contents
- *
+ * 
  */
-public class DiagramContentProvider extends MoDiscoContentProvider{
+public class DiagramContentProvider extends MoDiscoContentProvider {
 
+	@Override
 	public Object[] getChildren(final Object parentElement) {
 		ArrayList<Object> result = new ArrayList<Object>();
-		
 
-		if (parentElement instanceof IAdaptable) {
+
+		if(parentElement instanceof IAdaptable) {
 			EObject eObject = (EObject)((IAdaptable)parentElement).getAdapter(EObject.class);
 			if(eObject instanceof Diagram) {
 				return result.toArray();
 			}
 		}
-		
+
 		Object[] arrayObject = super.getChildren(parentElement);
-		if (arrayObject != null) {
-			for (int i = 0; i < arrayObject.length; i++) {
+		if(arrayObject != null) {
+			for(int i = 0; i < arrayObject.length; i++) {
 				result.add(arrayObject[i]);
 			}
 		}
 		return result.toArray();
 	}
 
+	@Override
 	public Object[] getElements(final Object inputElement) {
 		Object[] rootElements = getRootElements(inputElement);
-		if (rootElements == null) {
+		if(rootElements == null) {
 			return null;
 		}
 		return rootElements;
 	}
+
+	@Override
 	public EObject[] getRootElements(Object inputElement) {
 
 		try {
-			if(! (inputElement instanceof ServicesRegistry) )
-			{
+			if(!(inputElement instanceof ServicesRegistry)) {
 				return null;
 			}
 
@@ -72,13 +75,13 @@ public class DiagramContentProvider extends MoDiscoContentProvider{
 			modelSet = ModelUtils.getModelSetChecked(servicesRegistry);
 			pageMngr = servicesRegistry.getService(DiSashModelMngr.class).getIPageMngr();
 
-			ArrayList<EObject> result= new ArrayList<EObject>();
-			for (int i=0; i< pageMngr.allPages().size();i++){
-				if( pageMngr.allPages().get(i) instanceof EObject){
+			ArrayList<EObject> result = new ArrayList<EObject>();
+			for(int i = 0; i < pageMngr.allPages().size(); i++) {
+				if(pageMngr.allPages().get(i) instanceof EObject) {
 					result.add((EObject)pageMngr.allPages().get(i));
 				}
 			}
-			EObject[] eObject= new EObject[result.size()];
+			EObject[] eObject = new EObject[result.size()];
 			return NotationUtils.getNotationModel().getResource().getContents().toArray(eObject);
 
 		} catch (Exception e) {

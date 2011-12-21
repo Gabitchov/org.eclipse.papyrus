@@ -1,31 +1,22 @@
-/*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
+/**
+ * <copyright>
+ * </copyright>
  *
- * Contributors:
- *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
- *****************************************************************************/
+ * $Id$
+ */
 package org.eclipse.papyrus.views.properties.contexts.impl;
 
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.papyrus.infra.constraints.impl.DisplayUnitImpl;
 import org.eclipse.papyrus.views.properties.contexts.Context;
 import org.eclipse.papyrus.views.properties.contexts.ContextsPackage;
 import org.eclipse.papyrus.views.properties.contexts.DataContextElement;
@@ -41,7 +32,6 @@ import org.eclipse.papyrus.views.properties.contexts.View;
  * <ul>
  *   <li>{@link org.eclipse.papyrus.views.properties.contexts.impl.ViewImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.views.properties.contexts.impl.ViewImpl#getSections <em>Sections</em>}</li>
- *   <li>{@link org.eclipse.papyrus.views.properties.contexts.impl.ViewImpl#getElementMultiplicity <em>Element Multiplicity</em>}</li>
  *   <li>{@link org.eclipse.papyrus.views.properties.contexts.impl.ViewImpl#getContext <em>Context</em>}</li>
  *   <li>{@link org.eclipse.papyrus.views.properties.contexts.impl.ViewImpl#isAutomaticContext <em>Automatic Context</em>}</li>
  *   <li>{@link org.eclipse.papyrus.views.properties.contexts.impl.ViewImpl#getDatacontexts <em>Datacontexts</em>}</li>
@@ -80,26 +70,6 @@ public class ViewImpl extends DisplayUnitImpl implements View {
 	 * @ordered
 	 */
 	protected EList<Section> sections;
-
-	/**
-	 * The default value of the '{@link #getElementMultiplicity() <em>Element Multiplicity</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getElementMultiplicity()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int ELEMENT_MULTIPLICITY_EDEFAULT = 1;
-
-	/**
-	 * The cached value of the '{@link #getElementMultiplicity() <em>Element Multiplicity</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getElementMultiplicity()
-	 * @generated
-	 * @ordered
-	 */
-	protected int elementMultiplicity = ELEMENT_MULTIPLICITY_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #isAutomaticContext() <em>Automatic Context</em>}' attribute.
@@ -181,27 +151,6 @@ public class ViewImpl extends DisplayUnitImpl implements View {
 			sections = new EObjectResolvingEList<Section>(Section.class, this, ContextsPackage.VIEW__SECTIONS);
 		}
 		return sections;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public int getElementMultiplicity() {
-		return elementMultiplicity;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setElementMultiplicity(int newElementMultiplicity) {
-		int oldElementMultiplicity = elementMultiplicity;
-		elementMultiplicity = newElementMultiplicity;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ContextsPackage.VIEW__ELEMENT_MULTIPLICITY, oldElementMultiplicity, elementMultiplicity));
 	}
 
 	/**
@@ -334,8 +283,6 @@ public class ViewImpl extends DisplayUnitImpl implements View {
 				return getName();
 			case ContextsPackage.VIEW__SECTIONS:
 				return getSections();
-			case ContextsPackage.VIEW__ELEMENT_MULTIPLICITY:
-				return getElementMultiplicity();
 			case ContextsPackage.VIEW__CONTEXT:
 				return getContext();
 			case ContextsPackage.VIEW__AUTOMATIC_CONTEXT:
@@ -361,9 +308,6 @@ public class ViewImpl extends DisplayUnitImpl implements View {
 			case ContextsPackage.VIEW__SECTIONS:
 				getSections().clear();
 				getSections().addAll((Collection<? extends Section>)newValue);
-				return;
-			case ContextsPackage.VIEW__ELEMENT_MULTIPLICITY:
-				setElementMultiplicity((Integer)newValue);
 				return;
 			case ContextsPackage.VIEW__CONTEXT:
 				setContext((Context)newValue);
@@ -393,9 +337,6 @@ public class ViewImpl extends DisplayUnitImpl implements View {
 			case ContextsPackage.VIEW__SECTIONS:
 				getSections().clear();
 				return;
-			case ContextsPackage.VIEW__ELEMENT_MULTIPLICITY:
-				setElementMultiplicity(ELEMENT_MULTIPLICITY_EDEFAULT);
-				return;
 			case ContextsPackage.VIEW__CONTEXT:
 				setContext((Context)null);
 				return;
@@ -421,8 +362,6 @@ public class ViewImpl extends DisplayUnitImpl implements View {
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case ContextsPackage.VIEW__SECTIONS:
 				return sections != null && !sections.isEmpty();
-			case ContextsPackage.VIEW__ELEMENT_MULTIPLICITY:
-				return elementMultiplicity != ELEMENT_MULTIPLICITY_EDEFAULT;
 			case ContextsPackage.VIEW__CONTEXT:
 				return getContext() != null;
 			case ContextsPackage.VIEW__AUTOMATIC_CONTEXT:
@@ -445,8 +384,6 @@ public class ViewImpl extends DisplayUnitImpl implements View {
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (name: ");
 		result.append(name);
-		result.append(", elementMultiplicity: ");
-		result.append(elementMultiplicity);
 		result.append(", automaticContext: ");
 		result.append(automaticContext);
 		result.append(')');

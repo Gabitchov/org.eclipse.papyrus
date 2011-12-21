@@ -37,10 +37,10 @@ import org.eclipse.jface.viewers.TreePath;
 import org.eclipse.jface.viewers.ViewerCell;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.common.dialogs.AbstractCheckedTreeColumnViewerSelectionDialog;
-import org.eclipse.papyrus.uml.diagram.common.providers.EditorLabelProvider;
 import org.eclipse.papyrus.uml.diagram.common.util.CompartmentTitleRepresentation;
 import org.eclipse.papyrus.uml.diagram.common.util.CompartmentUtils;
 import org.eclipse.papyrus.uml.diagram.menu.messages.Messages;
+import org.eclipse.papyrus.uml.tools.providers.UMLLabelProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -102,12 +102,12 @@ public class ShowHideCompartmentSelectionDialog extends AbstractCheckedTreeColum
 	}
 
 	/**
-     * @see org.eclipse.papyrus.uml.diagram.common.dialogs.CheckedTreeSelectionDialog#setInput()
-     */
+	 * @see org.eclipse.papyrus.uml.diagram.common.dialogs.CheckedTreeSelectionDialog#setInput()
+	 */
 	@Override
-    public void setInput(Object input) {
+	public void setInput(Object input) {
 		super.setInput(input);
-    }
+	}
 
 	/**
 	 * Setter for {@link #titleRepresentations}
@@ -120,24 +120,23 @@ public class ShowHideCompartmentSelectionDialog extends AbstractCheckedTreeColum
 	}
 
 	/**
-     * Adds the propagation button (in addition to the buttons added by the super class) to the dialog.
-     * @see org.eclipse.papyrus.uml.diagram.common.dialogs.CustomCheckedTreeSelectionDialog.createSelectionButtons
-     * @param composite
-     *            the parent composite
-     * @return Composite the composite the buttons were created in.
-     */
+	 * Adds the propagation button (in addition to the buttons added by the super class) to the dialog.
+	 * 
+	 * @see org.eclipse.papyrus.uml.diagram.common.dialogs.CustomCheckedTreeSelectionDialog.createSelectionButtons
+	 * @param composite
+	 *        the parent composite
+	 * @return Composite the composite the buttons were created in.
+	 */
 	@Override
 	protected Composite createSelectionButtons(Composite composite) {
 		Composite buttonComposite = super.createSelectionButtons(composite);
-		
-		Button propagateToSameType = createButton(buttonComposite,
-				IDialogConstants.SELECT_TYPES_ID, Messages.ShowHideCompartmentAction_PropagateToSameType,
-				false);
+
+		Button propagateToSameType = createButton(buttonComposite, IDialogConstants.SELECT_TYPES_ID, Messages.ShowHideCompartmentAction_PropagateToSameType, false);
 		SelectionListener listener = new PropagateSelectionAdapter();
-	    propagateToSameType.addSelectionListener(listener);
-        
-        return buttonComposite;
-    }
+		propagateToSameType.addSelectionListener(listener);
+
+		return buttonComposite;
+	}
 
 	/**
 	 * 
@@ -281,7 +280,7 @@ public class ShowHideCompartmentSelectionDialog extends AbstractCheckedTreeColum
 		private final ILabelProvider provider;
 
 		public CompartmentNameProvider() {
-			provider = new EditorLabelProvider();
+			provider = new UMLLabelProvider();
 		}
 
 		/**
@@ -372,40 +371,41 @@ public class ShowHideCompartmentSelectionDialog extends AbstractCheckedTreeColum
 			return null;
 		}
 	}
-	
+
 	/**
 	 * Listener for propagation button
 	 */
 	public class PropagateSelectionAdapter extends SelectionAdapter {
+
+		@Override
 		public void widgetSelected(SelectionEvent e) {
 			ISelection sel = getTreeViewer().getSelection();
-			if (sel instanceof ITreeSelection) {
-				TreePath paths[] = ((ITreeSelection) sel).getPaths();
+			if(sel instanceof ITreeSelection) {
+				TreePath paths[] = ((ITreeSelection)sel).getPaths();
 				EditPart selectedEP;
 				// Obtain EditPart at top of selection
-				if (paths.length != 1) {
+				if(paths.length != 1) {
 					return;
 				}
 				Object objSelectedEP = paths[0].getFirstSegment();
-				if (objSelectedEP instanceof EditPart) {
-					selectedEP = (EditPart) objSelectedEP; 
-				}
-				else {
+				if(objSelectedEP instanceof EditPart) {
+					selectedEP = (EditPart)objSelectedEP;
+				} else {
 					return;
 				}
-				Class<? extends EditPart> clazz = ((EditPart) selectedEP).getClass();
+				Class<? extends EditPart> clazz = selectedEP.getClass();
 
 				List<View> sourceViews = CompartmentUtils.getAllCompartments(selectedEP, false);
 
 				boolean changedTitle = false;
 				Object[] viewerElements = fContentProvider.getElements(fInput);
-				for (Object viewerElement : viewerElements) {
+				for(Object viewerElement : viewerElements) {
 					// Identity guarantees that viewerElement is an instance of EditPart
 					if((viewerElement.getClass() == clazz) && (viewerElement != selectedEP)) {
 						// copy selection
-						Iterator<View> targetViews = CompartmentUtils.getAllCompartments((EditPart) viewerElement, false).iterator();
-						for (View sourceView : sourceViews) {
-							if (targetViews.hasNext()) {
+						Iterator<View> targetViews = CompartmentUtils.getAllCompartments((EditPart)viewerElement, false).iterator();
+						for(View sourceView : sourceViews) {
+							if(targetViews.hasNext()) {
 								View targetView = targetViews.next();
 								boolean isChecked = getTreeViewer().getChecked(sourceView);
 								getTreeViewer().setChecked(targetView, isChecked);
@@ -415,13 +415,12 @@ public class ShowHideCompartmentSelectionDialog extends AbstractCheckedTreeColum
 								CompartmentTitleRepresentation targetRepresentation = CompartmentUtils.getCompartmentTitleRepresentation(titleRepresentations, targetView);
 								if((sourceRepresentation != null) && (targetRepresentation != null)) {
 									if(selectedTitles.contains(sourceRepresentation)) {
-										if (!selectedTitles.contains(targetRepresentation)) {
+										if(!selectedTitles.contains(targetRepresentation)) {
 											selectedTitles.add(targetRepresentation);
 											changedTitle = true;
 										}
-									}
-									else {
-										if (selectedTitles.contains(targetRepresentation)) {
+									} else {
+										if(selectedTitles.contains(targetRepresentation)) {
 											selectedTitles.remove(targetRepresentation);
 											changedTitle = true;
 										}
@@ -430,14 +429,12 @@ public class ShowHideCompartmentSelectionDialog extends AbstractCheckedTreeColum
 							}
 						}
 					}
-				}       
+				}
 				updateOKStatus();
-				if (changedTitle) {
+				if(changedTitle) {
 					getTreeViewer().refresh();
 				}
 			}
 		}
 	}
 }
-
-

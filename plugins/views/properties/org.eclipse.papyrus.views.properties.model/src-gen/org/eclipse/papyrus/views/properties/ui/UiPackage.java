@@ -1,14 +1,9 @@
-/*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
+/**
+ * <copyright>
+ * </copyright>
  *
- * Contributors:
- *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
- *****************************************************************************/
+ * $Id$
+ */
 package org.eclipse.papyrus.views.properties.ui;
 
 import org.eclipse.emf.ecore.EAttribute;
@@ -46,7 +41,7 @@ public interface UiPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://www.eclipse.org/papyrus/properties/ui";
+	String eNS_URI = "http://www.eclipse.org/papyrus/properties/ui/0.9";
 
 	/**
 	 * The package namespace name.
@@ -323,46 +318,6 @@ public interface UiPackage extends EPackage {
 	int COMPOSITE_WIDGET_FEATURE_COUNT = WIDGET_FEATURE_COUNT + 3;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.views.properties.ui.impl.LayoutImpl <em>Layout</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.views.properties.ui.impl.LayoutImpl
-	 * @see org.eclipse.papyrus.views.properties.ui.impl.UiPackageImpl#getLayout()
-	 * @generated
-	 */
-	int LAYOUT = 7;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.views.properties.ui.impl.WidgetAttributeImpl <em>Widget Attribute</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.views.properties.ui.impl.WidgetAttributeImpl
-	 * @see org.eclipse.papyrus.views.properties.ui.impl.UiPackageImpl#getWidgetAttribute()
-	 * @generated
-	 */
-	int WIDGET_ATTRIBUTE = 8;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.views.properties.ui.impl.ValueAttributeImpl <em>Value Attribute</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.views.properties.ui.impl.ValueAttributeImpl
-	 * @see org.eclipse.papyrus.views.properties.ui.impl.UiPackageImpl#getValueAttribute()
-	 * @generated
-	 */
-	int VALUE_ATTRIBUTE = 9;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.views.properties.ui.impl.ReferenceAttributeImpl <em>Reference Attribute</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.views.properties.ui.impl.ReferenceAttributeImpl
-	 * @see org.eclipse.papyrus.views.properties.ui.impl.UiPackageImpl#getReferenceAttribute()
-	 * @generated
-	 */
-	int REFERENCE_ATTRIBUTE = 10;
-
-	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.views.properties.ui.impl.UnknownComponentImpl <em>Unknown Component</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -400,6 +355,16 @@ public interface UiPackage extends EPackage {
 	int UNKNOWN_COMPONENT_FEATURE_COUNT = WIDGET_FEATURE_COUNT + 1;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.views.properties.ui.impl.LayoutImpl <em>Layout</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.views.properties.ui.impl.LayoutImpl
+	 * @see org.eclipse.papyrus.views.properties.ui.impl.UiPackageImpl#getLayout()
+	 * @generated
+	 */
+	int LAYOUT = 7;
+
+	/**
 	 * The feature id for the '<em><b>Attributes</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -427,6 +392,16 @@ public interface UiPackage extends EPackage {
 	int LAYOUT_FEATURE_COUNT = UI_COMPONENT_FEATURE_COUNT + 1;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.views.properties.ui.impl.WidgetAttributeImpl <em>Widget Attribute</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.views.properties.ui.impl.WidgetAttributeImpl
+	 * @see org.eclipse.papyrus.views.properties.ui.impl.UiPackageImpl#getWidgetAttribute()
+	 * @generated
+	 */
+	int WIDGET_ATTRIBUTE = 8;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -443,6 +418,16 @@ public interface UiPackage extends EPackage {
 	 * @ordered
 	 */
 	int WIDGET_ATTRIBUTE_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.views.properties.ui.impl.ValueAttributeImpl <em>Value Attribute</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.views.properties.ui.impl.ValueAttributeImpl
+	 * @see org.eclipse.papyrus.views.properties.ui.impl.UiPackageImpl#getValueAttribute()
+	 * @generated
+	 */
+	int VALUE_ATTRIBUTE = 9;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -470,6 +455,16 @@ public interface UiPackage extends EPackage {
 	 * @ordered
 	 */
 	int VALUE_ATTRIBUTE_FEATURE_COUNT = WIDGET_ATTRIBUTE_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.views.properties.ui.impl.ReferenceAttributeImpl <em>Reference Attribute</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.views.properties.ui.impl.ReferenceAttributeImpl
+	 * @see org.eclipse.papyrus.views.properties.ui.impl.UiPackageImpl#getReferenceAttribute()
+	 * @generated
+	 */
+	int REFERENCE_ATTRIBUTE = 10;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -692,6 +687,27 @@ public interface UiPackage extends EPackage {
 	EReference getCompositeWidget_WidgetType();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.views.properties.ui.UnknownComponent <em>Unknown Component</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Unknown Component</em>'.
+	 * @see org.eclipse.papyrus.views.properties.ui.UnknownComponent
+	 * @generated
+	 */
+	EClass getUnknownComponent();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.views.properties.ui.UnknownComponent#getTypeName <em>Type Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Type Name</em>'.
+	 * @see org.eclipse.papyrus.views.properties.ui.UnknownComponent#getTypeName()
+	 * @see #getUnknownComponent()
+	 * @generated
+	 */
+	EAttribute getUnknownComponent_TypeName();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.views.properties.ui.Layout <em>Layout</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -774,27 +790,6 @@ public interface UiPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getReferenceAttribute_Value();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.views.properties.ui.UnknownComponent <em>Unknown Component</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Unknown Component</em>'.
-	 * @see org.eclipse.papyrus.views.properties.ui.UnknownComponent
-	 * @generated
-	 */
-	EClass getUnknownComponent();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.views.properties.ui.UnknownComponent#getTypeName <em>Type Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Type Name</em>'.
-	 * @see org.eclipse.papyrus.views.properties.ui.UnknownComponent#getTypeName()
-	 * @see #getUnknownComponent()
-	 * @generated
-	 */
-	EAttribute getUnknownComponent_TypeName();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -975,6 +970,24 @@ public interface UiPackage extends EPackage {
 		EReference COMPOSITE_WIDGET__WIDGET_TYPE = eINSTANCE.getCompositeWidget_WidgetType();
 
 		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.views.properties.ui.impl.UnknownComponentImpl <em>Unknown Component</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.views.properties.ui.impl.UnknownComponentImpl
+		 * @see org.eclipse.papyrus.views.properties.ui.impl.UiPackageImpl#getUnknownComponent()
+		 * @generated
+		 */
+		EClass UNKNOWN_COMPONENT = eINSTANCE.getUnknownComponent();
+
+		/**
+		 * The meta object literal for the '<em><b>Type Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute UNKNOWN_COMPONENT__TYPE_NAME = eINSTANCE.getUnknownComponent_TypeName();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.views.properties.ui.impl.LayoutImpl <em>Layout</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1045,24 +1058,6 @@ public interface UiPackage extends EPackage {
 		 * @generated
 		 */
 		EReference REFERENCE_ATTRIBUTE__VALUE = eINSTANCE.getReferenceAttribute_Value();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.views.properties.ui.impl.UnknownComponentImpl <em>Unknown Component</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.papyrus.views.properties.ui.impl.UnknownComponentImpl
-		 * @see org.eclipse.papyrus.views.properties.ui.impl.UiPackageImpl#getUnknownComponent()
-		 * @generated
-		 */
-		EClass UNKNOWN_COMPONENT = eINSTANCE.getUnknownComponent();
-
-		/**
-		 * The meta object literal for the '<em><b>Type Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute UNKNOWN_COMPONENT__TYPE_NAME = eINSTANCE.getUnknownComponent_TypeName();
 
 	}
 

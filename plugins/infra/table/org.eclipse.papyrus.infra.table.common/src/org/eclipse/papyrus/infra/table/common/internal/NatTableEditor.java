@@ -56,14 +56,14 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.papyrus.infra.emf.databinding.EMFObservableValue;
 import org.eclipse.papyrus.infra.table.common.messages.Messages;
 import org.eclipse.papyrus.infra.table.instance.papyrustableinstance.PapyrusTableInstance;
 import org.eclipse.papyrus.infra.table.instance.papyrustableinstance.PapyrustableinstancePackage;
 import org.eclipse.papyrus.infra.widgets.editors.BooleanRadio;
 import org.eclipse.papyrus.infra.widgets.editors.StringEditor;
 import org.eclipse.papyrus.infra.widgets.editors.StringLabel;
-import org.eclipse.papyrus.uml.diagram.common.providers.EditorLabelProvider;
-import org.eclipse.papyrus.views.properties.databinding.EMFObservableValue;
+import org.eclipse.papyrus.uml.tools.providers.UMLLabelProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -119,7 +119,7 @@ public class NatTableEditor extends EditorPart implements ISelectionProvider, IE
 		/**
 		 * 
 		 * @see org.eclipse.emf.common.notify.impl.AdapterImpl#notifyChanged(org.eclipse.emf.common.notify.Notification)
-		 *
+		 * 
 		 * @param notification
 		 */
 		@Override
@@ -234,7 +234,7 @@ public class NatTableEditor extends EditorPart implements ISelectionProvider, IE
 		return this.natTableWidget;
 	}
 
-	private Composite createCompositeCompositeWthTableBorder(final Composite parent){
+	private Composite createCompositeCompositeWthTableBorder(final Composite parent) {
 		Composite editorComposite = new Composite(parent, SWT.BORDER);
 		final GridLayout editorGridLayout = new GridLayout(1, true);
 		editorGridLayout.marginHeight = 0;
@@ -251,12 +251,12 @@ public class NatTableEditor extends EditorPart implements ISelectionProvider, IE
 	/**
 	 * 
 	 * @param parent
-	 * the parent composite
+	 *        the parent composite
 	 */
-	protected void createFirstLine(final Composite parent){
+	protected void createFirstLine(final Composite parent) {
 
 		final TableInstance table = this.tableEditorInput.getPapyrusTableInstance().getTable();
-		Composite firstLineComposite = new Composite(parent,  SWT.NONE);
+		Composite firstLineComposite = new Composite(parent, SWT.NONE);
 		final GridLayout smallGridLayout = new GridLayout(2, true);
 		smallGridLayout.marginHeight = 0;
 		smallGridLayout.marginWidth = 0;
@@ -270,7 +270,7 @@ public class NatTableEditor extends EditorPart implements ISelectionProvider, IE
 		firstLineComposite.setLayoutData(lineData);
 
 		//we display the context of the table
-		this.contextLabel = new StringLabel(firstLineComposite,SWT.LEFT);
+		this.contextLabel = new StringLabel(firstLineComposite, SWT.LEFT);
 		this.contextLabel.setLabel(Messages.NatTableEditor_TableContextLabel);
 		this.contextLabel.setToolTipText(Messages.NatTableEditor_TableContextTollTip);
 
@@ -281,17 +281,17 @@ public class NatTableEditor extends EditorPart implements ISelectionProvider, IE
 		 * we should set the converted before the observable!
 		 */
 		this.contextLabel.setConverters(null, new ContextLabelConverter());
-		this.contextLabel.setLabelProvider(new EditorLabelProvider());
+		this.contextLabel.setLabelProvider(new UMLLabelProvider());
 		this.contextLabel.setModelObservable(contextObservable);
 
 		//set the layout for contextLabel
 		GridData contextGridData = new GridData();
 		contextGridData.grabExcessHorizontalSpace = true;
 		contextGridData.horizontalAlignment = SWT.FILL;
-		contextGridData.horizontalSpan=1;
+		contextGridData.horizontalSpan = 1;
 		this.contextLabel.setLayoutData(contextGridData);
 
-		BooleanRadio checkbox = new BooleanRadio(firstLineComposite, SWT.NONE, "IsSynchronized :" );
+		BooleanRadio checkbox = new BooleanRadio(firstLineComposite, SWT.NONE, "IsSynchronized :");
 		checkbox.setToolTipText("Indicates if the table is synchronized with queries");
 		final IObservableValue isSynchronizedObservable = new EMFObservableValue(this.tableEditorInput.getPapyrusTableInstance(), PapyrustableinstancePackage.eINSTANCE.getPapyrusTableInstance_IsSynchronized(), getEditingDomain());
 		checkbox.setModelObservable(isSynchronizedObservable);
@@ -303,7 +303,7 @@ public class NatTableEditor extends EditorPart implements ISelectionProvider, IE
 
 	}
 
-	protected void createDescription(final Composite parent){
+	protected void createDescription(final Composite parent) {
 		final TableInstance table = this.tableEditorInput.getPapyrusTableInstance().getTable();
 		EClass tableEClass = table.eClass();
 
@@ -369,9 +369,9 @@ public class NatTableEditor extends EditorPart implements ISelectionProvider, IE
 		 * if not, we return the papyrus table instance
 		 */
 		Control[] children = ((Composite)this.natTableWidget).getChildren();
-		if(children.length!=0){
+		if(children.length != 0) {
 			boolean focus = children[0].isFocusControl();
-			if(focus){
+			if(focus) {
 				return this.natTableWidget.getSelection();
 			}
 		}

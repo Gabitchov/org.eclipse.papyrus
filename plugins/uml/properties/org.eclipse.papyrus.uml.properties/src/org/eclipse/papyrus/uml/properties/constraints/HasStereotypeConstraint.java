@@ -11,10 +11,10 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.properties.constraints;
 
+import org.eclipse.papyrus.infra.constraints.SimpleConstraint;
+import org.eclipse.papyrus.infra.constraints.constraints.AbstractConstraint;
+import org.eclipse.papyrus.infra.constraints.constraints.Constraint;
 import org.eclipse.papyrus.uml.properties.util.UMLUtil;
-import org.eclipse.papyrus.views.properties.constraints.AbstractConstraint;
-import org.eclipse.papyrus.views.properties.constraints.Constraint;
-import org.eclipse.papyrus.views.properties.contexts.SimpleConstraint;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Stereotype;
 
@@ -75,7 +75,7 @@ public class HasStereotypeConstraint extends AbstractConstraint {
 
 	@Override
 	public String toString() {
-		return "HasStereotype " + stereotypeName + " (" + (getView().getElementMultiplicity() == 1 ? "Single" : "Multiple") + ")"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+		return String.format("HasStereotype %s (%s)", stereotypeName, getDisplayUnit().getElementMultiplicity() == 1 ? "Single" : "Multiple"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 	}
 
 	@Override

@@ -38,7 +38,7 @@ import org.eclipse.papyrus.views.properties.ui.Layout;
 import org.eclipse.papyrus.views.properties.ui.PropertyEditor;
 import org.eclipse.papyrus.views.properties.ui.UiFactory;
 import org.eclipse.papyrus.views.properties.ui.ValueAttribute;
-import org.eclipse.papyrus.views.properties.util.Util;
+import org.eclipse.papyrus.views.properties.util.PropertiesUtil;
 
 /**
  * Default implementation for ILayoutGenerator
@@ -123,8 +123,8 @@ public class StandardLayoutGenerator implements ILayoutGenerator {
 			}
 
 			ValueAttribute attribute = UiFactory.eINSTANCE.createValueAttribute();
-			attribute.setName(Util.getQualifiedName(namespace));
-			attribute.setValue(Util.getPrefixedValue(namespace));
+			attribute.setName(PropertiesUtil.getQualifiedName(namespace));
+			attribute.setValue(PropertiesUtil.getPrefixedValue(namespace));
 			xmlNamespaces.add(attribute);
 		}
 		return xmlNamespaces;

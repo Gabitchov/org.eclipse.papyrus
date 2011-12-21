@@ -1,8 +1,8 @@
 modeltype XML uses "http://www.eclipse.org/MoDisco/Xml/0.1.incubation/XML";
-modeltype UI uses "http://www.eclipse.org/papyrus/properties/ui";
+modeltype UI uses "http://www.eclipse.org/papyrus/properties/ui/0.9";
 modeltype PropertiesRoot uses "http://www.eclipse.org/papyrus/properties/root";
-modeltype Context uses "http://www.eclipse.org/papyrus/properties/contexts";
-modeltype Environment uses "http://www.eclipse.org/papyrus/properties/environment";
+modeltype Context uses "http://www.eclipse.org/papyrus/properties/contexts/0.9";
+modeltype Environment uses "http://www.eclipse.org/papyrus/properties/environment/0.9";
 
 transformation XMLToUI(in xml : XML, in root : PropertiesRoot, in ctx : Context, out ui : UI);
 

@@ -15,9 +15,8 @@
 package org.eclipse.papyrus.infra.services.validation.handler;
 
 import org.eclipse.emf.common.command.Command;
-import org.eclipse.papyrus.infra.core.utils.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.services.validation.commands.SelectAndValidateModelCommand;
-import org.eclipse.papyrus.infra.services.validation.handler.AbstractCommandHandler;
 
 /**
  * Action used for pasting either a model element or a shape (i.e. the model element represented

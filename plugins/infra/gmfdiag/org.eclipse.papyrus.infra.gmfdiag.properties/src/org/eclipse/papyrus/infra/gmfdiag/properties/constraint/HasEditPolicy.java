@@ -12,9 +12,9 @@
 package org.eclipse.papyrus.infra.gmfdiag.properties.constraint;
 
 import org.eclipse.gef.GraphicalEditPart;
-import org.eclipse.papyrus.views.properties.constraints.AbstractConstraint;
-import org.eclipse.papyrus.views.properties.constraints.Constraint;
-import org.eclipse.papyrus.views.properties.contexts.SimpleConstraint;
+import org.eclipse.papyrus.infra.constraints.SimpleConstraint;
+import org.eclipse.papyrus.infra.constraints.constraints.AbstractConstraint;
+import org.eclipse.papyrus.infra.constraints.constraints.Constraint;
 
 /**
  * 

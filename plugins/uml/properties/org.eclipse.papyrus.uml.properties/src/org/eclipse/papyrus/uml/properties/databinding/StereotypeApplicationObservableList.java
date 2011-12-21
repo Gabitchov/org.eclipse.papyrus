@@ -24,8 +24,9 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.papyrus.infra.widgets.editors.AbstractEditor;
 import org.eclipse.papyrus.infra.widgets.editors.ICommitListener;
-import org.eclipse.papyrus.uml.properties.databinding.command.ApplyStereotypeCommand;
-import org.eclipse.papyrus.uml.properties.databinding.command.UnapplyStereotypeCommand;
+import org.eclipse.papyrus.uml.tools.commands.ApplyStereotypeCommand;
+import org.eclipse.papyrus.uml.tools.commands.UnapplyStereotypeCommand;
+import org.eclipse.papyrus.uml.tools.databinding.AbstractStereotypeListener;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Stereotype;
 

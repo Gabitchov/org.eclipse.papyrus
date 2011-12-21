@@ -15,6 +15,7 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.papyrus.customization.properties.generation.layout.ILayoutGenerator;
 import org.eclipse.papyrus.customization.properties.generation.wizard.CreateContextWizard;
+import org.eclipse.papyrus.infra.tools.util.ClassLoaderHelper;
 import org.eclipse.papyrus.views.properties.Activator;
 
 /**
@@ -35,13 +36,12 @@ public class LayoutExtensionPoint {
 
 		for(IConfigurationElement e : config) {
 			String generatorClassName = e.getAttribute("generator"); //$NON-NLS-1$
-			try {
-				Class<? extends ILayoutGenerator> generatorClass = Class.forName(generatorClassName).asSubclass(ILayoutGenerator.class);
-				ILayoutGenerator generator = generatorClass.newInstance();
-				CreateContextWizard.addLayoutGenerator(generator);
-			} catch (Exception ex) {
-				Activator.log.error("Cannot instantiate the layout generator : " + generatorClassName, ex); //$NON-NLS-1$
+			ILayoutGenerator generator = ClassLoaderHelper.newInstance(generatorClassName, ILayoutGenerator.class);
+			if(generator == null) {
+				Activator.log.warn("Cannot instantiate the layout generator : " + generatorClassName); //$NON-NLS-1$
+				continue;
 			}
+			CreateContextWizard.addLayoutGenerator(generator);
 		}
 	}
 }

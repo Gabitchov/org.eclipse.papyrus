@@ -1,45 +1,28 @@
-/*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
+/**
+ * <copyright>
+ * </copyright>
  *
- * Contributors:
- *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
- *****************************************************************************/
+ * $Id$
+ */
 package org.eclipse.papyrus.views.properties.contexts.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
-
-
-
-
-import org.eclipse.papyrus.views.properties.contexts.CompositeConstraint;
-import org.eclipse.papyrus.views.properties.contexts.ConfigProperty;
-import org.eclipse.papyrus.views.properties.contexts.ConstraintDescriptor;
+import org.eclipse.papyrus.infra.constraints.ConstraintsPackage;
 import org.eclipse.papyrus.views.properties.contexts.Context;
 import org.eclipse.papyrus.views.properties.contexts.ContextsFactory;
 import org.eclipse.papyrus.views.properties.contexts.ContextsPackage;
 import org.eclipse.papyrus.views.properties.contexts.DataContextElement;
 import org.eclipse.papyrus.views.properties.contexts.DataContextPackage;
 import org.eclipse.papyrus.views.properties.contexts.DataContextRoot;
-import org.eclipse.papyrus.views.properties.contexts.DisplayUnit;
 import org.eclipse.papyrus.views.properties.contexts.Property;
-import org.eclipse.papyrus.views.properties.contexts.ReferenceProperty;
 import org.eclipse.papyrus.views.properties.contexts.Section;
-import org.eclipse.papyrus.views.properties.contexts.SimpleConstraint;
 import org.eclipse.papyrus.views.properties.contexts.Tab;
 import org.eclipse.papyrus.views.properties.contexts.UnknownProperty;
-import org.eclipse.papyrus.views.properties.contexts.ValueProperty;
 import org.eclipse.papyrus.views.properties.contexts.View;
 import org.eclipse.papyrus.views.properties.environment.EnvironmentPackage;
 import org.eclipse.papyrus.views.properties.environment.impl.EnvironmentPackageImpl;
@@ -65,7 +48,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass displayUnitEClass = null;
+	private EClass tabEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -73,13 +56,6 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	 * @generated
 	 */
 	private EClass viewEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass tabEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -122,48 +98,6 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	 * @generated
 	 */
 	private EClass dataContextRootEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass constraintDescriptorEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass simpleConstraintEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass compositeConstraintEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass configPropertyEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass valuePropertyEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass referencePropertyEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -212,6 +146,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 		isInited = true;
 
 		// Initialize simple dependencies
+		ConstraintsPackage.eINSTANCE.eClass();
 		EcorePackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
@@ -260,8 +195,8 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getContext_Views() {
-		return (EReference)contextEClass.getEStructuralFeatures().get(3);
+	public EReference getContext_Dependencies() {
+		return (EReference)contextEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -278,98 +213,17 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getContext_Views() {
+		return (EReference)contextEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EReference getContext_DataContexts() {
 		return (EReference)contextEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getContext_Dependencies() {
-		return (EReference)contextEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getDisplayUnit() {
-		return displayUnitEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getDisplayUnit_Constraints() {
-		return (EReference)displayUnitEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getView() {
-		return viewEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getView_Name() {
-		return (EAttribute)viewEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getView_Sections() {
-		return (EReference)viewEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getView_ElementMultiplicity() {
-		return (EAttribute)viewEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getView_Context() {
-		return (EReference)viewEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getView_AutomaticContext() {
-		return (EAttribute)viewEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getView_Datacontexts() {
-		return (EReference)viewEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -451,6 +305,60 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	 */
 	public EAttribute getTab_Priority() {
 		return (EAttribute)tabEClass.getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getView() {
+		return viewEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getView_Name() {
+		return (EAttribute)viewEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getView_Sections() {
+		return (EReference)viewEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getView_Context() {
+		return (EReference)viewEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getView_AutomaticContext() {
+		return (EAttribute)viewEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getView_Datacontexts() {
+		return (EReference)viewEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -665,150 +573,6 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getConstraintDescriptor() {
-		return constraintDescriptorEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getConstraintDescriptor_Name() {
-		return (EAttribute)constraintDescriptorEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getConstraintDescriptor_Display() {
-		return (EReference)constraintDescriptorEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getConstraintDescriptor_OverriddenConstraints() {
-		return (EReference)constraintDescriptorEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getSimpleConstraint() {
-		return simpleConstraintEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getSimpleConstraint_ConstraintType() {
-		return (EReference)simpleConstraintEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getSimpleConstraint_Properties() {
-		return (EReference)simpleConstraintEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getCompositeConstraint() {
-		return compositeConstraintEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getCompositeConstraint_Constraints() {
-		return (EReference)compositeConstraintEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getConstraintDescriptor_Overrideable() {
-		return (EAttribute)constraintDescriptorEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getConfigProperty() {
-		return configPropertyEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getConfigProperty_Name() {
-		return (EAttribute)configPropertyEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getValueProperty() {
-		return valuePropertyEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getValueProperty_Value() {
-		return (EAttribute)valuePropertyEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getReferenceProperty() {
-		return referencePropertyEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getReferenceProperty_Value() {
-		return (EReference)referencePropertyEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public ContextsFactory getContextsFactory() {
 		return (ContextsFactory)getEFactoryInstance();
 	}
@@ -839,9 +603,6 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 		createEReference(contextEClass, CONTEXT__VIEWS);
 		createEReference(contextEClass, CONTEXT__DATA_CONTEXTS);
 
-		displayUnitEClass = createEClass(DISPLAY_UNIT);
-		createEReference(displayUnitEClass, DISPLAY_UNIT__CONSTRAINTS);
-
 		tabEClass = createEClass(TAB);
 		createEAttribute(tabEClass, TAB__LABEL);
 		createEAttribute(tabEClass, TAB__ID);
@@ -855,7 +616,6 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 		viewEClass = createEClass(VIEW);
 		createEAttribute(viewEClass, VIEW__NAME);
 		createEReference(viewEClass, VIEW__SECTIONS);
-		createEAttribute(viewEClass, VIEW__ELEMENT_MULTIPLICITY);
 		createEReference(viewEClass, VIEW__CONTEXT);
 		createEAttribute(viewEClass, VIEW__AUTOMATIC_CONTEXT);
 		createEReference(viewEClass, VIEW__DATACONTEXTS);
@@ -888,28 +648,6 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 		dataContextRootEClass = createEClass(DATA_CONTEXT_ROOT);
 		createEAttribute(dataContextRootEClass, DATA_CONTEXT_ROOT__LABEL);
 		createEReference(dataContextRootEClass, DATA_CONTEXT_ROOT__MODEL_ELEMENT_FACTORY);
-
-		constraintDescriptorEClass = createEClass(CONSTRAINT_DESCRIPTOR);
-		createEAttribute(constraintDescriptorEClass, CONSTRAINT_DESCRIPTOR__NAME);
-		createEReference(constraintDescriptorEClass, CONSTRAINT_DESCRIPTOR__DISPLAY);
-		createEAttribute(constraintDescriptorEClass, CONSTRAINT_DESCRIPTOR__OVERRIDEABLE);
-		createEReference(constraintDescriptorEClass, CONSTRAINT_DESCRIPTOR__OVERRIDDEN_CONSTRAINTS);
-
-		simpleConstraintEClass = createEClass(SIMPLE_CONSTRAINT);
-		createEReference(simpleConstraintEClass, SIMPLE_CONSTRAINT__CONSTRAINT_TYPE);
-		createEReference(simpleConstraintEClass, SIMPLE_CONSTRAINT__PROPERTIES);
-
-		compositeConstraintEClass = createEClass(COMPOSITE_CONSTRAINT);
-		createEReference(compositeConstraintEClass, COMPOSITE_CONSTRAINT__CONSTRAINTS);
-
-		configPropertyEClass = createEClass(CONFIG_PROPERTY);
-		createEAttribute(configPropertyEClass, CONFIG_PROPERTY__NAME);
-
-		valuePropertyEClass = createEClass(VALUE_PROPERTY);
-		createEAttribute(valuePropertyEClass, VALUE_PROPERTY__VALUE);
-
-		referencePropertyEClass = createEClass(REFERENCE_PROPERTY);
-		createEReference(referencePropertyEClass, REFERENCE_PROPERTY__VALUE);
 	}
 
 	/**
@@ -937,6 +675,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 
 		// Obtain other dependent packages
 		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
+		ConstraintsPackage theConstraintsPackage = (ConstraintsPackage)EPackage.Registry.INSTANCE.getEPackage(ConstraintsPackage.eNS_URI);
 		UiPackage theUiPackage = (UiPackage)EPackage.Registry.INSTANCE.getEPackage(UiPackage.eNS_URI);
 		EnvironmentPackage theEnvironmentPackage = (EnvironmentPackage)EPackage.Registry.INSTANCE.getEPackage(EnvironmentPackage.eNS_URI);
 
@@ -946,15 +685,11 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 
 		// Add supertypes to classes
 		contextEClass.getESuperTypes().add(theEcorePackage.getEModelElement());
-		viewEClass.getESuperTypes().add(this.getDisplayUnit());
-		sectionEClass.getESuperTypes().add(this.getDisplayUnit());
+		viewEClass.getESuperTypes().add(theConstraintsPackage.getDisplayUnit());
+		sectionEClass.getESuperTypes().add(theConstraintsPackage.getDisplayUnit());
 		unknownPropertyEClass.getESuperTypes().add(this.getProperty());
 		dataContextPackageEClass.getESuperTypes().add(this.getDataContextElement());
 		dataContextRootEClass.getESuperTypes().add(this.getDataContextPackage());
-		simpleConstraintEClass.getESuperTypes().add(this.getConstraintDescriptor());
-		compositeConstraintEClass.getESuperTypes().add(this.getConstraintDescriptor());
-		valuePropertyEClass.getESuperTypes().add(this.getConfigProperty());
-		referencePropertyEClass.getESuperTypes().add(this.getConfigProperty());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(contextEClass, Context.class, "Context", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -963,9 +698,6 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 		initEReference(getContext_Tabs(), this.getTab(), null, "tabs", null, 0, -1, Context.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getContext_Views(), this.getView(), this.getView_Context(), "views", null, 0, -1, Context.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getContext_DataContexts(), this.getDataContextRoot(), null, "dataContexts", null, 0, -1, Context.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(displayUnitEClass, DisplayUnit.class, "DisplayUnit", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getDisplayUnit_Constraints(), this.getConstraintDescriptor(), this.getConstraintDescriptor_Display(), "constraints", null, 0, -1, DisplayUnit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(tabEClass, Tab.class, "Tab", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getTab_Label(), ecorePackage.getEString(), "label", null, 1, 1, Tab.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -980,7 +712,6 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 		initEClass(viewEClass, View.class, "View", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getView_Name(), ecorePackage.getEString(), "name", null, 1, 1, View.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getView_Sections(), this.getSection(), null, "sections", null, 0, -1, View.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getView_ElementMultiplicity(), ecorePackage.getEInt(), "elementMultiplicity", "1", 1, 1, View.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getView_Context(), this.getContext(), this.getContext_Views(), "context", null, 1, 1, View.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getView_AutomaticContext(), ecorePackage.getEBoolean(), "automaticContext", null, 1, 1, View.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getView_Datacontexts(), this.getDataContextElement(), null, "datacontexts", null, 0, -1, View.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1013,28 +744,6 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 		initEClass(dataContextRootEClass, DataContextRoot.class, "DataContextRoot", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getDataContextRoot_Label(), ecorePackage.getEString(), "label", null, 1, 1, DataContextRoot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDataContextRoot_ModelElementFactory(), theEnvironmentPackage.getModelElementFactoryDescriptor(), null, "modelElementFactory", null, 1, 1, DataContextRoot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(constraintDescriptorEClass, ConstraintDescriptor.class, "ConstraintDescriptor", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getConstraintDescriptor_Name(), ecorePackage.getEString(), "name", null, 1, 1, ConstraintDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getConstraintDescriptor_Display(), this.getDisplayUnit(), this.getDisplayUnit_Constraints(), "display", null, 0, 1, ConstraintDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getConstraintDescriptor_Overrideable(), ecorePackage.getEBoolean(), "overrideable", "true", 1, 1, ConstraintDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getConstraintDescriptor_OverriddenConstraints(), this.getSimpleConstraint(), null, "overriddenConstraints", null, 0, -1, ConstraintDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(simpleConstraintEClass, SimpleConstraint.class, "SimpleConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSimpleConstraint_ConstraintType(), theEnvironmentPackage.getConstraintType(), null, "constraintType", null, 1, 1, SimpleConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getSimpleConstraint_Properties(), this.getConfigProperty(), null, "properties", null, 0, -1, SimpleConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(compositeConstraintEClass, CompositeConstraint.class, "CompositeConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getCompositeConstraint_Constraints(), this.getSimpleConstraint(), null, "constraints", null, 0, -1, CompositeConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(configPropertyEClass, ConfigProperty.class, "ConfigProperty", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getConfigProperty_Name(), ecorePackage.getEString(), "name", null, 1, 1, ConfigProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(valuePropertyEClass, ValueProperty.class, "ValueProperty", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getValueProperty_Value(), ecorePackage.getEString(), "value", null, 1, 1, ValueProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(referencePropertyEClass, ReferenceProperty.class, "ReferenceProperty", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getReferenceProperty_Value(), ecorePackage.getEObject(), null, "value", null, 1, 1, ReferenceProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

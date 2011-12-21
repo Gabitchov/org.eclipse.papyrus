@@ -1,14 +1,9 @@
-/*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
+/**
+ * <copyright>
+ * </copyright>
  *
- * Contributors:
- *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
- *****************************************************************************/
+ * $Id$
+ */
 package org.eclipse.papyrus.views.properties.contexts.impl;
 
 import java.util.Collection;
@@ -46,7 +41,6 @@ import org.eclipse.papyrus.views.properties.contexts.Property;
  * @generated
  */
 public class DataContextElementImpl extends EObjectImpl implements DataContextElement {
-
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -346,42 +340,6 @@ public class DataContextElementImpl extends EObjectImpl implements DataContextEl
 		result.append(name);
 		result.append(')');
 		return result.toString();
-	}
-
-	@Override
-	public boolean equals(Object object) {
-		if(object == null)
-			return false;
-
-		if(object == this)
-			return true;
-
-		if(object.getClass() == getClass()) {
-			DataContextElement element = (DataContextElement)object;
-			if(getName() == null) {
-				if(element.getName() != null) {
-					return false;
-				}
-			} else {
-				if(!getName().equals(element.getName())) {
-					return false;
-				}
-			}
-
-			if(getPackage() == null) {
-				if(element.getPackage() != null) {
-					return false;
-				}
-			} else {
-				if(!getPackage().equals(element.getPackage())) {
-					return false;
-				}
-			}
-
-			return true;
-		}
-
-		return false;
 	}
 
 } //DataContextElementImpl

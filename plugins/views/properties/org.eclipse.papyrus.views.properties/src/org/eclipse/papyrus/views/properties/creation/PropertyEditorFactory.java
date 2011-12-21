@@ -21,7 +21,7 @@ import org.eclipse.papyrus.infra.widgets.creation.ReferenceValueFactory;
 import org.eclipse.papyrus.views.properties.contexts.View;
 import org.eclipse.papyrus.views.properties.messages.Messages;
 import org.eclipse.papyrus.views.properties.runtime.ConfigurationManager;
-import org.eclipse.papyrus.views.properties.runtime.ConstraintEngine;
+import org.eclipse.papyrus.views.properties.runtime.ViewConstraintEngine;
 import org.eclipse.swt.widgets.Control;
 
 /**
@@ -84,7 +84,7 @@ public class PropertyEditorFactory implements ReferenceValueFactory {
 
 		IStructuredSelection selection = new StructuredSelection(source);
 
-		ConstraintEngine constraintEngine = ConfigurationManager.instance.constraintEngine;
+		ViewConstraintEngine constraintEngine = ConfigurationManager.instance.constraintEngine;
 		Set<View> views = constraintEngine.getViews(selection);
 		if(!views.isEmpty()) {
 			EditionDialog dialog = new EditionDialog(widget.getShell());
@@ -130,7 +130,7 @@ public class PropertyEditorFactory implements ReferenceValueFactory {
 	public Object edit(Control widget, Object source) {
 		IStructuredSelection selection = new StructuredSelection(source);
 
-		ConstraintEngine constraintEngine = ConfigurationManager.instance.constraintEngine;
+		ViewConstraintEngine constraintEngine = ConfigurationManager.instance.constraintEngine;
 
 		Set<View> views = constraintEngine.getViews(selection);
 		if(!views.isEmpty()) {

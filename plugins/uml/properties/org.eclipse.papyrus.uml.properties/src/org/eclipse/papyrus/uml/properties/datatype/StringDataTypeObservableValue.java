@@ -15,7 +15,7 @@ import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.papyrus.uml.properties.databinding.PapyrusObservableValue;
+import org.eclipse.papyrus.uml.tools.databinding.PapyrusObservableValue;
 
 
 public class StringDataTypeObservableValue extends PapyrusObservableValue implements DataTypeObservableValue {

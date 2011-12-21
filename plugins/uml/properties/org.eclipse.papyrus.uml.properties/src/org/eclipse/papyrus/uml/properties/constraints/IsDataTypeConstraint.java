@@ -12,11 +12,11 @@
 package org.eclipse.papyrus.uml.properties.constraints;
 
 import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.papyrus.infra.constraints.ConstraintDescriptor;
+import org.eclipse.papyrus.infra.constraints.constraints.AbstractConstraint;
+import org.eclipse.papyrus.infra.constraints.constraints.Constraint;
+import org.eclipse.papyrus.infra.tools.util.ClassLoaderHelper;
 import org.eclipse.papyrus.uml.properties.datatype.DataTypeObservableValue;
-import org.eclipse.papyrus.views.properties.constraints.AbstractConstraint;
-import org.eclipse.papyrus.views.properties.constraints.Constraint;
-import org.eclipse.papyrus.views.properties.contexts.ConstraintDescriptor;
-import org.eclipse.papyrus.views.properties.util.ClassLoader;
 
 /**
  * This constraints tests whether an Object is an instance of a DataType
@@ -36,8 +36,7 @@ public class IsDataTypeConstraint extends AbstractConstraint {
 
 	protected void setDescriptor(ConstraintDescriptor descriptor) {
 		String dataTypeClassName = getValue(DATATYPE_PROPERTY);
-		ClassLoader loader = new ClassLoader();
-		dataType = loader.newInstance(dataTypeClassName, EDataType.class);
+		dataType = ClassLoaderHelper.newInstance(dataTypeClassName, EDataType.class);
 	}
 
 	public boolean match(Object selection) {

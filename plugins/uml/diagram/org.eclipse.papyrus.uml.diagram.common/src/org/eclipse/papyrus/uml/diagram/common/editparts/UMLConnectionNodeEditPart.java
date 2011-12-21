@@ -28,6 +28,7 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.ApplyStereotypeEditPo
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.edge.UMLEdgeFigure;
 import org.eclipse.papyrus.uml.diagram.common.service.ApplyStereotypeRequest;
+import org.eclipse.papyrus.uml.tools.listeners.PapyrusStereotypeListener;
 import org.eclipse.papyrus.uml.tools.utils.ui.VisualInformationPapyrusConstant;
 import org.eclipse.papyrus.uml.tools.utils.ui.helper.AppliedStereotypeHelper;
 import org.eclipse.swt.graphics.Image;

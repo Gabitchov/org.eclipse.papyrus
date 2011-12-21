@@ -27,6 +27,7 @@ import org.eclipse.papyrus.customization.properties.providers.EnvironmentContent
 import org.eclipse.papyrus.customization.properties.providers.PropertyContentProvider;
 import org.eclipse.papyrus.customization.properties.providers.PropertyEditorTypeContentProvider;
 import org.eclipse.papyrus.customization.properties.providers.TabContentProvider;
+import org.eclipse.papyrus.infra.constraints.ConstraintsPackage;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.widgets.creation.ReferenceValueFactory;
 import org.eclipse.papyrus.infra.widgets.providers.EmptyContentProvider;
@@ -79,7 +80,7 @@ public class CustomizationModelElement extends AbstractModelElement {
 		providers = new HashMap<EClassifier, IStaticContentProvider>();
 		providers.put(EnvironmentPackage.eINSTANCE.getCompositeWidgetType(), new EnvironmentContentProvider(EnvironmentPackage.eINSTANCE.getEnvironment_CompositeWidgetTypes()));
 		providers.put(EnvironmentPackage.eINSTANCE.getStandardWidgetType(), new EnvironmentContentProvider(EnvironmentPackage.eINSTANCE.getEnvironment_WidgetTypes()));
-		providers.put(EnvironmentPackage.eINSTANCE.getConstraintType(), new EnvironmentContentProvider(EnvironmentPackage.eINSTANCE.getEnvironment_ConstraintTypes()));
+		providers.put(org.eclipse.papyrus.infra.constraints.environment.EnvironmentPackage.eINSTANCE.getConstraintType(), new EnvironmentContentProvider(org.eclipse.papyrus.infra.constraints.environment.EnvironmentPackage.eINSTANCE.getConstraintEnvironment_ConstraintTypes()));
 		providers.put(EnvironmentPackage.eINSTANCE.getLayoutType(), new EnvironmentContentProvider(EnvironmentPackage.eINSTANCE.getEnvironment_LayoutTypes()));
 		providers.put(EnvironmentPackage.eINSTANCE.getModelElementFactoryDescriptor(), new EnvironmentContentProvider(EnvironmentPackage.eINSTANCE.getEnvironment_ModelElementFactories()));
 	}
@@ -109,7 +110,7 @@ public class CustomizationModelElement extends AbstractModelElement {
 			//Sections can only be moved to tabs from non-plugin contexts
 			boolean editableTabsOnly = delegate.getSource() instanceof Section;
 			return new TabContentProvider(delegate.getSource(), editableTabsOnly);
-		} else if(classifier instanceof EClass && EMFHelper.isSubclass((EClass)classifier, ContextsPackage.eINSTANCE.getConstraintDescriptor())) {
+		} else if(classifier instanceof EClass && EMFHelper.isSubclass((EClass)classifier, ConstraintsPackage.eINSTANCE.getConstraintDescriptor())) {
 			return new ConstraintDescriptorContentProvider(delegate.getSource(), (EClass)classifier);
 		} else if(isDataContextElement(classifier)) {
 			return new DataContextElementContentProvider((DataContextElement)delegate.getSource());

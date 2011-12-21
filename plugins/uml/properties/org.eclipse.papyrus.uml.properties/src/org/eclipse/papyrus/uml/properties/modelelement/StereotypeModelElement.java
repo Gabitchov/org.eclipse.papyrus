@@ -27,12 +27,12 @@ import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.widgets.providers.EmptyContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
-import org.eclipse.papyrus.uml.modelexplorer.widgets.ServiceEditFilteredUMLContentProvider;
-import org.eclipse.papyrus.uml.properties.databinding.PapyrusObservableList;
-import org.eclipse.papyrus.uml.properties.databinding.PapyrusObservableValue;
 import org.eclipse.papyrus.uml.properties.datatype.DataTypeProvider;
 import org.eclipse.papyrus.uml.properties.datatype.StructuredDataTypeObservableValue;
-import org.eclipse.papyrus.uml.properties.providers.UMLLabelProvider;
+import org.eclipse.papyrus.uml.properties.providers.UMLFilteredLabelProvider;
+import org.eclipse.papyrus.uml.tools.databinding.PapyrusObservableList;
+import org.eclipse.papyrus.uml.tools.databinding.PapyrusObservableValue;
+import org.eclipse.papyrus.uml.tools.providers.ServiceEditFilteredUMLContentProvider;
 import org.eclipse.papyrus.uml.tools.utils.PackageUtil;
 import org.eclipse.papyrus.views.properties.modelelement.EMFModelElement;
 import org.eclipse.uml2.uml.Element;
@@ -43,19 +43,19 @@ import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * A Model Element for manipulating Stereotype properties
- *
+ * 
  * @author Camille Letavernier
  */
 public class StereotypeModelElement extends EMFModelElement {
 
 	/**
 	 * Constructor.
-	 *
+	 * 
 	 * @param source
 	 *        The StereotypeApplication being edited
 	 * @param domain
 	 *        The Editing domain on which the commands will be called
-	 *
+	 * 
 	 */
 	public StereotypeModelElement(EObject source, EditingDomain domain) {
 		super(source, domain);
@@ -95,7 +95,7 @@ public class StereotypeModelElement extends EMFModelElement {
 		if(feature.getEType() instanceof EEnum) {
 			return super.getLabelProvider(propertyPath);
 		}
-		return new UMLLabelProvider();
+		return new UMLFilteredLabelProvider();
 	}
 
 	/**
@@ -132,7 +132,7 @@ public class StereotypeModelElement extends EMFModelElement {
 	/**
 	 * Returns the content provider for reference properties typed
 	 * by a stereotype
-	 *
+	 * 
 	 * @param propertyPath
 	 *        The name of the property being edited
 	 * @return

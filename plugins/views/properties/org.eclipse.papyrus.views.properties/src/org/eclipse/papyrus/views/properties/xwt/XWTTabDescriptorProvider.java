@@ -26,9 +26,9 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.papyrus.views.properties.Activator;
 import org.eclipse.papyrus.views.properties.contexts.View;
 import org.eclipse.papyrus.views.properties.runtime.ConfigurationManager;
-import org.eclipse.papyrus.views.properties.runtime.ConstraintEngine;
 import org.eclipse.papyrus.views.properties.runtime.DefaultDisplayEngine;
 import org.eclipse.papyrus.views.properties.runtime.DisplayEngine;
+import org.eclipse.papyrus.views.properties.runtime.ViewConstraintEngine;
 import org.eclipse.ui.IPartListener;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.internal.views.properties.tabbed.view.TabbedPropertyRegistry;
@@ -94,7 +94,7 @@ public class XWTTabDescriptorProvider implements ITabDescriptorProvider {
 			this.previousSelection = selection;
 			this.previousPart = part;
 
-			ConstraintEngine constraintEngine = ConfigurationManager.instance.constraintEngine;
+			ViewConstraintEngine constraintEngine = ConfigurationManager.instance.constraintEngine;
 
 			List<ITabDescriptor> descriptors = new LinkedList<ITabDescriptor>();
 

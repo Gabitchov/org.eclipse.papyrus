@@ -12,13 +12,8 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
-
-import org.eclipse.emf.ecore.provider.EModelElementItemProvider;
-
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -26,7 +21,7 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
+import org.eclipse.papyrus.infra.constraints.environment.provider.ConstraintEnvironmentItemProvider;
 import org.eclipse.papyrus.views.properties.environment.Environment;
 import org.eclipse.papyrus.views.properties.environment.EnvironmentFactory;
 import org.eclipse.papyrus.views.properties.environment.EnvironmentPackage;
@@ -38,7 +33,7 @@ import org.eclipse.papyrus.views.properties.environment.EnvironmentPackage;
  * @generated
  */
 public class EnvironmentItemProvider
-	extends EModelElementItemProvider
+	extends ConstraintEnvironmentItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -83,7 +78,6 @@ public class EnvironmentItemProvider
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(EnvironmentPackage.Literals.ENVIRONMENT__MODEL_ELEMENT_FACTORIES);
-			childrenFeatures.add(EnvironmentPackage.Literals.ENVIRONMENT__CONSTRAINT_TYPES);
 			childrenFeatures.add(EnvironmentPackage.Literals.ENVIRONMENT__WIDGET_TYPES);
 			childrenFeatures.add(EnvironmentPackage.Literals.ENVIRONMENT__PROPERTY_EDITOR_TYPES);
 			childrenFeatures.add(EnvironmentPackage.Literals.ENVIRONMENT__COMPOSITE_WIDGET_TYPES);
@@ -142,7 +136,6 @@ public class EnvironmentItemProvider
 
 		switch (notification.getFeatureID(Environment.class)) {
 			case EnvironmentPackage.ENVIRONMENT__MODEL_ELEMENT_FACTORIES:
-			case EnvironmentPackage.ENVIRONMENT__CONSTRAINT_TYPES:
 			case EnvironmentPackage.ENVIRONMENT__WIDGET_TYPES:
 			case EnvironmentPackage.ENVIRONMENT__PROPERTY_EDITOR_TYPES:
 			case EnvironmentPackage.ENVIRONMENT__COMPOSITE_WIDGET_TYPES:
@@ -170,11 +163,6 @@ public class EnvironmentItemProvider
 			(createChildParameter
 				(EnvironmentPackage.Literals.ENVIRONMENT__MODEL_ELEMENT_FACTORIES,
 				 EnvironmentFactory.eINSTANCE.createModelElementFactoryDescriptor()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(EnvironmentPackage.Literals.ENVIRONMENT__CONSTRAINT_TYPES,
-				 EnvironmentFactory.eINSTANCE.createConstraintType()));
 
 		newChildDescriptors.add
 			(createChildParameter

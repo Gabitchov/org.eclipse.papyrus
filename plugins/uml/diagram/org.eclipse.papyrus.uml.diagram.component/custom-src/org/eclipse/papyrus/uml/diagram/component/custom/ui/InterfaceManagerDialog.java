@@ -53,12 +53,12 @@ import org.eclipse.papyrus.infra.widgets.editors.SelectionEditor;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
 import org.eclipse.papyrus.infra.widgets.selectors.ReferenceSelector;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
-import org.eclipse.papyrus.uml.diagram.common.providers.EditorLabelProvider;
 import org.eclipse.papyrus.uml.diagram.common.util.Util;
 import org.eclipse.papyrus.uml.diagram.common.util.Visitor;
 import org.eclipse.papyrus.uml.diagram.component.custom.messages.Messages;
 import org.eclipse.papyrus.uml.diagram.component.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
+import org.eclipse.papyrus.uml.tools.providers.UMLLabelProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.events.SelectionEvent;
@@ -116,7 +116,9 @@ public class InterfaceManagerDialog extends SelectionDialog {
 	/** In this map, we link the {@link Interface} with their {@link Usage} This map is used when we want remove an Interface from a Usage. */
 	private Map<Interface, List<Usage>> requiredInterfacesMappedWithUsage = new HashMap<Interface, List<Usage>>();
 
-	/** In this map, we link the {@link Interface} with their {@link Realization} This map is used when we want remove an Interface from a Realization. */
+	/**
+	 * In this map, we link the {@link Interface} with their {@link Realization} This map is used when we want remove an Interface from a Realization.
+	 */
 	private Map<Interface, List<Realization>> providedInterfacesMappedWithRealization = new HashMap<Interface, List<Realization>>();
 
 	/** the label provider for selector. */
@@ -168,7 +170,7 @@ public class InterfaceManagerDialog extends SelectionDialog {
 
 	/**
 	 * Creates the.
-	 *
+	 * 
 	 * @see org.eclipse.jface.dialogs.Dialog#create()
 	 */
 	@Override
@@ -426,15 +428,21 @@ public class InterfaceManagerDialog extends SelectionDialog {
 
 	/**
 	 * Creates a {@link SelectionEditor} and returns it.
-	 *
-	 * @param parent the composite parent
-	 * @param selector the selector used by the created editor
-	 * @param message the message to display in the created editor
-	 * @param withCreateButton indicates if the editor provides an additional button for a specific action
-	 * @param listener the listener for the button
-	 * @param initialSelection the initial selection for this editor
+	 * 
+	 * @param parent
+	 *        the composite parent
+	 * @param selector
+	 *        the selector used by the created editor
+	 * @param message
+	 *        the message to display in the created editor
+	 * @param withCreateButton
+	 *        indicates if the editor provides an additional button for a specific action
+	 * @param listener
+	 *        the listener for the button
+	 * @param initialSelection
+	 *        the initial selection for this editor
 	 * @return the selection editor
-	 * the created {@link SelectionEditor}
+	 *         the created {@link SelectionEditor}
 	 */
 	protected SelectionEditor createEditor(Composite parent, IElementSelector selector, String message, boolean withCreateButton, SelectionListener listener, List<Object> initialSelection) {
 		SelectionEditor editor = new SelectionEditor(parent, selector, selectorLabelProvider, initialSelection);
@@ -445,11 +453,12 @@ public class InterfaceManagerDialog extends SelectionDialog {
 
 	/**
 	 * Returns all the available Interfaces.
-	 *
-	 * @param pack the pack
+	 * 
+	 * @param pack
+	 *        the pack
 	 * @return the all available interfaces
-	 * all the available Interfaces
-	 * //TODO add the interfaces of the package import!
+	 *         all the available Interfaces
+	 *         //TODO add the interfaces of the package import!
 	 */
 	@SuppressWarnings("unchecked")
 	protected List<Interface> getAllAvailableInterfaces(Package pack) {
@@ -469,9 +478,9 @@ public class InterfaceManagerDialog extends SelectionDialog {
 
 	/**
 	 * Returns the commands to apply the changes.
-	 *
+	 * 
 	 * @return the command
-	 * the commands to apply the changes
+	 *         the commands to apply the changes
 	 */
 	public Command getCommand() {
 		CompoundCommand command = new CompoundCommand("Command to manage interfaces on Port"); //$NON-NLS-1$
@@ -491,10 +500,10 @@ public class InterfaceManagerDialog extends SelectionDialog {
 
 	/**
 	 * Returns the command to remove referenced Interfaces in Usage and InterfaceRealization.
-	 *
+	 * 
 	 * @return the command to remove referenced interfaces
-	 * The command to remove referenced Interfaces the Usage and InterfaceRealization.
-	 * Moreover, we add a command to destroy Usage and InterfaceRealization when they have any Suppliers after this action
+	 *         The command to remove referenced Interfaces the Usage and InterfaceRealization.
+	 *         Moreover, we add a command to destroy Usage and InterfaceRealization when they have any Suppliers after this action
 	 */
 	protected Command getCommandToRemoveReferencedInterfaces() {
 		CompoundCommand command = new CompoundCommand("Command to destroy Usage and InterfaceRealization"); //$NON-NLS-1$
@@ -540,9 +549,9 @@ public class InterfaceManagerDialog extends SelectionDialog {
 
 	/**
 	 * Returns the command to create new Usage and new InterfaceRealization.
-	 *
+	 * 
 	 * @return the commands to create elements
-	 * the command to create new Usage and new InterfaceRealization
+	 *         the command to create new Usage and new InterfaceRealization
 	 */
 	protected Command getCommandsToCreateElements() {
 		CompoundCommand command = new CompoundCommand("Command to create Usage and InterfaceRealization"); //$NON-NLS-1$
@@ -587,10 +596,11 @@ public class InterfaceManagerDialog extends SelectionDialog {
 
 	/**
 	 * Return the command corresponding to the request.
-	 *
-	 * @param req a request
+	 * 
+	 * @param req
+	 *        a request
 	 * @return the command
-	 * the command corresponding to the request
+	 *         the command corresponding to the request
 	 */
 	protected Command getCommand(AbstractEditCommandRequest req) {
 		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(model);
@@ -605,15 +615,16 @@ public class InterfaceManagerDialog extends SelectionDialog {
 
 	/**
 	 * This listener is used to know when the user clicks on the Button to create a new {@link Interface}.
-	 *
+	 * 
 	 * @see CreateButtonEvent
 	 */
 	public class CreateButtonListener implements SelectionListener {
 
 		/**
 		 * Widget selected.
-		 *
-		 * @param e the e
+		 * 
+		 * @param e
+		 *        the e
 		 * @see org.eclipse.swt.events.SelectionListener#widgetSelected(org.eclipse.swt.events.SelectionEvent)
 		 */
 		public void widgetSelected(SelectionEvent e) {
@@ -642,8 +653,9 @@ public class InterfaceManagerDialog extends SelectionDialog {
 
 		/**
 		 * Widget default selected.
-		 *
-		 * @param e the e
+		 * 
+		 * @param e
+		 *        the e
 		 * @see org.eclipse.swt.events.SelectionListener#widgetDefaultSelected(org.eclipse.swt.events.SelectionEvent)
 		 */
 		public void widgetDefaultSelected(SelectionEvent e) {
@@ -660,8 +672,9 @@ public class InterfaceManagerDialog extends SelectionDialog {
 
 		/**
 		 * Selection has to be a Classifier or an Interface to allow creation.
-		 *
-		 * @param selection the selection
+		 * 
+		 * @param selection
+		 *        the selection
 		 * @return the i status
 		 * @see org.eclipse.ui.dialogs.ISelectionStatusValidator#validate(java.lang.Object[])
 		 */
@@ -694,8 +707,9 @@ public class InterfaceManagerDialog extends SelectionDialog {
 
 		/**
 		 * Gets the text.
-		 *
-		 * @param element the element
+		 * 
+		 * @param element
+		 *        the element
 		 * @return the text
 		 * @see org.eclipse.papyrus.uml.diagram.common.providers.EditorLabelProvider#getText(java.lang.Object)
 		 */
@@ -714,29 +728,29 @@ public class InterfaceManagerDialog extends SelectionDialog {
 	/**
 	 * The Class CreateElementLabelProvider.
 	 */
-	public class CreateElementLabelProvider extends EditorLabelProvider {
+	public class CreateElementLabelProvider extends UMLLabelProvider {
 
 		/**
 		 * Gets the image.
-		 *
-		 * @param element the element
+		 * 
+		 * @param element
+		 *        the element
 		 * @return the image
 		 * @see org.eclipse.papyrus.uml.diagram.common.providers.EditorLabelProvider#getImage(java.lang.Object)
 		 */
 		@Override
 		public Image getImage(Object element) {
 			if(element instanceof NewElementRepresentation) {
-				String imagePath = new String(imageFolder);
-				imagePath += "Interface.gif"; //$NON-NLS-1$
-				return Activator.getPluginIconImage(pluginID, imagePath);
+				return org.eclipse.papyrus.uml.tools.Activator.getDefault().getImageForUMLMetaclass(UMLPackage.eINSTANCE.getInterface());
 			}
 			return super.getImage(element);
 		}
 
 		/**
 		 * Gets the text.
-		 *
-		 * @param element the element
+		 * 
+		 * @param element
+		 *        the element
 		 * @return the text
 		 * @see org.eclipse.papyrus.uml.diagram.common.providers.EditorLabelProvider#getText(java.lang.Object)
 		 */
@@ -761,7 +775,7 @@ public class InterfaceManagerDialog extends SelectionDialog {
 
 		/**
 		 * Dispose.
-		 *
+		 * 
 		 * @see org.eclipse.jface.viewers.IContentProvider#dispose()
 		 */
 		public void dispose() {
@@ -769,10 +783,13 @@ public class InterfaceManagerDialog extends SelectionDialog {
 
 		/**
 		 * Input changed.
-		 *
-		 * @param viewer the viewer
-		 * @param oldInput the old input
-		 * @param newInput the new input
+		 * 
+		 * @param viewer
+		 *        the viewer
+		 * @param oldInput
+		 *        the old input
+		 * @param newInput
+		 *        the new input
 		 * @see org.eclipse.jface.viewers.IContentProvider#inputChanged(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
 		 */
 		public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
@@ -781,8 +798,9 @@ public class InterfaceManagerDialog extends SelectionDialog {
 
 		/**
 		 * Gets the elements.
-		 *
-		 * @param inputElement the input element
+		 * 
+		 * @param inputElement
+		 *        the input element
 		 * @return the elements
 		 * @see org.eclipse.jface.viewers.ITreeContentProvider#getElements(java.lang.Object)
 		 */
@@ -795,8 +813,9 @@ public class InterfaceManagerDialog extends SelectionDialog {
 
 		/**
 		 * Gets the children.
-		 *
-		 * @param parentElement the parent element
+		 * 
+		 * @param parentElement
+		 *        the parent element
 		 * @return the children
 		 * @see org.eclipse.jface.viewers.ITreeContentProvider#getChildren(java.lang.Object)
 		 */
@@ -826,8 +845,9 @@ public class InterfaceManagerDialog extends SelectionDialog {
 
 		/**
 		 * Gets the parent.
-		 *
-		 * @param element the element
+		 * 
+		 * @param element
+		 *        the element
 		 * @return the parent
 		 * @see org.eclipse.jface.viewers.ITreeContentProvider#getParent(java.lang.Object)
 		 */
@@ -842,8 +862,9 @@ public class InterfaceManagerDialog extends SelectionDialog {
 
 		/**
 		 * Checks for children.
-		 *
-		 * @param element the element
+		 * 
+		 * @param element
+		 *        the element
 		 * @return true, if successful
 		 * @see org.eclipse.jface.viewers.ITreeContentProvider#hasChildren(java.lang.Object)
 		 */
@@ -892,13 +913,16 @@ public class InterfaceManagerDialog extends SelectionDialog {
 
 		/**
 		 * Do execute with result.
-		 *
-		 * @param monitor the monitor
-		 * @param info the info
+		 * 
+		 * @param monitor
+		 *        the monitor
+		 * @param info
+		 *        the info
 		 * @return the command result
-		 * @throws ExecutionException the execution exception
+		 * @throws ExecutionException
+		 *         the execution exception
 		 * @see org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand#doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor,
-		 * org.eclipse.core.runtime.IAdaptable)
+		 *      org.eclipse.core.runtime.IAdaptable)
 		 */
 		@Override
 		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
@@ -951,13 +975,16 @@ public class InterfaceManagerDialog extends SelectionDialog {
 
 		/**
 		 * Do execute with result.
-		 *
-		 * @param monitor the monitor
-		 * @param info the info
+		 * 
+		 * @param monitor
+		 *        the monitor
+		 * @param info
+		 *        the info
 		 * @return the command result
-		 * @throws ExecutionException the execution exception
+		 * @throws ExecutionException
+		 *         the execution exception
 		 * @see org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand#doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor,
-		 * org.eclipse.core.runtime.IAdaptable)
+		 *      org.eclipse.core.runtime.IAdaptable)
 		 */
 		@Override
 		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
@@ -998,13 +1025,16 @@ public class InterfaceManagerDialog extends SelectionDialog {
 
 		/**
 		 * Do execute with result.
-		 *
-		 * @param monitor the monitor
-		 * @param info the info
+		 * 
+		 * @param monitor
+		 *        the monitor
+		 * @param info
+		 *        the info
 		 * @return the command result
-		 * @throws ExecutionException the execution exception
+		 * @throws ExecutionException
+		 *         the execution exception
 		 * @see org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand#doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor,
-		 * org.eclipse.core.runtime.IAdaptable)
+		 *      org.eclipse.core.runtime.IAdaptable)
 		 */
 		@Override
 		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {

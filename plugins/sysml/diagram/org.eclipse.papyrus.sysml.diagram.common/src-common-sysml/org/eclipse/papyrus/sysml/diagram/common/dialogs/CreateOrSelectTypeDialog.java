@@ -25,16 +25,16 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.ISpecializationType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.jface.dialogs.IDialogConstants;
-import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.infra.services.edit.commands.ConfigureFeatureCommandFactory;
 import org.eclipse.papyrus.infra.services.edit.commands.IConfigureCommandFactory;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.infra.widgets.editors.TreeSelectorDialog;
-import org.eclipse.papyrus.infra.widgets.providers.EncapsulatedContentProvider;
 import org.eclipse.papyrus.sysml.diagram.common.Activator;
 import org.eclipse.papyrus.sysml.diagram.common.messages.Messages;
+import org.eclipse.papyrus.uml.tools.providers.UMLLabelProvider;
 import org.eclipse.papyrus.uml.tools.utils.NamedElementUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
@@ -87,18 +87,18 @@ public class CreateOrSelectTypeDialog extends FormDialog {
 
 	protected EObject defaultContainer;
 
-	protected LabelProvider labelProvider;
-	
+	protected ILabelProvider labelProvider;
+
 	protected IElementType elementType;
 
 	protected EStructuralFeature editedFeature;
-	
+
 	protected EClass elementEClass;
 
 	protected IElementType containerType;
 
 	protected EStructuralFeature containerFeature;
-	
+
 	protected EClass containerEClass;
 
 	/**
@@ -475,22 +475,22 @@ public class CreateOrSelectTypeDialog extends FormDialog {
 	protected void handleChooseType() {
 
 		TreeSelectorDialog dialog = new TreeSelectorDialog(getShell());
-				
+
 		dialog.setMessage(getTypeDialogMessage());
 		dialog.setTitle(getTypeDialogTitle());
 		dialog.setInput(EcoreUtil.getRootContainer(defaultContainer));
 
-		ServiceEditContentProvider provider = new ServiceEditContentProvider(elementType, editedFeature, EcoreUtil.getRootContainer(defaultContainer));			
-		dialog.setContentProvider(new EncapsulatedContentProvider(provider));
+		ServiceEditContentProvider provider = new ServiceEditContentProvider(elementType, editedFeature, EcoreUtil.getRootContainer(defaultContainer));
+		dialog.setContentProvider(provider);
 		dialog.setLabelProvider(labelProvider);
-		
+
 		if(dialog.open() == Window.OK) {
 			Object result = dialog.getResult()[0];
-			if (result instanceof IAdaptable) {
+			if(result instanceof IAdaptable) {
 				result = ((IAdaptable)result).getAdapter(EObject.class);
 			}
-			
-			if (result instanceof EObject) {
+
+			if(result instanceof EObject) {
 				setExistingTypeSelection((EObject)result);
 			} else {
 				setExistingTypeSelection(null);
@@ -517,22 +517,22 @@ public class CreateOrSelectTypeDialog extends FormDialog {
 	protected void handleChooseNewTypeContainer() {
 
 		TreeSelectorDialog dialog = new TreeSelectorDialog(getShell());
-		
+
 		dialog.setMessage(getNewTypeContainerDialogMessage());
 		dialog.setTitle(getNewTypeContainerDialogTitle());
 		dialog.setInput(EcoreUtil.getRootContainer(defaultContainer));
 
-		ServiceEditContentProvider provider = new ServiceEditContentProvider(containerType, containerFeature, EcoreUtil.getRootContainer(defaultContainer));			
-		dialog.setContentProvider(new EncapsulatedContentProvider(provider));
+		ServiceEditContentProvider provider = new ServiceEditContentProvider(containerType, containerFeature, EcoreUtil.getRootContainer(defaultContainer));
+		dialog.setContentProvider(provider);
 		dialog.setLabelProvider(labelProvider);
-		
+
 		if(dialog.open() == Window.OK) {
 			Object result = dialog.getResult()[0];
-			if (result instanceof IAdaptable) {
+			if(result instanceof IAdaptable) {
 				result = ((IAdaptable)result).getAdapter(EObject.class);
 			}
-			
-			if (result instanceof EObject) {
+
+			if(result instanceof EObject) {
 				setNewTypeContainer((EObject)result);
 			} else {
 				setNewTypeContainer(null);

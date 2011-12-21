@@ -1,14 +1,9 @@
-/*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
+/**
+ * <copyright>
+ * </copyright>
  *
- * Contributors:
- *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
- *****************************************************************************/
+ * $Id$
+ */
 package org.eclipse.papyrus.views.properties.contexts.impl;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -42,7 +37,6 @@ import org.eclipse.papyrus.views.properties.environment.Type;
  * @generated
  */
 public class PropertyImpl extends EObjectImpl implements Property {
-
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -482,40 +476,6 @@ public class PropertyImpl extends EObjectImpl implements Property {
 		result.append(description);
 		result.append(')');
 		return result.toString();
-	}
-
-	@Override
-	public boolean equals(Object object) {
-		if(object == null)
-			return false;
-
-		if(object == this)
-			return true;
-
-		if(object instanceof Property) {
-			Property property = (Property)object;
-			if(getName() == null || property.getName() == null) {
-				return false;
-			}
-			if(!getName().equals(property.getName())) {
-				return false;
-			}
-
-			if(getMultiplicity() != property.getMultiplicity()) {
-				return false;
-			}
-
-			if(!getType().equals(property.getType())) {
-				return false;
-			}
-			if(!getContextElement().equals(property.getContextElement())) {
-				return false;
-			}
-
-			return true;
-		}
-
-		return false;
 	}
 
 } //PropertyImpl

@@ -14,7 +14,11 @@ package org.eclipse.papyrus.views.properties.providers;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 
-
+/**
+ * A LabelProvider which only accepts a specific set of objects
+ * 
+ * @author Camille Letavernier
+ */
 public interface IFilteredLabelProvider extends ILabelProvider {
 
 	public boolean accept(IStructuredSelection selection);

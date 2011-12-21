@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.papyrus.infra.widgets.providers.AbstractFilteredContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
 import org.eclipse.papyrus.views.properties.contexts.Context;
-import org.eclipse.papyrus.views.properties.util.Util;
+import org.eclipse.papyrus.views.properties.util.PropertiesUtil;
 
 /**
  * An abstract implementation of {@link IStaticContentProvider} for
@@ -69,6 +69,6 @@ public abstract class AbstractContextualContentProvider extends AbstractFiltered
 			}
 		}
 
-		return Util.getDependencies(rootContext);
+		return PropertiesUtil.getDependencies(rootContext);
 	}
 }

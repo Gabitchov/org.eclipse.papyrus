@@ -1,25 +1,28 @@
-/*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
+/**
+ * <copyright>
+ * </copyright>
  *
- * Contributors:
- *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
- *****************************************************************************/
+ * $Id$
+ */
 package org.eclipse.papyrus.views.properties.contexts.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
 import org.eclipse.papyrus.views.properties.contexts.*;
+import org.eclipse.papyrus.views.properties.contexts.Context;
+import org.eclipse.papyrus.views.properties.contexts.ContextsFactory;
+import org.eclipse.papyrus.views.properties.contexts.ContextsPackage;
+import org.eclipse.papyrus.views.properties.contexts.DataContextElement;
+import org.eclipse.papyrus.views.properties.contexts.DataContextPackage;
+import org.eclipse.papyrus.views.properties.contexts.DataContextRoot;
+import org.eclipse.papyrus.views.properties.contexts.Property;
+import org.eclipse.papyrus.views.properties.contexts.Section;
+import org.eclipse.papyrus.views.properties.contexts.Tab;
+import org.eclipse.papyrus.views.properties.contexts.UnknownProperty;
+import org.eclipse.papyrus.views.properties.contexts.View;
 
 /**
  * <!-- begin-user-doc -->
@@ -28,6 +31,7 @@ import org.eclipse.papyrus.views.properties.contexts.*;
  * @generated
  */
 public class ContextsFactoryImpl extends EFactoryImpl implements ContextsFactory {
+
 	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
@@ -36,7 +40,7 @@ public class ContextsFactoryImpl extends EFactoryImpl implements ContextsFactory
 	 */
 	public static ContextsFactory init() {
 		try {
-			ContextsFactory theContextsFactory = (ContextsFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/properties/contexts"); 
+			ContextsFactory theContextsFactory = (ContextsFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/properties/contexts/0.9"); 
 			if (theContextsFactory != null) {
 				return theContextsFactory;
 			}
@@ -74,10 +78,6 @@ public class ContextsFactoryImpl extends EFactoryImpl implements ContextsFactory
 			case ContextsPackage.UNKNOWN_PROPERTY: return createUnknownProperty();
 			case ContextsPackage.DATA_CONTEXT_PACKAGE: return createDataContextPackage();
 			case ContextsPackage.DATA_CONTEXT_ROOT: return createDataContextRoot();
-			case ContextsPackage.SIMPLE_CONSTRAINT: return createSimpleConstraint();
-			case ContextsPackage.COMPOSITE_CONSTRAINT: return createCompositeConstraint();
-			case ContextsPackage.VALUE_PROPERTY: return createValueProperty();
-			case ContextsPackage.REFERENCE_PROPERTY: return createReferenceProperty();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -98,9 +98,9 @@ public class ContextsFactoryImpl extends EFactoryImpl implements ContextsFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public View createView() {
-		ViewImpl view = new ViewImpl();
-		return view;
+	public Tab createTab() {
+		TabImpl tab = new TabImpl();
+		return tab;
 	}
 
 	/**
@@ -108,9 +108,9 @@ public class ContextsFactoryImpl extends EFactoryImpl implements ContextsFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Tab createTab() {
-		TabImpl tab = new TabImpl();
-		return tab;
+	public View createView() {
+		ViewImpl view = new ViewImpl();
+		return view;
 	}
 
 	/**
@@ -171,46 +171,6 @@ public class ContextsFactoryImpl extends EFactoryImpl implements ContextsFactory
 	public DataContextRoot createDataContextRoot() {
 		DataContextRootImpl dataContextRoot = new DataContextRootImpl();
 		return dataContextRoot;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public SimpleConstraint createSimpleConstraint() {
-		SimpleConstraintImpl simpleConstraint = new SimpleConstraintImpl();
-		return simpleConstraint;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public CompositeConstraint createCompositeConstraint() {
-		CompositeConstraintImpl compositeConstraint = new CompositeConstraintImpl();
-		return compositeConstraint;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ValueProperty createValueProperty() {
-		ValuePropertyImpl valueProperty = new ValuePropertyImpl();
-		return valueProperty;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ReferenceProperty createReferenceProperty() {
-		ReferencePropertyImpl referenceProperty = new ReferencePropertyImpl();
-		return referenceProperty;
 	}
 
 	/**

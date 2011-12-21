@@ -19,29 +19,33 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.papyrus.infra.emf.providers.EMFContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.EmptyContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.EncapsulatedContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
-import org.eclipse.papyrus.uml.modelexplorer.widgets.ServiceEditFilteredUMLContentProvider;
+import org.eclipse.papyrus.uml.tools.providers.ServiceEditFilteredUMLContentProvider;
 import org.eclipse.papyrus.uml.tools.utils.PackageUtil;
 import org.eclipse.papyrus.views.properties.providers.EcoreEnumeratorContentProvider;
-import org.eclipse.papyrus.views.properties.providers.EcoreReferenceContentProvider;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.InstanceValue;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
- *
+ * 
  * A content provider for UML
- *
+ * 
+ * @deprecated
  */
+
+//TODO : To be refactored. There should be a single ContentProvider for UML
+@Deprecated
 public class UMLContentProvider extends EncapsulatedContentProvider implements IStaticContentProvider {
 
 	/**
-	 *
+	 * 
 	 * Constructor.
-	 *
+	 * 
 	 * @param source
 	 * @param feature
 	 */
@@ -73,7 +77,7 @@ public class UMLContentProvider extends EncapsulatedContentProvider implements I
 			if(type instanceof EEnum) {
 				localProvider = new EcoreEnumeratorContentProvider(feature);
 			} else if(type instanceof EClass) {
-				localProvider = new EcoreReferenceContentProvider(feature, source);//TODO : pas compris
+				localProvider = new EMFContentProvider(source, feature); //TODO : pas compris
 			} else {
 				localProvider = EmptyContentProvider.instance;
 			}

@@ -1,25 +1,27 @@
-/*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
+/**
+ * <copyright>
+ * </copyright>
  *
- * Contributors:
- *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
- *****************************************************************************/
+ * $Id$
+ */
 package org.eclipse.papyrus.views.properties.contexts.util;
 
 import org.eclipse.emf.ecore.EModelElement;
-import java.util.List;
-
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
+import org.eclipse.papyrus.infra.constraints.DisplayUnit;
 import org.eclipse.papyrus.views.properties.contexts.*;
+import org.eclipse.papyrus.views.properties.contexts.Context;
+import org.eclipse.papyrus.views.properties.contexts.ContextsPackage;
+import org.eclipse.papyrus.views.properties.contexts.DataContextElement;
+import org.eclipse.papyrus.views.properties.contexts.DataContextPackage;
+import org.eclipse.papyrus.views.properties.contexts.DataContextRoot;
+import org.eclipse.papyrus.views.properties.contexts.Property;
+import org.eclipse.papyrus.views.properties.contexts.Section;
+import org.eclipse.papyrus.views.properties.contexts.Tab;
+import org.eclipse.papyrus.views.properties.contexts.UnknownProperty;
+import org.eclipse.papyrus.views.properties.contexts.View;
 
 /**
  * <!-- begin-user-doc -->
@@ -85,12 +87,6 @@ public class ContextsSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ContextsPackage.DISPLAY_UNIT: {
-				DisplayUnit displayUnit = (DisplayUnit)theEObject;
-				T result = caseDisplayUnit(displayUnit);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case ContextsPackage.TAB: {
 				Tab tab = (Tab)theEObject;
 				T result = caseTab(tab);
@@ -145,46 +141,6 @@ public class ContextsSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ContextsPackage.CONSTRAINT_DESCRIPTOR: {
-				ConstraintDescriptor constraintDescriptor = (ConstraintDescriptor)theEObject;
-				T result = caseConstraintDescriptor(constraintDescriptor);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ContextsPackage.SIMPLE_CONSTRAINT: {
-				SimpleConstraint simpleConstraint = (SimpleConstraint)theEObject;
-				T result = caseSimpleConstraint(simpleConstraint);
-				if (result == null) result = caseConstraintDescriptor(simpleConstraint);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ContextsPackage.COMPOSITE_CONSTRAINT: {
-				CompositeConstraint compositeConstraint = (CompositeConstraint)theEObject;
-				T result = caseCompositeConstraint(compositeConstraint);
-				if (result == null) result = caseConstraintDescriptor(compositeConstraint);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ContextsPackage.CONFIG_PROPERTY: {
-				ConfigProperty configProperty = (ConfigProperty)theEObject;
-				T result = caseConfigProperty(configProperty);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ContextsPackage.VALUE_PROPERTY: {
-				ValueProperty valueProperty = (ValueProperty)theEObject;
-				T result = caseValueProperty(valueProperty);
-				if (result == null) result = caseConfigProperty(valueProperty);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ContextsPackage.REFERENCE_PROPERTY: {
-				ReferenceProperty referenceProperty = (ReferenceProperty)theEObject;
-				T result = caseReferenceProperty(referenceProperty);
-				if (result == null) result = caseConfigProperty(referenceProperty);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -205,17 +161,17 @@ public class ContextsSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Display Unit</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Tab</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Display Unit</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Tab</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseDisplayUnit(DisplayUnit object) {
+	public T caseTab(Tab object) {
 		return null;
 	}
 
@@ -231,21 +187,6 @@ public class ContextsSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseView(View object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Tab</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Tab</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseTab(Tab object) {
 		return null;
 	}
 
@@ -340,96 +281,6 @@ public class ContextsSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Constraint Descriptor</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Constraint Descriptor</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseConstraintDescriptor(ConstraintDescriptor object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Simple Constraint</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Simple Constraint</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseSimpleConstraint(SimpleConstraint object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Composite Constraint</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Composite Constraint</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseCompositeConstraint(CompositeConstraint object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Config Property</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Config Property</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseConfigProperty(ConfigProperty object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Value Property</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Value Property</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseValueProperty(ValueProperty object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Reference Property</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Reference Property</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseReferenceProperty(ReferenceProperty object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>EModel Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -441,6 +292,21 @@ public class ContextsSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseEModelElement(EModelElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Display Unit</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Display Unit</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDisplayUnit(DisplayUnit object) {
 		return null;
 	}
 

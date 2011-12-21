@@ -46,7 +46,7 @@ import org.eclipse.papyrus.views.properties.contexts.ContextsPackage;
 import org.eclipse.papyrus.views.properties.contexts.Section;
 import org.eclipse.papyrus.views.properties.contexts.Tab;
 import org.eclipse.papyrus.views.properties.runtime.ConfigurationManager;
-import org.eclipse.papyrus.views.properties.util.Util;
+import org.eclipse.papyrus.views.properties.util.PropertiesUtil;
 import org.eclipse.swt.widgets.Display;
 
 /**
@@ -177,7 +177,7 @@ public class CopyContextAction {
 
 							int filesToCopy = source.eResource().getResourceSet().getResources().size();
 							List<Context> contexts = new LinkedList<Context>();
-							for(Context context : Util.getDependencies(source)) {
+							for(Context context : PropertiesUtil.getDependencies(source)) {
 								if(isRelative(source, context.eResource())) {
 									contexts.add(context);
 									for(Tab tab : context.getTabs()) {

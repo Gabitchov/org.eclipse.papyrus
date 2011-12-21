@@ -1,14 +1,9 @@
-/*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
+/**
+ * <copyright>
+ * </copyright>
  *
- * Contributors:
- *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
- *****************************************************************************/
+ * $Id$
+ */
 package org.eclipse.papyrus.views.properties.contexts;
 
 import org.eclipse.emf.common.util.EList;
@@ -38,12 +33,12 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface Tab extends EObject {
-
 	/**
 	 * Returns the value of the '<em><b>Label</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Label</em>' attribute isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Label</em>' attribute isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Label</em>' attribute.
@@ -68,7 +63,8 @@ public interface Tab extends EObject {
 	 * Returns the value of the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Id</em>' attribute isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Id</em>' attribute isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Id</em>' attribute.
@@ -93,7 +89,8 @@ public interface Tab extends EObject {
 	 * Returns the value of the '<em><b>Category</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Category</em>' attribute isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Category</em>' attribute isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Category</em>' attribute.
@@ -118,7 +115,8 @@ public interface Tab extends EObject {
 	 * Returns the value of the '<em><b>Image</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Image</em>' attribute isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Image</em>' attribute isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Image</em>' attribute.
@@ -143,7 +141,8 @@ public interface Tab extends EObject {
 	 * Returns the value of the '<em><b>After Tab</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>After Tab</em>' reference isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>After Tab</em>' reference isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>After Tab</em>' reference.
@@ -170,7 +169,8 @@ public interface Tab extends EObject {
 	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.views.properties.contexts.Section#getTab <em>Tab</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Sections</em>' containment reference list isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Sections</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Sections</em>' containment reference list.
@@ -186,7 +186,8 @@ public interface Tab extends EObject {
 	 * The default value is <code>"false"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Indented</em>' attribute isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Indented</em>' attribute isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Indented</em>' attribute.
@@ -232,4 +233,5 @@ public interface Tab extends EObject {
 	 * @generated
 	 */
 	void setPriority(int value);
+
 } // Tab

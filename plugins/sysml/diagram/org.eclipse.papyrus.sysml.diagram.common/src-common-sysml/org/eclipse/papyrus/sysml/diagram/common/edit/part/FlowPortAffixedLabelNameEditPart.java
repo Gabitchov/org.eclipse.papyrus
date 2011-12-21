@@ -22,7 +22,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.sysml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.AbstractElementLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.PapyrusWrappingLabel;
@@ -36,7 +36,7 @@ import org.eclipse.swt.graphics.Image;
 public class FlowPortAffixedLabelNameEditPart extends AbstractElementLabelEditPart implements IBorderItemEditPart {
 
 	/** label provider for icons */
-	private final LabelProvider labelProvider;
+	private final ILabelProvider labelProvider;
 
 	/** Constructor */
 	public FlowPortAffixedLabelNameEditPart(View view) {
@@ -62,6 +62,7 @@ public class FlowPortAffixedLabelNameEditPart extends AbstractElementLabelEditPa
 		return null;
 	}
 
+	@Override
 	public void refreshBounds() {
 		int x = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_X())).intValue();
 		int y = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_Y())).intValue();
@@ -113,6 +114,7 @@ public class FlowPortAffixedLabelNameEditPart extends AbstractElementLabelEditPa
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public String getLabelRole() {
 		return "Label"; //$NON-NLS-1$
 	}
@@ -120,6 +122,7 @@ public class FlowPortAffixedLabelNameEditPart extends AbstractElementLabelEditPa
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public String getIconPathRole() {
 		return ""; //$NON-NLS-1$
 	}

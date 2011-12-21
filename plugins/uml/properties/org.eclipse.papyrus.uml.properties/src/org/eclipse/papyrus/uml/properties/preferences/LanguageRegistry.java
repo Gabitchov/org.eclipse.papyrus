@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.tools.util.ClassLoaderHelper;
 import org.eclipse.papyrus.uml.properties.Activator;
 import org.eclipse.papyrus.uml.properties.languagepreferences.Editor;
 import org.eclipse.papyrus.uml.properties.languagepreferences.Language;
@@ -139,8 +140,7 @@ public class LanguageRegistry {
 	 *        The editor to associate to the language
 	 */
 	public void registerEditor(String language, Editor editor) {
-		if(language == null)
-		{
+		if(language == null) {
 			language = ""; //$NON-NLS-1$
 		}
 
@@ -169,30 +169,8 @@ public class LanguageRegistry {
 	}
 
 	private BodyEditor getInstance(Editor editor) {
-		Class<? extends BodyEditor> editorClass = getEditorClass(editor);
-		try {
-			return editorClass.newInstance();
-		} catch (InstantiationException ex) {
-			Activator.log.error(ex);
-		} catch (IllegalAccessException ex) {
-			Activator.log.error(ex);
-		}
-
-		return null;
-	}
-
-	private Class<? extends BodyEditor> getEditorClass(Editor editor) {
 		String className = editor.getClass_();
-
-		try {
-			Class<? extends BodyEditor> clazz = Class.forName(className).asSubclass(BodyEditor.class);
-			return clazz;
-		} catch (ClassNotFoundException ex) {
-			Activator.log.error(ex);
-		}
-
-		return null;
-
+		return ClassLoaderHelper.newInstance(className, BodyEditor.class);
 	}
 
 	private Map<String, List<Editor>> languageMapping;

@@ -26,12 +26,12 @@ import org.eclipse.papyrus.customization.properties.generation.wizard.widget.Ter
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.customization.properties.generation.fieldselection.impl.PropertyDefinitionImpl#getName <em>Name</em>}</li>
- * <li>{@link org.eclipse.papyrus.customization.properties.generation.fieldselection.impl.PropertyDefinitionImpl#getValueSingle <em>Value Single</em>}</li>
- * <li>{@link org.eclipse.papyrus.customization.properties.generation.fieldselection.impl.PropertyDefinitionImpl#getValueMultiple <em>Value Multiple</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.customization.properties.generation.fieldselection.impl.PropertyDefinitionImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.customization.properties.generation.fieldselection.impl.PropertyDefinitionImpl#getValueSingle <em>Value Single</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.customization.properties.generation.fieldselection.impl.PropertyDefinitionImpl#getValueMultiple <em>Value Multiple</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class PropertyDefinitionImpl extends EObjectImpl implements PropertyDefinition {
@@ -40,7 +40,6 @@ public class PropertyDefinitionImpl extends EObjectImpl implements PropertyDefin
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getName()
 	 * @generated
 	 * @ordered
@@ -51,7 +50,6 @@ public class PropertyDefinitionImpl extends EObjectImpl implements PropertyDefin
 	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getName()
 	 * @generated
 	 * @ordered
@@ -62,7 +60,6 @@ public class PropertyDefinitionImpl extends EObjectImpl implements PropertyDefin
 	 * The default value of the '{@link #getValueSingle() <em>Value Single</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getValueSingle()
 	 * @generated
 	 * @ordered
@@ -73,7 +70,6 @@ public class PropertyDefinitionImpl extends EObjectImpl implements PropertyDefin
 	 * The cached value of the '{@link #getValueSingle() <em>Value Single</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getValueSingle()
 	 * @generated
 	 * @ordered
@@ -84,7 +80,6 @@ public class PropertyDefinitionImpl extends EObjectImpl implements PropertyDefin
 	 * The default value of the '{@link #getValueMultiple() <em>Value Multiple</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getValueMultiple()
 	 * @generated
 	 * @ordered
@@ -95,7 +90,6 @@ public class PropertyDefinitionImpl extends EObjectImpl implements PropertyDefin
 	 * The cached value of the '{@link #getValueMultiple() <em>Value Multiple</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getValueMultiple()
 	 * @generated
 	 * @ordered
@@ -105,7 +99,6 @@ public class PropertyDefinitionImpl extends EObjectImpl implements PropertyDefin
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected PropertyDefinitionImpl() {
@@ -115,7 +108,6 @@ public class PropertyDefinitionImpl extends EObjectImpl implements PropertyDefin
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -126,7 +118,6 @@ public class PropertyDefinitionImpl extends EObjectImpl implements PropertyDefin
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getName() {
@@ -136,20 +127,18 @@ public class PropertyDefinitionImpl extends EObjectImpl implements PropertyDefin
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
-		if(eNotificationRequired())
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, FieldSelectionPackage.PROPERTY_DEFINITION__NAME, oldName, name));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public State getValueSingle() {
@@ -159,20 +148,18 @@ public class PropertyDefinitionImpl extends EObjectImpl implements PropertyDefin
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setValueSingle(State newValueSingle) {
 		State oldValueSingle = valueSingle;
 		valueSingle = newValueSingle;
-		if(eNotificationRequired())
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, FieldSelectionPackage.PROPERTY_DEFINITION__VALUE_SINGLE, oldValueSingle, valueSingle));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public State getValueMultiple() {
@@ -182,31 +169,29 @@ public class PropertyDefinitionImpl extends EObjectImpl implements PropertyDefin
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setValueMultiple(State newValueMultiple) {
 		State oldValueMultiple = valueMultiple;
 		valueMultiple = newValueMultiple;
-		if(eNotificationRequired())
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, FieldSelectionPackage.PROPERTY_DEFINITION__VALUE_MULTIPLE, oldValueMultiple, valueMultiple));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch(featureID) {
-		case FieldSelectionPackage.PROPERTY_DEFINITION__NAME:
-			return getName();
-		case FieldSelectionPackage.PROPERTY_DEFINITION__VALUE_SINGLE:
-			return getValueSingle();
-		case FieldSelectionPackage.PROPERTY_DEFINITION__VALUE_MULTIPLE:
-			return getValueMultiple();
+		switch (featureID) {
+			case FieldSelectionPackage.PROPERTY_DEFINITION__NAME:
+				return getName();
+			case FieldSelectionPackage.PROPERTY_DEFINITION__VALUE_SINGLE:
+				return getValueSingle();
+			case FieldSelectionPackage.PROPERTY_DEFINITION__VALUE_MULTIPLE:
+				return getValueMultiple();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -214,21 +199,20 @@ public class PropertyDefinitionImpl extends EObjectImpl implements PropertyDefin
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch(featureID) {
-		case FieldSelectionPackage.PROPERTY_DEFINITION__NAME:
-			setName((String)newValue);
-			return;
-		case FieldSelectionPackage.PROPERTY_DEFINITION__VALUE_SINGLE:
-			setValueSingle((State)newValue);
-			return;
-		case FieldSelectionPackage.PROPERTY_DEFINITION__VALUE_MULTIPLE:
-			setValueMultiple((State)newValue);
-			return;
+		switch (featureID) {
+			case FieldSelectionPackage.PROPERTY_DEFINITION__NAME:
+				setName((String)newValue);
+				return;
+			case FieldSelectionPackage.PROPERTY_DEFINITION__VALUE_SINGLE:
+				setValueSingle((State)newValue);
+				return;
+			case FieldSelectionPackage.PROPERTY_DEFINITION__VALUE_MULTIPLE:
+				setValueMultiple((State)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -236,21 +220,20 @@ public class PropertyDefinitionImpl extends EObjectImpl implements PropertyDefin
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch(featureID) {
-		case FieldSelectionPackage.PROPERTY_DEFINITION__NAME:
-			setName(NAME_EDEFAULT);
-			return;
-		case FieldSelectionPackage.PROPERTY_DEFINITION__VALUE_SINGLE:
-			setValueSingle(VALUE_SINGLE_EDEFAULT);
-			return;
-		case FieldSelectionPackage.PROPERTY_DEFINITION__VALUE_MULTIPLE:
-			setValueMultiple(VALUE_MULTIPLE_EDEFAULT);
-			return;
+		switch (featureID) {
+			case FieldSelectionPackage.PROPERTY_DEFINITION__NAME:
+				setName(NAME_EDEFAULT);
+				return;
+			case FieldSelectionPackage.PROPERTY_DEFINITION__VALUE_SINGLE:
+				setValueSingle(VALUE_SINGLE_EDEFAULT);
+				return;
+			case FieldSelectionPackage.PROPERTY_DEFINITION__VALUE_MULTIPLE:
+				setValueMultiple(VALUE_MULTIPLE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -258,18 +241,17 @@ public class PropertyDefinitionImpl extends EObjectImpl implements PropertyDefin
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch(featureID) {
-		case FieldSelectionPackage.PROPERTY_DEFINITION__NAME:
-			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-		case FieldSelectionPackage.PROPERTY_DEFINITION__VALUE_SINGLE:
-			return VALUE_SINGLE_EDEFAULT == null ? valueSingle != null : !VALUE_SINGLE_EDEFAULT.equals(valueSingle);
-		case FieldSelectionPackage.PROPERTY_DEFINITION__VALUE_MULTIPLE:
-			return VALUE_MULTIPLE_EDEFAULT == null ? valueMultiple != null : !VALUE_MULTIPLE_EDEFAULT.equals(valueMultiple);
+		switch (featureID) {
+			case FieldSelectionPackage.PROPERTY_DEFINITION__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case FieldSelectionPackage.PROPERTY_DEFINITION__VALUE_SINGLE:
+				return VALUE_SINGLE_EDEFAULT == null ? valueSingle != null : !VALUE_SINGLE_EDEFAULT.equals(valueSingle);
+			case FieldSelectionPackage.PROPERTY_DEFINITION__VALUE_MULTIPLE:
+				return VALUE_MULTIPLE_EDEFAULT == null ? valueMultiple != null : !VALUE_MULTIPLE_EDEFAULT.equals(valueMultiple);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -277,13 +259,11 @@ public class PropertyDefinitionImpl extends EObjectImpl implements PropertyDefin
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if(eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (name: ");

@@ -1,25 +1,28 @@
-/*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
+/**
+ * <copyright>
+ * </copyright>
  *
- * Contributors:
- *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
- *****************************************************************************/
+ * $Id$
+ */
 package org.eclipse.papyrus.views.properties.contexts.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
-
+import org.eclipse.papyrus.infra.constraints.DisplayUnit;
 import org.eclipse.papyrus.views.properties.contexts.*;
+import org.eclipse.papyrus.views.properties.contexts.Context;
+import org.eclipse.papyrus.views.properties.contexts.ContextsPackage;
+import org.eclipse.papyrus.views.properties.contexts.DataContextElement;
+import org.eclipse.papyrus.views.properties.contexts.DataContextPackage;
+import org.eclipse.papyrus.views.properties.contexts.DataContextRoot;
+import org.eclipse.papyrus.views.properties.contexts.Property;
+import org.eclipse.papyrus.views.properties.contexts.Section;
+import org.eclipse.papyrus.views.properties.contexts.Tab;
+import org.eclipse.papyrus.views.properties.contexts.UnknownProperty;
+import org.eclipse.papyrus.views.properties.contexts.View;
 
 /**
  * <!-- begin-user-doc -->
@@ -82,10 +85,6 @@ public class ContextsAdapterFactory extends AdapterFactoryImpl {
 				return createContextAdapter();
 			}
 			@Override
-			public Adapter caseDisplayUnit(DisplayUnit object) {
-				return createDisplayUnitAdapter();
-			}
-			@Override
 			public Adapter caseTab(Tab object) {
 				return createTabAdapter();
 			}
@@ -118,32 +117,12 @@ public class ContextsAdapterFactory extends AdapterFactoryImpl {
 				return createDataContextRootAdapter();
 			}
 			@Override
-			public Adapter caseConstraintDescriptor(ConstraintDescriptor object) {
-				return createConstraintDescriptorAdapter();
-			}
-			@Override
-			public Adapter caseSimpleConstraint(SimpleConstraint object) {
-				return createSimpleConstraintAdapter();
-			}
-			@Override
-			public Adapter caseCompositeConstraint(CompositeConstraint object) {
-				return createCompositeConstraintAdapter();
-			}
-			@Override
-			public Adapter caseConfigProperty(ConfigProperty object) {
-				return createConfigPropertyAdapter();
-			}
-			@Override
-			public Adapter caseValueProperty(ValueProperty object) {
-				return createValuePropertyAdapter();
-			}
-			@Override
-			public Adapter caseReferenceProperty(ReferenceProperty object) {
-				return createReferencePropertyAdapter();
-			}
-			@Override
 			public Adapter caseEModelElement(EModelElement object) {
 				return createEModelElementAdapter();
+			}
+			@Override
+			public Adapter caseDisplayUnit(DisplayUnit object) {
+				return createDisplayUnitAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -180,16 +159,16 @@ public class ContextsAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.views.properties.contexts.DisplayUnit <em>Display Unit</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.views.properties.contexts.Tab <em>Tab</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.papyrus.views.properties.contexts.DisplayUnit
+	 * @see org.eclipse.papyrus.views.properties.contexts.Tab
 	 * @generated
 	 */
-	public Adapter createDisplayUnitAdapter() {
+	public Adapter createTabAdapter() {
 		return null;
 	}
 
@@ -204,20 +183,6 @@ public class ContextsAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createViewAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.views.properties.contexts.Tab <em>Tab</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.papyrus.views.properties.contexts.Tab
-	 * @generated
-	 */
-	public Adapter createTabAdapter() {
 		return null;
 	}
 
@@ -306,90 +271,6 @@ public class ContextsAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.views.properties.contexts.ConstraintDescriptor <em>Constraint Descriptor</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.papyrus.views.properties.contexts.ConstraintDescriptor
-	 * @generated
-	 */
-	public Adapter createConstraintDescriptorAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.views.properties.contexts.SimpleConstraint <em>Simple Constraint</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.papyrus.views.properties.contexts.SimpleConstraint
-	 * @generated
-	 */
-	public Adapter createSimpleConstraintAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.views.properties.contexts.CompositeConstraint <em>Composite Constraint</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.papyrus.views.properties.contexts.CompositeConstraint
-	 * @generated
-	 */
-	public Adapter createCompositeConstraintAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.views.properties.contexts.ConfigProperty <em>Config Property</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.papyrus.views.properties.contexts.ConfigProperty
-	 * @generated
-	 */
-	public Adapter createConfigPropertyAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.views.properties.contexts.ValueProperty <em>Value Property</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.papyrus.views.properties.contexts.ValueProperty
-	 * @generated
-	 */
-	public Adapter createValuePropertyAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.views.properties.contexts.ReferenceProperty <em>Reference Property</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.papyrus.views.properties.contexts.ReferenceProperty
-	 * @generated
-	 */
-	public Adapter createReferencePropertyAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.ecore.EModelElement <em>EModel Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -400,6 +281,20 @@ public class ContextsAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createEModelElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.constraints.DisplayUnit <em>Display Unit</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.infra.constraints.DisplayUnit
+	 * @generated
+	 */
+	public Adapter createDisplayUnitAdapter() {
 		return null;
 	}
 

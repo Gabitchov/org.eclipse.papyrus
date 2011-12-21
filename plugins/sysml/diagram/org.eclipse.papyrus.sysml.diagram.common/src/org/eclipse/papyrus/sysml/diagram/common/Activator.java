@@ -16,18 +16,18 @@ import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory
 import org.eclipse.emf.edit.ui.provider.ExtendedImageRegistry;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.infra.core.log.LogHelper;
 import org.eclipse.papyrus.sysml.activities.provider.ActivitiesItemProviderAdapterFactory;
 import org.eclipse.papyrus.sysml.allocations.provider.AllocationsItemProviderAdapterFactory;
 import org.eclipse.papyrus.sysml.blocks.provider.BlocksItemProviderAdapterFactory;
 import org.eclipse.papyrus.sysml.constraints.provider.ConstraintsItemProviderAdapterFactory;
-import org.eclipse.papyrus.sysml.diagram.common.dialogs.UMLLabelProvider;
 import org.eclipse.papyrus.sysml.modelelements.provider.ModelelementsItemProviderAdapterFactory;
 import org.eclipse.papyrus.sysml.portandflows.FlowDirection;
 import org.eclipse.papyrus.sysml.portandflows.FlowPort;
 import org.eclipse.papyrus.sysml.portandflows.provider.PortandflowsItemProviderAdapterFactory;
 import org.eclipse.papyrus.sysml.requirements.provider.RequirementsItemProviderAdapterFactory;
+import org.eclipse.papyrus.uml.tools.providers.UMLLabelProvider;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.uml2.uml.edit.providers.UMLItemProviderAdapterFactory;
@@ -249,7 +249,7 @@ public class Activator extends AbstractUIPlugin {
 	 * 
 	 * @return a label provider supported by EMF Facet
 	 */
-	public LabelProvider getLabelProvider() {
+	public ILabelProvider getLabelProvider() {
 		if(labelProvider == null) {
 			// add a generic label provider for sysml elements
 			labelProvider = new UMLLabelProvider();

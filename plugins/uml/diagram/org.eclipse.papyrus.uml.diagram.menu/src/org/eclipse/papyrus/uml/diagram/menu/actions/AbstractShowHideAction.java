@@ -32,8 +32,8 @@ import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.papyrus.commands.wrappers.GEFtoEMFCommandWrapper;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
-import org.eclipse.papyrus.uml.diagram.common.providers.EditorLabelProvider;
 import org.eclipse.papyrus.uml.diagram.common.util.ViewServiceUtil;
+import org.eclipse.papyrus.uml.tools.providers.UMLLabelProvider;
 import org.eclipse.ui.IActionDelegate;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.IWorkbenchWindowActionDelegate;
@@ -239,7 +239,7 @@ public abstract class AbstractShowHideAction implements IActionDelegate, IWorkbe
 	 * 
 	 */
 	protected void initAction() {
-		this.labelProvider = new EditorLabelProvider();
+		this.labelProvider = new UMLLabelProvider();
 		this.representations = new ArrayList<AbstractShowHideAction.EditPartRepresentation>();
 	}
 

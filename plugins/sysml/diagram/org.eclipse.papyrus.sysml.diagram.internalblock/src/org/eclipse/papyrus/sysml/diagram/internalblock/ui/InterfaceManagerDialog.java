@@ -55,10 +55,10 @@ import org.eclipse.papyrus.infra.widgets.selectors.ReferenceSelector;
 import org.eclipse.papyrus.sysml.diagram.internalblock.messages.Messages;
 import org.eclipse.papyrus.sysml.portandflows.FlowSpecification;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
-import org.eclipse.papyrus.uml.diagram.common.providers.EditorLabelProvider;
 import org.eclipse.papyrus.uml.diagram.common.util.Util;
 import org.eclipse.papyrus.uml.diagram.common.util.Visitor;
 import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
+import org.eclipse.papyrus.uml.tools.providers.UMLLabelProvider;
 import org.eclipse.papyrus.uml.tools.utils.ElementUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
@@ -733,7 +733,7 @@ public class InterfaceManagerDialog extends SelectionDialog {
 
 	}
 
-	public class CreateElementLabelProvider extends EditorLabelProvider {
+	public class CreateElementLabelProvider extends UMLLabelProvider {
 
 		/**
 		 * 
@@ -745,9 +745,7 @@ public class InterfaceManagerDialog extends SelectionDialog {
 		@Override
 		public Image getImage(Object element) {
 			if(element instanceof NewElementRepresentation) {
-				String imagePath = new String(imageFolder);
-				imagePath += "Interface.gif"; //$NON-NLS-1$
-				return Activator.getPluginIconImage(pluginID, imagePath);
+				return org.eclipse.papyrus.uml.tools.Activator.getDefault().getImageForUMLMetaclass(UMLPackage.eINSTANCE.getInterface());
 			}
 			return super.getImage(element);
 		}

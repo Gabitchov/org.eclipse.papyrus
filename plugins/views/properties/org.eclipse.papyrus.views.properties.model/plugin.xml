@@ -12,21 +12,21 @@
 
 	<extension point="org.eclipse.emf.ecore.generated_package">
       <package
-            uri="http://www.eclipse.org/papyrus/properties/environment"
+            uri="http://www.eclipse.org/papyrus/properties/environment/0.9"
             class="org.eclipse.papyrus.views.properties.environment.EnvironmentPackage"
             genModel="Model/Properties.genmodel"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
-            uri="http://www.eclipse.org/papyrus/properties/contexts"
+            uri="http://www.eclipse.org/papyrus/properties/contexts/0.9"
             class="org.eclipse.papyrus.views.properties.contexts.ContextsPackage"
             genModel="Model/Properties.genmodel"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
-            uri="http://www.eclipse.org/papyrus/properties/ui"
+            uri="http://www.eclipse.org/papyrus/properties/ui/0.9"
             class="org.eclipse.papyrus.views.properties.ui.UiPackage"
             genModel="Model/Properties.genmodel"/>
    </extension>

@@ -1,35 +1,24 @@
-/*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
+/**
+ * <copyright>
+ * </copyright>
  *
- * Contributors:
- *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
- *****************************************************************************/
+ * $Id$
+ */
 package org.eclipse.papyrus.views.properties.contexts.impl;
 
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.EModelElementImpl;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
 import org.eclipse.papyrus.views.properties.contexts.Context;
 import org.eclipse.papyrus.views.properties.contexts.ContextsPackage;
 import org.eclipse.papyrus.views.properties.contexts.DataContextRoot;
@@ -159,11 +148,11 @@ public class ContextImpl extends EModelElementImpl implements Context {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<View> getViews() {
-		if (views == null) {
-			views = new EObjectContainmentWithInverseEList<View>(View.class, this, ContextsPackage.CONTEXT__VIEWS, ContextsPackage.VIEW__CONTEXT);
+	public EList<Context> getDependencies() {
+		if (dependencies == null) {
+			dependencies = new EObjectResolvingEList<Context>(Context.class, this, ContextsPackage.CONTEXT__DEPENDENCIES);
 		}
-		return views;
+		return dependencies;
 	}
 
 	/**
@@ -183,11 +172,11 @@ public class ContextImpl extends EModelElementImpl implements Context {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<DataContextRoot> getDataContexts() {
-		if (dataContexts == null) {
-			dataContexts = new EObjectContainmentEList<DataContextRoot>(DataContextRoot.class, this, ContextsPackage.CONTEXT__DATA_CONTEXTS);
+	public EList<View> getViews() {
+		if (views == null) {
+			views = new EObjectContainmentWithInverseEList<View>(View.class, this, ContextsPackage.CONTEXT__VIEWS, ContextsPackage.VIEW__CONTEXT);
 		}
-		return dataContexts;
+		return views;
 	}
 
 	/**
@@ -195,11 +184,11 @@ public class ContextImpl extends EModelElementImpl implements Context {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Context> getDependencies() {
-		if (dependencies == null) {
-			dependencies = new EObjectResolvingEList<Context>(Context.class, this, ContextsPackage.CONTEXT__DEPENDENCIES);
+	public EList<DataContextRoot> getDataContexts() {
+		if (dataContexts == null) {
+			dataContexts = new EObjectContainmentEList<DataContextRoot>(DataContextRoot.class, this, ContextsPackage.CONTEXT__DATA_CONTEXTS);
 		}
-		return dependencies;
+		return dataContexts;
 	}
 
 	/**

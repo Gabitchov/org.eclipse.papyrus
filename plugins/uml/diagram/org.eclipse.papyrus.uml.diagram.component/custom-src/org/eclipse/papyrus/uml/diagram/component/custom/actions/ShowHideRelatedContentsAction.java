@@ -22,8 +22,8 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.actions.AbstractShowHideAction;
 import org.eclipse.papyrus.uml.diagram.common.actions.ShowHideContentsAction;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideRelatedContentsEditPolicy;
-import org.eclipse.papyrus.uml.diagram.common.providers.EditorLabelProvider;
 import org.eclipse.papyrus.uml.diagram.component.custom.messages.Messages;
+import org.eclipse.papyrus.uml.tools.providers.UMLLabelProvider;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Type;
@@ -45,13 +45,13 @@ public class ShowHideRelatedContentsAction extends ShowHideContentsAction {
 
 	/**
 	 * Inits the action.
-	 *
+	 * 
 	 * @see org.eclipse.papyrus.uml.diagram.common.actions.AbstractShowHideAction#initAction()
 	 */
 	@Override
 	protected void initAction() {
 		super.initAction();
-		setEditorLabelProvider(new EditorLabelProvider());
+		setEditorLabelProvider(new UMLLabelProvider());
 		this.representations = new ArrayList<AbstractShowHideAction.EditPartRepresentation>();
 
 		for(EditPart current : this.selectedElements) {
@@ -76,8 +76,9 @@ public class ShowHideRelatedContentsAction extends ShowHideContentsAction {
 
 		/**
 		 * Gets the parent.
-		 *
-		 * @param element the element
+		 * 
+		 * @param element
+		 *        the element
 		 * @return the parent
 		 * @see org.eclipse.jface.viewers.ITreeContentProvider#getParent(java.lang.Object)
 		 */
