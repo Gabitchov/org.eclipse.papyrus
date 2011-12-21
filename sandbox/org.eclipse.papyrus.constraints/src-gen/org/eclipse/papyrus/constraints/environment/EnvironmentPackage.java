@@ -41,7 +41,7 @@ public interface EnvironmentPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://www.eclipse.org/papyrus/constraints/environment";
+	String eNS_URI = "http://www.eclipse.org/papyrus/constraints/environment/0.9";
 
 	/**
 	 * The package namespace name.

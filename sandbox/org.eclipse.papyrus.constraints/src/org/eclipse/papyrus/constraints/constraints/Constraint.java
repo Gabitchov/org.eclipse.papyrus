@@ -11,6 +11,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.constraints.constraints;
 
+import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.constraints.ConstraintDescriptor;
 import org.eclipse.papyrus.constraints.DisplayUnit;
 
@@ -21,6 +22,9 @@ import org.eclipse.papyrus.constraints.DisplayUnit;
  * @author Camille Letavernier
  * 
  */
+//TODO : To be refactored
+//The constraint framework should be accessible by other plug-ins which don't
+//necessarily depend on oep.properties
 public interface Constraint {
 
 	/**
@@ -44,12 +48,23 @@ public interface Constraint {
 	public boolean match(Object selection);
 
 	/**
-	 * Returns the DisplayUnit associated to this constraint
+	 * Tests if this constraint matches the given selection
+	 * 
+	 * @param selection
+	 *        The selection to be tested against this constraint
+	 * @return
+	 *         True if this constraint matches the given selection
+	 */
+	public boolean match(IStructuredSelection selection);
+
+	/**
+	 * Returns the view associated to this constraint, or null if the constraint is associated to another
+	 * kind of display unit (e.g. a section)
 	 * 
 	 * @return
 	 *         The view associated to this constraint
 	 */
-	public DisplayUnit getDisplay();
+	public DisplayUnit getDisplayUnit();
 
 	/**
 	 * Tests if this constraint should override the given constraint. If true,

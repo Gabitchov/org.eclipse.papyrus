@@ -175,10 +175,10 @@ public class SandboxDialog extends TrayDialog {
 		buttonsPart.setLayout(new GridLayout());
 
 		Button right = new Button(buttonsPart, SWT.PUSH);
-		right.setImage(Activator.getDefault().getImage("org.eclipse.papyrus.widgets", "/icons/arrow_right.gif"));
+		right.setImage(Activator.getDefault().getImage("org.eclipse.papyrus.infra.widgets", "/icons/arrow_right.gif"));
 
 		Button left = new Button(buttonsPart, SWT.PUSH);
-		left.setImage(Activator.getDefault().getImage("org.eclipse.papyrus.widgets", "/icons/arrow_left.gif"));
+		left.setImage(Activator.getDefault().getImage("org.eclipse.papyrus.infra.widgets", "/icons/arrow_left.gif"));
 	}
 
 	private void createEditorPart(Composite topPart) {

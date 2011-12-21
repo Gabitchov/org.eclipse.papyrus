@@ -56,7 +56,7 @@ public class EMFInstanceOfConstraint extends AbstractConstraint {
 		EMFInstanceOfConstraint constraint = (EMFInstanceOfConstraint)otherConstraint;
 		EClass thisClass = EMFHelper.getEClass(nsUri, className);
 		EClass otherClass = EMFHelper.getEClass(constraint.nsUri, constraint.className);
-		boolean result = (!equals(constraint)) && EMFHelper.isSubclass(thisClass, otherClass);
+		boolean result = (!equals(constraint)) && EMFHelper.isSubclass(thisClass, otherClass) && thisClass != otherClass;
 
 		return result || super.overrides(constraint);
 	}

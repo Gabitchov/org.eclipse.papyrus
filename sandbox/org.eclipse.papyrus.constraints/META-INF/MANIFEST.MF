@@ -9,6 +9,7 @@ Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.papyrus.constraints,
+ org.eclipse.papyrus.constraints.constraints,
  org.eclipse.papyrus.constraints.environment,
  org.eclipse.papyrus.constraints.environment.impl,
  org.eclipse.papyrus.constraints.environment.util,
@@ -23,6 +24,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.facet.infra.common.core;bundle-version="0.1.0",
  org.eclipse.emf.facet.infra.browser.custom.core;bundle-version="0.1.0",
  org.eclipse.papyrus.infra.core.log;bundle-version="0.9.0",
- org.eclipse.papyrus.infra.emf;bundle-version="0.9.0"
+ org.eclipse.papyrus.infra.emf;bundle-version="0.9.0",
+ org.eclipse.papyrus.infra.tools;bundle-version="0.9.0";visibility:=reexport
 Bundle-ActivationPolicy: lazy
 Eclipse-BuddyPolicy: dependent

@@ -1,27 +1,70 @@
 <?xml version="1.0" encoding="ASCII"?>
-<newchild:NewchildConfiguration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:constraints="http://www.eclipse.org/papyrus/constraints" xmlns:ncpolicy="http://www.eclipse.org/papyrus/newchild/policy" xmlns:newchild="http://www.eclipse.org/papyrus/newchild" name="Standard">
+<newchild:NewchildConfiguration
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:constraints="http://www.eclipse.org/papyrus/constraints/0.9"
+    xmlns:ncpolicy="http://www.eclipse.org/papyrus/newchild/policy"
+    xmlns:newchild="http://www.eclipse.org/papyrus/newchild"
+    name="Standard">
   <roots name="EObject">
-    <constraints xsi:type="constraints:SimpleConstraint" name="isEObject">
-      <constraintType href="../../../plugin/org.eclipse.papyrus.constraints/Model/ConstraintEnvironment.xmi#//@constraintTypes.0"/>
-      <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/emf/2002/Ecore"/>
-      <properties xsi:type="constraints:ValueProperty" name="className" value="EObject"/>
+    <constraints
+        xsi:type="constraints:SimpleConstraint"
+        name="isEObject">
+      <constraintType
+          href="ppe:/environment/org.eclipse.papyrus.views.properties/Model/Environment.xmi#//@constraintTypes.0"/>
+      <properties
+          xsi:type="constraints:ValueProperty"
+          name="nsUri"
+          value="http://www.eclipse.org/emf/2002/Ecore"/>
+      <properties
+          xsi:type="constraints:ValueProperty"
+          name="className"
+          value="EObject"/>
     </constraints>
-    <groups before="" after="">
-      <submenus xsi:type="ncpolicy:NewEMFChildMenu" id="" name="New child" icon="/org.eclipse.papyrus.properties.model.edit/icons/full/obj16/Customization.gif" layout="auto"/>
-      <submenus xsi:type="ncpolicy:NewEMFChildMenu" name="New sibling" icon="/org.eclipse.papyrus.properties.model.edit/icons/full/obj16/Customization.gif" createIn="parent" layout="auto"/>
-      <submenus xsi:type="newchild:MenuAction">
-        <elementType href="../../../plugin/org.eclipse.papyrus.palette.emf.test/model/Test1.extendedtypes#//@elementType.0"/>
+    <groups
+        before=""
+        after="">
+      <submenus
+          xsi:type="ncpolicy:NewEMFChildMenu"
+          id=""
+          name="New child"
+          icon="/org.eclipse.papyrus.customization.properties/icons/Customization.gif"
+          layout="auto"/>
+      <submenus
+          xsi:type="ncpolicy:NewEMFChildMenu"
+          name="New sibling"
+          icon="/org.eclipse.papyrus.customization.properties/icons/Customization.gif"
+          createIn="parent"
+          layout="auto"/>
+      <submenus
+          xsi:type="newchild:MenuAction">
+        <elementType
+            href="platform:/resource/papyrus.test/Test1.extendedtypes#//@elementType.0"/>
       </submenus>
     </groups>
   </roots>
-  <newChildPolicies name="FilterNewConstraints">
-    <constraints xsi:type="constraints:SimpleConstraint" name="isDisplayUnit">
-      <constraintType href="../../../plugin/org.eclipse.papyrus.constraints/Model/ConstraintEnvironment.xmi#//@constraintTypes.0"/>
-      <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/constraints"/>
-      <properties xsi:type="constraints:ValueProperty" name="className" value="DisplayUnit"/>
+  <newChildPolicies
+      name="FilterNewConstraints">
+    <constraints
+        xsi:type="constraints:SimpleConstraint"
+        name="isDisplayUnit">
+      <constraintType
+          href="platform:/plugin/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties
+          xsi:type="constraints:ValueProperty"
+          name="nsUri"
+          value="http://www.eclipse.org/papyrus/constraints/0.9"/>
+      <properties
+          xsi:type="constraints:ValueProperty"
+          name="className"
+          value="DisplayUnit"/>
     </constraints>
-    <policies xsi:type="ncpolicy:FilterPolicy" name="removeConstraintDescriptors">
-      <eClasses href="../../../plugin/org.eclipse.papyrus.constraints/Model/Constraints.ecore#//ConstraintDescriptor"/>
+    <policies
+        xsi:type="ncpolicy:FilterPolicy"
+        name="removeConstraintDescriptors">
+      <eClasses
+          href="platform:/plugin/org.eclipse.papyrus.constraints/Model/Constraints.ecore#//ConstraintDescriptor"/>
     </policies>
   </newChildPolicies>
 </newchild:NewchildConfiguration>

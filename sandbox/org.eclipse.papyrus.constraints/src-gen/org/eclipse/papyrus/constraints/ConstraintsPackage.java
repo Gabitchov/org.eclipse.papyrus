@@ -16,21 +16,24 @@ import org.eclipse.emf.ecore.EReference;
  * The <b>Package</b> for the model.
  * It contains accessors for the meta objects to represent
  * <ul>
- *   <li>each class,</li>
- *   <li>each feature of each class,</li>
- *   <li>each enum,</li>
- *   <li>and each data type</li>
+ * <li>each class,</li>
+ * <li>each feature of each class,</li>
+ * <li>each enum,</li>
+ * <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
+ * 
  * @see org.eclipse.papyrus.constraints.ConstraintsFactory
  * @model kind="package"
  * @generated
  */
 public interface ConstraintsPackage extends EPackage {
+
 	/**
 	 * The package name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	String eNAME = "constraints";
@@ -39,14 +42,16 @@ public interface ConstraintsPackage extends EPackage {
 	 * The package namespace URI.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	String eNS_URI = "http://www.eclipse.org/papyrus/constraints";
+	String eNS_URI = "http://www.eclipse.org/papyrus/constraints/0.9";
 
 	/**
 	 * The package namespace name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	String eNS_PREFIX = "constraints";
@@ -55,6 +60,7 @@ public interface ConstraintsPackage extends EPackage {
 	 * The singleton instance of the package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	ConstraintsPackage eINSTANCE = org.eclipse.papyrus.constraints.impl.ConstraintsPackageImpl.init();
@@ -63,6 +69,7 @@ public interface ConstraintsPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.constraints.impl.DisplayUnitImpl <em>Display Unit</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.papyrus.constraints.impl.DisplayUnitImpl
 	 * @see org.eclipse.papyrus.constraints.impl.ConstraintsPackageImpl#getDisplayUnit()
 	 * @generated
@@ -73,6 +80,7 @@ public interface ConstraintsPackage extends EPackage {
 	 * The feature id for the '<em><b>Constraints</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -82,6 +90,7 @@ public interface ConstraintsPackage extends EPackage {
 	 * The feature id for the '<em><b>Element Multiplicity</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -91,6 +100,7 @@ public interface ConstraintsPackage extends EPackage {
 	 * The number of structural features of the '<em>Display Unit</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -100,6 +110,7 @@ public interface ConstraintsPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.constraints.impl.ConstraintDescriptorImpl <em>Constraint Descriptor</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.papyrus.constraints.impl.ConstraintDescriptorImpl
 	 * @see org.eclipse.papyrus.constraints.impl.ConstraintsPackageImpl#getConstraintDescriptor()
 	 * @generated
@@ -110,6 +121,7 @@ public interface ConstraintsPackage extends EPackage {
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -119,6 +131,7 @@ public interface ConstraintsPackage extends EPackage {
 	 * The feature id for the '<em><b>Display</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -128,6 +141,7 @@ public interface ConstraintsPackage extends EPackage {
 	 * The feature id for the '<em><b>Overrideable</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -137,6 +151,7 @@ public interface ConstraintsPackage extends EPackage {
 	 * The feature id for the '<em><b>Overridden Constraints</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -146,6 +161,7 @@ public interface ConstraintsPackage extends EPackage {
 	 * The number of structural features of the '<em>Constraint Descriptor</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -155,6 +171,7 @@ public interface ConstraintsPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.constraints.impl.SimpleConstraintImpl <em>Simple Constraint</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.papyrus.constraints.impl.SimpleConstraintImpl
 	 * @see org.eclipse.papyrus.constraints.impl.ConstraintsPackageImpl#getSimpleConstraint()
 	 * @generated
@@ -165,6 +182,7 @@ public interface ConstraintsPackage extends EPackage {
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -174,6 +192,7 @@ public interface ConstraintsPackage extends EPackage {
 	 * The feature id for the '<em><b>Display</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -183,6 +202,7 @@ public interface ConstraintsPackage extends EPackage {
 	 * The feature id for the '<em><b>Overrideable</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -192,6 +212,7 @@ public interface ConstraintsPackage extends EPackage {
 	 * The feature id for the '<em><b>Overridden Constraints</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -201,6 +222,7 @@ public interface ConstraintsPackage extends EPackage {
 	 * The feature id for the '<em><b>Constraint Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -210,6 +232,7 @@ public interface ConstraintsPackage extends EPackage {
 	 * The feature id for the '<em><b>Properties</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -219,6 +242,7 @@ public interface ConstraintsPackage extends EPackage {
 	 * The number of structural features of the '<em>Simple Constraint</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -228,6 +252,7 @@ public interface ConstraintsPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.constraints.impl.CompositeConstraintImpl <em>Composite Constraint</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.papyrus.constraints.impl.CompositeConstraintImpl
 	 * @see org.eclipse.papyrus.constraints.impl.ConstraintsPackageImpl#getCompositeConstraint()
 	 * @generated
@@ -238,6 +263,7 @@ public interface ConstraintsPackage extends EPackage {
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -247,6 +273,7 @@ public interface ConstraintsPackage extends EPackage {
 	 * The feature id for the '<em><b>Display</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -256,6 +283,7 @@ public interface ConstraintsPackage extends EPackage {
 	 * The feature id for the '<em><b>Overrideable</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -265,6 +293,7 @@ public interface ConstraintsPackage extends EPackage {
 	 * The feature id for the '<em><b>Overridden Constraints</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -274,6 +303,7 @@ public interface ConstraintsPackage extends EPackage {
 	 * The feature id for the '<em><b>Constraints</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -283,6 +313,7 @@ public interface ConstraintsPackage extends EPackage {
 	 * The number of structural features of the '<em>Composite Constraint</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -292,6 +323,7 @@ public interface ConstraintsPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.constraints.impl.ConfigPropertyImpl <em>Config Property</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.papyrus.constraints.impl.ConfigPropertyImpl
 	 * @see org.eclipse.papyrus.constraints.impl.ConstraintsPackageImpl#getConfigProperty()
 	 * @generated
@@ -302,6 +334,7 @@ public interface ConstraintsPackage extends EPackage {
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -311,6 +344,7 @@ public interface ConstraintsPackage extends EPackage {
 	 * The number of structural features of the '<em>Config Property</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -320,6 +354,7 @@ public interface ConstraintsPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.constraints.impl.ValuePropertyImpl <em>Value Property</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.papyrus.constraints.impl.ValuePropertyImpl
 	 * @see org.eclipse.papyrus.constraints.impl.ConstraintsPackageImpl#getValueProperty()
 	 * @generated
@@ -330,6 +365,7 @@ public interface ConstraintsPackage extends EPackage {
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -339,6 +375,7 @@ public interface ConstraintsPackage extends EPackage {
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -348,6 +385,7 @@ public interface ConstraintsPackage extends EPackage {
 	 * The number of structural features of the '<em>Value Property</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -357,6 +395,7 @@ public interface ConstraintsPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.constraints.impl.ReferencePropertyImpl <em>Reference Property</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.papyrus.constraints.impl.ReferencePropertyImpl
 	 * @see org.eclipse.papyrus.constraints.impl.ConstraintsPackageImpl#getReferenceProperty()
 	 * @generated
@@ -367,6 +406,7 @@ public interface ConstraintsPackage extends EPackage {
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -376,6 +416,7 @@ public interface ConstraintsPackage extends EPackage {
 	 * The feature id for the '<em><b>Value</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -385,6 +426,7 @@ public interface ConstraintsPackage extends EPackage {
 	 * The number of structural features of the '<em>Reference Property</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -395,6 +437,7 @@ public interface ConstraintsPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.constraints.DisplayUnit <em>Display Unit</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for class '<em>Display Unit</em>'.
 	 * @see org.eclipse.papyrus.constraints.DisplayUnit
 	 * @generated
@@ -402,9 +445,11 @@ public interface ConstraintsPackage extends EPackage {
 	EClass getDisplayUnit();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.constraints.DisplayUnit#getConstraints <em>Constraints</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.constraints.DisplayUnit#getConstraints
+	 * <em>Constraints</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the containment reference list '<em>Constraints</em>'.
 	 * @see org.eclipse.papyrus.constraints.DisplayUnit#getConstraints()
 	 * @see #getDisplayUnit()
@@ -413,9 +458,11 @@ public interface ConstraintsPackage extends EPackage {
 	EReference getDisplayUnit_Constraints();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.constraints.DisplayUnit#getElementMultiplicity <em>Element Multiplicity</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.constraints.DisplayUnit#getElementMultiplicity
+	 * <em>Element Multiplicity</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the attribute '<em>Element Multiplicity</em>'.
 	 * @see org.eclipse.papyrus.constraints.DisplayUnit#getElementMultiplicity()
 	 * @see #getDisplayUnit()
@@ -427,6 +474,7 @@ public interface ConstraintsPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.constraints.ConstraintDescriptor <em>Constraint Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for class '<em>Constraint Descriptor</em>'.
 	 * @see org.eclipse.papyrus.constraints.ConstraintDescriptor
 	 * @generated
@@ -437,6 +485,7 @@ public interface ConstraintsPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.constraints.ConstraintDescriptor#getName <em>Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the attribute '<em>Name</em>'.
 	 * @see org.eclipse.papyrus.constraints.ConstraintDescriptor#getName()
 	 * @see #getConstraintDescriptor()
@@ -448,6 +497,7 @@ public interface ConstraintsPackage extends EPackage {
 	 * Returns the meta object for the container reference '{@link org.eclipse.papyrus.constraints.ConstraintDescriptor#getDisplay <em>Display</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the container reference '<em>Display</em>'.
 	 * @see org.eclipse.papyrus.constraints.ConstraintDescriptor#getDisplay()
 	 * @see #getConstraintDescriptor()
@@ -459,6 +509,7 @@ public interface ConstraintsPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.constraints.ConstraintDescriptor#isOverrideable <em>Overrideable</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the attribute '<em>Overrideable</em>'.
 	 * @see org.eclipse.papyrus.constraints.ConstraintDescriptor#isOverrideable()
 	 * @see #getConstraintDescriptor()
@@ -467,9 +518,11 @@ public interface ConstraintsPackage extends EPackage {
 	EAttribute getConstraintDescriptor_Overrideable();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.constraints.ConstraintDescriptor#getOverriddenConstraints <em>Overridden Constraints</em>}'.
+	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.constraints.ConstraintDescriptor#getOverriddenConstraints
+	 * <em>Overridden Constraints</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the reference list '<em>Overridden Constraints</em>'.
 	 * @see org.eclipse.papyrus.constraints.ConstraintDescriptor#getOverriddenConstraints()
 	 * @see #getConstraintDescriptor()
@@ -481,6 +534,7 @@ public interface ConstraintsPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.constraints.SimpleConstraint <em>Simple Constraint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for class '<em>Simple Constraint</em>'.
 	 * @see org.eclipse.papyrus.constraints.SimpleConstraint
 	 * @generated
@@ -488,9 +542,11 @@ public interface ConstraintsPackage extends EPackage {
 	EClass getSimpleConstraint();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.constraints.SimpleConstraint#getConstraintType <em>Constraint Type</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.constraints.SimpleConstraint#getConstraintType <em>Constraint Type</em>}
+	 * '.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the reference '<em>Constraint Type</em>'.
 	 * @see org.eclipse.papyrus.constraints.SimpleConstraint#getConstraintType()
 	 * @see #getSimpleConstraint()
@@ -499,9 +555,11 @@ public interface ConstraintsPackage extends EPackage {
 	EReference getSimpleConstraint_ConstraintType();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.constraints.SimpleConstraint#getProperties <em>Properties</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.constraints.SimpleConstraint#getProperties
+	 * <em>Properties</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the containment reference list '<em>Properties</em>'.
 	 * @see org.eclipse.papyrus.constraints.SimpleConstraint#getProperties()
 	 * @see #getSimpleConstraint()
@@ -513,6 +571,7 @@ public interface ConstraintsPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.constraints.CompositeConstraint <em>Composite Constraint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for class '<em>Composite Constraint</em>'.
 	 * @see org.eclipse.papyrus.constraints.CompositeConstraint
 	 * @generated
@@ -520,9 +579,11 @@ public interface ConstraintsPackage extends EPackage {
 	EClass getCompositeConstraint();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.constraints.CompositeConstraint#getConstraints <em>Constraints</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.constraints.CompositeConstraint#getConstraints
+	 * <em>Constraints</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the containment reference list '<em>Constraints</em>'.
 	 * @see org.eclipse.papyrus.constraints.CompositeConstraint#getConstraints()
 	 * @see #getCompositeConstraint()
@@ -534,6 +595,7 @@ public interface ConstraintsPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.constraints.ConfigProperty <em>Config Property</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for class '<em>Config Property</em>'.
 	 * @see org.eclipse.papyrus.constraints.ConfigProperty
 	 * @generated
@@ -544,6 +606,7 @@ public interface ConstraintsPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.constraints.ConfigProperty#getName <em>Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the attribute '<em>Name</em>'.
 	 * @see org.eclipse.papyrus.constraints.ConfigProperty#getName()
 	 * @see #getConfigProperty()
@@ -555,6 +618,7 @@ public interface ConstraintsPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.constraints.ValueProperty <em>Value Property</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for class '<em>Value Property</em>'.
 	 * @see org.eclipse.papyrus.constraints.ValueProperty
 	 * @generated
@@ -565,6 +629,7 @@ public interface ConstraintsPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.constraints.ValueProperty#getValue <em>Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the attribute '<em>Value</em>'.
 	 * @see org.eclipse.papyrus.constraints.ValueProperty#getValue()
 	 * @see #getValueProperty()
@@ -576,6 +641,7 @@ public interface ConstraintsPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.constraints.ReferenceProperty <em>Reference Property</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for class '<em>Reference Property</em>'.
 	 * @see org.eclipse.papyrus.constraints.ReferenceProperty
 	 * @generated
@@ -586,6 +652,7 @@ public interface ConstraintsPackage extends EPackage {
 	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.constraints.ReferenceProperty#getValue <em>Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the reference '<em>Value</em>'.
 	 * @see org.eclipse.papyrus.constraints.ReferenceProperty#getValue()
 	 * @see #getReferenceProperty()
@@ -597,6 +664,7 @@ public interface ConstraintsPackage extends EPackage {
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the factory that creates the instances of the model.
 	 * @generated
 	 */
@@ -606,19 +674,22 @@ public interface ConstraintsPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * Defines literals for the meta objects that represent
 	 * <ul>
-	 *   <li>each class,</li>
-	 *   <li>each feature of each class,</li>
-	 *   <li>each enum,</li>
-	 *   <li>and each data type</li>
+	 * <li>each class,</li>
+	 * <li>each feature of each class,</li>
+	 * <li>each enum,</li>
+	 * <li>and each data type</li>
 	 * </ul>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	interface Literals {
+
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.constraints.impl.DisplayUnitImpl <em>Display Unit</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @see org.eclipse.papyrus.constraints.impl.DisplayUnitImpl
 		 * @see org.eclipse.papyrus.constraints.impl.ConstraintsPackageImpl#getDisplayUnit()
 		 * @generated
@@ -629,6 +700,7 @@ public interface ConstraintsPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Constraints</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EReference DISPLAY_UNIT__CONSTRAINTS = eINSTANCE.getDisplayUnit_Constraints();
@@ -637,14 +709,17 @@ public interface ConstraintsPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Element Multiplicity</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EAttribute DISPLAY_UNIT__ELEMENT_MULTIPLICITY = eINSTANCE.getDisplayUnit_ElementMultiplicity();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.constraints.impl.ConstraintDescriptorImpl <em>Constraint Descriptor</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.constraints.impl.ConstraintDescriptorImpl <em>Constraint Descriptor</em>}'
+		 * class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @see org.eclipse.papyrus.constraints.impl.ConstraintDescriptorImpl
 		 * @see org.eclipse.papyrus.constraints.impl.ConstraintsPackageImpl#getConstraintDescriptor()
 		 * @generated
@@ -655,6 +730,7 @@ public interface ConstraintsPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EAttribute CONSTRAINT_DESCRIPTOR__NAME = eINSTANCE.getConstraintDescriptor_Name();
@@ -663,6 +739,7 @@ public interface ConstraintsPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Display</b></em>' container reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EReference CONSTRAINT_DESCRIPTOR__DISPLAY = eINSTANCE.getConstraintDescriptor_Display();
@@ -671,6 +748,7 @@ public interface ConstraintsPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Overrideable</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EAttribute CONSTRAINT_DESCRIPTOR__OVERRIDEABLE = eINSTANCE.getConstraintDescriptor_Overrideable();
@@ -679,6 +757,7 @@ public interface ConstraintsPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Overridden Constraints</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EReference CONSTRAINT_DESCRIPTOR__OVERRIDDEN_CONSTRAINTS = eINSTANCE.getConstraintDescriptor_OverriddenConstraints();
@@ -687,6 +766,7 @@ public interface ConstraintsPackage extends EPackage {
 		 * The meta object literal for the '{@link org.eclipse.papyrus.constraints.impl.SimpleConstraintImpl <em>Simple Constraint</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @see org.eclipse.papyrus.constraints.impl.SimpleConstraintImpl
 		 * @see org.eclipse.papyrus.constraints.impl.ConstraintsPackageImpl#getSimpleConstraint()
 		 * @generated
@@ -697,6 +777,7 @@ public interface ConstraintsPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Constraint Type</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EReference SIMPLE_CONSTRAINT__CONSTRAINT_TYPE = eINSTANCE.getSimpleConstraint_ConstraintType();
@@ -705,6 +786,7 @@ public interface ConstraintsPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Properties</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EReference SIMPLE_CONSTRAINT__PROPERTIES = eINSTANCE.getSimpleConstraint_Properties();
@@ -713,6 +795,7 @@ public interface ConstraintsPackage extends EPackage {
 		 * The meta object literal for the '{@link org.eclipse.papyrus.constraints.impl.CompositeConstraintImpl <em>Composite Constraint</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @see org.eclipse.papyrus.constraints.impl.CompositeConstraintImpl
 		 * @see org.eclipse.papyrus.constraints.impl.ConstraintsPackageImpl#getCompositeConstraint()
 		 * @generated
@@ -723,6 +806,7 @@ public interface ConstraintsPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Constraints</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EReference COMPOSITE_CONSTRAINT__CONSTRAINTS = eINSTANCE.getCompositeConstraint_Constraints();
@@ -731,6 +815,7 @@ public interface ConstraintsPackage extends EPackage {
 		 * The meta object literal for the '{@link org.eclipse.papyrus.constraints.impl.ConfigPropertyImpl <em>Config Property</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @see org.eclipse.papyrus.constraints.impl.ConfigPropertyImpl
 		 * @see org.eclipse.papyrus.constraints.impl.ConstraintsPackageImpl#getConfigProperty()
 		 * @generated
@@ -741,6 +826,7 @@ public interface ConstraintsPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EAttribute CONFIG_PROPERTY__NAME = eINSTANCE.getConfigProperty_Name();
@@ -749,6 +835,7 @@ public interface ConstraintsPackage extends EPackage {
 		 * The meta object literal for the '{@link org.eclipse.papyrus.constraints.impl.ValuePropertyImpl <em>Value Property</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @see org.eclipse.papyrus.constraints.impl.ValuePropertyImpl
 		 * @see org.eclipse.papyrus.constraints.impl.ConstraintsPackageImpl#getValueProperty()
 		 * @generated
@@ -759,6 +846,7 @@ public interface ConstraintsPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EAttribute VALUE_PROPERTY__VALUE = eINSTANCE.getValueProperty_Value();
@@ -767,6 +855,7 @@ public interface ConstraintsPackage extends EPackage {
 		 * The meta object literal for the '{@link org.eclipse.papyrus.constraints.impl.ReferencePropertyImpl <em>Reference Property</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @see org.eclipse.papyrus.constraints.impl.ReferencePropertyImpl
 		 * @see org.eclipse.papyrus.constraints.impl.ConstraintsPackageImpl#getReferenceProperty()
 		 * @generated
@@ -777,6 +866,7 @@ public interface ConstraintsPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Value</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EReference REFERENCE_PROPERTY__VALUE = eINSTANCE.getReferenceProperty_Value();

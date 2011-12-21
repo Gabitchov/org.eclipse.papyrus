@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jface.action.IMenuManager;
-import org.eclipse.papyrus.newchild.Activator;
+import org.eclipse.papyrus.infra.tools.util.ClassLoaderHelper;
 import org.eclipse.papyrus.newchild.ncpolicy.CustomPolicy;
 import org.eclipse.papyrus.newchild.ncpolicy.FilterPolicy;
 import org.eclipse.papyrus.newchild.ncpolicy.NewChildPolicy;
@@ -49,20 +49,7 @@ public interface NewChildFillPolicy {
 				result = new FilterFillPolicy();
 			} else if(policy instanceof CustomPolicy) {
 				String className = ((CustomPolicy)policy).getClassName();
-				try {
-					return Class.forName(className).asSubclass(NewChildFillPolicy.class).newInstance();
-				} catch (InstantiationException ex) {
-					Activator.log.error(ex);
-				} catch (IllegalAccessException ex) {
-					Activator.log.error(ex);
-				} catch (ClassNotFoundException ex) {
-					Activator.log.error(ex);
-				} catch (ClassCastException ex) {
-					String message = "The CustomPolicy must implement " + NewChildFillPolicy.class.getName() + ". ";
-					message += "Class : " + className;
-					Activator.log.error(message, ex);
-					Activator.log.error(ex);
-				}
+				return ClassLoaderHelper.newInstance(className, NewChildFillPolicy.class);
 			}
 
 			if(result != null) {

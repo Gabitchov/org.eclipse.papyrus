@@ -24,7 +24,7 @@ import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.extendedtypes.ExtendedEditHelperAdvice;
 import org.eclipse.papyrus.infra.extendedtypes.ExtendedElementTypeConfiguration;
 import org.eclipse.papyrus.infra.extendedtypes.ExtendedSemanticTypeDescriptor;
-import org.eclipse.papyrus.infra.extendedtypes.types.ExtendedHintedTypeFactory;
+import org.eclipse.papyrus.infra.extendedtypes.ExtendedTypesRegistry;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 
@@ -42,8 +42,9 @@ public class ExtendedTypeAction extends Action {
 	public static ExtendedEditHelperAdvice advice = new ExtendedEditHelperAdvice();
 
 	public ExtendedTypeAction(EObject parent, ExtendedElementTypeConfiguration elementTypeConfiguration, EditingDomain domain) {
-		this.descriptor = new ExtendedSemanticTypeDescriptor(elementTypeConfiguration);
-		this.elementType = ExtendedHintedTypeFactory.getInstance().createSpecializationType(descriptor);
+		this.elementType = ExtendedTypesRegistry.getInstance().getType(elementTypeConfiguration.getId());
+		//		this.descriptor = new ExtendedSemanticTypeDescriptor(elementTypeConfiguration);
+		//		this.elementType = ExtendedHintedTypeFactory.getInstance().createSpecializationType(descriptor);
 		this.parent = parent;
 		this.domain = domain;
 

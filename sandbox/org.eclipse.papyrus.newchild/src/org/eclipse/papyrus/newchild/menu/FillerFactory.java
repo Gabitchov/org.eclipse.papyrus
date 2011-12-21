@@ -11,6 +11,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.newchild.menu;
 
+import org.eclipse.papyrus.infra.tools.util.ClassLoaderHelper;
 import org.eclipse.papyrus.newchild.Activator;
 import org.eclipse.papyrus.newchild.CustomFiller;
 import org.eclipse.papyrus.newchild.Menu;
@@ -46,25 +47,10 @@ public class FillerFactory {
 
 		if(menuItem instanceof CustomFiller) {
 			String className = ((CustomFiller)menuItem).getClassName();
-			if (className != null){
-				try {
-					Class<? extends CustomFillElement> clazz = Class.forName(className).asSubclass(CustomFillElement.class);
-					CustomFillElement filler = clazz.newInstance();
-					filler.setParentGroup(parentGroup);
-					filler.setMenuItem((CustomFiller)menuItem);
-					return filler;
-				} catch (ClassNotFoundException ex) {
-					Activator.log.error(ex);
-				} catch (InstantiationException ex) {
-					Activator.log.error(ex);
-				} catch (IllegalAccessException ex) {
-					Activator.log.error(ex);
-				} catch (ClassCastException ex) {
-					String message = "The CustomFiller must implement " + CustomFillElement.class.getName() + ". ";
-					message += "Class : " + className;
-					Activator.log.error(message, ex);
-				}
-			}
+			CustomFillElement filler = ClassLoaderHelper.newInstance(className, CustomFillElement.class);
+			filler.setParentGroup(parentGroup);
+			filler.setMenuItem((CustomFiller)menuItem);
+			return filler;
 		}
 
 		Activator.log.warn("Unknown MenuItem type : " + menuItem.eClass().getName());

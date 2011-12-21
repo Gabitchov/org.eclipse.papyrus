@@ -17,6 +17,7 @@ import org.eclipse.papyrus.constraints.ConstraintDescriptor;
 import org.eclipse.papyrus.constraints.SimpleConstraint;
 import org.eclipse.papyrus.constraints.constraints.CompoundConstraint;
 import org.eclipse.papyrus.constraints.constraints.Constraint;
+import org.eclipse.papyrus.infra.tools.util.ClassLoaderHelper;
 
 
 /**
@@ -66,13 +67,13 @@ public class ConstraintFactory {
 		String className = model.getConstraintType().getConstraintClass();
 		Constraint constraint = null;
 
-		try {
-			constraint = (Constraint)Class.forName(className).newInstance();
-			constraint.setConstraintDescriptor(model);
-		} catch (Exception ex) {
-			Activator.log.error("Cannot load constraint " + model.getName(), ex); //$NON-NLS-1$
+		constraint = ClassLoaderHelper.newInstance(className, Constraint.class);
+		if(constraint == null) {
+			Activator.log.warn("Cannot load constraint " + model.getName()); //$NON-NLS-1$
+			return null;
 		}
 
+		constraint.setConstraintDescriptor(model);
 		return constraint;
 	}
 

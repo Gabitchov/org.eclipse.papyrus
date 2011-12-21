@@ -31,7 +31,7 @@ public class EnvironmentFactoryImpl extends EFactoryImpl implements EnvironmentF
 	 */
 	public static EnvironmentFactory init() {
 		try {
-			EnvironmentFactory theEnvironmentFactory = (EnvironmentFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/constraints/environment"); 
+			EnvironmentFactory theEnvironmentFactory = (EnvironmentFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/constraints/environment/0.9"); 
 			if (theEnvironmentFactory != null) {
 				return theEnvironmentFactory;
 			}

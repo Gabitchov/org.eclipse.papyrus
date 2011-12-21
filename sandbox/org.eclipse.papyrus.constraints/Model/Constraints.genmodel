@@ -1,12 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<genmodel:GenModel xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.papyrus.constraints/src-gen"
-    editDirectory="/org.eclipse.papyrus.constraints.edit/src-gen" editorDirectory="/org.eclipse.papyrus.constraints.editor/src-gen"
-    modelPluginID="org.eclipse.papyrus.constraints" modelName="Constraints" testsDirectory="/org.eclipse.papyrus.constraints.tests/src-gen"
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.papyrus.constraints/src-gen" editDirectory="/org.eclipse.papyrus.constraints.edit/src-gen"
+    editorDirectory="/org.eclipse.papyrus.constraints.editor/src-gen" modelPluginID="org.eclipse.papyrus.constraints"
+    modelName="Constraints" testsDirectory="/org.eclipse.papyrus.constraints.tests/src-gen"
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false">
   <foreignModel>Constraints.ecore</foreignModel>
   <genPackages prefix="Constraints" basePackage="org.eclipse.papyrus" disposableProviderFactory="true"
       ecorePackage="Constraints.ecore#/">
-    <genClasses ecoreClass="Constraints.ecore#//Test"/>
+    <genClasses image="false" ecoreClass="Constraints.ecore#//DisplayUnit">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Constraints.ecore#//DisplayUnit/constraints"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Constraints.ecore#//DisplayUnit/elementMultiplicity"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="Constraints.ecore#//ConstraintDescriptor">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Constraints.ecore#//ConstraintDescriptor/name"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Constraints.ecore#//ConstraintDescriptor/display"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Constraints.ecore#//ConstraintDescriptor/overrideable"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Constraints.ecore#//ConstraintDescriptor/overriddenConstraints"/>
+    </genClasses>
+    <genClasses ecoreClass="Constraints.ecore#//SimpleConstraint">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Constraints.ecore#//SimpleConstraint/constraintType"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Constraints.ecore#//SimpleConstraint/properties"/>
+    </genClasses>
+    <genClasses ecoreClass="Constraints.ecore#//CompositeConstraint">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Constraints.ecore#//CompositeConstraint/constraints"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="Constraints.ecore#//ConfigProperty">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Constraints.ecore#//ConfigProperty/name"/>
+    </genClasses>
+    <genClasses ecoreClass="Constraints.ecore#//ValueProperty">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Constraints.ecore#//ValueProperty/value"/>
+    </genClasses>
+    <genClasses ecoreClass="Constraints.ecore#//ReferenceProperty">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Constraints.ecore#//ReferenceProperty/value"/>
+    </genClasses>
+    <nestedGenPackages prefix="Environment" basePackage="org.eclipse.papyrus.constraints"
+        disposableProviderFactory="true" ecorePackage="Constraints.ecore#//environment">
+      <genClasses ecoreClass="Constraints.ecore#//environment/ConstraintEnvironment">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Constraints.ecore#//environment/ConstraintEnvironment/constraintTypes"/>
+      </genClasses>
+      <genClasses ecoreClass="Constraints.ecore#//environment/ConstraintType">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Constraints.ecore#//environment/ConstraintType/label"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Constraints.ecore#//environment/ConstraintType/constraintClass"/>
+      </genClasses>
+    </nestedGenPackages>
   </genPackages>
 </genmodel:GenModel>

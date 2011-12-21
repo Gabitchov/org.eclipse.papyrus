@@ -11,6 +11,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.constraints.constraints;
 
+import java.util.Iterator;
+
+import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.constraints.Activator;
 import org.eclipse.papyrus.constraints.ConfigProperty;
 import org.eclipse.papyrus.constraints.ConstraintDescriptor;
@@ -18,7 +21,6 @@ import org.eclipse.papyrus.constraints.DisplayUnit;
 import org.eclipse.papyrus.constraints.ReferenceProperty;
 import org.eclipse.papyrus.constraints.SimpleConstraint;
 import org.eclipse.papyrus.constraints.ValueProperty;
-
 
 /**
  * An abstract implementation for the Constraint interface.
@@ -56,7 +58,7 @@ public abstract class AbstractConstraint implements Constraint {
 		return descriptor.getDisplay();
 	}
 
-	public DisplayUnit getDisplay() {
+	public DisplayUnit getDisplayUnit() {
 		return display;
 	}
 
@@ -66,8 +68,8 @@ public abstract class AbstractConstraint implements Constraint {
 	 */
 	public boolean overrides(Constraint constraint) {
 		if(equivalent(constraint)) {
-			if(getDisplay().getElementMultiplicity() == 1) {
-				if(constraint.getDisplay().getElementMultiplicity() != 1) {
+			if(getDisplayUnit().getElementMultiplicity() == 1) {
+				if(constraint.getDisplayUnit().getElementMultiplicity() != 1) {
 					return true;
 				}
 			}
@@ -92,6 +94,14 @@ public abstract class AbstractConstraint implements Constraint {
 		return descriptor;
 	}
 
+	/**
+	 * Returns the ConfigProperty corresponding to the given propertyName
+	 * 
+	 * @param propertyName
+	 *        The name of the property to retrieve
+	 * @return
+	 *         The ConfigProperty corresponding to the given propertyName
+	 */
 	protected ConfigProperty getProperty(String propertyName) {
 		if(descriptor == null || !(descriptor instanceof SimpleConstraint)) {
 			Activator.log.warn("The constraint descriptor has not been set for this constraint : " + this); //$NON-NLS-1$
@@ -108,6 +118,17 @@ public abstract class AbstractConstraint implements Constraint {
 		return null;
 	}
 
+	/**
+	 * Returns the value associated to the given property
+	 * 
+	 * @param propertyName
+	 *        The name of the property for which we want to retrieve the value
+	 *        The name must correspond to a valid ValueProperty
+	 * @return
+	 *         The value associated to the given property
+	 * 
+	 * @see #getReferenceValue(String)
+	 */
 	protected String getValue(String propertyName) {
 		ConfigProperty property = getProperty(propertyName);
 
@@ -120,6 +141,17 @@ public abstract class AbstractConstraint implements Constraint {
 		return null;
 	}
 
+	/**
+	 * Returns the value associated to the given property
+	 * 
+	 * @param propertyName
+	 *        The name of the property for which we want to retrieve the value
+	 *        The name must correspond to a valid ReferenceProperty
+	 * @return
+	 *         The value associated to the given property
+	 * 
+	 * @see #getValue(String)
+	 */
 	protected Object getReferenceValue(String propertyName) {
 		ConfigProperty property = getProperty(propertyName);
 		if(property instanceof ReferenceProperty) {
@@ -140,10 +172,48 @@ public abstract class AbstractConstraint implements Constraint {
 	 * @param descriptor
 	 *        The constraint descriptor to be associated to this constraint
 	 * 
-	 * @see #setConstraintDescriptor(SimpleConstraint)
+	 * @see #setConstraintDescriptor(ConstraintDescriptor)
 	 */
 	protected void setDescriptor(SimpleConstraint descriptor) {
 		//Implementors may override
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * The default implementation matches a selection iff the constraint matches
+	 * each object of the selection.
+	 */
+	public boolean match(IStructuredSelection selection) {
+		if(selection.isEmpty()) {
+			return false;
+		}
+
+
+		int elementMultiplicity;
+
+		elementMultiplicity = display.getElementMultiplicity();
+
+		int selectionSize = selection.size();
+		if(elementMultiplicity == 1) {
+			if(selectionSize == 1) {
+				if(match(selection.getFirstElement())) {
+					return true;
+				}
+			}
+		} else if(elementMultiplicity == selectionSize || elementMultiplicity < 0) {
+			Iterator<?> selectionIterator = selection.iterator();
+			while(selectionIterator.hasNext()) {
+				Object selectedItem = selectionIterator.next();
+				if(!match(selectedItem)) {
+					return false;
+				}
+			}
+
+			return true;
+		}
+
+		return false;
 	}
 
 }

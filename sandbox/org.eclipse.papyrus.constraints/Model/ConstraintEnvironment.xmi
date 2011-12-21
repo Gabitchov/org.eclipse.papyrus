@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="ASCII"?>
-<environment:ConstraintEnvironment xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:environment="http://www.eclipse.org/papyrus/constraints/environment">
-  <constraintTypes label="EMF Instance Of" constraintClass="org.eclipse.papyrus.constraints.constraints.EMFInstanceOfConstraint"/>
-  <constraintTypes label="True Constraint" constraintClass="org.eclipse.papyrus.constraints.constraints.TrueConstraint"/>
-  <constraintTypes label="EMF Query" constraintClass="org.eclipse.papyrus.constraints.constraints.EMFQueryConstraint"/>
-  <constraintTypes label="Java Instance Of" constraintClass="org.eclipse.papyrus.constraints.constraints.JavaInstanceOf"/>
-</environment:ConstraintEnvironment>
