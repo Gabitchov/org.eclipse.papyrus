@@ -188,6 +188,7 @@
 <project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/infra/emf/org.eclipse.papyrus.infra.constraints,org.eclipse.papyrus.infra.constraints"/>
 <project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/infra/emf/org.eclipse.papyrus.infra.constraints,org.eclipse.papyrus.infra.constraints.edit"/>
 <project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/infra/emf/org.eclipse.papyrus.infra.constraints.editor,org.eclipse.papyrus.infra.constraints.editor"/>
+<project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml/tools/org.eclipse.papyrus.uml.tools,org.eclipse.papyrus.uml.tools"/>
 </provider>
 <workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1319612381461_39" label="customization" name="customization">
 <item elementID="=org.eclipse.papyrus.customization.paletteconfiguration" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
@@ -415,6 +416,7 @@
 <workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1319612417210_46" label="uml.tools" name="uml.tools">
 <item elementID="=org.eclipse.papyrus.uml.tools.extendedtypes" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.uml.tools.utils" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.papyrus.uml.tools" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 </workingSets>
 <workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1319612528240_65" label="views.documentation" name="views.documentation">
 <item elementID="=org.eclipse.papyrus.views.documentation.view" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
