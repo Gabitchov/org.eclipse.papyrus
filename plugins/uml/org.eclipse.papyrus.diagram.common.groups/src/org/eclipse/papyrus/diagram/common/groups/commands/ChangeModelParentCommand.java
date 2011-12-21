@@ -61,10 +61,6 @@ public class ChangeModelParentCommand extends AbstractTransactionalCommand {
 		this.chilrendToMove = chilrendToMove;
 		this.elementAdapter = parentGroupAdapter;
 		targetContainer = null;
-		//		if(anyPart != null) {
-		//			this.editPartRegistery = anyPart.getViewer().getEditPartRegistry();
-		//		}
-
 	}
 
 	@Override

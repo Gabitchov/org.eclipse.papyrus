@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2009 Atos Origin.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *   Atos Origin - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.diagram.activity.edit.parts;
 
 import org.eclipse.draw2d.Connection;
@@ -19,6 +6,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.activity.edit.policies.ControlFlowItemSemanticEditPolicy;
+import org.eclipse.papyrus.diagram.activity.edit.policies.InterruptibleEdgeEditPolicy;
 import org.eclipse.papyrus.diagram.activity.figures.ActivityEdgeFigure;
 import org.eclipse.papyrus.diagram.common.editparts.UMLConnectionNodeEditPart;
 import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy;
@@ -47,6 +35,7 @@ public class ControlFlowEditPart extends UMLConnectionNodeEditPart implements IT
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ControlFlowItemSemanticEditPolicy());
 		installEditPolicy(AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeLinkLabelDisplayEditPolicy());
+		installEditPolicy(InterruptibleEdgeEditPolicy.INTERRUPTIBLE_ICON_POLICY, new InterruptibleEdgeEditPolicy());
 	}
 
 	/**
@@ -93,8 +82,8 @@ public class ControlFlowEditPart extends UMLConnectionNodeEditPart implements IT
 	/**
 	 * Creates figure for this edit part.
 	 * 
-	 * Body of this method does not depend on settings in generation model so
-	 * you may safely remove <i>generated</i> tag and modify it.
+	 * Body of this method does not depend on settings in generation model
+	 * so you may safely remove <i>generated</i> tag and modify it.
 	 * 
 	 * @generated
 	 */

@@ -3611,6 +3611,9 @@ public class UMLVisualIDRegistry {
 			if(ObjectFlowAppliedStereotypeEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if(ObjectFlowInterruptibleIconEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case ControlFlowEditPart.VISUAL_ID:
 			if(ControlFlowNameEditPart.VISUAL_ID == nodeVisualID) {
@@ -3625,9 +3628,15 @@ public class UMLVisualIDRegistry {
 			if(ControlFlowAppliedStereotypeEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if(ControlFlowInterruptibleIconEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case ExceptionHandlerEditPart.VISUAL_ID:
 			if(ExceptionHandlerTypeEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ExceptionHandlerIconEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -3998,6 +4007,8 @@ public class UMLVisualIDRegistry {
 		viewInfo.getChildren().add(labelInfo);
 		labelInfo = new BaseViewInfo(6010, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
+		labelInfo = new BaseViewInfo(6014, ViewInfo.Label, "", null, viewInfo);
+		viewInfo.getChildren().add(labelInfo);
 		viewInfo = new BaseViewInfo(4004, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 		labelInfo = new BaseViewInfo(6003, ViewInfo.Label, "", null, viewInfo);
@@ -4008,9 +4019,13 @@ public class UMLVisualIDRegistry {
 		viewInfo.getChildren().add(labelInfo);
 		labelInfo = new BaseViewInfo(6011, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
+		labelInfo = new BaseViewInfo(6013, ViewInfo.Label, "", null, viewInfo);
+		viewInfo.getChildren().add(labelInfo);
 		viewInfo = new BaseViewInfo(4005, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 		labelInfo = new BaseViewInfo(6012, ViewInfo.Label, "", null, viewInfo);
+		viewInfo.getChildren().add(labelInfo);
+		labelInfo = new BaseViewInfo(6015, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
 		viewInfo = new BaseViewInfo(4006, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);

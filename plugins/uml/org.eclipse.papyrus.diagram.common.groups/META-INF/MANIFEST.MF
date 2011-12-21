@@ -1,10 +1,12 @@
 Manifest-Version: 1.0
-Export-Package: org.eclipse.papyrus.diagram.common.groups.commands,org
- .eclipse.papyrus.diagram.common.groups.core.utils,org.eclipse.papyrus
- .diagram.common.groups.edit.policies,org.eclipse.papyrus.diagram.comm
- on.groups.groupcontainment,org.eclipse.papyrus.diagram.common.groups.
- preferences,org.eclipse.papyrus.diagram.common.groups.tabbedpropertie
- s.appearance,org.eclipse.papyrus.diagram.common.groups.utils
+Export-Package: org.eclipse.papyrus.diagram.common.groups.commands,
+ org.eclipse.papyrus.diagram.common.groups.core.utils,
+ org.eclipse.papyrus.diagram.common.groups.edit.policies,
+ org.eclipse.papyrus.diagram.common.groups.groupcontainment,
+ org.eclipse.papyrus.diagram.common.groups.preferences,
+ org.eclipse.papyrus.diagram.common.groups.request,
+ org.eclipse.papyrus.diagram.common.groups.tabbedproperties.appearance,
+ org.eclipse.papyrus.diagram.common.groups.utils
 Require-Bundle: org.eclipse.ui,org.eclipse.core.runtime,org.eclipse.gm
  f.runtime.diagram.ui.properties,org.eclipse.papyrus.diagram.common,or
  g.eclipse.papyrus.ui.toolbox,org.eclipse.papyrus.preferences
@@ -18,4 +20,6 @@ Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.diagram.common.groups;singlet
  on:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Import-Package: com.google.common.base;version="1.0.0",
+ com.google.common.collect;version="1.0.0"
 

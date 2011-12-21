@@ -39,25 +39,24 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.ObjectFlow;
 
-
 public class CustomObjectFlowSelectionEditPart extends ObjectFlowSelectionEditPart {
 
-	
-	
 	public CustomObjectFlowSelectionEditPart(View view) {
 		super(view);
 	}
+
 	/**
 	 * Rerout figure creation in order to implement specific behavior
+	 * 
 	 * @see org.eclipse.papyrus.diagram.activity.edit.parts.ObjectFlowSelectionEditPart#createFigurePrim()
-	 *
+	 * 
 	 * @return
 	 */
 	@Override
 	protected IFigure createFigurePrim() {
 		return new CustomLinkAndCornerBentWithTextFigure();
 	}
-	
+
 	/**
 	 * handle LinkAndCornerBentWithTextFigure
 	 */
@@ -117,7 +116,7 @@ public class CustomObjectFlowSelectionEditPart extends ObjectFlowSelectionEditPa
 			((Label)figure).setIcon(icon);
 		}
 	}
-	
+
 	/**
 	 * sets the visibility of this edit part
 	 * 
@@ -134,10 +133,10 @@ public class CustomObjectFlowSelectionEditPart extends ObjectFlowSelectionEditPa
 		}
 		super.setVisibility(vis);
 	}
-	
+
 	/**
 	 * refresh the visibility in case the selection assignment
-	 *            changed
+	 * changed
 	 */
 	protected void handleNotificationEvent(Notification event) {
 		Object feature = event.getFeature();
@@ -171,42 +170,35 @@ public class CustomObjectFlowSelectionEditPart extends ObjectFlowSelectionEditPa
 		super.handleNotificationEvent(event);
 	}
 
-
 	public class CustomLinkAndCornerBentWithTextFigure extends CornerBentFigure {
 
 		final Color THIS_BACK = new Color(null, 248, 249, 214);
-		
+
 		private WrappedLabel fCornerBentContent;
 
-
 		private PolylineShape fLinkToBehaviorProperty;
-
 
 		public CustomLinkAndCornerBentWithTextFigure() {
 			this.setBackgroundColor(THIS_BACK);
 			createContents();
 		}
-		
-		
 
 		/**
 		 * Customization cause to Bug 354622 - [ActivityDiagram] Object Flows selection prevent selecting other close elements
+		 * 
 		 * @see org.eclipse.draw2d.Figure#containsPoint(int, int)
-		 *
+		 * 
 		 * @param x
 		 * @param y
 		 * @return
 		 */
 		@Override
 		public boolean containsPoint(int x, int y) {
-			if (isVisible()){
-				return super.containsPoint(x, y);				
+			if(isVisible()) {
+				return super.containsPoint(x, y);
 			}
 			return false;
 		}
-
-
-
 
 		private void createContents() {
 			fCornerBentContent = new WrappedLabel();
@@ -253,19 +245,12 @@ public class CustomObjectFlowSelectionEditPart extends ObjectFlowSelectionEditPa
 			}
 		}
 
-
 		public WrappedLabel getCornerBentContent() {
 			return fCornerBentContent;
 		}
 
-
 		public PolylineShape getLinkToBehaviorProperty() {
 			return fLinkToBehaviorProperty;
 		}
-
-		
-		
 	}
-	
-	
 }

@@ -29,6 +29,7 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
+import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.commands.CreateCommand;
@@ -46,6 +47,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.activity.edit.commands.DeferredInterruptibleEdgeCommand;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActionLocalPostconditionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActionLocalPreconditionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.CallBehaviorActionEditPart;
@@ -73,6 +75,7 @@ import org.eclipse.papyrus.diagram.common.groups.core.utils.Utils;
 import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.uml2.uml.Action;
 import org.eclipse.uml2.uml.Activity;
+import org.eclipse.uml2.uml.ActivityEdge;
 import org.eclipse.uml2.uml.ActivityNode;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.Constraint;
@@ -373,9 +376,35 @@ public class CustomDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdi
 		if(sources.size() == 1 && targets.size() == 1) {
 			ActivityNode source = (ActivityNode)sources.toArray()[0];
 			ActivityNode target = (ActivityNode)targets.toArray()[0];
-			return new ICommandProxy(dropBinaryLink(new CompositeCommand("drop Activity Edge"), source, target, linkVISUALID, dropRequest.getLocation(), semanticLink));
+			CompositeCommand dropBinaryLink = dropBinaryLink(new CompositeCommand("drop Activity Edge"), source, target, linkVISUALID, dropRequest.getLocation(), semanticLink);
+			//If the activity edge is interruptible edge we have to add the Interruptoble Edge Icon
+			if(dropBinaryLink != null && semanticLink instanceof ActivityEdge && ((ActivityEdge)semanticLink).getInterrupts() != null) {
+				getInterruptbleEdgeCommand(dropBinaryLink);
+			}
+			return new ICommandProxy(dropBinaryLink);
 		} else {
 			return UnexecutableCommand.INSTANCE;
+		}
+	}
+
+	/**
+	 * Get the command to display Interruptible Edge Icon on an activity Edge
+	 * 
+	 * @param dropBinaryLink
+	 *        {@link CompositeCommand} to compose the newly created command
+	 */
+	protected void getInterruptbleEdgeCommand(CompositeCommand dropBinaryLink) {
+		CommandResult result = dropBinaryLink.getCommandResult();
+		Object resultValue = result.getReturnValue();
+		if(resultValue instanceof Collection) {
+			for(Object r : ((Collection<Object>)resultValue)) {
+				if(r instanceof CreateConnectionViewRequest.ConnectionViewDescriptor) {
+					DeferredInterruptibleEdgeCommand cmd = new DeferredInterruptibleEdgeCommand(getEditingDomain(), dropBinaryLink.getLabel(), dropBinaryLink.getAffectedFiles(), getHost(), (CreateConnectionViewRequest.ConnectionViewDescriptor)r);
+					if(cmd != null && cmd.canExecute()) {
+						dropBinaryLink.compose(cmd);
+					}
+				}
+			}
 		}
 	}
 

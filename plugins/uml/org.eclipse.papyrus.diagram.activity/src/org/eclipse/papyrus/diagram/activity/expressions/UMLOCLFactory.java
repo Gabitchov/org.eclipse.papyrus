@@ -44,7 +44,7 @@ public class UMLOCLFactory {
 	 * @generated
 	 */
 	protected UMLOCLFactory() {
-		this.expressions = new UMLAbstractExpression[86];
+		this.expressions = new UMLAbstractExpression[89];
 	}
 
 	/**
@@ -145,6 +145,9 @@ public class UMLOCLFactory {
 			"self.variable.isAccessibleBy(self)", //$NON-NLS-1$
 			"self.result.type =self.variable.type and self.result.isOrdered = self.variable.isOrdered", //$NON-NLS-1$
 			"(self.result.lowerBound() <= self.variable.lowerBound())  and (self.result.upperBound() >= self.variable.lowerBound())", //$NON-NLS-1$
+			"(not self.interrupts.oclIsUndefined()) implies (not self.source.inInterruptibleRegion->collect(r : InterruptibleActivityRegion | r = self.interrupts)->isEmpty())", //$NON-NLS-1$
+			"(not self.interrupts.oclIsUndefined()) implies (self.target.inInterruptibleRegion->collect(r : InterruptibleActivityRegion | r = self.interrupts)->isEmpty() and self.target.activity = self.source.activity)", //$NON-NLS-1$
+			"((not self.handlerBody.oclIsUndefined()) and  (not self.exceptionInput.oclIsUndefined())) implies( let pins : Collection(Element) = self.handlerBody.allOwnedElements()->select(e : Element | e.oclIsKindOf(Pin)) in pins->forAll(e : Element | e.oclIsKindOf(Pin) implies e = self.exceptionInput))", //$NON-NLS-1$
 			};
 			cached.expressions[index] = getExpression(exprBodies[index], context, environment == null ? Collections.<String, EClassifier> emptyMap() : environment);
 		}

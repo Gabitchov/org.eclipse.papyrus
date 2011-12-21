@@ -44,15 +44,14 @@ public class CustomObjectFlowTransformationEditPart extends ObjectFlowTransforma
 	public CustomObjectFlowTransformationEditPart(View view) {
 		super(view);
 	}
-	
-	
+
 	@Override
 	protected IFigure createFigurePrim() {
 		return new CustomLinkAndCornerBentWithTextFigure();
 	}
-	
+
 	/**
-	 *handle LinkAndCornerBentWithTextFigure
+	 * handle LinkAndCornerBentWithTextFigure
 	 */
 	protected String getLabelTextHelper(IFigure figure) {
 		if(figure instanceof WrappingLabel) {
@@ -65,8 +64,7 @@ public class CustomObjectFlowTransformationEditPart extends ObjectFlowTransforma
 			return ((Label)figure).getText();
 		}
 	}
-	
-	
+
 	/**
 	 * handle CustomLinkAndCornerBentWithTextFigure
 	 */
@@ -81,9 +79,9 @@ public class CustomObjectFlowTransformationEditPart extends ObjectFlowTransforma
 			((Label)figure).setText(text);
 		}
 	}
-	
+
 	/**
-	 *handle CustomLinkAndCornerBentWithTextFigure
+	 * handle CustomLinkAndCornerBentWithTextFigure
 	 */
 	protected Image getLabelIconHelper(IFigure figure) {
 		if(figure instanceof WrappingLabel) {
@@ -96,7 +94,7 @@ public class CustomObjectFlowTransformationEditPart extends ObjectFlowTransforma
 			return ((Label)figure).getIcon();
 		}
 	}
-	
+
 	/**
 	 * handle CustomLinkAndCornerBentWithTextFigure
 	 */
@@ -111,7 +109,7 @@ public class CustomObjectFlowTransformationEditPart extends ObjectFlowTransforma
 			((Label)figure).setIcon(icon);
 		}
 	}
-	
+
 	/**
 	 * sets the visibility of this edit part
 	 * 
@@ -128,10 +126,10 @@ public class CustomObjectFlowTransformationEditPart extends ObjectFlowTransforma
 		}
 		super.setVisibility(vis);
 	}
-	
+
 	/**
 	 * Refresh the visibility in case the transformation
-	 *            assignment changed
+	 * assignment changed
 	 */
 	protected void handleNotificationEvent(Notification event) {
 		Object feature = event.getFeature();
@@ -165,8 +163,6 @@ public class CustomObjectFlowTransformationEditPart extends ObjectFlowTransforma
 		super.handleNotificationEvent(event);
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -194,21 +190,21 @@ public class CustomObjectFlowTransformationEditPart extends ObjectFlowTransforma
 
 		/**
 		 * Customization cause to Bug 354622 - [ActivityDiagram] Object Flows selection prevent selecting other close elements
+		 * 
 		 * @see org.eclipse.draw2d.Figure#containsPoint(int, int)
-		 *
+		 * 
 		 * @param x
 		 * @param y
 		 * @return
 		 */
 		@Override
 		public boolean containsPoint(int x, int y) {
-			if (isVisible()){
-				return super.containsPoint(x, y);				
+			if(isVisible()) {
+				return super.containsPoint(x, y);
 			}
 			return false;
 		}
 
-		
 		private void createContents() {
 			fCornerBentContent = new WrappedLabel();
 			this.add(fCornerBentContent);
@@ -226,7 +222,7 @@ public class CustomObjectFlowTransformationEditPart extends ObjectFlowTransforma
 
 		/**
 		 * @see org.eclipse.draw2d.Figure#setVisible(boolean)
-		 * report visibility on the link
+		 *      report visibility on the link
 		 */
 		@Override
 		public void setVisible(boolean visible) {

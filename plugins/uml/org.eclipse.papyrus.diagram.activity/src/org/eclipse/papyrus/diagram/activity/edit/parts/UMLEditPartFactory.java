@@ -589,6 +589,8 @@ public class UMLEditPartFactory implements EditPartFactory {
 				return new ObjectFlowGuardEditPart(view);
 			case ObjectFlowAppliedStereotypeEditPart.VISUAL_ID:
 				return new ObjectFlowAppliedStereotypeEditPart(view);
+			case ObjectFlowInterruptibleIconEditPart.VISUAL_ID:
+				return new ObjectFlowInterruptibleIconEditPart(view);
 			case ControlFlowEditPart.VISUAL_ID:
 				return new ControlFlowEditPart(view);
 			case ControlFlowNameEditPart.VISUAL_ID:
@@ -599,10 +601,14 @@ public class UMLEditPartFactory implements EditPartFactory {
 				return new ControlFlowGuardEditPart(view);
 			case ControlFlowAppliedStereotypeEditPart.VISUAL_ID:
 				return new ControlFlowAppliedStereotypeEditPart(view);
+			case ControlFlowInterruptibleIconEditPart.VISUAL_ID:
+				return new ControlFlowInterruptibleIconEditPart(view);
 			case ExceptionHandlerEditPart.VISUAL_ID:
 				return new ExceptionHandlerEditPart(view);
 			case ExceptionHandlerTypeEditPart.VISUAL_ID:
 				return new ExceptionHandlerTypeEditPart(view);
+			case ExceptionHandlerIconEditPart.VISUAL_ID:
+				return new ExceptionHandlerIconEditPart(view);
 			case CommentLinkEditPart.VISUAL_ID:
 				return new CommentLinkEditPart(view);
 			}

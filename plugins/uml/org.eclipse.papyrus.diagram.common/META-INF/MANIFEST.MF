@@ -76,4 +76,6 @@ Bundle-Activator: org.eclipse.papyrus.diagram.common.Activator
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.diagram.common;singleton:=tru
  e
+Import-Package: com.google.common.base;version="1.0.0",
+ com.google.common.collect;version="1.0.0"
 

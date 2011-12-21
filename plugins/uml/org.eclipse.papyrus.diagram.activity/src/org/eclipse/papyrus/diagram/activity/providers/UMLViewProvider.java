@@ -2973,6 +2973,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location6010 = (Location)label6010.getLayoutConstraint();
 		location6010.setX(0);
 		location6010.setY(-20);
+		Node label6014 = createLabel(edge, UMLVisualIDRegistry.getType(ObjectFlowInterruptibleIconEditPart.VISUAL_ID));
+		label6014.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(edge, prefStore, "ObjectFlow");
 		return edge;
 	}
@@ -3021,6 +3023,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location6011 = (Location)label6011.getLayoutConstraint();
 		location6011.setX(0);
 		location6011.setY(-20);
+		Node label6013 = createLabel(edge, UMLVisualIDRegistry.getType(ControlFlowInterruptibleIconEditPart.VISUAL_ID));
+		label6013.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(edge, prefStore, "ControlFlow");
 		return edge;
 	}
@@ -3054,6 +3058,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location6012 = (Location)label6012.getLayoutConstraint();
 		location6012.setX(0);
 		location6012.setY(40);
+		Node label6015 = createLabel(edge, UMLVisualIDRegistry.getType(ExceptionHandlerIconEditPart.VISUAL_ID));
+		label6015.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		return edge;
 	}
 

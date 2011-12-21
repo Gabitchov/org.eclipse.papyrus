@@ -18,6 +18,7 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.activity.edit.policies.InterruptibleEdgeEditPolicy;
 import org.eclipse.papyrus.diagram.activity.edit.policies.ObjectFlowItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.activity.figures.ActivityEdgeFigure;
 import org.eclipse.papyrus.diagram.common.editparts.UMLConnectionNodeEditPart;
@@ -47,6 +48,7 @@ public class ObjectFlowEditPart extends UMLConnectionNodeEditPart implements ITr
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ObjectFlowItemSemanticEditPolicy());
 		installEditPolicy(AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeLinkLabelDisplayEditPolicy());
+		installEditPolicy(InterruptibleEdgeEditPolicy.INTERRUPTIBLE_ICON_POLICY, new InterruptibleEdgeEditPolicy());
 	}
 
 	/**
