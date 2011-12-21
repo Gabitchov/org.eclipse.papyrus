@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Papyrus EMF Editor (Incubation)
-Bundle-SymbolicName: org.eclipse.papyrus.emf.editor;singleton:=true
+Bundle-SymbolicName: org.eclipse.papyrus.infra.emf.editor;singleton:=true
 Bundle-Version: 0.9.0.qualifier
-Bundle-Activator: org.eclipse.papyrus.emf.editor.Activator
+Bundle-Activator: org.eclipse.papyrus.infra.emf.editor.Activator
 Bundle-Vendor: Eclipse Modeling Project
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
