@@ -43,7 +43,10 @@ public class CustomCommonViewer extends CommonViewer {
 				if (a instanceof MatchingItem) {
 					return a.equals(b);
 				}
-				return b.equals(a);
+				if (b != null) {
+					return b.equals(a);
+				}
+				return false;
 			}
 		});
 	}
