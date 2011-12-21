@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.modelexplorer;
 
+import org.eclipse.jface.viewers.IElementComparer;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.internal.navigator.dnd.NavigatorDnDService;
@@ -29,7 +30,22 @@ public class CustomCommonViewer extends CommonViewer {
 	
 	public CustomCommonViewer(String aViewerId, Composite aParent, int aStyle) {
 		super(aViewerId, aParent, aStyle);
-		// TODO Auto-generated constructor stub
+
+		// Use a specific comparer so that the equals of MatchingItem is
+		// used in priority
+		setComparer(new IElementComparer() {
+
+			public int hashCode(Object element) {
+				return element.hashCode();
+			}
+			
+			public boolean equals(Object a, Object b) {
+				if (a instanceof MatchingItem) {
+					return a.equals(b);
+				}
+				return b.equals(a);
+			}
+		});
 	}
 
 	/**
