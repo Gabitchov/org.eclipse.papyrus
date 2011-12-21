@@ -64,7 +64,7 @@
         xsi:type="ncpolicy:FilterPolicy"
         name="removeConstraintDescriptors">
       <eClasses
-          href="platform:/plugin/org.eclipse.papyrus.constraints/Model/Constraints.ecore#//ConstraintDescriptor"/>
+          href="platform:/plugin/org.eclipse.papyrus.infra.constraints/Model/Constraints.ecore#//ConstraintDescriptor"/>
     </policies>
   </newChildPolicies>
 </newchild:NewchildConfiguration>

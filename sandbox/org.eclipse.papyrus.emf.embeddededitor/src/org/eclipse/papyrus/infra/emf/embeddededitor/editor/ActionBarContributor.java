@@ -32,7 +32,7 @@ import org.eclipse.papyrus.infra.emf.embeddededitor.editor.actions.MoDiscoCutAct
 import org.eclipse.papyrus.infra.emf.embeddededitor.editor.actions.MoDiscoDeleteAction;
 import org.eclipse.papyrus.infra.emf.embeddededitor.editor.actions.MoDiscoPasteAction;
 import org.eclipse.papyrus.infra.emf.embeddededitor.editor.actions.ValidationAction;
-import org.eclipse.papyrus.newchild.runtime.NewchildManager;
+import org.eclipse.papyrus.infra.emf.newchild.runtime.NewchildManager;
 import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
 

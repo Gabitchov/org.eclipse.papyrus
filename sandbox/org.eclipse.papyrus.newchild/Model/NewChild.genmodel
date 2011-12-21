@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<genmodel:GenModel xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
-    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.papyrus.newchild/src-gen"
-    editDirectory="/org.eclipse.papyrus.newchild.edit/src-gen" editorDirectory="/org.eclipse.papyrus.newchild.editor/src-gen"
-    modelPluginID="org.eclipse.papyrus.newchild" modelName="NewChild" testsDirectory="/org.eclipse.papyrus.newchild.tests/src-gen"
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.papyrus.infra.emf.newchild/src-gen"
+    editDirectory="/org.eclipse.papyrus.infra.emf.newchild.edit/src-gen" editorDirectory="/org.eclipse.papyrus.infra.emf.newchild.editor/src-gen"
+    modelPluginID="org.eclipse.papyrus.infra.emf.newchild" modelName="NewChild" testsDirectory="/org.eclipse.papyrus.infra.emf.newchild.tests/src-gen"
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
-    usedGenPackages="platform:/plugin/org.eclipse.papyrus.infra.queries.core.configuration/model/Configuration.genmodel#//configuration platform:/plugin/org.eclipse.papyrus.constraints/Model/Constraints.genmodel#//constraints platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore platform:/plugin/org.eclipse.papyrus.infra.extendedtypes/model/ExtendedTypes.genmodel#//extendedtypes platform:/plugin/org.eclipse.emf.facet.infra.query/model/query.genmodel#//query platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml">
+    usedGenPackages="platform:/plugin/org.eclipse.papyrus.infra.queries.core.configuration/model/Configuration.genmodel#//configuration platform:/plugin/org.eclipse.papyrus.infra.constraints/Model/Constraints.genmodel#//constraints platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore platform:/plugin/org.eclipse.papyrus.infra.extendedtypes/model/ExtendedTypes.genmodel#//extendedtypes platform:/plugin/org.eclipse.emf.facet.infra.query/model/query.genmodel#//query platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml platform:/plugin/org.eclipse.papyrus.infra.queries.core.configuration/model/Configuration.genmodel#//types">
   <foreignModel>NewChild.ecore</foreignModel>
-  <genPackages prefix="Newchild" basePackage="org.eclipse.papyrus" resource="XML"
+  <genPackages prefix="Newchild" basePackage="org.eclipse.papyrus.infra.emf" resource="XML"
       disposableProviderFactory="true" ecorePackage="NewChild.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="NewChild.ecore#//MenuPosition">
       <genEnumLiterals ecoreEnumLiteral="NewChild.ecore#//MenuPosition/top"/>
@@ -44,7 +43,7 @@
     <genClasses ecoreClass="NewChild.ecore#//CustomFiller">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute NewChild.ecore#//CustomFiller/className"/>
     </genClasses>
-    <nestedGenPackages prefix="Ncpolicy" basePackage="org.eclipse.papyrus.newchild"
+    <nestedGenPackages prefix="Ncpolicy" basePackage="org.eclipse.papyrus.infra.emf.newchild"
         resource="XML" disposableProviderFactory="true" ecorePackage="NewChild.ecore#//ncpolicy">
       <genEnums typeSafeEnumCompatible="false" ecoreEnum="NewChild.ecore#//ncpolicy/CreateIn">
         <genEnumLiterals ecoreEnumLiteral="NewChild.ecore#//ncpolicy/CreateIn/self"/>

@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
-    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.papyrus.constraints/src-gen" editDirectory="/org.eclipse.papyrus.constraints.edit/src-gen"
-    editorDirectory="/org.eclipse.papyrus.constraints.editor/src-gen" modelPluginID="org.eclipse.papyrus.constraints"
-    modelName="Constraints" testsDirectory="/org.eclipse.papyrus.constraints.tests/src-gen"
-    importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false">
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.papyrus.infra.constraints/src-gen"
+    editDirectory="/org.eclipse.papyrus.infra.constraints.edit/src-gen" editorDirectory="/org.eclipse.papyrus.infra.constraints.editor/src-gen"
+    modelPluginID="org.eclipse.papyrus.infra.constraints" modelName="Constraints"
+    testsDirectory="/org.eclipse.papyrus.infra.constraints.tests/src-gen" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="5.0" copyrightFields="false">
   <foreignModel>Constraints.ecore</foreignModel>
-  <genPackages prefix="Constraints" basePackage="org.eclipse.papyrus" disposableProviderFactory="true"
+  <genPackages prefix="Constraints" basePackage="org.eclipse.papyrus.infra" disposableProviderFactory="true"
       ecorePackage="Constraints.ecore#/">
     <genClasses image="false" ecoreClass="Constraints.ecore#//DisplayUnit">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Constraints.ecore#//DisplayUnit/constraints"/>
@@ -33,7 +34,7 @@
     <genClasses ecoreClass="Constraints.ecore#//ReferenceProperty">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Constraints.ecore#//ReferenceProperty/value"/>
     </genClasses>
-    <nestedGenPackages prefix="Environment" basePackage="org.eclipse.papyrus.constraints"
+    <nestedGenPackages prefix="Environment" basePackage="org.eclipse.papyrus.infra.constraints"
         disposableProviderFactory="true" ecorePackage="Constraints.ecore#//environment">
       <genClasses ecoreClass="Constraints.ecore#//environment/ConstraintEnvironment">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Constraints.ecore#//environment/ConstraintEnvironment/constraintTypes"/>

@@ -32,7 +32,7 @@ import org.eclipse.papyrus.infra.emf.editor.actions.MoDiscoDeleteAction;
 import org.eclipse.papyrus.infra.emf.editor.actions.MoDiscoPasteAction;
 import org.eclipse.papyrus.infra.emf.editor.actions.ValidationAction;
 import org.eclipse.papyrus.infra.emf.editor.util.ActionUtil;
-import org.eclipse.papyrus.newchild.runtime.NewchildManager;
+import org.eclipse.papyrus.infra.emf.newchild.runtime.NewchildManager;
 
 /**
  * The Action bar contributor for the Context Editor

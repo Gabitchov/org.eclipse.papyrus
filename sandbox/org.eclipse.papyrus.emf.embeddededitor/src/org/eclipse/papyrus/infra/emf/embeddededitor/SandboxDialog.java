@@ -216,7 +216,7 @@ public class SandboxDialog extends TrayDialog {
 		ResourceSet resourceSet = new ResourceSetImpl();
 
 		//Simple editor
-		//			resourceSet.getResource(URI.createPlatformResourceURI("org.eclipse.papyrus.newchild/Model/NewchildConfiguration.xmi", true), true);
+		//			resourceSet.getResource(URI.createPlatformResourceURI("org.eclipse.papyrus.infra.emf.newchild/Model/NewchildConfiguration.xmi", true), true);
 
 		//UML Editor with ExtendedType support
 		resourceSet.getResource(URI.createPlatformResourceURI("papyrus.test/model.uml", true), true);
