@@ -59,6 +59,12 @@
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
     </rm:provider>
+     <rm:provider componentTypes="osgi.bundle" readerType="svn">
+      <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/plugins/infra/emf/{1}">
+        <bc:propertyRef key="svn.repository"/>
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
     <rm:provider componentTypes="osgi.bundle" readerType="svn">
       <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/plugins/infra/gmfdiag/{1}">
         <bc:propertyRef key="svn.repository"/>
@@ -255,7 +261,8 @@
       </rm:uri>
     </rm:provider>
 
-
+<!-- TEST -->
+<!-- 
     <rm:provider componentTypes="osgi.bundle" readerType="svn">
       <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/tests/junit/plugins/core/{1}">
         <bc:propertyRef key="svn.repository"/>
@@ -298,14 +305,8 @@
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
     </rm:provider>
-
-	<!-- are sandbox plug-ins supposed to be part of the build? -->
-    <rm:provider componentTypes="osgi.bundle" readerType="svn">
-      <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/sandbox/{1}">
-        <bc:propertyRef key="svn.repository"/>
-        <bc:propertyRef key="buckminster.component"/>
-      </rm:uri>
-    </rm:provider>
+ -->
+ 							<!-- /TEST -->
 
   </rm:searchPath>
   
