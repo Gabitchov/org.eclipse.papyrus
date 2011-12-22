@@ -11,7 +11,7 @@
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.infra.core.adaptor.emf;
+package org.eclipse.papyrus.infra.emf.diagram.common;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
@@ -22,7 +22,7 @@ import org.osgi.framework.BundleContext;
 public class Activator extends AbstractUIPlugin {
 
 	// The plug-in ID
-	public static final String PLUGIN_ID = "org.eclipse.papyrus.infra.core.adaptor.emf";
+	public static final String PLUGIN_ID = "org.eclipse.papyrus.infra.emf.diagram.common";
 
 	// The shared instance
 	private static Activator plugin;

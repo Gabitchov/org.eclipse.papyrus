@@ -11,7 +11,7 @@
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.infra.core.adaptor.emf;
+package org.eclipse.papyrus.infra.emf.diagram.common.handler;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;

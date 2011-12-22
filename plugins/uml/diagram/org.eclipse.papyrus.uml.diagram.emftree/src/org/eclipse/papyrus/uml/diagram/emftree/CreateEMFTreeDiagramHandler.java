@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.emftree;
 
-import org.eclipse.papyrus.infra.core.adaptor.emf.CreateDiagramHandler;
+import org.eclipse.papyrus.infra.emf.diagram.common.handler.CreateDiagramHandler;
 
 public class CreateEMFTreeDiagramHandler extends CreateDiagramHandler {
 
