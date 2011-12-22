@@ -13,11 +13,16 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.common.ui.hyperlinkshell;
 
+import java.io.IOException;
+import java.io.StringReader;
+import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.core.editorsfactory.IPageIconsRegistry;
 import org.eclipse.papyrus.diagram.common.Activator;
@@ -28,6 +33,9 @@ import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.ui.IMemento;
+import org.eclipse.ui.WorkbenchException;
+import org.eclipse.ui.XMLMemento;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Package;
 
@@ -35,6 +43,21 @@ import org.eclipse.uml2.uml.Package;
  * The Class HyperLinkManagerShell2.
  */
 public class HyperLinkManagerShell extends AbstractHyperLinkManagerShell {
+
+	/**
+	 * Memento's name to store Hyper Link Shell data
+	 */
+	private static final String HYPER_LINK_SHELL_MEMENTO = "HYPER_LINK_SHELL_MEMENTO";
+
+	/**
+	 * Memento's name to store index of the last tab used for a specific element type
+	 */
+	private static final String LAST_TAB_USE_MEMENTO = "LAST_TAB_USE_MEMENTO";
+
+	/**
+	 * Memento's name to store index of the last tab (for all element)
+	 */
+	protected static final String LAST_GLOBAL_TAB_USED = "LAST_USED_MEMENTO";
 
 	protected ArrayList<HyperlinkObject> allhypHyperlinkObjects = new ArrayList<HyperlinkObject>();
 
@@ -127,7 +150,8 @@ public class HyperLinkManagerShell extends AbstractHyperLinkManagerShell {
 		} catch (HyperLinkException error) {
 			Activator.log.error(error);
 		}
-
+		//save the corresponding tab
+		saveCorrespondingTab();
 		tabList.clear();
 		getHyperLinkShell().close();
 
@@ -249,9 +273,129 @@ public class HyperLinkManagerShell extends AbstractHyperLinkManagerShell {
 		getHyperLinkShell().pack();
 		getHyperLinkShell().setBounds(500, 500, 700, 300);
 		getHyperLinkShell().open();
+		//Select the good tab
+		selectLastTab();
 		while(!getHyperLinkShell().isDisposed()) {
 			if(!display.readAndDispatch())
 				display.sleep();
 		}
+	}
+
+	/**
+	 * Save the last tab used for the specific element and the global last tab used
+	 * 
+	 * @param rootMemento
+	 *        {@link IMemento} use to save information about last tab used
+	 */
+	protected void saveCorrespondingTab() {
+		IMemento rootMemento = getExistingHPMemento();
+		IMemento memento = getLastTabUseMemento(rootMemento);
+		EObject element = view.getElement();
+		if(element != null) {
+			//Save the corresponding tab for the element
+			//Use InstanceTypeName in order to make a convenient ID
+			int selectionIndex = getcTabFolder().getSelectionIndex();
+			memento.putInteger(element.eClass().getInstanceTypeName(), selectionIndex);
+			//Save the global last tab used
+			memento.putInteger(LAST_GLOBAL_TAB_USED, selectionIndex);
+		}
+		saveMemento((XMLMemento)rootMemento, HYPER_LINK_SHELL_MEMENTO);
+	}
+
+	/**
+	 * Select the last tab used.
+	 * If an element of the same type has already been encountered then it open the last tab used for this type
+	 * else open the last tab used for all element
+	 */
+	protected void selectLastTab() {
+		IMemento rootMemento = getExistingHPMemento();
+		EObject element = view.getElement();
+		Integer lastIndexUsed = null;
+		if(element != null) {
+			lastIndexUsed = getLastTabUseMemento(rootMemento, element.eClass().getInstanceTypeName());
+		}
+		if(lastIndexUsed == null) {
+			lastIndexUsed = getLastTabUseMemento(rootMemento, LAST_GLOBAL_TAB_USED);
+			if(lastIndexUsed == null) {
+				lastIndexUsed = 0;
+			}
+		}
+		try {
+			getcTabFolder().setSelection(lastIndexUsed);
+		} catch (IndexOutOfBoundsException e) {
+			getcTabFolder().setSelection(0);
+		}
+	}
+
+	/**
+	 * Save the the moment into the Preference store
+	 * 
+	 * @param xmlMemento
+	 * @param key
+	 */
+	public static void saveMemento(XMLMemento xmlMemento, String key) {
+		// save memento
+		StringWriter writer = new StringWriter();
+		try {
+			xmlMemento.save(writer);
+			if(getPreferenceStore() != null) {
+				getPreferenceStore().setValue(key, writer.toString());
+			}
+		} catch (IOException e) {
+			Activator.getDefault().logError("input/ouput exception", e);
+		}
+	}
+
+	/**
+	 * Retrieves the root memento for Hyper Link Date Shell data from the plugin preferences if any or create a new one if none
+	 * 
+	 * @return the root memento for Hyper Links Data
+	 */
+	public static IMemento getExistingHPMemento() {
+		String sValue = getPreferenceStore().getString(HYPER_LINK_SHELL_MEMENTO);
+		try {
+			if(sValue != null && !sValue.equals("")) { //$NON-NLS-1$
+				XMLMemento rootMemento = XMLMemento.createReadRoot(new StringReader(sValue));
+				return rootMemento;
+			} else {
+				return XMLMemento.createWriteRoot(HYPER_LINK_SHELL_MEMENTO);
+			}
+		} catch (WorkbenchException e) {
+			Activator.getDefault().logError("Impossible to read preferences", e);
+		}
+		return null;
+	}
+
+	/**
+	 * Return the index of the last tab used for the type (represented by semantic hinted) or null if none
+	 * 
+	 * @param rootMemento
+	 *        Root memento used for Hyper Link Data
+	 * @param elementSemanticHint
+	 *        String to represent the EClass of the EObject
+	 * @return
+	 */
+	public static Integer getLastTabUseMemento(IMemento rootMemento, String elementSemanticHint) {
+		IMemento lastTabUsedMemento = getLastTabUseMemento(rootMemento);
+		if(lastTabUsedMemento != null) {
+			return lastTabUsedMemento.getInteger(elementSemanticHint);
+		}
+		return null;
+	}
+
+	/**
+	 * @param memento
+	 * @return
+	 */
+	protected static IMemento getLastTabUseMemento(IMemento memento) {
+		IMemento lastTabUsedMemento = memento.getChild(LAST_TAB_USE_MEMENTO);
+		if(lastTabUsedMemento == null) {
+			lastTabUsedMemento = memento.createChild(LAST_TAB_USE_MEMENTO);
+		}
+		return lastTabUsedMemento;
+	}
+
+	private static IPreferenceStore getPreferenceStore() {
+		return Activator.getDefault().getPreferenceStore();
 	}
 }
