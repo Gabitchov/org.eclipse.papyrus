@@ -299,14 +299,18 @@
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
     </rm:provider>
+     -->
+     <!-- /TEST -->
+     
+     <!-- feature -->
     <rm:provider componentTypes="eclipse.feature" readerType="svn">
       <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/features/{1}">
         <bc:propertyRef key="svn.repository"/>
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
     </rm:provider>
- -->
- 							<!-- /TEST -->
+
+ 							
 
   </rm:searchPath>
   
