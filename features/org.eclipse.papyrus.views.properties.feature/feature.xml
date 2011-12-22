@@ -55,32 +55,4 @@ http://www.eclipse.org/legal/epl-v10.html
          version="0.0.0"
          unpack="false"/>
 
-   <plugin
-         id="org.eclipse.papyrus.views.properties.runtime"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.papyrus.views.properties.tabbed.core"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.papyrus.views.properties.tabbed.customization"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.papyrus.views.properties.tabbedproperties.core"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
 </feature>

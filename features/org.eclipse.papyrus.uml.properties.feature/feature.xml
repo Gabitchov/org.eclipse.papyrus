@@ -29,32 +29,4 @@ http://www.eclipse.org/legal/epl-v10.html
          version="0.0.0"
          unpack="false"/>
 
-   <plugin
-         id="org.eclipse.papyrus.uml.properties.runtime"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.papyrus.uml.properties.tabbed.profile"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.papyrus.uml.properties.tabbedproperties.appearance"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.papyrus.uml.properties.view"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
 </feature>
