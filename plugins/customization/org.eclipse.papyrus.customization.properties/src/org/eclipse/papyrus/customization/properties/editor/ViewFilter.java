@@ -56,7 +56,7 @@ public class ViewFilter extends ViewerFilter {
 					}
 					return matcher.match(viewName);
 				} else if(eObject instanceof DataContextPackage) {
-					//FIXME : Le filtre ne fonctionne pas correctement pour afficher un DCElement dans un Package
+					//FIXME : The filter doesn't work correctly for displaying a DataContextElement in a Package
 					return select((DataContextPackage)eObject);
 				} else if(eObject instanceof DataContextElement) {
 					return select((DataContextElement)eObject);

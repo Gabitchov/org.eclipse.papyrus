@@ -8,6 +8,7 @@
  $Id$
 -->
 <plugin>
+   <extension-point id="ConstraintEnvironment" name="ConstraintEnvironment" schema="schema/ConstraintEnvironment.exsd"/>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package class="org.eclipse.papyrus.infra.constraints.ConstraintsPackage" genModel="Model/Constraints.genmodel" uri="http://www.eclipse.org/papyrus/constraints/0.9"/>
@@ -22,6 +23,12 @@
             file="custom/constraints.uiCustom"
             loadByDefault="true">
       </browserCustomization>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.constraints.ConstraintEnvironment">
+      <environment
+            environmentModel="Model/ConstraintEnvironment.xmi">
+      </environment>
    </extension>
 
 </plugin>

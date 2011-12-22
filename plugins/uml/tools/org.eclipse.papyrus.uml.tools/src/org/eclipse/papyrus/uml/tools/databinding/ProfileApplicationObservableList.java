@@ -19,7 +19,7 @@ import org.eclipse.core.databinding.observable.list.ListDiff;
 import org.eclipse.core.databinding.observable.list.ListDiffEntry;
 import org.eclipse.core.databinding.observable.list.WritableList;
 import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.common.command.StrictCompoundCommand;
+import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.papyrus.infra.widgets.editors.AbstractEditor;
@@ -134,7 +134,7 @@ public class ProfileApplicationObservableList extends WritableList implements IC
 			return;
 		}
 
-		StrictCompoundCommand compoundCommand = new StrictCompoundCommand() {
+		CompoundCommand compoundCommand = new CompoundCommand() {
 
 			@Override
 			public void execute() {
@@ -153,6 +153,27 @@ public class ProfileApplicationObservableList extends WritableList implements IC
 				super.redo();
 				refreshCacheList();
 			}
+
+			/**
+			 * We have a sequential execution : the method canExecute() in
+			 * the command n+1 depends on the result of the command n. We can't
+			 * check every command's canExecute() method here, so we only
+			 * check the first one.
+			 */
+			@Override
+			public boolean canExecute() {
+				return commandList.isEmpty() ? false : commandList.get(0).canExecute();
+			}
+			//TODO : edit the execute() method to call the remaining canExecute() checks
+			//during the execution
+			//(n).canExecute()
+			//(n).execute()
+			//(n+1).canExecute()
+			//(n+1).execute()
+
+			//Problem : this is the StrictCompoundCommand's behavior. However, in the 
+			//StrictCompoundCommand implementation, the execute() is called outside of 
+			//the current CommandStack, which is forbidden
 		};
 
 		for(Command cmd : commands) {

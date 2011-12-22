@@ -2,28 +2,30 @@
 <environment:Environment
     xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI"
-    xmlns:environment="http://www.eclipse.org/papyrus/properties/environment/0.9">
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:environment="http://www.eclipse.org/papyrus/properties/environment/0.9"
+    xsi:schemaLocation="http://www.eclipse.org/papyrus/properties/environment/0.9 ../../../plugin/org.eclipse.papyrus.views.properties.model/Model/Properties.ecore#//environment">
+  <constraintTypes
+      label="EMF Instance Of (Deprecated)"
+      constraintClass="org.eclipse.papyrus.infra.constraints.constraints.EMFInstanceOfConstraint"/>
+  <constraintTypes
+      label="True Constraint (Deprecated)"
+      constraintClass="org.eclipse.papyrus.infra.constraints.constraints.TrueConstraint"/>
+  <constraintTypes
+      label="EMF Query (Deprecated)"
+      constraintClass="org.eclipse.papyrus.infra.constraints.constraints.EMFQueryConstraint"/>
+  <constraintTypes
+      label="Java Instance Of (Deprecated)"
+      constraintClass="org.eclipse.papyrus.infra.constraints.constraints.JavaInstanceOf"/>
+  <constraintTypes
+      label="Java Query (Deprecated)"
+      constraintClass="org.eclipse.papyrus.infra.constraints.constraints.JavaQueryConstraint"/>
   <modelElementFactories
       name="EMF Factory"
       factoryClass="org.eclipse.papyrus.views.properties.modelelement.EMFModelElementFactory"/>
   <modelElementFactories
       name="Annotation Factory"
       factoryClass="org.eclipse.papyrus.views.properties.modelelement.AnnotationModelElementFactory"/>
-  <constraintTypes
-      label="EMF Instance Of"
-      constraintClass="org.eclipse.papyrus.infra.constraints.constraints.EMFInstanceOfConstraint"/>
-  <constraintTypes
-      label="True Constraint"
-      constraintClass="org.eclipse.papyrus.infra.constraints.constraints.TrueConstraint"/>
-  <constraintTypes
-      label="EMF Query"
-      constraintClass="org.eclipse.papyrus.infra.constraints.constraints.EMFQueryConstraint"/>
-  <constraintTypes
-      label="Java Instance Of"
-      constraintClass="org.eclipse.papyrus.infra.constraints.constraints.JavaInstanceOf"/>
-  <constraintTypes
-      label="Java Query"
-      constraintClass="org.eclipse.papyrus.infra.constraints.constraints.JavaQueryConstraint"/>
   <widgetTypes
       label="Label"
       widgetClass="Label"/>

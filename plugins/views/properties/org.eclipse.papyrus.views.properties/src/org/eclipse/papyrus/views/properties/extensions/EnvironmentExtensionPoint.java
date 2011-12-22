@@ -16,6 +16,7 @@ import java.io.IOException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.papyrus.infra.constraints.runtime.ConstraintsManager;
 import org.eclipse.papyrus.views.properties.Activator;
 import org.eclipse.papyrus.views.properties.runtime.ConfigurationManager;
 
@@ -43,6 +44,7 @@ public class EnvironmentExtensionPoint {
 			//URI uri = URI.createPlatformPluginURI(e.getContributor().getName() + "/" + environmentResource, true); //$NON-NLS-1$
 			try {
 				ConfigurationManager.instance.addEnvironment(uri);
+				ConstraintsManager.instance.addEnvironment(uri); //We also add it to the constraints extension point, which we "extend"
 			} catch (IOException ex) {
 				Activator.log.error("The plugin " + e.getContributor() + " contributed an invalid " + "extension for " + EXTENSION_ID, ex); //$NON-NLS-1$//$NON-NLS-2$//$NON-NLS-3$
 			}

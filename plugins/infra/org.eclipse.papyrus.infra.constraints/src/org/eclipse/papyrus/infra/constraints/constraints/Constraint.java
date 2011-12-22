@@ -22,9 +22,6 @@ import org.eclipse.papyrus.infra.constraints.DisplayUnit;
  * @author Camille Letavernier
  * 
  */
-//TODO : To be refactored
-//The constraint framework should be accessible by other plug-ins which don't
-//necessarily depend on oep.properties
 public interface Constraint {
 
 	/**

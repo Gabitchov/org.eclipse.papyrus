@@ -23,6 +23,7 @@ import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IEditorModel;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageModel;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.table.common.Activator;
 import org.eclipse.papyrus.infra.table.instance.papyrustableinstance.PapyrusTableInstance;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IEditorPart;
@@ -159,8 +160,7 @@ public abstract class AbstractNattableEditorFactory extends AbstractEditorFactor
 				registry = servicesRegistry.getService(ActionBarContributorRegistry.class);
 			} catch (ServiceException e) {
 				// Service not found
-				// TODO Log the error
-				e.printStackTrace();
+				Activator.log.error(e);
 				return null;
 			}
 
@@ -168,7 +168,7 @@ public abstract class AbstractNattableEditorFactory extends AbstractEditorFactor
 				return registry.getActionBarContributor(actionBarId);
 			} catch (BackboneException e) {
 				// TODO Log the error and throw an exception instead
-				e.printStackTrace();
+				Activator.log.error(e);
 				return null;
 			}
 		}

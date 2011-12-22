@@ -65,7 +65,7 @@
   </eSubpackages>
   <eSubpackages name="contexts" nsURI="http://www.eclipse.org/papyrus/properties/contexts/0.9"
       nsPrefix="contexts">
-    <eClassifiers xsi:type="ecore:EClass" name="Context" eSuperTypes="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EModelElement">
+    <eClassifiers xsi:type="ecore:EClass" name="Context" eSuperTypes="../../org.eclipse.emf.ecore/model/Ecore.ecore#//EModelElement">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="dependencies" ordered="false"

@@ -21,6 +21,7 @@ import org.eclipse.emf.edit.EMFEditPlugin;
 import org.eclipse.emf.facet.infra.browser.custom.MetamodelView;
 import org.eclipse.emf.facet.infra.browser.custom.core.CustomizationsCatalog;
 import org.eclipse.emf.facet.infra.browser.uicore.CustomizationManager;
+import org.eclipse.papyrus.infra.core.log.LogHelper;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
@@ -39,7 +40,8 @@ public class Activator extends AbstractUIPlugin {
 	/** the customization manager */
 	private CustomizationManager fCustomizationManager;
 
-	//FIXME : this plugin doesn't provide a LogHelper
+	public static LogHelper log;
+
 	/**
 	 * The constructor
 	 */
@@ -55,6 +57,7 @@ public class Activator extends AbstractUIPlugin {
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		plugin = this;
+		log = new LogHelper(this);
 		EMFEditPlugin.getComposedAdapterFactoryDescriptorRegistry();
 	}
 

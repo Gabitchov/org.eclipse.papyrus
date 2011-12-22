@@ -124,7 +124,7 @@ public class PapyrusCommandFactory extends DefaultCommandFactory {
 		String className = owner.getClass().getCanonicalName();
 		if(className.contains("org.eclipse.emf.facet")) { //$NON-NLS-1$
 			String message = "the type " + className + " should be included in the test"; //$NON-NLS-1$ //$NON-NLS-2$
-			Activator.getDefault().helper.info(message);
+			Activator.getDefault().log.info(message);
 			return true;
 		}
 		return false;

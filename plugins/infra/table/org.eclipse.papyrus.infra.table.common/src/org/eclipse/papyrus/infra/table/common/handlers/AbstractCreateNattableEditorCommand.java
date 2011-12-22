@@ -183,7 +183,7 @@ public abstract class AbstractCreateNattableEditorCommand extends AbstractHandle
 			try {
 				CheckedOperationHistory.getInstance().execute(command, new NullProgressMonitor(), null);
 			} catch (ExecutionException e) {
-				Activator.getDefault().helper.error("Can't create Table Editor", e); //$NON-NLS-1$
+				Activator.getDefault().log.error("Can't create Table Editor", e); //$NON-NLS-1$
 			}
 
 		}
@@ -258,7 +258,7 @@ public abstract class AbstractCreateNattableEditorCommand extends AbstractHandle
 				try {
 					impl = catalog.getModelQueryImpl(query);
 				} catch (ModelQueryException e) {
-					Activator.getDefault().helper.error(e);
+					Activator.getDefault().log.error(e);
 				}
 				if(impl != null) {
 					ModelQueryResult result = impl.evaluate(context);

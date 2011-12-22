@@ -28,6 +28,7 @@ import org.eclipse.papyrus.customization.properties.providers.PropertyContentPro
 import org.eclipse.papyrus.customization.properties.providers.PropertyEditorTypeContentProvider;
 import org.eclipse.papyrus.customization.properties.providers.TabContentProvider;
 import org.eclipse.papyrus.infra.constraints.ConstraintsPackage;
+import org.eclipse.papyrus.infra.constraints.providers.ConstraintTypeContentProvider;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.widgets.creation.ReferenceValueFactory;
 import org.eclipse.papyrus.infra.widgets.providers.EmptyContentProvider;
@@ -80,9 +81,10 @@ public class CustomizationModelElement extends AbstractModelElement {
 		providers = new HashMap<EClassifier, IStaticContentProvider>();
 		providers.put(EnvironmentPackage.eINSTANCE.getCompositeWidgetType(), new EnvironmentContentProvider(EnvironmentPackage.eINSTANCE.getEnvironment_CompositeWidgetTypes()));
 		providers.put(EnvironmentPackage.eINSTANCE.getStandardWidgetType(), new EnvironmentContentProvider(EnvironmentPackage.eINSTANCE.getEnvironment_WidgetTypes()));
-		providers.put(org.eclipse.papyrus.infra.constraints.environment.EnvironmentPackage.eINSTANCE.getConstraintType(), new EnvironmentContentProvider(org.eclipse.papyrus.infra.constraints.environment.EnvironmentPackage.eINSTANCE.getConstraintEnvironment_ConstraintTypes()));
 		providers.put(EnvironmentPackage.eINSTANCE.getLayoutType(), new EnvironmentContentProvider(EnvironmentPackage.eINSTANCE.getEnvironment_LayoutTypes()));
 		providers.put(EnvironmentPackage.eINSTANCE.getModelElementFactoryDescriptor(), new EnvironmentContentProvider(EnvironmentPackage.eINSTANCE.getEnvironment_ModelElementFactories()));
+
+		providers.put(org.eclipse.papyrus.infra.constraints.environment.EnvironmentPackage.eINSTANCE.getConstraintType(), new ConstraintTypeContentProvider());
 	}
 
 	@Override
@@ -139,7 +141,6 @@ public class CustomizationModelElement extends AbstractModelElement {
 	@Override
 	public ILabelProvider getLabelProvider(String propertyPath) {
 		return new ContextLabelProvider();
-		//		return new EMFObjectLabelProvider();
 	}
 
 	@Override

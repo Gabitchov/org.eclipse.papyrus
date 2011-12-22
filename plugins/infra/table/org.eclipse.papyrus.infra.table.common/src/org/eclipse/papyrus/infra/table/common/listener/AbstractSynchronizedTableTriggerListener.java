@@ -99,7 +99,7 @@ public abstract class AbstractSynchronizedTableTriggerListener extends TriggerLi
 			try {
 				impl = catalog.getModelQueryImpl(query);
 			} catch (ModelQueryException e) {
-				Activator.getDefault().helper.error(e);
+				Activator.getDefault().log.error(e);
 			}
 			if(impl != null) {
 				ModelQueryResult result = impl.evaluate(this.table.getTable().getContext());
@@ -280,7 +280,7 @@ public abstract class AbstractSynchronizedTableTriggerListener extends TriggerLi
 				try {
 					queryImpl = ModelQuerySetCatalog.getSingleton().getModelQueryImpl(query);
 				} catch (ModelQueryException e) {
-					Activator.getDefault().helper.error(e);
+					Activator.getDefault().log.error(e);
 				}
 
 				for(EObject current : elementsToAdd) {
