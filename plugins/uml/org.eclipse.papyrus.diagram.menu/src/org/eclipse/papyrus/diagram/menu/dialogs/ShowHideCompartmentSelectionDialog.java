@@ -16,30 +16,21 @@ package org.eclipse.papyrus.diagram.menu.dialogs;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 
-import org.eclipse.gef.EditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.services.editpart.EditPartService;
-import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.CellLabelProvider;
 import org.eclipse.jface.viewers.CheckboxCellEditor;
+import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.ColumnViewer;
 import org.eclipse.jface.viewers.EditingSupport;
 import org.eclipse.jface.viewers.ILabelProvider;
-import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ITreeContentProvider;
-import org.eclipse.jface.viewers.ITreeSelection;
-import org.eclipse.jface.viewers.TreePath;
 import org.eclipse.jface.viewers.ViewerCell;
 import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.diagram.common.dialogs.AbstractCheckedTreeColumnViewerSelectionDialog;
-import org.eclipse.papyrus.diagram.common.providers.EditorLabelProvider;
-import org.eclipse.papyrus.diagram.common.util.CompartmentTitleRepresentation;
-import org.eclipse.papyrus.diagram.common.util.CompartmentUtils;
+import org.eclipse.papyrus.diagram.menu.actions.ShowHideCompartmentAction.CompartmentEditPartRepresentation;
 import org.eclipse.papyrus.diagram.menu.messages.Messages;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -66,10 +57,10 @@ public class ShowHideCompartmentSelectionDialog extends AbstractCheckedTreeColum
 	protected final static String ICON_UNCHECKED = "/icons/incomplete_tsk.gif"; //$NON-NLS-1$
 
 	/** all the title representation */
-	protected List<CompartmentTitleRepresentation> titleRepresentations;
+	//protected List<CompartmentTitleRepresentation> titleRepresentations;
 
 	/** the selected title representation */
-	protected List<CompartmentTitleRepresentation> selectedTitles;
+	// protected List<CompartmentTitleRepresentation> selectedTitles;
 
 	/**
 	 * 
@@ -96,28 +87,28 @@ public class ShowHideCompartmentSelectionDialog extends AbstractCheckedTreeColum
 	protected void computeResult() {
 		List<Object> checkedElement = Arrays.asList(getTreeViewer().getCheckedElements());
 		List<Object> returnedValues = new ArrayList<Object>();
-		returnedValues.addAll(selectedTitles);
+		// returnedValues.addAll(selectedTitles);
 		returnedValues.addAll(checkedElement);
 		setResult(returnedValues);
 	}
 
-	/**
-     * @see org.eclipse.papyrus.diagram.common.dialogs.CheckedTreeSelectionDialog#setInput()
-     */
-	@Override
-    public void setInput(Object input) {
-		super.setInput(input);
-    }
+	//	/**
+	//     * @see org.eclipse.papyrus.diagram.common.dialogs.CheckedTreeSelectionDialog#setInput()
+	//     */
+	//	@Override
+	//    public void setInput(Object input) {
+	//		super.setInput(input);
+	//    }
 
-	/**
-	 * Setter for {@link #titleRepresentations}
-	 * 
-	 * @param rep
-	 *        the list of the title representation
-	 */
-	public void setTitleRepresentation(List<CompartmentTitleRepresentation> rep) {
-		this.titleRepresentations = rep;
-	}
+	//	/**
+	//	 * Setter for {@link #titleRepresentations}
+	//	 * 
+	//	 * @param rep
+	//	 *        the list of the title representation
+	//	 */
+	//	public void setTitleRepresentation(List<CompartmentTitleRepresentation> rep) {
+	//		this.titleRepresentations = rep;
+	//	}
 
 	/**
      * Adds the propagation button (in addition to the buttons added by the super class) to the dialog.
@@ -150,11 +141,11 @@ public class ShowHideCompartmentSelectionDialog extends AbstractCheckedTreeColum
 	@Override
 	public void setInitialElementSelections(List selectedElements) {
 		super.setInitialElementSelections(selectedElements);
-		this.selectedTitles = new ArrayList<CompartmentTitleRepresentation>();
+		// this.selectedTitles = new ArrayList<CompartmentTitleRepresentation>();
 		for(Object current : selectedElements) {
-			if(current instanceof CompartmentTitleRepresentation) {
-				this.selectedTitles.add((CompartmentTitleRepresentation)current);
-			}
+			//			if(current instanceof CompartmentTitleRepresentation) {
+			//				this.selectedTitles.add((CompartmentTitleRepresentation)current);
+			//			}
 		}
 	}
 
@@ -165,7 +156,7 @@ public class ShowHideCompartmentSelectionDialog extends AbstractCheckedTreeColum
 	protected void init() {
 		setColumnTitles(new String[]{ "Compartments To Display", "Display Compartment Title" });
 		setColumnWidths(new int[]{ 350, 180 });
-		setColumnCellLabelProvider(new CellLabelProvider[]{ new CompartmentNameProvider(), new CheckBoxLabelProvider() });
+		setColumnCellLabelProvider(new CellLabelProvider[]{ new CompartmentNameProvider(), new TitleVisibilityLabelProvider() });
 	}
 
 	/**
@@ -184,27 +175,25 @@ public class ShowHideCompartmentSelectionDialog extends AbstractCheckedTreeColum
 	}
 
 	/**
-	 * This class provides the editind support for the visibility of the name of the compartment
-	 * 
-	 * 
-	 * 
+	 * This class provides the editing support for the visibility of the name of the compartment
 	 */
 	public class NameVisibilityEditingSupport extends EditingSupport {
 
+		/**
+		 * Constructor.
+		 * 
+		 * @param viewer
+		 *        the viewer for which editing support is provided
+		 */
 		public NameVisibilityEditingSupport(ColumnViewer viewer) {
 			super(viewer);
 		}
 
 		/**
-		 * 
-		 * @see org.eclipse.jface.viewers.EditingSupport#getCellEditor(java.lang.Object)
-		 * 
-		 * @param element
-		 * @return
+		 * {@inheritDoc}
 		 */
-		@Override
 		protected CellEditor getCellEditor(Object element) {
-			if(element instanceof View) {
+			if(element instanceof CompartmentEditPartRepresentation) {
 				CheckboxCellEditor editor = new CheckboxCellEditor();
 				editor.setValue(getValue(element));
 				return editor;
@@ -213,57 +202,34 @@ public class ShowHideCompartmentSelectionDialog extends AbstractCheckedTreeColum
 		}
 
 		/**
-		 * 
-		 * @see org.eclipse.jface.viewers.EditingSupport#canEdit(java.lang.Object)
-		 * 
-		 * @param element
-		 * @return
+		 * {@inheritDoc}
 		 */
-		@Override
 		protected boolean canEdit(Object element) {
-			if(element instanceof View) {
-				EditPart dummyEP = EditPartService.getInstance().createGraphicEditPart((View)element);
-				return dummyEP instanceof CompartmentEditPart;
-			}
-			return false;
+			return (element instanceof CompartmentEditPartRepresentation);
 		}
 
 		/**
-		 * 
-		 * @see org.eclipse.jface.viewers.EditingSupport#getValue(java.lang.Object)
-		 * 
-		 * @param element
-		 * @return
+		 * {@inheritDoc}
 		 */
-		@Override
 		protected Object getValue(Object element) {
-			if(element instanceof View) {
-				CompartmentTitleRepresentation rep = CompartmentUtils.getCompartmentTitleRepresentation(titleRepresentations, (View)element);
-				if(rep != null) {
-					return selectedTitles.contains(rep);
-				}
+			if(element instanceof CompartmentEditPartRepresentation) {
+				return ((CompartmentEditPartRepresentation)element).isTitleVisible();
 			}
 			return false;
-
 		}
 
 		/**
-		 * 
-		 * @see org.eclipse.jface.viewers.EditingSupport#setValue(java.lang.Object, java.lang.Object)
-		 * 
-		 * @param element
-		 * @param value
+		 * {@inheritDoc}
 		 */
-		@Override
 		protected void setValue(Object element, Object value) {
-			if(element instanceof View) {
-				CompartmentTitleRepresentation rep = CompartmentUtils.getCompartmentTitleRepresentation(titleRepresentations, (View)element);
-				if(rep != null) {
-					if(value.equals(true)) {
-						selectedTitles.add(rep);
-					} else if(value.equals(false)) {
-						selectedTitles.remove(rep);
-					}
+			if(value == null) {
+				return;
+			}
+			if(element instanceof CompartmentEditPartRepresentation) {
+				if(value.equals(true)) {
+					((CompartmentEditPartRepresentation)element).setTitleVisible(true);
+				} else {
+					((CompartmentEditPartRepresentation)element).setTitleVisible(false);
 				}
 			}
 			getTreeViewer().refresh();
@@ -275,35 +241,29 @@ public class ShowHideCompartmentSelectionDialog extends AbstractCheckedTreeColum
 	 * This provider is used by the 2nd column
 	 * 
 	 */
-	class CompartmentNameProvider extends CellLabelProvider implements ILabelProvider {
+	protected class CompartmentNameProvider extends ColumnLabelProvider {
 
-		/** the label provider */
-		private final ILabelProvider provider;
+		/** label provider */
+		private final ILabelProvider labelProvider;
 
 		public CompartmentNameProvider() {
-			provider = new EditorLabelProvider();
+			labelProvider = getLabelProvider();
 		}
 
 		/**
-		 * 
-		 * @see org.eclipse.jface.viewers.ILabelProvider#getImage(java.lang.Object)
-		 * 
-		 * @param element
-		 * @return
+		 * {@inheritDoc}
 		 */
+		@Override
 		public Image getImage(Object element) {
-			return provider.getImage(element);
+			return labelProvider.getImage(element);
 		}
 
 		/**
-		 * 
-		 * @see org.eclipse.jface.viewers.ILabelProvider#getText(java.lang.Object)
-		 * 
-		 * @param element
-		 * @return
+		 * {@inheritDoc}
 		 */
+		@Override
 		public String getText(Object element) {
-			return provider.getText(element);
+			return labelProvider.getText(element);
 		}
 
 
@@ -322,54 +282,32 @@ public class ShowHideCompartmentSelectionDialog extends AbstractCheckedTreeColum
 
 	/**
 	 * The label provider for the 2nd column : Display Name
-	 * 
-	 * 
-	 * 
 	 */
-	public class CheckBoxLabelProvider extends CellLabelProvider {
+	public class TitleVisibilityLabelProvider extends ColumnLabelProvider {
+
+		/** empty string */
+		private static final String EMPTY_STRING = "";
 
 		/**
-		 * 
-		 * @see org.eclipse.jface.viewers.CellLabelProvider#update(org.eclipse.jface.viewers.ViewerCell)
-		 * 
-		 * @param cell
+		 * {@inheritDoc}
 		 */
 		@Override
-		public void update(ViewerCell cell) {
-			cell.setImage(getImage(cell.getElement()));
-			cell.setText(getText(cell.getElement()));
-
+		public String getText(Object element) {
+			return EMPTY_STRING;
 		}
 
 		/**
-		 * 
-		 * @param element
-		 *        an element
-		 * @return
-		 *         the text to display for this element
+		 * {@inheritDoc}
 		 */
-		private String getText(Object element) {
-			return "";
-		}
-
-		/**
-		 * 
-		 * @param element
-		 *        an element
-		 * @return
-		 *         the image to display for this element
-		 */
-		private Image getImage(Object element) {
-			if(element instanceof View) {
-				CompartmentTitleRepresentation representation = CompartmentUtils.getCompartmentTitleRepresentation(titleRepresentations, (View)element);
-				if(representation != null) {
-					if(selectedTitles.contains(representation)) {
-						return Activator.getPluginIconImage(Activator.ID, ICON_CHECKED);
-					}
-					return Activator.getPluginIconImage(Activator.ID, ICON_UNCHECKED);
+		@Override
+		public Image getImage(Object element) {
+			if(element instanceof CompartmentEditPartRepresentation) {
+				if(((CompartmentEditPartRepresentation)element).isTitleVisible()) {
+					return Activator.getPluginIconImage(Activator.ID, ICON_CHECKED);
 				}
+				return Activator.getPluginIconImage(Activator.ID, ICON_UNCHECKED);
 			}
-			return null;
+			return super.getImage(element);
 		}
 	}
 	
@@ -378,64 +316,64 @@ public class ShowHideCompartmentSelectionDialog extends AbstractCheckedTreeColum
 	 */
 	public class PropagateSelectionAdapter extends SelectionAdapter {
 		public void widgetSelected(SelectionEvent e) {
-			ISelection sel = getTreeViewer().getSelection();
-			if (sel instanceof ITreeSelection) {
-				TreePath paths[] = ((ITreeSelection) sel).getPaths();
-				EditPart selectedEP;
-				// Obtain EditPart at top of selection
-				if (paths.length != 1) {
-					return;
-				}
-				Object objSelectedEP = paths[0].getFirstSegment();
-				if (objSelectedEP instanceof EditPart) {
-					selectedEP = (EditPart) objSelectedEP; 
-				}
-				else {
-					return;
-				}
-				Class<? extends EditPart> clazz = ((EditPart) selectedEP).getClass();
-
-				List<View> sourceViews = CompartmentUtils.getAllCompartments(selectedEP, false);
-
-				boolean changedTitle = false;
-				Object[] viewerElements = fContentProvider.getElements(fInput);
-				for (Object viewerElement : viewerElements) {
-					// Identity guarantees that viewerElement is an instance of EditPart
-					if((viewerElement.getClass() == clazz) && (viewerElement != selectedEP)) {
-						// copy selection
-						Iterator<View> targetViews = CompartmentUtils.getAllCompartments((EditPart) viewerElement, false).iterator();
-						for (View sourceView : sourceViews) {
-							if (targetViews.hasNext()) {
-								View targetView = targetViews.next();
-								boolean isChecked = getTreeViewer().getChecked(sourceView);
-								getTreeViewer().setChecked(targetView, isChecked);
-
-								// propagate title representation
-								CompartmentTitleRepresentation sourceRepresentation = CompartmentUtils.getCompartmentTitleRepresentation(titleRepresentations, sourceView);
-								CompartmentTitleRepresentation targetRepresentation = CompartmentUtils.getCompartmentTitleRepresentation(titleRepresentations, targetView);
-								if((sourceRepresentation != null) && (targetRepresentation != null)) {
-									if(selectedTitles.contains(sourceRepresentation)) {
-										if (!selectedTitles.contains(targetRepresentation)) {
-											selectedTitles.add(targetRepresentation);
-											changedTitle = true;
-										}
-									}
-									else {
-										if (selectedTitles.contains(targetRepresentation)) {
-											selectedTitles.remove(targetRepresentation);
-											changedTitle = true;
-										}
-									}
-								}
-							}
-						}
-					}
-				}       
-				updateOKStatus();
-				if (changedTitle) {
-					getTreeViewer().refresh();
-				}
-			}
+			//			ISelection sel = getTreeViewer().getSelection();
+			//			if (sel instanceof ITreeSelection) {
+			//				TreePath paths[] = ((ITreeSelection) sel).getPaths();
+			//				EditPart selectedEP;
+			//				// Obtain EditPart at top of selection
+			//				if (paths.length != 1) {
+			//					return;
+			//				}
+			//				Object objSelectedEP = paths[0].getFirstSegment();
+			//				if (objSelectedEP instanceof EditPart) {
+			//					selectedEP = (EditPart) objSelectedEP; 
+			//				}
+			//				else {
+			//					return;
+			//				}
+			//				Class<? extends EditPart> clazz = ((EditPart) selectedEP).getClass();
+			//
+			//				List<View> sourceViews = CompartmentUtils.getAllCompartments(selectedEP, false);
+			//
+			//				boolean changedTitle = false;
+			//				Object[] viewerElements = fContentProvider.getElements(fInput);
+			//				for (Object viewerElement : viewerElements) {
+			//					// Identity guarantees that viewerElement is an instance of EditPart
+			//					if((viewerElement.getClass() == clazz) && (viewerElement != selectedEP)) {
+			//						// copy selection
+			//						Iterator<View> targetViews = CompartmentUtils.getAllCompartments((EditPart) viewerElement, false).iterator();
+			//						for (View sourceView : sourceViews) {
+			//							if (targetViews.hasNext()) {
+			//								View targetView = targetViews.next();
+			//								boolean isChecked = getTreeViewer().getChecked(sourceView);
+			//								getTreeViewer().setChecked(targetView, isChecked);
+			//
+			//								// propagate title representation
+//								CompartmentTitleRepresentation sourceRepresentation = CompartmentUtils.getCompartmentTitleRepresentation(titleRepresentations, sourceView);
+//								CompartmentTitleRepresentation targetRepresentation = CompartmentUtils.getCompartmentTitleRepresentation(titleRepresentations, targetView);
+			//								if((sourceRepresentation != null) && (targetRepresentation != null)) {
+			//									if(selectedTitles.contains(sourceRepresentation)) {
+			//										if (!selectedTitles.contains(targetRepresentation)) {
+			//											selectedTitles.add(targetRepresentation);
+			//											changedTitle = true;
+			//										}
+			//									}
+			//									else {
+			//										if (selectedTitles.contains(targetRepresentation)) {
+			//											selectedTitles.remove(targetRepresentation);
+			//											changedTitle = true;
+			//										}
+			//									}
+			//								}
+			//							}
+			//						}
+			//					}
+			//				}       
+			//				updateOKStatus();
+			//				if (changedTitle) {
+			//					getTreeViewer().refresh();
+			//				}
+			//			}
 		}
 	}
 }

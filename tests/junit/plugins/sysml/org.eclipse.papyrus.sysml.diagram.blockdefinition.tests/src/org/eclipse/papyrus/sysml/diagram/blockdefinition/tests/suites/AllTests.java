@@ -18,7 +18,8 @@ import org.junit.runners.Suite.SuiteClasses;
  AllCreationLinkTests.class,
  AllCreationAssociationTests.class,
  AllDnDLinkTests.class,
- AllDeletionTests.class
+ AllDeletionTests.class, 
+ AllUtilsTests.class
  })
 public class AllTests {
 

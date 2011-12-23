@@ -20,8 +20,8 @@ import java.util.List;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.papyrus.diagram.common.actions.AbstractShowHideAction;
@@ -43,7 +43,7 @@ abstract public class AbstractShowHideHandler extends AbstractHandler {
 	private String editpolicy;
 
 	/** the current selection */
-	private List<EditPart> selection = new ArrayList<EditPart>();
+	private List<IGraphicalEditPart> selection = new ArrayList<IGraphicalEditPart>();
 
 	/**
 	 * 
@@ -100,10 +100,10 @@ abstract public class AbstractShowHideHandler extends AbstractHandler {
 				Iterator<?> it = ((StructuredSelection)selectionTmp).iterator();
 				while(it.hasNext()) {
 					Object current = it.next();
-					if(current instanceof EditPart) {
-						EditPolicy editpolicy = ((EditPart)current).getEditPolicy(this.editpolicy);
+					if(current instanceof IGraphicalEditPart) {
+						EditPolicy editpolicy = ((IGraphicalEditPart)current).getEditPolicy(this.editpolicy);
 						if(editpolicy != null) {
-							this.selection.add((EditPart)current);
+							this.selection.add((IGraphicalEditPart)current);
 						}
 					}
 				}

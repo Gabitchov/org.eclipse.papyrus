@@ -16,7 +16,6 @@ package org.eclipse.papyrus.diagram.common.actions;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.draw2d.geometry.Point;
@@ -31,6 +30,7 @@ import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.commands.CreateCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IResizableCompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.XYLayoutEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
@@ -45,15 +45,15 @@ import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.diagram.common.Messages;
 import org.eclipse.papyrus.diagram.common.commands.ShowHideElementsRequest;
+import org.eclipse.papyrus.diagram.common.editpolicies.AffixedNodeAlignmentEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.ShowHideClassifierContentsEditPolicy;
-import org.eclipse.papyrus.diagram.common.providers.EditorLabelProvider;
+import org.eclipse.papyrus.diagram.common.util.CompartmentUtils;
 import org.eclipse.papyrus.diagram.common.util.Util;
-import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IActionDelegate;
-import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.IWorkbenchWindowActionDelegate;
 import org.eclipse.ui.dialogs.CheckedTreeSelectionDialog;
 import org.eclipse.uml2.uml.Classifier;
+import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Type;
 
@@ -65,19 +65,11 @@ import org.eclipse.uml2.uml.Type;
  */
 public class ShowHideContentsAction extends AbstractShowHideAction implements IActionDelegate, IWorkbenchWindowActionDelegate {
 
-	/** title for the dialog */
-	private final static String title = Messages.ShowHideContentsAction_Title;
-
-	/** title for the message */
-	private final static String message = Messages.ShowHideContentsAction_Message;
-
-	/** increment for the location of the elements to show(ports and properties) */
-	private int increment = 10;
+	/** INCREMENT for the location of the elements to show(ports and properties) */
+	private static int INCREMENT = 10;
 
 	/**
-	 * 
 	 * Constructor.
-	 * 
 	 */
 	public ShowHideContentsAction() {
 		this(Messages.ShowHideContentsAction_Title, Messages.ShowHideContentsAction_Message, ShowHideClassifierContentsEditPolicy.SHOW_HIDE_CLASSIFIER_CONTENTS_POLICY);
@@ -99,48 +91,7 @@ public class ShowHideContentsAction extends AbstractShowHideAction implements IA
 	}
 
 	/**
-	 * 
-	 * @see org.eclipse.ui.IWorkbenchWindowActionDelegate#dispose()
-	 * 
-	 */
-	@Override
-	public void dispose() {
-		// TODO Auto-generated method stub
-	}
-
-	/**
-	 * 
-	 * @see org.eclipse.ui.IWorkbenchWindowActionDelegate#init(org.eclipse.ui.IWorkbenchWindow)
-	 * 
-	 * @param window
-	 */
-	@Override
-	public void init(IWorkbenchWindow window) {
-		// TODO Auto-generated method stub
-
-	}
-
-	/**
-	 * 
-	 * @see org.eclipse.ui.IActionDelegate#run(org.eclipse.jface.action.IAction)
-	 * 
-	 * @param action
-	 */
-	@Override
-	public void run(IAction action) {
-		super.run(action);
-	}
-
-	/**
-	 * We can use the show/hide contents action, only if there 1 selected object
-	 * 
-	 * @see org.eclipse.papyrus.diagram.common.actions.AbstractShowHideAction#selectionChanged(org.eclipse.jface.action.IAction,
-	 *      org.eclipse.jface.viewers.ISelection)
-	 * 
-	 * @param action
-	 *        the current action
-	 * @param selection
-	 *        the current selection
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void selectionChanged(IAction action, ISelection selection) {
@@ -154,44 +105,33 @@ public class ShowHideContentsAction extends AbstractShowHideAction implements IA
 	}
 
 	/**
-	 * 
-	 * @see org.eclipse.papyrus.diagram.common.actions.AbstractShowHideAction#initAction()
-	 * 
+	 * {@inheritDoc}
 	 */
 	@Override
 	protected void initAction() {
 		super.initAction();
-		for(EditPart current : this.selectedElements) {
+		for(IGraphicalEditPart current : this.selectedElements) {
 			// the selected elements which aren't Classifier are ignored
 			if(((View)current.getModel()).getElement() instanceof Classifier) {
-				this.representations.add(new CustomEditPartRepresentation(current, (Classifier)((View)current.getModel()).getElement()));
+				this.representations.add(new RootEditPartRepresentation(current, (Classifier)((View)current.getModel()).getElement()));
 			}
 		}
-		this.setEditorLabelProvider(new CustomEditorLabelProvider());
+		// this.setEditorLabelProvider(new CustomEditorLabelProvider());
 		this.setContentProvider(new ContentProvider());
 	}
 
 	/**
-	 * 
-	 * @see org.eclipse.papyrus.diagram.common.actions.AbstractShowHideAction#getInput()
-	 * 
-	 * @return
+	 * {@inheritDoc}
 	 */
 	@Override
 	protected List<Object> getInput() {
 		List<Object> list = new ArrayList<Object>();
 		list.addAll(representations);
-		for(EditPartRepresentation current : representations) {
-			list.addAll(((CustomEditPartRepresentation)current).getSuperClasses());
-		}
 		return list;
 	}
 
 	/**
-	 * 
-	 * @see org.eclipse.papyrus.diagram.common.actions.AbstractShowHideAction#getActionCommand()
-	 * 
-	 * @return
+	 * {@inheritDoc}
 	 */
 	@Override
 	protected Command getActionCommand() {
@@ -202,8 +142,8 @@ public class ShowHideContentsAction extends AbstractShowHideAction implements IA
 		/*
 		 * the command to hide elements we need the corresponding editpart
 		 */
-		for(Object current : this.viewsToDestroy) {
-			EditPart ep = findEditPart(current);
+		for(EditPartRepresentation current : this.viewsToDestroy) {
+			EditPart ep = current.getRepresentedEditPart(); // should not be null, because EP to destroy really exists 
 			if(ep != null) {
 				req = new ShowHideElementsRequest(ep);
 				EditPart parent = ep.getParent();
@@ -214,44 +154,43 @@ public class ShowHideContentsAction extends AbstractShowHideAction implements IA
 				if(cmd != null && cmd.canExecute()) {
 					completeCmd.add(cmd);
 				}
+			} else {
+				Activator.log.error("the edit part for this representation " + current + " should not be null", null);
 			}
 		}
 
 		// the command to show element
 		Point propertyLocation = new Point();
-		Point portLocation = new Point(-10, -2 * increment + 1);
-		for(Object current : this.viewsToCreate) {
-			EditPartRepresentation rep = findEditPartRepresentation(current);
-			if(rep == null) {
+		Point portLocation = new Point(-10, -2 * INCREMENT + 1);
+		for(EditPartRepresentation rep : this.viewsToCreate) {
+			if(!(rep instanceof OptionalEditPartRepresentation)) {
 				continue;
 			}
-			EditPart ep = findEditPartRepresentation(current).getRepresentedEditPart();
-			if(ep != null) {
-				View compartment = getCompartmentForCreation(ep, (EObject)current);
-				if(compartment != null) {
-					req = new ShowHideElementsRequest(compartment, (EObject)current);
-					if(isXYLayout(compartment, ep)) {
-						propertyLocation.x += increment;
-						propertyLocation.y += increment;
+			EditPart ep = ((OptionalEditPartRepresentation)rep).getParentRepresentation().getParentRepresentation().getRepresentedEditPart();
+				View compartmentView = ((OptionalEditPartRepresentation)rep).getParentRepresentation().getRepresentedEditPart().getNotationView();
+				if(compartmentView != null) {
+					req = new ShowHideElementsRequest(compartmentView, ((OptionalEditPartRepresentation)rep).getSemanticElement());
+					if(isXYLayout(compartmentView, ep)) {
+						propertyLocation.x += INCREMENT;
+						propertyLocation.y += INCREMENT;
 						req.setLocation(new Point(propertyLocation));
 
-					} else if(isAffixedChildNode(ep, (EObject)current)) {
-						portLocation.y += increment;
+					} else if(isAffixedChildNode(ep, ((OptionalEditPartRepresentation)rep).getSemanticElement())) {
+						portLocation.y += INCREMENT;
 						req.setLocation(new Point(portLocation));
 					}
 					Command cmd = ep.getCommand(req);
 					if(cmd != null && cmd.canExecute()) {
 						completeCmd.add(cmd);
 					}
-				}
 			}
 		}
 		return completeCmd;
 	}
 
 	/**
-	 * Test if the child is represented by an affixed child node TODO This
-	 * method will not work if we have an UML element E1 which inherits from
+	 * Test if the child is represented by an affixed child node
+	 * TODO This method will not work if we have an UML element E1 which inherits from
 	 * another element E2 and if E2 is represented by an affixed child node and
 	 * not E1!
 	 * 
@@ -360,45 +299,44 @@ public class ShowHideContentsAction extends AbstractShowHideAction implements IA
 		return null;
 	}
 
-	/**
-	 * Return the EditPart owning the Object or <code>null</code>
-	 * 
-	 * @param obj
-	 * @return the EditPart owning the Object or <code>null</code>
-	 */
-	protected EditPart findEditPart(Object obj) {
-		EditPart ep = null;
-		Iterator<EditPartRepresentation> it = representations.iterator();
-		while(ep == null && it.hasNext()) {
-			List<EditPart> children = getChildrenEditPart(it.next().getRepresentedEditPart());
-			for(EditPart editPart : children) {
-				if(((View)editPart.getModel()).getElement() == obj) {
-					return editPart;
-				}
-			}
-		}
-		return null;
-	}
+	//	/**
+	//	 * Return the EditPart owning the Object or <code>null</code>
+	//	 * 
+	//	 * @param obj
+	//	 * @return the EditPart owning the Object or <code>null</code>
+	//	 */
+	//	protected EditPart findEditPart(EditPartRepresentation obj) {
+	//		EditPart ep = null;
+	//		EditPart parentEditPart = obj.getParentRepresentation().getRepresentedEditPart();
+	//		for(Object child : parentEditPart.getChildren()) {
+	//			EditPart child = (EditPart)child;
+	//		}
+	//		
+	//		Iterator<EditPartRepresentation> it = representations.iterator();
+	//		
+	//		while(ep == null && it.hasNext()) {
+	//			List<EditPart> children = getChildrenEditPart(it.next().getRepresentedEditPart());
+	//			for(EditPart editPart : children) {
+	//				if(((View)editPart.getModel()).getElement() == obj) {
+	//					return editPart;
+	//				}
+	//			}
+	//		}
+	//		return null;
+	//	}
 
 	/**
-	 * Fill the following fields :
-	 * <ul>
-	 * <li> {@link AbstractShowHideAction#viewsToDestroy}</li>
-	 * <li> {@link AbstractShowHideAction#viewsToCreate}</li>
-	 * </ul>
-	 * 
-	 * @see org.eclipse.papyrus.diagram.common.actions.AbstractShowHideAction#buildShowHideElementsList(java.lang.Object[])
-	 * 
-	 * @param results
+	 * {@inheritDoc}
 	 */
 	@Override
 	protected void buildShowHideElementsList(Object[] results) {
 		super.buildShowHideElementsList(results);
+
 		List<Object> result = new ArrayList<Object>();
 
 		// we remove the EditPartRepresentation from the result
 		for(int i = 0; i < results.length; i++) {
-			if((results[i] instanceof EditPartRepresentation) || (results[i] instanceof ClassifierRepresentation)) {
+			if((results[i] instanceof RootEditPartRepresentation || results[i] instanceof CompartmentEditPartRepresentation)) {
 				continue;
 			} else {
 				result.add(results[i]);
@@ -410,15 +348,15 @@ public class ShowHideContentsAction extends AbstractShowHideAction implements IA
 			if(initialSelection.contains(element)) {
 				// we do nothing
 				continue;
-			} else {
-				viewsToCreate.add(element);
+			} else if(element instanceof EditPartRepresentation) {
+				viewsToCreate.add((EditPartRepresentation)element);
 			}
 		}
 
 		// we are looking for the view to destroy
 		for(Object current : this.initialSelection) {
-			if(!result.contains(current)) {
-				viewsToDestroy.add(current);
+			if(!result.contains(current) && current instanceof EditPartRepresentation) {
+				viewsToDestroy.add((EditPartRepresentation)current);
 			}
 		}
 	}
@@ -444,57 +382,12 @@ public class ShowHideContentsAction extends AbstractShowHideAction implements IA
 		return null;
 	}
 
-	/**
-	 * 
-	 * EditorLabelProvider for the {@link CheckedTreeSelectionDialog}
-	 * 
-	 */
-	public class CustomEditorLabelProvider extends EditorLabelProvider {
-
-		/**
-		 * 
-		 * @see org.eclipse.papyrus.diagram.common.providers.EditorLabelProvider#getImage(java.lang.Object)
-		 * 
-		 * @param element
-		 * @return
-		 */
-		@Override
-		public Image getImage(Object element) {
-			if(element instanceof EditPartRepresentation) {
-				element = ((EditPartRepresentation)element).getUMLElement();
-			} else if(element instanceof ClassifierRepresentation) {
-				element = ((ClassifierRepresentation)element).getRepresentedClassifier();
-			}
-			return super.getImage(element);
-		}
-
-		/**
-		 * 
-		 * @see org.eclipse.papyrus.diagram.common.providers.EditorLabelProvider#getText(java.lang.Object)
-		 * 
-		 * @param element
-		 * @return
-		 */
-		@Override
-		public String getText(Object element) {
-			if(element instanceof EditPartRepresentation) {
-				element = ((EditPartRepresentation)element).getUMLElement();
-			} else if(element instanceof ClassifierRepresentation) {
-				element = ((ClassifierRepresentation)element).getRepresentedClassifier();
-			}
-			return super.getText(element);
-
-		}
-
-	}
-
 	public class CustomComparator implements Comparator<Object> {
 
 		/** this list contains the name of all the classes which want sort */
 		private List<String> classesList;
 
 		/**
-		 * 
 		 * Constructor.
 		 * 
 		 * @param members
@@ -519,12 +412,7 @@ public class ShowHideContentsAction extends AbstractShowHideAction implements IA
 		}
 
 		/**
-		 * 
 		 * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
-		 * 
-		 * @param o1
-		 * @param o2
-		 * @return
 		 */
 		public int compare(Object o1, Object o2) {
 
@@ -559,40 +447,26 @@ public class ShowHideContentsAction extends AbstractShowHideAction implements IA
 	}
 
 	/**
-	 * 
 	 * Content provider for the {@link CheckedTreeSelectionDialog}
-	 * 
 	 */
 	public class ContentProvider implements ITreeContentProvider {
 
 		/**
-		 * 
-		 * @see org.eclipse.jface.viewers.IContentProvider#dispose()
-		 * 
+		 * {@inheritDoc}
 		 */
 		public void dispose() {
-			// TODO Auto-generated method stub
-
+			// nothing here
 		}
 
 		/**
-		 * 
-		 * @see org.eclipse.jface.viewers.IContentProvider#inputChanged(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
-		 * 
-		 * @param viewer
-		 * @param oldInput
-		 * @param newInput
+		 * {@inheritDoc}
 		 */
 		public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
-			// TODO Auto-generated method stub
+			// nothing here
 		}
 
 		/**
-		 * 
-		 * @see org.eclipse.jface.viewers.ITreeContentProvider#getElements(java.lang.Object)
-		 * 
-		 * @param inputElement
-		 * @return
+		 * {@inheritDoc}
 		 */
 		public Object[] getElements(Object inputElement) {
 			if(inputElement instanceof List) {
@@ -602,71 +476,87 @@ public class ShowHideContentsAction extends AbstractShowHideAction implements IA
 		}
 
 		/**
-		 * 
-		 * @see org.eclipse.jface.viewers.ITreeContentProvider#getChildren(java.lang.Object)
-		 * 
-		 * @param parentElement
-		 * @return
+		 * {@inheritDoc}
 		 */
 		public Object[] getChildren(Object parentElement) {
-			List<NamedElement> members = new ArrayList<NamedElement>();
-			EList<NamedElement> localMembers = null;
+			//			if(parentElement instanceof RootEditPartRepresentation) {
+			//				RootEditPartRepresentation parentRepresentation = (RootEditPartRepresentation)parentElement;
+			//				return parentRepresentation.getPossibleElement().toArray();
+			//			} else if(parentElement instanceof CompartmentEditPartRepresentation) {
+			//				CompartmentEditPartRepresentation compartmentRepresentation = (CompartmentEditPartRepresentation)parentElement;
+			//				return compartmentRepresentation.getPossibleElement().toArray();
+			//			}
 			if(parentElement instanceof EditPartRepresentation) {
-				EObject myClassifier = ((EditPartRepresentation)parentElement).getUMLElement();
-				if(myClassifier instanceof Classifier) {
-					localMembers = ((Classifier)myClassifier).getOwnedMembers();
-					for(NamedElement namedElement : localMembers) {
-						if(((EditPartRepresentation)parentElement).getPossibleElement().contains(namedElement)) {
-							members.add(namedElement);
-						}
-					}
-				}
-			} else if(parentElement instanceof ClassifierRepresentation) {
-				localMembers = ((ClassifierRepresentation)parentElement).getRepresentedClassifier().getOwnedMembers();
-				for(NamedElement namedElement : localMembers) {
-					if(((ClassifierRepresentation)parentElement).getEditPartRepresentation().getPossibleElement().contains(namedElement)) {
-						members.add(namedElement);
-					}
-				}
+				return ((EditPartRepresentation)parentElement).getPossibleElement().toArray();
 			}
-			Collections.sort(members, new CustomComparator(members));
-			return members.toArray();
+			return new Object[0];
 
+
+			//			// in case of parent is the main edit part => returns all compartment
+			//			// if this is a compartment, returns all members that can be displayed
+			//			if(parentElement instanceof CompartmentEditPartRepresentation) {
+			//				CompartmentEditPartRepresentation compartmentRepresentation = (CompartmentEditPartRepresentation)parentElement;
+			//
+			//				// case parent is a compartment edit part
+			//				EObject myClassifier = compartmentRepresentation.getUMLElement();
+			//				if(myClassifier instanceof Classifier) {
+			//					// returns all members that can be displayed in this compartment
+			//					List<NamedElement> members = new ArrayList<NamedElement>();
+			//					EList<NamedElement> localMembers = ((Classifier)myClassifier).getOwnedMembers();
+			//					for(NamedElement namedElement : localMembers) {
+			//						if(((EditPartRepresentation)parentElement).getPossibleElement().contains(namedElement)) {
+			//							members.add(namedElement);
+			//						}
+			//					}
+			//					Collections.sort(members, new CustomComparator(members));
+			//					return members.toArray();
+			//				}
+			//			} else if(parentElement instanceof EditPartRepresentation) {// case parent is the main edit part
+			//				EditPartRepresentation parentRepresentation = (EditPartRepresentation)parentElement;
+			//				Element element = parentRepresentation.getUMLElement();
+			//				if(element instanceof Classifier) {
+			//					List<CompartmentEditPartRepresentation> compartmentRepresentations = new ArrayList<CompartmentEditPartRepresentation>();
+			//					List<IResizableCompartmentEditPart> compartmentEditParts = CompartmentUtils.getAllCompartmentsEditPart(parentRepresentation.getRepresentedEditPart(), false);
+			//					for(IResizableCompartmentEditPart currentEditPart : compartmentEditParts) {
+			//						CompartmentEditPartRepresentation representation = new CompartmentEditPartRepresentation(currentEditPart, (Classifier)element);
+			//						compartmentRepresentations.add(representation);
+			//					}
+			//					return compartmentRepresentations.toArray();
+			//				}
+			//			}
+			// return new Object[]{};
 		}
 
 		/**
-		 * 
-		 * @see org.eclipse.jface.viewers.ITreeContentProvider#getParent(java.lang.Object)
-		 * 
-		 * @param element
-		 * @return
+		 * {@inheritDoc}
 		 */
 		public Object getParent(Object element) {
-			if(!(element instanceof EditPartRepresentation)) {
-				EditPartRepresentation rep = findEditPartRepresentation(element);
-				if(rep != null) {
-
-					Classifier classifier = (Classifier)(rep).getUMLElement();
-					if(classifier.getOwnedMembers().contains(element)) {
-						return rep;
-					} else {
-						for(ClassifierRepresentation classRep : ((CustomEditPartRepresentation)rep).getSuperClasses()) {
-							if(classRep.ownsElement(element)) {
-								return classRep;
-							}
-						}
-					}
-				}
+			if(element instanceof EditPartRepresentation) {
+				EditPartRepresentation editPartRepresentation = (EditPartRepresentation)element;
+				return editPartRepresentation.getParentRepresentation();
 			}
+
+			//			if(!(element instanceof EditPartRepresentation)) {
+			//				EditPartRepresentation rep = findEditPartRepresentation(element);
+			//				if(rep != null) {
+			//
+			//					Classifier classifier = (Classifier)(rep).getUMLElement();
+			//					if(classifier.getOwnedMembers().contains(element)) {
+			//						return rep;
+			//					} else {
+			//						//						for(ClassifierRepresentation classRep : ((CustomEditPartRepresentation)rep).getSuperClasses()) {
+			//						//							if(classRep.ownsElement(element)) {
+			//						//								return classRep;
+			//						//							}
+			//						//						}
+			//					}
+			//				}
+			//			}
 			return null;
 		}
 
 		/**
-		 * 
-		 * @see org.eclipse.jface.viewers.ITreeContentProvider#hasChildren(java.lang.Object)
-		 * 
-		 * @param element
-		 * @return
+		 * {@inheritDoc}
 		 */
 		public boolean hasChildren(Object element) {
 			if(getChildren(element) != null && getChildren(element).length > 0) {
@@ -678,63 +568,234 @@ public class ShowHideContentsAction extends AbstractShowHideAction implements IA
 	}
 
 	/**
-	 * 
-	 * The custom EditPartRepresentation for this action
-	 * 
+	 * Class that represents the root edit part taht contains the compartments
 	 */
-	protected class CustomEditPartRepresentation extends EditPartRepresentation {
+	protected class RootEditPartRepresentation extends EditPartRepresentation {
 
 		/**
-		 * this list contains the representation of all classifier which are
-		 * superclass of the classifier represented by EditPartRepresentaiton
-		 */
-		protected List<ClassifierRepresentation> superClasses;
-
-		/**
-		 * 
-		 * Constructor.
+		 * Creates a new {@link RootEditPartRepresentation}
 		 * 
 		 * @param representedEditPart
+		 *        the edit part managed by this representation
 		 * @param classifier
+		 *        the classifier managed by the represented edit part
 		 */
-		public CustomEditPartRepresentation(EditPart representedEditPart, Classifier classifier) {
+		public RootEditPartRepresentation(IGraphicalEditPart representedEditPart, Classifier classifier) {
 			super(representedEditPart, classifier);
 		}
 
 		/**
-		 * 
-		 * @see org.eclipse.papyrus.diagram.common.actions.AbstractShowHideAction.EditPartRepresentation#initRepresentation()
-		 * 
+		 * {@inheritDoc}
+		 */
+		@Override
+		public Classifier getSemanticElement() {
+			return (Classifier)super.getSemanticElement();
+		}
+
+		/**
+		 * {@inheritDoc}
 		 */
 		@Override
 		protected void initRepresentation() {
 			super.initRepresentation();
-			this.superClasses = new ArrayList<ShowHideContentsAction.ClassifierRepresentation>();
-			if(this.UMLElement instanceof Classifier) {
-				EList<Classifier> parents = ((Classifier)UMLElement).allParents();
-				for(Classifier classifier : parents) {
-					superClasses.add(new ClassifierRepresentation(classifier, this));
-				}
 
-				/*
-				 * build the list of the elements to select we suggest only the
-				 * elements which can be displayed in the shown compartments
-				 */
-				this.elementsToSelect = new ArrayList<Object>();
-				EList<NamedElement> members = ((Classifier)UMLElement).getMembers();
-				for(NamedElement namedElement : members) {
-					View compartment = getCompartmentForCreation(this.representedEditPart, namedElement);
-					if(compartment != null) {
-						this.elementsToSelect.add(namedElement);
+			List<IResizableCompartmentEditPart> compartmentEditParts = CompartmentUtils.getAllCompartmentsEditPart(getRepresentedEditPart(), false);
+			for(IResizableCompartmentEditPart currentEditPart : compartmentEditParts) {
+				CompartmentEditPartRepresentation representation = new CompartmentEditPartRepresentation(currentEditPart, getSemanticElement(), this);
+				elementsToSelect.add(representation);
+			}
 
-						// build the initial selection
-						EList<?> childrenView = compartment.getVisibleChildren();
-						for(Object object : childrenView) {
-							if(object instanceof View) {
-								if(((View)object).getElement() == namedElement) {
-									this.initialSelection.add(namedElement);
-									break;
+			// check if the element has a affixed child edit policy => will be treated as a compartment
+			EditPolicy policy = getRepresentedEditPart().getEditPolicy(AffixedNodeAlignmentEditPolicy.AFFIXED_CHILD_ALIGNMENT_ROLE);
+			if(policy != null) {
+				// there can be some affixed children, create a pseudo compartment edit part representation
+				AffixedChildrenEditPartRepresentation representation = new AffixedChildrenEditPartRepresentation(getSemanticElement(), this);
+				elementsToSelect.add(representation);
+			}
+		}
+	}
+
+	/**
+	 * Class that represents the compartment edit parts.
+	 */
+	protected class CompartmentEditPartRepresentation extends EditPartRepresentation {
+
+		/**
+		 * Creates a new {@link CompartmentEditPartRepresentation}
+		 * 
+		 * @param compartmentEditPart
+		 *        the compartment edit part managed by this representation
+		 * @param classifier
+		 *        the classifier managed by the represented edit part
+		 * @param parentRepresentation
+		 *        parent presentation of this parent
+		 */
+		public CompartmentEditPartRepresentation(IResizableCompartmentEditPart compartmentEditPart, Classifier classifier, EditPartRepresentation parentRepresentation) {
+			super(compartmentEditPart, classifier, parentRepresentation);
+		}
+
+		//		/**
+		//		 * Returns the title of the compartment
+		//		 * 
+		//		 * @return the title of the compartment
+		//		 */
+		//		public String getCompartmentName() {
+		//			if(getRepresentedEditPart() instanceof IResizableCompartmentEditPart) {
+		//				return ((IResizableCompartmentEditPart)getRepresentedEditPart()).getCompartmentName();
+		//			}
+		//			// this is not a  compartment, but the virtual placeholder for border items
+		//			return "Not a Compartment";
+		//		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public String getLabel() {
+			if(getRepresentedEditPart() instanceof IResizableCompartmentEditPart) {
+				return ((IResizableCompartmentEditPart)getRepresentedEditPart()).getCompartmentName();
+			}
+			return super.getLabel();
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public Classifier getSemanticElement() {
+			return (Classifier)super.getSemanticElement();
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		protected void initRepresentation() {
+			// call super first
+			super.initRepresentation();
+
+			EList<NamedElement> members = getSemanticElement().getMembers();
+			for(NamedElement namedElement : members) {
+				if(canContain(namedElement)) {
+					// create the leaf representation
+					OptionalEditPartRepresentation editPartRepresentation = new OptionalEditPartRepresentation(null, namedElement, this);
+					this.elementsToSelect.add(editPartRepresentation);
+					// build the initial selection
+					EList<?> childrenView = getRepresentedEditPart().getNotationView().getVisibleChildren();
+					for(Object object : childrenView) {
+						if(object instanceof View) {
+							if(((View)object).getElement() == namedElement) {
+								this.initialSelection.add(editPartRepresentation);
+								
+								// set the edit part in the optional edit part representation
+								for(Object o : getRepresentedEditPart().getChildren()) {
+									if(o instanceof IGraphicalEditPart) {
+										if(((View)object).equals(((IGraphicalEditPart)o).getNotationView())) {
+											editPartRepresentation.setRepresentedEditPart((IGraphicalEditPart)o);
+										}
+									}
 								}
+								break;
+							}
+						}
+					}
+				}
+			}
+
+		}
+
+		/**
+		 * REturns <code>true</code> if the associated compartment edit part can contain the given element
+		 * 
+		 * @param namedElement
+		 *        the named element to show/hide
+		 * @return <code>true</code> if the compartment can display the element
+		 */
+		protected boolean canContain(NamedElement namedElement) {
+			TransactionalEditingDomain domain = getRepresentedEditPart().getEditingDomain();
+			ViewDescriptor viewDescriptor = new ViewDescriptor(new EObjectAdapter(namedElement), Node.class, null, ViewUtil.APPEND, false, getRepresentedEditPart().getDiagramPreferencesHint());
+
+			CreateCommand cmd = new CreateCommand(domain, viewDescriptor, getRepresentedEditPart().getNotationView());
+			return (cmd.canExecute());
+		}
+	}
+
+	/**
+	 * Specific edit part representation for edit part that can display affixed children. It extends {@link CompartmentEditPartRepresentation}, as
+	 * this is displayed at the same level.
+	 */
+	protected class AffixedChildrenEditPartRepresentation extends CompartmentEditPartRepresentation {
+
+		/**
+		 * Constructor.
+		 * 
+		 * @param classifier
+		 *        uml element linked to this representation
+		 * @param parentRepresentation
+		 *        the main edit part against which show/hide content action is performed
+		 */
+		public AffixedChildrenEditPartRepresentation(Classifier classifier, EditPartRepresentation parentRepresentation) {
+			super(null, classifier, parentRepresentation);
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		protected boolean canContain(NamedElement namedElement) {
+			TransactionalEditingDomain domain = ((IGraphicalEditPart)getParentRepresentation().getRepresentedEditPart()).getEditingDomain();
+			ViewDescriptor viewDescriptor = new ViewDescriptor(new EObjectAdapter(namedElement), Node.class, null, ViewUtil.APPEND, false, ((IGraphicalEditPart)getParentRepresentation().getRepresentedEditPart()).getDiagramPreferencesHint());
+
+			CreateCommand cmd = new CreateCommand(domain, viewDescriptor, ((IGraphicalEditPart)getParentRepresentation().getRepresentedEditPart()).getNotationView());
+			return (cmd.canExecute());
+
+			//return super.canContain(namedElement);
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public IGraphicalEditPart getRepresentedEditPart() {
+			return getParentRepresentation().getRepresentedEditPart();
+		}
+		
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public String getLabel() {
+			return "Border Items";
+		}
+
+		@Override
+		protected void initRepresentation() {
+			this.initialSelection = new ArrayList<EditPartRepresentation>();
+			this.elementsToSelect = new ArrayList<EditPartRepresentation>();
+
+			EList<NamedElement> members = getSemanticElement().getMembers();
+			for(NamedElement namedElement : members) {
+				if(canContain(namedElement)) {
+					// create the leaf representation
+					OptionalEditPartRepresentation editPartRepresentation = new OptionalEditPartRepresentation(null, namedElement, this);
+					this.elementsToSelect.add(editPartRepresentation);
+					// build the initial selection
+					EList<?> childrenView = ((IGraphicalEditPart)getParentRepresentation().getRepresentedEditPart()).getNotationView().getVisibleChildren();
+					for(Object object : childrenView) {
+						if(object instanceof View) {
+							if(((View)object).getElement() == namedElement) {
+								this.initialSelection.add(editPartRepresentation);
+
+								// set the edit part in the optional edit part representation
+								for(Object o : ((IGraphicalEditPart)getParentRepresentation().getRepresentedEditPart()).getChildren()) {
+									if(o instanceof IGraphicalEditPart) {
+										if(((View)object).equals(((IGraphicalEditPart)o).getNotationView())) {
+											editPartRepresentation.setRepresentedEditPart((IGraphicalEditPart)o);
+											break;
+										}
+									}
+								}
+								break;
 							}
 						}
 					}
@@ -742,67 +803,239 @@ public class ShowHideContentsAction extends AbstractShowHideAction implements IA
 			}
 		}
 
-		/**
-		 * 
-		 * @return a list containing the {@link ClassifierRepresentation} for
-		 *         each superclass of the {@link #representedEditPart}
-		 */
-		public List<ClassifierRepresentation> getSuperClasses() {
-			return this.superClasses;
-		}
+
 
 	}
 
 	/**
-	 * 
-	 * This class is used to do easily the difference between the nested
-	 * classifiers and the superclass of the selected class in the Tree The
-	 * superclass are represented with this class
+	 * Class that manages an element that can not be displayed currently
 	 */
-	protected class ClassifierRepresentation {
-
-		/** the represented classifier */
-		protected Classifier representedClassifier;
-
-		/** the CustomEditPartRepresentation owning this classifier */
-		protected EditPartRepresentation rep;
+	protected class OptionalEditPartRepresentation extends EditPartRepresentation {
 
 		/**
+		 * Creates a new {@link OptionalEditPartRepresentation}
 		 * 
-		 * Constructor.
-		 * 
-		 * @param representedClassifier
-		 *        the represented classifier
+		 * @param representedEditPart
+		 *        the edit part managed by this representation, which can be <code>null</code> in this implementation
+		 * @param element
+		 *        the semantic element managed by the represented edit part
+		 * @param parentRepresentation
+		 *        parent representation for this edit part (should be a compartment edit part representation)
 		 */
-		public ClassifierRepresentation(Classifier representedClassifier, CustomEditPartRepresentation rep) {
-			this.representedClassifier = representedClassifier;
-			this.rep = rep;
-		}
-
-		public boolean ownsElement(Object element) {
-			if(representedClassifier.getOwnedMembers().contains(element)) {
-				return true;
-			}
-			return false;
+		public OptionalEditPartRepresentation(IGraphicalEditPart representedEditPart, Element element, CompartmentEditPartRepresentation parentRepresentation) {
+			super(representedEditPart, element, parentRepresentation);
 		}
 
 		/**
-		 * Getter for {@link #representedClassifier}
-		 * 
-		 * @return {@link #representedClassifier}
+		 * {@inheritDoc}
 		 */
-		public Classifier getRepresentedClassifier() {
-			return this.representedClassifier;
-		}
-
-		/**
-		 * Getter for {@link #rep}
-		 * 
-		 * @return {@link #rep}
-		 */
-		public EditPartRepresentation getEditPartRepresentation() {
-			return this.rep;
+		@Override
+		public CompartmentEditPartRepresentation getParentRepresentation() {
+			return (CompartmentEditPartRepresentation)super.getParentRepresentation();
 		}
 
 	}
+
+	//	/**
+	//	 * The custom EditPartRepresentation for this action
+	//	 */
+	//	protected class CustomEditPartRepresentation extends EditPartRepresentation {
+	//
+	//		/**
+	//		 * this list contains the representation of all classifiers which are
+	//		 * superclass of the classifier represented by EditPartRepresentaiton
+	//		 */
+	//		protected List<ClassifierRepresentation> superClasses;
+	//
+	//		/**
+	//		 * 
+	//		 * Constructor.
+	//		 * 
+	//		 * @param representedEditPart
+	//		 *        the edit part managing the classifier
+	//		 * @param classifier
+	//		 *        the classifier for which display is customized
+	//		 */
+	//		public CustomEditPartRepresentation(EditPart representedEditPart, Classifier classifier) {
+	//			super(representedEditPart, classifier);
+	//		}
+	//
+	//		/**
+	//		 * {@inheritDoc}
+	//		 */
+	//		@Override
+	//		protected void initRepresentation() {
+	//			super.initRepresentation();
+	//			this.superClasses = new ArrayList<ShowHideContentsAction.ClassifierRepresentation>();
+	//			if(this.UMLElement instanceof Classifier) {
+	//				EList<Classifier> parents = ((Classifier)UMLElement).allParents();
+	//				for(Classifier classifier : parents) {
+	//					superClasses.add(new ClassifierRepresentation(classifier, this));
+	//				}
+	//
+	//				/*
+	//				 * build the list of the elements to select we suggest only the
+	//				 * elements which can be displayed in the shown compartments
+	//				 */
+	//				EList<NamedElement> members = ((Classifier)UMLElement).getMembers();
+	//				for(NamedElement namedElement : members) {
+	//					View compartment = getCompartmentForCreation(this.representedEditPart, namedElement);
+	//					if(compartment != null) {
+	//						this.elementsToSelect.add(namedElement);
+	//
+	//						// build the initial selection
+	//						EList<?> childrenView = compartment.getVisibleChildren();
+	//						for(Object object : childrenView) {
+	//							if(object instanceof View) {
+	//								if(((View)object).getElement() == namedElement) {
+	//									this.initialSelection.add(namedElement);
+	//									break;
+	//								}
+	//							}
+	//						}
+	//					}
+	//				}
+	//			}
+	//		}
+	//
+	//		/**
+	//		 * 
+	//		 * @return a list containing the {@link ClassifierRepresentation} for
+	//		 *         each superclass of the {@link #representedEditPart}
+	//		 */
+	//		public List<ClassifierRepresentation> getSuperClasses() {
+	//			return this.superClasses;
+	//		}
+	//
+	//	}
+
+	//	/**
+	//	 * Extends the edit part representation only for compartments edit part
+	//	 */
+	//	protected class CompartmentEditPartRepresentation extends EditPartRepresentation {
+	//
+	//		/**
+	//		 * Constructor.
+	//		 * 
+	//		 * @param compartmentEditPart
+	//		 *        the compartment edit part represented
+	//		 * @param umlElement
+	//		 *        the uml element for which the compartment is displayed
+	//		 */
+	//		public CompartmentEditPartRepresentation(IResizableCompartmentEditPart compartmentEditPart, Classifier umlElement) {
+	//			super(compartmentEditPart, umlElement);
+	//		}
+	//
+	//		/**
+	//		 * {@inheritDoc}
+	//		 */
+	//		@Override
+	//		public IResizableCompartmentEditPart getRepresentedEditPart() {
+	//			return (IResizableCompartmentEditPart)super.getRepresentedEditPart();
+	//		}
+	//
+	//		/**
+	//		 * {@inheritDoc}
+	//		 */
+	//		@Override
+	//		public Classifier getUMLElement() {
+	//			return (Classifier)super.getUMLElement();
+	//		}
+	//
+	//		/**
+	//		 * {@inheritDoc}
+	//		 */
+	//		@Override
+	//		protected void initRepresentation() {
+	//			// call super first
+	//			super.initRepresentation();
+	//
+	//			EList<NamedElement> members = getUMLElement().getMembers();
+	//			for(NamedElement namedElement : members) {
+	//				if(canContain(namedElement)) {
+	//					this.elementsToSelect.add(namedElement);
+	//					// build the initial selection
+	//					EList<?> childrenView = getRepresentedEditPart().getNotationView().getVisibleChildren();
+	//					for(Object object : childrenView) {
+	//						if(object instanceof View) {
+	//							if(((View)object).getElement() == namedElement) {
+	//								this.initialSelection.add(namedElement);
+	//								break;
+	//							}
+	//						}
+	//					}
+	//				}
+	//			}
+	//
+	//		}
+	//
+	//		/**
+	//		 * REturns <code>true</code> if the associated compartment edit part can contain the given element
+	//		 * 
+	//		 * @param namedElement
+	//		 *        the named element to show/hide
+	//		 * @return <code>true</code> if the compartment can display the element
+	//		 */
+	//		protected boolean canContain(NamedElement namedElement) {
+	//			TransactionalEditingDomain domain = getRepresentedEditPart().getEditingDomain();
+	//			ViewDescriptor viewDescriptor = new ViewDescriptor(new EObjectAdapter(namedElement), Node.class, null, ViewUtil.APPEND, false, getRepresentedEditPart().getDiagramPreferencesHint());
+	//
+	//			CreateCommand cmd = new CreateCommand(domain, viewDescriptor, getRepresentedEditPart().getNotationView());
+	//				return (cmd.canExecute());
+	//		}
+	//	}
+
+	//	/**
+	//	 * 
+	//	 * This class is used to do easily the difference between the nested
+	//	 * classifiers and the superclass of the selected class in the Tree The
+	//	 * superclass are represented with this class
+	//	 */
+	//	protected class ClassifierRepresentation {
+	//
+	//		/** the represented classifier */
+	//		protected Classifier representedClassifier;
+	//
+	//		/** the CustomEditPartRepresentation owning this classifier */
+	//		protected EditPartRepresentation rep;
+	//
+	//		/**
+	//		 * Constructor.
+	//		 * 
+	//		 * @param representedClassifier
+	//		 *        the represented classifier
+	//		 * @param rep
+	//		 *        the representation containing this classifier
+	//		 */
+	//		public ClassifierRepresentation(Classifier representedClassifier, CustomEditPartRepresentation rep) {
+	//			this.representedClassifier = representedClassifier;
+	//			this.rep = rep;
+	//		}
+	//
+	//		public boolean ownsElement(Object element) {
+	//			if(representedClassifier.getOwnedMembers().contains(element)) {
+	//				return true;
+	//			}
+	//			return false;
+	//		}
+	//
+	//		/**
+	//		 * Getter for {@link #representedClassifier}
+	//		 * 
+	//		 * @return {@link #representedClassifier}
+	//		 */
+	//		public Classifier getRepresentedClassifier() {
+	//			return this.representedClassifier;
+	//		}
+	//
+	//		/**
+	//		 * Getter for {@link #rep}
+	//		 * 
+	//		 * @return {@link #rep}
+	//		 */
+	//		public EditPartRepresentation getEditPartRepresentation() {
+	//			return this.rep;
+	//		}
+	//
+	//	}
 }

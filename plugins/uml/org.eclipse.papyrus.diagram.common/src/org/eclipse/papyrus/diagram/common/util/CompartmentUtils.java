@@ -20,6 +20,7 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IResizableCompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpart.EditPartService;
 import org.eclipse.gmf.runtime.notation.BasicCompartment;
@@ -38,6 +39,33 @@ public class CompartmentUtils {
 
 	private CompartmentUtils() {
 
+	}
+
+	/**
+	 * Returns all the compartments edit part of an EditPart
+	 * 
+	 * @param editpart
+	 *        an editpart
+	 * @param includeTitleCompartment
+	 *        if <code>true</code> we return the title compartment too
+	 * @return all compartments of the EditPart
+	 */
+	public static List<IResizableCompartmentEditPart> getAllCompartmentsEditPart(EditPart editpart, boolean includeTitleCompartment) {
+		List<IResizableCompartmentEditPart> compartments = new ArrayList<IResizableCompartmentEditPart>();
+
+		List<?> localChildren = editpart.getChildren();
+		for(Object current : localChildren) {
+			if(current instanceof IResizableCompartmentEditPart) {
+				if(includeTitleCompartment) {
+					compartments.add((IResizableCompartmentEditPart)current);
+				} else {
+					if(!(current instanceof ITextAwareEditPart)) {
+						compartments.add((IResizableCompartmentEditPart)current);
+					}
+				}
+			}
+		}
+		return compartments;
 	}
 
 	/**

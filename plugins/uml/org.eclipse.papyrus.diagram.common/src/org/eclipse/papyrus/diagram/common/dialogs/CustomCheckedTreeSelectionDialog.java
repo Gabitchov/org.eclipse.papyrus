@@ -64,7 +64,7 @@ public class CustomCheckedTreeSelectionDialog extends SelectionStatusDialog {
 
 	private CheckboxTreeViewer fViewer;
 
-	private ILabelProvider fLabelProvider;
+	final private ILabelProvider fLabelProvider;
 
 	protected ITreeContentProvider fContentProvider;
 
@@ -412,7 +412,7 @@ public class CustomCheckedTreeSelectionDialog extends SelectionStatusDialog {
 		return buttonComposite;
 	}
 
-	private boolean evaluateIfTreeEmpty(Object input) {
+	protected boolean evaluateIfTreeEmpty(Object input) {
 		Object[] elements = fContentProvider.getElements(input);
 		if(elements.length > 0) {
 			if(fFilters != null) {
@@ -423,5 +423,14 @@ public class CustomCheckedTreeSelectionDialog extends SelectionStatusDialog {
 			}
 		}
 		return elements.length == 0;
+	}
+
+	/**
+	 * Returns the label provider used by this dialog
+	 * 
+	 * @return the label provider used by this dialog
+	 */
+	public ILabelProvider getLabelProvider() {
+		return fLabelProvider;
 	}
 }
