@@ -57,7 +57,7 @@ public class PinInGroupListener extends AbstractModifcationTriggerListener<Activ
 
 	@Override
 	protected boolean isCorrectStructuralfeature(EStructuralFeature eStructuralFeature) {
-		if(UMLPackage.Literals.ACTIVITY_NODE__IN_INTERRUPTIBLE_REGION.equals(eStructuralFeature) || UMLPackage.Literals.ACTIVITY_NODE__IN_STRUCTURED_NODE.equals(eStructuralFeature) || UMLPackage.Literals.ACTIVITY_NODE__IN_PARTITION.equals(eStructuralFeature)) {
+		if(UMLPackage.Literals.ACTIVITY_NODE__IN_INTERRUPTIBLE_REGION.equals(eStructuralFeature) || UMLPackage.Literals.ACTIVITY_NODE__IN_PARTITION.equals(eStructuralFeature)) {
 			return true;
 		}
 		return false;
