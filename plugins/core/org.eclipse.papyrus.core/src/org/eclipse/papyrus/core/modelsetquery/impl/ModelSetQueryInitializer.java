@@ -28,7 +28,7 @@ public class ModelSetQueryInitializer implements IModelSetSnippet {
 	/**
 	 * The type cache adapter used to reference elements from a type
 	 */
-	private ModelSetQueryAdapter modelQueryAdapter;
+	private IModelSetQueryAdapter modelQueryAdapter;
 
 	/**
 	 * @see org.eclipse.papyrus.resource.IModelSetSnippet#start(org.eclipse.papyrus.resource.ModelSet)
@@ -41,14 +41,18 @@ public class ModelSetQueryInitializer implements IModelSetSnippet {
 		for(Adapter adapter : eAdapters) {
 			if(adapter instanceof IModelSetQueryAdapter) {
 				found = true;
-				modelQueryAdapter = (ModelSetQueryAdapter)adapter;
+				modelQueryAdapter = (IModelSetQueryAdapter)adapter;
 			}
 		}
 		if(!found) {
-			modelQueryAdapter = new ModelSetQueryAdapter();
-			eAdapters.add(modelQueryAdapter);
+			modelQueryAdapter = getIModelSetQueryAdapter();
+			eAdapters.add((Adapter) modelQueryAdapter);
 		}
 
+	}
+
+	protected IModelSetQueryAdapter getIModelSetQueryAdapter() {
+		return new ModelSetQueryAdapterSizeMatters();
 	}
 
 	/**

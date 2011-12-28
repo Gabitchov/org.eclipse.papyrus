@@ -15,15 +15,12 @@ package org.eclipse.papyrus.core.modelsetquery.impl;
 
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.LinkedList;
+import java.util.IdentityHashMap;
 import java.util.Map;
-import java.util.Set;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
@@ -33,16 +30,17 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 
 /**
  * This cache creates a map associating EClasses to all the corresponding
+ * This implementation takes more space but it is more performant for get and put methods
  * instances
  * 
  * @author Tristan Faure
  */
-public class ModelSetQueryAdapter extends EContentAdapter implements IModelSetQueryAdapter {
+public class ModelSetQueryAdapterTimeMatters extends EContentAdapter implements IModelSetQueryAdapter {
 
 	/**
 	 * The cache of elements
 	 */
-	private Map<EClassifier, Collection<EObject>> cache = Collections.synchronizedMap(new HashMap<EClassifier, Collection<EObject>>());
+	private Map<EClassifier, Collection<EObject>> cache = Collections.synchronizedMap(new IdentityHashMap<EClassifier, Collection<EObject>>());
 
 	/**
 	 * This cache adapter is only used if the caller don't use correctly
@@ -51,13 +49,7 @@ public class ModelSetQueryAdapter extends EContentAdapter implements IModelSetQu
 	 */
 	private static SimpleTypeCacheAdapter simpleCacheAdapter = new SimpleTypeCacheAdapter();
 
-	protected Set<Resource> unloadedResources = new HashSet<Resource>();
-
-	protected Set<URI> alreadyLoadedURIs = new HashSet<URI>();
-
-	protected Map<EObject, Resource> unloadedEObjects = new HashMap<EObject, Resource>();
-
-	public ModelSetQueryAdapter() {
+	public ModelSetQueryAdapterTimeMatters() {
 		super();
 	}
 
@@ -75,8 +67,8 @@ public class ModelSetQueryAdapter extends EContentAdapter implements IModelSetQu
 			return simpleCacheAdapter;
 		}
 		for(Adapter adapter : notifier.eAdapters()) {
-			if(adapter instanceof ModelSetQueryAdapter) {
-				return (ModelSetQueryAdapter)adapter;
+			if(adapter instanceof ModelSetQueryAdapterSizeMatters) {
+				return (ModelSetQueryAdapterSizeMatters)adapter;
 			}
 		}
 		if(notifier instanceof EObject) {
@@ -128,7 +120,7 @@ public class ModelSetQueryAdapter extends EContentAdapter implements IModelSetQu
 		Collection<EObject> listOfClassifiers = cache.get(eClassifier);
 		if (listOfClassifiers == null)
 		{
-			listOfClassifiers = new LinkedList<EObject>();
+			listOfClassifiers = new HashSet<EObject>();
 			cache.put(eClassifier, listOfClassifiers);
 		}
 		if(listOfClassifiers != null) {
@@ -164,8 +156,6 @@ public class ModelSetQueryAdapter extends EContentAdapter implements IModelSetQu
 
 	public void dispose() {
 		cache.clear();
-		unloadedEObjects.clear();
-		unloadedResources.clear();
 		cache = null;
 	}
 
