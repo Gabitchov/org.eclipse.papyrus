@@ -28,10 +28,10 @@ public class ModelSetQueryInitializer implements IModelSetSnippet {
 	/**
 	 * The type cache adapter used to reference elements from a type
 	 */
-	private ModelSetQueryAdapter modelQueryAdapter;
+	private IModelSetQueryAdapter modelQueryAdapter;
 
 	/**
-	 * @see org.eclipse.papyrus.infra.core.resource.IModelSetSnippet#start(org.eclipse.papyrus.infra.core.resource.ModelSet)
+	 * @see org.eclipse.papyrus.resource.IModelSetSnippet#start(org.eclipse.papyrus.resource.ModelSet)
 	 * 
 	 * @param modelsManager
 	 */
@@ -41,18 +41,22 @@ public class ModelSetQueryInitializer implements IModelSetSnippet {
 		for(Adapter adapter : eAdapters) {
 			if(adapter instanceof IModelSetQueryAdapter) {
 				found = true;
-				modelQueryAdapter = (ModelSetQueryAdapter)adapter;
+				modelQueryAdapter = (IModelSetQueryAdapter)adapter;
 			}
 		}
 		if(!found) {
-			modelQueryAdapter = new ModelSetQueryAdapter();
-			eAdapters.add(modelQueryAdapter);
+			modelQueryAdapter = getIModelSetQueryAdapter();
+			eAdapters.add((Adapter) modelQueryAdapter);
 		}
 
 	}
 
+	protected IModelSetQueryAdapter getIModelSetQueryAdapter() {
+		return new ModelSetQueryAdapterSizeMatters();
+	}
+
 	/**
-	 * @see org.eclipse.papyrus.infra.core.resource.IModelSetSnippet#dispose(org.eclipse.papyrus.infra.core.resource.ModelSet)
+	 * @see org.eclipse.papyrus.resource.IModelSetSnippet#dispose(org.eclipse.papyrus.resource.ModelSet)
 	 * 
 	 * @param modelsManager
 	 */
