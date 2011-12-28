@@ -11,9 +11,9 @@
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.infra.core.sasheditor.editor;
+package org.eclipse.papyrus.infra.core.sasheditor.internal;
 
-import org.eclipse.papyrus.infra.core.sasheditor.internal.EditorPart;
+import org.eclipse.papyrus.infra.core.sasheditor.editor.SashWindowsContainer;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IWorkbenchPartSite;

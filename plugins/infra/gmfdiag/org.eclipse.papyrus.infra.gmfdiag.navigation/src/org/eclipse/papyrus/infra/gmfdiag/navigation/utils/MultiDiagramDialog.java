@@ -152,19 +152,6 @@ public class MultiDiagramDialog extends Dialog {
 					break;
 				}
 			}
-
-			if(!found) {
-				int diagFound = 0;
-				int diagFoundTemp = 0;
-				for(Diagram diagram : diagrams) {
-					diagFoundTemp = pageMngr.isInHsitory(diagram);
-					if(diagFoundTemp > diagFound) {
-						diagFound = diagFoundTemp;
-						table.select(diagrams.indexOf(diagram));
-						found = true;
-					}
-				}
-			}
 		} catch (ServiceException e) {
 			e.printStackTrace();
 		}

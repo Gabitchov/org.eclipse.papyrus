@@ -6,7 +6,6 @@ package org.eclipse.papyrus.infra.core.sasheditor.internal;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.papyrus.infra.core.sasheditor.editor.SashContainerEventsListener;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.SashWindowsContainer;
 
 /**

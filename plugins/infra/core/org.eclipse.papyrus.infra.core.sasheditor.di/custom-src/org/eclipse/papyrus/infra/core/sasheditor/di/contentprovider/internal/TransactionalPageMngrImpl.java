@@ -175,38 +175,6 @@ public class TransactionalPageMngrImpl implements IPageMngr {
 		return pageMngr.isOpen(pageIdentifier);
 	}
 
-	/**
-	 * 
-	 * @see org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr#openPrevious()
-	 * 
-	 */
-	public void openPrevious() {
-
-		new TransactionPageMngrRunnable() {
-
-			@Override
-			public void doRun() {
-				pageMngr.openPrevious();
-			}
-		}.run();
-	}
-
-	/**
-	 * 
-	 * @see org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr#openNext()
-	 * 
-	 */
-	public void openNext() {
-
-		new TransactionPageMngrRunnable() {
-
-			@Override
-			public void doRun() {
-				pageMngr.openNext();
-			}
-		}.run();
-	}
-
 	public void pageChanged(final IPage page) {
 		new TransactionPageMngrRunnable() {
 
@@ -300,18 +268,6 @@ public class TransactionalPageMngrImpl implements IPageMngr {
 				pageMngr.pageAboutToBeClosed(page);
 			}
 		}.run();
-	}
-
-	public boolean hasPreviousHistory() {
-		return pageMngr.hasPreviousHistory();
-	}
-
-	public boolean hasNextHistory() {
-		return pageMngr.hasNextHistory();
-	}
-
-	public int isInHsitory(Object pageIdentifier) {
-		return pageMngr.isInHsitory(pageIdentifier);
 	}
 
 }

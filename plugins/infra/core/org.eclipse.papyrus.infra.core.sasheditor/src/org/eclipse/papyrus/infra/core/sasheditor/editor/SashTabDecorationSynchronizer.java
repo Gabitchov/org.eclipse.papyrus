@@ -5,6 +5,7 @@ package org.eclipse.papyrus.infra.core.sasheditor.editor;
 
 import java.util.logging.Logger;
 
+import org.eclipse.papyrus.infra.core.sasheditor.internal.SashContainerEventsListener;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IPropertyListener;
 import org.eclipse.ui.IWorkbenchPart;

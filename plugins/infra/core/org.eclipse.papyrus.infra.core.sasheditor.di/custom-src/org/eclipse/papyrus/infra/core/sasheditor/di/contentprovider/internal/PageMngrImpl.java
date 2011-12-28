@@ -18,15 +18,11 @@ package org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Stack;
 
-import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.IPage;
 import org.eclipse.papyrus.infra.core.sashwindows.di.PageRef;
 import org.eclipse.papyrus.infra.core.sashwindows.di.SashWindowsMngr;
-import org.eclipse.ui.ISelectionService;
-import org.eclipse.ui.PlatformUI;
 
 /**
  * Implementation of the page manager. The page manager provides basic methods
@@ -39,11 +35,6 @@ public class PageMngrImpl implements IPageMngr {
 
 	/** Internal EMF model */
 	private SashWindowsMngr diSashModel;
-
-	/** Contains the current page and previously opened pages */
-	private Stack<Object> previousStack = new Stack<Object>();
-
-	private Stack<Object> nextStack = new Stack<Object>();
 
 	/**
 	 * true when an update is currently performed to not add a page two times to
@@ -89,9 +80,6 @@ public class PageMngrImpl implements IPageMngr {
 	public PageMngrImpl(SashWindowsMngr diSashModel, ContentChangedEventProvider contentChangedEventProvider) {
 		this.diSashModel = diSashModel;
 		this.contentChangedEventProvider = contentChangedEventProvider;
-		if(diSashModel.getSashModel() != null && diSashModel.getSashModel().getCurrentSelection() != null && !diSashModel.getSashModel().getCurrentSelection().getChildren().isEmpty()) {
-			addToPreviousStack(diSashModel.getSashModel().getCurrentSelection().getChildren().get(0).getPageIdentifier());
-		}
 	}
 
 	/**
@@ -180,8 +168,6 @@ public class PageMngrImpl implements IPageMngr {
 		// fired
 		// one single event.
 
-		addToPreviousStack(pageIdentifier);
-
 		Iterator<PageRef> iterator = diSashModel.getPageList().getAvailablePage().iterator();
 		boolean found = false;
 		while(iterator.hasNext() && found == false) {
@@ -246,116 +232,15 @@ public class PageMngrImpl implements IPageMngr {
 		return diSashModel.getSashModel().lookupPage(pageIdentifier) != null;
 	}
 
-	/**
-	 * 
-	 * @see org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr#openPrevious()
-	 * 
-	 */
-	public void openPrevious() {
-
-		setUpdating(true);
-
-		if(previousStack.size() > 1) {
-			nextStack.push(previousStack.pop());
-			Object pageIdentifier = previousStack.peek();
-			if(isOpen(pageIdentifier)) {
-
-				closePage(pageIdentifier);
-			}
-			openPageWithoutStack(pageIdentifier);
-		}
-
-		setUpdating(false);
-	}
-
-	/**
-	 * 
-	 * @see org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr#openNext()
-	 * 
-	 */
-	public void openNext() {
-		setUpdating(true);
-		if(!nextStack.isEmpty()) {
-			Object pageIdentifier = nextStack.pop();
-			previousStack.push(pageIdentifier);
-			if(isOpen(pageIdentifier)) {
-				closePage(pageIdentifier);
-			}
-			openPageWithoutStack(pageIdentifier);
-		}
-		setUpdating(false);
-	}
-
-	/**
-	 * Add a page to the previous Stack
-	 * 
-	 * @param page
-	 *        the page to add
-	 */
-	private void addToPreviousStack(Object page) {
-		if(previousStack.isEmpty() || previousStack.peek() != page) {
-			if(!nextStack.isEmpty()) {
-				nextStack.clear();
-			}
-			previousStack.push(page);
-		}
-	}
-
-	public void pageChanged(IPage newPage) {
-		if(newPage != null) {
-			if(!isUpdating() && !isClosingPage()) {
-				Object md = newPage.getRawModel();
-				if(md instanceof PageRef) {
-					Object page = ((PageRef)md).getPageIdentifier();// .getEmfPageIdentifier();
-					addToPreviousStack(page);
-				}
-			} else if(!isUpdating() && isClosingPage()) {
-				setClosingPage(false);
-				Object md = newPage.getRawModel();
-				if(md instanceof PageRef) {
-					Object page = ((PageRef)md).getPageIdentifier();
-					if(!previousStack.isEmpty()) {
-						previousStack.pop();
-					}
-					addToPreviousStack(page);
-				}
-			}
-		}
-	}
-
-	/**
-	 * 
-	 * @see org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr#hasPreviousHistory()
-	 * 
-	 */
-	public boolean hasPreviousHistory() {
-		return previousStack.size() > 1;
-	}
-
-	/**
-	 * 
-	 * @see org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr#hasNextHistory()
-	 * 
-	 */
-	public boolean hasNextHistory() {
-		return !nextStack.isEmpty();
-	}
-
-	/**
-	 * 
-	 * @see org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr#isInHsitory()
-	 * 
-	 */
-	public int isInHsitory(Object pageIdentifier) {
-		return previousStack.lastIndexOf(pageIdentifier);
-	}
-
 	public void pageOpened(IPage page) {
 		setClosingPage(false);
 	}
 
 	public void pageClosed(IPage page) {
 		setClosingPage(true);
+	}
+
+	public void pageChanged(IPage newPage) {
 	}
 
 	public void pageActivated(IPage page) {
@@ -369,5 +254,7 @@ public class PageMngrImpl implements IPageMngr {
 
 	public void pageAboutToBeClosed(IPage page) {
 	}
+
+	
 
 }

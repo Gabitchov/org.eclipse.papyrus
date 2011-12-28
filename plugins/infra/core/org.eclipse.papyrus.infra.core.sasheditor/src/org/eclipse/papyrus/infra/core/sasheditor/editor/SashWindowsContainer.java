@@ -31,6 +31,7 @@ import org.eclipse.papyrus.infra.core.sasheditor.internal.ActiveEditorServicesSw
 import org.eclipse.papyrus.infra.core.sasheditor.internal.ActivePageTracker;
 import org.eclipse.papyrus.infra.core.sasheditor.internal.ComponentPart;
 import org.eclipse.papyrus.infra.core.sasheditor.internal.EditorPart;
+import org.eclipse.papyrus.infra.core.sasheditor.internal.IMultiEditorManager;
 import org.eclipse.papyrus.infra.core.sasheditor.internal.IPartVisitor;
 import org.eclipse.papyrus.infra.core.sasheditor.internal.LookupIPageByIEditorPartVisitor;
 import org.eclipse.papyrus.infra.core.sasheditor.internal.LookupModelPageVisitor;
@@ -40,6 +41,7 @@ import org.eclipse.papyrus.infra.core.sasheditor.internal.PageVisitorWrapper;
 import org.eclipse.papyrus.infra.core.sasheditor.internal.PartLists;
 import org.eclipse.papyrus.infra.core.sasheditor.internal.PartVisitor;
 import org.eclipse.papyrus.infra.core.sasheditor.internal.RootPart;
+import org.eclipse.papyrus.infra.core.sasheditor.internal.SashContainerEventsListener;
 import org.eclipse.papyrus.infra.core.sasheditor.internal.SashContainerEventsProvider;
 import org.eclipse.papyrus.infra.core.sasheditor.internal.ShowPartStatusVisitor;
 import org.eclipse.papyrus.infra.core.sasheditor.internal.TabFolderPart;

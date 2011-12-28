@@ -18,8 +18,8 @@ package org.eclipse.papyrus.infra.core.sasheditor.contentprovider;
 import java.util.List;
 
 import org.eclipse.papyrus.infra.core.sasheditor.editor.IPageChangedListener;
-import org.eclipse.papyrus.infra.core.sasheditor.editor.SashContainerEventsListener;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.SashWindowsContainer;
+import org.eclipse.papyrus.infra.core.sasheditor.internal.SashContainerEventsListener;
 
 /**
  * Interface providing method to manage pages in the Sash Windows system. This
@@ -105,37 +105,5 @@ public interface IPageMngr extends IPageChangedListener, SashContainerEventsList
 	 */
 	public boolean isOpen(Object pageIdentifier);
 
-	/**
-	 * Open the previously opened page
-	 */
-	public void openPrevious();
-
-	/**
-	 * Open the next page after a previous
-	 */
-	public void openNext();
-
-	/**
-	 * Verify if the PageMngr car backward in history
-	 * 
-	 * @return
-	 */
-	public boolean hasPreviousHistory();
-
-	/**
-	 * Verify if the PageMngr car forward in history
-	 * 
-	 * @return
-	 */
-	public boolean hasNextHistory();
-
-	/**
-	 * add a page to PageMngr History
-	 * 
-	 * @param pageIdentifier
-	 *        identifying the page to add
-	 * @return
-	 */
-	public int isInHsitory(Object pageIdentifier);
 
 }
