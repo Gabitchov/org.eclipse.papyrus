@@ -35,7 +35,7 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
  * 
  * @author Tristan Faure
  */
-public class ModelSetQueryAdapterTimeMatters extends EContentAdapter implements IModelSetQueryAdapter {
+public class ModelSetQueryAdapterTimeMatters extends EContentAdapter implements IFillableModelSetQueryAdapter {
 
 	/**
 	 * The cache of elements
@@ -166,8 +166,11 @@ public class ModelSetQueryAdapterTimeMatters extends EContentAdapter implements 
 	 * @param type
 	 * @param list
 	 */
-	public void fillFirstEntryCache(EClassifier type, HashSet<EObject> list) {
-		cache.put(type, list);
+	public void addEntriesInCache(EClassifier type, HashSet<EObject> list) {
+		for (EObject e : list)
+		{
+			addObjectInCache(e);
+		}
 	}
 
 	public boolean isAlreadyComputed(EClassifier type) {

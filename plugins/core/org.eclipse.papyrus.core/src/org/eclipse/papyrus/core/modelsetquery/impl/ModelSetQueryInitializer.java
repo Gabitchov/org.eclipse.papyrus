@@ -45,13 +45,14 @@ public class ModelSetQueryInitializer implements IModelSetSnippet {
 			}
 		}
 		if(!found) {
-			modelQueryAdapter = getIModelSetQueryAdapter();
+			modelQueryAdapter = createDefaultIModelSetQueryAdapter();
 			eAdapters.add((Adapter) modelQueryAdapter);
 		}
 
 	}
 
-	protected IModelSetQueryAdapter getIModelSetQueryAdapter() {
+	public static IModelSetQueryAdapter createDefaultIModelSetQueryAdapter() {
+		// for big models size matters TODO change the implementation to provide options
 		return new ModelSetQueryAdapterSizeMatters();
 	}
 
