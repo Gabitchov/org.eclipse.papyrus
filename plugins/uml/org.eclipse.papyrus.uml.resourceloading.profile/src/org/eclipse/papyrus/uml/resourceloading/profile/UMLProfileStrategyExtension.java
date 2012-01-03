@@ -23,7 +23,9 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.papyrus.infra.core.modelsetquery.impl.ModelSetQueryAdapter;
+import org.eclipse.papyrus.infra.core.modelsetquery.IFillableModelSetQueryAdapter;
+import org.eclipse.papyrus.infra.core.modelsetquery.IModelSetQueryAdapter;
+import org.eclipse.papyrus.infra.core.modelsetquery.impl.ModelSetQueryInitializer;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.uml.UmlUtils;
 import org.eclipse.papyrus.infra.services.resourceloading.ILoadingStrategyExtension;
@@ -44,16 +46,18 @@ public class UMLProfileStrategyExtension implements ILoadingStrategyExtension {
 	public boolean loadResource(ModelSet modelSet, URI uri) {
 		Resource modelResource = UmlUtils.getUmlModel(modelSet).getResource();
 		if(modelResource != null && UMLResource.FILE_EXTENSION.equals(modelResource.getURI().fileExtension())) {
-			org.eclipse.papyrus.infra.core.modelsetquery.impl.ModelSetQueryAdapter adapter = null;
+			IFillableModelSetQueryAdapter adapter = null;
 			for(Adapter a : modelSet.eAdapters()) {
-				if(a instanceof org.eclipse.papyrus.infra.core.modelsetquery.impl.ModelSetQueryAdapter) {
-					adapter = (org.eclipse.papyrus.infra.core.modelsetquery.impl.ModelSetQueryAdapter)a;
+				if(a instanceof IFillableModelSetQueryAdapter) {
+					adapter = (IFillableModelSetQueryAdapter)a;
 					break;
 				}
 			}
 			if(adapter == null) {
-				adapter = new ModelSetQueryAdapter();
-				modelSet.eAdapters().add(adapter);
+				IModelSetQueryAdapter anAdapter = ModelSetQueryInitializer.createDefaultIModelSetQueryAdapter();
+				if (anAdapter instanceof IFillableModelSetQueryAdapter) {
+					modelSet.eAdapters().add((Adapter) anAdapter);
+				}
 			}
 			if(!modelResource.getContents().isEmpty()) {
 				if(adapter != null) {
@@ -72,7 +76,7 @@ public class UMLProfileStrategyExtension implements ILoadingStrategyExtension {
 								}
 							}
 						}
-						adapter.fillFirstEntryCache(UMLPackage.Literals.PROFILE_APPLICATION, (HashSet<EObject>)applications);
+						adapter.addEntriesInCache(UMLPackage.Literals.PROFILE_APPLICATION, (HashSet<EObject>)applications);
 					} else {
 						// get the profile applications in the cache
 						applications = adapter.getReachableObjectsOfType(modelResource.getContents().get(0), UMLPackage.Literals.PROFILE_APPLICATION);

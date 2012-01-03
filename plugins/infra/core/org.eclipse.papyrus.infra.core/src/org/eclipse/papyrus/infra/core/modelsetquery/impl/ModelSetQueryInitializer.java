@@ -12,6 +12,7 @@ package org.eclipse.papyrus.infra.core.modelsetquery.impl;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.papyrus.infra.core.modelsetquery.IModelSetQueryAdapter;
 import org.eclipse.papyrus.infra.core.resource.IModelSetSnippet;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 
@@ -45,13 +46,14 @@ public class ModelSetQueryInitializer implements IModelSetSnippet {
 			}
 		}
 		if(!found) {
-			modelQueryAdapter = getIModelSetQueryAdapter();
+			modelQueryAdapter = createDefaultIModelSetQueryAdapter();
 			eAdapters.add((Adapter) modelQueryAdapter);
 		}
 
 	}
 
-	protected IModelSetQueryAdapter getIModelSetQueryAdapter() {
+	public static IModelSetQueryAdapter createDefaultIModelSetQueryAdapter() {
+		// for big models size matters TODO change the implementation to provide options
 		return new ModelSetQueryAdapterSizeMatters();
 	}
 

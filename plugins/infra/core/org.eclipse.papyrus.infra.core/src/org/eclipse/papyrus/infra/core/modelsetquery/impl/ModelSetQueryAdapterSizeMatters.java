@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EContentAdapter;
+import org.eclipse.papyrus.infra.core.modelsetquery.IFillableModelSetQueryAdapter;
 
 /**
  * This cache creates a map associating EClasses to all the corresponding
@@ -34,7 +35,14 @@ import org.eclipse.emf.ecore.util.EContentAdapter;
  * 
  * @author Tristan Faure
  */
-public class ModelSetQueryAdapterSizeMatters extends EContentAdapter implements IModelSetQueryAdapter {
+/**
+ * This cache creates a map associating EClasses to all the corresponding
+ * This implementation takes less space but it is less performant for get and put methods
+ * instances
+ * 
+ * @author Tristan Faure
+ */
+public class ModelSetQueryAdapterSizeMatters extends EContentAdapter implements IFillableModelSetQueryAdapter {
 
 	/**
 	 * The cache of elements
@@ -120,11 +128,13 @@ public class ModelSetQueryAdapterSizeMatters extends EContentAdapter implements 
 
 	public Collection<EObject> getReachableObjectsOfType(EObject object, EClassifier type) {
 		Set<EObject> buffer = new HashSet<EObject>();
+		Set<EClassifier> alreadyComputed = new HashSet<EClassifier>();
 		Stack<EClassifier> types = new Stack<EClassifier>();
 		types.push(type);
 		while (!types.isEmpty())
 		{
 			EClassifier top = types.pop();
+			alreadyComputed.add(top);
 			// add instances to the buffer
 			Collection<EObject> c = cache.get(top);
 			if (c != null)
@@ -133,7 +143,7 @@ public class ModelSetQueryAdapterSizeMatters extends EContentAdapter implements 
 			}
 			//  compute sub types
 			Collection<EClassifier> c2 = subTypes.get(top);
-			if (c2 != null)
+			if (c2 != null && !alreadyComputed.contains(c2))
 			{
 				types.addAll(c2);
 			}
@@ -155,14 +165,14 @@ public class ModelSetQueryAdapterSizeMatters extends EContentAdapter implements 
 	 * @param type
 	 * @param list
 	 */
-	public void fillFirstEntryCache(EClassifier type, HashSet<EObject> list) {
-		cache.put(type, list);
+	public void addEntriesInCache(EClassifier type, HashSet<EObject> list) {
+		for (EObject e : list)
+		{
+			addObjectInCache(e);
+		}
 	}
 
 	public boolean isAlreadyComputed(EClassifier type) {
 		return cache.containsKey(type);
 	}
-
-	
-
 }

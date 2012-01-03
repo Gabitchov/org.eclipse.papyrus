@@ -22,7 +22,6 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.papyrus.infra.core.modelsetquery.impl.IModelSetQueryAdapter;
 
 /**
  * The Class ModelSetQuery provides service to get objects of specified type

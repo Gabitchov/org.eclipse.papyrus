@@ -50,8 +50,8 @@ import org.eclipse.ltk.core.refactoring.Change;
 import org.eclipse.ltk.core.refactoring.RefactoringStatus;
 import org.eclipse.ltk.core.refactoring.resource.RenameResourceChange;
 import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
-import org.eclipse.papyrus.infra.core.modelsetquery.impl.IModelSetQueryAdapter;
-import org.eclipse.papyrus.infra.core.modelsetquery.impl.ModelSetQueryAdapter;
+import org.eclipse.papyrus.infra.core.modelsetquery.IModelSetQueryAdapter;
+import org.eclipse.papyrus.infra.core.modelsetquery.ModelSetQuery;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.ModelsReader;
 import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModelUtils;
@@ -371,13 +371,12 @@ public class RenameModelChange extends Change {
 	private void doRun(final IProgressMonitor pm, final ModelSet resourceSet, final TransactionalEditingDomain domain) {
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 
-			@SuppressWarnings("restriction")
 			@Override
 			protected void doExecute() {
 				// Manage Controlled map to ensure consistent history
 				// TODO change this code when history will be useless
 				URI modifiedURI = URI.createPlatformResourceURI(oldFile.getFullPath().removeFileExtension().toString(), true);
-				IModelSetQueryAdapter controledResourcesAdapter = ModelSetQueryAdapter.getExistingTypeCacheAdapter(resourceSet);
+				IModelSetQueryAdapter controledResourcesAdapter = ModelSetQuery.getExistingTypeCacheAdapter(resourceSet);
 				if(controledResourcesAdapter != null) {
 					EObject first = null;
 					for(Iterator<Notifier> i = resourceSet.getAllContents(); i.hasNext();) {

@@ -27,6 +27,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EContentAdapter;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.papyrus.infra.core.modelsetquery.IFillableModelSetQueryAdapter;
+import org.eclipse.papyrus.infra.core.modelsetquery.IModelSetQueryAdapter;
 
 /**
  * This cache creates a map associating EClasses to all the corresponding
@@ -35,7 +37,14 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
  * 
  * @author Tristan Faure
  */
-public class ModelSetQueryAdapterTimeMatters extends EContentAdapter implements IModelSetQueryAdapter {
+/**
+ * This cache creates a map associating EClasses to all the corresponding
+ * This implementation takes more space but it is more performant for get and put methods
+ * instances
+ * 
+ * @author Tristan Faure
+ */
+public class ModelSetQueryAdapterTimeMatters extends EContentAdapter implements IFillableModelSetQueryAdapter {
 
 	/**
 	 * The cache of elements
@@ -166,8 +175,11 @@ public class ModelSetQueryAdapterTimeMatters extends EContentAdapter implements 
 	 * @param type
 	 * @param list
 	 */
-	public void fillFirstEntryCache(EClassifier type, HashSet<EObject> list) {
-		cache.put(type, list);
+	public void addEntriesInCache(EClassifier type, HashSet<EObject> list) {
+		for (EObject e : list)
+		{
+			addObjectInCache(e);
+		}
 	}
 
 	public boolean isAlreadyComputed(EClassifier type) {
