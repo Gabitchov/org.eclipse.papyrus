@@ -283,13 +283,13 @@
 		</buckminster>
 
 		<!-- Find the created update site directory -->
-<!--
+
 		<pathconvert property="site.p2.dir">
 			<first count="1">
-				<dirset dir="${workspace}/_temp" includes="org.eclipse.papyrus.build.feature_*/site.p2" />
+				<dirset dir="${workspace}/temp" includes="org.eclipse.papyrus.build.feature_*/site.p2" />
 			</first>
 		</pathconvert>
--->		
+	
 		<echo message="Creating human readable index.html" />
 		<unzip src="${site.p2.dir}/content.jar" dest="${site.p2.dir}" />
 		<xslt style="xsl/content2html.xsl" in="${site.p2.dir}/content.xml" out="${site.p2.dir}/index.html" />
