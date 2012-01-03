@@ -12,6 +12,7 @@ package org.eclipse.papyrus.core.modelsetquery.impl;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.papyrus.core.modelsetquery.IModelSetQueryAdapter;
 import org.eclipse.papyrus.resource.IModelSetSnippet;
 import org.eclipse.papyrus.resource.ModelSet;
 

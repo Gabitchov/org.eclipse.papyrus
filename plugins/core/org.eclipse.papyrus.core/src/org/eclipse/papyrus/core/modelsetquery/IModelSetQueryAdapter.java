@@ -11,7 +11,7 @@
  *  Tristan FAURE tristan.faure@atosorigin.com - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.core.modelsetquery.impl;
+package org.eclipse.papyrus.core.modelsetquery;
 
 import java.util.Collection;
 

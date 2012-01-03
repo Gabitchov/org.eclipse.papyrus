@@ -17,6 +17,7 @@ import java.util.HashSet;
 
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.papyrus.core.modelsetquery.IModelSetQueryAdapter;
 
 public interface IFillableModelSetQueryAdapter extends IModelSetQueryAdapter {
 	/**
