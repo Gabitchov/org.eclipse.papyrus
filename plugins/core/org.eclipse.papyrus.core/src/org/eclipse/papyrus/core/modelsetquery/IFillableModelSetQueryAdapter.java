@@ -11,13 +11,12 @@
  *  Tristan FAURE tristan.faure@atos.net - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.core.modelsetquery.impl;
+package org.eclipse.papyrus.core.modelsetquery;
 
 import java.util.HashSet;
 
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.core.modelsetquery.IModelSetQueryAdapter;
 
 public interface IFillableModelSetQueryAdapter extends IModelSetQueryAdapter {
 	/**

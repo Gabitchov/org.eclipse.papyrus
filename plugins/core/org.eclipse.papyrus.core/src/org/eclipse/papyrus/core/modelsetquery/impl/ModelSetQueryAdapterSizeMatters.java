@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EContentAdapter;
+import org.eclipse.papyrus.core.modelsetquery.IFillableModelSetQueryAdapter;
 
 /**
  * This cache creates a map associating EClasses to all the corresponding
