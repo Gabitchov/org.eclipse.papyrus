@@ -47,14 +47,12 @@ public class PackageMergePreferencePage extends AbstractPapyrusLinkPreferencePag
 	 * @generated
 	 */
 	public static void initDefaults(IPreferenceStore store) {
-
 		String key = ModelEditPart.MODEL_ID + "_PackageMerge";
 		Map<String, Boolean> map = getStaticLabelVisibilityPreferences();
 		for(String role : map.keySet()) {
 			String preferenceName = PreferenceConstantHelper.getLabelElementConstant(key, role, PreferenceConstantHelper.LABEL_VISIBILITY);
 			store.setDefault(preferenceName, map.get(role));
 		}
-
 	}
 
 	/**
@@ -72,7 +70,6 @@ public class PackageMergePreferencePage extends AbstractPapyrusLinkPreferencePag
 	private static TreeMap<String, Boolean> getStaticLabelVisibilityPreferences() {
 		TreeMap<String, Boolean> map = new TreeMap<String, Boolean>();
 		map.put("Stereotype", Boolean.TRUE);
-
 		return map;
 	}
 
@@ -82,5 +79,4 @@ public class PackageMergePreferencePage extends AbstractPapyrusLinkPreferencePag
 	protected TreeMap<String, String> getLabelRole() {
 		return getStaticLabelRole();
 	}
-
 }

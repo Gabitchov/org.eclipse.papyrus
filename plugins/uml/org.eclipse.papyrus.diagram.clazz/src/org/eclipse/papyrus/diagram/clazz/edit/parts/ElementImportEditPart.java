@@ -28,9 +28,7 @@ import org.eclipse.papyrus.diagram.common.figure.edge.DashedEdgeFigure;
 /**
  * @generated
  */
-public class ElementImportEditPart extends
-
-UMLConnectionNodeEditPart implements ITreeBranchEditPart {
+public class ElementImportEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -120,5 +118,4 @@ UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 	public DashedEdgeFigure getPrimaryShape() {
 		return (DashedEdgeFigure)getFigure();
 	}
-
 }

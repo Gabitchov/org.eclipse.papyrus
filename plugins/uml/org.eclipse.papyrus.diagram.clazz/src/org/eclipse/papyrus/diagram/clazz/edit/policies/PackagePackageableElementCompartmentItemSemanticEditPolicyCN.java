@@ -82,5 +82,4 @@ public class PackagePackageableElementCompartmentItemSemanticEditPolicyCN extend
 		}
 		return super.getCreateCommand(req);
 	}
-
 }

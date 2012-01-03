@@ -47,14 +47,12 @@ public class ElementImportPreferencePage extends AbstractPapyrusLinkPreferencePa
 	 * @generated
 	 */
 	public static void initDefaults(IPreferenceStore store) {
-
 		String key = ModelEditPart.MODEL_ID + "_ElementImport";
 		Map<String, Boolean> map = getStaticLabelVisibilityPreferences();
 		for(String role : map.keySet()) {
 			String preferenceName = PreferenceConstantHelper.getLabelElementConstant(key, role, PreferenceConstantHelper.LABEL_VISIBILITY);
 			store.setDefault(preferenceName, map.get(role));
 		}
-
 	}
 
 	/**
@@ -73,9 +71,7 @@ public class ElementImportPreferencePage extends AbstractPapyrusLinkPreferencePa
 	private static TreeMap<String, Boolean> getStaticLabelVisibilityPreferences() {
 		TreeMap<String, Boolean> map = new TreeMap<String, Boolean>();
 		map.put("Alias", Boolean.TRUE);
-
 		map.put("Stereotype", Boolean.TRUE);
-
 		return map;
 	}
 
@@ -85,5 +81,4 @@ public class ElementImportPreferencePage extends AbstractPapyrusLinkPreferencePa
 	protected TreeMap<String, String> getLabelRole() {
 		return getStaticLabelRole();
 	}
-
 }

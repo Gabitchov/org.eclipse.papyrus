@@ -42,7 +42,5 @@ public class ContainmentLinkPreferencePage extends AbstractPapyrusLinkPreference
 	 * @generated
 	 */
 	public static void initDefaults(IPreferenceStore store) {
-
 	}
-
 }

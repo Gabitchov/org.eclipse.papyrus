@@ -80,9 +80,7 @@ import org.eclipse.uml2.uml.Feature;
 /**
  * @generated
  */
-public class AssociationTargetNameEditPart extends LabelEditPart implements ITextAwareEditPart, ILabelRoleProvider
-
-{
+public class AssociationTargetNameEditPart extends LabelEditPart implements ITextAwareEditPart, ILabelRoleProvider {
 
 	/**
 	 * @generated
@@ -122,7 +120,6 @@ public class AssociationTargetNameEditPart extends LabelEditPart implements ITex
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
-
 	/**
 	 * @generated
 	 */
@@ -315,7 +312,6 @@ public class AssociationTargetNameEditPart extends LabelEditPart implements ITex
 						ie.printStackTrace();
 					}
 				}
-
 				// shouldn't get here
 				return null;
 			}
@@ -397,9 +393,7 @@ public class AssociationTargetNameEditPart extends LabelEditPart implements ITex
 	 * @generated
 	 */
 	protected void performDirectEditRequest(Request request) {
-
 		final Request theRequest = request;
-
 		if(IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
 			directEditionMode = getDirectEditionType();
 		}
@@ -426,7 +420,6 @@ public class AssociationTargetNameEditPart extends LabelEditPart implements ITex
 					return;
 				}
 				final Dialog finalDialog = dialog;
-
 				if(Window.OK == dialog.open()) {
 					TransactionalEditingDomain domain = getEditingDomain();
 					RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
@@ -434,7 +427,6 @@ public class AssociationTargetNameEditPart extends LabelEditPart implements ITex
 						@Override
 						protected void doExecute() {
 							configuration.postEditAction(resolveSemanticElement(), ((ILabelEditorDialog)finalDialog).getValue());
-
 						}
 					};
 					domain.getCommandStack().execute(command);
@@ -442,7 +434,6 @@ public class AssociationTargetNameEditPart extends LabelEditPart implements ITex
 			}
 			break;
 		case IDirectEdition.DEFAULT_DIRECT_EDITOR:
-
 			// initialize the direct edit manager
 			try {
 				getEditingDomain().runExclusive(new Runnable() {
@@ -509,7 +500,6 @@ public class AssociationTargetNameEditPart extends LabelEditPart implements ITex
 		if(style != null && getFigure() instanceof WrappingLabel) {
 			((WrappingLabel)getFigure()).setTextUnderline(style.isUnderline());
 		}
-
 		if(resolveSemanticElement() instanceof Feature) {
 			if(((Feature)resolveSemanticElement()).isStatic()) {
 				((WrappingLabel)getFigure()).setTextUnderline(true);
@@ -721,7 +711,6 @@ public class AssociationTargetNameEditPart extends LabelEditPart implements ITex
 				}
 			}
 		}
-
 		super.handleNotificationEvent(event);
 	}
 
@@ -746,5 +735,4 @@ public class AssociationTargetNameEditPart extends LabelEditPart implements ITex
 	public String getIconPathRole() {
 		return "platform:/plugin/org.eclipse.papyrus.diagram.common/icons/label_role/role.gif";//$NON-NLS-1$
 	}
-
 }

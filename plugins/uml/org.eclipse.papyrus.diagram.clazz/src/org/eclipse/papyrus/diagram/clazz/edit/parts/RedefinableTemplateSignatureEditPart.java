@@ -58,9 +58,7 @@ import org.eclipse.swt.graphics.Color;
 /**
  * @generated
  */
-public class RedefinableTemplateSignatureEditPart extends
-
-AbstractRedefinableTemplateSignatureEditPart {
+public class RedefinableTemplateSignatureEditPart extends AbstractRedefinableTemplateSignatureEditPart {
 
 	/**
 	 * @generated
@@ -106,7 +104,6 @@ AbstractRedefinableTemplateSignatureEditPart {
 	 **/
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
-
 	}
 
 	/**
@@ -152,14 +149,12 @@ AbstractRedefinableTemplateSignatureEditPart {
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-
 		if(childEditPart instanceof RedefinableTemplateSignatureTemplateParameterCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getTemplateParameterRectangle();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.add(((RedefinableTemplateSignatureTemplateParameterCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
-
 		return false;
 	}
 
@@ -215,7 +210,6 @@ AbstractRedefinableTemplateSignatureEditPart {
 		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
 		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
-
 		//FIXME: workaround for #154536
 		result.getBounds().setSize(result.getPreferredSize());
 		return result;
@@ -1148,7 +1142,6 @@ AbstractRedefinableTemplateSignatureEditPart {
 	public Object getPreferredValue(EStructuralFeature feature) {
 		IPreferenceStore preferenceStore = (IPreferenceStore)getDiagramPreferencesHint().getPreferenceStore();
 		Object result = null;
-
 		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 			String prefColor = null;
 			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
@@ -1168,7 +1161,6 @@ AbstractRedefinableTemplateSignatureEditPart {
 				result = gradientPreferenceConverter.getGradientData();
 			}
 		}
-
 		if(result == null) {
 			result = getStructuralFeatureValue(feature);
 		}

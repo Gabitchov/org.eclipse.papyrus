@@ -66,9 +66,7 @@ import org.eclipse.swt.graphics.Color;
 /**
  * @generated
  */
-public class EnumerationEditPart extends
-
-ClassifierEditPart {
+public class EnumerationEditPart extends ClassifierEditPart {
 
 	/**
 	 * @generated
@@ -119,7 +117,6 @@ ClassifierEditPart {
 	 **/
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
-
 	}
 
 	/**
@@ -169,14 +166,12 @@ ClassifierEditPart {
 			((EnumerationNameEditPart)childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
-
 		if(childEditPart instanceof EnumerationEnumerationLiteralCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getEnumerationLiteralCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.add(((EnumerationEnumerationLiteralCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
-
 		return false;
 	}
 
@@ -235,7 +230,6 @@ ClassifierEditPart {
 		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
 		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
-
 		return result;
 	}
 
@@ -1838,7 +1832,6 @@ ClassifierEditPart {
 	public Object getPreferredValue(EStructuralFeature feature) {
 		IPreferenceStore preferenceStore = (IPreferenceStore)getDiagramPreferencesHint().getPreferenceStore();
 		Object result = null;
-
 		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 			String prefColor = null;
 			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
@@ -1858,7 +1851,6 @@ ClassifierEditPart {
 				result = gradientPreferenceConverter.getGradientData();
 			}
 		}
-
 		if(result == null) {
 			result = getStructuralFeatureValue(feature);
 		}

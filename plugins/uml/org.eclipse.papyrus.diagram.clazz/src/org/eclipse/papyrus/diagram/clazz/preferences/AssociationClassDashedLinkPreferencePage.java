@@ -42,7 +42,5 @@ public class AssociationClassDashedLinkPreferencePage extends AbstractPapyrusLin
 	 * @generated
 	 */
 	public static void initDefaults(IPreferenceStore store) {
-
 	}
-
 }

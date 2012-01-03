@@ -50,5 +50,4 @@ public class RedefinableTemplateSignatureTemplateParameterCompartmentItemSemanti
 		}
 		return super.getCreateCommand(req);
 	}
-
 }

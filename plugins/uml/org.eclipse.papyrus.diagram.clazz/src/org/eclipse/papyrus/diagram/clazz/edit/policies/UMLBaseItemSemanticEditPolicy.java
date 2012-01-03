@@ -253,13 +253,10 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			if(provider == null) {
 				return UnexecutableCommand.INSTANCE;
 			}
-
 			// Retrieve create command from the Element Edit service
 			ICommand createGMFCommand = provider.getEditCommand(req);
-
 			return getGEFWrapper(createGMFCommand);
 		}
-
 		return null;
 	}
 
@@ -302,9 +299,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 * @generated
 	 */
 	protected Command getMoveCommand(MoveRequest req) {
-
 		return getGEFWrapper(new MoveElementsCommand(req));
-
 	}
 
 	/**
@@ -493,13 +488,10 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 */
 		public boolean canCreateCommentAnnotatedElement_4013(Comment source, Element target) {
 			if(source != null) {
-				if(source.getAnnotatedElements().contains(target)
-
-				) {
+				if(source.getAnnotatedElements().contains(target)) {
 					return false;
 				}
 			}
-
 			return canExistCommentAnnotatedElement_4013(source, target);
 		}
 
@@ -508,13 +500,10 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 */
 		public boolean canCreateConstraintConstrainedElement_4014(Constraint source, Element target) {
 			if(source != null) {
-				if(source.getConstrainedElements().contains(target)
-
-				) {
+				if(source.getConstrainedElements().contains(target)) {
 					return false;
 				}
 			}
-
 			return canExistConstraintConstrainedElement_4014(source, target);
 		}
 
@@ -558,13 +547,10 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 */
 		public boolean canCreateTimeObservationEvent_4024(TimeObservation source, NamedElement target) {
 			if(source != null) {
-				if(source.getEvent() != null
-
-				) {
+				if(source.getEvent() != null) {
 					return false;
 				}
 			}
-
 			return canExistTimeObservationEvent_4024(source, target);
 		}
 
@@ -573,13 +559,10 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 */
 		public boolean canCreateDurationObservationEvent_4025(DurationObservation source, NamedElement target) {
 			if(source != null) {
-				if(source.getEvents().size() >= 2 || source.getEvents().contains(target)
-
-				) {
+				if(source.getEvents().size() >= 2 || source.getEvents().contains(target)) {
 					return false;
 				}
 			}
-
 			return canExistDurationObservationEvent_4025(source, target);
 		}
 
@@ -758,5 +741,4 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			return true;
 		}
 	}
-
 }

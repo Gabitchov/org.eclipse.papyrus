@@ -38,5 +38,4 @@ public class AssociationClassAttributeCompartmentItemSemanticEditPolicy extends 
 		}
 		return super.getCreateCommand(req);
 	}
-
 }

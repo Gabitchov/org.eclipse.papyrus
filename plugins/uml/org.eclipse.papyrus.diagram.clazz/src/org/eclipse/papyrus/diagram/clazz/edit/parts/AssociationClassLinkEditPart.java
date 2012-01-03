@@ -27,9 +27,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.policies.AssociationClassLinkItemS
 /**
  * @generated
  */
-public class AssociationClassLinkEditPart extends
-
-AbstractAssociationEditPart implements ITreeBranchEditPart {
+public class AssociationClassLinkEditPart extends AbstractAssociationEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -119,5 +117,4 @@ AbstractAssociationEditPart implements ITreeBranchEditPart {
 	public AssociationFigure getPrimaryShape() {
 		return (AssociationFigure)getFigure();
 	}
-
 }

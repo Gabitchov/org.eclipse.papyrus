@@ -79,9 +79,7 @@ import org.eclipse.uml2.uml.Feature;
 /**
  * @generated
  */
-public class AppliedStereotypeGeneralizationSetLabelEditPart extends LabelEditPart implements ITextAwareEditPart, ILabelRoleProvider
-
-{
+public class AppliedStereotypeGeneralizationSetLabelEditPart extends LabelEditPart implements ITextAwareEditPart, ILabelRoleProvider {
 
 	/**
 	 * @generated
@@ -121,7 +119,6 @@ public class AppliedStereotypeGeneralizationSetLabelEditPart extends LabelEditPa
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
-
 	/**
 	 * @generated
 	 */
@@ -314,7 +311,6 @@ public class AppliedStereotypeGeneralizationSetLabelEditPart extends LabelEditPa
 						ie.printStackTrace();
 					}
 				}
-
 				// shouldn't get here
 				return null;
 			}
@@ -396,9 +392,7 @@ public class AppliedStereotypeGeneralizationSetLabelEditPart extends LabelEditPa
 	 * @generated
 	 */
 	protected void performDirectEditRequest(Request request) {
-
 		final Request theRequest = request;
-
 		if(IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
 			directEditionMode = getDirectEditionType();
 		}
@@ -425,7 +419,6 @@ public class AppliedStereotypeGeneralizationSetLabelEditPart extends LabelEditPa
 					return;
 				}
 				final Dialog finalDialog = dialog;
-
 				if(Window.OK == dialog.open()) {
 					TransactionalEditingDomain domain = getEditingDomain();
 					RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
@@ -433,7 +426,6 @@ public class AppliedStereotypeGeneralizationSetLabelEditPart extends LabelEditPa
 						@Override
 						protected void doExecute() {
 							configuration.postEditAction(resolveSemanticElement(), ((ILabelEditorDialog)finalDialog).getValue());
-
 						}
 					};
 					domain.getCommandStack().execute(command);
@@ -441,7 +433,6 @@ public class AppliedStereotypeGeneralizationSetLabelEditPart extends LabelEditPa
 			}
 			break;
 		case IDirectEdition.DEFAULT_DIRECT_EDITOR:
-
 			// initialize the direct edit manager
 			try {
 				getEditingDomain().runExclusive(new Runnable() {
@@ -508,7 +499,6 @@ public class AppliedStereotypeGeneralizationSetLabelEditPart extends LabelEditPa
 		if(style != null && getFigure() instanceof WrappingLabel) {
 			((WrappingLabel)getFigure()).setTextUnderline(style.isUnderline());
 		}
-
 		if(resolveSemanticElement() instanceof Feature) {
 			if(((Feature)resolveSemanticElement()).isStatic()) {
 				((WrappingLabel)getFigure()).setTextUnderline(true);
@@ -610,7 +600,6 @@ public class AppliedStereotypeGeneralizationSetLabelEditPart extends LabelEditPa
 		if(checkDefaultEdition()) {
 			return IDirectEdition.DEFAULT_DIRECT_EDITOR;
 		}
-
 		// not a named element. no specific editor => do nothing
 		return IDirectEdition.NO_DIRECT_EDITION;
 	}
@@ -728,7 +717,6 @@ public class AppliedStereotypeGeneralizationSetLabelEditPart extends LabelEditPa
 				}
 			}
 		}
-
 		super.handleNotificationEvent(event);
 	}
 
@@ -753,5 +741,4 @@ public class AppliedStereotypeGeneralizationSetLabelEditPart extends LabelEditPa
 	public String getIconPathRole() {
 		return "platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Stereotype.gif";//$NON-NLS-1$
 	}
-
 }

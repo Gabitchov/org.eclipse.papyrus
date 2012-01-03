@@ -38,5 +38,4 @@ public class InstanceSpecificationSlotCompartmentItemSemanticEditPolicyCN extend
 		}
 		return super.getCreateCommand(req);
 	}
-
 }

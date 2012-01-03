@@ -29,9 +29,7 @@ import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLinkLabe
 /**
  * @generated
  */
-public class AssociationEditPart extends
-
-AbstractAssociationEditPart implements ITreeBranchEditPart {
+public class AssociationEditPart extends AbstractAssociationEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -150,5 +148,4 @@ AbstractAssociationEditPart implements ITreeBranchEditPart {
 	public AssociationFigure getPrimaryShape() {
 		return (AssociationFigure)getFigure();
 	}
-
 }

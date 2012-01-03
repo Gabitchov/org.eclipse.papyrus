@@ -28,9 +28,7 @@ import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLinkLabe
 /**
  * @generated
  */
-public class TemplateBindingEditPart extends
-
-UMLConnectionNodeEditPart implements ITreeBranchEditPart {
+public class TemplateBindingEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -120,5 +118,4 @@ UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 	public TemplateBindingFigure getPrimaryShape() {
 		return (TemplateBindingFigure)getFigure();
 	}
-
 }

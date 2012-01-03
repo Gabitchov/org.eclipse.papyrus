@@ -38,5 +38,4 @@ public class DataTypeAttributeCompartmentItemSemanticEditPolicyCN extends UMLBas
 		}
 		return super.getCreateCommand(req);
 	}
-
 }

@@ -42,5 +42,4 @@ public class ClassOperationCompartmentItemSemanticEditPolicy extends UMLBaseItem
 		}
 		return super.getCreateCommand(req);
 	}
-
 }

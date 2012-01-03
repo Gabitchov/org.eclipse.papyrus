@@ -35,5 +35,4 @@ public class ConnectorTimeObservationItemSemanticEditPolicy extends UMLBaseItemS
 	protected Command getDestroyReferenceCommand(DestroyReferenceRequest req) {
 		return getGEFWrapper(new DestroyReferenceCommand(req));
 	}
-
 }

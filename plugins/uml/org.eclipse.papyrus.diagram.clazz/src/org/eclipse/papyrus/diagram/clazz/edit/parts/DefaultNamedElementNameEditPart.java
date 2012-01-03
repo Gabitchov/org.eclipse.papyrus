@@ -233,7 +233,6 @@ public class DefaultNamedElementNameEditPart extends CompartmentEditPart impleme
 		if(parserElement == null) {
 			return null;
 		}
-
 		List<View> views = DiagramEditPartsUtil.findViews(parserElement, getViewer());
 		for(View view : views) {
 			if(NameLabelIconHelper.showLabelIcon(view)) {
@@ -241,7 +240,6 @@ public class DefaultNamedElementNameEditPart extends CompartmentEditPart impleme
 			}
 		}
 		return null;
-
 	}
 
 	/**
@@ -313,7 +311,6 @@ public class DefaultNamedElementNameEditPart extends CompartmentEditPart impleme
 						ie.printStackTrace();
 					}
 				}
-
 				// shouldn't get here
 				return null;
 			}
@@ -395,9 +392,7 @@ public class DefaultNamedElementNameEditPart extends CompartmentEditPart impleme
 	 * @generated
 	 */
 	protected void performDirectEditRequest(Request request) {
-
 		final Request theRequest = request;
-
 		if(IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
 			directEditionMode = getDirectEditionType();
 		}
@@ -424,7 +419,6 @@ public class DefaultNamedElementNameEditPart extends CompartmentEditPart impleme
 					return;
 				}
 				final Dialog finalDialog = dialog;
-
 				if(Window.OK == dialog.open()) {
 					TransactionalEditingDomain domain = getEditingDomain();
 					RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
@@ -432,7 +426,6 @@ public class DefaultNamedElementNameEditPart extends CompartmentEditPart impleme
 						@Override
 						protected void doExecute() {
 							configuration.postEditAction(resolveSemanticElement(), ((ILabelEditorDialog)finalDialog).getValue());
-
 						}
 					};
 					domain.getCommandStack().execute(command);
@@ -440,7 +433,6 @@ public class DefaultNamedElementNameEditPart extends CompartmentEditPart impleme
 			}
 			break;
 		case IDirectEdition.DEFAULT_DIRECT_EDITOR:
-
 			// initialize the direct edit manager
 			try {
 				getEditingDomain().runExclusive(new Runnable() {
@@ -507,7 +499,6 @@ public class DefaultNamedElementNameEditPart extends CompartmentEditPart impleme
 		if(style != null && getFigure() instanceof WrappingLabel) {
 			((WrappingLabel)getFigure()).setTextUnderline(style.isUnderline());
 		}
-
 		if(resolveSemanticElement() instanceof Feature) {
 			if(((Feature)resolveSemanticElement()).isStatic()) {
 				((WrappingLabel)getFigure()).setTextUnderline(true);
@@ -609,7 +600,6 @@ public class DefaultNamedElementNameEditPart extends CompartmentEditPart impleme
 		if(checkDefaultEdition()) {
 			return IDirectEdition.DEFAULT_DIRECT_EDITOR;
 		}
-
 		// not a named element. no specific editor => do nothing
 		return IDirectEdition.NO_DIRECT_EDITION;
 	}
@@ -744,11 +734,9 @@ public class DefaultNamedElementNameEditPart extends CompartmentEditPart impleme
 				}
 			}
 		}
-
 		if(event.getNewValue() instanceof EAnnotation && VisualInformationPapyrusConstant.DISPLAY_NAMELABELICON.equals(((EAnnotation)event.getNewValue()).getSource())) {
 			refreshLabel();
 		}
-
 		super.handleNotificationEvent(event);
 	}
 
@@ -778,7 +766,6 @@ public class DefaultNamedElementNameEditPart extends CompartmentEditPart impleme
 	 */
 	protected void addOwnerElementListeners() {
 		addListenerFilter(ADD_PARENT_MODEL, this, ((View)getParent().getModel())); //$NON-NLS-1$
-
 	}
 
 	/**
@@ -787,7 +774,6 @@ public class DefaultNamedElementNameEditPart extends CompartmentEditPart impleme
 	public void deactivate() {
 		removeOwnerElementListeners();
 		super.deactivate();
-
 	}
 
 	/**
@@ -795,7 +781,5 @@ public class DefaultNamedElementNameEditPart extends CompartmentEditPart impleme
 	 */
 	protected void removeOwnerElementListeners() {
 		removeListenerFilter(ADD_PARENT_MODEL);
-
 	}
-
 }

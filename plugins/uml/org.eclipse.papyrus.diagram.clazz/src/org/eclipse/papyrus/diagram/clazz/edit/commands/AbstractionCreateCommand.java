@@ -92,7 +92,6 @@ public class AbstractionCreateCommand extends EditElementCommand {
 		if(!canExecute()) {
 			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 		}
-
 		Abstraction newElement = UMLFactory.eINSTANCE.createAbstraction();
 		getContainer().getPackagedElements().add(newElement);
 		newElement.getClients().add(getSource());
@@ -101,7 +100,6 @@ public class AbstractionCreateCommand extends EditElementCommand {
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
-
 	}
 
 	/**
@@ -166,5 +164,4 @@ public class AbstractionCreateCommand extends EditElementCommand {
 		}
 		return null;
 	}
-
 }

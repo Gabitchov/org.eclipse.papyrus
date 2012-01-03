@@ -26,9 +26,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.policies.InstanceSpecificationLink
 /**
  * @generated
  */
-public class InstanceSpecificationLinkEditPart extends ConnectionNodeEditPart
-
-implements ITreeBranchEditPart {
+public class InstanceSpecificationLinkEditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -117,5 +115,4 @@ implements ITreeBranchEditPart {
 	public InstanceSpecificationLinkFigure getPrimaryShape() {
 		return (InstanceSpecificationLinkFigure)getFigure();
 	}
-
 }

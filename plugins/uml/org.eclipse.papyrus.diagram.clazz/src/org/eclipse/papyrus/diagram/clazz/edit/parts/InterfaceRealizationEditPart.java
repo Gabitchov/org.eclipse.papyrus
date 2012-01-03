@@ -29,9 +29,7 @@ import org.eclipse.papyrus.diagram.common.figure.edge.InterfaceRealizationFigure
 /**
  * @generated
  */
-public class InterfaceRealizationEditPart extends
-
-UMLConnectionNodeEditPart implements ITreeBranchEditPart {
+public class InterfaceRealizationEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -122,5 +120,4 @@ UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 	public InterfaceRealizationFigure getPrimaryShape() {
 		return (InterfaceRealizationFigure)getFigure();
 	}
-
 }

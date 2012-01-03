@@ -105,5 +105,4 @@ public class UMLNavigatorGroup extends UMLAbstractNavigatorItem {
 	public int hashCode() {
 		return getGroupName().hashCode();
 	}
-
 }

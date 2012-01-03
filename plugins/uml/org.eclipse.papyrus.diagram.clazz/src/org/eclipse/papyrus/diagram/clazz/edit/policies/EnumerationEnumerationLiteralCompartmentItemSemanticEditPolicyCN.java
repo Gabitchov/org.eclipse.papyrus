@@ -38,5 +38,4 @@ public class EnumerationEnumerationLiteralCompartmentItemSemanticEditPolicyCN ex
 		}
 		return super.getCreateCommand(req);
 	}
-
 }

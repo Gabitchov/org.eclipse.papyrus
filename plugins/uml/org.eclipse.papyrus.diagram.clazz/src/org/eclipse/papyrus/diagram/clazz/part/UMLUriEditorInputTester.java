@@ -30,5 +30,4 @@ public class UMLUriEditorInputTester extends PropertyTester {
 		URIEditorInput editorInput = (URIEditorInput)receiver;
 		return "PapyrusUMLClass_diagram".equals(editorInput.getURI().fileExtension()); //$NON-NLS-1$
 	}
-
 }

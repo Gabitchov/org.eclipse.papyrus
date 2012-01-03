@@ -81,9 +81,7 @@ import org.eclipse.uml2.uml.Feature;
 /**
  * @generated
  */
-public class BindingSubstitutionEditPart extends LabelEditPart implements ITextAwareEditPart, ILabelRoleProvider
-
-{
+public class BindingSubstitutionEditPart extends LabelEditPart implements ITextAwareEditPart, ILabelRoleProvider {
 
 	/**
 	 * @generated
@@ -123,7 +121,6 @@ public class BindingSubstitutionEditPart extends LabelEditPart implements ITextA
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
-
 	/**
 	 * @generated
 	 */
@@ -317,7 +314,6 @@ public class BindingSubstitutionEditPart extends LabelEditPart implements ITextA
 						ie.printStackTrace();
 					}
 				}
-
 				// shouldn't get here
 				return null;
 			}
@@ -399,9 +395,7 @@ public class BindingSubstitutionEditPart extends LabelEditPart implements ITextA
 	 * @generated
 	 */
 	protected void performDirectEditRequest(Request request) {
-
 		final Request theRequest = request;
-
 		if(IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
 			directEditionMode = getDirectEditionType();
 		}
@@ -428,7 +422,6 @@ public class BindingSubstitutionEditPart extends LabelEditPart implements ITextA
 					return;
 				}
 				final Dialog finalDialog = dialog;
-
 				if(Window.OK == dialog.open()) {
 					TransactionalEditingDomain domain = getEditingDomain();
 					RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
@@ -436,7 +429,6 @@ public class BindingSubstitutionEditPart extends LabelEditPart implements ITextA
 						@Override
 						protected void doExecute() {
 							configuration.postEditAction(resolveSemanticElement(), ((ILabelEditorDialog)finalDialog).getValue());
-
 						}
 					};
 					domain.getCommandStack().execute(command);
@@ -444,7 +436,6 @@ public class BindingSubstitutionEditPart extends LabelEditPart implements ITextA
 			}
 			break;
 		case IDirectEdition.DEFAULT_DIRECT_EDITOR:
-
 			// initialize the direct edit manager
 			try {
 				getEditingDomain().runExclusive(new Runnable() {
@@ -511,7 +502,6 @@ public class BindingSubstitutionEditPart extends LabelEditPart implements ITextA
 		if(style != null && getFigure() instanceof WrappingLabel) {
 			((WrappingLabel)getFigure()).setTextUnderline(style.isUnderline());
 		}
-
 		if(resolveSemanticElement() instanceof Feature) {
 			if(((Feature)resolveSemanticElement()).isStatic()) {
 				((WrappingLabel)getFigure()).setTextUnderline(true);
@@ -613,7 +603,6 @@ public class BindingSubstitutionEditPart extends LabelEditPart implements ITextA
 		if(checkDefaultEdition()) {
 			return IDirectEdition.DEFAULT_DIRECT_EDITOR;
 		}
-
 		// not a named element. no specific editor => do nothing
 		return IDirectEdition.NO_DIRECT_EDITION;
 	}
@@ -731,7 +720,6 @@ public class BindingSubstitutionEditPart extends LabelEditPart implements ITextA
 				}
 			}
 		}
-
 		super.handleNotificationEvent(event);
 	}
 
@@ -756,5 +744,4 @@ public class BindingSubstitutionEditPart extends LabelEditPart implements ITextA
 	public String getIconPathRole() {
 		return "platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TemplateParameterSubstitution.gif";//$NON-NLS-1$
 	}
-
 }

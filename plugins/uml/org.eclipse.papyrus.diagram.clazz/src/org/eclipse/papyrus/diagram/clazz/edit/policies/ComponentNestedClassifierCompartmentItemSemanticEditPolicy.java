@@ -38,5 +38,4 @@ public class ComponentNestedClassifierCompartmentItemSemanticEditPolicy extends 
 		}
 		return super.getCreateCommand(req);
 	}
-
 }

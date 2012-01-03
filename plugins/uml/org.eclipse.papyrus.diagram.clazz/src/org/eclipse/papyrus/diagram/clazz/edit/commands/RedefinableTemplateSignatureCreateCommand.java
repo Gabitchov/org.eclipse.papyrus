@@ -73,7 +73,6 @@ public class RedefinableTemplateSignatureCreateCommand extends EditElementComman
 	 * @generated
 	 */
 	protected EObject getElementToEdit() {
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -92,25 +91,18 @@ public class RedefinableTemplateSignatureCreateCommand extends EditElementComman
 		if(container.getOwnedTemplateSignature() != null) {
 			return false;
 		}
-
 		return true;
-
 	}
 
 	/**
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-
 		RedefinableTemplateSignature newElement = UMLFactory.eINSTANCE.createRedefinableTemplateSignature();
-
 		TemplateableElement owner = (TemplateableElement)getElementToEdit();
 		owner.setOwnedTemplateSignature(newElement);
-
 		ElementInitializers.getInstance().init_RedefinableTemplateSignature_3015(newElement);
-
 		doConfigure(newElement, monitor, info);
-
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
@@ -128,5 +120,4 @@ public class RedefinableTemplateSignatureCreateCommand extends EditElementComman
 			configureCommand.execute(monitor, info);
 		}
 	}
-
 }

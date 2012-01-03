@@ -38,5 +38,4 @@ public class ClassNestedClassifierCompartmentItemSemanticEditPolicy extends UMLB
 		}
 		return super.getCreateCommand(req);
 	}
-
 }

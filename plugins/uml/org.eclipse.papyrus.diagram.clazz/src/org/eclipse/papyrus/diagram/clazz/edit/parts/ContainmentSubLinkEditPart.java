@@ -26,9 +26,7 @@ import org.eclipse.papyrus.diagram.clazz.custom.policies.itemsemantic.CustomCont
 /**
  * @generated
  */
-public class ContainmentSubLinkEditPart extends ConnectionNodeEditPart
-
-implements ITreeBranchEditPart {
+public class ContainmentSubLinkEditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -71,5 +69,4 @@ implements ITreeBranchEditPart {
 	public AddedLinkFigure getPrimaryShape() {
 		return (AddedLinkFigure)getFigure();
 	}
-
 }
