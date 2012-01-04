@@ -31,6 +31,9 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelations
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType;
+import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
+import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.helpers.UMLBaseEditHelper;
 import org.eclipse.papyrus.uml.diagram.statemachine.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.statemachine.part.UMLVisualIDRegistry;
@@ -189,6 +192,17 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
+		// check if the type is an extended type, and then create directly the element...
+		IElementType type = req.getElementType();
+		if(type instanceof IExtendedHintedElementType) {
+			IElementEditService provider = ElementEditServiceUtils.getCommandProvider(req.getContainer());
+			if(provider == null) {
+				return UnexecutableCommand.INSTANCE;
+			}
+			// Retrieve create command from the Element Edit service
+			ICommand createGMFCommand = provider.getEditCommand(req);
+			return getGEFWrapper(createGMFCommand);
+		}
 		return null;
 	}
 
