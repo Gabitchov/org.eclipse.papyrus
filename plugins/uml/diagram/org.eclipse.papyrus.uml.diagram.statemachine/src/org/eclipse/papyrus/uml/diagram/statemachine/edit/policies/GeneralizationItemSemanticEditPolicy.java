@@ -36,5 +36,4 @@ public class GeneralizationItemSemanticEditPolicy extends UMLBaseItemSemanticEdi
 		return getGEFWrapper(cmd.reduce());
 		//return getGEFWrapper(new org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand(req));
 	}
-
 }

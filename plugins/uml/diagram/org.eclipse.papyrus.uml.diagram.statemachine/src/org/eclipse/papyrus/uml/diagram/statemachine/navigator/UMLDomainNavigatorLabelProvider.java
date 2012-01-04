@@ -90,5 +90,4 @@ public class UMLDomainNavigatorLabelProvider implements ICommonLabelProvider {
 	 */
 	public void saveState(IMemento aMemento) {
 	}
-
 }

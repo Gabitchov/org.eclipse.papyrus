@@ -674,5 +674,4 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 		}
 		return false;
 	}
-
 }

@@ -59,5 +59,4 @@ public class PackageItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy
 		}
 		return getGEFWrapper(new DuplicateAnythingCommand(editingDomain, req, currentDiagram));
 	}
-
 }

@@ -185,5 +185,4 @@ public class MessageFormatParser extends AbstractParser {
 		super.setViewPattern(viewPattern);
 		viewProcessor = null;
 	}
-
 }

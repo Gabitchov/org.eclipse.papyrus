@@ -13,9 +13,7 @@ import org.eclipse.papyrus.uml.diagram.statemachine.edit.policies.Generalization
 /**
  * @generated
  */
-public class GeneralizationEditPart extends
-
-UMLConnectionNodeEditPart implements ITreeBranchEditPart {
+public class GeneralizationEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -97,5 +95,4 @@ UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 		}
 		return false;
 	}
-
 }

@@ -70,5 +70,4 @@ public class RegionCompartmentItemSemanticEditPolicy extends UMLBaseItemSemantic
 		}
 		return super.getCreateCommand(req);
 	}
-
 }

@@ -158,12 +158,10 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 			result.addAll(createNavigatorItems(selectViewsByType(resource.getContents(), PackageEditPart.MODEL_ID), file, false));
 			return result.toArray();
 		}
-
 		if(parentElement instanceof UMLNavigatorGroup) {
 			UMLNavigatorGroup group = (UMLNavigatorGroup)parentElement;
 			return group.getChildren();
 		}
-
 		if(parentElement instanceof UMLNavigatorItem) {
 			UMLNavigatorItem navigatorItem = (UMLNavigatorItem)parentElement;
 			if(navigatorItem.isLeaf() || !isOwnView(navigatorItem.getView())) {
@@ -171,7 +169,6 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 			}
 			return getViewChildren(navigatorItem.getView(), parentElement);
 		}
-
 		return EMPTY_ARRAY;
 	}
 
@@ -276,23 +273,16 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 	 */
 	private Object[] getViewChildren(View view, Object parentElement) {
 		switch(UMLVisualIDRegistry.getVisualID(view)) {
-
 		case StateMachineEditPart.VISUAL_ID:
 		{
-
 			//modification of the template to avoid mistake of 65kb.
 			return getViewChildrenForStateMachineEditPart(view, parentElement);
-
 		}
-
 		case PackageEditPart.VISUAL_ID:
 		{
-
 			//modification of the template to avoid mistake of 65kb.
 			return getViewChildrenForPackageEditPart(view, parentElement);
-
 		}
-
 		}
 		return EMPTY_ARRAY;
 	}
@@ -378,5 +368,4 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 		}
 		return result;
 	}
-
 }

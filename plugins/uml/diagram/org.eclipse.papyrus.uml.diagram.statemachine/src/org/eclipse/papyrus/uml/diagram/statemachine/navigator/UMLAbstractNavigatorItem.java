@@ -54,5 +54,4 @@ public abstract class UMLAbstractNavigatorItem extends PlatformObject {
 	public Object getParent() {
 		return myParent;
 	}
-
 }

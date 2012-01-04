@@ -83,14 +83,12 @@ public class GeneralizationCreateCommand extends EditElementCommand {
 		if(!canExecute()) {
 			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 		}
-
 		Generalization newElement = UMLFactory.eINSTANCE.createGeneralization();
 		getSource().getGeneralizations().add(newElement);
 		newElement.setGeneral(getTarget());
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
-
 	}
 
 	/**
@@ -113,5 +111,4 @@ public class GeneralizationCreateCommand extends EditElementCommand {
 	protected void setElementToEdit(EObject element) {
 		throw new UnsupportedOperationException();
 	}
-
 }

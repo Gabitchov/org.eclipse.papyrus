@@ -454,6 +454,5 @@ public class Messages extends NLS {
 	 */
 	private Messages() {
 	}
-
 	// TODO: put accessor fields manually
 }

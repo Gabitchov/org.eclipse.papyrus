@@ -105,7 +105,6 @@ public class TransitionStereotypeEditPart extends LabelEditPart implements IText
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
-
 	/**
 	 * @generated
 	 */
@@ -251,7 +250,6 @@ public class TransitionStereotypeEditPart extends LabelEditPart implements IText
 						ie.printStackTrace();
 					}
 				}
-
 				// shouldn't get here
 				return null;
 			}
@@ -390,7 +388,6 @@ public class TransitionStereotypeEditPart extends LabelEditPart implements IText
 				}
 			}
 		}
-
 		super.handleNotificationEvent(event);
 	}
 
@@ -479,9 +476,7 @@ public class TransitionStereotypeEditPart extends LabelEditPart implements IText
 	 * @generated
 	 */
 	protected void performDirectEditRequest(Request request) {
-
 		final Request theRequest = request;
-
 		if(IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
 			directEditionMode = getDirectEditionType();
 		}
@@ -508,7 +503,6 @@ public class TransitionStereotypeEditPart extends LabelEditPart implements IText
 					return;
 				}
 				final Dialog finalDialog = dialog;
-
 				if(Window.OK == dialog.open()) {
 					TransactionalEditingDomain domain = getEditingDomain();
 					RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
@@ -516,7 +510,6 @@ public class TransitionStereotypeEditPart extends LabelEditPart implements IText
 						@Override
 						protected void doExecute() {
 							configuration.postEditAction(resolveSemanticElement(), ((ILabelEditorDialog)finalDialog).getValue());
-
 						}
 					};
 					domain.getCommandStack().execute(command);
@@ -524,7 +517,6 @@ public class TransitionStereotypeEditPart extends LabelEditPart implements IText
 			}
 			break;
 		case IDirectEdition.DEFAULT_DIRECT_EDITOR:
-
 			// initialize the direct edit manager
 			try {
 				getEditingDomain().runExclusive(new Runnable() {
@@ -706,5 +698,4 @@ public class TransitionStereotypeEditPart extends LabelEditPart implements IText
 			configuration = null;
 		}
 	}
-
 }

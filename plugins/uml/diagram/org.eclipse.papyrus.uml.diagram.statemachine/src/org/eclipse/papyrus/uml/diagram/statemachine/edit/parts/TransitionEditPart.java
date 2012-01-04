@@ -15,9 +15,7 @@ import org.eclipse.papyrus.uml.diagram.statemachine.edit.policies.TransitionItem
 /**
  * @generated
  */
-public class TransitionEditPart extends UMLConnectionNodeEditPart
-
-implements ITreeBranchEditPart {
+public class TransitionEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -101,5 +99,4 @@ implements ITreeBranchEditPart {
 		}
 		return false;
 	}
-
 }

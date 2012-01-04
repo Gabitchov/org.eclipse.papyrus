@@ -85,7 +85,6 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		public boolean canExistTransition_7000(Region container, Transition linkInstance, Vertex source, Vertex target) {
 			return true;
 		}
-
 	}
 
 	/**
@@ -270,9 +269,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 * @generated
 	 */
 	protected Command getMoveCommand(MoveRequest req) {
-
 		return getGEFWrapper(new MoveElementsCommand(req));
-
 	}
 
 	/**

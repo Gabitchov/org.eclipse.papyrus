@@ -141,10 +141,8 @@ public class UMLDiagramUpdater {
 			if(GeneralizationEditPart.VISUAL_ID != UMLVisualIDRegistry.getLinkWithClassVisualID(link)) {
 				continue;
 			}
-
 			Classifier dst = link.getGeneral();
 			result.add(new UMLLinkDescriptor(container, dst, link, UMLElementTypes.Generalization_19000, GeneralizationEditPart.VISUAL_ID));
-
 		}
 		return result;
 	}
@@ -163,11 +161,9 @@ public class UMLDiagramUpdater {
 			if(TransitionEditPart.VISUAL_ID != UMLVisualIDRegistry.getLinkWithClassVisualID(link)) {
 				continue;
 			}
-
 			Vertex dst = link.getTarget();
 			Vertex src = link.getSource();
 			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Transition_7000, TransitionEditPart.VISUAL_ID));
-
 		}
 		return result;
 	}
@@ -283,7 +279,6 @@ public class UMLDiagramUpdater {
 			}
 			Classifier container = (Classifier)link.eContainer();
 			result.add(new UMLLinkDescriptor(container, target, link, UMLElementTypes.Generalization_19000, GeneralizationEditPart.VISUAL_ID));
-
 		}
 		return result;
 	}
@@ -377,14 +372,12 @@ public class UMLDiagramUpdater {
 			if(TransitionEditPart.VISUAL_ID != UMLVisualIDRegistry.getLinkWithClassVisualID(link)) {
 				continue;
 			}
-
 			Vertex dst = link.getTarget();
 			Vertex src = link.getSource();
 			if(src != source) {
 				continue;
 			}
 			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Transition_7000, TransitionEditPart.VISUAL_ID));
-
 		}
 		return result;
 	}
@@ -960,5 +953,4 @@ public class UMLDiagramUpdater {
 	public static List<UMLLinkDescriptor> getTransition_7000OutgoingLinks(View view) {
 		return Collections.emptyList();
 	}
-
 }
