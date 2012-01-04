@@ -1,3 +1,17 @@
+/*****************************************************************************
+ * Copyright (c) 2011 Atos.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *   Atos - Initial API and implementation
+ *   Arthur Daussy Bug 366026 - [ActivityDiagram] Refactoring in order to try respect Generation Gap Pattern 
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.statemachine.custom.listeners;
 
 import java.util.NoSuchElementException;
@@ -15,6 +29,7 @@ import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.papyrus.editor.PapyrusMultiDiagramEditor;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbench;
@@ -65,39 +80,7 @@ public abstract class AbstractModifcationTriggerListener extends TriggerListener
 	 */
 	@SuppressWarnings("unchecked")
 	protected IGraphicalEditPart getChildByEObject(final EObject eObject, IGraphicalEditPart rootEditPart, boolean isEdge) {
-		if(eObject != null && rootEditPart != null) {
-
-			try {
-				Predicate<EditPart> predicate = new Predicate<EditPart>() {
-
-					public boolean apply(EditPart input) {
-						if(input instanceof IGraphicalEditPart) {
-							IGraphicalEditPart current = (IGraphicalEditPart)input;
-							//Same EObject
-							if(eObject.equals(current.resolveSemanticElement())) {
-								EditPart parent = current.getParent();
-								if(parent instanceof IGraphicalEditPart) {
-									// its parent do not have the same EObject
-									if(!eObject.equals(((IGraphicalEditPart)parent).resolveSemanticElement())) {
-										return true;
-									}
-								} else if(parent instanceof RootEditPart) {
-									return true;
-								}
-							}
-						}
-						return false;
-					}
-				};
-
-				EditPart find = (isEdge) ? Iterables.find((Iterable<EditPart>)EditPartUtilities.getAllNestedConnectionEditParts(rootEditPart), predicate) : Iterables.find((Iterable<EditPart>)EditPartUtilities.getAllChildren(rootEditPart), predicate);
-				return (IGraphicalEditPart)find;
-			} catch (NoSuchElementException e) {
-				//Nothing to do
-			}
-
-		}
-		return null;
+		return DiagramEditPartsUtil.getChildByEObject(eObject, rootEditPart, isEdge);
 	}
 
 	/**
