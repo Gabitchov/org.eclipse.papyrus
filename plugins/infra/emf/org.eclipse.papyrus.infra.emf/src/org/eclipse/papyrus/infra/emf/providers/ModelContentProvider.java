@@ -13,7 +13,7 @@
  *
  *****************************************************************************/
 
-package org.eclipse.papyrus.infra.emf.providers.internal;
+package org.eclipse.papyrus.infra.emf.providers;
 
 import java.util.ArrayList;
 import java.util.Arrays;

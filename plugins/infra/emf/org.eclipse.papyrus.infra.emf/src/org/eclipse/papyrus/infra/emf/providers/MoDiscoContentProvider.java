@@ -8,7 +8,7 @@
  * Contributors:
  *    Nicolas Bros (Mia-Software) - initial API and implementation
  *******************************************************************************/
-package org.eclipse.papyrus.infra.emf.providers.internal;
+package org.eclipse.papyrus.infra.emf.providers;
 
 import java.util.ArrayList;
 import java.util.Iterator;

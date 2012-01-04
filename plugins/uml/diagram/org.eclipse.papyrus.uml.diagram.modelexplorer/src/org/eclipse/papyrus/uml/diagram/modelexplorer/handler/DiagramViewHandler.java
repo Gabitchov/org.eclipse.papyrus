@@ -16,7 +16,7 @@ package org.eclipse.papyrus.uml.diagram.modelexplorer.handler;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.papyrus.infra.emf.providers.internal.MoDiscoContentProvider;
+import org.eclipse.papyrus.infra.emf.providers.MoDiscoContentProvider;
 import org.eclipse.papyrus.uml.diagram.modelexplorer.provider.DiagramContentProvider;
 import org.eclipse.papyrus.uml.diagram.modelexplorer.provider.DiagramLabelProvider;
 import org.eclipse.papyrus.views.modelexplorer.MoDiscoLabelProviderWTooltips;

@@ -9,7 +9,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.infra.emf.providers.internal;
+package org.eclipse.papyrus.infra.emf.providers;
 
 import java.util.List;
 

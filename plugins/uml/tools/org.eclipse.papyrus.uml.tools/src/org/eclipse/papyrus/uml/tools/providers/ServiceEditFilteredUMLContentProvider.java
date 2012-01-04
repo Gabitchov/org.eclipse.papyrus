@@ -14,8 +14,6 @@ package org.eclipse.papyrus.uml.tools.providers;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.papyrus.uml.tools.helper.HistoryUtil;
-import org.eclipse.papyrus.uml.tools.providers.internal.EditServiceValidator;
-import org.eclipse.papyrus.uml.tools.providers.internal.UMLElementMEBContentProvider;
 
 public class ServiceEditFilteredUMLContentProvider extends UMLElementMEBContentProvider {
 

@@ -12,13 +12,13 @@
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Adaptation to AbstractTreeFilter
  *
  *****************************************************************************/
-package org.eclipse.papyrus.uml.tools.providers.internal;
+package org.eclipse.papyrus.uml.tools.providers;
 
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.papyrus.infra.emf.providers.internal.HierarchicViewerFilter;
+import org.eclipse.papyrus.infra.emf.providers.HierarchicViewerFilter;
 import org.eclipse.papyrus.infra.widgets.providers.IHierarchicContentProvider;
 import org.eclipse.uml2.uml.PackageImport;
 import org.eclipse.uml2.uml.UMLPackage;

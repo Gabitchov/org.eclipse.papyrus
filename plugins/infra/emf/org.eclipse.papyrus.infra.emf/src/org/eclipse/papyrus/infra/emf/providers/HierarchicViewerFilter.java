@@ -12,7 +12,7 @@
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Adaptation to AbstractTreeFilter
  *
  *****************************************************************************/
-package org.eclipse.papyrus.infra.emf.providers.internal;
+package org.eclipse.papyrus.infra.emf.providers;
 
 import java.util.HashSet;
 import java.util.Iterator;

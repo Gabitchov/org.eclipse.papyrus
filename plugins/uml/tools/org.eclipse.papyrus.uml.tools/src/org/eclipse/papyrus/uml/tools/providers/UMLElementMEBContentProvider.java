@@ -11,7 +11,7 @@
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.uml.tools.providers.internal;
+package org.eclipse.papyrus.uml.tools.providers;
 
 import java.util.Iterator;
 import java.util.List;

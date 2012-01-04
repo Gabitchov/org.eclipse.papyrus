@@ -48,7 +48,7 @@ import org.eclipse.papyrus.uml.tools.databinding.ProvidedInterfaceObservableList
 import org.eclipse.papyrus.uml.tools.databinding.RequiredInterfaceObservableList;
 import org.eclipse.papyrus.uml.tools.helper.HistoryUtil;
 import org.eclipse.papyrus.uml.tools.providers.ServiceEditFilteredUMLContentProvider;
-import org.eclipse.papyrus.uml.tools.providers.internal.UMLElementMEBContentProvider;
+import org.eclipse.papyrus.uml.tools.providers.UMLElementMEBContentProvider;
 import org.eclipse.papyrus.uml.tools.utils.PackageUtil;
 import org.eclipse.papyrus.views.properties.modelelement.EMFModelElement;
 import org.eclipse.papyrus.views.properties.providers.ContainerContentProvider;

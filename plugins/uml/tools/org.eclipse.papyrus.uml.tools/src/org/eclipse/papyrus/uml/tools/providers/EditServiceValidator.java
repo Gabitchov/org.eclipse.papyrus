@@ -1,7 +1,7 @@
 /*
  * 
  */
-package org.eclipse.papyrus.uml.tools.providers.internal;
+package org.eclipse.papyrus.uml.tools.providers;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
