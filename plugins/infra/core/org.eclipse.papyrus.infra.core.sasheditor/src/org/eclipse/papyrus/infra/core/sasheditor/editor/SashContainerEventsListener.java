@@ -1,11 +1,9 @@
 /**
  * 
  */
-package org.eclipse.papyrus.infra.core.sasheditor.internal;
+package org.eclipse.papyrus.infra.core.sasheditor.editor;
 
-import org.eclipse.papyrus.infra.core.sasheditor.editor.IPage;
-import org.eclipse.papyrus.infra.core.sasheditor.editor.IPageChangedListener;
-import org.eclipse.papyrus.infra.core.sasheditor.editor.SashWindowsContainer;
+
 
 /**
  * Interface to be implemented by listeners on {@link SashWindowsContainer} life
@@ -23,7 +21,7 @@ public interface SashContainerEventsListener extends IPageChangedListener {
 	 */
 	public void pageOpened(IPage page);
 
-	/**
+	/** 
 	 * 
 	 * @param page
 	 *        The page firing the event.

@@ -41,7 +41,6 @@ import org.eclipse.papyrus.infra.core.sasheditor.internal.PageVisitorWrapper;
 import org.eclipse.papyrus.infra.core.sasheditor.internal.PartLists;
 import org.eclipse.papyrus.infra.core.sasheditor.internal.PartVisitor;
 import org.eclipse.papyrus.infra.core.sasheditor.internal.RootPart;
-import org.eclipse.papyrus.infra.core.sasheditor.internal.SashContainerEventsListener;
 import org.eclipse.papyrus.infra.core.sasheditor.internal.SashContainerEventsProvider;
 import org.eclipse.papyrus.infra.core.sasheditor.internal.ShowPartStatusVisitor;
 import org.eclipse.papyrus.infra.core.sasheditor.internal.TabFolderPart;

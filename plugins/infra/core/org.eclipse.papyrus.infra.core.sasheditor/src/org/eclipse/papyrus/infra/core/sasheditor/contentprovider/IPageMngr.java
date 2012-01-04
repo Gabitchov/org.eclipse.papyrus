@@ -18,8 +18,8 @@ package org.eclipse.papyrus.infra.core.sasheditor.contentprovider;
 import java.util.List;
 
 import org.eclipse.papyrus.infra.core.sasheditor.editor.IPageChangedListener;
+import org.eclipse.papyrus.infra.core.sasheditor.editor.SashContainerEventsListener;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.SashWindowsContainer;
-import org.eclipse.papyrus.infra.core.sasheditor.internal.SashContainerEventsListener;
 
 /**
  * Interface providing method to manage pages in the Sash Windows system. This
