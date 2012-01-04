@@ -520,13 +520,6 @@ public class EnumerationLiteralEditPart extends UMLCompartmentEditPart implement
 		if(style != null && getFigure() instanceof WrappingLabel) {
 			((WrappingLabel)getFigure()).setTextUnderline(style.isUnderline());
 		}
-		if(resolveSemanticElement() instanceof Feature) {
-			if(((Feature)resolveSemanticElement()).isStatic()) {
-				((WrappingLabel)getFigure()).setTextUnderline(true);
-			} else {
-				((WrappingLabel)getFigure()).setTextUnderline(false);
-			}
-		}
 	}
 
 	/**
@@ -756,9 +749,6 @@ public class EnumerationLiteralEditPart extends UMLCompartmentEditPart implement
 		}
 		if(event.getNewValue() instanceof EAnnotation && VisualInformationPapyrusConstant.DISPLAY_NAMELABELICON.equals(((EAnnotation)event.getNewValue()).getSource())) {
 			refreshLabel();
-		}
-		if(event.getFeature().equals(UMLPackage.eINSTANCE.getFeature_IsStatic())) {
-			refreshUnderline();
 		}
 		super.handleNotificationEvent(event);
 	}

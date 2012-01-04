@@ -1891,6 +1891,9 @@ public class InterfaceEditPart extends ClassifierEditPart {
 			if(type == UMLElementTypes.Class_3008) {
 				return getChildBySemanticHint(UMLVisualIDRegistry.getType(InterfaceNestedClassifierCompartmentEditPart.VISUAL_ID));
 			}
+			if(type == UMLElementTypes.Interface_3038) {
+				return getChildBySemanticHint(UMLVisualIDRegistry.getType(InterfaceNestedClassifierCompartmentEditPart.VISUAL_ID));
+			}
 		}
 		return super.getTargetEditPart(request);
 	}

@@ -570,6 +570,42 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
+	public void init_Interface_3036(Interface instance) {
+		try {
+			Object value_0 = name_Interface_3036(instance);
+			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public void init_Interface_3037(Interface instance) {
+		try {
+			Object value_0 = name_Interface_3037(instance);
+			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public void init_Interface_3038(Interface instance) {
+		try {
+			Object value_0 = name_Interface_3038(instance);
+			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
 	public void init_AssociationClass_4017(AssociationClass instance) {
 		try {
 			Object value_0 = name_AssociationClass_4017(instance);
@@ -983,6 +1019,27 @@ public class ElementInitializers {
 		LiteralString literalString = UMLFactory.eINSTANCE.createLiteralString();
 		literalString.setValue("");
 		return literalString;
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_Interface_3036(Interface self) {
+		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_Interface_3037(Interface self) {
+		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_Interface_3038(Interface self) {
+		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
 	}
 
 	/**

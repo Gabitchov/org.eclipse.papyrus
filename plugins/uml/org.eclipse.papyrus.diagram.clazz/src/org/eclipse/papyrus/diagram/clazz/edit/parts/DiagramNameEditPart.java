@@ -516,13 +516,6 @@ public class DiagramNameEditPart extends AbstractShortcutDiagramNameEditPart imp
 		if(style != null && getFigure() instanceof WrappingLabel) {
 			((WrappingLabel)getFigure()).setTextUnderline(style.isUnderline());
 		}
-		if(resolveSemanticElement() instanceof Feature) {
-			if(((Feature)resolveSemanticElement()).isStatic()) {
-				((WrappingLabel)getFigure()).setTextUnderline(true);
-			} else {
-				((WrappingLabel)getFigure()).setTextUnderline(false);
-			}
-		}
 	}
 
 	/**
