@@ -32,7 +32,6 @@ import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.internal.views.properties.tabbed.view.TabbedPropertyComposite;
 import org.eclipse.ui.views.properties.tabbed.AbstractPropertySection;
@@ -97,8 +96,7 @@ public class XWTSection extends AbstractPropertySection implements IChangeListen
 		self.setBackgroundMode(SWT.INHERIT_DEFAULT);
 
 		// ugly hack until bug 367208 is fixed
-		Control control = tabbedPropertySheetPage.getControl();
-		if (control instanceof TabbedPropertyComposite) {
+		if (tabbedPropertySheetPage != null && tabbedPropertySheetPage.getControl() instanceof TabbedPropertyComposite) {
 			ScrolledComposite sc = ((TabbedPropertyComposite)tabbedPropertySheetPage.getControl()).getScrolledComposite();
 			if (sc != null && sc.getVerticalBar() != null) {
 				sc.getVerticalBar().setIncrement(25);
