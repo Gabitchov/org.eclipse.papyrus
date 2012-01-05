@@ -2,6 +2,8 @@ package org.eclipse.papyrus.uml.diagram.statemachine.edit.policies;
 
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.papyrus.uml.diagram.statemachine.edit.commands.CommentCreateCommand;
+import org.eclipse.papyrus.uml.diagram.statemachine.edit.commands.ConstraintCreateCommand;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.commands.FinalStateCreateCommand;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.commands.PseudostateChoiceCreateCommand;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.commands.PseudostateDeepHistoryCreateCommand;
@@ -67,6 +69,12 @@ public class RegionCompartmentItemSemanticEditPolicy extends UMLBaseItemSemantic
 		}
 		if(UMLElementTypes.Pseudostate_17000 == req.getElementType()) {
 			return getGEFWrapper(new PseudostateExitPointCreateCommand(req));
+		}
+		if(UMLElementTypes.Comment_666 == req.getElementType()) {
+			return getGEFWrapper(new CommentCreateCommand(req));
+		}
+		if(UMLElementTypes.Constraint_668 == req.getElementType()) {
+			return getGEFWrapper(new ConstraintCreateCommand(req));
 		}
 		return super.getCreateCommand(req);
 	}

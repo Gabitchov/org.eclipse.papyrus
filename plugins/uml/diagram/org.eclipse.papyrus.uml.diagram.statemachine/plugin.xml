@@ -147,8 +147,8 @@
       <viewProvider class="org.eclipse.papyrus.uml.diagram.statemachine.providers.UMLViewProvider">
          <Priority name="Lowest"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="PapyrusUMLStateMachineDiagram"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2000,3000,5000,6000,8000,9000,10000,11000,12000,13000,14000,15000,16000,17000,18000"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="7000,19000"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2000,3000,5000,6000,8000,9000,10000,11000,12000,13000,14000,15000,16000,17000,18000,666,668,680,690,691,692"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="7000,19000,667,670"/>
       </viewProvider>
    </extension>
 
@@ -160,13 +160,13 @@
             <method name="getType()" value="PapyrusUMLStateMachineDiagram"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-nodes">
-            <method name="getType()" value="2000,3000,5000,6000,8000,9000,10000,11000,12000,13000,14000,15000,16000,17000,18000"/>
+            <method name="getType()" value="2000,3000,5000,6000,8000,9000,10000,11000,12000,13000,14000,15000,16000,17000,18000,666,668,680,690,691,692"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
-            <method name="getType()" value="7000,19000"/>
+            <method name="getType()" value="7000,19000,667,670"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
-            <method name="getType()" value="2001,5001,5002,6001,8001,8002,9001,9002,10001,10002,11001,11002,12001,12002,13001,13002,14001,14002,15001,15002,16001,16002,17001,17002,18001,18002"/>
+            <method name="getType()" value="2001,5001,5002,6001,8001,8002,9001,9002,10001,10002,11001,11002,12001,12002,13001,13002,14001,14002,15001,15002,16001,16002,17001,17002,18001,18002,6666,6668,6669"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-compartments">
             <method name="getType()" value="3002,2002,6002"/>
@@ -201,7 +201,7 @@
 
    <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes" id="element-types">
       <?gmfgen generated="true"?>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.statemachine.Package_1000"
                name="%metatype.name.Package_1000"
@@ -211,7 +211,7 @@
             <param name="semanticHint" value="1000"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.statemachine.StateMachine_2000"
                name="%metatype.name.StateMachine_2000"
@@ -221,7 +221,7 @@
             <param name="semanticHint" value="2000"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.statemachine.Region_3000"
                name="%metatype.name.Region_3000"
@@ -231,7 +231,7 @@
             <param name="semanticHint" value="3000"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.statemachine.FinalState_5000"
                name="%metatype.name.FinalState_5000"
@@ -241,7 +241,7 @@
             <param name="semanticHint" value="5000"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.statemachine.State_6000"
                name="%metatype.name.State_6000"
@@ -251,7 +251,7 @@
             <param name="semanticHint" value="6000"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.statemachine.Pseudostate_8000"
                name="%metatype.name.Pseudostate_8000"
@@ -261,7 +261,7 @@
             <param name="semanticHint" value="8000"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.statemachine.Pseudostate_9000"
                name="%metatype.name.Pseudostate_9000"
@@ -271,7 +271,7 @@
             <param name="semanticHint" value="9000"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.statemachine.Pseudostate_10000"
                name="%metatype.name.Pseudostate_10000"
@@ -281,7 +281,7 @@
             <param name="semanticHint" value="10000"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.statemachine.Pseudostate_11000"
                name="%metatype.name.Pseudostate_11000"
@@ -291,7 +291,7 @@
             <param name="semanticHint" value="11000"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.statemachine.Pseudostate_12000"
                name="%metatype.name.Pseudostate_12000"
@@ -301,7 +301,7 @@
             <param name="semanticHint" value="12000"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.statemachine.Pseudostate_13000"
                name="%metatype.name.Pseudostate_13000"
@@ -311,7 +311,7 @@
             <param name="semanticHint" value="13000"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.statemachine.Pseudostate_14000"
                name="%metatype.name.Pseudostate_14000"
@@ -321,7 +321,7 @@
             <param name="semanticHint" value="14000"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.statemachine.Pseudostate_15000"
                name="%metatype.name.Pseudostate_15000"
@@ -331,7 +331,7 @@
             <param name="semanticHint" value="15000"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.statemachine.Pseudostate_16000"
                name="%metatype.name.Pseudostate_16000"
@@ -341,7 +341,7 @@
             <param name="semanticHint" value="16000"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.statemachine.Pseudostate_17000"
                name="%metatype.name.Pseudostate_17000"
@@ -351,7 +351,7 @@
             <param name="semanticHint" value="17000"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.statemachine.ConnectionPointReference_18000"
                name="%metatype.name.ConnectionPointReference_18000"
@@ -361,7 +361,66 @@
             <param name="semanticHint" value="18000"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.uml.diagram.statemachine.StateMachineComment"
+               name="%metatype.name.Comment_666"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Comment"
+               edithelper="org.eclipse.papyrus.uml.diagram.statemachine.edit.helpers.CommentEditHelper">
+            <param name="semanticHint" value="666"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.uml.diagram.statemachine.Constraint_668"
+               name="%metatype.name.Constraint_668"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Constraint"
+               edithelper="org.eclipse.papyrus.uml.diagram.statemachine.edit.helpers.ConstraintEditHelper">
+            <param name="semanticHint" value="668"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.uml.diagram.statemachine.InternalTransition_680"
+               name="%metatype.name.Transition_680"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.uml.diagram.statemachine.Transition_7000"/>
+            <param name="semanticHint" value="680"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.uml.diagram.statemachine.EntryStateBehavior_690"
+               name="%metatype.name.Behavior_690"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Behavior"
+               edithelper="org.eclipse.papyrus.uml.diagram.statemachine.edit.helpers.EntryStateBehaviorEditHelper">
+            <param name="semanticHint" value="690"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.uml.diagram.statemachine.DoActivityStateBehavior_691"
+               name="%metatype.name.Behavior_691"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Behavior"
+               edithelper="org.eclipse.papyrus.uml.diagram.statemachine.edit.helpers.DoActivityStateBehaviorEditHelper">
+            <param name="semanticHint" value="691"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.uml.diagram.statemachine.ExitStateBehavior_692"
+               name="%metatype.name.Behavior_692"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Behavior"
+               edithelper="org.eclipse.papyrus.uml.diagram.statemachine.edit.helpers.ExitStateBehaviorEditHelper">
+            <param name="semanticHint" value="692"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.statemachine.Transition_7000"
                name="%metatype.name.Transition_7000"
@@ -371,7 +430,7 @@
             <param name="semanticHint" value="7000"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.uml.diagram.statemachine.Generalization_19000"
                name="%metatype.name.Generalization_19000"
@@ -380,6 +439,24 @@
                edithelper="org.eclipse.papyrus.uml.diagram.statemachine.edit.helpers.GeneralizationEditHelper">
             <param name="semanticHint" value="19000"/>
          </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.uml.diagram.statemachine.CommentAnnotatedElement_667"
+               name="%metatype.name.CommentAnnotatedElement_667"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
+            <param name="semanticHint" value="667"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.uml.diagram.statemachine.ConstraintConstrainedElement_670"
+               name="%metatype.name.ConstraintConstrainedElement_670"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
+            <param name="semanticHint" value="670"/>
+         </specializationType>
       </metamodel>
    </extension>
 
@@ -409,8 +486,16 @@
          <elementType ref="org.eclipse.papyrus.uml.diagram.statemachine.Pseudostate_16000"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.statemachine.Pseudostate_17000"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.statemachine.ConnectionPointReference_18000"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.statemachine.StateMachineComment"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.statemachine.Constraint_668"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.statemachine.InternalTransition_680"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.statemachine.EntryStateBehavior_690"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.statemachine.DoActivityStateBehavior_691"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.statemachine.ExitStateBehavior_692"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.statemachine.Transition_7000"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.statemachine.Generalization_19000"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.statemachine.CommentAnnotatedElement_667"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.statemachine.ConstraintConstrainedElement_670"/>
          <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
       </binding>
    </extension>
@@ -712,6 +797,41 @@
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLStateMachineDiagram"
+			class="org.eclipse.papyrus.uml.diagram.statemachine.preferences.ExitStateBehaviorPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.statemachine.preferences.ExitStateBehaviorPreferencePage"
+            name="ExitStateBehavior Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLStateMachineDiagram"
+			class="org.eclipse.papyrus.uml.diagram.statemachine.preferences.EntryStateBehaviorPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.statemachine.preferences.EntryStateBehaviorPreferencePage"
+            name="EntryStateBehavior Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLStateMachineDiagram"
+			class="org.eclipse.papyrus.uml.diagram.statemachine.preferences.DoActivityStateBehaviorPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.statemachine.preferences.DoActivityStateBehaviorPreferencePage"
+            name="DoActivityStateBehavior Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLStateMachineDiagram"
+			class="org.eclipse.papyrus.uml.diagram.statemachine.preferences.ConstraintPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.statemachine.preferences.ConstraintPreferencePage"
+            name="Constraint Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLStateMachineDiagram"
+			class="org.eclipse.papyrus.uml.diagram.statemachine.preferences.CommentPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.statemachine.preferences.CommentPreferencePage"
+            name="Comment Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLStateMachineDiagram"
 			class="org.eclipse.papyrus.uml.diagram.statemachine.preferences.PseudostatePreferencePage"
             id="org.eclipse.papyrus.uml.diagram.statemachine.preferences.PseudostatePreferencePage"
             name="Pseudostate Node" />
@@ -751,6 +871,13 @@
             id="org.eclipse.papyrus.uml.diagram.statemachine.preferences.StateMachinePreferencePage"
             name="StateMachine Node" />
 	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLStateMachineDiagram"
+			class="org.eclipse.papyrus.uml.diagram.statemachine.preferences.InternalTransitionPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.statemachine.preferences.InternalTransitionPreferencePage"
+            name="InternalTransition Node" />
+	
 
 
 		
@@ -768,6 +895,8 @@
 			class="org.eclipse.papyrus.uml.diagram.statemachine.preferences.TransitionPreferencePage"
             id="org.eclipse.papyrus.uml.diagram.statemachine.preferences.TransitionPreferencePage"
             name="Transition Link" />
+		
+		
 		
 
 </extension>
@@ -926,6 +1055,26 @@
  	</entry>
 	<entry
        defineOnly="true"
+       description="Comment"
+       id="createStateMachineCommentCreationTool"
+       kind="tool"
+       label="Comment"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create Constraint"
+       id="createConstraintCreationTool"
+       kind="tool"
+       label="Constraint"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
        description="Transition"
        id="createTransitionCreationTool"
        kind="tool"
@@ -933,6 +1082,16 @@
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Transition_local.gif"
        path=""
        small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Transition_local.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Creation of a link for comment, constraint"
+       id="createCommentlinkCreationTool"
+       kind="tool"
+       label="Link"
+       large_icon="icons/obj16/Link.gif"
+       path=""
+       small_icon="icons/obj16/Link.gif">
  	</entry>
 
 			</contribution>
@@ -1035,6 +1194,14 @@
           id="createConnectionPointReferenceCreationTool"
           path="/createNodesGroup">
     </predefinedEntry>
+ 	<predefinedEntry
+          id="createStateMachineCommentCreationTool"
+          path="/createNodesGroup">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createConstraintCreationTool"
+          path="/createNodesGroup">
+    </predefinedEntry>
 
 	<entry
        description=""
@@ -1053,6 +1220,10 @@
           id="createTransitionCreationTool"
           path="/createEdgesGroup">
     </predefinedEntry>
+ 	<predefinedEntry
+          id="createCommentlinkCreationTool"
+          path="/createEdgesGroup">
+    </predefinedEntry>
 
 
 			</contribution>
@@ -1068,6 +1239,60 @@
          <context decoratorTargets="PRIMARY_VIEW"/>
       </decoratorProvider>
    </extension>
+<extension point="org.eclipse.emf.validation.constraintProviders">
+      <?gmfgen generated="true"?>
+            <category id="org.eclipse.uml2.uml.util.UMLValidator.validateInternalTransition" mandatory="false" name="validateInternalTransition">
+         <![CDATA[Validate internal transition]]>
+      </category>
+      <constraintProvider cache="true">
+         <package namespaceUri="http://www.eclipse.org/uml2/4.0.0/UML"/>
+               <constraints categories="org.eclipse.uml2.uml.util.UMLValidator.validateInternalTransition">
+                  <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateInternalTransition_sameTargetAndSrouce"
+            lang="OCL"
+            name="validateInternalTransitionEnd"
+            mode="Live"
+            severity="ERROR" statusCode="200">
+            <![CDATA[(kind = TransitionKind::internal) implies (source.oclIsKindOf (State) and source = target)]]>
+            <description><![CDATA[Validate that internal transition has the same state for source and target]]></description>
+            <message><![CDATA[Validate that internal transition has the same state for source and target]]></message>
+            <target class="uml.Transition"/>
+         </constraint>
+                  </constraints>
+      </constraintProvider>
+   </extension>
+
+<extension point="org.eclipse.emf.validation.constraintBindings">
+      <?gmfgen generated="true"?>
+      <clientContext default="false" id="org.eclipse.papyrus.uml.diagram.statemachineDefaultCtx">
+         <selector class="org.eclipse.papyrus.uml.diagram.statemachine.providers.UMLValidationProvider$DefaultCtx"/>
+      </clientContext>
+      <binding context="org.eclipse.papyrus.uml.diagram.statemachineDefaultCtx">
+                  <constraint ref="org.eclipse.papyrus.uml.diagram.statemachine.org.eclipse.uml2.uml.util.UMLValidator.validateInternalTransition_sameTargetAndSrouce"/>
+               </binding>
+
+   </extension>
+
+<extension point="org.eclipse.emf.validation.ui.UIRegisteredClientContext">
+      <?gmfgen generated="true"?>
+      <clientContext id="org.eclipse.papyrus.uml.diagram.statemachineDefaultCtx"/>
+ </extension>
+ 
+ <extension
+      point="org.eclipse.emf.transaction.listeners">
+   <listener
+         class="org.eclipse.papyrus.uml.diagram.statemachine.custom.listeners.StateBehaviorsListener">
+      <editingDomain
+            id="org.eclipse.papyrus.SharedEditingDomainID">
+      </editingDomain>
+   </listener>
+	   <listener
+	         class="org.eclipse.papyrus.uml.diagram.statemachine.custom.listeners.InternalStateListener">
+	      <editingDomain
+	            id="org.eclipse.papyrus.SharedEditingDomainID">
+	      </editingDomain>
+	   </listener>
+	</extension>
+
 
 
 

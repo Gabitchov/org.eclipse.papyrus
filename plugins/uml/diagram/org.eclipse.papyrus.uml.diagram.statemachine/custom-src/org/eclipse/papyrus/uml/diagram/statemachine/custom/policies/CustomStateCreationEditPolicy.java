@@ -14,6 +14,7 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gmf.runtime.diagram.core.commands.SetPropertyCommand;
+import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
@@ -29,6 +30,7 @@ import org.eclipse.papyrus.uml.diagram.statemachine.custom.commands.CustomFirstR
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.commands.CustomVertexCreateElementCommand;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.helpers.Zone;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.RegionEditPart;
+import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.State;
 
@@ -97,7 +99,12 @@ public class CustomStateCreationEditPolicy extends CreationEditPolicy {
 						// starting point is the state node on
 						// which mouse was moving
 						View stateView = (View)getHost().getModel();
-						View stateCompartmentView = (View)stateView.getChildren().get(1);
+						/*
+						 * TO Check from last version
+						 * 
+						 * View stateCompartmentView = (View)stateView.getChildren().get(1);
+						 */
+						View stateCompartmentView = ViewUtil.getChildBySemanticHint(stateView, String.valueOf(StateCompartmentEditPart.VISUAL_ID));
 
 						// transfer the request to the super method to deal with regular Entry/ExitPoint creation
 						if(!stateCompartmentView.getChildren().isEmpty() || !((State)stateView.getElement()).getRegions().isEmpty())

@@ -39,6 +39,9 @@ import org.eclipse.papyrus.uml.diagram.statemachine.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.statemachine.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.statemachine.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.Classifier;
+import org.eclipse.uml2.uml.Comment;
+import org.eclipse.uml2.uml.Constraint;
+import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Generalization;
 import org.eclipse.uml2.uml.Region;
 import org.eclipse.uml2.uml.Transition;
@@ -71,6 +74,36 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
+		public boolean canCreateCommentAnnotatedElement_667(Comment source, Element target) {
+			if(source != null) {
+				if(source.getAnnotatedElements().contains(target)
+
+				) {
+					return false;
+				}
+			}
+
+			return canExistCommentAnnotatedElement_667(source, target);
+		}
+
+		/**
+		 * @generated
+		 */
+		public boolean canCreateConstraintConstrainedElement_670(Constraint source, Element target) {
+			if(source != null) {
+				if(source.getConstrainedElements().contains(target)
+
+				) {
+					return false;
+				}
+			}
+
+			return canExistConstraintConstrainedElement_670(source, target);
+		}
+
+		/**
+		 * @generated
+		 */
 		public boolean canCreateTransition_7000(Region container, Vertex source, Vertex target) {
 			return canExistTransition_7000(container, null, source, target);
 		}
@@ -79,6 +112,20 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 * @generated
 		 */
 		public boolean canExistGeneralization_19000(Generalization linkInstance, Classifier source, Classifier target) {
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public boolean canExistCommentAnnotatedElement_667(Comment source, Element target) {
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public boolean canExistConstraintConstrainedElement_670(Constraint source, Element target) {
 			return true;
 		}
 
@@ -199,10 +246,13 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			if(provider == null) {
 				return UnexecutableCommand.INSTANCE;
 			}
+
 			// Retrieve create command from the Element Edit service
 			ICommand createGMFCommand = provider.getEditCommand(req);
+
 			return getGEFWrapper(createGMFCommand);
 		}
+
 		return null;
 	}
 
@@ -283,7 +333,11 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 * @generated
 	 */
 	protected Command getMoveCommand(MoveRequest req) {
+
+
 		return getGEFWrapper(new MoveElementsCommand(req));
+
+
 	}
 
 	/**

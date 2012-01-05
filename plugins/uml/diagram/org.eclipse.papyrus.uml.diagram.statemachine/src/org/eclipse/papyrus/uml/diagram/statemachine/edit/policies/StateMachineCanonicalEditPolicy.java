@@ -150,6 +150,7 @@ public class StateMachineCanonicalEditPolicy extends CanonicalEditPolicy {
 			IAdaptable elementAdapter = new CanonicalElementAdapter(next.getModelElement(), hint);
 			CreateViewRequest.ViewDescriptor descriptor = new CreateViewRequest.ViewDescriptor(elementAdapter, Node.class, hint, ViewUtil.APPEND, false, host().getDiagramPreferencesHint());
 			viewDescriptors.add(descriptor);
+
 			LinkedList<View> possibleMatches = potentialViews.get(next);
 			if(possibleMatches != null) {
 				// from potential matches, leave those that were not eventually used for some other NodeDescriptor (i.e. those left as orphaned)
@@ -173,6 +174,7 @@ public class StateMachineCanonicalEditPolicy extends CanonicalEditPolicy {
 				}
 			}
 		}
+
 		boolean changed = deleteViews(orphaned.iterator());
 		//
 		CreateViewRequest request = getCreateViewRequest(viewDescriptors);
@@ -195,6 +197,7 @@ public class StateMachineCanonicalEditPolicy extends CanonicalEditPolicy {
 			DeferredLayoutCommand layoutCmd = new DeferredLayoutCommand(host().getEditingDomain(), createdViews, host());
 			executeCommand(new ICommandProxy(layoutCmd));
 		}
+
 		makeViewsImmutable(createdViews);
 	}
 }

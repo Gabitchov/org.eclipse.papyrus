@@ -169,6 +169,7 @@ public class PseudostateForkEditPart extends UMLNodeEditPart {
 		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
 		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
+
 		return result;
 	}
 
@@ -249,8 +250,10 @@ public class PseudostateForkEditPart extends UMLNodeEditPart {
 	 * @generated
 	 */
 	public List<IElementType> getMARelTypesOnTarget() {
-		ArrayList<IElementType> types = new ArrayList<IElementType>(1);
+		ArrayList<IElementType> types = new ArrayList<IElementType>(3);
 		types.add(UMLElementTypes.Transition_7000);
+		types.add(UMLElementTypes.CommentAnnotatedElement_667);
+		types.add(UMLElementTypes.ConstraintConstrainedElement_670);
 		return types;
 	}
 
@@ -273,6 +276,10 @@ public class PseudostateForkEditPart extends UMLNodeEditPart {
 			types.add(UMLElementTypes.Pseudostate_16000);
 			types.add(UMLElementTypes.Pseudostate_17000);
 			types.add(UMLElementTypes.ConnectionPointReference_18000);
+		} else if(relationshipType == UMLElementTypes.CommentAnnotatedElement_667) {
+			types.add(UMLElementTypes.Comment_666);
+		} else if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_670) {
+			types.add(UMLElementTypes.Constraint_668);
 		}
 		return types;
 	}
@@ -307,6 +314,7 @@ public class PseudostateForkEditPart extends UMLNodeEditPart {
 	public Object getPreferredValue(EStructuralFeature feature) {
 		IPreferenceStore preferenceStore = (IPreferenceStore)getDiagramPreferencesHint().getPreferenceStore();
 		Object result = null;
+
 		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 			String prefColor = null;
 			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
@@ -326,6 +334,7 @@ public class PseudostateForkEditPart extends UMLNodeEditPart {
 				result = gradientPreferenceConverter.getGradientData();
 			}
 		}
+
 		if(result == null) {
 			result = getStructuralFeatureValue(feature);
 		}
@@ -366,6 +375,7 @@ public class PseudostateForkEditPart extends UMLNodeEditPart {
 			}
 		}
 		super.handleNotificationEvent(event);
+
 	}
 
 	/**

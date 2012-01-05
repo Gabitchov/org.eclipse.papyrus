@@ -97,24 +97,40 @@ public class StateMachineEditPart extends NamedElementEditPart {
 			((StateMachineNameEditPart)childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
+
+
 		if(childEditPart instanceof StateMachineCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getStateMachineCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.add(((StateMachineCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
+
+
+
+
+
 		//Papyrus Gencode :Affixed EntryExitPoints ConnectionPointReferences Locator
 		if(childEditPart instanceof PseudostateEntryPointEditPart) {
 			IBorderItemLocator locator = new CustomEntryExitPointPositionLocator(getMainFigure(), PositionConstants.NONE);
 			getBorderedFigure().getBorderItemContainer().add(((PseudostateEntryPointEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
+
+
+
+
+
 		//Papyrus Gencode :Affixed EntryExitPoints ConnectionPointReferences Locator
 		if(childEditPart instanceof PseudostateExitPointEditPart) {
 			IBorderItemLocator locator = new CustomEntryExitPointPositionLocator(getMainFigure(), PositionConstants.NONE);
 			getBorderedFigure().getBorderItemContainer().add(((PseudostateExitPointEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
+
+
+
+
 		return false;
 	}
 
@@ -126,8 +142,11 @@ public class StateMachineEditPart extends NamedElementEditPart {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new StateMachineItemSemanticEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
+
+
 		//in Papyrus diagrams are not strongly synchronised
 		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.statemachine.edit.policies.StateMachineCanonicalEditPolicy());
+
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(QualifiedNameDisplayEditPolicy.QUALIFIED_NAME_POLICY, new QualifiedNameDisplayEditPolicy());
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
@@ -150,7 +169,9 @@ public class StateMachineEditPart extends NamedElementEditPart {
 				switch(UMLVisualIDRegistry.getVisualID(childView)) {
 				case PseudostateEntryPointEditPart.VISUAL_ID:
 				case PseudostateExitPointEditPart.VISUAL_ID:
+
 					return new BorderItemResizableEditPolicy();
+
 				}
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 				if(result == null) {
@@ -196,6 +217,7 @@ public class StateMachineEditPart extends NamedElementEditPart {
 		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
 		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
+
 		return result;
 	}
 
@@ -253,8 +275,10 @@ public class StateMachineEditPart extends NamedElementEditPart {
 	 * @generated
 	 */
 	public List<IElementType> getMARelTypesOnTarget() {
-		ArrayList<IElementType> types = new ArrayList<IElementType>(1);
+		ArrayList<IElementType> types = new ArrayList<IElementType>(3);
 		types.add(UMLElementTypes.Generalization_19000);
+		types.add(UMLElementTypes.CommentAnnotatedElement_667);
+		types.add(UMLElementTypes.ConstraintConstrainedElement_670);
 		return types;
 	}
 
@@ -265,6 +289,10 @@ public class StateMachineEditPart extends NamedElementEditPart {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
 		if(relationshipType == UMLElementTypes.Generalization_19000) {
 			types.add(UMLElementTypes.StateMachine_2000);
+		} else if(relationshipType == UMLElementTypes.CommentAnnotatedElement_667) {
+			types.add(UMLElementTypes.Comment_666);
+		} else if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_670) {
+			types.add(UMLElementTypes.Constraint_668);
 		}
 		return types;
 	}
@@ -287,6 +315,7 @@ public class StateMachineEditPart extends NamedElementEditPart {
 	public Object getPreferredValue(EStructuralFeature feature) {
 		IPreferenceStore preferenceStore = (IPreferenceStore)getDiagramPreferencesHint().getPreferenceStore();
 		Object result = null;
+
 		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 			String prefColor = null;
 			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
@@ -306,6 +335,7 @@ public class StateMachineEditPart extends NamedElementEditPart {
 				result = gradientPreferenceConverter.getGradientData();
 			}
 		}
+
 		if(result == null) {
 			result = getStructuralFeatureValue(feature);
 		}
@@ -333,6 +363,7 @@ public class StateMachineEditPart extends NamedElementEditPart {
 	 **/
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
+
 	}
 
 	/**

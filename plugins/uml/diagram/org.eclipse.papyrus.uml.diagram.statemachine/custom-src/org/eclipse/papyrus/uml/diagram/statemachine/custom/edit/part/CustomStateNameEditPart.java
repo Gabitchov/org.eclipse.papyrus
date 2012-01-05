@@ -24,27 +24,27 @@ import org.eclipse.papyrus.uml.diagram.statemachine.custom.figures.StateFigure;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.helpers.Zone;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateNameEditPart;
-import org.eclipse.uml2.uml.Activity;
-import org.eclipse.uml2.uml.Behavior;
-import org.eclipse.uml2.uml.OpaqueBehavior;
+/*****************************************************************************
+ * Copyright (c) 2010-2011 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ * 
+ * 		Arthur daussy (Atos) arthur.daussy@atos.net - Bug : 365405: [State Machine Diagram] Behaviours (Entry,exit,do) on states should have their own mechanisms
+ *
+ *****************************************************************************/
 import org.eclipse.uml2.uml.State;
-import org.eclipse.uml2.uml.StateMachine;
 
 public class CustomStateNameEditPart extends StateNameEditPart {
 
 	public CustomStateNameEditPart(View view) {
 		super(view);
 		// TODO Auto-generated constructor stub
-	}
-
-	private String behaviorKindAsString(Behavior b) {
-		if(b instanceof Activity)
-			return "Activity";
-		if(b instanceof StateMachine)
-			return "StateMachine";
-		if(b instanceof OpaqueBehavior)
-			return "OpaqueBehavior";
-		return "";
 	}
 
 	@Override
@@ -54,31 +54,6 @@ public class CustomStateNameEditPart extends StateNameEditPart {
 		removeEditPolicy(EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 		removeEditPolicy(EditPolicyRoles.POPUPBAR_ROLE);
 
-	}
-
-	public String getInformationFromState(State state) {
-		String textToEdit = "";
-
-		// entryActivity
-		if(state.getEntry() != null) {
-			String kind = behaviorKindAsString(state.getEntry());
-			textToEdit = "/entry " + kind + " " + state.getEntry().getName();
-		}
-
-		// doActivity
-		if(state.getDoActivity() != null) {
-			String kind = behaviorKindAsString(state.getDoActivity());
-			textToEdit = textToEdit + "\n/do " + kind + " " + state.getDoActivity().getName();
-		}
-
-		// exitActivity
-		if(state.getExit() != null) {
-			String kind = behaviorKindAsString(state.getExit());
-			textToEdit = textToEdit + "\n/exit " + kind + " " + state.getExit().getName();
-		}
-
-		textToEdit += "\n";
-		return textToEdit;
 	}
 
 	@Override
@@ -106,7 +81,6 @@ public class CustomStateNameEditPart extends StateNameEditPart {
 		else
 			stateFigure.getStateCompartmentFigure().setVisible(true);
 
-		stateFigure.fillInformation(getInformationFromState(state));
 
 		if(state.isSubmachineState()) {
 			stateFigure.setSubmachineStateName(state.getName() + " : " + state.getSubmachine().getQualifiedName());

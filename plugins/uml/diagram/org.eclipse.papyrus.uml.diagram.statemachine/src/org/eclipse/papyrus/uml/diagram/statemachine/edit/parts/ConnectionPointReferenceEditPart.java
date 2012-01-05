@@ -172,6 +172,8 @@ public class ConnectionPointReferenceEditPart extends AbstractBorderEditPart {
 		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
 		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
+
+
 		//FIXME: workaround for #154536
 		result.getBounds().setSize(result.getPreferredSize());
 		return result;
@@ -254,8 +256,10 @@ public class ConnectionPointReferenceEditPart extends AbstractBorderEditPart {
 	 * @generated
 	 */
 	public List<IElementType> getMARelTypesOnTarget() {
-		ArrayList<IElementType> types = new ArrayList<IElementType>(1);
+		ArrayList<IElementType> types = new ArrayList<IElementType>(3);
 		types.add(UMLElementTypes.Transition_7000);
+		types.add(UMLElementTypes.CommentAnnotatedElement_667);
+		types.add(UMLElementTypes.ConstraintConstrainedElement_670);
 		return types;
 	}
 
@@ -278,6 +282,10 @@ public class ConnectionPointReferenceEditPart extends AbstractBorderEditPart {
 			types.add(UMLElementTypes.Pseudostate_16000);
 			types.add(UMLElementTypes.Pseudostate_17000);
 			types.add(UMLElementTypes.ConnectionPointReference_18000);
+		} else if(relationshipType == UMLElementTypes.CommentAnnotatedElement_667) {
+			types.add(UMLElementTypes.Comment_666);
+		} else if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_670) {
+			types.add(UMLElementTypes.Constraint_668);
 		}
 		return types;
 	}
@@ -312,6 +320,7 @@ public class ConnectionPointReferenceEditPart extends AbstractBorderEditPart {
 	public Object getPreferredValue(EStructuralFeature feature) {
 		IPreferenceStore preferenceStore = (IPreferenceStore)getDiagramPreferencesHint().getPreferenceStore();
 		Object result = null;
+
 		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 			String prefColor = null;
 			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
@@ -331,6 +340,7 @@ public class ConnectionPointReferenceEditPart extends AbstractBorderEditPart {
 				result = gradientPreferenceConverter.getGradientData();
 			}
 		}
+
 		if(result == null) {
 			result = getStructuralFeatureValue(feature);
 		}
@@ -371,6 +381,7 @@ public class ConnectionPointReferenceEditPart extends AbstractBorderEditPart {
 			}
 		}
 		super.handleNotificationEvent(event);
+
 	}
 
 	/**

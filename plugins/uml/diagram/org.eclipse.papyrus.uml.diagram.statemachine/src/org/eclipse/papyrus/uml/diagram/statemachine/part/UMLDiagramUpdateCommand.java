@@ -49,6 +49,7 @@ public class UMLDiagramUpdateCommand implements IHandler {
 					CanonicalEditPolicy nextEditPolicy = (CanonicalEditPolicy)it.next();
 					nextEditPolicy.refresh();
 				}
+
 			}
 		}
 		return null;

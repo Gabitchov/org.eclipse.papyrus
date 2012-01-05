@@ -32,6 +32,8 @@ import org.eclipse.gmf.runtime.notation.Location;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.Size;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.CommentEditPart;
+import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.ConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.FinalStateEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.PseudostateChoiceEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.PseudostateDeepHistoryEditPart;
@@ -79,6 +81,8 @@ public class RegionCompartmentCanonicalEditPolicy extends CanonicalEditPolicy {
 			myFeaturesToSynchronize = new HashSet<EStructuralFeature>();
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getRegion_Subvertex());
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getStateMachine_ConnectionPoint());
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getElement_OwnedComment());
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getNamespace_OwnedRule());
 		}
 		return myFeaturesToSynchronize;
 	}
@@ -115,6 +119,8 @@ public class RegionCompartmentCanonicalEditPolicy extends CanonicalEditPolicy {
 		case StateEditPart.VISUAL_ID:
 		case PseudostateEntryPointEditPart.VISUAL_ID:
 		case PseudostateExitPointEditPart.VISUAL_ID:
+		case CommentEditPart.VISUAL_ID:
+		case ConstraintEditPart.VISUAL_ID:
 			return true;
 		}
 		return false;
@@ -187,6 +193,7 @@ public class RegionCompartmentCanonicalEditPolicy extends CanonicalEditPolicy {
 			IAdaptable elementAdapter = new CanonicalElementAdapter(next.getModelElement(), hint);
 			CreateViewRequest.ViewDescriptor descriptor = new CreateViewRequest.ViewDescriptor(elementAdapter, Node.class, hint, ViewUtil.APPEND, false, host().getDiagramPreferencesHint());
 			viewDescriptors.add(descriptor);
+
 			LinkedList<View> possibleMatches = potentialViews.get(next);
 			if(possibleMatches != null) {
 				// from potential matches, leave those that were not eventually used for some other NodeDescriptor (i.e. those left as orphaned)
@@ -210,6 +217,7 @@ public class RegionCompartmentCanonicalEditPolicy extends CanonicalEditPolicy {
 				}
 			}
 		}
+
 		boolean changed = deleteViews(orphaned.iterator());
 		//
 		CreateViewRequest request = getCreateViewRequest(viewDescriptors);
@@ -232,6 +240,7 @@ public class RegionCompartmentCanonicalEditPolicy extends CanonicalEditPolicy {
 			DeferredLayoutCommand layoutCmd = new DeferredLayoutCommand(host().getEditingDomain(), createdViews, host());
 			executeCommand(new ICommandProxy(layoutCmd));
 		}
+
 		makeViewsImmutable(createdViews);
 	}
 }

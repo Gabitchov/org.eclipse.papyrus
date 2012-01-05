@@ -250,6 +250,7 @@ public class GeneralizationStereotypeEditPart extends LabelEditPart implements I
 						ie.printStackTrace();
 					}
 				}
+
 				// shouldn't get here
 				return null;
 			}
@@ -388,6 +389,10 @@ public class GeneralizationStereotypeEditPart extends LabelEditPart implements I
 				}
 			}
 		}
+
+
+
+
 		super.handleNotificationEvent(event);
 	}
 
@@ -476,7 +481,9 @@ public class GeneralizationStereotypeEditPart extends LabelEditPart implements I
 	 * @generated
 	 */
 	protected void performDirectEditRequest(Request request) {
+
 		final Request theRequest = request;
+
 		if(IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
 			directEditionMode = getDirectEditionType();
 		}
@@ -503,6 +510,7 @@ public class GeneralizationStereotypeEditPart extends LabelEditPart implements I
 					return;
 				}
 				final Dialog finalDialog = dialog;
+
 				if(Window.OK == dialog.open()) {
 					TransactionalEditingDomain domain = getEditingDomain();
 					RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
@@ -510,6 +518,7 @@ public class GeneralizationStereotypeEditPart extends LabelEditPart implements I
 						@Override
 						protected void doExecute() {
 							configuration.postEditAction(resolveSemanticElement(), ((ILabelEditorDialog)finalDialog).getValue());
+
 						}
 					};
 					domain.getCommandStack().execute(command);
@@ -517,6 +526,7 @@ public class GeneralizationStereotypeEditPart extends LabelEditPart implements I
 			}
 			break;
 		case IDirectEdition.DEFAULT_DIRECT_EDITOR:
+
 			// initialize the direct edit manager
 			try {
 				getEditingDomain().runExclusive(new Runnable() {

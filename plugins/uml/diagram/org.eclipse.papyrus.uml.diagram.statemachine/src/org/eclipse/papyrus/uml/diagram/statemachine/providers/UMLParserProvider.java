@@ -12,13 +12,26 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.ParserService;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ParserHintAdapter;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.uml.diagram.common.parser.CommentParser;
+import org.eclipse.papyrus.uml.diagram.common.parser.ConstraintParser;
 import org.eclipse.papyrus.uml.diagram.common.parser.stereotype.AppliedStereotypeParser;
+import org.eclipse.papyrus.uml.diagram.statemachine.custom.parsers.DoActivityStateBehaviorParser;
+import org.eclipse.papyrus.uml.diagram.statemachine.custom.parsers.EntryStateBehaviorParser;
+import org.eclipse.papyrus.uml.diagram.statemachine.custom.parsers.ExitStateBehaviorParser;
+import org.eclipse.papyrus.uml.diagram.statemachine.custom.parsers.InternalTransitionParser;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.parsers.TransitionPropertiesParser;
+import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.CommentBodyEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.ConnectionPointReferenceNameEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.ConnectionPointReferenceStereotypeEditPart;
+import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.ConstraintBodyEditPart;
+import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.ConstraintNameLabelEditPart;
+import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.DoActivityStateBehaviorStateEditPart;
+import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.EntryStateBehaviorEditPart;
+import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.ExitStateBehaviorEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.FinalStateNameEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.FinalStateStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.GeneralizationStereotypeEditPart;
+import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.InternalTransitionEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.PseudostateChoiceNameEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.PseudostateChoiceStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.PseudostateDeepHistoryNameEditPart;
@@ -267,6 +280,113 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
+	private CommentParser commentBody_6666Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getCommentBody_6666Parser() {
+		if(commentBody_6666Parser == null) {
+			commentBody_6666Parser = new CommentParser();
+		}
+		return commentBody_6666Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser constraintName_6668Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getConstraintName_6668Parser() {
+		if(constraintName_6668Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			constraintName_6668Parser = parser;
+		}
+		return constraintName_6668Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private ConstraintParser constraintSpecification_6669Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getConstraintSpecification_6669Parser() {
+		if(constraintSpecification_6669Parser == null) {
+			constraintSpecification_6669Parser = new ConstraintParser();
+		}
+		return constraintSpecification_6669Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private InternalTransitionParser transition_680Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getTransition_680Parser() {
+		if(transition_680Parser == null) {
+			transition_680Parser = new InternalTransitionParser();
+		}
+		return transition_680Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private EntryStateBehaviorParser behavior_690Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getBehavior_690Parser() {
+		if(behavior_690Parser == null) {
+			behavior_690Parser = new EntryStateBehaviorParser();
+		}
+		return behavior_690Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private DoActivityStateBehaviorParser behavior_691Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getBehavior_691Parser() {
+		if(behavior_691Parser == null) {
+			behavior_691Parser = new DoActivityStateBehaviorParser();
+		}
+		return behavior_691Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private ExitStateBehaviorParser behavior_692Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getBehavior_692Parser() {
+		if(behavior_692Parser == null) {
+			behavior_692Parser = new ExitStateBehaviorParser();
+		}
+		return behavior_692Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private IParser getFinalStateName_5001Parser() {
 		if(finalStateName_5001Parser == null) {
 			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
@@ -373,6 +493,20 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getConnectionPointReferenceName_18001Parser();
 		case ConnectionPointReferenceStereotypeEditPart.VISUAL_ID:
 			return getConnectionPointReferenceName_18002Parser();
+		case CommentBodyEditPart.VISUAL_ID:
+			return getCommentBody_6666Parser();
+		case ConstraintNameLabelEditPart.VISUAL_ID:
+			return getConstraintName_6668Parser();
+		case ConstraintBodyEditPart.VISUAL_ID:
+			return getConstraintSpecification_6669Parser();
+		case InternalTransitionEditPart.VISUAL_ID:
+			return getTransition_680Parser();
+		case EntryStateBehaviorEditPart.VISUAL_ID:
+			return getBehavior_690Parser();
+		case DoActivityStateBehaviorStateEditPart.VISUAL_ID:
+			return getBehavior_691Parser();
+		case ExitStateBehaviorEditPart.VISUAL_ID:
+			return getBehavior_692Parser();
 		case TransitionNameEditPart.VISUAL_ID:
 			return getTransitionName_7001Parser();
 		case TransitionGuardEditPart.VISUAL_ID:

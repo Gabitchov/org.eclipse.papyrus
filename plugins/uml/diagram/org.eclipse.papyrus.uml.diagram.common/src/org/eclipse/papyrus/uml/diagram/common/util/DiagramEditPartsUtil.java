@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.NoSuchElementException;
+
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
@@ -22,6 +24,8 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartViewer;
+import org.eclipse.gef.RootEditPart;
+import org.eclipse.gef.util.EditPartUtilities;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
@@ -36,6 +40,10 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
+
+import com.google.common.base.Function;
+import com.google.common.base.Predicate;
+import com.google.common.collect.Iterables;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -502,5 +510,103 @@ public class DiagramEditPartsUtil {
 		if(editPart instanceof ITextAwareEditPart) {
 			editPart.refresh();
 		}
+	}
+	
+	/**
+	 * Return the main edipart which correspond to the {@link EObject} passed in argument
+	 * 
+	 * @param eObject
+	 * @param rootEditPart
+	 *        {@link IGraphicalEditPart} root from which the search will start
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	public static IGraphicalEditPart getChildByEObject(final EObject eObject, IGraphicalEditPart rootEditPart, boolean isEdge) {
+		if(eObject != null && rootEditPart != null) {
+
+			try {
+				Predicate<EditPart> predicate = new Predicate<EditPart>() {
+
+					public boolean apply(EditPart input) {
+						if(input instanceof IGraphicalEditPart) {
+							IGraphicalEditPart current = (IGraphicalEditPart)input;
+							//Same EObject
+							if(eObject.equals(current.resolveSemanticElement())) {
+								EditPart parent = current.getParent();
+								if(parent instanceof IGraphicalEditPart) {
+									// its parent do not have the same EObject
+									if(!eObject.equals(((IGraphicalEditPart)parent).resolveSemanticElement())) {
+										return true;
+									}
+								} else if(parent instanceof RootEditPart) {
+									return true;
+								}
+							}
+						}
+						return false;
+					}
+				};
+
+				EditPart find = (isEdge) ? Iterables.find((Iterable<EditPart>)EditPartUtilities.getAllNestedConnectionEditParts(rootEditPart), predicate) : Iterables.find((Iterable<EditPart>)EditPartUtilities.getAllChildren(rootEditPart), predicate);
+				return (IGraphicalEditPart)find;
+			} catch (NoSuchElementException e) {
+				//Nothing to do
+			}
+
+		}
+		return null;
+	}
+	
+	/**
+	 * Return the main edipart which correspond to the {@link EObject} passed in argument
+	 * 
+	 * @param eObject
+	 * @param rootEditPart
+	 *        {@link IGraphicalEditPart} root from which the search will start
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	public static Iterable<IGraphicalEditPart> getChildrenByEObject(final EObject eObject, IGraphicalEditPart rootEditPart, boolean isEdge) {
+		if(eObject != null && rootEditPart != null) {
+
+			try {
+				Predicate<EditPart> predicate = new Predicate<EditPart>() {
+
+					public boolean apply(EditPart input) {
+						if(input instanceof IGraphicalEditPart) {
+							IGraphicalEditPart current = (IGraphicalEditPart)input;
+							//Same EObject
+							if(eObject.equals(current.resolveSemanticElement())) {
+								EditPart parent = current.getParent();
+								if(parent instanceof IGraphicalEditPart) {
+									// its parent do not have the same EObject
+									if(!eObject.equals(((IGraphicalEditPart)parent).resolveSemanticElement())) {
+										return true;
+									}
+								} else if(parent instanceof RootEditPart) {
+									return true;
+								}
+							}
+						}
+						return false;
+					}
+				};
+
+				Iterable<EditPart> find = (isEdge) ? Iterables.filter((Iterable<EditPart>)EditPartUtilities.getAllNestedConnectionEditParts(rootEditPart), predicate) : Iterables.filter((Iterable<EditPart>)EditPartUtilities.getAllChildren(rootEditPart), predicate);
+				return Iterables.transform(find, new Function<EditPart, IGraphicalEditPart>() {
+
+					public IGraphicalEditPart apply(EditPart from) {
+						if (from instanceof IGraphicalEditPart){							
+							return (IGraphicalEditPart)from;
+						}
+						return null;
+					}
+				});
+			} catch (NoSuchElementException e) {
+				return Collections.EMPTY_LIST;
+			}
+
+		}
+		return Collections.EMPTY_LIST;
 	}
 }
