@@ -21,6 +21,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 /**
  * The Class CreateEAnnotationCommand. this class contains also all submethods to create or replace
  * eannotation of key value
+ * @deprecated : use org.eclipse.papyrus.infra.emf.commands.CreateEAnnotationCommand
  */
 public class CreateEAnnotationCommand extends org.eclipse.emf.transaction.RecordingCommand {
 
