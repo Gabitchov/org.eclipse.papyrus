@@ -16,6 +16,7 @@
 <project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/infra/core/org.eclipse.papyrus.infra.core.sasheditor,org.eclipse.papyrus.infra.core.sasheditor"/>
 <project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/infra/core/org.eclipse.papyrus.infra.core.sasheditor.di,org.eclipse.papyrus.infra.core.sasheditor.di"/>
 <project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/infra/org.eclipse.papyrus.infra.export,org.eclipse.papyrus.infra.export"/>
+<project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/infra/org.eclipse.papyrus.infra.hyperlink,org.eclipse.papyrus.infra.hyperlink"/>
 <project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/infra/org.eclipse.papyrus.infra.extendedtypes,org.eclipse.papyrus.infra.extendedtypes"/>
 <project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/infra/org.eclipse.papyrus.infra.extendedtypes.emf,org.eclipse.papyrus.infra.extendedtypes.emf"/>
 <project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/infra/gmfdiag/org.eclipse.papyrus.infra.gmfdiag.commands,org.eclipse.papyrus.infra.gmfdiag.commands"/>
@@ -195,6 +196,7 @@
 </workingSets>
 <workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1319612374539_38" label="infra" name="infra">
 <item elementID="=org.eclipse.papyrus.infra.export" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.papyrus.infra.hyperlink" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.infra.extendedtypes.emf" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.infra.extendedtypes" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.infra.onefile" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
