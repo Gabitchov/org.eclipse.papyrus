@@ -38,7 +38,7 @@ import org.eclipse.uml2.uml.UMLPackage;
  * @author Arthur Daussy
  * 
  */
-public class StateBehaviorsListenner extends AbstractModifcationTriggerListener {
+public class StateBehaviorsListener extends AbstractModifcationTriggerListener {
 
 	/**
 	 * Return one of the following {@link EStructuralFeature} (UMLPackage.Literals.STATE__DO_ACTIVITY.equals(eStructuralFeature) ||

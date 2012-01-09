@@ -1279,7 +1279,7 @@
 <extension
       point="org.eclipse.emf.transaction.listeners">
    <listener
-         class="org.eclipse.papyrus.diagram.statemachine.custom.listeners.StateBehaviorsListenner">
+         class="org.eclipse.papyrus.diagram.statemachine.custom.listeners.StateBehaviorsListener">
       <editingDomain
             id="org.eclipse.papyrus.SharedEditingDomainID">
       </editingDomain>
@@ -1291,15 +1291,6 @@
 	      </editingDomain>
 	   </listener>
 	</extension>
-	<extension
-	      point="org.eclipse.emf.transaction.listeners">
-	   <listener
-	         class="org.eclipse.papyrus.uml.diagram.statemachine.custom.listeners.StateBehaviorsListenner">
-	      <editingDomain
-	            id="org.eclipse.papyrus.SharedEditingDomainID">
-	      </editingDomain>
-	   </listener>
-</extension>
 
 
 
