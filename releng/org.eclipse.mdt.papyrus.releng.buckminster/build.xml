@@ -286,7 +286,7 @@
 
 		<pathconvert property="site.p2.dir">
 			<first count="1">
-				<dirset dir="${workspace}/buildroot/result/output" includes="org.eclipse.papyrus.build.feature_*/site.p2" />
+				<dirset dir="${buckminster.output.root}" includes="org.eclipse.papyrus.build.feature_*/site.p2" />
 			</first>
 		</pathconvert>
 	
