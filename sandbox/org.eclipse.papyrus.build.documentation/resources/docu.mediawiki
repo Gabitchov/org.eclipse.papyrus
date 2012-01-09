@@ -1,13 +1,13 @@
 == Before a new release ==
-You should indicate that your project follow the Eclipse Train. Go to the Eclipse portal [https://dev.eclipse.org/portal]. In Eclipse Projects, click on [view] : 
+You should indicate that your project follow the Eclipse Train. Go to the Eclipse portal [https://dev.eclipse.org/portal]. In Eclipse Projects, click on '''view''' : 
 
 [[Image:clickOnView.jpeg]]
 
-click on maintain
+click on '''maintain'''
 
 [[Image:clickOnMaintain.jpeg]]
 
-click on edit for simultaneousrelease 
+click on edit for '''simultaneousrelease'''
 
 [[Image:clickOnSimultaneousRelease.jpeg]]
 
@@ -15,5 +15,71 @@ add 1 to your new release
 
 [[Image:eclipseTrain.jpeg]]
 
-==What do you check in your build.xml files ?==
-You shouldn't check the files/folders that you have already checked for the binary file
+== What do you check in your build.properties files ? ==
+The licence.html file should be checked for binary and for source build.
+The source folder should not be checked for the binary and for the source build.
+
+== Papyrus Build ==
+Papyrus has 3 jobs on hudson : 
+
+* cbi-papyrus-integration (trunk)
+* cbi-papyrus-0.7-nightly (branch)
+* cbi-papyrus-extra-nightly (the extra plugins for the branch)
+
+'''The nightly build shouldn't be signed.'''
+
+=== Features ===
+the feature '''org.eclipse.papyrus.build.feature'''  is not visible on the Papyrus Update Site. It is used to manage the main Papyrus feature : 
+* org.eclipse.papyrus.sdk.feature (binary build)
+* org.eclipse.papyrus.sdk.source.feature (source build)
+
+The feature '''org.eclipse.papyrus.sdk.feature''' allows to provide the Papyrus binaries on the Update Site. This feature aggregates all main Papyrus features.
+
+[[Image:binaryFeature.jpeg]]
+
+The feature '''org.eclipse.papyrus.sdk.sources.feature''' allows to provide the Papyrus binaries and the sources on the Update Site. This feature should aggregate the same features as '''org.eclipse.papyrus.sdk.feature''', but each feature is called '''xxx.source.feature''' instead of '''xxx.feature'''. You should have warning in this file, because the '''xxx.source.feature''' don't exist in your workspace, they will be created during the job. This feature aggregate '''org.eclipse.org.papyrus.sdk.feature''' too.
+
+
+[[Image:sourceFeature.png]]
+
+=== Releng Project ===
+The papyrus releng project is called : '''org.eclipse.mdt.papyrus.releng.buckminster'''
+
+[[Image:releng.png]]
+
+*'''serverConfig :'''
+**'''addDownloadStats.sh :''' script for the download stats
+**'''addDownloadStats.xsl :''' list the features to listen for the stat
+**'''cronPromote.sh :''' automatic save : this file is a copy of the cron script on build.eclipse.org
+**'''release_0.8.sh'''
+*'''xls :'''
+**'''psf :'''build the psf
+***'''bom2reposiroty.xls :'''
+***'''build.xml :'''
+***'''papyrus_bom.xml:'''
+***'''repository2subclipse.xsl:'''
+***'''repository2subversive.xsl:'''
+**'''build.xml:'''
+**'''content2html.xsl''':
+**'''content2xml.xsl''':
+*'''buckminster.cspec :''' 
+*'''build.cquery :''' 
+*'''build.mspec :''' 
+*'''build.properties :''' properties for te build
+*'''build.rmap :''' should be updated for each release. An EMF-Facet script allows to update it easily using the b3 file. The tag '''&lt;!-- updateFrom --&gt;''' is used by the script. 
+*'''local.mspec :'''
+*'''local.properties :''' 
+
+
+===b3 file===
+TODO
+
+
+
+
+
+
+
+
+	
+
