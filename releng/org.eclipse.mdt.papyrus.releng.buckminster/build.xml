@@ -331,5 +331,7 @@
 	</target>
 
 	<target name="clean.all" depends="clean.tools,clean.workspace,clean.tp,clean.output" />
+	
+	<target name="do.nothing" />
 
 </project>
