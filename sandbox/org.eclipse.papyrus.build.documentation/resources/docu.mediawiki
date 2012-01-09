@@ -1,0 +1,19 @@
+== Before a new release ==
+You should indicate that your project follow the Eclipse Train. Go to the Eclipse portal [https://dev.eclipse.org/portal]. In Eclipse Projects, click on [view] : 
+
+[[Image:clickOnView.jpeg]]
+
+click on maintain
+
+[[Image:clickOnMaintain.jpeg]]
+
+click on edit for simultaneousrelease 
+
+[[Image:clickOnSimultaneousRelease.jpeg]]
+
+add 1 to your new release
+
+[[Image:eclipseTrain.jpeg]]
+
+==What do you check in your build.xml files ?==
+You shouldn't check the files/folders that you have already checked for the binary file
