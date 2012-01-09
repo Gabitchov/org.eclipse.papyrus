@@ -15,6 +15,7 @@ package org.eclipse.papyrus.uml.diagram.clazz.edit.policies;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.NestedClassForInterfaceCreateCommand;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.NestedInterfaceForInterfaceCreateCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
 
 /**
@@ -35,6 +36,9 @@ public class InterfaceNestedClassifierCompartmentItemSemanticEditPolicy extends 
 	protected Command getCreateCommand(CreateElementRequest req) {
 		if(UMLElementTypes.Class_3008 == req.getElementType()) {
 			return getGEFWrapper(new NestedClassForInterfaceCreateCommand(req));
+		}
+		if(UMLElementTypes.Interface_3038 == req.getElementType()) {
+			return getGEFWrapper(new NestedInterfaceForInterfaceCreateCommand(req));
 		}
 		return super.getCreateCommand(req);
 	}

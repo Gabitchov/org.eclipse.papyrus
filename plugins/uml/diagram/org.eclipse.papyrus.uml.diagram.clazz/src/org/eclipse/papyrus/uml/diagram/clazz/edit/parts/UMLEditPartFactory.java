@@ -220,6 +220,12 @@ public class UMLEditPartFactory implements EditPartFactory {
 				return new ConstraintNameEditPartCN(view);
 			case ConstraintBodyEditPartCN.VISUAL_ID:
 				return new ConstraintBodyEditPartCN(view);
+			case NestedInterfaceForClassEditPart.VISUAL_ID:
+				return new NestedInterfaceForClassEditPart(view);
+			case NestedInterfaceForComponentEditPart.VISUAL_ID:
+				return new NestedInterfaceForComponentEditPart(view);
+			case NestedInterfaceForInterfaceEditPart.VISUAL_ID:
+				return new NestedInterfaceForInterfaceEditPart(view);
 			case ClassAttributeCompartmentEditPartCN.VISUAL_ID:
 				return new ClassAttributeCompartmentEditPartCN(view);
 			case ClassOperationCompartmentEditPartCN.VISUAL_ID:

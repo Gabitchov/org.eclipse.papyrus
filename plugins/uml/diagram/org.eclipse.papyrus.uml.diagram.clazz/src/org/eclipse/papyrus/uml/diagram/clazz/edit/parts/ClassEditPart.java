@@ -1923,6 +1923,9 @@ public class ClassEditPart extends ClassifierEditPart {
 			if(type == UMLElementTypes.Class_3014) {
 				return getChildBySemanticHint(UMLVisualIDRegistry.getType(ClassNestedClassifierCompartmentEditPart.VISUAL_ID));
 			}
+			if(type == UMLElementTypes.Interface_3036) {
+				return getChildBySemanticHint(UMLVisualIDRegistry.getType(ClassNestedClassifierCompartmentEditPart.VISUAL_ID));
+			}
 		}
 		return super.getTargetEditPart(request);
 	}

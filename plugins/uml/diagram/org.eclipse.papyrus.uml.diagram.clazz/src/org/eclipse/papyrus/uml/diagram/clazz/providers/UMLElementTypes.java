@@ -76,6 +76,9 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ModelEditPartTN;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.NestedClassForClassEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.NestedClassForComponentEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.NestedClassForInterfaceEditPart;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.NestedInterfaceForClassEditPart;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.NestedInterfaceForComponentEditPart;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.NestedInterfaceForInterfaceEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.OperationForClassEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.OperationForComponentEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.OperationForDataTypeEditPart;
@@ -415,6 +418,21 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
+	public static final IElementType Interface_3036 = getElementType("org.eclipse.papyrus.uml.diagram.clazz.Interface_3036"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType Interface_3037 = getElementType("org.eclipse.papyrus.uml.diagram.clazz.Interface_3037"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType Interface_3038 = getElementType("org.eclipse.papyrus.uml.diagram.clazz.Interface_3038"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
 	public static final IElementType Link_4016 = getElementType("org.eclipse.papyrus.uml.diagram.clazz.Link_4016"); //$NON-NLS-1$
 
 	/**
@@ -696,6 +714,9 @@ public class UMLElementTypes {
 			elements.put(DataType_3027, UMLPackage.eINSTANCE.getDataType());
 			elements.put(Comment_3028, UMLPackage.eINSTANCE.getComment());
 			elements.put(Constraint_3029, UMLPackage.eINSTANCE.getConstraint());
+			elements.put(Interface_3036, UMLPackage.eINSTANCE.getInterface());
+			elements.put(Interface_3037, UMLPackage.eINSTANCE.getInterface());
+			elements.put(Interface_3038, UMLPackage.eINSTANCE.getInterface());
 			elements.put(AssociationClass_4017, UMLPackage.eINSTANCE.getAssociationClass());
 			elements.put(Association_4001, UMLPackage.eINSTANCE.getAssociation());
 			elements.put(Association_4019, UMLPackage.eINSTANCE.getAssociation());
@@ -790,6 +811,9 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(DataType_3027);
 			KNOWN_ELEMENT_TYPES.add(Comment_3028);
 			KNOWN_ELEMENT_TYPES.add(Constraint_3029);
+			KNOWN_ELEMENT_TYPES.add(Interface_3036);
+			KNOWN_ELEMENT_TYPES.add(Interface_3037);
+			KNOWN_ELEMENT_TYPES.add(Interface_3038);
 			KNOWN_ELEMENT_TYPES.add(Link_4016);
 			KNOWN_ELEMENT_TYPES.add(AssociationClass_4017);
 			KNOWN_ELEMENT_TYPES.add(Association_4001);
@@ -934,6 +958,12 @@ public class UMLElementTypes {
 			return Comment_3028;
 		case ConstraintEditPartCN.VISUAL_ID:
 			return Constraint_3029;
+		case NestedInterfaceForClassEditPart.VISUAL_ID:
+			return Interface_3036;
+		case NestedInterfaceForComponentEditPart.VISUAL_ID:
+			return Interface_3037;
+		case NestedInterfaceForInterfaceEditPart.VISUAL_ID:
+			return Interface_3038;
 		case AssociationClassDashedLinkEditPart.VISUAL_ID:
 			return Link_4016;
 		case AssociationClassLinkEditPart.VISUAL_ID:

@@ -88,6 +88,9 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.MultiDependencyLabelEdit
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.NestedClassForClassEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.NestedClassForComponentEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.NestedClassForInterfaceEditPart;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.NestedInterfaceForClassEditPart;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.NestedInterfaceForComponentEditPart;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.NestedInterfaceForInterfaceEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.OperationForComponentEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.OperationForDataTypeEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.OperationForInterfaceEditpart;
@@ -990,6 +993,57 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
+	private IParser interface_3036Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getInterface_3036Parser() {
+		if(interface_3036Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			interface_3036Parser = parser;
+		}
+		return interface_3036Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser interface_3037Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getInterface_3037Parser() {
+		if(interface_3037Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			interface_3037Parser = parser;
+		}
+		return interface_3037Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser interface_3038Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getInterface_3038Parser() {
+		if(interface_3038Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			interface_3038Parser = parser;
+		}
+		return interface_3038Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private IParser associationClassName_6031Parser;
 
 	/**
@@ -1632,6 +1686,12 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getConstraintName_5064Parser();
 		case ConstraintBodyEditPartCN.VISUAL_ID:
 			return getConstraintSpecification_5160Parser();
+		case NestedInterfaceForClassEditPart.VISUAL_ID:
+			return getInterface_3036Parser();
+		case NestedInterfaceForComponentEditPart.VISUAL_ID:
+			return getInterface_3037Parser();
+		case NestedInterfaceForInterfaceEditPart.VISUAL_ID:
+			return getInterface_3038Parser();
 		case AssociationClassRoleSourceEditPart.VISUAL_ID:
 			return getAssociationClassName_6031Parser();
 		case AssociationClassRoleTargetEditPart.VISUAL_ID:

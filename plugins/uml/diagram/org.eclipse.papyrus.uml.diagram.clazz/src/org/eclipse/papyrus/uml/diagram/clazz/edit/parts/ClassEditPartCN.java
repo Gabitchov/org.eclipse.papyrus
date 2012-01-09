@@ -134,7 +134,7 @@ public class ClassEditPartCN extends ClassifierEditPart {
 		//set the figure active when the feature of the of a class is true
 		if(resolveSemanticElement() != null) {
 			if(resolveSemanticElement().equals(event.getNotifier()) && (event.getFeature() instanceof EAttribute) && ((EAttribute)(event.getFeature())).getName().equals("isActive")) {
-				((ClassifierFigure)getFigure()).setActive(event.getNewBooleanValue());
+				((ClassifierFigure)getPrimaryShape()).setActive(event.getNewBooleanValue());
 				refreshVisuals();
 			}
 		}
