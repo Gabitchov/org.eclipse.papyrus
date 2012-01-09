@@ -1,5 +1,5 @@
 == Before a new release ==
-You should indicate that your project follow the Eclipse Train. Go to the Eclipse portal [https://dev.eclipse.org/portal]. In Eclipse Projects, click on '''view''' : 
+You should indicate that your project follows the Eclipse Train. Go to the Eclipse portal [https://dev.eclipse.org/portal]. In Eclipse Projects, click on '''view''' : 
 
 [[Image:clickOnView.jpeg]]
 
@@ -15,9 +15,9 @@ add 1 to your new release
 
 [[Image:eclipseTrain.jpeg]]
 
-== What do you check in your build.properties files ? ==
-The licence.html file should be checked for binary and for source build.
-The source folder should not be checked for the binary and for the source build.
+== What do you select in your build.properties files ? ==
+The licence.html file should be selected for binary and for source build.
+The source folder should not be selected for the binary and for the source build.
 
 == Papyrus Build ==
 Papyrus has 3 jobs on hudson : 
@@ -29,7 +29,7 @@ Papyrus has 3 jobs on hudson :
 '''The nightly build shouldn't be signed.'''
 
 === Features ===
-the feature '''org.eclipse.papyrus.build.feature'''  is not visible on the Papyrus Update Site. It is used to manage the main Papyrus feature : 
+The feature '''org.eclipse.papyrus.build.feature''' is not visible on the Papyrus Update Site. It is only useful for the Buckminster build. It contains the main Papyrus features : 
 * org.eclipse.papyrus.sdk.feature (binary build)
 * org.eclipse.papyrus.sdk.source.feature (source build)
 
@@ -37,7 +37,7 @@ The feature '''org.eclipse.papyrus.sdk.feature''' allows to provide the Papyrus 
 
 [[Image:binaryFeature.jpeg]]
 
-The feature '''org.eclipse.papyrus.sdk.sources.feature''' allows to provide the Papyrus binaries and the sources on the Update Site. This feature should aggregate the same features as '''org.eclipse.papyrus.sdk.feature''', but each feature is called '''xxx.source.feature''' instead of '''xxx.feature'''. You should have warning in this file, because the '''xxx.source.feature''' don't exist in your workspace, they will be created during the job. This feature aggregate '''org.eclipse.org.papyrus.sdk.feature''' too.
+The feature '''org.eclipse.papyrus.sdk.sources.feature''' allows to provide the Papyrus binaries and the sources on the Update Site. This feature should aggregate the same features as '''org.eclipse.papyrus.sdk.feature''', but each feature is called '''xxx.source.feature''' instead of '''xxx.feature'''. You should have warnings in this file, because the '''xxx.source.feature''' don't exist in your workspace; they will be created during the build. This feature contains '''org.eclipse.papyrus.sdk.feature''' too.
 
 
 [[Image:sourceFeature.png]]
@@ -47,28 +47,28 @@ The papyrus releng project is called : '''org.eclipse.mdt.papyrus.releng.buckmin
 
 [[Image:releng.png]]
 
-*'''serverConfig :'''
-**'''addDownloadStats.sh :''' script for the download stats
-**'''addDownloadStats.xsl :''' list the features to listen for the stat
-**'''cronPromote.sh :''' automatic save : this file is a copy of the cron script on build.eclipse.org
-**'''release_0.8.sh'''
-*'''xls :'''
-**'''psf :'''build the psf
-***'''bom2reposiroty.xls :'''
-***'''build.xml :'''
-***'''papyrus_bom.xml:'''
-***'''repository2subclipse.xsl:'''
-***'''repository2subversive.xsl:'''
-**'''build.xml:'''
-**'''content2html.xsl''':
-**'''content2xml.xsl''':
-*'''buckminster.cspec :''' 
-*'''build.cquery :''' 
-*'''build.mspec :''' 
-*'''build.properties :''' properties for te build
+*'''serverConfig :''' (after each modification, the scripts in this directory must be copied into "/shared/modeling/mdt/papyrus" where they run) 
+**'''addDownloadStats.sh :''' script that enables download statistics on an update site
+**'''addDownloadStats.xsl :''' XSL transformation that enables download statistics on an update site (it contains the list of features that must be part of the stats)
+**'''cronPromote.sh :''' a script that runs as a cron on build.eclipse.org to publish the latest nightly
+**'''release_0.8.sh :''' used to publish a release
+*'''xsl :'''
+**'''psf :''' to build the psf from a Buckminster ''bill of materials''. The BOM is produced by Buckminster when importing all the dependencies, and contains a list of these dependencies.
+***'''bom2repository.xsl :''' transforms a Buckminster BOM into a list of dependent repositories
+***'''build.xml :''' used for testing the generation of the PSFs
+***'''papyrus_bom.xml:''' used for testing the generation of the PSFs
+***'''repository2subclipse.xsl:''' creates a Subclipse PSF from a repository.xml 
+***'''repository2subversive.xsl:''' creates a Subversive PSF from a repository.xml 
+**'''build.xml:''' the main ant build script : installs Buckminster, imports the dependencies and the Papyrus projects from SVN, builds the workspace, creates the update site and runs the tests
+**'''content2html.xsl''': creates an index.html with a user-viewable list of all installable Papyrus plug-ins and features
+**'''content2xml.xsl''': creates an index.html with a machine-readable list of all installable Papyrus plug-ins and features
+*'''buckminster.cspec :''' describes the top-level dependencies of the build
+*'''build.cquery :''' describes the root request for the Buckminster import, properties for the import, and references the Buckminster rmap
+*'''build.mspec :''' description for the Buckminster '''materialization''' (i.e. import) of artifacts (plug-ins and features), when building on *.eclipse.org
+*'''local.mspec :''' description for the Buckminster materialization when building locally
 *'''build.rmap :''' should be updated for each release. An EMF-Facet script allows to update it easily using the b3 file. The tag '''&lt;!-- updateFrom --&gt;''' is used by the script. 
-*'''local.mspec :'''
-*'''local.properties :''' 
+*'''build.properties :''' properties for the build (when building on *.eclipse.org)
+*'''local.properties :''' properties for the build (when building locally)
 
 
 ===b3 file===

@@ -1,0 +1,181 @@
+The Papyrus project is built using [[Buckminster]], with this [https://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/releng/org.eclipse.mdt.papyrus.releng.buckminster releng project].
+
+== What is built? ==
+One feature is built:
+* org.eclipse.papyrus.build.feature
+
+It is referenced as a root dependency in <code>buckminster.cspec</code>.
+
+This feature must include all other features that must be built, either directly or indirectly.
+
+The releng project contains a Buckminster rmap, which specifies how to get the plug-ins and features that are to be built. For each plug-in or feature, the map defines its location on a version control system (CVS, SVN, Git, etc.).
+
+The rmap also specifies the update sites from which to retrieve the binary dependencies from the dependent projects.
+
+=== Updating the rmap ===
+The rmap reflects the dependencies on the other projects. So, it must be updated at least before each milestone, to make sure that the code that is built works with the latest versions of all the dependencies.
+
+The easiest way to update the dependencies is to copy them from the aggregation build model, which all projects must fill in with the correct reference to their update site(s) and feature(s).
+
+This model is in a project with the release name on the Eclipse CVS:
+* [http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.juno.build/?root=Callisto "org.eclipse.<releaseName>.build"] on <code>dev.eclipse.org:/cvsroot/callisto</code>, where releaseName is helios or indigo or juno etc. depending on the version being built.
+
+There is a tool that copies most of the information automatically in this plug-in:
+* https://dev.eclipse.org/svnroot/modeling/org.eclipse.emft.facet/trunk/releng/org.eclipse.emf.facet.releng.tools (see the [https://dev.eclipse.org/svnroot/modeling/org.eclipse.emft.facet/trunk/releng/org.eclipse.emf.facet.releng.tools/README.TXT README.TXT])
+
+'''Warning''': don't forget to update the aggregation model project before copying information from it
+
+A few dependencies are not in the aggregation build model though, so they must be updated manually:
+* '''Orbit''' : take the latest version from : http://download.eclipse.org/tools/orbit/downloads/
+
+==== Finding dependencies ====
+If you don't know where a particular plug-in or feature is located, the easiest way to find it is to search the Eclipse download area using "find" on build.eclipse.org.
+For example, to look for "org.eclipse.emf.compare" :
+ find /home/data/httpd/download.eclipse.org/modeling/emf/ -name 'org.eclipse.emf.compare_*'
+
+== How to start a build? ==
+
+=== Automatically ===
+
+* Nightly builds are run automatically every night at 00:43 every day.
+
+=== Manually ===
+
+* Only committers in the Papyrus project can launch Papyrus build jobs from Hudson.
+* Trunk nightly build : go to https://hudson.eclipse.org/hudson/job/papyrus-trunk-nightly/
+* Trunk extras nightly build : go to https://hudson.eclipse.org/hudson/job/papyrus-trunk-extra-nightly/
+* Branch 0.8 nightly build : go to https://hudson.eclipse.org/hudson/job/papyrus-0.8-maintenance-nightly
+* Branch 0.8 extras nightly build : go to https://hudson.eclipse.org/hudson/job/papyrus-0.8-maintenance-extra-nightly/
+
+Then:
+* In Hudson, click on '''Build Now''', change the build parameters as needed (see [[#Build parameters]]), and click on '''Build'''.
+* You can then click on the job name in the ''Build History'' section in the left column, and then on '''Console Output''', to follow build progress in real time.
+
+== How to publish a build? ==
+=== Automatically ===
+Successful '''N'''ightly builds are automatically published to download.eclipse.org by a [https://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/releng/org.eclipse.mdt.papyrus.releng.buckminster/serverConfig/cronPromote.sh cron job] that runs on build.eclipse.org. For example, a nightly build for version 0.9.0, created on April 21 2011 at 04:13 would be published to:
+* the download drops: http://download.eclipse.org/modeling/mdt/papyrus/downloads/drops/0.8.0/N201104210413
+* the nightly update site: http://download.eclipse.org/modeling/mdt/papyrus/updates/nightly/
+
+These builds can then be seen and downloaded from http://www.eclipse.org/modeling/mdt/papyrus/downloads/, where additional information is available (test results, build log), or installed from the update sites:
+* http://download.eclipse.org/modeling/mdt/papyrus/updates/nightly/juno (composite update site)
+* http://download.eclipse.org/modeling/mdt/papyrus/updates/nightly/juno/main
+* http://download.eclipse.org/modeling/mdt/papyrus/updates/nightly/juno/extras
+
+=== Manually ===
+'''S'''table, '''M'''aintenance and '''R'''elease builds are not automatically published. They should be first tested internally before publishing. For example, to publish the 0.1.0M6 milestone build:
+* First, fetch the build archive to test (from Hudson, or using <code>wget</code> or <code>scp</code> for example):
+ wget https://hudson.eclipse.org/hudson/job/papyrus-trunk-nightly/lastSuccessfulBuild/artifact/S201103151256.zip
+or, if https access doesn't work, a NFS access can be used (from build.eclipse.org). For example:
+ cp /shared/jobs/papyrus-trunk-nightly/lastSuccessful/archive/S201103151256.zip .
+* Then, test the build locally
+* Then, publish it:
+ ssh <commiterid>@build.eclipse.org
+ wget https://hudson.eclipse.org/hudson/job/papyrus-trunk-nightly/lastSuccessfulBuild/artifact/S201103151256.zip
+ unzip S201103151256.zip -d /home/data/httpd/download.eclipse.org/modeling/mdt/papyrus/downloads/drops/0.1.0/
+Add a new update site with the new build to the composite:
+* unzip the content (the update site zip that was in the first zip) in a new folder with the release number:
+ unzip Papyrus-Update-0.1.0M6.zip -d /home/data/httpd/download.eclipse.org/modeling/mdt/papyrus/updates/milestones/0.1/M6
+* update both the <code>compositeContent.xml</code> and <code>compositeArtifacts.xml</code> files of the update site (that are located in the parent of the folder to which you extracted the update site) to add a reference to your newly added update site
+** set the value of p2.timestamp to the result of "<code>date +%s000</code>"
+** increase the "size" attribute of the children element
+** add a "child" element inside the "children" element with a "location" set to the name of the folder (e.g "M6")
+* You can enable download stats on the repository by running [https://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/releng/org.eclipse.mdt.papyrus.releng.buckminster/serverConfig/addDownloadStats.sh /opt/public/modeling/mdt/papyrus/addDownloadStats.sh] on the update site
+* Check that the new build appears on [http://www.eclipse.org/modeling/mdt/papyrus/downloads/ http://www.eclipse.org/modeling/mdt/papyrus/downloads/].
+* Builds can be hidden from this page before a release by modifying <code>downloads-scripts.php</code> in <code>www/modeling/mdt/papyrus/downloads/</code> on <code>:pserver:anonymous@dev.eclipse.org:/cvsroot/org.eclipse</code>
+* Update the archive site with the new build:
+** <code>unzip S201109070430.zip -d /home/data/httpd/archive.eclipse.org/modeling/mdt/papyrus/downloads/drops/0.1.0/</code>
+** update <code>/home/data/httpd/archive.eclipse.org/modeling/mdt/papyrus/downloads/index.html</code> with a link to the newly added update zip
+* [[#Tagging|Tag the build]]
+
+=== Simultaneous Release ===
+If the build must be part of the simultaneous release, you must also:
+* Use the [[Eclipse_b3/aggregator/manual|B3 Aggregator]] (or a text editor if the modification is trivial) to [[Juno/Contributing_to_Juno_Build|update the build model for the aggregator]] ([http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.juno.build/?root=Callisto after checking it out from CVS])
+Usually, the only thing to change is the location (for example "milestones/0.9/M4"):
+ <repositories location="http://download.eclipse.org/modeling/mdt/papyrus/updates/milestones/0.9/M4" description="Papyrus">
+
+
+== Build parameters ==
+Hudson builds expect these parameters:
+* BUILDTYPE : the kind of build, represented by a code letter (see [http://www.eclipse.org/modeling/downloads/build-types.php this page]):
+** '''N''': Nightly
+** '''I''': Integration
+** '''M''': Maintenance ('''NOT''' milestone)
+** '''S''': Stable (for Milestones and Release Candidate builds)
+** '''R''': Release
+* BUILD_TARGET :
+**test : build Papyrus, create the update site, and launch the JUnit tests on the result
+**site.p2 : Launch the build of Papyrus only - no tests
+**provision : Gets only the material required to launch the build
+* BUILD_ALIAS : the name of the release (0.8.0, 0.9.0M1, etc.); leave it blank for nightly and integration builds
+* SIGN_UPDATE_SITE : whether to sign the update site (can take up to an hour on the Eclipse build server); mandatory for all builds except nightlies
+* VERSION : the version being built. Dictates in which folder the build will be placed under the download "drops" folder.
+
+== Tagging ==
+Releases should have a tag like '''R0_1_0''', and milestones should have a tag like '''S0_1_0_M7'''.
+{{warning|Tag names|Since the tag name is used as a bundle qualifier by PDE Build, it should not contain periods. For example, use '''R0_1_0''' instead of <s>v0.1.0</s>}}
+
+== Checking ==
+
+=== Check bundles ===
+Check that each bundle contains an about.html file:
+ for f in $( ls *.jar ); do unzip -t $f | grep -q about.html || echo $f; done
+or for plug-ins in your workspace:
+ find $workspaceRoot -name 'build.properties' | while read i; do grep -q about.html "$i" || echo "$i"; done
+
+=== Check licenses ===
+md5 is useful to see quickly which files differ:
+ find $workspaceRoot -type f -name 'license.html' | while read i; do md5 $i; done
+
+=== Check Manifest.MF ===
+ find $workspaceRoot -name 'MANIFEST.MF' | while read i; do grep -q Bundle-Vendor "$i" || echo "$i"; done
+ find $workspaceRoot -name 'feature.xml' | while read i; do grep -q provider-name "$i" || echo "$i"; done
+
+=== Check simrel reports ===
+ for url in \
+    "http://build.eclipse.org/juno/simrel/reports/layoutCheck.txt" \
+    "http://build.eclipse.org/juno/simrel/reports/verifydiroutput/unsigned.txt" \
+    "http://build.eclipse.org/juno/simrel/reports/versionPatternCheck.txt" \
+    "http://build.eclipse.org/juno/simrel/reports/breedata.txt" \
+    "http://build.eclipse.org/juno/simrel/reports/pack200data.txt" \
+    "http://build.eclipse.org/juno/simrel/reports/nonUniqueVersions.txt"
+ do
+   echo "checking $url"
+   curl -s -S "$url" | egrep 'papyrus'
+ done
+
+ url="http://build.eclipse.org/juno/simrel/reports/licenseConsistency.html"
+ echo "checking $url"
+ curl -s -S $url > licenseConsistency
+ n=$(cat licenseConsistency | grep -n "Features with matching" | sed 's/:.*//')
+ cat licenseConsistency | head -n $n | egrep 'papyrus'
+
+ url="http://build.eclipse.org/juno/simrel/reports/featureNames.html"
+ echo "checking $url"
+ curl -s -S $url > featureNames
+ n=$(cat featureNames | grep -n "Probably correct names" | sed 's/:.*//')
+ cat featureNames | head -n $n | egrep 'papyrus'
+
+ url="http://build.eclipse.org/juno/simrel/reports/bundleNames.html"
+ echo "checking $url"
+ curl -s -S $url > bundleNames
+ n=$(cat bundleNames | grep -n "Probably correct bundle name" | sed 's/:.*//')
+ cat bundleNames | head -n $n | egrep 'papyrus'
+
+ url="http://build.eclipse.org/juno/simrel/reports/providerNames.html"
+ echo "checking $url"
+ curl -s -S $url > providerNames
+ n=$(cat providerNames | grep -n "Probably using correct provider name" | sed 's/:.*//')
+ cat providerNames | head -n $n | egrep 'papyrus'
+
+ url="http://build.eclipse.org/juno/simrel/reports/copyrights.html"
+ echo "checking $url"
+ curl -s -S $url > copyrights
+ n=$(cat copyrights | grep -n "Features with copyrights that are probably ok" | sed 's/:.*//')
+ cat copyrights | head -n $n | egrep 'papyrus'
+
+ url="http://build.eclipse.org/juno/simrel/reports/esdata.txt"
+ echo "checking $url"
+ curl -s -S $url > esdata
+ n=$(cat esdata | grep -n "Bundles without an Eclipse-SourceReference" | sed 's/:.*//')
+ cat esdata | tail -n +$n | egrep 'papyrus'
