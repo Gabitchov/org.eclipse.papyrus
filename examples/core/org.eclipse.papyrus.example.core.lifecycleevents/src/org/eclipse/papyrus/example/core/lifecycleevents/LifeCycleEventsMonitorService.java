@@ -3,13 +3,13 @@
  */
 package org.eclipse.papyrus.example.core.lifecycleevents;
 
-import org.eclipse.papyrus.core.lifecycleevents.DoSaveEvent;
-import org.eclipse.papyrus.core.lifecycleevents.ILifeCycleEventsProvider;
-import org.eclipse.papyrus.core.lifecycleevents.ISaveEventListener;
-import org.eclipse.papyrus.core.lifecycleevents.LifeCycleEventsProvider;
-import org.eclipse.papyrus.core.services.IService;
-import org.eclipse.papyrus.core.services.ServiceException;
-import org.eclipse.papyrus.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.core.lifecycleevents.DoSaveEvent;
+import org.eclipse.papyrus.infra.core.lifecycleevents.ILifeCycleEventsProvider;
+import org.eclipse.papyrus.infra.core.lifecycleevents.ISaveEventListener;
+import org.eclipse.papyrus.infra.core.lifecycleevents.LifeCycleEventsProvider;
+import org.eclipse.papyrus.infra.core.services.IService;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 
 
 /**
@@ -83,7 +83,7 @@ public class LifeCycleEventsMonitorService implements IService {
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.core.services.IService#disposeService()
+	 * @see org.eclipse.papyrus.infra.core.services.IService#disposeService()
 	 *
 	 */
 	public void disposeService() {
@@ -94,7 +94,7 @@ public class LifeCycleEventsMonitorService implements IService {
 
 	/**
 	 * Initialize the service.
-	 * @see org.eclipse.papyrus.core.services.IService#init(org.eclipse.papyrus.core.services.ServicesRegistry)
+	 * @see org.eclipse.papyrus.infra.core.services.IService#init(org.eclipse.papyrus.infra.core.services.ServicesRegistry)
 	 *
 	 * @param servicesRegistry
 	 */
@@ -103,7 +103,7 @@ public class LifeCycleEventsMonitorService implements IService {
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.core.services.IService#startService()
+	 * @see org.eclipse.papyrus.infra.core.services.IService#startService()
 	 *
 	 */
 	public void startService() {

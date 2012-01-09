@@ -1,6 +1,6 @@
 package org.eclipse.papyrus.example.core.sashwindows.fulleditor.msgpage;
 
-import org.eclipse.papyrus.sasheditor.contentprovider.IComponentModel;
+import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IComponentModel;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.graphics.Image;

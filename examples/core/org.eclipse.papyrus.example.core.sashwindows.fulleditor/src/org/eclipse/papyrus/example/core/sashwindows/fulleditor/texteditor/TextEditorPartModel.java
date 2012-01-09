@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.example.core.sashwindows.fulleditor.texteditor;
 
-import org.eclipse.papyrus.sasheditor.contentprovider.IEditorModel;
+import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IEditorModel;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PartInitException;
