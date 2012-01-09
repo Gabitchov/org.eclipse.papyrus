@@ -331,6 +331,7 @@ public class NavigatorUtils {
 		ECrossReferenceAdapter adapter = ECrossReferenceAdapter.getCrossReferenceAdapter(resourceSet);
 		if (adapter == null)
 		{
+			adapter = new ECrossReferenceAdapter();
 			resourceSet.eAdapters().add(adapter);
 		}
 		Collection<Setting> settings = adapter.getInverseReferences(toFind, false);
