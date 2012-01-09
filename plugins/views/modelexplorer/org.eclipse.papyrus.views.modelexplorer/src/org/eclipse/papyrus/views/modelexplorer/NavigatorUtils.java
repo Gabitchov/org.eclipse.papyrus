@@ -323,11 +323,11 @@ public class NavigatorUtils {
 	 */
 	public static boolean find (EObject toFind, Predicate<Setting> predicate)
 	{
-		ResourceSet resourceSet = toFind.eResource().getResourceSet();
-		if (toFind == null || toFind.eResource() == null || resourceSet == null)
+		if (toFind == null || toFind.eResource() == null || toFind.eResource().getResourceSet() == null)
 		{
 			return false;
 		}
+		ResourceSet resourceSet = toFind.eResource().getResourceSet();
 		ECrossReferenceAdapter adapter = ECrossReferenceAdapter.getCrossReferenceAdapter(resourceSet);
 		if (adapter == null)
 		{
