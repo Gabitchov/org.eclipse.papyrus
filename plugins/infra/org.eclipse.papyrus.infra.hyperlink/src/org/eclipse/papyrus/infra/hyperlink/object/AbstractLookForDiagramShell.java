@@ -129,7 +129,7 @@ public class AbstractLookForDiagramShell {
 		createTreeViewcomposite();
 		CTabItem cTabItem = new CTabItem(cTabFolder, SWT.None);
 		cTabItem.setControl(diagramListcomposite);
-		cTabItem.setText("Diagram list");
+		cTabItem.setText("Diagram list");//TODO change this name into Editor List
 		CTabItem cTabItem1 = new CTabItem(cTabFolder, SWT.None);
 		cTabItem1.setText("Tree View");
 		cTabItem1.setControl(treeViewcomposite);
