@@ -232,7 +232,6 @@ public class InstanceSpecificationNameEditPart extends CompartmentEditPart imple
 		if(parserElement == null) {
 			return null;
 		}
-
 		List<View> views = DiagramEditPartsUtil.findViews(parserElement, getViewer());
 		for(View view : views) {
 			if(NameLabelIconHelper.showLabelIcon(view)) {
@@ -240,7 +239,6 @@ public class InstanceSpecificationNameEditPart extends CompartmentEditPart imple
 			}
 		}
 		return null;
-
 	}
 
 	/**
@@ -312,7 +310,6 @@ public class InstanceSpecificationNameEditPart extends CompartmentEditPart imple
 						ie.printStackTrace();
 					}
 				}
-
 				// shouldn't get here
 				return null;
 			}
@@ -394,9 +391,7 @@ public class InstanceSpecificationNameEditPart extends CompartmentEditPart imple
 	 * @generated
 	 */
 	protected void performDirectEditRequest(Request request) {
-
 		final Request theRequest = request;
-
 		if(IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
 			directEditionMode = getDirectEditionType();
 		}
@@ -423,7 +418,6 @@ public class InstanceSpecificationNameEditPart extends CompartmentEditPart imple
 					return;
 				}
 				final Dialog finalDialog = dialog;
-
 				if(Window.OK == dialog.open()) {
 					TransactionalEditingDomain domain = getEditingDomain();
 					RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
@@ -431,7 +425,6 @@ public class InstanceSpecificationNameEditPart extends CompartmentEditPart imple
 						@Override
 						protected void doExecute() {
 							configuration.postEditAction(resolveSemanticElement(), ((ILabelEditorDialog)finalDialog).getValue());
-
 						}
 					};
 					domain.getCommandStack().execute(command);
@@ -439,7 +432,6 @@ public class InstanceSpecificationNameEditPart extends CompartmentEditPart imple
 			}
 			break;
 		case IDirectEdition.DEFAULT_DIRECT_EDITOR:
-
 			// initialize the direct edit manager
 			try {
 				getEditingDomain().runExclusive(new Runnable() {
@@ -600,7 +592,6 @@ public class InstanceSpecificationNameEditPart extends CompartmentEditPart imple
 		if(checkDefaultEdition()) {
 			return IDirectEdition.DEFAULT_DIRECT_EDITOR;
 		}
-
 		// not a named element. no specific editor => do nothing
 		return IDirectEdition.NO_DIRECT_EDITION;
 	}
@@ -735,11 +726,9 @@ public class InstanceSpecificationNameEditPart extends CompartmentEditPart imple
 				}
 			}
 		}
-
 		if(event.getNewValue() instanceof EAnnotation && VisualInformationPapyrusConstant.DISPLAY_NAMELABELICON.equals(((EAnnotation)event.getNewValue()).getSource())) {
 			refreshLabel();
 		}
-
 		super.handleNotificationEvent(event);
 	}
 
@@ -769,7 +758,6 @@ public class InstanceSpecificationNameEditPart extends CompartmentEditPart imple
 	 */
 	protected void addOwnerElementListeners() {
 		addListenerFilter(ADD_PARENT_MODEL, this, ((View)getParent().getModel())); //$NON-NLS-1$
-
 	}
 
 	/**
@@ -778,7 +766,6 @@ public class InstanceSpecificationNameEditPart extends CompartmentEditPart imple
 	public void deactivate() {
 		removeOwnerElementListeners();
 		super.deactivate();
-
 	}
 
 	/**
@@ -786,7 +773,5 @@ public class InstanceSpecificationNameEditPart extends CompartmentEditPart imple
 	 */
 	protected void removeOwnerElementListeners() {
 		removeListenerFilter(ADD_PARENT_MODEL);
-
 	}
-
 }

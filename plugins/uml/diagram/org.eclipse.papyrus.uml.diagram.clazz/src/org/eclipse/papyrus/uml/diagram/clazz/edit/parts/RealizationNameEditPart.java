@@ -78,9 +78,7 @@ import org.eclipse.ui.PlatformUI;
 /**
  * @generated
  */
-public class RealizationNameEditPart extends LabelEditPart implements ITextAwareEditPart, ILabelRoleProvider
-
-{
+public class RealizationNameEditPart extends LabelEditPart implements ITextAwareEditPart, ILabelRoleProvider {
 
 	/**
 	 * @generated
@@ -120,7 +118,6 @@ public class RealizationNameEditPart extends LabelEditPart implements ITextAware
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
-
 	/**
 	 * @generated
 	 */
@@ -312,7 +309,6 @@ public class RealizationNameEditPart extends LabelEditPart implements ITextAware
 						ie.printStackTrace();
 					}
 				}
-
 				// shouldn't get here
 				return null;
 			}
@@ -394,9 +390,7 @@ public class RealizationNameEditPart extends LabelEditPart implements ITextAware
 	 * @generated
 	 */
 	protected void performDirectEditRequest(Request request) {
-
 		final Request theRequest = request;
-
 		if(IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
 			directEditionMode = getDirectEditionType();
 		}
@@ -423,7 +417,6 @@ public class RealizationNameEditPart extends LabelEditPart implements ITextAware
 					return;
 				}
 				final Dialog finalDialog = dialog;
-
 				if(Window.OK == dialog.open()) {
 					TransactionalEditingDomain domain = getEditingDomain();
 					RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
@@ -431,7 +424,6 @@ public class RealizationNameEditPart extends LabelEditPart implements ITextAware
 						@Override
 						protected void doExecute() {
 							configuration.postEditAction(resolveSemanticElement(), ((ILabelEditorDialog)finalDialog).getValue());
-
 						}
 					};
 					domain.getCommandStack().execute(command);
@@ -439,7 +431,6 @@ public class RealizationNameEditPart extends LabelEditPart implements ITextAware
 			}
 			break;
 		case IDirectEdition.DEFAULT_DIRECT_EDITOR:
-
 			// initialize the direct edit manager
 			try {
 				getEditingDomain().runExclusive(new Runnable() {
@@ -600,7 +591,6 @@ public class RealizationNameEditPart extends LabelEditPart implements ITextAware
 		if(checkDefaultEdition()) {
 			return IDirectEdition.DEFAULT_DIRECT_EDITOR;
 		}
-
 		// not a named element. no specific editor => do nothing
 		return IDirectEdition.NO_DIRECT_EDITION;
 	}
@@ -718,7 +708,6 @@ public class RealizationNameEditPart extends LabelEditPart implements ITextAware
 				}
 			}
 		}
-
 		super.handleNotificationEvent(event);
 	}
 
@@ -743,5 +732,4 @@ public class RealizationNameEditPart extends LabelEditPart implements ITextAware
 	public String getIconPathRole() {
 		return "platform:/plugin/org.eclipse.papyrus.uml.diagram.common/icons/label_role/name.png";//$NON-NLS-1$
 	}
-
 }

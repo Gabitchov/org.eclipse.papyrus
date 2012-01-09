@@ -42,7 +42,5 @@ public class ProfileApplicationPreferencePage extends AbstractPapyrusLinkPrefere
 	 * @generated
 	 */
 	public static void initDefaults(IPreferenceStore store) {
-
 	}
-
 }

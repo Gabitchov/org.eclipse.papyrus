@@ -56,9 +56,7 @@ import org.eclipse.swt.graphics.Color;
 /**
  * @generated
  */
-public class AssociationNodeEditPart extends
-
-ShapeNodeEditPart {
+public class AssociationNodeEditPart extends ShapeNodeEditPart {
 
 	/**
 	 * @generated
@@ -143,7 +141,6 @@ ShapeNodeEditPart {
 		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
 		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
-
 		return result;
 	}
 
@@ -1794,10 +1791,8 @@ ShapeNodeEditPart {
 		private int[] scalePointList() {
 			Rectangle pointsBounds = getTemplateBounds();
 			Rectangle actualBounds = getBounds();
-
 			float xScale = ((float)actualBounds.width) / pointsBounds.width;
 			float yScale = ((float)actualBounds.height) / pointsBounds.height;
-
 			if(xScale == 1 && yScale == 1) {
 				return myTemplate.toIntArray();
 			}
@@ -1808,7 +1803,6 @@ ShapeNodeEditPart {
 			}
 			return scaled;
 		}
-
 	}
 
 	/**
@@ -1818,7 +1812,6 @@ ShapeNodeEditPart {
 	public Object getPreferredValue(EStructuralFeature feature) {
 		IPreferenceStore preferenceStore = (IPreferenceStore)getDiagramPreferencesHint().getPreferenceStore();
 		Object result = null;
-
 		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 			String prefColor = null;
 			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
@@ -1838,7 +1831,6 @@ ShapeNodeEditPart {
 				result = gradientPreferenceConverter.getGradientData();
 			}
 		}
-
 		if(result == null) {
 			result = getStructuralFeatureValue(feature);
 		}

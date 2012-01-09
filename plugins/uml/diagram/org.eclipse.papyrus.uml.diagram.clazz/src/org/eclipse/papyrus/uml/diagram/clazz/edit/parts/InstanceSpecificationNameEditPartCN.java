@@ -296,7 +296,6 @@ public class InstanceSpecificationNameEditPartCN extends CompartmentEditPart imp
 						ie.printStackTrace();
 					}
 				}
-
 				// shouldn't get here
 				return null;
 			}
@@ -378,9 +377,7 @@ public class InstanceSpecificationNameEditPartCN extends CompartmentEditPart imp
 	 * @generated
 	 */
 	protected void performDirectEditRequest(Request request) {
-
 		final Request theRequest = request;
-
 		if(IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
 			directEditionMode = getDirectEditionType();
 		}
@@ -407,7 +404,6 @@ public class InstanceSpecificationNameEditPartCN extends CompartmentEditPart imp
 					return;
 				}
 				final Dialog finalDialog = dialog;
-
 				if(Window.OK == dialog.open()) {
 					TransactionalEditingDomain domain = getEditingDomain();
 					RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
@@ -415,7 +411,6 @@ public class InstanceSpecificationNameEditPartCN extends CompartmentEditPart imp
 						@Override
 						protected void doExecute() {
 							configuration.postEditAction(resolveSemanticElement(), ((ILabelEditorDialog)finalDialog).getValue());
-
 						}
 					};
 					domain.getCommandStack().execute(command);
@@ -423,7 +418,6 @@ public class InstanceSpecificationNameEditPartCN extends CompartmentEditPart imp
 			}
 			break;
 		case IDirectEdition.DEFAULT_DIRECT_EDITOR:
-
 			// initialize the direct edit manager
 			try {
 				getEditingDomain().runExclusive(new Runnable() {
@@ -584,7 +578,6 @@ public class InstanceSpecificationNameEditPartCN extends CompartmentEditPart imp
 		if(checkDefaultEdition()) {
 			return IDirectEdition.DEFAULT_DIRECT_EDITOR;
 		}
-
 		// not a named element. no specific editor => do nothing
 		return IDirectEdition.NO_DIRECT_EDITION;
 	}
@@ -719,7 +712,6 @@ public class InstanceSpecificationNameEditPartCN extends CompartmentEditPart imp
 				}
 			}
 		}
-
 		super.handleNotificationEvent(event);
 	}
 
@@ -749,7 +741,6 @@ public class InstanceSpecificationNameEditPartCN extends CompartmentEditPart imp
 	 */
 	protected void addOwnerElementListeners() {
 		addListenerFilter(ADD_PARENT_MODEL, this, ((View)getParent().getModel())); //$NON-NLS-1$
-
 	}
 
 	/**
@@ -758,7 +749,6 @@ public class InstanceSpecificationNameEditPartCN extends CompartmentEditPart imp
 	public void deactivate() {
 		removeOwnerElementListeners();
 		super.deactivate();
-
 	}
 
 	/**
@@ -766,7 +756,5 @@ public class InstanceSpecificationNameEditPartCN extends CompartmentEditPart imp
 	 */
 	protected void removeOwnerElementListeners() {
 		removeListenerFilter(ADD_PARENT_MODEL);
-
 	}
-
 }

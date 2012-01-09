@@ -24,9 +24,7 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.policies.ConnectorDurationObse
 /**
  * @generated
  */
-public class ConnectorDurationObservationEditPart extends ConnectionNodeEditPart
-
-implements ITreeBranchEditPart {
+public class ConnectorDurationObservationEditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -56,7 +54,6 @@ implements ITreeBranchEditPart {
 	 * 
 	 * @generated
 	 */
-
 	protected Connection createConnectionFigure() {
 		return new LinkDescriptor();
 	}
@@ -79,9 +76,6 @@ implements ITreeBranchEditPart {
 		public LinkDescriptor() {
 			this.setLineWidth(1);
 			this.setLineStyle(Graphics.LINE_DASH);
-
 		}
-
 	}
-
 }

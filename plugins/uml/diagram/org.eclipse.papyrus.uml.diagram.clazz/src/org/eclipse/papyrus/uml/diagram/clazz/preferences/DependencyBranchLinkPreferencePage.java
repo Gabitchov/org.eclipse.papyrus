@@ -43,7 +43,5 @@ public class DependencyBranchLinkPreferencePage extends AbstractPapyrusLinkPrefe
 	 * @generated
 	 */
 	public static void initDefaults(IPreferenceStore store) {
-
 	}
-
 }

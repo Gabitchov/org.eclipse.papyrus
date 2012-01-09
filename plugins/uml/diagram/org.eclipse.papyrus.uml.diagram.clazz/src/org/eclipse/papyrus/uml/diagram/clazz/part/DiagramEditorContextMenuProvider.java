@@ -37,7 +37,6 @@ public class DiagramEditorContextMenuProvider extends DiagramContextMenuProvider
 	public DiagramEditorContextMenuProvider(IWorkbenchPart part, EditPartViewer viewer) {
 		super(part, viewer);
 		this.part = part;
-
 	}
 
 	/**
@@ -51,7 +50,6 @@ public class DiagramEditorContextMenuProvider extends DiagramContextMenuProvider
 				public void run() {
 					ContributionItemService.getInstance().contributeToPopupMenu(DiagramEditorContextMenuProvider.this, part);
 					menu.remove(ActionIds.ACTION_DELETE_FROM_MODEL);
-
 				}
 			});
 		} catch (Exception e) {

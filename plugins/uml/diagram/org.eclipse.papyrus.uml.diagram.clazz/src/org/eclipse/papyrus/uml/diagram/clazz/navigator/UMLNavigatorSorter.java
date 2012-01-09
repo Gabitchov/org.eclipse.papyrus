@@ -35,5 +35,4 @@ public class UMLNavigatorSorter extends ViewerSorter {
 		}
 		return GROUP_CATEGORY;
 	}
-
 }

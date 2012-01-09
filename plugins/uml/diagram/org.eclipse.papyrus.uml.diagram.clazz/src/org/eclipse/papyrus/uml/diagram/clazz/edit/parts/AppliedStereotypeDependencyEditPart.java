@@ -78,9 +78,7 @@ import org.eclipse.ui.PlatformUI;
 /**
  * @generated
  */
-public class AppliedStereotypeDependencyEditPart extends LabelEditPart implements ITextAwareEditPart, ILabelRoleProvider
-
-{
+public class AppliedStereotypeDependencyEditPart extends LabelEditPart implements ITextAwareEditPart, ILabelRoleProvider {
 
 	/**
 	 * @generated
@@ -120,7 +118,6 @@ public class AppliedStereotypeDependencyEditPart extends LabelEditPart implement
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
-
 	/**
 	 * @generated
 	 */
@@ -312,7 +309,6 @@ public class AppliedStereotypeDependencyEditPart extends LabelEditPart implement
 						ie.printStackTrace();
 					}
 				}
-
 				// shouldn't get here
 				return null;
 			}
@@ -394,9 +390,7 @@ public class AppliedStereotypeDependencyEditPart extends LabelEditPart implement
 	 * @generated
 	 */
 	protected void performDirectEditRequest(Request request) {
-
 		final Request theRequest = request;
-
 		if(IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
 			directEditionMode = getDirectEditionType();
 		}
@@ -423,7 +417,6 @@ public class AppliedStereotypeDependencyEditPart extends LabelEditPart implement
 					return;
 				}
 				final Dialog finalDialog = dialog;
-
 				if(Window.OK == dialog.open()) {
 					TransactionalEditingDomain domain = getEditingDomain();
 					RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
@@ -431,7 +424,6 @@ public class AppliedStereotypeDependencyEditPart extends LabelEditPart implement
 						@Override
 						protected void doExecute() {
 							configuration.postEditAction(resolveSemanticElement(), ((ILabelEditorDialog)finalDialog).getValue());
-
 						}
 					};
 					domain.getCommandStack().execute(command);
@@ -439,7 +431,6 @@ public class AppliedStereotypeDependencyEditPart extends LabelEditPart implement
 			}
 			break;
 		case IDirectEdition.DEFAULT_DIRECT_EDITOR:
-
 			// initialize the direct edit manager
 			try {
 				getEditingDomain().runExclusive(new Runnable() {
@@ -710,7 +701,6 @@ public class AppliedStereotypeDependencyEditPart extends LabelEditPart implement
 				}
 			}
 		}
-
 		super.handleNotificationEvent(event);
 	}
 
@@ -735,5 +725,4 @@ public class AppliedStereotypeDependencyEditPart extends LabelEditPart implement
 	public String getIconPathRole() {
 		return "platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Stereotype.gif";//$NON-NLS-1$
 	}
-
 }

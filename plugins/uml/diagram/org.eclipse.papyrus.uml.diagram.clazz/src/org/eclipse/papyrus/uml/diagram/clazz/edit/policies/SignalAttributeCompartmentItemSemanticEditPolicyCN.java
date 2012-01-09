@@ -38,5 +38,4 @@ public class SignalAttributeCompartmentItemSemanticEditPolicyCN extends UMLBaseI
 		}
 		return super.getCreateCommand(req);
 	}
-
 }

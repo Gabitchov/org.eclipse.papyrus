@@ -26,9 +26,7 @@ import org.eclipse.papyrus.uml.diagram.clazz.custom.policies.CustomGraphicalNode
 /**
  * @generated
  */
-public class AssociationClassDashedLinkEditPart extends ConnectionNodeEditPart
-
-implements ITreeBranchEditPart {
+public class AssociationClassDashedLinkEditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -60,7 +58,6 @@ implements ITreeBranchEditPart {
 	 * 
 	 * @generated
 	 */
-
 	protected Connection createConnectionFigure() {
 		return new CommentLinkDescriptor();
 	}
@@ -82,9 +79,6 @@ implements ITreeBranchEditPart {
 		 */
 		public CommentLinkDescriptor() {
 			this.setLineStyle(Graphics.LINE_DASH);
-
 		}
-
 	}
-
 }

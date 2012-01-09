@@ -74,12 +74,10 @@ public class ConnectorDurationObservationCreateCommand extends EditElementComman
 		if(!canExecute()) {
 			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 		}
-
 		if(getSource() != null && getTarget() != null) {
 			getSource().getEvents().add(getTarget());
 		}
 		return CommandResult.newOKCommandResult();
-
 	}
 
 	/**

@@ -36,11 +36,7 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.DuplicatePasteEditPol
 /**
  * @generated
  */
-public class ClassNestedClassifierCompartmentEditPart
-
-extends ResizeableListCompartmentEditPart
-
-{
+public class ClassNestedClassifierCompartmentEditPart extends ResizeableListCompartmentEditPart {
 
 	/**
 	 * @generated
@@ -78,10 +74,8 @@ extends ResizeableListCompartmentEditPart
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CreationEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 		installEditPolicy(DuplicatePasteEditPolicy.PASTE_ROLE, new DuplicatePasteEditPolicy());
-
 		//in Papyrus diagrams are not strongly synchronised
 		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.clazz.edit.policies.ClassNestedClassifierCompartmentCanonicalEditPolicy());
-
 		installEditPolicy("RemoveOrphanView", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new ClassDiagramDragDropEditPolicy());
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new NestedClazzCompartmentCreationEditPolicy());

@@ -29,9 +29,7 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLink
 /**
  * @generated
  */
-public class GeneralizationSetEditPart extends
-
-UMLConnectionNodeEditPart implements ITreeBranchEditPart {
+public class GeneralizationSetEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -122,5 +120,4 @@ UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 	public GeneralizationSet getPrimaryShape() {
 		return (GeneralizationSet)getFigure();
 	}
-
 }

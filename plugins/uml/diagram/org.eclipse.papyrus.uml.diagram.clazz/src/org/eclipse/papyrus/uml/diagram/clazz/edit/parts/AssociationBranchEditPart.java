@@ -27,9 +27,7 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.policies.AssociationBranchItem
 /**
  * @generated
  */
-public class AssociationBranchEditPart extends
-
-AbstractAssociationBranchEditPart implements ITreeBranchEditPart {
+public class AssociationBranchEditPart extends AbstractAssociationBranchEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -119,5 +117,4 @@ AbstractAssociationBranchEditPart implements ITreeBranchEditPart {
 	public AssociationFigure getPrimaryShape() {
 		return (AssociationFigure)getFigure();
 	}
-
 }

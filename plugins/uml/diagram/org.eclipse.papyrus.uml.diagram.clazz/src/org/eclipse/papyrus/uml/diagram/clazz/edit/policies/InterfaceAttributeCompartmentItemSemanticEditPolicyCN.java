@@ -38,5 +38,4 @@ public class InterfaceAttributeCompartmentItemSemanticEditPolicyCN extends UMLBa
 		}
 		return super.getCreateCommand(req);
 	}
-
 }

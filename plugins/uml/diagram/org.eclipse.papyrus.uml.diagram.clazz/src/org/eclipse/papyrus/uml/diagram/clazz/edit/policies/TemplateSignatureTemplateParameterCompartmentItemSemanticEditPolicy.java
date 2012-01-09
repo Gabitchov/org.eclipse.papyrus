@@ -46,5 +46,4 @@ public class TemplateSignatureTemplateParameterCompartmentItemSemanticEditPolicy
 		}
 		return super.getCreateCommand(req);
 	}
-
 }

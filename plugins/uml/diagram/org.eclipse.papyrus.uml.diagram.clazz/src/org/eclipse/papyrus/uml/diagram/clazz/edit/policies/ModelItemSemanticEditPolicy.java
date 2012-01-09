@@ -150,5 +150,4 @@ public class ModelItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 			this.diagram = currentDiagram;
 		}
 	}
-
 }

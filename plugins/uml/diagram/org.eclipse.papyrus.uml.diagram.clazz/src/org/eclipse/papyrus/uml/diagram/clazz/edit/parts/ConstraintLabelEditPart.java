@@ -77,9 +77,7 @@ import org.eclipse.ui.PlatformUI;
 /**
  * @generated
  */
-public class ConstraintLabelEditPart extends LabelEditPart implements ITextAwareEditPart
-
-{
+public class ConstraintLabelEditPart extends LabelEditPart implements ITextAwareEditPart {
 
 	/**
 	 * @generated
@@ -119,7 +117,6 @@ public class ConstraintLabelEditPart extends LabelEditPart implements ITextAware
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
-
 	/**
 	 * @generated
 	 */
@@ -311,7 +308,6 @@ public class ConstraintLabelEditPart extends LabelEditPart implements ITextAware
 						ie.printStackTrace();
 					}
 				}
-
 				// shouldn't get here
 				return null;
 			}
@@ -393,9 +389,7 @@ public class ConstraintLabelEditPart extends LabelEditPart implements ITextAware
 	 * @generated
 	 */
 	protected void performDirectEditRequest(Request request) {
-
 		final Request theRequest = request;
-
 		if(IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
 			directEditionMode = getDirectEditionType();
 		}
@@ -422,7 +416,6 @@ public class ConstraintLabelEditPart extends LabelEditPart implements ITextAware
 					return;
 				}
 				final Dialog finalDialog = dialog;
-
 				if(Window.OK == dialog.open()) {
 					TransactionalEditingDomain domain = getEditingDomain();
 					RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
@@ -430,7 +423,6 @@ public class ConstraintLabelEditPart extends LabelEditPart implements ITextAware
 						@Override
 						protected void doExecute() {
 							configuration.postEditAction(resolveSemanticElement(), ((ILabelEditorDialog)finalDialog).getValue());
-
 						}
 					};
 					domain.getCommandStack().execute(command);
@@ -438,7 +430,6 @@ public class ConstraintLabelEditPart extends LabelEditPart implements ITextAware
 			}
 			break;
 		case IDirectEdition.DEFAULT_DIRECT_EDITOR:
-
 			// initialize the direct edit manager
 			try {
 				getEditingDomain().runExclusive(new Runnable() {
@@ -709,7 +700,6 @@ public class ConstraintLabelEditPart extends LabelEditPart implements ITextAware
 				}
 			}
 		}
-
 		super.handleNotificationEvent(event);
 	}
 
@@ -720,5 +710,4 @@ public class ConstraintLabelEditPart extends LabelEditPart implements ITextAware
 		// Parent should assign one using setLabel() method
 		return null;
 	}
-
 }

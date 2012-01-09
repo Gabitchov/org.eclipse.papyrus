@@ -89,7 +89,6 @@ public class InstanceSpecificationLinkCreateCommand extends EditElementCommand {
 		if(!canExecute()) {
 			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 		}
-
 		InstanceSpecification newElement = UMLFactory.eINSTANCE.createInstanceSpecification();
 		getContainer().getPackagedElements().add(newElement);
 		newElement.getSlots().add(getSource());
@@ -97,7 +96,6 @@ public class InstanceSpecificationLinkCreateCommand extends EditElementCommand {
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
-
 	}
 
 	/**
@@ -161,5 +159,4 @@ public class InstanceSpecificationLinkCreateCommand extends EditElementCommand {
 		}
 		return null;
 	}
-
 }
