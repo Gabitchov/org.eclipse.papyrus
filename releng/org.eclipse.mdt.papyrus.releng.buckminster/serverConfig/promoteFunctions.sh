@@ -80,12 +80,12 @@ function promote() {
 	echo "[$DATE] publishing build (version='$_version') to the builds directory '$buildsDir'..."
 	unzip -o "$_zipName" -d "$buildsDir"
 	echo "[$DATE] publishing build (version='$_version') to the update site '$_updateSite'..."
-	[ -d "$_updateSite" ] && { echo "Error: update site directory already exists"; exit 1 }
+	[ -d "$_updateSite" ] && { echo "Error: update site directory already exists"; exit 1; }
 	# extract the zip in which there is the update site zip to a tmp dir
 	tmpDrop=$(mktemp -d)
 	unzip "$_zipName" -d "$tmpDrop"
 	dirNameInZip=$(ls -1 "$tmpDrop")
-	[ $(echo "$dirNameInZip" | wc -l) == 1 ] || { echo "one directory expected in zip"; exit 1 }
+	[ $(echo "$dirNameInZip" | wc -l) == 1 ] || { echo "one directory expected in zip"; exit 1; }
 	updateSiteZipName=$(basename $(ls -1 "$tmpDrop/$dirNameInZip/${_updateZipPrefix}"*.zip))
 	unzip -o "$tmpDrop/$dirNameInZip/${updateSiteZipName}" -d "$_updateSite"
 	#echo "[$DATE] adding index.php"
