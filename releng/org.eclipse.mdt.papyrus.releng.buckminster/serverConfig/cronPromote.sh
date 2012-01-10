@@ -32,7 +32,7 @@ UPDATES_MAINTENANCE_EXTRA_NIGHTLY=/home/data/httpd/download.eclipse.org/modeling
 DROPS_DIR=/home/data/httpd/download.eclipse.org/modeling/mdt/papyrus/downloads/drops
 
 ARCHIVE_DIR=/home/data/httpd/archive.eclipse.org/modeling/mdt/papyrus/downloads/drops
-ARCHIVE_INDEX=/home/data/httpd/download.eclipse.org/modeling/mdt/papyrus/downloads/index.html
+ARCHIVE_INDEX=/home/data/httpd/archive.eclipse.org/modeling/mdt/papyrus/downloads/index.html
 
 # constants required by promoteFunctions.sh
 export ADD_DOWNLOAD_STATS=/opt/public/modeling/mdt/papyrus/addDownloadStats.sh
