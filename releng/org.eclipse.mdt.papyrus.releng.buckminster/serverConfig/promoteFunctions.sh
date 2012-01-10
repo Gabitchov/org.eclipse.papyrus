@@ -92,9 +92,13 @@ function promote() {
 	#cp $INDEX_PHP "$_updateSite/"
 	echo "[$DATE] enabling download statistics"
 	$ADD_DOWNLOAD_STATS "$_updateSite"
+	
 	echo "[$DATE] setting access rights"
-	chmod -R 775 "$buildsDir"/${_zipName/%\.zip/}
+	buildFolder="$buildsDir"/${_zipName/%\.zip/}
+	chmod -R 775 "$buildFolder"
+	chgrp -hR modeling.mdt.papyrus "$buildFolder"
 	chmod -R 775 "$_updateSite"
+	chgrp -hR modeling.mdt.papyrus "$_updateSite"
 	
 	# copy milestone and release builds to the archive, and tag the build
 	if [[ "$_zipName" =~ ^[MSR].*$ && "${_branchToTag}" != "NA" ]]; then
