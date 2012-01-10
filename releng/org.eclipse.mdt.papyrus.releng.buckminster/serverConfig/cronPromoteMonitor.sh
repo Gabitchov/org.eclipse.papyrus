@@ -11,9 +11,10 @@
 
 cronPromoteScript=/opt/public/modeling/mdt/papyrus/cronPromote.sh
 logFile=/opt/public/modeling/mdt/papyrus/log-lastCronPromote
+mailRecipients="nbros.mia@gmail.com camille.letavernier@cea.fr patrick.tessier@cea.fr vincent.lorenzo@cea.fr Remi.SCHNEKENBURGER@cea.fr"
 
 bash -x "$cronPromoteScript" 2>&1 | tee "$logFile"
 if [ ${PIPESTATUS[0]} != 0 ]; then
 	echo "promote failed : sending mail"
-	cat $logFile | mail -s "[Papyrus build promotion] build promotion failed" "nbros.mia@gmail.com"
+	cat $logFile | mail -s "[Papyrus build promotion] build promotion failed" $mailRecipients
 fi
