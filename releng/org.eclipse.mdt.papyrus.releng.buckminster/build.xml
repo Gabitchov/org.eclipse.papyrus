@@ -240,7 +240,7 @@
 		</echoproperties>
 	</target>
 
-	<target name="provision" depends="init.checks,init.workspace,install.buckminster,init.build.properties">
+	<target name="provision" depends="init.checks,init.workspace,install.buckminster,init.build.properties" unless="skip.provision">
 		<echo message="Importing projects into workspace ${workspace} and binaries into target platform ${targetPlatformPath}" />
 		<!--
 		<buckminster command="installJRE">
@@ -267,7 +267,7 @@
 		</buckminster>
 	</target>
 
-	<target name="site.p2" depends="provision">
+	<target name="site.p2" depends="provision" unless="skip.site.p2">
 		<echo message="Building all projects in workspace ${workspace}" />
 		<buckminster command="build">
 			<cmdargs>
@@ -305,7 +305,7 @@
 
 	</target>
 	
-	<target name="test" depends="site.p2">
+	<target name="test" depends="site.p2" unless="skip.tests">
 		<echo message="Running JUnit tests" />
 		<mkdir dir="${result}/testresults/" />
 		<mkdir dir="${result}/testresults/xml" />
