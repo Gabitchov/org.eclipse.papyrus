@@ -10,7 +10,7 @@
 #   Nicolas Bros (Mia-Software)
 
 SCRIPTS_LOC=/opt/public/modeling/mdt/papyrus
-SVN_LOC="file:///svnroot/modeling/org.eclipse.mdt.papyrus/trunk/releng/org.eclipse.mdt.papyrus.releng.buckminster/serverConfiguration"
+SVN_LOC="file:///svnroot/modeling/org.eclipse.mdt.papyrus/trunk/releng/org.eclipse.mdt.papyrus.releng.buckminster/serverConfig"
 
 cd "$SCRIPTS_LOC"
 
