@@ -2,12 +2,12 @@
 
 p2UpdateSiteDir=${WORKSPACE}/buildroot/result/output/org.eclipse.papyrus.build.feature_*-eclipse.feature/site.p2
 
-promoteSignal=/opt/public/modeling/mdt/papyrus/papyrusBuildPromoteSignalN
-promoteVersion=/opt/public/modeling/mdt/papyrus/papyrusBuildPromoteVersionN
-promoteDirName=/opt/public/modeling/mdt/papyrus/papyrusBuildPromoteDirNameN
-lastBuildLogFile=/opt/public/modeling/mdt/papyrus/lastBuildLogN
+promoteSignal=/opt/public/modeling/mdt/papyrus/papyrus-trunk-nightly/promoteSignal
+promoteVersion=/opt/public/modeling/mdt/papyrus/papyrus-trunk-nightly/promoteVersion
+promoteDirName=/opt/public/modeling/mdt/papyrus/papyrus-trunk-nightly/promoteDirName
+lastBuildLogFile=/opt/public/modeling/mdt/papyrus/papyrus-trunk-nightly/lastBuildLog
 
-FULL_BUILD_ID=$(cat /opt/public/modeling/mdt/papyrus/papyrusBuildPromoteDirNameN)
+FULL_BUILD_ID=$(cat $promoteDirName)
 
 if [ -n "$BUILD_ALIAS" ]; then
   zipName=Papyrus-Update-${BUILD_ALIAS}.zip
