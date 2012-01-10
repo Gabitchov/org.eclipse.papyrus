@@ -15,6 +15,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
+import org.eclipse.emf.ecore.impl.EModelElementImpl;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
@@ -44,7 +45,8 @@ import org.eclipse.papyrus.infra.table.instance.papyrustableinstance.Papyrustabl
  *
  * @generated
  */
-public class PapyrusTableInstanceImpl extends EObjectImpl implements PapyrusTableInstance {
+public class PapyrusTableInstanceImpl extends 
+EModelElementImpl implements PapyrusTableInstance {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->

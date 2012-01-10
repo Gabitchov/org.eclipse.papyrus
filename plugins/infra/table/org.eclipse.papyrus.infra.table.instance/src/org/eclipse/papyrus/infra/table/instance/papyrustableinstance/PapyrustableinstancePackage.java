@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EcorePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -70,13 +71,22 @@ public interface PapyrustableinstancePackage extends EPackage {
 	int PAPYRUS_TABLE_INSTANCE = 0;
 
 	/**
+	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAPYRUS_TABLE_INSTANCE__EANNOTATIONS = EcorePackage.EMODEL_ELEMENT__EANNOTATIONS;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PAPYRUS_TABLE_INSTANCE__NAME = 0;
+	int PAPYRUS_TABLE_INSTANCE__NAME = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -85,7 +95,7 @@ public interface PapyrustableinstancePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PAPYRUS_TABLE_INSTANCE__TYPE = 1;
+	int PAPYRUS_TABLE_INSTANCE__TYPE = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Is Synchronized</b></em>' attribute.
@@ -94,7 +104,7 @@ public interface PapyrustableinstancePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PAPYRUS_TABLE_INSTANCE__IS_SYNCHRONIZED = 2;
+	int PAPYRUS_TABLE_INSTANCE__IS_SYNCHRONIZED = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Table</b></em>' reference.
@@ -103,7 +113,7 @@ public interface PapyrustableinstancePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PAPYRUS_TABLE_INSTANCE__TABLE = 3;
+	int PAPYRUS_TABLE_INSTANCE__TABLE = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Filling Queries</b></em>' reference list.
@@ -112,7 +122,7 @@ public interface PapyrustableinstancePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PAPYRUS_TABLE_INSTANCE__FILLING_QUERIES = 4;
+	int PAPYRUS_TABLE_INSTANCE__FILLING_QUERIES = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Papyrus Table Instance</em>' class.
@@ -121,7 +131,7 @@ public interface PapyrustableinstancePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PAPYRUS_TABLE_INSTANCE_FEATURE_COUNT = 5;
+	int PAPYRUS_TABLE_INSTANCE_FEATURE_COUNT = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 5;
 
 
 	/**

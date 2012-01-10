@@ -6,6 +6,7 @@
  */
 package org.eclipse.papyrus.infra.table.instance.papyrustableinstance.util;
 
+import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
@@ -73,6 +74,7 @@ public class PapyrustableinstanceSwitch<T> extends Switch<T> {
 			case PapyrustableinstancePackage.PAPYRUS_TABLE_INSTANCE: {
 				PapyrusTableInstance papyrusTableInstance = (PapyrusTableInstance)theEObject;
 				T result = casePapyrusTableInstance(papyrusTableInstance);
+				if (result == null) result = caseEModelElement(papyrusTableInstance);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -92,6 +94,21 @@ public class PapyrustableinstanceSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T casePapyrusTableInstance(PapyrusTableInstance object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>EModel Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>EModel Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseEModelElement(EModelElement object) {
 		return null;
 	}
 

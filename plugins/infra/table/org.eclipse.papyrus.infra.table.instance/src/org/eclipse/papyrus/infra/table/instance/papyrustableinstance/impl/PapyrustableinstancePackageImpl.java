@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.eclipse.emf.facet.infra.query.QueryPackage;
@@ -213,6 +214,7 @@ public class PapyrustableinstancePackageImpl extends EPackageImpl implements Pap
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
+		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 		Tableinstance2Package theTableinstance2Package = (Tableinstance2Package)EPackage.Registry.INSTANCE.getEPackage(Tableinstance2Package.eNS_URI);
 		QueryPackage theQueryPackage = (QueryPackage)EPackage.Registry.INSTANCE.getEPackage(QueryPackage.eNS_URI);
 
@@ -221,6 +223,7 @@ public class PapyrustableinstancePackageImpl extends EPackageImpl implements Pap
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
+		papyrusTableInstanceEClass.getESuperTypes().add(theEcorePackage.getEModelElement());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(papyrusTableInstanceEClass, PapyrusTableInstance.class, "PapyrusTableInstance", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

@@ -8,6 +8,7 @@ package org.eclipse.papyrus.infra.table.instance.papyrustableinstance;
 
 import org.eclipse.emf.common.util.EList;
 
+import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 
 import org.eclipse.emf.facet.infra.query.ModelQuery;
@@ -34,7 +35,7 @@ import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance2.TableInsta
  * @model
  * @generated
  */
-public interface PapyrusTableInstance extends EObject {
+public interface PapyrusTableInstance extends EModelElement {
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * The default value is <code>"no name"</code>.
