@@ -44,7 +44,7 @@ public class PropertyViewExtensionFactory extends FileBasedExtensionFactory {
 	protected IStatus result;
 
 	public PropertyViewExtensionFactory() {
-		super(Messages.PropertyViewExtensionFactory_PropertyView, "org.eclipse.papyrus.views.properties.Context", "contextModel", "context", true); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		super(Messages.PropertyViewExtensionFactory_PropertyView, "org.eclipse.papyrus.views.properties.context", "contextModel", "context", true); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 	}
 
 	@Override
