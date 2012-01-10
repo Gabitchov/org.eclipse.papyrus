@@ -1,5 +1,5 @@
 SVN=/usr/local/bin/svn
-promoteDirName=/opt/public/modeling/mdt/papyrus/papyrusBuildPromoteDirNameN
+promoteDirName=/opt/public/modeling/mdt/papyrus/papyrus-trunk-nightly/promoteDirName
 RELENG_PROJECT="sourceTree/releng/org.eclipse.mdt.papyrus.releng.buckminster"
 
 echo "building in " $WORKSPACE
