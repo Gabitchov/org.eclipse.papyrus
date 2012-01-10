@@ -1,0 +1,273 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description>Job for modeling.mdt.papyrus  project, dedicated to integration releases</description>
+  <logRotator>
+    <daysToKeep>-1</daysToKeep>
+    <numToKeep>5</numToKeep>
+    <artifactDaysToKeep>-1</artifactDaysToKeep>
+    <artifactNumToKeep>-1</artifactNumToKeep>
+  </logRotator>
+  <keepDependencies>false</keepDependencies>
+  <creationTime>0</creationTime>
+  <properties>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>PROJECTID</name>
+          <description>id of the project. This should always be modeling.mdt.papyrus</description>
+          <defaultValue>modeling.mdt.papyrus</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>VERSION</name>
+          <description>version number of the plugins</description>
+          <defaultValue>0.9.0</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.ChoiceParameterDefinition>
+          <name>BUCKMINSTER_LOGLEVEL</name>
+          <description>Logging level of information for buckminster</description>
+          <choices class="java.util.Arrays$ArrayList">
+            <a class="string-array">
+              <string>DEBUG</string>
+              <string>INFO</string>
+              <string>WARNING</string>
+              <string>ERROR</string>
+            </a>
+          </choices>
+        </hudson.model.ChoiceParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>CLEAN_TP</name>
+          <description>Indicates if the target platform should be clean. true by default</description>
+          <defaultValue>true</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>CLEAN_WORKSPACE</name>
+          <description>Indicates if the workspace should be clean. true by default</description>
+          <defaultValue>true</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>CLEAN_OUTPUT</name>
+          <description>Indicates if the output folder should be clean. true by default</description>
+          <defaultValue>true</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>CLEAN_TOOLS</name>
+          <description>Indicates if the tools should be cleaned</description>
+          <defaultValue>false</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
+        <hudson.model.ChoiceParameterDefinition>
+          <name>BUILD_TYPE</name>
+          <description>type of the release:&lt;ul&gt;
+&lt;li&gt;N: Nightly
+&lt;li&gt;M: Maintenance
+&lt;li&gt;R: release
+&lt;li&gt;S: Stable
+&lt;li&gt;I: Integration
+&lt;/ul&gt;
+Nightly builds won&apos;t be signed, contrary to other kind of builds.</description>
+          <choices class="java.util.Arrays$ArrayList">
+            <a class="string-array">
+              <string>N</string>
+              <string>M</string>
+              <string>R</string>
+              <string>S</string>
+              <string>I</string>
+            </a>
+          </choices>
+        </hudson.model.ChoiceParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>BUILD_ALIAS</name>
+          <description>the name of the release (0.8.0, 0.9.0M1, etc.); leave it blank for nightly and integration builds</description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.ChoiceParameterDefinition>
+          <name>BUILD_TARGET</name>
+          <description>&lt;ul&gt;
+&lt;li&gt;test : Launch the build of the tool and then the JUnit tests on the result
+&lt;li&gt;site.p2 : Launch the build of the tool only - no tests
+&lt;li&gt;provision : Gets only the material required to launch the build
+&lt;li&gt;promote.sites : Unused
+&lt;/ul&gt;</description>
+          <choices class="java.util.Arrays$ArrayList">
+            <a class="string-array">
+              <string>site.p2</string>
+              <string>test</string>
+              <string>provision</string>
+              <string>promote.sites</string>
+              <string>do.nothing</string>
+            </a>
+          </choices>
+        </hudson.model.ChoiceParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>SITE_PACK200</name>
+          <description>Pack the result jars in order to gain size and bandwidth for the eclipse download servers</description>
+          <defaultValue>true</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>JAVA_HOME</name>
+          <description>/shared/common/sun-jdk1.6.0_21_x64 || /shared/common/jdk-1.5.0-22.x86_64</description>
+          <defaultValue>/shared/common/jdk-1.5.0-22.x86_64</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>SIGN_UPDATE_SITE</name>
+          <description>Sign the update site</description>
+          <defaultValue>false</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+    <hudson.security.AuthorizationMatrixProperty>
+      <permission>hudson.model.Item.Build:ROLE_MODELING.MDT.PAPYRUS</permission>
+      <permission>hudson.model.Item.Build:nbros</permission>
+      <permission>hudson.model.Item.ExtendedRead:anonymous</permission>
+      <permission>hudson.model.Item.ExtendedRead:ROLE_MODELING.MDT.PAPYRUS</permission>
+      <permission>hudson.model.Item.ExtendedRead:nbros</permission>
+      <permission>hudson.model.Item.Read:anonymous</permission>
+      <permission>hudson.model.Item.Read:ROLE_MODELING.MDT.PAPYRUS</permission>
+      <permission>hudson.model.Item.Read:nbros</permission>
+      <permission>hudson.model.Item.Workspace:ROLE_MODELING.MDT.PAPYRUS</permission>
+      <permission>hudson.model.Item.Workspace:nbros</permission>
+      <permission>hudson.model.Run.Delete:ROLE_MODELING.MDT.PAPYRUS</permission>
+      <permission>hudson.model.Run.Delete:nbros</permission>
+      <permission>hudson.model.Run.Update:ROLE_MODELING.MDT.PAPYRUS</permission>
+      <permission>hudson.model.Run.Update:nbros</permission>
+      <permission>hudson.model.Item.Configure:ROLE_MODELING.MDT.PAPYRUS</permission>
+      <permission>hudson.model.Item.Configure:nbros</permission>
+    </hudson.security.AuthorizationMatrixProperty>
+    <hudson.plugins.disk__usage.DiskUsageProperty/>
+  </properties>
+  <scm class="hudson.scm.SubversionSCM">
+    <locations>
+      <hudson.scm.SubversionSCM_-ModuleLocation>
+        <remote>http://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/releng</remote>
+        <depthOption>infinity</depthOption>
+        <ignoreExternalsOption>false</ignoreExternalsOption>
+      </hudson.scm.SubversionSCM_-ModuleLocation>
+    </locations>
+    <excludedRegions></excludedRegions>
+    <includedRegions></includedRegions>
+    <excludedUsers></excludedUsers>
+    <excludedRevprop></excludedRevprop>
+    <excludedCommitMessages></excludedCommitMessages>
+    <workspaceUpdater class="hudson.scm.subversion.UpdateUpdater"/>
+  </scm>
+  <assignedNode>hudson-slave1</assignedNode>
+  <advancedAffinityChooser>false</advancedAffinityChooser>
+  <canRoam>false</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <jdk>Java 5 R 22 64bit (SUN)</jdk>
+  <triggers class="vector">
+    <hudson.triggers.TimerTrigger>
+      <spec>43 00 * * 1-6</spec>
+    </hudson.triggers.TimerTrigger>
+  </triggers>
+  <concurrentBuild>false</concurrentBuild>
+  <cleanWorkspaceRequired>false</cleanWorkspaceRequired>
+  <builders>
+    <hudson.tasks.Shell>
+      <command>SVN=/usr/local/bin/svn
+promoteDirName=/opt/public/modeling/mdt/papyrus/papyrusBuildPromoteDirNameI
+
+echo &quot;building in &quot; $WORKSPACE
+
+echo &quot;cleaning previous results&quot;
+rm -f ?20*.zip
+
+echo &quot;displaying java version&quot;
+java -version
+#ls -al /shared/common/jdk-1.5.0-22.x86_64/jre/bin
+
+:
+COMPACT_BUILD_ID=&quot;${BUILD_ID//[-_]}&quot;
+COMPACT_BUILD_ID=&quot;${COMPACT_BUILD_ID:0:12}&quot;
+FULL_BUILD_ID=${BUILD_TYPE}${COMPACT_BUILD_ID}
+echo $FULL_BUILD_ID &gt; $promoteDirName
+:
+</command>
+    </hudson.tasks.Shell>
+    <hudson.tasks.Ant>
+      <targets>${BUILD_TARGET}</targets>
+      <antName>apache-ant-1.7.1</antName>
+      <buildFile>${WORKSPACE}/releng/org.eclipse.mdt.papyrus.releng.buckminster/build.xml</buildFile>
+      <properties>server.build=true
+build.id=$BUILD_TAG
+ant.build.javac.target=1.5
+ant.build.javac.source=1.5
+site.signing=$SIGN_UPDATE_SITE</properties>
+    </hudson.tasks.Ant>
+    <hudson.tasks.Shell>
+      <command>rm -rf result/site.p2
+mkdir -p result
+cp -a ${WORKSPACE}/buildroot/result/output/org.eclipse.papyrus.build.feature_*-eclipse.feature/site.p2 result</command>
+    </hudson.tasks.Shell>
+    <hudson.tasks.Shell>
+      <command>#publishing script#
+promoteSignal=/opt/public/modeling/mdt/papyrus/papyrusBuildPromoteSignalN
+promoteVersion=/opt/public/modeling/mdt/papyrus/papyrusBuildPromoteVersionN
+promoteDirName=/opt/public/modeling/mdt/papyrus/papyrusBuildPromoteDirNameN
+lastBuildLogFile=/opt/public/modeling/mdt/papyrus/lastBuildLogN
+
+FULL_BUILD_ID=$(cat /opt/public/modeling/mdt/papyrus/papyrusBuildPromoteDirNameN)
+
+if [ -n &quot;$BUILD_ALIAS&quot; ]; then
+  zipName=Papyrus-Update-${BUILD_ALIAS}.zip
+else
+  zipName=Papyrus-Update-${FULL_BUILD_ID}.zip
+fi
+
+rm -rf ${WORKSPACE}/tmp
+mkdir -p &quot;${WORKSPACE}/tmp/$FULL_BUILD_ID&quot;
+
+cd result/site.p2
+zip -r $zipName *
+mv $zipName &quot;${WORKSPACE}/tmp/$FULL_BUILD_ID&quot;
+
+# copy the psf generated file to the tmp dir
+cp ${WORKSPACE}/buildroot/result/*.psf &quot;${WORKSPACE}/tmp/$FULL_BUILD_ID&quot;
+
+# copy tests results
+if [ -e ${WORKSPACE}/result/testresults ]; then
+  mkdir ${WORKSPACE}/tmp/$FULL_BUILD_ID/testresults
+  cp -r ${WORKSPACE}/result/testresults/ &quot;${WORKSPACE}/tmp/$FULL_BUILD_ID&quot;
+fi
+
+# copy the build log to the result
+#wget --quiet --no-check-certificate https://hudson.eclipse.org/hudson/job/cbi-papyrus-integration/${BUILD_NUMBER}/consoleText -O &quot;$lastBuildLogFile&quot;
+wget --quiet --no-check-certificate ${HUDSON_URL}/job/${JOB_NAME}/${BUILD_NUMBER}/consoleText -O &quot;$lastBuildLogFile&quot;
+
+cp &quot;$lastBuildLogFile&quot; &quot;${WORKSPACE}/tmp/$FULL_BUILD_ID/buildlog.txt&quot;
+
+cd ${WORKSPACE}/tmp
+zip -r ${FULL_BUILD_ID}.zip *
+cd ..
+mv tmp/${FULL_BUILD_ID}.zip ${WORKSPACE}
+
+echo ${FULL_BUILD_ID} &gt; $promoteSignal
+echo $VERSION &gt; $promoteVersion
+</command>
+    </hudson.tasks.Shell>
+  </builders>
+  <publishers>
+    <hudson.tasks.ArtifactArchiver>
+      <artifacts>*.zip</artifacts>
+      <compressionType>GZIP</compressionType>
+      <latestOnly>false</latestOnly>
+      <autoValidateFileMask>false</autoValidateFileMask>
+    </hudson.tasks.ArtifactArchiver>
+    <hudson.tasks.Mailer>
+      <recipients>chokri.mraidha@cea.fr patrick.tessier@cea.fr mathieu.velten@atos.net vincent.lorenzo@cea.fr</recipients>
+      <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
+      <sendToIndividuals>false</sendToIndividuals>
+    </hudson.tasks.Mailer>
+  </publishers>
+  <buildWrappers>
+    <hudson.plugins.xvnc.Xvnc>
+      <takeScreenshot>false</takeScreenshot>
+    </hudson.plugins.xvnc.Xvnc>
+    <hudson.plugins.build__timeout.BuildTimeoutWrapper>
+      <timeoutMinutes>240</timeoutMinutes>
+      <failBuild>true</failBuild>
+    </hudson.plugins.build__timeout.BuildTimeoutWrapper>
+  </buildWrappers>
+</project>
