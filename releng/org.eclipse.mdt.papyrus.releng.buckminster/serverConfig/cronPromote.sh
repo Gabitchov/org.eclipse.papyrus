@@ -75,7 +75,7 @@ if [ $signalDateTrunkNightly -gt $lastPromoteDateTrunkNightly ]; then
 	
 	buildsDir="$DROPS_DIR/$version"
 	echo "[$DATE] pruning old builds"
-	prune N "$buildsDir" 4
+	#prune N "$buildsDir" 4
 
 	nfsURL="/shared/jobs/papyrus-trunk-nightly/lastSuccessful/archive/"
 	hudsonURL="https://hudson.eclipse.org/hudson/job/papyrus-trunk-nightly/lastSuccessfulBuild/artifact/"
