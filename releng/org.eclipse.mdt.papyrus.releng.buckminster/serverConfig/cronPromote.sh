@@ -75,12 +75,33 @@ if [ $signalDateTrunkNightly -gt $lastPromoteDateTrunkNightly ]; then
 	
 	buildsDir="$DROPS_DIR/$version"
 	echo "[$DATE] pruning old builds"
-	#prune N "$buildsDir" 4
+	prune N "$buildsDir" 4
 
 	nfsURL="/shared/jobs/papyrus-trunk-nightly/lastSuccessful/archive/"
 	hudsonURL="https://hudson.eclipse.org/hudson/job/papyrus-trunk-nightly/lastSuccessfulBuild/artifact/"
 	export SVN_DIRECTORIES_TO_TAG=( )
 	promote "$zipName" "$version" "$nfsURL" "$hudsonURL" "$DROPS_DIR" "$ARCHIVE_DIR" "$ARCHIVE_INDEX" "$UPDATES_TRUNK_NIGHTLY" "Papyrus-Update-" "NA"
+
+	echo "[$DATE] done"
+fi
+
+if [ $signalDateMaintenanceNightly -gt $lastPromoteDateMaintenanceNightly ]; then
+	# mark the promote as done
+	touch "$LAST_PROMOTE_FILE_MAINTENANCE_NIGHTLY"
+	zipName=$(cat "$PROMOTE_SIGNAL_MAINTENANCE_NIGHTLY").zip
+	version=$(cat "$PROMOTE_VERSION_MAINTENANCE_NIGHTLY")
+	
+	echo "[$DATE] deleting previous nightly update site"
+	rm -rf "$UPDATES_MAINTENANCE_NIGHTLY"
+	
+	buildsDir="$DROPS_DIR/$version"
+	echo "[$DATE] pruning old builds"
+	prune N "$buildsDir" 4
+
+	nfsURL="/shared/jobs/papyrus-0.8-maintenance-nightly/lastSuccessful/archive/"
+	hudsonURL="https://hudson.eclipse.org/hudson/job/papyrus-0.8-maintenance-nightly/lastSuccessfulBuild/artifact/"
+	export SVN_DIRECTORIES_TO_TAG=( )
+	promote "$zipName" "$version" "$nfsURL" "$hudsonURL" "$DROPS_DIR" "$ARCHIVE_DIR" "$ARCHIVE_INDEX" "$UPDATES_MAINTENANCE_NIGHTLY" "Papyrus-Update-" "NA"
 
 	echo "[$DATE] done"
 fi
