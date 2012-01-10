@@ -51,18 +51,18 @@ function promote() {
 	
 	dirBefore=$(pwd)
 	
-	[[ "$_zipName" =~ ^[NIMSR]20[0-9]{10}\.zip$ ]] || (echo "incorrect parameter: zipName"; exit 1)
-	[[ "$_version" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]] || (echo "incorrect parameter: version"; exit 1)
-	[[ "$_nfsBaseDir" =~ ^/shared/jobs/.*$ ]] || (echo "incorrect parameter: nfsBaseDir"; exit 1)
-	[[ "$_hudsonBaseURL" =~ ^https://hudson\.eclipse\.org/hudson/job/.*$ ]] || (echo "incorrect parameter: hudsonBaseURL"; exit 1)
-	[[ "$_dropsDir" =~ ^/home/data/httpd/download\.eclipse\.org/.*$ ]] || (echo "incorrect parameter: dropsDir"; exit 1)
-	[[ "$_archiveDir" =~ ^/home/data/httpd/archive\.eclipse\.org/.*$ ]] || (echo "incorrect parameter: archiveDir"; exit 1)
-	[[ "$_archiveIndex" =~ ^/home/data/httpd/archive\.eclipse\.org/.*?/index\.html$ ]] || (echo "incorrect parameter: archiveIndex"; exit 1)
-	[[ "$_updateSite" =~ ^/home/data/httpd/download\.eclipse\.org/.*$ ]] || (echo "incorrect parameter: updateSite"; exit 1)
-	[ -n "$_updateZipPrefix" ] || (echo "empty parameter: updateZipPrefix"; exit 1)
-	[[ "$_branchToTag" =~ ^trunk|branches/[0-9]+_[0-9]+|NA$ ]] || (echo "incorrect parameter: branchToTag"; exit 1)
+	[[ "$_zipName" =~ ^[NIMSR]20[0-9]{10}\.zip$ ]] || { echo "incorrect parameter: zipName"; exit 1; }
+	[[ "$_version" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]] || { echo "incorrect parameter: version"; exit 1; }
+	[[ "$_nfsBaseDir" =~ ^/shared/jobs/.*$ ]] || { echo "incorrect parameter: nfsBaseDir"; exit 1; }
+	[[ "$_hudsonBaseURL" =~ ^https://hudson\.eclipse\.org/hudson/job/.*$ ]] || { echo "incorrect parameter: hudsonBaseURL"; exit 1; }
+	[[ "$_dropsDir" =~ ^/home/data/httpd/download\.eclipse\.org/.*$ ]] || { echo "incorrect parameter: dropsDir"; exit 1; }
+	[[ "$_archiveDir" =~ ^/home/data/httpd/archive\.eclipse\.org/.*$ ]] || { echo "incorrect parameter: archiveDir"; exit 1; }
+	[[ "$_archiveIndex" =~ ^/home/data/httpd/archive\.eclipse\.org/.*?/index\.html$ ]] || { echo "incorrect parameter: archiveIndex"; exit 1; }
+	[[ "$_updateSite" =~ ^/home/data/httpd/download\.eclipse\.org/.*$ ]] || { echo "incorrect parameter: updateSite"; exit 1; }
+	[ -n "$_updateZipPrefix" ] || { echo "empty parameter: updateZipPrefix"; exit 1; }
+	[[ "$_branchToTag" =~ ^trunk|branches/[0-9]+_[0-9]+|NA$ ]] || { echo "incorrect parameter: branchToTag"; exit 1; }
 	for (( i = 0 ; i < ${#SVN_DIRECTORIES_TO_TAG[*]} ; i++ )); do
-		[[ "${SVN_DIRECTORIES_TO_TAG[$i]}" =~ ^/svnroot/.*$ ]] || (echo "incorrect variable: SVN_DIRECTORIES_TO_TAG"; exit 1)
+		[[ "${SVN_DIRECTORIES_TO_TAG[$i]}" =~ ^/svnroot/.*$ ]] || { echo "incorrect variable: SVN_DIRECTORIES_TO_TAG"; exit 1; }
 	done
 		
 	echo "[$DATE] creating working dir"
@@ -80,12 +80,12 @@ function promote() {
 	echo "[$DATE] publishing build (version='$_version') to the builds directory '$buildsDir'..."
 	unzip -o "$_zipName" -d "$buildsDir"
 	echo "[$DATE] publishing build (version='$_version') to the update site '$_updateSite'..."
-	[ -d "$_updateSite" ] && (echo "Error: update site directory already exists"; exit 1)
+	[ -d "$_updateSite" ] && { echo "Error: update site directory already exists"; exit 1 }
 	# extract the zip in which there is the update site zip to a tmp dir
 	tmpDrop=$(mktemp -d)
 	unzip "$_zipName" -d "$tmpDrop"
 	dirNameInZip=$(ls -1 "$tmpDrop")
-	[ $(echo "$dirNameInZip" | wc -l) == 1 ] || (echo "one directory expected in zip"; exit 1)
+	[ $(echo "$dirNameInZip" | wc -l) == 1 ] || { echo "one directory expected in zip"; exit 1 }
 	updateSiteZipName=$(basename $(ls -1 "$tmpDrop/$dirNameInZip/${_updateZipPrefix}"*.zip))
 	unzip -o "$tmpDrop/$dirNameInZip/${updateSiteZipName}" -d "$_updateSite"
 	#echo "[$DATE] adding index.php"
