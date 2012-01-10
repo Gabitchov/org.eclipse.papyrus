@@ -15,21 +15,23 @@ else
   zipName=Papyrus-Update-${FULL_BUILD_ID}.zip
 fi
 
-rm -rf ${WORKSPACE}/tmp
-mkdir -p "${WORKSPACE}/tmp/$FULL_BUILD_ID"
+rm -rf tmp
+mkdir -p "tmp/$FULL_BUILD_ID"
 
 # create the update site zip
 (cd $p2UpdateSiteDir && zip -r $zipName *)
-mv "$p2UpdateSiteDir/$zipName" "${WORKSPACE}/tmp/$FULL_BUILD_ID"
+mv "$p2UpdateSiteDir/$zipName" "tmp/$FULL_BUILD_ID"
 
 # copy the generated psf files to the tmp dir
-cp ${WORKSPACE}/buildroot/result/*.psf "${WORKSPACE}/tmp/$FULL_BUILD_ID"
+cp buildroot/result/*.psf "tmp/$FULL_BUILD_ID"
 
 # copy tests results
-if [ -e ${WORKSPACE}/buildroot/result/testresults ]; then
-  mkdir ${WORKSPACE}/tmp/$FULL_BUILD_ID/testresults
-  cp -r ${WORKSPACE}/buildroot/result/testresults/ "${WORKSPACE}/tmp/$FULL_BUILD_ID"
+if [ -e buildroot/result/testresults ]; then
+  mkdir tmp/$FULL_BUILD_ID/testresults
+  cp -r buildroot/result/testresults/ "tmp/$FULL_BUILD_ID"
 fi
+
+mv revision.txt "tmp/$FULL_BUILD_ID"
 
 # copy the build log into the result
 wget --quiet --no-check-certificate ${HUDSON_URL}/job/${JOB_NAME}/${BUILD_NUMBER}/consoleText -O "$lastBuildLogFile"
