@@ -17,12 +17,6 @@
       [Enter License Description here.]
    </license>
 
-   <!-- this is a "binaries and sources" feature, so it contains the binaries as well -->
-   <includes
-         id="org.eclipse.papyrus.sdk.feature"
-         version="0.0.0"/>
-
-   <!-- below this line, copy all features from org.eclipse.papyrus.sdk.feature and replace ".feature" by ".source.feature" -->
    <includes
          id="org.eclipse.papyrus.customization.source.feature"
          version="0.0.0"/>
@@ -130,6 +124,5 @@
    <includes
          id="org.eclipse.papyrus.infra.emf.source.feature"
          version="0.0.0"/>
-
 
 </feature>
