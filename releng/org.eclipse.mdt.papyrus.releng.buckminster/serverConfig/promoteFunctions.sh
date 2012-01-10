@@ -93,7 +93,7 @@ function promote() {
 	echo "[$DATE] enabling download statistics"
 	$ADD_DOWNLOAD_STATS "$_updateSite"
 	echo "[$DATE] setting access rights"
-	chmod -R 755 "$buildsDir"
+	chmod -R 755 "$buildsDir"/${_zipName/%\.zip/}
 	chmod -R 755 "$_updateSite"
 	
 	# copy milestone and release builds to the archive, and tag the build
