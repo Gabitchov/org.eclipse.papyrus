@@ -22,7 +22,7 @@
   
   		<rm:provider componentTypes="osgi.bundle" readerType="local">
 			<rm:uri format="{0}/plugins/{1}">
-				<bc:propertyRef key="repository.local" />
+				<bc:propertyRef key="local.repository" />
 				<bc:propertyRef key="buckminster.component" />
 			</rm:uri>
 		</rm:provider>
