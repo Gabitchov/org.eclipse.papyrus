@@ -7,6 +7,7 @@
     
     <!-- all the source features are generated during the build ( but org.eclipse.papyrus.sdk.sources.feature must be materialized ) -->
     <cq:advisorNode namePattern="^org\.eclipse\.papyrus\..*\.source\.feature$" skipComponent="true"/>
+    <cq:advisorNode namePattern="^org\.eclipse\.papyrus\..*\.source$" skipComponent="true"/>
     
     <cq:advisorNode namePattern=".*doc\.isv" skipComponent="true"/>
     <cq:advisorNode namePattern=".*doc\.user" skipComponent="true"/>
