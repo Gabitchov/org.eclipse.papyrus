@@ -18,22 +18,6 @@
    </license>
 
    <includes
-         id="org.eclipse.papyrus.tests.infra.core.feature"
-         version="0.0.0"/>
-
-   <includes
-         id="org.eclipse.papyrus.tests.infra.feature"
-         version="0.0.0"/>
-
-   <includes
-         id="org.eclipse.papyrus.tests.infra.queries.feature"
-         version="0.0.0"/>
-
-   <includes
-         id="org.eclipse.papyrus.tests.infra.services.feature"
-         version="0.0.0"/>
-
-   <includes
          id="org.eclipse.papyrus.tests.uml.diagram.feature"
          version="0.0.0"/>
 
