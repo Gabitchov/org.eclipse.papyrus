@@ -16,5 +16,5 @@ mailRecipients="nbros.mia@gmail.com camille.letavernier@cea.fr patrick.tessier@c
 bash -x "$cronPromoteScript" 2>&1 | tee "$logFile"
 if [ ${PIPESTATUS[0]} != 0 ]; then
 	echo "promote failed : sending mail"
-	cat $logFile | mail -s "[Papyrus build promotion] build promotion failed" $mailRecipients
+	(echo "This is an automatically generated message sent because the build promotion script 'cronPromote.sh' running on build.eclipse.org failed." && echo && cat $logFile) | mail -s "[Papyrus build promotion] build promotion failed" $mailRecipients
 fi
