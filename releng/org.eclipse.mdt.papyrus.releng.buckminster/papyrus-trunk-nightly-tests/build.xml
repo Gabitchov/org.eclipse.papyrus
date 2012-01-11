@@ -205,7 +205,8 @@
 	</target>
 
 	<target name="init.workspace" unless="workspace.exists">
-		<mkdir dir="${workspace}" />
+		<echo>creating new workspace from template</echo>
+		<unzip dest="${workspace}" src="${build.config.root.dir}/resources/workspace.template.zip"/>
 	</target>
 
 	<target name="init.build.properties">
