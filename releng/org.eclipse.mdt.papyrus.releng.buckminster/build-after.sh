@@ -20,7 +20,7 @@ mkdir -p "tmp/$FULL_BUILD_ID"
 
 # create the update site zip
 (cd $p2UpdateSiteDir && zip -r $zipName *)
-mv "$p2UpdateSiteDir/$zipName" "tmp/$FULL_BUILD_ID"
+mv $p2UpdateSiteDir/$zipName "tmp/$FULL_BUILD_ID"
 
 # copy the generated psf files to the tmp dir
 cp buildroot/result/*.psf "tmp/$FULL_BUILD_ID"
