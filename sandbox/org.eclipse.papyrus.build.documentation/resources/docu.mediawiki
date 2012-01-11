@@ -75,11 +75,23 @@ The papyrus releng project is called : '''org.eclipse.mdt.papyrus.releng.buckmin
 TODO
 
 
+=== optimizing the rmap ===
+The Buckminster import is very slow (more than one hour and a half) when it does the SVN checkout itself. To optimize it, we let Hudson do the checkout, and we then tell Buckminster to use the locally checked out files.
 
+So, instead of this configuration in the rmap:
+ <rm:provider componentTypes="osgi.bundle" readerType="svn">
+   <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/plugins/core/{1}">
+     <bc:propertyRef key="svn.repository"/>
+     <bc:propertyRef key="buckminster.component"/>
+   </rm:uri>
+ </rm:provider>
 
+We now use the "local" reader:
+ <rm:provider componentTypes="osgi.bundle" readerType="local">
+   <rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/trunk/plugins/core/{1}">
+     <bc:propertyRef key="local.repository"/>
+     <bc:propertyRef key="buckminster.component"/>
+   </rm:uri>
+ </rm:provider>
 
-
-
-
-	
 
