@@ -18,11 +18,11 @@
    </license>
 
    <includes
-         id="org.eclipse.papyrus.test.feature"
+         id="org.eclipse.papyrus.tests.sources.feature"
          version="0.0.0"/>
 
    <includes
-         id="org.eclipse.papyrus.tests.sources.feature"
+         id="org.eclipse.papyrus.tests.feature"
          version="0.0.0"/>
 
 </feature>
