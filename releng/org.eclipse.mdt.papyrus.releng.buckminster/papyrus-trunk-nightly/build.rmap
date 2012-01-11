@@ -304,7 +304,7 @@
      
      <!-- feature -->
     <rm:provider componentTypes="eclipse.feature" readerType="local">
-      <rm:uri format="{0}/features/{1}">
+      <rm:uri format="{0}/features/papyrus-main-features/{1}">
         <bc:propertyRef key="local.repository"/>
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
