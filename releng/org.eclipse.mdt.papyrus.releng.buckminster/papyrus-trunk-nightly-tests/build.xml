@@ -256,32 +256,16 @@
 		</buckminster>
 	</target>
 
-	<target name="site.p2" depends="provision" unless="skip.site.p2">
+	<target name="build" depends="provision" unless="skip.build">
 		<echo message="Building all projects in workspace ${workspace}" />
 		<buckminster command="build">
 			<cmdargs>
 				<arg value="--thorough" />
 			</cmdargs>
 		</buckminster>
-
-		<echo message="Performing org.eclipse.papyrus.build.feature#site.p2" />
-		<buckminster command="perform">
-			<cmdargs>
-				<arg value="org.eclipse.papyrus.build.feature#site.p2" />
-			</cmdargs>
-		</buckminster>
-
-		<!-- Find the created update site directory -->
-
-		<pathconvert property="site.p2.dir">
-			<first count="1">
-				<dirset dir="${buckminster.output.root}" includes="org.eclipse.papyrus.build.feature_*/site.p2" />
-			</first>
-		</pathconvert>
-	
 	</target>
 	
-	<target name="test" depends="site.p2" unless="skip.tests">
+	<target name="test" depends="build" unless="skip.tests">
 		<echo message="Running JUnit tests" />
 		<mkdir dir="${result}/testresults/" />
 		<mkdir dir="${result}/testresults/xml" />
