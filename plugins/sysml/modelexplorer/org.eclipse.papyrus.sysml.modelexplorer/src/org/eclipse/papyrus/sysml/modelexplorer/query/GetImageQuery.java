@@ -21,15 +21,16 @@ public class GetImageQuery implements IJavaModelQuery<Element, String> {
 
 			if(!first_stereotype.getIcons().isEmpty()) {
 				org.eclipse.uml2.uml.Image icon = ElementUtil.getStereotypeImage(context, first_stereotype, "icon");
-				if (icon != null) {
-					icon_path =  icon.getLocation();
+				if(icon != null) {
+					icon_path = icon.getLocation();
 				}
 			}
 		}
 
 		String image_path = "";
-		URI iconURI = URI.createURI(icon_path);
+
 		if(!"".equals(icon_path)) {
+			URI iconURI = URI.createURI(icon_path);
 			if(iconURI.isRelative()) {
 				image_path = sysml_plugin_path + icon_path;
 			} else {
