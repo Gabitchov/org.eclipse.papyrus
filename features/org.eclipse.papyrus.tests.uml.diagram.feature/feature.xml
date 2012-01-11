@@ -18,7 +18,7 @@
    </license>
 
    <plugin
-         id="org.eclipse.papyrus.diagram.clazz.test"
+         id="org.eclipse.papyrus.diagram.clazz.tests"
          download-size="0"
          install-size="0"
          version="0.0.0"
