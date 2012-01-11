@@ -253,11 +253,18 @@ public class TestTopNode extends AbstractPapyrusTestCase {
 	 * @param containerType the container type
 	 */
 	public void testToManageTopNode(IElementType type, IElementType containerType) {
+		int i=0;
+		System.out.println(" print :" + (i++));
 		testToCreateANode(type);
+		System.out.println(" print :" + (i++));
 		testDestroy(type);
+		System.out.println(" print :" + (i++));
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().undo();
+		System.out.println(" print :" + (i++));
 		testViewDeletion(type);
+		System.out.println(" print :" + (i++));
 		testDrop(type);
+		System.out.println(" print :" + (i++));
 		testChangeContainer(type, containerType);
 	}
 
