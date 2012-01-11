@@ -1,7 +1,8 @@
 <?xml version="1.0"?>
 <project name="Papyrus">
 	
-	<property name="build.config.dir" location="papyrus-trunk-nightly" />
+	<property name="build.config.dir" location="." />
+	<echo message="build.config.dir=${build.config.dir}" />
 
 	<condition property="properties.file" value="build.properties" else="local.properties">
 		<isset property="server.build" />
