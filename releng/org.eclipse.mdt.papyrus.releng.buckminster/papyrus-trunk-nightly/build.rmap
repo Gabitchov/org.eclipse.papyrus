@@ -10,7 +10,7 @@
   <!-- Papyrus Releng projects -->
   <rm:searchPath name="releng">
     <rm:provider componentTypes="buckminster,osgi.bundle" readerType="local">
-      <rm:uri format="{0}/releng/{1}">
+      <rm:uri format="{0}/releng/{1}/papyrus-trunk-nightly">
         <bc:propertyRef key="local.repository"/>
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
