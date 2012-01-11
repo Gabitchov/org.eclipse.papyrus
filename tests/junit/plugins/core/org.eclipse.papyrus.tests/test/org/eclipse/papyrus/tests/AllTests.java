@@ -16,7 +16,6 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.papyrus.sysml.tests.SysmlAllTests;
 import org.eclipse.papyrus.tests.launcher.FragmentTestSuiteClass;
 import org.eclipse.papyrus.tests.launcher.ITestSuiteClass;
 import org.eclipse.papyrus.tests.launcher.PluginTestSuiteClass;
@@ -41,15 +40,16 @@ public class AllTests {
 		// {oep}.sasheditor.tests
 		new FragmentTestSuiteClass(org.eclipse.papyrus.infra.core.sasheditor.Activator.PLUGIN_ID, "org.eclipse.papyrus.sasheditor.tests.AllTests"),
 		// {oep}.core.resourceloading.tests
-		new FragmentTestSuiteClass(org.eclipse.papyrus.infra.services.resourceloading.Activator.PLUGIN_ID, "org.eclipse.papyrus.core.resourceloading.tests.AllTests"),
+//		new FragmentTestSuiteClass(org.eclipse.papyrus.infra.services.resourceloading.Activator.PLUGIN_ID, "org.eclipse.papyrus.core.resourceloading.tests.AllTests"),
 
 		/* uml */
 		// {oep}.diagram.common.tests
 		new FragmentTestSuiteClass(org.eclipse.papyrus.uml.diagram.common.Activator.ID, "org.eclipse.papyrus.diagram.common.tests.AllTests"),
 		// {oep}.diagram.clazz.tests
-		new PluginTestSuiteClass(org.eclipse.papyrus.diagram.clazz.test.AllTests.class),
-		// {oep}.sysml.tests
-		new PluginTestSuiteClass(SysmlAllTests.class)
+		new PluginTestSuiteClass(org.eclipse.papyrus.diagram.clazz.test.AllTests.class)
+//		,
+//		// {oep}.sysml.tests
+//		new PluginTestSuiteClass(SysmlAllTests.class)
 
 		//end
 		);
