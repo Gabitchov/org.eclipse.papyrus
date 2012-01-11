@@ -25,6 +25,8 @@
          search-location="both"/>
 
    <requires>
+      <import plugin="org.eclipse.platform"/>
+      <import plugin="org.eclipse.equinox.app"/>
       <import feature="org.eclipse.cvs" version="1.1.0" match="greaterOrEqual"/>
       <import feature="org.eclipse.equinox.p2.user.ui" version="1.1.0" match="greaterOrEqual"/>
       <import feature="org.eclipse.help" version="1.1.0" match="greaterOrEqual"/>
@@ -32,28 +34,31 @@
       <import feature="org.eclipse.pde" version="3.6.0" match="greaterOrEqual"/>
       <import feature="org.eclipse.sdk" version="3.6.0" match="greaterOrEqual"/>
       <import feature="org.eclipse.rcp" version="3.6.0" match="greaterOrEqual"/>
-      <import feature="org.eclipse.mylyn.ide_feature"/>
-      <import feature="org.eclipse.mylyn.java_feature"/>
-      <import feature="org.eclipse.mylyn.pde_feature"/>
-      <import feature="org.eclipse.mylyn.bugzilla_feature"/>
-      <import feature="org.eclipse.mylyn.context_feature"/>
-      <import feature="org.eclipse.mylyn_feature"/>
-      <import feature="org.eclipse.mylyn.wikitext_feature"/>
-      <import feature="org.eclipse.emf.sdk"/>
-      <import feature="org.eclipse.gef.sdk"/>
-      <import feature="org.eclipse.uml2.sdk"/>
-      <import feature="org.eclipse.ocl.all.sdk"/>
-      <import feature="org.eclipse.emf.transaction.sdk"/>
-      <import feature="org.eclipse.emf.ecoretools.sdk"/>
-      <import feature="org.eclipse.emf.query.sdk"/>
-      <import feature="org.eclipse.xsd.sdk"/>
-      <import feature="org.eclipse.emf.validation.sdk"/>
-      <import feature="org.eclipse.emf.mint.sdk"/>
-      <import feature="org.eclipse.emf.compare.sdk"/>
-      <import feature="org.eclipse.amalgam.discovery"/>
-      <import feature="org.eclipse.emf.cdo.epp"/>
-      <import feature="org.eclipse.epp.package.common.feature"/>
-      <import feature="org.eclipse.papyrus.sdk" version="0.7.1" match="greaterOrEqual"/>
+      <import feature="org.eclipse.papyrus" version="0.8.1.v201109161105"/>
+      <import feature="org.eclipse.papyrus.backbone" version="0.8.1.v201109161105"/>
+      <import feature="org.eclipse.papyrus.customization" version="0.8.1.v201109161105"/>
+      <import feature="org.eclipse.papyrus.diagram.activity" version="0.8.1.v201109161105"/>
+      <import feature="org.eclipse.papyrus.diagram.blockdefinition" version="0.8.1.v201109161105"/>
+      <import feature="org.eclipse.papyrus.diagram.clazz" version="0.8.1.v201109161105"/>
+      <import feature="org.eclipse.papyrus.diagram.communication" version="0.8.1.v201109161105"/>
+      <import feature="org.eclipse.papyrus.diagram.component" version="0.8.1.v201109161105"/>
+      <import feature="org.eclipse.papyrus.diagram.composite" version="0.8.1.v201109161105"/>
+      <import feature="org.eclipse.papyrus.diagram.deployment" version="0.8.1.v201109161105"/>
+      <import feature="org.eclipse.papyrus.diagram.internalblock" version="0.8.1.v201109161105"/>
+      <import feature="org.eclipse.papyrus.diagram.menu" version="0.8.1.v201109161105"/>
+      <import feature="org.eclipse.papyrus.diagram.parametric" version="0.8.1.v201109161105"/>
+      <import feature="org.eclipse.papyrus.diagram.profile" version="0.8.1.v201109161105"/>
+      <import feature="org.eclipse.papyrus.diagram.requirement" version="0.8.1.v201109161105"/>
+      <import feature="org.eclipse.papyrus.diagram.sequence" version="0.8.1.v201109161105"/>
+      <import feature="org.eclipse.papyrus.diagram.statemachine" version="0.8.1.v201109161105"/>
+      <import feature="org.eclipse.papyrus.diagram.usecase" version="0.8.1.v201109161105"/>
+      <import feature="org.eclipse.papyrus.layouttool" version="0.8.1.v201109161105"/>
+      <import feature="org.eclipse.papyrus.profiletool" version="0.8.1.v201109161105"/>
+      <import feature="org.eclipse.papyrus.sysml" version="0.8.1.v201109161105"/>
+      <import feature="org.eclipse.papyrus.uml" version="0.8.1.v201109161105"/>
+      <import feature="org.eclipse.papyrus.uml.diagram.pkg" version="0.8.1.v201109161105"/>
+      <import feature="org.eclipse.papyrus.xtext.integration" version="0.8.1.v201109161105"/>
+      <import feature="org.eclipse.papyrus.xtext.uml" version="0.8.1.v201109161105"/>
    </requires>
 
    <plugin

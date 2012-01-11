@@ -19,7 +19,9 @@
 256M</programArgsWin>
       <vmArgs>-Dosgi.requiredJavaVersion=1.5
 -Xms40m
--Xmx512m</vmArgs>
+-Xmx1024m
+-XX:PermSize=32m 
+-XX:MaxPermSize=128m</vmArgs>
       <vmArgsLin>-XX:MaxPermSize=256m</vmArgsLin>
       <vmArgsMac>-XstartOnFirstThread -Dorg.eclipse.swt.internal.carbon.smallFonts
 -XX:MaxPermSize=256m</vmArgsMac>
@@ -36,13 +38,22 @@
       </win>
    </launcher>
 
-
    <vm>
       <linux include="true">org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/J2SE-1.5</linux>
       <macos include="true">org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/J2SE-1.5</macos>
       <solaris include="true">org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/J2SE-1.5</solaris>
       <windows include="true">org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/J2SE-1.5</windows>
    </vm>
+
+   <license>
+        <text>
+   Copyright (c) 2011 CEA LIST.
+All rights reserved.
+This code is the property of CEA LIST, this use is subject to specific agreement with the CEA LIST.
+Contributors:
+CEA LIST. - initial API and implementation
+         </text>
+   </license>
 
    <plugins>
       <plugin id="org.eclipse.epp.package.modeling"/>
