@@ -3,6 +3,7 @@
   <rm:property key="build.type" mutable="true" value="N"/>
   <rm:locator pattern="^org\.eclipse\.mdt\.papyrus\.releng.*" searchPathRef="releng"/>
   <rm:locator failOnError="true" pattern="^org\.eclipse\.papyrus\..*?\.tests?$" searchPathRef="papyrusTests"/>
+  <rm:locator failOnError="true" pattern="^org\.eclipse\.papyrus\..*?\.tests?\.feature$" searchPathRef="papyrusTests"/>
   <rm:locator failOnError="true" pattern="^org\.eclipse\.papyrus\..*" searchPathRef="papyrusBinaries"/>
   <rm:locator failOnError="true" pattern="^org\.eclipse\.xtext\.gmf\.glue.*" searchPathRef="papyrusBinaries"/>
   
@@ -22,6 +23,13 @@
   <!-- Papyrus test sources -->
   <rm:searchPath name="papyrusTests">
   
+    <rm:provider componentTypes="eclipse.feature" readerType="local">
+      <rm:uri format="{0}/features/{1}">
+        <bc:propertyRef key="local.repository"/>
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
+    
     <rm:provider componentTypes="osgi.bundle" readerType="local">
       <rm:uri format="{0}/tests/junit/plugins/core/{1}">
         <bc:propertyRef key="local.repository"/>
@@ -38,6 +46,13 @@
     
     <rm:provider componentTypes="osgi.bundle" readerType="local">
       <rm:uri format="{0}/tests/junit/plugins/uml/{1}">
+        <bc:propertyRef key="local.repository"/>
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
+    
+    <rm:provider componentTypes="osgi.bundle" readerType="local">
+      <rm:uri format="{0}/tests/junit/plugins/uml/diagram/{1}">
         <bc:propertyRef key="local.repository"/>
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
