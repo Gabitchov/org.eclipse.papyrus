@@ -82,7 +82,10 @@ if [ $signalDateTrunkNightly -gt $lastPromoteDateTrunkNightly ]; then
 	export SVN_DIRECTORIES_TO_TAG=( )
 	promote "$zipName" "$version" "$nfsURL" "$hudsonURL" "$DROPS_DIR" "$ARCHIVE_DIR" "$ARCHIVE_INDEX" "$UPDATES_TRUNK_NIGHTLY" "Papyrus-Update-" "NA"
 
-	echo "[$DATE] done"
+	echo "[$DATE] promote done"
+	
+	echo "[$DATE] triggering Hudson tests build"
+	curl https://hudson.eclipse.org/hudson/job/papyrus-trunk-nightly-tests/buildWithParameters?token=token
 fi
 
 if [ $signalDateMaintenanceNightly -gt $lastPromoteDateMaintenanceNightly ]; then
