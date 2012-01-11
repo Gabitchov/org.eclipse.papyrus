@@ -215,6 +215,7 @@ public class ConstraintPropertyPreferencePage extends BlockDefinitionDiagramNode
 	 * Stores the values of the fields contained in this page into the preference store.
 	 */
 	protected void storePreferences() {
+		super.storePreferences();
 		IPreferenceStore store = getPreferenceStore();
 		// checks the stored value and the actual one, so does not refresh diagram if it is not
 		// needed
