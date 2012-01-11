@@ -5,7 +5,6 @@ p2UpdateSiteDir=${WORKSPACE}/buildroot/result/output/org.eclipse.papyrus.build.f
 promoteSignal=/opt/public/modeling/mdt/papyrus/papyrus-trunk-nightly/promoteSignal
 promoteVersion=/opt/public/modeling/mdt/papyrus/papyrus-trunk-nightly/promoteVersion
 promoteDirName=/opt/public/modeling/mdt/papyrus/papyrus-trunk-nightly/promoteDirName
-lastBuildLogFile=/opt/public/modeling/mdt/papyrus/papyrus-trunk-nightly/lastBuildLog
 
 FULL_BUILD_ID=$(cat $promoteDirName)
 
@@ -34,9 +33,7 @@ fi
 mv revision.txt "tmp/$FULL_BUILD_ID"
 
 # copy the build log into the result
-wget --quiet --no-check-certificate ${HUDSON_URL}/job/${JOB_NAME}/${BUILD_NUMBER}/consoleText -O "$lastBuildLogFile"
-
-cp "$lastBuildLogFile" "${WORKSPACE}/tmp/$FULL_BUILD_ID/buildlog.txt"
+wget --quiet --no-check-certificate ${HUDSON_URL}/job/${JOB_NAME}/${BUILD_NUMBER}/consoleText -O "${WORKSPACE}/tmp/$FULL_BUILD_ID/buildlog.txt"
 
 (cd tmp && zip -r ${FULL_BUILD_ID}.zip *)
 mv tmp/${FULL_BUILD_ID}.zip .
