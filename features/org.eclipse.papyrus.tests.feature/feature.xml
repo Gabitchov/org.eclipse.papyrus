@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="org.eclipse.papyrus.test.feature"
+      id="org.eclipse.papyrus.tests.feature"
       label="Papyrus Test Feature (Incubation)"
       version="0.9.0.qualifier"
       provider-name="Eclipse Modeling Project">
@@ -18,11 +18,30 @@
    </license>
 
    <includes
-         id="org.eclipse.papyrus.test.build.feature"
+         id="org.eclipse.papyrus.tests.infra.core.feature"
          version="0.0.0"/>
 
    <includes
-         id="org.eclipse.papyrus.tests.sources.feature"
+         id="org.eclipse.papyrus.tests.infra.feature"
          version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.papyrus.tests.infra.queries.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.papyrus.tests.infra.services.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.papyrus.tests.uml.diagram.feature"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.eclipse.papyrus.tests"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
 </feature>

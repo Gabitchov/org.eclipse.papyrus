@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="org.eclipse.papyrus.test.build.feature"
+      id="org.eclipse.papyrus.tests.build.feature"
       label="Papyrus Test Build Feature (Incubation)"
       version="0.9.0.qualifier"
       provider-name="Eclipse Modeling Project">
