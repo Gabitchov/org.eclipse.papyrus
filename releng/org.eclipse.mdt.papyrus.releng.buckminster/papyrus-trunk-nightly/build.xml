@@ -4,13 +4,13 @@
 	<condition property="properties.file" value="build.properties" else="local.properties">
 		<isset property="server.build" />
 	</condition>
-	<echo message="properties.file=${properties.file}"/>
 
 	<condition property="mspec.file" value="build.mspec" else="local.mspec">
 		<isset property="server.build" />
 	</condition>
 	<echo message="mspec.file=${mspec.file}"/>
 
+	<echo message="Sourcing ${properties.file}" />
 	<property file="${properties.file}" />
 	<property environment="env" />
 
@@ -149,7 +149,6 @@
 	</target>
 
 	<target name="init.checks" depends="init.clean.tools,init.clean.tp,init.clean.workspace,init.clean.output">
-		<echo message="Sourcing ${properties.file}" />
 		<available file="${tools}/director/director" property="director.exists" />
 		<available file="${tools}/buckminster/buckminster" property="buckminster.exists" />
 	</target>
@@ -321,11 +320,6 @@
 			</cmdargs>
 		</buckminster>
 		<echo message="End of JUnit tests" />
-	</target>
-
-	<target name="promote.sites" depends="provision">
-		<echo message="Building all projects in workspace ${workspace}... FIXME" />
-		<echo message="Performing org.eclipse.mdt.papyrus.releng.buckminster#promote... FIXME" />
 	</target>
 
 	<target name="clean.tools">
