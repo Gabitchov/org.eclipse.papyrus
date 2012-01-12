@@ -30,32 +30,34 @@ import org.junit.runners.model.InitializationError;
 @RunWith(AllTests.AllTestsRunner.class)
 public class AllTests {
 
+	public static final List<ITestSuiteClass> suiteClasses;
 	/** list of classes to launch */
-	public static final List<ITestSuiteClass> suiteClasses = Arrays.asList(
+	static {
+		suiteClasses = new ArrayList<ITestSuiteClass>();
 
 		/* **************** plugins *********************** */
 		/* core */
 		// {oep}.core
-		new FragmentTestSuiteClass(org.eclipse.papyrus.infra.core.Activator.PLUGIN_ID, "org.eclipse.papyrus.core.tests.AllTests"),
+		suiteClasses.add(new FragmentTestSuiteClass(org.eclipse.papyrus.infra.core.Activator.PLUGIN_ID, "org.eclipse.papyrus.core.tests.AllTests"));
 		// {oep}.sasheditor.tests
-		new FragmentTestSuiteClass(org.eclipse.papyrus.infra.core.sasheditor.Activator.PLUGIN_ID, "org.eclipse.papyrus.sasheditor.tests.AllTests"),
+		//		new FragmentTestSuiteClass(org.eclipse.papyrus.infra.core.sasheditor.Activator.PLUGIN_ID, "org.eclipse.papyrus.sasheditor.tests.AllTests"),
 		// {oep}.core.resourceloading.tests
-//		new FragmentTestSuiteClass(org.eclipse.papyrus.infra.services.resourceloading.Activator.PLUGIN_ID, "org.eclipse.papyrus.core.resourceloading.tests.AllTests"),
+		//		new FragmentTestSuiteClass(org.eclipse.papyrus.infra.services.resourceloading.Activator.PLUGIN_ID, "org.eclipse.papyrus.core.resourceloading.tests.AllTests"),
 
 		/* uml */
 		// {oep}.diagram.common.tests
-		new FragmentTestSuiteClass(org.eclipse.papyrus.uml.diagram.common.Activator.ID, "org.eclipse.papyrus.diagram.common.tests.AllTests"),
+		suiteClasses.add(new FragmentTestSuiteClass(org.eclipse.papyrus.uml.diagram.common.Activator.ID, "org.eclipse.papyrus.diagram.common.tests.AllTests"));
 		// {oep}.diagram.clazz.tests
-		new PluginTestSuiteClass(org.eclipse.papyrus.diagram.clazz.test.AllTests.class)
-//		,
-//		// {oep}.sysml.tests
-//		new PluginTestSuiteClass(SysmlAllTests.class)
+		//		new PluginTestSuiteClass(org.eclipse.papyrus.diagram.clazz.test.AllTests.class)
+		//		,
+		//		// {oep}.sysml.tests
+		//		new PluginTestSuiteClass(SysmlAllTests.class)
 
 		//end
-		);
 
 
 
+	}
 
 	/**
 	 * Finds and runs tests.
