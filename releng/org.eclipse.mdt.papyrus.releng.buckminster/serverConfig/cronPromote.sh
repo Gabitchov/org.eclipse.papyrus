@@ -88,6 +88,31 @@ if [ $signalDateTrunkNightly -gt $lastPromoteDateTrunkNightly ]; then
 	curl https://hudson.eclipse.org/hudson/job/papyrus-trunk-nightly-tests/buildWithParameters?token=token
 fi
 
+if [ $signalDateTrunkExtraNightly -gt $lastPromoteDateTrunkExtraNightly ]; then
+	# mark the promote as done
+	touch "$LAST_PROMOTE_FILE_TRUNK_EXTRA_NIGHTLY"
+	zipName=$(cat "$PROMOTE_SIGNAL_TRUNK_EXTRA_NIGHTLY").zip
+	version=$(cat "$PROMOTE_VERSION_TRUNK_EXTRA_NIGHTLY")
+	
+	echo "[$DATE] deleting previous nightly update site"
+	rm -rf "$UPDATES_TRUNK_EXTRA_NIGHTLY"
+	
+	buildsDir="$DROPS_DIR/$version"
+	echo "[$DATE] pruning old builds"
+	prune N "$buildsDir" 4
+
+	nfsURL="/shared/jobs/papyrus-trunk-extra-nightly/lastSuccessful/archive/"
+	hudsonURL="https://hudson.eclipse.org/hudson/job/papyrus-trunk-extra-nightly/lastSuccessfulBuild/artifact/"
+	export SVN_DIRECTORIES_TO_TAG=( )
+	promote "$zipName" "$version" "$nfsURL" "$hudsonURL" "$DROPS_DIR" "$ARCHIVE_DIR" "$ARCHIVE_INDEX" "$UPDATES_TRUNK_EXTRA_NIGHTLY" "Papyrus-Extra-" "NA"
+
+	echo "[$DATE] promote done"
+	
+	# TODO: re-enable when the job is implemented
+	# echo "[$DATE] triggering Hudson tests build"
+	# curl https://hudson.eclipse.org/hudson/job/papyrus-trunk-extra-nightly-tests/buildWithParameters?token=token
+fi
+
 if [ $signalDateMaintenanceNightly -gt $lastPromoteDateMaintenanceNightly ]; then
 	# mark the promote as done
 	touch "$LAST_PROMOTE_FILE_MAINTENANCE_NIGHTLY"
