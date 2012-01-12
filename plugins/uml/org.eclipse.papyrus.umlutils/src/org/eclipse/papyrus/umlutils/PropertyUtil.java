@@ -239,9 +239,9 @@ public class PropertyUtil {
 		if((style & ICustomAppearence.DISP_TYPE) != 0) {
 			// type
 			if(property.getType() != null) {
-				buffer.append(": " + property.getType().getName());
+				buffer.append(" : " + property.getType().getName());
 			} else {
-				buffer.append(": " + TypeUtil.UNDEFINED_TYPE_NAME);
+				buffer.append(" : " + TypeUtil.UNDEFINED_TYPE_NAME);
 			}
 		}
 
@@ -267,6 +267,11 @@ public class PropertyUtil {
 				if(multiLine) {
 					buffer.append("\n");
 				}
+				
+				if (!buffer.toString().endsWith(" ")){					
+					buffer.append(" ");
+				}
+
 				buffer.append(modifiers);
 			}
 		}
