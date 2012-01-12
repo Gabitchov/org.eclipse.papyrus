@@ -67,7 +67,8 @@ lastPromoteDateMaintenanceExtraNightly=$(stat --format=%Y $LAST_PROMOTE_FILE_MAI
 if [ $signalDateTrunkNightly -gt $lastPromoteDateTrunkNightly ]; then
 	# mark the promote as done
 	touch "$LAST_PROMOTE_FILE_TRUNK_NIGHTLY"
-	zipName=$(cat "$PROMOTE_SIGNAL_TRUNK_NIGHTLY").zip
+	buildName=$(cat "$PROMOTE_SIGNAL_TRUNK_NIGHTLY")
+	zipName=${buildName}.zip
 	version=$(cat "$PROMOTE_VERSION_TRUNK_NIGHTLY")
 	
 	echo "[$DATE] deleting previous nightly update site"
@@ -85,6 +86,18 @@ if [ $signalDateTrunkNightly -gt $lastPromoteDateTrunkNightly ]; then
 	echo "[$DATE] promote done"
 	
 	echo "[$DATE] triggering Hudson tests build"
+	json='{"parameter": [
+		{"name": "BUILD_ID", "value": "'${buildName}'"}
+		{"name": "BUILD_VERSION", "value": "'${version}'"}
+		{"name": "BUCKMINSTER_LOGLEVEL", "value": "DEBUG"}
+		{"name": "CLEAN_TP", "value": "true"}
+		{"name": "CLEAN_WORKSPACE", "value": "true"}
+		{"name": "CLEAN_OUTPUT", "value": "true"}
+		{"name": "CLEAN_TOOLS", "value": "false"}
+		{"name": "BUILD_TARGET", "value": "test"}
+	], "": ""}'
+	curl -X POST https://hudson.eclipse.org/hudson/job/papyrus-trunk-nightly-tests/build -d token=token --data-urlencode json="$json"
+	
 	curl https://hudson.eclipse.org/hudson/job/papyrus-trunk-nightly-tests/buildWithParameters?token=token
 fi
 
