@@ -9,26 +9,20 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.uml.properties.util;
+package org.eclipse.papyrus.uml.tools.utils;
 
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.eclipse.core.databinding.observable.value.IObservableValue;
-import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.emf.databinding.EMFProperties;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.papyrus.infra.core.utils.PapyrusEcoreUtils;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
-import org.eclipse.papyrus.uml.tools.databinding.PapyrusObservableValue;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.ConnectableElement;
@@ -47,12 +41,15 @@ import org.eclipse.uml2.uml.UMLPackage;
  * 
  * @author Camille Letavernier
  */
-//TODO : To be refactored
-//This class should be merged with other oep.umlutils classes.
+//TODO/FIXME : Check implementations. Most of them are old and don't always match the 
+//specification for some cases.
 public class UMLUtil {
 
 	/**
-	 * Retrieve the UML semantic element from the given Object
+	 * Retrieve the UML semantic element from the given Object.
+	 * This method relies on {@link EMFHelper#getEObject(Object)} to resolve
+	 * an EObject from an Object, then checks if the resulting EObject is a
+	 * UML Element.
 	 * 
 	 * @param source
 	 *        The Object to resolve
@@ -60,15 +57,9 @@ public class UMLUtil {
 	 *         The UML semantic element, or null if it couldn't be resolved
 	 */
 	public static Element resolveUMLElement(Object source) {
-		EObject eElement = null;
-		if(source instanceof EObject) {
-			eElement = (EObject)source;
-		}
-		if(source instanceof IAdaptable) {
-			eElement = (EObject)((IAdaptable)source).getAdapter(EObject.class);
-		}
+		EObject eElement = EMFHelper.getEObject(source);
 
-		if(EMFHelper.isInstance(eElement, "Element", umlMetamodel)) { //$NON-NLS-1$
+		if(eElement instanceof Element) {
 			return (Element)eElement;
 		}
 
@@ -85,29 +76,9 @@ public class UMLUtil {
 	 *         True if the class className is a subclass of the class superclassName
 	 */
 	public static boolean isSubClass(String className, String superclassName) {
-		EClass eClass = (EClass)umlMetamodel.getEClassifier(className);
-		EClass superClass = (EClass)umlMetamodel.getEClassifier(superclassName);
-		return superClass.isSuperTypeOf(eClass);
-	}
-
-	/**
-	 * Retrieve the IGraphicalEditPart from the given Object
-	 * 
-	 * @param source
-	 *        The object to resolve
-	 * @return
-	 *         The IGraphicalEditPart, or null if it couldn't be resolved
-	 */
-	public static IGraphicalEditPart resolveEditPart(Object source) {
-		if(source instanceof IGraphicalEditPart) {
-			return (IGraphicalEditPart)source;
-		}
-
-		if(source instanceof IAdaptable) {
-			return (IGraphicalEditPart)((IAdaptable)source).getAdapter(IGraphicalEditPart.class);
-		}
-
-		return null;
+		EClass eClass = (EClass)getUMLMetamodel().getEClassifier(className);
+		EClass superClass = (EClass)getUMLMetamodel().getEClassifier(superclassName);
+		return EMFHelper.isSubclass(eClass, superClass);
 	}
 
 	/**
@@ -118,14 +89,14 @@ public class UMLUtil {
 	 *         The source object's editing domain, or null if it couldn't be found
 	 */
 	public static EditingDomain resolveEditingDomain(Object source) {
-		return AdapterFactoryEditingDomain.getEditingDomainFor(resolveUMLElement(source));
+		return EMFHelper.resolveEditingDomain(resolveUMLElement(source));
 	}
 
 	/**
 	 * @return the UML EPackage
 	 */
 	public static EPackage getUMLMetamodel() {
-		return umlMetamodel;
+		return UMLPackage.eINSTANCE;
 	}
 
 	/**
@@ -325,26 +296,4 @@ public class UMLUtil {
 
 		return UMLUtil.getContextClassForMessageOccurrence(referer);
 	}
-
-	/**
-	 * Returns an IObservableValue for the given feature and EObject
-	 * 
-	 * If the EditingDomain is set, the IObservableValue will use the Papyrus ServiceEdit ;
-	 * otherwise, a standard EMFObservableValue will be used
-	 * 
-	 * @param source
-	 *        The EObject to observe
-	 * @param feature
-	 *        The feature to observe
-	 * @param domain
-	 *        The editing domain on which the commands will be executed. If null, direct
-	 *        object modifications will be used.
-	 * @return
-	 *         The IObservableValue
-	 */
-	public static IObservableValue getObservableValue(EObject source, EStructuralFeature feature, EditingDomain domain) {
-		return domain == null ? EMFProperties.value(feature).observe(source) : new PapyrusObservableValue(source, feature, domain);
-	}
-
-	private static EPackage umlMetamodel = UMLPackage.eINSTANCE;
 }

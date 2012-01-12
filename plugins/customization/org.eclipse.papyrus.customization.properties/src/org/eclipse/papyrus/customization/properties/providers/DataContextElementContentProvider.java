@@ -120,4 +120,8 @@ public class DataContextElementContentProvider extends AbstractFilteredContentPr
 		return elements.toArray(new DataContextElement[elements.size()]);
 	}
 
+	public Object[] getElements(Object inputElement) {
+		return getElements();
+	}
+
 }

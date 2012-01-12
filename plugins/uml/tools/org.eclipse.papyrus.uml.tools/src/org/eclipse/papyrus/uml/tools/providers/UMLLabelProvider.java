@@ -1,10 +1,5 @@
 package org.eclipse.papyrus.uml.tools.providers;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ResizableCompartmentEditPart;
@@ -39,12 +34,6 @@ import org.eclipse.uml2.uml.util.UMLUtil;
 
 public class UMLLabelProvider extends EMFLabelProvider implements ILabelProvider {
 
-	/**
-	 * We store the next index for the UML Element, which are not NamedElement
-	 * Key is a String representing the type of Element
-	 */
-	private final Map<String, Integer> index = new HashMap<String, Integer>();
-
 	/** icon for metaclass */
 	public static final String ICON_METACLASS = "/icons/Metaclass.gif";//$NON-NLS-1$
 
@@ -65,6 +54,9 @@ public class UMLLabelProvider extends EMFLabelProvider implements ILabelProvider
 	 */
 	@Override
 	protected Image getImage(EObject element) {
+
+		element = resolveElement(element);
+
 		// test for Metaclass
 		if(element instanceof Class) {
 			if(TypeUtil.isMetaclass((Type)element)) {
@@ -102,6 +94,32 @@ public class UMLLabelProvider extends EMFLabelProvider implements ILabelProvider
 	}
 
 	/**
+	 * If the inputElement is a StereotypeApplication, we want to provide the label
+	 * of the stereotyped element, instead of the one of the StereotypeApplication
+	 * 
+	 * @param inputElement
+	 *        The EObject for which we want to provide a label
+	 * @return
+	 *         The Base Element if the input is a StereotypeApplication ; the inputElement instead
+	 */
+	protected EObject resolveElement(EObject inputElement) {
+		if(inputElement == null) {
+			return null;
+		}
+
+		Element baseElement = UMLUtil.getBaseElement(inputElement);
+
+		if(baseElement != null) {
+			// Stereotype Application
+			// We return the label of the Stereotyped element, not the one of the
+			// StereotypeApplication itself
+			return baseElement;
+		}
+
+		return inputElement;
+	}
+
+	/**
 	 * 
 	 * @see org.eclipse.jface.viewers.ILabelProvider#getText(java.lang.Object)
 	 * 
@@ -114,27 +132,13 @@ public class UMLLabelProvider extends EMFLabelProvider implements ILabelProvider
 	 */
 	@Override
 	protected String getText(EObject element) {
+		element = resolveElement(element);
+
 		if(element == null) {
 			return "<Undefined>";
 		}
 
-		if(!(element instanceof EObject) && element instanceof IAdaptable) {
-			EObject eObject = (EObject)((IAdaptable)element).getAdapter(EObject.class);
-			if(eObject != null) {
-				element = eObject;
-			}
-		}
-
-		// if(element instanceof EditPart) {
-		// element = ((View)((EditPart)element).getModel()).getElement();
-		// }
-
-		if(element instanceof EObject && UMLUtil.getBaseElement(element) != null) { // Stereotype
-			// Application
-			// We return the label of the Stereotyped element, not of the
-			// Stereotype itself
-			return getText(UMLUtil.getBaseElement(element));
-		} else if(element instanceof org.eclipse.uml2.uml.Image) {
+		if(element instanceof org.eclipse.uml2.uml.Image) {
 			// imageName
 			// location
 			// imageName : location
@@ -171,8 +175,7 @@ public class UMLLabelProvider extends EMFLabelProvider implements ILabelProvider
 				return "<Element Import> " + importedElement.getName();
 			}
 		} else if(element instanceof NamedElement) {
-			if(element instanceof ValueSpecification) { // Format :
-				// [name=]value
+			if(element instanceof ValueSpecification) { // Format : [name=]value
 				String value = null;
 				if(element instanceof InstanceValue) {
 					InstanceSpecification specification = ((InstanceValue)element).getInstance();
@@ -204,19 +207,9 @@ public class UMLLabelProvider extends EMFLabelProvider implements ILabelProvider
 				return ((NamedElement)element).getName();
 			}
 		} else if(element instanceof Element) {
-			// when the element is not a NamedElement, we return its Type + a
-			// index
-			String className = element.getClass().getName();
-			int i = className.lastIndexOf(".");
-			className = className.substring(i + 1);
-			className = className.replace("Impl", "");
-			Integer number = index.get(className);
-			if(number == null) {
-				number = 0;
-			}
-
-			index.put(className, number + 1);
-			return className + " " + number;
+			// when the element is not a NamedElement, we return its Type name
+			String className = element.eClass().getName();
+			return className;
 		} else if(element instanceof Diagram) {
 			return ((Diagram)element).getName();
 		} else if(element instanceof View) { // maybe it is a view of a compartment
@@ -224,8 +217,6 @@ public class UMLLabelProvider extends EMFLabelProvider implements ILabelProvider
 			if(dummyEP instanceof ResizableCompartmentEditPart) {
 				return ((ResizableCompartmentEditPart)dummyEP).getCompartmentName();
 			}
-		} else if(element instanceof EClass) {
-			return ((EClass)element).getName();
 		}
 
 		return super.getText(element);

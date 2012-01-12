@@ -21,13 +21,13 @@
 			</arguments>
 		</buildCommand>
 		<buildCommand>
-			<name>org.eclipse.gmt.modisco.common.core.builder</name>
+			<name>org.eclipse.emf.facet.common.core.builder</name>
 			<arguments>
 			</arguments>
 		</buildCommand>
 	</buildSpec>
 	<natures>
-		<nature>org.eclipse.gmt.modisco.common.ProjectNature</nature>
+		<nature>org.eclipse.emf.facet.common.ProjectNature</nature>
 		<nature>org.eclipse.pde.PluginNature</nature>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>

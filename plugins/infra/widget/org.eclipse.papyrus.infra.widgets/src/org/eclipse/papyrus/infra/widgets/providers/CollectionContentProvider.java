@@ -13,7 +13,7 @@ package org.eclipse.papyrus.infra.widgets.providers;
 
 import java.util.Collection;
 
-import org.eclipse.jface.viewers.IStructuredContentProvider;
+import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 
 /**
@@ -22,7 +22,7 @@ import org.eclipse.jface.viewers.Viewer;
  * @author Camille Letavernier
  * 
  */
-public class CollectionContentProvider implements IStructuredContentProvider {
+public class CollectionContentProvider implements ITreeContentProvider {
 
 	private CollectionContentProvider() {
 
@@ -65,4 +65,16 @@ public class CollectionContentProvider implements IStructuredContentProvider {
 	 * The Singleton instance
 	 */
 	public static CollectionContentProvider instance = new CollectionContentProvider();
+
+	public Object[] getChildren(Object parentElement) {
+		return new Object[0]; //Flat tree
+	}
+
+	public Object getParent(Object element) {
+		return null; //Flat tree
+	}
+
+	public boolean hasChildren(Object element) {
+		return false;
+	}
 }

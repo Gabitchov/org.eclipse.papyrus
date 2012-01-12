@@ -14,7 +14,7 @@ package org.eclipse.papyrus.uml.properties.constraints;
 import org.eclipse.papyrus.infra.constraints.SimpleConstraint;
 import org.eclipse.papyrus.infra.constraints.constraints.AbstractConstraint;
 import org.eclipse.papyrus.infra.constraints.constraints.Constraint;
-import org.eclipse.papyrus.uml.properties.util.UMLUtil;
+import org.eclipse.papyrus.uml.tools.utils.UMLUtil;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Stereotype;
 

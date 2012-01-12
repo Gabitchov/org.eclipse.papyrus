@@ -21,8 +21,9 @@ import java.util.Set;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.viewers.ListViewer;
 import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.jface.viewers.StructuredViewer;
+import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.papyrus.infra.widgets.Activator;
 import org.eclipse.papyrus.infra.widgets.creation.ReferenceValueFactory;
 import org.eclipse.papyrus.infra.widgets.messages.Messages;
@@ -36,8 +37,8 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Tree;
 import org.eclipse.ui.dialogs.SelectionDialog;
 
 /**
@@ -72,12 +73,12 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements Sele
 	/**
 	 * The listViewer for chosen elements
 	 */
-	protected ListViewer selectedElementsViewer;
+	protected StructuredViewer selectedElementsViewer;
 
 	/**
 	 * The list for chosen elements
 	 */
-	protected List selectedElements;
+	protected Tree selectedElements;
 
 	/**
 	 * The add action button
@@ -309,11 +310,11 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements Sele
 	 */
 	private void createListSection(Composite parent) {
 
-		selectedElements = new List(parent, SWT.MULTI | SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL);
+		selectedElements = new Tree(parent, SWT.MULTI | SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL);
 		selectedElements.addSelectionListener(this);
 		GridData data = new GridData(SWT.FILL, SWT.FILL, true, true);
 		selectedElements.setLayoutData(data);
-		selectedElementsViewer = new ListViewer(selectedElements);
+		selectedElementsViewer = new TreeViewer(selectedElements);
 
 		selectedElementsViewer.setContentProvider(CollectionContentProvider.instance);
 

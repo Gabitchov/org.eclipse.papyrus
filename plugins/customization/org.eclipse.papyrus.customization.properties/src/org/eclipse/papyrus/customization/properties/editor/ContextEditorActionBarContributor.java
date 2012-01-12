@@ -225,7 +225,7 @@ public class ContextEditorActionBarContributor extends EcoreActionBarContributor
 	 *         The list of newly created {@link IAction}s
 	 */
 	protected Collection<IAction> createChildForView(ISelection selection, View view) {
-		return Collections.EMPTY_LIST;
+		return Collections.emptyList();
 		//		Collection<IAction> actions = new LinkedList<IAction>();
 		//		if(view.getContext() == null) {
 		//			return actions;

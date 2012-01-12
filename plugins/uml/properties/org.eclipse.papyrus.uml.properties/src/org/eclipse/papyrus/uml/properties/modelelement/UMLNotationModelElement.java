@@ -22,8 +22,8 @@ import org.eclipse.papyrus.uml.properties.Activator;
 import org.eclipse.papyrus.uml.properties.databinding.ElementCustomizationObservableValue;
 import org.eclipse.papyrus.uml.properties.databinding.ElementCustomizationObservableValue.Property;
 import org.eclipse.papyrus.uml.properties.messages.Messages;
-import org.eclipse.papyrus.uml.properties.util.UMLUtil;
 import org.eclipse.papyrus.uml.tools.utils.NamedElementUtil;
+import org.eclipse.papyrus.uml.tools.utils.UMLUtil;
 import org.eclipse.papyrus.views.properties.modelelement.AbstractModelElement;
 import org.eclipse.uml2.uml.NamedElement;
 

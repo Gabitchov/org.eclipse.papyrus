@@ -12,41 +12,53 @@
 package org.eclipse.papyrus.infra.widgets.providers;
 
 import java.util.LinkedHashSet;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.papyrus.infra.core.ui.IRevealSemanticElement;
+import org.eclipse.papyrus.infra.tools.util.ListHelper;
 import org.eclipse.papyrus.infra.widgets.editors.AbstractEditor;
 import org.eclipse.papyrus.infra.widgets.editors.ICommitListener;
+import org.eclipse.papyrus.infra.widgets.strategy.IStrategyBasedContentProvider;
+import org.eclipse.papyrus.infra.widgets.strategy.TreeBrowseStrategy;
 import org.eclipse.swt.widgets.Composite;
 
 /**
- * A ContentProvider to adapt an IStaticContentProvider to an
- * IStructurecContentProvider Useful when you need to use a ContentProvider that
- * doesn't depend on its Input Object to return values in a JFace Viewer.
- * This content provider also supports temporary elements, which are added
- * to the list of static elements returned by the encapsulated provider.
+ * A ContentProvider encapsulate another ContentProvider.
+ * This class implements all Papyrus interfaces extending IContentProvider,
+ * and is thus compatible with all papyrus tools, even if the encapsulated
+ * provider is not.
+ * 
+ * Moreover, the Encapsulated provider can handle temporary elements.
  * 
  * @author Camille Letavernier
  * 
  */
-public class EncapsulatedContentProvider implements IHierarchicContentProvider, IGraphicalContentProvider, ICommitListener, IAdaptableContentProvider {
+//TODO : Move the temporary elements feature to another class. 
+//This feature is only used by multi-reference dialogs
+public class EncapsulatedContentProvider implements IHierarchicContentProvider, IGraphicalContentProvider, ICommitListener, IAdaptableContentProvider, IRevealSemanticElement, IStrategyBasedContentProvider, IStaticContentProvider {
 
 	/**
 	 * The encapsulated static content provider
 	 */
-	protected IStaticContentProvider encapsulated;
+	protected IStructuredContentProvider encapsulated;
+
+	/**
+	 * The set of temporaryElements, which are added from outside this ContentProvider
+	 */
+	private Set<Object> temporaryElements = new LinkedHashSet<Object>();
 
 	/**
 	 * 
 	 * Constructor.
 	 * 
 	 * @param encapsulated
-	 *        The encapsulated static content provider
+	 *        The encapsulated content provider, to which all calls will be forwarded
 	 */
-	public EncapsulatedContentProvider(IStaticContentProvider encapsulated) {
+	public EncapsulatedContentProvider(IStructuredContentProvider encapsulated) {
 		this.encapsulated = encapsulated;
 	}
 
@@ -63,19 +75,17 @@ public class EncapsulatedContentProvider implements IHierarchicContentProvider, 
 	 * the objects returned by the wrapped StaticContentProvider and the temporary
 	 * elements, which are not known by the wrapped provider.
 	 * 
+	 * @param elements
+	 *        The Object[] returned by the encapsulated provider
 	 * @return
 	 *         All elements known by this ContentProvider
 	 */
-	private Object[] getAllElements() {
-		Object[] elements = encapsulated.getElements();
+	private Object[] getAllElements(Object[] elements) {
 		if(temporaryElements.isEmpty()) {
 			return elements;
 		}
 
-		List<Object> result = new LinkedList<Object>();
-		for(Object object : elements) {
-			result.add(object);
-		}
+		List<Object> result = ListHelper.asList(elements);
 		result.addAll(temporaryElements);
 		return result.toArray();
 	}
@@ -84,21 +94,27 @@ public class EncapsulatedContentProvider implements IHierarchicContentProvider, 
 	 * {@inheritDoc}
 	 */
 	public void dispose() {
-		//Nothing
+		//encapsulated.dispose();
+		//encapsulated = null;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
-		encapsulated.inputChanged(viewer, oldInput, newInput);
+		if(encapsulated != null) {
+			encapsulated.inputChanged(viewer, oldInput, newInput);
+		}
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public Object[] getElements(Object inputElement) {
-		return getElements();
+		if(encapsulated == null) {
+			return new Object[0];
+		}
+		return getAllElements(encapsulated.getElements(inputElement));
 	}
 
 	/**
@@ -108,13 +124,11 @@ public class EncapsulatedContentProvider implements IHierarchicContentProvider, 
 	 *         all elements from the wrapped ContentProvider
 	 */
 	public Object[] getElements() {
-		return getAllElements();
+		if(encapsulated instanceof IStaticContentProvider) {
+			return getAllElements(((IStaticContentProvider)encapsulated).getElements());
+		}
+		return getElements(null);
 	}
-
-	/**
-	 * The set of temporaryElements, which are added from outside this ContentProvider
-	 */
-	private Set<Object> temporaryElements = new LinkedHashSet<Object>();
 
 	/**
 	 * Adds a Temporary element to this ContentProvider
@@ -218,10 +232,23 @@ public class EncapsulatedContentProvider implements IHierarchicContentProvider, 
 		return selection;
 	}
 
-	public Object getContainerValue(Object selection) {
-		if(encapsulated instanceof IAdaptableContentProvider) {
-			return ((IAdaptableContentProvider)encapsulated).getContainerValue(selection);
+	public void revealSemanticElement(List<?> elementList) {
+		if(encapsulated instanceof IRevealSemanticElement) {
+			((IRevealSemanticElement)encapsulated).revealSemanticElement(elementList);
 		}
-		return selection;
+	}
+
+	public TreeBrowseStrategy getBrowseStrategy() {
+		if(encapsulated instanceof IStrategyBasedContentProvider) {
+			return ((IStrategyBasedContentProvider)encapsulated).getBrowseStrategy();
+		}
+		return null;
+	}
+
+	public TreeBrowseStrategy getRevealStrategy() {
+		if(encapsulated instanceof IStrategyBasedContentProvider) {
+			return ((IStrategyBasedContentProvider)encapsulated).getRevealStrategy();
+		}
+		return null;
 	}
 }

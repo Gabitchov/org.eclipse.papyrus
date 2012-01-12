@@ -49,4 +49,8 @@ public class EnvironmentContentProvider extends AbstractFilteredContentProvider 
 		return contents;
 	}
 
+	public Object[] getElements(Object inputElement) {
+		return getElements();
+	}
+
 }

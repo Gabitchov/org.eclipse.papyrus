@@ -17,6 +17,7 @@ import java.util.List;
 
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.infra.widgets.Activator;
 import org.eclipse.papyrus.infra.widgets.creation.ReferenceValueFactory;
@@ -274,6 +275,11 @@ public class ReferenceDialog extends AbstractValueEditor implements SelectionLis
 	 *        The label provider
 	 */
 	public void setLabelProvider(ILabelProvider provider) {
+		if(provider == null) {
+			setLabelProvider(new LabelProvider());
+			return;
+		}
+
 		dialog.setLabelProvider(provider);
 		this.labelProvider = provider;
 		if(widgetObservable != null) {

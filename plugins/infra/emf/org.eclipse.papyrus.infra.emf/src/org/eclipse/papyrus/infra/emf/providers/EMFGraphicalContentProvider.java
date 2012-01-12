@@ -18,22 +18,20 @@ package org.eclipse.papyrus.infra.emf.providers;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
+import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
-import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.jface.viewers.StructuredViewer;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
@@ -46,9 +44,8 @@ import org.eclipse.papyrus.infra.emf.Activator;
 import org.eclipse.papyrus.infra.widgets.editors.AbstractEditor;
 import org.eclipse.papyrus.infra.widgets.editors.ICommitListener;
 import org.eclipse.papyrus.infra.widgets.editors.StringEditor;
+import org.eclipse.papyrus.infra.widgets.providers.EncapsulatedContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IDetailLabelProvider;
-import org.eclipse.papyrus.infra.widgets.providers.IGraphicalContentProvider;
-import org.eclipse.papyrus.infra.widgets.providers.IHierarchicContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.PatternViewerFilter;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
@@ -62,28 +59,19 @@ import org.eclipse.swt.widgets.Table;
  * this is a content provider based on the model explorer on which we can filter wanted meta-classes
  * It can only filter if wantedMetaclass and metaclassNotWanted are Eclass
  */
-public class GraphicalModelExplorerBasedContentProvider extends ModelContentProvider implements IMetaclassFilteredContentProvider, IHierarchicContentProvider, IGraphicalContentProvider, ISelectionChangedListener, ICommitListener {
+public class EMFGraphicalContentProvider extends EncapsulatedContentProvider implements ISelectionChangedListener {
 
-
-	private static final String DIALOG_SETTINGS = GraphicalModelExplorerBasedContentProvider.class.getName();
-
-	/** The not wanted. */
-	protected ArrayList<Object> metaClassNotWantedList = new ArrayList<Object>();
-
-	/** The wanted. */
-	protected Object metaClassWanted = null;
-
-	/**
-	 * a bridge to find the semantic element behind an object of the model explorer
-	 */
-	protected SemanticFromModelExplorer brige = new SemanticFromModelExplorer();
+	private static final String DIALOG_SETTINGS = EMFGraphicalContentProvider.class.getName();
 
 	protected String historyId;
 
-	/**
-	 * The current metaclass viewer filter
-	 */
-	protected ViewerFilter currentMetaclassViewerFilter;
+	//Unused (yet)
+	//TODO : Add a preference or a collapsible composite for this feature (Or both)
+	//
+	//	/**
+	//	 * The current metaclass viewer filter
+	//	 */ 
+	//	protected ViewerFilter currentMetaclassViewerFilter;
 
 	protected ViewerFilter patternFilter;
 
@@ -97,6 +85,8 @@ public class GraphicalModelExplorerBasedContentProvider extends ModelContentProv
 
 	protected Object selectedObject;
 
+	protected StructuredViewer viewer;
+
 	private static final int HISTORY_MAX_SIZE = 5;
 
 	private String currentFilterPattern = ""; //$NON-NLS-1$
@@ -107,88 +97,16 @@ public class GraphicalModelExplorerBasedContentProvider extends ModelContentProv
 
 	/**
 	 * the constructor
-	 * 
-	 * @param semanticRoot
-	 *        the root that we want to display at top
 	 */
-	public GraphicalModelExplorerBasedContentProvider(EObject semanticRoot, String historyId) {
-		super(semanticRoot);
+	public EMFGraphicalContentProvider(IStructuredContentProvider semanticProvider, String historyId) {
+		super(semanticProvider);
 		this.historyId = historyId;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public void setMetaClassNotWanted(List<Object> metaClassNotWanted) {
-		metaClassNotWantedList.clear();
-		metaClassNotWantedList.addAll(metaClassNotWanted);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public void setMetaClassWanted(Object metaClassWanted) {
-		this.metaClassWanted = metaClassWanted;
-	}
-
-
-	/**
-	 * get Wanted metaclasse
-	 * 
-	 * @return Eclass that reprensent the wanted metaclass
-	 */
-	public Object getMetaClassWanted() {
-		return metaClassWanted;
-	}
-
-	public boolean isValidValue(Object element) {
-
-		//to filter, test if the wanted metaclass is not null
-		if(metaClassWanted != null) {
-			// get the semantic object form the element
-			EObject semanticObject = null;
-
-			if(element instanceof IAdaptable) {
-				semanticObject = (EObject)brige.getSemanticElement(element);
-			}
-			if(element instanceof EObject) {
-				semanticObject = (EObject)element;
-			}
-			//return false for Ereference
-			if(element instanceof EReference || semanticObject instanceof EReference) {
-				return false;
-			}
-			//the semantic object is not null
-			if(semanticObject != null) {
-				//test if this is an Eclass
-				if(metaClassWanted instanceof EClass) {
-					//test if the semanticobject is instance of metaclassWanted
-					// and not an instance of metaclassNotWanted
-					if(((EClass)metaClassWanted).isSuperTypeOf(semanticObject.eClass())) {
-						if(metaClassNotWantedList.size() > 0) {
-							Iterator<Object> iternotwanted = metaClassNotWantedList.iterator();
-							while(iternotwanted.hasNext()) {
-								Object notWanted = iternotwanted.next();
-								if(notWanted instanceof EClass) {
-									if(((EClass)notWanted).isSuperTypeOf(semanticObject.eClass())) {
-										return false;
-									}
-								}
-							}
-						}
-						return true;
-					}
-				}
-				return false;
-			}
-
-		}
-		return false;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
+	@Override
 	public void createBefore(Composite parent) {
 		createPatternFilter(parent);
 	}
@@ -210,7 +128,7 @@ public class GraphicalModelExplorerBasedContentProvider extends ModelContentProv
 				if(!("".equals(filterPattern) || currentFilterPattern.equals(filterPattern))) {
 					Object firstMatch = getFirstMatchingElement(null);
 					if(firstMatch != null) {
-						viewer.reveal(firstMatch);
+						revealSemanticElement(Collections.singletonList(firstMatch));
 					}
 					currentFilterPattern = filterPattern;
 				}
@@ -266,6 +184,7 @@ public class GraphicalModelExplorerBasedContentProvider extends ModelContentProv
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public void createAfter(Composite parent) {
 		parent.setLayout(new GridLayout(1, false));
 		//		createMetaclassFilter(parent); //Disabled
@@ -306,19 +225,7 @@ public class GraphicalModelExplorerBasedContentProvider extends ModelContentProv
 				Object selectedObject = selection.getFirstElement();
 				if(selectedObject instanceof EObject) {
 					EObject eObject = ((EObject)selectedObject);
-					// select the element in the model explorer
-					Object containerValue = getContainerValue(eObject);
-					if(containerValue == null) {
-						viewer.setSelection(StructuredSelection.EMPTY);
-					} else {
-						viewer.setSelection(new StructuredSelection(containerValue), true);
-					}
-
-					// update current selection
-					//	ModelElementItem item = (ModelElementItem)((IStructuredSelection)viewer.getSelection()).getFirstElement();
-					// 	if(item != null) {
-					//		setCurrentValueItem(item);
-					//	}
+					revealSemanticElement(Collections.singletonList(eObject));
 				}
 			}
 		});
@@ -510,16 +417,20 @@ public class GraphicalModelExplorerBasedContentProvider extends ModelContentProv
 
 	@Override
 	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
-		super.inputChanged(viewer, oldInput, newInput);
-		if(this.viewer != null && newInput != null && this.viewer.getControl() != null && !this.viewer.getControl().isDisposed()) {
-			this.viewer.setFilters(new ViewerFilter[]{ new HierarchicViewerFilter(this) });
-			this.viewer.addSelectionChangedListener(this);
+		encapsulated.inputChanged(viewer, oldInput, newInput);
+
+		if(viewer instanceof StructuredViewer) {
+			this.viewer = (StructuredViewer)viewer;
+			if(newInput != null && viewer.getControl() != null && !viewer.getControl().isDisposed()) {
+				this.viewer.addSelectionChangedListener(this);
+			}
+		} else {
+			this.viewer = null;
 		}
 	}
 
 	public void selectionChanged(SelectionChangedEvent event) {
 		selectedObject = ((IStructuredSelection)event.getSelection()).getFirstElement();
-		selectedObject = getAdaptedValue(selectedObject);
 		updateDetailLabel();
 	}
 
@@ -544,15 +455,17 @@ public class GraphicalModelExplorerBasedContentProvider extends ModelContentProv
 		detailLabel.getParent().getParent().layout();
 	}
 
+	@Override
 	public void commit(AbstractEditor editor) {
-		if(selectedObject instanceof EObject) {
-			storeDialog(getDialogSettings(), (EObject)selectedObject);
+		Object semanticElement = getAdaptedValue(selectedObject);
+		if(semanticElement instanceof EObject) {
+			storeDialog(getDialogSettings(), (EObject)semanticElement);
 		}
 	}
 
 	@Override
 	public void dispose() {
-		viewer.removeSelectionChangedListener(this);
 		super.dispose();
+		viewer.removeSelectionChangedListener(this);
 	}
 }

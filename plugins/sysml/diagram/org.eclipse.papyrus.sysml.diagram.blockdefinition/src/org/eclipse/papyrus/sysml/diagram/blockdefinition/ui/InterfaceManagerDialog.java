@@ -50,6 +50,7 @@ import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.infra.widgets.editors.IElementSelector;
 import org.eclipse.papyrus.infra.widgets.editors.SelectionEditor;
+import org.eclipse.papyrus.infra.widgets.providers.AbstractStaticContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
 import org.eclipse.papyrus.infra.widgets.selectors.ReferenceSelector;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.messages.Messages;
@@ -350,32 +351,15 @@ public class InterfaceManagerDialog extends SelectionDialog {
 				tmp.addAll(interfaceRepresentations);
 				return tmp.toArray();
 			}
+
+			public Object[] getElements(Object inputElement) {
+				return getElements();
+			}
 		});
 		//the required selector
 		this.requiredSelector = new ReferenceSelector(true);
 		this.requiredSelector.setLabelProvider(selectorLabelProvider);
-		this.requiredSelector.setContentProvider(new IStaticContentProvider() {
-
-			/**
-			 * 
-			 * @see org.eclipse.jface.viewers.IContentProvider#inputChanged(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
-			 * 
-			 * @param viewer
-			 * @param oldInput
-			 * @param newInput
-			 */
-			public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
-
-			}
-
-			/**
-			 * 
-			 * @see org.eclipse.jface.viewers.IContentProvider#dispose()
-			 * 
-			 */
-			public void dispose() {
-
-			}
+		this.requiredSelector.setContentProvider(new AbstractStaticContentProvider() {
 
 			/**
 			 * 

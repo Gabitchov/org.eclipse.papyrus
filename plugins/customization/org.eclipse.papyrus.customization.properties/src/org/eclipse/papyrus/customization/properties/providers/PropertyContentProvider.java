@@ -11,7 +11,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.customization.properties.providers;
 
-import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -43,17 +42,6 @@ public class PropertyContentProvider extends AbstractContextualContentProvider i
 
 	public Object[] getElements() {
 		return contexts.toArray();
-	}
-
-	private Collection<Property> findProperties(DataContextElement element) {
-		List<Property> result = new LinkedList<Property>();
-		result.addAll(element.getProperties());
-		if(element instanceof DataContextPackage) {
-			for(DataContextElement subElement : ((DataContextPackage)element).getElements()) {
-				result.addAll(findProperties(subElement));
-			}
-		}
-		return result;
 	}
 
 	public Object[] getElements(Object inputElement) {

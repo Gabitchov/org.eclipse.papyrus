@@ -21,6 +21,9 @@ import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.StructuredViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
+import org.eclipse.papyrus.infra.widgets.strategy.IStrategyBasedContentProvider;
+import org.eclipse.papyrus.infra.widgets.strategy.ProviderBasedBrowseStrategy;
+import org.eclipse.papyrus.infra.widgets.strategy.TreeBrowseStrategy;
 
 /**
  * An abstract ViewerFilter for TreeViewers.
@@ -75,32 +78,37 @@ public abstract class AbstractTreeFilter extends ViewerFilter {
 	@Override
 	public boolean select(Viewer viewer, Object parentElement, Object element) {
 
-		ITreeContentProvider contentProvider = null;
+		TreeBrowseStrategy strategy = null;
 
 		if(viewer instanceof StructuredViewer) {
 			IContentProvider baseContentProvider = ((StructuredViewer)viewer).getContentProvider();
-			if(baseContentProvider instanceof ITreeContentProvider) {
-				contentProvider = (ITreeContentProvider)baseContentProvider;
+			if(baseContentProvider instanceof IStrategyBasedContentProvider) {
+				strategy = ((IStrategyBasedContentProvider)baseContentProvider).getRevealStrategy();
+			}
+
+			if(strategy == null && baseContentProvider instanceof ITreeContentProvider) {
+				strategy = new ProviderBasedBrowseStrategy((ITreeContentProvider)baseContentProvider);
 			}
 		}
 
-		if(contentProvider == null) { //The contentProvider is not a TreeContentProvider
+		if(strategy == null) { //The contentProvider is not a TreeContentProvider
 			return isVisible(viewer, parentElement, element);
 		}
 
-		return select(viewer, parentElement, element, contentProvider);
+		return select(viewer, parentElement, element, strategy);
 	}
 
-	protected boolean select(Viewer viewer, Object parentElement, Object element, ITreeContentProvider contentProvider) {
+	protected boolean select(Viewer viewer, Object parentElement, Object element, TreeBrowseStrategy strategy) {
 		Set<Object> visitedChildren = new HashSet<Object>();
 		Set<Object> visitedParents = new HashSet<Object>();
 		if(useCache && visibleElement.containsKey(element)) {
 			return visibleElement.get(element);
 		}
-		boolean isVisible = isVisible(viewer, parentElement, element) || hasOneVisibleChild(viewer, element, contentProvider, visitedChildren);
+
+		boolean isVisible = isVisible(viewer, parentElement, element) || hasOneVisibleChild(viewer, element, strategy, visitedChildren);
 
 		if(showIfHasVisibleParent) {
-			isVisible = isVisible || hasOneVisibleParent(viewer, element, contentProvider, visitedParents);
+			isVisible = isVisible || hasOneVisibleParent(viewer, element, strategy, visitedParents);
 		}
 
 		if(useCache) {
@@ -110,7 +118,7 @@ public abstract class AbstractTreeFilter extends ViewerFilter {
 		return isVisible;
 	}
 
-	protected boolean hasOneVisibleChild(Viewer viewer, Object element, ITreeContentProvider contentProvider, Set<Object> visitedElements) {
+	protected boolean hasOneVisibleChild(Viewer viewer, Object element, TreeBrowseStrategy strategy, Set<Object> visitedElements) {
 		//TODO : separate this method in -hasOneVisibleChild() and #doHasOneVisibleChild(), to handle the cache management in a private method,
 		//while letting the opportunity to override the method
 		if(useCache && visibleChild.containsKey(element)) {
@@ -121,8 +129,8 @@ public abstract class AbstractTreeFilter extends ViewerFilter {
 		if(!visitedElements.contains(element)) {
 			visitedElements.add(element);
 
-			for(Object childElement : contentProvider.getChildren(element)) {
-				if(isVisible(viewer, element, childElement) || hasOneVisibleChild(viewer, childElement, contentProvider, visitedElements)) {
+			for(Object childElement : strategy.getChildren(element)) {
+				if(isVisible(viewer, element, childElement) || hasOneVisibleChild(viewer, childElement, strategy, visitedElements)) {
 					result = true;
 					break;
 				}
@@ -135,7 +143,7 @@ public abstract class AbstractTreeFilter extends ViewerFilter {
 		return result;
 	}
 
-	protected boolean hasOneVisibleParent(Viewer viewer, Object element, ITreeContentProvider contentProvider, Set<Object> visitedElements) {
+	protected boolean hasOneVisibleParent(Viewer viewer, Object element, TreeBrowseStrategy strategy, Set<Object> visitedElements) {
 		if(useCache && visibleParent.containsKey(element)) {
 			return visibleParent.get(element);
 		}
@@ -145,11 +153,11 @@ public abstract class AbstractTreeFilter extends ViewerFilter {
 
 			visitedElements.add(element);
 
-			Object parentElement = contentProvider.getParent(element);
+			Object parentElement = strategy.getParent(element);
 			if(parentElement == element || parentElement == null) {
 				result = isVisible(viewer, parentElement, element);
 			} else {
-				result = isVisible(viewer, null, parentElement) || hasOneVisibleParent(viewer, parentElement, contentProvider, visitedElements);
+				result = isVisible(viewer, null, parentElement) || hasOneVisibleParent(viewer, parentElement, strategy, visitedElements);
 			}
 		}
 
@@ -171,5 +179,4 @@ public abstract class AbstractTreeFilter extends ViewerFilter {
 	public void setShowIfHasVisibleParent(boolean showIfHasVisibleParent) {
 		this.showIfHasVisibleParent = showIfHasVisibleParent;
 	}
-
 }

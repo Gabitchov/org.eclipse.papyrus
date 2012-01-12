@@ -18,8 +18,8 @@ import org.eclipse.core.databinding.observable.IObservable;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.papyrus.infra.tools.databinding.AggregatedObservable;
 import org.eclipse.papyrus.infra.tools.databinding.MultipleObservableValue;
-import org.eclipse.papyrus.infra.widgets.databinding.AggregatedObservable;
 
 
 public class AggregatedPapyrusObservableValue extends MultipleObservableValue {

@@ -11,7 +11,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.widgets.providers;
 
-import org.eclipse.jface.viewers.IContentProvider;
+import org.eclipse.jface.viewers.IStructuredContentProvider;
 
 /**
  * A ContentProvider which returns values that don't depend
@@ -24,7 +24,7 @@ import org.eclipse.jface.viewers.IContentProvider;
  * @see AbstractStaticContentProvider
  * 
  */
-public interface IStaticContentProvider extends IContentProvider {
+public interface IStaticContentProvider extends IStructuredContentProvider {
 
 	/**
 	 * @return the elements provided by this class

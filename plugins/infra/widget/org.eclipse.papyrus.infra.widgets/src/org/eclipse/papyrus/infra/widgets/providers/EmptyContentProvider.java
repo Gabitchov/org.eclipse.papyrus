@@ -11,7 +11,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.widgets.providers;
 
-import org.eclipse.jface.viewers.Viewer;
 
 /**
  * A ContentProvider returning empty collections
@@ -19,7 +18,7 @@ import org.eclipse.jface.viewers.Viewer;
  * @author Camille Letavernier
  * 
  */
-public class EmptyContentProvider implements IStaticContentProvider {
+public class EmptyContentProvider extends AbstractStaticContentProvider {
 
 	/**
 	 * Singleton instance
@@ -30,14 +29,6 @@ public class EmptyContentProvider implements IStaticContentProvider {
 
 	private EmptyContentProvider() {
 
-	}
-
-	public void dispose() {
-		//Nothing
-	}
-
-	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
-		//Nothing
 	}
 
 	/**

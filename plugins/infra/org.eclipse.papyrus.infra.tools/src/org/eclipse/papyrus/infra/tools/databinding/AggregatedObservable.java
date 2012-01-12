@@ -9,7 +9,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.infra.widgets.databinding;
+package org.eclipse.papyrus.infra.tools.databinding;
 
 import org.eclipse.core.databinding.observable.IObservable;
 

@@ -123,39 +123,39 @@ public class ReferenceSelector implements IElementSelector {
 		if(selection instanceof IStructuredSelection) {
 			Object[] containerElementsToMove = getElementsToMove(((IStructuredSelection)selection).toArray());
 			Object[] semanticElementsToMove = getSemanticElements(containerElementsToMove);
-			addSelectedElements(containerElementsToMove);
+			addSelectedElements(semanticElementsToMove);
 			return semanticElementsToMove;
 		}
 
 		return new Object[0];
 	}
 
-	/**
-	 * This method is used for handling correctly the IAdaptableContentProvider
-	 * The objects can be in two different forms :
-	 * - The semantic element
-	 * - The container element
-	 * 
-	 * This methods returns an array of container elements from an array of
-	 * semantic elements. This is useful when specifying a selection to a
-	 * viewer using an IAdaptableContentProvider
-	 * 
-	 * @param semanticElements
-	 *        The array of semantic elements to be converted
-	 * @return
-	 *         The array of elements wrapped in their container
-	 * 
-	 * @see #getSemanticElements(Object[])
-	 * @see org.eclipse.papyrus.infra.widgets.providers.IAdaptableContentProvider
-	 */
-	private Object[] getContainerElements(Object[] semanticElements) {
-		Object[] containerElements = new Object[semanticElements.length];
-		int i = 0;
-		for(Object semanticElement : semanticElements) {
-			containerElements[i++] = contentProvider.getContainerValue(semanticElement);
-		}
-		return containerElements;
-	}
+	//	/**
+	//	 * This method is used for handling correctly the IAdaptableContentProvider
+	//	 * The objects can be in two different forms :
+	//	 * - The semantic element
+	//	 * - The container element
+	//	 * 
+	//	 * This methods returns an array of container elements from an array of
+	//	 * semantic elements. This is useful when specifying a selection to a
+	//	 * viewer using an IAdaptableContentProvider
+	//	 * 
+	//	 * @param semanticElements
+	//	 *        The array of semantic elements to be converted
+	//	 * @return
+	//	 *         The array of elements wrapped in their container
+	//	 * 
+	//	 * @see #getSemanticElements(Object[])
+	//	 * @see org.eclipse.papyrus.infra.widgets.providers.IAdaptableContentProvider
+	//	 */
+	//	private Object[] getContainerElements(Object[] semanticElements) {
+	//		Object[] containerElements = new Object[semanticElements.length];
+	//		int i = 0;
+	//		for(Object semanticElement : semanticElements) {
+	//			containerElements[i++] = contentProvider.getContainerValue(semanticElement);
+	//		}
+	//		return containerElements;
+	//	}
 
 	/**
 	 * This method is used for handling correctly the IAdaptableContentProvider
@@ -213,9 +213,9 @@ public class ReferenceSelector implements IElementSelector {
 	 * 
 	 * @param elements
 	 */
-	private void addSelectedElements(Object[] containerElements) {
-		if(containerElements.length > 0) {
-			selectedElements.addAll(Arrays.asList(containerElements));
+	private void addSelectedElements(Object[] semanticElements) {
+		if(semanticElements.length > 0) {
+			selectedElements.addAll(Arrays.asList(semanticElements));
 			fTree.getViewer().refresh();
 		}
 	}
@@ -250,7 +250,7 @@ public class ReferenceSelector implements IElementSelector {
 		//		Object[] containerElementsToMove = getElementsToMove(((IStructuredSelection)fTree.getViewer().getSelection()).toArray());
 		Object[] containerElementsToMove = getElementsToMove(visibleElements.toArray());
 		Object[] semanticElementsToMove = getSemanticElements(containerElementsToMove);
-		addSelectedElements(containerElementsToMove);
+		addSelectedElements(semanticElementsToMove);
 		return semanticElementsToMove;
 	}
 
@@ -275,7 +275,7 @@ public class ReferenceSelector implements IElementSelector {
 	 */
 	public void setSelectedElements(Object[] semanticElements) {
 		selectedElements.clear();
-		selectedElements.addAll(Arrays.asList(getContainerElements(semanticElements)));
+		selectedElements.addAll(Arrays.asList(semanticElements));
 		fTree.getViewer().refresh();
 	}
 
@@ -357,10 +357,10 @@ public class ReferenceSelector implements IElementSelector {
 		fTree.getViewer().addFilter(new ViewerFilter() {
 
 			@Override
-			public boolean select(Viewer viewer, Object parentElement, Object element) {
+			public boolean select(Viewer viewer, Object parentElement, Object containerElement) {
 				if(unique) {
 					//TODO : check if the selected element has selectable children
-					return !selectedElements.contains(element);
+					return !selectedElements.contains(contentProvider.getAdaptedValue(containerElement));
 				} else {
 					return true;
 				}
@@ -393,77 +393,5 @@ public class ReferenceSelector implements IElementSelector {
 	public void addElementSelectionListener(IElementSelectionListener listener) {
 		elementSelectionListeners.add(listener);
 	}
-
-	//	/**
-	//	 * A Text field to let the user type its own filter
-	//	 *
-	//	 * @author Camille Letavernier
-	//	 *
-	//	 */
-	//	private class Filter extends Composite implements KeyListener {
-	//
-	//		/**
-	//		 * The text box used to edit the filter
-	//		 */
-	//		private Text text;
-	//
-	//		/**
-	//		 * @param parent
-	//		 *        The composite in which the filter should be created
-	//		 * @param style
-	//		 *        The style applied to this filter's text box
-	//		 */
-	//		public Filter(Composite parent, int style) {
-	//			super(parent, SWT.NONE);
-	//			setLayout(new FillLayout());
-	//			text = new Text(this, style);
-	//			text.addKeyListener(this);
-	//			listeners = new LinkedList<Listener>();
-	//		}
-	//
-	//		/**
-	//		 * @return this filter as a String
-	//		 */
-	//		public String getFilter() {
-	//			return text.getText();
-	//		}
-	//
-	//		/**
-	//		 * Adds a listener on this filter. The listener is notified
-	//		 * each time the filter changes
-	//		 *
-	//		 * @param listener
-	//		 */
-	//		public void addChangeListener(Listener listener) {
-	//			listeners.add(listener);
-	//		}
-	//
-	//		/**
-	//		 * Ignored
-	//		 */
-	//		public void keyPressed(KeyEvent e) {
-	//			//Nothing
-	//		}
-	//
-	//		/**
-	//		 * Handles the filter change event
-	//		 */
-	//		public void keyReleased(KeyEvent e) {
-	//			for(Listener listener : listeners) {
-	//				listener.handleEvent(null);
-	//			}
-	//		}
-	//
-	//		@Override
-	//		public void dispose() {
-	//			listeners.clear();
-	//			super.dispose();
-	//		}
-	//
-	//		/**
-	//		 * All registered listeners
-	//		 */
-	//		private Collection<Listener> listeners;
-	//	}
 
 }

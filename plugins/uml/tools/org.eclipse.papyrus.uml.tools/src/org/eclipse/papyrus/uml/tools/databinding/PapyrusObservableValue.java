@@ -26,7 +26,7 @@ import org.eclipse.papyrus.infra.emf.databinding.EMFObservableValue;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
-import org.eclipse.papyrus.infra.widgets.databinding.AggregatedObservable;
+import org.eclipse.papyrus.infra.tools.databinding.AggregatedObservable;
 import org.eclipse.papyrus.uml.tools.Activator;
 
 /**

@@ -11,12 +11,11 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.properties.modelelement;
 
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.papyrus.uml.properties.Activator;
-import org.eclipse.papyrus.uml.properties.util.UMLUtil;
+import org.eclipse.papyrus.uml.tools.utils.UMLUtil;
 import org.eclipse.papyrus.views.properties.contexts.DataContextElement;
 import org.eclipse.papyrus.views.properties.modelelement.ModelElement;
 import org.eclipse.papyrus.views.properties.modelelement.ModelElementFactory;
@@ -45,11 +44,9 @@ import org.eclipse.uml2.uml.Stereotype;
 public class StereotypeModelElementFactory implements ModelElementFactory {
 
 	public ModelElement createFromSource(Object source, DataContextElement context) {
+		Element umlElement = UMLUtil.resolveUMLElement(source);
 
-		if(source instanceof IAdaptable) {
-			IAdaptable adaptable = (IAdaptable)source;
-			Element umlElement = (Element)adaptable.getAdapter(EObject.class);
-
+		if(umlElement != null) {
 			Stereotype stereotype = UMLUtil.getAppliedStereotype(umlElement, getQualifiedName(context), false);
 			EObject stereotypeApplication = umlElement.getStereotypeApplication(stereotype);
 
@@ -58,7 +55,7 @@ public class StereotypeModelElementFactory implements ModelElementFactory {
 			} else {
 				EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(stereotypeApplication);
 
-				return new StereotypeModelElement(stereotypeApplication, domain);
+				return new StereotypeModelElement(stereotypeApplication, stereotype, domain);
 			}
 		}
 

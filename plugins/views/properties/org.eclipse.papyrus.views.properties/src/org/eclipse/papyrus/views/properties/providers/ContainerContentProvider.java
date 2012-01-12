@@ -15,25 +15,18 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.papyrus.infra.emf.providers.GraphicalModelExplorerBasedContentProvider;
+import org.eclipse.papyrus.infra.emf.providers.strategy.SemanticEMFContentProvider;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 
-
-
-public class ContainerContentProvider extends GraphicalModelExplorerBasedContentProvider {
+public class ContainerContentProvider extends SemanticEMFContentProvider {
 
 	protected EClass type;
 
 	protected Object input;
 
-	public ContainerContentProvider(EClass wantedType) {
-		super(null, getHistoryId(wantedType));
-		this.type = wantedType;
-	}
-
-	private static String getHistoryId(EClass type) {
-		return "history_createIn_" + type.getEPackage().getName() + ":" + type.getName(); //$NON-NLS-1$ //$NON-NLS-2$
-
+	public ContainerContentProvider(EObject source, EReference reference) {
+		super(source.eResource().getResourceSet());
+		type = (EClass)reference.getEType();
 	}
 
 	@Override

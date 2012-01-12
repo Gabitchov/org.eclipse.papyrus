@@ -11,7 +11,6 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.emf.databinding;bundle-version="1.2.0",
  org.eclipse.core.databinding.property;bundle-version="1.4.0",
  org.eclipse.core.databinding.beans;bundle-version="1.2.100",
- org.eclipse.papyrus.uml.properties;bundle-version="0.9.0",
  org.eclipse.papyrus.infra.core.log;bundle-version="0.9.0",
  org.eclipse.emf.edit.ui;bundle-version="2.7.0",
  org.eclipse.papyrus.infra.core;bundle-version="0.9.0",
@@ -27,4 +26,3 @@ Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.infra.gmfdiag.properties.Activator
 Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.properties;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-

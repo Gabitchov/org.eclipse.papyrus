@@ -29,4 +29,8 @@ public abstract class AbstractStaticContentProvider implements IStaticContentPro
 		// Nothing
 	}
 
+	public Object[] getElements(Object inputElement) {
+		return getElements();
+	}
+
 }

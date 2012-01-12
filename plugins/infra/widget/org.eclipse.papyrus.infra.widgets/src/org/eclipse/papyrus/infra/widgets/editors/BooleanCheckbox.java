@@ -13,7 +13,7 @@ package org.eclipse.papyrus.infra.widgets.editors;
 
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.jface.databinding.swt.WidgetProperties;
-import org.eclipse.papyrus.infra.widgets.databinding.AggregatedObservable;
+import org.eclipse.papyrus.infra.tools.databinding.AggregatedObservable;
 import org.eclipse.papyrus.infra.widgets.databinding.GrayedCheckboxObservableValue;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Button;

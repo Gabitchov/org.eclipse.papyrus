@@ -13,7 +13,7 @@ package org.eclipse.papyrus.uml.properties.widgets;
 
 import org.eclipse.papyrus.infra.widgets.editors.ICommitListener;
 import org.eclipse.papyrus.uml.properties.Activator;
-import org.eclipse.papyrus.uml.properties.util.UMLUtil;
+import org.eclipse.papyrus.uml.tools.utils.UMLUtil;
 import org.eclipse.papyrus.views.properties.widgets.AbstractPropertyEditor;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.uml2.uml.Element;

@@ -21,8 +21,8 @@ import org.eclipse.jface.viewers.StructuredViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
 
-
-public class TreeToFlatContentProvider implements IStaticContentProvider {
+//FIXME : Adapt this code to TreeBrowseStrategy
+public class TreeToFlatContentProvider extends AbstractStaticContentProvider {
 
 	private ITreeContentProvider contentProvider;
 
@@ -35,10 +35,12 @@ public class TreeToFlatContentProvider implements IStaticContentProvider {
 		this.contentProvider = provider;
 	}
 
+	@Override
 	public void dispose() {
 		contentProvider.dispose();
 	}
 
+	@Override
 	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
 		if(viewer instanceof StructuredViewer) {
 			this.viewer = (StructuredViewer)viewer;
@@ -106,5 +108,4 @@ public class TreeToFlatContentProvider implements IStaticContentProvider {
 			}
 		}
 	}
-
 }

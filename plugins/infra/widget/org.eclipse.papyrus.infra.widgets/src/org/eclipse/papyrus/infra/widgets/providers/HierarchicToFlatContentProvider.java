@@ -18,7 +18,7 @@ import java.util.Set;
 
 import org.eclipse.jface.viewers.Viewer;
 
-
+//FIXME : Adapt this code to TreeBrowseStrategy
 public class HierarchicToFlatContentProvider extends TreeToFlatContentProvider {
 
 	private IHierarchicContentProvider contentProvider;
@@ -40,11 +40,6 @@ public class HierarchicToFlatContentProvider extends TreeToFlatContentProvider {
 	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
 		super.inputChanged(viewer, oldInput, newInput);
 		contentProvider.inputChanged(viewer, oldInput, newInput);
-	}
-
-	@Override
-	public Object[] getElements() {
-		return getElementsList().toArray();
 	}
 
 	@Override

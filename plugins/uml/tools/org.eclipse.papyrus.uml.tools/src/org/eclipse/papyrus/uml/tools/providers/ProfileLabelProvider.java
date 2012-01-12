@@ -9,15 +9,16 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.uml.properties.providers;
+package org.eclipse.papyrus.uml.tools.providers;
 
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.infra.emf.providers.EMFLabelProvider;
-import org.eclipse.papyrus.uml.profile.utils.Util;
+import org.eclipse.papyrus.uml.tools.utils.ProfileUtil;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Profile;
 
 //TODO : To be refactored. Merge this class with UMLLabelProvider
+@Deprecated
 public class ProfileLabelProvider extends EMFLabelProvider implements ILabelProvider {
 
 	private Package umlPackage;
@@ -38,7 +39,7 @@ public class ProfileLabelProvider extends EMFLabelProvider implements ILabelProv
 			if(name == null) {
 				name = UNKNOWN_PROFILE;
 			}
-			if(Util.isDirty(umlPackage, profile)) {
+			if(ProfileUtil.isDirty(umlPackage, profile)) {
 				name += TAG_PROFILE_CHANGED;
 			}
 			return name;

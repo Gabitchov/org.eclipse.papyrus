@@ -19,20 +19,19 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.papyrus.infra.services.edit.utils.ElementTypeValidator;
-import org.eclipse.papyrus.uml.tools.providers.UMLElementMEBContentProvider;
+import org.eclipse.papyrus.uml.tools.providers.SemanticUMLContentProvider;
 
 /**
  * A content provider that takes into account the nature of the searched element
- * (adapted from org.eclipse.papyrus.uml.modelexplorer.widgets.ServiceEditFilteredUMLContentProvider).
+ * (org.eclipse.papyrus.uml.tools.providers.ServiceEditFilteredContentProvider).
  */
-public class ServiceEditContentProvider extends UMLElementMEBContentProvider {
+public class ServiceEditContentProvider extends SemanticUMLContentProvider {
 
 	private ElementTypeValidator validator;
 
 	public ServiceEditContentProvider(IElementType elementType, EStructuralFeature feature, EObject semanticRoot) {
-		super(semanticRoot, "history_" + feature.getEType().getEPackage().getName() + ":" + feature.getEType().getName() + ":" + feature.getName()); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-		setMetaClassWanted(feature.getEType());
-		setMetaClassNotWanted(Collections.emptyList());
+		super(semanticRoot.eResource().getResourceSet());
+		setWantedMetaclasses(Collections.singletonList(feature.getEType()));
 		validator = new ElementTypeValidator(elementType);
 	}
 

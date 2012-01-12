@@ -9,7 +9,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.uml.properties.providers;
+package org.eclipse.papyrus.uml.tools.providers;
 
 import org.eclipse.papyrus.infra.widgets.providers.AbstractStaticContentProvider;
 import org.eclipse.uml2.uml.Element;

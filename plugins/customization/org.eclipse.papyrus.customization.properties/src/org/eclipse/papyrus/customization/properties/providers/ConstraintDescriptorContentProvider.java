@@ -70,4 +70,8 @@ public class ConstraintDescriptorContentProvider extends AbstractContextualConte
 		return result;
 	}
 
+	public Object[] getElements(Object inputElement) {
+		return getElements();
+	}
+
 }

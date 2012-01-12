@@ -14,7 +14,7 @@ package org.eclipse.papyrus.views.properties.providers;
 import org.eclipse.jface.viewers.ComboViewer;
 import org.eclipse.jface.viewers.ViewerFilter;
 
-
+@Deprecated
 public class EncapsulatedComboViewer extends ComboViewer {
 
 	public EncapsulatedComboViewer(ComboViewer viewer) {

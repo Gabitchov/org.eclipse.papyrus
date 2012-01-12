@@ -13,7 +13,6 @@ package org.eclipse.papyrus.infra.widgets.editors;
 
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
@@ -28,6 +27,7 @@ import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.ViewerFilter;
+import org.eclipse.papyrus.infra.core.ui.IRevealSemanticElement;
 import org.eclipse.papyrus.infra.widgets.Activator;
 import org.eclipse.papyrus.infra.widgets.providers.IAdaptableContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IGraphicalContentProvider;
@@ -95,17 +95,25 @@ public class TreeSelectorDialog extends SelectionDialog implements ITreeSelector
 	public void setContentProvider(ITreeContentProvider provider) {
 		contentProvider = provider;
 		if(treeViewer != null) {
-			treeViewer.setContentProvider(contentProvider);
-			if(treeViewer.getInput() == null) {
-				doSetInput();
-			}
-			List<?> initialSelection = getInitialElementSelections();
-			if(!initialSelection.isEmpty()) {
-				treeViewer.setSelection(new StructuredSelection(initialSelection.get(0)), true);
-			}
+			initViewerAndProvider();
 		}
 		if(contentProvider instanceof ICommitListener) {
 			commitListeners.add((ICommitListener)contentProvider);
+		}
+	}
+
+	protected void initViewerAndProvider() {
+		treeViewer.setContentProvider(contentProvider);
+		if(treeViewer.getInput() == null) {
+			doSetInput();
+		}
+		List<?> initialSelection = getInitialElementSelections();
+		if(contentProvider instanceof IRevealSemanticElement) {
+			((IRevealSemanticElement)contentProvider).revealSemanticElement(initialSelection);
+		} else if(!initialSelection.isEmpty()) {
+			//FIXME : When we use an EncapsulatedContentProvider, we'll not get into this case,
+			//even if the encapsulated provider is not a IRevealSemanticElement
+			treeViewer.setSelection(new StructuredSelection(initialSelection.get(0)), true);
 		}
 	}
 
@@ -127,15 +135,7 @@ public class TreeSelectorDialog extends SelectionDialog implements ITreeSelector
 			treeViewer.setLabelProvider(labelProvider);
 		}
 		if(contentProvider != null) {
-			treeViewer.setContentProvider(contentProvider);
-			if(treeViewer.getInput() == null) {
-				doSetInput();
-			}
-
-			List<?> initialSelection = getInitialElementSelections();
-			if(!initialSelection.isEmpty() && initialSelection.get(0) != null) {
-				treeViewer.setSelection(new StructuredSelection(initialSelection.get(0)), true);
-			}
+			initViewerAndProvider();
 		}
 
 		treeViewer.addSelectionChangedListener(new ISelectionChangedListener() {
@@ -151,6 +151,9 @@ public class TreeSelectorDialog extends SelectionDialog implements ITreeSelector
 
 				if(contentProvider instanceof IHierarchicContentProvider) {
 					boolean isValidValue = ((IHierarchicContentProvider)contentProvider).isValidValue(selectedElement);
+					if(contentProvider instanceof IAdaptableContentProvider) {
+						selectedElement = ((IAdaptableContentProvider)contentProvider).getAdaptedValue(selectedElement);
+					}
 					if(isValidValue) {
 						setResult(Collections.singletonList(selectedElement));
 					} else {
@@ -192,8 +195,6 @@ public class TreeSelectorDialog extends SelectionDialog implements ITreeSelector
 			graphicalContentProvider.createAfter(afterTreeComposite);
 		}
 
-		treeViewer.setSelection(new StructuredSelection(getAdaptedInitialSelection()));
-
 		getShell().setDefaultButton(null);
 		getButton(OK).setFocus();
 		getShell().setImage(Activator.getDefault().getImage("/icons/papyrus.png")); //$NON-NLS-1$
@@ -230,17 +231,19 @@ public class TreeSelectorDialog extends SelectionDialog implements ITreeSelector
 		this.input = input;
 	}
 
-	public List<Object> getAdaptedInitialSelection() {
-		if(contentProvider instanceof IAdaptableContentProvider) {
-			List<Object> result = new LinkedList<Object>();
-			for(Object object : getInitialElementSelections()) {
-				result.add(((IAdaptableContentProvider)contentProvider).getContainerValue(object));
-			}
-			return result;
-		} else {
-			return super.getInitialElementSelections();
-		}
-	}
+	//	@Deprecated
+	//	//Unused
+	//	public List<Object> getAdaptedInitialSelection() {
+	//		if(contentProvider instanceof IAdaptableContentProvider) {
+	//			List<Object> result = new LinkedList<Object>();
+	//			for(Object object : getInitialElementSelections()) {
+	//				result.add(((IAdaptableContentProvider)contentProvider).getContainerValue(object));
+	//			}
+	//			return result;
+	//		} else {
+	//			return super.getInitialElementSelections();
+	//		}
+	//	}
 
 	private void doSetInput() {
 		if(input == null) {

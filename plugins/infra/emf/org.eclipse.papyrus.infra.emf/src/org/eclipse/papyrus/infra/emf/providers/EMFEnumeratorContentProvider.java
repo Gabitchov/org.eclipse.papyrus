@@ -9,22 +9,21 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.views.properties.providers;
+package org.eclipse.papyrus.infra.emf.providers;
 
 import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
+import org.eclipse.papyrus.infra.widgets.providers.AbstractStaticContentProvider;
 
 /**
  * An IStaticContentProvider for EMF enumerators.
  * 
  * @author Camille Letavernier
  */
-public class EcoreEnumeratorContentProvider implements IStaticContentProvider {
+public class EMFEnumeratorContentProvider extends AbstractStaticContentProvider {
 
 	/**
 	 * The feature representing the Enumerator for this ContentProvider
@@ -36,16 +35,8 @@ public class EcoreEnumeratorContentProvider implements IStaticContentProvider {
 	 * 
 	 * @param feature
 	 */
-	public EcoreEnumeratorContentProvider(EStructuralFeature feature) {
+	public EMFEnumeratorContentProvider(EStructuralFeature feature) {
 		this.feature = feature;
-	}
-
-	public void dispose() {
-		//Nothing here
-	}
-
-	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
-		//Nothing here
 	}
 
 	public Object[] getElements() {

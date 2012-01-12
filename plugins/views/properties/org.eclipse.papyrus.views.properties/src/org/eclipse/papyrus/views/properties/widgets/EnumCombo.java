@@ -11,6 +11,11 @@
  *****************************************************************************/
 package org.eclipse.papyrus.views.properties.widgets;
 
+import org.eclipse.jface.viewers.ITreeContentProvider;
+import org.eclipse.papyrus.infra.widgets.providers.HierarchicToFlatContentProvider;
+import org.eclipse.papyrus.infra.widgets.providers.IHierarchicContentProvider;
+import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
+import org.eclipse.papyrus.infra.widgets.providers.TreeToFlatContentProvider;
 import org.eclipse.swt.widgets.Composite;
 
 /**
@@ -49,6 +54,15 @@ public class EnumCombo extends AbstractPropertyEditor {
 	 */
 	@Override
 	protected void doBinding() {
+
+		IStaticContentProvider provider = input.getContentProvider(propertyPath);
+
+		if(provider instanceof IHierarchicContentProvider) {
+			provider = new HierarchicToFlatContentProvider((IHierarchicContentProvider)provider);
+		} else if(provider instanceof ITreeContentProvider) {
+			provider = new TreeToFlatContentProvider((ITreeContentProvider)provider);
+		}
+
 		enumCombo.setProviders(input.getContentProvider(propertyPath), input.getLabelProvider(propertyPath));
 
 		enumCombo.setUnsettable(!input.isMandatory(propertyPath));

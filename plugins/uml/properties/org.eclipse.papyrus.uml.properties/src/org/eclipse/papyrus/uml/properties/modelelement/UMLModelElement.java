@@ -16,7 +16,6 @@ import static org.eclipse.uml2.uml.ParameterDirectionKind.IN_LITERAL;
 import static org.eclipse.uml2.uml.ParameterDirectionKind.OUT_LITERAL;
 import static org.eclipse.uml2.uml.ParameterDirectionKind.RETURN_LITERAL;
 
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -32,34 +31,31 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.jface.viewers.ITreeContentProvider;
+import org.eclipse.papyrus.infra.emf.providers.EMFGraphicalContentProvider;
 import org.eclipse.papyrus.infra.emf.providers.EMFLabelProvider;
+import org.eclipse.papyrus.infra.emf.utils.HistoryUtil;
+import org.eclipse.papyrus.infra.emf.utils.ProviderHelper;
 import org.eclipse.papyrus.infra.widgets.creation.ReferenceValueFactory;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
 import org.eclipse.papyrus.uml.properties.creation.ConnectorTypeEditorFactory;
 import org.eclipse.papyrus.uml.properties.creation.MessageValueSpecificationFactory;
 import org.eclipse.papyrus.uml.properties.creation.OwnedRuleCreationFactory;
 import org.eclipse.papyrus.uml.properties.creation.UMLPropertyEditorFactory;
-import org.eclipse.papyrus.uml.properties.providers.InstanceValueContentProvider;
 import org.eclipse.papyrus.uml.properties.providers.UMLFilteredLabelProvider;
 import org.eclipse.papyrus.uml.tools.databinding.ExtensionRequiredObservableValue;
 import org.eclipse.papyrus.uml.tools.databinding.PapyrusObservableList;
 import org.eclipse.papyrus.uml.tools.databinding.PapyrusObservableValue;
 import org.eclipse.papyrus.uml.tools.databinding.ProvidedInterfaceObservableList;
 import org.eclipse.papyrus.uml.tools.databinding.RequiredInterfaceObservableList;
-import org.eclipse.papyrus.uml.tools.helper.HistoryUtil;
-import org.eclipse.papyrus.uml.tools.providers.ServiceEditFilteredUMLContentProvider;
-import org.eclipse.papyrus.uml.tools.providers.UMLElementMEBContentProvider;
-import org.eclipse.papyrus.uml.tools.utils.PackageUtil;
+import org.eclipse.papyrus.uml.tools.providers.UMLContainerContentProvider;
+import org.eclipse.papyrus.uml.tools.providers.UMLContentProvider;
 import org.eclipse.papyrus.views.properties.modelelement.EMFModelElement;
-import org.eclipse.papyrus.views.properties.providers.ContainerContentProvider;
 import org.eclipse.papyrus.views.properties.providers.FeatureContentProvider;
 import org.eclipse.uml2.uml.Connector;
-import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Extension;
-import org.eclipse.uml2.uml.InstanceValue;
 import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.Namespace;
-import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.ParameterDirectionKind;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -154,39 +150,7 @@ public class UMLModelElement extends EMFModelElement {
 	public IStaticContentProvider getContentProvider(String propertyPath) {
 		EStructuralFeature feature = getFeature(propertyPath);
 
-		if(feature == UMLPackage.eINSTANCE.getPort_Provided() || feature == UMLPackage.eINSTANCE.getPort_Required()) {
-			Package root = null;
-			if(((Element)source).getNearestPackage() != null) {
-				root = PackageUtil.getRootPackage((Element)source);
-			}
-
-			String historyId = HistoryUtil.getHistoryID(source, feature, root);
-			UMLElementMEBContentProvider contentProvider = new UMLElementMEBContentProvider(root, historyId);
-			contentProvider.setMetaClassWanted(feature.getEType());
-			return contentProvider;
-		}
-
-		if(feature instanceof EReference) {
-			Package root = null;
-			if(((Element)source).getNearestPackage() != null) {
-				root = PackageUtil.getRootPackage((Element)source);
-			}
-
-			ServiceEditFilteredUMLContentProvider contentProvider;
-
-			if(feature == UMLPackage.eINSTANCE.getInstanceValue_Instance()) {
-				contentProvider = new InstanceValueContentProvider((InstanceValue)source, feature, root);
-			} else {
-				contentProvider = new ServiceEditFilteredUMLContentProvider(source, feature, root);
-			}
-
-			contentProvider.setMetaClassWanted(feature.getEType());
-			contentProvider.setMetaClassNotWanted(Collections.EMPTY_LIST);
-
-			return contentProvider;
-		}
-
-		return super.getContentProvider(propertyPath);
+		return new UMLContentProvider(source, feature);
 	}
 
 	@Override
@@ -251,8 +215,11 @@ public class UMLModelElement extends EMFModelElement {
 
 		factory.setContainerLabelProvider(new UMLFilteredLabelProvider());
 		factory.setReferenceLabelProvider(new EMFLabelProvider());
-		IStaticContentProvider contentProvider = new ContainerContentProvider(type);
-		factory.setContainerContentProvider(contentProvider);
+		ITreeContentProvider contentProvider = new UMLContainerContentProvider(source, reference);
+
+		EMFGraphicalContentProvider provider = ProviderHelper.encapsulateProvider(contentProvider, HistoryUtil.getHistoryID(source, feature, "container"));
+
+		factory.setContainerContentProvider(provider);
 		factory.setReferenceContentProvider(new FeatureContentProvider(type));
 
 		return factory;

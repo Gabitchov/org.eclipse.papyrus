@@ -20,6 +20,7 @@ import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.papyrus.infra.tools.databinding.AggregatedObservable;
 import org.eclipse.papyrus.infra.widgets.providers.ComboLabelProvider;
 import org.eclipse.papyrus.infra.widgets.providers.UnchangedObject;
 import org.eclipse.papyrus.infra.widgets.providers.UnsetObject;

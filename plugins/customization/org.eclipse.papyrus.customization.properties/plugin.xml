@@ -34,7 +34,7 @@
       </environment>
    </extension>
    <extension point="org.eclipse.papyrus.views.properties.context">
-      <context contextModel="Model/Customization.ctx" loadDefault="true">
+      <context contextModel="Model/Customization.ctx">
       </context>
    </extension>
    <extension point="org.eclipse.ui.views.properties.tabbed.propertyContributor">

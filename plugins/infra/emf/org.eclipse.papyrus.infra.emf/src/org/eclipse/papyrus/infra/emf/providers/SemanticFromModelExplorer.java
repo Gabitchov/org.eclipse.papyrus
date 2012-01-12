@@ -20,25 +20,28 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.infra.core.IElementWithSemantic;
 
 /**
- * This class is used to obtain the semantic element for element of the model explorer 
+ * This class is used to obtain the semantic element for element of the model explorer
+ * 
+ * @deprecated See EMFHelper#getEObject(Object)
  */
+@Deprecated
 public class SemanticFromModelExplorer implements IElementWithSemantic {
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public Object getSemanticElement(Object wrapper) {
-		if( wrapper instanceof IAdaptable){
-			Object obj= ((IAdaptable)wrapper).getAdapter(EObject.class);
-			if(obj==null){
-				obj= ((IAdaptable)wrapper).getAdapter(EReference.class);
+		if(wrapper instanceof IAdaptable) {
+			Object obj = ((IAdaptable)wrapper).getAdapter(EObject.class);
+			if(obj == null) {
+				obj = ((IAdaptable)wrapper).getAdapter(EReference.class);
 			}
-			if(obj!=null){
+			if(obj != null) {
 				return obj;
 			}
 		}
-		
-		if( wrapper instanceof Diagram){
+
+		if(wrapper instanceof Diagram) {
 			return wrapper;
 		}
 		return null;

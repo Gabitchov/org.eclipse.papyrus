@@ -47,17 +47,21 @@ public class ConstraintFactory {
 	 */
 	public Constraint createFromModel(ConstraintDescriptor model) {
 		Constraint constraint = null;
-		if(model instanceof CompositeConstraint) {
-			CompoundConstraint cConstraint = new CompoundConstraint();
-			cConstraint.setConstraintDescriptor(model);
-			for(SimpleConstraint descriptor : ((CompositeConstraint)model).getConstraints()) {
-				Constraint subConstraint = loadConstraint(descriptor);
-				cConstraint.addConstraint(subConstraint);
-			}
+		try {
+			if(model instanceof CompositeConstraint) {
+				CompoundConstraint cConstraint = new CompoundConstraint();
+				cConstraint.setConstraintDescriptor(model);
+				for(SimpleConstraint descriptor : ((CompositeConstraint)model).getConstraints()) {
+					Constraint subConstraint = loadConstraint(descriptor);
+					cConstraint.addConstraint(subConstraint);
+				}
 
-			constraint = cConstraint;
-		} else {
-			constraint = loadConstraint((SimpleConstraint)model);
+				constraint = cConstraint;
+			} else {
+				constraint = loadConstraint((SimpleConstraint)model);
+			}
+		} catch (Exception ex) {
+			Activator.log.error(ex);
 		}
 		return constraint;
 	}

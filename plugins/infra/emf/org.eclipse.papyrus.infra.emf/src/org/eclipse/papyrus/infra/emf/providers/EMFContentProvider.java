@@ -28,8 +28,9 @@ import org.eclipse.papyrus.infra.widgets.providers.AbstractStaticContentProvider
  * A Content provider for EMF references
  * 
  * @author Camille Letavernier
+ * @deprecated Use the new ContentProvider tools
  */
-//TODO : Implement IHierarchicContentProvider, IGraphicalContentProvider
+@Deprecated
 public class EMFContentProvider extends AbstractStaticContentProvider {
 
 	private EObject eObject;

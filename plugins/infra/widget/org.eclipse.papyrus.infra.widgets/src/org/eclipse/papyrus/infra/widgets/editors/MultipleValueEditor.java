@@ -354,11 +354,6 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 		}
 
 		if(modelProperty != null) {
-			//			Object[] initialSelection = new Object[modelProperty.size()];
-			//			int i = 0;
-			//			for(Object semanticObject : modelProperty) {
-			//				initialSelection[i++] = containObject(semanticObject);
-			//			}
 			dialog.setInitialSelections(modelProperty.toArray());
 		} else {
 			dialog.setInitialSelections(new Object[0]);
@@ -375,11 +370,6 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 		if(result == null) {
 			return;
 		}
-
-		//		List<Object> resultElements = new LinkedList<Object>();
-		//		for(Object r : result) {
-		//			resultElements.add(adaptResult(r));
-		//		}
 
 		modelProperty.addAll(Arrays.asList(result));
 

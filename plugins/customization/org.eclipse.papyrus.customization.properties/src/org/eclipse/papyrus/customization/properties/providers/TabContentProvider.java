@@ -58,4 +58,8 @@ public class TabContentProvider extends AbstractContextualContentProvider {
 		return true;
 	}
 
+	public Object[] getElements(Object inputElement) {
+		return getElements();
+	}
+
 }

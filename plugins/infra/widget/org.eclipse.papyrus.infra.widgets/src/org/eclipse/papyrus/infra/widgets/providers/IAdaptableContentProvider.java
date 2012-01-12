@@ -38,5 +38,5 @@ public interface IAdaptableContentProvider extends IStructuredContentProvider {
 	 * @return
 	 *         The container object wrapping the semantic element
 	 */
-	public Object getContainerValue(Object semanticElement);
+	//	public Object getContainerValue(Object semanticElement);
 }

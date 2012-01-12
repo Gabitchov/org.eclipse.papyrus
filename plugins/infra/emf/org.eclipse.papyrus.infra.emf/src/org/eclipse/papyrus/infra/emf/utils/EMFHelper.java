@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -38,6 +39,7 @@ import org.eclipse.papyrus.infra.emf.Activator;
  * 
  * @author Camille Letavernier
  */
+//TODO : Check implementations. Most of them are old and don't always match the specification
 public class EMFHelper {
 
 	/**
@@ -146,24 +148,51 @@ public class EMFHelper {
 		if(source instanceof EObject) {
 			return (EObject)source;
 		} else if(source instanceof IAdaptable) {
-			return (EObject)((IAdaptable)source).getAdapter(EObject.class);
+			EObject eObject = (EObject)((IAdaptable)source).getAdapter(EObject.class);
+			if(eObject == null) { //EMF Facet
+				eObject = (EObject)((IAdaptable)source).getAdapter(EReference.class);
+			}
+			return eObject;
 		}
 
 		return null;
 	}
 
 	/**
-	 * Return the eClass' qualified name. The qualified name is obtained by the concatenation
+	 * Retrieve the EditingDomain for the given source object. The object is first
+	 * resolved to an EObject through #getEObject when possible.
+	 * 
+	 * @param source
+	 * @return
+	 *         The source object's editing domain, or null if it couldn't be found
+	 */
+	public static EditingDomain resolveEditingDomain(Object source) {
+		return resolveEditingDomain(getEObject(source));
+	}
+
+	/**
+	 * Retrieve the EditingDomain for the given source EObject
+	 * 
+	 * @param source
+	 * @return
+	 *         The source eObject's editing domain, or null if it couldn't be found
+	 */
+	public static EditingDomain resolveEditingDomain(EObject source) {
+		return AdapterFactoryEditingDomain.getEditingDomainFor(source);
+	}
+
+	/**
+	 * Return the eClassifier' qualified name. The qualified name is obtained by the concatenation
 	 * of its package hierarchy with the class name, separated by the given separator
 	 * 
-	 * @param eClass
+	 * @param eClassifier
 	 * @param separator
 	 *        The separator used between each package name
 	 * @return
-	 *         The EClass' qualified name
+	 *         The EClassifier' qualified name
 	 */
-	public static String getQualifiedName(EClass eClass, String separator) {
-		return getQualifiedName(eClass.getEPackage(), separator) + separator + eClass.getName();
+	public static String getQualifiedName(EClassifier eClassifier, String separator) {
+		return getQualifiedName(eClassifier.getEPackage(), separator) + separator + eClassifier.getName();
 	}
 
 	/**

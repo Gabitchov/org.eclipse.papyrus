@@ -17,7 +17,6 @@ import org.eclipse.papyrus.infra.widgets.providers.HierarchicToFlatContentProvid
 import org.eclipse.papyrus.infra.widgets.providers.IHierarchicContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.TreeToFlatContentProvider;
-import org.eclipse.papyrus.views.properties.providers.EncapsulatedComboViewer;
 import org.eclipse.swt.widgets.Composite;
 
 /**
@@ -52,10 +51,10 @@ public class ReferenceCombo extends AbstractPropertyEditor {
 		IStaticContentProvider contentProvider = input.getContentProvider(propertyPath);
 		if(contentProvider instanceof IHierarchicContentProvider) {
 			contentProvider = new HierarchicToFlatContentProvider((IHierarchicContentProvider)contentProvider);
-			combo.setViewer(new EncapsulatedComboViewer(combo.getViewer()));
+			//combo.setViewer(new EncapsulatedComboViewer(combo.getViewer()));
 		} else if(contentProvider instanceof ITreeContentProvider) {
 			contentProvider = new TreeToFlatContentProvider((ITreeContentProvider)contentProvider);
-			combo.setViewer(new EncapsulatedComboViewer(combo.getViewer()));
+			//combo.setViewer(new EncapsulatedComboViewer(combo.getViewer()));
 		}
 
 		ILabelProvider labelProvider = input.getLabelProvider(propertyPath);

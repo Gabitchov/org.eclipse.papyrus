@@ -187,7 +187,7 @@ public class EcorePropertyEditorFactory extends PropertyEditorFactory {
 	@Override
 	public Object createObject(Control widget) {
 		Object instance;
-		if (referenceIn.isContainment()){
+		if(referenceIn.isContainment()) {
 			instance = simpleCreateObject(widget);
 		} else {
 			instance = createObjectInDifferentContainer(widget);

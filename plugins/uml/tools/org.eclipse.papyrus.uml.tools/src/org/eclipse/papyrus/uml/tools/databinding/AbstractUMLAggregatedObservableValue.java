@@ -14,7 +14,7 @@ package org.eclipse.papyrus.uml.tools.databinding;
 import org.eclipse.core.databinding.observable.IObservable;
 import org.eclipse.core.databinding.observable.value.AbstractObservableValue;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.papyrus.infra.widgets.databinding.AggregatedObservable;
+import org.eclipse.papyrus.infra.tools.databinding.AggregatedObservable;
 
 /**
  * An Abstract Class for Papyrus Command-based observable values

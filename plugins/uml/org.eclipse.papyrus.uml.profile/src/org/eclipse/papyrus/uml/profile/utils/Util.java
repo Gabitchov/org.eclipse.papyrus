@@ -20,18 +20,15 @@ import java.util.List;
 
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.papyrus.uml.profile.Activator;
 import org.eclipse.papyrus.uml.profile.Message;
 import org.eclipse.papyrus.uml.profile.definition.IPapyrusVersionConstants;
 import org.eclipse.papyrus.uml.profile.definition.PapyrusDefinitionAnnotation;
 import org.eclipse.papyrus.uml.profile.definition.Version;
-import org.eclipse.papyrus.uml.tools.utils.PackageUtil;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.DataType;
 import org.eclipse.uml2.uml.Element;
@@ -109,8 +106,7 @@ public class Util {
 				suffix = " (ProfileApplication)";
 				cNE = cPA.getAppliedProfile();
 
-			}
-			else if(object instanceof Comment) {
+			} else if(object instanceof Comment) {
 				Comment cCom = (Comment)object;
 				suffix = " (Comment)";
 				String cComBody = cCom.getBody();
@@ -119,33 +115,29 @@ public class Util {
 				} else {
 					cComLabel = cComBody;
 				}
-			}
-			else if (object instanceof TemplateSignature) {
-				TemplateableElement te = ((TemplateSignature) object).getTemplate();
+			} else if(object instanceof TemplateSignature) {
+				TemplateableElement te = ((TemplateSignature)object).getTemplate();
 				suffix = " (TemplateSignature owner)";
-				if (te instanceof NamedElement) {
-					cNE = (NamedElement) te;
+				if(te instanceof NamedElement) {
+					cNE = (NamedElement)te;
 				}
-			}
-			else if (object instanceof TemplateBinding) {
-				TemplateableElement te = ((TemplateBinding) object).getBoundElement();
+			} else if(object instanceof TemplateBinding) {
+				TemplateableElement te = ((TemplateBinding)object).getBoundElement();
 				suffix = " (TemplateBinding bound-element)";
-				if (te instanceof NamedElement) {
-					cNE = (NamedElement) te;
+				if(te instanceof NamedElement) {
+					cNE = (NamedElement)te;
 				}
 			}
 			if(shortLabel) {
 				if(object instanceof Comment) {
 					cName = cComLabel;
-				}
-				else if (cNE != null) {
+				} else if(cNE != null) {
 					cName = cNE.getName();
 				}
 			} else {
 				if(object instanceof Comment) {
 					cName = cComLabel + suffix;
-				}
-				else if (cNE != null) {
+				} else if(cNE != null) {
 					cName = cNE.getQualifiedName() + suffix;
 				}
 			}
@@ -172,9 +164,7 @@ public class Util {
 	public static boolean isMetaclass(Type type) {
 		boolean isMetaclass = false;
 
-		if((type instanceof org.eclipse.uml2.uml.Class)
-			&& (type.getAppliedStereotypes() != null)
-			&& (type.getAppliedStereotypes().size() > 0)) {
+		if((type instanceof org.eclipse.uml2.uml.Class) && (type.getAppliedStereotypes() != null) && (type.getAppliedStereotypes().size() > 0)) {
 
 			Stereotype firstStereotype = type.getAppliedStereotypes().get(0);
 
@@ -288,15 +278,14 @@ public class Util {
 	/**
 	 * Helper function used by getInstancesFilteredByType
 	 */
-	private static void checkAndAddElement (EObject currentEObj, @SuppressWarnings("rawtypes") Class metaType, Stereotype appliedStereotype, ArrayList<Element> filteredElements)
-	{
-		if (currentEObj instanceof Element) {
-			Element piCurrentElt = (Element) currentEObj;
-			if (appliedStereotype != null) {
+	private static void checkAndAddElement(EObject currentEObj, @SuppressWarnings("rawtypes") Class metaType, Stereotype appliedStereotype, ArrayList<Element> filteredElements) {
+		if(currentEObj instanceof Element) {
+			Element piCurrentElt = (Element)currentEObj;
+			if(appliedStereotype != null) {
 
 				// It is not sufficient to call getAppliedStereotypes, since we also want to
 				// retrieve elements that apply a sub-stereotype
-				if (piCurrentElt.getAppliedSubstereotype(appliedStereotype, null) != null) {
+				if(piCurrentElt.getAppliedSubstereotype(appliedStereotype, null) != null) {
 					filteredElements.add(piCurrentElt);
 				}
 				Iterator<Stereotype> appStIter = piCurrentElt.getAppliedStereotypes().iterator();
@@ -318,8 +307,8 @@ public class Util {
 					Iterator<EObject> eIter = ((ElementImport)piCurrentElt).getImportedElement().eAllContents();
 					while(eIter.hasNext()) {
 						EObject currentEIelt = eIter.next();
-						if ((currentEIelt instanceof Element) && (metaType.isInstance(currentEIelt))) {
-							filteredElements.add((Element) currentEIelt);
+						if((currentEIelt instanceof Element) && (metaType.isInstance(currentEIelt))) {
+							filteredElements.add((Element)currentEIelt);
 						}
 					}
 				}
@@ -353,24 +342,24 @@ public class Util {
 			// If currentElt is an ElementImport, it is replaced by the imported
 			// Element.
 			if(currentEObj instanceof ElementImport) {
-				ElementImport elementImport = (ElementImport) currentEObj;
+				ElementImport elementImport = (ElementImport)currentEObj;
 				currentEObj = elementImport.getImportedElement();
 			}
 
 			/* package imports treatment */
 			else if(currentEObj instanceof PackageImport) {
-				Package importedPkg = ((PackageImport) currentEObj).getImportedPackage();
-				if (importedPkg != null) {
+				Package importedPkg = ((PackageImport)currentEObj).getImportedPackage();
+				if(importedPkg != null) {
 					Iterator<EObject> piIter = importedPkg.eAllContents();
 					while(piIter.hasNext()) {
 						EObject piCurrentEObj = piIter.next();
-						checkAndAddElement (piCurrentEObj, metaType, appliedStereotype, filteredElements);
+						checkAndAddElement(piCurrentEObj, metaType, appliedStereotype, filteredElements);
 					}
 				}
 			}
 
 			// Filtering elements
-			checkAndAddElement (currentEObj, metaType, appliedStereotype, filteredElements);
+			checkAndAddElement(currentEObj, metaType, appliedStereotype, filteredElements);
 		}
 
 		return filteredElements;
@@ -641,64 +630,5 @@ public class Util {
 			container = container.eContainer();
 		}
 		return profileApplication;
-	}
-
-	/**
-	 * Checks if the profile applied has been changed since last application (definition does not match.
-	 * 
-	 * @param _package
-	 *        on which the profile is applied
-	 * @param _profile
-	 *        the applied profile
-	 * @return true if the profile has changed
-	 */
-	public static boolean isDirty(Package _package, Profile _profile) {
-		boolean isDirty = false;
-		if(_profile == null || _profile.eResource() == null) {
-			return false;
-		}
-
-		// Retrieve model resourceSet
-		ResourceSet pkge_resourceSet = _package.eResource().getResourceSet();
-
-		// Retrieve profile resource
-		URI prof_URI = _profile.eResource().getURI();
-		Resource modelResource = pkge_resourceSet.getResource(prof_URI, true);
-
-		if(modelResource.getContents().get(0) instanceof Profile) {
-
-			// ckeck applied profile application definition vs profile definition referenced in file
-			Profile profileInFile = (Profile)(modelResource.getContents().get(0));
-
-			if(_package.getProfileApplication(_profile) != null) {
-				EPackage appliedProfileDefinition = _package.getProfileApplication(_profile).getAppliedDefinition();
-				EPackage fileProfileDefinition = null;
-
-				// Check profiles qualified names to ensure the correct profiles are compared
-				String appliedProfileName = _profile.getQualifiedName();
-				String fileProfileName = profileInFile.getQualifiedName();
-				if(!appliedProfileName.equals(fileProfileName)) {
-
-					// The profile must be a subprofile
-					Iterator<Profile> it = PackageUtil.getSubProfiles(profileInFile).iterator();
-					while(it.hasNext()) {
-						Profile current = it.next();
-						fileProfileName = current.getQualifiedName();
-						if(fileProfileName.equals(appliedProfileName)) {
-							profileInFile = current;
-						}
-					}
-				}
-
-				fileProfileDefinition = profileInFile.getDefinition();
-
-				if(appliedProfileDefinition != fileProfileDefinition) {
-					isDirty = true;
-				}
-			}
-
-		}
-
-		return isDirty;
 	}
 }

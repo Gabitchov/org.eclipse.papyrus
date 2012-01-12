@@ -11,35 +11,24 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.properties.modelelement;
 
-import java.util.Collections;
-
 import org.eclipse.core.databinding.observable.IObservable;
 import org.eclipse.emf.databinding.EMFProperties;
 import org.eclipse.emf.databinding.FeaturePath;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.viewers.ILabelProvider;
-import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
-import org.eclipse.papyrus.infra.widgets.providers.EmptyContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
 import org.eclipse.papyrus.uml.properties.datatype.DataTypeProvider;
 import org.eclipse.papyrus.uml.properties.datatype.StructuredDataTypeObservableValue;
 import org.eclipse.papyrus.uml.properties.providers.UMLFilteredLabelProvider;
 import org.eclipse.papyrus.uml.tools.databinding.PapyrusObservableList;
 import org.eclipse.papyrus.uml.tools.databinding.PapyrusObservableValue;
-import org.eclipse.papyrus.uml.tools.providers.ServiceEditFilteredUMLContentProvider;
-import org.eclipse.papyrus.uml.tools.utils.PackageUtil;
+import org.eclipse.papyrus.uml.tools.providers.UMLContentProvider;
 import org.eclipse.papyrus.views.properties.modelelement.EMFModelElement;
-import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Stereotype;
-import org.eclipse.uml2.uml.UMLPackage;
-import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * A Model Element for manipulating Stereotype properties
@@ -48,17 +37,22 @@ import org.eclipse.uml2.uml.util.UMLUtil;
  */
 public class StereotypeModelElement extends EMFModelElement {
 
+	protected Stereotype stereotype;
+
 	/**
 	 * Constructor.
 	 * 
-	 * @param source
+	 * @param stereotypeApplication
 	 *        The StereotypeApplication being edited
+	 * @param stereotype
+	 *        The Stereotype element
 	 * @param domain
 	 *        The Editing domain on which the commands will be called
 	 * 
 	 */
-	public StereotypeModelElement(EObject source, EditingDomain domain) {
-		super(source, domain);
+	public StereotypeModelElement(EObject stereotypeApplication, Stereotype stereotype, EditingDomain domain) {
+		super(stereotypeApplication, domain);
+		this.stereotype = stereotype;
 	}
 
 	/**
@@ -103,58 +97,8 @@ public class StereotypeModelElement extends EMFModelElement {
 	 */
 	@Override
 	public IStaticContentProvider getContentProvider(String propertyPath) {
-		FeaturePath featurePath = getFeaturePath(propertyPath);
-		EStructuralFeature feature = getFeature(featurePath);
-		EClassifier type = feature.getEType();
-
-		if(isStereotype(type)) {
-			return getStereotypedReferenceContentProvider(propertyPath);
-		} else if(type instanceof EEnum || type instanceof EClass) {
-			return super.getContentProvider(propertyPath);
-		}
-
-		return EmptyContentProvider.instance;
-	}
-
-	protected boolean isStereotype(EClassifier type) {
-		if(type instanceof Stereotype) {
-			return true;
-		}
-
-		if(type instanceof EClass) {
-			EClass eClass = (EClass)type;
-			return !EMFHelper.isSubclass(eClass, UMLPackage.eINSTANCE.getElement());
-		}
-
-		return false;
-	}
-
-	/**
-	 * Returns the content provider for reference properties typed
-	 * by a stereotype
-	 * 
-	 * @param propertyPath
-	 *        The name of the property being edited
-	 * @return
-	 *         The Content Provider for properties typed by a stereotype
-	 */
-	protected IStaticContentProvider getStereotypedReferenceContentProvider(String propertyPath) {
 		EStructuralFeature feature = getFeature(propertyPath);
 
-		Package root = null;
-		if(source != null) {
-			Element umlElement = UMLUtil.getBaseElement(source);
-			if(umlElement != null) {
-				if(umlElement.getNearestPackage() != null) {
-					root = PackageUtil.getRootPackage(umlElement);
-				}
-			}
-		}
-
-		ServiceEditFilteredUMLContentProvider contentProvider = new ServiceEditFilteredUMLContentProvider(source, feature, root);
-		contentProvider.setMetaClassWanted(feature.getEType());
-		contentProvider.setMetaClassNotWanted(Collections.EMPTY_LIST);
-
-		return contentProvider;
+		return new UMLContentProvider(source, feature, stereotype);
 	}
 }

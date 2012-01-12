@@ -21,7 +21,6 @@ import org.eclipse.core.databinding.observable.IObservable;
 import org.eclipse.core.databinding.observable.value.AbstractObservableValue;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.core.databinding.observable.value.ValueDiff;
-import org.eclipse.papyrus.infra.widgets.databinding.AggregatedObservable;
 
 /**
  * MultipleObservableValue is used to map a single element

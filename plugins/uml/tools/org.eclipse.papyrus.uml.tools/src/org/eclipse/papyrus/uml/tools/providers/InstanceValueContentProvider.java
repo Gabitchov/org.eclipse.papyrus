@@ -9,12 +9,12 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.uml.properties.providers;
+package org.eclipse.papyrus.uml.tools.providers;
 
-import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.papyrus.infra.widgets.providers.IHierarchicContentProvider;
-import org.eclipse.papyrus.uml.properties.util.UMLUtil;
-import org.eclipse.papyrus.uml.tools.providers.UMLHierarchicViewerFilter;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.papyrus.uml.tools.utils.UMLUtil;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Enumeration;
 import org.eclipse.uml2.uml.InstanceSpecification;
@@ -22,13 +22,17 @@ import org.eclipse.uml2.uml.InstanceValue;
 import org.eclipse.uml2.uml.Type;
 
 /**
- * A viewer filter for {@link InstanceValue#getInstance()} values
- * The values are accepted only if they match the {@link InstanceValue#getType()}.
- * If the {@link InstanceValue#getType()} is not set, all values are accepted
+ * A Content provider for the value of an InstanceValue
+ * 
+ * The valid instance specifications are filtered according to the type of the
+ * InstanceValue
  * 
  * @author Camille Letavernier
+ * 
+ * @see InstanceValue#getType()
+ * @see InstanceValueViewerFilter
  */
-public class InstanceValueViewerFilter extends UMLHierarchicViewerFilter {
+public class InstanceValueContentProvider extends ServiceEditFilteredContentProvider {
 
 	private InstanceValue source;
 
@@ -36,19 +40,37 @@ public class InstanceValueViewerFilter extends UMLHierarchicViewerFilter {
 	 * 
 	 * Constructor.
 	 * 
-	 * @param contentProvider
-	 *        The ContentProvider which provides the available values
 	 * @param source
 	 *        The InstanceValue being edited
+	 * @param feature
+	 *        The EStructuralFeature being edited
+	 * @param root
+	 *        The root ResourceSet for the Tree representing the model
 	 */
-	public InstanceValueViewerFilter(IHierarchicContentProvider contentProvider, InstanceValue source) {
-		super(contentProvider);
+	public InstanceValueContentProvider(InstanceValue source, EStructuralFeature feature, ResourceSet root) {
+		super(source, feature, root);
+		this.source = source;
+	}
+
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 * @param source
+	 *        The InstanceValue being edited
+	 * @param feature
+	 *        The EStructuralFeature being edited
+	 * @param roots
+	 *        The root EObjects for the Tree representing the model
+	 */
+	public InstanceValueContentProvider(InstanceValue source, EStructuralFeature feature, EObject[] roots) {
+		super(source, feature, roots);
 		this.source = source;
 	}
 
 	@Override
-	public boolean isVisible(Viewer viewer, Object parentElement, Object element) {
-		if(!super.isVisible(viewer, parentElement, element)) {
+	public boolean isValidValue(Object element) {
+		if(!super.isValidValue(element)) {
 			return false;
 		}
 
@@ -62,7 +84,7 @@ public class InstanceValueViewerFilter extends UMLHierarchicViewerFilter {
 
 		if(type instanceof Enumeration) {
 			return ((Enumeration)type).getOwnedLiterals().contains(instance);
-		} else if (type instanceof Classifier){
+		} else if(type instanceof Classifier) {
 			Classifier classifier = (Classifier)type;
 			if(instance.getClassifiers().contains(classifier)) {
 				return true;

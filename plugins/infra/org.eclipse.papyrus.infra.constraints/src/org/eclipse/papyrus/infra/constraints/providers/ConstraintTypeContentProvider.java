@@ -14,4 +14,8 @@ public class ConstraintTypeContentProvider extends AbstractFilteredContentProvid
 	public Object[] getElements() {
 		return ConstraintsManager.instance.getConstraintTypes().toArray();
 	}
+
+	public Object[] getElements(Object inputElement) {
+		return getElements();
+	}
 }
