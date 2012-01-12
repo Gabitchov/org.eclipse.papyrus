@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Copyright (c) 2011 Mia-Software
+# Copyright (c) 2011-2012 Mia-Software
 # All rights reserved. This program and the accompanying materials
 # are made available under the terms of the Eclipse Public License v1.0
 # which accompanies this distribution, and is available at
@@ -12,19 +12,18 @@
 set -o errexit
 set -o nounset
 
-DROPS_DIR=/home/data/httpd/download.eclipse.org/facet/downloads/drops
-ARCHIVE_DIR=/home/data/httpd/archive.eclipse.org/facet/downloads/drops
-ARCHIVE_INDEX=/home/data/httpd/archive.eclipse.org/facet/downloads/index.html
-UPDATE_SITES_DIR=/home/data/httpd/download.eclipse.org/facet/updates
-ZIP_PREFIX="EMFFacet-Update-"
-PROMOTE_FUNCTIONS_SH=/opt/public/modeling/emft/facet/promoteFunctions.sh
-ADD_TO_COMPOSITE_SH=/opt/public/modeling/emft/facet/addToComposite.sh
+DROPS_DIR=/home/data/httpd/download.eclipse.org/modeling/mdt/papyrus/downloads/drops
+ARCHIVE_DIR=/home/data/httpd/archive.eclipse.org/modeling/mdt/papyrus/downloads/drops
+ARCHIVE_INDEX=/home/data/httpd/archive.eclipse.org/modeling/mdt/papyrus/downloads/index.html
+UPDATE_SITES_DIR=/home/data/httpd/download.eclipse.org/modeling/mdt/papyrus/updates
+ZIP_PREFIX="Papyrus-Update-"
+PROMOTE_FUNCTIONS_SH=/opt/public/modeling/mdt/papyrus/promoteFunctions.sh
+ADD_TO_COMPOSITE_SH=/opt/public/modeling/mdt/papyrus/addToComposite.sh
 
-SVN_DIRECTORIES_TO_TAG[0]="file:///svnroot/modeling/org.eclipse.emft.facet"
+SVN_DIRECTORIES_TO_TAG[0]="file:///svnroot/modeling/org.eclipse.mdt.papyrus"
 
 # constants required by promoteFunctions.sh
-export INDEX_PHP=/opt/public/modeling/emft/facet/index.php
-export ADD_DOWNLOAD_STATS=/opt/public/modeling/emft/facet/addDownloadStats.sh
+export ADD_DOWNLOAD_STATS=/opt/public/modeling/mdt/papyrus/addDownloadStats.sh
 
 # include promote functions
 source "$PROMOTE_FUNCTIONS_SH"
@@ -43,27 +42,26 @@ while [[ ! "$zipName" =~ ^[NIMSR]20[0-9]{10}\.zip$ ]]; do
 	read zipName
 done
 
-echo "version (e.g. \"0.2.0\"): "
+echo "version (e.g. \"0.9.0\"): "
 while [[ ! "$version" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; do
 	echo -n "? "
 	read version
 done
 
-echo "jobName (emffacet-nightly|emffacet-nightly-maintenance|emffacet-integration): "
-while [[ ! "$jobName" =~ ^(emffacet-nightly|emffacet-nightly-maintenance|emffacet-integration)$ ]]; do
+echo "jobName (papyrus-trunk-nightly|papyrus-0.8-maintenance-nightly): "
+while [[ ! "$jobName" =~ ^(papyrus-trunk-nightly|papyrus-0.8-maintenance-nightly)$ ]]; do
 	echo -n "? "
 	read jobName
 done
 
-echo "updateSite (e.g. \"nightly\", \"nightly-maintenance\", \"milestones/0.2/M3\","
-echo "    \"milestones/0.2/RC3\", \"milestones/0.2/SR1_RC2\", \"releases/0.2.0\") : "
-while [[ ! "$updateSite" =~ ^(nightly|nightly-maintenance|milestones/[0-9]+\.[0-9]+/(M[1-7]|RC[1-9]|SR[1-9]_RC[1-9]|[0-9]+\.[0-9]\.[0-9]))$ ]]; do
+echo "updateSite (e.g. \"nightly/juno/main\", \"milestones/0.9/M5\", \"releases/indigo\") : "
+while [[ ! "$updateSite" =~ ^(nightly/(indigo|juno)/main|milestones/[0-9]+\.[0-9]+/(M[1-7]|RC[1-9]|SR[1-9]_RC[1-9]|[0-9]+\.[0-9]\.[0-9])|releases/[a-z]+)$ ]]; do
 	echo -n "? "
 	read updateSite
 done
 
 echo "branchToTag (e.g. \"trunk\", \"branches/0_1\", \"NA\"): "
-while [[ ! "$branchToTag" =~ ^(trunk|branches/[0-9]+_[0-9]+|NA)$ ]]; do
+while [[ ! "$branchToTag" =~ ^(trunk|branches/.+?|NA)$ ]]; do
 	echo -n "? "
 	read branchToTag
 done

@@ -24,12 +24,6 @@ mv $p2UpdateSiteDir/$zipName "tmp/$FULL_BUILD_ID"
 # copy the generated psf files to the tmp dir
 cp buildroot/result/*.psf "tmp/$FULL_BUILD_ID"
 
-# copy tests results
-if [ -e buildroot/result/testresults ]; then
-  mkdir tmp/$FULL_BUILD_ID/testresults
-  cp -r buildroot/result/testresults/ "tmp/$FULL_BUILD_ID"
-fi
-
 mv revision.txt "tmp/$FULL_BUILD_ID"
 
 # copy the build log into the result
@@ -38,5 +32,7 @@ wget --quiet --no-check-certificate ${HUDSON_URL}/job/${JOB_NAME}/${BUILD_NUMBER
 (cd tmp && zip -r ${FULL_BUILD_ID}.zip *)
 mv tmp/${FULL_BUILD_ID}.zip .
 
-echo ${FULL_BUILD_ID} > $promoteSignal
-echo $VERSION > $promoteVersion
+if [ "$BUILD_TYPE" == "N" ]; then
+	echo ${FULL_BUILD_ID} > $promoteSignal
+	echo $VERSION > $promoteVersion
+fi

@@ -113,7 +113,7 @@ function promote() {
 
 		echo "tagging the build"
 		# "S201112140456.zip" and "0.9.0M4" => S0_9_0M4
-		tagName=$(echo "${_zipName}" | sed 's/^\([MSR]\).*$/\1/g')$(echo "$buildAlias" | sed 's/\./_/g')
+		tagName=$(echo "$buildAlias")
 		revisionToTag=$(cat "$tmpDrop/$dirNameInZip/revision.txt")
 		
 		for (( i = 0 ; i < ${#SVN_DIRECTORIES_TO_TAG[*]} ; i++ )); do
