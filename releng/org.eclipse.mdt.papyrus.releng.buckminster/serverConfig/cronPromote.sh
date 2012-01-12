@@ -115,7 +115,6 @@ if [ $signalDateTrunkNightlyTests -gt $lastPromoteDateTrunkNightlyTests ]; then
 	buildName=$(cat "$PROMOTE_SIGNAL_TRUNK_NIGHTLY_TESTS")
 	zipName=Papyrus-TestResults-${buildName}.zip
 	version=$(cat "$PROMOTE_VERSION_TRUNK_NIGHTLY_TESTS")
-	buildsDir="$DROPS_DIR/$version"
 	nfsURL="/shared/jobs/papyrus-trunk-nightly-tests/lastSuccessful/archive/"
 	hudsonURL="https://hudson.eclipse.org/hudson/job/papyrus-trunk-nightly-tests/lastSuccessfulBuild/artifact/"
 
@@ -123,7 +122,7 @@ if [ $signalDateTrunkNightlyTests -gt $lastPromoteDateTrunkNightlyTests ]; then
 	if [ ! -f "$zipName" ]; then echo "ERROR: $zipName (from Hudson) not found"; exit -2; fi
 	echo "[$DATE] Testing zip integrity"
 	unzip -t "$zipName"
-	buildsDir="$dropsDir/$version/$buildName"
+	buildsDir="$DROPS_DIR/$version/$buildName"
 	echo "[$DATE] publishing build (version='$version') to the builds directory '$buildsDir'..."
 	unzip -o "$zipName" -d "$buildsDir"
 	echo "[$DATE] setting access rights"
