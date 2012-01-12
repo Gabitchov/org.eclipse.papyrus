@@ -19,7 +19,7 @@ wget --quiet --no-check-certificate ${HUDSON_URL}/job/${JOB_NAME}/${BUILD_NUMBER
 (cd tmp && zip -r "$zipName" *)
 mv "tmp/$zipName" .
 
-if [[ "$BUILD_TYPE" == "N" && ( -n "$BUILD_ID" ) && ( -n "$BUILD_VERSION" ) ]]; then
+if [[ ( -n "$BUILD_ID" ) && ( -n "$BUILD_VERSION" ) ]]; then
 	echo ${BUILD_ID} > $promoteSignal
 	echo ${BUILD_VERSION} > $promoteVersion
 fi
