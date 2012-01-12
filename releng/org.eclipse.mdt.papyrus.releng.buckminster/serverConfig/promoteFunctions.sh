@@ -62,7 +62,7 @@ function promote() {
 	[ -n "$_updateZipPrefix" ] || { echo "empty parameter: updateZipPrefix"; exit 1; }
 	[[ "$_branchToTag" =~ ^trunk|branches/[0-9]+_[0-9]+|NA$ ]] || { echo "incorrect parameter: branchToTag"; exit 1; }
 	for (( i = 0 ; i < ${#SVN_DIRECTORIES_TO_TAG[*]} ; i++ )); do
-		[[ "${SVN_DIRECTORIES_TO_TAG[$i]}" =~ ^/svnroot/.*$ ]] || { echo "incorrect variable: SVN_DIRECTORIES_TO_TAG"; exit 1; }
+		[[ "${SVN_DIRECTORIES_TO_TAG[$i]}" =~ ^file:///svnroot/.*$ ]] || { echo "incorrect variable: SVN_DIRECTORIES_TO_TAG"; exit 1; }
 	done
 		
 	echo "[$DATE] creating working dir"
