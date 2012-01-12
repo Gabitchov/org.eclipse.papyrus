@@ -1,7 +1,24 @@
-The Papyrus project is built using [[Buckminster]], with this [https://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/releng/org.eclipse.mdt.papyrus.releng.buckminster releng project].
+The Papyrus project is built using [[Buckminster]], with this releng project: [https://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/releng/org.eclipse.mdt.papyrus.releng.buckminster https://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/releng/org.eclipse.mdt.papyrus.releng.buckminster]
+(for the trunk; the branches are build with the corresponding project from the branch).
+
+This project contains sub-folders containing the Buckminster configuration for each Hudson job. 
+
+== Hudson Jobs ==
+The Papyrus builds are started from Hudson. The following jobs exist currently:
+* papyrus-trunk-nightly : builds the main plug-ins on the trunk of Papyrus
+* papyrus-trunk-nightly-tests : installs the latest Papyrus nightly build and runs the unit tests
+* papyrus-trunk-extra-nightly : builds the "extra" plug-ins of Papyrus (on the trunk) 
+* papyrus-trunk-extra-nightly-tests (not implemented yet): installs the latest Papyrus nightly build with extras and runs the unit tests for the extra plug-ins
+* papyrus-0.8-maintenance-nightly : builds the main plug-ins on the branch 0.8 of Papyrus
+* papyrus-0.8-maintenance-nightly-tests : installs the latest Papyrus nightly build for branch 0.8 and runs the unit tests
+* papyrus-0.8-maintenance-nightly : builds the "extra" plug-ins of Papyrus (on branch 0.8) 
+* papyrus-0.8-maintenance-nightly-tests (not implemented yet): installs the latest Papyrus nightly build with extras (branch 0.8) and runs the unit tests for the extra plug-ins
+
+See all the currently defined Papyrus jobs on this page : [https://hudson.eclipse.org/hudson/user/vlorenzo/my-views/view/Papyrus https://hudson.eclipse.org/hudson/user/vlorenzo/my-views/view/Papyrus]
 
 == What is built? ==
-One feature is built:
+
+Taking the example of "papyrus-trunk-nightly", one feature is built:
 * org.eclipse.papyrus.build.feature
 
 It is referenced as a root dependency in <code>buckminster.cspec</code>.
@@ -112,8 +129,7 @@ Hudson builds expect these parameters:
 * VERSION : the version being built. Dictates in which folder the build will be placed under the download "drops" folder.
 
 == Tagging ==
-Releases should have a tag like '''R0_1_0''', and milestones should have a tag like '''S0_1_0_M7'''.
-{{warning|Tag names|Since the tag name is used as a bundle qualifier by PDE Build, it should not contain periods. For example, use '''R0_1_0''' instead of <s>v0.1.0</s>}}
+Releases should have a tag like '''0.9.0''', and milestones should have a tag like '''0.9.0_M7'''.
 
 == Checking ==
 

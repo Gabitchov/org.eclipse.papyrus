@@ -1,48 +1,4 @@
-== Before a new release ==
-You should indicate that your project follows the Eclipse Train. Go to the Eclipse portal [https://dev.eclipse.org/portal]. In Eclipse Projects, click on '''view''' : 
-
-[[Image:clickOnView.jpeg]]
-
-click on '''maintain'''
-
-[[Image:clickOnMaintain.jpeg]]
-
-click on edit for '''simultaneousrelease'''
-
-[[Image:clickOnSimultaneousRelease.jpeg]]
-
-add 1 to your new release
-
-[[Image:eclipseTrain.jpeg]]
-
-== What do you select in your build.properties files ? ==
-The licence.html file should be selected for binary and for source build.
-The source folder should not be selected for the binary and for the source build.
-
-== Papyrus Build ==
-Papyrus has 3 jobs on hudson : 
-
-* cbi-papyrus-integration (trunk)
-* cbi-papyrus-0.7-nightly (branch)
-* cbi-papyrus-extra-nightly (the extra plugins for the branch)
-
-'''The nightly build shouldn't be signed.'''
-
-=== Features ===
-The feature '''org.eclipse.papyrus.build.feature''' is not visible on the Papyrus Update Site. It is only useful for the Buckminster build. It contains the main Papyrus features : 
-* org.eclipse.papyrus.sdk.feature (binary build)
-* org.eclipse.papyrus.sdk.source.feature (source build)
-
-The feature '''org.eclipse.papyrus.sdk.feature''' allows to provide the Papyrus binaries on the Update Site. This feature aggregates all main Papyrus features.
-
-[[Image:binaryFeature.jpeg]]
-
-The feature '''org.eclipse.papyrus.sdk.sources.feature''' allows to provide the Papyrus binaries and the sources on the Update Site. This feature should aggregate the same features as '''org.eclipse.papyrus.sdk.feature''', but each feature is called '''xxx.source.feature''' instead of '''xxx.feature'''. You should have warnings in this file, because the '''xxx.source.feature''' don't exist in your workspace; they will be created during the build. This feature contains '''org.eclipse.papyrus.sdk.feature''' too.
-
-
-[[Image:sourceFeature.png]]
-
-=== Releng Project ===
+== Releng Project ==
 The papyrus releng project is called : '''org.eclipse.mdt.papyrus.releng.buckminster'''
 
 [[Image:releng.png]]
@@ -71,11 +27,63 @@ The papyrus releng project is called : '''org.eclipse.mdt.papyrus.releng.buckmin
 *'''local.properties :''' properties for the build (when building locally)
 
 
-===b3 file===
+== Build process ==
+
+Taking the example of the job papyrus-trunk-nightly:
+* When the Hudson job papyrus-trunk-nightly starts, Hudson begins by doing a checkout of the required folders (which are specified in the job configuration) from the SVN : the "plugins", "features" and "releng" folders are retrieved, and placed under a directory named "sourceTree" in the Hudson workspace.
+* Then the first bash script (from the releng project that was just retrieved from the SVN) is executed : "sourceTree/releng/org.eclipse.mdt.papyrus.releng.buckminster/papyrus-trunk-nightly/build-before.sh". This script does a bit of clean-up and initializes variables for the build.
+* Then the main build script is executed: "sourceTree/releng/org.eclipse.mdt.papyrus.releng.buckminster/papyrus-trunk-nightly/build.xml":
+** it reads the property file '''build.properties''', which defines settings for the build
+** it cleans the workspace, target platform and previous build result (depending on the user options specified on Hudson)
+** it installs the p2 director, which is used for installing Buckminster
+** then it installs Buckminster using the p2 director
+** then it materializes the workspace and target platform (using the buckminster '''import''' command). While doing this, it also saves the description of what was materialized into a file named '''papyrus_bom.xml''' (this is called the "bill of materials" in Buckminster's jargon).
+** then it builds the workspace using the Buckminster '''build''' command
+** then it creates the update site, using the Buckminster '''perform''' command with the '''site.p2''' action on the component "org.eclipse.papyrus.build.feature", which is the feature that contains all the Papyrus features that must be installable from the produced update site
+** then it creates an index.html file in the update site, using a XSLT transformation on the update site's content.xml. This index is useful for when users try to display the update site in their web browser : they will then see the plug-ins and features contained by the update site, with an explanation on how they're supposed to be installed
+** then it generates PSF files (one for Subclipse and one for Subversive), using XSLT transformations on the '''papyrus_bom.xml''' that was created by Buckminster during the '''import''' step
+* Then the second bash script is executed : "sourceTree/releng/org.eclipse.mdt.papyrus.releng.buckminster/papyrus-trunk-nightly/build-after.sh". This script creates the result zip (that contains the zipped update site), and triggers the publication of the result by touching a file that acts as a signal for the cronPromote script that does the publication from build.eclipse.org.
+
+The test builds do one more step: they run the tests using the Buckminster '''test''' command, using an Eclipse launch configuration that references the tests to run.
+
+== Features ==
+The feature '''org.eclipse.papyrus.build.feature''' is not visible on the Papyrus Update Site. It is only useful for the Buckminster build. It contains the main Papyrus features : 
+* org.eclipse.papyrus.sdk.feature (binary build)
+* org.eclipse.papyrus.sdk.source.feature (source build)
+
+The feature '''org.eclipse.papyrus.sdk.feature''' allows to provide the Papyrus binaries on the Update Site. This feature aggregates all the main Papyrus features.
+
+[[Image:binaryFeature.jpeg]]
+
+The feature '''org.eclipse.papyrus.sdk.sources.feature''' allows to provide the Papyrus binaries and the sources on the Update Site. This feature should aggregate the same features as '''org.eclipse.papyrus.sdk.feature''', but each feature is called '''xxx.source.feature''' instead of '''xxx.feature'''. You should have warnings in this file, because the '''xxx.source.feature''' don't exist in your workspace; they will be created during the build. This feature contains '''org.eclipse.papyrus.sdk.feature''' too.
+
+[[Image:sourceFeature.png]]
+
+==b3 file==
 TODO
 
+== Before a new release ==
+You should indicate that your project follows the Eclipse Train. Go to the Eclipse portal [https://dev.eclipse.org/portal]. In Eclipse Projects, click on '''view''' : 
 
-=== optimizing the rmap ===
+[[Image:clickOnView.jpeg]]
+
+click on '''maintain'''
+
+[[Image:clickOnMaintain.jpeg]]
+
+click on edit for '''simultaneousrelease'''
+
+[[Image:clickOnSimultaneousRelease.jpeg]]
+
+add 1 to your new release
+
+[[Image:eclipseTrain.jpeg]]
+
+== What do you select in your build.properties files ? ==
+The licence.html file should be selected for both binary and source builds.
+The source folder ("src/") should not be selected for the binary nor the source build.
+
+== optimizing the rmap ==
 The Buckminster import is very slow (more than one hour and a half) when it does the SVN checkout itself. To optimize it, we let Hudson do the checkout, and we then tell Buckminster to use the locally checked out files.
 
 So, instead of this configuration in the rmap:
