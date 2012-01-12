@@ -16,6 +16,10 @@ LAST_PROMOTE_FILE_TRUNK_EXTRA_NIGHTLY=/opt/public/modeling/mdt/papyrus/papyrus-t
 PROMOTE_SIGNAL_TRUNK_EXTRA_NIGHTLY=/opt/public/modeling/mdt/papyrus/papyrus-trunk-extra-nightly/promoteSignal
 PROMOTE_VERSION_TRUNK_EXTRA_NIGHTLY=/opt/public/modeling/mdt/papyrus/papyrus-trunk-extra-nightly/promoteVersion
 
+LAST_PROMOTE_FILE_TRUNK_NIGHTLY_TESTS=/opt/public/modeling/mdt/papyrus/papyrus-trunk-nightly-tests/lastPromoteRef
+PROMOTE_SIGNAL_TRUNK_NIGHTLY_TESTS=/opt/public/modeling/mdt/papyrus/papyrus-trunk-nightly-tests/promoteSignal
+PROMOTE_VERSION_TRUNK_NIGHTLY_TESTS=/opt/public/modeling/mdt/papyrus/papyrus-trunk-nightly-tests/promoteVersion
+
 LAST_PROMOTE_FILE_MAINTENANCE_NIGHTLY=/opt/public/modeling/mdt/papyrus/papyrus-0.8-maintenance-nightly/lastPromoteRef
 PROMOTE_SIGNAL_MAINTENANCE_NIGHTLY=/opt/public/modeling/mdt/papyrus/papyrus-0.8-maintenance-nightly/promoteSignal
 PROMOTE_VERSION_MAINTENANCE_NIGHTLY=/opt/public/modeling/mdt/papyrus/papyrus-0.8-maintenance-nightly/promoteVersion
@@ -46,21 +50,25 @@ echo "[$DATE] starting cronPromote.sh ------------------------------------------
 
 if [ ! -e $LAST_PROMOTE_FILE_TRUNK_NIGHTLY ]; then touch $LAST_PROMOTE_FILE_TRUNK_NIGHTLY; fi
 if [ ! -e $LAST_PROMOTE_FILE_TRUNK_EXTRA_NIGHTLY ]; then touch $LAST_PROMOTE_FILE_TRUNK_EXTRA_NIGHTLY; fi
+if [ ! -e $LAST_PROMOTE_FILE_TRUNK_NIGHTLY_TESTS ]; then touch $LAST_PROMOTE_FILE_TRUNK_NIGHTLY_TESTS; fi
 if [ ! -e $LAST_PROMOTE_FILE_MAINTENANCE_NIGHTLY ]; then touch $LAST_PROMOTE_FILE_MAINTENANCE_NIGHTLY; fi
 if [ ! -e $LAST_PROMOTE_FILE_MAINTENANCE_EXTRA_NIGHTLY ]; then touch $LAST_PROMOTE_FILE_MAINTENANCE_EXTRA_NIGHTLY; fi
 
 if [ ! -e $PROMOTE_SIGNAL_TRUNK_NIGHTLY ]; then echo "$DATE: ERROR: $PROMOTE_SIGNAL_TRUNK_NIGHTLY not found"; exit 1; fi
 if [ ! -e $PROMOTE_SIGNAL_TRUNK_EXTRA_NIGHTLY ]; then echo "$DATE: ERROR: $PROMOTE_SIGNAL_TRUNK_EXTRA_NIGHTLY not found"; exit 1; fi
+if [ ! -e $PROMOTE_SIGNAL_TRUNK_NIGHTLY_TESTS ]; then echo "$DATE: ERROR: $PROMOTE_SIGNAL_TRUNK_NIGHTLY_TESTS not found"; exit 1; fi
 if [ ! -e $PROMOTE_SIGNAL_MAINTENANCE_NIGHTLY ]; then echo "$DATE: ERROR: $PROMOTE_SIGNAL_MAINTENANCE_NIGHTLY not found"; exit 1; fi
 if [ ! -e $PROMOTE_SIGNAL_MAINTENANCE_EXTRA_NIGHTLY ]; then echo "$DATE: ERROR: $PROMOTE_SIGNAL_MAINTENANCE_EXTRA_NIGHTLY not found"; exit 1; fi
 
 signalDateTrunkNightly=$(stat --format=%Y $PROMOTE_SIGNAL_TRUNK_NIGHTLY)
 signalDateTrunkExtraNightly=$(stat --format=%Y $PROMOTE_SIGNAL_TRUNK_EXTRA_NIGHTLY)
+signalDateTrunkNightlyTests=$(stat --format=%Y $PROMOTE_SIGNAL_TRUNK_NIGHTLY_TESTS)
 signalDateMaintenanceNightly=$(stat --format=%Y $PROMOTE_SIGNAL_MAINTENANCE_NIGHTLY)
 signalDateMaintenanceExtraNightly=$(stat --format=%Y $PROMOTE_SIGNAL_MAINTENANCE_EXTRA_NIGHTLY)
 
 lastPromoteDateTrunkNightly=$(stat --format=%Y $LAST_PROMOTE_FILE_TRUNK_NIGHTLY)
 lastPromoteDateTrunkExtraNightly=$(stat --format=%Y $LAST_PROMOTE_FILE_TRUNK_EXTRA_NIGHTLY)
+lastPromoteDateTrunkNightlyTests=$(stat --format=%Y $LAST_PROMOTE_FILE_TRUNK_NIGHTLY_TESTS)
 lastPromoteDateMaintenanceNightly=$(stat --format=%Y $LAST_PROMOTE_FILE_MAINTENANCE_NIGHTLY)
 lastPromoteDateMaintenanceExtraNightly=$(stat --format=%Y $LAST_PROMOTE_FILE_MAINTENANCE_EXTRA_NIGHTLY)
 
@@ -99,6 +107,42 @@ if [ $signalDateTrunkNightly -gt $lastPromoteDateTrunkNightly ]; then
 	curl -X POST https://hudson.eclipse.org/hudson/job/papyrus-trunk-nightly-tests/build -d token=token --data-urlencode json="$json"
 	
 	curl https://hudson.eclipse.org/hudson/job/papyrus-trunk-nightly-tests/buildWithParameters?token=token
+fi
+
+if [ $signalDateTrunkNightlyTests -gt $lastPromoteDateTrunkNightlyTests ]; then
+	# mark the promote as done
+	touch "$LAST_PROMOTE_FILE_TRUNK_NIGHTLY_TESTS"
+	buildName=$(cat "$PROMOTE_SIGNAL_TRUNK_NIGHTLY_TESTS")
+	zipName=${buildName}.zip
+	version=$(cat "$PROMOTE_VERSION_TRUNK_NIGHTLY_TESTS")
+	
+	echo "[$DATE] deleting previous nightly update site"
+	rm -rf "$UPDATES_TRUNK_NIGHTLY_TESTS"
+	
+	buildsDir="$DROPS_DIR/$version"
+	echo "[$DATE] pruning old builds"
+	prune N "$buildsDir" 4
+
+	nfsURL="/shared/jobs/papyrus-trunk-nightly-tests/lastSuccessful/archive/"
+	hudsonURL="https://hudson.eclipse.org/hudson/job/papyrus-trunk-nightly-tests/lastSuccessfulBuild/artifact/"
+
+	cp "$nfsURL/${zipName}" . || wget --no-check-certificate "$hudsonURL/${zipName}"
+	if [ ! -f "$zipName" ]; then echo "ERROR: $zipName (from Hudson) not found"; exit -2; fi
+	echo "[$DATE] Testing zip integrity"
+	unzip -t "$zipName"
+	buildsDir="$dropsDir/$version"
+	echo "[$DATE] publishing build (version='$version') to the builds directory '$buildsDir'..."
+	unzip -o "$zipName" -d "$buildsDir"
+	echo "[$DATE] setting access rights"
+	buildFolder="$buildsDir/$buildName"
+	chmod -R 775 "$buildFolder"
+	chgrp -hR modeling.mdt.papyrus "$buildFolder"
+
+	echo "[$DATE] promote done"
+	
+	# TODO: re-enable when the job is implemented
+	# echo "[$DATE] triggering Hudson tests build"
+	# curl https://hudson.eclipse.org/hudson/job/papyrus-trunk-extra-nightly-tests/buildWithParameters?token=token
 fi
 
 if [ $signalDateTrunkExtraNightly -gt $lastPromoteDateTrunkExtraNightly ]; then
