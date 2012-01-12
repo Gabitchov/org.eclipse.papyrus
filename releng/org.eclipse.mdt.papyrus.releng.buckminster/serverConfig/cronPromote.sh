@@ -113,7 +113,7 @@ if [ $signalDateTrunkNightlyTests -gt $lastPromoteDateTrunkNightlyTests ]; then
 	# mark the promote as done
 	touch "$LAST_PROMOTE_FILE_TRUNK_NIGHTLY_TESTS"
 	buildName=$(cat "$PROMOTE_SIGNAL_TRUNK_NIGHTLY_TESTS")
-	zipName=${buildName}.zip
+	zipName=Papyrus-TestResults-${buildName}.zip
 	version=$(cat "$PROMOTE_VERSION_TRUNK_NIGHTLY_TESTS")
 	buildsDir="$DROPS_DIR/$version"
 	nfsURL="/shared/jobs/papyrus-trunk-nightly-tests/lastSuccessful/archive/"
@@ -123,13 +123,12 @@ if [ $signalDateTrunkNightlyTests -gt $lastPromoteDateTrunkNightlyTests ]; then
 	if [ ! -f "$zipName" ]; then echo "ERROR: $zipName (from Hudson) not found"; exit -2; fi
 	echo "[$DATE] Testing zip integrity"
 	unzip -t "$zipName"
-	buildsDir="$dropsDir/$version"
+	buildsDir="$dropsDir/$version/$buildName"
 	echo "[$DATE] publishing build (version='$version') to the builds directory '$buildsDir'..."
 	unzip -o "$zipName" -d "$buildsDir"
 	echo "[$DATE] setting access rights"
-	buildFolder="$buildsDir/$buildName"
-	chmod -R 775 "$buildFolder"
-	chgrp -hR modeling.mdt.papyrus "$buildFolder"
+	chmod -R 775 "$buildsDir"
+	chgrp -hR modeling.mdt.papyrus "$buildsDir"
 
 	echo "[$DATE] promote done"
 	
