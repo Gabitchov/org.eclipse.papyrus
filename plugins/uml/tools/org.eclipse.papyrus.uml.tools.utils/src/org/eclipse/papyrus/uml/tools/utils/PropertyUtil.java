@@ -176,9 +176,9 @@ public class PropertyUtil {
 
 		// type
 		if(property.getType() != null) {
-			buffer.append(": " + property.getType().getName());
+			buffer.append(" : " + property.getType().getName());
 		} else {
-			buffer.append(": " + TypeUtil.UNDEFINED_TYPE_NAME);
+			buffer.append(" : " + TypeUtil.UNDEFINED_TYPE_NAME);
 		}
 
 		// multiplicity -> do not display [1]
@@ -267,6 +267,11 @@ public class PropertyUtil {
 				if(multiLine) {
 					buffer.append("\n");
 				}
+				
+				if (!buffer.toString().endsWith(" ")){					
+					buffer.append(" ");
+				}
+				
 				buffer.append(modifiers);
 			}
 		}
