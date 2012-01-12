@@ -286,6 +286,15 @@
 			</cmdargs>
 		</buckminster>
 		<echo message="End of JUnit tests" />
+		
+		<echo>Generating HTML report for Junit tests</echo>
+		<junitreport todir="${result}/testresults">
+			<fileset dir="${result}/testresults/xml">
+				<include name="*.xml" />
+			</fileset>
+			<report format="frames" todir="${result}/testresults/html" />
+		</junitreport>
+		
 	</target>
 
 	<target name="clean.tools">
