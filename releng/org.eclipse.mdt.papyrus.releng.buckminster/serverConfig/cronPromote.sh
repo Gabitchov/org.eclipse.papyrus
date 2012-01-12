@@ -115,14 +115,7 @@ if [ $signalDateTrunkNightlyTests -gt $lastPromoteDateTrunkNightlyTests ]; then
 	buildName=$(cat "$PROMOTE_SIGNAL_TRUNK_NIGHTLY_TESTS")
 	zipName=${buildName}.zip
 	version=$(cat "$PROMOTE_VERSION_TRUNK_NIGHTLY_TESTS")
-	
-	echo "[$DATE] deleting previous nightly update site"
-	rm -rf "$UPDATES_TRUNK_NIGHTLY_TESTS"
-	
 	buildsDir="$DROPS_DIR/$version"
-	echo "[$DATE] pruning old builds"
-	prune N "$buildsDir" 4
-
 	nfsURL="/shared/jobs/papyrus-trunk-nightly-tests/lastSuccessful/archive/"
 	hudsonURL="https://hudson.eclipse.org/hudson/job/papyrus-trunk-nightly-tests/lastSuccessfulBuild/artifact/"
 
