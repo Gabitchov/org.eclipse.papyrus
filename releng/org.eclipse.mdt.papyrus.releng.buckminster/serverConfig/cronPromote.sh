@@ -146,3 +146,24 @@ if [ $signalDateMaintenanceNightly -gt $lastPromoteDateMaintenanceNightly ]; the
 
 	echo "[$DATE] done"
 fi
+
+if [ $signalDateMaintenanceExtraNightly -gt $lastPromoteDateMaintenanceExtraNightly ]; then
+	# mark the promote as done
+	touch "$LAST_PROMOTE_FILE_MAINTENANCE_EXTRA_NIGHTLY"
+	zipName=$(cat "$PROMOTE_SIGNAL_MAINTENANCE_EXTRA_NIGHTLY").zip
+	version=$(cat "$PROMOTE_VERSION_MAINTENANCE_EXTRA_NIGHTLY")
+	
+	echo "[$DATE] deleting previous nightly update site"
+	rm -rf "$UPDATES_MAINTENANCE_EXTRA_NIGHTLY"
+	
+	buildsDir="$DROPS_DIR/$version"
+	echo "[$DATE] pruning old builds"
+	prune N "$buildsDir" 4
+
+	nfsURL="/shared/jobs/papyrus-0.8-maintenance-extra-nightly/lastSuccessful/archive/"
+	hudsonURL="https://hudson.eclipse.org/hudson/job/papyrus-0.8-maintenance-extra-nightly/lastSuccessfulBuild/artifact/"
+	export SVN_DIRECTORIES_TO_TAG=( )
+	promote "$zipName" "$version" "$nfsURL" "$hudsonURL" "$DROPS_DIR" "$ARCHIVE_DIR" "$ARCHIVE_INDEX" "$UPDATES_MAINTENANCE_EXTRA_NIGHTLY" "PapyrusExtra-Update-" "NA"
+
+	echo "[$DATE] done"
+fi
