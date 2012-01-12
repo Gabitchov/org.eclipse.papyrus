@@ -4,6 +4,8 @@ promoteDirName=/opt/public/modeling/mdt/papyrus/papyrus-trunk-nightly-tests/prom
 
 if [[ ( -n "$BUILD_ID" ) && ( -n "$BUILD_VERSION" ) ]]; then
 	zipName="Papyrus-TestResults-${BUILD_ID}.zip"
+else
+	zipName="Papyrus-TestResults.zip"
 fi
 
 rm -rf tmp
@@ -17,7 +19,7 @@ wget --quiet --no-check-certificate ${HUDSON_URL}/job/${JOB_NAME}/${BUILD_NUMBER
 (cd tmp && zip -r "$zipName" *)
 mv "tmp/$zipName" .
 
-if [ "$BUILD_TYPE" == "N" ]; then
+if [[ "$BUILD_TYPE" == "N" && ( -n "$BUILD_ID" ) && ( -n "$BUILD_VERSION" ) ]]; then
 	echo ${BUILD_ID} > $promoteSignal
 	echo ${BUILD_VERSION} > $promoteVersion
 fi
