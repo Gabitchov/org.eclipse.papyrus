@@ -104,3 +104,4 @@ if [ -f "$parentDir/compositeContent.xml" ]; then
 	"$ADD_TO_COMPOSITE_SH" "$parentDir" $(basename ${updateSiteDir})
 fi
 
+# TODO: promote extras and tests, to downloads, update site and archive

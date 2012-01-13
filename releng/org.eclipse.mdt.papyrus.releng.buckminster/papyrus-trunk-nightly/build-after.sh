@@ -9,10 +9,11 @@ promoteDirName=/opt/public/modeling/mdt/papyrus/papyrus-trunk-nightly/promoteDir
 FULL_BUILD_ID=$(cat $promoteDirName)
 
 if [ -n "$BUILD_ALIAS" ]; then
-  zipName=Papyrus-Update-${BUILD_ALIAS}.zip
+  updateZipName=Papyrus-Update-${BUILD_ALIAS}.zip
 else
-  zipName=Papyrus-Update-${FULL_BUILD_ID}.zip
+  updateZipName=Papyrus-Update-${FULL_BUILD_ID}.zip
 fi
+zipName="Papyrus-Main.zip"
 
 rm -rf tmp
 mkdir -p "tmp/$FULL_BUILD_ID"
@@ -21,8 +22,8 @@ rm -rf updateSite
 mv $p2UpdateSiteDir updateSite
 
 # create the update site zip
-(cd updateSite && zip -r $zipName *)
-mv updateSite/$zipName "tmp/$FULL_BUILD_ID"
+(cd updateSite && zip -r $updateZipName *)
+mv updateSite/$updateZipName "tmp/$FULL_BUILD_ID"
 
 # copy the generated psf files to the tmp dir
 cp buildroot/result/*.psf "tmp/$FULL_BUILD_ID"
@@ -32,8 +33,8 @@ mv revision.txt "tmp/$FULL_BUILD_ID"
 # copy the build log into the result
 wget --quiet --no-check-certificate ${HUDSON_URL}/job/${JOB_NAME}/${BUILD_NUMBER}/consoleText -O "${WORKSPACE}/tmp/$FULL_BUILD_ID/buildlog.txt"
 
-(cd tmp && zip -r ${FULL_BUILD_ID}.zip *)
-mv tmp/${FULL_BUILD_ID}.zip .
+(cd tmp && zip -r $zipName *)
+mv tmp/$zipName .
 
 if [ "$BUILD_TYPE" == "N" ]; then
 	echo ${FULL_BUILD_ID} > $promoteSignal

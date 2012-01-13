@@ -35,6 +35,11 @@ function prune() {
 	fi
 }
 
+function setAccessRights() {
+	chmod -R 775 "$1"
+	chgrp -hR modeling.mdt.papyrus "$1"
+}
+
 function promote() {
 	NARGS=10
 	if [ $# -ne $NARGS ]; then echo "promote expects exactly $NARGS arguments"; exit 1; fi
@@ -88,17 +93,13 @@ function promote() {
 	[ $(echo "$dirNameInZip" | wc -l) == 1 ] || { echo "one directory expected in zip"; exit 1; }
 	updateSiteZipName=$(basename $(ls -1 "$tmpDrop/$dirNameInZip/${_updateZipPrefix}"*.zip))
 	unzip -o "$tmpDrop/$dirNameInZip/${updateSiteZipName}" -d "$_updateSite"
-	#echo "[$DATE] adding index.php"
-	#cp $INDEX_PHP "$_updateSite/"
 	echo "[$DATE] enabling download statistics"
 	$ADD_DOWNLOAD_STATS "$_updateSite"
 	
 	echo "[$DATE] setting access rights"
 	buildFolder="$buildsDir"/${_zipName/%\.zip/}
-	chmod -R 775 "$buildFolder"
-	chgrp -hR modeling.mdt.papyrus "$buildFolder"
-	chmod -R 775 "$_updateSite"
-	chgrp -hR modeling.mdt.papyrus "$_updateSite"
+	setAccessRights "$buildFolder"
+	setAccessRights "$_updateSite"
 	
 	# copy milestone and release builds to the archive, and tag the build
 	if [[ "$_zipName" =~ ^[MSR].*$ && "${_branchToTag}" != "NA" ]]; then

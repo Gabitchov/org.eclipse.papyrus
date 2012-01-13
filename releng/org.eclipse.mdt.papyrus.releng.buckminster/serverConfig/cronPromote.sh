@@ -81,8 +81,8 @@ if [ $signalDateTrunkNightly -gt $lastPromoteDateTrunkNightly ]; then
 	
 	# the Hudson job wrote these build name and version to publish
 	buildName=$(cat "$PROMOTE_SIGNAL_TRUNK_NIGHTLY")
-	zipName=${buildName}.zip
 	version=$(cat "$PROMOTE_VERSION_TRUNK_NIGHTLY")
+	zipName="Papyrus-Main.zip"
 	
 	echo "[$DATE] deleting previous nightly update site"
 	rm -rf "$UPDATES_TRUNK_NIGHTLY"
@@ -167,8 +167,7 @@ if [ $signalDateTrunkNightlyTests -gt $lastPromoteDateTrunkNightlyTests ]; then
 	echo "[$DATE] publishing build (version='$version') to the builds directory '$buildsDir'..."
 	unzip -o "$zipName" -d "$buildsDir"
 	echo "[$DATE] setting access rights"
-	chmod -R 775 "$buildsDir"
-	chgrp -hR modeling.mdt.papyrus "$buildsDir"
+	setAccessRights "$buildsDir"
 
 	echo "[$DATE] promote done"
 
@@ -219,10 +218,8 @@ if [ $signalDateTrunkExtraNightly -gt $lastPromoteDateTrunkExtraNightly ]; then
 	unzip -o "$tmpDrop/$dirNameInZip/${updateZipName}" -d "$UPDATES_TRUNK_EXTRA_NIGHTLY"
 	
 	echo "[$DATE] setting access rights"
-	chmod -R 775 "$buildsDir"
-	chgrp -hR modeling.mdt.papyrus "$buildsDir"
-	chmod -R 775 "$UPDATES_TRUNK_EXTRA_NIGHTLY"
-	chgrp -hR modeling.mdt.papyrus "$UPDATES_TRUNK_EXTRA_NIGHTLY"
+	setAccessRights "$buildsDir"
+	setAccessRights "$UPDATES_TRUNK_EXTRA_NIGHTLY"
 	
 	echo "[$DATE] promote done"
 	
