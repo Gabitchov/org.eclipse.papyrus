@@ -1,12 +1,8 @@
 promoteSignal=/opt/public/modeling/mdt/papyrus/papyrus-trunk-nightly-tests/promoteSignal
-promoteVersion=/opt/public/modeling/mdt/papyrus/papyrus-trunk-nightly-tests/promoteVersion
 promoteDirName=/opt/public/modeling/mdt/papyrus/papyrus-trunk-nightly-tests/promoteDirName
+# note: the version and build id used by the cronPromote.sh are taken from papyrus-trunk-nightly
 
-if [[ ( -n "$BUILD_ID" ) && ( -n "$BUILD_VERSION" ) ]]; then
-	zipName="Papyrus-TestResults-${BUILD_ID}.zip"
-else
-	zipName="Papyrus-TestResults.zip"
-fi
+zipName="Papyrus-TestResults.zip"
 
 rm -rf tmp
 mkdir -p tmp
@@ -19,7 +15,6 @@ wget --quiet --no-check-certificate ${HUDSON_URL}/job/${JOB_NAME}/${BUILD_NUMBER
 (cd tmp && zip -r "$zipName" *)
 mv "tmp/$zipName" .
 
-if [[ ( -n "$BUILD_ID" ) && ( -n "$BUILD_VERSION" ) ]]; then
-	echo ${BUILD_ID} > $promoteSignal
-	echo ${BUILD_VERSION} > $promoteVersion
+if [ "$BUILD_TYPE" == "N" ]; then
+	touch $promoteSignal
 fi

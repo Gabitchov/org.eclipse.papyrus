@@ -135,7 +135,7 @@ if [ $signalDateTrunkNightlyTests -gt $lastPromoteDateTrunkNightlyTests ]; then
 	# mark the promote as done
 	touch "$LAST_PROMOTE_FILE_TRUNK_NIGHTLY_TESTS"
 	buildName=$(cat "$PROMOTE_SIGNAL_TRUNK_NIGHTLY_TESTS")
-	zipName=Papyrus-TestResults-${buildName}.zip
+	zipName=Papyrus-TestResults.zip
 	version=$(cat "$PROMOTE_VERSION_TRUNK_NIGHTLY_TESTS")
 	nfsURL="/shared/jobs/papyrus-trunk-nightly-tests/lastSuccessful/archive/"
 	hudsonURL="https://hudson.eclipse.org/hudson/job/papyrus-trunk-nightly-tests/lastSuccessfulBuild/artifact/"
@@ -162,7 +162,9 @@ if [ $signalDateTrunkExtraNightly -gt $lastPromoteDateTrunkExtraNightly ]; then
 	# mark the promote as done
 	touch "$LAST_PROMOTE_FILE_TRUNK_EXTRA_NIGHTLY"
 	
-	# the build name and version are taken from the main build since the artifacts must go to the same folder
+	# for the extra build, the build name and version are taken from the last main build since the artifacts 
+	# must go to the same folder, and we want to be able to start several extra jobs after one single main job
+	
 	buildName=$(cat "$PROMOTE_SIGNAL_TRUNK_NIGHTLY")
 	zipName=${buildName}.zip
 	version=$(cat "$PROMOTE_VERSION_TRUNK_NIGHTLY")

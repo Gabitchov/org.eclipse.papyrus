@@ -4,7 +4,7 @@ p2UpdateSiteDir=${WORKSPACE}/buildroot/result/output/org.eclipse.papyrus.extra.b
 
 promoteSignal=/opt/public/modeling/mdt/papyrus/papyrus-trunk-extra-nightly/promoteSignal
 promoteDirName=/opt/public/modeling/mdt/papyrus/papyrus-trunk-extra-nightly/promoteDirName
-#note: the version and build id are taken from papyrus-trunk-nightly
+# note: the version and build id used by the cronPromote.sh are taken from papyrus-trunk-nightly
 
 FULL_BUILD_ID=$(cat $promoteDirName)
 
