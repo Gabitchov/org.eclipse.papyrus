@@ -176,7 +176,13 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 				refreshDisplay();
 			}
 		}
-				
+
+		// if element that has changed is a stereotype => refresh the label.
+		if((eventType == PapyrusStereotypeListener.MODIFIED_STEREOTYPE)) {
+			// stereotype annotation has changed => refresh label display
+			refreshDisplay();
+		}
+
 		// The value of a property of stereotype (dynamic profile) has changed
 		// To avoid refresh to be called during stereotype removal (stereotype#base_xxx set to null in particular) a complementary test is 
 		// added here to ensure the stereotype is still applied (the notifier is a stereotype application of the semantic element).
