@@ -95,8 +95,6 @@ if [ $signalDateTrunkNightly -gt $lastPromoteDateTrunkNightly ]; then
 	
 	echo "[$DATE] triggering Hudson tests build"
 	json='{"parameter": [
-		{"name": "BUILD_ID", "value": "'${buildName}'"},
-		{"name": "BUILD_VERSION", "value": "'${version}'"},
 		{"name": "BUCKMINSTER_LOGLEVEL", "value": "DEBUG"},
 		{"name": "CLEAN_TP", "value": "true"},
 		{"name": "CLEAN_WORKSPACE", "value": "true"},
@@ -108,8 +106,6 @@ if [ $signalDateTrunkNightly -gt $lastPromoteDateTrunkNightly ]; then
 
 	echo "[$DATE] triggering Hudson extras build"
 	json='{"parameter": [
-		{"name": "BUILD_ID", "value": "'${buildName}'"},
-		{"name": "BUILD_VERSION", "value": "'${version}'"},
 		{"name": "BUCKMINSTER_LOGLEVEL", "value": "DEBUG"},
 		{"name": "CLEAN_TP", "value": "true"},
 		{"name": "CLEAN_WORKSPACE", "value": "true"},
@@ -134,9 +130,13 @@ fi
 if [ $signalDateTrunkNightlyTests -gt $lastPromoteDateTrunkNightlyTests ]; then
 	# mark the promote as done
 	touch "$LAST_PROMOTE_FILE_TRUNK_NIGHTLY_TESTS"
-	buildName=$(cat "$PROMOTE_SIGNAL_TRUNK_NIGHTLY_TESTS")
-	zipName=Papyrus-TestResults.zip
-	version=$(cat "$PROMOTE_VERSION_TRUNK_NIGHTLY_TESTS")
+
+	# for the tests build, the build name and version are taken from the last main build since the artifacts 
+	# must go to the same folder, and we want to be able to start several extra jobs after one single main job
+
+	buildName=$(cat "$PROMOTE_SIGNAL_TRUNK_NIGHTLY")
+	zipName=${buildName}.zip
+	version=$(cat "$PROMOTE_VERSION_TRUNK_NIGHTLY")
 	nfsURL="/shared/jobs/papyrus-trunk-nightly-tests/lastSuccessful/archive/"
 	hudsonURL="https://hudson.eclipse.org/hudson/job/papyrus-trunk-nightly-tests/lastSuccessfulBuild/artifact/"
 
