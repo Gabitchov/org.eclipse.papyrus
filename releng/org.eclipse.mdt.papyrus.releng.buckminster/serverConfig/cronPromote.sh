@@ -115,7 +115,7 @@ if [ $signalDateTrunkNightly -gt $lastPromoteDateTrunkNightly ]; then
 		{"name": "CLEAN_WORKSPACE", "value": "true"},
 		{"name": "CLEAN_OUTPUT", "value": "true"},
 		{"name": "CLEAN_TOOLS", "value": "false"},
-		{"name": "BUILD_TARGET", "value": "test"}
+		{"name": "BUILD_TARGET", "value": "site.p2"}
 	], "": ""}'
 	curl -X POST https://hudson.eclipse.org/hudson/job/papyrus-trunk-extra-nightly/build -d token=token --data-urlencode json="$json"
 
