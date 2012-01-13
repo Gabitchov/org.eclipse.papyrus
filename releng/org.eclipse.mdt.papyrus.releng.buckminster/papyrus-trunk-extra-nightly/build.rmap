@@ -36,8 +36,8 @@
     </rm:provider>
 
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
-      <rm:uri format="{0}/modeling/mdt/papyrus/updates/nightly/juno/main/">
-        <bc:propertyRef key="eclipse.downloads"/>
+      <rm:uri format="{0}">
+        <bc:propertyRef key="papyrus.update.site"/>
       </rm:uri>
     </rm:provider>
 
