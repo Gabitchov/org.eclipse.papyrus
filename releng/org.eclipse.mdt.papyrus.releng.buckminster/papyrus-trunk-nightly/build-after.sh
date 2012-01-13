@@ -18,7 +18,7 @@ rm -rf tmp
 mkdir -p "tmp/$FULL_BUILD_ID"
 
 rm -rf updateSite
-mv "$p2UpdateSiteDir" updateSite
+mv $p2UpdateSiteDir updateSite
 
 # create the update site zip
 (cd updateSite && zip -r $zipName *)
