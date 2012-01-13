@@ -11,33 +11,29 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.emf.providers;
 
-import java.util.Collection;
-
-import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
-import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.IItemPropertySource;
-import org.eclipse.papyrus.infra.emf.Activator;
-import org.eclipse.papyrus.infra.widgets.providers.AbstractStaticContentProvider;
+import org.eclipse.jface.viewers.IStructuredContentProvider;
+import org.eclipse.jface.viewers.ITreeContentProvider;
+import org.eclipse.papyrus.infra.emf.providers.strategy.ContainmentBrowseStrategy;
+import org.eclipse.papyrus.infra.emf.providers.strategy.SemanticEMFContentProvider;
+import org.eclipse.papyrus.infra.emf.providers.strategy.StrategyBasedContentProvider;
+import org.eclipse.papyrus.infra.emf.utils.HistoryUtil;
+import org.eclipse.papyrus.infra.widgets.providers.EmptyContentProvider;
+import org.eclipse.papyrus.infra.widgets.providers.EncapsulatedContentProvider;
+import org.eclipse.papyrus.infra.widgets.strategy.IStrategyBasedContentProvider;
+import org.eclipse.papyrus.infra.widgets.strategy.ProviderBasedBrowseStrategy;
+import org.eclipse.papyrus.infra.widgets.strategy.TreeBrowseStrategy;
 
 /**
- * A Content provider for EMF references
+ * A global Content provider for EMF
  * 
  * @author Camille Letavernier
- * @deprecated Use the new ContentProvider tools
  */
-@Deprecated
-public class EMFContentProvider extends AbstractStaticContentProvider {
-
-	private EObject eObject;
-
-	private EStructuralFeature feature;
-
-	private AdapterFactory factory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
+public class EMFContentProvider extends EncapsulatedContentProvider {
 
 	/**
 	 * 
@@ -47,43 +43,63 @@ public class EMFContentProvider extends AbstractStaticContentProvider {
 	 *        The feature representing the reference for which we want to retrieve possible values
 	 * @param eObject
 	 */
-	public EMFContentProvider(EObject eObject, EStructuralFeature feature) {
-		this.feature = feature;
-		this.eObject = eObject;
+	public EMFContentProvider(EObject editedEObject, EStructuralFeature feature) {
+		IStructuredContentProvider provider = getSemanticProvider(editedEObject, feature);
+
+		encapsulated = encapsulateProvider(provider, editedEObject, feature);
 	}
 
-	public Object[] getElements() {
-		if(eObject == null || feature == null) {
-			return new Object[0];
+	/**
+	 * Returns the content provider associated to feature being edited
+	 * 
+	 * @param editedEObject
+	 *        The object being edited
+	 * @param feature
+	 *        The object's feature being edited
+	 * @return
+	 *         A content provider returning all the values valid for the given feature
+	 */
+	protected IStructuredContentProvider getSemanticProvider(EObject editedEObject, EStructuralFeature feature) {
+		EClassifier type = feature.getEType();
+		if(type instanceof EEnum) {
+			return new EMFEnumeratorContentProvider(feature);
+		} else if(type instanceof EClass) {
+			return new SemanticEMFContentProvider(editedEObject, feature);
 		}
 
-		EClass eClass = eObject.eClass();
-		if(eClass == null) {
-			Activator.log.debug("problems during initialization, looking for availables values"); //$NON-NLS-1$
-			return new Object[0];
+		return EmptyContentProvider.instance;
+	}
+
+	/**
+	 * Encapsulates the given content provider in a higher-level content provider
+	 * The returned provider uses two different strategies to display and search
+	 * elements, and adds a pattern filter and an History
+	 * 
+	 * @param provider
+	 *        The ContentProvider to encapsulate
+	 * @return
+	 */
+	protected EMFGraphicalContentProvider encapsulateProvider(IStructuredContentProvider provider, EObject editedEObject, EStructuralFeature feature) {
+		String historyId = HistoryUtil.getHistoryID(editedEObject, feature);
+
+		IStructuredContentProvider contentProvider;
+
+		if(provider instanceof ITreeContentProvider) {
+			contentProvider = getStrategyProvider((ITreeContentProvider)provider);
+		} else {
+			contentProvider = provider;
 		}
 
-		if(!(feature instanceof EReference)) {
-			Activator.log.debug("feature is not a reference, looking for availables values: " + feature);//$NON-NLS-1$
-			return new Object[0];
-		}
+		EMFGraphicalContentProvider graphicalProvider = new EMFGraphicalContentProvider(contentProvider, editedEObject.eResource().getResourceSet(), historyId);
 
-		IItemPropertySource itemPropertySource = (IItemPropertySource)factory.adapt(eObject, IItemPropertySource.class);
-		if(itemPropertySource == null) {
-			Activator.log.debug("impossible to find item Property source for " + eObject);//$NON-NLS-1$
-			return new Object[0];
-		}
-		IItemPropertyDescriptor itemPropertyDescriptor = itemPropertySource.getPropertyDescriptor(eObject, feature);
-		if(itemPropertyDescriptor == null) {
-			Activator.log.debug("impossible to find item Property descriptor for " + eObject + " and " + feature);//$NON-NLS-1$ //$NON-NLS-2$
-			return new Object[0];
-		}
+		return graphicalProvider;
+	}
 
-		Collection<?> values = itemPropertyDescriptor.getChoiceOfValues(eObject);
+	protected IStrategyBasedContentProvider getStrategyProvider(ITreeContentProvider provider) {
+		TreeBrowseStrategy browseStrategy = new ProviderBasedBrowseStrategy(provider);
+		TreeBrowseStrategy revealStrategy = new ContainmentBrowseStrategy(provider);
 
-		values.remove(null); //Removes null values from the collection
-
-		return values.toArray();
+		return new StrategyBasedContentProvider(browseStrategy, revealStrategy);
 	}
 
 }

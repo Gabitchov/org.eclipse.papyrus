@@ -65,7 +65,12 @@ public class HierarchicToFlatContentProvider extends TreeToFlatContentProvider {
 			return;
 		}
 
-		for(Object child : contentProvider.getChildren(parent)) {
+		Object[] children = contentProvider.getChildren(parent);
+		if(children == null) {
+			return;
+		}
+
+		for(Object child : children) {
 			Object childValue = getValue(child);
 			if(result.contains(childValue)) {
 				continue; //Avoid infinite recursion

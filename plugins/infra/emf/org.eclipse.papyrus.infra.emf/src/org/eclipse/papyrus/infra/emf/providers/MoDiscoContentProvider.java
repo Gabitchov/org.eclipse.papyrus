@@ -29,7 +29,10 @@ import org.eclipse.papyrus.infra.emf.Activator;
 
 /**
  * the content provider that inherits of modisco properties
+ * 
+ * @deprecated Use SemanticUMLContentProvider instead
  */
+@Deprecated
 public class MoDiscoContentProvider extends CustomizableModelContentProvider {
 
 	/** The ModelSet containing all the models. This is the initial input. */

@@ -19,7 +19,6 @@ import org.eclipse.emf.databinding.FeaturePath;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -28,11 +27,9 @@ import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.infra.emf.databinding.EMFObservableList;
 import org.eclipse.papyrus.infra.emf.databinding.EMFObservableValue;
 import org.eclipse.papyrus.infra.emf.providers.EMFContentProvider;
-import org.eclipse.papyrus.infra.emf.providers.EMFEnumeratorContentProvider;
 import org.eclipse.papyrus.infra.emf.providers.EMFLabelProvider;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.widgets.creation.ReferenceValueFactory;
-import org.eclipse.papyrus.infra.widgets.providers.EmptyContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
 import org.eclipse.papyrus.views.properties.Activator;
 import org.eclipse.papyrus.views.properties.creation.EcorePropertyEditorFactory;
@@ -190,17 +187,8 @@ public class EMFModelElement extends AbstractModelElement {
 	public IStaticContentProvider getContentProvider(String propertyPath) {
 		FeaturePath featurePath = getFeaturePath(propertyPath);
 		EStructuralFeature feature = getFeature(featurePath);
-		if(feature == null) {
-			return EmptyContentProvider.instance;
-		}
-		EClassifier type = feature.getEType();
-		if(type instanceof EEnum) {
-			return new EMFEnumeratorContentProvider(feature);
-		} else if(type instanceof EClass) {
-			return new EMFContentProvider(getSource(featurePath), feature);
-		}
 
-		return EmptyContentProvider.instance;
+		return new EMFContentProvider(getSource(featurePath), feature);
 	}
 
 	@Override

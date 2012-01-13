@@ -21,7 +21,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.facet.infra.browser.custom.MetamodelView;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance2.TableInstance2;
-import org.eclipse.papyrus.infra.emf.providers.EMFContentProvider;
+import org.eclipse.papyrus.infra.emf.providers.strategy.SemanticEMFContentProvider;
 import org.eclipse.papyrus.infra.table.properties.modelelement.PapyrusTableModelElement;
 
 /**
@@ -29,7 +29,7 @@ import org.eclipse.papyrus.infra.table.properties.modelelement.PapyrusTableModel
  * The content provider for the MetamodelView
  * 
  */
-public class CustomizationContentProvider extends EMFContentProvider {
+public class CustomizationContentProvider extends SemanticEMFContentProvider {
 
 	/**
 	 * the table instance

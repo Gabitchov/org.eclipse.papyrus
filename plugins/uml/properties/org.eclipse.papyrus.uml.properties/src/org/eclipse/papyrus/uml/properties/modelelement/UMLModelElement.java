@@ -217,7 +217,7 @@ public class UMLModelElement extends EMFModelElement {
 		factory.setReferenceLabelProvider(new EMFLabelProvider());
 		ITreeContentProvider contentProvider = new UMLContainerContentProvider(source, reference);
 
-		EMFGraphicalContentProvider provider = ProviderHelper.encapsulateProvider(contentProvider, HistoryUtil.getHistoryID(source, feature, "container"));
+		EMFGraphicalContentProvider provider = ProviderHelper.encapsulateProvider(contentProvider, source.eResource().getResourceSet(), HistoryUtil.getHistoryID(source, feature, "container"));
 
 		factory.setContainerContentProvider(provider);
 		factory.setReferenceContentProvider(new FeatureContentProvider(type));

@@ -13,6 +13,7 @@ package org.eclipse.papyrus.infra.emf.utils;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.papyrus.infra.emf.providers.EMFGraphicalContentProvider;
@@ -33,11 +34,11 @@ public class ProviderHelper {
 	 *        The ContentProvider to encapsulate
 	 * @return
 	 */
-	public static EMFGraphicalContentProvider encapsulateProvider(ITreeContentProvider provider, String historyId) {
+	public static EMFGraphicalContentProvider encapsulateProvider(ITreeContentProvider provider, ResourceSet resourceSet, String historyId) {
 		TreeBrowseStrategy browseStrategy = new ProviderBasedBrowseStrategy(provider);
 		TreeBrowseStrategy revealStrategy = new ContainmentBrowseStrategy(provider);
 		IStructuredContentProvider strategyProvider = new StrategyBasedContentProvider(browseStrategy, revealStrategy);
-		EMFGraphicalContentProvider graphicalProvider = new EMFGraphicalContentProvider(strategyProvider, historyId);
+		EMFGraphicalContentProvider graphicalProvider = new EMFGraphicalContentProvider(strategyProvider, resourceSet, historyId);
 
 		return graphicalProvider;
 	}
@@ -52,6 +53,6 @@ public class ProviderHelper {
 	 * @return
 	 */
 	public static EMFGraphicalContentProvider encapsulateProvider(ITreeContentProvider provider, EObject editedEObject, EStructuralFeature feature) {
-		return encapsulateProvider(provider, HistoryUtil.getHistoryID(editedEObject, feature));
+		return encapsulateProvider(provider, editedEObject.eResource().getResourceSet(), HistoryUtil.getHistoryID(editedEObject, feature));
 	}
 }

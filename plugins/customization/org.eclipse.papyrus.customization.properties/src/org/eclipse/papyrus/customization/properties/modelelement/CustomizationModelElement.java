@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.papyrus.customization.properties.providers.ConstraintDescriptorContentProvider;
 import org.eclipse.papyrus.customization.properties.providers.ContextLabelProvider;
 import org.eclipse.papyrus.customization.properties.providers.DataContextElementContentProvider;
@@ -29,10 +30,16 @@ import org.eclipse.papyrus.customization.properties.providers.PropertyEditorType
 import org.eclipse.papyrus.customization.properties.providers.TabContentProvider;
 import org.eclipse.papyrus.infra.constraints.ConstraintsPackage;
 import org.eclipse.papyrus.infra.constraints.providers.ConstraintTypeContentProvider;
+import org.eclipse.papyrus.infra.emf.providers.EMFGraphicalContentProvider;
+import org.eclipse.papyrus.infra.emf.providers.strategy.ContainmentBrowseStrategy;
+import org.eclipse.papyrus.infra.emf.providers.strategy.StrategyBasedContentProvider;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.widgets.creation.ReferenceValueFactory;
 import org.eclipse.papyrus.infra.widgets.providers.EmptyContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
+import org.eclipse.papyrus.infra.widgets.strategy.IStrategyBasedContentProvider;
+import org.eclipse.papyrus.infra.widgets.strategy.ProviderBasedBrowseStrategy;
+import org.eclipse.papyrus.infra.widgets.strategy.TreeBrowseStrategy;
 import org.eclipse.papyrus.views.properties.contexts.Context;
 import org.eclipse.papyrus.views.properties.contexts.ContextsPackage;
 import org.eclipse.papyrus.views.properties.contexts.DataContextElement;
@@ -42,8 +49,8 @@ import org.eclipse.papyrus.views.properties.modelelement.AbstractModelElement;
 import org.eclipse.papyrus.views.properties.modelelement.DataSource;
 import org.eclipse.papyrus.views.properties.modelelement.EMFModelElement;
 import org.eclipse.papyrus.views.properties.modelelement.ModelElement;
+import org.eclipse.papyrus.views.properties.runtime.ConfigurationManager;
 import org.eclipse.papyrus.views.properties.ui.PropertyEditor;
-import org.eclipse.papyrus.views.properties.ui.UiPackage;
 
 /**
  * A {@link ModelElement} for customization specific properties
@@ -83,6 +90,7 @@ public class CustomizationModelElement extends AbstractModelElement {
 		providers.put(EnvironmentPackage.eINSTANCE.getStandardWidgetType(), new EnvironmentContentProvider(EnvironmentPackage.eINSTANCE.getEnvironment_WidgetTypes()));
 		providers.put(EnvironmentPackage.eINSTANCE.getLayoutType(), new EnvironmentContentProvider(EnvironmentPackage.eINSTANCE.getEnvironment_LayoutTypes()));
 		providers.put(EnvironmentPackage.eINSTANCE.getModelElementFactoryDescriptor(), new EnvironmentContentProvider(EnvironmentPackage.eINSTANCE.getEnvironment_ModelElementFactories()));
+		providers.put(EnvironmentPackage.eINSTANCE.getPropertyEditorType(), new EnvironmentContentProvider(EnvironmentPackage.eINSTANCE.getEnvironment_PropertyEditorTypes()));
 
 		providers.put(org.eclipse.papyrus.infra.constraints.environment.EnvironmentPackage.eINSTANCE.getConstraintType(), new ConstraintTypeContentProvider());
 	}
@@ -103,6 +111,32 @@ public class CustomizationModelElement extends AbstractModelElement {
 			return EmptyContentProvider.instance;
 		}
 
+		IStaticContentProvider provider = findProvider(feature);
+
+		if(provider == null) {
+			return delegate.getContentProvider(propertyPath);
+		}
+
+		if(provider instanceof ITreeContentProvider) {
+			IStrategyBasedContentProvider strategyProvider = getStrategyProvider((ITreeContentProvider)provider);
+
+			if(feature.getEType() == EnvironmentPackage.eINSTANCE.getPropertyEditorType()) {
+				return new PropertyEditorTypeContentProvider(strategyProvider, (PropertyEditor)delegate.getSource());
+			} else {
+				return new EMFGraphicalContentProvider(strategyProvider, ConfigurationManager.instance.getResourceSet(), "history_" + feature.getName());
+			}
+		}
+		return provider;
+	}
+
+	protected IStrategyBasedContentProvider getStrategyProvider(ITreeContentProvider provider) {
+		TreeBrowseStrategy browseStrategy = new ProviderBasedBrowseStrategy(provider);
+		TreeBrowseStrategy revealStrategy = new ContainmentBrowseStrategy(provider);
+
+		return new StrategyBasedContentProvider(browseStrategy, revealStrategy);
+	}
+
+	protected IStaticContentProvider findProvider(EStructuralFeature feature) {
 		EClassifier classifier = feature.getEType();
 		if(providers.containsKey(classifier)) {
 			return providers.get(classifier);
@@ -118,11 +152,9 @@ public class CustomizationModelElement extends AbstractModelElement {
 			return new DataContextElementContentProvider((DataContextElement)delegate.getSource());
 		} else if(classifier == ContextsPackage.eINSTANCE.getContext()) {
 			return new DependencyContentProvider((Context)delegate.getSource());
-		} else if(feature == UiPackage.eINSTANCE.getPropertyEditor_WidgetType()) {
-			return new PropertyEditorTypeContentProvider((PropertyEditor)delegate.getSource());
-		} else {
-			return delegate.getContentProvider(propertyPath);
 		}
+
+		return null;
 	}
 
 	private boolean isDataContextElement(EClassifier classifier) {

@@ -258,6 +258,9 @@ public class Preview extends ViewPart implements ISelectionChangedListener, IPar
 			//The outputstream cannot be formatted. If format is true, this is
 			//the real file (and not the preview file) that will be formatted
 			options.put(XWTResource.OPTION_FORMAT, false);
+			if(section.getWidget() == null || section.getWidget().eResource() == null) {
+				return null;
+			}
 			section.getWidget().eResource().save(os, options);
 			return xwtFile.toURI().toURL();
 		} catch (IOException ex) {

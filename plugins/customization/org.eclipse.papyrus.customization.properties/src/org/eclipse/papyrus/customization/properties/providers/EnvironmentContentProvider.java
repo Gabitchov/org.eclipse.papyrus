@@ -14,8 +14,11 @@ package org.eclipse.papyrus.customization.properties.providers;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.papyrus.infra.widgets.providers.AbstractFilteredContentProvider;
+import org.eclipse.papyrus.customization.properties.Activator;
+import org.eclipse.papyrus.infra.emf.providers.strategy.SemanticEMFContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
 import org.eclipse.papyrus.views.properties.environment.Environment;
 import org.eclipse.papyrus.views.properties.runtime.ConfigurationManager;
@@ -25,9 +28,7 @@ import org.eclipse.papyrus.views.properties.runtime.ConfigurationManager;
  * 
  * @author Camille Letavernier
  */
-public class EnvironmentContentProvider extends AbstractFilteredContentProvider implements IStaticContentProvider {
-
-	private Object[] contents;
+public class EnvironmentContentProvider extends SemanticEMFContentProvider implements IStaticContentProvider {
 
 	/**
 	 * Constructor.
@@ -37,20 +38,20 @@ public class EnvironmentContentProvider extends AbstractFilteredContentProvider 
 	 *        different environments.
 	 */
 	public EnvironmentContentProvider(EStructuralFeature feature) {
+		super(null, feature, getRoots(feature));
+	}
+
+	private static EObject[] getRoots(EStructuralFeature feature) {
+		if(!(feature.getEType() instanceof EClass)) {
+			Activator.log.warn("The feature " + feature + " cannot be handled by this content provider");
+			return new EObject[0];
+		}
+
 		List<Object> allObjects = new LinkedList<Object>();
 		for(Environment environment : ConfigurationManager.instance.getPropertiesRoot().getEnvironments()) {
 			allObjects.addAll((List<?>)environment.eGet(feature));
 		}
-		contents = allObjects.toArray();
-		showIfHasVisibleParent = true;
-	}
-
-	public Object[] getElements() {
-		return contents;
-	}
-
-	public Object[] getElements(Object inputElement) {
-		return getElements();
+		return allObjects.toArray(new EObject[0]);
 	}
 
 }

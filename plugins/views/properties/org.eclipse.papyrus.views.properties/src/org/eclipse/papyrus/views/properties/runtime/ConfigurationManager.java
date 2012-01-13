@@ -669,4 +669,14 @@ public class ConfigurationManager {
 
 		return conflicts.values();
 	}
+
+	/**
+	 * Returns the ResourceSet associated to the ConfigurationManager,
+	 * ie. the ResourceSet containing all Environments and Contexts
+	 * 
+	 * @return
+	 */
+	public ResourceSet getResourceSet() {
+		return resourceSet;
+	}
 }

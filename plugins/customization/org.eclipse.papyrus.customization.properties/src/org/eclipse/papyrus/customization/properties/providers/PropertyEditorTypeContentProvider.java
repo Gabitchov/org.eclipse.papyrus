@@ -1,35 +1,35 @@
 package org.eclipse.papyrus.customization.properties.providers;
 
-import java.util.LinkedList;
-import java.util.List;
-
+import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.papyrus.infra.emf.providers.EMFGraphicalContentProvider;
 import org.eclipse.papyrus.infra.widgets.editors.AbstractEditor;
 import org.eclipse.papyrus.infra.widgets.editors.BooleanToggle;
 import org.eclipse.papyrus.infra.widgets.editors.ICommitListener;
-import org.eclipse.papyrus.infra.widgets.providers.IGraphicalContentProvider;
-import org.eclipse.papyrus.views.properties.environment.EnvironmentPackage;
+import org.eclipse.papyrus.infra.widgets.providers.AbstractTreeFilter;
 import org.eclipse.papyrus.views.properties.environment.PropertyEditorType;
-import org.eclipse.papyrus.views.properties.environment.Type;
 import org.eclipse.papyrus.views.properties.ui.PropertyEditor;
 import org.eclipse.papyrus.views.properties.widgets.layout.PropertiesLayout;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 
 
-public class PropertyEditorTypeContentProvider extends EnvironmentContentProvider implements IGraphicalContentProvider, ICommitListener {
+public class PropertyEditorTypeContentProvider extends EMFGraphicalContentProvider implements ICommitListener {
 
 	private PropertyEditor source;
 
-	private Viewer viewer;
-
-	private boolean filter = true;
-
 	private BooleanToggle filterButton;
 
-	public PropertyEditorTypeContentProvider(PropertyEditor source) {
-		super(EnvironmentPackage.eINSTANCE.getEnvironment_PropertyEditorTypes());
+	private PropertyEditorTypeViewerFilter currentFilter;
+
+	public PropertyEditorTypeContentProvider(IStructuredContentProvider semanticProvider, PropertyEditor source) {
+		super(semanticProvider, source.eResource().getResourceSet(), getHistoryId(source));
 		this.source = source;
+		this.currentFilter = new PropertyEditorTypeViewerFilter();
+	}
+
+	private static String getHistoryId(PropertyEditor source) {
+		return "history_propertyEditorType_" + source.eResource().getURI();
 	}
 
 	@Override
@@ -39,37 +39,59 @@ public class PropertyEditorTypeContentProvider extends EnvironmentContentProvide
 
 		filterButton = new BooleanToggle(self);
 		filterButton.setText("Filter");
-		filterButton.setValue(this.filter);
+		filterButton.setValue(currentFilter.getFilter());
 		filterButton.addCommitListener(this);
 		super.createBefore(self);
 	}
 
 	@Override
-	public Object[] getElements() {
-		Object[] elements = super.getElements();
-		if(!filter || source.getProperty() == null) {
-			return elements;
+	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
+		if(super.viewer != null) {
+			super.viewer.removeFilter(currentFilter);
 		}
-
-		Type type = source.getProperty().getType();
-		boolean isPropertyMultiple = source.getProperty().getMultiplicity() != 1;
-		List<Object> filteredElements = new LinkedList<Object>();
-		for(Object element : elements) {
-			PropertyEditorType editorType = (PropertyEditorType)element;
-			boolean isElementMultiple = editorType.getMultiplicity() != 1;
-			if(editorType.getType() == type && isPropertyMultiple == isElementMultiple) {
-				filteredElements.add(element);
-			}
-		}
-
-		return filteredElements.toArray();
+		super.inputChanged(viewer, oldInput, newInput);
+		super.viewer.addFilter(currentFilter);
 	}
 
+	@Override
 	public void commit(AbstractEditor editor) {
-		filter = filterButton.getValue();
+		currentFilter.setFilter(filterButton.getValue());
 		if(super.viewer != null) {
 			super.viewer.refresh();
 		}
+	}
+
+	private class PropertyEditorTypeViewerFilter extends AbstractTreeFilter {
+
+		private boolean filter = true;
+
+		@Override
+		public boolean isVisible(Viewer viewer, Object parentElement, Object element) {
+			if(!filter) {
+				return true;
+			}
+
+			Object adaptedValue = getAdaptedValue(element);
+			if(adaptedValue instanceof PropertyEditorType) {
+				PropertyEditorType editorType = (PropertyEditorType)adaptedValue;
+				if(source.getProperty() == null) {
+					return true;
+				}
+				return editorType.getType() == source.getProperty().getType();
+			}
+
+			return false;
+		}
+
+		public boolean getFilter() {
+			return filter;
+		}
+
+		public void setFilter(boolean filter) {
+			this.filter = filter;
+			clearCache();
+		}
+
 	}
 
 }

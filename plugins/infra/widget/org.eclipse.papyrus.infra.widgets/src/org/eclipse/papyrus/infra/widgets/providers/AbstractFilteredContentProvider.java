@@ -40,6 +40,7 @@ import org.eclipse.swt.widgets.Composite;
  * 
  * @author Camille Letavernier
  */
+//TODO : Encapsulate a IStructuredContentProvider and make this class concrete
 public abstract class AbstractFilteredContentProvider implements IGraphicalContentProvider {
 
 	protected StructuredViewer viewer;
@@ -71,6 +72,7 @@ public abstract class AbstractFilteredContentProvider implements IGraphicalConte
 
 	public void createBefore(Composite parent) {
 		filterPattern = new StringEditor(parent, SWT.NONE, "Filter : "); //$NON-NLS-1$
+		filterPattern.setValidateOnDelay(true);
 		filterPattern.setValue(BASE_PATTERN);
 		filter = getViewerFilter();
 		filterPattern.addCommitListener(new ICommitListener() {

@@ -30,6 +30,7 @@ import org.eclipse.papyrus.uml.diagram.modelexplorer.Activator;
  * this content provider is used to display diagrams and their contents
  * 
  */
+//TODO : This ContentProvider should extend SemanticUMLContentProvider
 public class DiagramContentProvider extends MoDiscoContentProvider {
 
 	@Override

@@ -37,7 +37,10 @@ import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
 
 /**
  * This is a modisco content provider on which we can parameter the root element
+ * 
+ * @deprecated Use SemanticUMLContentProvider instead
  */
+@Deprecated
 public class ModelContentProvider extends MoDiscoContentProvider implements IStaticContentProvider, IAdaptableContentProvider {
 
 	/**

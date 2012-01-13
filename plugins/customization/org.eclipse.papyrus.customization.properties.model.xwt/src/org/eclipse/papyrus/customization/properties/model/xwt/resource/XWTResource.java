@@ -120,6 +120,10 @@ public class XWTResource extends ResourceImpl {
 	@Override
 	protected void doSave(OutputStream outputStream, Map<?, ?> options) throws IOException {
 		try {
+			if(getContents().isEmpty()) {
+				Activator.log.warn("Cannot save an Empty XWT resource : " + getURI());
+				return;
+			}
 			Root root = uiSectionToXML((CompositeWidget)getContents().get(0));
 			xmlResource.getContents().clear();
 			xmlResource.getContents().add(root);

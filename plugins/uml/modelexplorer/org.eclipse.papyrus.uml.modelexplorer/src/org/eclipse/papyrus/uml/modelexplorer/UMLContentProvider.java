@@ -27,7 +27,9 @@ import org.eclipse.uml2.uml.util.UMLUtil;
 /**
  * this is a specific content provider used to not display UML stereotype applications
  * 
+ * @deprecated Use {@link org.eclipse.papyrus.uml.tools.providers.UMLContentProvider} instead
  */
+@Deprecated
 public class UMLContentProvider extends MoDiscoContentProvider {
 
 
@@ -51,7 +53,7 @@ public class UMLContentProvider extends MoDiscoContentProvider {
 		ArrayList<EObject> result = new ArrayList<EObject>();
 		Iterator<EObject> iterator = contents.iterator();
 		while(iterator.hasNext()) {
-			EObject eObject = (EObject)iterator.next();
+			EObject eObject = iterator.next();
 			//functionality that comes from UML2 plugins
 			if(UMLUtil.getStereotype(eObject) == null) {
 				result.add(eObject);

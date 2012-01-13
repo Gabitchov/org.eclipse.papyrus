@@ -46,7 +46,7 @@ public class UMLProviderHelper {
 			contentProvider = provider;
 		}
 
-		EMFGraphicalContentProvider graphicalProvider = new EMFGraphicalContentProvider(contentProvider, historyId);
+		EMFGraphicalContentProvider graphicalProvider = new EMFGraphicalContentProvider(contentProvider, editedEObject.eResource().getResourceSet(), historyId);
 
 		return graphicalProvider;
 	}

@@ -24,6 +24,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.viewers.ILabelProvider;
@@ -35,11 +36,6 @@ import org.eclipse.jface.viewers.StructuredViewer;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
-import org.eclipse.papyrus.infra.core.resource.ModelSet;
-import org.eclipse.papyrus.infra.core.resource.ModelUtils;
-import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
-import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.infra.emf.Activator;
 import org.eclipse.papyrus.infra.widgets.editors.AbstractEditor;
 import org.eclipse.papyrus.infra.widgets.editors.ICommitListener;
@@ -56,9 +52,9 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Table;
 
 /**
- * this is a content provider based on the model explorer on which we can filter wanted meta-classes
- * It can only filter if wantedMetaclass and metaclassNotWanted are Eclass
+ * This providers adds a text-filter and an History to EMF-based content providers
  */
+//TODO : Extend (Abstract)FilteredContentProvider
 public class EMFGraphicalContentProvider extends EncapsulatedContentProvider implements ISelectionChangedListener {
 
 	private static final String DIALOG_SETTINGS = EMFGraphicalContentProvider.class.getName();
@@ -87,6 +83,8 @@ public class EMFGraphicalContentProvider extends EncapsulatedContentProvider imp
 
 	protected StructuredViewer viewer;
 
+	protected ResourceSet resourceSet;
+
 	private static final int HISTORY_MAX_SIZE = 5;
 
 	private String currentFilterPattern = ""; //$NON-NLS-1$
@@ -98,9 +96,10 @@ public class EMFGraphicalContentProvider extends EncapsulatedContentProvider imp
 	/**
 	 * the constructor
 	 */
-	public EMFGraphicalContentProvider(IStructuredContentProvider semanticProvider, String historyId) {
+	public EMFGraphicalContentProvider(IStructuredContentProvider semanticProvider, ResourceSet resourceSet, String historyId) {
 		super(semanticProvider);
 		this.historyId = historyId;
+		this.resourceSet = resourceSet;
 	}
 
 	/**
@@ -235,16 +234,7 @@ public class EMFGraphicalContentProvider extends EncapsulatedContentProvider imp
 	 * Inits the History
 	 */
 	protected void initSelectionHistory() {
-		// read the history in the preferences
-		ServicesRegistry servicesRegistry = EditorUtils.getServiceRegistry();
-		ModelSet modelSet = null;
 		selectionHistory = new ArrayList<EObject>(HISTORY_MAX_SIZE + 1);
-		try {
-			modelSet = ModelUtils.getModelSetChecked(servicesRegistry);
-		} catch (ServiceException e) {
-			Activator.log.error(e);
-			return;
-		}
 
 		IDialogSettings historySettings = getDialogSettings().getSection(HISTORY_SETTINGS);
 		if(historySettings != null) {
@@ -253,7 +243,7 @@ public class EMFGraphicalContentProvider extends EncapsulatedContentProvider imp
 			if(uriHistory != null) {
 				for(String uri : uriHistory) {
 					try {
-						EObject object = modelSet.getEObject(URI.createURI(uri), true);
+						EObject object = resourceSet.getEObject(URI.createURI(uri), true);
 						if(object != null && !selectionHistory.contains(object)) {
 							selectionHistory.add(object);
 						}

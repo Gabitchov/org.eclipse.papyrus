@@ -17,7 +17,8 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.papyrus.infra.widgets.providers.AbstractFilteredContentProvider;
+import org.eclipse.papyrus.infra.emf.providers.strategy.SemanticEMFContentProvider;
+import org.eclipse.papyrus.infra.tools.util.ListHelper;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
 import org.eclipse.papyrus.views.properties.contexts.Context;
 import org.eclipse.papyrus.views.properties.util.PropertiesUtil;
@@ -30,17 +31,12 @@ import org.eclipse.papyrus.views.properties.util.PropertiesUtil;
  * @author Camille Letavernier
  * 
  */
-public abstract class AbstractContextualContentProvider extends AbstractFilteredContentProvider implements IStaticContentProvider {
+public abstract class AbstractContextualContentProvider extends SemanticEMFContentProvider implements IStaticContentProvider {
 
 	/**
 	 * The list of available contexts in the current model
 	 */
 	protected Collection<Context> contexts;
-
-	/**
-	 * The EObject used to retrieve the available contexts
-	 */
-	protected EObject source;
 
 	/**
 	 * 
@@ -50,12 +46,11 @@ public abstract class AbstractContextualContentProvider extends AbstractFiltered
 	 *        The EObject used to retrieve the available contexts
 	 */
 	protected AbstractContextualContentProvider(EObject source) {
-		contexts = findContexts(source);
-		this.source = source;
-		showIfHasVisibleParent = true;
+		super(findContexts(source).toArray(new Context[0]));
+		contexts = ListHelper.asList((Context[])roots);
 	}
 
-	private List<Context> findContexts(EObject source) {
+	private static List<Context> findContexts(EObject source) {
 		List<Context> contexts = new LinkedList<Context>();
 
 		Context rootContext = null;
