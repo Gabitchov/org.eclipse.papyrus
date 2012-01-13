@@ -118,6 +118,17 @@ if [ $signalDateTrunkNightly -gt $lastPromoteDateTrunkNightly ]; then
 		{"name": "BUILD_TARGET", "value": "test"}
 	], "": ""}'
 	curl -X POST https://hudson.eclipse.org/hudson/job/papyrus-trunk-extra-nightly/build -d token=token --data-urlencode json="$json"
+
+	echo "[$DATE] triggering Hudson 3.8 tests build"
+	json='{"parameter": [
+		{"name": "BUCKMINSTER_LOGLEVEL", "value": "DEBUG"},
+		{"name": "CLEAN_TP", "value": "true"},
+		{"name": "CLEAN_WORKSPACE", "value": "true"},
+		{"name": "CLEAN_OUTPUT", "value": "true"},
+		{"name": "CLEAN_TOOLS", "value": "false"},
+		{"name": "BUILD_TARGET", "value": "test"}
+	], "": ""}'
+	curl -X POST https://hudson.eclipse.org/hudson/job/papyrus-trunk-nightly-3.8-tests/build -d token=token --data-urlencode json="$json"
 fi
 
 if [ $signalDateTrunkNightlyTests -gt $lastPromoteDateTrunkNightlyTests ]; then
