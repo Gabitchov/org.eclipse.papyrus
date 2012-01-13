@@ -6,21 +6,21 @@ promoteSignal=/opt/public/modeling/mdt/papyrus/papyrus-trunk-extra-nightly/promo
 promoteDirName=/opt/public/modeling/mdt/papyrus/papyrus-trunk-extra-nightly/promoteDirName
 # note: the version and build id used by the cronPromote.sh are taken from papyrus-trunk-nightly
 
-FULL_BUILD_ID=$(cat $promoteDirName)
+#FULL_BUILD_ID=$(cat $promoteDirName)
 updateZipName=Papyrus-Extra-Update.zip
 zipName=Papyrus-Extra.zip
 
 rm -rf tmp
-mkdir -p "tmp/$FULL_BUILD_ID"
+mkdir -p "tmp/extras"
 
 # create the update site zip
 (cd $p2UpdateSiteDir && zip -r $updateZipName *)
-mv $p2UpdateSiteDir/$updateZipName "tmp/$FULL_BUILD_ID"
+mv $p2UpdateSiteDir/$updateZipName "tmp/extras"
 
-mv revision.txt "tmp/$FULL_BUILD_ID"
+mv revision.txt "tmp/extras"
 
 # copy the build log into the result
-wget --quiet --no-check-certificate ${HUDSON_URL}/job/${JOB_NAME}/${BUILD_NUMBER}/consoleText -O "${WORKSPACE}/tmp/$FULL_BUILD_ID/buildlog.txt"
+wget --quiet --no-check-certificate ${HUDSON_URL}/job/${JOB_NAME}/${BUILD_NUMBER}/consoleText -O "${WORKSPACE}/tmp/extras/buildlog.txt"
 
 (cd tmp && zip -r $zipName *)
 mv tmp/$zipName .
