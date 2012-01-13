@@ -5,7 +5,9 @@
 # It then promotes the result of the build. The promote is not done from
 # Hudson because it does not have the necessary rights.
 
+# exit on error
 set -o errexit
+# error when using an unset variable
 set -o nounset
 
 LAST_PROMOTE_FILE_TRUNK_NIGHTLY=/opt/public/modeling/mdt/papyrus/papyrus-trunk-nightly/lastPromoteRef
@@ -72,9 +74,12 @@ lastPromoteDateTrunkNightlyTests=$(stat --format=%Y $LAST_PROMOTE_FILE_TRUNK_NIG
 lastPromoteDateMaintenanceNightly=$(stat --format=%Y $LAST_PROMOTE_FILE_MAINTENANCE_NIGHTLY)
 lastPromoteDateMaintenanceExtraNightly=$(stat --format=%Y $LAST_PROMOTE_FILE_MAINTENANCE_EXTRA_NIGHTLY)
 
+########## trunk main nightly ##########
 if [ $signalDateTrunkNightly -gt $lastPromoteDateTrunkNightly ]; then
 	# mark the promote as done
 	touch "$LAST_PROMOTE_FILE_TRUNK_NIGHTLY"
+	
+	# the Hudson job wrote these build name and version to publish
 	buildName=$(cat "$PROMOTE_SIGNAL_TRUNK_NIGHTLY")
 	zipName=${buildName}.zip
 	version=$(cat "$PROMOTE_VERSION_TRUNK_NIGHTLY")
@@ -92,6 +97,9 @@ if [ $signalDateTrunkNightly -gt $lastPromoteDateTrunkNightly ]; then
 	promote "$zipName" "$version" "$nfsURL" "$hudsonURL" "$DROPS_DIR" "$ARCHIVE_DIR" "$ARCHIVE_INDEX" "$UPDATES_TRUNK_NIGHTLY" "Papyrus-Update-" "NA"
 
 	echo "[$DATE] promote done"
+	
+	# trigger the tests, 3.8 tests and extras builds by using the Hudson Rest API
+	# see http://wiki.hudson-ci.org/display/HUDSON/Remote+access+API
 	
 	echo "[$DATE] triggering Hudson tests build"
 	json='{"parameter": [
@@ -133,16 +141,22 @@ if [ $signalDateTrunkNightly -gt $lastPromoteDateTrunkNightly ]; then
 	curl -X POST https://hudson.eclipse.org/hudson/job/papyrus-trunk-extra-nightly/build -d token=token --data-urlencode json="$json" | grep --ignore-case error && exit -1
 fi
 
+########## trunk main nightly tests ##########
 if [ $signalDateTrunkNightlyTests -gt $lastPromoteDateTrunkNightlyTests ]; then
 	# mark the promote as done
 	touch "$LAST_PROMOTE_FILE_TRUNK_NIGHTLY_TESTS"
+
+	dirBefore=$(pwd)
+	echo "[$DATE] creating working dir"
+	workingDir=$(mktemp -d)
+	cd "$workingDir"
 
 	# for the tests build, the build name and version are taken from the last main build since the artifacts 
 	# must go to the same folder, and we want to be able to start several extra jobs after one single main job
 
 	buildName=$(cat "$PROMOTE_SIGNAL_TRUNK_NIGHTLY")
-	zipName=${buildName}.zip
 	version=$(cat "$PROMOTE_VERSION_TRUNK_NIGHTLY")
+	zipName="Papyrus-TestResults.zip"
 	nfsURL="/shared/jobs/papyrus-trunk-nightly-tests/lastSuccessful/archive/"
 	hudsonURL="https://hudson.eclipse.org/hudson/job/papyrus-trunk-nightly-tests/lastSuccessfulBuild/artifact/"
 
@@ -158,15 +172,25 @@ if [ $signalDateTrunkNightlyTests -gt $lastPromoteDateTrunkNightlyTests ]; then
 	chgrp -hR modeling.mdt.papyrus "$buildsDir"
 
 	echo "[$DATE] promote done"
+
+	cd ${dirBefore}
+	echo "[$DATE] deleting working dir"
+	rm -rf "$workingDir"
 	
 	# TODO: re-enable when the job is implemented
 	# echo "[$DATE] triggering Hudson tests build"
 	# curl https://hudson.eclipse.org/hudson/job/papyrus-trunk-extra-nightly-tests/buildWithParameters?token=token
 fi
 
+########## trunk extras nightly ##########
 if [ $signalDateTrunkExtraNightly -gt $lastPromoteDateTrunkExtraNightly ]; then
 	# mark the promote as done
 	touch "$LAST_PROMOTE_FILE_TRUNK_EXTRA_NIGHTLY"
+	
+	dirBefore=$(pwd)
+	echo "[$DATE] creating working dir"
+	workingDir=$(mktemp -d)
+	cd "$workingDir"
 	
 	# for the extra build, the build name and version are taken from the last main build since the artifacts 
 	# must go to the same folder, and we want to be able to start several extra jobs after one single main job
@@ -204,6 +228,9 @@ if [ $signalDateTrunkExtraNightly -gt $lastPromoteDateTrunkExtraNightly ]; then
 	
 	echo "[$DATE] promote done"
 	
+	cd ${dirBefore}
+	echo "[$DATE] deleting working dir"
+	rm -rf "$workingDir"
 	rm -rf "$tmpDrop"
 	
 	# TODO: re-enable when the job is implemented
@@ -211,6 +238,7 @@ if [ $signalDateTrunkExtraNightly -gt $lastPromoteDateTrunkExtraNightly ]; then
 	# curl https://hudson.eclipse.org/hudson/job/papyrus-trunk-extra-nightly-tests/buildWithParameters?token=token
 fi
 
+########## maintenance main nightly ##########
 if [ $signalDateMaintenanceNightly -gt $lastPromoteDateMaintenanceNightly ]; then
 	# mark the promote as done
 	touch "$LAST_PROMOTE_FILE_MAINTENANCE_NIGHTLY"
@@ -232,6 +260,7 @@ if [ $signalDateMaintenanceNightly -gt $lastPromoteDateMaintenanceNightly ]; the
 	echo "[$DATE] done"
 fi
 
+########## maintenance extras nightly ##########
 if [ $signalDateMaintenanceExtraNightly -gt $lastPromoteDateMaintenanceExtraNightly ]; then
 	# mark the promote as done
 	touch "$LAST_PROMOTE_FILE_MAINTENANCE_EXTRA_NIGHTLY"
