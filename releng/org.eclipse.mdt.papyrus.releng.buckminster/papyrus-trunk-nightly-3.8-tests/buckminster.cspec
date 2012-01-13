@@ -6,5 +6,14 @@
         <cs:dependency name="org.eclipse.pde.junit.runtime" componentType="osgi.bundle"/>
         <cs:dependency name="org.eclipse.papyrus.sdk.feature" componentType="eclipse.feature"/>
         <cs:dependency name="org.eclipse.papyrus.tests.build.feature" componentType="eclipse.feature"/>
+
+        <cs:dependency name="org.apache.batik.dom" componentType="osgi.bundle"/>
+        <cs:dependency name="org.apache.batik.dom.svg" componentType="osgi.bundle"/>
+        <cs:dependency name="org.apache.batik.parser" componentType="osgi.bundle"/>
+        <cs:dependency name="org.apache.batik.css" componentType="osgi.bundle"/>
+        <cs:dependency name="org.apache.batik.bridge" componentType="osgi.bundle"/>
+        <cs:dependency name="org.apache.batik.transcoder" componentType="osgi.bundle"/>
+        <cs:dependency name="org.apache.batik.pdf" componentType="osgi.bundle"/>
+        
 	</cs:dependencies>
 </cs:cspec>
