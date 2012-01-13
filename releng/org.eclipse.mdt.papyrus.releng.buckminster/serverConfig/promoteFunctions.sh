@@ -35,6 +35,24 @@ function prune() {
 	fi
 }
 
+function getZip() {
+	_zipName=$1
+	_nfsBaseDir=$2
+	_hudsonBaseURL=$3
+
+	[[ "$_zipName" =~ ^.*\.zip$ ]] || { echo "incorrect parameter: zipName"; exit 1; }
+	[[ "$_nfsBaseDir" =~ ^/shared/jobs/.*$ ]] || { echo "incorrect parameter: nfsBaseDir"; exit 1; }
+	[[ "$_hudsonBaseURL" =~ ^https://hudson\.eclipse\.org/hudson/job/.*$ ]] || { echo "incorrect parameter: hudsonBaseURL"; exit 1; }
+
+	# try with NFS access first, and if that fails, use the Hudson REST API
+	# see http://wiki.hudson-ci.org/display/HUDSON/Remote+access+API
+	cp "$_nfsBaseDir/${_zipName}" . || wget --no-check-certificate "$_hudsonBaseURL/${_zipName}"
+	if [ ! -f "$_zipName" ]; then echo "ERROR: $_zipName (from Hudson) not found"; exit -2; fi
+	echo "[$DATE] Testing zip integrity"
+	unzip -t "$_zipName"
+}
+
+
 function setAccessRights() {
 	chmod -R 775 "$1"
 	chgrp -hR modeling.mdt.papyrus "$1"
@@ -57,9 +75,9 @@ function promote() {
 	dirBefore=$(pwd)
 	
 	[[ "$_zipName" =~ ^[NIMSR]20[0-9]{10}\.zip$ ]] || { echo "incorrect parameter: zipName"; exit 1; }
-	[[ "$_version" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]] || { echo "incorrect parameter: version"; exit 1; }
 	[[ "$_nfsBaseDir" =~ ^/shared/jobs/.*$ ]] || { echo "incorrect parameter: nfsBaseDir"; exit 1; }
 	[[ "$_hudsonBaseURL" =~ ^https://hudson\.eclipse\.org/hudson/job/.*$ ]] || { echo "incorrect parameter: hudsonBaseURL"; exit 1; }
+	[[ "$_version" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]] || { echo "incorrect parameter: version"; exit 1; }
 	[[ "$_dropsDir" =~ ^/home/data/httpd/download\.eclipse\.org/.*$ ]] || { echo "incorrect parameter: dropsDir"; exit 1; }
 	[[ "$_archiveDir" =~ ^/home/data/httpd/archive\.eclipse\.org/.*$ ]] || { echo "incorrect parameter: archiveDir"; exit 1; }
 	[[ "$_archiveIndex" =~ ^/home/data/httpd/archive\.eclipse\.org/.*?/index\.html$ ]] || { echo "incorrect parameter: archiveIndex"; exit 1; }
@@ -75,15 +93,12 @@ function promote() {
 	cd "$workingDir"
 	
 	echo "[$DATE] getting last successful build"
-	# try with NFS access first, and if that fails, use the Hudson REST API
-	# see http://wiki.hudson-ci.org/display/HUDSON/Remote+access+API
-	cp "$_nfsBaseDir/${_zipName}" . || wget --no-check-certificate "$_hudsonBaseURL/${_zipName}"
-	if [ ! -f "$_zipName" ]; then echo "ERROR: $_zipName (from Hudson) not found"; exit -2; fi
-	echo "[$DATE] Testing zip integrity"
-	unzip -t "$_zipName"
+	getZip "$_zipName" "$_nfsBaseDir" "$_hudsonBaseURL"
+	
 	buildsDir="$_dropsDir/$_version"
 	echo "[$DATE] publishing build (version='$_version') to the builds directory '$buildsDir'..."
 	unzip -o "$_zipName" -d "$buildsDir"
+	
 	echo "[$DATE] publishing build (version='$_version') to the update site '$_updateSite'..."
 	[ -d "$_updateSite" ] && { echo "Error: update site directory already exists"; exit 1; }
 	# extract the zip in which there is the update site zip to a tmp dir

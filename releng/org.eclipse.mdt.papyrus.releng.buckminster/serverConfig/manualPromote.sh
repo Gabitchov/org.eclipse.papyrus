@@ -36,22 +36,28 @@ updateSite=""
 branchToTag=""
 sure=""
 
-echo "zipName (e.g. \"N201112220427.zip\"): "
-while [[ ! "$zipName" =~ ^[NIMSR]20[0-9]{10}\.zip$ ]]; do
+echo "mainBuildNumber (the number of the \"papyrus-trunk-nightly\" Hudson build from which to publish the main Papyrus plug-ins): "
+while [[ ! "$mainBuildNumber" =~ ^[0-9]+$ || "$mainBuildNumber" < 1 ]]; do
 	echo -n "? "
-	read zipName
+	read mainBuildNumber
+done
+
+echo "extrasBuildNumber (the number of the \"papyrus-trunk-extra-nightly\" Hudson build from which to publish the extra Papyrus plug-ins, or 0 to not publish): "
+while [[ ! "$extrasBuildNumber" =~ ^[0-9]+$ || "$extrasBuildNumber" < 0 ]]; do
+	echo -n "? "
+	read extrasBuildNumber
+done
+
+echo "testsBuildNumber (the number of the \"papyrus-trunk-nightly-tests\" Hudson build from which to publish the test results, or 0 to not publish): "
+while [[ ! "$testsBuildNumber" =~ ^[0-9]+$ || "$testsBuildNumber" < 0 ]]; do
+	echo -n "? "
+	read testsBuildNumber
 done
 
 echo "version (e.g. \"0.9.0\"): "
 while [[ ! "$version" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; do
 	echo -n "? "
 	read version
-done
-
-echo "jobName (papyrus-trunk-nightly|papyrus-0.8-maintenance-nightly): "
-while [[ ! "$jobName" =~ ^(papyrus-trunk-nightly|papyrus-0.8-maintenance-nightly)$ ]]; do
-	echo -n "? "
-	read jobName
 done
 
 echo "updateSite (e.g. \"nightly/juno/main\", \"milestones/0.9/M5\", \"releases/indigo\") : "
@@ -65,6 +71,50 @@ while [[ ! "$branchToTag" =~ ^(trunk|branches/.+?|NA)$ ]]; do
 	echo -n "? "
 	read branchToTag
 done
+
+echo "Are you sure you want to publish with these parameters (yes|no)?"
+while [[ ! "$sure" =~ ^(yes|no)$ ]]; do
+	echo -n "? "
+	read sure
+done
+
+if [ "$sure" != "yes" ]; then echo "Canceled."; exit 1; fi
+
+
+dirBefore=$(pwd)
+echo "[$DATE] creating working dir"
+workingDir=$(mktemp -d)
+cd "$workingDir"
+
+if [[ "$mainBuildNumber" != "0" ]]; then
+	nfsURL="/shared/jobs/papyrus-trunk-nightly/builds/$mainBuildNumber/archive/"
+	hudsonURL="https://hudson.eclipse.org/hudson/job/papyrus-trunk-nightly/$mainBuildNumber/artifact/"
+	zipName="Papyrus-Main.zip"
+	getZip "$zipName" "$nfsURL" "$hudsonURL"
+	
+	buildsDir="$DROPS_DIR/$version"
+	echo "publishing build (version='$version') to the builds directory '$buildsDir'..."
+	unzip -o "$zipName" -d "$buildsDir"
+	
+	foldersInZip=$(unzip -t "$zipName" | egrep "testing: *[^/]*/ +OK" | sed 's%^ *testing: *\([^/]*\)/ *OK$%\1%')
+	[ $(echo "$foldersInZip" | wc -l) == 1 ] || { echo "one directory expected in zip"; exit 1; }
+	folderName="$foldersInZip"
+fi
+
+if [[ "$extrasBuildNumber" != "0" ]]; then
+	nfsURL="/shared/jobs/papyrus-trunk-extra-nightly/builds/$extrasBuildNumber/archive/"
+	hudsonURL="https://hudson.eclipse.org/hudson/job/papyrus-trunk-extra-nightly/$extrasBuildNumber/artifact/"
+	getZip "Papyrus-Extra.zip" "$nfsURL" "$hudsonURL"
+fi
+
+if [[ "$testsBuildNumber" != "0" ]]; then
+	nfsURL="/shared/jobs/papyrus-trunk-nightly-tests/builds/$testsBuildNumber/archive/"
+	hudsonURL="https://hudson.eclipse.org/hudson/job/papyrus-trunk-nightly-tests/$testsBuildNumber/artifact/"
+	getZip "Papyrus-TestResults.zip" "$nfsURL" "$hudsonURL"
+fi
+
+
+
 
 
 updateSiteDir="$UPDATE_SITES_DIR/$updateSite"
@@ -85,13 +135,8 @@ echo "Hudson zip    = $hudsonURL/$zipName"
 echo "updateSiteDir = $updateSiteDir"
 echo
 
-echo "Are you sure you want to publish with these parameters (yes|no)?"
-while [[ ! "$sure" =~ ^(yes|no)$ ]]; do
-	echo -n "? "
-	read sure
-done
 
-if [ "$sure" != "yes" ]; then echo "Canceled."; exit 1; fi
+
 
 echo "Publishing..."
 
