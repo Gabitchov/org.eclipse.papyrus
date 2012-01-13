@@ -3,8 +3,8 @@
 p2UpdateSiteDir=${WORKSPACE}/buildroot/result/output/org.eclipse.papyrus.extra.build.feature_*-eclipse.feature/site.p2
 
 promoteSignal=/opt/public/modeling/mdt/papyrus/papyrus-trunk-extra-nightly/promoteSignal
-promoteVersion=/opt/public/modeling/mdt/papyrus/papyrus-trunk-extra-nightly/promoteVersion
 promoteDirName=/opt/public/modeling/mdt/papyrus/papyrus-trunk-extra-nightly/promoteDirName
+#note: the version and build id are taken from papyrus-trunk-nightly
 
 FULL_BUILD_ID=$(cat $promoteDirName)
 
@@ -30,6 +30,5 @@ wget --quiet --no-check-certificate ${HUDSON_URL}/job/${JOB_NAME}/${BUILD_NUMBER
 mv tmp/${FULL_BUILD_ID}.zip .
 
 if [ "$BUILD_TYPE" == "N" ]; then
-	echo ${FULL_BUILD_ID} > $promoteSignal
-	echo $VERSION > $promoteVersion
+	touch $promoteSignal
 fi

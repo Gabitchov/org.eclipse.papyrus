@@ -161,22 +161,42 @@ fi
 if [ $signalDateTrunkExtraNightly -gt $lastPromoteDateTrunkExtraNightly ]; then
 	# mark the promote as done
 	touch "$LAST_PROMOTE_FILE_TRUNK_EXTRA_NIGHTLY"
-	zipName=$(cat "$PROMOTE_SIGNAL_TRUNK_EXTRA_NIGHTLY").zip
-	version=$(cat "$PROMOTE_VERSION_TRUNK_EXTRA_NIGHTLY")
 	
-	echo "[$DATE] deleting previous nightly update site"
-	rm -rf "$UPDATES_TRUNK_EXTRA_NIGHTLY"
-	
-	buildsDir="$DROPS_DIR/$version"
-	echo "[$DATE] pruning old builds"
-	prune N "$buildsDir" 4
-
+	# the build name and version are taken from the main build since the artifacts must go to the same folder
+	buildName=$(cat "$PROMOTE_SIGNAL_TRUNK_NIGHTLY")
+	zipName=${buildName}.zip
+	version=$(cat "$PROMOTE_VERSION_TRUNK_NIGHTLY")
 	nfsURL="/shared/jobs/papyrus-trunk-extra-nightly/lastSuccessful/archive/"
 	hudsonURL="https://hudson.eclipse.org/hudson/job/papyrus-trunk-extra-nightly/lastSuccessfulBuild/artifact/"
-	export SVN_DIRECTORIES_TO_TAG=( )
-	promote "$zipName" "$version" "$nfsURL" "$hudsonURL" "$DROPS_DIR" "$ARCHIVE_DIR" "$ARCHIVE_INDEX" "$UPDATES_TRUNK_EXTRA_NIGHTLY" "Papyrus-Extra-" "NA"
+	updateZipPrefix="Papyrus-Extra-"
+	
+	# publish to existing drops folder
+	cp "$nfsURL/${zipName}" . || wget --no-check-certificate "$hudsonURL/${zipName}"
+	if [ ! -f "$zipName" ]; then echo "ERROR: $zipName (from Hudson) not found"; exit -2; fi
+	echo "[$DATE] Testing zip integrity"
+	unzip -t "$zipName"
+	buildsDir="$DROPS_DIR/$version/$buildName"
+	echo "[$DATE] publishing build (version='$version') to the builds directory '$buildsDir'..."
+	unzip -o "$zipName" -d "$buildsDir"
 
+	# publish to composite update site
+	tmpDrop=$(mktemp -d)
+	unzip "$zipName" -d "$tmpDrop"
+	dirNameInZip=$(ls -1 "$tmpDrop")
+	[ $(echo "$dirNameInZip" | wc -l) == 1 ] || { echo "one directory expected in zip"; exit 1; }
+	updateSiteZipName=$(basename $(ls -1 "$tmpDrop/$dirNameInZip/${updateZipPrefix}"*.zip))
+	rm -rf "$UPDATES_TRUNK_EXTRA_NIGHTLY"
+	unzip -o "$tmpDrop/$dirNameInZip/${updateSiteZipName}" -d "$UPDATES_TRUNK_EXTRA_NIGHTLY"
+	
+	echo "[$DATE] setting access rights"
+	chmod -R 775 "$buildsDir"
+	chgrp -hR modeling.mdt.papyrus "$buildsDir"
+	chmod -R 775 "$UPDATES_TRUNK_EXTRA_NIGHTLY"
+	chgrp -hR modeling.mdt.papyrus "$UPDATES_TRUNK_EXTRA_NIGHTLY"
+	
 	echo "[$DATE] promote done"
+	
+	rm -rf "$tmpDrop"
 	
 	# TODO: re-enable when the job is implemented
 	# echo "[$DATE] triggering Hudson tests build"
