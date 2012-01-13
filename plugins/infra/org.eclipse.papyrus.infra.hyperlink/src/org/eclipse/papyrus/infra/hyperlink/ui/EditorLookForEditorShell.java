@@ -30,11 +30,9 @@ import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.DiResourceSet;
 import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.infra.emf.providers.MoDiscoContentProvider;
-import org.eclipse.papyrus.infra.hyperlink.object.AbstractLookForDiagramShell;
-import org.eclipse.papyrus.infra.hyperlink.object.CustomAdapterFactoryContentProvider;
+import org.eclipse.papyrus.infra.hyperlink.util.CustomAdapterFactoryContentProvider;
 import org.eclipse.papyrus.infra.hyperlink.util.EditorListContentProvider;
 import org.eclipse.papyrus.views.modelexplorer.MoDiscoLabelProviderWTooltips;
-import org.eclipse.papyrus.views.properties.providers.SelectionLabelProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -43,7 +41,7 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
-import org.eclipse.uml2.uml.Element;
+
 
 
 public class EditorLookForEditorShell extends AbstractLookForDiagramShell {
@@ -117,7 +115,7 @@ public class EditorLookForEditorShell extends AbstractLookForDiagramShell {
 		private final CreationCommandDescriptor commandDescriptor;
 
 		/** The container. */
-		private Element container;
+		private EObject container;
 
 		/** The i creation command registry. */
 		private final ICreationCommandRegistry iCreationCommandRegistry;
@@ -131,7 +129,7 @@ public class EditorLookForEditorShell extends AbstractLookForDiagramShell {
 		@Override
 		public void widgetSelected(SelectionEvent e) {
 			try {
-				Element elt = (Element)((IStructuredSelection)treeViewer.getSelection()).getFirstElement();
+				EObject elt = (EObject)((IStructuredSelection)treeViewer.getSelection()).getFirstElement();
 
 				setContainer(elt);
 				ServicesRegistry servicesRegistry = EditorUtils.getServiceRegistry();
@@ -166,7 +164,7 @@ public class EditorLookForEditorShell extends AbstractLookForDiagramShell {
 		 * @param iCreationCommandRegistry
 		 *        the i creation command registry
 		 */
-		public DiagramCreateListener(CreationCommandDescriptor commandDescriptor, Element container, ICreationCommandRegistry iCreationCommandRegistry) {
+		public DiagramCreateListener(CreationCommandDescriptor commandDescriptor, EObject container, ICreationCommandRegistry iCreationCommandRegistry) {
 			super();
 			this.commandDescriptor = commandDescriptor;
 			this.container = container;
@@ -179,7 +177,7 @@ public class EditorLookForEditorShell extends AbstractLookForDiagramShell {
 		 * @param container
 		 *        the new container
 		 */
-		public void setContainer(Element container) {
+		public void setContainer(EObject container) {
 			this.container = container;
 		}
 	}

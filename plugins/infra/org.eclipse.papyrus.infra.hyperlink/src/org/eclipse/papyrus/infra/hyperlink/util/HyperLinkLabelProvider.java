@@ -11,11 +11,16 @@
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.infra.hyperlink.object;
+package org.eclipse.papyrus.infra.hyperlink.util;
 
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistry;
+import org.eclipse.papyrus.infra.hyperlink.internal.IEditorLabelProvider;
+import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkDocument;
+import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkEditor;
+import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkObject;
+import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkWeb;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
@@ -62,8 +67,8 @@ public class HyperLinkLabelProvider implements ILabelProvider {
 			return AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.uml.diagram.common", HYPERLINK_WEB_ICON_PATH).createImage();
 		}
 
-		else if(element instanceof HyperLinkDiagram) {
-			return editorRegistry.getEditorIcon(((HyperLinkDiagram)element).getDiagram());
+		else if(element instanceof HyperLinkEditor){
+			return ((HyperLinkEditor)element).getImage(((HyperLinkEditor)element).getObject());
 		}
 		return null;
 	}
@@ -78,14 +83,12 @@ public class HyperLinkLabelProvider implements ILabelProvider {
 	 */
 	public String getText(Object element) {
 		String out = "";
-		if(element instanceof HyperLinkDiagram) {
-			if(((HyperLinkDiagram)element).getDiagram() != null) {
-				out = ((HyperLinkDiagram)element).getDiagram().getName();
-			}
-		} else if(element instanceof HyperLinkDocument) {
+		if(element instanceof HyperLinkDocument) {
 			out = ((HyperLinkDocument)element).getHyperlinkDocument();
 		} else if(element instanceof HyperLinkWeb) {
 			out = ((HyperLinkWeb)element).getHyperLinkWeb();
+		}else if(element instanceof HyperLinkEditor){
+			out = ((HyperLinkEditor)element).getText(((HyperLinkEditor)element).getObject());
 		} else {
 			return null;
 		}

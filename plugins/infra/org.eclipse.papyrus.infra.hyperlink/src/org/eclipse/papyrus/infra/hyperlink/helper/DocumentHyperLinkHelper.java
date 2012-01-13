@@ -20,12 +20,13 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EModelElement;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.infra.hyperlink.commands.CreateHyperLinkDocumentCommand;
-import org.eclipse.papyrus.infra.hyperlink.object.EditorHyperlinkDocumentShell;
 import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkDocument;
 import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkObject;
+import org.eclipse.papyrus.infra.hyperlink.ui.EditorHyperlinkDocumentShell;
 import org.eclipse.papyrus.infra.hyperlink.util.HyperLinkConstants;
 
 
@@ -37,6 +38,7 @@ import org.eclipse.papyrus.infra.hyperlink.util.HyperLinkConstants;
 
 public class DocumentHyperLinkHelper extends AbstractHyperLinkHelper {
 
+	
 	@Override
 	public HyperLinkObject getHyperLinkObject(EAnnotation eAnnotation) {
 		if(eAnnotation.getSource().equals(HyperLinkConstants.HYPERLINK_DOCUMENT)) {
@@ -69,7 +71,7 @@ public class DocumentHyperLinkHelper extends AbstractHyperLinkHelper {
 		return "Document";
 	}
 	@Override
-	public void executeNewMousePressed(List<HyperLinkObject> list, org.eclipse.uml2.uml.Package amodel) {
+	public void executeNewMousePressed(List<HyperLinkObject> list, EObject aModel) {
 		EditorHyperlinkDocumentShell editor = new EditorHyperlinkDocumentShell();
 		editor.open();
 		if(editor.getHyperlinkDocument() != null) {

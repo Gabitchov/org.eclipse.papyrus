@@ -11,7 +11,7 @@
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.infra.hyperlink.object;
+package org.eclipse.papyrus.infra.hyperlink.util;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -22,7 +22,9 @@ import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.infra.hyperlink.Activator;
+import org.eclipse.papyrus.infra.hyperlink.ui.EditorHyperlinkDocumentShell;
 import org.eclipse.ui.IEditorDescriptor;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorRegistry;
@@ -87,7 +89,7 @@ public class HyperLinkDocument extends HyperLinkObject {
 	}
 
 	@Override
-	public void executeEditMousePressed(List<HyperLinkObject> list, Package amodel) {
+	public void executeEditMousePressed(List<HyperLinkObject> list, EObject amodel) {
 		EditorHyperlinkDocumentShell editor = new EditorHyperlinkDocumentShell();
 		editor.setHyperlinkDocument(this);
 		editor.open();

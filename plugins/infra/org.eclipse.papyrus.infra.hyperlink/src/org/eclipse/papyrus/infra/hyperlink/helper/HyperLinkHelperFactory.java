@@ -24,8 +24,8 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.infra.hyperlink.commands.DeleteHyperLinkDocumentCommand;
 import org.eclipse.papyrus.infra.hyperlink.commands.EmptyAllHyperLinkCommand;
-import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkException;
 import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkObject;
+import org.eclipse.papyrus.infra.hyperlink.util.HyperLinkException;
 
 
 /**

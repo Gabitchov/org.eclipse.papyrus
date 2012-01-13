@@ -15,6 +15,7 @@ package org.eclipse.papyrus.infra.hyperlink.object;
 
 import java.util.List;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.Package;
 
 
@@ -95,5 +96,5 @@ public abstract class HyperLinkObject {
 	 * @param list of hyperlink that are containted by a graphical element
 	 * @param amodel the top package root element
 	 */
-	public abstract void executeEditMousePressed(List<HyperLinkObject> list, Package amodel);
+	public abstract void executeEditMousePressed(List<HyperLinkObject> list, EObject amodel);
 }

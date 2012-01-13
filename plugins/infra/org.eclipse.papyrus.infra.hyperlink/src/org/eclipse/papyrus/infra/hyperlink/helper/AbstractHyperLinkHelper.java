@@ -27,25 +27,40 @@ import org.eclipse.uml2.uml.Package;
 
 /**
  * this class is an abstract use to serialize and deserialize a HyperLink Object
- *
+ * 
  */
 public abstract class AbstractHyperLinkHelper {
+
+	private  String tabid;
+
+
+
+	public final String getTabId(){
+		return this.tabid;
+	}
 	
+	public final void setTabId(final String tabId){
+		this.tabid = tabId;
+	}
 	/**
 	 * 
 	 * @return as string of the kind of hyperlink to display
 	 */
 	public abstract String getNameofManagedHyperLink();
+
 	/**
 	 * this method is called in order to create an HyperLinkObject and add into
 	 * a given HyperLinkObject list
-	 * @param list a list of hyperlink Object
-	 * @param amodel the root model
+	 * 
+	 * @param list
+	 *        a list of hyperlink Object
+	 * @param aModel
+	 *        TODO
 	 */
 	//TODO remove this method
-	public abstract void executeNewMousePressed(List<HyperLinkObject> list, org.eclipse.uml2.uml.Package amodel);
-	
-	
+	public abstract void executeNewMousePressed(List<HyperLinkObject> list, EObject aModel);
+
+
 	/**
 	 * this method is called in order to edit an HyperLinkObject and add into a
 	 * given HyperLinkObject list
@@ -57,38 +72,48 @@ public abstract class AbstractHyperLinkHelper {
 	 * @param HyperLinkObject
 	 *        the HyperLinkObject to edit
 	 */
-	public  void executeEditMousePressed(List<HyperLinkObject> list, HyperLinkObject HyperLinkObject,Package amodel){
+	public void executeEditMousePressed(List<HyperLinkObject> list, HyperLinkObject HyperLinkObject, EObject amodel) {
 		HyperLinkObject.executeEditMousePressed(list, amodel);
 	}
+
 	/**
 	 * this method is called when the element is selected an clicked in order to
 	 * open a diagram in the case of hyperlink diagram
-	 * @param HyperLinkObject  the hyperlink object that is selected
+	 * 
+	 * @param HyperLinkObject
+	 *        the hyperlink object that is selected
 	 */
-	public void executeSelectPressed(HyperLinkObject HyperLinkObject){
+	public void executeSelectPressed(HyperLinkObject HyperLinkObject) {
 		HyperLinkObject.executeSelectPressed();
 	}
-	
+
 	/**
 	 * from a list of hyperlinks, it return a list of hyperlink with the same
 	 * kind. for example return a list of diagramhyperlink
-	 * @param HyperLinkObjects the list of HyperLinkObjects
-	 * @return a list of hyperlink object with the same kind 
+	 * 
+	 * @param HyperLinkObjects
+	 *        the list of HyperLinkObjects
+	 * @return a list of hyperlink object with the same kind
 	 */
 	public abstract ArrayList<HyperLinkObject> getFilteredObject(List<HyperLinkObject> HyperLinkObjects);
 
 	/**
 	 * 
-	 * @param eAnnotation that represents a hyperlink object
+	 * @param eAnnotation
+	 *        that represents a hyperlink object
 	 * @return the hyperlink object from the eannotation
 	 */
 	public abstract HyperLinkObject getHyperLinkObject(EAnnotation eAnnotation);
 
 	/**
 	 * get a command to serailize a hyperlink object
-	 * @param domain the editing domain
-	 * @param object the EModelElement to which the hyperlink as attached
-	 * @param HyperLinkObject the HyperLinkObject to serailize
+	 * 
+	 * @param domain
+	 *        the editing domain
+	 * @param object
+	 *        the EModelElement to which the hyperlink as attached
+	 * @param HyperLinkObject
+	 *        the HyperLinkObject to serailize
 	 * @return the command in charge of the serialization
 	 */
 	public abstract RecordingCommand getAddHyperLinkCommand(TransactionalEditingDomain domain, EModelElement object, HyperLinkObject HyperLinkObject);

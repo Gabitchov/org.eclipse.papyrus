@@ -10,7 +10,6 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.infra.gmfdiag.commands,
  org.eclipse.gmf.runtime.notation,
  org.eclipse.gmf.runtime.common.core,
- org.eclipse.uml2.uml,
  org.eclipse.papyrus.uml.diagram.navigation,
  org.eclipse.emf.edit.ui,
  org.eclipse.papyrus.infra.core.sasheditor,
@@ -21,13 +20,15 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.gmf.runtime.diagram.core,
  org.eclipse.gmf.runtime.diagram.ui,
  org.eclipse.papyrus.infra.emf,
- org.eclipse.papyrus.views.properties;bundle-version="0.9.0",
- org.eclipse.papyrus.views.modelexplorer;bundle-version="0.9.0"
+ org.eclipse.papyrus.views.modelexplorer,
+ org.eclipse.uml2.uml
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.papyrus.infra.hyperlink,
  org.eclipse.papyrus.infra.hyperlink.commands,
  org.eclipse.papyrus.infra.hyperlink.helper,
  org.eclipse.papyrus.infra.hyperlink.object,
+ org.eclipse.papyrus.infra.hyperlink.ui,
  org.eclipse.papyrus.infra.hyperlink.util
 Bundle-Vendor: %providerName
+Bundle-Localization: plugin

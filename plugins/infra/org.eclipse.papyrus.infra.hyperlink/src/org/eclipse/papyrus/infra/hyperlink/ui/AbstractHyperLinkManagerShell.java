@@ -11,7 +11,7 @@
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.infra.hyperlink.object;
+package org.eclipse.papyrus.infra.hyperlink.ui;
 
 import java.util.ArrayList;
 
@@ -58,7 +58,7 @@ public abstract class AbstractHyperLinkManagerShell {
 
 	
 
-	protected ArrayList<HyperLinkTab>tabList=new ArrayList<HyperLinkTab>();
+	protected ArrayList<AbstractHyperLinkTab>tabList=new ArrayList<AbstractHyperLinkTab>();
 	/**
 	 * This method initializes cTabFolder.
 	 */

@@ -11,7 +11,7 @@
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.infra.hyperlink.object;
+package org.eclipse.papyrus.infra.hyperlink.ui;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;

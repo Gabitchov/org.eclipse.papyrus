@@ -3,6 +3,7 @@ package org.eclipse.papyrus.infra.hyperlink.util;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
@@ -17,14 +18,14 @@ public class HyperLinkRegistration {
 	private static final String HYPERLINK_REGISTRATION_ID = "org.eclipse.papyrus.infra.hyperlink.registration";
 	private Collection<AbstractHyperLinkHelper> helpers;
 	public static final HyperLinkRegistration INSTANCE = new HyperLinkRegistration();
-
+	private static final SortedMap<Integer, AbstractHyperLinkHelper> map = new TreeMap<Integer, AbstractHyperLinkHelper>();
 	private HyperLinkRegistration() {
 
 	}
 
 	public Collection<AbstractHyperLinkHelper> getAllRegisteredHyperLinkHelper() {
-		SortedMap<Integer, AbstractHyperLinkHelper> map = new TreeMap<Integer, AbstractHyperLinkHelper>();
-		if (helpers == null) {
+		
+//		if (helpers == null) {
 			IConfigurationElement[] config = Platform.getExtensionRegistry()
 					.getConfigurationElementsFor(HYPERLINK_REGISTRATION_ID);
 
@@ -44,6 +45,8 @@ public class HyperLinkRegistration {
 													helper), exception);
 							continue;
 						}
+						String tabId = e.getAttribute("tabId", null);
+						helper.setTabId(tabId);
 						if (order != null) {
 							map.put(order, helper);
 						}
@@ -60,7 +63,12 @@ public class HyperLinkRegistration {
 			// we sort the helper
 			//TODO test when the map is empty, helpers should never be null!
 			helpers = map.values();
-		}
+//		}
 		return helpers;
+	}
+	
+	public Map<Integer,AbstractHyperLinkHelper> getHelperWithPosition(){
+		getAllRegisteredHyperLinkHelper();
+		return this.map;
 	}
 }

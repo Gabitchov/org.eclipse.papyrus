@@ -19,15 +19,15 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EModelElement;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 
 import org.eclipse.papyrus.infra.hyperlink.commands.CreateHyperLinkWebCommand;
-import org.eclipse.papyrus.infra.hyperlink.object.EditorHyperLinkWebShell;
 import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkObject;
 import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkWeb;
+import org.eclipse.papyrus.infra.hyperlink.ui.EditorHyperLinkWebShell;
 import org.eclipse.papyrus.infra.hyperlink.util.HyperLinkConstants;
-import org.eclipse.uml2.uml.Package;
 
 /**
  * this is an helper to manager hyperlink web
@@ -36,6 +36,7 @@ import org.eclipse.uml2.uml.Package;
  */
 public class WebHyperLinkHelper extends AbstractHyperLinkHelper {
 
+	
 	@Override
 	public HyperLinkObject getHyperLinkObject(EAnnotation eAnnotation) {
 		if(eAnnotation.getSource().equals(HyperLinkConstants.HYPERLINK_WEB)) {
@@ -68,7 +69,7 @@ public class WebHyperLinkHelper extends AbstractHyperLinkHelper {
 		return "Web";
 	}
 	@Override
-	public void executeNewMousePressed(List<HyperLinkObject> list, Package amodel) {
+	public void executeNewMousePressed(List<HyperLinkObject> list, EObject aModel) {
 		EditorHyperLinkWebShell editor = new EditorHyperLinkWebShell();
 		editor.open();
 		if(editor.getHyperLinkWeb() != null) {

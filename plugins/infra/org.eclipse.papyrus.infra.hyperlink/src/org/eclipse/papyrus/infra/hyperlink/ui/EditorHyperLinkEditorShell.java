@@ -1,11 +1,11 @@
 package org.eclipse.papyrus.infra.hyperlink.ui;
 
 import org.eclipse.core.runtime.Assert;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistry;
 import org.eclipse.papyrus.infra.hyperlink.helper.EditorHyperLinkHelper;
-import org.eclipse.papyrus.infra.hyperlink.object.AbstractEditHyperlinkDocumentShell;
-import org.eclipse.papyrus.infra.hyperlink.object.EditorHyperLink;
+import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkEditor;
 import org.eclipse.papyrus.views.modelexplorer.MoDiscoLabelProviderWTooltips;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseListener;
@@ -19,13 +19,13 @@ public class EditorHyperLinkEditorShell extends AbstractEditHyperlinkDocumentShe
 	protected boolean usedefaultTooltip = true;
 
 	/** The hyper link diagram. */
-	protected EditorHyperLink hyperLinkEditor;
+	protected HyperLinkEditor hyperLinkEditor;
 
 	/** The editor registry. */
 	private IPageIconsRegistry editorRegistry;
 
 	/** The amodel. */
-	protected final Package amodel;
+	protected final EObject amodel;
 
 	/**
 	 * Open.
@@ -51,7 +51,7 @@ public class EditorHyperLinkEditorShell extends AbstractEditHyperlinkDocumentShe
 	 * @param model
 	 *        the model
 	 */
-	public EditorHyperLinkEditorShell(IPageIconsRegistry editorFactoryRegistry, Package model) {
+	public EditorHyperLinkEditorShell(IPageIconsRegistry editorFactoryRegistry, EObject model) {
 		super();
 		this.amodel = model;
 		this.editorRegistry = editorFactoryRegistry;
@@ -96,10 +96,8 @@ public class EditorHyperLinkEditorShell extends AbstractEditHyperlinkDocumentShe
 				EditorLookForEditorShell editorLookForDiagram = new EditorLookForEditorShell(editorRegistry, amodel);
 
 				editorLookForDiagram.open();
-				//TODO test cancel!
-				if(hyperLinkEditor == null){
-					hyperLinkEditor = new EditorHyperLink();//inutile!
-				}
+			
+				//why that?
 				EditorHyperLinkHelper helper = new EditorHyperLinkHelper();
 				Object selection = editorLookForDiagram.getSelectedDiagram();
 				hyperLinkEditor = helper.getHyperLinkObjectFor(selection);
@@ -171,7 +169,7 @@ public class EditorHyperLinkEditorShell extends AbstractEditHyperlinkDocumentShe
 	 * 
 	 * @return the hyperLinkEditor maybe null, if cancel or bad selection
 	 */
-	public EditorHyperLink getHyperLinkEditor() {
+	public HyperLinkEditor getHyperLinkEditor() {
 		return hyperLinkEditor;
 	}
 
@@ -181,7 +179,7 @@ public class EditorHyperLinkEditorShell extends AbstractEditHyperlinkDocumentShe
 	 * @param hyperLinkEditor
 	 *        the hyperLinkEditor to set
 	 */
-	public void setHyperLinkEditor(EditorHyperLink hyperLinkEditor) {
+	public void setHyperLinkEditor(HyperLinkEditor hyperLinkEditor) {
 		//TODO
 //		getObjectLabeltext().setText(hyperLinkEditor.getTable().getName());
 		getTooltipInputText().setText(hyperLinkEditor.getTooltipText());

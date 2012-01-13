@@ -17,7 +17,9 @@ import java.net.URL;
 import java.util.List;
 
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.infra.hyperlink.Activator;
+import org.eclipse.papyrus.infra.hyperlink.ui.EditorHyperLinkWebShell;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.browser.IWorkbenchBrowserSupport;
 import org.eclipse.uml2.uml.Package;
@@ -59,7 +61,7 @@ public class HyperLinkWeb extends HyperLinkObject {
  *
  */
 	@Override
-	public void executeEditMousePressed(List<HyperLinkObject> list,Package amodel) {
+	public void executeEditMousePressed(List<HyperLinkObject> list,EObject amodel) {
 		EditorHyperLinkWebShell editor = new EditorHyperLinkWebShell();
 		editor.setHyperLinkWeb(this);
 		editor.open();

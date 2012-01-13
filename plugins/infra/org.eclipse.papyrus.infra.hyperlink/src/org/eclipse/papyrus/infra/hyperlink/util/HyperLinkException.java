@@ -11,7 +11,7 @@
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.infra.hyperlink.object;
+package org.eclipse.papyrus.infra.hyperlink.util;
 
 /**
  * this is an exception that can be raised when hyperlinks are manipulated 
@@ -20,7 +20,7 @@ package org.eclipse.papyrus.infra.hyperlink.object;
 public class HyperLinkException extends Exception {
 
 	/**
-	 * a serail version
+	 * a serial version
 	 */
 	private static final long serialVersionUID = 1L;
 

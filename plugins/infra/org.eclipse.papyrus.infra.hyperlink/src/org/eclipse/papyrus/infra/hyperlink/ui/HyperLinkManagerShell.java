@@ -12,7 +12,7 @@
  *  Arthut Daussy (Atos) arthur.daussy@atos.net - Bug 363827 - [Improvement] Diagram creation, remember the latest tab chosen
  *
  *****************************************************************************/
-package org.eclipse.papyrus.infra.hyperlink.object;
+package org.eclipse.papyrus.infra.hyperlink.ui;
 
 import java.io.IOException;
 import java.io.StringReader;
@@ -30,6 +30,9 @@ import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistry;
 import org.eclipse.papyrus.infra.hyperlink.Activator;
 import org.eclipse.papyrus.infra.hyperlink.helper.AbstractHyperLinkHelper;
 import org.eclipse.papyrus.infra.hyperlink.helper.HyperLinkHelperFactory;
+import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkObject;
+import org.eclipse.papyrus.infra.hyperlink.util.HyperLinkException;
+import org.eclipse.papyrus.infra.hyperlink.util.HyperLinkTabRegistrationUtil;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.events.SelectionEvent;
@@ -77,9 +80,9 @@ public class HyperLinkManagerShell extends AbstractHyperLinkManagerShell {
 	public void setInput(List<HyperLinkObject> hyperLinkObjectList) {
 		this.allhypHyperlinkObjects.clear();
 		this.allhypHyperlinkObjects.addAll(hyperLinkObjectList);
-		Iterator<HyperLinkTab> iter = tabList.iterator();
+		Iterator<AbstractHyperLinkTab> iter = tabList.iterator();
 		while(iter.hasNext()) {
-			HyperLinkTab hyperLinkTab = (HyperLinkTab)iter.next();
+			AbstractHyperLinkTab hyperLinkTab = iter.next();
 			hyperLinkTab.setInput(allhypHyperlinkObjects);
 		}
 	}
@@ -98,19 +101,26 @@ public class HyperLinkManagerShell extends AbstractHyperLinkManagerShell {
 	 * @param aview
 	 *        the aview of the uml element
 	 */
-	public HyperLinkManagerShell(IPageIconsRegistry editorFactoryRegistry, TransactionalEditingDomain domain, Element umlElement, View aview, Package model, HyperLinkHelperFactory hyperHelperFactory) {
+	public HyperLinkManagerShell(IPageIconsRegistry editorFactoryRegistry, TransactionalEditingDomain domain, Element umlElement2, View aview, Package model, HyperLinkHelperFactory hyperHelperFactory) {
 		super();
 		this.hyperLinkHelperFactory = hyperHelperFactory;
 		this.view = aview;
 		this.amodel = model;
 		this.transactionalEditingDomain = domain;
 		createHyperLinkShell();
-		// associate tableViewer for each table
-		Iterator<AbstractHyperLinkHelper> iter = hyperHelperFactory.getHyperLinkHelpers().iterator();
-		while(iter.hasNext()) {
-			AbstractHyperLinkHelper abstractHyperLinkHelper = (AbstractHyperLinkHelper)iter.next();
-			initializeFolder(abstractHyperLinkHelper);
+		
+		Iterator<AbstractHyperLinkTab> iter = HyperLinkTabRegistrationUtil.INSTANCE.getAllHyperLinkTab().iterator();
+		while(iter.hasNext()){
+			AbstractHyperLinkTab current = iter.next();
+			current.init(getcTabFolder(), allhypHyperlinkObjects, amodel);
+			tabList.add(current);
 		}
+//		// associate tableViewer for each table
+//		Iterator<AbstractHyperLinkHelper> iter = hyperHelperFactory.getHyperLinkHelpers().iterator();
+//		while(iter.hasNext()) {
+//			AbstractHyperLinkHelper abstractHyperLinkHelper = (AbstractHyperLinkHelper)iter.next();
+//			initializeFolder(abstractHyperLinkHelper);
+//		}
 		// listener for the button cancel
 		getCancelButton().addSelectionListener(new SelectionListener() {
 
@@ -139,13 +149,13 @@ public class HyperLinkManagerShell extends AbstractHyperLinkManagerShell {
 		// empty all hyperlinks
 		transactionalEditingDomain.getCommandStack().execute(HyperLinkHelperFactory.getEmptyAllHyperLinkCommand(transactionalEditingDomain, view));
 		allhypHyperlinkObjects.clear();
-		Iterator<HyperLinkTab> iter = tabList.iterator();
+		Iterator<AbstractHyperLinkTab> iter = tabList.iterator();
 		while(iter.hasNext()) {
-			HyperLinkTab hyperLinkTab = (HyperLinkTab)iter.next();
+			AbstractHyperLinkTab hyperLinkTab = iter.next();
 			allhypHyperlinkObjects.addAll(hyperLinkTab.getHyperlinkObjects());
 		}
 		// save hyperlink Document list
-		try {
+		try { //TODO attention, certains onglet (comme le defaut... ne doivent pas fournir de commandes...
 			transactionalEditingDomain.getCommandStack().execute(hyperLinkHelperFactory.getAddHyperLinkCommand(transactionalEditingDomain, view, allhypHyperlinkObjects));
 		} catch (HyperLinkException error) {
 			Activator.log.error(error);
@@ -160,105 +170,111 @@ public class HyperLinkManagerShell extends AbstractHyperLinkManagerShell {
 	 * Initialize diagram folder.
 	 */
 	public void initializeFolder(final AbstractHyperLinkHelper abstractHyperLinkHelper) {
-		final HyperLinkTab hyperLinkTab = new HyperLinkTab(getcTabFolder(), abstractHyperLinkHelper, allhypHyperlinkObjects);
-		tabList.add(hyperLinkTab);
-		hyperLinkTab.getRemoveHyperLinkButton().addMouseListener(new MouseListener() {
-
-			public void mouseUp(MouseEvent e) {
-			}
-
-			public void mouseDown(MouseEvent e) {
-				if(hyperLinkTab.getTableViewer().getTable().getSelection().length != 0) {
-					Iterator iterator = ((IStructuredSelection)hyperLinkTab.getTableViewer().getSelection()).iterator();
-					while(iterator.hasNext()) {
-						Object object = iterator.next();
-						hyperLinkTab.getHyperlinkObjects().remove(object);
-						hyperLinkTab.getTableViewer().setInput(hyperLinkTab.getHyperlinkObjects());
-					}
-				}
-			}
-
-			public void mouseDoubleClick(MouseEvent e) {
-			}
-		});
-		hyperLinkTab.getUpHyperLinkButton().addMouseListener(new MouseListener() {
-
-			public void mouseUp(MouseEvent e) {
-			}
-
-			public void mouseDown(MouseEvent e) {
-				if(hyperLinkTab.getTableViewer().getTable().getSelection().length != 0) {
-					Object elt = ((IStructuredSelection)hyperLinkTab.getTableViewer().getSelection()).getFirstElement();
-					if(hyperLinkTab.getHyperlinkObjects().indexOf(elt) == 0) {
-						return;
-					}
-					Iterator<?> iterator = ((IStructuredSelection)hyperLinkTab.getTableViewer().getSelection()).iterator();
-					while(iterator.hasNext()) {
-						HyperLinkObject currentHyperLinkDoc = (HyperLinkObject)iterator.next();
-						int index = hyperLinkTab.getHyperlinkObjects().indexOf(currentHyperLinkDoc);
-						hyperLinkTab.getHyperlinkObjects().remove(currentHyperLinkDoc);
-						hyperLinkTab.getHyperlinkObjects().add(index - 1, currentHyperLinkDoc);
-						hyperLinkTab.getTableViewer().setInput(hyperLinkTab.getHyperlinkObjects());
-					}
-				}
-			}
-
-			public void mouseDoubleClick(MouseEvent e) {
-			}
-		});
-		hyperLinkTab.getDownHyperLinkButton().addMouseListener(new MouseListener() {
-
-			public void mouseUp(MouseEvent e) {
-			}
-
-			public void mouseDown(MouseEvent e) {
-				if(hyperLinkTab.getTableViewer().getTable().getSelection().length != 0) {
-					Object[] block = ((IStructuredSelection)hyperLinkTab.getTableViewer().getSelection()).toArray();
-					if((hyperLinkTab.getHyperlinkObjects().indexOf(block[block.length - 1])) == hyperLinkTab.getHyperlinkObjects().size() - 1) {
-						return;
-					}
-					for(int i = block.length - 1; i >= 0; i--) {
-						HyperLinkObject currentobject = (HyperLinkObject)block[i];
-						int index = hyperLinkTab.getHyperlinkObjects().indexOf(currentobject);
-						hyperLinkTab.getHyperlinkObjects().remove(currentobject);
-						hyperLinkTab.getHyperlinkObjects().add(index + 1, currentobject);
-						hyperLinkTab.getTableViewer().setInput(hyperLinkTab.getHyperlinkObjects());
-					}
-				}
-			}
-
-			public void mouseDoubleClick(MouseEvent e) {
-			}
-		});
-		hyperLinkTab.getNewHyperLinkbutton().addMouseListener(new MouseListener() {
-
-			public void mouseUp(MouseEvent e) {
-			}
-
-			public void mouseDown(MouseEvent e) {
-				abstractHyperLinkHelper.executeNewMousePressed(hyperLinkTab.getHyperlinkObjects(), amodel);
-				hyperLinkTab.setInput(hyperLinkTab.getHyperlinkObjects());
-			}
-
-			public void mouseDoubleClick(MouseEvent e) {
-			}
-		});
-		hyperLinkTab.getModifyHyperLinkButton().addMouseListener(new MouseListener() {
-
-			public void mouseUp(MouseEvent e) {
-			}
-
-			public void mouseDown(MouseEvent e) {
-				if(hyperLinkTab.getTableViewer().getTable().getSelection().length != 0) {
-					HyperLinkObject hyperLinkObject = (HyperLinkObject)((IStructuredSelection)hyperLinkTab.getTableViewer().getSelection()).getFirstElement();
-					abstractHyperLinkHelper.executeEditMousePressed(hyperLinkTab.getHyperlinkObjects(), hyperLinkObject, amodel);
-					hyperLinkTab.setInput(hyperLinkTab.getHyperlinkObjects());
-				}
-			}
-
-			public void mouseDoubleClick(MouseEvent e) {
-			}
-		});
+		Iterator<AbstractHyperLinkTab> iter = HyperLinkTabRegistrationUtil.INSTANCE.getAllHyperLinkTab().iterator();
+		while(iter.hasNext()){
+			AbstractHyperLinkTab current = iter.next();
+			current.init(getcTabFolder(), allhypHyperlinkObjects, amodel);
+			tabList.add(current);
+		}
+//		final HyperLinkTab hyperLinkTab = new HyperLinkTab(getcTabFolder(), abstractHyperLinkHelper, allhypHyperlinkObjects, amodel);
+//		tabList.add(hyperLinkTab);
+//		hyperLinkTab.getRemoveHyperLinkButton().addMouseListener(new MouseListener() {
+//
+//			public void mouseUp(MouseEvent e) {
+//			}
+//
+//			public void mouseDown(MouseEvent e) {
+//				if(hyperLinkTab.getTableViewer().getTable().getSelection().length != 0) {
+//					Iterator iterator = ((IStructuredSelection)hyperLinkTab.getTableViewer().getSelection()).iterator();
+//					while(iterator.hasNext()) {
+//						Object object = iterator.next();
+//						hyperLinkTab.getHyperlinkObjects().remove(object);
+//						hyperLinkTab.getTableViewer().setInput(hyperLinkTab.getHyperlinkObjects());
+//					}
+//				}
+//			}
+//
+//			public void mouseDoubleClick(MouseEvent e) {
+//			}
+//		});
+//		hyperLinkTab.getUpHyperLinkButton().addMouseListener(new MouseListener() {
+//
+//			public void mouseUp(MouseEvent e) {
+//			}
+//
+//			public void mouseDown(MouseEvent e) {
+//				if(hyperLinkTab.getTableViewer().getTable().getSelection().length != 0) {
+//					Object elt = ((IStructuredSelection)hyperLinkTab.getTableViewer().getSelection()).getFirstElement();
+//					if(hyperLinkTab.getHyperlinkObjects().indexOf(elt) == 0) {
+//						return;
+//					}
+//					Iterator<?> iterator = ((IStructuredSelection)hyperLinkTab.getTableViewer().getSelection()).iterator();
+//					while(iterator.hasNext()) {
+//						HyperLinkObject currentHyperLinkDoc = (HyperLinkObject)iterator.next();
+//						int index = hyperLinkTab.getHyperlinkObjects().indexOf(currentHyperLinkDoc);
+//						hyperLinkTab.getHyperlinkObjects().remove(currentHyperLinkDoc);
+//						hyperLinkTab.getHyperlinkObjects().add(index - 1, currentHyperLinkDoc);
+//						hyperLinkTab.getTableViewer().setInput(hyperLinkTab.getHyperlinkObjects());
+//					}
+//				}
+//			}
+//
+//			public void mouseDoubleClick(MouseEvent e) {
+//			}
+//		});
+//		hyperLinkTab.getDownHyperLinkButton().addMouseListener(new MouseListener() {
+//
+//			public void mouseUp(MouseEvent e) {
+//			}
+//
+//			public void mouseDown(MouseEvent e) {
+//				if(hyperLinkTab.getTableViewer().getTable().getSelection().length != 0) {
+//					Object[] block = ((IStructuredSelection)hyperLinkTab.getTableViewer().getSelection()).toArray();
+//					if((hyperLinkTab.getHyperlinkObjects().indexOf(block[block.length - 1])) == hyperLinkTab.getHyperlinkObjects().size() - 1) {
+//						return;
+//					}
+//					for(int i = block.length - 1; i >= 0; i--) {
+//						HyperLinkObject currentobject = (HyperLinkObject)block[i];
+//						int index = hyperLinkTab.getHyperlinkObjects().indexOf(currentobject);
+//						hyperLinkTab.getHyperlinkObjects().remove(currentobject);
+//						hyperLinkTab.getHyperlinkObjects().add(index + 1, currentobject);
+//						hyperLinkTab.getTableViewer().setInput(hyperLinkTab.getHyperlinkObjects());
+//					}
+//				}
+//			}
+//
+//			public void mouseDoubleClick(MouseEvent e) {
+//			}
+//		});
+//		hyperLinkTab.getNewHyperLinkbutton().addMouseListener(new MouseListener() {
+//
+//			public void mouseUp(MouseEvent e) {
+//			}
+//
+//			public void mouseDown(MouseEvent e) {
+//				abstractHyperLinkHelper.executeNewMousePressed(hyperLinkTab.getHyperlinkObjects(), null);
+//				hyperLinkTab.setInput(hyperLinkTab.getHyperlinkObjects());
+//			}
+//
+//			public void mouseDoubleClick(MouseEvent e) {
+//			}
+//		});
+//		hyperLinkTab.getModifyHyperLinkButton().addMouseListener(new MouseListener() {
+//
+//			public void mouseUp(MouseEvent e) {
+//			}
+//
+//			public void mouseDown(MouseEvent e) {
+//				if(hyperLinkTab.getTableViewer().getTable().getSelection().length != 0) {
+//					HyperLinkObject hyperLinkObject = (HyperLinkObject)((IStructuredSelection)hyperLinkTab.getTableViewer().getSelection()).getFirstElement();
+//					abstractHyperLinkHelper.executeEditMousePressed(hyperLinkTab.getHyperlinkObjects(), hyperLinkObject, amodel);
+//					hyperLinkTab.setInput(hyperLinkTab.getHyperlinkObjects());
+//				}
+//			}
+//
+//			public void mouseDoubleClick(MouseEvent e) {
+//			}
+//		});
 	}
 
 	/**
