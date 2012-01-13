@@ -79,6 +79,14 @@ These builds can then be seen and downloaded from http://www.eclipse.org/modelin
 * http://download.eclipse.org/modeling/mdt/papyrus/updates/nightly/juno/main
 * http://download.eclipse.org/modeling/mdt/papyrus/updates/nightly/juno/extras
 
+=== With the script ===
+
+To publish a milestone or release, you can use the manualPromote.sh script on: '''/opt/public/modeling/mdt/papyrus/manualPromote.sh'''
+Then, fill in the parameters in the interactive script, and it will:
+* publish the build to the download drops
+* 
+* 
+
 === Manually ===
 '''S'''table, '''M'''aintenance and '''R'''elease builds are not automatically published. They should be first tested internally before publishing. For example, to publish the 0.1.0M6 milestone build:
 * First, fetch the build archive to test (from Hudson, or using <code>wget</code> or <code>scp</code> for example):
