@@ -132,7 +132,6 @@ if [ $signalDateTrunkNightly -gt $lastPromoteDateTrunkNightly ]; then
 		{"name": "CLEAN_OUTPUT", "value": "true"},
 		{"name": "CLEAN_TOOLS", "value": "false"},
 		{"name": "BUILD_TYPE", "value": "N"},
-		{"name": "BUILD_ALIAS", "value": ""},
 		{"name": "SITE_PACK200", "value": "true"},
 		{"name": "BUILD_TARGET", "value": "site.p2"},
 		{"name": "JAVA_HOME", "value": "/shared/common/jdk-1.5.0-22.x86_64"},
@@ -196,11 +195,11 @@ if [ $signalDateTrunkExtraNightly -gt $lastPromoteDateTrunkExtraNightly ]; then
 	# must go to the same folder, and we want to be able to start several extra jobs after one single main job
 	
 	buildName=$(cat "$PROMOTE_SIGNAL_TRUNK_NIGHTLY")
-	zipName=${buildName}.zip
 	version=$(cat "$PROMOTE_VERSION_TRUNK_NIGHTLY")
+	zipName="Papyrus-Extra.zip"
+	updateZipName="Papyrus-Extra-Update.zip"
 	nfsURL="/shared/jobs/papyrus-trunk-extra-nightly/lastSuccessful/archive/"
 	hudsonURL="https://hudson.eclipse.org/hudson/job/papyrus-trunk-extra-nightly/lastSuccessfulBuild/artifact/"
-	updateZipPrefix="Papyrus-Extra-"
 	
 	# publish to existing drops folder
 	cp "$nfsURL/${zipName}" . || wget --no-check-certificate "$hudsonURL/${zipName}"
@@ -216,9 +215,8 @@ if [ $signalDateTrunkExtraNightly -gt $lastPromoteDateTrunkExtraNightly ]; then
 	unzip "$zipName" -d "$tmpDrop"
 	dirNameInZip=$(ls -1 "$tmpDrop")
 	[ $(echo "$dirNameInZip" | wc -l) == 1 ] || { echo "one directory expected in zip"; exit 1; }
-	updateSiteZipName=$(basename $(ls -1 "$tmpDrop/$dirNameInZip/${updateZipPrefix}"*.zip))
 	rm -rf "$UPDATES_TRUNK_EXTRA_NIGHTLY"
-	unzip -o "$tmpDrop/$dirNameInZip/${updateSiteZipName}" -d "$UPDATES_TRUNK_EXTRA_NIGHTLY"
+	unzip -o "$tmpDrop/$dirNameInZip/${updateZipName}" -d "$UPDATES_TRUNK_EXTRA_NIGHTLY"
 	
 	echo "[$DATE] setting access rights"
 	chmod -R 775 "$buildsDir"
