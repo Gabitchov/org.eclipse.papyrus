@@ -104,7 +104,7 @@ if [ $signalDateTrunkNightly -gt $lastPromoteDateTrunkNightly ]; then
 		{"name": "CLEAN_TOOLS", "value": "false"},
 		{"name": "BUILD_TARGET", "value": "test"}
 	], "": ""}'
-	curl -X POST https://hudson.eclipse.org/hudson/job/papyrus-trunk-nightly-tests/build -d token=token --data-urlencode json="$json"
+	curl -X POST https://hudson.eclipse.org/hudson/job/papyrus-trunk-nightly-tests/build -d token=token --data-urlencode json="$json" | grep --ignore-case error && exit -1
 
 	echo "[$DATE] triggering Hudson extras build"
 	json='{"parameter": [
@@ -117,7 +117,7 @@ if [ $signalDateTrunkNightly -gt $lastPromoteDateTrunkNightly ]; then
 		{"name": "CLEAN_TOOLS", "value": "false"},
 		{"name": "BUILD_TARGET", "value": "site.p2"}
 	], "": ""}'
-	curl -X POST https://hudson.eclipse.org/hudson/job/papyrus-trunk-extra-nightly/build -d token=token --data-urlencode json="$json"
+	curl -X POST https://hudson.eclipse.org/hudson/job/papyrus-trunk-extra-nightly/build -d token=token --data-urlencode json="$json" | grep --ignore-case error && exit -1
 
 	echo "[$DATE] triggering Hudson 3.8 tests build"
 	json='{"parameter": [
@@ -128,7 +128,7 @@ if [ $signalDateTrunkNightly -gt $lastPromoteDateTrunkNightly ]; then
 		{"name": "CLEAN_TOOLS", "value": "false"},
 		{"name": "BUILD_TARGET", "value": "test"}
 	], "": ""}'
-	curl -X POST https://hudson.eclipse.org/hudson/job/papyrus-trunk-nightly-3.8-tests/build -d token=token --data-urlencode json="$json"
+	curl -X POST https://hudson.eclipse.org/hudson/job/papyrus-trunk-nightly-3.8-tests/build -d token=token --data-urlencode json="$json" | grep --ignore-case error && exit -1
 fi
 
 if [ $signalDateTrunkNightlyTests -gt $lastPromoteDateTrunkNightlyTests ]; then
