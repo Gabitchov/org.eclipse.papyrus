@@ -100,20 +100,10 @@ if [ $signalDateTrunkNightly -gt $lastPromoteDateTrunkNightly ]; then
 		{"name": "CLEAN_WORKSPACE", "value": "true"},
 		{"name": "CLEAN_OUTPUT", "value": "true"},
 		{"name": "CLEAN_TOOLS", "value": "false"},
-		{"name": "BUILD_TARGET", "value": "test"}
+		{"name": "BUILD_TARGET", "value": "test"},
+		{"name": "BUILD_TYPE", "value": "N"}
 	], "": ""}'
 	curl -X POST https://hudson.eclipse.org/hudson/job/papyrus-trunk-nightly-tests/build -d token=token --data-urlencode json="$json" | grep --ignore-case error && exit -1
-
-	echo "[$DATE] triggering Hudson extras build"
-	json='{"parameter": [
-		{"name": "BUCKMINSTER_LOGLEVEL", "value": "DEBUG"},
-		{"name": "CLEAN_TP", "value": "true"},
-		{"name": "CLEAN_WORKSPACE", "value": "true"},
-		{"name": "CLEAN_OUTPUT", "value": "true"},
-		{"name": "CLEAN_TOOLS", "value": "false"},
-		{"name": "BUILD_TARGET", "value": "site.p2"}
-	], "": ""}'
-	curl -X POST https://hudson.eclipse.org/hudson/job/papyrus-trunk-extra-nightly/build -d token=token --data-urlencode json="$json" | grep --ignore-case error && exit -1
 
 	echo "[$DATE] triggering Hudson 3.8 tests build"
 	json='{"parameter": [
@@ -125,6 +115,22 @@ if [ $signalDateTrunkNightly -gt $lastPromoteDateTrunkNightly ]; then
 		{"name": "BUILD_TARGET", "value": "test"}
 	], "": ""}'
 	curl -X POST https://hudson.eclipse.org/hudson/job/papyrus-trunk-nightly-3.8-tests/build -d token=token --data-urlencode json="$json" | grep --ignore-case error && exit -1
+
+	echo "[$DATE] triggering Hudson extras build"
+	json='{"parameter": [
+		{"name": "BUCKMINSTER_LOGLEVEL", "value": "DEBUG"},
+		{"name": "CLEAN_TP", "value": "true"},
+		{"name": "CLEAN_WORKSPACE", "value": "true"},
+		{"name": "CLEAN_OUTPUT", "value": "true"},
+		{"name": "CLEAN_TOOLS", "value": "false"},
+		{"name": "BUILD_TYPE", "value": "N"},
+		{"name": "BUILD_ALIAS", "value": ""},
+		{"name": "SITE_PACK200", "value": "true"},
+		{"name": "BUILD_TARGET", "value": "site.p2"},
+		{"name": "JAVA_HOME", "value": "/shared/common/jdk-1.5.0-22.x86_64"},
+		{"name": "SIGN_UPDATE_SITE", "value": "false"}
+	], "": ""}'
+	curl -X POST https://hudson.eclipse.org/hudson/job/papyrus-trunk-extra-nightly/build -d token=token --data-urlencode json="$json" | grep --ignore-case error && exit -1
 fi
 
 if [ $signalDateTrunkNightlyTests -gt $lastPromoteDateTrunkNightlyTests ]; then
