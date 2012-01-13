@@ -7,6 +7,10 @@
         <cs:dependency name="org.eclipse.papyrus.sdk.feature" componentType="eclipse.feature"/>
         <cs:dependency name="org.eclipse.papyrus.tests.build.feature" componentType="eclipse.feature"/>
 
+        <cs:dependency name="org.w3c.dom.events" componentType="osgi.bundle"/>
+        <cs:dependency name="javax.el" componentType="osgi.bundle"/>
+        <cs:dependency name="org.aopalliance" componentType="osgi.bundle"/>
+        
         <cs:dependency name="org.apache.batik.dom" componentType="osgi.bundle"/>
         <cs:dependency name="org.apache.batik.dom.svg" componentType="osgi.bundle"/>
         <cs:dependency name="org.apache.batik.parser" componentType="osgi.bundle"/>
