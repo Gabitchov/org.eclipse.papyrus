@@ -112,7 +112,10 @@ function promote() {
 	$ADD_DOWNLOAD_STATS "$_updateSite"
 	
 	echo "[$DATE] setting access rights"
-	buildFolder="$buildsDir"/${_zipName/%\.zip/}
+	#buildFolder="$buildsDir"/${_zipName/%\.zip/}
+	foldersInZip=$(unzip -t "$_zipName" | egrep "testing: *[^/]*/ +OK" | sed 's%^ *testing: *\([^/]*\)/ *OK$%\1%')
+	[ $(echo "$foldersInZip" | wc -l) == 1 ] || { echo "one directory expected in zip"; exit 1; }
+	buildFolder="$buildsDir/$foldersInZip"
 	setAccessRights "$buildFolder"
 	setAccessRights "$_updateSite"
 	
