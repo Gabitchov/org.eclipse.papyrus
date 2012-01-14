@@ -40,7 +40,7 @@ function getZip() {
 	_nfsBaseDir=$2
 	_hudsonBaseURL=$3
 
-	[[ "$_zipName" =~ ^.*\.zip$ ]] || { echo "incorrect parameter: zipName"; exit 1; }
+	[[ "$_zipName" =~ ^.*?\.zip$ ]] || { echo "incorrect parameter: zipName"; exit 1; }
 	[[ "$_nfsBaseDir" =~ ^/shared/jobs/.*$ ]] || { echo "incorrect parameter: nfsBaseDir"; exit 1; }
 	[[ "$_hudsonBaseURL" =~ ^https://hudson\.eclipse\.org/hudson/job/.*$ ]] || { echo "incorrect parameter: hudsonBaseURL"; exit 1; }
 
@@ -74,7 +74,7 @@ function promote() {
 	
 	dirBefore=$(pwd)
 	
-	[[ "$_zipName" =~ ^[NIMSR]20[0-9]{10}\.zip$ ]] || { echo "incorrect parameter: zipName"; exit 1; }
+	[[ "$_zipName" =~ ^.*?\.zip$ ]] || { echo "incorrect parameter: zipName"; exit 1; }
 	[[ "$_nfsBaseDir" =~ ^/shared/jobs/.*$ ]] || { echo "incorrect parameter: nfsBaseDir"; exit 1; }
 	[[ "$_hudsonBaseURL" =~ ^https://hudson\.eclipse\.org/hudson/job/.*$ ]] || { echo "incorrect parameter: hudsonBaseURL"; exit 1; }
 	[[ "$_version" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]] || { echo "incorrect parameter: version"; exit 1; }
