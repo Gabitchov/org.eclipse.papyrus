@@ -25,6 +25,7 @@ import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistry;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.infra.hyperlink.helper.AbstractHyperLinkHelper;
+import org.eclipse.papyrus.infra.hyperlink.messages.Messages;
 import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkObject;
 import org.eclipse.papyrus.infra.hyperlink.util.HyperLinkContentProvider;
 import org.eclipse.papyrus.infra.hyperlink.util.HyperLinkLabelProvider;
@@ -107,7 +108,7 @@ public class DefaultHyperLinkTab extends AbstractHyperLinkTab {
 	public void init(final CTabFolder cTabFolder, List<HyperLinkObject> hyperlinkObjects, EObject element) {
 		super.init(cTabFolder, hyperlinkObjects, element);
 		CTabItem tbtmDefaultsHyperlinks = new CTabItem(cTabFolder, SWT.NONE);
-		tbtmDefaultsHyperlinks.setText("Defaults HyperLinks");
+		tbtmDefaultsHyperlinks.setText(Messages.DefaultHyperLinkTab_DefaultHyperlinks);
 		defaultHyperlinkComposite = new Composite(cTabFolder, SWT.NONE);
 
 		defaultHyperlinkComposite.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
@@ -117,12 +118,12 @@ public class DefaultHyperLinkTab extends AbstractHyperLinkTab {
 		lblHyperlinks.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
 		lblHyperlinks.setForeground(Display.getCurrent().getSystemColor(SWT.COLOR_BLACK));
 		lblHyperlinks.setBounds(23, 10, 71, 13);
-		lblHyperlinks.setText("HyperLinks:");
+		lblHyperlinks.setText(Messages.DefaultHyperLinkTab_HyperLinks);
 
 		Label lblDefaultHyperlinksby = new Label(defaultHyperlinkComposite, SWT.NONE);
 		lblDefaultHyperlinksby.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
 		lblDefaultHyperlinksby.setBounds(366, 10, 186, 13);
-		lblDefaultHyperlinksby.setText("Default Hyperlinks (by double-click):");
+		lblDefaultHyperlinksby.setText(Messages.DefaultHyperLinkTab_DefaultHyperLinks);
 
 		Table availableHyperLink = new Table(defaultHyperlinkComposite, SWT.BORDER | SWT.FULL_SELECTION);
 		availableHyperLink.setBounds(30, 29, 250, 177);
@@ -253,10 +254,10 @@ public class DefaultHyperLinkTab extends AbstractHyperLinkTab {
 
 
 		// associate image to buttons
-		defaultHdown.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.uml.diagram.common", "/icons/obj16/ArrowDown_16x16.gif").createImage());
-		defaultHup.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.uml.diagram.common", "/icons/obj16/ArrowUp_16x16.gif").createImage());
-		defaultHleft.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.uml.diagram.common", "/icons/obj16/ArrowLeft_16x16.gif").createImage());
-		defaultHRight.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.uml.diagram.common", "/icons/obj16/ArrowRight_16x16.gif").createImage());
+		defaultHdown.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.uml.diagram.common", "/icons/obj16/ArrowDown_16x16.gif").createImage()); //$NON-NLS-1$ //$NON-NLS-2$
+		defaultHup.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.uml.diagram.common", "/icons/obj16/ArrowUp_16x16.gif").createImage()); //$NON-NLS-1$ //$NON-NLS-2$
+		defaultHleft.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.uml.diagram.common", "/icons/obj16/ArrowLeft_16x16.gif").createImage()); //$NON-NLS-1$ //$NON-NLS-2$
+		defaultHRight.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.uml.diagram.common", "/icons/obj16/ArrowRight_16x16.gif").createImage()); //$NON-NLS-1$ //$NON-NLS-2$
 
 
 

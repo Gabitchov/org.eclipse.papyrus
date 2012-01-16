@@ -29,12 +29,12 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
 public class HyperLinkLabelProvider implements ILabelProvider {
 
 	/** The HYPERLIN k_ we b_ ico n_ path. */
-	protected final String HYPERLINK_WEB_ICON_PATH = "/icons/obj16/hyperlink.gif";
+	protected final String HYPERLINK_WEB_ICON_PATH = "/icons/obj16/hyperlink.gif"; //$NON-NLS-1$
 
 	/** The HYPERLIN k_ documen t_ ico n_ path. */
-	protected final String HYPERLINK_DOCUMENT_ICON_PATH = "/icons/obj16/file.gif";
+	protected final String HYPERLINK_DOCUMENT_ICON_PATH = "/icons/obj16/file.gif"; //$NON-NLS-1$
 	/** The SEP. */
-	private final String SEP = " - ";
+	private final String SEP = " - "; //$NON-NLS-1$
 	
 	/** The editor registry. */
 	private IPageIconsRegistry editorRegistry;
@@ -60,10 +60,10 @@ public class HyperLinkLabelProvider implements ILabelProvider {
 	public Image getImage(Object element) {
 		//TODO remove the uml.diagram.common call
 		if(element instanceof HyperLinkDocument) {
-			return AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.uml.diagram.common", HYPERLINK_DOCUMENT_ICON_PATH).createImage();
+			return AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.uml.diagram.common", HYPERLINK_DOCUMENT_ICON_PATH).createImage(); //$NON-NLS-1$
 		}
 		else if(element instanceof HyperLinkWeb) {
-			return AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.uml.diagram.common", HYPERLINK_WEB_ICON_PATH).createImage();
+			return AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.uml.diagram.common", HYPERLINK_WEB_ICON_PATH).createImage(); //$NON-NLS-1$
 		}
 
 		else if(element instanceof HyperLinkEditor){
@@ -81,7 +81,7 @@ public class HyperLinkLabelProvider implements ILabelProvider {
 	 * @return the text
 	 */
 	public String getText(Object element) {
-		String out = "";
+		String out = ""; //$NON-NLS-1$
 		if(element instanceof HyperLinkDocument) {
 			out = ((HyperLinkDocument)element).getHyperlinkDocument();
 		} else if(element instanceof HyperLinkWeb) {

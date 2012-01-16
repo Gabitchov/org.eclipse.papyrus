@@ -25,6 +25,7 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.infra.hyperlink.commands.DeleteHyperLinkDocumentCommand;
 import org.eclipse.papyrus.infra.hyperlink.commands.EmptyAllHyperLinkCommand;
+import org.eclipse.papyrus.infra.hyperlink.messages.Messages;
 import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkObject;
 import org.eclipse.papyrus.infra.hyperlink.util.HyperLinkException;
 
@@ -62,7 +63,7 @@ public class HyperLinkHelperFactory {
 	 * @return the adds the hyper link command
 	 */
 	public  Command getAddHyperLinkCommand(TransactionalEditingDomain domain, EModelElement object, List<HyperLinkObject> hyperlinkObjects) throws HyperLinkException{
-		CompoundCommand cmpCommand= new CompoundCommand("Add hyperlinks command");
+		CompoundCommand cmpCommand= new CompoundCommand(Messages.HyperLinkHelperFactory_addHyperLinksCommand);
 		Iterator<HyperLinkObject> iterator= hyperlinkObjects.iterator();
 		while(iterator.hasNext()) {
 			HyperLinkObject hyperlinkObject = (HyperLinkObject)iterator.next();
@@ -73,7 +74,7 @@ public class HyperLinkHelperFactory {
 				i++;
 			}
 			if( cmd==null){
-				throw new HyperLinkException("Impossible to find a command to serialize " +hyperlinkObject);
+				throw new HyperLinkException(Messages.HyperLinkHelperFactory_ImpossibleToFindACommandToSerialize +hyperlinkObject);
 			}
 			cmpCommand.append(cmd);
 		}

@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.hyperlink.ui;
 
+import org.eclipse.papyrus.infra.hyperlink.messages.Messages;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.custom.CTabFolder;
@@ -105,11 +106,11 @@ public class AbstractLookForEditorShell {
 		new Label(lookforShell, SWT.NONE);
 		new Label(lookforShell, SWT.NONE);
 		OKbutton = new Button(lookforShell, SWT.NONE);
-		OKbutton.setText("OK");
+		OKbutton.setText(Messages.AbstractLookForEditorShell_OK);
 		OKbutton.setLayoutData(gridData1);
 		OKbutton.setEnabled(false);
 		cancelbutton = new Button(lookforShell, SWT.NONE);
-		cancelbutton.setText("Cancel");
+		cancelbutton.setText(Messages.AbstractLookForEditorShell_Cancel);
 		cancelbutton.setLayoutData(gridData2);
 	}
 
@@ -130,9 +131,9 @@ public class AbstractLookForEditorShell {
 		createTreeViewcomposite();
 		CTabItem cTabItem = new CTabItem(cTabFolder, SWT.None);
 		cTabItem.setControl(diagramListcomposite);
-		cTabItem.setText("Editors list");//TODO change this name into Editor List
+		cTabItem.setText(Messages.AbstractLookForEditorShell_EditorsList);//TODO change this name into Editor List
 		CTabItem cTabItem1 = new CTabItem(cTabFolder, SWT.None);
-		cTabItem1.setText("Tree View");
+		cTabItem1.setText(Messages.AbstractLookForEditorShell_TreeView);
 		cTabItem1.setControl(treeViewcomposite);
 	}
 
@@ -164,13 +165,13 @@ public class AbstractLookForEditorShell {
 		createModelFilteredTree();
 		treeViewcomposite.setLayout(gridLayout);
 		newDiagrambutton = new Button(treeViewcomposite, SWT.NONE);
-		newDiagrambutton.setText("New");
+		newDiagrambutton.setText(Messages.AbstractLookForEditorShell_New);
 		newDiagrambutton.setLayoutData(gridData4);
 		removeDiagrambutton = new Button(treeViewcomposite, SWT.NONE);
-		removeDiagrambutton.setText("Remove");
+		removeDiagrambutton.setText(Messages.AbstractLookForEditorShell_Remove);
 		removeDiagrambutton.setLayoutData(gridData5);
 		cLabel = new CLabel(treeViewcomposite, SWT.NONE);
-		cLabel.setText("   ");
+		cLabel.setText("   "); //$NON-NLS-1$
 		cLabel.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
 	}
 

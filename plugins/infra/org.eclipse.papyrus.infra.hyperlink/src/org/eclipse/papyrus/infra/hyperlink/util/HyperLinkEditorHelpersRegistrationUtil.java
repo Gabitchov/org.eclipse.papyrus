@@ -22,6 +22,7 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.hyperlink.Activator;
 import org.eclipse.papyrus.infra.hyperlink.helper.AbstractHyperLinkEditorHelper;
+import org.eclipse.papyrus.infra.hyperlink.messages.Messages;
 
 /**
  * 
@@ -33,7 +34,7 @@ public class HyperLinkEditorHelpersRegistrationUtil {
 	/**
 	 * The id of the extenstion point
 	 */
-	private static final String HYPERLINK_EDITOR_HELPER_REGISTRATION_ID = "org.eclipse.papyrus.infra.hyperlink.editor.registration";
+	private static final String HYPERLINK_EDITOR_HELPER_REGISTRATION_ID = "org.eclipse.papyrus.infra.hyperlink.editor.registration"; //$NON-NLS-1$
 
 	/**
 	 * The registered helpers
@@ -66,14 +67,14 @@ public class HyperLinkEditorHelpersRegistrationUtil {
 
 			for(IConfigurationElement e : config) {
 				try {
-					final Object h = e.createExecutableExtension("helper");
+					final Object h = e.createExecutableExtension("helper"); //$NON-NLS-1$
 					if(h instanceof AbstractHyperLinkEditorHelper) {
 						helpers.add((AbstractHyperLinkEditorHelper)h);
 					} else {
-						Activator.log.info(NLS.bind("{0} is not an instanceof {1}", new Object[]{ h, AbstractHyperLinkEditorHelper.class }));
+						Activator.log.info(NLS.bind(Messages.HyperLinkEditorHelpersRegistrationUtil_NotAnInstanceOf, new Object[]{ h, AbstractHyperLinkEditorHelper.class }));
 					}
 				} catch (CoreException ex) {
-					Activator.log.error("I can't create the class for an helper", ex);
+					Activator.log.error(Messages.HyperLinkEditorHelpersRegistrationUtil_ICantCreateTheClassForAnHelper, ex);
 				}
 			}
 		}

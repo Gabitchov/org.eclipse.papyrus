@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistry;
 import org.eclipse.papyrus.infra.hyperlink.helper.EditorHyperLinkHelper;
+import org.eclipse.papyrus.infra.hyperlink.messages.Messages;
 import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkEditor;
 import org.eclipse.papyrus.views.modelexplorer.MoDiscoLabelProviderWTooltips;
 import org.eclipse.swt.events.MouseEvent;
@@ -72,7 +73,7 @@ public class EditorHyperLinkEditorShell extends AbstractEditHyperlinkDocumentShe
 		this.amodel = model;
 		this.editorRegistry = editorFactoryRegistry;
 		createEditHyperlinkShell();
-		getObjectcLabel().setText("Table:"); //TODO : where is it used?
+		getObjectcLabel().setText(Messages.EditorHyperLinkEditorShell_Table); //TODO : where is it used?
 
 		// intialize "use default" check box
 		getUseDefaultCheckBox().setSelection(usedefaultTooltip);
@@ -117,7 +118,7 @@ public class EditorHyperLinkEditorShell extends AbstractEditHyperlinkDocumentShe
 
 					EditorHyperLinkHelper helper = new EditorHyperLinkHelper();
 					hyperLinkEditor = helper.getHyperLinkObjectFor(selection);
-					Assert.isNotNull(hyperLinkEditor, NLS.bind("I can't find the HyperlinkEditorObject for : {0}", selection));
+					Assert.isNotNull(hyperLinkEditor, NLS.bind(Messages.EditorHyperLinkEditorShell_ICanFindTheHyperLinkEditorObject, selection));
 					hyperLinkEditor.setObject(selection);
 
 					//TODO : remove this dependency

@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.infra.hyperlink.commands.CreateHyperLinkWebCommand;
+import org.eclipse.papyrus.infra.hyperlink.messages.Messages;
 import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkObject;
 import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkWeb;
 import org.eclipse.papyrus.infra.hyperlink.ui.EditorHyperLinkWebShell;
@@ -65,7 +66,7 @@ public class WebHyperLinkHelper extends AbstractHyperLinkHelper {
 	}
 	@Override
 	public String getNameofManagedHyperLink() {
-		return "Web";
+		return Messages.WebHyperLinkHelper_Web;
 	}
 	@Override
 	public void executeNewMousePressed(List<HyperLinkObject> list, EObject aModel) {

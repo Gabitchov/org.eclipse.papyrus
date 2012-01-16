@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.infra.hyperlink.ui;
 
 
+import org.eclipse.papyrus.infra.hyperlink.messages.Messages;
 import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkWeb;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.KeyListener;
@@ -28,10 +29,10 @@ import org.eclipse.swt.widgets.Display;
 public class EditorHyperLinkWebShell extends AbstractEditHyperlinkShell {
 
 	/** The Constant HYPERLINKS_LABEL. */
-	protected static final String HYPERLINKS_LABEL = "Hyperlinks:";
+	protected static final String HYPERLINKS_LABEL = Messages.EditorHyperLinkWebShell_Hyperlinks;
 
 	/** The Constant HTTP. */
-	protected static final String HTTP = "http://";
+	protected static final String HTTP = "http://"; //$NON-NLS-1$
 
 	/** The hyper link web. */
 	private HyperLinkWeb hyperLinkWeb = null;

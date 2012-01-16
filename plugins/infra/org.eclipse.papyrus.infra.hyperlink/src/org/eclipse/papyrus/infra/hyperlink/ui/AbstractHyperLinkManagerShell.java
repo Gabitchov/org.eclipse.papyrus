@@ -15,6 +15,7 @@ package org.eclipse.papyrus.infra.hyperlink.ui;
 
 import java.util.ArrayList;
 
+import org.eclipse.papyrus.infra.hyperlink.messages.Messages;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CTabFolder;
 import org.eclipse.swt.graphics.Point;
@@ -105,16 +106,16 @@ public abstract class AbstractHyperLinkManagerShell {
 		hyperLinkShell = new Shell(PlatformUI.getWorkbench().getDisplay().getActiveShell());
 
 		// hyperLinkShell = new Shell();
-		hyperLinkShell.setText("HyperLink");
+		hyperLinkShell.setText(Messages.AbstractHyperLinkManagerShell_HyperLink);
 		hyperLinkShell.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
 		createCTabFolder();
 		hyperLinkShell.setLayout(gridLayout2);
 		hyperLinkShell.setSize(new Point(687, 308));
 		OkButton = new Button(hyperLinkShell, SWT.NONE);
-		OkButton.setText("Ok");
+		OkButton.setText(Messages.AbstractHyperLinkManagerShell_OK);
 		OkButton.setLayoutData(gridData9);
 		cancelButton = new Button(hyperLinkShell, SWT.NONE);
-		cancelButton.setText("Cancel");
+		cancelButton.setText(Messages.AbstractHyperLinkManagerShell_Cancel);
 		cancelButton.setLayoutData(gridData8);
 	}
 

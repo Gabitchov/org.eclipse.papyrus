@@ -64,7 +64,7 @@ public class CreateHyperLinkWebCommand extends CreateEAnnotationCommand {
 		EAnnotation eAnnotation = createEAnnotation();
 		eAnnotation.getDetails().put(HyperLinkConstants.HYPERLINK_TOOLTYPE_TEXT, this.tooltiptext);
 		eAnnotation.getDetails().put(HyperLinkConstants.HYPERLINK_WEB_LINK, this.link);
-		eAnnotation.getDetails().put(HyperLinkConstants.HYPERLINK_IS_DEFAULT_NAVIGATION, ""+this.isDefault);
+		eAnnotation.getDetails().put(HyperLinkConstants.HYPERLINK_IS_DEFAULT_NAVIGATION, ""+this.isDefault); //$NON-NLS-1$
 		attachEannotation(eAnnotation, getObject());
 	}
 

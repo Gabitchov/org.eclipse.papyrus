@@ -32,6 +32,7 @@ import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistry;
 import org.eclipse.papyrus.infra.hyperlink.Activator;
 import org.eclipse.papyrus.infra.hyperlink.helper.AbstractHyperLinkHelper;
 import org.eclipse.papyrus.infra.hyperlink.helper.HyperLinkHelperFactory;
+import org.eclipse.papyrus.infra.hyperlink.messages.Messages;
 import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkObject;
 import org.eclipse.papyrus.infra.hyperlink.util.HyperLinkException;
 import org.eclipse.papyrus.infra.hyperlink.util.HyperLinkTabsRegistrationUtil;
@@ -53,17 +54,17 @@ public class HyperLinkManagerShell extends AbstractHyperLinkManagerShell {
 	/**
 	 * Memento's name to store Hyper Link Shell data
 	 */
-	private static final String HYPER_LINK_SHELL_MEMENTO = "HYPER_LINK_SHELL_MEMENTO";
+	private static final String HYPER_LINK_SHELL_MEMENTO = "HYPER_LINK_SHELL_MEMENTO"; //$NON-NLS-1$
 
 	/**
 	 * Memento's name to store index of the last tab used for a specific element type
 	 */
-	private static final String LAST_TAB_USE_MEMENTO = "LAST_TAB_USE_MEMENTO";
+	private static final String LAST_TAB_USE_MEMENTO = "LAST_TAB_USE_MEMENTO"; //$NON-NLS-1$
 
 	/**
 	 * Memento's name to store index of the last tab (for all element)
 	 */
-	protected static final String LAST_GLOBAL_TAB_USED = "LAST_USED_MEMENTO";
+	protected static final String LAST_GLOBAL_TAB_USED = "LAST_USED_MEMENTO"; //$NON-NLS-1$
 
 	/**
 	 * The command to execute to set the new eannotation
@@ -225,7 +226,7 @@ public class HyperLinkManagerShell extends AbstractHyperLinkManagerShell {
 
 	protected CompoundCommand getCommand() {
 		if(cmd == null) {
-			cmd = new CompoundCommand("HyperLinks Commands");
+			cmd = new CompoundCommand(Messages.HyperLinkManagerShell_HyperLinksCommands);
 		}
 		return cmd;
 	}
@@ -328,7 +329,7 @@ public class HyperLinkManagerShell extends AbstractHyperLinkManagerShell {
 				getPreferenceStore().setValue(key, writer.toString());
 			}
 		} catch (IOException e) {
-			Activator.log.error("input/ouput exception", e);
+			Activator.log.error(Messages.HyperLinkManagerShell_InputOutputException, e);
 		}
 	}
 
@@ -347,7 +348,7 @@ public class HyperLinkManagerShell extends AbstractHyperLinkManagerShell {
 				return XMLMemento.createWriteRoot(HYPER_LINK_SHELL_MEMENTO);
 			}
 		} catch (WorkbenchException e) {
-			Activator.log.error("Impossible to read preferences", e);
+			Activator.log.error(Messages.HyperLinkManagerShell_ImpossibleToReadPreferences, e);
 		}
 		return null;
 	}

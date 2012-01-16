@@ -139,7 +139,7 @@ public class EditorLookForEditorShell extends AbstractLookForEditorShell {
 
 				// refresh several filtered tree
 				getDiagramfilteredTree().getViewer().setInput(null);
-				getDiagramfilteredTree().getViewer().setInput("");
+				getDiagramfilteredTree().getViewer().setInput(""); //$NON-NLS-1$
 				getModeFilteredTree().getViewer().setInput(null);
 				getModeFilteredTree().getViewer().setInput(model.eResource());
 			} catch (NotFoundException ex) {
@@ -235,7 +235,7 @@ public class EditorLookForEditorShell extends AbstractLookForEditorShell {
 
 
 		diagramListTreeViewer.setContentProvider(new EditorListContentProvider());
-		diagramListTreeViewer.setInput(" ");
+		diagramListTreeViewer.setInput(" "); //$NON-NLS-1$
 
 		// add listner on the new button to display menu for each diagram
 		diagramMenuButton = new Menu(getNewDiagrambutton());
@@ -266,7 +266,7 @@ public class EditorLookForEditorShell extends AbstractLookForEditorShell {
 					pageMngr.removePage(iterator.next());
 				}
 				getDiagramfilteredTree().getViewer().setInput(null);
-				getDiagramfilteredTree().getViewer().setInput("");
+				getDiagramfilteredTree().getViewer().setInput(""); //$NON-NLS-1$
 				getModeFilteredTree().getViewer().setInput(null);
 				getModeFilteredTree().getViewer().setInput(model.eResource());
 			}

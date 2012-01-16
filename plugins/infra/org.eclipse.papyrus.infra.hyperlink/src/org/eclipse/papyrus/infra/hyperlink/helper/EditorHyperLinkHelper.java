@@ -28,6 +28,7 @@ import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistry;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.infra.hyperlink.Activator;
+import org.eclipse.papyrus.infra.hyperlink.messages.Messages;
 import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkEditor;
 import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkObject;
 import org.eclipse.papyrus.infra.hyperlink.ui.EditorHyperLinkEditorShell;
@@ -43,7 +44,7 @@ public class EditorHyperLinkHelper extends AbstractHyperLinkHelper {
 
 	@Override
 	public String getNameofManagedHyperLink() {
-		return "Editor";
+		return Messages.EditorHyperLinkHelper_Editor;
 	}
 
 	/**

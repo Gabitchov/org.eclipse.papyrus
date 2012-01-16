@@ -27,17 +27,17 @@ public final class HyperLinkConstants {
 	/**
 	 * this is a key of eAnnnotation that contains hypertext link or referenced document
 	 **/
-	public static final String PAPYRUS_HYPERLINK_PREFIX = "PapyrusHyperLink_";
+	public static final String PAPYRUS_HYPERLINK_PREFIX = "PapyrusHyperLink_"; //$NON-NLS-1$
 	
-	public static final String HYPERLINK_DOCUMENT = PAPYRUS_HYPERLINK_PREFIX + "Document";
+	public static final String HYPERLINK_DOCUMENT = PAPYRUS_HYPERLINK_PREFIX + "Document"; //$NON-NLS-1$
 
-	public static final String HYPERLINK_WEB = PAPYRUS_HYPERLINK_PREFIX + "_web";
+	public static final String HYPERLINK_WEB = PAPYRUS_HYPERLINK_PREFIX + "_web"; //$NON-NLS-1$
 	
-	public static final String HYPERLINK_TOOLTYPE_TEXT = "tooltip_text";
+	public static final String HYPERLINK_TOOLTYPE_TEXT = "tooltip_text"; //$NON-NLS-1$
 
-	public static final String HYPERLINK_IS_DEFAULT_NAVIGATION = "is_default_navigation";
+	public static final String HYPERLINK_IS_DEFAULT_NAVIGATION = "is_default_navigation"; //$NON-NLS-1$
 
-	public static final String HYPERLINK_DOCUMENT_LOCALIZATION = "localization";
+	public static final String HYPERLINK_DOCUMENT_LOCALIZATION = "localization"; //$NON-NLS-1$
 
-	public static final String HYPERLINK_WEB_LINK = "link";
+	public static final String HYPERLINK_WEB_LINK = "link"; //$NON-NLS-1$
 }

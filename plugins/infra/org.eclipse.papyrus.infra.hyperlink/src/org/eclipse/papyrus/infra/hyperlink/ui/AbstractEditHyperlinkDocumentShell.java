@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.hyperlink.ui;
 
+import org.eclipse.papyrus.infra.hyperlink.messages.Messages;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.graphics.Point;
@@ -37,7 +38,7 @@ public class AbstractEditHyperlinkDocumentShell {
 
 	/** The Constant OBJECT_LABEL. */
 	// @unused
-	protected static final String OBJECT_LABEL = "Diagram";
+	protected static final String OBJECT_LABEL = Messages.AbstractEditHyperlinkDocumentShell_Diagram;
 
 	/** The edit hyperlink shell. */
 	private Shell editHyperlinkShell = null; // @jve:decl-index=0:visual-constraint="44,36"
@@ -99,13 +100,13 @@ public class AbstractEditHyperlinkDocumentShell {
 		editHyperlinkShell = new Shell(PlatformUI.getWorkbench().getDisplay().getActiveShell());
 
 		// editHyperlinkShell = new Shell();
-		editHyperlinkShell.setText("Edit Hyperlink");
-		editHyperlinkShell.setToolTipText("Edition of a hyperlink");
+		editHyperlinkShell.setText(Messages.AbstractEditHyperlinkDocumentShell_EditHyperlink);
+		editHyperlinkShell.setToolTipText(Messages.AbstractEditHyperlinkDocumentShell_EditionOfAHyperLink);
 		editHyperlinkShell.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
 		editHyperlinkShell.setLayout(gridLayout);
 		editHyperlinkShell.setSize(new Point(625, 119));
 		ObjectcLabel = new CLabel(editHyperlinkShell, SWT.NONE);
-		ObjectcLabel.setText("Document:");
+		ObjectcLabel.setText(Messages.AbstractEditHyperlinkDocumentShell_Document);
 		ObjectcLabel.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
 		ObjectLabeltext = new Text(getEditHyperlinkShell(), SWT.BORDER);
 		ObjectLabeltext.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WIDGET_BACKGROUND));
@@ -114,17 +115,17 @@ public class AbstractEditHyperlinkDocumentShell {
 		chooseDiagramButton = new Button(getEditHyperlinkShell(), SWT.NONE);
 		// chooseDiagramButton.setImage(new Image(Display.getCurrent(),
 		// "C:/Tessier/PROTOTYPE/papyrusII/DEVELOPMENT/GalileoM6/org.eclipse.papyrus.uml.diagram.common/icons/obj16/insp_sbook.gif"));
-		chooseDiagramButton.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.uml.diagram.common", "/icons/obj16/insp_sbook.gif").createImage());
+		chooseDiagramButton.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.uml.diagram.common", "/icons/obj16/insp_sbook.gif").createImage()); //$NON-NLS-1$ //$NON-NLS-2$
 		chooseDiagramButton.setLayoutData(gridData51);
-		chooseDiagramButton.setText("");
+		chooseDiagramButton.setText(""); //$NON-NLS-1$
 		tooltipInputLabel = new CLabel(editHyperlinkShell, SWT.NONE);
-		tooltipInputLabel.setText("Tooltip text:");
+		tooltipInputLabel.setText(Messages.AbstractEditHyperlinkDocumentShell_TooltipText);
 		tooltipInputLabel.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
-		tooltipInputLabel.setToolTipText("tooltip text");
+		tooltipInputLabel.setToolTipText(Messages.AbstractEditHyperlinkDocumentShell_ToolTipText);
 		tooltipInputText = new Text(getEditHyperlinkShell(), SWT.BORDER);
 		tooltipInputText.setLayoutData(gridData);
 		useDefaultcheckBox = new Button(getEditHyperlinkShell(), SWT.CHECK);
-		useDefaultcheckBox.setText("Use default");
+		useDefaultcheckBox.setText(Messages.AbstractEditHyperlinkDocumentShell_UseDefault);
 		useDefaultcheckBox.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
 		Label filler1 = new Label(editHyperlinkShell, SWT.NONE);
 		Label filler938 = new Label(getEditHyperlinkShell(), SWT.NONE);
@@ -132,10 +133,10 @@ public class AbstractEditHyperlinkDocumentShell {
 		Label filler2 = new Label(editHyperlinkShell, SWT.NONE);
 		Label filler7 = new Label(getEditHyperlinkShell(), SWT.NONE);
 		OkButton = new Button(getEditHyperlinkShell(), SWT.NONE);
-		OkButton.setText("Ok");
+		OkButton.setText(Messages.AbstractEditHyperlinkDocumentShell_OK);
 		OkButton.setLayoutData(gridData2);
 		cancelButton = new Button(getEditHyperlinkShell(), SWT.NONE);
-		cancelButton.setText("Cancel");
+		cancelButton.setText(Messages.AbstractEditHyperlinkDocumentShell_Cancel);
 		cancelButton.setLayoutData(gridData3);
 	}
 

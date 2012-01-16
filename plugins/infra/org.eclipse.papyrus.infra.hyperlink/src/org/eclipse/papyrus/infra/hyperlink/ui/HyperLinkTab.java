@@ -25,6 +25,7 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.infra.hyperlink.Activator;
 import org.eclipse.papyrus.infra.hyperlink.helper.AbstractHyperLinkHelper;
+import org.eclipse.papyrus.infra.hyperlink.messages.Messages;
 import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkObject;
 import org.eclipse.papyrus.infra.hyperlink.util.HyperLinkContentProvider;
 import org.eclipse.papyrus.infra.hyperlink.util.HyperLinkLabelProvider;
@@ -135,7 +136,7 @@ public class HyperLinkTab extends AbstractHyperLinkTab {
 		super.init(cTabFolder, hyperlinkObjects, element /* , parent */);
 		this.contentProvider = new HyperLinkContentProvider();
 		CTabItem cTabItem2 = new CTabItem(cTabFolder, SWT.NONE);
-		cTabItem2.setText(hyperLinkHelper.getNameofManagedHyperLink() + " hyperlinks");
+		cTabItem2.setText(hyperLinkHelper.getNameofManagedHyperLink() + Messages.HyperLinkTab_hyperLinks);
 		Composite diagramComposite = new Composite(cTabFolder, SWT.NONE);
 		cTabItem2.setControl(diagramComposite);
 		GridData gridData4 = new GridData();
@@ -160,7 +161,7 @@ public class HyperLinkTab extends AbstractHyperLinkTab {
 		diagramComposite.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
 		diagramComposite.setLayout(gridLayout);
 		CLabel listLabel = new CLabel(diagramComposite, SWT.SHADOW_NONE);
-		listLabel.setText("List of " + hyperLinkHelper.getNameofManagedHyperLink() + " hyperlinks:");
+		listLabel.setText(Messages.HyperLinkTab_Listof + hyperLinkHelper.getNameofManagedHyperLink() + Messages.HyperLinkTab_Hyperlink);
 		listLabel.setEnabled(false);
 		listLabel.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
 		
@@ -169,26 +170,26 @@ public class HyperLinkTab extends AbstractHyperLinkTab {
 		tableViewer = new TableViewer(hyperLinkListTable);
 
 		newHyperLinkbutton = new Button(diagramComposite, SWT.NONE);
-		newHyperLinkbutton.setText("");
-		newHyperLinkbutton.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.uml.diagram.common", "/icons/obj16/Add_16x16.gif").createImage());
+		newHyperLinkbutton.setText(""); //$NON-NLS-1$
+		newHyperLinkbutton.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.uml.diagram.common", "/icons/obj16/Add_16x16.gif").createImage()); //$NON-NLS-1$ //$NON-NLS-2$
 		newHyperLinkbutton.setLayoutData(gridData4);
 		hyperLinkListTable.setHeaderVisible(false);
-		hyperLinkListTable.setToolTipText("set of " + hyperLinkHelper.getNameofManagedHyperLink() + "hyperlinks ");
+		hyperLinkListTable.setToolTipText(Messages.HyperLinkTab_SetOf + hyperLinkHelper.getNameofManagedHyperLink() + Messages.HyperLinkTab_Hyperlinks);
 		hyperLinkListTable.setLayoutData(gridData1);
 		hyperLinkListTable.setLinesVisible(false);
 		modifyHyperLinkButton = new Button(diagramComposite, SWT.NONE);
-		modifyHyperLinkButton.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.uml.diagram.common", "/icons/obj16/Modify.gif").createImage());
+		modifyHyperLinkButton.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.uml.diagram.common", "/icons/obj16/Modify.gif").createImage()); //$NON-NLS-1$ //$NON-NLS-2$
 
 		removeHyperLinkButton = new Button(diagramComposite, SWT.NONE);
-		removeHyperLinkButton.setText("");
-		removeHyperLinkButton.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.uml.diagram.common", "/icons/obj16/Delete_16x16.gif").createImage());
+		removeHyperLinkButton.setText(""); //$NON-NLS-1$
+		removeHyperLinkButton.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.uml.diagram.common", "/icons/obj16/Delete_16x16.gif").createImage()); //$NON-NLS-1$ //$NON-NLS-2$
 
 		upHyperLinkButton = new Button(diagramComposite, SWT.NONE);
-		upHyperLinkButton.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.uml.diagram.common", "/icons/obj16/ArrowUp_16x16.gif").createImage());
+		upHyperLinkButton.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.uml.diagram.common", "/icons/obj16/ArrowUp_16x16.gif").createImage()); //$NON-NLS-1$ //$NON-NLS-2$
 
 		upHyperLinkButton.setLayoutData(gridData2);
 		downHyperLinkButton = new Button(diagramComposite, SWT.NONE);
-		downHyperLinkButton.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.uml.diagram.common", "/icons/obj16/ArrowDown_16x16.gif").createImage());
+		downHyperLinkButton.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.uml.diagram.common", "/icons/obj16/ArrowDown_16x16.gif").createImage()); //$NON-NLS-1$ //$NON-NLS-2$
 
 		downHyperLinkButton.setLayoutData(gridData3);
 		addListeners();

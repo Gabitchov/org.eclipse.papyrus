@@ -24,6 +24,7 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.infra.hyperlink.Activator;
+import org.eclipse.papyrus.infra.hyperlink.messages.Messages;
 import org.eclipse.papyrus.infra.hyperlink.ui.EditorHyperlinkDocumentShell;
 import org.eclipse.ui.IEditorDescriptor;
 import org.eclipse.ui.IEditorInput;
@@ -65,7 +66,7 @@ public class HyperLinkDocument extends HyperLinkObject {
 
 			// creation of a phantom workspace
 			IWorkspace ws = ResourcesPlugin.getWorkspace();
-			IProject project = ws.getRoot().getProject("External Files");
+			IProject project = ws.getRoot().getProject(Messages.HyperLinkDocument_ExternalFiles);
 			if(!project.exists()) {
 				project.create(null);
 			}

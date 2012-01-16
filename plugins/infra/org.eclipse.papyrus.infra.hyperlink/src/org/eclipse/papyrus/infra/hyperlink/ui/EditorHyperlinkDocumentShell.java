@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.hyperlink.ui;
 
+import org.eclipse.papyrus.infra.hyperlink.messages.Messages;
 import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkDocument;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.MouseEvent;
@@ -109,8 +110,8 @@ public class EditorHyperlinkDocumentShell extends AbstractEditHyperlinkDocumentS
 
 			public void mouseDown(MouseEvent e) {
 				FileDialog fd = new FileDialog(getEditHyperlinkShell(), SWT.OPEN);
-				fd.setText("Open");
-				String[] filterExt = { "*.txt", "*.doc", "*.pdf", "*.*" };
+				fd.setText(Messages.EditorHyperlinkDocumentShell_Open);
+				String[] filterExt = { "*.txt", "*.doc", "*.pdf", "*.*" }; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 				fd.setFilterExtensions(filterExt);
 				String selected = fd.open();
 				if(selected!=null){

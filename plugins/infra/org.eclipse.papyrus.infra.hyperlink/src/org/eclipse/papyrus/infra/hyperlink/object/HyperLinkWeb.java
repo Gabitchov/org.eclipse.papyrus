@@ -47,7 +47,7 @@ public class HyperLinkWeb extends HyperLinkObject {
 	public void executeSelectPressed() {
 		try {
 			// this is an url
-			PlatformUI.getWorkbench().getBrowserSupport().createBrowser(IWorkbenchBrowserSupport.AS_EXTERNAL, "aCustomId", "url", "url").openURL(new URL(this.getHyperLinkWeb()));
+			PlatformUI.getWorkbench().getBrowserSupport().createBrowser(IWorkbenchBrowserSupport.AS_EXTERNAL, "aCustomId", "url", "url").openURL(new URL(this.getHyperLinkWeb())); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		} catch (Exception e) {
 			Activator.log.error(e);
 		}

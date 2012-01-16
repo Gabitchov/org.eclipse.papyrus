@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.hyperlink.ui;
 
+import org.eclipse.papyrus.infra.hyperlink.messages.Messages;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.graphics.Point;
@@ -34,7 +35,7 @@ import org.eclipse.ui.PlatformUI;
 public abstract class AbstractEditHyperlinkShell {
 
 	/** The Constant OBJECT_LABEL. */
-	protected static final String OBJECT_LABEL = "object";
+	protected static final String OBJECT_LABEL = Messages.AbstractEditHyperlinkShell_object;
 
 	/** The edit hyperlink shell. */
 	private Shell editHyperlinkShell = null; // @jve:decl-index=0:visual-constraint="12,45"
@@ -94,8 +95,8 @@ public abstract class AbstractEditHyperlinkShell {
 		// SWT.APPLICATION_MODAL);
 
 		// editHyperlinkShell = new Shell();
-		editHyperlinkShell.setText("Edit Hyperlink");
-		editHyperlinkShell.setToolTipText("Edition of a hyperlink");
+		editHyperlinkShell.setText(Messages.AbstractEditHyperlinkShell_EditHyperLink);
+		editHyperlinkShell.setToolTipText(Messages.AbstractEditHyperlinkShell_EditionOfAHyperLink);
 		editHyperlinkShell.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
 		editHyperlinkShell.setLayout(gridLayout);
 		editHyperlinkShell.setSize(new Point(601, 119));
@@ -105,13 +106,13 @@ public abstract class AbstractEditHyperlinkShell {
 		ObjectLabeltext = new Text(editHyperlinkShell, SWT.BORDER);
 		ObjectLabeltext.setLayoutData(gridData1);
 		tooltipInputLabel = new CLabel(editHyperlinkShell, SWT.NONE);
-		tooltipInputLabel.setText("Tooltip text:");
+		tooltipInputLabel.setText(Messages.AbstractEditHyperlinkShell_ToolTipText);
 		tooltipInputLabel.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
-		tooltipInputLabel.setToolTipText("tooltip text");
+		tooltipInputLabel.setToolTipText(Messages.AbstractEditHyperlinkShell_ToolTipText_);
 		tooltipInputText = new Text(editHyperlinkShell, SWT.BORDER);
 		tooltipInputText.setLayoutData(gridData);
 		useDefaultCheckBox = new Button(getEditHyperlinkShell(), SWT.CHECK);
-		useDefaultCheckBox.setText("Use Default");
+		useDefaultCheckBox.setText(Messages.AbstractEditHyperlinkShell_UseDefault);
 		useDefaultCheckBox.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
 		Label filler1 = new Label(editHyperlinkShell, SWT.NONE);
 		Label filler3 = new Label(editHyperlinkShell, SWT.NONE);
@@ -119,10 +120,10 @@ public abstract class AbstractEditHyperlinkShell {
 		Label filler2 = new Label(editHyperlinkShell, SWT.NONE);
 		Label filler452 = new Label(getEditHyperlinkShell(), SWT.NONE);
 		OkButton = new Button(getEditHyperlinkShell(), SWT.NONE);
-		OkButton.setText("Ok");
+		OkButton.setText(Messages.AbstractEditHyperlinkShell_OK);
 		OkButton.setLayoutData(gridData2);
 		cancelButton = new Button(getEditHyperlinkShell(), SWT.NONE);
-		cancelButton.setText("Cancel");
+		cancelButton.setText(Messages.AbstractEditHyperlinkShell_Cancel);
 		cancelButton.setLayoutData(gridData3);
 	}
 

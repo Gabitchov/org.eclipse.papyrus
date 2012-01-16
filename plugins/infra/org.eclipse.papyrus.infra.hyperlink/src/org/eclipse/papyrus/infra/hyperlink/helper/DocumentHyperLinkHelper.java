@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.infra.hyperlink.commands.CreateHyperLinkDocumentCommand;
+import org.eclipse.papyrus.infra.hyperlink.messages.Messages;
 import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkDocument;
 import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkObject;
 import org.eclipse.papyrus.infra.hyperlink.ui.EditorHyperlinkDocumentShell;
@@ -68,7 +69,7 @@ public class DocumentHyperLinkHelper extends AbstractHyperLinkHelper {
 	}
 	@Override
 	public String getNameofManagedHyperLink() {
-		return "Document";
+		return Messages.DocumentHyperLinkHelper_Document;
 	}
 	@Override
 	public void executeNewMousePressed(List<HyperLinkObject> list, EObject aModel) {
