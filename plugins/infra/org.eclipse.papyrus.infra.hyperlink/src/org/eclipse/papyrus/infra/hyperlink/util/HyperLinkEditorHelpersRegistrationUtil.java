@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2011 CEA LIST.
+ *
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.hyperlink.util;
 
 import java.util.ArrayList;
@@ -10,19 +23,42 @@ import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.hyperlink.Activator;
 import org.eclipse.papyrus.infra.hyperlink.helper.AbstractHyperLinkEditorHelper;
 
+/**
+ * 
+ * This class is used to get all registered AbstractHyperLinkEditorHelper
+ * 
+ */
+public class HyperLinkEditorHelpersRegistrationUtil {
 
-public class HyperLinkEditorHelperRegistration {
-
+	/**
+	 * The id of the extenstion point
+	 */
 	private static final String HYPERLINK_EDITOR_HELPER_REGISTRATION_ID = "org.eclipse.papyrus.infra.hyperlink.editor.registration";
 
+	/**
+	 * The registered helpers
+	 */
 	private Collection<AbstractHyperLinkEditorHelper> helpers;
 
-	public static final HyperLinkEditorHelperRegistration INSTANCE = new HyperLinkEditorHelperRegistration();
+	/**
+	 * The instance of HyperLinkEditorHelpersRegistrationUtil
+	 */
+	public static final HyperLinkEditorHelpersRegistrationUtil INSTANCE = new HyperLinkEditorHelpersRegistrationUtil();
 
-	private HyperLinkEditorHelperRegistration() {
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 */
+	private HyperLinkEditorHelpersRegistrationUtil() {
 		//nothing to do
 	}
 
+	/**
+	 * 
+	 * @return
+	 *         the list of the registered AbstractHyperLinkEditorHelper
+	 */
 	public Collection<AbstractHyperLinkEditorHelper> getAllRegisteredHyperLinkEditorHelper() {
 		if(helpers == null) {
 			helpers = new ArrayList<AbstractHyperLinkEditorHelper>();

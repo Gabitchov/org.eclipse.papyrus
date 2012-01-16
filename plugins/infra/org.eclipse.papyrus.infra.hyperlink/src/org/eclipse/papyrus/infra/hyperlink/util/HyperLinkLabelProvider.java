@@ -16,7 +16,6 @@ package org.eclipse.papyrus.infra.hyperlink.util;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistry;
-import org.eclipse.papyrus.infra.hyperlink.internal.IEditorLabelProvider;
 import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkDocument;
 import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkEditor;
 import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkObject;

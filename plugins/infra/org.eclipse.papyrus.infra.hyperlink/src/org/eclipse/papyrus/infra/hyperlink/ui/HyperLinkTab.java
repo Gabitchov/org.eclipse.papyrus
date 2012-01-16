@@ -13,7 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.hyperlink.ui;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -24,6 +23,7 @@ import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistry;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.utils.EditorUtils;
+import org.eclipse.papyrus.infra.hyperlink.Activator;
 import org.eclipse.papyrus.infra.hyperlink.helper.AbstractHyperLinkHelper;
 import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkObject;
 import org.eclipse.papyrus.infra.hyperlink.util.HyperLinkContentProvider;
@@ -39,7 +39,6 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
@@ -48,27 +47,55 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
  * for example a tab for diagram, for web links...
  * 
  */
-public class HyperLinkTab extends AbstractHyperLinkTab{
+
+//TODO change the methods to get images after the refactoring
+public class HyperLinkTab extends AbstractHyperLinkTab {
+
 	/**
 	 * The Class DiagramContentProvider.
 	 */
 	protected CTabItem hyperlinksTab;
+
 	protected Table hyperLinkListTable;
+
 	protected Button newHyperLinkbutton;
+
 	protected Button modifyHyperLinkButton;
+
 	protected Button removeHyperLinkButton;
+
 	protected Button upHyperLinkButton;
+
 	protected Button downHyperLinkButton;
+
 	protected TableViewer tableViewer;
 
 
-//	protected ArrayList<HyperLinkObject> hyperlinkObjects= new ArrayList<HyperLinkObject>();
-//
-//	protected AbstractHyperLinkHelper hyperLinkHelper;
-
 	private HyperLinkContentProvider contentProvider;
+
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 */
+	public HyperLinkTab() {
+		//nothing to do
+	}
+
+	/**
+	 * 
+	 * Constructor.
+	 *
+	 * @param tabId
+	 * @param helper
+	 */
+	public HyperLinkTab(String tabId, AbstractHyperLinkHelper helper) {
+		super(tabId, helper);
+	}
+
 	/**
 	 * get TableVeiver
+	 * 
 	 * @return
 	 */
 	public TableViewer getTableViewer() {
@@ -85,112 +112,29 @@ public class HyperLinkTab extends AbstractHyperLinkTab{
 
 	/**
 	 * set list of hyperlinks to display in the tab
+	 * 
 	 * @param hyperlinkObjects
 	 */
-	public void setHyperlinkObjects(ArrayList<HyperLinkObject> hyperlinkObjects) {
+	public void setHyperlinkObjects(List<HyperLinkObject> hyperlinkObjects) {
 		this.hyperlinkObjects = hyperlinkObjects;
 	}
 
-//	/**
-//	 * 
-//	 * Constructor.
-//	 *
-//	 * @param cTabFolder the container of the tab
-//	 * @param hyperLinkHelper the hyperlinkhelper that will be associated to this tab
-//	 * @param hyperlinkObjects the lis of htperlink to display in the tab
-//	 */
-//	@Deprecated
-//	public  HyperLinkTab(CTabFolder cTabFolder,  AbstractHyperLinkHelper hyperLinkHelper,ArrayList<HyperLinkObject> hyperlinkObjects, EObject element){
-//		super(hyperLinkHelper.getTabId(),cTabFolder,hyperLinkHelper,hyperlinkObjects, element);
-//		this.hyperLinkHelper= hyperLinkHelper;
-//		this.contentProvider= new HyperLinkContentProvider();
-//		CTabItem cTabItem2 = new CTabItem(cTabFolder, SWT.NONE);
-//		cTabItem2.setText(hyperLinkHelper.getNameofManagedHyperLink()+" hyperlinks");
-//		Composite diagramComposite = new Composite(cTabFolder, SWT.NONE);
-//		cTabItem2.setControl(diagramComposite);
-//		GridData gridData4 = new GridData();
-//		gridData4.horizontalAlignment = GridData.FILL;
-//		gridData4.verticalAlignment = GridData.CENTER;
-//		GridData gridData3 = new GridData();
-//		gridData3.horizontalAlignment = GridData.FILL;
-//		gridData3.verticalAlignment = GridData.CENTER;
-//		GridData gridData2 = new GridData();
-//		gridData2.horizontalAlignment = GridData.FILL;
-//		gridData2.verticalAlignment = GridData.CENTER;
-//		GridData gridData1 = new GridData();
-//		gridData1.verticalAlignment = GridData.FILL;
-//		gridData1.grabExcessHorizontalSpace = true;
-//		gridData1.grabExcessVerticalSpace = true;
-//		gridData1.verticalSpan = 6;
-//		gridData1.horizontalAlignment = GridData.FILL;
-//		GridLayout gridLayout = new GridLayout();
-//		gridLayout.numColumns = 2;
-//		gridLayout.makeColumnsEqualWidth = false;
-//
-//		diagramComposite.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
-//		diagramComposite.setLayout(gridLayout);
-//		CLabel listLabel = new CLabel(diagramComposite, SWT.SHADOW_NONE);
-//		listLabel.setText("List of "+hyperLinkHelper.getNameofManagedHyperLink()+" hyperlinks:");
-//		listLabel.setEnabled(false);
-//		listLabel.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
-//		Label filler = new Label(diagramComposite, SWT.NONE);
-//		hyperLinkListTable = new Table(diagramComposite, SWT.BORDER | SWT.MULTI);
-//		tableViewer = new TableViewer(hyperLinkListTable);
-//
-//		newHyperLinkbutton = new Button(diagramComposite, SWT.NONE);
-//		newHyperLinkbutton.setText("");
-//		newHyperLinkbutton.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.uml.diagram.common", "/icons/obj16/Add_16x16.gif").createImage());
-//		newHyperLinkbutton.setLayoutData(gridData4);
-//		hyperLinkListTable.setHeaderVisible(false);
-//		hyperLinkListTable.setToolTipText("set of "+hyperLinkHelper.getNameofManagedHyperLink()+"hyperlinks ");
-//		hyperLinkListTable.setLayoutData(gridData1);
-//		hyperLinkListTable.setLinesVisible(false);
-//		modifyHyperLinkButton = new Button(diagramComposite, SWT.NONE);
-//		modifyHyperLinkButton.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.uml.diagram.common", "/icons/obj16/Modify.gif").createImage());
-//
-//		removeHyperLinkButton = new Button(diagramComposite, SWT.NONE);
-//		removeHyperLinkButton.setText("");
-//		removeHyperLinkButton.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.uml.diagram.common", "/icons/obj16/Delete_16x16.gif").createImage());
-//
-//		upHyperLinkButton = new Button(diagramComposite, SWT.NONE);
-//		upHyperLinkButton.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.uml.diagram.common", "/icons/obj16/ArrowUp_16x16.gif").createImage());
-//
-//		upHyperLinkButton.setLayoutData(gridData2);
-//		downHyperLinkButton = new Button(diagramComposite, SWT.NONE);
-//		downHyperLinkButton.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.uml.diagram.common", "/icons/obj16/ArrowDown_16x16.gif").createImage());
-//
-//		downHyperLinkButton.setLayoutData(gridData3);
-//		addListeners();
-//		tableViewer.setContentProvider(contentProvider);
-//		IPageIconsRegistry editorRegistry=null;
-//		IMultiDiagramEditor papyrusEditor=EditorUtils.getMultiDiagramEditor();
-//		try {
-//			editorRegistry= papyrusEditor.getServicesRegistry().getService(IPageIconsRegistry.class);
-//		} catch (ServiceException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		this.hyperlinkObjects= hyperLinkHelper.getFilteredObject(hyperlinkObjects);
-//		tableViewer.setLabelProvider(new HyperLinkLabelProvider(editorRegistry));
-//		getTableViewer().setInput(this.hyperlinkObjects);
-//	}
-	
-	public HyperLinkTab(String tabId){
-		super(tabId);
-	}
-	
-	
-	public HyperLinkTab(String tabId, AbstractHyperLinkHelper helper){
-		super(tabId);
-		this.hyperLinkHelper = helper;
-	}
-	
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.hyperlink.ui.AbstractHyperLinkTab#init(org.eclipse.swt.custom.CTabFolder, java.util.List,
+	 *      org.eclipse.emf.ecore.EObject)
+	 * 
+	 * @param cTabFolder
+	 * @param hyperlinkObjects
+	 * @param element
+	 */
 	@Override
-	public void init(CTabFolder cTabFolder, List<HyperLinkObject> hyperlinkObjects, EObject element) {
-		super.init(cTabFolder, hyperlinkObjects, element);
-		this.contentProvider= new HyperLinkContentProvider();
+	public void init(CTabFolder cTabFolder, List<HyperLinkObject> hyperlinkObjects, EObject element/* , IHyperLinkShell parent */) {
+		super.init(cTabFolder, hyperlinkObjects, element /* , parent */);
+		this.contentProvider = new HyperLinkContentProvider();
 		CTabItem cTabItem2 = new CTabItem(cTabFolder, SWT.NONE);
-		cTabItem2.setText(hyperLinkHelper.getNameofManagedHyperLink()+" hyperlinks");
+		cTabItem2.setText(hyperLinkHelper.getNameofManagedHyperLink() + " hyperlinks");
 		Composite diagramComposite = new Composite(cTabFolder, SWT.NONE);
 		cTabItem2.setControl(diagramComposite);
 		GridData gridData4 = new GridData();
@@ -215,10 +159,10 @@ public class HyperLinkTab extends AbstractHyperLinkTab{
 		diagramComposite.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
 		diagramComposite.setLayout(gridLayout);
 		CLabel listLabel = new CLabel(diagramComposite, SWT.SHADOW_NONE);
-		listLabel.setText("List of "+hyperLinkHelper.getNameofManagedHyperLink()+" hyperlinks:");
+		listLabel.setText("List of " + hyperLinkHelper.getNameofManagedHyperLink() + " hyperlinks:");
 		listLabel.setEnabled(false);
 		listLabel.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
-		Label filler = new Label(diagramComposite, SWT.NONE);
+
 		hyperLinkListTable = new Table(diagramComposite, SWT.BORDER | SWT.MULTI);
 		tableViewer = new TableViewer(hyperLinkListTable);
 
@@ -227,7 +171,7 @@ public class HyperLinkTab extends AbstractHyperLinkTab{
 		newHyperLinkbutton.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.uml.diagram.common", "/icons/obj16/Add_16x16.gif").createImage());
 		newHyperLinkbutton.setLayoutData(gridData4);
 		hyperLinkListTable.setHeaderVisible(false);
-		hyperLinkListTable.setToolTipText("set of "+hyperLinkHelper.getNameofManagedHyperLink()+"hyperlinks ");
+		hyperLinkListTable.setToolTipText("set of " + hyperLinkHelper.getNameofManagedHyperLink() + "hyperlinks ");
 		hyperLinkListTable.setLayoutData(gridData1);
 		hyperLinkListTable.setLinesVisible(false);
 		modifyHyperLinkButton = new Button(diagramComposite, SWT.NONE);
@@ -247,19 +191,19 @@ public class HyperLinkTab extends AbstractHyperLinkTab{
 		downHyperLinkButton.setLayoutData(gridData3);
 		addListeners();
 		tableViewer.setContentProvider(contentProvider);
-		IPageIconsRegistry editorRegistry=null;
-		IMultiDiagramEditor papyrusEditor=EditorUtils.getMultiDiagramEditor();
+		IPageIconsRegistry editorRegistry = null;
+		IMultiDiagramEditor papyrusEditor = EditorUtils.getMultiDiagramEditor();
 		try {
-			editorRegistry= papyrusEditor.getServicesRegistry().getService(IPageIconsRegistry.class);
+			editorRegistry = papyrusEditor.getServicesRegistry().getService(IPageIconsRegistry.class);
 		} catch (ServiceException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Activator.log.error(e);
 		}
-		this.hyperlinkObjects= hyperLinkHelper.getFilteredObject(hyperlinkObjects);
+		this.hyperlinkObjects = hyperLinkHelper.getFilteredObject(hyperlinkObjects);
 		tableViewer.setLabelProvider(new HyperLinkLabelProvider(editorRegistry));
 		getTableViewer().setInput(this.hyperlinkObjects);
 	}
-	protected void addListeners(){
+
+	protected void addListeners() {
 		getRemoveHyperLinkButton().addMouseListener(new MouseListener() {
 
 			public void mouseUp(MouseEvent e) {
@@ -267,7 +211,7 @@ public class HyperLinkTab extends AbstractHyperLinkTab{
 
 			public void mouseDown(MouseEvent e) {
 				if(HyperLinkTab.this.getTableViewer().getTable().getSelection().length != 0) {
-					Iterator iterator = ((IStructuredSelection)HyperLinkTab.this.getTableViewer().getSelection()).iterator();
+					Iterator<?> iterator = ((IStructuredSelection)HyperLinkTab.this.getTableViewer().getSelection()).iterator();
 					while(iterator.hasNext()) {
 						Object object = iterator.next();
 						HyperLinkTab.this.getHyperlinkObjects().remove(object);
@@ -279,8 +223,8 @@ public class HyperLinkTab extends AbstractHyperLinkTab{
 			public void mouseDoubleClick(MouseEvent e) {
 			}
 		});
-		
-	getUpHyperLinkButton().addMouseListener(new MouseListener() {
+
+		getUpHyperLinkButton().addMouseListener(new MouseListener() {
 
 			public void mouseUp(MouseEvent e) {
 			}
@@ -305,76 +249,63 @@ public class HyperLinkTab extends AbstractHyperLinkTab{
 			public void mouseDoubleClick(MouseEvent e) {
 			}
 		});
-	
-	getDownHyperLinkButton().addMouseListener(new MouseListener() {
 
-		public void mouseUp(MouseEvent e) {
-		}
+		getDownHyperLinkButton().addMouseListener(new MouseListener() {
 
-		public void mouseDown(MouseEvent e) {
-			if(HyperLinkTab.this.getTableViewer().getTable().getSelection().length != 0) {
-				Object[] block = ((IStructuredSelection)HyperLinkTab.this.getTableViewer().getSelection()).toArray();
-				if((HyperLinkTab.this.getHyperlinkObjects().indexOf(block[block.length - 1])) == HyperLinkTab.this.getHyperlinkObjects().size() - 1) {
-					return;
-				}
-				for(int i = block.length - 1; i >= 0; i--) {
-					HyperLinkObject currentobject = (HyperLinkObject)block[i];
-					int index = HyperLinkTab.this.getHyperlinkObjects().indexOf(currentobject);
-					HyperLinkTab.this.getHyperlinkObjects().remove(currentobject);
-					HyperLinkTab.this.getHyperlinkObjects().add(index + 1, currentobject);
-					HyperLinkTab.this.getTableViewer().setInput(HyperLinkTab.this.getHyperlinkObjects());
+			public void mouseUp(MouseEvent e) {
+			}
+
+			public void mouseDown(MouseEvent e) {
+				if(HyperLinkTab.this.getTableViewer().getTable().getSelection().length != 0) {
+					Object[] block = ((IStructuredSelection)HyperLinkTab.this.getTableViewer().getSelection()).toArray();
+					if((HyperLinkTab.this.getHyperlinkObjects().indexOf(block[block.length - 1])) == HyperLinkTab.this.getHyperlinkObjects().size() - 1) {
+						return;
+					}
+					for(int i = block.length - 1; i >= 0; i--) {
+						HyperLinkObject currentobject = (HyperLinkObject)block[i];
+						int index = HyperLinkTab.this.getHyperlinkObjects().indexOf(currentobject);
+						HyperLinkTab.this.getHyperlinkObjects().remove(currentobject);
+						HyperLinkTab.this.getHyperlinkObjects().add(index + 1, currentobject);
+						HyperLinkTab.this.getTableViewer().setInput(HyperLinkTab.this.getHyperlinkObjects());
+					}
 				}
 			}
-		}
 
-		public void mouseDoubleClick(MouseEvent e) {
-		}
-	});
-	
-	getNewHyperLinkbutton().addMouseListener(new MouseListener() {
+			public void mouseDoubleClick(MouseEvent e) {
+			}
+		});
 
-		public void mouseUp(MouseEvent e) {
-		}
+		getNewHyperLinkbutton().addMouseListener(new MouseListener() {
 
-		public void mouseDown(MouseEvent e) {
-			HyperLinkTab.this.hyperLinkHelper.executeNewMousePressed(HyperLinkTab.this.getHyperlinkObjects(), null);
-			HyperLinkTab.this.setInput(HyperLinkTab.this.getHyperlinkObjects());
-		}
+			public void mouseUp(MouseEvent e) {
+			}
 
-		public void mouseDoubleClick(MouseEvent e) {
-		}
-	});
-	getModifyHyperLinkButton().addMouseListener(new MouseListener() {
-
-		public void mouseUp(MouseEvent e) {
-		}
-
-		public void mouseDown(MouseEvent e) {
-			if(HyperLinkTab.this.getTableViewer().getTable().getSelection().length != 0) {
-				HyperLinkObject hyperLinkObject = (HyperLinkObject)((IStructuredSelection)HyperLinkTab.this.getTableViewer().getSelection()).getFirstElement();
-				HyperLinkTab.this.hyperLinkHelper.executeEditMousePressed(HyperLinkTab.this.getHyperlinkObjects(), hyperLinkObject, HyperLinkTab.this.element);
+			public void mouseDown(MouseEvent e) {
+				HyperLinkTab.this.hyperLinkHelper.executeNewMousePressed(HyperLinkTab.this.getHyperlinkObjects(), null);
 				HyperLinkTab.this.setInput(HyperLinkTab.this.getHyperlinkObjects());
 			}
-		}
 
-		public void mouseDoubleClick(MouseEvent e) {
-		}
-	});
+			public void mouseDoubleClick(MouseEvent e) {
+			}
+		});
+		getModifyHyperLinkButton().addMouseListener(new MouseListener() {
+
+			public void mouseUp(MouseEvent e) {
+			}
+
+			public void mouseDown(MouseEvent e) {
+				if(HyperLinkTab.this.getTableViewer().getTable().getSelection().length != 0) {
+					HyperLinkObject hyperLinkObject = (HyperLinkObject)((IStructuredSelection)HyperLinkTab.this.getTableViewer().getSelection()).getFirstElement();
+					HyperLinkTab.this.hyperLinkHelper.executeEditMousePressed(HyperLinkTab.this.getHyperlinkObjects(), hyperLinkObject, HyperLinkTab.this.element);
+					HyperLinkTab.this.setInput(HyperLinkTab.this.getHyperlinkObjects());
+				}
+			}
+
+			public void mouseDoubleClick(MouseEvent e) {
+			}
+		});
 	}
 
-//	/**
-//	 * @return the tabitem form the this tab
-//	 */
-//	public CTabItem getHyperlinksTab() {
-//		return hyperlinksTab;
-//	}
-
-	/**
-	 * @return the table that show all hyperlinkObjects
-	 */
-//	public Table getHyperLinkListTable() {
-//		return hyperLinkListTable;
-//	}
 
 	/**
 	 * 
@@ -383,6 +314,7 @@ public class HyperLinkTab extends AbstractHyperLinkTab{
 	private Button getNewHyperLinkbutton() {
 		return newHyperLinkbutton;
 	}
+
 	/**
 	 * 
 	 * @return the button to edit a hyperlinkObject
@@ -415,12 +347,15 @@ public class HyperLinkTab extends AbstractHyperLinkTab{
 	private Button getDownHyperLinkButton() {
 		return downHyperLinkButton;
 	}
+
 	/**
 	 * set as input a list of hyperlinkObject to display
-	 * @param hyperlinkObjects the lis of hyperlinkobjects
+	 * 
+	 * @param hyperlinkObjects
+	 *        the lis of hyperlinkobjects
 	 */
-	public void setInput(List<HyperLinkObject> hyperlinkObjects){
-		this.hyperlinkObjects= this.hyperLinkHelper.getFilteredObject(hyperlinkObjects);
+	public void setInput(List<HyperLinkObject> hyperlinkObjects) {
+		this.hyperlinkObjects = this.hyperLinkHelper.getFilteredObject(hyperlinkObjects);
 		getTableViewer().setInput(this.hyperlinkObjects);
 
 	}

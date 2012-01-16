@@ -15,6 +15,7 @@ package org.eclipse.papyrus.infra.hyperlink.helper;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
@@ -34,13 +35,13 @@ import org.eclipse.papyrus.infra.hyperlink.util.HyperLinkException;
  */
 public class HyperLinkHelperFactory {
 
-	protected ArrayList<AbstractHyperLinkHelper> hyperLinkHelpers= new ArrayList<AbstractHyperLinkHelper>();
+	protected List<AbstractHyperLinkHelper> hyperLinkHelpers= new ArrayList<AbstractHyperLinkHelper>();
 	
-	public ArrayList<AbstractHyperLinkHelper> getHyperLinkHelpers() {
+	public List<AbstractHyperLinkHelper> getHyperLinkHelpers() {
 		return hyperLinkHelpers;
 	}
 
-	public HyperLinkHelperFactory(ArrayList<AbstractHyperLinkHelper> hyperLinkHelpers){
+	public HyperLinkHelperFactory(List<AbstractHyperLinkHelper> hyperLinkHelpers){
 		this.hyperLinkHelpers.clear();
 		this.hyperLinkHelpers.addAll(hyperLinkHelpers);
 	}
@@ -60,8 +61,8 @@ public class HyperLinkHelperFactory {
 	 * 		  to set this hyperlink as default
 	 * @return the adds the hyper link command
 	 */
-	public  Command getAddHyperLinkCommand(TransactionalEditingDomain domain, EModelElement object, ArrayList<HyperLinkObject> hyperlinkObjects) throws HyperLinkException{
-		CompoundCommand cmpCommand= new CompoundCommand();
+	public  Command getAddHyperLinkCommand(TransactionalEditingDomain domain, EModelElement object, List<HyperLinkObject> hyperlinkObjects) throws HyperLinkException{
+		CompoundCommand cmpCommand= new CompoundCommand("Add hyperlinks command");
 		Iterator<HyperLinkObject> iterator= hyperlinkObjects.iterator();
 		while(iterator.hasNext()) {
 			HyperLinkObject hyperlinkObject = (HyperLinkObject)iterator.next();
@@ -76,8 +77,7 @@ public class HyperLinkHelperFactory {
 			}
 			cmpCommand.append(cmd);
 		}
-		return cmpCommand;
-
+		return cmpCommand.isEmpty() ? null : cmpCommand ;
 	}
 
 	/**

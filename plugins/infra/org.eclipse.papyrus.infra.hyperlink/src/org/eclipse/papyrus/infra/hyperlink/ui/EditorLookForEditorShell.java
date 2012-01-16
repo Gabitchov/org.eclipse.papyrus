@@ -1,22 +1,27 @@
+/*****************************************************************************
+ * Copyright (c) 2011 CEA LIST.
+ *
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.hyperlink.ui;
 
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
-import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
-import org.eclipse.emf.facet.infra.browser.uicore.CustomizableModelContentProvider;
-import org.eclipse.jface.viewers.ILabelProvider;
-import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.TreeViewer;
-import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.papyrus.infra.core.editor.BackboneException;
 import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistry;
 import org.eclipse.papyrus.infra.core.extension.NotFoundException;
@@ -30,14 +35,12 @@ import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.DiResourceSet;
 import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.infra.emf.providers.MoDiscoContentProvider;
-import org.eclipse.papyrus.infra.hyperlink.util.CustomAdapterFactoryContentProvider;
 import org.eclipse.papyrus.infra.hyperlink.util.EditorListContentProvider;
 import org.eclipse.papyrus.views.modelexplorer.MoDiscoLabelProviderWTooltips;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
-import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
@@ -46,46 +49,30 @@ import org.eclipse.swt.widgets.MenuItem;
 
 public class EditorLookForEditorShell extends AbstractLookForDiagramShell {
 
-	/** The editor registry. */
-	private final IPageIconsRegistry editorRegistry;
-
-	/** The SEP. */
-	// @unused
-	private final String SEP = " - ";
-
 	/** The adapter factory. */
 	protected AdapterFactory adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 
 	/** The selected diagram. */
-	//TODO
-//	protected PapyrusTableInstance selectedDiagram;
-	protected Object selectedDiagram;
+	protected Object selectedEditor;
 
 	/**
-	 * Gets the selected diagram.
+	 * Gets the selected editor.
 	 * 
-	 * @return the selectedDiagram
+	 * @return the selectedEditor
 	 */
-	//TODO
-//	protected PapyrusTableInstance getSelectedDiagram() {
-//		return selectedDiagram;
-//	}
-	protected Object getSelectedDiagram() {
-		return selectedDiagram;
+	protected Object getSelectedEditor() {
+		return selectedEditor;
 	}
+
 	/**
-	 * Sets the selected diagram.
+	 * Sets the selected editor
 	 * 
-	 * @param selectedDiagram
-	 *        the selectedDiagram to set
+	 * @param selectedEditor
+	 *        the selectedEditor to set
 	 */
-	//TODO
-//	protected void setSelectedDiagram(PapyrusTableInstance selectedDiagram) {
-//		this.selectedDiagram = selectedDiagram;
-//	}
-	protected void setSelectedDiagram(Object selectedDiagram) {
-	this.selectedDiagram = selectedDiagram;
-}
+	protected void setSelectedEditor(Object selectedEditor) {
+		this.selectedEditor = selectedEditor;
+	}
 
 	/** The model. */
 	protected EObject model;
@@ -182,102 +169,9 @@ public class EditorLookForEditorShell extends AbstractLookForDiagramShell {
 		}
 	}
 
-//	/**
-//	 * The Class DocumentLabelProvider.
-//	 */
-//	public class ObjectLabelProvider implements ILabelProvider {
-//
-//		/** The image path. */
-//		protected String theImagePath;
-//
-//		/**
-//		 * Instantiates a new object label provider.
-//		 * 
-//		 * @param imagePath
-//		 *        the image path
-//		 */
-//		public ObjectLabelProvider(String imagePath) {
-//			theImagePath = imagePath;
-//		}
-//
-//		/**
-//		 * {@inheritedDoc}.
-//		 * 
-//		 * @param element
-//		 *        the element
-//		 * 
-//		 * @return the image
-//		 */
-//		public Image getImage(Object element) {
-//			//TODO
-////			if(element instanceof PapyrusTableInstance) {
-////				return editorRegistry.getEditorIcon((element));
-////			}
-//			return null;
-//		}
-//
-//		/**
-//		 * {@inheritedDoc}.
-//		 * 
-//		 * @param element
-//		 *        the element
-//		 * 
-//		 * @return the text
-//		 */
-//		public String getText(Object element) {
-//			String out = "";
-//			//TODO
-//			out = element.toString();
-////			if(element instanceof PapyrusTableInstance) {
-////				out = ((PapyrusTableInstance)element).getName();
-////			} else {
-////				return element.toString();
-////			}
-//			return out;
-//		}
-//
-//		/**
-//		 * {@inheritedDoc}.
-//		 * 
-//		 * @param listener
-//		 *        the listener
-//		 */
-//		public void addListener(ILabelProviderListener listener) {
-//		}
-//
-//		/**
-//		 * {@inheritedDoc}.
-//		 */
-//		public void dispose() {
-//		}
-//
-//		/**
-//		 * {@inheritedDoc}.
-//		 * 
-//		 * @param element
-//		 *        the element
-//		 * @param property
-//		 *        the property
-//		 * 
-//		 * @return true, if checks if is label property
-//		 */
-//		public boolean isLabelProperty(Object element, String property) {
-//			// TODO Auto-generated method stub
-//			return false;
-//		}
-//
-//		/**
-//		 * {@inheritedDoc}.
-//		 * 
-//		 * @param listener
-//		 *        the listener
-//		 */
-//		public void removeListener(ILabelProviderListener listener) {
-//		}
-//
-//	}
 
-	
+
+
 	/**
 	 * Instantiates a new editor look for diagram.
 	 * 
@@ -288,7 +182,6 @@ public class EditorLookForEditorShell extends AbstractLookForDiagramShell {
 	 */
 	public EditorLookForEditorShell(IPageIconsRegistry editorFactoryRegistry, EObject amodel) {
 		super();
-		this.editorRegistry = editorFactoryRegistry;
 		this.model = amodel;
 		// create the shell
 		createLookforShell();
@@ -296,25 +189,25 @@ public class EditorLookForEditorShell extends AbstractLookForDiagramShell {
 		// intall tree with uml element
 		treeViewer = getModeFilteredTree().getViewer();
 		treeViewer.setUseHashlookup(true);
-//		treeViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory) {
-//
-//			@Override
-//			public Image getImage(Object object) {
-//				//TODO
-////				if(object instanceof PapyrusTableInstance) {
-////					return editorRegistry.getEditorIcon((object));
-////				} else {
-////					return super.getImage(object);
-////				}
-//				Image im = super.getImage(object);
-//				return im;
-////				return null;
-//			}
-//		});
+		//		treeViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory) {
+		//
+		//			@Override
+		//			public Image getImage(Object object) {
+		//				//TODO
+		////				if(object instanceof PapyrusTableInstance) {
+		////					return editorRegistry.getEditorIcon((object));
+		////				} else {
+		////					return super.getImage(object);
+		////				}
+		//				Image im = super.getImage(object);
+		//				return im;
+		////				return null;
+		//			}
+		//		});
 		treeViewer.setLabelProvider(new MoDiscoLabelProviderWTooltips());
 		//treeViewer.setContentProvider(new CustomAdapterFactoryContentProvider(adapterFactory));
 		treeViewer.setContentProvider(new MoDiscoContentProvider());
-//		treeViewer.setContentProvider(new CustomizableModelContentProvider());
+		//		treeViewer.setContentProvider(new CustomizableModelContentProvider());
 		//treeViewer.setInput(model.eResource());
 		treeViewer.setInput(EditorUtils.getServiceRegistry());
 
@@ -371,10 +264,10 @@ public class EditorLookForEditorShell extends AbstractLookForDiagramShell {
 			public void selectionChanged(SelectionChangedEvent event) {
 				Object selection = ((IStructuredSelection)getModeFilteredTree().getViewer().getSelection()).getFirstElement();
 				//TODO
-				selectedDiagram = selection;
-//				if(selection instanceof PapyrusTableInstance) {
-//					selectedDiagram = (PapyrusTableInstance)selection;
-//				}
+				selectedEditor = selection;
+				//				if(selection instanceof PapyrusTableInstance) {
+				//					selectedEditor = (PapyrusTableInstance)selection;
+				//				}
 
 			}
 		});
@@ -386,10 +279,10 @@ public class EditorLookForEditorShell extends AbstractLookForDiagramShell {
 			public void selectionChanged(SelectionChangedEvent event) {
 				Object selection = ((IStructuredSelection)getDiagramfilteredTree().getViewer().getSelection()).getFirstElement();
 				//TODO
-				selectedDiagram = selection;
-//				if(selection instanceof PapyrusTableInstance) {
-//					selectedDiagram = (PapyrusTableInstance)selection;
-//				}
+				selectedEditor = selection;
+				//				if(selection instanceof PapyrusTableInstance) {
+				//					selectedEditor = (PapyrusTableInstance)selection;
+				//				}
 
 			}
 		});
@@ -410,7 +303,7 @@ public class EditorLookForEditorShell extends AbstractLookForDiagramShell {
 		getCancelbutton().addSelectionListener(new SelectionListener() {
 
 			public void widgetSelected(SelectionEvent e) {
-				setSelectedDiagram(null);
+				setSelectedEditor(null);
 				getLookforShell().close();
 			}
 

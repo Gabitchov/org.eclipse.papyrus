@@ -16,7 +16,6 @@ package org.eclipse.papyrus.infra.hyperlink.object;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.uml2.uml.Package;
 
 
 /**

@@ -1,9 +1,21 @@
+/*****************************************************************************
+ * Copyright (c) 2011 CEA LIST.
+ *
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.hyperlink.object;
 
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistry;
 import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistryExtended;
@@ -14,7 +26,6 @@ import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.infra.hyperlink.Activator;
 import org.eclipse.papyrus.infra.hyperlink.internal.IEditorLabelProvider;
 import org.eclipse.papyrus.infra.hyperlink.ui.EditorHyperLinkEditorShell;
-import org.eclipse.uml2.uml.Package;
 
 
 public abstract class HyperLinkEditor extends HyperLinkObject implements IEditorLabelProvider{
@@ -58,27 +69,6 @@ public abstract class HyperLinkEditor extends HyperLinkObject implements IEditor
 		}
 	}
 
-	public void addListener(ILabelProviderListener listener) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void dispose() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public boolean isLabelProperty(Object element, String property) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	public void removeListener(ILabelProviderListener listener) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.uml.diagram.common.ui.hyperlinkshell.HyperlinkObject#executeSelectPressed()
@@ -96,6 +86,10 @@ public abstract class HyperLinkEditor extends HyperLinkObject implements IEditor
 	
 	/**
 	 * 
+	 * @see org.eclipse.papyrus.infra.hyperlink.object.HyperLinkObject#executeEditMousePressed(java.util.List, org.eclipse.emf.ecore.EObject)
+	 *
+	 * @param list
+	 * @param amodel
 	 */
 	@Override
 	public void executeEditMousePressed(List<HyperLinkObject> list, EObject amodel) {
@@ -104,8 +98,7 @@ public abstract class HyperLinkEditor extends HyperLinkObject implements IEditor
 		try {
 			editorRegistry= papyrusEditor.getServicesRegistry().getService(IPageIconsRegistry.class);
 		} catch (ServiceException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Activator.log.error(e);
 		}
 		EditorHyperLinkEditorShell editor = new EditorHyperLinkEditorShell(editorRegistry, amodel);
 		editor.setHyperLinkEditor(this);

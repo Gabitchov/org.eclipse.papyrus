@@ -13,13 +13,12 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.hyperlink.commands;
 
-import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.papyrus.infra.emf.commands.CreateEAnnotationCommand;
 import org.eclipse.papyrus.infra.hyperlink.util.HyperLinkConstants;
 
 
@@ -28,7 +27,8 @@ import org.eclipse.papyrus.infra.hyperlink.util.HyperLinkConstants;
  * web. It will remove the first eannotation that corresponds to the link or the
  * localization of the hyperlink
  */
-public class DeleteHyperLinkDocumentCommand extends CreateEAnnotationCommand {
+
+public class DeleteHyperLinkDocumentCommand extends AbstractDeleteHyperLinkCommand{
 
 	/** The localization. */
 	public String link;
@@ -45,29 +45,29 @@ public class DeleteHyperLinkDocumentCommand extends CreateEAnnotationCommand {
 	 *        the localization of the link
 	 */
 	public DeleteHyperLinkDocumentCommand(TransactionalEditingDomain domain, EModelElement object, String link) {
-		super(domain, object, HyperLinkConstants.HYPERLINK_DIAGRAM);//TODO an error?
+		super(domain, object);//TODO an error?
 		this.link = link;
 	}
-
+	
 	/**
-	 * {@inheritedDoc}
+	 * 
+	 * @see org.eclipse.papyrus.infra.hyperlink.commands.AbstractDeleteHyperLinkCommand#getEAnnotationsToRemove()
+	 *
+	 * @return
 	 */
-	protected void doExecute() {
-		ArrayList<EAnnotation> eAnnotationsToRemove = new ArrayList<EAnnotation>();
+	@Override
+	protected List<EAnnotation> getEAnnotationsToRemove() {
+		List<EAnnotation> toRemove = super.getEAnnotationsToRemove();
 		Iterator<EAnnotation> iter = getObject().getEAnnotations().iterator();
 		// look for interesting eannotations
 		while(iter.hasNext()) {
 			EAnnotation currentAnnotation = iter.next();
 			if(currentAnnotation.getSource().equals(HyperLinkConstants.HYPERLINK_DOCUMENT) || currentAnnotation.getSource().equals(HyperLinkConstants.HYPERLINK_WEB)) {
 				if(currentAnnotation.getDetails().containsValue(link)) {
-					eAnnotationsToRemove.add(currentAnnotation);
+					toRemove.add(currentAnnotation);
 				}
 			}
 		}
-		// remove all eannotations
-		for(int i = 0; i < eAnnotationsToRemove.size(); i++) {
-			getObject().getEAnnotations().remove(eAnnotationsToRemove.get(i));
-		}
-
+		return toRemove;
 	}
 }

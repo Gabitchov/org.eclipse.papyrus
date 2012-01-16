@@ -14,7 +14,6 @@
 
 package org.eclipse.papyrus.infra.hyperlink.helper;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EAnnotation;
@@ -23,25 +22,38 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkObject;
-import org.eclipse.uml2.uml.Package;
 
 /**
- * this class is an abstract use to serialize and deserialize a HyperLink Object
+ * this class is an abstract helper used to serialize and deserialize a HyperLink Object
  * 
  */
 public abstract class AbstractHyperLinkHelper {
 
-	private  String tabid;
+	/**
+	 * the id of the tab
+	 */
+	private String tabid;
 
-
-
-	public final String getTabId(){
+	/**
+	 * Getter for this{@link #tabid}
+	 * 
+	 * @return
+	 *         this{@link #tabid}
+	 */
+	public final String getTabId() {
 		return this.tabid;
 	}
-	
-	public final void setTabId(final String tabId){
+
+	/**
+	 * Setter for this{@link #tabid}
+	 * 
+	 * @param tabId
+	 *        the id of the tab
+	 */
+	public final void setTabId(final String tabId) {
 		this.tabid = tabId;
 	}
+
 	/**
 	 * 
 	 * @return as string of the kind of hyperlink to display
@@ -95,7 +107,7 @@ public abstract class AbstractHyperLinkHelper {
 	 *        the list of HyperLinkObjects
 	 * @return a list of hyperlink object with the same kind
 	 */
-	public abstract ArrayList<HyperLinkObject> getFilteredObject(List<HyperLinkObject> HyperLinkObjects);
+	public abstract List<HyperLinkObject> getFilteredObject(List<HyperLinkObject> HyperLinkObjects);
 
 	/**
 	 * 

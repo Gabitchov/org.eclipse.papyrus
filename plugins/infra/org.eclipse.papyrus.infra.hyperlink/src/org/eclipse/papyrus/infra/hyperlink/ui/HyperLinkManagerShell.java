@@ -18,26 +18,30 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
+import org.eclipse.core.runtime.Assert;
+import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistry;
 import org.eclipse.papyrus.infra.hyperlink.Activator;
 import org.eclipse.papyrus.infra.hyperlink.helper.AbstractHyperLinkHelper;
 import org.eclipse.papyrus.infra.hyperlink.helper.HyperLinkHelperFactory;
 import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkObject;
 import org.eclipse.papyrus.infra.hyperlink.util.HyperLinkException;
-import org.eclipse.papyrus.infra.hyperlink.util.HyperLinkTabRegistrationUtil;
-import org.eclipse.swt.events.MouseEvent;
-import org.eclipse.swt.events.MouseListener;
+import org.eclipse.papyrus.infra.hyperlink.util.HyperLinkTabsRegistrationUtil;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Event;
+import org.eclipse.swt.widgets.Listener;
 import org.eclipse.ui.IMemento;
 import org.eclipse.ui.WorkbenchException;
 import org.eclipse.ui.XMLMemento;
@@ -64,7 +68,12 @@ public class HyperLinkManagerShell extends AbstractHyperLinkManagerShell {
 	 */
 	protected static final String LAST_GLOBAL_TAB_USED = "LAST_USED_MEMENTO";
 
-	protected ArrayList<HyperLinkObject> allhypHyperlinkObjects = new ArrayList<HyperLinkObject>();
+	/**
+	 * The command to execute to set the new eannotation
+	 */
+	private CompoundCommand cmd;
+
+	final protected List<HyperLinkObject> allhypHyperlinkObjects = new ArrayList<HyperLinkObject>();
 
 	/** The view. */
 	protected View view;
@@ -108,19 +117,15 @@ public class HyperLinkManagerShell extends AbstractHyperLinkManagerShell {
 		this.amodel = model;
 		this.transactionalEditingDomain = domain;
 		createHyperLinkShell();
-		
-		Iterator<AbstractHyperLinkTab> iter = HyperLinkTabRegistrationUtil.INSTANCE.getAllHyperLinkTab().iterator();
-		while(iter.hasNext()){
-			AbstractHyperLinkTab current = iter.next();
-			current.init(getcTabFolder(), allhypHyperlinkObjects, amodel);
-			tabList.add(current);
-		}
-//		// associate tableViewer for each table
-//		Iterator<AbstractHyperLinkHelper> iter = hyperHelperFactory.getHyperLinkHelpers().iterator();
-//		while(iter.hasNext()) {
-//			AbstractHyperLinkHelper abstractHyperLinkHelper = (AbstractHyperLinkHelper)iter.next();
-//			initializeFolder(abstractHyperLinkHelper);
-//		}
+
+		initializeFolder(null);
+
+		//		// associate tableViewer for each table
+		//		Iterator<AbstractHyperLinkHelper> iter = hyperHelperFactory.getHyperLinkHelpers().iterator();
+		//		while(iter.hasNext()) {
+		//			AbstractHyperLinkHelper abstractHyperLinkHelper = (AbstractHyperLinkHelper)iter.next();
+		//			initializeFolder(abstractHyperLinkHelper);
+		//		}
 		// listener for the button cancel
 		getCancelButton().addSelectionListener(new SelectionListener() {
 
@@ -145,136 +150,104 @@ public class HyperLinkManagerShell extends AbstractHyperLinkManagerShell {
 		getOkButton().addSelectionListener(okListener);
 	}
 
-	protected void executeOkButton() {
+	protected void executeOkButton() {//should be final?
+		CompoundCommand myCommand = getCommand();
+		//clear the current annotations
+		myCommand.append(HyperLinkHelperFactory.getEmptyAllHyperLinkCommand(transactionalEditingDomain, view));
+		doAction();
+
+		//store eannotation command
+		try {
+			myCommand.append(hyperLinkHelperFactory.getAddHyperLinkCommand(transactionalEditingDomain, view, allhypHyperlinkObjects));
+		} catch (HyperLinkException e) {
+			Activator.log.error(e);
+		}
+
+		//execute the command
+		Assert.isTrue(myCommand.canExecute());
+		this.transactionalEditingDomain.getCommandStack().execute(myCommand);
+		closeDialog();
+	}
+
+
+
+	/**
+	 * do the action and fill the command
+	 */
+	protected void doAction() {
 		// empty all hyperlinks
-		transactionalEditingDomain.getCommandStack().execute(HyperLinkHelperFactory.getEmptyAllHyperLinkCommand(transactionalEditingDomain, view));
+		//clear command
+		//		CompoundCommand tmp = getCommand();
+		//		tmp.append(HyperLinkHelperFactory.getEmptyAllHyperLinkCommand(transactionalEditingDomain, view));
+
+
 		allhypHyperlinkObjects.clear();
-		Iterator<AbstractHyperLinkTab> iter = tabList.iterator();
-		while(iter.hasNext()) {
-			AbstractHyperLinkTab hyperLinkTab = iter.next();
-			allhypHyperlinkObjects.addAll(hyperLinkTab.getHyperlinkObjects());
+		allhypHyperlinkObjects.addAll(getSelectedHyperLinkObjectCrossingTabs());
+		//set all hyper links is default to false
+		Iterator<HyperLinkObject> iterator = allhypHyperlinkObjects.iterator();
+		while(iterator.hasNext()) {
+			HyperLinkObject hyperLink = (HyperLinkObject)iterator.next();
+			hyperLink.setIsDefault(false);
 		}
-		// save hyperlink Document list
-		try { //TODO attention, certains onglet (comme le defaut... ne doivent pas fournir de commandes...
-			transactionalEditingDomain.getCommandStack().execute(hyperLinkHelperFactory.getAddHyperLinkCommand(transactionalEditingDomain, view, allhypHyperlinkObjects));
-		} catch (HyperLinkException error) {
-			Activator.log.error(error);
+
+
+		//specific behavior for the DefautHyperLinkTab
+		DefaultHyperLinkTab defaultHyperLinkTab = getDefaultHyperLinkTab();
+
+		//look for all hyperlink default and put it as default at the top of the list
+		int i = defaultHyperLinkTab.getDefaultHyperLinkObject().size() - 1;
+		while(i >= 0) {
+			HyperLinkObject hyperLinkObject = defaultHyperLinkTab.getDefaultHyperLinkObject().get(i);
+			hyperLinkObject.setIsDefault(true);
+			if(allhypHyperlinkObjects.contains(hyperLinkObject)) {
+				allhypHyperlinkObjects.remove(hyperLinkObject);
+				allhypHyperlinkObjects.add(0, hyperLinkObject);
+			}
+			i--;
 		}
+
+		//		//store eannotation command
+		//		try {
+		//			tmp.append(hyperLinkHelperFactory.getAddHyperLinkCommand(transactionalEditingDomain, view, allhypHyperlinkObjects));
+		//		} catch (HyperLinkException e) {
+		//			Activator.log.error(e);
+		//		}
+	}
+
+	private void closeDialog() {
 		//save the corresponding tab
 		saveCorrespondingTab();
 		tabList.clear();
 		getHyperLinkShell().close();
 	}
 
+	protected CompoundCommand getCommand() {
+		if(cmd == null) {
+			cmd = new CompoundCommand("HyperLinks Commands");
+		}
+		return cmd;
+	}
+
 	/**
 	 * Initialize diagram folder.
 	 */
-	public void initializeFolder(final AbstractHyperLinkHelper abstractHyperLinkHelper) {
-		Iterator<AbstractHyperLinkTab> iter = HyperLinkTabRegistrationUtil.INSTANCE.getAllHyperLinkTab().iterator();
-		while(iter.hasNext()){
+	public void initializeFolder(final AbstractHyperLinkHelper abstractHyperLinkHelper) { //TODO remove this parameter which is not used!
+		Iterator<AbstractHyperLinkTab> iter = HyperLinkTabsRegistrationUtil.INSTANCE.getAllHyperLinkTab().iterator();
+		while(iter.hasNext()) {
 			AbstractHyperLinkTab current = iter.next();
 			current.init(getcTabFolder(), allhypHyperlinkObjects, amodel);
 			tabList.add(current);
 		}
-//		final HyperLinkTab hyperLinkTab = new HyperLinkTab(getcTabFolder(), abstractHyperLinkHelper, allhypHyperlinkObjects, amodel);
-//		tabList.add(hyperLinkTab);
-//		hyperLinkTab.getRemoveHyperLinkButton().addMouseListener(new MouseListener() {
-//
-//			public void mouseUp(MouseEvent e) {
-//			}
-//
-//			public void mouseDown(MouseEvent e) {
-//				if(hyperLinkTab.getTableViewer().getTable().getSelection().length != 0) {
-//					Iterator iterator = ((IStructuredSelection)hyperLinkTab.getTableViewer().getSelection()).iterator();
-//					while(iterator.hasNext()) {
-//						Object object = iterator.next();
-//						hyperLinkTab.getHyperlinkObjects().remove(object);
-//						hyperLinkTab.getTableViewer().setInput(hyperLinkTab.getHyperlinkObjects());
-//					}
-//				}
-//			}
-//
-//			public void mouseDoubleClick(MouseEvent e) {
-//			}
-//		});
-//		hyperLinkTab.getUpHyperLinkButton().addMouseListener(new MouseListener() {
-//
-//			public void mouseUp(MouseEvent e) {
-//			}
-//
-//			public void mouseDown(MouseEvent e) {
-//				if(hyperLinkTab.getTableViewer().getTable().getSelection().length != 0) {
-//					Object elt = ((IStructuredSelection)hyperLinkTab.getTableViewer().getSelection()).getFirstElement();
-//					if(hyperLinkTab.getHyperlinkObjects().indexOf(elt) == 0) {
-//						return;
-//					}
-//					Iterator<?> iterator = ((IStructuredSelection)hyperLinkTab.getTableViewer().getSelection()).iterator();
-//					while(iterator.hasNext()) {
-//						HyperLinkObject currentHyperLinkDoc = (HyperLinkObject)iterator.next();
-//						int index = hyperLinkTab.getHyperlinkObjects().indexOf(currentHyperLinkDoc);
-//						hyperLinkTab.getHyperlinkObjects().remove(currentHyperLinkDoc);
-//						hyperLinkTab.getHyperlinkObjects().add(index - 1, currentHyperLinkDoc);
-//						hyperLinkTab.getTableViewer().setInput(hyperLinkTab.getHyperlinkObjects());
-//					}
-//				}
-//			}
-//
-//			public void mouseDoubleClick(MouseEvent e) {
-//			}
-//		});
-//		hyperLinkTab.getDownHyperLinkButton().addMouseListener(new MouseListener() {
-//
-//			public void mouseUp(MouseEvent e) {
-//			}
-//
-//			public void mouseDown(MouseEvent e) {
-//				if(hyperLinkTab.getTableViewer().getTable().getSelection().length != 0) {
-//					Object[] block = ((IStructuredSelection)hyperLinkTab.getTableViewer().getSelection()).toArray();
-//					if((hyperLinkTab.getHyperlinkObjects().indexOf(block[block.length - 1])) == hyperLinkTab.getHyperlinkObjects().size() - 1) {
-//						return;
-//					}
-//					for(int i = block.length - 1; i >= 0; i--) {
-//						HyperLinkObject currentobject = (HyperLinkObject)block[i];
-//						int index = hyperLinkTab.getHyperlinkObjects().indexOf(currentobject);
-//						hyperLinkTab.getHyperlinkObjects().remove(currentobject);
-//						hyperLinkTab.getHyperlinkObjects().add(index + 1, currentobject);
-//						hyperLinkTab.getTableViewer().setInput(hyperLinkTab.getHyperlinkObjects());
-//					}
-//				}
-//			}
-//
-//			public void mouseDoubleClick(MouseEvent e) {
-//			}
-//		});
-//		hyperLinkTab.getNewHyperLinkbutton().addMouseListener(new MouseListener() {
-//
-//			public void mouseUp(MouseEvent e) {
-//			}
-//
-//			public void mouseDown(MouseEvent e) {
-//				abstractHyperLinkHelper.executeNewMousePressed(hyperLinkTab.getHyperlinkObjects(), null);
-//				hyperLinkTab.setInput(hyperLinkTab.getHyperlinkObjects());
-//			}
-//
-//			public void mouseDoubleClick(MouseEvent e) {
-//			}
-//		});
-//		hyperLinkTab.getModifyHyperLinkButton().addMouseListener(new MouseListener() {
-//
-//			public void mouseUp(MouseEvent e) {
-//			}
-//
-//			public void mouseDown(MouseEvent e) {
-//				if(hyperLinkTab.getTableViewer().getTable().getSelection().length != 0) {
-//					HyperLinkObject hyperLinkObject = (HyperLinkObject)((IStructuredSelection)hyperLinkTab.getTableViewer().getSelection()).getFirstElement();
-//					abstractHyperLinkHelper.executeEditMousePressed(hyperLinkTab.getHyperlinkObjects(), hyperLinkObject, amodel);
-//					hyperLinkTab.setInput(hyperLinkTab.getHyperlinkObjects());
-//				}
-//			}
-//
-//			public void mouseDoubleClick(MouseEvent e) {
-//			}
-//		});
+
+		//specific behavior for the default tab : 
+		final DefaultHyperLinkTab defaultTab = getDefaultHyperLinkTab();
+		defaultTab.getMainComposite().addListener(SWT.Show, new Listener() {
+
+			public void handleEvent(Event event) {
+				defaultTab.setInput(HyperLinkManagerShell.this.getSelectedHyperLinkObjectCrossingTabs());
+			}
+		});
+
 	}
 
 	/**
@@ -410,5 +383,34 @@ public class HyperLinkManagerShell extends AbstractHyperLinkManagerShell {
 
 	private static IPreferenceStore getPreferenceStore() {
 		return Activator.getDefault().getPreferenceStore();
+	}
+
+	//TODO : should be a set ? 
+	public List<HyperLinkObject> getSelectedHyperLinkObjectCrossingTabs() {
+		Set<HyperLinkObject> selectedObjects = new HashSet<HyperLinkObject>();
+		for(AbstractHyperLinkTab current : tabList) {
+			if(!(current instanceof DefaultHyperLinkTab)) {
+				List<HyperLinkObject> tmp = current.getHyperlinkObjects();
+				if(tmp != null) {
+					selectedObjects.addAll(tmp);
+				}
+			}
+		}
+		return new ArrayList<HyperLinkObject>(selectedObjects);
+	}
+
+	protected DefaultHyperLinkTab getDefaultHyperLinkTab() {
+		int nbTab = 0;
+		DefaultHyperLinkTab defaultHyperLinkTab = null;
+		for(AbstractHyperLinkTab current : tabList) {
+			if(current instanceof DefaultHyperLinkTab) {
+				defaultHyperLinkTab = (DefaultHyperLinkTab)current;
+				nbTab++;
+			}
+		}
+		//there is only one DefaultHyperLinkTab in the dialog!
+		Assert.isTrue(nbTab == 1);
+		Assert.isNotNull(defaultHyperLinkTab);
+		return defaultHyperLinkTab;
 	}
 }

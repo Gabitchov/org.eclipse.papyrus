@@ -16,13 +16,11 @@ package org.eclipse.papyrus.infra.hyperlink.object;
 import java.net.URL;
 import java.util.List;
 
-
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.infra.hyperlink.Activator;
 import org.eclipse.papyrus.infra.hyperlink.ui.EditorHyperLinkWebShell;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.browser.IWorkbenchBrowserSupport;
-import org.eclipse.uml2.uml.Package;
 
 /**
  * this is an hyperlink to manage web link (it open a web browser when it is selected) 

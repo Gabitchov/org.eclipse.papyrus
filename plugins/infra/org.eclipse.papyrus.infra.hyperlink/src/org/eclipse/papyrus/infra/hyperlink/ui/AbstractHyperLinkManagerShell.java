@@ -131,4 +131,5 @@ public abstract class AbstractHyperLinkManagerShell {
 	public Button getCancelButton() {
 		return cancelButton;
 	}
+	
 }

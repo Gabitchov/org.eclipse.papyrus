@@ -81,7 +81,7 @@ public class DocumentHyperLinkHelper extends AbstractHyperLinkHelper {
 	}
 	
 	@Override
-	public ArrayList<HyperLinkObject> getFilteredObject(List<HyperLinkObject> hyperlinkObjects) {
+	public List<HyperLinkObject> getFilteredObject(List<HyperLinkObject> hyperlinkObjects) {
 		ArrayList<HyperLinkObject> result= new ArrayList<HyperLinkObject>();
 		Iterator<HyperLinkObject> iterator= hyperlinkObjects.iterator();
 		while(iterator.hasNext()) {

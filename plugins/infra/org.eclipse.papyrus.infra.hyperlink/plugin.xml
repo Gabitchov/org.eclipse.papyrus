@@ -8,7 +8,7 @@
          point="org.eclipse.papyrus.infra.hyperlink.registration">
       <hyperlink
             helper="org.eclipse.papyrus.infra.hyperlink.helper.EditorHyperLinkHelper"
-            position="51"
+            position="50"
             tabId="org.eclipse.papyrus.infra.hyperlink.tableditor">
       </hyperlink>
       <hyperlink
