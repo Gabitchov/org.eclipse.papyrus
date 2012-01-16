@@ -39,6 +39,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
@@ -162,7 +163,8 @@ public class HyperLinkTab extends AbstractHyperLinkTab {
 		listLabel.setText("List of " + hyperLinkHelper.getNameofManagedHyperLink() + " hyperlinks:");
 		listLabel.setEnabled(false);
 		listLabel.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
-
+		
+		new Label(diagramComposite, SWT.NONE);
 		hyperLinkListTable = new Table(diagramComposite, SWT.BORDER | SWT.MULTI);
 		tableViewer = new TableViewer(hyperLinkListTable);
 

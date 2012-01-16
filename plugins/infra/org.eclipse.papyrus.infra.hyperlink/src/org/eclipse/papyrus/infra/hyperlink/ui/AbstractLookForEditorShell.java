@@ -30,15 +30,15 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.FilteredTree;
 import org.eclipse.ui.dialogs.PatternFilter;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class AbstractLookForDiagramShell. This Class has been generated from
  * VisualEditor. Do not modify it manually by adding behavior! you will lose the
  * capacity to open with VE. So this class is abstract and it contains set of
  * getter in order to connect behavior in subclasses
  */
-public class AbstractLookForDiagramShell {
-
+public class AbstractLookForEditorShell {
+	
 	/** The lookfor shell. */
 	private Shell lookforShell = null; // @jve:decl-index=0:visual-constraint="108,60"
 
@@ -101,12 +101,13 @@ public class AbstractLookForDiagramShell {
 		createCTabFolder();
 		lookforShell.setLayout(gridLayout1);
 		lookforShell.setSize(new Point(501, 313));
-		Label filler11 = new Label(lookforShell, SWT.NONE);
-		Label filler4 = new Label(lookforShell, SWT.NONE);
-		Label filler41 = new Label(lookforShell, SWT.NONE);
+		new Label(lookforShell, SWT.NONE);
+		new Label(lookforShell, SWT.NONE);
+		new Label(lookforShell, SWT.NONE);
 		OKbutton = new Button(lookforShell, SWT.NONE);
 		OKbutton.setText("OK");
 		OKbutton.setLayoutData(gridData1);
+		OKbutton.setEnabled(false);
 		cancelbutton = new Button(lookforShell, SWT.NONE);
 		cancelbutton.setText("Cancel");
 		cancelbutton.setLayoutData(gridData2);
@@ -129,7 +130,7 @@ public class AbstractLookForDiagramShell {
 		createTreeViewcomposite();
 		CTabItem cTabItem = new CTabItem(cTabFolder, SWT.None);
 		cTabItem.setControl(diagramListcomposite);
-		cTabItem.setText("Diagram list");//TODO change this name into Editor List
+		cTabItem.setText("Editors list");//TODO change this name into Editor List
 		CTabItem cTabItem1 = new CTabItem(cTabFolder, SWT.None);
 		cTabItem1.setText("Tree View");
 		cTabItem1.setControl(treeViewcomposite);

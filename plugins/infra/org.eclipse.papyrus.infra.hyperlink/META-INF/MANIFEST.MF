@@ -20,7 +20,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.gmf.runtime.diagram.ui,
  org.eclipse.papyrus.infra.emf,
  org.eclipse.papyrus.views.modelexplorer,
- org.eclipse.uml2.uml
+ org.eclipse.uml2.uml,
+ org.eclipse.papyrus.infra.table.instance;bundle-version="0.9.0"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.papyrus.infra.hyperlink,

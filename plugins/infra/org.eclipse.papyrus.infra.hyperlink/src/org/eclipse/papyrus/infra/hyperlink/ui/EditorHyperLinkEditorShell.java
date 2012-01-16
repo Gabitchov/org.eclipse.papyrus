@@ -27,9 +27,9 @@ import org.eclipse.swt.widgets.Display;
 /**
  * 
  * This shell is used to find the editors
- *
+ * 
  */
-public class EditorHyperLinkEditorShell extends AbstractEditHyperlinkDocumentShell{
+public class EditorHyperLinkEditorShell extends AbstractEditHyperlinkDocumentShell {
 
 	/** The usedefault tooltip. */
 	protected boolean usedefaultTooltip = true;
@@ -58,7 +58,7 @@ public class EditorHyperLinkEditorShell extends AbstractEditHyperlinkDocumentShe
 				display.sleep();
 		}
 	}
-	
+
 	/**
 	 * Instantiates a new editor hyperlink diagram shell.
 	 * 
@@ -108,33 +108,24 @@ public class EditorHyperLinkEditorShell extends AbstractEditHyperlinkDocumentShe
 			}
 
 			public void mouseDown(MouseEvent e) {
-				//TODO
 				EditorLookForEditorShell editorLookForDiagram = new EditorLookForEditorShell(editorRegistry, amodel);
-
 				editorLookForDiagram.open();
-			
-				//why that?
-				EditorHyperLinkHelper helper = new EditorHyperLinkHelper();
 				Object selection = editorLookForDiagram.getSelectedEditor();
-				hyperLinkEditor = helper.getHyperLinkObjectFor(selection);
-				Assert.isNotNull(hyperLinkEditor, NLS.bind("I can't find the HyperlinkEditorObject for : {0}",selection));
-				
-//				if(hyperLinkEditor == null) {
-//					hyperLinkEditor = new HyperLinkTable();
-//				}
-				hyperLinkEditor.setObject(selection);
-				
-				//TODO : improve 
-				MoDiscoLabelProviderWTooltips labelProvider = new MoDiscoLabelProviderWTooltips();
-				getObjectLabeltext().setText(labelProvider.getText(selection));
-//				hyperLinkEditor.setTable(editorLookForDiagram.getSelectedDiagram());
-//				if(hyperLinkEditor.getTable() != null) {
-//					getObjectLabeltext().setText(hyperLinkEditor.getTable().getName());
-//				} else {
-//					getObjectLabeltext().setText("UNDEFINED");
-//				}
-				if(usedefaultTooltip) {
-					getTooltipInputText().setText(getObjectLabeltext().getText());
+				if(selection == null) {//cancelled or no selection
+					//nothing to do
+				} else {
+
+					EditorHyperLinkHelper helper = new EditorHyperLinkHelper();
+					hyperLinkEditor = helper.getHyperLinkObjectFor(selection);
+					Assert.isNotNull(hyperLinkEditor, NLS.bind("I can't find the HyperlinkEditorObject for : {0}", selection));
+					hyperLinkEditor.setObject(selection);
+
+					//TODO : remove this dependency
+					MoDiscoLabelProviderWTooltips labelProvider = new MoDiscoLabelProviderWTooltips();
+					getObjectLabeltext().setText(labelProvider.getText(selection));
+					if(usedefaultTooltip) {
+						getTooltipInputText().setText(getObjectLabeltext().getText());
+					}
 				}
 			}
 
@@ -197,7 +188,6 @@ public class EditorHyperLinkEditorShell extends AbstractEditHyperlinkDocumentShe
 	 */
 	public void setHyperLinkEditor(HyperLinkEditor hyperLinkEditor) {
 		//TODO
-//		getObjectLabeltext().setText(hyperLinkEditor.getTable().getName());
 		getTooltipInputText().setText(hyperLinkEditor.getTooltipText());
 		this.hyperLinkEditor = hyperLinkEditor;
 	}

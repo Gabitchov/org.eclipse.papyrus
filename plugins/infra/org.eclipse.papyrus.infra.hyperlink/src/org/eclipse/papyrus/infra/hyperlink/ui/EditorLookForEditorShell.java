@@ -13,17 +13,21 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.hyperlink.ui;
 
+import java.util.Collection;
 import java.util.Iterator;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.papyrus.infra.core.editor.BackboneException;
 import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistry;
+import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistryExtended;
+import org.eclipse.papyrus.infra.core.editorsfactory.PageIconsRegistry;
 import org.eclipse.papyrus.infra.core.extension.NotFoundException;
 import org.eclipse.papyrus.infra.core.extension.commands.CreationCommandDescriptor;
 import org.eclipse.papyrus.infra.core.extension.commands.CreationCommandRegistry;
@@ -35,19 +39,27 @@ import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.DiResourceSet;
 import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.infra.emf.providers.MoDiscoContentProvider;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.hyperlink.helper.AbstractHyperLinkEditorHelper;
+import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkEditor;
 import org.eclipse.papyrus.infra.hyperlink.util.EditorListContentProvider;
+import org.eclipse.papyrus.infra.hyperlink.util.HyperLinkEditorHelpersRegistrationUtil;
+import org.eclipse.papyrus.infra.table.instance.papyrustableinstance.PapyrusTableInstance;//TODO remove this dependency
 import org.eclipse.papyrus.views.modelexplorer.MoDiscoLabelProviderWTooltips;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
 
 
 
-public class EditorLookForEditorShell extends AbstractLookForDiagramShell {
+//TODO : remove the table dependencies
+public class EditorLookForEditorShell extends AbstractLookForEditorShell {
 
 	/** The adapter factory. */
 	protected AdapterFactory adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
@@ -204,7 +216,8 @@ public class EditorLookForEditorShell extends AbstractLookForDiagramShell {
 		////				return null;
 		//			}
 		//		});
-		treeViewer.setLabelProvider(new MoDiscoLabelProviderWTooltips());
+		ILabelProvider labelProvider = new LocalLabelProvider();
+		treeViewer.setLabelProvider(labelProvider);
 		//treeViewer.setContentProvider(new CustomAdapterFactoryContentProvider(adapterFactory));
 		treeViewer.setContentProvider(new MoDiscoContentProvider());
 		//		treeViewer.setContentProvider(new CustomizableModelContentProvider());
@@ -218,7 +231,9 @@ public class EditorLookForEditorShell extends AbstractLookForDiagramShell {
 		// fill list of diagram
 		//TODO
 		//diagramListTreeViewer.setLabelProvider(new ObjectLabelProvider(null));
-		diagramListTreeViewer.setLabelProvider(new MoDiscoLabelProviderWTooltips());//TODO remove the dependency on the property view
+		diagramListTreeViewer.setLabelProvider(labelProvider);
+
+
 		diagramListTreeViewer.setContentProvider(new EditorListContentProvider());
 		diagramListTreeViewer.setInput(" ");
 
@@ -263,11 +278,7 @@ public class EditorLookForEditorShell extends AbstractLookForDiagramShell {
 
 			public void selectionChanged(SelectionChangedEvent event) {
 				Object selection = ((IStructuredSelection)getModeFilteredTree().getViewer().getSelection()).getFirstElement();
-				//TODO
-				selectedEditor = selection;
-				//				if(selection instanceof PapyrusTableInstance) {
-				//					selectedEditor = (PapyrusTableInstance)selection;
-				//				}
+				refresh(selection);
 
 			}
 		});
@@ -278,12 +289,7 @@ public class EditorLookForEditorShell extends AbstractLookForDiagramShell {
 
 			public void selectionChanged(SelectionChangedEvent event) {
 				Object selection = ((IStructuredSelection)getDiagramfilteredTree().getViewer().getSelection()).getFirstElement();
-				//TODO
-				selectedEditor = selection;
-				//				if(selection instanceof PapyrusTableInstance) {
-				//					selectedEditor = (PapyrusTableInstance)selection;
-				//				}
-
+				refresh(selection);
 			}
 		});
 
@@ -330,4 +336,90 @@ public class EditorLookForEditorShell extends AbstractLookForDiagramShell {
 			}
 		}
 	}
+
+	protected void refresh(Object selectedElement) {
+		selectedElement = EMFHelper.getEObject(selectedElement);
+		Button but = getOKbutton();
+		if(isAValidEditor(selectedElement)) {
+			but = getOKbutton();
+			but.setEnabled(true);
+			selectedEditor = selectedElement;
+		} else {
+			but.setEnabled(false);
+			selectedEditor = null;
+		}
+	}
+
+	protected boolean isAValidEditor(final Object object) {
+		Collection<AbstractHyperLinkEditorHelper> helpers = HyperLinkEditorHelpersRegistrationUtil.INSTANCE.getAllRegisteredHyperLinkEditorHelper();
+		for(AbstractHyperLinkEditorHelper current : helpers) {
+			HyperLinkEditor editor = current.getHyperLinkObjectFor(object);
+			if(editor != null) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	//TODO delete this class to remove the PapyrusTable dependencies!
+	private class LocalLabelProvider extends MoDiscoLabelProviderWTooltips{
+
+		/**
+		 * Return the EditorRegistry for nested editor descriptors. Subclass should
+		 * implements this method in order to return the registry associated to the
+		 * extension point namespace.
+		 * 
+		 * @return the EditorRegistry for nested editor descriptors
+		 *         FIXME : use a deprecated method
+		 */
+		protected IPageIconsRegistry createEditorRegistry() {
+			try {
+				return EditorUtils.getServiceRegistry().getService(IPageIconsRegistry.class);
+			} catch (ServiceException e) {
+				// Not found, return an empty one which return null for each
+				// request.
+				return new PageIconsRegistry();
+			}
+		}
+		/**
+		 * the icon registry
+		 */
+		private IPageIconsRegistry editorRegistry;
+
+		/**
+		 * Get the EditorRegistry used to create editor instances. This default
+		 * implementation return the singleton eINSTANCE. This method can be
+		 * subclassed to return another registry.
+		 * 
+		 * @return the singleton eINSTANCE of editor registry
+		 */
+		protected IPageIconsRegistryExtended getEditorRegistry() {
+			if(editorRegistry == null) {
+				editorRegistry = createEditorRegistry();
+			}
+			if(!(editorRegistry instanceof IPageIconsRegistryExtended)) {
+				throw new RuntimeException("The editor registry do not implement IPageIconsRegistryExtended");////$NON-NLS-1$
+			}
+			return (IPageIconsRegistryExtended)editorRegistry;
+		}
+		
+		@Override
+		public String getText(Object element) {
+			if(element instanceof PapyrusTableInstance) {
+			return ((PapyrusTableInstance)element).getName();
+			}
+			return super.getText(element);
+		}
+
+
+		@Override
+		public Image getImage(Object element) {
+			if(element instanceof PapyrusTableInstance) {
+				return getEditorRegistry().getEditorIcon(element);
+			}
+			return super.getImage(element);
+		}
+	}
+
+
 }

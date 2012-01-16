@@ -29,8 +29,14 @@ import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkObject;
  */
 public abstract class AbstractHyperLinkEditorHelper {
 
-	//TODO 
-	public abstract HyperLinkEditor getHyperLinkObjectFor(final Object s);
+	/**
+	 * 
+	 * @param editor
+	 *        an editor
+	 * @return
+	 *         the HyperLinkEditor for this object or <code>null</code> if the object is not managed by this helper
+	 */
+	public abstract HyperLinkEditor getHyperLinkObjectFor(final Object editor);
 
 	/**
 	 * 
