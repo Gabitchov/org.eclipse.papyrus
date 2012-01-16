@@ -33,4 +33,10 @@
             class="org.eclipse.papyrus.infra.table.common.factory.PapyrusCommandFactory">
       </commandFactory>
    </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.hyperlink.editor.registration">
+      <editorhyperlink
+            helper="org.eclipse.papyrus.infra.table.common.hyperlink.HyperLinkTableEditorHelper">
+      </editorhyperlink>
+   </extension> 
 </plugin>
