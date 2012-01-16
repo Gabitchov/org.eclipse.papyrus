@@ -25,9 +25,8 @@ import java.util.Set;
 
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.emf.common.command.CompoundCommand;
-import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistry;
 import org.eclipse.papyrus.infra.hyperlink.Activator;
@@ -45,8 +44,6 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.ui.IMemento;
 import org.eclipse.ui.WorkbenchException;
 import org.eclipse.ui.XMLMemento;
-import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.Package;
 
 /**
  * The Class HyperLinkManagerShell2.
@@ -75,17 +72,21 @@ public class HyperLinkManagerShell extends AbstractHyperLinkManagerShell {
 
 	final protected List<HyperLinkObject> allhypHyperlinkObjects = new ArrayList<HyperLinkObject>();
 
-	/** The view. */
-	protected View view;
+	/** The graphical representation of the element (a View in GMF)  */
+	protected EModelElement view;
 
-	/** The amodel. */
-	protected Package amodel;
+	protected EModelElement semanticElement;
+	
+	/** the root of the model. */
+	protected EModelElement amodel;
 
 	/** The domain. */
 	protected TransactionalEditingDomain transactionalEditingDomain;
 
 	protected HyperLinkHelperFactory hyperLinkHelperFactory;
 
+	
+	
 	public void setInput(List<HyperLinkObject> hyperLinkObjectList) {
 		this.allhypHyperlinkObjects.clear();
 		this.allhypHyperlinkObjects.addAll(hyperLinkObjectList);
@@ -110,10 +111,11 @@ public class HyperLinkManagerShell extends AbstractHyperLinkManagerShell {
 	 * @param aview
 	 *        the aview of the uml element
 	 */
-	public HyperLinkManagerShell(IPageIconsRegistry editorFactoryRegistry, TransactionalEditingDomain domain, Element umlElement2, View aview, Package model, HyperLinkHelperFactory hyperHelperFactory) {
+	public HyperLinkManagerShell(IPageIconsRegistry editorFactoryRegistry, TransactionalEditingDomain domain, EModelElement semanticElement, EModelElement aview, EModelElement model, HyperLinkHelperFactory hyperHelperFactory) {
 		super();
 		this.hyperLinkHelperFactory = hyperHelperFactory;
 		this.view = aview;
+		this.semanticElement = semanticElement;
 		this.amodel = model;
 		this.transactionalEditingDomain = domain;
 		createHyperLinkShell();
@@ -276,12 +278,11 @@ public class HyperLinkManagerShell extends AbstractHyperLinkManagerShell {
 	protected void saveCorrespondingTab() {
 		IMemento rootMemento = getExistingHPMemento();
 		IMemento memento = getLastTabUseMemento(rootMemento);
-		EObject element = view.getElement();
-		if(element != null) {
+		if(semanticElement != null) {
 			//Save the corresponding tab for the element
 			//Use InstanceTypeName in order to make a convenient ID
 			int selectionIndex = getcTabFolder().getSelectionIndex();
-			memento.putInteger(element.eClass().getInstanceTypeName(), selectionIndex);
+			memento.putInteger(semanticElement.eClass().getInstanceTypeName(), selectionIndex);
 			//Save the global last tab used
 			memento.putInteger(LAST_GLOBAL_TAB_USED, selectionIndex);
 		}
@@ -295,10 +296,9 @@ public class HyperLinkManagerShell extends AbstractHyperLinkManagerShell {
 	 */
 	protected void selectLastTab() {
 		IMemento rootMemento = getExistingHPMemento();
-		EObject element = view.getElement();
 		Integer lastIndexUsed = null;
-		if(element != null) {
-			lastIndexUsed = getLastTabUseMemento(rootMemento, element.eClass().getInstanceTypeName());
+		if(semanticElement != null) {
+			lastIndexUsed = getLastTabUseMemento(rootMemento, semanticElement.eClass().getInstanceTypeName());
 		}
 		if(lastIndexUsed == null) {
 			lastIndexUsed = getLastTabUseMemento(rootMemento, LAST_GLOBAL_TAB_USED);
