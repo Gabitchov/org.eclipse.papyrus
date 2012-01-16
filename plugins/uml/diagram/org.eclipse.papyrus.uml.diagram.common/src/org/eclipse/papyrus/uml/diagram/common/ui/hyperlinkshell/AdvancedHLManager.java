@@ -10,14 +10,14 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *  Arthut Daussy (Atos) arthur.daussy@atos.net - Bug 363827 - [Improvement] Diagram creation, remember the latest tab chosen
- *
+ *  Vincent Lorenzo (CEA-LIST) Vincent.lorenzo@cea.fr (refactoring of the hyperlink)
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.ui.hyperlinkshell;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Iterator;
 
+import org.eclipse.core.runtime.Assert;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
@@ -25,11 +25,9 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistry;
-import org.eclipse.papyrus.uml.diagram.common.Activator;
-import org.eclipse.papyrus.uml.diagram.common.helper.HyperlinkHelperFactory;
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.widgets.Event;
-import org.eclipse.swt.widgets.Listener;
+import org.eclipse.papyrus.infra.hyperlink.helper.HyperLinkHelperFactory;
+import org.eclipse.papyrus.infra.hyperlink.ui.AbstractHyperLinkTab;
+import org.eclipse.papyrus.infra.hyperlink.ui.HyperLinkManagerShell;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Package;
 
@@ -39,15 +37,6 @@ import org.eclipse.uml2.uml.Package;
  */
 public class AdvancedHLManager extends HyperLinkManagerShell {
 
-	/**
-	 * tab to manage default hyperlinks
-	 */
-	protected DefaultHyperLinkTab defaultHyperLinkTab;
-
-	/**
-	 * tab to manage the creation of diagrams with heuristic
-	 */
-	protected LocalDefaultLinkDiagramTab defaultLinkDiagramTab;
 
 	/**
 	 * 
@@ -65,24 +54,8 @@ public class AdvancedHLManager extends HyperLinkManagerShell {
 	 *        the view of the uml element
 	 * 
 	 */
-	public AdvancedHLManager(IPageIconsRegistry editorFactoryRegistry, TransactionalEditingDomain domain, Element umlElement, View aview, Package model, HyperlinkHelperFactory hyperHelperFactory) {
+	public AdvancedHLManager(IPageIconsRegistry editorFactoryRegistry, TransactionalEditingDomain domain, Element umlElement, View aview, Package model, HyperLinkHelperFactory hyperHelperFactory) {
 		super(editorFactoryRegistry, domain, umlElement, aview, model, hyperHelperFactory);
-		defaultHyperLinkTab = new DefaultHyperLinkTab(getcTabFolder(), allhypHyperlinkObjects);
-		// add a listener to refresh default link  tab
-		defaultHyperLinkTab.getMainComposite().addListener(SWT.Show, new Listener() {
-
-			public void handleEvent(Event event) {
-				//get all hyperlink from all tabs
-				allhypHyperlinkObjects.clear();
-				Iterator<HyperLinkTab> iter = tabList.iterator();
-				while(iter.hasNext()) {
-					HyperLinkTab hyperLinkTab = (HyperLinkTab)iter.next();
-					allhypHyperlinkObjects.addAll(hyperLinkTab.getHyperlinkObjects());
-				}
-				defaultHyperLinkTab.setInput(allhypHyperlinkObjects);
-			}
-		});
-		defaultLinkDiagramTab = new LocalDefaultLinkDiagramTab(getcTabFolder(), umlElement);
 	}
 
 	/**
@@ -113,60 +86,40 @@ public class AdvancedHLManager extends HyperLinkManagerShell {
 	}
 
 	@Override
-	protected void executeOkButton() {
+	protected void doAction() {
+		super.doAction();
+//		defaultTab = getDefaultHyperLinkTab();
+		final LocalDefaultLinkDiagramTab heuristicTab = getHeuristicTab();
 		ArrayList<HyperLinkDiagram> defaultdiagramsWithHeuristic = new ArrayList<HyperLinkDiagram>();
 		//if the default diagrams is opened, get created default diagrams
-		if(defaultLinkDiagramTab.getDefaultHyperlinkComposite().isVisible()) {
-			defaultLinkDiagramTab.okPressed();
-			ICommand creationCommand = defaultLinkDiagramTab.getCommand();
-			transactionalEditingDomain.getCommandStack().execute(new GMFtoEMFCommandWrapper(defaultLinkDiagramTab.getCommand()));
+		if(heuristicTab.getDefaultHyperlinkComposite().isVisible()) {
+			heuristicTab.okPressed();
+			ICommand creationCommand = heuristicTab.getCommand();
+			//TODO : should be chained with the others command
+			transactionalEditingDomain.getCommandStack().execute(new GMFtoEMFCommandWrapper(heuristicTab.getCommand()));
 			defaultdiagramsWithHeuristic.addAll(getCreatedHyperlinkDiagramsWithHeuristic(creationCommand));
 		}
-		// empty all hyperlinks
-		transactionalEditingDomain.getCommandStack().execute(HyperlinkHelperFactory.getEmptyAllHyperLinkCommand(transactionalEditingDomain, view));
-		allhypHyperlinkObjects.clear();
-		//get all hyperlinks from tabs
-		Iterator<HyperLinkTab> iter = tabList.iterator();
-		while(iter.hasNext()) {
-			HyperLinkTab hyperLinkTab = (HyperLinkTab)iter.next();
-			allhypHyperlinkObjects.addAll(hyperLinkTab.getHyperlinkObjects());
-		}
-		//set all hyper links is default to false
-		Iterator<HyperlinkObject> iterator = allhypHyperlinkObjects.iterator();
-		while(iterator.hasNext()) {
-			HyperlinkObject hyperLink = (HyperlinkObject)iterator.next();
-			hyperLink.setIsDefault(false);
-		}
-		//look for all hyperlink default and put it as default at the top of the list
-		int i = defaultHyperLinkTab.getDefaultHyperLinkObject().size() - 1;
-		while(i >= 0) {
-			HyperlinkObject hyperLinkObject = defaultHyperLinkTab.getDefaultHyperLinkObject().get(i);
-			hyperLinkObject.setIsDefault(true);
-			if(allhypHyperlinkObjects.contains(hyperLinkObject)) {
-				allhypHyperlinkObjects.remove(hyperLinkObject);
-				allhypHyperlinkObjects.add(0, hyperLinkObject);
-			}
-			i--;
-		}
+
+		
+		
 		//add into the list all diagram create by using heuristic
-		for(i = 0; i < defaultdiagramsWithHeuristic.size(); i++) {
-			allhypHyperlinkObjects.add(0, defaultdiagramsWithHeuristic.get(0));
+		for(int i = 0; i < defaultdiagramsWithHeuristic.size(); i++) {
+			allhypHyperlinkObjects.add(0, defaultdiagramsWithHeuristic.get(i));
 		}
-		// save hyperlink Document list
-		try {
-			transactionalEditingDomain.getCommandStack().execute(hyperLinkHelperFactory.getAddHyperLinkCommand(transactionalEditingDomain, view, allhypHyperlinkObjects));
-		} catch (HyperLinkException error) {
-			Activator.log.error(error);
-		}
-		//save last tab used
-		saveCorrespondingTab();
-		tabList.clear();
-		getHyperLinkShell().close();
+
 	}
 
-	@Override
-	public void setInput(ArrayList<HyperlinkObject> hyperLinkObjectList) {
-		super.setInput(hyperLinkObjectList);
-		defaultHyperLinkTab.setInput(allhypHyperlinkObjects);
+	private LocalDefaultLinkDiagramTab getHeuristicTab(){
+		int i=0;
+		LocalDefaultLinkDiagramTab tab=null;
+		for(AbstractHyperLinkTab current : tabList){
+			if(current instanceof LocalDefaultLinkDiagramTab){
+				tab = (LocalDefaultLinkDiagramTab)current;
+				i++;
+			}
+		}
+		Assert.isTrue(i==1);
+		Assert.isNotNull(tab);
+		return tab;
 	}
 }

@@ -42,16 +42,14 @@ import org.eclipse.papyrus.infra.core.editorsfactory.PageIconsRegistry;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.utils.EditorUtils;
-import org.eclipse.papyrus.uml.diagram.common.helper.AbstractHyperLinkHelper;
-import org.eclipse.papyrus.uml.diagram.common.helper.DiagramHyperLinkHelper;
-import org.eclipse.papyrus.uml.diagram.common.helper.DocumentHyperLinkHelper;
-import org.eclipse.papyrus.uml.diagram.common.helper.HyperlinkHelperFactory;
-import org.eclipse.papyrus.uml.diagram.common.helper.WebHyperLinkHelper;
+import org.eclipse.papyrus.infra.hyperlink.helper.AbstractHyperLinkHelper;
+import org.eclipse.papyrus.infra.hyperlink.helper.HyperLinkHelperFactory;
+import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkObject;
+import org.eclipse.papyrus.infra.hyperlink.ui.HyperLinkManagerShell;
+import org.eclipse.papyrus.infra.hyperlink.util.HyperLinkException;
+import org.eclipse.papyrus.infra.hyperlink.util.HyperLinkLabelProvider;
+import org.eclipse.papyrus.infra.hyperlink.util.HyperLinkHelpersRegistrationUtil;
 import org.eclipse.papyrus.uml.diagram.common.ui.hyperlinkshell.AdvancedHLManager;
-import org.eclipse.papyrus.uml.diagram.common.ui.hyperlinkshell.HyperLinkException;
-import org.eclipse.papyrus.uml.diagram.common.ui.hyperlinkshell.HyperLinkLabelProvider;
-import org.eclipse.papyrus.uml.diagram.common.ui.hyperlinkshell.HyperLinkManagerShell;
-import org.eclipse.papyrus.uml.diagram.common.ui.hyperlinkshell.HyperlinkObject;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.uml2.uml.Element;
@@ -291,8 +289,8 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 					hyperLinkManagerShell.open();
 
 				} else if(me.getSource() instanceof PopupBarLabelHandle) {
-					if((((PopupBarLabelHandle)me.getSource()).getReferencedObject()) instanceof HyperlinkObject) {
-						HyperlinkObject hyperLinkObject = (HyperlinkObject)(((PopupBarLabelHandle)me.getSource()).getReferencedObject());
+					if((((PopupBarLabelHandle)me.getSource()).getReferencedObject()) instanceof HyperLinkObject) {
+						HyperLinkObject hyperLinkObject = (HyperLinkObject)(((PopupBarLabelHandle)me.getSource()).getReferencedObject());
 						hyperLinkObject.executeSelectPressed();
 					}
 				}
@@ -407,8 +405,8 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 	/** mouse keys listener for the owner shape. */
 	private final PopupBarMouseListener myMouseKeyListener = new PopupBarMouseListener();
 
-	protected ArrayList<HyperlinkObject> hyperLinkObjectList;
-	protected HyperlinkHelperFactory hyperlinkHelperFactory;
+	protected ArrayList<HyperLinkObject> hyperLinkObjectList;
+	protected HyperLinkHelperFactory hyperlinkHelperFactory;
 
 	/**
 	 * {@inheritedDoc}
@@ -421,12 +419,14 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 	public HyperLinkPopupBarEditPolicy() {
 		super();
 		ArrayList<AbstractHyperLinkHelper>  hyperLinkHelpers= new ArrayList<AbstractHyperLinkHelper>();
-		hyperLinkHelpers.add(new DiagramHyperLinkHelper());
-		hyperLinkHelpers.add(new DocumentHyperLinkHelper());
-		hyperLinkHelpers.add(new WebHyperLinkHelper());
-		hyperlinkHelperFactory= new HyperlinkHelperFactory(hyperLinkHelpers);
+		//TODO 
+//		hyperLinkHelpers.add(new DiagramHyperLinkHelper());
+//		hyperLinkHelpers.add(new DocumentHyperLinkHelper());
+//		hyperLinkHelpers.add(new WebHyperLinkHelper());
+		hyperLinkHelpers.addAll(HyperLinkHelpersRegistrationUtil.INSTANCE.getAllRegisteredHyperLinkHelper());
+		hyperlinkHelperFactory= new HyperLinkHelperFactory(hyperLinkHelpers);
 	}
-
+	
 	/**
 	 * Adds the object list in the popup bar.
 	 * 
@@ -613,7 +613,7 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 			// add all subdiagrams
 
 			try {
-				hyperLinkObjectList = (ArrayList<HyperlinkObject>)hyperlinkHelperFactory.getAllreferenced(((GraphicalEditPart)getHost()).getNotationView());
+				hyperLinkObjectList = (ArrayList<HyperLinkObject>)hyperlinkHelperFactory.getAllreferenced(((GraphicalEditPart)getHost()).getNotationView());
 			} catch (HyperLinkException e) {
 				e.printStackTrace();
 			}

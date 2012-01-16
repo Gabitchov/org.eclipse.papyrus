@@ -38,17 +38,16 @@ import org.eclipse.papyrus.infra.gmfdiag.navigation.ExistingNavigableElement;
 import org.eclipse.papyrus.infra.gmfdiag.navigation.NavigableElement;
 import org.eclipse.papyrus.infra.gmfdiag.navigation.NavigationHelper;
 import org.eclipse.papyrus.infra.gmfdiag.navigation.preference.INavigationPreferenceConstant;
+import org.eclipse.papyrus.infra.hyperlink.helper.AbstractHyperLinkHelper;
+import org.eclipse.papyrus.infra.hyperlink.helper.HyperLinkHelperFactory;
+import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkObject;
+import org.eclipse.papyrus.infra.hyperlink.ui.EditorNavigationDialog;
+import org.eclipse.papyrus.infra.hyperlink.ui.HyperLinkManagerShell;
+import org.eclipse.papyrus.infra.hyperlink.util.HyperLinkHelpersRegistrationUtil;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
-import org.eclipse.papyrus.uml.diagram.common.dialogs.DiagramNavigationDialog;
-import org.eclipse.papyrus.uml.diagram.common.helper.AbstractHyperLinkHelper;
-import org.eclipse.papyrus.uml.diagram.common.helper.DiagramHyperLinkHelper;
-import org.eclipse.papyrus.uml.diagram.common.helper.DocumentHyperLinkHelper;
-import org.eclipse.papyrus.uml.diagram.common.helper.HyperlinkHelperFactory;
-import org.eclipse.papyrus.uml.diagram.common.helper.WebHyperLinkHelper;
+
 import org.eclipse.papyrus.uml.diagram.common.ui.hyperlinkshell.AdvancedHLManager;
 import org.eclipse.papyrus.uml.diagram.common.ui.hyperlinkshell.HyperLinkDiagram;
-import org.eclipse.papyrus.uml.diagram.common.ui.hyperlinkshell.HyperLinkManagerShell;
-import org.eclipse.papyrus.uml.diagram.common.ui.hyperlinkshell.HyperlinkObject;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Package;
@@ -102,8 +101,8 @@ public class NavigationEditPolicy extends OpenEditPolicy {
 		List<NavigableElement> navElements=null;
 
 		// defaultHyperlinks
-		final ArrayList<HyperlinkObject> defaultHyperLinkObject=new ArrayList<HyperlinkObject>();
-		final ArrayList<HyperlinkObject> hyperLinkObjectList;
+		final ArrayList<HyperLinkObject> defaultHyperLinkObject=new ArrayList<HyperLinkObject>();
+		final ArrayList<HyperLinkObject> hyperLinkObjectList;
 		// Diagrams that will be found by using heuristic
 		HashMap<NavigableElement, List<Diagram>> existingDiagrams = new HashMap<NavigableElement, List<Diagram>>();
 
@@ -113,19 +112,19 @@ public class NavigationEditPolicy extends OpenEditPolicy {
 		// initialition of code to extract hyperlinks, in the future to do with
 		// extension points
 		ArrayList<AbstractHyperLinkHelper>  hyperLinkHelpers= new ArrayList<AbstractHyperLinkHelper>();
-		hyperLinkHelpers.add(new DiagramHyperLinkHelper());
-		hyperLinkHelpers.add(new DocumentHyperLinkHelper());
-		hyperLinkHelpers.add(new WebHyperLinkHelper());
-
-		final HyperlinkHelperFactory hyperlinkHelperFactory= new HyperlinkHelperFactory(hyperLinkHelpers);
+//		hyperLinkHelpers.add(new DiagramHyperLinkHelper());
+//		hyperLinkHelpers.add(new DocumentHyperLinkHelper());
+//		hyperLinkHelpers.add(new WebHyperLinkHelper());
+		hyperLinkHelpers.addAll(HyperLinkHelpersRegistrationUtil.INSTANCE.getAllRegisteredHyperLinkHelper());
+		final HyperLinkHelperFactory hyperlinkHelperFactory= new HyperLinkHelperFactory(hyperLinkHelpers);
 
 		try{
 			// fill the list of default hyperlinks
-			hyperLinkObjectList = (ArrayList<HyperlinkObject>)hyperlinkHelperFactory.getAllreferenced(gep.getNotationView());
+			hyperLinkObjectList = (ArrayList<HyperLinkObject>)hyperlinkHelperFactory.getAllreferenced(gep.getNotationView());
 
-			Iterator<HyperlinkObject> iterator= hyperLinkObjectList.iterator();
+			Iterator<HyperLinkObject> iterator= hyperLinkObjectList.iterator();
 			while(iterator.hasNext()) {
-				HyperlinkObject hyperlinkObject = iterator.next();
+				HyperLinkObject hyperlinkObject = iterator.next();
 				if( hyperlinkObject.getIsDefault()){
 
 					defaultHyperLinkObject.add(hyperlinkObject);
@@ -172,7 +171,7 @@ public class NavigationEditPolicy extends OpenEditPolicy {
 						hyperLinkDiagram.setDiagram(diagram);
 						hyperLinkDiagram.setTooltipText(diagram.getName()+" (found by heuristic)");
 						// look for if a hyperlink already exists
-						HyperlinkObject foundHyperlink=null;
+						HyperLinkObject foundHyperlink=null;
 						for(int i=0; i<defaultHyperLinkObject.size()&&foundHyperlink==null;i++){
 							if (defaultHyperLinkObject.get(i).getObject().equals(diagram)){
 								foundHyperlink=defaultHyperLinkObject.get(i);
@@ -211,17 +210,17 @@ public class NavigationEditPolicy extends OpenEditPolicy {
 			}
 			if(defaultHyperLinkObject.size()>1){
 				// open a dialog to choose a diagram
-				DiagramNavigationDialog diagramNavigationDialog= new DiagramNavigationDialog(new Shell(),defaultHyperLinkObject);
+				EditorNavigationDialog diagramNavigationDialog= new EditorNavigationDialog(new Shell(),defaultHyperLinkObject);
 				diagramNavigationDialog.open();
-				final ArrayList<HyperlinkObject> hList=diagramNavigationDialog.getSelectedHyperlinks();
+				final List<HyperLinkObject> hList=diagramNavigationDialog.getSelectedHyperlinks();
 				Command command= new Command() {
 					@Override
 					public void execute() {
 						super.execute();
 
-						Iterator<HyperlinkObject> iter= hList.iterator();
+						Iterator<HyperLinkObject> iter= hList.iterator();
 						while(iter.hasNext()) {
-							HyperlinkObject hyperlinkObject = iter.next();
+							HyperLinkObject hyperlinkObject = iter.next();
 							hyperlinkObject.executeSelectPressed();
 						}
 					}

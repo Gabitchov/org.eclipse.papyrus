@@ -32,6 +32,9 @@ import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.infra.gmfdiag.navigation.CreatedNavigableElement;
 import org.eclipse.papyrus.infra.gmfdiag.navigation.NavigableElement;
 import org.eclipse.papyrus.infra.gmfdiag.navigation.NavigationHelper;
+import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkObject;
+import org.eclipse.papyrus.infra.hyperlink.ui.AbstractHyperLinkTab;
+import org.eclipse.papyrus.uml.diagram.navigation.UMLNavigationHelper;
 import org.eclipse.papyrus.uml.diagram.navigation.UMLNavigationHelper;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CCombo;
@@ -52,9 +55,9 @@ import org.eclipse.swt.widgets.Text;
 /**
  * this is the tab in charge to display the hyperlink diagram created by using heuristic for the property default
  * the code was extract from {@link NavigationCreateDiagramDialog}
- *
+ * 
  */
-public class LocalDefaultLinkDiagramTab {
+public class LocalDefaultLinkDiagramTab extends AbstractHyperLinkTab {
 
 	private static final String CREATION_ENTRY_KEY = "CREATION_ENTRY";
 
@@ -66,7 +69,7 @@ public class LocalDefaultLinkDiagramTab {
 
 	private static final String[] COLUMN_NAMES = { "Navigation type", "Feature", "Element type", "Diagram type", "Diagram name" };
 
-	private static final int[] COLUMN_WIDTHS   = { 80, 120, 120, 200, 120};
+	private static final int[] COLUMN_WIDTHS = { 80, 120, 120, 200, 120 };
 
 	private Map<NavigableElement, List<CreationCommandDescriptor>> possibleCreations;
 
@@ -98,6 +101,7 @@ public class LocalDefaultLinkDiagramTab {
 			return false;
 		}
 	}
+
 	private Composite defaultHyperlinkComposite;
 
 
@@ -111,13 +115,15 @@ public class LocalDefaultLinkDiagramTab {
 	/**
 	 * 
 	 * Constructor.
-	 *
-	 * @param tabFolder the parent tabfolder
-	 * @param semanticElement  the element from which diagram can be created
+	 * 
+	 * @param tabFolder
+	 *        the parent tabfolder
+	 * @param semanticElement
+	 *        the element from which diagram can be created
 	 */
-
-	public  LocalDefaultLinkDiagramTab(CTabFolder tabFolder, EObject semanticElement){
-		this.semanticElement=semanticElement;
+	@Deprecated
+	public LocalDefaultLinkDiagramTab(CTabFolder tabFolder, EObject semanticElement) {
+		this.semanticElement = semanticElement;
 		//init list of descriptor to fill the table
 		initLocalNavigableElement();
 		//associate the composite to the tabfolder
@@ -129,8 +135,28 @@ public class LocalDefaultLinkDiagramTab {
 		tbtmDefaultsHyperlinks.setControl(defaultHyperlinkComposite);
 	}
 
+	public LocalDefaultLinkDiagramTab() {
+		super();
+	}
 
-	/** get the command to create diagrams from the selection done into the table
+	@Override
+	public void init(CTabFolder tabFolder, List<HyperLinkObject> hyperlinkObjects, EObject element) {
+		super.init(tabFolder, hyperlinkObjects, element);
+		this.semanticElement = element;
+		//init list of descriptor to fill the table
+		initLocalNavigableElement();
+		//associate the composite to the tabfolder
+		CTabItem tbtmDefaultsHyperlinks = new CTabItem(tabFolder, SWT.NONE);
+		tbtmDefaultsHyperlinks.setText("Hyperlink diagram with Heuristic");
+		defaultHyperlinkComposite = new Composite(tabFolder, SWT.NONE);
+		defaultHyperlinkComposite.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
+		createArea(defaultHyperlinkComposite);
+		tbtmDefaultsHyperlinks.setControl(defaultHyperlinkComposite);
+	}
+
+	/**
+	 * get the command to create diagrams from the selection done into the table
+	 * 
 	 * @return the command in charge of the creation of the diagrams
 	 * **/
 	public ICommand getCommand() {
@@ -170,9 +196,12 @@ public class LocalDefaultLinkDiagramTab {
 		command = compositeCommand;
 
 	}
+
 	/**
 	 * construction the ui
-	 * @param parent the composite that contains table.
+	 * 
+	 * @param parent
+	 *        the composite that contains table.
 	 * @return the table contained in the composite
 	 */
 	protected Control createArea(Composite parent) {
@@ -183,7 +212,7 @@ public class LocalDefaultLinkDiagramTab {
 		table.setLinesVisible(true);
 		table.setBounds(10, 20, 650, 170);
 
-		for(int i = 0 ; i < COLUMN_NAMES.length ; i++) {
+		for(int i = 0; i < COLUMN_NAMES.length; i++) {
 			TableColumn col = new TableColumn(table, SWT.NONE);
 			col.setText(COLUMN_NAMES[i]);
 			col.setWidth(COLUMN_WIDTHS[i]);
@@ -201,7 +230,7 @@ public class LocalDefaultLinkDiagramTab {
 			// ignore containing feature if we are on the root element
 			// because it is a direct diagram creation
 			// => the feature has no meaning in this case
-			if (!semanticElement.equals(navElement.getElement())) {
+			if(!semanticElement.equals(navElement.getElement())) {
 				groupKey.feature = navElement.getFeature();
 			}
 
@@ -282,9 +311,9 @@ public class LocalDefaultLinkDiagramTab {
 
 	/**
 	 * this method is used to construct descriptors of heuristic to construct diagrams.
-	 *  These descriptors will be displayed in the table.
+	 * These descriptors will be displayed in the table.
 	 */
-	protected void initLocalNavigableElement(){
+	protected void initLocalNavigableElement() {
 		List<NavigableElement> navElements = NavigationHelper.getInstance().getAllNavigableElements(semanticElement);
 		possibleCreations = new HashMap<NavigableElement, List<CreationCommandDescriptor>>();
 
@@ -308,6 +337,11 @@ public class LocalDefaultLinkDiagramTab {
 	 */
 	protected static ICreationCommandRegistry getCreationCommandRegistry() {
 		return CreationCommandRegistry.getInstance(org.eclipse.papyrus.infra.core.Activator.PLUGIN_ID);
+	}
+
+	@Override
+	public void setInput(List<HyperLinkObject> hyperLinkObjectList) {
+		//nothing to do here?
 	}
 
 }

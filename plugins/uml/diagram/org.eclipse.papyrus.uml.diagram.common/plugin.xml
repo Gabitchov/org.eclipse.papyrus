@@ -660,4 +660,18 @@
       </ViewId>
    </GlobalActionHandlerProvider>
 </extension>
+<extension
+      point="org.eclipse.papyrus.infra.hyperlink.editor.registration">
+   <editorhyperlink
+         helper="org.eclipse.papyrus.uml.diagram.common.ui.hyperlinkshell.HyperLinkDiagramEditorHelper">
+   </editorhyperlink>
+</extension>
+<extension
+      point="org.eclipse.papyrus.infra.hyperlink.tab.registration">
+   <hyperlinktab
+         position="250"
+         tab="org.eclipse.papyrus.uml.diagram.common.ui.hyperlinkshell.LocalDefaultLinkDiagramTab"
+         tabId="org.eclipse.papyrus.uml.diagram.common.heuristictab">
+   </hyperlinktab>
+</extension>
 </plugin>

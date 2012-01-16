@@ -13,24 +13,29 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.ui.hyperlinkshell;
 
-import java.util.List;
-
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
-import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistry;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
-import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.core.utils.EditorUtils;
-import org.eclipse.papyrus.infra.core.utils.OpenDiagramCommand;
-import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
-import org.eclipse.uml2.uml.Package;
+import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkEditor;
+import org.eclipse.swt.graphics.Image;
 
 /**
  * The Class HyperLinkDiagram a container of diagram
  */
-@SuppressWarnings("deprecation")
-public class HyperLinkDiagram extends HyperlinkObject {
+public class HyperLinkDiagram extends HyperLinkEditor {//extends HyperLinkObject{
 
+	public Image getImage(Object element) {//TODO remove this method
+		if(element instanceof Diagram){
+			return getEditorRegistry().getEditorIcon(element);
+		}
+		return null;
+	}
+
+	public String getText(Object element) {//TODO remove this method
+		if(element instanceof Diagram){
+			return ((Diagram)element).getName();
+		}
+		return null;
+	}
+	
 	/**
 	 * Gets the diagram.
 	 * 
@@ -50,47 +55,47 @@ public class HyperLinkDiagram extends HyperlinkObject {
 	public void setDiagram(Diagram object) {
 		super.setObject(object);
 	}
-
-	/**
-	 * 
-	 * @see org.eclipse.papyrus.uml.diagram.common.ui.hyperlinkshell.HyperlinkObject#executeSelectPressed()
-	 *
-	 */
-	@Override
-	public void executeSelectPressed() {
-		IMultiDiagramEditor papyrusEditor=EditorUtils.getMultiDiagramEditor();
-		IPageMngr pageMngr=null;
-		try {
-			OpenDiagramCommand openCommand = new OpenDiagramCommand(ServiceUtils.getInstance().getTransactionalEditingDomain(papyrusEditor.getServicesRegistry()), getDiagram());
-			if(openCommand.canExecute()) {
-				openCommand.execute(null, null);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	/**
-	 * 
-	 */
-	@Override
-	public void executeEditMousePressed(List<HyperlinkObject> list, Package amodel) {
-		IPageIconsRegistry editorRegistry=null;
-		IMultiDiagramEditor papyrusEditor=EditorUtils.getMultiDiagramEditor();
-		try {
-			editorRegistry= papyrusEditor.getServicesRegistry().getService(IPageIconsRegistry.class);
-		} catch (ServiceException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		EditorHyperlinkDiagramShell editor = new EditorHyperlinkDiagramShell(editorRegistry, amodel);
-		editor.setHyperLinkDiagram(this);
-		editor.open();
-		if(editor.getHyperLinkDiagram() != null) {
-			int index = list.indexOf(this);
-			list.remove(this);
-			list.add(index,editor.getHyperLinkDiagram());
-
-		}
-	}
+//
+//	/**
+//	 * 
+//	 * @see org.eclipse.papyrus.uml.diagram.common.ui.hyperlinkshell.HyperlinkObject#executeSelectPressed()
+//	 *
+//	 */
+//	@Override
+//	public void executeSelectPressed() {
+//		IMultiDiagramEditor papyrusEditor=EditorUtils.getMultiDiagramEditor();
+//		IPageMngr pageMngr=null;
+//		try {
+//			OpenDiagramCommand openCommand = new OpenDiagramCommand(ServiceUtils.getInstance().getTransactionalEditingDomain(papyrusEditor.getServicesRegistry()), getDiagram());
+//			if(openCommand.canExecute()) {
+//				openCommand.execute(null, null);
+//			}
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//	}
+//
+//	/**
+//	 * 
+//	 */
+//	@Override
+//	public void executeEditMousePressed(List<HyperLinkObject> list, Package amodel) {
+//		IPageIconsRegistry editorRegistry=null;
+//		IMultiDiagramEditor papyrusEditor=EditorUtils.getMultiDiagramEditor();
+//		try {
+//			editorRegistry= papyrusEditor.getServicesRegistry().getService(IPageIconsRegistry.class);
+//		} catch (ServiceException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		EditorHyperlinkDiagramShell editor = new EditorHyperlinkDiagramShell(editorRegistry, amodel);
+//		editor.setHyperLinkDiagram(this);
+//		editor.open();
+//		if(editor.getHyperLinkDiagram() != null) {
+//			int index = list.indexOf(this);
+//			list.remove(this);
+//			list.add(index,editor.getHyperLinkDiagram());
+//
+//		}
+//	}
 }

@@ -11,7 +11,7 @@
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.uml.diagram.common.commands;
+package org.eclipse.papyrus.uml.diagram.common.ui.hyperlinkshell;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -27,10 +27,10 @@ import org.eclipse.papyrus.uml.tools.utils.ui.command.CreateEAnnotationCommand;
  * web. It will remove the first eannotation that corresponds to the link or the
  * localization of the hyperlink
  */
-public class DeleteHyperLinkDocumentCommand extends CreateEAnnotationCommand {
+public class DeleteHyperLinkDiagramCommand extends CreateEAnnotationCommand {
 
 	/** The localization. */
-	public String link;
+	public EModelElement diagram;
 
 	/**
 	 * Instantiates a new delete hyper link command used to suppress a link in
@@ -40,12 +40,12 @@ public class DeleteHyperLinkDocumentCommand extends CreateEAnnotationCommand {
 	 *        the domain
 	 * @param object
 	 *        the object
-	 * @param link
+	 * @param diagram
 	 *        the localization of the link
 	 */
-	public DeleteHyperLinkDocumentCommand(TransactionalEditingDomain domain, EModelElement object, String link) {
+	public DeleteHyperLinkDiagramCommand(TransactionalEditingDomain domain, EModelElement object, EModelElement diagram) {
 		super(domain, object, VisualInformationPapyrusConstant.HYPERLINK_DIAGRAM);
-		this.link = link;
+		this.diagram = diagram;
 	}
 
 	/**
@@ -57,8 +57,8 @@ public class DeleteHyperLinkDocumentCommand extends CreateEAnnotationCommand {
 		// look for interesting eannotations
 		while(iter.hasNext()) {
 			EAnnotation currentAnnotation = iter.next();
-			if(currentAnnotation.getSource().equals(VisualInformationPapyrusConstant.HYPERLINK_DOCUMENT) || currentAnnotation.getSource().equals(VisualInformationPapyrusConstant.HYPERLINK_WEB)) {
-				if(currentAnnotation.getDetails().containsValue(link)) {
+			if(currentAnnotation.getSource().equals(VisualInformationPapyrusConstant.HYPERLINK_DIAGRAM)) {
+				if(currentAnnotation.getReferences().contains(diagram)) {
 					eAnnotationsToRemove.add(currentAnnotation);
 				}
 			}
