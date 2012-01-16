@@ -48,11 +48,16 @@
    </element>
 
    <element name="hyperlink">
+      <annotation>
+         <documentation>
+            This extension point allows to register an helper. With this helper a new tab will be created, as the existing tabs Editor and Document.
+         </documentation>
+      </annotation>
       <complexType>
          <attribute name="helper" type="string" use="required">
             <annotation>
                <documentation>
-                  
+                  The class which implements the helper
                </documentation>
                <appinfo>
                   <meta.attribute kind="java" basedOn="org.eclipse.papyrus.infra.hyperlink.helper.AbstractHyperLinkHelper:"/>
@@ -69,7 +74,7 @@
          <attribute name="tabId" type="string" use="required">
             <annotation>
                <documentation>
-                  
+                  The id for the tab. This id should be unique.
                </documentation>
             </annotation>
          </attribute>
