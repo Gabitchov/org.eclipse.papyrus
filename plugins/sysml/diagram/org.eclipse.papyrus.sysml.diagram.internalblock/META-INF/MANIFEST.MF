@@ -28,4 +28,18 @@ Bundle-Activator: org.eclipse.papyrus.sysml.diagram.internalblock.Acti
 Bundle-SymbolicName: org.eclipse.papyrus.sysml.diagram.internalblock;s
  ingleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: org.eclipse.papyrus.sysml.diagram.internalblock,
+ org.eclipse.papyrus.sysml.diagram.internalblock.compatibility,
+ org.eclipse.papyrus.sysml.diagram.internalblock.dnd.helper,
+ org.eclipse.papyrus.sysml.diagram.internalblock.edit.part,
+ org.eclipse.papyrus.sysml.diagram.internalblock.edit.policy,
+ org.eclipse.papyrus.sysml.diagram.internalblock.factory,
+ org.eclipse.papyrus.sysml.diagram.internalblock.handler,
+ org.eclipse.papyrus.sysml.diagram.internalblock.helper.advice,
+ org.eclipse.papyrus.sysml.diagram.internalblock.messages,
+ org.eclipse.papyrus.sysml.diagram.internalblock.part,
+ org.eclipse.papyrus.sysml.diagram.internalblock.preferences,
+ org.eclipse.papyrus.sysml.diagram.internalblock.provider,
+ org.eclipse.papyrus.sysml.diagram.internalblock.ui,
+ org.eclipse.papyrus.sysml.diagram.internalblock.utils
 
