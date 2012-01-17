@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<rm:rmap xmlns:bc="http://www.eclipse.org/buckminster/Common-1.0" xmlns:rm="http://www.eclipse.org/buckminster/RMap-1.0">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<rm:rmap xmlns:rm="http://www.eclipse.org/buckminster/RMap-1.0" xmlns:bc="http://www.eclipse.org/buckminster/Common-1.0">
   <rm:property key="build.type" mutable="true" value="N"/>
   <rm:locator pattern="^org\.eclipse\.mdt\.papyrus\.releng.*" searchPathRef="releng"/>
   <rm:locator pattern="^org\.eclipse\.papyrus\.build.*" searchPathRef="releng"/>
   <rm:locator pattern="^org\.eclipse\.papyrus.*" searchPathRef="sources"/>
   <rm:locator pattern="^org\.eclipse\.xtext\.gmf\.glue.*" searchPathRef="sources"/>
-  <rm:locator searchPathRef="orbit" failOnError="false"/>
+  <rm:locator failOnError="false" searchPathRef="orbit"/>
   <rm:locator searchPathRef="platform.binaries"/>
   <rm:searchPath name="releng">
     <rm:provider componentTypes="buckminster,osgi.bundle" readerType="local">
@@ -120,8 +120,7 @@
     </rm:provider>
   </rm:searchPath>
   <rm:searchPath name="orbit">
-    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
-        mutable="false">
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
  
       <!--rm:uri format="{0}/tools/orbit/downloads/drops/S20110515001817/repository/"-->
             <rm:uri format="{0}/tools/orbit/downloads/drops/R20110523182458/repository/">
@@ -130,61 +129,62 @@
       </rm:uri>
     </rm:provider>
   </rm:searchPath>
+  
+  
   <rm:searchPath name="platform.binaries">
-    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
-        mutable="false">
-      <rm:uri format="{0}/birt/update-site/4.0-interim/">
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
+		 <!-- updateFrom("BIRT",0) -->
+      <rm:uri format="{0}/birt/update-site/3.7-interim/">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
-    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
-        mutable="false">
-      <!--rm:uri format="{0}/modeling/emf/cdo/updates/releases/4.0"-->
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
+        <!-- updateFrom("EMF CDO",0) -->
       <rm:uri format="{0}/modeling/emf/cdo/drops/R20110913-0010">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
-    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
-        mutable="false">
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
+		  <!-- updateFrom("M2M ATL",0) -->
       <rm:uri format="{0}/modeling/m2m/atl/updates/releases/3.2/">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
-    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
-        mutable="false">
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
+		 <!-- updateFrom("M2M QVTO 3.1.0",0) -->
       <rm:uri format="{0}/modeling/m2m/qvtoml/updates/3.1.0/milestones/">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
-    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
-        mutable="false">
-      <rm:uri format="{0}/modeling/m2t/updates/milestones">
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
+		 <!-- updateFrom("M2T JET",0) -->
+      <rm:uri format="{0}/modeling/m2t/updates/milestones/">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
-    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
-        mutable="false">
-      <rm:uri format="{0}/modeling/m2t/acceleo/updates/releases/3.1/R201109140246">
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
+		  <!-- updateFrom("M2T ACCELEO",0) -->
+      <rm:uri format="{0}/modeling/m2t/acceleo/updates/milestones/3.1">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
-    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
-        mutable="false">
-      <rm:uri format="{0}/modeling/mdt/ocl/updates/releases/3.1.0">
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
+		  <!-- updateFrom("MDT OCL 3.1",0) -->
+      <rm:uri format="{0}/modeling/mdt/ocl/updates/maintenance/3.1.0">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
     
-    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
-        mutable="false">
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
+		<!--nothing to do-->
       <rm:uri format="{0}/modeling/mdt/papyrus/extra/updates/richtext">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
     
-    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
-        mutable="false">
-      <rm:uri format="{0}/facet/updates/milestones/0.1/SR1_RC4">
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
+		 <!-- updateFrom("EMF Facet",0) -->
+      <rm:uri format="{0}/facet/updates/milestones/0.1/SR2_RC1">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>    
@@ -197,51 +197,48 @@
       </rm:uri>
     </rm:provider>
     -->
-    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
-        mutable="false">
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
       <rm:uri format="{0}/modeling/mdt/updates/milestones/">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
-    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
-        mutable="false">
-      <rm:uri format="{0}/mylyn/snapshots/indigo/">
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
+		<!-- updateFrom("Mylyn",0) -->
+      <rm:uri format="{0}/mylyn/snapshots/3.6">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
-    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
-        mutable="false">
-      <rm:uri format="{0}/modeling/emf/updates/releases/"> 
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
+		  <!-- updateFrom("EMF TRANSACTION",0) -->
+      <rm:uri format="{0}/modeling/emf/updates/interim/"> 
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
-    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
-        mutable="false">
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
+		  <!-- updateFrom("EMF (Core)",0) -->
       <rm:uri format="{0}/modeling/emf/emf/updates/2.7">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
-    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
-        mutable="false">
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
+		 <!-- updateFrom("GEF",0) -->
       <rm:uri format="{0}/tools/gef/updates/milestones">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
-     <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
-        mutable="false">
+     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
       <!--rm:uri format="{0}/e4/downloads/drops/S-0.11M5-201101282000/repository"-->
       <rm:uri format="{0}/e4/updates/0.11/R-0.11-201106201631"> 
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
-    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
-        mutable="false">
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
+		 <!-- updateFrom("GMF Runtime",0) -->
       <rm:uri format="{0}/modeling/gmp/updates/milestones">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
-	<rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
-        mutable="false">
+	<rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
       <rm:uri format="{0}/releases/indigo">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
