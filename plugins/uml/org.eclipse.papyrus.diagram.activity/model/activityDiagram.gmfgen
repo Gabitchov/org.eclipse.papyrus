@@ -217,17 +217,17 @@
           description="Constraint for BraodcastSignalAction"
           path="/0/@audits/@categories.0 /0/@audits/@categories.35"/>
       <categories
-          id="org.eclipse.uml2.uml.util.UMLValidator.validateInterruptibleActivityRegion_validateInterruptingEdges"
-          name="validateInterruptibleEdge"
-          description="Constraint Interruptible Edge"
-          path="/0/@audits/@categories.18"
-          audits="/0/@audits/@rules.61 /0/@audits/@rules.62"/>
-      <categories
           id="org.eclipse.uml2.uml.util.UMLValidator.validateExceptionHandler_validateExceptionHandler"
           name="validateExceptionHandler"
           description="Constraint Exception Handler"
           path="/0/@audits/@categories.10"
-          audits="/0/@audits/@rules.63"/>
+          audits="/0/@audits/@rules.61"/>
+      <categories
+          id="org.eclipse.uml2.uml.util.UMLValidator.validateInterruptibleEdge"
+          name="validateInterruptibleEdge"
+          description="Constraint for interruptible Edge"
+          path="/0/@audits/@categories.10"
+          audits="/0/@audits/@rules.62"/>
       <rules
           name="validateNoIncomingEdges"
           description="An initial node has no incoming edge"
@@ -1114,43 +1114,13 @@
         </target>
       </rules>
       <rules
-          name="validateInterruptibleEdgeSource"
-          description="The source of an interruptible edge must refer to an Activity Node included in the interruptible region define in the in the interrupts property. "
-          id="org.eclipse.uml2.uml.util.UMLValidator.validateInterruptingEdges_validateSource"
-          rule="/0/@expressionProviders/@providers.1/@expressions.86"
-          message="The source of an interruptible edge must refer to an Activity Node included in the interruptible region define in the in the interrupts property. "
-          useInLiveMode="true"
-          category="/0/@audits/@categories.36">
-        <target
-            xsi:type="gmfgen:GenDomainElementTarget"
-            contextSelector="/0/@audits/@clientContexts.0">
-          <element
-              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ActivityEdge"/>
-        </target>
-      </rules>
-      <rules
-          name="validateInterruptibleEdgeTarget"
-          description="Interrupting edges of a region must have their target node outside the region in the same Activity Region."
-          id="org.eclipse.uml2.uml.util.UMLValidator.validateInterruptingEdges_validateTarget"
-          rule="/0/@expressionProviders/@providers.1/@expressions.87"
-          message="Interrupting edges of a region must have their target node outside the region in the same Activity Region."
-          useInLiveMode="true"
-          category="/0/@audits/@categories.36">
-        <target
-            xsi:type="gmfgen:GenDomainElementTarget"
-            contextSelector="/0/@audits/@clientContexts.0">
-          <element
-              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ActivityEdge"/>
-        </target>
-      </rules>
-      <rules
           name="validateHandlerBodyInput"
           description="The handler body has one input, and that input is the same as the exception input"
           id="org.eclipse.uml2.uml.util.UMLValidator.validateExceptionHandler_validateHandlerBodyInput"
-          rule="/0/@expressionProviders/@providers.1/@expressions.88"
+          rule="/0/@expressionProviders/@providers.1/@expressions.86"
           message="The handler body has one input, and that input is the same as the exception input"
           useInLiveMode="true"
-          category="/0/@audits/@categories.37">
+          category="/0/@audits/@categories.36">
         <target
             xsi:type="gmfgen:GenDomainElementTarget"
             contextSelector="/0/@audits/@clientContexts.0">
@@ -1158,8 +1128,23 @@
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ExceptionHandler"/>
         </target>
       </rules>
+      <rules
+          name="validateInterruptibleEdge"
+          description="Validate the constraint for interruptible Edge"
+          id="org.eclipse.uml2.uml.util.UMLValidator.validateInterruptibleEdge_validateEdge"
+          rule="/0/@expressionProviders/@providers.0/@expressions.112"
+          message="Interrupting edges of a region must have their source node in the region and their target node outside the region in the"
+          useInLiveMode="true"
+          category="/0/@audits/@categories.37">
+        <target
+            xsi:type="gmfgen:GenDomainElementTarget"
+            contextSelector="/0/@audits/@clientContexts.0">
+          <element
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ActivityEdge"/>
+        </target>
+      </rules>
       <clientContexts
-          ruleTargets="/0/@audits/@rules.0/@target /0/@audits/@rules.1/@target /0/@audits/@rules.2/@target /0/@audits/@rules.3/@target /0/@audits/@rules.4/@target /0/@audits/@rules.5/@target /0/@audits/@rules.6/@target /0/@audits/@rules.7/@target /0/@audits/@rules.8/@target /0/@audits/@rules.9/@target /0/@audits/@rules.10/@target /0/@audits/@rules.11/@target /0/@audits/@rules.12/@target /0/@audits/@rules.13/@target /0/@audits/@rules.14/@target /0/@audits/@rules.15/@target /0/@audits/@rules.16/@target /0/@audits/@rules.17/@target /0/@audits/@rules.18/@target /0/@audits/@rules.19/@target /0/@audits/@rules.20/@target /0/@audits/@rules.21/@target /0/@audits/@rules.22/@target /0/@audits/@rules.23/@target /0/@audits/@rules.24/@target /0/@audits/@rules.25/@target /0/@audits/@rules.26/@target /0/@audits/@rules.27/@target /0/@audits/@rules.28/@target /0/@audits/@rules.29/@target /0/@audits/@rules.30/@target /0/@audits/@rules.31/@target /0/@audits/@rules.32/@target /0/@audits/@rules.33/@target /0/@audits/@rules.34/@target /0/@audits/@rules.35/@target /0/@audits/@rules.36/@target /0/@audits/@rules.37/@target /0/@audits/@rules.38/@target /0/@audits/@rules.39/@target /0/@audits/@rules.40/@target /0/@audits/@rules.41/@target /0/@audits/@rules.42/@target /0/@audits/@rules.43/@target /0/@audits/@rules.44/@target /0/@audits/@rules.45/@target /0/@audits/@rules.46/@target /0/@audits/@rules.47/@target /0/@audits/@rules.48/@target /0/@audits/@rules.49/@target /0/@audits/@rules.50/@target /0/@audits/@rules.51/@target /0/@audits/@rules.52/@target /0/@audits/@rules.53/@target /0/@audits/@rules.54/@target /0/@audits/@rules.55/@target /0/@audits/@rules.56/@target /0/@audits/@rules.57/@target /0/@audits/@rules.58/@target /0/@audits/@rules.59/@target /0/@audits/@rules.60/@target /0/@audits/@rules.61/@target /0/@audits/@rules.62/@target /0/@audits/@rules.63/@target"/>
+          ruleTargets="/0/@audits/@rules.0/@target /0/@audits/@rules.1/@target /0/@audits/@rules.2/@target /0/@audits/@rules.3/@target /0/@audits/@rules.4/@target /0/@audits/@rules.5/@target /0/@audits/@rules.6/@target /0/@audits/@rules.7/@target /0/@audits/@rules.8/@target /0/@audits/@rules.9/@target /0/@audits/@rules.10/@target /0/@audits/@rules.11/@target /0/@audits/@rules.12/@target /0/@audits/@rules.13/@target /0/@audits/@rules.14/@target /0/@audits/@rules.15/@target /0/@audits/@rules.16/@target /0/@audits/@rules.17/@target /0/@audits/@rules.18/@target /0/@audits/@rules.19/@target /0/@audits/@rules.20/@target /0/@audits/@rules.21/@target /0/@audits/@rules.22/@target /0/@audits/@rules.23/@target /0/@audits/@rules.24/@target /0/@audits/@rules.25/@target /0/@audits/@rules.26/@target /0/@audits/@rules.27/@target /0/@audits/@rules.28/@target /0/@audits/@rules.29/@target /0/@audits/@rules.30/@target /0/@audits/@rules.31/@target /0/@audits/@rules.32/@target /0/@audits/@rules.33/@target /0/@audits/@rules.34/@target /0/@audits/@rules.35/@target /0/@audits/@rules.36/@target /0/@audits/@rules.37/@target /0/@audits/@rules.38/@target /0/@audits/@rules.39/@target /0/@audits/@rules.40/@target /0/@audits/@rules.41/@target /0/@audits/@rules.42/@target /0/@audits/@rules.43/@target /0/@audits/@rules.44/@target /0/@audits/@rules.45/@target /0/@audits/@rules.46/@target /0/@audits/@rules.47/@target /0/@audits/@rules.48/@target /0/@audits/@rules.49/@target /0/@audits/@rules.50/@target /0/@audits/@rules.51/@target /0/@audits/@rules.52/@target /0/@audits/@rules.53/@target /0/@audits/@rules.54/@target /0/@audits/@rules.55/@target /0/@audits/@rules.56/@target /0/@audits/@rules.57/@target /0/@audits/@rules.58/@target /0/@audits/@rules.59/@target /0/@audits/@rules.60/@target /0/@audits/@rules.61/@target /0/@audits/@rules.62/@target"/>
     </audits>
     <diagram
         visualID="1000"
@@ -16485,6 +16470,9 @@
         <expressions
             xsi:type="gmfgen:GenConstraint"
             body="return UMLValidationHelper.validateTwoInputParameters(context, ctx);"/>
+        <expressions
+            xsi:type="gmfgen:GenConstraint"
+            body="return UMLValidationHelper.validateInterruptibleEdge(context, ctx);"/>
       </providers>
       <providers
           xsi:type="gmfgen:GenExpressionInterpreter">
@@ -16745,12 +16733,6 @@
         <expressions
             xsi:type="gmfgen:GenConstraint"
             body="(self.result.lowerBound() &lt;= self.variable.lowerBound())  and (self.result.upperBound() >= self.variable.lowerBound())"/>
-        <expressions
-            xsi:type="gmfgen:GenConstraint"
-            body="(not self.interrupts.oclIsUndefined()) implies (not self.source.inInterruptibleRegion->collect(r : InterruptibleActivityRegion | r = self.interrupts)->isEmpty())"/>
-        <expressions
-            xsi:type="gmfgen:GenConstraint"
-            body="(not self.interrupts.oclIsUndefined()) implies (self.target.inInterruptibleRegion->collect(r : InterruptibleActivityRegion | r = self.interrupts)->isEmpty() and self.target.activity = self.source.activity)"/>
         <expressions
             xsi:type="gmfgen:GenConstraint"
             body="((not self.handlerBody.oclIsUndefined()) and  (not self.exceptionInput.oclIsUndefined())) implies( let pins : Collection(Element) = self.handlerBody.allOwnedElements()->select(e : Element | e.oclIsKindOf(Pin)) in pins->forAll(e : Element | e.oclIsKindOf(Pin) implies e = self.exceptionInput))"/>

@@ -173,21 +173,27 @@ public abstract class OldCommonDiagramDragDropEditPolicy extends DiagramDragDrop
 			sourceAdapter = new SemanticAdapter(null, sourceEditPart.getModel());
 		}
 		if(targetEditPart == null) {
-			// creation of the node
-			ViewDescriptor descriptor = new ViewDescriptor(new EObjectAdapter(target), Node.class, null, ViewUtil.APPEND, false, ((IGraphicalEditPart)getHost()).getDiagramPreferencesHint());
-
-			// get the command and execute it.
-			CreateCommand nodeCreationCommand = new CreateCommand(((IGraphicalEditPart)getHost()).getEditingDomain(), descriptor, ((View)getHost().getModel()));
-			cc.compose(nodeCreationCommand);
-			SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", (IAdaptable)nodeCreationCommand.getCommandResult().getReturnValue(), new Point(location.x, location.y - 100)); //$NON-NLS-1$
-			cc.compose(setBoundsCommand);
-			targetAdapter = (IAdaptable)nodeCreationCommand.getCommandResult().getReturnValue();
+			//Do not create in a target if target = source
+			if ( target != null && !target.equals(source)){
+				// creation of the node
+				ViewDescriptor descriptor = new ViewDescriptor(new EObjectAdapter(target), Node.class, null, ViewUtil.APPEND, false, ((IGraphicalEditPart)getHost()).getDiagramPreferencesHint());		
+				// get the command and execute it.
+				CreateCommand nodeCreationCommand = new CreateCommand(((IGraphicalEditPart)getHost()).getEditingDomain(), descriptor, ((View)getHost().getModel()));
+				cc.compose(nodeCreationCommand);
+				SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", (IAdaptable)nodeCreationCommand.getCommandResult().getReturnValue(), new Point(location.x, location.y - 100)); //$NON-NLS-1$
+				cc.compose(setBoundsCommand);
+				targetAdapter = (IAdaptable)nodeCreationCommand.getCommandResult().getReturnValue();
+			}
 
 		} else {
 			targetAdapter = new SemanticAdapter(null, targetEditPart.getModel());
 		}
-
-		CommonDeferredCreateConnectionViewCommand aLinkCommand = new CommonDeferredCreateConnectionViewCommand(getEditingDomain(), ((IHintedType)getUMLElementType(linkVISUALID)).getSemanticHint(), sourceAdapter, targetAdapter, getViewer(), getDiagramPreferencesHint(), linkdescriptor, null);
+		CommonDeferredCreateConnectionViewCommand aLinkCommand;
+		if ( target != null && target.equals(source)){
+			aLinkCommand = new CommonDeferredCreateConnectionViewCommand(getEditingDomain(), ((IHintedType)getUMLElementType(linkVISUALID)).getSemanticHint(), sourceAdapter, sourceAdapter, getViewer(), getDiagramPreferencesHint(), linkdescriptor, null);
+		} else {			
+			aLinkCommand = new CommonDeferredCreateConnectionViewCommand(getEditingDomain(), ((IHintedType)getUMLElementType(linkVISUALID)).getSemanticHint(), sourceAdapter, targetAdapter, getViewer(), getDiagramPreferencesHint(), linkdescriptor, null);
+		}
 		aLinkCommand.setElement(semanticLink);
 		cc.compose(aLinkCommand);
 		return cc;
@@ -469,17 +475,20 @@ public abstract class OldCommonDiagramDragDropEditPolicy extends DiagramDragDrop
 	 * @return the edits the part or null if not found
 	 */
 	protected EditPart lookForEditPart(EObject semantic) {
-		Collection<EditPart> editPartSet = getHost().getViewer().getEditPartRegistry().values();
-		Iterator<EditPart> editPartIterator = editPartSet.iterator();
-		EditPart existedEditPart = null;
-		while(editPartIterator.hasNext() && existedEditPart == null) {
-			EditPart currentEditPart = editPartIterator.next();
-
-			if(isEditPartTypeAdapted(currentEditPart.getClass(), semantic.eClass()) && semantic.equals(((GraphicalEditPart)currentEditPart).resolveSemanticElement())) {
-				existedEditPart = currentEditPart;
+		if (semantic != null){			
+			Collection<EditPart> editPartSet = getHost().getViewer().getEditPartRegistry().values();
+			Iterator<EditPart> editPartIterator = editPartSet.iterator();
+			EditPart existedEditPart = null;
+			while(editPartIterator.hasNext() && existedEditPart == null) {
+				EditPart currentEditPart = editPartIterator.next();
+				
+				if(isEditPartTypeAdapted(currentEditPart.getClass(), semantic.eClass()) && semantic.equals(((GraphicalEditPart)currentEditPart).resolveSemanticElement())) {
+					existedEditPart = currentEditPart;
+				}
 			}
+			return existedEditPart;
 		}
-		return existedEditPart;
+		return null;
 	}
 
 	/**

@@ -736,6 +736,7 @@ public class ObjectFlowSelectionEditPart extends LabelEditPart implements ITextA
 	protected IFigure createFigurePrim() {
 		return new LinkAndCornerBentWithTextFigure();
 	}
+
 	/*
 	 * This inner class is no more use see CustomObjectFlowSelectionEditPart
 	 */

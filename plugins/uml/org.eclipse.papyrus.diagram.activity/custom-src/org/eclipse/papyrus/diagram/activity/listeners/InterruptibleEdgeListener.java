@@ -14,19 +14,50 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.activity.listeners;
 
+import java.util.Collection;
+
+import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EStructuralFeature.Setting;
+import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
+import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.commands.UnexecutableCommand;
+import org.eclipse.gmf.runtime.common.core.command.CommandResult;
+import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.diagram.core.services.ViewService;
+import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.commands.CommandProxy;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
+import org.eclipse.gmf.runtime.notation.Node;
+import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.activity.edit.part.interfaces.InterruptibleEdge;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ControlFlowInterruptibleIconEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ObjectFlowInterruptibleIconEditPart;
+import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.activity.request.InterruptibleEdgeRequest;
 import org.eclipse.papyrus.diagram.common.listeners.AbstractModifcationTriggerListener;
+import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
+import org.eclipse.papyrus.diagram.common.util.functions.EObjectToViewFunction;
+import org.eclipse.papyrus.diagram.common.util.functions.SettingToEObjectFunction;
+import org.eclipse.papyrus.diagram.common.util.predicates.ReferencingViewPredicate;
 import org.eclipse.uml2.uml.ActivityEdge;
 import org.eclipse.uml2.uml.UMLPackage;
+
+import com.google.common.base.Function;
+import com.google.common.collect.ImmutableBiMap;
+import com.google.common.collect.Iterables;
 
 /**
  * This listener handle Interruptible Edge
@@ -35,7 +66,11 @@ import org.eclipse.uml2.uml.UMLPackage;
  * 
  */
 public class InterruptibleEdgeListener extends AbstractModifcationTriggerListener<ActivityEdge> {
-
+	/**
+	 * Id of all Visual ID of the interruptible Icon
+	 */	
+	private static ImmutableBiMap<EClass, String> INTERRUPTIBLE_EDGE_ICON_VISUAL_ID_COLLECTION = ImmutableBiMap.of(UMLPackage.Literals.OBJECT_FLOW, String.valueOf(ObjectFlowInterruptibleIconEditPart.VISUAL_ID),UMLPackage.Literals.CONTROL_FLOW,String.valueOf(ControlFlowInterruptibleIconEditPart.VISUAL_ID));
+	
 	@Override
 	protected boolean isCorrectStructuralfeature(EStructuralFeature eStructuralFeature) {
 		if(UMLPackage.Literals.ACTIVITY_EDGE__INTERRUPTS.equals(eStructuralFeature)) {
@@ -44,22 +79,162 @@ public class InterruptibleEdgeListener extends AbstractModifcationTriggerListene
 		return false;
 	}
 
+	/**
+	 * This command will react on a SET event of the structural feature describe in {@link InterruptibleEdgeListener#isCorrectStructuralfeature(EStructuralFeature)}
+	 * This will create a new view if the newValue != null or delete it if null
+	 */
 	@Override
-	protected ICommand getModificationCommand(Notification notif,TransactionalEditingDomain domain) {
+	protected ICommand getModificationCommand(Notification notif, TransactionalEditingDomain domain) {
 		if(Notification.SET == notif.getEventType()) {
-			IGraphicalEditPart edgeEditPart = getChildByEObject((EObject)notif.getNotifier(), getDiagramEditPart(), true);
-			if(edgeEditPart != null && edgeEditPart instanceof InterruptibleEdge) {
+			CompositeCommand cc = new CompositeCommand("Interruptible Edge Command");////$NON-NLS-0$
+			//Handling views
+			
+			final Iterable<IGraphicalEditPart> edgesEditPart =  DiagramEditPartsUtil.getChildrenByEObject((EObject)notif.getNotifier(), getDiagramEditPart(), true);
 				InterruptibleEdgeRequest request = new InterruptibleEdgeRequest();
+				Iterable<View> views = getReferencingView(notif);
 				if(notif.getNewValue() != null) {
+					//handle create view
 					request.setType(InterruptibleEdgeRequest.SET_INTERRUPTIBLE_EDGE);
+					for(View view : views) {
+						try {							
+							String visualID = INTERRUPTIBLE_EDGE_ICON_VISUAL_ID_COLLECTION.get(view.getElement().eClass()); 
+							ICommand createViewCommand = createInterruptibleEdgeIcon(view, visualID);
+							if(createViewCommand != null && createViewCommand.canExecute()) {
+								cc.compose(createViewCommand);
+							}
+						} catch (NullPointerException e) {
+							throw new RuntimeException("Unable to find the Visual ID of the Icon of the interruptible Edge for element"+view.getElement());
+						}
+					}
 				} else {
+					//handle delete view
 					request.setType(InterruptibleEdgeRequest.UNSET_INTERRUPTIBLE_EDGE);
+					for(View view : views) {
+						try {							
+							String visualID = INTERRUPTIBLE_EDGE_ICON_VISUAL_ID_COLLECTION.get(view.getElement().eClass()); 
+							ICommand destroyCommand = destroyInterruptibleIcon((View)view, visualID);
+							if(destroyCommand != null && destroyCommand.canExecute()) {
+								cc.compose(destroyCommand);
+							}
+						} catch (NullPointerException e) {
+							throw new RuntimeException("Unable to find the Visual ID of the Icon of the interruptible Edge for element"+view.getElement());
+						}
+					}
 				}
-				Command command = edgeEditPart.getCommand(request);
-				if(command != null && command.canExecute()) {
-					return new CommandProxy(command);
+				for (IGraphicalEditPart edgeEditPart : edgesEditPart){					
+					if(edgeEditPart != null && edgeEditPart instanceof InterruptibleEdge && edgeEditPart.getModel() instanceof View) {
+						//Ask for the edit if something more else has to be done
+						Command command = edgeEditPart.getCommand(request);
+						if(command != null && command.canExecute()) {
+							cc.compose(new CommandProxy(command));
+						}
+					}
 				}
-			}
+				return cc;
+		} 
+		return null;
+	}
+	
+	
+	/**
+	 * Get all the view from Notation Model which represent the notifier.
+	 * Will only return the view of the same type than the notifier view
+	 * 
+	 * @param notif
+	 * @param edgeEditPart
+	 * @return
+	 */
+	public Iterable<View> getReferencingView(Notification notif) {
+		final ActivityEdge element = getElement(notif);		
+		ECrossReferenceAdapter adapter = ECrossReferenceAdapter.getCrossReferenceAdapter(element.eResource().getResourceSet());
+		if(adapter == null) {
+			adapter = new ECrossReferenceAdapter();
+		}
+		Collection<Setting> inverseReferences = adapter.getInverseReferences(element);
+		Iterable<EObject> settings = Iterables.transform(inverseReferences, new SettingToEObjectFunction());
+		Iterable<EObject> eObjects = Iterables.filter(settings, new ReferencingViewPredicate(element));
+		Iterable<View> views = Iterables.transform(eObjects, new EObjectToViewFunction());
+		return views;
+	}
+
+	private TransactionalEditingDomain getEditingDomain(View model) {
+		DiagramEditPart diagramEditPart = getDiagramEditPart();
+		if( diagramEditPart != null){
+			return diagramEditPart.getEditingDomain();
+		}
+		EditingDomain editingDomain = AdapterFactoryEditingDomain.getEditingDomainFor(model);
+		if ( editingDomain instanceof TransactionalEditingDomain){
+			return (TransactionalEditingDomain)editingDomain;
+		}
+		return null;
+
+	}
+
+	/**
+	 * Create the command to withdraw interruptible edge icon from the activity edge
+	 * 
+	 * @return
+	 */
+	private ICommand destroyInterruptibleIcon(final View model, final String visualID) {
+		TransactionalEditingDomain editingDomain = getEditingDomain(model);
+		if(editingDomain != null) {
+			AbstractTransactionalCommand cmd = new AbstractTransactionalCommand(editingDomain, "Destroy Interruptible Edge Icon", null) {
+
+				@Override
+				protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+					if(model != null) {
+						View interruptibleEdgeIconView = ViewUtil.getChildBySemanticHint(model, visualID);
+						ViewUtil.destroy(interruptibleEdgeIconView);
+						return CommandResult.newOKCommandResult();
+					}
+					return null;
+				}
+			};
+			return cmd;
+		}
+		return null;
+	}
+
+	/**
+	 * Create the Interruptible Edge Icon View
+	 * 
+	 * @return Command to be executed or {@link UnexecutableCommand#INSTANCE} if unable to create
+	 */
+	private ICommand createInterruptibleEdgeIcon(final View model, final String visualID) {
+		TransactionalEditingDomain editingDomain = getEditingDomain(model);
+		if(editingDomain != null) {
+			AbstractTransactionalCommand cmd = new AbstractTransactionalCommand(editingDomain, "Create Interruptible Edge Icon", null) {
+
+				@Override
+				protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+					if(model != null) {
+						Node node = ViewService.createNode((View)model, visualID, UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
+						if(node != null) {
+							return CommandResult.newOKCommandResult(node);
+						} else {
+							return CommandResult.newErrorCommandResult("Unable to create the view for Interruptible Edge label");
+						}
+					}
+					return null;
+				}
+
+				@Override
+				protected IStatus doUndo(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+					IStatus status = super.doUndo(monitor, info);
+					getDiagramEditPart().refresh();
+					return status;
+				}
+
+				@Override
+				protected IStatus doRedo(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+					IStatus status = super.doRedo(monitor, info);
+					getDiagramEditPart().refresh();
+					return status;
+				}
+				
+				
+			};
+			return cmd;
 		}
 		return null;
 	}

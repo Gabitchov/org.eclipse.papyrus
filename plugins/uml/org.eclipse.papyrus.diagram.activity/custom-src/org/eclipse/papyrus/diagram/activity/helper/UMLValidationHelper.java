@@ -34,6 +34,7 @@ import org.eclipse.uml2.uml.ControlNode;
 import org.eclipse.uml2.uml.DecisionNode;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.InputPin;
+import org.eclipse.uml2.uml.InterruptibleActivityRegion;
 import org.eclipse.uml2.uml.ObjectFlow;
 import org.eclipse.uml2.uml.ObjectNode;
 import org.eclipse.uml2.uml.Operation;
@@ -47,6 +48,8 @@ import org.eclipse.uml2.uml.ValueSpecification;
 
 public class UMLValidationHelper {
 
+	private static final String INTERRUTIBLE_EDGE_CONSTRAINT = "Interrupting edges of a region must have their source node in the region and their target node outside the region in the same activity containing the region.";
+
 	/**
 	 * The source and target of an edge must be in the same activity as the
 	 * edge.
@@ -56,7 +59,7 @@ public class UMLValidationHelper {
 	 * @param ctx
 	 *        The cache of context-specific information.
 	 */
-	public static IStatus validateSourceAndTarget(ActivityEdge context, IValidationContext ctx) {
+	public static IStatus validateSourceAndTarget(ActivityEdge context, IValidationContext ctx) {	
 		Activity edgeActivity = context.getActivity();
 		if(edgeActivity == null) {
 			// edge is contained by activity or group. Its activity is by
@@ -118,6 +121,58 @@ public class UMLValidationHelper {
 			}
 		}
 		return ctx.createSuccessStatus();
+	}
+	/**
+	 * Implementation of the constraint
+	 * [1] Interrupting edges of a region must have their source node in the region and their target node outside the region in the
+	 * same activity containing the region.
+	 * From UML Superstructure Version 2.4.1 with change bars
+	 * USE for validation framework
+	 * 
+	 * @param context
+	 * @param ctx
+	 * @param interrupts
+	 * @return
+	 */
+	public static IStatus validateInterruptibleEdge(ActivityEdge context, IValidationContext ctx) {
+		return validateInterruptibleEdge(context, context.getInterrupts())? ctx.createSuccessStatus():ctx.createFailureStatus("Interrupting edges of a region must have their source node in the region and their target node outside the region in the same activity containing the region.");////$NON-NLS-0$
+	}
+
+	/**
+	 * Implementation of the constraint
+	 * [1] Interrupting edges of a region must have their source node in the region and their target node outside the region in the
+	 * same activity containing the region.
+	 * From UML Superstructure Version 2.4.1 with change bars
+	 * 
+	 * @param context
+	 * @param ctx
+	 * @param interrupts
+	 * @return
+	 */
+	public static boolean validateInterruptibleEdge(ActivityEdge context, InterruptibleActivityRegion interrupts) {
+		if(interrupts != null) {
+			//validate source
+			Element source = context.getSource();
+			boolean validSource = false;
+			while(source instanceof ActivityNode && !validSource) {
+				if(((ActivityNode)source).getInInterruptibleRegions().contains(interrupts)) {
+					validSource = true;
+				}
+				source = source.getOwner();
+			}
+			if(!validSource) {
+				return false;
+			}
+			//validate target
+			Element target = context.getTarget();
+			while(target instanceof ActivityNode) {
+				if(((ActivityNode)target).getInInterruptibleRegions().contains(interrupts)) {
+					return false;
+				}
+				target = target.getOwner();
+			}
+		}
+		return true;
 	}
 
 	/**
@@ -810,112 +865,90 @@ public class UMLValidationHelper {
 		}
 		return result;
 	}
-	
-	enum Direction {IN,OUT} ;
-	
+
+	enum Direction {
+		IN, OUT
+	};
+
 	/**
 	 * Validate Call Operation Action,
 	 * the validity of the parameters with pins
+	 * 
 	 * @param action
 	 * @param ctx
 	 * @return OK_STATUS if paramters and pins are synchronised
 	 */
 	@PinAndParameterSynchronizeValidator
 	public static IStatus validateCallOperation(CallOperationAction action, IValidationContext ctx) {
-		if (action.getOperation() == null)
-		{
+		if(action.getOperation() == null) {
 			return ctx.createFailureStatus(String.format("%s does not have operation", action.getName()));
 		}
 		// in check
-		List<Parameter> ins = getParameters(action.getOperation(),Direction.IN);
+		List<Parameter> ins = getParameters(action.getOperation(), Direction.IN);
 		EList<InputPin> inputs = action.getArguments();
-		if (ins.size() != inputs.size())
-		{
+		if(ins.size() != inputs.size()) {
 			return ctx.createFailureStatus(String.format("pins of %s does not have the same number of input pins as input parameters of the operation %s", action.getName(), action.getOperation().getName()));
 		}
-		int index = 0 ;
-		for (Parameter p : ins)
-		{
-			IStatus status = validatePin(index, p, inputs,ctx);
-			if (!status.isOK())
-			{
-				return status ;
+		int index = 0;
+		for(Parameter p : ins) {
+			IStatus status = validatePin(index, p, inputs, ctx);
+			if(!status.isOK()) {
+				return status;
 			}
-			index ++ ;
+			index++;
 		}
 		// out check
-		List<Parameter> outs = getParameters(action.getOperation(),Direction.OUT);
-		int indexOuts = 0 ;
-		for (Parameter p : outs)
-		{
-			IStatus status = validatePin(indexOuts, p, action.getOutputs(),ctx);
-			if (!status.isOK())
-			{
-				return status ;
+		List<Parameter> outs = getParameters(action.getOperation(), Direction.OUT);
+		int indexOuts = 0;
+		for(Parameter p : outs) {
+			IStatus status = validatePin(indexOuts, p, action.getOutputs(), ctx);
+			if(!status.isOK()) {
+				return status;
 			}
-			indexOuts ++ ;
+			indexOuts++;
 		}
 		// chic type check
-		
 		return Status.OK_STATUS;
 	}
 
-	private static IStatus validatePin(int index, Parameter p,
-			EList<? extends Pin> inputs, IValidationContext ctx) {
+	private static IStatus validatePin(int index, Parameter p, EList<? extends Pin> inputs, IValidationContext ctx) {
 		Pin pin = inputs.get(index);
-		for (EStructuralFeature a : pin.eClass().getEAllStructuralFeatures())
-		{
+		for(EStructuralFeature a : pin.eClass().getEAllStructuralFeatures()) {
 			EStructuralFeature feature = getFeature(a.getName(), p.eClass());
-			if (!a.isDerived() && a.isChangeable() && feature != null)
-			{
-				if (!pin.eGet(a).equals(p.eGet(feature)))
-				{
-					return ctx.createFailureStatus(String.format("attribute %s and attribute %s are different for pin %s", a.getName(), feature.getName(),pin.getName()));
+			if(!a.isDerived() && a.isChangeable() && feature != null) {
+				if(!pin.eGet(a).equals(p.eGet(feature))) {
+					return ctx.createFailureStatus(String.format("attribute %s and attribute %s are different for pin %s", a.getName(), feature.getName(), pin.getName()));
 				}
 			}
 		}
 		// check type
-		if ((pin.getType() == null || p.getType() == null) && p.getType() != pin.getType())
-		{
+		if((pin.getType() == null || p.getType() == null) && p.getType() != pin.getType()) {
 			return ctx.createFailureStatus(String.format("type of pin %s is different the parameter %s", pin.getName(), p.getName()));
 		}
-		if (pin.getType() != null && !pin.getType().conformsTo(p.getType()))
-		{
+		if(pin.getType() != null && !pin.getType().conformsTo(p.getType())) {
 			return ctx.createFailureStatus(String.format("type of pin %s is not compatible with the parameter %s", pin.getName(), p.getName()));
 		}
 		return Status.OK_STATUS;
 	}
-	
-	private static EStructuralFeature getFeature (String name, EClass eclass)
-	{
-		for (EStructuralFeature a : eclass.getEAllAttributes())
-		{
-			if (a.getName() != null && a.getName().equals(name))
-			{
-				return a ;
+
+	private static EStructuralFeature getFeature(String name, EClass eclass) {
+		for(EStructuralFeature a : eclass.getEAllAttributes()) {
+			if(a.getName() != null && a.getName().equals(name)) {
+				return a;
 			}
 		}
-		return null ;
+		return null;
 	}
 
-	private static List<Parameter> getParameters(Operation operation,Direction theDirection) {
+	private static List<Parameter> getParameters(Operation operation, Direction theDirection) {
 		List<Parameter> parameters = new ArrayList<Parameter>(operation.getOwnedParameters().size());
-		for (Parameter p : operation.getOwnedParameters())
-		{
-			if (theDirection == Direction.IN)
-			{
-				if (p.getDirection() == ParameterDirectionKind.IN_LITERAL
-						|| p.getDirection() == ParameterDirectionKind.INOUT_LITERAL)
-				{
+		for(Parameter p : operation.getOwnedParameters()) {
+			if(theDirection == Direction.IN) {
+				if(p.getDirection() == ParameterDirectionKind.IN_LITERAL || p.getDirection() == ParameterDirectionKind.INOUT_LITERAL) {
 					parameters.add(p);
 				}
-			}
-			else if (theDirection == Direction.OUT)
-			{
-				if (p.getDirection() == ParameterDirectionKind.OUT_LITERAL
-						|| p.getDirection() == ParameterDirectionKind.INOUT_LITERAL
-						|| p.getDirection() == ParameterDirectionKind.RETURN_LITERAL)
-				{
+			} else if(theDirection == Direction.OUT) {
+				if(p.getDirection() == ParameterDirectionKind.OUT_LITERAL || p.getDirection() == ParameterDirectionKind.INOUT_LITERAL || p.getDirection() == ParameterDirectionKind.RETURN_LITERAL) {
 					parameters.add(p);
 				}
 			}

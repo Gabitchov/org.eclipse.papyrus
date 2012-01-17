@@ -730,6 +730,7 @@ public class ObjectFlowTransformationEditPart extends LabelEditPart implements I
 	protected IFigure createFigurePrim() {
 		return new LinkAndCornerBentWithTextFigure();
 	}
+
 	/*
 	 * This inner class is no more use see CustomObjectFlowTransformationEditPart
 	 */

@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <?eclipse version="3.0"?>
 <plugin>
 
@@ -1604,11 +1605,11 @@
       <category id="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateBroacastSignalAction" mandatory="false" name="validateBroadcastSignalActionTODO">
          <![CDATA[Constraint for BraodcastSignalAction]]>
       </category>
-      <category id="org.eclipse.uml2.uml.util.UMLValidator.validateActivityEdge" mandatory="false" name="validateInterruptibleEdge">
-         <![CDATA[Constraint Interruptible Edge]]>
-      </category>
       <category id="org.eclipse.uml2.uml.util.UMLValidator.validateElement" mandatory="false" name="validateExceptionHandler">
          <![CDATA[Constraint Exception Handler]]>
+      </category>
+      <category id="org.eclipse.uml2.uml.util.UMLValidator.validateElement" mandatory="false" name="validateInterruptibleEdge">
+         <![CDATA[Constraint for interruptible Edge]]>
       </category>
       <constraintProvider cache="true">
          <package namespaceUri="http://www.eclipse.org/uml2/3.0.0/UML"/>
@@ -2346,28 +2347,6 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
                   </constraints>
          <constraints categories="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateBroacastSignalAction">
                   </constraints>
-         <constraints categories="org.eclipse.uml2.uml.util.UMLValidator.validateActivityEdge">
-                  <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateInterruptingEdges_validateSource"
-            lang="OCL"
-            name="validateInterruptibleEdgeSource"
-            mode="Live"
-            severity="ERROR" statusCode="200">
-            <![CDATA[(not self.interrupts.oclIsUndefined()) implies (not self.source.inInterruptibleRegion->collect(r : InterruptibleActivityRegion | r = self.interrupts)->isEmpty())]]>
-            <description><![CDATA[The source of an interruptible edge must refer to an Activity Node included in the interruptible region define in the in the interrupts property. ]]></description>
-            <message><![CDATA[The source of an interruptible edge must refer to an Activity Node included in the interruptible region define in the in the interrupts property. ]]></message>
-            <target class="uml.ActivityEdge"/>
-         </constraint>
-                  <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateInterruptingEdges_validateTarget"
-            lang="OCL"
-            name="validateInterruptibleEdgeTarget"
-            mode="Live"
-            severity="ERROR" statusCode="200">
-            <![CDATA[(not self.interrupts.oclIsUndefined()) implies (self.target.inInterruptibleRegion->collect(r : InterruptibleActivityRegion | r = self.interrupts)->isEmpty() and self.target.activity = self.source.activity)]]>
-            <description><![CDATA[Interrupting edges of a region must have their target node outside the region in the same Activity Region.]]></description>
-            <message><![CDATA[Interrupting edges of a region must have their target node outside the region in the same Activity Region.]]></message>
-            <target class="uml.ActivityEdge"/>
-         </constraint>
-                  </constraints>
          <constraints categories="org.eclipse.uml2.uml.util.UMLValidator.validateElement">
                   <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateExceptionHandler_validateHandlerBodyInput"
             lang="OCL"
@@ -2378,6 +2357,18 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
             <description><![CDATA[The handler body has one input, and that input is the same as the exception input]]></description>
             <message><![CDATA[The handler body has one input, and that input is the same as the exception input]]></message>
             <target class="uml.ExceptionHandler"/>
+         </constraint>
+                  </constraints>
+         <constraints categories="org.eclipse.uml2.uml.util.UMLValidator.validateElement">
+                  <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateInterruptibleEdge_validateEdge"
+            lang="Java" class="org.eclipse.papyrus.diagram.activity.providers.UMLValidationProvider$Adapter63"
+            name="validateInterruptibleEdge"
+            mode="Live"
+            severity="ERROR" statusCode="200">
+            
+            <description><![CDATA[Validate the constraint for interruptible Edge]]></description>
+            <message><![CDATA[Interrupting edges of a region must have their source node in the region and their target node outside the region in the]]></message>
+            <target class="uml.ActivityEdge"/>
          </constraint>
                   </constraints>
       </constraintProvider>
@@ -2450,9 +2441,8 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
                   <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateVariableAction_VariableScope"/>
                   <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateReadVariableAction_OutputPinType"/>
                   <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateReadVariableAction_OutputPinMultiplicity"/>
-                  <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateInterruptingEdges_validateSource"/>
-                  <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateInterruptingEdges_validateTarget"/>
                   <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateExceptionHandler_validateHandlerBodyInput"/>
+                  <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateInterruptibleEdge_validateEdge"/>
                </binding>
 
    </extension>
@@ -3818,17 +3808,29 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
              id="org.eclipse.papyrus.SharedEditingDomainID">
        </editingDomain></listener>
     <listener
-          class="org.eclipse.papyrus.diagram.activity.listeners.PinInGroupListener">
-       <editingDomain
-             id="org.eclipse.papyrus.SharedEditingDomainID">
-       </editingDomain>
-    </listener>
-    <listener
           class="org.eclipse.papyrus.diagram.activity.listeners.ExceptionHandlerListener">
        <editingDomain
              id="org.eclipse.papyrus.SharedEditingDomainID">
        </editingDomain>
     </listener>
+    <listener
+          class="org.eclipse.papyrus.diagram.activity.listeners.InInterruptibleActivityRegionListener">
+       <editingDomain
+             id="org.eclipse.papyrus.SharedEditingDomainID">
+       </editingDomain>
+    </listener>
+ </extension>
+ <extension
+       point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
+    <metamodel
+          nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+       <adviceBinding
+             class="org.eclipse.papyrus.diagram.activity.EditHelperAdvice.ActivityEdgeEditHelperAdvice"
+             id="org.eclipse.papyrus.diagram.activity.ActivityEdgeEditHelperAdvice"
+             inheritance="all"
+             typeId="org.eclipse.papyrus.uml.ActivityEdge">
+       </adviceBinding>
+    </metamodel>
  </extension>
 
 

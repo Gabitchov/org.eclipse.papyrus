@@ -364,6 +364,20 @@ public class UMLValidationProvider {
 	/**
 	 * @generated
 	 */
+	public static class Adapter63 extends AbstractModelConstraint {
+
+		/**
+		 * @generated
+		 */
+		public IStatus validate(IValidationContext ctx) {
+			ActivityEdge context = (ActivityEdge)ctx.getTarget();
+			return UMLValidationHelper.validateInterruptibleEdge(context, ctx);
+		}
+	}
+
+	/**
+	 * @generated
+	 */
 	static String formatElement(EObject object) {
 		return EMFCoreUtil.getQualifiedName(object, true);
 	}

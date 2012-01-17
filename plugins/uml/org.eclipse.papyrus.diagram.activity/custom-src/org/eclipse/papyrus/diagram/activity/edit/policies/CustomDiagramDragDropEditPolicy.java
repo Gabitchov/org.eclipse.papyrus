@@ -21,6 +21,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -29,7 +30,6 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
-import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.commands.CreateCommand;
@@ -47,7 +47,6 @@ import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.activity.edit.commands.DeferredInterruptibleEdgeCommand;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActionLocalPostconditionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActionLocalPreconditionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.CallBehaviorActionEditPart;
@@ -377,9 +376,14 @@ public class CustomDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdi
 			ActivityNode source = (ActivityNode)sources.toArray()[0];
 			ActivityNode target = (ActivityNode)targets.toArray()[0];
 			CompositeCommand dropBinaryLink = dropBinaryLink(new CompositeCommand("drop Activity Edge"), source, target, linkVISUALID, dropRequest.getLocation(), semanticLink);
-			//If the activity edge is interruptible edge we have to add the Interruptoble Edge Icon
+//			If the activity edge is interruptible edge we forbib to drag it outside the interuptible edge
 			if(dropBinaryLink != null && semanticLink instanceof ActivityEdge && ((ActivityEdge)semanticLink).getInterrupts() != null) {
-				getInterruptbleEdgeCommand(dropBinaryLink);
+				if (!((ActivityEdge)semanticLink).getInterrupts().equals(((IGraphicalEditPart)getHost()).resolveSemanticElement())){
+					return UnexecutableCommand.INSTANCE;					
+				} else {
+					return new ICommandProxy(getInterruptbleEdgeCommand(new CompositeCommand("drop Interruptible Activity Edge"), source, target, linkVISUALID, dropRequest.getLocation(), semanticLink));////$NON-NLS-0$
+					
+				}
 			}
 			return new ICommandProxy(dropBinaryLink);
 		} else {
@@ -388,24 +392,70 @@ public class CustomDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdi
 	}
 
 	/**
-	 * Get the command to display Interruptible Edge Icon on an activity Edge
+	 * Get the command to drag and drop an interruptible Edge
+	 * Set the source inside the Interruptible Edge and set the target outside the interruptible edge
 	 * 
 	 * @param dropBinaryLink
 	 *        {@link CompositeCommand} to compose the newly created command
+	 * @param semanticLink 
+	 * @param point 
+	 * @param linkVISUALID 
+	 * @param target 
+	 * @param source 
 	 */
-	protected void getInterruptbleEdgeCommand(CompositeCommand dropBinaryLink) {
-		CommandResult result = dropBinaryLink.getCommandResult();
-		Object resultValue = result.getReturnValue();
-		if(resultValue instanceof Collection) {
-			for(Object r : ((Collection<Object>)resultValue)) {
-				if(r instanceof CreateConnectionViewRequest.ConnectionViewDescriptor) {
-					DeferredInterruptibleEdgeCommand cmd = new DeferredInterruptibleEdgeCommand(getEditingDomain(), dropBinaryLink.getLabel(), dropBinaryLink.getAffectedFiles(), getHost(), (CreateConnectionViewRequest.ConnectionViewDescriptor)r);
-					if(cmd != null && cmd.canExecute()) {
-						dropBinaryLink.compose(cmd);
-					}
+	protected CompositeCommand getInterruptbleEdgeCommand(CompositeCommand cc, Element source, Element target, int linkVISUALID, Point location, Element semanticLink) {
+		// look for editpart
+				GraphicalEditPart sourceEditPart = (GraphicalEditPart)lookForEditPart(source);
+				GraphicalEditPart targetEditPart = (GraphicalEditPart)lookForEditPart(target);
+
+				// descriptor of the link
+				CreateConnectionViewRequest.ConnectionViewDescriptor linkdescriptor = new CreateConnectionViewRequest.ConnectionViewDescriptor(getUMLElementType(linkVISUALID), ((IHintedType)getUMLElementType(linkVISUALID)).getSemanticHint(), getDiagramPreferencesHint());
+
+				IAdaptable sourceAdapter = null;
+				IAdaptable targetAdapter = null;
+				if(sourceEditPart == null) {
+					// creation of the node
+					ViewDescriptor descriptor = new ViewDescriptor(new EObjectAdapter(source), Node.class, null, ViewUtil.APPEND, false, ((IGraphicalEditPart)getHost()).getDiagramPreferencesHint());
+
+					// get the command and execute it.
+					CreateCommand nodeCreationCommand = new CreateCommand(((IGraphicalEditPart)getHost()).getEditingDomain(), descriptor, ((View)getHost().getModel()));
+					cc.compose(nodeCreationCommand);
+					SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", (IAdaptable)nodeCreationCommand.getCommandResult().getReturnValue(), new Point(location.x, location.y)); //$NON-NLS-1$
+					cc.compose(setBoundsCommand);
+
+					sourceAdapter = (IAdaptable)nodeCreationCommand.getCommandResult().getReturnValue();
+				} else {
+					sourceAdapter = new SemanticAdapter(null, sourceEditPart.getModel());
 				}
-			}
-		}
+				if(targetEditPart == null) {
+					// creation of the node
+					ViewDescriptor descriptor = new ViewDescriptor(new EObjectAdapter(target), Node.class, null, ViewUtil.APPEND, false, ((IGraphicalEditPart)getHost()).getDiagramPreferencesHint());
+
+					// get the command and execute it.
+					
+					CreateCommand nodeCreationCommand = new CreateCommand(((IGraphicalEditPart)getHost()).getEditingDomain(), descriptor, ((View)((View)((IGraphicalEditPart)getHost()).getTopGraphicEditPart().getModel()).eContainer()));
+					cc.compose(nodeCreationCommand);
+					
+					IFigure interruptibleActivityRegionFigure = ((IGraphicalEditPart)getHost()).getFigure();
+					interruptibleActivityRegionFigure.getBounds();
+					Point targetPoint = location.getCopy();
+					targetPoint.setX(targetPoint.x()+50);
+					interruptibleActivityRegionFigure.translateToAbsolute(targetPoint);
+					while(interruptibleActivityRegionFigure.containsPoint(targetPoint)){
+						targetPoint.setX(targetPoint.x()+50);
+					}
+					SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", (IAdaptable)nodeCreationCommand.getCommandResult().getReturnValue(), targetPoint); //$NON-NLS-1$
+					cc.compose(setBoundsCommand);
+					targetAdapter = (IAdaptable)nodeCreationCommand.getCommandResult().getReturnValue();
+
+				} else {
+					targetAdapter = new SemanticAdapter(null, targetEditPart.getModel());
+				}
+
+				CommonDeferredCreateConnectionViewCommand aLinkCommand = new CommonDeferredCreateConnectionViewCommand(getEditingDomain(), ((IHintedType)getUMLElementType(linkVISUALID)).getSemanticHint(), sourceAdapter, targetAdapter, getViewer(), getDiagramPreferencesHint(), linkdescriptor, null);
+				aLinkCommand.setElement(semanticLink);
+				cc.compose(aLinkCommand);
+				return cc;
 	}
 
 	/**

@@ -16,6 +16,9 @@ package org.eclipse.papyrus.diagram.activity.request;
 
 import org.eclipse.gef.Request;
 /**
+ * Create a request related to Interruptible Edge.
+ * For now this request is created but and throw to editPart but there is no edit part which used.
+ * The aim is to have for the future a mechanism in place in order to add specific EditPart mechanism
  * @author arthur daussy
  */
 public class InterruptibleEdgeRequest extends Request {

@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.editpolicies.AbstractEditPolicy;
+import org.eclipse.gef.editpolicies.GraphicalEditPolicy;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.core.listener.DiagramEventBroker;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
@@ -33,7 +34,7 @@ import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 
 import com.google.common.collect.ImmutableSet;
 
-public abstract class ListenerEventEditPolicy extends AbstractEditPolicy implements IStructuralFeatureListener {
+public abstract class ListenerEventEditPolicy extends GraphicalEditPolicy implements IStructuralFeatureListener {
 
 	/** Adds <code>String.class</tt> adaptablity to return a factory hint. Copied from {@link CanonicalEditPolicy} */
 	protected static final class ElementListenerAdapter extends EObjectAdapter {
@@ -187,7 +188,7 @@ public abstract class ListenerEventEditPolicy extends AbstractEditPolicy impleme
 			int eventType = notification.getEventType();
 			Object notifier = notification.getNotifier();
 			if(isInstaceofOrNull(newObject,EObject.class) && isInstaceofOrNull(oldObject,EObject.class)&& feature instanceof EStructuralFeature && isInstaceofOrNull(notifier,EObject.class)) {
-				result = getCommand((EObject)newObject, (EObject)oldObject, (EStructuralFeature)feature, eventType, (EObject)notifier);
+				result = getCommandForListenEvent((EObject)newObject, (EObject)oldObject, (EStructuralFeature)feature, eventType, (EObject)notifier);
 			} else {
 				result = getSpecialCommandCommand(notification);
 			}
@@ -213,8 +214,16 @@ public abstract class ListenerEventEditPolicy extends AbstractEditPolicy impleme
 	protected ICommand getSpecialCommandCommand(Notification notification) {
 		return null;
 	}
-
-	protected abstract ICommand getCommand(EObject newObject, EObject oldObject, EStructuralFeature feature, int eventType, EObject notifier);
+	/**
+	 * Get the command relative to the feature this EditPolicy listen
+	 * @param newObject New {@link EObject}
+	 * @param oldObject Old {@link EObject}
+	 * @param feature {@link EStructuralFeature} currently modified
+	 * @param eventType Event Type
+	 * @param notifier {@link EObject} which the notifier
+	 * @return
+	 */
+	protected abstract ICommand getCommandForListenEvent(EObject newObject, EObject oldObject, EStructuralFeature feature, int eventType, EObject notifier);
 
 	/**
 	 * {@inheritDoc IStructuralFeatureListener}
