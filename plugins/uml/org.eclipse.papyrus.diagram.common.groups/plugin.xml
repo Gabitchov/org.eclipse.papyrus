@@ -14,14 +14,5 @@
          </propertySection>
       </propertySections>
    </extension>
-   <extension
-         point="org.eclipse.emf.transaction.listeners">
-      <listener
-            class="org.eclipse.papyrus.diagram.common.groups.listeners.ElementChangeGroupListener">
-         <editingDomain
-               id="org.eclipse.papyrus.SharedEditingDomainID">
-         </editingDomain>
-      </listener>
-   </extension>
 
 </plugin>

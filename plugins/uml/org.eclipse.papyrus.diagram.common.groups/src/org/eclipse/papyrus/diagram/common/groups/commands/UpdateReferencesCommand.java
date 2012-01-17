@@ -122,31 +122,33 @@ public class UpdateReferencesCommand extends AbstractTransactionalCommand {
 			EObject eObjectCreatedElement = (EObject)createdElement;
 			for(IGraphicalEditPart part : childrenPart) {
 				EObject childElement = part.resolveSemanticElement();
-				List<EReference> refs = descriptor.getReferenceFor(childElement.eClass());
-				for(EReference ref : refs) {
-					//Add reference to the father
-					if(ref != null && ref.isMany()) {
-						//ref.getEOpposite()
-						Collection<EObject> collection = (Collection<EObject>)eObjectCreatedElement.eGet(ref);
-						if(setMode) {
-							if(!collection.contains(childElement)) {
-								collection.add(childElement);
+				if (descriptor != null){					
+					List<EReference> refs = descriptor.getReferenceFor(childElement.eClass());
+					for(EReference ref : refs) {
+						//Add reference to the father
+						if(ref != null && ref.isMany()) {
+							//ref.getEOpposite()
+							Collection<EObject> collection = (Collection<EObject>)eObjectCreatedElement.eGet(ref);
+							if(setMode) {
+								if(!collection.contains(childElement)) {
+									collection.add(childElement);
+								}
+							} else {
+								if(collection.contains(childElement)) {
+									collection.remove(childElement);
+								}
 							}
-						} else {
-							if(collection.contains(childElement)) {
-								collection.remove(childElement);
+							//Remove all element which have a model sons in the collection
+						} else if(ref != null && !ref.isMany()) {
+							if(setMode) {
+								eObjectCreatedElement.eSet(ref, childElement);
+							} else {
+								eObjectCreatedElement.eUnset(ref);
 							}
-						}
-						//Remove all element which have a model sons in the collection
-					} else if(ref != null && !ref.isMany()) {
-						if(setMode) {
-							eObjectCreatedElement.eSet(ref, childElement);
-						} else {
-							eObjectCreatedElement.eUnset(ref);
 						}
 					}
+					Utils.withDrawRedundantElementReferenced(childElement);
 				}
-				Utils.withDrawRedundantElementReferenced(childElement);
 			}
 		}
 

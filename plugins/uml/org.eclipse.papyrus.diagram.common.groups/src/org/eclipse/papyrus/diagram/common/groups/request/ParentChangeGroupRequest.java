@@ -14,27 +14,17 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.common.groups.request;
 
-import org.eclipse.gef.Request;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 /**
- * This a abstract request will be used as based request for Group Framework Request
- * @author arthur daussy
- *
+ * Request to notify that a parent has change of group
  */
-public abstract class GroupFrameworkRequest extends Request {
-	/**
-	 * Type of request for node that has change of group
-	 */
-	public static String REFERENCED_GROUP_REQUEST = "ReferencedGroupRequest";
-	/**
-	 * Type of request for edge that has change of group
-	 */
-	public static String EDGE_GROUP_REQUEST = "EdgeGroupRequest";
-	/**
-	 * Notify a child that if parent has change of group
-	 */
-	public static String PARENT_CHANGE_GROUP_REQUEST = "ParentChangeGroupRequest";
+public class ParentChangeGroupRequest extends ReferenceGroupFrameworkRequest {
 
-	public GroupFrameworkRequest(Object type) {
-		super(type);
+	public ParentChangeGroupRequest(EObject newGroup, EObject oldGroup,
+			EObject node, EStructuralFeature eReference) {
+		super(newGroup, oldGroup, node, eReference);
+		setType(PARENT_CHANGE_GROUP_REQUEST);
 	}
+
 }

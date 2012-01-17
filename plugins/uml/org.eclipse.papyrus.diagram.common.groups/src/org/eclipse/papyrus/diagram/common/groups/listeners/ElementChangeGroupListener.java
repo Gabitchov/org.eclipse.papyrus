@@ -42,6 +42,7 @@ import com.google.common.collect.ImmutableSortedSet;
 
 /**
  * Listener which will notify a node that can be contained by one of the groups registered by the extension that he has changed of group 
+ * This class is not register anymore because it not used for the moment. Should be used in the next release.
  */
 public class ElementChangeGroupListener extends AbstractModifcationTriggerListener<Element> {
 	/**
@@ -83,7 +84,7 @@ public class ElementChangeGroupListener extends AbstractModifcationTriggerListen
 	 */
 	@Override
 	protected boolean isCorrectStructuralfeature(EStructuralFeature eStructuralFeature) {	
-		return registry.contains(eStructuralFeature);
+		return false;
 	}
 	/**
 	 * {@inheritDoc AbstractModifcationTriggerListener}
@@ -109,6 +110,7 @@ public class ElementChangeGroupListener extends AbstractModifcationTriggerListen
 				notifyEdge(part, notificationCommand, registry, model,EdgeType.TARGET,setMode);
 				notifyEdge(part, notificationCommand, registry, model,EdgeType.SOURCE,setMode);
 			}
+
 		}
 		
 		return notificationCommand;
