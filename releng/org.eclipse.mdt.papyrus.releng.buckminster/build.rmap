@@ -138,12 +138,13 @@
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
+    <!--
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
-        <!-- updateFrom("EMF CDO",0) -->
       <rm:uri format="{0}/modeling/emf/cdo/drops/R20110913-0010">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
+    -->
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
 		  <!-- updateFrom("M2M ATL",0) -->
       <rm:uri format="{0}/modeling/m2m/atl/updates/releases/3.2/">
