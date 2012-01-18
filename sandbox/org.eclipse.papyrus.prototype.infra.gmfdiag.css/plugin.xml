@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.emf.ecore.factory_override">
+      <factory
+            class="org.eclipse.papyrus.prototype.infra.gmfdiag.css.factory.GMFCSSFactory"
+            uri="http://www.eclipse.org/gmf/runtime/1.0.2/notation">
+      </factory>
+   </extension>
+
+</plugin>
